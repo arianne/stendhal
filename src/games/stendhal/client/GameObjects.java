@@ -31,7 +31,8 @@ public class GameObjects
     {
     try
       {
-      /** TODO: Refactor this */
+      /** TODO: Refactor this
+       *  Factory pattern apply. */
       if(object.get("type").equals("player"))
         {
         return new Player(object);

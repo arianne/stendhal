@@ -146,6 +146,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\Sheep.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\Wolf.java</path>
 				<source>true</source>
 			</fileitem>
