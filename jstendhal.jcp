@@ -70,6 +70,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\LoginGUI.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\GameObjects.java</path>
 				<source>true</source>
 			</fileitem>
@@ -79,10 +83,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\j2DClient.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\j2DOfflineClient.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -50,6 +50,7 @@ public class StendhalRPAction
     double y=object.getDouble("y");
     double dx=object.getDouble("dx");
     double dy=object.getDouble("dy");
+    boolean stopped=(dx==0 && dy==0);
     
     Rectangle2D collisionArea=getCollisionArea(object.get("type"),x+dx,y+dy);
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());

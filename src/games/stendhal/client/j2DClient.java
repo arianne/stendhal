@@ -12,19 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.BufferStrategy;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
 import java.util.*;
  
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import java.net.*;
 import java.io.*;
@@ -37,7 +30,7 @@ import marauroa.common.game.*;
 import javax.swing.*;
 
 /** The main class that create the screen and starts the arianne client. */
-public class j2DClient extends Canvas 
+public class j2DClient extends JFrame 
   {
   private GameScreen screen;
         
@@ -49,6 +42,9 @@ public class j2DClient extends Canvas
   private String username;
   private String password;
 
+  /** NOTE: It sounds bad to see here a GUI component. Try other way. */
+  private JTextField playerChatText;
+
   public j2DClient(String host, String username, String password) 
     {
     this.host=host;
@@ -56,29 +52,46 @@ public class j2DClient extends Canvas
     this.password=password;
     
 	// create a frame to contain our game
-	JFrame container = new JFrame("Stendhal Java 2D");
+	setTitle("Stendhal Java 2D");
 		
 	// get hold the content of the frame and set up the resolution of the game
-	JPanel panel = (JPanel) container.getContentPane();
+	JPanel panel = (JPanel) this.getContentPane();
 	panel.setPreferredSize(new Dimension(640,480));
 	panel.setLayout(null);
 		
 	// setup our canvas size and put it into the content of the frame
-	setBounds(0,0,640,480);
-	panel.add(this);
-		
-	// Tell AWT not to bother repainting our canvas since we're
-	// going to do that our self in accelerated mode
-	setIgnoreRepaint(true);
+	Canvas canvas=new Canvas();
+	canvas.setBounds(0,0,640,460);
+    // Tell AWT not to bother repainting our canvas since we're
+    // going to do that our self in accelerated mode
+    canvas.setIgnoreRepaint(true);
+    panel.add(canvas);
+    
+    playerChatText=new JTextField("");
+    playerChatText.setBounds(0,460,640,20);
+    playerChatText.addActionListener(new ActionListener()
+      {
+      public void actionPerformed(ActionEvent e)
+        {
+        RPAction chat=new RPAction();
+        chat.put("type","chat");
+        chat.put("text",playerChatText.getText());
+        client.send(chat);
+        
+        playerChatText.setText("");
+        }          
+      });
+    panel.add(playerChatText);
+        
 		
 	// finally make the window visible 
-	container.pack();
-	container.setResizable(false);
-	container.setVisible(true);
+	pack();
+	setResizable(false);
+	setVisible(true);
 	
 	// add a listener to respond to the user closing the window. If they
 	// do we'd like to exit the game
-	container.addWindowListener(new WindowAdapter() 
+	addWindowListener(new WindowAdapter() 
 	  {
 	  public void windowClosing(WindowEvent e) 
 	    {
@@ -88,18 +101,30 @@ public class j2DClient extends Canvas
 		
     client=new StendhalClient();
    
-    // add a key input system (defined below) to our canvas
-	// so we can respond to key pressed
-	addKeyListener(new StendhalKeyInputHandler(client));
-		
+    // add a key input system (defined below) to our canvas so we can respond to key pressed    
+    playerChatText.addKeyListener(new StendhalKeyInputHandler(client));
+    
+    addFocusListener(new FocusListener()
+      {
+      public void focusGained(FocusEvent e)
+        {
+        playerChatText.requestFocus();
+        }
+            
+      public void focusLost(FocusEvent e)
+        {
+        }
+      });
+        
 	// request the focus so key events come to us
-	requestFocus();
+    playerChatText.requestFocus();
+    requestFocus();
 
 	// create the buffering strategy which will allow AWT
 	// to manage our accelerated graphics
     BufferStrategy strategy;
-    createBufferStrategy(2);
-	strategy = getBufferStrategy();
+    canvas.createBufferStrategy(2);
+	strategy = canvas.getBufferStrategy();
 		
 	GameScreen.createScreen(strategy,640,480);
     screen=GameScreen.get();
@@ -148,11 +173,6 @@ public class j2DClient extends Canvas
       staticLayers.draw(screen);
       gameObjects.draw(screen);
            
-      Graphics2D g=screen.expose();
-      g.setColor(Color.white);
-      String message="Test of Stendhal running under Java";
-	  g.drawString(message,(640-g.getFontMetrics().stringWidth(message))/2,200);
-			
 	  screen.nextFrame();
       client.loop(0);
 

@@ -29,39 +29,69 @@ public class StendhalKeyInputHandler extends KeyAdapter
     {
     RPAction action;
     
-    switch(e.getKeyCode())
+    if(e.getKeyCode()==KeyEvent.VK_LEFT && e.isControlDown())
       {
-      case KeyEvent.VK_LEFT:
-        action=new RPAction();
-        action.put("type","move");
-        action.put("dx",-0.8);
-        client.send(action);
-        break;
-      case KeyEvent.VK_RIGHT:
-        action=new RPAction();
-        action.put("type","move");
-        action.put("dx",0.8);
-        client.send(action);
-        break;
-      case KeyEvent.VK_UP:
-        action=new RPAction();
-        action.put("type","move");
-        action.put("dy",-0.8);
-        client.send(action);
-        break;
-      case KeyEvent.VK_DOWN:      
-        action=new RPAction();
-        action.put("type","move");
-        action.put("dy",0.8);
-        client.send(action);
-        break;
-      case KeyEvent.VK_ENTER:      
-        action=new RPAction();
-        action.put("type","change");
-        action.put("dest","city");
-        client.send(action);
-        break;
+      action=new RPAction();
+      action.put("type","face");
+      action.put("dir",0);
+      client.send(action);
       }
+    else if(e.getKeyCode()==KeyEvent.VK_RIGHT && e.isControlDown())
+      {
+      action=new RPAction();
+      action.put("type","face");
+      action.put("dir",1);
+      client.send(action);
+      }
+    else if(e.getKeyCode()==KeyEvent.VK_UP && e.isControlDown())
+      {
+      action=new RPAction();
+      action.put("type","face");
+      action.put("dir",2);
+      client.send(action);
+      }
+    else if(e.getKeyCode()==KeyEvent.VK_DOWN && e.isControlDown())
+      {
+      action=new RPAction();
+      action.put("type","face");
+      action.put("dir",3);
+      client.send(action);
+      }
+    else if(e.getKeyCode()==KeyEvent.VK_LEFT)
+      {
+      action=new RPAction();
+      action.put("type","move");
+      action.put("dx",-0.8);
+      client.send(action);
+      }
+    else if(e.getKeyCode()==KeyEvent.VK_RIGHT)
+      {
+      action=new RPAction();
+      action.put("type","move");
+      action.put("dx",0.8);
+      client.send(action);
+      }
+    else if(e.getKeyCode()==KeyEvent.VK_UP)
+      {
+      action=new RPAction();
+      action.put("type","move");
+      action.put("dy",-0.8);
+      client.send(action);
+      }
+    else if(e.getKeyCode()==KeyEvent.VK_DOWN)
+      {
+      action=new RPAction();
+      action.put("type","move");
+      action.put("dy",0.8);
+      client.send(action);
+      }
+    else if(e.getKeyCode()==KeyEvent.VK_ENTER && e.isControlDown())
+      {
+      action=new RPAction();
+      action.put("type","change");
+      action.put("dest","city");
+      client.send(action);
+      }      
     }
     
   public void onKeyReleased(KeyEvent e)  

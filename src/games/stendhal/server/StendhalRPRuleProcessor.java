@@ -80,12 +80,30 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       else if(action.get("type").equals("change"))
         {
         RPObject object=world.get(id);
-        if(!object.get("zoneid").equals(action.get("dest")))
+        if(action.has("dest") && !object.get("zoneid").equals(action.get("dest")))
           {
           StendhalRPAction.changeZone(object,action.get("dest"));
           StendhalRPAction.transferContent(object);
           }
         }
+      else if(action.get("type").equals("chat"))
+        {
+        if(action.has("text")) 
+          {
+          RPObject object=world.get(id);
+          object.put("text",action.get("text"));
+          world.modify(object);
+          }
+        }          
+      else if(action.get("type").equals("face"))
+        {
+        if(action.has("dir")) 
+          {
+          RPObject object=world.get(id);
+          object.put("dir",action.get("dir"));
+          world.modify(object);
+          }
+        }          
       }
     catch(Exception e)
       {

@@ -35,11 +35,13 @@ public class StendhalRPWorld extends RPWorld
     player.add("x",RPClass.FLOAT);
     player.add("y",RPClass.FLOAT);
     player.add("dx",RPClass.FLOAT);
-    player.add("dy",RPClass.FLOAT);    
+    player.add("dy",RPClass.FLOAT); 
+    player.add("dir",RPClass.BYTE);
     player.add("xp",RPClass.SHORT);
     player.add("hp",RPClass.SHORT);
     player.add("atk",RPClass.SHORT);
     player.add("def",RPClass.SHORT);
+    player.add("text",RPClass.STRING);
     }
   
   public void onInit() throws Exception
