@@ -15,17 +15,20 @@ package games.stendhal.client;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.entity.*;
+import games.stendhal.common.*;
 import java.util.*;
 import java.awt.Graphics;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects 
   {
-  HashMap<RPObject.ID, GameEntity> objects;
+  private HashMap<RPObject.ID, GameEntity> objects;
+  private StaticGameLayers collisionMap;
   
-  public GameObjects()
+  public GameObjects(StaticGameLayers collisionMap)
     {
     objects=new HashMap<RPObject.ID, GameEntity>();
+    this.collisionMap=collisionMap;
     }
   
   /** Create a GameEntity of the correct type depending of the arianne object */
@@ -101,7 +104,10 @@ public class GameObjects
     {
     for(GameEntity entity: objects.values())
       {
-      entity.move(delta);
+      if(collisionMap.collides(entity.getArea())==false)
+        {
+        entity.move(delta);
+        }      
       }
     }
    

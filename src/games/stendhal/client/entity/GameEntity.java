@@ -15,7 +15,8 @@ package games.stendhal.client.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
-import java.awt.Graphics;
+import java.awt.*;
+import java.awt.geom.*;
 
 /** This class is a link between client graphical objects and server attributes objects.<br>
  *  You need to extend this object in order to add new elements to the game. */
@@ -42,13 +43,18 @@ public class GameEntity extends Entity
     loadSprite(object.get("type"));
     }
     
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }
+
   /** Loads the sprite that represent this entity */
   protected void loadSprite(String type)
     {
     SpriteStore store=SpriteStore.get();        
     sprite=store.getSprite(translate(type));
     }
-  
+ 
   /** This method is called to modify the propierties of the game entity when the object
    *  that it represent has changed. */
   public void modify(RPObject object) throws AttributeNotFoundException

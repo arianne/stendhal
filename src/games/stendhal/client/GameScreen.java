@@ -111,8 +111,8 @@ public class GameScreen
   /** Indicate the screen windows to move at a dx,dy speed. */
   public void move(double dx, double dy)
     {
-    this.dx=dx;
-    this.dy=dy;
+    this.dx=dx>10?10:dx;
+    this.dy=dy>10?10:dy;
     }
   
   /** Returns the x rendering coordinate in world units */

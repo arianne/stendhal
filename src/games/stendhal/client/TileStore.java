@@ -24,7 +24,6 @@ public class TileStore extends SpriteStore
   private static final int TILE_HEIGHT=32;
   
   private Sprite[] tileset;
-  private boolean[] walkable;
   
   private static TileStore singleton;
   
@@ -60,62 +59,10 @@ public class TileStore extends SpriteStore
         tileset[i+j*(tiles.getWidth()/TILE_WIDTH)] = new Sprite(image);        
         }
       }
-    
-    //TODO: Unless you want to run collision detection on client too.
-    //setCollisionData(ref+".collision");    
-    }
-    
-  private void setCollisionData(String filename)
-    {
-    Logger.trace("TileStore::setCollisionData",">");
-    try
-      {
-      BufferedReader file=new BufferedReader(new FileReader(filename));
-      String text;
-    
-      text=file.readLine();
-      String[] size=text.split(" ");
-      int width=Integer.parseInt(size[0]);
-      int height=Integer.parseInt(size[1]);
-    
-      walkable=new boolean[width*height];
-    
-      int j=0;
-    
-      while((text=file.readLine())!=null)
-        {
-        if(text.trim().equals(""))
-          {
-          break;
-          }
-        
-        String[] items=text.split(",");
-        for(String item: items)
-          {
-          walkable[j]=(Integer.parseInt(item)==0);
-          j++;      
-          }
-        System.out.println();
-        }
-      }
-    catch(IOException e)
-      {
-      Logger.thrown("TileStore::setCollisionData","X",e);
-      System.exit(0);
-      }
-    finally
-      {
-      Logger.trace("TileStore::setCollisionData","<");
-      }
     }
 
   public Sprite getTile(int i) 
     {
     return tileset[i];
-    }
-  
-  public boolean isWalkable(int i)
-    {
-    return walkable[i];
     }
   }

@@ -12,7 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import java.awt.Graphics;
+import java.awt.*;
+import java.awt.geom.*;
 import games.stendhal.client.*;
 
 /**
@@ -50,6 +51,8 @@ public abstract class Entity {
 		
 		dx=dy=0;
 	}
+	
+	abstract public Rectangle2D getArea();
 	
     /**
 	 * Request that this entity move itself based on a certain ammount

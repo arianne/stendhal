@@ -5,6 +5,7 @@ import marauroa.common.game.*;
 import games.stendhal.client.*;
 
 import java.awt.*;
+import java.awt.geom.*;
 
 /** A Player entity */
 public class Player extends AnimatedGameEntity 
@@ -25,6 +26,11 @@ public class Player extends AnimatedGameEntity
     textImages=new java.util.LinkedList<Sprite>();
     textImagesTimes=new java.util.LinkedList<Long>();
     nameImage=null;
+    }
+  
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x+0.5,y+1.3,0.87,0.6);
     }
     
   protected void buildAnimations(String type)

@@ -17,6 +17,7 @@ import java.io.*;
 import java.awt.*;
 import java.awt.geom.*;
 
+import games.stendhal.common.*;
 import marauroa.common.*;
 
 /** This class loads the map and allow you to determine if a player collides or 
@@ -32,6 +33,11 @@ public class CollisionDetection
     {
     blocked=null;
     setCollisionData(filename);
+    }
+  
+  public void clear()
+    {
+    for(int i=0;i<width*height;i++) blocked[i]=false;
     }
 
   private int[] getLayerData(Reader reader) throws IOException
@@ -76,6 +82,22 @@ public class CollisionDetection
     
     if(blocked==null)
       {
+      blocked=new boolean[width*height];
+      for(int i=0;i<width*height;i++) blocked[i]=false;
+      }     
+    
+    buildCollisionData(map);
+    Logger.trace("CollisionDetection::addLayer","<");
+    }
+
+  /** Add a new layer to the class.<br>
+   *  A map is build of several layers. */
+  public void addLayer(int[] map, int width, int height)
+    {
+    if(blocked==null)
+      {
+      this.width=width;
+      this.height=height;
       blocked=new boolean[width*height];
       for(int i=0;i<width*height;i++) blocked[i]=false;
       }     
@@ -172,6 +194,11 @@ public class CollisionDetection
     Logger.trace("CollisionDetection::buildCollisionData","<");
     }
   
+  public boolean walkable(double x, double y)
+    {
+    return !blocked[(int)y*width+(int)x];
+    }
+    
   /** Returns true if the shape enters in any of the non trespasable areas of the map */
   public boolean collides(Rectangle2D shape)
     {
@@ -180,12 +207,12 @@ public class CollisionDetection
     double w=shape.getWidth();
     double h=shape.getHeight();
     
-    if(x<0 || x+w>getWidth())
+    if(x<0 || x+w>=getWidth())
       {
       return true;
       }
 
-    if(y<0 || y+h>getHeight())
+    if(y<0 || y+h>=getHeight())
       {
       return true;
       }

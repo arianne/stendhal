@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.awt.Graphics;
+import games.stendhal.common.*;
+import java.awt.*;
+import java.awt.geom.*;
 import java.util.*;
 import java.io.*;
 
@@ -25,11 +27,19 @@ public class StaticGameLayers
     {
     public String name;
     public TileRenderer renderer;
+    public CollisionDetection collisionMap;
     
     Pair(String name, TileRenderer renderer)
       {
       this.name=name;
-      this.renderer=renderer;
+      this.renderer=renderer;      
+      }
+
+    Pair(String name, TileRenderer renderer, CollisionDetection collisionMap)
+      {
+      this.name=name;
+      this.renderer=renderer;      
+      this.collisionMap=collisionMap;
       }
     }
   
@@ -37,13 +47,14 @@ public class StaticGameLayers
   private LinkedList<Pair> layers;
   /** Tilestore contains the tiles to draw */
   private TileStore tilestore;
+  
   /** Name of the layers set that we are rendering right now */
   private String area;
     
   public StaticGameLayers()
     {
     layers=new LinkedList<Pair>();
-    tilestore=TileStore.get("sprites/zelda_outside_chipset.gif");
+    tilestore=TileStore.get("sprites/zelda_outside_chipset.gif");    
     area=null;
     }
   
@@ -109,13 +120,31 @@ public class StaticGameLayers
           }
         }
         
-      layers.add(i,new Pair(name, renderer));    
+      layers.add(i,new Pair(name, renderer, renderer.createCollisionMap()));    
       }
     finally
       {
       Logger.trace("StaticGameLayers::addLayer","<");
       }
     }
+
+  public boolean collides(Rectangle2D shape)
+    {
+    for(Pair p: layers)
+      {
+      if(area!=null && p.name.contains(area) && !p.name.contains("roof"))
+        {
+        if(p.collisionMap.collides(shape))
+          {
+          p.collisionMap.printaround((int)shape.getX(),(int)shape.getY(),5);
+          return true;          
+          }          
+        }
+      }
+    
+    return false;
+    }
+  
   
   /** Removes all layers */
   public void clear()

@@ -3,6 +3,10 @@ package games.stendhal.client.entity;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
 
+import java.awt.*;
+import java.awt.geom.*;
+
+
 /** A Wolf entity */
 public class Wolf extends AnimatedGameEntity 
   {
@@ -10,7 +14,12 @@ public class Wolf extends AnimatedGameEntity
     {
     super(object);
     }
-    
+  
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x+0.5,y+1.3,0.87,0.6);
+    }
+
   protected void buildAnimations(String type)
     {
     SpriteStore store=SpriteStore.get();  

@@ -16,6 +16,7 @@ import java.io.*;
 import java.awt.Graphics;
 import java.util.*;
 
+import games.stendhal.common.*;
 import marauroa.common.*;
 
 /** This is a helper class to render coherent tiles based on the tileset.
@@ -72,6 +73,13 @@ public class TileRenderer
 
     Logger.trace("TileRenderer::setMapData","<");
     }
+  
+  public CollisionDetection createCollisionMap()
+    {
+    CollisionDetection collision=new CollisionDetection("sprites/zelda_outside_chipset.gif.collision");
+    collision.addLayer(map,width,height);
+    return collision;
+    }
 
   /** Returns the widht in world units */
   public int getWidth()
@@ -95,14 +103,22 @@ public class TileRenderer
    *  The data doesnt change, so we could cache it and get a boost in performance */
   public void draw(GameScreen screen) 
     {
-    for(int j=0;j<getHeight();j++)
+    int x=(int)screen.getX();
+    int y=(int)screen.getY();
+    int w=(int)screen.getWidth();
+    int h=(int)screen.getHeight();
+    
+    for(int j=y-1;j<y+h+1;j++)
       {
-      for(int i=0;i<getWidth();i++)
+      for(int i=x-1;i<x+w+1;i++)
         {
-        int value=get(i,j)-1;        
-        if(value>=0)
+        if(j>=0 && j<getHeight() && i>=0 && i<getWidth())
           {
-          screen.draw(tiles.getTile(value),i,j);
+          int value=get(i,j)-1;        
+          if(value>=0)
+            {
+            screen.draw(tiles.getTile(value),i,j);
+            }
           }
         }
       }

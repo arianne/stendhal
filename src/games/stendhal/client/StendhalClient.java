@@ -40,7 +40,7 @@ public class StendhalClient extends ariannexp
     super(logging);
     world_objects=new HashMap<RPObject.ID, RPObject>();
     staticLayers=new StaticGameLayers();
-    gameObjects=new GameObjects();   
+    gameObjects=new GameObjects(staticLayers);   
     handler=new PerceptionHandler(new StendhalPerceptionListener()); 
     }
   
