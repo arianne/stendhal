@@ -99,14 +99,38 @@ public class StendhalClient extends ariannexp
     Logger.trace("StendhalClient::onTransferREQ",">");
     for(TransferContent item: items)
       {
-      // TODO: Cache items so that we can save the transfer
-      item.ack=true;
+      File file=new File("cache/"+item.name);
+      if(file.exists() && file.lastModified()==(((long)item.timestamp)*1000))
+        {
+        Logger.trace("StendhalClient::onTransferREQ","D","File is on cache. We save transfer");
+        item.ack=false;
+        try
+          {
+          contentHandling(item.name,new FileReader(file));
+          }
+        catch(java.io.IOException e)          
+          {
+          e.printStackTrace();
+          System.exit(0);
+          }
+        }
+      else
+        {
+        Logger.trace("StendhalClient::onTransferREQ","D","File is NOT on cache. We have to transfer");
+        item.ack=true;
+        }
       }
     Logger.trace("StendhalClient::onTransferREQ","<");
    
     return items;
     }
   
+  private void contentHandling(String name, Reader reader) throws IOException 
+    {
+    staticLayers.addLayer(reader,name);
+    GameScreen.get().setMaxWorldSize((int)staticLayers.getWidth(),(int)staticLayers.getHeight());
+    }
+    
   protected void onTransfer(List<TransferContent> items)
     {
     Logger.trace("StendhalClient::onTransfer",">");
@@ -115,9 +139,21 @@ public class StendhalClient extends ariannexp
       for(byte ele: item.data) System.out.print((char)ele);
       
       try
-        {        
-        staticLayers.addLayer(new StringReader(new String(item.data)),item.name);
-        GameScreen.get().setMaxWorldSize((int)staticLayers.getWidth(),(int)staticLayers.getHeight());
+        {
+        String data=new String(item.data);
+        
+        if(!new File("cache/"+item.name).exists())
+          {
+          Writer writer=new BufferedWriter(new FileWriter("cache/"+item.name));
+          writer.write(data);
+          writer.close();
+
+          Logger.trace("StendhalClient::onTransfer","D","File cached. Timestamp: "+Integer.toString(item.timestamp));
+          long timestamp=item.timestamp;
+          new File("cache/"+item.name).setLastModified(timestamp*1000);
+          }
+          
+        contentHandling(item.name,new StringReader(data));
         }
       catch(java.io.IOException e)          
         {
