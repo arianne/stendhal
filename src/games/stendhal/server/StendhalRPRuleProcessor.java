@@ -38,11 +38,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     if(type.equals("player"))
       {
-      return new Rectangle.Double(x,y,1,1);
+      return new Rectangle.Double(x,y,1,3);
       }
     else
       {
-      return new Rectangle.Double(x,y,1,1);
+      return new Rectangle.Double(x,y,1,3);
       }
     }
 
@@ -217,7 +217,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       object.put("x",30);
       object.put("y",30);
       object.put("dx",0.5);
-      object.put("dy",-0.5);
+      object.put("dy",0.005);
       world.add(object);
       
       try        

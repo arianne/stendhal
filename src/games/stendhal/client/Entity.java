@@ -58,8 +58,8 @@ public abstract class Entity {
 	 */
 	public void move(long delta) {
 		// update the location of the entity based on move speeds
-		x += (delta * dx) / 2000;
-		y += (delta * dy) / 2000;
+		x += (delta * dx) / 300;
+		y += (delta * dy) / 300;
 	}
 	
 	/**

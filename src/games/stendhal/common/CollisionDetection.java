@@ -55,15 +55,15 @@ public class CollisionDetection
   /** REMOVE ME LATER: Test stuff **/
   public void printaround(int x, int y, int size)
     {
-    for(int i=x-size;i<x+size;i++)
+    for(int j=y-size;j<y+size;j++)
       {
-      for(int j=y-size;j<y+size;j++)
+      for(int i=x-size;i<x+size;i++)
         {
         if(j==(int)y && i==(int)x)
           {
           System.out.print("O");
           }
-        else if(blocked[i][j]==0)
+        else if(blocked[j][i]==0)
           {
           System.out.print(".");
           }
@@ -156,7 +156,7 @@ public class CollisionDetection
     {
     try
       {
-      double x=30.5,y=31.5;
+      double x=25,y=1;
       
       CollisionDetection collision=new CollisionDetection();
       collision.addLayer(new FileReader("maps/city_layer0.txt"));
@@ -182,7 +182,7 @@ public class CollisionDetection
         System.out.println();
         }
       
-      if(collision.collides(new Rectangle.Double(x,y,2,2)))
+      if(collision.collides(new Rectangle.Double(x,y,1,2)))
         {
         System.out.println("A collision exists");
         }
