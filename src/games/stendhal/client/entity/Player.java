@@ -23,10 +23,10 @@ public class Player extends AnimatedGameEntity
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,6,64,48));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,6,64,48));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,6,64,48));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,6,64,48));      
+    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,4,64,48));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,4,64,48));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,4,64,48));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,4,64,48));      
     }
   
   protected Sprite defaultAnimation()

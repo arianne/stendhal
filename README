@@ -17,18 +17,14 @@ the arianne engine.
 
 Description
 -----------
+The game is actually in *heavy* development. In fact I won't call it game :)
+You can move and change zone.
 
 How to make it work
 -------------------
-Get marauroa and compile marauroa, look for a folder called games, copy all inside
-src to that folder and compile marauroa again, now edit stendhal.ini to match your
-database stuff and run marauroa.
-Then edit j2DClient.java and change username and password to match the ones you created
-using stendhalCreateaccount.java 
+http://arianne.sourceforge.net/wiki/index.php/HowToBuildStendhal
 
-If it is very hard, just ask for support on IRC or wait for a later release.
-
-No warranties.
+No warranties. But let me know if it doesn't works.
 
 How to play
 -----------
