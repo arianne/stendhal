@@ -26,7 +26,7 @@ import java.util.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import java.net.*;
 import java.io.*;
@@ -57,10 +57,10 @@ public class j2DOfflineClient extends Canvas {
         
     private BufferStrategy strategy;
 	private boolean gameRunning=true;
-    private JLabel label;
+    private JTextField enterText;
 	
     private boolean leftPressed=false, rightPressed=false, upPressed=false, downPressed=false;
-
+    private JPanel panel;
 	/**
 	 * Construct our game and set it running.
 	 */
@@ -69,17 +69,20 @@ public class j2DOfflineClient extends Canvas {
 		JFrame container = new JFrame("Stendhal Java 2D");
 		
 		// get hold the content of the frame and set up the resolution of the game
-		JPanel panel = (JPanel) container.getContentPane();
+		panel = (JPanel) container.getContentPane();
 		panel.setPreferredSize(new Dimension(640,480));
 		panel.setLayout(null);
-    label = new JLabel("Testo");
-    label.setSize(new Dimension(50,50));
-
+    enterText = new JTextField("TestoFieldo");
+    enterText.setSize(new Dimension(50,50));
+    enterText.setBounds(10,10,60,60);
+    enterText.setOpaque(false);
 		
 		// setup our canvas size and put it into the content of the frame
 		setBounds(0,0,640,480);
 		panel.add(this);
-		
+	  
+    panel.add(enterText);
+    	
 		// Tell AWT not to bother repainting our canvas since we're
 		// going to do that our self in accelerated mode
 		setIgnoreRepaint(true);
@@ -217,10 +220,9 @@ public class j2DOfflineClient extends Canvas {
     		g.setColor(Color.white);
     		String message="Test of Stendhal running under Java";
 			g.drawString(message,(640-g.getFontMetrics().stringWidth(message))/2,200);
-			
-      Graphics g2 = g.create(10,10,60,60);
-      label.paint(g2);
-      
+		  
+      enterText.paint(g);
+     	
 			screen.nextFrame();
 			
 			if(System.nanoTime()-oldTime>1000000000)
