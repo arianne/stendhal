@@ -63,6 +63,24 @@ public class StendhalRPWorld extends RPWorld
       city.add(object);
       }
     
+    RPObject wolf=new RPObject();
+    city.assignRPObjectID(wolf);
+    wolf.put("type","wolf");
+    wolf.put("x",20);
+    wolf.put("y",30);
+    wolf.put("dx",0.5);
+    wolf.put("dy",0);
+    city.add(wolf);
+
+    RPObject sheep=new RPObject();
+    city.assignRPObjectID(sheep);
+    sheep.put("type","sheep");
+    sheep.put("x",60);
+    sheep.put("y",30);
+    sheep.put("dx",-0.1);
+    sheep.put("dy",0);
+    city.add(sheep);
+
     city.addLayer("city_layer0","games/stendhal/server/maps/city_layer0.txt");
     city.addLayer("city_layer1","games/stendhal/server/maps/city_layer1.txt");
     addRPZone(city);

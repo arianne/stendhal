@@ -40,6 +40,10 @@ public class GameObjects
         {
         return new Wolf(object);
         }
+      else if(object.get("type").equals("sheep"))
+        {
+        return new Sheep(object);
+        }
       else
         {
         return new GameEntity(object);
