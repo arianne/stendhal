@@ -14,11 +14,11 @@
 	<runtimes>
 		<runtime>
 			<label>&lt;Default&gt;</label>
-			<application_ref/>
-			<applet_ref/>
-			<debugger_ref/>
+			<application_ref>&lt;Default&gt;</application_ref>
+			<applet_ref>&lt;Default&gt;</applet_ref>
+			<debugger_ref>&lt;Default&gt;</debugger_ref>
 			<param/>
-			<run>games.stendhal.client.j2DClient</run>
+			<run>games.stendhal.client.stendhal</run>
 		</runtime>
 	</runtimes>
 	<libraries>
@@ -40,6 +40,9 @@
 			</folderitem>
 			<folderitem>
 				<path>src\games\stendhal\client\entity</path>
+			</folderitem>
+			<folderitem>
+				<path>src\games\stendhal\client\gui</path>
 			</folderitem>
 			<folderitem>
 				<path>src\games\stendhal\server</path>
@@ -66,11 +69,19 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>stendhal-0.01.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>stendhal-server-0.00.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\LoginGUI.java</path>
+				<path>stendhal-server-0.01.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal.jnlp</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -79,10 +90,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\GameScreen.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\j2DClient.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -95,6 +102,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\StaticGameLayers.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\stendhal.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -142,6 +153,18 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\j2DClient.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\LoginDialog.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\StendhalFirstScreen.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\stendhalcreateaccount.java</path>
 				<source>true</source>
 			</fileitem>
@@ -179,6 +202,10 @@
 			</fileitem>
 			<fileitem>
 				<path>maps\village_layer1.txt</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>jars\marauroa.jar</path>
 				<source>true</source>
 			</fileitem>
 		</include>

@@ -15,6 +15,7 @@ package games.stendhal.client;
 import java.net.*;
 import java.util.*;
 
+import marauroa.client.*;
 import marauroa.client.net.*;
 import marauroa.common.game.*;
 import marauroa.common.net.*;
@@ -129,7 +130,14 @@ public class textClient extends Thread
           System.out.println(characterAvail);
           }
         
-        chooseCharacter(character);
+        try
+          {
+          chooseCharacter(character);
+          }
+        catch(Exception e)
+          {
+          e.printStackTrace();          
+          }
         }
         
       protected void onServerInfo(String[] info)
@@ -153,14 +161,18 @@ public class textClient extends Thread
     {
     try
       {
-      clientManager.connect(host,32160);
+      clientManager.connect(host,32160);      
+      clientManager.login(username,password);
       }
     catch(SocketException e)
       {
       return;
       }
-      
-    clientManager.login(username,password);
+    catch(ariannexpTimeoutException e)
+      {
+      System.out.println ("textClient can't connect to Stendhal server. Server is down?");
+      return;
+      }
 
     boolean cond=true;
 

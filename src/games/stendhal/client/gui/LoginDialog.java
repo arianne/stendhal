@@ -9,6 +9,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import games.stendhal.client.*;
+import marauroa.client.*;
 
 /**
  * Summary description for LoginDialog
@@ -189,15 +190,22 @@ public class LoginDialog extends JDialog
       System.exit(0);
       }
 
-    if(client.login(username,password)==false)
+    try
       {
-      JOptionPane.showMessageDialog(this, "Invalid username or password","Login status",JOptionPane.ERROR_MESSAGE);
+      if(client.login(username,password)==false)
+        {
+        JOptionPane.showMessageDialog(this, "Invalid username or password","Login status",JOptionPane.ERROR_MESSAGE);
+        }
+      else
+        {
+        this.setVisible(false);
+        frame.setVisible(false);
+        stendhal.doLogin=true;
+        }
       }
-    else
+    catch(ariannexpTimeoutException ex)
       {
-      this.setVisible(false);
-      frame.setVisible(false);
-      stendhal.doLogin=true;
+      JOptionPane.showMessageDialog(this, "Can't connect to server. Server down?","Login status",JOptionPane.ERROR_MESSAGE);
       }
     }
 }

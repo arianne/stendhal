@@ -117,7 +117,14 @@ public class StendhalClient extends ariannexp
   
   protected void onAvailableCharacters(String[] characters)
     {
-    chooseCharacter(characters[0]);
+    try
+      {
+      chooseCharacter(characters[0]);
+      }
+    catch(Exception e)
+      {
+      e.printStackTrace();
+      }
     }
   
   protected void onServerInfo(String[] info)

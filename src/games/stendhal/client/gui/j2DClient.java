@@ -283,13 +283,15 @@ public class j2DClient extends JFrame
         try
           {
           client.connect(host,32160);
+          client.login(username,password);
+
+          new j2DClient(client);
           }
         catch(Exception ex)
           {
+          ex.printStackTrace();
           }
-
-        client.login(username,password);
-        new j2DClient(client);
+          
         return;
         }
       }

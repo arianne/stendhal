@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <project name="stendhal" default="compile" basedir=".">
-  <property name="version" value="0.00"/>
+  <property name="version" value="0.01"/>
   <property name="src" value="src"/>
   <property name="maps" value="maps"/>
   <property name="sprites" value="sprites"/>
@@ -82,7 +82,7 @@
   </target>
 
   <target name="client_jar" depends="client_compile" if="marauroa_build">
-    <jar jarfile="${lib}/${client_jarname}" basedir="${build}/">
+    <jar jarfile="${lib}/${client_jarname}">
       <fileset dir="${build}"/>
       <fileset dir="${marauroa_build}" excludes="**/server/**"/>
       <manifest>
@@ -91,7 +91,13 @@
     </jar>
   </target>
 
-  <target name="jar" depends="client_jar,server_jar"/>
+  <target name="sign_client_jar" depends="client_jar" if="marauroa_build">
+    <!--  	
+      <signjar jar="${lib}/${client_jarname}" alias="youralias" keystore="yourkeystore" storepass="yourpassword" />
+    -->
+  </target>
+
+  <target name="jar" depends="sign_client_jar,server_jar"/>
 
   <target name="docs" depends="compile">
     <javadoc packagenames="games.stendhal.*"           
