@@ -148,14 +148,16 @@ public class j2DOfflineClient extends Canvas {
         
         try
           {
-          staticLayers.addLayer(new BufferedReader(new FileReader("maps/city_layer0.txt")),"0");
-          staticLayers.addLayer(new BufferedReader(new FileReader("maps/city_layer1.txt")),"1");
+          staticLayers.addLayer(new BufferedReader(new FileReader("maps/city_layer0.txt")),"city_0");
+          staticLayers.addLayer(new BufferedReader(new FileReader("maps/city_layer1.txt")),"city_1");
           }
         catch(java.io.IOException e)          
           {
           e.printStackTrace();
           System.exit(0);
           }        
+        
+        staticLayers.setRPZoneLayersSet("city");
 
         for(int i=0;i<5;i++)
           {
