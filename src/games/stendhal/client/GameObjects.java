@@ -40,35 +40,35 @@ public class GameObjects
       /** TODO: Refactor this --> Factory pattern apply. */
       if(object.get("type").equals("player"))
         {
-        return new Player(object);
+        return new Player(this, object);
         }
       else if(object.get("type").equals("wolf"))
         {
-        return new Wolf(object);
+        return new Wolf(this, object);
         }
       else if(object.get("type").equals("sheep"))
         {
-        return new Sheep(object);
+        return new Sheep(this, object);
         }
       else if(object.get("type").equals("sign"))
         {
-        return new Sign(object);
+        return new Sign(this, object);
         }
       else if(object.get("type").equals("sellernpc"))
         {
-        return new Player(object);
+        return new Player(this, object);
         }
       else if(object.get("type").equals("buyernpc"))
         {
-        return new Player(object);
+        return new Player(this, object);
         }
       else if(object.get("type").equals("trainingdummy"))
         {
-        return new TrainingDummy(object);
+        return new TrainingDummy(this, object);
         }
       else
         {
-        return new GameEntity(object);
+        return new GameEntity(this,object);
         }
       }
     catch(AttributeNotFoundException e)
@@ -101,6 +101,7 @@ public class GameObjects
     
     return null;
     }  
+
   /** Modify a existing GameEntity so its propierties change */  
   public void modify(RPObject object) throws AttributeNotFoundException
     {
@@ -110,7 +111,45 @@ public class GameObjects
       {
       entity.modify(object);
       }
+      
     Logger.trace("GameObjects::modify","<");
+    }
+
+  /** Modify a existing GameEntity so its propierties change */  
+  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    Logger.trace("GameObjects::modifyRemoved",">");
+    GameEntity entity=objects.get(object.getID());
+    if(entity!=null)
+      {
+      entity.modifyRemoved(object, changes);
+      }
+      
+    Logger.trace("GameObjects::modifyRemoved","<");
+    }
+
+  public void attack(GameEntity source, RPObject.ID target, int risk, int damage) throws AttributeNotFoundException
+    {
+    Logger.trace("GameObjects::damage",">");
+    GameEntity entity=objects.get(target);
+    if(entity!=null)
+      {
+      entity.onAttack(source,risk, damage);
+      }
+      
+    Logger.trace("GameObjects::damage","<");
+    }
+
+  public void attackStop(GameEntity source, RPObject.ID target) throws AttributeNotFoundException
+    {
+    Logger.trace("GameObjects::damage",">");
+    GameEntity entity=objects.get(target);
+    if(entity!=null)
+      {
+      entity.onAttackStop(source);
+      }
+      
+    Logger.trace("GameObjects::damage","<");
     }
   
   /** Removes a GameEntity from game */

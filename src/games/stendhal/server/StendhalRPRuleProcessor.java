@@ -153,9 +153,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         status=moveTo(player,action);
         }
-      else if(action.get("type").equals("change"))
+      else if(action.get("type").equals("attack"))
         {
-        changeZone(player,action);
+        attack(player,action);
+        }
+      else if(action.get("type").equals("stop"))
+        {
+        stop(player);
         }
       else if(action.get("type").equals("chat"))
         {
@@ -205,6 +209,20 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     return status;
     }
     
+  private void stop(Player player) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Logger.trace("StendhalRPRuleProcessor::stop",">");
+    player.setdx(0);
+    player.setdy(0);
+    if(player.has("risk")) player.remove("risk");
+    if(player.has("damage")) player.remove("damage");
+    if(player.has("target")) player.remove("target");
+    
+    world.modify(player);
+    
+    Logger.trace("StendhalRPRuleProcessor::stop","<");
+    }
+
   private void move(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPRuleProcessor::move",">");
@@ -226,17 +244,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::move","<");
     }
    
-  private void changeZone(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, NoEntryPointException
+  private void attack(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException 
     {
-    Logger.trace("StendhalRPRuleProcessor::changeZone",">");
-    if(action.has("dest") && !player.get("zoneid").equals(action.get("dest")))
+    Logger.trace("StendhalRPRuleProcessor::attack",">");
+    if(action.has("target"))
       {
-      StendhalRPAction.changeZone(player,action.get("dest"));
-      StendhalRPAction.transferContent(player);
+      player.put("target",action.getInt("target"));
+      world.modify(player);
       }
-    Logger.trace("StendhalRPRuleProcessor::changeZone","<");
+      
+    Logger.trace("StendhalRPRuleProcessor::attack","<");
     }
-  
+
   private void chat(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPRuleProcessor::chat",">");
@@ -275,6 +294,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           object.remove("text");
           world.modify(object);
           }
+        
+        if(object.has("risk")) 
+          {
+          object.remove("risk");
+          world.modify(object);
+          }
+
+        if(object.has("damage")) 
+          {
+          object.remove("damage");
+          world.modify(object);
+          }
         }
       
       playersObjectRmText.clear();
@@ -288,6 +319,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       Logger.trace("StendhalRPRuleProcessor::beginTurn","<");
       }
     }
+    
   private Player getNearestPlayerThatHasSpeaken(NPC npc, double range)
     {
     double x=npc.getx();
@@ -323,6 +355,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           {          
           StendhalRPAction.leaveZone(object);
           }
+        
+        if(rpman.getTurn()%5==0 && object.has("target")) //1 round = 5 turns
+          {
+          StendhalRPAction.attack(object,object.getInt("target"));
+          }
         }
       
       for(NPC npc: npcs)
@@ -356,6 +393,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     try
       {
       object.put("zoneid","city");
+      if(object.has("damage")) object.remove("damage");
+      if(object.has("risk")) object.remove("risk");
+      if(object.has("target")) object.remove("target");
+      
       Player player=new Player(object);
       player.setdx(0);
       player.setdy(0);

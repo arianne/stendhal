@@ -27,6 +27,11 @@ public class StendhalRPAction
   private static RPServerManager rpman;
   private static RPWorld world;
   
+  public static int roll1D6()
+    {
+    return Math.round((float)(Math.random()*5.0))+1;
+    }
+    
   public static void initialize(RPServerManager rpman, RPWorld world)
     {
     StendhalRPAction.rpman=rpman;
@@ -107,7 +112,63 @@ public class StendhalRPAction
       }
     }
  
-  static void move(ActiveEntity entity) throws AttributeNotFoundException, NoRPZoneException, NoEntryPointException
+  static boolean attack(Player player,int targetObject) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
+    {
+    Logger.trace("StendhalRPAction::attack",">");
+    try
+      {
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
+      if(zone.has(targetid))
+        {
+        RPObject object=zone.get(targetid);
+        if(object.has("hp")) //Instance of RPEntity 
+          {
+          RPEntity target=(RPEntity)object;
+          
+          int risk=roll1D6()+1-roll1D6();
+          player.put("risk",risk);
+          
+          Logger.trace("StendhalRPAction::attack","D","Risk to strike: "+risk);
+          
+          if(risk>0) //Hit
+            {
+            int damage=roll1D6()-3;            
+            
+            if(damage>0) // Damaged
+              {
+              target.onDamage(player,damage);              
+              player.put("damage",damage);
+              }
+            else
+              {
+              player.put("damage",0);
+              }
+
+            Logger.trace("StendhalRPAction::attack","D","Damage done: "+(damage>0?damage:0));            
+            }
+          
+          world.modify(player);
+          return true;
+          }
+        else
+          {
+          player.remove("target");
+          return false;
+          }
+        }
+      else
+        {
+        return false;
+        }
+      }
+    finally
+      {
+      Logger.trace("StendhalRPAction::attack","<");
+      }
+    }
+
+  static void move(ActiveEntity entity) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::move",">");
     try

@@ -15,87 +15,97 @@ package games.stendhal.server.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
-public class ActiveEntity extends Entity 
+public class RPEntity extends ActiveEntity 
   {
-  private double dx;
-  private double dy;
-  private String name;
+  private int atk;
+  private int def;
+  private int hp;
+  private int xp;
   
   public static void generateRPClass()
     {
     try
       {
-      RPClass entity=new RPClass("activeentity");
-      entity.isA("entity");
-      entity.add("name",RPClass.STRING);
-      entity.add("dx",RPClass.FLOAT);
-      entity.add("dy",RPClass.FLOAT); 
+      RPClass entity=new RPClass("rpentity");
+      entity.isA("activeentity");
+      entity.add("xp",RPClass.SHORT);
+      entity.add("hp",RPClass.BYTE);
+      entity.add("atk",RPClass.BYTE);
+      entity.add("def",RPClass.BYTE);
+      entity.add("risk",RPClass.BYTE);
+      entity.add("damage",RPClass.BYTE);
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("ActiveEntity::generateRPClass","X",e);
+      Logger.thrown("RPEntity::generateRPClass","X",e);
       }
     }
   
-  public ActiveEntity(RPObject object) throws AttributeNotFoundException
+  public RPEntity(RPObject object) throws AttributeNotFoundException
     {
     super(object);
     }
-  
-  public ActiveEntity() throws AttributeNotFoundException
+
+  public RPEntity() throws AttributeNotFoundException
     {
     super();
     }
-
+    
   public void update() throws AttributeNotFoundException
     {
     super.update();
-    dx=getDouble("dx");
-    dy=getDouble("dy");
+    
+    atk=getInt("atk");
+    def=getInt("def");
+    hp=getInt("hp");
+    xp=getInt("xp");
     }
 
-  public void setName(String name)
+  public void setATK(int atk)
     {
-    this.name=name;
-    put("name",name);   
+    this.atk=atk;
+    put("atk",atk);
     }
-  
-  public String getName()
+      
+  public int getATK()
     {
-    return name;
-    }
-  
-  public void setdx(double dx)
-    {
-    this.dx=dx;
-    put("dx",dx);
-    }
-  
-  public double getdx()
-    {
-    return dx;
-    }
-  
-  public void setdy(double dy)
-    {
-    this.dy=dy;
-    put("dy",dy);
-    }
-
-  public double getdy()
-    {
-    return dy;
-    }
-
-  public void stop()
-    {
-    setdx(0);
-    setdy(0);
+    return atk;
     }
     
-  public boolean stopped()
+  public void setDEF(int def)
     {
-    return dx==0 && dy==0;
+    this.def=def;
+    put("def",def);
+    }
+      
+  public int getDEF()
+    {
+    return def;
+    }
+    
+  public void setHP(int hp)
+    {
+    this.hp=hp;
+    put("hp",hp);
+    }
+      
+  public int getHP()
+    {
+    return hp;
+    }
+    
+  public void setXP(int xp)
+    {
+    this.xp=xp;
+    put("xp",xp);
+    }
+      
+  public int getXP()
+    {
+    return xp;
+    }
+  
+  public void onDamage(RPEntity who, int damage)
+    {
     }
   }
-    

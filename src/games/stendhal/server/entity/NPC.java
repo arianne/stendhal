@@ -15,14 +15,14 @@ package games.stendhal.server.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
-public class NPC extends ActiveEntity 
+public class NPC extends RPEntity 
   {
   public static void generateRPClass()
     {
     try
       {
       RPClass npc=new RPClass("npc");
-      npc.isA("activeentity");
+      npc.isA("rpentity");
       npc.add("text",RPClass.STRING);
       }
     catch(RPClass.SyntaxException e)
@@ -39,8 +39,6 @@ public class NPC extends ActiveEntity
     put("y",0);
     put("dx",0);
     put("dy",0);
-    
-    update();
     }
   
   public boolean chat(Player player) throws AttributeNotFoundException

@@ -31,9 +31,9 @@ public abstract class AnimatedGameEntity extends GameEntity
   /** this var is true if the gameentity is not moving */
   protected boolean stopped;
   
-  public AnimatedGameEntity(RPObject object) throws AttributeNotFoundException
+  public AnimatedGameEntity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
-    super(object);
+    super(gameObjects, object);
     delta=System.currentTimeMillis();
     frame=0;
     stopped=true;

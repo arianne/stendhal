@@ -56,7 +56,7 @@ public class StendhalMouseInputHandler implements MouseListener
       System.out.println (entity.getClass());
       }
 
-    if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
+    if(entity==null && e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
       {
       System.out.println ("Moving to "+point);
       RPAction action=new RPAction();
@@ -65,6 +65,25 @@ public class StendhalMouseInputHandler implements MouseListener
       action.put("y",point.getY()-1.6);
       client.send(action);
       } 
+
+    boolean attacking=client.getPlayer().has("target");
+    if(entity!=null && e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()==1 && attacking)
+      {
+      System.out.println ("Stop attacking to "+point);
+      RPAction action=new RPAction();
+      action.put("type","stop");
+      client.send(action);
+      }
+    else if(entity!=null && e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()==1)
+      {
+      System.out.println ("Attacking to "+point);
+      RPAction action=new RPAction();
+      action.put("type","attack");
+      int id=entity.getID().getObjectID();
+      action.put("target",id);      
+      client.send(action);
+      } 
+      
     }
 
   public void mousePressed(MouseEvent e) 

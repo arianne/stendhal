@@ -19,9 +19,9 @@ import java.awt.geom.*;
 
 public class TrainingDummy extends GameEntity 
   {
-  public TrainingDummy(RPObject object) throws AttributeNotFoundException
+  public TrainingDummy(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
-    super(object);
+    super(gameObjects, object);
     }
 
   public Rectangle2D getArea()

@@ -21,9 +21,9 @@ import java.awt.geom.*;
 /** A Sheep entity */
 public class Sheep extends AnimatedGameEntity 
   {
-  public Sheep(RPObject object) throws AttributeNotFoundException
+  public Sheep(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
-    super(object);
+    super(gameObjects, object);
     }
   
   protected void buildAnimations(String type)

@@ -33,13 +33,16 @@ public class Player extends AnimatedGameEntity
   private Rectangle2D drawedArea;
 
   
-  public Player(RPObject object) throws AttributeNotFoundException
+  public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
-    super(object);
+    super(gameObjects, object);
     name="";
     textImages=new java.util.LinkedList<Sprite>();
     textImagesTimes=new java.util.LinkedList<Long>();
     nameImage=null;
+
+    area=new Rectangle.Double(x+0.5,y+1.3,0.87,0.6);
+    drawedArea=new Rectangle.Double(x,y,1,2);
     }
   
   public Rectangle2D getArea()
@@ -69,22 +72,22 @@ public class Player extends AnimatedGameEntity
     }
   
 
+  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    System.out.println ("1");
+    if(changes.has("target"))
+      {     
+      System.out.println ("Request stop fighting");
+      gameObjects.attackStop(this,new RPObject.ID(object.getInt("target"),object.get("zoneid")));
+      }
+    }
+    
   public void modify(RPObject object) throws AttributeNotFoundException
     {
     super.modify(object);
     
-    if(object.has("leave")) System.out.println(object.get("leave"));
-    
-    if(area!=null)
-      {
-      area.setRect(x+0.5,y+1.3,0.87,0.6);
-      drawedArea.setRect(x,y,1,2);
-      }
-    else
-      {
-      area=new Rectangle.Double(x+0.5,y+1.3,0.87,0.6);
-      drawedArea=new Rectangle.Double(x,y,1,2);
-      }
+    area.setRect(x+0.5,y+1.3,0.87,0.6);
+    drawedArea.setRect(x,y,1,2);
     
     if(stopped && object.has("dir"))
       {
@@ -105,7 +108,22 @@ public class Player extends AnimatedGameEntity
           break;
         }
       }
-    
+      
+    if(object.has("target"))
+      {      
+      System.out.println("Attacking RPObject: "+ object.get("target"));
+      gameObjects.attack(this,new RPObject.ID(object.getInt("target"),object.get("zoneid")),object.getInt("risk"),object.getInt("damage"));
+      
+      if(object.getInt("risk")>0)
+        {
+        System.out.println ("RPObject striked and damaged with "+object.get("damage")+" points");
+        }
+      else
+        {
+        System.out.println ("RPObject missed");
+        }
+      }
+      
     if(name!=null && !name.equals(object.get("name")))
       {
       name=object.get("name");

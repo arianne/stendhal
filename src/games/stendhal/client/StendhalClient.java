@@ -151,6 +151,8 @@ public class StendhalClient extends ariannexp
         {
         String data=new String(item.data);
         
+        new File("cache").mkdir();
+        
         if(!new File("cache/"+item.name).exists())
           {
           Writer writer=new BufferedWriter(new FileWriter("cache/"+item.name));
@@ -247,12 +249,13 @@ public class StendhalClient extends ariannexp
       try
         {
         Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","D","Object("+object.getID()+") added to Static Objects container");
-        //gameObjects.modify(object);
+        gameObjects.modifyRemoved(object, changes);
+        object.applyDifferences(null,changes);
         }
       catch(Exception e)
         {
         }
-      return false;
+      return true;
       }
   
     public boolean onDeleted(RPObject object)

@@ -15,8 +15,10 @@ package games.stendhal.client.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+import java.util.*;
 import java.awt.*;
 import java.awt.geom.*;
+
 
 /** This class is a link between client graphical objects and server attributes objects.<br>
  *  You need to extend this object in order to add new elements to the game. */
@@ -26,6 +28,11 @@ public class GameEntity extends Entity
   private RPObject.ID id;
   /** The object sprite. Animationless, just one frame */
   protected Sprite sprite;
+  private java.util.List<Sprite> damageSprites;
+  private java.util.List<Long> damageSpritesTimes;
+  private boolean attacked;
+  
+  protected GameObjects gameObjects;
   
   /** This methods returns the object graphical representation file from its type. */
   protected static String translate(String type)
@@ -34,10 +41,14 @@ public class GameEntity extends Entity
     }
 
   /** Create a new game entity based on the arianne object passed */
-  public GameEntity(RPObject object) throws AttributeNotFoundException
+  public GameEntity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(0,0);       
     id=object.getID();    
+    this.gameObjects=gameObjects;
+    damageSprites=new LinkedList<Sprite>();
+    damageSpritesTimes=new LinkedList<Long>();
+    attacked=false;
     loadSprite(object.get("type"));
     }
     
@@ -62,7 +73,33 @@ public class GameEntity extends Entity
   public void onLeftClick()
     {
     }
+  
+  public void onAttackStop(GameEntity source)  
+    {
+    System.out.println ("STOP ATTACKING");
+    attacked=false;
+    }
+    
+  public void onAttack(GameEntity source, int risk, int damage)
+    {
+    attacked=true;
+    
+    if(damage>0)
+      {
+      GameScreen screen=GameScreen.get();      
+      Graphics g2d=screen.expose();
+      String damageString=Integer.toString(damage);
 
+      GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+      Image image = gc.createCompatibleImage(g2d.getFontMetrics().stringWidth(damageString),16,Transparency.BITMASK);    
+      Graphics g=image.getGraphics();
+      g.setColor(Color.red);
+      g.drawString(damageString,0,10);
+      damageSprites.add(new Sprite(image));      
+      damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+      }
+    }
+  
   /** Loads the sprite that represent this entity */
   protected void loadSprite(String type)
     {
@@ -81,6 +118,10 @@ public class GameEntity extends Entity
     if(object.has("dx")) dx=object.getDouble("dx");
     if(object.has("dy")) dy=object.getDouble("dy");
     }
+
+  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    }
   
   /** Returns the represented arianne object id */
   public RPObject.ID getID()
@@ -91,6 +132,37 @@ public class GameEntity extends Entity
   /** Draws this entity in the screen */
   public void draw(GameScreen screen)
     {
+    if(attacked)
+      {
+      Graphics g2d=screen.expose();
+      Rectangle2D rect=getArea();
+      
+      g2d.setColor(Color.red);    
+      Point2D p=new Point.Double(rect.getX(),rect.getY());
+      p=screen.invtranslate(p);
+      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+      }
+    
     screen.draw(sprite,x,y);
+
+    if(damageSprites!=null)  // Draw the damage done
+      {
+      long current=System.currentTimeMillis();
+
+      int i=0;
+      for(Sprite damageImage: damageSprites)
+        {        
+        double tx=x+0.6-(damageImage.getWidth()/(32.0f*2.0f));
+        double ty=y-((current-damageSpritesTimes.get(i))/(6.0*300.0));
+        screen.draw(damageImage,tx,ty);
+        i++;
+        }
+      
+      if(damageSpritesTimes.size()>0 && (current-damageSpritesTimes.get(0)>6*300))
+        {        
+        damageSprites.remove(0);
+        damageSpritesTimes.remove(0); 
+        }
+      }
     }
   }

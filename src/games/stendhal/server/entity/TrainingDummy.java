@@ -15,18 +15,18 @@ package games.stendhal.server.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
-public class TrainingDummy extends Entity 
+public class TrainingDummy extends RPEntity 
   {
   public static void generateRPClass()
     {
     try
       {
       RPClass dummy=new RPClass("trainingdummy");
-      dummy.isA("entity");
+      dummy.isA("rpentity");
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("Player::generateRPClass","X",e);
+      Logger.thrown("TrainingDummy::generateRPClass","X",e);
       }
     }
   
@@ -34,5 +34,17 @@ public class TrainingDummy extends Entity
     {
     super();
     put("type","trainingdummy");
+    }
+
+  public void onDamage(RPEntity who, int damage)
+    {
+    try
+      {
+      Logger.trace("TrainingDummy::onDamage","D","Damaged "+damage+" points by "+who.getID());
+      }
+    catch(AttributeNotFoundException e)
+      {
+      Logger.thrown("TrainingDummy::onDamage","X",e);
+      }
     }
   }

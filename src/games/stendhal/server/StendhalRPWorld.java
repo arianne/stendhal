@@ -36,6 +36,7 @@ public class StendhalRPWorld extends RPWorld
     Entity.generateRPClass();
     Sign.generateRPClass();
     ActiveEntity.generateRPClass();
+    RPEntity.generateRPClass();
     NPC.generateRPClass();
     BuyerNPC.generateRPClass();
     SellerNPC.generateRPClass();

@@ -22,9 +22,9 @@ import java.awt.geom.*;
 /** A Wolf entity */
 public class Wolf extends AnimatedGameEntity 
   {
-  public Wolf(RPObject object) throws AttributeNotFoundException
+  public Wolf(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
-    super(object);
+    super(gameObjects, object);
     }
   
   protected void buildAnimations(String type)

@@ -81,10 +81,6 @@
       <fileset dir="${maps}"/>
     </copy>
 
-    <copy todir="${build}/games/stendhal/server/maps">
-    	<fileset file="${sprites}/*.collision"/>
-    </copy>
-
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
            includes="**/games/**" excludes="**/client/**">
       <classpath>
@@ -175,6 +171,9 @@
     </copy>
     <copy todir="stendhal-${version}/maps">
     	<fileset dir="maps"/>
+    </copy>
+    <copy todir="stendhal-${version}/data">
+    	<fileset dir="data"/>
     </copy>
     <copy todir="stendhal-${version}" file="build.xml"/>
     <copy todir="stendhal-${version}" file="AUTHORS"/>

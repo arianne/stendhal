@@ -24,9 +24,9 @@ public class Sign extends GameEntity
   private GameScreen screen;
   private long delta;
   
-  public Sign(RPObject object) throws AttributeNotFoundException
+  public Sign(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
-    super(object);
+    super(gameObjects, object);
     screen=GameScreen.get();
     }
   

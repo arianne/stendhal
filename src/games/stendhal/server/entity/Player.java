@@ -15,12 +15,8 @@ package games.stendhal.server.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
-public class Player extends ActiveEntity 
+public class Player extends RPEntity 
   {
-  private int atk;
-  private int def;
-  private int hp;
-  private int xp;
   private int leave;
   private boolean hasLeave;
   
@@ -29,12 +25,9 @@ public class Player extends ActiveEntity
     try
       {
       RPClass player=new RPClass("player");
-      player.isA("activeentity");
-      player.add("xp",RPClass.SHORT);
-      player.add("hp",RPClass.SHORT);
-      player.add("atk",RPClass.SHORT);
-      player.add("def",RPClass.SHORT);
+      player.isA("rpentity");
       player.add("text",RPClass.STRING);
+      player.add("target",RPClass.INT);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -46,62 +39,9 @@ public class Player extends ActiveEntity
     {
     super(object);
     put("type","player");
-    update();
     hasLeave=false;
-    }
-    
-  public void update() throws AttributeNotFoundException
-    {
-    super.update();
-    
-    atk=getInt("atk");
-    def=getInt("def");
-    hp=getInt("hp");
-    xp=getInt("xp");
-    }
 
-  public void setATK(int atk)
-    {
-    this.atk=atk;
-    put("atk",atk);
-    }
-      
-  public int getATK()
-    {
-    return atk;
-    }
-    
-  public void setDEF(int def)
-    {
-    this.def=def;
-    put("def",def);
-    }
-      
-  public int getDEF()
-    {
-    return def;
-    }
-    
-  public void setHP(int hp)
-    {
-    this.hp=hp;
-    put("hp",hp);
-    }
-      
-  public int getHP()
-    {
-    return hp;
-    }
-    
-  public void setXP(int xp)
-    {
-    this.xp=xp;
-    put("xp",xp);
-    }
-      
-  public int getXP()
-    {
-    return xp;
+    update();
     }
     
   public boolean hasLeave()

@@ -216,6 +216,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\RPEntity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\SellerNPC.java</path>
 				<source>true</source>
 			</fileitem>
@@ -236,6 +240,11 @@
 				<source>true</source>
 			</fileitem>
 		</include>
+		<exclude>
+			<folderitem>
+				<path>tiled</path>
+			</folderitem>
+		</exclude>
 	</files>
 	<tasks/>
 </project>

@@ -161,10 +161,19 @@ public class GameScreen
     wh=height;
     }
   
+  /** Translate to world coordinates the given screen coordinate */
   public Point2D translate(Point2D point)
     {
     double tx=point.getX()/32f+x;
     double ty=point.getY()/32f+y;
+    return new Point.Double(tx,ty);
+    }
+
+  /** Translate to screen coordinates the given world coordinate */
+  public Point2D invtranslate(Point2D point)
+    {
+    double tx=(point.getX()-x)*32;
+    double ty=(point.getY()-y)*32;
     return new Point.Double(tx,ty);
     }
     

@@ -235,6 +235,7 @@ public class StendhalRPZone extends MarauroaRPZone
               assignRPObjectID(dummy);
               dummy.setx(j%width);
               dummy.sety(j/width);
+              dummy.setHP(100);
               add(dummy);
 
 

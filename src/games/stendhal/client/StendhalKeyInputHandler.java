@@ -138,13 +138,6 @@ public class StendhalKeyInputHandler extends KeyAdapter
       action.put("dy",dy);
       client.send(action);
       }
-    else if(e.getKeyCode()==KeyEvent.VK_ENTER && e.isControlDown())
-      {
-      action=new RPAction();
-      action.put("type","change");
-      action.put("dest","village");
-      client.send(action);
-      }      
     }
     
   public void onKeyReleased(KeyEvent e)  
