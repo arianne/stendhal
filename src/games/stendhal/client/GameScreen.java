@@ -41,6 +41,16 @@ public class GameScreen
     return screen;
     }
   
+  public double getWidth()
+    {
+    return sw/PIXEL_SCALE;
+    }
+
+  public double getHeight()
+    {
+    return sh/PIXEL_SCALE;
+    }
+  
   private GameScreen(BufferStrategy strategy, int sw, int sh)
     {
     this.strategy=strategy;
@@ -58,8 +68,8 @@ public class GameScreen
     
     g=(Graphics2D)strategy.getDrawGraphics();
     
-    x+=dx;
-    y+=dy;
+    x+=dx/60.0;
+    y+=dy/60.0;
     }
   
   public Graphics2D expose()
@@ -71,6 +81,16 @@ public class GameScreen
     {
     this.dx=dx;
     this.dy=dy;
+    }
+  
+  public double getX()
+    {
+    return x;
+    }
+
+  public double getY()
+    {
+    return y;
     }
 
   public void place(double x, double y)

@@ -160,6 +160,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           break;
           }
         }
+      
+      world.remove(id);
 
       return true;
       }
@@ -187,6 +189,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           break;
           }
         }
+
+      world.remove(id);
         
       return true;
       }
