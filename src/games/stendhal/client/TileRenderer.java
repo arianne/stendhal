@@ -70,13 +70,6 @@ public class TileRenderer
     Logger.trace("TileRenderer::setMapData","<");
     }
   
-  public CollisionDetection createCollisionMap()
-    {
-    CollisionDetection collision=new CollisionDetection("sprites/zelda_outside_chipset.gif.collision");
-    collision.addLayer(map,width,height);
-    return collision;
-    }
-
   /** Returns the widht in world units */
   public int getWidth()
     {

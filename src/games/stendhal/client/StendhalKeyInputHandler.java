@@ -142,7 +142,7 @@ public class StendhalKeyInputHandler extends KeyAdapter
       {
       action=new RPAction();
       action.put("type","change");
-      action.put("dest","city");
+      action.put("dest","village");
       client.send(action);
       }      
     }

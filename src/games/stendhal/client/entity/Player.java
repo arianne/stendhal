@@ -24,7 +24,6 @@ public class Player extends AnimatedGameEntity
   {
   private final static int TEXT_PERSISTENCE_TIME=10000;
   private String name;
-  private String text;
   private Sprite nameImage;
   private java.util.List<Sprite> textImages;
   private java.util.List<Long> textImagesTimes;
@@ -38,7 +37,6 @@ public class Player extends AnimatedGameEntity
     {
     super(object);
     name="";
-    text="";
     textImages=new java.util.LinkedList<Sprite>();
     textImagesTimes=new java.util.LinkedList<Long>();
     nameImage=null;
@@ -74,6 +72,8 @@ public class Player extends AnimatedGameEntity
   public void modify(RPObject object) throws AttributeNotFoundException
     {
     super.modify(object);
+    
+    if(object.has("leave")) System.out.println(object.get("leave"));
     
     if(area!=null)
       {
@@ -121,9 +121,12 @@ public class Player extends AnimatedGameEntity
       nameImage=new Sprite(image);      
       }
 
-    if(text!=null && object.has("text") && !text.equals(object.get("text")))    
+    if(object.has("text") && !object.get("text").equals(""))    
       {
-      text=object.get("text");
+      String text=object.get("text");
+      //TODO: A hack to render properly the text... I think it is not a good idea to 
+      // modify the RPObject itself... but...
+      object.put("text","");
       
       GameScreen screen=GameScreen.get();      
       Graphics g2d=screen.expose();
@@ -153,17 +156,19 @@ public class Player extends AnimatedGameEntity
     if(nameImage!=null) screen.draw(nameImage,x,y-0.3);
     if(textImages!=null) 
       {
-      int j=0;
+      double ty=y+2.05;
+      
       for(Sprite textImage: textImages)
-        {
-        screen.draw(textImage,x+0.7-(textImage.getWidth()/(32.0f*2.0f)),y+j*0.5+2.05);
-        j++;
+        {        
+        double tx=x+0.7-(textImage.getWidth()/(32.0f*2.0f));
+        screen.draw(textImage,tx,ty);
+        ty=ty+textImage.getHeight()/32.0f;
         }
       
       if(textImages.size()>0 && (System.currentTimeMillis()-textImagesTimes.get(0)>TEXT_PERSISTENCE_TIME))
         {
         textImages.remove(0);
-        textImagesTimes.remove(0);        
+        textImagesTimes.remove(0); 
         }
       }
       

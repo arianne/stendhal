@@ -65,7 +65,7 @@ public class SpriteStore {
       Sprite[] animatedSprite=new Sprite[frames];
 	  
       GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-      /** TODO: Fix me! Warning! Hardcoded */
+
       for(int i=0;i<frames;i++)
         {
         Image image = gc.createCompatibleImage(height,width,Transparency.BITMASK);

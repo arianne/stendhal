@@ -17,7 +17,7 @@
 			<application_ref>&lt;Default&gt;</application_ref>
 			<applet_ref>&lt;Default&gt;</applet_ref>
 			<debugger_ref>&lt;Default&gt;</debugger_ref>
-			<param/>
+			<param>-h 127.0.0.1 -u miguel -p password</param>
 			<run>games.stendhal.client.gui.j2DClient</run>
 		</runtime>
 	</runtimes>
@@ -48,6 +48,9 @@
 				<path>src\games\stendhal\server</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\server\entity</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\common</path>
 			</folderitem>
 			<folderitem>
@@ -56,15 +59,20 @@
 			<folderitem>
 				<path>jars</path>
 			</folderitem>
-			<folderitem>
-				<path>lib</path>
-			</folderitem>
 			<fileitem>
 				<path>build.xml</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>README</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.01.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.01.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -77,6 +85,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\GameScreen.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\RenderingPipeline.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -101,6 +113,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\StendhalKeyInputHandler.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\StendhalMouseInputHandler.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -133,6 +149,14 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\Sheep.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\Sign.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\TrainingDummy.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -172,35 +196,43 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\ActiveEntity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\BuyerNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Entity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\NPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Player.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\SellerNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Sign.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\TrainingDummy.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\common\CollisionDetection.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>maps\city_layer0.txt</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>maps\city_layer1.txt</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>maps\village_layer0.txt</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>maps\village_layer1.txt</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>jars\marauroa.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>lib\stendhal-0.01.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>lib\stendhal-server-0.01.jar</path>
 				<source>true</source>
 			</fileitem>
 		</include>

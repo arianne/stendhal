@@ -39,9 +39,7 @@ public class StendhalFirstScreen extends JFrame
 	{
 		super();
 		this.client=client;
-		//
-		// TODO: Add any constructor code after initializeComponent call
-		//
+
         URL url = this.getClass().getClassLoader().getResource("data/StendhalSplash.jpg");
         ImageIcon imageIcon = new ImageIcon(url);
         background=imageIcon.getImage();

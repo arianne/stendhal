@@ -15,6 +15,10 @@ package games.stendhal.client;
 import java.util.*;
 import java.io.*;
 
+import java.awt.Graphics2D;
+import java.awt.Color;
+import java.awt.Rectangle;
+
 import marauroa.client.*;
 import marauroa.client.net.*;
 import marauroa.common.*;
@@ -70,6 +74,10 @@ public class StendhalClient extends ariannexp
         Logger.trace("StendhalClient::onPerception","D","UPDATING screen position");
         GameScreen screen=GameScreen.get();
         RPObject object=message.getMyRPObject();
+        
+        Graphics2D g=screen.expose();
+        g.setColor(Color.BLACK);
+        g.fill(new Rectangle(0,0,640,480));
         screen.place(object.getDouble("x")-screen.getWidth()/2,object.getDouble("y")-screen.getHeight()/2);
         screen.move(0,0);
         
@@ -78,6 +86,7 @@ public class StendhalClient extends ariannexp
         
         String zoneid=message.getRPZoneID().getID();
         staticLayers.setRPZoneLayersSet(zoneid);
+        GameScreen.get().setMaxWorldSize((int)staticLayers.getWidth(),(int)staticLayers.getHeight());
         }
 
       handler.apply(message,world_objects);      
@@ -238,7 +247,7 @@ public class StendhalClient extends ariannexp
       try
         {
         Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","D","Object("+object.getID()+") added to Static Objects container");
-        gameObjects.modify(object);
+        //gameObjects.modify(object);
         }
       catch(Exception e)
         {

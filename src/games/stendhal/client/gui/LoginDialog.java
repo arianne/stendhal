@@ -46,9 +46,6 @@ public class LoginDialog extends JDialog
 		this.client=client;
 		frame=w;
 		initializeComponent();
-		//
-		// TODO: Add any constructor code after initializeComponent call
-		//
 
 		this.setVisible(true);
 	}

@@ -54,6 +54,18 @@ public class GameObjects
         {
         return new Sign(object);
         }
+      else if(object.get("type").equals("sellernpc"))
+        {
+        return new Player(object);
+        }
+      else if(object.get("type").equals("buyernpc"))
+        {
+        return new Player(object);
+        }
+      else if(object.get("type").equals("trainingdummy"))
+        {
+        return new TrainingDummy(object);
+        }
       else
         {
         return new GameEntity(object);

@@ -24,15 +24,13 @@ import marauroa.common.*;
  *  not with any of the non trespasable areas of the world */
 public class CollisionDetection 
   {
-  private boolean[] tileWalkable;
   private boolean[] blocked;
   private int width;
   private int height;
   
-  public CollisionDetection(String filename)
+  public CollisionDetection()
     {
     blocked=null;
-    setCollisionData(filename);
     }
   
   public void clear()
@@ -40,17 +38,17 @@ public class CollisionDetection
     for(int i=0;i<width*height;i++) blocked[i]=false;
     }
 
-  private int[] getLayerData(Reader reader) throws IOException
+  public void setCollisionData(Reader reader) throws IOException
     {
-    Logger.trace("CollisionDetection::getLayerData",">");
-        
     BufferedReader file=new BufferedReader(reader);
-    String text=file.readLine();
+    String text;
+    
+    text=file.readLine();
     String[] size=text.split(" ");
     width=Integer.parseInt(size[0]);
     height=Integer.parseInt(size[1]);
     
-    int[] map=new int[width*height];
+    blocked=new boolean[width*height];
     
     int j=0;
     
@@ -64,46 +62,11 @@ public class CollisionDetection
       String[] items=text.split(",");
       for(String item: items)
         {
-        map[j]=Integer.parseInt(item);
+        blocked[j]=(Integer.parseInt(item)-(480+100))==1;
         j++;      
         }
       }
-
-    Logger.trace("CollisionDetection::getLayerData",">");
-    return map;
-    }
-  
-  /** Add a new layer to the class.<br>
-   *  A map is build of several layers. */
-  public void addLayer(Reader data) throws IOException
-    {
-    Logger.trace("CollisionDetection::addLayer",">");
-    int[] map=getLayerData(data);
     
-    if(blocked==null)
-      {
-      blocked=new boolean[width*height];
-      for(int i=0;i<width*height;i++) blocked[i]=false;
-      }     
-    
-    buildCollisionData(map);
-    Logger.trace("CollisionDetection::addLayer","<");
-    }
-
-  /** Add a new layer to the class.<br>
-   *  A map is build of several layers. */
-  public void addLayer(int[] map, int width, int height)
-    {
-    if(blocked==null)
-      {
-      this.width=width;
-      this.height=height;
-      blocked=new boolean[width*height];
-      for(int i=0;i<width*height;i++) blocked[i]=false;
-      }     
-    
-    buildCollisionData(map);
-    Logger.trace("CollisionDetection::addLayer","<");
     }
   
   /** Print the area around the (x,y) useful for debugging */
@@ -133,70 +96,29 @@ public class CollisionDetection
       }
     }
     
-  private void setCollisionData(String filename)
-    {
-    Logger.trace("CollisionDetection::setCollisionData",">");
-    try
-      {
-      BufferedReader file=new BufferedReader(new FileReader(filename));
-      String text;
-    
-      text=file.readLine();
-      String[] size=text.split(" ");
-      int widthCollision=Integer.parseInt(size[0]);
-      int heightCollision=Integer.parseInt(size[1]);
-    
-      tileWalkable=new boolean[widthCollision*heightCollision];
-    
-      int j=0;
-    
-      while((text=file.readLine())!=null)
-        {
-        if(text.trim().equals(""))
-          {
-          break;
-          }
-        
-        String[] items=text.split(",");
-        for(String item: items)
-          {
-          tileWalkable[j]=(Integer.parseInt(item)==0);
-          j++;      
-          }
-        }
-      }
-    catch(IOException e)
-      {
-      Logger.thrown("CollisionDetection::setCollisionData","X",e);
-      System.exit(0);
-      }
-    finally
-      {
-      Logger.trace("CollisionDetection::setCollisionData","<");
-      }
-    }
-  
-  private void buildCollisionData(int[] map)
-    {    
-    Logger.trace("CollisionDetection::buildCollisionData",">");
-    for(int i=0;i<width;i++)
-      {
-      for(int j=0;j<height;j++)
-        {
-        int value=map[j*width+i]-1;
-        if(value>=0)
-          {
-          blocked[j*width+i]=!tileWalkable[value] || blocked[j*width+i];
-          }        
-        }
-      }  
-  
-    Logger.trace("CollisionDetection::buildCollisionData","<");
-    }
-  
   public boolean walkable(double x, double y)
     {
     return !blocked[(int)y*width+(int)x];
+    }
+  
+  public boolean leavesZone(Rectangle2D shape)
+    {
+    double x=shape.getX();
+    double y=shape.getY();
+    double w=shape.getWidth();
+    double h=shape.getHeight();
+    
+    if(x<1 || x+w>=getWidth()-1)
+      {
+      return true;
+      }
+
+    if(y<1 || y+h>=getHeight()-1)
+      {
+      return true;
+      }
+    
+    return false;
     }
     
   /** Returns true if the shape enters in any of the non trespasable areas of the map */

@@ -88,14 +88,22 @@ public class GameScreen
     
     g=(Graphics2D)strategy.getDrawGraphics();
     
-    if(x+dx/60.0>=0 && x+dx/60.0+getWidth()<ww)
+    if(((x+dx/60.0>=0) && dx<0) || ((x+dx/60.0+getWidth()<ww) && dx>0))
       {
       x+=dx/60.0;
       }
+    else
+      {
+      dx=0;
+      }
       
-    if(y+dy/60.0>=0 && y+dy/60.0+getHeight()<wh)
+    if((y+dy/60.0>=0 && dy<0) || (y+dy/60.0+getHeight()<wh && dy>0))
       {
       y+=dy/60.0;
+      }
+    else
+      {
+      dy=0;
       }
       
     Logger.trace("GameScreen::nextFrame","<");

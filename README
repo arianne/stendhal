@@ -20,13 +20,45 @@ Description
 The game is actually in *heavy* development. In fact I won't call it game :)
 You can move and change zone.
 
+Current Version
+---------------
+Version 0.01
+
+
 How to make it work
 -------------------
 http://arianne.sourceforge.net/wiki/index.php/HowToBuildStendhal
 
 No warranties. But let me know if it doesn't works.
 
+
 How to play
 -----------
-You need arianne's Stendhal client in order to be able to play Stendhal
+You need arianne's Stendhal client in order to be able to play Stendhal.
 Please download it from http://arianne.sourceforge.net
+
+Then just do:
+
+  java -jar stendhal-0.01.jar
+
+
+Changelog
+---------
+0.01 Apr XX, 2005
+- Added bigger maps
+- Changed the way maps are loaded
+- Better screen movement
+- Mouse interaction support
+- Player can chat, move and change zone
+- More intutive change zone feature
+- Refactored server code to use Java objects
+- Added collision detection
+
+0.00 Mar 01, 2005
+- Initial release
+
+
+Legal
+-----
+Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2004-2005
+arianne_rpg at users dot sourceforge dot net

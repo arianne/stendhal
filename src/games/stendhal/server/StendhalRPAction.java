@@ -16,6 +16,9 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 
+import games.stendhal.common.*;
+import games.stendhal.server.entity.*;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
@@ -30,19 +33,19 @@ public class StendhalRPAction
     StendhalRPAction.world=world;
     }
     
-  static void face(RPObject object,double dx,double dy)
+  static void face(ActiveEntity entity,double dx,double dy)
     {
     if(dx!=0)
       {
       if(dx<0)
         {
         Logger.trace("StendhalRPAction::face","D","Facing LEFT");
-        object.put("dir",0);
+        entity.setFacing(0);
         }
       else
         {
         Logger.trace("StendhalRPAction::face","D","Facing RIGHT");
-        object.put("dir",1);
+        entity.setFacing(1);
         }
       }
       
@@ -51,35 +54,91 @@ public class StendhalRPAction
       if(dy<0)
         {
         Logger.trace("StendhalRPAction::face","D","Facing UP");
-        object.put("dir",2);
+        entity.setFacing(2);
         }
       else
         {
         Logger.trace("StendhalRPAction::face","D","Facing DOWN");
-        object.put("dir",3);
+        entity.setFacing(3);
         }
       }
     }
     
-  static void move(RPObject object) throws AttributeNotFoundException, NoRPZoneException
+  static void leaveZone(Player player) throws AttributeNotFoundException, NoRPZoneException, NoEntryPointException
+    {
+    Logger.trace("StendhalRPAction::leaveZone",">");
+    try
+      {
+      double x=player.getx();
+      double y=player.gety();
+      double dx=player.getdx();
+      double dy=player.getdy();
+      boolean stopped=player.stopped();
+      
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      
+      if(zone.leavesZone(player,x+dx,y+dy))
+        {
+        if(!player.hasLeave())
+          {
+          player.setLeave(10);
+          }
+          
+        int turnsToLeave=player.getLeave(); 
+        if(turnsToLeave==0)
+          {
+          player.setLeave(-1);
+          decideChangeZone(player);
+          return;
+          }
+        
+        player.setLeave(turnsToLeave-1);
+          
+        world.modify(player);
+        }
+      else
+        {
+        player.setLeave(-1);
+        }
+      }
+    finally
+      {
+      Logger.trace("StendhalRPAction::leaveZone","<");
+      }
+    }
+ 
+  static void move(ActiveEntity entity) throws AttributeNotFoundException, NoRPZoneException, NoEntryPointException
     {
     Logger.trace("StendhalRPAction::move",">");
     try
       {
-      double x=object.getDouble("x");
-      double y=object.getDouble("y");
-      double dx=object.getDouble("dx");
-      double dy=object.getDouble("dy");
-      boolean stopped=(dx==0 && dy==0);
+      double x=entity.getx();
+      double y=entity.gety();
+      double dx=entity.getdx();
+      double dy=entity.getdy();
+      boolean stopped=entity.stopped();
       
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(entity.getID());
       
-      if(zone.collides(object,x+dx,y+dy)==false)
+      if(entity instanceof Player)
+        {
+        Player player=(Player)entity;
+        
+        if(zone.leavesZone(player,x+dx,y+dy))
+          {
+          if(!player.hasLeave()) 
+            {
+            player.setLeave(10);
+            }
+          }
+        }
+      
+      if(zone.collides(entity,x+dx,y+dy)==false)
         {
         Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
-        if(dx!=0) object.put("x",x+dx);
-        if(dy!=0) object.put("y",y+dy);
-        world.modify(object);
+        if(dx!=0) entity.setx(x+dx);
+        if(dy!=0) entity.sety(y+dy);
+        world.modify(entity);
         }        
       else
         {
@@ -87,10 +146,8 @@ public class StendhalRPAction
         Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");      
         if(dx!=0 || dy!=0)
           {
-          if(dx!=0) object.put("dx",0);
-          if(dy!=0) object.put("dy",0);
-          object.put("stopped","");
-          world.modify(object);
+          entity.stop();
+          world.modify(entity);
           }
         }
       }
@@ -100,35 +157,61 @@ public class StendhalRPAction
       }
     }
 
-  static void transferContent(RPObject object) throws AttributeNotFoundException 
+  static void transferContent(Player player) throws AttributeNotFoundException 
     {
     Logger.trace("StendhalRPAction::transferContent",">");
 
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
-    rpman.transferContent(object.getID(),zone.getContents());
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+    rpman.transferContent(player.getID(),zone.getContents());
 
     Logger.trace("StendhalRPAction::transferContent","<");
     }
 
-  static void changeZone(RPObject object, String destination) throws AttributeNotFoundException, NoRPZoneException
+  static void decideChangeZone(Player player) throws AttributeNotFoundException, NoRPZoneException, NoEntryPointException
+    {
+    String zoneid=player.get("zoneid");
+    double x=player.getx();
+    double y=player.gety();
+
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+    
+    if(zoneid.equals("village") && x>zone.getWidth()-2) 
+      {
+      changeZone(player,"city");
+      transferContent(player);
+      }
+    else if(zoneid.equals("city") && x<1) 
+      {
+      changeZone(player,"village");
+      transferContent(player);
+      }
+    }
+    
+  static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException, NoEntryPointException
     {    
     Logger.trace("StendhalRPAction::changeZone",">");
 
-    world.changeZone(object.getID().getZoneID(),destination,object);
+    String source=player.getID().getZoneID();
+    world.changeZone(source,destination,player);
     
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
-    zone.placeObjectAtEntryPoint(object);
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+    zone.placeObjectAtEntryPoint(player);
       
-    double x=object.getDouble("x");
-    double y=object.getDouble("y");
+    double x=player.getDouble("x");
+    double y=player.getDouble("y");
     
-    while(zone.collides(object,x,y))
+    while(zone.collides(player,x,y))
       {
       x=x+(Math.random()*6-3);
-      y=y+(Math.random()*6-3);
-      object.put("x",x);
-      object.put("y",y);
+      y=y+(Math.random()*6-3);      
       }
+    
+    player.setx(x);
+    player.sety(y);
+      
+    /* There isn't any world.modify because there is already considered inside
+     * the implicit world.add call at changeZone */
+     player.stop();
 
     Logger.trace("StendhalRPAction::changeZone","<");
     }

@@ -46,6 +46,10 @@
       <fileset dir="${maps}"/>
     </copy>
 
+    <copy todir="${build}/games/stendhal/server/maps">
+    	<fileset file="${sprites}/*.collision"/>
+    </copy>
+
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
            includes="**/games/**">
       <classpath>
@@ -75,6 +79,10 @@
 
     <copy todir="${build}/games/stendhal/server/maps">
       <fileset dir="${maps}"/>
+    </copy>
+
+    <copy todir="${build}/games/stendhal/server/maps">
+    	<fileset file="${sprites}/*.collision"/>
     </copy>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
@@ -122,7 +130,8 @@
   <target name="sign_client_jar" depends="client_jar" if="marauroa_build">
     <!--  	
       <signjar jar="${lib}/${client_jarname}" alias="youralias" keystore="yourkeystore" storepass="yourpassword" />
-    -->
+    -->  	
+    <signjar jar="${lib}/${client_jarname}" alias="miguelangelblanchlardin@hotmail.com" keystore="keystore.ks" storepass="qwerty" />
   </target>
 
   <target name="jar" depends="sign_client_jar,server_jar"/>
@@ -143,7 +152,7 @@
     <delete dir="stendhal-server-${version}"/>
   </target>
   
-  <target name="release_client_binary" depends="client_jar">
+  <target name="release_client_binary" depends="sign_client_jar">
     <mkdir dir="stendhal-${version}"/>
     <copy todir="stendhal-${version}" file="${lib}/${client_jarname}"/>
     <copy todir="stendhal-${version}" file="AUTHORS"/>

@@ -227,7 +227,7 @@ public class j2DClient extends JFrame
       
       double layerw=gameLayers.getWidth();
       double layerh=gameLayers.getHeight();
-      
+
       if(dsx-x<-2)
         {
         sdx+=0.1;
@@ -254,7 +254,7 @@ public class j2DClient extends JFrame
         {
         sdy-=0.1;
         }
-      
+            
       screen.move(sdx,sdy);
       }
     catch(AttributeNotFoundException e)    

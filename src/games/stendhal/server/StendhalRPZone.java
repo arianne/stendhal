@@ -18,6 +18,7 @@ import marauroa.common.net.*;
 import marauroa.server.game.*;
 
 import games.stendhal.common.*;
+import games.stendhal.server.entity.*;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -30,32 +31,61 @@ import java.net.*;
 public class StendhalRPZone extends MarauroaRPZone 
   {
   private List<TransferContent> contents;
-  private String entryPoint;
+  private List<String> entryPoints;
+  private List<NPC> npcs;
+  
   private CollisionDetection collisionMap;
   private int width;
   private int height;
-  
+
   public StendhalRPZone(String name)
     {
     super(name);
     
     contents=new LinkedList<TransferContent>();
-    collisionMap=new CollisionDetection("games/stendhal/server/maps/zelda_outside_chipset.gif.collision");
+    entryPoints=new LinkedList<String>();
+    npcs=new LinkedList<NPC>();
+    
+    collisionMap=new CollisionDetection();
     }
   
-  public void setEntryPoint(String entryPoint)
+  public void onInit() throws Exception
     {
-    this.entryPoint=entryPoint;
+    }
+    
+  public void onFinish() throws Exception
+    {
     }
   
-  public void placeObjectAtEntryPoint(RPObject object)
+  public List<NPC> getNPCList()
     {
+    return npcs;
+    }
+    
+  public void addZoneChange(String entry)
+    {
+    entryPoints.add(entry);
+    }  
+
+  public void addEntryPoint(String entry)
+    {
+    entryPoints.add(0,entry);
+    }  
+  
+  public void placeObjectAtEntryPoint(RPObject object) throws NoEntryPointException
+    {
+    if(entryPoints.size()==0)
+      {
+      throw new NoEntryPointException();
+      }
+      
+    String entryPoint=entryPoints.get(0);
     String[] components=entryPoint.split(",");
     object.put("x",components[0]);
     object.put("y",components[1]);
     }
   
-  public void addLayer(String name, String filename,boolean computeCollision) throws IOException
+  public void addLayer(String name, String filename) throws IOException
     {
     Logger.trace("StendhalRPZone::addLayer",">");
     TransferContent content=new TransferContent();
@@ -66,12 +96,23 @@ public class StendhalRPZone extends MarauroaRPZone
     content.data=getBytesFromFile(filename);
     
     contents.add(content);
-    
-    if(computeCollision) 
-      {
-      collisionMap.addLayer(new FileReader(filename));
-      }
     Logger.trace("StendhalRPZone::addLayer","<");
+    }
+
+  public void addCollisionLayer(String name, String filename) throws IOException
+    {
+    Logger.trace("StendhalRPZone::addCollisionLayer",">");
+    TransferContent content=new TransferContent();
+    content.name=name;
+    content.cacheable=true;
+    content.timestamp=(int)(new File(filename).lastModified()/1000);
+    Logger.trace("StendhalRPZone::addLayer","D",Integer.toString(content.timestamp));
+    content.data=getBytesFromFile(filename);
+    
+    contents.add(content);
+
+    collisionMap.setCollisionData(new FileReader(filename));
+    Logger.trace("StendhalRPZone::addCollisionLayer","<");    
     }
   
   public void populate(String filename) throws IOException, RPObjectInvalidException
@@ -98,24 +139,113 @@ public class StendhalRPZone extends MarauroaRPZone
       String[] items=text.split(",");
       for(String item: items)
         {
-        int value=Integer.parseInt(item)-481 /* Number of tiles at zelda_outside_chipset + 1 */;
-        switch(value)
+        int value=Integer.parseInt(item)-480 /* Number of tiles at zelda_outside_chipset */;
+        /** TODO: Change it by another way of not hardcoding the objects. */
+        try
           {
-          case 0: /* Entry point */
-            break;
-          case 1: /* Sign */
+          switch(value)
             {
-            RPObject sign=new RPObject();
-            assignRPObjectID(sign);
-            sign.put("type","sign");
-            sign.put("x",j%width);
-            sign.put("y",j/width);
-            sign.put("text","Welcome to Stendhal! Enjoy visiting this area!");
-            add(sign);
+            case 1: /* Entry point */
+              {
+              String entryPoint=new String(j%width+","+j/width);
+              addEntryPoint(entryPoint);
+              break;
+              }            
+            case 2: /* Sign */
+              {
+              Sign sign=new Sign();
+              assignRPObjectID(sign);
+              sign.setx(j%width);
+              sign.sety(j/width);
+              if(zoneid.getID().equals("village"))
+                {
+                if(sign.getx()==23 && sign.gety()==47) sign.setText("You are going to leave this area to move to plains.|You may grow up your sheep there.|Be careful wolves may attack you.");
+                if(sign.getx()==26 && sign.gety()==27) sign.setText("Talk to Nishiya to buy a sheep!.|He will offer you a nice price.");
+                if(sign.getx()==60 && sign.gety()==33) sign.setText("You are going to leave this area to move to city.|You may sell your sheep there. ");
+                }
+              else if(zoneid.getID().equals("city"))
+                {
+                if(sign.getx()==4 && sign.gety()==21) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
+                if(sign.getx()==8 && sign.gety()==25) sign.setText("This is our attack dummy.|Click on it to attack, another click to stop attacking it.| Be sure to learn how to attack correctly, it will be useful.");
+                if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!|Make sure you talk with Paco for hints|Please report problems at our webpage.");
+                if(sign.getx()==43 && sign.gety()==26) sign.setText("Talk to Sato to sell your sheep!.|He won't give you a fair price but this is an small village...");
+                if(sign.getx()==44 && sign.gety()==48) sign.setText("You are going to leave this area to move to plains.|You may grow up your sheep there.|Be careful wolves may attack you.");
+                }
+              else if(zoneid.getID().equals("plains"))
+                {
+                if(sign.getx()==118 && sign.gety()==43) sign.setText("You are going to leave this area to move to forest.|You may grow up your sheep faster there.|Be careful many wolves may attack you.");
+                if(sign.getx()==38 && sign.gety()==3) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
+                if(sign.getx()==113 && sign.gety()==3) sign.setText("You are going to leave this area to move to city.|You may sell your sheep there. ");
+                }
+                
+              add(sign);
+  
+              Logger.trace("StendhalRPZone::populate","D","Adding SIGN: "+sign);
+              break;
+              }
+            case 3: /* Sheep */
+              {
+              break;
+              }
+            case 4: /* Wolf */
+              {
+              break;
+              }
+            case 5: /* NPC Seller */
+              {
+              SellerNPC npc=new SellerNPC();
+              assignRPObjectID(npc);
+              npc.setName("Nishiya");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              add(npc);
+              
+              npcs.add(npc);
 
-            Logger.trace("StendhalRPZone::populate","D","Adding SIGN: "+sign);
-            break;
-            }            
+              Logger.trace("StendhalRPZone::populate","D","Adding NPC seller: "+npc);
+              break;
+              }
+            case 6: /* NPC Buyer */
+              {
+              BuyerNPC npc=new BuyerNPC();
+              assignRPObjectID(npc);
+              npc.setName("Sato");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              add(npc);
+
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding Buyer seller: "+npc);
+              break;
+              }
+            case 7: /* Food */
+              {
+              break;
+              }
+            case 8: /* Zone change  */
+              {
+              String entryPoint=new String(j%width+","+j/width);
+              addZoneChange(entryPoint);
+              break;
+              }
+            case 9: /* Training dummy  */
+              {              
+              TrainingDummy dummy=new TrainingDummy();
+              assignRPObjectID(dummy);
+              dummy.setx(j%width);
+              dummy.sety(j/width);
+              add(dummy);
+
+
+              Logger.trace("StendhalRPZone::populate","D","Adding Training dummy: "+dummy);
+              break;
+              }
+            }
+          }
+        catch(AttributeNotFoundException e)
+          {
+          Logger.thrown("StendhalRPZone::populate","X",e);
           }
         
         j++;      
@@ -125,11 +255,6 @@ public class StendhalRPZone extends MarauroaRPZone
     Logger.trace("StendhalRPZone::populate","<");
     }
     
-  public void addLayer(String name, String filename) throws IOException
-    {
-    addLayer(name,filename, true);
-    }
-
   public int getWidth()
     {
     return collisionMap.getWidth();
@@ -165,6 +290,12 @@ public class StendhalRPZone extends MarauroaRPZone
       }
     }
 
+  public boolean leavesZone(RPObject object, double x, double y) throws AttributeNotFoundException  
+    {
+    Rectangle2D area=getCollisionArea(object.get("type"),x,y);
+    return collisionMap.leavesZone(area);
+    }
+    
   public boolean collides(RPObject object, double x, double y) throws AttributeNotFoundException  
     {
     Rectangle2D area=getCollisionArea(object.get("type"),x,y);

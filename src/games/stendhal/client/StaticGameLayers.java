@@ -23,28 +23,37 @@ import marauroa.common.*;
 /** This class stores the layers that make the floor and the buildings */
 public class StaticGameLayers
   {
-  static private class Pair
+  static private class PairRender
     {
     public String name;
     public TileRenderer renderer;
-    public CollisionDetection collisionMap;
     
-    Pair(String name, TileRenderer renderer)
+    PairRender(String name, TileRenderer renderer)
       {
       this.name=name;
       this.renderer=renderer;      
       }
-
-    Pair(String name, TileRenderer renderer, CollisionDetection collisionMap)
+    }
+  
+  /**TODO: Use generics */
+  static private class PairCollision
+    {
+    public String name;
+    public CollisionDetection collisionMap;
+    
+    PairCollision(String name, CollisionDetection collision)
       {
       this.name=name;
-      this.renderer=renderer;      
-      this.collisionMap=collisionMap;
+      this.collisionMap=collision;      
       }
     }
   
   /** List of pair name, layer */
-  private LinkedList<Pair> layers;
+  private LinkedList<PairRender> layers;
+
+  /** List of pair name, layer */
+  private LinkedList<PairCollision> collisions;
+  
   /** Tilestore contains the tiles to draw */
   private TileStore tilestore;
   
@@ -53,7 +62,8 @@ public class StaticGameLayers
     
   public StaticGameLayers()
     {
-    layers=new LinkedList<Pair>();
+    layers=new LinkedList<PairRender>();
+    collisions=new LinkedList<PairCollision>();
     tilestore=TileStore.get("sprites/zelda_outside_chipset.gif");    
     area=null;
     }
@@ -63,7 +73,7 @@ public class StaticGameLayers
     {
     double width=0;
     
-    for(Pair p: layers)
+    for(PairRender p: layers)
       {
       if(area!=null && p.name.contains(area))
         {
@@ -82,7 +92,7 @@ public class StaticGameLayers
     {
     double height=0;
     
-    for(Pair p: layers)
+    for(PairRender p: layers)
       {
       if(area!=null && p.name.contains(area))
         {
@@ -102,25 +112,35 @@ public class StaticGameLayers
     Logger.trace("StaticGameLayers::addLayer",">");
     try 
       {
-      TileRenderer renderer=new TileRenderer(tilestore);
-      renderer.setMapData(reader);
-
-      int i;
-      for( i=0;i<layers.size();i++)
+      if(!name.contains("collision"))
         {
-        if(layers.get(i).name.compareTo(name)==0)
+        TileRenderer renderer=new TileRenderer(tilestore);
+        renderer.setMapData(reader);
+
+        int i;
+        for( i=0;i<layers.size();i++)
           {
-          /** Repeated layers should be ignored. */
-          return;
+          if(layers.get(i).name.compareTo(name)==0)
+            {
+            /** Repeated layers should be ignored. */
+            return;
+            }
+        
+          if(layers.get(i).name.compareTo(name)>=0)
+            {
+            break;
+            }
           }
         
-        if(layers.get(i).name.compareTo(name)>=0)
-          {
-          break;
-          }
+        layers.add(i,new PairRender(name, renderer));    
         }
+      else
+        {
+        CollisionDetection collision=new CollisionDetection();
+        collision.setCollisionData(reader);
         
-      layers.add(i,new Pair(name, renderer, renderer.createCollisionMap()));    
+        collisions.add(new PairCollision(name, collision));        
+        }
       }
     finally
       {
@@ -130,9 +150,9 @@ public class StaticGameLayers
 
   public boolean collides(Rectangle2D shape)
     {
-    for(Pair p: layers)
+    for(PairCollision p: collisions)
       {
-      if(area!=null && p.name.contains(area) && !p.name.contains("roof"))
+      if(area!=null && p.name.contains(area))
         {
         if(p.collisionMap.collides(shape))
           {
@@ -169,7 +189,7 @@ public class StaticGameLayers
     
   public void draw(GameScreen screen, String layer)
     {
-    for(Pair p: layers)
+    for(PairRender p: layers)
       {
       if(p.name.equals(layer))
         {
@@ -181,7 +201,7 @@ public class StaticGameLayers
   /** Render the choosen set of layers */
   public void draw(GameScreen screen)
     {
-    for(Pair p: layers)
+    for(PairRender p: layers)
       {
       if(area!=null && p.name.contains(area))
         {
