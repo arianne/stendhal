@@ -53,6 +53,7 @@ Changelog
 - More intutive change zone feature
 - Refactored server code to use Java objects
 - Added collision detection
+- Added GUI
 
 0.00 Mar 01, 2005
 - Initial release
