@@ -75,8 +75,26 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         Logger.trace("StendhalRPRuleProcessor::execute","D","Got Move action: "+action.toString());
         RPObject object=world.get(id);
-        if(action.has("dx")) object.put("dx",action.getDouble("dx"));
-        if(action.has("dy")) object.put("dy",action.getDouble("dy"));
+        if(action.has("dx")) 
+          { 
+          object.put("dx",action.get("dx"));
+          }
+          
+        if(action.has("dy")) 
+          {
+          object.put("dy",action.get("dy"));
+          }
+        
+        if(object.getDouble("dx")==0 && object.getDouble("dy")==0)
+          {
+          object.put("stopped","");
+          }
+        else
+          {
+          if(object.has("stopped")) object.remove("stopped");
+          }
+        
+        StendhalRPAction.face(object,object.getDouble("dx"),object.getDouble("dy"));
         world.modify(object);
         }
       else if(action.get("type").equals("change"))
@@ -156,7 +174,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       for(RPObject object: playersObject)
         {
-        StendhalRPAction.move(object);
+        if(!object.has("stopped"))
+          {
+          StendhalRPAction.move(object);
+          }
         }
       }
     catch(Exception e)

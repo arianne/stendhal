@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
 import java.awt.Graphics;
@@ -52,14 +53,11 @@ public class GameEntity extends Entity
    *  that it represent has changed. */
   public void modify(RPObject object) throws AttributeNotFoundException
     {
+    Logger.trace("GameEntity::modify","D",object.toString());
     x=object.getDouble("x");
     y=object.getDouble("y");
-    
-    if(object.has("dx") && object.has("dy"))
-      {
-      dx=object.getDouble("dx");
-      dy=object.getDouble("dy");
-      }
+    dx=object.getDouble("dx");
+    dy=object.getDouble("dy");
     }
   
   /** Returns the represented arianne object id */

@@ -1,5 +1,6 @@
 package games.stendhal.client.entity;
 
+import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
 
@@ -78,11 +79,6 @@ public class Player extends AnimatedGameEntity
       nameImage=new Sprite(image);      
       }
 
-//    if(!object.has("text"))
-//      {
-//      textImage=null;
-//      }
-      
     if(text!=null && object.has("text") && !text.equals(object.get("text")))    
       {
       wasTextWritten=System.currentTimeMillis();

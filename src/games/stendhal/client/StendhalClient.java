@@ -64,6 +64,7 @@ public class StendhalClient extends ariannexp
     try
       {
       Logger.trace("StendhalClient::onPerception",">");
+      Logger.trace("StendhalClient::onPerception","D",message.toString());
       if(message.getTypePerception()==1/*Perception.SYNC*/)
         {
         Logger.trace("StendhalClient::onPerception","D","UPDATING screen position");
@@ -181,15 +182,17 @@ public class StendhalClient extends ariannexp
       
     public boolean onModifiedAdded(RPObject object, RPObject changes)
       {
+      // NOTE: We do handle the perception here ourselves. See that we return true 
       try
         {
         Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedAdded","D","Object("+object.getID()+") modified in Game Objects container");
+        object.applyDifferences(changes,null);
         gameObjects.modify(object);
         }
       catch(Exception e)
         {
         }
-      return false;
+      return true;
       }
 
     public boolean onModifiedDeleted(RPObject object, RPObject changes)

@@ -42,6 +42,37 @@ public class StendhalRPAction
       }
     }
 
+  static void face(RPObject object,double dx,double dy) throws Exception
+    {
+    if(dx!=0)
+      {
+      if(dx<0)
+        {
+        Logger.trace("StendhalRPAction::face","D","Facing LEFT");
+        object.put("dir",0);
+        }
+      else
+        {
+        Logger.trace("StendhalRPAction::face","D","Facing RIGHT");
+        object.put("dir",1);
+        }
+      }
+      
+    if(dy!=0)
+      {
+      if(dy<0)
+        {
+        Logger.trace("StendhalRPAction::face","D","Facing UP");
+        object.put("dir",2);
+        }
+      else
+        {
+        Logger.trace("StendhalRPAction::face","D","Facing DOWN");
+        object.put("dir",3);
+        }
+      }
+    }
+    
   static boolean move(RPObject object) throws Exception
     {
     Logger.trace("StendhalRPAction::move",">");
@@ -57,9 +88,9 @@ public class StendhalRPAction
     
     if(zone.collides(collisionArea)==false)
       {
-      Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+") stopped="+stopped);
-      object.put("x",x+dx);
-      object.put("y",y+dy);
+      Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
+      if(dx!=0) object.put("x",x+dx);
+      if(dy!=0) object.put("y",y+dy);
       world.modify(object);
       }        
     else
@@ -68,8 +99,8 @@ public class StendhalRPAction
       Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");
       if(dx!=0 || dy!=0)
         {
-        object.put("dx",0);
-        object.put("dy",0);
+        if(dx!=0) object.put("dx",0);
+        if(dy!=0) object.put("dy",0);
         world.modify(object);
         }
       }
