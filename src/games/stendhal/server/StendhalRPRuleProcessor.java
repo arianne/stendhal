@@ -38,11 +38,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     if(type.equals("player"))
       {
-      return new Rectangle.Double(x,y,1,3);
+      return new Rectangle.Double(x,y,1,2);
       }
     else
       {
-      return new Rectangle.Double(x,y,1,3);
+      return new Rectangle.Double(x,y,1,2);
       }
     }
 
