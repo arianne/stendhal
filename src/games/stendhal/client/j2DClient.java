@@ -1,3 +1,15 @@
+/* $Id$ */
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client;
 
 import java.awt.Canvas;
@@ -37,6 +49,8 @@ import marauroa.common.game.*;
  * @author Kevin Glass
  */
 public class j2DClient extends Canvas {
+    private static boolean runStandalone=true;
+    
 	/** The stragey that allows us to use accelerate page flipping */
 	private BufferStrategy strategy;
 	private boolean gameRunning=true;
@@ -175,26 +189,32 @@ public class j2DClient extends Canvas {
 		long lastLoopTime = System.currentTimeMillis();
         int fps=0;
         
-//        try
-//          {
-//          client.connect("127.0.0.1",32160);
-//          }
-//        catch(SocketException e)
-//          {
-//          return;
-//          }
-//      
-//        client.login("miguel","password");
-        try
+        if(runStandalone)
           {
-          staticObjects.addLayer(new BufferedReader(new FileReader("maps/city_layer0.txt")),"0");
-          staticObjects.addLayer(new BufferedReader(new FileReader("maps/city_layer1.txt")),"1");
+          try
+            {
+            staticObjects.addLayer(new BufferedReader(new FileReader("maps/city_layer0.txt")),"0");
+            staticObjects.addLayer(new BufferedReader(new FileReader("maps/city_layer1.txt")),"1");
+            }
+          catch(java.io.IOException e)          
+            {
+            System.exit(0);
+            }        
           }
-        catch(java.io.IOException e)          
+        else
           {
-          System.exit(0);
+          try
+            {
+            client.connect("127.0.0.1",32160);
+            }
+          catch(SocketException e)
+            {
+            return;
+            }
+      
+          client.login("miguel","password");
           }
-        
+
         long oldTime=System.nanoTime();
 		
 		// keep looping round til the game ends
@@ -222,7 +242,10 @@ public class j2DClient extends Canvas {
 			g.dispose();
 			strategy.show();
 			
-//            client.loop(0);
+			if(!runStandalone)
+			  {
+              client.loop(0);
+              }
             
 			if(System.nanoTime()-oldTime>1000000000)
 			  {
@@ -232,7 +255,7 @@ public class j2DClient extends Canvas {
 			  }
 		}
 		
-//		client.logout();
+		client.logout();
 		System.exit(0);
 	}
 	
@@ -313,6 +336,11 @@ public class j2DClient extends Canvas {
 	 * @param argv The arguments that are passed into our game
 	 */
 	public static void main(String argv[]) {
+	    if(argv.length>1)
+	      {
+	      runStandalone=false;
+	      }
+	      
         new j2DClient();
 	}
 }
