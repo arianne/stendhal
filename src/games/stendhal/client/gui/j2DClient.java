@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client;
+package games.stendhal.client.gui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +18,7 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.util.*;
  
+import games.stendhal.client.*;
 
 import java.net.*;
 import java.io.*;
@@ -45,12 +46,8 @@ public class j2DClient extends JFrame
   /** NOTE: It sounds bad to see here a GUI component. Try other way. */
   private JTextField playerChatText;
 
-  public j2DClient(String host, String username, String password) 
+  public j2DClient(StendhalClient sc) 
     {
-    this.host=host;
-    this.username=username;
-    this.password=password;
-    
 	// create a frame to contain our game
 	setTitle("Stendhal Java 2D");
 		
@@ -99,7 +96,7 @@ public class j2DClient extends JFrame
 		}
 	  });
 		
-    client=new StendhalClient();
+    this.client=sc;
    
     // add a key input system (defined below) to our canvas so we can respond to key pressed    
     playerChatText.addKeyListener(new StendhalKeyInputHandler(client));
@@ -139,18 +136,18 @@ public class j2DClient extends JFrame
     {
 	long lastLoopTime = System.currentTimeMillis();
     int fps=0;
-        
-    try
-      {
-      client.connect(host,32160);
-      }
-    catch(SocketException e)
-      {
-      return;
-      }
-      
-    client.login(username,password);
-          
+//        
+//    try
+//      {
+//      client.connect(host,32160);
+//      }
+//    catch(SocketException e)
+//      {
+//      return;
+//      }
+//      
+//    client.login(username,password);
+//          
     StaticGameLayers staticLayers=client.getStaticGameLayers();
     GameObjects gameObjects=client.getGameObjects();
 
@@ -282,7 +279,17 @@ public class j2DClient extends JFrame
           
       if(username!=null && password!=null && host!=null)
         {
-        new j2DClient(host,username,password);
+        StendhalClient client=new StendhalClient();
+        try
+          {
+          client.connect(host,32160);
+          }
+        catch(Exception ex)
+          {
+          }
+
+        client.login(username,password);
+        new j2DClient(client);
         return;
         }
       }

@@ -114,8 +114,8 @@ public class Player extends AnimatedGameEntity
     {
     if(nameImage!=null) screen.draw(nameImage,x,y-0.3);
     if(System.currentTimeMillis()-wasTextWritten<3000 && textImage!=null) 
-      {      
-      screen.draw(textImage,x+1-((textImage.getWidth()/32.0f)/2),y+2.05);
+      {
+      screen.draw(textImage,x+0.7-(textImage.getWidth()/(32.0f*2.0f)),y+2.05);
       }
       
     super.draw(screen);

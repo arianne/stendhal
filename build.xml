@@ -86,7 +86,7 @@
       <fileset dir="${build}"/>
       <fileset dir="${marauroa_build}" excludes="**/server/**"/>
       <manifest>
-        <attribute name="Main-Class" value="games.stendhal.client.j2DClient"/>
+        <attribute name="Main-Class" value="games.stendhal.client.stendhal"/>
       </manifest>
     </jar>
   </target>
