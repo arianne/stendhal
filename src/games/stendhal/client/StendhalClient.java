@@ -69,15 +69,21 @@ public class StendhalClient extends ariannexp
     {
     try
       {
-      handler.apply(message,world_objects);
-      
       if(message.getTypePerception()==1/*Perception.SYNC*/)
         {
         System.out.println("UPDATING screen position");
         GameScreen screen=GameScreen.get();
         RPObject object=message.getMyRPObject();
         screen.place(object.getDouble("x")-screen.getWidth()/2,object.getDouble("y")-screen.getHeight()/2);
+        
+        System.out.println("CLEANING static object list");
+        staticObjects.clear();
+        
+        String zoneid=message.getRPZoneID().getID();
+        staticLayers.setRPZoneLayersSet(zoneid);
         }
+
+      handler.apply(message,world_objects);      
       }
     catch(Exception e)
       {

@@ -30,33 +30,22 @@ public class StendhalRPWorld extends RPWorld
   public void onInit() throws Exception
     {
     StendhalRPZone village=new StendhalRPZone("village");
-    for(int i=0;i<5;i++)
-      {
-      RPObject object=new RPObject();
-      village.assignRPObjectID(object);
-      object.put("type","pot");
-      object.put("x",9+i);
-      object.put("y",11);
-      village.add(object);
-      }
-    village.addLayer("city_layer0","games/stendhal/server/maps/city_layer0.txt");
-    village.addLayer("city_layer1","games/stendhal/server/maps/city_layer1.txt");
+    village.addLayer("village_layer0","games/stendhal/server/maps/village_layer0.txt");
     addRPZone(village);
 
 
     StendhalRPZone city=new StendhalRPZone("city");
-    RPObject object=new RPObject();
-    city.assignRPObjectID(object);
-    object.put("number","1");
-    object.put("string","hola city");
-    object.put("flag","");
-    city.add(object);
-    object=new RPObject();
-    city.assignRPObjectID(object);
-    object.put("number","2");
-    object.put("string","mundo  city");
-    object.put("flag","");
-    city.add(object);
+    for(int i=0;i<5;i++)
+      {
+      RPObject object=new RPObject();
+      city.assignRPObjectID(object);
+      object.put("type","pot");
+      object.put("x",9+i);
+      object.put("y",11);
+      city.add(object);
+      }
+    city.addLayer("city_layer0","games/stendhal/server/maps/city_layer0.txt");
+    city.addLayer("city_layer1","games/stendhal/server/maps/city_layer1.txt");
     addRPZone(city);
     }
   

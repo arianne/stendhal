@@ -47,6 +47,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       this.rpman=rpman;
       this.world=world;
+      
+      StendhalRPAction.initialize(rpman,world);
       }
     catch(Exception e)
       {
@@ -77,8 +79,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       else if(action.get("type").equals("change"))
         {
-        RPObject object=world.get(id);        
-        world.changeZone(id.getZoneID(),action.get("dest"),object);
+        RPObject object=world.get(id);
+        if(!object.get("zoneid").equals(action.get("dest")))
+          {
+          StendhalRPAction.changeZone(object,action.get("dest"));
+          StendhalRPAction.transferContent(object);
+          }
         }
       }
     catch(Exception e)
@@ -101,7 +107,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       for(RPObject object: playersObject)
         {
-        StendhalRPAction.move(world,object);
+        StendhalRPAction.move(object);
         }
       }
     catch(Exception e)
@@ -124,22 +130,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       object.put("dy",0);
       world.add(object);
       
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
-      rpman.transferContent(object.getID(),zone.getContents());
+      StendhalRPAction.transferContent(object);
       
       playersObject.add(object);
       return true;
       }
-    catch(AttributeNotFoundException e)
+    catch(Exception e)
       {
       Logger.thrown("StendhalRPRuleProcessor::onInit","X",e);
       return false;
       }        
-    catch(NoRPZoneException e)
-      {
-      Logger.thrown("StendhalRPRuleProcessor::onInit","X",e);
-      return false;
-      }
     finally
       {
       Logger.trace("StendhalRPRuleProcessor::onInit","<");

@@ -26,30 +26,41 @@ public class StendhalKeyInputHandler extends KeyAdapter
      
   public void onKeyPressed(KeyEvent e)  
     {
-    RPAction action=new RPAction();
-    action.put("type","move");
+    RPAction action;
     
     switch(e.getKeyCode())
       {
       case KeyEvent.VK_LEFT:
+        action=new RPAction();
+        action.put("type","move");
         action.put("dx",-0.5);
+        client.send(action);
         break;
       case KeyEvent.VK_RIGHT:
+        action=new RPAction();
+        action.put("type","move");
         action.put("dx",0.5);
+        client.send(action);
         break;
       case KeyEvent.VK_UP:
+        action=new RPAction();
+        action.put("type","move");
         action.put("dy",-0.5);
+        client.send(action);
         break;
       case KeyEvent.VK_DOWN:      
+        action=new RPAction();
+        action.put("type","move");
         action.put("dy",0.5);
+        client.send(action);
+        break;
+      case KeyEvent.VK_ENTER:      
+        action=new RPAction();
+        action.put("type","change");
+        action.put("dest","city");
+        client.send(action);
         break;
       }
-
-    if(action.has("dx") || action.has("dy"))
-      {
-      System.out.println("Sending action: "+action);            
-      client.send(action);
-      }    
     }
     
   public void onKeyReleased(KeyEvent e)  

@@ -21,6 +21,15 @@ import java.awt.geom.Rectangle2D;
 
 public class StendhalRPAction 
   {
+  private static RPServerManager rpman;
+  private static RPWorld world;
+  
+  public static void initialize(RPServerManager rpman, RPWorld world)
+    {
+    StendhalRPAction.rpman=rpman;
+    StendhalRPAction.world=world;
+    }
+    
   private static Rectangle2D getCollisionArea(String type, double x, double y)
     {
     if(type.equals("player"))
@@ -33,7 +42,7 @@ public class StendhalRPAction
       }
     }
 
-  static void move(RPWorld world, RPObject object) throws Exception
+  static void move(RPObject object) throws Exception
     {
     Logger.trace("StendhalRPAction::move",">");
 
@@ -67,4 +76,14 @@ public class StendhalRPAction
     Logger.trace("StendhalRPAction::move","<");
     }
 
+  static void transferContent(RPObject object) throws Exception
+    {
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
+    rpman.transferContent(object.getID(),zone.getContents());
+    }
+
+  static void changeZone(RPObject object, String destination) throws Exception
+    {    
+    world.changeZone(object.getID().getZoneID(),destination,object);
+    }
   }

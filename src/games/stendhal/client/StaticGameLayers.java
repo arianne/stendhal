@@ -32,11 +32,13 @@ public class StaticGameLayers
     
   private LinkedList<Pair> layers;
   private TileStore tilestore;
+  private String area;
   
   public StaticGameLayers()
     {
     layers=new LinkedList<Pair>();
     tilestore=TileStore.get("sprites/zelda_outside_chipset.gif");
+    area=null;
     }
   
   public double getWidth()
@@ -71,6 +73,12 @@ public class StaticGameLayers
     int i;
     for( i=0;i<layers.size();i++)
       {
+      if(layers.get(i).name.compareTo(name)==0)
+        {
+        /** Repeated layers should be ignored. */
+        return;
+        }
+        
       if(layers.get(i).name.compareTo(name)>=0)
         {
         break;
@@ -79,12 +87,25 @@ public class StaticGameLayers
       
     layers.add(i,new Pair(name, renderer));    
     }
+  
+  public void clear()
+    {
+    layers.clear();
+    }
+  
+  public void setRPZoneLayersSet(String area)
+    {
+    this.area=area;
+    }
     
   public void draw(GameScreen screen)
     {
     for(Pair p: layers)
       {
-      p.renderer.draw(screen);
+      if(area!=null && p.name.contains(area))
+        {
+        p.renderer.draw(screen);
+        }
       }
     }
   }
