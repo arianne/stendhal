@@ -45,6 +45,10 @@
 				<path>src\games\stendhal\common</path>
 			</folderitem>
 			<fileitem>
+				<path>src\games\stendhal\client\AbstractGameState.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\Entity.java</path>
 				<source>true</source>
 			</fileitem>
@@ -57,7 +61,15 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\GameState.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\j2DClient.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\MainMenuGameState.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
