@@ -10,9 +10,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client;
+package games.stendhal.client.entity;
 
 import java.awt.Graphics;
+import games.stendhal.client.*;
 
 /**
  * An entity represents any element that appears in the game. The

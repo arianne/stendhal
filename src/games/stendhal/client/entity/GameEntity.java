@@ -10,9 +10,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client;
+package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
+import games.stendhal.client.*;
 import java.awt.Graphics;
 
 public class GameEntity extends Entity  
@@ -20,29 +21,34 @@ public class GameEntity extends Entity
   private RPObject.ID id;
   private String type;
   
-  private Sprite sprite;
+  protected Sprite sprite;
   
-  private static String translate(String type)
+  protected static String translate(String type)
     {
     return "sprites/"+type+".gif";
     }
 
   public GameEntity(RPObject object) throws AttributeNotFoundException
     {
-    super(0,0);
-    SpriteStore store=SpriteStore.get();    
-    
+    super(0,0);    
     modify(object);
     
     id=object.getID();
     type=object.get("type");    
     
+    System.out.println ("GAME ENTITY: "+type);
+    
+    loadSprite(type);
+    }
+    
+  protected void loadSprite(String type)
+    {
+    SpriteStore store=SpriteStore.get();        
     sprite=store.getSprite(translate(type));
     }
   
   public void modify(RPObject object) throws AttributeNotFoundException
     {
-// TODO: Remove when using game online    
     x=object.getDouble("x");
     y=object.getDouble("y");
     
@@ -51,6 +57,7 @@ public class GameEntity extends Entity
       dx=object.getDouble("dx");
       dy=object.getDouble("dy");
       }
+    System.out.println("GAMEENTITY modified: dx"+dx+"\tdy:"+dy);
     }
   
   public RPObject.ID getID()

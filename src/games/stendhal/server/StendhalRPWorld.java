@@ -62,6 +62,7 @@ public class StendhalRPWorld extends RPWorld
       object.put("y",11);
       city.add(object);
       }
+    
     city.addLayer("city_layer0","games/stendhal/server/maps/city_layer0.txt");
     city.addLayer("city_layer1","games/stendhal/server/maps/city_layer1.txt");
     addRPZone(city);

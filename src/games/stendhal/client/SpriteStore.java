@@ -49,6 +49,24 @@ public class SpriteStore {
 	/** The cached sprite map, from reference to sprite instance */
     private HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
 	
+	public Sprite[] getAnimatedSprite(String ref, int animation, int frames, int width, int height)
+	  {
+	  Sprite animImage=getSprite(ref);
+	  
+      Sprite[] animatedSprite=new Sprite[frames];
+	  
+      GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+      /** TODO: Fix me! Warning! Hardcoded */
+      for(int i=0;i<frames;i++)
+        {
+        Image image = gc.createCompatibleImage(height,width,Transparency.BITMASK);
+        animImage.draw(image.getGraphics(),0,0,i*height,animation*width);
+        animatedSprite[i]=new Sprite(image);
+        }
+      
+      return animatedSprite;
+	  }
+	  
 	/**
 	 * Retrieve a sprite from the store
 	 * 

@@ -34,6 +34,8 @@ import marauroa.client.net.*;
 import marauroa.common.net.*;
 import marauroa.common.game.*;
 
+import javax.swing.*;
+
 public class j2DClient extends Canvas 
   {
   private GameScreen screen;
@@ -116,7 +118,7 @@ public class j2DClient extends Canvas
     client.login("miguel","password");
           
     StaticGameLayers staticLayers=client.getStaticGameLayers();
-    StaticGameObjects  staticObjects=client.getStaticGameObjects();
+    GameObjects gameObjects=client.getGameObjects();
 
     long oldTime=System.nanoTime();
 
@@ -132,9 +134,10 @@ public class j2DClient extends Canvas
 	  long delta = System.currentTimeMillis() - lastLoopTime;
 	  lastLoopTime = System.currentTimeMillis();
 			
-      staticObjects.move(delta);
+      gameObjects.move(delta);
+      
       staticLayers.draw(screen);
-      staticObjects.draw(screen);
+      gameObjects.draw(screen);
            
       Graphics2D g=screen.expose();
       g.setColor(Color.white);

@@ -33,25 +33,25 @@ public class StendhalKeyInputHandler extends KeyAdapter
       case KeyEvent.VK_LEFT:
         action=new RPAction();
         action.put("type","move");
-        action.put("dx",-0.5);
+        action.put("dx",-0.8);
         client.send(action);
         break;
       case KeyEvent.VK_RIGHT:
         action=new RPAction();
         action.put("type","move");
-        action.put("dx",0.5);
+        action.put("dx",0.8);
         client.send(action);
         break;
       case KeyEvent.VK_UP:
         action=new RPAction();
         action.put("type","move");
-        action.put("dy",-0.5);
+        action.put("dy",-0.8);
         client.send(action);
         break;
       case KeyEvent.VK_DOWN:      
         action=new RPAction();
         action.put("type","move");
-        action.put("dy",0.5);
+        action.put("dy",0.8);
         client.send(action);
         break;
       case KeyEvent.VK_ENTER:      

@@ -140,11 +140,11 @@ public class j2DOfflineClient extends Canvas {
         int fps=0;
         
         StaticGameLayers staticLayers;
-        StaticGameObjects staticObjects;
+        GameObjects gameObjects;
         RPObject player=null;    
         
         staticLayers=new StaticGameLayers();
-        staticObjects=new StaticGameObjects();
+        gameObjects=new GameObjects();
         
         try
           {
@@ -167,7 +167,7 @@ public class j2DOfflineClient extends Canvas {
           object.put("y",11);
           try
             {
-            staticObjects.add(object);
+            gameObjects.add(object);
             }
           catch(AttributeNotFoundException e)
             {
@@ -176,13 +176,13 @@ public class j2DOfflineClient extends Canvas {
 
         player=new RPObject(new RPObject.ID(10,"village"));
         player.put("type","player");
-        player.put("x",30);
-        player.put("y",30);
-        player.put("dx",0);
-        player.put("dy",-0.20);
+        player.put("x",20);
+        player.put("y",29);
+        player.put("dx",0.80);
+        player.put("dy",0);
         try
           {
-          staticObjects.add(player);
+          gameObjects.add(player);
           }
         catch(AttributeNotFoundException e)
           {
@@ -201,9 +201,10 @@ public class j2DOfflineClient extends Canvas {
 			long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 			
-            staticObjects.move(delta);
+            gameObjects.move(delta);
+            
             staticLayers.draw(screen);
-            staticObjects.draw(screen);
+            gameObjects.draw(screen);
             
             Graphics2D g=screen.expose();
     		g.setColor(Color.white);

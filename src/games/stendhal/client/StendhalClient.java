@@ -28,7 +28,7 @@ public class StendhalClient extends ariannexp
   private RPObject player;
     
   private StaticGameLayers staticLayers;
-  private StaticGameObjects staticObjects;
+  private GameObjects gameObjects;
   
   private boolean keepRunning=true;
   
@@ -46,7 +46,7 @@ public class StendhalClient extends ariannexp
     {
     world_objects=new HashMap<RPObject.ID, RPObject>();
     staticLayers=new StaticGameLayers();
-    staticObjects=new StaticGameObjects();   
+    gameObjects=new GameObjects();   
     handler=new PerceptionHandler(new StendhalPerceptionListener()); 
     }
   
@@ -55,9 +55,9 @@ public class StendhalClient extends ariannexp
     return staticLayers;
     }
   
-  public StaticGameObjects getStaticGameObjects()
+  public GameObjects getGameObjects()
     {
-    return staticObjects;
+    return gameObjects;
     }
   
   public RPObject getPlayer()
@@ -77,7 +77,7 @@ public class StendhalClient extends ariannexp
         screen.place(object.getDouble("x")-screen.getWidth()/2,object.getDouble("y")-screen.getHeight()/2);
         
         System.out.println("CLEANING static object list");
-        staticObjects.clear();
+        gameObjects.clear();
         
         String zoneid=message.getRPZoneID().getID();
         staticLayers.setRPZoneLayersSet(zoneid);
@@ -143,7 +143,7 @@ public class StendhalClient extends ariannexp
       try
         {
         System.out.println("Object("+object.getID()+") added to Static Objects container");            
-        staticObjects.add(object);
+        gameObjects.add(object);
         }
       catch(Exception e)
         {
@@ -156,7 +156,7 @@ public class StendhalClient extends ariannexp
       try
         {
         System.out.println("Object("+object.getID()+") modified in Static Objects container");            
-        staticObjects.modify(object);
+        gameObjects.modify(object);
         }
       catch(Exception e)
         {
@@ -168,7 +168,7 @@ public class StendhalClient extends ariannexp
       {
       try
         {
-        staticObjects.modify(object);
+        gameObjects.modify(object);
         }
       catch(Exception e)
         {
@@ -180,7 +180,7 @@ public class StendhalClient extends ariannexp
       {
       try
         {
-        staticObjects.remove(object.getID());
+        gameObjects.remove(object.getID());
         }
       catch(Exception e)
         {

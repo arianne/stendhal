@@ -39,6 +39,9 @@
 				<path>src\games\stendhal\client</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\client\entity</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\server</path>
 			</folderitem>
 			<folderitem>
@@ -71,11 +74,7 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\Entity.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\GameEntity.java</path>
+				<path>src\games\stendhal\client\GameObjects.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -111,10 +110,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\StaticGameObjects.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\StendhalClient.java</path>
 				<source>true</source>
 			</fileitem>
@@ -132,6 +127,26 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\TileStore.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\AnimatedGameEntity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\Entity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\GameEntity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\Player.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\Wolf.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -168,10 +183,6 @@
 			</fileitem>
 			<fileitem>
 				<path>maps\village_layer0.txt</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>jars\marauroa.jar</path>
 				<source>true</source>
 			</fileitem>
 		</include>
