@@ -126,9 +126,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       if(action.get("type").equals("move"))
         {
+        Logger.trace("StendhalRPRuleProcessor::execute","D","Got Move action: "+action.toString());
         RPObject object=world.get(id);
-        object.put("dx",action.getDouble("dx"));
-        object.put("dy",action.getDouble("dy"));
+        if(action.has("dx")) object.put("dx",action.getDouble("dx"));
+        if(action.has("dy")) object.put("dy",action.getDouble("dy"));
         world.modify(object);
         }
       else if(action.get("type").equals("change"))
@@ -172,7 +173,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     if(collisionMap.collides(collisionArea)==false)
       {
       Logger.trace("StendhalRPRuleProcessor::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
-      collisionMap.printaround((int)(x+dx),(int) (y+dy),5);
       object.put("x",x+dx);
       object.put("y",y+dy);
       }        
@@ -180,7 +180,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       /* Collision */
       Logger.trace("StendhalRPRuleProcessor::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");
-      collisionMap.printaround((int)(x+dx),(int) (y+dy),5);
       object.put("dx",0);
       object.put("dy",0);
       }
@@ -216,8 +215,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       object.put("zoneid","village");
       object.put("x",30);
       object.put("y",30);
-      object.put("dx",0.5);
-      object.put("dy",0.005);
+      object.put("dx",0);
+      object.put("dy",0);
       world.add(object);
       
       try        

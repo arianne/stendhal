@@ -185,6 +185,16 @@ public class j2DClient extends Canvas {
             }
           return false;
           }
+        
+        public boolean onMyRPObject(boolean changed,RPObject object)
+          {
+          if(changed)
+            {
+            player=object;
+            }
+            
+          return false;
+          }
           
         public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception)      
           {
@@ -411,21 +421,46 @@ public class j2DClient extends Canvas {
 		 * @param e The details of the key that was pressed 
 		 */
 		public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                if(player!=null) player.put("dx",-2);
+            RPAction action=new RPAction();
+            action.put("type","move");
+            
+            if (e.getKeyCode() == KeyEvent.VK_LEFT) {            
+                if(!leftPressed && player!=null)
+                  {
+                  action.put("dx",-0.5);                  
+                  }
+                  
                 leftPressed = true;
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                if(player!=null) player.put("dx",2);
+                if(!rightPressed && player!=null)
+                  {
+                  action.put("dx",0.5);                  
+                  }
+                  
                 rightPressed = true;
             }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
-                if(player!=null) player.put("dy",-2);
+                if(!upPressed && player!=null)
+                  {
+                  action.put("dy",-0.5);                  
+                  }
+                  
                 upPressed = true;
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                if(player!=null) player.put("dy",2);
+                if(!downPressed && player!=null)
+                  {
+                  action.put("dy",0.5);                  
+                  }
+                  
                 downPressed = true;
+              }
+            
+            if(action.has("dx") || action.has("dy"))
+              {
+              System.out.println("Sending action: "+action);            
+              client.send(action);
             }
   } 
 		
@@ -435,21 +470,46 @@ public class j2DClient extends Canvas {
 		 * @param e The details of the key that was released 
 		 */
 		public void keyReleased(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                if(player!=null) player.put("dx",0);
+            RPAction action=new RPAction();
+            action.put("type","move");
+            
+            if (e.getKeyCode() == KeyEvent.VK_LEFT) {            
+                if(player!=null)
+                  {
+                  action.put("dx",0);                  
+                  }
+                  
                 leftPressed = false;
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                if(player!=null) player.put("dx",0);
+                if(player!=null)
+                  {
+                  action.put("dx",0);                  
+                  }
+                  
                 rightPressed = false;
             }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
-                if(player!=null) player.put("dy",0);
+                if(player!=null)
+                  {
+                  action.put("dy",0);                  
+                  }
+                  
                 upPressed = false;
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                if(player!=null) player.put("dy",0);
+                if(player!=null)
+                  {
+                  action.put("dy",0);                  
+                  }
+                  
                 downPressed = false;
+              }
+            
+            if(action.has("dx") || action.has("dy"))
+              {
+              System.out.println("Sending action: "+action);            
+              client.send(action);
             }
         }
 
