@@ -16,6 +16,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -25,6 +26,7 @@ import java.util.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 import java.net.*;
 import java.io.*;
@@ -55,6 +57,7 @@ public class j2DOfflineClient extends Canvas {
         
     private BufferStrategy strategy;
 	private boolean gameRunning=true;
+    private JLabel label;
 	
     private boolean leftPressed=false, rightPressed=false, upPressed=false, downPressed=false;
 
@@ -69,6 +72,9 @@ public class j2DOfflineClient extends Canvas {
 		JPanel panel = (JPanel) container.getContentPane();
 		panel.setPreferredSize(new Dimension(640,480));
 		panel.setLayout(null);
+    label = new JLabel("Testo");
+    label.setSize(new Dimension(50,50));
+
 		
 		// setup our canvas size and put it into the content of the frame
 		setBounds(0,0,640,480);
@@ -176,6 +182,7 @@ public class j2DOfflineClient extends Canvas {
 
         player=new RPObject(new RPObject.ID(10,"village"));
         player.put("type","player");
+        player.put("name","testing");
         player.put("x",20);
         player.put("y",29);
         player.put("dx",0.80);
@@ -211,6 +218,9 @@ public class j2DOfflineClient extends Canvas {
     		String message="Test of Stendhal running under Java";
 			g.drawString(message,(640-g.getFontMetrics().stringWidth(message))/2,200);
 			
+      Graphics g2 = g.create(10,10,60,60);
+      label.paint(g2);
+      
 			screen.nextFrame();
 			
 			if(System.nanoTime()-oldTime>1000000000)
