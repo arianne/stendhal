@@ -136,6 +136,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     try
       {
       object.put("zoneid","village");
+      object.put("x",20);
+      object.put("y",20);
       world.add(object);
       
       try        

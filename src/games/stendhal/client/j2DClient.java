@@ -295,6 +295,20 @@ public class j2DClient extends Canvas {
               {
               }
             }        
+
+          RPObject object=new RPObject(new RPObject.ID(10,"village"));
+          object.put("type","player");
+          object.put("x",20);
+          object.put("y",20);
+          object.put("dx",0);
+          object.put("dy",-0.20);
+          try
+            {
+            staticObjects.add(object);
+            }
+          catch(AttributeNotFoundException e)
+            {
+            }
           }
         else
           {
@@ -322,7 +336,10 @@ public class j2DClient extends Canvas {
 			long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 			
-			// cycle round asking each entity to move itself
+            
+            // cycle round asking each entity to move itself
+            staticObjects.move(delta);
+         
             staticLayers.draw(screen);
             staticObjects.draw(screen);
             

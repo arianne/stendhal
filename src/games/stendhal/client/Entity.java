@@ -46,6 +46,8 @@ public abstract class Entity {
 	public Entity(int x,int y) {
 		this.x = x;
 		this.y = y;
+		
+		dx=dy=0;
 	}
 	
     /**

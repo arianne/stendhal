@@ -32,6 +32,12 @@ public class GameEntity extends Entity
     {
     x=object.getInt("x");
     y=object.getInt("y");
+    
+    if(object.has("dx") && object.has("dy"))
+      {
+      dx=object.getDouble("dx");
+      dy=object.getDouble("dy");
+      }
     }
   
   public RPObject.ID getID()

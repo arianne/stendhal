@@ -66,7 +66,7 @@ public class GameScreen
     int sx=(int)((wx-x)*32);
     int sy=(int)((wy-y)*32);
     
-    if(sx>=-64 && sx<sw+64 && sy>=-64 && sy<sh+64)
+    if((sx>=-32 && sx<sw) && (sy>=-32 && sy<sh))
       {
       sprite.draw(g,sx,sy);
       }

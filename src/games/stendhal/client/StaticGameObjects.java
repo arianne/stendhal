@@ -50,7 +50,23 @@ public class StaticGameObjects
     {
     objects.clear();
     }
+  
+  public void move(long delta)    
+    {
+    for(GameEntity entity: objects.values())
+      {
+      entity.move(delta);
+      }
+    }
     
+  public void doLogic()    
+    {
+    for(GameEntity entity: objects.values())
+      {
+      entity.doLogic();
+      }
+    }
+
   public void draw(GameScreen screen)
     {
     for(GameEntity entity: objects.values())

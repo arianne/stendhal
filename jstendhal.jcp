@@ -54,10 +54,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\IEntity.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\j2DClient.java</path>
 				<source>true</source>
 			</fileitem>
