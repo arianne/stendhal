@@ -6,6 +6,7 @@ import java.util.*;
 
 import marauroa.common.game.*;
 
+/** Handles key inputs for ingame events */
 public class StendhalKeyInputHandler extends KeyAdapter 
   {
   private Map<Integer, Object> pressed;

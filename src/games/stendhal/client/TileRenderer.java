@@ -16,6 +16,8 @@ import java.io.*;
 import java.awt.Graphics;
 import java.util.*;
 
+/** This is a helper class to render coherent tiles based on the tileset.
+ *  This should be replaced by independent tiles as soon as possible . */
 public class TileRenderer
   {
   private int PLAIN_GRASS_TILE[]={1,8};
@@ -81,6 +83,7 @@ public class TileRenderer
     map=null;
     }
   
+  /** Sets the data that will be rendered */
   public void setMapData(Reader reader) throws IOException
     {
     map=new ArrayList<String>();
@@ -93,11 +96,13 @@ public class TileRenderer
       }
     }
 
+  /** Returns the widht in world units */
   public int getWidth()
     {
     return ((String)map.get(0)).length();
     }
   
+  /** Returns the height in world units */
   public int getHeight()
     {
     return map.size();
@@ -219,6 +224,8 @@ public class TileRenderer
       return SINGLE_FENCE_TILE;
     }
   
+  /** Render the data to screen. We assume that Gamescreen will clip.
+   *  The data doesnt change, so we could cache it and get a boost in performance */
   public void draw(GameScreen screen) 
     {
     for(int j=0;j<getHeight();j++)

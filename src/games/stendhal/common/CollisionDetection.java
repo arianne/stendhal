@@ -17,6 +17,8 @@ import java.io.*;
 import java.awt.*;
 import java.awt.geom.*;
 
+/** This class loads the map and allow you to determine if a player collides or 
+ *  not with any of the non trespasable areas of the world */
 public class CollisionDetection 
   {
   byte[][] blocked;
@@ -25,6 +27,8 @@ public class CollisionDetection
     {
     }
   
+  /** Add a new layer to the class.<br>
+   *  A map is build of several layers. */
   public void addLayer(Reader data) throws IOException
     {
     ArrayList<String> map=new ArrayList<String>();
@@ -52,6 +56,7 @@ public class CollisionDetection
     buildCollisionData(map);
     }
   
+  /** Print the area around the (x,y) useful for debugging */
   public void printaround(int x, int y, int size)
     {
     for(int j=y-size;j<y+size;j++)
@@ -130,6 +135,7 @@ public class CollisionDetection
       }  
     }
   
+  /** Returns true if the shape enters in any of the non trespasable areas of the map */
   public boolean collides(Rectangle2D shape)
     {
     double x=shape.getX();
@@ -189,51 +195,5 @@ public class CollisionDetection
   public int getHeight()
     {
     return blocked.length;
-    }
-  
-  
-  public static void main(String[] args)
-    {
-    try
-      {
-      double x=25,y=1;
-      
-      CollisionDetection collision=new CollisionDetection();
-      collision.addLayer(new FileReader("maps/city_layer0.txt"));
-      collision.addLayer(new FileReader("maps/city_layer1.txt"));
-      
-      for(int i=0;i<collision.blocked.length;i++)
-        {
-        for(int j=0;j<collision.blocked[0].length;j++)
-          {
-          if(i==(int)y && j==(int)x)
-            {
-            System.out.print("O");
-            }
-          else if(collision.blocked[i][j]==0)
-            {
-            System.out.print(".");
-            }
-          else
-            {
-            System.out.print("X");
-            }          
-          }
-        System.out.println();
-        }
-      
-      if(collision.collides(new Rectangle.Double(x,y,1,2)))
-        {
-        System.out.println("A collision exists");
-        }
-      else
-        {
-        System.out.println("No collision");
-        }
-      }
-    catch(Exception e)
-      {
-      e.printStackTrace();
-      }
     }
   }

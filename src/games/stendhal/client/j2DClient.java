@@ -36,6 +36,7 @@ import marauroa.common.game.*;
 
 import javax.swing.*;
 
+/** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends Canvas 
   {
   private GameScreen screen;
@@ -173,7 +174,6 @@ public class j2DClient extends Canvas
   
   private void moveScreen(RPObject object, StaticGameLayers gameLayers, long delta)
     {
-    // TODO: Fix me. Center camera on Player and don't start bouncing around it. 
     try
       {
       if(object==null)

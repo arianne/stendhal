@@ -49,7 +49,13 @@ public class SpriteStore {
 	/** The cached sprite map, from reference to sprite instance */
     private HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
 	
-	public Sprite[] getAnimatedSprite(String ref, int animation, int frames, int width, int height)
+	/** Retrieve a collection of sprites from the store.
+	 *  @param ref the sprite name
+	 *  @param animation the position of the animation starting in 0.
+     *  @param width of the frame
+     *  @param height of the frame
+     */
+ public Sprite[] getAnimatedSprite(String ref, int animation, int frames, int width, int height)
 	  {
 	  Sprite animImage=getSprite(ref);
 	  

@@ -16,6 +16,7 @@ import java.awt.Graphics;
 import java.util.*;
 import java.io.*;
 
+/** This class stores the layers that make the floor and the buildings */
 public class StaticGameLayers
   {
   static private class Pair
@@ -29,11 +30,14 @@ public class StaticGameLayers
       this.renderer=renderer;
       }
     }
-    
-  private LinkedList<Pair> layers;
-  private TileStore tilestore;
-  private String area;
   
+  /** List of pair name, layer */
+  private LinkedList<Pair> layers;
+  /** Tilestore contains the tiles to draw */
+  private TileStore tilestore;
+  /** Name of the layers set that we are rendering right now */
+  private String area;
+    
   public StaticGameLayers()
     {
     layers=new LinkedList<Pair>();
@@ -41,30 +45,45 @@ public class StaticGameLayers
     area=null;
     }
   
+  /** Returns width in world units */
   public double getWidth()
     {
-    if(layers.size()>0)
+    double width=0;
+    
+    for(Pair p: layers)
       {
-      return layers.get(0).renderer.getWidth();
+      if(area!=null && p.name.contains(area))
+        {
+        if(width<p.renderer.getWidth())
+          {
+          width=p.renderer.getWidth();
+          }
+        }
       }
-    else
-      {
-      return 0;
-      }
+
+    return width;
     }
 
+  /** Returns the height in world units */
   public double getHeight()
     {
-    if(layers.size()>0)
+    double height=0;
+    
+    for(Pair p: layers)
       {
-      return layers.get(0).renderer.getHeight();
+      if(area!=null && p.name.contains(area))
+        {
+        if(height<p.renderer.getHeight())
+          {
+          height=p.renderer.getHeight();
+          }
+        }
       }
-    else
-      {
-      return 0;
-      }
+
+    return height;
     }
 
+  /** Add a new Layer to the set */
   public void addLayer(Reader reader, String name) throws IOException
     {
     TileRenderer renderer=new TileRenderer(tilestore);
@@ -88,16 +107,19 @@ public class StaticGameLayers
     layers.add(i,new Pair(name, renderer));    
     }
   
+  /** Removes all layers */
   public void clear()
     {
     layers.clear();
     }
   
+  /** Set the set of layers that is going to be rendered */
   public void setRPZoneLayersSet(String area)
     {
     this.area=area;
     }
     
+  /** Render the choosen set of layers */
   public void draw(GameScreen screen)
     {
     for(Pair p: layers)

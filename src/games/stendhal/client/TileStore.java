@@ -18,16 +18,7 @@ import java.awt.Image;
 import java.awt.Transparency;
 
 
-/**
- * A resource manager for sprites in the game. Its often quite important
- * how and where you get your game resources from. In most cases
- * it makes sense to have a central resource loader that goes away, gets
- * your resources and caches them for future use.
- * <p>
- * [singleton]
- * <p>
- * @author Kevin Glass
- */
+/** It is class to get tiles from the tileset */
 public class TileStore extends SpriteStore
   {
   private static final int TILE_WIDTH=32;

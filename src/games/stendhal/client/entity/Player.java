@@ -3,20 +3,19 @@ package games.stendhal.client.entity;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
 
+import java.awt.*;
+
+/** A Player entity */
 public class Player extends AnimatedGameEntity 
   {
-  private String animation;
-  private int frame;
-  private long delta;
-  private boolean stopped;
   private String name;
+  private Sprite nameImage;
   
   public Player(RPObject object) throws AttributeNotFoundException
     {
     super(object);
-    delta=System.currentTimeMillis();
-    frame=0;
     name="";
+    nameImage=null;
     }
     
   protected void buildAnimations(String type)
@@ -40,59 +39,22 @@ public class Player extends AnimatedGameEntity
     {
     super.modify(object);
     
-    name=object.get("name");
-    
-    stopped=(dx==0 && dy==0);
-    
-    if((dx!=0 || dy!=0))
+    if(name!=null && !name.equals(object.get("name")))
       {
-      if(dx>0)
-        {
-        animation="move_right";
-        }
-      else if(dx<0)
-        {
-        animation="move_left";
-        }
-        
-      if(dy>0)
-        {
-        animation="move_down";
-        }
-      else if(dy<0)
-        {
-        animation="move_up";
-        }
+      name=object.get("name");
+      
+      GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+      Image image = gc.createCompatibleImage(50,16,Transparency.BITMASK);    
+      Graphics g=image.getGraphics();
+      g.setColor(Color.white);
+      g.drawString(name,0,10);
+      nameImage=new Sprite(image);      
       }
-    }    
-
-  private Sprite nextFrame()
-    {
-    Sprite[] anim=sprites.get(animation);
-
-    if(frame==anim.length)
-      {
-      frame=0;
-      }
-    
-    Sprite sprite=anim[frame];
-    
-    if(!stopped)
-      {
-      frame++;
-      }
-    
-    return sprite;
     }
 
   public void draw(GameScreen screen)
     {
-    if(System.currentTimeMillis()-delta>100)
-      {
-      delta=System.currentTimeMillis();
-      sprite=nextFrame();
-      }
-
+    if(nameImage!=null) screen.draw(nameImage,x,y-0.3);
     super.draw(screen);
     }
   }

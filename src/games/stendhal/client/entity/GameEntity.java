@@ -16,37 +16,40 @@ import marauroa.common.game.*;
 import games.stendhal.client.*;
 import java.awt.Graphics;
 
+/** This class is a link between client graphical objects and server attributes objects.<br>
+ *  You need to extend this object in order to add new elements to the game. */
 public class GameEntity extends Entity  
   {
+  /** The arianne object associated with this game entity */
   private RPObject.ID id;
-  private String type;
-  
+  /** The object sprite. Animationless, just one frame */
   protected Sprite sprite;
   
+  /** This methods returns the object graphical representation file from its type. */
   protected static String translate(String type)
     {
     return "sprites/"+type+".gif";
     }
 
+  /** Create a new game entity based on the arianne object passed */
   public GameEntity(RPObject object) throws AttributeNotFoundException
     {
     super(0,0);    
     modify(object);
     
-    id=object.getID();
-    type=object.get("type");    
-    
-    System.out.println ("GAME ENTITY: "+type);
-    
-    loadSprite(type);
+    id=object.getID();    
+    loadSprite(object.get("type"));
     }
     
+  /** Loads the sprite that represent this entity */
   protected void loadSprite(String type)
     {
     SpriteStore store=SpriteStore.get();        
     sprite=store.getSprite(translate(type));
     }
   
+  /** This method is called to modify the propierties of the game entity when the object
+   *  that it represent has changed. */
   public void modify(RPObject object) throws AttributeNotFoundException
     {
     x=object.getDouble("x");
@@ -57,14 +60,15 @@ public class GameEntity extends Entity
       dx=object.getDouble("dx");
       dy=object.getDouble("dy");
       }
-    System.out.println("GAMEENTITY modified: dx"+dx+"\tdy:"+dy);
     }
   
+  /** Returns the represented arianne object id */
   public RPObject.ID getID()
     {
     return id;
     }
-
+ 
+  /** Draws this entity in the screen */
   public void draw(GameScreen screen)
     {
     screen.draw(sprite,x,y);

@@ -17,7 +17,7 @@ import games.stendhal.client.entity.*;
 import java.util.*;
 import java.awt.Graphics;
 
-
+/** This class stores the objects that exists on the World right now */
 public class GameObjects 
   {
   HashMap<RPObject.ID, GameEntity> objects;
@@ -27,6 +27,7 @@ public class GameObjects
     objects=new HashMap<RPObject.ID, GameEntity>();
     }
   
+  /** Create a GameEntity of the correct type depending of the arianne object */
   private GameEntity entityType(RPObject object) 
     {
     try
@@ -56,13 +57,15 @@ public class GameObjects
       return null;
       }
     }
-    
+  
+  /** Add a new GameEntity to the game */  
   public void add(RPObject object) throws AttributeNotFoundException
     {
     GameEntity entity=entityType(object);
     objects.put(entity.getID(),entity);
     }
   
+  /** Modify a existing GameEntity so its propierties change */  
   public void modify(RPObject object) throws AttributeNotFoundException
     {
     GameEntity entity=objects.get(object.getID());
@@ -72,16 +75,19 @@ public class GameObjects
       }
     }
   
+  /** Removes a GameEntity from game */
   public void remove(RPObject.ID id)
     {
     objects.remove(id);
     }
   
+  /** Removes all the object entities */
   public void clear()
     {
     objects.clear();
     }
   
+  /** Move objects based on the lapsus of time ellapsed since the last call. */
   public void move(long delta)    
     {
     for(GameEntity entity: objects.values())
@@ -89,7 +95,8 @@ public class GameObjects
       entity.move(delta);
       }
     }
-    
+   
+  /** Draw all the objects in game */
   public void draw(GameScreen screen)
     {
     for(GameEntity entity: objects.values())

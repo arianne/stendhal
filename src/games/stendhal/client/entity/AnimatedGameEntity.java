@@ -4,23 +4,102 @@ import marauroa.common.game.*;
 import games.stendhal.client.*;
 import java.util.*;
 
+/** This class is a special type of GameEntity that has animation, that is
+ *  it is compound of multiple frames. */
 public abstract class AnimatedGameEntity extends GameEntity 
   {
+  /** This map contains animation name, frames association */
   protected Map<String,Sprite[]> sprites;
+  /** actual animation */
+  protected String animation;
+  /** actual frame **/
+  protected int frame;
+  /** we need to measure time to ahve a coherent frame rendering, that is what delta is for */
+  protected long delta;
+  /** this var is true if the gameentity is not moving */
+  protected boolean stopped;
   
   public AnimatedGameEntity(RPObject object) throws AttributeNotFoundException
     {
     super(object);
+    delta=System.currentTimeMillis();
+    frame=0;
+    stopped=true;
     }
 
+  /** This method fills the sprites map */
   abstract protected void buildAnimations(String type);
+  /** This method sets the default animation */
   abstract protected Sprite defaultAnimation();
-    
+
+  /** Redefined method to load all the animation and set a default frame to be rendered */    
   protected void loadSprite(String type)
     {
     sprites=new HashMap<String,Sprite[]>();
     
     buildAnimations(type);
     sprite=defaultAnimation();
+    }
+
+  /** This method is called to modify the propierties of the game entity when the object
+   *  that it represent has changed. */
+  public void modify(RPObject object) throws AttributeNotFoundException
+    {
+    super.modify(object);
+    
+    stopped=(dx==0 && dy==0);
+    
+    if((dx!=0 || dy!=0))
+      {
+      if(dx>0)
+        {
+        animation="move_right";
+        }
+      else if(dx<0)
+        {
+        animation="move_left";
+        }
+        
+      if(dy>0)
+        {
+        animation="move_down";
+        }
+      else if(dy<0)
+        {
+        animation="move_up";
+        }
+      }
+    }    
+ 
+  /** Returns the next Sprite we have to show */
+  protected Sprite nextFrame()
+    {
+    Sprite[] anim=sprites.get(animation);
+
+    if(frame==anim.length)
+      {
+      frame=0;
+      }
+    
+    Sprite sprite=anim[frame];
+    
+    if(!stopped)
+      {
+      frame++;
+      }
+    
+    return sprite;
+    }
+
+  /** Draws this entity in the screen */
+  public void draw(GameScreen screen)
+    {
+    if(System.currentTimeMillis()-delta>100)
+      {
+      delta=System.currentTimeMillis();
+      sprite=nextFrame();
+      }
+
+    super.draw(screen);
     }
   }

@@ -20,6 +20,8 @@ import marauroa.client.net.*;
 import marauroa.common.net.*;
 import marauroa.common.game.*;
 
+/** This class is the glue to Marauroa, it extends ariannexp and allow us to
+ *  easily connect to an marauroa server and operate it easily. */
 public class StendhalClient extends ariannexp 
   {
   private Map<RPObject.ID,RPObject> world_objects;
@@ -32,16 +34,6 @@ public class StendhalClient extends ariannexp
   
   private boolean keepRunning=true;
   
-  public void requestLogout()
-    {
-    keepRunning=false;
-    }
-  
-  public boolean shouldContinueGame()
-    {
-    return keepRunning;
-    }
-
   public StendhalClient()
     {
     world_objects=new HashMap<RPObject.ID, RPObject>();
@@ -135,6 +127,16 @@ public class StendhalClient extends ariannexp
   protected void onError(int code, String reason)
     {
     System.out.println(reason);
+    }
+
+  public void requestLogout()
+    {
+    keepRunning=false;
+    }
+  
+  public boolean shouldContinueGame()
+    {
+    return keepRunning;
     }
 
   class StendhalPerceptionListener extends DefaultPerceptionListener
