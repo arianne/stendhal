@@ -69,9 +69,13 @@ public class GameScreen
     
     g=(Graphics2D)strategy.getDrawGraphics();
     
-    if((x+dx/60.0>=0 && x+dx/60.0+getWidth()<ww) && (y+dy/60.0>=0 && y+dy/60.0+getHeight()<wh))
+    if(x+dx/60.0>=0 && x+dx/60.0+getWidth()<ww)
       {
       x+=dx/60.0;
+      }
+      
+    if(y+dy/60.0>=0 && y+dy/60.0+getHeight()<wh)
+      {
       y+=dy/60.0;
       }
     }

@@ -22,7 +22,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.util.*;
-
+ 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -145,13 +145,13 @@ public class j2DClient extends Canvas
 	  g.drawString(message,(640-g.getFontMetrics().stringWidth(message))/2,200);
 			
 	  screen.nextFrame();
-      moveScreen(client.getPlayer(),staticLayers);
-			
       client.loop(0);
 
-  	  if(System.nanoTime()-oldTime>1000000000)
+      moveScreen(client.getPlayer(),staticLayers,delta);
+           
+      if(System.nanoTime()-oldTime>1000000000)
 	    {
-	    oldTime=System.nanoTime();
+        oldTime=System.nanoTime();
 	    System.out.println("FPS: "+fps);
 	    fps=0;
         
@@ -163,7 +163,7 @@ public class j2DClient extends Canvas
     System.exit(0);
 	}
   
-  private void moveScreen(RPObject object, StaticGameLayers gameLayers)
+  private void moveScreen(RPObject object, StaticGameLayers gameLayers, long delta)
     {
     // TODO: Fix me. Center camera on Player and don't start bouncing around it. 
     try
@@ -186,52 +186,38 @@ public class j2DClient extends Canvas
       double sdx=screen.getdx();
       double sdy=screen.getdy();
       
+      double dsx=screenx+screenw/2;
+      double dsy=screeny+screenh/2;
+      
       double layerw=gameLayers.getWidth();
       double layerh=gameLayers.getHeight();
       
-      if((x<(screenx+screenw*2/5) || x>(screenx+screenw*3/5)) || (y<(screeny+screenh*2/5) || y>(screeny+screenh*3/5)))
+      if(dsx-x<-2)
         {
-        if((screenx+screenw/2)-x<2)
-          {
-          sdx+=0.05;
-          }
-        
-        if((screenx+screenw/2)-x>-2)
-          {
-          sdx-=0.05;
-          }
-      
-        if((screeny+screenh/2)-y<2)
-          {
-          sdy+=0.05;
-          }
-        
-        if((screeny+screenh/2)-y>-2)
-          {
-          sdy-=0.05;
-          }
+        sdx+=0.1;
         }
-      else
+      else if(dsx-x>-0.5 && dsx-x<0.5)
         {
-        if(x==screenx+screenw/2 && y==screeny+screenh/2)
-          {
-          sdx=0;
-          sdy=0;
-          }
-        else
-          {
-          if(dx==0)
-            {
-            sdx/=2;
-            }
+        sdx/=1.1;
+        }
+      else if(dsx-x>2)
+        {
+        sdx-=0.1;
+        }
 
-          if(dy==0)
-            {
-            sdy/=2;
-            }
-          }
+
+      if(dsy-y<-2)
+        {
+        sdy+=0.1;
         }
-      
+      else if(dsy-y>-0.5 && dsy-y<0.5)
+        {
+        sdy/=1.1;
+        }
+      else if(dsy-y>2)
+        {
+        sdy-=0.1;
+        }
       
       screen.move(sdx,sdy);
       }
