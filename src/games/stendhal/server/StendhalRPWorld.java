@@ -47,6 +47,7 @@ public class StendhalRPWorld extends RPWorld
     StendhalRPZone village=new StendhalRPZone("village");
     village.setEntryPoint("10,10");
     village.addLayer("village_layer0","games/stendhal/server/maps/village_layer0.txt");
+    village.addLayer("village_layer1","games/stendhal/server/maps/village_layer1.txt");
     addRPZone(village);
 
 

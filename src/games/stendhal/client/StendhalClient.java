@@ -111,7 +111,7 @@ public class StendhalClient extends ariannexp
       for(byte ele: item.data) System.out.print((char)ele);
       
       try
-        {
+        {        
         staticLayers.addLayer(new StringReader(new String(item.data)),item.name);
         }
       catch(java.io.IOException e)          

@@ -29,6 +29,7 @@ public class Sheep extends AnimatedGameEntity
   
   protected Sprite defaultAnimation()
     {
+    animation="move_up";
     return sprites.get("move_up")[0];
     }
   
