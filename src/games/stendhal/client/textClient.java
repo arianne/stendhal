@@ -21,6 +21,7 @@ import marauroa.common.net.*;
 
 public class textClient extends Thread
   {
+  private String host;
   private String username;
   private String password;
   private String character;
@@ -31,8 +32,9 @@ public class textClient extends Thread
   private marauroa.client.ariannexp clientManager;
   private PerceptionHandler handler;
 
-  public textClient(String u, String p, String c) throws SocketException
+  public textClient(String h, String u, String p, String c) throws SocketException
     {
+    host=h;
     username=u;
     password=p;
     character=c;
@@ -163,7 +165,7 @@ public class textClient extends Thread
     {
     try
       {
-      clientManager.connect("127.0.0.1",32160);
+      clientManager.connect(host,32160);
       }
     catch(SocketException e)
       {
@@ -187,38 +189,42 @@ public class textClient extends Thread
     {
     try
       {
-//      if(args.length>0)
-//        {
-//        int i=0;
-//        String username=null;
-//        String password=null;
-//        String character=null;
-//     
-//        while(i!=args.length)
-//          {
-//          if(args[i].equals("-u"))
-//            {
-//            username=args[i+1];
-//            }
-//          else if(args[i].equals("-p"))
-//            {
-//            password=args[i+1];
-//            }
-//          else if(args[i].equals("-c"))
-//            {
-//            character=args[i+1];
-//            }
-//            
-//          i++;
-//          }        
-//          
-//        System.out.println("Parameter operation");
-//        new nullClient(username,password,character).start();
-//        return;
-//        }
-//      else
+      if(args.length>0)
         {
-        new textClient("miguel","password","mIgUeL").start();
+        int i=0;
+        String username=null;
+        String password=null;
+        String character=null;
+        String host=null;
+    
+        while(i!=args.length)
+          {
+          if(args[i].equals("-u"))
+            {
+            username=args[i+1];
+            }
+          else if(args[i].equals("-p"))
+            {
+            password=args[i+1];
+            }
+          else if(args[i].equals("-c"))
+            {
+            character=args[i+1];
+            }
+          else if(args[i].equals("-h"))
+            {
+            host=args[i+1];
+            }
+          i++;
+          }        
+          
+        System.out.println("Parameter operation");
+        new textClient(host,username,password,character).start();
+        return;
+        }
+      else
+        {
+        new textClient("127.0.0.1","miguel","password","mIgUeL").start();
         }
       }
     catch(Exception e)
