@@ -59,15 +59,43 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     }
 
-  public void approvedActions(RPObject.ID id, List<RPAction> actionList)
+  public void approvedActions(RPObject.ID id, List<RPAction> actionList)  
     {
+    try
+      {
+      long maxTime=0;
+      
+      for(RPAction action: actionList)
+        {
+        long val=action.getInt("when");
+        if(action.get("type").equals("moveto") && val>maxTime)
+          {
+          Logger.trace("StendhalRPRuleProcessor::approvedActions","D",action.toString());
+          maxTime=val;
+          }
+        }
+      
+      Iterator it=actionList.iterator();
+      while(it.hasNext())
+        {
+        RPAction action=(RPAction)it.next();
+        if(action.get("type").equals("moveto") && action.getInt("when")<maxTime)
+          {
+          it.remove();
+          }
+        }
+      }
+    catch(AttributeNotFoundException e)
+      {
+      Logger.thrown("StendhalRPRuleProcessor::approvedActions","X",e);
+      }
     }
 
   public RPAction.Status execute(RPObject.ID id, RPAction action)
     {
     Logger.trace("StendhalRPRuleProcessor::execute",">");
 
-    RPAction.Status status=RPAction.Status.FAIL;
+    RPAction.Status status=RPAction.Status.SUCCESS;
 
     try
       {
@@ -76,6 +104,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(action.get("type").equals("move"))
         {
         move(object,action);
+        }
+      else if(action.get("type").equals("moveto"))
+        {
+        status=moveTo(object,action);
         }
       else if(action.get("type").equals("change"))
         {
@@ -103,6 +135,40 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     return status;
     }
   
+  private RPAction.Status moveTo(RPObject object, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    RPAction.Status status=RPAction.Status.INCOMPLETE;
+    
+    double dsx=action.getDouble("x");
+    double dsy=action.getDouble("y");
+    double x=object.getDouble("x");
+    double y=object.getDouble("y");
+    
+    if(!object.has("moving") || (object.getDouble("dx")==0 && object.getDouble("dy")==0))
+      {
+      object.put("moving",1);
+      if(object.has("stopped")) object.remove("stopped");
+      object.put("dx",((dsx-x)/10>1?1:(dsx-x)/10));
+      object.put("dy",((dsy-y)/10>1?1:(dsy-y)/10));
+      }
+    
+    if(Math.abs(dsx-x)<0.1 || Math.abs(dsy-y)<0.1)
+      {
+      if(object.has("moving")) object.remove("moving");
+        
+      object.put("dx",0);
+      object.put("dy",0);
+      
+      if(Math.abs(dsx-x)<0.1 || Math.abs(dsy-y)<0.1)
+        {
+        status=RPAction.Status.SUCCESS;
+        }
+      }
+      
+    world.modify(object);
+    return status;
+    }
+    
   private void move(RPObject object, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPRuleProcessor::move",">");

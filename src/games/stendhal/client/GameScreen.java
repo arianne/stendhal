@@ -111,8 +111,8 @@ public class GameScreen
   /** Indicate the screen windows to move at a dx,dy speed. */
   public void move(double dx, double dy)
     {
-    this.dx=dx>10?10:dx;
-    this.dy=dy>10?10:dy;
+    this.dx=dx;
+    this.dy=dy;
     }
   
   /** Returns the x rendering coordinate in world units */
@@ -151,6 +151,13 @@ public class GameScreen
     {
     ww=width;
     wh=height;
+    }
+  
+  public Point2D translate(Point2D point)
+    {
+    double tx=point.getX()/32f+x;
+    double ty=point.getY()/32f+y;
+    return new Point.Double(tx,ty);
     }
     
   /** Draw a sprite in screen given its world coordinates */

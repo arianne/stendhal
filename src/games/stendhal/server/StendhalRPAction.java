@@ -61,39 +61,43 @@ public class StendhalRPAction
       }
     }
     
-  static boolean move(RPObject object) throws AttributeNotFoundException, NoRPZoneException
+  static void move(RPObject object) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::move",">");
-
-    double x=object.getDouble("x");
-    double y=object.getDouble("y");
-    double dx=object.getDouble("dx");
-    double dy=object.getDouble("dy");
-    boolean stopped=(dx==0 && dy==0);
-    
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
-    
-    if(zone.collides(object,x+dx,y+dy)==false)
+    try
       {
-      Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
-      if(dx!=0) object.put("x",x+dx);
-      if(dy!=0) object.put("y",y+dy);
-      world.modify(object);
-      }        
-    else
-      {
-      /* Collision */
-      Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");      
-      if(dx!=0 || dy!=0)
+      double x=object.getDouble("x");
+      double y=object.getDouble("y");
+      double dx=object.getDouble("dx");
+      double dy=object.getDouble("dy");
+      boolean stopped=(dx==0 && dy==0);
+      
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
+      
+      if(zone.collides(object,x+dx,y+dy)==false)
         {
-        if(dx!=0) object.put("dx",0);
-        if(dy!=0) object.put("dy",0);
+        Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
+        if(dx!=0) object.put("x",x+dx);
+        if(dy!=0) object.put("y",y+dy);
         world.modify(object);
+        }        
+      else
+        {
+        /* Collision */
+        Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");      
+        if(dx!=0 || dy!=0)
+          {
+          if(dx!=0) object.put("dx",0);
+          if(dy!=0) object.put("dy",0);
+          object.put("stopped","");
+          world.modify(object);
+          }
         }
       }
-    
-    Logger.trace("StendhalRPAction::move","<");
-    return !stopped;
+    finally
+      {
+      Logger.trace("StendhalRPAction::move","<");
+      }
     }
 
   static void transferContent(RPObject object) throws AttributeNotFoundException 

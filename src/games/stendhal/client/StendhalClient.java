@@ -136,7 +136,7 @@ public class StendhalClient extends ariannexp
     Logger.trace("StendhalClient::onTransfer",">");
     for(TransferContent item: items)
       {
-      for(byte ele: item.data) System.out.print((char)ele);
+      //for(byte ele: item.data) System.out.print((char)ele);
       
       try
         {
@@ -150,6 +150,7 @@ public class StendhalClient extends ariannexp
 
           Logger.trace("StendhalClient::onTransfer","D","File cached. Timestamp: "+Integer.toString(item.timestamp));
           long timestamp=item.timestamp;
+          new File("cache/").mkdir();
           new File("cache/"+item.name).setLastModified(timestamp*1000);
           }
           

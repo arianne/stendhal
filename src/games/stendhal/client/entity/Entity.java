@@ -53,7 +53,12 @@ public abstract class Entity {
 	}
 	
 	abstract public Rectangle2D getArea();
-	
+    abstract public Rectangle2D getDrawedArea();
+    
+    abstract public void onClick();
+    abstract public void onDoubleClick();
+    abstract public void onLeftClick();
+    
     /**
 	 * Request that this entity move itself based on a certain ammount
 	 * of time passing.

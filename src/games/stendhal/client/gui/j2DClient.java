@@ -28,11 +28,13 @@ import marauroa.client.net.*;
 import marauroa.common.*;
 import marauroa.common.net.*;
 import marauroa.common.game.*;
+import java.awt.event.MouseListener;
+import java.util.EventListener;
 
 import javax.swing.*;
 
 /** The main class that create the screen and starts the arianne client. */
-public class j2DClient extends JFrame 
+public class j2DClient extends JFrame
   {
   private GameScreen screen;
         
@@ -141,7 +143,9 @@ public class j2DClient extends JFrame
 		
 	GameScreen.createScreen(strategy,640,480);
     screen=GameScreen.get();
-		
+
+    canvas.addMouseListener(new StendhalMouseInputHandler(client));
+        
 	// Start the main game loop, note: this method will not
 	// return until the game has finished running. Hence we are
 	// using the actual main thread to run the game.
@@ -286,7 +290,7 @@ public class j2DClient extends JFrame
           
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={"j2DCLient"};
+        String[] allowed={};
         Logger.setAllowed(allowed);
         
         StendhalClient client=new StendhalClient(true);

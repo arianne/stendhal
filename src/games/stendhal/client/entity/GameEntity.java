@@ -36,9 +36,7 @@ public class GameEntity extends Entity
   /** Create a new game entity based on the arianne object passed */
   public GameEntity(RPObject object) throws AttributeNotFoundException
     {
-    super(0,0);    
-    modify(object);
-    
+    super(0,0);       
     id=object.getID();    
     loadSprite(object.get("type"));
     }
@@ -46,6 +44,23 @@ public class GameEntity extends Entity
   public Rectangle2D getArea()
     {
     return new Rectangle.Double(x,y,1,1);
+    }
+    
+  public Rectangle2D getDrawedArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }
+
+  public void onClick()
+    {
+    }
+    
+  public void onDoubleClick()
+    {
+    }
+    
+  public void onLeftClick()
+    {
     }
 
   /** Loads the sprite that represent this entity */
@@ -62,8 +77,9 @@ public class GameEntity extends Entity
     Logger.trace("GameEntity::modify","D",object.toString());
     x=object.getDouble("x");
     y=object.getDouble("y");
-    dx=object.getDouble("dx");
-    dy=object.getDouble("dy");
+    
+    if(object.has("dx")) dx=object.getDouble("dx");
+    if(object.has("dy")) dy=object.getDouble("dy");
     }
   
   /** Returns the represented arianne object id */

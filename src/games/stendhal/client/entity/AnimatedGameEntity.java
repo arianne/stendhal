@@ -1,3 +1,15 @@
+/* $Id$ */
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
@@ -51,20 +63,20 @@ public abstract class AnimatedGameEntity extends GameEntity
     
     if((dx!=0 || dy!=0))
       {
-      if(dx>0)
+      if(dx>0 && dx*dx>=dy*dy)
         {
         animation="move_right";
         }
-      else if(dx<0)
+      else if(dx<0 && dx*dx>=dy*dy)
         {
         animation="move_left";
         }
         
-      if(dy>0)
+      if(dy>0 && dy*dy>=dx*dx)
         {
         animation="move_down";
         }
-      else if(dy<0)
+      else if(dy<0 && dy*dy>=dx*dx)
         {
         animation="move_up";
         }

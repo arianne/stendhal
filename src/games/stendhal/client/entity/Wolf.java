@@ -1,3 +1,15 @@
+/* $Id$ */
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
@@ -15,11 +27,6 @@ public class Wolf extends AnimatedGameEntity
     super(object);
     }
   
-  public Rectangle2D getArea()
-    {
-    return new Rectangle.Double(x+0.5,y+1.3,0.87,0.6);
-    }
-
   protected void buildAnimations(String type)
     {
     SpriteStore store=SpriteStore.get();  

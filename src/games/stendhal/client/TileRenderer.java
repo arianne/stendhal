@@ -48,8 +48,6 @@ public class TileRenderer
     width=Integer.parseInt(size[0]);
     height=Integer.parseInt(size[1]);
     
-    System.out.println("Width="+width+"\tHeight="+height);
-    
     map=new int[width*height];
     
     int j=0;
@@ -65,10 +63,8 @@ public class TileRenderer
       for(String item: items)
         {
         map[j]=Integer.parseInt(item);
-        System.out.print(map[j]+",");
         j++;      
         }
-      System.out.println();
       }
 
     Logger.trace("TileRenderer::setMapData","<");

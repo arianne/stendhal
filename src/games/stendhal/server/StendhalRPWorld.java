@@ -31,6 +31,11 @@ public class StendhalRPWorld extends RPWorld
   private void createRPClasses()
     {
     Logger.trace("StendhalRPWorld::createRPClasses",">");
+    RPClass sign=new RPClass("sign");
+    sign.add("text",RPClass.STRING);
+    sign.add("x",RPClass.FLOAT);
+    sign.add("y",RPClass.FLOAT);
+    
     RPClass player=new RPClass("player");
     player.add("name",RPClass.STRING);
     player.add("x",RPClass.FLOAT);
@@ -44,6 +49,7 @@ public class StendhalRPWorld extends RPWorld
     player.add("def",RPClass.SHORT);
     player.add("text",RPClass.STRING);
     player.add("stopped",RPClass.FLAG,RPClass.HIDDEN);
+    player.add("moving",RPClass.FLAG,RPClass.HIDDEN);
     Logger.trace("StendhalRPWorld::createRPClasses","<");
     }
   
@@ -51,45 +57,19 @@ public class StendhalRPWorld extends RPWorld
     {
     StendhalRPZone village=new StendhalRPZone("village");
     village.setEntryPoint("26,43");
-    village.addLayer("village_0_floor","games/stendhal/server/maps/village_0_floor.txt");
-    village.addLayer("village_1_object","games/stendhal/server/maps/village_1_object.txt");
-    village.addLayer("village_2_roof","games/stendhal/server/maps/village_2_roof.txt",false);
+    village.addLayer("village_0_floor","games/stendhal/server/maps/village_0_floor.stend");
+    village.addLayer("village_1_object","games/stendhal/server/maps/village_1_object.stend");
+    village.addLayer("village_2_roof","games/stendhal/server/maps/village_2_roof.stend",false);
+    village.populate("games/stendhal/server/maps/village_objects.stend");
     addRPZone(village);
 
 
     StendhalRPZone city=new StendhalRPZone("city");
     city.setEntryPoint("10,34");
-    city.addLayer("city_0_floor","games/stendhal/server/maps/city_0_floor.txt");
-    city.addLayer("city_1_object","games/stendhal/server/maps/city_1_object.txt");
-    city.addLayer("city_2_roof","games/stendhal/server/maps/city_2_roof.txt",false);
-    
-    for(int i=0;i<5;i++)
-      {
-      RPObject object=new RPObject();
-      city.assignRPObjectID(object);
-      object.put("type","pot");
-      object.put("x",9+i);
-      object.put("y",11);
-      city.add(object);
-      }
-    
-    RPObject wolf=new RPObject();
-    city.assignRPObjectID(wolf);
-    wolf.put("type","wolf");
-    wolf.put("x",20);
-    wolf.put("y",30);
-    wolf.put("dx",0.5);
-    wolf.put("dy",0);
-    city.add(wolf);
-
-    RPObject sheep=new RPObject();
-    city.assignRPObjectID(sheep);
-    sheep.put("type","sheep");
-    sheep.put("x",60);
-    sheep.put("y",30);
-    sheep.put("dx",-0.1);
-    sheep.put("dy",0);
-    city.add(sheep);
+    city.addLayer("city_0_floor","games/stendhal/server/maps/city_0_floor.stend");
+    city.addLayer("city_1_object","games/stendhal/server/maps/city_1_object.stend");
+    city.addLayer("city_2_roof","games/stendhal/server/maps/city_2_roof.stend",false);
+    city.populate("games/stendhal/server/maps/city_objects.stend");
 
     addRPZone(city);
     }

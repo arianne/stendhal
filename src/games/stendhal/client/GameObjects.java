@@ -18,6 +18,7 @@ import games.stendhal.client.entity.*;
 import games.stendhal.common.*;
 import java.util.*;
 import java.awt.Graphics;
+import java.awt.geom.*;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects 
@@ -36,8 +37,7 @@ public class GameObjects
     {
     try
       {
-      /** TODO: Refactor this
-       *  Factory pattern apply. */
+      /** TODO: Refactor this --> Factory pattern apply. */
       if(object.get("type").equals("player"))
         {
         return new Player(object);
@@ -49,6 +49,10 @@ public class GameObjects
       else if(object.get("type").equals("sheep"))
         {
         return new Sheep(object);
+        }
+      else if(object.get("type").equals("sign"))
+        {
+        return new Sign(object);
         }
       else
         {
@@ -67,10 +71,24 @@ public class GameObjects
     {
     Logger.trace("GameObjects::add",">");
     GameEntity entity=entityType(object);
+    entity.modify(object);
     objects.put(entity.getID(),entity);
+    System.out.println (object);
     Logger.trace("GameObjects::add","<");
     }
   
+  public GameEntity at(double x, double y)
+    {
+    for(GameEntity entity: objects.values())
+      {
+      if(entity.getDrawedArea().contains(x,y))
+        {
+        return entity;
+        }
+      }
+    
+    return null;
+    }  
   /** Modify a existing GameEntity so its propierties change */  
   public void modify(RPObject object) throws AttributeNotFoundException
     {
@@ -104,10 +122,13 @@ public class GameObjects
     {
     for(GameEntity entity: objects.values())
       {
-      if(collisionMap.collides(entity.getArea())==false)
+      if(entity.getHorizontalMovement()!=0 || entity.getVerticalMovement()!=0)
         {
-        entity.move(delta);
-        }      
+        if(collisionMap.collides(entity.getArea())==false)
+          {
+          entity.move(delta);
+          }      
+        }
       }
     }
    

@@ -1,13 +1,21 @@
-/****************************************************************/
-/*                      LoginGUI	                            */
-/*                                                              */
-/****************************************************************/
+/* $Id$ */
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.gui;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+import java.net.URL;
 import games.stendhal.client.*;
 
 
@@ -34,7 +42,8 @@ public class StendhalFirstScreen extends JFrame
 		//
 		// TODO: Add any constructor code after initializeComponent call
 		//
-        ImageIcon imageIcon = new ImageIcon("data/StendhalSplash.jpg");
+        URL url = this.getClass().getClassLoader().getResource("data/StendhalSplash.jpg");
+        ImageIcon imageIcon = new ImageIcon(url);
         background=imageIcon.getImage();
 
         initializeComponent();
@@ -127,7 +136,8 @@ public class StendhalFirstScreen extends JFrame
         setTitle("Stendhal Java 2D");
         this.setLocation(new Point(100, 100));
         
-        this.setIconImage(new ImageIcon("data/StendhalIcon.gif").getImage());
+        URL url = this.getClass().getClassLoader().getResource("data/StendhalIcon.gif");
+        this.setIconImage(new ImageIcon(url).getImage());
 		pack();
 	}
 

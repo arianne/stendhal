@@ -1,3 +1,15 @@
+/* $Id$ */
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server;
 
 import marauroa.common.*;
@@ -12,6 +24,7 @@ import java.awt.geom.Rectangle2D;
 
 import java.util.*;
 import java.io.*;
+import java.net.*;
 
 
 public class StendhalRPZone extends MarauroaRPZone 
@@ -48,7 +61,8 @@ public class StendhalRPZone extends MarauroaRPZone
     TransferContent content=new TransferContent();
     content.name=name;
     content.cacheable=true;
-    content.timestamp=(int)new File(filename).lastModified();
+    content.timestamp=(int)(new File(filename).lastModified()/1000);
+    Logger.trace("StendhalRPZone::addLayer","D",Integer.toString(content.timestamp));
     content.data=getBytesFromFile(filename);
     
     contents.add(content);
@@ -58,6 +72,57 @@ public class StendhalRPZone extends MarauroaRPZone
       collisionMap.addLayer(new FileReader(filename));
       }
     Logger.trace("StendhalRPZone::addLayer","<");
+    }
+  
+  public void populate(String filename) throws IOException, RPObjectInvalidException
+    {
+    Logger.trace("StendhalRPZone::populate",">");
+    
+    InputStream in=getClass().getClassLoader().getResourceAsStream(filename);
+    BufferedReader file=new BufferedReader(new InputStreamReader(in));
+    
+    String text=file.readLine();
+    String[] size=text.split(" ");
+    int width=Integer.parseInt(size[0]);
+    int height=Integer.parseInt(size[1]);
+    
+    int j=0;
+    
+    while((text=file.readLine())!=null)
+      {
+      if(text.trim().equals(""))
+        {
+        break;
+        }
+        
+      String[] items=text.split(",");
+      for(String item: items)
+        {
+        int value=Integer.parseInt(item)-481 /* Number of tiles at zelda_outside_chipset + 1 */;
+        switch(value)
+          {
+          case 0: /* Entry point */
+            break;
+          case 1: /* Sign */
+            {
+            RPObject sign=new RPObject();
+            assignRPObjectID(sign);
+            sign.put("type","sign");
+            sign.put("x",j%width);
+            sign.put("y",j/width);
+            sign.put("text","Welcome to Stendhal! Enjoy visiting this area!");
+            add(sign);
+
+            Logger.trace("StendhalRPZone::populate","D","Adding SIGN: "+sign);
+            break;
+            }            
+          }
+        
+        j++;      
+        }
+      }
+
+    Logger.trace("StendhalRPZone::populate","<");
     }
     
   public void addLayer(String name, String filename) throws IOException
@@ -130,26 +195,16 @@ public class StendhalRPZone extends MarauroaRPZone
 
   private static byte[] getBytesFromFile(String file) throws IOException 
     {
-    InputStream is = new FileInputStream(file);
+    ByteArrayOutputStream out=new ByteArrayOutputStream();
+    InputStream is= StendhalRPZone.class.getClassLoader().getResourceAsStream(file);
     
-    long length = new File(file).length();
-    byte[] bytes = new byte[(int)length];
-    
-    // Read in the bytes
-    int offset = 0;
-    int numRead;
-    while (offset < bytes.length && (numRead=is.read(bytes, offset, bytes.length-offset)) >= 0) 
+    byte[] buffer=new byte[1024];
+    int len=0;
+    while((len=is.read(buffer,0,1024))!=-1)
       {
-      offset += numRead;
+      out.write(buffer,0,len);
       }
-    
-    if(offset < bytes.length) 
-      {
-      throw new IOException("Could not completely read file "+file);
-      }
-    
-    // Close the input stream and return bytes
-    is.close();
-    return bytes;
+
+    return out.toByteArray();
     }
   }
