@@ -27,7 +27,6 @@ public class Sign extends GameEntity
   public Sign(RPObject object) throws AttributeNotFoundException
     {    
     super(object);
-    
     screen=GameScreen.get();
     }
   
@@ -39,12 +38,23 @@ public class Sign extends GameEntity
       String text=object.get("text");
       System.out.println ("Rendering text: "+text);
       Graphics g2d=screen.expose();
+      
+      /** TODO: Support several lines text */
+      String[] lines=text.split("\\|");
 
-      int lineLengthPixels=g2d.getFontMetrics().stringWidth(text);
+      int lineLengthPixels=0;
+      for(String line: lines)
+        {
+        int val=g2d.getFontMetrics().stringWidth(line);
+        if(val>lineLengthPixels)
+          {
+          lineLengthPixels=val;
+          }
+        }
       
       GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
       int width=lineLengthPixels+4;
-      int height=16;
+      int height=16*lines.length;
       
       Image image = gc.createCompatibleImage(width,height,Transparency.BITMASK);
       
@@ -55,7 +65,12 @@ public class Sign extends GameEntity
       g.drawRect(0,0,width-1,height-1);
             
       g.setColor(Color.black);
-      g.drawString(text,2,12);
+      int j=0;
+      for(String line: lines)
+        {
+        g.drawString(line,2,12+j*16);
+        j++;
+        }
         
       textImage=new Sprite(image);      
       }
