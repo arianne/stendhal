@@ -1,0 +1,5 @@
+These code and files works with Tiled 0.5.0
+
+Only the write code is written for the plugin and it will save the map with the name given to the different layers that makes it.
+
+To compile just copy tiled and plugin to the place where you unziped tiled and compile tiled again.

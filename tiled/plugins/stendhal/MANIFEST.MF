@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: 1.4.1_05 (Sun Microsystems Inc.)
+Reader-Class: tiled.plugins.stendhal.StendhalMapReader
+Writer-Class: tiled.plugins.stendhal.StendhalMapWriter
