@@ -189,6 +189,10 @@
 				<path>maps\village_layer0.txt</path>
 				<source>true</source>
 			</fileitem>
+			<fileitem>
+				<path>maps\village_layer1.txt</path>
+				<source>true</source>
+			</fileitem>
 		</include>
 	</files>
 	<tasks/>

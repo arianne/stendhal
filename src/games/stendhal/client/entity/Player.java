@@ -9,12 +9,14 @@ public class Player extends AnimatedGameEntity
   private int frame;
   private long delta;
   private boolean stopped;
+  private String name;
   
   public Player(RPObject object) throws AttributeNotFoundException
     {
     super(object);
     delta=System.currentTimeMillis();
     frame=0;
+    name="";
     }
     
   protected void buildAnimations(String type)
@@ -37,6 +39,8 @@ public class Player extends AnimatedGameEntity
   public void modify(RPObject object) throws AttributeNotFoundException
     {
     super.modify(object);
+    
+    name=object.get("name");
     
     stopped=(dx==0 && dy==0);
     
@@ -88,7 +92,7 @@ public class Player extends AnimatedGameEntity
       delta=System.currentTimeMillis();
       sprite=nextFrame();
       }
-    
+
     super.draw(screen);
     }
   }

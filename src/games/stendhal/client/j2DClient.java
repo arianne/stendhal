@@ -165,7 +165,7 @@ public class j2DClient extends Canvas
   
   private void moveScreen(RPObject object, StaticGameLayers gameLayers)
     {
-    // TODO: Fix me. It shouldn't follow pass layer end. 
+    // TODO: Fix me. Center camera on Player and don't start bouncing around it. 
     try
       {
       if(object==null)
@@ -189,35 +189,49 @@ public class j2DClient extends Canvas
       double layerw=gameLayers.getWidth();
       double layerh=gameLayers.getHeight();
       
-      if((screenx+screenw/2)-x<2)
+      if((x<(screenx+screenw*2/5) || x>(screenx+screenw*3/5)) || (y<(screeny+screenh*2/5) || y>(screeny+screenh*3/5)))
         {
-        sdx+=0.1;
-        }
+        if((screenx+screenw/2)-x<2)
+          {
+          sdx+=0.05;
+          }
         
-      if((screenx+screenw/2)-x>-2)
-        {
-        sdx-=0.1;
-        }
+        if((screenx+screenw/2)-x>-2)
+          {
+          sdx-=0.05;
+          }
       
-      if((screeny+screenh/2)-y<2)
-        {
-        sdy+=0.1;
-        }
+        if((screeny+screenh/2)-y<2)
+          {
+          sdy+=0.05;
+          }
         
-      if((screeny+screenh/2)-y>-2)
-        {
-        sdy-=0.1;
+        if((screeny+screenh/2)-y>-2)
+          {
+          sdy-=0.05;
+          }
         }
-      
-      if(dx==0)
+      else
         {
-        sdx=0;
-        }
+        if(x==screenx+screenw/2 && y==screeny+screenh/2)
+          {
+          sdx=0;
+          sdy=0;
+          }
+        else
+          {
+          if(dx==0)
+            {
+            sdx/=2;
+            }
 
-      if(dy==0)
-        {
-        sdy=0;
+          if(dy==0)
+            {
+            sdy/=2;
+            }
+          }
         }
+      
       
       screen.move(sdx,sdy);
       }
