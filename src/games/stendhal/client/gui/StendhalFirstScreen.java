@@ -106,8 +106,8 @@ public class StendhalFirstScreen extends JFrame
 		//
 		// LoginGUI
 		//
-		this.setTitle("LoginGUI - extends JFrame");
-		this.setLocation(new Point(38, 135));
+        setTitle("Stendhal Java 2D");
+        this.setLocation(new Point(38, 135));
 		this.setSize(new Dimension(640, 480));
 	}
 

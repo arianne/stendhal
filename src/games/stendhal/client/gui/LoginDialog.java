@@ -76,37 +76,11 @@ public class LoginDialog extends JDialog
 		//
 		PasswordLabel.setText("Type your password");
 		//
-		// UsernameField
-		//
-		UsernameField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e)
-			{
-				UsernameField_actionPerformed(e);
-			}
-
-		});
-		//
-		// PasswordField
-		//
-		PasswordField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e)
-			{
-				PasswordField_actionPerformed(e);
-			}
-
-		});
-		//
 		// ServerField
 		//
 		ServerField.addItem("stendhal.game-server.cc");
 		ServerField.addItem("localhost");
-		ServerField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e)
-			{
-				ServerField_actionPerformed(e);
-			}
 
-		});
 		//
 		// LoginButton
 		//
@@ -134,7 +108,7 @@ public class LoginDialog extends JDialog
 		//
 		// LoginDialog
 		//
-		this.setTitle("LoginDialog - extends JDialog");
+		this.setTitle("Login to Server");
 		this.setLocation(new Point(202, 124));
 		this.setResizable(false);
 		this.setSize(new Dimension(410, 190));
@@ -145,33 +119,6 @@ public class LoginDialog extends JDialog
 	{
 		c.setBounds(x,y,width,height);
 		container.add(c);
-	}
-
-	//
-	// TODO: Add any appropriate code in the following Event Handling Methods
-	//
-	private void UsernameField_actionPerformed(ActionEvent e)
-	{
-		System.out.println("\nUsernameField_actionPerformed(ActionEvent e) called.");
-		// TODO: Add any handling code here
-
-	}
-
-	private void PasswordField_actionPerformed(ActionEvent e)
-	{
-		System.out.println("\nPasswordField_actionPerformed(ActionEvent e) called.");
-		// TODO: Add any handling code here
-
-	}
-
-	private void ServerField_actionPerformed(ActionEvent e)
-	{
-		System.out.println("\nServerField_actionPerformed(ActionEvent e) called.");
-		
-		Object o = ServerField.getSelectedItem();
-		System.out.println(">>" + ((o==null)? "null" : o.toString()) + " is selected.");
-		// TODO: Add any handling code here for the particular object being selected
-		
 	}
 
 	private void LoginButton_actionPerformed(ActionEvent e)
