@@ -24,19 +24,24 @@ public class StendhalFirstScreen extends JFrame
 	private JPanel contentPane;
 	// End of variables declaration
     private StendhalClient client;
+    private Image background;
 
 
     public StendhalFirstScreen(StendhalClient client)
 	{
 		super();
 		this.client=client;
-		initializeComponent();
 		//
 		// TODO: Add any constructor code after initializeComponent call
 		//
+        ImageIcon imageIcon = new ImageIcon("data/StendhalSplash.jpg");
+        background=imageIcon.getImage();
 
-		this.setVisible(true);
+        initializeComponent();
+        
+        this.setVisible(true);
 	}
+	
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -50,7 +55,20 @@ public class StendhalFirstScreen extends JFrame
 		LoginButton = new JButton();
 		CreateAccountButton = new JButton();
 		ExitButton = new JButton();
-		contentPane = (JPanel)this.getContentPane();
+		this.setContentPane(new JPanel()
+		  {
+		  {
+		  setOpaque(false);
+		  this.setPreferredSize(new Dimension(640,480));
+		  }
+          public void paint(Graphics g) 
+          {
+          g.drawImage(background,0,0,this);
+          super.paint(g);
+          }
+    
+          });
+        contentPane = (JPanel)this.getContentPane();
 
 		//
 		// LoginButton
@@ -100,15 +118,17 @@ public class StendhalFirstScreen extends JFrame
 		// contentPane
 		//
 		contentPane.setLayout(null);
-        addComponent(contentPane, LoginButton, 220,280,200,32);
-        addComponent(contentPane, CreateAccountButton, 220,320,200,32);
-		addComponent(contentPane, ExitButton, 220,360,200,32);
+        addComponent(contentPane, LoginButton, 220,340,200,32);
+        addComponent(contentPane, CreateAccountButton, 220,380,200,32);
+		addComponent(contentPane, ExitButton, 220,420,200,32);
 		//
 		// LoginGUI
 		//
         setTitle("Stendhal Java 2D");
         this.setLocation(new Point(38, 135));
-		this.setSize(new Dimension(640, 480));
+        
+        this.setIconImage(new ImageIcon("data/StendhalIcon.gif").getImage());
+		pack();
 	}
 
 	/** Add Component Without a Layout Manager (Absolute Positioning) */

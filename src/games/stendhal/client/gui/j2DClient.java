@@ -113,7 +113,9 @@ public class j2DClient extends JFrame
         }
       });
         
-	// request the focus so key events come to us
+    this.setIconImage(new ImageIcon("data/StendhalIcon.gif").getImage());
+   
+    // request the focus so key events come to us
     playerChatText.requestFocus();
     requestFocus();
 

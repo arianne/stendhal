@@ -112,7 +112,7 @@ public class LoginDialog extends JDialog
 		this.setLocation(new Point(202, 124));
 		this.setResizable(false);
 		this.setSize(new Dimension(410, 190));
-	}
+    }
 
 	/** Add Component Without a Layout Manager (Absolute Positioning) */
 	private void addComponent(Container container,Component c,int x,int y,int width,int height)
