@@ -226,9 +226,21 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       object.put("zoneid","village");
       object.put("dx",0);
       object.put("dy",0);
-      world.add(object,true);
-      
+      world.add(object,true);      
       StendhalRPAction.transferContent(object);
+      
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
+      
+      double x=object.getDouble("x");
+      double y=object.getDouble("y");
+      
+      while(zone.collides(object,x,y))
+        {
+        x=x+(Math.random()*6-3);
+        y=y+(Math.random()*6-3);
+        object.put("x",x);
+        object.put("y",y);
+        }
       
       playersObject.add(object);
       return true;

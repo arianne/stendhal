@@ -114,6 +114,17 @@ public class StendhalRPAction
     
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
     zone.placeObjectAtEntryPoint(object);
+      
+    double x=object.getDouble("x");
+    double y=object.getDouble("y");
+    
+    while(zone.collides(object,x,y))
+      {
+      x=x+(Math.random()*6-3);
+      y=y+(Math.random()*6-3);
+      object.put("x",x);
+      object.put("y",y);
+      }
 
     Logger.trace("StendhalRPAction::changeZone","<");
     }
