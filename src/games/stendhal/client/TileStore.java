@@ -30,8 +30,8 @@ import java.awt.Transparency;
  */
 public class TileStore extends SpriteStore
   {
-  private final int TILE_WIDTH=32;
-  private final int TILE_HEIGHT=32;
+  private static final int TILE_WIDTH=32;
+  private static final int TILE_HEIGHT=32;
   
   private Sprite[][] tileset;
   

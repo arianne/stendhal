@@ -158,19 +158,33 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     double dx=object.getDouble("dx");
     double dy=object.getDouble("dy");
     
+    if(x>35)
+      {
+      object.put("dx",-0.5);
+      }
+    
+    if(x<24)
+      {
+      object.put("dx",0.5);
+      }
+      
     Rectangle2D collisionArea=getCollisionArea(object.get("type"),x+dx,y+dy);
     if(collisionMap.collides(collisionArea)==false)
       {
+      Logger.trace("StendhalRPRuleProcessor::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
+      collisionMap.printaround((int)(x+dx),(int) (y+dy),5);
       object.put("x",x+dx);
       object.put("y",y+dy);
       }        
     else
       {
       /* Collision */
+      Logger.trace("StendhalRPRuleProcessor::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");
+      collisionMap.printaround((int)(x+dx),(int) (y+dy),5);
       object.put("dx",0);
       object.put("dy",0);
       }
-      
+    
     world.modify(object);
     Logger.trace("StendhalRPRuleProcessor::move","<");
     }
@@ -202,8 +216,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       object.put("zoneid","village");
       object.put("x",30);
       object.put("y",30);
-      object.put("dx",2);
-      object.put("dy",0);
+      object.put("dx",0.5);
+      object.put("dy",-0.5);
       world.add(object);
       
       try        
@@ -238,7 +252,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       for(RPObject object: playersObject)
         {
-        if(object.getID()==id)
+        if(object.getID().equals(id))
           {
           boolean result=playersObject.remove(object);
           Logger.trace("StendhalRPRuleProcessor::onExit","D","Removed Player was "+result);
@@ -266,7 +280,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       for(RPObject object: playersObject)
         {
-        if(object.getID()==id)
+        if(object.getID().equals(id))
           {
           playersObject.remove(object);
           break;

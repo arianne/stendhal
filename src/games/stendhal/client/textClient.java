@@ -30,7 +30,6 @@ public class textClient extends Thread
 
   private marauroa.client.ariannexp clientManager;
   private PerceptionHandler handler;
-  private boolean onSynced;
 
   public textClient(String u, String p, String c) throws SocketException
     {
@@ -38,18 +37,10 @@ public class textClient extends Thread
     password=p;
     character=c;
     
-    onSynced=false;
-    
     world_objects=new HashMap<RPObject.ID, RPObject>();
 
     handler=new PerceptionHandler(new DefaultPerceptionListener()
       {
-      public int onSynced()
-        {
-        onSynced=true;
-        return 0;
-        }
-        
       public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception)      
         {
         e.printStackTrace();

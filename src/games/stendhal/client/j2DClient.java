@@ -234,6 +234,7 @@ public class j2DClient extends Canvas {
               }
             catch(java.io.IOException e)          
               {
+              e.printStackTrace();
               System.exit(0);
               }
             }
@@ -282,6 +283,7 @@ public class j2DClient extends Canvas {
             }
           catch(java.io.IOException e)          
             {
+            e.printStackTrace();
             System.exit(0);
             }        
 

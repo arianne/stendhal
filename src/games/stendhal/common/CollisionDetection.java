@@ -52,9 +52,32 @@ public class CollisionDetection
     buildCollisionData(map);
     }
   
+  /** REMOVE ME LATER: Test stuff **/
+  public void printaround(int x, int y, int size)
+    {
+    for(int i=x-size;i<x+size;i++)
+      {
+      for(int j=y-size;j<y+size;j++)
+        {
+        if(j==(int)y && i==(int)x)
+          {
+          System.out.print("O");
+          }
+        else if(blocked[i][j]==0)
+          {
+          System.out.print(".");
+          }
+        else
+          {
+          System.out.print("X");
+          }          
+        }
+      System.out.println();
+      }
+    }
+  
   private void buildCollisionData(ArrayList<String> map)
     {    
-    System.out.println(blocked.length+" x "+blocked[0].length);
     for(int j=0;j<map.size();j++)
       {
       for(int i=0;i<((String)map.get(0)).length();i++)
