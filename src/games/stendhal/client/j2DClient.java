@@ -421,6 +421,7 @@ public class j2DClient extends Canvas {
 		 * @param e The details of the key that was pressed 
 		 */
 		public void keyPressed(KeyEvent e) {
+		    System.out.println("Key pressed");
             RPAction action=new RPAction();
             action.put("type","move");
             
@@ -470,6 +471,7 @@ public class j2DClient extends Canvas {
 		 * @param e The details of the key that was released 
 		 */
 		public void keyReleased(KeyEvent e) {
+            System.out.println("Key release");
             RPAction action=new RPAction();
             action.put("type","move");
             

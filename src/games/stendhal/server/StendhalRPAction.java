@@ -36,22 +36,12 @@ public class StendhalRPAction
   static void move(RPWorld world, RPObject object) throws Exception
     {
     Logger.trace("StendhalRPAction::move",">");
-    /** TODO: Code it */
+
     double x=object.getDouble("x");
     double y=object.getDouble("y");
     double dx=object.getDouble("dx");
     double dy=object.getDouble("dy");
     
-    if(x>35)
-      {
-      object.put("dx",-0.5);
-      }
-    
-    if(x<24)
-      {
-      object.put("dx",0.5);
-      }
-      
     Rectangle2D collisionArea=getCollisionArea(object.get("type"),x+dx,y+dy);
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
     
@@ -60,16 +50,20 @@ public class StendhalRPAction
       Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
       object.put("x",x+dx);
       object.put("y",y+dy);
+      world.modify(object);
       }        
     else
       {
       /* Collision */
       Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");
-      object.put("dx",0);
-      object.put("dy",0);
+      if(dx!=0 || dy!=0)
+        {
+        object.put("dx",0);
+        object.put("dy",0);
+        world.modify(object);
+        }
       }
     
-    world.modify(object);
     Logger.trace("StendhalRPAction::move","<");
     }
 
