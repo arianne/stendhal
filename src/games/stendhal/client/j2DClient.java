@@ -254,8 +254,13 @@ public class j2DClient extends Canvas {
 			  fps=0;
 			  }
 		}
-		
-		client.logout();
+
+        // If we are running in multiplayer mode, log out from the server
+        if ( !runStandalone )
+          {
+	      client.logout();
+          }
+
 		System.exit(0);
 	}
 	
