@@ -71,18 +71,19 @@ public class textClient extends Thread
           int i=message.getPerceptionTimestamp();
     
           RPAction action=new RPAction();
-          if(i%5==0)
+          if(i%50==0)
             {
             action.put("type","change");
             action.put("dest","village");
+            clientManager.send(action);
             }
-          else if(i%5==2)
+          else if(i%50==20)
             {
             action.put("type","change");
             action.put("dest","city");
+            clientManager.send(action);
             }
               
-          clientManager.send(action);
 
           System.out.println("<World contents ------------------------------------->");
           int j=0;
