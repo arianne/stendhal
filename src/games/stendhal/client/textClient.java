@@ -81,19 +81,6 @@ public class textClient extends Thread
             action.put("type","change");
             action.put("dest","city");
             }
-          else
-            {
-            action.put("type","add");
-            action.put("a",1);
-            if(myRPObject.has("result"))
-              {
-              action.put("b",2+myRPObject.getInt("result"));
-              }
-            else
-              {
-              action.put("b",2);
-              }
-            }
               
           clientManager.send(action);
 
@@ -218,14 +205,23 @@ public class textClient extends Thread
           i++;
           }        
           
-        System.out.println("Parameter operation");
-        new textClient(host,username,password,character).start();
-        return;
+        if(username!=null && password!=null && character!=null && host!=null)
+          {
+          System.out.println("Parameter operation");
+          new textClient(host,username,password,character).start();
+          return;
+          }
         }
-      else
-        {
-        new textClient("127.0.0.1","miguel","password","mIgUeL").start();
-        }
+
+      System.out.println("Stendhal textClient");
+      System.out.println();
+      System.out.println("  games.stendhal.textClient -u username -p pass -h host -c character");
+      System.out.println();
+      System.out.println("Required parameters");
+      System.out.println("* -h\tHost that is running Marauroa server");
+      System.out.println("* -u\tUsername to log into Marauroa server");
+      System.out.println("* -p\tPassword to log into Marauroa server");
+      System.out.println("* -c\tCharacter used to log into Marauroa server");
       }
     catch(Exception e)
       {

@@ -50,15 +50,20 @@
 			<folderitem>
 				<path>jars</path>
 			</folderitem>
-			<folderitem>
-				<path>lib</path>
-			</folderitem>
 			<fileitem>
 				<path>build.xml</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>README</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.00.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.00.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -167,14 +172,6 @@
 			</fileitem>
 			<fileitem>
 				<path>jars\marauroa.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>lib\stendhal-0.00.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>lib\stendhal-server-0.00.jar</path>
 				<source>true</source>
 			</fileitem>
 		</include>

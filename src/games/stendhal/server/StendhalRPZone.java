@@ -19,6 +19,8 @@ public class StendhalRPZone extends MarauroaRPZone
   private List<TransferContent> contents;
   private String entryPoint;
   private CollisionDetection collisionMap;
+  private int width;
+  private int height;
   
   public StendhalRPZone(String name)
     {
@@ -52,6 +54,17 @@ public class StendhalRPZone extends MarauroaRPZone
     
     collisionMap.addLayer(new FileReader(filename));
     }
+
+  public int getWidth()
+    {
+    return collisionMap.getWidth();
+    }
+  
+  public int getHeight()
+    {
+    return collisionMap.getHeight();
+    }
+  
   
   public List<TransferContent> getContents()
     {

@@ -52,7 +52,6 @@ public class CollisionDetection
     buildCollisionData(map);
     }
   
-  /** REMOVE ME LATER: Test stuff **/
   public void printaround(int x, int y, int size)
     {
     for(int j=y-size;j<y+size;j++)
@@ -93,9 +92,9 @@ public class CollisionDetection
             for(int k=0;k<5;k++)
               for(int m=0;m<4;m++)
                 {
-                if(j+m<blocked.length && i+k<blocked[0].length)
+                if(j+k<getHeight() && i+m<getWidth())
                   {
-                  blocked[j+m][i+k]=1;
+                  blocked[j+k][i+m]=1;
                   }
                 }
             break;
@@ -103,7 +102,7 @@ public class CollisionDetection
             for(int k=0;k<2;k++)
               for(int m=0;m<2;m++)
                 {
-                if(j+m<blocked.length && i+k<blocked[0].length)
+                if(j+m<getHeight() && i+k<getWidth())
                   {
                   blocked[j+m][i+k]=1;
                   }
@@ -120,9 +119,9 @@ public class CollisionDetection
             for(int k=0;k<5;k++)
               for(int m=1;m<7;m++)
                 {
-                if(j+m<blocked.length && i+k<blocked[0].length)
+                if(j+k<getHeight() && i+m<getWidth())
                   {
-                  blocked[j+m][i+k]=1;                
+                  blocked[j+k][i+m]=1;                
                   }
                 }
             break;
@@ -137,6 +136,16 @@ public class CollisionDetection
     double y=shape.getY();
     double w=shape.getWidth();
     double h=shape.getHeight();
+    
+    if(x<0 || x+w>getWidth())
+      {
+      return true;
+      }
+
+    if(y<0 || y+h>getHeight())
+      {
+      return true;
+      }
     
     if(blocked[(int)y][(int)x]==1)
       {
@@ -171,6 +180,17 @@ public class CollisionDetection
     
     return false;
     }
+
+  public int getWidth()
+    {
+    return blocked[0].length;
+    }
+  
+  public int getHeight()
+    {
+    return blocked.length;
+    }
+  
   
   public static void main(String[] args)
     {
