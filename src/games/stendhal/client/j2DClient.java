@@ -40,13 +40,20 @@ public class j2DClient extends Canvas
   {
   private GameScreen screen;
         
-  private BufferStrategy strategy;
   private boolean gameRunning=true;
 	
   private StendhalClient client;
+  
+  private String host;
+  private String username;
+  private String password;
 
-  public j2DClient() 
+  public j2DClient(String host, String username, String password) 
     {
+    this.host=host;
+    this.username=username;
+    this.password=password;
+    
 	// create a frame to contain our game
 	JFrame container = new JFrame("Stendhal Java 2D");
 		
@@ -89,7 +96,8 @@ public class j2DClient extends Canvas
 
 	// create the buffering strategy which will allow AWT
 	// to manage our accelerated graphics
-	createBufferStrategy(2);
+    BufferStrategy strategy;
+    createBufferStrategy(2);
 	strategy = getBufferStrategy();
 		
 	GameScreen.createScreen(strategy,640,480);
@@ -108,14 +116,14 @@ public class j2DClient extends Canvas
         
     try
       {
-      client.connect("127.0.0.1",32160);
+      client.connect(host,32160);
       }
     catch(SocketException e)
       {
       return;
       }
       
-    client.login("miguel","password");
+    client.login(username,password);
           
     StaticGameLayers staticLayers=client.getStaticGameLayers();
     GameObjects gameObjects=client.getGameObjects();
@@ -226,8 +234,46 @@ public class j2DClient extends Canvas
       }    
     }
 
-  public static void main(String argv[]) 
+  public static void main(String args[]) 
     {
-    new j2DClient();
+    if(args.length>0)
+      {
+      int i=0;
+      String username=null;
+      String password=null;
+      String host=null;
+    
+      while(i!=args.length)
+        {
+        if(args[i].equals("-u"))
+          {
+          username=args[i+1];
+          }
+        else if(args[i].equals("-p"))
+          {
+          password=args[i+1];
+          }
+        else if(args[i].equals("-h"))
+          {
+          host=args[i+1];
+          }
+        i++;
+        }        
+          
+      if(username!=null && password!=null && host!=null)
+        {
+        new j2DClient(host,username,password);
+        return;
+        }
+      }
+
+    System.out.println("Stendhal j2DClient");
+    System.out.println();
+    System.out.println("  games.stendhal.j2DClient -u username -p pass -h host -c character");
+    System.out.println();
+    System.out.println("Required parameters");
+    System.out.println("* -h\tHost that is running Marauroa server");
+    System.out.println("* -u\tUsername to log into Marauroa server");
+    System.out.println("* -p\tPassword to log into Marauroa server");
 	}
   }
