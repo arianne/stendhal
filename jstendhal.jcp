@@ -4,7 +4,7 @@
 		<version>1.01</version>
 		<label>jstendhal</label>
 		<root_path>\</root_path>
-		<output_path>D:\Desarrollo\arianne\compiled\</output_path>
+		<output_path>..\compiled\</output_path>
 		<version>1.01</version>
 		<source_path>src\</source_path>
 		<jdkprofile_ref>JDK version 1.5.0</jdkprofile_ref>
@@ -47,6 +47,16 @@
 			<folderitem>
 				<path>maps</path>
 			</folderitem>
+			<folderitem>
+				<path>jars</path>
+			</folderitem>
+			<folderitem>
+				<path>lib</path>
+			</folderitem>
+			<fileitem>
+				<path>build.xml</path>
+				<source>true</source>
+			</fileitem>
 			<fileitem>
 				<path>README</path>
 				<source>true</source>
@@ -153,6 +163,18 @@
 			</fileitem>
 			<fileitem>
 				<path>maps\village_layer0.txt</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>jars\marauroa.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-0.00.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-server-0.00.jar</path>
 				<source>true</source>
 			</fileitem>
 		</include>

@@ -7,7 +7,7 @@
   <property name="build" value="build"/>
   <property name="lib"  value="lib"/>
   
-  <property name="marauroa"  value="${libdir}/marauroa.jar"/>
+  <property name="marauroa" value="${libdir}/marauroa.jar"/>
   <property name="classpath" value="${build};${marauroa}"/>
   
   <property name="server_jarname" value="stendhal-server-${version}.jar"/>
@@ -64,14 +64,20 @@
     <jar jarfile="${lib}/${server_jarname}" basedir="${build}/"/>    
   </target>
 
-  <target name="client_jar" depends="client_compile">
-    <jar jarfile="${lib}/${client_jarname}" basedir="${build}/"/>    
+  <target name="client_jar" depends="client_compile" if="marauroa_build">
+    <jar jarfile="${lib}/${client_jarname}" basedir="${build}/">
+      <fileset dir="${build}"/>
+      <fileset dir="${marauroa_build}" excludes="**/server/**"/>
+      <manifest>
+        <attribute name="Main-Class" value="games.stendhal.client.j2DClient"/>
+      </manifest>
+    </jar>
   </target>
 
   <target name="jar" depends="client_jar,server_jar"/>
 
   <target name="docs" depends="compile">
-    <javadoc packagenames="marauroa.*"           
+    <javadoc packagenames="games.stendhal.*"           
            defaultexcludes="yes"
            destdir="${docs}"
            author="true"
@@ -84,51 +90,60 @@
       </fileset>
     </javadoc>
   </target>
-<!--
+
   <target name="release" depends="release_binary,release_source"/>
+  <target name="release_binary" depends="release_server_binary,release_client_binary"/>
   
-  <target name="release_binary" depends="jar">
-    <replaceregexp file="${extras}/marauroad.bat    "
-                   match="set LOCALCLASSPATH=.*"
-                   replace="set LOCALCLASSPATH=.;marauroa-${version}.jar;${jython_jar};${connectorJ_jar}"
-                   byline="true"/>
-    <mkdir dir="marauroa-${version}"/>
-    <copy todir="marauroa-${version}" file="${extras}/marauroad.bat"/>
-    <copy todir="marauroa-${version}" file="${lib}/${jarname}"/>
-    <copy todir="marauroa-${version}" file="${connectorJ}"/>
-    <copy todir="marauroa-${version}" file="${jython}"/>
-    <copy todir="marauroa-${version}" file="${lib}/marauroa.ini"/>
-    <copy todir="marauroa-${version}" file="AUTHORS"/>
-    <copy todir="marauroa-${version}" file="BUGS"/>
-    <copy todir="marauroa-${version}" file="COPYING"/>
-    <copy todir="marauroa-${version}" file="LICENSE"/>
-    <copy todir="marauroa-${version}" file="README"/>
-    <zip destfile="marauroa-${version}.zip" 
-         basedir="marauroa-${version}"/>
-    <delete dir="marauroa-${version}"/>
+  <target name="release_server_binary" depends="server_jar">
+    <mkdir dir="stendhal-server-${version}"/>
+    <copy todir="stendhal-server-${version}" file="${lib}/${server_jarname}"/>
+    <copy todir="stendhal-server-${version}" file="AUTHORS"/>
+    <copy todir="stendhal-server-${version}" file="BUGS"/>
+    <copy todir="stendhal-server-${version}" file="COPYING"/>
+    <copy todir="stendhal-server-${version}" file="LICENSE"/>
+    <copy todir="stendhal-server-${version}" file="README"/>
+    <zip destfile="stendhal-server-${version}.zip" 
+         basedir="stendhal-server-${version}"/>
+    <delete dir="stendhal-server-${version}"/>
+  </target>
+  
+  <target name="release_client_binary" depends="client_jar">
+    <mkdir dir="stendhal-${version}"/>
+    <copy todir="stendhal-${version}" file="${lib}/${client_jarname}"/>
+    <copy todir="stendhal-${version}" file="AUTHORS"/>
+    <copy todir="stendhal-${version}" file="BUGS"/>
+    <copy todir="stendhal-${version}" file="COPYING"/>
+    <copy todir="stendhal-${version}" file="LICENSE"/>
+    <copy todir="stendhal-${version}" file="README"/>
+    <zip destfile="stendhal-${version}.zip" 
+         basedir="stendhal-${version}"/>
+    <delete dir="stendhal-${version}"/>
   </target>
 
   <target name="release_source" depends="clean">
-    <mkdir dir="marauroa-${version}"/>
-    <copy todir="marauroa-${version}/src">
+    <mkdir dir="stendhal-${version}"/>
+    <copy todir="stendhal-${version}/src">
     	<fileset dir="src"/>
     </copy>
-    <copy todir="marauroa-${version}/extras">
-    	<fileset dir="extras"/>
+    <copy todir="stendhal-${version}/sprites">
+    	<fileset dir="sprites"/>
     </copy>
-    <copy todir="marauroa-${version}" file="build.xml"/>
-    <copy todir="marauroa-${version}" file="AUTHORS"/>
-    <copy todir="marauroa-${version}" file="BUGS"/>
-    <copy todir="marauroa-${version}" file="COPYING"/>
-    <copy todir="marauroa-${version}" file="LICENSE"/>
-    <copy todir="marauroa-${version}" file="README"/>
+    <copy todir="stendhal-${version}/maps">
+    	<fileset dir="maps"/>
+    </copy>
+    <copy todir="stendhal-${version}" file="build.xml"/>
+    <copy todir="stendhal-${version}" file="AUTHORS"/>
+    <copy todir="stendhal-${version}" file="BUGS"/>
+    <copy todir="stendhal-${version}" file="COPYING"/>
+    <copy todir="stendhal-${version}" file="LICENSE"/>
+    <copy todir="stendhal-${version}" file="README"/>
   	
-    <tar destfile="marauroa-${version}-src.tar.gz" compression="gzip">
-       <tarfileset dir="marauroa-${version}" prefix="marauroa-${version}">
+    <tar destfile="stendhal-${version}-src.tar.gz" compression="gzip">
+       <tarfileset dir="stendhal-${version}" prefix="stendhal-${version}">
          <exclude name="**/CVS/**"/>
        </tarfileset>
      </tar>
 
-    <delete dir="marauroa-${version}"/>
+    <delete dir="stendhal-${version}"/>
   </target>
---></project>
+</project>
