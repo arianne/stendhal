@@ -21,73 +21,16 @@ import games.stendhal.common.*;
 
 import java.util.*;
 import java.io.*;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor
   {
   private RPServerManager rpman; 
   private RPWorld world;
-  private TransferContent city_map_layer0;
-  private TransferContent city_map_layer1;
-  private CollisionDetection collisionMap;
   
   private LinkedList<RPObject> playersObject;
   
-  private static Rectangle2D getCollisionArea(String type, double x, double y)
-    {
-    if(type.equals("player"))
-      {
-      return new Rectangle.Double(x,y,1,2);
-      }
-    else
-      {
-      return new Rectangle.Double(x,y,1,2);
-      }
-    }
-
-  private static byte[] getBytesFromFile(String file) throws IOException 
-    {
-    InputStream is = new FileInputStream(file);
-    
-    long length = new File(file).length();
-    byte[] bytes = new byte[(int)length];
-    
-    // Read in the bytes
-    int offset = 0;
-    int numRead;
-    while (offset < bytes.length && (numRead=is.read(bytes, offset, bytes.length-offset)) >= 0) 
-      {
-      offset += numRead;
-      }
-    
-    if(offset < bytes.length) 
-      {
-      throw new IOException("Could not completely read file "+file);
-      }
-    
-    // Close the input stream and return bytes
-    is.close();
-    return bytes;
-    }
-
   public StendhalRPRuleProcessor() throws FileNotFoundException, IOException 
     {
-    collisionMap=new CollisionDetection();
-    city_map_layer0=new TransferContent();
-    city_map_layer0.name="city_map_layer0";
-    city_map_layer0.cacheable=true;
-    city_map_layer0.timestamp=0;
-    city_map_layer0.data=getBytesFromFile("games/stendhal/server/maps/city_layer0.txt");
-    collisionMap.addLayer(new FileReader("games/stendhal/server/maps/city_layer0.txt"));
-
-    city_map_layer1=new TransferContent();
-    city_map_layer1.name="city_map_layer1";
-    city_map_layer1.cacheable=true;
-    city_map_layer1.timestamp=0;
-    city_map_layer1.data=getBytesFromFile("games/stendhal/server/maps/city_layer1.txt");
-    collisionMap.addLayer(new FileReader("games/stendhal/server/maps/city_layer1.txt"));
-    
     playersObject=new LinkedList<RPObject>();
     }
 
@@ -150,44 +93,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     return status;
     }
   
-  private void move(RPObject object) throws Exception
-    {
-    Logger.trace("StendhalRPRuleProcessor::move",">");
-    /** TODO: Code it */
-    double x=object.getDouble("x");
-    double y=object.getDouble("y");
-    double dx=object.getDouble("dx");
-    double dy=object.getDouble("dy");
-    
-    if(x>35)
-      {
-      object.put("dx",-0.5);
-      }
-    
-    if(x<24)
-      {
-      object.put("dx",0.5);
-      }
-      
-    Rectangle2D collisionArea=getCollisionArea(object.get("type"),x+dx,y+dy);
-    if(collisionMap.collides(collisionArea)==false)
-      {
-      Logger.trace("StendhalRPRuleProcessor::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
-      object.put("x",x+dx);
-      object.put("y",y+dy);
-      }        
-    else
-      {
-      /* Collision */
-      Logger.trace("StendhalRPRuleProcessor::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");
-      object.put("dx",0);
-      object.put("dy",0);
-      }
-    
-    world.modify(object);
-    Logger.trace("StendhalRPRuleProcessor::move","<");
-    }
-
   /** Notify it when a new turn happens */
   synchronized public void nextTurn()
     {
@@ -196,7 +101,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       for(RPObject object: playersObject)
         {
-        move(object);
+        StendhalRPAction.move(world,object);
         }
       }
     catch(Exception e)
@@ -219,20 +124,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       object.put("dy",0);
       world.add(object);
       
-      try        
-        {
-        List<TransferContent> contents=new LinkedList<TransferContent>();
-        contents.add(city_map_layer0);
-        contents.add(city_map_layer1);
-        rpman.transferContent(object.getID(),contents);
-        }
-      catch(AttributeNotFoundException e)
-        {
-        }        
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
+      rpman.transferContent(object.getID(),zone.getContents());
       
       playersObject.add(object);
       return true;
       }
+    catch(AttributeNotFoundException e)
+      {
+      Logger.thrown("StendhalRPRuleProcessor::onInit","X",e);
+      return false;
+      }        
     catch(NoRPZoneException e)
       {
       Logger.thrown("StendhalRPRuleProcessor::onInit","X",e);

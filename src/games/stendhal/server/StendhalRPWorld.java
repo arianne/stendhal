@@ -29,7 +29,7 @@ public class StendhalRPWorld extends RPWorld
   
   public void onInit() throws Exception
     {
-    MarauroaRPZone village=new MarauroaRPZone("village");
+    StendhalRPZone village=new StendhalRPZone("village");
     for(int i=0;i<5;i++)
       {
       RPObject object=new RPObject();
@@ -39,10 +39,12 @@ public class StendhalRPWorld extends RPWorld
       object.put("y",11);
       village.add(object);
       }
+    village.addLayer("city_layer0","games/stendhal/server/maps/city_layer0.txt");
+    village.addLayer("city_layer1","games/stendhal/server/maps/city_layer1.txt");
     addRPZone(village);
 
 
-    MarauroaRPZone city=new MarauroaRPZone("city");
+    StendhalRPZone city=new StendhalRPZone("city");
     RPObject object=new RPObject();
     city.assignRPObjectID(object);
     object.put("number","1");
