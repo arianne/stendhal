@@ -6,7 +6,7 @@
 		<root_path>\</root_path>
 		<output_path>\</output_path>
 		<version>1.01</version>
-		<source_path>..\jstendhal\src\</source_path>
+		<source_path>src\</source_path>
 		<jdkprofile_ref>JDK version 1.5.0</jdkprofile_ref>
 		<compiler_ref>&lt;Default&gt;</compiler_ref>
 		<ant_ref/>
@@ -18,7 +18,7 @@
 			<applet_ref/>
 			<debugger_ref/>
 			<param/>
-			<run>jstendhal.j2DClient</run>
+			<run>games.stendhal.client.j2DClient</run>
 		</runtime>
 	</runtimes>
 	<libraries>
@@ -55,6 +55,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\SpriteStore.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\StaticGameObject.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

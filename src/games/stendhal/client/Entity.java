@@ -1,7 +1,6 @@
 package games.stendhal.client;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 
 /**
  * An entity represents any element that appears in the game. The
@@ -21,17 +20,11 @@ public abstract class Entity {
 	protected double x;
 	/** The current y location of this entity */
 	protected double y;
-	/** The sprite that represents this entity */
-	protected Sprite sprite;
 	/** The current speed of this entity horizontally (pixels/sec) */
 	protected double dx;
 	/** The current speed of this entity vertically (pixels/sec) */
 	protected double dy;
-	/** The rectangle used for this entity during collisions  resolution */
-	private Rectangle me = new Rectangle();
-	/** The rectangle used for other entities during collision resolution */
-	private Rectangle him = new Rectangle();
-	
+
 	/**
 	 * Construct a entity based on a sprite image and a location.
 	 * 
@@ -39,8 +32,7 @@ public abstract class Entity {
  	 * @param x The initial x location of this entity
 	 * @param y The initial y location of this entity
 	 */
-	public Entity(String ref,int x,int y) {
-		this.sprite = SpriteStore.get().getSprite(ref);
+	public Entity(int x,int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -99,7 +91,6 @@ public abstract class Entity {
 	 * @param g The graphics context on which to draw
 	 */
 	public void draw(Graphics g) {
-		sprite.draw(g,(int) x,(int) y);
 	}
 	
 	/**
@@ -126,24 +117,4 @@ public abstract class Entity {
 	public int getY() {
 		return (int) y;
 	}
-	
-	/**
-	 * Check if this entity collised with another.
-	 * 
-	 * @param other The other entity to check collision against
-	 * @return True if the entities collide with each other
-	 */
-	public boolean collidesWith(Entity other) {
-		me.setBounds((int) x,(int) y,sprite.getWidth(),sprite.getHeight());
-		him.setBounds((int) other.x,(int) other.y,other.sprite.getWidth(),other.sprite.getHeight());
-
-		return me.intersects(him);
-	}
-	
-	/**
-	 * Notification that this entity collided with another.
-	 * 
-	 * @param other The entity with which this entity collided.
-	 */
-	public abstract void collidedWith(Entity other);
 }

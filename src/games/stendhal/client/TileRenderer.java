@@ -6,60 +6,60 @@ import java.util.*;
 
 class TileRenderer
   {
-  int PLAIN_GRASS_TILE[]={1,8};
+  private int PLAIN_GRASS_TILE[]={1,8};
 
-  int LAND_TILE_NW[]={0,13};
-  int LAND_TILE_N[]={1,13};
-  int LAND_TILE_NE[]={2,13};
+  private int LAND_TILE_NW[]={0,13};
+  private int LAND_TILE_N[]={1,13};
+  private int LAND_TILE_NE[]={2,13};
 
-  int LAND_TILE_W[]={0,14};
-  int LAND_TILE_C[]={1,14};
-  int LAND_TILE_E[]={2,14};
+  private int LAND_TILE_W[]={0,14};
+  private int LAND_TILE_C[]={1,14};
+  private int LAND_TILE_E[]={2,14};
 
-  int LAND_TILE_SW[]={0,15};
-  int LAND_TILE_S[]={1,15};
-  int LAND_TILE_SE[]={2,15};
+  private int LAND_TILE_SW[]={0,15};
+  private int LAND_TILE_S[]={1,15};
+  private int LAND_TILE_SE[]={2,15};
 
-  int SQUARE_TILE_NW[]={6,9};
-  int SQUARE_TILE_N[]={7,9};
-  int SQUARE_TILE_NE[]={8,9};
+  private int SQUARE_TILE_NW[]={6,9};
+  private int SQUARE_TILE_N[]={7,9};
+  private int SQUARE_TILE_NE[]={8,9};
 
-  int SQUARE_TILE_W[]={6,10};
-  int SQUARE_TILE_C[]={7,10};
-  int SQUARE_TILE_E[]={8,10};
+  private int SQUARE_TILE_W[]={6,10};
+  private int SQUARE_TILE_C[]={7,10};
+  private int SQUARE_TILE_E[]={8,10};
 
-  int SQUARE_TILE_SW[]={6,11};
-  int SQUARE_TILE_S[]={7,11};
-  int SQUARE_TILE_SE[]={8,11};
+  private int SQUARE_TILE_SW[]={6,11};
+  private int SQUARE_TILE_S[]={7,11};
+  private int SQUARE_TILE_SE[]={8,11};
 
-  int WATER_TILE_NW[]={3,13};
-  int WATER_TILE_N[]={4,13};
-  int WATER_TILE_NE[]={5,13};
+  private int WATER_TILE_NW[]={3,13};
+  private int WATER_TILE_N[]={4,13};
+  private int WATER_TILE_NE[]={5,13};
 
-  int WATER_TILE_W[]={3,14};
-  int WATER_TILE_C[]={4,14};
-  int WATER_TILE_E[]={5,14};
+  private int WATER_TILE_W[]={3,14};
+  private int WATER_TILE_C[]={4,14};
+  private int WATER_TILE_E[]={5,14};
 
-  int WATER_TILE_SW[]={3,15};
-  int WATER_TILE_S[]={4,15};
-  int WATER_TILE_SE[]={5,15};
+  private int WATER_TILE_SW[]={3,15};
+  private int WATER_TILE_S[]={4,15};
+  private int WATER_TILE_SE[]={5,15};
 
-  int DOUBLE_FLOWER_TILE[]={4,4};
-  int SINGLE_FLOWER_TILE[]={5,4};
+  private int DOUBLE_FLOWER_TILE[]={4,4};
+  private int SINGLE_FLOWER_TILE[]={5,4};
 
-  int GRASS_TILE[]={17,7};
-  int DOUBLE_GRASS_TILE[]={16,7};
+  private int GRASS_TILE[]={17,7};
+  private int DOUBLE_GRASS_TILE[]={16,7};
 
-  int PLANT_TILE[]={23,10};
+  private int PLANT_TILE[]={23,10};
 
-  int DOUBLE_FENCE_TILE[]={15,1};
-  int SINGLE_FENCE_TILE[]={15,0};
-  int FENCE_TILE_RIGHT[]={16,0};
-  int FENCE_TILE_LEFT[]={17,0};
-  int FENCE_TILE_CENTER[]={16,1};
-  int FENCE_TILE_LEFT_DOWN[]={17,1};
-  int FENCE_TILE_RIGHT_DOWN[]={16,2};
-  int FENCE_TILE_UP_DOWN[]={17,2};
+  private int DOUBLE_FENCE_TILE[]={15,1};
+  private int SINGLE_FENCE_TILE[]={15,0};
+  private int FENCE_TILE_RIGHT[]={16,0};
+  private int FENCE_TILE_LEFT[]={17,0};
+  private int FENCE_TILE_CENTER[]={16,1};
+  private int FENCE_TILE_LEFT_DOWN[]={17,1};
+  private int FENCE_TILE_RIGHT_DOWN[]={16,2};
+  private int FENCE_TILE_UP_DOWN[]={17,2};
 
 
   private TileStore tiles;

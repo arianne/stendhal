@@ -27,7 +27,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private RPServerManager rpman; 
   private RPWorld world;
   private TransferContent city_map_layer0;
-  private TransferContent content_1;
+  private TransferContent city_map_layer1;
 
   private static byte[] getBytesFromFile(String file) throws IOException 
     {
@@ -61,6 +61,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     city_map_layer0.cacheable=true;
     city_map_layer0.timestamp=0;
     city_map_layer0.data=getBytesFromFile("games/stendhal/server/maps/city_layer0.txt");
+
+    city_map_layer1=new TransferContent();
+    city_map_layer1.name="city_map_layer1";
+    city_map_layer1.cacheable=true;
+    city_map_layer1.timestamp=0;
+    city_map_layer1.data=getBytesFromFile("games/stendhal/server/maps/city_layer1.txt");
     }
 
 
@@ -135,6 +141,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         List<TransferContent> contents=new LinkedList<TransferContent>();
         contents.add(city_map_layer0);
+        contents.add(city_map_layer1);
         rpman.transferContent(object.getID(),contents);
         }
       catch(AttributeNotFoundException e)

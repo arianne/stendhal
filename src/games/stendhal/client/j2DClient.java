@@ -44,7 +44,7 @@ public class j2DClient extends Canvas {
     private boolean leftPressed=false, rightPressed=false, upPressed=false, downPressed=false;
     private ariannexp client;
     
-    protected TileRenderer renderer_layer0;
+    protected StaticGameObject staticObjects;
 	
 	/**
 	 * Construct our game and set it running.
@@ -75,7 +75,7 @@ public class j2DClient extends Canvas {
 		// do we'd like to exit the game
 		container.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				System.exit(0);
+                gameRunning=false;
 			}
 		});
 		
@@ -133,7 +133,7 @@ public class j2DClient extends Canvas {
             
             try
               {
-              renderer_layer0.setMapData(new StringReader(new String(item.data)));
+              staticObjects.addLayer(new StringReader(new String(item.data)),item.name);
               }
             catch(java.io.IOException e)          
               {
@@ -156,7 +156,9 @@ public class j2DClient extends Canvas {
           System.out.println(reason);
           }
         };
-	  }
+
+      staticObjects=new StaticGameObject(640,480);
+      }
 	
 	/**
 	 * The main game loop. This loop is running during all game
@@ -171,26 +173,27 @@ public class j2DClient extends Canvas {
 	 */
 	public void gameLoop() {
 		long lastLoopTime = System.currentTimeMillis();
-		boolean gameRunning = true;
-		
-        TileStore tilestore=TileStore.get("sprites/zelda_outside_chipset.gif");
-        
-        renderer_layer0=new TileRenderer(tilestore);
-        renderer_layer0.setScreenSize(640,480);
-
-        float x=0, y=0;
         int fps=0;
         
+//        try
+//          {
+//          client.connect("127.0.0.1",32160);
+//          }
+//        catch(SocketException e)
+//          {
+//          return;
+//          }
+//      
+//        client.login("miguel","password");
         try
           {
-          client.connect("127.0.0.1",32160);
+          staticObjects.addLayer(new BufferedReader(new FileReader("maps/city_layer0.txt")),"0");
+          staticObjects.addLayer(new BufferedReader(new FileReader("maps/city_layer1.txt")),"1");
           }
-        catch(SocketException e)
+        catch(java.io.IOException e)          
           {
-          return;
+          System.exit(0);
           }
-      
-        client.login("miguel","password");
         
         long oldTime=System.nanoTime();
 		
@@ -208,7 +211,7 @@ public class j2DClient extends Canvas {
 			Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
 			
 			// cycle round asking each entity to move itself
-            renderer_layer0.render(g,(int)x,(int)y);
+            staticObjects.draw(g);
             
     		g.setColor(Color.white);
     		String message="Test of Stendhal running under Java";
@@ -219,16 +222,7 @@ public class j2DClient extends Canvas {
 			g.dispose();
 			strategy.show();
 			
-            if(leftPressed) x-=0.5;
-            if(rightPressed) x+=0.5;
-            if(upPressed) y-=0.5;
-            if(downPressed) y+=0.5;
-   
-			// finally pause for a bit. Note: this should run us at about
-			// 100 fps but on windows this might vary each loop due to
-			// a bad implementation of timer
-			//try { Thread.sleep(10); } catch (Exception e) {}
-            client.loop(0);
+//            client.loop(0);
             
 			if(System.nanoTime()-oldTime>1000000000)
 			  {
@@ -238,7 +232,8 @@ public class j2DClient extends Canvas {
 			  }
 		}
 		
-		client.logout();
+//		client.logout();
+		System.exit(0);
 	}
 	
 	/**
@@ -305,8 +300,8 @@ public class j2DClient extends Canvas {
 		public void keyTyped(KeyEvent e) {
 			// if we hit escape, then quit the game
 			if (e.getKeyChar() == 27) {
-				System.exit(0);
-			}
+                gameRunning=false;
+            }
 		}
 	}
 	
