@@ -13,7 +13,6 @@
 package games.stendhal.client;
 
 import java.awt.Graphics;
-import marauroa.common.game.*;
 
 /**
  * An entity represents any element that appears in the game. The
@@ -41,7 +40,6 @@ public abstract class Entity {
 	/**
 	 * Construct a entity based on a sprite image and a location.
 	 * 
-	 * @param ref The reference to the image to be displayed for this entity
  	 * @param x The initial x location of this entity
 	 * @param y The initial y location of this entity
 	 */
@@ -74,7 +72,7 @@ public abstract class Entity {
 	/**
 	 * Set the vertical speed of this entity
 	 * 
-	 * @param dx The vertical speed of this entity (pixels/sec)
+	 * @param dy The vertical speed of this entity (pixels/sec)
 	 */
 	public void setVerticalMovement(double dy) {
 		this.dy = dy;

@@ -16,7 +16,7 @@ import java.io.*;
 import java.awt.Graphics;
 import java.util.*;
 
-class TileRenderer
+public class TileRenderer
   {
   private int PLAIN_GRASS_TILE[]={1,8};
 
@@ -60,11 +60,9 @@ class TileRenderer
   private int SINGLE_FLOWER_TILE[]={5,4};
 
   private int GRASS_TILE[]={17,7};
-  private int DOUBLE_GRASS_TILE[]={16,7};
 
   private int PLANT_TILE[]={23,10};
 
-  private int DOUBLE_FENCE_TILE[]={15,1};
   private int SINGLE_FENCE_TILE[]={15,0};
   private int FENCE_TILE_RIGHT[]={16,0};
   private int FENCE_TILE_LEFT[]={17,0};

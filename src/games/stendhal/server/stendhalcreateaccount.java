@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.io.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 import marauroa.server.Configuration;

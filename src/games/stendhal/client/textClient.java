@@ -12,13 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.text.SimpleDateFormat;
 import java.net.*;
-import java.io.*;
 import java.util.*;
 
 import marauroa.client.net.*;
-import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.common.net.*;
 
@@ -31,12 +28,10 @@ public class textClient extends Thread
   private Map<RPObject.ID,RPObject> world_objects;
   private RPObject myRPObject;
 
-  private Random rand;
-  
   private marauroa.client.ariannexp clientManager;
   private PerceptionHandler handler;
   private boolean onSynced;
-  
+
   public textClient(String u, String p, String c) throws SocketException
     {
     username=u;
@@ -171,8 +166,6 @@ public class textClient extends Thread
         }
       };
     
-
-    rand=new Random();
     }
    
   public void run()

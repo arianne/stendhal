@@ -16,12 +16,7 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Transparency;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.*;
 
-import javax.imageio.ImageIO;
 
 /**
  * A resource manager for sprites in the game. Its often quite important

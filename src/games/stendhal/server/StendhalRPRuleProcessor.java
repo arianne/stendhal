@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import org.python.util.PythonInterpreter;
-import org.python.core.*;
-
 import marauroa.common.*;
 import marauroa.common.net.*;
 import marauroa.common.game.*;
@@ -38,7 +35,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     
     // Read in the bytes
     int offset = 0;
-    int numRead = 0;
+    int numRead;
     while (offset < bytes.length && (numRead=is.read(bytes, offset, bytes.length-offset)) >= 0) 
       {
       offset += numRead;
@@ -70,8 +67,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     }
 
 
-  /** Set the context where the actions are executed.
-   *  @param zone The zone where actions happens. */
+  /**
+   * Set the context where the actions are executed.
+   *
+   * @param rpman
+   * @param world
+   */
   public void setContext(RPServerManager rpman, RPWorld world)
     {
     try

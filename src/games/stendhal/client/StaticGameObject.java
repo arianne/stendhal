@@ -48,9 +48,9 @@ public class StaticGameObject extends Entity
     TileRenderer renderer=new TileRenderer(tilestore);
     renderer.setScreenSize(screen_w,screen_h);
     renderer.setMapData(reader);
-    
-    int i=0;
-    for(i=0;i<layers.size();i++)
+
+    int i;
+    for( i=0;i<layers.size();i++)
       {
       if(layers.get(i).name.compareTo(name)>=0)
         {

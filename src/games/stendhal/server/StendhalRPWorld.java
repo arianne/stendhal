@@ -13,8 +13,6 @@
 package games.stendhal.server;
 
 import marauroa.server.game.*;
-import marauroa.server.*;
-import java.util.*;
 
 import marauroa.common.game.*;
 import marauroa.common.*;
