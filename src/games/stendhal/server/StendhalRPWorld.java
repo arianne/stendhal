@@ -24,17 +24,35 @@ public class StendhalRPWorld extends RPWorld
     super();
 
     Logger.trace("StendhalRPWorld::StendhalRPWorld",">");
+    createRPClasses();
     Logger.trace("StendhalRPWorld::StendhalRPWorld","<");
+    }
+  
+  private void createRPClasses()
+    {
+    RPClass player=new RPClass("player");
+    player.add("name",RPClass.STRING);
+    player.add("x",RPClass.FLOAT);
+    player.add("y",RPClass.FLOAT);
+    player.add("dx",RPClass.FLOAT);
+    player.add("dy",RPClass.FLOAT);    
+    player.add("xp",RPClass.SHORT);
+    player.add("hp",RPClass.SHORT);
+    player.add("atk",RPClass.SHORT);
+    player.add("def",RPClass.SHORT);
     }
   
   public void onInit() throws Exception
     {
     StendhalRPZone village=new StendhalRPZone("village");
+    village.setEntryPoint("10,10");
     village.addLayer("village_layer0","games/stendhal/server/maps/village_layer0.txt");
     addRPZone(village);
 
 
     StendhalRPZone city=new StendhalRPZone("city");
+    city.setEntryPoint("34,30");
+    
     for(int i=0;i<5;i++)
       {
       RPObject object=new RPObject();

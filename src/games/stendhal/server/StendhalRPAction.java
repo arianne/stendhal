@@ -34,7 +34,7 @@ public class StendhalRPAction
     {
     if(type.equals("player"))
       {
-      return new Rectangle.Double(x,y,1,2);
+      return new Rectangle.Double(x+0.5,y+1.3,0.87,0.6);
       }
     else
       {
@@ -85,5 +85,8 @@ public class StendhalRPAction
   static void changeZone(RPObject object, String destination) throws Exception
     {    
     world.changeZone(object.getID().getZoneID(),destination,object);
+    
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
+    zone.placeObjectAtEntryPoint(object);
     }
   }

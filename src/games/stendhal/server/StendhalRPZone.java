@@ -17,6 +17,7 @@ import java.io.*;
 public class StendhalRPZone extends MarauroaRPZone 
   {
   private List<TransferContent> contents;
+  private String entryPoint;
   private CollisionDetection collisionMap;
   
   public StendhalRPZone(String name)
@@ -25,6 +26,18 @@ public class StendhalRPZone extends MarauroaRPZone
     
     contents=new LinkedList<TransferContent>();
     collisionMap=new CollisionDetection();
+    }
+  
+  public void setEntryPoint(String entryPoint)
+    {
+    this.entryPoint=entryPoint;
+    }
+  
+  public void placeObjectAtEntryPoint(RPObject object)
+    {
+    String[] components=entryPoint.split(",");
+    object.put("x",components[0]);
+    object.put("y",components[1]);
     }
   
   public void addLayer(String name, String filename) throws IOException

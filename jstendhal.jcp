@@ -4,9 +4,9 @@
 		<version>1.01</version>
 		<label>jstendhal</label>
 		<root_path>\</root_path>
-		<output_path>D:\Desarrollo\arianne\compiled\</output_path>
+		<output_path>..\compiled\</output_path>
 		<version>1.01</version>
-		<source_path>D:\Desarrollo\arianne\stendhal\src\</source_path>
+		<source_path>src\</source_path>
 		<jdkprofile_ref>JDK version 1.5.0</jdkprofile_ref>
 		<compiler_ref>&lt;Default&gt;</compiler_ref>
 		<ant_ref/>
@@ -43,6 +43,9 @@
 			</folderitem>
 			<folderitem>
 				<path>src\games\stendhal\common</path>
+			</folderitem>
+			<folderitem>
+				<path>maps</path>
 			</folderitem>
 			<fileitem>
 				<path>README</path>
@@ -101,6 +104,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\StendhalKeyInputHandler.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\textClient.java</path>
 				<source>true</source>
 			</fileitem>
@@ -134,6 +141,18 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\CollisionDetection.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>maps\city_layer0.txt</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>maps\city_layer1.txt</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>maps\village_layer0.txt</path>
 				<source>true</source>
 			</fileitem>
 		</include>
