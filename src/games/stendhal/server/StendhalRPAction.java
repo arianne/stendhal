@@ -83,7 +83,7 @@ public class StendhalRPAction
     else
       {
       /* Collision */
-      Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");
+      Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");      
       if(dx!=0 || dy!=0)
         {
         if(dx!=0) object.put("dx",0);

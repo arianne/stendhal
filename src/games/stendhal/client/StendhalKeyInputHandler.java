@@ -78,9 +78,8 @@ public class StendhalKeyInputHandler extends KeyAdapter
         {
         dx=(e.getKeyCode()==KeyEvent.VK_LEFT?-1:1)*0.4;
         }
-      else if(Math.abs(dx)<0.8)
+      else if(Math.abs(dx)<1)
         {
-        System.out.println ("Accelerating! dx="+dx);
         dx=dx+(e.getKeyCode()==KeyEvent.VK_LEFT?-1:1)*0.1;
         }
       else
@@ -112,7 +111,7 @@ public class StendhalKeyInputHandler extends KeyAdapter
         {
         dy=(e.getKeyCode()==KeyEvent.VK_UP?-1:1)*0.4;
         }
-      else if(Math.abs(dy)<0.8)
+      else if(Math.abs(dy)<1)
         {
         dy=dy+(e.getKeyCode()==KeyEvent.VK_UP?-1:1)*0.1;
         }

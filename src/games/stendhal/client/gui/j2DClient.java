@@ -159,6 +159,9 @@ public class j2DClient extends JFrame
     long oldTime=System.nanoTime();
 
     screen.place(-100,-100);
+    RenderingPipeline pipeline=RenderingPipeline.get();
+    pipeline.addGameLayer(staticLayers);
+    pipeline.addGameObjects(gameObjects);
         
     // keep looping round til the game ends
     while (gameRunning) 
@@ -172,8 +175,7 @@ public class j2DClient extends JFrame
 			
       gameObjects.move(delta);
       
-      staticLayers.draw(screen);
-      gameObjects.draw(screen);
+      pipeline.draw(screen);      
            
 	  screen.nextFrame();
       client.loop(0);
@@ -183,7 +185,7 @@ public class j2DClient extends JFrame
       if(System.nanoTime()-oldTime>1000000000)
 	    {
         oldTime=System.nanoTime();
-        Logger.trace("j2DCLient::gameLoop()","D",Integer.toString(fps));
+        Logger.trace("j2DCLient::gameLoop()","D","FPS: "+Integer.toString(fps));
 	    fps=0;
         
         gameRunning=client.shouldContinueGame();
@@ -284,6 +286,9 @@ public class j2DClient extends JFrame
           
       if(username!=null && password!=null && host!=null)
         {
+        String[] allowed={"j2DCLient"};
+        Logger.setAllowed(allowed);
+        
         StendhalClient client=new StendhalClient(true);
         try
           {

@@ -23,10 +23,48 @@ import marauroa.common.*;
  *  not with any of the non trespasable areas of the world */
 public class CollisionDetection 
   {
-  byte[][] blocked;
+  private boolean[] tileWalkable;
+  private boolean[] blocked;
+  private int width;
+  private int height;
   
-  public CollisionDetection()
+  public CollisionDetection(String filename)
     {
+    blocked=null;
+    setCollisionData(filename);
+    }
+
+  private int[] getLayerData(Reader reader) throws IOException
+    {
+    Logger.trace("CollisionDetection::getLayerData",">");
+        
+    BufferedReader file=new BufferedReader(reader);
+    String text=file.readLine();
+    String[] size=text.split(" ");
+    width=Integer.parseInt(size[0]);
+    height=Integer.parseInt(size[1]);
+    
+    int[] map=new int[width*height];
+    
+    int j=0;
+    
+    while((text=file.readLine())!=null)
+      {
+      if(text.trim().equals(""))
+        {
+        break;
+        }
+        
+      String[] items=text.split(",");
+      for(String item: items)
+        {
+        map[j]=Integer.parseInt(item);
+        j++;      
+        }
+      }
+
+    Logger.trace("CollisionDetection::getLayerData",">");
+    return map;
     }
   
   /** Add a new layer to the class.<br>
@@ -34,26 +72,12 @@ public class CollisionDetection
   public void addLayer(Reader data) throws IOException
     {
     Logger.trace("CollisionDetection::addLayer",">");
-    ArrayList<String> map=new ArrayList<String>();
-        
-    BufferedReader file=new BufferedReader(data);
-    String text;
-    while((text=file.readLine())!=null)
-      {
-      map.add(text);
-      }
+    int[] map=getLayerData(data);
     
     if(blocked==null)
       {
-      blocked=new byte[map.size()][];
-      int size=((String)map.get(0)).length();
-      
-      for(int i=0;i<map.size();i++)
-        {
-        blocked[i]=new byte[size];
-        
-        for(int j=0;j<size;j++) blocked[i][j]=0;
-        }
+      blocked=new boolean[width*height];
+      for(int i=0;i<width*height;i++) blocked[i]=false;
       }     
     
     buildCollisionData(map);
@@ -67,11 +91,13 @@ public class CollisionDetection
       {
       for(int i=x-size;i<x+size;i++)
         {
+        if(j>0 && j<height && i>0 && i<width)
+          {
         if(j==(int)y && i==(int)x)
           {
           System.out.print("O");
           }
-        else if(blocked[j][i]==0)
+        else if(blocked[j*width+i]==false)
           {
           System.out.print(".");
           }
@@ -79,63 +105,67 @@ public class CollisionDetection
           {
           System.out.print("X");
           }          
+          }
         }
       System.out.println();
       }
     }
+    
+  private void setCollisionData(String filename)
+    {
+    Logger.trace("CollisionDetection::setCollisionData",">");
+    try
+      {
+      BufferedReader file=new BufferedReader(new FileReader(filename));
+      String text;
+    
+      text=file.readLine();
+      String[] size=text.split(" ");
+      int widthCollision=Integer.parseInt(size[0]);
+      int heightCollision=Integer.parseInt(size[1]);
+    
+      tileWalkable=new boolean[widthCollision*heightCollision];
+    
+      int j=0;
+    
+      while((text=file.readLine())!=null)
+        {
+        if(text.trim().equals(""))
+          {
+          break;
+          }
+        
+        String[] items=text.split(",");
+        for(String item: items)
+          {
+          tileWalkable[j]=(Integer.parseInt(item)==0);
+          j++;      
+          }
+        }
+      }
+    catch(IOException e)
+      {
+      Logger.thrown("CollisionDetection::setCollisionData","X",e);
+      System.exit(0);
+      }
+    finally
+      {
+      Logger.trace("CollisionDetection::setCollisionData","<");
+      }
+    }
   
-  private void buildCollisionData(ArrayList<String> map)
+  private void buildCollisionData(int[] map)
     {    
     Logger.trace("CollisionDetection::buildCollisionData",">");
-    for(int j=0;j<map.size();j++)
+    for(int i=0;i<width;i++)
       {
-      for(int i=0;i<((String)map.get(0)).length();i++)
+      for(int j=0;j<height;j++)
         {
-        switch((map.get(j)).charAt(i))
+        int value=map[j*width+i]-1;
+        if(value>=0)
           {
-          case 'w':
-          case 'F':
-          case 'p':
-            blocked[j][i]=1;
-            break;
-          case 'T':
-            for(int k=0;k<5;k++)
-              for(int m=0;m<4;m++)
-                {
-                if(j+k<getHeight() && i+m<getWidth())
-                  {
-                  blocked[j+k][i+m]=1;
-                  }
-                }
-            break;
-          case 't':
-            for(int k=0;k<2;k++)
-              for(int m=0;m<2;m++)
-                {
-                if(j+m<getHeight() && i+k<getWidth())
-                  {
-                  blocked[j+m][i+k]=1;
-                  }
-                }
-            break;
-          case 'H':
-            /** BUG: Fix me later, I can access out of the array */
-            blocked[j+0][i]=1;
-            blocked[j+1][i]=1;
-            blocked[j+2][i]=1;
-            blocked[j+3][i]=1;
-            blocked[j+4][i]=1;
-            
-            for(int k=0;k<5;k++)
-              for(int m=1;m<7;m++)
-                {
-                if(j+k<getHeight() && i+m<getWidth())
-                  {
-                  blocked[j+k][i+m]=1;                
-                  }
-                }
-            break;
-          }    
+          blocked[j*width+i]=!tileWalkable[value] || blocked[j*width+i];
+          }        
         }
       }  
   
@@ -160,22 +190,22 @@ public class CollisionDetection
       return true;
       }
     
-    if(blocked[(int)y][(int)x]==1)
+    if(blocked[(int)y*width+(int)x])
       {
       return true;
       }
       
-    if(blocked[(int)(y+h)][(int)(x+w)]==1)
+    if(blocked[(int)(y+h)*width+(int)(x+w)])
       {
       return true;
       }
 
-    if(blocked[(int)y][(int)(x+w)]==1)
+    if(blocked[(int)y*width+(int)(x+w)])
       {
       return true;
       }
 
-    if(blocked[(int)(y+h)][(int)x]==1)
+    if(blocked[(int)(y+h)*width+(int)x])
       {
       return true;
       }
@@ -184,7 +214,7 @@ public class CollisionDetection
       {
       for(double j=y;j<=y+h;j+=1)
         {
-        if(blocked[(int)j][(int)i]==1)
+        if(blocked[(int)j*width+(int)i])
           {
           return true;
           }
@@ -196,11 +226,11 @@ public class CollisionDetection
 
   public int getWidth()
     {
-    return blocked[0].length;
+    return width;
     }
   
   public int getHeight()
     {
-    return blocked.length;
+    return height;
     }
   }

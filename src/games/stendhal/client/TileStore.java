@@ -12,10 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.Image;
-import java.awt.Transparency;
+import java.awt.*;
+import java.io.*;
+import marauroa.common.*;
 
 
 /** It is class to get tiles from the tileset */
@@ -24,7 +23,8 @@ public class TileStore extends SpriteStore
   private static final int TILE_WIDTH=32;
   private static final int TILE_HEIGHT=32;
   
-  private Sprite[][] tileset;
+  private Sprite[] tileset;
+  private boolean[] walkable;
   
   private static TileStore singleton;
   
@@ -47,11 +47,7 @@ public class TileStore extends SpriteStore
     
     GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
  
-    tileset=new Sprite[tiles.getWidth()/TILE_WIDTH][];
-    for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
-      {
-      tileset[i]=new Sprite[tiles.getHeight()/TILE_HEIGHT];
-      }
+    tileset=new Sprite[(tiles.getWidth()/TILE_WIDTH)*(tiles.getHeight()/TILE_HEIGHT)];
     
     for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
       {      
@@ -61,18 +57,65 @@ public class TileStore extends SpriteStore
         tiles.draw(image.getGraphics(),0,0,i*TILE_WIDTH,j*TILE_HEIGHT);
         
         // create a sprite, add it the cache then return it
-        tileset[i][j] = new Sprite(image);        
+        tileset[i+j*(tiles.getWidth()/TILE_WIDTH)] = new Sprite(image);        
         }
       }
+    
+    //TODO: Unless you want to run collision detection on client too.
+    //setCollisionData(ref+".collision");    
     }
     
-  public Sprite getTile(int i, int j) 
+  private void setCollisionData(String filename)
     {
-    return tileset[i][j];
+    Logger.trace("TileStore::setCollisionData",">");
+    try
+      {
+      BufferedReader file=new BufferedReader(new FileReader(filename));
+      String text;
+    
+      text=file.readLine();
+      String[] size=text.split(" ");
+      int width=Integer.parseInt(size[0]);
+      int height=Integer.parseInt(size[1]);
+    
+      walkable=new boolean[width*height];
+    
+      int j=0;
+    
+      while((text=file.readLine())!=null)
+        {
+        if(text.trim().equals(""))
+          {
+          break;
+          }
+        
+        String[] items=text.split(",");
+        for(String item: items)
+          {
+          walkable[j]=(Integer.parseInt(item)==0);
+          j++;      
+          }
+        System.out.println();
+        }
+      }
+    catch(IOException e)
+      {
+      Logger.thrown("TileStore::setCollisionData","X",e);
+      System.exit(0);
+      }
+    finally
+      {
+      Logger.trace("TileStore::setCollisionData","<");
+      }
     }
 
-  public Sprite getTile(int[] indexes) 
+  public Sprite getTile(int i) 
     {
-    return tileset[indexes[0]][indexes[1]];
+    return tileset[i];
+    }
+  
+  public boolean isWalkable(int i)
+    {
+    return walkable[i];
     }
   }

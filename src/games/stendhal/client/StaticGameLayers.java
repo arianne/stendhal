@@ -132,7 +132,23 @@ public class StaticGameLayers
     this.area=area;
     Logger.trace("StaticGameLayers::setRPZoneLayersSet","<");
     }
+  
+  public String getRPZoneLayerSet()
+    {
+    return area;
+    }
     
+  public void draw(GameScreen screen, String layer)
+    {
+    for(Pair p: layers)
+      {
+      if(p.name.equals(layer))
+        {
+        p.renderer.draw(screen);
+        }
+      }
+    }
+
   /** Render the choosen set of layers */
   public void draw(GameScreen screen)
     {

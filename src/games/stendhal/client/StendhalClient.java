@@ -71,6 +71,7 @@ public class StendhalClient extends ariannexp
         GameScreen screen=GameScreen.get();
         RPObject object=message.getMyRPObject();
         screen.place(object.getDouble("x")-screen.getWidth()/2,object.getDouble("y")-screen.getHeight()/2);
+        screen.move(0,0);
         
         Logger.trace("StendhalClient::onPerception","D","CLEANING static object list");
         gameObjects.clear();
@@ -95,13 +96,13 @@ public class StendhalClient extends ariannexp
   
   protected List<TransferContent> onTransferREQ(List<TransferContent> items)
     {
-    Logger.trace("StendhalClient::onPerception",">");
+    Logger.trace("StendhalClient::onTransferREQ",">");
     for(TransferContent item: items)
       {
       // TODO: Cache items so that we can save the transfer
       item.ack=true;
       }
-    Logger.trace("StendhalClient::onPerception","<");
+    Logger.trace("StendhalClient::onTransferREQ","<");
    
     return items;
     }

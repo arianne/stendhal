@@ -27,7 +27,7 @@ public class StendhalRPZone extends MarauroaRPZone
     super(name);
     
     contents=new LinkedList<TransferContent>();
-    collisionMap=new CollisionDetection();
+    collisionMap=new CollisionDetection("games/stendhal/server/maps/zelda_outside_chipset.gif.collision");
     }
   
   public void setEntryPoint(String entryPoint)
@@ -42,7 +42,7 @@ public class StendhalRPZone extends MarauroaRPZone
     object.put("y",components[1]);
     }
   
-  public void addLayer(String name, String filename) throws IOException
+  public void addLayer(String name, String filename,boolean computeCollision) throws IOException
     {
     Logger.trace("StendhalRPZone::addLayer",">");
     TransferContent content=new TransferContent();
@@ -53,8 +53,16 @@ public class StendhalRPZone extends MarauroaRPZone
     
     contents.add(content);
     
-    collisionMap.addLayer(new FileReader(filename));
+    if(computeCollision) 
+      {
+      collisionMap.addLayer(new FileReader(filename));
+      }
     Logger.trace("StendhalRPZone::addLayer","<");
+    }
+    
+  public void addLayer(String name, String filename) throws IOException
+    {
+    addLayer(name,filename, true);
     }
 
   public int getWidth()
@@ -115,6 +123,7 @@ public class StendhalRPZone extends MarauroaRPZone
       }   
     else
       {
+      collisionMap.printaround((int)x,(int)y,3);     
       return true;
       }    
     }
