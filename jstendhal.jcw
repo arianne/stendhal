@@ -1,0 +1,16 @@
+<?xml?>
+<workspace>
+	<settings>
+		<label>jstendhal</label>
+	</settings>
+	<users>
+		<user>
+			<path>jstendhal.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>jstendhal.jcp</path>
+		</project>
+	</projects>
+</workspace>
