@@ -8,7 +8,7 @@ public class stendhal extends Thread
   
   public static void main(String args[]) 
     {
-    StendhalClient client=new StendhalClient();
+    StendhalClient client=new StendhalClient(false);
     new StendhalFirstScreen(client);
     
     while(!doLogin)
@@ -16,7 +16,6 @@ public class stendhal extends Thread
       try{Thread.sleep(200);}catch(Exception e){}
       }
     
-    System.out.println ("Executing this part of code");
     new j2DClient(client);
     }    
   }

@@ -62,7 +62,7 @@ public class textClient extends Thread
         }
       });
     
-    clientManager=new marauroa.client.ariannexp()
+    clientManager=new marauroa.client.ariannexp(false)
       {
       protected void onPerception(MessageS2CPerception message)
         {

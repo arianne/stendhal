@@ -28,10 +28,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private RPWorld world;
   
   private LinkedList<RPObject> playersObject;
+  private LinkedList<RPObject> playersObjectRmText;
   
   public StendhalRPRuleProcessor() throws FileNotFoundException, IOException 
     {
     playersObject=new LinkedList<RPObject>();
+    playersObjectRmText=new LinkedList<RPObject>();
     }
 
 
@@ -93,6 +95,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           RPObject object=world.get(id);
           object.put("text",action.get("text"));
           world.modify(object);
+          
+          playersObjectRmText.add(object);
           }
         }          
       else if(action.get("type").equals("face"))
@@ -119,9 +123,35 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     }
   
   /** Notify it when a new turn happens */
-  synchronized public void nextTurn()
+  synchronized public void beginTurn()
     {
-    Logger.trace("StendhalRPRuleProcessor::nextTurn",">");
+    Logger.trace("StendhalRPRuleProcessor::beginTurn",">");
+    try
+      {
+      for(RPObject object: playersObjectRmText)
+        {
+        if(object.has("text"))
+          {
+          object.remove("text");
+          world.modify(object);
+          }
+        }
+      
+      playersObjectRmText.clear();
+      }
+    catch(Exception e)
+      {
+      Logger.thrown("StendhalRPRuleProcessor::beginTurn","X",e);
+      }
+    finally
+      {
+      Logger.trace("StendhalRPRuleProcessor::beginTurn","<");
+      }
+    }
+    
+  synchronized public void endTurn()
+    {
+    Logger.trace("StendhalRPRuleProcessor::endTurn",">");
     try
       {
       for(RPObject object: playersObject)
@@ -131,10 +161,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     catch(Exception e)
       {
-      Logger.thrown("StendhalRPRuleProcessor::nextTurn","X",e);
-      }    
-      
-    Logger.trace("StendhalRPRuleProcessor::nextTurn","<");
+      Logger.thrown("StendhalRPRuleProcessor::endTurn","X",e);
+      }
+    finally
+      {
+      Logger.trace("StendhalRPRuleProcessor::endTurn","<");
+      }
     }
 
   synchronized public boolean onInit(RPObject object) throws RPObjectInvalidException

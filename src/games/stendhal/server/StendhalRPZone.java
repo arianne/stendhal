@@ -44,15 +44,17 @@ public class StendhalRPZone extends MarauroaRPZone
   
   public void addLayer(String name, String filename) throws IOException
     {
+    Logger.trace("StendhalRPZone::addLayer",">");
     TransferContent content=new TransferContent();
     content.name=name;
     content.cacheable=true;
-    content.timestamp=0;
+    content.timestamp=(int)new File(filename).lastModified();
     content.data=getBytesFromFile(filename);
     
     contents.add(content);
     
     collisionMap.addLayer(new FileReader(filename));
+    Logger.trace("StendhalRPZone::addLayer","<");
     }
 
   public int getWidth()

@@ -17,6 +17,8 @@ import java.io.*;
 import java.awt.*;
 import java.awt.geom.*;
 
+import marauroa.common.*;
+
 /** This class loads the map and allow you to determine if a player collides or 
  *  not with any of the non trespasable areas of the world */
 public class CollisionDetection 
@@ -31,6 +33,7 @@ public class CollisionDetection
    *  A map is build of several layers. */
   public void addLayer(Reader data) throws IOException
     {
+    Logger.trace("CollisionDetection::addLayer",">");
     ArrayList<String> map=new ArrayList<String>();
         
     BufferedReader file=new BufferedReader(data);
@@ -54,6 +57,7 @@ public class CollisionDetection
       }     
     
     buildCollisionData(map);
+    Logger.trace("CollisionDetection::addLayer","<");
     }
   
   /** Print the area around the (x,y) useful for debugging */
@@ -82,6 +86,7 @@ public class CollisionDetection
   
   private void buildCollisionData(ArrayList<String> map)
     {    
+    Logger.trace("CollisionDetection::buildCollisionData",">");
     for(int j=0;j<map.size();j++)
       {
       for(int i=0;i<((String)map.get(0)).length();i++)
@@ -133,6 +138,8 @@ public class CollisionDetection
           }    
         }
       }  
+  
+    Logger.trace("CollisionDetection::buildCollisionData","<");
     }
   
   /** Returns true if the shape enters in any of the non trespasable areas of the map */

@@ -17,6 +17,7 @@ import java.io.*;
 
 import marauroa.client.*;
 import marauroa.client.net.*;
+import marauroa.common.*;
 import marauroa.common.net.*;
 import marauroa.common.game.*;
 
@@ -34,8 +35,9 @@ public class StendhalClient extends ariannexp
   
   private boolean keepRunning=true;
   
-  public StendhalClient()
+  public StendhalClient(boolean logging)
     {
+    super(logging);
     world_objects=new HashMap<RPObject.ID, RPObject>();
     staticLayers=new StaticGameLayers();
     gameObjects=new GameObjects();   
@@ -61,14 +63,15 @@ public class StendhalClient extends ariannexp
     {
     try
       {
+      Logger.trace("StendhalClient::onPerception",">");
       if(message.getTypePerception()==1/*Perception.SYNC*/)
         {
-        System.out.println("UPDATING screen position");
+        Logger.trace("StendhalClient::onPerception","D","UPDATING screen position");
         GameScreen screen=GameScreen.get();
         RPObject object=message.getMyRPObject();
         screen.place(object.getDouble("x")-screen.getWidth()/2,object.getDouble("y")-screen.getHeight()/2);
         
-        System.out.println("CLEANING static object list");
+        Logger.trace("StendhalClient::onPerception","D","CLEANING static object list");
         gameObjects.clear();
         
         String zoneid=message.getRPZoneID().getID();
@@ -79,27 +82,34 @@ public class StendhalClient extends ariannexp
       }
     catch(Exception e)
       {
-      e.printStackTrace();
+      // TODO: Request synchronization instead of exiting.
+      Logger.thrown("StendhalClient::onPerception","!",e);
       System.exit(-1);
+      }
+    finally
+      {
+      Logger.trace("StendhalClient::onPerception","<");
       }
     }
   
   protected List<TransferContent> onTransferREQ(List<TransferContent> items)
     {
+    Logger.trace("StendhalClient::onPerception",">");
     for(TransferContent item: items)
       {
+      // TODO: Cache items so that we can save the transfer
       item.ack=true;
       }
+    Logger.trace("StendhalClient::onPerception","<");
    
     return items;
     }
   
   protected void onTransfer(List<TransferContent> items)
     {
-    System.out.println("Transfering ----");
+    Logger.trace("StendhalClient::onTransfer",">");
     for(TransferContent item: items)
       {
-      System.out.println(item);
       for(byte ele: item.data) System.out.print((char)ele);
       
       try
@@ -113,32 +123,40 @@ public class StendhalClient extends ariannexp
         System.exit(0);
         }
       }
+    Logger.trace("StendhalClient::onTransfer","<");
     }
   
   protected void onAvailableCharacters(String[] characters)
     {
+    Logger.trace("StendhalClient::onAvailableCharacters",">");
     try
       {
       chooseCharacter(characters[0]);
       }
     catch(Exception e)
       {
-      e.printStackTrace();
+      Logger.thrown("StendhalClient::onAvailableCharacters","X",e);
+      onError(1,e.getMessage());
       }
+      
+    Logger.trace("StendhalClient::onAvailableCharacters","<");
     }
   
   protected void onServerInfo(String[] info)
     {
+    //TODO: handle this info
     }
   
   protected void onError(int code, String reason)
     {
-    System.out.println(reason);
+    Logger.trace("StendhalClient::onError","X",reason);
     }
 
   public void requestLogout()
     {
+    Logger.trace("StendhalClient::requestLogout",">");
     keepRunning=false;
+    Logger.trace("StendhalClient::requestLogout","<");
     }
   
   public boolean shouldContinueGame()
@@ -152,7 +170,7 @@ public class StendhalClient extends ariannexp
       {
       try
         {
-        System.out.println("Object("+object.getID()+") added to Static Objects container");            
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onAdded","D","Object("+object.getID()+") added to Game Objects container");
         gameObjects.add(object);
         }
       catch(Exception e)
@@ -165,7 +183,7 @@ public class StendhalClient extends ariannexp
       {
       try
         {
-        System.out.println("Object("+object.getID()+") modified in Static Objects container");            
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedAdded","D","Object("+object.getID()+") modified in Game Objects container");
         gameObjects.modify(object);
         }
       catch(Exception e)
@@ -178,6 +196,7 @@ public class StendhalClient extends ariannexp
       {
       try
         {
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","D","Object("+object.getID()+") added to Static Objects container");
         gameObjects.modify(object);
         }
       catch(Exception e)
@@ -190,6 +209,7 @@ public class StendhalClient extends ariannexp
       {
       try
         {
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onDeleted","D","Object("+object.getID()+") added to Static Objects container");
         gameObjects.remove(object.getID());
         }
       catch(Exception e)
@@ -210,10 +230,12 @@ public class StendhalClient extends ariannexp
       
     public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception)      
       {
-      e.printStackTrace();
-      System.out.println(perception);
+      Logger.trace("StendhalClient::StendhalPerceptionListener::onException",perception.toString());
+      Logger.thrown("StendhalClient::StendhalPerceptionListener::onException","X",e);
       System.exit(-1);
-      return 0;
+      
+      // Never executed 
+      return -1;
       }
     }
   }

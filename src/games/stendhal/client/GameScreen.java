@@ -16,6 +16,8 @@ import java.awt.image.BufferStrategy;
 import java.awt.*;
 import java.awt.geom.*;
 
+import marauroa.common.*;
+
 /** This class is an abstraction of the game screen, so that we can think of it as
  *  a window to the world, we can move it, place it and draw object usings World 
  *  coordinates.
@@ -79,6 +81,8 @@ public class GameScreen
   /** Prepare screen for the next frame to be rendered and move it if needed */
   public void nextFrame()
     {
+    Logger.trace("GameScreen::nextFrame",">");
+    
     g.dispose();
     strategy.show();
     
@@ -93,6 +97,8 @@ public class GameScreen
       {
       y+=dy/60.0;
       }
+      
+    Logger.trace("GameScreen::nextFrame","<");
     }
   
   /** Returns the Graphics2D object in case you want to operate it directly.

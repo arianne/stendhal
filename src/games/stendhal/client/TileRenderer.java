@@ -16,6 +16,8 @@ import java.io.*;
 import java.awt.Graphics;
 import java.util.*;
 
+import marauroa.common.*;
+
 /** This is a helper class to render coherent tiles based on the tileset.
  *  This should be replaced by independent tiles as soon as possible . */
 public class TileRenderer
@@ -86,6 +88,7 @@ public class TileRenderer
   /** Sets the data that will be rendered */
   public void setMapData(Reader reader) throws IOException
     {
+    Logger.trace("TileRenderer::setMapData",">");
     map=new ArrayList<String>();
         
     BufferedReader file=new BufferedReader(reader);
@@ -94,6 +97,8 @@ public class TileRenderer
       {
       map.add(text);
       }
+
+    Logger.trace("TileRenderer::setMapData","<");
     }
 
   /** Returns the widht in world units */

@@ -18,7 +18,7 @@
 			<applet_ref>&lt;Default&gt;</applet_ref>
 			<debugger_ref>&lt;Default&gt;</debugger_ref>
 			<param/>
-			<run>games.stendhal.client.stendhal</run>
+			<run>games.stendhal.client.gui.j2DClient</run>
 		</runtime>
 	</runtimes>
 	<libraries>
@@ -65,22 +65,6 @@
 			</fileitem>
 			<fileitem>
 				<path>README</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.00.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.01.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-server-0.00.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-server-0.01.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -77,14 +77,13 @@ public class Player extends AnimatedGameEntity
       g.drawString(name,0,10);
       nameImage=new Sprite(image);      
       }
+
+//    if(!object.has("text"))
+//      {
+//      textImage=null;
+//      }
       
-    if(!object.has("text"))
-      {
-      textImage=null;
-      //text=null;
-      }
-      
-    if(text!=null && !text.equals(object.get("text")))    
+    if(text!=null && object.has("text") && !text.equals(object.get("text")))    
       {
       wasTextWritten=System.currentTimeMillis();
       text=object.get("text");
@@ -107,15 +106,19 @@ public class Player extends AnimatedGameEntity
         g.drawString(line,0,i*16+10);
         }
       textImage=new Sprite(image);      
-      }
+      }  
     }
 
   public void draw(GameScreen screen)
     {
     if(nameImage!=null) screen.draw(nameImage,x,y-0.3);
-    if(System.currentTimeMillis()-wasTextWritten<3000 && textImage!=null) 
+    if(textImage!=null && System.currentTimeMillis()-wasTextWritten<3000) 
       {
       screen.draw(textImage,x+0.7-(textImage.getWidth()/(32.0f*2.0f)),y+2.05);
+      }
+    else
+      {
+      textImage=null;
       }
       
     super.draw(screen);

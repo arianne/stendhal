@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.entity.*;
 import java.util.*;
@@ -61,30 +62,38 @@ public class GameObjects
   /** Add a new GameEntity to the game */  
   public void add(RPObject object) throws AttributeNotFoundException
     {
+    Logger.trace("GameObjects::add",">");
     GameEntity entity=entityType(object);
     objects.put(entity.getID(),entity);
+    Logger.trace("GameObjects::add","<");
     }
   
   /** Modify a existing GameEntity so its propierties change */  
   public void modify(RPObject object) throws AttributeNotFoundException
     {
+    Logger.trace("GameObjects::modify",">");
     GameEntity entity=objects.get(object.getID());
     if(entity!=null)
       {
       entity.modify(object);
       }
+    Logger.trace("GameObjects::modify","<");
     }
   
   /** Removes a GameEntity from game */
   public void remove(RPObject.ID id)
     {
+    Logger.trace("GameObjects::remove",">");
     objects.remove(id);
+    Logger.trace("GameObjects::remove","<");
     }
   
   /** Removes all the object entities */
   public void clear()
     {
+    Logger.trace("GameObjects::clear",">");
     objects.clear();
+    Logger.trace("GameObjects::clear","<");
     }
   
   /** Move objects based on the lapsus of time ellapsed since the last call. */

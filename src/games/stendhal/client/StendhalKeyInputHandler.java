@@ -4,6 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.*;
 
+import marauroa.common.*;
 import marauroa.common.game.*;
 
 /** Handles key inputs for ingame events */
@@ -117,7 +118,7 @@ public class StendhalKeyInputHandler extends KeyAdapter
 
     if(action.has("dx") || action.has("dy"))
       {
-      System.out.println("Sending action: "+action);            
+      Logger.trace("StendhalKeyInputHandler::onKeyReleased","D","Sending action "+action);
       client.send(action);
       }    
     }

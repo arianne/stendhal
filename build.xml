@@ -3,6 +3,7 @@
   <property name="version" value="0.01"/>
   <property name="src" value="src"/>
   <property name="maps" value="maps"/>
+  <property name="data" value="data"/>
   <property name="sprites" value="sprites"/>
   <property name="build" value="build"/>
   <property name="lib"  value="lib"/>
@@ -35,6 +36,10 @@
 
     <copy todir="${build}/sprites">
       <fileset dir="${sprites}"/>
+    </copy>
+
+    <copy todir="${build}/data">
+      <fileset dir="${data}"/>
     </copy>
 
     <copy todir="${build}/games/stendhal/server/maps">
@@ -90,6 +95,10 @@
 
     <copy todir="${build}/sprites">
       <fileset dir="${sprites}"/>
+    </copy>
+
+    <copy todir="${build}/data">
+      <fileset dir="${data}"/>
     </copy>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"

@@ -23,6 +23,8 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import marauroa.common.*;
+
 /**
  * A resource manager for sprites in the game. Its often quite important
  * how and where you get your game resources from. In most cases
@@ -57,7 +59,8 @@ public class SpriteStore {
      */
  public Sprite[] getAnimatedSprite(String ref, int animation, int frames, int width, int height)
 	  {
-	  Sprite animImage=getSprite(ref);
+      Logger.trace("SpriteStore::getAnimatedSprite",">");
+      Sprite animImage=getSprite(ref);
 	  
       Sprite[] animatedSprite=new Sprite[frames];
 	  
@@ -70,6 +73,7 @@ public class SpriteStore {
         animatedSprite[i]=new Sprite(image);
         }
       
+      Logger.trace("SpriteStore::getAnimatedSprite","<");
       return animatedSprite;
 	  }
 	  
@@ -80,6 +84,10 @@ public class SpriteStore {
 	 * @return A sprite instance containing an accelerate image of the request reference
 	 */
 	public Sprite getSprite(String ref) {
+	    try
+	    {
+        Logger.trace("SpriteStore::getSprite",">");
+         
 		// if we've already got the sprite in the cache
 		// then just return the existing version
 		if (sprites.get(ref) != null) {
@@ -119,6 +127,11 @@ public class SpriteStore {
 		sprites.put(ref,sprite);
 		
 		return sprite;
+		}
+		finally
+		{
+        Logger.trace("SpriteStore::getSprite","<");        
+		}
 	}
 	
 	/**
@@ -129,7 +142,7 @@ public class SpriteStore {
 	private void fail(String message) {
 		// we're pretty dramatic here, if a resource isn't available
 		// we dump the message and exit the game
-		System.err.println(message);
-		System.exit(0);
+        Logger.trace("SpriteStore::fail","!",message);
+        System.exit(0);
 	}
 }

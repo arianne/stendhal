@@ -42,7 +42,7 @@ public class StendhalRPAction
       }
     }
 
-  static void move(RPObject object) throws Exception
+  static boolean move(RPObject object) throws Exception
     {
     Logger.trace("StendhalRPAction::move",">");
 
@@ -57,7 +57,7 @@ public class StendhalRPAction
     
     if(zone.collides(collisionArea)==false)
       {
-      Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
+      Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+") stopped="+stopped);
       object.put("x",x+dx);
       object.put("y",y+dy);
       world.modify(object);
@@ -75,19 +75,28 @@ public class StendhalRPAction
       }
     
     Logger.trace("StendhalRPAction::move","<");
+    return !stopped;
     }
 
   static void transferContent(RPObject object) throws Exception
     {
+    Logger.trace("StendhalRPAction::transferContent",">");
+
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
     rpman.transferContent(object.getID(),zone.getContents());
+
+    Logger.trace("StendhalRPAction::transferContent","<");
     }
 
   static void changeZone(RPObject object, String destination) throws Exception
     {    
+    Logger.trace("StendhalRPAction::changeZone",">");
+
     world.changeZone(object.getID().getZoneID(),destination,object);
     
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
     zone.placeObjectAtEntryPoint(object);
+
+    Logger.trace("StendhalRPAction::changeZone","<");
     }
   }

@@ -16,6 +16,8 @@ import java.awt.Graphics;
 import java.util.*;
 import java.io.*;
 
+import marauroa.common.*;
+
 /** This class stores the layers that make the floor and the buildings */
 public class StaticGameLayers
   {
@@ -86,37 +88,49 @@ public class StaticGameLayers
   /** Add a new Layer to the set */
   public void addLayer(Reader reader, String name) throws IOException
     {
-    TileRenderer renderer=new TileRenderer(tilestore);
-    renderer.setMapData(reader);
-
-    int i;
-    for( i=0;i<layers.size();i++)
+    Logger.trace("StaticGameLayers::addLayer",">");
+    try 
       {
-      if(layers.get(i).name.compareTo(name)==0)
+      TileRenderer renderer=new TileRenderer(tilestore);
+      renderer.setMapData(reader);
+
+      int i;
+      for( i=0;i<layers.size();i++)
         {
-        /** Repeated layers should be ignored. */
-        return;
+        if(layers.get(i).name.compareTo(name)==0)
+          {
+          /** Repeated layers should be ignored. */
+          return;
+          }
+        
+        if(layers.get(i).name.compareTo(name)>=0)
+          {
+          break;
+          }
         }
         
-      if(layers.get(i).name.compareTo(name)>=0)
-        {
-        break;
-        }
+      layers.add(i,new Pair(name, renderer));    
       }
-      
-    layers.add(i,new Pair(name, renderer));    
+    finally
+      {
+      Logger.trace("StaticGameLayers::addLayer","<");
+      }
     }
   
   /** Removes all layers */
   public void clear()
     {
+    Logger.trace("StaticGameLayers::clear",">");
     layers.clear();
+    Logger.trace("StaticGameLayers::clear","<");
     }
   
   /** Set the set of layers that is going to be rendered */
   public void setRPZoneLayersSet(String area)
     {
+    Logger.trace("StaticGameLayers::setRPZoneLayersSet",">");
     this.area=area;
+    Logger.trace("StaticGameLayers::setRPZoneLayersSet","<");
     }
     
   /** Render the choosen set of layers */

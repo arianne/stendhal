@@ -30,6 +30,7 @@ public class StendhalRPWorld extends RPWorld
   
   private void createRPClasses()
     {
+    Logger.trace("StendhalRPWorld::createRPClasses",">");
     RPClass player=new RPClass("player");
     player.add("name",RPClass.STRING);
     player.add("x",RPClass.FLOAT);
@@ -42,6 +43,8 @@ public class StendhalRPWorld extends RPWorld
     player.add("atk",RPClass.SHORT);
     player.add("def",RPClass.SHORT);
     player.add("text",RPClass.STRING);
+    player.add("stopped",RPClass.FLAG,RPClass.HIDDEN);
+    Logger.trace("StendhalRPWorld::createRPClasses","<");
     }
   
   public void onInit() throws Exception
