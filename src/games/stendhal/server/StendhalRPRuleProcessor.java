@@ -64,24 +64,35 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     try
       {
       long maxTime=0;
+      int num=0;
+      boolean cancelMoveTo=false;
       
       for(RPAction action: actionList)
         {
         long val=action.getInt("when");
-        if(action.get("type").equals("moveto") && val>maxTime)
+        String type=action.get("type");
+        if(type.equals("moveto") && val>maxTime)
           {
+          num++;
           Logger.trace("StendhalRPRuleProcessor::approvedActions","D",action.toString());
           maxTime=val;
           }
+        else if(type.equals("move") || type.equals("face"))
+          {
+          cancelMoveTo=true;
+          }
         }
       
-      Iterator it=actionList.iterator();
-      while(it.hasNext())
+      if(num>1 || cancelMoveTo)
         {
-        RPAction action=(RPAction)it.next();
-        if(action.get("type").equals("moveto") && action.getInt("when")<maxTime)
-          {
-          it.remove();
+        Iterator it=actionList.iterator();
+        while(it.hasNext())
+          {  
+          RPAction action=(RPAction)it.next();
+          if(action.get("type").equals("moveto") && (action.getInt("when")<maxTime || cancelMoveTo))
+            {
+            it.remove();
+            }
           }
         }
       }
