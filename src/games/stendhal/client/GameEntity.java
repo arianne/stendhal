@@ -30,8 +30,9 @@ public class GameEntity extends Entity
   
   public void modify(RPObject object) throws AttributeNotFoundException
     {
-    x=object.getInt("x");
-    y=object.getInt("y");
+// TODO: Remove when using game online    
+    x=object.getDouble("x");
+    y=object.getDouble("y");
     
     if(object.has("dx") && object.has("dy"))
       {
@@ -43,10 +44,6 @@ public class GameEntity extends Entity
   public RPObject.ID getID()
     {
     return id;
-    }
-    
-  public void doLogic()
-    {
     }
 
   public void draw(GameScreen screen)

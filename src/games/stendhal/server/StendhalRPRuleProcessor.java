@@ -16,8 +16,13 @@ import marauroa.common.*;
 import marauroa.common.net.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
+
+import games.stendhal.common.*;
+
 import java.util.*;
 import java.io.*;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor
   {
@@ -25,6 +30,21 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private RPWorld world;
   private TransferContent city_map_layer0;
   private TransferContent city_map_layer1;
+  private CollisionDetection collisionMap;
+  
+  private LinkedList<RPObject> playersObject;
+  
+  private static Rectangle2D getCollisionArea(String type, double x, double y)
+    {
+    if(type.equals("player"))
+      {
+      return new Rectangle.Double(x,y,1,1);
+      }
+    else
+      {
+      return new Rectangle.Double(x,y,1,1);
+      }
+    }
 
   private static byte[] getBytesFromFile(String file) throws IOException 
     {
@@ -53,17 +73,22 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   public StendhalRPRuleProcessor() throws FileNotFoundException, IOException 
     {
+    collisionMap=new CollisionDetection();
     city_map_layer0=new TransferContent();
     city_map_layer0.name="city_map_layer0";
     city_map_layer0.cacheable=true;
     city_map_layer0.timestamp=0;
     city_map_layer0.data=getBytesFromFile("games/stendhal/server/maps/city_layer0.txt");
+    collisionMap.addLayer(new FileReader("games/stendhal/server/maps/city_layer0.txt"));
 
     city_map_layer1=new TransferContent();
     city_map_layer1.name="city_map_layer1";
     city_map_layer1.cacheable=true;
     city_map_layer1.timestamp=0;
     city_map_layer1.data=getBytesFromFile("games/stendhal/server/maps/city_layer1.txt");
+    collisionMap.addLayer(new FileReader("games/stendhal/server/maps/city_layer1.txt"));
+    
+    playersObject=new LinkedList<RPObject>();
     }
 
 
@@ -99,10 +124,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     try
       {
-      if(action.get("type").equals("add"))
+      if(action.get("type").equals("move"))
         {
         RPObject object=world.get(id);
-        object.put("result",action.getInt("a")+action.getInt("b"));
+        object.put("dx",action.getDouble("dx"));
+        object.put("dy",action.getDouble("dy"));
         world.modify(object);
         }
       else if(action.get("type").equals("change"))
@@ -122,11 +148,49 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     return status;
     }
+  
+  private void move(RPObject object) throws Exception
+    {
+    Logger.trace("StendhalRPRuleProcessor::move",">");
+    /** TODO: Code it */
+    double x=object.getDouble("x");
+    double y=object.getDouble("y");
+    double dx=object.getDouble("dx");
+    double dy=object.getDouble("dy");
+    
+    Rectangle2D collisionArea=getCollisionArea(object.get("type"),x+dx,y+dy);
+    if(collisionMap.collides(collisionArea)==false)
+      {
+      object.put("x",x+dx);
+      object.put("y",y+dy);
+      }        
+    else
+      {
+      /* Collision */
+      object.put("dx",0);
+      object.put("dy",0);
+      }
+      
+    world.modify(object);
+    Logger.trace("StendhalRPRuleProcessor::move","<");
+    }
 
   /** Notify it when a new turn happens */
   synchronized public void nextTurn()
     {
     Logger.trace("StendhalRPRuleProcessor::nextTurn",">");
+    try
+      {
+      for(RPObject object: playersObject)
+        {
+        move(object);
+        }
+      }
+    catch(Exception e)
+      {
+      Logger.thrown("StendhalRPRuleProcessor::nextTurn","X",e);
+      }    
+      
     Logger.trace("StendhalRPRuleProcessor::nextTurn","<");
     }
 
@@ -136,8 +200,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     try
       {
       object.put("zoneid","village");
-      object.put("x",20);
-      object.put("y",20);
+      object.put("x",30);
+      object.put("y",30);
+      object.put("dx",2);
+      object.put("dy",0);
       world.add(object);
       
       try        
@@ -149,9 +215,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       catch(AttributeNotFoundException e)
         {
-        }
-        
+        }        
       
+      playersObject.add(object);
       return true;
       }
     catch(NoRPZoneException e)
@@ -170,6 +236,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::onExit",">");
     try
       {
+      for(RPObject object: playersObject)
+        {
+        if(object.getID()==id)
+          {
+          boolean result=playersObject.remove(object);
+          Logger.trace("StendhalRPRuleProcessor::onExit","D","Removed Player was "+result);
+          break;
+          }
+        }
+
       return true;
       }
     catch(Exception e)
@@ -188,6 +264,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::onTimeout",">");
     try
       {
+      for(RPObject object: playersObject)
+        {
+        if(object.getID()==id)
+          {
+          playersObject.remove(object);
+          break;
+          }
+        }
+        
       return true;
       }
     catch(Exception e)

@@ -60,6 +60,12 @@ public class GameScreen
     this.dx=dx;
     this.dy=dy;
     }
+
+  public void place(double x, double y)
+    {
+    this.x=x;
+    this.y=y;
+    }
     
   public void draw(Sprite sprite, double wx, double wy)
     {

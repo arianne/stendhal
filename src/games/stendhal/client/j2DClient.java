@@ -64,6 +64,8 @@ public class j2DClient extends Canvas {
     private PerceptionHandler handler;    
     private Map<RPObject.ID,RPObject> world_objects;
     
+    private RPObject player;
+    
     protected StaticGameLayers staticLayers;
     protected StaticGameObjects staticObjects;
 	
@@ -138,6 +140,7 @@ public class j2DClient extends Canvas {
           {
           try
             {
+            System.out.println("Object("+object.getID()+") added to Static Objects container");            
             staticObjects.add(object);
             }
           catch(Exception e)
@@ -150,6 +153,7 @@ public class j2DClient extends Canvas {
           {
           try
             {
+            System.out.println("Object("+object.getID()+") modified in Static Objects container");            
             staticObjects.modify(object);
             }
           catch(Exception e)
@@ -296,15 +300,15 @@ public class j2DClient extends Canvas {
               }
             }        
 
-          RPObject object=new RPObject(new RPObject.ID(10,"village"));
-          object.put("type","player");
-          object.put("x",20);
-          object.put("y",20);
-          object.put("dx",0);
-          object.put("dy",-0.20);
+          player=new RPObject(new RPObject.ID(10,"village"));
+          player.put("type","player");
+          player.put("x",20);
+          player.put("y",20);
+          player.put("dx",0);
+          player.put("dy",-0.20);
           try
             {
-            staticObjects.add(object);
+            staticObjects.add(player);
             }
           catch(AttributeNotFoundException e)
             {
@@ -325,7 +329,8 @@ public class j2DClient extends Canvas {
           }
 
         long oldTime=System.nanoTime();
-        screen.move(0.01,0.01);
+        //screen.move(0.01,0.01);
+        screen.place(20,20);
         
         // keep looping round til the game ends
 		while (gameRunning) {
@@ -336,10 +341,21 @@ public class j2DClient extends Canvas {
 			long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 			
+            if(runStandalone)
+              {
+			  try
+			    {
+                staticObjects.modify(player);
+                }
+              catch(AttributeNotFoundException e)
+                {
+                e.printStackTrace();              
+                }
             
-            // cycle round asking each entity to move itself
-            staticObjects.move(delta);
+              // cycle round asking each entity to move itself
+              }
          
+            staticObjects.move(delta);
             staticLayers.draw(screen);
             staticObjects.draw(screen);
             
@@ -394,15 +410,19 @@ public class j2DClient extends Canvas {
 		 */
 		public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                if(player!=null) player.put("dx",-2);
                 leftPressed = true;
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                if(player!=null) player.put("dx",2);
                 rightPressed = true;
             }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
+                if(player!=null) player.put("dy",-2);
                 upPressed = true;
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                if(player!=null) player.put("dy",2);
                 downPressed = true;
             }
   } 
@@ -414,15 +434,19 @@ public class j2DClient extends Canvas {
 		 */
 		public void keyReleased(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                if(player!=null) player.put("dx",0);
                 leftPressed = false;
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                if(player!=null) player.put("dx",0);
                 rightPressed = false;
             }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
+                if(player!=null) player.put("dy",0);
                 upPressed = false;
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                if(player!=null) player.put("dy",0);
                 downPressed = false;
             }
         }

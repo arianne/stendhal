@@ -59,14 +59,6 @@ public class StaticGameObjects
       }
     }
     
-  public void doLogic()    
-    {
-    for(GameEntity entity: objects.values())
-      {
-      entity.doLogic();
-      }
-    }
-
   public void draw(GameScreen screen)
     {
     for(GameEntity entity: objects.values())

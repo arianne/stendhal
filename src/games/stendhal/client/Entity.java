@@ -58,8 +58,8 @@ public abstract class Entity {
 	 */
 	public void move(long delta) {
 		// update the location of the entity based on move speeds
-		x += (delta * dx) / 1000;
-		y += (delta * dy) / 1000;
+		x += (delta * dx) / 2000;
+		y += (delta * dy) / 2000;
 	}
 	
 	/**
@@ -104,13 +104,6 @@ public abstract class Entity {
 	 * @param g The graphics context on which to draw
 	 */
 	public void draw(GameScreen g) {
-	}
-	
-	/**
-	 * Do the logic associated with this entity. This method
-	 * will be called periodically based on game events
-	 */
-	public void doLogic() {
 	}
 	
 	/**
