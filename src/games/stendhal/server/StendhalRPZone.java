@@ -110,8 +110,8 @@ public class StendhalRPZone extends MarauroaRPZone
     content.data=getBytesFromFile(filename);
     
     contents.add(content);
-
-    collisionMap.setCollisionData(new FileReader(filename));
+    
+    collisionMap.setCollisionData(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename))); //new FileReader(filename));
     Logger.trace("StendhalRPZone::addCollisionLayer","<");    
     }
   

@@ -68,14 +68,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>stendhal-0.01.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-server-0.01.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>stendhal.jnlp</path>
 				<source>true</source>
 			</fileitem>
