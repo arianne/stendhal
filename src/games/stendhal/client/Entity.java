@@ -101,7 +101,7 @@ public abstract class Entity {
 	 * 
 	 * @param g The graphics context on which to draw
 	 */
-	public void draw(Graphics g) {
+	public void draw(GameScreen g) {
 	}
 	
 	/**
@@ -128,4 +128,14 @@ public abstract class Entity {
 	public int getY() {
 		return (int) y;
 	}
+
+  public void setX(double x)
+    {
+    this.x=x;
+    }
+    
+  public void setY(double y)
+    {
+    this.y=y;
+    }
 }

@@ -42,6 +42,10 @@
 				<path>src\games\stendhal\server</path>
 			</folderitem>
 			<fileitem>
+				<path>src\games\stendhal\client\Entity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\GameEntity.java</path>
 				<source>true</source>
 			</fileitem>

@@ -19,21 +19,26 @@ import java.awt.Graphics;
 
 public class StaticGameObjects 
   {
-  HashMap<RPObject.ID, RPObject> objects;
+  HashMap<RPObject.ID, GameEntity> objects;
   
   public StaticGameObjects()
     {
-    objects=new HashMap<RPObject.ID, RPObject>();
+    objects=new HashMap<RPObject.ID, GameEntity>();
     }
    
   void add(RPObject object) throws AttributeNotFoundException
     {
-    objects.put(object.getID(),object);
+    GameEntity entity=new GameEntity(object);
+    objects.put(entity.getID(),entity);
     }
   
   void modify(RPObject object) throws AttributeNotFoundException
     {
-    objects.put(object.getID(),object);
+    GameEntity entity=objects.get(object.getID());
+    if(entity!=null)
+      {
+      entity.modify(object);
+      }
     }
   
   void remove(RPObject.ID id)
@@ -46,11 +51,11 @@ public class StaticGameObjects
     objects.clear();
     }
     
-  public void draw(Graphics g)
+  public void draw(GameScreen screen)
     {
-    for(RPObject object: objects.values())
+    for(GameEntity entity: objects.values())
       {
-      
+      entity.draw(screen);
       }
     }
   }

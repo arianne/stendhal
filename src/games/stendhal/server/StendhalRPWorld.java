@@ -30,22 +30,20 @@ public class StendhalRPWorld extends RPWorld
   public void onInit() throws Exception
     {
     MarauroaRPZone village=new MarauroaRPZone("village");
-    RPObject object=new RPObject();
-    village.assignRPObjectID(object);
-    object.put("number","1");
-    object.put("string","hola village");
-    object.put("flag","");
-    village.add(object);
-    object=new RPObject();
-    village.assignRPObjectID(object);
-    object.put("number","2");
-    object.put("string","mundo village");
-    object.put("flag","");
-    village.add(object);
+    for(int i=0;i<5;i++)
+      {
+      RPObject object=new RPObject();
+      village.assignRPObjectID(object);
+      object.put("type","pot");
+      object.put("x",9+i);
+      object.put("y",11);
+      village.add(object);
+      }
     addRPZone(village);
 
+
     MarauroaRPZone city=new MarauroaRPZone("city");
-    object=new RPObject();
+    RPObject object=new RPObject();
     city.assignRPObjectID(object);
     object.put("number","1");
     object.put("string","hola city");

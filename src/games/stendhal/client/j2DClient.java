@@ -30,6 +30,7 @@ import java.net.*;
 import java.io.*;
 
 import marauroa.client.*;
+import marauroa.client.net.*;
 import marauroa.common.net.*;
 import marauroa.common.game.*;
 
@@ -58,9 +59,13 @@ public class j2DClient extends Canvas {
 	private boolean gameRunning=true;
 	
     private boolean leftPressed=false, rightPressed=false, upPressed=false, downPressed=false;
+  
     private ariannexp client;
+    private PerceptionHandler handler;    
+    private Map<RPObject.ID,RPObject> world_objects;
     
     protected StaticGameLayers staticLayers;
+    protected StaticGameObjects staticObjects;
 	
 	/**
 	 * Construct our game and set it running.
@@ -126,10 +131,79 @@ public class j2DClient extends Canvas {
 	 */
     private void initialise() 
       {
+      world_objects=new HashMap<RPObject.ID, RPObject>();
+      handler=new PerceptionHandler(new DefaultPerceptionListener()
+        {
+        public boolean onAdded(RPObject object)
+          {
+          try
+            {
+            staticObjects.add(object);
+            }
+          catch(Exception e)
+            {
+            }
+          return false;
+          }
+          
+        public boolean onModifiedAdded(RPObject object, RPObject changes)
+          {
+          try
+            {
+            staticObjects.modify(object);
+            }
+          catch(Exception e)
+            {
+            }
+          return false;
+          }
+
+        public boolean onModifiedDeleted(RPObject object, RPObject changes)
+          {
+          try
+            {
+            staticObjects.modify(object);
+            }
+          catch(Exception e)
+            {
+            }
+          return false;
+          }
+      
+        public boolean onDeleted(RPObject object)
+          {
+          try
+            {
+            staticObjects.remove(object.getID());
+            }
+          catch(Exception e)
+            {
+            }
+          return false;
+          }
+          
+        public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception)      
+          {
+          e.printStackTrace();
+          System.out.println(perception);
+          System.exit(-1);
+          return 0;
+          }
+        });
+        
       client=new ariannexp()
         {
         protected void onPerception(MessageS2CPerception message)
           {
+          try
+            {
+            handler.apply(message,world_objects);
+            }
+          catch(Exception e)
+            {
+            e.printStackTrace();
+            System.exit(-1);
+            }
           }
         
         protected List<TransferContent> onTransferREQ(List<TransferContent> items)
@@ -177,6 +251,7 @@ public class j2DClient extends Canvas {
         };
 
       staticLayers=new StaticGameLayers();
+      staticObjects=new StaticGameObjects();
       }
 	
 	/**
@@ -205,6 +280,21 @@ public class j2DClient extends Canvas {
             {
             System.exit(0);
             }        
+
+          for(int i=0;i<5;i++)
+            {
+            RPObject object=new RPObject(new RPObject.ID(1+i,"village"));
+            object.put("type","pot");
+            object.put("x",9+i);
+            object.put("y",11);
+            try
+              {
+              staticObjects.add(object);
+              }
+            catch(AttributeNotFoundException e)
+              {
+              }
+            }        
           }
         else
           {
@@ -222,7 +312,7 @@ public class j2DClient extends Canvas {
 
         long oldTime=System.nanoTime();
         screen.move(0.01,0.01);
-		
+        
         // keep looping round til the game ends
 		while (gameRunning) {
 		    fps++;
@@ -234,6 +324,7 @@ public class j2DClient extends Canvas {
 			
 			// cycle round asking each entity to move itself
             staticLayers.draw(screen);
+            staticObjects.draw(screen);
             
             Graphics2D g=screen.expose();
     		g.setColor(Color.white);
