@@ -52,13 +52,15 @@ public class j2DClient extends Canvas {
     private static boolean runStandalone=true;
     
 	/** The stragey that allows us to use accelerate page flipping */
-	private BufferStrategy strategy;
+    private GameScreen screen;
+        
+    private BufferStrategy strategy;
 	private boolean gameRunning=true;
 	
     private boolean leftPressed=false, rightPressed=false, upPressed=false, downPressed=false;
     private ariannexp client;
     
-    protected StaticGameObject staticObjects;
+    protected StaticGameLayers staticLayers;
 	
 	/**
 	 * Construct our game and set it running.
@@ -105,6 +107,9 @@ public class j2DClient extends Canvas {
 		createBufferStrategy(2);
 		strategy = getBufferStrategy();
 		
+		GameScreen.createScreen(strategy,640,480);
+        screen=GameScreen.get();
+		
 		// initialise the entities in our game so there's something
 		// to see at startup
 		initialise();
@@ -147,7 +152,7 @@ public class j2DClient extends Canvas {
             
             try
               {
-              staticObjects.addLayer(new StringReader(new String(item.data)),item.name);
+              staticLayers.addLayer(new StringReader(new String(item.data)),item.name);
               }
             catch(java.io.IOException e)          
               {
@@ -171,7 +176,7 @@ public class j2DClient extends Canvas {
           }
         };
 
-      staticObjects=new StaticGameObject(640,480);
+      staticLayers=new StaticGameLayers();
       }
 	
 	/**
@@ -193,8 +198,8 @@ public class j2DClient extends Canvas {
           {
           try
             {
-            staticObjects.addLayer(new BufferedReader(new FileReader("maps/city_layer0.txt")),"0");
-            staticObjects.addLayer(new BufferedReader(new FileReader("maps/city_layer1.txt")),"1");
+            staticLayers.addLayer(new BufferedReader(new FileReader("maps/city_layer0.txt")),"0");
+            staticLayers.addLayer(new BufferedReader(new FileReader("maps/city_layer1.txt")),"1");
             }
           catch(java.io.IOException e)          
             {
@@ -216,8 +221,9 @@ public class j2DClient extends Canvas {
           }
 
         long oldTime=System.nanoTime();
+        screen.move(0.01,0.01);
 		
-		// keep looping round til the game ends
+        // keep looping round til the game ends
 		while (gameRunning) {
 		    fps++;
 			// work out how long its been since the last update, this
@@ -226,21 +232,15 @@ public class j2DClient extends Canvas {
 			long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 			
-			// Get hold of a graphics context for the accelerated 
-			// surface and blank it out
-			Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
-			
 			// cycle round asking each entity to move itself
-            staticObjects.draw(g);
+            staticLayers.draw(screen);
             
+            Graphics2D g=screen.expose();
     		g.setColor(Color.white);
     		String message="Test of Stendhal running under Java";
 			g.drawString(message,(640-g.getFontMetrics().stringWidth(message))/2,200);
 			
-			// finally, we've completed drawing so clear up the graphics
-			// and flip the buffer over
-			g.dispose();
-			strategy.show();
+			screen.nextFrame();
 			
 			if(!runStandalone)
 			  {

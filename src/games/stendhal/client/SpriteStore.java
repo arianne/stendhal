@@ -35,7 +35,7 @@ import javax.imageio.ImageIO;
  */
 public class SpriteStore {
 	/** The single instance of this class */
-	private static SpriteStore single = new SpriteStore();
+    private static SpriteStore single = new SpriteStore();
 	
 	/**
 	 * Get the single instance of this class 
@@ -91,7 +91,7 @@ public class SpriteStore {
 		image.getGraphics().drawImage(sourceImage,0,0,null);
 		
 		// create a sprite, add it the cache then return it
-		Sprite sprite = new Sprite(image);
+        Sprite sprite = new Sprite(image);
 		sprites.put(ref,sprite);
 		
 		return sprite;

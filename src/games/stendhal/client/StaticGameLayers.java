@@ -16,7 +16,7 @@ import java.awt.Graphics;
 import java.util.*;
 import java.io.*;
 
-public class StaticGameObject extends Entity
+public class StaticGameLayers
   {
   static private class Pair
     {
@@ -32,21 +32,16 @@ public class StaticGameObject extends Entity
     
   private LinkedList<Pair> layers;
   private TileStore tilestore;
-  private int screen_w,screen_h;
   
-  public StaticGameObject(int screen_w, int screen_h)
+  public StaticGameLayers()
     {
-    super(0,0);
     layers=new LinkedList<Pair>();
     tilestore=TileStore.get("sprites/zelda_outside_chipset.gif");
-    this.screen_w=screen_w;
-    this.screen_h=screen_h;
     }
 
   public void addLayer(Reader reader, String name) throws IOException
     {
     TileRenderer renderer=new TileRenderer(tilestore);
-    renderer.setScreenSize(screen_w,screen_h);
     renderer.setMapData(reader);
 
     int i;
@@ -61,11 +56,11 @@ public class StaticGameObject extends Entity
     layers.add(i,new Pair(name, renderer));    
     }
     
-  public void draw(Graphics g)
+  public void draw(GameScreen screen)
     {
     for(Pair p: layers)
       {
-      p.renderer.draw(g,(int)x,(int)y);
+      p.renderer.draw(screen);
       }
     }
   }

@@ -42,7 +42,15 @@
 				<path>src\games\stendhal\server</path>
 			</folderitem>
 			<fileitem>
-				<path>src\games\stendhal\client\Entity.java</path>
+				<path>src\games\stendhal\client\GameEntity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\GameScreen.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\IEntity.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -58,7 +66,11 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\StaticGameObject.java</path>
+				<path>src\games\stendhal\client\StaticGameLayers.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\StaticGameObjects.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

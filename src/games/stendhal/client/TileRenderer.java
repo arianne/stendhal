@@ -74,7 +74,6 @@ public class TileRenderer
 
   private TileStore tiles;
   private ArrayList<String> map;
-  private int wx, wy;  
   
   public TileRenderer(TileStore tiles)
     {
@@ -109,12 +108,6 @@ public class TileRenderer
     return ((String)(map.get(y))).charAt(x);
     }
   
-  public void setScreenSize(int width, int height)
-    {
-    wx=width;
-    wy=height;
-    }
-    
 
   private int[] getTypeOfLand(int x,int y)
     {
@@ -226,80 +219,72 @@ public class TileRenderer
       return SINGLE_FENCE_TILE;
     }
   
-  public void draw(Graphics g, int x, int y) 
+  public void draw(GameScreen screen) 
     {
-    for(int j=0;j<wy/32;j++)
+    for(int j=0;j<getHeight();j++)
       {
-      for(int i=0;i<wx/32;i++)
+      for(int i=0;i<getWidth();i++)
         {
-        if(map==null || !(i+x>=0 && i+x<getWidth() && j+y>=0 && j+y<getHeight()))
+        switch(get(i,j))
           {
-          continue;
-          }
-          
-        char item=get(i+x,y+j);
-        switch(item)
-          {
-          case '*':
-            tiles.getTile(PLAIN_GRASS_TILE).draw(g,i*32,j*32);
+          case '*': 
+            screen.draw(tiles.getTile(PLAIN_GRASS_TILE),i,j);           
             break;
           case 'l':
-            tiles.getTile(getTypeOfLand(x+i,y+j)).draw(g,i*32,j*32);
+            screen.draw(tiles.getTile(getTypeOfLand(i,j)),i,j);           
             break;    
           case 's':
-            tiles.getTile(getTypeOfSquare(x+i,y+j)).draw(g,i*32,j*32);
+            screen.draw(tiles.getTile(getTypeOfSquare(i,j)),i,j);           
             break;    
           case 'w':
-            tiles.getTile(getTypeOfWater(x+i,y+j)).draw(g,i*32,j*32);
+            screen.draw(tiles.getTile(getTypeOfWater(i,j)),i,j);           
             break;    
           case 'F':
-            tiles.getTile(getTypeOfFence(x+i,y+j)).draw(g,i*32,j*32);
+            screen.draw(tiles.getTile(getTypeOfFence(i,j)),i,j);           
             break;    
           case 'd':
-            tiles.getTile(SINGLE_FLOWER_TILE).draw(g,i*32,j*32);
+            screen.draw(tiles.getTile(SINGLE_FLOWER_TILE),i,j);           
             break;
           case 'D':
-            tiles.getTile(DOUBLE_FLOWER_TILE).draw(g,i*32,j*32);
+            screen.draw(tiles.getTile(DOUBLE_FLOWER_TILE),i,j);           
             break;
           case 'g':
-            tiles.getTile(GRASS_TILE).draw(g,i*32,j*32);
-            break;
           case 'G':
-            tiles.getTile(GRASS_TILE).draw(g,i*32,j*32);
+            screen.draw(tiles.getTile(GRASS_TILE),i,j);           
             break;
           case 'p':
-            tiles.getTile(PLANT_TILE).draw(g,i*32,j*32);
+            screen.draw(tiles.getTile(PLANT_TILE),i,j);           
             break;
           case 'h':
-            tiles.getTile(20,10).draw(g,i*32,j*32);
-            tiles.getTile(21,10).draw(g,(i+1)*32,j*32);
-            tiles.getTile(22,10).draw(g,(i+2)*32,j*32);
+            screen.draw(tiles.getTile(20,10),i,j);           
+            screen.draw(tiles.getTile(21,10),i+1,j);           
+            screen.draw(tiles.getTile(22,10),i+2,j);           
             break;
           case 'T':
             for(int k=0;k<5;k++)
               for(int m=0;m<4;m++)
                 {
-                tiles.getTile(24+m,k).draw(g,(i+m)*32,(j+k)*32);
+                screen.draw(tiles.getTile(24+m,k),i+m,j+k);           
                 }
             break;
           case 't':
             for(int k=0;k<2;k++)
               for(int m=0;m<2;m++)
                 {
-                tiles.getTile(18+m,14+k).draw(g,(i+m)*32,(j+k)*32);
+                screen.draw(tiles.getTile(18+m,14+k),i+m,j+k);           
                 }
             break;
           case 'H':
-            tiles.getTile(17,3).draw(g,i*32,j*32);
-            tiles.getTile(17,4).draw(g,i*32,(j+1)*32);
-            tiles.getTile(17,4).draw(g,i*32,(j+2)*32);
-            tiles.getTile(17,5).draw(g,i*32,(j+3)*32);
-            tiles.getTile(17,6).draw(g,i*32,(j+4)*32);
+            screen.draw(tiles.getTile(17,3),i,j);           
+            screen.draw(tiles.getTile(17,4),i,j+1);           
+            screen.draw(tiles.getTile(17,4),i,j+2);           
+            screen.draw(tiles.getTile(17,5),i,j+3);           
+            screen.draw(tiles.getTile(17,6),i,j+4);           
             
             for(int k=0;k<5;k++)
               for(int m=1;m<7;m++)
                 {
-                tiles.getTile(11+m,9+k).draw(g,(i+m)*32,(j+k)*32);
+                screen.draw(tiles.getTile(11+m,9+k),i+m,j+k);           
                 }
             break;
           }

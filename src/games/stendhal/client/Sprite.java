@@ -24,16 +24,17 @@ import java.awt.Image;
  * 
  * @author Kevin Glass
  */
-public class Sprite {
+public class Sprite
+  {
 	/** The image to be drawn for this sprite */
-	private Image image;
+	protected Image image;
 	
 	/**
 	 * Create a new sprite based on an image
 	 * 
 	 * @param image The image that is this sprite
 	 */
-	public Sprite(Image image) {
+    public Sprite(Image image) {
 		this.image = image;
 	}
 	
