@@ -113,6 +113,7 @@ public class StendhalClient extends ariannexp
       try
         {        
         staticLayers.addLayer(new StringReader(new String(item.data)),item.name);
+        GameScreen.get().setMaxWorldSize((int)staticLayers.getWidth(),(int)staticLayers.getHeight());
         }
       catch(java.io.IOException e)          
         {

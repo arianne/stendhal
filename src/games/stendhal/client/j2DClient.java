@@ -191,22 +191,22 @@ public class j2DClient extends Canvas
       
       if((screenx+screenw/2)-x<2)
         {
-        sdx+=0.05;
+        sdx+=0.1;
         }
         
       if((screenx+screenw/2)-x>-2)
         {
-        sdx-=0.05;
+        sdx-=0.1;
         }
       
       if((screeny+screenh/2)-y<2)
         {
-        sdy+=0.05;
+        sdy+=0.1;
         }
         
       if((screeny+screenh/2)-y>-2)
         {
-        sdy-=0.05;
+        sdy-=0.1;
         }
       
       if(dx==0)

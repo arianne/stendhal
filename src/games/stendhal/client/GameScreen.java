@@ -26,6 +26,7 @@ public class GameScreen
   private double x,y;
   private double dx,dy;
   private int sw,sh;  
+  private int ww,wh;
   private static GameScreen screen;
   
   public static void createScreen(BufferStrategy strategy, int sw, int sh)
@@ -68,8 +69,11 @@ public class GameScreen
     
     g=(Graphics2D)strategy.getDrawGraphics();
     
-    x+=dx/60.0;
-    y+=dy/60.0;
+    if((x+dx/60.0>=0 && x+dx/60.0+getWidth()<ww) && (y+dy/60.0>=0 && y+dy/60.0+getHeight()<wh))
+      {
+      x+=dx/60.0;
+      y+=dy/60.0;
+      }
     }
   
   public Graphics2D expose()
@@ -107,6 +111,12 @@ public class GameScreen
     {
     this.x=x;
     this.y=y;
+    }
+  
+  public void setMaxWorldSize(int width, int height)
+    {
+    ww=width;
+    wh=height;
     }
     
   public void draw(Sprite sprite, double wx, double wy)
