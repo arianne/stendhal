@@ -292,6 +292,9 @@ public class j2DClient extends JFrame
         {
         String[] allowed={};
         Logger.setAllowed(allowed);
+
+        String[] rejected={};
+        Logger.setRejected(rejected);
         
         StendhalClient client=new StendhalClient(true);
         try
