@@ -13,8 +13,8 @@
 package games.stendhal.client;
 
 import java.awt.image.BufferStrategy;
-import java.awt.Graphics2D;
-import java.awt.Color;
+import java.awt.*;
+import java.awt.geom.*;
 
 public class GameScreen 
   {
@@ -50,7 +50,7 @@ public class GameScreen
     {
     return sh/PIXEL_SCALE;
     }
-  
+   
   private GameScreen(BufferStrategy strategy, int sw, int sh)
     {
     this.strategy=strategy;
@@ -91,6 +91,16 @@ public class GameScreen
   public double getY()
     {
     return y;
+    }
+
+  public double getdx()
+    {
+    return dx;
+    }
+
+  public double getdy()
+    {
+    return dy;
     }
 
   public void place(double x, double y)

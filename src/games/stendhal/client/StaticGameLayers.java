@@ -38,6 +38,30 @@ public class StaticGameLayers
     layers=new LinkedList<Pair>();
     tilestore=TileStore.get("sprites/zelda_outside_chipset.gif");
     }
+  
+  public double getWidth()
+    {
+    if(layers.size()>0)
+      {
+      return layers.get(0).renderer.getWidth();
+      }
+    else
+      {
+      return 0;
+      }
+    }
+
+  public double getHeight()
+    {
+    if(layers.size()>0)
+      {
+      return layers.get(0).renderer.getHeight();
+      }
+    else
+      {
+      return 0;
+      }
+    }
 
   public void addLayer(Reader reader, String name) throws IOException
     {

@@ -120,7 +120,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       object.put("zoneid","village");
       object.put("x",30);
       object.put("y",30);
-      object.put("dx",0);
+      object.put("dx",0.6);
       object.put("dy",0);
       world.add(object);
       

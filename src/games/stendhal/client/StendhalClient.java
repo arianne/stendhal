@@ -29,6 +29,18 @@ public class StendhalClient extends ariannexp
     
   private StaticGameLayers staticLayers;
   private StaticGameObjects staticObjects;
+  
+  private boolean keepRunning=true;
+  
+  public void requestLogout()
+    {
+    keepRunning=false;
+    }
+  
+  public boolean shouldContinueGame()
+    {
+    return keepRunning;
+    }
 
   public StendhalClient()
     {
@@ -58,6 +70,14 @@ public class StendhalClient extends ariannexp
     try
       {
       handler.apply(message,world_objects);
+      
+      if(message.getTypePerception()==1/*Perception.SYNC*/)
+        {
+        System.out.println("UPDATING screen position");
+        GameScreen screen=GameScreen.get();
+        RPObject object=message.getMyRPObject();
+        screen.place(object.getDouble("x")-screen.getWidth()/2,object.getDouble("y")-screen.getHeight()/2);
+        }
       }
     catch(Exception e)
       {
@@ -167,21 +187,6 @@ public class StendhalClient extends ariannexp
       if(changed)
         {
         player=object;
-        
-        //TODO: Remove me. It is not the place.
-        try
-          {
-          GameScreen screen=GameScreen.get();
-          if(Math.random()<0.10)
-            {
-            screen.place(object.getDouble("x")-screen.getWidth()/2,object.getDouble("y")-screen.getHeight()/2);            
-            }
-          screen.move(object.getDouble("dx"),object.getDouble("dy"));
-          }
-        catch(AttributeNotFoundException e)
-          {
-          e.printStackTrace();
-          }
         }
         
       return false;

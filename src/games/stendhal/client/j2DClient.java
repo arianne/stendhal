@@ -76,9 +76,11 @@ public class j2DClient extends Canvas
 		}
 	  });
 		
-	// add a key input system (defined below) to our canvas
+    client=new StendhalClient();
+   
+    // add a key input system (defined below) to our canvas
 	// so we can respond to key pressed
-	addKeyListener(new KeyInputHandler());
+	addKeyListener(new StendhalKeyInputHandler(client));
 		
 	// request the focus so key events come to us
 	requestFocus();
@@ -91,28 +93,16 @@ public class j2DClient extends Canvas
 	GameScreen.createScreen(strategy,640,480);
     screen=GameScreen.get();
 		
-	// initialise the entities in our game so there's something to see at startup
-	initialise();
-		
 	// Start the main game loop, note: this method will not
 	// return until the game has finished running. Hence we are
 	// using the actual main thread to run the game.
 	gameLoop();
 	}
 	
-  private void initialise() 
-    {
-    client=new StendhalClient();
-    }
-	
   public void gameLoop() 
     {
 	long lastLoopTime = System.currentTimeMillis();
     int fps=0;
-        
-    StaticGameLayers staticLayers;
-    StaticGameObjects staticObjects;
-    RPObject player=null;    
         
     try
       {
@@ -125,12 +115,12 @@ public class j2DClient extends Canvas
       
     client.login("miguel","password");
           
-    staticLayers=client.getStaticGameLayers();
-    staticObjects=client.getStaticGameObjects();
+    StaticGameLayers staticLayers=client.getStaticGameLayers();
+    StaticGameObjects  staticObjects=client.getStaticGameObjects();
 
     long oldTime=System.nanoTime();
-    //screen.move(0.01,0.01);
-    screen.place(20,20);
+
+    screen.place(-100,-100);
         
     // keep looping round til the game ends
     while (gameRunning) 
@@ -152,6 +142,7 @@ public class j2DClient extends Canvas
 	  g.drawString(message,(640-g.getFontMetrics().stringWidth(message))/2,200);
 			
 	  screen.nextFrame();
+      moveScreen(client.getPlayer(),staticLayers);
 			
       client.loop(0);
 
@@ -160,40 +151,78 @@ public class j2DClient extends Canvas
 	    oldTime=System.nanoTime();
 	    System.out.println("FPS: "+fps);
 	    fps=0;
-	    }
+        
+        gameRunning=client.shouldContinueGame();
+        }	    
    	  }
 
     client.logout();
     System.exit(0);
 	}
-	
-  private class KeyInputHandler extends KeyAdapter 
+  
+  private void moveScreen(RPObject object, StaticGameLayers gameLayers)
     {
- 	public void keyPressed(KeyEvent e) 
- 	  {
- 	  }
- 	  
-    public void keyReleased(KeyEvent e) 
+    // TODO: Fix me. It shouldn't follow pass layer end. 
+    try
       {
-      }
-
-    public void keyTyped(KeyEvent e) 
-      {
-	  // if we hit escape, then quit the game
-	  if (e.getKeyChar() == 27) 
-	    {
-        gameRunning=false;
+      if(object==null)
+        {
+        return;
         }
+        
+      double x=object.getDouble("x");
+      double y=object.getDouble("y");
+      double dx=object.getDouble("dx");
+      double dy=object.getDouble("dy");
+      
+      GameScreen screen=GameScreen.get();
+      double screenx=screen.getX();
+      double screeny=screen.getY();
+      double screenw=screen.getWidth();
+      double screenh=screen.getHeight();
+      double sdx=screen.getdx();
+      double sdy=screen.getdy();
+      
+      double layerw=gameLayers.getWidth();
+      double layerh=gameLayers.getHeight();
+      
+      if((screenx+screenw/2)-x<2)
+        {
+        sdx+=0.05;
+        }
+        
+      if((screenx+screenw/2)-x>-2)
+        {
+        sdx-=0.05;
+        }
+      
+      if((screeny+screenh/2)-y<2)
+        {
+        sdy+=0.05;
+        }
+        
+      if((screeny+screenh/2)-y>-2)
+        {
+        sdy-=0.05;
+        }
+      
+      if(dx==0)
+        {
+        sdx=0;
+        }
+
+      if(dy==0)
+        {
+        sdy=0;
+        }
+      
+      screen.move(sdx,sdy);
       }
-	}
-	
-	/**
-	 * The entry point into the game. We'll simply create an
-	 * instance of class which will start the display and game
-	 * loop.
-	 * 
-	 * @param argv The arguments that are passed into our game
-	 */
+    catch(AttributeNotFoundException e)    
+      {
+      }    
+    }
+
   public static void main(String argv[]) 
     {
     new j2DClient();

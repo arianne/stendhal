@@ -6,7 +6,7 @@
 		<root_path>\</root_path>
 		<output_path>D:\Desarrollo\arianne\compiled\</output_path>
 		<version>1.01</version>
-		<source_path>src\</source_path>
+		<source_path>D:\Desarrollo\arianne\stendhal\src\</source_path>
 		<jdkprofile_ref>JDK version 1.5.0</jdkprofile_ref>
 		<compiler_ref>&lt;Default&gt;</compiler_ref>
 		<ant_ref/>
@@ -45,6 +45,10 @@
 				<path>src\games\stendhal\common</path>
 			</folderitem>
 			<fileitem>
+				<path>README</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\AbstractGameState.java</path>
 				<source>true</source>
 			</fileitem>
@@ -66,6 +70,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\j2DClient.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\j2DOfflineClient.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
