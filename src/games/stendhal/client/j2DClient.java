@@ -60,15 +60,8 @@ public class j2DClient extends Canvas {
 	
     private boolean leftPressed=false, rightPressed=false, upPressed=false, downPressed=false;
   
-    private ariannexp client;
-    private PerceptionHandler handler;    
-    private Map<RPObject.ID,RPObject> world_objects;
-    
-    private RPObject player;
-    
-    protected StaticGameLayers staticLayers;
-    protected StaticGameObjects staticObjects;
-	
+    private StendhalClient client;
+
 	/**
 	 * Construct our game and set it running.
 	 */
@@ -133,140 +126,7 @@ public class j2DClient extends Canvas {
 	 */
     private void initialise() 
       {
-      world_objects=new HashMap<RPObject.ID, RPObject>();
-      handler=new PerceptionHandler(new DefaultPerceptionListener()
-        {
-        public boolean onAdded(RPObject object)
-          {
-          try
-            {
-            System.out.println("Object("+object.getID()+") added to Static Objects container");            
-            staticObjects.add(object);
-            }
-          catch(Exception e)
-            {
-            }
-          return false;
-          }
-          
-        public boolean onModifiedAdded(RPObject object, RPObject changes)
-          {
-          try
-            {
-            System.out.println("Object("+object.getID()+") modified in Static Objects container");            
-            staticObjects.modify(object);
-            }
-          catch(Exception e)
-            {
-            }
-          return false;
-          }
-
-        public boolean onModifiedDeleted(RPObject object, RPObject changes)
-          {
-          try
-            {
-            staticObjects.modify(object);
-            }
-          catch(Exception e)
-            {
-            }
-          return false;
-          }
-      
-        public boolean onDeleted(RPObject object)
-          {
-          try
-            {
-            staticObjects.remove(object.getID());
-            }
-          catch(Exception e)
-            {
-            }
-          return false;
-          }
-        
-        public boolean onMyRPObject(boolean changed,RPObject object)
-          {
-          if(changed)
-            {
-            player=object;
-            }
-            
-          return false;
-          }
-          
-        public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception)      
-          {
-          e.printStackTrace();
-          System.out.println(perception);
-          System.exit(-1);
-          return 0;
-          }
-        });
-        
-      client=new ariannexp()
-        {
-        protected void onPerception(MessageS2CPerception message)
-          {
-          try
-            {
-            handler.apply(message,world_objects);
-            }
-          catch(Exception e)
-            {
-            e.printStackTrace();
-            System.exit(-1);
-            }
-          }
-        
-        protected List<TransferContent> onTransferREQ(List<TransferContent> items)
-          {
-          for(TransferContent item: items)
-            {
-            item.ack=true;
-            }
-         
-          return items;
-          }
-        
-        protected void onTransfer(List<TransferContent> items)
-          {
-          System.out.println("Transfering ----");
-          for(TransferContent item: items)
-            {
-            System.out.println(item);
-            for(byte ele: item.data) System.out.print((char)ele);
-            
-            try
-              {
-              staticLayers.addLayer(new StringReader(new String(item.data)),item.name);
-              }
-            catch(java.io.IOException e)          
-              {
-              e.printStackTrace();
-              System.exit(0);
-              }
-            }
-          }
-     
-        protected void onAvailableCharacters(String[] characters)
-          {
-          chooseCharacter(characters[0]);
-          }
-        
-        protected void onServerInfo(String[] info)
-          {
-          }
-
-        protected void onError(int code, String reason)
-          {
-          System.out.println(reason);
-          }
-        };
-
-      staticLayers=new StaticGameLayers();
-      staticObjects=new StaticGameObjects();
+      client=new StendhalClient();
       }
 	
 	/**
@@ -284,8 +144,15 @@ public class j2DClient extends Canvas {
 		long lastLoopTime = System.currentTimeMillis();
         int fps=0;
         
+        StaticGameLayers staticLayers;
+        StaticGameObjects staticObjects;
+        RPObject player=null;    
+        
         if(runStandalone)
           {
+          staticLayers=new StaticGameLayers();
+          staticObjects=new StaticGameObjects();
+          
           try
             {
             staticLayers.addLayer(new BufferedReader(new FileReader("maps/city_layer0.txt")),"0");
@@ -314,8 +181,8 @@ public class j2DClient extends Canvas {
 
           player=new RPObject(new RPObject.ID(10,"village"));
           player.put("type","player");
-          player.put("x",20);
-          player.put("y",20);
+          player.put("x",30);
+          player.put("y",30);
           player.put("dx",0);
           player.put("dy",-0.20);
           try
@@ -338,6 +205,9 @@ public class j2DClient extends Canvas {
             }
       
           client.login("miguel","password");
+          
+          staticLayers=client.getStaticGameLayers();
+          staticObjects=client.getStaticGameObjects();
           }
 
         long oldTime=System.nanoTime();
@@ -353,20 +223,6 @@ public class j2DClient extends Canvas {
 			long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 			
-            if(runStandalone)
-              {
-			  try
-			    {
-                staticObjects.modify(player);
-                }
-              catch(AttributeNotFoundException e)
-                {
-                e.printStackTrace();              
-                }
-            
-              // cycle round asking each entity to move itself
-              }
-         
             staticObjects.move(delta);
             staticLayers.draw(screen);
             staticObjects.draw(screen);
@@ -426,7 +282,7 @@ public class j2DClient extends Canvas {
             action.put("type","move");
             
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {            
-                if(!leftPressed && player!=null)
+                if(!leftPressed)
                   {
                   action.put("dx",-0.5);                  
                   }
@@ -434,7 +290,7 @@ public class j2DClient extends Canvas {
                 leftPressed = true;
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                if(!rightPressed && player!=null)
+                if(!rightPressed)
                   {
                   action.put("dx",0.5);                  
                   }
@@ -442,7 +298,7 @@ public class j2DClient extends Canvas {
                 rightPressed = true;
             }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
-                if(!upPressed && player!=null)
+                if(!upPressed)
                   {
                   action.put("dy",-0.5);                  
                   }
@@ -450,7 +306,7 @@ public class j2DClient extends Canvas {
                 upPressed = true;
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                if(!downPressed && player!=null)
+                if(!downPressed)
                   {
                   action.put("dy",0.5);                  
                   }
@@ -476,35 +332,19 @@ public class j2DClient extends Canvas {
             action.put("type","move");
             
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {            
-                if(player!=null)
-                  {
                   action.put("dx",0);                  
-                  }
-                  
                 leftPressed = false;
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                if(player!=null)
-                  {
                   action.put("dx",0);                  
-                  }
-                  
                 rightPressed = false;
             }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
-                if(player!=null)
-                  {
                   action.put("dy",0);                  
-                  }
-                  
                 upPressed = false;
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                if(player!=null)
-                  {
                   action.put("dy",0);                  
-                  }
-                  
                 downPressed = false;
               }
             

@@ -105,11 +105,19 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\StendhalRPAction.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\StendhalRPRuleProcessor.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\StendhalRPWorld.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\StendhalRPZone.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -137,6 +137,26 @@ public class CollisionDetection
     double y=shape.getY();
     double w=shape.getWidth();
     double h=shape.getHeight();
+    
+    if(blocked[(int)y][(int)x]==1)
+      {
+      return true;
+      }
+      
+    if(blocked[(int)(y+h)][(int)(x+w)]==1)
+      {
+      return true;
+      }
+
+    if(blocked[(int)y][(int)(x+w)]==1)
+      {
+      return true;
+      }
+
+    if(blocked[(int)(y+h)][(int)x]==1)
+      {
+      return true;
+      }
 
     for(double i=x;i<=x+w;i+=1)
       {
