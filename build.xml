@@ -6,13 +6,17 @@
   <property name="sprites" value="sprites"/>
   <property name="build" value="build"/>
   <property name="lib"  value="lib"/>
+  <property name="docs" value="javadocs"/>
+
+  <!-- EDIT HERE TO CONFIGURE YOUR JAR FILE NAMES -->
+  <property name="marauroa_jar" value="marauroa.jar"/>
+  <!-- [END] -->
   
-  <property name="marauroa" value="${libdir}/marauroa.jar"/>
+  <property name="marauroa" value="${libdir}/${marauroa_jar}"/>
   <property name="classpath" value="${build};${marauroa}"/>
   
   <property name="server_jarname" value="stendhal-server-${version}.jar"/>
   <property name="client_jarname" value="stendhal-${version}.jar"/>
-  <property name="docs" value="javadocs"/>
 
   <target name="clean">
     <delete dir="${build}"/>
@@ -24,38 +28,6 @@
     <mkdir dir="${build}" />
     <mkdir dir="${lib}" />
     <mkdir dir="${docs}" />
-  </target>
-
-  <target name="server_compile" depends="init">
-    <delete dir="${build}"/>
-    <mkdir dir="${build}"/>
-
-    <copy todir="${build}/games/stendhal/server/maps">
-      <fileset dir="${maps}"/>
-    </copy>
-
-    <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
-           includes="**/games/**" excludes="**/client/**">
-      <classpath>
-        <pathelement path="${classpath}"/>
-      </classpath>    
-    </javac>
-  </target>
-
-  <target name="client_compile" depends="init">
-    <delete dir="${build}"/>
-    <mkdir dir="${build}"/>
-
-    <copy todir="${build}/sprites">
-      <fileset dir="${sprites}"/>
-    </copy>
-
-    <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
-           includes="**/games/**" excludes="**/server/**">
-      <classpath>
-        <pathelement path="${classpath}"/>
-      </classpath>    
-    </javac>
   </target>
 
   <target name="compile" depends="init">
@@ -77,8 +49,55 @@
     </javac>
   </target>
 
+  <target name="docs" depends="compile">
+    <javadoc packagenames="games.stendhal.*"           
+           defaultexcludes="yes"
+           destdir="${docs}"
+           author="true"
+           version="true"
+           use="true"
+	   classpath="${classpath}"
+           windowtitle="Marauroa API Documentation Version: ${version}">
+      <fileset dir="${src}">
+          <include name="**/*.java"/>
+      </fileset>
+    </javadoc>
+  </target>
+
+  <target name="server_compile" depends="init">
+    <delete dir="${build}"/>
+    <mkdir dir="${build}"/>
+
+    <copy todir="${build}/games/stendhal/server/maps">
+      <fileset dir="${maps}"/>
+    </copy>
+
+    <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
+           includes="**/games/**" excludes="**/client/**">
+      <classpath>
+        <pathelement path="${classpath}"/>
+      </classpath>    
+    </javac>
+  </target>
+
   <target name="server_jar" depends="server_compile">
     <jar jarfile="${lib}/${server_jarname}" basedir="${build}/"/>    
+  </target>
+
+  <target name="client_compile" depends="init">
+    <delete dir="${build}"/>
+    <mkdir dir="${build}"/>
+
+    <copy todir="${build}/sprites">
+      <fileset dir="${sprites}"/>
+    </copy>
+
+    <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
+           includes="**/games/**" excludes="**/server/**">
+      <classpath>
+        <pathelement path="${classpath}"/>
+      </classpath>    
+    </javac>
   </target>
 
   <target name="client_jar" depends="client_compile" if="marauroa_build">
@@ -98,21 +117,6 @@
   </target>
 
   <target name="jar" depends="sign_client_jar,server_jar"/>
-
-  <target name="docs" depends="compile">
-    <javadoc packagenames="games.stendhal.*"           
-           defaultexcludes="yes"
-           destdir="${docs}"
-           author="true"
-           version="true"
-           use="true"
-	   classpath="${classpath}"
-           windowtitle="Marauroa API Documentation Version: ${version}">
-      <fileset dir="${src}">
-          <include name="**/*.java"/>
-      </fileset>
-    </javadoc>
-  </target>
 
   <target name="release" depends="release_binary,release_source"/>
   <target name="release_binary" depends="release_server_binary,release_client_binary"/>
