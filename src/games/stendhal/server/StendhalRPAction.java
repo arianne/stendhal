@@ -30,19 +30,7 @@ public class StendhalRPAction
     StendhalRPAction.world=world;
     }
     
-  private static Rectangle2D getCollisionArea(String type, double x, double y)
-    {
-    if(type.equals("player"))
-      {
-      return new Rectangle.Double(x+0.5,y+1.3,0.87,0.6);
-      }
-    else
-      {
-      return new Rectangle.Double(x,y,1,2);
-      }
-    }
-
-  static void face(RPObject object,double dx,double dy) throws Exception
+  static void face(RPObject object,double dx,double dy)
     {
     if(dx!=0)
       {
@@ -73,7 +61,7 @@ public class StendhalRPAction
       }
     }
     
-  static boolean move(RPObject object) throws Exception
+  static boolean move(RPObject object) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::move",">");
 
@@ -83,10 +71,9 @@ public class StendhalRPAction
     double dy=object.getDouble("dy");
     boolean stopped=(dx==0 && dy==0);
     
-    Rectangle2D collisionArea=getCollisionArea(object.get("type"),x+dx,y+dy);
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(object.getID());
     
-    if(zone.collides(collisionArea)==false)
+    if(zone.collides(object,x+dx,y+dy)==false)
       {
       Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
       if(dx!=0) object.put("x",x+dx);
@@ -109,7 +96,7 @@ public class StendhalRPAction
     return !stopped;
     }
 
-  static void transferContent(RPObject object) throws Exception
+  static void transferContent(RPObject object) throws AttributeNotFoundException 
     {
     Logger.trace("StendhalRPAction::transferContent",">");
 
@@ -119,7 +106,7 @@ public class StendhalRPAction
     Logger.trace("StendhalRPAction::transferContent","<");
     }
 
-  static void changeZone(RPObject object, String destination) throws Exception
+  static void changeZone(RPObject object, String destination) throws AttributeNotFoundException, NoRPZoneException
     {    
     Logger.trace("StendhalRPAction::changeZone",">");
 

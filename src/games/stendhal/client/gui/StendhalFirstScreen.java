@@ -18,9 +18,9 @@ import games.stendhal.client.*;
 public class StendhalFirstScreen extends JFrame
 {
 	// Variables declaration
-	private JButton LoginButton;
-	private JButton CreateAccountButton;
-	private JButton ExitButton;
+	private JButton loginButton;
+	private JButton createAccountButton;
+	private JButton exitButton;
 	private JPanel contentPane;
 	// End of variables declaration
     private StendhalClient client;
@@ -52,9 +52,9 @@ public class StendhalFirstScreen extends JFrame
 	 */
 	private void initializeComponent()
 	{
-		LoginButton = new JButton();
-		CreateAccountButton = new JButton();
-		ExitButton = new JButton();
+		loginButton = new JButton();
+		createAccountButton = new JButton();
+		exitButton = new JButton();
 		this.setContentPane(new JPanel()
 		  {
 		  {
@@ -71,11 +71,11 @@ public class StendhalFirstScreen extends JFrame
         contentPane = (JPanel)this.getContentPane();
 
 		//
-		// LoginButton
+		// loginButton
 		//
-		LoginButton.setText("Login to Stendhal");
-		LoginButton.setToolTipText("Press this button to Login to a Stendhal server");
-		LoginButton.addActionListener(new ActionListener() {
+		loginButton.setText("Login to Stendhal");
+		loginButton.setToolTipText("Press this button to Login to a Stendhal server");
+		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
             new LoginDialog(StendhalFirstScreen.this, client);
@@ -83,22 +83,22 @@ public class StendhalFirstScreen extends JFrame
 
 		});
 		//
-		// CreateAccountButton
+		// createAccountButton
 		//
-		CreateAccountButton.setText("Create an account");
-		CreateAccountButton.setToolTipText("Press this button to create an account on a stendhal server.");
-        CreateAccountButton.setEnabled(false);
-		CreateAccountButton.addActionListener(new ActionListener() {
+		createAccountButton.setText("Create an account");
+		createAccountButton.setToolTipText("Press this button to create an account on a stendhal server.");
+        createAccountButton.setEnabled(false);
+		createAccountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
 			}
 
 		});
 		//
-		// ExitButton
+		// exitButton
 		//
-		ExitButton.setText("Exit");
-		ExitButton.addActionListener(new ActionListener() {
+		exitButton.setText("Exit");
+		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
 				System.exit(0);
@@ -118,14 +118,14 @@ public class StendhalFirstScreen extends JFrame
 		// contentPane
 		//
 		contentPane.setLayout(null);
-        addComponent(contentPane, LoginButton, 220,340,200,32);
-        addComponent(contentPane, CreateAccountButton, 220,380,200,32);
-		addComponent(contentPane, ExitButton, 220,420,200,32);
+        addComponent(contentPane, loginButton, 220,340,200,32);
+        addComponent(contentPane, createAccountButton, 220,380,200,32);
+		addComponent(contentPane, exitButton, 220,420,200,32);
 		//
 		// LoginGUI
 		//
         setTitle("Stendhal Java 2D");
-        this.setLocation(new Point(38, 135));
+        this.setLocation(new Point(100, 100));
         
         this.setIconImage(new ImageIcon("data/StendhalIcon.gif").getImage());
 		pack();

@@ -73,10 +73,50 @@ public class StendhalRPZone extends MarauroaRPZone
     return contents;
     }
   
-  public boolean collides(Rectangle2D object)  
+  private static Rectangle2D getCollisionArea(String type, double x, double y)
     {
-    /** TODO: Think about porting to RPObject instead of rectangle. */
-    return collisionMap.collides(object);
+    Rectangle2D rect=new Rectangle.Double();
+    getCollisionArea(rect,type,x,y);
+    return rect;
+    }
+
+  private static void getCollisionArea(Rectangle2D rect,String type, double x, double y)
+    {
+    if(type.equals("player"))
+      {
+      rect.setRect(x+0.5,y+1.3,0.87,0.6);
+      }
+    else
+      {
+      rect.setRect(x,y,1,2);
+      }
+    }
+
+  public boolean collides(RPObject object, double x, double y) throws AttributeNotFoundException  
+    {
+    Rectangle2D area=getCollisionArea(object.get("type"),x,y);
+    
+    if(collisionMap.collides(area)==false)
+      {
+      Rectangle2D otherarea=new Rectangle.Double();
+      for(RPObject other: objects.values())
+        {
+        if(!other.getID().equals(object.getID()))
+          {
+          getCollisionArea(otherarea,other.get("type"),other.getDouble("x"),other.getDouble("y"));
+          if(area.intersects(otherarea))
+            {
+            return true;
+            }
+          }
+        }
+      
+      return false;
+      }   
+    else
+      {
+      return true;
+      }    
     }
 
   private static byte[] getBytesFromFile(String file) throws IOException 

@@ -13,10 +13,12 @@ public class StendhalKeyInputHandler extends KeyAdapter
   private Map<Integer, Object> pressed;
   private StendhalClient client;
   private boolean pressedESC;
+  private long delta;
   
   public StendhalKeyInputHandler(StendhalClient client)
     {
     super();
+    delta=System.currentTimeMillis();
     this.client=client;
     pressed=new HashMap<Integer,Object>();
     }
@@ -58,32 +60,71 @@ public class StendhalKeyInputHandler extends KeyAdapter
       action.put("dir",3);
       client.send(action);
       }
-    else if(e.getKeyCode()==KeyEvent.VK_LEFT)
+    else if(e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT)
       {
+      RPObject object=client.getPlayer();
+      
+      double dx=0;
+      try
+        {
+        dx=object.getDouble("dx");
+        }
+      catch(AttributeNotFoundException ex)
+        {
+        Logger.thrown("StendhalKeyInputHandler::onKeyPressed","X",ex);
+        }
+        
+      if(dx==0) 
+        {
+        dx=(e.getKeyCode()==KeyEvent.VK_LEFT?-1:1)*0.4;
+        }
+      else if(Math.abs(dx)<0.8)
+        {
+        System.out.println ("Accelerating! dx="+dx);
+        dx=dx+(e.getKeyCode()==KeyEvent.VK_LEFT?-1:1)*0.1;
+        }
+      else
+        {
+        dx=1;
+        return;        
+        }
+        
       action=new RPAction();
       action.put("type","move");
-      action.put("dx",-0.8);
+      action.put("dx",dx);
       client.send(action);
       }
-    else if(e.getKeyCode()==KeyEvent.VK_RIGHT)
+    else if(e.getKeyCode()==KeyEvent.VK_UP || e.getKeyCode()==KeyEvent.VK_DOWN)
       {
+      RPObject object=client.getPlayer();
+      
+      double dy=0;
+      try
+        {
+        dy=object.getDouble("dy");
+        }
+      catch(AttributeNotFoundException ex)
+        {
+        Logger.thrown("StendhalKeyInputHandler::onKeyPressed","X",ex);
+        }
+        
+      if(dy==0) 
+        {
+        dy=(e.getKeyCode()==KeyEvent.VK_UP?-1:1)*0.4;
+        }
+      else if(Math.abs(dy)<0.8)
+        {
+        dy=dy+(e.getKeyCode()==KeyEvent.VK_UP?-1:1)*0.1;
+        }
+      else
+        {
+        dy=1;
+        return;
+        }
+        
       action=new RPAction();
       action.put("type","move");
-      action.put("dx",0.8);
-      client.send(action);
-      }
-    else if(e.getKeyCode()==KeyEvent.VK_UP)
-      {
-      action=new RPAction();
-      action.put("type","move");
-      action.put("dy",-0.8);
-      client.send(action);
-      }
-    else if(e.getKeyCode()==KeyEvent.VK_DOWN)
-      {
-      action=new RPAction();
-      action.put("type","move");
-      action.put("dy",0.8);
+      action.put("dy",dy);
       client.send(action);
       }
     else if(e.getKeyCode()==KeyEvent.VK_ENTER && e.isControlDown())
@@ -103,16 +144,30 @@ public class StendhalKeyInputHandler extends KeyAdapter
     switch(e.getKeyCode())
       {
       case KeyEvent.VK_LEFT:
-        action.put("dx",0);
-        break;
       case KeyEvent.VK_RIGHT:
         action.put("dx",0);
+        client.getPlayer().put("dx",0);
+        try
+          {
+          client.getGameObjects().modify(client.getPlayer());
+          }
+        catch(AttributeNotFoundException ex)
+          {
+          Logger.thrown("StendhalKeyInputHandler::onKeyReleased","X",ex);
+          }
         break;
       case KeyEvent.VK_UP:
-        action.put("dy",0);
-        break;
       case KeyEvent.VK_DOWN:      
         action.put("dy",0);
+        client.getPlayer().put("dy",0);
+        try
+          {
+          client.getGameObjects().modify(client.getPlayer());
+          }
+        catch(Exception ex)
+          {
+          Logger.thrown("StendhalKeyInputHandler::onKeyReleased","X",ex);
+          }
         break;
       }
 
@@ -125,8 +180,10 @@ public class StendhalKeyInputHandler extends KeyAdapter
     
   public void keyPressed(KeyEvent e) 
     {
-    if(!pressed.containsKey(new Integer(e.getKeyCode())))
+//    if(!pressed.containsKey(new Integer(e.getKeyCode())))
+    if(System.currentTimeMillis()-delta>100)
       {
+      delta=System.currentTimeMillis();
       onKeyPressed(e);
       pressed.put(new Integer(e.getKeyCode()),null);
       }      

@@ -71,60 +71,23 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     try
       {
+      RPObject object=world.get(id);
+      
       if(action.get("type").equals("move"))
         {
-        Logger.trace("StendhalRPRuleProcessor::execute","D","Got Move action: "+action.toString());
-        RPObject object=world.get(id);
-        if(action.has("dx")) 
-          { 
-          object.put("dx",action.get("dx"));
-          }
-          
-        if(action.has("dy")) 
-          {
-          object.put("dy",action.get("dy"));
-          }
-        
-        if(object.getDouble("dx")==0 && object.getDouble("dy")==0)
-          {
-          object.put("stopped","");
-          }
-        else
-          {
-          if(object.has("stopped")) object.remove("stopped");
-          }
-        
-        StendhalRPAction.face(object,object.getDouble("dx"),object.getDouble("dy"));
-        world.modify(object);
+        move(object,action);
         }
       else if(action.get("type").equals("change"))
         {
-        RPObject object=world.get(id);
-        if(action.has("dest") && !object.get("zoneid").equals(action.get("dest")))
-          {
-          StendhalRPAction.changeZone(object,action.get("dest"));
-          StendhalRPAction.transferContent(object);
-          }
+        changeZone(object,action);
         }
       else if(action.get("type").equals("chat"))
         {
-        if(action.has("text")) 
-          {
-          RPObject object=world.get(id);
-          object.put("text",action.get("text"));
-          world.modify(object);
-          
-          playersObjectRmText.add(object);
-          }
+        chat(object,action);
         }          
       else if(action.get("type").equals("face"))
         {
-        if(action.has("dir")) 
-          {
-          RPObject object=world.get(id);
-          object.put("dir",action.get("dir"));
-          world.modify(object);
-          }
+        face(object,action);
         }          
       }
     catch(Exception e)
@@ -140,6 +103,71 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     return status;
     }
   
+  private void move(RPObject object, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Logger.trace("StendhalRPRuleProcessor::move",">");
+    if(action.has("dx")) 
+      { 
+      double dx=action.getDouble("dx");
+      object.put("dx",dx<1?dx:1);
+      }
+      
+    if(action.has("dy")) 
+      {
+      double dy=action.getDouble("dy");
+      object.put("dy",dy<1?dy:1);
+      }
+    
+    if(object.getDouble("dx")==0 && object.getDouble("dy")==0)
+      {
+      object.put("stopped","");
+      }
+    else
+      {
+      if(object.has("stopped")) object.remove("stopped");
+      }
+    
+    StendhalRPAction.face(object,object.getDouble("dx"),object.getDouble("dy"));
+    world.modify(object);
+    
+    Logger.trace("StendhalRPRuleProcessor::move","<");
+    }
+   
+  private void changeZone(RPObject object, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Logger.trace("StendhalRPRuleProcessor::changeZone",">");
+    if(action.has("dest") && !object.get("zoneid").equals(action.get("dest")))
+      {
+      StendhalRPAction.changeZone(object,action.get("dest"));
+      StendhalRPAction.transferContent(object);
+      }
+    Logger.trace("StendhalRPRuleProcessor::changeZone","<");
+    }
+  
+  private void chat(RPObject object, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Logger.trace("StendhalRPRuleProcessor::chat",">");
+    if(action.has("text")) 
+      {
+      object.put("text",action.get("text"));
+      world.modify(object);
+      
+      playersObjectRmText.add(object);
+      }
+    Logger.trace("StendhalRPRuleProcessor::chat","<");
+    }
+
+  private void face(RPObject object, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Logger.trace("StendhalRPRuleProcessor::face",">");
+    if(action.has("dir")) 
+      {
+      object.put("dir",action.get("dir"));
+      world.modify(object);
+      }
+    Logger.trace("StendhalRPRuleProcessor::face","<");
+    }
+
   /** Notify it when a new turn happens */
   synchronized public void beginTurn()
     {

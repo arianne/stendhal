@@ -18,13 +18,13 @@ import marauroa.client.*;
 public class LoginDialog extends JDialog
 {
 	// Variables declaration
-	private JLabel UsernameLabel;
-	private JLabel ServerLabel;
-	private JLabel PasswordLabel;
-	private JTextField UsernameField;
-	private JPasswordField PasswordField;
-	private JComboBox ServerField;
-	private JButton LoginButton;
+	private JLabel usernameLabel;
+	private JLabel serverLabel;
+	private JLabel passwordLabel;
+	private JTextField usernameField;
+	private JPasswordField passwordField;
+	private JComboBox serverField;
+	private JButton loginButton;
 	private JPanel contentPane;
 	// End of variables declaration
 	private StendhalClient client;
@@ -54,42 +54,42 @@ public class LoginDialog extends JDialog
 	 */
 	private void initializeComponent()
 	{
-		UsernameLabel = new JLabel();
-		ServerLabel = new JLabel();
-		PasswordLabel = new JLabel();
-		UsernameField = new JTextField();
-		PasswordField = new JPasswordField();
-		ServerField = new JComboBox();
-    ServerField.setEditable(true);
-		LoginButton = new JButton();
+		usernameLabel = new JLabel();
+		serverLabel = new JLabel();
+		passwordLabel = new JLabel();
+		usernameField = new JTextField();
+		passwordField = new JPasswordField();
+		serverField = new JComboBox();
+    serverField.setEditable(true);
+		loginButton = new JButton();
 		contentPane = (JPanel)this.getContentPane();
 
 		//
-		// UsernameLabel
+		// usernameLabel
 		//
-		UsernameLabel.setText("Type your username");
+		usernameLabel.setText("Type your username");
 		//
-		// ServerLabel
+		// serverLabel
 		//
-		ServerLabel.setText("Choose your Stendhal Server");
+		serverLabel.setText("Choose your Stendhal Server");
 		//
-		// PasswordLabel
+		// passwordLabel
 		//
-		PasswordLabel.setText("Type your password");
+		passwordLabel.setText("Type your password");
 		//
-		// ServerField
+		// serverField
 		//
-		ServerField.addItem("stendhal.game-server.cc");
-		ServerField.addItem("localhost");
+		serverField.addItem("stendhal.game-server.cc");
+		serverField.addItem("localhost");
 
 		//
-		// LoginButton
+		// loginButton
 		//
-		LoginButton.setText("Login to Server");
-		LoginButton.addActionListener(new ActionListener() {
+		loginButton.setText("Login to Server");
+		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				LoginButton_actionPerformed(e);
+				loginButton_actionPerformed(e);
 			}
 
 		});
@@ -98,14 +98,14 @@ public class LoginDialog extends JDialog
 		//
 		contentPane.setLayout(null);
 		contentPane.setBorder(BorderFactory.createEtchedBorder());
-        addComponent(contentPane, ServerLabel,   10,10,190,22);
-        addComponent(contentPane, UsernameLabel, 10,45,190,20);
-		addComponent(contentPane, PasswordLabel, 10,70,190,20);
-        addComponent(contentPane, ServerField,   200,10,190,22);
-        addComponent(contentPane, UsernameField, 200,45,190,20);
-		addComponent(contentPane, PasswordField, 200,70,190,20);
+        addComponent(contentPane, serverLabel,   10,10,190,22);
+        addComponent(contentPane, usernameLabel, 10,45,190,20);
+		addComponent(contentPane, passwordLabel, 10,70,190,20);
+        addComponent(contentPane, serverField,   200,10,190,22);
+        addComponent(contentPane, usernameField, 200,45,190,20);
+		addComponent(contentPane, passwordField, 200,70,190,20);
 		
-		addComponent(contentPane, LoginButton,   200,120,190,30);
+		addComponent(contentPane, loginButton,   200,120,190,30);
 		//
 		// LoginDialog
 		//
@@ -122,11 +122,11 @@ public class LoginDialog extends JDialog
 		container.add(c);
 	}
 
-	private void LoginButton_actionPerformed(ActionEvent e)
+	private void loginButton_actionPerformed(ActionEvent e)
 	{
-        String username=UsernameField.getText();
-        String password=new String(PasswordField.getPassword());
-        String server=(String)ServerField.getSelectedItem();
+        String username=usernameField.getText();
+        String password=new String(passwordField.getPassword());
+        String server=(String)serverField.getSelectedItem();
 
     try
       {

@@ -82,7 +82,10 @@ public class j2DClient extends JFrame
     panel.add(playerChatText);
         
 		
-	// finally make the window visible 
+    this.setLocation(new Point(100, 100));
+    this.setIconImage(new ImageIcon("data/StendhalIcon.gif").getImage());
+   
+    // finally make the window visible 
 	pack();
 	setResizable(false);
 	setVisible(true);
@@ -102,6 +105,18 @@ public class j2DClient extends JFrame
     // add a key input system (defined below) to our canvas so we can respond to key pressed    
     playerChatText.addKeyListener(new StendhalKeyInputHandler(client));
     
+    canvas.addFocusListener(new FocusListener()
+      {
+      public void focusGained(FocusEvent e)
+        {
+        playerChatText.requestFocus();
+        }
+            
+      public void focusLost(FocusEvent e)
+        {
+        }
+      });        
+      
     addFocusListener(new FocusListener()
       {
       public void focusGained(FocusEvent e)
@@ -112,9 +127,7 @@ public class j2DClient extends JFrame
       public void focusLost(FocusEvent e)
         {
         }
-      });
-        
-    this.setIconImage(new ImageIcon("data/StendhalIcon.gif").getImage());
+      });        
    
     // request the focus so key events come to us
     playerChatText.requestFocus();
