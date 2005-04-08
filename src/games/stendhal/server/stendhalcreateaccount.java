@@ -29,8 +29,6 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
   public stendhalcreateaccount()
     {
     super();
-
-    Configuration.setConfigurationFile("stendhal.ini");
     }
     
   public RPObject populatePlayerRPObject(IPlayerDatabase playerDatabase) throws Exception

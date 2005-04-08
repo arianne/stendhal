@@ -72,11 +72,11 @@ public class StendhalRPZone extends MarauroaRPZone
     entryPoints.add(0,entry);
     }  
   
-  public void placeObjectAtEntryPoint(RPObject object) throws NoEntryPointException
+  public void placeObjectAtEntryPoint(RPObject object)
     {
     if(entryPoints.size()==0)
       {
-      throw new NoEntryPointException();
+      return;
       }
       
     String entryPoint=entryPoints.get(0);
