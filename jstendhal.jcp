@@ -56,9 +56,6 @@
 			<folderitem>
 				<path>maps</path>
 			</folderitem>
-			<folderitem>
-				<path>jars</path>
-			</folderitem>
 			<fileitem>
 				<path>build.xml</path>
 				<source>true</source>
@@ -227,12 +224,11 @@
 				<path>src\games\stendhal\common\CollisionDetection.java</path>
 				<source>true</source>
 			</fileitem>
-			<fileitem>
-				<path>jars\marauroa.jar</path>
-				<source>true</source>
-			</fileitem>
 		</include>
 		<exclude>
+			<folderitem>
+				<path>jars</path>
+			</folderitem>
 			<folderitem>
 				<path>tiled</path>
 			</folderitem>
