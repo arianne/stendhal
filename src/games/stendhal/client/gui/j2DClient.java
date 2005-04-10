@@ -145,6 +145,9 @@ public class j2DClient extends JFrame
     screen=GameScreen.get();
 
     canvas.addMouseListener(new StendhalMouseInputHandler(client));
+    
+    client.setGameLogDialog(new GameLogDialog(this));    
+
         
 	// Start the main game loop, note: this method will not
 	// return until the game has finished running. Hence we are
@@ -296,7 +299,7 @@ public class j2DClient extends JFrame
         String[] rejected={};
         Logger.setRejected(rejected);
         
-        StendhalClient client=new StendhalClient(true);
+        StendhalClient client=StendhalClient.get();
         try
           {
           client.connect(host,32160);

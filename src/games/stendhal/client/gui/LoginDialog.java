@@ -103,11 +103,11 @@ public class LoginDialog extends JDialog
 		//
 		contentPane.setLayout(null);
 		contentPane.setBorder(BorderFactory.createEtchedBorder());
-        addComponent(contentPane, serverLabel,   10,10,190,22);
-        addComponent(contentPane, usernameLabel, 10,45,190,20);
+    addComponent(contentPane, serverLabel,   10,10,190,22);
+    addComponent(contentPane, usernameLabel, 10,45,190,20);
 		addComponent(contentPane, passwordLabel, 10,70,190,20);
-        addComponent(contentPane, serverField,   200,10,190,22);
-        addComponent(contentPane, usernameField, 200,45,190,20);
+    addComponent(contentPane, serverField,   200,10,190,22);
+    addComponent(contentPane, usernameField, 200,45,190,20);
 		addComponent(contentPane, passwordField, 200,70,190,20);
 		
 		addComponent(contentPane, loginButton,   200,120,190,30);
@@ -132,7 +132,7 @@ public class LoginDialog extends JDialog
         String username=usernameField.getText();
         String password=new String(passwordField.getPassword());
         String server=(String)serverField.getSelectedItem();
-
+        
     try
       {
       client.connect(server,32160);

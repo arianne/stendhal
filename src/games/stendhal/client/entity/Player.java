@@ -74,10 +74,8 @@ public class Player extends AnimatedGameEntity
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    System.out.println ("1");
     if(changes.has("target"))
       {     
-      System.out.println ("Request stop fighting");
       gameObjects.attackStop(this,new RPObject.ID(object.getInt("target"),object.get("zoneid")));
       }
     }
@@ -116,10 +114,12 @@ public class Player extends AnimatedGameEntity
       
       if(object.getInt("risk")>0)
         {
+        StendhalClient.get().addEventLine(name+" striked and damaged with "+object.get("damage")+" points to "+object.get("target"));
         System.out.println ("RPObject striked and damaged with "+object.get("damage")+" points");
         }
       else
         {
+        StendhalClient.get().addEventLine(name+" missed striking to "+object.get("target"));
         System.out.println ("RPObject missed");
         }
       }
@@ -142,6 +142,8 @@ public class Player extends AnimatedGameEntity
     if(object.has("text") && !object.get("text").equals(""))    
       {
       String text=object.get("text");
+      StendhalClient.get().addEventLine("<"+name+">: "+text);
+      
       //TODO: A hack to render properly the text... I think it is not a good idea to 
       // modify the RPObject itself... but...
       object.put("text","");

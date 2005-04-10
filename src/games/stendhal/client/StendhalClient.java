@@ -19,6 +19,8 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Rectangle;
 
+import games.stendhal.client.gui.*;
+
 import marauroa.client.*;
 import marauroa.client.net.*;
 import marauroa.common.*;
@@ -38,16 +40,40 @@ public class StendhalClient extends ariannexp
   private GameObjects gameObjects;
   
   private boolean keepRunning=true;
+  private GameLogDialog dialog;
   
-  public StendhalClient(boolean logging)
+  private static StendhalClient client;
+  
+  public static StendhalClient get()
+    {
+    if(client==null)
+      {
+      client=new StendhalClient(true);     
+      }
+      
+    return client;
+    }
+    
+  private StendhalClient(boolean logging)
     {
     super(logging);
     world_objects=new HashMap<RPObject.ID, RPObject>();
     staticLayers=new StaticGameLayers();
     gameObjects=new GameObjects(staticLayers);   
     handler=new PerceptionHandler(new StendhalPerceptionListener()); 
+    dialog=null;
     }
   
+  public void setGameLogDialog(GameLogDialog dialog)
+    {
+    this.dialog=dialog;
+    }
+  
+  public void addEventLine(String text)
+    {
+    this.dialog.addLine(text);
+    }
+    
   public StaticGameLayers getStaticGameLayers()
     {
     return staticLayers;

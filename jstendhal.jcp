@@ -153,6 +153,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\GameLogDialog.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\j2DClient.java</path>
 				<source>true</source>
 			</fileitem>

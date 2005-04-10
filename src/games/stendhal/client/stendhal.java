@@ -20,7 +20,7 @@ public class stendhal extends Thread
   
   public static void main(String args[]) 
     {
-    StendhalClient client=new StendhalClient(false);
+    StendhalClient client=StendhalClient.get();
     new StendhalFirstScreen(client);
     
     while(!doLogin)
