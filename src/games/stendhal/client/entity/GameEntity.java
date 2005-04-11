@@ -30,7 +30,40 @@ public class GameEntity extends Entity
   protected Sprite sprite;
   private java.util.List<Sprite> damageSprites;
   private java.util.List<Long> damageSpritesTimes;
+  
   private boolean attacked;
+  private enum RESOLUTION
+    {
+    HITTED(0),
+    BLOCKED(1),
+    MISSED(2);
+    
+    private final int val;
+    RESOLUTION(int val)
+      {
+      this.val=val;
+      }
+     
+    public int get()
+      {
+      return val;
+      }
+    };
+  
+  private RESOLUTION resolution;
+  
+  private static Sprite hitted;
+  private static Sprite blocked;
+  private static Sprite missed;
+  
+  static
+    {
+    SpriteStore st=SpriteStore.get();
+    
+    hitted=st.getSprite("sprites/hitted.gif");
+    blocked=st.getSprite("sprites/blocked.gif");
+    missed=st.getSprite("sprites/missed.gif");
+    }
   
   protected GameObjects gameObjects;
   
@@ -38,7 +71,7 @@ public class GameEntity extends Entity
   protected static String translate(String type)
     {
     return "sprites/"+type+".gif";
-    }
+    }  
 
   /** Create a new game entity based on the arianne object passed */
   public GameEntity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
@@ -84,8 +117,18 @@ public class GameEntity extends Entity
     {
     attacked=true;
     
-    if(damage>0)
+    if(risk<=0)
       {
+      resolution=RESOLUTION.MISSED;
+      }
+    else if(damage<=0)
+      {
+      resolution=RESOLUTION.BLOCKED;
+      }    
+    else
+      {
+      resolution=RESOLUTION.HITTED;
+      
       GameScreen screen=GameScreen.get();      
       Graphics g2d=screen.expose();
       String damageString=Integer.toString(damage);
@@ -142,10 +185,30 @@ public class GameEntity extends Entity
       p=screen.invtranslate(p);
       g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
       }
-    
+
     screen.draw(sprite,x,y);
 
-    if(damageSprites!=null)  // Draw the damage done
+    if(attacked)
+      {
+      Rectangle2D rect=getArea();
+      double sx=rect.getMaxX();
+      double sy=rect.getMaxY();
+        
+      switch(resolution)
+        {
+        case BLOCKED:          
+          screen.draw(blocked,sx,sy);
+          break;
+        case MISSED:
+          screen.draw(missed,sx,sy);
+          break;
+        case HITTED:
+          screen.draw(hitted,sx,sy);
+          break;
+        }
+      }
+    
+    if(damageSprites!=null && damageSprites.size()>0)  // Draw the damage done
       {
       long current=System.currentTimeMillis();
 
