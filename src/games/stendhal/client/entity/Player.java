@@ -155,15 +155,18 @@ public class Player extends AnimatedGameEntity
       int numLines=(lineLengthPixels/240)+1;
       
       GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-      Image image = gc.createCompatibleImage(((lineLengthPixels<240)?lineLengthPixels:240),16*numLines,Transparency.BITMASK);
+      Image image = gc.createCompatibleImage(((lineLengthPixels<240)?lineLengthPixels:240)+6,16*numLines,Transparency.BITMASK);
       
       Graphics g=image.getGraphics();
-      g.setColor(Color.yellow);
+      g.setColor(Color.white);
+      g.fillRoundRect(0,0,((lineLengthPixels<240)?lineLengthPixels:240)+6,16*numLines,3,3);
+
+      g.setColor(Color.black);
       int lineLength=text.length()/numLines;
       for(int i=0;i<numLines;i++)
         {
         String line=text.substring(i*lineLength,(i+1)*lineLength);
-        g.drawString(line,0,i*16+10);
+        g.drawString(line,3,i*16+12);
         }
         
       textImages.add(new Sprite(image));      
