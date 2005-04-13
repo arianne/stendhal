@@ -58,6 +58,9 @@ public class SellerNPC extends NPC
         sheep.sety(player.gety()+2);
         zone.assignRPObjectID(sheep);
         
+        rp.addNPC(sheep);
+        world.add(sheep);
+        
         player.setSheep(sheep);        
         world.modify(player);
         Logger.trace("SellerNPC::chat","D","Sold a sheep to player");
@@ -74,7 +77,7 @@ public class SellerNPC extends NPC
     return false;
     }
 
-  public boolean move()
+  public boolean move(RPWorld world)
     {    
     if(getdy()==0)
       {

@@ -28,6 +28,7 @@ public class Player extends RPEntity
       player.isA("rpentity");
       player.add("text",RPClass.STRING);
       player.add("target",RPClass.INT);
+      player.add("sheep",RPClass.INT);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -70,9 +71,9 @@ public class Player extends RPEntity
    
   public boolean hasSheep()
     {
-    if(hasSlot("flock"))
+    if(hasSlot("#flock"))
       {
-      RPSlot slot=getSlot("flock");
+      RPSlot slot=getSlot("#flock");
       return slot.size()>0;
       }
     else
@@ -83,13 +84,15 @@ public class Player extends RPEntity
   
   public void setSheep(Sheep sheep)
     {
-    if(!hasSlot("flock"))
+    if(!hasSlot("#flock"))
       {
-      addSlot(new RPSlot("flock"));
+      addSlot(new RPSlot("#flock"));
       }
      
-    RPSlot slot=getSlot("flock");
+    RPSlot slot=getSlot("#flock");
     slot.add(sheep);
+    
+    put("sheep",sheep.getID().getObjectID());
     }
   
   public static class NoSheepException extends Exception
@@ -102,9 +105,9 @@ public class Player extends RPEntity
   
   public Sheep getSheep() throws NoSheepException
     {
-    if(hasSlot("flock"))
+    if(hasSlot("#flock"))
       {
-      RPSlot slot=getSlot("flock");
+      RPSlot slot=getSlot("#flock");
       if(slot.size()>0)
         {
         Sheep sheep=new Sheep(slot.get(),this);

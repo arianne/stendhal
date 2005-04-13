@@ -14,6 +14,7 @@ package games.stendhal.server.entity;
 
 import marauroa.common.*;
 import marauroa.common.game.*;
+import marauroa.server.game.*;
 
 public class Sheep extends NPC
   {
@@ -65,15 +66,40 @@ public class Sheep extends NPC
     return weight;
     }
 
-  public boolean move()
+  public boolean move(RPWorld world)
     {
-    if(i++%10==0)
+    if(i++%5==0)
       {
-      setdx(Math.random()*0.8-0.4);
-      setdy(Math.random()*0.8-0.4);
-      return true;
+      if(owner==null)
+        {
+        setdx(Math.random()*0.4-0.2);
+        setdy(Math.random()*0.4-0.2);
+        return true;
+        }
+      else
+        {
+        double rndx=owner.getx()-getx();
+        double rndy=owner.gety()-gety();
+  
+        if(Math.abs(rndx)<2 && Math.abs(rndy)<2)
+          {
+          stop();
+          return true;
+          }
+        else
+          {
+          double max=Math.abs(Math.abs(rndx)>Math.abs(rndy)?rndx:rndy);
+          rndx=(rndx/Math.abs(max))*0.2;
+          rndy=(rndy/Math.abs(max))*0.2;
+          
+          setdx(Math.abs(rndx)>0.2?0.2*Math.signum(rndx):rndx);
+          setdy(Math.abs(rndy)>0.2?0.2*Math.signum(rndx):rndy);
+          
+          return true;      
+          }
+        }
       }
-      
+
     return false;
     }
   }

@@ -156,7 +156,7 @@ public class StaticGameLayers
         {
         if(p.collisionMap.collides(shape))
           {
-          p.collisionMap.printaround((int)shape.getX(),(int)shape.getY(),5);
+          //p.collisionMap.printaround((int)shape.getX(),(int)shape.getY(),5);
           return true;          
           }          
         }

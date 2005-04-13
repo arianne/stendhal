@@ -15,6 +15,7 @@ package games.stendhal.server.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
+import games.stendhal.server.*;
 
 public class NPC extends RPEntity 
   {
@@ -30,6 +31,13 @@ public class NPC extends RPEntity
       {
       Logger.thrown("NPC::generateRPClass","X",e);
       }
+    }
+    
+  protected static StendhalRPRuleProcessor rp;
+  
+  public static void setRPContext(StendhalRPRuleProcessor rpContext)
+    {
+    rp=rpContext;
     }
   
   public NPC(RPObject object) throws AttributeNotFoundException
@@ -53,7 +61,7 @@ public class NPC extends RPEntity
     return false;
     }
 
-  public boolean move()
+  public boolean move(RPWorld world)
     {   
     return false; 
     }

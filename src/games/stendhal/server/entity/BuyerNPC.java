@@ -64,7 +64,7 @@ public class BuyerNPC extends NPC
     return false;
     }
 
-  public boolean move()
+  public boolean move(RPWorld world)
     {
     if(getdy()==0)
       {

@@ -75,21 +75,11 @@ public class Player extends AnimatedGameEntity
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
+    if(name.equals("miguel"))System.out.println ("PLAYER: "+(int)x+","+(int)y+","+dx+","+dy);
 
     area.setRect(x+0.5,y+1.3,0.87,0.6);
     drawedArea.setRect(x,y,1,2);
     
-    /** Adds the sheep */
-    if(!object.hasSlot("flock") && changes.hasSlot("flock"))
-      {
-      System.out.println ("Adding sheep: "+changes.toString());
-      RPSlot slot=changes.getSlot("flock");
-      if(slot.size()>0)
-        { 
-        gameObjects.add(slot.get());                
-        }
-      }  
-        
     /** Choose the proper animation */
     if(stopped && changes.has("dir"))
       {
@@ -114,8 +104,8 @@ public class Player extends AnimatedGameEntity
     /** Attack code */  
     if(changes.has("target") || object.has("target"))
       {      
-      int risk=changes.getInt("risk");
-      int damage=changes.getInt("damage");
+      int risk=(changes.has("risk")?changes.getInt("risk"):0);
+      int damage=(changes.has("damage")?changes.getInt("damage"):0);
       int target=(changes.has("target")?changes.getInt("target"):object.getInt("target"));
       
       gameObjects.attack(this,new RPObject.ID(target,changes.get("zoneid")),risk,damage);
