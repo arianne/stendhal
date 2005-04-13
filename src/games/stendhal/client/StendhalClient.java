@@ -251,6 +251,7 @@ public class StendhalClient extends ariannexp
         }
       catch(Exception e)
         {
+        Logger.thrown("StendhalClient::StendhalPerceptionListener::onAdded","X",e);
         }
       return false;
       }
@@ -261,11 +262,12 @@ public class StendhalClient extends ariannexp
       try
         {
         Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedAdded","D","Object("+object.getID()+") modified in Game Objects container");
+        gameObjects.modifyAdded(object, changes);
         object.applyDifferences(changes,null);
-        gameObjects.modify(object);
         }
       catch(Exception e)
         {
+        Logger.thrown("StendhalClient::StendhalPerceptionListener::onModifiedAdded","X",e);
         }
       return true;
       }
@@ -280,6 +282,7 @@ public class StendhalClient extends ariannexp
         }
       catch(Exception e)
         {
+        Logger.thrown("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","X",e);
         }
       return true;
       }
@@ -293,6 +296,7 @@ public class StendhalClient extends ariannexp
         }
       catch(Exception e)
         {
+        Logger.thrown("StendhalClient::StendhalPerceptionListener::onDeleted","X",e);
         }
       return false;
       }

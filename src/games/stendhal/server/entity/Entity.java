@@ -42,8 +42,8 @@ public class Entity extends RPObject
 
   public void update() throws AttributeNotFoundException
     {
-    x=getDouble("x");
-    y=getDouble("y");
+    if(has("x")) x=getDouble("x");
+    if(has("y")) y=getDouble("y");
     }
   
   public void setx(double x)

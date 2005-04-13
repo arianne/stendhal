@@ -72,24 +72,28 @@ public class Player extends AnimatedGameEntity
     }
   
 
-  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    if(changes.has("target"))
-      {     
-      gameObjects.attackStop(this,new RPObject.ID(object.getInt("target"),object.get("zoneid")));
-      }
-    }
-    
-  public void modify(RPObject object) throws AttributeNotFoundException
-    {
-    super.modify(object);
-    
+    super.modifyAdded(object,changes);
+
     area.setRect(x+0.5,y+1.3,0.87,0.6);
     drawedArea.setRect(x,y,1,2);
     
-    if(stopped && object.has("dir"))
+    /** Adds the sheep */
+    if(!object.hasSlot("flock") && changes.hasSlot("flock"))
       {
-      int value=object.getInt("dir");
+      System.out.println ("Adding sheep: "+changes.toString());
+      RPSlot slot=changes.getSlot("flock");
+      if(slot.size()>0)
+        { 
+        gameObjects.add(slot.get());                
+        }
+      }  
+        
+    /** Choose the proper animation */
+    if(stopped && changes.has("dir"))
+      {
+      int value=changes.getInt("dir");
       switch(value)
         {
         case 0:
@@ -106,27 +110,30 @@ public class Player extends AnimatedGameEntity
           break;
         }
       }
-      
-    if(object.has("target"))
+    
+    /** Attack code */  
+    if(changes.has("target") || object.has("target"))
       {      
-      System.out.println("Attacking RPObject: "+ object.get("target"));
-      gameObjects.attack(this,new RPObject.ID(object.getInt("target"),object.get("zoneid")),object.getInt("risk"),object.getInt("damage"));
+      int risk=changes.getInt("risk");
+      int damage=changes.getInt("damage");
+      int target=(changes.has("target")?changes.getInt("target"):object.getInt("target"));
       
-      if(object.getInt("risk")>0)
+      gameObjects.attack(this,new RPObject.ID(target,changes.get("zoneid")),risk,damage);
+      
+      if(risk>0)
         {
-        StendhalClient.get().addEventLine(name+" striked and damaged with "+object.get("damage")+" points to "+object.get("target"));
-        System.out.println ("RPObject striked and damaged with "+object.get("damage")+" points");
+        StendhalClient.get().addEventLine(name+" striked and damaged with "+damage+" points to "+target);
         }
       else
         {
-        StendhalClient.get().addEventLine(name+" missed striking to "+object.get("target"));
-        System.out.println ("RPObject missed");
+        StendhalClient.get().addEventLine(name+" missed striking to "+target);
         }
       }
-      
-    if(name!=null && !name.equals(object.get("name")))
+  
+    /** Create player name */
+    if(changes.has("name"))
       {
-      name=object.get("name");
+      name=changes.get("name");
       
       GameScreen screen=GameScreen.get();      
       Graphics g2d=screen.expose();
@@ -139,14 +146,11 @@ public class Player extends AnimatedGameEntity
       nameImage=new Sprite(image);      
       }
 
-    if(object.has("text") && !object.get("text").equals(""))    
+    /** Add text lines */
+    if(changes.has("text"))    
       {
-      String text=object.get("text");
+      String text=changes.get("text");
       StendhalClient.get().addEventLine("<"+name+">: "+text);
-      
-      //TODO: A hack to render properly the text... I think it is not a good idea to 
-      // modify the RPObject itself... but...
-      object.put("text","");
       
       GameScreen screen=GameScreen.get();      
       Graphics g2d=screen.expose();
@@ -173,7 +177,16 @@ public class Player extends AnimatedGameEntity
       textImagesTimes.add(new Long(System.currentTimeMillis()));
       }  
     }
-
+    
+  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    super.modifyRemoved(object,changes);
+    if(changes.has("target"))
+      {     
+      gameObjects.attackStop(this,new RPObject.ID(object.getInt("target"),object.get("zoneid")));
+      }
+    }
+    
   public void draw(GameScreen screen)
     {
     if(nameImage!=null) screen.draw(nameImage,x,y-0.3);

@@ -82,10 +82,12 @@ public class GameObjects
   public void add(RPObject object) throws AttributeNotFoundException
     {
     Logger.trace("GameObjects::add",">");
+
     GameEntity entity=entityType(object);
-    entity.modify(object);
+    // HACK: The first time the object is EMPTY! 
+    entity.modifyAdded(new RPObject(), object);
     objects.put(entity.getID(),entity);
-    System.out.println (object);
+    
     Logger.trace("GameObjects::add","<");
     }
   
@@ -103,19 +105,18 @@ public class GameObjects
     }  
 
   /** Modify a existing GameEntity so its propierties change */  
-  public void modify(RPObject object) throws AttributeNotFoundException
+  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    Logger.trace("GameObjects::modify",">");
+    Logger.trace("GameObjects::modifyAdded",">");
     GameEntity entity=objects.get(object.getID());
     if(entity!=null)
       {
-      entity.modify(object);
+      entity.modifyAdded(object, changes);
       }
       
-    Logger.trace("GameObjects::modify","<");
+    Logger.trace("GameObjects::modifyAdded","<");
     }
 
-  /** Modify a existing GameEntity so its propierties change */  
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     Logger.trace("GameObjects::modifyRemoved",">");

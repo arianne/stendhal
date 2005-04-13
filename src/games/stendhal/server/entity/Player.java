@@ -67,4 +67,51 @@ public class Player extends RPEntity
     {
     return leave;
     }
+   
+  public boolean hasSheep()
+    {
+    if(hasSlot("flock"))
+      {
+      RPSlot slot=getSlot("flock");
+      return slot.size()>0;
+      }
+    else
+      {
+      return false;    
+      }
+    }
+  
+  public void setSheep(Sheep sheep)
+    {
+    if(!hasSlot("flock"))
+      {
+      addSlot(new RPSlot("flock"));
+      }
+     
+    RPSlot slot=getSlot("flock");
+    slot.add(sheep);
+    }
+  
+  public static class NoSheepException extends Exception
+    {
+    public NoSheepException()
+      {
+      super();
+      }
+    }
+  
+  public Sheep getSheep() throws NoSheepException
+    {
+    if(hasSlot("flock"))
+      {
+      RPSlot slot=getSlot("flock");
+      if(slot.size()>0)
+        {
+        Sheep sheep=new Sheep(slot.get(),this);
+        return sheep;
+        }
+      }
+    
+    throw new NoSheepException();
+    }
   }

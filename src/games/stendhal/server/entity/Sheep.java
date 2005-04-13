@@ -14,17 +14,20 @@ package games.stendhal.server.entity;
 
 import marauroa.common.*;
 import marauroa.common.game.*;
-import marauroa.server.game.*;
 
-public class NPC extends RPEntity 
+public class Sheep extends NPC
   {
+  private int weight;
+  private Player owner;
+  private int i;
+  
   public static void generateRPClass()
     {
     try
       {
-      RPClass npc=new RPClass("npc");
-      npc.isA("rpentity");
-      npc.add("text",RPClass.STRING);
+      RPClass sheep=new RPClass("sheep");
+      sheep.isA("npc");
+      sheep.add("weight",RPClass.BYTE);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -32,29 +35,45 @@ public class NPC extends RPEntity
       }
     }
   
-  public NPC(RPObject object) throws AttributeNotFoundException
-    {
-    super(object);
-    update();
-    }
-
-  public NPC() throws AttributeNotFoundException
+  public Sheep(Player owner) throws AttributeNotFoundException
     {
     super();
-    put("type","npc");
+    this.owner=owner;
+    put("type","sheep");
     put("x",0);
     put("y",0);
     put("dx",0);
     put("dy",0);
     }
   
-  public boolean chat(RPWorld world, Player player) throws AttributeNotFoundException
-    {    
-    return false;
+  public Sheep(RPObject object, Player owner) throws AttributeNotFoundException
+    {
+    super(object);
+    this.owner=owner;
+    
+    update();
+    }
+  
+  public void setWeight(int weight)
+    {
+    this.weight=weight;
+    put("weight",weight);
+    }
+  
+  public int getWeight()
+    {
+    return weight;
     }
 
   public boolean move()
-    {   
-    return false; 
+    {
+    if(i++%10==0)
+      {
+      setdx(Math.random()*0.8-0.4);
+      setdy(Math.random()*0.8-0.4);
+      return true;
+      }
+      
+    return false;
     }
   }

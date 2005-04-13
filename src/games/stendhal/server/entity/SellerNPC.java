@@ -14,6 +14,7 @@ package games.stendhal.server.entity;
 
 import marauroa.common.*;
 import marauroa.common.game.*;
+import marauroa.server.game.*;
 
 public class SellerNPC extends NPC 
   {
@@ -36,8 +37,40 @@ public class SellerNPC extends NPC
     put("type","sellernpc");
     }
 
-  public boolean chat(Player player) throws AttributeNotFoundException
+  public boolean chat(RPWorld world, Player player) throws AttributeNotFoundException
     {
+    String text=player.get("text").toLowerCase();
+    if(text.contains("hi"))
+      {
+      put("text","Come here to buy your sheeps!");
+      return true;
+      }
+    else if(text.contains("buy"))
+      {
+      if(!player.hasSheep())
+        {
+        Logger.trace("SellerNPC::chat","D","Selling a sheep to player");
+        put("text","Congratulations! Here is your sheep!");
+        IRPZone zone=world.getRPZone(getID());
+        
+        Sheep sheep=new Sheep(player);
+        sheep.setx(player.getx()+2);
+        sheep.sety(player.gety()+2);
+        zone.assignRPObjectID(sheep);
+        
+        player.setSheep(sheep);        
+        world.modify(player);
+        Logger.trace("SellerNPC::chat","D","Sold a sheep to player");
+        }
+      else
+        {
+        put("text","You already have a sheep. Grow it up!");
+        }
+      
+        
+      return true;
+      }
+    
     return false;
     }
 

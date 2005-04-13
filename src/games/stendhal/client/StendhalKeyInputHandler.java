@@ -153,7 +153,7 @@ public class StendhalKeyInputHandler extends KeyAdapter
         client.getPlayer().put("dx",0);
         try
           {
-          client.getGameObjects().modify(client.getPlayer());
+//          client.getGameObjects().modify(client.getPlayer());
           }
         catch(AttributeNotFoundException ex)
           {
@@ -166,7 +166,7 @@ public class StendhalKeyInputHandler extends KeyAdapter
         client.getPlayer().put("dy",0);
         try
           {
-          client.getGameObjects().modify(client.getPlayer());
+//          client.getGameObjects().modify(client.getPlayer());
           }
         catch(Exception ex)
           {

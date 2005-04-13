@@ -185,6 +185,14 @@ public class StendhalRPZone extends MarauroaRPZone
               }
             case 3: /* Sheep */
               {
+              Sheep sheep=new Sheep(null);
+              assignRPObjectID(sheep);
+              sheep.setx(j%width);
+              sheep.sety(j/width);
+              add(sheep);
+
+              npcs.add(sheep);
+              
               break;
               }
             case 4: /* Wolf */

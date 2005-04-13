@@ -149,17 +149,13 @@ public class GameEntity extends Entity
     SpriteStore store=SpriteStore.get();        
     sprite=store.getSprite(translate(type));
     }
- 
-  /** This method is called to modify the propierties of the game entity when the object
-   *  that it represent has changed. */
-  public void modify(RPObject object) throws AttributeNotFoundException
+
+  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    Logger.trace("GameEntity::modify","D",object.toString());
-    x=object.getDouble("x");
-    y=object.getDouble("y");
-    
-    if(object.has("dx")) dx=object.getDouble("dx");
-    if(object.has("dy")) dy=object.getDouble("dy");
+    if(changes.has("x")) x=changes.getDouble("x");
+    if(changes.has("y")) y=changes.getDouble("y");
+    if(changes.has("dx")) dx=changes.getDouble("dx");
+    if(changes.has("dy")) dy=changes.getDouble("dy");
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException

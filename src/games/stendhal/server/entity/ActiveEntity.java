@@ -50,8 +50,8 @@ public class ActiveEntity extends Entity
   public void update() throws AttributeNotFoundException
     {
     super.update();
-    dx=getDouble("dx");
-    dy=getDouble("dy");
+    if(has("dx")) dx=getDouble("dx");
+    if(has("dy")) dy=getDouble("dy");
     }
 
   public void setName(String name)

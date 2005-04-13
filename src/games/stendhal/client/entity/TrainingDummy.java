@@ -33,16 +33,6 @@ public class TrainingDummy extends GameEntity
     {
     return new Rectangle.Double(x,y,1,2);
     }
-       
-  public void onLeftClick()
-    {
-    System.out.println("You are attacking a poor training dummy!");
-    }
-
-  public void modify(RPObject object) throws AttributeNotFoundException
-    {
-    super.modify(object);
-    }
 
   public void draw(GameScreen screen)
     {

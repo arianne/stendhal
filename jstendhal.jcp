@@ -201,6 +201,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\EntityFactory.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\NPC.java</path>
 				<source>true</source>
 			</fileitem>
@@ -214,6 +218,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\SellerNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Sheep.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

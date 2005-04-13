@@ -55,10 +55,10 @@ public class RPEntity extends ActiveEntity
     {
     super.update();
     
-    atk=getInt("atk");
-    def=getInt("def");
-    hp=getInt("hp");
-    xp=getInt("xp");
+    if(has("atk")) atk=getInt("atk");
+    if(has("def")) def=getInt("def");
+    if(has("hp")) hp=getInt("hp");
+    if(has("xp")) xp=getInt("xp");
     }
 
   public void setATK(int atk)

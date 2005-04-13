@@ -371,7 +371,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           }
         
         Player speaker=getNearestPlayerThatHasSpeaken(npc,5);
-        if(speaker!=null && npc.chat(speaker))
+        if(speaker!=null && npc.chat(world, speaker))
           {
           world.modify(npc);
           }
@@ -400,6 +400,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       Player player=new Player(object);
       player.setdx(0);
       player.setdy(0);
+      
+      if(player.hasSheep())
+        {
+        Sheep sheep=player.getSheep();
+        sheep.setx(player.getx()+2);
+        sheep.sety(player.gety()+2);
+        }
       
       world.add(player); 
       StendhalRPAction.transferContent(player);

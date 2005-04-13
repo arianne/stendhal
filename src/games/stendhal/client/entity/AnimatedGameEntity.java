@@ -55,9 +55,9 @@ public abstract class AnimatedGameEntity extends GameEntity
 
   /** This method is called to modify the propierties of the game entity when the object
    *  that it represent has changed. */
-  public void modify(RPObject object) throws AttributeNotFoundException
+  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    super.modify(object);
+    super.modifyAdded(object,changes);
     
     stopped=(dx==0 && dy==0);
     

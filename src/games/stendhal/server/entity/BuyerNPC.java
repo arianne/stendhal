@@ -14,6 +14,7 @@ package games.stendhal.server.entity;
 
 import marauroa.common.*;
 import marauroa.common.game.*;
+import marauroa.server.game.*;
 
 public class BuyerNPC extends NPC 
   {
@@ -36,10 +37,10 @@ public class BuyerNPC extends NPC
     put("type","buyernpc");
     }
 
-  public boolean chat(Player player) throws AttributeNotFoundException
+  public boolean chat(RPWorld world, Player player) throws AttributeNotFoundException
     {
     String text=player.get("text").toLowerCase();
-    if(text.equals("hi"))
+    if(text.contains("hi"))
       {
       put("text","Come here to sell your sheeps! I have the best prices at this side of the Ourvalon!");
       return true;

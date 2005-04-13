@@ -30,16 +30,16 @@ public class Sign extends GameEntity
     screen=GameScreen.get();
     }
   
-  public void modify(RPObject object) throws AttributeNotFoundException
+  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    super.modify(object);
-    if(object.has("text") && textImage==null)
+    super.modifyAdded(object,changes);
+    
+    if(changes.has("text"))
       {
-      String text=object.get("text");
-      System.out.println ("Rendering text: "+text);
+      String text=changes.get("text");
+
       Graphics g2d=screen.expose();
       
-      /** TODO: Support several lines text */
       String[] lines=text.split("\\|");
 
       int lineLengthPixels=0;
