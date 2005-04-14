@@ -103,6 +103,11 @@ public class Player extends RPEntity
       }
     }
   
+  public RPObject.ID getIngameSheep() throws NoSheepException
+    {
+    return new RPObject.ID(getInt("sheep"),get("zoneid"));
+    }
+    
   public Sheep getSheep() throws NoSheepException
     {
     if(hasSlot("#flock"))

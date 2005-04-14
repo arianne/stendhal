@@ -478,6 +478,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         if(object.getID().equals(id))
           {
+          if(object.hasSheep())
+            {
+            world.remove(object.getIngameSheep());
+            }
+            
           boolean result=playersObject.remove(object);
           Logger.trace("StendhalRPRuleProcessor::onExit","D","Removed Player was "+result);
           break;
@@ -504,23 +509,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::onTimeout",">");
     try
       {
-      for(Player object: playersObject)
-        {
-        if(object.getID().equals(id))
-          {
-          playersObject.remove(object);
-          break;
-          }
-        }
-
-      world.remove(id);
-        
-      return true;
-      }
-    catch(Exception e)
-      {
-      Logger.thrown("StendhalRPRuleProcessor::onTimeout","X",e);
-      return true;
+      return onExit(id);
       }
     finally
       {

@@ -19,6 +19,7 @@ public class ActiveEntity extends Entity
   {
   private double dx;
   private double dy;
+  private boolean collides;
   private String name;
   
   public static void generateRPClass()
@@ -96,6 +97,16 @@ public class ActiveEntity extends Entity
   public boolean stopped()
     {
     return dx==0 && dy==0;
+    }
+  
+  public void collides(boolean val)
+    {
+    collides=val;    
+    }
+  
+  public boolean collided()
+    {
+    return collides;
     }
   }
     

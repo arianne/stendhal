@@ -92,8 +92,16 @@ public class Sheep extends NPC
           rndx=(rndx/Math.abs(max))*0.2;
           rndy=(rndy/Math.abs(max))*0.2;
           
-          setdx(Math.abs(rndx)>0.2?0.2*Math.signum(rndx):rndx);
-          setdy(Math.abs(rndy)>0.2?0.2*Math.signum(rndx):rndy);
+          if(collided())
+            {
+            setdx(Math.random()*0.4-0.2);
+            setdy(Math.random()*0.4-0.2);
+            }
+          else
+            {
+            setdx(Math.abs(rndx)>0.2?0.2*Math.signum(rndx):rndx);
+            setdy(Math.abs(rndy)>0.2?0.2*Math.signum(rndx):rndy);
+            }
           
           return true;      
           }

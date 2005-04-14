@@ -199,12 +199,14 @@ public class StendhalRPAction
         Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
         if(dx!=0) entity.setx(x+dx);
         if(dy!=0) entity.sety(y+dy);
+        entity.collides(false);
         world.modify(entity);
         }        
       else
         {
         /* Collision */
         Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");      
+        entity.collides(true);
         if(dx!=0 || dy!=0)
           {
           entity.stop();
