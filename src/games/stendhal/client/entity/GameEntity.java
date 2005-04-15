@@ -15,6 +15,7 @@ package games.stendhal.client.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+import games.stendhal.common.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.geom.*;
@@ -28,6 +29,10 @@ public class GameEntity extends Entity
   private RPObject.ID id;
   /** The object sprite. Animationless, just one frame */
   protected Sprite sprite;
+
+  private Rectangle2D area;
+  private Rectangle2D drawedArea;
+
   private java.util.List<Sprite> damageSprites;
   private java.util.List<Long> damageSpritesTimes;
   
@@ -82,17 +87,21 @@ public class GameEntity extends Entity
     damageSprites=new LinkedList<Sprite>();
     damageSpritesTimes=new LinkedList<Long>();
     attacked=false;
+    
     loadSprite(object.get("type"));
+
+    area=EntityAreas.getArea(object.get("type"),0,0);
+    drawedArea=EntityAreas.getDrawedArea(object.get("type"),0,0);
     }
-    
-  public Rectangle2D getArea()
+  
+  final public Rectangle2D getArea()
     {
-    return new Rectangle.Double(x,y,1,1);
+    return area;
     }
-    
-  public Rectangle2D getDrawedArea()
+
+  final public Rectangle2D getDrawedArea()
     {
-    return new Rectangle.Double(x,y,1,1);
+    return drawedArea;
     }
 
   public void onClick()
@@ -156,6 +165,9 @@ public class GameEntity extends Entity
     if(changes.has("y")) y=changes.getDouble("y");
     if(changes.has("dx")) dx=changes.getDouble("dx");
     if(changes.has("dy")) dy=changes.getDouble("dy");
+
+    area.setRect(x,y,area.getWidth(),area.getHeight());
+    drawedArea.setRect(x,y,drawedArea.getWidth(),drawedArea.getHeight());    
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException

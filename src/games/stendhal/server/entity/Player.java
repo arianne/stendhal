@@ -90,7 +90,7 @@ public class Player extends RPEntity
     put("sheep",sheep.getID().getObjectID());
     }
   
-  public static class NoSheepException extends Exception
+  public static class NoSheepException extends RuntimeException
     {
     public NoSheepException()
       {

@@ -29,10 +29,6 @@ public class Player extends AnimatedGameEntity
   private java.util.List<Long> textImagesTimes;
   private long wasTextWritten;
   
-  private Rectangle2D area;
-  private Rectangle2D drawedArea;
-
-  
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
@@ -40,20 +36,8 @@ public class Player extends AnimatedGameEntity
     textImages=new java.util.LinkedList<Sprite>();
     textImagesTimes=new java.util.LinkedList<Long>();
     nameImage=null;
-
-    area=new Rectangle.Double(x+0.5,y+1.3,0.87,0.6);
-    drawedArea=new Rectangle.Double(x,y,1,2);
-    }
-  
-  public Rectangle2D getArea()
-    {
-    return area;
     }
 
-  public Rectangle2D getDrawedArea()
-    {
-    return drawedArea;
-    }
     
   protected void buildAnimations(String type)
     {
@@ -75,11 +59,9 @@ public class Player extends AnimatedGameEntity
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
-    if(name.equals("miguel"))System.out.println ("PLAYER: "+(int)x+","+(int)y+","+dx+","+dy);
-
-    area.setRect(x+0.5,y+1.3,0.87,0.6);
-    drawedArea.setRect(x,y,1,2);
     
+    System.out.println ("PLAYER: "+(int)x+","+(int)y+","+dx+","+dy);
+
     /** Choose the proper animation */
     if(stopped && changes.has("dir"))
       {
@@ -179,7 +161,11 @@ public class Player extends AnimatedGameEntity
     
   public void draw(GameScreen screen)
     {
-    if(nameImage!=null) screen.draw(nameImage,x,y-0.3);
+    if(nameImage!=null) 
+      {
+      screen.draw(nameImage,x,y-0.3);
+      }
+      
     if(textImages!=null) 
       {
       double ty=y+2.05;
@@ -199,5 +185,12 @@ public class Player extends AnimatedGameEntity
       }
       
     super.draw(screen);
+    
+    Graphics g2d=screen.expose();
+    Rectangle2D rect=getArea();      
+    g2d.setColor(Color.red);    
+    Point2D p=new Point.Double(rect.getX(),rect.getY());
+    p=screen.invtranslate(p);
+    g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
     }
   }

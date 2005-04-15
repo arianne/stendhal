@@ -151,105 +151,105 @@ public class StendhalRPZone extends MarauroaRPZone
               addEntryPoint(entryPoint);
               break;
               }            
-            case 2: /* Sign */
-              {
-              Sign sign=new Sign();
-              assignRPObjectID(sign);
-              sign.setx(j%width);
-              sign.sety(j/width);
-              if(zoneid.getID().equals("village"))
-                {
-                if(sign.getx()==23 && sign.gety()==47) sign.setText("You are going to leave this area to move to plains.|You may grow up your sheep there.|Be careful wolves may attack you.");
-                if(sign.getx()==26 && sign.gety()==27) sign.setText("Talk to Nishiya to buy a sheep!.|He will offer you a nice price.");
-                if(sign.getx()==60 && sign.gety()==33) sign.setText("You are going to leave this area to move to city.|You may sell your sheep there. ");
-                }
-              else if(zoneid.getID().equals("city"))
-                {
-                if(sign.getx()==4 && sign.gety()==21) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
-                if(sign.getx()==8 && sign.gety()==25) sign.setText("This is our attack dummy.|Click on it to attack, another click to stop attacking it.| Be sure to learn how to attack correctly, it will be useful.");
-                if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!|Make sure you talk with Paco for hints|Please report problems at our webpage.");
-                if(sign.getx()==43 && sign.gety()==26) sign.setText("Talk to Sato to sell your sheep!.|He won't give you a fair price but this is an small village...");
-                if(sign.getx()==44 && sign.gety()==48) sign.setText("You are going to leave this area to move to plains.|You may grow up your sheep there.|Be careful wolves may attack you.");
-                }
-              else if(zoneid.getID().equals("plains"))
-                {
-                if(sign.getx()==118 && sign.gety()==43) sign.setText("You are going to leave this area to move to forest.|You may grow up your sheep faster there.|Be careful many wolves may attack you.");
-                if(sign.getx()==38 && sign.gety()==3) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
-                if(sign.getx()==113 && sign.gety()==3) sign.setText("You are going to leave this area to move to city.|You may sell your sheep there. ");
-                }
-                
-              add(sign);
-  
-              Logger.trace("StendhalRPZone::populate","D","Adding SIGN: "+sign);
-              break;
-              }
-            case 3: /* Sheep */
-              {
-              Sheep sheep=new Sheep(null);
-              assignRPObjectID(sheep);
-              sheep.setx(j%width);
-              sheep.sety(j/width);
-              add(sheep);
-
-              npcs.add(sheep);
-              
-              break;
-              }
-            case 4: /* Wolf */
-              {
-              break;
-              }
-            case 5: /* NPC Seller */
-              {
-              SellerNPC npc=new SellerNPC();
-              assignRPObjectID(npc);
-              npc.setName("Nishiya");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              add(npc);
-              
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding NPC seller: "+npc);
-              break;
-              }
-            case 6: /* NPC Buyer */
-              {
-              BuyerNPC npc=new BuyerNPC();
-              assignRPObjectID(npc);
-              npc.setName("Sato");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              add(npc);
-
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding Buyer seller: "+npc);
-              break;
-              }
-            case 7: /* Food */
-              {
-              break;
-              }
+//            case 2: /* Sign */
+//              {
+//              Sign sign=new Sign();
+//              assignRPObjectID(sign);
+//              sign.setx(j%width);
+//              sign.sety(j/width);
+//              if(zoneid.getID().equals("village"))
+//                {
+//                if(sign.getx()==23 && sign.gety()==47) sign.setText("You are going to leave this area to move to plains.|You may grow up your sheep there.|Be careful wolves may attack you.");
+//                if(sign.getx()==26 && sign.gety()==27) sign.setText("Talk to Nishiya to buy a sheep!.|He will offer you a nice price.");
+//                if(sign.getx()==60 && sign.gety()==33) sign.setText("You are going to leave this area to move to city.|You may sell your sheep there. ");
+//                }
+//              else if(zoneid.getID().equals("city"))
+//                {
+//                if(sign.getx()==4 && sign.gety()==21) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
+//                if(sign.getx()==8 && sign.gety()==25) sign.setText("This is our attack dummy.|Click on it to attack, another click to stop attacking it.| Be sure to learn how to attack correctly, it will be useful.");
+//                if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!|Make sure you talk with Paco for hints|Please report problems at our webpage.");
+//                if(sign.getx()==43 && sign.gety()==26) sign.setText("Talk to Sato to sell your sheep!.|He won't give you a fair price but this is an small village...");
+//                if(sign.getx()==44 && sign.gety()==48) sign.setText("You are going to leave this area to move to plains.|You may grow up your sheep there.|Be careful wolves may attack you.");
+//                }
+//              else if(zoneid.getID().equals("plains"))
+//                {
+//                if(sign.getx()==118 && sign.gety()==43) sign.setText("You are going to leave this area to move to forest.|You may grow up your sheep faster there.|Be careful many wolves may attack you.");
+//                if(sign.getx()==38 && sign.gety()==3) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
+//                if(sign.getx()==113 && sign.gety()==3) sign.setText("You are going to leave this area to move to city.|You may sell your sheep there. ");
+//                }
+//                
+//              add(sign);
+//  
+//              Logger.trace("StendhalRPZone::populate","D","Adding SIGN: "+sign);
+//              break;
+//              }
+//            case 3: /* Sheep */
+//              {
+//              Sheep sheep=new Sheep(null);
+//              assignRPObjectID(sheep);
+//              sheep.setx(j%width);
+//              sheep.sety(j/width);
+//              add(sheep);
+//
+//              npcs.add(sheep);
+//              
+//              break;
+//              }
+//            case 4: /* Wolf */
+//              {
+//              break;
+//              }
+//            case 5: /* NPC Seller */
+//              {
+//              SellerNPC npc=new SellerNPC();
+//              assignRPObjectID(npc);
+//              npc.setName("Nishiya");
+//              npc.setx(j%width);
+//              npc.sety(j/width);
+//              add(npc);
+//              
+//              npcs.add(npc);
+//
+//              Logger.trace("StendhalRPZone::populate","D","Adding NPC seller: "+npc);
+//              break;
+//              }
+//            case 6: /* NPC Buyer */
+//              {
+//              BuyerNPC npc=new BuyerNPC();
+//              assignRPObjectID(npc);
+//              npc.setName("Sato");
+//              npc.setx(j%width);
+//              npc.sety(j/width);
+//              add(npc);
+//
+//              npcs.add(npc);
+//
+//              Logger.trace("StendhalRPZone::populate","D","Adding Buyer seller: "+npc);
+//              break;
+//              }
+//            case 7: /* Food */
+//              {
+//              break;
+//              }
             case 8: /* Zone change  */
               {
               String entryPoint=new String(j%width+","+j/width);
               addZoneChange(entryPoint);
               break;
               }
-            case 9: /* Training dummy  */
-              {              
-              TrainingDummy dummy=new TrainingDummy();
-              assignRPObjectID(dummy);
-              dummy.setx(j%width);
-              dummy.sety(j/width);
-              dummy.setHP(100);
-              add(dummy);
-
-
-              Logger.trace("StendhalRPZone::populate","D","Adding Training dummy: "+dummy);
-              break;
-              }
+//            case 9: /* Training dummy  */
+//              {              
+//              TrainingDummy dummy=new TrainingDummy();
+//              assignRPObjectID(dummy);
+//              dummy.setx(j%width);
+//              dummy.sety(j/width);
+//              dummy.setHP(100);
+//              add(dummy);
+//
+//
+//              Logger.trace("StendhalRPZone::populate","D","Adding Training dummy: "+dummy);
+//              break;
+//              }
             }
           }
         catch(AttributeNotFoundException e)
@@ -280,34 +280,15 @@ public class StendhalRPZone extends MarauroaRPZone
     return contents;
     }
   
-  private static Rectangle2D getCollisionArea(String type, double x, double y)
-    {
-    Rectangle2D rect=new Rectangle.Double();
-    getCollisionArea(rect,type,x,y);
-    return rect;
-    }
-
-  private static void getCollisionArea(Rectangle2D rect,String type, double x, double y)
-    {
-    if(type.equals("player"))
-      {
-      rect.setRect(x+0.5,y+1.3,0.87,0.6);
-      }
-    else
-      {
-      rect.setRect(x,y,1,2);
-      }
-    }
-
   public boolean leavesZone(RPObject object, double x, double y) throws AttributeNotFoundException  
     {
-    Rectangle2D area=getCollisionArea(object.get("type"),x,y);
+    Rectangle2D area=EntityAreas.getArea(object.get("type"),x,y);
     return collisionMap.leavesZone(area);
     }
     
   public boolean collides(RPObject object, double x, double y) throws AttributeNotFoundException  
     {
-    Rectangle2D area=getCollisionArea(object.get("type"),x,y);
+    Rectangle2D area=EntityAreas.getArea(object.get("type"),x,y);
     
     if(collisionMap.collides(area)==false)
       {
@@ -316,7 +297,7 @@ public class StendhalRPZone extends MarauroaRPZone
         {
         if(!other.getID().equals(object.getID()))
           {
-          getCollisionArea(otherarea,other.get("type"),other.getDouble("x"),other.getDouble("y"));
+          EntityAreas.getArea(otherarea,other.get("type"),other.getDouble("x"),other.getDouble("y"));
           if(area.intersects(otherarea))
             {
             return true;
@@ -328,7 +309,7 @@ public class StendhalRPZone extends MarauroaRPZone
       }   
     else
       {
-      collisionMap.printaround((int)x,(int)y,3);     
+      collisionMap.printaround((int)x,(int)y,10);     
       return true;
       }    
     }

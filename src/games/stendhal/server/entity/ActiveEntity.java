@@ -90,6 +90,10 @@ public class ActiveEntity extends Entity
 
   public void stop()
     {
+    // HACK: FIXME
+    setx(getx());
+    sety(gety());
+    
     setdx(0);
     setdy(0);
     }

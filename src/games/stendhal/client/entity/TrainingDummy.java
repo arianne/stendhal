@@ -23,19 +23,4 @@ public class TrainingDummy extends GameEntity
     {    
     super(gameObjects, object);
     }
-
-  public Rectangle2D getArea()
-    {
-    return new Rectangle.Double(x,y,1,2);
-    }
-    
-  public Rectangle2D getDrawedArea()
-    {
-    return new Rectangle.Double(x,y,1,2);
-    }
-
-  public void draw(GameScreen screen)
-    {
-    super.draw(screen);
-    }
   }

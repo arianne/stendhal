@@ -179,6 +179,11 @@ public class StendhalRPAction
       double dy=entity.getdy();
       boolean stopped=entity.stopped();
       
+      if(stopped)
+        {
+        return;
+        }
+      
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(entity.getID());
       
       if(entity instanceof Player)
@@ -196,7 +201,7 @@ public class StendhalRPAction
       
       if(zone.collides(entity,x+dx,y+dy)==false)
         {
-        Logger.trace("StendhalRPAction::move","D","Moving to ("+(x+dx)+","+(y+dy)+")");
+        Logger.trace("StendhalRPAction::move","D","Moving from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
         if(dx!=0) entity.setx(x+dx);
         if(dy!=0) entity.sety(y+dy);
         entity.collides(false);
@@ -207,11 +212,11 @@ public class StendhalRPAction
         /* Collision */
         Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");      
         entity.collides(true);
-        if(dx!=0 || dy!=0)
-          {
-          entity.stop();
-          world.modify(entity);
-          }
+        // HACK: Needed to make 0.02 client to work. FIXME
+        entity.setx(x);
+        entity.sety(y);
+        entity.stop();
+        world.modify(entity);
         }
       }
     finally
@@ -255,8 +260,19 @@ public class StendhalRPAction
     Logger.trace("StendhalRPAction::changeZone",">");
 
     String source=player.getID().getZoneID();
-
-    world.changeZone(source,destination,player);
+    
+    if(player.hasSheep())
+      {
+      Sheep sheep=(Sheep)world.get(player.getSheep());
+      world.changeZone(source,destination,sheep);    
+      world.changeZone(source,destination,player);    
+      
+      player.setSheep(sheep);
+      }
+    else
+      {
+      world.changeZone(source,destination,player);    
+      }
     
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
     zone.placeObjectAtEntryPoint(player);

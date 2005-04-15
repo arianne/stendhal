@@ -31,12 +31,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private List<Player> playersObject;
   private List<Player> playersObjectRmText;
   private List<NPC> npcs;
+  private List<NPC> npcsToAdd;
   
   public StendhalRPRuleProcessor()
     {
     playersObject=new LinkedList<Player>();
     playersObjectRmText=new LinkedList<Player>();
     npcs=new LinkedList<NPC>();
+    npcsToAdd=new LinkedList<NPC>();
     }
 
 
@@ -72,7 +74,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   
   public void addNPC(NPC npc)
     {
-    npcs.add(npc);
+    npcsToAdd.add(npc);
     }
 
   public boolean onActionAdd(RPAction action, List<RPAction> actionList)
@@ -302,6 +304,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::beginTurn",">");
     try
       {
+      npcs.addAll(npcsToAdd);
+      npcsToAdd.clear();
+      
       for(Player object: playersObject)
         {
         if(!object.stopped())
@@ -319,7 +324,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           StendhalRPAction.attack(object,object.getInt("target"));
           }
         }
-      
+
       for(Player object: playersObjectRmText)
         {
         if(object.has("text"))
@@ -376,7 +381,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Logger.trace("StendhalRPRuleProcessor::endTurn",">");
     try
-      {
+      {      
       for(NPC npc: npcs)
         {
         npc.move(world);
@@ -407,7 +412,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::onInit",">");
     try
       {
-      object.put("zoneid","city");
+      object.put("zoneid","test");
       if(object.has("damage")) object.remove("damage");
       if(object.has("risk")) object.remove("risk");
       if(object.has("target")) object.remove("target");
@@ -427,8 +432,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       
       while(zone.collides(player,x,y))
         {
-        x=x+(Math.random()*6-3);
-        y=y+(Math.random()*6-3);        
+        x=x+(Math.random()*6.0-3);
+        y=y+(Math.random()*6.0-3);        
         }
         
       player.setx(x);

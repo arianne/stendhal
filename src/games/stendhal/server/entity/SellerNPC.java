@@ -54,8 +54,8 @@ public class SellerNPC extends NPC
         IRPZone zone=world.getRPZone(getID());
         
         Sheep sheep=new Sheep(player);
-        sheep.setx(player.getx()+2);
-        sheep.sety(player.gety()+2);
+        sheep.setx(getx());
+        sheep.sety(gety()+2);
         zone.assignRPObjectID(sheep);
         
         rp.addNPC(sheep);

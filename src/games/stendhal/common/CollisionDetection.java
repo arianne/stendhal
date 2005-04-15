@@ -66,7 +66,6 @@ public class CollisionDetection
         j++;      
         }
       }
-    
     }
   
   /** Print the area around the (x,y) useful for debugging */
@@ -74,22 +73,23 @@ public class CollisionDetection
     {
     for(int j=y-size;j<y+size;j++)
       {
+      if(j>=0 && j<height) System.out.print(j+"\t");
       for(int i=x-size;i<x+size;i++)
         {
-        if(j>0 && j<height && i>0 && i<width)
+        if(j>=0 && j<height && i>=0 && i<width)
           {
-        if(j==(int)y && i==(int)x)
-          {
-          System.out.print("O");
-          }
-        else if(blocked[j*width+i]==false)
-          {
-          System.out.print(".");
-          }
-        else
-          {
-          System.out.print("X");
-          }          
+          if(j==(int)y && i==(int)x)
+            {
+            System.out.print("O");
+            }
+          else if(blocked[j*width+i]==false)
+            {
+            System.out.print(".");
+            }
+          else
+            {
+            System.out.print("X");
+            }          
           }
         }
       System.out.println();
@@ -139,37 +139,32 @@ public class CollisionDetection
       return true;
       }
     
-    if(blocked[(int)y*width+(int)x])
+    for(int k=0;k<height;k++)
       {
-      return true;
-      }
-      
-    if(blocked[(int)(y+h)*width+(int)(x+w)])
-      {
-      return true;
-      }
-
-    if(blocked[(int)y*width+(int)(x+w)])
-      {
-      return true;
-      }
-
-    if(blocked[(int)(y+h)*width+(int)x])
-      {
-      return true;
-      }
-
-    for(double i=x;i<=x+w;i+=1)
-      {
-      for(double j=y;j<=y+h;j+=1)
+      for(int i=0;i<width;i++)
         {
-        if(blocked[(int)j*width+(int)i])
+        if(blocked[k*width+i])
           {
-          return true;
-          }
+          if(shape.intersects(i,k,1,1))
+            {
+            System.out.println (shape+"INTERSECTS: "+i+","+k+",1,1");
+            return true;
+            }
+          }        
         }
       }
     
+//    for(int i=(int)x;i<(int)x+w;i++)
+//      {
+//      for(int j=(int)y;j<(int)y+h;j++)
+//        {
+//        if(blocked[j*width+i])
+//          {
+//          return true;
+//          }
+//        }
+//      }
+//    
     return false;
     }
 
