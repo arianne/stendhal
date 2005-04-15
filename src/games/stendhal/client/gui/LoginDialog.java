@@ -37,7 +37,7 @@ public class LoginDialog extends JDialog
 	// End of variables declaration
 	private StendhalClient client;
 	private Frame frame;
-	
+
 
 
     public LoginDialog(Frame w, StendhalClient client)
@@ -84,6 +84,7 @@ public class LoginDialog extends JDialog
 		//
 		// serverField
 		//
+                serverField.addItem("stendhal.ombres.ambre.net");
 		serverField.addItem("stendhal.game-server.cc");
 		serverField.addItem("localhost");
 
@@ -109,7 +110,7 @@ public class LoginDialog extends JDialog
     addComponent(contentPane, serverField,   200,10,190,22);
     addComponent(contentPane, usernameField, 200,45,190,20);
 		addComponent(contentPane, passwordField, 200,70,190,20);
-		
+
 		addComponent(contentPane, loginButton,   200,120,190,30);
 		//
 		// LoginDialog
@@ -132,7 +133,7 @@ public class LoginDialog extends JDialog
         String username=usernameField.getText();
         String password=new String(passwordField.getPassword());
         String server=(String)serverField.getSelectedItem();
-        
+
     try
       {
       client.connect(server,32160);
