@@ -68,7 +68,13 @@ public class Player extends RPEntity
     {
     return leave;
     }
-   
+  
+  public void removeSheep()
+    {
+    remove("sheep");
+    getSlot("#flock").clear();
+    }
+     
   public boolean hasSheep()
     {
     return has("sheep");

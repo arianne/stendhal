@@ -47,7 +47,18 @@ public class BuyerNPC extends NPC
       }
     else if(text.contains("sell"))
       {
-      put("text","You don't have any sheep!!. Who do you think you are talking to, "+player.get("name")+"?");
+      if(player.hasSheep())
+        {
+        put("text","Thanks! Here is your money");
+        world.remove(player.getSheep());
+        player.removeSheep();
+        world.modify(player);
+        }
+      else
+        {
+        put("text","You don't have any sheep!!. Who do you think you are talking to, "+player.get("name")+"?");
+        }
+      
       return true;
       }
     else if(text.equals("bye"))

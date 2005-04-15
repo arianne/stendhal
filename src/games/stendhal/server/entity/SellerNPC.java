@@ -69,8 +69,12 @@ public class SellerNPC extends NPC
         {
         put("text","You already have a sheep. Grow it up!");
         }
-      
         
+      return true;
+      }
+    else if(text.contains("bye"))
+      {
+      put("text","Bye "+player.get("name"));
       return true;
       }
     

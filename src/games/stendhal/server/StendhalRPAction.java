@@ -243,12 +243,12 @@ public class StendhalRPAction
 
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
     
-    if(zoneid.equals("village") && x>zone.getWidth()-2) 
+    if(zoneid.equals("village") && x>zone.getWidth()-3) 
       {
       changeZone(player,"city");
       transferContent(player);
       }
-    else if(zoneid.equals("city") && x<1) 
+    else if(zoneid.equals("city") && x<3) 
       {
       changeZone(player,"village");
       transferContent(player);
@@ -288,6 +288,19 @@ public class StendhalRPAction
     
     player.setx(x);
     player.sety(y);
+      
+    if(player.hasSheep())
+      {
+      Sheep sheep=(Sheep)world.get(player.getSheep());
+      while(zone.collides(sheep,x,y))
+        {
+        x=x+(Math.random()*6-3);
+        y=y+(Math.random()*6-3);        
+        }
+          
+      sheep.setx(x);
+      sheep.sety(y);
+      }
       
     /* There isn't any world.modify because there is already considered inside
      * the implicit world.add call at changeZone */

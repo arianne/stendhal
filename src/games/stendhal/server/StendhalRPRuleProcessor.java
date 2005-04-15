@@ -444,7 +444,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         Logger.trace("StendhalRPRuleProcessor::onInit","D","Player has a sheep");
         Sheep sheep=player.retrieveSheep();
         sheep.put("zoneid",object.get("zoneid"));
-        world.add(sheep);        
+        world.add(sheep);                
         
         Logger.trace("StendhalRPRuleProcessor::onInit","D","Setting new position for sheep");
         while(zone.collides(sheep,x,y))
@@ -458,6 +458,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         Logger.trace("StendhalRPRuleProcessor::onInit","D","Sheep located at ("+x+","+y+")");
         
         addNPC(sheep);
+
+        player.setSheep(sheep);
         }      
       
       playersObject.add(player);

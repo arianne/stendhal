@@ -232,6 +232,10 @@
 				<path>src\games\stendhal\common\CollisionDetection.java</path>
 				<source>true</source>
 			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\common\EntityAreas.java</path>
+				<source>true</source>
+			</fileitem>
 		</include>
 		<exclude>
 			<folderitem>
