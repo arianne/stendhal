@@ -437,7 +437,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(player.hasSheep())
         {
         Logger.trace("StendhalRPRuleProcessor::onInit","D","Player has a sheep");
-        Sheep sheep=player.getSheep();
+        Sheep sheep=player.retrieveSheep();
         sheep.put("zoneid",object.get("zoneid"));
         world.add(sheep);        
         
@@ -480,7 +480,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           {
           if(object.hasSheep())
             {
-            world.remove(object.getIngameSheep());
+            Sheep sheep=(Sheep)world.remove(object.getSheep());
+            object.storeSheep(sheep);
             }
             
           boolean result=playersObject.remove(object);

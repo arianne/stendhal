@@ -255,6 +255,7 @@ public class StendhalRPAction
     Logger.trace("StendhalRPAction::changeZone",">");
 
     String source=player.getID().getZoneID();
+
     world.changeZone(source,destination,player);
     
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());

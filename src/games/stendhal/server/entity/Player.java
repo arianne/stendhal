@@ -71,18 +71,10 @@ public class Player extends RPEntity
    
   public boolean hasSheep()
     {
-    if(hasSlot("#flock"))
-      {
-      RPSlot slot=getSlot("#flock");
-      return slot.size()>0;
-      }
-    else
-      {
-      return false;    
-      }
+    return has("sheep");
     }
   
-  public void setSheep(Sheep sheep)
+  public void storeSheep(Sheep sheep)
     {
     if(!hasSlot("#flock"))
       {
@@ -91,7 +83,10 @@ public class Player extends RPEntity
      
     RPSlot slot=getSlot("#flock");
     slot.add(sheep);
-    
+    }
+
+  public void setSheep(Sheep sheep)
+    {
     put("sheep",sheep.getID().getObjectID());
     }
   
@@ -103,12 +98,12 @@ public class Player extends RPEntity
       }
     }
   
-  public RPObject.ID getIngameSheep() throws NoSheepException
+  public RPObject.ID getSheep() throws NoSheepException
     {
     return new RPObject.ID(getInt("sheep"),get("zoneid"));
     }
     
-  public Sheep getSheep() throws NoSheepException
+  public Sheep retrieveSheep() throws NoSheepException
     {
     if(hasSlot("#flock"))
       {
