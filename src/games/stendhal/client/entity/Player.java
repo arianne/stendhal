@@ -59,8 +59,6 @@ public class Player extends AnimatedGameEntity
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
-    
-    System.out.println ("PLAYER: "+(int)x+","+(int)y+","+dx+","+dy);
 
     /** Choose the proper animation */
     if(stopped && changes.has("dir"))

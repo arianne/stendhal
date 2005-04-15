@@ -63,14 +63,6 @@ public class StendhalRPWorld extends RPWorld
     city.addCollisionLayer("city_collision","games/stendhal/server/maps/city_collision.stend");
     city.populate("games/stendhal/server/maps/city_objects.stend");
     addRPZone(city);
-
-    StendhalRPZone test=new StendhalRPZone("test");
-    test.addLayer("test_0_floor","games/stendhal/server/maps/test_0_floor.stend");
-    test.addLayer("test_1_object","games/stendhal/server/maps/test_1_object.stend");
-    test.addLayer("test_2_roof","games/stendhal/server/maps/test_2_roof.stend");
-    test.addCollisionLayer("test_collision","games/stendhal/server/maps/test_collision.stend");
-    test.populate("games/stendhal/server/maps/test_objects.stend");
-    addRPZone(test);
     }
   
   public void onFinish() throws Exception

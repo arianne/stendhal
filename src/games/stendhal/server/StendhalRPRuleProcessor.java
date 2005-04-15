@@ -412,7 +412,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::onInit",">");
     try
       {
-      object.put("zoneid","test");
+      object.put("zoneid","city");
       if(object.has("damage")) object.remove("damage");
       if(object.has("risk")) object.remove("risk");
       if(object.has("target")) object.remove("target");
