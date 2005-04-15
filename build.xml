@@ -130,7 +130,7 @@
     <signjar jar="${lib}/${client_jarname}" alias="miguelangelblanchlardin@hotmail.com" keystore="keystore.ks" storepass="qwerty" />
   </target>
 
-  <target name="jar" depends="sign_client_jar,server_jar"/>
+  <target name="jar" depends="client_jar,server_jar"/>
 
   <target name="release" depends="release_binary,release_source"/>
   <target name="release_binary" depends="release_server_binary,release_client_binary"/>
