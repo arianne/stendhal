@@ -72,6 +72,11 @@ public class SellerNPC extends NPC
         
       return true;
       }
+    else if(text.equals("help"))
+      {
+      put("text","I do sell sheeps, try to BUY me one.");
+      return true;
+      }
     else if(text.contains("bye"))
       {
       put("text","Bye "+player.get("name"));
