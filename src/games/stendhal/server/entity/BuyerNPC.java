@@ -92,7 +92,7 @@ public class BuyerNPC extends SpeakerNPC
     {
     if(getdy()==0)
       {
-      setdy(0.2);   
+      setdy(Math.signum(Math.random()-0.5)*0.2);   
       }
       
     if(gety()<=25) 

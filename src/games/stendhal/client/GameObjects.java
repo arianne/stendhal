@@ -62,6 +62,10 @@ public class GameObjects
         {
         return new Player(this, object);
         }
+      else if(object.get("type").equals("welcomernpc"))
+        {
+        return new Player(this, object);
+        }
       else if(object.get("type").equals("trainingdummy"))
         {
         return new TrainingDummy(this, object);

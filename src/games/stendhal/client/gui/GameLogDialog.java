@@ -28,6 +28,8 @@ public class GameLogDialog extends JDialog
 		jTextArea = new JTextArea();
 		jScrollPane = new JScrollPane();
 		contentPane = (JPanel)this.getContentPane();
+		
+		jTextArea.setLineWrap(true);
 
 		jScrollPane.setViewportView(jTextArea);
     jScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

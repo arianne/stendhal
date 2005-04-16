@@ -47,6 +47,12 @@ Changelog
 0.02 Apr XX, 2005
 - Fixed a problem related to message sorting
 - Removed EntryPointNotFoundException
+- Added sheep
+- Better NPC interaction
+- Better player movement
+- Combat feedback
+- Better collision detection
+- Added chat dialog
 
 0.01 Apr 05, 2005
 - Added bigger maps

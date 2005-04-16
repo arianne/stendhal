@@ -26,7 +26,7 @@
  </layer>
  <layer name="city_objects" width="64" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ZQQqAIBAFULv/KSuIukW7aFEQmUyM761dCP+jI5YCAPnMQ/QOoN6THl+t0f8c3ubfkmoBABlMhprurDLnRvR5sOjmITKLTQ4AXYm+//mHUQ8AAACaO//PeI9/awdic5ZtADIAAA==
+   H4sIAAAAAAAAAO3ZSwqAIBQFUNv/KiuIahVNIhoUSCUv9JyxA+Fef5gSANRn7KJnAO/l9PhqjP7X4Wn+JakWAFCDwaWmObPMuRG9H0y6eYjMYpEDNGG11tlFn//8Q68HAAAAxZ3/Z7zHv7UB9h28VAAyAAA=
   </data>
  </layer>
  <layer name="city_collision" width="64" height="50" opacity="0.41">

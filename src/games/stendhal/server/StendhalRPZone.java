@@ -232,7 +232,7 @@ public class StendhalRPZone extends MarauroaRPZone
 
               npcs.add(npc);
 
-              Logger.trace("StendhalRPZone::populate","D","Adding Buyer seller: "+npc);
+              Logger.trace("StendhalRPZone::populate","D","Adding NPC buyer: "+npc);
               break;
               }
             case 7: /* Food */
@@ -264,6 +264,20 @@ public class StendhalRPZone extends MarauroaRPZone
 
 
               Logger.trace("StendhalRPZone::populate","D","Adding Training dummy: "+dummy);
+              break;
+              }
+            case 10: /* Welcomer NPC  */
+              {              
+              WelcomerNPC npc=new WelcomerNPC();
+              assignRPObjectID(npc);
+              npc.setName("Carmen");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              add(npc);
+
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding Welcomer NPC: "+npc);
               break;
               }
             }

@@ -27,6 +27,10 @@ public class EntityAreas
       {
       rect.setRect(x,y,1.5,2);
       }
+    else if(type.equals("welcomernpc"))
+      {
+      rect.setRect(x,y,1.5,2);
+      }
     else if(type.equals("player"))
       {
       rect.setRect(x,y,1.5,2);
@@ -63,6 +67,10 @@ public class EntityAreas
       return new Rectangle.Double(x,y,1.5,2);
       }
     else if(type.equals("sellernpc"))
+      {
+      return new Rectangle.Double(x,y,1.5,2);
+      }
+    else if(type.equals("welcomernpc"))
       {
       return new Rectangle.Double(x,y,1.5,2);
       }
