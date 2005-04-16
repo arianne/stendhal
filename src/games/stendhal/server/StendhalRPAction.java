@@ -38,7 +38,7 @@ public class StendhalRPAction
     StendhalRPAction.world=world;
     }
     
-  static void face(ActiveEntity entity,double dx,double dy)
+  public static void face(ActiveEntity entity,double dx,double dy)
     {
     if(dx!=0)
       {
@@ -69,7 +69,7 @@ public class StendhalRPAction
       }
     }
     
-  static void leaveZone(Player player) throws AttributeNotFoundException, NoRPZoneException
+  public static void leaveZone(Player player) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::leaveZone",">");
     try
@@ -112,7 +112,7 @@ public class StendhalRPAction
       }
     }
  
-  static boolean attack(Player player,int targetObject) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
+  public static boolean attack(Player player,int targetObject) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
     Logger.trace("StendhalRPAction::attack",">");
     try
@@ -168,7 +168,7 @@ public class StendhalRPAction
       }
     }
 
-  static void move(ActiveEntity entity) throws AttributeNotFoundException, NoRPZoneException
+  public static void move(ActiveEntity entity) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::move",">");
     try
@@ -225,7 +225,7 @@ public class StendhalRPAction
       }
     }
 
-  static void transferContent(Player player) throws AttributeNotFoundException 
+  public static void transferContent(Player player) throws AttributeNotFoundException 
     {
     Logger.trace("StendhalRPAction::transferContent",">");
 
@@ -235,7 +235,7 @@ public class StendhalRPAction
     Logger.trace("StendhalRPAction::transferContent","<");
     }
 
-  static void decideChangeZone(Player player) throws AttributeNotFoundException, NoRPZoneException
+  public static void decideChangeZone(Player player) throws AttributeNotFoundException, NoRPZoneException
     {
     String zoneid=player.get("zoneid");
     double x=player.getx();
@@ -255,7 +255,7 @@ public class StendhalRPAction
       }
     }
     
-  static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException
+  public static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException
     {    
     Logger.trace("StendhalRPAction::changeZone",">");
 

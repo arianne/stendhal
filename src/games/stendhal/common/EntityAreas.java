@@ -43,6 +43,10 @@ public class EntityAreas
       {
       rect.setRect(x,y,1,2);
       }
+    else if(type.equals("food"))
+      {
+      rect.setRect(x,y,1,1);
+      }
     }
     
   static public Rectangle2D getArea(String type, double x, double y)
@@ -77,6 +81,10 @@ public class EntityAreas
     else if(type.equals("trainingdummy"))
       {
       return new Rectangle.Double(x,y,1,2);
+      }
+    else if(type.equals("food"))
+      {
+      return new Rectangle.Double(x,y,1,1);
       }
     else
       {

@@ -30,7 +30,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   
   private List<Player> playersObject;
   private List<Player> playersObjectRmText;
+  
   private List<NPC> npcs;
+  private List<Food> foodItems;
   private List<NPC> npcsToAdd;
   
   public StendhalRPRuleProcessor()
@@ -38,6 +40,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     playersObject=new LinkedList<Player>();
     playersObjectRmText=new LinkedList<Player>();
     npcs=new LinkedList<NPC>();
+    foodItems=new LinkedList<Food>();
     npcsToAdd=new LinkedList<NPC>();
     }
 
@@ -57,12 +60,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       
       StendhalRPAction.initialize(rpman,world);
       
-      NPC.setRPContext(this);
+      NPC.setRPContext(this, world);
       
       for(IRPZone zone: world)
         {
         StendhalRPZone szone=(StendhalRPZone)zone;
         npcs.addAll(szone.getNPCList());
+        foodItems.addAll(szone.getFoodItemList());
         }
       }
     catch(Exception e)
@@ -76,6 +80,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     npcsToAdd.add(npc);
     }
+
+  public List<Player> getPlayers()
+    {
+    return playersObject;
+    }
+  
+  public List<Food> getFoodItems()
+   {
+   return foodItems;
+   }
 
   public boolean onActionAdd(RPAction action, List<RPAction> actionList)
     {
@@ -358,44 +372,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     }
     
-  private Player getNearestPlayerThatHasSpeaken(NPC npc, double range)
-    {
-    double x=npc.getx();
-    double y=npc.gety();
-    
-    for(Player player: playersObject)
-      {
-      double px=player.getx();
-      double py=player.gety();
-      
-      if(Math.abs(px-x)<range && Math.abs(py-y)<range && player.has("text"))
-        {
-        return player;
-        }
-      }
-    
-    return null;
-    }
-      
   synchronized public void endTurn()
     {
     Logger.trace("StendhalRPRuleProcessor::endTurn",">");
     try
       {      
-      for(NPC npc: npcs)
-        {
-        npc.move(world);
-        if(!npc.stopped())
-          {
-          StendhalRPAction.move(npc);
-          }
-        
-        Player speaker=getNearestPlayerThatHasSpeaken(npc,5);
-        if(speaker!=null && npc.chat(world, speaker))
-          {
-          world.modify(npc);
-          }
-        }
+      for(NPC npc: npcs) npc.logic();
       }
     catch(Exception e)
       {
@@ -489,10 +471,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             {
             Sheep sheep=(Sheep)world.remove(object.getSheep());
             object.storeSheep(sheep);
+            npcs.remove(sheep);
             }
             
           boolean result=playersObject.remove(object);
           Logger.trace("StendhalRPRuleProcessor::onExit","D","Removed Player was "+result);
+          Logger.trace("StendhalRPRuleProcessor::onExit","D",object.toString());
           break;
           }
         }

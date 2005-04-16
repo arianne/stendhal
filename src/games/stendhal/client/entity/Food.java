@@ -18,10 +18,9 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-/** A Sheep entity */
-public class Sheep extends AnimatedGameEntity 
+public class Food extends AnimatedGameEntity 
   {
-  public Sheep(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+  public Food(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
     }
@@ -30,25 +29,32 @@ public class Sheep extends AnimatedGameEntity
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,3,64,48));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,3,64,48));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,3,64,48));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,3,64,48));      
+    sprites.put("0", store.getAnimatedSprite(translate(type),0,1,32,32));      
+    sprites.put("1", store.getAnimatedSprite(translate(type),1,1,32,32));      
+    sprites.put("2", store.getAnimatedSprite(translate(type),2,1,32,32));      
+    sprites.put("3", store.getAnimatedSprite(translate(type),3,1,32,32));      
+    sprites.put("4", store.getAnimatedSprite(translate(type),4,1,32,32));      
+    sprites.put("5", store.getAnimatedSprite(translate(type),5,1,32,32));      
     }
   
+  protected Sprite defaultAnimation()
+    {
+    animation="0";
+    return sprites.get("0")[0];
+    }
+
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
     
-    if(changes.has("eat"))
+    if(changes.has("amount"))
       {
-      System.out.println ("Sheep eats");
+      animation=changes.get("amount");
       }
-    }
-    
-  protected Sprite defaultAnimation()
-    {
-    animation="move_up";
-    return sprites.get("move_up")[0];
+    else if(object.has("amount"))
+      {
+      animation=object.get("amount");
+      }
+
     }
   }

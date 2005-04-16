@@ -14,71 +14,48 @@ package games.stendhal.server.entity;
 
 import marauroa.common.*;
 import marauroa.common.game.*;
+import marauroa.server.game.*;
+import games.stendhal.server.*;
 
-public class Entity extends RPObject 
+public class Food extends Entity 
   {
-  private double x;
-  private double y;
-  private int dir;
+  private int amount;
   
   public static void generateRPClass()
     {
-    RPClass entity=new RPClass("entity");
-    entity.add("x",RPClass.FLOAT);
-    entity.add("y",RPClass.FLOAT);
-    entity.add("dir",RPClass.BYTE);
+    RPClass food=new RPClass("food");
+    food.isA("entity");
+    food.add("amount",RPClass.BYTE);
     }
   
-  public Entity(RPObject object) throws AttributeNotFoundException
+  public Food(RPObject object) throws AttributeNotFoundException
     {
     super(object);
+    put("type","food");
     update();
     }
-  
-  public Entity() throws AttributeNotFoundException
+
+  public Food() throws AttributeNotFoundException
     {
     super();
-    }
-
-  public void update() throws AttributeNotFoundException
-    {
-    if(has("x")) x=getDouble("x");
-    if(has("y")) y=getDouble("y");
+    put("type","food");
     }
   
-  public void setx(double x)
+  public void update()
     {
-    this.x=x;
-    put("x",x);
+    super.update();
+    if(has("amount")) amount=getInt("amount");
     }
   
-  public double getx()
+  public void setAmount(int amount)
     {
-    return x;
+    this.amount=amount;
+    put("amount",amount);
     }
-  
-  public void sety(double y)
-    {
-    this.y=y;
-    put("y",y);
-    }
-
-  public double gety()
-    {
-    return y;
-    }  
-  
-  /** This returns the manhattan distance.
-   *  It is faster than real distance */
-  public double distance(Entity entity)
-    {
-    return (x-entity.x)*(x-entity.x)+(y-entity.y)*(y-entity.y);
-    }
-
-  public void setFacing(int facing)
-    {
-    dir=facing;
-    put("dir",facing);
-    }
-  }
     
+  public int getAmount()
+    {
+    return amount;
+    }
+
+  }

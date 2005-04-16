@@ -23,36 +23,23 @@ import marauroa.common.*;
 /** This class stores the layers that make the floor and the buildings */
 public class StaticGameLayers
   {
-  static private class PairRender
+  static class Pair<X>
     {
     public String name;
-    public TileRenderer renderer;
+    public X content;
     
-    PairRender(String name, TileRenderer renderer)
+    Pair(String name, X content)
       {
       this.name=name;
-      this.renderer=renderer;      
+      this.content=content;      
       }
     }
-  
-  /**TODO: Use generics */
-  static private class PairCollision
-    {
-    public String name;
-    public CollisionDetection collisionMap;
-    
-    PairCollision(String name, CollisionDetection collision)
-      {
-      this.name=name;
-      this.collisionMap=collision;      
-      }
-    }
-  
+ 
   /** List of pair name, layer */
-  private LinkedList<PairRender> layers;
+  private LinkedList<Pair<TileRenderer>> layers;
 
   /** List of pair name, layer */
-  private LinkedList<PairCollision> collisions;
+  private LinkedList<Pair<CollisionDetection>> collisions;
   
   /** Tilestore contains the tiles to draw */
   private TileStore tilestore;
@@ -62,8 +49,8 @@ public class StaticGameLayers
     
   public StaticGameLayers()
     {
-    layers=new LinkedList<PairRender>();
-    collisions=new LinkedList<PairCollision>();
+    layers=new LinkedList<Pair<TileRenderer>>();
+    collisions=new LinkedList<Pair<CollisionDetection>>();
     tilestore=TileStore.get("sprites/zelda_outside_chipset.gif");    
     area=null;
     }
@@ -73,13 +60,13 @@ public class StaticGameLayers
     {
     double width=0;
     
-    for(PairRender p: layers)
+    for(Pair<TileRenderer> p: layers)
       {
       if(area!=null && p.name.contains(area))
         {
-        if(width<p.renderer.getWidth())
+        if(width<p.content.getWidth())
           {
-          width=p.renderer.getWidth();
+          width=p.content.getWidth();
           }
         }
       }
@@ -92,13 +79,13 @@ public class StaticGameLayers
     {
     double height=0;
     
-    for(PairRender p: layers)
+    for(Pair<TileRenderer> p: layers)
       {
       if(area!=null && p.name.contains(area))
         {
-        if(height<p.renderer.getHeight())
+        if(height<p.content.getHeight())
           {
-          height=p.renderer.getHeight();
+          height=p.content.getHeight();
           }
         }
       }
@@ -114,8 +101,8 @@ public class StaticGameLayers
       {
       if(!name.contains("collision"))
         {
-        TileRenderer renderer=new TileRenderer(tilestore);
-        renderer.setMapData(reader);
+        TileRenderer content=new TileRenderer(tilestore);
+        content.setMapData(reader);
 
         int i;
         for( i=0;i<layers.size();i++)
@@ -132,14 +119,14 @@ public class StaticGameLayers
             }
           }
         
-        layers.add(i,new PairRender(name, renderer));    
+        layers.add(i,new Pair<TileRenderer>(name, content));    
         }
       else
         {
         CollisionDetection collision=new CollisionDetection();
         collision.setCollisionData(reader);
         
-        collisions.add(new PairCollision(name, collision));        
+        collisions.add(new Pair<CollisionDetection>(name, collision));        
         }
       }
     finally
@@ -150,13 +137,13 @@ public class StaticGameLayers
 
   public boolean collides(Rectangle2D shape)
     {
-    for(PairCollision p: collisions)
+    for(Pair<CollisionDetection> p: collisions)
       {
       if(area!=null && p.name.contains(area))
         {
-        if(p.collisionMap.collides(shape))
+        if(p.content.collides(shape))
           {
-          p.collisionMap.printaround((int)shape.getX(),(int)shape.getY(),10);
+          p.content.printaround((int)shape.getX(),(int)shape.getY(),5);
           return true;          
           }          
         }
@@ -189,11 +176,11 @@ public class StaticGameLayers
     
   public void draw(GameScreen screen, String layer)
     {
-    for(PairRender p: layers)
+    for(Pair<TileRenderer> p: layers)
       {
       if(p.name.equals(layer))
         {
-        p.renderer.draw(screen);
+        p.content.draw(screen);
         }
       }
     }
@@ -201,11 +188,11 @@ public class StaticGameLayers
   /** Render the choosen set of layers */
   public void draw(GameScreen screen)
     {
-    for(PairRender p: layers)
+    for(Pair<TileRenderer> p: layers)
       {
       if(area!=null && p.name.contains(area))
         {
-        p.renderer.draw(screen);
+        p.content.draw(screen);
         }
       }
     }

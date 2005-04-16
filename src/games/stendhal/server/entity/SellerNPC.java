@@ -16,7 +16,7 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 
-public class SellerNPC extends NPC 
+public class SellerNPC extends SpeakerNPC 
   {
   public static void generateRPClass()
     {
@@ -37,7 +37,7 @@ public class SellerNPC extends NPC
     put("type","sellernpc");
     }
 
-  public boolean chat(RPWorld world, Player player) throws AttributeNotFoundException
+  public boolean chat(Player player) throws AttributeNotFoundException
     {
     String text=player.get("text").toLowerCase();
     if(text.contains("hi"))
@@ -86,7 +86,7 @@ public class SellerNPC extends NPC
     return false;
     }
 
-  public boolean move(RPWorld world)
+  public boolean move()
     {    
     if(getdy()==0)
       {

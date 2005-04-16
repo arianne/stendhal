@@ -33,6 +33,7 @@ public class StendhalRPZone extends MarauroaRPZone
   private List<TransferContent> contents;
   private List<String> entryPoints;
   private List<NPC> npcs;
+  private List<Food> foodItems;
   
   private CollisionDetection collisionMap;
   private int width;
@@ -44,7 +45,9 @@ public class StendhalRPZone extends MarauroaRPZone
     
     contents=new LinkedList<TransferContent>();
     entryPoints=new LinkedList<String>();
+
     npcs=new LinkedList<NPC>();
+    foodItems=new LinkedList<Food>();
     
     collisionMap=new CollisionDetection();
     }
@@ -60,6 +63,11 @@ public class StendhalRPZone extends MarauroaRPZone
   public List<NPC> getNPCList()
     {
     return npcs;
+    }
+
+  public List<Food> getFoodItemList()
+    {
+    return foodItems;
     }
     
   public void addZoneChange(String entry)
@@ -229,6 +237,14 @@ public class StendhalRPZone extends MarauroaRPZone
               }
             case 7: /* Food */
               {
+              Food food=new Food();
+              assignRPObjectID(food);
+              food.setAmount(5);
+              food.setx(j%width);
+              food.sety(j/width);
+              add(food);
+
+              foodItems.add(food);
               break;
               }
             case 8: /* Zone change  */

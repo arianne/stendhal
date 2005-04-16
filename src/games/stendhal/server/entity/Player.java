@@ -88,7 +88,9 @@ public class Player extends RPEntity
       }
      
     RPSlot slot=getSlot("#flock");
+    slot.clear();
     slot.add(sheep);
+    put("sheep",sheep.getID().getObjectID());
     }
 
   public void setSheep(Sheep sheep)

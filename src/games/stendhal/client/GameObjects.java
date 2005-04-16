@@ -66,6 +66,10 @@ public class GameObjects
         {
         return new TrainingDummy(this, object);
         }
+      else if(object.get("type").equals("food"))
+        {
+        return new Food(this, object);
+        }
       else
         {
         return new GameEntity(this,object);
