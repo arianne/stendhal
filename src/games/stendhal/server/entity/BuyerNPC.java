@@ -49,10 +49,18 @@ public class BuyerNPC extends SpeakerNPC
       {
       if(player.hasSheep())
         {
-        put("text","Thanks! Here is your money");
-        world.remove(player.getSheep());
-        player.removeSheep();
-        world.modify(player);
+        Sheep sheep=(Sheep)world.get(player.getSheep());
+        if(distance(sheep)>5*5)
+          {
+          put("text","Your sheep is too far. I can't see it from here. Go and grab it here.");
+          }
+        else
+          {
+          put("text","Thanks! Here is your money");
+          world.remove(player.getSheep());
+          player.removeSheep();
+          world.modify(player);
+          }
         }
       else
         {

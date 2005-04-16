@@ -235,5 +235,12 @@ public class GameEntity extends Entity
         damageSpritesTimes.remove(0); 
         }
       }
+
+    Graphics g2d=screen.expose();
+    Rectangle2D rect=getArea();      
+    g2d.setColor(Color.green);    
+    Point2D p=new Point.Double(rect.getX(),rect.getY());
+    p=screen.invtranslate(p);
+    g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
     }
   }

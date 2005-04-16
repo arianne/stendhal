@@ -172,7 +172,7 @@ public class Player extends AnimatedGameEntity
         {        
         double tx=x+0.7-(textImage.getWidth()/(32.0f*2.0f));
         screen.draw(textImage,tx,ty);
-        ty=ty+textImage.getHeight()/32.0f;
+        ty=ty+textImage.getHeight()/32.0f+0.1;
         }
       
       if(textImages.size()>0 && (System.currentTimeMillis()-textImagesTimes.get(0)>TEXT_PERSISTENCE_TIME))
@@ -183,12 +183,5 @@ public class Player extends AnimatedGameEntity
       }
       
     super.draw(screen);
-    
-    Graphics g2d=screen.expose();
-    Rectangle2D rect=getArea();      
-    g2d.setColor(Color.red);    
-    Point2D p=new Point.Double(rect.getX(),rect.getY());
-    p=screen.invtranslate(p);
-    g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
     }
   }

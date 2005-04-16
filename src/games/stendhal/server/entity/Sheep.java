@@ -148,7 +148,7 @@ public class Sheep extends NPC
     if(owner!=null)
       {
       double distance=distance(owner);
-      if(collided() || distance>15)
+      if(collided() || distance>15*15)
         {
         Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is moving randomly");
         setdx(Math.random()*0.4-0.2);
