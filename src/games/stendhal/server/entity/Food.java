@@ -20,6 +20,7 @@ import games.stendhal.server.*;
 public class Food extends Entity 
   {
   private int amount;
+  private double grow;
   
   public static void generateRPClass()
     {
@@ -56,6 +57,21 @@ public class Food extends Entity
   public int getAmount()
     {
     return amount;
+    }
+  
+  public void regrow()
+    {
+    if(amount<5)
+      {
+      grow+=0.005;
+
+      if(grow>1)
+        {
+        grow=0;
+        setAmount(amount+1);
+        world.modify(this);
+        }
+      }
     }
 
   }

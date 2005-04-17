@@ -378,6 +378,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     try
       {      
       for(NPC npc: npcs) npc.logic();
+      for(Food food: foodItems) food.regrow();
       }
     catch(Exception e)
       {

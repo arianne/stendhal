@@ -33,15 +33,6 @@ public abstract class NPC extends RPEntity
       }
     }
     
-  protected static StendhalRPRuleProcessor rp;
-  protected static RPWorld world;
-  
-  public static void setRPContext(StendhalRPRuleProcessor rpContext,RPWorld worldContext)
-    {
-    rp=rpContext;
-    world=worldContext;
-    }
-  
   public NPC(RPObject object) throws AttributeNotFoundException
     {
     super(object);

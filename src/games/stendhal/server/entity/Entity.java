@@ -14,12 +14,23 @@ package games.stendhal.server.entity;
 
 import marauroa.common.*;
 import marauroa.common.game.*;
+import marauroa.server.game.*;
+import games.stendhal.server.*;
 
 public class Entity extends RPObject 
   {
   private double x;
   private double y;
   private int dir;
+  
+  protected static StendhalRPRuleProcessor rp;
+  protected static RPWorld world;
+  
+  public static void setRPContext(StendhalRPRuleProcessor rpContext,RPWorld worldContext)
+    {
+    rp=rpContext;
+    world=worldContext;
+    }
   
   public static void generateRPClass()
     {

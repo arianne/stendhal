@@ -122,7 +122,7 @@ public class StendhalRPAction
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if(object.has("hp")) //Instance of RPEntity 
+        if(object instanceof RPEntity) //Instance of RPEntity 
           {
           RPEntity target=(RPEntity)object;
           
@@ -154,11 +154,14 @@ public class StendhalRPAction
         else
           {
           player.remove("target");
+          world.modify(player);
           return false;
           }
         }
       else
         {
+        player.remove("target");
+        world.modify(player);
         return false;
         }
       }

@@ -21,6 +21,8 @@ import java.awt.geom.*;
 /** A Sheep entity */
 public class Sheep extends AnimatedGameEntity 
   {
+  private int weight;
+  
   public Sheep(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
@@ -44,11 +46,21 @@ public class Sheep extends AnimatedGameEntity
       {
       System.out.println ("Sheep eats");
       }
+    
+    if(changes.has("weight"))
+      {
+      weight=changes.getInt("weight");
+      }
     }
     
   protected Sprite defaultAnimation()
     {
     animation="move_up";
     return sprites.get("move_up")[0];
+    }
+
+  public void onLeftClick()
+    {
+    System.out.println ("Sheep weights "+weight);
     }
   }

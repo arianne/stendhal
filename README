@@ -44,7 +44,7 @@ Then just do:
 
 Changelog
 ---------
-0.02 Apr XX, 2005
+0.02 Apr 17, 2005
 - Fixed a problem related to message sorting
 - Removed EntryPointNotFoundException
 - Added sheep

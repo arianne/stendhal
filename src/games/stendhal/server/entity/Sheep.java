@@ -126,8 +126,11 @@ public class Sheep extends NPC
       world.modify(food);
       hungry=0;
       
-      setWeight(weight++);
-      world.modify(this);
+      if(weight<200)
+        {
+        setWeight(weight+1);
+        world.modify(this);
+        }
       }
     }
 
