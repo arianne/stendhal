@@ -74,14 +74,14 @@ public class textClient extends Thread
           RPAction action=new RPAction();
           if(i%50==0)
             {
-            action.put("type","change");
-            action.put("dest","village");
+            action.put("type","move");
+            action.put("dy","-1");
             clientManager.send(action);
             }
           else if(i%50==20)
             {
-            action.put("type","change");
-            action.put("dest","city");
+            action.put("type","move");
+            action.put("dy","1");
             clientManager.send(action);
             }
               

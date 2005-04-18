@@ -61,6 +61,7 @@ public class Sheep extends AnimatedGameEntity
 
   public void onLeftClick()
     {
+    StendhalClient.get().addEventLine("* Sheep weights "+weight);
     System.out.println ("Sheep weights "+weight);
     }
   }

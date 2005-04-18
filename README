@@ -45,6 +45,7 @@ Then just do:
 Changelog
 ---------
 0.03 Apr XX, 2005
+- Fixed a bug with Sheep weight due to signed/unsigned
 
 0.02 Apr 17, 2005
 - Fixed a problem related to message sorting
