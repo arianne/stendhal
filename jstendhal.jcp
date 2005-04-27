@@ -56,12 +56,19 @@
 			<folderitem>
 				<path>maps</path>
 			</folderitem>
+			<folderitem>
+				<path>lib</path>
+			</folderitem>
 			<fileitem>
 				<path>build.xml</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>README</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.02.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -173,6 +180,18 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\Navigable.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\Path.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\Pathfinder.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\stendhalcreateaccount.java</path>
 				<source>true</source>
 			</fileitem>
@@ -250,6 +269,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\EntityAreas.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-server-0.02.jar</path>
 				<source>true</source>
 			</fileitem>
 		</include>
