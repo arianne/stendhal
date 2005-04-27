@@ -86,6 +86,11 @@ public class Entity extends RPObject
     return (x-entity.x)*(x-entity.x)+(y-entity.y)*(y-entity.y);
     }
 
+  public double distance(double x, double y)
+    {
+    return (x-this.x)*(x-this.x)+(y-this.y)*(y-this.y);
+    }
+
   public void setFacing(int facing)
     {
     dir=facing;

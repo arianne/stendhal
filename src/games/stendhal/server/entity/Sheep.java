@@ -15,15 +15,13 @@ package games.stendhal.server.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
-import java.util.Random;
+import java.util.*;
 import games.stendhal.server.*;
 
 public class Sheep extends NPC
   {
   private int weight;
-  private int hungry;
   private Player owner;
-  private int i;
   
   public static void generateRPClass()
     {
@@ -52,6 +50,7 @@ public class Sheep extends NPC
 
     hungry=0;
     update();
+    Logger.trace("Sheep::Sheep","D","Created Sheep: "+this.toString());
     }
   
   public Sheep(RPObject object, Player owner) throws AttributeNotFoundException
@@ -62,6 +61,7 @@ public class Sheep extends NPC
     hungry=0;
     
     update();
+    Logger.trace("Sheep::Sheep","D","Created Sheep: "+this.toString());
     }
   
   public void setWeight(int weight)
@@ -101,21 +101,6 @@ public class Sheep extends NPC
     return chosen;
     }  
   
-  private void moveto(double x, double y, double speed)
-    {
-    double rndx=x-getx();
-    double rndy=y-gety();
-
-    double max=Math.abs(Math.abs(rndx)>Math.abs(rndy)?rndx:rndy);
-    rndx=(rndx/Math.abs(max));
-    rndy=(rndy/Math.abs(max));
-    
-    setdx(speed*Math.signum(rndx));
-    setdy(speed*Math.signum(rndy));
-
-    world.modify(this);
-    }
-  
   private void eat(Food food)
     {
     int amount=food.getAmount();
@@ -134,11 +119,65 @@ public class Sheep extends NPC
       }
     }
 
+  private int escapeCollision;
+  private int hungry;
+  
+  public void setMovement(double x, double y, double min, double max)
+    {
+    if(distance(x,y)<min && this.hasPath())
+      {
+      clearPath();
+      }
+
+    if(distance(x,y)>max && !hasPath())
+      {
+      List<Path.Node> path=Path.searchPath(this,x,y);
+      setPath(path,false);
+      }
+    }
+    
+  public void moveto(double speed)
+    {
+    if(escapeCollision>0) escapeCollision--;
+    
+    if(hasPath() && collided())
+      {
+      Logger.trace("Path::randomPath","D","Collision");
+      setdx(Math.random()*speed*2-speed);
+      setdy(Math.random()*speed*2-speed);
+      escapeCollision=6;
+      }
+    else if(escapeCollision==0 && hasPath() && Path.followPath(this,speed))
+      {
+      clearPath();
+      }
+    }
+
+  public void logicWithoutOwner()
+    {
+    if(escapeCollision>0) escapeCollision--;
+      
+    if(escapeCollision==0)
+      {
+      setIdea("random");
+      Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is moving randomly");
+      setdx(Math.random()*0.4-0.2);
+      setdy(Math.random()*0.4-0.2);
+      escapeCollision=6;
+      }
+    }
+
+  public void logicWithOwner()
+    {
+    setIdea("following");
+    setMovement(owner.getx(),owner.gety(),2*2,8*8);
+    moveto(0.25);
+    }
+  
+  
   public void logic()
     {
     Logger.trace("Sheep::logic",">");
-    if(i++%5==0)
-      {
     if(has("eat")) 
       {
       remove("eat");
@@ -146,53 +185,39 @@ public class Sheep extends NPC
       }
     
     hungry++;    
-    Food food=null;
     
-    if(owner!=null)
+    if(hungry<100)
       {
-      double distance=distance(owner);
-      if(collided() || distance>15*15)
+      if(owner!=null)
         {
-        Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is moving randomly");
-        setdx(Math.random()*0.4-0.2);
-        setdy(Math.random()*0.4-0.2);
-        world.modify(this);
+        logicWithOwner();
         }
       else 
         {
-        Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is following player: "+owner.getx()+","+owner.gety());      
-        moveto(owner.getx(),owner.gety(),0.25);
+        logicWithoutOwner();
         }
       }
-    else 
+    else
       {
-      Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is moving randomly");
-      setdx(Math.random()*0.4-0.2);
-      setdy(Math.random()*0.4-0.2);
-      world.modify(this);
-      }
+      Food food=null;
     
-    if(hungry>10 && (food=getNearestFood(this,6))!=null)
-      {
-      if(distance(food)<2.1*2.1) //Sheep biggest dimension
+      if(weight<100 && (food=getNearestFood(this,6))!=null)
         {
-        Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is eating food: "+food);
-        eat(food);        
-        }
-      else if(!collided())
-        {
-        Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is moving to food: "+food);
-        moveto(food.getx(),food.gety(),0.5);
-        }      
-      else
-        {
-        Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is moving randomly");
-        setdx(Math.random()*0.4-0.2);
-        setdy(Math.random()*0.4-0.2);
-        world.modify(this);
+        if(distance(food)<2.1*2.1) //Sheep biggest dimension
+          {
+          setIdea("eat");
+          Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is eating food: "+food);
+          eat(food);        
+          }
+        else
+          {
+          setIdea("moveToFood");
+          Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is moving to food: "+food);
+          setMovement(food.getx(),food.gety(),2.1*2.1,0);
+          moveto(0.25);
+          }      
         }
       }
-      }    
 
     if(!stopped())
       {

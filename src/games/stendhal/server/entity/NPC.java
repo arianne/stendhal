@@ -19,6 +19,8 @@ import games.stendhal.server.*;
 
 public abstract class NPC extends RPEntity 
   {
+  private String idea;
+  
   public static void generateRPClass()
     {
     try
@@ -26,6 +28,7 @@ public abstract class NPC extends RPEntity
       RPClass npc=new RPClass("npc");
       npc.isA("rpentity");
       npc.add("text",RPClass.STRING);
+      npc.add("idea",RPClass.STRING);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -47,6 +50,17 @@ public abstract class NPC extends RPEntity
     put("y",0);
     put("dx",0);
     put("dy",0);
+    }
+  
+  public void setIdea(String idea)
+    {
+    this.idea=idea;
+    put("idea",idea);
+    }
+  
+  public String getIdea()
+    {
+    return idea;
     }
   
   abstract public void logic();

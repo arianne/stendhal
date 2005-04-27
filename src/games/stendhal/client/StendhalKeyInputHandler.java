@@ -72,6 +72,10 @@ public class StendhalKeyInputHandler extends KeyAdapter
       action.put("dir",3);
       client.send(action);
       }
+    else if(e.getKeyCode()==KeyEvent.VK_L && e.isControlDown())
+      {
+      client.getGameLogDialog().setVisible(true);
+      }
     else if(e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT)
       {
 //      try

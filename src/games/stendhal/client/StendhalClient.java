@@ -68,10 +68,20 @@ public class StendhalClient extends ariannexp
     {
     this.dialog=dialog;
     }
+
+  public GameLogDialog getGameLogDialog()
+    {
+    return dialog;
+    }
   
   public void addEventLine(String text)
     {
     this.dialog.addLine(text);
+    }
+    
+  public void addEventLine(String text,Color color)
+    {
+    this.dialog.addLine(text,color);
     }
     
   public StaticGameLayers getStaticGameLayers()
@@ -310,7 +320,27 @@ public class StendhalClient extends ariannexp
         
       return false;
       }
-      
+
+    public int onTimeout()
+      {      
+      Logger.trace("StendhalClient::StendhalPerceptionListener::onTimeout","W","Request resync");
+      resync();
+      return 0;
+      }
+    
+    public int onSynced()
+      {
+      Logger.trace("StendhalClient::StendhalPerceptionListener::onSynced","W","Synced with server state.");
+      return 0;
+      }
+    
+    public int onUnsynced()
+      {
+      Logger.trace("StendhalClient::StendhalPerceptionListener::onUnsynced","W","Request resync");
+      resync();
+      return 0;
+      }
+   
     public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception)      
       {
       Logger.trace("StendhalClient::StendhalPerceptionListener::onException",perception.toString());

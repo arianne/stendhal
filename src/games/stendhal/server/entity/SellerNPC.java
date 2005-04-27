@@ -18,6 +18,8 @@ import marauroa.server.game.*;
 
 public class SellerNPC extends SpeakerNPC 
   {
+  private int amount;
+  
   public static void generateRPClass()
     {
     try
@@ -34,6 +36,7 @@ public class SellerNPC extends SpeakerNPC
   public SellerNPC() throws AttributeNotFoundException
     {
     super();
+    amount=0;
     put("type","sellernpc");
     }
 
@@ -64,6 +67,7 @@ public class SellerNPC extends SpeakerNPC
         player.setSheep(sheep);        
         world.modify(player);
         Logger.trace("SellerNPC::chat","D","Sold a sheep to player");
+        amount++;
         }
       else
         {
@@ -76,6 +80,10 @@ public class SellerNPC extends SpeakerNPC
       {
       put("text","I do sell sheeps, try to BUY me one.");
       return true;
+      }
+    else if(text.contains("sold"))
+      {
+      put("text","I have sold "+amount+" sheeps");
       }
     else if(text.contains("bye"))
       {

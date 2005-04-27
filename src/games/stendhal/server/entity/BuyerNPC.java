@@ -16,8 +16,13 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 
+import games.stendhal.server.*;
+import java.util.*;
+
 public class BuyerNPC extends SpeakerNPC 
   {
+  private int amount;
+  
   public static void generateRPClass()
     {
     try
@@ -35,6 +40,14 @@ public class BuyerNPC extends SpeakerNPC
     {
     super();
     put("type","buyernpc");
+    amount=0;
+    
+    List<Path.Node> nodes=new LinkedList<Path.Node>();
+    nodes.add(new Path.Node(40,25));
+    nodes.add(new Path.Node(40,29));
+    nodes.add(new Path.Node(44,29));
+    nodes.add(new Path.Node(40,29));
+    setPath(nodes,true);
     }
 
   public boolean chat(Player player) throws AttributeNotFoundException
@@ -60,6 +73,7 @@ public class BuyerNPC extends SpeakerNPC
           world.remove(player.getSheep());
           player.removeSheep();
           world.modify(player);
+          amount++;
           }
         }
       else
@@ -73,6 +87,10 @@ public class BuyerNPC extends SpeakerNPC
       {
       put("text","I do buy sheeps, try to SELL me one.");
       return true;
+      }
+    else if(text.contains("bought"))
+      {
+      put("text","I have bougth "+amount+" sheeps");
       }
     else if(text.equals("bye"))
       {
@@ -90,23 +108,7 @@ public class BuyerNPC extends SpeakerNPC
 
   public boolean move()
     {
-    if(getdy()==0)
-      {
-      setdy(Math.signum(Math.random()-0.5)*0.2);   
-      }
-      
-    if(gety()<=25) 
-      {
-      setdy(0.2);   
-      return true; 
-      }
-      
-    if(gety()>=28) 
-      {
-      setdy(-0.2);    
-      return true; 
-      }
-
-    return false; 
+    Path.followPath(this,0.25);
+    return true;
     }
   }

@@ -25,17 +25,15 @@ public class Player extends AnimatedGameEntity
   private final static int TEXT_PERSISTENCE_TIME=10000;
   private String name;
   private Sprite nameImage;
-  private java.util.List<Sprite> textImages;
-  private java.util.List<Long> textImagesTimes;
-  private long wasTextWritten;
+
+
+  private Sprite textImage;
+  private long textImagesTime;
   
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
     name="";
-    textImages=new java.util.LinkedList<Sprite>();
-    textImagesTimes=new java.util.LinkedList<Long>();
-    nameImage=null;
     }
 
     
@@ -92,11 +90,11 @@ public class Player extends AnimatedGameEntity
       
       if(risk>0)
         {
-        StendhalClient.get().addEventLine(name+" striked and damaged with "+damage+" points to "+target);
+        StendhalClient.get().addEventLine(name+" striked and damaged with "+damage+" points to "+target,Color.RED);
         }
       else
         {
-        StendhalClient.get().addEventLine(name+" missed striking to "+target);
+        StendhalClient.get().addEventLine(name+" missed striking to "+target,Color.RED);
         }
       }
   
@@ -143,8 +141,8 @@ public class Player extends AnimatedGameEntity
         g.drawString(line,3,i*16+12);
         }
         
-      textImages.add(new Sprite(image));      
-      textImagesTimes.add(new Long(System.currentTimeMillis()));
+      textImage=new Sprite(image);      
+      textImagesTime=System.currentTimeMillis();
       }  
     }
     
@@ -164,21 +162,15 @@ public class Player extends AnimatedGameEntity
       screen.draw(nameImage,x,y-0.3);
       }
       
-    if(textImages!=null) 
+    if(textImage!=null) 
       {
       double ty=y+2.05;
+      double tx=x+0.7-(textImage.getWidth()/(32.0f*2.0f));
+      screen.draw(textImage,tx,ty);
       
-      for(Sprite textImage: textImages)
-        {        
-        double tx=x+0.7-(textImage.getWidth()/(32.0f*2.0f));
-        screen.draw(textImage,tx,ty);
-        ty=ty+textImage.getHeight()/32.0f+0.1;
-        }
-      
-      if(textImages.size()>0 && (System.currentTimeMillis()-textImagesTimes.get(0)>TEXT_PERSISTENCE_TIME))
+      if(System.currentTimeMillis()-textImagesTime>TEXT_PERSISTENCE_TIME)
         {
-        textImages.remove(0);
-        textImagesTimes.remove(0); 
+        textImage=null;
         }
       }
       

@@ -71,8 +71,10 @@ public class Player extends RPEntity
   
   public void removeSheep()
     {
+    Logger.trace("Player::removeSheep",">");
     remove("sheep");
     getSlot("#flock").clear();
+    Logger.trace("Player::removeSheep","<");
     }
      
   public boolean hasSheep()
@@ -80,22 +82,11 @@ public class Player extends RPEntity
     return has("sheep");
     }
   
-  public void storeSheep(Sheep sheep)
-    {
-    if(!hasSlot("#flock"))
-      {
-      addSlot(new RPSlot("#flock"));
-      }
-     
-    RPSlot slot=getSlot("#flock");
-    slot.clear();
-    slot.add(sheep);
-    put("sheep",sheep.getID().getObjectID());
-    }
-
   public void setSheep(Sheep sheep)
     {
+    Logger.trace("Player::setSheep",">");
     put("sheep",sheep.getID().getObjectID());
+    Logger.trace("Player::setSheep","<");
     }
   
   public static class NoSheepException extends RuntimeException
@@ -111,18 +102,41 @@ public class Player extends RPEntity
     return new RPObject.ID(getInt("sheep"),get("zoneid"));
     }
     
+  public void storeSheep(Sheep sheep)
+    {
+    Logger.trace("Player::storeSheep",">");
+    if(!hasSlot("#flock"))
+      {
+      addSlot(new RPSlot("#flock"));
+      }
+     
+    RPSlot slot=getSlot("#flock");
+    slot.clear();
+    slot.add(sheep);
+    put("sheep",sheep.getID().getObjectID());
+    Logger.trace("Player::storeSheep","<");
+    }
+
   public Sheep retrieveSheep() throws NoSheepException
     {
-    if(hasSlot("#flock"))
+    Logger.trace("Player::retrieveSheep",">");
+    try
       {
-      RPSlot slot=getSlot("#flock");
-      if(slot.size()>0)
+      if(hasSlot("#flock"))    
         {
-        Sheep sheep=new Sheep(slot.get(),this);
-        return sheep;
+        RPSlot slot=getSlot("#flock");
+        if(slot.size()>0)
+          {
+          Sheep sheep=new Sheep(slot.get(),this);
+          return sheep;
+          }
         }
+      
+      throw new NoSheepException();
       }
-    
-    throw new NoSheepException();
+    finally
+      {
+      Logger.trace("Player::retrieveSheep","<");
+      }
     }
   }

@@ -15,6 +15,9 @@ package games.stendhal.server.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
+import games.stendhal.server.*;
+import java.util.*;
+
 public class ActiveEntity extends Entity 
   {
   private double dx;
@@ -111,6 +114,52 @@ public class ActiveEntity extends Entity
   public boolean collided()
     {
     return collides;
+    }
+  
+  private List<Path.Node> path;
+  private int pathPosition;
+  private boolean pathLoop;
+  
+  public void setPath(List<Path.Node> path, boolean cycle)
+    {
+    this.path=path;
+    this.pathPosition=0;
+    this.pathLoop=cycle;
+    }
+    
+  public boolean hasPath()
+    {
+    return path!=null;
+    }
+  
+  public void clearPath()
+    {
+    this.path=null;
+    }
+    
+  public List<Path.Node> getPath()  
+    {
+    return path;
+    }
+  
+  public boolean isPathLoop()
+    {
+    return pathLoop;
+    }
+  
+  public int getPathPosition()
+    {
+    return pathPosition;
+    }
+  
+  public boolean pathCompleted()
+    {
+    return path!=null && pathPosition==path.size()-1;
+    }
+  
+  public void setPathPosition(int pathPos)
+    {
+    this.pathPosition=pathPos;
     }
   }
     

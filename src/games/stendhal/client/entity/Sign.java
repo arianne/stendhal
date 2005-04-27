@@ -76,7 +76,7 @@ public class Sign extends GameEntity
       }
     }
     
-  public void onLeftClick()
+  public void onLeftClick(StendhalClient client)
     {
     delta=System.currentTimeMillis();
     }

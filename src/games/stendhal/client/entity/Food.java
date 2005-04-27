@@ -55,6 +55,5 @@ public class Food extends AnimatedGameEntity
       {
       animation=object.get("amount");
       }
-
     }
   }

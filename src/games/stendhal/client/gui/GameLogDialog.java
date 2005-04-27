@@ -1,7 +1,10 @@
 package games.stendhal.client.gui;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import java.util.*;
 /**
  * Summary description for GameLogDialog
  *
@@ -12,16 +15,30 @@ public class GameLogDialog extends JDialog
 	private JTextArea jTextArea;
 	private JScrollPane jScrollPane;
 	private JPanel contentPane;
+  private JTextField playerChat;
 	// End of variables declaration
 
 
-  public GameLogDialog(Frame w)
-	{
+  public GameLogDialog(Frame w, JTextField textField)
+	  {
 		super(w);
 		initializeComponent(w);
+    playerChat=textField;
 
-		this.setVisible(true);
-	}
+    addFocusListener(new FocusListener()
+      {
+      public void focusGained(FocusEvent e)
+        {
+        playerChat.requestFocus();
+        }
+            
+      public void focusLost(FocusEvent e)
+        {
+        }
+      });        
+  
+    this.setVisible(true);
+	  }
 
   private void initializeComponent(Frame w)
 	  {
@@ -53,9 +70,16 @@ public class GameLogDialog extends JDialog
 		container.add(c);
   	}
  
-  public void addLine(String line)
+  public void addLine(String line, Color color)
     {
+    //NOTE:TODO: Fix this. It must change the color of the line just added.
+    //jTextArea.setForeground(color);
     jTextArea.append(line+"\n");
     jTextArea.setCaretPosition(jTextArea.getDocument().getLength());
+    }
+    
+  public void addLine(String line)
+    {
+    addLine(line,Color.BLACK);
     }
   }

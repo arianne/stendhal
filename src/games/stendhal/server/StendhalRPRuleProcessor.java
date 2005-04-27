@@ -59,6 +59,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       this.world=world;
       
       StendhalRPAction.initialize(rpman,world);
+      Path.initialize(rpman,world);
       
       NPC.setRPContext(this, world);
       

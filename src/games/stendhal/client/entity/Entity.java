@@ -55,9 +55,9 @@ public abstract class Entity {
 	abstract public Rectangle2D getArea();
     abstract public Rectangle2D getDrawedArea();
     
-    abstract public void onClick();
-    abstract public void onDoubleClick();
-    abstract public void onLeftClick();
+    abstract public void onClick(StendhalClient client);
+    abstract public void onDoubleClick(StendhalClient client);
+    abstract public void onLeftClick(StendhalClient client);
     
     /**
 	 * Request that this entity move itself based on a certain ammount

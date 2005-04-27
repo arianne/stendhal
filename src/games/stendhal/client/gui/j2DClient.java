@@ -28,8 +28,6 @@ import marauroa.client.net.*;
 import marauroa.common.*;
 import marauroa.common.net.*;
 import marauroa.common.game.*;
-import java.awt.event.MouseListener;
-import java.util.EventListener;
 
 import javax.swing.*;
 
@@ -39,7 +37,7 @@ public class j2DClient extends JFrame
   private GameScreen screen;
         
   private boolean gameRunning=true;
-	
+  
   private StendhalClient client;
   
   private String host;
@@ -51,24 +49,24 @@ public class j2DClient extends JFrame
 
   public j2DClient(StendhalClient sc) 
     {
-	// create a frame to contain our game
-	setTitle("Stendhal Java 2D");
-		
-	// get hold the content of the frame and set up the resolution of the game
-	JPanel panel = (JPanel) this.getContentPane();
-	panel.setPreferredSize(new Dimension(640,480));
-	panel.setLayout(null);
-		
-	// setup our canvas size and put it into the content of the frame
-	Canvas canvas=new Canvas();
-	canvas.setBounds(0,0,640,460);
-    // Tell AWT not to bother repainting our canvas since we're
-    // going to do that our self in accelerated mode
-    canvas.setIgnoreRepaint(true);
-    panel.add(canvas);
-    
-    playerChatText=new JTextField("");
-    playerChatText.setBounds(0,460,640,20);
+    // create a frame to contain our game
+    setTitle("Stendhal Java 2D");
+      
+    // get hold the content of the frame and set up the resolution of the game
+    JPanel panel = (JPanel) this.getContentPane();
+    panel.setPreferredSize(new Dimension(640,480));
+    panel.setLayout(null);
+      
+    // setup our canvas size and put it into the content of the frame
+    Canvas canvas=new Canvas();
+    canvas.setBounds(0,0,640,460);
+      // Tell AWT not to bother repainting our canvas since we're
+      // going to do that our self in accelerated mode
+      canvas.setIgnoreRepaint(true);
+      panel.add(canvas);
+      
+      playerChatText=new JTextField("");
+      playerChatText.setBounds(0,460,640,20);
     playerChatText.addActionListener(new ActionListener()
       {
       public void actionPerformed(ActionEvent e)
@@ -83,25 +81,25 @@ public class j2DClient extends JFrame
       });
     panel.add(playerChatText);
         
-		
+    
     this.setLocation(new Point(100, 100));
     this.setIconImage(new ImageIcon("data/StendhalIcon.gif").getImage());
    
-    // finally make the window visible 
-	pack();
-	setResizable(false);
-	setVisible(true);
-	
-	// add a listener to respond to the user closing the window. If they
-	// do we'd like to exit the game
-	addWindowListener(new WindowAdapter() 
-	  {
-	  public void windowClosing(WindowEvent e) 
-	    {
-        gameRunning=false;
-		}
-	  });
-		
+      // finally make the window visible 
+    pack();
+    setResizable(false);
+    setVisible(true);
+    
+    // add a listener to respond to the user closing the window. If they
+    // do we'd like to exit the game
+    addWindowListener(new WindowAdapter() 
+      {
+      public void windowClosing(WindowEvent e) 
+        {
+          gameRunning=false;
+      }
+      });
+      
     this.client=sc;
    
     // add a key input system (defined below) to our canvas so we can respond to key pressed    
@@ -129,35 +127,35 @@ public class j2DClient extends JFrame
       public void focusLost(FocusEvent e)
         {
         }
-      });        
+      });  
    
     // request the focus so key events come to us
     playerChatText.requestFocus();
     requestFocus();
 
-	// create the buffering strategy which will allow AWT
-	// to manage our accelerated graphics
+    // create the buffering strategy which will allow AWT
+    // to manage our accelerated graphics
     BufferStrategy strategy;
     canvas.createBufferStrategy(2);
-	strategy = canvas.getBufferStrategy();
-		
-	GameScreen.createScreen(strategy,640,480);
+    strategy = canvas.getBufferStrategy();
+      
+    GameScreen.createScreen(strategy,640,480);
     screen=GameScreen.get();
 
     canvas.addMouseListener(new StendhalMouseInputHandler(client));
     
-    client.setGameLogDialog(new GameLogDialog(this));    
+    client.setGameLogDialog(new GameLogDialog(this, playerChatText));    
 
-        
-	// Start the main game loop, note: this method will not
-	// return until the game has finished running. Hence we are
-	// using the actual main thread to run the game.
-	gameLoop();
-	}
-	
+          
+    // Start the main game loop, note: this method will not
+    // return until the game has finished running. Hence we are
+    // using the actual main thread to run the game.
+    gameLoop();
+    }
+  
   public void gameLoop() 
     {
-	long lastLoopTime = System.currentTimeMillis();
+    long lastLoopTime = System.currentTimeMillis();
     int fps=0;
 
     StaticGameLayers staticLayers=client.getStaticGameLayers();
@@ -173,35 +171,35 @@ public class j2DClient extends JFrame
     // keep looping round til the game ends
     while (gameRunning) 
       {
-	  fps++;
-	  // work out how long its been since the last update, this
-	  // will be used to calculate how far the entities should
-	  // move this loop
-	  long delta = System.currentTimeMillis() - lastLoopTime;
-	  lastLoopTime = System.currentTimeMillis();
-			
+      fps++;
+      // work out how long its been since the last update, this
+      // will be used to calculate how far the entities should
+      // move this loop
+      long delta = System.currentTimeMillis() - lastLoopTime;
+      lastLoopTime = System.currentTimeMillis();
+      
       gameObjects.move(delta);
       
       pipeline.draw(screen);      
-           
-	  screen.nextFrame();
+            
+      screen.nextFrame();
       client.loop(0);
 
       moveScreen(client.getPlayer(),staticLayers,delta);
            
       if(System.nanoTime()-oldTime>1000000000)
-	    {
+        {
         oldTime=System.nanoTime();
         Logger.trace("j2DCLient::gameLoop()","D","FPS: "+Integer.toString(fps));
-	    fps=0;
+        fps=0;
         
         gameRunning=client.shouldContinueGame();
-        }	    
-   	  }
+        }     
+      }
 
     client.logout();
     System.exit(0);
-	}
+  }
   
   private void moveScreen(RPObject object, StaticGameLayers gameLayers, long delta)
     {
@@ -324,5 +322,5 @@ public class j2DClient extends JFrame
     Logger.println("* -h\tHost that is running Marauroa server");
     Logger.println("* -u\tUsername to log into Marauroa server");
     Logger.println("* -p\tPassword to log into Marauroa server");
-	}
+    }
   }

@@ -51,6 +51,11 @@ public class Sheep extends AnimatedGameEntity
       {
       weight=changes.getInt("weight");
       }
+    
+    if(changes.has("idea"))
+      {
+      System.out.println ("Sheep idea "+changes.get("idea"));
+      }
     }
     
   protected Sprite defaultAnimation()
@@ -59,7 +64,7 @@ public class Sheep extends AnimatedGameEntity
     return sprites.get("move_up")[0];
     }
 
-  public void onLeftClick()
+  public void onLeftClick(StendhalClient client)
     {
     StendhalClient.get().addEventLine("* Sheep weights "+weight);
     System.out.println ("Sheep weights "+weight);

@@ -316,6 +316,12 @@ public class StendhalRPZone extends MarauroaRPZone
     return collisionMap.leavesZone(area);
     }
     
+  public boolean simpleCollides(RPObject object, double x, double y) throws AttributeNotFoundException  
+    {
+    Rectangle2D area=EntityAreas.getArea(object.get("type"),x,y);    
+    return collisionMap.collides(area);
+    }
+    
   public boolean collides(RPObject object, double x, double y) throws AttributeNotFoundException  
     {
     Rectangle2D area=EntityAreas.getArea(object.get("type"),x,y);
@@ -339,7 +345,6 @@ public class StendhalRPZone extends MarauroaRPZone
       }   
     else
       {
-      collisionMap.printaround((int)x,(int)y,10);     
       return true;
       }    
     }

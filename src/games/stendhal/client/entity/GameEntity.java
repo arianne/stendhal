@@ -104,15 +104,15 @@ public class GameEntity extends Entity
     return drawedArea;
     }
 
-  public void onClick()
+  public void onClick(StendhalClient client)
     {
     }
     
-  public void onDoubleClick()
+  public void onDoubleClick(StendhalClient client)
     {
     }
     
-  public void onLeftClick()
+  public void onLeftClick(StendhalClient client)
     {
     }
   
@@ -205,13 +205,13 @@ public class GameEntity extends Entity
       switch(resolution)
         {
         case BLOCKED:          
-          screen.draw(blocked,sx,sy);
+          screen.draw(blocked,sx-0.25,sy-0.25);
           break;
         case MISSED:
-          screen.draw(missed,sx,sy);
+          screen.draw(missed,sx-0.25,sy-0.25);
           break;
         case HITTED:
-          screen.draw(hitted,sx,sy);
+          screen.draw(hitted,sx-0.25,sy-0.25);
           break;
         }
       }

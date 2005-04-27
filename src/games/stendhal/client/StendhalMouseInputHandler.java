@@ -42,15 +42,15 @@ public class StendhalMouseInputHandler implements MouseListener
       {
       if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
         {
-        entity.onDoubleClick();
+        entity.onDoubleClick(client);
         }
       else if(e.getButton()==MouseEvent.BUTTON1)
         {
-        entity.onClick();
+        entity.onClick(client);
         }
       if(e.getButton()==MouseEvent.BUTTON3)
         {
-        entity.onLeftClick();
+        entity.onLeftClick(client);
         }
 
       System.out.println (entity.getClass());
