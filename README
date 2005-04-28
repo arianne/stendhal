@@ -12,13 +12,18 @@
 Stendhal
 --------
 This is a implementation of multiplayer adventures game with a Zelda look.
-This game is not playable right now and it is only a very geek demostration of
-the arianne engine.
+Your task is to talk with other people in the village and find jobs to do that 
+will drive to interesting quests that will reveal the hidden plot behind the 
+world of stendhal
 
-Description
------------
-The game is actually in *heavy* development. In fact I won't call it game :)
-You can move and change zone.
+In stendhal, you can also just walk around, chat with people, buy and sell 
+items and kill some of them :)
+Some of these people are NPC, they will give you tasks to accomplish and 
+hints to solve your quest.
+
+stendhal is totally developed using Java and Java2D, so it is portable to 
+anything running Java 1.5.0.
+
 
 Current Version
 ---------------
@@ -39,13 +44,24 @@ Please download it from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.01.jar
+  java -jar stendhal-0.03.jar
 
 
 Changelog
 ---------
-0.03 Apr XX, 2005
+0.03 Apr 28, 2005
 - Fixed a bug with Sheep weight due to signed/unsigned
+- Fixed Sheep movement
+- Added Patrol action
+- Added follow path
+- Fixed collision detection area
+- Game Chat dialog opens with Ctrl+L
+- NPC counts sheeps sold and bought
+- Client reconnect on out of sync
+- A single text line is visible now
+- Combat icon is centered on the bottom right corner.
+- Optional collision detection boxes.
+
 
 0.02 Apr 17, 2005
 - Fixed a problem related to message sorting
