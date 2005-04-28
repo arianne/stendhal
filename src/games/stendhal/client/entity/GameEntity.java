@@ -27,6 +27,8 @@ public class GameEntity extends Entity
   {
   /** The arianne object associated with this game entity */
   private RPObject.ID id;
+  private String type;
+  
   /** The object sprite. Animationless, just one frame */
   protected Sprite sprite;
 
@@ -87,8 +89,9 @@ public class GameEntity extends Entity
     damageSprites=new LinkedList<Sprite>();
     damageSpritesTimes=new LinkedList<Long>();
     attacked=false;
+    type=object.get("type");
     
-    loadSprite(object.get("type"));
+    loadSprite(type);
 
     area=EntityAreas.getArea(object.get("type"),0,0);
     drawedArea=EntityAreas.getDrawedArea(object.get("type"),0,0);
@@ -165,8 +168,8 @@ public class GameEntity extends Entity
     if(changes.has("y")) y=changes.getDouble("y");
     if(changes.has("dx")) dx=changes.getDouble("dx");
     if(changes.has("dy")) dy=changes.getDouble("dy");
-
-    area.setRect(x,y,area.getWidth(),area.getHeight());
+    
+    EntityAreas.getArea(area,type,x,y);
     drawedArea.setRect(x,y,drawedArea.getWidth(),drawedArea.getHeight());    
     }
 
@@ -236,11 +239,21 @@ public class GameEntity extends Entity
         }
       }
 
-    Graphics g2d=screen.expose();
-    Rectangle2D rect=getArea();      
-    g2d.setColor(Color.green);    
-    Point2D p=new Point.Double(rect.getX(),rect.getY());
-    p=screen.invtranslate(p);
-    g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+    if(stendhal.showCollisionDetection)
+      {
+      Graphics g2d=screen.expose();
+      Rectangle2D rect=getArea();      
+      g2d.setColor(Color.green);    
+      Point2D p=new Point.Double(rect.getX(),rect.getY());
+      p=screen.invtranslate(p);
+      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+  
+      g2d=screen.expose();
+      rect=getDrawedArea();      
+      g2d.setColor(Color.blue);    
+      p=new Point.Double(rect.getX(),rect.getY());
+      p=screen.invtranslate(p);
+      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+      }
     }
   }
