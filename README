@@ -27,7 +27,7 @@ anything running Java 1.5.0.
 
 Current Version
 ---------------
-Version 0.03
+Version 0.10
 
 
 How to make it work
@@ -49,7 +49,10 @@ Then just do:
 
 Changelog
 ---------
+0.10 May XX, 2005
+
 0.03 Apr 28, 2005
+- Added A*
 - Fixed a bug with Sheep weight due to signed/unsigned
 - Fixed Sheep movement
 - Added Patrol action

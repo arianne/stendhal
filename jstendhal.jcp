@@ -56,9 +56,6 @@
 			<folderitem>
 				<path>maps</path>
 			</folderitem>
-			<folderitem>
-				<path>lib</path>
-			</folderitem>
 			<fileitem>
 				<path>build.xml</path>
 				<source>true</source>
@@ -269,10 +266,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\EntityAreas.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>lib\stendhal-server-0.02.jar</path>
 				<source>true</source>
 			</fileitem>
 		</include>
