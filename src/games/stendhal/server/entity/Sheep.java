@@ -16,6 +16,8 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 import java.util.*;
+
+import games.stendhal.common.*;
 import games.stendhal.server.*;
 
 public class Sheep extends NPC
@@ -56,6 +58,7 @@ public class Sheep extends NPC
   public Sheep(RPObject object, Player owner) throws AttributeNotFoundException
     {
     super(object);
+    put("type","sheep");
     this.owner=owner;
 
     hungry=0;
@@ -120,6 +123,7 @@ public class Sheep extends NPC
     }
 
   private int escapeCollision;
+  private int numCollision;
   private int hungry;
   
   public void setMovement(double x, double y, double min, double max)
@@ -129,10 +133,11 @@ public class Sheep extends NPC
       clearPath();
       }
 
-    if(distance(x,y)>max && !hasPath())
+    if((distance(x,y)>max && !hasPath()) || numCollision>20)
       {
       List<Path.Node> path=Path.searchPath(this,x,y);
       setPath(path,false);
+      numCollision=0;
       }
     }
     
@@ -142,7 +147,7 @@ public class Sheep extends NPC
     
     if(hasPath() && collided())
       {
-      Logger.trace("Path::randomPath","D","Collision");
+      numCollision++;
       setdx(Math.random()*speed*2-speed);
       setdy(Math.random()*speed*2-speed);
       escapeCollision=6;
@@ -153,25 +158,24 @@ public class Sheep extends NPC
       }
     }
 
-  public void logicWithoutOwner()
+  public void logicWithoutOwner(double speed)
     {
     if(escapeCollision>0) escapeCollision--;
       
-    if(escapeCollision==0)
+    if(stopped() || collided() || escapeCollision==0)
       {
       setIdea("random");
-      Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is moving randomly");
-      setdx(Math.random()*0.4-0.2);
-      setdy(Math.random()*0.4-0.2);
-      escapeCollision=6;
+      setdx(Math.random()*speed*2-speed);
+      setdy(Math.random()*speed*2-speed);
+      escapeCollision=10;
       }
     }
 
-  public void logicWithOwner()
+  public void logicWithOwner(double speed)
     {
     setIdea("following");
     setMovement(owner.getx(),owner.gety(),2*2,8*8);
-    moveto(0.25);
+    moveto(speed);
     }
   
   
@@ -185,45 +189,48 @@ public class Sheep extends NPC
       }
     
     hungry++;    
+    Food food=null;
     
-    if(hungry<100)
+    if(hungry<100 || weight>=100)
       {
       if(owner!=null)
         {
-        logicWithOwner();
+        logicWithOwner(0.25);
         }
       else 
         {
-        logicWithoutOwner();
+        logicWithoutOwner(0.25);
         }
+      }
+    else if(weight<100 && (food=getNearestFood(this,6))!=null)
+      {
+      if(distance(food)<2.1*2.1) //Sheep biggest dimension
+        {
+        setIdea("eat");
+        eat(food);        
+        }
+      else
+        {
+        setIdea("moveToFood");
+        setMovement(food.getx(),food.gety(),2.1*2.1,0);
+        moveto(0.25);
+        }      
       }
     else
       {
-      Food food=null;
-    
-      if(weight<100 && (food=getNearestFood(this,6))!=null)
+      setIdea("lookForFood");
+
+      if(owner!=null)
         {
-        if(distance(food)<2.1*2.1) //Sheep biggest dimension
-          {
-          setIdea("eat");
-          Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is eating food: "+food);
-          eat(food);        
-          }
-        else
-          {
-          setIdea("moveToFood");
-          Logger.trace("Sheep::logic","D","Sheep("+getx()+","+gety()+") is moving to food: "+food);
-          setMovement(food.getx(),food.gety(),2.1*2.1,0);
-          moveto(0.25);
-          }      
+        logicWithOwner(0.25);
+        }
+      else 
+        {
+        logicWithoutOwner(0.25);
         }
       }
 
-    if(!stopped())
-      {
-      StendhalRPAction.move(this);
-      }
-      
+    StendhalRPAction.move(this);
     Logger.trace("Sheep::logic","<");
     }
   }

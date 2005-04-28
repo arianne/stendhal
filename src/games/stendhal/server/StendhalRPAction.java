@@ -180,9 +180,8 @@ public class StendhalRPAction
       double y=entity.gety();
       double dx=entity.getdx();
       double dy=entity.getdy();
-      boolean stopped=entity.stopped();
       
-      if(stopped)
+      if(entity.stopped())
         {
         return;
         }
@@ -218,6 +217,7 @@ public class StendhalRPAction
         // HACK: Needed to make 0.02 client to work. FIXME
         entity.setx(x);
         entity.sety(y);
+        
         entity.stop();
         world.modify(entity);
         }

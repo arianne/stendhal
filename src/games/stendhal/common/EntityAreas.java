@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import marauroa.common.*;
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -50,6 +51,10 @@ public class EntityAreas
     else if(type.equals("food"))
       {
       rect.setRect(x,y,1,1);
+      }
+    else
+      {
+      Logger.trace("EntityAreas::getArea","D","No area found for ("+type+")");
       }
     }
     

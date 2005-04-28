@@ -101,19 +101,18 @@ public class Path
     Pathfinder path=new Pathfinder();
     path.setNavigable(new NavigableStendhalNode(entity, (StendhalRPZone)world.getRPZone(entity.getID())));
     path.setEndpoints((int)entity.getx(),(int)entity.gety(),(int)x,(int)y);
+
     path.init();
     while(path.getStatus()==Pathfinder.IN_PROGRESS)
       {
       path.doStep();
       }
      
-    Logger.trace("Path::searchPath","D","Optimal route for entity at ("+entity.getx()+","+entity.gety()+") to ("+x+","+y+")");
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
     while(node!=null)
       {
       list.add(0,new Node(node.getX(),node.getY()));
-      Logger.trace("Path::searchPath","D",node.toString());
       node=node.getParent();      
       }
 
