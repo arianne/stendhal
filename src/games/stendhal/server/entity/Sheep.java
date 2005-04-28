@@ -88,15 +88,18 @@ public class Sheep extends NPC
     
     for(Food food: rp.getFoodItems())
       {
-      double fx=food.getx();
-      double fy=food.gety();
-      
-      if(Math.abs(fx-x)<range && Math.abs(fy-y)<range && food.getAmount()>0)
+      if(food.get("zoneid").equals(get("zoneid")))
         {
-        if(this.distance(food)<distance)
+        double fx=food.getx();
+        double fy=food.gety();
+        
+        if(Math.abs(fx-x)<range && Math.abs(fy-y)<range && food.getAmount()>0)
           {
-          chosen=food;
-          distance=this.distance(food);
+          if(this.distance(food)<distance)
+            {
+            chosen=food;
+            distance=this.distance(food);
+            }
           }
         }
       }

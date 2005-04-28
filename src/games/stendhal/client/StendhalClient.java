@@ -301,7 +301,7 @@ public class StendhalClient extends ariannexp
       {
       try
         {
-        Logger.trace("StendhalClient::StendhalPerceptionListener::onDeleted","D","Object("+object.getID()+") added to Static Objects container");
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onDeleted","D","Object("+object.getID()+") removed from Static Objects container");
         gameObjects.remove(object.getID());
         }
       catch(Exception e)
