@@ -17,7 +17,9 @@ import games.stendhal.client.gui.*;
 public class stendhal extends Thread
   {
   public static boolean doLogin=false;
-  public static boolean showCollisionDetection=false;
+  
+  final public static boolean showCollisionDetection=true;
+  final public static String VERSION="0.03";
   
   public static void main(String args[]) 
     {

@@ -43,6 +43,7 @@ public class StendhalRPWorld extends RPWorld
     SellerNPC.generateRPClass();
     WelcomerNPC.generateRPClass();
     Sheep.generateRPClass();
+    Wolf.generateRPClass();
     Player.generateRPClass();
         
     Logger.trace("StendhalRPWorld::createRPClasses","<");

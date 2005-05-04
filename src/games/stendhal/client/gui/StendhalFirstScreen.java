@@ -131,7 +131,7 @@ public class StendhalFirstScreen extends JFrame
 		//
 		// LoginGUI
 		//
-        setTitle("Stendhal Java 2D");
+        setTitle("Stendhal "+stendhal.VERSION+" - a multiplayer online game using Arianne");
         this.setLocation(new Point(100, 100));
         
         URL url = this.getClass().getClassLoader().getResource("data/StendhalIcon.gif");

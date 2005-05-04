@@ -36,25 +36,24 @@ public class Sheep extends AnimatedGameEntity
     sprites.put("move_right", store.getAnimatedSprite(translate(type),1,3,64,48));      
     sprites.put("move_down", store.getAnimatedSprite(translate(type),2,3,64,48));      
     sprites.put("move_left", store.getAnimatedSprite(translate(type),3,3,64,48));      
+    sprites.put("big_move_up", store.getAnimatedSprite(translate(type),4,3,64,48));      
+    sprites.put("big_move_right", store.getAnimatedSprite(translate(type),5,3,64,48));      
+    sprites.put("big_move_down", store.getAnimatedSprite(translate(type),6,3,64,48));      
+    sprites.put("big_move_left", store.getAnimatedSprite(translate(type),7,3,64,48));      
     }
   
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
     
-    if(changes.has("eat"))
-      {
-      System.out.println ("Sheep eats");
-      }
-    
     if(changes.has("weight"))
       {
       weight=changes.getInt("weight");
       }
-    
-    if(changes.has("idea"))
-      {
-      System.out.println ("Sheep idea "+changes.get("idea"));
+      
+    if(weight>60 && !animation.startsWith("big_"))
+      {      
+      animation="big_"+animation;
       }
     }
     

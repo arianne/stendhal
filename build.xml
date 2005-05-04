@@ -34,6 +34,11 @@
   <target name="compile" depends="init">
     <mkdir dir="${build}"/>
 
+    <replaceregexp file="${src}/games/stendhal/client/stendhal.java"
+                   match="final private static String VERSION=&quot;.*&quot;;"
+                   replace="final private static String VERSION=&quot;${version}&quot;;"
+                   byline="true"/>
+                   
     <copy todir="${build}/sprites">
       <fileset dir="${sprites}"/>
     </copy>

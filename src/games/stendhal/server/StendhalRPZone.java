@@ -80,7 +80,7 @@ public class StendhalRPZone extends MarauroaRPZone
     entryPoints.add(0,entry);
     }  
   
-  public void placeObjectAtEntryPoint(RPObject object)
+  public void placeObjectAtEntryPoint(Entity object)
     {
     if(entryPoints.size()==0)
       {
@@ -89,8 +89,9 @@ public class StendhalRPZone extends MarauroaRPZone
       
     String entryPoint=entryPoints.get(0);
     String[] components=entryPoint.split(",");
-    object.put("x",components[0]);
-    object.put("y",components[1]);
+
+    object.setx(Integer.parseInt(components[0]));
+    object.sety(Integer.parseInt(components[1]));
     }
   
   public void addLayer(String name, String filename) throws IOException
@@ -310,37 +311,35 @@ public class StendhalRPZone extends MarauroaRPZone
     return contents;
     }
   
-  public boolean leavesZone(RPObject object, double x, double y) throws AttributeNotFoundException  
+  public boolean leavesZone(Entity entity, double x, double y) throws AttributeNotFoundException  
     {
-    Rectangle2D area=EntityAreas.getArea(object.get("type"),x,y);
+    Rectangle2D area=EntityAreas.getArea(entity.get("type"),x,y);
     return collisionMap.leavesZone(area);
     }
     
-  public boolean simpleCollides(RPObject object, double x, double y) throws AttributeNotFoundException  
+  public boolean simpleCollides(Entity entity, double x, double y) throws AttributeNotFoundException  
     {
-    Rectangle2D area=EntityAreas.getArea(object.get("type"),x,y);    
+    Rectangle2D area=EntityAreas.getArea(entity.get("type"),x,y);    
     return collisionMap.collides(area);
     }
     
-  public boolean collides(RPObject object, double x, double y) throws AttributeNotFoundException  
+  public boolean collides(Entity entity, double x, double y) throws AttributeNotFoundException  
     {
-    Rectangle2D area=EntityAreas.getArea(object.get("type"),x,y);
+    Rectangle2D area=EntityAreas.getArea(entity.get("type"),x,y);
     
     if(collisionMap.collides(area)==false)
       {
       Rectangle2D otherarea=new Rectangle.Double();
       for(RPObject other: objects.values())
         {
-        if(!other.getID().equals(object.getID()))
+        Entity otherEntity=(Entity)other;
+        EntityAreas.getArea(otherarea,otherEntity.get("type"),otherEntity.getx(),otherEntity.gety());
+        if(area.intersects(otherarea) && !entity.getID().equals(otherEntity.getID()))
           {
-          EntityAreas.getArea(otherarea,other.get("type"),other.getDouble("x"),other.getDouble("y"));
-          if(area.intersects(otherarea))
-            {
-            return true;
-            }
+          return true;
           }
         }
-      
+              
       return false;
       }   
     else

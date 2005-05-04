@@ -167,6 +167,34 @@ public class CollisionDetection
 //
 //    return false;
     
+//    double x=shape.getX();
+//    double y=shape.getY();
+//    double w=shape.getWidth();
+//    double h=shape.getHeight();
+//    
+//    if(x<0 || x+w>=getWidth())
+//      {
+//      return true;
+//      }
+//
+//    if(y<0 || y+h>=getHeight())
+//      {
+//      return true;
+//      }
+//    
+//    for(int k=0;k<height;k++)
+//      {
+//      for(int i=0;i<width;i++)
+//        {
+//        if(blocked[k*width+i] && shape.intersects(i,k,1,1))
+//          {
+//          return true;
+//          }
+//        }
+//      }
+//    
+//    return false;
+
     double x=shape.getX();
     double y=shape.getY();
     double w=shape.getWidth();
@@ -182,17 +210,19 @@ public class CollisionDetection
       return true;
       }
     
-    for(int k=0;k<height;k++)
+    int startx=(int)((x-2>=0)?x-2:0);
+    int endx=(int)((x+w+2<width)?x+w+2:width);
+    int starty=(int)((y-2)>=0?y-2:0);
+    int endy=(int)((y+h+2)<height?y+h+2:height);
+    
+    for(int k=starty;k<endy;k++)
       {
-      for(int i=0;i<width;i++)
+      for(int i=startx;i<endx;i++)
         {
-        if(blocked[k*width+i])
+        if(blocked[k*width+i] && shape.intersects(i,k,1,1))
           {
-          if(shape.intersects(i,k,1,1))
-            {
-            return true;
-            }
-          }        
+          return true;
+          }
         }
       }
     

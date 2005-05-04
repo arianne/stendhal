@@ -96,6 +96,7 @@ public class GameObjects
     entity.modifyAdded(new RPObject(), object);
     objects.put(entity.getID(),entity);
     
+    Logger.trace("GameObjects::add","D",entity.toString());
     Logger.trace("GameObjects::add","<");
     }
   
@@ -165,6 +166,7 @@ public class GameObjects
   public void remove(RPObject.ID id)
     {
     Logger.trace("GameObjects::remove",">");
+    Logger.trace("GameObjects::remove","D",id.toString());
     objects.remove(id);
     Logger.trace("GameObjects::remove","<");
     }

@@ -145,6 +145,28 @@ public class j2DClient extends JFrame
     canvas.addMouseListener(new StendhalMouseInputHandler(client));
     
     client.setGameLogDialog(new GameLogDialog(this, playerChatText));    
+    
+    addComponentListener(new ComponentAdapter()
+      {
+      public void componentHidden(ComponentEvent e) 
+        {
+        }
+      public void componentMoved(ComponentEvent e) 
+        {
+        Dimension size=getSize();
+        Point location=getLocation();   
+    
+        client.getGameLogDialog().setLocation(new Point((int)location.getX(), (int)(location.getY()+size.getHeight())));
+        }
+
+      public void componentResized(ComponentEvent e) 
+        {
+        }
+
+      public void componentShown(ComponentEvent e)
+        {
+        }
+      });
 
           
     // Start the main game loop, note: this method will not
@@ -291,10 +313,10 @@ public class j2DClient extends JFrame
           
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={};
+        String[] allowed={"GameObjects"};
         Logger.setAllowed(allowed);
 
-        String[] rejected={};
+        String[] rejected={"modify"};
         Logger.setRejected(rejected);
         
         StendhalClient client=StendhalClient.get();

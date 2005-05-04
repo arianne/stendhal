@@ -15,7 +15,10 @@ package games.stendhal.server.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
+import games.stendhal.common.*;
 import games.stendhal.server.*;
+import java.awt.*;
+import java.awt.geom.*;
 
 public class Entity extends RPObject 
   {
