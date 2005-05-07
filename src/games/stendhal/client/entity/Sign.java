@@ -17,26 +17,27 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Sign extends GameEntity 
+public class Sign extends Entity 
   {
-  private final static int TEXT_PERSISTENCE_TIME=10000;
+  private final static int TEXT_PERSISTENCE_TIME=5000;
+  private String text;
   private Sprite textImage;
-  private GameScreen screen;
   private long delta;
   
   public Sign(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
     super(gameObjects, object);
-    screen=GameScreen.get();
     }
   
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
+    GameScreen screen=GameScreen.get();
+
     
     if(changes.has("text"))
       {
-      String text=changes.get("text");
+      text=changes.get("text");
 
       Graphics g2d=screen.expose();
       
@@ -76,9 +77,24 @@ public class Sign extends GameEntity
       }
     }
     
-  public void onLeftClick(StendhalClient client)
+  public String defaultAction()
     {
-    delta=System.currentTimeMillis();
+    return "Look";
+    }
+
+  public String[] offeredActions()
+    {
+    String[] list={"Look"};
+    return list;
+    }
+
+  public void onAction(String action, StendhalClient client)
+    {
+    if(action.equals("Look"))
+      {
+      delta=System.currentTimeMillis();
+      StendhalClient.get().addEventLine("You read \""+text+"\"");
+      }
     }
 
   public void draw(GameScreen screen)

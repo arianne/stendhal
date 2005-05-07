@@ -121,7 +121,7 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\entity\AnimatedGameEntity.java</path>
+				<path>src\games\stendhal\client\entity\AnimatedEntity.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -133,11 +133,15 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\entity\GameEntity.java</path>
+				<path>src\games\stendhal\client\entity\NPC.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\Player.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\RPEntity.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -206,10 +210,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\StendhalRPZone.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\ActiveEntity.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -18,7 +18,7 @@ import java.util.*;
 
 /** This class is a special type of GameEntity that has animation, that is
  *  it is compound of multiple frames. */
-public abstract class AnimatedGameEntity extends GameEntity 
+public abstract class AnimatedEntity extends Entity 
   {
   /** This map contains animation name, frames association */
   protected Map<String,Sprite[]> sprites;
@@ -28,21 +28,24 @@ public abstract class AnimatedGameEntity extends GameEntity
   protected int frame;
   /** we need to measure time to ahve a coherent frame rendering, that is what delta is for */
   protected long delta;
-  /** this var is true if the gameentity is not moving */
-  protected boolean stopped;
-  
-  public AnimatedGameEntity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+
+  public AnimatedEntity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
     delta=System.currentTimeMillis();
     frame=0;
-    stopped=true;
     }
 
   /** This method fills the sprites map */
-  abstract protected void buildAnimations(String type);
+  protected void buildAnimations(String type)
+    {
+    }
+    
   /** This method sets the default animation */
-  abstract protected Sprite defaultAnimation();
+  protected Sprite defaultAnimation()
+    {
+    return null;
+    }
 
   /** Redefined method to load all the animation and set a default frame to be rendered */    
   protected void loadSprite(String type)
@@ -59,9 +62,7 @@ public abstract class AnimatedGameEntity extends GameEntity
     {
     super.modifyAdded(object,changes);
     
-    stopped=(dx==0 && dy==0);
-    
-    if((dx!=0 || dy!=0))
+    if(!stopped())
       {
       if(dx>0 && dx*dx>=dy*dy)
         {
@@ -81,6 +82,25 @@ public abstract class AnimatedGameEntity extends GameEntity
         animation="move_up";
         }
       }
+    else if(changes.has("dir"))
+      {
+      int value=changes.getInt("dir");
+      switch(value)
+        {
+        case 0:
+          animation="move_left";
+          break;
+        case 1:
+          animation="move_right";
+          break;
+        case 2:
+          animation="move_up";
+          break;
+        case 3:
+          animation="move_down";
+          break;
+        }
+      }    
     }    
  
   /** Returns the next Sprite we have to show */
@@ -95,7 +115,7 @@ public abstract class AnimatedGameEntity extends GameEntity
     
     Sprite sprite=anim[frame];
     
-    if(!stopped)
+    if(!stopped())
       {
       frame++;
       }

@@ -18,8 +18,10 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Food extends AnimatedGameEntity 
+public class Food extends AnimatedEntity 
   {
+  private int amount;
+  
   public Food(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
@@ -50,10 +52,31 @@ public class Food extends AnimatedGameEntity
     if(changes.has("amount"))
       {
       animation=changes.get("amount");
+      amount=changes.getInt("amount");
       }
     else if(object.has("amount"))
       {
       animation=object.get("amount");
+      amount=changes.getInt("amount");
+      }
+    }
+
+  public String defaultAction()
+    {
+    return "Look";
+    }
+
+  public String[] offeredActions()
+    {
+    String[] list={"Look"};
+    return list;
+    }
+
+  public void onAction(String action, StendhalClient client)
+    {
+    if(action.equals("Look"))
+      {
+      StendhalClient.get().addEventLine("You see a bush with "+amount+" fruits");
       }
     }
   }

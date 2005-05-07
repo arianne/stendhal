@@ -402,7 +402,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(object.has("target")) object.remove("target");
       
       // Port from 0.03 to 0.10 
-      if(!object.has("base_hp")) object.put("base_hp","10");
+      if(!object.has("base_hp")) 
+        {
+        object.put("base_hp","10");
+        object.put("hp","10");
+        }
       
       Player player=new Player(object);
       player.setdx(0);
@@ -431,6 +435,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         Logger.trace("StendhalRPRuleProcessor::onInit","D","Player has a sheep");
         Sheep sheep=player.retrieveSheep();
         sheep.put("zoneid",object.get("zoneid"));
+        if(!sheep.has("base_hp")) 
+          {
+          sheep.put("base_hp","10");
+          sheep.put("hp","10");
+          }
+          
         world.add(sheep);                
         
         Logger.trace("StendhalRPRuleProcessor::onInit","D","Setting new position for sheep");

@@ -17,10 +17,23 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class TrainingDummy extends GameEntity 
+public class TrainingDummy extends RPEntity 
   {
   public TrainingDummy(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
     super(gameObjects, object);
+    }
+
+  protected void buildAnimations(String type)
+    {
+    SpriteStore store=SpriteStore.get();  
+
+    sprites.put("default", store.getAnimatedSprite(translate(type),0,1,64,32));      
+    }
+  
+  protected Sprite defaultAnimation()
+    {
+    animation="default";
+    return sprites.get("default")[0];
     }
   }

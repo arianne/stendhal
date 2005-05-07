@@ -198,6 +198,7 @@ public class StendhalRPZone extends MarauroaRPZone
               assignRPObjectID(sheep);
               sheep.setx(j%width);
               sheep.sety(j/width);
+              sheep.setbaseHP(10);
               add(sheep);
 
               npcs.add(sheep);
@@ -215,6 +216,7 @@ public class StendhalRPZone extends MarauroaRPZone
               npc.setName("Nishiya");
               npc.setx(j%width);
               npc.sety(j/width);
+              npc.setbaseHP(10);
               add(npc);
               
               npcs.add(npc);
@@ -229,6 +231,7 @@ public class StendhalRPZone extends MarauroaRPZone
               npc.setName("Sato");
               npc.setx(j%width);
               npc.sety(j/width);
+              npc.setbaseHP(10);
               add(npc);
 
               npcs.add(npc);
@@ -260,7 +263,7 @@ public class StendhalRPZone extends MarauroaRPZone
               assignRPObjectID(dummy);
               dummy.setx(j%width);
               dummy.sety(j/width);
-              dummy.setHP(100);
+              dummy.setbaseHP(100);
               add(dummy);
 
 

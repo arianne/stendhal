@@ -12,24 +12,16 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import marauroa.common.*;
+import marauroa.common.game.*;
+import games.stendhal.client.*;
+import games.stendhal.common.*;
+import java.util.*;
 import java.awt.*;
 import java.awt.geom.*;
-import games.stendhal.client.*;
 
-/**
- * An entity represents any element that appears in the game. The
- * entity is responsible for resolving collisions and movement
- * based on a set of properties defined either by subclass or externally.
- * 
- * Note that doubles are used for positions. This may seem strange
- * given that pixels locations are integers. However, using double means
- * that an entity can move a partial pixel. It doesn't of course mean that
- * they will be display half way through a pixel but allows us not lose
- * accuracy as we move.
- * 
- * @author Kevin Glass
- */
-public abstract class Entity {
+public abstract class Entity
+  {
 	/** The current x location of this entity */ 
 	protected double x;
 	/** The current y location of this entity */
@@ -39,107 +31,119 @@ public abstract class Entity {
 	/** The current speed of this entity vertically (pixels/sec) */
 	protected double dy;
 
+  /** The arianne object associated with this game entity */
+  protected RPObject.ID id;
+  protected String type;
+  
+  /** The object sprite. Animationless, just one frame */
+  protected Sprite sprite;
+
+  protected Rectangle2D area;
+  protected Rectangle2D drawedArea;
+
+  protected GameObjects gameObjects;
+  protected StendhalClient client;
+
+
 	/**
 	 * Construct a entity based on a sprite image and a location.
 	 * 
  	 * @param x The initial x location of this entity
 	 * @param y The initial y location of this entity
 	 */
-	public Entity(int x,int y) {
-		this.x = x;
-		this.y = y;
-		
-		dx=dy=0;
-	}
-	
-	abstract public Rectangle2D getArea();
-    abstract public Rectangle2D getDrawedArea();
+  public Entity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+	  {
+	  this.gameObjects=gameObjects;
+    this.client=StendhalClient.get();
+
+    type=object.get("type");
+    id=object.getID();    
+    x=y=dx=dy=0;
+
+    loadSprite(type);
+
+    area=EntityAreas.getArea(object.get("type"),0,0);
+    drawedArea=EntityAreas.getDrawedArea(object.get("type"),0,0);
+    }
+
+  /** Returns the represented arianne object id */
+  public RPObject.ID getID()
+    {
+    return id;
+    }
+ 
+  protected static String translate(String type)
+    {
+    return "sprites/"+type+".gif";
+    }
     
-    abstract public void onClick(StendhalClient client);
-    abstract public void onDoubleClick(StendhalClient client);
-    abstract public void onLeftClick(StendhalClient client);
+  /** Loads the sprite that represent this entity */
+  protected void loadSprite(String type)
+    {
+    SpriteStore store=SpriteStore.get();        
+    sprite=store.getSprite(translate(type));
+    }
+
+  final public Rectangle2D getArea()
+    {
+    return area;
+    }
+
+  final public Rectangle2D getDrawedArea()
+    {
+    return drawedArea;
+    }
+
+  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    if(changes.has("x")) x=changes.getDouble("x");
+    if(changes.has("y")) y=changes.getDouble("y");
+    if(changes.has("dx")) dx=changes.getDouble("dx");
+    if(changes.has("dy")) dy=changes.getDouble("dy");
     
-    /**
-	 * Request that this entity move itself based on a certain ammount
-	 * of time passing.
-	 * 
-	 * @param delta The ammount of time that has passed in milliseconds
-	 */
-	public void move(long delta) {
+    EntityAreas.getArea(area,type,x,y);
+    drawedArea.setRect(x,y,drawedArea.getWidth(),drawedArea.getHeight());    
+    }
+
+  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    }
+
+  public void draw(GameScreen screen)
+    {
+    screen.draw(sprite,x,y);
+
+    if(stendhal.showCollisionDetection)
+      {
+      Graphics g2d=screen.expose();
+      Rectangle2D rect=getArea();      
+      g2d.setColor(Color.green);    
+      Point2D p=new Point.Double(rect.getX(),rect.getY());
+      p=screen.invtranslate(p);
+      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+  
+      g2d=screen.expose();
+      rect=getDrawedArea();      
+      g2d.setColor(Color.blue);    
+      p=new Point.Double(rect.getX(),rect.getY());
+      p=screen.invtranslate(p);
+      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+      }
+    }
+    
+	public void move(long delta) 
+	  {
 		// update the location of the entity based on move speeds
 		x += (delta * dx) / 300;
 		y += (delta * dy) / 300;
-	}
-	
-	/**
-	 * Set the horizontal speed of this entity
-	 * 
-	 * @param dx The horizontal speed of this entity (pixels/sec)
-	 */
-	public void setHorizontalMovement(double dx) {
-		this.dx = dx;
-	}
-
-	/**
-	 * Set the vertical speed of this entity
-	 * 
-	 * @param dy The vertical speed of this entity (pixels/sec)
-	 */
-	public void setVerticalMovement(double dy) {
-		this.dy = dy;
-	}
-	
-	/**
-	 * Get the horizontal speed of this entity
-	 * 
-	 * @return The horizontal speed of this entity (pixels/sec)
-	 */
-	public double getHorizontalMovement() {
-		return dx;
-	}
-
-	/**
-	 * Get the vertical speed of this entity
-	 * 
-	 * @return The vertical speed of this entity (pixels/sec)
-	 */
-	public double getVerticalMovement() {
-		return dy;
-	}
-	
-	/**
-	 * Draw this entity to the graphics context provided
-	 * 
-	 * @param g The graphics context on which to draw
-	 */
-	public void draw(GameScreen g) {
-	}
-	
-	/**
-	 * Get the x location of this entity
-	 * 
-	 * @return The x location of this entity
-	 */
-	public int getX() {
-		return (int) x;
-	}
-
-	/**
-	 * Get the y location of this entity
-	 * 
-	 * @return The y location of this entity
-	 */
-	public int getY() {
-		return (int) y;
-	}
-
-  public void setX(double x)
+  	}	
+  
+  public boolean stopped()
     {
-    this.x=x;
+    return dx==0 && dy==0;
     }
-    
-  public void setY(double y)
-    {
-    this.y=y;
-    }
-}
+
+  public abstract String defaultAction();
+  public abstract String[] offeredActions();
+  public abstract void onAction(String action, StendhalClient client);
+  }

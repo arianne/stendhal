@@ -101,6 +101,14 @@ public class RPEntity extends ActiveEntity
     return def;
     }
     
+  public void setbaseHP(int hp)
+    {
+    this.base_hp=hp;
+    put("base_hp",hp);
+    this.hp=hp;
+    put("hp",hp);
+    }
+
   public void setHP(int hp)
     {
     this.hp=hp;

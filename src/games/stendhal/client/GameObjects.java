@@ -23,17 +23,17 @@ import java.awt.geom.*;
 /** This class stores the objects that exists on the World right now */
 public class GameObjects 
   {
-  private HashMap<RPObject.ID, GameEntity> objects;
+  private HashMap<RPObject.ID, Entity> objects;
   private StaticGameLayers collisionMap;
   
   public GameObjects(StaticGameLayers collisionMap)
     {
-    objects=new HashMap<RPObject.ID, GameEntity>();
+    objects=new HashMap<RPObject.ID, Entity>();
     this.collisionMap=collisionMap;
     }
   
-  /** Create a GameEntity of the correct type depending of the arianne object */
-  private GameEntity entityType(RPObject object) 
+  /** Create a Entity of the correct type depending of the arianne object */
+  private Entity entityType(RPObject object) 
     {
     try
       {
@@ -76,22 +76,23 @@ public class GameObjects
         }
       else
         {
-        return new GameEntity(this,object);
+        Logger.trace("GameObjects::entityType","X","Unknown entity type");
+        return null;
         }
       }
     catch(AttributeNotFoundException e)
       {
-      e.printStackTrace();
+      Logger.thrown("GameObjects::entityType","X",e);
       return null;
       }
     }
   
-  /** Add a new GameEntity to the game */  
+  /** Add a new Entity to the game */  
   public void add(RPObject object) throws AttributeNotFoundException
     {
     Logger.trace("GameObjects::add",">");
 
-    GameEntity entity=entityType(object);
+    Entity entity=entityType(object);
     // HACK: The first time the object is EMPTY! 
     entity.modifyAdded(new RPObject(), object);
     objects.put(entity.getID(),entity);
@@ -100,9 +101,9 @@ public class GameObjects
     Logger.trace("GameObjects::add","<");
     }
   
-  public GameEntity at(double x, double y)
+  public Entity at(double x, double y)
     {
-    for(GameEntity entity: objects.values())
+    for(Entity entity: objects.values())
       {
       if(entity.getDrawedArea().contains(x,y))
         {
@@ -113,11 +114,11 @@ public class GameObjects
     return null;
     }  
 
-  /** Modify a existing GameEntity so its propierties change */  
+  /** Modify a existing Entity so its propierties change */  
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     Logger.trace("GameObjects::modifyAdded",">");
-    GameEntity entity=objects.get(object.getID());
+    Entity entity=objects.get(object.getID());
     if(entity!=null)
       {
       entity.modifyAdded(object, changes);
@@ -129,7 +130,7 @@ public class GameObjects
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     Logger.trace("GameObjects::modifyRemoved",">");
-    GameEntity entity=objects.get(object.getID());
+    Entity entity=objects.get(object.getID());
     if(entity!=null)
       {
       entity.modifyRemoved(object, changes);
@@ -138,31 +139,38 @@ public class GameObjects
     Logger.trace("GameObjects::modifyRemoved","<");
     }
 
-  public void attack(GameEntity source, RPObject.ID target, int risk, int damage) throws AttributeNotFoundException
+  public void attack(RPEntity source, RPObject.ID target, int risk, int damage) throws AttributeNotFoundException
     {
     Logger.trace("GameObjects::damage",">");
-    GameEntity entity=objects.get(target);
-    if(entity!=null)
+    Entity entity=objects.get(target);
+    if(entity!=null && entity instanceof RPEntity)
       {
-      entity.onAttack(source,risk, damage);
+      RPEntity rpentity=(RPEntity)entity;
+      rpentity.onAttack(source,risk, damage);
       }
       
     Logger.trace("GameObjects::damage","<");
     }
 
-  public void attackStop(GameEntity source, RPObject.ID target) throws AttributeNotFoundException
+  public void attackStop(RPEntity source, RPObject.ID target) throws AttributeNotFoundException
     {
     Logger.trace("GameObjects::damage",">");
-    GameEntity entity=objects.get(target);
-    if(entity!=null)
+    Entity entity=objects.get(target);
+    if(entity!=null && entity instanceof RPEntity)
       {
-      entity.onAttackStop(source);
+      RPEntity rpentity=(RPEntity)entity;
+      rpentity.onAttackStop(source);
       }
       
     Logger.trace("GameObjects::damage","<");
     }
   
-  /** Removes a GameEntity from game */
+  public boolean has(Entity entity)
+    {
+    return objects.containsKey(entity.getID());
+    }
+    
+  /** Removes a Entity from game */
   public void remove(RPObject.ID id)
     {
     Logger.trace("GameObjects::remove",">");
@@ -182,22 +190,19 @@ public class GameObjects
   /** Move objects based on the lapsus of time ellapsed since the last call. */
   public void move(long delta)    
     {
-    for(GameEntity entity: objects.values())
+    for(Entity entity: objects.values())
       {
-      if(entity.getHorizontalMovement()!=0 || entity.getVerticalMovement()!=0)
+      if(!entity.stopped() && !collisionMap.collides(entity.getArea()))
         {
-        if(collisionMap.collides(entity.getArea())==false)
-          {
-          entity.move(delta);
-          }      
-        }
+        entity.move(delta);
+        }      
       }
     }
    
   /** Draw all the objects in game */
   public void draw(GameScreen screen)
     {
-    for(GameEntity entity: objects.values())
+    for(Entity entity: objects.values())
       {
       entity.draw(screen);
       }

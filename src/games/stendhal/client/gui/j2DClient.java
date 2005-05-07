@@ -35,6 +35,7 @@ import javax.swing.*;
 public class j2DClient extends JFrame
   {
   private GameScreen screen;
+  private InGameGUI inGameGUI;
         
   private boolean gameRunning=true;
   
@@ -141,8 +142,10 @@ public class j2DClient extends JFrame
       
     GameScreen.createScreen(strategy,640,480);
     screen=GameScreen.get();
+    
+    inGameGUI=new InGameGUI(client);
 
-    canvas.addMouseListener(new InGameGUI(client));
+    canvas.addMouseListener(inGameGUI);
     
     client.setGameLogDialog(new GameLogDialog(this, playerChatText));    
     
@@ -203,6 +206,7 @@ public class j2DClient extends JFrame
       gameObjects.move(delta);
       
       pipeline.draw(screen);      
+      inGameGUI.draw(screen);
             
       screen.nextFrame();
       client.loop(0);
@@ -313,7 +317,7 @@ public class j2DClient extends JFrame
           
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={"GameObjects"};
+        String[] allowed={};
         Logger.setAllowed(allowed);
 
         String[] rejected={"modify"};
