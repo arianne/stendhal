@@ -122,7 +122,7 @@ public class StendhalRPAction
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if(object instanceof RPEntity) //Instance of RPEntity 
+        if(object instanceof RPEntity && player.nextto((RPEntity)object,1))
           {
           RPEntity target=(RPEntity)object;
           
@@ -196,7 +196,7 @@ public class StendhalRPAction
           {
           if(!player.hasLeave()) 
             {
-            player.setLeave(10);
+            player.setLeave(4);
             }
           }
         }
@@ -256,6 +256,21 @@ public class StendhalRPAction
       changeZone(player,"village");
       transferContent(player);
       }
+    else if((zoneid.equals("city") || zoneid.equals("village")) && y>zone.getHeight()-3)
+      {
+      changeZone(player,"plains");
+      transferContent(player);
+      }
+    else if(zoneid.equals("plains") && y<3 && x<zone.getWidth()/2)
+      {
+      changeZone(player,"village");
+      transferContent(player);
+      }
+    else if(zoneid.equals("plains") && y<3 && x>=zone.getWidth()/2)
+      {
+      changeZone(player,"city");
+      transferContent(player);
+      }
     }
     
   public static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException
@@ -278,7 +293,7 @@ public class StendhalRPAction
       }
     
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-    zone.placeObjectAtEntryPoint(player);
+    zone.placeObjectAtZoneChangePoint(player);
       
     double x=player.getDouble("x");
     double y=player.getDouble("y");
@@ -303,6 +318,7 @@ public class StendhalRPAction
           
       sheep.setx(x);
       sheep.sety(y);
+      sheep.clearPath();
       }
       
     /* There isn't any world.modify because there is already considered inside

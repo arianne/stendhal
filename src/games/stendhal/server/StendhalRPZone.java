@@ -32,6 +32,7 @@ public class StendhalRPZone extends MarauroaRPZone
   {
   private List<TransferContent> contents;
   private List<String> entryPoints;
+  private List<String> zoneChangePoints;
   private List<NPC> npcs;
   private List<Food> foodItems;
   
@@ -45,6 +46,7 @@ public class StendhalRPZone extends MarauroaRPZone
     
     contents=new LinkedList<TransferContent>();
     entryPoints=new LinkedList<String>();
+    zoneChangePoints=new LinkedList<String>();
 
     npcs=new LinkedList<NPC>();
     foodItems=new LinkedList<Food>();
@@ -72,7 +74,7 @@ public class StendhalRPZone extends MarauroaRPZone
     
   public void addZoneChange(String entry)
     {
-    entryPoints.add(entry);
+    zoneChangePoints.add(entry);
     }  
 
   public void addEntryPoint(String entry)
@@ -93,6 +95,37 @@ public class StendhalRPZone extends MarauroaRPZone
     object.setx(Integer.parseInt(components[0]));
     object.sety(Integer.parseInt(components[1]));
     }
+
+  public void placeObjectAtZoneChangePoint(Entity object)
+    {
+    if(zoneChangePoints.size()==0)
+      {
+      return;
+      }
+    
+    int x=width-(int)object.getx();
+    int y=height-(int)object.gety();
+    int distance=width*width+height+height;
+    String minpoint=zoneChangePoints.get(0);
+    
+    for(String point: zoneChangePoints)
+      {
+      String[] components=point.split(",");
+      int px=Integer.parseInt(components[0]);
+      int py=Integer.parseInt(components[1]);
+      
+      if((px-x)*(px-x)+(py-y)*(py-y)<distance)
+        {
+        distance=(px-x)*(px-x)+(py-y)*(py-y);
+        minpoint=point;
+        }
+      }
+      
+    String[] components=minpoint.split(",");
+    object.setx(Integer.parseInt(components[0]));
+    object.sety(Integer.parseInt(components[1]));
+    }
+  
   
   public void addLayer(String name, String filename) throws IOException
     {
@@ -207,6 +240,14 @@ public class StendhalRPZone extends MarauroaRPZone
               }
             case 4: /* Wolf */
               {
+              Wolf wolf=new Wolf(null);
+              assignRPObjectID(wolf);
+              wolf.setx(j%width);
+              wolf.sety(j/width);
+              wolf.setbaseHP(10);
+              add(wolf);
+
+              npcs.add(wolf);
               break;
               }
             case 5: /* NPC Seller */

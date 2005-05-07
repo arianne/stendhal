@@ -119,6 +119,11 @@ public class RPEntity extends ActiveEntity
     {
     return hp;
     }
+
+  public int getbaseHP()
+    {
+    return base_hp;
+    }
     
   public void setXP(int xp)
     {

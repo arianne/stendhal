@@ -66,6 +66,13 @@ public class Sheep extends NPC
     update();
     Logger.trace("Sheep::Sheep","D","Created Sheep: "+this.toString());
     }
+
+  public void update() throws AttributeNotFoundException
+    {
+    super.update();
+    
+    if(has("weight")) weight=getInt("weight");
+    }
   
   public void setWeight(int weight)
     {

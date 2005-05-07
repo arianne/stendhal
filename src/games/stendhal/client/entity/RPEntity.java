@@ -185,10 +185,10 @@ public abstract class RPEntity extends AnimatedEntity
       Point2D p=new Point.Double(x,y);
       p=screen.invtranslate(p);
       
-      g2d.setColor(Color.black);
-      g2d.drawRect((int)p.getX(),(int)p.getY()-3,26,2);
       g2d.setColor(new Color(1-(float)hp/(float)base_hp,((float)hp/(float)base_hp),0));
-      g2d.fillRect((int)p.getX(),(int)p.getY()-3,(int)(((float)hp/(float)base_hp)*26.0),2);
+      g2d.fillRect((int)p.getX(),(int)p.getY()-3,(int)(((float)hp/(float)base_hp)*26.0),3);
+      g2d.setColor(Color.black);
+      g2d.drawRect((int)p.getX(),(int)p.getY()-3,26,3);
       }
     
     if(attacked)

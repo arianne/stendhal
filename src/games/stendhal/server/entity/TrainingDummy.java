@@ -41,7 +41,16 @@ public class TrainingDummy extends RPEntity
     try
       {
       Logger.trace("TrainingDummy::onDamage","D","Damaged "+damage+" points by "+who.getID());
-      setHP(getHP()-damage);
+      int leftHP=getHP()-damage;
+      if(leftHP<0)
+        {
+        setHP(getbaseHP());
+        }
+      else
+        {
+        setHP(leftHP);
+        }
+      
       world.modify(this);
       }
     catch(AttributeNotFoundException e)

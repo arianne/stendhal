@@ -194,6 +194,13 @@ public class GameScreen
     GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
     Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(text),16,Transparency.BITMASK);    
     Graphics g2d=image.getGraphics();
+
+    g2d.setColor(Color.black);
+    g2d.drawString(text,-1,9);
+    g2d.drawString(text,-1,11);
+    g2d.drawString(text,1,9);
+    g2d.drawString(text,1,11);
+
     g2d.setColor(textColor);
     g2d.drawString(text,0,10);
     return new Sprite(image);      

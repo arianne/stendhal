@@ -28,6 +28,10 @@ public class EntityAreas
       {
       rect.setRect(x+7f/32f,y+53f/32f,(44f-7f)/32f,(63f-53f)/32f);
       }
+    else if(type.equals("wolf"))
+      {
+      rect.setRect(x+7f/32f,y+53f/32f,(44f-7f)/32f,(63f-53f)/32f);
+      }
     else if(type.equals("player"))
       {
       rect.setRect(x+11f/32f,y+50f/32f,(38f-11f)/32f,(60f-50f)/32f);
@@ -72,6 +76,10 @@ public class EntityAreas
       return new Rectangle.Double(x,y,1,1);
       }
     else if(type.equals("sheep"))
+      {
+      return new Rectangle.Double(x,y,1.5,2);
+      }
+    else if(type.equals("wolf"))
       {
       return new Rectangle.Double(x,y,1.5,2);
       }
