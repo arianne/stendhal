@@ -401,6 +401,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(object.has("risk")) object.remove("risk");
       if(object.has("target")) object.remove("target");
       
+      // Port from 0.03 to 0.10 
+      if(!object.has("base_hp")) object.put("base_hp","10");
+      
       Player player=new Player(object);
       player.setdx(0);
       player.setdy(0);
@@ -476,8 +479,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             npcs.remove(sheep);
             }
             
-          boolean result=playersObject.remove(object);
-          Logger.trace("StendhalRPRuleProcessor::onExit","D","Removed Player was "+result);
+          playersObject.remove(object);
           Logger.trace("StendhalRPRuleProcessor::onExit","D",object.toString());
           break;
           }

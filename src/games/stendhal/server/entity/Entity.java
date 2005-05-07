@@ -94,6 +94,25 @@ public class Entity extends RPObject
     return (x-this.x)*(x-this.x)+(y-this.y)*(y-this.y);
     }
 
+  public boolean nextto(double x, double y, double step)
+    {
+    Rectangle2D this_area=EntityAreas.getArea(get("type"),x,y);
+    this_area.setRect(this_area.getX()-step,this_area.getY()-step,this_area.getWidth()+step,this_area.getHeight()+step);
+    
+    return this_area.contains(x,y);
+    }
+
+  public boolean nextto(Entity entity, double step)
+    {
+    Rectangle2D this_area=EntityAreas.getArea(get("type"),x,y);
+    Rectangle2D other_area=EntityAreas.getArea(entity.get("type"),entity.x,entity.y);
+    
+    this_area.setRect(this_area.getX()-step,this_area.getY()-step,this_area.getWidth()+step,this_area.getHeight()+step);
+    other_area.setRect(other_area.getX()-step,other_area.getY()-step,other_area.getWidth()+step,other_area.getHeight()+step);
+    
+    return this_area.intersects(other_area);    
+    }
+
   public void setFacing(int facing)
     {
     dir=facing;

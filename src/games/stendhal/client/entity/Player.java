@@ -26,7 +26,6 @@ public class Player extends AnimatedGameEntity
   private String name;
   private Sprite nameImage;
 
-
   private Sprite textImage;
   private long textImagesTime;
   

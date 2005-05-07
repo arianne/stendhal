@@ -22,6 +22,23 @@ import java.awt.geom.*;
 public class Sheep extends AnimatedGameEntity 
   {
   private int weight;
+  private Sprite ideaImage;
+
+  private static Sprite eat;
+  private static Sprite food;
+  private static Sprite walk;
+  private static Sprite follow;
+  
+  static
+    {
+    SpriteStore st=SpriteStore.get();
+    
+    eat=st.getSprite("sprites/ideas/eat.gif");
+    food=st.getSprite("sprites/ideas/food.gif");
+    walk=st.getSprite("sprites/ideas/walk.gif");
+    follow=st.getSprite("sprites/ideas/follow.gif");
+    }
+
   
   public Sheep(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
@@ -46,6 +63,27 @@ public class Sheep extends AnimatedGameEntity
     {
     super.modifyAdded(object,changes);
     
+    if(changes.has("idea"))
+      {
+      String idea=changes.get("idea");
+      if(idea.equals("eat"))
+        {
+        ideaImage=eat;
+        }
+      else if(idea.equals("food"))
+        {
+        ideaImage=food;
+        }
+      else if(idea.equals("walk"))
+        {
+        ideaImage=walk;
+        }
+      else if(idea.equals("follow"))
+        {
+        ideaImage=follow;
+        }
+      }
+    
     if(changes.has("weight"))
       {
       weight=changes.getInt("weight");
@@ -67,5 +105,18 @@ public class Sheep extends AnimatedGameEntity
     {
     StendhalClient.get().addEventLine("* Sheep weights "+weight);
     System.out.println ("Sheep weights "+weight);
+    }
+  
+  public void draw(GameScreen screen)
+    {
+    super.draw(screen);
+    
+    if(ideaImage!=null)
+      {
+      Rectangle2D rect=getArea();
+      double sx=rect.getMaxX();
+      double sy=rect.getY();
+      screen.draw(ideaImage,sx-0.25,sy-0.25);
+      }
     }
   }

@@ -67,9 +67,9 @@ public class GameEntity extends Entity
     {
     SpriteStore st=SpriteStore.get();
     
-    hitted=st.getSprite("sprites/hitted.gif");
-    blocked=st.getSprite("sprites/blocked.gif");
-    missed=st.getSprite("sprites/missed.gif");
+    hitted=st.getSprite("sprites/combat/hitted.gif");
+    blocked=st.getSprite("sprites/combat/blocked.gif");
+    missed=st.getSprite("sprites/combat/missed.gif");
     }
   
   protected GameObjects gameObjects;

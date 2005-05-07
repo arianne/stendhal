@@ -36,7 +36,6 @@ public class StendhalRPWorld extends RPWorld
     Entity.generateRPClass();
     Sign.generateRPClass();
     Food.generateRPClass();
-    ActiveEntity.generateRPClass();
     RPEntity.generateRPClass();
     NPC.generateRPClass();
     BuyerNPC.generateRPClass();
@@ -45,6 +44,7 @@ public class StendhalRPWorld extends RPWorld
     Sheep.generateRPClass();
     Wolf.generateRPClass();
     Player.generateRPClass();
+    TrainingDummy.generateRPClass();
         
     Logger.trace("StendhalRPWorld::createRPClasses","<");
     }

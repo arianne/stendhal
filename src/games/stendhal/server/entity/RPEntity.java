@@ -12,13 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.util.*;
+import games.stendhal.server.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
 public class RPEntity extends ActiveEntity 
   {
+  private String name;
+
+  private double dx;
+  private double dy;
+  private boolean collides;
+  
   private int atk;
   private int def;
+  private int base_hp;
   private int hp;
   private int xp;
   
@@ -27,13 +36,18 @@ public class RPEntity extends ActiveEntity
     try
       {
       RPClass entity=new RPClass("rpentity");
-      entity.isA("activeentity");
+      entity.isA("entity");
+      entity.add("name",RPClass.STRING);
+      entity.add("dx",RPClass.FLOAT);
+      entity.add("dy",RPClass.FLOAT); 
       entity.add("xp",RPClass.SHORT);
+      entity.add("base_hp",RPClass.BYTE);
       entity.add("hp",RPClass.BYTE);
       entity.add("atk",RPClass.BYTE);
       entity.add("def",RPClass.BYTE);
       entity.add("risk",RPClass.BYTE);
       entity.add("damage",RPClass.BYTE);
+      entity.add("target",RPClass.INT);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -55,8 +69,12 @@ public class RPEntity extends ActiveEntity
     {
     super.update();
     
+    if(has("name")) name=get("name");
+    if(has("dx")) dx=getDouble("dx");
+    if(has("dy")) dy=getDouble("dy");
     if(has("atk")) atk=getInt("atk");
     if(has("def")) def=getInt("def");
+    if(has("base_hp")) hp=getInt("base_hp");
     if(has("hp")) hp=getInt("hp");
     if(has("xp")) xp=getInt("xp");
     }
@@ -107,5 +125,109 @@ public class RPEntity extends ActiveEntity
   
   public void onDamage(RPEntity who, int damage)
     {
+    }
+
+  public void setName(String name)
+    {
+    this.name=name;
+    put("name",name);   
+    }
+  
+  public String getName()
+    {
+    return name;
+    }
+  
+  public void setdx(double dx)
+    {
+    this.dx=dx;
+    put("dx",dx);
+    }
+  
+  public double getdx()
+    {
+    return dx;
+    }
+  
+  public void setdy(double dy)
+    {
+    this.dy=dy;
+    put("dy",dy);
+    }
+
+  public double getdy()
+    {
+    return dy;
+    }
+
+  public void stop()
+    {
+    // HACK: FIXME
+    setx(getx());
+    sety(gety());
+    
+    setdx(0);
+    setdy(0);
+    }
+    
+  public boolean stopped()
+    {
+    return dx==0 && dy==0;
+    }
+  
+  public void collides(boolean val)
+    {
+    collides=val;    
+    }
+  
+  public boolean collided()
+    {
+    return collides;
+    }
+  
+  private List<Path.Node> path;
+  private int pathPosition;
+  private boolean pathLoop;
+  
+  public void setPath(List<Path.Node> path, boolean cycle)
+    {
+    this.path=path;
+    this.pathPosition=0;
+    this.pathLoop=cycle;
+    }
+    
+  public boolean hasPath()
+    {
+    return path!=null;
+    }
+  
+  public void clearPath()
+    {
+    this.path=null;
+    }
+    
+  public List<Path.Node> getPath()  
+    {
+    return path;
+    }
+  
+  public boolean isPathLoop()
+    {
+    return pathLoop;
+    }
+  
+  public int getPathPosition()
+    {
+    return pathPosition;
+    }
+  
+  public boolean pathCompleted()
+    {
+    return path!=null && pathPosition==path.size()-1;
+    }
+  
+  public void setPathPosition(int pathPos)
+    {
+    this.pathPosition=pathPos;
     }
   }

@@ -27,7 +27,6 @@ public class Player extends RPEntity
       RPClass player=new RPClass("player");
       player.isA("rpentity");
       player.add("text",RPClass.STRING);
-      player.add("target",RPClass.INT);
       player.add("sheep",RPClass.INT);
       }
     catch(RPClass.SyntaxException e)

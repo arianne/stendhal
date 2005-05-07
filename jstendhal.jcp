@@ -109,10 +109,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\StendhalMouseInputHandler.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\textClient.java</path>
 				<source>true</source>
 			</fileitem>
@@ -162,6 +158,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\gui\GameLogDialog.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\InGameGUI.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -258,6 +258,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\WelcomerNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Wolf.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

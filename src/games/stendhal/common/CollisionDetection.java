@@ -73,7 +73,6 @@ public class CollisionDetection
     {
     for(int j=y-size;j<y+size;j++)
       {
-      if(j>=0 && j<height) System.out.print(j+"\t");
       for(int i=x-size;i<x+size;i++)
         {
         if(j>=0 && j<height && i>=0 && i<width)

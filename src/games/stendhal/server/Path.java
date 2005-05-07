@@ -108,10 +108,12 @@ public class Path
       path.doStep();
       }
      
+    Logger.trace("Path::searchPath","D","Optimal route to ("+x+","+y+")");
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
     while(node!=null)
       {
+      Logger.trace("Path::searchPath","D",node.toString());
       list.add(0,new Node(node.getX(),node.getY()));
       node=node.getParent();      
       }

@@ -143,7 +143,6 @@ public class StaticGameLayers
         {
         if(p.content.collides(shape))
           {
-          p.content.printaround((int)shape.getX(),(int)shape.getY(),5);
           return true;          
           }          
         }

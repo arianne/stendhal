@@ -142,7 +142,7 @@ public class j2DClient extends JFrame
     GameScreen.createScreen(strategy,640,480);
     screen=GameScreen.get();
 
-    canvas.addMouseListener(new StendhalMouseInputHandler(client));
+    canvas.addMouseListener(new InGameGUI(client));
     
     client.setGameLogDialog(new GameLogDialog(this, playerChatText));    
     

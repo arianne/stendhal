@@ -112,7 +112,6 @@ public class Sheep extends NPC
     int amount=food.getAmount();
     if(amount>0)
       {
-      put("eat","");
       food.setAmount(amount-1);
       world.modify(food);
       hungry=0;
@@ -131,7 +130,7 @@ public class Sheep extends NPC
   
   public void setMovement(double x, double y, double min, double max)
     {
-    if(distance(x,y)<min && this.hasPath())
+    if(nextto(x,y,min) && this.hasPath())
       {
       clearPath();
       }
@@ -167,7 +166,6 @@ public class Sheep extends NPC
       
     if(stopped() || collided() || escapeCollision==0)
       {
-      setIdea("random");
       setdx(Math.random()*speed*2-speed);
       setdy(Math.random()*speed*2-speed);
       escapeCollision=10;
@@ -176,8 +174,7 @@ public class Sheep extends NPC
 
   public void logicWithOwner(double speed)
     {
-    setIdea("following");
-    setMovement(owner.getx(),owner.gety(),2*2,8*8);
+    setMovement(owner.getx(),owner.gety(),0.25,8*8);
     moveto(speed);
     }
   
@@ -185,12 +182,7 @@ public class Sheep extends NPC
   public void logic()
     {
     Logger.trace("Sheep::logic",">");
-    if(has("eat")) 
-      {
-      remove("eat");
-      world.modify(this);
-      }
-    
+
     hungry++;    
     Food food=null;
     
@@ -198,37 +190,43 @@ public class Sheep extends NPC
       {
       if(owner!=null)
         {
+        setIdea("follow");
         logicWithOwner(0.25);
         }
       else 
         {
+        setIdea("walk");
         logicWithoutOwner(0.25);
         }
       }
     else if(weight<100 && (food=getNearestFood(this,6))!=null)
       {
-      if(distance(food)<2.1*2.1) //Sheep biggest dimension
+      if(nextto(food,0.5))
         {
         setIdea("eat");
         eat(food);        
         }
+      else if(nextto(food,2))
+        {
+        logicWithoutOwner(0.25);
+        }
       else
         {
-        setIdea("moveToFood");
-        setMovement(food.getx(),food.gety(),2.1*2.1,0);
+        setIdea("food");
+        setMovement(food.getx(),food.gety(),0,0);
         moveto(0.25);
         }      
       }
     else
       {
-      setIdea("lookForFood");
-
       if(owner!=null)
         {
+        setIdea("follow");
         logicWithOwner(0.25);
         }
       else 
         {
+        setIdea("walk");
         logicWithoutOwner(0.25);
         }
       }
