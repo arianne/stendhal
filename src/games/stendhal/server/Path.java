@@ -108,7 +108,7 @@ public class Path
       path.doStep();
       }
      
-    Logger.trace("Path::searchPath","D","Optimal route to ("+x+","+y+")");
+    Logger.trace("Path::searchPath","D","Optimal route to ("+x+","+y+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size());
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
     while(node!=null)

@@ -243,7 +243,7 @@ public class Pathfinder
                 tempNode.x = x+i;
                 tempNode.y = y+j;
                 // If the node is this node, or invalid continue.
-                if ((i == 0 && j == 0 && i==j) || navMap.isValid(tempNode) == false)
+                if ((i == 0 && j == 0) || navMap.isValid(tempNode) == false)
                     continue;
                 
                 linkChild(node, x+i, y+j);
