@@ -12,7 +12,9 @@ import java.util.*;
 public class GameLogDialog extends JDialog
 {
 	// Variables declaration
-	private JTextArea jTextArea;
+  private KTextEdit jEditArea;
+  private JTextArea jTextArea;
+
 	private JScrollPane jScrollPane;
 	private JPanel contentPane;
   private JTextField playerChat;
@@ -42,17 +44,12 @@ public class GameLogDialog extends JDialog
 
   private void initializeComponent(Frame w)
 	  {
-		jTextArea = new JTextArea();
-		jScrollPane = new JScrollPane();
+    jEditArea = new KTextEdit();
+
 		contentPane = (JPanel)this.getContentPane();
 		
-		jTextArea.setLineWrap(true);
-
-		jScrollPane.setViewportView(jTextArea);
-    jScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
 		contentPane.setLayout(null);
-    addComponent(contentPane, jScrollPane, 1,0,(int)w.getSize().getWidth()-8,171);
+    addComponent(contentPane, jEditArea, 1,0,(int)w.getSize().getWidth()-8,171);
 
 		this.setTitle("Game chat and events log");
 		
@@ -70,16 +67,23 @@ public class GameLogDialog extends JDialog
 		container.add(c);
   	}
  
+  public void addLine(String header, String line, Color color)
+    {
+    jEditArea.addLine(header, line,color);
+    }
+
+  public void addLine(String header, String line)
+    {
+    jEditArea.addLine(header, line,Color.black);
+    }
+
   public void addLine(String line, Color color)
     {
-    //NOTE:TODO: Fix this. It must change the color of the line just added.
-    //jTextArea.setForeground(color);
-    jTextArea.append(line+"\n");
-    jTextArea.setCaretPosition(jTextArea.getDocument().getLength());
+    jEditArea.addLine(line,color);
     }
     
   public void addLine(String line)
     {
-    addLine(line,Color.BLACK);
+    addLine(line,Color.black);
     }
   }

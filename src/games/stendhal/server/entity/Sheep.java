@@ -22,6 +22,8 @@ import games.stendhal.server.*;
 
 public class Sheep extends NPC
   {
+  private static double SPEED=0.25;
+  
   private int weight;
   private Player owner;
   
@@ -198,12 +200,12 @@ public class Sheep extends NPC
       if(owner!=null)
         {
         setIdea("follow");
-        logicWithOwner(0.25);
+        logicWithOwner(SPEED);
         }
       else 
         {
         setIdea("walk");
-        logicWithoutOwner(0.25);
+        logicWithoutOwner(SPEED);
         }
       }
     else if(weight<100 && (food=getNearestFood(this,6))!=null)
@@ -215,13 +217,13 @@ public class Sheep extends NPC
         }
       else if(nextto(food,2))
         {
-        logicWithoutOwner(0.25);
+        logicWithoutOwner(SPEED);
         }
       else
         {
         setIdea("food");
         setMovement(food.getx(),food.gety(),0,0);
-        moveto(0.25);
+        moveto(SPEED);
         }      
       }
     else
@@ -229,16 +231,20 @@ public class Sheep extends NPC
       if(owner!=null)
         {
         setIdea("follow");
-        logicWithOwner(0.25);
+        logicWithOwner(SPEED);
         }
       else 
         {
         setIdea("walk");
-        logicWithoutOwner(0.25);
+        logicWithoutOwner(SPEED);
         }
       }
 
-    StendhalRPAction.move(this);
+    if(!stopped())
+      {
+      StendhalRPAction.move(this);
+      }
+      
     Logger.trace("Sheep::logic","<");
     }
   }

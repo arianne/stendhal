@@ -138,6 +138,18 @@ public class RPEntity extends ActiveEntity
   
   public void onDamage(RPEntity who, int damage)
     {
+    Logger.trace("RPEntity::onDamage","D","Damaged "+damage+" points by "+who.getID());
+    int leftHP=getHP()-damage;
+    if(leftHP>0)
+      {
+      setHP(leftHP);
+      }
+    else
+      {
+      // Dead.
+      }
+    
+    world.modify(this);
     }
 
   public void setName(String name)

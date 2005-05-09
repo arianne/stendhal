@@ -79,6 +79,16 @@ public class StendhalClient extends ariannexp
     this.dialog.addLine(text);
     }
     
+  public void addEventLine(String header, String text)
+    {
+    this.dialog.addLine(header,text);
+    }
+
+  public void addEventLine(String header, String text, Color color)
+    {
+    this.dialog.addLine(header,text,color);
+    }
+
   public void addEventLine(String text,Color color)
     {
     this.dialog.addLine(text,color);

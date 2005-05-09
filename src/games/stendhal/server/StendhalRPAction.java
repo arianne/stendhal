@@ -122,48 +122,45 @@ public class StendhalRPAction
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if(object instanceof RPEntity && player.nextto((RPEntity)object,1))
+        if(object instanceof RPEntity)
           {
-          RPEntity target=(RPEntity)object;
-          
-          int risk=roll1D6()+1-roll1D6();
-          player.put("risk",risk);
-          
-          Logger.trace("StendhalRPAction::attack","D","Risk to strike: "+risk);
-          
-          if(risk>0) //Hit
+          if(player.nextto((RPEntity)object,1))
             {
-            int damage=roll1D6()-3;            
+            RPEntity target=(RPEntity)object;
             
-            if(damage>0) // Damaged
+            int risk=roll1D6()+1-roll1D6();
+            player.put("risk",risk);
+            
+            Logger.trace("StendhalRPAction::attack","D","Risk to strike: "+risk);
+            
+            if(risk>0) //Hit
               {
-              target.onDamage(player,damage);              
-              player.put("damage",damage);
+              int damage=roll1D6()-3;            
+              
+              if(damage>0) // Damaged
+                {
+                target.onDamage(player,damage);              
+                player.put("damage",damage);
+                }
+              else
+                {
+                player.put("damage",0);
+                }
+  
+              Logger.trace("StendhalRPAction::attack","D","Damage done: "+(damage>0?damage:0));            
               }
-            else
-              {
-              player.put("damage",0);
-              }
-
-            Logger.trace("StendhalRPAction::attack","D","Damage done: "+(damage>0?damage:0));            
+            
+            world.modify(player);
             }
-          
-          world.modify(player);
+
           return true;
           }
-        else
-          {
-          player.remove("target");
-          world.modify(player);
-          return false;
-          }
         }
-      else
-        {
-        player.remove("target");
-        world.modify(player);
-        return false;
-        }
+
+      // If zone.has(target)==false && object instanceof RPEntity==false
+      player.remove("target");
+      world.modify(player);
+      return false;
       }
     finally
       {

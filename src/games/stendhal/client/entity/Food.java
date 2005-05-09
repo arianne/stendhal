@@ -14,9 +14,7 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
-
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Color;
 
 public class Food extends AnimatedEntity 
   {
@@ -76,7 +74,7 @@ public class Food extends AnimatedEntity
     {
     if(action.equals("Look"))
       {
-      StendhalClient.get().addEventLine("You see a bush with "+amount+" fruits");
+      StendhalClient.get().addEventLine("You see a bush with "+amount+" fruits",Color.green);
       }
     }
   }

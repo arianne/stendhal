@@ -22,6 +22,9 @@ import games.stendhal.server.*;
 
 public class Wolf extends NPC
   {
+  private static double SPEED=0.5;
+  private List<Path.Node> path;
+  
   public static void generateRPClass()
     {
     try
@@ -35,7 +38,7 @@ public class Wolf extends NPC
       }
     }
   
-  public Wolf(Player owner) throws AttributeNotFoundException
+  public Wolf() throws AttributeNotFoundException
     {
     super();
     put("type","wolf");
@@ -44,21 +47,48 @@ public class Wolf extends NPC
     put("dx",0);
     put("dy",0);
 
+    path=new LinkedList<Path.Node>();
+    path.add(new Path.Node(0,0));
+    path.add(new Path.Node(-15,0));
+    path.add(new Path.Node(-15,15));
+    path.add(new Path.Node(0,15));
+
     Logger.trace("Wolf::Wolf","D","Created Wolf: "+this.toString());
     }
   
-  public Wolf(RPObject object, Player owner) throws AttributeNotFoundException
-    {
-    super(object);
-    put("type","wolf");
-    
-    update();
-    Logger.trace("Wolf::Wolf","D","Created Wolf: "+this.toString());
-    }
+  private int escapeCollision;
   
   public void logic()
     {
     Logger.trace("Wolf::logic",">");
+    if(!hasPath())
+      {
+      List<Path.Node> nodes=new LinkedList<Path.Node>();
+      for(Path.Node node: path)
+        {
+        nodes.add(new Path.Node(node.x+getx(),node.y+gety()));
+        }
+      setPath(nodes,true);
+      }
+      
+    if(escapeCollision>0) escapeCollision--;
+
+    if(collided() && escapeCollision==0)
+      {
+      setdx(Math.random()*2*SPEED-SPEED);
+      setdy(Math.random()*2*SPEED-SPEED);
+      escapeCollision=10;
+      }
+    else if(escapeCollision==0)
+      {
+      Path.followPath(this,SPEED);
+      }
+
+    if(!stopped())
+      {
+      StendhalRPAction.move(this);
+      }
+      
     Logger.trace("Wolf::logic","<");
     }
   }

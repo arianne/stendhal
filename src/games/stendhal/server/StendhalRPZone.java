@@ -240,7 +240,7 @@ public class StendhalRPZone extends MarauroaRPZone
               }
             case 4: /* Wolf */
               {
-              Wolf wolf=new Wolf(null);
+              Wolf wolf=new Wolf();
               assignRPObjectID(wolf);
               wolf.setx(j%width);
               wolf.sety(j/width);

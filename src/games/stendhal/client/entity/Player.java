@@ -56,7 +56,7 @@ public class Player extends RPEntity
     if(changes.has("text"))    
       {
       String text=changes.get("text");
-      client.addEventLine("<"+getName()+">: "+text);
+      client.addEventLine(getName(),text);
 
       textImage=GameScreen.get().createTextBox(text,240,Color.black,Color.white);
       textImageTime=System.currentTimeMillis();

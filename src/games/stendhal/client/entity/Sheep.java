@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import java.awt.Color;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
 
@@ -64,7 +65,7 @@ public class Sheep extends NPC
     {
     if(action.equals("Look"))
       {
-      StendhalClient.get().addEventLine("You see a sheep that weights "+weight);
+      StendhalClient.get().addEventLine("You see a sheep that weights "+weight,Color.green);
       }
     else
       {

@@ -93,17 +93,24 @@ public class Path
       {
       return node.getY()*zone.getWidth()+node.getX();
       }
+    
+    public int maxNumberOfNodes()
+      {
+      return (zone.getWidth()*zone.getHeight())/10;
+      }
     }
     
   public static List<Node> searchPath(ActiveEntity entity, double x, double y)
     {
     Logger.trace("Path::searchPath",">");
     Pathfinder path=new Pathfinder();
-    path.setNavigable(new NavigableStendhalNode(entity, (StendhalRPZone)world.getRPZone(entity.getID())));
+    NavigableStendhalNode navMap=new NavigableStendhalNode(entity, (StendhalRPZone)world.getRPZone(entity.getID()));
+    path.setNavigable(navMap);
     path.setEndpoints((int)entity.getx(),(int)entity.gety(),(int)x,(int)y);
 
     path.init();
-    while(path.getStatus()==Pathfinder.IN_PROGRESS)
+    // HACK: Time limited the A* search.
+    while(path.getStatus()==Pathfinder.IN_PROGRESS && path.getClosed().size()<navMap.maxNumberOfNodes())
       {
       path.doStep();
       }

@@ -38,24 +38,17 @@ public class TrainingDummy extends RPEntity
 
   public void onDamage(RPEntity who, int damage)
     {
-    try
+    Logger.trace("TrainingDummy::onDamage","D","Damaged "+damage+" points by "+who.getID());
+    int leftHP=getHP()-damage;
+    if(leftHP<0)
       {
-      Logger.trace("TrainingDummy::onDamage","D","Damaged "+damage+" points by "+who.getID());
-      int leftHP=getHP()-damage;
-      if(leftHP<0)
-        {
-        setHP(getbaseHP());
-        }
-      else
-        {
-        setHP(leftHP);
-        }
-      
-      world.modify(this);
+      setHP(getbaseHP());
       }
-    catch(AttributeNotFoundException e)
+    else
       {
-      Logger.thrown("TrainingDummy::onDamage","X",e);
+      setHP(leftHP);
       }
+    
+    world.modify(this);
     }
   }

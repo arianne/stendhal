@@ -117,15 +117,6 @@ public abstract class RPEntity extends AnimatedEntity
       
       // TODO: Change! Replace! Use new action system instead 
       gameObjects.attack(this,new RPObject.ID(target,changes.get("zoneid")),risk,damage);
-      
-      if(risk>0)
-        {
-        client.addEventLine(name+" striked and damaged with "+damage+" points to "+target,Color.RED);
-        }
-      else
-        {
-        client.addEventLine(name+" missed striking to "+target,Color.RED);
-        }
       }
     }
 
@@ -143,6 +134,11 @@ public abstract class RPEntity extends AnimatedEntity
   public void onAttack(RPEntity source, int risk, int damage)
     {
     attacked=true;
+
+    if(risk>0 && damage>0 && (stendhal.showEveryoneAttackInfo || getID().equals(client.getPlayer().getID())))
+      {
+      client.addEventLine(name+" loses with "+damage+" hitpoints due to an attack by "+source.getName(),Color.RED);
+      }
     
     combatIconTime=System.currentTimeMillis();
     
@@ -172,6 +168,20 @@ public abstract class RPEntity extends AnimatedEntity
   /** Draws this entity in the screen */
   public void draw(GameScreen screen)
     {
+    if(attacked)
+      {
+      // Draw red box around
+      Graphics g2d=screen.expose();
+      Rectangle2D rect=getArea();
+      
+      g2d.setColor(Color.red);    
+      Point2D p=new Point.Double(rect.getX(),rect.getY());
+      p=screen.invtranslate(p);
+      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+      g2d.setColor(Color.black);    
+      g2d.drawRect((int)p.getX()-1,(int)p.getY()-1,(int)(rect.getWidth()*32.0)+2,(int)(rect.getHeight()*32.0)+2);
+      }
+
     super.draw(screen);
 
     if(nameImage!=null) screen.draw(nameImage,x,y-0.5);          
@@ -185,24 +195,15 @@ public abstract class RPEntity extends AnimatedEntity
       Point2D p=new Point.Double(x,y);
       p=screen.invtranslate(p);
       
-      g2d.setColor(new Color(1-(float)hp/(float)base_hp,((float)hp/(float)base_hp),0));
+      float r=1-(float)hp/((float)base_hp);r*=2;
+      float g=(float)hp/((float)base_hp);g*=2;
+      
+      g2d.setColor(new Color(r>1?1:r,g>1?1:g,0));
       g2d.fillRect((int)p.getX(),(int)p.getY()-3,(int)(((float)hp/(float)base_hp)*26.0),3);
       g2d.setColor(Color.black);
       g2d.drawRect((int)p.getX(),(int)p.getY()-3,26,3);
       }
     
-    if(attacked)
-      {
-      // Draw red box around
-      Graphics g2d=screen.expose();
-      Rectangle2D rect=getArea();
-      
-      g2d.setColor(Color.red);    
-      Point2D p=new Point.Double(rect.getX(),rect.getY());
-      p=screen.invtranslate(p);
-      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
-      }
-
     if(attacked && System.currentTimeMillis()-combatIconTime<4*300)
       {
       // Draw bottom right combat icon
@@ -260,7 +261,7 @@ public abstract class RPEntity extends AnimatedEntity
     {
     if(action.equals("Look"))
       {
-      StendhalClient.get().addEventLine("You see "+getName()+".");
+      StendhalClient.get().addEventLine("You see "+getName()+".",Color.green);
       }
     else if(action.equals("Attack"))
       {
