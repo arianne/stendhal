@@ -38,7 +38,7 @@ public class StendhalRPAction
     StendhalRPAction.world=world;
     }
     
-  public static void face(ActiveEntity entity,double dx,double dy)
+  public static void face(RPEntity entity,double dx,double dy)
     {
     if(dx!=0)
       {
@@ -195,7 +195,7 @@ public class StendhalRPAction
 //      }
 //    }
 
-  public static void move(ActiveEntity entity) throws AttributeNotFoundException, NoRPZoneException
+  public static void move(RPEntity entity) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::move",">");
     try

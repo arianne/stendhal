@@ -44,7 +44,7 @@ public class Path
     Path.world=world;
     }
 
-  private static void moveto(ActiveEntity entity, double x, double y, double speed)
+  private static void moveto(RPEntity entity, double x, double y, double speed)
     {
     double rndx=x-entity.getx();
     double rndy=y-entity.gety();
@@ -65,10 +65,10 @@ public class Path
   
   static class NavigableStendhalNode implements Navigable
     {
-    private ActiveEntity entity;
+    private RPEntity entity;
     private StendhalRPZone zone;
     
-    public NavigableStendhalNode(ActiveEntity entity, StendhalRPZone zone)
+    public NavigableStendhalNode(RPEntity entity, StendhalRPZone zone)
       {
       this.entity=entity;
       this.zone=zone;
@@ -100,7 +100,7 @@ public class Path
       }
     }
     
-  public static List<Node> searchPath(ActiveEntity entity, double x, double y)
+  public static List<Node> searchPath(RPEntity entity, double x, double y)
     {
     Logger.trace("Path::searchPath",">");
     Pathfinder path=new Pathfinder();
@@ -130,7 +130,7 @@ public class Path
     return list;
     }
     
-  public static boolean followPath(ActiveEntity entity, double speed)
+  public static boolean followPath(RPEntity entity, double speed)
     {
     List<Node> path=entity.getPath();
     

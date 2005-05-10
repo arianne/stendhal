@@ -18,7 +18,7 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 
 // TODO: Refactor, clean, sort!
-public class RPEntity extends ActiveEntity 
+public class RPEntity extends Entity 
   {
   private String name;
 
@@ -195,7 +195,7 @@ public class RPEntity extends ActiveEntity
     {
     Logger.trace("RPEntity::onDamage","D","Damaged "+damage+" points by "+who.getID());
     int leftHP=getHP()-damage;
-    if(leftHP>0)
+    if(leftHP>=0)
       {
       setHP(leftHP);
       }
