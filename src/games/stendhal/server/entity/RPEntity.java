@@ -80,133 +80,6 @@ public class RPEntity extends Entity
     if(has("xp")) xp=getInt("xp");
     }
 
-  public void setATK(int atk)
-    {
-    this.atk=atk;
-    put("atk",atk);
-    }
-      
-  public int getATK()
-    {
-    return atk;
-    }
-    
-  public void setDEF(int def)
-    {
-    this.def=def;
-    put("def",def);
-    }
-      
-  public int getDEF()
-    {
-    return def;
-    }
-    
-  public void setbaseHP(int hp)
-    {
-    this.base_hp=hp;
-    put("base_hp",hp);
-    this.hp=hp;
-    put("hp",hp);
-    }
-
-  public void setHP(int hp)
-    {
-    this.hp=hp;
-    put("hp",hp);
-    }
-      
-  public int getHP()
-    {
-    return hp;
-    }
-
-  public int getbaseHP()
-    {
-    return base_hp;
-    }
-    
-  public void setXP(int xp)
-    {
-    this.xp=xp;
-    put("xp",xp);
-    }
-      
-  public int getXP()
-    {
-    return xp;
-    }
-  
-  private RPEntity attackSource;
-  private RPEntity attackTarget;
-  
-  public void attack(RPEntity target)
-    {
-    put("target",target.getID().getObjectID());
-    attackTarget=target;
-    }
-  
-  public void stopAttack()
-    {
-    if(has("risk")) remove("risk");
-    if(has("damage")) remove("damage");
-    if(has("target")) remove("target");
-    
-    if(attackTarget!=null) attackTarget.attackSource=null;
-    attackTarget=null;    
-    }
-  
-  public void onAttack(RPEntity who, boolean status)
-    {
-    if(status)
-      {
-      who.attackTarget=this;
-      attackSource=who;
-      }
-    else
-      {
-      if(who.has("target")) who.remove("target");
-      who.attackTarget=null;
-      attackSource=null;
-      }      
-    }
-  
-  public boolean isAttacked()
-    {
-    return attackSource!=null;
-    }
-  
-  public RPEntity getAttackSource()
-    {
-    return attackSource;
-    }
-  
-  public boolean isAttacking()
-    {
-    return attackTarget!=null;
-    }
-
-  public RPEntity getAttackTarget()
-    {
-    return attackTarget;
-    }
-  
-  public void onDamage(RPEntity who, int damage)
-    {
-    Logger.trace("RPEntity::onDamage","D","Damaged "+damage+" points by "+who.getID());
-    int leftHP=getHP()-damage;
-    if(leftHP>=0)
-      {
-      setHP(leftHP);
-      }
-    else
-      {
-      // Dead.
-      }
-    
-    world.modify(this);
-    }
-
   public void setName(String name)
     {
     this.name=name;
@@ -265,10 +138,150 @@ public class RPEntity extends Entity
     return collides;
     }
   
+  public void setATK(int atk)
+    {
+    this.atk=atk;
+    put("atk",atk);
+    }
+      
+  public int getATK()
+    {
+    return atk;
+    }
+    
+  public void setDEF(int def)
+    {
+    this.def=def;
+    put("def",def);
+    }
+      
+  public int getDEF()
+    {
+    return def;
+    }
+    
+  public void setbaseHP(int hp)
+    {
+    this.base_hp=hp;
+    put("base_hp",hp);
+    this.hp=hp;
+    put("hp",hp);
+    }
+
+  public int getbaseHP()
+    {
+    return base_hp;
+    }
+    
+  public void setHP(int hp)
+    {
+    this.hp=hp;
+    put("hp",hp);
+    }
+      
+  public int getHP()
+    {
+    return hp;
+    }
+
+  public void setXP(int xp)
+    {
+    this.xp=xp;
+    put("xp",xp);
+    }
+      
+  public int getXP()
+    {
+    return xp;
+    }
+  
+  private RPEntity attackSource;
+  private RPEntity attackTarget;
+  
+  /** Modify the entity to order to attack the target entity */
+  public void attack(RPEntity target)
+    {
+    put("target",target.getID().getObjectID());
+    attackTarget=target;
+    }
+  
+  /** Modify the entity to stop attacking */
+  public void stopAttack()
+    {
+    if(has("risk")) remove("risk");
+    if(has("damage")) remove("damage");
+    if(has("target")) remove("target");
+    
+    if(attackTarget!=null) attackTarget.attackSource=null;
+    attackTarget=null;    
+    }
+  
+  /** This method is called on each round when this entity has been attacked by
+   *  RPEntity who and status is true to means keep attacking and false mean stop
+   *  attacking. */
+  public void onAttack(RPEntity who, boolean status)
+    {
+    if(status)
+      {
+      who.attackTarget=this;
+      attackSource=who;
+      }
+    else
+      {
+      if(who.has("target")) who.remove("target");
+      who.attackTarget=null;
+      attackSource=null;
+      }      
+    }
+  
+  /** This method is called when this entity has been attacked by RPEntity who and
+   *  it has been damaged with damage points. */
+  public void onDamage(RPEntity who, int damage)
+    {
+    Logger.trace("RPEntity::onDamage","D","Damaged "+damage+" points by "+who.getID());
+    int leftHP=getHP()-damage;
+    if(leftHP>=0)
+      {
+      setHP(leftHP);
+      }
+    else
+      {
+      // Dead.
+      }
+    
+    world.modify(this);
+    }
+
+  /** Return true if this entity is attacked */
+  public boolean isAttacked()
+    {
+    return attackSource!=null;
+    }
+  
+  /** Return the RPEntity that is attacking this character */ 
+  public RPEntity getAttackSource()
+    {
+    return attackSource;
+    }
+  
+  /** Return true if this entity is attacking */
+  public boolean isAttacking()
+    {
+    return attackTarget!=null;
+    }
+
+  /** Return the RPEntity that this entity is attacking. */
+  public RPEntity getAttackTarget()
+    {
+    return attackTarget;
+    }
+
   private List<Path.Node> path;
   private int pathPosition;
   private boolean pathLoop;
   
+  
+  /** Set a path to follow for this entity */
   public void setPath(List<Path.Node> path, boolean cycle)
     {
     this.path=path;
@@ -276,16 +289,16 @@ public class RPEntity extends Entity
     this.pathLoop=cycle;
     }
     
-  public boolean hasPath()
-    {
-    return path!=null;
-    }
-  
   public void clearPath()
     {
     this.path=null;
     }
     
+  public boolean hasPath()
+    {
+    return path!=null;
+    }
+  
   public List<Path.Node> getPath()  
     {
     return path;
