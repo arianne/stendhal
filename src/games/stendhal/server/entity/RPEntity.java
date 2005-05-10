@@ -17,6 +17,7 @@ import games.stendhal.server.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
+// TODO: Refactor, clean, sort!
 public class RPEntity extends ActiveEntity 
   {
   private String name;
@@ -134,6 +135,60 @@ public class RPEntity extends ActiveEntity
   public int getXP()
     {
     return xp;
+    }
+  
+  private RPEntity attackSource;
+  private RPEntity attackTarget;
+  
+  public void attack(RPEntity target)
+    {
+    put("target",target.getID().getObjectID());
+    attackTarget=target;
+    }
+  
+  public void stopAttack()
+    {
+    if(has("risk")) remove("risk");
+    if(has("damage")) remove("damage");
+    if(has("target")) remove("target");
+    
+    if(attackTarget!=null) attackTarget.attackSource=null;
+    attackTarget=null;    
+    }
+  
+  public void onAttack(RPEntity who, boolean status)
+    {
+    if(status)
+      {
+      who.attackTarget=this;
+      attackSource=who;
+      }
+    else
+      {
+      if(who.has("target")) who.remove("target");
+      who.attackTarget=null;
+      attackSource=null;
+      }      
+    }
+  
+  public boolean isAttacked()
+    {
+    return attackSource!=null;
+    }
+  
+  public RPEntity getAttackSource()
+    {
+    return attackSource;
+    }
+  
+  public boolean isAttacking()
+    {
+    return attackTarget!=null;
+    }
+
+  public RPEntity getAttackTarget()
+    {
+    return attackTarget;
     }
   
   public void onDamage(RPEntity who, int damage)

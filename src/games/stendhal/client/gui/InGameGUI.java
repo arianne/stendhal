@@ -9,16 +9,17 @@ import games.stendhal.client.entity.*;
 import games.stendhal.client.*;
 
 
-public class InGameGUI implements MouseListener
+public class InGameGUI implements MouseListener, MouseMotionListener
   {
   static class InGameList
     {
     private Rectangle area;
     private String[] list;
     private int choosen;
+    private int over;
     private Sprite action_list;
     
-    InGameList(String[] list, double x, double y)
+    private Sprite render(double x, double y, double mouse_x, double mouse_y)
       {
       int width=70+6;
       int height=6+16*list.length;
@@ -38,18 +39,47 @@ public class InGameGUI implements MouseListener
       int i=0;
       for(String item: list)
         {
-        g.drawString(item,3,13+16*i);
+        if((mouse_y-y)>16*i && (mouse_y-y)<16*(i+1))
+          {
+          g.setColor(Color.white);
+          g.drawRect(0,16*i,width-1,16);
+          g.drawString(item,3,13+16*i);
+          g.setColor(Color.yellow);
+          over=i;
+          }
+        else
+          {
+          g.drawString(item,3,13+16*i);
+          }
+          
         i++;
         }
-
-      action_list=new Sprite(image);      
+      
+      return new Sprite(image);
+      }
+    
+    public InGameList(String[] list, double x, double y)
+      {
       this.list=list;
+      over=-1;
+      action_list=render(x,y,-1,-1);      
       }
     
     public void draw(GameScreen screen)
       {
       Point2D translated=screen.translate(new Point((int)area.getX(),(int)area.getY()));      
       screen.draw(action_list,translated.getX(),translated.getY());
+      }
+    
+    public boolean onMouseOver(Point2D point)
+      {
+      if(area.contains(point) && over!=(point.getY()-area.getY())/16)
+        {
+        action_list=render(area.getX(),area.getY(),point.getX(),point.getY());      
+        return true;
+        }
+      
+      return false;
       }
     
     public boolean clicked(Point2D point)
@@ -83,6 +113,18 @@ public class InGameGUI implements MouseListener
     this.screen=GameScreen.get();
     }
     
+  public void mouseDragged(MouseEvent e) 
+    {
+    }
+    
+  public void mouseMoved(MouseEvent e)  
+    {
+    if(widget!=null)
+      {
+      widget.onMouseOver(e.getPoint());
+      }    
+    }
+
   public void mouseClicked(MouseEvent e) 
     {
     Point2D screenPoint=e.getPoint();

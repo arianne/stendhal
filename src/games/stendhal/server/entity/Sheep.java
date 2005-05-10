@@ -133,53 +133,8 @@ public class Sheep extends NPC
       }
     }
 
-  private int escapeCollision;
-  private int numCollision;
   private int hungry;
-  
-  public void setMovement(double x, double y, double min, double max)
-    {
-    if(nextto(x,y,min) && this.hasPath())
-      {
-      clearPath();
-      }
-
-    if((distance(x,y)>max && !hasPath()) || numCollision>20)
-      {
-      List<Path.Node> path=Path.searchPath(this,x,y);
-      setPath(path,false);
-      numCollision=0;
-      }
-    }
-    
-  public void moveto(double speed)
-    {
-    if(escapeCollision>0) escapeCollision--;
-    
-    if(hasPath() && collided())
-      {
-      numCollision++;
-      setdx(Math.random()*speed*2-speed);
-      setdy(Math.random()*speed*2-speed);
-      escapeCollision=6;
-      }
-    else if(escapeCollision==0 && hasPath() && Path.followPath(this,speed))
-      {
-      clearPath();
-      }
-    }
-
-  public void logicWithoutOwner(double speed)
-    {
-    if(escapeCollision>0) escapeCollision--;
-      
-    if(stopped() || collided() || escapeCollision==0)
-      {
-      setdx(Math.random()*speed*2-speed);
-      setdy(Math.random()*speed*2-speed);
-      escapeCollision=10;
-      }
-    }
+  private int escapeCollision;
 
   public void logicWithOwner(double speed)
     {
@@ -205,7 +160,7 @@ public class Sheep extends NPC
       else 
         {
         setIdea("walk");
-        logicWithoutOwner(SPEED);
+        moveRandomly(SPEED);
         }
       }
     else if(weight<100 && (food=getNearestFood(this,6))!=null)
@@ -217,7 +172,7 @@ public class Sheep extends NPC
         }
       else if(nextto(food,2))
         {
-        logicWithoutOwner(SPEED);
+        moveRandomly(SPEED);
         }
       else
         {
@@ -236,7 +191,7 @@ public class Sheep extends NPC
       else 
         {
         setIdea("walk");
-        logicWithoutOwner(SPEED);
+        moveRandomly(SPEED);
         }
       }
 

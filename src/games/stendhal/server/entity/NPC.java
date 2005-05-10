@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.util.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
@@ -63,5 +64,53 @@ public abstract class NPC extends RPEntity
     return idea;
     }
   
+
+  private int escapeCollision;
+  private int numCollision;
+  
+  public void setMovement(double x, double y, double min, double max)
+    {
+    if(nextto(x,y,min) && this.hasPath())
+      {
+      clearPath();
+      }
+
+    if((distance(x,y)>max && !hasPath()) || numCollision>20)
+      {
+      List<Path.Node> path=Path.searchPath(this,x,y);
+      setPath(path,false);
+      numCollision=0;
+      }
+    }
+    
+  public void moveto(double speed)
+    {
+    if(escapeCollision>0) escapeCollision--;
+    
+    if(hasPath() && collided())
+      {
+      numCollision++;
+      setdx(Math.random()*speed*2-speed);
+      setdy(Math.random()*speed*2-speed);
+      escapeCollision=6;
+      }
+    else if(escapeCollision==0 && hasPath() && Path.followPath(this,speed))
+      {
+      clearPath();
+      }
+    }
+
+  public void moveRandomly(double speed)
+    {
+    if(escapeCollision>0) escapeCollision--;
+      
+    if(stopped() || collided() || escapeCollision==0)
+      {
+      setdx(Math.random()*speed*2-speed);
+      setdy(Math.random()*speed*2-speed);
+      escapeCollision=10;
+      }
+    }
+
   abstract public void logic();
   }

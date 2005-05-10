@@ -92,6 +92,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
    return foodItems;
    }
 
+  public List<NPC> getNPCs()
+   {
+   return npcs;
+   }
+
   public boolean onActionAdd(RPAction action, List<RPAction> actionList)
     {
     Logger.trace("StendhalRPRuleProcessor::onActionAdd",">");
@@ -244,11 +249,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private void stop(Player player) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPRuleProcessor::stop",">");
-    player.setdx(0);
-    player.setdy(0);
-    if(player.has("risk")) player.remove("risk");
-    if(player.has("damage")) player.remove("damage");
-    if(player.has("target")) player.remove("target");
+
+    player.stop();
+    player.stopAttack();
     
     world.modify(player);
     
@@ -281,8 +284,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::attack",">");
     if(action.has("target"))
       {
-      player.put("target",action.getInt("target"));
-      world.modify(player);
+      int targetObject=action.getInt("target");
+      
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
+      if(zone.has(targetid))
+        {
+        RPObject object=zone.get(targetid);
+        if(object instanceof RPEntity)
+          {
+          player.attack((RPEntity)object);
+          world.modify(player);
+          }
+        }
       }
       
     Logger.trace("StendhalRPRuleProcessor::attack","<");
@@ -312,6 +326,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     Logger.trace("StendhalRPRuleProcessor::face","<");
     }
+  
+  public int getTurn()
+    {
+    return rpman.getTurn();
+    }
 
   /** Notify it when a new turn happens */
   synchronized public void beginTurn()
@@ -334,9 +353,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           StendhalRPAction.leaveZone(object);
           }
         
-        if(rpman.getTurn()%5==0 && object.has("target")) //1 round = 5 turns
+        if(getTurn()%5==0 && object.isAttacking()) //1 round = 5 turns
           {
-          StendhalRPAction.attack(object,object.getInt("target"));
+          StendhalRPAction.attack(object,object.getAttackTarget());
           }
         }
 

@@ -112,61 +112,88 @@ public class StendhalRPAction
       }
     }
  
-  public static boolean attack(Player player,int targetObject) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
+  public static boolean attack(RPEntity source,RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
     Logger.trace("StendhalRPAction::attack",">");
     try
       {
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
-      if(zone.has(targetid))
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(source.getID());
+      if(!zone.has(target.getID()))
         {
-        RPObject object=zone.get(targetid);
-        if(object instanceof RPEntity)
-          {
-          if(player.nextto((RPEntity)object,1))
-            {
-            RPEntity target=(RPEntity)object;
-            
-            int risk=roll1D6()+1-roll1D6();
-            player.put("risk",risk);
-            
-            Logger.trace("StendhalRPAction::attack","D","Risk to strike: "+risk);
-            
-            if(risk>0) //Hit
-              {
-              int damage=roll1D6()-3;            
-              
-              if(damage>0) // Damaged
-                {
-                target.onDamage(player,damage);              
-                player.put("damage",damage);
-                }
-              else
-                {
-                player.put("damage",0);
-                }
-  
-              Logger.trace("StendhalRPAction::attack","D","Damage done: "+(damage>0?damage:0));            
-              }
-            
-            world.modify(player);
-            }
-
-          return true;
-          }
+        target.onAttack(source, false);
+        world.modify(source);
+        return false;
         }
-
-      // If zone.has(target)==false && object instanceof RPEntity==false
-      player.remove("target");
-      world.modify(player);
-      return false;
+      
+      target.onAttack(source, true);
+      
+      if(source.nextto(target,1))
+        {
+        int risk=roll1D6()+1-roll1D6();
+        source.put("risk",risk);
+        
+        Logger.trace("StendhalRPAction::attack","D","Risk to strike: "+risk);
+        
+        if(risk>0) //Hit
+          {
+          int damage=roll1D6()-3;            
+          
+          if(damage>0) // Damaged
+            {
+            target.onDamage(source,damage);              
+            source.put("damage",damage);
+            }
+          else
+            {
+            source.put("damage",0);
+            }
+  
+          Logger.trace("StendhalRPAction::attack","D","Damage done: "+(damage>0?damage:0));            
+          }
+        
+        world.modify(source);
+        return true;      
+        }
+      else
+        {
+        return false;
+        }
       }
     finally
       {
       Logger.trace("StendhalRPAction::attack","<");
       }
     }
+    
+//  public static boolean attack(RPEntity source,int targetObject) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
+//    {
+//    // TODO: Refactor this! Use new entity system instead of operating directly on attributes.
+//    Logger.trace("StendhalRPAction::attack",">");
+//    try
+//      {
+//      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(source.getID());
+//      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
+//      if(zone.has(targetid))
+//        {
+//        RPObject object=zone.get(targetid);
+//        if(object instanceof RPEntity)
+//          {
+//          return attack(source,(RPEntity)object);
+//          }
+//        }
+//
+//      // If zone.has(target)==false && object instanceof RPEntity==false
+//      source.getAttackTarget().onAttack(source, false);
+//      
+//      source.remove("target");
+//      world.modify(source);
+//      return false;
+//      }
+//    finally
+//      {
+//      Logger.trace("StendhalRPAction::attack","<");
+//      }
+//    }
 
   public static void move(ActiveEntity entity) throws AttributeNotFoundException, NoRPZoneException
     {

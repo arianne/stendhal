@@ -173,6 +173,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\KTextEdit.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\LoginDialog.java</path>
 				<source>true</source>
 			</fileitem>

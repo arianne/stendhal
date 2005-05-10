@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import java.util.*;
@@ -146,6 +147,7 @@ public class j2DClient extends JFrame
     inGameGUI=new InGameGUI(client);
 
     canvas.addMouseListener(inGameGUI);
+    canvas.addMouseMotionListener(inGameGUI);
     
     client.setGameLogDialog(new GameLogDialog(this, playerChatText));    
     
@@ -217,15 +219,13 @@ public class j2DClient extends JFrame
         {
         oldTime=System.nanoTime();
         Logger.trace("j2DCLient::gameLoop()","D","FPS: "+Integer.toString(fps));
-        fps=0;
-        
         gameRunning=client.shouldContinueGame();
         }     
       }
 
     client.logout();
     System.exit(0);
-  }
+    }
   
   private void moveScreen(RPObject object, StaticGameLayers gameLayers, long delta)
     {

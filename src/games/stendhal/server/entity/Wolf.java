@@ -56,6 +56,35 @@ public class Wolf extends NPC
     Logger.trace("Wolf::Wolf","D","Created Wolf: "+this.toString());
     }
   
+  public Sheep getNearestSheep(double range)
+    {
+    double x=getx();
+    double y=gety();
+    
+    double distance=range*range; // We save this way several sqrt operations
+    Sheep chosen=null;
+    
+    for(RPEntity entity: rp.getNPCs())
+      {
+      if(entity instanceof Sheep && entity.get("zoneid").equals(get("zoneid")))
+        {
+        double ex=entity.getx();
+        double ey=entity.gety();
+        
+        if(Math.abs(ex-x)<range && Math.abs(ey-y)<range)
+          {
+          if(this.distance(entity)<distance)
+            {
+            chosen=(Sheep)entity;
+            distance=this.distance(entity);
+            }
+          }
+        }
+      }
+    
+    return chosen;
+    }
+  
   private int escapeCollision;
   
   public void logic()
@@ -70,23 +99,75 @@ public class Wolf extends NPC
         }
       setPath(nodes,true);
       }
+    
+    if(isAttacked() && !isAttacking())
+      {
+      stop();
+      clearPath();
       
-    if(escapeCollision>0) escapeCollision--;
+      RPEntity target=getAttackSource();
+      attack(target);
 
-    if(collided() && escapeCollision==0)
+      setMovement(target.getx(),target.gety(),0,0);
+      moveto(SPEED);
+
+      world.modify(this);
+      }    
+    else if(isAttacked())
+      {      
+      RPEntity target=getAttackSource();
+      if(nextto(target,1))
+        {
+        stop();
+        clearPath();
+        
+        world.modify(this);
+        }
+      else
+        {
+        world.modify(this);
+        setMovement(target.getx(),target.gety(),0,0);
+        moveto(SPEED);
+        }
+      } 
+    else
       {
-      setdx(Math.random()*2*SPEED-SPEED);
-      setdy(Math.random()*2*SPEED-SPEED);
-      escapeCollision=10;
-      }
-    else if(escapeCollision==0)
-      {
-      Path.followPath(this,SPEED);
+      Sheep sheep=getNearestSheep(10);
+      if(sheep!=null)
+        {
+        if(sheep.nextto(this,1))
+          {
+          attack(sheep);
+          }
+        else
+          {
+          setMovement(sheep.getx(),sheep.gety(),0,0);
+          moveto(SPEED);
+          }        
+        }
+      else
+        {
+        if(escapeCollision>0) escapeCollision--;
+    
+        if(collided() && escapeCollision==0)
+          {
+          moveRandomly(SPEED);
+          }
+        else if(escapeCollision==0)
+          {
+          Path.followPath(this,SPEED);
+          }
+        }
       }
 
     if(!stopped())
       {
       StendhalRPAction.move(this);
+      }
+    
+    if(rp.getTurn()%5==0 && isAttacking())
+      {
+      StendhalRPAction.attack(this,getAttackTarget());
       }
       
     Logger.trace("Wolf::logic","<");
