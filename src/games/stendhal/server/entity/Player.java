@@ -44,6 +44,12 @@ public class Player extends RPEntity
     update();
     }
     
+  public void onDead(RPEntity who)
+    {
+    setHP(getbaseHP());
+    world.modify(this);
+    }
+
   public boolean hasLeave()
     {
     return hasLeave;

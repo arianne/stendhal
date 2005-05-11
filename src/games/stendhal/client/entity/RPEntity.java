@@ -57,7 +57,6 @@ public abstract class RPEntity extends AnimatedEntity
     };
   
   private String name;
-  private boolean attacking;
   private int hp;
   private int base_hp;
   
@@ -68,6 +67,8 @@ public abstract class RPEntity extends AnimatedEntity
   private java.util.List<Long> damageSpritesTimes;
   
   private boolean attacked;
+  private boolean attacking;
+  private RPObject.ID targetEntity;
   private RESOLUTION resolution;
 
   /** Create a new game entity based on the arianne object passed */
@@ -116,7 +117,8 @@ public abstract class RPEntity extends AnimatedEntity
       int target=(changes.has("target")?changes.getInt("target"):object.getInt("target"));
       
       // TODO: Change! Replace! Use new action system instead 
-      gameObjects.attack(this,new RPObject.ID(target,changes.get("zoneid")),risk,damage);
+      targetEntity=new RPObject.ID(target,changes.get("zoneid"));
+      gameObjects.attack(this,targetEntity,risk,damage);
       }
     }
 
@@ -126,7 +128,18 @@ public abstract class RPEntity extends AnimatedEntity
     if(changes.has("target"))
       {     
       attacking=false;
-      gameObjects.attackStop(this,new RPObject.ID(object.getInt("target"),object.get("zoneid")));
+      gameObjects.attackStop(this,targetEntity);
+      targetEntity=null;
+      }
+    }
+
+  public void removed() throws AttributeNotFoundException
+    {
+    if(attacking)
+      {
+      attacking=false;
+      gameObjects.attackStop(this,targetEntity);
+      targetEntity=null;
       }
     }
     

@@ -175,6 +175,13 @@ public class GameObjects
     {
     Logger.trace("GameObjects::remove",">");
     Logger.trace("GameObjects::remove","D",id.toString());
+
+    Entity entity=objects.get(id);
+    if(entity!=null)
+      {
+      entity.removed();
+      }
+
     objects.remove(id);
     Logger.trace("GameObjects::remove","<");
     }

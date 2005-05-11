@@ -94,19 +94,11 @@ public class StendhalFirstScreen extends JFrame
 		//
 		createAccountButton.setText("Create an account");
 		createAccountButton.setToolTipText("Press this button to create an account on a stendhal server.");
-        createAccountButton.setEnabled(true);
+    createAccountButton.setEnabled(true);
 		createAccountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-			try
-			  {
-              //JnlpProxy.showDocument(new URL("http://stendhal.ombres.ambre.net/"));
-			  }
-			catch(java.net.MalformedURLException ex)
-			  {			  
-			  System.out.println (ex);
-			  }            
-            }
+      }
 
 		});
 		//

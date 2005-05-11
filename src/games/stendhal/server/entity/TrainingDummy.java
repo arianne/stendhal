@@ -36,19 +36,9 @@ public class TrainingDummy extends RPEntity
     put("type","trainingdummy");
     }
 
-  public void onDamage(RPEntity who, int damage)
+  public void onDead(RPEntity who)
     {
-    Logger.trace("TrainingDummy::onDamage","D","Damaged "+damage+" points by "+who.getID());
-    int leftHP=getHP()-damage;
-    if(leftHP<0)
-      {
-      setHP(getbaseHP());
-      }
-    else
-      {
-      setHP(leftHP);
-      }
-    
+    setHP(getbaseHP());
     world.modify(this);
     }
   }

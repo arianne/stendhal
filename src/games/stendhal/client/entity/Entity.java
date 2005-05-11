@@ -109,6 +109,10 @@ public abstract class Entity
     {
     }
 
+  public void removed() throws AttributeNotFoundException
+    {
+    }
+
   public void draw(GameScreen screen)
     {
     screen.draw(sprite,x,y);

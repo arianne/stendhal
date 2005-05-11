@@ -246,10 +246,20 @@ public class RPEntity extends Entity
       }
     else
       {
-      // Dead.
+      onDead(who);
       }
     
     world.modify(this);
+    }
+  
+  /** This method is called when the entity has been killed ( hp==0 ). */
+  public void onDead(RPEntity who)
+    {
+    stopAttack();
+    who.stopAttack();
+
+    world.modify(who);    
+    world.remove(getID());
     }
 
   /** Return true if this entity is attacked */

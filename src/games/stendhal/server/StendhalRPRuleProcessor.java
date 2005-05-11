@@ -88,14 +88,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     }
   
   public List<Food> getFoodItems()
-   {
-   return foodItems;
-   }
+    {
+    return foodItems;
+    }
 
   public List<NPC> getNPCs()
-   {
-   return npcs;
-   }
+    {
+    return npcs;
+    }
+  
+  public boolean removeNPC(NPC npc)
+    {
+    return npcs.remove(npc);
+    }
 
   public boolean onActionAdd(RPAction action, List<RPAction> actionList)
     {
@@ -421,10 +426,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(object.has("target")) object.remove("target");
       
       // Port from 0.03 to 0.10 
-      if(!object.has("base_hp")) 
+//      if(!object.has("base_hp")) 
         {
-        object.put("base_hp","10");
-        object.put("hp","10");
+        object.put("base_hp","100");
+        object.put("hp","100");
         }
       
       Player player=new Player(object);

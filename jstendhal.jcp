@@ -4,9 +4,9 @@
 		<version>1.01</version>
 		<label>jstendhal</label>
 		<root_path>\</root_path>
-		<output_path>..\compiled\</output_path>
+		<output_path>D:\Desarrollo\arianne\compiled\</output_path>
 		<version>1.01</version>
-		<source_path>src\</source_path>
+		<source_path>D:\Desarrollo\arianne\stendhal\src\</source_path>
 		<jdkprofile_ref>JDK version 1.5.0</jdkprofile_ref>
 		<compiler_ref>&lt;Default&gt;</compiler_ref>
 		<ant_ref/>
@@ -57,15 +57,31 @@
 				<path>maps</path>
 			</folderitem>
 			<fileitem>
+				<path>AUTHORS</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>BUGS</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>build.xml</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>README</path>
+				<path>COPYING</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>stendhal-server-0.02.zip</path>
+				<path>HISTORY</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>LICENSE</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>README</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
