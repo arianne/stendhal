@@ -20,9 +20,10 @@ import java.util.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
 
-public class Wolf extends NPC
+public class Wolf extends Creature
   {
-  private static double SPEED=0.5;
+  final private static double SPEED=0.5;
+  final private static int HP=10;
   private List<Path.Node> path;
   
   public static void generateRPClass()
@@ -46,6 +47,8 @@ public class Wolf extends NPC
     put("y",0);
     put("dx",0);
     put("dy",0);
+
+    setbaseHP(HP);
 
     path=new LinkedList<Path.Node>();
     path.add(new Path.Node(0,0));

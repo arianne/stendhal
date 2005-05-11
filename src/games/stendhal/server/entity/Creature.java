@@ -12,41 +12,36 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.common.*;
 import games.stendhal.server.*;
-import java.awt.*;
-import java.awt.geom.*;
+import marauroa.common.game.*;
 
-
-public class Corpse extends Entity
+public abstract class Creature extends NPC 
   {
-  final public static int DEGRADATION_TIMEOUT=45;
-  private int degradation;
+  private RespawnPoint point;
   
-  public Corpse(RPObject object) throws AttributeNotFoundException
+  public Creature(RPObject object) throws AttributeNotFoundException
     {
     super(object);
-    update();
     }
 
-  public Corpse(RPEntity entity) throws AttributeNotFoundException
+  public Creature() throws AttributeNotFoundException
     {
-    put("type","corpse");
-    setx(entity.getx());
-    sety(entity.gety());
-    degradation=DEGRADATION_TIMEOUT;
+    super();
+    }
+
+  public void setRespawnPoint(RespawnPoint point)
+    {
+    this.point=point;
     }
   
-  public int getDegradation()
+  public RespawnPoint getRespawnPoint()
     {
-    return degradation;
-    } 
-  
-  public int decDegradation()
+    return point;
+    }
+
+  public void onDead(RPEntity who)
     {
-    return degradation--;
+    point.notifyDead(this);
+    super.onDead(who);
     }
   }

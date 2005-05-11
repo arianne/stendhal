@@ -34,6 +34,7 @@ public class StendhalRPZone extends MarauroaRPZone
   private List<String> entryPoints;
   private List<String> zoneChangePoints;
   private List<NPC> npcs;
+  private List<RespawnPoint> respawnPoints;
   private List<Food> foodItems;
   
   private CollisionDetection collisionMap;
@@ -49,6 +50,7 @@ public class StendhalRPZone extends MarauroaRPZone
     zoneChangePoints=new LinkedList<String>();
 
     npcs=new LinkedList<NPC>();
+    respawnPoints=new LinkedList<RespawnPoint>();
     foodItems=new LinkedList<Food>();
     
     collisionMap=new CollisionDetection();
@@ -65,6 +67,11 @@ public class StendhalRPZone extends MarauroaRPZone
   public List<NPC> getNPCList()
     {
     return npcs;
+    }
+
+  public List<RespawnPoint> getRespawnPointList()
+    {
+    return respawnPoints;
     }
 
   public List<Food> getFoodItemList()
@@ -227,27 +234,18 @@ public class StendhalRPZone extends MarauroaRPZone
               }
             case 3: /* Sheep */
               {
-              Sheep sheep=new Sheep(null);
-              assignRPObjectID(sheep);
-              sheep.setx(j%width);
-              sheep.sety(j/width);
-              sheep.setbaseHP(10);
-              add(sheep);
-
-              npcs.add(sheep);
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Sheep(),1);
+              respawnPoints.add(point);
               
               break;
               }
             case 4: /* Wolf */
               {
-              Wolf wolf=new Wolf();
-              assignRPObjectID(wolf);
-              wolf.setx(j%width);
-              wolf.sety(j/width);
-              wolf.setbaseHP(10);
-              add(wolf);
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Wolf(),1);
+              respawnPoints.add(point);
 
-              npcs.add(wolf);
               break;
               }
             case 5: /* NPC Seller */

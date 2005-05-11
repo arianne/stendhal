@@ -41,6 +41,12 @@ public class WelcomerNPC extends NPC
     put("text","Welcome to Stendhal. My name is "+get("name")+" and I will introduce you to Stendhal's world. You should go to village to get a new sheep and then move to Plains to raise it then return back to here and sell it to Sato");
     }
 
+  public void onDead(RPEntity who)
+    {
+    setHP(getbaseHP());
+    world.modify(this);
+    }
+
   public void logic()
     {    
     if(getdx()==0)

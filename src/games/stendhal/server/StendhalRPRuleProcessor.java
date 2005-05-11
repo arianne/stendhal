@@ -32,6 +32,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private List<Player> playersObjectRmText;
   
   private List<NPC> npcs;
+  private List<RespawnPoint> respawnPoints;
   private List<Food> foodItems;
   private List<NPC> npcsToAdd;
   private List<Corpse> corpses;
@@ -41,6 +42,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     playersObject=new LinkedList<Player>();
     playersObjectRmText=new LinkedList<Player>();
     npcs=new LinkedList<NPC>();
+    respawnPoints=new LinkedList<RespawnPoint>();
     foodItems=new LinkedList<Food>();
     npcsToAdd=new LinkedList<NPC>();
     corpses=new LinkedList<Corpse>();
@@ -69,6 +71,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         StendhalRPZone szone=(StendhalRPZone)zone;
         npcs.addAll(szone.getNPCList());
+        respawnPoints.addAll(szone.getRespawnPointList());
         foodItems.addAll(szone.getFoodItemList());
         }
       }
@@ -411,13 +414,21 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {      
       for(NPC npc: npcs) npc.logic();
       for(Food food: foodItems) food.regrow();
+      for(RespawnPoint point: respawnPoints) point.nextTurn();
+      
+      List<Corpse> removedCorpses=new LinkedList<Corpse>();
       for(Corpse corpse: corpses)
         {
         if(corpse.decDegradation()==0)
           {
           world.remove(corpse.getID());
-          corpses.remove(corpse);
+          removedCorpses.add(corpse);
           }
+        }
+
+      for(Corpse corpse: removedCorpses)
+        {
+        corpses.remove(corpse);
         }
       }
     catch(Exception e)

@@ -40,6 +40,12 @@ public class SellerNPC extends SpeakerNPC
     put("type","sellernpc");
     }
 
+  public void onDead(RPEntity who)
+    {
+    setHP(getbaseHP());
+    world.modify(this);
+    }
+
   public boolean chat(Player player) throws AttributeNotFoundException
     {
     String text=player.get("text").toLowerCase();

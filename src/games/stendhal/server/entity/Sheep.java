@@ -20,9 +20,10 @@ import java.util.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
 
-public class Sheep extends NPC
+public class Sheep extends Creature
   {
-  private static double SPEED=0.25;
+  final private static double SPEED=0.25;
+  final private static int HP=10;
   
   private int weight;
   private Player owner;
@@ -42,6 +43,11 @@ public class Sheep extends NPC
       }
     }
   
+  public Sheep() throws AttributeNotFoundException
+    {
+    this(null);
+    }
+    
   public Sheep(Player owner) throws AttributeNotFoundException
     {
     super();
@@ -51,6 +57,8 @@ public class Sheep extends NPC
     put("y",0);
     put("dx",0);
     put("dy",0);
+    
+    setbaseHP(HP);
 
     hungry=0;
     update();

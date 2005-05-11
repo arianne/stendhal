@@ -221,6 +221,7 @@ public class j2DClient extends JFrame
         System.out.println("FPS: "+Integer.toString(fps));
         Logger.trace("j2DCLient::gameLoop()","D","FPS: "+Integer.toString(fps));
         gameRunning=client.shouldContinueGame();
+        fps=0;
         }     
       }
 
