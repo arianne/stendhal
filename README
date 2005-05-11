@@ -44,7 +44,7 @@ Please download it from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.03.jar
+  java -jar stendhal-0.10.jar
 
 
 Changelog

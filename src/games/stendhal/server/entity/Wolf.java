@@ -49,9 +49,9 @@ public class Wolf extends NPC
 
     path=new LinkedList<Path.Node>();
     path.add(new Path.Node(0,0));
-    path.add(new Path.Node(-15,0));
-    path.add(new Path.Node(-15,15));
-    path.add(new Path.Node(0,15));
+    path.add(new Path.Node(-8,0));
+    path.add(new Path.Node(-8,8));
+    path.add(new Path.Node(0,8));
 
     Logger.trace("Wolf::Wolf","D","Created Wolf: "+this.toString());
     }
