@@ -52,6 +52,10 @@ public class EntityAreas
       {
       rect.setRect(x+2f/32f,y+51f/32f,(31f-2f)/32f,(64f-51f)/32f);
       }
+    else if(type.equals("corpse"))
+      {
+      rect.setRect(x,y,0,0);
+      }
     else if(type.equals("sign"))
       {
       rect.setRect(x,y,1,1);
@@ -98,6 +102,10 @@ public class EntityAreas
     else if(type.equals("welcomernpc"))
       {
       return new Rectangle.Double(x,y,1.5,2);
+      }
+    else if(type.equals("corpse"))
+      {
+      return new Rectangle.Double(x,y,1,2);
       }
     else if(type.equals("sign"))
       {

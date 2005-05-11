@@ -93,7 +93,7 @@ public class Sign extends Entity
     if(action.equals("Look"))
       {
       delta=System.currentTimeMillis();
-      StendhalClient.get().addEventLine("You read \""+text+"\"",Color.green);
+      StendhalClient.get().addEventLine("You read \""+text.replace("|","\n")+"\"",Color.green);
       }
     }
 

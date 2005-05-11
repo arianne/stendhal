@@ -34,6 +34,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private List<NPC> npcs;
   private List<Food> foodItems;
   private List<NPC> npcsToAdd;
+  private List<Corpse> corpses;
   
   public StendhalRPRuleProcessor()
     {
@@ -42,6 +43,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     npcs=new LinkedList<NPC>();
     foodItems=new LinkedList<Food>();
     npcsToAdd=new LinkedList<NPC>();
+    corpses=new LinkedList<Corpse>();
     }
 
 
@@ -80,6 +82,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   public void addNPC(NPC npc)
     {
     npcsToAdd.add(npc);
+    }
+
+  public void addCorpse(Corpse corpse)
+    {
+    corpses.add(corpse);
     }
 
   public List<Player> getPlayers()
@@ -404,6 +411,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {      
       for(NPC npc: npcs) npc.logic();
       for(Food food: foodItems) food.regrow();
+      for(Corpse corpse: corpses)
+        {
+        if(corpse.decDegradation()==0)
+          {
+          world.remove(corpse.getID());
+          corpses.remove(corpse);
+          }
+        }
       }
     catch(Exception e)
       {

@@ -257,6 +257,13 @@ public class RPEntity extends Entity
     {
     stopAttack();
     who.stopAttack();
+    
+    Corpse corpse=new Corpse(this);
+    IRPZone zone=world.getRPZone(getID());
+    zone.assignRPObjectID(corpse);
+    zone.add(corpse);
+    
+    rp.addCorpse(corpse);
 
     world.modify(who);    
     world.remove(getID());

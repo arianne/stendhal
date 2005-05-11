@@ -218,6 +218,7 @@ public class j2DClient extends JFrame
       if(System.nanoTime()-oldTime>1000000000)
         {
         oldTime=System.nanoTime();
+        System.out.println("FPS: "+Integer.toString(fps));
         Logger.trace("j2DCLient::gameLoop()","D","FPS: "+Integer.toString(fps));
         gameRunning=client.shouldContinueGame();
         }     

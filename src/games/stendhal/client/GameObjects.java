@@ -74,6 +74,10 @@ public class GameObjects
         {
         return new Food(this, object);
         }
+      else if(object.get("type").equals("corpse"))
+        {
+        return new Corpse(this, object);
+        }
       else
         {
         Logger.trace("GameObjects::entityType","X","Unknown entity type");
