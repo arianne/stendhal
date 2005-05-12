@@ -63,6 +63,16 @@ public class StendhalClient extends ariannexp
     handler=new PerceptionHandler(new StendhalPerceptionListener()); 
     dialog=null;
     }
+
+  protected String getGameName()
+    {
+    return "stendhal";
+    }
+    
+  protected String getVersionNumber()
+    {
+    return stendhal.VERSION;
+    }    
   
   public void setGameLogDialog(GameLogDialog dialog)
     {

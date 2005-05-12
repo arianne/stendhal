@@ -81,6 +81,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       System.exit(-1);
       }
     }
+
+  public boolean checkGameVersion(String game, String version)
+    {
+    if(game.equals("stendhal"))
+      {
+      return true;
+      }
+    else
+      {
+      return false;
+      }
+    }
+
   
   public void addNPC(NPC npc)
     {

@@ -78,7 +78,8 @@ public class Player extends RPEntity
     {
     Logger.trace("Player::removeSheep",">");
     remove("sheep");
-    getSlot("#flock").clear();
+    // FIXME: Change this to have coherence with storeSheep and retrieveSheep
+    if(has("#flock")) getSlot("#flock").clear();
     Logger.trace("Player::removeSheep","<");
     }
      

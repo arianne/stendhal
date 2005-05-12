@@ -64,6 +64,16 @@ public class textClient extends Thread
     
     clientManager=new marauroa.client.ariannexp(false)
       {
+      protected String getGameName()
+        {
+        return "stendhal";
+        }
+        
+      protected String getVersionNumber()
+        {
+        return stendhal.VERSION;
+        }    
+      
       protected void onPerception(MessageS2CPerception message)
         {
         try

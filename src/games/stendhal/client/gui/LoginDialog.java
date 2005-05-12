@@ -148,7 +148,13 @@ public class LoginDialog extends JDialog
       {
       if(client.login(username,password)==false)
         {
-        JOptionPane.showMessageDialog(this, "Invalid username or password","Login status",JOptionPane.ERROR_MESSAGE);
+        String result=client.getEvent();
+        if(result==null)
+          {
+          result="Server is not available right now. Check it is online";
+          }
+          
+        JOptionPane.showMessageDialog(this, result ,"Login status",JOptionPane.ERROR_MESSAGE);
         }
       else
         {

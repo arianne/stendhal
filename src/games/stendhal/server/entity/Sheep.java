@@ -84,6 +84,17 @@ public class Sheep extends Creature
     if(has("weight")) weight=getInt("weight");
     }
   
+  public void onDead(RPEntity who)
+    {
+    if(owner!=null)
+      {
+      rp.removeNPC(this);
+      owner.removeSheep();
+      }
+      
+    super.onDead(who);
+    }
+
   public void setWeight(int weight)
     {
     this.weight=weight;
