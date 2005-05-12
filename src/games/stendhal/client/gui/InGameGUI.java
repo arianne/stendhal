@@ -134,6 +134,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener
       if(gameObjects.has(widgetAssociatedEntity))
         {
         widgetAssociatedEntity.onAction(widget.choosen(), client);
+        widget=null;
+        return;
         }
       }
 

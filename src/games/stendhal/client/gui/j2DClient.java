@@ -52,7 +52,7 @@ public class j2DClient extends JFrame
   public j2DClient(StendhalClient sc) 
     {
     // create a frame to contain our game
-    setTitle("Stendhal Java 2D");
+    setTitle("Stendhal "+stendhal.VERSION+" - a multiplayer online game using Arianne");
       
     // get hold the content of the frame and set up the resolution of the game
     JPanel panel = (JPanel) this.getContentPane();

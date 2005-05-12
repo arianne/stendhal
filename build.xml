@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <project name="stendhal" default="compile" basedir=".">
-  <property name="version" value="0.10"/>
+  <property name="version" value="0.11"/>
   <property name="src" value="src"/>
   <property name="maps" value="maps"/>
   <property name="data" value="data"/>
@@ -35,8 +35,8 @@
     <mkdir dir="${build}"/>
 
     <replaceregexp file="${src}/games/stendhal/client/stendhal.java"
-                   match="final private static String VERSION=&quot;.*&quot;;"
-                   replace="final private static String VERSION=&quot;${version}&quot;;"
+                   match="final public static String VERSION=&quot;.*&quot;;"
+                   replace="final public static String VERSION=&quot;${version}&quot;;"
                    byline="true"/>
                    
     <copy todir="${build}/sprites">

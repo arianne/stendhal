@@ -544,8 +544,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           break;
           }
         }
-      
-      world.remove(id);
 
       return true;
       }
@@ -556,6 +554,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     finally
       {
+      world.remove(id);
       Logger.trace("StendhalRPRuleProcessor::onExit","<");
       }
     }

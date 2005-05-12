@@ -50,6 +50,7 @@ Then just do:
 Changelog
 ---------
 0.10 May 12, 2005
+- Color game dialog log console.
 - Major server and client refactoring
 - True attack system
 - True dead
