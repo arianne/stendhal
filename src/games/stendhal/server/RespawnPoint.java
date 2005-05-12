@@ -28,7 +28,7 @@ public class RespawnPoint
   private List<Creature> entities;  
   
   private boolean respawning;
-  final public static int TURNSTORESPAWN=Corpse.DEGRADATION_TIMEOUT;
+  final public static int TURNSTORESPAWN=Corpse.DEGRADATION_TIMEOUT*2;
   private int turnsToRespawn;
   
   private StendhalRPZone zone;
