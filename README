@@ -49,13 +49,14 @@ Then just do:
 
 Changelog
 ---------
-0.10 May XX, 2005
+0.10 May 12, 2005
 - Major server and client refactoring
 - True attack system
 - True dead
 - Added Wolf
 - Improved sheep movement
 - Optimized A*
+- Major bug fixes
 
 0.03 Apr 28, 2005
 - Added A*
