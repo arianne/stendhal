@@ -32,9 +32,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private List<Player> playersObjectRmText;
   
   private List<NPC> npcs;
+  private List<NPC> npcsToAdd;
+  private List<NPC> npcsToRemove;
+
   private List<RespawnPoint> respawnPoints;
   private List<Food> foodItems;
-  private List<NPC> npcsToAdd;
   private List<Corpse> corpses;
   
   public StendhalRPRuleProcessor()
@@ -45,6 +47,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     respawnPoints=new LinkedList<RespawnPoint>();
     foodItems=new LinkedList<Food>();
     npcsToAdd=new LinkedList<NPC>();
+    npcsToRemove=new LinkedList<NPC>();
     corpses=new LinkedList<Corpse>();
     }
 
@@ -122,7 +125,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   
   public boolean removeNPC(NPC npc)
     {
-    return npcs.remove(npc);
+    return npcsToRemove.add(npc);
     }
 
   public boolean onActionAdd(RPAction action, List<RPAction> actionList)
@@ -366,8 +369,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::beginTurn",">");
     try
       {
+      // TODO: Done this way because a problem with comodification... :(
       npcs.addAll(npcsToAdd);
+      npcs.removeAll(npcsToRemove);
+        
       npcsToAdd.clear();
+      npcsToRemove.clear();
       
       for(Player object: playersObject)
         {
@@ -432,6 +439,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       List<Corpse> removedCorpses=new LinkedList<Corpse>();
       for(Corpse corpse: corpses)
         {
+        // TODO: Hide this inside class
         if(corpse.decDegradation()==0)
           {
           world.remove(corpse.getID());
@@ -460,24 +468,23 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     try
       {
       object.put("zoneid","city");
-      if(object.has("damage")) object.remove("damage");
-      if(object.has("risk")) object.remove("risk");
-      if(object.has("target")) object.remove("target");
-      
+
       // Port from 0.03 to 0.10 
-//      if(!object.has("base_hp")) 
+      if(!object.has("base_hp")) 
         {
         object.put("base_hp","100");
         object.put("hp","100");
         }
       
       Player player=new Player(object);
-      player.setdx(0);
-      player.setdy(0);
+      player.stop();
+      player.stopAttack();
       
       world.add(player); 
       StendhalRPAction.transferContent(player);
       
+      
+      // TODO: Fixme! Move this behaviour to class.
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
       zone.placeObjectAtEntryPoint(player);
             
@@ -516,8 +523,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         sheep.setx(x);
         sheep.sety(y);
         Logger.trace("StendhalRPRuleProcessor::onInit","D","Sheep located at ("+x+","+y+")");
-        
-        addNPC(sheep);
 
         player.setSheep(sheep);
         }      

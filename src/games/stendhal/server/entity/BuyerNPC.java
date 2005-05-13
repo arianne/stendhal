@@ -77,7 +77,7 @@ public class BuyerNPC extends SpeakerNPC
           {
           put("text","Thanks! Here is your money");
           world.remove(player.getSheep());
-          player.removeSheep();
+          player.removeSheep(sheep);
           world.modify(player);
           amount++;
           }

@@ -88,8 +88,7 @@ public class Sheep extends Creature
     {
     if(owner!=null)
       {
-      rp.removeNPC(this);
-      owner.removeSheep();
+      owner.removeSheep(this);
       }
       
     super.onDead(who);

@@ -75,7 +75,7 @@ public class RPEntity extends Entity
     if(has("dy")) dy=getDouble("dy");
     if(has("atk")) atk=getInt("atk");
     if(has("def")) def=getInt("def");
-    if(has("base_hp")) hp=getInt("base_hp");
+    if(has("base_hp")) base_hp=getInt("base_hp");
     if(has("hp")) hp=getInt("hp");
     if(has("xp")) xp=getInt("xp");
     }

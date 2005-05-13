@@ -165,36 +165,6 @@ public class StendhalRPAction
       }
     }
     
-//  public static boolean attack(RPEntity source,int targetObject) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
-//    {
-//    // TODO: Refactor this! Use new entity system instead of operating directly on attributes.
-//    Logger.trace("StendhalRPAction::attack",">");
-//    try
-//      {
-//      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(source.getID());
-//      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
-//      if(zone.has(targetid))
-//        {
-//        RPObject object=zone.get(targetid);
-//        if(object instanceof RPEntity)
-//          {
-//          return attack(source,(RPEntity)object);
-//          }
-//        }
-//
-//      // If zone.has(target)==false && object instanceof RPEntity==false
-//      source.getAttackTarget().onAttack(source, false);
-//      
-//      source.remove("target");
-//      world.modify(source);
-//      return false;
-//      }
-//    finally
-//      {
-//      Logger.trace("StendhalRPAction::attack","<");
-//      }
-//    }
-
   public static void move(RPEntity entity) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::move",">");
@@ -238,9 +208,6 @@ public class StendhalRPAction
         /* Collision */
         Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");      
         entity.collides(true);
-        // HACK: Needed to make 0.02 client to work. FIXME
-        entity.setx(x);
-        entity.sety(y);
         
         entity.stop();
         world.modify(entity);

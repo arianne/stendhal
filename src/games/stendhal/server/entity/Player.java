@@ -74,10 +74,13 @@ public class Player extends RPEntity
     return leave;
     }
   
-  public void removeSheep()
+  public void removeSheep(Sheep sheep)
     {
     Logger.trace("Player::removeSheep",">");
     remove("sheep");
+
+    rp.removeNPC(sheep);
+    
     // FIXME: Change this to have coherence with storeSheep and retrieveSheep
     if(has("#flock")) getSlot("#flock").clear();
     Logger.trace("Player::removeSheep","<");
@@ -92,6 +95,9 @@ public class Player extends RPEntity
     {
     Logger.trace("Player::setSheep",">");
     put("sheep",sheep.getID().getObjectID());
+    
+    rp.addNPC(sheep);
+
     Logger.trace("Player::setSheep","<");
     }
   
