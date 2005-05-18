@@ -20,11 +20,14 @@ import games.stendhal.server.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Entity extends RPObject 
+public abstract class Entity extends RPObject 
   {
-  private double x;
-  private double y;
-  private int dir;
+  private int x;
+  private int y;
+  private Direction direction;
+  private double speed;
+  private boolean collides;
+  
   
   protected static StendhalRPRuleProcessor rp;
   protected static RPWorld world;
@@ -38,14 +41,19 @@ public class Entity extends RPObject
   public static void generateRPClass()
     {
     RPClass entity=new RPClass("entity");
-    entity.add("x",RPClass.FLOAT);
-    entity.add("y",RPClass.FLOAT);
+    entity.add("x",RPClass.SHORT);
+    entity.add("y",RPClass.SHORT);
     entity.add("dir",RPClass.BYTE);
+    entity.add("speed",RPClass.FLOAT);
     }
   
   public Entity(RPObject object) throws AttributeNotFoundException
     {
     super(object);
+
+    direction=Direction.STOP;
+    speed=0;
+    
     update();
     }
   
@@ -56,31 +64,95 @@ public class Entity extends RPObject
 
   public void update() throws AttributeNotFoundException
     {
-    if(has("x")) x=getDouble("x");
-    if(has("y")) y=getDouble("y");
+    if(has("x")) x=getInt("x");
+    if(has("y")) y=getInt("y");
+    if(has("speed")) speed=getDouble("speed");
+    if(has("dir")) direction=Direction.build(getInt("dir"));
     }
   
-  public void setx(double x)
+  public void setx(int x)
     {
     this.x=x;
     put("x",x);
     }
   
-  public double getx()
+  public int getx()
     {
     return x;
     }
   
-  public void sety(double y)
+  public void sety(int y)
     {
     this.y=y;
     put("y",y);
     }
 
-  public double gety()
+  public int gety()
     {
     return y;
     }  
+  
+  public void setDirection(Direction dir)
+    {
+    this.direction=dir;
+    put("dir",direction.get());
+    }
+  
+  public Direction getDirection()
+    {
+    return direction;
+    }
+  
+  public void setSpeed(double speed)
+    {
+    this.speed=speed;
+    put("speed",speed);
+    }
+  
+  public double getSpeed()
+    {
+    return speed;
+    }
+  
+  private int turnsToCompleteMove;
+  
+  public boolean isMoveCompleted()
+    {
+    ++turnsToCompleteMove;
+    
+    if(turnsToCompleteMove>=1.0/speed)
+      {
+      turnsToCompleteMove=0;
+      return true;
+      }
+      
+    return false;
+    }
+
+  public void stop()
+    {
+    // HACK: FIXME
+    setx(getx());
+    sety(gety());
+    
+    setDirection(Direction.STOP);
+    setSpeed(0);
+    }
+    
+  public boolean stopped()
+    {
+    return direction==Direction.STOP;
+    }
+  
+  public void collides(boolean val)
+    {
+    collides=val;    
+    }
+  
+  public boolean collided()
+    {
+    return collides;
+    }
   
   /** This returns the manhattan distance.
    *  It is faster than real distance */
@@ -89,17 +161,17 @@ public class Entity extends RPObject
     return (x-entity.x)*(x-entity.x)+(y-entity.y)*(y-entity.y);
     }
 
-  public double distance(double x, double y)
+  public double distance(int x, int y)
     {
     return (x-this.x)*(x-this.x)+(y-this.y)*(y-this.y);
     }
 
-  public boolean nextto(double x, double y, double step)
+  public boolean nextto(int ex, int ey, double step)
     {
     Rectangle2D this_area=EntityAreas.getArea(get("type"),x,y);
     this_area.setRect(this_area.getX()-step,this_area.getY()-step,this_area.getWidth()+step,this_area.getHeight()+step);
     
-    return this_area.contains(x,y);
+    return this_area.contains(ex,ey);
     }
 
   public boolean nextto(Entity entity, double step)
@@ -113,10 +185,13 @@ public class Entity extends RPObject
     return this_area.intersects(other_area);    
     }
 
-  public void setFacing(int facing)
+  public Rectangle2D getArea(double ex, double ey)
     {
-    dir=facing;
-    put("dir",facing);
+    Rectangle2D rect=new Rectangle.Double();
+    getArea(rect,ex,ey);
+    return rect;
     }
+
+  abstract public void getArea(Rectangle2D rect, double x, double y);
   }
     

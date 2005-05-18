@@ -36,10 +36,10 @@ public class Player extends RPEntity
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,4,64,48));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,4,64,48));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,4,64,48));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,4,64,48));      
+    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,4,64,32));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,4,64,32));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,4,64,32));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,4,64,32));      
     }
   
   protected Sprite defaultAnimation()

@@ -1,5 +1,7 @@
 package games.stendhal.server.entity;
 
+import java.awt.*;
+import java.awt.geom.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
@@ -17,17 +19,22 @@ abstract class SpeakerNPC extends NPC
     super();
     }
 
+  public void getArea(Rectangle2D rect, double x, double y)
+    {
+    rect.setRect(x,y+1,1,1);
+    }  
+
   private Player getNearestPlayerThatHasSpeaken(NPC npc, double range)
     {
-    double x=npc.getx();
-    double y=npc.gety();
+    int x=npc.getx();
+    int y=npc.gety();
     
     for(Player player: rp.getPlayers())
       {
-      double px=player.getx();
-      double py=player.gety();
+      int px=player.getx();
+      int py=player.gety();
       
-      if(Math.abs(px-x)<range && Math.abs(py-y)<range && player.has("text"))
+      if(get("zoneid").equals(player.get("zoneid")) && Math.abs(px-x)<range && Math.abs(py-y)<range && player.has("text"))
         {
         return player;
         }
@@ -45,10 +52,12 @@ abstract class SpeakerNPC extends NPC
       }
     
     Player speaker=getNearestPlayerThatHasSpeaken(this,5);
-    if(speaker!=null && chat(speaker))
+    if(speaker!=null)
       {
-      world.modify(this);
+      chat(speaker);
       }
+
+    world.modify(this);
     }
 
   abstract protected boolean chat(Player player) throws AttributeNotFoundException;

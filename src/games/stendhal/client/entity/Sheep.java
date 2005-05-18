@@ -30,14 +30,14 @@ public class Sheep extends NPC
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,3,64,48));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,3,64,48));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,3,64,48));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,3,64,48));      
-    sprites.put("big_move_up", store.getAnimatedSprite(translate(type),4,3,64,48));      
-    sprites.put("big_move_right", store.getAnimatedSprite(translate(type),5,3,64,48));      
-    sprites.put("big_move_down", store.getAnimatedSprite(translate(type),6,3,64,48));      
-    sprites.put("big_move_left", store.getAnimatedSprite(translate(type),7,3,64,48));      
+    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,3,32,32));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,3,32,32));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,3,32,32));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,3,32,32));      
+    sprites.put("big_move_up", store.getAnimatedSprite(translate(type),4,3,32,32));      
+    sprites.put("big_move_right", store.getAnimatedSprite(translate(type),5,3,32,32));      
+    sprites.put("big_move_down", store.getAnimatedSprite(translate(type),6,3,32,32));      
+    sprites.put("big_move_left", store.getAnimatedSprite(translate(type),7,3,32,32));      
     }
   
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException

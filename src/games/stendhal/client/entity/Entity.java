@@ -96,10 +96,21 @@ public abstract class Entity
 
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    if(changes.has("x")) x=changes.getDouble("x");
-    if(changes.has("y")) y=changes.getDouble("y");
-    if(changes.has("dx")) dx=changes.getDouble("dx");
-    if(changes.has("dy")) dy=changes.getDouble("dy");
+    if(changes.has("dir"))
+      {
+      double speed=1;
+      
+      if(changes.has("speed")) speed=changes.getDouble("speed");
+      
+      Direction dir=Direction.build(changes.getInt("dir"));
+      dx=(int)dir.getdx()*speed;
+      dy=(int)dir.getdy()*speed;
+      }
+
+    if(object.has("x") && dx==0) x=object.getInt("x");
+    if(object.has("y") && dy==0) y=object.getInt("y");
+    if(changes.has("x")) x=changes.getInt("x");
+    if(changes.has("y")) y=changes.getInt("y");
     
     EntityAreas.getArea(area,type,x,y);
     drawedArea.setRect(x,y,drawedArea.getWidth(),drawedArea.getHeight());    
@@ -140,6 +151,8 @@ public abstract class Entity
 		// update the location of the entity based on move speeds
 		x += (delta * dx) / 300;
 		y += (delta * dy) / 300;
+//		
+//		System.out.println (type+"(POS)-->"+x+","+y);
   	}	
   
   public boolean stopped()

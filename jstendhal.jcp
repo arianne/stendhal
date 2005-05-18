@@ -305,6 +305,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\common\Direction.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\common\EntityAreas.java</path>
 				<source>true</source>
 			</fileitem>

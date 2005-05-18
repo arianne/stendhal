@@ -28,10 +28,10 @@ public class Path
   
   public static class Node
     {
-    public double x;
-    public double y;
+    public int x;
+    public int y;
     
-    public Node(double x, double y)
+    public Node(int x, int y)
       {
       this.x=x;
       this.y=y;
@@ -44,20 +44,36 @@ public class Path
     Path.world=world;
     }
 
-  private static void moveto(RPEntity entity, double x, double y, double speed)
+  private static void moveto(RPEntity entity, int x, int y, double speed)
     {
-    double rndx=x-entity.getx();
-    double rndy=y-entity.gety();
+    int rndx=x-entity.getx();
+    int rndy=y-entity.gety();
     
     if(Math.abs(rndx)>Math.abs(rndy))
       {
-      entity.setdx(speed*Math.signum(rndx));
-      entity.setdy(0);
+      if(Math.signum(rndx)<0)
+        {
+        entity.setDirection(Direction.LEFT);
+        entity.setSpeed(speed);
+        }
+      else
+        {
+        entity.setDirection(Direction.RIGHT);
+        entity.setSpeed(speed);
+        }
       }
     else
       {
-      entity.setdx(0);
-      entity.setdy(speed*Math.signum(rndy));
+      if(Math.signum(rndy)<0)
+        {
+        entity.setDirection(Direction.UP);
+        entity.setSpeed(speed);
+        }
+      else
+        {
+        entity.setDirection(Direction.DOWN);
+        entity.setSpeed(speed);
+        }
       }
 
     world.modify(entity);
@@ -65,18 +81,27 @@ public class Path
   
   static class NavigableStendhalNode implements Navigable
     {
-    private RPEntity entity;
+    private Entity entity;
+    private Entity dest;
     private StendhalRPZone zone;
     
-    public NavigableStendhalNode(RPEntity entity, StendhalRPZone zone)
+    public NavigableStendhalNode(Entity entity, Entity dest, StendhalRPZone zone)
       {
       this.entity=entity;
+      this.dest=dest;
       this.zone=zone;
       }
     
     public boolean isValid(Pathfinder.Node node)
       {
-      return !zone.simpleCollides(entity, node.getX(),node.getY());
+      if(dest!=null && dest.distance(node.x,node.y)==0)
+        {
+        return true;
+        }
+      else
+        {
+        return !zone.collides(entity, node.getX(),node.getY());
+        }      
       }
       
     public double getCost(Pathfinder.Node n1, Pathfinder.Node n2)
@@ -100,13 +125,48 @@ public class Path
       }
     }
     
-  public static List<Node> searchPath(RPEntity entity, double x, double y)
+  public static List<Node> searchPath(Entity entity, int x, int y, int destx, int desty)
     {
     Logger.trace("Path::searchPath",">");
     Pathfinder path=new Pathfinder();
-    NavigableStendhalNode navMap=new NavigableStendhalNode(entity, (StendhalRPZone)world.getRPZone(entity.getID()));
+    NavigableStendhalNode navMap=new NavigableStendhalNode(entity, null, (StendhalRPZone)world.getRPZone(entity.getID()));
     path.setNavigable(navMap);
-    path.setEndpoints((int)entity.getx(),(int)entity.gety(),(int)x,(int)y);
+    path.setEndpoints(x,y,destx,desty);
+
+    path.init();
+    // HACK: Time limited the A* search.
+    while(path.getStatus()==Pathfinder.IN_PROGRESS && path.getClosed().size()<navMap.maxNumberOfNodes())
+      {
+      path.doStep();
+      }
+    
+    if(path.getStatus()==Pathfinder.IN_PROGRESS)
+      {
+      return new LinkedList<Node>();
+      }
+     
+    Logger.trace("Path::searchPath","D","Optimal route to ("+x+","+y+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size());
+    List<Node> list=new LinkedList<Node>();
+    Pathfinder.Node node=path.getBestNode();
+    while(node!=null)
+      {
+      Logger.trace("Path::searchPath","D",node.toString());
+      list.add(0,new Node(node.getX(),node.getY()));
+      node=node.getParent();      
+      }
+
+    
+    Logger.trace("Path::searchPath","<");
+    return list;
+    }
+
+  public static List<Node> searchPath(Entity entity, Entity dest)
+    {
+    Logger.trace("Path::searchPath",">");
+    Pathfinder path=new Pathfinder();
+    NavigableStendhalNode navMap=new NavigableStendhalNode(entity,dest,(StendhalRPZone)world.getRPZone(entity.getID()));
+    path.setNavigable(navMap);
+    path.setEndpoints((int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety());
 
     path.init();
     // HACK: Time limited the A* search.
@@ -115,7 +175,12 @@ public class Path
       path.doStep();
       }
      
-    Logger.trace("Path::searchPath","D","Optimal route to ("+x+","+y+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size());
+    if(path.getStatus()==Pathfinder.IN_PROGRESS)
+      {
+      return new LinkedList<Node>();
+      }
+     
+    Logger.trace("Path::searchPath","D","Optimal route to ("+dest.getx()+","+dest.gety()+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size());
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
     while(node!=null)
@@ -143,14 +208,17 @@ public class Path
     
     Node actual=path.get(pos);
     
-    if(entity.distance(actual.x, actual.y)<1)
+    if(entity.distance(actual.x, actual.y)==0)
       {
       Logger.trace("Path::followPath","D","Completed waypoint("+pos+")("+actual.x+","+actual.y+") on Path");
       pos++;
       if(pos<path.size())      
         {
         entity.setPathPosition(pos);
-        return false;
+        actual=path.get(pos);
+        Logger.trace("Path::followPath","D","Moving to waypoint("+pos+")("+actual.x+","+actual.y+") on Path from ("+entity.getx()+","+entity.gety()+")");
+        moveto(entity,actual.x, actual.y,speed);     
+        return false;    
         }
       else
         {
@@ -158,13 +226,17 @@ public class Path
           {
           entity.setPathPosition(0);
           }
+        else
+          {
+          entity.stop();
+          }
           
         return true;
         }
       }
     else
       {
-      Logger.trace("Path::followPath","D","Moving to waypoint("+pos+")("+actual.x+","+actual.y+") on Path");
+      Logger.trace("Path::followPath","D","Moving to waypoint("+pos+")("+actual.x+","+actual.y+") on Path from ("+entity.getx()+","+entity.gety()+")");
       moveto(entity,actual.x, actual.y,speed);     
       return false;    
       }    

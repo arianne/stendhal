@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.awt.*;
+import java.awt.geom.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
@@ -35,6 +37,11 @@ public class TrainingDummy extends RPEntity
     super();
     put("type","trainingdummy");
     }
+
+  public void getArea(Rectangle2D rect, double x, double y)
+    {
+    rect.setRect(x,y+1,1,1);
+    }  
 
   public void onDead(RPEntity who)
     {

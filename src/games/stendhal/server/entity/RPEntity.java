@@ -14,18 +14,15 @@ package games.stendhal.server.entity;
 
 import java.util.*;
 import games.stendhal.server.*;
+import games.stendhal.common.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
 // TODO: Refactor, clean, sort!
-public class RPEntity extends Entity 
+public abstract class RPEntity extends Entity 
   {
   private String name;
 
-  private double dx;
-  private double dy;
-  private boolean collides;
-  
   private int atk;
   private int def;
   private int base_hp;
@@ -39,8 +36,6 @@ public class RPEntity extends Entity
       RPClass entity=new RPClass("rpentity");
       entity.isA("entity");
       entity.add("name",RPClass.STRING);
-      entity.add("dx",RPClass.FLOAT);
-      entity.add("dy",RPClass.FLOAT); 
       entity.add("xp",RPClass.SHORT);
       entity.add("base_hp",RPClass.BYTE);
       entity.add("hp",RPClass.BYTE);
@@ -71,8 +66,6 @@ public class RPEntity extends Entity
     super.update();
     
     if(has("name")) name=get("name");
-    if(has("dx")) dx=getDouble("dx");
-    if(has("dy")) dy=getDouble("dy");
     if(has("atk")) atk=getInt("atk");
     if(has("def")) def=getInt("def");
     if(has("base_hp")) base_hp=getInt("base_hp");
@@ -89,53 +82,6 @@ public class RPEntity extends Entity
   public String getName()
     {
     return name;
-    }
-  
-  public void setdx(double dx)
-    {
-    this.dx=dx;
-    put("dx",dx);
-    }
-  
-  public double getdx()
-    {
-    return dx;
-    }
-  
-  public void setdy(double dy)
-    {
-    this.dy=dy;
-    put("dy",dy);
-    }
-
-  public double getdy()
-    {
-    return dy;
-    }
-
-  public void stop()
-    {
-    // HACK: FIXME
-    setx(getx());
-    sety(gety());
-    
-    setdx(0);
-    setdy(0);
-    }
-    
-  public boolean stopped()
-    {
-    return dx==0 && dy==0;
-    }
-  
-  public void collides(boolean val)
-    {
-    collides=val;    
-    }
-  
-  public boolean collided()
-    {
-    return collides;
     }
   
   public void setATK(int atk)

@@ -14,6 +14,8 @@ package games.stendhal.server.entity;
 
 import marauroa.common.*;
 import marauroa.common.game.*;
+import java.awt.*;
+import java.awt.geom.*;
 
 public class Player extends RPEntity 
   {
@@ -43,6 +45,11 @@ public class Player extends RPEntity
 
     update();
     }
+
+  public void getArea(Rectangle2D rect, double x, double y)
+    {
+    rect.setRect(x,y+1,1,1);
+    }  
     
   public void onDead(RPEntity who)
     {

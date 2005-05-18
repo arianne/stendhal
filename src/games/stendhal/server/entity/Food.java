@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.awt.*;
+import java.awt.geom.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
@@ -41,7 +43,12 @@ public class Food extends Entity
     super();
     put("type","food");
     }
-  
+
+  public void getArea(Rectangle2D rect, double x, double y)
+    {
+    rect.setRect(x,y,1,1);
+    }  
+
   public void update()
     {
     super.update();

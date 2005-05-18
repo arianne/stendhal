@@ -355,19 +355,19 @@ public class StendhalRPZone extends MarauroaRPZone
   
   public boolean leavesZone(Entity entity, double x, double y) throws AttributeNotFoundException  
     {
-    Rectangle2D area=EntityAreas.getArea(entity.get("type"),x,y);
+    Rectangle2D area=entity.getArea(x,y);
     return collisionMap.leavesZone(area);
     }
     
   public boolean simpleCollides(Entity entity, double x, double y) throws AttributeNotFoundException  
     {
-    Rectangle2D area=EntityAreas.getArea(entity.get("type"),x,y);    
+    Rectangle2D area=entity.getArea(x,y);
     return collisionMap.collides(area);
     }
     
   public boolean collides(Entity entity, double x, double y) throws AttributeNotFoundException  
     {
-    Rectangle2D area=EntityAreas.getArea(entity.get("type"),x,y);
+    Rectangle2D area=entity.getArea(x,y);
     
     if(collisionMap.collides(area)==false)
       {
@@ -375,7 +375,7 @@ public class StendhalRPZone extends MarauroaRPZone
       for(RPObject other: objects.values())
         {
         Entity otherEntity=(Entity)other;
-        EntityAreas.getArea(otherarea,otherEntity.get("type"),otherEntity.getx(),otherEntity.gety());
+        otherEntity.getArea(otherarea,otherEntity.getx(),otherEntity.gety());
         if(area.intersects(otherarea) && !entity.getID().equals(otherEntity.getID()))
           {
           return true;

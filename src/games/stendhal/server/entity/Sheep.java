@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.awt.*;
+import java.awt.geom.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
@@ -22,7 +24,6 @@ import games.stendhal.server.*;
 
 public class Sheep extends Creature
   {
-  final private static double SPEED=0.25;
   final private static int HP=10;
   
   private int weight;
@@ -30,6 +31,8 @@ public class Sheep extends Creature
   
   public static void generateRPClass()
     {
+    SPEED=0.25;
+    
     try
       {
       RPClass sheep=new RPClass("sheep");
@@ -47,6 +50,11 @@ public class Sheep extends Creature
     {
     this(null);
     }
+
+  public void getArea(Rectangle2D rect, double x, double y)
+    {
+    rect.setRect(x,y,1,1);
+    }  
     
   public Sheep(Player owner) throws AttributeNotFoundException
     {
@@ -55,8 +63,6 @@ public class Sheep extends Creature
     put("type","sheep");
     put("x",0);
     put("y",0);
-    put("dx",0);
-    put("dy",0);
     
     setbaseHP(HP);
 
@@ -105,10 +111,10 @@ public class Sheep extends Creature
     return weight;
     }
 
-  private Food getNearestFood(Sheep sheep, double range)
+  private Food getNearestFood(double range)
     {
-    double x=sheep.getx();
-    double y=sheep.gety();
+    int x=getx();
+    int y=gety();
     
     double distance=range*range; // We save this way several sqrt operations
     Food chosen=null;
@@ -117,8 +123,8 @@ public class Sheep extends Creature
       {
       if(food.get("zoneid").equals(get("zoneid")))
         {
-        double fx=food.getx();
-        double fy=food.gety();
+        int fx=food.getx();
+        int fy=food.gety();
         
         if(Math.abs(fx-x)<range && Math.abs(fy-y)<range && food.getAmount()>0)
           {
@@ -146,71 +152,64 @@ public class Sheep extends Creature
       if(weight<100)
         {
         setWeight(weight+1);
-        world.modify(this);
         }
       }
     }
 
   private int hungry;
-  private int escapeCollision;
 
-  public void logicWithOwner(double speed)
-    {
-    setMovement(owner.getx(),owner.gety(),0.25,8*8);
-    moveto(speed);
-    }
-  
-  
   public void logic()
     {
     Logger.trace("Sheep::logic",">");
-
-    hungry++;    
+    
+    hungry++;
     Food food=null;
     
-    if(hungry<100 || weight>=100)
+    if(hungry>100 && (food=getNearestFood(6))!=null)
       {
-      if(owner!=null)
+      if(nextto(food,0.25))
         {
-        setIdea("follow");
-        logicWithOwner(SPEED);
-        }
-      else 
-        {
-        setIdea("walk");
-        moveRandomly(SPEED);
-        }
-      }
-    else if(weight<100 && (food=getNearestFood(this,6))!=null)
-      {
-      if(nextto(food,0.5))
-        {
+        Logger.trace("Sheep::logic","D","Sheep eats");
         setIdea("eat");
         eat(food);        
-        }
-      else if(nextto(food,2))
-        {
-        moveRandomly(SPEED);
+        clearPath();
+        stop();
         }
       else
         {
+        Logger.trace("Sheep::logic","D","Sheep moves to food");
         setIdea("food");
-        setMovement(food.getx(),food.gety(),0,0);
+        setMovement(food,0,0);
         moveto(SPEED);
-        }      
+        }
+      }
+    else if(owner==null)
+      {
+      Logger.trace("Sheep::logic","D","Sheep(ownerless) moves randomly");
+      setIdea("walk");
+      moveRandomly(SPEED);
+      }
+    else if(owner!=null && !nextto(owner,0.25))
+      {
+      Logger.trace("Sheep::logic","D","Sheep(owner) moves to Owner");
+      setIdea("follow");
+      setMovement(owner,0,0);
+      moveto(SPEED);
+      }
+    else if(owner!=null && owner.has("text") && owner.get("text").contains("sheep"))
+      {
+      Logger.trace("Sheep::logic","D","Sheep(owner) moves to Owner");
+      setIdea("follow");
+      clearPath();
+      setMovement(owner,0,0);
+      moveto(SPEED);
       }
     else
       {
-      if(owner!=null)
-        {
-        setIdea("follow");
-        logicWithOwner(SPEED);
-        }
-      else 
-        {
-        setIdea("walk");
-        moveRandomly(SPEED);
-        }
+      Logger.trace("Sheep::logic","D","Sheep has nothing to do");
+      setIdea("stop");
+      stop();
+      clearPath();
       }
 
     if(!stopped())
@@ -218,6 +217,7 @@ public class Sheep extends Creature
       StendhalRPAction.move(this);
       }
       
+    world.modify(this);
     Logger.trace("Sheep::logic","<");
     }
   }

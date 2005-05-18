@@ -17,6 +17,7 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 import games.stendhal.server.*;
+import games.stendhal.common.*;
 
 public abstract class NPC extends RPEntity 
   {
@@ -49,8 +50,6 @@ public abstract class NPC extends RPEntity
     put("type","npc");
     put("x",0);
     put("y",0);
-    put("dx",0);
-    put("dy",0);
     }
   
   public void setIdea(String idea)
@@ -66,39 +65,66 @@ public abstract class NPC extends RPEntity
   
 
   private int escapeCollision;
-  private int numCollision;
   
-  public void setMovement(double x, double y, double min, double max)
+
+  public void setMovement(Entity entity, double min, double max)
     {
-    if(nextto(x,y,min) && this.hasPath())
+    if(nextto(entity.getx(),entity.gety(),min) && hasPath())
       {
+      Logger.trace("NPC::setMovement","D","Removing path because nextto("+entity.getx()+","+entity.gety()+","+min+") of ("+getx()+","+gety()+")");
       clearPath();
       }
 
-    if((distance(x,y)>max && !hasPath()) || numCollision>20)
+    if(distance(entity.getx(),entity.gety())>max && !hasPath())
       {
-      List<Path.Node> path=Path.searchPath(this,x,y);
+      Logger.trace("NPC::setMovement","D","Creating path because ("+getx()+","+gety()+") distance("+entity.getx()+","+entity.gety()+")>"+max);
+      List<Path.Node> path=Path.searchPath(this,entity);
       setPath(path,false);
-      numCollision=0;
       }
     }
     
   public void moveto(double speed)
     {
-    if(escapeCollision>0) escapeCollision--;
-    
-    if(hasPath() && collided())
+    if(hasPath() && Path.followPath(this,speed))
       {
-      numCollision++;
-      setdx(Math.random()*speed*2-speed);
-      setdy(Math.random()*speed*2-speed);
-      escapeCollision=6;
-      }
-    else if(escapeCollision==0 && hasPath() && Path.followPath(this,speed))
-      {
+      Logger.trace("NPC::moveto","D","Removing path because it is completed");
       clearPath();
+      stop();
       }
     }
+
+
+//  public void setMovement(int x, int y, double min, double max)
+//    {
+//    if(nextto(x,y,min) && hasPath())
+//      {
+//      Logger.trace("Sheep::setMovement","D","Removing path because nextto("+x+","+y+","+min+") of ("+getx()+","+gety()+")");
+//      clearPath();
+//      }
+//
+//    if((distance(x,y)>max && !hasPath()) || escapeCollision>20)
+//      {
+//      Logger.trace("Sheep::setMovement","D","Creating path because escapeCollision="+escapeCollision);
+//      List<Path.Node> path=Path.searchPath(this,x,y);
+//      setPath(path,false);
+//      escapeCollision=6;
+//      }
+//    }
+//    
+//  public void moveto(double speed)
+//    {
+//    if(escapeCollision>0) escapeCollision--;
+//    
+//    if(hasPath() && collided())
+//      {
+//      moveRandomly(speed);
+//      }
+//    else if((escapeCollision==0 && hasPath()) || (hasPath() && Path.followPath(this,speed)))
+//      {
+//      Logger.trace("Sheep::moveto","D","Removing path because escapeCollision="+escapeCollision);
+//      clearPath();
+//      }
+//    }
 
   public void moveRandomly(double speed)
     {
@@ -106,8 +132,8 @@ public abstract class NPC extends RPEntity
       
     if(stopped() || collided() || escapeCollision==0)
       {
-      setdx(Math.random()*speed*2-speed);
-      setdy(Math.random()*speed*2-speed);
+      setDirection(Direction.rand());
+      setSpeed(speed);
       escapeCollision=10;
       }
     }

@@ -26,31 +26,31 @@ public class EntityAreas
       }
     else if(type.equals("sheep"))
       {
-      rect.setRect(x+7f/32f,y+53f/32f,(44f-7f)/32f,(63f-53f)/32f);
+      rect.setRect(x,y,1,1);
       }
     else if(type.equals("wolf"))
       {
-      rect.setRect(x+7f/32f,y+53f/32f,(44f-7f)/32f,(63f-53f)/32f);
+      rect.setRect(x,y,1,1);
       }
     else if(type.equals("player"))
       {
-      rect.setRect(x+11f/32f,y+50f/32f,(38f-11f)/32f,(60f-50f)/32f);
+      rect.setRect(x,y+1,1,1);
       }
     else if(type.equals("buyernpc"))
       {
-      rect.setRect(x+11f/32f,y+49f/32f,(41f-11f)/32f,(60f-49f)/32f);
+      rect.setRect(x,y+1,1,1);
       }
     else if(type.equals("sellernpc"))
       {
-      rect.setRect(x+11f/32f,y+53f/32f,(40f-11f)/32f,(62f-53f)/32f);
+      rect.setRect(x,y+1,1,1);
       }
     else if(type.equals("welcomernpc"))
       {
-      rect.setRect(x+6f/32f,y+55f/32f,(37f-6f)/32f,(63f-55f)/32f);
+      rect.setRect(x,y+1,1,1);
       }
     else if(type.equals("trainingdummy"))
       {
-      rect.setRect(x+2f/32f,y+51f/32f,(31f-2f)/32f,(64f-51f)/32f);
+      rect.setRect(x,y+1,1,1);
       }
     else if(type.equals("corpse"))
       {
@@ -81,31 +81,31 @@ public class EntityAreas
       }
     else if(type.equals("sheep"))
       {
-      return new Rectangle.Double(x,y,1.5,2);
+      return new Rectangle.Double(x,y,1,1);
       }
     else if(type.equals("wolf"))
       {
-      return new Rectangle.Double(x,y,1.5,2);
+      return new Rectangle.Double(x,y,1,1);
       }
     else if(type.equals("player"))
       {
-      return new Rectangle.Double(x,y,1.5,2);
+      return new Rectangle.Double(x,y,1,2);
       }
     else if(type.equals("buyernpc"))
       {
-      return new Rectangle.Double(x,y,1.5,2);
+      return new Rectangle.Double(x,y,1,2);
       }
     else if(type.equals("sellernpc"))
       {
-      return new Rectangle.Double(x,y,1.5,2);
+      return new Rectangle.Double(x,y,1,2);
       }
     else if(type.equals("welcomernpc"))
       {
-      return new Rectangle.Double(x,y,1.5,2);
+      return new Rectangle.Double(x,y,1,2);
       }
     else if(type.equals("corpse"))
       {
-      return new Rectangle.Double(x,y,1,2);
+      return new Rectangle.Double(x,y,1,1);
       }
     else if(type.equals("sign"))
       {

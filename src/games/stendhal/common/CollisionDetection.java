@@ -107,12 +107,12 @@ public class CollisionDetection
     double w=shape.getWidth();
     double h=shape.getHeight();
     
-    if(x<1 || x+w>=getWidth()-1)
+    if(x<0 || x+w>=getWidth())
       {
       return true;
       }
 
-    if(y<1 || y+h>=getHeight()-1)
+    if(y<0 || y+h>=getHeight())
       {
       return true;
       }
@@ -123,77 +123,6 @@ public class CollisionDetection
   /** Returns true if the shape enters in any of the non trespasable areas of the map */
   public boolean collides(Rectangle2D shape)
     {
-//    double x=shape.getX();
-//    double y=shape.getY();
-//    double w=shape.getWidth();
-//    double h=shape.getHeight();
-//    
-//    if(x<0 || x+w>=getWidth())
-//      {
-//      return true;
-//      }
-//
-//    if(y<0 || y+h>=getHeight())
-//      {
-//      return true;
-//      }
-//    
-//    if(blocked[(int)y*width+(int)(x+w)] && shape.intersects(x+w,y,1,1))
-//      {      
-//      return true;
-//      }
-//
-//    if(blocked[(int)(y+h)*width+(int)(x)] && shape.intersects(x,y+h,1,1))
-//      {      
-//      return true;
-//      }
-//
-//    if(blocked[(int)(y+h)*width+(int)(x+w)] && shape.intersects(x+w,y+h,1,1))
-//      {      
-//      return true;
-//      }
-//
-//    for(double i=x;i<=x+w;i+=1)
-//      {
-//      for(double j=y;j<=y+h;j+=1)
-//        {
-//        if(blocked[(int)j*width+(int)i] && shape.intersects(i,j,1,1))
-//          {
-//          return true;
-//          }
-//        }
-//      }
-//
-//    return false;
-    
-//    double x=shape.getX();
-//    double y=shape.getY();
-//    double w=shape.getWidth();
-//    double h=shape.getHeight();
-//    
-//    if(x<0 || x+w>=getWidth())
-//      {
-//      return true;
-//      }
-//
-//    if(y<0 || y+h>=getHeight())
-//      {
-//      return true;
-//      }
-//    
-//    for(int k=0;k<height;k++)
-//      {
-//      for(int i=0;i<width;i++)
-//        {
-//        if(blocked[k*width+i] && shape.intersects(i,k,1,1))
-//          {
-//          return true;
-//          }
-//        }
-//      }
-//    
-//    return false;
-
     double x=shape.getX();
     double y=shape.getY();
     double w=shape.getWidth();

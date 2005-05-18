@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="64" height="50" tilewidth="32" tileheight="32">
  <tileset name="Untitled" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_chipset.gif" trans="ffffff"/>
+  <image source="zelda_outside_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Objects" firstgid="481" tilewidth="32" tileheight="32">
   <image source="zelda_objects_chipset.gif"/>
@@ -31,7 +31,7 @@
  </layer>
  <layer name="city_collision" width="64" height="50" opacity="0.39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XXQ6EIAyEzd5t73+lzT7wQhAKTKE/8yXGKDh2KEh9HkIIscX3o3tYRzNGpHZvTMu9+ixp18wX86+nvcvbXJE8Y6U/Aq/5R2l7iBGtdUIXrX3D/8y+0OorjflmzdCLN5v/G9q368ZI/ldq8Uj1/+hbZonZ8ZHOpdW207nO7l+Deu+R7kX0H8t/Ky767z8Xyf9s2642Qn/3/aWP5fzs4D1+YhMPa0MzvpH/Vh3Ru5ZoomP0RCQvK2T3jwJVs72t3VHfG7Vh5nkTcd1I/USpYWs8/mMh8ehdo67x4v2Pxjcd6f3UWFnKScHaXLFK9nHK7p8QQsg5fhJ+5kEAMgAA
+   H4sIAAAAAAAAAO2XSw7FIAhFm7e3t/8tdeTEWKUFFfCcpGkaELl+6XUBAPji/5v7eGdmjqv0l37qt8SeQb+GU/U/rRVJGy/+FkSdf6vYEXKcCfr7Nuk93vKV6t9ZM/TyPU3/jti768ZM+r/U4pnq/9FZ5om34yNdS19tq+f6dP0zqO8e6V2E/lz6W3mhv98uk/63Nm1si/ja/ouP5/nRED1/8EmGvaFhpL9VR/S+JTEBQIdVzfa0d0e+O2rDk8+UjGeqVE+WGrYm4j+WJRG1W+YRTXth9Rh4xGteMIa5YwwAAGANN87PzMgAMgAA
   </data>
  </layer>
 </map>

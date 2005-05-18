@@ -38,80 +38,6 @@ public class StendhalRPAction
     StendhalRPAction.world=world;
     }
     
-  public static void face(RPEntity entity,double dx,double dy)
-    {
-    if(dx!=0)
-      {
-      if(dx<0)
-        {
-        Logger.trace("StendhalRPAction::face","D","Facing LEFT");
-        entity.setFacing(0);
-        }
-      else
-        {
-        Logger.trace("StendhalRPAction::face","D","Facing RIGHT");
-        entity.setFacing(1);
-        }
-      }
-      
-    if(dy!=0)
-      {
-      if(dy<0)
-        {
-        Logger.trace("StendhalRPAction::face","D","Facing UP");
-        entity.setFacing(2);
-        }
-      else
-        {
-        Logger.trace("StendhalRPAction::face","D","Facing DOWN");
-        entity.setFacing(3);
-        }
-      }
-    }
-    
-  public static void leaveZone(Player player) throws AttributeNotFoundException, NoRPZoneException
-    {
-    Logger.trace("StendhalRPAction::leaveZone",">");
-    try
-      {
-      double x=player.getx();
-      double y=player.gety();
-      double dx=player.getdx();
-      double dy=player.getdy();
-      boolean stopped=player.stopped();
-      
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-      
-      if(zone.leavesZone(player,x+dx,y+dy))
-        {
-        if(!player.hasLeave())
-          {
-          player.setLeave(10);
-          }
-          
-        int turnsToLeave=player.getLeave(); 
-        if(turnsToLeave==0)
-          {
-          player.setLeave(-1);
-          decideChangeZone(player);
-          return;
-          }
-        
-        player.setLeave(turnsToLeave-1);
-          
-        world.modify(player);
-        }
-      else
-        {
-        player.setLeave(-1);
-        }
-      }
-    finally
-      {
-      Logger.trace("StendhalRPAction::leaveZone","<");
-      }
-    }
- 
   public static boolean attack(RPEntity source,RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
     Logger.trace("StendhalRPAction::attack",">");
@@ -170,15 +96,23 @@ public class StendhalRPAction
     Logger.trace("StendhalRPAction::move",">");
     try
       {
-      double x=entity.getx();
-      double y=entity.gety();
-      double dx=entity.getdx();
-      double dy=entity.getdy();
-      
       if(entity.stopped())
         {
         return;
         }
+
+      if(!entity.isMoveCompleted())
+        {
+        Logger.trace("StendhalRPAction::move","D","("+entity.get("type")+") move not completed");
+        return;
+        }
+      
+      int x=entity.getx();
+      int y=entity.gety();
+      
+      Direction dir=entity.getDirection();
+      int dx=dir.getdx();
+      int dy=dir.getdy();
       
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(entity.getID());
       
@@ -188,18 +122,22 @@ public class StendhalRPAction
         
         if(zone.leavesZone(player,x+dx,y+dy))
           {
-          if(!player.hasLeave()) 
-            {
-            player.setLeave(4);
-            }
+          Logger.trace("StendhalRPAction::move","D","Leaving zone from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
+          decideChangeZone(player);
+          player.stop();
+          world.modify(player);
+          return;
           }
         }
       
       if(zone.collides(entity,x+dx,y+dy)==false)
         {
         Logger.trace("StendhalRPAction::move","D","Moving from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
-        if(dx!=0) entity.setx(x+dx);
-        if(dy!=0) entity.sety(y+dy);
+        
+        //TODO: Fix me ( world.modify issue )
+        entity.setx(x+dx);
+        entity.sety(y+dy);
+        
         entity.collides(false);
         world.modify(entity);
         }        
@@ -232,35 +170,39 @@ public class StendhalRPAction
   public static void decideChangeZone(Player player) throws AttributeNotFoundException, NoRPZoneException
     {
     String zoneid=player.get("zoneid");
-    double x=player.getx();
-    double y=player.gety();
+    int x=player.getx();
+    int y=player.gety();
 
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
     
-    if(zoneid.equals("village") && x>zone.getWidth()-3) 
+    if(zoneid.equals("village") && x>zone.getWidth()-4) 
       {
       changeZone(player,"city");
       transferContent(player);
       }
-    else if(zoneid.equals("city") && x<3) 
+    else if(zoneid.equals("city") && x<4) 
       {
       changeZone(player,"village");
       transferContent(player);
       }
-    else if((zoneid.equals("city") || zoneid.equals("village")) && y>zone.getHeight()-3)
+    else if((zoneid.equals("city") || zoneid.equals("village")) && y>zone.getHeight()-4)
       {
       changeZone(player,"plains");
       transferContent(player);
       }
-    else if(zoneid.equals("plains") && y<3 && x<zone.getWidth()/2)
+    else if(zoneid.equals("plains") && y<4 && x<zone.getWidth()/2)
       {
       changeZone(player,"village");
       transferContent(player);
       }
-    else if(zoneid.equals("plains") && y<3 && x>=zone.getWidth()/2)
+    else if(zoneid.equals("plains") && y<4 && x>=zone.getWidth()/2)
       {
       changeZone(player,"city");
       transferContent(player);
+      }
+    else
+      {
+      Logger.trace("StendhalRPAction::decideChangeZone","D","Unable to choose a new zone ("+zone.getWidth()+","+zone.getHeight()+")");
       }
     }
     
@@ -286,29 +228,29 @@ public class StendhalRPAction
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
     zone.placeObjectAtZoneChangePoint(player);
       
-    double x=player.getDouble("x");
-    double y=player.getDouble("y");
+    int x=player.getInt("x");
+    int y=player.getInt("y");
     
     while(zone.collides(player,x,y))
       {
-      x=x+(Math.random()*6-3);
-      y=y+(Math.random()*6-3);      
+      x=x+(int)(Math.random()*6-3);
+      y=y+(int)(Math.random()*6-3);      
       }
     
-    player.setx(x);
-    player.sety(y);
+    player.setx((int)x);
+    player.sety((int)y);
       
     if(player.hasSheep())
       {
       Sheep sheep=(Sheep)world.get(player.getSheep());
       while(zone.collides(sheep,x,y))
         {
-        x=x+(Math.random()*6-3);
-        y=y+(Math.random()*6-3);        
+        x=x+(int)(Math.random()*6-3);
+        y=y+(int)(Math.random()*6-3);        
         }
           
-      sheep.setx(x);
-      sheep.sety(y);
+      sheep.setx((int)x);
+      sheep.sety((int)y);
       sheep.clearPath();
       }
       

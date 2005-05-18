@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import java.awt.*;
+import java.awt.geom.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
@@ -36,6 +38,11 @@ public class Sign extends Entity
     super();
     put("type","sign");
     }
+
+  public void getArea(Rectangle2D rect, double x, double y)
+    {
+    rect.setRect(x,y,1,1);
+    }  
 
   public void setText(String text)
     {

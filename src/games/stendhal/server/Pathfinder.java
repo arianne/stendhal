@@ -238,17 +238,37 @@ public class Pathfinder
         int x = node.x, y = node.y;
         Pathfinder.Node tempNode = new Pathfinder.Node();
         
-        for (int i=-1; i<2; i++) {
-            for (int j=-1; j<2; j++) {
-                tempNode.x = x+i;
-                tempNode.y = y+j;
-                // If the node is this node, or invalid continue.
-                if ((i == 0 && j == 0) || navMap.isValid(tempNode) == false)
-                    continue;
-                
-                linkChild(node, x+i, y+j);
-            }
-        }
+        tempNode.x = x-1;
+        tempNode.y = y;
+
+        if (navMap.isValid(tempNode) == true)
+          {
+          linkChild(node, x-1, y);
+          }
+
+        tempNode.x = x+1;
+        tempNode.y = y;
+
+        if (navMap.isValid(tempNode) == true)
+          {
+          linkChild(node, x+1, y);
+          }
+
+        tempNode.x = x;
+        tempNode.y = y-1;
+
+        if (navMap.isValid(tempNode) == true)
+          {
+          linkChild(node, x, y-1);
+          }
+
+        tempNode.x = x;
+        tempNode.y = y+1;
+
+        if (navMap.isValid(tempNode) == true)
+          {
+          linkChild(node, x, y+1);
+          }
     }
     
     /**
@@ -452,7 +472,7 @@ public class Pathfinder
          * The parent of the node.
          */        
         protected Node  parent;
-        Node[] children = new Node[8];
+        Node[] children = new Node[4];
         
         /**
          * The default constructor.
@@ -478,7 +498,7 @@ public class Pathfinder
         public void reset() {
             f = g = h = 0.0;
             numChildren = 0;
-            for (int i=0; i<8; i++) 
+            for (int i=0; i<4; i++) 
                 children[i] = null;
         }
         

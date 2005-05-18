@@ -23,7 +23,7 @@ import java.awt.geom.*;
 
 public class Corpse extends Entity
   {
-  final public static int DEGRADATION_TIMEOUT=180;
+  final public static int DEGRADATION_TIMEOUT=10;
   private int degradation;
   
   public Corpse(RPObject object) throws AttributeNotFoundException
@@ -39,6 +39,11 @@ public class Corpse extends Entity
     sety(entity.gety());
     degradation=DEGRADATION_TIMEOUT;
     }
+
+  public void getArea(Rectangle2D rect, double x, double y)
+    {
+    rect.setRect(x,y,0,0);
+    }  
   
   public int getDegradation()
     {

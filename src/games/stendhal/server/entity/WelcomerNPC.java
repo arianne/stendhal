@@ -12,13 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 import games.stendhal.server.*;
 
-public class WelcomerNPC extends NPC 
+public class WelcomerNPC extends SpeakerNPC 
   {
+  final private static double SPEED=0.5;
+
   public static void generateRPClass()
     {
     try
@@ -46,29 +49,32 @@ public class WelcomerNPC extends NPC
     setHP(getbaseHP());
     world.modify(this);
     }
-
-  public void logic()
-    {    
-    if(getdx()==0)
+    
+  protected boolean chat(Player player) throws AttributeNotFoundException
+    {
+    return false;
+    }
+    
+  protected boolean move()
+    {
+    if(getDirection()==Direction.STOP) 
       {
-      setdx(Math.signum(Math.random()-0.5)*0.2);   
+      setDirection(Direction.LEFT);
+      setSpeed(SPEED);
       }
       
     if(getx()<=5) 
       {
-      setdx(0.1);   
-      world.modify(this);
+      setDirection(Direction.RIGHT);
+      setSpeed(SPEED);
       }
       
     if(getx()>=14) 
       {
-      setdx(-0.1);    
-      world.modify(this);
+      setDirection(Direction.LEFT);
+      setSpeed(SPEED);
       }
-
-    if(!stopped())
-      {
-      StendhalRPAction.move(this);
-      }
+    
+    return true;
     }
   }

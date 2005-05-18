@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+import games.stendhal.common.*;
 import java.util.*;
 
 /** This class is a special type of GameEntity that has animation, that is
@@ -87,13 +88,13 @@ public abstract class AnimatedEntity extends Entity
       int value=changes.getInt("dir");
       switch(value)
         {
-        case 0:
+        case 4:
           animation="move_left";
           break;
-        case 1:
+        case 2:
           animation="move_right";
           break;
-        case 2:
+        case 1:
           animation="move_up";
           break;
         case 3:

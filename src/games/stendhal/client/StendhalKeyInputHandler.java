@@ -19,6 +19,8 @@ import java.util.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
+import games.stendhal.common.*;
+
 /** Handles key inputs for ingame events */
 public class StendhalKeyInputHandler extends KeyAdapter 
   {
@@ -44,74 +46,38 @@ public class StendhalKeyInputHandler extends KeyAdapter
     {
     RPAction action;
     
-    if(e.getKeyCode()==KeyEvent.VK_LEFT && e.isControlDown())
-      {
-      action=new RPAction();
-      action.put("type","face");
-      action.put("dir",0);
-      client.send(action);
-      }
-    else if(e.getKeyCode()==KeyEvent.VK_RIGHT && e.isControlDown())
-      {
-      action=new RPAction();
-      action.put("type","face");
-      action.put("dir",1);
-      client.send(action);
-      }
-    else if(e.getKeyCode()==KeyEvent.VK_UP && e.isControlDown())
-      {
-      action=new RPAction();
-      action.put("type","face");
-      action.put("dir",2);
-      client.send(action);
-      }
-    else if(e.getKeyCode()==KeyEvent.VK_DOWN && e.isControlDown())
-      {
-      action=new RPAction();
-      action.put("type","face");
-      action.put("dir",3);
-      client.send(action);
-      }
-    else if(e.getKeyCode()==KeyEvent.VK_L && e.isControlDown())
+    if(e.getKeyCode()==KeyEvent.VK_L && e.isControlDown())
       {
       client.getGameLogDialog().setVisible(true);
       }
-    else if(e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT)
+    else if(e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT || e.getKeyCode()==KeyEvent.VK_UP || e.getKeyCode()==KeyEvent.VK_DOWN)
       {
-//      try
-//        {
-//        RPObject.ID id=client.getPlayer().getID();
-//        RPObject changes=new RPObject(id);
-//        changes.put("dx",e.getKeyCode()==KeyEvent.VK_LEFT?-1:1);
-//        client.getGameObjects().modifyAdded(client.getPlayer(),changes);
-//        }
-//      catch(Exception ex)
-//        {
-//        Logger.thrown("StendhalKeyInputHandler::onKeyReleased","X",ex);
-//        }
-//
       action=new RPAction();
-      action.put("type","move");
-      action.put("dx",e.getKeyCode()==KeyEvent.VK_LEFT?-1:1);
-      client.send(action);
-      }
-    else if(e.getKeyCode()==KeyEvent.VK_UP || e.getKeyCode()==KeyEvent.VK_DOWN)
-      {
-//      try
-//        {
-//        RPObject.ID id=client.getPlayer().getID();
-//        RPObject changes=new RPObject(id);
-//        changes.put("dy",e.getKeyCode()==KeyEvent.VK_UP?-1:1);
-//        client.getGameObjects().modifyAdded(client.getPlayer(),changes);
-//        }
-//      catch(Exception ex)
-//        {
-//        Logger.thrown("StendhalKeyInputHandler::onKeyReleased","X",ex);
-//        }
-//
-      action=new RPAction();
-      action.put("type","move");
-      action.put("dy",e.getKeyCode()==KeyEvent.VK_UP?-1:1);
+      if(e.isControlDown())
+        {
+        action.put("type","face");
+        }
+      else
+        {
+        action.put("type","move");
+        }
+      
+      switch(e.getKeyCode())
+        {
+        case KeyEvent.VK_LEFT:
+          action.put("dir",Direction.LEFT.get());
+          break;
+        case KeyEvent.VK_RIGHT:
+          action.put("dir",Direction.RIGHT.get());
+          break;
+        case KeyEvent.VK_UP:
+          action.put("dir",Direction.UP.get());
+          break;
+        case KeyEvent.VK_DOWN:
+          action.put("dir",Direction.DOWN.get());
+          break;
+        }
+      
       client.send(action);
       }
     }
@@ -125,49 +91,22 @@ public class StendhalKeyInputHandler extends KeyAdapter
       {
       case KeyEvent.VK_LEFT:
       case KeyEvent.VK_RIGHT:
-        action.put("dx",0);
-//        try
-//          {
-//          RPObject.ID id=client.getPlayer().getID();
-//          RPObject changes=new RPObject(id);
-//          changes.put("dx",0);
-//          client.getGameObjects().modifyAdded(client.getPlayer(),changes);
-//          }
-//        catch(AttributeNotFoundException ex)
-//          {
-//          Logger.thrown("StendhalKeyInputHandler::onKeyReleased","X",ex);
-//          }
-        break;
       case KeyEvent.VK_UP:
-      case KeyEvent.VK_DOWN:      
-        action.put("dy",0);
-//        try
-//          {
-//          RPObject.ID id=client.getPlayer().getID();
-//          RPObject changes=new RPObject(id);
-//          changes.put("dy",0);
-//          client.getGameObjects().modifyAdded(client.getPlayer(),changes);
-//          }
-//        catch(Exception ex)
-//          {
-//          Logger.thrown("StendhalKeyInputHandler::onKeyReleased","X",ex);
-//          }
+      case KeyEvent.VK_DOWN:   
+        int keys=(pressed.containsKey(KeyEvent.VK_LEFT)?1:0)+(pressed.containsKey(KeyEvent.VK_RIGHT)?1:0)+(pressed.containsKey(KeyEvent.VK_UP)?1:0)+(pressed.containsKey(KeyEvent.VK_DOWN)?1:0);   
+        if(keys==1)
+          {
+          action.put("dir",Direction.STOP.get());
+          client.send(action);
+          }
         break;
       }
-
-    if(action.has("dx") || action.has("dy"))
-      {
-      Logger.trace("StendhalKeyInputHandler::onKeyReleased","D","Sending action "+action);
-      client.send(action);
-      }    
     }
     
   public void keyPressed(KeyEvent e) 
     {
     if(!pressed.containsKey(new Integer(e.getKeyCode())))
-//    if(System.currentTimeMillis()-delta>100)
       {
-//      delta=System.currentTimeMillis();
       onKeyPressed(e);
       pressed.put(new Integer(e.getKeyCode()),null);
       }      

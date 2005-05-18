@@ -19,8 +19,8 @@ import java.util.*;
 
 public class RespawnPoint 
   {
-  private double x;
-  private double y;
+  private int x;
+  private int y;
   private double radius;
   
   private int maximum;
@@ -42,7 +42,7 @@ public class RespawnPoint
     world=worldContext;
     }
   
-  public RespawnPoint(double x, double y, int radius)
+  public RespawnPoint(int x, int y, int radius)
     {
     this.x=x;
     this.y=y;
@@ -113,13 +113,14 @@ public class RespawnPoint
       
       zone.assignRPObjectID(newentity);
 
-      double ex=x;
-      double ey=y;
+      int ex=x;
+      int ey=y;
       
       while(zone.collides(newentity,ex,ey))
         {
-        ex=ex+(Math.random()*(float)radius-radius/2);
-        ey=ey+(Math.random()*(float)radius-radius/2);        
+        ex=ex+(int)(Math.random()*(float)radius-radius/2.0);
+        ey=ey+(int)(Math.random()*(float)radius-radius/2.0);        
+        System.out.println (ex+","+ey);
         }
       
       newentity.setx(ex);

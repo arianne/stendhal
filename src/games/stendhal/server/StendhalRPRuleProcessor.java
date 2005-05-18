@@ -209,10 +209,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         move(player,action);
         }
-      else if(action.get("type").equals("moveto"))
-        {
-        status=moveTo(player,action);
-        }
       else if(action.get("type").equals("attack"))
         {
         attack(player,action);
@@ -243,40 +239,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     return status;
     }
   
-  private RPAction.Status moveTo(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
-    {
-    RPAction.Status status=RPAction.Status.INCOMPLETE;
-    
-    double dsx=action.getDouble("x");
-    double dsy=action.getDouble("y");
-    double x=player.getx();
-    double y=player.gety();
-    
-    if(!action.has("moving") || (player.getdx()==0 && player.getdy()==0))
-      {
-      action.put("moving",1);
-      
-      double ddx=dsx-x;
-      double ddy=dsy-y;
-      
-      double max=Math.abs(Math.abs(ddx)>Math.abs(ddy)?ddx:ddy);
-      ddx=(ddx/Math.abs(max));
-      ddy=(ddy/Math.abs(max));
-      
-      player.setdx(ddx);
-      player.setdy(ddy);
-      }
-    
-    if(Math.abs(dsx-x)<1 || Math.abs(dsy-y)<1)
-      {
-      player.stop();
-      status=RPAction.Status.SUCCESS;
-      }
-      
-    world.modify(player);
-    return status;
-    }
-    
   private void stop(Player player) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPRuleProcessor::stop",">");
@@ -292,19 +254,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private void move(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPRuleProcessor::move",">");
-    if(action.has("dx")) 
+    if(action.has("dir")) 
       { 
-      double dx=action.getDouble("dx");
-      player.setdx(1*Math.signum(dx));
+      player.setDirection(Direction.build(action.getInt("dir")));
+      player.setSpeed(1);
       }
-      
-    if(action.has("dy")) 
-      {
-      double dy=action.getDouble("dy");
-      player.setdy(1*Math.signum(dy));
-      }
-    
-    StendhalRPAction.face(player,player.getdx(),player.getdy());
+
     world.modify(player);
     
     Logger.trace("StendhalRPRuleProcessor::move","<");
@@ -349,12 +304,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private void face(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPRuleProcessor::face",">");
+
     if(action.has("dir")) 
-      {
-      player.setFacing(action.getInt("dir"));
+      { 
+      player.setDirection(Direction.build(action.getInt("dir")));
       player.stop();
       world.modify(player);
       }
+
     Logger.trace("StendhalRPRuleProcessor::face","<");
     }
   
@@ -381,11 +338,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         if(!object.stopped())
           {
           StendhalRPAction.move(object);
-          }
-        
-        if(object.hasLeave())
-          {          
-          StendhalRPAction.leaveZone(object);
           }
         
         if(getTurn()%5==0 && object.isAttacking()) //1 round = 5 turns
@@ -488,17 +440,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
       zone.placeObjectAtEntryPoint(player);
             
-      double x=player.getDouble("x");
-      double y=player.getDouble("y");
+      int x=player.getInt("x");
+      int y=player.getInt("y");
       
       while(zone.collides(player,x,y))
         {
-        x=x+(Math.random()*6.0-3);
-        y=y+(Math.random()*6.0-3);        
+        x=x+(int)(Math.random()*6.0-3);
+        y=y+(int)(Math.random()*6.0-3);        
         }
         
-      player.setx(x);
-      player.sety(y);
+      player.setx((int)x);
+      player.sety((int)y);
 
       if(player.hasSheep())
         {
@@ -516,8 +468,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         Logger.trace("StendhalRPRuleProcessor::onInit","D","Setting new position for sheep");
         while(zone.collides(sheep,x,y))
           {
-          x=x+(Math.random()*6-3);
-          y=y+(Math.random()*6-3);        
+          x=x+(int)(Math.random()*6-3);
+          y=y+(int)(Math.random()*6-3);        
           }
           
         sheep.setx(x);

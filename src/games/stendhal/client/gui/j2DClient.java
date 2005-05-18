@@ -20,6 +20,7 @@ import java.awt.image.*;
 import java.util.*;
  
 import games.stendhal.client.*;
+import games.stendhal.common.*;
 
 import java.net.*;
 import java.io.*;
@@ -240,8 +241,15 @@ public class j2DClient extends JFrame
         
       double x=object.getDouble("x");
       double y=object.getDouble("y");
-      double dx=object.getDouble("dx");
-      double dy=object.getDouble("dy");
+      double dx=0;
+      double dy=0;
+
+      double speed=object.getDouble("speed");
+      
+      Direction dir=Direction.build(object.getInt("dir"));
+      dx=dir.getdx();
+      dy=dir.getdy();
+      
       
       GameScreen screen=GameScreen.get();
       double screenx=screen.getX();

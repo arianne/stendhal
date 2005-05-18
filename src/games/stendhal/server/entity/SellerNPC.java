@@ -12,12 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 
 public class SellerNPC extends SpeakerNPC 
   {
+  final private static double SPEED=0.5;
   private int amount;
   
   public static void generateRPClass()
@@ -102,20 +104,23 @@ public class SellerNPC extends SpeakerNPC
 
   public boolean move()
     {    
-    if(getdy()==0)
+    if(getDirection()==Direction.STOP) 
       {
-      setdy(Math.signum(Math.random()-0.5)*0.2);   
+      setDirection(Direction.DOWN);
+      setSpeed(SPEED);
       }
       
     if(gety()<=28) 
       {
-      setdy(0.1);   
+      setDirection(Direction.DOWN);
+      setSpeed(SPEED);
       return true; 
       }
       
     if(gety()>=32) 
       {
-      setdy(-0.1);    
+      setDirection(Direction.UP);
+      setSpeed(SPEED);
       return true; 
       }
 

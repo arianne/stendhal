@@ -38,8 +38,6 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
     object.put("name",get("character"));
     object.put("x",0);
     object.put("y",0);
-    object.put("dx",0);
-    object.put("dy",0);
     object.put("xp",0);
     object.put("base_hp",10);
     object.put("hp",10);
