@@ -24,11 +24,14 @@ import java.awt.geom.*;
 public class GameObjects 
   {
   private HashMap<RPObject.ID, Entity> objects;
+  private List<Entity> sortObjects;
   private StaticGameLayers collisionMap;
   
   public GameObjects(StaticGameLayers collisionMap)
     {
     objects=new HashMap<RPObject.ID, Entity>();
+    sortObjects=new LinkedList<Entity>();
+      
     this.collisionMap=collisionMap;
     }
   
@@ -37,7 +40,8 @@ public class GameObjects
     {
     try
       {
-      /** TODO: Refactor this --> Factory pattern apply. */
+      /** TODO: Refactor this --> Factory pattern apply.
+       *  OMG! It is a nice penalty each time we add an object using this... */
       if(object.get("type").equals("player"))
         {
         return new Player(this, object);
@@ -74,6 +78,10 @@ public class GameObjects
         {
         return new Player(this, object);
         }
+      else if(object.get("type").equals("beggarnpc"))
+        {
+        return new Player(this, object);
+        }
       else if(object.get("type").equals("trainingdummy"))
         {
         return new TrainingDummy(this, object);
@@ -103,6 +111,31 @@ public class GameObjects
       }
     }
   
+  private void sort()
+    {
+    Collections.sort(sortObjects,new Comparator<Entity>()
+      {
+      public int compare(Entity o1, Entity o2) 
+        {
+        double dx=o1.getx()-o2.getx();
+        double dy=o1.gety()-o2.gety();
+        
+        if(dy<0) 
+          {
+          return -1;
+          }
+        else if(dy>0) 
+          {
+          return 1;
+          }
+        else
+          {
+          return -(int)dx;
+          }
+        }      
+      });    
+    }
+  
   /** Add a new Entity to the game */  
   public void add(RPObject object) throws AttributeNotFoundException
     {
@@ -111,7 +144,9 @@ public class GameObjects
     Entity entity=entityType(object);
     // HACK: The first time the object is EMPTY! 
     entity.modifyAdded(new RPObject(), object);
+    
     objects.put(entity.getID(),entity);
+    sortObjects.add(entity);
     
     Logger.trace("GameObjects::add","D",entity.toString());
     Logger.trace("GameObjects::add","<");
@@ -198,7 +233,8 @@ public class GameObjects
       entity.removed();
       }
 
-    objects.remove(id);
+    Entity object=objects.remove(id);
+    sortObjects.remove(object);
     Logger.trace("GameObjects::remove","<");
     }
   
@@ -207,6 +243,7 @@ public class GameObjects
     {
     Logger.trace("GameObjects::clear",">");
     objects.clear();
+    sortObjects.clear();
     Logger.trace("GameObjects::clear","<");
     }
   
@@ -220,12 +257,14 @@ public class GameObjects
         entity.move(delta);
         }      
       }
+
+    sort();
     }
    
   /** Draw all the objects in game */
   public void draw(GameScreen screen)
     {
-    for(Entity entity: objects.values())
+    for(Entity entity: sortObjects)
       {
       entity.draw(screen);
       }

@@ -43,6 +43,12 @@ abstract class SpeakerNPC extends NPC
     return null;
     }
       
+  public void onDead(RPEntity who)
+    {
+    setHP(getbaseHP());
+    world.modify(this);
+    }
+    
   public void logic()
     {
     move();

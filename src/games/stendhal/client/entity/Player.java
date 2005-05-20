@@ -62,6 +62,31 @@ public class Player extends RPEntity
       textImageTime=System.currentTimeMillis();
       }  
     }
+
+  public String[] offeredActions()
+    {
+    if(getID()==client.getPlayer().getID())
+      {
+      String[] list={"Look","Attack","Stop attack","Follow","Trade","Set outfit"};
+      return list;
+      }
+    else
+      {
+      String[] list={"Look","Attack","Stop attack","Follow","Trade"};
+      return list;
+      }    
+    }
+
+  public void onAction(String action, StendhalClient client)
+    {
+    if(action.equals("Set outfit"))
+      {
+      }
+    else
+      {
+      super.onAction(action,client);
+      }
+    }
     
   public void draw(GameScreen screen)
     {

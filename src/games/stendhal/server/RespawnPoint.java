@@ -120,7 +120,6 @@ public class RespawnPoint
         {
         ex=ex+(int)(Math.random()*(float)radius-radius/2.0);
         ey=ey+(int)(Math.random()*(float)radius-radius/2.0);        
-        System.out.println (ex+","+ey);
         }
       
       newentity.setx(ex);

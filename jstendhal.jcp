@@ -145,6 +145,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\Creature.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\Entity.java</path>
 				<source>true</source>
 			</fileitem>
@@ -161,6 +165,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\Portal.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\RPEntity.java</path>
 				<source>true</source>
 			</fileitem>
@@ -174,10 +182,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\TrainingDummy.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\entity\Wolf.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -126,20 +126,6 @@ public class StendhalRPAction
       
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(entity.getID());
       
-      if(entity instanceof Player)
-        {
-        Player player=(Player)entity;
-        
-        if(zone.leavesZone(player,x+dx,y+dy))
-          {
-          Logger.trace("StendhalRPAction::move","D","Leaving zone from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
-          decideChangeZone(player);
-          player.stop();
-          world.modify(player);
-          return;
-          }
-        }
-      
       if(zone.collides(entity,x+dx,y+dy)==false)
         {
         Logger.trace("StendhalRPAction::move","D","Moving from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
@@ -159,6 +145,30 @@ public class StendhalRPAction
         
         entity.stop();
         world.modify(entity);
+
+        if(entity instanceof Player)
+          {
+          Player player=(Player)entity;
+          
+          if(zone.leavesZone(player,x+dx,y+dy))
+            {
+            Logger.trace("StendhalRPAction::move","D","Leaving zone from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
+            decideChangeZone(player);
+            player.stop();
+            world.modify(player);
+            return;
+            }
+          
+          for(Portal portal: zone.getPortals())
+            {
+            if(player.nextto(portal,0.25))
+              {
+              Logger.trace("StendhalRPAction::move","D","Using portal "+portal);
+              usePortal(player, portal);
+              transferContent(player);
+              }
+            }
+          }     
         }
       }
     finally
@@ -220,6 +230,11 @@ public class StendhalRPAction
     {
     Logger.trace("StendhalRPAction::usePortal",">");
     
+    if(!player.nextto(portal,0.25)) // Too far to use the portal
+      {
+      return;
+      }
+    
     StendhalRPZone destZone=(StendhalRPZone)world.getRPZone(new IRPZone.ID(portal.getDestinationZone()));
     Portal dest=destZone.getPortal(portal.getDestinationNumber());
     
@@ -265,7 +280,6 @@ public class StendhalRPAction
       {
       x=x+(int)(rand.nextInt(3)-1);
       y=y+(int)(rand.nextInt(3)-1);    
-      System.out.println ("("+x+","+y+")");  
       }
     
     entity.setx((int)x);

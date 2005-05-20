@@ -16,6 +16,8 @@ import marauroa.common.*;
 import java.awt.*;
 import java.awt.geom.*;
 
+/** This stinks... move to class at client. Server already done */
+
 public class EntityAreas 
   {
   static public void getArea(Rectangle2D rect, String type, double x, double y)
@@ -53,6 +55,10 @@ public class EntityAreas
       rect.setRect(x,y+1,1,1);
       }
     else if(type.equals("welcomernpc"))
+      {
+      rect.setRect(x,y+1,1,1);
+      }
+    else if(type.equals("beggarnpc"))
       {
       rect.setRect(x,y+1,1,1);
       }
@@ -120,6 +126,10 @@ public class EntityAreas
       return new Rectangle.Double(x,y,1,2);
       }
     else if(type.equals("welcomernpc"))
+      {
+      return new Rectangle.Double(x,y,1,2);
+      }
+    else if(type.equals("beggarnpc"))
       {
       return new Rectangle.Double(x,y,1,2);
       }

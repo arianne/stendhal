@@ -141,7 +141,7 @@ public class StaticGameLayers
     {
     for(Pair<CollisionDetection> p: collisions)
       {
-      if(area!=null && p.name.contains(area))
+      if(area!=null && p.name.equals(area+"_collision"))
         {
         if(p.content.collides(shape))
           {

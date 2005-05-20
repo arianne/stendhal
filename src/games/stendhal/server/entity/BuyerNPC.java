@@ -52,12 +52,6 @@ public class BuyerNPC extends SpeakerNPC
     setPath(nodes,true);
     }
 
-  public void onDead(RPEntity who)
-    {
-    setHP(getbaseHP());
-    world.modify(this);
-    }
-
   public boolean chat(Player player) throws AttributeNotFoundException
     {
     String text=player.get("text").toLowerCase();

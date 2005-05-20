@@ -85,13 +85,13 @@ public class StendhalRPWorld extends RPWorld
     plains.populate("games/stendhal/server/maps/plains_objects.stend");
     addRPZone(plains);
 
-    StendhalRPZone city_underground=new StendhalRPZone("city_underground");
-    city_underground.addLayer("city_underground_0_floor","games/stendhal/server/maps/city_underground_0_floor.stend");
-    city_underground.addLayer("city_underground_1_object","games/stendhal/server/maps/city_underground_1_object.stend");
-    city_underground.addLayer("city_underground_2_roof","games/stendhal/server/maps/city_underground_2_roof.stend");
-    city_underground.addCollisionLayer("city_underground_collision","games/stendhal/server/maps/city_underground_collision.stend");
-    city_underground.populate("games/stendhal/server/maps/city_underground_objects.stend");
-    addRPZone(city_underground);
+    StendhalRPZone dungeon_000=new StendhalRPZone("dungeon_000");
+    dungeon_000.addLayer("dungeon_000_0_floor","games/stendhal/server/maps/dungeon_000_0_floor.stend");
+    dungeon_000.addLayer("dungeon_000_1_object","games/stendhal/server/maps/dungeon_000_1_object.stend");
+    dungeon_000.addLayer("dungeon_000_2_roof","games/stendhal/server/maps/dungeon_000_2_roof.stend");
+    dungeon_000.addCollisionLayer("dungeon_000_collision","games/stendhal/server/maps/dungeon_000_collision.stend");
+    dungeon_000.populate("games/stendhal/server/maps/dungeon_000_objects.stend");
+    addRPZone(dungeon_000);
 
 //    StendhalRPZone test=new StendhalRPZone("test");
 //    test.addLayer("test_0_floor","games/stendhal/server/maps/test_0_floor.stend");

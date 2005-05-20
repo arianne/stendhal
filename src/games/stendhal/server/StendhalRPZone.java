@@ -240,10 +240,10 @@ public class StendhalRPZone extends MarauroaRPZone
                 if(portal.getx()==28 && portal.gety()==24) 
                   {
                   portal.setNumber(0);
-                  portal.setDestination("city_underground",0);
+                  portal.setDestination("dungeon_000",0);
                   }
                 }              
-              else if(zoneid.getID().equals("city_underground"))
+              else if(zoneid.getID().equals("dungeon_000"))
                 {
                 if(portal.getx()==27 && portal.gety()==36) 
                   {
@@ -292,6 +292,17 @@ public class StendhalRPZone extends MarauroaRPZone
               }
             case 71: /* NPC Begger */
               {
+              BeggarNPC npc=new BeggarNPC();
+              assignRPObjectID(npc);
+              npc.setName("Diogenes");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              npc.setbaseHP(100);
+              add(npc);
+
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding NPC beggar: "+npc);
               break;
               }
             case 72: /* NPC Buyer */
@@ -301,7 +312,7 @@ public class StendhalRPZone extends MarauroaRPZone
               npc.setName("Sato");
               npc.setx(j%width);
               npc.sety(j/width);
-              npc.setbaseHP(10);
+              npc.setbaseHP(100);
               add(npc);
 
               npcs.add(npc);
@@ -320,7 +331,7 @@ public class StendhalRPZone extends MarauroaRPZone
               npc.setName("Nishiya");
               npc.setx(j%width);
               npc.sety(j/width);
-              npc.setbaseHP(10);
+              npc.setbaseHP(100);
               add(npc);
               
               npcs.add(npc);
@@ -335,6 +346,7 @@ public class StendhalRPZone extends MarauroaRPZone
               npc.setName("Carmen");
               npc.setx(j%width);
               npc.sety(j/width);
+              npc.setbaseHP(100);
               add(npc);
 
               npcs.add(npc);

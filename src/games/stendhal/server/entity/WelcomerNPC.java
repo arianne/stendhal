@@ -40,15 +40,8 @@ public class WelcomerNPC extends SpeakerNPC
     {
     super();
     put("type","welcomernpc");
-    put("name","Carmen");
     }
 
-  public void onDead(RPEntity who)
-    {
-    setHP(getbaseHP());
-    world.modify(this);
-    }
-    
   protected boolean chat(Player player) throws AttributeNotFoundException
     {
     String text=player.get("text").toLowerCase();

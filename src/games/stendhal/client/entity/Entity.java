@@ -71,6 +71,16 @@ public abstract class Entity
     {
     return id;
     }
+  
+  public double getx()
+    {
+    return x;    
+    }
+  
+  public double gety()
+    {
+    return y;
+    }
  
   protected static String translate(String type)
     {
