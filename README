@@ -46,9 +46,41 @@ Then just do:
 
   java -jar stendhal-0.10.jar
 
+Alternatively you can run it using Java Webstart technology at:
+
+  http://arianne.sourceforge.net/jws/stendhal.jnlp
+
+To play Arianne you have to use keyboard and mouse.
+
+- Move 
+Use arrows to move around the Map.
+
+- Face
+Press Ctrl and arrow to face in that direction
+
+- Exit
+Press ESC to exit. No confirmation requested
+
+Use right mouse button over objects to see the contextual menu and 
+use left mouse button to choose the action or click outside to abort.
+
 
 Changelog
 ---------
+0.11 May 20, 2005
+- Added Rat
+- Added Cave Rat
+- Added dungeon
+- Added portal
+- Added Beggar
+- Improved Welcomer messages
+- Improved A*
+- Fixed sheep AI
+- Improved Creatures AI
+- Added RP combat system: ATK, DEF, XP and HP
+- Added Level and XP awards
+- Fixed rendering order
+
 0.10 May 12, 2005
 - Color game dialog log console.
 - Major server and client refactoring
