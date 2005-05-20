@@ -20,7 +20,7 @@ import games.stendhal.server.*;
 
 public class WelcomerNPC extends SpeakerNPC 
   {
-  final private static double SPEED=0.5;
+  final private double SPEED=0.5;
 
   public static void generateRPClass()
     {
@@ -41,7 +41,6 @@ public class WelcomerNPC extends SpeakerNPC
     super();
     put("type","welcomernpc");
     put("name","Carmen");
-    put("text","Welcome to Stendhal. My name is "+get("name")+" and I will introduce you to Stendhal's world. You should go to village to get a new sheep and then move to Plains to raise it then return back to here and sell it to Sato");
     }
 
   public void onDead(RPEntity who)
@@ -52,6 +51,35 @@ public class WelcomerNPC extends SpeakerNPC
     
   protected boolean chat(Player player) throws AttributeNotFoundException
     {
+    String text=player.get("text").toLowerCase();
+    if(text.contains("hi"))
+      {
+      say("Welcome to Stendhal. My name is "+get("name")+" and I will help you to Stendhal's world. What do you need?");
+      return true;
+      }
+    else if(text.contains("job") || text.contains("help"))
+      {
+      say("I give indications, I heal and I can suggest you quests to accomplish. What do you need?");
+      return true;
+      }
+    else if(text.contains("indication"))
+      {
+      say("You are right now City. You can move to the left and talk with Nagashi to get a small sheep. You can move down into the plains, but I have been told that Wolves are dangerous there. You can move into the dungeons a bit to the right, but they are dangerous too!. Isn't scary?");
+      return true;
+      }
+    else if(text.contains("quest"))
+      {
+      say("I have been told that Sato will reward you for a fully grow sheep");
+      return true;
+      }
+    else if(text.contains("heal"))
+      {
+      say("Voila!. You have been healed. Don't forget to tell about Stendhal to your friends :)");
+      player.setHP(player.getbaseHP());
+      world.modify(player);
+      return true;
+      }
+
     return false;
     }
     

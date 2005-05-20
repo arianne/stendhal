@@ -59,6 +59,7 @@ public abstract class RPEntity extends AnimatedEntity
   private String name;
   private int hp;
   private int base_hp;
+  private int level;
   
   private Sprite nameImage;
 
@@ -106,6 +107,21 @@ public abstract class RPEntity extends AnimatedEntity
       name=changes.get("type");
       nameImage=GameScreen.get().createString(getName(),Color.white);
       }
+    
+    if(changes.has("xp") && object.has("xp"))
+      {
+      client.addEventLine(getName()+" earns "+(changes.getInt("xp")-object.getInt("xp"))+" XP points.",Color.blue);
+      if(level!=Level.getLevel(changes.getInt("xp")))
+        {
+        client.addEventLine(getName()+" reachs Level "+Level.getLevel(changes.getInt("xp")),Color.green);
+        }
+      }
+
+    if(changes.has("xp"))
+      {
+      level=Level.getLevel(changes.getInt("xp"));
+      }
+
 
     /** Attack code */  
     if(changes.has("target") || object.has("target"))
@@ -274,7 +290,7 @@ public abstract class RPEntity extends AnimatedEntity
     {
     if(action.equals("Look"))
       {
-      StendhalClient.get().addEventLine("You see "+getName()+".",Color.green);
+      StendhalClient.get().addEventLine("You see "+getName()+"(Level "+level+").",Color.green);
       }
     else if(action.equals("Attack"))
       {

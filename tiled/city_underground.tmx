@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+ <tileset name="Outside" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\tiled-0.5.0\dist\zelda_outside_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\tiled-0.5.0\dist\zelda_dungeon_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Objects" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="zelda_objects_chipset.gif"/>
+ </tileset>
+ <tileset name="Collision" firstgid="1061" tilewidth="32" tileheight="32">
+  <image source="zelda_collision_chipset.gif"/>
+ </tileset>
+ <layer name="city_underground_0_floor" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2Z2w2DMAxFER2iY7AXP2zQRbtMhVQkK0piJ9g4hvtxVao8yPGLENZpmlYIgiAIgqCC3i8deXOc4f/M53QX/pp/aTvtfyd+ypTaJLVPrs8VsuLn7FCySc4Gljax9n9u7SUb1GLEygbW+V/yZ8nvd4j/WqxzjD31r3WcR/5bPv9G4786LlvHXeV/7blb7+mZ/5pzc3OV7ulZ/7X5uXpxd//31A1LTu21WtjU2//gfx5/y3paxmnW1Ij8musdgf+M3TQF/jj8Fu/GUfi5+ufBA/7r+LlxEc6Ne/NT4v+I/MtcF+Xn/B8l/hfyvirhl9brY05vRon/j1iV8kvOBSPxS9h7/B8h/q32JxH4d30VY1TyjXW0nNDkl+yJR+PflPlTVu89vgc/913Nm5nKIv5z5+BP4S/l/BP4pTbyZqbSzH/wgx/84/LvrK0CP/ifzL/99y7Hb01pH/qfXkfnT69pvxx/2haNn3K0xkEuJqLy5zjTdq5/NP97rRX84IcgCEr1A7PqjRIAQAAA
+  </data>
+ </layer>
+ <layer name="city_underground_1_object" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2aS27DIBBAnWTbM2aXNhfoNl1Y6jo9QBeVeg+3OUvPUbUjB2mMPHjGhjHgeRKK/+Y5wGBM0xiGYRiGYdCc9k3zuDCd92tbzOfjP+/HBfmHc18L93c8H4b7uOu1+FM8HML7O2F9eRKmlPWM4x8Tv67B+uW+7YKWx0hRzij/F+8/x/n293EIefnH+ce6dS3/qfLuAzHkS5BcOYbzvhnprOTPbe/c83Hrn8J8tUIf6fESltZ/qBe1+EvKME63Cvw1YzjlcyLi360wf8pjysc9l7FYAdtK8W+Z16L8qbggrWccUvlDjJiKa75PynpO4fy7iTIr6XvO9WhRXrTeM7nxT+Ky1J/qK6YoF10gruHnreFP5QXykar9C9Eq+2tdT3rfk7DtTeG/xv8/Nzbgdkz6rq/d/wmx1B+4eMs4UdupcYDS/Kl+DG5XOe+/Kfs/IZb6U+fNbVe1Mf/+d+v+3PFdV69r8+eAx4G26A+4eA/tNLz/1eR/vS//7IbHvAfGimvynwLKvx/vqXhdmj93fD/UP8HfmfFxY21rLt+TY44NScpSLmXC/PtfbX/p95RUmH//a/7xrsUhF/+Y41gd4/3exb0a/SX3M3+d+02xJf+xeZDYn5rHFbOvuqY/95utT8y85uDPnQt6TJDXHPylSOc+htKtQP8UmL/+Pc1f/54Uufi/3bf97obrGOnc1xTzCWOQQ/xbkxz6P2sSmgeUW1k1DIPmD8V00ykAQAAA
+  </data>
+ </layer>
+ <layer name="city_underground_2_roof" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3UwQnAIBAEwEOLzNsWDKT+dHAECZjozG+5z8LCRQAAwDNXjTjqeGYNLdk0u8Gf+X8AAAAAsJ9eZjcAAAAAAHjPWfIMAHzHDV21r3QAQAAA
+  </data>
+ </layer>
+ <layer name="city_underground_objects" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3ZsQ3AIAwEQCT2n4o27JSWCgUUJRjuJnDxEn6TEgAAzLvy3xOwm0iZqoFm5X2RsgpATN4aViOTAABwrrYPFN0AYJh/xfP0bmnubAAA33u6g9nV6NkpR3oqAKzvBsFKEXUAQAAA
+  </data>
+ </layer>
+ <layer name="city_underground_collision" width="64" height="64" opacity="0.47">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3U0QrDIAyF4V70Vfr+r7irggirMRhP1F84jI6u5jNZn/u6HkIIIYQQ8hnvUtc90l6fg/VaXb+q97vMwMzVmqnWb2f5v+qcfWblvhn7790z8n6PvzWb/6538c/qfUZ/1LPx4+/ZM+K/pvB73x2ZeqF4Jn6N3zOrUf5RNYw8G3Uf8ev8GerFv55/9FrNbzkfhQk/fvz4rQ7Pu/k0f23ZzV+aarN1Jlb29/S+91wzJ6rGE/1Rs4QfP378+HP7M+6XrR78ejP+M/2etZvfeg5Rtar9p/c/w8KPH7/e/35Xf2aoNcpvnYPy/l3iWeqaCSGkzA+8LpabAEAAAA==
+  </data>
+ </layer>
+</map>

@@ -20,8 +20,6 @@ import marauroa.common.game.*;
 
 public abstract class Creature extends NPC 
   {
-  protected static double SPEED=1;
-
   private RespawnPoint point;
   private List<Path.Node> patrolPath;
   private RPEntity target;
@@ -62,6 +60,8 @@ public abstract class Creature extends NPC
     if(point!=null) point.notifyDead(this);
     super.onDead(who);
     }
+  
+  public abstract double getSpeed();
 
   private Player getNearestPlayer(double range)
     {
@@ -116,12 +116,23 @@ public abstract class Creature extends NPC
     
     if(isAttacked())
       {
+      if(target==null) 
+        {
+        clearPath();
+        }
+      
       target=this.getAttackSource();
       Logger.trace("Creature::logic","D","Creature("+get("type")+") has been attacked by "+target.get("type"));
       }
     else if(target==null || !target.get("zoneid").equals(get("zoneid")) || !world.has(target.getID()))
       {
-      stopAttack();
+      if(isAttacking())
+        {
+        target=null;
+        clearPath();
+        stopAttack();
+        }
+        
       target=getNearestPlayer(8);
       if(target!=null)
         {
@@ -132,11 +143,12 @@ public abstract class Creature extends NPC
     if(target==null)
       {
       Logger.trace("Creature::logic","D","Following path");
-      if(hasPath()) Path.followPath(this,SPEED);
+      if(hasPath()) Path.followPath(this,getSpeed());
       }
     else if(distance(target)>16*16)
       {
       Logger.trace("Creature::logic","D","Attacker is too far. Creature stops attack");
+      target=null;
       clearPath();
       stopAttack();
       stop();
@@ -146,7 +158,7 @@ public abstract class Creature extends NPC
       Logger.trace("Creature::logic","D","Moving to target. Searching new path");
       clearPath();
       setMovement(target,0,0);
-      moveto(SPEED);
+      moveto(getSpeed());
       }
     else if(nextto(target,0.25))
       {
@@ -160,7 +172,7 @@ public abstract class Creature extends NPC
       if(collided()) clearPath();
       attack(target);
       setMovement(target,0,0);
-      moveto(SPEED);
+      moveto(getSpeed());
       }
 
     if(!stopped())

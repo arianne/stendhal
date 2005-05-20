@@ -12,62 +12,64 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import java.util.*;
 import java.awt.*;
 import java.awt.geom.*;
+import marauroa.common.*;
+import marauroa.common.game.*;
 
-import games.stendhal.common.*;
-import games.stendhal.server.*;
-
-public class Wolf extends Creature
+public class Portal extends Entity 
   {
-  final private double SPEED=0.5;
-  
-  final private static int HP=35;
-  final private static int ATK=6;
-  final private static int DEF=4;
-  final private static int XP=18;
+  private int number;
+  private String destinationZone;
+  private int destinationNumber;
   
   public static void generateRPClass()
-    {    
+    {
     try
       {
-      RPClass wolf=new RPClass("wolf");
-      wolf.isA("npc");
+      RPClass portal=new RPClass("portal");
+      portal.isA("entity");
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("Wolf::generateRPClass","X",e);
+      Logger.thrown("Player::generateRPClass","X",e);
       }
     }
   
-  public Wolf() throws AttributeNotFoundException
+  public Portal() throws AttributeNotFoundException
     {
     super();
-    put("type","wolf");
-    put("x",0);
-    put("y",0);
-    
-    setATK(ATK);
-    setDEF(DEF);
-    setXP(XP);
-    setbaseHP(HP);
-    
-    stop();
+    put("type","portal");
+    }
+  
+  public void setNumber(int number)
+    {
+    this.number=number;
+    }
+  
+  public int getNumber()
+    {
+    return number;
+    }
 
-    Logger.trace("Wolf::Wolf","D","Created Wolf: "+this.toString());
+  public void setDestination(String zone, int number)
+    {
+    this.destinationNumber=number;
+    this.destinationZone=zone;
+    }
+  
+  public int getDestinationNumber()
+    {
+    return destinationNumber;
+    }
+
+  public String getDestinationZone()
+    {
+    return destinationZone;
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y,1,1);
     }  
-  
-  public double getSpeed()
-    {
-    return SPEED;
-    }
   }

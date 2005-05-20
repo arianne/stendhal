@@ -14,32 +14,45 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
-
 import java.awt.*;
 import java.awt.geom.*;
 
-
-/** A Wolf entity */
-public class Wolf extends NPC 
+public class Portal extends Entity 
   {
-  public Wolf(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-    {
+  public Portal(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+    {    
     super(gameObjects, object);
     }
-  
-  protected void buildAnimations(String type)
+    
+  protected void loadSprite(String type)
     {
-    SpriteStore store=SpriteStore.get();  
-
-    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,3,32,32));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,3,32,32));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,3,32,32));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,3,32,32));      
+    sprite=null;
     }
-  
-  protected Sprite defaultAnimation()
+    
+  public String defaultAction()
     {
-    animation="move_up";
-    return sprites.get("move_up")[0];
+    return "Use";
+    }
+
+  public String[] offeredActions()
+    {
+    String[] list={"Use"};
+    return list;
+    }
+
+  public void onAction(String action, StendhalClient client)
+    {
+    if(action.equals("Use"))
+      {
+      RPAction rpaction=new RPAction();
+      rpaction.put("type","use");
+      int id=getID().getObjectID();
+      rpaction.put("object",id);      
+      client.send(rpaction);
+      }
+    }
+
+  public void draw(GameScreen screen)
+    {
     }
   }

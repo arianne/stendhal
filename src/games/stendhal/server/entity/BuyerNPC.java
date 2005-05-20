@@ -21,6 +21,8 @@ import java.util.*;
 
 public class BuyerNPC extends SpeakerNPC 
   {
+  final private double SPEED=0.25;
+  
   private int amount;
   
   public static void generateRPClass()
@@ -61,7 +63,7 @@ public class BuyerNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("hi"))
       {
-      put("text","Come here to sell your sheeps! I have the best prices at this side of the Ourvalon!");
+      say("Come here to sell your sheeps! I have the best prices at this side of the Ourvalon!");
       return true;
       }
     else if(text.contains("sell"))
@@ -71,36 +73,44 @@ public class BuyerNPC extends SpeakerNPC
         Sheep sheep=(Sheep)world.get(player.getSheep());
         if(distance(sheep)>5*5)
           {
-          put("text","Your sheep is too far. I can't see it from here. Go and grab it here.");
+          say("Your sheep is too far. I can't see it from here. Go and grab it here.");
           }
         else
           {
-          put("text","Thanks! Here is your money");
+          say("Thanks! Here is your money.");
           world.remove(player.getSheep());
           player.removeSheep(sheep);
+          
+          player.setXP(player.getXP()+100*(sheep.getWeight()/100));
+          
           world.modify(player);
           amount++;
           }
+  
+        return true;
         }
       else
         {
-        put("text","You don't have any sheep!!. Who do you think you are talking to, "+player.get("name")+"?");
-        }
-      
-      return true;
+        say("You don't have any sheep!!. Who do you think you are talking to, "+player.get("name")+"?");
+        return true;
+        }      
       }
     else if(text.equals("help"))
       {
-      put("text","I do buy sheeps, try to SELL me one.");
+      say("I do buy sheeps, try to SELL me one.");
       return true;
       }
+    else if(text.contains("job"))
+      {
+      say("I work here buying sheeps for a Meat factory near Capital. Have you visited our Capital?");
+      }    
     else if(text.contains("bought"))
       {
-      put("text","I have bougth "+amount+" sheeps");
+      say("I have bougth "+amount+" sheeps");
       }
     else if(text.equals("bye"))
       {
-      put("text","Bye "+player.get("name"));
+      say("Bye "+player.get("name"));
       return true;
       }
     else if(has("text")) 
@@ -114,7 +124,7 @@ public class BuyerNPC extends SpeakerNPC
 
   public boolean move()
     {
-    Path.followPath(this,0.25);
+    Path.followPath(this,SPEED);
     return true;
     }
   }

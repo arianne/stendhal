@@ -245,6 +245,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\CaveRat.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\Corpse.java</path>
 				<source>true</source>
 			</fileitem>
@@ -266,6 +270,14 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\Player.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Portal.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Rat.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -310,6 +322,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\EntityAreas.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\common\Level.java</path>
 				<source>true</source>
 			</fileitem>
 		</include>

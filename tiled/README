@@ -9,6 +9,7 @@ How to create a new map file
 Create a new map file of any size, but with tile size of 32x32
 Now click on tileset and add in this order:
 - zelda_outside_chipset.gif
+- zelda_dungeon_chipset.gif
 - zelda_objects_chipset.gif
 - zelda_collision_chipset.gif
 
@@ -20,6 +21,8 @@ Now create 5 layers:
 - <map>_collision
 
 They should appear on the top of them all collision.
+
+Alternatively you can use template.tmx for an empty framework of 128x128
 
 Now simply draw your map.
 Objects in roof apears over any other object that is draw.

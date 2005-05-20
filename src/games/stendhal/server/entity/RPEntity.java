@@ -18,7 +18,6 @@ import games.stendhal.common.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
-// TODO: Refactor, clean, sort!
 public abstract class RPEntity extends Entity 
   {
   private String name;
@@ -36,9 +35,9 @@ public abstract class RPEntity extends Entity
       RPClass entity=new RPClass("rpentity");
       entity.isA("entity");
       entity.add("name",RPClass.STRING);
-      entity.add("xp",RPClass.SHORT);
-      entity.add("base_hp",RPClass.BYTE);
-      entity.add("hp",RPClass.BYTE);
+      entity.add("xp",RPClass.INT);
+      entity.add("base_hp",RPClass.SHORT);
+      entity.add("hp",RPClass.SHORT);
       entity.add("atk",RPClass.BYTE);
       entity.add("def",RPClass.BYTE);
       entity.add("risk",RPClass.BYTE);
@@ -130,9 +129,19 @@ public abstract class RPEntity extends Entity
     return hp;
     }
 
-  public void setXP(int xp)
+  public void setXP(int newxp)
     {
-    this.xp=xp;
+    // Increment experience points
+    int levels=Level.changeLevel(xp,newxp-xp);
+    if(levels>0)
+      {
+      // Level up
+      setATK(getATK()+levels);
+      setDEF(getDEF()+levels);
+      setbaseHP(getbaseHP()+10*levels);
+      }      
+
+    this.xp=newxp;
     put("xp",xp);
     }
       
@@ -204,6 +213,10 @@ public abstract class RPEntity extends Entity
     stopAttack();
     who.stopAttack();
     
+    // Establish how much xp points your are rewarded
+    who.setXP(who.getXP()+getXP());
+    
+    // Add a corpse
     Corpse corpse=new Corpse(this);
     IRPZone zone=world.getRPZone(getID());
     zone.assignRPObjectID(corpse);

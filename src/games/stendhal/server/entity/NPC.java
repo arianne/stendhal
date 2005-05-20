@@ -63,6 +63,10 @@ public abstract class NPC extends RPEntity
     return idea;
     }
   
+  public void say(String text)
+    {
+    put("text",text);
+    }  
 
   private int escapeCollision;
   

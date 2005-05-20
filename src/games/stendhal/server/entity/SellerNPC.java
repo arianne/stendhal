@@ -19,7 +19,7 @@ import marauroa.server.game.*;
 
 public class SellerNPC extends SpeakerNPC 
   {
-  final private static double SPEED=0.5;
+  final private double SPEED=0.5;
   private int amount;
   
   public static void generateRPClass()
@@ -53,7 +53,7 @@ public class SellerNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("hi"))
       {
-      put("text","Come here to buy your sheeps!");
+      say("Come here to buy your sheeps!");
       return true;
       }
     else if(text.contains("buy"))
@@ -61,7 +61,7 @@ public class SellerNPC extends SpeakerNPC
       if(!player.hasSheep())
         {
         Logger.trace("SellerNPC::chat","D","Selling a sheep to player");
-        put("text","Congratulations! Here is your sheep!");
+        say("Congratulations! Here is your sheep!");
         IRPZone zone=world.getRPZone(getID());
         
         Sheep sheep=new Sheep(player);
@@ -69,7 +69,6 @@ public class SellerNPC extends SpeakerNPC
         sheep.sety(gety()+2);
         zone.assignRPObjectID(sheep);
         
-        rp.addNPC(sheep);
         world.add(sheep);
         
         player.setSheep(sheep);        
@@ -79,23 +78,28 @@ public class SellerNPC extends SpeakerNPC
         }
       else
         {
-        put("text","You already have a sheep. Grow it up!");
+        say("You already have a sheep. Grow it up!");
         }
         
       return true;
       }
     else if(text.equals("help"))
       {
-      put("text","I do sell sheeps, try to BUY me one.");
+      say("I do sell sheeps, try to BUY me one.");
+      return true;
+      }
+    else if(text.equals("job"))
+      {
+      say("I sell small sheeps. I have listen that someone buys them when bigger for a nice amount of gold, but it is so boring to grow them up!.");
       return true;
       }
     else if(text.contains("sold"))
       {
-      put("text","I have sold "+amount+" sheeps");
+      say("I have sold "+amount+" sheeps");
       }
     else if(text.contains("bye"))
       {
-      put("text","Bye "+player.get("name"));
+      say("Bye "+player.get("name"));
       return true;
       }
     

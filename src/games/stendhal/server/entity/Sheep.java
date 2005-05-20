@@ -24,15 +24,18 @@ import games.stendhal.server.*;
 
 public class Sheep extends Creature
   {
-  final private static int HP=10;
+  final private double SPEED=0.25;
+  
+  final private static int HP=30;
+  final private static int ATK=0;
+  final private static int DEF=1;
+  final private static int XP=0;
   
   private int weight;
   private Player owner;
   
   public static void generateRPClass()
-    {
-    SPEED=0.25;
-    
+    {    
     try
       {
       RPClass sheep=new RPClass("sheep");
@@ -64,6 +67,9 @@ public class Sheep extends Creature
     put("x",0);
     put("y",0);
     
+    setATK(ATK);
+    setDEF(DEF);
+    setXP(XP);
     setbaseHP(HP);
 
     hungry=0;
@@ -98,6 +104,11 @@ public class Sheep extends Creature
       }
       
     super.onDead(who);
+    }
+
+  public double getSpeed()
+    {
+    return SPEED;
     }
 
   public void setWeight(int weight)
@@ -196,20 +207,21 @@ public class Sheep extends Creature
       setMovement(owner,0,0);
       moveto(SPEED);
       }
-    else if(owner!=null && owner.has("text") && owner.get("text").contains("sheep"))
-      {
-      Logger.trace("Sheep::logic","D","Sheep(owner) moves to Owner");
-      setIdea("follow");
-      clearPath();
-      setMovement(owner,0,0);
-      moveto(SPEED);
-      }
     else
       {
       Logger.trace("Sheep::logic","D","Sheep has nothing to do");
       setIdea("stop");
       stop();
       clearPath();
+      }
+
+    if(owner!=null && owner.has("text") && owner.get("text").contains("sheep"))
+      {
+      Logger.trace("Sheep::logic","D","Sheep(owner) moves to Owner");
+      setIdea("follow");
+      clearPath();
+      setMovement(owner,0,0);
+      moveto(SPEED);
       }
 
     if(!stopped())

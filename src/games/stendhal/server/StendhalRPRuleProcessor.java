@@ -209,6 +209,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         move(player,action);
         }
+      else if(action.get("type").equals("chat"))
+        {
+        chat(player,action);
+        }          
       else if(action.get("type").equals("attack"))
         {
         attack(player,action);
@@ -217,10 +221,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         stop(player);
         }
-      else if(action.get("type").equals("chat"))
+      else if(action.get("type").equals("use"))
         {
-        chat(player,action);
-        }          
+        use(player,action);
+        }
       else if(action.get("type").equals("face"))
         {
         face(player,action);
@@ -307,14 +311,40 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     if(action.has("dir")) 
       { 
-      player.setDirection(Direction.build(action.getInt("dir")));
       player.stop();
+      player.setDirection(Direction.build(action.getInt("dir")));
       world.modify(player);
       }
 
     Logger.trace("StendhalRPRuleProcessor::face","<");
     }
   
+  private void use(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Logger.trace("StendhalRPRuleProcessor::use",">");
+
+    if(action.has("object")) 
+      { 
+      int usedObject=action.getInt("object");
+      
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      RPObject.ID targetid=new RPObject.ID(usedObject, zone.getID());
+      if(zone.has(targetid))
+        {
+        RPObject object=zone.get(targetid);
+        if(object instanceof Portal) // Can use only portal by now
+          {
+          Portal portal=(Portal)object;
+          
+          StendhalRPAction.usePortal(player, portal);
+          StendhalRPAction.transferContent(player);
+          }
+        }
+      }
+
+    Logger.trace("StendhalRPRuleProcessor::use","<");
+    }
+
   public int getTurn()
     {
     return rpman.getTurn();

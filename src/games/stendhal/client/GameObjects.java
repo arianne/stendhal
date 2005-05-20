@@ -44,7 +44,15 @@ public class GameObjects
         }
       else if(object.get("type").equals("wolf"))
         {
-        return new Wolf(this, object);
+        return new Creature(this, object);
+        }
+      else if(object.get("type").equals("rat"))
+        {
+        return new Creature(this, object);
+        }
+      else if(object.get("type").equals("caverat"))
+        {
+        return new Creature(this, object);
         }
       else if(object.get("type").equals("sheep"))
         {
@@ -78,9 +86,13 @@ public class GameObjects
         {
         return new Corpse(this, object);
         }
+      else if(object.get("type").equals("portal"))
+        {
+        return new Portal(this, object);
+        }
       else
         {
-        Logger.trace("GameObjects::entityType","X","Unknown entity type");
+        Logger.trace("GameObjects::entityType","X","Unknown entity type("+object.get("type")+")");
         return null;
         }
       }

@@ -51,7 +51,9 @@ public class StaticGameLayers
     {
     layers=new LinkedList<Pair<TileRenderer>>();
     collisions=new LinkedList<Pair<CollisionDetection>>();
-    tilestore=TileStore.get("sprites/zelda_outside_chipset.gif");    
+    tilestore=TileStore.get();
+    tilestore.add("sprites/zelda_outside_chipset.gif");    
+    tilestore.add("sprites/zelda_dungeon_chipset.gif");    
     area=null;
     }
   

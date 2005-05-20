@@ -62,7 +62,7 @@ public class CollisionDetection
       String[] items=text.split(",");
       for(String item: items)
         {
-        blocked[j]=(Integer.parseInt(item)-(480+100))==1;
+        blocked[j]=(Integer.parseInt(item)-(480*2+100))==1;
         j++;      
         }
       }

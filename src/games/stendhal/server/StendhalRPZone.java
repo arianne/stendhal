@@ -31,8 +31,11 @@ import java.net.*;
 public class StendhalRPZone extends MarauroaRPZone 
   {
   private List<TransferContent> contents;
+
   private List<String> entryPoints;
   private List<String> zoneChangePoints;
+  private List<Portal> portals;
+
   private List<NPC> npcs;
   private List<RespawnPoint> respawnPoints;
   private List<Food> foodItems;
@@ -48,6 +51,7 @@ public class StendhalRPZone extends MarauroaRPZone
     contents=new LinkedList<TransferContent>();
     entryPoints=new LinkedList<String>();
     zoneChangePoints=new LinkedList<String>();
+    portals=new LinkedList<Portal>();
 
     npcs=new LinkedList<NPC>();
     respawnPoints=new LinkedList<RespawnPoint>();
@@ -67,6 +71,24 @@ public class StendhalRPZone extends MarauroaRPZone
   public List<NPC> getNPCList()
     {
     return npcs;
+    }
+  
+  public List<Portal> getPortals()
+    {
+    return portals;
+    }
+  
+  public Portal getPortal(int number)
+    {
+    for(Portal portal: portals)
+      {
+      if(portal.getNumber()==number)
+        {
+        return portal;
+        }
+      }
+    
+    return null;
     }
 
   public List<RespawnPoint> getRespawnPointList()
@@ -188,7 +210,7 @@ public class StendhalRPZone extends MarauroaRPZone
       String[] items=text.split(",");
       for(String item: items)
         {
-        int value=Integer.parseInt(item)-480 /* Number of tiles at zelda_outside_chipset */;
+        int value=Integer.parseInt(item)-(480*2) /* Number of tiles at zelda_outside_chipset */;
         /** TODO: Change it by another way of not hardcoding the objects. */
         try
           {
@@ -200,7 +222,139 @@ public class StendhalRPZone extends MarauroaRPZone
               addEntryPoint(entryPoint);
               break;
               }            
-            case 2: /* Sign */
+            case 2: /* Zone change  */
+              {
+              String entryPoint=new String(j%width+","+j/width);
+              addZoneChange(entryPoint);
+              break;
+              }
+            case 3: /* Portal  */
+              {
+              Portal portal=new Portal();
+              assignRPObjectID(portal);
+              portal.setx(j%width);
+              portal.sety(j/width);
+              
+              if(zoneid.getID().equals("city"))
+                {
+                if(portal.getx()==28 && portal.gety()==24) 
+                  {
+                  portal.setNumber(0);
+                  portal.setDestination("city_underground",0);
+                  }
+                }              
+              else if(zoneid.getID().equals("city_underground"))
+                {
+                if(portal.getx()==27 && portal.gety()==36) 
+                  {
+                  portal.setNumber(0);
+                  portal.setDestination("city",0);
+                  }
+                }              
+
+              add(portal);
+
+              portals.add(portal);
+
+              break;
+              }
+            case 11: /* Sheep */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Sheep(),1);
+              respawnPoints.add(point);
+              
+              break;
+              }
+            case 12: /* Rat */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Rat(),1);
+              respawnPoints.add(point);
+              
+              break;
+              }
+            case 13: /* Cave rat */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new CaveRat(),1);
+              respawnPoints.add(point);
+              
+              break;
+              }
+            case 14: /* Wolf */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Wolf(),1);
+              respawnPoints.add(point);
+
+              break;
+              }
+            case 71: /* NPC Begger */
+              {
+              break;
+              }
+            case 72: /* NPC Buyer */
+              {
+              BuyerNPC npc=new BuyerNPC();
+              assignRPObjectID(npc);
+              npc.setName("Sato");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              npc.setbaseHP(10);
+              add(npc);
+
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding NPC buyer: "+npc);
+              break;
+              }
+            case 73: /* NPC Journalist */
+              {
+              break;
+              }
+            case 74: /* NPC Seller */
+              {
+              SellerNPC npc=new SellerNPC();
+              assignRPObjectID(npc);
+              npc.setName("Nishiya");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              npc.setbaseHP(10);
+              add(npc);
+              
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding NPC seller: "+npc);
+              break;
+              }
+            case 75: /* Welcomer NPC  */
+              {              
+              WelcomerNPC npc=new WelcomerNPC();
+              assignRPObjectID(npc);
+              npc.setName("Carmen");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              add(npc);
+
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding Welcomer NPC: "+npc);
+              break;
+              }
+            case 76: /* Training dummy  */
+              {              
+              TrainingDummy dummy=new TrainingDummy();
+              assignRPObjectID(dummy);
+              dummy.setx(j%width);
+              dummy.sety(j/width);
+              dummy.setbaseHP(100);
+              add(dummy);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding Training dummy: "+dummy);
+              break;
+              }
+            case 91: /* Sign */
               {
               Sign sign=new Sign();
               assignRPObjectID(sign);
@@ -217,6 +371,7 @@ public class StendhalRPZone extends MarauroaRPZone
                 if(sign.getx()==4 && sign.gety()==21) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
                 if(sign.getx()==8 && sign.gety()==25) sign.setText("This is our attack dummy.|Click on it to attack, another click to stop attacking it.| Be sure to learn how to attack correctly, it will be useful.");
                 if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!|Make sure you talk with Paco for hints|Please report problems at our webpage.");
+                if(sign.getx()==26 && sign.gety()==26) sign.setText("You are going to enter the Dungeon.|Be very careful with rats, people says many adventures has died there...");
                 if(sign.getx()==43 && sign.gety()==26) sign.setText("Talk to Sato to sell your sheep!.|He won't give you a fair price but this is an small village...");
                 if(sign.getx()==44 && sign.gety()==48) sign.setText("You are going to leave this area to move to plains.|You may grow up your sheep there.|Be careful wolves may attack you.");
                 }
@@ -232,53 +387,7 @@ public class StendhalRPZone extends MarauroaRPZone
               Logger.trace("StendhalRPZone::populate","D","Adding SIGN: "+sign);
               break;
               }
-            case 3: /* Sheep */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Sheep(),1);
-              respawnPoints.add(point);
-              
-              break;
-              }
-            case 4: /* Wolf */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Wolf(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 5: /* NPC Seller */
-              {
-              SellerNPC npc=new SellerNPC();
-              assignRPObjectID(npc);
-              npc.setName("Nishiya");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(10);
-              add(npc);
-              
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding NPC seller: "+npc);
-              break;
-              }
-            case 6: /* NPC Buyer */
-              {
-              BuyerNPC npc=new BuyerNPC();
-              assignRPObjectID(npc);
-              npc.setName("Sato");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(10);
-              add(npc);
-
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding NPC buyer: "+npc);
-              break;
-              }
-            case 7: /* Food */
+            case 92: /* Food */
               {
               Food food=new Food();
               assignRPObjectID(food);
@@ -288,39 +397,6 @@ public class StendhalRPZone extends MarauroaRPZone
               add(food);
 
               foodItems.add(food);
-              break;
-              }
-            case 8: /* Zone change  */
-              {
-              String entryPoint=new String(j%width+","+j/width);
-              addZoneChange(entryPoint);
-              break;
-              }
-            case 9: /* Training dummy  */
-              {              
-              TrainingDummy dummy=new TrainingDummy();
-              assignRPObjectID(dummy);
-              dummy.setx(j%width);
-              dummy.sety(j/width);
-              dummy.setbaseHP(100);
-              add(dummy);
-
-
-              Logger.trace("StendhalRPZone::populate","D","Adding Training dummy: "+dummy);
-              break;
-              }
-            case 10: /* Welcomer NPC  */
-              {              
-              WelcomerNPC npc=new WelcomerNPC();
-              assignRPObjectID(npc);
-              npc.setName("Carmen");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              add(npc);
-
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding Welcomer NPC: "+npc);
               break;
               }
             }

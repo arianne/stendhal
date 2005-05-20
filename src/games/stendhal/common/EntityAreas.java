@@ -32,6 +32,14 @@ public class EntityAreas
       {
       rect.setRect(x,y,1,1);
       }
+    else if(type.equals("rat"))
+      {
+      rect.setRect(x,y,1,1);
+      }
+    else if(type.equals("caverat"))
+      {
+      rect.setRect(x,y,1,1);
+      }
     else if(type.equals("player"))
       {
       rect.setRect(x,y+1,1,1);
@@ -57,6 +65,10 @@ public class EntityAreas
       rect.setRect(x,y,0,0);
       }
     else if(type.equals("sign"))
+      {
+      rect.setRect(x,y,1,1);
+      }
+    else if(type.equals("portal"))
       {
       rect.setRect(x,y,1,1);
       }
@@ -87,6 +99,14 @@ public class EntityAreas
       {
       return new Rectangle.Double(x,y,1,1);
       }
+    else if(type.equals("rat"))
+      {
+      return new Rectangle.Double(x,y,1,1);
+      }
+    else if(type.equals("caverat"))
+      {
+      return new Rectangle.Double(x,y,1,1);
+      }
     else if(type.equals("player"))
       {
       return new Rectangle.Double(x,y,1,2);
@@ -114,6 +134,10 @@ public class EntityAreas
     else if(type.equals("trainingdummy"))
       {
       return new Rectangle.Double(x,y,1,2);
+      }
+    else if(type.equals("portal"))
+      {
+      return new Rectangle.Double(x,y,1,1);
       }
     else
       {

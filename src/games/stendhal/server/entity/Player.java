@@ -56,30 +56,6 @@ public class Player extends RPEntity
     setHP(getbaseHP());
     world.modify(this);
     }
-
-  public boolean hasLeave()
-    {
-    return hasLeave;
-    }
-    
-  public void setLeave(int val)
-    {
-    if(val<0)
-      {
-      hasLeave=false;
-      }
-    else
-      {
-      hasLeave=true;
-      }
-    
-    leave=val;
-    }
-
-  public int getLeave()
-    {
-    return leave;
-    }
   
   public void removeSheep(Sheep sheep)
     {

@@ -34,17 +34,26 @@ public class StendhalRPWorld extends RPWorld
     Logger.trace("StendhalRPWorld::createRPClasses",">");
     
     Entity.generateRPClass();
+
     Sign.generateRPClass();
+    Portal.generateRPClass();
     Food.generateRPClass();
+    
     RPEntity.generateRPClass();
+    
     NPC.generateRPClass();
     BuyerNPC.generateRPClass();
     SellerNPC.generateRPClass();
     WelcomerNPC.generateRPClass();
+
+    TrainingDummy.generateRPClass();
+
     Sheep.generateRPClass();
     Wolf.generateRPClass();
+    Rat.generateRPClass();
+    CaveRat.generateRPClass();
+
     Player.generateRPClass();
-    TrainingDummy.generateRPClass();
         
     Logger.trace("StendhalRPWorld::createRPClasses","<");
     }
@@ -75,6 +84,14 @@ public class StendhalRPWorld extends RPWorld
     plains.addCollisionLayer("plains_collision","games/stendhal/server/maps/plains_collision.stend");
     plains.populate("games/stendhal/server/maps/plains_objects.stend");
     addRPZone(plains);
+
+    StendhalRPZone city_underground=new StendhalRPZone("city_underground");
+    city_underground.addLayer("city_underground_0_floor","games/stendhal/server/maps/city_underground_0_floor.stend");
+    city_underground.addLayer("city_underground_1_object","games/stendhal/server/maps/city_underground_1_object.stend");
+    city_underground.addLayer("city_underground_2_roof","games/stendhal/server/maps/city_underground_2_roof.stend");
+    city_underground.addCollisionLayer("city_underground_collision","games/stendhal/server/maps/city_underground_collision.stend");
+    city_underground.populate("games/stendhal/server/maps/city_underground_objects.stend");
+    addRPZone(city_underground);
 
 //    StendhalRPZone test=new StendhalRPZone("test");
 //    test.addLayer("test_0_floor","games/stendhal/server/maps/test_0_floor.stend");

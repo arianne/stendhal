@@ -15,43 +15,59 @@ package games.stendhal.server.entity;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
+import java.util.*;
 import java.awt.*;
 import java.awt.geom.*;
 
+import games.stendhal.common.*;
+import games.stendhal.server.*;
 
-public class Corpse extends Entity
+public class Rat extends Creature
   {
-  final public static int DEGRADATION_TIMEOUT=180;
-  private int degradation;
+  final private double SPEED=0.25;
   
-  public Corpse(RPObject object) throws AttributeNotFoundException
-    {
-    super(object);
-    update();
+  final private static int HP=10;
+  final private static int ATK=3;
+  final private static int DEF=2;
+  final private static int XP=5;
+  
+  public static void generateRPClass()
+    {    
+    try
+      {
+      RPClass rat=new RPClass("rat");
+      rat.isA("npc");
+      }
+    catch(RPClass.SyntaxException e)
+      {
+      Logger.thrown("Rat::generateRPClass","X",e);
+      }
     }
-
-  public Corpse(RPEntity entity) throws AttributeNotFoundException
+  
+  public Rat() throws AttributeNotFoundException
     {
-    put("type","corpse");
-    setx(entity.getx());
-    sety(entity.gety());
-    degradation=DEGRADATION_TIMEOUT;
+    super();
+    put("type","rat");
+    put("x",0);
+    put("y",0);
+    
+    setATK(ATK);
+    setDEF(DEF);
+    setXP(XP);
+    setbaseHP(HP);
+    
+    stop();
+
+    Logger.trace("Rat::Rat","D","Created Rat: "+this.toString());
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
-    rect.setRect(x,y,0,0);
+    rect.setRect(x,y,1,1);
     }  
   
-  public int getDegradation()
+  public double getSpeed()
     {
-    return degradation;
-    } 
-  
-  public int decDegradation()
-    {
-    return degradation--;
+    return SPEED;
     }
   }

@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import java.awt.*;
 import java.io.*;
+import java.util.*;
 import marauroa.common.*;
 
 
@@ -23,46 +24,49 @@ public class TileStore extends SpriteStore
   private static final int TILE_WIDTH=32;
   private static final int TILE_HEIGHT=32;
   
-  private Sprite[] tileset;
+  private Vector<Sprite> tileset;
   
   private static TileStore singleton;
   
-  public static TileStore get(String ref)
+  public static TileStore get()
     {
     if(singleton==null)
       {
-      singleton=new TileStore(ref);
+      singleton=new TileStore();
       }
     
     return singleton;
     }
   
-  public TileStore(String ref)
+  public TileStore()
     {
     super();
+    tileset=new Vector<Sprite>();
+    }
+  
+  public void add(String ref)
+    {
     SpriteStore sprites;
     sprites=get();
     Sprite tiles=sprites.getSprite(ref);
     
     GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
- 
-    tileset=new Sprite[(tiles.getWidth()/TILE_WIDTH)*(tiles.getHeight()/TILE_HEIGHT)];
     
-    for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
+    for(int j=0;j<tiles.getHeight()/TILE_HEIGHT;j++)
       {      
-      for(int j=0;j<tiles.getHeight()/TILE_HEIGHT;j++)
+      for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
         {
         Image image = gc.createCompatibleImage(TILE_WIDTH,TILE_HEIGHT, Transparency.BITMASK);
         tiles.draw(image.getGraphics(),0,0,i*TILE_WIDTH,j*TILE_HEIGHT);
         
         // create a sprite, add it the cache then return it
-        tileset[i+j*(tiles.getWidth()/TILE_WIDTH)] = new Sprite(image);        
+        tileset.add(new Sprite(image));
         }
       }
     }
 
   public Sprite getTile(int i) 
     {
-    return tileset[i];
+    return tileset.get(i);
     }
   }

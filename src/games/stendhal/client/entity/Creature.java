@@ -10,48 +10,36 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity;
+package games.stendhal.client.entity;
 
-import marauroa.common.*;
 import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
+import games.stendhal.client.*;
+
 import java.awt.*;
 import java.awt.geom.*;
 
 
-public class Corpse extends Entity
+/** A Creature entity */
+public class Creature extends NPC 
   {
-  final public static int DEGRADATION_TIMEOUT=180;
-  private int degradation;
-  
-  public Corpse(RPObject object) throws AttributeNotFoundException
+  public Creature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
-    super(object);
-    update();
+    super(gameObjects, object);
     }
-
-  public Corpse(RPEntity entity) throws AttributeNotFoundException
+  
+  protected void buildAnimations(String type)
     {
-    put("type","corpse");
-    setx(entity.getx());
-    sety(entity.gety());
-    degradation=DEGRADATION_TIMEOUT;
+    SpriteStore store=SpriteStore.get();  
+
+    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,3,32,32));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,3,32,32));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,3,32,32));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,3,32,32));      
     }
-
-  public void getArea(Rectangle2D rect, double x, double y)
-    {
-    rect.setRect(x,y,0,0);
-    }  
   
-  public int getDegradation()
+  protected Sprite defaultAnimation()
     {
-    return degradation;
-    } 
-  
-  public int decDegradation()
-    {
-    return degradation--;
+    animation="move_up";
+    return sprites.get("move_up")[0];
     }
   }
