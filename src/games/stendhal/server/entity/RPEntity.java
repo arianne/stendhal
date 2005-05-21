@@ -17,9 +17,12 @@ import games.stendhal.server.*;
 import games.stendhal.common.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
+import marauroa.server.game.*;
 
 public abstract class RPEntity extends Entity 
   {
+  private static Statistics stats;
+  
   private String name;
 
   private int atk;
@@ -30,6 +33,8 @@ public abstract class RPEntity extends Entity
   
   public static void generateRPClass()
     {
+    stats=Statistics.getStatistics();
+    
     try
       {
       RPClass entity=new RPClass("rpentity");
@@ -215,6 +220,9 @@ public abstract class RPEntity extends Entity
     
     // Establish how much xp points your are rewarded
     who.setXP(who.getXP()+getXP());
+    
+    // Stats about dead 
+    stats.add("Killed "+get("type"),1);
     
     // Add a corpse
     Corpse corpse=new Corpse(this);
