@@ -21,7 +21,7 @@ import marauroa.server.game.*;
 
 public abstract class RPEntity extends Entity 
   {
-  private static Statistics stats;
+  protected static Statistics stats;
   
   private String name;
 

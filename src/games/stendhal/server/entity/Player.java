@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.server.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import java.awt.*;
@@ -53,8 +54,19 @@ public class Player extends RPEntity
     
   public void onDead(RPEntity who)
     {
+    if(hasSheep())
+      {
+      Sheep sheep=(Sheep)world.remove(getSheep());
+      removeSheep(sheep);
+      }
+
+    setXP((int)(getXP()*0.9));        
     setHP(getbaseHP());
-    world.modify(this);
+
+    stats.add("Killed "+get("type"),1);
+    
+    StendhalRPAction.changeZone(this,"city");
+    StendhalRPAction.transferContent(this);
     }
   
   public void removeSheep(Sheep sheep)
