@@ -27,7 +27,7 @@ anything running Java 1.5.0.
 
 Current Version
 ---------------
-Version 0.10
+Version 0.11
 
 
 How to make it work
@@ -60,6 +60,9 @@ Press Ctrl and arrow to face in that direction
 
 - Exit
 Press ESC to exit. No confirmation requested
+
+- Open Game Dialog log
+In case you closed the game dialog you can open it again with Ctrl+L
 
 Use right mouse button over objects to see the contextual menu and 
 use left mouse button to choose the action or click outside to abort.

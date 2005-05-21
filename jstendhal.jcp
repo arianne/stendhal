@@ -245,6 +245,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\BeggarNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\BuyerNPC.java</path>
 				<source>true</source>
 			</fileitem>
@@ -266,6 +270,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\Food.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\JournalistNPC.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -85,7 +85,7 @@ public class StendhalFirstScreen extends JFrame
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-            new LoginDialog(StendhalFirstScreen.this, client);
+      new LoginDialog(StendhalFirstScreen.this, client);
 			}
 
 		});
@@ -98,6 +98,7 @@ public class StendhalFirstScreen extends JFrame
 		createAccountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
+      JOptionPane.showMessageDialog(StendhalFirstScreen.this, "To create an account for Stendhal please visit \n http://stendhal.ombres.ambre.net" ,"Create account",JOptionPane.INFORMATION_MESSAGE);
       }
 
 		});
