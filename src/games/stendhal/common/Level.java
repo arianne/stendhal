@@ -1,7 +1,7 @@
 package games.stendhal.common;
 
 import java.util.*;
-
+import marauroa.common.*;
 
 public class Level
   {
@@ -16,7 +16,9 @@ public class Level
     
     for(int i=2;i<LEVELS;i++)
       {
-      table.add(((i*10+i*i*5+i*i*i+10+80)>>7)<<7);
+      int exp=((i*10+i*i*5+i*i*i*10+80)>>7)<<7;
+      Logger.trace("Level::(static)","D","Level "+i+": "+exp);
+      table.add(exp);
       }
     }
   
