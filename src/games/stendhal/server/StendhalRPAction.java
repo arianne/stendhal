@@ -274,10 +274,11 @@ public class StendhalRPAction
     Logger.trace("StendhalRPAction::usePortal","<");
     }
   
-  private static void placeat(StendhalRPZone zone, Entity entity, int x, int y)
+  public static void placeat(StendhalRPZone zone, Entity entity, int x, int y)
     {
     while(zone.collides(entity,x,y))
       {
+      System.out.println (x+","+y);
       x=x+(int)(rand.nextInt(3)-1);
       y=y+(int)(rand.nextInt(3)-1);    
       }

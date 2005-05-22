@@ -112,18 +112,8 @@ public class RespawnPoint
       Creature newentity=entity.getClass().newInstance();
       
       zone.assignRPObjectID(newentity);
+      StendhalRPAction.placeat(zone,newentity,x,y);
 
-      int ex=x;
-      int ey=y;
-      
-      while(zone.collides(newentity,ex,ey))
-        {
-        ex=ex+(int)(Math.random()*(float)radius-radius/2.0);
-        ey=ey+(int)(Math.random()*(float)radius-radius/2.0);        
-        }
-      
-      newentity.setx(ex);
-      newentity.sety(ey);
       newentity.setRespawnPoint(this);
       entities.add(newentity);
       
