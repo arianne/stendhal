@@ -6,6 +6,7 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 import games.stendhal.server.*;
+import games.stendhal.common.*;
 
 abstract class SpeakerNPC extends NPC 
   {

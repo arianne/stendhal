@@ -27,7 +27,7 @@ anything running Java 1.5.0.
 
 Current Version
 ---------------
-Version 0.11
+Version 0.12
 
 
 How to make it work
@@ -70,6 +70,12 @@ use left mouse button to choose the action or click outside to abort.
 
 Changelog
 ---------
+0.12 May 22, 2005
+- Fixed a severe bug that happens when a creature respawn over a player.
+- Disabled the attack yourself feature
+- Added reward for player killing
+- Correctly assign XP for sheep
+
 0.11 May 20, 2005
 - Added Rat
 - Added Cave Rat
