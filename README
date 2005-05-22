@@ -75,6 +75,9 @@ Changelog
 - Disabled the attack yourself feature
 - Added reward for player killing
 - Correctly assign XP for sheep
+- NPC don't repeat text on zone change any more
+- Better rendering order
+- Corpses are now under everything
 
 0.11 May 20, 2005
 - Added Rat

@@ -117,8 +117,8 @@ public class GameObjects
       {
       public int compare(Entity o1, Entity o2) 
         {
-        double dx=o1.getx()-o2.getx();
-        double dy=o1.gety()-o2.gety();
+        double dx=o1.getArea().getX()-o2.getArea().getX();
+        double dy=o1.getArea().getY()-o2.getArea().getY();
         
         if(dy<0) 
           {
@@ -128,9 +128,19 @@ public class GameObjects
           {
           return 1;
           }
+        else if(dx!=0)
+          {
+          return (int)dx;
+          }
         else
           {
-          return -(int)dx;
+          // Same tile...
+          if(o1 instanceof Corpse)
+            {
+            return -1;
+            }
+          
+          return 0;
           }
         }      
       });    
@@ -154,7 +164,16 @@ public class GameObjects
   
   public Entity at(double x, double y)
     {
-    for(Entity entity: objects.values())
+    for(Entity entity: sortObjects)
+      {
+      if(entity.getArea().contains(x,y))
+        {
+        return entity;
+        }
+      }
+
+    // Maybe user clicked outside char but on the drawed area of it
+    for(Entity entity: sortObjects)
       {
       if(entity.getDrawedArea().contains(x,y))
         {

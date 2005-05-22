@@ -251,6 +251,14 @@ public class StendhalRPZone extends MarauroaRPZone
                   portal.setDestination("city",0);
                   }
                 }              
+              else if(zoneid.getID().equals("afterlive"))
+                {
+                if((portal.getx()==12 || portal.getx()==13) && portal.gety()==1) 
+                  {
+                  portal.setNumber(0);
+                  portal.setDestination("city",0);
+                  }
+                }              
 
               add(portal);
 
@@ -392,6 +400,10 @@ public class StendhalRPZone extends MarauroaRPZone
                 if(sign.getx()==118 && sign.gety()==43) sign.setText("You are going to leave this area to move to forest.|You may grow up your sheep faster there.|Be careful many wolves may attack you.");
                 if(sign.getx()==38 && sign.gety()==3) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
                 if(sign.getx()==113 && sign.gety()==3) sign.setText("You are going to leave this area to move to city.|You may sell your sheep there. ");
+                }
+              else if(zoneid.getID().equals("afterlive"))
+                {
+                if(sign.getx()==11 && sign.gety()==19) sign.setText("You have died! You have lost some of your items and 10% of your eXPerience points. Be more careful next time. On the upper side you can return to city.");
                 }
                 
               add(sign);

@@ -125,6 +125,11 @@ public abstract class RPEntity extends AnimatedEntity
       {
       level=Level.getLevel(changes.getInt("xp"));
       }
+    
+    if(changes.has("target") && object.has("target"))
+      {
+      gameObjects.attackStop(this,targetEntity);
+      }
 
 
     /** Attack code */  
@@ -167,8 +172,11 @@ public abstract class RPEntity extends AnimatedEntity
   public void onAttack(RPEntity source, int risk, int damage)
     {
     attacked=true;
+    
+    // This shows damage done by the player and to the player.
+    boolean showAttackInfoForPlayer=getID().equals(client.getPlayer().getID()) || source.getID().equals(client.getPlayer().getID());
 
-    if(risk>0 && damage>0 && (stendhal.showEveryoneAttackInfo || getID().equals(client.getPlayer().getID())))
+    if(risk>0 && damage>0 && (stendhal.showEveryoneAttackInfo || showAttackInfoForPlayer))
       {
       client.addEventLine(name+" loses with "+damage+" hitpoints due to an attack by "+source.getName(),Color.RED);
       }

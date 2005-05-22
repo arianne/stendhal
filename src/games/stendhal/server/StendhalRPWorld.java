@@ -93,6 +93,14 @@ public class StendhalRPWorld extends RPWorld
     dungeon_000.populate("games/stendhal/server/maps/dungeon_000_objects.stend");
     addRPZone(dungeon_000);
 
+    StendhalRPZone afterlive=new StendhalRPZone("afterlive");
+    afterlive.addLayer("afterlive_0_floor","games/stendhal/server/maps/afterlive_0_floor.stend");
+    afterlive.addLayer("afterlive_1_object","games/stendhal/server/maps/afterlive_1_object.stend");
+    afterlive.addLayer("afterlive_2_roof","games/stendhal/server/maps/afterlive_2_roof.stend");
+    afterlive.addCollisionLayer("afterlive_collision","games/stendhal/server/maps/afterlive_collision.stend");
+    afterlive.populate("games/stendhal/server/maps/afterlive_objects.stend");
+    addRPZone(afterlive);
+
 //    StendhalRPZone test=new StendhalRPZone("test");
 //    test.addLayer("test_0_floor","games/stendhal/server/maps/test_0_floor.stend");
 //    test.addLayer("test_1_object","games/stendhal/server/maps/test_1_object.stend");

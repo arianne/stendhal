@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+ <tileset name="Outside" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\tiled-0.5.0\dist\zelda_outside_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\tiled-0.5.0\dist\zelda_dungeon_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Objects" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="..\..\..\tiled-0.5.0\dist\zelda_objects_chipset.gif"/>
+ </tileset>
+ <tileset name="Collision" firstgid="1061" tilewidth="32" tileheight="32">
+  <image source="..\..\..\tiled-0.5.0\dist\zelda_collision_chipset.gif"/>
+ </tileset>
+ <layer name="afterlive_0_floor" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNnYmBgH8WjeAhgDiDmxIG56GC/GhCr48AaUDVvGAfW/oH2PwzTIhwo8f8rKrhnKIU/tfxMqv244p0abnEBYlcc2I0O4T+KR/EoHsWjmHpYdoBx5CDAUQOIowcYx4ziAcUANFsbdAAQAAA=
+  </data>
+ </layer>
+ <layer name="afterlive_1_object" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3VywnCQBRG4RlnrQ34SNoQSbZW4AtbcOc7Jbj1WYKVWEZa0BI8goLo3KzCIHIPfJsZhh+ySV4xJv/Qc99nL1drzM367/oF7yRdj6nznz9UURPuZgXvJJqmadr/NEGdf1QDTbQQIbZh9jdos9V5kyAtcT/iXxc7eX/A1vBphHHJ+wnbqbB/xpytBZZYYY0s0Pe/YMvWDnsccMQp0L6maZqm/Xp3oYhCOwAQAAA=
+  </data>
+ </layer>
+ <layer name="afterlive_2_roof" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="afterlive_objects" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGFrgMDMEj4JRMApGwSgYBaNgFIwEIM2Cyudlwa5uFIyCUTAKRsEoIAQAKKFnyQAQAAA=
+  </data>
+ </layer>
+ <layer name="afterlive_collision" width="32" height="32" opacity="0.67">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAFNlYWBQHcF4FAwdMNBxSYz9tHTHUPA/stqBtB+b3oG0nxqAVPup7SZK0j89w3+gy3t62I/PvJFgPzFuG63vR8EoGNyAlLb6KB7Fo5i6GADCJ/fDABAAAA==
+  </data>
+ </layer>
+</map>

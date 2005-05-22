@@ -276,11 +276,20 @@ public class StendhalRPAction
   
   public static void placeat(StendhalRPZone zone, Entity entity, int x, int y)
     {
-    while(zone.collides(entity,x,y))
+    
+    int i=0;
+    
+    while(zone.collides(entity,x,y) && i<10)
       {
       System.out.println (x+","+y);
       x=x+(int)(rand.nextInt(3)-1);
-      y=y+(int)(rand.nextInt(3)-1);    
+      y=y+(int)(rand.nextInt(3)-1);   
+      i++; // We limit how many times we try... 
+      }
+    
+    if(i==10)
+      {
+      Logger.trace("StendhalRPAction::placeat","X","Unable to place "+entity+" at ("+x+","+y+")");
       }
     
     entity.setx((int)x);
