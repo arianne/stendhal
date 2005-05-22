@@ -12,11 +12,13 @@ abstract class SpeakerNPC extends NPC
   public SpeakerNPC(RPObject object) throws AttributeNotFoundException
     {
     super(object);
+    chatStop=0;
     }
 
   public SpeakerNPC() throws AttributeNotFoundException
     {
     super();
+    chatStop=0;
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
@@ -48,19 +50,32 @@ abstract class SpeakerNPC extends NPC
     setHP(getbaseHP());
     world.modify(this);
     }
+  
+  private int chatStop;
     
   public void logic()
     {
-    move();
-    if(!stopped())
+    if(has("text")) remove("text");
+    
+    if(chatStop>0) chatStop--;
+    
+    if(chatStop==0)
       {
-      StendhalRPAction.move(this);
+      move();
+      if(!stopped())
+        {
+        StendhalRPAction.move(this);
+        }
       }
     
     Player speaker=getNearestPlayerThatHasSpeaken(this,5);
     if(speaker!=null)
       {
-      chat(speaker);
+      if(chat(speaker))
+        {
+        stop();
+        chatStop=30;
+        }
       }
 
     world.modify(this);

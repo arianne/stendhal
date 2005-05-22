@@ -57,7 +57,11 @@ public abstract class Creature extends NPC
 
   public void onDead(RPEntity who)
     {
-    if(point!=null) point.notifyDead(this);
+    if(point!=null) 
+      {
+      point.notifyDead(this);
+      }
+    
     super.onDead(who);
     }
   

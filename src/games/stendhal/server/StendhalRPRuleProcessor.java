@@ -283,8 +283,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         RPObject object=zone.get(targetid);
         if(object instanceof RPEntity)
           {
-          player.attack((RPEntity)object);
-          world.modify(player);
+          if(!player.equals(object))
+            {
+            player.attack((RPEntity)object);
+            world.modify(player);
+            }
           }
         }
       }
