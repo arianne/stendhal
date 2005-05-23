@@ -26,9 +26,9 @@ public class Orc extends Creature
   {
   final private double SPEED=0.5;
   
-  final private static int HP=35;
-  final private static int ATK=6;
-  final private static int DEF=4;
+  final private static int HP=80;
+  final private static int ATK=10;
+  final private static int DEF=6;
   final private static int XP=1700;
   
   public static void generateRPClass()
