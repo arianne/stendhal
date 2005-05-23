@@ -19,10 +19,10 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 
-public abstract class RPEntity extends Entity 
+public abstract class RPEntity extends Entity
   {
   protected static Statistics stats;
-  
+
   private String name;
 
   private int atk;
@@ -30,11 +30,11 @@ public abstract class RPEntity extends Entity
   private int base_hp;
   private int hp;
   private int xp;
-  
+
   public static void generateRPClass()
     {
     stats=Statistics.getStatistics();
-    
+
     try
       {
       RPClass entity=new RPClass("rpentity");
@@ -54,7 +54,7 @@ public abstract class RPEntity extends Entity
       Logger.thrown("RPEntity::generateRPClass","X",e);
       }
     }
-  
+
   public RPEntity(RPObject object) throws AttributeNotFoundException
     {
     super(object);
@@ -66,11 +66,11 @@ public abstract class RPEntity extends Entity
     super();
     attackSource=new LinkedList<RPEntity>();
     }
-    
+
   public void update() throws AttributeNotFoundException
     {
     super.update();
-    
+
     if(has("name")) name=get("name");
     if(has("atk")) atk=getInt("atk");
     if(has("def")) def=getInt("def");
@@ -82,36 +82,36 @@ public abstract class RPEntity extends Entity
   public void setName(String name)
     {
     this.name=name;
-    put("name",name);   
+    put("name",name);
     }
-  
+
   public String getName()
     {
     return name;
     }
-  
+
   public void setATK(int atk)
     {
     this.atk=atk;
     put("atk",atk);
     }
-      
+
   public int getATK()
     {
     return atk;
     }
-    
+
   public void setDEF(int def)
     {
     this.def=def;
     put("def",def);
     }
-      
+
   public int getDEF()
     {
     return def;
     }
-    
+
   public void setbaseHP(int hp)
     {
     this.base_hp=hp;
@@ -124,13 +124,13 @@ public abstract class RPEntity extends Entity
     {
     return base_hp;
     }
-    
+
   public void setHP(int hp)
     {
     this.hp=hp;
     put("hp",hp);
     }
-      
+
   public int getHP()
     {
     return hp;
@@ -146,12 +146,12 @@ public abstract class RPEntity extends Entity
       setATK(getATK()+levels);
       setDEF(getDEF()+levels);
       setbaseHP(getbaseHP()+10*levels);
-      }      
+      }
 
     this.xp=newxp;
     put("xp",xp);
     }
-      
+
   public int getXP()
     {
     return xp;
@@ -159,14 +159,14 @@ public abstract class RPEntity extends Entity
   
   private List<RPEntity> attackSource;
   private RPEntity attackTarget;
-  
+
   /** Modify the entity to order to attack the target entity */
   public void attack(RPEntity target)
     {
     put("target",target.getID().getObjectID());
     attackTarget=target;
     }
-  
+
   /** Modify the entity to stop attacking */
   public void stopAttack()
     {
@@ -181,7 +181,7 @@ public abstract class RPEntity extends Entity
       
     attackTarget=null;    
     }
-  
+
   /** This method is called on each round when this entity has been attacked by
    *  RPEntity who and status is true to means keep attacking and false mean stop
    *  attacking. */
@@ -202,7 +202,7 @@ public abstract class RPEntity extends Entity
       attackSource.clear();
       }      
     }
-  
+
   /** This method is called when this entity has been attacked by RPEntity who and
    *  it has been damaged with damage points. */
   public void onDamage(RPEntity who, int damage)
@@ -217,32 +217,42 @@ public abstract class RPEntity extends Entity
       {
       onDead(who);
       }
-    
+
     world.modify(this);
     }
-  
+
   /** This method is called when the entity has been killed ( hp==0 ). */
-  public void onDead(RPEntity who)
+  public void onDead(RPEntity who) {
+    onDead(who, true);
+  }
+
+  /** This method is called when the entity has been killed ( hp==0 ).
+   * For almost wverything remove is true and the creature is removed
+   * from the world, except for the players...
+   */
+  public void onDead(RPEntity who, boolean remove)
     {
     stopAttack();
     who.stopAttack();
-    
+
     // Establish how much xp points your are rewarded
-    who.setXP(who.getXP()+getXP());
-    
-    // Stats about dead 
+    who.setXP(who.getXP()+(int)(getXP()*0.05));
+
+    // Stats about dead
     stats.add("Killed "+get("type"),1);
-    
+
     // Add a corpse
     Corpse corpse=new Corpse(this);
     IRPZone zone=world.getRPZone(getID());
     zone.assignRPObjectID(corpse);
     zone.add(corpse);
-    
+
     rp.addCorpse(corpse);
 
-    world.modify(who);    
-    world.remove(getID());
+    world.modify(who);
+    if(remove) {
+      world.remove(getID());
+      }
     }
 
   /** Return true if this entity is attacked */
@@ -269,7 +279,7 @@ public abstract class RPEntity extends Entity
       return null;
       }
     }
-  
+
   /** Return true if this entity is attacking */
   public boolean isAttacking()
     {
@@ -285,8 +295,8 @@ public abstract class RPEntity extends Entity
   private List<Path.Node> path;
   private int pathPosition;
   private boolean pathLoop;
-  
-  
+
+
   /** Set a path to follow for this entity */
   public void setPath(List<Path.Node> path, boolean cycle)
     {
@@ -294,37 +304,37 @@ public abstract class RPEntity extends Entity
     this.pathPosition=0;
     this.pathLoop=cycle;
     }
-    
+
   public void clearPath()
     {
     this.path=null;
     }
-    
+
   public boolean hasPath()
     {
     return path!=null;
     }
-  
-  public List<Path.Node> getPath()  
+
+  public List<Path.Node> getPath()
     {
     return path;
     }
-  
+
   public boolean isPathLoop()
     {
     return pathLoop;
     }
-  
+
   public int getPathPosition()
     {
     return pathPosition;
     }
-  
+
   public boolean pathCompleted()
     {
     return path!=null && pathPosition==path.size()-1;
     }
-  
+
   public void setPathPosition(int pathPos)
     {
     this.pathPosition=pathPos;

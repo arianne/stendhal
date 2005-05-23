@@ -29,7 +29,7 @@ public class Rat extends Creature
   final private static int HP=10;
   final private static int ATK=3;
   final private static int DEF=2;
-  final private static int XP=5;
+  final private static int XP=90;
   
   public static void generateRPClass()
     {    

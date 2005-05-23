@@ -29,7 +29,7 @@ public class CaveRat extends Creature
   final private static int HP=20;
   final private static int ATK=6;
   final private static int DEF=2;
-  final private static int XP=10;
+  final private static int XP=120;
   
   public static void generateRPClass()
     {    

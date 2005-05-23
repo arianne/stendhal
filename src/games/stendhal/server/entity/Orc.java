@@ -22,32 +22,32 @@ import java.awt.geom.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
 
-public class Wolf extends Creature
+public class Orc extends Creature
   {
   final private double SPEED=0.5;
   
   final private static int HP=35;
   final private static int ATK=6;
   final private static int DEF=4;
-  final private static int XP=380;
+  final private static int XP=1700;
   
   public static void generateRPClass()
     {    
     try
       {
-      RPClass wolf=new RPClass("wolf");
-      wolf.isA("npc");
+      RPClass orc=new RPClass("orc");
+      orc.isA("npc");
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("Wolf::generateRPClass","X",e);
+      Logger.thrown("Orc::generateRPClass","X",e);
       }
     }
   
-  public Wolf() throws AttributeNotFoundException
+  public Orc() throws AttributeNotFoundException
     {
     super();
-    put("type","wolf");
+    put("type","orc");
     put("x",0);
     put("y",0);
     
@@ -58,7 +58,7 @@ public class Wolf extends Creature
     
     stop();
 
-    Logger.trace("Wolf::Wolf","D","Created Wolf: "+this.toString());
+    Logger.trace("Orc::Orc","D","Created Orc: "+this.toString());
     }
 
   public void getArea(Rectangle2D rect, double x, double y)

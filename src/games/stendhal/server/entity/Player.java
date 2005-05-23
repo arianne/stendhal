@@ -63,25 +63,12 @@ public class Player extends RPEntity
       removeSheep(sheep);
       }
 
+    super.onDead(who, false);
 
-    who.setXP(who.getXP()+(int)(getXP()*0.1));
-
-    // Add a corpse
-    Corpse corpse=new Corpse(this);
-    IRPZone zone=world.getRPZone(getID());
-    zone.assignRPObjectID(corpse);
-    zone.add(corpse);
-    
-    rp.addCorpse(corpse);
-
-    world.modify(who);    
-    
     // Stats about dead 
     setXP((int)(getXP()*0.9));        
     setHP(getbaseHP());
 
-    stats.add("Killed "+get("type"),1);
-    
     StendhalRPAction.changeZone(this,"city");
     StendhalRPAction.transferContent(this);
     }
