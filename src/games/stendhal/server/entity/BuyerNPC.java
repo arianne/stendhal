@@ -75,7 +75,7 @@ public class BuyerNPC extends SpeakerNPC
           world.remove(player.getSheep());
           player.removeSheep(sheep);
           
-          player.addXP(player.getXP()+(int)(100.0*(sheep.getWeight()/100.0)));
+          player.addXP(sheep.getWeight());
           
           world.modify(player);
           amount++;
