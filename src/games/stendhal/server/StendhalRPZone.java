@@ -125,18 +125,62 @@ public class StendhalRPZone extends MarauroaRPZone
     object.sety(Integer.parseInt(components[1]));
     }
 
-  public void placeObjectAtZoneChangePoint(Entity object)
+  public void placeObjectAtZoneChangePoint(StendhalRPZone oldzone, Entity object)
     {
     if(zoneChangePoints.size()==0)
       {
       return;
       }
+      
+    String exitDirection=null;
+
+    if(object.gety()<4)
+      {
+      exitDirection="N";
+      }
+    else if(object.gety()>oldzone.getHeight()-4)
+      {
+      exitDirection="S";
+      }
+    else if(object.getx()<4)
+      {
+      exitDirection="W";
+      }
+    else if(object.getx()>oldzone.getWidth()-4)
+      {
+      exitDirection="E";
+      }
     
-    int x=width-(int)object.getx();
-    int y=height-(int)object.gety();
-    int distance=width*width+height+height;
+    Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Player exit direction: "+exitDirection);
+    
+    int x=0;
+    int y=0;
+    int distance=Integer.MAX_VALUE;
     String minpoint=zoneChangePoints.get(0);
     
+    if(exitDirection.equals("N"))
+      {
+      x=object.getx();
+      y=getHeight();
+      }
+    else if(exitDirection.equals("S"))
+      {
+      x=object.getx();
+      y=0;
+      }
+    else if(exitDirection.equals("W"))
+      {
+      x=getWidth();
+      y=object.gety();
+      }
+    else if(exitDirection.equals("E"))
+      {
+      x=0;
+      y=object.gety();
+      }
+
+    Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Player entry point: ("+x+","+y+")");
+
     for(String point: zoneChangePoints)
       {
       String[] components=point.split(",");
@@ -145,11 +189,13 @@ public class StendhalRPZone extends MarauroaRPZone
       
       if((px-x)*(px-x)+(py-y)*(py-y)<distance)
         {
+        Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Best entry point: ("+px+","+py+") --> "+distance);
         distance=(px-x)*(px-x)+(py-y)*(py-y);
         minpoint=point;
         }
       }
       
+    Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Choosen entry point: ("+minpoint+") --> "+distance);
     String[] components=minpoint.split(",");
     object.setx(Integer.parseInt(components[0]));
     object.sety(Integer.parseInt(components[1]));

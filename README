@@ -40,6 +40,8 @@ No warranties. But let me know if it doesn't works.
 How to play
 -----------
 You need arianne's Stendhal client in order to be able to play Stendhal.
+You also need Java JRE 1.5 ( http://www.java.com/es/download )
+
 Please download it from http://arianne.sourceforge.net
 
 Then just do:
@@ -70,6 +72,13 @@ use left mouse button to choose the action or click outside to abort.
 
 Changelog
 ---------
+0.20 May XX, 2005
+- Added API for identifing several attackers.
+- Improved creature AI to attack anyone near it.
+- Added icon to main game window
+- Fix zone change problem
+- Fix placeat problem
+
 0.12 May 22, 2005
 - Fixed a severe bug that happens when a creature respawn over a player.
 - Disabled the attack yourself feature
@@ -78,6 +87,7 @@ Changelog
 - NPC don't repeat text on zone change any more
 - Better rendering order
 - Corpses are now under everything
+- Improved client speed
 
 0.11 May 20, 2005
 - Added Rat

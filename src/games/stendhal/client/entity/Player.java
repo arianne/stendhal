@@ -53,7 +53,7 @@ public class Player extends RPEntity
     super.modifyAdded(object,changes);
   
     /** Add text lines */
-    if(changes.has("text"))    
+    if(changes.has("text") && distance(client.getPlayer())<15*15)    
       {
       String text=changes.get("text");
       client.addEventLine(getName(),text);
@@ -61,6 +61,13 @@ public class Player extends RPEntity
       textImage=GameScreen.get().createTextBox(text,240,Color.black,Color.white);
       textImageTime=System.currentTimeMillis();
       }  
+    
+    if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
+      {
+      System.out.println (getID());
+      if(client.getPlayer()!=null) System.out.println (client.getPlayer().getID());
+      client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
+      }
     }
 
   public String[] offeredActions()

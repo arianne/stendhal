@@ -22,7 +22,7 @@ public class stendhal extends Thread
   final public static boolean showEveryoneAttackInfo=false;
   final public static boolean showEveryoneXPInfo=false;
   
-  final public static String VERSION="0.11";
+  final public static String VERSION="0.12";
   
   public static void main(String args[]) 
     {

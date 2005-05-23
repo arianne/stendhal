@@ -377,15 +377,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           {
           StendhalRPAction.attack(object,object.getAttackTarget());
           }
-        }
-
-      for(Player object: playersObjectRmText)
-        {
-        if(object.has("text"))
-          {
-          object.remove("text");
-          world.modify(object);
-          }
         
         if(object.has("risk")) 
           {
@@ -396,6 +387,21 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         if(object.has("damage")) 
           {
           object.remove("damage");
+          world.modify(object);
+          }
+        
+        if(object.has("dead"))
+          {
+          object.remove("dead");
+          world.modify(object);
+          }
+        }
+
+      for(Player object: playersObjectRmText)
+        {
+        if(object.has("text"))
+          {
+          object.remove("text");
           world.modify(object);
           }
         }
@@ -541,7 +547,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             object.storeSheep(sheep);
             npcs.remove(sheep);
             }
-            
+          
+          object.stop();
+          object.stopAttack();  
           playersObject.remove(object);
           Logger.trace("StendhalRPRuleProcessor::onExit","D",object.toString());
           break;

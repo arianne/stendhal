@@ -31,6 +31,7 @@ public class Player extends RPEntity
       player.isA("rpentity");
       player.add("text",RPClass.STRING);
       player.add("sheep",RPClass.INT);
+      player.add("dead",RPClass.FLAG);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -54,6 +55,8 @@ public class Player extends RPEntity
     
   public void onDead(RPEntity who)
     {
+    put("dead","");
+    
     if(hasSheep())
       {
       Sheep sheep=(Sheep)world.remove(getSheep());

@@ -89,6 +89,11 @@ public abstract class RPEntity extends AnimatedEntity
     {
     return name;
     }
+  
+  public int getLevel()
+    {
+    return level;
+    }
 
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
@@ -239,6 +244,8 @@ public abstract class RPEntity extends AnimatedEntity
       float r=1-(float)hp/((float)base_hp);r*=2;
       float g=(float)hp/((float)base_hp);g*=2;
       
+      g2d.setColor(Color.gray);
+      g2d.fillRect((int)p.getX(),(int)p.getY()-3,26,3);
       g2d.setColor(new Color(r>1?1:r,g>1?1:g,0));
       g2d.fillRect((int)p.getX(),(int)p.getY()-3,(int)(((float)hp/(float)base_hp)*26.0),3);
       g2d.setColor(Color.black);

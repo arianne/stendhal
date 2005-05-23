@@ -118,17 +118,13 @@ public abstract class Creature extends NPC
       setPath(nodes,true);
       }
     
-    if(isAttacked())
+    if(isAttacked() && target==null)
       {
-      if(target==null) 
-        {
-        clearPath();
-        }
-      
-      target=this.getAttackSource();
+      clearPath();
+      target=this.getAttackSource(0);
       Logger.trace("Creature::logic","D","Creature("+get("type")+") has been attacked by "+target.get("type"));
       }
-    else if(target==null || !target.get("zoneid").equals(get("zoneid")) || !world.has(target.getID()))
+    else if(target==null || (!target.get("zoneid").equals(get("zoneid")) && world.has(target.getID())) || !world.has(target.getID()))
       {
       if(isAttacking())
         {

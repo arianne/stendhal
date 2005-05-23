@@ -124,7 +124,11 @@ public class StendhalClient extends ariannexp
     try
       {
       Logger.trace("StendhalClient::onPerception",">");
-      Logger.trace("StendhalClient::onPerception","D",message.toString());
+      if(Logger.loggable("StendhalClient::onPerception","D"))
+        {
+        Logger.trace("StendhalClient::onPerception","D",message.toString());
+        }
+        
       if(message.getTypePerception()==1/*Perception.SYNC*/)
         {
         Logger.trace("StendhalClient::onPerception","D","UPDATING screen position");
@@ -297,6 +301,7 @@ public class StendhalClient extends ariannexp
         }
       catch(Exception e)
         {
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedAdded","X",changes.toString());
         Logger.thrown("StendhalClient::StendhalPerceptionListener::onModifiedAdded","X",e);
         }
       return true;

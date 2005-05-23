@@ -58,11 +58,13 @@ public abstract class RPEntity extends Entity
   public RPEntity(RPObject object) throws AttributeNotFoundException
     {
     super(object);
+    attackSource=new LinkedList<RPEntity>();
     }
 
   public RPEntity() throws AttributeNotFoundException
     {
     super();
+    attackSource=new LinkedList<RPEntity>();
     }
     
   public void update() throws AttributeNotFoundException
@@ -155,7 +157,7 @@ public abstract class RPEntity extends Entity
     return xp;
     }
   
-  private RPEntity attackSource;
+  private List<RPEntity> attackSource;
   private RPEntity attackTarget;
   
   /** Modify the entity to order to attack the target entity */
@@ -172,7 +174,11 @@ public abstract class RPEntity extends Entity
     if(has("damage")) remove("damage");
     if(has("target")) remove("target");
     
-    if(attackTarget!=null) attackTarget.attackSource=null;
+    if(attackTarget!=null)
+      {
+      attackTarget.attackSource.remove(this);
+      }
+      
     attackTarget=null;    
     }
   
@@ -184,13 +190,16 @@ public abstract class RPEntity extends Entity
     if(status)
       {
       who.attackTarget=this;
-      attackSource=who;
+      if(attackSource.indexOf(who)==-1)
+        {
+        attackSource.add(who);
+        }
       }
     else
       {
       if(who.has("target")) who.remove("target");
       who.attackTarget=null;
-      attackSource=null;
+      attackSource.clear();
       }      
     }
   
@@ -239,13 +248,26 @@ public abstract class RPEntity extends Entity
   /** Return true if this entity is attacked */
   public boolean isAttacked()
     {
-    return attackSource!=null;
+    return attackSource.size()>0;
     }
   
-  /** Return the RPEntity that is attacking this character */ 
-  public RPEntity getAttackSource()
+  /** Return the RPEntities that are attacking this character */ 
+  public List<RPEntity> getAttackSources()
     {
     return attackSource;
+    }
+
+  /** Return the RPEntity that is attacking this character */ 
+  public RPEntity getAttackSource(int pos)
+    {
+    try
+      {
+      return attackSource.get(pos);
+      }
+    catch(IndexOutOfBoundsException e)    
+      {
+      return null;
+      }
     }
   
   /** Return true if this entity is attacking */

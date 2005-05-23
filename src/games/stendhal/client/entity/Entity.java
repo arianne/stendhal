@@ -81,6 +81,11 @@ public abstract class Entity
     {
     return y;
     }
+  
+  public double distance(RPObject object)
+    {
+    return (object.getInt("x")-x)*(object.getInt("x")-x)+(object.getInt("y")-y)*(object.getInt("y")-y);
+    }
  
   protected static String translate(String type)
     {

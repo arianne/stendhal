@@ -207,6 +207,7 @@ public class StendhalRPAction
       }
     else if((zoneid.equals("city") || zoneid.equals("village")) && y>zone.getHeight()-4)
       {
+      if(zoneid.equals("city")) player.setx(player.getx()+64);
       changeZone(player,"plains");
       transferContent(player);
       }
@@ -247,6 +248,8 @@ public class StendhalRPAction
       world.changeZone(source,portal.getDestinationZone(),player);    
       
       player.setSheep(sheep);
+      player.stop();
+      player.stopAttack();
       }
     else
       {
@@ -275,11 +278,10 @@ public class StendhalRPAction
     }
   
   public static void placeat(StendhalRPZone zone, Entity entity, int x, int y)
-    {
-    
+    {    
     int i=0;
     
-    while(zone.collides(entity,x,y) && i<10)
+    while(zone.collides(entity,x,y) && i<5)
       {
       System.out.println (x+","+y);
       x=x+(int)(rand.nextInt(3)-1);
@@ -287,13 +289,13 @@ public class StendhalRPAction
       i++; // We limit how many times we try... 
       }
     
-    if(i==10)
+    if(i==5)
       {
       Logger.trace("StendhalRPAction::placeat","X","Unable to place "+entity+" at ("+x+","+y+")");
       }
-    
-    entity.setx((int)x);
-    entity.sety((int)y);
+      
+    entity.setx(x);
+    entity.sety(y);
     }
     
   public static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException
@@ -302,6 +304,8 @@ public class StendhalRPAction
 
     String source=player.getID().getZoneID();
     
+    StendhalRPZone oldzone=(StendhalRPZone)world.getRPZone(player.getID());
+
     if(player.hasSheep())
       {
       Sheep sheep=(Sheep)world.get(player.getSheep());
@@ -316,10 +320,11 @@ public class StendhalRPAction
       }
     
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-    zone.placeObjectAtZoneChangePoint(player);
+    zone.placeObjectAtZoneChangePoint(oldzone,player);
     
     placeat(zone,player,player.getInt("x"),player.getInt("y"));
     player.stop();
+    player.stopAttack();
       
     if(player.hasSheep())
       {
