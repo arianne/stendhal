@@ -138,8 +138,14 @@ public abstract class RPEntity extends Entity
 
   public void setXP(int newxp)
     {
+    this.xp=newxp;
+    put("xp",xp);
+    }
+
+  public void addXP(int newxp)
+    {
     // Increment experience points
-    int levels=Level.changeLevel(xp,newxp-xp);
+    int levels=Level.changeLevel(xp,newxp);
     if(levels>0)
       {
       // Level up
@@ -148,7 +154,7 @@ public abstract class RPEntity extends Entity
       setbaseHP(getbaseHP()+10*levels);
       }
 
-    this.xp=newxp;
+    this.xp += newxp;
     put("xp",xp);
     }
 
@@ -236,7 +242,7 @@ public abstract class RPEntity extends Entity
     who.stopAttack();
 
     // Establish how much xp points your are rewarded
-    who.setXP(who.getXP()+(int)(getXP()*0.05));
+    who.addXP((int)(getXP()*0.05));
 
     // Stats about dead
     stats.add("Killed "+get("type"),1);
