@@ -47,7 +47,7 @@ public class SellerNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("hi"))
       {
-      say("Come here to buy your sheeps!");
+      say("Come here and buy your lambs!|Feed them up and sell them for a profit!");
       return true;
       }
     else if(text.contains("buy"))
@@ -55,7 +55,7 @@ public class SellerNPC extends SpeakerNPC
       if(!player.hasSheep())
         {
         Logger.trace("SellerNPC::chat","D","Selling a sheep to player");
-        say("Congratulations! Here is your sheep!");
+        say("Congratulations! Here is your sheep!|Keep it safe!");
         IRPZone zone=world.getRPZone(getID());
         
         Sheep sheep=new Sheep(player);
@@ -72,24 +72,24 @@ public class SellerNPC extends SpeakerNPC
         }
       else
         {
-        say("You already have a sheep. Grow it up!");
+        say("You already have a sheep. Take care of it first!");
         }
         
       return true;
       }
     else if(text.equals("help"))
       {
-      say("I do sell sheeps, try to BUY me one.");
+      say("I sell sheep, try to BUY one from me.");
       return true;
       }
     else if(text.equals("job"))
       {
-      say("I sell small sheeps. I have listen that someone buys them when bigger for a nice amount of gold, but it is so boring to grow them up!.");
+      say("I sell lambs. I have heard that someone buys them for meat when they are nice and plump for a good amount of gold.  But it is so boring to raise them that I will leave it up to you!");
       return true;
       }
     else if(text.contains("sold"))
       {
-      say("I have sold "+amount+" sheeps");
+      say("I have sold "+amount+" sheep(s).");
       }
     else if(text.contains("bye"))
       {

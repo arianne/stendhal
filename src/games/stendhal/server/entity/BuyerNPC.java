@@ -57,7 +57,7 @@ public class BuyerNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("hi"))
       {
-      say("Come here to sell your sheeps! I have the best prices at this side of the Ourvalon!");
+      say("Come 'ere and sell ya sheep!|I 'ave the best prices this side of the Ourvalon, I swears it!");
       return true;
       }
     else if(text.contains("sell"))
@@ -67,7 +67,7 @@ public class BuyerNPC extends SpeakerNPC
         Sheep sheep=(Sheep)world.get(player.getSheep());
         if(distance(sheep)>5*5)
           {
-          say("Your sheep is too far. I can't see it from here. Go and grab it here.");
+          say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
           }
         else
           {
@@ -85,22 +85,22 @@ public class BuyerNPC extends SpeakerNPC
         }
       else
         {
-        say("You don't have any sheep!!. Who do you think you are talking to, "+player.get("name")+"?");
+        say("You ain't got a sheep!! What game you trying to play, "+player.get("name")+"?");
         return true;
         }      
       }
     else if(text.equals("help"))
       {
-      say("I do buy sheeps, try to SELL me one.");
+      say("I buy sheep. Try to SELL me one.");
       return true;
       }
     else if(text.contains("job"))
       {
-      say("I work here buying sheeps for a Meat factory near Capital. Have you visited our Capital?");
+      say("I've been buying sheep for a Meat factory up near da ol' Capital city for the past 20 years. Have you visited our fair Capital city?");
       }    
     else if(text.contains("bought"))
       {
-      say("I have bougth "+amount+" sheeps");
+      say("I have bought "+amount+" sheep(s).");
       }
     else if(text.equals("bye"))
       {

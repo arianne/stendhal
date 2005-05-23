@@ -382,28 +382,28 @@ public class StendhalRPZone extends MarauroaRPZone
               sign.sety(j/width);
               if(zoneid.getID().equals("village"))
                 {
-                if(sign.getx()==23 && sign.gety()==47) sign.setText("You are going to leave this area to move to plains.|You may grow up your sheep there.|Be careful wolves may attack you.");
-                if(sign.getx()==26 && sign.gety()==27) sign.setText("Talk to Nishiya to buy a sheep!.|He will offer you a nice price.");
-                if(sign.getx()==60 && sign.gety()==33) sign.setText("You are going to leave this area to move to city.|You may sell your sheep there. ");
+                if(sign.getx()==23 && sign.gety()==47) sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
+                if(sign.getx()==26 && sign.gety()==27) sign.setText("Talk to Nishiya to buy a sheep!.|He has the best prices for miles.");
+                if(sign.getx()==60 && sign.gety()==33) sign.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");
                 }
               else if(zoneid.getID().equals("city"))
                 {
-                if(sign.getx()==4 && sign.gety()==21) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
-                if(sign.getx()==8 && sign.gety()==25) sign.setText("This is our attack dummy.|Click on it to attack, another click to stop attacking it.| Be sure to learn how to attack correctly, it will be useful.");
-                if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!|Make sure you talk with Paco for hints|Please report problems at our webpage.");
-                if(sign.getx()==26 && sign.gety()==26) sign.setText("You are going to enter the Dungeon.|Be very careful with rats, people says many adventures has died there...");
-                if(sign.getx()==43 && sign.gety()==26) sign.setText("Talk to Sato to sell your sheep!.|He won't give you a fair price but this is an small village...");
-                if(sign.getx()==44 && sign.gety()==48) sign.setText("You are going to leave this area to move to plains.|You may grow up your sheep there.|Be careful wolves may attack you.");
+                if(sign.getx()==4 && sign.gety()==21) sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
+                if(sign.getx()==8 && sign.gety()==25) sign.setText("This is our attack dummy.|Right click on it to start or stop attacking it.| Use this dummy to hone your fighting skills. They will be useful.");
+                if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!| Make sure you talk to Paco for some useful hints.|Please report any problems and issues at our webpage.");
+                if(sign.getx()==26 && sign.gety()==26) sign.setText("You are about to enter the Dungeons.|But Beware! This area is infested with rats and legend has it that many Adventurers have died down there...");
+                if(sign.getx()==43 && sign.gety()==26) sign.setText("Talk to Sato to sell your sheep!.|He probably won't give you a fair price but this is a small village...|The price he will offer you depends on the weight of your sheep.");
+                if(sign.getx()==44 && sign.gety()==48) sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
                 }
               else if(zoneid.getID().equals("plains"))
                 {
-                if(sign.getx()==118 && sign.gety()==43) sign.setText("You are going to leave this area to move to forest.|You may grow up your sheep faster there.|Be careful many wolves may attack you.");
-                if(sign.getx()==38 && sign.gety()==3) sign.setText("You are going to leave this area to move to village.|You may buy a new sheep there.");
-                if(sign.getx()==113 && sign.gety()==3) sign.setText("You are going to leave this area to move to city.|You may sell your sheep there. ");
+                if(sign.getx()==118 && sign.gety()==43) sign.setText("You are about to leave this area to move to the forest.|You may fatten up your sheep there on wild berries.|Be careful though, these forests crawl with wolves.");
+                if(sign.getx()==38 && sign.gety()==3) sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
+                if(sign.getx()==113 && sign.gety()==3) sign.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");
                 }
               else if(zoneid.getID().equals("afterlive"))
                 {
-                if(sign.getx()==11 && sign.gety()==19) sign.setText("You have died! You have lost some of your items and 10% of your eXPerience points. Be more careful next time. On the upper side you can return to city.");
+                if(sign.getx()==11 && sign.gety()==19) sign.setText("I regret to tell you that you have died!|You have lost some of your items and 10% of your eXPerience points.|Be more careful next time. On the up side you can now return to city.");
                 }
                 
               add(sign);

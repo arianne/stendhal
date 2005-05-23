@@ -58,7 +58,7 @@ public class BeggarNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("hi"))
       {
-      say("Hi gentleman!. Won't you have a coins?");
+      say("Hello my friend! Couldn't ya spare a coin for old man?");
       return true;
       }
     else if(text.contains("job"))
@@ -87,7 +87,7 @@ public class BeggarNPC extends SpeakerNPC
       }
     else if(text.contains("quest"))
       {
-      say("I do remember one quest that was about... Oops! I forgot it! :(");
+      say("Ah, quests... just like the old days when I was young!| I remember one quest that was about... Oh look, a bird!|hmm, what?! Oh, Oops! I forgot it! :(");
       return true;
       }
 

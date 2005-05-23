@@ -48,12 +48,12 @@ public class JournalistNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("hi"))
       {
-      say("Hi visitor! May I ask you some questions to improve Stendhal? (yes/no)");
+      say("Hi visitor! May I ask you some questions to help us improve Stendhal? (yes/no)");
       return true;
       }
     else if(text.contains("job") || text.contains("help"))
       {
-      say("I run polls to improve Stendhal quality.");
+      say("I run polls to improve the quality of Stendhal.");
       return true;
       }
     else if(text.equals("no"))
