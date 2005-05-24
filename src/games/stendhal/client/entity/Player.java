@@ -20,28 +20,28 @@ import java.awt.*;
 import java.awt.geom.*;
 
 /** A Player entity */
-public class Player extends RPEntity 
+public class Player extends RPEntity
   {
   private final static int TEXT_PERSISTENCE_TIME=5000;
 
   private Sprite textImage;
   private long textImageTime;
-  
+
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
     }
-    
+
   protected void buildAnimations(String type)
     {
-    SpriteStore store=SpriteStore.get();  
+    SpriteStore store=SpriteStore.get();
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,4,64,32));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,4,64,32));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,4,64,32));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,4,64,32));      
+    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,4,64,32));
+    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,4,64,32));
+    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,4,64,32));
+    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,4,64,32));
     }
-  
+
   protected Sprite defaultAnimation()
     {
     animation="move_up";
@@ -51,22 +51,26 @@ public class Player extends RPEntity
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
-  
+
     /** Add text lines */
-    if(changes.has("text") && distance(client.getPlayer())<15*15)    
+    if(changes.has("text") && distance(client.getPlayer())<15*15)
       {
       String text=changes.get("text");
       client.addEventLine(getName(),text);
 
       textImage=GameScreen.get().createTextBox(text,240,Color.black,Color.white);
       textImageTime=System.currentTimeMillis();
-      }  
-    
+      }
+
     if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
       {
       System.out.println (getID());
       if(client.getPlayer()!=null) System.out.println (client.getPlayer().getID());
       client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
+      }
+    if(changes.has("private_text"))
+      {
+      client.addEventLine(changes.get("private_text"));
       }
     }
 
@@ -81,7 +85,7 @@ public class Player extends RPEntity
       {
       String[] list={"Look","Attack","Stop attack","Follow","Trade"};
       return list;
-      }    
+      }
     }
 
   public void onAction(String action, StendhalClient client)
@@ -94,15 +98,15 @@ public class Player extends RPEntity
       super.onAction(action,client);
       }
     }
-    
+
   public void draw(GameScreen screen)
     {
-    if(textImage!=null) 
+    if(textImage!=null)
       {
       screen.draw(textImage,x+0.7-(textImage.getWidth()/(32.0f*2.0f)),y+2.05);
       if(System.currentTimeMillis()-textImageTime>TEXT_PERSISTENCE_TIME) textImage=null;
       }
-      
+
     super.draw(screen);
     }
   }

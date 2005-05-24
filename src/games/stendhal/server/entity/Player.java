@@ -20,12 +20,12 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.util.*;
 
-public class Player extends RPEntity 
+public class Player extends RPEntity
   {
   private int devel;
   private int leave;
   private boolean hasLeave;
-  
+
   public static void generateRPClass()
     {
     try
@@ -37,13 +37,14 @@ public class Player extends RPEntity
       player.add("devel",RPClass.INT,RPClass.HIDDEN);
       player.add("devel_attrib",RPClass.STRING,RPClass.HIDDEN);
       player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
+      player.add("private_text",RPClass.LONG_STRING,RPClass.HIDDEN);
       }
     catch(RPClass.SyntaxException e)
       {
       Logger.thrown("Player::generateRPClass","X",e);
       }
     }
-  
+
   public Player(RPObject object) throws AttributeNotFoundException
     {
     super(object);
@@ -71,7 +72,7 @@ public class Player extends RPEntity
     super.addXP(newxp);
     }
 
-  public void addDevel(int n) 
+  public void addDevel(int n)
     {
     devel+=n;
     put("devel",devel);
@@ -86,7 +87,7 @@ public class Player extends RPEntity
 	    setATK(getATK()+1);
       }
     }
-    
+
   public void improveDEF()
     {
     if(devel>0)
@@ -96,7 +97,7 @@ public class Player extends RPEntity
 	    setDEF(getDEF()+1);
       }
     }
-    
+
   public void improveHP()
     {
     if(devel>0)
@@ -106,16 +107,21 @@ public class Player extends RPEntity
 	    setbaseHP(getbaseHP()+10);
       }
     }
-    
+
+  public void setPrivateText(String text)
+    {
+    put("private_text", text);
+    }
+
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y+1,1,1);
-    }  
-    
+    }
+
   public void onDead(RPEntity who)
     {
     put("dead","");
-    
+
     if(hasSheep())
       {
       Sheep sheep=(Sheep)world.remove(getSheep());
@@ -136,39 +142,39 @@ public class Player extends RPEntity
       
     setXP((int)(getXP()*0.9));        
     setHP(getbaseHP());
-    
+
     StendhalRPAction.changeZone(this,"afterlive");
     StendhalRPAction.transferContent(this);
     world.modify(who);
     }
-  
+
   public void removeSheep(Sheep sheep)
     {
     Logger.trace("Player::removeSheep",">");
     remove("sheep");
 
     rp.removeNPC(sheep);
-    
+
     // FIXME: Change this to have coherence with storeSheep and retrieveSheep
     if(has("#flock")) getSlot("#flock").clear();
     Logger.trace("Player::removeSheep","<");
     }
-     
+
   public boolean hasSheep()
     {
     return has("sheep");
     }
-  
+
   public void setSheep(Sheep sheep)
     {
     Logger.trace("Player::setSheep",">");
     put("sheep",sheep.getID().getObjectID());
-    
+
     rp.addNPC(sheep);
 
     Logger.trace("Player::setSheep","<");
     }
-  
+
   public static class NoSheepException extends RuntimeException
     {
     public NoSheepException()
@@ -176,12 +182,12 @@ public class Player extends RPEntity
       super();
       }
     }
-  
+
   public RPObject.ID getSheep() throws NoSheepException
     {
     return new RPObject.ID(getInt("sheep"),get("zoneid"));
     }
-    
+
   public void storeSheep(Sheep sheep)
     {
     Logger.trace("Player::storeSheep",">");
@@ -189,7 +195,7 @@ public class Player extends RPEntity
       {
       addSlot(new RPSlot("#flock"));
       }
-     
+
     RPSlot slot=getSlot("#flock");
     slot.clear();
     slot.add(sheep);
@@ -202,21 +208,21 @@ public class Player extends RPEntity
     Logger.trace("Player::retrieveSheep",">");
     try
       {
-      if(hasSlot("#flock"))    
+      if(hasSlot("#flock"))
         {
         RPSlot slot=getSlot("#flock");
         if(slot.size()>0)
           {
           Iterator<RPObject> it=slot.iterator();
-          
-          
+
+
           Sheep sheep=new Sheep(it.next(),this);
-          
+
           removeSlot("#flock");
           return sheep;
           }
         }
-      
+
       throw new NoSheepException();
       }
     finally

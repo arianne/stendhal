@@ -39,7 +39,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private List<Food> foodItems;
   private List<Corpse> corpses;
   private List<Corpse> corpsesToRemove;
-  
+
   public StendhalRPRuleProcessor()
     {
     playersObject=new LinkedList<Player>();
@@ -110,7 +110,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     corpses.add(corpse);
     }
-  
+
   public void removeCorpse(Corpse corpse)
     {
     corpsesToRemove.add(corpse);
@@ -239,8 +239,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       else if(action.get("type").equals("improve"))
         {
-      	improve(player,action);
-	      }
+	improve(player,action);
+	}
+      else if(action.get("type").equals("who"))
+        {
+        who(player);
+        }
+      else if(action.get("type").equals("tell"))
+        {
+        tell(player, action);
+        }
       }
     catch(Exception e)
       {
@@ -332,6 +340,31 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::improve", "<");
     }
 
+  private void who(Player player)
+    {
+    Logger.trace("StendhalRPRuleProcessor::who",">");
+    String online = "Players online: ";
+    for(Player p : getPlayers())
+      {
+      online += p.getName() + " ";
+      }
+    player.setPrivateText(online);
+    world.modify(player);
+    Logger.trace("StendhalRPRuleProcessor::who","<");
+    }
+
+    private void tell(Player player, RPAction action)
+      {
+      Logger.trace("StendhalRPRuleProcessor::tell",">");
+      if(action.has("who") && action.has("text"))
+        {
+        String message = action.get("who") +  " tells you: " + action.get("text");
+        player.setPrivateText(message);
+        world.modify(player);
+        }
+      Logger.trace("StendhalRPRuleProcessor::tell","<");
+      }
+
   private void chat(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPRuleProcessor::chat",">");
@@ -407,7 +440,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       for(Player object: playersObject)
         {
-        if(object.has("risk")) 
+        if(object.has("risk"))
           {
           object.remove("risk");
           world.modify(object);
@@ -429,7 +462,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           {
           StendhalRPAction.move(object);
           }
-        
+
         if(getTurn()%5==0 && object.isAttacking()) //1 round = 5 turns
           {
           StendhalRPAction.attack(object,object.getAttackTarget());
@@ -538,10 +571,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         Logger.trace("StendhalRPRuleProcessor::onInit","D","Sheep located at ("+x+","+y+")");
 
         player.setSheep(sheep);
-        }      
-        
+        }
+
       Logger.trace("StendhalRPRuleProcessor::onInit","D","Finally player is :"+player);
-      
+
       playersObject.add(player);
       return true;
       }
@@ -579,8 +612,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
               object.removeSlot("#flock");
               }
             }
-            
-          
+
+
           object.stop();
           object.stopAttack();
           playersObject.remove(object);
