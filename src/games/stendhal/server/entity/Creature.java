@@ -60,6 +60,11 @@ public abstract class Creature extends NPC
     int levels=Level.changeLevel(getXP(),newxp);
     if(levels>0)
       {
+      // Increse the attributes using that formula:
+      //  Level 1 - DEF + 1
+      //  Level 2 - HP + 10
+      //  Level 3 - ATK + 1
+      
       int currentLevel=Level.getLevel(getXP());
       for(int i=0;i<levels;i++)
         {
