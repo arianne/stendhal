@@ -50,6 +50,27 @@ public class j2DClient extends JFrame
   /** NOTE: It sounds bad to see here a GUI component. Try other way. */
   private JTextField playerChatText;
 
+  private String[] parseString(String s, int nbPart)
+    {
+    String t = new String(s);
+    String[] res = new String[nbPart];
+    int i;
+    t.trim();
+    for(i=0;i<nbPart - 1;i++)
+      {
+      int j = t.indexOf(' ');
+      if(j == -1)
+        {
+	  return null;
+        }
+      res[i] = t.substring(0,j);
+      t = t.substring(j);
+      t.trim();
+      }
+    res[i] = t;
+    return res;
+    }
+
   public j2DClient(StendhalClient sc) 
     {
     // create a frame to contain our game
@@ -77,10 +98,44 @@ public class j2DClient extends JFrame
       {
       public void actionPerformed(ActionEvent e)
         {
-        RPAction chat=new RPAction();
-        chat.put("type","chat");
-        chat.put("text",playerChatText.getText());
-        client.send(chat);
+	String text = playerChatText.getText();
+	text.trim();
+	if(text.startsWith("/tell "))
+	  {
+	  String[] command = parseString(text, 3);
+	  if(command != null)
+	    {
+	    RPAction tell = new RPAction();
+	    tell.put("type","tell");
+	    tell.put("who", command[1]);
+	    tell.put("text", command[2]);
+	    client.send(tell);
+	    }
+	  }
+	else if(text.equals("/who"))
+	  {
+	  RPAction who = new RPAction();
+	  who.put("type","who");
+	  client.send(who);
+	  }
+	else if(text.startsWith("/improve "))
+	  {
+	  String[] command = parseString(text, 2);
+	  if(command != null)
+	    {
+	    RPAction improve = new RPAction();
+	    improve.put("type","improve");
+	    improve.put("stat", command[1]);
+	    client.send(improve);
+	    }
+	  }
+	else
+	  {
+          RPAction chat=new RPAction();
+          chat.put("type","chat");
+          chat.put("text",playerChatText.getText());
+          client.send(chat);
+	  }
         
         playerChatText.setText("");
         }          
