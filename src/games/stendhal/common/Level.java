@@ -12,7 +12,7 @@ public class Level
     {
     table=new Vector<Integer>();
     table.add(0);
-    table.add(100);
+    table.add(64);
     
     for(int i=2;i<LEVELS;i++)
       {

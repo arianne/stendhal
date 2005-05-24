@@ -130,13 +130,28 @@ public class Player extends RPEntity
 
     super.onDead(who, false);
 
-    // TODO: BUG: FIXME: It lower XP but it doesn't affect ATK, DEF and HP
     int levelsDowngrade=Level.changeLevel((int)(getXP()*0.9),getXP());
     if(levelsDowngrade>0)
       {
-      if(devel>0)
+      if(devel>0) // If have devel points take 1 out
         {
         put("devel",devel-1);
+        }
+      else if(has("devel_attrib")) // else take one of the improved attributes.
+        {
+        String devel_attrib=get("devel_attrib");
+        if(devel_attrib.equals("atk"))
+          {
+          setATK(getATK()-1);
+          }
+        else if(devel_attrib.equals("def"))
+          {
+          setDEF(getDEF()-1);
+          }
+        else if(devel_attrib.equals("def"))
+          {
+          setHP(getHP()-10);
+          }
         }
       }
       
