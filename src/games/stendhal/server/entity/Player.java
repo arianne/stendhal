@@ -13,6 +13,7 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.server.*;
+import games.stendhal.common.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 import java.awt.*;
@@ -34,6 +35,7 @@ public class Player extends RPEntity
       player.add("text",RPClass.STRING);
       player.add("sheep",RPClass.INT);
       player.add("devel",RPClass.INT,RPClass.HIDDEN);
+      player.add("devel_attrib",RPClass.STRING,RPClass.HIDDEN);
       player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
       }
     catch(RPClass.SyntaxException e)
@@ -56,17 +58,30 @@ public class Player extends RPEntity
     super.update();
     if(has("devel")) devel=getInt("devel");
     }
+  
+  public void addXP(int newxp)
+    {
+    int levels=Level.changeLevel(getXP(),newxp);
+    if(levels>0)
+      {
+      Player p = (Player) this;
+      p.addDevel(levels);
+      }
+    
+    super.addXP(newxp);
+    }
 
   public void addDevel(int n) 
     {
-    devel += n;
+    devel+=n;
     put("devel",devel);
-    }
+    }    
 
   public void improveATK()
     {
     if(devel>0)
       {
+      put("devel_attrib","atk");
 	    addDevel(-1);
 	    setATK(getATK()+1);
       }
@@ -76,7 +91,8 @@ public class Player extends RPEntity
     {
     if(devel>0)
       {
-	    addDevel(-1);
+      put("devel_attrib","def");
+      addDevel(-1);
 	    setDEF(getDEF()+1);
       }
     }
@@ -85,7 +101,8 @@ public class Player extends RPEntity
     {
     if(devel>0)
       {
-	    addDevel(-1);
+      put("devel_attrib","hp");
+      addDevel(-1);
 	    setbaseHP(getbaseHP()+10);
       }
     }
@@ -108,6 +125,15 @@ public class Player extends RPEntity
     super.onDead(who, false);
 
     // TODO: BUG: FIXME: It lower XP but it doesn't affect ATK, DEF and HP
+    int levelsDowngrade=Level.changeLevel((int)(getXP()*0.9),getXP());
+    if(levelsDowngrade>0)
+      {
+      if(devel>0)
+        {
+        put("devel",devel-1);
+        }
+      }
+      
     setXP((int)(getXP()*0.9));        
     setHP(getbaseHP());
     

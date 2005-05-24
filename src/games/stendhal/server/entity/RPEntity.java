@@ -145,35 +145,6 @@ public abstract class RPEntity extends Entity
   public void addXP(int newxp)
     {
     // Increment experience points
-    int levels=Level.changeLevel(xp,newxp);
-    if(levels>0)
-      {
-        if(get("type").equals("player"))
-	  {
-	    Player p = (Player) this;
-	    p.addDevel(levels);
-	  }
-	else
-	  {
-	  int currentLevel = Level.getLevel(xp);
-	  for(int i = 0; i < levels; i++)
-	    {
-	    switch((currentLevel + i) % 3)
-	      {
-	        case 0:
-		  setATK(getATK()+1);
-		  break;
-		case 1:
-		  setDEF(getDEF()+1);
-		  break;
-		case 2:
-		  setbaseHP(getbaseHP()+10*levels);
-		  break;
-	      }
-	    }
-	  }
-      }
-
     this.xp += newxp;
     put("xp",xp);
     }
