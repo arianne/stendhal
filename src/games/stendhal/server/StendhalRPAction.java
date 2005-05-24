@@ -278,24 +278,31 @@ public class StendhalRPAction
   
   public static void placeat(StendhalRPZone zone, Entity entity, int x, int y)
     {    
-    int i=0;
-    
-    //TODO: Recode this.
-    while(zone.collides(entity,x,y) && i<5)
+    if(zone.collides(entity,x,y))
       {
-      System.out.println (x+","+y);
-      x=x+(int)(rand.nextInt(3)-1);
-      y=y+(int)(rand.nextInt(3)-1);   
-      i++; // We limit how many times we try... 
-      }
-    
-    if(i==5)
-      {
-      Logger.trace("StendhalRPAction::placeat","X","Unable to place "+entity+" at ("+x+","+y+")");
-      }
+      for(int k=2;k<5;k++)
+        {
+        for(int i=-k;i<k;i++)
+          {
+          for(int j=-k;j<k;j++)
+            {
+            if(!zone.collides(entity,x+i,y+j))
+              {
+              entity.setx(x+i);
+              entity.sety(y+j);
+              return;
+              }
+            }
+          }
+        }
       
-    entity.setx(x);
-    entity.sety(y);
+      Logger.trace("StendhalRPAction::placeat","D","Unable to place "+entity+" at ("+x+","+y+")");
+      }
+    else
+      {
+      entity.setx(x);
+      entity.sety(y);
+      }
     }
     
   public static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException
