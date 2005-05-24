@@ -164,9 +164,10 @@ public class Player extends RPEntity
     setXP((int)(getXP()*0.9));        
     setHP(getbaseHP());
 
+    world.modify(who);
+
     StendhalRPAction.changeZone(this,"afterlive");
     StendhalRPAction.transferContent(this);
-    world.modify(who);
     }
 
   public void removeSheep(Sheep sheep)

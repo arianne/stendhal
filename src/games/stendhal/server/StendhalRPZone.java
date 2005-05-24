@@ -154,6 +154,7 @@ public class StendhalRPZone extends MarauroaRPZone
       {
       // NOTE: If any of the above is true, then it just put object on the first zone change point.
       String[] components=zoneChangePoints.get(0).split(",");
+      Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Player zone change default: "+components);
       object.setx(Integer.parseInt(components[0]));
       object.sety(Integer.parseInt(components[1]));
       return;
