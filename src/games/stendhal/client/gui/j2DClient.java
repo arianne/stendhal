@@ -96,6 +96,8 @@ public class j2DClient extends JFrame
       playerChatText.setBounds(0,460,640,20);
     playerChatText.addActionListener(new ActionListener()
       {
+      // TODO: Take this out of here. Place on a proper (hidden) class.
+      // TODO: ...inGameGUI integration...
       public void actionPerformed(ActionEvent e)
         {
       	String text = playerChatText.getText();

@@ -239,8 +239,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       else if(action.get("type").equals("improve"))
         {
-	improve(player,action);
-	}
+      	improve(player,action);
+	      }
       }
     catch(Exception e)
       {
