@@ -60,54 +60,23 @@ public class StendhalRPWorld extends RPWorld
   
   public void onInit() throws Exception
     {
-    StendhalRPZone village=new StendhalRPZone("village");
-    village.addLayer("village_0_floor","games/stendhal/server/maps/village_0_floor.stend");
-    village.addLayer("village_1_object","games/stendhal/server/maps/village_1_object.stend");
-    village.addLayer("village_2_roof","games/stendhal/server/maps/village_2_roof.stend");
-    village.addCollisionLayer("village_collision","games/stendhal/server/maps/village_collision.stend");
-    village.populate("games/stendhal/server/maps/village_objects.stend");
-    addRPZone(village);
-
-
-    StendhalRPZone city=new StendhalRPZone("city");
-    city.addLayer("city_0_floor","games/stendhal/server/maps/city_0_floor.stend");
-    city.addLayer("city_1_object","games/stendhal/server/maps/city_1_object.stend");
-    city.addLayer("city_2_roof","games/stendhal/server/maps/city_2_roof.stend");
-    city.addCollisionLayer("city_collision","games/stendhal/server/maps/city_collision.stend");
-    city.populate("games/stendhal/server/maps/city_objects.stend");
-    addRPZone(city);
-
-    StendhalRPZone plains=new StendhalRPZone("plains");
-    plains.addLayer("plains_0_floor","games/stendhal/server/maps/plains_0_floor.stend");
-    plains.addLayer("plains_1_object","games/stendhal/server/maps/plains_1_object.stend");
-    plains.addLayer("plains_2_roof","games/stendhal/server/maps/plains_2_roof.stend");
-    plains.addCollisionLayer("plains_collision","games/stendhal/server/maps/plains_collision.stend");
-    plains.populate("games/stendhal/server/maps/plains_objects.stend");
-    addRPZone(plains);
-
-    StendhalRPZone dungeon_000=new StendhalRPZone("dungeon_000");
-    dungeon_000.addLayer("dungeon_000_0_floor","games/stendhal/server/maps/dungeon_000_0_floor.stend");
-    dungeon_000.addLayer("dungeon_000_1_object","games/stendhal/server/maps/dungeon_000_1_object.stend");
-    dungeon_000.addLayer("dungeon_000_2_roof","games/stendhal/server/maps/dungeon_000_2_roof.stend");
-    dungeon_000.addCollisionLayer("dungeon_000_collision","games/stendhal/server/maps/dungeon_000_collision.stend");
-    dungeon_000.populate("games/stendhal/server/maps/dungeon_000_objects.stend");
-    addRPZone(dungeon_000);
-
-    StendhalRPZone afterlive=new StendhalRPZone("afterlive");
-    afterlive.addLayer("afterlive_0_floor","games/stendhal/server/maps/afterlive_0_floor.stend");
-    afterlive.addLayer("afterlive_1_object","games/stendhal/server/maps/afterlive_1_object.stend");
-    afterlive.addLayer("afterlive_2_roof","games/stendhal/server/maps/afterlive_2_roof.stend");
-    afterlive.addCollisionLayer("afterlive_collision","games/stendhal/server/maps/afterlive_collision.stend");
-    afterlive.populate("games/stendhal/server/maps/afterlive_objects.stend");
-    addRPZone(afterlive);
-
-//    StendhalRPZone test=new StendhalRPZone("test");
-//    test.addLayer("test_0_floor","games/stendhal/server/maps/test_0_floor.stend");
-//    test.addLayer("test_1_object","games/stendhal/server/maps/test_1_object.stend");
-//    test.addLayer("test_2_roof","games/stendhal/server/maps/test_2_roof.stend");
-//    test.addCollisionLayer("test_collision","games/stendhal/server/maps/test_collision.stend");
-//    test.populate("games/stendhal/server/maps/test_objects.stend");
-//    addRPZone(test);
+    addArea("village");
+    addArea("city");
+    addArea("plains");
+    addArea("dungeon_000");
+    addArea("afterlive");
+    addArea("forest");
+    }
+  
+  private void addArea(String name) throws java.io.IOException
+    {
+    StendhalRPZone area=new StendhalRPZone(name);
+    area.addLayer(name+"_0_floor","games/stendhal/server/maps/"+name+"_0_floor.stend");
+    area.addLayer(name+"_1_object","games/stendhal/server/maps/"+name+"_1_object.stend");
+    area.addLayer(name+"_2_roof","games/stendhal/server/maps/"+name+"_2_roof.stend");
+    area.addCollisionLayer(name+"_collision","games/stendhal/server/maps/"+name+"_collision.stend");
+    area.populate("games/stendhal/server/maps/"+name+"_objects.stend");
+    addRPZone(area);
     }
   
   public void onFinish() throws Exception

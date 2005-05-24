@@ -47,6 +47,10 @@ public class BeggarNPC extends SpeakerNPC
 
     List<Path.Node> nodes=new LinkedList<Path.Node>();
     nodes.add(new Path.Node(22,28));
+    nodes.add(new Path.Node(26,28));
+    nodes.add(new Path.Node(26,30));
+    nodes.add(new Path.Node(31,30));
+    nodes.add(new Path.Node(31,28));
     nodes.add(new Path.Node(35,28));
     nodes.add(new Path.Node(35,14));
     nodes.add(new Path.Node(22,14));
