@@ -82,9 +82,15 @@ public class Player extends RPEntity
     {
     if(devel>0)
       {
+      System.out.println ("ATK: "+getATK()+1);
+      
       put("devel_attrib","atk");
 	    addDevel(-1);
 	    setATK(getATK()+1);
+      }
+    else
+      {
+      System.out.println ("devel <= 0");
       }
     }
 

@@ -61,13 +61,14 @@ public class j2DClient extends JFrame
       int j = t.indexOf(' ');
       if(j == -1)
         {
-	  return null;
+	      return null;
         }
+        
       res[i] = t.substring(0,j);
       t = t.substring(j);
       t.trim();
       }
-    res[i] = t;
+    res[i] = t.trim();
     return res;
     }
 
@@ -123,10 +124,12 @@ public class j2DClient extends JFrame
       	  }
       	else if(text.startsWith("/improve ")) //Improve command
       	  {
+      	  System.out.println ("Improving");
       	  String[] command = parseString(text, 2);
       	  if(command != null)
       	    {
-      	    RPAction improve = new RPAction();
+            System.out.println ("Improving "+command[1]);
+            RPAction improve = new RPAction();
       	    improve.put("type","improve");
       	    improve.put("stat", command[1]);
       	    client.send(improve);
