@@ -20,6 +20,7 @@ import java.awt.geom.*;
 
 public class Player extends RPEntity 
   {
+  private int devel;
   private int leave;
   private boolean hasLeave;
   
@@ -31,6 +32,7 @@ public class Player extends RPEntity
       player.isA("rpentity");
       player.add("text",RPClass.STRING);
       player.add("sheep",RPClass.INT);
+      player.add("devel",RPClass.INT);
       player.add("dead",RPClass.FLAG);
       }
     catch(RPClass.SyntaxException e)
@@ -48,6 +50,51 @@ public class Player extends RPEntity
     update();
     }
 
+  public void update() throws AttributeNotFoundException
+    {
+    super.update();
+    if(has("devel")) devel = getInt("devel");
+    }
+
+  public void addDevel(int n) 
+    {
+      devel += n;
+      put("devel", devel);
+    }
+
+  public boolean improveATK()
+    {
+      if(devel > 0)
+        {
+	addDevel(-1);
+	setATK(getATK() + 1);
+	return true;
+	}
+      return false;
+    }
+    
+  public boolean improveDEF()
+    {
+      if(devel > 0)
+        {
+	addDevel(-1);
+	setDEF(getDEF() + 1);
+	return true;
+	}
+      return false;
+    }
+    
+  public boolean improveHP()
+    {
+      if(devel > 0)
+        {
+	addDevel(-1);
+	setHP(getHP() + 10);
+	return true;
+	}
+      return false;
+    }
+    
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y+1,1,1);
