@@ -358,9 +358,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       Logger.trace("StendhalRPRuleProcessor::tell",">");
       if(action.has("who") && action.has("text"))
         {
-        String message = action.get("who") +  " tells you: " + action.get("text");
-        player.setPrivateText(message);
-        world.modify(player);
+        String message = player.getName() +  " tells you: " + action.get("text");
+        for(Player p : getPlayers())
+          {
+          if(p.getName().equals(action.get("who")))
+            {
+              p.setPrivateText(message);
+              world.modify(p);
+              Logger.trace("StendhalRPRuleProcessor::tell","<");
+              return;
+            }
+          }
         }
       Logger.trace("StendhalRPRuleProcessor::tell","<");
       }
