@@ -66,10 +66,9 @@ public class Player extends RPEntity
     super.onDead(who, false);
 
     // Stats about dead 
+    // TODO: BUG: FIXME: It lower XP but it doesn't affect ATK, DEF and HP
     setXP((int)(getXP()*0.9));        
     setHP(getbaseHP());
-
-    stats.add("Killed "+get("type"),1);
     
     StendhalRPAction.changeZone(this,"afterlive");
     StendhalRPAction.transferContent(this);

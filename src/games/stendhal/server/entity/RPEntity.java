@@ -228,15 +228,16 @@ public abstract class RPEntity extends Entity
     }
 
   /** This method is called when the entity has been killed ( hp==0 ). */
-  public void onDead(RPEntity who) {
+  public void onDead(RPEntity who) 
+    {
     onDead(who, true);
-  }
+    }
 
   /** This method is called when the entity has been killed ( hp==0 ).
    * For almost wverything remove is true and the creature is removed
    * from the world, except for the players...
    */
-  public void onDead(RPEntity who, boolean remove)
+  protected void onDead(RPEntity who, boolean remove)
     {
     stopAttack();
     who.stopAttack();
@@ -256,7 +257,8 @@ public abstract class RPEntity extends Entity
     rp.addCorpse(corpse);
 
     world.modify(who);
-    if(remove) {
+    if(remove) 
+      {
       world.remove(getID());
       }
     }
