@@ -98,44 +98,45 @@ public class j2DClient extends JFrame
       {
       public void actionPerformed(ActionEvent e)
         {
-	String text = playerChatText.getText();
-	text.trim();
-	if(text.startsWith("/tell "))
-	  {
-	  String[] command = parseString(text, 3);
-	  if(command != null)
-	    {
-	    RPAction tell = new RPAction();
-	    tell.put("type","tell");
-	    tell.put("who", command[1]);
-	    tell.put("text", command[2]);
-	    client.send(tell);
-	    }
-	  }
-	else if(text.equals("/who"))
-	  {
-	  RPAction who = new RPAction();
-	  who.put("type","who");
-	  client.send(who);
-	  }
-	else if(text.startsWith("/improve "))
-	  {
-	  String[] command = parseString(text, 2);
-	  if(command != null)
-	    {
-	    RPAction improve = new RPAction();
-	    improve.put("type","improve");
-	    improve.put("stat", command[1]);
-	    client.send(improve);
-	    }
-	  }
-	else
-	  {
+      	String text = playerChatText.getText();
+      	text.trim();
+      	
+      	if(text.startsWith("/tell ")) // Tell command
+      	  {
+      	  String[] command = parseString(text, 3);
+      	  if(command != null)
+      	    {
+      	    RPAction tell = new RPAction();
+      	    tell.put("type","tell");
+      	    tell.put("who", command[1]);
+      	    tell.put("text", command[2]);
+      	    client.send(tell);
+      	    }
+      	  }
+      	else if(text.equals("/who")) // Who command
+      	  {
+      	  RPAction who = new RPAction();
+      	  who.put("type","who");
+      	  client.send(who);
+      	  }
+      	else if(text.startsWith("/improve ")) //Improve command
+      	  {
+      	  String[] command = parseString(text, 2);
+      	  if(command != null)
+      	    {
+      	    RPAction improve = new RPAction();
+      	    improve.put("type","improve");
+      	    improve.put("stat", command[1]);
+      	    client.send(improve);
+      	    }
+      	  }
+      	else // Chat command 
+      	  { 
           RPAction chat=new RPAction();
           chat.put("type","chat");
           chat.put("text",playerChatText.getText());
           client.send(chat);
-	  }
+      	  }
         
         playerChatText.setText("");
         }          
