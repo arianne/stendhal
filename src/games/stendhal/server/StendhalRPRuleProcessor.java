@@ -368,16 +368,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       
       for(Player object: playersObject)
         {
-        if(!object.stopped())
-          {
-          StendhalRPAction.move(object);
-          }
-        
-        if(getTurn()%5==0 && object.isAttacking()) //1 round = 5 turns
-          {
-          StendhalRPAction.attack(object,object.getAttackTarget());
-          }
-        
         if(object.has("risk")) 
           {
           object.remove("risk");
@@ -394,6 +384,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           {
           object.remove("dead");
           world.modify(object);
+          }
+
+        if(!object.stopped())
+          {
+          StendhalRPAction.move(object);
+          }
+        
+        if(getTurn()%5==0 && object.isAttacking()) //1 round = 5 turns
+          {
+          StendhalRPAction.attack(object,object.getAttackTarget());
           }
         }
 
@@ -517,6 +517,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
         player.setSheep(sheep);
         }      
+        
+      Logger.trace("StendhalRPRuleProcessor::onInit","D","Finally player is :"+player);
       
       playersObject.add(player);
       return true;
@@ -547,6 +549,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             object.storeSheep(sheep);
             npcs.remove(sheep);
             }
+          else
+            {
+            // Bug on pre 0.20 released
+            if(object.hasSlot("#flock"))
+              {
+              object.removeSlot("#flock");
+              }
+            }
+            
           
           object.stop();
           object.stopAttack();  

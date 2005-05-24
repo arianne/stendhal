@@ -239,6 +239,11 @@ public class GameObjects
     {
     return objects.containsKey(entity.getID());
     }
+
+  public Entity get(RPObject.ID id)
+    {
+    return objects.get(id);
+    }
     
   /** Removes a Entity from game */
   public void remove(RPObject.ID id)

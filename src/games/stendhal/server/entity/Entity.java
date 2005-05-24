@@ -72,6 +72,11 @@ public abstract class Entity extends RPObject
   
   public void setx(int x)
     {
+    if(x==this.x)
+      {
+      return;
+      }
+      
     this.x=x;
     put("x",x);
     }
@@ -83,6 +88,11 @@ public abstract class Entity extends RPObject
   
   public void sety(int y)
     {
+    if(y==this.y)
+      {
+      return;
+      }
+
     this.y=y;
     put("y",y);
     }
@@ -94,6 +104,11 @@ public abstract class Entity extends RPObject
   
   public void setDirection(Direction dir)
     {
+    if(dir==this.direction)
+      {
+      return;
+      }
+      
     this.direction=dir;
     put("dir",direction.get());
     }
@@ -105,6 +120,11 @@ public abstract class Entity extends RPObject
   
   public void setSpeed(double speed)
     {
+    if(speed==this.speed)
+      {
+      return;
+      }
+      
     this.speed=speed;
     put("speed",speed);
     }

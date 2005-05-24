@@ -239,6 +239,7 @@ public class j2DClient extends JFrame
       {
       if(object==null)
         {
+        System.out.println ("null at moveScreen");
         return;
         }
         
@@ -252,7 +253,6 @@ public class j2DClient extends JFrame
       Direction dir=Direction.build(object.getInt("dir"));
       dx=dir.getdx();
       dy=dir.getdy();
-      
       
       GameScreen screen=GameScreen.get();
       double screenx=screen.getX();
@@ -299,6 +299,7 @@ public class j2DClient extends JFrame
       }
     catch(AttributeNotFoundException e)    
       {
+      //Logger.thrown("j2DClient::moveScreen","X",e);
       }    
     }
 
@@ -330,7 +331,7 @@ public class j2DClient extends JFrame
           
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={};//"StendhalClient"};
+        String[] allowed={};
         Logger.setAllowed(allowed);
 
         String[] rejected={"modify"};

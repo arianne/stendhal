@@ -27,7 +27,7 @@ anything running Java 1.5.0.
 
 Current Version
 ---------------
-Version 0.12
+Version 0.20
 
 
 How to make it work
@@ -46,7 +46,7 @@ Please download it from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.10.jar
+  java -jar stendhal-0.20.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -78,6 +78,10 @@ Changelog
 - Added icon to main game window
 - Fix zone change problem
 - Fix placeat problem
+- Improved NPC and Sign texts
+- Added afterlive zone
+- Improved perception sizes
+- Fixed a bug onMyRPObject handling method
 
 0.12 May 22, 2005
 - Fixed a severe bug that happens when a creature respawn over a player.

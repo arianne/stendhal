@@ -54,6 +54,11 @@ public abstract class NPC extends RPEntity
   
   public void setIdea(String idea)
     {
+    if(idea.equals(this.idea))
+      {
+      return;
+      }
+      
     this.idea=idea;
     put("idea",idea);
     }
@@ -96,39 +101,6 @@ public abstract class NPC extends RPEntity
       stop();
       }
     }
-
-
-//  public void setMovement(int x, int y, double min, double max)
-//    {
-//    if(nextto(x,y,min) && hasPath())
-//      {
-//      Logger.trace("Sheep::setMovement","D","Removing path because nextto("+x+","+y+","+min+") of ("+getx()+","+gety()+")");
-//      clearPath();
-//      }
-//
-//    if((distance(x,y)>max && !hasPath()) || escapeCollision>20)
-//      {
-//      Logger.trace("Sheep::setMovement","D","Creating path because escapeCollision="+escapeCollision);
-//      List<Path.Node> path=Path.searchPath(this,x,y);
-//      setPath(path,false);
-//      escapeCollision=6;
-//      }
-//    }
-//    
-//  public void moveto(double speed)
-//    {
-//    if(escapeCollision>0) escapeCollision--;
-//    
-//    if(hasPath() && collided())
-//      {
-//      moveRandomly(speed);
-//      }
-//    else if((escapeCollision==0 && hasPath()) || (hasPath() && Path.followPath(this,speed)))
-//      {
-//      Logger.trace("Sheep::moveto","D","Removing path because escapeCollision="+escapeCollision);
-//      clearPath();
-//      }
-//    }
 
   public void moveRandomly(double speed)
     {

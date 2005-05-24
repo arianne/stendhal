@@ -145,6 +145,8 @@ public abstract class RPEntity extends AnimatedEntity
       int risk=(changes.has("risk")?changes.getInt("risk"):0);
       int damage=(changes.has("damage")?changes.getInt("damage"):0);
       int target=(changes.has("target")?changes.getInt("target"):object.getInt("target"));
+
+      System.out.println (target+":"+risk+":"+damage);
       
       // TODO: Change! Replace! Use new action system instead 
       targetEntity=new RPObject.ID(target,changes.get("zoneid"));

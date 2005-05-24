@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 
 import games.stendhal.client.gui.*;
+import games.stendhal.client.entity.*;
 
 import marauroa.client.*;
 import marauroa.client.net.*;
@@ -116,7 +117,7 @@ public class StendhalClient extends ariannexp
   
   public RPObject getPlayer()
     {
-    return player;
+    return player; //world_objects.get(player.getID());
     }
   
   protected void onPerception(MessageS2CPerception message)
@@ -133,7 +134,20 @@ public class StendhalClient extends ariannexp
         {
         Logger.trace("StendhalClient::onPerception","D","UPDATING screen position");
         GameScreen screen=GameScreen.get();
-        RPObject object=message.getMyRPObject();
+
+        RPObject hidden=message.getMyRPObject();
+        RPObject object=null;
+        
+        for(RPObject search: message.getAddedRPObjects())
+          {
+          if(search.getID().equals(hidden.getID()))
+            {
+            object=(RPObject)search.copy();
+            break;
+            }
+          }
+        
+        object.applyDifferences(hidden,null);
         
         Graphics2D g=screen.expose();
         g.setColor(Color.BLACK);
@@ -338,12 +352,20 @@ public class StendhalClient extends ariannexp
     
     public boolean onMyRPObject(boolean changed,RPObject object)
       {
-      if(changed)
+      try
         {
-        player=object;
+        if(changed)
+          {          
+          player=(RPObject)world_objects.get(object.getID());
+          player.applyDifferences(object,null);
+          }
+        }
+      catch(Exception e)
+        {
+        Logger.thrown("StendhalClient::StendhalPerceptionListener::onMyRPObject","X",e);
         }
         
-      return false;
+      return true;
       }
 
     public int onTimeout()

@@ -69,7 +69,9 @@ public class Player extends RPEntity
     setXP((int)(getXP()*0.9));        
     setHP(getbaseHP());
 
-    StendhalRPAction.changeZone(this,"city");
+    stats.add("Killed "+get("type"),1);
+    
+    StendhalRPAction.changeZone(this,"afterlive");
     StendhalRPAction.transferContent(this);
     world.modify(who);
     }
@@ -140,6 +142,8 @@ public class Player extends RPEntity
         if(slot.size()>0)
           {
           Sheep sheep=new Sheep(slot.get(),this);
+          
+          removeSlot("#flock");
           return sheep;
           }
         }
