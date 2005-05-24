@@ -32,12 +32,12 @@ public class Player extends RPEntity
       {
       RPClass player=new RPClass("player");
       player.isA("rpentity");
-      player.add("text",RPClass.STRING);
+      player.add("text",RPClass.LONG_STRING);
+      player.add("private_text",RPClass.LONG_STRING,RPClass.HIDDEN);
       player.add("sheep",RPClass.INT);
       player.add("devel",RPClass.INT,RPClass.HIDDEN);
       player.add("devel_attrib",RPClass.STRING,RPClass.HIDDEN);
       player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
-      player.add("private_text",RPClass.LONG_STRING,RPClass.HIDDEN);
       }
     catch(RPClass.SyntaxException e)
       {

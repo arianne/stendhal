@@ -62,15 +62,16 @@ public class Player extends RPEntity
       textImageTime=System.currentTimeMillis();
       }
 
+    if(changes.has("private_text"))
+      {
+      client.addEventLine(changes.get("private_text"));
+      }
+
     if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
       {
       System.out.println (getID());
       if(client.getPlayer()!=null) System.out.println (client.getPlayer().getID());
       client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
-      }
-    if(changes.has("private_text"))
-      {
-      client.addEventLine(changes.get("private_text"));
       }
     }
 

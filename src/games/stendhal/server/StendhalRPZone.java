@@ -150,6 +150,14 @@ public class StendhalRPZone extends MarauroaRPZone
       {
       exitDirection="E";
       }
+    else
+      {
+      // NOTE: If any of the above is true, then it just put object on the first zone change point.
+      String[] components=zoneChangePoints.get(0).split(",");
+      object.setx(Integer.parseInt(components[0]));
+      object.sety(Integer.parseInt(components[1]));
+      return;
+      }
     
     Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Player exit direction: "+exitDirection);
     

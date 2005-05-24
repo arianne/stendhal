@@ -280,6 +280,7 @@ public class StendhalRPAction
     {    
     int i=0;
     
+    //TODO: Recode this.
     while(zone.collides(entity,x,y) && i<5)
       {
       System.out.println (x+","+y);

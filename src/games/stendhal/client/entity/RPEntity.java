@@ -57,6 +57,9 @@ public abstract class RPEntity extends AnimatedEntity
     };
   
   private String name;
+  private int atk;
+  private int def;
+  private int xp;
   private int hp;
   private int base_hp;
   private int level;
@@ -101,6 +104,9 @@ public abstract class RPEntity extends AnimatedEntity
     
     if(changes.has("base_hp")) base_hp=changes.getInt("base_hp");
     if(changes.has("hp")) hp=changes.getInt("hp");
+    if(changes.has("atk")) atk=changes.getInt("atk");
+    if(changes.has("def")) def=changes.getInt("def");
+    if(changes.has("xp")) xp=changes.getInt("xp");
     
     if(changes.has("name"))
       {
@@ -146,8 +152,6 @@ public abstract class RPEntity extends AnimatedEntity
       int damage=(changes.has("damage")?changes.getInt("damage"):0);
       int target=(changes.has("target")?changes.getInt("target"):object.getInt("target"));
 
-      System.out.println (target+":"+risk+":"+damage);
-      
       targetEntity=new RPObject.ID(target,changes.get("zoneid"));
       gameObjects.attack(this,targetEntity,risk,damage);
       }
@@ -310,7 +314,7 @@ public abstract class RPEntity extends AnimatedEntity
     {
     if(action.equals("Look"))
       {
-      StendhalClient.get().addEventLine("You see "+getName()+"(Level "+level+").",Color.green);
+      StendhalClient.get().addEventLine("You see "+getName()+"(Level "+level+").RP Values(ATK/DEF/HP/XP): "+atk+"/"+def+"/"+hp+"/"+xp+".",Color.green);
       }
     else if(action.equals("Attack"))
       {
