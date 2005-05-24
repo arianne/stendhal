@@ -167,7 +167,6 @@ public class StendhalClient extends ariannexp
       }
     catch(Exception e)
       {
-      // TODO: Request synchronization instead of exiting.
       Logger.thrown("StendhalClient::onPerception","!",e);
       System.exit(-1);
       }

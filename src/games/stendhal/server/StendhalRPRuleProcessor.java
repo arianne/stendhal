@@ -38,7 +38,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private List<RespawnPoint> respawnPoints;
   private List<Food> foodItems;
   private List<Corpse> corpses;
-
+  private List<Corpse> corpsesToRemove;
+  
   public StendhalRPRuleProcessor()
     {
     playersObject=new LinkedList<Player>();
@@ -48,7 +49,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     foodItems=new LinkedList<Food>();
     npcsToAdd=new LinkedList<NPC>();
     npcsToRemove=new LinkedList<NPC>();
+
     corpses=new LinkedList<Corpse>();
+    corpsesToRemove=new LinkedList<Corpse>();
     }
 
 
@@ -106,6 +109,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   public void addCorpse(Corpse corpse)
     {
     corpses.add(corpse);
+    }
+  
+  public void removeCorpse(Corpse corpse)
+    {
+    corpsesToRemove.add(corpse);
     }
 
   public List<Player> getPlayers()
@@ -304,22 +312,22 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::improve", ">");
     if(action.has("stat"))
       {
-        String stat = action.get("stat");
-	if(stat.equals("atk"))
-	  {
-	    player.improveATK();
-            world.modify(player);
-	  }
-	else if(stat.equals("def"))
-	  {
-	    player.improveDEF();
-            world.modify(player);
-	  }
-	else if(stat.equals("hp"))
-	  {
-	    player.improveHP();
-            world.modify(player);
-	  }
+      String stat = action.get("stat");
+	    if(stat.equals("atk"))
+	      {
+	      player.improveATK();
+        world.modify(player);
+	      }
+	    else if(stat.equals("def"))
+	      {
+	      player.improveDEF();
+        world.modify(player);
+	      }
+	    else if(stat.equals("hp"))
+	      {
+	      player.improveHP();
+        world.modify(player);
+	      }
       }
     Logger.trace("StendhalRPRuleProcessor::improve", "<");
     }
@@ -391,9 +399,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       // TODO: Done this way because a problem with comodification... :(
       npcs.addAll(npcsToAdd);
       npcs.removeAll(npcsToRemove);
+      corpses.removeAll(corpsesToRemove);
 
       npcsToAdd.clear();
       npcsToRemove.clear();
+      corpsesToRemove.clear();
 
       for(Player object: playersObject)
         {
@@ -455,22 +465,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       for(NPC npc: npcs) npc.logic();
       for(Food food: foodItems) food.regrow();
       for(RespawnPoint point: respawnPoints) point.nextTurn();
-
-      List<Corpse> removedCorpses=new LinkedList<Corpse>();
-      for(Corpse corpse: corpses)
-        {
-        // TODO: Hide this inside class
-        if(corpse.decDegradation()==0)
-          {
-          world.remove(corpse.getID());
-          removedCorpses.add(corpse);
-          }
-        }
-
-      for(Corpse corpse: removedCorpses)
-        {
-        corpses.remove(corpse);
-        }
+      for(Corpse corpse: corpses) corpse.logic();
       }
     catch(Exception e)
       {
@@ -503,8 +498,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       world.add(player);
       StendhalRPAction.transferContent(player);
 
-
-      // TODO: Fixme! Move this behaviour to class.
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
       zone.placeObjectAtEntryPoint(player);
 

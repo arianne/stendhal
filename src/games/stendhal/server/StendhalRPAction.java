@@ -130,7 +130,6 @@ public class StendhalRPAction
         {
         Logger.trace("StendhalRPAction::move","D","Moving from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
         
-        //TODO: Fix me ( world.modify issue )
         entity.setx(x+dx);
         entity.sety(y+dy);
         

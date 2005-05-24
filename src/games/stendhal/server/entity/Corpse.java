@@ -54,4 +54,13 @@ public class Corpse extends Entity
     {
     return degradation--;
     }
+    
+  public void logic()
+    {
+    if(decDegradation()==0)
+      {
+      world.remove(getID());
+      rp.removeCorpse(this);
+      }
+    }
   }

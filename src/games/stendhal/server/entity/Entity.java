@@ -151,10 +151,6 @@ public abstract class Entity extends RPObject
 
   public void stop()
     {
-    // HACK: FIXME
-    setx(getx());
-    sety(gety());
-    
     setDirection(Direction.STOP);
     setSpeed(0);
     }

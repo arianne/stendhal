@@ -281,6 +281,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\Orc.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\Player.java</path>
 				<source>true</source>
 			</fileitem>

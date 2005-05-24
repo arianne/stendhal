@@ -17,6 +17,7 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.*;
 
 public class Player extends RPEntity 
   {
@@ -32,8 +33,8 @@ public class Player extends RPEntity
       player.isA("rpentity");
       player.add("text",RPClass.STRING);
       player.add("sheep",RPClass.INT);
-      player.add("devel",RPClass.INT);
-      player.add("dead",RPClass.FLAG);
+      player.add("devel",RPClass.INT,RPClass.HIDDEN);
+      player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -53,46 +54,40 @@ public class Player extends RPEntity
   public void update() throws AttributeNotFoundException
     {
     super.update();
-    if(has("devel")) devel = getInt("devel");
+    if(has("devel")) devel=getInt("devel");
     }
 
   public void addDevel(int n) 
     {
-      devel += n;
-      put("devel", devel);
+    devel += n;
+    put("devel",devel);
     }
 
-  public boolean improveATK()
+  public void improveATK()
     {
-      if(devel > 0)
-        {
-	addDevel(-1);
-	setATK(getATK() + 1);
-	return true;
-	}
-      return false;
+    if(devel>0)
+      {
+	    addDevel(-1);
+	    setATK(getATK()+1);
+      }
     }
     
-  public boolean improveDEF()
+  public void improveDEF()
     {
-      if(devel > 0)
-        {
-	addDevel(-1);
-	setDEF(getDEF() + 1);
-	return true;
-	}
-      return false;
+    if(devel>0)
+      {
+	    addDevel(-1);
+	    setDEF(getDEF()+1);
+      }
     }
     
-  public boolean improveHP()
+  public void improveHP()
     {
-      if(devel > 0)
-        {
-	addDevel(-1);
-	setHP(getHP() + 10);
-	return true;
-	}
-      return false;
+    if(devel>0)
+      {
+	    addDevel(-1);
+	    setbaseHP(getbaseHP()+10);
+      }
     }
     
   public void getArea(Rectangle2D rect, double x, double y)
@@ -112,7 +107,6 @@ public class Player extends RPEntity
 
     super.onDead(who, false);
 
-    // Stats about dead 
     // TODO: BUG: FIXME: It lower XP but it doesn't affect ATK, DEF and HP
     setXP((int)(getXP()*0.9));        
     setHP(getbaseHP());
@@ -187,7 +181,10 @@ public class Player extends RPEntity
         RPSlot slot=getSlot("#flock");
         if(slot.size()>0)
           {
-          Sheep sheep=new Sheep(slot.get(),this);
+          Iterator<RPObject> it=slot.iterator();
+          
+          
+          Sheep sheep=new Sheep(it.next(),this);
           
           removeSlot("#flock");
           return sheep;

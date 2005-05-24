@@ -148,7 +148,6 @@ public abstract class RPEntity extends AnimatedEntity
 
       System.out.println (target+":"+risk+":"+damage);
       
-      // TODO: Change! Replace! Use new action system instead 
       targetEntity=new RPObject.ID(target,changes.get("zoneid"));
       gameObjects.attack(this,targetEntity,risk,damage);
       }
