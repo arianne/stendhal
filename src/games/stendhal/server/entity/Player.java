@@ -71,6 +71,7 @@ public class Player extends RPEntity
 
     StendhalRPAction.changeZone(this,"city");
     StendhalRPAction.transferContent(this);
+    world.modify(who);
     }
   
   public void removeSheep(Sheep sheep)
