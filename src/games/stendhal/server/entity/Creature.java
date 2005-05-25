@@ -47,14 +47,14 @@ public abstract class Creature extends NPC
 
     private static double remaind(int atk, int def, int hp, int level)
       {
-      double patk = (2.0 + level)/3;
+      double patk = 2.0 + level/3.0;
       double pdef = patk;
-      double playerHp = 100.0 + (10.0 * level)/3;
+      double playerHp = 100.0 + (10.0 * level)/3.0;
       double maxHp = playerHp;
       double creatureHP = hp;
       double damageCreature = StendhalRPAction.averageDamageAttack(atk, def, patk, pdef);
       double damagePlayer = StendhalRPAction.averageDamageAttack(patk, pdef, atk, def);
-      while(playerHp > 0)
+      while(creatureHP > 0)
         {
         creatureHP -= damagePlayer;
         playerHp -= damageCreature;
