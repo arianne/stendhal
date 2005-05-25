@@ -22,6 +22,11 @@ public class Level
       }
     }
 
+  public static int maxLevel()
+    {
+      return LEVELS - 1;
+    }
+
   public static int getLevel(int exp)
     {
     int first = 0;

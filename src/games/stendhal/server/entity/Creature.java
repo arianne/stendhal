@@ -45,6 +45,51 @@ public abstract class Creature extends NPC
     patrolPath.add(new Path.Node(0,6));
     }
 
+    private static double remaind(int atk, int def, int hp, int level)
+      {
+      double patk = (2.0 + level)/3;
+      double pdef = patk;
+      double playerHp = 100.0 + (10.0 * level)/3;
+      double maxHp = playerHp;
+      double creatureHP = hp;
+      double damageCreature = StendhalRPAction.averageDamageAttack(atk, def, patk, pdef);
+      double damagePlayer = StendhalRPAction.averageDamageAttack(patk, pdef, atk, def);
+      while(playerHp > 0)
+        {
+        creatureHP -= damagePlayer;
+        playerHp -= damageCreature;
+        }
+      return (playerHp / maxHp);
+      }
+
+    public static int getInitialXP(int atk, int def, int hp) {
+      int level, minLevel, maxLevel;
+      minLevel = 0;
+      maxLevel = Level.maxLevel();
+      if(remaind(atk, def, hp, minLevel) >= 0.1)
+        {
+        return ((int) Math.round((1.0 - remaind(atk, def, hp, minLevel)) * (double) Level.getXP(minLevel + 1)));
+        }
+      else if(remaind(atk, def, hp, maxLevel) <= 0.1)
+        {
+        return Level.getXP(maxLevel);
+        }
+      else
+        {
+        while(maxLevel - minLevel > 1)
+          {
+          level = minLevel + ((maxLevel - minLevel)/2);
+          if(remaind(atk, def, hp, level) < 0.1) minLevel = level;
+          else maxLevel = level;
+          }
+          double r1 = remaind(atk, def, hp, minLevel);
+          double r2 = remaind(atk, def, hp, maxLevel);
+          if(r1 == 0.1) return Level.getLevel(minLevel);
+          if(r2 == 0.1) return Level.getLevel(maxLevel);
+          return Level.getXP(minLevel) + ((int) Math.round((0.1 - r1)/ (r2-r1) *((long) Level.getXP(minLevel))));
+        }
+    }
+
   public void setRespawnPoint(RespawnPoint point)
     {
     this.point=point;
@@ -60,9 +105,9 @@ public abstract class Creature extends NPC
     int oldLevel = Level.getLevel(getXP());
     super.addXP(newxp);
     int newLevel = Level.getLevel(getXP());
-    
+
     int levelsGained = newLevel - oldLevel;
-    
+
     if(levelsGained > 0)
       {
       for(int i = 0; i < levelsGained; i++)
@@ -80,7 +125,7 @@ public abstract class Creature extends NPC
             break;
           }
         }
-        
+
       setLevel(newLevel);
       }
     }

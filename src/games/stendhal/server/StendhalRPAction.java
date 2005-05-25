@@ -41,6 +41,29 @@ public class StendhalRPAction
     rand=new Random();
     }
 
+  public static double averageDamageAttack(double atk1, double def1, double atk2, double def2)
+    {
+      double damage = 0;
+      double risk;
+      double dam;
+      for(int d1 = 1; d1 < 7; d1++)
+        {
+        for(int d2 = 0; d2 < 7; d2++)
+          {
+          if(d1 == 6 && d2 == 6) damage += atk1;
+          else
+            {
+            risk = atk1 - def2/6 - d1;
+            dam = atk1/6 - def2 + d2;
+            if(risk > 0 && dam > 0) damage += dam;
+            }
+          }
+        }
+      return damage/36.0;
+    }
+
+
+
   public static boolean attack(RPEntity source,RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
     Logger.trace("StendhalRPAction::attack",">");
