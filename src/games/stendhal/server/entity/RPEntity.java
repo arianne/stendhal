@@ -30,6 +30,7 @@ public abstract class RPEntity extends Entity
   private int base_hp;
   private int hp;
   private int xp;
+  private int level;
 
   public static void generateRPClass()
     {
@@ -41,6 +42,7 @@ public abstract class RPEntity extends Entity
       entity.isA("entity");
       entity.add("name",RPClass.STRING);
       entity.add("xp",RPClass.INT,RPClass.HIDDEN);
+      entity.add("level",RPClass.SHORT);
       entity.add("base_hp",RPClass.SHORT);
       entity.add("hp",RPClass.SHORT);
       entity.add("atk",RPClass.BYTE,RPClass.HIDDEN);
@@ -77,6 +79,7 @@ public abstract class RPEntity extends Entity
     if(has("base_hp")) base_hp=getInt("base_hp");
     if(has("hp")) hp=getInt("hp");
     if(has("xp")) xp=getInt("xp");
+    if(has("level")) level=getInt("level");
     }
 
   public void setName(String name)
@@ -88,6 +91,17 @@ public abstract class RPEntity extends Entity
   public String getName()
     {
     return name;
+    }
+
+  public void setLevel(int level)
+    {
+    this.level = level;
+    put("level",level);
+    }
+
+  public int getLevel()
+    {
+    return level;
     }
 
   public void setATK(int atk)
@@ -153,7 +167,7 @@ public abstract class RPEntity extends Entity
     {
     return xp;
     }
-  
+
   private List<RPEntity> attackSource;
   private RPEntity attackTarget;
 
@@ -170,13 +184,13 @@ public abstract class RPEntity extends Entity
     if(has("risk")) remove("risk");
     if(has("damage")) remove("damage");
     if(has("target")) remove("target");
-    
+
     if(attackTarget!=null)
       {
       attackTarget.attackSource.remove(this);
       }
-      
-    attackTarget=null;    
+
+    attackTarget=null;
     }
 
   /** This method is called on each round when this entity has been attacked by
@@ -197,7 +211,7 @@ public abstract class RPEntity extends Entity
       if(who.has("target")) who.remove("target");
       who.attackTarget=null;
       attackSource.clear();
-      }      
+      }
     }
 
   /** This method is called when this entity has been attacked by RPEntity who and
@@ -219,7 +233,7 @@ public abstract class RPEntity extends Entity
     }
 
   /** This method is called when the entity has been killed ( hp==0 ). */
-  public void onDead(RPEntity who) 
+  public void onDead(RPEntity who)
     {
     onDead(who, true);
     }
@@ -248,7 +262,7 @@ public abstract class RPEntity extends Entity
     rp.addCorpse(corpse);
 
     world.modify(who);
-    if(remove) 
+    if(remove)
       {
       world.remove(getID());
       }
@@ -259,21 +273,21 @@ public abstract class RPEntity extends Entity
     {
     return attackSource.size()>0;
     }
-  
-  /** Return the RPEntities that are attacking this character */ 
+
+  /** Return the RPEntities that are attacking this character */
   public List<RPEntity> getAttackSources()
     {
     return attackSource;
     }
 
-  /** Return the RPEntity that is attacking this character */ 
+  /** Return the RPEntity that is attacking this character */
   public RPEntity getAttackSource(int pos)
     {
     try
       {
       return attackSource.get(pos);
       }
-    catch(IndexOutOfBoundsException e)    
+    catch(IndexOutOfBoundsException e)
       {
       return null;
       }

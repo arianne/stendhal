@@ -25,14 +25,14 @@ import games.stendhal.server.*;
 public class Wolf extends Creature
   {
   final private double SPEED=0.5;
-  
+
   final private static int HP=35;
   final private static int ATK=6;
   final private static int DEF=4;
   final private static int XP=380;
-  
+
   public static void generateRPClass()
-    {    
+    {
     try
       {
       RPClass wolf=new RPClass("wolf");
@@ -43,19 +43,20 @@ public class Wolf extends Creature
       Logger.thrown("Wolf::generateRPClass","X",e);
       }
     }
-  
+
   public Wolf() throws AttributeNotFoundException
     {
     super();
     put("type","wolf");
     put("x",0);
     put("y",0);
-    
+
     setATK(ATK);
     setDEF(DEF);
     setXP(XP);
     setbaseHP(HP);
-    
+    setLevel(Level.getLevel(getXP()));
+
     stop();
 
     Logger.trace("Wolf::Wolf","D","Created Wolf: "+this.toString());
@@ -64,8 +65,8 @@ public class Wolf extends Creature
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y,1,1);
-    }  
-  
+    }
+
   public double getSpeed()
     {
     return SPEED;

@@ -25,14 +25,14 @@ import games.stendhal.server.*;
 public class Rat extends Creature
   {
   final private double SPEED=0.25;
-  
+
   final private static int HP=10;
   final private static int ATK=3;
   final private static int DEF=2;
   final private static int XP=90;
-  
+
   public static void generateRPClass()
-    {    
+    {
     try
       {
       RPClass rat=new RPClass("rat");
@@ -43,19 +43,19 @@ public class Rat extends Creature
       Logger.thrown("Rat::generateRPClass","X",e);
       }
     }
-  
+
   public Rat() throws AttributeNotFoundException
     {
     super();
     put("type","rat");
     put("x",0);
     put("y",0);
-    
+
     setATK(ATK);
     setDEF(DEF);
     setXP(XP);
     setbaseHP(HP);
-    
+    setLevel(Level.getLevel(getXP()));
     stop();
 
     Logger.trace("Rat::Rat","D","Created Rat: "+this.toString());
@@ -64,8 +64,8 @@ public class Rat extends Creature
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y,1,1);
-    }  
-  
+    }
+
   public double getSpeed()
     {
     return SPEED;

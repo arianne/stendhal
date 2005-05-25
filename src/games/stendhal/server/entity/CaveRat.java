@@ -25,14 +25,14 @@ import games.stendhal.server.*;
 public class CaveRat extends Creature
   {
   final private double SPEED=0.40;
-  
+
   final private static int HP=20;
   final private static int ATK=6;
   final private static int DEF=2;
   final private static int XP=120;
-  
+
   public static void generateRPClass()
-    {    
+    {
     try
       {
       RPClass caverat=new RPClass("caverat");
@@ -43,19 +43,20 @@ public class CaveRat extends Creature
       Logger.thrown("CaveRat::generateRPClass","X",e);
       }
     }
-  
+
   public CaveRat() throws AttributeNotFoundException
     {
     super();
     put("type","caverat");
     put("x",0);
     put("y",0);
-    
+
     setATK(ATK);
     setDEF(DEF);
     setXP(XP);
     setbaseHP(HP);
-    
+    setLevel(Level.getLevel(getXP()));
+
     stop();
 
     Logger.trace("CaveRat::CaveRat","D","Created CaveRat: "+this.toString());
@@ -64,8 +65,8 @@ public class CaveRat extends Creature
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y,1,1);
-    }  
-  
+    }
+
   public double getSpeed()
     {
     return SPEED;

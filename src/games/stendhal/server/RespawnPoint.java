@@ -16,32 +16,33 @@ import games.stendhal.server.entity.*;
 import marauroa.common.*;
 import marauroa.server.game.*;
 import java.util.*;
+import games.stendhal.common.Level;
 
-public class RespawnPoint 
+public class RespawnPoint
   {
   private int x;
   private int y;
   private double radius;
-  
+
   private int maximum;
   private Creature entity;
-  private List<Creature> entities;  
-  
+  private List<Creature> entities;
+
   private boolean respawning;
   final public static int TURNSTORESPAWN=180; // One minute at 300ms
   private int turnsToRespawn;
-  
+
   private StendhalRPZone zone;
 
   protected static StendhalRPRuleProcessor rp;
   protected static RPWorld world;
-  
+
   public static void setRPContext(StendhalRPRuleProcessor rpContext,RPWorld worldContext)
     {
     rp=rpContext;
     world=worldContext;
     }
-  
+
   public RespawnPoint(int x, int y, int radius)
     {
     this.x=x;
@@ -52,7 +53,7 @@ public class RespawnPoint
     respawning=true;
     turnsToRespawn=TURNSTORESPAWN;
     }
-  
+
   public void set(StendhalRPZone zone,Creature entity, int maximum)
     {
     this.entity=entity;
@@ -60,7 +61,7 @@ public class RespawnPoint
     this.maximum=maximum;
     this.zone=zone;
     }
-  
+
   public void notifyDead(Creature dead)
     {
     Logger.trace("RespawnPoint::notifyDead",">");
@@ -69,57 +70,80 @@ public class RespawnPoint
       respawning=true;
       turnsToRespawn=TURNSTORESPAWN;
       }
-    
+
     entities.remove(dead);
     Logger.trace("RespawnPoint::notifyDead","<");
     }
-  
+
   public void nextTurn()
     {
     Logger.trace("RespawnPoint::nextTurn",">");
-    if(respawning) 
+    if(respawning)
       {
       Logger.trace("RespawnPoint::nextTurn","D","Turns to respawn: "+turnsToRespawn);
       turnsToRespawn--;
       }
-    
+
     if(turnsToRespawn==0)
       {
       turnsToRespawn=TURNSTORESPAWN;
-      if(entities.size()<maximum) 
+      if(entities.size()<maximum)
         {
         respawn();
         }
-      else 
+      else
         {
         respawning=false;
         }
       }
-    
+
     for(Creature creature: entities)
       {
       creature.logic();
       }
-      
+
     Logger.trace("RespawnPoint::nextTurn","<");
     }
-  
+
   private void respawn()
     {
     Logger.trace("RespawnPoint::respawn",">");
     try
       {
       Creature newentity=entity.getClass().newInstance();
-      
+
+      int rand = (new Random()).nextInt(100);
+      int nbLevel = 0;
+      if(rand == 0)
+        {
+          nbLevel = 3;
+        }
+      else if(rand < 10)
+        {
+          nbLevel = 2;
+        }
+      else if(rand < 30)
+        {
+          nbLevel = 1;
+        }
+
+      if(nbLevel > 0)
+        {
+        int newLevel = newentity.getLevel() + nbLevel;
+        int newXP = Level.getXP(newLevel);
+        newXP += (new Random()).nextInt(Level.getXP(newLevel + 1) - newXP);
+        newentity.addXP(newXP - newentity.getXP());
+        }
+
       zone.assignRPObjectID(newentity);
       StendhalRPAction.placeat(zone,newentity,x,y);
 
       newentity.setRespawnPoint(this);
       entities.add(newentity);
-      
+
       zone.add(newentity);
       }
-    catch(Exception e)    
+    catch(Exception e)
       {
       Logger.thrown("RespawnPoint::respawn","X",e);
       }

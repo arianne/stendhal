@@ -6,14 +6,14 @@ import marauroa.common.*;
 public class Level
   {
   static private int LEVELS=100;
-  
+
   static Vector<Integer> table;
   static
     {
     table=new Vector<Integer>();
     table.add(0);
     table.add(64);
-    
+
     for(int i=2;i<LEVELS;i++)
       {
       int exp=((i*10+i*i*5+i*i*i*10+80)>>7)<<7;
@@ -21,7 +21,7 @@ public class Level
       table.add(exp);
       }
     }
-  
+
   public static int getLevel(int exp)
     {
     for(int i=0;i<LEVELS;i++)
@@ -31,10 +31,19 @@ public class Level
         return i-1;
         }
       }
-    
+
     return LEVELS;
     }
-  
+
+  public static int getXP(int level)
+    {
+      if(level >= 0 && level < table.size())
+        {
+        return table.get(level);
+        }
+      return -1;
+    }
+
   public static int changeLevel(int exp, int added)
     {
     int i;
@@ -45,7 +54,7 @@ public class Level
         break;
         }
       }
-    
+
     for(int j=i;j<LEVELS;j++)
       {
       if(exp+added<table.get(j))

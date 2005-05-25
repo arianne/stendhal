@@ -18,12 +18,12 @@ import games.stendhal.common.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
 
-public abstract class Creature extends NPC 
+public abstract class Creature extends NPC
   {
   private RespawnPoint point;
   private List<Path.Node> patrolPath;
   private RPEntity target;
-  
+
   public Creature(RPObject object) throws AttributeNotFoundException
     {
     super(object);
@@ -35,7 +35,7 @@ public abstract class Creature extends NPC
     super();
     init();
     }
-  
+
   private void init()
     {
     patrolPath=new LinkedList<Path.Node>();
@@ -49,7 +49,7 @@ public abstract class Creature extends NPC
     {
     this.point=point;
     }
-  
+
   public RespawnPoint getRespawnPoint()
     {
     return point;
@@ -57,62 +57,58 @@ public abstract class Creature extends NPC
 
   public void addXP(int newxp)
     {
-    int levels=Level.changeLevel(getXP(),newxp);
-    if(levels>0)
+    int oldLevel = Level.getLevel(getXP());
+    super.addXP(newxp);
+    int newLevel = Level.getLevel(getXP());
+    int levelsGained = newLevel - oldLevel;
+    if(levelsGained > 0)
       {
-      // Increse the attributes using that formula:
-      //  Level 1 - DEF + 1
-      //  Level 2 - HP + 10
-      //  Level 3 - ATK + 1
-      
-      int currentLevel=Level.getLevel(getXP());
-      for(int i=0;i<levels;i++)
+        for(int i = 0; i < levelsGained; i++)
         {
-        switch((currentLevel + i) % 3)
+          switch((new Random()).nextInt(3))
           {
-          case 0:
-            setATK(getATK()+1);
-            break;
-          case 1:
-            setDEF(getDEF()+1);
-            break;
-          case 2:
-            setbaseHP(getbaseHP()+10*levels);
-            break;
+            case 0:
+              setATK(getATK() + 1);
+              break;
+            case 1:
+              setDEF(getDEF() + 1);
+              break;
+            case 2:
+              setbaseHP(getbaseHP() + 10);
+              break;
           }
         }
+        setLevel(newLevel);
       }
-
-    super.addXP(newxp);
     }
 
   public void onDead(RPEntity who)
     {
-    if(point!=null) 
+    if(point!=null)
       {
       point.notifyDead(this);
       }
-    
+
     super.onDead(who);
     }
-  
+
   public abstract double getSpeed();
 
   private Player getNearestPlayer(double range)
     {
     int x=getx();
     int y=gety();
-    
+
     double distance=range*range; // We save this way several sqrt operations
     Player chosen=null;
-    
+
     for(Player player: rp.getPlayers())
       {
       if(player.get("zoneid").equals(get("zoneid")))
         {
         int fx=player.getx();
         int fy=player.gety();
-        
+
         if(Math.abs(fx-x)<range && Math.abs(fy-y)<range)
           {
           if(distance(player)<distance)
@@ -123,10 +119,10 @@ public abstract class Creature extends NPC
           }
         }
       }
-    
+
     return chosen;
-    }  
-  
+    }
+
 
   public void logic()
     {
@@ -135,20 +131,20 @@ public abstract class Creature extends NPC
       {
       Logger.trace("Creature::logic","D", "Creating Path for this entity");
       List<Path.Node> nodes=new LinkedList<Path.Node>();
-      
+
       int size=patrolPath.size();
-      
+
       for(int i=0; i<size;i++)
         {
         Path.Node actual=patrolPath.get(i);
         Path.Node next=patrolPath.get((i+1)%size);
-        
+
         nodes.addAll(Path.searchPath(this,actual.x+getx(),actual.y+gety(),next.x+getx(),next.y+gety()));
         }
-      
+
       setPath(nodes,true);
       }
-    
+
     if(isAttacked() && target==null)
       {
       clearPath();
@@ -163,14 +159,14 @@ public abstract class Creature extends NPC
         clearPath();
         stopAttack();
         }
-        
+
       target=getNearestPlayer(8);
       if(target!=null)
         {
         Logger.trace("Creature::logic","D","Creature("+get("type")+") gets a new target.");
         }
       }
-    
+
     if(target==null)
       {
       Logger.trace("Creature::logic","D","Following path");
@@ -210,12 +206,12 @@ public abstract class Creature extends NPC
       {
       StendhalRPAction.move(this);
       }
-    
+
     if(rp.getTurn()%5==0 && isAttacking())
       {
       StendhalRPAction.attack(this,getAttackTarget());
       }
-      
+
     world.modify(this);
     Logger.trace("Creature::logic","<");
     }

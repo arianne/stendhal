@@ -36,7 +36,6 @@ public class Player extends RPEntity
       player.add("private_text",RPClass.LONG_STRING,RPClass.HIDDEN);
       player.add("sheep",RPClass.INT);
       player.add("devel",RPClass.INT,RPClass.HIDDEN);
-      player.add("devel_attrib",RPClass.STRING,RPClass.HIDDEN);
       player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
       }
     catch(RPClass.SyntaxException e)
@@ -59,38 +58,31 @@ public class Player extends RPEntity
     super.update();
     if(has("devel")) devel=getInt("devel");
     }
-  
+
   public void addXP(int newxp)
     {
-    int levels=Level.changeLevel(getXP(),newxp);
+    super.addXP(newxp);
+    int newLevel = Level.getLevel(getXP());
+    int levels=getLevel() - newLevel;
     if(levels>0)
       {
-      Player p = (Player) this;
-      p.addDevel(levels);
+      addDevel(levels);
+      setLevel(newLevel);
       }
-    
-    super.addXP(newxp);
     }
 
   public void addDevel(int n)
     {
     devel+=n;
     put("devel",devel);
-    }    
+    }
 
   public void improveATK()
     {
     if(devel>0)
       {
-      System.out.println ("ATK: "+getATK()+1);
-      
-      put("devel_attrib","atk");
-	    addDevel(-1);
-	    setATK(getATK()+1);
-      }
-    else
-      {
-      System.out.println ("devel <= 0");
+      addDevel(-1);
+      setATK(getATK()+1);
       }
     }
 
@@ -98,9 +90,8 @@ public class Player extends RPEntity
     {
     if(devel>0)
       {
-      put("devel_attrib","def");
       addDevel(-1);
-	    setDEF(getDEF()+1);
+      setDEF(getDEF()+1);
       }
     }
 
@@ -108,9 +99,8 @@ public class Player extends RPEntity
     {
     if(devel>0)
       {
-      put("devel_attrib","hp");
       addDevel(-1);
-	    setbaseHP(getbaseHP()+10);
+      setbaseHP(getbaseHP()+10);
       }
     }
 
@@ -136,32 +126,7 @@ public class Player extends RPEntity
 
     super.onDead(who, false);
 
-    int levelsDowngrade=Level.changeLevel((int)(getXP()*0.9),getXP());
-    if(levelsDowngrade>0)
-      {
-      if(devel>0) // If have devel points take 1 out
-        {
-        put("devel",devel-1);
-        }
-      else if(has("devel_attrib")) // else take one of the improved attributes.
-        {
-        String devel_attrib=get("devel_attrib");
-        if(devel_attrib.equals("atk"))
-          {
-          setATK(getATK()-1);
-          }
-        else if(devel_attrib.equals("def"))
-          {
-          setDEF(getDEF()-1);
-          }
-        else if(devel_attrib.equals("def"))
-          {
-          setHP(getHP()-10);
-          }
-        }
-      }
-      
-    setXP((int)(getXP()*0.9));        
+    setXP((int)(getXP()*0.9));
     setHP(getbaseHP());
 
     world.modify(who);
