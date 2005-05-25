@@ -62,6 +62,7 @@ public abstract class RPEntity extends AnimatedEntity
   private int xp;
   private int hp;
   private int base_hp;
+  private float hp_base_hp;
   private int level;
 
   private Sprite nameImage;
@@ -104,6 +105,8 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(changes.has("base_hp")) base_hp=changes.getInt("base_hp");
     if(changes.has("hp")) hp=changes.getInt("hp");
+    if(changes.has("hp/base_hp")) hp_base_hp=(float)changes.getDouble("hp/base_hp");
+    
     if(changes.has("atk")) atk=changes.getInt("atk");
     if(changes.has("def")) def=changes.getInt("def");
     if(changes.has("xp")) xp=changes.getInt("xp");
@@ -236,22 +239,19 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(nameImage!=null) screen.draw(nameImage,x,y-0.5);
 
-    if(base_hp>0)
       {
-      if(hp<0) hp=0;
-
       Graphics g2d=screen.expose();
 
       Point2D p=new Point.Double(x,y);
       p=screen.invtranslate(p);
 
-      float r=1-(float)hp/((float)base_hp);r*=2;
-      float g=(float)hp/((float)base_hp);g*=2;
+      float r=1-hp_base_hp;r*=2.0;
+      float g=hp_base_hp;g*=2.0;
 
       g2d.setColor(Color.gray);
       g2d.fillRect((int)p.getX(),(int)p.getY()-3,26,3);
       g2d.setColor(new Color(r>1?1:r,g>1?1:g,0));
-      g2d.fillRect((int)p.getX(),(int)p.getY()-3,(int)(((float)hp/(float)base_hp)*26.0),3);
+      g2d.fillRect((int)p.getX(),(int)p.getY()-3,(int)(hp_base_hp*26.0),3);
       g2d.setColor(Color.black);
       g2d.drawRect((int)p.getX(),(int)p.getY()-3,26,3);
       }

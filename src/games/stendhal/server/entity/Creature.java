@@ -60,25 +60,28 @@ public abstract class Creature extends NPC
     int oldLevel = Level.getLevel(getXP());
     super.addXP(newxp);
     int newLevel = Level.getLevel(getXP());
+    
     int levelsGained = newLevel - oldLevel;
+    
     if(levelsGained > 0)
       {
-        for(int i = 0; i < levelsGained; i++)
+      for(int i = 0; i < levelsGained; i++)
         {
-          switch((new Random()).nextInt(3))
+        switch((new Random()).nextInt(3))
           {
-            case 0:
-              setATK(getATK() + 1);
-              break;
-            case 1:
-              setDEF(getDEF() + 1);
-              break;
-            case 2:
-              setbaseHP(getbaseHP() + 10);
-              break;
+          case 0:
+            setATK(getATK() + 1);
+            break;
+          case 1:
+            setDEF(getDEF() + 1);
+            break;
+          case 2:
+            setbaseHP(getbaseHP() + 10);
+            break;
           }
         }
-        setLevel(newLevel);
+        
+      setLevel(newLevel);
       }
     }
 

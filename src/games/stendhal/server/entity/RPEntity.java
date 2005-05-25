@@ -41,12 +41,15 @@ public abstract class RPEntity extends Entity
       RPClass entity=new RPClass("rpentity");
       entity.isA("entity");
       entity.add("name",RPClass.STRING);
-      entity.add("xp",RPClass.INT,RPClass.HIDDEN);
       entity.add("level",RPClass.SHORT);
-      entity.add("base_hp",RPClass.SHORT);
-      entity.add("hp",RPClass.SHORT);
+      entity.add("hp/base_hp",RPClass.FLOAT);
+      
+      entity.add("base_hp",RPClass.SHORT,RPClass.HIDDEN);
+      entity.add("hp",RPClass.SHORT,RPClass.HIDDEN);
       entity.add("atk",RPClass.BYTE,RPClass.HIDDEN);
       entity.add("def",RPClass.BYTE,RPClass.HIDDEN);
+      entity.add("xp",RPClass.INT,RPClass.HIDDEN);
+      
       entity.add("risk",RPClass.BYTE);
       entity.add("damage",RPClass.BYTE);
       entity.add("target",RPClass.INT);
@@ -80,6 +83,15 @@ public abstract class RPEntity extends Entity
     if(has("hp")) hp=getInt("hp");
     if(has("xp")) xp=getInt("xp");
     if(has("level")) level=getInt("level");
+    
+    if(base_hp!=0)
+      {
+      put("hp/base_hp",(double)hp/(double)base_hp);
+      }
+    else
+      {
+      put("hp/base_hp",1);
+      }
     }
 
   public void setName(String name)
@@ -130,8 +142,19 @@ public abstract class RPEntity extends Entity
     {
     this.base_hp=hp;
     put("base_hp",hp);
+    
+    //BUG: Not sure we want this here
     this.hp=hp;
     put("hp",hp);
+
+    if(base_hp!=0)
+      {
+      put("hp/base_hp",(double)hp/(double)base_hp);
+      }
+    else
+      {
+      put("hp/base_hp",1);
+      }
     }
 
   public int getbaseHP()
@@ -143,6 +166,15 @@ public abstract class RPEntity extends Entity
     {
     this.hp=hp;
     put("hp",hp);
+    
+    if(base_hp!=0)
+      {
+      put("hp/base_hp",(double)hp/(double)base_hp);
+      }
+    else
+      {
+      put("hp/base_hp",1);
+      }
     }
 
   public int getHP()

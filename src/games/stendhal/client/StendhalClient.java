@@ -356,6 +356,7 @@ public class StendhalClient extends ariannexp
         if(changed)
           {          
           player=(RPObject)world_objects.get(object.getID());
+          gameObjects.modifyAdded(player,object);
           player.applyDifferences(object,null);
           }
         }
