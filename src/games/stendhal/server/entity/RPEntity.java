@@ -40,11 +40,11 @@ public abstract class RPEntity extends Entity
       RPClass entity=new RPClass("rpentity");
       entity.isA("entity");
       entity.add("name",RPClass.STRING);
-      entity.add("xp",RPClass.INT);
+      entity.add("xp",RPClass.INT,RPClass.HIDDEN);
       entity.add("base_hp",RPClass.SHORT);
       entity.add("hp",RPClass.SHORT);
-      entity.add("atk",RPClass.BYTE);
-      entity.add("def",RPClass.BYTE);
+      entity.add("atk",RPClass.BYTE,RPClass.HIDDEN);
+      entity.add("def",RPClass.BYTE,RPClass.HIDDEN);
       entity.add("risk",RPClass.BYTE);
       entity.add("damage",RPClass.BYTE);
       entity.add("target",RPClass.INT);
