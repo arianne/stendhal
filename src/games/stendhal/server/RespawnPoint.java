@@ -112,6 +112,7 @@ public class RespawnPoint
       {
       Creature newentity=entity.getClass().newInstance();
 
+      // We randomly modify the creature to up to 3 levels up
       int rand = (new Random()).nextInt(100);
       int nbLevel = 0;
       if(rand == 0)
@@ -127,11 +128,10 @@ public class RespawnPoint
         nbLevel = 1;
         }
 
-      if(nbLevel > 0)
+      if(nbLevel>0)
         {
         int newLevel = newentity.getLevel() + nbLevel;
         int newXP = Level.getXP(newLevel);
-        newXP += (new Random()).nextInt(Level.getXP(newLevel + 1) - newXP);
         newentity.addXP(newXP - newentity.getXP());
         }
 
