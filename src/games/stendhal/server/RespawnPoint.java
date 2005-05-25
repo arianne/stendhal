@@ -116,15 +116,15 @@ public class RespawnPoint
       int nbLevel = 0;
       if(rand == 0)
         {
-          nbLevel = 3;
+        nbLevel = 3;
         }
       else if(rand < 10)
         {
-          nbLevel = 2;
+        nbLevel = 2;
         }
       else if(rand < 30)
         {
-          nbLevel = 1;
+        nbLevel = 1;
         }
 
       if(nbLevel > 0)

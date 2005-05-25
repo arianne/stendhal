@@ -46,72 +46,75 @@ public abstract class Creature extends NPC
     patrolPath.add(new Path.Node(0,6));
     }
 
-    /**
-     * This function compute how much percentage of hp (in average) a player will lose against a creature
-     * @param atk Attack stat of the creature
-     * @param def Defense stat of the creature
-     * @param hp Health Point stat of the creature
-     * @param level Level of the player
-     * @return double Percentage of remaining hp.
-     */
-    private static double leftTargetHPAverageCombat(int atk, int def, int hp, int level)
-    {
-    double patk = 2.0 + level/3.0; // Atk stat of a player of level level in average = 2 + level/3
-    double pdef = patk; // Def stat of a player of level level
-    double playerHp = 100.0 + (10.0 * level)/3.0; // HP Stat of a player of level level.
-    double maxHp = playerHp;
-    double creatureHP = hp;
-    double damageCreature = StendhalRPAction.averageDamageAttack(atk, def, patk, pdef); // Average damage dealed by the creature each turn
-    double damagePlayer = StendhalRPAction.averageDamageAttack(patk, pdef, atk, def); // Average damage dealed by the player each turn
-    /* We now compute how much hp the player will have once he killed the creature */
-    while(creatureHP > 0)
-      {
-      creatureHP -= damagePlayer;
-      playerHp -= damageCreature;
-      }
-    /* We return the percentage of remaining hp */
-    return (playerHp / maxHp);
-    }
-
-    /**
-     * This function return the number of xp a creature should be given base on its stats;
-     * @param atk Attack stat of the creature
-     * @param def Defense stat of the creature
-     * @param hp Health Point stat of the creature
-     * @return Number of xp of the creature
-     */
-    public static int getInitialXP(int atk, int def, int hp)
-    {
-    int level, minLevel, maxLevel;
-    minLevel = 0;
-    maxLevel = Level.maxLevel();
-
-    if(leftTargetHPAverageCombat(atk, def, hp, minLevel) >= 0.1) // If the creature is level 0 or less...
-      {
-      return ((int) Math.round((1.0 - leftTargetHPAverageCombat(atk, def, hp, minLevel)) * (double) Level.getXP(minLevel + 1))); // We still give it some xp
-      }
-    else if(leftTargetHPAverageCombat(atk, def, hp, maxLevel) <= 0.1) // If the creature is level 99 or more...
-      {
-      return Level.getXP(maxLevel);
-      }
-    else
-      {
-      while(maxLevel - minLevel > 1) // We de a dichotomic search to find what is the level of the creature
-        {
-        level = minLevel + ((maxLevel - minLevel)/2);
-        if(leftTargetHPAverageCombat(atk, def, hp, level) < 0.1) minLevel = level;
-        else maxLevel = level;
-        }
-      /* Now minLevel is the level of the creature and maxLevel is minLevel + 1
-       * We compute now the xp by doing a linear approximation to find leftTargetHPAverageCombat == 0.1
-       */
-      double r1 = leftTargetHPAverageCombat(atk, def, hp, minLevel);
-      double r2 = leftTargetHPAverageCombat(atk, def, hp, maxLevel);
-      if(r1 == 0.1) return Level.getLevel(minLevel);
-      if(r2 == 0.1) return Level.getLevel(maxLevel);
-      return Level.getXP(minLevel) + ((int) Math.round((0.1 - r1)/ (r2-r1) *((long) Level.getXP(minLevel))));
-      }
-    }
+// This way of assigning XP isn't working correctly.
+// A rat gets 0 XP points and a wolf 93 XP points and it is just 4 level of difference.
+//    /**
+//     * This function compute how much percentage of hp (in average) a player will lose against a creature
+//     * @param atk Attack stat of the creature
+//     * @param def Defense stat of the creature
+//     * @param hp Health Point stat of the creature
+//     * @param level Level of the player
+//     * @return double Percentage of remaining hp.
+//     */
+//  private static double leftTargetHPAverageCombat(int atk, int def, int hp, int level)
+//    {
+//    double patk = 2.0 + level/3.0; // Atk stat of a player of level level in average = 2 + level/3
+//    double pdef = patk; // Def stat of a player of level level
+//    double playerHp = 100.0 + (10.0 * level)/3.0; // HP Stat of a player of level level.
+//    double maxHp = playerHp;
+//    double creatureHP = hp;
+//    double damageCreature = StendhalRPAction.averageDamageAttack(atk, def, patk, pdef); // Average damage dealed by the creature each turn
+//    double damagePlayer = StendhalRPAction.averageDamageAttack(patk, pdef, atk, def); // Average damage dealed by the player each turn
+//    /* We now compute how much hp the player will have once he killed the creature */
+//    while(creatureHP > 0)
+//      {
+//      creatureHP -= damagePlayer;
+//      playerHp -= damageCreature;
+//      }
+//    /* We return the percentage of remaining hp */
+//    return (playerHp / maxHp);
+//    }
+//
+//    /**
+//     * This function return the number of xp a creature should be given base on its stats;
+//     * @param atk Attack stat of the creature
+//     * @param def Defense stat of the creature
+//     * @param hp Health Point stat of the creature
+//     * @return Number of xp of the creature
+//     */
+//  public static int getInitialXP(int atk, int def, int hp)
+//    {
+//    int level, minLevel, maxLevel;
+//    minLevel = 0;
+//    maxLevel = Level.maxLevel();
+//
+//    if(leftTargetHPAverageCombat(atk, def, hp, minLevel) >= 0.1) // If the creature is level 0 or less...
+//      {
+//      return ((int) Math.round((1.0 - leftTargetHPAverageCombat(atk, def, hp, minLevel)) * (double) Level.getXP(minLevel + 1))); // We still give it some xp
+//      }
+//    else if(leftTargetHPAverageCombat(atk, def, hp, maxLevel) <= 0.1) // If the creature is level 99 or more...
+//      {
+//      return Level.getXP(maxLevel);
+//      }
+//    else
+//      {
+//      while(maxLevel - minLevel > 1) // We de a dichotomic search to find what is the level of the creature
+//        {
+//        level = minLevel + ((maxLevel - minLevel)/2);
+//        if(leftTargetHPAverageCombat(atk, def, hp, level) < 0.1) minLevel = level;
+//        else maxLevel = level;
+//        }
+//      /* Now minLevel is the level of the creature and maxLevel is minLevel + 1
+//       * We compute now the xp by doing a linear approximation to find leftTargetHPAverageCombat == 0.1
+//       */
+//      double r1 = leftTargetHPAverageCombat(atk, def, hp, minLevel);
+//      double r2 = leftTargetHPAverageCombat(atk, def, hp, maxLevel);
+//      if(r1 == 0.1) return Level.getLevel(minLevel);
+//      if(r2 == 0.1) return Level.getLevel(maxLevel);
+//      return Level.getXP(minLevel) + ((int) Math.round((0.1 - r1)/ (r2-r1) *((long) Level.getXP(minLevel))));
+//      }
+//    }
+//
 
   public void setRespawnPoint(RespawnPoint point)
     {
