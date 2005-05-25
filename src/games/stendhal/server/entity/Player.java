@@ -64,6 +64,7 @@ public class Player extends RPEntity
     super.addXP(newxp);
     int newLevel = Level.getLevel(getXP());
     int levels=getLevel() - newLevel;
+    
     if(levels>0)
       {
       addDevel(levels);

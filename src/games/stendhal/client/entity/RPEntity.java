@@ -125,10 +125,13 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(changes.has("xp") && object.has("xp"))
       {
-        if(stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID()))
+      if(stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID()))
+        {
+        if((changes.getInt("xp") - object.getInt("xp"))>0)
           {
           client.addEventLine(getName() + " earns " + (changes.getInt("xp") - object.getInt("xp")) + " XP points." , Color.blue);
-          }
+          }        
+        }
       }
 
     if(changes.has("level") && object.has("level"))
