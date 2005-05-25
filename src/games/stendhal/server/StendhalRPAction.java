@@ -41,27 +41,28 @@ public class StendhalRPAction
     rand=new Random();
     }
 
-  public static double averageDamageAttack(double atk1, double def1, double atk2, double def2)
+  /** This method returns the average damage done by Entity1 to Entity2 considering its levels.
+   *  It is a way of determine optimal XP. */
+  public static double averageDamageAttack(int atk1, int def1, int atk2, int def2)
     {
-      double damage = 0;
-      double risk;
-      double dam;
-      for(int d1 = 1; d1 < 7; d1++)
+    int damage = 0;
+
+    for(int d1 = 1; d1 < 7; d1++)
+      {
+      for(int d2 = 0; d2 < 7; d2++)
         {
-        for(int d2 = 0; d2 < 7; d2++)
+        if(d1 == 6 && d2 == 6) damage += atk1;
+        else
           {
-          if(d1 == 6 && d2 == 6) damage += atk1;
-          else
-            {
-            risk = atk1 - def2/6 - d1;
-            dam = atk1/6 - def2 + d2;
-            if(risk > 0 && dam > 0) damage += dam;
-            }
+          int risk = atk1 - def2/6 - d1;
+          int dam = atk1/6 - def2 + d2;
+          if(risk > 0 && dam > 0) damage += dam;
           }
         }
-      return damage/36.0;
+      }
+      
+    return damage/36.0;
     }
-
 
 
   public static boolean attack(RPEntity source,RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException

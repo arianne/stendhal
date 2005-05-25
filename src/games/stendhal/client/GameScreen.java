@@ -188,6 +188,11 @@ public class GameScreen
       sprite.draw(g,sx,sy);
       }
     }
+
+  public void drawInScreen(Sprite sprite, int sx, int sy)
+    {
+    sprite.draw(g,sx,sy);
+    }
   
   public Sprite createString(String text, Color textColor)
     {

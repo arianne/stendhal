@@ -106,11 +106,17 @@ public class InGameGUI implements MouseListener, MouseMotionListener
   private GameObjects gameObjects;
   private GameScreen screen;
   
+  private Sprite inGameInventory;
+  private Sprite inGameDevelPoint;
+  
   public InGameGUI(StendhalClient client)
     {
     this.client=client;
     this.gameObjects=client.getGameObjects();
     this.screen=GameScreen.get();
+    
+    inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.gif");
+    inGameDevelPoint=SpriteStore.get().getSprite("data/levelup.gif");
     }
     
   public void mouseDragged(MouseEvent e) 
@@ -179,6 +185,17 @@ public class InGameGUI implements MouseListener, MouseMotionListener
 
   public void draw(GameScreen screen)
     {
+    screen.drawInScreen(inGameInventory,530,10);
+    
+    RPObject player=client.getPlayer();
+    
+    if(player!=null && player.has("devel") && player.getInt("devel")>0)
+      {
+      screen.drawInScreen(inGameDevelPoint, 530+2,10+84);
+      screen.drawInScreen(inGameDevelPoint, 530+2,10+84+14);
+      screen.drawInScreen(inGameDevelPoint, 530+2,10+84+14*2);
+      }
+    
     if(widget!=null)
       {
       widget.draw(screen);
