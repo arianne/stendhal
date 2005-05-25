@@ -43,9 +43,9 @@ public class StendhalRPAction
 
   /** This method returns the average damage done by Entity1 to Entity2 considering its levels.
    *  It is a way of determine optimal XP. */
-  public static double averageDamageAttack(int atk1, int def1, int atk2, int def2)
+  public static double averageDamageAttack(double atk1, double def1, double atk2, double def2)
     {
-    int damage = 0;
+    double damage = 0;
 
     for(int d1 = 1; d1 < 7; d1++)
       {
@@ -54,8 +54,8 @@ public class StendhalRPAction
         if(d1 == 6 && d2 == 6) damage += atk1;
         else
           {
-          int risk = atk1 - def2/6 - d1;
-          int dam = atk1/6 - def2 + d2;
+          double risk = atk1 - def2/6 - d1;
+          double dam = atk1/6 - def2 + d2;
           if(risk > 0 && dam > 0) damage += dam;
           }
         }
