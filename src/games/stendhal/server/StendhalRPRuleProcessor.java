@@ -357,21 +357,28 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     private void tell(Player player, RPAction action)
       {
       Logger.trace("StendhalRPRuleProcessor::tell",">");
-      if(action.has("who") && action.has("text"))
+      try
         {
-        String message = player.getName() +  " tells you: " + action.get("text");
-        for(Player p : getPlayers())
+        if(action.has("who") && action.has("text"))
           {
-          if(p.getName().equals(action.get("who")))
+          String message = player.getName() +  " tells you: " + action.get("text");
+          for(Player p : getPlayers())
             {
+            if(p.getName().equals(action.get("who")))
+              {
               p.setPrivateText(message);
               world.modify(p);
-              Logger.trace("StendhalRPRuleProcessor::tell","<");
+              
+              playersObjectRmText.add(player);
               return;
+              }
             }
           }
         }
-      Logger.trace("StendhalRPRuleProcessor::tell","<");
+      finally
+        {
+        Logger.trace("StendhalRPRuleProcessor::tell","<");
+        }
       }
 
   private void chat(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
@@ -483,6 +490,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         if(object.has("text"))
           {
           object.remove("text");
+          world.modify(object);
+          }
+
+        if(object.has("private_text"))
+          {
+          object.remove("private_text");
           world.modify(object);
           }
         }
