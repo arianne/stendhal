@@ -23,24 +23,24 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.*;
 
-public class StendhalRPAction 
+public class StendhalRPAction
   {
   private static RPServerManager rpman;
   private static RPWorld world;
   private static Random rand;
-  
+
   public static int roll1D6()
     {
-    return Math.round((float)(Math.random()*5.0))+1;
+    return 1 + (new Random()).nextInt(6);
     }
-    
+
   public static void initialize(RPServerManager rpman, RPWorld world)
     {
     StendhalRPAction.rpman=rpman;
     StendhalRPAction.world=world;
     rand=new Random();
     }
-    
+
   public static boolean attack(RPEntity source,RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
     Logger.trace("StendhalRPAction::attack",">");
@@ -53,42 +53,42 @@ public class StendhalRPAction
         world.modify(source);
         return false;
         }
-      
+
       target.onAttack(source, true);
-      
+
       if(source.nextto(target,1))
         {
         int roll1st=roll1D6();
         int roll2nd=roll1D6();
-        
+
         int risk=source.getATK()-target.getDEF()/6-roll1st;
-        int damage=source.getATK()/6-target.getDEF()+roll2nd;  
+        int damage=source.getATK()/6-target.getDEF()+roll2nd;
 
         source.put("risk",risk);
-        
+
         Logger.trace("StendhalRPAction::attack","D","Risk to strike: "+risk);
-        
+
         if(roll1st==6 && roll2nd==6) // Critical hit
           {
           damage=source.getATK();
-          target.onDamage(source,damage);              
+          target.onDamage(source,damage);
           source.put("risk","1");
           source.put("damage",damage);
-          Logger.trace("StendhalRPAction::attack","D","Critical hit. Damage done: "+(damage>0?damage:0));            
+          Logger.trace("StendhalRPAction::attack","D","Critical hit. Damage done: "+(damage>0?damage:0));
           }
         else if(risk>0 && damage>0) //Hit
           {
-          target.onDamage(source,damage);              
+          target.onDamage(source,damage);
           source.put("damage",damage);
-          Logger.trace("StendhalRPAction::attack","D","Damage done: "+(damage>0?damage:0));            
+          Logger.trace("StendhalRPAction::attack","D","Damage done: "+(damage>0?damage:0));
           }
         else // Blocked
           {
           source.put("damage",0);
-          }  
-        
+          }
+
         world.modify(source);
-        return true;      
+        return true;
         }
       else
         {
@@ -100,7 +100,7 @@ public class StendhalRPAction
       Logger.trace("StendhalRPAction::attack","<");
       }
     }
-    
+
   public static void move(RPEntity entity) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::move",">");
@@ -116,39 +116,39 @@ public class StendhalRPAction
         Logger.trace("StendhalRPAction::move","D","("+entity.get("type")+") move not completed");
         return;
         }
-      
+
       int x=entity.getx();
       int y=entity.gety();
-      
+
       Direction dir=entity.getDirection();
       int dx=dir.getdx();
       int dy=dir.getdy();
-      
+
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(entity.getID());
-      
+
       if(zone.collides(entity,x+dx,y+dy)==false)
         {
         Logger.trace("StendhalRPAction::move","D","Moving from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
-        
+
         entity.setx(x+dx);
         entity.sety(y+dy);
-        
+
         entity.collides(false);
         world.modify(entity);
-        }        
+        }
       else
         {
         /* Collision */
-        Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");      
+        Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");
         entity.collides(true);
-        
+
         entity.stop();
         world.modify(entity);
 
         if(entity instanceof Player)
           {
           Player player=(Player)entity;
-          
+
           if(zone.leavesZone(player,x+dx,y+dy))
             {
             Logger.trace("StendhalRPAction::move","D","Leaving zone from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
@@ -157,7 +157,7 @@ public class StendhalRPAction
             world.modify(player);
             return;
             }
-          
+
           for(Portal portal: zone.getPortals())
             {
             if(player.nextto(portal,0.25))
@@ -167,7 +167,7 @@ public class StendhalRPAction
               transferContent(player);
               }
             }
-          }     
+          }
         }
       }
     finally
@@ -176,7 +176,7 @@ public class StendhalRPAction
       }
     }
 
-  public static void transferContent(Player player) throws AttributeNotFoundException 
+  public static void transferContent(Player player) throws AttributeNotFoundException
     {
     Logger.trace("StendhalRPAction::transferContent",">");
 
@@ -193,13 +193,13 @@ public class StendhalRPAction
     int y=player.gety();
 
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-    
-    if(zoneid.equals("village") && x>zone.getWidth()-4) 
+
+    if(zoneid.equals("village") && x>zone.getWidth()-4)
       {
       changeZone(player,"city");
       transferContent(player);
       }
-    else if(zoneid.equals("city") && x<4) 
+    else if(zoneid.equals("city") && x<4)
       {
       changeZone(player,"village");
       transferContent(player);
@@ -229,38 +229,38 @@ public class StendhalRPAction
   public static void usePortal(Player player, Portal portal) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::usePortal",">");
-    
+
     if(!player.nextto(portal,0.25)) // Too far to use the portal
       {
       return;
       }
-    
+
     StendhalRPZone destZone=(StendhalRPZone)world.getRPZone(new IRPZone.ID(portal.getDestinationZone()));
     Portal dest=destZone.getPortal(portal.getDestinationNumber());
-    
+
     String source=player.getID().getZoneID();
-    
+
     if(player.hasSheep())
       {
       Sheep sheep=(Sheep)world.get(player.getSheep());
-      world.changeZone(source,portal.getDestinationZone(),sheep);    
-      world.changeZone(source,portal.getDestinationZone(),player);    
-      
+      world.changeZone(source,portal.getDestinationZone(),sheep);
+      world.changeZone(source,portal.getDestinationZone(),player);
+
       player.setSheep(sheep);
       player.stop();
       player.stopAttack();
       }
     else
       {
-      world.changeZone(source,portal.getDestinationZone(),player);    
+      world.changeZone(source,portal.getDestinationZone(),player);
       }
-    
+
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-    
+
     Logger.trace("StendhalRPAction::usePortal","D","Place player");
     placeat(zone,player,dest.getInt("x"),dest.getInt("y"));
     player.stop();
-      
+
     if(player.hasSheep())
       {
       Logger.trace("StendhalRPAction::usePortal","D","Place sheep");
@@ -269,15 +269,15 @@ public class StendhalRPAction
       sheep.clearPath();
       sheep.stop();
       }
-      
+
     /* There isn't any world.modify because there is already considered inside
      * the implicit world.add call at changeZone */
-    
+
     Logger.trace("StendhalRPAction::usePortal","<");
     }
-  
+
   public static void placeat(StendhalRPZone zone, Entity entity, int x, int y)
-    {    
+    {
     if(zone.collides(entity,x,y))
       {
       for(int k=2;k<5;k++)
@@ -295,7 +295,7 @@ public class StendhalRPAction
             }
           }
         }
-      
+
       Logger.trace("StendhalRPAction::placeat","D","Unable to place "+entity+" at ("+x+","+y+")");
       }
     else
@@ -304,35 +304,35 @@ public class StendhalRPAction
       entity.sety(y);
       }
     }
-    
+
   public static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException
-    {    
+    {
     Logger.trace("StendhalRPAction::changeZone",">");
 
     String source=player.getID().getZoneID();
-    
+
     StendhalRPZone oldzone=(StendhalRPZone)world.getRPZone(player.getID());
 
     if(player.hasSheep())
       {
       Sheep sheep=(Sheep)world.get(player.getSheep());
-      world.changeZone(source,destination,sheep);    
-      world.changeZone(source,destination,player);    
-      
+      world.changeZone(source,destination,sheep);
+      world.changeZone(source,destination,player);
+
       player.setSheep(sheep);
       }
     else
       {
-      world.changeZone(source,destination,player);    
+      world.changeZone(source,destination,player);
       }
-    
+
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
     zone.placeObjectAtZoneChangePoint(oldzone,player);
-    
+
     placeat(zone,player,player.getInt("x"),player.getInt("y"));
     player.stop();
     player.stopAttack();
-      
+
     if(player.hasSheep())
       {
       Sheep sheep=(Sheep)world.get(player.getSheep());
@@ -340,7 +340,7 @@ public class StendhalRPAction
       sheep.clearPath();
       sheep.stop();
       }
-      
+
     /* There isn't any world.modify because there is already considered inside
      * the implicit world.add call at changeZone */
 
