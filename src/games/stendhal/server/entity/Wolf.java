@@ -29,7 +29,7 @@ public class Wolf extends Creature
   final private static int HP=35;
   final private static int ATK=6;
   final private static int DEF=4;
-  final private static int XP=360;//getInitialXP(ATK,DEF,HP);
+  final private static int XP=getInitialXP(ATK,DEF,HP);
 
   public static void generateRPClass()
     {

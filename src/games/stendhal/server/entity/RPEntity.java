@@ -43,13 +43,13 @@ public abstract class RPEntity extends Entity
       entity.add("name",RPClass.STRING);
       entity.add("level",RPClass.SHORT);
       entity.add("hp/base_hp",RPClass.FLOAT);
-      
+
       entity.add("base_hp",RPClass.SHORT,RPClass.HIDDEN);
       entity.add("hp",RPClass.SHORT,RPClass.HIDDEN);
       entity.add("atk",RPClass.BYTE,RPClass.HIDDEN);
       entity.add("def",RPClass.BYTE,RPClass.HIDDEN);
       entity.add("xp",RPClass.INT);
-      
+
       entity.add("risk",RPClass.BYTE);
       entity.add("damage",RPClass.BYTE);
       entity.add("target",RPClass.INT);
@@ -83,7 +83,7 @@ public abstract class RPEntity extends Entity
     if(has("hp")) hp=getInt("hp");
     if(has("xp")) xp=getInt("xp");
     if(has("level")) level=getInt("level");
-    
+
     if(base_hp!=0)
       {
       put("hp/base_hp",(double)hp/(double)base_hp);
@@ -142,7 +142,7 @@ public abstract class RPEntity extends Entity
     {
     this.base_hp=hp;
     put("base_hp",hp);
-    
+
     //BUG: Not sure we want this here
     this.hp=hp;
     put("hp",hp);
@@ -166,7 +166,7 @@ public abstract class RPEntity extends Entity
     {
     this.hp=hp;
     put("hp",hp);
-    
+
     if(base_hp!=0)
       {
       put("hp/base_hp",(double)hp/(double)base_hp);
@@ -280,7 +280,7 @@ public abstract class RPEntity extends Entity
     who.stopAttack();
 
     // Establish how much xp points your are rewarded
-    who.addXP((int)(getXP()*0.05));
+    who.addXP((Level.getXP(getLevel() + 1) - Level.getXP(getLevel()))/20);
 
     // Stats about dead
     stats.add("Killed "+get("type"),1);
