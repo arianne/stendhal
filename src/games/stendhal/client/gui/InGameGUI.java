@@ -3,13 +3,17 @@ package games.stendhal.client.gui;
 import java.awt.geom.*;
 import java.awt.event.*;
 import java.awt.*;
+
 import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.entity.*;
 import games.stendhal.client.*;
+import games.stendhal.common.*;
+
+import java.util.*;
 
 
-public class InGameGUI implements MouseListener, MouseMotionListener
+public class InGameGUI implements MouseListener, MouseMotionListener, KeyListener
   {
   interface InGameAction
     {
@@ -23,13 +27,14 @@ public class InGameGUI implements MouseListener, MouseMotionListener
     
   static class InGameButton
     {
+    private String name;
     private Sprite[] buttons;
     private Rectangle area;
     private InGameAction action;
     private boolean over;
     private boolean enabled;
     
-    public InGameButton(Sprite normal, Sprite over, int x, int y)
+    public InGameButton(String name, Sprite normal, Sprite over, int x, int y)
       {
       buttons=new Sprite[2];
       buttons[0]=normal;
@@ -39,6 +44,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener
       this.over=false;
       this.action=null;
       this.enabled=true;
+      this.name=name;
+      }
+    
+    public String getName()
+      {
+      return name;
       }
     
     public void setEnabled(boolean enabled)
@@ -191,6 +202,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener
   private StendhalClient client;
   private GameObjects gameObjects;
   private GameScreen screen;
+
+  private Map<Integer, Object> pressed;
   
   private Sprite inGameInventory;
   private Sprite inGameDevelPoint;
@@ -201,11 +214,13 @@ public class InGameGUI implements MouseListener, MouseMotionListener
     gameObjects=client.getGameObjects();
     screen=GameScreen.get();
     
+    pressed=new HashMap<Integer, Object>();
+    
     SpriteStore st=SpriteStore.get();
     
     buttons=new java.util.LinkedList<InGameButton>();
     InGameButton button=null;
-    button=new InGameButton(st.getSprite("data/atk_up.gif"), st.getSprite("data/atk_up_pressed.gif"), 530,84);
+    button=new InGameButton("atk",st.getSprite("data/atk_up.gif"), st.getSprite("data/atk_up_pressed.gif"), 530,84);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction()
@@ -216,9 +231,10 @@ public class InGameGUI implements MouseListener, MouseMotionListener
         InGameGUI.this.client.send(improve);
         }
       });
+    button.setEnabled(false);
     buttons.add(button);
     
-    button=new InGameButton(st.getSprite("data/def_up.gif"), st.getSprite("data/def_up_pressed.gif"), 530,84+14);
+    button=new InGameButton("def",st.getSprite("data/def_up.gif"), st.getSprite("data/def_up_pressed.gif"), 530,84+14);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction()
@@ -229,9 +245,10 @@ public class InGameGUI implements MouseListener, MouseMotionListener
         InGameGUI.this.client.send(improve);
         }
       });
+    button.setEnabled(false);
     buttons.add(button);
 
-    button=new InGameButton(st.getSprite("data/hp_up.gif"), st.getSprite("data/hp_up_pressed.gif"), 530,84+28);
+    button=new InGameButton("hp",st.getSprite("data/hp_up.gif"), st.getSprite("data/hp_up_pressed.gif"), 530,84+28);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction()
@@ -242,6 +259,36 @@ public class InGameGUI implements MouseListener, MouseMotionListener
         InGameGUI.this.client.send(improve);
         }
       });
+    button.setEnabled(false);
+    buttons.add(button);
+
+
+    button=new InGameButton("exit",st.getSprite("data/exit.gif"), st.getSprite("data/exit_pressed.gif"), 320,360);
+    button.addActionListener(new InGameActionListener()
+      {
+      public void onAction()
+        {
+        InGameGUI.this.client.requestLogout();
+        }
+      });
+    button.setEnabled(false);
+    buttons.add(button);
+    
+    button=new InGameButton("back",st.getSprite("data/back.gif"), st.getSprite("data/back_pressed.gif"), 220,360);
+    button.addActionListener(new InGameActionListener()
+      {
+      public void onAction()
+        {
+        for(InGameButton button: buttons)    
+          {
+          if(button.getName().equals("exit") || button.getName().equals("back"))
+            {
+            button.setEnabled(false);
+            }
+          } 
+        }
+      });
+    button.setEnabled(false);
     buttons.add(button);
     
     inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.gif");
@@ -322,21 +369,138 @@ public class InGameGUI implements MouseListener, MouseMotionListener
     {
     }    
 
+  public void onKeyPressed(KeyEvent e)  
+    {
+    RPAction action;
+    
+    if(e.getKeyCode()==KeyEvent.VK_L && e.isControlDown())
+      {
+      client.getGameLogDialog().setVisible(true);
+      }
+    else if(e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT || e.getKeyCode()==KeyEvent.VK_UP || e.getKeyCode()==KeyEvent.VK_DOWN)
+      {
+      action=new RPAction();
+      if(e.isControlDown())
+        {
+        action.put("type","face");
+        }
+      else
+        {
+        action.put("type","move");
+        }
+      
+      switch(e.getKeyCode())
+        {
+        case KeyEvent.VK_LEFT:
+          action.put("dir",Direction.LEFT.get());
+          break;
+        case KeyEvent.VK_RIGHT:
+          action.put("dir",Direction.RIGHT.get());
+          break;
+        case KeyEvent.VK_UP:
+          action.put("dir",Direction.UP.get());
+          break;
+        case KeyEvent.VK_DOWN:
+          action.put("dir",Direction.DOWN.get());
+          break;
+        }
+      
+      client.send(action);
+      }
+    }
+    
+  public void onKeyReleased(KeyEvent e)  
+    {
+    RPAction action=new RPAction();
+    action.put("type","move");
+    
+    switch(e.getKeyCode())
+      {
+      case KeyEvent.VK_LEFT:
+      case KeyEvent.VK_RIGHT:
+      case KeyEvent.VK_UP:
+      case KeyEvent.VK_DOWN:   
+        int keys=(pressed.containsKey(KeyEvent.VK_LEFT)?1:0)+(pressed.containsKey(KeyEvent.VK_RIGHT)?1:0)+(pressed.containsKey(KeyEvent.VK_UP)?1:0)+(pressed.containsKey(KeyEvent.VK_DOWN)?1:0);   
+        if(keys==1)
+          {
+          action.put("dir",Direction.STOP.get());
+          client.send(action);
+          }
+        break;
+      }
+    }
+    
+  public void keyPressed(KeyEvent e) 
+    {
+    if(!pressed.containsKey(new Integer(e.getKeyCode())))
+      {
+      onKeyPressed(e);
+      pressed.put(new Integer(e.getKeyCode()),null);
+      }      
+    }
+      
+  public void keyReleased(KeyEvent e) 
+    {
+    onKeyReleased(e);
+    pressed.remove(new Integer(e.getKeyCode()));
+    }
+
+  public void keyTyped(KeyEvent e) 
+    {
+    if (e.getKeyChar() == 27) 
+      {
+      RPAction rpaction=new RPAction();
+      rpaction.put("type","stop");
+      client.send(rpaction);
+
+      for(InGameButton button: buttons)    
+        {
+        if(button.getName().equals("exit") || button.getName().equals("back"))
+          {
+          button.setEnabled(true);
+          }
+        } 
+      }
+    }
+
   public void draw(GameScreen screen)
     {
     screen.drawInScreen(inGameInventory,530,10);
     
-    boolean hasDevel=true;//false;
-    
     RPObject player=client.getPlayer();
-    if(player!=null && player.has("devel") && player.getInt("devel")>0)
+    if(player!=null)
       {
-      hasDevel=true;
+      screen.drawInScreen(screen.createString("HP : "+player.get("hp")+"/"+player.get("base_hp"),Color.white),530, 144);
+      screen.drawInScreen(screen.createString("ATK: "+player.get("atk"),Color.white),560, 164);
+      screen.drawInScreen(screen.createString("DEF: "+player.get("def"),Color.white),560, 184);
+      screen.drawInScreen(screen.createString("XP : "+player.get("xp"),Color.white),560, 204);
+      
+      if(player.has("devel") && player.getInt("devel")>0)
+        {
+        screen.drawInScreen(screen.createString("Devel: "+player.get("devel"),Color.yellow),560, 224);
+        
+        for(InGameButton button: buttons)    
+          {
+          if(button.getName().equals("hp") || button.getName().equals("atk") || button.getName().equals("def"))
+            {
+            button.setEnabled(true);
+            }
+          }
+        }
+      else
+        {
+        for(InGameButton button: buttons)    
+          {
+          if(button.getName().equals("hp") || button.getName().equals("atk") || button.getName().equals("def"))
+            {
+            button.setEnabled(false);
+            }
+          }
+        }
       }
     
     for(InGameButton button: buttons)    
       {
-      button.setEnabled(hasDevel);
       button.draw(screen);
       } 
     

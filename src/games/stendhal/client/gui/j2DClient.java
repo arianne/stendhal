@@ -169,9 +169,6 @@ public class j2DClient extends JFrame
       
     this.client=sc;
    
-    // add a key input system (defined below) to our canvas so we can respond to key pressed    
-    playerChatText.addKeyListener(new StendhalKeyInputHandler(client));
-    
     canvas.addFocusListener(new FocusListener()
       {
       public void focusGained(FocusEvent e)
@@ -213,6 +210,9 @@ public class j2DClient extends JFrame
 
     canvas.addMouseListener(inGameGUI);
     canvas.addMouseMotionListener(inGameGUI);
+    
+    // add a key input system (defined below) to our canvas so we can respond to key pressed    
+    playerChatText.addKeyListener(inGameGUI);
     
     client.setGameLogDialog(new GameLogDialog(this, playerChatText));    
     
