@@ -11,6 +11,91 @@ import games.stendhal.client.*;
 
 public class InGameGUI implements MouseListener, MouseMotionListener
   {
+  interface InGameAction
+    {
+    public void onAction();
+    }
+  
+  abstract class InGameActionListener implements InGameAction
+    {
+    abstract public void onAction();
+    }
+    
+  static class InGameButton
+    {
+    private Sprite[] buttons;
+    private Rectangle area;
+    private InGameAction action;
+    private boolean over;
+    private boolean enabled;
+    
+    public InGameButton(Sprite normal, Sprite over, int x, int y)
+      {
+      buttons=new Sprite[2];
+      buttons[0]=normal;
+      buttons[1]=over;
+      
+      area=new Rectangle(x,y,buttons[0].getWidth(),buttons[0].getHeight());
+      this.over=false;
+      this.action=null;
+      this.enabled=true;
+      }
+    
+    public void setEnabled(boolean enabled)
+      {
+      this.enabled=enabled;
+      }
+
+    public void draw(GameScreen screen)
+      {
+      if(!enabled) return;
+      Sprite button;
+      
+      if(over)
+        {
+        button=buttons[1];
+        }
+      else
+        {
+        button=buttons[0];
+        }
+        
+      screen.drawInScreen(button,(int)area.getX(),(int)area.getY());
+      }
+    
+    public void addActionListener(InGameAction action)
+      {
+      this.action=action;
+      }
+
+    public boolean onMouseOver(Point2D point)
+      {
+      if(!enabled) return false;
+      if(area.contains(point))
+        {
+        over=true;
+        }
+      else
+        {
+        over=false;
+        }
+      
+      return false;
+      }
+    
+    public boolean clicked(Point2D point)
+      {
+      if(!enabled) return false;
+      if(area.contains(point))
+        {
+        action.onAction();
+        return true;
+        }
+      
+      return false;
+      }    
+    }
+    
   static class InGameList
     {
     private Rectangle area;
@@ -100,6 +185,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener
     }
   
   private InGameList widget;
+  private java.util.List<InGameButton> buttons;
   private Entity widgetAssociatedEntity;
   
   private StendhalClient client;
@@ -112,8 +198,51 @@ public class InGameGUI implements MouseListener, MouseMotionListener
   public InGameGUI(StendhalClient client)
     {
     this.client=client;
-    this.gameObjects=client.getGameObjects();
-    this.screen=GameScreen.get();
+    gameObjects=client.getGameObjects();
+    screen=GameScreen.get();
+    
+    SpriteStore st=SpriteStore.get();
+    
+    buttons=new java.util.LinkedList<InGameButton>();
+    InGameButton button=null;
+    button=new InGameButton(st.getSprite("data/atk_up.gif"), st.getSprite("data/atk_up_pressed.gif"), 530,84);
+    button.addActionListener(new InGameActionListener()
+      {
+      public void onAction()
+        {
+        RPAction improve=new RPAction();
+        improve.put("type","improve");
+        improve.put("stat","atk");
+        InGameGUI.this.client.send(improve);
+        }
+      });
+    buttons.add(button);
+    
+    button=new InGameButton(st.getSprite("data/def_up.gif"), st.getSprite("data/def_up_pressed.gif"), 530,84+14);
+    button.addActionListener(new InGameActionListener()
+      {
+      public void onAction()
+        {
+        RPAction improve=new RPAction();
+        improve.put("type","improve");
+        improve.put("stat","def");
+        InGameGUI.this.client.send(improve);
+        }
+      });
+    buttons.add(button);
+
+    button=new InGameButton(st.getSprite("data/hp_up.gif"), st.getSprite("data/hp_up_pressed.gif"), 530,84+28);
+    button.addActionListener(new InGameActionListener()
+      {
+      public void onAction()
+        {
+        RPAction improve=new RPAction();
+        improve.put("type","improve");
+        improve.put("stat","hp");
+        InGameGUI.this.client.send(improve);
+        }
+      });
+    buttons.add(button);
     
     inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.gif");
     inGameDevelPoint=SpriteStore.get().getSprite("data/levelup.gif");
@@ -128,7 +257,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener
     if(widget!=null)
       {
       widget.onMouseOver(e.getPoint());
-      }    
+      }
+    
+    for(InGameButton button: buttons)    
+      {
+      button.onMouseOver(e.getPoint());
+      } 
     }
 
   public void mouseClicked(MouseEvent e) 
@@ -144,6 +278,11 @@ public class InGameGUI implements MouseListener, MouseMotionListener
         return;
         }
       }
+
+    for(InGameButton button: buttons)    
+      {
+      button.clicked(e.getPoint());
+      } 
 
     widget=null;
     
@@ -187,14 +326,19 @@ public class InGameGUI implements MouseListener, MouseMotionListener
     {
     screen.drawInScreen(inGameInventory,530,10);
     
-    RPObject player=client.getPlayer();
+    boolean hasDevel=true;//false;
     
+    RPObject player=client.getPlayer();
     if(player!=null && player.has("devel") && player.getInt("devel")>0)
       {
-      screen.drawInScreen(inGameDevelPoint, 530+2,10+84);
-      screen.drawInScreen(inGameDevelPoint, 530+2,10+84+14);
-      screen.drawInScreen(inGameDevelPoint, 530+2,10+84+14*2);
+      hasDevel=true;
       }
+    
+    for(InGameButton button: buttons)    
+      {
+      button.setEnabled(hasDevel);
+      button.draw(screen);
+      } 
     
     if(widget!=null)
       {

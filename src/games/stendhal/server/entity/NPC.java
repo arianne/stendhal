@@ -29,7 +29,7 @@ public abstract class NPC extends RPEntity
       {
       RPClass npc=new RPClass("npc");
       npc.isA("rpentity");
-      npc.add("text",RPClass.STRING);
+      npc.add("text",RPClass.LONG_STRING);
       npc.add("idea",RPClass.STRING);
       }
     catch(RPClass.SyntaxException e)
