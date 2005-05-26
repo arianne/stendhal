@@ -280,7 +280,7 @@ public abstract class RPEntity extends Entity
     who.stopAttack();
 
     // Establish how much xp points your are rewarded
-    who.addXP((Level.getXP(getLevel() + 1) - Level.getXP(getLevel()))/20);
+    if(getXP() > 0) who.addXP((Level.getXP(getLevel() + 1) - Level.getXP(getLevel()))/20);
 
     // Stats about dead
     stats.add("Killed "+get("type"),1);
