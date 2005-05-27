@@ -125,9 +125,12 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(changes.has("xp") && object.has("xp"))
       {
-      if(stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID()))
+      if((changes.getInt("xp") - object.getInt("xp"))>0)
         {
-        if((changes.getInt("xp") - object.getInt("xp"))>0)
+        damageSprites.add(GameScreen.get().createString("+"+Integer.toString(changes.getInt("xp") - object.getInt("xp")),Color.cyan));
+        damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+
+        if(stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID()))
           {
           client.addEventLine(getName() + " earns " + (changes.getInt("xp") - object.getInt("xp")) + " XP points." , Color.blue);
           }        

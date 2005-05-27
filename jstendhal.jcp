@@ -121,10 +121,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\StendhalKeyInputHandler.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\textClient.java</path>
 				<source>true</source>
 			</fileitem>

@@ -182,7 +182,7 @@ public class StendhalClient extends ariannexp
     for(TransferContent item: items)
       {
       File file=new File("cache/"+item.name);
-      if(file.exists() && file.lastModified()==(((long)item.timestamp)*1000))
+      if(file.exists() && file.lastModified()/1000==((long)item.timestamp))
         {
         Logger.trace("StendhalClient::onTransferREQ","D","File is on cache. We save transfer");
         item.ack=false;
