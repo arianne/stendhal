@@ -292,7 +292,6 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     buttons.add(button);
     
     inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.gif");
-    inGameDevelPoint=SpriteStore.get().getSprite("data/levelup.gif");
     }
     
   public void mouseDragged(MouseEvent e) 
