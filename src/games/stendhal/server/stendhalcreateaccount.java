@@ -14,7 +14,7 @@ package games.stendhal.server;
 
 import marauroa.common.game.*;
 import marauroa.server.game.*;
-import marauroa.server.Configuration;
+import marauroa.common.Configuration;
 
 /** The mapacmancreateaccount extends the createaccount class of marauroa package
  *  so that it defines the specific behaviour for an account of mapacman */

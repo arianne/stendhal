@@ -181,6 +181,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\Encoder.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\GameLogDialog.java</path>
 				<source>true</source>
 			</fileitem>
@@ -198,6 +202,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\gui\LoginDialog.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\ProgressBar.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -314,6 +322,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\TrainingDummy.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Troll.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
