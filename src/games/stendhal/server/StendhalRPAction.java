@@ -244,6 +244,16 @@ public class StendhalRPAction
       changeZone(player,"city");
       transferContent(player);
       }
+    else if(zoneid.equals("plains") && y>zone.getHeight()-4)
+      {
+      changeZone(player,"forest");
+      transferContent(player);
+      }
+    else if(zoneid.equals("forest") && y<4)
+      {
+      changeZone(player,"plains");
+      transferContent(player);
+      }
     else
       {
       Logger.trace("StendhalRPAction::decideChangeZone","D","Unable to choose a new zone ("+zone.getWidth()+","+zone.getHeight()+")");

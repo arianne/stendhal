@@ -314,6 +314,22 @@ public class StendhalRPZone extends MarauroaRPZone
                   portal.setDestination("city",0);
                   }
                 }              
+              else if(zoneid.getID().equals("village"))
+                {
+                if(portal.getx()==16 && portal.gety()==20) 
+                  {
+                  portal.setNumber(0);
+                  portal.setDestination("tavern",0);
+                  }
+                }              
+              else if(zoneid.getID().equals("tavern"))
+                {
+                if(portal.getx()==17 && portal.gety()==1) 
+                  {
+                  portal.setNumber(0);
+                  portal.setDestination("village",0);
+                  }
+                }              
 
               add(portal);
 
@@ -445,8 +461,8 @@ public class StendhalRPZone extends MarauroaRPZone
                 {
                 if(sign.getx()==4 && sign.gety()==21) sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
                 if(sign.getx()==8 && sign.gety()==25) sign.setText("This is our attack dummy.|Right click on it to start or stop attacking it.| Use this dummy to hone your fighting skills. They will be useful.");
-                if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!| Make sure you talk to Paco for some useful hints.|Please report any problems and issues at our webpage.");
-                if(sign.getx()==26 && sign.gety()==26) sign.setText("You are about to enter the Dungeons.|But Beware! This area is infested with rats and legend has it that many Adventurers have died down there...");
+                if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!| Please report any problems and issues at our webpage.");
+                if(sign.getx()==26 && sign.gety()==26) sign.setText("You are about to enter the Dungeons.|But Beware! This area is infested with rats and legend has |it that many Adventurers have died down there...");
                 if(sign.getx()==43 && sign.gety()==26) sign.setText("Talk to Sato to sell your sheep!.|He probably won't give you a fair price but this is a small village...|The price he will offer you depends on the weight of your sheep.");
                 if(sign.getx()==44 && sign.gety()==48) sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
                 }

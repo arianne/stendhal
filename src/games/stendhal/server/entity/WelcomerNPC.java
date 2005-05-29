@@ -57,12 +57,12 @@ public class WelcomerNPC extends SpeakerNPC
       }
     else if(text.contains("indication"))
       {
-      say("At the moment, you are in the City. You can travel West to find and talk with Nagashi to purchase a small sheep. You can travel South into the plains but I warn you, dangerous wolves live there. You can travel a short way East into the Dungeons but they are very dangerous too!. Scary, isn't it?");
+      say("At the moment, you are in the City. You can travel West to find and talk with Nishiya to purchase a small sheep. You can travel South into the plains but I warn you, dangerous wolves live there. You can travel a short way East into the Dungeons but they are very dangerous too!. Scary, isn't it?");
       return true;
       }
     else if(text.contains("quest"))
       {
-      say("I have been told that Sato will reward you for a fully grown sheep.|Purchase one from Nagashi and then feed it to make it nice and fat!");
+      say("I have been told that Sato will reward you for a fully grown sheep.|Purchase one from Nishiya and then feed it to make it nice and fat!");
       return true;
       }
     else if(text.contains("heal"))

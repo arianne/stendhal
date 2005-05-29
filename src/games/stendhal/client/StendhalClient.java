@@ -117,7 +117,7 @@ public class StendhalClient extends ariannexp
   
   public RPObject getPlayer()
     {
-    return player; //world_objects.get(player.getID());
+    return player;
     }
   
   protected void onPerception(MessageS2CPerception message)
@@ -134,7 +134,9 @@ public class StendhalClient extends ariannexp
         {
         Logger.trace("StendhalClient::onPerception","D","UPDATING screen position");
         GameScreen screen=GameScreen.get();
-
+        
+        
+        /** Full object is normal object+hidden objects */
         RPObject hidden=message.getMyRPObject();
         RPObject object=null;
         
@@ -149,18 +151,42 @@ public class StendhalClient extends ariannexp
         
         object.applyDifferences(hidden,null);
         
-        Graphics2D g=screen.expose();
-        g.setColor(Color.BLACK);
-        g.fill(new Rectangle(0,0,640,480));
-        screen.place(object.getDouble("x")-screen.getWidth()/2,object.getDouble("y")-screen.getHeight()/2);
-        screen.move(0,0);
-        
+        /** We clean the game object container */
         Logger.trace("StendhalClient::onPerception","D","CLEANING static object list");
         gameObjects.clear();
         
         String zoneid=message.getRPZoneID().getID();
         staticLayers.setRPZoneLayersSet(zoneid);
         GameScreen.get().setMaxWorldSize((int)staticLayers.getWidth(),(int)staticLayers.getHeight());
+        
+        /** And finally place player in screen */
+        Graphics2D g=screen.expose();
+        g.setColor(Color.BLACK);
+        g.fill(new Rectangle(0,0,640,480));
+        
+        double x=object.getDouble("x")-screen.getWidth()/2;
+        double y=object.getDouble("y")-screen.getHeight()/2;
+        
+        if(x<0)
+          {
+          x=0;
+          }
+        else if(staticLayers.getWidth()!=0 && x+screen.getWidth()>staticLayers.getWidth())
+          {
+          x=staticLayers.getWidth()-screen.getWidth();
+          }
+
+        if(y<0)
+          {
+          y=0;
+          }
+        else if(staticLayers.getHeight()!=0 && y+screen.getHeight()>staticLayers.getHeight())
+          {
+          y=staticLayers.getHeight()-screen.getHeight();
+          }
+        
+        screen.place(x,y);
+        screen.move(0,0);        
         }
 
       handler.apply(message,world_objects);      
@@ -182,6 +208,7 @@ public class StendhalClient extends ariannexp
     for(TransferContent item: items)
       {
       File file=new File("cache/"+item.name);
+
       if(file.exists() && file.lastModified()/1000==((long)item.timestamp))
         {
         Logger.trace("StendhalClient::onTransferREQ","D","File is on cache. We save transfer");
@@ -218,8 +245,6 @@ public class StendhalClient extends ariannexp
     Logger.trace("StendhalClient::onTransfer",">");
     for(TransferContent item: items)
       {
-      //for(byte ele: item.data) System.out.print((char)ele);
-      
       try
         {
         String data=new String(item.data);
@@ -234,7 +259,6 @@ public class StendhalClient extends ariannexp
 
           Logger.trace("StendhalClient::onTransfer","D","File cached. Timestamp: "+Integer.toString(item.timestamp));
           long timestamp=item.timestamp;
-          new File("cache/").mkdir();
           new File("cache/"+item.name).setLastModified(timestamp*1000);
           }
           

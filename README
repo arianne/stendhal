@@ -30,13 +30,6 @@ Current Version
 Version 0.20
 
 
-How to make it work
--------------------
-http://arianne.sourceforge.net/wiki/index.php/HowToBuildStendhal
-
-No warranties. But let me know if it doesn't works.
-
-
 How to play
 -----------
 You need arianne's Stendhal client in order to be able to play Stendhal.
@@ -70,9 +63,17 @@ Use right mouse button over objects to see the contextual menu and
 use left mouse button to choose the action or click outside to abort.
 
 
+How to compile Stendhal
+-----------------------
+http://arianne.sourceforge.net/wiki/index.php/HowToBuildStendhal
+
+No warranties. But let me know if it doesn't works.
+
+
+
 Changelog
 ---------
-0.20 May XX, 2005
+0.20 May 30, 2005
 - Added API for identifing several attackers.
 - Improved creature AI to attack anyone near it.
 - Added icon to main game window
@@ -82,6 +83,14 @@ Changelog
 - Added afterlive zone
 - Improved perception sizes
 - Fixed a bug onMyRPObject handling method
+- Added a progress bar for connect
+- Added storage of username and password
+- Added forest
+- Added afterlive
+- Added GUI
+- Changed XP reward for each creature
+- Changed Rat, Cave rat, Wolf and Orc RP attributes.
+- Added Level attribute.
 
 0.12 May 22, 2005
 - Fixed a severe bug that happens when a creature respawn over a player.

@@ -79,13 +79,12 @@ public class Player extends RPEntity
     {
     if(getID()==client.getPlayer().getID())
       {
-      String[] list={"Look","Attack","Stop attack","Follow","Trade","Set outfit"};
+      String[] list={"Look","Attack","Stop attack","Set outfit"};
       return list;
       }
     else
       {
-      String[] list={"Look","Attack","Stop attack","Follow","Trade"};
-      return list;
+      return super.offeredActions();
       }
     }
 

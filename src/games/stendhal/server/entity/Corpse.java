@@ -23,7 +23,7 @@ import java.awt.geom.*;
 
 public class Corpse extends Entity
   {
-  final public static int DEGRADATION_TIMEOUT=2700; // 15 minutes at 300 ms
+  final public static int DEGRADATION_TIMEOUT=6000; // 30 minutes at 300 ms
   private int degradation;
   
   public Corpse(RPObject object) throws AttributeNotFoundException

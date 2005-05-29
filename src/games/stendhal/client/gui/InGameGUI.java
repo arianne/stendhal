@@ -431,6 +431,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     
   public void keyPressed(KeyEvent e) 
     {
+    widget=null;
+    
     if(!pressed.containsKey(new Integer(e.getKeyCode())))
       {
       onKeyPressed(e);

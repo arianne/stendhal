@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <tileset name="Outside" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\tiled-0.5.0\dist\zelda_outside_chipset.gif" trans="ffffff"/>
+  <image source="..\..\..\tiled-0.5.0\dist\zelda_outside_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\tiled-0.5.0\dist\zelda_dungeon_chipset.gif" trans="ff00ff"/>
+  <image source="..\..\..\tiled-0.5.0\dist\zelda_dungeon_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Objects" firstgid="961" tilewidth="32" tileheight="32">
   <image source="zelda_objects_chipset.gif"/>
@@ -19,7 +19,7 @@
  </layer>
  <layer name="dungeon_000_1_object" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2aS27DIBBAnWTbM2aXNhfoNl1Y6jo9QBeVeg+3OUvPUbUjB2mMPHjGhjHgeRKK/+Y5wGBM0xiGYRiGYdCc9k3zuDCd92tbzOfjP+/HBfmHc18L93c8H4b7uOu1+FM8HML7O2F9eRKmlPWM4x8Tv67B+uW+7YKWx0hRzij/F+8/x/n293EIefnH+ce6dS3/qfLuAzHkS5BcOYbzvhnprOTPbe/c83Hrn8J8tUIf6fESltZ/qBe1+EvKME63Cvw1YzjlcyLi360wf8pjysc9l7FYAdtK8W+Z16L8qbggrWccUvlDjJiKa75PynpO4fy7iTIr6XvO9WhRXrTeM7nxT+Ky1J/qK6YoF10gruHnreFP5QXykar9C9Eq+2tdT3rfk7DtTeG/xv8/Nzbgdkz6rq/d/wmx1B+4eMs4UdupcYDS/Kl+DG5XOe+/Kfs/IZb6U+fNbVe1Mf/+d+v+3PFdV69r8+eAx4G26A+4eA/tNLz/1eR/vS//7IbHvAfGimvynwLKvx/vqXhdmj93fD/UP8HfmfFxY21rLt+TY44NScpSLmXC/PtfbX/p95RUmH//a/7xrsUhF/+Y41gd4/3exb0a/SX3M3+d+02xJf+xeZDYn5rHFbOvuqY/95utT8y85uDPnQt6TJDXHPylSOc+htKtQP8UmL/+Pc1f/54Uufi/3bf97obrGOnc1xTzCWOQQ/xbkxz6P2sSmgeUW1k1DIPmD8V00ykAQAAA
+   H4sIAAAAAAAAAO2aS27DIBBAnWTbM2bnNhfo1l1Y6jo9QBeVeg+3PkvPUbWjGAkjD8wYGGMyT0Lx3zwHGIxpGkVRFEVRFJz22DSPkely3NpiPR//eT9H5B/Ofd25v+H5NN9HXa/FH+Ph5N8/MOvLEzPlrGcU/5S4dQ3Wu2lbZy0vkaOcYf4vzn9u59vdR8Hn5R7nHmvWpfxD5d0FYsgXI5lyDOd9E9JFyJ/a3pnnY9Y/mfnqmT7c4znE1n+oFzX4c8uwncYK/CVjOObTIvFv3Jk/5hHyMc9lKVbAtr3498RrYf5YXODWMwq5/CFGhOKa65OznmMY/yFQZjl9z7UevZUXqfdMavzjuMT6Y33FHOVi8MQ1+3lL+GN5gXzkav989ML+Utfj3rdltr05/Lf4/9fGBrsd477rS/d/fMT6A52zbCdsOzYOsDd/rB9jt6uU99+c/R8fsf7YeWvbVWnU//Z77/7U8V1Tr2vzp2CPA92jP2DiPbTT8P5Xk/91Wv45zI9594wV1+QfAsq/G++xeL03f+rYqK9/Yn9nto9baltL+Z6ccmyIU5ZKKRPqf/uV9ud+T8mF+t9+1T/dtSiU4p9yHGsgvN+buFejP+d+6i9zvxD35L80D9L0U7H3f+53sRBb+lO/2bqkzGsJ/tS5oOcMeS3Bnwt37qMvjTv0z4H6y99T/eXviVGK/9u07fcwX7eJmTeYaj5hCkqIf1tSQv9nS3zzgEorq4qi4PwB/1buYABAAAA=
   </data>
  </layer>
  <layer name="dungeon_000_2_roof" width="64" height="64">

@@ -311,7 +311,7 @@ public abstract class RPEntity extends AnimatedEntity
 
   public String[] offeredActions()
     {
-    String[] list={"Look","Attack","Stop attack","Follow","Trade"};
+    String[] list={"Look","Attack","Stop attack"};
     return list;
     }
 
@@ -319,15 +319,14 @@ public abstract class RPEntity extends AnimatedEntity
     {
     if(action.equals("Look"))
       {
-      StendhalClient.get().addEventLine("You are " + getName() + "(Level " + level + "). RP Values(ATK/DEF/HP/XP): " + atk + "/" + def + "/" + hp + "/" + xp + "." , Color.green);
-//      if(getID().equals(client.getPlayer().getID()))
-//        {
-//        StendhalClient.get().addEventLine("You are " + getName() + "(Level " + level + "). RP Values(ATK/DEF/HP/XP): " + atk + "/" + def + "/" + hp + "/" + xp + "." , Color.green);
-//        }
-//      else
-//        {
-//        StendhalClient.get().addEventLine("You see " + getName() + "(Level " + level + ")." , Color.green);
-//        }
+      if(getID().equals(client.getPlayer().getID()))
+        {
+        StendhalClient.get().addEventLine("You are " + getName() + "(Level " + level + "). RP Values(ATK/DEF/HP/XP): " + atk + "/" + def + "/" + hp + "/" + xp + "." , Color.green);
+        }
+      else
+        {
+        StendhalClient.get().addEventLine("You see " + getName() + "(Level " + level + ")." , Color.green);
+        }
       }
     else if(action.equals("Attack"))
       {

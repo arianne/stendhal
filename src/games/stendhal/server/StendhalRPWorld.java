@@ -52,6 +52,7 @@ public class StendhalRPWorld extends RPWorld
     Wolf.generateRPClass();
     Rat.generateRPClass();
     CaveRat.generateRPClass();
+    Orc.generateRPClass();
 
     Player.generateRPClass();
         
@@ -61,6 +62,7 @@ public class StendhalRPWorld extends RPWorld
   public void onInit() throws Exception
     {
     addArea("village");
+    addArea("tavern");
     addArea("city");
     addArea("plains");
     addArea("dungeon_000");
