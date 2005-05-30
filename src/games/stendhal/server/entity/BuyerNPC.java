@@ -57,7 +57,7 @@ public class BuyerNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("hi"))
       {
-      say("Come 'ere and sell ya sheep!|I 'ave the best prices this side of the Ourvalon, I swears it!");
+      say("Come 'ere and sell ya sheep!I 'ave the best prices this side of the Ourvalon, I swears it!");
       return true;
       }
     else if(text.contains("sell"))
@@ -89,7 +89,7 @@ public class BuyerNPC extends SpeakerNPC
         return true;
         }      
       }
-    else if(text.equals("help"))
+    else if(text.contains("help"))
       {
       say("I buy sheep. Try to SELL me one.");
       return true;
@@ -102,7 +102,7 @@ public class BuyerNPC extends SpeakerNPC
       {
       say("I have bought "+amount+" sheep(s).");
       }
-    else if(text.equals("bye"))
+    else if(text.contains("bye"))
       {
       say("Bye "+player.get("name"));
       return true;

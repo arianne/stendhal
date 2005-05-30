@@ -162,36 +162,47 @@ public class StendhalRPAction
         }
       else
         {
-        /* Collision */
-        Logger.trace("StendhalRPAction::move","D","COLLISION!!! at ("+(x+dx)+","+(y+dy)+")");
-        entity.collides(true);
-
-        entity.stop();
-        world.modify(entity);
-
         if(entity instanceof Player)
           {
           Player player=(Player)entity;
 
-          if(zone.leavesZone(player,x+dx,y+dy))
+          // If we are too far from sheep skip zone change
+          Sheep sheep=null;
+          if(player.hasSheep())
             {
-            Logger.trace("StendhalRPAction::move","D","Leaving zone from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
-            decideChangeZone(player);
-            player.stop();
-            world.modify(player);
-            return;
+            sheep=(Sheep)world.get(player.getSheep());
             }
 
-          for(Portal portal: zone.getPortals())
+          if(!(sheep!=null && player.distance(sheep)>7*7))
             {
-            if(player.nextto(portal,0.25))
+            if(zone.leavesZone(player,x+dx,y+dy))
               {
-              Logger.trace("StendhalRPAction::move","D","Using portal "+portal);
-              usePortal(player, portal);
-              transferContent(player);
+              Logger.trace("StendhalRPAction::move","D","Leaving zone from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
+              decideChangeZone(player);
+              player.stop();
+              world.modify(player);
+              return;
+              }
+    
+            for(Portal portal: zone.getPortals())
+              {
+              if(player.nextto(portal,0.25) && player.facingto(portal))
+                {
+                Logger.trace("StendhalRPAction::move","D","Using portal "+portal);
+                usePortal(player, portal);
+                transferContent(player);
+                return;
+                }
               }
             }
           }
+
+        /* Collision */
+        Logger.trace("StendhalRPAction::move","D","Collision: at ("+(x+dx)+","+(y+dy)+")");
+        entity.collides(true);
+
+        entity.stop();
+        world.modify(entity);
         }
       }
     finally

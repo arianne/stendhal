@@ -91,7 +91,7 @@ public class BeggarNPC extends SpeakerNPC
       }
     else if(text.contains("quest"))
       {
-      say("Ah, quests... just like the old days when I was young!| I remember one quest that was about... Oh look, a bird!|hmm, what?! Oh, Oops! I forgot it! :(");
+      say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");
       return true;
       }
 

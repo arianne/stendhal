@@ -52,7 +52,7 @@ public class WelcomerNPC extends SpeakerNPC
       }
     else if(text.contains("job") || text.contains("help"))
       {
-      say("I give INDICATIONs, I HEAL and I can tell you about QUESTs that need completing. What do you need?");
+      say("I give INDICATIONS, I HEAL and I can tell you about QUESTS that need completing. What do you need?");
       return true;
       }
     else if(text.contains("indication"))
@@ -62,12 +62,12 @@ public class WelcomerNPC extends SpeakerNPC
       }
     else if(text.contains("quest"))
       {
-      say("I have been told that Sato will reward you for a fully grown sheep.|Purchase one from Nishiya and then feed it to make it nice and fat!");
+      say("I have been told that Sato will reward you for a fully grown sheep.Purchase one from Nishiya and then feed it to make it nice and fat!");
       return true;
       }
     else if(text.contains("heal"))
       {
-      say("Voila! You have been healed.|Don't forget to tell your friends about Stendhal :)");
+      say("Voila! You have been healed.Don't forget to tell your friends about Stendhal :)");
       player.setHP(player.getbaseHP());
       world.modify(player);
       return true;

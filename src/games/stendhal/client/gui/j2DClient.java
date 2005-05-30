@@ -392,7 +392,7 @@ public class j2DClient extends JFrame
           
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={};
+        String[] allowed={"onTransfer"};
         Logger.setAllowed(allowed);
 
         String[] rejected={"modify"};

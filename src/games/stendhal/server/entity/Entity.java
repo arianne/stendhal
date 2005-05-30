@@ -201,6 +201,19 @@ public abstract class Entity extends RPObject
     return this_area.intersects(other_area);    
     }
 
+  public boolean facingto(Entity entity)
+    {
+    Rectangle2D this_area=EntityAreas.getArea(get("type"),x,y);
+    Rectangle2D other_area=EntityAreas.getArea(entity.get("type"),entity.x,entity.y);
+
+    if(direction==Direction.UP && this_area.getX()==other_area.getX() && this_area.getY()-1==other_area.getY()) return true;
+    if(direction==Direction.DOWN && this_area.getX()==other_area.getX() && this_area.getY()+1==other_area.getY()) return true;
+    if(direction==Direction.LEFT && this_area.getY()==other_area.getY() && this_area.getX()-1==other_area.getX()) return true;
+    if(direction==Direction.RIGHT && this_area.getY()==other_area.getY() && this_area.getX()+1==other_area.getX()) return true;
+    
+    return false;
+    }
+  
   public Rectangle2D getArea(double ex, double ey)
     {
     Rectangle2D rect=new Rectangle.Double();

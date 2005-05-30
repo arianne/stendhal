@@ -478,7 +478,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       
       if(player.has("devel") && player.getInt("devel")>0)
         {
-        screen.drawInScreen(screen.createString("Devel: "+player.get("devel"),Color.yellow),560, 224);
+        screen.drawInScreen(screen.createString("Devel: "+player.get("devel"),Color.yellow),550, 224);
         
         for(InGameButton button: buttons)    
           {

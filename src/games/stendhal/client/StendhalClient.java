@@ -42,8 +42,9 @@ public class StendhalClient extends ariannexp
   
   private boolean keepRunning=true;
   private GameLogDialog dialog;
+  private Configuration conf;
   
-  private static StendhalClient client;
+  private static StendhalClient client;  
   
   public static StendhalClient get()
     {
@@ -63,6 +64,16 @@ public class StendhalClient extends ariannexp
     gameObjects=new GameObjects(staticLayers);   
     handler=new PerceptionHandler(new StendhalPerceptionListener()); 
     dialog=null;
+    
+    try
+      {
+      Configuration.setConfigurationFile("stendhal.cache");
+      conf=Configuration.getConfiguration();
+      }
+    catch(FileNotFoundException e)
+      {
+      Logger.thrown("StendhalClient::StendhalClient","X",e);
+      }
     }
 
   protected String getGameName()
@@ -209,7 +220,7 @@ public class StendhalClient extends ariannexp
       {
       File file=new File("cache/"+item.name);
 
-      if(file.exists() && file.lastModified()/1000==((long)item.timestamp))
+      if(file.exists() && conf.has(item.name) && conf.get(item.name).equals(Integer.toString(item.timestamp)))
         {
         Logger.trace("StendhalClient::onTransferREQ","D","File is on cache. We save transfer");
         item.ack=false;
@@ -251,16 +262,14 @@ public class StendhalClient extends ariannexp
         
         new File("cache").mkdir();
         
-        if(!new File("cache/"+item.name).exists())
-          {
-          Writer writer=new BufferedWriter(new FileWriter("cache/"+item.name));
-          writer.write(data);
-          writer.close();
+        Writer writer=new BufferedWriter(new FileWriter("cache/"+item.name));
+        writer.write(data);
+        writer.close();
 
-          Logger.trace("StendhalClient::onTransfer","D","File cached. Timestamp: "+Integer.toString(item.timestamp));
-          long timestamp=item.timestamp;
-          new File("cache/"+item.name).setLastModified(timestamp*1000);
-          }
+        Logger.trace("StendhalClient::onTransfer","D","File cached. Timestamp: "+Integer.toString(item.timestamp));
+        long timestamp=item.timestamp;
+        
+        conf.set(item.name,Integer.toString(item.timestamp));
           
         contentHandling(item.name,new StringReader(data));
         }
