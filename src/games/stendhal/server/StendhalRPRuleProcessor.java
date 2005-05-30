@@ -443,6 +443,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   synchronized public void beginTurn()
     {
     Logger.trace("StendhalRPRuleProcessor::beginTurn",">");
+    
+    // Debuging assert.
+    if(getTurn()%2000==0)
+      {
+      Logger.trace("StendhalRPRuleProcessor::BugReportOnLists","D",getTurn()+"\t"+playersObject.size()+":"+playersObjectRmText.size()+":"+npcs.size()+":"+respawnPoints.size()+":"+foodItems.size()+":"+corpses.size());
+      }
+      
     try
       {
       // TODO: Done this way because a problem with comodification... :(
