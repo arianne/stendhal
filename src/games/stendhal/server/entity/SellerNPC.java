@@ -19,7 +19,7 @@ import marauroa.server.game.*;
 
 public class SellerNPC extends SpeakerNPC 
   {
-  final private double SPEED=0.5;
+  final private double SPEED=0.2;
   private int amount;
   
   public static void generateRPClass()

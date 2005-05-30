@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <project name="stendhal" default="compile" basedir=".">
-  <property name="version" value="0.20"/>
+  <property name="version" value="0.13"/>
   <property name="src" value="src"/>
   <property name="maps" value="maps"/>
   <property name="data" value="data"/>

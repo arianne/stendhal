@@ -77,7 +77,7 @@ public class Player extends RPEntity
 
   public String[] offeredActions()
     {
-    if(getID()==client.getPlayer().getID())
+    if(getID().equals(client.getPlayer().getID()))
       {
       String[] list={"Look","Attack","Stop attack","Set outfit"};
       return list;

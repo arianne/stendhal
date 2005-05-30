@@ -54,7 +54,8 @@ Use arrows to move around the Map.
 Press Ctrl and arrow to face in that direction
 
 - Exit
-Press ESC to exit. No confirmation requested
+Press ESC to exit.
+
 
 - Open Game Dialog log
 In case you closed the game dialog you can open it again with Ctrl+L
