@@ -11,19 +11,21 @@
 
 Stendhal
 --------
-This is a implementation of multiplayer adventures game with a Zelda look.
-Your task is to talk with other people in the village and find jobs to do that 
-will drive to interesting quests that will reveal the hidden plot behind the 
-world of stendhal
+Are you looking for adventure? Want to fight for riches?
+Develop yourself and your social standing? Meet new people?
+Do you want to be part of a brave new world? 
 
-In stendhal, you can also just walk around, chat with people, buy and sell 
-items and kill some of them :)
-Some of these people are NPC, they will give you tasks to accomplish and 
-hints to solve your quest.
+Stendhal is a full fledged multiplayer online adventures game (MMORPG) developed using the Arianne game development system. 
 
-stendhal is totally developed using Java and Java2D, so it is portable to 
-anything running Java 1.5.0.
+Stendhal features a new, rich and expanding world in which you can explore towns, buildings, plains, caves and dungeons. 
+You will meet NPCs and acquire tasks and quests for valuable experience and cold hard cash.
 
+Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your 
+armour and weapons. And for the blood thirsty of your; satisfy your killing desires by roaming the world in search of evil monsters! 
+
+Stendhal is totally platform independent, written using Java 1.5 and the Java2D environment. 
+
+So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
@@ -67,7 +69,6 @@ Changelog
 - Fix zone change problem
 - Fix placeat problem
 - Improved NPC and Sign texts
-- Added afterlive zone
 - Improved perception sizes
 - Fixed a bug onMyRPObject handling method
 - Added a progress bar for connect
