@@ -168,10 +168,10 @@ public class StendhalRPAction
 
           // If we are too far from sheep skip zone change
           Sheep sheep=null;
-          if(player.hasSheep())
-            {
-            sheep=(Sheep)world.get(player.getSheep());
-            }
+//          if(player.hasSheep())
+//            {
+//            sheep=(Sheep)world.get(player.getSheep());
+//            }
 
           if(!(sheep!=null && player.distance(sheep)>7*7))
             {

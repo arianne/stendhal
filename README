@@ -27,7 +27,7 @@ anything running Java 1.5.0.
 
 Current Version
 ---------------
-Version 0.20
+Version 0.13
 
 
 How to play
@@ -39,7 +39,7 @@ Please download it from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.20.jar
+  java -jar stendhal-0.13.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -60,7 +60,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.20 May 30, 2005
+0.13 May 30, 2005
 - Added API for identifing several attackers.
 - Improved creature AI to attack anyone near it.
 - Added icon to main game window
@@ -78,6 +78,8 @@ Changelog
 - Changed XP reward for each creature
 - Changed Rat, Cave rat, Wolf and Orc RP attributes.
 - Added Level attribute.
+- Fixed portal collision bug
+
 
 0.12 May 22, 2005
 - Fixed a severe bug that happens when a creature respawn over a player.

@@ -67,10 +67,13 @@ public class StendhalClient extends ariannexp
     
     try
       {
-      Configuration.setConfigurationFile("stendhal.cache");
+      // Create file.
+      new File("cache/stendhal.cache").createNewFile();
+      
+      Configuration.setConfigurationFile("cache/stendhal.cache");
       conf=Configuration.getConfiguration();
       }
-    catch(FileNotFoundException e)
+    catch(Exception e)
       {
       Logger.thrown("StendhalClient::StendhalClient","X",e);
       }
