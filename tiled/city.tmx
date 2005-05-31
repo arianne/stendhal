@@ -79,7 +79,7 @@
   <image source="zelda_dungeon_13_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="11623" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <layer name="city_0_floor" width="64" height="50">
   <data encoding="base64" compression="gzip">
