@@ -1,16 +1,85 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="64" height="50" tilewidth="32" tileheight="32">
- <tileset name="Outside" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="..\..\..\tiled-0.5.0\dist\zelda_outside_chipset.gif" trans="ffffff"/>
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
- <tileset name="Dungeon" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="..\..\..\tiled-0.5.0\dist\zelda_dungeon_chipset.gif" trans="ff00ff"/>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
- <tileset name="Objects" firstgid="961" tilewidth="32" tileheight="32">
+ <tileset name="Outside 2" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_2_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Other" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="zelda_other_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2881" tilewidth="32" tileheight="32">
   <image source="zelda_objects_chipset.gif"/>
  </tileset>
- <tileset name="Collision" firstgid="1061" tilewidth="32" tileheight="32">
+ <tileset name="Collision" firstgid="2981" tilewidth="32" tileheight="32">
   <image source="zelda_collision_chipset.gif"/>
+ </tileset>
+ <tileset name="Outside 3" firstgid="2983" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_3_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 4" firstgid="3463" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_4_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 5" firstgid="3943" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_5_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 6" firstgid="4423" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_6_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 7" firstgid="4903" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_7_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 8" firstgid="5383" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_8_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 2" firstgid="5863" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_2_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 3" firstgid="6343" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_3_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 4" firstgid="6823" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_4_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 5" firstgid="7303" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_5_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 6" firstgid="7783" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_6_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 7" firstgid="8263" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_7_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 8" firstgid="8743" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_8_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 9" firstgid="9223" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_9_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 10" firstgid="9703" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_10_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 11" firstgid="10183" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_11_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 12" firstgid="10663" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_12_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 13" firstgid="11143" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_13_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="11623" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <layer name="city_0_floor" width="64" height="50">
   <data encoding="base64" compression="gzip">
@@ -19,7 +88,7 @@
  </layer>
  <layer name="city_1_object" width="64" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1YW04UQRTtHldgxEDiA1agASIRX/zwAwlIImEwCr+a+H4wET7mA76AL3BEdiA7gA0YViAbwIV4OkzHO5W61fXsaiZ9kpOa6Xvr1j317k6SGjVq1KgW5sC7gXinRB22mO+WK2m42D4wnf6nzCYrdezzBbFd4FN/KITM0ST2uUV8bs6q5nJuW+2WVdGfwff801nTsfX/FUrxN4dVT30VW78usrlR9T3aNbZq3H2vjRwx9Oc68z3vPjhJyjJBc/S1pmSxVVgCm6Tk0I/z/wv4FVwjZStgTiJi698D98HvpOxYtkfvcTLKcDXpn/u/ao9U2d6CN2C/Cd6S8DY4DI6Ab+B7DRwAr3c5CA4Z5nqMWCckp2xty/b//Nm04CuDrf4dcBL2hwo+Bp+A2/AdBccJ74ETfHgp/iDWmZCTrn4OofW/9Kg/BKhG8SzV0f+A0f5Ion8scdPfVtiajSRZbhgGTHo1imdpkf4m7Mvgc4YviP6n4ALhM3DRPF0Wa9DectBPz9SWYJPhKPOFvQVugd/A9fTiGS03wF/wfQe+Bz+AH8FP4GfzdL0j10jP1I5gk+F35gt7B/wBHoA/04tntDxMed9Dy7uZah1Q0D3f9/4vw+aVXk6lvTYRUxrx24m+XhG6+z/3fSzU+5Mt2sxvDlXLPxZCvAP1I2bQT7MafSXeQ2NCtQ5Mx/0V/F9r1JHdQylS2Bqp/n/uWY3yUO8R/Y9TcNcDT4W4ur6m7cSA7V2rxuVHPfZ+cZn6M2SuVX4Pkem27QuuHvc93fR9LgSydssanyrNg7y/ufd8k/EQx7GobtG4lzkXdNty6ScXPTZ1xTo++tPke5Bpe77920JZVMe2vzi/0PPXdT7FPJdN+sxXnib7Uei2TPzK3jdc24wFl3VYJb0h5nuIs8AnVPn8A3xKuNgAMgAA
+   H4sIAAAAAAAAAO2YWU4VQRSGu92BQSMJOKwAIwQC4vDCCyReSSAMUXjVRAHHG+XhPsCT+qRehB3gDmADhBXABmAh/B1uh5NKneqau5v0l/ype/vU9FfX0N1J0tDQ0FAtXkAPA2koog9bWr10JQ1Xtw+m0ivJYrJUJ94qqNsFn/5DEbKPJnWfWdTPzVnVXM5jq720Kv4zfM8/nTVdtv9zIRV/c6x6Gquy/euSzY2q79Gudavuu++1kVOG/9xnvueNQxMkjQnto681JatbxQK0SFKO6zj/P0NfoK8kbQfsk0jZ/n9Df6C/JO1atkef42SScTO5Ps//qj1SFXsPDSA+CN2V6B50H3oAvUPePugWdLunO1C/YV8PUNch6VO2tmX7f35tSsgrw9b/T2gC8UmFnkLPoB/I+wgaIRqFxvjqpZygrlOhT7r+OUL7f+3RfwioR/Es1fH/mPH+ROJ/OHHz31HExLWhC/UonqVF/hcRX4KWGb0i/l9Cs0Rz0Lx5d1lka0OH3CM9U9tCTMb/LC/ibWgb+gZ9Ty+v0XQT2kfeNWgd2oA+QB+hT+bd9U7ukZ6pXSEm4yjLi3gX2oH+Qbvp5TWa7qV83j3LZzPVOqDQPd/3/q/D84LyRfGMTqLvV0R3/+e+j4V6f7Klw/zmqFr/TdnyrLoR2/805suMxpyxPWtNie3/DTy91fBVdNamiN1I9f9z1xriEeI7SYNfXNf8MfTLg46FenXzmrajGgOd8bDB9lkrJiq/dT3rTQnxnFOHe18n6jSeIfta5fcQmW/bseDKcd/TTd/nQpC1G+v+VGke5OPNveeb3A/xPhaVLbrvMeeCblsu4+Tix6asWMbHeJp8DzJtz3f+jpAWlbEdLy5f6PnrOp/KPJdNxsxXP032o9BtmeSLvW+4tlkWLuuwSn5DzPcQZ4FPVP25AGBekCUAMgAA
   </data>
  </layer>
  <layer name="city_2_roof" width="64" height="50">
@@ -29,12 +98,12 @@
  </layer>
  <layer name="city_objects" width="64" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aSwrCQAwA0IJCBb2Bvf891KUeyo1SF0VE0vmk78HsyjAkYT40wwAQ47GrvQJKmvbzaHHuu3okgV/qeOkb9Z/Dv/kHAOC78wrvWNp2dW8u5tZZrGvvB4ck+1FEHGvm4pQkD6WN4kZnjmqWl9rnP224dHZvBbbj3SOxRh9GhFbXVcJSD0tUn1S2fqut1wkAs8//M97jsZ7b9QVjADIAAA==
+   H4sIAAAAAAAAAO3awQ5AMAyAYfc9FY68FwlvwMO6kDmMILO13f8lbiJN24xGqwoA4uhd7giQ0ur8JfHZHf1oXltAjZ/0cege+t+Gr/UHAADAvYVvqOI0Cmr+ZsaVPA9Lji0k93kwKsvXlRh5zFmL2UgdUhvIG5SZ6Fnscr//IUNNHwAQ6tiR+GMPIwapcaUQ2mGJtSdlbd+q9D4BAHjnGVzDvxpNNlUe684AMgAA
   </data>
  </layer>
- <layer name="city_collision" width="64" height="50" opacity="0.39">
+ <layer name="city_collision" width="64" height="50" opacity="0.27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XSw7DIAwFs+hVev8rdhWpimwwjvGPN1JVVVDjAQLOdQEAQC6+n72f7OzM0cv/Huf5LWnv4P+GU/25vSL5T5b+FlRdf6vYFXK0juUR1zp2hP/KPU71leYcWTOM8j3NPyJ2dN3YyV9Ti3eq/2dnWSZW50e6l7Rt3mt9uv8OnneP9C7K5q+NB3/a579tNF4Wfy3w17Vx/Tk/KtZuf+n5z+WWYX3eUD1/4It0z3d4Niis/Kmzb/R7ZWwAgA6rmo17dmd9I2rDk8+Ujmeq1CfTO4YlFd+xLKnobplHNfcb7znISNa8wBysHeYAAACADz9vItNNADIAAA==
+   H4sIAAAAAAAAAO2XWQ7FIAhF+//2v4Tu832ZNA1VRGTynqRpGihyHfG6AAAgFvdv7xOdnTla6W/tvN8cewX9K5yq/2uucP6J4q9B1vHXip0hR+1YFnG1Y3vonznHKV9uzp41Qy/f0/R7xPauGyvpl9Tiler/0V4Widn+4c4lqc16rE/Xv4P32cM9i6Lpl8aDflrP09ZrL4p+KdAvs63G1oi/2n7zofyijM8K2fMHtnDnfIW1QaGln6ojet8zbQMAZGjVbF9rd+TrURuevKdU3FO5eiLdMTTJeMfSJKN2zTyyaW9Y90FEouYFxmDs0AcAAABs+APgSQqQADIAAA==
   </data>
  </layer>
 </map>

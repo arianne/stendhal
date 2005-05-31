@@ -1,16 +1,85 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="50" tilewidth="32" tileheight="32">
- <tileset name="Outside" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_chipset.gif" trans="ffffff"/>
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
- <tileset name="Dungeon" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_chipset.gif" trans="ff00ff"/>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
- <tileset name="Objects" firstgid="961" tilewidth="32" tileheight="32">
+ <tileset name="Outside 2" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_2_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Other" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_other_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2881" tilewidth="32" tileheight="32">
   <image source="zelda_objects_chipset.gif"/>
  </tileset>
- <tileset name="Collision" firstgid="1061" tilewidth="32" tileheight="32">
+ <tileset name="Collision" firstgid="2981" tilewidth="32" tileheight="32">
   <image source="zelda_collision_chipset.gif"/>
+ </tileset>
+ <tileset name="Outside 3" firstgid="2983" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_3_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 4" firstgid="3463" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_4_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 5" firstgid="3943" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_5_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 6" firstgid="4423" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_6_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 7" firstgid="4903" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_7_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 8" firstgid="5383" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_8_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 2" firstgid="5863" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_2_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 3" firstgid="6343" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_3_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 4" firstgid="6823" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_4_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 5" firstgid="7303" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_5_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 6" firstgid="7783" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_6_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 7" firstgid="8263" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_7_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 8" firstgid="8743" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_8_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 9" firstgid="9223" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_9_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 10" firstgid="9703" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_10_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 11" firstgid="10183" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_11_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 12" firstgid="10663" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_12_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 13" firstgid="11143" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_13_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="11623" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <layer name="plains_0_floor" width="128" height="50">
   <data encoding="base64" compression="gzip">
@@ -27,14 +96,14 @@
    H4sIAAAAAAAAAO3YuwnAMAwFwKyRzx6B7BHI/pPEXdwHf+DdgcClVAhJXhYAgDxria3EXuIYnAv9ndX7GpYFo9zV+xmWBQCQyi2SzS2SzS0CAAAAwKz8XWfzd53N3zUAfOzF2ezFbc3eX/bitvRXNv1FS7PPl9bS60+fL+n1p8+X9PoBgH/Sb4l06bdEOrcEAAAAQF8vz+fOsQBkAAA=
   </data>
  </layer>
- <layer name="plains_objects" width="128" height="50" opacity="0.52">
+ <layer name="plains_objects" width="128" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cWw7CIBCF4Sa6C93/Qnw2rslHGwJtQS5nZv4v8c2YMgcoUtJtA9Z53VZfgS/UE2qe99/nqkfFd6NTrtU+95r84cN+7JN/LMqZf5ysk9L6qtYbY6T311H51/yul7Flxaj7K3OJphnji+zbvJn7mvxbN+oOQJ3V+6rV61bCXlhs5A+r2Vu8ZtTL5Wy1z6JemjXZ60rXEr3WFjyzt2PW85+VPLYJ15F/bOSPmdijiYs9utjIH2QPyzgLA+jjnHSbWXUjn7Kz2rCGiiv9D0VfiCWXN30gjlLW5B9Daf4n/3jIfS7Gmg+t8yb525c7gwl9vXKKcKbPo545qc3jrOPPeaxPrk3e2tiL0hjp9U7Ao72c1W1Uo5J9b7l+7bGdOKY0vwHQwDvHdZENjnwBfYR1EABkAAA=
+   H4sIAAAAAAAAAO3cyw7CIBCF4e77Vq6NL6gP69KG0BaQy5mZ/0vcGpgDFJF024B1HvvqFvhCPaHms/8+pd6M42LKtTrmXpM/fDjOffKPRTnzl2i7aqX1Va03xkifr6Pyr/leL3PLilHPV9YSTTPmF9m3eVK3Jv/WjboDUGf1uWq13Uo4C4uN/GE1e4ttRr1czlbHLOqlWZO9rnQv0WtvwX/2dsz6/2clj31COfKPjfwxE2c0cXFGFxv5g+xhGXdhAH3ck24zq27kc+6uNuyh4kp/QzEWYsnlzRiI4yxr8o/hbP0n/3jIfS7mmg+t6yb525e7gwl9vXKKcKfPo545qa3j7OPveaxPrk/e+tiL0hzp9U7Aq7Oc1X1Uo5J9b7lx7bGfuKa0vgHQwDvHdZENrnwB2mrk5ABkAAA=
   </data>
  </layer>
  <layer name="plains_collision" width="128" height="50" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2ZYQ7CIAxGjfEqHsX7X8n4w2QhsNFSRmnfS5bMwaBfvzJ0Ph4AAAAAc3i/Vkcwj5+2/wEyvORM69/xPupgX0b8txgH1nFct3jnl1keWflP7QAAwAiSfSjynhNZ2xlS/7PmKSLS76Jlf+kBvsB/kIL/ALAKniM+yfaML/XW9rpa+/Fzed66tkNuPcd4xzv8Mz9b/Vv9amOAHuvavFqnZx72el47Bx3Wv02u/Gy1jV6TxCXlrhobyXWtzfK9hSau3jXeauu5JtUp5c5njGSuq76asSxqQNrXmtaYvRot6n8kdou4LGP3nK9jfOW5lY7s/lvGNYveeT17r4mRuABkUKO5wf+5eM4v+9R8POcW/+dCfnNzh/+ra2t1XWv0R1qTUXRoGfV/59xF0aEF/ejPrB/8EKX+vK4ljzG12CnWEsn/RtEY0ZVpL4qqL4N3UGfV+h2dj5q1ycGu/veO8XmOzeGVTPvuGZm1/yEHEBVqGwAAMvAF88hh3gBkAAA=
+   H4sIAAAAAAAAAO2Z0Q6DIAxFfd//f8L+c9mDiSGgtBQp7TmJiRPE3t4CmzsOAAAAgDl8P6sjmMdf23mADC850/p3vY862JcR/y3GgXVc5y3e+WWWR1b+UzsAADCCZB+KvOdE1naH1P+seYqI9Lto2V96gC/wH6TgPwCsgnXEJ9nW+FJvba+rtV8/l+etazvk1nOMb7zDv/Oz1b/VrzYG6LGuzad5eudhr+e1c9Bh/dvkyc9W2+g1SVxS3qqxkVzX2izfW2ji6p3jrbaea1KdUt5cYyTPeuqrGcuiBqR9rWmN2avRov5HYreIyzJ2z/m6xleeW+nI7r9lXLPofa5n7zUxEheADGo0N/g/F8/5ZZ+aj+fc4v9cyG9u3vB/dW2trmuN/khzMooOLaP+75y7KDq0oB/9mfWDH6LUn9e55DGmFjvFWiL53ygaI7oy7UVR9WXwDuqsmr+jz6NmbXKwq/+9Y0StkUz77h2ZtZ+QA4gKtQ0AABn4AaAgp1cAZAAA
   </data>
  </layer>
 </map>

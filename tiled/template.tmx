@@ -1,16 +1,85 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="Outside" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_chipset.gif" trans="ffffff"/>
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
- <tileset name="Dungeon" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_chipset.gif" trans="ff00ff"/>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
- <tileset name="Objects" firstgid="961" tilewidth="32" tileheight="32">
+ <tileset name="Outside 2" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_2_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Other" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_other_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2881" tilewidth="32" tileheight="32">
   <image source="zelda_objects_chipset.gif"/>
  </tileset>
- <tileset name="Collision" firstgid="1061" tilewidth="32" tileheight="32">
+ <tileset name="Collision" firstgid="2981" tilewidth="32" tileheight="32">
   <image source="zelda_collision_chipset.gif"/>
+ </tileset>
+ <tileset name="Outside 3" firstgid="2983" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_3_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 4" firstgid="3463" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_4_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 5" firstgid="3943" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_5_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 6" firstgid="4423" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_6_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 7" firstgid="4903" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_7_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 8" firstgid="5383" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_8_chipset.gif" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 2" firstgid="5863" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_2_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 3" firstgid="6343" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_3_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 4" firstgid="6823" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_4_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 5" firstgid="7303" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_5_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 6" firstgid="7783" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_6_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 7" firstgid="8263" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_7_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 8" firstgid="8743" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_8_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 9" firstgid="9223" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_9_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 10" firstgid="9703" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_10_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 11" firstgid="10183" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_11_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 12" firstgid="10663" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_12_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 13" firstgid="11143" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_13_chipset.gif" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="11623" tilewidth="32" tileheight="32">
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <layer name="template_0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
