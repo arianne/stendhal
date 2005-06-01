@@ -351,6 +351,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     player.setPrivateText(online);
     world.modify(player);
+    playersObjectRmText.add(player);
     Logger.trace("StendhalRPRuleProcessor::who","<");
     }
 
@@ -569,7 +570,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         int head=StendhalRPAction.roll1D6()%10;
         int hair=StendhalRPAction.roll1D6()%10;
         int dress=StendhalRPAction.roll1D6()%10;
-        
+
         object.put("outfit",body+10*head+100*hair+1000*dress);
         }
 
