@@ -52,6 +52,13 @@ public class StendhalRPWorld extends RPWorld
     Wolf.generateRPClass();
     Rat.generateRPClass();
     CaveRat.generateRPClass();
+    Cobra.generateRPClass();
+    Boar.generateRPClass();
+    Kobold.generateRPClass();
+    Ogre.generateRPClass();
+    Goblin.generateRPClass();
+    Gargoyle.generateRPClass();
+    Troll.generateRPClass();
     Orc.generateRPClass();
 
     Player.generateRPClass();

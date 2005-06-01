@@ -20,21 +20,26 @@ import java.awt.geom.*;
 
 
 /** A Creature entity */
-public class Creature extends NPC 
+public class SmallCreature extends NPC 
   {
-  public Creature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+  public SmallCreature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
     }
   
-  protected void buildAnimations(String type)
+  protected void buildAnimations(RPObject object)
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,3,32,32));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,3,32,32));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,3,32,32));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,3,32,32));      
+    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")),0,4,32,32));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")),1,4,32,32));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")),2,4,32,32));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")),3,4,32,32));      
+
+    sprites.get("move_up")[3]=sprites.get("move_up")[1];
+    sprites.get("move_right")[3]=sprites.get("move_right")[1];
+    sprites.get("move_down")[3]=sprites.get("move_down")[1];
+    sprites.get("move_left")[3]=sprites.get("move_left")[1];
     }
   
   protected Sprite defaultAnimation()

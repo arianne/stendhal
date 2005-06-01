@@ -24,11 +24,11 @@ public class TrainingDummy extends RPEntity
     super(gameObjects, object);
     }
 
-  protected void buildAnimations(String type)
+  protected void buildAnimations(RPObject object)
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("default", store.getAnimatedSprite(translate(type),0,1,64,32));      
+    sprites.put("default", store.getAnimatedSprite(translate(object.get("type")),0,1,32,64));      
     }
   
   protected Sprite defaultAnimation()

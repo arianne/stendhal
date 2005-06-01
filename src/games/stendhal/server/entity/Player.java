@@ -37,6 +37,8 @@ public class Player extends RPEntity
       player.add("sheep",RPClass.INT);
       player.add("devel",RPClass.INT,RPClass.HIDDEN);
       player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
+      
+      player.add("outfit",RPClass.INT);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -145,8 +147,6 @@ public class Player extends RPEntity
 
     rp.removeNPC(sheep);
 
-    // FIXME: Change this to have coherence with storeSheep and retrieveSheep
-    if(has("#flock")) getSlot("#flock").clear();
     Logger.trace("Player::removeSheep","<");
     }
 
@@ -204,7 +204,6 @@ public class Player extends RPEntity
         if(slot.size()>0)
           {
           Iterator<RPObject> it=slot.iterator();
-
 
           Sheep sheep=new Sheep(it.next(),this);
 

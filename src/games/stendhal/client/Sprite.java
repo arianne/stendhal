@@ -12,8 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 
 /**
  * A sprite to be displayed on the screen. Note that a sprite
@@ -37,6 +36,17 @@ public class Sprite
     public Sprite(Image image) {
 		this.image = image;
 	}
+   
+   public Graphics getGraphics() {
+    return image.getGraphics();
+  }
+   
+  public Sprite copy() {
+    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+    Image image = gc.createCompatibleImage(getWidth(),getHeight(),Transparency.BITMASK);
+    draw(image.getGraphics(),0,0);
+    return new Sprite(image);
+  }
 	
 	/**
 	 * Get the width of the drawn sprite

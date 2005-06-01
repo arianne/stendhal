@@ -60,23 +60,35 @@ public class SpriteStore {
  public Sprite[] getAnimatedSprite(String ref, int animation, int frames, int width, int height)
 	  {
       Logger.trace("SpriteStore::getAnimatedSprite",">");
-      Sprite animImage=getSprite(ref);
-	  
+      try
+        {
+        return getAnimatedSprite(getSprite(ref),animation,frames,width,height);
+        }
+      finally
+        {
+        Logger.trace("SpriteStore::getAnimatedSprite","<");
+        }
+	  }
+
+ public Sprite[] getAnimatedSprite(Sprite animImage, int animation, int frames, int width, int height)
+    {
+      Logger.trace("SpriteStore::getAnimatedSprite",">");
+
       Sprite[] animatedSprite=new Sprite[frames];
-	  
+    
       GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
       for(int i=0;i<frames;i++)
         {
-        Image image = gc.createCompatibleImage(height,width,Transparency.BITMASK);
-        animImage.draw(image.getGraphics(),0,0,i*height,animation*width);
+        Image image = gc.createCompatibleImage(width,height,Transparency.BITMASK);
+        animImage.draw(image.getGraphics(),0,0,i*width,animation*height);
         animatedSprite[i]=new Sprite(image);
         }
       
       Logger.trace("SpriteStore::getAnimatedSprite","<");
       return animatedSprite;
-	  }
-	  
+    }
+  
 	/**
 	 * Retrieve a sprite from the store
 	 * 

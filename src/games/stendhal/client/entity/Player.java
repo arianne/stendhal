@@ -12,69 +12,64 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
 
 import java.awt.*;
 import java.awt.geom.*;
 
+
 /** A Player entity */
-public class Player extends RPEntity
+public class Player extends Speaker
   {
-  private final static int TEXT_PERSISTENCE_TIME=5000;
-
-  private Sprite textImage;
-  private long textImageTime;
-
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
     }
 
-  protected void buildAnimations(String type)
+  protected static Sprite setOutFitPlayer(SpriteStore store,RPObject object)
+    {
+    int outfit=object.getInt("outfit");
+    
+    System.out.println ("OUTFIT is ("+outfit+")");
+    
+    System.out.println ("sprites/outfit/player_base_"+outfit%10+".gif");
+    Sprite player=store.getSprite("sprites/outfit/player_base_"+outfit%10+".gif");
+    player=player.copy();
+    outfit/=10;
+    System.out.println ("sprites/outfit/head_"+outfit%10+".gif");
+    Sprite head=store.getSprite("sprites/outfit/head_"+outfit%10+".gif");
+    head.draw(player.getGraphics(),0,0);
+    outfit/=10;
+    System.out.println ("sprites/outfit/hair_"+outfit%10+".gif");
+    Sprite hair=store.getSprite("sprites/outfit/hair_"+outfit%10+".gif");
+    hair.draw(player.getGraphics(),0,0);
+    outfit/=10;
+    System.out.println ("sprites/outfit/dress_"+outfit%10+".gif");
+    Sprite dress=store.getSprite("sprites/outfit/dress_"+outfit%10+".gif");
+    dress.draw(player.getGraphics(),0,0);
+    
+    
+    return player;
+    }
+
+  protected void buildAnimations(RPObject object)
     {
     SpriteStore store=SpriteStore.get();
+    
+    Sprite player=setOutFitPlayer(store,object);
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(type),0,4,64,32));
-    sprites.put("move_right", store.getAnimatedSprite(translate(type),1,4,64,32));
-    sprites.put("move_down", store.getAnimatedSprite(translate(type),2,4,64,32));
-    sprites.put("move_left", store.getAnimatedSprite(translate(type),3,4,64,32));
+    sprites.put("move_up", store.getAnimatedSprite(player,0,4,48,64));
+    sprites.put("move_right", store.getAnimatedSprite(player,1,4,48,64));
+    sprites.put("move_down", store.getAnimatedSprite(player,2,4,48,64));
+    sprites.put("move_left", store.getAnimatedSprite(player,3,4,48,64));
+
+    sprites.get("move_up")[3]=sprites.get("move_up")[1];
+    sprites.get("move_right")[3]=sprites.get("move_right")[1];
+    sprites.get("move_down")[3]=sprites.get("move_down")[1];
+    sprites.get("move_left")[3]=sprites.get("move_left")[1];
     }
-
-  protected Sprite defaultAnimation()
-    {
-    animation="move_up";
-    return sprites.get("move_up")[0];
-    }
-
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
-    {
-    super.modifyAdded(object,changes);
-
-    /** Add text lines */
-    if(changes.has("text") && distance(client.getPlayer())<15*15)
-      {
-      String text=changes.get("text");
-      client.addEventLine(getName(),text);
-
-      textImage=GameScreen.get().createTextBox(text,240,Color.black,Color.white);
-      textImageTime=System.currentTimeMillis();
-      }
-
-    if(changes.has("private_text"))
-      {
-      client.addEventLine(changes.get("private_text"));
-      }
-
-    if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
-      {
-      System.out.println (getID());
-      if(client.getPlayer()!=null) System.out.println (client.getPlayer().getID());
-      client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
-      }
-    }
-
+  
   public String[] offeredActions()
     {
     if(getID().equals(client.getPlayer().getID()))
@@ -97,16 +92,5 @@ public class Player extends RPEntity
       {
       super.onAction(action,client);
       }
-    }
-
-  public void draw(GameScreen screen)
-    {
-    if(textImage!=null)
-      {
-      screen.draw(textImage,x+0.7-(textImage.getWidth()/(32.0f*2.0f)),y+2.05);
-      if(System.currentTimeMillis()-textImageTime>TEXT_PERSISTENCE_TIME) textImage=null;
-      }
-
-    super.draw(screen);
     }
   }

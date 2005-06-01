@@ -20,6 +20,8 @@ import java.util.*;
 import java.awt.*;
 import java.awt.geom.*;
 
+import java.lang.reflect.*;
+
 public abstract class Entity
   {
 	/** The current x location of this entity */ 
@@ -47,8 +49,7 @@ public abstract class Entity
 
   protected GameObjects gameObjects;
   protected StendhalClient client;
-
-
+    
 	/**
 	 * Construct a entity based on a sprite image and a location.
 	 * 
@@ -64,7 +65,7 @@ public abstract class Entity
     id=object.getID();    
     x=y=dx=dy=0;
 
-    loadSprite(type);
+    loadSprite(object);
 
     area=EntityAreas.getArea(object.get("type"),0,0);
     drawedArea=EntityAreas.getDrawedArea(object.get("type"),0,0);
@@ -107,10 +108,10 @@ public abstract class Entity
     }
     
   /** Loads the sprite that represent this entity */
-  protected void loadSprite(String type)
+  protected void loadSprite(RPObject object)
     {
     SpriteStore store=SpriteStore.get();        
-    sprite=store.getSprite(translate(type));
+    sprite=store.getSprite(translate(object.get("type")));
     }
 
   final public Rectangle2D getArea()

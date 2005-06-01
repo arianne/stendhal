@@ -68,7 +68,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       this.rpman=rpman;
       this.world=world;
 
-      StendhalRPAction.initialize(rpman,world);
+      StendhalRPAction.initialize(rpman,this,world);
       Path.initialize(rpman,world);
 
       NPC.setRPContext(this, world);
@@ -461,9 +461,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     try
       {
       // TODO: Done this way because a problem with comodification... :(
-      npcs.addAll(npcsToAdd);
       npcs.removeAll(npcsToRemove);
       corpses.removeAll(corpsesToRemove);
+      npcs.addAll(npcsToAdd);
 
       npcsToAdd.clear();
       npcsToRemove.clear();
@@ -500,6 +500,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           }
         }
 
+      for(NPC npc: npcs) npc.logic();
+
       for(Player object: playersObjectRmText)
         {
         if(object.has("text"))
@@ -532,7 +534,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::endTurn",">");
     try
       {
-      for(NPC npc: npcs) npc.logic();
       for(Food food: foodItems) food.regrow();
       for(RespawnPoint point: respawnPoints) point.nextTurn();
       for(Corpse corpse: corpses) corpse.logic();
@@ -559,6 +560,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         object.put("base_hp","100");
         object.put("hp","100");
+        }
+
+      // Port from 0.13 to 0.20
+      //if(!object.has("outfit"))
+        {
+        int body=StendhalRPAction.roll1D6()%5;
+        int head=StendhalRPAction.roll1D6()%10;
+        int hair=StendhalRPAction.roll1D6()%10;
+        int dress=StendhalRPAction.roll1D6()%10;
+        
+        object.put("outfit",body+10*head+100*hair+1000*dress);
         }
 
       Player player=new Player(object);

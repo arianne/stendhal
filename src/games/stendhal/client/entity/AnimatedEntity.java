@@ -38,7 +38,7 @@ public abstract class AnimatedEntity extends Entity
     }
 
   /** This method fills the sprites map */
-  protected void buildAnimations(String type)
+  protected void buildAnimations(RPObject object)
     {
     }
     
@@ -49,11 +49,11 @@ public abstract class AnimatedEntity extends Entity
     }
 
   /** Redefined method to load all the animation and set a default frame to be rendered */    
-  protected void loadSprite(String type)
+  protected void loadSprite(RPObject object)
     {
     sprites=new HashMap<String,Sprite[]>();
     
-    buildAnimations(type);
+    buildAnimations(object);
     sprite=defaultAnimation();
     }
 
@@ -104,6 +104,7 @@ public abstract class AnimatedEntity extends Entity
       }    
     }    
  
+   
   /** Returns the next Sprite we have to show */
   protected Sprite nextFrame()
     {

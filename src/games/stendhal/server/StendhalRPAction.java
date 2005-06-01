@@ -26,6 +26,7 @@ import java.util.*;
 public class StendhalRPAction
   {
   private static RPServerManager rpman;
+  private static StendhalRPRuleProcessor rules;
   private static RPWorld world;
   private static Random rand;
 
@@ -34,9 +35,10 @@ public class StendhalRPAction
     return 1 + (new Random()).nextInt(6);
     }
 
-  public static void initialize(RPServerManager rpman, RPWorld world)
+  public static void initialize(RPServerManager rpman, StendhalRPRuleProcessor rules, RPWorld world)
     {
     StendhalRPAction.rpman=rpman;
+    StendhalRPAction.rules=rules;
     StendhalRPAction.world=world;
     rand=new Random();
     }
@@ -361,6 +363,9 @@ public class StendhalRPAction
     if(player.hasSheep())
       {
       Sheep sheep=(Sheep)world.get(player.getSheep());
+      
+      player.removeSheep(sheep);
+      
       world.changeZone(source,destination,sheep);
       world.changeZone(source,destination,player);
 

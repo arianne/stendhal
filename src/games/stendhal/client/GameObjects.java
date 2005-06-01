@@ -23,6 +23,49 @@ import java.awt.geom.*;
 /** This class stores the objects that exists on the World right now */
 public class GameObjects 
   {
+  private static Map<String, Class> entityMap;
+  
+  static
+    {
+    entityMap=new HashMap<String, Class>();
+    register();
+    }
+  
+  private static void register()
+    {
+    register("player",Player.class);
+    
+    register("orc",NormalCreature.class);
+    register("troll",NormalCreature.class);
+    register("gargoyle",NormalCreature.class);
+    register("goblin",NormalCreature.class);
+    register("ogre",NormalCreature.class);
+    register("kobold",NormalCreature.class);
+    register("boar",NormalCreature.class);
+    register("cobra",NormalCreature.class);
+    register("wolf",NormalCreature.class);
+    register("caverat",SmallCreature.class);
+    register("rat",SmallCreature.class);
+    register("sheep",Sheep.class);
+    
+    register("sellernpc",NPC.class);
+    register("buyernpc",NPC.class);
+    register("welcomernpc",NPC.class);
+    register("beggarnpc",NPC.class);
+    register("trainingdummy",TrainingDummy.class);
+    
+    register("food",Food.class);
+    register("corpse",Corpse.class);
+    register("sign",Sign.class);
+
+    register("portal",Portal.class);
+    }
+
+  public static void register(String type, Class entityClass)
+    {
+    entityMap.put(type,entityClass);
+    }
+  
   private HashMap<RPObject.ID, Entity> objects;
   private List<Entity> sortObjects;
   private StaticGameLayers collisionMap;
@@ -40,71 +83,11 @@ public class GameObjects
     {
     try
       {
-      /** TODO: Refactor this --> Factory pattern apply.
-       *  OMG! It is a nice penalty each time we add an object using this... */
-      if(object.get("type").equals("player"))
-        {
-        return new Player(this, object);
-        }
-      else if(object.get("type").equals("wolf"))
-        {
-        return new Creature(this, object);
-        }
-      else if(object.get("type").equals("rat"))
-        {
-        return new Creature(this, object);
-        }
-      else if(object.get("type").equals("caverat"))
-        {
-        return new Creature(this, object);
-        }
-      else if(object.get("type").equals("sheep"))
-        {
-        return new Sheep(this, object);
-        }
-      else if(object.get("type").equals("sign"))
-        {
-        return new Sign(this, object);
-        }
-      else if(object.get("type").equals("sellernpc"))
-        {
-        return new Player(this, object);
-        }
-      else if(object.get("type").equals("buyernpc"))
-        {
-        return new Player(this, object);
-        }
-      else if(object.get("type").equals("welcomernpc"))
-        {
-        return new Player(this, object);
-        }
-      else if(object.get("type").equals("beggarnpc"))
-        {
-        return new Player(this, object);
-        }
-      else if(object.get("type").equals("trainingdummy"))
-        {
-        return new TrainingDummy(this, object);
-        }
-      else if(object.get("type").equals("food"))
-        {
-        return new Food(this, object);
-        }
-      else if(object.get("type").equals("corpse"))
-        {
-        return new Corpse(this, object);
-        }
-      else if(object.get("type").equals("portal"))
-        {
-        return new Portal(this, object);
-        }
-      else
-        {
-        Logger.trace("GameObjects::entityType","X","Unknown entity type("+object.get("type")+")");
-        return null;
-        }
+      Class entityClass=entityMap.get(object.get("type"));
+      java.lang.reflect.Constructor constr=entityClass.getConstructor(GameObjects.class, RPObject.class);
+      return (Entity)constr.newInstance(this,object);
       }
-    catch(AttributeNotFoundException e)
+    catch(Exception e)
       {
       Logger.thrown("GameObjects::entityType","X",e);
       return null;

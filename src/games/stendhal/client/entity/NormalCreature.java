@@ -14,45 +14,37 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Portal extends Entity 
+
+/** A Creature entity */
+public class NormalCreature extends NPC 
   {
-  public Portal(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-    {    
+  public NormalCreature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+    {
     super(gameObjects, object);
     }
-    
-  protected void loadSprite(RPObject object)
+  
+  protected void buildAnimations(RPObject object)
     {
-    sprite=null;
-    }
-    
-  public String defaultAction()
-    {
-    return "Use";
-    }
+    SpriteStore store=SpriteStore.get();  
 
-  public String[] offeredActions()
-    {
-    String[] list={"Use"};
-    return list;
-    }
+    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")),0,4,48,64));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")),1,4,48,64));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")),2,4,48,64));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")),3,4,48,64));      
 
-  public void onAction(String action, StendhalClient client)
-    {
-    if(action.equals("Use"))
-      {
-      RPAction rpaction=new RPAction();
-      rpaction.put("type","use");
-      int id=getID().getObjectID();
-      rpaction.put("object",id);      
-      client.send(rpaction);
-      }
+    sprites.get("move_up")[3]=sprites.get("move_up")[1];
+    sprites.get("move_right")[3]=sprites.get("move_right")[1];
+    sprites.get("move_down")[3]=sprites.get("move_down")[1];
+    sprites.get("move_left")[3]=sprites.get("move_left")[1];
     }
-
-  public void draw(GameScreen screen)
+  
+  protected Sprite defaultAnimation()
     {
+    animation="move_up";
+    return sprites.get("move_up")[0];
     }
   }
