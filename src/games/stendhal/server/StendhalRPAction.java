@@ -290,6 +290,9 @@ public class StendhalRPAction
     if(player.hasSheep())
       {
       Sheep sheep=(Sheep)world.get(player.getSheep());
+
+      player.removeSheep(sheep);
+      
       world.changeZone(source,portal.getDestinationZone(),sheep);
       world.changeZone(source,portal.getDestinationZone(),player);
 
