@@ -367,12 +367,20 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             if(p.getName().equals(action.get("who")))
               {
               p.setPrivateText(message);
+              player.setPrivateText("You tell " + p.getName() + ": " + action.get("text"));
               world.modify(p);
-              
+              world.modify(player);
+
               playersObjectRmText.add(player);
+              playersObjectRmText.add(p);
               return;
               }
             }
+          player.setPrivateText(action.get("who") + " is not currently logged.");
+          }
+        else
+          {
+            Logger.trace("StendhalRPRuleProcessor::tell","X", "Tell is not working right...");
           }
         }
       finally
@@ -443,13 +451,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   synchronized public void beginTurn()
     {
     Logger.trace("StendhalRPRuleProcessor::beginTurn",">");
-    
+
     // Debuging assert.
     if(getTurn()%2000==0)
       {
       Logger.trace("StendhalRPRuleProcessor::BugReportOnLists","D",getTurn()+"\t"+playersObject.size()+":"+playersObjectRmText.size()+":"+npcs.size()+":"+respawnPoints.size()+":"+foodItems.size()+":"+corpses.size());
       }
-      
+
     try
       {
       // TODO: Done this way because a problem with comodification... :(

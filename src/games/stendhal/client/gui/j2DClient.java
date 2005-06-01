@@ -18,7 +18,7 @@ import java.awt.geom.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import java.util.*;
- 
+
 import games.stendhal.client.*;
 import games.stendhal.common.*;
 
@@ -38,11 +38,11 @@ public class j2DClient extends JFrame
   {
   private GameScreen screen;
   private InGameGUI inGameGUI;
-        
+
   private boolean gameRunning=true;
-  
+
   private StendhalClient client;
-  
+
   private String host;
   private String username;
   private String password;
@@ -55,7 +55,7 @@ public class j2DClient extends JFrame
     String t = new String(s);
     String[] res = new String[nbPart];
     int i;
-    t.trim();
+    t = t.trim();
     for(i=0;i<nbPart - 1;i++)
       {
       int j = t.indexOf(' ');
@@ -63,28 +63,28 @@ public class j2DClient extends JFrame
         {
 	      return null;
         }
-        
+
       res[i] = t.substring(0,j);
       t = t.substring(j);
-      t.trim();
+      t = t.trim();
       }
-    res[i] = t.trim();
+    res[i] = t;
     return res;
     }
 
-  public j2DClient(StendhalClient sc) 
+  public j2DClient(StendhalClient sc)
     {
     // create a frame to contain our game
     setTitle("Stendhal "+stendhal.VERSION+" - a multiplayer online game using Arianne");
- 
+
     URL url = this.getClass().getClassLoader().getResource("data/StendhalIcon.gif");
     this.setIconImage(new ImageIcon(url).getImage());
-      
+
     // get hold the content of the frame and set up the resolution of the game
     JPanel panel = (JPanel) this.getContentPane();
     panel.setPreferredSize(new Dimension(640,480));
     panel.setLayout(null);
-      
+
     // setup our canvas size and put it into the content of the frame
     Canvas canvas=new Canvas();
     canvas.setBounds(0,0,640,460);
@@ -92,7 +92,7 @@ public class j2DClient extends JFrame
       // going to do that our self in accelerated mode
       canvas.setIgnoreRepaint(true);
       panel.add(canvas);
-      
+
       playerChatText=new JTextField("");
       playerChatText.setBounds(0,460,640,20);
     playerChatText.addActionListener(new ActionListener()
@@ -103,7 +103,7 @@ public class j2DClient extends JFrame
         {
       	String text = playerChatText.getText();
       	text.trim();
-      	
+
       	if(text.startsWith("/tell ")) // Tell command
       	  {
       	  String[] command = parseString(text, 3);
@@ -135,64 +135,64 @@ public class j2DClient extends JFrame
       	    client.send(improve);
       	    }
       	  }
-      	else // Chat command 
-      	  { 
+      	else // Chat command
+      	  {
           RPAction chat=new RPAction();
           chat.put("type","chat");
           chat.put("text",playerChatText.getText());
           client.send(chat);
       	  }
-        
+
         playerChatText.setText("");
-        }          
+        }
       });
     panel.add(playerChatText);
-        
-    
+
+
     this.setLocation(new Point(100, 100));
     this.setIconImage(new ImageIcon("data/StendhalIcon.gif").getImage());
-   
-      // finally make the window visible 
+
+      // finally make the window visible
     pack();
     setResizable(false);
     setVisible(true);
-    
+
     // add a listener to respond to the user closing the window. If they
     // do we'd like to exit the game
-    addWindowListener(new WindowAdapter() 
+    addWindowListener(new WindowAdapter()
       {
-      public void windowClosing(WindowEvent e) 
+      public void windowClosing(WindowEvent e)
         {
           gameRunning=false;
       }
       });
-      
+
     this.client=sc;
-   
+
     canvas.addFocusListener(new FocusListener()
       {
       public void focusGained(FocusEvent e)
         {
         playerChatText.requestFocus();
         }
-            
+
       public void focusLost(FocusEvent e)
         {
         }
-      });        
-      
+      });
+
     addFocusListener(new FocusListener()
       {
       public void focusGained(FocusEvent e)
         {
         playerChatText.requestFocus();
         }
-            
+
       public void focusLost(FocusEvent e)
         {
         }
-      });  
-   
+      });
+
     // request the focus so key events come to us
     playerChatText.requestFocus();
     requestFocus();
@@ -202,34 +202,34 @@ public class j2DClient extends JFrame
     BufferStrategy strategy;
     canvas.createBufferStrategy(2);
     strategy = canvas.getBufferStrategy();
-      
+
     GameScreen.createScreen(strategy,640,480);
     screen=GameScreen.get();
-    
+
     inGameGUI=new InGameGUI(client);
 
     canvas.addMouseListener(inGameGUI);
     canvas.addMouseMotionListener(inGameGUI);
-    
-    // add a key input system (defined below) to our canvas so we can respond to key pressed    
+
+    // add a key input system (defined below) to our canvas so we can respond to key pressed
     playerChatText.addKeyListener(inGameGUI);
-    
-    client.setGameLogDialog(new GameLogDialog(this, playerChatText));    
-    
+
+    client.setGameLogDialog(new GameLogDialog(this, playerChatText));
+
     addComponentListener(new ComponentAdapter()
       {
-      public void componentHidden(ComponentEvent e) 
+      public void componentHidden(ComponentEvent e)
         {
         }
-      public void componentMoved(ComponentEvent e) 
+      public void componentMoved(ComponentEvent e)
         {
         Dimension size=getSize();
-        Point location=getLocation();   
-    
+        Point location=getLocation();
+
         client.getGameLogDialog().setLocation(new Point((int)location.getX(), (int)(location.getY()+size.getHeight())));
         }
 
-      public void componentResized(ComponentEvent e) 
+      public void componentResized(ComponentEvent e)
         {
         }
 
@@ -238,14 +238,14 @@ public class j2DClient extends JFrame
         }
       });
 
-          
+
     // Start the main game loop, note: this method will not
     // return until the game has finished running. Hence we are
     // using the actual main thread to run the game.
     gameLoop();
     }
-  
-  public void gameLoop() 
+
+  public void gameLoop()
     {
     long lastLoopTime = System.currentTimeMillis();
     int fps=0;
@@ -259,9 +259,9 @@ public class j2DClient extends JFrame
     RenderingPipeline pipeline=RenderingPipeline.get();
     pipeline.addGameLayer(staticLayers);
     pipeline.addGameObjects(gameObjects);
-        
+
     // keep looping round til the game ends
-    while (gameRunning) 
+    while (gameRunning)
       {
       fps++;
       // work out how long its been since the last update, this
@@ -269,17 +269,17 @@ public class j2DClient extends JFrame
       // move this loop
       long delta = System.currentTimeMillis() - lastLoopTime;
       lastLoopTime = System.currentTimeMillis();
-      
+
       gameObjects.move(delta);
-      
-      pipeline.draw(screen);      
+
+      pipeline.draw(screen);
       inGameGUI.draw(screen);
-            
+
       screen.nextFrame();
       client.loop(0);
 
       moveScreen(client.getPlayer(),staticLayers,delta);
-           
+
       if(System.nanoTime()-oldTime>1000000000)
         {
         oldTime=System.nanoTime();
@@ -287,13 +287,13 @@ public class j2DClient extends JFrame
         Logger.trace("j2DCLient::gameLoop()","D","FPS: "+Integer.toString(fps));
         gameRunning=client.shouldContinueGame();
         fps=0;
-        }     
+        }
       }
 
     client.logout();
     System.exit(0);
     }
-  
+
   private void moveScreen(RPObject object, StaticGameLayers gameLayers, long delta)
     {
     try
@@ -303,18 +303,18 @@ public class j2DClient extends JFrame
         System.out.println ("null at moveScreen");
         return;
         }
-        
+
       double x=object.getDouble("x");
       double y=object.getDouble("y");
       double dx=0;
       double dy=0;
 
       double speed=object.getDouble("speed");
-      
+
       Direction dir=Direction.build(object.getInt("dir"));
       dx=dir.getdx();
       dy=dir.getdy();
-      
+
       GameScreen screen=GameScreen.get();
       double screenx=screen.getX();
       double screeny=screen.getY();
@@ -322,10 +322,10 @@ public class j2DClient extends JFrame
       double screenh=screen.getHeight();
       double sdx=screen.getdx();
       double sdy=screen.getdy();
-      
+
       double dsx=screenx+screenw/2;
       double dsy=screeny+screenh/2;
-      
+
       double layerw=gameLayers.getWidth();
       double layerh=gameLayers.getHeight();
 
@@ -355,16 +355,16 @@ public class j2DClient extends JFrame
         {
         sdy-=0.1;
         }
-            
+
       screen.move(sdx,sdy);
       }
-    catch(AttributeNotFoundException e)    
+    catch(AttributeNotFoundException e)
       {
       //Logger.thrown("j2DClient::moveScreen","X",e);
-      }    
+      }
     }
 
-  public static void main(String args[]) 
+  public static void main(String args[])
     {
     if(args.length>0)
       {
@@ -372,7 +372,7 @@ public class j2DClient extends JFrame
       String username=null;
       String password=null;
       String host=null;
-    
+
       while(i!=args.length)
         {
         if(args[i].equals("-u"))
@@ -388,8 +388,8 @@ public class j2DClient extends JFrame
           host=args[i+1];
           }
         i++;
-        }        
-          
+        }
+
       if(username!=null && password!=null && host!=null)
         {
         String[] allowed={"onTransfer"};
@@ -397,20 +397,20 @@ public class j2DClient extends JFrame
 
         String[] rejected={"modify"};
         Logger.setRejected(rejected);
-        
+
         StendhalClient client=StendhalClient.get();
         try
           {
           client.connect(host,32160);
           client.login(username,password);
 
-          new j2DClient(client).setVisible(true);          
+          new j2DClient(client).setVisible(true);
           }
         catch(Exception ex)
           {
           ex.printStackTrace();
           }
-          
+
         return;
         }
       }

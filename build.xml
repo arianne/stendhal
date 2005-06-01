@@ -13,7 +13,8 @@
   <property name="marauroa_jar" value="marauroa.jar"/>
   <!-- [END] -->
   
-  <property name="marauroa" value="${libdir}/${marauroa_jar}"/>
+  <property name="marauroa" value="../marauroa/lib/${marauroa_jar}"/>
+  <property name="marauroa_build" value="../marauroa/build"/>
   <property name="classpath" value="${build};${marauroa}"/>
   
   <property name="server_jarname" value="stendhal-server-${version}.jar"/>
