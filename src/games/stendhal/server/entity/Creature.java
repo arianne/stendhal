@@ -88,7 +88,7 @@ public abstract class Creature extends NPC
 
     if(leftTargetHPAverageCombat(atk, def, hp, minLevel) >= 0.1) // If the creature is level 0 or less...
       {
-      return 1;
+      return Level.getXP(minLevel + 1) -1;
       }
     else if(leftTargetHPAverageCombat(atk, def, hp, maxLevel) <= 0.1) // If the creature is level 99 or more...
       {
@@ -103,8 +103,12 @@ public abstract class Creature extends NPC
         else maxLevel = level;
         }
       /* Now minLevel is the level of the creature and maxLevel is minLevel + 1
-       * We compute now the xp by doing a linear approximation to find leftTargetHPAverageCombat == 0.1
+       * We now give the XP corresponding to this level.
        */
+      if(minLevel != Level.maxLevel())
+        {
+        return Level.getXP(minLevel + 1) - 1;
+        }
       return Level.getXP(minLevel) + 1;
       }
     }

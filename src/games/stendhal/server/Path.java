@@ -140,6 +140,7 @@ public class Path
     Logger.trace("Path::searchPath",">");
     Pathfinder path=new Pathfinder();
     NavigableStendhalNode navMap=new NavigableStendhalNode(entity, null, (StendhalRPZone)world.getRPZone(entity.getID()));
+    navMap.setVisibility(entity.getx(), entity.gety(), 20);
     path.setNavigable(navMap);
     path.setEndpoints(x,y,destx,desty);
 
@@ -175,11 +176,11 @@ public class Path
     Logger.trace("Path::searchPath",">");
     Pathfinder path=new Pathfinder();
     NavigableStendhalNode navMap=new NavigableStendhalNode(entity,dest,(StendhalRPZone)world.getRPZone(entity.getID()));
+    navMap.setVisibility(entity.getx(), entity.gety(), 20);
     path.setNavigable(navMap);
     path.setEndpoints((int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety());
 
     path.init();
-    navMap.setVisibility(entity.getx(), entity.gety(), 20);
     // HACK: Time limited the A* search.
     while(path.getStatus()==Pathfinder.IN_PROGRESS && path.getClosed().size()<navMap.maxNumberOfNodes())
       {
