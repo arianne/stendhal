@@ -127,10 +127,10 @@ public class TavernBarMaidNPC extends SpeakerNPC
           say("Beer! Excellent choice! Coming right up!");
           break;
         case 1:  
-          say("Welcome! Would you like a nice refreshing beer? We have the finest Aldin Ales.");
+          say("Of course! We have the finest Aldin Ales.");
           break;
         case 2:  
-          say("Oh, hello, nice to see you again? How have your travels been?");
+          say("More beer? Naughty! *giggle* Coming right up!");
           break;
         }
       return true;	      
