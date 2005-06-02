@@ -107,7 +107,7 @@ public class Path
         {
         return true;
         }
-      if(getDistance(node, center) > radius)
+      if((center != null) && (getDistance(node, center) > radius))
         {
         return false;
         }
