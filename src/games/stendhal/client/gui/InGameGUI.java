@@ -203,7 +203,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   private GameObjects gameObjects;
   private GameScreen screen;
 
-  private Map<Integer, Object> pressed;
+  private Map<Integer, Long> pressed;
   
   private Sprite inGameInventory;
   private Sprite inGameDevelPoint;
