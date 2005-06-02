@@ -203,18 +203,48 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   private GameObjects gameObjects;
   private GameScreen screen;
 
-  private Map<Integer, Long> pressed;
+  private Map<Integer, Object> pressed;
   
   private Sprite inGameInventory;
   private Sprite inGameDevelPoint;
   
   public InGameGUI(StendhalClient client)
     {
+    Logger.trace("InGameGUI::(init)","D","OS: "+(System.getProperty("os.name")));
+    
+    if(System.getProperty("os.name").toLowerCase().contains("linux"))
+      {
+      try
+        {
+        // NOTE: X does handle input in a different way of the rest of the world.
+        // This fixs the problem.
+        Runtime.getRuntime().exec("xset r off");
+        Runtime.getRuntime().addShutdownHook(new Thread()
+          {
+          public void run()
+            {
+            try
+              {
+              Runtime.getRuntime().exec("xset r on");
+              }
+            catch(Exception e)
+              {
+              System.out.println (e);
+              }
+            }
+          });
+        }
+      catch(Exception e)
+        {
+        System.out.println (e);
+        }
+      }
+      
     this.client=client;
     gameObjects=client.getGameObjects();
     screen=GameScreen.get();
     
-    pressed=new HashMap<Integer, Long>();
+    pressed=new HashMap<Integer, Object>();
     
     SpriteStore st=SpriteStore.get();
     
