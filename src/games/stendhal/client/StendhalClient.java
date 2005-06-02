@@ -68,6 +68,7 @@ public class StendhalClient extends ariannexp
     try
       {
       // Create file.
+      new File("cache/").mkdir();
       new File("cache/stendhal.cache").createNewFile();
       
       Configuration.setConfigurationFile("cache/stendhal.cache");
