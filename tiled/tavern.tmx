@@ -81,29 +81,32 @@
  <tileset name="Interior 0" firstgid="11623" tilewidth="32" tileheight="32">
   <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
+ <tileset name="Navigation" firstgid="12103" tilewidth="32" tileheight="32">
+  <image source="zelda_navigation_chipset.gif"/>
+ </tileset>
  <layer name="tavern_0_floor" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAACtjZ2AoowBnMSAwJeYMlP3vWemD9wDxBQZU7Ms0sPaDMDa1+jRwFyn2D7T/aWX/HjR37KGT3aMYezwMRPgPVPobLPaj50NsanLZGBjyoDifjbryxNg/0P4fSfYDALMYx1GACAAA
+   H4sIAAAAAAAAAPPRY2C4pksdrA40SwOKNYkw1xuo5gqQ9gPSX3Qpx65Ac9yg2J2Amb5A+cu6EPs/ATEzkM+CBbMC8XtWynCJLib+qItqvyLQHiUsWHnUfpra7wNNp7S0HxtG9j8o/dsDsQMW7EgH+0Hhzwa0hx0L5qCT/SpAe1SxYLURYr8T0B5nLNiFTvaTovcTFoxLHF0NIfu72RgYeqCYVPuJlafU/wMd/sPJfgBdJhDqgAgAAA==
   </data>
  </layer>
  <layer name="tavern_1_object" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQICtrAwM21gZsAJccuXsELqUnXg9yOK7WCnDu6Hm7CRTPzZwnA27OKXyDsAwcsQSTjCwHKrvKZTuYqOuPDrgwOGWpwT0kSs/2PyPC9DK/4TAqP9R9Q+U/5nxpFFqyIPAPlYIHonAiYjwoSZAL49B9tPTDeTmB2oBbOmR3mGAzW4QBgBRTArDgAgAAA==
+   H4sIAAAAAAAAAMWUTw4BMRTGX8JgN1hh4wRTd3AEO3+OgC0bbsGGHRkL7iHcgkQ4AxJeM9MY7etMm5D5JS99/dq+77WZDMA3JwZwZkFeZqAQXTeBqhHHi+9vqPrIAxh7+nWKVs7cd4t1d+w7L+Q/6zP0nmNUUK9i1AzuVcfzA8P7H3Dfkam5zB17eGA8PbO6Ov8Jnp9Galxx342pOaftAHScYOyGo9DEvOfY+S/Qe2l4h2EWoIjhYpTC0Q01MS9n7fxt8HNqzkcqp+gzNTjuD3pLYpXQ2z+RfdPshZOmd9qsE+7ezAdhwgZr7Yl6vqXOKTIzf7n/i+ZbstUFlHdUW0n/AKreJtRlfI0eh3gP3ZtkCJ37ULrYb/P9J/n/ijdp4zthgAgAAA==
   </data>
  </layer>
  <layer name="tavern_2_roof" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUDBV6xDbQLRsEoGAWjYBSMgoEBAJMEpb+ACAAA
+   H4sIAAAAAAAAAGNgwA9y9RgY8vSwy3kAxT2h2AuHGkrAKzb89qcBxdOhOIMG9oMAPvvpAYa7/dl6+HEnHfx/TRcVrwDat1wPwadH+H/RRWCQfaBwR+YPV0Ao/rNp7HcfPcz4h4U/veLfT2/wxv9wL39G7R9Y+wGHj9ZKgAgAAA==
   </data>
  </layer>
  <layer name="tavern_objects" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGPrAmXugXTAKRsEoGAUjB3SPlrmjgAoAAPvBMAyACAAA
+   H4sIAAAAAAAAAGNgGF7AmRuCR8EoGAWjgB6ge7S8GQWjgCwAADod+gOACAAA
   </data>
  </layer>
- <layer name="tavern_collision" width="32" height="17" visible="0" opacity="0.69">
+ <layer name="tavern_collision" width="32" height="17" opacity="0.69">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvKzcCwdIhjEKBELzrAJU6JPCE7kfWh09SQx+UmfO4g5E5S5Aej/wm5g5ry2PxPTf8RI08soIX/SbGXlv4fqPyPyx0jDQyEv9HzHL3dQG45REv7Byr9oec/AGeZcPmACAAA
+   H4sIAAAAAAAAAFvKzcCwdBTDMQigs5HF0NXiA/jUkGo/tQGxfhkM9pMSd7SyH5mPLk4N+7G5hRxzCbkfl/20AOjmYgszWtqPzz0DYT+6W+gR/8hmEWM/IX343EWKOKn240tL5IgTazc2+3HpocT/uPTgin9S/I5NjlL7KQUwswEmw1XQgAgAAA==
   </data>
  </layer>
 </map>

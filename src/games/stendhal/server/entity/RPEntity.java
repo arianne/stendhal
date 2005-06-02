@@ -64,12 +64,14 @@ public abstract class RPEntity extends Entity
     {
     super(object);
     attackSource=new LinkedList<RPEntity>();
+    damageRecieved=new HashMap<RPEntity,Integer>();
     }
 
   public RPEntity() throws AttributeNotFoundException
     {
     super();
     attackSource=new LinkedList<RPEntity>();
+    damageRecieved=new HashMap<RPEntity,Integer>();
     }
 
   public void update() throws AttributeNotFoundException
@@ -203,6 +205,8 @@ public abstract class RPEntity extends Entity
   private List<RPEntity> attackSource;
   private RPEntity attackTarget;
 
+  private Map<RPEntity,Integer> damageRecieved;
+
   /** Modify the entity to order to attack the target entity */
   public void attack(RPEntity target)
     {
@@ -251,13 +255,32 @@ public abstract class RPEntity extends Entity
   public void onDamage(RPEntity who, int damage)
     {
     Logger.trace("RPEntity::onDamage","D","Damaged "+damage+" points by "+who.getID());
+    
     int leftHP=getHP()-damage;
     if(leftHP>=0)
       {
+      if(damageRecieved.containsKey(who))
+        {
+        damageRecieved.put(who,damage+damageRecieved.get(who));
+        }
+      else
+        {
+        damageRecieved.put(who,damage);
+        }
+
       setHP(leftHP);
       }
     else
       {
+      if(damageRecieved.containsKey(who))
+        {
+        damageRecieved.put(who,getHP()+damageRecieved.get(who));
+        }
+      else
+        {
+        damageRecieved.put(who,getHP());
+        }
+        
       onDead(who);
       }
 
@@ -280,7 +303,19 @@ public abstract class RPEntity extends Entity
     who.stopAttack();
 
     // Establish how much xp points your are rewarded
-    if(getXP() > 0) who.addXP((Level.getXP(getLevel() + 1) - Level.getXP(getLevel()))/20);
+    // TODO: BUG: Shouldn't be a part of the XP this entity worth.
+    int xp_reward=(Level.getXP(getLevel()+1)-Level.getXP(getLevel()))/20;
+    
+    for(Map.Entry<RPEntity,Integer> entry: damageRecieved.entrySet())
+      {
+      int damageDone=((Integer)entry.getValue()).intValue();      
+
+      Logger.trace("RPEntity::onDead","D",entry.getKey().get("name")+" did "+damageDone+" of "+base_hp+". Reward was "+xp_reward);
+
+      entry.getKey().addXP((int)(xp_reward*((float)damageDone/(float)base_hp)));
+      }
+    
+    damageRecieved.clear();
 
     // Stats about dead
     stats.add("Killed "+get("type"),1);

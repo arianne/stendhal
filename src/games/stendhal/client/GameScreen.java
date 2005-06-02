@@ -220,8 +220,11 @@ public class GameScreen
     Image image = gc.createCompatibleImage(((lineLengthPixels<width)?lineLengthPixels:width)+4,16*numLines,Transparency.BITMASK);
     
     Graphics g2d=image.getGraphics();
+    g2d.setColor(textColor);
+    g2d.drawRect(0,0,((lineLengthPixels<width)?lineLengthPixels:width)+4-1,16*numLines-1);
+
     g2d.setColor(fillColor);
-    g2d.fillRect(0,0,((lineLengthPixels<width)?lineLengthPixels:width)+4,16*numLines);
+    g2d.fillRect(1,1,((lineLengthPixels<width)?lineLengthPixels:width)+4-2,16*numLines-2);
 
     g2d.setColor(textColor);
     int lineLength=text.length()/numLines;

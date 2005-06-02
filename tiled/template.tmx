@@ -81,6 +81,9 @@
  <tileset name="Interior 0" firstgid="11623" tilewidth="32" tileheight="32">
   <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
+ <tileset name="Navigation" firstgid="12103" tilewidth="32" tileheight="32">
+  <image source="zelda_navigation_chipset.gif"/>
+ </tileset>
  <layer name="template_0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA

@@ -141,15 +141,15 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\entity\Creature.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\entity\Entity.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\Food.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\NormalCreature.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -174,6 +174,14 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\Sign.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\SmallCreature.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\Speaker.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -253,11 +261,19 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\Boar.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\BuyerNPC.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\CaveRat.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Cobra.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -277,11 +293,27 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\Gargoyle.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Goblin.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\JournalistNPC.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\Kobold.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\NPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Ogre.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

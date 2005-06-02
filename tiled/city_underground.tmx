@@ -81,6 +81,9 @@
  <tileset name="Interior 0" firstgid="11623" tilewidth="32" tileheight="32">
   <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
+ <tileset name="Navigation" firstgid="12103" tilewidth="32" tileheight="32">
+  <image source="zelda_navigation_chipset.gif"/>
+ </tileset>
  <layer name="dungeon_000_0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2ZzQ2DMAyFOXHrDIyQhTpBF+46FVKRkBXHDtg4hnd4atqS4M9/TcNnmqYPBEEQBEEQo+9so2iOM/zLSd2FvxXfhYwX8nk0h1X8a+8pP3fNFfLil/zA+aTmA0+feMe/Zjvng1aOePnAu/65eHJxv0P+t3JdYjzS/3rnRdS/5+/faPxX52XvvKvib7127z0j699ybWkt7p6R/d+aX+oXd4//kb7hyWltq4dPo+MP/ufx99jTM8+yp2bkt7R3BP4zfrMU+PPwe/w3zsIv9b8IHvBfxy/Ny3BufLQ+NfHPyP8StOeX4p8t/xclv7Zfb2tGM2r4t1zV8mvOBTPxa9iPxD9T/lvvTzLwr3ob2qh5xjpaTVjya/bEo/EXY37KGr3Hj+CXnqtFM3vyc+fgo/Jb1z9X80/g1/oomnkvy/wHP/jBPy7/ytor8IP/yfzlv2fZXlui1xRmnJ2fjstc9w/nu2z8hbD25EEtJ7Ly1zjp99L12eIfZSv4wQ9BEET1A4HkaxcAQAAA
