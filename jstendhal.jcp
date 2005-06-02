@@ -85,6 +85,14 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>stendhal-0.13.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.13.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>stendhal.jnlp</path>
 				<source>true</source>
 			</fileitem>
@@ -350,6 +358,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\SpeakerNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\TavernBarMaidNPC.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
