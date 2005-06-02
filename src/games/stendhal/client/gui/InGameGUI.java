@@ -214,7 +214,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     gameObjects=client.getGameObjects();
     screen=GameScreen.get();
     
-    pressed=new HashMap<Integer, Object>();
+    pressed=new HashMap<Integer, Long>();
     
     SpriteStore st=SpriteStore.get();
     

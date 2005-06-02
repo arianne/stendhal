@@ -37,6 +37,7 @@ public class Player extends RPEntity
       player.add("sheep",RPClass.INT);
       player.add("devel",RPClass.INT,RPClass.HIDDEN);
       player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
+      player.add("reset",RPClass.FLAG,(byte)(RPClass.HIDDEN|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
 
       player.add("outfit",RPClass.INT);
       }

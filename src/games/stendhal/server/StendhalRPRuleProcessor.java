@@ -554,8 +554,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::onInit",">");
     try
       {
-      object.put("zoneid","city");
-
       // Port from 0.03 to 0.10
       if(!object.has("base_hp"))
         {
@@ -577,24 +575,33 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       Player player=new Player(object);
       player.stop();
       player.stopAttack();
+      
+      boolean firstVisit=false;
+      
+      if(!object.has("zoneid")|| !object.has("x") || !object.has("y") || object.has("reset"))
+        {
+        firstVisit=true;
+        }
+
+      if(firstVisit)
+        {
+        object.put("zoneid","city");        
+        }
 
       world.add(player);
       StendhalRPAction.transferContent(player);
 
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-      zone.placeObjectAtEntryPoint(player);
+   
+      if(firstVisit)
+        {
+        zone.placeObjectAtEntryPoint(player);
+        }
 
       int x=player.getInt("x");
       int y=player.getInt("y");
-
-      while(zone.collides(player,x,y))
-        {
-        x=x+(int)(Math.random()*6.0-3);
-        y=y+(int)(Math.random()*6.0-3);
-        }
-
-      player.setx((int)x);
-      player.sety((int)y);
+        
+      StendhalRPAction.placeat(zone,player,x,y);
 
       if(player.hasSheep())
         {
@@ -608,18 +615,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           }
 
         world.add(sheep);
-
-        Logger.trace("StendhalRPRuleProcessor::onInit","D","Setting new position for sheep");
-        while(zone.collides(sheep,x,y))
-          {
-          x=x+(int)(Math.random()*6-3);
-          y=y+(int)(Math.random()*6-3);
-          }
-
-        sheep.setx(x);
-        sheep.sety(y);
-        Logger.trace("StendhalRPRuleProcessor::onInit","D","Sheep located at ("+x+","+y+")");
-
+        StendhalRPAction.placeat(zone,sheep,x,y);
         player.setSheep(sheep);
         }
 

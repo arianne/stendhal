@@ -41,8 +41,8 @@ public abstract class Entity extends RPObject
   public static void generateRPClass()
     {
     RPClass entity=new RPClass("entity");
-    entity.add("x",RPClass.SHORT, RPClass.VOLATILE);
-    entity.add("y",RPClass.SHORT, RPClass.VOLATILE);
+    entity.add("x",RPClass.SHORT);
+    entity.add("y",RPClass.SHORT);
     entity.add("dir",RPClass.BYTE, RPClass.VOLATILE);
     entity.add("speed",RPClass.FLOAT, RPClass.VOLATILE);
     }
