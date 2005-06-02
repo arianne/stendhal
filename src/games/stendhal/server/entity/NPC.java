@@ -19,25 +19,25 @@ import marauroa.server.game.*;
 import games.stendhal.server.*;
 import games.stendhal.common.*;
 
-public abstract class NPC extends RPEntity 
+public abstract class NPC extends RPEntity
   {
   private String idea;
-  
+
   public static void generateRPClass()
     {
     try
       {
       RPClass npc=new RPClass("npc");
       npc.isA("rpentity");
-      npc.add("text",RPClass.LONG_STRING);
-      npc.add("idea",RPClass.STRING);
+      npc.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
+      npc.add("idea",RPClass.STRING, RPClass.VOLATILE);
       }
     catch(RPClass.SyntaxException e)
       {
       Logger.thrown("NPC::generateRPClass","X",e);
       }
     }
-    
+
   public NPC(RPObject object) throws AttributeNotFoundException
     {
     super(object);
@@ -51,30 +51,30 @@ public abstract class NPC extends RPEntity
     put("x",0);
     put("y",0);
     }
-  
+
   public void setIdea(String idea)
     {
     if(idea.equals(this.idea))
       {
       return;
       }
-      
+
     this.idea=idea;
     put("idea",idea);
     }
-  
+
   public String getIdea()
     {
     return idea;
     }
-  
+
   public void say(String text)
     {
     put("text",text);
-    }  
+    }
 
   private int escapeCollision;
-  
+
 
   public void setMovement(Entity entity, double min, double max)
     {
@@ -91,7 +91,7 @@ public abstract class NPC extends RPEntity
       setPath(path,false);
       }
     }
-    
+
   public void moveto(double speed)
     {
     if(hasPath() && Path.followPath(this,speed))
@@ -105,7 +105,7 @@ public abstract class NPC extends RPEntity
   public void moveRandomly(double speed)
     {
     if(escapeCollision>0) escapeCollision--;
-      
+
     if(stopped() || collided() || escapeCollision==0)
       {
       setDirection(Direction.rand());
@@ -118,6 +118,6 @@ public abstract class NPC extends RPEntity
     {
     super.onDead(who);
     }
-    
+
   abstract public void logic();
   }

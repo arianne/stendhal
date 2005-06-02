@@ -20,43 +20,43 @@ import games.stendhal.server.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public abstract class Entity extends RPObject 
+public abstract class Entity extends RPObject
   {
   private int x;
   private int y;
   private Direction direction;
   private double speed;
   private boolean collides;
-  
-  
+
+
   protected static StendhalRPRuleProcessor rp;
   protected static RPWorld world;
-  
+
   public static void setRPContext(StendhalRPRuleProcessor rpContext,RPWorld worldContext)
     {
     rp=rpContext;
     world=worldContext;
     }
-  
+
   public static void generateRPClass()
     {
     RPClass entity=new RPClass("entity");
-    entity.add("x",RPClass.SHORT);
-    entity.add("y",RPClass.SHORT);
-    entity.add("dir",RPClass.BYTE);
-    entity.add("speed",RPClass.FLOAT);
+    entity.add("x",RPClass.SHORT, RPClass.VOLATILE);
+    entity.add("y",RPClass.SHORT, RPClass.VOLATILE);
+    entity.add("dir",RPClass.BYTE, RPClass.VOLATILE);
+    entity.add("speed",RPClass.FLOAT, RPClass.VOLATILE);
     }
-  
+
   public Entity(RPObject object) throws AttributeNotFoundException
     {
     super(object);
 
     direction=Direction.STOP;
     speed=0;
-    
+
     update();
     }
-  
+
   public Entity() throws AttributeNotFoundException
     {
     super();
@@ -69,23 +69,23 @@ public abstract class Entity extends RPObject
     if(has("speed")) speed=getDouble("speed");
     if(has("dir")) direction=Direction.build(getInt("dir"));
     }
-  
+
   public void setx(int x)
     {
     if(x==this.x)
       {
       return;
       }
-      
+
     this.x=x;
     put("x",x);
     }
-  
+
   public int getx()
     {
     return x;
     }
-  
+
   public void sety(int y)
     {
     if(y==this.y)
@@ -100,52 +100,52 @@ public abstract class Entity extends RPObject
   public int gety()
     {
     return y;
-    }  
-  
+    }
+
   public void setDirection(Direction dir)
     {
     if(dir==this.direction)
       {
       return;
       }
-      
+
     this.direction=dir;
     put("dir",direction.get());
     }
-  
+
   public Direction getDirection()
     {
     return direction;
     }
-  
+
   public void setSpeed(double speed)
     {
     if(speed==this.speed)
       {
       return;
       }
-      
+
     this.speed=speed;
     put("speed",speed);
     }
-  
+
   public double getSpeed()
     {
     return speed;
     }
-  
+
   private int turnsToCompleteMove;
-  
+
   public boolean isMoveCompleted()
     {
     ++turnsToCompleteMove;
-    
+
     if(turnsToCompleteMove>=1.0/speed)
       {
       turnsToCompleteMove=0;
       return true;
       }
-      
+
     return false;
     }
 
@@ -154,22 +154,22 @@ public abstract class Entity extends RPObject
     setDirection(Direction.STOP);
     setSpeed(0);
     }
-    
+
   public boolean stopped()
     {
     return direction==Direction.STOP;
     }
-  
+
   public void collides(boolean val)
     {
-    collides=val;    
+    collides=val;
     }
-  
+
   public boolean collided()
     {
     return collides;
     }
-  
+
   /** This returns the manhattan distance.
    *  It is faster than real distance */
   public double distance(Entity entity)
@@ -186,7 +186,7 @@ public abstract class Entity extends RPObject
     {
     Rectangle2D this_area=EntityAreas.getArea(get("type"),x,y);
     this_area.setRect(this_area.getX()-step,this_area.getY()-step,this_area.getWidth()+step,this_area.getHeight()+step);
-    
+
     return this_area.contains(ex,ey);
     }
 
@@ -194,11 +194,11 @@ public abstract class Entity extends RPObject
     {
     Rectangle2D this_area=EntityAreas.getArea(get("type"),x,y);
     Rectangle2D other_area=EntityAreas.getArea(entity.get("type"),entity.x,entity.y);
-    
+
     this_area.setRect(this_area.getX()-step,this_area.getY()-step,this_area.getWidth()+step,this_area.getHeight()+step);
     other_area.setRect(other_area.getX()-step,other_area.getY()-step,other_area.getWidth()+step,other_area.getHeight()+step);
-    
-    return this_area.intersects(other_area);    
+
+    return this_area.intersects(other_area);
     }
 
   public boolean facingto(Entity entity)
@@ -210,10 +210,10 @@ public abstract class Entity extends RPObject
     if(direction==Direction.DOWN && this_area.getX()==other_area.getX() && this_area.getY()+1==other_area.getY()) return true;
     if(direction==Direction.LEFT && this_area.getY()==other_area.getY() && this_area.getX()-1==other_area.getX()) return true;
     if(direction==Direction.RIGHT && this_area.getY()==other_area.getY() && this_area.getX()+1==other_area.getX()) return true;
-    
+
     return false;
     }
-  
+
   public Rectangle2D getArea(double ex, double ey)
     {
     Rectangle2D rect=new Rectangle.Double();
@@ -223,4 +223,4 @@ public abstract class Entity extends RPObject
 
   abstract public void getArea(Rectangle2D rect, double x, double y);
   }
-    
+

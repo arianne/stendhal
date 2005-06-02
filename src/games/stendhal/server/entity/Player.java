@@ -32,12 +32,12 @@ public class Player extends RPEntity
       {
       RPClass player=new RPClass("player");
       player.isA("rpentity");
-      player.add("text",RPClass.LONG_STRING);
-      player.add("private_text",RPClass.LONG_STRING,RPClass.HIDDEN);
+      player.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
+      player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.HIDDEN|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
       player.add("devel",RPClass.INT,RPClass.HIDDEN);
       player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
-      
+
       player.add("outfit",RPClass.INT);
       }
     catch(RPClass.SyntaxException e)
@@ -64,10 +64,10 @@ public class Player extends RPEntity
   public void addXP(int newxp)
     {
     super.addXP(newxp);
-    
+
     int newLevel=Level.getLevel(getXP());
     int levels=newLevel-getLevel();
-    
+
     if(levels>0)
       {
       addDevel(levels);
@@ -129,7 +129,7 @@ public class Player extends RPEntity
       }
 
     super.onDead(who, false);
-   
+
     // Penalize: Respawn on afterlive zone and 10% less experience
     setXP((int)(getXP()*0.9));
     setHP(getbaseHP());

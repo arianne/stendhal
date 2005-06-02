@@ -42,7 +42,7 @@ public abstract class RPEntity extends Entity
       entity.isA("entity");
       entity.add("name",RPClass.STRING);
       entity.add("level",RPClass.SHORT);
-      entity.add("hp/base_hp",RPClass.FLOAT);
+      entity.add("hp/base_hp",RPClass.FLOAT, RPClass.VOLATILE);
 
       entity.add("base_hp",RPClass.SHORT,RPClass.HIDDEN);
       entity.add("hp",RPClass.SHORT,RPClass.HIDDEN);
@@ -50,9 +50,9 @@ public abstract class RPEntity extends Entity
       entity.add("def",RPClass.BYTE,RPClass.HIDDEN);
       entity.add("xp",RPClass.INT,RPClass.HIDDEN);
 
-      entity.add("risk",RPClass.BYTE);
-      entity.add("damage",RPClass.BYTE);
-      entity.add("target",RPClass.INT);
+      entity.add("risk",RPClass.BYTE, RPClass.VOLATILE);
+      entity.add("damage",RPClass.BYTE, RPClass.VOLATILE);
+      entity.add("target",RPClass.INT, RPClass.VOLATILE);
       }
     catch(RPClass.SyntaxException e)
       {

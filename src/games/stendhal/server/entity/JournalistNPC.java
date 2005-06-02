@@ -18,7 +18,7 @@ import marauroa.common.game.*;
 import marauroa.server.game.*;
 import games.stendhal.server.*;
 
-public class JournalistNPC extends SpeakerNPC 
+public class JournalistNPC extends SpeakerNPC
   {
   final private double SPEED=0.5;
 
@@ -28,14 +28,14 @@ public class JournalistNPC extends SpeakerNPC
       {
       RPClass npc=new RPClass("journalistnpc");
       npc.isA("npc");
-      npc.add("text",RPClass.LONG_STRING);
+      npc.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
       }
     catch(RPClass.SyntaxException e)
       {
       Logger.thrown("JournalistNPC::generateRPClass","X",e);
       }
     }
-    
+
   public JournalistNPC() throws AttributeNotFoundException
     {
     super();
@@ -64,27 +64,27 @@ public class JournalistNPC extends SpeakerNPC
 
     return false;
     }
-    
+
   protected boolean move()
     {
-    if(getDirection()==Direction.STOP) 
+    if(getDirection()==Direction.STOP)
       {
       setDirection(Direction.LEFT);
       setSpeed(SPEED);
       }
-      
-    if(getx()<=5) 
+
+    if(getx()<=5)
       {
       setDirection(Direction.RIGHT);
       setSpeed(SPEED);
       }
-      
-    if(getx()>=14) 
+
+    if(getx()>=14)
       {
       setDirection(Direction.LEFT);
       setSpeed(SPEED);
       }
-    
+
     return true;
     }
   }
