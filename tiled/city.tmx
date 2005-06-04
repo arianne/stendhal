@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="64" height="50" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_outside_0_chipset.gif" trans="ffffff"/>
+  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_outside_1_chipset.gif" trans="ffffff"/>
+  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.gif"/>
@@ -31,7 +31,7 @@
  </layer>
  <layer name="city_1_object" width="64" height="50">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="city_2_roof" width="64" height="50">
@@ -44,7 +44,7 @@
    H4sIAAAAAAAAAO3aTQqDMBCGYbdes3Vp79UWBQ+gd3NVLMO0mBjMZ/I+4E5kMk5+TGwaAADCLe12IVwnmjcvLtVYgdL1pu9NTl+091ydnVP+ta/Esan2OTWm/aX1AQDAOWbmDwgKWd8qr4WVY/PkHg9eF8vXLynymPNdjOyHRXmSI4i7mxoddtbsm9ouXu75Hxpu1AEAUZ+zEtUzI9W4zuD9H/NIlI9Uz1FRe50AADbf3+B2rwbHrGkOmBcAMgAA
   </data>
  </layer>
- <layer name="city_collision" width="64" height="50" opacity="0.27">
+ <layer name="city_collision" width="64" height="50" visible="0" opacity="0.27">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2WSw6DMAxE2fb+d+q5ukJCUeLvxNipR6ooJLHnGRO4rtr6fvTzxzX3Ne0vgxAeI/kt8a3+mr/5s/BrYu7kp/JZYq9yjf6leWb8XF29ytRbSC6JH4tHy/0Zj7M53DWEPM+wJeas1paYqD1gBz/HMR6l/YfILeFH50M8x1X5UdLGWu0hnv7X9uMufm5PoWKcwM+Nr+Z6+lq7l0o8a/MjYkTwP881sSh/u95/3rpQoli0a+6xaH5tbaT3X7J+5QXJj+6N6vyjf3SvzWokqVkUPzI3Fasq/+q/hX82vwK/1FPz0/zaMUqS+s3GvZ6t/FQttbKue66N5M8obd88r5/Az2kXj7RWb9c0O/84zp23Wq39Qn2zcd8tq7meHB7mf9WJ+6yU5+RvnzeeoyyqyI70UY39VnQNMiqrrxavvnddg1ar1WrF6AcxT3TqADIAAA==
   </data>

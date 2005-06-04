@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="32" height="17" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.gif"/>
@@ -26,17 +26,17 @@
  </tileset>
  <layer name="tavern_0_floor" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUgcJSVgeEYFnwciPlZqI/RwWOgPU+w4Kej9o8I+xnZGBiYsGBmNvrY38+OG4/aP/zth4kTY78QFoxLHF0NIftXA/EaKCbVfmLlcdmPzd8DEf60sI9Y++mFYQAAWiWvdoAIAAA=
+   H4sIAAAAAAAAAGNgGF4ggYM8fUdZGRiOYcHHgZifhXw8h52BYS4anseOaf9joD1PsOCnFNqPbjcMjxT7ceHBZj8jGwMDExbMzEYf+/vZceNR+4e//aToFcKCcYmjqyFk/2ogXgPFpNpPrDyl/h/o8B9O9gMAZ3P34YAIAAA=
   </data>
  </layer>
  <layer name="tavern_1_object" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL1UW07DMBDcpHXSCsQXcIFCxSlAwEEQSLT88DgDlyn3aEnPwUMqfADlBDCWbbFsN42bqh1p5PXE2bHXK/daRNO8HicJ0ZvnO3iMXCfgaWTOS6z7xHiFcauCT8j/nPzXTEqUeebgGTSL84h8ffAjd/6biB/Bwv8f4gPj5qMm0Q+8CR5f4BT8Tp0eqOHI6Poh1m8I/xfw1fvzWGIb+g64W/I9FtI/aeN4bfeNxxa3DaIb8NqTx1yz6+4a9fzn4R613gM7njzm2j7YTau9ef17rVn/h4xokP3Ni+ZsbEctjgU/v+z/4B/my2BYsrdF6l8X0jfsRev/dYDvJ/b+7Tu1Cqzr/gPkGyXrf2EcYzBGronSU0Wkrt1/lb/cvzF6X8fqmr8E14biDdB8xl6XKBS9qv9DPcpq0inx0fSwft75F/VfBvz+fwE7YYoVgAgAAA==
+   H4sIAAAAAAAAAL2UQU7DMBBFh7RuUoFYUS7QFrEG9gg4CKJAYUPLEYAbwCVgB3copAcBiRWII/RbtoWZTlI7Ef3Sk8c/jr/jWB5mRD9pNQZ499RyBg7AITgKnPMc477RXqJdX8A9xj2kf70bcGu5A8dA6yRgvgvwlZr8NdRvILfvu3pbmf5rk+gZ417ADvxdsJcZ3z2XtK9kX2uV5b+DD5vv11wb8Dtgs+B5qHj+SpsoaZtnfq01bhCNwJVl5LVjW1836uWXqZ8Q9UDX0vPavq23kmr5w2w+/6lF9Nj67efN+Vq3Uh2bL51/l+/6dTQpWFvM/lcVz/XXsoz8svWE/n99T/2HlvX/nfgdxfd/oAwhmmKuT+FM5RF+bD5fv1LyuQ71pXwu35uwO0DKmVqfKxf8Reff7UfRnnQLciTfjS/7/tj8unL5M9GCCGCACAAA
   </data>
  </layer>
  <layer name="tavern_2_roof" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA/aORgYOjgIKKIR4GIdWPtBYNT+4W//B3ZUjC4+CoY3wBf/IyH9j9o/av9A2Q8ApcTjW4AIAAA=
+   H4sIAAAAAAAAAGNgwA/aORgYOjgIKKIR4GKlzP4iFsrdMJD+H7WfPvZ/YEfF6OKjYHgDfPE/EtL/qP2j9g+U/QDNaoyZgAgAAA==
   </data>
  </layer>
  <layer name="tavern_objects" width="32" height="17">
@@ -44,9 +44,9 @@
    H4sIAAAAAAAAAGNgGF4ghXOgXTAKRsEoGElg/WiZMwpGAVkAAAhSLbqACAAA
   </data>
  </layer>
- <layer name="tavern_collision" width="32" height="17" opacity="0.69">
+ <layer name="tavern_collision" width="32" height="17" visible="0" opacity="0.69">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvGycBwbBTDMQigs5HF0NXiA/jUkGo/tQGxfhkM9pMTh9S2H5mPLk6KvcT4C5fd5ABcZpATZuTYjcst9LAfn3sGwn50t9Aj/pHNIsZ+QvrwuYsUcVLtx5eWyBEn1m5s9uPSQ4n/cenBFf+k+B2bHKX2UwpgZgMA85TrgIAIAAA=
+   H4sIAAAAAAAAADvGycBwbBTDMQhgYxNSjw3gEsdnLjb7aQGw2YtL3UDbT0rc0cp+ZD66ODXsx+YWcswl5H5c9tMCoJuLL1/RA2ALW3raj+4WesQ/slnE2E9IHz53kSJOqv340hI54sTajc1+XHoo8T8uPaTULYTUk5L+6VE2gDAAuAgzOYAIAAA=
   </data>
  </layer>
 </map>
