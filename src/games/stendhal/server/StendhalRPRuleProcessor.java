@@ -618,14 +618,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
 
       // Port from 0.13 to 0.20
-      //if(!object.has("outfit"))
+      if(!object.has("outfit"))
         {
-        int body=StendhalRPAction.roll1D6()%5;
-        int head=StendhalRPAction.roll1D6()%10;
-        int hair=StendhalRPAction.roll1D6()%10;
-        int dress=StendhalRPAction.roll1D6()%10;
-
-        object.put("outfit",body+100*head+10000*hair+1000000*dress);
+        object.put("outfit",0);
         }
 
       Player player=new Player(object);

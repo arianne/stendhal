@@ -36,8 +36,7 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
     RPObject object=new RPObject(RPObject.INVALID_ID);
     object.put("type","player");
     object.put("name",get("character"));
-    object.put("x",0);
-    object.put("y",0);
+    object.put("outfit",0);
     object.put("base_hp",100);
     object.put("hp",100);
     object.put("atk",2);

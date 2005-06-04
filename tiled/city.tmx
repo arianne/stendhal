@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="64" height="50" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="elda_outside_0_chipset.gif" trans="ffffff"/>
+  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="elda_outside_1_chipset.gif" trans="ffffff"/>
+  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="elda_dungeon_0_chipset.gif" trans="ff00ff"/>
+  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="elda_dungeon_1_chipset.gif" trans="ff00ff"/>
+  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="elda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.gif"/>
@@ -41,7 +41,7 @@
  </layer>
  <layer name="city_objects" width="64" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aSw6CMBAAULZeU1zqvcS48AB6N8OCYCbE+CmkDO8l7AjplOkMUJoGAL732I0HAOUdQ329TdTbeM7axZ7yLr5Dsth7W++pv8SfbQ0AsIy7/gGzyficPqcuyXyVqKtq8/qc3TMq14YcvX6Ysxe5nZ6eQ28vD4BKDXslte4Z1TquJUz9H3MqNB+lrlOLrecJAKPXd/D4rYb/PAFpEIQRADIAAA==
+   H4sIAAAAAAAAAO3aUQqCQBAAUH+7ZvVp9zLoowPU3UQolEGCapVxfQ/8E9lZZ2fUtWkA4HvPw3gAUF4b6ut9pt7Gc7Yu9pRP8Z0ri32w9576S/y1rQEA1vHQP2AxNT6nL+layXyVqKtq8/Z07hnJnUKO3uQsL3oOg6M8AJJ675Vk3TPKOq41zP0fcyk0H6Wuk8Xe8wSA0fQdPH6r4T894LltiQAyAAA=
   </data>
  </layer>
  <layer name="city_collision" width="64" height="50" opacity="0.27">
