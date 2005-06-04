@@ -57,7 +57,7 @@ public class OrcBuyerNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("hi"))
       {
-      say("Come 'ere and sell ya sheep!I 'ave the best prices this side of the Ourvalon, I swears it!");
+      say("Hi human.");
       return true;
       }
     else if(text.contains("sell"))
@@ -67,11 +67,11 @@ public class OrcBuyerNPC extends SpeakerNPC
         Sheep sheep=(Sheep)world.get(player.getSheep());
         if(distance(sheep)>5*5)
           {
-          say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
+          say("Yummy sheep! Take sheep here!.");
           }
         else
           {
-          say("Thanks! Here is your money.");
+          say("*LOVELY*. Take money!.");
           world.remove(player.getSheep());
           player.removeSheep(sheep);
           
@@ -85,26 +85,26 @@ public class OrcBuyerNPC extends SpeakerNPC
         }
       else
         {
-        say("You ain't got a sheep!! What game you trying to play, "+player.get("name")+"?");
+        say("Don't cheat me!");
         return true;
         }      
       }
     else if(text.contains("help"))
       {
-      say("I buy sheep. Try to SELL me one.");
+      say("Buy sheep!. Sell me sheeps!.");
       return true;
       }
     else if(text.contains("job"))
       {
-      say("I've been buying sheep for a Meat factory up near da ol' Capital city for the past 20 years. Have you visited our fair Capital city?");
+      say("Uarhg?!");
       }    
     else if(text.contains("bought"))
       {
-      say("I have bought "+amount+" sheep(s).");
+      say("Me have bought "+amount+" sheep(s).");
       }
     else if(text.contains("bye"))
       {
-      say("Bye "+player.get("name"));
+      say("Bye human");
       return true;
       }
     else if(has("text")) 

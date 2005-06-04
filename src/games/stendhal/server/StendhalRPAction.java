@@ -317,7 +317,7 @@ public class StendhalRPAction
       {
       Logger.trace("StendhalRPAction::usePortal","D","Place sheep");
       Sheep sheep=(Sheep)world.get(player.getSheep());
-      placeat(zone,sheep,player.getInt("x"),player.getInt("y"));
+      placeat(zone,sheep,player.getInt("x")+1,player.getInt("y")+1);
       sheep.clearPath();
       sheep.stop();
       }
@@ -392,7 +392,7 @@ public class StendhalRPAction
     if(player.hasSheep())
       {
       Sheep sheep=(Sheep)world.get(player.getSheep());
-      placeat(zone,sheep,player.getInt("x"),player.getInt("y"));
+      placeat(zone,sheep,player.getInt("x")+1,player.getInt("y")+1);
       sheep.clearPath();
       sheep.stop();
       }

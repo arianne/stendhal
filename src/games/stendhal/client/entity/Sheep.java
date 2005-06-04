@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import java.awt.Color;
+import java.awt.*;
+import java.awt.geom.*;
+
 import marauroa.common.game.*;
 import games.stendhal.client.*;
 
@@ -54,6 +56,16 @@ public class Sheep extends NPC
       animation="big_"+animation;
       }
     }
+    
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }
+    
+  public Rectangle2D getDrawedArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }  
     
   protected Sprite defaultAnimation()
     {

@@ -91,7 +91,15 @@ public class BeggarNPC extends SpeakerNPC
       }
     else if(text.contains("quest"))
       {
-      say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");
+      switch(rand.nextInt(2))
+        {
+        case 0:        
+          say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");
+          break;
+        case 1:
+          say("I have been told that on the deepest place of the dungeon under this city someone also buy sheeps, but *it* pays better!.");
+          break;
+        }
       return true;
       }
 

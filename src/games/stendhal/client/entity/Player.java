@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
 
@@ -61,7 +62,18 @@ public class Player extends Speaker
     {
     SpriteStore store=SpriteStore.get();
     
-    Sprite player=setOutFitPlayer(store,object);
+    Sprite player;
+    
+    try
+      {
+      player=setOutFitPlayer(store,object);      
+      }
+    catch(Exception e)
+      {
+      Logger.thrown("Player::buildAnimations","X",e);
+      object.put("outfit",0);
+      player=setOutFitPlayer(store,object);            
+      }
 
     sprites.put("move_up", store.getAnimatedSprite(player,0,4,48,64));
     sprites.put("move_right", store.getAnimatedSprite(player,1,4,48,64));

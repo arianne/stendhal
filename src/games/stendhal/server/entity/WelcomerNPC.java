@@ -21,6 +21,7 @@ import games.stendhal.server.*;
 public class WelcomerNPC extends SpeakerNPC 
   {
   final private double SPEED=0.5;
+  private int healed;
 
   public static void generateRPClass()
     {
@@ -40,6 +41,7 @@ public class WelcomerNPC extends SpeakerNPC
     {
     super();
     put("type","welcomernpc");
+    healed=0;
     }
 
   protected boolean chat(Player player) throws AttributeNotFoundException
@@ -65,11 +67,16 @@ public class WelcomerNPC extends SpeakerNPC
       say("I have been told that Sato will reward you for a fully grown sheep.Purchase one from Nishiya and then feed it to make it nice and fat!");
       return true;
       }
+    else if(text.contains("healed"))
+      {
+      say("I have healed "+healed+" players.");
+      }
     else if(text.contains("heal"))
       {
       say("Voila! You have been healed.Don't forget to tell your friends about Stendhal :)");
       player.setHP(player.getbaseHP());
       world.modify(player);
+      healed++;
       return true;
       }
 
