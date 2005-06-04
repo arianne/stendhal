@@ -41,7 +41,7 @@ Please download it from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.13.jar
+  java -jar stendhal-0.20.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -62,7 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.20 Jun XX, 2005
+0.20 Jun 05, 2005
 - Added new monsters
 - Implemented shared XP
 - Fixed a bug related to sheep duplication
@@ -78,6 +78,7 @@ Changelog
 - Added new tilesets
 - Initial support for inventory
 - Fixed a bug because of cache directory
+- Added new RP values
 
 
 0.13 May 30, 2005

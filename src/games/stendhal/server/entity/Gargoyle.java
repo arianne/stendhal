@@ -26,9 +26,9 @@ public class Gargoyle extends Creature
   {
   final private double SPEED=0.5;
 
-  final private static int HP=62;
-  final private static int ATK=8;
-  final private static int DEF=5;
+  final private static int HP=100;
+  final private static int ATK=2;
+  final private static int DEF=20;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
   public static void generateRPClass()

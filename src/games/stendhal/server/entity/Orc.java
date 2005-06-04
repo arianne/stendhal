@@ -24,11 +24,11 @@ import games.stendhal.server.*;
 
 public class Orc extends Creature
   {
-  final private double SPEED=0.5;
+  final private double SPEED=0.3;
 
-  final private static int HP=62;
-  final private static int ATK=8;
-  final private static int DEF=5;
+  final private static int HP=160;
+  final private static int ATK=11;
+  final private static int DEF=8;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
   public static void generateRPClass()

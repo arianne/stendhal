@@ -89,7 +89,15 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>stendhal-0.20.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>stendhal-server-0.13.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.20.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -225,6 +233,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\OutfitDialog.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\ProgressBar.java</path>
 				<source>true</source>
 			</fileitem>
@@ -281,6 +293,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\ButcherNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\BuyerNPC.java</path>
 				<source>true</source>
 			</fileitem>
@@ -334,6 +350,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\Orc.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\OrcBuyerNPC.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

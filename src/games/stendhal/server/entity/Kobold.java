@@ -26,8 +26,8 @@ public class Kobold extends Creature
   {
   final private double SPEED=0.5;
 
-  final private static int HP=62;
-  final private static int ATK=8;
+  final private static int HP=90;
+  final private static int ATK=10;
   final private static int DEF=5;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
