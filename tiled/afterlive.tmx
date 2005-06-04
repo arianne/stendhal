@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.gif"/>
@@ -46,7 +46,7 @@
  </layer>
  <layer name="afterlive_collision" width="32" height="32" opacity="0.67">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VwQoAIAhDu/b//+R3RYeu6coUbIPRRfbUoKS3Jh97ap1ZIt9ep91lNv+kj0rzo5mv+FaG91tyolfzI7le/N2eI/ha3Q3fqgi+lledb+kti4+KfPJ/5Xv+vzRNYx4f1pnHABAAAA==
+   H4sIAAAAAAAAAO2VMQ4AIAgDXf3/n3yXk4mTtgoYtU26kR4QoiWnVC5zk1VWn3lC4uN1yF2c5K/08dL8bKYXH2V4vEusvOZncq34oz1H8Gd1O3xUEfxZ3ut8pLf+JiP5rMQX/1e+5f8ryzLnCj+1tcUAEAAA
   </data>
  </layer>
 </map>

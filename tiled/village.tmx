@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="64" height="50" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Programming\Arianne\stendhal\tiled\zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.gif"/>
@@ -46,7 +46,7 @@
  </layer>
  <layer name="village_collision" width="64" height="50" opacity="0.57">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XQQ6DMAwEufL/P/VdFYeqCJUS7PXaJjtST4XgcRLHWRYhhBBCCCGEEEKIL6/1+vdk5M/1Hx2Tlfeq/iwQ/vvnju+MjF9hv1m/feVxd0z2ure+ux8DOZ8V/X89N+qM9EflxrvfIvczY/4R9aaSf3bNZK3/TqDqf4V8sPZJ9vn/7z9mXBXm/EOFufGCXL8dyVi/1voXFUun+UPGmeXfKd8RzO7voWIPMAMj/md34aqgaynjO0iQZ/FIj2zt66PqJfLs8/pn3DEs9y9P/JYxonsUhr8nB4wejeF/NwY2me5nMcwIuiZ1zOns/huz+29E+L8BgCqnwAAyAAA=
+   H4sIAAAAAAAAAO2XQRKDIAxF3Xr/O/VcHRdOXYhC8vMTyn8zXVUxL0AI2yaEEEIIIYQQQgjx47O///4Z+XP9e8dk5b2qP4uW74j/3XtP41fcb9Zvv3mMjsle99Z3r2Mg57Oi/91zvc5If1RuvPstcj8z5h9Rbyr5Z9dM1vqfCVT9r5AP1j7JPv+f/mPGVWHOTyrMjRfk+p2RjPVrrX9Rscw0f8g4s/xnyncEq/t7qNgDrECPf+suXBV0LWV8BwnyLO7pka19fVS9RJ59Xv+MO4bl/uWJ3zJGdI/C8PfkgNGjMfxHY2CT6d6KYUXQNWnGnK7uf7C6/0GE/xdjShLwADIAAA==
   </data>
  </layer>
 </map>
