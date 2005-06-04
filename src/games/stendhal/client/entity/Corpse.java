@@ -23,6 +23,16 @@ public class Corpse extends Entity
     {    
     super(gameObjects, object);
     }
+
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }
+    
+  public Rectangle2D getDrawedArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }  
     
   public String defaultAction()
     {

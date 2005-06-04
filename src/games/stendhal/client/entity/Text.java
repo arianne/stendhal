@@ -43,7 +43,6 @@ public class Text extends Entity
     this.gameObjects=gameObjects;
     this.client=StendhalClient.get();
     
-    textImage=GameScreen.get().createString(text,color);
     textImage=GameScreen.get().createTextBox(text,240,color,null);
     textImageTime=System.currentTimeMillis();
 
@@ -74,6 +73,16 @@ public class Text extends Entity
   public void onAction(String action, StendhalClient client)
     {
     }
+
+  public Rectangle2D getArea()
+    {
+    return null;
+    }
+    
+  public Rectangle2D getDrawedArea()
+    {
+    return new Rectangle.Double(x,y,textImage.getWidth()/GameScreen.PIXEL_SCALE,textImage.getHeight()/GameScreen.PIXEL_SCALE);
+    }  
 
   public void draw(GameScreen screen)
     {

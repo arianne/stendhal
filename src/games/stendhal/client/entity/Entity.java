@@ -70,9 +70,6 @@ public abstract class Entity
     x=y=dx=dy=0;
 
     loadSprite(object);
-
-    area=EntityAreas.getArea(object.get("type"),0,0);
-    drawedArea=EntityAreas.getDrawedArea(object.get("type"),0,0);
     }
 
   /** Returns the represented arianne object id */
@@ -118,16 +115,6 @@ public abstract class Entity
     sprite=store.getSprite(translate(object.get("type")));
     }
 
-  final public Rectangle2D getArea()
-    {
-    return area;
-    }
-
-  final public Rectangle2D getDrawedArea()
-    {
-    return drawedArea;
-    }
-
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     if(changes.has("dir"))
@@ -150,9 +137,6 @@ public abstract class Entity
     if(object.has("y") && dy==0) y=object.getInt("y");
     if(changes.has("x")) x=changes.getInt("x");
     if(changes.has("y")) y=changes.getInt("y");
-    
-    EntityAreas.getArea(area,type,x,y);
-    drawedArea.setRect(x,y,drawedArea.getWidth(),drawedArea.getHeight());    
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
@@ -198,6 +182,9 @@ public abstract class Entity
     {
     return dx==0 && dy==0;
     }
+
+  abstract public Rectangle2D getArea();
+  abstract public Rectangle2D getDrawedArea();
 
   public abstract String defaultAction();
   public abstract String[] offeredActions();

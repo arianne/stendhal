@@ -130,16 +130,13 @@ public abstract class RPEntity extends AnimatedEntity
         damageSprites.add(GameScreen.get().createString("+"+Integer.toString(changes.getInt("xp") - object.getInt("xp")),Color.cyan));
         damageSpritesTimes.add(new Long(System.currentTimeMillis()));
 
-        if(stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID()))
-          {
-          client.addEventLine(getName() + " earns " + (changes.getInt("xp") - object.getInt("xp")) + " XP points." , Color.blue);
-          }        
+        client.addEventLine(getName() + " earns " + (changes.getInt("xp") - object.getInt("xp")) + " XP points." , Color.blue);
         }
       }
 
     if(changes.has("level") && object.has("level"))
       {
-        if(stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID()))
+      if(stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID()))
         {
         client.addEventLine(getName()+" reachs Level "+ getLevel(),Color.green);
         }

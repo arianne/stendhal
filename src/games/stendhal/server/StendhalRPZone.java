@@ -290,7 +290,15 @@ public class StendhalRPZone extends MarauroaRPZone
               portal.setx(j%width);
               portal.sety(j/width);
               
-              if(zoneid.getID().equals("city"))
+              if(zoneid.getID().equals("afterlive"))
+                {
+                if((portal.getx()==13 || portal.getx()==14) && portal.gety()==1) 
+                  {
+                  portal.setNumber(0);
+                  portal.setDestination("city",0);
+                  }
+                }              
+              else if(zoneid.getID().equals("city"))
                 {
                 if(portal.getx()==28 && portal.gety()==24) 
                   {
@@ -305,13 +313,39 @@ public class StendhalRPZone extends MarauroaRPZone
                   portal.setNumber(0);
                   portal.setDestination("city",0);
                   }
+                else if(portal.getx()==42 && portal.gety()==43) 
+                  {
+                  portal.setNumber(1);
+                  portal.setDestination("dungeon_001",0);
+                  }
                 }              
-              else if(zoneid.getID().equals("afterlive"))
+              else if(zoneid.getID().equals("dungeon_001"))
                 {
-                if((portal.getx()==12 || portal.getx()==13) && portal.gety()==1) 
+                if(portal.getx()==5 && portal.gety()==7) 
                   {
                   portal.setNumber(0);
-                  portal.setDestination("city",0);
+                  portal.setDestination("dungeon_000",1);
+                  }
+                else if(portal.getx()==67 && portal.gety()==118) 
+                  {
+                  portal.setNumber(1);
+                  portal.setDestination("forest",0);
+                  }
+                }              
+              else if(zoneid.getID().equals("forest"))
+                {
+                if(portal.getx()==103 && portal.gety()==65) 
+                  {
+                  portal.setNumber(0);
+                  portal.setDestination("dungeon_001",1);
+                  }
+                }              
+              else if(zoneid.getID().equals("tavern"))
+                {
+                if(portal.getx()==20 && portal.gety()==1) 
+                  {
+                  portal.setNumber(0);
+                  portal.setDestination("village",0);
                   }
                 }              
               else if(zoneid.getID().equals("village"))
@@ -321,16 +355,8 @@ public class StendhalRPZone extends MarauroaRPZone
                   portal.setNumber(0);
                   portal.setDestination("tavern",0);
                   }
-                }              
-              else if(zoneid.getID().equals("tavern"))
-                {
-                if(portal.getx()==17 && portal.gety()==1) 
-                  {
-                  portal.setNumber(0);
-                  portal.setDestination("village",0);
-                  }
-                }              
-
+                }           
+                   
               add(portal);
 
               portals.add(portal);
@@ -369,7 +395,71 @@ public class StendhalRPZone extends MarauroaRPZone
 
               break;
               }
-            case 71: /* NPC Begger */
+            case 15: /* Cobra */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Cobra(),1);
+              respawnPoints.add(point);
+
+              break;
+              }
+            case 16: /* Orc */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Orc(),1);
+              respawnPoints.add(point);
+
+              break;
+              }
+            case 17: /* Gargoyle */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Gargoyle(),1);
+              respawnPoints.add(point);
+
+              break;
+              }
+            case 18: /* Ogre */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Ogre(),1);
+              respawnPoints.add(point);
+
+              break;
+              }
+            case 19: /* Kobold */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Kobold(),1);
+              respawnPoints.add(point);
+
+              break;
+              }
+            case 20: /* Boar */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Boar(),1);
+              respawnPoints.add(point);
+
+              break;
+              }
+            case 21: /* Troll */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Troll(),1);
+              respawnPoints.add(point);
+
+              break;
+              }
+            case 22: /* Goblin */
+              {
+              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
+              point.set(this, new Goblin(),1);
+              respawnPoints.add(point);
+
+              break;
+              }
+            case 71: /* NPC Beggar */
               {
               BeggarNPC npc=new BeggarNPC();
               assignRPObjectID(npc);
@@ -401,6 +491,17 @@ public class StendhalRPZone extends MarauroaRPZone
               }
             case 73: /* NPC Journalist */
               {
+              JournalistNPC npc=new JournalistNPC();
+              assignRPObjectID(npc);
+              npc.setName("Brian");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              npc.setbaseHP(100);
+              add(npc);
+              
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding NPC Journalist: "+npc);
               break;
               }
             case 74: /* NPC Seller */
@@ -445,6 +546,66 @@ public class StendhalRPZone extends MarauroaRPZone
               Logger.trace("StendhalRPZone::populate","D","Adding Training dummy: "+dummy);
               break;
               }
+            case 77: /* Angel NPC  */
+              {              
+//              AngelNPC npc=new AngelNPC();
+//              assignRPObjectID(npc);
+//              npc.setName("Simon");
+//              npc.setx(j%width);
+//              npc.sety(j/width);
+//              npc.setbaseHP(100);
+//              add(npc);
+//
+//              npcs.add(npc);
+//
+//              Logger.trace("StendhalRPZone::populate","D","Adding Angel NPC: "+npc);
+              break;
+              }
+            case 78: /* Tavern Main NPC  */
+              {              
+              TavernBarMaidNPC npc=new TavernBarMaidNPC();
+              assignRPObjectID(npc);
+              npc.setName("Margaret");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              npc.setbaseHP(100);
+              add(npc);
+
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding Tavern Maid NPC: "+npc);
+              break;
+              }
+            case 79: /* Butcher NPC  */
+              {              
+              ButcherNPC npc=new ButcherNPC();
+              assignRPObjectID(npc);
+              npc.setName("Paul");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              npc.setbaseHP(100);
+              add(npc);
+
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding Butcher NPC: "+npc);
+              break;
+              }
+            case 80: /* Old Orc NPC  */
+              {              
+              OrcBuyerNPC npc=new OrcBuyerNPC();
+              assignRPObjectID(npc);
+              npc.setName("Tor'Koom");
+              npc.setx(j%width);
+              npc.sety(j/width);
+              npc.setbaseHP(100);
+              add(npc);
+
+              npcs.add(npc);
+
+              Logger.trace("StendhalRPZone::populate","D","Adding Orc Buyer NPC: "+npc);
+              break;
+              }
             case 91: /* Sign */
               {
               Sign sign=new Sign();
@@ -460,7 +621,6 @@ public class StendhalRPZone extends MarauroaRPZone
               else if(zoneid.getID().equals("city"))
                 {
                 if(sign.getx()==4 && sign.gety()==21) sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
-                if(sign.getx()==8 && sign.gety()==25) sign.setText("This is our attack dummy.|Right click on it to start or stop attacking it.| Use this dummy to hone your fighting skills. They will be useful.");
                 if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!| Please report any problems and issues at our webpage.");
                 if(sign.getx()==26 && sign.gety()==26) sign.setText("You are about to enter the Dungeons.|But Beware! This area is infested with rats and legend has |it that many Adventurers have died down there...");
                 if(sign.getx()==43 && sign.gety()==26) sign.setText("Talk to Sato to sell your sheep!.|He probably won't give you a fair price but this is a small village...|The price he will offer you depends on the weight of your sheep.");

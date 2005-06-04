@@ -36,4 +36,15 @@ public class TrainingDummy extends RPEntity
     animation="default";
     return sprites.get("default")[0];
     }
+
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x,y+1,1,1);
+    }
+    
+  public Rectangle2D getDrawedArea()
+    {
+    return new Rectangle.Double(x,y,1,2);
+    }  
+    
   }

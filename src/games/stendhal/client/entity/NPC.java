@@ -55,6 +55,16 @@ public class NPC extends Speaker
         }
       }
     }
+
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x,y+1,1,1);
+    }
+    
+  public Rectangle2D getDrawedArea()
+    {
+    return new Rectangle.Double(x,y,1,2);
+    }  
     
   public void draw(GameScreen screen)
     {

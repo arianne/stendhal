@@ -20,7 +20,7 @@ import java.awt.*;
 import java.awt.geom.*;
 
 /** A Player entity */
-public class Speaker extends RPEntity
+public abstract class Speaker extends RPEntity
   {
   private final static int TEXT_PERSISTENCE_TIME=5000;
 

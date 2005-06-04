@@ -14,7 +14,8 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
-import java.awt.Color;
+import java.awt.*;
+import java.awt.geom.*;
 
 public class Food extends AnimatedEntity 
   {
@@ -58,6 +59,16 @@ public class Food extends AnimatedEntity
       amount=changes.getInt("amount");
       }
     }
+
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }
+    
+  public Rectangle2D getDrawedArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }  
 
   public String defaultAction()
     {

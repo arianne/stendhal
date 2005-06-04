@@ -84,6 +84,16 @@ public class Player extends Speaker
       }
     }
     
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x,y+1,1,1);
+    }
+    
+  public Rectangle2D getDrawedArea()
+    {
+    return new Rectangle.Double(x,y,1,2);
+    }  
+    
   public String[] offeredActions()
     {
     if(getID().equals(client.getPlayer().getID()))

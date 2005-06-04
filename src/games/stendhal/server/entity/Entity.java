@@ -184,7 +184,7 @@ public abstract class Entity extends RPObject
 
   public boolean nextto(int ex, int ey, double step)
     {
-    Rectangle2D this_area=EntityAreas.getArea(get("type"),x,y);
+    Rectangle2D this_area=getArea(x,y);
     this_area.setRect(this_area.getX()-step,this_area.getY()-step,this_area.getWidth()+step,this_area.getHeight()+step);
 
     return this_area.contains(ex,ey);
@@ -192,8 +192,8 @@ public abstract class Entity extends RPObject
 
   public boolean nextto(Entity entity, double step)
     {
-    Rectangle2D this_area=EntityAreas.getArea(get("type"),x,y);
-    Rectangle2D other_area=EntityAreas.getArea(entity.get("type"),entity.x,entity.y);
+    Rectangle2D this_area=getArea(x,y);
+    Rectangle2D other_area=entity.getArea(entity.x,entity.y);
 
     this_area.setRect(this_area.getX()-step,this_area.getY()-step,this_area.getWidth()+step,this_area.getHeight()+step);
     other_area.setRect(other_area.getX()-step,other_area.getY()-step,other_area.getWidth()+step,other_area.getHeight()+step);
@@ -203,8 +203,8 @@ public abstract class Entity extends RPObject
 
   public boolean facingto(Entity entity)
     {
-    Rectangle2D this_area=EntityAreas.getArea(get("type"),x,y);
-    Rectangle2D other_area=EntityAreas.getArea(entity.get("type"),entity.x,entity.y);
+    Rectangle2D this_area=getArea(x,y);
+    Rectangle2D other_area=entity.getArea(entity.x,entity.y);
 
     if(direction==Direction.UP && this_area.getX()==other_area.getX() && this_area.getY()-1==other_area.getY()) return true;
     if(direction==Direction.DOWN && this_area.getX()==other_area.getX() && this_area.getY()+1==other_area.getY()) return true;

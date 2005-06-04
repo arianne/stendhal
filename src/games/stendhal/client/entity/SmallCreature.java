@@ -47,4 +47,15 @@ public class SmallCreature extends NPC
     animation="move_up";
     return sprites.get("move_up")[0];
     }
+
+  public Rectangle2D getArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }
+    
+  public Rectangle2D getDrawedArea()
+    {
+    return new Rectangle.Double(x,y,1,1);
+    }  
+    
   }
