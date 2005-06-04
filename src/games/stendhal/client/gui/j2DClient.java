@@ -215,7 +215,6 @@ public class j2DClient extends JFrame
     playerChatText.addKeyListener(inGameGUI);
 
     client.setGameLogDialog(new GameLogDialog(this, playerChatText));
-    client.setOutfitDialog(new OutfitDialog(this, "Set outfit",10,9,5,10));
 
     addComponentListener(new ComponentAdapter()
       {

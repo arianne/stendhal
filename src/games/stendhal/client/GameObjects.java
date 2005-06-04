@@ -49,6 +49,9 @@ public class GameObjects
     register("rat",SmallCreature.class);
     register("sheep",Sheep.class);
     
+    register("angelnpc",NPC.class);
+    register("journalistnpc",NPC.class);
+    register("tavernbarmaidnpc",NPC.class);
     register("sellernpc",NPC.class);
     register("buyernpc",NPC.class);
     register("welcomernpc",NPC.class);

@@ -42,8 +42,12 @@ public class StendhalRPWorld extends RPWorld
     RPEntity.generateRPClass();
     
     NPC.generateRPClass();
+    AngelNPC.generateRPClass();
+    BeggarNPC.generateRPClass();
     BuyerNPC.generateRPClass();
+    JournalistNPC.generateRPClass();
     SellerNPC.generateRPClass();
+    TavernBarMaidNPC.generateRPClass();
     WelcomerNPC.generateRPClass();
 
     TrainingDummy.generateRPClass();

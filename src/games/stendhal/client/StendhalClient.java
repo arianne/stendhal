@@ -18,6 +18,7 @@ import java.io.*;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Rectangle;
+import javax.swing.JFrame;
 
 import games.stendhal.client.gui.*;
 import games.stendhal.client.entity.*;
@@ -42,7 +43,7 @@ public class StendhalClient extends ariannexp
   
   private boolean keepRunning=true;
   private GameLogDialog gameDialog;
-  private OutfitDialog outfitDialog;
+  private JFrame frame;
   private Configuration conf;
   
   private static StendhalClient client;  
@@ -65,7 +66,6 @@ public class StendhalClient extends ariannexp
     gameObjects=new GameObjects(staticLayers);   
     handler=new PerceptionHandler(new StendhalPerceptionListener()); 
     gameDialog=null;
-    outfitDialog=null;
     
     try
       {
@@ -97,9 +97,9 @@ public class StendhalClient extends ariannexp
     this.gameDialog=gameDialog;
     }
     
-  public void setOutfitDialog(OutfitDialog gameDialog)
+  public void setFrame(JFrame frame)
     {
-    this.outfitDialog=gameDialog;
+    this.frame=frame;
     }
 
   public GameLogDialog getGameLogDialog()
@@ -109,7 +109,7 @@ public class StendhalClient extends ariannexp
 
   public OutfitDialog getOutfitDialog()
     {
-    return outfitDialog;
+    return new OutfitDialog(frame, "Set outfit",11,9,5,11);
     }
   
   public void addEventLine(String text)

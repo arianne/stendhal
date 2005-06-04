@@ -71,12 +71,13 @@ public class OutfitDialog extends javax.swing.JDialog {
         client=StendhalClient.get();
 
         // initializes the arrays
-        hairs = new Sprite[total_hairs + 1]; // plus 1 to add the sprite_empty.gif
+        hairs = new Sprite[total_hairs]; // Plus 1 to add the sprite_empty.gif that is always at 0
         heads = new Sprite[total_heads];
         bodies = new Sprite[total_bodies];
-        clothes = new Sprite[total_clothes + 1]; // plus 1 to add the sprite_empty.gif
+        clothes = new Sprite[total_clothes]; // Plus 1 to add the sprite_empty.gif that is always at 0
         // loads the sprites
         loadSprites();
+        
         // updates the draws every 2500 milliseconds
         timer = new Timer();
         timer.schedule(new AnimationTask(), 1000, 2500);
@@ -116,18 +117,21 @@ public class OutfitDialog extends javax.swing.JDialog {
      * Loads the sprites into the arrays
      */
     private void loadSprites() {
+        SpriteStore st=SpriteStore.get();
+        
+        
         // load the sprites
-        for (int i = 0; i < hairs.length; i++)
-            hairs[i] = new Sprite(new ImageIcon("sprites/outfit/hair_" + i + ".gif").getImage());
+        for (int i = 1; i < hairs.length; i++)
+            hairs[i] = st.getSprite("sprites/outfit/hair_" + i + ".gif");
         for (int i = 0; i < heads.length; i++)
-            heads[i] = new Sprite(new ImageIcon("sprites/outfit/head_" + i + ".gif").getImage());
+            heads[i] = st.getSprite("sprites/outfit/head_" + i + ".gif");
         for (int i = 0; i < bodies.length; i++)
-            bodies[i] = new Sprite(new ImageIcon("sprites/outfit/player_base_" + i + ".gif").getImage());
-        for (int i = 0; i < clothes.length; i++)
-            clothes[i] = new Sprite(new ImageIcon("sprites/outfit/dress_" + i + ".gif").getImage());
+            bodies[i] = st.getSprite("sprites/outfit/player_base_" + i + ".gif");
+        for (int i = 1; i < clothes.length; i++)
+            clothes[i] = st.getSprite("sprites/outfit/dress_" + i + ".gif");
         // to allow choosing no hair and no clothes
-        hairs[hairs.length - 1] = new Sprite(new ImageIcon("sprites/outfit/sprite_empty.gif").getImage());
-        clothes[clothes.length - 1] = new Sprite(new ImageIcon("sprites/outfit/sprite_empty.gif").getImage());
+        hairs[0] = st.getSprite("sprites/outfit/sprite_empty.gif");
+        clothes[0] = st.getSprite("sprites/outfit/sprite_empty.gif");
     }
     
     /**
@@ -469,7 +473,7 @@ public class OutfitDialog extends javax.swing.JDialog {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        new OutfitDialog(null, "Stendhal - choose outfit", 10, 9, 5, 10).setVisible(true);
+        new OutfitDialog(null, "Stendhal - choose outfit", 11, 9, 5, 11).setVisible(true);
     }
     
     private void sendAction()

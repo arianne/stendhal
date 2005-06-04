@@ -37,16 +37,22 @@ public class Player extends Speaker
     player=player.copy();
     outfit/=100;
 
-    Sprite dress=store.getSprite("sprites/outfit/dress_"+outfit%10+".gif");
-    dress.draw(player.getGraphics(),0,0);
+    if(outfit%10!=0)
+      {
+      Sprite dress=store.getSprite("sprites/outfit/dress_"+outfit%10+".gif");
+      dress.draw(player.getGraphics(),0,0);
+      }
     outfit/=100;
 
     Sprite head=store.getSprite("sprites/outfit/head_"+outfit%10+".gif");
     head.draw(player.getGraphics(),0,0);
     outfit/=100;
 
-    Sprite hair=store.getSprite("sprites/outfit/hair_"+outfit%100+".gif");
-    hair.draw(player.getGraphics(),0,0);
+    if(outfit%10!=0)
+      {
+      Sprite hair=store.getSprite("sprites/outfit/hair_"+outfit%100+".gif");
+      hair.draw(player.getGraphics(),0,0);
+      }
     
     return player;
     }
