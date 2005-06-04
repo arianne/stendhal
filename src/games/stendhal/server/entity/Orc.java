@@ -64,7 +64,7 @@ public class Orc extends Creature
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
-    rect.setRect(x,y,1,1);
+    rect.setRect(x,y+1,1,1);
     }
 
   public double getSpeed()

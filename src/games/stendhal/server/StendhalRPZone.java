@@ -289,6 +289,7 @@ public class StendhalRPZone extends MarauroaRPZone
               assignRPObjectID(portal);
               portal.setx(j%width);
               portal.sety(j/width);
+              portal.setNumber(-1);
               
               if(zoneid.getID().equals("afterlive"))
                 {
@@ -357,9 +358,12 @@ public class StendhalRPZone extends MarauroaRPZone
                   }
                 }           
                    
-              add(portal);
-
-              portals.add(portal);
+              if(portal.getNumber()!=-1)
+                {
+                add(portal);
+  
+                portals.add(portal);
+                }
 
               break;
               }

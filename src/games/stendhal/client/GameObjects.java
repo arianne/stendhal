@@ -50,12 +50,14 @@ public class GameObjects
     register("sheep",Sheep.class);
     
     register("angelnpc",NPC.class);
-    register("journalistnpc",NPC.class);
-    register("tavernbarmaidnpc",NPC.class);
-    register("sellernpc",NPC.class);
-    register("buyernpc",NPC.class);
-    register("welcomernpc",NPC.class);
     register("beggarnpc",NPC.class);
+    register("butchernpc",NPC.class);
+    register("buyernpc",NPC.class);
+    register("journalistnpc",NPC.class);
+    register("orcbuyernpc",NPC.class);
+    register("sellernpc",NPC.class);
+    register("tavernbarmaidnpc",NPC.class);
+    register("welcomernpc",NPC.class);
     register("trainingdummy",TrainingDummy.class);
     
     register("food",Food.class);
@@ -98,6 +100,7 @@ public class GameObjects
       }
     catch(Exception e)
       {
+      Logger.trace("GameObjects::entityType","X",object.toString());
       Logger.thrown("GameObjects::entityType","X",e);
       return null;
       }
