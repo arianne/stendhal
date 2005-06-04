@@ -191,8 +191,10 @@ public class StendhalRPAction
               if(player.nextto(portal,0.25) && player.facingto(portal))
                 {
                 Logger.trace("StendhalRPAction::move","D","Using portal "+portal);
-                usePortal(player, portal);
-                transferContent(player);
+                if(usePortal(player, portal))
+                  {
+                  transferContent(player);
+                  }
                 return;
                 }
               }
@@ -273,13 +275,13 @@ public class StendhalRPAction
       }
     }
 
-  public static void usePortal(Player player, Portal portal) throws AttributeNotFoundException, NoRPZoneException
+  public static boolean usePortal(Player player, Portal portal) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPAction::usePortal",">");
 
     if(!player.nextto(portal,0.25)) // Too far to use the portal
       {
-      return;
+      return false;
       }
 
     StendhalRPZone destZone=(StendhalRPZone)world.getRPZone(new IRPZone.ID(portal.getDestinationZone()));
@@ -324,6 +326,7 @@ public class StendhalRPAction
      * the implicit world.add call at changeZone */
 
     Logger.trace("StendhalRPAction::usePortal","<");
+    return true;
     }
 
   public static void placeat(StendhalRPZone zone, Entity entity, int x, int y)

@@ -241,6 +241,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
        	improve(player,action);
 	      }
+      else if(action.get("type").equals("push"))
+        {
+        push(player,action);
+        }
       else if(action.get("type").equals("who"))
         {
         who(player);
@@ -248,6 +252,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       else if(action.get("type").equals("tell"))
         {
         tell(player, action);
+        }
+      else if(action.get("type").equals("outfit"))
+        {
+        outfit(player, action);
         }
       }
     catch(Exception e)
@@ -315,6 +323,35 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::attack","<");
     }
 
+  private void push(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
+    {
+    Logger.trace("StendhalRPRuleProcessor::push",">");
+    if(action.has("target"))
+      {
+      int targetObject=action.getInt("target");
+
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
+      if(zone.has(targetid))
+        {
+        RPObject object=zone.get(targetid);
+        if(object instanceof RPEntity)
+          {          
+          if(!player.equals(object))
+            {
+            RPEntity entity=(RPEntity)object;
+            if(player.nextto(entity,0.25))
+              {
+              /** TODO: No idea how to push it */
+              }
+            }
+          }
+        }
+      }
+
+    Logger.trace("StendhalRPRuleProcessor::push","<");
+    }
+
   private void improve(Player player, RPAction action)
     {
     Logger.trace("StendhalRPRuleProcessor::improve", ">");
@@ -355,40 +392,57 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::who","<");
     }
 
-    private void tell(Player player, RPAction action)
+  private void tell(Player player, RPAction action)
+    {
+    Logger.trace("StendhalRPRuleProcessor::tell",">");
+    try
       {
-      Logger.trace("StendhalRPRuleProcessor::tell",">");
-      try
+      if(action.has("who") && action.has("text"))
         {
-        if(action.has("who") && action.has("text"))
+        String message = player.getName() +  " tells you: " + action.get("text");
+        for(Player p : getPlayers())
           {
-          String message = player.getName() +  " tells you: " + action.get("text");
-          for(Player p : getPlayers())
+          if(p.getName().equals(action.get("who")))
             {
-            if(p.getName().equals(action.get("who")))
-              {
-              p.setPrivateText(message);
-              player.setPrivateText("You tell " + p.getName() + ": " + action.get("text"));
-              world.modify(p);
-              world.modify(player);
+            p.setPrivateText(message);
+            player.setPrivateText("You tell " + p.getName() + ": " + action.get("text"));
+            world.modify(p);
+            world.modify(player);
 
-              playersObjectRmText.add(player);
-              playersObjectRmText.add(p);
-              return;
-              }
+            playersObjectRmText.add(player);
+            playersObjectRmText.add(p);
+            return;
             }
-          player.setPrivateText(action.get("who") + " is not currently logged.");
           }
-        else
-          {
-            Logger.trace("StendhalRPRuleProcessor::tell","X", "Tell is not working right...");
-          }
+        player.setPrivateText(action.get("who") + " is not currently logged.");
         }
-      finally
+      else
         {
-        Logger.trace("StendhalRPRuleProcessor::tell","<");
+          Logger.trace("StendhalRPRuleProcessor::tell","X", "Tell is not working right...");
         }
       }
+    finally
+      {
+      Logger.trace("StendhalRPRuleProcessor::tell","<");
+      }
+    }
+
+  private void outfit(Player player, RPAction action)
+    {
+    Logger.trace("StendhalRPRuleProcessor::outfit",">");
+    try
+      {
+      if(action.has("value"))
+        {
+        player.put("outfit",action.get("value"));
+        world.modify(player);
+        }
+      }
+    finally
+      {
+      Logger.trace("StendhalRPRuleProcessor::tell","<");
+      }
+    }
 
   private void chat(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
@@ -434,8 +488,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           {
           Portal portal=(Portal)object;
 
-          StendhalRPAction.usePortal(player, portal);
-          StendhalRPAction.transferContent(player);
+          if(StendhalRPAction.usePortal(player, portal))
+            {
+            StendhalRPAction.transferContent(player);
+            }
           }
         }
       }
@@ -569,7 +625,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         int hair=StendhalRPAction.roll1D6()%10;
         int dress=StendhalRPAction.roll1D6()%10;
 
-        object.put("outfit",body+10*head+100*hair+1000*dress);
+        object.put("outfit",body+100*head+10000*hair+1000000*dress);
         }
 
       Player player=new Player(object);
@@ -585,7 +641,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       if(firstVisit)
         {
-        object.put("zoneid","city");        
+        player.put("zoneid","city");        
         }
 
       world.add(player);
@@ -598,8 +654,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         zone.placeObjectAtEntryPoint(player);
         }
 
-      int x=player.getInt("x");
-      int y=player.getInt("y");
+      int x=player.getx();//getInt("x");
+      int y=player.gety();//getInt("y");
         
       StendhalRPAction.placeat(zone,player,x,y);
 

@@ -261,6 +261,7 @@ public abstract class RPEntity extends Entity
 
     int leftHP=getHP()-damage;
     damage = (leftHP>=0 ? damage : getHP());
+    
     totalDamageReceived += damage;
     if(damageReceived.containsKey(who))
       {
@@ -279,6 +280,7 @@ public abstract class RPEntity extends Entity
       {
       onDead(who);
       }
+      
     world.modify(this);
     }
 
@@ -305,13 +307,11 @@ public abstract class RPEntity extends Entity
       for(Map.Entry<RPEntity , Integer> entry : damageReceived.entrySet())
         {
         int damageDone = ((Integer) entry.getValue()).intValue();
-
         Logger.trace("RPEntity::onDead" , "D" ,entry.getKey().get("name") + " did " + damageDone + " of " + totalDamageReceived + ". Reward was " + xp_reward);
-
         entry.getKey().addXP((int) (xp_reward * ((float) damageDone / (float) totalDamageReceived)));
         }
-
       }
+      
     damageReceived.clear();
     totalDamageReceived = 0;
     // Stats about dead

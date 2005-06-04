@@ -68,6 +68,17 @@ Changelog
 - Fixed a bug related to sheep duplication
 - Added storable/volatile attributes
 - Logout position remembered
+- Text over all 
+- Double click for default action ( instead of a single one ).
+- Added push action
+- Limited to 50 fps. Save CPU cycles.
+- Added butcher, poller and angel
+- Added set outfit option
+- Added new dungeon
+- Added new tilesets
+- Initial support for inventory
+- Fixed a bug because of cache directory
+
 
 0.13 May 30, 2005
 - Added API for identifing several attackers.

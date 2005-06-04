@@ -215,6 +215,7 @@ public class j2DClient extends JFrame
     playerChatText.addKeyListener(inGameGUI);
 
     client.setGameLogDialog(new GameLogDialog(this, playerChatText));
+    client.setOutfitDialog(new OutfitDialog(this, "Set outfit",10,9,5,10));
 
     addComponentListener(new ComponentAdapter()
       {
@@ -276,6 +277,7 @@ public class j2DClient extends JFrame
       inGameGUI.draw(screen);
 
       screen.nextFrame();
+
       client.loop(0);
 
       moveScreen(client.getPlayer(),staticLayers,delta);
@@ -288,6 +290,8 @@ public class j2DClient extends JFrame
         gameRunning=client.shouldContinueGame();
         fps=0;
         }
+      
+      try{Thread.sleep(((20-delta<0)?0:20-delta));}catch(Exception e){};
       }
 
     client.logout();
@@ -300,7 +304,6 @@ public class j2DClient extends JFrame
       {
       if(object==null)
         {
-        System.out.println ("null at moveScreen");
         return;
         }
 

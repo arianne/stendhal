@@ -265,7 +265,7 @@ public class StendhalRPZone extends MarauroaRPZone
       String[] items=text.split(",");
       for(String item: items)
         {
-        int value=Integer.parseInt(item)-(480*2) /* Number of tiles at zelda_outside_chipset */;
+        int value=Integer.parseInt(item)-(2401) /* Number of tiles at zelda_outside_chipset */;
         /** TODO: Change it by another way of not hardcoding the objects. */
         try
           {

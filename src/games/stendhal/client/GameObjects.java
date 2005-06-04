@@ -19,6 +19,7 @@ import games.stendhal.common.*;
 import java.util.*;
 import java.awt.Graphics;
 import java.awt.geom.*;
+import java.awt.Color;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects 
@@ -67,12 +68,17 @@ public class GameObjects
     }
   
   private HashMap<RPObject.ID, Entity> objects;
+  private List<Text> texts;
+  private List<Text> textsToRemove;
+  
   private List<Entity> sortObjects;
   private StaticGameLayers collisionMap;
   
   public GameObjects(StaticGameLayers collisionMap)
     {
     objects=new HashMap<RPObject.ID, Entity>();
+    texts=new LinkedList<Text>();
+    textsToRemove=new LinkedList<Text>();
     sortObjects=new LinkedList<Entity>();
       
     this.collisionMap=collisionMap;
@@ -143,6 +149,23 @@ public class GameObjects
     
     Logger.trace("GameObjects::add","D",entity.toString());
     Logger.trace("GameObjects::add","<");
+    }
+  
+  public void addText(Entity speaker, String text, Color color)
+    {
+    Text entity=new Text(this,text, speaker.getx(), speaker.gety(), color);
+    texts.add(entity);
+    }
+
+  public void addText(Entity speaker, Sprite sprite)
+    {
+    Text entity=new Text(this,sprite, speaker.getx(), speaker.gety());
+    texts.add(entity);
+    }
+  
+  public void removeText(Text entity)
+    {
+    textsToRemove.add(entity);
     }
   
   public Entity at(double x, double y)
@@ -275,6 +298,17 @@ public class GameObjects
       {
       entity.draw(screen);
       }
+    }
+    
+  public void drawText(GameScreen screen)
+    {
+    for(Text entity: texts)
+      {
+      entity.draw(screen);
+      }
+    
+    texts.removeAll(textsToRemove);
+    textsToRemove.clear();
     }
   }
   

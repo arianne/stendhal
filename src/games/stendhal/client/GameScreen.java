@@ -197,43 +197,99 @@ public class GameScreen
   public Sprite createString(String text, Color textColor)
     {
     GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-    Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(text),16,Transparency.BITMASK);    
+    Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(text)+2,16,Transparency.BITMASK);    
     Graphics g2d=image.getGraphics();
 
     g2d.setColor(Color.black);
-    g2d.drawString(text,-1,9);
-    g2d.drawString(text,-1,11);
-    g2d.drawString(text,1,9);
-    g2d.drawString(text,1,11);
+    g2d.drawString(text,0,9);
+    g2d.drawString(text,0,11);
+    g2d.drawString(text,2,9);
+    g2d.drawString(text,2,11);
 
     g2d.setColor(textColor);
-    g2d.drawString(text,0,10);
+    g2d.drawString(text,1,10);
     return new Sprite(image);      
+    }
+    
+  private int positionStringOfSize(String text, int width)
+    {
+    String[] words=text.split(" ");
+    
+    int i=1;
+    String textUnderWidth=words[0];
+    
+    while(i<words.length && g.getFontMetrics().stringWidth(textUnderWidth+" "+words[i])<width)
+      {
+      textUnderWidth=textUnderWidth+" "+words[i];
+      i++;
+      }
+    
+    if(textUnderWidth.length()==0 && words.length>1)
+      {
+      textUnderWidth=words[1];
+      }
+      
+    if(g.getFontMetrics().stringWidth(textUnderWidth)>width)
+      {
+      return (int)((float)width/(float)g.getFontMetrics().stringWidth(textUnderWidth)*textUnderWidth.length());
+      }
+    
+    return textUnderWidth.length();
     }
 
   public Sprite createTextBox(String text, int width, Color textColor, Color fillColor)
     {
-    int lineLengthPixels=g.getFontMetrics().stringWidth(text);
-    int numLines=(lineLengthPixels/width)+1;
+    java.util.List<String> lines=new java.util.LinkedList<String>();
+    
+    int i=0;
+    while(text.length()>0)
+      {
+      int pos=positionStringOfSize(text,240);
+      lines.add(text.substring(0,pos).trim());
+      text=text.substring(pos);
+      i++;
+      }
+      
+    int numLines=lines.size();    
+    int lineLengthPixels=0;
+    
+    for(String line: lines)
+      {
+      int lineWidth=g.getFontMetrics().stringWidth(line);
+      if(lineWidth>lineLengthPixels)
+        {
+        lineLengthPixels=lineWidth;
+        }
+      }    
     
     GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
     Image image = gc.createCompatibleImage(((lineLengthPixels<width)?lineLengthPixels:width)+4,16*numLines,Transparency.BITMASK);
     
     Graphics g2d=image.getGraphics();
-    g2d.setColor(textColor);
-    g2d.drawRect(0,0,((lineLengthPixels<width)?lineLengthPixels:width)+4-1,16*numLines-1);
 
-    g2d.setColor(fillColor);
-    g2d.fillRect(1,1,((lineLengthPixels<width)?lineLengthPixels:width)+4-2,16*numLines-2);
-
-    g2d.setColor(textColor);
-    int lineLength=text.length()/numLines;
-    for(int i=0;i<numLines;i++)
+    if(fillColor!=null)
       {
-      String line=text.substring(i*lineLength,(i+1)*lineLength);
-      g2d.drawString(line,2,i*16+12);
+      g2d.setColor(textColor);
+      g2d.drawRect(0,0,((lineLengthPixels<width)?lineLengthPixels:width)+4-1,16*numLines-1);
+    
+      g2d.setColor(fillColor);
+      g2d.fillRect(1,1,((lineLengthPixels<width)?lineLengthPixels:width)+4-2,16*numLines-2);
       }
-        
+
+    i=0;
+    for(String line: lines)
+      {
+      g2d.setColor(Color.black);
+      g2d.drawString(line,0,i*16+9);
+      g2d.drawString(line,0,i*16+11);
+      g2d.drawString(line,2,i*16+9);
+      g2d.drawString(line,2,i*16+11);
+
+      g2d.setColor(textColor);
+      g2d.drawString(line,1,i*16+10);
+      i++;      
+      }    
+    
     return new Sprite(image);      
     }
   

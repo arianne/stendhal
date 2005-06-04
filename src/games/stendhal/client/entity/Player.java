@@ -33,22 +33,20 @@ public class Player extends Speaker
     
     System.out.println ("OUTFIT is ("+outfit+")");
     
-    System.out.println ("sprites/outfit/player_base_"+outfit%10+".gif");
     Sprite player=store.getSprite("sprites/outfit/player_base_"+outfit%10+".gif");
     player=player.copy();
-    outfit/=10;
-    System.out.println ("sprites/outfit/head_"+outfit%10+".gif");
-    Sprite head=store.getSprite("sprites/outfit/head_"+outfit%10+".gif");
-    head.draw(player.getGraphics(),0,0);
-    outfit/=10;
-    System.out.println ("sprites/outfit/hair_"+outfit%10+".gif");
-    Sprite hair=store.getSprite("sprites/outfit/hair_"+outfit%10+".gif");
-    hair.draw(player.getGraphics(),0,0);
-    outfit/=10;
-    System.out.println ("sprites/outfit/dress_"+outfit%10+".gif");
+    outfit/=100;
+
     Sprite dress=store.getSprite("sprites/outfit/dress_"+outfit%10+".gif");
     dress.draw(player.getGraphics(),0,0);
-    
+    outfit/=100;
+
+    Sprite head=store.getSprite("sprites/outfit/head_"+outfit%10+".gif");
+    head.draw(player.getGraphics(),0,0);
+    outfit/=100;
+
+    Sprite hair=store.getSprite("sprites/outfit/hair_"+outfit%100+".gif");
+    hair.draw(player.getGraphics(),0,0);
     
     return player;
     }
@@ -70,6 +68,16 @@ public class Player extends Speaker
     sprites.get("move_left")[3]=sprites.get("move_left")[1];
     }
   
+  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    super.modifyAdded(object,changes);
+
+    if(changes.has("outfit"))
+      {      
+      buildAnimations(changes);
+      }
+    }
+    
   public String[] offeredActions()
     {
     if(getID().equals(client.getPlayer().getID()))
@@ -87,6 +95,7 @@ public class Player extends Speaker
     {
     if(action.equals("Set outfit"))
       {
+      client.getOutfitDialog().setVisible(true);
       }
     else
       {

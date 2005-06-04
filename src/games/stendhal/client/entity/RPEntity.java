@@ -319,14 +319,9 @@ public abstract class RPEntity extends AnimatedEntity
     {
     if(action.equals("Look"))
       {
-      if(getID().equals(client.getPlayer().getID()))
-        {
-        StendhalClient.get().addEventLine("You are " + getName() + "(Level " + level + "). RP Values(ATK/DEF/HP/XP): " + atk + "/" + def + "/" + hp + "/" + xp + "." , Color.green);
-        }
-      else
-        {
-        StendhalClient.get().addEventLine("You see " + getName() + "(Level " + level + ")." , Color.green);
-        }
+      String text="You see " + getName() + "(Level " + level + ").";
+      StendhalClient.get().addEventLine(text, Color.green);
+      gameObjects.addText(this, text, Color.green);
       }
     else if(action.equals("Attack"))
       {
@@ -342,11 +337,13 @@ public abstract class RPEntity extends AnimatedEntity
       rpaction.put("type","stop");
       client.send(rpaction);
       }
-    else if(action.equals("Follow"))
+    else if(action.equals("Push"))
       {
-      }
-    else if(action.equals("Trade"))
-      {
+      RPAction rpaction=new RPAction();
+      rpaction.put("type","push");
+      int id=getID().getObjectID();
+      rpaction.put("target",id);
+      client.send(rpaction);
       }
     }
   }

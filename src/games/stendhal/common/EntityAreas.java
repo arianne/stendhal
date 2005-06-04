@@ -32,7 +32,7 @@ public class EntityAreas
       }
     else if(type.equals("wolf"))
       {
-      rect.setRect(x,y,1,1);
+      rect.setRect(x,y,1,2);
       }
     else if(type.equals("rat"))
       {
@@ -103,7 +103,7 @@ public class EntityAreas
       }
     else if(type.equals("wolf"))
       {
-      return new Rectangle.Double(x,y,1,1);
+      return new Rectangle.Double(x,y,1,2);
       }
     else if(type.equals("rat"))
       {

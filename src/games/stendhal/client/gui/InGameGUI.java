@@ -323,13 +323,19 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     
     inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.gif");
     }
+  
+  private MouseEvent lastDraggedEvent;
+  private Entity choosenEntity;
     
   public void mouseDragged(MouseEvent e) 
     {
+    lastDraggedEvent=e;
     }
     
   public void mouseMoved(MouseEvent e)  
     {
+    lastDraggedEvent=null;
+    
     if(widget!=null)
       {
       widget.onMouseOver(e.getPoint());
@@ -363,12 +369,10 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     widget=null;
     
     Point2D point=screen.translate(screenPoint);
-    System.out.println(point);    
-    
     Entity entity=gameObjects.at(point.getX(),point.getY());
     if(entity!=null)
       {
-      if(e.getButton()==MouseEvent.BUTTON1)
+      if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
         {        
         String action=entity.defaultAction();
         entity.onAction(action, client);
@@ -384,10 +388,21 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
 
   public void mousePressed(MouseEvent e) 
     {
+    if(e.getButton()==MouseEvent.BUTTON1)
+      {        
+      Point2D point=screen.translate(e.getPoint());
+      choosenEntity=gameObjects.at(point.getX(),point.getY());
+      }
     }
 
   public void mouseReleased(MouseEvent e) 
     {
+    if(lastDraggedEvent!=null && choosenEntity!=null)
+      {
+      choosenEntity.onAction("Push", client);
+      choosenEntity=null;
+      lastDraggedEvent=null;
+      }
     }
 
   public void mouseEntered(MouseEvent e) 

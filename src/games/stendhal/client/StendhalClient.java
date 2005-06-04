@@ -41,7 +41,8 @@ public class StendhalClient extends ariannexp
   private GameObjects gameObjects;
   
   private boolean keepRunning=true;
-  private GameLogDialog dialog;
+  private GameLogDialog gameDialog;
+  private OutfitDialog outfitDialog;
   private Configuration conf;
   
   private static StendhalClient client;  
@@ -63,7 +64,8 @@ public class StendhalClient extends ariannexp
     staticLayers=new StaticGameLayers();
     gameObjects=new GameObjects(staticLayers);   
     handler=new PerceptionHandler(new StendhalPerceptionListener()); 
-    dialog=null;
+    gameDialog=null;
+    outfitDialog=null;
     
     try
       {
@@ -90,34 +92,44 @@ public class StendhalClient extends ariannexp
     return stendhal.VERSION;
     }    
   
-  public void setGameLogDialog(GameLogDialog dialog)
+  public void setGameLogDialog(GameLogDialog gameDialog)
     {
-    this.dialog=dialog;
+    this.gameDialog=gameDialog;
+    }
+    
+  public void setOutfitDialog(OutfitDialog gameDialog)
+    {
+    this.outfitDialog=gameDialog;
     }
 
   public GameLogDialog getGameLogDialog()
     {
-    return dialog;
+    return gameDialog;
+    }
+
+  public OutfitDialog getOutfitDialog()
+    {
+    return outfitDialog;
     }
   
   public void addEventLine(String text)
     {
-    this.dialog.addLine(text);
+    this.gameDialog.addLine(text);
     }
     
   public void addEventLine(String header, String text)
     {
-    this.dialog.addLine(header,text);
+    this.gameDialog.addLine(header,text);
     }
 
   public void addEventLine(String header, String text, Color color)
     {
-    this.dialog.addLine(header,text,color);
+    this.gameDialog.addLine(header,text,color);
     }
 
   public void addEventLine(String text,Color color)
     {
-    this.dialog.addLine(text,color);
+    this.gameDialog.addLine(text,color);
     }
     
   public StaticGameLayers getStaticGameLayers()

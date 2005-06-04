@@ -65,11 +65,11 @@ public class Sign extends Entity
       g.setColor(Color.black);
       g.drawRect(0,0,width-1,height-1);
             
-      g.setColor(Color.black);
       int j=0;
       for(String line: lines)
         {
-        g.drawString(line,2,12+j*16);
+        g.setColor(Color.black);
+        g.drawString(line,2,11+j*16);
         j++;
         }
         
@@ -92,18 +92,8 @@ public class Sign extends Entity
     {
     if(action.equals("Look"))
       {
-      delta=System.currentTimeMillis();
+      gameObjects.addText(this, textImage);
       StendhalClient.get().addEventLine("You read \""+text.replace("|","\n")+"\"",Color.green);
-      }
-    }
-
-  public void draw(GameScreen screen)
-    {
-    super.draw(screen);
-    
-    if(textImage!=null && System.currentTimeMillis()-delta<TEXT_PERSISTENCE_TIME) 
-      {
-      screen.draw(textImage,x+0.5-(textImage.getWidth()/(32.0f*2.0f)),y);
       }
     }
   }

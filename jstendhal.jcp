@@ -193,6 +193,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\Text.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\TrainingDummy.java</path>
 				<source>true</source>
 			</fileitem>
@@ -262,6 +266,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\StendhalRPZone.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\AngelNPC.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

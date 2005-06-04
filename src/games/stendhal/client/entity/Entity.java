@@ -49,6 +49,10 @@ public abstract class Entity
 
   protected GameObjects gameObjects;
   protected StendhalClient client;
+
+  public Entity()
+    {    
+    }
     
 	/**
 	 * Construct a entity based on a sprite image and a location.

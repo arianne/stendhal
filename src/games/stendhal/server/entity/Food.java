@@ -70,7 +70,7 @@ public class Food extends Entity
     {
     if(amount<5)
       {
-      grow+=0.005;
+      grow+=0.0005; // 2000 turns
 
       if(grow>1)
         {

@@ -50,5 +50,6 @@ public class RenderingPipeline
     gameLayers.draw(screen,set+"_1_object");
     gameObjects.draw(screen);
     gameLayers.draw(screen,set+"_2_roof");
+    gameObjects.drawText(screen);
     }  
   }

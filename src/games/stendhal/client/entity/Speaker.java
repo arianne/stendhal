@@ -58,13 +58,13 @@ public class Speaker extends RPEntity
       String text=changes.get("text");
       client.addEventLine(getName(),text);
 
-      textImage=GameScreen.get().createTextBox(text,240,Color.black,Color.white);
-      textImageTime=System.currentTimeMillis();
+      gameObjects.addText(this, getName()+" says: "+text.replace("|",""), Color.yellow);
       }
 
     if(changes.has("private_text"))
       {
       client.addEventLine(changes.get("private_text"),Color.orange);
+      gameObjects.addText(this, changes.get("private_text").replace("|",""), Color.orange);
       }
 
     if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
@@ -73,16 +73,5 @@ public class Speaker extends RPEntity
       if(client.getPlayer()!=null) System.out.println (client.getPlayer().getID());
       client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
       }
-    }
-
-  public void draw(GameScreen screen)
-    {
-    if(textImage!=null)
-      {
-      screen.draw(textImage,x+0.7-(textImage.getWidth()/(32.0f*2.0f)),y+2.05);
-      if(System.currentTimeMillis()-textImageTime>TEXT_PERSISTENCE_TIME) textImage=null;
-      }
-
-    super.draw(screen);
     }
   }
