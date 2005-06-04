@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="32" height="17" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
+  <image source="elda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
+  <image source="elda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+  <image source="elda_dungeon_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+  <image source="elda_dungeon_1_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="elda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.gif"/>
@@ -31,12 +31,12 @@
  </layer>
  <layer name="tavern_1_object" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2UQU7DMBBFh7RuUoFYUS7QFrEG9gg4CKJAYUPLEYAbwCVgB3copAcBiRWII/RbtoWZTlI7Ef3Sk8c/jr/jWB5mRD9pNQZ499RyBg7AITgKnPMc477RXqJdX8A9xj2kf70bcGu5A8dA6yRgvgvwlZr8NdRvILfvu3pbmf5rk+gZ417ADvxdsJcZ3z2XtK9kX2uV5b+DD5vv11wb8Dtgs+B5qHj+SpsoaZtnfq01bhCNwJVl5LVjW1836uWXqZ8Q9UDX0vPavq23kmr5w2w+/6lF9Nj67efN+Vq3Uh2bL51/l+/6dTQpWFvM/lcVz/XXsoz8svWE/n99T/2HlvX/nfgdxfd/oAwhmmKuT+FM5RF+bD5fv1LyuQ71pXwu35uwO0DKmVqfKxf8Reff7UfRnnQLciTfjS/7/tj8unL5M9GCCGCACAAA
+   H4sIAAAAAAAAAL2UQU7DMBBFp6FuUhV1BVygLWJNu0fAQRAFCjuuANwALgE7eoeW9CAgsSriCHzLtjDTSWonol968vjH8Xccy5OM6DutxhjvXlguwTE4AaeBc15h3BfaG7TdNTxi3FP617sD95YHcAa0zgPmuwbL1ORvo34DuX3f1QfK9OdNoleMm4JD+EMwyozvnks6UrKv1WH57+DD5vs11w78XbBX8DxUPL/RJkra5plfa91u1csKyS/TICHqg56l77UDW+8n1fIn2Wr+S4voufXbz5urtW6lOjZfOv8u3/XraFawtpj9ryqe669lE/ll6wn9//qe+g9t6v878TuK7/9YGUK0wFyfwpnKI/zYfL5+peRzHepL+Vy+N2N3gJSzsD5XLvjrzr/bj6I96RXkSL4bX/b9sfl15fJ/AFGLtryACAAA
   </data>
  </layer>
  <layer name="tavern_2_roof" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA/aORgYOjgIKKIR4GKlzP4iFsrdMJD+H7WfPvZ/YEfF6OKjYHgDfPE/EtL/qP2j9g+U/QDNaoyZgAgAAA==
+   H4sIAAAAAAAAAGNgwA/aORgYOjgIKKIR4GKlzP4iFsrdMJD+H0z25zEzMORCcR4SnQ9lFzDT1n5agg/sqBhdfBQMb4Av/gdL/hu1f9T+4Wg/AE1jMkWACAAA
   </data>
  </layer>
  <layer name="tavern_objects" width="32" height="17">
@@ -46,7 +46,7 @@
  </layer>
  <layer name="tavern_collision" width="32" height="17" opacity="0.69">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvGycBwbBhhEKCWfmLMgqnBBnCJ4zMXm/20ANjsxaVuoO0nJe5oZT8yH12cGvZjcws55hJyPy77aQHQzcWXr+gBsIUtPe1Hdws94h/ZLGLsJ6QPn7tIESfVfnxpiRxxYu3GZj8uPZT4H5ceUuoWQupJSf/0KBtAGABR5mvNgAgAAA==
+   H4sIAAAAAAAAAN2SUQ7AIAhD/d397+S5ln2YGNMiHciSNfFDtDwI9Ku1/qPzKMvvyTX+ILG4lRfxmS8ixFV7qOIrszvFn+9rPIOPasmc845/Qmx3q/hWPV/w11oq5j/n8vB3PqsuJa7yrV16E/eyEZ95Iv0zD5u/0jt6i/KjGrlv5Wo8AIAIAAA=
   </data>
  </layer>
 </map>
