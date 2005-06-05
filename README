@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.20
+Version 0.30
 
 
 How to play
@@ -62,6 +62,11 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.30 Jun XX, 2004
+- Fixed a bug on dead
+- Fixed a bug on cache timestamp
+- Fixed a bug on stendhalcreateaccount
+
 0.20 Jun 05, 2005
 - Added new monsters
 - Implemented shared XP
