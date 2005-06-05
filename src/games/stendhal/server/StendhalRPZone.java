@@ -217,7 +217,7 @@ public class StendhalRPZone extends MarauroaRPZone
     TransferContent content=new TransferContent();
     content.name=name;
     content.cacheable=true;
-    content.timestamp=(int)(new File(filename).lastModified()/1000);
+    content.timestamp=(int)(new File(filename).lastModified());
     Logger.trace("StendhalRPZone::addLayer","D",Integer.toString(content.timestamp));
     content.data=getBytesFromFile(filename);
     
