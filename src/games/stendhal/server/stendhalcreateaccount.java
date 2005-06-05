@@ -15,6 +15,7 @@ package games.stendhal.server;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 import marauroa.common.Configuration;
+import games.stendhal.server.entity.*;
 
 /** The mapacmancreateaccount extends the createaccount class of marauroa package
  *  so that it defines the specific behaviour for an account of mapacman */
@@ -22,6 +23,10 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
   {
   public static void main (String[] args)
     {
+    Entity.generateRPClass();
+    RPEntity.generateRPClass();
+    Player.generateRPClass();
+
     stendhalcreateaccount instance=new stendhalcreateaccount();
     System.exit(instance.run(args));
     }
