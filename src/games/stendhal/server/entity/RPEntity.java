@@ -307,7 +307,8 @@ public abstract class RPEntity extends Entity
       for(Map.Entry<RPEntity , Integer> entry : damageReceived.entrySet())
         {
         int damageDone = ((Integer) entry.getValue()).intValue();
-        Logger.trace("RPEntity::onDead" , "D" ,entry.getKey().get("name") + " did " + damageDone + " of " + totalDamageReceived + ". Reward was " + xp_reward);
+        String name=(entry.getKey().has("name")?entry.getKey().get("name"):entry.getKey().get("type"));
+        Logger.trace("RPEntity::onDead" , "D" ,name + " did " + damageDone + " of " + totalDamageReceived + ". Reward was " + xp_reward);
         entry.getKey().addXP((int) (xp_reward * ((float) damageDone / (float) totalDamageReceived)));
         }
       }
