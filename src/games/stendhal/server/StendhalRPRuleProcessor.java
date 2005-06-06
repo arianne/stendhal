@@ -336,7 +336,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         RPObject object=zone.get(targetid);
         if(object instanceof RPEntity)
-          {          
+          {
           if(!player.equals(object))
             {
             RPEntity entity=(RPEntity)object;
@@ -381,10 +381,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private void who(Player player)
     {
     Logger.trace("StendhalRPRuleProcessor::who",">");
-    String online = "Players online: ";
+    String online = "" + getPlayers().size() + " Players online: ";
     for(Player p : getPlayers())
       {
-      online += p.getName() + " ";
+      online += p.getName() + "(" + p.getLevel() +") ";
       }
     player.setPrivateText(online);
     world.modify(player);
@@ -626,9 +626,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       Player player=new Player(object);
       player.stop();
       player.stopAttack();
-      
+
       boolean firstVisit=false;
-      
+
       if(!object.has("zoneid")|| !object.has("x") || !object.has("y") || object.has("reset"))
         {
         firstVisit=true;
@@ -636,14 +636,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       if(firstVisit)
         {
-        player.put("zoneid","city");        
+        player.put("zoneid","city");
         }
 
       world.add(player);
       StendhalRPAction.transferContent(player);
 
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-   
+
       if(firstVisit)
         {
         zone.placeObjectAtEntryPoint(player);
@@ -651,7 +651,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       int x=player.getx();//getInt("x");
       int y=player.gety();//getInt("y");
-        
+
       StendhalRPAction.placeat(zone,player,x,y);
 
       if(player.hasSheep())
