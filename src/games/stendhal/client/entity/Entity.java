@@ -158,14 +158,14 @@ public abstract class Entity
       g2d.setColor(Color.green);    
       Point2D p=new Point.Double(rect.getX(),rect.getY());
       p=screen.invtranslate(p);
-      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*(float)GameScreen.PIXEL_SCALE),(int)(rect.getHeight()*(float)GameScreen.PIXEL_SCALE));
   
       g2d=screen.expose();
       rect=getDrawedArea();      
       g2d.setColor(Color.blue);    
       p=new Point.Double(rect.getX(),rect.getY());
       p=screen.invtranslate(p);
-      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*(float)GameScreen.PIXEL_SCALE),(int)(rect.getHeight()*(float)GameScreen.PIXEL_SCALE));
       }
     }
     

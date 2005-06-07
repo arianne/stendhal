@@ -66,6 +66,8 @@ Changelog
 - Fixed a bug on dead
 - Fixed a bug on cache timestamp
 - Fixed a bug on stendhalcreateaccount
+- Fixed a sheepless player that get blocked bug.
+- Fixed a createTextBox bug with whitespaces.
 
 0.20 Jun 05, 2005
 - Added new monsters

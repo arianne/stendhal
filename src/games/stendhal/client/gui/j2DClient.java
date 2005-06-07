@@ -74,6 +74,8 @@ public class j2DClient extends JFrame
 
   public j2DClient(StendhalClient sc)
     {
+    super();
+    
     // create a frame to contain our game
     setTitle("Stendhal "+stendhal.VERSION+" - a multiplayer online game using Arianne");
 
@@ -116,7 +118,18 @@ public class j2DClient extends JFrame
       	    client.send(tell);
       	    }
       	  }
-      	else if(text.equals("/who")) // Who command
+        else if(text.startsWith("/where ")) // Tell command
+          {
+          String[] command = parseString(text, 2);
+          if(command != null)
+            {
+            RPAction tell = new RPAction();
+            tell.put("type","where");
+            tell.put("who", command[1]);
+            client.send(tell);
+            }
+          }
+        else if(text.equals("/who")) // Who command
       	  {
       	  RPAction who = new RPAction();
       	  who.put("type","who");
@@ -270,15 +283,19 @@ public class j2DClient extends JFrame
       long delta = System.currentTimeMillis() - lastLoopTime;
       lastLoopTime = System.currentTimeMillis();
 
+      Logger.trace("j2DClient::gameLoop","D","Move objects");
       gameObjects.move(delta);
 
+      Logger.trace("j2DClient::gameLoop","D","Draw screen");
       pipeline.draw(screen);
       inGameGUI.draw(screen);
 
       screen.nextFrame();
 
+      Logger.trace("j2DClient::gameLoop","D","Query network");
       client.loop(0);
 
+      Logger.trace("j2DClient::gameLoop","D","Move screen");
       moveScreen(client.getPlayer(),staticLayers,delta);
 
       if(System.nanoTime()-oldTime>1000000000)
@@ -286,15 +303,19 @@ public class j2DClient extends JFrame
         oldTime=System.nanoTime();
         System.out.println("FPS: "+Integer.toString(fps));
         Logger.trace("j2DCLient::gameLoop()","D","FPS: "+Integer.toString(fps));
-        gameRunning=client.shouldContinueGame();
         fps=0;
         }
+
+      gameRunning=client.shouldContinueGame();
       
       try{Thread.sleep(((20-delta<0)?0:20-delta));}catch(Exception e){};
       }
 
+    Logger.trace("j2DClient::gameLoop","D","Request logout");
     client.logout();
-    System.exit(0);
+
+    Logger.trace("j2DClient::gameLoop","D","Exit");
+    System.exit(0);    
     }
 
   private void moveScreen(RPObject object, StaticGameLayers gameLayers, long delta)
@@ -394,10 +415,10 @@ public class j2DClient extends JFrame
 
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={"onTransfer"};
+        String[] allowed={/*"j2DClient","StendhalClient"*/};
         Logger.setAllowed(allowed);
 
-        String[] rejected={"modify"};
+        String[] rejected={};
         Logger.setRejected(rejected);
 
         StendhalClient client=StendhalClient.get();

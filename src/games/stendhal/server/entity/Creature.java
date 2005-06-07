@@ -27,16 +27,16 @@ public abstract class Creature extends NPC
   public Creature(RPObject object) throws AttributeNotFoundException
     {
     super(object);
-    init();
+    createPath();
     }
 
   public Creature() throws AttributeNotFoundException
     {
     super();
-    init();
+    createPath();
     }
 
-  private void init()
+  protected void createPath()
     {
     /** TODO: Creat paths in other way */
     patrolPath=new LinkedList<Path.Node>();

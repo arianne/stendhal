@@ -233,9 +233,9 @@ public abstract class RPEntity extends AnimatedEntity
       g2d.setColor(Color.red);
       Point2D p=new Point.Double(rect.getX(),rect.getY());
       p=screen.invtranslate(p);
-      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*32.0),(int)(rect.getHeight()*32.0));
+      g2d.drawRect((int)p.getX(),(int)p.getY(),(int)(rect.getWidth()*(float)GameScreen.PIXEL_SCALE),(int)(rect.getHeight()*(float)GameScreen.PIXEL_SCALE));
       g2d.setColor(Color.black);
-      g2d.drawRect((int)p.getX()-1,(int)p.getY()-1,(int)(rect.getWidth()*32.0)+2,(int)(rect.getHeight()*32.0)+2);
+      g2d.drawRect((int)p.getX()-1,(int)p.getY()-1,(int)(rect.getWidth()*(float)GameScreen.PIXEL_SCALE)+2,(int)(rect.getHeight()*(float)GameScreen.PIXEL_SCALE)+2);
       }
 
     super.draw(screen);
@@ -287,7 +287,7 @@ public abstract class RPEntity extends AnimatedEntity
       int i=0;
       for(Sprite damageImage: damageSprites)
         {
-        double tx=x+0.6-(damageImage.getWidth()/(32.0f*2.0f));
+        double tx=x+0.6-(damageImage.getWidth()/((float)GameScreen.PIXEL_SCALE*2.0f));
         double ty=y-((current-damageSpritesTimes.get(i))/(6.0*300.0));
         screen.draw(damageImage,tx,ty);
         i++;

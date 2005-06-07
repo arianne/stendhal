@@ -34,7 +34,7 @@ public class Text extends Entity
     textImage=text;
     textImageTime=System.currentTimeMillis();
 
-    this.x=x+0.7-(textImage.getWidth()/(32.0f*2.0f));
+    this.x=x+0.7-(textImage.getWidth()/((float)GameScreen.PIXEL_SCALE*2.0f));
     this.y=y-0.5;
     }
     
@@ -46,7 +46,7 @@ public class Text extends Entity
     textImage=GameScreen.get().createTextBox(text,240,color,null);
     textImageTime=System.currentTimeMillis();
 
-    this.x=x+0.7-(textImage.getWidth()/(32.0f*2.0f));
+    this.x=x+0.7-(textImage.getWidth()/((float)GameScreen.PIXEL_SCALE*2.0f));
     this.y=y+1;
     
     drawedArea=new Rectangle.Double(x,y,textImage.getWidth()/GameScreen.PIXEL_SCALE, textImage.getHeight()/GameScreen.PIXEL_SCALE);

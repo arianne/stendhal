@@ -257,6 +257,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\StendhalRPSystem.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\StendhalRPWorld.java</path>
 				<source>true</source>
 			</fileitem>

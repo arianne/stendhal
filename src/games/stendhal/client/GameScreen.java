@@ -164,26 +164,26 @@ public class GameScreen
   /** Translate to world coordinates the given screen coordinate */
   public Point2D translate(Point2D point)
     {
-    double tx=point.getX()/32f+x;
-    double ty=point.getY()/32f+y;
+    double tx=point.getX()/(float)GameScreen.PIXEL_SCALE+x;
+    double ty=point.getY()/(float)GameScreen.PIXEL_SCALE+y;
     return new Point.Double(tx,ty);
     }
 
   /** Translate to screen coordinates the given world coordinate */
   public Point2D invtranslate(Point2D point)
     {
-    double tx=(point.getX()-x)*32;
-    double ty=(point.getY()-y)*32;
+    double tx=(point.getX()-x)*(float)GameScreen.PIXEL_SCALE;
+    double ty=(point.getY()-y)*(float)GameScreen.PIXEL_SCALE;
     return new Point.Double(tx,ty);
     }
     
   /** Draw a sprite in screen given its world coordinates */
   public void draw(Sprite sprite, double wx, double wy)
     {
-    int sx=(int)((wx-x)*32);
-    int sy=(int)((wy-y)*32);
+    int sx=(int)((wx-x)*(float)GameScreen.PIXEL_SCALE);
+    int sy=(int)((wy-y)*(float)GameScreen.PIXEL_SCALE);
     
-    if((sx>=-32 && sx<sw) && (sy>=-32 && sy<sh))
+    if((sx>=-(float)GameScreen.PIXEL_SCALE*2 && sx<sw) && (sy>=-(float)GameScreen.PIXEL_SCALE*2 && sy<sh))
       {
       sprite.draw(g,sx,sy);
       }
@@ -242,9 +242,10 @@ public class GameScreen
     java.util.List<String> lines=new java.util.LinkedList<String>();
     
     int i=0;
+    text=text.trim();
     while(text.length()>0)
       {
-      int pos=positionStringOfSize(text,240);
+      int pos=positionStringOfSize(text,width);
       lines.add(text.substring(0,pos).trim());
       text=text.substring(pos);
       i++;

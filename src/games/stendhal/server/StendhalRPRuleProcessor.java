@@ -253,6 +253,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         tell(player, action);
         }
+      else if(action.get("type").equals("where"))
+        {
+        where(player, action);
+        }
       else if(action.get("type").equals("outfit"))
         {
         outfit(player, action);
@@ -424,6 +428,33 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     finally
       {
       Logger.trace("StendhalRPRuleProcessor::tell","<");
+      }
+    }
+
+  private void where(Player player, RPAction action)
+    {
+    Logger.trace("StendhalRPRuleProcessor::where",">");
+    try
+      {
+      if(action.has("who"))
+        {
+        for(Player p : getPlayers())
+          {
+          if(p.getName().equals(action.get("who")))
+            {
+            player.setPrivateText(p.getName() + " is in "+p.get("zoneid")+" at ("+p.getx()+","+p.gety()+")");
+            world.modify(player);
+
+            playersObjectRmText.add(player);
+            return;
+            }
+          }
+        player.setPrivateText(action.get("who") + " is not currently logged.");
+        }
+      }
+    finally
+      {
+      Logger.trace("StendhalRPRuleProcessor::where","<");
       }
     }
 
