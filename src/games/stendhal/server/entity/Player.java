@@ -46,6 +46,149 @@ public class Player extends RPEntity
       Logger.thrown("Player::generateRPClass","X",e);
       }
     }
+  
+  public static Player create(RPObject object)
+    {
+    // Port from 0.03 to 0.10
+    if(!object.has("base_hp"))
+      {
+      object.put("base_hp","100");
+      object.put("hp","100");
+      }
+
+    // Port from 0.13 to 0.20
+    if(!object.has("outfit"))
+      {
+      object.put("outfit",0);
+      }
+
+    Player player=new Player(object);
+    player.stop();
+    player.stopAttack();
+    
+    boolean firstVisit=false;
+    
+    try
+      {
+      if(!object.has("zoneid")|| !object.has("x") || !object.has("y") || object.has("reset"))
+        {
+        firstVisit=true;
+        }
+
+      if(firstVisit)
+        {
+        player.put("zoneid","city");        
+        }
+
+      world.add(player);
+      }
+    catch(Exception e) // If placing the player at its last position fails we reset it to city entry point
+      {
+      Logger.thrown("Player::create","X",e);
+      
+      firstVisit=true;
+      player.put("zoneid","city");        
+
+      world.add(player);
+      }
+
+    StendhalRPAction.transferContent(player);
+
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+   
+    if(firstVisit)
+      {
+      zone.placeObjectAtEntryPoint(player);
+      }
+
+    int x=player.getx();
+    int y=player.gety();
+        
+    StendhalRPAction.placeat(zone,player,x,y);
+    
+    try
+      {
+      if(player.hasSheep())
+        {
+        Logger.trace("Player::create","D","Player has a sheep");
+        Sheep sheep=player.retrieveSheep();
+        sheep.put("zoneid",object.get("zoneid"));
+        if(!sheep.has("base_hp"))
+          {
+          sheep.put("base_hp","10");
+          sheep.put("hp","10");
+          }
+
+        world.add(sheep);
+        StendhalRPAction.placeat(zone,sheep,x,y);
+        player.setSheep(sheep);
+        }
+      }
+    catch(Exception e) /** No idea how but some players get a sheep but they don't have it really.
+                           Me thinks that it is a player that has been running for a while the game and 
+                           was kicked of server because shutdown on a pre 1.00 version of Marauroa.
+                           We shouldn't see this anymore. */
+      {
+      Logger.thrown("Player::create","X",e);
+
+      if(player.has("sheep"))
+        {
+        player.remove("sheep");
+        }
+      
+      if(player.hasSlot("#flock"))
+        {
+        player.removeSlot("#flock");
+        }          
+      }
+
+    Logger.trace("Player::create","D","Finally player is :"+player);
+    return player;
+    }
+    
+  
+  public static void destroy(Player player)
+    {
+    try
+      {
+      if(player.hasSheep())
+        {
+        Sheep sheep=(Sheep)world.remove(player.getSheep());
+        player.storeSheep(sheep);
+        rp.removeNPC(sheep);
+        }
+      else
+        {
+        // Bug on pre 0.20 released
+        if(player.hasSlot("#flock"))
+          {
+          player.removeSlot("#flock");
+          }
+        }
+      }
+    catch(Exception e) /** No idea how but some players get a sheep but they don't have it really.
+                           Me thinks that it is a player that has been running for a while the game and 
+                           was kicked of server because shutdown on a pre 1.00 version of Marauroa.
+                           We shouldn't see this anymore. */
+      {
+      Logger.thrown("Player::destroy","X",e);
+
+      if(player.has("sheep"))
+        {
+        player.remove("sheep");
+        }
+      
+      if(player.hasSlot("#flock"))
+        {
+        player.removeSlot("#flock");
+        }          
+      }
+
+    player.stop();
+    player.stopAttack();
+    
+    world.remove(player.getID());
+    }
 
   public Player(RPObject object) throws AttributeNotFoundException
     {

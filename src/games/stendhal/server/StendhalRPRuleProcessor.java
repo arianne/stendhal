@@ -610,73 +610,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::onInit",">");
     try
       {
-      // Port from 0.03 to 0.10
-      if(!object.has("base_hp"))
-        {
-        object.put("base_hp","100");
-        object.put("hp","100");
-        }
-
-      // Port from 0.13 to 0.20
-      if(!object.has("outfit"))
-        {
-        object.put("outfit",0);
-        }
-
-      Player player=new Player(object);
-      player.stop();
-      player.stopAttack();
-
-      boolean firstVisit=false;
-
-      if(!object.has("zoneid")|| !object.has("x") || !object.has("y") || object.has("reset"))
-        {
-        firstVisit=true;
-        }
-
-      if(firstVisit)
-        {
-        player.put("zoneid","city");
-        }
-
-      world.add(player);
-      StendhalRPAction.transferContent(player);
-
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-
-      if(firstVisit)
-        {
-        zone.placeObjectAtEntryPoint(player);
-        }
-
-      int x=player.getx();//getInt("x");
-      int y=player.gety();//getInt("y");
-
-      StendhalRPAction.placeat(zone,player,x,y);
-
-      if(player.hasSheep())
-        {
-        Logger.trace("StendhalRPRuleProcessor::onInit","D","Player has a sheep");
-        Sheep sheep=player.retrieveSheep();
-        sheep.put("zoneid",object.get("zoneid"));
-        if(!sheep.has("base_hp"))
-          {
-          sheep.put("base_hp","10");
-          sheep.put("hp","10");
-          }
-
-        world.add(sheep);
-        StendhalRPAction.placeat(zone,sheep,x,y);
-        player.setSheep(sheep);
-        }
-
-      Logger.trace("StendhalRPRuleProcessor::onInit","D","Finally player is :"+player);
+      Player player=Player.create(object);
 
       playersObject.add(player);
       return true;
       }
     catch(Exception e)
       {
+      Logger.trace("StendhalRPRuleProcessor::onInit","X","There has been a severe problem loading player "+object.get("#db_id"));
       Logger.thrown("StendhalRPRuleProcessor::onInit","X",e);
       return false;
       }
@@ -695,25 +636,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         if(object.getID().equals(id))
           {
-          if(object.hasSheep())
-            {
-            Sheep sheep=(Sheep)world.remove(object.getSheep());
-            object.storeSheep(sheep);
-            npcs.remove(sheep);
-            }
-          else
-            {
-            // Bug on pre 0.20 released
-            if(object.hasSlot("#flock"))
-              {
-              object.removeSlot("#flock");
-              }
-            }
+          Player.destroy(object);
 
-
-          object.stop();
-          object.stopAttack();
           playersObject.remove(object);
+          
           Logger.trace("StendhalRPRuleProcessor::onExit","D",object.toString());
           break;
           }
@@ -728,7 +654,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     finally
       {
-      world.remove(id);
       Logger.trace("StendhalRPRuleProcessor::onExit","<");
       }
     }
