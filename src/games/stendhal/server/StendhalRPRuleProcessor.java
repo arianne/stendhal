@@ -249,6 +249,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         who(player);
         }
+      else if(action.get("type").equals("own"))
+        {
+        own(player, action);
+        }
       else if(action.get("type").equals("tell"))
         {
         tell(player, action);
@@ -325,6 +329,52 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
 
     Logger.trace("StendhalRPRuleProcessor::attack","<");
+    }
+
+  private void own(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
+    {
+    Logger.trace("StendhalRPRuleProcessor::own",">");
+
+    // BUG: This features is potentially abusable right now. Consider removing it...
+    if(player.hasSheep() && action.has("target") && action.getInt("target")==-1) // Allow release of sheep  
+      {
+      Sheep sheep=(Sheep)world.get(player.getSheep());      
+      player.removeSheep(sheep);
+      
+      sheep.setOwner(null);
+      addNPC(sheep);
+      }
+
+    if(player.hasSheep())
+      {
+      return;
+      }
+      
+    if(action.has("target"))
+      {
+      int targetObject=action.getInt("target");
+
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
+      if(zone.has(targetid))
+        {
+        RPObject object=zone.get(targetid);
+        if(object instanceof Sheep)
+          {
+          Sheep sheep=(Sheep)object;
+          if(sheep.getOwner()==null)
+            {
+            sheep.setOwner(player);
+            removeNPC(sheep);
+            
+            player.setSheep(sheep);
+            world.modify(player);
+            }
+          }
+        }
+      }
+
+    Logger.trace("StendhalRPRuleProcessor::own","<");
     }
 
   private void displace(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException

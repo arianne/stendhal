@@ -103,6 +103,7 @@ public class GameObjects
       {
       Logger.trace("GameObjects::entityType","X",object.toString());
       Logger.thrown("GameObjects::entityType","X",e);
+      for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
       return null;
       }
     }

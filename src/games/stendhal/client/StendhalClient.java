@@ -291,7 +291,7 @@ public class StendhalClient extends ariannexp
         }
       catch(java.io.IOException e)          
         {
-        e.printStackTrace();
+        Logger.thrown("StendhalClient::onTransfer","X",e);
         System.exit(0);
         }
       }
@@ -348,6 +348,7 @@ public class StendhalClient extends ariannexp
       catch(Exception e)
         {
         Logger.thrown("StendhalClient::StendhalPerceptionListener::onAdded","X",e);
+        for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
         }
       return false;
       }
@@ -365,6 +366,7 @@ public class StendhalClient extends ariannexp
         {
         Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedAdded","X",changes.toString());
         Logger.thrown("StendhalClient::StendhalPerceptionListener::onModifiedAdded","X",e);
+        for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
         }
       return true;
       }
@@ -380,6 +382,7 @@ public class StendhalClient extends ariannexp
       catch(Exception e)
         {
         Logger.thrown("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","X",e);
+        for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
         }
       return true;
       }
@@ -394,6 +397,7 @@ public class StendhalClient extends ariannexp
       catch(Exception e)
         {
         Logger.thrown("StendhalClient::StendhalPerceptionListener::onDeleted","X",e);
+        for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
         }
       return false;
       }
@@ -412,6 +416,7 @@ public class StendhalClient extends ariannexp
       catch(Exception e)
         {
         Logger.thrown("StendhalClient::StendhalPerceptionListener::onMyRPObject","X",e);
+        for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
         }
         
       return true;
@@ -420,6 +425,7 @@ public class StendhalClient extends ariannexp
     public int onTimeout()
       {      
       Logger.trace("StendhalClient::StendhalPerceptionListener::onTimeout","W","Request resync");
+      StendhalClient.get().addEventLine("Timeout: Requesting synchronization",Color.gray);
       resync();
       return 0;
       }
@@ -427,6 +433,7 @@ public class StendhalClient extends ariannexp
     public int onSynced()
       {
       Logger.trace("StendhalClient::StendhalPerceptionListener::onSynced","W","Synced with server state.");
+      StendhalClient.get().addEventLine("Synchronization completed",Color.gray);
       return 0;
       }
     

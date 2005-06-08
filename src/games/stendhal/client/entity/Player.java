@@ -118,7 +118,7 @@ public class Player extends Speaker
     {
     if(getID().equals(client.getPlayer().getID()))
       {
-      String[] list={"Look","Attack","Stop attack","Set outfit"};
+      String[] list={"Look","Attack","Stop attack","Set outfit","Leave sheep"};
       return list;
       }
     else
@@ -132,6 +132,13 @@ public class Player extends Speaker
     if(action.equals("Set outfit"))
       {
       client.getOutfitDialog().setVisible(true);
+      }
+    else if(action.equals("Leave sheep"))
+      {
+      RPAction rpaction=new RPAction();
+      rpaction.put("type","own");
+      rpaction.put("target","-1");
+      client.send(rpaction);
       }
     else
       {

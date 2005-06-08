@@ -42,8 +42,9 @@ public class Corpse extends PassiveEntity
   public Corpse(RPEntity entity) throws AttributeNotFoundException
     {
     put("type","corpse");
-    setx(entity.getx());
-    sety(entity.gety());
+    Rectangle2D rect=entity.getArea(entity.getx(),entity.gety());
+    setx((int)rect.getX());
+    sety((int)rect.getY());
     degradation=DEGRADATION_TIMEOUT;
     }
 

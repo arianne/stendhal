@@ -75,7 +75,7 @@ public class Sheep extends NPC
 
   public String[] offeredActions()
     {
-    String[] list={"Look","Own", "Attack","Stop attack"};
+    String[] list={"Look", "Own", "Attack","Stop attack"};
     return list;
     }
 
@@ -84,6 +84,14 @@ public class Sheep extends NPC
     if(action.equals("Look"))
       {
       StendhalClient.get().addEventLine("You see a sheep that weights "+weight,Color.green);
+      }
+    else if(action.equals("Own"))
+      {
+      RPAction rpaction=new RPAction();
+      rpaction.put("type","own");
+      int id=getID().getObjectID();
+      rpaction.put("target",id);
+      client.send(rpaction);
       }
     else
       {

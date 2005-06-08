@@ -72,8 +72,7 @@ public class BuyerNPC extends SpeakerNPC
         else
           {
           say("Thanks! Here is your money.");
-          world.remove(player.getSheep());
-          player.removeSheep(sheep);
+          sheep.onDead(this);
           
           player.addXP(sheep.getWeight());
           
