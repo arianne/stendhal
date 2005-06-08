@@ -255,6 +255,13 @@ public class StendhalRPZone extends MarauroaRPZone
     
     int j=0;
     
+    Item itemo=new Item();
+    assignRPObjectID(itemo);
+    itemo.setx(5);
+    itemo.sety(5);
+    add(itemo);
+
+    
     while((text=file.readLine())!=null)
       {
       if(text.trim().equals(""))
@@ -710,10 +717,14 @@ public class StendhalRPZone extends MarauroaRPZone
       for(RPObject other: objects.values())
         {
         Entity otherEntity=(Entity)other;
-        otherEntity.getArea(otherarea,otherEntity.getx(),otherEntity.gety());
-        if(area.intersects(otherarea) && !entity.getID().equals(otherEntity.getID()))
+        
+        if(otherEntity.isCollisionable())
           {
-          return true;
+          otherEntity.getArea(otherarea,otherEntity.getx(),otherEntity.gety());
+          if(area.intersects(otherarea) && !entity.getID().equals(otherEntity.getID()))
+            {
+            return true;
+            }
           }
         }
               

@@ -312,7 +312,7 @@ public abstract class RPEntity extends AnimatedEntity
     return list;
     }
 
-  public void onAction(String action, StendhalClient client)
+  public void onAction(StendhalClient client, String action, String... params)
     {
     if(action.equals("Look"))
       {
@@ -334,10 +334,10 @@ public abstract class RPEntity extends AnimatedEntity
       rpaction.put("type","stop");
       client.send(rpaction);
       }
-    else if(action.equals("Push"))
+    else if(action.equals("Displace"))
       {
       RPAction rpaction=new RPAction();
-      rpaction.put("type","push");
+      rpaction.put("type","displace");
       int id=getID().getObjectID();
       rpaction.put("target",id);
       client.send(rpaction);

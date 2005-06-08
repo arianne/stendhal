@@ -17,53 +17,24 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Portal extends Entity 
+public abstract class PassiveEntity extends Entity
   {
-  public Portal(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+  public PassiveEntity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
     super(gameObjects, object);
-    }
-    
-  protected void loadSprite(RPObject object)
-    {
-    sprite=null;
-    }
-    
-  public Rectangle2D getArea()
-    {
-    return new Rectangle.Double(x,y,1,1);
-    }
-    
-  public Rectangle2D getDrawedArea()
-    {
-    return new Rectangle.Double(x,y,1,1);
-    }  
-    
-
-  public String defaultAction()
-    {
-    return "Use";
-    }
-
-  public String[] offeredActions()
-    {
-    String[] list={"Use"};
-    return list;
     }
 
   public void onAction(StendhalClient client, String action, String... params)
     {
-    if(action.equals("Use"))
+    if(action.equals("Displace"))
       {
       RPAction rpaction=new RPAction();
-      rpaction.put("type","use");
+      rpaction.put("type","displace");
       int id=getID().getObjectID();
-      rpaction.put("object",id);      
+      rpaction.put("target",id);
+      rpaction.put("x",params[0]);
+      rpaction.put("y",params[1]);
       client.send(rpaction);
       }
-    }
-
-  public void draw(GameScreen screen)
-    {
     }
   }

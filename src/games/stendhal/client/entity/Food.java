@@ -81,7 +81,7 @@ public class Food extends AnimatedEntity
     return list;
     }
 
-  public void onAction(String action, StendhalClient client)
+  public void onAction(StendhalClient client, String action, String... params)
     {
     if(action.equals("Look"))
       {

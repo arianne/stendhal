@@ -38,6 +38,8 @@ public class StendhalRPWorld extends RPWorld
     Sign.generateRPClass();
     Portal.generateRPClass();
     Food.generateRPClass();
+    Corpse.generateRPClass();
+    Item.generateRPClass();
     
     RPEntity.generateRPClass();
     

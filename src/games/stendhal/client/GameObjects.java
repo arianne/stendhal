@@ -63,6 +63,7 @@ public class GameObjects
     register("food",Food.class);
     register("corpse",Corpse.class);
     register("sign",Sign.class);
+    register("item",Item.class);
 
     register("portal",Portal.class);
     }
@@ -115,7 +116,7 @@ public class GameObjects
         double dx=o1.getArea().getX()-o2.getArea().getX();
         double dy=o1.getArea().getY()-o2.getArea().getY();
         
-        if(o1 instanceof Corpse)
+        if(o1 instanceof PassiveEntity)
           {
           return -1;
           }

@@ -70,7 +70,7 @@ public class Text extends Entity
     return null;
     }
 
-  public void onAction(String action, StendhalClient client)
+  public void onAction(StendhalClient client, String action, String... params)
     {
     }
 

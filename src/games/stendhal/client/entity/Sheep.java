@@ -73,7 +73,13 @@ public class Sheep extends NPC
     return sprites.get("move_up")[0];
     }
 
-  public void onAction(String action, StendhalClient client)
+  public String[] offeredActions()
+    {
+    String[] list={"Look","Own", "Attack","Stop attack"};
+    return list;
+    }
+
+  public void onAction(StendhalClient client, String action, String... params)
     {
     if(action.equals("Look"))
       {
@@ -81,7 +87,7 @@ public class Sheep extends NPC
       }
     else
       {
-      super.onAction(action,client);
+      super.onAction(client,action,params);
       }
     }
   }

@@ -268,8 +268,11 @@ public class Player extends RPEntity
 
     if(hasSheep())
       {
-      Sheep sheep=(Sheep)world.remove(getSheep());
-      removeSheep(sheep);
+      // We make the sheep ownerless so someone can use it 
+      Sheep sheep=(Sheep)world.get(getSheep());
+      sheep.setOwner(null);
+      
+      remove("sheep");
       }
 
     super.onDead(who, false);

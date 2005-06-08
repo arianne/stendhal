@@ -149,11 +149,19 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\Item.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\NormalCreature.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\NPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\PassiveEntity.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -318,6 +326,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\Goblin.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\Item.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

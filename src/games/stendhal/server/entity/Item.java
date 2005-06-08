@@ -21,53 +21,25 @@ import java.awt.*;
 import java.awt.geom.*;
 
 
-public class Corpse extends PassiveEntity
+public class Item extends PassiveEntity
   {
-  final public static int DEGRADATION_TIMEOUT=6000; // 30 minutes at 300 ms
-  private int degradation;
-
   public static void generateRPClass()
     {
-    RPClass entity=new RPClass("corpse");
+    RPClass entity=new RPClass("item");
     entity.isA("entity");
     }
-  
-  public Corpse(RPObject object) throws AttributeNotFoundException
-    {
-    super(object);
-    put("type","corpse");
-    update();
-    }
 
-  public Corpse(RPEntity entity) throws AttributeNotFoundException
+  public Item() throws AttributeNotFoundException
     {
-    put("type","corpse");
-    setx(entity.getx());
-    sety(entity.gety());
-    degradation=DEGRADATION_TIMEOUT;
+    super();
+    put("type","item");
+    update();
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y,1,1);
-    }  
-  
-  public int getDegradation()
-    {
-    return degradation;
-    } 
-  
-  public int decDegradation()
-    {
-    return degradation--;
-    }
-    
-  public void logic()
-    {
-    if(decDegradation()==0)
-      {
-      world.remove(getID());
-      rp.removeCorpse(this);
-      }
     }
   }
+  
+  

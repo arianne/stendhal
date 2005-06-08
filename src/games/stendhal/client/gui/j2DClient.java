@@ -106,7 +106,7 @@ public class j2DClient extends JFrame
       	String text = playerChatText.getText();
       	text.trim();
 
-      	if(text.startsWith("/tell ")) // Tell command
+        if(text.startsWith("/tell ") ||text.startsWith("/msg ")) // Tell command
       	  {
       	  String[] command = parseString(text, 3);
       	  if(command != null)

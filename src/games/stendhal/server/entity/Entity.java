@@ -169,6 +169,11 @@ public abstract class Entity extends RPObject
     {
     return collides;
     }
+  
+  public boolean isCollisionable()
+    {
+    return true;
+    }
 
   /** This returns the manhattan distance.
    *  It is faster than real distance */

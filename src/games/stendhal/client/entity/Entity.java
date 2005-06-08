@@ -188,5 +188,5 @@ public abstract class Entity
 
   public abstract String defaultAction();
   public abstract String[] offeredActions();
-  public abstract void onAction(String action, StendhalClient client);
+  public abstract void onAction(StendhalClient client, String action, String... params);
   }

@@ -127,7 +127,7 @@ public class Player extends Speaker
       }
     }
 
-  public void onAction(String action, StendhalClient client)
+  public void onAction(StendhalClient client, String action, String... params)
     {
     if(action.equals("Set outfit"))
       {
@@ -135,7 +135,7 @@ public class Player extends Speaker
       }
     else
       {
-      super.onAction(action,client);
+      super.onAction(client,action,params);
       }
     }
   }

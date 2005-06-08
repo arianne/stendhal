@@ -20,7 +20,7 @@ import java.awt.geom.*;
 
 
 /** A Creature entity */
-public class NormalCreature extends NPC 
+public class NormalCreature extends Creature 
   {
   public NormalCreature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {

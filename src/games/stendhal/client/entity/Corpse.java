@@ -17,7 +17,7 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Corpse extends Entity 
+public class Corpse extends PassiveEntity 
   {
   public Corpse(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
@@ -45,11 +45,15 @@ public class Corpse extends Entity
     return list;
     }
 
-  public void onAction(String action, StendhalClient client)
+  public void onAction(StendhalClient client, String action, String... params)
     {
     if(action.equals("Look"))
       {
       StendhalClient.get().addEventLine("You see a corpse",Color.green);
+      }
+    else
+      {
+      super.onAction(client,action,params);
       }
     }
   }

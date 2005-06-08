@@ -241,9 +241,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
        	improve(player,action);
 	      }
-      else if(action.get("type").equals("push"))
+      else if(action.get("type").equals("displace"))
         {
-        push(player,action);
+        displace(player,action);
         }
       else if(action.get("type").equals("who"))
         {
@@ -327,9 +327,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::attack","<");
     }
 
-  private void push(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
+  private void displace(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
-    Logger.trace("StendhalRPRuleProcessor::push",">");
+    Logger.trace("StendhalRPRuleProcessor::displace",">");
     if(action.has("target"))
       {
       int targetObject=action.getInt("target");
@@ -339,21 +339,38 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if(object instanceof RPEntity)
+        if(object instanceof RPEntity) /** Player, Creatures and NPCs */
           {
           if(!player.equals(object))
             {
             RPEntity entity=(RPEntity)object;
             if(player.nextto(entity,0.25))
               {
-              /** TODO: No idea how to push it */
+              /** TODO: No idea how to displace it */
+              }
+            }
+          }
+        else if(object instanceof PassiveEntity)
+          {
+          if(action.has("x") && action.has("y"))
+            {
+            int x=action.getInt("x");
+            int y=action.getInt("y");
+
+            PassiveEntity entity=(PassiveEntity)object;
+            
+            if(player.nextto(entity,0.25) && player.distance(x,y)<8*8 && !zone.simpleCollides(entity,x,y))
+              {              
+              entity.setx(x);
+              entity.sety(y);
+              world.modify(entity);
               }
             }
           }
         }
       }
 
-    Logger.trace("StendhalRPRuleProcessor::push","<");
+    Logger.trace("StendhalRPRuleProcessor::displace","<");
     }
 
   private void improve(Player player, RPAction action)

@@ -355,7 +355,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       {
       if(gameObjects.has(widgetAssociatedEntity))
         {
-        widgetAssociatedEntity.onAction(widget.choosen(), client);
+        widgetAssociatedEntity.onAction(client, widget.choosen());
         widget=null;
         return;
         }
@@ -375,7 +375,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
         {        
         String action=entity.defaultAction();
-        entity.onAction(action, client);
+        entity.onAction(client, action);
         }
       else if(e.getButton()==MouseEvent.BUTTON3)
         {
@@ -399,7 +399,10 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     {
     if(lastDraggedEvent!=null && choosenEntity!=null)
       {
-      choosenEntity.onAction("Push", client);
+      Point2D point=screen.translate(e.getPoint());
+      System.out.println (choosenEntity+" moved to "+point);
+
+      choosenEntity.onAction(client, "Displace", Integer.toString((int)point.getX()), Integer.toString((int)point.getY()));
       choosenEntity=null;
       lastDraggedEvent=null;
       }

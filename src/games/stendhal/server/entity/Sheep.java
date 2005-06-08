@@ -88,6 +88,16 @@ public class Sheep extends Creature
     update();
     Logger.trace("Sheep::Sheep","D","Created Sheep: "+this.toString());
     }
+  
+  public void setOwner(Player owner)
+    {
+    this.owner=owner;
+    }
+
+  public Player getOwner()
+    {
+    return owner;
+    }
 
   public void update() throws AttributeNotFoundException
     {
