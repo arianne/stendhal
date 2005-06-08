@@ -405,10 +405,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\common\EntityAreas.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\common\Level.java</path>
 				<source>true</source>
 			</fileitem>

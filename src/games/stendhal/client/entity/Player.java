@@ -23,6 +23,8 @@ import java.awt.geom.*;
 /** A Player entity */
 public class Player extends Speaker
   {
+  private int outfit;
+  
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
@@ -66,6 +68,12 @@ public class Player extends Speaker
     
     try
       {
+      if(outfit==object.getInt("outfit"))
+        {
+        return;
+        }
+      
+      outfit=object.getInt("outfit");
       player=setOutFitPlayer(store,object);      
       }
     catch(Exception e)

@@ -115,7 +115,11 @@ public class GameObjects
         double dx=o1.getArea().getX()-o2.getArea().getX();
         double dy=o1.getArea().getY()-o2.getArea().getY();
         
-        if(dy<0) 
+        if(o1 instanceof Corpse)
+          {
+          return -1;
+          }
+        else if(dy<0) 
           {
           return -1;
           }
@@ -130,11 +134,6 @@ public class GameObjects
         else
           {
           // Same tile...
-          if(o1 instanceof Corpse)
-            {
-            return -1;
-            }
-          
           return 0;
           }
         }      
@@ -176,8 +175,11 @@ public class GameObjects
   
   public Entity at(double x, double y)
     {
-    for(Entity entity: sortObjects)
+    ListIterator<Entity> it=sortObjects.listIterator(sortObjects.size());
+    while(it.hasPrevious())
       {
+      Entity entity=it.previous();
+
       if(entity.getArea().contains(x,y))
         {
         return entity;
@@ -185,8 +187,11 @@ public class GameObjects
       }
 
     // Maybe user clicked outside char but on the drawed area of it
-    for(Entity entity: sortObjects)
+    it=sortObjects.listIterator(sortObjects.size());
+    while(it.hasPrevious())
       {
+      Entity entity=it.previous();
+
       if(entity.getDrawedArea().contains(x,y))
         {
         return entity;
