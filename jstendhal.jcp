@@ -141,6 +141,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\Creature.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\Entity.java</path>
 				<source>true</source>
 			</fileitem>
@@ -354,6 +358,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\OrcBuyerNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\PassiveEntity.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

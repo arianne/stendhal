@@ -177,8 +177,9 @@ public abstract class Creature extends NPC
       {
       if(player.get("zoneid").equals(get("zoneid")))
         {
-        int fx=player.getx();
-        int fy=player.gety();
+        java.awt.geom.Rectangle2D rect=player.getArea(player.getx(),player.gety());
+        int fx=(int)rect.getX();
+        int fy=(int)rect.getY();
 
         if(Math.abs(fx-x)<range && Math.abs(fy-y)<range)
           {
@@ -271,6 +272,15 @@ public abstract class Creature extends NPC
       attack(target);
       setMovement(target,0,0);
       moveto(getSpeed());
+      
+      if(getPath()==null || getPath().size()==0) // If creature is blocked choose a new target
+        {
+        Logger.trace("Creature::logic","D","Blocked. Choosing a new target.");
+        target=null;
+        clearPath();
+        stopAttack();
+        stop();
+        }
       }
 
     if(!stopped())
