@@ -177,7 +177,7 @@ public class j2DClient extends JFrame
       public void windowClosing(WindowEvent e)
         {
           gameRunning=false;
-      }
+        }
       });
 
     this.client=sc;
@@ -311,10 +311,10 @@ public class j2DClient extends JFrame
       try{Thread.sleep(((20-delta<0)?0:20-delta));}catch(Exception e){};
       }
 
-    Logger.trace("j2DClient::gameLoop","D","Request logout");
+    Logger.trace("j2DClient::gameLoop","!","Request logout");
     client.logout();
 
-    Logger.trace("j2DClient::gameLoop","D","Exit");
+    Logger.trace("j2DClient::gameLoop","!","Exit");
     System.exit(0);    
     }
 
