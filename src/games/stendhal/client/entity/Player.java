@@ -68,7 +68,7 @@ public class Player extends Speaker
     
     try
       {
-      if(outfit==object.getInt("outfit"))
+      if(outfit==object.getInt("outfit") && outfit!=0)
         {
         return;
         }

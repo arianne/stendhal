@@ -95,6 +95,11 @@ public class GameObjects
     {
     try
       {
+      if(object.get("type").equals("player"))
+        {
+        return new Player(this, object);
+        }
+        
       Class entityClass=entityMap.get(object.get("type"));
       java.lang.reflect.Constructor constr=entityClass.getConstructor(GameObjects.class, RPObject.class);
       return (Entity)constr.newInstance(this,object);
