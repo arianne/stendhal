@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.30
+Version 0.25
 
 
 How to play
@@ -62,12 +62,20 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.30 Jun XX, 2004
+0.25 Jun 09, 2004
 - Fixed a bug on dead
 - Fixed a bug on cache timestamp
 - Fixed a bug on stendhalcreateaccount
 - Fixed a sheepless player that get blocked bug.
 - Fixed a createTextBox bug with whitespaces.
+- Fixed blocked Creatures AI bug
+- Fixed bug on tell
+- Fixed corpses problem
+- Added where command
+- Added msg command
+- Added items
+- Added item displacement
+- Added own and release sheep commands
 
 0.20 Jun 05, 2005
 - Added new monsters
