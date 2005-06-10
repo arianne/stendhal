@@ -336,11 +336,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::own",">");
 
     // BUG: This features is potentially abusable right now. Consider removing it...
-    if(player.hasSheep() && action.has("target") && action.getInt("target")==-1) // Allow release of sheep  
+    if(player.hasSheep() && action.has("target") && action.getInt("target")==-1) // Allow release of sheep
       {
-      Sheep sheep=(Sheep)world.get(player.getSheep());      
+      Sheep sheep=(Sheep)world.get(player.getSheep());
       player.removeSheep(sheep);
-      
+
       sheep.setOwner(null);
       addNPC(sheep);
       }
@@ -349,7 +349,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       return;
       }
-      
+
     if(action.has("target"))
       {
       int targetObject=action.getInt("target");
@@ -366,7 +366,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             {
             sheep.setOwner(player);
             removeNPC(sheep);
-            
+
             player.setSheep(sheep);
             world.modify(player);
             }
@@ -408,9 +408,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             int y=action.getInt("y");
 
             PassiveEntity entity=(PassiveEntity)object;
-            
+
             if(player.nextto(entity,0.25) && player.distance(x,y)<8*8 && !zone.simpleCollides(entity,x,y))
-              {              
+              {
               entity.setx(x);
               entity.sety(y);
               world.modify(entity);
@@ -607,14 +607,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Logger.trace("StendhalRPRuleProcessor::beginTurn",">");
 
-    // Debuging assert.
-    if(getTurn()%2000==0)
-      {
-      Logger.trace("StendhalRPRuleProcessor::BugReportOnLists","D",getTurn()+"\t"+playersObject.size()+":"+playersObjectRmText.size()+":"+npcs.size()+":"+respawnPoints.size()+":"+foodItems.size()+":"+corpses.size());
-      }
-
     try
       {
+      // We keep the number of players logged.
+      Statistics.getStatistics().set("Players logged", playersObject.size());
       // TODO: Done this way because a problem with comodification... :(
       npcs.removeAll(npcsToRemove);
       corpses.removeAll(corpsesToRemove);
@@ -737,7 +733,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           Player.destroy(object);
 
           playersObject.remove(object);
-          
+
           Logger.trace("StendhalRPRuleProcessor::onExit","D",object.toString());
           break;
           }
