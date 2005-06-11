@@ -31,12 +31,12 @@
  </layer>
  <layer name="tavern_1_object" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2UQU7DMBBFp6FuUhV1BVygLWJNu0fAQRAFCjuuANwALgE7eoeW9CAgsSriCHzLtjDTSWonol968vjH8Xccy5OM6DutxhjvXlguwTE4AaeBc15h3BfaG7TdNTxi3FP617sD95YHcAa0zgPmuwbL1ORvo34DuX3f1QfK9OdNoleMm4JD+EMwyozvnks6UrKv1WH57+DD5vs11w78XbBX8DxUPL/RJkra5plfa91u1csKyS/TICHqg56l77UDW+8n1fIn2Wr+S4voufXbz5urtW6lOjZfOv8u3/XraFawtpj9ryqe669lE/ll6wn9//qe+g9t6v878TuK7/9YGUK0wFyfwpnKI/zYfL5+peRzHepL+Vy+N2N3gJSzsD5XLvjrzr/bj6I96RXkSL4bX/b9sfl15fJ/AFGLtryACAAA
+   H4sIAAAAAAAAAL2UTU7DMBCFh1A3qUCsgAv0R6xp9wg4CKJAYccVaG9QLlF27R1a0oOAxArEEXiRbdWdTlI7EX3SJ4+fHT/HsTJIiH7jcvTx7J3hHlyCK3DtueYD5v2gfUJ7tIUx5r3G694LGBpG4AZkuvVY7xF8xzr/EPU7SM3ztj5Tur+oEU0xbwbO4XdBL9G+HZd0oWQ/0wHL/wCfJt+tuY7hn4DTnHFf8fy9BlHU0GNunel5v1qWT36R2hFRCzQNLadtm7oTlcsfJJv5b3WiSX3VT2ubddZKdWi+dP9tvu1X0TxnbyHnX1Y8193LLvKL9hPy/f9Du/r+Vvwfxc+/rzQ+WmKtL+FOpQF+aD7fv1Lyvfb1pXwu15uzf4CUszQ+Vyr42+6/PY+8M2nm5Ei+nV/0/qH5VWXz/wBsUGfGgAgAAA==
   </data>
  </layer>
  <layer name="tavern_2_roof" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA/aORgYOjgIKKIR4GKlzP4iFsrdMJD+H0z25zEzMORCcR4SnQ9lFzDT1n5agg/sqBhdfBQMb4Av/gdL/hu1f9T+4Wg/AE1jMkWACAAA
+   H4sIAAAAAAAAAGNgwA/aORgYOjgIKKIR4GKlzP4iFsrdMJD+H0z25zEzMORCcR4SnQ9lFzDT1n5agg/sqBhdfBQMb0Ao/gdD/hu1f9T+4Wg/AHeePCqACAAA
   </data>
  </layer>
  <layer name="tavern_objects" width="32" height="17">
