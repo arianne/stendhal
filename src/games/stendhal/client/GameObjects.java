@@ -320,13 +320,21 @@ public class GameObjects
     
   public void drawText(GameScreen screen)
     {
-    for(Text entity: texts)
-      {
-      entity.draw(screen);
-      }
-    
     texts.removeAll(textsToRemove);
     textsToRemove.clear();
+
+    try
+      {
+      for(Text entity: texts)
+        {
+        entity.draw(screen);      
+        }
+      }
+    catch(ConcurrentModificationException e)
+      {
+      Logger.thrown("GameObjects::drawText","X",e);
+      for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
+      }
     }
   }
   

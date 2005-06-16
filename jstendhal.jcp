@@ -85,6 +85,18 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>stendhal-0.25.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.25.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.25.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>stendhal.jnlp</path>
 				<source>true</source>
 			</fileitem>
