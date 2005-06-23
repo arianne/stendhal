@@ -50,32 +50,78 @@ public class j2DClient extends JFrame
   /** NOTE: It sounds bad to see here a GUI component. Try other way. */
   private JTextField playerChatText;
 
-  private String[] parseString(String s, int nbPart)
+  private static String[] nextString(String from) {
+    char[] cFrom = from.toCharArray();
+    String[] res = new String[2];
+    res[0] = "";
+    res[1] = "";
+    int quote = 0;
+    char sep = ' ';
+    int i=0;
+    if(cFrom[0] == '\'') {
+      quote = 1;
+    }
+    if(cFrom[0] == '"') {
+      quote = 2;
+    }
+    if(quote != 0) {
+      i++;
+      sep = cFrom[0];
+    }
+    for(;i<cFrom.length;i++) {
+      switch(quote) {
+        case 0:
+        case 1:
+          if(cFrom[i] == sep) {
+              res[0] = from.substring(i+1);
+              return res;
+          }
+          res[1] += cFrom[i];
+          break;
+        case 2:
+          switch(cFrom[i]) {
+            case '"':
+              res[0] = from.substring(i+1);
+              return res;
+            case '\\':
+              i++;
+              if(i == cFrom.length) {
+                return null;
+              }
+            default:
+              res[1] += cFrom[i];
+          }
+      }
+    }
+    if(quote == 0) {
+      return res;
+    }
+    return null;
+  }
+
+  private static String[] parseString(String s, int nbPart)
     {
-    String t = new String(s);
     String[] res = new String[nbPart];
+    String [] t;
     int i;
-    t = t.trim();
+    s = s.trim();
     for(i=0;i<nbPart - 1;i++)
       {
-      int j = t.indexOf(' ');
-      if(j == -1)
-        {
-	      return null;
-        }
-
-      res[i] = t.substring(0,j);
-      t = t.substring(j);
-      t = t.trim();
+      t = nextString(s);
+      if(t == null) {
+        return null;
       }
-    res[i] = t;
+      res[i] = t[1];
+      s = t[0].trim();
+      }
+    res[i] = s;
     return res;
     }
 
   public j2DClient(StendhalClient sc)
     {
     super();
-    
+
     // create a frame to contain our game
     setTitle("Stendhal "+stendhal.VERSION+" - a multiplayer online game using Arianne");
 
@@ -307,7 +353,7 @@ public class j2DClient extends JFrame
         }
 
       gameRunning=client.shouldContinueGame();
-      
+
       try{Thread.sleep(((20-delta<0)?0:20-delta));}catch(Exception e){};
       }
 
@@ -315,7 +361,7 @@ public class j2DClient extends JFrame
     client.logout();
 
     Logger.trace("j2DClient::gameLoop","!","Exit");
-    System.exit(0);    
+    System.exit(0);
     }
 
   private void moveScreen(RPObject object, StaticGameLayers gameLayers, long delta)
