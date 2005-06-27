@@ -19,6 +19,9 @@ import marauroa.server.game.*;
 
 import games.stendhal.common.*;
 import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.creature.*;
+import games.stendhal.server.entity.item.*;
+import games.stendhal.server.entity.npc.*;
 
 import java.util.*;
 import java.io.*;
@@ -211,6 +214,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     try
       {
+      /** TODO: This stinks... I can(MUST) be done in a better way. */
       Player player=(Player)world.get(id);
 
       if(action.get("type").equals("move"))
@@ -236,6 +240,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       else if(action.get("type").equals("face"))
         {
         face(player,action);
+        }
+      else if(action.get("type").equals("equip"))
+        {
+        equip(player,action);
+        }
+      else if(action.get("type").equals("drop"))
+        {
+        drop(player,action);
         }
       else if(action.get("type").equals("improve"))
         {
@@ -569,6 +581,94 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Logger.trace("StendhalRPRuleProcessor::face","<");
     }
 
+  private void equip(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Logger.trace("StendhalRPRuleProcessor::equip",">");
+
+    if(action.has("target") && action.has("slot"))
+      {
+      int targetObject=action.getInt("target");
+
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
+      if(zone.has(targetid))
+        {
+        RPObject object=zone.get(targetid);
+        if(object instanceof PassiveEntity)
+          {
+          PassiveEntity entity=(PassiveEntity)object;
+
+          if(player.nextto(entity,0.25) && player.hasSlot(action.get("slot")))
+            {
+            RPSlot slot=player.getSlot(action.get("slot"));
+            if(slot.size()==0)
+              {
+              slot.add(entity);
+              world.remove(entity.getID());
+              world.modify(player);
+              }            
+            }
+          }
+        }
+      }
+
+    Logger.trace("StendhalRPRuleProcessor::equip","<");
+    }
+
+  private void drop(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Logger.trace("StendhalRPRuleProcessor::drop",">");
+
+    if(action.has("slot") && action.has("x") && action.has("y"))
+      {
+      if(player.hasSlot(action.get("slot")))
+        {
+        RPSlot slot=player.getSlot(action.get("slot"));
+        
+        if(slot.size()==0)
+          {
+          return;
+          }
+          
+        StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+        
+        RPObject object=slot.iterator().next();
+        Entity entity;
+        
+        if(object.get("type").equals("item"))
+          {
+          entity=new Item();
+          }
+        else if(object.get("type").equals("corpse"))
+          {
+          entity=new Corpse(object);
+          }
+        else
+          {
+          Logger.trace("StendhalRPRuleProcessor::drop","X",object.toString());
+          entity=null;
+          }
+          
+        int x=action.getInt("x");
+        int y=action.getInt("y");
+        
+        if(!zone.simpleCollides(entity,x,y))
+          {
+          slot.clear();
+  
+          entity.setx(x);
+          entity.sety(y);
+          zone.assignRPObjectID(entity);
+          zone.add(entity);
+          
+          world.modify(player);        
+          }        
+        }
+      }
+
+    Logger.trace("StendhalRPRuleProcessor::drop","<");
+    }
+
   private void use(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Logger.trace("StendhalRPRuleProcessor::use",">");
@@ -606,6 +706,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   synchronized public void beginTurn()
     {
     Logger.trace("StendhalRPRuleProcessor::beginTurn",">");
+    
+    Logger.trace("StendhalRPRuleProcessor::BugReportOnLists","D",corpses.size()+","+corpsesToRemove.size()+","+foodItems.size()+","+npcs.size()+","+npcsToAdd.size()+","+npcsToRemove.size()+","+playersObject.size()+","+playersObjectRmText.size()+","+respawnPoints.size());
 
     try
       {

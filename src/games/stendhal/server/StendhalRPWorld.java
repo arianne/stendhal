@@ -17,6 +17,9 @@ import marauroa.server.game.*;
 import marauroa.common.game.*;
 import marauroa.common.*;
 import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.item.*;
+import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.creature.*;
 
 public class StendhalRPWorld extends RPWorld
   {
@@ -81,7 +84,7 @@ public class StendhalRPWorld extends RPWorld
     addArea("dungeon_000",1);
     addArea("afterlive",1);
     addArea("forest",1);
-    addArea("dungeon_001",1);
+    addArea("dungeon_001",2);
     }
   
   private void addArea(String name, int version) throws java.io.IOException
@@ -93,6 +96,17 @@ public class StendhalRPWorld extends RPWorld
     area.addCollisionLayer(name+"_collision","games/stendhal/server/maps/"+name+"_collision.stend", version);
     area.populate("games/stendhal/server/maps/"+name+"_objects.stend");
     addRPZone(area);
+
+    try
+      {
+      Class entityClass=Class.forName("games.stendhal.server.maps."+name);
+      java.lang.reflect.Constructor constr=entityClass.getConstructor(StendhalRPZone.class);
+      Object object=constr.newInstance(area);
+      }
+    catch(Exception e)
+      {
+      Logger.trace("StendhalRPWorld::addArea","D","This zone doesn't have an extra populate method");
+      }
     }
   
   public void onFinish() throws Exception

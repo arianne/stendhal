@@ -79,18 +79,22 @@ public class j2DClient extends JFrame
           res[1] += cFrom[i];
           break;
         case 2:
-          switch(cFrom[i]) {
-            case '"':
-              res[0] = from.substring(i+1);
-              return res;
-            case '\\':
-              i++;
-              if(i == cFrom.length) {
-                return null;
+          if(cFrom[i]=='"')
+            {
+            res[0] = from.substring(i+1);
+            return res;
+            }
+          else
+            {
+            i++;
+            if(i==cFrom.length)
+              {
+              return null;
               }
-            default:
-              res[1] += cFrom[i];
-          }
+            
+            res[1] += cFrom[i];
+            }
+          break;
       }
     }
     if(quote == 0) {

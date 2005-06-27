@@ -23,6 +23,10 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.*;
 
+import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.item.*;
+import games.stendhal.server.entity.creature.*;
+
 public class StendhalRPAction
   {
   private static RPServerManager rpman;
@@ -170,10 +174,10 @@ public class StendhalRPAction
 
           // If we are too far from sheep skip zone change
           Sheep sheep=null;
-//          if(player.hasSheep())
-//            {
-//            sheep=(Sheep)world.get(player.getSheep());
-//            }
+          if(player.hasSheep())
+            {
+            sheep=(Sheep)world.get(player.getSheep());
+            }
 
           if(!(sheep!=null && player.distance(sheep)>7*7))
             {

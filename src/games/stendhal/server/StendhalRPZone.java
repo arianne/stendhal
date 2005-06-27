@@ -27,6 +27,9 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
+import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.item.*;
+import games.stendhal.server.entity.creature.*;
 
 public class StendhalRPZone extends MarauroaRPZone 
   {
@@ -105,6 +108,16 @@ public class StendhalRPZone extends MarauroaRPZone
     {
     zoneChangePoints.add(entry);
     }  
+  
+  public void addPortal(Portal portal)
+    {
+    portals.add(portal);
+    }
+
+  public void addNPC(NPC npc)
+    {
+    npcs.add(npc);
+    }
 
   public void addEntryPoint(String entry)
     {
@@ -273,410 +286,146 @@ public class StendhalRPZone extends MarauroaRPZone
       for(String item: items)
         {
         int value=Integer.parseInt(item)-(2401) /* Number of tiles at zelda_outside_chipset */;
-        /** TODO: Change it by another way of not hardcoding the objects. */
-        try
-          {
-          switch(value)
-            {
-            case 1: /* Entry point */
-              {
-              String entryPoint=new String(j%width+","+j/width);
-              addEntryPoint(entryPoint);
-              break;
-              }            
-            case 2: /* Zone change  */
-              {
-              String entryPoint=new String(j%width+","+j/width);
-              addZoneChange(entryPoint);
-              break;
-              }
-            case 3: /* Portal  */
-              {
-              Portal portal=new Portal();
-              assignRPObjectID(portal);
-              portal.setx(j%width);
-              portal.sety(j/width);
-              portal.setNumber(-1);
-              
-              if(zoneid.getID().equals("afterlive"))
-                {
-                if((portal.getx()==13 || portal.getx()==14) && portal.gety()==1) 
-                  {
-                  portal.setNumber(0);
-                  portal.setDestination("city",0);
-                  }
-                }              
-              else if(zoneid.getID().equals("city"))
-                {
-                if(portal.getx()==28 && portal.gety()==24) 
-                  {
-                  portal.setNumber(0);
-                  portal.setDestination("dungeon_000",0);
-                  }
-                }              
-              else if(zoneid.getID().equals("dungeon_000"))
-                {
-                if(portal.getx()==27 && portal.gety()==36) 
-                  {
-                  portal.setNumber(0);
-                  portal.setDestination("city",0);
-                  }
-                else if(portal.getx()==42 && portal.gety()==43) 
-                  {
-                  portal.setNumber(1);
-                  portal.setDestination("dungeon_001",0);
-                  }
-                }              
-              else if(zoneid.getID().equals("dungeon_001"))
-                {
-                if(portal.getx()==5 && portal.gety()==7) 
-                  {
-                  portal.setNumber(0);
-                  portal.setDestination("dungeon_000",1);
-                  }
-                else if(portal.getx()==67 && portal.gety()==118) 
-                  {
-                  portal.setNumber(1);
-                  portal.setDestination("forest",0);
-                  }
-                }              
-              else if(zoneid.getID().equals("forest"))
-                {
-                if(portal.getx()==103 && portal.gety()==65) 
-                  {
-                  portal.setNumber(0);
-                  portal.setDestination("dungeon_001",1);
-                  }
-                }              
-              else if(zoneid.getID().equals("tavern"))
-                {
-                if(portal.getx()==20 && portal.gety()==1) 
-                  {
-                  portal.setNumber(0);
-                  portal.setDestination("village",0);
-                  }
-                }              
-              else if(zoneid.getID().equals("village"))
-                {
-                if(portal.getx()==16 && portal.gety()==20) 
-                  {
-                  portal.setNumber(0);
-                  portal.setDestination("tavern",0);
-                  }
-                }           
-                   
-              if(portal.getNumber()!=-1)
-                {
-                add(portal);
-  
-                portals.add(portal);
-                }
-
-              break;
-              }
-            case 11: /* Sheep */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Sheep(),1);
-              respawnPoints.add(point);
-              
-              break;
-              }
-            case 12: /* Rat */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Rat(),1);
-              respawnPoints.add(point);
-              
-              break;
-              }
-            case 13: /* Cave rat */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new CaveRat(),1);
-              respawnPoints.add(point);
-              
-              break;
-              }
-            case 14: /* Wolf */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Wolf(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 15: /* Cobra */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Cobra(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 16: /* Orc */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Orc(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 17: /* Gargoyle */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Gargoyle(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 18: /* Ogre */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Ogre(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 19: /* Kobold */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Kobold(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 20: /* Boar */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Boar(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 21: /* Troll */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Troll(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 22: /* Goblin */
-              {
-              RespawnPoint point=new RespawnPoint(j%width,j/width,2);
-              point.set(this, new Goblin(),1);
-              respawnPoints.add(point);
-
-              break;
-              }
-            case 71: /* NPC Beggar */
-              {
-              BeggarNPC npc=new BeggarNPC();
-              assignRPObjectID(npc);
-              npc.setName("Diogenes");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(100);
-              add(npc);
-
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding NPC beggar: "+npc);
-              break;
-              }
-            case 72: /* NPC Buyer */
-              {
-              BuyerNPC npc=new BuyerNPC();
-              assignRPObjectID(npc);
-              npc.setName("Sato");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(100);
-              add(npc);
-
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding NPC buyer: "+npc);
-              break;
-              }
-            case 73: /* NPC Journalist */
-              {
-              JournalistNPC npc=new JournalistNPC();
-              assignRPObjectID(npc);
-              npc.setName("Brian");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(100);
-              add(npc);
-              
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding NPC Journalist: "+npc);
-              break;
-              }
-            case 74: /* NPC Seller */
-              {
-              SellerNPC npc=new SellerNPC();
-              assignRPObjectID(npc);
-              npc.setName("Nishiya");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(100);
-              add(npc);
-              
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding NPC seller: "+npc);
-              break;
-              }
-            case 75: /* Welcomer NPC  */
-              {              
-              WelcomerNPC npc=new WelcomerNPC();
-              assignRPObjectID(npc);
-              npc.setName("Carmen");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(100);
-              add(npc);
-
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding Welcomer NPC: "+npc);
-              break;
-              }
-            case 76: /* Training dummy  */
-              {              
-              TrainingDummy dummy=new TrainingDummy();
-              assignRPObjectID(dummy);
-              dummy.setx(j%width);
-              dummy.sety(j/width);
-              dummy.setbaseHP(100);
-              add(dummy);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding Training dummy: "+dummy);
-              break;
-              }
-            case 77: /* Angel NPC  */
-              {              
-//              AngelNPC npc=new AngelNPC();
-//              assignRPObjectID(npc);
-//              npc.setName("Simon");
-//              npc.setx(j%width);
-//              npc.sety(j/width);
-//              npc.setbaseHP(100);
-//              add(npc);
-//
-//              npcs.add(npc);
-//
-//              Logger.trace("StendhalRPZone::populate","D","Adding Angel NPC: "+npc);
-              break;
-              }
-            case 78: /* Tavern Main NPC  */
-              {              
-              TavernBarMaidNPC npc=new TavernBarMaidNPC();
-              assignRPObjectID(npc);
-              npc.setName("Margaret");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(100);
-              add(npc);
-
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding Tavern Maid NPC: "+npc);
-              break;
-              }
-            case 79: /* Butcher NPC  */
-              {              
-              ButcherNPC npc=new ButcherNPC();
-              assignRPObjectID(npc);
-              npc.setName("Paul");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(100);
-              add(npc);
-
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding Butcher NPC: "+npc);
-              break;
-              }
-            case 80: /* Old Orc NPC  */
-              {              
-              OrcBuyerNPC npc=new OrcBuyerNPC();
-              assignRPObjectID(npc);
-              npc.setName("Tor'Koom");
-              npc.setx(j%width);
-              npc.sety(j/width);
-              npc.setbaseHP(100);
-              add(npc);
-
-              npcs.add(npc);
-
-              Logger.trace("StendhalRPZone::populate","D","Adding Orc Buyer NPC: "+npc);
-              break;
-              }
-            case 91: /* Sign */
-              {
-              Sign sign=new Sign();
-              assignRPObjectID(sign);
-              sign.setx(j%width);
-              sign.sety(j/width);
-              if(zoneid.getID().equals("village"))
-                {
-                if(sign.getx()==23 && sign.gety()==47) sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
-                if(sign.getx()==26 && sign.gety()==27) sign.setText("Talk to Nishiya to buy a sheep!.|He has the best prices for miles.");
-                if(sign.getx()==60 && sign.gety()==33) sign.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");
-                }
-              else if(zoneid.getID().equals("city"))
-                {
-                if(sign.getx()==4 && sign.gety()==21) sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
-                if(sign.getx()==8 && sign.gety()==33) sign.setText("Welcome to Stendhal!| Please report any problems and issues at our webpage.");
-                if(sign.getx()==26 && sign.gety()==26) sign.setText("You are about to enter the Dungeons.|But Beware! This area is infested with rats and legend has |it that many Adventurers have died down there...");
-                if(sign.getx()==43 && sign.gety()==26) sign.setText("Talk to Sato to sell your sheep!.|He probably won't give you a fair price but this is a small village...|The price he will offer you depends on the weight of your sheep.");
-                if(sign.getx()==44 && sign.gety()==48) sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
-                }
-              else if(zoneid.getID().equals("plains"))
-                {
-                if(sign.getx()==118 && sign.gety()==43) sign.setText("You are about to leave this area to move to the forest.|You may fatten up your sheep there on wild berries.|Be careful though, these forests crawl with wolves.");
-                if(sign.getx()==38 && sign.gety()==3) sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
-                if(sign.getx()==113 && sign.gety()==3) sign.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");
-                }
-              else if(zoneid.getID().equals("afterlive"))
-                {
-                if(sign.getx()==11 && sign.gety()==19) sign.setText("I regret to tell you that you have died!|You have lost some of your items and 10% of your eXPerience points.|Be more careful next time. On the up side you can now return to city.");
-                }
-                
-              add(sign);
-  
-              Logger.trace("StendhalRPZone::populate","D","Adding SIGN: "+sign);
-              break;
-              }
-            case 92: /* Food */
-              {
-              Food food=new Food();
-              assignRPObjectID(food);
-              food.setAmount(5);
-              food.setx(j%width);
-              food.sety(j/width);
-              add(food);
-
-              foodItems.add(food);
-              break;
-              }
-            }
-          }
-        catch(AttributeNotFoundException e)
-          {
-          Logger.thrown("StendhalRPZone::populate","X",e);
-          }
-        
+        createEntityAt(value,j%width,j/width);
         j++;      
         }
       }
 
     Logger.trace("StendhalRPZone::populate","<");
+    }
+  
+  protected void createEntityAt(int type, int x, int y)
+    {
+    try
+      {
+      switch(type)
+        {
+        case 1: /* Entry point */
+          {
+          String entryPoint=new String(x+","+y);
+          addEntryPoint(entryPoint);
+          break;
+          }            
+        case 2: /* Zone change  */
+          {
+          String entryPoint=new String(x+","+y);
+          addZoneChange(entryPoint);
+          break;
+          }
+        case 11: /* Sheep */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Sheep(),1);
+          respawnPoints.add(point);
+          
+          break;
+          }
+        case 12: /* Rat */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Rat(),1);
+          respawnPoints.add(point);
+          
+          break;
+          }
+        case 13: /* Cave rat */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new CaveRat(),1);
+          respawnPoints.add(point);
+          
+          break;
+          }
+        case 14: /* Wolf */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Wolf(),1);
+          respawnPoints.add(point);
+  
+          break;
+          }
+        case 15: /* Cobra */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Cobra(),1);
+          respawnPoints.add(point);
+  
+          break;
+          }
+        case 16: /* Orc */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Orc(),1);
+          respawnPoints.add(point);
+  
+          break;
+          }
+        case 17: /* Gargoyle */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Gargoyle(),1);
+          respawnPoints.add(point);
+  
+          break;
+          }
+        case 18: /* Ogre */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Ogre(),1);
+          respawnPoints.add(point);
+  
+          break;
+          }
+        case 19: /* Kobold */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Kobold(),1);
+          respawnPoints.add(point);
+  
+          break;
+          }
+        case 20: /* Boar */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Boar(),1);
+          respawnPoints.add(point);
+  
+          break;
+          }
+        case 21: /* Troll */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Troll(),1);
+          respawnPoints.add(point);
+  
+          break;
+          }
+        case 22: /* Goblin */
+          {
+          RespawnPoint point=new RespawnPoint(x,y,2);
+          point.set(this, new Goblin(),1);
+          respawnPoints.add(point);
+  
+          break;
+          }
+        case 92: /* Food */
+          {
+          Food food=new Food();
+          assignRPObjectID(food);
+          food.setAmount(5);
+          food.setx(x);
+          food.sety(y);
+          add(food);
+  
+          foodItems.add(food);
+          break;
+          }
+        }
+      }
+    catch(AttributeNotFoundException e)
+      {
+      Logger.thrown("StendhalRPZone::populate","X",e);
+      }
     }
     
   public int getWidth()

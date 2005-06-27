@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="76" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
+  <image source="C:\games\stendhal_mapeditor-1.01\zelda_outside_0_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
+  <image source="C:\games\stendhal_mapeditor-1.01\zelda_outside_1_chipset.gif" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+  <image source="C:\games\stendhal_mapeditor-1.01\zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+  <image source="C:\games\stendhal_mapeditor-1.01\zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="C:\games\stendhal_mapeditor-1.01\zelda_interior_0_chipset.gif" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.gif"/>
@@ -26,7 +26,7 @@
  </tileset>
  <layer name="forest_0_floor" width="128" height="76">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2bTU7DMBBG01X3LQchHAS4CSepuEVXvQjiUqQSFpZx3DjxjCf2WzyJnyiK/D6PnXF7HIbhCAAAAAAAAAAAABDwcRiG26H+c0Adbr/+P8lAlzj/5KBPQv+sBf1BDegbakDf4B8srgEXI8/RA7EaEI69dD4ukWeYg1zI+9dykOOdDNjxX2KfsNY9GbDhf+34b/VOBmz4zxn/ks5L16HTdI+zx1NnmZKYh5K+S/t/nu4xTlw9zoc+MqHpaU/+Rw/3t9IZCOuOds5acC/l38+B/3spP6eZvL0o+q/tbQ/+YxkI5+wa5mqNlv9W5r6G/1geYutD6tpYjmLXavhvyX0p/0vdP/Ib/jxGrk39T9p/a+5rzP9UBrZk5yrsv0X3pf1vcbk2P1rzv7Ynq/5fp3u8BUg4XpIB/Ov7n8uEtn/p+l/b0578xzKg4f8d/9lInQHFejS5+zorc79l/9+Z4xbru6Z6NKW9x67TePer7UmKXL9uzMM9X4qlXnP2euH7H/63+/drdspn7job2w8u9f+ot6zV+/ky4ErSv3M/rvCbm4FYL2+uv5fq+23JJDXgz7+0ez8DOetGyRqE///c935+za8xpnvC0hoQ27fnPB/u95mF3Pe1FO7sDvf2c1DSu+9f8zMzrSKdAQn3+N9HDqTc499+BiTd499uDqS9499mDrS84x/wD/jvF9f7w3+fuN7f/cyn1e9nQtp/je9OgQ3Cs1jOAAAAAAAAAAAAAAAAAAAAAAAAAAAAwDo/Z2M0QACYAAA=
+   H4sIAAAAAAAAAO2bTW6DMBBGySr7tgdJepC2N+lJot6CVZSco2p7pxIpSJZjfgye8WC/xZPygxDifR4PBvZN0+wBAAAAAAAAAAAAPD53TXPe5T8OyMP57v+LDFRJ758c1Invn7mgPqgBdUMNqBv8g8U54GTkOGogVAP8cy+dj1PgGIYgF/L+tRzEeCcDdvyn6BOWuicDNvwvPf9rvZMBG/5jzn9K56nr0FO3j2eHl8oyJTEOJX2n9n/o9nHsaO9cvTyUnAlNT1vx396/H53frwIZ8OuOds5KcC/l382BWxdS+bm5vwTy9qroP7e3LfgPZcAfs0sIudf0X8rY1/AfyoM/P0xt6+doaFsN/yW5T+V/rvspv/7nY2Dbsf+k/ZfmPsf4H8vAmuy0wv5LdJ/a/xqXS/OjNf5ze7Lq/63bx7uHhOM5GcC/vv+hTGj7l67/uT1tyX+fgV9l/x/4j0bqHlBojSa2r7My9kv2/xN53kLrrmNrNKm9h7bTuPbL7UmKWL83r3+7x55vjLleY3o9//oP/+v99zV7ym/sPBvqB+f6n1pb1lr7+TbgStK/616ij3IzEFrLG1rfG/rdz6hk71dyDdBw72YgZt5IWYPw/8it99NyXwKW5oBQ3x5zfLjfZhZir9fGOOB+MzlI6d31r/nMTKlIZ0DCPf63kQMp9/i3nwFJ9/i3mwNp7/i3mQMt7/gH/AP+66Vf+8N/nfTP7ffv5JT6jiYM+8/x7hTYwL8Xyz0AAAAAAAAAAAAAAAAAAAAAAAAAAACwzj/CXX0xAJgAAA==
   </data>
  </layer>
  <layer name="forest_1_object" width="128" height="76">

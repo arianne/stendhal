@@ -18,6 +18,8 @@ import marauroa.server.game.*;
 import java.util.*;
 import games.stendhal.common.Level;
 
+import games.stendhal.server.entity.creature.*;
+
 public class RespawnPoint
   {
   private int x;
