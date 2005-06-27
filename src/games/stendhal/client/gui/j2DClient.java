@@ -222,7 +222,7 @@ public class j2DClient extends JFrame
       {
       public void windowClosing(WindowEvent e)
         {
-          gameRunning=false;
+        gameRunning=false;
         }
       });
 
@@ -352,9 +352,22 @@ public class j2DClient extends JFrame
         fps=0;
         }
 
-      gameRunning=client.shouldContinueGame();
-
-      try{Thread.sleep(((20-delta<0)?0:20-delta));}catch(Exception e){};
+      gameRunning&=client.shouldContinueGame();
+      
+      Logger.trace("j2DClient::gameLoop","D","Start sleeping");
+      long wait=20-delta;
+      if(wait>0)
+        {
+        if(wait>50) 
+          {
+          Logger.trace("j2DClient::gameLoop","X","Waiting "+wait+" ms");
+          wait=50;
+          }
+          
+        try{Thread.sleep(wait);}catch(Exception e){};
+        }
+        
+      Logger.trace("j2DClient::gameLoop","D","End sleeping");
       }
 
     Logger.trace("j2DClient::gameLoop","!","Request logout");

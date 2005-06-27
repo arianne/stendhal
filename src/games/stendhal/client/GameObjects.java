@@ -91,7 +91,7 @@ public class GameObjects
     }
   
   /** Create a Entity of the correct type depending of the arianne object */
-  private Entity entityType(RPObject object) 
+  public Entity entityType(RPObject object) 
     {
     try
       {
@@ -103,6 +103,23 @@ public class GameObjects
       Class entityClass=entityMap.get(object.get("type"));
       java.lang.reflect.Constructor constr=entityClass.getConstructor(GameObjects.class, RPObject.class);
       return (Entity)constr.newInstance(this,object);
+      }
+    catch(Exception e)
+      {
+      Logger.trace("GameObjects::entityType","X",object.toString());
+      Logger.thrown("GameObjects::entityType","X",e);
+      for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
+      return null;
+      }
+    }
+
+  public Sprite spriteType(RPObject object) 
+    {
+    try
+      {
+      Class entityClass=entityMap.get(object.get("type"));
+      java.lang.reflect.Constructor constr=entityClass.getConstructor(GameObjects.class, RPObject.class);
+      return ((Entity)constr.newInstance(this,object)).getSprite();
       }
     catch(Exception e)
       {

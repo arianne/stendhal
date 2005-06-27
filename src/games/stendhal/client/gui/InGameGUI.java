@@ -17,12 +17,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   {
   interface InGameAction
     {
-    public void onAction();
+    public void onAction(Object... param);
     }
   
   abstract class InGameActionListener implements InGameAction
     {
-    abstract public void onAction();
+    abstract public void onAction(Object... param);
     }
     
   static class InGameButton
@@ -100,6 +100,66 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       if(area.contains(point))
         {
         action.onAction();
+        return true;
+        }
+      
+      return false;
+      }    
+    }
+
+  static class InGameDroppableArea
+    {
+    private String name;
+    private Rectangle area;
+    private InGameAction action;
+    private boolean enabled;
+    
+    public InGameDroppableArea(String name,int x, int y, int width, int height)
+      {
+      this.name=name;
+      area=new Rectangle(x,y,width,height);
+      this.action=null;
+      this.enabled=true;
+      }
+    
+    public String getName()
+      {
+      return name;
+      }
+    
+    public void setEnabled(boolean enabled)
+      {
+      this.enabled=enabled;
+      }
+    
+    public void addActionListener(InGameAction action)
+      {
+      this.action=action;
+      }
+
+    public void draw(GameScreen screen)
+      {
+      Graphics g=screen.expose();
+      g.setColor(Color.white);
+      g.drawRect((int)area.getX(),(int)area.getY(),(int)area.getWidth(),(int)area.getHeight());      
+      }
+      
+    public boolean isMouseOver(Point2D point)
+      {
+      if(area.contains(point))
+        {
+        return true;
+        }
+      
+      return false;
+      }
+      
+    public boolean released(Point2D point, Entity choosenEntity)
+      {
+      if(!enabled) return false;
+      if(area.contains(point))
+        {
+        action.onAction(choosenEntity,this);
         return true;
         }
       
@@ -196,7 +256,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     }
   
   private InGameList widget;
-  private java.util.List<InGameButton> buttons;
+  private java.util.List<InGameButton> buttons;  
+  private java.util.List<InGameDroppableArea> droppableAreas;
   private Entity widgetAssociatedEntity;
   
   private StendhalClient client;
@@ -246,14 +307,21 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     
     pressed=new HashMap<Integer, Object>();
     
+    buttons=new java.util.LinkedList<InGameButton>();
+    droppableAreas=new java.util.LinkedList<InGameDroppableArea>();
+    
+    buildGUI();
+    }
+  
+  private void buildGUI()
+    {
     SpriteStore st=SpriteStore.get();
     
-    buttons=new java.util.LinkedList<InGameButton>();
     InGameButton button=null;
     button=new InGameButton("atk",st.getSprite("data/atk_up.gif"), st.getSprite("data/atk_up_pressed.gif"), 530,84);
     button.addActionListener(new InGameActionListener()
       {
-      public void onAction()
+      public void onAction(Object... param)
         {
         RPAction improve=new RPAction();
         improve.put("type","improve");
@@ -267,7 +335,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button=new InGameButton("def",st.getSprite("data/def_up.gif"), st.getSprite("data/def_up_pressed.gif"), 530,84+14);
     button.addActionListener(new InGameActionListener()
       {
-      public void onAction()
+      public void onAction(Object... param)
         {
         RPAction improve=new RPAction();
         improve.put("type","improve");
@@ -281,7 +349,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button=new InGameButton("hp",st.getSprite("data/hp_up.gif"), st.getSprite("data/hp_up_pressed.gif"), 530,84+28);
     button.addActionListener(new InGameActionListener()
       {
-      public void onAction()
+      public void onAction(Object... param)
         {
         RPAction improve=new RPAction();
         improve.put("type","improve");
@@ -296,7 +364,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button=new InGameButton("exit",st.getSprite("data/exit.gif"), st.getSprite("data/exit_pressed.gif"), 320,360);
     button.addActionListener(new InGameActionListener()
       {
-      public void onAction()
+      public void onAction(Object... param)
         {
         InGameGUI.this.client.requestLogout();
         }
@@ -307,7 +375,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button=new InGameButton("back",st.getSprite("data/back.gif"), st.getSprite("data/back_pressed.gif"), 220,360);
     button.addActionListener(new InGameActionListener()
       {
-      public void onAction()
+      public void onAction(Object... param)
         {
         for(InGameButton button: buttons)    
           {
@@ -321,11 +389,50 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button.setEnabled(false);
     buttons.add(button);
     
+    /** Inventory */
     inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.gif");
+    
+    InGameActionListener dropToInventory=new InGameActionListener()
+      {
+      public void onAction(Object... param)
+        {
+        RPAction action=new RPAction();
+        action.put("type","equip");
+        action.put("target",((Entity)param[0]).getID().getObjectID());
+        action.put("slot",((InGameDroppableArea)param[1]).getName());
+        InGameGUI.this.client.send(action);
+        }
+      };
+    
+    InGameDroppableArea area=new InGameDroppableArea("lhand",532,54,28,28);
+    area.addActionListener(dropToInventory);
+    droppableAreas.add(area);
+    
+    area=new InGameDroppableArea("head",565,12,28,28);
+    area.addActionListener(dropToInventory);
+    droppableAreas.add(area);
+    
+    area=new InGameDroppableArea("torso",565,43,28,28);
+    area.addActionListener(dropToInventory);
+    droppableAreas.add(area);
+    
+    area=new InGameDroppableArea("legs",565,74,28,28);
+    area.addActionListener(dropToInventory);
+    droppableAreas.add(area);
+    
+    area=new InGameDroppableArea("feet",565,105,28,28);
+    area.addActionListener(dropToInventory);
+    droppableAreas.add(area);
+    
+    area=new InGameDroppableArea("rhand",598,54,28,28);
+    area.addActionListener(dropToInventory);
+    droppableAreas.add(area);
+    
     }
   
   private MouseEvent lastDraggedEvent;
   private Entity choosenEntity;
+  private InGameDroppableArea choosenWidget;
     
   public void mouseDragged(MouseEvent e) 
     {
@@ -392,6 +499,18 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       {        
       Point2D point=screen.translate(e.getPoint());
       choosenEntity=gameObjects.at(point.getX(),point.getY());
+      
+      if(choosenEntity==null)
+        {
+        for(InGameDroppableArea item: droppableAreas)    
+          {
+          if(item.isMouseOver(e.getPoint()))
+            {
+            choosenWidget=item;
+            return;
+            }
+          } 
+        }
       }
     }
 
@@ -401,10 +520,34 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       {
       Point2D point=screen.translate(e.getPoint());
       System.out.println (choosenEntity+" moved to "+point);
+      
+      // We check first inventory and if it fails we wanted to move the object so. 
+      for(InGameDroppableArea item: droppableAreas)    
+        {
+        if(item.released(e.getPoint(),choosenEntity))
+          {
+          // We dropped it in inventory
+          System.out.println ("Dropped "+choosenEntity+" into "+item.getName());
+          return;
+          }
+        }
 
       choosenEntity.onAction(client, "Displace", Integer.toString((int)point.getX()), Integer.toString((int)point.getY()));
       choosenEntity=null;
       lastDraggedEvent=null;
+      }
+
+    if(lastDraggedEvent!=null && choosenWidget!=null)
+      {
+      Point2D point=screen.translate(e.getPoint());
+      System.out.println (choosenWidget.getName()+" dropped to "+point);
+      
+      RPAction action=new RPAction();
+      action.put("type","drop");
+      action.put("slot",choosenWidget.getName());
+      action.put("x",(int)point.getX());
+      action.put("y",(int)point.getY());
+      InGameGUI.this.client.send(action);
       }
     }
 
@@ -515,10 +658,35 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   public void draw(GameScreen screen)
     {
     screen.drawInScreen(inGameInventory,530,10);
+
+    for(InGameDroppableArea item: droppableAreas)    
+      {
+      item.draw(screen);
+      } 
     
     RPObject player=client.getPlayer();
     if(player!=null)
       {
+      if(player.hasSlot("lhand"))
+        {
+        RPSlot slot=player.getSlot("lhand");
+        if(slot.size()==1)
+          {
+          RPObject object=slot.iterator().next();
+          screen.drawInScreen(gameObjects.spriteType(object),532,54);
+          }
+        }
+      
+      if(player.hasSlot("rhand"))
+        {
+        RPSlot slot=player.getSlot("rhand");
+        if(slot.size()==1)
+          {
+          RPObject object=slot.iterator().next();
+          screen.drawInScreen(gameObjects.spriteType(object),598,54);
+          }
+        }
+      
       screen.drawInScreen(screen.createString("HP : "+player.get("hp")+"/"+player.get("base_hp"),Color.white),550, 144);
       screen.drawInScreen(screen.createString("ATK: "+player.get("atk"),Color.white),550, 164);
       screen.drawInScreen(screen.createString("DEF: "+player.get("def"),Color.white),550, 184);

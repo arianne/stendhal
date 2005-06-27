@@ -107,6 +107,11 @@ public abstract class Entity
     {
     return "sprites/"+type+".gif";
     }
+  
+  public Sprite getSprite()
+    {
+    return sprite;
+    }
     
   /** Loads the sprite that represent this entity */
   protected void loadSprite(RPObject object)

@@ -375,9 +375,15 @@ public class StendhalClient extends ariannexp
       {
       try
         {
-        Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","D","Object("+object.getID()+") added to Static Objects container");
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","D","Object("+object.getID()+") modified in Game Objects container");
+
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","D","Original("+object+") modified in Game Objects container");
+
         gameObjects.modifyRemoved(object, changes);
         object.applyDifferences(null,changes);
+        
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","D","Modified("+object+") modified in Game Objects container");
+        Logger.trace("StendhalClient::StendhalPerceptionListener::onModifiedDeleted","D","Changes("+changes+") modified in Game Objects container");
         }
       catch(Exception e)
         {

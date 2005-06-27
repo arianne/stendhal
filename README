@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.25
+Version 0.30
 
 
 How to play
@@ -41,7 +41,7 @@ Please download it from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.20.jar
+  java -jar stendhal-0.30.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -62,7 +62,15 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.25 Jun 09, 2004
+0.30 Jun XX, 2005
+- Added items system
+- Fixed close bug
+- Fixed a bug that blocks game
+- Reestructured client entity system
+- Completed dungeon_001 map
+- Fixed cache bug definitively
+
+0.25 Jun 09, 2005
 - Fixed a bug on dead
 - Fixed a bug on cache timestamp
 - Fixed a bug on stendhalcreateaccount
@@ -95,7 +103,6 @@ Changelog
 - Fixed a bug because of cache directory
 - Added new RP values
 
-
 0.13 May 30, 2005
 - Added API for identifing several attackers.
 - Improved creature AI to attack anyone near it.
@@ -114,7 +121,6 @@ Changelog
 - Changed Rat, Cave rat, Wolf and Orc RP attributes.
 - Added Level attribute.
 - Fixed portal collision bug
-
 
 0.12 May 22, 2005
 - Fixed a severe bug that happens when a creature respawn over a player.
@@ -164,7 +170,6 @@ Changelog
 - Combat icon is centered on the bottom right corner.
 - Optional collision detection boxes.
 
-
 0.02 Apr 17, 2005
 - Fixed a problem related to message sorting
 - Removed EntryPointNotFoundException
@@ -192,5 +197,5 @@ Changelog
 
 Legal
 -----
-Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2004-2005
+Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005
 arianne_rpg at users dot sourceforge dot net
