@@ -26,24 +26,10 @@ public class BeggarNPC extends SpeakerNPC
   final private double SPEED=0.1;
   private Random rand;
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass npc=new RPClass("beggarnpc");
-      npc.isA("npc");
-      npc.add("text",RPClass.LONG_STRING);
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("BeggarNPC::generateRPClass","X",e);
-      }
-    }
-    
   public BeggarNPC() throws AttributeNotFoundException
     {
     super();
-    put("type","beggarnpc");
+    put("class","beggarnpc");
     
     rand=new Random();
     }

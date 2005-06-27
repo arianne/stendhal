@@ -26,24 +26,10 @@ public class TavernBarMaidNPC extends SpeakerNPC
   final private double SPEED=0.1;
   private Random rand;
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass npc=new RPClass("tavernbarmaidnpc");
-      npc.isA("npc");
-      npc.add("text",RPClass.LONG_STRING);
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("TavernBarMaidNPC::generateRPClass","X",e);
-      }
-    }
-    
   public TavernBarMaidNPC() throws AttributeNotFoundException
     {
     super();
-    put("type","tavernbarmaidnpc");
+    put("class","tavernbarmaidnpc");
     
     rand=new Random();
     }

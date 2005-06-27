@@ -47,28 +47,10 @@ public class StendhalRPWorld extends RPWorld
     RPEntity.generateRPClass();
     
     NPC.generateRPClass();
-    AngelNPC.generateRPClass();
-    BeggarNPC.generateRPClass();
-    BuyerNPC.generateRPClass();
-    JournalistNPC.generateRPClass();
-    SellerNPC.generateRPClass();
-    TavernBarMaidNPC.generateRPClass();
-    WelcomerNPC.generateRPClass();
-
     TrainingDummy.generateRPClass();
 
+    Creature.generateRPClass();
     Sheep.generateRPClass();
-    Wolf.generateRPClass();
-    Rat.generateRPClass();
-    CaveRat.generateRPClass();
-    Cobra.generateRPClass();
-    Boar.generateRPClass();
-    Kobold.generateRPClass();
-    Ogre.generateRPClass();
-    Goblin.generateRPClass();
-    Gargoyle.generateRPClass();
-    Troll.generateRPClass();
-    Orc.generateRPClass();
 
     Player.generateRPClass();
         

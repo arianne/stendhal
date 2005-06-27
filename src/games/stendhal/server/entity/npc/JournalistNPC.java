@@ -26,25 +26,10 @@ public class JournalistNPC extends SpeakerNPC
   {
   final private double SPEED=0.5;
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass npc=new RPClass("journalistnpc");
-      npc.isA("npc");
-      npc.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("JournalistNPC::generateRPClass","X",e);
-      }
-    }
-
   public JournalistNPC() throws AttributeNotFoundException
     {
     super();
-    put("type","journalistnpc");
-    put("name","Brian");
+    put("class","journalistnpc");
     }
 
   protected void createPath()

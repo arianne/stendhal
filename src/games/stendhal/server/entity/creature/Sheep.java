@@ -41,7 +41,7 @@ public class Sheep extends Creature
     try
       {
       RPClass sheep=new RPClass("sheep");
-      sheep.isA("npc");
+      sheep.isA("creature");
       sheep.add("weight",RPClass.BYTE);
       sheep.add("eat",RPClass.FLAG);
       }

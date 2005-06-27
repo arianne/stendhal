@@ -31,23 +31,10 @@ public class Goblin extends Creature
   final private static int DEF=3;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass goblin=new RPClass("goblin");
-      goblin.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Goblin::generateRPClass","X",e);
-      }
-    }
-
   public Goblin() throws AttributeNotFoundException
     {
     super();
-    put("type","goblin");
+    put("class","goblin");
     put("x",0);
     put("y",0);
 

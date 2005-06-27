@@ -31,23 +31,10 @@ public class Ogre extends Creature
   final private static int DEF=10;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass ogre=new RPClass("ogre");
-      ogre.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Ogre::generateRPClass","X",e);
-      }
-    }
-
   public Ogre() throws AttributeNotFoundException
     {
     super();
-    put("type","ogre");
+    put("class","ogre");
     put("x",0);
     put("y",0);
 

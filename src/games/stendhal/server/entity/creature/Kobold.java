@@ -31,23 +31,10 @@ public class Kobold extends Creature
   final private static int DEF=5;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass kobold=new RPClass("kobold");
-      kobold.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Kobold::generateRPClass","X",e);
-      }
-    }
-
   public Kobold() throws AttributeNotFoundException
     {
     super();
-    put("type","kobold");
+    put("class","kobold");
     put("x",0);
     put("y",0);
 

@@ -27,15 +27,30 @@ public abstract class Creature extends NPC
   private List<Path.Node> patrolPath;
   private RPEntity target;
 
+  public static void generateRPClass()
+    {
+    try
+      {
+      RPClass npc=new RPClass("creature");
+      npc.isA("npc");
+      }
+    catch(RPClass.SyntaxException e)
+      {
+      Logger.thrown("Creature::generateRPClass","X",e);
+      }
+    }
+
   public Creature(RPObject object) throws AttributeNotFoundException
     {
     super(object);
+    put("type","creature");
     createPath();
     }
 
   public Creature() throws AttributeNotFoundException
     {
     super();
+    put("type","creature");
     createPath();
     }
 

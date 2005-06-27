@@ -31,23 +31,10 @@ public class CaveRat extends Creature
   final private static int DEF=3;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass caverat=new RPClass("caverat");
-      caverat.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("CaveRat::generateRPClass","X",e);
-      }
-    }
-
   public CaveRat() throws AttributeNotFoundException
     {
     super();
-    put("type","caverat");
+    put("class","caverat");
     put("x",0);
     put("y",0);
 

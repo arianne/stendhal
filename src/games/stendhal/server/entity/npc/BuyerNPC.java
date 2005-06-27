@@ -28,23 +28,10 @@ public class BuyerNPC extends SpeakerNPC
   
   private int amount;
   
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass npc=new RPClass("buyernpc");
-      npc.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("BuyerNPC::generateRPClass","X",e);
-      }
-    }
-    
   public BuyerNPC() throws AttributeNotFoundException
     {
     super();
-    put("type","buyernpc");
+    put("class","buyernpc");
     amount=0;
     }
     

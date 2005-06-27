@@ -28,24 +28,11 @@ public abstract class SellerNPC extends SpeakerNPC
   final private double SPEED=0.2;
   private int amount;
   
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass npc=new RPClass("sellernpc");
-      npc.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("SellerNPC::generateRPClass","X",e);
-      }
-    }
-    
   public SellerNPC() throws AttributeNotFoundException
     {
     super();
     amount=0;
-    put("type","sellernpc");
+    put("class","sellernpc");
     }
 
   public boolean chat(Player player) throws AttributeNotFoundException

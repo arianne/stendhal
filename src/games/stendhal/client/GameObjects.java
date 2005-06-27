@@ -24,53 +24,52 @@ import java.awt.Color;
 /** This class stores the objects that exists on the World right now */
 public class GameObjects 
   {
-  private static Map<String, Class> entityMap;
+  private static Map<Pair<String,String>, Class> entityMap;
   
   static
     {
-    entityMap=new HashMap<String, Class>();
+    entityMap=new HashMap<Pair<String,String>, Class>();
     register();
     }
   
   private static void register()
     {
-    register("player",Player.class);
+    register("player",null,Player.class);
     
-    register("orc",NormalCreature.class);
-    register("troll",NormalCreature.class);
-    register("gargoyle",NormalCreature.class);
-    register("goblin",NormalCreature.class);
-    register("ogre",NormalCreature.class);
-    register("kobold",NormalCreature.class);
-    register("boar",NormalCreature.class);
-    register("cobra",NormalCreature.class);
-    register("wolf",NormalCreature.class);
-    register("caverat",SmallCreature.class);
-    register("rat",SmallCreature.class);
-    register("sheep",Sheep.class);
+    register("creature","orc",NormalCreature.class);
+    register("creature","troll",NormalCreature.class);
+    register("creature","gargoyle",NormalCreature.class);
+    register("creature","goblin",NormalCreature.class);
+    register("creature","ogre",NormalCreature.class);
+    register("creature","kobold",NormalCreature.class);
+    register("creature","boar",NormalCreature.class);
+    register("creature","cobra",NormalCreature.class);
+    register("creature","wolf",NormalCreature.class);
+    register("creature","caverat",SmallCreature.class);
+    register("creature","rat",SmallCreature.class);
+    register("sheep",null,Sheep.class);
     
-    register("angelnpc",NPC.class);
-    register("beggarnpc",NPC.class);
-    register("butchernpc",NPC.class);
-    register("buyernpc",NPC.class);
-    register("journalistnpc",NPC.class);
-    register("orcbuyernpc",NPC.class);
-    register("sellernpc",NPC.class);
-    register("tavernbarmaidnpc",NPC.class);
-    register("welcomernpc",NPC.class);
-    register("trainingdummy",TrainingDummy.class);
+    register("npc","angelnpc",NPC.class);
+    register("npc","beggarnpc",NPC.class);
+    register("npc","butchernpc",NPC.class);
+    register("npc","journalistnpc",NPC.class);
+    register("npc","welcomernpc",NPC.class);
+    register("npc","orcbuyernpc",NPC.class);
+    register("npc","sellernpc",NPC.class);
+    register("npc","tavernbarmaidnpc",NPC.class);
+    register("trainingdummy",null,TrainingDummy.class);
     
-    register("food",Food.class);
-    register("corpse",Corpse.class);
-    register("sign",Sign.class);
-    register("item",Item.class);
+    register("food",null,Food.class);
+    register("corpse",null,Corpse.class);
+    register("sign",null,Sign.class);
+    register("item",null,Item.class);
 
-    register("portal",Portal.class);
+    register("portal",null,Portal.class);
     }
 
-  public static void register(String type, Class entityClass)
+  public static void register(String type, String eclass, Class entityClass)
     {
-    entityMap.put(type,entityClass);
+    entityMap.put(new Pair<String,String>(type,eclass),entityClass);
     }
   
   private HashMap<RPObject.ID, Entity> objects;
@@ -100,7 +99,14 @@ public class GameObjects
         return new Player(this, object);
         }
         
-      Class entityClass=entityMap.get(object.get("type"));
+      String type=object.get("type");
+      String eclass=null;
+      if(object.has("class"))
+        {
+        eclass=object.get("class");
+        }
+        
+      Class entityClass=entityMap.get(new Pair<String,String>(type,eclass));
       java.lang.reflect.Constructor constr=entityClass.getConstructor(GameObjects.class, RPObject.class);
       return (Entity)constr.newInstance(this,object);
       }

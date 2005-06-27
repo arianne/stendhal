@@ -30,6 +30,21 @@ public class NPC extends Speaker
     super(gameObjects,object);
     }
 
+  protected void buildAnimations(RPObject object)
+    {
+    SpriteStore store=SpriteStore.get();
+
+    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("class")),0,4,32,64));
+    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("class")),1,4,32,64));
+    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("class")),2,4,32,64));
+    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("class")),3,4,32,64));
+
+    sprites.get("move_up")[3]=sprites.get("move_up")[1];
+    sprites.get("move_right")[3]=sprites.get("move_right")[1];
+    sprites.get("move_down")[3]=sprites.get("move_down")[1];
+    sprites.get("move_left")[3]=sprites.get("move_left")[1];
+    }
+
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);

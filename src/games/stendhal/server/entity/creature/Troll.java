@@ -31,23 +31,10 @@ public class Troll extends Creature
   final private static int DEF=6;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass Troll=new RPClass("Troll");
-      Troll.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Troll::generateRPClass","X",e);
-      }
-    }
-
   public Troll() throws AttributeNotFoundException
     {
     super();
-    put("type","troll");
+    put("class","troll");
     put("x",0);
     put("y",0);
 

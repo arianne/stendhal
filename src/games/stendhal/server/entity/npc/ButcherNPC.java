@@ -27,24 +27,11 @@ public class ButcherNPC extends SpeakerNPC
   final private double SPEED=0.2;
   private int amount;
   
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass npc=new RPClass("butchernpc");
-      npc.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("ButcherNPC::generateRPClass","X",e);
-      }
-    }
-    
   public ButcherNPC() throws AttributeNotFoundException
     {
     super();
     amount=0;
-    put("type","butchernpc");
+    put("class","butchernpc");
     }
 
   protected void createPath()

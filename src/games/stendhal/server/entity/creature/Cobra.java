@@ -31,23 +31,10 @@ public class Cobra extends Creature
   final private static int DEF=1;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass cobra=new RPClass("cobra");
-      cobra.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Cobra::generateRPClass","X",e);
-      }
-    }
-
   public Cobra() throws AttributeNotFoundException
     {
     super();
-    put("type","cobra");
+    put("class","cobra");
     put("x",0);
     put("y",0);
 

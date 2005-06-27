@@ -26,24 +26,10 @@ public class AngelNPC extends SpeakerNPC
   final private double SPEED=0.1;
   private Random rand;
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass npc=new RPClass("angelnpc");
-      npc.isA("npc");
-      npc.add("text",RPClass.LONG_STRING);
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("AngelNPC::generateRPClass","X",e);
-      }
-    }
-    
   public AngelNPC() throws AttributeNotFoundException
     {
     super();
-    put("type","angelnpc");
+    put("class","angelnpc");
     
     rand=new Random();
     }

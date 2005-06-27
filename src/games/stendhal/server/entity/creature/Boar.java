@@ -31,23 +31,10 @@ public class Boar extends Creature
   final private static int DEF=4;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass boar=new RPClass("boar");
-      boar.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Boar::generateRPClass","X",e);
-      }
-    }
-
   public Boar() throws AttributeNotFoundException
     {
     super();
-    put("type","boar");
+    put("class","boar");
     put("x",0);
     put("y",0);
 

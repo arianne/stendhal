@@ -31,23 +31,10 @@ public class Rat extends Creature
   final private static int DEF=2;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass rat=new RPClass("rat");
-      rat.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Rat::generateRPClass","X",e);
-      }
-    }
-
   public Rat() throws AttributeNotFoundException
     {
     super();
-    put("type","rat");
+    put("class","rat");
     put("x",0);
     put("y",0);
 

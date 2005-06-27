@@ -31,23 +31,10 @@ public class Wolf extends Creature
   final private static int DEF=3;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass wolf=new RPClass("wolf");
-      wolf.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Wolf::generateRPClass","X",e);
-      }
-    }
-
   public Wolf() throws AttributeNotFoundException
     {
     super();
-    put("type","wolf");
+    put("class","wolf");
     put("x",0);
     put("y",0);
 

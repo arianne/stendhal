@@ -31,23 +31,10 @@ public class Orc extends Creature
   final private static int DEF=8;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass orc=new RPClass("orc");
-      orc.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Orc::generateRPClass","X",e);
-      }
-    }
-
   public Orc() throws AttributeNotFoundException
     {
     super();
-    put("type","orc");
+    put("class","orc");
     put("x",0);
     put("y",0);
 

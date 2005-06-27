@@ -185,19 +185,6 @@ public class j2DClient extends JFrame
       	  who.put("type","who");
       	  client.send(who);
       	  }
-      	else if(text.startsWith("/improve ")) //Improve command
-      	  {
-      	  System.out.println ("Improving");
-      	  String[] command = parseString(text, 2);
-      	  if(command != null)
-      	    {
-            System.out.println ("Improving "+command[1]);
-            RPAction improve = new RPAction();
-      	    improve.put("type","improve");
-      	    improve.put("stat", command[1]);
-      	    client.send(improve);
-      	    }
-      	  }
       	else // Chat command
       	  {
           RPAction chat=new RPAction();
@@ -478,7 +465,7 @@ public class j2DClient extends JFrame
 
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={"*"/*"j2DClient","StendhalClient"*/};
+        String[] allowed={/*"j2DClient","StendhalClient"*/};
         Logger.setAllowed(allowed);
 
         String[] rejected={};

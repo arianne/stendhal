@@ -31,10 +31,10 @@ public class NormalCreature extends Creature
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")),0,4,48,64));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")),1,4,48,64));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")),2,4,48,64));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")),3,4,48,64));      
+    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("class")),0,4,48,64));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("class")),1,4,48,64));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("class")),2,4,48,64));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("class")),3,4,48,64));      
 
     sprites.get("move_up")[3]=sprites.get("move_up")[1];
     sprites.get("move_right")[3]=sprites.get("move_right")[1];

@@ -31,23 +31,10 @@ public class Gargoyle extends Creature
   final private static int DEF=20;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass gargoyle=new RPClass("gargoyle");
-      gargoyle.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("Gargoyle::generateRPClass","X",e);
-      }
-    }
-
   public Gargoyle() throws AttributeNotFoundException
     {
     super();
-    put("type","gargoyle");
+    put("class","gargoyle");
     put("x",0);
     put("y",0);
 

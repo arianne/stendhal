@@ -26,24 +26,10 @@ public class WelcomerNPC extends SpeakerNPC
   final private double SPEED=0.5;
   private int healed;
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass npc=new RPClass("welcomernpc");
-      npc.isA("npc");
-      npc.add("text",RPClass.LONG_STRING);
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("WelcomerNPC::generateRPClass","X",e);
-      }
-    }
-    
   public WelcomerNPC() throws AttributeNotFoundException
     {
     super();
-    put("type","welcomernpc");
+    put("class","welcomernpc");
     healed=0;
     }
 

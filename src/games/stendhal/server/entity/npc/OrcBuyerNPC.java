@@ -28,23 +28,10 @@ public class OrcBuyerNPC extends SpeakerNPC
   
   private int amount;
   
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass npc=new RPClass("orcbuyernpc");
-      npc.isA("npc");
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      Logger.thrown("OrcBuyerNPC::generateRPClass","X",e);
-      }
-    }
-    
   public OrcBuyerNPC() throws AttributeNotFoundException
     {
     super();
-    put("type","orcbuyernpc");
+    put("class","orcbuyernpc");
     amount=0;
     }
     
