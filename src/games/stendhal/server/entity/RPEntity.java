@@ -19,6 +19,8 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 
+import games.stendhal.server.entity.item.*;
+
 public abstract class RPEntity extends Entity
   {
   protected static Statistics stats;

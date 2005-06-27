@@ -20,6 +20,8 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.util.*;
 
+import games.stendhal.server.entity.creature.*;
+
 public class Player extends RPEntity
   {
   private int devel;
@@ -60,6 +62,17 @@ public class Player extends RPEntity
     if(!object.has("outfit"))
       {
       object.put("outfit",0);
+      }
+    
+    // Port from 0.20 to 0.30
+    if(!object.hasSlot("rhand"))
+      {
+      object.addSlot(new RPSlot("rhand"));
+      }
+
+    if(!object.hasSlot("lhand"))
+      {
+      object.addSlot(new RPSlot("lhand"));
       }
 
     Player player=new Player(object);
