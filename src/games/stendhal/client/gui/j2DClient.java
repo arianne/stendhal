@@ -36,6 +36,59 @@ import javax.swing.*;
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends JFrame
   {
+  class StendhalChatLineListener implements ActionListener
+    {
+    public StendhalChatLineListener()
+      {
+      super();
+      }
+      
+    public void actionPerformed(ActionEvent e)
+      {
+      String text = playerChatText.getText();
+      text.trim();
+
+      if(text.startsWith("/tell ") ||text.startsWith("/msg ")) // Tell command
+        {
+        String[] command = parseString(text, 3);
+        if(command != null)
+          {
+          RPAction tell = new RPAction();
+          tell.put("type","tell");
+          tell.put("who", command[1]);
+          tell.put("text", command[2]);
+          client.send(tell);
+          }
+        }
+      else if(text.startsWith("/where ")) // Tell command
+        {
+        String[] command = parseString(text, 2);
+        if(command != null)
+          {
+          RPAction tell = new RPAction();
+          tell.put("type","where");
+          tell.put("who", command[1]);
+          client.send(tell);
+          }
+        }
+      else if(text.equals("/who")) // Who command
+        {
+        RPAction who = new RPAction();
+        who.put("type","who");
+        client.send(who);
+        }
+      else // Chat command
+        {
+        RPAction chat=new RPAction();
+        chat.put("type","chat");
+        chat.put("text",playerChatText.getText());
+        client.send(chat);
+        }
+
+      playerChatText.setText("");
+      }
+    }  
+    
   private GameScreen screen;
   private InGameGUI inGameGUI;
 
@@ -147,55 +200,7 @@ public class j2DClient extends JFrame
 
       playerChatText=new JTextField("");
       playerChatText.setBounds(0,460,640,20);
-    playerChatText.addActionListener(new ActionListener()
-      {
-      // TODO: Take this out of here. Place on a proper (hidden) class.
-      // TODO: ...inGameGUI integration...
-      public void actionPerformed(ActionEvent e)
-        {
-      	String text = playerChatText.getText();
-      	text.trim();
-
-        if(text.startsWith("/tell ") ||text.startsWith("/msg ")) // Tell command
-      	  {
-      	  String[] command = parseString(text, 3);
-      	  if(command != null)
-      	    {
-      	    RPAction tell = new RPAction();
-      	    tell.put("type","tell");
-      	    tell.put("who", command[1]);
-      	    tell.put("text", command[2]);
-      	    client.send(tell);
-      	    }
-      	  }
-        else if(text.startsWith("/where ")) // Tell command
-          {
-          String[] command = parseString(text, 2);
-          if(command != null)
-            {
-            RPAction tell = new RPAction();
-            tell.put("type","where");
-            tell.put("who", command[1]);
-            client.send(tell);
-            }
-          }
-        else if(text.equals("/who")) // Who command
-      	  {
-      	  RPAction who = new RPAction();
-      	  who.put("type","who");
-      	  client.send(who);
-      	  }
-      	else // Chat command
-      	  {
-          RPAction chat=new RPAction();
-          chat.put("type","chat");
-          chat.put("text",playerChatText.getText());
-          client.send(chat);
-      	  }
-
-        playerChatText.setText("");
-        }
-      });
+    playerChatText.addActionListener(new StendhalChatLineListener());
     panel.add(playerChatText);
 
 
@@ -408,7 +413,7 @@ public class j2DClient extends JFrame
         }
       else if(dsx-x>-0.5 && dsx-x<0.5)
         {
-        sdx/=1.1;
+        sdx/=1.3;
         }
       else if(dsx-x>2)
         {
@@ -422,7 +427,7 @@ public class j2DClient extends JFrame
         }
       else if(dsy-y>-0.5 && dsy-y<0.5)
         {
-        sdy/=1.1;
+        sdy/=1.3;
         }
       else if(dsy-y>2)
         {

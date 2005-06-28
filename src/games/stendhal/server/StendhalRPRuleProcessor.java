@@ -517,9 +517,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       if(action.has("who"))
         {
+        String who=action.get("who");
         for(Player p : getPlayers())
           {
-          if(p.getName().equals(action.get("who")))
+          if(p.getName().equals(who))
             {
             player.setPrivateText(p.getName() + " is in "+p.get("zoneid")+" at ("+p.getx()+","+p.gety()+")");
             world.modify(player);
@@ -528,6 +529,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             return;
             }
           }
+        
+        if(who.equals("sheep") && player.hasSheep())
+          {
+          Sheep sheep=(Sheep)world.get(player.getSheep());
+          player.setPrivateText("sheep is in "+sheep.get("zoneid")+" at ("+sheep.getx()+","+sheep.gety()+")");
+          world.modify(player);
+
+          playersObjectRmText.add(player);
+          return;
+          }
+          
         player.setPrivateText(action.get("who") + " is not currently logged.");
         }
       }
@@ -642,6 +654,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         else if(object.get("type").equals("corpse"))
           {
           entity=new Corpse(object);
+          entity.put("class",object.get("class"));
           }
         else
           {

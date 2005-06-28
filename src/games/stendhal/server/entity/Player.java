@@ -133,6 +133,8 @@ public class Player extends RPEntity
           }
 
         world.add(sheep);
+        x=sheep.getx();
+        y=sheep.gety();
         StendhalRPAction.placeat(zone,sheep,x,y);
         player.setSheep(sheep);
         }

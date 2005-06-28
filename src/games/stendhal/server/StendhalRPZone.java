@@ -312,14 +312,6 @@ public class StendhalRPZone extends MarauroaRPZone
           addZoneChange(entryPoint);
           break;
           }
-        case 11: /* Sheep */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Sheep(),1);
-          respawnPoints.add(point);
-          
-          break;
-          }
         case 12: /* Rat */
           {
           RespawnPoint point=new RespawnPoint(x,y,2);

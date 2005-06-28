@@ -437,6 +437,14 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Shield.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Sword.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\maps\afterlive.java</path>
 				<source>true</source>
 			</fileitem>
@@ -478,6 +486,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\Level.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\common\Pair.java</path>
 				<source>true</source>
 			</fileitem>
 		</include>

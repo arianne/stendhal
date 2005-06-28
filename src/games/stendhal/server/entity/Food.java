@@ -28,6 +28,7 @@ public class Food extends Entity
     {
     RPClass food=new RPClass("food");
     food.isA("entity");
+    food.add("class",RPClass.STRING);
     food.add("amount",RPClass.BYTE);
     }
   

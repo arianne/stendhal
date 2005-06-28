@@ -24,14 +24,16 @@ import games.stendhal.server.entity.*;
 
 public class Corpse extends PassiveEntity
   {
-  final public static int DEGRADATION_TIMEOUT=6000; // 30 minutes at 300 ms
+  final public static int DEGRADATION_TIMEOUT=60; // 30 minutes at 300 ms
   private int degradation;
+  private int stage;
 
   public static void generateRPClass()
     {
     RPClass entity=new RPClass("corpse");
     entity.isA("entity");
     entity.add("class",RPClass.STRING);
+    entity.add("stage",RPClass.BYTE);
     }
   
   public Corpse(RPObject object) throws AttributeNotFoundException
@@ -39,7 +41,10 @@ public class Corpse extends PassiveEntity
     super(object);
     put("type","corpse");
     put("class",object.get("type"));
+    stage=0;
+    degradation=DEGRADATION_TIMEOUT;
     update();
+    put("stage",stage);
     }
 
   public Corpse(RPEntity entity) throws AttributeNotFoundException
@@ -50,6 +55,8 @@ public class Corpse extends PassiveEntity
     setx((int)rect.getX());
     sety((int)rect.getY());
     degradation=DEGRADATION_TIMEOUT;
+    stage=0;
+    put("stage",stage);
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
@@ -64,6 +71,14 @@ public class Corpse extends PassiveEntity
   
   public int decDegradation()
     {
+    int new_stage=5-(int)(((float)degradation/(float)DEGRADATION_TIMEOUT)*6.0);
+    if(stage!=new_stage)
+      {
+      stage=new_stage;
+      put("stage",stage);
+      world.modify(this);
+      }
+    
     return degradation--;
     }
     

@@ -47,6 +47,7 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
     object.put("atk",2);
     object.put("def",2);
     object.put("xp",0);
+    object.put("devel",2);
     
     return object;
     }

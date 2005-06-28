@@ -51,6 +51,7 @@ public class GameObjects
     
     register("npc","angelnpc",NPC.class);
     register("npc","beggarnpc",NPC.class);
+    register("npc","buyernpc",NPC.class);
     register("npc","butchernpc",NPC.class);
     register("npc","journalistnpc",NPC.class);
     register("npc","welcomernpc",NPC.class);
@@ -60,7 +61,7 @@ public class GameObjects
     register("trainingdummy",null,TrainingDummy.class);
     
     register("food",null,Food.class);
-    register("corpse",null,Corpse.class);
+    register("corpse","creature",Corpse.class);
     register("sign",null,Sign.class);
     register("item",null,Item.class);
 
@@ -123,7 +124,14 @@ public class GameObjects
     {
     try
       {
-      Class entityClass=entityMap.get(object.get("type"));
+      String type=object.get("type");
+      String eclass=null;
+      if(object.has("class"))
+        {
+        eclass=object.get("class");
+        }
+        
+      Class entityClass=entityMap.get(new Pair<String,String>(type,eclass));
       java.lang.reflect.Constructor constr=entityClass.getConstructor(GameObjects.class, RPObject.class);
       return ((Entity)constr.newInstance(this,object)).getSprite();
       }

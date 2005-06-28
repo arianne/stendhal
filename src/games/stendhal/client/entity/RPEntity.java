@@ -93,7 +93,7 @@ public abstract class RPEntity extends AnimatedEntity
     {
     return name;
     }
-
+  
   public int getLevel()
     {
     return level;
@@ -115,6 +115,11 @@ public abstract class RPEntity extends AnimatedEntity
     if(changes.has("name"))
       {
       name=changes.get("name");
+      nameImage=GameScreen.get().createString(getName(),Color.white);
+      }
+    else if(name==null && changes.has("class"))
+      {
+      name=changes.get("class");
       nameImage=GameScreen.get().createString(getName(),Color.white);
       }
     else if(name==null && changes.has("type"))
@@ -241,7 +246,6 @@ public abstract class RPEntity extends AnimatedEntity
     super.draw(screen);
 
     if(nameImage!=null) screen.draw(nameImage,x,y-0.5);
-
       {
       Graphics g2d=screen.expose();
 
@@ -252,11 +256,11 @@ public abstract class RPEntity extends AnimatedEntity
       float g=hp_base_hp;g*=2.0;
 
       g2d.setColor(Color.gray);
-      g2d.fillRect((int)p.getX(),(int)p.getY()-3,26,3);
+      g2d.fillRect((int)p.getX(),(int)p.getY()-3,32,3);
       g2d.setColor(new Color(r>1?1:r,g>1?1:g,0));
-      g2d.fillRect((int)p.getX(),(int)p.getY()-3,(int)(hp_base_hp*26.0),3);
+      g2d.fillRect((int)p.getX(),(int)p.getY()-3,(int)(hp_base_hp*32.0),3);
       g2d.setColor(Color.black);
-      g2d.drawRect((int)p.getX(),(int)p.getY()-3,26,3);
+      g2d.drawRect((int)p.getX(),(int)p.getY()-3,32,3);
       }
 
     if(attacked && System.currentTimeMillis()-combatIconTime<4*300)

@@ -37,8 +37,8 @@ public class GameLogDialog extends JDialog
       public void focusLost(FocusEvent e)
         {
         }
-      });        
-  
+      });     
+    
     this.setVisible(true);
 	  }
 
@@ -48,7 +48,7 @@ public class GameLogDialog extends JDialog
 
 		contentPane = (JPanel)this.getContentPane();
 		
-		contentPane.setLayout(null);
+    contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
     addComponent(contentPane, jEditArea, 1,0,(int)w.getSize().getWidth()-8,171);
 
 		this.setTitle("Game chat and events log");

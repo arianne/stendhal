@@ -95,7 +95,11 @@ public class SpriteStore {
 	 * @param ref The reference to the image to use for the sprite
 	 * @return A sprite instance containing an accelerate image of the request reference
 	 */
-	public Sprite getSprite(String ref) {
+  public Sprite getSprite(String ref) {
+    return getSprite(ref,false);
+    }
+    
+  public Sprite getSprite(String ref, boolean loadAlpha) {
 	    try
 	    {
         Logger.trace("SpriteStore::getSprite",">");
@@ -129,7 +133,15 @@ public class SpriteStore {
 		
 		// create an accelerated image of the right size to store our sprite in
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-		Image image = gc.createCompatibleImage(sourceImage.getWidth(),sourceImage.getHeight(),Transparency.BITMASK);
+		
+		int mode=Transparency.BITMASK;
+		
+		if(loadAlpha)
+		  {
+		  mode=Transparency.TRANSLUCENT;
+		  }
+		  
+    Image image = gc.createCompatibleImage(sourceImage.getWidth(),sourceImage.getHeight(),mode);
 		
 		// draw our source image into the accelerated image
 		image.getGraphics().drawImage(sourceImage,0,0,null);

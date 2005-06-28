@@ -65,7 +65,8 @@ public class OrcBuyerNPC extends SpeakerNPC
         else
           {
           say("*LOVELY*. Take money!.");
-          world.remove(player.getSheep());
+          rp.removeNPC(sheep);
+          world.remove(sheep.getID());
           player.removeSheep(sheep);
           
           player.addXP(sheep.getWeight()*20);

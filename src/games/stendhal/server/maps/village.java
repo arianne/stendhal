@@ -5,6 +5,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
 import java.util.*;
 import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.creature.*;
 
 public class village 
   {
