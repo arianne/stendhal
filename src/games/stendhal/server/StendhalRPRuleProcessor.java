@@ -615,8 +615,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             RPSlot slot=player.getSlot(action.get("slot"));
             if(slot.size()==0)
               {
-              slot.add(entity);
               world.remove(entity.getID());
+              
+              // Gives a valid id inside the slot
+              slot.assignValidID(entity);
+              slot.add(entity);
+              
               world.modify(player);
               }            
             }

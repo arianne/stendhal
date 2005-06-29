@@ -40,7 +40,16 @@ public class Corpse extends PassiveEntity
     {
     super(object);
     put("type","corpse");
-    put("class",object.get("type"));
+    
+    if(object.has("class"))
+      {
+      put("class",object.get("class"));
+      }
+    else
+      {
+      put("class",object.get("type"));
+      }
+
     stage=0;
     degradation=DEGRADATION_TIMEOUT;
     update();
@@ -50,7 +59,16 @@ public class Corpse extends PassiveEntity
   public Corpse(RPEntity entity) throws AttributeNotFoundException
     {
     put("type","corpse");
-    put("class",entity.get("type"));
+
+    if(entity.has("class"))
+      {
+      put("class",entity.get("class"));
+      }
+    else
+      {
+      put("class",entity.get("type"));
+      }
+
     Rectangle2D rect=entity.getArea(entity.getx(),entity.gety());
     setx((int)rect.getX());
     sety((int)rect.getY());
@@ -86,7 +104,15 @@ public class Corpse extends PassiveEntity
     {
     if(decDegradation()==0)
       {
-      world.remove(getID());
+      if(isContained())
+        {
+        getContainer().remove(this.getID());
+        }
+      else
+        {
+        world.remove(getID());
+        }
+        
       rp.removeCorpse(this);
       }
     }

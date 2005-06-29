@@ -69,6 +69,7 @@ Changelog
 - Reestructured client entity system
 - Completed dungeon_001 map
 - Fixed cache bug definitively
+- Added slots
 
 0.25 Jun 09, 2005
 - Fixed a bug on dead

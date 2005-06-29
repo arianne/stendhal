@@ -61,7 +61,21 @@ public class GameObjects
     register("trainingdummy",null,TrainingDummy.class);
     
     register("food",null,Food.class);
-    register("corpse","creature",Corpse.class);
+    
+    register("corpse","player",Corpse.class);
+    register("corpse","orc",Corpse.class);
+    register("corpse","troll",Corpse.class);
+    register("corpse","gargoyle",Corpse.class);
+    register("corpse","goblin",Corpse.class);
+    register("corpse","ogre",Corpse.class);
+    register("corpse","kobold",Corpse.class);
+    register("corpse","boar",Corpse.class);
+    register("corpse","cobra",Corpse.class);
+    register("corpse","wolf",Corpse.class);
+    register("corpse","caverat",Corpse.class);
+    register("corpse","rat",Corpse.class);
+    register("corpse","sheep",Corpse.class);
+    
     register("sign",null,Sign.class);
     register("item",null,Item.class);
 
