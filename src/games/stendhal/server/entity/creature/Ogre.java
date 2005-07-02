@@ -27,9 +27,9 @@ public class Ogre extends Creature
   final private double SPEED=0.2;
 
   final private static int HP=200;
-  final private static int ATK=20;
-  final private static int DEF=15;
-  final private static int XP=getInitialXP(ATK,DEF,HP);
+  final private static int ATK=30;
+  final private static int DEF=17;
+  final private static int XP=2200; //getInitialXP(ATK,DEF,HP);
 
   public Ogre() throws AttributeNotFoundException
     {

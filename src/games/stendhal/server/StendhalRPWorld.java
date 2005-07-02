@@ -59,13 +59,13 @@ public class StendhalRPWorld extends RPWorld
   
   public void onInit() throws Exception
     {
-    addArea("village",1);
-    addArea("tavern",1);
-    addArea("city",1);
-    addArea("plains",1);
-    addArea("dungeon_000",1);
-    addArea("afterlive",1);
-    addArea("forest",1);
+    addArea("village",2);
+    addArea("tavern",2);
+    addArea("city",2);
+    addArea("plains",2);
+    addArea("dungeon_000",2);
+    addArea("afterlive",2);
+    addArea("forest",2);
     addArea("dungeon_001",2);
     }
   
@@ -73,8 +73,9 @@ public class StendhalRPWorld extends RPWorld
     {
     StendhalRPZone area=new StendhalRPZone(name);
     area.addLayer(name+"_0_floor","games/stendhal/server/maps/"+name+"_0_floor.stend", version);
-    area.addLayer(name+"_1_object","games/stendhal/server/maps/"+name+"_1_object.stend", version);
-    area.addLayer(name+"_2_roof","games/stendhal/server/maps/"+name+"_2_roof.stend", version);
+    area.addLayer(name+"_1_terrain","games/stendhal/server/maps/"+name+"_1_terrain.stend", version);
+    area.addLayer(name+"_2_object","games/stendhal/server/maps/"+name+"_2_object.stend", version);
+    area.addLayer(name+"_3_roof","games/stendhal/server/maps/"+name+"_3_roof.stend", version);
     area.addCollisionLayer(name+"_collision","games/stendhal/server/maps/"+name+"_collision.stend", version);
     area.populate("games/stendhal/server/maps/"+name+"_objects.stend");
     addRPZone(area);

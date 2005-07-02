@@ -27,9 +27,9 @@ public class Cobra extends Creature
   final private double SPEED=1;
 
   final private static int HP=15;
-  final private static int ATK=30;
+  final private static int ATK=15;
   final private static int DEF=1;
-  final private static int XP=getInitialXP(ATK,DEF,HP);
+  final private static int XP=200; //getInitialXP(ATK,DEF,HP);
 
   public Cobra() throws AttributeNotFoundException
     {

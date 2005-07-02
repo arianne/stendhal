@@ -27,9 +27,9 @@ public class Goblin extends Creature
   final private double SPEED=0.5;
 
   final private static int HP=50;
-  final private static int ATK=10;
-  final private static int DEF=8;
-  final private static int XP=getInitialXP(ATK,DEF,HP);
+  final private static int ATK=20;
+  final private static int DEF=10;
+  final private static int XP=580; //getInitialXP(ATK,DEF,HP);
 
   public Goblin() throws AttributeNotFoundException
     {

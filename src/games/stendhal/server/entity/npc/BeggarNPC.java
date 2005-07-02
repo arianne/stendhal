@@ -37,14 +37,14 @@ public class BeggarNPC extends SpeakerNPC
   protected void createPath()
     {
     List<Path.Node> nodes=new LinkedList<Path.Node>();
-    nodes.add(new Path.Node(22,28));
-    nodes.add(new Path.Node(26,28));
-    nodes.add(new Path.Node(26,30));
-    nodes.add(new Path.Node(31,30));
-    nodes.add(new Path.Node(31,28));
+    nodes.add(new Path.Node(22,42));
+    nodes.add(new Path.Node(26,42));
+    nodes.add(new Path.Node(26,44));
+    nodes.add(new Path.Node(31,44));
+    nodes.add(new Path.Node(31,42));
+    nodes.add(new Path.Node(35,42));
     nodes.add(new Path.Node(35,28));
-    nodes.add(new Path.Node(35,14));
-    nodes.add(new Path.Node(22,14));
+    nodes.add(new Path.Node(22,28));
     setPath(nodes,true);
     }
 

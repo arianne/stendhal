@@ -47,9 +47,10 @@ public class RenderingPipeline
     {
     String set=gameLayers.getRPZoneLayerSet();
     gameLayers.draw(screen,set+"_0_floor");
-    gameLayers.draw(screen,set+"_1_object");
+    gameLayers.draw(screen,set+"_1_terrain");
+    gameLayers.draw(screen,set+"_2_object");
     gameObjects.draw(screen);
-    gameLayers.draw(screen,set+"_2_roof");
+    gameLayers.draw(screen,set+"_3_roof");
     gameObjects.drawText(screen);
     }  
   }

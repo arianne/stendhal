@@ -302,9 +302,9 @@ public abstract class RPEntity extends Entity
     who.stopAttack();
 
     // Establish how much xp points your are rewarded
-    if(getXP() > 0)
+    if(getXP()>0)
       {
-      int xp_reward = (Level.getXP(getLevel() + 1) - Level.getXP(getLevel())) / 20;
+      int xp_reward=(int)(this.getXP()*0.05);
 
       for(Map.Entry<RPEntity , Integer> entry : damageReceived.entrySet())
         {

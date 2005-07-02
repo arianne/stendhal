@@ -27,9 +27,9 @@ public class Kobold extends Creature
   final private double SPEED=0.5;
 
   final private static int HP=30;
-  final private static int ATK=10;
-  final private static int DEF=6;
-  final private static int XP=getInitialXP(ATK,DEF,HP);
+  final private static int ATK=15;
+  final private static int DEF=8;
+  final private static int XP=400; //getInitialXP(ATK,DEF,HP);
 
   public Kobold() throws AttributeNotFoundException
     {

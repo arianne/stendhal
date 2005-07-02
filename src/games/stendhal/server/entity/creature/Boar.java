@@ -29,7 +29,7 @@ public class Boar extends Creature
   final private static int HP=30;
   final private static int ATK=8;
   final private static int DEF=5;
-  final private static int XP=getInitialXP(ATK,DEF,HP);
+  final private static int XP=300; //getInitialXP(ATK,DEF,HP);
 
   public Boar() throws AttributeNotFoundException
     {

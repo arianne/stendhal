@@ -24,12 +24,12 @@ import games.stendhal.server.*;
 
 public class Orc extends Creature
   {
-  final private double SPEED=0.3;
+  final private double SPEED=1;
 
   final private static int HP=70;
-  final private static int ATK=10;
-  final private static int DEF=8;
-  final private static int XP=getInitialXP(ATK,DEF,HP);
+  final private static int ATK=25;
+  final private static int DEF=14;
+  final private static int XP=940; //getInitialXP(ATK,DEF,HP);
 
   public Orc() throws AttributeNotFoundException
     {

@@ -24,12 +24,12 @@ import games.stendhal.server.*;
 
 public class CaveRat extends Creature
   {
-  final private double SPEED=0.40;
+  final private double SPEED=0.50;
 
   final private static int HP=30;
-  final private static int ATK=5;
-  final private static int DEF=2;
-  final private static int XP=getInitialXP(ATK,DEF,HP);
+  final private static int ATK=7;
+  final private static int DEF=4;
+  final private static int XP=200; //getInitialXP(ATK,DEF,HP);
 
   public CaveRat() throws AttributeNotFoundException
     {

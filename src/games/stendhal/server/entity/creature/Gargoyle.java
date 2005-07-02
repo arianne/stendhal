@@ -27,9 +27,9 @@ public class Gargoyle extends Creature
   final private double SPEED=0.5;
 
   final private static int HP=100;
-  final private static int ATK=12;
+  final private static int ATK=28;
   final private static int DEF=15;
-  final private static int XP=getInitialXP(ATK,DEF,HP);
+  final private static int XP=216; //getInitialXP(ATK,DEF,HP);
 
   public Gargoyle() throws AttributeNotFoundException
     {

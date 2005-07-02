@@ -27,9 +27,9 @@ public class Rat extends Creature
   final private double SPEED=0.5;
 
   final private static int HP=20;
-  final private static int ATK=4;
-  final private static int DEF=2;
-  final private static int XP=getInitialXP(ATK,DEF,HP);
+  final private static int ATK=6;
+  final private static int DEF=4;
+  final private static int XP=100; //getInitialXP(ATK,DEF,HP);
 
   public Rat() throws AttributeNotFoundException
     {
