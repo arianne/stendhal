@@ -36,7 +36,7 @@
  </layer>
  <layer name="dungeon_000_2_object" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YQQqAIBAAQKH6Vl/pC/XhXtAjugSVB+kgpMvMbRFBdFdZUwIAoGQe/5lLHw5nXE1eL63WzzK94+c687Fo5HuZ/bm1Wr8AAAAA1OUfKLbV+RbJfwAAgL587eP0ewBxbdcdvw/vODLvH0C/TvFXE2IAQAAA
+   H4sIAAAAAAAAAO3YwQmAMAwAwEJ1TlfQPZ3BCRzCj6D1UXwItuHuF0ohlISSpAQAQM2a/7lLH/bh7wziePZLq/0zjWV8z/N5Fo16r/M+l1b7FwAAAIBv2QPFNtt5Vql/AACAvryd48x7AHEt585zy2Ucmf8PoF8Hw7Z89QBAAAA=
   </data>
  </layer>
  <layer name="dungeon_000_3_roof" width="64" height="64">
