@@ -268,9 +268,27 @@ public class StendhalRPZone extends MarauroaRPZone
     
     int j=0;
     
-    Item itemo=new Item();
+    Item itemo=new Shield();
     assignRPObjectID(itemo);
     itemo.setx(5);
+    itemo.sety(5);
+    add(itemo);
+
+    itemo=new Sword();
+    assignRPObjectID(itemo);
+    itemo.setx(7);
+    itemo.sety(7);
+    add(itemo);
+
+    itemo=new Armor();
+    assignRPObjectID(itemo);
+    itemo.setx(5);
+    itemo.sety(7);
+    add(itemo);
+
+    itemo=new Club();
+    assignRPObjectID(itemo);
+    itemo.setx(7);
     itemo.sety(5);
     add(itemo);
 
@@ -481,6 +499,12 @@ public class StendhalRPZone extends MarauroaRPZone
     {
     ByteArrayOutputStream out=new ByteArrayOutputStream();
     InputStream is= StendhalRPZone.class.getClassLoader().getResourceAsStream(file);
+    
+    if(is==null)
+      {
+      Logger.trace("StendhalRPZone::init","X", "cannot find file "+file);
+      throw new FileNotFoundException(file);
+      }
     
     byte[] buffer=new byte[1024];
     int len=0;

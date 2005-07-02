@@ -83,7 +83,9 @@ public class Sheep extends NPC
     {
     if(action.equals("Look"))
       {
-      StendhalClient.get().addEventLine("You see a sheep that weights "+weight,Color.green);
+      String text="You see a sheep that weights "+weight;
+      StendhalClient.get().addEventLine(text,Color.green);
+      gameObjects.addText(this, text, Color.green);
       }
     else if(action.equals("Own"))
       {

@@ -26,8 +26,8 @@ public class Orc extends Creature
   {
   final private double SPEED=0.3;
 
-  final private static int HP=160;
-  final private static int ATK=11;
+  final private static int HP=70;
+  final private static int ATK=10;
   final private static int DEF=8;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 

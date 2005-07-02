@@ -129,6 +129,7 @@ public class TavernBarMaidNPC extends SpeakerNPC
           say("More beer? Naughty! *giggle* Coming right up!");
           break;
         }
+      }
     else if(text.contains("food"))
       {
 	    switch(rand.nextInt(2))

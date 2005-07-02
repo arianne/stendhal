@@ -30,6 +30,27 @@ public class Item extends PassiveEntity
     entity.isA("entity");
     entity.add("class",RPClass.STRING);
     }
+  
+  public static Item create(String iclass)
+    {
+    if(iclass.equals("shield"))
+      {
+      return new Shield();
+      }
+    else if(iclass.equals("sword"))
+      {
+      return new Sword();
+      }
+    else if(iclass.equals("armor"))
+      {
+      return new Armor();
+      }
+    else
+      {
+      Logger.trace("Item::create","X",iclass+" doesn't exist");
+      return null;
+      }
+    }
 
   public Item() throws AttributeNotFoundException
     {

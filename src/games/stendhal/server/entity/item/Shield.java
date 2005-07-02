@@ -8,4 +8,9 @@ public class Shield extends Item
     super();
     put("class","shield");
     }
+
+  public int getDEF()
+    {
+    return 14;
+    }
   }

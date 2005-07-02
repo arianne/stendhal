@@ -429,6 +429,14 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Armor.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Club.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Corpse.java</path>
 				<source>true</source>
 			</fileitem>
@@ -442,6 +450,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Sword.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Weapon.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -24,11 +24,11 @@ import games.stendhal.server.*;
 
 public class Ogre extends Creature
   {
-  final private double SPEED=0.1;
+  final private double SPEED=0.2;
 
   final private static int HP=200;
-  final private static int ATK=12;
-  final private static int DEF=10;
+  final private static int ATK=20;
+  final private static int DEF=15;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
   public Ogre() throws AttributeNotFoundException

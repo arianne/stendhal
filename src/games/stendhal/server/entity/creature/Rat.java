@@ -24,10 +24,10 @@ import games.stendhal.server.*;
 
 public class Rat extends Creature
   {
-  final private double SPEED=0.25;
+  final private double SPEED=0.5;
 
-  final private static int HP=15;
-  final private static int ATK=6;
+  final private static int HP=20;
+  final private static int ATK=4;
   final private static int DEF=2;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 

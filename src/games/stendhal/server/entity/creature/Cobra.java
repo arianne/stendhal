@@ -24,10 +24,10 @@ import games.stendhal.server.*;
 
 public class Cobra extends Creature
   {
-  final private double SPEED=0.5;
+  final private double SPEED=1;
 
-  final private static int HP=10;
-  final private static int ATK=20;
+  final private static int HP=15;
+  final private static int ATK=30;
   final private static int DEF=1;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 

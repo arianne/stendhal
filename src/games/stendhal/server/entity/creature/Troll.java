@@ -24,11 +24,11 @@ import games.stendhal.server.*;
 
 public class Troll extends Creature
   {
-  final private double SPEED=0.4;
+  final private double SPEED=0.5;
 
-  final private static int HP=100;
-  final private static int ATK=9;
-  final private static int DEF=6;
+  final private static int HP=40;
+  final private static int ATK=10;
+  final private static int DEF=7;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
   public Troll() throws AttributeNotFoundException

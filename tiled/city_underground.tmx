@@ -1,40 +1,45 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
-  <image source="zelda_navigation_chipset.gif"/>
+  <image source="zelda_navigation_chipset.png"/>
  </tileset>
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
-  <image source="zelda_objects_chipset.gif"/>
+  <image source="zelda_objects_chipset.png"/>
  </tileset>
  <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
-  <image source="zelda_collision_chipset.gif"/>
+  <image source="zelda_collision_chipset.png"/>
  </tileset>
  <layer name="dungeon_000_0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2ZzQ2DMAyFObBOZ2CE7NEZunevFVKRkBXHDtg4hnd4atqS4M9/TcN7mqY3BEEQBEEQo+9so2iOM/zLSd2FvxXfhYwX8nk0h1X8a+8pP3fNFfLil/zA+aTmA0+feMe/Zjvng1aOePnAu/65eHJxv0P+t3JdYjzS/3rnRdS/5+/faPxX52XvvKvib7127z0j699ybWkt7p6R/d+aX+oXd4//kb7hyWltq4dPo+MP/ufx99jTM8+yp2bkt7R3BP4zfrMU+PPwe/w3zsIv9b8IHvBfxy/Ny3BufLQ+NfHPyP8StOeX4p8t/xclv7Zfb2tGM2r4t1zV8mvOBTPxa9iPxD9T/lvvTzLwr/oY2qh5xjpaTVjya/bEo/EXY37KGr3Hj+CXnqtFM3vyc+fgo/Jb1z9X80/g1/oomnkvy/wHP/jBPy7/ytor8IP/yfzlv2fZXlui1xRmnJ2fjstc9w/nu2z8hbD25EEtJ7Ly1zjp99L12eIfZSv4wQ9BEET1A6rm4EwAQAAA
   </data>
  </layer>
- <layer name="dungeon_000_1_object" width="64" height="64">
+ <layer name="dungeon_000_1_terrain" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2aS07DMBBAI5EuEBepeojuQNyCRSTW5QCcpAsQB+ME7NlSK0RyrY4948+MP/OkKGrr1PNafyZ2pklRFEVRFAXmcZ6mp8TjeZa2iGe5xH5MiN9c+9q4fyq9+/8Eytxn6ENS/SzH/0/B7WuUvleinUH+L7vr13ac7mdccPmH2rvL/lL+k3A8zLTrtvKc/78P9/ehxrUQfajlY2KJJWb+q9Gf2obt46sDf845HKoTykUPjfmHcmrIJ9QXW/HHjimQP9QXqf0MQyn/3zk8prg+kn0xlMNScs9Yj1AskvkvxSXVP0cMWD4QeRe17lh/KJaS+Z+Phdmf6/uo9e6JY29v/rnHMepRMv/BeOQex2JpzR+a/+1xteR9Riqp/tB1seMqN+q/nkf3x47jW37amz8Gex1oRH/D1k5C83WL/icgznfPWnhP/iFM+3fne2i+bs0fuzbqy0/sNbGDVe7W2FrLfnLO+w5KW6qlTaj/elb/fN+FYRT/MzB3juIP0aO/b51Vep0TgnvdTWqdD0L91/MI/rf2bLc81Xf/nzNXlfSPXbMtsW8s6Y99Hu1YINYa/KnkfPZRap/DwP0cpA/1569T/fnrhKjF/+3/ve+769c2Kc8N1rLPZ6hh/pOkhvxHEsz9aS1tVVEUmD/qNk/4AEAAAA==
+   H4sIAAAAAAAAAO2aTQrCMBBGu6gL8SLiPRTvUfAWnsSF4iXdqpRCEKeZSSaZ/HwPQhfWJA+SySTpMAAAAAAA0BzHYThFlvNobRHOpND3C/yrRcN/qzCHrOaZhn8uUowz+MfXsf/U8RCU3Sj73/J+qf7Sfk1CH+n7IX2JoQV/6Rh2y7MB/5xrONUmlYseKvP35dSUj28u1uLPjSmUPzUXpfOMQyr/1+iPKb8+lnPRl8NKcs9QD19fLPNfiUusv0YfuNwZeZe07VB/qi8p8781psz+ueqTtrsXxt7W/LXjmLSkzH84HtpxLJTa/Kn1342rkn1HivyH46G9vwuNq7mB//zs3Z8bx5f8tDV/LpfO/Zdx4luvW/K/bujfevB3+V3LqfW6Nn9ujrKWn7hnYgfnvX+xtZT7ZM19h2QslTIm4D8/4a9XF4de/G/E2tmLP0WL/mvnrNbnnBS5z92szvko4D8/e/D/d2e75Klr+3/NXNXSP/TMNsW9Mfz16pS2LUXz20ere44vJX0HCP/8bcI/f5sUNfnHfDdYyj3flxLWP0t69+fsT0sZqwAAmjdP53QHAEAAAA==
   </data>
  </layer>
- <layer name="dungeon_000_2_roof" width="64" height="64">
+ <layer name="dungeon_000_2_object" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YQQqAIBAAQKH6Vl/pC/XhXtAjugSVB+kgpMvMbRFBdFdZUwIAoGQe/5lLHw5nXE1eL63WzzK94+c687Fo5HuZ/bm1Wr8AAAAA1OUfKLbV+RbJfwAAgL587eP0ewBxbdcdvw/vODLvH0C/TvFXE2IAQAAA
+  </data>
+ </layer>
+ <layer name="dungeon_000_3_roof" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OsQkAIBAEwQ/ewmxB++/FDkREUGEmWy65CAAAgHW17G0AAAAAAPCTlrcfAAAAAACc03PeAMA7BmcTJMgAQAAA
   </data>

@@ -1,50 +1,55 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_0_chipset.gif" trans="ffffff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_1_chipset.gif" trans="ffffff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_1_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="zelda_interior_0_chipset.gif" trans="ff00ff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
-  <image source="zelda_navigation_chipset.gif"/>
+  <image source="zelda_navigation_chipset.png"/>
  </tileset>
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
-  <image source="zelda_objects_chipset.gif"/>
+  <image source="zelda_objects_chipset.png"/>
  </tileset>
  <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
-  <image source="zelda_collision_chipset.gif"/>
+  <image source="zelda_collision_chipset.png"/>
  </tileset>
  <layer name="afterlive_0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvJzMBwchSP4iGAXwDxSxz4FR3sZ2NhYGDHgTlYIGrODLD9A+1/GKZFOFDi/1MjLPyp5WdS7adl+lcB2qGKA6vRIfxH8SgexaN4FFMP1zAMLL42igcUzxhgfHmEYwDAIJCRABAAAA==
+   H4sIAAAAAAAAAKtnYGCoH8WjeAjgBgJ4MNhPS3cMBf8jqx1M/qeGe4ZS+NMiDoixH5edwyH8R/EoHsWjeBRTD9cMML42igcUzxhgfHmEYwBzkgWQABAAAA==
   </data>
  </layer>
- <layer name="afterlive_1_object" width="32" height="32">
+ <layer name="afterlive_1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Vuw3CMBhFYVuYJitAErrMgHisAYgVaHmOQMtzBCZBooIZ6GEFOJZS0BjFUogL/it9XawTRVESGaXuNaUiU9yV62+eZ1yyvJ+Z4h5c//Q842Jn+yEnfelLP9D4BqTQBdV/cAv/8PwvXxpl9ydoaKWaiJEgRUtX01+jTavzoYd+if2X/Xc5XkbbH9Aa5kYYl9yPaSeO/glTWjPMscASq4qe/xkbWlvssMcBx4r6vpO+9KUfbl0Tti+ThdobsJiL4AAQAAA=
+   H4sIAAAAAAAAAONiYQADLhbi8XlmBoYLzKTpwYXVofarsxCP3wLtfsdMmh5ceBQMHbAAiBfiwIvoYP8+PHIHoHTjANtPS0CK/bQIB0r8v59K9uMqMgjZTw1Aqv+p4WdS7ccV79Rwyx0gvosD36OC+aNgFIyCUTAKRsEoGAUjAQAAyKtrugAQAAA=
   </data>
  </layer>
- <layer name="afterlive_2_roof" width="32" height="32">
+ <layer name="afterlive_2_object" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3VywnCQBhF4RuM4LsDU0mK9F2GItqGhLTgMj470CNusokozGSE/Bc+ZnlgGBhJOrYUdNa3vvWtH2SxlMTv8yse1uj799CfYIoZ5lhgiVVN/TU22JbssHfYf7zeYru6f0BWkjvuj2knFf0CJ5xxwRU33B32P60TSV300McAQ4yievq/zvrWt364pZ7+dZvt3/cERqLIyQAQAAA=
+  </data>
+ </layer>
+ <layer name="afterlive_3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
  <layer name="afterlive_objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHoghROCR8EoGAWjYBSMglEwCrCB4dRO2IPml+Rh5LehCNaNhv8oGAWjYAgDAKxfj4gAEAAA
+   H4sIAAAAAAAAAO3WsQkAIAxE0bTOacZ0OAs7sQ4Y3oMb4HcX8Z8cZwAAL51+wrpaZqM2AGptcig5GQAQAAA=
   </data>
  </layer>
- <layer name="afterlive_collision" width="32" height="32" opacity="0.67">
+ <layer name="afterlive_collision" width="32" height="32" visible="0" opacity="0.75">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2VMQ4AIAgDXf3/n3yXk4mTtgoYtU26kR4QoiWnVC5zk1VWn3lC4uN1yF2c5K/08dL8bKYXH2V4vEusvOZncq34oz1H8Gd1O3xUEfxZ3ut8pLf+JiP5rMQX/1e+5f8ryzLnCj+1tcUAEAAA
   </data>

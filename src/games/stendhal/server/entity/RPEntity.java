@@ -419,4 +419,138 @@ public abstract class RPEntity extends Entity
     {
     this.pathPosition=pathPos;
     }
+  
+  public boolean hasWeapon()
+    {
+    if(hasSlot("rhand"))
+      {
+      RPSlot slot=getSlot("rhand");
+      if(slot.size()!=0)
+        {
+        Entity item=(Entity)slot.iterator().next();
+        if(item instanceof Weapon)
+          {
+          return true;
+          }
+        }
+      }
+      
+    if(hasSlot("lhand"))
+      {
+      RPSlot slot=getSlot("lhand");
+      if(slot.size()!=0)
+        {
+        Entity item=(Entity)slot.iterator().next();
+        if(item instanceof Weapon)
+          {
+          return true;
+          }
+        }
+      }
+      
+    return false;
+    }
+  
+  public Weapon getWeapon()
+    {    
+    if(hasSlot("rhand"))
+      {
+      RPSlot slot=getSlot("rhand");
+      if(slot.size()!=0)
+        {
+        Entity item=(Entity)slot.iterator().next();
+        if(item instanceof Weapon)
+          {
+          return (Weapon)item;
+          }
+        }
+      }
+      
+    if(hasSlot("lhand"))
+      {
+      RPSlot slot=getSlot("lhand");
+      if(slot.size()!=0)
+        {
+        Entity item=(Entity)slot.iterator().next();
+        if(item instanceof Weapon)
+          {
+          return (Weapon)item;
+          }
+        }
+      }
+      
+    return null;
+    }
+  
+  public boolean hasShield()
+    {
+    if(hasSlot("rhand"))
+      {
+      RPSlot slot=getSlot("rhand");
+      if(slot.size()!=0)
+        {
+        Entity item=(Entity)slot.iterator().next();
+        if(item instanceof Shield)
+          {
+          return true;
+          }
+        }
+      }
+      
+    if(hasSlot("lhand"))
+      {
+      RPSlot slot=getSlot("lhand");
+      if(slot.size()!=0)
+        {
+        Entity item=(Entity)slot.iterator().next();
+        if(item instanceof Shield)
+          {
+          return true;
+          }
+        }
+      }
+    
+    return false;
+    }
+  
+  public Shield getShield()
+    {
+    if(hasSlot("rhand"))
+      {
+      RPSlot slot=getSlot("rhand");
+      if(slot.size()!=0)
+        {
+        Entity item=(Entity)slot.iterator().next();
+        if(item instanceof Shield)
+          {
+          return (Shield)item;
+          }
+        }
+      }
+      
+    if(hasSlot("lhand"))
+      {
+      RPSlot slot=getSlot("lhand");
+      if(slot.size()!=0)
+        {
+        Entity item=(Entity)slot.iterator().next();
+        if(item instanceof Shield)
+          {
+          return (Shield)item;
+          }
+        }
+      }
+      
+    return null;
+    }
+    
+  public boolean hasArmor()
+    {
+    return hasSlot("armor") && getSlot("armor").size()!=0;
+    }
+  
+  public Armor getArmor()
+    {
+    return (Armor)getSlot("armor").iterator().next();
+    }
   }

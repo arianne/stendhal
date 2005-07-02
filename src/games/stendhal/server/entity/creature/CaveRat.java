@@ -26,9 +26,9 @@ public class CaveRat extends Creature
   {
   final private double SPEED=0.40;
 
-  final private static int HP=28;
-  final private static int ATK=7;
-  final private static int DEF=3;
+  final private static int HP=30;
+  final private static int ATK=5;
+  final private static int DEF=2;
   final private static int XP=getInitialXP(ATK,DEF,HP);
 
   public CaveRat() throws AttributeNotFoundException

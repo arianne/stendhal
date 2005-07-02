@@ -328,7 +328,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     SpriteStore st=SpriteStore.get();
     
     InGameButton button=null;
-    button=new InGameButton("atk",st.getSprite("data/atk_up.gif"), st.getSprite("data/atk_up_pressed.gif"), 530,84);
+    button=new InGameButton("atk",st.getSprite("data/atk_up.gif"), st.getSprite("data/atk_up_pressed.gif"), 515,110);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction(Object... param)
@@ -342,7 +342,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button.setEnabled(false);
     buttons.add(button);
     
-    button=new InGameButton("def",st.getSprite("data/def_up.gif"), st.getSprite("data/def_up_pressed.gif"), 530,84+14);
+    button=new InGameButton("def",st.getSprite("data/def_up.gif"), st.getSprite("data/def_up_pressed.gif"), 515,110+14);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction(Object... param)
@@ -356,7 +356,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button.setEnabled(false);
     buttons.add(button);
 
-    button=new InGameButton("hp",st.getSprite("data/hp_up.gif"), st.getSprite("data/hp_up_pressed.gif"), 530,84+28);
+    button=new InGameButton("hp",st.getSprite("data/hp_up.gif"), st.getSprite("data/hp_up_pressed.gif"), 515,110+28);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction(Object... param)
@@ -418,21 +418,21 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     area.addActionListener(dropToInventory);
     droppableAreas.add(area);
     
-    area=new InGameDroppableArea("head",558,14,32,32);
+//    area=new InGameDroppableArea("head",558,14,32,32);
+//    area.addActionListener(dropToInventory);
+//    droppableAreas.add(area);
+    
+    area=new InGameDroppableArea("armor",558,56,32,32);
     area.addActionListener(dropToInventory);
     droppableAreas.add(area);
     
-    area=new InGameDroppableArea("torso",558,56,32,32);
-    area.addActionListener(dropToInventory);
-    droppableAreas.add(area);
-    
-    area=new InGameDroppableArea("legs",558,98,32,32);
-    area.addActionListener(dropToInventory);
-    droppableAreas.add(area);
-    
-    area=new InGameDroppableArea("feet",558,141,32,32);
-    area.addActionListener(dropToInventory);
-    droppableAreas.add(area);
+//    area=new InGameDroppableArea("legs",558,98,32,32);
+//    area.addActionListener(dropToInventory);
+//    droppableAreas.add(area);
+//    
+//    area=new InGameDroppableArea("feet",558,141,32,32);
+//    area.addActionListener(dropToInventory);
+//    droppableAreas.add(area);
     
     area=new InGameDroppableArea("rhand",601,70,32,32);
     area.addActionListener(dropToInventory);
@@ -711,6 +711,17 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           }
         }
       
+      if(player.hasSlot("armor"))
+        {
+        RPSlot slot=player.getSlot("armor");
+        if(slot.size()==1)
+          {
+          InGameDroppableArea rhand=getDroppableArea("armor");
+          RPObject object=slot.iterator().next();
+          screen.drawInScreen(gameObjects.spriteType(object),rhand.getx(),rhand.gety());
+          }
+        }
+
       screen.drawInScreen(screen.createString("HP : "+player.get("hp")+"/"+player.get("base_hp"),Color.white),550, 184);
       screen.drawInScreen(screen.createString("ATK: "+player.get("atk"),Color.white),550, 204);
       screen.drawInScreen(screen.createString("DEF: "+player.get("def"),Color.white),550, 224);

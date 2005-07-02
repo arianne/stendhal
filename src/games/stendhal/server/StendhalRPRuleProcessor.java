@@ -653,7 +653,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         
         if(object.get("type").equals("item"))
           {
-          entity=new Item();
+          entity=Item.create(object.get("class"));
           }
         else if(object.get("type").equals("corpse"))
           {

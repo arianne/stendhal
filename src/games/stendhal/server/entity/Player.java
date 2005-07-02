@@ -21,6 +21,7 @@ import java.awt.geom.*;
 import java.util.*;
 
 import games.stendhal.server.entity.creature.*;
+import games.stendhal.server.entity.item.*;
 
 public class Player extends RPEntity
   {
@@ -73,6 +74,11 @@ public class Player extends RPEntity
     if(!object.hasSlot("lhand"))
       {
       object.addSlot(new RPSlot("lhand"));
+      }
+
+    if(!object.hasSlot("armor"))
+      {
+      object.addSlot(new RPSlot("armor"));
       }
 
     Player player=new Player(object);
@@ -155,6 +161,35 @@ public class Player extends RPEntity
         {
         player.removeSlot("#flock");
         }          
+      }
+    
+    String[] slots={"rhand","lhand","armor"};
+    
+    for(String slotName: slots)
+      {
+      try
+        {
+        RPSlot slot=player.getSlot(slotName);
+        
+        if(slot.size()!=0)
+          {
+          RPObject item=slot.iterator().next();
+          slot.clear();
+          
+          if(item.get("type").equals("item")) // We simply ignore corpses...
+            {
+            Item entity=Item.create(item.get("class"));
+            entity.setID(item.getID());
+            slot.add(entity);
+            }
+          }
+        }
+      catch(Exception e)
+        {
+        Logger.thrown("Player::create","X",e);
+        RPSlot slot=player.getSlot(slotName);
+        slot.clear();
+        }
       }
 
     Logger.trace("Player::create","D","Finally player is :"+player);

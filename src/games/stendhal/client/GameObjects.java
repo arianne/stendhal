@@ -47,7 +47,7 @@ public class GameObjects
     register("creature","wolf",NormalCreature.class);
     register("creature","caverat",SmallCreature.class);
     register("creature","rat",SmallCreature.class);
-    register("sheep",null,Sheep.class);
+    register("sheep",null,Sheep.class);    
     
     register("npc","angelnpc",NPC.class);
     register("npc","beggarnpc",NPC.class);
@@ -77,7 +77,10 @@ public class GameObjects
     register("corpse","sheep",Corpse.class);
     
     register("sign",null,Sign.class);
-    register("item",null,Item.class);
+    register("item","shield",Item.class);
+    register("item","club",Item.class);
+    register("item","sword",Item.class);
+    register("item","armor",Item.class);
 
     register("portal",null,Portal.class);
     }
