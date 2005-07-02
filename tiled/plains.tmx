@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="64" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_0_chipset.png" trans="ffffff"/>
+  <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_1_chipset.png" trans="ffffff"/>
+  <image source="zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+  <image source="zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+  <image source="zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_interior_0_chipset.png" trans="ff00ff"/>
+  <image source="zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.png"/>
@@ -36,7 +36,7 @@
  </layer>
  <layer name="plains_2_object" width="128" height="64">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="plains_3_roof" width="128" height="64">

@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="32" height="17" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_0_chipset.png" trans="ffffff"/>
+  <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_1_chipset.png" trans="ffffff"/>
+  <image source="zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+  <image source="zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+  <image source="zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_interior_0_chipset.png" trans="ff00ff"/>
+  <image source="zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.png"/>
@@ -46,12 +46,12 @@
  </layer>
  <layer name="tavern_objects" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGF4ghXOgXTAKRsEoGAWjYBSMAkIAANnyNhyACAAA
+   H4sIAAAAAAAAAGNgGF4ghXOgXTAKRsEoGElg/WiZMwpGAVkAAAhSLbqACAAA
   </data>
  </layer>
- <layer name="tavern_collision" width="32" height="17" opacity="0.36">
+ <layer name="tavern_collision" width="32" height="17" visible="0" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvGycBwbBhhEKCWfhgbl5mEAD41pNqPTR8lgFi/UGoPNewnJe5oYT8tADH+oFY8E2M/PQA2v9HTfnS3DCb7aRX/pNqPTR0u/ZSID0b7senBVw5T035cdtPL/6TaTymAmQ0AzeaB94AIAAA=
+   H4sIAAAAAAAAAN2SUQ7AIAhD/d397+S5ln2YGNMiHciSNfFDtDwI9Ku1/qPzKMvvyTX+ILG4lRfxmS8ixFV7qOIrszvFn+9rPIOPasmc845/Qmx3q/hWPV/w11oq5j/n8vB3PqsuJa7yrV16E/eyEZ95Iv0zD5u/0jt6i/KjGrlv5Wo8AIAIAAA=
   </data>
  </layer>
 </map>
