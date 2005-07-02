@@ -81,11 +81,6 @@ public class Player extends RPEntity
       object.addSlot(new RPSlot("armor"));
       }
 
-    if(!object.has("money"))
-      {
-      object.put("money","100");
-      }
-
     Player player=new Player(object);
     player.stop();
     player.stopAttack();
@@ -181,7 +176,7 @@ public class Player extends RPEntity
           RPObject item=slot.iterator().next();
           slot.clear();
           
-          if(item.get("type").equals("item")) // We simply ignore corpses...
+          if(item.get("type").equals("weapon") || item.get("type").equals("shield") || item.get("type").equals("armor")) // We simply ignore corpses...
             {
             Item entity=Item.create(item.get("class"));
             entity.setID(item.getID());

@@ -143,15 +143,14 @@ public abstract class Creature extends NPC
 
   public void addXP(int newxp)
     {
-    int oldLevel = Level.getLevel(getXP());
     super.addXP(newxp);
-    int newLevel = Level.getLevel(getXP());
 
-    int levelsGained = newLevel - oldLevel;
+    int newLevel=Level.getLevel(getXP());
+    int levels=newLevel-getLevel();
 
-    if(levelsGained > 0)
+    if(levels > 0)
       {
-      spendDevelPoint(levelsGained);
+      spendDevelPoint(levels);
       setLevel(newLevel);
       }
     }

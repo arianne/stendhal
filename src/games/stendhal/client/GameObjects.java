@@ -57,6 +57,7 @@ public class GameObjects
     register("npc","welcomernpc",NPC.class);
     register("npc","orcbuyernpc",NPC.class);
     register("npc","sellernpc",NPC.class);
+    register("npc","weaponsellernpc",NPC.class);
     register("npc","tavernbarmaidnpc",NPC.class);
     register("trainingdummy",null,TrainingDummy.class);
     

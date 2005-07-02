@@ -373,6 +373,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\npc\WeaponSellerNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\npc\WelcomerNPC.java</path>
 				<source>true</source>
 			</fileitem>

@@ -420,6 +420,48 @@ public abstract class RPEntity extends Entity
     this.pathPosition=pathPos;
     }
   
+  public boolean equip(Item item)
+    {
+    if(item instanceof Armor)
+      {
+      if(hasSlot("armor"))
+        {
+        RPSlot slot=getSlot("armor");
+        if(slot.size()==0)      
+          {
+          slot.assignValidID(item);
+          slot.add(item);
+          return true;
+          }
+        }
+      }
+    else if(item instanceof Shield || item instanceof Weapon)
+      {
+      if(hasSlot("rhand"))
+        {
+        RPSlot slot=getSlot("rhand");
+        if(slot.size()==0)      
+          {
+          slot.assignValidID(item);
+          slot.add(item);
+          return true;
+          }
+        }
+      else if(hasSlot("lhand"))
+        {
+        RPSlot slot=getSlot("rhand");
+        if(slot.size()==0)      
+          {
+          slot.assignValidID(item);
+          slot.add(item);
+          return true;
+          }
+        }
+      }
+    
+    return false;
+    }
+  
   public boolean hasWeapon()
     {
     if(hasSlot("rhand"))
