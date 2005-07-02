@@ -60,11 +60,11 @@ public class OrcBuyerNPC extends SpeakerNPC
         Sheep sheep=(Sheep)world.get(player.getSheep());
         if(distance(sheep)>5*5)
           {
-          say("Yummy sheep! Take sheep here!.");
+          say("*drool* Sheep flesh! Bring da sheep here!");
           }
         else
           {
-          say("*LOVELY*. Take money!.");
+          say("*LOVELY*. Take dis money!.");
           rp.removeNPC(sheep);
           world.remove(sheep.getID());
           player.removeSheep(sheep);
@@ -79,24 +79,24 @@ public class OrcBuyerNPC extends SpeakerNPC
         }
       else
         {
-        say("Don't cheat me!");
+        say("Sell what? Don't cheat me or I might 'ave to hurt you!");
         return true;
         }      
       }
     else if(text.contains("help"))
       {
-      say("Buy sheep!. Sell me sheeps!.");
+      say("I buy sheep! Sell me sheep! I'm hungry!");
       return true;
       }
-    else if(text.contains("job"))
+    else if(text.contains("job")||text.contains("work")||text.contains("quest"))
       {
-      say("Uarhg?!");
+      say("Uarhg?! What is job, I want food! Sheep flesh!");
       }    
     else if(text.contains("bought"))
       {
       say("Me have bought "+amount+" sheep(s).");
       }
-    else if(text.contains("bye"))
+    else if(text.contains("bye")||text.contains("cya"))
       {
       say("Bye human");
       return true;

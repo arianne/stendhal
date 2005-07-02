@@ -48,9 +48,9 @@ public class BuyerNPC extends SpeakerNPC
   public boolean chat(Player player) throws AttributeNotFoundException
     {
     String text=player.get("text").toLowerCase();
-    if(text.contains("hi"))
+    if(text.contains("hi")||text.contains("hello")||text.contains("hey"))
       {
-      say("Come 'ere and sell ya sheep!I 'ave the best prices this side of the Ourvalon, I swears it!");
+      say("Come 'ere and sell ya sheep! I 'ave the best prices this side of the Ourvalon, I swears it!");
       return true;
       }
     else if(text.contains("sell"))
@@ -84,23 +84,27 @@ public class BuyerNPC extends SpeakerNPC
         return true;
         }      
       }
-    else if(text.contains("help"))
+    else if(text.contains("help")||text.contains("work")||text.contains("quest"))
       {
       say("I buy sheep. Try to SELL me one.");
       return true;
       }
     else if(text.contains("job"))
       {
-      say("I've been buying sheep for a Meat factory up near da ol' Capital city for the past 20 years. Have you visited our fair Capital city?");
+      say("I've been buying sheep for a Meat factory up near da ol' Capital city for the past 20 years.");
       }    
     else if(text.contains("bought"))
       {
       say("I have bought "+amount+" sheep(s).");
       }
-    else if(text.contains("bye"))
+    else if(text.contains("bye")||text.contains("cya"))
       {
       say("Bye "+player.get("name"));
       return true;
+      }
+    else if(text.contains("thanks"))
+      {
+	  say("You're welcome!");
       }
     else if(has("text")) 
       {

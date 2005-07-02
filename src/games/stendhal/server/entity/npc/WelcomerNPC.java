@@ -53,7 +53,7 @@ public class WelcomerNPC extends SpeakerNPC
   protected boolean chat(Player player) throws AttributeNotFoundException
     {
     String text=player.get("text").toLowerCase();
-    if(text.contains("hi"))
+    if(text.contains("hi")||text.contains("hello"))
       {
       say("Welcome to Stendhal. My name is "+get("name")+" and I will help you, here, in Stendhal's world. What do you need?");
       return true;
@@ -63,12 +63,12 @@ public class WelcomerNPC extends SpeakerNPC
       say("I give INDICATIONS, I HEAL and I can tell you about QUESTS that need completing. What do you need?");
       return true;
       }
-    else if(text.contains("indication"))
+    else if(text.contains("indication")||text.contains("position"))
       {
       say("At the moment, you are in the City. You can travel West to find and talk with Nishiya to purchase a small sheep. You can travel South into the plains but I warn you, dangerous wolves live there. You can travel a short way East into the Dungeons but they are very dangerous too!. Scary, isn't it?");
       return true;
       }
-    else if(text.contains("quest"))
+    else if(text.contains("quest")||text.contains("work"))
       {
       say("I have been told that Sato will reward you for a fully grown sheep.Purchase one from Nishiya and then feed it to make it nice and fat!");
       return true;

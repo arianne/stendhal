@@ -73,7 +73,12 @@ public class TavernBarMaidNPC extends SpeakerNPC
         }
       return true;
       }
-    else if(text.contains("job"))
+    else if(text.contains("indication")||text.contains("position"))
+      {
+      say("You are in the tavern. You can travel East to find more people to chat to. You can travel South into the plains but they are too scary for me so I can't tell you much about that!");
+      return true;
+      }
+    else if(text.contains("job")||text.contains("work"))
       {
       say("I am the bar maid for this fair tavern. We sell fine beers and food.");
       return true;
@@ -122,6 +127,17 @@ public class TavernBarMaidNPC extends SpeakerNPC
           break;
         case 2:  
           say("More beer? Naughty! *giggle* Coming right up!");
+          break;
+        }
+    else if(text.contains("food"))
+      {
+	    switch(rand.nextInt(2))
+        {
+        case 0:  
+          say("Sure thing, a big strong adventurer like you will need lots of food!");
+          break;
+        case 1:  
+          say("For a price we have the best food in this city. What would you like?");
           break;
         }
       return true;	      

@@ -38,12 +38,12 @@ public abstract class SellerNPC extends SpeakerNPC
   public boolean chat(Player player) throws AttributeNotFoundException
     {
     String text=player.get("text").toLowerCase();
-    if(text.contains("hi"))
+    if(text.contains("hi")||text.contains("hello"))
       {
-      say("Come here and buy your lambs!Feed them up and sell them for a profit!");
+      say("Come here and buy your lambs! Feed them up and sell them for a profit!");
       return true;
       }
-    else if(text.contains("buy"))
+    else if(text.contains("buy")||text.contains("purchase"))
       {
       if(!player.hasSheep())
         {
@@ -72,19 +72,19 @@ public abstract class SellerNPC extends SpeakerNPC
       }
     else if(text.contains("help"))
       {
-      say("I sell sheep, try to BUY one from me.");
+      say("I sell sheep, try to BUY one from me. You might be able to raise it then sell it for a profit!");
       return true;
       }
-    else if(text.contains("job"))
+    else if(text.contains("job")||text.contains("work")||text.contains("quest"))
       {
-      say("I sell lambs. I have heard that someone buys them for meat when they are nice and plump for a good amount of gold.  But it is so boring to raise them that I will leave it up to you!");
+      say("I sell lambs. I have heard that someone buys them for meat when they are nice and plump for a good amount of gold. But it is so boring to raise them that I will leave it up to you!");
       return true;
       }
     else if(text.contains("sold"))
       {
       say("I have sold "+amount+" sheep(s).");
       }
-    else if(text.contains("bye"))
+    else if(text.contains("bye")||text.contains("cya"))
       {
       say("Bye "+player.get("name"));
       return true;
