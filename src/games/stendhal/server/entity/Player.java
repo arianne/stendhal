@@ -81,6 +81,11 @@ public class Player extends RPEntity
       object.addSlot(new RPSlot("armor"));
       }
 
+    if(!object.has("money"))
+      {
+      object.put("money","100");
+      }
+
     Player player=new Player(object);
     player.stop();
     player.stopAttack();
