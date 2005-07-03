@@ -31,7 +31,7 @@ public class RespawnPoint
   private List<Creature> entities;
 
   private boolean respawning;
-  final public static int TURNSTORESPAWN=9; // Five minute at 300ms
+  final public static int TURNSTORESPAWN=900; // Five minute at 300ms
   private int turnsToRespawn;
 
   private StendhalRPZone zone;
@@ -114,28 +114,28 @@ public class RespawnPoint
       {
       Creature newentity=entity.getClass().newInstance();
 
-      // We randomly modify the creature to up to 3 levels up
-      int rand = (new Random()).nextInt(100);
-      int nbLevel = 0;
-      if(rand == 0)
-        {
-        nbLevel = 3;
-        }
-      else if(rand < 10)
-        {
-        nbLevel = 2;
-        }
-      else if(rand < 30)
-        {
-        nbLevel = 1;
-        }
-
-      if(nbLevel>0)
-        {
-        int newLevel = newentity.getLevel() + nbLevel;
-        int newXP = Level.getXP(newLevel);
-        newentity.addXP(newXP - newentity.getXP());
-        }
+//      // We randomly modify the creature to up to 3 levels up
+//      int rand = (new Random()).nextInt(100);
+//      int nbLevel = 0;
+//      if(rand == 0)
+//        {
+//        nbLevel = 3;
+//        }
+//      else if(rand < 10)
+//        {
+//        nbLevel = 2;
+//        }
+//      else if(rand < 30)
+//        {
+//        nbLevel = 1;
+//        }
+//
+//      if(nbLevel>0)
+//        {
+//        int newLevel = newentity.getLevel() + nbLevel;
+//        int newXP = Level.getXP(newLevel);
+//        newentity.addXP(newXP - newentity.getXP());
+//        }
 
       zone.assignRPObjectID(newentity);
       StendhalRPAction.placeat(zone,newentity,x,y);

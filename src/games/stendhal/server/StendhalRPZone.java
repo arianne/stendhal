@@ -268,31 +268,6 @@ public class StendhalRPZone extends MarauroaRPZone
     
     int j=0;
     
-    Item itemo=new Shield();
-    assignRPObjectID(itemo);
-    itemo.setx(5);
-    itemo.sety(5);
-    add(itemo);
-
-    itemo=new Sword();
-    assignRPObjectID(itemo);
-    itemo.setx(7);
-    itemo.sety(7);
-    add(itemo);
-
-    itemo=new Armor();
-    assignRPObjectID(itemo);
-    itemo.setx(5);
-    itemo.sety(7);
-    add(itemo);
-
-    itemo=new Club();
-    assignRPObjectID(itemo);
-    itemo.setx(7);
-    itemo.sety(5);
-    add(itemo);
-
-    
     while((text=file.readLine())!=null)
       {
       if(text.trim().equals(""))

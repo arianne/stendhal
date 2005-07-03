@@ -5,6 +5,7 @@ import marauroa.common.game.*;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.item.*;
 import games.stendhal.server.entity.creature.*;
 
 public class dungeon_001 
@@ -48,5 +49,17 @@ public class dungeon_001
     npc.setbaseHP(1000);
     zone.add(npc);    
     zone.addNPC(npc);
+  
+    Item itemo=new Sword();
+    zone.assignRPObjectID(itemo);
+    itemo.setx(72);
+    itemo.sety(48);
+    zone.add(itemo);
+
+    itemo=new Shield();
+    zone.assignRPObjectID(itemo);
+    itemo.setx(75);
+    itemo.sety(83);
+    zone.add(itemo);
     }  
   }
