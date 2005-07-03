@@ -135,11 +135,12 @@ public class SpriteStore {
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 		
 		int mode=Transparency.BITMASK;
-		
-		if(loadAlpha)
-		  {
-		  mode=Transparency.TRANSLUCENT;
-		  }
+
+//  ALPHA channel makes it runs 30% slower.		
+//		if(loadAlpha)
+//		  {
+//		  mode=Transparency.TRANSLUCENT;
+//		  }
 		  
     Image image = gc.createCompatibleImage(sourceImage.getWidth(),sourceImage.getHeight(),mode);
 		
