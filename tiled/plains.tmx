@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="64" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_1_chipset.png" trans="ffffff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="zelda_interior_0_chipset.png" trans="ff00ff"/>
+  <image source="D:\Desarrollo\arianne\stendhal\tiled\zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="zelda_navigation_chipset.png"/>
@@ -31,7 +31,7 @@
  </layer>
  <layer name="plains_1_terrain" width="128" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bTU4CQRCG4YLZsQSi3sCNGuKCeAY06kK9gogn8zBuMUaP4Q+6sjqBZMLf0D0zPXb3+yS1GYT09FdpYgEi4RlnIg8V1iRr+o7WG7ZWr52tuYY4kX/abjTr26W6I38AAAAEqpOrql+n7GvCn46sZrjumshqrtv+roreQvPKZEkfYPmMiKUX3toi7+2mVxG2kPvhR7P/1ZppvTpW6kI/Gw4ykT2t77Zb1aXbEunlqh/Y3DqUXhhq9iOtc8eqy0DzfsrVaWD5G6H0QJnPw+sSQ/5wF2v+oZwJTcvn/6x1HUn+Bj1Q7FLzvppXTNlvEur/D02IeW5B/sUWc4tYewDFzNziSKu3YXYxi6A3yp5zU33uS8374LLGKtZVNLcwMy3bHvCxXzbKzGe/tD60Pmu+n8UaH3ecBdxn1a1r29xiZNkDU0/7Zct1PtvX53Q9/S6h6Cw2dah1rI+feFrXONcDRXu1P+9JX/tlw3U+e6E18HQ/Nmv0ua7xP12XLZf5rO/fJO26RtYFAPUL+XsJqBY9AHoA9ADoAQCcAWnjfQDknzbOgLSRf9rIP23knzayTxufDwLguwIwyB+cAzDIHwZ9kDbeD2DQA1igD0APpI38AQAAAAAA4vcHeJsSdgCAAAA=
+   H4sIAAAAAAAAAO3bTU4CQRCG4YLZsQSi3sCNGuKCeAY06kK9gqhndYsxegx/0JXVCZNM+Bu6Z6bH7n6fpBIzCunpr9LEAkTCM81EHmqsx6ztO1pv3Fm9drbmGuJE/mm70axvl+qO/AEAABCoXqHqfp6qzwl/erKa4bprIqu5bvu7OnoL7auSJX2A5TMill5464q8d9teRdhC7ocfzf5Xa6716lipC/1sOMhE9rS+u27VlH5HZFCoYWBz61B6YazZT7TOHaspo6W8TwPL3wilB6q8H96UGPKHu1jzD+VMaFsx/2f9+TqS/A16oNyl5n21qJiy3yTU/x/aEPPcgvzL5XOLWHsA5czc4khrsGF2MY+gN6qeczN97EvD++CyxjrWVTa3MDMt2x7wsV82qsxnv7Q+tD4bvp98jU87zgLus/rWtW1uMbHsgZmn/bLlOp8d6mP6nr6XUHYWmzrUOtbfn3ha17TQA2V7tb/oSV/7ZcN1PnuhNfJ0PzZr9Lmu6T9dly2X+azv7yTtukbWBQDNC/lzCagXPQB6APQA6AEAnAFp43UA5J82zoC0kX/ayD9t5J82sk8b7w8C4LMCMMgfnAMwyB8GfZA2Xg9g0API0QegB9JG/gAAAAAAAPH7AwZJEAgAgAAA
   </data>
  </layer>
  <layer name="plains_2_object" width="128" height="64">
