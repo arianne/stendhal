@@ -133,7 +133,7 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("offer"))
       {
-      say("You pay equipment with XP points: a club(1000), an armor(5000), a shield(20000) and a sword(80000).");
+      say("You pay equipment with XP points: a club(1000), an armor(5000), a shield(10000) and a sword(20000).");
       return true;
       }
     else if(text.contains("buy")||text.contains("purchase"))

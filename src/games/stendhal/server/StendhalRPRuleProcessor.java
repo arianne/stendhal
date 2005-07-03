@@ -825,6 +825,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       Player player=Player.create(object);
 
+      playersObjectRmText.add(player);
       playersObject.add(player);
       return true;
       }

@@ -192,6 +192,8 @@ public class Player extends RPEntity
         }
       }
 
+    player.setPrivateText("This release is EXPERIMENTAL. We are trying new RP system. Please report problems, suggestions and bugs.");
+
     Logger.trace("Player::create","D","Finally player is :"+player);
     return player;
     }
