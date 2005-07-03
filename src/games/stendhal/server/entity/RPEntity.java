@@ -318,7 +318,14 @@ public abstract class RPEntity extends Entity
     damageReceived.clear();
     totalDamageReceived = 0;
     // Stats about dead
-    stats.add("Killed "+get("type"),1);
+    if(has("class"))
+      {
+      stats.add("Killed "+get("class"),1);
+      }
+    else
+      {
+      stats.add("Killed "+get("type"),1);
+      }
 
     // Add a corpse
     Corpse corpse=new Corpse(this);

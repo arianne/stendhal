@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.30
+Version 0.31
 
 
 How to play
@@ -62,6 +62,9 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.31 Jul XX, 2005
+- Fixed a bug at statistics system.
+
 0.30 Jul 03, 2005
 - Added items system
 - Fixed close bug
