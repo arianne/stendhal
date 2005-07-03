@@ -26,7 +26,7 @@
  </tileset>
  <layer name="afterlive_0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtnYGB4yszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJwceZh0b4kxIH9Ej/+NwyVNI/rfCo/aP2j9o/av9ItP8tE8R+ED2KRx6ewTCw+PIIxwAiSCTgABAAAA==
+   H4sIAAAAAAAAAKtnYGA4xszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJxUMh/EmJA3qkf3xuGSrpn1Z41P5R+0ftH7V/JNr/lgliP4gexSMPz2AYWHx5hGMA1ir/hgAQAAA=
   </data>
  </layer>
  <layer name="afterlive_1_terrain" width="32" height="32">
@@ -49,7 +49,7 @@
    H4sIAAAAAAAAAGNgGHoghROCR8EoGAWjYBSMglEwCrCB4dRO2IPml+Rh5LehCNaNhv8oGAWjYAgDAKxfj4gAEAAA
   </data>
  </layer>
- <layer name="afterlive_collision" width="32" height="32" visible="0" opacity="0.25">
+ <layer name="afterlive_collision" width="32" height="32" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2VMQ4AIAgDXf3/n3yXk4mTtgoYtU26kR4QoiWnVC5zk1VWn3lC4uN1yF2c5K/08dL8bKYXH2V4vEusvOZncq34oz1H8Gd1O3xUEfxZ3ut8pLf+JiP5rMQX/1e+5f8ryzLnCj+1tcUAEAAA
   </data>

@@ -26,7 +26,7 @@
  </tileset>
  <layer name="dungeon_000_0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2ZzQ2DMAyFObBOZ2CE7NEZunevFVKRkBXHDtg4hnd4atqS4M9/TcN7mqY3BEEQBEEQo+9so2iOM/zLSd2FvxXfhYwX8nk0h1X8a+8pP3fNFfLil/zA+aTmA0+feMe/Zjvng1aOePnAu/65eHJxv0P+t3JdYjzS/3rnRdS/5+/faPxX52XvvKvib7127z0j699ybWkt7p6R/d+aX+oXd4//kb7hyWltq4dPo+MP/ufx99jTM8+yp2bkt7R3BP4zfrMU+PPwe/w3zsIv9b8IHvBfxy/Ny3BufLQ+NfHPyP8StOeX4p8t/xclv7Zfb2tGM2r4t1zV8mvOBTPxa9iPxD9T/lvvTzLwr/oY2qh5xjpaTVjya/bEo/EXY37KGr3Hj+CXnqtFM3vyc+fgo/Jb1z9X80/g1/oomnkvy/wHP/jBPy7/ytor8IP/yfzlv2fZXlui1xRmnJ2fjstc9w/nu2z8hbD25EEtJ7Ly1zjp99L12eIfZSv4wQ9BEET1A6rm4EwAQAAA
+   H4sIAAAAAAAAAO2ZzQ2DMAyFObBN1RkYIQt1714rpCIhK44dsHEM7/DUtCXBn/+ahtc0TS8IgiAIgiBG39lG0Rxn+JeTugt/K74LGS/k82gOq/jX3lN+7por5MUv+YHzSc0Hnj7xjn/Nds4HrRzx8oF3/XPx5OJ+h/xv5brEeKT/9c6LqH/P37/R+K/Oy955V8Xfeu3ee0bWv+Xa0lrcPSP7vzW/1C/uHv8jfcOT09pWD59Gxx/8z+PvsadnnmVPzchvae8I/Gf8Zinw5+H3+G+chV/qfxE84L+OX5qX4dz4aH1q4p+R/y1ozy/FP1v+L0p+bb/e1oxm1PBvuarl15wLZuLXsB+Jf6b8t96fZOBf9TG0UfOMdbSasOTX7IlH4y/G/JQ1eo8fwS89V4tm9uTnzsFH5beuf67mn8Cv9VE0816W+Q9+8IN/XP6VtVfgB/+T+ct/z7K9tkSvKcw4Oz8dl7nuH8532fgLYe3Jg1pOZOWvcdLvpeuzxT/KVvCDH4IgiOoH2sevSgBAAAA=
   </data>
  </layer>
  <layer name="dungeon_000_1_terrain" width="64" height="64">
