@@ -64,7 +64,7 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
       say("Congratulations! Here is your "+itemName+"!");
       return true;
       }        
-    else if(itemName.equals("club") && !player.hasArmor())
+    else if(itemName.equals("armor") && !player.hasArmor())
       {      
       if(player.getXP()<5000)
         {

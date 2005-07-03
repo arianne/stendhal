@@ -449,7 +449,7 @@ public abstract class RPEntity extends Entity
         }
       else if(hasSlot("lhand"))
         {
-        RPSlot slot=getSlot("rhand");
+        RPSlot slot=getSlot("lhand");
         if(slot.size()==0)      
           {
           slot.assignValidID(item);

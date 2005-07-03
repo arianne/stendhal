@@ -43,7 +43,7 @@ public class Item extends PassiveEntity
       }
     else if(iclass.equals("club"))
       {
-      return new Sword();
+      return new Club();
       }
     else if(iclass.equals("armor"))
       {
