@@ -62,7 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.30 Jun XX, 2005
+0.30 Jul 03, 2005
 - Added items system
 - Fixed close bug
 - Fixed a bug that blocks game
@@ -70,6 +70,16 @@ Changelog
 - Completed dungeon_001 map
 - Fixed cache bug definitively
 - Added slots
+- Added club, sword, shield and armor
+- New combat system
+- New monsters stats
+- Several map fixes
+- Move tilesets to PNG
+- Added 6 devel points on player creation
+- New NPC dialogs
+- Added a weapon seller
+- Removed ownerless sheeps
+- Sato doesn't kill sheeps anymore
 
 0.25 Jun 09, 2005
 - Fixed a bug on dead
