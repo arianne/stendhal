@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jnlp  spec="1.0+"  codebase="http://stendhal.game-server.cc/JWS/" href="stendhal.jnlp">
+<jnlp  spec="1.0+"  codebase="http://arianne.sourceforge.net/jws/" href="stendhal.jnlp">
   <information>
     <title>Stendhal</title>
     <vendor>Miguel Angel Blanch Lardin</vendor>
@@ -11,10 +11,8 @@ Your task is to talk with other people in the village and find jobs to do that w
 In stendhal, you can also just walk around, chat with people, buy and sell items and kill some of them :)
 Some of these people are NPC, they will give you tasks to accomplish and hints to solve your quest.    </description>
     <description kind="short">A multiplayer online adventures game</description>
-<!--
-    <icon href="Xith3D/CubeMapReflection/icon.png"/>
-    <icon kind="splash" href="Xith3D/CubeMapReflection/reftexturecubemap.jpg"/>
--->    
+    <icon href="StendhalIcon.gif"/>
+    <icon kind="splash" href="StendhalSplash.jpg"/>
     <offline-allowed/>
   </information>
   <security>
@@ -22,7 +20,7 @@ Some of these people are NPC, they will give you tasks to accomplish and hints t
   </security>
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+"/>
-    <jar href="stendhal-0.01.jar" main="true"/>
+    <jar href="stendhal-0.30.jar" main="true"/>
   </resources>
   <application-desc/>
 </jnlp>
