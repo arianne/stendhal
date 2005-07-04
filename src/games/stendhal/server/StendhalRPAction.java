@@ -106,7 +106,7 @@ public class StendhalRPAction
           }
         else
           {
-          risk=source.getATK()-target.getDEF()-roll-15;
+          risk=source.getATK()-target.getDEF()+roll-10;
           }
         
         Logger.trace("StendhalRPAction::attack","D","Risk to strike: "+risk);
