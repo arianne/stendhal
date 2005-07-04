@@ -341,6 +341,7 @@ public class GameObjects
     Logger.trace("GameObjects::clear",">");
     objects.clear();
     sortObjects.clear();
+    texts.clear();
     Logger.trace("GameObjects::clear","<");
     }
   

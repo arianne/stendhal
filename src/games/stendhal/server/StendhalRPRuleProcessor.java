@@ -669,7 +669,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         int x=action.getInt("x");
         int y=action.getInt("y");
         
-        if(!zone.simpleCollides(entity,x,y))
+        if(player.distance(x,y)<8*8 && !zone.simpleCollides(entity,x,y))
           {
           slot.clear();
   

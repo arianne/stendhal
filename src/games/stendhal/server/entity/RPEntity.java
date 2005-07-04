@@ -454,7 +454,8 @@ public abstract class RPEntity extends Entity
           return true;
           }
         }
-      else if(hasSlot("lhand"))
+      
+      if(hasSlot("lhand"))
         {
         RPSlot slot=getSlot("lhand");
         if(slot.size()==0)      

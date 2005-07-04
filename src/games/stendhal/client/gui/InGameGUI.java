@@ -528,6 +528,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           {
           if(item.isMouseOver(e.getPoint()))
             {
+            System.out.println ("Pressed on "+item.getName());
             choosenWidget=item;
             return;
             }
@@ -550,6 +551,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           {
           // We dropped it in inventory
           System.out.println ("Dropped "+choosenEntity+" into "+item.getName());
+          choosenEntity=null;
+          lastDraggedEvent=null;
           return;
           }
         }
@@ -570,6 +573,9 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       action.put("x",(int)point.getX());
       action.put("y",(int)point.getY());
       InGameGUI.this.client.send(action);
+
+      choosenWidget=null;
+      lastDraggedEvent=null;
       }
     }
 
