@@ -31,7 +31,7 @@ public class RespawnPoint
   private List<Creature> entities;
 
   private boolean respawning;
-  final public static int TURNSTORESPAWN=9; // Five minute at 300ms
+  final public static int TURNSTORESPAWN=900; // Five minute at 300ms
   private int turnsToRespawn;
 
   private StendhalRPZone zone;
