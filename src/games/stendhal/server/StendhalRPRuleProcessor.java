@@ -245,6 +245,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         equip(player,action);
         }
+      else if(action.get("type").equals("moveequip"))
+        {
+        moveequip(player,action);
+        }
       else if(action.get("type").equals("drop"))
         {
         drop(player,action);
@@ -630,6 +634,40 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     Logger.trace("StendhalRPRuleProcessor::equip","<");
     }
+
+  private void moveequip(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Logger.trace("StendhalRPRuleProcessor::moveequip",">");
+
+    if(action.has("sourceslot") && action.has("targetslot"))
+      {
+      String sourceSlot=action.get("sourceslot");
+      String targetSlot=action.get("targetslot");
+
+      if(player.hasSlot(sourceSlot) && player.hasSlot(targetSlot))
+        {
+        RPSlot target=player.getSlot(targetSlot);
+        if(target.size()==0)
+          {
+          RPSlot source=player.getSlot(sourceSlot);
+          if(source.size()>0)
+            {
+            Entity item=(Entity)source.iterator().next();
+            
+            source.clear();
+            
+            target.assignValidID(item);
+            target.add(item);
+            
+            world.modify(player);
+            }
+          }            
+        }
+      }
+
+    Logger.trace("StendhalRPRuleProcessor::moveequip","<");
+    }
+
 
   private void drop(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {

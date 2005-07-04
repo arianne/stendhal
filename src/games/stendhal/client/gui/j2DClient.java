@@ -36,13 +36,54 @@ import javax.swing.*;
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends JFrame
   {
-  class StendhalChatLineListener implements ActionListener
+  class StendhalChatLineListener implements ActionListener, KeyListener
     {
+    LinkedList<String> lines;
+    int actual;
+    
     public StendhalChatLineListener()
       {
       super();
+      lines=new LinkedList<String>();
+      actual=0;
       }
       
+    public void keyPressed(KeyEvent e) 
+      {
+      if(e.isShiftDown())
+        {
+        switch(e.getKeyCode())
+          {
+          case KeyEvent.VK_UP:
+            {
+            if(actual>0)
+              {
+              playerChatText.setText(lines.get(actual-1));
+              actual--;          
+              }
+            break;
+            }          
+          case KeyEvent.VK_DOWN:   
+            {
+            if(actual<lines.size())
+              {
+              playerChatText.setText(lines.get(actual));
+              actual++;          
+              }
+            break;
+            }          
+          }
+        }
+      }
+        
+    public void keyReleased(KeyEvent e) 
+      {
+      }
+  
+    public void keyTyped(KeyEvent e) 
+      {
+      }
+  
     public void actionPerformed(ActionEvent e)
       {
       String text = playerChatText.getText();
@@ -84,7 +125,16 @@ public class j2DClient extends JFrame
         chat.put("text",playerChatText.getText());
         client.send(chat);
         }
-
+      
+      lines.add(playerChatText.getText());
+      actual=lines.size();
+      
+      if(lines.size()>50)
+        {
+        lines.remove(0);
+        actual--;
+        }       
+      
       playerChatText.setText("");
       }
     }  
@@ -200,7 +250,10 @@ public class j2DClient extends JFrame
 
       playerChatText=new JTextField("");
       playerChatText.setBounds(0,460,640,20);
-    playerChatText.addActionListener(new StendhalChatLineListener());
+
+    StendhalChatLineListener chatListener=new StendhalChatLineListener();
+    playerChatText.addActionListener(chatListener);
+    playerChatText.addKeyListener(chatListener);
     panel.add(playerChatText);
 
 
@@ -470,7 +523,7 @@ public class j2DClient extends JFrame
 
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={/*"j2DClient","StendhalClient"*/};
+        String[] allowed={"StendhalClient::onTransfer"/*"j2DClient","StendhalClient"*/};
         Logger.setAllowed(allowed);
 
         String[] rejected={};

@@ -485,6 +485,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\common\CRC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\common\Direction.java</path>
 				<source>true</source>
 			</fileitem>

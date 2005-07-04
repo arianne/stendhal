@@ -64,6 +64,11 @@ Changelog
 ---------
 0.31 Jul XX, 2005
 - Fixed a bug at statistics system.
+- Speed up combat
+- Ease creature killing.
+- No more drop item bug
+- Move item in inventory
+- Fixed bug at Weapon seller.
 
 0.30 Jul 03, 2005
 - Added items system

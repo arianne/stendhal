@@ -236,7 +236,7 @@ public class StendhalClient extends ariannexp
       {
       File file=new File("cache/"+item.name);
 
-      if(file.exists() && conf.has(item.name) && conf.get(item.name).equals(Integer.toString(item.timestamp)))
+      if(file.exists() && conf.has(item.name) && Integer.parseInt(conf.get(item.name))==item.timestamp)
         {
         Logger.trace("StendhalClient::onTransferREQ","D","File is on cache. We save transfer");
         item.ack=false;

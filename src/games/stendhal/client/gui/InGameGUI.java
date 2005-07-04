@@ -175,6 +175,18 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       
       return false;
       }    
+
+    public boolean released(Point2D point, InGameDroppableArea choosenWidget)
+      {
+      if(!enabled) return false;
+      if(area.contains(point))
+        {
+        action.onAction(choosenWidget,this);
+        return true;
+        }
+      
+      return false;
+      }    
     }
     
   static class InGameList
@@ -406,11 +418,22 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       {
       public void onAction(Object... param)
         {
-        RPAction action=new RPAction();
-        action.put("type","equip");
-        action.put("target",((Entity)param[0]).getID().getObjectID());
-        action.put("slot",((InGameDroppableArea)param[1]).getName());
-        InGameGUI.this.client.send(action);
+        if(param[0] instanceof Entity)
+          {
+          RPAction action=new RPAction();
+          action.put("type","equip");
+          action.put("target",((Entity)param[0]).getID().getObjectID());
+          action.put("slot",((InGameDroppableArea)param[1]).getName());
+          InGameGUI.this.client.send(action);
+          }
+        else if(param[0] instanceof InGameDroppableArea)
+          {
+          RPAction action=new RPAction();
+          action.put("type","moveequip");
+          action.put("targetslot",((InGameDroppableArea)param[1]).getName());
+          action.put("sourceslot",((InGameDroppableArea)param[0]).getName());
+          InGameGUI.this.client.send(action);
+          }
         }
       };
     
@@ -566,6 +589,19 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       {
       Point2D point=screen.translate(e.getPoint());
       System.out.println (choosenWidget.getName()+" dropped to "+point);
+
+      // We check first inventory and if it fails we wanted to move the object so. 
+      for(InGameDroppableArea item: droppableAreas)    
+        {
+        if(item.released(e.getPoint(),choosenWidget))
+          {
+          // We dropped it in inventory
+          System.out.println ("Moved from "+choosenWidget.getName()+" into "+item.getName());
+          choosenWidget=null;
+          lastDraggedEvent=null;
+          return;
+          }
+        }
       
       RPAction action=new RPAction();
       action.put("type","drop");
@@ -591,6 +627,11 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     {
     RPAction action;
     
+    if(e.isShiftDown())
+      {
+      return;
+      }
+      
     if(e.getKeyCode()==KeyEvent.VK_L && e.isControlDown())
       {
       client.getGameLogDialog().setVisible(true);
@@ -631,7 +672,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     {
     RPAction action=new RPAction();
     action.put("type","move");
-    
+
     switch(e.getKeyCode())
       {
       case KeyEvent.VK_LEFT:
