@@ -79,6 +79,11 @@ public class Pathfinder
      */    
     protected Navigable navMap = null;
     
+    /**
+     * the distance start - end
+     */
+    private double bestDistance;
+    
     /** Creates a new instance of Pathfinder */
     public Pathfinder() {
     }
@@ -126,6 +131,7 @@ public class Pathfinder
         nodeStart.nodeNumber = navMap.createNodeID(nodeStart);
         nodeGoal.nodeNumber  = navMap.createNodeID(nodeGoal);
 
+        bestDistance = navMap.getDistance(nodeStart, nodeGoal);
         nodeBest = null;
         pathStatus = IN_PROGRESS;
         nodeStart.g = 0;
@@ -284,9 +290,19 @@ public class Pathfinder
         
         double g = node.g + navMap.getCost(node, child);
         
+        // get the distance from the start node
+        double distanceStart = navMap.getDistance(nodeStart, child);
+        double distanceEnd = navMap.getDistance(child, nodeGoal);
+        
+        // Modify cost to prefer the direct route and cut the graph at the outer
+        // borders. Note that this will not always get the very shortest path.
+        double diff = (distanceStart + distanceEnd) - bestDistance;
+        g += diff;
+
         Node openCheck   = checkOpen(child);
         Node closedCheck = checkClosed(child);
         
+        // Check the open node
         if (openCheck != null) {
             node.addChild(openCheck);
             
@@ -296,6 +312,8 @@ public class Pathfinder
                 openCheck.f = g + openCheck.h;
             }
         } else if (closedCheck != null) {
+          // node is not in the open list, so check is as a closed one
+          // (needs parent recalculation)
             node.addChild(closedCheck);
             
             if (g < closedCheck.g) {

@@ -69,19 +69,7 @@
 				<path>maps</path>
 			</folderitem>
 			<fileitem>
-				<path>AUTHORS</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>BUGS</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>build.xml</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>COPYING</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -89,15 +77,15 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>LICENSE</path>
+				<path>stendhal-0.30.jar</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>README</path>
+				<path>stendhal-0.30.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>stendhal.jnlp</path>
+				<path>stendhal-server-0.30.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
