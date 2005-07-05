@@ -28,6 +28,15 @@ public class city
     zone.add(portal);
     zone.addPortal(portal);
 
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(63);
+    portal.sety(31);
+    portal.setNumber(2);
+    portal.setDestination("valley",0);
+    zone.add(portal);
+    zone.addPortal(portal);
+
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
     sign.setx(4);

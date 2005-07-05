@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="128" height="64" tilewidth="32" tileheight="32">
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_1_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="zelda_interior_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
+  <image source="zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+  <image source="zelda_collision_chipset.png"/>
+ </tileset>
+ <layer name="valley_0_floor" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2aQXLDIAxF2eUmvVdzr7QHyfQgTi/TZlrPMAwxEkhIRn/xdk4i8z4C41xSShcAAAAAAAAAAAAAAAAAACzFe4Z1LcDWPzIQj9I/MhAL+I8N/Mfm45dP+A/L9R9kICa7/6+EdSAi14QeEJncf9kDrGsD8A/gPypvBbP9IwN+3MP/2tR8z8gA/Pt2XjuflSK6f+qck5x7Vq5fEc0/17lUJjy47vGvte9oOTmL/6NaPc3zEf9aXmb3Xw33tdqkvN/S3/s5Ccqz3Zr/2hlwLQMSfjT7raZnLiO+Szej1NyW19R6ADcHoM+5tG9KBqg5aWE93tSx9+A89z7D+ZFjTq+QRGtcZ2fWS2/vzQB3vViRGfP97sB3D63942pI9yLrPq+RBe4zxgxePStZ1bSSd6mMUFzciNdz1tPZebg58OCVVg+hXj9ag0YOzjjnHw5q8JDFnjzM3NM/CPR87/M+toHPrwT3TFW7nt3rd6LlcUv8PIx+HuhAdU7JA9V/K0/IhD6c+c7JQY9/qR4D2s6p3lvvvrgZkOox3H0JZT+zeu/hzHXuu27qenCUGcn+k3vs7W+9WfMGdwxG/vNQ+778LLrVN86G12eZnuxL/temHKPSP3c98Y51Dkb7naT7msu9B2j8jqfc5GuGx94+w7uFf48Z0Xx28ezdq/9WHrQzdLSfPGN/54yXR/8aGdLIhvd5Htm/RhZGsR6HqP4t82B9r60x2J8BrevxwoquW/d5d1APgH9g439zUA+wzYB1LQD+gV0GrOsAAABgww8Uw6QdAIAAAA==
+  </data>
+ </layer>
+ <layer name="valley_1_terrain" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2aS27UQBCGxw5kIMsJWxCPCFgitrwXcIgw3IKRBo4QcgE4AAskErGCO8AlkBCYxx2gWzMt9xRdXW27bbc9/yfVIo7Vrun/r37ZkwkAAIBt5GdWxq8sXrtFS+2CuEzzMs7lm37gvFEw99ix62gXPkiPp3kZ1/NNP3De2PXcZ+LA0S7nL+OLAuNF57zIyzjMN/3AeePAc5+JuaNdzl83VNxTcc3hk1Av7O2020/bwDLf9APnjbnnPhMv8//b9fmL81odL7SBNOeNfcxaMtrWbcMXhx4vdNnPBbOekebHsXuhbZYeL+i54k+k/pVq2tZcmvP69OmYcXnhbk0PUL2lmrY1l+Y86lPseeJjryOqeqBw6C3VtK25NOdRn9I9T6o+2M9WcSHR/Fzovn6s4lLgOuR7ttpbUL2lmm6yzqF7npR8YI+Dhg8D8sBXlefFQP219vcZvevqGwLd80hnIG2vHbm1rM0QPKC1/6tzVLk/E/Qz2s870JuD80EX+whOc3scpNxOWP+62vehOyX0DCTG2UchaG6Pg5SU9R+q9jbSGYjv7EN650JrndPc1ycp62/P+VrjH45cU9Y+BN/Zh/TOhdZ6lf2LIeU1wJ18te/T7wrOqDhLftPQtadwXgh991K3D1L1gL2vuur4bZfVtUcj0Z7imzdsYq1zU50HTD88ZPS/MkLt+yBV/Sm/s/IcEPrHYyj6n1d6763XBHrufwD9ozAU/TU3rXXPmOb+WVaez++Tb6SaRMhZQp9rwNc7k8mbCt/zPGm43k0Rrf2Jo//NN1JNIvT9dF9jwEel/act+56L1rpLe03oHlA6YwzxQN9zwJT8/c2KMTAL0PtIXX9lRcj3UyHfVxkP+Ohbf8p7le9JxDGe1pwvYs2FPs2p1jqet6DB0vKAj771n042x4DPKt8v65zrjgEhNefitKEnZuSZXWnNYTzg411Ha0Bah20+81bEtk+FXDmvHXWsNccyQP/TFnWhNWFoWmu+53E1/zYrg7tO/2dypblxv8vUfArah7BQeR5bubp0qauPTwsXUq3Rtl05VnkehdPf5MY9xx7nh6K7zWKd+7GQu88bsbQIfUYTnWMxtFqXMD5wheSNrnGtrUyedDz31XWT545F9xB83ojhF05PLri+X2RhXqjijW3VvAlV/dJGvy4q+sBFKut4UJ+qYwLqfbyEjEvQHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQFf8AnDKsuACAAAA=
+  </data>
+ </layer>
+ <layer name="valley_2_object" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aMU4CQRQG4MduFLDVRriALZXQqrHmCOqZ4AocAC+lwiF45XYmi2TizvclfzHFTF7yN5PMRMD/s7sqPQEAAH3dtxGzzLztt/+rifjO/GQOzd/OxuU9Zu/LzKpn/9e5b5yZZKY9z6Ccc/sHAAAAABiipybiuZMX7x9Vecu+3zv50H9V1r+sGbbbzKKTu7LjABdwGEUcR6WnoJRp3utu3O2q9qD/qr1W3v+mjdj6I1atfXb/qX8AAAAAAAAAAAAAAAAAAAAAAAbgBLvs28gAgAAA
+  </data>
+ </layer>
+ <layer name="valley_3_roof" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3R1wmAUBREwcvrH0Mfhj4MPblFiCLOwPlf2CoA+KauVfVpSGN7ew1Pm/L5nJa0+v93tny+pyOd/gcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbnIBnmpuEgCAAAA=
+  </data>
+ </layer>
+ <layer name="valley_objects" width="128" height="64" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQQ0AAAgEoPva0/4ZjOF0kIAE7unaHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADfDDJI6bkAgAAA
+  </data>
+ </layer>
+ <layer name="valley_collision" width="128" height="64" opacity="0.12">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WSw6DMAwFQLa9/516rqq7FFVAvphkRsquhdgvgLcNAFjN+/W7ol/37H7k2ed0tEr+M+ocyL9MTZYt134vNTVQpkemV6979LvcfdNeix6X5h8h28h7m02UPrd491GnZ39HzDS00/sbVJOnczBGaW9HPsPOQX85Pb3j2Yz8Poi0lxI12Y8WZW6IehZzlWZ/tztmyNlm1Kdmn+o1f+be44nSvR/V8OQ6a87HjJmnrtQzc71Xcp0t89RZbbPW/ZWb/6yu5L+Sf/mvJp0JVqt/xu98rtXrX5381yZ7AAAAAAAAAAAAAAAAAAAAAAAAAKL7AGt+h10AgAAA
+  </data>
+ </layer>
+</map>
