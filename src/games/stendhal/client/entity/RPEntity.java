@@ -147,12 +147,6 @@ public abstract class RPEntity extends AnimatedEntity
         }
       }
 
-    if(changes.has("target") && object.has("target"))
-      {
-      gameObjects.attackStop(this,targetEntity);
-      }
-
-
     /** Attack code */
     if(changes.has("target") || object.has("target"))
       {
@@ -165,6 +159,10 @@ public abstract class RPEntity extends AnimatedEntity
       targetEntity=new RPObject.ID(target,changes.get("zoneid"));
       gameObjects.attack(this,targetEntity,risk,damage);
       }
+
+    int risk=(changes.has("risk")?changes.getInt("risk"):-1);
+    int damage=(changes.has("damage")?changes.getInt("damage"):-1);
+    System.out.println (risk+"\t"+damage);
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException

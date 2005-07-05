@@ -224,7 +224,7 @@ public class StendhalRPZone extends MarauroaRPZone
     }
   
   
-  public void addLayer(String name, String filename, int version) throws IOException
+  public void addLayer(String name, String filename) throws IOException
     {
     Logger.trace("StendhalRPZone::addLayer",">");
     TransferContent content=new TransferContent();
@@ -237,15 +237,15 @@ public class StendhalRPZone extends MarauroaRPZone
     Logger.trace("StendhalRPZone::addLayer","<");
     }
 
-  public void addCollisionLayer(String name, String filename, int version) throws IOException
+  public void addCollisionLayer(String name, String filename) throws IOException
     {
     Logger.trace("StendhalRPZone::addCollisionLayer",">");
     TransferContent content=new TransferContent();
     content.name=name;
     content.cacheable=true;
-    content.timestamp=version;
     Logger.trace("StendhalRPZone::addLayer","D",Integer.toString(content.timestamp));
     content.data=getBytesFromFile(filename);
+    content.timestamp=CRC.cmpCRC(content.data);
     
     contents.add(content);
     

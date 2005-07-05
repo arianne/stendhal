@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.gui.*;
+import marauroa.common.*;
 
 public class stendhal extends Thread
   {
@@ -26,6 +27,14 @@ public class stendhal extends Thread
   
   public static void main(String args[]) 
     {
+    for(int i=0;i<args.length;i++)
+      {
+      if(args[i].equals("-l"))
+        {
+        Logger.setAllowed(new String[]{"*"});
+        }
+      }
+
     StendhalClient client=StendhalClient.get();
     new StendhalFirstScreen(client);
     

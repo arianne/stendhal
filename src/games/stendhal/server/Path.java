@@ -84,21 +84,13 @@ public class Path
     private Entity entity;
     private Entity dest;
     private StendhalRPZone zone;
-    private int radius;
-    private Pathfinder.Node center;
 
     public NavigableStendhalNode(Entity entity, Entity dest, StendhalRPZone zone)
       {
       this.entity=entity;
       this.dest=dest;
       this.zone=zone;
-      center = null;
-      }
-
-    public void setVisibility(int x, int y, int radius)
-      {
-      center = new Pathfinder.Node(x,y);
-      this.radius = radius;
+              
       }
 
     public boolean isValid(Pathfinder.Node node)
@@ -106,10 +98,6 @@ public class Path
       if(dest!=null && dest.distance(node.x,node.y)==0)
         {
         return true;
-        }
-      if((center != null) && (getDistance(node, center) > radius))
-        {
-        return false;
         }
       return !zone.collides(entity, node.getX(),node.getY());
       }
@@ -121,7 +109,10 @@ public class Path
 
     public double getDistance(Pathfinder.Node n1, Pathfinder.Node n2)
       {
-      return getCost(n1,n2);
+      //return getCost(n1,n2);
+      double diffx = n1.x - n2.x;
+      double diffy = n1.y - n2.y;
+      return Math.sqrt(diffx*diffx+diffy*diffy);
       }
 
     public int createNodeID(Pathfinder.Node node)
@@ -138,15 +129,16 @@ public class Path
   public static List<Node> searchPath(Entity entity, int x, int y, int destx, int desty)
     {
     Logger.trace("Path::searchPath",">");
+    long startTime = System.currentTimeMillis();
+
     Pathfinder path=new Pathfinder();
     NavigableStendhalNode navMap=new NavigableStendhalNode(entity, null, (StendhalRPZone)world.getRPZone(entity.getID()));
-    navMap.setVisibility(entity.getx(), entity.gety(), 20);
     path.setNavigable(navMap);
     path.setEndpoints(x,y,destx,desty);
 
     path.init();
     // HACK: Time limited the A* search.
-    while(path.getStatus()==Pathfinder.IN_PROGRESS && path.getClosed().size()<navMap.maxNumberOfNodes())
+    while(path.getStatus()==Pathfinder.IN_PROGRESS /*&& path.getClosed().size()<navMap.maxNumberOfNodes()*/)
       {
       path.doStep();
       }
@@ -155,8 +147,9 @@ public class Path
       {
       return new LinkedList<Node>();
       }
-
-    Logger.trace("Path::searchPath","D","Optimal route to ("+x+","+y+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size());
+    
+    long endTime = System.currentTimeMillis();
+    Logger.trace("Path::searchPathResult","D","Optimal route to ("+x+","+y+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime));
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
     while(node!=null)
@@ -166,7 +159,6 @@ public class Path
       node=node.getParent();
       }
 
-
     Logger.trace("Path::searchPath","<");
     return list;
     }
@@ -174,15 +166,16 @@ public class Path
   public static List<Node> searchPath(Entity entity, Entity dest)
     {
     Logger.trace("Path::searchPath",">");
+    long startTime = System.currentTimeMillis();
+    
     Pathfinder path=new Pathfinder();
     NavigableStendhalNode navMap=new NavigableStendhalNode(entity,dest,(StendhalRPZone)world.getRPZone(entity.getID()));
-    navMap.setVisibility(entity.getx(), entity.gety(), 20);
     path.setNavigable(navMap);
     path.setEndpoints((int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety());
 
     path.init();
     // HACK: Time limited the A* search.
-    while(path.getStatus()==Pathfinder.IN_PROGRESS && path.getClosed().size()<navMap.maxNumberOfNodes())
+    while(path.getStatus()==Pathfinder.IN_PROGRESS /* && path.getClosed().size()<navMap.maxNumberOfNodes()*/)
       {
       path.doStep();
       }
@@ -192,7 +185,8 @@ public class Path
       return new LinkedList<Node>();
       }
 
-    Logger.trace("Path::searchPath","D","Optimal route to ("+dest.getx()+","+dest.gety()+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size());
+    long endTime = System.currentTimeMillis();
+    Logger.trace("Path::searchPathResult","D","Optimal route to ("+dest.getx()+","+dest.gety()+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime));
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
     while(node!=null)
