@@ -46,7 +46,7 @@
  </layer>
  <layer name="city_objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aQQ6CMBAAQK5+Uz3qvzTx4AP0b4YokTTEA5ZSujNnaLrLsqWkXQfreu7WnsH65uagv0/+3qLmYaiBqPEvJWo+c9XSMEbUPE6JlotxvHoUAMD22XsCLOuU9Nf7RL9Nr9m6dE35Fd+xsdh70dfUOfG39g4AUMbD+kGFWvm+bSWOUq6N5CtHX9Wbt+fimVG5Q1KjNzXLhzWH3l4dAJWq/ax1rfMqYep8zDlTPnKNU4vodQLA13gPnv6r4T8vsDFEYABAAAA=
+   H4sIAAAAAAAAAO3awQ6DIAyAYa97Td1R38slHvYA27sZomSmITsoSGn/76yE1lKCoeuAur6P2jOo72wOwnvkb+M1D7EGvMZfitd85qqlOIbXPKZ4y8UxXnoUAABA+zh7AkBZo+iv70S/lc+0Tu4p/+J7Gos98L6nnonf2hoASrHYM4ErPqwJKGSlV1uJ4y4vI/nK0Vfpze2Z+WZQbhA1ulCz2LHnIOipAwBKab9rrXVed0jdj5ky5SPXOFp4rxMAwM/xDC7/1eCaFY0Oo1QAQAAA
   </data>
  </layer>
  <layer name="city_collision" width="64" height="64" opacity="0.27">
