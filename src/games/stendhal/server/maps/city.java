@@ -19,6 +19,15 @@ public class city
     zone.add(portal);
     zone.addPortal(portal);
 
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(42);
+    portal.sety(37);
+    portal.setNumber(1);
+    portal.setDestination("tavern",0);
+    zone.add(portal);
+    zone.addPortal(portal);
+
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
     sign.setx(4);

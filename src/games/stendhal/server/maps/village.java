@@ -11,15 +11,6 @@ public class village
   {
   public village(StendhalRPZone zone)
     {
-    Portal portal=new Portal();
-    zone.assignRPObjectID(portal);
-    portal.setx(16);
-    portal.sety(34);
-    portal.setNumber(0);
-    portal.setDestination("tavern",0);
-    zone.add(portal);
-    zone.addPortal(portal);
-
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
     sign.setx(23);
@@ -41,6 +32,12 @@ public class village
     sign.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");    
     zone.add(sign);
     
+    sign=new Sign();
+    zone.assignRPObjectID(sign);
+    sign.setx(16);
+    sign.sety(35);
+    sign.setText("[CLOSED]|The tavern has moved to a much|better and central house in town.|Come buy your weapons, find your|quests and hang out there instead.");
+    zone.add(sign);
     
     SellerNPC npc=new SellerNPC()
       {

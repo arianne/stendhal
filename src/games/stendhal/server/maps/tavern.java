@@ -15,7 +15,7 @@ public class tavern
     portal.setx(20);
     portal.sety(1);
     portal.setNumber(0);
-    portal.setDestination("village",0);
+    portal.setDestination("city",1);
     zone.add(portal);
     zone.addPortal(portal);
 
