@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_1_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="zelda_interior_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
+  <image source="zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+  <image source="zelda_collision_chipset.png"/>
+ </tileset>
+ <layer name="rat_dungeon_001_0_floor" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3NsQkAAAjAMBf//8Qb/UEcFBLo3AgArqqc5e/v//8PANsaeIQBOQAQAAA=
+  </data>
+ </layer>
+ <layer name="rat_dungeon_001_1_terrain" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2RSw4BQRRF30TXCrAIn2AhfhsgZmh2QMwae7E+zJyOQU+64lPplMg9yRnU5+UMnpkQQvwe68Rs+oFzZzbDhSvu0uT7/pjZI3bfdE93hwf3PGc4Cuy3A+Zb6lfa77HnPg5cnP6Q7qXGv0j9lO4Gt5H6r/iH/go7JV7xhnfPe+4ysH9iduKxzs4b2HT+P7nngL4QQojqeAAl7mBmABAAAA==
+  </data>
+ </layer>
+ <layer name="rat_dungeon_001_2_object" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3RMQoAIAhAUQfvf8ymDtHYEEGLgfDe4qbwjQCgu5F7zqy7U7mb02tvf/nj1ll/ALpYZdhk4wAQAAA=
+  </data>
+ </layer>
+ <layer name="rat_dungeon_001_3_roof" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3FoQEAAAgDoAX/v8uzzGaLAQoJAFddewAA+GYAfQnegwAQAAA=
+  </data>
+ </layer>
+ <layer name="rat_dungeon_001_objects" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QoQ4AIAhFUSv/acX/jyaK4mYAh9s9EZ0+XmsAAJwN2Wcq/rl3NzuL0eS/b2XkyO41gmWM3t/eq9jBmulVxl6wCwDAHybXzCVFABAAAA==
+  </data>
+ </layer>
+ <layer name="rat_dungeon_001_collision" width="32" height="32" opacity="0.25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMgsEHjnFSBw91+0lRj07T0/5R/aP6R/VTXz++cmU4l3+jYBSMglEwCmgHAPKQ4bUAEAAA
+  </data>
+ </layer>
+</map>

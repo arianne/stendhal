@@ -64,9 +64,10 @@ public class StendhalRPWorld extends RPWorld
     addArea("city");
     addArea("plains");
     addArea("dungeon_000");
+    addArea("dungeon_001");
+    addArea("rat_dungeon_001");
     addArea("afterlive");
     addArea("forest");
-    addArea("dungeon_001");
     addArea("valley");
     }
   

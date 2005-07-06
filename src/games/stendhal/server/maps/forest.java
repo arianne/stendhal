@@ -16,5 +16,21 @@ public class forest
     portal.setDestination("dungeon_001",1);
     zone.add(portal);
     zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(31);
+    portal.sety(158);
+    portal.setNumber(1);
+    portal.setDestination("rat_dungeon_000",0);
+    zone.add(portal);
+    zone.addPortal(portal);
+
+    Sign sign=new Sign();
+    zone.assignRPObjectID(sign);
+    sign.setx(55);
+    sign.sety(122);
+    sign.setText("BEWARE OF RATS");
+    zone.add(sign);
     }  
   }
