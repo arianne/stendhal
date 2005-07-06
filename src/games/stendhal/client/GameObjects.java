@@ -168,18 +168,56 @@ public class GameObjects
       {
       public int compare(Entity o1, Entity o2) 
         {
+        return result(o1,o2);
+        }      
+
+      private int result(Entity o1, Entity o2) 
+        {
+        /** TODO: Fix me! horrible! */
         double dx=o1.getArea().getX()-o2.getArea().getX();
         double dy=o1.getArea().getY()-o2.getArea().getY();
+        
+        if(o1 instanceof Portal)
+          {
+          return -1;
+          }
+
+        if(o1 instanceof Corpse)
+          {
+          return -1;
+          }
+
+        if(o1 instanceof Food && o2 instanceof Portal)
+          {
+          return 1;
+          }
+        if(o1 instanceof Food && o2 instanceof Corpse)
+          {
+          return 1;
+          }
+        if(o1 instanceof Food && o2 instanceof Food)
+          {
+          return 0;
+          }
+        if(o1 instanceof Food)
+          {
+          return -1;
+          }
         
         if(o1 instanceof PassiveEntity && o2 instanceof RPEntity)
           {
           return -1;
           }
-        else if(o1 instanceof RPEntity && o2 instanceof PassiveEntity)
+        if(o1 instanceof PassiveEntity && o2 instanceof PassiveEntity)
+          {
+          return 0;
+          }
+        if(o1 instanceof RPEntity && o2 instanceof PassiveEntity)
           {
           return 1;
           }
-        else if(dy<0) 
+        
+        if(dy<0) 
           {
           return -1;
           }
@@ -366,15 +404,10 @@ public class GameObjects
     {
     sort();
     
-    Logger.trace("Render","D","BEGIN Render");
-
     for(Entity entity: sortObjects)
       {
-      Logger.trace("Render","D",entity.getType()+" ("+entity.getx()+","+entity.gety()+")");
       entity.draw(screen);
       }
-
-    Logger.trace("Render","D","END Render");
     }
     
   public void drawText(GameScreen screen)
