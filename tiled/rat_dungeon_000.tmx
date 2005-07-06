@@ -51,7 +51,7 @@
  </layer>
  <layer name="rat_dungeon_000_collision" width="32" height="32" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMgsEHjnFSB9PTfmz6KLWfFPXoND3tH9U/qn9UP/X1k1LWDHT5R037R8EoGAWjYBTQDgAAAlSgfwAQAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMgsEHjnFSB9PTfmz6KLWfFPXoND3tH2n6CcXxqP2DO/6Gin5SypqBLv+oaf8oGAWjYBSMAtoBAGPpEGUAEAAA
   </data>
  </layer>
 </map>
