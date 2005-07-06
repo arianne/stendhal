@@ -355,13 +355,13 @@ public class GameObjects
         entity.move(delta);
         }      
       }
-
-    sort();
     }
    
   /** Draw all the objects in game */
   public void draw(GameScreen screen)
     {
+    sort();
+
     for(Entity entity: sortObjects)
       {
       entity.draw(screen);
