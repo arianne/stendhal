@@ -437,7 +437,9 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         }
       };
     
-    InGameDroppableArea area=new InGameDroppableArea("lhand",515,70,32,32);
+    InGameDroppableArea area=null;
+    
+    area=new InGameDroppableArea("lhand",515,68,32,32);
     area.addActionListener(dropToInventory);
     droppableAreas.add(area);
     
@@ -457,7 +459,11 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
 //    area.addActionListener(dropToInventory);
 //    droppableAreas.add(area);
     
-    area=new InGameDroppableArea("rhand",601,70,32,32);
+    area=new InGameDroppableArea("rhand",601,68,32,32);
+    area.addActionListener(dropToInventory);
+    droppableAreas.add(area);    
+
+    area=new InGameDroppableArea("bag",601,122,32,32);
     area.addActionListener(dropToInventory);
     droppableAreas.add(area);    
     }

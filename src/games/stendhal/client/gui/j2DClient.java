@@ -523,7 +523,7 @@ public class j2DClient extends JFrame
 
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={"StendhalClient::onTransfer"/*"j2DClient","StendhalClient"*/};
+        String[] allowed={"Render"/*"j2DClient","StendhalClient"*/};
         Logger.setAllowed(allowed);
 
         String[] rejected={};

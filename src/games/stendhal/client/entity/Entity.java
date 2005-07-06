@@ -71,6 +71,11 @@ public abstract class Entity
 
     loadSprite(object);
     }
+  
+  public String getType()
+    {
+    return type;
+    }
 
   /** Returns the represented arianne object id */
   public RPObject.ID getID()

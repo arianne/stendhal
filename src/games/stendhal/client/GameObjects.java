@@ -171,9 +171,13 @@ public class GameObjects
         double dx=o1.getArea().getX()-o2.getArea().getX();
         double dy=o1.getArea().getY()-o2.getArea().getY();
         
-        if(o1 instanceof PassiveEntity)
+        if(o1 instanceof PassiveEntity && o2 instanceof RPEntity)
           {
           return -1;
+          }
+        else if(o1 instanceof RPEntity && o2 instanceof PassiveEntity)
+          {
+          return 1;
           }
         else if(dy<0) 
           {
@@ -185,7 +189,7 @@ public class GameObjects
           }
         else if(dx!=0)
           {
-          return (int)dx;
+          return (int)Math.signum(dx);
           }
         else
           {
@@ -361,11 +365,16 @@ public class GameObjects
   public void draw(GameScreen screen)
     {
     sort();
+    
+    Logger.trace("Render","D","BEGIN Render");
 
     for(Entity entity: sortObjects)
       {
+      Logger.trace("Render","D",entity.getType()+" ("+entity.getx()+","+entity.gety()+")");
       entity.draw(screen);
       }
+
+    Logger.trace("Render","D","END Render");
     }
     
   public void drawText(GameScreen screen)
