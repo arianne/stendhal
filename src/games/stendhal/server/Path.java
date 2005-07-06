@@ -25,6 +25,12 @@ public class Path
   {
   private static RPServerManager rpman;
   private static RPWorld world;
+  private static StepCallback callback;
+  
+  /** The maximum time spent on a search for one particular path (in ms) */
+  private static final int MAX_PATHFINDING_TIME = 100;
+  
+  public static int steps;
 
   public static class Node
     {
@@ -43,6 +49,15 @@ public class Path
     Path.rpman=rpman;
     Path.world=world;
     }
+  
+  /**
+   * Sets the step-callback. This will be called after each step.
+   * <b>Note: </b> This is a debug method and not part of the 'official api'.
+   */
+  public static void setCallback(StepCallback callback)
+  {
+    Path.callback = callback;
+  }
 
   private static void moveto(RPEntity entity, int x, int y, double speed)
     {
@@ -84,63 +99,116 @@ public class Path
     private Entity entity;
     private Entity dest;
     private StendhalRPZone zone;
+    private Pathfinder.Node startNode;
+    private Pathfinder.Node endNode;
+    /** The best direct distance from the start to the end */
+    private double bestDistance;
+    /** The max cost the path may have. It is identical to the steps needed. */
+    private double maxCost;
+
+    public NavigableStendhalNode(Entity entity, int x1, int y1, int x2, int y2, StendhalRPZone zone)
+      {
+      this.maxCost = 0;
+      this.zone=zone;
+      this.entity=entity;
+      this.startNode = new Pathfinder.Node(x1,y1);
+      this.endNode = new Pathfinder.Node(x2,y2);
+      this.bestDistance = getHeuristic(startNode,endNode);
+      }
 
     public NavigableStendhalNode(Entity entity, Entity dest, StendhalRPZone zone)
       {
-      this.entity=entity;
+      this(entity,entity.getx(), entity.gety(), dest.getx(),dest.gety(),zone);
       this.dest=dest;
-      this.zone=zone;
-              
       }
+    
+    public void setMaxCost(double cost)
+    {
+      this.maxCost = cost;
+    }
 
+    /** returns true if the pathfinder may use this tile for path calculation */
     public boolean isValid(Pathfinder.Node node)
       {
-      if(dest!=null && dest.distance(node.x,node.y)==0)
+      // return true if the destination is reached...even if it is an unpassable
+      // tile
+      if (node.x == endNode.x && node.y == endNode.y)
         {
         return true;
         }
+      // if there is a max cost and the current path exceeds this length =>false
+      if (maxCost > 0 && (Math.abs(node.x-startNode.x) +  Math.abs(node.y-startNode.y) > maxCost))
+      //if (maxCost > 0 && node.parent.g > maxCost)
+        {
+        return false;
+        }
+      // Ask the zone if the tile is walkable for our entity
       return !zone.collides(entity, node.getX(),node.getY());
       }
 
-    public double getCost(Pathfinder.Node n1, Pathfinder.Node n2)
+    /** returns the cost for the (adjected) tiles parent and child*/
+    public double getCost(Pathfinder.Node parent, Pathfinder.Node child)
       {
-      return Math.abs(n1.getX()-n2.getX())+Math.abs(n1.getY()-n2.getY());
+      //return Math.abs(parent.getX()-child.getX())+Math.abs(parent.getY()-child.getY());
+      return 1;
       }
 
-    public double getDistance(Pathfinder.Node n1, Pathfinder.Node n2)
+    /**
+     * Returns the estimated distance from parent to child. Both nodes may be 
+     * anywhere on the field.
+     * Note: a small tie-breaker is added to the estimated distance
+     */
+    public double getHeuristic(Pathfinder.Node parent, Pathfinder.Node child)
       {
-      //return getCost(n1,n2);
-      double diffx = n1.x - n2.x;
-      double diffy = n1.y - n2.y;
-      return Math.sqrt(diffx*diffx+diffy*diffy);
+      // use small tie-breaker of 0.001
+      //(This is calculated: (min cost of one step) / (max expected path length)
+      return 1.001 * (Math.abs(parent.getX()-child.getX())+Math.abs(parent.getY()-child.getY()));
       }
 
+    /** generates a unique id for the given node. */
     public int createNodeID(Pathfinder.Node node)
       {
       return node.getY()*zone.getWidth()+node.getX();
       }
 
-    public int maxNumberOfNodes()
-      {
-      return (zone.getWidth()*zone.getHeight())/10;
-      }
+//    public int maxNumberOfNodes()
+//      {
+//      return (zone.getWidth()*zone.getHeight())/10;
+//      }
     }
 
+  /** 
+   * Finds a path for the Entity <code>entity</code>.
+   * @param entity the Entity
+   * @param x start x
+   * @param y start y
+   * @param destx destination x
+   * @param desty destination y
+   * @return a list with the path nodes or an empty list if no path is found
+   */
   public static List<Node> searchPath(Entity entity, int x, int y, int destx, int desty)
     {
     Logger.trace("Path::searchPath",">");
     long startTime = System.currentTimeMillis();
 
     Pathfinder path=new Pathfinder();
-    NavigableStendhalNode navMap=new NavigableStendhalNode(entity, null, (StendhalRPZone)world.getRPZone(entity.getID()));
+    NavigableStendhalNode navMap=new NavigableStendhalNode(entity, x,y, destx, desty, (StendhalRPZone)world.getRPZone(entity.getID()));
+// You may enable the 'distance-fix' here again    
+//    navMap.setMaxCost(20.0);
     path.setNavigable(navMap);
     path.setEndpoints(x,y,destx,desty);
 
+    steps = 0;
     path.init();
     // HACK: Time limited the A* search.
-    while(path.getStatus()==Pathfinder.IN_PROGRESS /*&& path.getClosed().size()<navMap.maxNumberOfNodes()*/)
+    while(path.getStatus()==Pathfinder.IN_PROGRESS && ((System.currentTimeMillis() - startTime) < MAX_PATHFINDING_TIME))
       {
       path.doStep();
+      steps++;
+      if (callback != null)
+        {
+        callback.stepDone(path.getBestNode());
+        }
       }
 
     if(path.getStatus()==Pathfinder.IN_PROGRESS)
@@ -149,7 +217,7 @@ public class Path
       }
     
     long endTime = System.currentTimeMillis();
-    Logger.trace("Path::searchPathResult","D","Optimal route to ("+x+","+y+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime));
+    Logger.trace("Path::searchPathResult","D","Route ("+x+","+y+")-("+destx+","+desty+") S:"+steps+" OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime)+"ms");
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
     while(node!=null)
@@ -163,42 +231,15 @@ public class Path
     return list;
     }
 
+  /** 
+   * Finds a path for the Entity <code>entity</code> to the other Entity <code>dest</code>.
+   * @param entity the Entity (also start point)
+   * @param dest the destination Entity
+   * @return a list with the path nodes or an empty list if no path is found
+   */
   public static List<Node> searchPath(Entity entity, Entity dest)
     {
-    Logger.trace("Path::searchPath",">");
-    long startTime = System.currentTimeMillis();
-    
-    Pathfinder path=new Pathfinder();
-    NavigableStendhalNode navMap=new NavigableStendhalNode(entity,dest,(StendhalRPZone)world.getRPZone(entity.getID()));
-    path.setNavigable(navMap);
-    path.setEndpoints((int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety());
-
-    path.init();
-    // HACK: Time limited the A* search.
-    while(path.getStatus()==Pathfinder.IN_PROGRESS /* && path.getClosed().size()<navMap.maxNumberOfNodes()*/)
-      {
-      path.doStep();
-      }
-
-    if(path.getStatus()==Pathfinder.IN_PROGRESS)
-      {
-      return new LinkedList<Node>();
-      }
-
-    long endTime = System.currentTimeMillis();
-    Logger.trace("Path::searchPathResult","D","Optimal route to ("+dest.getx()+","+dest.gety()+") OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime));
-    List<Node> list=new LinkedList<Node>();
-    Pathfinder.Node node=path.getBestNode();
-    while(node!=null)
-      {
-      Logger.trace("Path::searchPath","D",node.toString());
-      list.add(0,new Node(node.getX(),node.getY()));
-      node=node.getParent();
-      }
-
-
-    Logger.trace("Path::searchPath","<");
-    return list;
+    return searchPath(entity, (int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety());
     }
 
   public static boolean followPath(RPEntity entity, double speed)
@@ -246,5 +287,11 @@ public class Path
       moveto(entity,actual.x, actual.y,speed);
       return false;
       }
+    }
+  
+  /** this callback is called after every A* step. */
+  public interface StepCallback
+    {
+    public void stepDone(Pathfinder.Node lastNode);
     }
   }

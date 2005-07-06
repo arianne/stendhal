@@ -22,8 +22,8 @@
 package games.stendhal.server;
 
 /**
- * A simple interface to allow pathfinders like the A* algorithm to navigate through
- * the environment.
+ * A simple interface to allow pathfinders like the A* algorithm to navigate
+ * through the environment.
  * @author James Matthews
  */
 public interface Navigable {
@@ -34,24 +34,37 @@ public interface Navigable {
      */    
     public boolean isValid(Pathfinder.Node node);
     /**
-     * Return the cost to travel from node 1 to node 2.
-     * @param n1 the first node.
-     * @param n2 the second node.
+     * Return the cost to travel from node 1 (parent) to node 2 (child). Note
+     * that the nodes are always adjected. If traveling from one node to another
+     * costs the same all over the map you may return <code>1</code> here.
+     * Note also that two calls getCost(node1, node2) must return the same cost
+     * for all node1/node2.
+     *
+     * @param parent the parent node. This is the node we're traveling from.
+     *               (<b>not</b> the start node)
+     * @param child the child node. This is the (adjected) node we want to 
+     *              travel to.
      * @return the cost required to travel.
      */    
-    public double getCost(Pathfinder.Node n1, Pathfinder.Node n2);
+    public double getCost(Pathfinder.Node parent, Pathfinder.Node child);
     /**
-     * Return the distance between the node 1 and node 2. Note that "distance" is not
-     * always in terms of Manhattan or Eucledian distances.
+     * Return the estimated distance between the node 1 and node 2. This 
+     * distance should never be an underestimation. Note that the nodes are not
+     * nessarily adjected.
+     * 
+     * Original Note:
+     * Note that "distance" is not always in terms of Manhattan or Eucledian
+     * distances.
+     *
      * @param n1 the first node.
      * @param n2 the second node.
-     * @return the distance between the two nodes.
+     * @return the (estimated) distance between the two nodes.
      */    
-    public double getDistance(Pathfinder.Node n1, Pathfinder.Node n2);
+    public double getHeuristic(Pathfinder.Node n1, Pathfinder.Node n2);
     /**
-     * Generate a unique ID for a given node. Note that the ID must be tied to its
-     * properties, such as positional information. Nodes with the same information should
-     * be assigned the same ID.
+     * Generate a unique ID for a given node. Note that the ID must be tied to 
+     * its properties, such as positional information. Nodes with the same 
+     * information should be assigned the same ID.
      * @param node the node.
      * @return the node's ID.
      */    

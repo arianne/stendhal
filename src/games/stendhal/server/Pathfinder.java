@@ -79,11 +79,6 @@ public class Pathfinder
      */    
     protected Navigable navMap = null;
     
-    /**
-     * the distance start - end
-     */
-    private double bestDistance;
-    
     /** Creates a new instance of Pathfinder */
     public Pathfinder() {
     }
@@ -131,11 +126,10 @@ public class Pathfinder
         nodeStart.nodeNumber = navMap.createNodeID(nodeStart);
         nodeGoal.nodeNumber  = navMap.createNodeID(nodeGoal);
 
-        bestDistance = navMap.getDistance(nodeStart, nodeGoal);
         nodeBest = null;
         pathStatus = IN_PROGRESS;
         nodeStart.g = 0;
-        nodeStart.h = navMap.getDistance(nodeGoal, nodeStart);
+        nodeStart.h = navMap.getHeuristic(nodeGoal, nodeStart);
         nodeStart.f = nodeStart.g + nodeStart.h;
         nodeStart.reset();
         
@@ -246,6 +240,7 @@ public class Pathfinder
         
         tempNode.x = x-1;
         tempNode.y = y;
+        tempNode.parent = node;
 
         if (navMap.isValid(tempNode) == true)
           {
@@ -284,59 +279,59 @@ public class Pathfinder
      * @param x the x-position of the new child.
      * @param y the y-position of the new child.
      */    
-    protected void linkChild(Node node, int x, int y) {
+    protected void linkChild(Node parent, int x, int y) {
         Node child = new Node(x, y);
-        child.nodeNumber = navMap.createNodeID(child);
+        child.nodeNumber = navMap.createNodeID(child); // generate unique id
         
-        double g = node.g + navMap.getCost(node, child);
-        
-        // get the distance from the start node
-        double distanceStart = navMap.getDistance(nodeStart, child);
-        double distanceEnd = navMap.getDistance(child, nodeGoal);
-        
-        // Modify cost to prefer the direct route and cut the graph at the outer
-        // borders. Note that this will not always get the very shortest path.
-        double diff = (distanceStart + distanceEnd) - bestDistance;
-        g += diff;
-
+        // get cost for traversing from the parent node to the new node and
+        // sum the cost
+        double g = parent.g + navMap.getCost(parent, child);
+        // find the list the (new) node is in
         Node openCheck   = checkOpen(child);
         Node closedCheck = checkClosed(child);
         
-        // Check the open node
+        // node is still open
         if (openCheck != null) {
-            node.addChild(openCheck);
+            parent.addChild(openCheck); // Add child to parent
             
+            // Has the cost improved for the node (have we found a better path?)
             if (g < openCheck.g) {
-                openCheck.parent = node;
+                // Yes, update the node with the current path
+                openCheck.parent = parent;
                 openCheck.g = g;
                 openCheck.f = g + openCheck.h;
             }
         } else if (closedCheck != null) {
-          // node is not in the open list, so check is as a closed one
-          // (needs parent recalculation)
-            node.addChild(closedCheck);
+            // node is closed already
+            parent.addChild(closedCheck); // keep track of parent
             
+            // Has the cost improved for the node (have we found a better path?)
             if (g < closedCheck.g) {
-                closedCheck.parent = node;
+                // Yes we have, update the node with the current path
+                closedCheck.parent = parent;
                 closedCheck.g = g;
                 closedCheck.f = g + closedCheck.h;
-
+                // reconfigure the parents (update full path)
                 updateParents(closedCheck);
             }
         } else {
-            child.parent = node;
+            // not open and not closed...so this node is new.
+            // pre-calculate the heuristic (estimated distance) for this node.
+            // This is only done once for each node.
+            child.parent = parent;
             child.g = g;
-            child.h = navMap.getDistance(nodeGoal, child);
+            child.h = navMap.getHeuristic(nodeGoal, child);
             child.f = child.g + child.h;
-//            child.nodeNumber = navMap.createNodeID(x,y);
             
+            // Add the new child to the open list and to the current path
             addToOpen(child);
-            node.addChild(child);
+            parent.addChild(child);
         }
     }
     
     /**
-     * Add the new child to the open list, ordering by the f-value.
+     * Add the new child to the open list, ordering by the f-value. No check is
+     * made if the node is already in the list.
      * @param node the node to add to the open list.
      */    
     protected void addToOpen(Node node) {
@@ -362,7 +357,11 @@ public class Pathfinder
     }
     
     /**
-     * Update the parents for the new route.
+     * Update the parents for the new route. This will replace from an already 
+     * calculated path from the beginning to this (closed) node. All nodes from
+     * this to the end of the tree will get a newly generated cost based on the
+     * current path.
+     *
      * @param node the root node.
      */    
     protected void updateParents(Node node) {
@@ -370,10 +369,13 @@ public class Pathfinder
         int c = node.numChildren;
         Stack<Node> nodeStack = new Stack<Node>();
         
+        // find all children with bad cost
         Node kid = null;
         for (int i=0; i<c; i++) {
             kid = node.children[i];
             
+            // note: the g+1 may be dangerous when getCost(node,kid) returns a 
+            // cost other than 1
             if (g+1 < kid.g) {
                 kid.g = g+1;
                 kid.f = kid.g + kid.h;
@@ -401,6 +403,14 @@ public class Pathfinder
         }
     }
     
+    /**
+     * Checks if the given node is in the list.
+     * @param iter the list iterator to check. The iterator should be at the
+     *             start of the list (unless you know what you are doing)
+     * @param node this node will be the node to check. Note that the check is
+     *             based on the <code>nodeNumber</code>-property, not on the object-instance
+     * @return the node from the list or <code>null</code> if the node is not in the list
+     */
     private Node checkList(ListIterator iter, Node node) {
         Node check = null;
         if (!iter.hasNext()) return null;
@@ -456,18 +466,22 @@ public class Pathfinder
         
         /**
          * The f-value.
+         * The sum of g and h.
+         * It is the (estimated) cost of the full path.
          */
         public double f;
         
         /**
          * The g-value.
+         * This is the cost from the start point to this point.
          */
         public double g;
         
         /**
-         * The h-value.
+         * The h-value (heuristic).
+         * This is the estimated cost from this point to the goal point.
          */        
-        public double   h;
+        public double h;
         
         /**
          * The x-position of the node.
@@ -490,6 +504,9 @@ public class Pathfinder
          * The parent of the node.
          */        
         protected Node  parent;
+        /**
+         * Array with the children, one for each direction
+         */
         Node[] children = new Node[4];
         
         /**
