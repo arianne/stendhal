@@ -74,6 +74,7 @@ public class LoginDialog extends JDialog {
         usernameField = new JTextField();
         passwordField = new JPasswordField();
         serverField = new JComboBox();
+        serverField.setEditable(true);
         serverPortField = new JTextField("32160");
         loginButton = new JButton();
         contentPane = (JPanel) this.getContentPane();
