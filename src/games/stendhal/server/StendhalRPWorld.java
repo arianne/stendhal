@@ -69,10 +69,11 @@ public class StendhalRPWorld extends RPWorld
     addArea("plains");
     addArea("dungeon_000");
     addArea("dungeon_001");
-    addArea("rat_dungeon_001");
+//    addArea("rat_dungeon_000");
+//    addArea("rat_dungeon_001");
     addArea("afterlive");
     addArea("forest");
-    addArea("valley");
+//    addArea("valley");
     }
   
   private void addArea(String name) throws java.io.IOException

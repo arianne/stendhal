@@ -77,18 +77,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>stendhal-0.30.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.30.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-server-0.30.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\GameObjects.java</path>
 				<source>true</source>
 			</fileitem>
@@ -134,6 +122,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\AnimatedEntity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\BigCreature.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -377,6 +369,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\creature\GiantRat.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\creature\Goblin.java</path>
 				<source>true</source>
 			</fileitem>
@@ -422,6 +418,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Item.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Key.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
