@@ -106,4 +106,9 @@ public class Sign extends Entity
       StendhalClient.get().addEventLine("You read \""+text.replace("|","\n")+"\"",Color.green);
       }
     }
+
+  public int compare(Entity entity)
+    {
+    return -1;
+    }
   }

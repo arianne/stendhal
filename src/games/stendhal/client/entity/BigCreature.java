@@ -14,66 +14,48 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Item extends PassiveEntity 
+
+/** A Creature entity */
+public class BigCreature extends Creature 
   {
-  private String type;
-  
-  public Item(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-    {    
-    super(gameObjects, object);
-    type=object.get("class");
-    }
-
-  protected void loadSprite(RPObject object)
+  public BigCreature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
-    SpriteStore store=SpriteStore.get();        
-    sprite=store.getSprite("sprites/"+object.get("class")+".gif");
+    super(gameObjects, object);
     }
+  
+  protected void buildAnimations(RPObject object)
+    {
+    SpriteStore store=SpriteStore.get();  
 
+    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("class")),0,4,64,64));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("class")),1,4,64,64));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("class")),2,4,64,64));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("class")),3,4,64,64));      
+
+    sprites.get("move_up")[3]=sprites.get("move_up")[1];
+    sprites.get("move_right")[3]=sprites.get("move_right")[1];
+    sprites.get("move_down")[3]=sprites.get("move_down")[1];
+    sprites.get("move_left")[3]=sprites.get("move_left")[1];
+    }
+  
+  protected Sprite defaultAnimation()
+    {
+    animation="move_up";
+    return sprites.get("move_up")[0];
+    }
 
   public Rectangle2D getArea()
     {
-    return new Rectangle.Double(x,y,1,1);
+    return new Rectangle.Double(x,y,2,2);
     }
     
   public Rectangle2D getDrawedArea()
     {
-    return new Rectangle.Double(x,y,1,1);
+    return new Rectangle.Double(x,y,2,2);
     }  
     
-  public String defaultAction()
-    {
-    return "Look";
-    }
-
-  public String[] offeredActions()
-    {
-    String[] list={"Look"};
-    return list;
-    }
-
-  public void onAction(StendhalClient client, String action, String... params)
-    {
-    if(action.equals("Look"))
-      {
-      StendhalClient.get().addEventLine("You see a "+type,Color.green);
-      }
-    else
-      {
-      super.onAction(client,action,params);
-      }
-    }
-
-  public int compare(Entity entity)
-    {
-    if(entity instanceof RPEntity)
-      {
-      return -1;
-      }
-      
-    return 1;
-    }
   }

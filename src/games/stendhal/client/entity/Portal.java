@@ -66,4 +66,9 @@ public class Portal extends Entity
   public void draw(GameScreen screen)
     {
     }
+
+  public int compare(Entity entity)
+    {
+    return -1;
+    }
   }

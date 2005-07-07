@@ -93,4 +93,9 @@ public class Text extends Entity
       gameObjects.removeText(this);
       }
     }
+
+  public int compare(Entity entity)
+    {
+    return 1;
+    }
   }

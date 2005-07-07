@@ -199,4 +199,6 @@ public abstract class Entity
   public abstract String defaultAction();
   public abstract String[] offeredActions();
   public abstract void onAction(StendhalClient client, String action, String... params);
+  
+  abstract public int compare(Entity entity);
   }

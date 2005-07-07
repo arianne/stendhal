@@ -38,6 +38,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private List<NPC> npcsToAdd;
   private List<NPC> npcsToRemove;
 
+  private List<Pair<RPEntity,RPEntity> > entityToKill;
+
   private List<RespawnPoint> respawnPoints;
   private List<Food> foodItems;
   private List<Corpse> corpses;
@@ -52,6 +54,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     foodItems=new LinkedList<Food>();
     npcsToAdd=new LinkedList<NPC>();
     npcsToRemove=new LinkedList<NPC>();
+    
+    entityToKill=new LinkedList<Pair<RPEntity,RPEntity> >();
 
     corpses=new LinkedList<Corpse>();
     corpsesToRemove=new LinkedList<Corpse>();
@@ -107,6 +111,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   public void addNPC(NPC npc)
     {
     npcsToAdd.add(npc);
+    }
+
+  public void killRPEntity(RPEntity entity, RPEntity who)
+    {
+    entityToKill.add(new Pair<RPEntity,RPEntity>(entity,who));
     }
 
   public void addCorpse(Corpse corpse)
@@ -768,6 +777,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       // We keep the number of players logged.
       Statistics.getStatistics().set("Players logged", playersObject.size());
+
+      
+      // In order for the last hit to be visible dead happens at two steps.
+      for(Pair<RPEntity, RPEntity> entity: entityToKill) 
+        {
+        entity.first().onDead(entity.second());
+        }
+      entityToKill.clear();
+
       // TODO: Done this way because a problem with comodification... :(
       npcs.removeAll(npcsToRemove);
       corpses.removeAll(corpsesToRemove);

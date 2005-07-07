@@ -168,7 +168,8 @@ public class GameObjects
       {
       public int compare(Entity o1, Entity o2) 
         {
-        return result(o1,o2);
+        //return result(o1,o2);
+        return o1.compare(o2);
         }      
 
       private int result(Entity o1, Entity o2) 

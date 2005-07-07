@@ -162,6 +162,8 @@ public abstract class RPEntity extends AnimatedEntity
 
     int risk=(changes.has("risk")?changes.getInt("risk"):-1);
     int damage=(changes.has("damage")?changes.getInt("damage"):-1);
+
+    if(risk!=-1 && damage!=-1)      
     System.out.println (risk+"\t"+damage);
     }
 
@@ -343,6 +345,35 @@ public abstract class RPEntity extends AnimatedEntity
       int id=getID().getObjectID();
       rpaction.put("target",id);
       client.send(rpaction);
+      }
+    }
+
+  public int compare(Entity entity)
+    {
+    if(entity instanceof PassiveEntity)
+      {
+      return 1;
+      }
+    
+    double dx=getArea().getX()-entity.getArea().getX();
+    double dy=getArea().getY()-entity.getArea().getY();
+
+    if(dy<0) 
+      {
+      return -1;
+      }
+    else if(dy>0) 
+      {
+      return 1;
+      }
+    else if(dx!=0)
+      {
+      return (int)Math.signum(dx);
+      }
+    else
+      {
+      // Same tile...
+      return 0;
       }
     }
   }

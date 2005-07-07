@@ -56,4 +56,9 @@ public class Corpse extends PassiveEntity
       super.onAction(client,action,params);
       }
     }
+
+  public int compare(Entity entity)
+    {
+    return -1;
+    }
   }

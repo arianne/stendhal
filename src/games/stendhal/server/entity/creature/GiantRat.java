@@ -22,19 +22,19 @@ import java.awt.geom.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
 
-public class Gargoyle extends Creature
+public class GiantRat extends Creature
   {
-  final private double SPEED=0.5;
+  final private double SPEED=0.50;
 
-  final private static int HP=100;
-  final private static int ATK=28;
-  final private static int DEF=15;
-  final private static int XP=2160; //getInitialXP(ATK,DEF,HP);
+  final private static int HP=800;
+  final private static int ATK=70;
+  final private static int DEF=30;
+  final private static int XP=90000; //getInitialXP(ATK,DEF,HP);
 
-  public Gargoyle() throws AttributeNotFoundException
+  public GiantRat() throws AttributeNotFoundException
     {
     super();
-    put("class","gargoyle");
+    put("class","giantrat");
     put("x",0);
     put("y",0);
 
@@ -46,12 +46,12 @@ public class Gargoyle extends Creature
 
     stop();
 
-    Logger.trace("Gargoyle::Gargoyle","D","Created Gargoyle: "+this.toString());
+    Logger.trace("GiantRat::GiantRat","D","Created GiantRat: "+this.toString());
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
-    rect.setRect(x,y+1,1,1);
+    rect.setRect(x,y,1,1);
     }
 
   public double getSpeed()

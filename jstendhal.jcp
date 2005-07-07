@@ -461,6 +461,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\maps\rat_dungeon_000.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\maps\tavern.java</path>
 				<source>true</source>
 			</fileitem>

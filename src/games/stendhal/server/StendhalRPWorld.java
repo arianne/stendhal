@@ -53,6 +53,10 @@ public class StendhalRPWorld extends RPWorld
     Sheep.generateRPClass();
 
     Player.generateRPClass();
+    
+    RPClass chatAction=new RPClass("chat");
+    chatAction.add("text",RPClass.LONG_STRING);
+    
         
     Logger.trace("StendhalRPWorld::createRPClasses","<");
     }

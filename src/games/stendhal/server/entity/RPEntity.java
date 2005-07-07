@@ -251,7 +251,7 @@ public abstract class RPEntity extends Entity
       {
       if(who.has("target")) who.remove("target");
       who.attackTarget=null;
-      attackSource.clear();
+      attackSource.clear(); //Not very sure if a clear is correct...
       }
     }
 
@@ -280,7 +280,9 @@ public abstract class RPEntity extends Entity
       }
     else
       {
-      onDead(who);
+      setHP(0);
+      
+      rp.killRPEntity(this,who);
       }
       
     world.modify(this);
@@ -330,7 +332,7 @@ public abstract class RPEntity extends Entity
     // Add a corpse
     Corpse corpse=new Corpse(this);
     IRPZone zone=world.getRPZone(getID());
-    zone.assignRPObjectID(corpse);
+    zone.assignRPObjectID(corpse);    
     zone.add(corpse);
 
     rp.addCorpse(corpse);

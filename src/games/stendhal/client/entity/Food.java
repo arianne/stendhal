@@ -90,4 +90,14 @@ public class Food extends AnimatedEntity
       gameObjects.addText(this, text, Color.green);
       }
     }
+
+  public int compare(Entity entity)
+    {
+    if(entity instanceof Item)
+      {
+      return -1;
+      }
+      
+    return -1;
+    }
   }
