@@ -186,14 +186,33 @@ public abstract class Creature extends NPC
 
   public abstract double getSpeed();
 
-  private Player getNearestPlayer(double range)
+  private RPEntity getNearestPlayer(double range)
     {
     int x=getx();
     int y=gety();
 
     double distance=range*range; // We save this way several sqrt operations
-    Player chosen=null;
+    RPEntity chosen=null;
 
+    for(NPC sheep: rp.getNPCs())
+      {
+      if(sheep instanceof Sheep && sheep.get("zoneid").equals(get("zoneid")))
+        {
+        java.awt.geom.Rectangle2D rect=sheep.getArea(sheep.getx(),sheep.gety());
+        int fx=(int)rect.getX();
+        int fy=(int)rect.getY();
+
+        if(Math.abs(fx-x)<range && Math.abs(fy-y)<range)
+          {
+          if(distance(sheep)<distance)
+            {
+            chosen=sheep;
+            distance=distance(sheep);
+            }
+          }
+        }
+      }
+      
     for(Player player: rp.getPlayers())
       {
       if(player.get("zoneid").equals(get("zoneid")))

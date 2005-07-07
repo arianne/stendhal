@@ -69,6 +69,10 @@ Changelog
 - No more drop item bug
 - Move item in inventory
 - Fixed bug at Weapon seller.
+- Fix render order
+- Added Giant rat
+- Added three new areas: valley and rat dungeon (two levels)
+- Fixed a problem with long sentences
 
 0.30 Jul 03, 2005
 - Added items system
