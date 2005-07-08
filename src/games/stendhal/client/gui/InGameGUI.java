@@ -775,6 +775,17 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           }
         }
 
+      if(player.hasSlot("bag"))
+        {
+        RPSlot slot=player.getSlot("bag");
+        if(slot.size()==1)
+          {
+          InGameDroppableArea rhand=getDroppableArea("bag");
+          RPObject object=slot.iterator().next();
+          screen.drawInScreen(gameObjects.spriteType(object),rhand.getx(),rhand.gety());
+          }
+        }
+
       screen.drawInScreen(screen.createString("HP : "+player.get("hp")+"/"+player.get("base_hp"),Color.white),550, 184);
       screen.drawInScreen(screen.createString("ATK: "+player.get("atk"),Color.white),550, 204);
       screen.drawInScreen(screen.createString("DEF: "+player.get("def"),Color.white),550, 224);

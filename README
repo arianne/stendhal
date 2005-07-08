@@ -62,7 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.31 Jul XX, 2005
+0.31 Jul 08, 2005
 - Fixed a bug at statistics system.
 - Speed up combat
 - Ease creature killing.
@@ -73,6 +73,8 @@ Changelog
 - Added Giant rat
 - Added three new areas: valley and rat dungeon (two levels)
 - Fixed a problem with long sentences
+- Changed sprites to PNG
+- Added Bag slot (1 item only)
 
 0.30 Jul 03, 2005
 - Added items system
