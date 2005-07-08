@@ -162,9 +162,6 @@ public abstract class RPEntity extends AnimatedEntity
 
     int risk=(changes.has("risk")?changes.getInt("risk"):-1);
     int damage=(changes.has("damage")?changes.getInt("damage"):-1);
-
-    if(risk!=-1 && damage!=-1)      
-    System.out.println (risk+"\t"+damage);
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
