@@ -232,7 +232,7 @@ public class j2DClient extends JFrame
     // create a frame to contain our game
     setTitle("Stendhal "+stendhal.VERSION+" - a multiplayer online game using Arianne");
 
-    URL url = this.getClass().getClassLoader().getResource("data/StendhalIcon.gif");
+    URL url = this.getClass().getClassLoader().getResource("data/StendhalIcon.png");
     this.setIconImage(new ImageIcon(url).getImage());
 
     // get hold the content of the frame and set up the resolution of the game
@@ -258,7 +258,7 @@ public class j2DClient extends JFrame
 
 
     this.setLocation(new Point(100, 100));
-    this.setIconImage(new ImageIcon("data/StendhalIcon.gif").getImage());
+    this.setIconImage(new ImageIcon("data/StendhalIcon.png").getImage());
 
       // finally make the window visible
     pack();

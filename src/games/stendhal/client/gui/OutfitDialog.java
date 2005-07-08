@@ -71,10 +71,10 @@ public class OutfitDialog extends javax.swing.JDialog {
         client=StendhalClient.get();
 
         // initializes the arrays
-        hairs = new Sprite[total_hairs]; // Plus 1 to add the sprite_empty.gif that is always at 0
+        hairs = new Sprite[total_hairs]; // Plus 1 to add the sprite_empty.png that is always at 0
         heads = new Sprite[total_heads];
         bodies = new Sprite[total_bodies];
-        clothes = new Sprite[total_clothes]; // Plus 1 to add the sprite_empty.gif that is always at 0
+        clothes = new Sprite[total_clothes]; // Plus 1 to add the sprite_empty.png that is always at 0
         // loads the sprites
         loadSprites();
         
@@ -87,28 +87,28 @@ public class OutfitDialog extends javax.swing.JDialog {
      * @return a String with the name of the selected hair sprite file
      */
     public String getSelectedHair() {
-        return "hair_" + hairs_index + ".gif";
+        return "hair_" + hairs_index + ".png";
     }
     
     /**
      * @return a String with the name of the selected head sprite file
      */
     public String getSelectedHead() {
-        return "head_" + heads_index + ".gif";
+        return "head_" + heads_index + ".png";
     }
 
     /**
      * @return a String with the name of the selected body sprite file
      */
     public String getSelectedBody() {
-        return "player_base_" + bodies_index + ".gif";
+        return "player_base_" + bodies_index + ".png";
     }
 
     /**
      * @return a String with the name of the selected clothes sprite file
      */
     public String getSelectedClothes() {
-        return "dress_" + clothes_index + ".gif";
+        return "dress_" + clothes_index + ".png";
     }
 
     /**
@@ -122,16 +122,16 @@ public class OutfitDialog extends javax.swing.JDialog {
         
         // load the sprites
         for (int i = 1; i < hairs.length; i++)
-            hairs[i] = st.getSprite("sprites/outfit/hair_" + i + ".gif");
+            hairs[i] = st.getSprite("sprites/outfit/hair_" + i + ".png");
         for (int i = 0; i < heads.length; i++)
-            heads[i] = st.getSprite("sprites/outfit/head_" + i + ".gif");
+            heads[i] = st.getSprite("sprites/outfit/head_" + i + ".png");
         for (int i = 0; i < bodies.length; i++)
-            bodies[i] = st.getSprite("sprites/outfit/player_base_" + i + ".gif");
+            bodies[i] = st.getSprite("sprites/outfit/player_base_" + i + ".png");
         for (int i = 1; i < clothes.length; i++)
-            clothes[i] = st.getSprite("sprites/outfit/dress_" + i + ".gif");
+            clothes[i] = st.getSprite("sprites/outfit/dress_" + i + ".png");
         // to allow choosing no hair and no clothes
-        hairs[0] = st.getSprite("sprites/outfit/sprite_empty.gif");
-        clothes[0] = st.getSprite("sprites/outfit/sprite_empty.gif");
+        hairs[0] = st.getSprite("sprites/outfit/sprite_empty.png");
+        clothes[0] = st.getSprite("sprites/outfit/sprite_empty.png");
     }
     
     /**

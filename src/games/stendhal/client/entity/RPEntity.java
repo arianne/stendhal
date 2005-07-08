@@ -33,9 +33,9 @@ public abstract class RPEntity extends AnimatedEntity
     {
     SpriteStore st=SpriteStore.get();
 
-    hitted=st.getSprite("sprites/combat/hitted.gif");
-    blocked=st.getSprite("sprites/combat/blocked.gif");
-    missed=st.getSprite("sprites/combat/missed.gif");
+    hitted=st.getSprite("sprites/combat/hitted.png");
+    blocked=st.getSprite("sprites/combat/blocked.png");
+    missed=st.getSprite("sprites/combat/missed.png");
     }
 
   private enum RESOLUTION

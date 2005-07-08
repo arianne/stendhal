@@ -340,7 +340,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     SpriteStore st=SpriteStore.get();
     
     InGameButton button=null;
-    button=new InGameButton("atk",st.getSprite("data/atk_up.gif"), st.getSprite("data/atk_up_pressed.gif"), 515,110);
+    button=new InGameButton("atk",st.getSprite("data/atk_up.png"), st.getSprite("data/atk_up_pressed.png"), 515,110);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction(Object... param)
@@ -354,7 +354,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button.setEnabled(false);
     buttons.add(button);
     
-    button=new InGameButton("def",st.getSprite("data/def_up.gif"), st.getSprite("data/def_up_pressed.gif"), 515,110+14);
+    button=new InGameButton("def",st.getSprite("data/def_up.png"), st.getSprite("data/def_up_pressed.png"), 515,110+14);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction(Object... param)
@@ -368,7 +368,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button.setEnabled(false);
     buttons.add(button);
 
-    button=new InGameButton("hp",st.getSprite("data/hp_up.gif"), st.getSprite("data/hp_up_pressed.gif"), 515,110+28);
+    button=new InGameButton("hp",st.getSprite("data/hp_up.png"), st.getSprite("data/hp_up_pressed.png"), 515,110+28);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction(Object... param)
@@ -383,7 +383,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     buttons.add(button);
 
 
-    button=new InGameButton("exit",st.getSprite("data/exit.gif"), st.getSprite("data/exit_pressed.gif"), 320,360);
+    button=new InGameButton("exit",st.getSprite("data/exit.png"), st.getSprite("data/exit_pressed.png"), 320,360);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction(Object... param)
@@ -394,7 +394,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button.setEnabled(false);
     buttons.add(button);
     
-    button=new InGameButton("back",st.getSprite("data/back.gif"), st.getSprite("data/back_pressed.gif"), 220,360);
+    button=new InGameButton("back",st.getSprite("data/back.png"), st.getSprite("data/back_pressed.png"), 220,360);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction(Object... param)

@@ -20,7 +20,7 @@ public class ProgressBar extends JFrame {
     
     public ProgressBar(Frame w) {
         super("Connecting...");
-        URL url = this.getClass().getClassLoader().getResource("data/StendhalIcon.gif");
+        URL url = this.getClass().getClassLoader().getResource("data/StendhalIcon.png");
         setIconImage(new ImageIcon(url).getImage());
         this.frame = w;
         

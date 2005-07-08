@@ -110,7 +110,7 @@ public abstract class Entity
  
   protected static String translate(String type)
     {
-    return "sprites/"+type+".gif";
+    return "sprites/"+type+".png";
     }
   
   public Sprite getSprite()
