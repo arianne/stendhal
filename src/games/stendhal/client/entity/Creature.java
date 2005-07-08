@@ -23,4 +23,9 @@ public abstract class Creature extends NPC
     {    
     super(gameObjects, object);
     }
+
+  protected static String translate(String type)
+    {
+    return "sprites/monsters/"+type+".png";
+    }
   }
