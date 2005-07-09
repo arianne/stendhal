@@ -52,7 +52,7 @@ public enum Direction
     
   public static Direction rand()
     {
-    return build(new Random().nextInt(4)+1);
+    return build(Rand.rand(4)+1);
     }
   
   Direction(int val)

@@ -32,24 +32,12 @@ public class StendhalRPAction
   private static RPServerManager rpman;
   private static StendhalRPRuleProcessor rules;
   private static RPWorld world;
-  private static Random rand;
-
-  public static int roll1D6()
-    {
-    return 1 + (new Random()).nextInt(6);
-    }
-
-  public static int roll1D20()
-    {
-    return 1 + (new Random()).nextInt(20);
-    }
 
   public static void initialize(RPServerManager rpman, StendhalRPRuleProcessor rules, RPWorld world)
     {
     StendhalRPAction.rpman=rpman;
     StendhalRPAction.rules=rules;
     StendhalRPAction.world=world;
-    rand=new Random();
     }
 
   /** This method returns the average damage done by Entity1 to Entity2 considering its levels.
@@ -93,7 +81,7 @@ public class StendhalRPAction
 
       if(source.nextto(target,1))
         {
-        int roll=roll1D20();
+        int roll=Rand.roll1D20();
         int risk=0;
         
         if(roll>18) // Critical success
@@ -128,7 +116,7 @@ public class StendhalRPAction
 
           for(int i=0;i<source.getATK()+weapon;i++)
             {
-            damage+=roll1D6();
+            damage+=Rand.roll1D6();
             }
             
           if(target.hasShield())
@@ -143,7 +131,7 @@ public class StendhalRPAction
           
           for(int i=0;i<source.getDEF()+shield+armor*2;i++)
             {
-            damage-=roll1D6();
+            damage-=Rand.roll1D6();
             }
           
           damage=damage>>2;

@@ -71,6 +71,14 @@ public class city
     sign.sety(62);
     sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
     zone.add(sign);
+
+
+    Chest chest=new Chest();
+    zone.assignRPObjectID(chest);
+    chest.setx(44);
+    chest.sety(60);
+    zone.add(chest);
+
     
     NPC npc=new BeggarNPC();
     zone.assignRPObjectID(npc);

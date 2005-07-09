@@ -159,7 +159,7 @@ public abstract class Creature extends NPC
     {
     for(int i = 0; i < amount; i++)
       {
-      switch((new Random()).nextInt(3))
+      switch(Rand.rand(3))
         {
         case 0:
           setATK(getATK() + 1);

@@ -62,6 +62,7 @@ public class GameObjects
     register("trainingdummy",null,TrainingDummy.class);
     
     register("food",null,Food.class);
+    register("chest",null,Chest.class);
     
     register("corpse","player",Corpse.class);
     register("corpse","orc",Corpse.class);
@@ -117,7 +118,7 @@ public class GameObjects
         {
         return new Player(this, object);
         }
-        
+      
       String type=object.get("type");
       String eclass=null;
       if(object.has("class"))

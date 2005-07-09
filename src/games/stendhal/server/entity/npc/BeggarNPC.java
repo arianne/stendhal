@@ -24,14 +24,11 @@ import games.stendhal.server.entity.*;
 public class BeggarNPC extends SpeakerNPC 
   {
   final private double SPEED=0.1;
-  private Random rand;
 
   public BeggarNPC() throws AttributeNotFoundException
     {
     super();
     put("class","beggarnpc");
-    
-    rand=new Random();
     }
 
   protected void createPath()
@@ -63,7 +60,7 @@ public class BeggarNPC extends SpeakerNPC
       }
     else if(text.contains("help"))
       {
-      switch(rand.nextInt(4))
+      switch(Rand.rand(4))
         {
         case 0:        
           say("Do you want help? Help Arianne! Rate Stendhal at Happypenguin.org");
@@ -82,7 +79,7 @@ public class BeggarNPC extends SpeakerNPC
       }
     else if(text.contains("quest"))
       {
-      switch(rand.nextInt(2))
+      switch(Rand.rand(2))
         {
         case 0:        
           say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");

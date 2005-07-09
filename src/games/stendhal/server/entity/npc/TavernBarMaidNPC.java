@@ -24,14 +24,11 @@ import games.stendhal.server.entity.*;
 public class TavernBarMaidNPC extends SpeakerNPC 
   {
   final private double SPEED=0.1;
-  private Random rand;
 
   public TavernBarMaidNPC() throws AttributeNotFoundException
     {
     super();
     put("class","tavernbarmaidnpc");
-    
-    rand=new Random();
     }
 
   protected void createPath()
@@ -56,7 +53,7 @@ public class TavernBarMaidNPC extends SpeakerNPC
     String text=player.get("text").toLowerCase();
     if(text.contains("hi") || text.contains("hello"))
       {
-	    switch(rand.nextInt(4))
+	    switch(Rand.rand(4))
         {
         case 0:  
           say("Hello darling! Welcome to our tavern! Take a load of those weary legs of yours.");
@@ -85,7 +82,7 @@ public class TavernBarMaidNPC extends SpeakerNPC
       }
     else if(text.contains("help"))
       {
-      switch(rand.nextInt(4))
+      switch(Rand.rand(4))
         {
         case 0:        
           say("At the tavern you can get drinks and take a break to meet new people!");
@@ -104,7 +101,7 @@ public class TavernBarMaidNPC extends SpeakerNPC
       }
     else if(text.contains("quest"))
       {
-      switch(rand.nextInt(2))
+      switch(Rand.rand(2))
         {
         case 0:        
           say("Quests? I have heard that Sato is looking for sheep rearers. Go ask him.");
@@ -117,7 +114,7 @@ public class TavernBarMaidNPC extends SpeakerNPC
       }
     else if(text.contains("beer"))
       {
-	    switch(rand.nextInt(3))
+	    switch(Rand.rand(3))
         {
         case 0:  
           say("Beer! Excellent choice! Coming right up!");
@@ -132,7 +129,7 @@ public class TavernBarMaidNPC extends SpeakerNPC
       }
     else if(text.contains("food"))
       {
-	    switch(rand.nextInt(2))
+	    switch(Rand.rand(2))
         {
         case 0:  
           say("Sure thing, a big strong adventurer like you will need lots of food!");

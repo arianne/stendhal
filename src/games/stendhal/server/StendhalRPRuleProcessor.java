@@ -846,6 +846,24 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             StendhalRPAction.transferContent(player);
             }
           }
+        else if(object instanceof Chest)
+          {          
+          Chest chest=(Chest)object;
+          
+          if(player.nextto(chest,0.25))
+            {
+            if(chest.isOpen())
+              {
+              chest.close();
+              }
+            else
+              {
+              chest.open();
+              }
+            
+            world.modify(chest);
+            }
+          }
         }
       }
 

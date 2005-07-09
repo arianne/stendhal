@@ -24,14 +24,11 @@ import games.stendhal.server.entity.*;
 public class AngelNPC extends SpeakerNPC 
   {
   final private double SPEED=0.1;
-  private Random rand;
 
   public AngelNPC() throws AttributeNotFoundException
     {
     super();
     put("class","angelnpc");
-    
-    rand=new Random();
     }
 
   protected void createPath()
@@ -59,7 +56,7 @@ public class AngelNPC extends SpeakerNPC
       }
     else if(text.contains("help"))
       {
-      switch(rand.nextInt(4))
+      switch(Rand.rand(4))
         {
         case 0:        
           say("Do you want help? Help Arianne! Rate Stendhal at Happypenguin.org");
