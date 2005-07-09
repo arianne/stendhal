@@ -137,6 +137,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\Chest.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\Corpse.java</path>
 				<source>true</source>
 			</fileitem>
@@ -277,6 +281,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\Chest.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\Entity.java</path>
 				<source>true</source>
 			</fileitem>
@@ -397,6 +405,18 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\creature\OrcHunter.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\creature\OrcLord.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\creature\OrcWar.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\creature\Rat.java</path>
 				<source>true</source>
 			</fileitem>
@@ -502,6 +522,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\Pair.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\common\Rand.java</path>
 				<source>true</source>
 			</fileitem>
 		</include>

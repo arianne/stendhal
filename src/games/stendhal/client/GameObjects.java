@@ -16,10 +16,13 @@ import marauroa.common.*;
 import marauroa.common.game.*;
 import games.stendhal.client.entity.*;
 import games.stendhal.common.*;
+
 import java.util.*;
 import java.awt.Graphics;
 import java.awt.geom.*;
 import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects 
@@ -389,12 +392,27 @@ public class GameObjects
     Logger.trace("GameObjects::clear","<");
     }
   
+  private boolean collides(Entity entity)
+    {
+    Rectangle2D area=entity.getArea();
+
+    for(Entity other: sortObjects)
+      {
+      if(area.intersects(other.getArea()) && !entity.getID().equals(other.getID()))
+        {
+        return true;
+        }
+      }
+    
+    return false;
+    }
+  
   /** Move objects based on the lapsus of time ellapsed since the last call. */
   public void move(long delta)    
     {
-    for(Entity entity: objects.values())
+    for(Entity entity: sortObjects)
       {
-      if(!entity.stopped() && !collisionMap.collides(entity.getArea()))
+      if(!entity.stopped() && !collisionMap.collides(entity.getArea()) && !collides(entity))
         {
         entity.move(delta);
         }      

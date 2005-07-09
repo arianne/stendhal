@@ -346,7 +346,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if(object instanceof RPEntity)
+        if(object instanceof RPEntity && !(object instanceof Player)) // Disabled Player killing
           {
           if(!player.equals(object))
             {
