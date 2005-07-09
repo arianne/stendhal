@@ -30,7 +30,7 @@ public class city
 
     portal=new Portal();
     zone.assignRPObjectID(portal);
-    portal.setx(63);
+    portal.setx(62);
     portal.sety(31);
     portal.setNumber(2);
     portal.setDestination("valley",0);
