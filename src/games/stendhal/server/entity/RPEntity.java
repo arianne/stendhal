@@ -598,7 +598,20 @@ public abstract class RPEntity extends Entity
     
   public boolean hasArmor()
     {
-    return hasSlot("armor") && getSlot("armor").size()!=0;
+    if(hasSlot("armor"))
+      {
+      RPSlot slot=getSlot("armor");
+      if(slot.size()!=0)
+        {
+        Entity item=(Entity)slot.iterator().next();
+        if(item instanceof Armor)
+          {
+          return true;
+          }
+        }
+      }
+    
+    return false;
     }
   
   public Armor getArmor()

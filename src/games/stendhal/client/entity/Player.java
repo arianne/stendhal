@@ -102,6 +102,23 @@ public class Player extends Speaker
       {      
       buildAnimations(changes);
       }
+    
+    if(object.hasSlot("!buddy") && changes.hasSlot("!buddy"))
+      {
+      RPSlot slot=changes.getSlot("!buddy");
+      if(slot.size()>0)
+        {
+        RPObject buddies=slot.iterator().next();
+        for(String name: buddies)
+          {          
+          if(name.startsWith("!") && buddies.getInt(name)==1)
+            {
+            client.addEventLine(name.substring(1)+" has joined Stendhal.",Color.orange);
+            }
+          }
+        }
+      System.out.println (changes.getSlot("!buddy"));
+      }
     }
     
   public Rectangle2D getArea()

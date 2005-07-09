@@ -75,6 +75,7 @@ Changelog
 - Fixed a problem with long sentences
 - Changed sprites to PNG
 - Added Bag slot (1 item only)
+- Modifiable server name at login text area
 
 0.30 Jul 03, 2005
 - Added items system

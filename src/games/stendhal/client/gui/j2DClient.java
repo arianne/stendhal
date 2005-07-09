@@ -118,6 +118,17 @@ public class j2DClient extends JFrame
         who.put("type","who");
         client.send(who);
         }
+      else if(text.startsWith("/add ")) // Tell command
+        {
+        String[] command = parseString(text, 2);
+        if(command != null)
+          {
+          RPAction tell = new RPAction();
+          tell.put("type","addbuddy");
+          tell.put("who", command[1]);
+          client.send(tell);
+          }
+        }
       else // Chat command
         {
         RPAction chat=new RPAction();

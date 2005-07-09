@@ -286,6 +286,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         where(player, action);
         }
+      else if(action.get("type").equals("addbuddy"))
+        {
+        addBuddy(player, action);
+        }
       else if(action.get("type").equals("outfit"))
         {
         outfit(player, action);
@@ -561,6 +565,93 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       Logger.trace("StendhalRPRuleProcessor::where","<");
       }
     }
+
+  private void addBuddy(Player player, RPAction action)
+    {
+    Logger.trace("StendhalRPRuleProcessor::addBuddy",">");
+    try
+      {
+      if(action.has("who"))
+        {
+        String who=action.get("who");
+        RPSlot slot=player.getSlot("!buddy");
+        
+        RPObject listBuddies=null;
+        
+        if(slot.size()>0)
+          {
+          listBuddies=slot.iterator().next();
+          }
+        else
+          {
+          listBuddies=new RPObject();
+          listBuddies.put("zoneid",player.get("zoneid"));           //Fixme: fix this at marauroa.
+          slot.assignValidID(listBuddies);
+          slot.add(listBuddies);
+          }
+        
+        int online=0;
+        for(Player p : getPlayers())
+          {
+          if(p.getName().equals(who))
+            {
+            online=1;            
+            }
+          }
+          
+        listBuddies.put("!"+who,online);
+        world.modify(player);
+        }
+      }
+    finally
+      {
+      Logger.trace("StendhalRPRuleProcessor::addBuddy","<");
+      }
+    }
+  
+  public void online(String who)
+    {
+    who="!"+who;
+    for(Player p : getPlayers())
+      {
+      RPSlot slot=p.getSlot("!buddy");
+      if(slot.size()>0)
+        {
+        RPObject buddies=slot.iterator().next();
+        for(String name: buddies)
+          {
+          if(who.equals(name))
+            {
+            buddies.put(who,1);
+            world.modify(p);
+            break;
+            }
+          }
+        }
+      }
+    }
+
+  public void offline(String who)
+    {
+    who="!"+who;
+    for(Player p : getPlayers())
+      {
+      RPSlot slot=p.getSlot("!buddy");
+      if(slot.size()>0)
+        {
+        RPObject buddies=slot.iterator().next();
+        for(String name: buddies)
+          {
+          if(who.equals(name))
+            {
+            buddies.put(who,0);
+            world.modify(p);
+            break;
+            }
+          }
+        }
+      }
+    }  
 
   private void outfit(Player player, RPAction action)
     {
@@ -883,6 +974,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       playersObjectRmText.add(player);
       playersObject.add(player);
+      
+      online(player.getName());
+      
       return true;
       }
     catch(Exception e)
@@ -906,6 +1000,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         if(object.getID().equals(id))
           {
+          offline(object.getName());
+
           Player.destroy(object);
 
           playersObject.remove(object);

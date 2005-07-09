@@ -148,6 +148,11 @@ public abstract class RPEntity extends AnimatedEntity
       }
 
     /** Attack code */
+    if(changes.has("target") && object.has("target"))
+      {
+      gameObjects.attackStop(this,targetEntity);
+      }
+
     if(changes.has("target") || object.has("target"))
       {
       attacking=true;

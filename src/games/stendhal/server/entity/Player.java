@@ -85,6 +85,13 @@ public class Player extends RPEntity
       {
       object.addSlot(new RPSlot("bag"));
       }
+    
+    // Port from 0.30 to 0.35
+    if(!object.hasSlot("!buddy"))
+      {
+      object.addSlot(new RPSlot("!buddy"));
+      }
+    
 
     Player player=new Player(object);
     player.stop();
@@ -194,6 +201,23 @@ public class Player extends RPEntity
         Logger.thrown("Player::create","X",e);
         RPSlot slot=player.getSlot(slotName);
         slot.clear();
+        }
+      }
+    
+    RPObject buddies=player.getSlot("!buddy").iterator().next();
+    for(String name: buddies)
+      {
+      if(name.startsWith("!"))
+        {
+        buddies.put(name,"0");
+        }
+      }
+
+    for(Player buddy: rp.getPlayers())
+      {
+      if(buddies.has("!"+buddy.getName()))
+        {
+        buddies.put("!"+buddy.getName(),"1");
         }
       }
 

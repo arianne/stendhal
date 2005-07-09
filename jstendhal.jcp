@@ -4,9 +4,9 @@
 		<version>1.01</version>
 		<label>jstendhal</label>
 		<root_path>\</root_path>
-		<output_path>D:\Desarrollo\arianne\compiled\</output_path>
+		<output_path>..\compiled\</output_path>
 		<version>1.01</version>
-		<source_path>D:\Desarrollo\arianne\stendhal\src\</source_path>
+		<source_path>src\</source_path>
 		<jdkprofile_ref>JDK version 1.5.0</jdkprofile_ref>
 		<compiler_ref>&lt;Default&gt;</compiler_ref>
 		<ant_ref/>
@@ -78,6 +78,10 @@
 			</fileitem>
 			<fileitem>
 				<path>README</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.31.jar</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
