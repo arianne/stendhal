@@ -24,7 +24,7 @@ import games.stendhal.server.*;
 
 public class GiantRat extends Creature
   {
-  final private double SPEED=0.50;
+  final private double SPEED=0.70;
 
   final private static int HP=800;
   final private static int ATK=70;
