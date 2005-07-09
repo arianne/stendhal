@@ -92,6 +92,12 @@ public class Player extends RPEntity
       object.addSlot(new RPSlot("!buddy"));
       }
     
+    if(!object.has("atk_xp"))
+      {
+      object.put("atk_xp","0");
+      object.put("def_xp","0");
+      }
+    
 
     Player player=new Player(object);
     player.stop();
@@ -204,20 +210,23 @@ public class Player extends RPEntity
         }
       }
     
-    RPObject buddies=player.getSlot("!buddy").iterator().next();
-    for(String name: buddies)
+    if(player.getSlot("!buddy").size()>0)
       {
-      if(name.startsWith("!"))
+      RPObject buddies=player.getSlot("!buddy").iterator().next();
+      for(String name: buddies)
         {
-        buddies.put(name,"0");
+        if(name.startsWith("!"))
+          {
+          buddies.put(name,"0");
+          }
         }
-      }
-
-    for(Player buddy: rp.getPlayers())
-      {
-      if(buddies.has("!"+buddy.getName()))
+  
+      for(Player buddy: rp.getPlayers())
         {
-        buddies.put("!"+buddy.getName(),"1");
+        if(buddies.has("!"+buddy.getName()))
+          {
+          buddies.put("!"+buddy.getName(),"1");
+          }
         }
       }
 

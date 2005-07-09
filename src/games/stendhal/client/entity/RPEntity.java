@@ -314,7 +314,15 @@ public abstract class RPEntity extends AnimatedEntity
 
   public String[] offeredActions()
     {
-    String[] list={"Look","Attack","Stop attack"};
+    String[] list=null;
+    if(client.getPlayer().has("target"))
+      {
+      list=new String[]{"Look","Stop attack"};
+      }
+    else
+      {
+      list=new String[]{"Look","Attack"};
+      }
     return list;
     }
 

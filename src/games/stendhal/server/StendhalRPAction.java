@@ -102,9 +102,12 @@ public class StendhalRPAction
 
         int damage=0;
 
+        source.incATKXP();
+        
         if(risk>0) //Hit
           {  
-          //TODO: Code attack
+          target.incDEFXP();
+          
           int weapon=0;
           int shield=0;
           int armor=0;

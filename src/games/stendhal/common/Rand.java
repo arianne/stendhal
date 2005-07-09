@@ -18,7 +18,7 @@ public class Rand
 
   public static int roll1D20()
     {
-    return rand.nextInt(6)+1;
+    return rand.nextInt(20)+1;
     }
   
   public static int rand(int max)

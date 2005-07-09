@@ -398,9 +398,12 @@ public class GameObjects
 
     for(Entity other: sortObjects)
       {
-      if(area.intersects(other.getArea()) && !entity.getID().equals(other.getID()))
+      if(!(other instanceof PassiveEntity))
         {
-        return true;
+        if(area.intersects(other.getArea()) && !entity.getID().equals(other.getID()))
+          {
+          return true;
+          }
         }
       }
     

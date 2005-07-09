@@ -75,8 +75,18 @@ public class Sheep extends NPC
 
   public String[] offeredActions()
     {
-    String[] list={"Look", "Own", "Attack","Stop attack"};
-    return list;
+    java.util.Vector<String> vector=new java.util.Vector<String>();
+    for(String item: super.offeredActions())
+      {
+      vector.add(item);
+      }
+
+    if(!client.getPlayer().has("sheep"))
+      {
+      vector.add("Own");
+      }
+   
+      return vector.toArray(new String[0]);
     }
 
   public void onAction(StendhalClient client, String action, String... params)

@@ -787,8 +787,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         }
 
       screen.drawInScreen(screen.createString("HP : "+player.get("hp")+"/"+player.get("base_hp"),Color.white),550, 184);
-      screen.drawInScreen(screen.createString("ATK: "+player.get("atk"),Color.white),550, 204);
-      screen.drawInScreen(screen.createString("DEF: "+player.get("def"),Color.white),550, 224);
+      screen.drawInScreen(screen.createString("ATK: "+player.get("atk")+" ("+player.get("atk_xp")+")",Color.white),550, 204);
+      screen.drawInScreen(screen.createString("DEF: "+player.get("def")+" ("+player.get("def_xp")+")",Color.white),550, 224);
       screen.drawInScreen(screen.createString("XP : "+player.get("xp"),Color.white),550, 244);
       
       if(player.has("devel") && player.getInt("devel")>0)

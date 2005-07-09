@@ -117,9 +117,14 @@ public class Player extends Speaker
             }
           }
         }
-      System.out.println (changes.getSlot("!buddy"));
       }
     }
+  
+  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    System.out.println (changes);
+    }
+  
     
   public Rectangle2D getArea()
     {
@@ -135,8 +140,19 @@ public class Player extends Speaker
     {
     if(getID().equals(client.getPlayer().getID()))
       {
-      String[] list={"Look","Attack","Stop attack","Set outfit","Leave sheep"};
-      return list;
+      java.util.Vector<String> vector=new java.util.Vector<String>();
+      for(String item: super.offeredActions())
+        {
+        vector.add(item);
+        }
+
+      vector.add("Set outfit");
+      if(client.getPlayer().has("sheep"))
+        {
+        vector.add("Leave sheep");
+        }
+     
+      return vector.toArray(new String[0]);
       }
     else
       {

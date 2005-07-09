@@ -27,7 +27,7 @@ public class Rat extends Creature
   final private double SPEED=0.5;
 
   final private static int HP=20;
-  final private static int ATK=6;
+  final private static int ATK=3;
   final private static int DEF=2;
   final private static int XP=100; //getInitialXP(ATK,DEF,HP);
 

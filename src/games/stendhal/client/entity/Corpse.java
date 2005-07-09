@@ -41,7 +41,7 @@ public class Corpse extends PassiveEntity
 
   public String[] offeredActions()
     {
-    String[] list={"Look","Attack"};
+    String[] list={"Look"};
     return list;
     }
 
@@ -50,14 +50,6 @@ public class Corpse extends PassiveEntity
     if(action.equals("Look"))
       {
       StendhalClient.get().addEventLine("You see a corpse",Color.green);
-      }
-    else if(action.equals("Attack"))
-      {
-      RPAction rpaction=new RPAction();
-      rpaction.put("type","attack");
-      int id=getID().getObjectID();
-      rpaction.put("target",id);
-      client.send(rpaction);
       }
     else
       {

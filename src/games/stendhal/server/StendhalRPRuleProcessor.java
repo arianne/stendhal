@@ -117,6 +117,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     entityToKill.add(new Pair<RPEntity,RPEntity>(entity,who));
     }
+  
+  public void removePlayerText(Player player)
+    {
+    playersObjectRmText.add(player);
+    }
 
   public void addCorpse(Corpse corpse)
     {
@@ -346,7 +351,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if(object instanceof RPEntity && !(object instanceof Player)) // Disabled Player killing
+        if(object instanceof RPEntity && !(object instanceof Player)) // Disabled Player
           {
           if(!player.equals(object))
             {
@@ -372,6 +377,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       sheep.setOwner(null);
       addNPC(sheep);
+      
+      world.modify(player);
+      return;
       }
 
     if(player.hasSheep())

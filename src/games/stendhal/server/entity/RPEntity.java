@@ -28,7 +28,9 @@ public abstract class RPEntity extends Entity
   private String name;
 
   private int atk;
+  private int atk_xp;
   private int def;
+  private int def_xp;
   private int base_hp;
   private int hp;
   private int xp;
@@ -44,16 +46,19 @@ public abstract class RPEntity extends Entity
       entity.isA("entity");
       entity.add("name",RPClass.STRING);
       entity.add("level",RPClass.SHORT);
-      entity.add("hp/base_hp",RPClass.FLOAT, RPClass.VOLATILE);
-
-      entity.add("base_hp",RPClass.SHORT,RPClass.HIDDEN);
-      entity.add("hp",RPClass.SHORT,RPClass.HIDDEN);
-      entity.add("atk",RPClass.BYTE,RPClass.HIDDEN);
-      entity.add("def",RPClass.BYTE,RPClass.HIDDEN);
       entity.add("xp",RPClass.INT,RPClass.HIDDEN);
 
+      entity.add("hp/base_hp",RPClass.FLOAT, RPClass.VOLATILE);
+      entity.add("base_hp",RPClass.SHORT,RPClass.HIDDEN);
+      entity.add("hp",RPClass.SHORT,RPClass.HIDDEN);
+
+      entity.add("atk",RPClass.BYTE,RPClass.HIDDEN);
+      entity.add("atk_xp",RPClass.INT,RPClass.HIDDEN);
+      entity.add("def",RPClass.BYTE,RPClass.HIDDEN);
+      entity.add("def_xp",RPClass.INT,RPClass.HIDDEN);
+
       entity.add("risk",RPClass.BYTE, RPClass.VOLATILE);
-      entity.add("damage",RPClass.BYTE, RPClass.VOLATILE);
+      entity.add("damage",RPClass.SHORT, RPClass.VOLATILE);
       entity.add("target",RPClass.INT, RPClass.VOLATILE);
       }
     catch(RPClass.SyntaxException e)
@@ -83,10 +88,16 @@ public abstract class RPEntity extends Entity
     super.update();
 
     if(has("name")) name=get("name");
+    
     if(has("atk")) atk=getInt("atk");
+    if(has("atk_xp")) atk_xp=getInt("atk_xp");
+    
     if(has("def")) def=getInt("def");
+    if(has("def_xp")) def_xp=getInt("def_xp");
+    
     if(has("base_hp")) base_hp=getInt("base_hp");
     if(has("hp")) hp=getInt("hp");
+    
     if(has("xp")) xp=getInt("xp");
     if(has("level")) level=getInt("level");
 
@@ -132,6 +143,22 @@ public abstract class RPEntity extends Entity
     {
     return atk;
     }
+  
+  public int incATKXP()
+    {
+    this.atk_xp++;
+    put("atk_xp",atk_xp);
+
+    int newLevel=Level.getLevel(atk_xp);
+    int levels=newLevel-getATK();
+    
+    if(levels>0)
+      {
+      setATK(this.atk+1);
+      }
+    
+    return atk_xp;
+    }
 
   public void setDEF(int def)
     {
@@ -142,6 +169,22 @@ public abstract class RPEntity extends Entity
   public int getDEF()
     {
     return def;
+    }
+
+  public int incDEFXP()
+    {
+    this.def_xp++;
+    put("def_xp",def_xp);
+
+    int newLevel=Level.getLevel(def_xp);
+    int levels=newLevel-getDEF();
+    
+    if(levels>0)
+      {
+      setDEF(this.def+1);
+      }
+    
+    return def_xp;
     }
 
   public void setbaseHP(int hp)
