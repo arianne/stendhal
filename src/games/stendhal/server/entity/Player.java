@@ -219,7 +219,7 @@ public class Player extends RPEntity
       RPObject buddies=player.getSlot("!buddy").iterator().next();
       for(String name: buddies)
         {
-        if(name.startsWith("!"))
+        if(name.startsWith("#"))
           {
           buddies.put(name,"0");
           }
@@ -227,9 +227,9 @@ public class Player extends RPEntity
   
       for(Player buddy: rp.getPlayers())
         {
-        if(buddies.has("!"+buddy.getName()))
+        if(buddies.has("#"+buddy.getName()))
           {
-          buddies.put("!"+buddy.getName(),"1");
+          buddies.put("#"+buddy.getName(),"1");
           }
         }
       }

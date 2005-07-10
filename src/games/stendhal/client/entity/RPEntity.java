@@ -143,7 +143,10 @@ public abstract class RPEntity extends AnimatedEntity
       {
       if(stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID()))
         {
-        client.addEventLine(getName()+" reachs Level "+ getLevel(),Color.green);
+        String text=getName()+" reachs Level "+ getLevel();
+        
+        gameObjects.addText(this, GameScreen.get().createString(text,Color.green));
+        client.addEventLine(text,Color.green);
         }
       }
 

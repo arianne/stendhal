@@ -577,7 +577,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             }
           }
           
-        listBuddies.put("!"+who,online);
+        listBuddies.put("#"+who,online);
         world.modify(player);
         }
       }
@@ -589,7 +589,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   
   public void online(String who)
     {
-    who="!"+who;
+    who="#"+who;
     for(Player p : getPlayers())
       {
       RPSlot slot=p.getSlot("!buddy");
@@ -611,7 +611,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   public void offline(String who)
     {
-    who="!"+who;
+    who="#"+who;
     for(Player p : getPlayers())
       {
       RPSlot slot=p.getSlot("!buddy");
