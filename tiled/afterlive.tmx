@@ -26,7 +26,7 @@
  </tileset>
  <layer name="afterlive_0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtnYGA4xszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJxUMh/EmJA3qkf3xuGSrpn1Z41P5R+0ftH7V/JNr/lgliP4gexSMPz2AYWHx5hGMA1ir/hgAQAAA=
+   H4sIAAAAAAAAAKtnYGA4xszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJxUMh/EmJA3qkf3xuGSrpn1Z41P5R+0ftH7V/JNrvCq1TXUfxiMQzGAYWXx7hGACHDnsMABAAAA==
   </data>
  </layer>
  <layer name="afterlive_1_terrain" width="32" height="32">
@@ -36,7 +36,7 @@
  </layer>
  <layer name="afterlive_2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OwQ2CQBRF0cFAgop2gF3aB4hYhsRAG8TQBojQgd7lbGA1gWjeTc7fvm+MUkop9R8lSHFBhity3Bbav6PAw1Kicrjx8TnB9H6Np6VxvB+zfZrYb9HhhR5vDBgd7s8VesZsscMeEQ44egs9oJT6mc6btT9Qap2+ry25mQAQAAA=
+   H4sIAAAAAAAAAO3OwQ2CQBRF0SFCgop2gOVYH4hYhsRAG8TQBojQgd7lbGA1gWjeTc7fvm+MUkop9R8lSHFBhity3Bbav6PAw1Kicrjx8TnB9H6Np6VxvB+zfZrYb9HhhR5vDBgd7s8VesZsscMeEQ44egs9oJT6mc6btT9Qap2+rNOOawAQAAA=
   </data>
  </layer>
  <layer name="afterlive_3_roof" width="32" height="32">
