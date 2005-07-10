@@ -141,39 +141,6 @@ public abstract class Creature extends NPC
     return point;
     }
 
-  public void addXP(int newxp)
-    {
-    super.addXP(newxp);
-
-    int newLevel=Level.getLevel(getXP());
-    int levels=newLevel-getLevel();
-
-    if(levels > 0)
-      {
-      spendDevelPoint(levels);
-      setLevel(newLevel);
-      }
-    }
-  
-  protected void spendDevelPoint(int amount)
-    {
-    for(int i = 0; i < amount; i++)
-      {
-      switch(Rand.rand(3))
-        {
-        case 0:
-          setATK(getATK() + 1);
-          break;
-        case 1:
-          setDEF(getDEF() + 1);
-          break;
-        case 2:
-          setbaseHP(getbaseHP() + 10);
-          break;
-        }
-      }
-    }
-
   public void onDead(RPEntity who)
     {
     if(point!=null)

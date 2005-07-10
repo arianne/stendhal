@@ -267,10 +267,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         drop(player,action);
         }
-      else if(action.get("type").equals("improve"))
-        {
-       	improve(player,action);
-	      }
       else if(action.get("type").equals("displace"))
         {
         displace(player,action);
@@ -458,32 +454,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
 
     Logger.trace("StendhalRPRuleProcessor::displace","<");
-    }
-
-  private void improve(Player player, RPAction action)
-    {
-    Logger.trace("StendhalRPRuleProcessor::improve", ">");
-    Logger.trace("StendhalRPRuleProcessor::improve", "D",action.toString());
-    if(action.has("stat"))
-      {
-      String stat = action.get("stat");
-	    if(stat.equals("atk"))
-	      {
-	      player.improveATK();
-        world.modify(player);
-	      }
-	    else if(stat.equals("def"))
-	      {
-	      player.improveDEF();
-        world.modify(player);
-	      }
-	    else if(stat.equals("hp"))
-	      {
-	      player.improveHP();
-        world.modify(player);
-	      }
-      }
-    Logger.trace("StendhalRPRuleProcessor::improve", "<");
     }
 
   private void who(Player player)

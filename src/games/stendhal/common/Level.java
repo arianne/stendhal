@@ -12,13 +12,21 @@ public class Level
     {
     table=new Vector<Integer>();
     table.add(0);
-    table.add(64);
+    table.add(50);
+    table.add(100);
+    table.add(200);
+    table.add(400);
+    table.add(800);
 
-    for(int i=2;i<LEVELS;i++)
+    for(int i=5;i<LEVELS;i++)
       {
-      int exp=((i*10+i*i*5+i*i*i*10+80)>>7)<<7;
-      Logger.trace("Level::(static)","D","Level "+i+": "+exp);
+      int exp=((i*16+i*i*5+i*i*i*10+300)/100)*100;
       table.add(exp);
+      }
+
+    for(int i=0;i<LEVELS;i++)
+      {
+      Logger.trace("Level::(static)","D","Level "+i+": "+table.get(i));
       }
     }
 

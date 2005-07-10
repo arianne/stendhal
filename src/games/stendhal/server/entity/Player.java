@@ -38,7 +38,6 @@ public class Player extends RPEntity
       player.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.HIDDEN|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
-      player.add("devel",RPClass.INT,RPClass.HIDDEN);
       player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
       player.add("reset",RPClass.FLAG,(byte)(RPClass.HIDDEN|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
 
@@ -96,6 +95,11 @@ public class Player extends RPEntity
       {
       object.put("atk_xp","0");
       object.put("def_xp","0");
+      }
+    
+    if(object.has("devel"))
+      {
+      object.remove("devel");
       }
     
 
@@ -292,54 +296,6 @@ public class Player extends RPEntity
   public void update() throws AttributeNotFoundException
     {
     super.update();
-    if(has("devel")) devel=getInt("devel");
-    }
-
-  public void addXP(int newxp)
-    {
-    super.addXP(newxp);
-
-    int newLevel=Level.getLevel(getXP());
-    int levels=newLevel-getLevel();
-
-    if(levels>0)
-      {
-      addDevel(levels);
-      setLevel(newLevel);
-      }
-    }
-
-  public void addDevel(int n)
-    {
-    devel+=n;
-    put("devel",devel);
-    }
-
-  public void improveATK()
-    {
-    if(devel>0)
-      {
-      addDevel(-1);
-      setATK(getATK()+1);
-      }
-    }
-
-  public void improveDEF()
-    {
-    if(devel>0)
-      {
-      addDevel(-1);
-      setDEF(getDEF()+1);
-      }
-    }
-
-  public void improveHP()
-    {
-    if(devel>0)
-      {
-      addDevel(-1);
-      setbaseHP(getbaseHP()+10);
-      }
     }
 
   public void setPrivateText(String text)

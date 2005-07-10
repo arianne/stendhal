@@ -242,6 +242,15 @@ public abstract class RPEntity extends Entity
     // Increment experience points
     this.xp += newxp;
     put("xp",xp);
+
+    int newLevel=Level.getLevel(getXP());
+    int levels=newLevel-getLevel();
+
+    if(levels>0)
+      {
+      setbaseHP(getbaseHP()+10);
+      setLevel(newLevel);
+      }
     }
 
   public int getXP()

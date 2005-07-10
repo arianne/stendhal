@@ -338,52 +338,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   private void buildGUI()
     {
     SpriteStore st=SpriteStore.get();
-    
-    InGameButton button=null;
-    button=new InGameButton("atk",st.getSprite("data/atk_up.png"), st.getSprite("data/atk_up_pressed.png"), 515,110);
-    button.addActionListener(new InGameActionListener()
-      {
-      public void onAction(Object... param)
-        {
-        RPAction improve=new RPAction();
-        improve.put("type","improve");
-        improve.put("stat","atk");
-        InGameGUI.this.client.send(improve);
-        }
-      });
-    button.setEnabled(false);
-    buttons.add(button);
-    
-    button=new InGameButton("def",st.getSprite("data/def_up.png"), st.getSprite("data/def_up_pressed.png"), 515,110+14);
-    button.addActionListener(new InGameActionListener()
-      {
-      public void onAction(Object... param)
-        {
-        RPAction improve=new RPAction();
-        improve.put("type","improve");
-        improve.put("stat","def");
-        InGameGUI.this.client.send(improve);
-        }
-      });
-    button.setEnabled(false);
-    buttons.add(button);
 
-    button=new InGameButton("hp",st.getSprite("data/hp_up.png"), st.getSprite("data/hp_up_pressed.png"), 515,110+28);
-    button.addActionListener(new InGameActionListener()
-      {
-      public void onAction(Object... param)
-        {
-        RPAction improve=new RPAction();
-        improve.put("type","improve");
-        improve.put("stat","hp");
-        InGameGUI.this.client.send(improve);
-        }
-      });
-    button.setEnabled(false);
-    buttons.add(button);
-
-
-    button=new InGameButton("exit",st.getSprite("data/exit.png"), st.getSprite("data/exit_pressed.png"), 320,360);
+    InGameButton button=new InGameButton("exit",st.getSprite("data/exit.png"), st.getSprite("data/exit_pressed.png"), 320,360);
     button.addActionListener(new InGameActionListener()
       {
       public void onAction(Object... param)
@@ -790,29 +746,6 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       screen.drawInScreen(screen.createString("ATK: "+player.get("atk")+" ("+player.get("atk_xp")+")",Color.white),550, 204);
       screen.drawInScreen(screen.createString("DEF: "+player.get("def")+" ("+player.get("def_xp")+")",Color.white),550, 224);
       screen.drawInScreen(screen.createString("XP : "+player.get("xp"),Color.white),550, 244);
-      
-      if(player.has("devel") && player.getInt("devel")>0)
-        {
-        screen.drawInScreen(screen.createString("Devel: "+player.get("devel"),Color.yellow),550, 264);
-        
-        for(InGameButton button: buttons)    
-          {
-          if(button.getName().equals("hp") || button.getName().equals("atk") || button.getName().equals("def"))
-            {
-            button.setEnabled(true);
-            }
-          }
-        }
-      else
-        {
-        for(InGameButton button: buttons)    
-          {
-          if(button.getName().equals("hp") || button.getName().equals("atk") || button.getName().equals("def"))
-            {
-            button.setEnabled(false);
-            }
-          }
-        }
       }
     
     for(InGameButton button: buttons)    
