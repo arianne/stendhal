@@ -119,12 +119,6 @@ public class Player extends Speaker
         }
       }
     }
-  
-  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
-    {
-    System.out.println (changes);
-    }
-  
     
   public Rectangle2D getArea()
     {

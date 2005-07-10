@@ -151,8 +151,9 @@ public abstract class RPEntity extends AnimatedEntity
     if(changes.has("target") && object.has("target"))
       {
       gameObjects.attackStop(this,targetEntity);
+      targetEntity=null;
       }
-
+      
     if(changes.has("target") || object.has("target"))
       {
       attacking=true;
@@ -171,9 +172,10 @@ public abstract class RPEntity extends AnimatedEntity
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    super.modifyRemoved(object,changes);
+    super.modifyRemoved(object,changes);    
     if(changes.has("target"))
       {
+      System.out.println ("Stop attacking");
       attacking=false;
       gameObjects.attackStop(this,targetEntity);
       targetEntity=null;
@@ -184,6 +186,7 @@ public abstract class RPEntity extends AnimatedEntity
     {
     if(attacking)
       {
+      System.out.println ("Stop attacking");
       attacking=false;
       gameObjects.attackStop(this,targetEntity);
       targetEntity=null;
@@ -317,7 +320,7 @@ public abstract class RPEntity extends AnimatedEntity
     String[] list=null;
     if(client.getPlayer().has("target"))
       {
-      list=new String[]{"Look","Stop attack"};
+      list=new String[]{"Look","Attack","Stop attack"};
       }
     else
       {
