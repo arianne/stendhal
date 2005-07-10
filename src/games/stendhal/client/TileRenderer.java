@@ -27,12 +27,17 @@ public class TileRenderer
   private int[] map;
   private int width;
   private int height;
+  private int frame;
+  private long delta;
   
   public TileRenderer(TileStore tiles)
     {
     this.tiles=tiles;
     map=null;
-    width=height=0;    
+    frame=width=height=0;  
+    animatedTiles=new HashMap<Integer,List<Integer>>();       
+    createAnimateTiles();
+    delta=System.currentTimeMillis();
     }
   
   /** Sets the data that will be rendered */
@@ -87,11 +92,46 @@ public class TileRenderer
     return map[y*width+x];
     }
   
+  private Map<Integer,List<Integer>> animatedTiles;
+  
+  private void addAnimatedTile(int tile, int[] tiles)
+    {
+    List<Integer> list=new LinkedList<Integer>();
+    for(int num: tiles)
+      {
+      list.add(num);
+      }
+      
+    animatedTiles.put(tile,list);
+    }
+  
+  private void createAnimateTiles()
+    {
+    // Double daisy 
+    addAnimatedTile(124,new int[]{124,154,184,214});
+    addAnimatedTile(154,new int[]{154,184,214,124});
+    addAnimatedTile(184,new int[]{184,214,124,154});
+    addAnimatedTile(214,new int[]{214,124,154,184});
+
+    // Single daisy
+    addAnimatedTile(125,new int[]{125,155,185,215});
+    addAnimatedTile(155,new int[]{155,185,215,125});
+    addAnimatedTile(185,new int[]{185,215,125,155});
+    addAnimatedTile(215,new int[]{215,125,155,185});
+    
+    // Waterfall    
+    }
   
   /** Render the data to screen. We assume that Gamescreen will clip.
    *  The data doesnt change, so we could cache it and get a boost in performance */
   public void draw(GameScreen screen) 
     {
+    if(System.currentTimeMillis()-delta>200)
+      {
+      delta=System.currentTimeMillis();
+      frame++;
+      }
+    
     int x=(int)screen.getX();
     int y=(int)screen.getY();
     int w=(int)screen.getWidth();
@@ -104,6 +144,13 @@ public class TileRenderer
         if(j>=0 && j<getHeight() && i>=0 && i<getWidth())
           {
           int value=get(i,j)-1;        
+          
+          if(animatedTiles.containsKey(value))
+            {
+            List<Integer> list=(animatedTiles.get(value));
+            value=list.get(frame%list.size());
+            }
+          
           if(value>=0)
             {
             screen.draw(tiles.getTile(value),i,j);
