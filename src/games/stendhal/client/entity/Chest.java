@@ -105,14 +105,18 @@ public class Chest extends AnimatedEntity
       String text="You see a chest that is "+(open?"open.":"closed.");
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);
-      
-      for(RPObject object: content)
-        {
-        System.out.println (object.get("type")+":"+object.get("class"));
-        }
       }
     else if(action.equals("Open") || action.equals("Close"))
       {
+      if(!open)
+        {
+        client.getGameGUI().inspect(this,content);
+        }
+      else
+        {
+        client.getGameGUI().inspect(null,null);
+        }              
+        
       RPAction rpaction=new RPAction();
       rpaction.put("type","use");
       int id=getID().getObjectID();

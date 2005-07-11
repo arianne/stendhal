@@ -43,6 +43,7 @@ public class StendhalClient extends ariannexp
   
   private boolean keepRunning=true;
   private GameLogDialog gameDialog;
+  private InGameGUI gameGUI;
   private JFrame frame;
   private Configuration conf;
   
@@ -66,6 +67,7 @@ public class StendhalClient extends ariannexp
     gameObjects=new GameObjects(staticLayers);   
     handler=new PerceptionHandler(new StendhalPerceptionListener()); 
     gameDialog=null;
+    gameGUI=null;
     
     try
       {
@@ -105,6 +107,16 @@ public class StendhalClient extends ariannexp
   public GameLogDialog getGameLogDialog()
     {
     return gameDialog;
+    }
+  
+  public void setGameGUI(InGameGUI gui)
+    {
+    gameGUI=gui;
+    }
+  
+  public InGameGUI getGameGUI()
+    {
+    return gameGUI;
     }
 
   public OutfitDialog getOutfitDialog()

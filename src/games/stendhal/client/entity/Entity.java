@@ -107,7 +107,7 @@ public abstract class Entity
     {
     return (object.getInt("x")-x)*(object.getInt("x")-x)+(object.getInt("y")-y)*(object.getInt("y")-y);
     }
- 
+
   protected static String translate(String type)
     {
     return "sprites/"+type+".png";

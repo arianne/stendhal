@@ -149,6 +149,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
 
     public void draw(GameScreen screen)
       {
+      if(!enabled) return;
       Graphics g=screen.expose();
       g.setColor(Color.white);
       g.drawRect((int)area.getX(),(int)area.getY(),(int)area.getWidth(),(int)area.getHeight());      
@@ -156,6 +157,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       
     public boolean isMouseOver(Point2D point)
       {
+      if(!enabled) return false;
       if(area.contains(point))
         {
         return true;
@@ -290,10 +292,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   
   private Sprite inGameInventory;
   private Sprite inGameDevelPoint;
+  private Sprite slot;
   
   public InGameGUI(StendhalClient client)
     {
     Logger.trace("InGameGUI::(init)","D","OS: "+(System.getProperty("os.name")));
+    client.setGameGUI(this);
     
     if(System.getProperty("os.name").toLowerCase().contains("linux"))
       {
@@ -331,6 +335,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     
     buttons=new java.util.LinkedList<InGameButton>();
     droppableAreas=new java.util.LinkedList<InGameDroppableArea>();
+    inspectedDroppableAreas=new java.util.LinkedList<InGameDroppableArea>();
     
     buildGUI();
     }
@@ -422,6 +427,57 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     area=new InGameDroppableArea("bag",601,122,32,32);
     area.addActionListener(dropToInventory);
     droppableAreas.add(area);    
+    
+    slot=st.getSprite("data/slot.png");
+
+    InGameActionListener transferFromContainer=new InGameActionListener()
+      {
+      public void onAction(Object... param)
+        {
+        /**TODO: FIXME: BUG: Code this correctly.*/
+        if(param[0] instanceof Entity)
+          {
+          RPAction action=new RPAction();
+          action.put("type","equip");
+          action.put("target",((Entity)param[0]).getID().getObjectID());
+          action.put("slot",((InGameDroppableArea)param[1]).getName());
+          InGameGUI.this.client.send(action);
+          }
+        else if(param[0] instanceof InGameDroppableArea)
+          {
+          RPAction action=new RPAction();
+          action.put("type","moveequip");
+          action.put("targetslot",((InGameDroppableArea)param[1]).getName());
+          action.put("sourceslot",((InGameDroppableArea)param[0]).getName());
+          InGameGUI.this.client.send(action);
+          }
+        }
+      };
+
+    area=new InGameDroppableArea("left_001",6,414,32,32);
+    area.addActionListener(transferFromContainer);
+    inspectedDroppableAreas.add(area);
+    droppableAreas.add(area);    
+
+    area=new InGameDroppableArea("left_002",6,369,32,32);
+    area.addActionListener(transferFromContainer);
+    inspectedDroppableAreas.add(area);
+    droppableAreas.add(area);    
+
+    area=new InGameDroppableArea("left_003",6,324,32,32);
+    area.addActionListener(transferFromContainer);
+    inspectedDroppableAreas.add(area);
+    droppableAreas.add(area);    
+
+    area=new InGameDroppableArea("left_004",6,279,32,32);
+    area.addActionListener(transferFromContainer);
+    inspectedDroppableAreas.add(area);
+    droppableAreas.add(area);    
+
+    for(InGameDroppableArea disabledArea:inspectedDroppableAreas)
+      {
+      disabledArea.setEnabled(false);
+      }
     }
   
   private InGameDroppableArea getDroppableArea(String name)
@@ -685,6 +741,21 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         } 
       }
     }
+    
+  private RPSlot inspectedSlot;
+  private java.util.List<InGameDroppableArea> inspectedDroppableAreas;
+  private Entity inspectedEntity;
+  
+  public void inspect(Entity entity, RPSlot slot)
+    {
+    for(InGameDroppableArea area:inspectedDroppableAreas)
+      {
+      area.setEnabled(entity!=null);
+      }
+      
+    inspectedEntity=entity;
+    inspectedSlot=slot;
+    }
 
   public void draw(GameScreen screen)
     {
@@ -717,7 +788,28 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       screen.drawInScreen(screen.createString("ATK: "+player.get("atk")+" ("+player.get("atk_xp")+")",Color.white),550, 204);
       screen.drawInScreen(screen.createString("DEF: "+player.get("def")+" ("+player.get("def_xp")+")",Color.white),550, 224);
       screen.drawInScreen(screen.createString("XP : "+player.get("xp"),Color.white),550, 244);
+
+      if(inspectedSlot!=null)
+        {
+        for(RPObject object: inspectedSlot)
+          {
+          screen.drawInScreen(slot,2,410);
+          screen.drawInScreen(gameObjects.spriteType(object),6,414);
+          }
+
+      if(inspectedEntity.distance(player)>2*2)
+        {
+        for(InGameDroppableArea area:inspectedDroppableAreas)
+          {
+          area.setEnabled(false);
+          }
+          
+        inspectedEntity=null;
+        inspectedSlot=null;
+        }
+        }
       }
+    
     
     for(InGameButton button: buttons)    
       {
