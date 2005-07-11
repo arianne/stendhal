@@ -20,6 +20,7 @@ import java.awt.geom.*;
 public class Chest extends AnimatedEntity 
   {
   private boolean open;
+  private RPSlot content;
   
   public Chest(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
@@ -44,22 +45,21 @@ public class Chest extends AnimatedEntity
     {
     super.modifyAdded(object,changes);
     
-    System.out.println (object);
-    System.out.println (changes);
-    
     if(changes.has("open"))
       {
       open=true;
       animation="open";
+      }
+    
+    if(changes.hasSlot("content"))
+      {
+      content=changes.getSlot("content");
       }
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
-    
-    System.out.println (object);
-    System.out.println (changes);
     
     if(changes.has("open"))
       {
@@ -84,8 +84,7 @@ public class Chest extends AnimatedEntity
     }
 
   public String[] offeredActions()
-    {
-    
+    {    
     String[] list=null;
     if(open)
       {
@@ -106,6 +105,11 @@ public class Chest extends AnimatedEntity
       String text="You see a chest that is "+(open?"open.":"closed.");
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);
+      
+      for(RPObject object: content)
+        {
+        System.out.println (object.get("type")+":"+object.get("class"));
+        }
       }
     else if(action.equals("Open") || action.equals("Close"))
       {

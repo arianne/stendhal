@@ -5,6 +5,7 @@ import marauroa.common.game.*;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.item.*;
 
 public class city 
   {
@@ -77,6 +78,7 @@ public class city
     zone.assignRPObjectID(chest);
     chest.setx(44);
     chest.sety(60);
+    chest.add(new Sword());
     zone.add(chest);
 
     

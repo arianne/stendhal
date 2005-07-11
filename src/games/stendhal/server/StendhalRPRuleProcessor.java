@@ -230,68 +230,69 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       /** TODO: This stinks... I can(MUST) be done in a better way. */
       Player player=(Player)world.get(id);
+      String type=action.get("type");
 
-      if(action.get("type").equals("move"))
+      if(type.equals("move"))
         {
         move(player,action);
         }
-      else if(action.get("type").equals("chat"))
+      else if(type.equals("chat"))
         {
         chat(player,action);
         }
-      else if(action.get("type").equals("attack"))
+      else if(type.equals("attack"))
         {
         attack(player,action);
         }
-      else if(action.get("type").equals("stop"))
+      else if(type.equals("stop"))
         {
         stop(player);
         }
-      else if(action.get("type").equals("use"))
+      else if(type.equals("use"))
         {
         use(player,action);
         }
-      else if(action.get("type").equals("face"))
+      else if(type.equals("face"))
         {
         face(player,action);
         }
-      else if(action.get("type").equals("equip"))
+      else if(type.equals("equip"))
         {
         equip(player,action);
         }
-      else if(action.get("type").equals("moveequip"))
+      else if(type.equals("moveequip"))
         {
         moveequip(player,action);
         }
-      else if(action.get("type").equals("drop"))
+      else if(type.equals("drop"))
         {
         drop(player,action);
         }
-      else if(action.get("type").equals("displace"))
+      else if(type.equals("displace"))
         {
         displace(player,action);
         }
-      else if(action.get("type").equals("who"))
+      else if(type.equals("who"))
         {
         who(player);
         }
-      else if(action.get("type").equals("own"))
+      else if(type.equals("own"))
         {
         own(player, action);
         }
-      else if(action.get("type").equals("tell"))
+      else if(type.equals("tell"))
         {
         tell(player, action);
         }
-      else if(action.get("type").equals("where"))
+      else if(type.equals("where"))
         {
         where(player, action);
         }
-      else if(action.get("type").equals("addbuddy"))
+      else if(type.equals("addbuddy"))
         {
         addBuddy(player, action);
         }
-      else if(action.get("type").equals("outfit"))
+      else if(type.equals("outfit"))
         {
         outfit(player, action);
         }
@@ -577,7 +578,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             }
           }
           
-        listBuddies.put("#"+who,online);
+        listBuddies.put("_"+who,online);
         world.modify(player);
         }
       }
@@ -589,7 +590,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   
   public void online(String who)
     {
-    who="#"+who;
+    who="_"+who;
     for(Player p : getPlayers())
       {
       RPSlot slot=p.getSlot("!buddy");
@@ -611,7 +612,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   public void offline(String who)
     {
-    who="#"+who;
+    who="_"+who;
     for(Player p : getPlayers())
       {
       RPSlot slot=p.getSlot("!buddy");

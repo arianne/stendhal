@@ -698,49 +698,20 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     RPObject player=client.getPlayer();
     if(player!=null)
       {
-      if(player.hasSlot("lhand"))
-        {
-        RPSlot slot=player.getSlot("lhand");
-        if(slot.size()==1)
-          {
-          InGameDroppableArea lhand=getDroppableArea("lhand");
-          RPObject object=slot.iterator().next();
-          screen.drawInScreen(gameObjects.spriteType(object),lhand.getx(),lhand.gety());
-          }
-        }
-      
-      if(player.hasSlot("rhand"))
-        {
-        RPSlot slot=player.getSlot("rhand");
-        if(slot.size()==1)
-          {
-          InGameDroppableArea rhand=getDroppableArea("rhand");
-          RPObject object=slot.iterator().next();
-          screen.drawInScreen(gameObjects.spriteType(object),rhand.getx(),rhand.gety());
-          }
-        }
-      
-      if(player.hasSlot("armor"))
-        {
-        RPSlot slot=player.getSlot("armor");
-        if(slot.size()==1)
-          {
-          InGameDroppableArea rhand=getDroppableArea("armor");
-          RPObject object=slot.iterator().next();
-          screen.drawInScreen(gameObjects.spriteType(object),rhand.getx(),rhand.gety());
-          }
-        }
-
-      if(player.hasSlot("bag"))
-        {
-        RPSlot slot=player.getSlot("bag");
-        if(slot.size()==1)
-          {
-          InGameDroppableArea rhand=getDroppableArea("bag");
-          RPObject object=slot.iterator().next();
-          screen.drawInScreen(gameObjects.spriteType(object),rhand.getx(),rhand.gety());
-          }
-        }
+      String[] slots=new String[]{"lhand","rhand","armor","bag"};
+      for(String slotName: slots)
+       {
+       if(player.hasSlot(slotName))
+         {
+         RPSlot slot=player.getSlot(slotName);
+         if(slot.size()==1)
+           {
+           InGameDroppableArea lhand=getDroppableArea(slotName);
+           RPObject object=slot.iterator().next();
+           screen.drawInScreen(gameObjects.spriteType(object),lhand.getx(),lhand.gety());
+           }
+         }
+       }
 
       screen.drawInScreen(screen.createString("HP : "+player.get("hp")+"/"+player.get("base_hp"),Color.white),550, 184);
       screen.drawInScreen(screen.createString("ATK: "+player.get("atk")+" ("+player.get("atk_xp")+")",Color.white),550, 204);

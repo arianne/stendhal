@@ -54,6 +54,8 @@ public class Corpse extends PassiveEntity
     degradation=DEGRADATION_TIMEOUT;
     update();
     put("stage",stage);
+
+    addSlot(new RPSlot("content"));
     }
 
   public Corpse(RPEntity entity) throws AttributeNotFoundException
@@ -75,12 +77,19 @@ public class Corpse extends PassiveEntity
     degradation=DEGRADATION_TIMEOUT;
     stage=0;
     put("stage",stage);
+
+    addSlot(new RPSlot("content"));
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y,1,1);
     }  
+  
+  public void add(PassiveEntity entity)
+    {
+    
+    }
   
   public int getDegradation()
     {

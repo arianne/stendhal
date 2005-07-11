@@ -201,6 +201,7 @@ public class Player extends RPEntity
           if(item.get("type").equals("item")) // We simply ignore corpses...
             {
             Item entity=Item.create(item.get("class"));
+            entity.put("#db_id",item.get("#db_id"));
             entity.setID(item.getID());
             slot.add(entity);
             }
@@ -219,7 +220,7 @@ public class Player extends RPEntity
       RPObject buddies=player.getSlot("!buddy").iterator().next();
       for(String name: buddies)
         {
-        if(name.startsWith("#"))
+        if(name.startsWith("_"))
           {
           buddies.put(name,"0");
           }
@@ -227,9 +228,9 @@ public class Player extends RPEntity
   
       for(Player buddy: rp.getPlayers())
         {
-        if(buddies.has("#"+buddy.getName()))
+        if(buddies.has("_"+buddy.getName()))
           {
-          buddies.put("#"+buddy.getName(),"1");
+          buddies.put(buddy.getName(),"1");
           }
         }
       }
