@@ -24,9 +24,12 @@
  <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
   <image source="zelda_collision_chipset.png"/>
  </tileset>
+ <tileset name="Outside 2" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_2_chipset.png" trans="ff00ff"/>
+ </tileset>
  <layer name="afterlive_0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtnYGA4xszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJxUMh/EmJA3qkf3xuGSrpn1Z41P5R+0ftH7V/JNrvDK1TnQcIu4ziAcWuA4xnMAwsvjzAGAA8gdAhABAAAA==
+   H4sIAAAAAAAAAKtnYGA4xszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJxUMh/EmJA3qkf3xuGSrpn1Z41P5R+0ftH7V/JNrvygWxH0QPBHYbxQOK3QcYz2AYWHx5gDEAViWfawAQAAA=
   </data>
  </layer>
  <layer name="afterlive_1_terrain" width="32" height="32">
