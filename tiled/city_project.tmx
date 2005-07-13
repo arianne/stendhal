@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+ <tileset name="Navigation" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2" tilewidth="32" tileheight="32">
+  <image source="zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="102" tilewidth="32" tileheight="32">
+  <image source="zelda_collision_chipset.png"/>
+ </tileset>
+ <tileset name="town01_a" firstgid="104" tilewidth="32" tileheight="32">
+  <image source="town01_a.png"/>
+ </tileset>
+ <tileset name="town02_a" firstgid="584" tilewidth="32" tileheight="32">
+  <image source="town02_a.png"/>
+ </tileset>
+ <tileset name="town03_a" firstgid="1064" tilewidth="32" tileheight="32">
+  <image source="town03_a.png"/>
+ </tileset>
+ <tileset name="town04_a" firstgid="1544" tilewidth="32" tileheight="32">
+  <image source="town04_a.png"/>
+ </tileset>
+ <tileset name="town05_a" firstgid="2024" tilewidth="32" tileheight="32">
+  <image source="town05_a.png"/>
+ </tileset>
+ <tileset name="town06_a" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="town06_a.png"/>
+ </tileset>
+ <tileset name="town07_a" firstgid="2984" tilewidth="32" tileheight="32">
+  <image source="town07_a.png"/>
+ </tileset>
+ <layer name="city_0_floor" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WvQ3CMBBA4UskOmAQYC5KsgGiCSyBGAUxUWAETBnJSQwW5zt4xde4SPysy08jIg16dgb2AAAAAAAAAHjVViLHiFNVfm8arqFzG3H7k35M68Is3DM9HM/TvBZZZFrW5Tu89Y/NneY8leh/tU9dU+sMSvSn3lPjDCz3a7xXLPdrzMAq3GOdafPFfs/flrEzT+1/92y9SJm7X21HX+foX3o/i68fBtZT2kv9+1joj70HLD/354HOy4f9AAAAAAAAAAAA8OkJNC24zgBAAAA=
+  </data>
+ </layer>
+ <layer name="city_1_terrain" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2ZSWgUQRSGazLT6mS8eBP1qOJdJY4HRYUgXhLX6MUFRLzoIGhUEA2IxoNBNMYto+DBDVzB7SQe4k1Qo4K4exI8aLy543t2F/2m5lV1z0zNklg//Ex3T6X6fa9qaosQlWvcKAuVDGM5fpcDx1/vCOorx+9y4PhdDhx/vSOorxy/vbo6MkKstOhVGXux1ULbIN5O8NEK3Rl4ew34bbaZKea2pP+5tyk6pm015LfVZkdjxvwT+LfD5w7wE/Ag+Glwv1OJqVb8pvcs9oRYEsObvLCulhRcg2cpzqZ8/j6o9xj4C3gI/DW4P05iahT+nBe2F/omucb2ak/6zhH+5cC5gnFHwL8vIcR+xt2JMKZG5Of6K8ffD5ytXrHzAf894NzA+H5M/iVQz1Liy+Ar4KuGZ8tSpfFTrqj+qvKvgXdN9Yq9NuB/DZxvGL+Nya/Lr8n5Evjbk4VcqM0QWw48qSm8Rq1OFPNTqeuLs8H4L+cDbv1B+WU5qt1MbqPc5fFznZxr6XpDtj3lPwicPeDZTeE1leTvZN5Rzjyqtj/NVx7edbpEn/H0cx33PtkHkCsFzB+D+ywpg8/aSLlei/OojGcU1PsQ+m6zx/cXmjMuj3HWJ+rvTbb9v7x7hWWzzN+j4s6TJi8FL04WxqPyyxxId2ZKcxx+2v6fm2HcCzzU7PPTZ/J5ziuut1RtgTpyDP+hgP+l8g7kL7Vv9THjE30fzS3nrKZMtfgnw7MF4GkW6udE+csZu1ZlQv52ZqzWqT1R/Izjnwdtvw6ez9fMX5VK5S/n91QOPyeOX851XUz/t6FG56+2VP6+GGNIr4a/UjUCP76Trn84q+Wxjh4L898hcE+D8Ouk4y9VLWRfvFXZI6v83fB5oEq5sMlP98km7yT8h8FHwL0aflwPnYPP8yOA/xbhl2cE18DXwTfIGQHlz1U4pkbJJr/cJ0cZ9839mj1yXuHH8aAV1gpjwYsShWuuSjXgRfOPhnjGkLWHiT/uvrQrmCu471CU/1NCzx83DxOafY8Hz4U636aFeJf2v4vin4LtFIMfzwHK5R9M6fknNvn8jwTPLxlMugLcM8FzMqXzq9Lx4z447r78TMAp74dS4TXHvx64F4I3MvypiPP0ywH7K+B9DX6TDvkx5mrNf/IZ9gvuDAeFzy+AL4IvkTIqvzwvlOeDWPeDpLn/4z4N/Qc4v4G/g3+Af4J/gX9HtD+XA9P6x8RPeVXJMWiArB8pf1bhp33e1O/lOcUkaPsZjPdkeH7cz0Xt+To0/Z/j17U96nGimL9NWf9h/gYShe2h+93T3wI9p3mfLub/kPbL29r/qKxc26xm9rxR7a/Wq/Z7U/+PI5v8ar0myVyo/NgnTOv/qPOZqHMazjb4bdp0HmXz/+vqeXO5rmY8tmMd7rZxvj6cbUN55X6GV7lVTY9Z1lQuznvK0S471TS0dPMPtv2pmkZSG/XHKCPZ71Y5lnrohNDnALlPipD9I7MOG+56JvwcIOcLYsl9R4xcdinMwW3hs1Ij93MxstmlMAfPFf8P3E5OTk5OTk5OI1V/AfY3CrUAQAAA
+  </data>
+ </layer>
+ <layer name="city_2_object" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2ZO28UMRSF7ewOybJVGmiQQKKKBB2iQIIGJJ7i9Q+gAinZFVI6JCrCG9JBC6QJEgUNFa8GsiwlDY8SktBSU3GsmZGt0czY43Gys3A+6Wjuei1nju+14zhCEEIIIYQQQgghzeK9HPUbEEJCsdJy77snEmIv9LmtY5Nl7A3PoB0TQsziOQcNWs3eM1YN/7a5OAG/J6Hf8H8Mz+MZ/yvKL3QA/u/geRdayxlzFm1ziXoV5j8kyqvynnoeJPGw5H3aE/Zx/xjxh4reLmE+L0f6qeqsrK0OyvtaS+c/jcv8bzRpfZl1dgPPm5GuN9WWfu9K3+ibXYu/Er9vOkL8wHc/G7xWfenXrJVxp8j/IFPr5l61usnrYOeUELum6o/Tg9fz0Ou2bjPjpnIQ3g8F8H/lP691+h/1G7hzGOvySM7avFpjzHHyfwHeL1r2puVJHbe32MccJ/82zDrY7XD2VLj4X09+t1U9n24Wj5HzJ0bes2e2svVR5r+VqTU1D02cg7fw/m7S3i8PW/6r+DX7vizosy/weflscn5ROmfErlqsuP6zNRGKVwH2oSad279invYj118K5is9Sz+Qsb5FOvYltP91z7We3uXMS33Hk7b1oL5xz/FcxpqXOvalKflP73KmoVvQbanveu5B96X+e+mTjDUtdexLnn+51X+8dK0vdPTe5lsTeXwvyFdRuw2X/D/sCvGoW23cpY7f+9j4KGNl24aeNVCW/2vwPGP4nqk4B+OALf9H4fk6tNCN41GTl+thTk24Uub/aZQIvpe6+nNIQtzJvKix/53ZoP1/G8bd7jC27U7mFLydlu6fyehp8v+iSBh8zxt1xgn1MwkhhBBCCCGEEPJv8hfa3E29AEAAAA==
+  </data>
+ </layer>
+ <layer name="city_3_roof" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2YO0vDUBiGT2oaqd0dBS/gpJu3SQV18PIfvONlclI3J0G8zg5OLrZVFwcRZ++COomCgnf/gYK3t6RCbdNEa9qTpO8DT0lP0zTv1+T0fBWCEEIIIYQQQohbqPcJ0WBgo0/2mdnDpx8PWrKKpr8+CsdibsRtj0s410xQowpRa2Cdas/x31Df95jx22Z++NP/PKddr1VqsiMWY9U21d4JJOacg/NwwWTMS/llsJv38/lOnvF+xH6W/zF3uZ0rZD/CvXuTwzWI0oAa9EuowUmBEKcxzwqSx+LHM8ki8m9nKP+SarztJDYdel7ZxOz6n84XYgbOwjD2i8BVj80ZZtf/CnKHotnhPvY7gIcey2/GLnLvRbPDR+R+gs8eyV8RFKIyaL7PPXI/RLNDP/pMDeZr2Tm/TNKK3G2wHXZY1MBNWP1H8M0AMg/CITjs8Pyp+uRvJ4Rx37xlcp9OxjLfKUJMZTl/BD3OKlyD6zb0O4WK8fi5xTxVhHr5YMk//29oQv2a/1DDA2RWse7ww2OJ/V6LoucvTjN/JzJ3wcsA+gnYi+2+X9ShDLlLYCksd/H66yKgZ+9G5p6gXoPrgPX7tLjMAZfmn8tCb+JUbvEdRxyaP9VaXkaPK4OQops4Fk7xG5EOt7+4x4kcwim+/8Qx2Vxg3r906dxvBy/I/prD+QnxMnatN/5ynFxZ4xBCCCGEEEIIIYSkwxcSANrXAEAAAA==
+  </data>
+ </layer>
+ <layer name="city_objects" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+ <layer name="city_collision" width="64" height="64" opacity="0.25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2WQQ7FIAhEPe2//xH+qkljFAYEtTov6aK1MgxYbSmEEEIIIYQQQgj5Aj/h2g0p117u2jv0T/8jNbDk5K2tJWZm/z31G/Vv0Wn5t+p45mX796z5Wcxe/71x6T4Kb/4RmqXgut6eaH1a4f/RrfW1fSFS930ftd+0tKK+4xn+62fRWqOxMnLKXP9f8x9dgy/41+KPaEb7z4yD1Ne6j2laln0+6/xD8cxD/21GdXpxUP9I3Xv5ebzs5B9dd94cLM+Rsej1n63n8ZiZj9T/GeuyjqV9X/W8Hf1bel/Hut2/V0fSbeWR5d/67UuxtDEL6N6zyn9rXJtnQep169lM/7uB5GupzQ7+0f5b4q1kdU2ztFFfq/2TeNjP84n6Z9XO7d67Ixojnm/mRP+op1PPKfSf/nT/s/aQHbnZ+8OtvgkhhBBCTuUP07cYRwBAAAA=
+  </data>
+ </layer>
+</map>
