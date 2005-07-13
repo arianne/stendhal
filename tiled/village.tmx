@@ -26,7 +26,7 @@
  </tileset>
  <layer name="village_0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2bQXLDIAxFvWtWSU/RVdKDOLlED5KTuIdtMmOmDANYgi9ZYBZ/6mls0PsSMjTT0zRNp6GhoaFVT+9n6jr2TCjKPJT7LKiVOHvhz80nHcvI9fF8aKkXSeZ8iN97wt/Vepl6/ug12rt6ze1PQnvH1Tp/rk8g468dz0r+91pfR6z5HvLaaz/uVdR8IfK6Z22UzI3ek1pbG6gz6zNxTfXEWl1oxGOtFrS89rkXIzFJ5eyZYfQ/0/JBa+8r5afGXNIxUXNtYW2gPcmtBf+e1H0SniDzzX2XIXiWqew9Llnn3LFjPkjXv+R5n7MfonCmxliIc2ioZK8bvh+5ObfAXeuT9h5Am4uqkh7gPv9iaA9vati2fG6Vv+RZ/9rvHdb5c+cA7jgxPy3z5/o7qudZ5s+x5ry5TvQ9BZf/d0cfqHXy5v946bbKv3b33hrJP+fMd37p4rFuiRuLZO65nsd8uTLY3/osYJTyAFFzXH6ni6Is8msqjNn14y12ynlljsx395SK6a4oTv5TXuW88GvgO3h2jsTz2PA0tt5TPaCmN6DePyn+LZWch9G9EMX/WHPN4a+R9J6Ik5vZu+byU+paghX9txi3D0LxS40R62cIL1wPQNQ/hQfhG/K71Br+sNZDNsm1jlwHtf0vxq7lQ43O0/8+S3r9W/TA1X4Jf0mN7M2b4kf1P0lmie8gpPmRHkj834sGP1rIfUCL/Ej1wj/y3yf/HxfPOTgAQAAA
+   H4sIAAAAAAAAAO2bQW7DIBBFvWtWSU/RVdKDOLlEj9AD+CTOYZtIRkUIMAN/hgGz+KrV2Gben2GARj1N03QaGhoa2rRYP0PXvmdcpYyTcp8GtRJnL/yx8bhjGbk+ng8t9SLOnA/Re4/7u1IvQ88fvUZ7V6+5/Qmodlyt88f6BDL+0vdpyX+t+XXEmu8hr732416Vmi9EXmvWRs7Y6D2ptrmBOrMugetUT7TVhUQ82mpBymube1USE1fOlgij/ZmUD1J7Xy4/Jcbijik11xrmBtqT2Fyw7wndx+EJMt/UtQzBs0556zhnnVPf7fOBu/45z/uU/VAKZ+gda+IYEsrZ67rrIzXnGrhT9BuR9B5AKv9UnpweYD7/IqiGNyVsez63yp/zrH1t9w7t/LFzAPU9Pj8188f6O6rnaeaPsca8uW759q0Zbg+g8j8r+pBaJ2/+j5dum+xrc++tkfxTznznly4W656osXDmnuq5z5crgf2tzwxGLg8QNUflN7oISiO/pNyYTT/eY085r8ye8e6WQjHdBUXJf8irmBd2DXw7z86eeB47nvrme6gHlPQG1PoT4t9TznkY3QtR/I8t1xT+EnHviSi5ma1rKn9KXXOwov8WY/ZBKH6ud/j6GcIL0wMQ9Z/Cg/AN+V1qCb9b6y4b51xHzoPS/udjl/KhROfpf5/FPf81emBqP4c/p0Zq84b4Uf2Pk5njOwhufqQHHP/3IsGPFnIf0CI/Ur3wj/z3yf8HN0Re3ABAAAA=
   </data>
  </layer>
  <layer name="village_1_terrain" width="64" height="64">
@@ -49,7 +49,7 @@
    H4sIAAAAAAAAAO3ZsQ2DMBAFUFKkYI6MljZtpmIFsltElQaBIiPbd36vogH8zVlnYJoAAAAA8njPdc/716fSfXo0cvbN6PkBANhnnwixZF6zj1v5NSLPz3oy9i1b5Hz0I0IdXTXG17x/HE2EZ1bb/YKeEc1Zn4iktKYX/1Ogqae1USziviRTHxqVvtbW6PM/en6OZaiPDBkAaMO71o/vDX36ApIGQmQAQAAA
   </data>
  </layer>
- <layer name="village_collision" width="64" height="64" opacity="0.37">
+ <layer name="village_collision" width="64" height="64" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2XQQ7DIAwEc+3//9R3VT1E6gFSx9iLCTNST2kIY4PBxwEAAAAAAAAQw/vV/u0C/nb/J8bFkvPz2RP9rezsDgAAAABQjV4ft0tPi7/W3zqmKu5V/VX0fO/4t967Gr/ifvN++5/H3THV69777u8Ykfms6N/6n9U50j8qNqP7LXM/K/IfUW8q+c+umar1vxJR9b9CPFT7ZPb5f/VMOa8KOT+pkJtRItfvisxYv976lzWXlfIXOc9Z/ivFO4Pd/UeoeAfYAYt/rxeuSnQtVXwnksizOPOOnFUvI88+i7+3t1H4Z+ZnpL/LvqN4elBPb+odR3FHU/jfnYOame69OewIMSAGXyLr8qqxzPD/AHKLNkoAQAAA
   </data>
