@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_1_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="zelda_interior_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
+  <image source="zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+  <image source="zelda_collision_chipset.png"/>
+ </tileset>
+ <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="zelda_building_0_tileset.png"/>
+ </tileset>
+ <layer name="castle_0_floor" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2YPQ6DMAxGM0JZ6ME79mbtRcoFWqQOCEF+bCeO8Td8qsJA/PQSh3QIIQwIksh86z+1+e8dMIIf/OAHP/jBr8FfGgoHdR4N/scUH3P5n1N8rM3v3X8vscKfu56vyu/dv2X+eTff9hm3f8W4Un2yxfm/XwNn89Xgp9YC/r74KWc++O3xS8cSf6tY5V+/92LjK/O/xhDeY/oZ+K/Nv/zy+f965V+c88O/LX6JO5eUf43739E3Koef41+iFm1+rn/r/PBvj1+y/3H99/r/Vwv/ErVo81s7/+Ef/uEf/r36PztzSxLzT3mf9v2nJNu6t/6PeKjvt8S/GOTnrtHY/s/ZW6l9V7sHcNZMzv5v3c81+VP+tWuX4qf2f+3aa0Ty/LcYye8/i4F/+Id/+Id/+Id/3/zw75u/F/9fMOUQWgBAAAA=
+  </data>
+ </layer>
+ <layer name="castle_1_terrain" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1aSWsUQRRuFZWpvrnloKKelTBqPLhErwbGCO5RyFWQEfdDwOUQLxoTxSgBlz8jKKh314M74l1FD6JfkSrmTc+r7q5xqrsmUx989NRQVe99Pa9qXtfrKArIwoE4il6JKPrrMV+D52M3+quYdyP4HjY+eMiP4AD82+JY/9Y2589736SOdjAY+61fjzPdB617sM35u0W/abzWPdf1H8b1CPhWNHgU7WM9ov8CrqcYjvWI/mlc7zCc6RL9On5HcvKd2te4uE+SroNPIr+NETWuCP2m+H1aiaJn4PNK8/d/lH7TONM6mJdzfjquCP110Rq7o0x7UnFlRtyb1sEaXO8qjpLPXFtyvKD8p87kJ/dic1vH/WeM+5IR07oPXQdZ82uUqT8NOu7ngwsy4pn2GbPU4av+aRWfa8F1GfFM+8zMEf0aOzF2l/LNFM+0jy2K0l+DnX5wPbhBcY+6J7vJd/1t3qckqB2O2pchx/qHMe9e8KWYjQF5v9+o/+3HSusTXF+IRp9OgNqhpHZ0n33wb78j/XXMexv8QWz+An+D2/D9dnAH+F00+nQC1A79v6d2dJ9b+P6MI/3XMe8SsgdImyvwuY/810+qPksN+0SeWOb0m+xQXwZUn5uO9EtUGf3J9Za2T45nxIRpTJYd13ufyWaaXzXm9x3K0G8a00369T6ZzPds8r9km9vXfNUv98mTcWu+Z5v/0fZpZl/zVb/cJyfi5lyunfyPtqeYfc1X/RrJXI62L+J6CbwMXoln21ljsnzxTX8aZL57H3wAPoz55zlbX7pJvwtfgv6g36Uvsv55EDxEbJ7F53Oxu5qjT77o+30ctq6BV8ETBcWdD75weX1R684HX4L+oD95/uX6zMknX0znXy7PnHzyxXT+5fLMySdf0s6/XJ455fWljPOvMtZ+mb4E/UF/r+o3PXNsBlfnZNr7mfr90lU559rE+FL0888jC2Y9n9D5beYt8/nHBvI3WobxPw3j5ffL/3P+ovLftBqWqa5F65gcaD3TVCeTdeZh0VxnpnWSIvLftPe3ONIcVdcxv1aiaJFo8FultZ7J1XxlnXlCzNaZufqJ6/xX1jXyvMNlqtHqfHGhaNa/WLTmc1zNl9aZOXtcnaRT0HWNKQtqTTVhruNpVJm+fZb2uDpJmUiumbT41H2LiOWikFwzafFp07dbINfMjbjxzkJafNr0DQgICAgICAgICAhoH/8AT6NOGgBAAAA=
+  </data>
+ </layer>
+ <layer name="castle_2_object" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YMQ4BQRSA4dfuCu6gcA6FGyoU7EFwChwEN/DKSShWYu3i+5K/mWLyJplNJhsBAADtzeqITbbNmmxef9f+r1iNHtcWOc8u22eHbPnm+drsv34yF8M0pPvch66/FwCAofH+8/4DAAAAAH7TsYo4FZ2rvif6rEue91p0+7Pzj+uISdHU/28AAACgY3fZTm8pAEAAAA==
+  </data>
+ </layer>
+ <layer name="castle_3_roof" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+ <layer name="castle_objects" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+ <layer name="castle_collision" width="64" height="64" opacity="0.25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+</map>
