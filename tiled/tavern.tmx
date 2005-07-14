@@ -24,6 +24,9 @@
  <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
   <image source="zelda_collision_chipset.png"/>
  </tileset>
+ <tileset name="Building 0" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="zelda_building_0_tileset.png"/>
+ </tileset>
  <layer name="tavern_0_floor" width="32" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGF4ggYM8fUdZGRiOYcHHgZifhXw8h52BYS4anseOaf9joD1PsOCnFNqPbjcMjxT7ceHBZj8jGwMDExbMzEYf+/vZceNR+4e//aToFcKCcYmjqyFk/2ogXgPFpNpPrDyl/h/o8B9O9gMAZ3P34YAIAAA=
@@ -49,7 +52,7 @@
    H4sIAAAAAAAAAGNgGF4ghXOgXTAKRsEoGAWjYBSMAkIAANnyNhyACAAA
   </data>
  </layer>
- <layer name="tavern_collision" width="32" height="17" visible="0" opacity="0.36">
+ <layer name="tavern_collision" width="32" height="17" opacity="0.36">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAN2SUQ7AIAhD/d397+S5ln2YGNMiHciSNfFDtDwI9Ku1/qPzKMvvyTX+ILG4lRfxmS8ixFV7qOIrszvFn+9rPIOPasmc845/Qmx3q/hWPV/w11oq5j/n8vB3PqsuJa7yrV16E/eyEZ95Iv0zD5u/0jt6i/KjGrlv5Wo8AIAIAAA=
   </data>

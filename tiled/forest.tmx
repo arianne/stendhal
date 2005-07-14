@@ -24,6 +24,9 @@
  <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
   <image source="zelda_collision_chipset.png"/>
  </tileset>
+ <tileset name="Building 0" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="zelda_building_0_tileset.png"/>
+ </tileset>
  <layer name="forest_0_floor" width="128" height="256">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3dwU3DQBCGUXNBKYIz7VFJRCNpBNEUQoKLlUQ47HhmPe/w7qv9fpwAIpyWZTkBAAAAAKy8PS3L5Sn/HOS4/PR/t4GWfvvbQU/r/l4L+vEM6M0zoDf9qfgacC5yjg6uPQPWdx+9j/OVM9xiF/H992qwpbsN1Ok/4n3Co+1toEb/R+//v91toEb/Lfc/svno59DrFdlNZul/aweRvffo32UTe3aavf/oDWTv7Ajt9+4/qk+F50x2t1n7R/O1r7/2+muvv/b6j5LdSX/9K/avtgn98/tnbkD/baJ+B3Sk9o/0n2Uznxv7Z7++z9J/FjP11T+2f9RdH6H/R4FWkf2j73L2/kd9BuzRPmoD0b2P3v/7vV/2nc6k0mvAtfftW86n/Zxb2Pr92j3az7ODkd3X/bPvcHbRG4hor/8cO4hqr3/9DUS217/uDqK7619zB3t11x/90b8vP/vprcLvU9Af/QEAAAAAAAAAAAAAAAAAZuRvNHvTvzf9e9O/N/378hkdvemPDfTms5qwAfTvzef2YQPYQG9V/icmtXaQfR5sABvABrqdv4JZ79B72b736HuZ2PvMPs/W7pXPPIuK93mvd7WzHkGFO/1r8+xzsm/77LOxb//sswAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADDey3P+GQAAAAAAAAAAAAAAAAAAAAAAAOjrCzhWs/IAAAIA

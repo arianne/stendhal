@@ -24,22 +24,22 @@
  <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
   <image source="zelda_collision_chipset.png"/>
  </tileset>
- <tileset name="Outside 2" firstgid="2504" tilewidth="32" tileheight="32">
-  <image source="zelda_outside_2_chipset.png" trans="ff00ff"/>
+ <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="zelda_building_0_tileset.png"/>
  </tileset>
  <layer name="afterlive_0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtnYGA4xszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJxUMh/EmJA3qkf3xuGSrpn1Z41P5R+0ftH7V/JNrvygWxH0QPBHYbxQOK3QcYz2AYWHx5gDEAViWfawAQAAA=
+   H4sIAAAAAAAAAKtnYGA4xszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJxUMh/EmJA3qkf3xuGSrpn1Z41P5R+0ftH7V/JNrPALV/FIyCgQAzBhhfHmAMAO6iYxsAEAAA
   </data>
  </layer>
  <layer name="afterlive_1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2QMQ6AIAxFm8jkRTynN1EPoi7OegB10FnPYI2sxaIBlv+SHxIoPNrcEG0ZUW70Gbl+8rwjpbD+wuhzcP3peUfKze1PCfy6uopTC2ki+FvHWW/XMrH/CyH8PnOI0X8n7O/sHrJn1UTq683vIlT/Us8h/dJ8XH/R+mfOImTVPfHLHwr44YcffvgBADG5AH2Was4AEAAA
+   H4sIAAAAAAAAAO2QOQ7CMBBFR0oqWyy3SMF2CG5EQc9NgIMADTV7BxRQUYBYLsCPksLNBBuUoZkvPTmyx3r5NjHRKSIysT8LzC8D73AkuT+J/bli/hZ4hyNN6v9n1O83NwQjhrGAf1JwNsvXwZ/936QMf8g7SPSfMvtnuOdRtvrA9frkL0pZ/bnOZfq59yn6F1//HhwYjs7cyhCtwcZhC3bmN79vKpboDtfD4Qlegv4qqDnUrZy/AVcTtBzaoGNl/D307NqMi/PdF+ofGvWrX/0ajUY6b5D9M7oAEAAA
   </data>
  </layer>
  <layer name="afterlive_2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OwQ2CQBRF0SFCgop2gOVYH4hYhsRAG8TQBojQgd7lbGA1gWjeTc7fvm+MUkop9R8lSHFBhity3Bbav6PAw1Kicrjx8TnB9H6Np6VxvB+zfZrYb9HhhR5vDBgd7s8VesZsscMeEQ44egs9oJT6mc6btT9Qap2+rNOOawAQAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYXuMcJof9wDqw7aAH+swAJ1oGzXxZotxwe+y24GBiuAsP9GhBfH4Dw/wS08zPU3q9A+tswTAOjYBSMAsqBG/NAu2AUjIKBAQAp44oJABAAAA==
   </data>
  </layer>
  <layer name="afterlive_3_roof" width="32" height="32">
@@ -47,7 +47,7 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="afterlive_objects" width="32" height="32">
+ <layer name="afterlive_objects" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGHoghROCR8EoGAWjYBSMglEwCrCB4dRO2IPml+Rh5LehCNaNhv8oGAWjYAgDAKxfj4gAEAAA
   </data>

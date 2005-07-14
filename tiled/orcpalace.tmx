@@ -24,6 +24,9 @@
  <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
   <image source="zelda_collision_chipset.png"/>
  </tileset>
+ <tileset name="Building 0" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="zelda_building_0_tileset.png"/>
+ </tileset>
  <layer name="orcpalace_0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3X2XEUQRAA0eWQDMB/dwBDAD+QguBHsXP09JFVU5kR/bGzx1T3WwnxeJiZmZnZzL59Pb/sfulfO/1rp3/t9K9dBv+WGSPMm71oZ3fFNtoeMhXt7PRfW7Sz0/95V/9dpNeIfZ55z9173+P3l8fjR5L182WdSxX/X29n+jvJ+qP/0PTfP5u7p//+2dw9/ffP5u7pv382d6+qf4T/k0ZIf/3115921Z/pfe5Pr4/H5yTry6v+I5txDitWxH0f3e/qbK37an19xtUbPb/rfv5H97s6W+u+Wl+fcfUWcSYi2lF/NtpRfzbaUX822pE8663PeXb96J765/Lf+9yea9miHfVnox31Z6Md9WejHfVnox2r+/eeQe850Y6U//+9n71+dE/9Y/pfPbdVM9PnRDsS/jNnWul/5v2RzieK/6x96x/Pf+W+Cf+I5xDJ/4rTSg/97+N/ZWb6nGhHwn/mTNHuF+l8ovjP2rf+tf2vzKz/XP+V+149x4hox9l733rvrJlaZ6bPiXbUf9799Ndf/zhL//X+Z/bf8/yI++uvP3VOtGN1fzraUX822lF/NtqR8qe+b9GiHfVnox2z+/fO1PP+EedBO2bxd8Vaq/3PfE7vHCvf++wzMq3eVt8varSj/my0I+Vv/6Id9WejHfVnox31Z6Md9WejHfXn+3ieVx5ftet9bP1V8Pd31Hb669/7WH/99ddf/1z+xLkQZ5thRiLaUX822rGi/7PnyGsZV2v0vC79Xfq79HfV8N+bJdK1jKu1DDMS0Y76s9GO+rPRjlHONqvfqCLtm5hF/zj71n99kfat//oi7Vv/9UXat/7rmvl3efS/+Y9mrZD+27NWSP/tWSuk//asFRptNHOtPocK0ab6s8000j9++m/PWiH9t2et1NF+955vfW7r9a3XR6b/9ef1z9uZ37dnr29Zf3x+631H12amv/76669/Hf+9vbd+F1o+a8T9RqV/bf/K6V+70WYr/P2ujIs21p+NNp79XbH9aDd//tlG/ozpn6+M/jYu/c3MzMzMzMzMcvYXYOERAQAAAQA=

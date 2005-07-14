@@ -24,6 +24,9 @@
  <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
   <image source="zelda_collision_chipset.png"/>
  </tileset>
+ <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="zelda_building_0_tileset.png"/>
+ </tileset>
  <layer name="dungeon_000_0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2ZzQ2DMAyFObBN1RkYIQt1714rpCIhK44dsHEM7/DUtCXBn/+ahtc0TS8IgiAIgiBG39lG0Rxn+JeTugt/K74LGS/k82gOq/jX3lN+7por5MUv+YHzSc0Hnj7xjn/Nds4HrRzx8oF3/XPx5OJ+h/xv5brEeKT/9c6LqH/P37/R+K/Oy955V8Xfeu3ee0bWv+Xa0lrcPSP7vzW/1C/uHv8jfcOT09pWD59Gxx/8z+PvsadnnmVPzchvae8I/Gf8Zinw5+H3+G+chV/qfxE84L+OX5qX4dz4aH1q4p+R/y1ozy/FP1v+L0p+bb/e1oxm1PBvuarl15wLZuLXsB+Jf6b8t96fZOBf9TG0UfOMdbSasOTX7IlH4y/G/JQ1eo8fwS89V4tm9uTnzsFH5beuf67mn8Cv9VE0816W+Q9+8IN/XP6VtVfgB/+T+ct/z7K9tkSvKcw4Oz8dl7nuH8532fgLYe3Jg1pOZOWvcdLvpeuzxT/KVvCDH4IgiOoH2sevSgBAAAA=
