@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="64" height="32" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -27,34 +27,34 @@
  <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
   <image source="zelda_building_0_tileset.png"/>
  </tileset>
- <layer name="afterlive_0_floor" width="32" height="32">
+ <layer name="afterlife_0_floor" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtnYGA4xszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJxUMh/EmJA3qkf3xuGSrpn1Z41P5R+0ftH7V/JNrPxQixH0QPBOYexQOKeQYYk9P+G04YAHfrjXoAEAAA
+   H4sIAAAAAAAAAO3XoRGAMAxA0XC4loUQrMIqnYKVmAuD4jgkcM0TX0QlT6ZFRDtbS45a3Pf1Xfz8/Pw9+7f6PPfu/0P8/Pz8/Pz8/Pz8/O/sXi7/zuz/+Y1fUq7KkLsqJW5K3j4qcwfFcRd3ACAAAA==
   </data>
  </layer>
- <layer name="afterlive_1_terrain" width="32" height="32">
+ <layer name="afterlife_1_terrain" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2QOQ7CMBBFR0oqWyy3SMF2Nwp6LsAZgIMADTV7BxRQg1guwI9I4YIJNiiTZr70ZMke6/nbxESniMjE/iwwvwy8w5Fk/iT254L5a+AdjjSpv8yo329uCEYMYwH/JOdslq39kv2/pAh/yD9I9J8y+2e459F79YHr9c2fl6L6c52L9HP/k/cWX/8eHBiOztzKEK3BxmELduY/v28qlugG193hAZ6C/iqoOdStnL8BVxO0HNqgY2X8XfQcfKAn1D806le/+jUajXReUQFhVAAQAAA=
+   H4sIAAAAAAAAAO2YvWoCQRRGp977JqkUtEhhq6CgYAqTCD6ASdAUFgv+9AaSIsRAft5N8yT5ZLYYhxFd8E5k8x04sLPI3jls46wxlksxpgTLYq+LRg1NFVgVe+3Dfvaz3/b34DW8KYi3sJ+jfwJHBTPN0T9MjHkTHQcH1lreJfn6tZji+TM4hwux6xicS/8Hnv8Jv+C32HUMzqV/i/v+Y8F+9rOf/exn/6H+Jn57cWJbcAN/kt3+dXa/rjDTtXFEfxt2ROcM0oVX2Wy3X3vuvj2E+u/hg+icP8bwMZvt/v/TnrtvD6H+JXwSvTPIS6B/y1JxpuuzswefWGf+vtffizAz9C3AJ9aZP/X6/+JbQxrof8W9VQTfvf5Yc/09EEIIIYT8V34ByTIbmgAgAAA=
   </data>
  </layer>
- <layer name="afterlive_2_object" width="32" height="32">
+ <layer name="afterlife_2_object" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYXuMcJof9wDqw7aAH+swAJVvxqlLkZGFSAWJWb+vbLAu2Ww2O/BRcDw0QgngTEk7mobz8xoBhqb+kA2T8KRsEoGPzAjXmgXTAKRsHAAADA1aXLABAAAA==
+   H4sIAAAAAAAAAO3WuQ2AMBBFQacW7VEKnRBQFlcdXB2wORDaJDPSSy3/bFMCoIYxpzRFc7REa/77R099U+7tLfbu0RGd0VVp/1BwEwAA77qPG6x1mwEAAEBRN1my2yAAIAAA
   </data>
  </layer>
- <layer name="afterlive_3_roof" width="32" height="32">
+ <layer name="afterlife_3_roof" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO3OwQkAIAwEwfum/6psJFiGVqEQZmD/mwDwSleybrt+nwAAAAAAADDNAewtjjoAIAAA
   </data>
  </layer>
- <layer name="afterlive_objects" width="32" height="32">
+ <layer name="afterlife_objects" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHoghROCR8EoGAWjYBSMglEwCrCB4dRO2IPml+Rh5LehCNaNhv8oGAWjYAgDAKxfj4gAEAAA
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
   </data>
  </layer>
- <layer name="afterlive_collision" width="32" height="32" opacity="0.25">
+ <layer name="afterlife_collision" width="64" height="32" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VMQ4AIAgDXf3/n3yXk4mTtgoYtU26kR4QoiWnVC5zk1VWn3lC4uN1yF2c5K/08dL8bKYXH2V4vEusvOZncq34oz1H8Gd1O3xUEfxZ3ut8pLf+JiP5rMQX/1e+5f8ryzLnCj+1tcUAEAAA
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
   </data>
  </layer>
 </map>
