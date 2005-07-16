@@ -29,32 +29,32 @@
  </tileset>
  <layer name="afterlife_0_floor" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XoRGAMAxA0XC4loUQrMIqnYKVmAuD4jgkcM0TX0QlT6ZFRDtbS45a3Pf1Xfz8/Pw9+7f6PPfu/0P8/Pz8/Pz8/Pz8/O/sXi7/zuz/+Y1fUq7KkLsqJW5K3j4qcwfFcRd3ACAAAA==
+   H4sIAAAAAAAAAO3RQQ5AMBRF0S8GaK3RVv4qbMm6dFCJIEbki3cHZ1ASdfPczLyakg63s+h/op9++un/e/+c78/R/VfvntKV76di2NmevXnvcV/64/t78X721+5nf+1+9tfu/+r+Cuinn34AylKjLQPCRnFLC2UrCl1g4AAgAAA=
   </data>
  </layer>
  <layer name="afterlife_1_terrain" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YvWoCQRRGp977JqkUtEhhq6CgYAqTCD6ASdAUFgv+9AaSIsRAft5N8yT5ZLYYhxFd8E5k8x04sLPI3jls46wxlksxpgTLYq+LRg1NFVgVe+3Dfvaz3/b34DW8KYi3sJ+jfwJHBTPN0T9MjHkTHQcH1lreJfn6tZji+TM4hwux6xicS/8Hnv8Jv+C32HUMzqV/i/v+Y8F+9rOf/exn/6H+Jn57cWJbcAN/kt3+dXa/rjDTtXFEfxt2ROcM0oVX2Wy3X3vuvj2E+u/hg+icP8bwMZvt/v/TnrtvD6H+JXwSvTPIS6B/y1JxpuuzswefWGf+vtffizAz9C3AJ9aZP/X6/+JbQxrof8W9VQTfvf5Yc/09EEIIIYT8V34ByTIbmgAgAAA=
+   H4sIAAAAAAAAAO2YvUoDQRSFB+32voS2VgpaWKidgoKCFlEDeQB/UAsLwZ8+ghaigj/vpqLv4QmzgeGSmWR2mFH0HPhg77KTw7fV3hhjMy/GTIMZsdd/LQtwmgVzYq916E9/+lv/FtgGOw35rIz5qvxzrrM+dkE7wv8UHCUwBsYDc66zIc4i/Pfwvu+lORNgMjB31POdiLNN2a/i/FOyiN9YEv98jusLcAmuxM6jnm2akv7D8oSOZ/ACXsXOufOb/H8i9Kc//elPf/oP81/Fs1MZWAPv4EO937f6/nKm3h4rI/ivgw1J2zVCbIKtut/9/ivRrfsH+R+AQ0nfNXwcg5O63/3+K9Gt+wf5d8G1pO8aIW49/t3MvT1unH6d1J0/hrbybxXqdf8L0End+WN3cde/ZHe/X+cO9x4K8aj8S3b3+xmGYRiGYf5rvgFK+Sx4ACAAAA==
   </data>
  </layer>
  <layer name="afterlife_2_object" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WuQ2AMBBFQacW7VEKnRBQFlcdXB2wORDaJDPSSy3/bFMCoIYxpzRFc7REa/77R099U+7tLfbu0RGd0VVp/1BwEwAA77qPG6x1mwEAAEBRN1my2yAAIAAA
+   H4sIAAAAAAAAAO3WXQqCQBDA8QWfpAMsgb3klTpKN+mhY/V1jr5u0CwIjYu5uzhF4P8Hw1SjM6ui6RwAoNShdu4ocZI4S1zq/9yv1G6Rt91V5t8k7hIPiWfmen69X7DPPKYxq4nffaJ/XJ86z1LoHa/Pq5mpuhuox3TdYt43rKt+jrVVP2ul1z/VL2c9FvQ5XUo0XS6t5x6/1TxLYW3hHDdR9qredr/r7KMeqRn681i/1Hoscf3f5nj/Bzz/5/3/b2X74T1sY/B+BgAAAAAAhr0ALMtVBAAgAAA=
   </data>
  </layer>
  <layer name="afterlife_3_roof" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OwQkAIAwEwfum/6psJFiGVqEQZmD/mwDwSleybrt+nwAAAAAAADDNAewtjjoAIAAA
+   H4sIAAAAAAAAAO3PsQ2AMBADQLdhDGAQYHsWQYxBypSQAgruJJcvvxOA94xDMjWZh68/6neUZK85y/2bpe5dm2wP9vf0AQAAAAAA8B8XvK7V6AAgAAA=
   </data>
  </layer>
  <layer name="afterlife_objects" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
+   H4sIAAAAAAAAAO3YoQEAIAwEsdrOScdkOAyGAWhN4s69/ggA6FU5vQAAAADgj31/j5VvAwB0OIT6dtgAIAAA
   </data>
  </layer>
  <layer name="afterlife_collision" width="64" height="32" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
+   H4sIAAAAAAAAAO2TOw6AMAxDu3L/O3EuBhYUFQjUxUh5ljxU/SQvSVvbtS61HOXOB3744Ye/Er+z7nf8I4pv9NbxfPbuaE5f8GdyuVrPiqngP87tm/2nUsX7U/8dUvDHWp/NsWoGlPHoP/+f/sOf5Z9tZ2z44YcffvjhR7XlmD2MMcbY7Q3C/bx7ACAAAA==
   </data>
  </layer>
 </map>
