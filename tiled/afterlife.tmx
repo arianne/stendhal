@@ -34,17 +34,17 @@
  </layer>
  <layer name="afterlife_1_terrain" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YvUoDQRSFB+32voS2VgpaWKidgoKCFlEDeQB/UAsLwZ8+ghaigj/vpqLv4QmzgeGSmWR2mFH0HPhg77KTw7fV3hhjMy/GTIMZsdd/LQtwmgVzYq916E9/+lv/FtgGOw35rIz5qvxzrrM+dkE7wv8UHCUwBsYDc66zIc4i/Pfwvu+lORNgMjB31POdiLNN2a/i/FOyiN9YEv98jusLcAmuxM6jnm2akv7D8oSOZ/ACXsXOufOb/H8i9Kc//elPf/oP81/Fs1MZWAPv4EO937f6/nKm3h4rI/ivgw1J2zVCbIKtut/9/ivRrfsH+R+AQ0nfNXwcg5O63/3+K9Gt+wf5d8G1pO8aIW49/t3MvT1unH6d1J0/hrbybxXqdf8L0End+WN3cde/ZHe/X+cO9x4K8aj8S3b3+xmGYRiGYf5rvgFK+Sx4ACAAAA==
+   H4sIAAAAAAAAAO2Yy0rEMBiFi6Ob5gGKMIo6OxdeQBcu1KXgQkEXow74AF5QFy4EL/sRdCEqeHk3FX0OPSEppj+ZtmnSIE4OfJOm6fwnp2E6k4kioQUWRTNglonj/6ZFZJoD80wcU4X8IX/IL/K3wRbYrshnHEVfcfX3u661AzoG+U/BkQUDoGFZw3WtM4P8e7jf96w6Y2A8Z3y3oG9Sqyz7sVl+nUZK9pdQY5llx78H8TIkjs8xdgEuwRUTfXpNWi+tZeKvk21+Xjsh5xLFs3AcuUZltid4PIMX8MpEn15j60flYv25JhrZlqrVyLZ0fnnSjefVKzOfVDb51Xs6DJqyNR0vm9+Vnyrb9edz4/e4SdpEGW/J82pblLmXiuoVzcdl/rD+v+rHzz+X6+dxkf7i89/0+5f2Tdff1k+VSf5VXDtZA1PgHXyQ+/smz0/X5MtZKZF/DawzN/sWHRtgU/qrv/98eFN/Xf4DcMjc7Ft0HIMT6a/+/vPhTf11+bvgmtnvNfK47ZG/W7Mv50bxp7Ld85vQIfnbnnzV/wKobPf8pntxNb9P79Sf6g7nHjzxSPL79E79g4KCgoKCgoL6VT+3VMduACAAAA==
   </data>
  </layer>
  <layer name="afterlife_2_object" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WXQqCQBDA8QWfpAMsgb3klTpKN+mhY/V1jr5u0CwIjYu5uzhF4P8Hw1SjM6ui6RwAoNShdu4ocZI4S1zq/9yv1G6Rt91V5t8k7hIPiWfmen69X7DPPKYxq4nffaJ/XJ86z1LoHa/Pq5mpuhuox3TdYt43rKt+jrVVP2ul1z/VL2c9FvQ5XUo0XS6t5x6/1TxLYW3hHDdR9qredr/r7KMeqRn681i/1Hoscf3f5nj/Bzz/5/3/b2X74T1sY/B+BgAAAAAAhr0ALMtVBAAgAAA=
+   H4sIAAAAAAAAAO3WywmAMBBF0Vm4CbZnIS7sxEXK8leHn3TgswBhgkQU7oG3ygyTQBZjBgDINQSzUZmUWVnCN/ty9bWvbtX8TdmVQ0nO+7zdd4nONwFACW317Bz4M/4/ups9rGE/AwAAAACgmBMDYHxIACAAAA==
   </data>
  </layer>
  <layer name="afterlife_3_roof" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PsQ2AMBADQLdhDGAQYHsWQYxBypSQAgruJJcvvxOA94xDMjWZh68/6neUZK85y/2bpe5dm2wP9vf0AQAAAAAA8B8XvK7V6AAgAAA=
+   H4sIAAAAAAAAAO3SwQmAMAwF0By82DHUQdQR3NpFxDHssUetUBHeg38KIQkkAqCdIUWMRab09Ub1jj5izzn7+z1zvncpsj64v2YewNe27l0d/sz/AwAAANDaBQsmh+4AIAAA
   </data>
  </layer>
  <layer name="afterlife_objects" width="64" height="32">
@@ -54,7 +54,7 @@
  </layer>
  <layer name="afterlife_collision" width="64" height="32" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TOw6AMAxDu3L/O3EuBhYUFQjUxUh5ljxU/SQvSVvbtS61HOXOB3744Ye/Er+z7nf8I4pv9NbxfPbuaE5f8GdyuVrPiqngP87tm/2nUsX7U/8dUvDHWp/NsWoGlPHoP/+f/sOf5Z9tZ2z44YcffvjhR7XlmD2MMcbY7Q3C/bx7ACAAAA==
+   H4sIAAAAAAAAAO2TMQ6AMAwDu/L/P/EuBsRiQWjVtB5yliwhpeBcE1q7dR61rHL3Az/88MNfid9573/8M3r7hjJrree9jJ528Ef5z7PW9Myq/Fn+L4be+qiy8tzzdyuDX+862uOoHvWYmadnmT//v3P+o/ufne3md2qUf7Wd2fDDDz/88MOPasuxexhjjLHbF4XsFNoAIAAA
   </data>
  </layer>
 </map>
