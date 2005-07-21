@@ -12,17 +12,23 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import java.util.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.server.*;
-import games.stendhal.common.*;
+import games.stendhal.common.Direction;
+import games.stendhal.server.Path;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+import java.util.List;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import org.apache.log4j.Logger;
 
-import games.stendhal.server.entity.*;
 
 public abstract class NPC extends RPEntity
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(NPC.class);
+
   private String idea;
 
   public static void generateRPClass()
@@ -37,7 +43,7 @@ public abstract class NPC extends RPEntity
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("NPC::generateRPClass","X",e);
+      logger.error("cannot generate RPClass",e);
       }
     }
 
@@ -83,13 +89,13 @@ public abstract class NPC extends RPEntity
     {
     if(nextto(entity.getx(),entity.gety(),min) && hasPath())
       {
-      Logger.trace("NPC::setMovement","D","Removing path because nextto("+entity.getx()+","+entity.gety()+","+min+") of ("+getx()+","+gety()+")");
+      logger.debug("Removing path because nextto("+entity.getx()+","+entity.gety()+","+min+") of ("+getx()+","+gety()+")");
       clearPath();
       }
 
     if(distance(entity.getx(),entity.gety())>max && !hasPath())
       {
-      Logger.trace("NPC::setMovement","D","Creating path because ("+getx()+","+gety()+") distance("+entity.getx()+","+entity.gety()+")>"+max);
+      logger.debug("Creating path because ("+getx()+","+gety()+") distance("+entity.getx()+","+entity.gety()+")>"+max);
       List<Path.Node> path=Path.searchPath(this,entity);
       setPath(path,false);
       }
@@ -99,7 +105,7 @@ public abstract class NPC extends RPEntity
     {
     if(hasPath() && Path.followPath(this,speed))
       {
-      Logger.trace("NPC::moveto","D","Removing path because it is completed");
+      logger.debug("Removing path because it is completed");
       clearPath();
       stop();
       }

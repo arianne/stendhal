@@ -12,19 +12,25 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import games.stendhal.server.*;
-import games.stendhal.common.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.Item;
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
+import org.apache.log4j.Logger;
 
-import games.stendhal.server.entity.creature.*;
-import games.stendhal.server.entity.item.*;
 
 public class Player extends RPEntity
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Player.class);
+
   private int devel;
   private int leave;
   private boolean hasLeave;
@@ -45,7 +51,7 @@ public class Player extends RPEntity
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("Player::generateRPClass","X",e);
+      logger.error("cannot generateRPClass",e);
       }
     }
   
@@ -125,7 +131,7 @@ public class Player extends RPEntity
       }
     catch(Exception e) // If placing the player at its last position fails we reset it to city entry point
       {
-      Logger.thrown("Player::create","X",e);
+      logger.warn("cannot place player at its last position. reseting to city entry point",e);
       
       firstVisit=true;
       player.put("zoneid","city");        
@@ -151,7 +157,7 @@ public class Player extends RPEntity
       {
       if(player.hasSheep())
         {
-        Logger.trace("Player::create","D","Player has a sheep");
+        logger.debug("Player has a sheep");
         Sheep sheep=player.retrieveSheep();
         sheep.put("zoneid",object.get("zoneid"));
         if(!sheep.has("base_hp"))
@@ -172,7 +178,7 @@ public class Player extends RPEntity
                            was kicked of server because shutdown on a pre 1.00 version of Marauroa.
                            We shouldn't see this anymore. */
       {
-      Logger.thrown("Player::create","X",e);
+      logger.error("Pre 1.00 Marauroa sheep bug. (player = "+player.getName()+")",e);
 
       if(player.has("sheep"))
         {
@@ -209,7 +215,7 @@ public class Player extends RPEntity
         }
       catch(Exception e)
         {
-        Logger.thrown("Player::create","X",e);
+        logger.error("cannot create player",e);
         RPSlot slot=player.getSlot(slotName);
         slot.clear();
         }
@@ -237,7 +243,7 @@ public class Player extends RPEntity
 
     player.setPrivateText("This release is EXPERIMENTAL. We are trying new RP system. Please report problems, suggestions and bugs.");
 
-    Logger.trace("Player::create","D","Finally player is :"+player);
+    logger.debug("Finally player is :"+player);
     return player;
     }
     
@@ -266,7 +272,7 @@ public class Player extends RPEntity
                            was kicked of server because shutdown on a pre 1.00 version of Marauroa.
                            We shouldn't see this anymore. */
       {
-      Logger.thrown("Player::destroy","X",e);
+      logger.error("Pre 1.00 Marauroa sheep bug. (player = "+player.getName()+")",e);
 
       if(player.has("sheep"))
         {
@@ -336,12 +342,12 @@ public class Player extends RPEntity
 
   public void removeSheep(Sheep sheep)
     {
-    Logger.trace("Player::removeSheep",">");
+    Log4J.startMethod(logger, "removeSheep");
     remove("sheep");
 
     rp.removeNPC(sheep);
 
-    Logger.trace("Player::removeSheep","<");
+    Log4J.finishMethod(logger, "removeSheep");
     }
 
   public boolean hasSheep()
@@ -351,12 +357,12 @@ public class Player extends RPEntity
 
   public void setSheep(Sheep sheep)
     {
-    Logger.trace("Player::setSheep",">");
+    Log4J.startMethod(logger, "setSheep");
     put("sheep",sheep.getID().getObjectID());
 
     rp.addNPC(sheep);
 
-    Logger.trace("Player::setSheep","<");
+    Log4J.finishMethod(logger, "setSheep");
     }
 
   public static class NoSheepException extends RuntimeException
@@ -374,7 +380,7 @@ public class Player extends RPEntity
 
   public void storeSheep(Sheep sheep)
     {
-    Logger.trace("Player::storeSheep",">");
+    Log4J.startMethod(logger, "storeSheep");
     if(!hasSlot("#flock"))
       {
       addSlot(new RPSlot("#flock"));
@@ -384,12 +390,12 @@ public class Player extends RPEntity
     slot.clear();
     slot.add(sheep);
     put("sheep",sheep.getID().getObjectID());
-    Logger.trace("Player::storeSheep","<");
+    Log4J.finishMethod(logger, "storeSheep");
     }
 
   public Sheep retrieveSheep() throws NoSheepException
     {
-    Logger.trace("Player::retrieveSheep",">");
+    Log4J.startMethod(logger, "retrieveSheep");
     try
       {
       if(hasSlot("#flock"))
@@ -410,7 +416,7 @@ public class Player extends RPEntity
       }
     finally
       {
-      Logger.trace("Player::retrieveSheep","<");
+      Log4J.finishMethod(logger, "retrieveSheep");
       }
     }
   }

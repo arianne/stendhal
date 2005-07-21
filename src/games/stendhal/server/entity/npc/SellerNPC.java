@@ -12,19 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.common.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.server.*;
-import java.util.*;
-
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.creature.*;
-import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.creature.Sheep;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.IRPZone;
+import org.apache.log4j.Logger;
 
 public abstract class SellerNPC extends SpeakerNPC 
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(SellerNPC.class);
+
   final private double SPEED=0.2;
   private int amount;
   
@@ -47,7 +46,7 @@ public abstract class SellerNPC extends SpeakerNPC
       {
       if(!player.hasSheep())
         {
-        Logger.trace("SellerNPC::chat","D","Selling a sheep to player");
+        logger.debug("Selling a sheep to player");
         say("Congratulations! Here is your sheep!Keep it safe!");
         IRPZone zone=world.getRPZone(getID());
         
@@ -60,7 +59,7 @@ public abstract class SellerNPC extends SpeakerNPC
         
         player.setSheep(sheep);        
         world.modify(player);
-        Logger.trace("SellerNPC::chat","D","Sold a sheep to player");
+        logger.debug("Sold a sheep to player");
         amount++;
         }
       else

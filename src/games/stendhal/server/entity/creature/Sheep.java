@@ -12,20 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import java.awt.*;
-import java.awt.geom.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import java.util.*;
-
-import games.stendhal.common.*;
-import games.stendhal.server.*;
-
-import games.stendhal.server.entity.*;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.entity.Food;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
+import java.awt.geom.Rectangle2D;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import org.apache.log4j.Logger;
 
 public class Sheep extends Creature
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Sheep.class);
+  
   final private double SPEED=0.25;
   
   final private static int HP=30;
@@ -47,7 +49,7 @@ public class Sheep extends Creature
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("Sheep::generateRPClass","X",e);
+      logger.error("cannot generate RPClass",e);
       }
     }
   
@@ -76,7 +78,7 @@ public class Sheep extends Creature
 
     hungry=0;
     update();
-    Logger.trace("Sheep::Sheep","D","Created Sheep: "+this.toString());
+    logger.debug("Created Sheep: "+this);
     }
   
   public Sheep(RPObject object, Player owner) throws AttributeNotFoundException
@@ -88,7 +90,7 @@ public class Sheep extends Creature
     hungry=0;
     
     update();
-    Logger.trace("Sheep::Sheep","D","Created Sheep: "+this.toString());
+    logger.debug("Created Sheep: "+this);
     }
   
   public void setOwner(Player owner)
@@ -183,7 +185,7 @@ public class Sheep extends Creature
 
   public void logic()
     {
-    Logger.trace("Sheep::logic",">");
+    Log4J.startMethod(logger,"logic");
     
     hungry++;
     Food food=null;
@@ -192,7 +194,7 @@ public class Sheep extends Creature
       {
       if(nextto(food,0.25))
         {
-        Logger.trace("Sheep::logic","D","Sheep eats");
+        logger.debug("Sheep eats");
         setIdea("eat");
         eat(food);        
         clearPath();
@@ -200,7 +202,7 @@ public class Sheep extends Creature
         }
       else
         {
-        Logger.trace("Sheep::logic","D","Sheep moves to food");
+        logger.debug("Sheep moves to food");
         setIdea("food");
         setMovement(food,0,0);
         moveto(SPEED);
@@ -208,20 +210,20 @@ public class Sheep extends Creature
       }
     else if(owner==null)
       {
-      Logger.trace("Sheep::logic","D","Sheep(ownerless) moves randomly");
+      logger.debug("Sheep(ownerless) moves randomly");
       setIdea("walk");
       moveRandomly(SPEED);
       }
     else if(owner!=null && !nextto(owner,0.25))
       {
-      Logger.trace("Sheep::logic","D","Sheep(owner) moves to Owner");
+      logger.debug("Sheep(owner) moves to Owner");
       setIdea("follow");
       setMovement(owner,0,0);
       moveto(SPEED);
       }
     else
       {
-      Logger.trace("Sheep::logic","D","Sheep has nothing to do");
+      logger.debug("Sheep has nothing to do");
       setIdea("stop");
       stop();
       clearPath();
@@ -229,7 +231,7 @@ public class Sheep extends Creature
 
     if(owner!=null && owner.has("text") && owner.get("text").contains("sheep"))
       {
-      Logger.trace("Sheep::logic","D","Sheep(owner) moves to Owner");
+      logger.debug("Sheep(owner) moves to Owner");
       setIdea("follow");
       clearPath();
       setMovement(owner,0,0);
@@ -242,6 +244,6 @@ public class Sheep extends Creature
       }
       
     world.modify(this);
-    Logger.trace("Sheep::logic","<");
+    Log4J.finishMethod(logger,"logic");
     }
   }

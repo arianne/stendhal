@@ -12,17 +12,32 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import java.util.*;
-import games.stendhal.server.*;
-import games.stendhal.common.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
+import games.stendhal.common.Level;
+import games.stendhal.server.Path;
+import games.stendhal.server.entity.item.Armor;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.Shield;
+import games.stendhal.server.entity.item.Weapon;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
+import marauroa.server.game.Statistics;
+import org.apache.log4j.Logger;
 
-import games.stendhal.server.entity.item.*;
 
 public abstract class RPEntity extends Entity
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(RPEntity.class);
+
   protected static Statistics stats;
 
   private String name;
@@ -63,7 +78,7 @@ public abstract class RPEntity extends Entity
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("RPEntity::generateRPClass","X",e);
+      logger.error("cannot generateRPClass",e);
       }
     }
 
@@ -311,7 +326,7 @@ public abstract class RPEntity extends Entity
    *  it has been damaged with damage points. */
   public void onDamage(RPEntity who, int damage)
     {
-    Logger.trace("RPEntity::onDamage","D","Damaged "+damage+" points by "+who.getID());
+    logger.debug("Damaged "+damage+" points by "+who.getID());
 
     int leftHP=getHP()-damage;
     damage = (leftHP>=0 ? damage : getHP());
@@ -364,7 +379,7 @@ public abstract class RPEntity extends Entity
         {
         int damageDone = ((Integer) entry.getValue()).intValue();
         String name=(entry.getKey().has("name")?entry.getKey().get("name"):entry.getKey().get("type"));
-        Logger.trace("RPEntity::onDead" , "D" ,name + " did " + damageDone + " of " + totalDamageReceived + ". Reward was " + xp_reward);
+        logger.debug(name + " did " + damageDone + " of " + totalDamageReceived + ". Reward was " + xp_reward);
         entry.getKey().addXP((int) (xp_reward * ((float) damageDone / (float) totalDamageReceived)));
         }
       }

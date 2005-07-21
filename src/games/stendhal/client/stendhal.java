@@ -27,6 +27,9 @@ public class stendhal extends Thread
   
   public static void main(String args[]) 
     {
+    
+    Log4J.init("games/stendhal/log4j.properties");
+    
     for(int i=0;i<args.length;i++)
       {
       if(args[i].equals("-l"))

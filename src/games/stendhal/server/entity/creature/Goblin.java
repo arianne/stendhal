@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import java.util.*;
-import java.awt.*;
-import java.awt.geom.*;
+import games.stendhal.common.Level;
+import java.awt.geom.Rectangle2D;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import org.apache.log4j.Logger;
 
-import games.stendhal.common.*;
-import games.stendhal.server.*;
 
 public class Goblin extends Creature
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Goblin.class);
+
   final private double SPEED=0.5;
 
   final private static int HP=50;
@@ -46,7 +46,7 @@ public class Goblin extends Creature
 
     stop();
 
-    Logger.trace("Goblin::Goblin","D","Created Goblin: "+this.toString());
+    logger.debug("Created Goblin: "+this);
     }
 
   public void getArea(Rectangle2D rect, double x, double y)

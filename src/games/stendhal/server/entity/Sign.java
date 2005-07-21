@@ -12,13 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import java.awt.*;
-import java.awt.geom.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
+import java.awt.geom.Rectangle2D;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import org.apache.log4j.Logger;
+
 
 public class Sign extends Entity 
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Sign.class);
+
   public static void generateRPClass()
     {
     try
@@ -29,7 +34,7 @@ public class Sign extends Entity
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("Player::generateRPClass","X",e);
+      logger.error("cannot generate RPClass",e);
       }
     }
   

@@ -12,20 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.common.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.server.*;
-import java.util.*;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.item.Armor;
+import games.stendhal.server.entity.item.Club;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.Shield;
+import games.stendhal.server.entity.item.Sword;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import org.apache.log4j.Logger;
 
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.entity.creature.*;
-import games.stendhal.server.entity.npc.*;
 
 public abstract class WeaponSellerNPC extends SpeakerNPC 
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(WeaponSellerNPC.class);
+
   final private double SPEED=0.2;
   private int swordAmount;
   private int clubAmount;
@@ -53,7 +55,7 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
         }
         
       Item item=new Club();
-      Logger.trace("WeaponSellerNPC::chat","D","Selling a "+itemName+" to player");
+      logger.debug("Selling a "+itemName+" to player");
       
       item.put("zoneid",player.get("zoneid"));
       player.equip(item);      
@@ -73,7 +75,7 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
         }
         
       Item item=new Armor();
-      Logger.trace("WeaponSellerNPC::chat","D","Selling a "+itemName+" to player");
+      logger.debug("Selling a "+itemName+" to player");
   
       item.put("zoneid",player.get("zoneid"));
       player.equip(item);      
@@ -93,7 +95,7 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
         }
         
       Item item=new Shield();
-      Logger.trace("WeaponSellerNPC::chat","D","Selling a "+itemName+" to player");
+      logger.debug("Selling a "+itemName+" to player");
   
       item.put("zoneid",player.get("zoneid"));
       player.equip(item);      
@@ -113,7 +115,7 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
         }
         
       Item item=new Sword();
-      Logger.trace("WeaponSellerNPC::chat","D","Selling a "+itemName+" to player");
+      logger.debug("Selling a "+itemName+" to player");
   
       item.put("zoneid",player.get("zoneid"));
       player.equip(item);      

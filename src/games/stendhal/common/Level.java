@@ -1,13 +1,20 @@
 package games.stendhal.common;
 
-import java.util.*;
-import marauroa.common.*;
+import java.util.List;
+import java.util.Vector;
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
 
+/** Utility class for getting the creature-level for some given exp. points. */
 public class Level
   {
-  static private int LEVELS=100;
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Level.class);
 
-  static Vector<Integer> table;
+  private static int LEVELS = 100;
+
+  private static List<Integer> table;
+  
   static
     {
     table=new Vector<Integer>();
@@ -26,7 +33,7 @@ public class Level
 
     for(int i=0;i<LEVELS;i++)
       {
-      Logger.trace("Level::(static)","D","Level "+i+": "+table.get(i));
+      logger.debug("Level "+i+": "+table.get(i));
       }
     }
 

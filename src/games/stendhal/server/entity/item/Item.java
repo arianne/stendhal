@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
-import java.awt.*;
-import java.awt.geom.*;
-
-import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.PassiveEntity;
+import java.awt.geom.Rectangle2D;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import org.apache.log4j.Logger;
 
 public class Item extends PassiveEntity
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Item.class);
+
   public static void generateRPClass()
     {
     RPClass entity=new RPClass("item");
@@ -51,7 +51,7 @@ public class Item extends PassiveEntity
       }
     else
       {
-      Logger.trace("Item::create","X",iclass+" doesn't exist");
+      logger.warn(iclass+" doesn't exist");
       return null;
       }
     }

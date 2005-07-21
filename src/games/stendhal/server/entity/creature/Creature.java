@@ -12,17 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import java.util.*;
+import games.stendhal.common.Level;
 import games.stendhal.server.*;
-import games.stendhal.common.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-
 import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.npc.NPC;
+import java.util.LinkedList;
+import java.util.List;
+import marauroa.common.Log4J;
+import marauroa.common.game.*;
+import org.apache.log4j.Logger;
+
 
 public abstract class Creature extends NPC
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Creature.class);
+  
   private RespawnPoint point;
   private List<Path.Node> patrolPath;
   private RPEntity target;
@@ -36,7 +41,7 @@ public abstract class Creature extends NPC
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("Creature::generateRPClass","X",e);
+      logger.error("cannot generate RPClass",e);
       }
     }
 
@@ -205,10 +210,10 @@ public abstract class Creature extends NPC
 
   public void logic()
     {
-    Logger.trace("Creature::logic",">");
+    Log4J.startMethod(logger, "logic");
     if(!hasPath() && !isAttacking())
       {
-      Logger.trace("Creature::logic","D", "Creating Path for this entity");
+      logger.debug("Creating Path for this entity");
       List<Path.Node> nodes=new LinkedList<Path.Node>();
 
       int size=patrolPath.size();
@@ -234,7 +239,7 @@ public abstract class Creature extends NPC
         target=this.getAttackSource(0);
         }
         
-      Logger.trace("Creature::logic","D","Creature("+get("type")+") has been attacked by "+target.get("type"));
+      logger.debug("Creature("+get("type")+") has been attacked by "+target.get("type"));
       }
     else if(target==null || (!target.get("zoneid").equals(get("zoneid")) && world.has(target.getID())) || !world.has(target.getID()))
       {
@@ -248,18 +253,18 @@ public abstract class Creature extends NPC
       target=getNearestPlayer(8);
       if(target!=null)
         {
-        Logger.trace("Creature::logic","D","Creature("+get("type")+") gets a new target.");
+        logger.debug("Creature("+get("type")+") gets a new target.");
         }
       }
 
     if(target==null)
       {
-      Logger.trace("Creature::logic","D","Following path");
+      logger.debug("Following path");
       if(hasPath()) Path.followPath(this,getSpeed());
       }
     else if(distance(target)>16*16)
       {
-      Logger.trace("Creature::logic","D","Attacker is too far. Creature stops attack");
+      logger.debug("Attacker is too far. Creature stops attack");
       target=null;
       clearPath();
       stopAttack();
@@ -267,20 +272,20 @@ public abstract class Creature extends NPC
       }
     else if(!nextto(target,0.25) && !target.stopped())
       {
-      Logger.trace("Creature::logic","D","Moving to target. Searching new path");
+      logger.debug("Moving to target. Searching new path");
       clearPath();
       setMovement(target,0,0);
       moveto(getSpeed());
       }
     else if(nextto(target,0.25))
       {
-      Logger.trace("Creature::logic","D","Next to target. Creature stops and attacks");
+      logger.debug("Next to target. Creature stops and attacks");
       stop();
       attack(target);
       }
     else
       {
-      Logger.trace("Creature::logic","D","Moving to target. Creature attacks");
+      logger.debug("Moving to target. Creature attacks");
       if(collided()) clearPath();
       attack(target);
       setMovement(target,0,0);
@@ -288,7 +293,7 @@ public abstract class Creature extends NPC
       
       if(getPath()==null || getPath().size()==0) // If creature is blocked choose a new target
         {
-        Logger.trace("Creature::logic","D","Blocked. Choosing a new target.");
+        logger.debug("Blocked. Choosing a new target.");
         target=null;
         clearPath();
         stopAttack();
@@ -307,6 +312,6 @@ public abstract class Creature extends NPC
       }
 
     world.modify(this);
-    Logger.trace("Creature::logic","<");
+    Log4J.finishMethod(logger, "logic");
     }
   }

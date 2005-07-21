@@ -12,15 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import java.awt.*;
-import java.awt.geom.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
+import games.stendhal.server.entity.RPEntity;
+import java.awt.geom.Rectangle2D;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import org.apache.log4j.Logger;
 
-import games.stendhal.server.entity.*;
 
 public class TrainingDummy extends RPEntity 
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(TrainingDummy.class);
+
   public static void generateRPClass()
     {
     try
@@ -30,7 +34,7 @@ public class TrainingDummy extends RPEntity
       }
     catch(RPClass.SyntaxException e)
       {
-      Logger.thrown("TrainingDummy::generateRPClass","X",e);
+      logger.error("cannot generate RPClass",e);
       }
     }
   

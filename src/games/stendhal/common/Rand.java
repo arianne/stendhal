@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Rand 
   {
-  static Random rand;
+  private static Random rand;
   
   static
     {
