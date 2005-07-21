@@ -12,11 +12,13 @@
 
   <!-- EDIT HERE TO CONFIGURE YOUR JAR FILE NAMES -->
   <property name="marauroa_jar" value="marauroa.jar"/>
+  <property name="log4j_jar" value="log4j-1.2.11.jar"/>
   <!-- [END] -->
   
   <property name="marauroa" value="../marauroa/lib/${marauroa_jar}"/>
   <property name="marauroa_build" value="../marauroa/build"/>
-  <property name="classpath" value="${build};${marauroa}"/>
+  <property name="log4j" value="${libdir}/${log4j_jar}"/>
+  <property name="classpath" value="${build};${marauroa};${log4j}"/>
   
   <property name="server_jarname" value="stendhal-server-${version}.jar"/>
   <property name="client_jarname" value="stendhal-${version}.jar"/>
