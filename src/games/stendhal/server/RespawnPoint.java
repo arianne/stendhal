@@ -12,16 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import games.stendhal.server.entity.*;
-import marauroa.common.*;
-import marauroa.server.game.*;
-import java.util.*;
-import games.stendhal.common.Level;
+import games.stendhal.server.entity.creature.Creature;
+import java.util.LinkedList;
+import java.util.List;
+import marauroa.common.Log4J;
+import marauroa.server.game.RPWorld;
+import org.apache.log4j.Logger;
 
-import games.stendhal.server.entity.creature.*;
 
 public class RespawnPoint
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(RespawnPoint.class);
+  
   private int x;
   private int y;
   private double radius;
@@ -66,7 +69,7 @@ public class RespawnPoint
 
   public void notifyDead(Creature dead)
     {
-    Logger.trace("RespawnPoint::notifyDead",">");
+    Log4J.startMethod(logger, "notifyDead");
     if(!respawning)
       {
       respawning=true;
@@ -74,15 +77,15 @@ public class RespawnPoint
       }
 
     entities.remove(dead);
-    Logger.trace("RespawnPoint::notifyDead","<");
+    Log4J.finishMethod(logger, "notifyDead");
     }
 
   public void nextTurn()
     {
-    Logger.trace("RespawnPoint::nextTurn",">");
+    Log4J.startMethod(logger, "nextTurn");
     if(respawning)
       {
-      Logger.trace("RespawnPoint::nextTurn","D","Turns to respawn: "+turnsToRespawn);
+      logger.debug("Turns to respawn: "+turnsToRespawn);
       turnsToRespawn--;
       }
 
@@ -104,12 +107,12 @@ public class RespawnPoint
       creature.logic();
       }
 
-    Logger.trace("RespawnPoint::nextTurn","<");
+    Log4J.finishMethod(logger, "nextTurn");
     }
 
   private void respawn()
     {
-    Logger.trace("RespawnPoint::respawn",">");
+    Log4J.startMethod(logger, "respawn");
     try
       {
       Creature newentity=entity.getClass().newInstance();
@@ -147,11 +150,11 @@ public class RespawnPoint
       }
     catch(Exception e)
       {
-      Logger.thrown("RespawnPoint::respawn","X",e);
+      logger.error("error respawning entity "+entity,e);
       }
     finally
       {
-      Logger.trace("RespawnPoint::respawn","<");
+      Log4J.finishMethod(logger, "respawn");
       }
     }
   }

@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.awt.image.BufferStrategy;
 import java.awt.*;
-import java.awt.geom.*;
-
-import marauroa.common.*;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferStrategy;
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
 
 /** This class is an abstraction of the game screen, so that we can think of it as
  *  a window to the world, we can move it, place it and draw object usings World 
@@ -24,6 +24,9 @@ import marauroa.common.*;
  *  This class is based on the singleton pattern. */
 public class GameScreen 
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(GameScreen.class);
+  
   /** One unit is 32 pixels */
   public final static int PIXEL_SCALE=32;
   
@@ -81,7 +84,7 @@ public class GameScreen
   /** Prepare screen for the next frame to be rendered and move it if needed */
   public void nextFrame()
     {
-    Logger.trace("GameScreen::nextFrame",">");
+    Log4J.startMethod(logger,"nextFrame");
     
     g.dispose();
     strategy.show();
@@ -106,7 +109,7 @@ public class GameScreen
       dy=0;
       }
       
-    Logger.trace("GameScreen::nextFrame","<");
+    Log4J.finishMethod(logger,"nextFrame");
     }
   
   /** Returns the Graphics2D object in case you want to operate it directly.

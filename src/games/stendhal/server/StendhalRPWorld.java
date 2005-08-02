@@ -12,29 +12,36 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import marauroa.server.game.*;
-
-import marauroa.common.game.*;
-import marauroa.common.*;
 import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.creature.*;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.TrainingDummy;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPClass;
+import marauroa.server.game.RPWorld;
+import org.apache.log4j.Logger;
 
 public class StendhalRPWorld extends RPWorld
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(StendhalRPWorld.class);
+  
+  
   public StendhalRPWorld() throws Exception
     {
     super();
 
-    Logger.trace("StendhalRPWorld::StendhalRPWorld",">");
+    Log4J.startMethod(logger,"StendhalRPWorld");
     createRPClasses();
-    Logger.trace("StendhalRPWorld::StendhalRPWorld","<");
+    Log4J.finishMethod(logger,"StendhalRPWorld");
     }
   
   private void createRPClasses()
     {
-    Logger.trace("StendhalRPWorld::createRPClasses",">");
+    Log4J.startMethod(logger,"createRPClasses");
     
     Entity.generateRPClass();
 
@@ -58,7 +65,7 @@ public class StendhalRPWorld extends RPWorld
     chatAction.add("text",RPClass.LONG_STRING);
     
         
-    Logger.trace("StendhalRPWorld::createRPClasses","<");
+    Log4J.finishMethod(logger,"createRPClasses");
     }
   
   public void onInit() throws Exception
@@ -95,7 +102,7 @@ public class StendhalRPWorld extends RPWorld
       }
     catch(Exception e)
       {
-      Logger.trace("StendhalRPWorld::addArea","D","This zone doesn't have an extra populate method");
+      logger.info("Zone '"+name+"' doesn't have an extra populate method");
       }
     }
   

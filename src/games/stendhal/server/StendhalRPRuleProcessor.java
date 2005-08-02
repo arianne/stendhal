@@ -12,22 +12,26 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import marauroa.common.*;
-import marauroa.common.net.*;
+import games.stendhal.common.Direction;
+import games.stendhal.common.Pair;
+import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.NPC;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import marauroa.common.Log4J;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
-
-import games.stendhal.common.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.creature.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.entity.npc.*;
-
-import java.util.*;
-import java.io.*;
+import org.apache.log4j.Logger;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
+  
   private RPServerManager rpman;
   private RPWorld world;
 
@@ -90,7 +94,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     catch(Exception e)
       {
-      Logger.thrown("StendhalRPRuleProcessor::setContext","!",e);
+      logger.fatal("cannot set Context. exiting",e);
       System.exit(-1);
       }
     }
@@ -155,7 +159,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   public boolean onActionAdd(RPAction action, List<RPAction> actionList)
     {
-    Logger.trace("StendhalRPRuleProcessor::onActionAdd",">");
+    Log4J.startMethod(logger,"onActionAdd");
     try
       {
       if(action.get("type").equals("moveto") || action.get("type").equals("move") || action.get("type").equals("face"))
@@ -167,7 +171,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           RPAction act=(RPAction)it.next();
           if(act.get("type").equals("moveto"))
             {
-            Logger.trace("StendhalRPRuleProcessor::onActionAdd","D","Removed action: "+act.toString());
+            logger.debug("Removed action: "+act);
             it.remove();
             }
           }
@@ -177,18 +181,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     catch(AttributeNotFoundException e)
       {
-      Logger.thrown("StendhalRPRuleProcessor::onActionAdd","X",e);
+      logger.error("error in onActionAdd",e);
       return false;
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::onActionAdd","<");
+      Log4J.finishMethod(logger,"onActionAdd");
       }
     }
 
   public boolean onIncompleteActionAdd(RPAction action, List<RPAction> actionList)
     {
-    Logger.trace("StendhalRPRuleProcessor::onIncompleteActionAdd",">");
+    Log4J.startMethod(logger,"onIncompleteActionAdd");
     try
       {
       if(action.get("type").equals("moveto"))
@@ -200,7 +204,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           RPAction act=(RPAction)it.next();
           if(act.get("type").equals("moveto") || act.get("type").equals("move") || act.get("type").equals("face"))
             {
-            Logger.trace("StendhalRPRuleProcessor::onActionAdd","D","Not readded action: "+action.toString());
+            logger.debug("Not readded action: "+action);
             return false;
             }
           }
@@ -210,19 +214,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     catch(AttributeNotFoundException e)
       {
-      Logger.thrown("StendhalRPRuleProcessor::onIncompleteActionAdd","X",e);
+      logger.error("onIncompleteActionAdd",e);
       return false;
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::onIncompleteActionAdd","<");
+      Log4J.finishMethod(logger,"onIncompleteActionAdd");
       }
     }
 
 
   public RPAction.Status execute(RPObject.ID id, RPAction action)
     {
-    Logger.trace("StendhalRPRuleProcessor::execute",">");
+    Log4J.startMethod(logger,"execute");
 
     RPAction.Status status=RPAction.Status.SUCCESS;
 
@@ -299,12 +303,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     catch(Exception e)
       {
-      Logger.trace("StendhalRPRuleProcessor::execute","X",action.toString());
-      Logger.thrown("StendhalRPRuleProcessor::execute","X",e);
+      logger.error("cannot execute action "+action,e);
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::execute","<");
+      Log4J.finishMethod(logger,"execute");
       }
 
     return status;
@@ -312,19 +315,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   private void stop(Player player) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPRuleProcessor::stop",">");
+    Log4J.startMethod(logger,"stop");
 
     player.stop();
     player.stopAttack();
 
     world.modify(player);
 
-    Logger.trace("StendhalRPRuleProcessor::stop","<");
+    Log4J.finishMethod(logger,"stop");
     }
 
   private void move(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPRuleProcessor::move",">");
+    Log4J.startMethod(logger,"move");
     if(action.has("dir"))
       {
       player.setDirection(Direction.build(action.getInt("dir")));
@@ -333,12 +336,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     world.modify(player);
 
-    Logger.trace("StendhalRPRuleProcessor::move","<");
+    Log4J.finishMethod(logger,"move");
     }
 
   private void attack(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
-    Logger.trace("StendhalRPRuleProcessor::attack",">");
+    Log4J.startMethod(logger,"attack");
     if(action.has("target"))
       {
       int targetObject=action.getInt("target");
@@ -359,12 +362,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       }
 
-    Logger.trace("StendhalRPRuleProcessor::attack","<");
+    Log4J.finishMethod(logger,"attack");
     }
 
   private void own(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
-    Logger.trace("StendhalRPRuleProcessor::own",">");
+    Log4J.startMethod(logger,"own");
 
     // BUG: This features is potentially abusable right now. Consider removing it...
     if(player.hasSheep() && action.has("target") && action.getInt("target")==-1) // Allow release of sheep
@@ -408,12 +411,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       }
 
-    Logger.trace("StendhalRPRuleProcessor::own","<");
+    Log4J.finishMethod(logger,"own");
     }
 
   private void displace(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
-    Logger.trace("StendhalRPRuleProcessor::displace",">");
+    Log4J.startMethod(logger,"displace");
     if(action.has("target"))
       {
       int targetObject=action.getInt("target");
@@ -454,12 +457,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       }
 
-    Logger.trace("StendhalRPRuleProcessor::displace","<");
+    Log4J.finishMethod(logger,"displace");
     }
 
   private void who(Player player)
     {
-    Logger.trace("StendhalRPRuleProcessor::who",">");
+    Log4J.startMethod(logger,"who");
+    
     String online = "" + getPlayers().size() + " Players online: ";
     for(Player p : getPlayers())
       {
@@ -468,12 +472,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     player.setPrivateText(online);
     world.modify(player);
     playersObjectRmText.add(player);
-    Logger.trace("StendhalRPRuleProcessor::who","<");
+    Log4J.finishMethod(logger,"who");
     }
 
   private void tell(Player player, RPAction action)
     {
-    Logger.trace("StendhalRPRuleProcessor::tell",">");
+    Log4J.startMethod(logger,"tell");
     try
       {
       if(action.has("who") && action.has("text"))
@@ -497,18 +501,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       else
         {
-          Logger.trace("StendhalRPRuleProcessor::tell","X", "Tell is not working right...");
+          logger.warn("Tell is not working right...");
         }
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::tell","<");
+      Log4J.finishMethod(logger,"tell");
       }
     }
 
   private void where(Player player, RPAction action)
     {
-    Logger.trace("StendhalRPRuleProcessor::where",">");
+    Log4J.startMethod(logger,"where");
     try
       {
       if(action.has("who"))
@@ -541,13 +545,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::where","<");
+      Log4J.finishMethod(logger,"where");
       }
     }
 
   private void addBuddy(Player player, RPAction action)
     {
-    Logger.trace("StendhalRPRuleProcessor::addBuddy",">");
+    Log4J.startMethod(logger,"addBuddy");
     try
       {
       if(action.has("who"))
@@ -584,7 +588,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::addBuddy","<");
+      Log4J.finishMethod(logger,"addBuddy");
       }
     }
   
@@ -634,7 +638,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   private void outfit(Player player, RPAction action)
     {
-    Logger.trace("StendhalRPRuleProcessor::outfit",">");
+    Log4J.startMethod(logger,"outfit");
     try
       {
       if(action.has("value"))
@@ -645,13 +649,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::tell","<");
+      Log4J.finishMethod(logger,"outfit");
       }
     }
 
   private void chat(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPRuleProcessor::chat",">");
+    Log4J.startMethod(logger,"chat");
     if(action.has("text"))
       {
       player.put("text",action.get("text"));
@@ -659,12 +663,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       playersObjectRmText.add(player);
       }
-    Logger.trace("StendhalRPRuleProcessor::chat","<");
+    Log4J.finishMethod(logger,"chat");
     }
 
   private void face(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPRuleProcessor::face",">");
+    Log4J.startMethod(logger,"face");
 
     if(action.has("dir"))
       {
@@ -673,12 +677,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       world.modify(player);
       }
 
-    Logger.trace("StendhalRPRuleProcessor::face","<");
+    Log4J.finishMethod(logger,"face");
     }
 
   private void equip(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPRuleProcessor::equip",">");
+    Log4J.startMethod(logger,"equip");
 
     if(action.has("target") && action.has("slot"))
       {
@@ -711,12 +715,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       }
 
-    Logger.trace("StendhalRPRuleProcessor::equip","<");
+    Log4J.finishMethod(logger,"equip");
     }
 
   private void moveequip(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPRuleProcessor::moveequip",">");
+    Log4J.startMethod(logger,"moveequip");
 
     if(action.has("sourceslot") && action.has("targetslot"))
       {
@@ -744,13 +748,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       }
 
-    Logger.trace("StendhalRPRuleProcessor::moveequip","<");
+    Log4J.finishMethod(logger,"moveequip");
     }
 
 
   private void drop(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPRuleProcessor::drop",">");
+    Log4J.startMethod(logger,"drop");
 
     if(action.has("slot") && action.has("x") && action.has("y"))
       {
@@ -779,7 +783,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           }
         else
           {
-          Logger.trace("StendhalRPRuleProcessor::drop","X",object.toString());
+          logger.debug("dropped "+object);
           entity=null;
           }
           
@@ -800,12 +804,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       }
 
-    Logger.trace("StendhalRPRuleProcessor::drop","<");
+    Log4J.finishMethod(logger,"drop");
     }
 
   private void use(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPRuleProcessor::use",">");
+    Log4J.startMethod(logger,"use");
 
     if(action.has("object"))
       {
@@ -846,7 +850,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         }
       }
 
-    Logger.trace("StendhalRPRuleProcessor::use","<");
+    Log4J.startMethod(logger,"use");
     }
 
   public int getTurn()
@@ -857,9 +861,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   /** Notify it when a new turn happens */
   synchronized public void beginTurn()
     {
-    Logger.trace("StendhalRPRuleProcessor::beginTurn",">");
+    Log4J.startMethod(logger,"beginTurn");
     
-    Logger.trace("StendhalRPRuleProcessor::BugReportOnLists","D",corpses.size()+","+corpsesToRemove.size()+","+foodItems.size()+","+npcs.size()+","+npcsToAdd.size()+","+npcsToRemove.size()+","+playersObject.size()+","+playersObjectRmText.size()+","+respawnPoints.size());
+    logger.debug("lists: "+corpses.size()+","+corpsesToRemove.size()+","+foodItems.size()+","+npcs.size()+","+npcsToAdd.size()+","+npcsToRemove.size()+","+playersObject.size()+","+playersObjectRmText.size()+","+respawnPoints.size());
 
     try
       {
@@ -935,17 +939,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     catch(Exception e)
       {
-      Logger.thrown("StendhalRPRuleProcessor::beginTurn","X",e);
+      logger.error("error in beginTurn",e);
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::beginTurn","<");
+      Log4J.finishMethod(logger,"beginTurn");
       }
     }
 
   synchronized public void endTurn()
     {
-    Logger.trace("StendhalRPRuleProcessor::endTurn",">");
+    Log4J.startMethod(logger,"endTurn");
     try
       {
       for(Food food: foodItems) food.regrow();
@@ -954,17 +958,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     catch(Exception e)
       {
-      Logger.thrown("StendhalRPRuleProcessor::endTurn","X",e);
+      logger.error("error in endTurn",e);
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::endTurn","<");
+      Log4J.finishMethod(logger,"endTurn");
       }
     }
 
   synchronized public boolean onInit(RPObject object) throws RPObjectInvalidException
     {
-    Logger.trace("StendhalRPRuleProcessor::onInit",">");
+    Log4J.startMethod(logger,"onInit");
     try
       {
       Player player=Player.create(object);
@@ -978,19 +982,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     catch(Exception e)
       {
-      Logger.trace("StendhalRPRuleProcessor::onInit","X","There has been a severe problem loading player "+object.get("#db_id"));
-      Logger.thrown("StendhalRPRuleProcessor::onInit","X",e);
+      logger.error("There has been a severe problem loading player "+object.get("#db_id"),e);
       return false;
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::onInit","<");
+      Log4J.finishMethod(logger,"onInit");
       }
     }
 
   synchronized public boolean onExit(RPObject.ID id)
     {
-    Logger.trace("StendhalRPRuleProcessor::onExit",">");
+    Log4J.startMethod(logger,"onExit");
     try
       {
       for(Player object: playersObject)
@@ -1003,7 +1006,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
           playersObject.remove(object);
 
-          Logger.trace("StendhalRPRuleProcessor::onExit","D",object.toString());
+          logger.debug("removed player "+object);
           break;
           }
         }
@@ -1012,25 +1015,25 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     catch(Exception e)
       {
-      Logger.thrown("StendhalRPRuleProcessor::onExit","X",e);
+      logger.error("error in onExit",e);
       return true;
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::onExit","<");
+      Log4J.finishMethod(logger,"onExit");
       }
     }
 
   synchronized public boolean onTimeout(RPObject.ID id)
     {
-    Logger.trace("StendhalRPRuleProcessor::onTimeout",">");
+    Log4J.startMethod(logger,"onTimeout");
     try
       {
       return onExit(id);
       }
     finally
       {
-      Logger.trace("StendhalRPRuleProcessor::onTimeout","<");
+      Log4J.finishMethod(logger,"onTimeout");
       }
     }
   }

@@ -12,30 +12,30 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.event.*;
-import java.awt.image.*;
-import java.util.*;
-
 import games.stendhal.client.*;
-import games.stendhal.common.*;
+import games.stendhal.common.Direction;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferStrategy;
+import java.net.URL;
+import java.util.LinkedList;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+import org.apache.log4j.Logger;
 
-import java.net.*;
-import java.io.*;
-
-import marauroa.client.*;
-import marauroa.client.net.*;
-import marauroa.common.*;
-import marauroa.common.net.*;
-import marauroa.common.game.*;
-
-import javax.swing.*;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends JFrame
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(j2DClient.class);
+  
   class StendhalChatLineListener implements ActionListener, KeyListener
     {
     LinkedList<String> lines;
@@ -389,51 +389,51 @@ public class j2DClient extends JFrame
       long delta = System.currentTimeMillis() - lastLoopTime;
       lastLoopTime = System.currentTimeMillis();
 
-      Logger.trace("j2DClient::gameLoop","D","Move objects");
+      logger.debug("Move objects");
       gameObjects.move(delta);
 
-      Logger.trace("j2DClient::gameLoop","D","Draw screen");
+      logger.debug("Draw screen");
       pipeline.draw(screen);
       inGameGUI.draw(screen);
 
       screen.nextFrame();
 
-      Logger.trace("j2DClient::gameLoop","D","Query network");
+      logger.debug("Query network");
       client.loop(0);
 
-      Logger.trace("j2DClient::gameLoop","D","Move screen");
+      logger.debug("Move screen");
       moveScreen(client.getPlayer(),staticLayers,delta);
 
       if(System.nanoTime()-oldTime>1000000000)
         {
         oldTime=System.nanoTime();
         System.out.println("FPS: "+Integer.toString(fps));
-        Logger.trace("j2DCLient::gameLoop()","D","FPS: "+Integer.toString(fps));
+        logger.info("FPS: "+Integer.toString(fps));
         fps=0;
         }
 
       gameRunning&=client.shouldContinueGame();
       
-      Logger.trace("j2DClient::gameLoop","D","Start sleeping");
+      logger.debug("Start sleeping");
       long wait=20-delta;
       if(wait>0)
         {
         if(wait>50) 
           {
-          Logger.trace("j2DClient::gameLoop","X","Waiting "+wait+" ms");
+          logger.info("Waiting "+wait+" ms");
           wait=50;
           }
           
         try{Thread.sleep(wait);}catch(Exception e){};
         }
         
-      Logger.trace("j2DClient::gameLoop","D","End sleeping");
+      logger.debug("End sleeping");
       }
 
-    Logger.trace("j2DClient::gameLoop","!","Request logout");
+    logger.info("Request logout");
     client.logout();
 
-    Logger.trace("j2DClient::gameLoop","!","Exit");
+    logger.debug("Exit");
     System.exit(0);
     }
 
@@ -534,12 +534,6 @@ public class j2DClient extends JFrame
 
       if(username!=null && password!=null && host!=null)
         {
-        String[] allowed={/*"j2DClient","StendhalClient"*/};
-        Logger.setAllowed(allowed);
-
-        String[] rejected={};
-        Logger.setRejected(rejected);
-
         StendhalClient client=StendhalClient.get();
         try
           {
@@ -557,13 +551,11 @@ public class j2DClient extends JFrame
         }
       }
 
-    Logger.println("Stendhal j2DClient");
-    Logger.println();
-    Logger.println("  games.stendhal.j2DClient -u username -p pass -h host -c character");
-    Logger.println();
-    Logger.println("Required parameters");
-    Logger.println("* -h\tHost that is running Marauroa server");
-    Logger.println("* -u\tUsername to log into Marauroa server");
-    Logger.println("* -p\tPassword to log into Marauroa server");
+    System.out.println("Stendhal j2DClient\n");
+    System.out.println("  games.stendhal.j2DClient -u username -p pass -h host -c character\n");
+    System.out.println("Required parameters");
+    System.out.println("* -h\tHost that is running Marauroa server");
+    System.out.println("* -u\tUsername to log into Marauroa server");
+    System.out.println("* -p\tPassword to log into Marauroa server");
     }
   }

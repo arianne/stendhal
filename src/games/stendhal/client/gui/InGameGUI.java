@@ -1,20 +1,26 @@
 package games.stendhal.client.gui;
 
-import java.awt.geom.*;
-import java.awt.event.*;
-import java.awt.*;
-
-import marauroa.common.*;
-import marauroa.common.game.*;
-import games.stendhal.client.entity.*;
 import games.stendhal.client.*;
-import games.stendhal.common.*;
+import games.stendhal.client.entity.Entity;
+import games.stendhal.common.Direction;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.geom.Point2D;
+import java.util.HashMap;
+import java.util.Map;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
+import org.apache.log4j.Logger;
 
-import java.util.*;
 
 
 public class InGameGUI implements MouseListener, MouseMotionListener, KeyListener
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(InGameGUI.class);
+  
   interface InGameAction
     {
     public void onAction(Object... param);
@@ -296,7 +302,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   
   public InGameGUI(StendhalClient client)
     {
-    Logger.trace("InGameGUI::(init)","D","OS: "+(System.getProperty("os.name")));
+    logger.debug("OS: "+System.getProperty("os.name"));
     client.setGameGUI(this);
     
     if(System.getProperty("os.name").toLowerCase().contains("linux"))

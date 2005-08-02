@@ -20,10 +20,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
-
-import marauroa.common.*;
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
 
 /**
  * A resource manager for sprites in the game. Its often quite important
@@ -36,6 +35,8 @@ import marauroa.common.*;
  * @author Kevin Glass
  */
 public class SpriteStore {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(SpriteStore.class);
 	/** The single instance of this class */
     private static SpriteStore single = new SpriteStore();
 	
@@ -59,20 +60,20 @@ public class SpriteStore {
      */
  public Sprite[] getAnimatedSprite(String ref, int animation, int frames, int width, int height)
 	  {
-      Logger.trace("SpriteStore::getAnimatedSprite",">");
+      Log4J.startMethod(logger, "getAnimatedSprite");
       try
         {
         return getAnimatedSprite(getSprite(ref),animation,frames,width,height);
         }
       finally
         {
-        Logger.trace("SpriteStore::getAnimatedSprite","<");
+      Log4J.finishMethod(logger, "getAnimatedSprite");
         }
 	  }
 
  public Sprite[] getAnimatedSprite(Sprite animImage, int animation, int frames, int width, int height)
     {
-      Logger.trace("SpriteStore::getAnimatedSprite",">");
+      Log4J.startMethod(logger, "getAnimatedSprite");
 
       Sprite[] animatedSprite=new Sprite[frames];
     
@@ -85,7 +86,7 @@ public class SpriteStore {
         animatedSprite[i]=new Sprite(image);
         }
       
-      Logger.trace("SpriteStore::getAnimatedSprite","<");
+      Log4J.finishMethod(logger, "getAnimatedSprite");
       return animatedSprite;
     }
   
@@ -102,7 +103,7 @@ public class SpriteStore {
   public Sprite getSprite(String ref, boolean loadAlpha) {
 	    try
 	    {
-        Logger.trace("SpriteStore::getSprite",">");
+      Log4J.startMethod(logger, "getSprite");
          
 		// if we've already got the sprite in the cache
 		// then just return the existing version
@@ -155,7 +156,7 @@ public class SpriteStore {
 		}
 		finally
 		{
-        Logger.trace("SpriteStore::getSprite","<");        
+      Log4J.finishMethod(logger, "getSprite");
 		}
 	}
 	
@@ -167,7 +168,7 @@ public class SpriteStore {
 	private void fail(String message) {
 		// we're pretty dramatic here, if a resource isn't available
 		// we dump the message and exit the game
-        Logger.trace("SpriteStore::fail","!",message);
+        logger.fatal(message+". Exiting");
         System.exit(0);
 	}
 }

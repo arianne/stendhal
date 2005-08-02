@@ -12,17 +12,23 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.io.*;
-import java.awt.Graphics;
-import java.util.*;
-
-import games.stendhal.common.*;
-import marauroa.common.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
 
 /** This is a helper class to render coherent tiles based on the tileset.
  *  This should be replaced by independent tiles as soon as possible . */
 public class TileRenderer
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(TileRenderer.class);
+  
   private TileStore tiles;
   private int[] map;
   private int width;
@@ -43,7 +49,7 @@ public class TileRenderer
   /** Sets the data that will be rendered */
   public void setMapData(Reader reader) throws IOException
     {
-    Logger.trace("TileRenderer::setMapData",">");
+    Log4J.startMethod(logger, "setMapData");
         
     BufferedReader file=new BufferedReader(reader);
     String text;
@@ -72,7 +78,7 @@ public class TileRenderer
         }
       }
 
-    Logger.trace("TileRenderer::setMapData","<");
+    Log4J.finishMethod(logger, "setMapData");
     }
   
   /** Returns the widht in world units */

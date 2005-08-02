@@ -12,17 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
+import games.stendhal.common.Direction;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+import java.util.LinkedList;
+import java.util.List;
+import marauroa.common.Log4J;
+import marauroa.server.game.RPServerManager;
+import marauroa.server.game.RPWorld;
+import org.apache.log4j.Logger;
 
-import games.stendhal.common.*;
-import games.stendhal.server.entity.*;
-
-import java.util.*;
 
 public class Path
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Path.class);
+
   private static RPServerManager rpman;
   private static RPWorld world;
   private static StepCallback callback;
@@ -188,7 +193,7 @@ public class Path
    */
   public static List<Node> searchPath(Entity entity, int x, int y, int destx, int desty)
     {
-    Logger.trace("Path::searchPath",">");
+    Log4J.startMethod(logger, "searchPath");
     long startTime = System.currentTimeMillis();
 
     Pathfinder path=new Pathfinder();
@@ -217,17 +222,17 @@ public class Path
       }
     
     long endTime = System.currentTimeMillis();
-    Logger.trace("Path::searchPathResult","D","Route ("+x+","+y+")-("+destx+","+desty+") S:"+steps+" OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime)+"ms");
+    logger.debug("Route ("+x+","+y+")-("+destx+","+desty+") S:"+steps+" OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime)+"ms");
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
     while(node!=null)
       {
-      Logger.trace("Path::searchPath","D",node.toString());
+//      logger.debug("node: "+node);
       list.add(0,new Node(node.getX(),node.getY()));
       node=node.getParent();
       }
 
-    Logger.trace("Path::searchPath","<");
+    Log4J.finishMethod(logger, "searchPath");
     return list;
     }
 
@@ -257,13 +262,13 @@ public class Path
 
     if(entity.distance(actual.x, actual.y)==0)
       {
-      Logger.trace("Path::followPath","D","Completed waypoint("+pos+")("+actual.x+","+actual.y+") on Path");
+      logger.debug("Completed waypoint("+pos+")("+actual.x+","+actual.y+") on Path");
       pos++;
       if(pos<path.size())
         {
         entity.setPathPosition(pos);
         actual=path.get(pos);
-        Logger.trace("Path::followPath","D","Moving to waypoint("+pos+")("+actual.x+","+actual.y+") on Path from ("+entity.getx()+","+entity.gety()+")");
+        logger.debug("Moving to waypoint("+pos+")("+actual.x+","+actual.y+") on Path from ("+entity.getx()+","+entity.gety()+")");
         moveto(entity,actual.x, actual.y,speed);
         return false;
         }
@@ -283,7 +288,7 @@ public class Path
       }
     else
       {
-      Logger.trace("Path::followPath","D","Moving to waypoint("+pos+")("+actual.x+","+actual.y+") on Path from ("+entity.getx()+","+entity.gety()+")");
+      logger.debug("Moving to waypoint("+pos+")("+actual.x+","+actual.y+") on Path from ("+entity.getx()+","+entity.gety()+")");
       moveto(entity,actual.x, actual.y,speed);
       return false;
       }

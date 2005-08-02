@@ -12,27 +12,31 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.common.net.*;
-import marauroa.server.game.*;
-
-import games.stendhal.common.*;
-import games.stendhal.server.entity.*;
-
+import games.stendhal.common.CRC;
+import games.stendhal.common.CollisionDetection;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Food;
+import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.creature.*;
+import games.stendhal.server.entity.npc.NPC;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-
-import java.util.*;
 import java.io.*;
-import java.net.*;
+import java.util.LinkedList;
+import java.util.List;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObjectInvalidException;
+import marauroa.common.net.TransferContent;
+import marauroa.server.game.MarauroaRPZone;
+import org.apache.log4j.Logger;
 
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.entity.creature.*;
-
-public class StendhalRPZone extends MarauroaRPZone 
+public class StendhalRPZone extends MarauroaRPZone
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(StendhalRPZone.class);
+  
   private List<TransferContent> contents;
 
   private List<String> entryPoints;
@@ -43,7 +47,7 @@ public class StendhalRPZone extends MarauroaRPZone
   private List<RespawnPoint> respawnPoints;
   private List<Food> foodItems;
   
-  private CollisionDetection collisionMap;
+  public  CollisionDetection collisionMap;
   private int width;
   private int height;
 
@@ -167,13 +171,13 @@ public class StendhalRPZone extends MarauroaRPZone
       {
       // NOTE: If any of the above is true, then it just put object on the first zone change point.
       String[] components=zoneChangePoints.get(0).split(",");
-      Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Player zone change default: "+components);
+      logger.debug("Player zone change default: "+components);
       object.setx(Integer.parseInt(components[0]));
       object.sety(Integer.parseInt(components[1]));
       return;
       }
     
-    Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Player exit direction: "+exitDirection);
+    logger.debug("Player exit direction: "+exitDirection);
     
     int x=0;
     int y=0;
@@ -201,7 +205,7 @@ public class StendhalRPZone extends MarauroaRPZone
       y=object.gety();
       }
 
-    Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Player entry point: ("+x+","+y+")");
+    logger.debug("Player entry point: ("+x+","+y+")");
 
     for(String point: zoneChangePoints)
       {
@@ -211,13 +215,13 @@ public class StendhalRPZone extends MarauroaRPZone
       
       if((px-x)*(px-x)+(py-y)*(py-y)<distance)
         {
-        Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Best entry point: ("+px+","+py+") --> "+distance);
+        logger.debug("Best entry point: ("+px+","+py+") --> "+distance);
         distance=(px-x)*(px-x)+(py-y)*(py-y);
         minpoint=point;
         }
       }
       
-    Logger.trace("StendhalRPZone::placeObjectAtZoneChangePoint","D","Choosen entry point: ("+minpoint+") --> "+distance);
+    logger.debug("Choosen entry point: ("+minpoint+") --> "+distance);
     String[] components=minpoint.split(",");
     object.setx(Integer.parseInt(components[0]));
     object.sety(Integer.parseInt(components[1]));
@@ -226,7 +230,7 @@ public class StendhalRPZone extends MarauroaRPZone
   
   public void addLayer(String name, String filename) throws IOException
     {
-    Logger.trace("StendhalRPZone::addLayer",">");
+    Log4J.startMethod(logger,"addLayer");
     TransferContent content=new TransferContent();
     content.name=name;
     content.cacheable=true;
@@ -234,28 +238,28 @@ public class StendhalRPZone extends MarauroaRPZone
     content.timestamp=CRC.cmpCRC(content.data);
     
     contents.add(content);
-    Logger.trace("StendhalRPZone::addLayer","<");
+    Log4J.finishMethod(logger,"addLayer");
     }
 
   public void addCollisionLayer(String name, String filename) throws IOException
     {
-    Logger.trace("StendhalRPZone::addCollisionLayer",">");
+    Log4J.startMethod(logger,"addCollisionLayer");
     TransferContent content=new TransferContent();
     content.name=name;
     content.cacheable=true;
-    Logger.trace("StendhalRPZone::addLayer","D",Integer.toString(content.timestamp));
+    logger.debug("Layer timestamp: "+Integer.toString(content.timestamp));
     content.data=getBytesFromFile(filename);
     content.timestamp=CRC.cmpCRC(content.data);
     
     contents.add(content);
     
     collisionMap.setCollisionData(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename))); //new FileReader(filename));
-    Logger.trace("StendhalRPZone::addCollisionLayer","<");    
+    Log4J.finishMethod(logger,"addCollisionLayer");
     }
   
   public void populate(String filename) throws IOException, RPObjectInvalidException
     {
-    Logger.trace("StendhalRPZone::populate",">");
+    Log4J.startMethod(logger,"populate");
     
     InputStream in=getClass().getClassLoader().getResourceAsStream(filename);
     BufferedReader file=new BufferedReader(new InputStreamReader(in));
@@ -283,7 +287,7 @@ public class StendhalRPZone extends MarauroaRPZone
         }
       }
 
-    Logger.trace("StendhalRPZone::populate","<");
+    Log4J.finishMethod(logger,"populate");
     }
   
   protected void createEntityAt(int type, int x, int y)
@@ -408,7 +412,7 @@ public class StendhalRPZone extends MarauroaRPZone
       }
     catch(AttributeNotFoundException e)
       {
-      Logger.thrown("StendhalRPZone::populate","X",e);
+      logger.error("error creating entity "+type+" at ("+x+","+y+")",e);
       }
     }
     
@@ -476,7 +480,7 @@ public class StendhalRPZone extends MarauroaRPZone
     
     if(is==null)
       {
-      Logger.trace("StendhalRPZone::init","X", "cannot find file "+file);
+      logger.warn("cannot find file "+file);
       throw new FileNotFoundException(file);
       }
     

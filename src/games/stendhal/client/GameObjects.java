@@ -12,21 +12,22 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
 import games.stendhal.client.entity.*;
-import games.stendhal.common.*;
-
-import java.util.*;
-import java.awt.Graphics;
-import java.awt.geom.*;
+import games.stendhal.common.Pair;
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.*;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
+import org.apache.log4j.Logger;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects 
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(GameObjects.class);
+  
   private static Map<Pair<String,String>, Class> entityMap;
   
   static
@@ -135,9 +136,7 @@ public class GameObjects
       }
     catch(Exception e)
       {
-      Logger.trace("GameObjects::entityType","X",object.toString());
-      Logger.thrown("GameObjects::entityType","X",e);
-      for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
+      logger.error("cannot create entity for object "+object,e);
       return null;
       }
     }
@@ -159,9 +158,7 @@ public class GameObjects
       }
     catch(Exception e)
       {
-      Logger.trace("GameObjects::entityType","X",object.toString());
-      Logger.thrown("GameObjects::entityType","X",e);
-      for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
+      logger.error("cannot create sprite for object "+object,e);
       return null;
       }
     }
@@ -246,7 +243,7 @@ public class GameObjects
   /** Add a new Entity to the game */  
   public void add(RPObject object) throws AttributeNotFoundException
     {
-    Logger.trace("GameObjects::add",">");
+    Log4J.startMethod(logger,"add");
 
     Entity entity=entityType(object);
     // HACK: The first time the object is EMPTY! 
@@ -255,8 +252,8 @@ public class GameObjects
     objects.put(entity.getID(),entity);
     sortObjects.add(entity);
     
-    Logger.trace("GameObjects::add","D",entity.toString());
-    Logger.trace("GameObjects::add","<");
+    logger.debug("added "+entity);
+    Log4J.finishMethod(logger,"add");
     }
   
   public void addText(Entity speaker, String text, Color color)
@@ -307,31 +304,31 @@ public class GameObjects
   /** Modify a existing Entity so its propierties change */  
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    Logger.trace("GameObjects::modifyAdded",">");
+    Log4J.startMethod(logger,"modifyAdded");
     Entity entity=objects.get(object.getID());
     if(entity!=null)
       {
       entity.modifyAdded(object, changes);
       }
       
-    Logger.trace("GameObjects::modifyAdded","<");
+    Log4J.finishMethod(logger,"modifyAdded");
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    Logger.trace("GameObjects::modifyRemoved",">");
+    Log4J.startMethod(logger,"modifyRemoved");
     Entity entity=objects.get(object.getID());
     if(entity!=null)
       {
       entity.modifyRemoved(object, changes);
       }
       
-    Logger.trace("GameObjects::modifyRemoved","<");
+    Log4J.finishMethod(logger,"modifyRemoved");
     }
 
   public void attack(RPEntity source, RPObject.ID target, int risk, int damage) throws AttributeNotFoundException
     {
-    Logger.trace("GameObjects::damage",">");
+    Log4J.startMethod(logger,"attack");
     Entity entity=objects.get(target);
     if(entity!=null && entity instanceof RPEntity)
       {
@@ -339,12 +336,12 @@ public class GameObjects
       rpentity.onAttack(source,risk, damage);
       }
       
-    Logger.trace("GameObjects::damage","<");
+    Log4J.finishMethod(logger,"attack");
     }
 
   public void attackStop(RPEntity source, RPObject.ID target) throws AttributeNotFoundException
     {
-    Logger.trace("GameObjects::damage",">");
+    Log4J.startMethod(logger,"attackStop");
     Entity entity=objects.get(target);
     if(entity!=null && entity instanceof RPEntity)
       {
@@ -352,7 +349,7 @@ public class GameObjects
       rpentity.onAttackStop(source);
       }
       
-    Logger.trace("GameObjects::damage","<");
+    Log4J.finishMethod(logger,"attackStop");
     }
   
   public boolean has(Entity entity)
@@ -368,8 +365,8 @@ public class GameObjects
   /** Removes a Entity from game */
   public void remove(RPObject.ID id)
     {
-    Logger.trace("GameObjects::remove",">");
-    Logger.trace("GameObjects::remove","D",id.toString());
+    Log4J.startMethod(logger,"remove");
+    logger.debug("removed "+id);
 
     Entity entity=objects.get(id);
     if(entity!=null)
@@ -379,17 +376,17 @@ public class GameObjects
 
     Entity object=objects.remove(id);
     sortObjects.remove(object);
-    Logger.trace("GameObjects::remove","<");
+    Log4J.finishMethod(logger,"remove");
     }
   
   /** Removes all the object entities */
   public void clear()
     {
-    Logger.trace("GameObjects::clear",">");
+    Log4J.startMethod(logger,"clear");
     objects.clear();
     sortObjects.clear();
     texts.clear();
-    Logger.trace("GameObjects::clear","<");
+    Log4J.finishMethod(logger,"clear");
     }
   
   private boolean collides(Entity entity)
@@ -447,8 +444,7 @@ public class GameObjects
       }
     catch(ConcurrentModificationException e)
       {
-      Logger.thrown("GameObjects::drawText","X",e);
-      for(StackTraceElement line: e.getStackTrace()) StendhalClient.get().addEventLine(line.toString(),Color.gray);
+      logger.error("cannot draw text",e);
       }
     }
   }

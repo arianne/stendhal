@@ -12,17 +12,20 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.common.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
-import java.io.*;
-
-import marauroa.common.*;
+import games.stendhal.common.CollisionDetection;
+import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.LinkedList;
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
 
 /** This class stores the layers that make the floor and the buildings */
 public class StaticGameLayers
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(StaticGameLayers.class);
+  
   static class Pair<X>
     {
     public String name;
@@ -101,7 +104,7 @@ public class StaticGameLayers
   /** Add a new Layer to the set */
   public void addLayer(Reader reader, String name) throws IOException
     {
-    Logger.trace("StaticGameLayers::addLayer",">");
+    Log4J.startMethod(logger, "addLayer");
     try 
       {
       if(!name.contains("collision"))
@@ -136,7 +139,7 @@ public class StaticGameLayers
       }
     finally
       {
-      Logger.trace("StaticGameLayers::addLayer","<");
+      Log4J.finishMethod(logger, "addLayer");
       }
     }
 
@@ -160,17 +163,17 @@ public class StaticGameLayers
   /** Removes all layers */
   public void clear()
     {
-    Logger.trace("StaticGameLayers::clear",">");
+    Log4J.startMethod(logger, "clear");
     layers.clear();
-    Logger.trace("StaticGameLayers::clear","<");
+    Log4J.finishMethod(logger, "clear");
     }
   
   /** Set the set of layers that is going to be rendered */
   public void setRPZoneLayersSet(String area)
     {
-    Logger.trace("StaticGameLayers::setRPZoneLayersSet",">");
+    Log4J.startMethod(logger, "setRPZoneLayersSet");
     this.area=area;
-    Logger.trace("StaticGameLayers::setRPZoneLayersSet","<");
+    Log4J.finishMethod(logger, "setRPZoneLayersSet");
     }
   
   public String getRPZoneLayerSet()

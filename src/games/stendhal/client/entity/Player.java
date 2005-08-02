@@ -12,17 +12,27 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
-import games.stendhal.client.*;
-
-import java.awt.*;
-import java.awt.geom.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
+import org.apache.log4j.Logger;
 
 
 /** A Player entity */
 public class Player extends Speaker
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Player.class);
+  
   private int outfit;
   
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
@@ -78,7 +88,7 @@ public class Player extends Speaker
       }
     catch(Exception e)
       {
-      Logger.thrown("Player::buildAnimations","X",e);
+      logger.error("cannot build Animations",e);
       object.put("outfit",0);
       player=setOutFitPlayer(store,object);            
       }

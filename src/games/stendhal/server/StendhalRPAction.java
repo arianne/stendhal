@@ -11,24 +11,27 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server;
-
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-
-import games.stendhal.common.*;
-import games.stendhal.server.entity.*;
-
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-import java.util.*;
-
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.entity.creature.*;
+import games.stendhal.common.Direction;
+import games.stendhal.common.Rand;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Sheep;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPObjectNotFoundException;
+import marauroa.server.game.NoRPZoneException;
+import marauroa.server.game.RPServerManager;
+import marauroa.server.game.RPWorld;
+import org.apache.log4j.Logger;
 
 public class StendhalRPAction
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(StendhalRPAction.class);
+  
   private static RPServerManager rpman;
   private static StendhalRPRuleProcessor rules;
   private static RPWorld world;
@@ -66,7 +69,7 @@ public class StendhalRPAction
 
   public static boolean attack(RPEntity source,RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
-    Logger.trace("StendhalRPAction::attack",">");
+    Log4J.startMethod(logger, "attack");
     try
       {
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(source.getID());
@@ -97,7 +100,7 @@ public class StendhalRPAction
           risk=source.getATK()-target.getDEF()+roll-10;
           }
         
-        Logger.trace("StendhalRPAction::attack","D","Risk to strike: "+risk);
+        logger.debug("attack: Risk to strike: "+risk);
         source.put("risk",risk);
 
         int damage=0;
@@ -143,7 +146,7 @@ public class StendhalRPAction
             {
             target.onDamage(source,damage);
             source.put("damage",damage);
-            Logger.trace("StendhalRPAction::attack","D","Damage done: "+(damage>0?damage:0));
+            logger.debug("attack: Damage done: "+damage);
             }
           else // Blocked
             {
@@ -165,13 +168,13 @@ public class StendhalRPAction
       }
     finally
       {
-      Logger.trace("StendhalRPAction::attack","<");
+      Log4J.finishMethod(logger, "attack");
       }
     }
 
   public static void move(RPEntity entity) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPAction::move",">");
+    Log4J.startMethod(logger, "move");
     try
       {
       if(entity.stopped())
@@ -181,7 +184,7 @@ public class StendhalRPAction
 
       if(!entity.isMoveCompleted())
         {
-        Logger.trace("StendhalRPAction::move","D","("+entity.get("type")+") move not completed");
+        logger.debug(entity.get("type")+") move not completed");
         return;
         }
 
@@ -196,7 +199,7 @@ public class StendhalRPAction
 
       if(zone.collides(entity,x+dx,y+dy)==false)
         {
-        Logger.trace("StendhalRPAction::move","D","Moving from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
+        logger.debug("Moving from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
 
         entity.setx(x+dx);
         entity.sety(y+dy);
@@ -221,7 +224,7 @@ public class StendhalRPAction
             {
             if(zone.leavesZone(player,x+dx,y+dy))
               {
-              Logger.trace("StendhalRPAction::move","D","Leaving zone from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
+              logger.debug("Leaving zone from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
               decideChangeZone(player);
               player.stop();
               world.modify(player);
@@ -232,7 +235,7 @@ public class StendhalRPAction
               {
               if(player.nextto(portal,0.25) && player.facingto(portal))
                 {
-                Logger.trace("StendhalRPAction::move","D","Using portal "+portal);
+                logger.debug("Using portal "+portal);
                 if(usePortal(player, portal))
                   {
                   transferContent(player);
@@ -244,7 +247,7 @@ public class StendhalRPAction
           }
 
         /* Collision */
-        Logger.trace("StendhalRPAction::move","D","Collision: at ("+(x+dx)+","+(y+dy)+")");
+        logger.debug("Collision at ("+(x+dx)+","+(y+dy)+")");
         entity.collides(true);
 
         entity.stop();
@@ -253,18 +256,18 @@ public class StendhalRPAction
       }
     finally
       {
-      Logger.trace("StendhalRPAction::move","<");
+      Log4J.finishMethod(logger, "move");
       }
     }
 
   public static void transferContent(Player player) throws AttributeNotFoundException
     {
-    Logger.trace("StendhalRPAction::transferContent",">");
+    Log4J.startMethod(logger, "transferContent");
 
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
     rpman.transferContent(player.getID(),zone.getContents());
 
-    Logger.trace("StendhalRPAction::transferContent","<");
+    Log4J.finishMethod(logger, "transferContent");
     }
 
   public static void decideChangeZone(Player player) throws AttributeNotFoundException, NoRPZoneException
@@ -313,13 +316,13 @@ public class StendhalRPAction
       }
     else
       {
-      Logger.trace("StendhalRPAction::decideChangeZone","D","Unable to choose a new zone ("+zone.getWidth()+","+zone.getHeight()+")");
+      logger.warn("Unable to choose a new zone ("+zone.getWidth()+","+zone.getHeight()+")");
       }
     }
 
   public static boolean usePortal(Player player, Portal portal) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPAction::usePortal",">");
+    Log4J.startMethod(logger, "usePortal");
 
     if(!player.nextto(portal,0.25)) // Too far to use the portal
       {
@@ -351,13 +354,13 @@ public class StendhalRPAction
 
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
 
-    Logger.trace("StendhalRPAction::usePortal","D","Place player");
+    logger.debug("Place player");
     placeat(zone,player,dest.getInt("x"),dest.getInt("y"));
     player.stop();
 
     if(player.hasSheep())
       {
-      Logger.trace("StendhalRPAction::usePortal","D","Place sheep");
+      logger.debug("Place sheep");
       Sheep sheep=(Sheep)world.get(player.getSheep());
       placeat(zone,sheep,player.getInt("x")+1,player.getInt("y")+1);
       sheep.clearPath();
@@ -367,7 +370,7 @@ public class StendhalRPAction
     /* There isn't any world.modify because there is already considered inside
      * the implicit world.add call at changeZone */
 
-    Logger.trace("StendhalRPAction::usePortal","<");
+    Log4J.finishMethod(logger, "usePortal");
     return true;
     }
 
@@ -391,7 +394,7 @@ public class StendhalRPAction
           }
         }
 
-      Logger.trace("StendhalRPAction::placeat","D","Unable to place "+entity+" at ("+x+","+y+")");
+      logger.debug("Unable to place "+entity+" at ("+x+","+y+")");
       }
     else
       {
@@ -402,7 +405,7 @@ public class StendhalRPAction
 
   public static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException
     {
-    Logger.trace("StendhalRPAction::changeZone",">");
+    Log4J.startMethod(logger, "changeZone");
 
     String source=player.getID().getZoneID();
 
@@ -442,6 +445,6 @@ public class StendhalRPAction
     /* There isn't any world.modify because there is already considered inside
      * the implicit world.add call at changeZone */
 
-    Logger.trace("StendhalRPAction::changeZone","<");
+    Log4J.finishMethod(logger, "changeZone");
     }
   }
