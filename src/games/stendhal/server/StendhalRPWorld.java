@@ -29,6 +29,8 @@ public class StendhalRPWorld extends RPWorld
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(StendhalRPWorld.class);
   
+  /** The pathfinder thread.*/
+  private PathfinderThread pathfinderThread;
   
   public StendhalRPWorld() throws Exception
     {
@@ -38,6 +40,15 @@ public class StendhalRPWorld extends RPWorld
     createRPClasses();
     Log4J.finishMethod(logger,"StendhalRPWorld");
     }
+  
+  /** 
+   * Returns the pathfinder. The return value is undefined until onInit() is
+   * called.
+   */
+  public PathfinderThread getPathfinder()
+  {
+    return pathfinderThread;
+  }
   
   private void createRPClasses()
     {
@@ -70,6 +81,10 @@ public class StendhalRPWorld extends RPWorld
   
   public void onInit() throws Exception
     {
+    // create the pathfinder thread and start it
+    pathfinderThread = new PathfinderThread(this);
+    pathfinderThread.start();
+
     addArea("village");
     addArea("tavern");
     addArea("city");

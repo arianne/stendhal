@@ -19,6 +19,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Shield;
 import games.stendhal.server.entity.item.Weapon;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,6 +51,23 @@ public abstract class RPEntity extends Entity
   private int hp;
   private int xp;
   private int level;
+  
+  /** List of all attackers of this entity */
+  private List<RPEntity> attackSource;
+  /** current target */
+  private RPEntity attackTarget;
+
+  private Map<RPEntity,Integer> damageReceived;
+  private int totalDamageReceived;
+  
+  
+  /** the path */
+  private List<Path.Node> path;
+  /** current position in the path */
+  private int pathPosition;
+  /** true if the path is a loop */
+  private boolean pathLoop;
+  
 
   public static void generateRPClass()
     {
@@ -273,12 +291,6 @@ public abstract class RPEntity extends Entity
     return xp;
     }
 
-  private List<RPEntity> attackSource;
-  private RPEntity attackTarget;
-
-  private Map<RPEntity,Integer> damageReceived;
-  private int totalDamageReceived;
-
   /** Modify the entity to order to attack the target entity */
   public void attack(RPEntity target)
     {
@@ -362,7 +374,7 @@ public abstract class RPEntity extends Entity
     }
 
   /** This method is called when the entity has been killed ( hp==0 ).
-   * For almost wverything remove is true and the creature is removed
+   * For almost everything remove is true and the creature is removed
    * from the world, except for the players...
    */
   protected void onDead(RPEntity who, boolean remove)
@@ -448,12 +460,15 @@ public abstract class RPEntity extends Entity
     return attackTarget;
     }
 
-  private List<Path.Node> path;
-  private int pathPosition;
-  private boolean pathLoop;
-
-
-  /** Set a path to follow for this entity */
+  /**
+   * Set a path to follow for this entity. A previos path is cleared and the
+   * entity starts at the first node (so the first node should be its position,
+   * of course)
+   * @param path list of connected nodes
+   * @param cycle true, the entity will resume at the start of the path when
+   *              finished; false, it will stop at the last node (and clear the
+   *              path)
+   */
   public void setPath(List<Path.Node> path, boolean cycle)
     {
     this.path=path;
@@ -461,9 +476,32 @@ public abstract class RPEntity extends Entity
     this.pathLoop=cycle;
     }
 
+  /**
+   * Adds some nodes to the path to follow for this entity.
+   * The current path-position is kept.
+   */
+  public void addToPath(List<Path.Node> pathNodes)
+  {
+    if (path == null)
+    {
+      path = new ArrayList<Path.Node>();
+    }
+    
+    path.addAll(pathNodes);
+  }
+  
+  /**
+   * Sets the loop-flag of the path. Note that the path should be closed.
+   */
+  public void setPathLoop(boolean loop)
+  {
+    this.pathLoop = loop;
+  }
+
   public void clearPath()
     {
     this.path=null;
+    this.pathPosition = 0;
     }
 
   public boolean hasPath()

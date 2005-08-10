@@ -29,7 +29,7 @@ public class Path
   private static final Logger logger = Log4J.getLogger(Path.class);
 
   private static RPServerManager rpman;
-  private static RPWorld world;
+  private static StendhalRPWorld world;
   private static StepCallback callback;
   
   /** The maximum time spent on a search for one particular path (in ms) */
@@ -51,8 +51,8 @@ public class Path
 
   public static void initialize(RPServerManager rpman, RPWorld world)
     {
-    Path.rpman=rpman;
-    Path.world=world;
+    Path.rpman = rpman;
+    Path.world = (StendhalRPWorld) world;
     }
   
   /**
@@ -97,89 +97,6 @@ public class Path
       }
 
     world.modify(entity);
-    }
-
-  static class NavigableStendhalNode implements Navigable
-    {
-    private Entity entity;
-    private Entity dest;
-    private StendhalRPZone zone;
-    private Pathfinder.Node startNode;
-    private Pathfinder.Node endNode;
-    /** The best direct distance from the start to the end */
-    private double bestDistance;
-    /** The max cost the path may have. It is identical to the steps needed. */
-    private double maxCost;
-
-    public NavigableStendhalNode(Entity entity, int x1, int y1, int x2, int y2, StendhalRPZone zone)
-      {
-      this.maxCost = 0;
-      this.zone=zone;
-      this.entity=entity;
-      this.startNode = new Pathfinder.Node(x1,y1);
-      this.endNode = new Pathfinder.Node(x2,y2);
-      this.bestDistance = getHeuristic(startNode,endNode);
-      }
-
-    public NavigableStendhalNode(Entity entity, Entity dest, StendhalRPZone zone)
-      {
-      this(entity,entity.getx(), entity.gety(), dest.getx(),dest.gety(),zone);
-      this.dest=dest;
-      }
-    
-    public void setMaxCost(double cost)
-    {
-      this.maxCost = cost;
-    }
-
-    /** returns true if the pathfinder may use this tile for path calculation */
-    public boolean isValid(Pathfinder.Node node)
-      {
-      // return true if the destination is reached...even if it is an unpassable
-      // tile
-      if (node.x == endNode.x && node.y == endNode.y)
-        {
-        return true;
-        }
-      // if there is a max cost and the current path exceeds this length =>false
-      if (maxCost > 0 && (Math.abs(node.x-startNode.x) +  Math.abs(node.y-startNode.y) > maxCost))
-      //if (maxCost > 0 && node.parent.g > maxCost)
-        {
-        return false;
-        }
-      // Ask the zone if the tile is walkable for our entity
-      return !zone.collides(entity, node.getX(),node.getY());
-      }
-
-    /** returns the cost for the (adjected) tiles parent and child*/
-    public double getCost(Pathfinder.Node parent, Pathfinder.Node child)
-      {
-      //return Math.abs(parent.getX()-child.getX())+Math.abs(parent.getY()-child.getY());
-      return 1;
-      }
-
-    /**
-     * Returns the estimated distance from parent to child. Both nodes may be 
-     * anywhere on the field.
-     * Note: a small tie-breaker is added to the estimated distance
-     */
-    public double getHeuristic(Pathfinder.Node parent, Pathfinder.Node child)
-      {
-      // use small tie-breaker of 0.001
-      //(This is calculated: (min cost of one step) / (max expected path length)
-      return 1.001 * (Math.abs(parent.getX()-child.getX())+Math.abs(parent.getY()-child.getY()));
-      }
-
-    /** generates a unique id for the given node. */
-    public int createNodeID(Pathfinder.Node node)
-      {
-      return node.getY()*zone.getWidth()+node.getX();
-      }
-
-//    public int maxNumberOfNodes()
-//      {
-//      return (zone.getWidth()*zone.getHeight())/10;
-//      }
     }
 
   /** 
@@ -242,6 +159,32 @@ public class Path
    * @param dest the destination Entity
    * @return a list with the path nodes or an empty list if no path is found
    */
+  public static void searchPathAsynchonous(RPEntity entity, Entity dest)
+  {
+    boolean result = world.getPathfinder().queuePath(
+             new QueuedPath(
+                 new SimplePathListener(entity), 
+                 entity, 
+                 entity.getx(),
+                 entity.gety(),
+                 dest.getx(),
+                 dest.gety()
+                 )
+            );
+    
+    if (!result)
+    {
+      logger.warn("Pathfinder queue is full...path not added");
+    }
+  }
+  
+  
+  /** 
+   * Finds a path for the Entity <code>entity</code> to the other Entity <code>dest</code>.
+   * @param entity the Entity (also start point)
+   * @param dest the destination Entity
+   * @return a list with the path nodes or an empty list if no path is found
+   */
   public static List<Node> searchPath(Entity entity, Entity dest)
     {
     return searchPath(entity, (int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety());
@@ -296,7 +239,33 @@ public class Path
   
   /** this callback is called after every A* step. */
   public interface StepCallback
-    {
+  {
     public void stepDone(Pathfinder.Node lastNode);
+  }
+  
+  /** the threaded-pathfinder callback */
+  private static class SimplePathListener implements PathListener
+  {
+    /** the entity the path belongs to */
+    private RPEntity entity;
+    
+    /** 
+     * creates a new instance of SimplePathLister 
+     * @param entity the entity the path belongs to
+     */
+    public SimplePathListener(RPEntity entity)
+    {
+      this.entity = entity;
     }
+    
+    /** simply appends the calculated path to the entitys path */
+    public void onPathFinished(QueuedPath path, PathState state)
+    {
+      if (state == PathState.PATH_FOUND)
+      {
+        entity.addToPath(path.getPath());
+      }
+    }
+
+  }
   }

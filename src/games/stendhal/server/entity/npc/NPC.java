@@ -85,31 +85,73 @@ public abstract class NPC extends RPEntity
   private int escapeCollision;
 
 
-  public void setMovement(Entity entity, double min, double max)
+  /** 
+   * Moves to the given entity. When the distance to the destination more than
+   * <code>max</code> and this entity does not have a path already one is
+   * searched and saved.
+   * If the destination is less than min <code>min</code> the path is removed.
+   * <p>
+   * <b>Warning:</b> The pathfinder is not asynchonous, so this thread is blocked
+   *        until a path is found.
+   *
+   * @param destEntity the destination entity
+   * @param min minimum distance to have a path
+   * @param max minimum distance to find a path
+   */
+  public void setAsynchonousMovement(Entity destEntity, double min, double max)
+  {
+    int destX = destEntity.getx();
+    int destY = destEntity.gety();
+    if(nextto(destX,destY,min) && hasPath())
     {
-    if(nextto(entity.getx(),entity.gety(),min) && hasPath())
+      clearPath();
+    }
+
+    if(distance(destX,destY) > max && !hasPath())
+    {
+      Path.searchPathAsynchonous(this, destEntity);
+    }
+  }
+
+  /** 
+   * moves to the given entity. When the distance to the destination is between 
+   * <code>min</code> and <code>max</code> and this entity does not have a path 
+   * already one is searched and saved.
+   * <p>
+   * <b>Note:</b> When the distance to the destination is less than <code>min</code>
+   *        the path is removed.
+   * <b>Warning:</b> The pathfinder is not asynchonous, so this thread is blocked
+   *        until a path is found.
+   *
+   * @param destEntity the destination entity
+   * @param min minimum distance to the destination entity
+   * @param max maximum distance to the destination entity
+   */
+  public void setMovement(Entity destEntity, double min, double max)
+    {
+    if(nextto(destEntity.getx(),destEntity.gety(),min) && hasPath())
       {
-      logger.debug("Removing path because nextto("+entity.getx()+","+entity.gety()+","+min+") of ("+getx()+","+gety()+")");
+      logger.debug("Removing path because nextto("+destEntity.getx()+","+destEntity.gety()+","+min+") of ("+getx()+","+gety()+")");
       clearPath();
       }
 
-    if(distance(entity.getx(),entity.gety())>max && !hasPath())
+    if(distance(destEntity.getx(),destEntity.gety()) > max && !hasPath())
       {
-      logger.debug("Creating path because ("+getx()+","+gety()+") distance("+entity.getx()+","+entity.gety()+")>"+max);
-      List<Path.Node> path=Path.searchPath(this,entity);
+      logger.debug("Creating path because ("+getx()+","+gety()+") distance("+destEntity.getx()+","+destEntity.gety()+")>"+max);
+      List<Path.Node> path=Path.searchPath(this,destEntity);
       setPath(path,false);
       }
     }
 
+  /** follows the calculated path. */
   public void moveto(double speed)
-    {
+  {
     if(hasPath() && Path.followPath(this,speed))
-      {
-      logger.debug("Removing path because it is completed");
-      clearPath();
+    {
       stop();
-      }
+      clearPath();
     }
+  }
 
   public void moveRandomly(double speed)
     {

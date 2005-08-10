@@ -196,7 +196,7 @@ public class Sheep extends Creature
         {
         logger.debug("Sheep eats");
         setIdea("eat");
-        eat(food);        
+        eat(food);
         clearPath();
         stop();
         }
@@ -204,7 +204,8 @@ public class Sheep extends Creature
         {
         logger.debug("Sheep moves to food");
         setIdea("food");
-        setMovement(food,0,0);
+//        setMovement(food,0,0);
+        setAsynchonousMovement(food,0,0);
         moveto(SPEED);
         }
       }
@@ -218,7 +219,8 @@ public class Sheep extends Creature
       {
       logger.debug("Sheep(owner) moves to Owner");
       setIdea("follow");
-      setMovement(owner,0,0);
+//      setMovement(owner,0,0);
+      setAsynchonousMovement(owner,0,0);
       moveto(SPEED);
       }
     else
@@ -234,13 +236,20 @@ public class Sheep extends Creature
       logger.debug("Sheep(owner) moves to Owner");
       setIdea("follow");
       clearPath();
-      setMovement(owner,0,0);
+//      setMovement(owner,0,0);
+      setAsynchonousMovement(owner,0,0);
       moveto(SPEED);
       }
 
     if(!stopped())
       {
       StendhalRPAction.move(this);
+      // if we collided with something we stop and clear the path
+      if (collided())
+      {
+        stop();
+        clearPath();
+      }
       }
       
     world.modify(this);
