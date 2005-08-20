@@ -52,6 +52,8 @@ public class StendhalRPZone extends MarauroaRPZone
   private List<Food> foodItems;
   
   public  CollisionDetection collisionMap;
+  private NavigationPoints navigationMap;  
+  
   private int width;
   private int height;
 
@@ -267,6 +269,22 @@ public class StendhalRPZone extends MarauroaRPZone
     collisionMap.setCollisionData(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename))); //new FileReader(filename));
     Log4J.finishMethod(logger,"addCollisionLayer");
     }
+  
+  public void addNavigationLayer(String name, String filename) throws IOException
+    {
+    Log4J.startMethod(logger,"addNavigationLayer");
+   
+    TransferContent content=new TransferContent();
+    content.name=name;
+    content.cacheable=true;
+    content.data=getBytesFromFile(filename);
+    content.timestamp=CRC.cmpCRC(content.data);
+   
+    contents.add(content);
+   
+    navigationMap.setNavigationPoints(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename)));
+    Log4J.finishMethod(logger,"addNavigationLayer");
+    }  
   
   public void populate(String filename) throws IOException, RPObjectInvalidException
     {

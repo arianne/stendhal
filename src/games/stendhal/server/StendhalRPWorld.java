@@ -119,6 +119,7 @@ public class StendhalRPWorld extends RPWorld
     area.addLayer(name+"_2_object","games/stendhal/server/maps/"+name+"_2_object.stend");
     area.addLayer(name+"_3_roof","games/stendhal/server/maps/"+name+"_3_roof.stend");
     area.addCollisionLayer(name+"_collision","games/stendhal/server/maps/"+name+"_collision.stend");
+    area.addNavigationLayer(name+"_navigation","games/stendhal/server/maps/"+name+"_navigation.stend");
     area.populate("games/stendhal/server/maps/"+name+"_objects.stend");
     addRPZone(area);
 
