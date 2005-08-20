@@ -115,7 +115,9 @@ public class RespawnPoint
     Log4J.startMethod(logger, "respawn");
     try
       {
-      Creature newentity=entity.getClass().newInstance();
+      // Creature newentity = entity.getClass().newInstance();
+      String clazz = entity.get("class");
+      Creature newentity = zone.getWorld().getRuleManager().getEntityManager().getCreature(clazz);
 
 //      // We randomly modify the creature to up to 3 levels up
 //      int rand = (new Random()).nextInt(100);

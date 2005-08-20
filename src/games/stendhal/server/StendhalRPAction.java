@@ -108,7 +108,7 @@ public class StendhalRPAction
         source.incATKXP();
         
         if(risk>0) //Hit
-          {  
+          {
           target.incDEFXP();
           
           int weapon=0;
@@ -135,7 +135,7 @@ public class StendhalRPAction
             armor=target.getArmor().getDEF();
             }
           
-          for(int i=0;i<source.getDEF()+shield+armor*2;i++)
+          for(int i=0;i<target.getDEF()+shield+armor*2;i++)
             {
             damage-=Rand.roll1D6();
             }

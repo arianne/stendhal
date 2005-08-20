@@ -16,6 +16,7 @@ import games.stendhal.common.Level;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.npc.NPC;
+import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 import marauroa.common.Log4J;
@@ -23,7 +24,16 @@ import marauroa.common.game.*;
 import org.apache.log4j.Logger;
 
 
-public abstract class Creature extends NPC
+/** 
+ * Serverside representation of a creature.
+ * <p>
+ * A creature is defined as an entity which can move with certain speed,
+ * has life points (HP) and can die.
+ * <p>
+ * Not all creatures have to be hostile, but at the moment the default behavior 
+ * is to attack the player.
+ */
+public class Creature extends NPC
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Creature.class);
@@ -32,6 +42,12 @@ public abstract class Creature extends NPC
   private List<Path.Node> patrolPath;
   private RPEntity target;
 
+  /** the speed of this creature */
+  private double speed;
+  /** size in width of a tile */
+  private int size; 
+  
+  
   public static void generateRPClass()
     {
     try
@@ -52,6 +68,9 @@ public abstract class Creature extends NPC
     createPath();
     }
 
+  /** creates a new creature without properties. These must be set in the
+   * deriving class
+   */
   public Creature() throws AttributeNotFoundException
     {
     super();
@@ -59,6 +78,34 @@ public abstract class Creature extends NPC
     createPath();
     }
 
+  /** creates a new creature with the given properties
+   */
+  public Creature(String clazz, int hp, int attack, int defense, int xp, int size, double speed) throws AttributeNotFoundException
+    {
+    super();
+    put("type","creature");
+    createPath();
+    
+    this.speed = speed;
+    this.size = size;
+
+    put("class",clazz);
+    put("x",0);
+    put("y",0);
+
+    setATK(attack);
+    setDEF(defense);
+    setXP(xp);
+    setbaseHP(hp);
+    setLevel(Level.getLevel(xp));
+
+    stop();
+
+    logger.debug("Created Orc: "+this);
+    
+    }
+  
+  
   protected void createPath()
     {
     /** TODO: Creat paths in other way */
@@ -69,74 +116,74 @@ public abstract class Creature extends NPC
     patrolPath.add(new Path.Node(0,6));
     }
 
-    /**
-     * This function compute how much percentage of hp (in average) a player will lose against a creature
-     * @param atk Attack stat of the creature
-     * @param def Defense stat of the creature
-     * @param hp Health Point stat of the creature
-     * @param level Level of the player
-     * @return double Percentage of remaining hp.
-     */
-  private static double leftTargetHPAverageCombat(int atk, int def, int hp, int level)
-    {
-    double patk = 2.0 + level/3.0; // Atk stat of a player of level level in average = 2 + level/3
-    double pdef = patk; // Def stat of a player of level level
-    double playerHp = 100.0 + (10.0 * level)/3.0; // HP Stat of a player of level level.
-    double maxHp = playerHp;
-    double creatureHP = hp;
-    double damageCreature = StendhalRPAction.averageDamageAttack(atk, def, patk, pdef); // Average damage dealed by the creature each turn
-    double damagePlayer = StendhalRPAction.averageDamageAttack(patk, pdef, atk, def); // Average damage dealed by the player each turn
-    /* We now compute how much hp the player will have once he killed the creature */
-    while(creatureHP > 0)
-      {
-      creatureHP -= damagePlayer;
-      playerHp -= damageCreature;
-      }
-    /* We return the percentage of remaining hp */
-    return (playerHp / maxHp);
-    }
+//    /**
+//     * This function compute how much percentage of hp (in average) a player will lose against a creature
+//     * @param atk Attack stat of the creature
+//     * @param def Defense stat of the creature
+//     * @param hp Health Point stat of the creature
+//     * @param level Level of the player
+//     * @return double Percentage of remaining hp.
+//     */
+//  private static double leftTargetHPAverageCombat(int atk, int def, int hp, int level)
+//    {
+//    double patk = 2.0 + level/3.0; // Atk stat of a player of level level in average = 2 + level/3
+//    double pdef = patk; // Def stat of a player of level level
+//    double playerHp = 100.0 + (10.0 * level)/3.0; // HP Stat of a player of level level.
+//    double maxHp = playerHp;
+//    double creatureHP = hp;
+//    double damageCreature = StendhalRPAction.averageDamageAttack(atk, def, patk, pdef); // Average damage dealed by the creature each turn
+//    double damagePlayer = StendhalRPAction.averageDamageAttack(patk, pdef, atk, def); // Average damage dealed by the player each turn
+//    /* We now compute how much hp the player will have once he killed the creature */
+//    while(creatureHP > 0)
+//      {
+//      creatureHP -= damagePlayer;
+//      playerHp -= damageCreature;
+//      }
+//    /* We return the percentage of remaining hp */
+//    return (playerHp / maxHp);
+//    }
+//
+//    /**
+//     * This function return the number of xp a creature should be given base on its stats;
+//     * @param atk Attack stat of the creature
+//     * @param def Defense stat of the creature
+//     * @param hp Health Point stat of the creature
+//     * @return Number of xp of the creature
+//     */
+//  public int getInitialXP(int atk, int def, int hp)
+//    {
+//    int level, minLevel, maxLevel;
+//    minLevel = 0;
+//    maxLevel = Level.maxLevel();
+//
+//    if(leftTargetHPAverageCombat(atk, def, hp, minLevel) >= 0.1) // If the creature is level 0 or less...
+//      {
+//      return Level.getXP(minLevel + 1) -1;
+//      }
+//    else if(leftTargetHPAverageCombat(atk, def, hp, maxLevel) <= 0.1) // If the creature is level 99 or more...
+//      {
+//      return Level.getXP(maxLevel) + 1;
+//      }
+//    else
+//      {
+//      while(maxLevel - minLevel > 1) // We de a dichotomic search to find what is the level of the creature
+//        {
+//        level = minLevel + ((maxLevel - minLevel)/2);
+//        if(leftTargetHPAverageCombat(atk, def, hp, level) < 0.1) minLevel = level;
+//        else maxLevel = level;
+//        }
+//      /* Now minLevel is the level of the creature and maxLevel is minLevel + 1
+//       * We now give the XP corresponding to this level.
+//       */
+//      if(minLevel != Level.maxLevel())
+//        {
+//        return Level.getXP(minLevel + 1) - 1;
+//        }
+//      return Level.getXP(minLevel) + 1;
+//      }
+//    }
 
-    /**
-     * This function return the number of xp a creature should be given base on its stats;
-     * @param atk Attack stat of the creature
-     * @param def Defense stat of the creature
-     * @param hp Health Point stat of the creature
-     * @return Number of xp of the creature
-     */
-  public static int getInitialXP(int atk, int def, int hp)
-    {
-    int level, minLevel, maxLevel;
-    minLevel = 0;
-    maxLevel = Level.maxLevel();
-
-    if(leftTargetHPAverageCombat(atk, def, hp, minLevel) >= 0.1) // If the creature is level 0 or less...
-      {
-      return Level.getXP(minLevel + 1) -1;
-      }
-    else if(leftTargetHPAverageCombat(atk, def, hp, maxLevel) <= 0.1) // If the creature is level 99 or more...
-      {
-      return Level.getXP(maxLevel) + 1;
-      }
-    else
-      {
-      while(maxLevel - minLevel > 1) // We de a dichotomic search to find what is the level of the creature
-        {
-        level = minLevel + ((maxLevel - minLevel)/2);
-        if(leftTargetHPAverageCombat(atk, def, hp, level) < 0.1) minLevel = level;
-        else maxLevel = level;
-        }
-      /* Now minLevel is the level of the creature and maxLevel is minLevel + 1
-       * We now give the XP corresponding to this level.
-       */
-      if(minLevel != Level.maxLevel())
-        {
-        return Level.getXP(minLevel + 1) - 1;
-        }
-      return Level.getXP(minLevel) + 1;
-      }
-    }
-
-   public void setRespawnPoint(RespawnPoint point)
+  public void setRespawnPoint(RespawnPoint point)
     {
     this.point=point;
     }
@@ -156,7 +203,16 @@ public abstract class Creature extends NPC
     super.onDead(who);
     }
 
-  public abstract double getSpeed();
+  public void getArea(Rectangle2D rect, double x, double y)
+    {
+    rect.setRect(x,y+size,1,1);
+    }
+
+  public double getSpeed()
+    {
+    return speed;
+    }
+
 
   private RPEntity getNearestPlayer(double range)
     {

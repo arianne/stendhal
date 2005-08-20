@@ -10,7 +10,7 @@ import games.stendhal.common.*;
 
 import games.stendhal.server.entity.*;
 
-abstract public class SpeakerNPC extends NPC 
+public abstract class SpeakerNPC extends NPC 
   {
   public SpeakerNPC(RPObject object) throws AttributeNotFoundException
     {

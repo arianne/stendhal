@@ -19,6 +19,8 @@ import games.stendhal.server.entity.Food;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.creature.*;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.rule.EntityManager;
+import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
@@ -36,6 +38,8 @@ public class StendhalRPZone extends MarauroaRPZone
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(StendhalRPZone.class);
+  /** the world */
+  private StendhalRPWorld world;
   
   private List<TransferContent> contents;
 
@@ -51,9 +55,11 @@ public class StendhalRPZone extends MarauroaRPZone
   private int width;
   private int height;
 
-  public StendhalRPZone(String name)
+  public StendhalRPZone(String name, StendhalRPWorld world)
     {
     super(name);
+    
+    this.world = world;
     
     contents=new LinkedList<TransferContent>();
     entryPoints=new LinkedList<String>();
@@ -74,6 +80,11 @@ public class StendhalRPZone extends MarauroaRPZone
   public void onFinish() throws Exception
     {
     }
+  
+  public StendhalRPWorld getWorld()
+  {
+    return world;
+  }
   
   public List<NPC> getNPCList()
     {
@@ -308,94 +319,6 @@ public class StendhalRPZone extends MarauroaRPZone
           addZoneChange(entryPoint);
           break;
           }
-        case 12: /* Rat */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Rat(),1);
-          respawnPoints.add(point);
-          
-          break;
-          }
-        case 13: /* Cave rat */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new CaveRat(),1);
-          respawnPoints.add(point);
-          
-          break;
-          }
-        case 14: /* Wolf */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Wolf(),1);
-          respawnPoints.add(point);
-  
-          break;
-          }
-        case 15: /* Cobra */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Cobra(),1);
-          respawnPoints.add(point);
-  
-          break;
-          }
-        case 16: /* Orc */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Orc(),1);
-          respawnPoints.add(point);
-  
-          break;
-          }
-        case 17: /* Gargoyle */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Gargoyle(),1);
-          respawnPoints.add(point);
-  
-          break;
-          }
-        case 18: /* Ogre */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Ogre(),1);
-          respawnPoints.add(point);
-  
-          break;
-          }
-        case 19: /* Kobold */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Kobold(),1);
-          respawnPoints.add(point);
-  
-          break;
-          }
-        case 20: /* Boar */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Boar(),1);
-          respawnPoints.add(point);
-  
-          break;
-          }
-        case 21: /* Troll */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Troll(),1);
-          respawnPoints.add(point);
-  
-          break;
-          }
-        case 22: /* Goblin */
-          {
-          RespawnPoint point=new RespawnPoint(x,y,2);
-          point.set(this, new Goblin(),1);
-          respawnPoints.add(point);
-  
-          break;
-          }
         case 92: /* Food */
           {
           Food food=new Food();
@@ -408,7 +331,118 @@ public class StendhalRPZone extends MarauroaRPZone
           foodItems.add(food);
           break;
           }
+        default:
+          {
+            if (type >= 0)
+            {
+              // get the default EntityManager
+              EntityManager manager = world.getRuleManager().getEntityManager();
+
+              // Is the entity a creature
+              if (manager.isCreature(type))
+              {
+                Creature creature = manager.getCreature(type);
+                RespawnPoint point = new RespawnPoint(x,y,2);
+                point.set(this, creature,1);
+                respawnPoints.add(point);
+              }
+              else
+              {
+                logger.warn("Unknown Entity (type: "+type+") at ("+x+","+y+") found");
+              }
+            }
+          break;
+          }
         }
+//        case 12: /* Rat */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Rat(),1);
+//          respawnPoints.add(point);
+//          
+//          break;
+//          }
+//        case 13: /* Cave rat */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new CaveRat(),1);
+//          respawnPoints.add(point);
+//          
+//          break;
+//          }
+//        case 14: /* Wolf */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Wolf(),1);
+//          respawnPoints.add(point);
+//  
+//          break;
+//          }
+//        case 15: /* Cobra */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Cobra(),1);
+//          respawnPoints.add(point);
+//  
+//          break;
+//          }
+//        case 16: /* Orc */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Orc(),1);
+//          respawnPoints.add(point);
+//  
+//          break;
+//          }
+//        case 17: /* Gargoyle */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Gargoyle(),1);
+//          respawnPoints.add(point);
+//  
+//          break;
+//          }
+//        case 18: /* Ogre */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Ogre(),1);
+//          respawnPoints.add(point);
+//  
+//          break;
+//          }
+//        case 19: /* Kobold */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Kobold(),1);
+//          respawnPoints.add(point);
+//  
+//          break;
+//          }
+//        case 20: /* Boar */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Boar(),1);
+//          respawnPoints.add(point);
+//  
+//          break;
+//          }
+//        case 21: /* Troll */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Troll(),1);
+//          respawnPoints.add(point);
+//  
+//          break;
+//          }
+//        case 22: /* Goblin */
+//          {
+//          RespawnPoint point=new RespawnPoint(x,y,2);
+//          point.set(this, new Goblin(),1);
+//          respawnPoints.add(point);
+//  
+//          break;
+//          }
+//        }
       }
     catch(AttributeNotFoundException e)
       {

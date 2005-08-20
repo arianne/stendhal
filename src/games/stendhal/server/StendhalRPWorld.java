@@ -19,6 +19,8 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.TrainingDummy;
+import games.stendhal.server.rule.RuleManager;
+import games.stendhal.server.rule.RuleSetFactory;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPClass;
 import marauroa.server.game.RPWorld;
@@ -32,22 +34,33 @@ public class StendhalRPWorld extends RPWorld
   /** The pathfinder thread.*/
   private PathfinderThread pathfinderThread;
   
+  /** The rule system manager */
+  private RuleManager ruleManager;
+  
   public StendhalRPWorld() throws Exception
     {
     super();
 
     Log4J.startMethod(logger,"StendhalRPWorld");
     createRPClasses();
+    ruleManager = RuleSetFactory.getRuleSet("dafault");
     Log4J.finishMethod(logger,"StendhalRPWorld");
     }
   
   /** 
    * Returns the pathfinder. The return value is undefined until onInit() is
    * called.
+   * @return the pathfinder
    */
   public PathfinderThread getPathfinder()
   {
     return pathfinderThread;
+  }
+  
+  /** returns the current rulemanager. */
+  public RuleManager getRuleManager()
+  {
+    return ruleManager;
   }
   
   private void createRPClasses()
@@ -100,7 +113,7 @@ public class StendhalRPWorld extends RPWorld
   
   private void addArea(String name) throws java.io.IOException
     {
-    StendhalRPZone area=new StendhalRPZone(name);
+    StendhalRPZone area=new StendhalRPZone(name, this);
     area.addLayer(name+"_0_floor","games/stendhal/server/maps/"+name+"_0_floor.stend");
     area.addLayer(name+"_1_terrain","games/stendhal/server/maps/"+name+"_1_terrain.stend");
     area.addLayer(name+"_2_object","games/stendhal/server/maps/"+name+"_2_object.stend");
