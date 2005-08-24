@@ -7,8 +7,9 @@
 
 package games.stendhal.server.rule;
 
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
 
 /**
  * Ruleset Interface for resolving Entities in Stendhal.
@@ -22,7 +23,7 @@ public interface EntityManager
    * @param id the tile id
    * @return the entity or <code>null</code>
    */
-  RPEntity getEntity(int id);
+  Entity getEntity(int id);
 
   /**
    * returns the entity or <code>null</code> if the class is unknown
@@ -30,7 +31,7 @@ public interface EntityManager
    * @return the entity or <code>null</code>
    * @throws NullPointerException if clazz is <code>null</code>
    */
-  RPEntity getEntity(String clazz) throws NullPointerException;
+  Entity getEntity(String clazz) throws NullPointerException;
 
   /**
    * return true if the Entity is a creature
@@ -55,10 +56,26 @@ public interface EntityManager
   Creature getCreature(int id);
 
   /** 
-   * returns the entity or <code>null</code> if the clazz is unknown 
+   * returns the creature or <code>null</code> if the clazz is unknown 
    * @param clazz the creature class
    * @return the creature or <code>null</code>
    * @throws NullPointerException if clazz is <code>null</code>
    */
   Creature getCreature(String clazz) throws NullPointerException;
+  
+  /** 
+   * returns the item or <code>null</code> if the id is unknown.
+   * @param id the tile id
+   * @return the item or <code>null</code>
+   */
+  Item getItem(int id);
+
+  /** 
+   * returns the item or <code>null</code> if the clazz is unknown 
+   * @param clazz the item class
+   * @return the item or <code>null</code>
+   * @throws NullPointerException if clazz is <code>null</code>
+   */
+  Item getItem(String clazz) throws NullPointerException;
+  
 }

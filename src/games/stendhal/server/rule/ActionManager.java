@@ -7,6 +7,9 @@
 
 package games.stendhal.server.rule;
 
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Equipable;
+
 /**
  * Ruleset Interface for processing actions in Stendhal.
  *
@@ -14,9 +17,8 @@ package games.stendhal.server.rule;
  */
 public interface ActionManager
 {
+  boolean onEquip(RPEntity entity, Equipable item);
+
   void onAttack();
-  void onHit();
-  void onDead();
-  void onEquip();
   void onTalk();
 }

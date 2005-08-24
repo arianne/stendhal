@@ -274,15 +274,21 @@ public class StendhalRPZone extends MarauroaRPZone
     {
     Log4J.startMethod(logger,"addNavigationLayer");
    
-    TransferContent content=new TransferContent();
-    content.name=name;
-    content.cacheable=true;
-    content.data=getBytesFromFile(filename);
-    content.timestamp=CRC.cmpCRC(content.data);
-   
-    contents.add(content);
-   
-    navigationMap.setNavigationPoints(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename)));
+    try
+    {
+      TransferContent content=new TransferContent();
+      content.name=name;
+      content.cacheable=true;
+      content.data=getBytesFromFile(filename);
+      content.timestamp=CRC.cmpCRC(content.data);
+
+      contents.add(content);
+      navigationMap.setNavigationPoints(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename)));
+    }
+    catch (FileNotFoundException fnfe)
+    {
+      logger.info("no navigation map for "+name+" found.", fnfe);
+    }
     Log4J.finishMethod(logger,"addNavigationLayer");
     }  
   
@@ -337,6 +343,23 @@ public class StendhalRPZone extends MarauroaRPZone
           addZoneChange(entryPoint);
           break;
           }
+        case 3: /* portal  */
+          break;
+        case 11: /* sheep  */
+          break;
+        case 71: /* the npcs  */
+        case 72:
+        case 73:
+        case 74:
+        case 75:
+        case 76:
+        case 77:
+        case 78:
+        case 79:
+        case 80:
+          break;
+        case 91: /* sign */
+          break;
         case 92: /* Food */
           {
           Food food=new Food();
@@ -372,95 +395,6 @@ public class StendhalRPZone extends MarauroaRPZone
           break;
           }
         }
-//        case 12: /* Rat */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Rat(),1);
-//          respawnPoints.add(point);
-//          
-//          break;
-//          }
-//        case 13: /* Cave rat */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new CaveRat(),1);
-//          respawnPoints.add(point);
-//          
-//          break;
-//          }
-//        case 14: /* Wolf */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Wolf(),1);
-//          respawnPoints.add(point);
-//  
-//          break;
-//          }
-//        case 15: /* Cobra */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Cobra(),1);
-//          respawnPoints.add(point);
-//  
-//          break;
-//          }
-//        case 16: /* Orc */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Orc(),1);
-//          respawnPoints.add(point);
-//  
-//          break;
-//          }
-//        case 17: /* Gargoyle */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Gargoyle(),1);
-//          respawnPoints.add(point);
-//  
-//          break;
-//          }
-//        case 18: /* Ogre */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Ogre(),1);
-//          respawnPoints.add(point);
-//  
-//          break;
-//          }
-//        case 19: /* Kobold */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Kobold(),1);
-//          respawnPoints.add(point);
-//  
-//          break;
-//          }
-//        case 20: /* Boar */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Boar(),1);
-//          respawnPoints.add(point);
-//  
-//          break;
-//          }
-//        case 21: /* Troll */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Troll(),1);
-//          respawnPoints.add(point);
-//  
-//          break;
-//          }
-//        case 22: /* Goblin */
-//          {
-//          RespawnPoint point=new RespawnPoint(x,y,2);
-//          point.set(this, new Goblin(),1);
-//          respawnPoints.add(point);
-//  
-//          break;
-//          }
-//        }
       }
     catch(AttributeNotFoundException e)
       {
