@@ -1,11 +1,7 @@
 /*
- * DefaultCreatures.java
+ * DefaultCreature.java
  *
  * Created on 19. August 2005, 22:25
- *
- * To change this template, choose Tools | Options and locate the template under
- * the Source Creation and Management node. Right-click the template and choose
- * Open. You can then make changes to the template in the Source Editor.
  */
 
 package games.stendhal.server.rule.defaultruleset;
@@ -37,7 +33,7 @@ public enum DefaultCreature
   TROLL     ("troll"    , 21,  40, 17,  9,   500, 1, 0.4),
   WOLF      ("wolf"     , 14,  30,  9,  4,   360, 1, 0.5);
 
-  /** Cerature class */
+  /** Creature class */
   private String clazz;
   /** Map Tile Id */
   private int tileid;
