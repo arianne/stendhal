@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * entity manager for the default ruleset
  * @author Matthias Totz
  */
 public class DefaultEntityManager implements EntityManager

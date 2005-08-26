@@ -7,7 +7,11 @@
 
 package games.stendhal.server.rule.defaultruleset;
 
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Equipable;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.ActionManager;
+import marauroa.common.game.RPSlot;
 
 /**
  *
@@ -15,14 +19,52 @@ import games.stendhal.server.rule.ActionManager;
  */
 public class DefaultActionManager implements ActionManager
 {
+  /** the singleton instance, lazy initialisation */
+  private static DefaultActionManager manager;
   
-  /** Creates a new instance of DefaultActionManager */
-  public DefaultActionManager()
+  /** no public constuctor */
+  private DefaultActionManager()
   {
   }
 
-  public boolean onEquip(games.stendhal.server.entity.RPEntity entity, games.stendhal.server.entity.item.Equipable item)
+  /** 
+   * returns the instance of this manager.
+   * Note: This method is synchonized.
+   */
+  public static synchronized DefaultActionManager getInstance()
   {
+    if (manager == null)
+    {
+      manager = new DefaultActionManager();
+    }
+    return manager;
+  }
+
+  /** return true if there is a free slot for this item */
+  public boolean onEquip(RPEntity entity, Equipable item)
+  {
+    // only item can be equiped at the moment
+    if (!(item instanceof Item))
+    {
+      return false;
+    }
+
+    // get all possible slots for this item
+    String[] slots = ((Equipable) item).getPossibleSlots();
+    
+    for (String slot : slots)
+    {
+      if (entity.hasSlot(slot))
+      {
+        RPSlot rpslot = entity.getSlot(slot);
+        if (rpslot.size() == 0)
+        {
+          rpslot.add((Item) item);
+          return true;
+        }
+      }
+    }
+    // No free slot found or no slot at all
     return false;
   }
 

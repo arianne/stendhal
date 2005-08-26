@@ -21,10 +21,10 @@ import java.util.Map;
 public enum DefaultItem
 {
 //       class    ,  type,     all possible slots,tileid,atk, def
-  SWORD ("sword" , "weapon", new String[] {"rhand"}, -1, new Pair<String, String>("atk","14")),
-  CLUB  ("club"  , "weapon", new String[] {"rhand"}, -1, new Pair<String, String>("atk","7")),
+  SWORD ("sword" , "weapon", new String[] {"rhand","lhand"}, -1, new Pair<String, String>("atk","14")),
+  CLUB  ("club"  , "weapon", new String[] {"rhand","lhand"}, -1, new Pair<String, String>("atk","7")),
   ARMOR ("armor" , "armor" , new String[] {"armor"}, -1, new Pair<String, String>("def","14")),
-  SHIELD("shield", "armor" , new String[] {"lhand"}, -1, new Pair<String, String>("def","7"));
+  SHIELD("shield", "armor" , new String[] {"lhand","rhand"}, -1, new Pair<String, String>("def","7"));
 
   /** items class */
   private String clazz;
@@ -40,6 +40,7 @@ public enum DefaultItem
   DefaultItem(String clazz, String type, String[] slots, int tileid, Pair<String, String> attribute)
   {
     this.clazz = clazz;
+    this.type = type;
     this.slots = slots;
     this.tileid = tileid;
     this.attributes = new HashMap<String, String>();
@@ -48,6 +49,7 @@ public enum DefaultItem
   DefaultItem(String clazz, String type, String[] slots, int tileid, List<Pair<String, String>> attributes)
   {
     this.clazz = clazz;
+    this.type = type;
     this.slots = slots;
     this.tileid = tileid;
     this.attributes = new HashMap<String, String>();
@@ -57,7 +59,7 @@ public enum DefaultItem
     }
   }
   
-  /** returns a creature-instance */
+  /** returns an item-instance */
   public Item getItem()
   {
     return new SimpleEquipableItem(clazz, type, slots, attributes);

@@ -78,7 +78,7 @@ public class city
     zone.assignRPObjectID(chest);
     chest.setx(44);
     chest.sety(60);
-    chest.add(new Sword());
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("sword"));
     zone.add(chest);
 
     

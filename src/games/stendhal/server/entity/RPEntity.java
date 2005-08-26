@@ -14,11 +14,9 @@ package games.stendhal.server.entity;
 
 import games.stendhal.common.Level;
 import games.stendhal.server.Path;
-import games.stendhal.server.entity.item.Armor;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Equipable;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.Shield;
-import games.stendhal.server.entity.item.Weapon;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -534,193 +532,128 @@ public abstract class RPEntity extends Entity
     this.pathPosition=pathPos;
     }
   
-  public boolean equip(Item item)
+  /** tries to equip the item in the appropriate slot. returns true if the item
+   * can be equipped, else false 
+   */
+  public boolean equip(Equipable item)
+  {
+    return world.getRuleManager().getActionManager().onEquip(this, item);
+  }
+
+  /** checks if an item of type <i>type</i> is equipped in slot <i>slot</i>
+   * returns true if it is, else false
+   */
+  private boolean checkSlotForEquipable(String slot, String type)
+  {
+    if(hasSlot(slot))
     {
-    if(item instanceof Armor)
+      // get slot if the this entity has one
+      RPSlot rpslot = getSlot(slot );
+      // traverse all slot items
+      for (RPObject item : rpslot)
       {
-      if(hasSlot("armor"))
+        // is it equipable
+        if(item instanceof Equipable)
         {
-        RPSlot slot=getSlot("armor");
-        if(slot.size()==0)      
+          Equipable equipable = (Equipable) item;
+          // is it the right type
+          if (equipable.isOfType(type))
           {
-          slot.assignValidID(item);
-          slot.add(item);
-          return true;
+            return true;
           }
         }
       }
-    else if(item instanceof Shield || item instanceof Weapon)
-      {
-      if(hasSlot("rhand"))
-        {
-        RPSlot slot=getSlot("rhand");
-        if(slot.size()==0)      
-          {
-          slot.assignValidID(item);
-          slot.add(item);
-          return true;
-          }
-        }
-      
-      if(hasSlot("lhand"))
-        {
-        RPSlot slot=getSlot("lhand");
-        if(slot.size()==0)      
-          {
-          slot.assignValidID(item);
-          slot.add(item);
-          return true;
-          }
-        }
-      }
-    
-    return false;
     }
+    // no slot, free slot or wrong item type
+    return false;
+  }
   
+  /** returns the first item of type <i>type</i> from the slot or <code>null</code>
+   * if the is no item with the requested type
+   * returns the item or null
+   */
+  private Equipable getFirstEquipableFromSlot(String slot, String type)
+  {
+    if(hasSlot(slot))
+    {
+      // get slot if the this entity has one
+      RPSlot rpslot = getSlot(slot );
+      // traverse all slot items
+      for (RPObject item : rpslot)
+      {
+        // is it equipable
+        if(item instanceof Equipable)
+        {
+          Equipable equipable = (Equipable) item;
+          // is it the right type
+          if (equipable.isOfType(type))
+          {
+            return equipable;
+          }
+        }
+      }
+    }
+    // no slot, free slot or wrong item type
+    return null;
+  }
+
+  /** returns true if the entity has a weapon equipped */
   public boolean hasWeapon()
+  {
+    return checkSlotForEquipable("lhand", "weapon") || checkSlotForEquipable("rhand", "weapon");
+  }
+  
+  public Equipable getWeapon()
+  {
+    Equipable equipable = getFirstEquipableFromSlot("lhand", "weapon");
+    if (equipable != null)
     {
-    if(hasSlot("rhand"))
-      {
-      RPSlot slot=getSlot("rhand");
-      if(slot.size()!=0)
-        {
-        Entity item=(Entity)slot.iterator().next();
-        if(item instanceof Weapon)
-          {
-          return true;
-          }
-        }
-      }
-      
-    if(hasSlot("lhand"))
-      {
-      RPSlot slot=getSlot("lhand");
-      if(slot.size()!=0)
-        {
-        Entity item=(Entity)slot.iterator().next();
-        if(item instanceof Weapon)
-          {
-          return true;
-          }
-        }
-      }
-      
-    return false;
+      return equipable;
     }
+    return getFirstEquipableFromSlot("rhand", "weapon");
+  }
   
-  public Weapon getWeapon()
-    {    
-    if(hasSlot("rhand"))
-      {
-      RPSlot slot=getSlot("rhand");
-      if(slot.size()!=0)
-        {
-        Entity item=(Entity)slot.iterator().next();
-        if(item instanceof Weapon)
-          {
-          return (Weapon)item;
-          }
-        }
-      }
-      
-    if(hasSlot("lhand"))
-      {
-      RPSlot slot=getSlot("lhand");
-      if(slot.size()!=0)
-        {
-        Entity item=(Entity)slot.iterator().next();
-        if(item instanceof Weapon)
-          {
-          return (Weapon)item;
-          }
-        }
-      }
-      
-    return null;
-    }
-  
+  /** returns true if the entity has a shield equipped */
   public boolean hasShield()
-    {
-    if(hasSlot("rhand"))
-      {
-      RPSlot slot=getSlot("rhand");
-      if(slot.size()!=0)
-        {
-        Entity item=(Entity)slot.iterator().next();
-        if(item instanceof Shield)
-          {
-          return true;
-          }
-        }
-      }
-      
-    if(hasSlot("lhand"))
-      {
-      RPSlot slot=getSlot("lhand");
-      if(slot.size()!=0)
-        {
-        Entity item=(Entity)slot.iterator().next();
-        if(item instanceof Shield)
-          {
-          return true;
-          }
-        }
-      }
-    
-    return false;
-    }
+  {
+    return checkSlotForEquipable("lhand", "armor") || checkSlotForEquipable("rhand", "armor");
+  }
   
-  public Shield getShield()
+  public Equipable getShield()
+  {
+    Equipable equipable = getFirstEquipableFromSlot("lhand", "armor");
+    if (equipable != null)
     {
-    if(hasSlot("rhand"))
-      {
-      RPSlot slot=getSlot("rhand");
-      if(slot.size()!=0)
-        {
-        Entity item=(Entity)slot.iterator().next();
-        if(item instanceof Shield)
-          {
-          return (Shield)item;
-          }
-        }
-      }
-      
-    if(hasSlot("lhand"))
-      {
-      RPSlot slot=getSlot("lhand");
-      if(slot.size()!=0)
-        {
-        Entity item=(Entity)slot.iterator().next();
-        if(item instanceof Shield)
-          {
-          return (Shield)item;
-          }
-        }
-      }
-      
-    return null;
+      return equipable;
     }
+    return getFirstEquipableFromSlot("rhand", "armor");
+  }
     
   public boolean hasArmor()
-    {
-    if(hasSlot("armor"))
-      {
-      RPSlot slot=getSlot("armor");
-      if(slot.size()!=0)
-        {
-        Entity item=(Entity)slot.iterator().next();
-        if(item instanceof Armor)
-          {
-          return true;
-          }
-        }
-      }
-    
-    return false;
-    }
+  {
+    return checkSlotForEquipable("armor", "armor");
+  }
   
-  public Armor getArmor()
+  public Equipable getArmor()
+  {
+    return getFirstEquipableFromSlot("armor", "armor");
+  }
+  
+  /** checks if the entity has at least one item of type <i>type</i> in one
+   * of the given slots
+   */
+  public boolean hasItem(String[] slots, String type)
+  {
+    boolean retVal;
+    for (String slot : slots)
     {
-    return (Armor)getSlot("armor").iterator().next();
+      retVal = checkSlotForEquipable(slot, type);
+      if (retVal)
+      {
+        return true;
+      }
     }
+    return false;
+  }
+  
   }

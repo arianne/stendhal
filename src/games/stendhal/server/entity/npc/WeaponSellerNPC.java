@@ -13,13 +13,12 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.Armor;
-import games.stendhal.server.entity.item.Club;
+import games.stendhal.server.entity.item.Equipable;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.Shield;
-import games.stendhal.server.entity.item.Sword;
+import games.stendhal.server.rule.defaultruleset.DefaultItem;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.IRPZone;
 import org.apache.log4j.Logger;
 
 
@@ -45,90 +44,55 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
     }
   
   private boolean sell(Player player, String itemName)
+  {
+    // find item in stock list
+    SellableItem[] items = SellableItem.values();
+    String uppercaseItemName = itemName.toUpperCase();
+    for (SellableItem itemEnum : items)
     {
-    if(itemName.equals("club") && !player.hasWeapon())
-      {      
-      if(player.getXP()<1000)
+      if (itemEnum.name().equals(uppercaseItemName))
+      {
+        // found it
+        Equipable item = itemEnum.getItem();
+        // has the player already one of these items?
+        if (!player.hasItem(item.getPossibleSlots(), item.getType()))
         {
-        say("A real pity! You don't have enough XP!");
-        return false;
+          if (player.getXP() < itemEnum.getPrice())
+          {
+            say("A real pity! You don't have enough XP!");
+            return false;
+          }
+          logger.debug("Selling a "+itemName+" to player "+player.getName());
+          
+          Item theItem = (Item) item;
+          theItem.put("zoneid",player.get("zoneid"));
+          IRPZone zone=world.getRPZone(getID());
+          zone.assignRPObjectID(theItem);
+          
+          if (player.equip(item))
+          {
+            player.setXP(player.getXP()-itemEnum.getPrice());
+            world.modify(player);
+
+            say("Congratulations! Here is your "+itemName+"!");
+            return true;
+          }
+          else
+          {
+            say("Sorry, but you cannot equip the "+itemName+".");
+          }
         }
-        
-      Item item=new Club();
-      logger.debug("Selling a "+itemName+" to player");
-      
-      item.put("zoneid",player.get("zoneid"));
-      player.equip(item);      
-      
-      player.setXP(player.getXP()-1000);
-      world.modify(player);
-  
-      say("Congratulations! Here is your "+itemName+"!");
-      return true;
-      }        
-    else if(itemName.equals("armor") && !player.hasArmor())
-      {      
-      if(player.getXP()<5000)
+        else
         {
-        say("A real pity! You don't have enough XP!");
-        return false;
+          say("you already have a "+item.getType()+". One is enough for you.");
         }
-        
-      Item item=new Armor();
-      logger.debug("Selling a "+itemName+" to player");
-  
-      item.put("zoneid",player.get("zoneid"));
-      player.equip(item);      
-      
-      player.setXP(player.getXP()-5000);
-      world.modify(player);
-  
-      say("Congratulations! Here is your "+itemName+"!");
-      return true;
-      }        
-    else if(itemName.equals("shield") && !player.hasShield())
-      {      
-      if(player.getXP()<10000)
-        {
-        say("A real pity! You don't have enough XP!");
+        // item found, but player cannot equip the item
         return false;
-        }
-        
-      Item item=new Shield();
-      logger.debug("Selling a "+itemName+" to player");
-  
-      item.put("zoneid",player.get("zoneid"));
-      player.equip(item);      
-      
-      player.setXP(player.getXP()-10000);
-      world.modify(player);
-  
-      say("Congratulations! Here is your "+itemName+"!");
-      return true;
-      }        
-    else if(itemName.equals("sword") && !player.hasWeapon())
-      {      
-      if(player.getXP()<20000)
-        {
-        say("A real pity! You don't have enough XP!");
-        return false;
-        }
-        
-      Item item=new Sword();
-      logger.debug("Selling a "+itemName+" to player");
-  
-      item.put("zoneid",player.get("zoneid"));
-      player.equip(item);      
-      
-      player.setXP(player.getXP()-20000);
-      world.modify(player);
-  
-      say("Congratulations! Here is your "+itemName+"!");
-      return true;
-      }        
-    
-    return false;
+      }
     }
+    // item not found
+    return false;
+  }
 
   public boolean chat(Player player) throws AttributeNotFoundException
     {
@@ -186,4 +150,32 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
     
     return false;
     }
+  
+  /** all item this npc sells */
+  private enum SellableItem
+  {
+    CLUB  (1000 ,(Equipable) DefaultItem.CLUB.getItem()),
+    ARMOR (5000 ,(Equipable) DefaultItem.ARMOR.getItem()),
+    SHIELD(10000,(Equipable) DefaultItem.SHIELD.getItem()),
+    SWORD (20000,(Equipable) DefaultItem.SWORD.getItem());
+    
+    private int price;
+    private Equipable item;
+    
+    private SellableItem(int price, Equipable item)
+    {
+      this.price = price;
+      this.item  = item;
+    }
+
+    public int getPrice()
+    {
+      return price;
+    }
+
+    public Equipable getItem()
+    {
+      return item;
+    }
+  }
   }

@@ -19,4 +19,9 @@ public interface RuleManager
    */
   EntityManager getEntityManager();
   
+  /**
+   * returns the ActionManager for this ruleset 
+   * @return the ActionManager for this ruleset 
+   */
+  ActionManager getActionManager();
 }

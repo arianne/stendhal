@@ -117,7 +117,7 @@ public class StendhalRPAction
           
           if(source.hasWeapon())
             {
-            weapon=source.getWeapon().getATK();
+            weapon=source.getWeapon().getPropertyAsInt("atk");
             }
 
           for(int i=0;i<source.getATK()+weapon;i++)
@@ -127,12 +127,12 @@ public class StendhalRPAction
             
           if(target.hasShield())
             {
-            shield=target.getShield().getDEF();
+            shield=target.getShield().getPropertyAsInt("def");
             }
 
           if(target.hasArmor())
             {
-            armor=target.getArmor().getDEF();
+            armor=target.getArmor().getPropertyAsInt("def");
             }
           
           for(int i=0;i<target.getDEF()+shield+armor*2;i++)

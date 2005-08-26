@@ -33,7 +33,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
   
   private RPServerManager rpman;
-  private RPWorld world;
+  private StendhalRPWorld world;
 
   private List<Player> playersObject;
   private List<Player> playersObjectRmText;
@@ -76,13 +76,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     try
       {
-      this.rpman=rpman;
-      this.world=world;
+      this.rpman = rpman;
+      this.world = (StendhalRPWorld) world;
 
       StendhalRPAction.initialize(rpman,this,world);
       Path.initialize(rpman,world);
 
-      NPC.setRPContext(this, world);
+      NPC.setRPContext(this, this.world);
 
       for(IRPZone zone: world)
         {
@@ -774,7 +774,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         
         if(object.get("type").equals("item"))
           {
-          entity=Item.create(object.get("class"));
+          //entity = Item.create(object.get("class"));
+          entity = world.getRuleManager().getEntityManager().getItem(object.get("class"));
           }
         else if(object.get("type").equals("corpse"))
           {
