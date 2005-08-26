@@ -20,10 +20,10 @@ import java.util.Map;
  */
 public enum DefaultItem
 {
-//       class    ,  type,     all possible slots,tileid,atk, def
+//       class    ,  type,     all possible slots,         tileid,  properties
   SWORD ("sword" , "weapon", new String[] {"rhand","lhand"}, -1, new Pair<String, String>("atk","14")),
   CLUB  ("club"  , "weapon", new String[] {"rhand","lhand"}, -1, new Pair<String, String>("atk","7")),
-  ARMOR ("armor" , "armor" , new String[] {"armor"}, -1, new Pair<String, String>("def","14")),
+  ARMOR ("armor" , "armor" , new String[] {"armor"}        , -1, new Pair<String, String>("def","14")),
   SHIELD("shield", "armor" , new String[] {"lhand","rhand"}, -1, new Pair<String, String>("def","7"));
 
   /** items class */

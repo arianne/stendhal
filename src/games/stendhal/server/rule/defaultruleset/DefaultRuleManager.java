@@ -7,6 +7,7 @@
 
 package games.stendhal.server.rule.defaultruleset;
 
+import games.stendhal.server.rule.ActionManager;
 import games.stendhal.server.rule.EntityManager;
 import games.stendhal.server.rule.RuleManager;
 
@@ -16,14 +17,16 @@ import games.stendhal.server.rule.RuleManager;
  */
 public class DefaultRuleManager implements RuleManager
 {
-  public DefaultRuleManager()
-  {
-  }
 
   /** returns the EntityManager for the default ruleset */
   public EntityManager getEntityManager()
   {
     return DefaultEntityManager.getInstance();
   }
-  
+
+  /** returns the EntityManager for the default ruleset */
+  public ActionManager getActionManager()
+  {
+    return DefaultActionManager.getInstance();
+  }
 }
