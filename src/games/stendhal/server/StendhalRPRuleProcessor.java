@@ -313,6 +313,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     return status;
     }
 
+  /** 
+   * Stops all movement and attacks of the player.
+   * Params:
+   *   none
+   */
   private void stop(Player player) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger,"stop");
@@ -325,6 +330,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"stop");
     }
 
+  /**
+   * Starts movement.
+   * Params:
+   * dir (int) - direction (@link games.stendhal.common.Direction )
+   */
   private void move(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger,"move");
@@ -339,6 +349,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"move");
     }
 
+  /**
+   * Attacks another unit
+   * Params:
+   *   target (int) - object id of the target
+   */
   private void attack(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
     Log4J.startMethod(logger,"attack");
@@ -365,6 +380,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"attack");
     }
 
+  /**
+   * Owns a sheep. Release is possible too.
+   * Params:
+   *   target (int) - object id of the sheep to own. if target == -1 then the
+   *                  sheep is released
+   */
   private void own(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
     Log4J.startMethod(logger,"own");
@@ -414,6 +435,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"own");
     }
 
+  /**
+   * Moves an item ?
+   * Params:
+   *   target (int) - object id of the target
+   *        x (int) - destination x coordinate
+   *        y (int) - destination y coordinate
+   */
   private void displace(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
     Log4J.startMethod(logger,"displace");
@@ -460,6 +488,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"displace");
     }
 
+  /**
+   * Tells the player whi is connected
+   * Params:
+   *   none
+   */
   private void who(Player player)
     {
     Log4J.startMethod(logger,"who");
@@ -475,6 +508,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"who");
     }
 
+  /**
+   * Posts a private message to another player
+   * Params:
+   *   who (String) - name of the other player
+   *  text (String) - text to tell
+   */
   private void tell(Player player, RPAction action)
     {
     Log4J.startMethod(logger,"tell");
@@ -510,6 +549,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     }
 
+  /**
+   * Returns the zone and position of another player
+   * Params:
+   *   who (String) - name of other player. The name 'sheep' is special and
+   *                  returns the position of the sheep
+   */
   private void where(Player player, RPAction action)
     {
     Log4J.startMethod(logger,"where");
@@ -549,6 +594,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     }
 
+  /**
+   * adds a buddy to this players buddy list
+   * Params:
+   *   who (String) - name of other player.
+   */
   private void addBuddy(Player player, RPAction action)
     {
     Log4J.startMethod(logger,"addBuddy");
@@ -636,6 +686,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     }  
 
+  /**
+   * changes the outfit of the current player
+   * Params:
+   *   who (String) - name of other player.
+   *    value (???) - new outfit
+   */
   private void outfit(Player player, RPAction action)
     {
     Log4J.startMethod(logger,"outfit");
@@ -653,6 +709,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     }
 
+  /**
+   * posts a (zone-)global chat message
+   * Params:
+   *  text (String) - message text
+   */
   private void chat(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger,"chat");
@@ -666,6 +727,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"chat");
     }
 
+  /**
+   * faces to the given direction
+   * Params:
+   *      dir (int) - direction
+   */
   private void face(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger,"face");
@@ -680,6 +746,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"face");
     }
 
+  /**
+   * tries to equip an item
+   * Params:
+   *   target (int) - object id of the item to equip
+   *  slot (String) - name of the slot
+   */
   private void equip(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger,"equip");
@@ -718,6 +790,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"equip");
     }
 
+  /**
+   * moves an item from one slot to another
+   * Params:
+   *  sourceslot (String) - name of the source-slot
+   *  targetslot (String) - name of the target-slot
+   */
   private void moveequip(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger,"moveequip");
@@ -744,23 +822,31 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             
             world.modify(player);
             }
-          }            
+          }
         }
       }
 
     Log4J.finishMethod(logger,"moveequip");
     }
 
-
+  /**
+   * drops an item to the ground
+   * Params:
+   *  slot (String) - name of the slot where the item is atm
+   *        x (int) - destination x coordinate
+   *        y (int) - destination y coordinate
+   */
   private void drop(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger,"drop");
+    
 
     if(action.has("slot") && action.has("x") && action.has("y"))
       {
-      if(player.hasSlot(action.get("slot")))
+      String slotString = action.get("slot");
+      if(player.hasSlot(slotString))
         {
-        RPSlot slot=player.getSlot(action.get("slot"));
+        RPSlot slot = player.getSlot(slotString);
         
         if(slot.size()==0)
           {
@@ -808,6 +894,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"drop");
     }
 
+  /**
+   * tries to use an item
+   * Params:
+   *  object (int) - object id of the item
+   */
   private void use(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger,"use");
