@@ -87,7 +87,7 @@ public class city
     npc.setName("Diogenes");
     npc.setx(24);
     npc.sety(42);
-    npc.setbaseHP(100);
+    npc.setBaseHP(100);
     zone.add(npc);    
     zone.addNPC(npc);
       
@@ -112,7 +112,7 @@ public class city
     npc.setName("Sato");
     npc.setx(40);
     npc.sety(44);
-    npc.setbaseHP(100);
+    npc.setBaseHP(100);
     zone.add(npc);    
     zone.addNPC(npc);
 
@@ -130,7 +130,7 @@ public class city
     npc.setName("Carmen");
     npc.setx(5);
     npc.sety(45);
-    npc.setbaseHP(100);
+    npc.setBaseHP(100);
     zone.add(npc);    
     zone.addNPC(npc);
     }  

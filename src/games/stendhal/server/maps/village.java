@@ -56,7 +56,7 @@ public class village
     npc.setName("Nishiya");
     npc.setx(33);
     npc.sety(44);
-    npc.setbaseHP(100);
+    npc.setBaseHP(100);
     zone.add(npc);    
     zone.addNPC(npc);
     }

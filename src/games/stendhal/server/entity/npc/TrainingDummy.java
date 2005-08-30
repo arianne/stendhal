@@ -51,7 +51,7 @@ public class TrainingDummy extends RPEntity
 
   public void onDead(RPEntity who)
     {
-    setHP(getbaseHP());
+    setHP(getBaseHP());
     world.modify(this);
     }
   }

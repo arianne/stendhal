@@ -80,7 +80,7 @@ public class WelcomerNPC extends SpeakerNPC
     else if(text.contains("heal"))
       {
       say("Voila! You have been healed.Don't forget to tell your friends about Stendhal :)");
-      player.setHP(player.getbaseHP());
+      player.setHP(player.getBaseHP());
       world.modify(player);
       healed++;
       return true;

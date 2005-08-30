@@ -24,7 +24,7 @@ public class tavern
     npc.setName("Margaret");
     npc.setx(17);
     npc.sety(12);
-    npc.setbaseHP(100);
+    npc.setBaseHP(100);
     zone.add(npc);    
     zone.addNPC(npc);
 
@@ -45,7 +45,7 @@ public class tavern
     npc.setName("Xin Blanca");
     npc.setx(2);
     npc.sety(14);
-    npc.setbaseHP(100);
+    npc.setBaseHP(100);
     zone.add(npc);    
     zone.addNPC(npc);
     }  

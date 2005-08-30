@@ -52,7 +52,7 @@ public abstract class SpeakerNPC extends NPC
       
   public void onDead(RPEntity who)
     {
-    setHP(getbaseHP());
+    setHP(getBaseHP());
     world.modify(this);
     }
   

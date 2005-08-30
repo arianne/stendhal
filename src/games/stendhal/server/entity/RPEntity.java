@@ -218,7 +218,7 @@ public abstract class RPEntity extends Entity
     return def_xp;
     }
 
-  public void setbaseHP(int hp)
+  public void setBaseHP(int hp)
     {
     this.base_hp=hp;
     put("base_hp",hp);
@@ -237,7 +237,7 @@ public abstract class RPEntity extends Entity
       }
     }
 
-  public int getbaseHP()
+  public int getBaseHP()
     {
     return base_hp;
     }
@@ -279,7 +279,7 @@ public abstract class RPEntity extends Entity
 
     if(levels>0)
       {
-      setbaseHP(getbaseHP()+10);
+      setBaseHP(getBaseHP()+10);
       setLevel(newLevel);
       }
     }
@@ -303,12 +303,12 @@ public abstract class RPEntity extends Entity
     if(has("damage")) remove("damage");
     if(has("target")) remove("target");
 
-    if(attackTarget!=null)
+    if (attackTarget != null)
       {
       attackTarget.attackSource.remove(this);
       }
 
-    attackTarget=null;
+    attackTarget = null;
     }
 
   /** This method is called on each round when this entity has been attacked by
@@ -318,8 +318,8 @@ public abstract class RPEntity extends Entity
     {
     if(status)
       {
-      who.attackTarget=this;
-      if(attackSource.indexOf(who)==-1)
+      who.attackTarget = this;
+      if ( ! attackSource.contains(who) )
         {
         attackSource.add(who);
         }
@@ -327,8 +327,8 @@ public abstract class RPEntity extends Entity
     else
       {
       if(who.has("target")) who.remove("target");
-      who.attackTarget=null;
-      attackSource.clear(); //Not very sure if a clear is correct...
+      who.attackTarget = null;
+      attackSource.remove(who);
       }
     }
 

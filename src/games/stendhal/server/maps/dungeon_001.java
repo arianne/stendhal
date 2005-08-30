@@ -46,7 +46,7 @@ public class dungeon_001
     npc.setName("Tor'Koom");
     npc.setx(67);
     npc.sety(12);
-    npc.setbaseHP(1000);
+    npc.setBaseHP(1000);
     zone.add(npc);    
     zone.addNPC(npc);
   

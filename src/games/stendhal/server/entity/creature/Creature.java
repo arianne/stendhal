@@ -96,7 +96,7 @@ public class Creature extends NPC
     setATK(attack);
     setDEF(defense);
     setXP(xp);
-    setbaseHP(hp);
+    setBaseHP(hp);
     setLevel(Level.getLevel(xp));
 
     stop();
@@ -104,7 +104,6 @@ public class Creature extends NPC
     logger.debug("Created Orc: "+this);
     
     }
-  
   
   protected void createPath()
     {

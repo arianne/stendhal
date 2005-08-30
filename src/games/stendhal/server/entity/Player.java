@@ -333,7 +333,7 @@ public class Player extends RPEntity
 
     // Penalize: Respawn on afterlive zone and 10% less experience
     setXP((int)(getXP()*0.9));
-    setHP(getbaseHP());
+    setHP(getBaseHP());
 
     world.modify(who);
 

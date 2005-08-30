@@ -74,7 +74,7 @@ public class Sheep extends Creature
     setATK(ATK);
     setDEF(DEF);
     setXP(XP);
-    setbaseHP(HP);
+    setBaseHP(HP);
 
     hungry=0;
     update();
