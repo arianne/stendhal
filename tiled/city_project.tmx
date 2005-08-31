@@ -30,6 +30,9 @@
  <tileset name="town07_a" firstgid="2984" tilewidth="32" tileheight="32">
   <image source="town07_a.png"/>
  </tileset>
+ <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_2_chipset.png"/>
+ </tileset>
  <layer name="city_0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3WvQ3CMBBA4UskOmAQYC5KsgGiCSyBGAUxUWAETBnJSQwW5zt4xde4SPysy08jIg16dgb2AAAAAAAAAHjVViLHiFNVfm8arqFzG3H7k35M68Is3DM9HM/TvBZZZFrW5Tu89Y/NneY8leh/tU9dU+sMSvSn3lPjDCz3a7xXLPdrzMAq3GOdafPFfs/flrEzT+1/92y9SJm7X21HX+foX3o/i68fBtZT2kv9+1joj70HLD/354HOy4f9AAAAAAAAAAAA8OkJNC24zgBAAAA=

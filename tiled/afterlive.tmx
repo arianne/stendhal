@@ -27,6 +27,9 @@
  <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
   <image source="zelda_building_0_tileset.png"/>
  </tileset>
+ <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_2_chipset.png"/>
+ </tileset>
  <layer name="afterlive_0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAKtnYGA4xszAUM8wcHjU/lH7iVHXQAAPBvvJccdw8j+y2sHkf1zyILtJxUMh/EmJA3qkf3xuGSrpn1Z41P5R+0ftH7V/JNrPxQixH0QPBOYexQOKeQYYk9P+G04YAHfrjXoAEAAA
@@ -34,12 +37,12 @@
  </layer>
  <layer name="afterlive_1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2QOQ7CMBBFR0oqWyy3SMF2Nwp6LsAZgIMADTV7BxRQg1guwI9I4YIJNiiTZr70ZMke6/nbxESniMjE/iwwvwy8w5Fk/iT254L5a+AdjjSpv8yo329uCEYMYwH/JOdslq39kv2/pAh/yD9I9J8y+2e459F79YHr9c2fl6L6c52L9HP/k/cWX/8eHBiOztzKEK3BxmELduY/v28qlugG193hAZ6C/iqoOdStnL8BVxO0HNqgY2X8XfQcfKAn1D806le/+jUajXReUQFhVAAQAAA=
+   H4sIAAAAAAAAAO2QOQ7CMBBFR0oqRyy3SMF2Nwp6LsAZgIMADTV7BxRQg1guwI8wkpsJNiiTZr705Mge6+XbxESniMjE/iwwvwy8w5Fafxr7c8H8NfAOR5bMX2bU7zc3BCOGsYB/knM2s2u/ZP8vKcIf8g4S/afM/hnuefRefeB6ffPnpaj+XOci/dz75P2Lr38PDgxHZ25liNZg47AFO/Of3zeVhOgG193hAZ6C/iqoOdQTOX8DriZoObRBJ5Hxd9FzYMny+e4J9Q+N+tWvfo1GI50XVgD8BwAQAAA=
   </data>
  </layer>
  <layer name="afterlive_2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYXuMcJof9wDqw7aAH+swAJVvxqlLkZGFSAWJWb+vbLAu2Ww2O/BRcDw0QgngTEk7mobz8xoBhqb+kA2T8KRsEoGPzAjXmgXTAKRsHAAADA1aXLABAAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYXuMcJof9wDqw7aAH+swAJVvxqlLkZGFSAWJWb+vbLAu2Ww2O/BRcDw0QgngTEk7mobz8xoBho7wUgLh0g+0fBKBgFgx+4MQ+0C0bBKBgYAABAGfgVABAAAA==
   </data>
  </layer>
  <layer name="afterlive_3_roof" width="32" height="32">
@@ -47,14 +50,14 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="afterlive_objects" width="32" height="32">
+ <layer name="afterlive_objects" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGHoghROCR8EoGAWjYBSMglEwCrCB4dRO2IPml+Rh5LehCNaNhv8oGAWjYAgDAKxfj4gAEAAA
   </data>
  </layer>
  <layer name="afterlive_collision" width="32" height="32" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VMQ4AIAgDXf3/n3yXk4mTtgoYtU26kR4QoiWnVC5zk1VWn3lC4uN1yF2c5K/08dL8bKYXH2V4vEusvOZncq34oz1H8Gd1O3xUEfxZ3ut8pLf+JiP5rMQX/1e+5f8ryzLnCj+1tcUAEAAA
+   H4sIAAAAAAAAAO2VMQ4AIAgDXf3/n3yXk4mTtgoStU26kR4YAyWnVC5zk1VWnxkh8fE65F9E8lf6eGl+NtOLjzI89hIrr/mZXCv+6J1P8Gd1O3xUJ/izvNf5SG9RfFbii/8r3/L+yrLMuQLeJPN1ABAAAA==
   </data>
  </layer>
 </map>

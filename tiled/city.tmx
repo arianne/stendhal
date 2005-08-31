@@ -27,6 +27,9 @@
  <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
   <image source="zelda_building_0_tileset.png"/>
  </tileset>
+ <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_2_chipset.png"/>
+ </tileset>
  <layer name="city_0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2azW3DMAyFfSkQuEDaKXKqu0EXSLuSO0IWsK8doYd4kXac2oCFqIosihIlUzYDfMjFkPj49EPJPlRVdRD+0TOIoXSuFtaOaU3tnHOQYrxTapf5SEvHIAbRmye2jrl+amStyA/Fvqb7tqfxWhK6zznm2XHkiZBnBjnE8DLSjLxH0sy8FuYZRcyDlscc+qk8U775xvw744optf5u7ouqH1tbQ4QnufxPoT9mT1xDP0VNAOXSNydb8D+2HY76vx5vQG1h5/1gtJNCv22vU3stVG9c6nuWfKPYRyH92J8eH7beaGeg/J4tbaeuf/Sc2fLoU5/knG++c9I3ngZJSv2nSELiwY6tjw3px7YLjbeQtUtfM3Ppvwb0Nz2/dAbW9cfMJ67+Q2OAs36zjugD+/PVP60P0BpyLtB/Vw50/T5rIPZ5LJB+NQZy6G+Nfw76c/iv61X1X+94fmv6zRxwGv+p+oP6bB3Pq7P9dw2TUj9m3f8M9JOz/xj9Lj2u8x6l/rf6Bif9pfhv+kTtf/dwvwdS6le1vF7X+egPuVfm6P+PRc+a6/90noPOfEdC/WoNxvpvA3vn3hn9xZ5/QlC+6/fvLv1L74yo/M+tX41/W329xvjPrd8Vj61tyvfr5n1zKCnjoY61dCju10smZD7t5Rszn3c0e4OyThQEQRAEQRAEQVDEfIOwBUR/ev1/jAN2vwBAAAA=

@@ -27,6 +27,9 @@
  <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
   <image source="zelda_building_0_tileset.png"/>
  </tileset>
+ <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_2_chipset.png"/>
+ </tileset>
  <layer name="castle_0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2YSw6DMAxE2ZXPHemJuux9W6RWQggSsJ04g2cxqoIE8dPLt33XdT3DZDKP7ac0/7MBRvKTn/zkJz/5PfivRsIh7ceD/zWl21r+95Rue/NH999KUPjPjue78kf3j8w/b/pbP9OuXymu3DpZY//fjoGj/krwS2shf1v8kj2f/Hj81kHirxVU/uW8l2rfmf/xfWcc88/If2/+YXn39xuVfwjOT/9Y/BZ3Liv/Hve/vTOqhl/j36IWb36tf3R++sfjt1z/tP5b/f+rhn+LWrz50fZ/+qd/+qf/qP6P9twrSfmXfM/7/nMl67rX/vd4pN9H4v8HiV87RlPz/8zcys270muAZsycmf+113NP/px/79qt+KXrv3ftJWK5/yPG8vyHGPqnf/qnf/qnf/qPzU//sflb8f8Bub0/ngBAAAA=

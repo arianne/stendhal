@@ -27,6 +27,9 @@
  <tileset name="Building 0" firstgid="2504" tilewidth="32" tileheight="32">
   <image source="zelda_building_0_tileset.png"/>
  </tileset>
+ <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_2_chipset.png"/>
+ </tileset>
  <layer name="tavern_0_floor" width="32" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGF4ggYM8fUdZGRiOYcHHgZifhXw8h52BYS4anseOaf9joD1PsOCnFNqPbjcMjxT7ceHBZj8jGwMDExbMzEYf+/vZceNR+4e//aToFcKCcYmjqyFk/2ogXgPFpNpPrDyl/h/o8B9O9gMAZ3P34YAIAAA=
