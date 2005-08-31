@@ -55,11 +55,17 @@ public class StaticGameLayers
     layers=new LinkedList<Pair<TileRenderer>>();
     collisions=new LinkedList<Pair<CollisionDetection>>();
     tilestore=TileStore.get();
-    tilestore.add("tilesets/zelda_outside_0_chipset.png");    
-    tilestore.add("tilesets/zelda_outside_1_chipset.png");    
-    tilestore.add("tilesets/zelda_dungeon_0_chipset.png");    
-    tilestore.add("tilesets/zelda_dungeon_1_chipset.png");    
-    tilestore.add("tilesets/zelda_interior_0_chipset.png");    
+    tilestore.add("tilesets/zelda_outside_0_chipset.png");
+    tilestore.add("tilesets/zelda_outside_1_chipset.png");
+    tilestore.add("tilesets/zelda_dungeon_0_chipset.png");
+    tilestore.add("tilesets/zelda_dungeon_1_chipset.png");
+    tilestore.add("tilesets/zelda_interior_0_chipset.png");
+    tilestore.add("tilesets/zelda_navigation_chipset.png");
+    tilestore.add("tilesets/zelda_objects_chipset.png");
+    tilestore.add("tilesets/zelda_collision_chipset.png");
+    tilestore.add("tilesets/zelda_building_0_tileset.png");
+    tilestore.add("tilesets/zelda_outside_2_chipset.png");
+
     area=null;
     }
   
