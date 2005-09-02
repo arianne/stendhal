@@ -599,61 +599,67 @@ public abstract class RPEntity extends Entity
 
   /** returns true if the entity has a weapon equipped */
   public boolean hasWeapon()
-  {
+    {
     return checkSlotForEquipable("lhand", "weapon") || checkSlotForEquipable("rhand", "weapon");
-  }
+    }
   
   public Equipable getWeapon()
-  {
+    {
     Equipable equipable = getFirstEquipableFromSlot("lhand", "weapon");
     if (equipable != null)
-    {
+      {
       return equipable;
+      }
+    else
+      {
+      return getFirstEquipableFromSlot("rhand", "weapon");
+      }
     }
-    return getFirstEquipableFromSlot("rhand", "weapon");
-  }
   
   /** returns true if the entity has a shield equipped */
   public boolean hasShield()
-  {
+    {
     return checkSlotForEquipable("lhand", "armor") || checkSlotForEquipable("rhand", "armor");
-  }
+    }
   
   public Equipable getShield()
-  {
+    {
     Equipable equipable = getFirstEquipableFromSlot("lhand", "armor");
     if (equipable != null)
-    {
+      {
       return equipable;
+      }
+    else
+      {
+      return getFirstEquipableFromSlot("rhand", "armor");
+      }
     }
-    return getFirstEquipableFromSlot("rhand", "armor");
-  }
     
   public boolean hasArmor()
-  {
+    {
     return checkSlotForEquipable("armor", "armor");
-  }
+    }
   
   public Equipable getArmor()
-  {
+    {
     return getFirstEquipableFromSlot("armor", "armor");
-  }
+    }
   
   /** checks if the entity has at least one item of type <i>type</i> in one
    * of the given slots
    */
   public boolean hasItem(String[] slots, String type)
-  {
+    {
     boolean retVal;
     for (String slot : slots)
-    {
+      {
       retVal = checkSlotForEquipable(slot, type);
       if (retVal)
-      {
+        {
         return true;
+        }
       }
-    }
     return false;
-  }
+    }
   
   }
