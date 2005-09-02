@@ -15,18 +15,18 @@ import games.stendhal.server.rule.defaultruleset.DefaultRuleManager;
  * @author Matthias Totz
  */
 public class RuleSetFactory
-{
+  {
   
   /** Creates a new instance of RuleSetFactory */
   private RuleSetFactory()
-  {
-  }
+    {
+    }
   
   /** returns the ruleset with the given name */
   public static RuleManager getRuleSet(String name)
-  {
+    {
     return new DefaultRuleManager();
+    }
+  
+  
   }
-  
-  
-}

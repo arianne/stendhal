@@ -17,7 +17,7 @@ import games.stendhal.server.entity.item.Item;
  * @author Matthias Totz
  */
 public interface EntityManager
-{
+  {
   /**
    * returns the entity or <code>null</code> if the id is unknown
    * @param id the tile id
@@ -77,5 +77,4 @@ public interface EntityManager
    * @throws NullPointerException if clazz is <code>null</code>
    */
   Item getItem(String clazz) throws NullPointerException;
-  
-}
+  }

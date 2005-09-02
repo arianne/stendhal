@@ -16,9 +16,9 @@ import games.stendhal.server.entity.item.Equipable;
  * @author Matthias Totz
  */
 public interface ActionManager
-{
+  {
   boolean onEquip(RPEntity entity, Equipable item);
 
   void onAttack();
   void onTalk();
-}
+  }

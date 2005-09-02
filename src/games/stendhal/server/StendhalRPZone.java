@@ -275,7 +275,7 @@ public class StendhalRPZone extends MarauroaRPZone
     Log4J.startMethod(logger,"addNavigationLayer");
    
     try
-    {
+      {
       TransferContent content=new TransferContent();
       content.name=name;
       content.cacheable=true;
@@ -284,11 +284,12 @@ public class StendhalRPZone extends MarauroaRPZone
 
       contents.add(content);
       navigationMap.setNavigationPoints(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename)));
-    }
+      }
     catch (FileNotFoundException fnfe)
-    {
+      {
       logger.info("no navigation map for "+name+" found.", fnfe);
-    }
+      }
+      
     Log4J.finishMethod(logger,"addNavigationLayer");
     }  
   

@@ -1,9 +1,15 @@
-/*
- * PathState.java
- *
- * Created on 5. August 2005, 20:48
- */
-
+/* $Id$ */
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server;
 
 /**
@@ -12,7 +18,7 @@ package games.stendhal.server;
  * @author Matthias Totz
  */
 public enum PathState
-{
+  {
   /** Found a path */
   PATH_FOUND,
   /** No Path available */
@@ -23,5 +29,4 @@ public enum PathState
   /** The pathfinder queue is at its limit. Try again later or reduce the
    * general pathfinder load. */
   NO_RESOURCES;
-  
-}
+  }

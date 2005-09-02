@@ -140,11 +140,11 @@ public class Path
     
     long endTime = System.currentTimeMillis();
     logger.debug("Route ("+x+","+y+")-("+destx+","+desty+") S:"+steps+" OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime)+"ms");
+
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
     while(node!=null)
       {
-//      logger.debug("node: "+node);
       list.add(0,new Node(node.getX(),node.getY()));
       node=node.getParent();
       }
@@ -160,7 +160,7 @@ public class Path
    * @return a list with the path nodes or an empty list if no path is found
    */
   public static void searchPathAsynchonous(RPEntity entity, Entity dest)
-  {
+    {
     boolean result = world.getPathfinder().queuePath(
              new QueuedPath(
                  new SimplePathListener(entity), 
@@ -173,10 +173,10 @@ public class Path
             );
     
     if (!result)
-    {
+      {
       logger.warn("Pathfinder queue is full...path not added");
+      }
     }
-  }
   
   
   /** 
@@ -239,13 +239,13 @@ public class Path
   
   /** this callback is called after every A* step. */
   public interface StepCallback
-  {
+    {
     public void stepDone(Pathfinder.Node lastNode);
-  }
+    }
   
   /** the threaded-pathfinder callback */
   private static class SimplePathListener implements PathListener
-  {
+    {
     /** the entity the path belongs to */
     private RPEntity entity;
     
@@ -254,18 +254,17 @@ public class Path
      * @param entity the entity the path belongs to
      */
     public SimplePathListener(RPEntity entity)
-    {
+      {
       this.entity = entity;
-    }
+      }
     
     /** simply appends the calculated path to the entitys path */
     public void onPathFinished(QueuedPath path, PathState state)
-    {
-      if (state == PathState.PATH_FOUND)
       {
+      if (state == PathState.PATH_FOUND)
+        {
         entity.addToPath(path.getPath());
+        }
       }
     }
-
-  }
   }
