@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="128" height="64" tilewidth="32" tileheight="32">
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_1_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="zelda_interior_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
+  <image source="zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+  <image source="zelda_collision_chipset.png"/>
+ </tileset>
+ <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="zelda_building_0_tileset.png"/>
+ </tileset>
+ <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_2_chipset.png"/>
+ </tileset>
+ <layer name="cityroad_01_0_floor" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3UMQqAMBREwbQBT+n9D2FhJwFjEDeYKaaVL2+1llIqAAAAAAAAAAAAAAAAAAAAAAAAAECHfTul70B/Mu1tYE36A7799Vz//TYwp1af0Wat5jYwr55ed+2ePsMO5jDa7S3p91+d9mi6Nv15Ywfp+/l2B+k7yfVP30huE+lbAAAA4G8OJ8nwwQCAAAA=
+  </data>
+ </layer>
+ <layer name="cityroad_01_1_terrain" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3bYU7jMBCGYYu/rdj9h0DiAmjZg8Aegb0IXIQjFMQ5EAcpnIN6qcVoNm7GqdOM0/eRLKGKlsTfeJI0IQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGMfpZvwwjJ9TbSBGE7O/LhhDakLXF3Xkg8z+1jCsNaFH7j3UwXRk9n+M77kJ9prQI/ce6uDwhmSf01UTeui/kd4j64AaOJxf4WvOf0+8HboOqIHx1Vz7tXipR8+u1BjK41zHPkAP2K1G/h7XfuKxLj2pkb/nOfa8bXOh53i1COF5MeEGCeQ/Pj3Hr5vs38j/aMg5XoncPfQAzgHHJ/NfbzJ/3+b+4SD/qJUe0Oq9svR9izz3f1yGcD7R9mit5F9yr8xjHSSX4St/L1rJv/Rembc6iMf+l+2I4vH/YtpN+mdO5wA17nHEnJ7UNVrXa9bPSpnfqTX/d/n9eVMfC1rpAVZD73GsRE4xn6dt7l2v5WphV+Za/LyXgro6y/y8r7nln5T0tpUhLyllp0fJZ0QPS/u1APmXs9ZAvDa7r3ReFjN9X9iGh+vAOecfWWvgtVIWXr7fszrkOaD1uVc99mXZx/T9zL59QK7ptL/ez63H6gE675LnXuWowbqPJXWge73u56301trbmXLvey7ROmoo7XN9x4O+czfP9/41OTdD+5Vc67m8p56Hkv1cL/4/X0s9wXLe3sraT+TcyGfMc3PU19s95N1F72dJra8zfV5rae1LXd+hyVroO5Z7Wed9xngOtqv/tbL2NfmM+a7zMk+9fQh9PLAc+3LXMC2uA4vc/xvMYd8ifTzI9TvLNcyc5uWYWPvdrmsYcp+Hvv+vImeM4fbk++ebk/zvAcfmE8O9xcMAgAAA
+  </data>
+ </layer>
+ <layer name="cityroad_01_2_object" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2cSY7UMBSGQxcnYMOC4QQg2NHADZguwSA1bLgCMzdgWDKtYcG0Q3ARoOocwCtRbrkj2/EYu5Lvk6ykhuQ5fi//s1+6uusAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANpnWbsDUIxV7Q5AFbinwUY/Nnw1gphqh1Z80Uo/AOYA9xsAuGhBI1row9QIXcvr38/tD/zbFicjjvGJJ+pH20OKPiiG7uscNubMhUXXXVyEHdPiGKId+XkmcfE8MDZc1B7/2va3jY/i+08Z/Q9+zD1O+9cf8nxgrmN3Zqfrzu6kneOYtr/q0sfyp/Tnl7Tf0l5t9kuztrUcwU4LXJLrvCztirSr0q4ZrvuF6PdLi4af6L12+TwmFv5If/6u+yT2v6n9xHPa2NcIsXXIkbOmVifYkzG9Le2OJeY/y1h8Gcjh7+XzD+T5rUbXWh/9O7rZKg04rn22G2D36+Lgts/dw+7jlXbpOmbaX+OaF7g0cA7oWuvSvxhcOeScvL8r7XykTaVduo6Z9n3PE8KYc8Vaeee6+OVGYjyYcoiq76b6v8/U8rOLUvGnj+E98cv9grnd1/+mtYApVz2R9tRyrA+14qeE3Zg1mM+aICe+/jeuBQy56q20d5Zj9bFYaduazwBC10tjxKeeP0vbS9H/IT/MtZbjor9md3FTfHKr8LpuaP6fwpD/TesFXe9K1Am3aX7yQHzysPK6PiR3h2JaL+RC+bllDWo1FvUx28/7kecpPf4t+9eXVuMghSHdGKpzTXFMUkmN9aHjY8fclLsHdSOwzlXjPjfZnILeuIiJgdy520SreaQFnSrZh+/i1x8Fn/vZmNp9FrLuq8EjaY8N79vqfq4aYAqrbpx5o7IF//XjtbQ32msdU93PVQNU5B7fFrS2FLG/oU7FpEuhNWiTX3x1I7XePdY41Yq9mN9h+LI07Ct7/ZrMKdmeDvCN7XmBSTf2NufNNYeMnbfX1pcc9l3XmXr+I737dMznVHCQkP+xkSuuU/8+dcr8A63evsQAgAAA
+  </data>
+ </layer>
+ <layer name="cityroad_01_3_roof" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aSTY0QRDA8VJtZ7bmAGa3wNYdjGtOgKa3LG0Nl8DCcA03MDuA6KfyKfkqq1INLavy/3svnvgWuvnqy4iM+DoIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyvHaFwRvEs8SH1H+njP/7Pvv36Z5JlpBMNmq7vWHwyAYkBiUGCqQj0mMh9X9nKjGrDyzKYlpiZkc+VwsX+T510pbntehxJLEssRKwfxI4jF6zbS848m/k1fH++OZPIdziTWJdYmNEvOLlPzSk+ff7a0jEqOO9sdb+XnuJPYk9iUOCuTd17m3zB8c+3uoymzUH+fD71qrauRf69+O3P92K7wDKt169RTNAi8V5a7VwF5RtTZP/TuWZ3/Sg+df1iyQlrtWA3tF1dpe17/T1u+vutX+n7zoLGCTMyO4yTQL2PSqdpg9I/hy58/i6kxgmgVsepXNHOHLnT+LqzOBaRbQe9WWxLbl96a9jq/iM8FCg/ph1uzgWr3DN9X3i+7obGcHV+qdL7Lu//G5dD3MP6OmzQ5NrHdNcRsm7/Gy+nVS3eDOX09JvTvr//f1O39Szp2/HtJ6t2lWie+zfN/z153t3k/v3Wl3fu759WDzGQBTH9frhqoV3PPrQ7///2V3l1Q35g21Av9rQ2IzypN20Kp32+7usuqG2iG4uu/2WRk76DNDrdDrhqv7bp/Fd9CqVuvn9CpMP7f6/d+0Q2jqvrtp9HN6zbltJP2c62dcndObks4t/d8tSbsedcbjO91Owp/zvh91xB2mma17xvXPKBb5zGL8/ZrQ/78A2DnZmwCAAAA=
+  </data>
+ </layer>
+ <layer name="cityroad_01_objects" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABim/B8BAIAAAA==
+  </data>
+ </layer>
+ <layer name="cityroad_01_collision" width="128" height="64" opacity="0.25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3XXY7CIBQGUF9n/3uadfk0CSVt6eVPGM9JjNUIhftBW18vAAAAAAAAAAAAAAAAAAAAAAAA6OP3p8+L/mbUVv576lV3+e+ppu55m17ZWyd7kP98q8x5Rj7WwFFpzjPrEcmkdl/L/uhpnZ/00XNMpXONyv9bfaoOaS75d/nx32f5jzGqBqX7S/qbuyxacn/aB0d5Xc5qVapfKc+8j2h2kXnI/Zk8l/S4Zt+l/dZcl6P7u3RO+V8r7fHer9b+z8Z+Nyfr4N6q+fecl/zLRq6BtM/0/WoMPXKSf8yM/J+Ooab9yHF9s1nZR88XbUebmXsqeh77fbyZ9bX/9/CJ7GvasofWa4z899TjmTL6vMA6ZubvurCe1kwi60b+azq7Rl/l1vL8L/+13OU+6v+c7NcRvfe35v8f9v8b1SJADACAAAA=
+  </data>
+ </layer>
+</map>
