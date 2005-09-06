@@ -92,8 +92,16 @@ public class Chest extends Entity
     {
     RPSlot content=getSlot("content");
     PassiveEntity entity=null;
-    
     Iterator<RPObject> it=content.iterator();
+
+    if(content.size()==0)
+      {
+      return null;
+      }
+    else
+      {
+      entity=(PassiveEntity)it.next();     
+      }
     
     for(int j=0;j!=i && it.hasNext();j++)
       {
@@ -107,8 +115,16 @@ public class Chest extends Entity
     {
     RPSlot content=getSlot("content");
     PassiveEntity entity=null;
-    
     Iterator<RPObject> it=content.iterator();
+
+    if(content.size()==0)
+      {
+      return null;
+      }
+    else
+      {
+      entity=(PassiveEntity)it.next();     
+      }
     
     for(int j=0;j!=i && it.hasNext();j++)
       {

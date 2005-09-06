@@ -74,7 +74,8 @@ public class StendhalRPWorld extends RPWorld
     Food.generateRPClass();
     Corpse.generateRPClass();
     Item.generateRPClass();
-    
+    Chest.generateRPClass();
+        
     RPEntity.generateRPClass();
     
     NPC.generateRPClass();

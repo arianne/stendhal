@@ -756,33 +756,58 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Log4J.startMethod(logger,"equip");
 
-    if(action.has("target") && action.has("slot"))
+    if(action.has("target") && action.has("slot") && action.has("baseobject"))
       {
       int targetObject=action.getInt("target");
 
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
       RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
-      if(zone.has(targetid))
+      if(!zone.has(targetid))
         {
-        RPObject object=zone.get(targetid);
-        if(object instanceof PassiveEntity)
-          {
-          PassiveEntity entity=(PassiveEntity)object;
+        return;
+        }
 
-          if(player.nextto(entity,0.25) && player.hasSlot(action.get("slot")))
-            {
-            RPSlot slot=player.getSlot(action.get("slot"));
-            if(slot.size()==0)
-              {
-              world.remove(entity.getID());
-              
-              // Gives a valid id inside the slot
-              slot.assignValidID(entity);
-              slot.add(entity);
-              
-              world.modify(player);
-              }            
-            }
+      int baseObject=action.getInt("baseobject");
+
+      RPObject.ID baseobjectid=new RPObject.ID(baseObject, zone.getID());
+      if(!zone.has(baseobjectid))
+        {
+        return;
+        }
+        
+      RPObject target=zone.get(targetid);
+      if(!(target instanceof PassiveEntity))
+        {
+        return;
+        }
+
+      RPObject base=zone.get(baseobjectid);
+      if(!(base instanceof Player || base instanceof Corpse || base instanceof Chest))
+        {
+        return;
+        }
+      
+      if(base instanceof Player && !player.getID().equals(base))
+        {
+        // Only allowed to equip our own player.
+        return;
+        }
+        
+      PassiveEntity targetEntity=(PassiveEntity)target;
+      Entity baseEntity=(Entity)base;
+
+      if(player.nextto(targetEntity,0.25) && player.nextto(baseEntity,0.25) && baseEntity.hasSlot(action.get("slot")))
+        {
+        RPSlot slot=baseEntity.getSlot(action.get("slot"));
+        if(slot.size()==0)
+          {
+          world.remove(targetEntity.getID());
+          
+          // Gives a valid id inside the slot
+          slot.assignValidID(targetEntity);
+          slot.add(targetEntity);
+            
+          world.modify(baseEntity);
           }
         }
       }
@@ -791,7 +816,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     }
 
   /**
-   * moves an item from one slot to another
+   * moves an item from one slot to another of the player
    * Params:
    *  sourceslot (String) - name of the source-slot
    *  targetslot (String) - name of the target-slot
@@ -841,20 +866,41 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.startMethod(logger,"drop");
     
 
-    if(action.has("slot") && action.has("x") && action.has("y"))
+    if(action.has("baseobject") && action.has("slot") && action.has("x") && action.has("y"))
       {
-      String slotString = action.get("slot");
-      if(player.hasSlot(slotString))
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+        
+      int baseObject=action.getInt("baseobject");
+
+      RPObject.ID baseobjectid=new RPObject.ID(baseObject, zone.getID());
+      if(!zone.has(baseobjectid))
         {
-        RPSlot slot = player.getSlot(slotString);
+        return;
+        }
+
+      RPObject base=zone.get(baseobjectid);
+      if(!(base instanceof Player || base instanceof Corpse || base instanceof Chest))
+        {
+        return;
+        }
+
+      if(base instanceof Player && !player.getID().equals(base))
+        {
+        // Only allowed to drop item of our own player.
+        return;
+        }        
+
+      Entity baseEntity=(Entity)base;
+
+      if(baseEntity.hasSlot(action.get("slot")))
+        {
+        RPSlot slot=baseEntity.getSlot(action.get("slot"));
         
         if(slot.size()==0)
           {
           return;
           }
           
-        StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-        
         RPObject object=slot.iterator().next();
         Entity entity;
         
@@ -863,7 +909,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           //entity = Item.create(object.get("class"));
           entity = world.getRuleManager().getEntityManager().getItem(object.get("class"));
           }
-        else if(object.get("type").equals("corpse"))
+        else if(object.get("type").equals("corpse"))  // BUG: Not removed.
           {
           entity=new Corpse(object);
           entity.put("class",object.get("class"));
@@ -877,7 +923,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         int x=action.getInt("x");
         int y=action.getInt("y");
         
-        if(player.distance(x,y)<8*8 && !zone.simpleCollides(entity,x,y))
+        if(player.nextto(baseEntity,0.25) && baseEntity.distance(x,y)<8*8 && !zone.simpleCollides(entity,x,y))
           {
           slot.clear();
   
@@ -886,14 +932,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           zone.assignRPObjectID(entity);
           zone.add(entity);
           
-          world.modify(player);        
+          world.modify(baseEntity); // BUG: It is not recieved at the client... strage. Maybe a marauroa bug.
           }        
         }
       }
 
     Log4J.finishMethod(logger,"drop");
     }
-
+    
   /**
    * tries to use an item
    * Params:

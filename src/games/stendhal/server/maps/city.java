@@ -79,6 +79,8 @@ public class city
     chest.setx(44);
     chest.sety(60);
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("sword"));
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("shield"));
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("armor"));
     zone.add(chest);
 
     

@@ -385,20 +385,25 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       {
       public void onAction(Object... param)
         {
+        int playerid=client.getPlayer().getID().getObjectID();
         if(param[0] instanceof Entity)
           {
           RPAction action=new RPAction();
           action.put("type","equip");
           action.put("target",((Entity)param[0]).getID().getObjectID());
           action.put("slot",((InGameDroppableArea)param[1]).getName());
+          action.put("baseobject",playerid);
           InGameGUI.this.client.send(action);
           }
         else if(param[0] instanceof InGameDroppableArea)
           {
           RPAction action=new RPAction();
+          
           action.put("type","moveequip");
           action.put("targetslot",((InGameDroppableArea)param[1]).getName());
+          action.put("targetobject",playerid);
           action.put("sourceslot",((InGameDroppableArea)param[0]).getName());
+          action.put("sourceobject",playerid);
           InGameGUI.this.client.send(action);
           }
         }
@@ -627,9 +632,42 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           }
         }
       
+      int baseobjectid=0;
+      int item=-1;
+      String slot=null;
+      
+      System.out.println (inspectedSlot);
+      System.out.println (inspectedEntity);
+      
+      if(inspectedSlot==null || !choosenWidget.getName().startsWith("left"))
+        {
+        baseobjectid=client.getPlayer().getID().getObjectID();
+        slot=choosenWidget.getName();
+        System.out.println ("Want to move from player");
+        }
+      else
+        {
+        baseobjectid=inspectedEntity.getID().getObjectID();
+        slot=inspectedSlot.getName();
+        
+        String choosenarea=choosenWidget.getName();
+        int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
+        
+        int i=0;
+        for(RPObject object: inspectedSlot)
+          {
+          if(i==itemPos)
+            {            
+            item=object.getID().getObjectID();
+            }
+          }
+        }
+      
       RPAction action=new RPAction();
       action.put("type","drop");
-      action.put("slot",choosenWidget.getName());
+      action.put("baseobject",baseobjectid);
+      action.put("slot",slot);
+      action.put("item",item);
       action.put("x",(int)point.getX());
       action.put("y",(int)point.getY());
       InGameGUI.this.client.send(action);
@@ -763,6 +801,23 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     inspectedSlot=slot;
     }
 
+  public boolean isInspecting(Entity entity, String slot)
+    {
+    if(inspectedEntity==null || inspectedSlot==null)
+      {
+      return false;
+      }
+      
+    if(inspectedEntity.getID().equals(entity.getID()) && inspectedSlot.getName().equals(slot))
+      {
+      return true;
+      }    
+    else
+      {
+      return false;
+      }
+    }
+
   public void draw(GameScreen screen)
     {
     screen.drawInScreen(inGameInventory,510,10);
@@ -797,25 +852,32 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
 
       if(inspectedSlot!=null)
         {
+        int i=1;
         for(RPObject object: inspectedSlot)
           {
-          screen.drawInScreen(slot,2,410);
-          screen.drawInScreen(gameObjects.spriteType(object),6,414);
+          InGameDroppableArea area=getDroppableArea("left_00"+i);                    
+          screen.drawInScreen(slot,area.getx()-4,area.gety()-4);
+          screen.drawInScreen(gameObjects.spriteType(object),area.getx(),area.gety());
+          i++;
           }
 
-      if(inspectedEntity.distance(player)>2*2)
-        {
-        for(InGameDroppableArea area:inspectedDroppableAreas)
+        if(inspectedEntity.distance(player)>2.5*2.5)
           {
-          area.setEnabled(false);
+          for(InGameDroppableArea area:inspectedDroppableAreas)
+            {
+            area.setEnabled(false);
+            }
+            
+          inspectedEntity=null;
+          inspectedSlot=null;
           }
-          
-        inspectedEntity=null;
-        inspectedSlot=null;
-        }
         }
       }
     
+    for(InGameDroppableArea item: droppableAreas)    
+      {
+      item.draw(screen);
+      } 
     
     for(InGameButton button: buttons)    
       {

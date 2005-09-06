@@ -259,6 +259,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\Delta2BugTest.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\Navigable.java</path>
 				<source>true</source>
 			</fileitem>
