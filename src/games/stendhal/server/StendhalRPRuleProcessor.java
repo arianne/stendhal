@@ -787,7 +787,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         return;
         }
       
-      if(base instanceof Player && !player.getID().equals(base))
+      if(base instanceof Player && !player.getID().equals(base.getID()))
         {
         // Only allowed to equip our own player.
         return;
@@ -884,7 +884,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         return;
         }
 
-      if(base instanceof Player && !player.getID().equals(base))
+      if(base instanceof Player && !player.getID().equals(base.getID()))
         {
         // Only allowed to drop item of our own player.
         return;
