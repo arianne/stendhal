@@ -863,8 +863,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
    */
   private void drop(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
-    Log4J.startMethod(logger,"drop");
-    
+    Log4J.startMethod(logger,"drop");    
 
     if(action.has("baseobject") && action.has("slot") && action.has("x") && action.has("y"))
       {
@@ -881,6 +880,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       RPObject base=zone.get(baseobjectid);
       if(!(base instanceof Player || base instanceof Corpse || base instanceof Chest))
         {
+        // Only allow to drop objects from players, corpses or chests 
         return;
         }
 
@@ -906,8 +906,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         
         if(object.get("type").equals("item"))
           {
-          //entity = Item.create(object.get("class"));
-          entity = world.getRuleManager().getEntityManager().getItem(object.get("class"));
+          entity=world.getRuleManager().getEntityManager().getItem(object.get("class"));
           }
         else if(object.get("type").equals("corpse"))  // BUG: Not removed.
           {
@@ -925,14 +924,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         
         if(player.nextto(baseEntity,0.25) && baseEntity.distance(x,y)<8*8 && !zone.simpleCollides(entity,x,y))
           {
-          slot.clear();
+          slot.remove(object.getID());
   
           entity.setx(x);
           entity.sety(y);
           zone.assignRPObjectID(entity);
           zone.add(entity);
           
-          world.modify(baseEntity); // BUG: It is not recieved at the client... strage. Maybe a marauroa bug.
+          world.modify(baseEntity);
           }        
         }
       }

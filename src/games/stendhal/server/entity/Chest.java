@@ -88,63 +88,6 @@ public class Chest extends Entity
     content.add(entity);
     }
   
-  public PassiveEntity get(int i)
-    {
-    RPSlot content=getSlot("content");
-    PassiveEntity entity=null;
-    Iterator<RPObject> it=content.iterator();
-
-    if(content.size()==0)
-      {
-      return null;
-      }
-    else
-      {
-      entity=(PassiveEntity)it.next();     
-      }
-    
-    for(int j=0;j!=i && it.hasNext();j++)
-      {
-      entity=(PassiveEntity)it.next();     
-      }    
-    
-    return entity;
-    }
-  
-  public PassiveEntity remove(int i)
-    {
-    RPSlot content=getSlot("content");
-    PassiveEntity entity=null;
-    Iterator<RPObject> it=content.iterator();
-
-    if(content.size()==0)
-      {
-      return null;
-      }
-    else
-      {
-      entity=(PassiveEntity)it.next();     
-      }
-    
-    for(int j=0;j!=i && it.hasNext();j++)
-      {
-      entity=(PassiveEntity)it.next();     
-      }    
-    
-    if(entity!=null)
-      {
-      content.remove(entity.getID());
-      }
-    
-    return entity;
-    }
-
-  public PassiveEntity remove(PassiveEntity entity)
-    {
-    RPSlot content=getSlot("content");
-    return (PassiveEntity)content.remove(entity.getID());
-    }
-  
   public int size()
     {
     return getSlot("content").size();
