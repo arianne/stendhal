@@ -98,6 +98,11 @@ public abstract class RPEntity extends AnimatedEntity
     {
     return level;
     }
+  
+  public int getHP()
+    {
+    return hp;
+    }
 
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {

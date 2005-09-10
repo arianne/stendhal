@@ -1,3 +1,4 @@
+
 package games.stendhal.client.gui;
 
 import games.stendhal.client.*;

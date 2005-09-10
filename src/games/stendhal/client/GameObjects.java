@@ -23,7 +23,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 /** This class stores the objects that exists on the World right now */
-public class GameObjects 
+public class GameObjects implements Iterable<Entity>
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(GameObjects.class);
@@ -111,6 +111,11 @@ public class GameObjects
     sortObjects=new LinkedList<Entity>();
       
     this.collisionMap=collisionMap;
+    }
+  
+  public Iterator<Entity> iterator()
+    {
+    return sortObjects.iterator();
     }
   
   /** Create a Entity of the correct type depending of the arianne object */
