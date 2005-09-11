@@ -11,27 +11,65 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.item;
-
 import games.stendhal.server.entity.PassiveEntity;
 import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import org.apache.log4j.Logger;
 
+/**
+ * This is an item.
+ */
 public class Item extends PassiveEntity
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Item.class);
+  
+  /** list of possible slots for this item */
+  private String[] possibleSlots;
 
   public static void generateRPClass()
     {
     RPClass entity=new RPClass("item");
     entity.isA("entity");
-    entity.add("class",RPClass.STRING);
+    entity.add("class",RPClass.STRING); // class, sword/armor/...
+    entity.add("name",RPClass.STRING);  // name of item (ie 'Kings Sword')
+    entity.add("possibleslots",RPClass.STRING); // komma separated list of slots
     }
-  
-  public Item() throws AttributeNotFoundException
+
+  /**
+   * 
+   * Creates a new Item.
+   * @param name name of item
+   * @param clazz class (or type) od item
+   * @param slots slots where this item may be equipped. may be empty
+   * @param attributes attributes (like attack). may be empty or <code>null</code>
+   */
+  public Item(String name, String clazz, String[] slots, Map<String, String> attributes)
+  {
+    this();
+    put("class",clazz);
+    put("name",name);
+    // save slots
+    possibleSlots = slots;
+
+    if (attributes != null)
+    {
+      // store all attributes
+      for (String key : attributes.keySet())
+      {
+        put(key,attributes.get(key));
+      }
+    }
+  }
+  /** no public 'default' item */
+  private Item() throws AttributeNotFoundException
     {
     super();
     put("type","item");
@@ -42,6 +80,63 @@ public class Item extends PassiveEntity
     {
     rect.setRect(x,y,1,1);
     }
+  
+  /**
+   * Returns the attack points of this item. Positive and negative values are
+   * allowed. If this item doesn't modify the attack it should return '0'.
+   * @return attack points 
+   */
+  public int getAttack()
+  {
+    if (has("atk"))
+      return getInt("atk");
+
+    return 0;
+  }
+
+  /**
+   * Returns the defense points of this item. Positive and negative values are
+   * allowed. If this item doesn't modify the defense it should return '0'.
+   * @return defense points 
+   */
+  public int getDefense()
+  {
+    if (has("def"))
+      return getInt("def");
+
+    return 0;
   }
   
+  /**
+   * Checks if the item is of type <i>type</i>
+   * @param type the type to check
+   * @return true if the type matches, else false 
+   */
+  public boolean isOfClass(String clazz)
+  {
+    return getItemClass().equals(clazz);
+  }
+
+  /** returns the type of the item */
+  public String getItemClass()
+  {
+    if (has("class"))
+      return get("class");
+
+    throw new IllegalStateException("the item does not have a class: "+this);
+  }
   
+  /** returns the name of the item */
+  public String getName()
+  {
+    return get("name");
+  }
+  
+  /** returns the list of possible slots for this item */
+  public String[] getPossibleSlots()
+  {
+    return possibleSlots;
+  }
+  
+
+  }

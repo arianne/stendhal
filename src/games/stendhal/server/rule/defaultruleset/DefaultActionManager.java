@@ -13,10 +13,12 @@
 package games.stendhal.server.rule.defaultruleset;
 
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Equipable;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.ActionManager;
+import java.util.List;
+import marauroa.common.Log4J;
 import marauroa.common.game.RPSlot;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -24,6 +26,9 @@ import marauroa.common.game.RPSlot;
  */
 public class DefaultActionManager implements ActionManager
 {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(DefaultActionManager.class);
+  
   /** the singleton instance, lazy initialisation */
   private static DefaultActionManager manager;
   
@@ -44,33 +49,45 @@ public class DefaultActionManager implements ActionManager
     }
     return manager;
   }
-
-  /** return true if there is a free slot for this item */
-  public boolean onEquip(RPEntity entity, Equipable item)
+  
+  /**
+   * returns the slot the entity can equip the item. This checks if the entity 
+   * has a slot for this item, not if the slot is used already.
+   *
+   * @return the slot name for the item or null if there is no matching slot
+   *                 in the entity
+   */
+  public String canEquip(RPEntity entity, Item item)
   {
-    // only item can be equiped at the moment
-    if (!(item instanceof Item))
-    {
-      return false;
-    }
-
     // get all possible slots for this item
-    String[] slots = ((Equipable) item).getPossibleSlots();
-    
+    String[] slots = item.getPossibleSlots();
+
     for (String slot : slots)
     {
       if (entity.hasSlot(slot))
-      {
-        RPSlot rpslot = entity.getSlot(slot);
-        if (rpslot.size() == 0)
-        {
-          rpslot.add((Item) item);
-          return true;
-        }
-      }
+        return slot;
     }
-    // No free slot found or no slot at all
-    return false;
+    return null;
+  }
+
+  /** equipes the item in the specified slot */
+  public boolean onEquip(RPEntity entity, String slotName, Item item)
+  {
+    if (!entity.hasSlot(slotName))
+      return false;
+
+// TODO: 
+//    // recheck if the item can be equipped
+//    if (!item.getPossibleSlots().contains(slotName))
+//    {
+//      logger.warn("tried to equip the item ["+item.getName()+"] in a nonsupported slot ["+slotName+"]");
+//      return false;
+//    }
+    
+    RPSlot slot = entity.getSlot(slotName);
+    
+    slot.add(item);
+    return true;
   }
 
   public void onTalk()

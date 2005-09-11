@@ -15,8 +15,8 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Level;
 import games.stendhal.server.Path;
 import games.stendhal.server.entity.item.Corpse;
-import games.stendhal.server.entity.item.Equipable;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.rule.ActionManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -536,15 +536,23 @@ public abstract class RPEntity extends Entity
   /** tries to equip the item in the appropriate slot. returns true if the item
    * can be equipped, else false 
    */
-  public boolean equip(Equipable item)
+  public boolean equip(Item item)
   {
-    return world.getRuleManager().getActionManager().onEquip(this, item);
+    ActionManager manager = world.getRuleManager().getActionManager();
+    
+    String slot = manager.canEquip(this, item);
+    if (slot != null)
+    {
+      return manager.onEquip(this, slot, item);
+    }
+    // we cannot equip this item
+    return false;
   }
 
-  /** checks if an item of type <i>type</i> is equipped in slot <i>slot</i>
+  /** checks if an item of class <i>clazz</i> is equipped in slot <i>slot</i>
    * returns true if it is, else false
    */
-  private boolean checkSlotForEquipable(String slot, String type)
+  private boolean checkSlotForItem(String slot, String clazz)
   {
     if(hasSlot(slot))
     {
@@ -553,15 +561,9 @@ public abstract class RPEntity extends Entity
       // traverse all slot items
       for (RPObject item : rpslot)
       {
-        // is it equipable
-        if(item instanceof Equipable)
+        if ((item instanceof Item) && ((Item)item).isOfClass(clazz))
         {
-          Equipable equipable = (Equipable) item;
-          // is it the right type
-          if (equipable.isOfType(type))
-          {
-            return true;
-          }
+          return true;
         }
       }
     }
@@ -569,27 +571,26 @@ public abstract class RPEntity extends Entity
     return false;
   }
   
-  /** returns the first item of type <i>type</i> from the slot or <code>null</code>
-   * if the is no item with the requested type
+  /** returns the first item of class <i>clazz</i> from the slot or <code>null</code>
+   * if there is no item with the requested clazz
    * returns the item or null
    */
-  private Equipable getFirstEquipableFromSlot(String slot, String type)
+  private Item getFirstItemFromSlot(String slot, String clazz)
   {
     if(hasSlot(slot))
     {
       // get slot if the this entity has one
       RPSlot rpslot = getSlot(slot );
       // traverse all slot items
-      for (RPObject item : rpslot)
+      for (RPObject object : rpslot)
       {
-        // is it equipable
-        if(item instanceof Equipable)
+        // is it the right type
+        if (object instanceof Item)
         {
-          Equipable equipable = (Equipable) item;
-          // is it the right type
-          if (equipable.isOfType(type))
+          Item item = (Item) object;
+          if (item.isOfClass(clazz))
           {
-            return equipable;
+            return (Item) item;
           }
         }
       }
@@ -601,49 +602,49 @@ public abstract class RPEntity extends Entity
   /** returns true if the entity has a weapon equipped */
   public boolean hasWeapon()
     {
-    return checkSlotForEquipable("lhand", "weapon") || checkSlotForEquipable("rhand", "weapon");
+    return checkSlotForItem("lhand", "weapon") || checkSlotForItem("rhand", "weapon");
     }
   
-  public Equipable getWeapon()
+  public Item getWeapon()
     {
-    Equipable equipable = getFirstEquipableFromSlot("lhand", "weapon");
-    if (equipable != null)
+    Item item = getFirstItemFromSlot("lhand", "weapon");
+    if (item != null)
       {
-      return equipable;
+      return item;
       }
     else
       {
-      return getFirstEquipableFromSlot("rhand", "weapon");
+      return getFirstItemFromSlot("rhand", "weapon");
       }
     }
   
   /** returns true if the entity has a shield equipped */
   public boolean hasShield()
     {
-    return checkSlotForEquipable("lhand", "armor") || checkSlotForEquipable("rhand", "armor");
+    return checkSlotForItem("lhand", "armor") || checkSlotForItem("rhand", "armor");
     }
   
-  public Equipable getShield()
+  public Item getShield()
     {
-    Equipable equipable = getFirstEquipableFromSlot("lhand", "armor");
-    if (equipable != null)
+    Item item = getFirstItemFromSlot("lhand", "armor");
+    if (item != null)
       {
-      return equipable;
+      return item;
       }
     else
       {
-      return getFirstEquipableFromSlot("rhand", "armor");
+      return getFirstItemFromSlot("rhand", "armor");
       }
     }
     
   public boolean hasArmor()
     {
-    return checkSlotForEquipable("armor", "armor");
+    return checkSlotForItem("armor", "armor");
     }
   
-  public Equipable getArmor()
+  public Item getArmor()
     {
-    return getFirstEquipableFromSlot("armor", "armor");
+    return getFirstItemFromSlot("armor", "armor");
     }
   
   /** checks if the entity has at least one item of type <i>type</i> in one
@@ -654,7 +655,7 @@ public abstract class RPEntity extends Entity
     boolean retVal;
     for (String slot : slots)
       {
-      retVal = checkSlotForEquipable(slot, type);
+      retVal = checkSlotForItem(slot, type);
       if (retVal)
         {
         return true;

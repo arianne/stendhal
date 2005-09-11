@@ -19,7 +19,16 @@ public class GameConsoleAppender extends AppenderSkeleton
 {
   protected void append(LoggingEvent loggingEvent)
   {
-    StendhalClient.get().addEventLine(getLayout().format(loggingEvent),Color.GRAY);
+    StringBuilder buf = new StringBuilder();
+    buf.append(getLayout().format(loggingEvent));
+    String cause[] = loggingEvent.getThrowableInformation().getThrowableStrRep();
+    
+    for (String line : cause)
+    {
+      buf.append(line).append('\n');
+    }
+    
+    StendhalClient.get().addEventLine(buf.toString(),Color.GRAY);
   }
 
   public void close()

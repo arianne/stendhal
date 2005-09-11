@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.Equipable;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
 import marauroa.common.Log4J;
@@ -53,9 +52,9 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
       if (itemEnum.name().equals(uppercaseItemName))
       {
         // found it
-        Equipable item = itemEnum.getItem();
+        Item item = itemEnum.getItem();
         // has the player already one of these items?
-        if (!player.hasItem(item.getPossibleSlots(), item.getType()))
+        if (!player.hasItem(item.getPossibleSlots(), item.getItemClass()))
         {
           if (player.getXP() < itemEnum.getPrice())
           {
@@ -84,7 +83,7 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
         }
         else
         {
-          say("you already have a "+item.getType()+". One is enough for you.");
+          say("you already have a "+item.getItemClass()+". One is enough for you.");
         }
         // item found, but player cannot equip the item
         return false;
@@ -154,15 +153,15 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
   /** all item this npc sells */
   private enum SellableItem
   {
-    CLUB  (1000 ,(Equipable) DefaultItem.CLUB.getItem()),
-    ARMOR (5000 ,(Equipable) DefaultItem.ARMOR.getItem()),
-    SHIELD(10000,(Equipable) DefaultItem.SHIELD.getItem()),
-    SWORD (20000,(Equipable) DefaultItem.SWORD.getItem());
+    CLUB  (1000 ,DefaultItem.CLUB.getItem()),
+    ARMOR (5000 ,DefaultItem.ARMOR.getItem()),
+    SHIELD(10000,DefaultItem.SHIELD.getItem()),
+    SWORD (20000,DefaultItem.SWORD.getItem());
     
     private int price;
-    private Equipable item;
+    private Item item;
     
-    private SellableItem(int price, Equipable item)
+    private SellableItem(int price, Item item)
     {
       this.price = price;
       this.item  = item;
@@ -173,7 +172,7 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
       return price;
     }
 
-    public Equipable getItem()
+    public Item getItem()
     {
       return item;
     }

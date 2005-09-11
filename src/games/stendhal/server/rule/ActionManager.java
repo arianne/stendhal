@@ -13,7 +13,8 @@
 package games.stendhal.server.rule;
 
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Equipable;
+import games.stendhal.server.entity.item.Item;
+import marauroa.common.game.RPSlot;
 
 /**
  * Ruleset Interface for processing actions in Stendhal.
@@ -22,7 +23,8 @@ import games.stendhal.server.entity.item.Equipable;
  */
 public interface ActionManager
   {
-  boolean onEquip(RPEntity entity, Equipable item);
+  String canEquip(RPEntity entity, Item item);
+  boolean onEquip(RPEntity entity, String slotName, Item item);
 
   void onAttack();
   void onTalk();
