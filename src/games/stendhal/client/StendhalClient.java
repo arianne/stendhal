@@ -58,19 +58,21 @@ public class StendhalClient extends ariannexp
   
   private static StendhalClient client;  
   
+  private static final String LOG4J_PROPERTIES = "games/stendhal/log4j.properties";
+  
   public static StendhalClient get()
     {
     if(client==null)
       {
-      client=new StendhalClient(true);     
+      client=new StendhalClient(LOG4J_PROPERTIES);     
       }
       
     return client;
     }
     
-  private StendhalClient(boolean logging)
+  private StendhalClient(String loggingProperties)
     {
-    super(logging);
+    super(loggingProperties);
     world_objects=new HashMap<RPObject.ID, RPObject>();
     staticLayers=new StaticGameLayers();
     gameObjects=new GameObjects(staticLayers);   

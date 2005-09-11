@@ -1000,7 +1000,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Log4J.startMethod(logger,"beginTurn");
     
-    logger.debug("lists: "+corpses.size()+","+corpsesToRemove.size()+","+foodItems.size()+","+npcs.size()+","+npcsToAdd.size()+","+npcsToRemove.size()+","+playersObject.size()+","+playersObjectRmText.size()+","+respawnPoints.size());
+    logger.info("lists: "+corpses.size()+","+corpsesToRemove.size()+","+foodItems.size()+","+npcs.size()+","+npcsToAdd.size()+","+npcsToRemove.size()+","+playersObject.size()+","+playersObjectRmText.size()+","+respawnPoints.size());
 
     try
       {

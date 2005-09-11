@@ -62,7 +62,7 @@ public class textClient extends Thread
         }
       });
     
-    clientManager=new marauroa.client.ariannexp(false)
+    clientManager=new marauroa.client.ariannexp("games/stendhal/log4j.properties")
       {
       protected String getGameName()
         {
