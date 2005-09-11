@@ -396,6 +396,7 @@ public abstract class RPEntity extends Entity
       
     damageReceived.clear();
     totalDamageReceived = 0;
+    
     // Stats about dead
     if(has("class"))
       {

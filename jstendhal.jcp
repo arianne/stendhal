@@ -255,6 +255,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\robot.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\StendhalFirstScreen.java</path>
 				<source>true</source>
 			</fileitem>

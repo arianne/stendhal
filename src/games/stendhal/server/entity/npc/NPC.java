@@ -165,10 +165,5 @@ public abstract class NPC extends RPEntity
       }
     }
 
-  public void onDead(RPEntity who)
-    {
-    super.onDead(who);
-    }
-
   abstract public void logic();
   }

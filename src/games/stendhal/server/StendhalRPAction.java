@@ -73,7 +73,7 @@ public class StendhalRPAction
     try
       {
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(source.getID());
-      if(!zone.has(target.getID()))
+      if(!zone.has(target.getID()) || target.getHP()==0)
         {
         target.onAttack(source, false);
         world.modify(source);

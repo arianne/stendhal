@@ -1006,13 +1006,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       {
       // We keep the number of players logged.
       Statistics.getStatistics().set("Players logged", playersObject.size());
-
       
       // In order for the last hit to be visible dead happens at two steps.
       for(Pair<RPEntity, RPEntity> entity: entityToKill) 
         {
         entity.first().onDead(entity.second());
         }
+        
       entityToKill.clear();
 
       // TODO: Done this way because a problem with comodification... :(
