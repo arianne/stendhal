@@ -351,7 +351,7 @@ public abstract class RPEntity extends Entity
       damageReceived.put(who,damage);
       }
 
-    if(leftHP>=0)
+    if(leftHP>0)
       {
       setHP(leftHP);
       }
