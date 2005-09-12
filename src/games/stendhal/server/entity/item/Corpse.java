@@ -55,7 +55,11 @@ public class Corpse extends PassiveEntity
     update();
     put("stage",stage);
 
-    addSlot(new RPSlot("content"));
+    // Add slot if the source corpse hadn't one
+    if (!hasSlot("content"))
+      {
+      addSlot(new RPSlot("content"));
+      }
     }
 
   public Corpse(RPEntity entity) throws AttributeNotFoundException

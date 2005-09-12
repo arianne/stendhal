@@ -927,7 +927,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           }
         else if(object.get("type").equals("corpse"))  // BUG: Not removed.
           {
-          entity=new Corpse(object);
+          entity = new Corpse(object);
           entity.put("class",object.get("class"));
           }
         else
