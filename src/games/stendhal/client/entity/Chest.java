@@ -59,7 +59,8 @@ public class Chest extends AnimatedEntity
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+//    super.modifyAdded(object,changes);
+    super.modifyRemoved(object,changes);
     
     if(changes.has("open"))
       {

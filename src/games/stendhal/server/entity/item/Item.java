@@ -21,6 +21,7 @@ import java.util.Map;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 /**
@@ -68,12 +69,19 @@ public class Item extends PassiveEntity
       }
     }
   }
+
   /** no public 'default' item */
   private Item() throws AttributeNotFoundException
     {
     super();
     put("type","item");
     update();
+    }
+
+  /** copy constuctor */
+  private Item(Item other) throws AttributeNotFoundException
+    {
+    super(other);
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
@@ -138,5 +146,15 @@ public class Item extends PassiveEntity
     return possibleSlots;
   }
   
+  /** creates a copy */
+  public Object copy()
+  {
+    return new Item(this);
+  }
+  
+  public String toString()
+  {
+    return "Item, "+super.toString();
+  }
 
   }

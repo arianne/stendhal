@@ -55,7 +55,7 @@ public class Chest extends Entity
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y,1,1);
-    }  
+    }
 
   public void update()
     {

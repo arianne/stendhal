@@ -865,7 +865,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Log4J.startMethod(logger,"drop");    
 
-    if(action.has("baseobject") && action.has("slot") && action.has("x") && action.has("y"))
+    if(action.has("baseobject") && action.has("slot") && action.has("x") && action.has("y") && action.has("item"))
       {
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
         
@@ -901,12 +901,29 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           return;
           }
           
-        RPObject object=slot.iterator().next();
+        RPObject object = null;
+        int item = action.getInt("item");
+        // scan through the slot to find the requested item
+        for (RPObject rpobject : slot)
+        {
+          if (rpobject.getID().getObjectID() == item)
+          {
+            object = rpobject;
+            break;
+          }
+        }
+        
+        // no item found...we take the first one
+        if (object == null)
+        {
+          object = slot.iterator().next();
+        }
+        
         Entity entity;
         
         if(object.get("type").equals("item"))
           {
-          entity=world.getRuleManager().getEntityManager().getItem(object.get("class"));
+          entity = world.getRuleManager().getEntityManager().getItem(object.get("class"));
           }
         else if(object.get("type").equals("corpse"))  // BUG: Not removed.
           {
@@ -915,10 +932,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           }
         else
           {
-          logger.debug("dropped "+object);
+          logger.error("tried to drop "+object);
           entity=null;
+          return;
           }
-          
+
         int x=action.getInt("x");
         int y=action.getInt("y");
         

@@ -480,4 +480,9 @@ public class StendhalRPZone extends MarauroaRPZone
 
     return out.toByteArray();
     }
+  
+  public String toString()
+  {
+    return "zone "+zoneid;
+  }
   }

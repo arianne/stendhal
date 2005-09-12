@@ -21,7 +21,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(InGameGUI.class);
-  
+
   interface InGameAction
     {
     public void onAction(Object... param);
@@ -301,6 +301,10 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   private Sprite inGameDevelPoint;
   private Sprite slot;
   
+  private RPSlot inspectedSlot;
+  private java.util.List<InGameDroppableArea> inspectedDroppableAreas;
+  private Entity inspectedEntity;
+
   public InGameGUI(StendhalClient client)
     {
     logger.debug("OS: "+System.getProperty("os.name"));
@@ -657,10 +661,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         int i=0;
         for(RPObject object: inspectedSlot)
           {
-          if(i==itemPos)
-            {            
+          if(i == (itemPos-1))
+            {
             item=object.getID().getObjectID();
+            break;
             }
+          i++;
           }
         }
       
@@ -786,10 +792,6 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         } 
       }
     }
-    
-  private RPSlot inspectedSlot;
-  private java.util.List<InGameDroppableArea> inspectedDroppableAreas;
-  private Entity inspectedEntity;
   
   public void inspect(Entity entity, RPSlot slot)
     {
@@ -839,9 +841,9 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
          RPSlot slot=player.getSlot(slotName);
          if(slot.size()==1)
            {
-           InGameDroppableArea lhand=getDroppableArea(slotName);
+           InGameDroppableArea dropArea=getDroppableArea(slotName);
            RPObject object=slot.iterator().next();
-           screen.drawInScreen(gameObjects.spriteType(object),lhand.getx(),lhand.gety());
+           screen.drawInScreen(gameObjects.spriteType(object),dropArea.getx(),dropArea.gety());
            }
          }
        }
