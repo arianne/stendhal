@@ -107,7 +107,12 @@ public class Corpse extends PassiveEntity
       {
       stage=new_stage;
       put("stage",stage);
-      world.modify(this);
+      
+      // only modify when the corpse is not inside a container
+      if(!isContained())
+        {
+        world.modify(this);
+        }
       }
     
     return degradation--;

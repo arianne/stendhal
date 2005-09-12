@@ -940,13 +940,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         int x=action.getInt("x");
         int y=action.getInt("y");
         
+        zone.assignRPObjectID(entity);
         if(player.nextto(baseEntity,0.25) && baseEntity.distance(x,y)<8*8 && !zone.simpleCollides(entity,x,y))
           {
           slot.remove(object.getID());
   
           entity.setx(x);
           entity.sety(y);
-          zone.assignRPObjectID(entity);
           zone.add(entity);
           
           world.modify(baseEntity);
