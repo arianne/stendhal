@@ -999,8 +999,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   synchronized public void beginTurn()
     {
     Log4J.startMethod(logger,"beginTurn");
+    long start=System.nanoTime();
     
-    logger.info("lists: "+corpses.size()+","+corpsesToRemove.size()+","+foodItems.size()+","+npcs.size()+","+npcsToAdd.size()+","+npcsToRemove.size()+","+playersObject.size()+","+playersObjectRmText.size()+","+respawnPoints.size());
+    int creatures=0;
+    for(RespawnPoint point: respawnPoints) creatures+=point.size();
+    
+    int objects=0;
+    for(IRPZone zone: world) objects+=zone.size();
+
+    logger.info("lists: CO:"+corpses.size()+",F:"+foodItems.size()+",NPC:"+npcs.size()+",P:"+playersObject.size()+",CR:"+creatures+",OB:"+objects);
+    logger.info("lists: CO:"+corpsesToRemove.size()+",NPC:"+npcsToAdd.size()+",NPC:"+npcsToRemove.size()+",P:"+playersObjectRmText.size()+",R:"+respawnPoints.size());
+    
 
     try
       {
@@ -1080,6 +1089,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     finally
       {
+      logger.info("Begin turn: "+(System.nanoTime()-start)/1000000.0);
       Log4J.finishMethod(logger,"beginTurn");
       }
     }
@@ -1087,6 +1097,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   synchronized public void endTurn()
     {
     Log4J.startMethod(logger,"endTurn");
+    long start=System.nanoTime();
     try
       {
       for(Food food: foodItems) food.regrow();
@@ -1099,6 +1110,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     finally
       {
+      logger.info("End turn: "+(System.nanoTime()-start)/1000000.0);
       Log4J.finishMethod(logger,"endTurn");
       }
     }

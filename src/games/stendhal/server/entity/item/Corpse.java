@@ -24,7 +24,7 @@ import games.stendhal.server.entity.*;
 
 public class Corpse extends PassiveEntity
   {
-  final public static int DEGRADATION_TIMEOUT=6000; // 30 minutes at 300 ms
+  final public static int DEGRADATION_TIMEOUT=600; // 30 minutes at 300 ms
   private int degradation;
   private int stage;
 

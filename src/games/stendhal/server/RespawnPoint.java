@@ -34,7 +34,7 @@ public class RespawnPoint
   private List<Creature> entities;
 
   private boolean respawning;
-  final public static int TURNSTORESPAWN=9; // Five minute at 300ms
+  final public static int TURNSTORESPAWN=30; // Five minute at 300ms
   private int turnsToRespawn;
 
   private StendhalRPZone zone;
@@ -101,13 +101,18 @@ public class RespawnPoint
         respawning=false;
         }
       }
-
+    
     for(Creature creature: entities)
       {
       creature.logic();
       }
 
     Log4J.finishMethod(logger, "nextTurn");
+    }
+  
+  public int size()
+    {
+    return entities.size();
     }
 
   private void respawn()

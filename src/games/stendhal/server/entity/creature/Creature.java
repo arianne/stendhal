@@ -283,6 +283,11 @@ public class Creature extends NPC
 
       setPath(nodes,true);
       }
+    
+    if(getNearestPlayer(20)==null) // if there is no player near and none will see us... 
+      {
+      return;
+      }
 
     if(isAttacked() && target==null)
       {
