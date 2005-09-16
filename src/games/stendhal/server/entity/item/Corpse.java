@@ -24,7 +24,7 @@ import games.stendhal.server.entity.*;
 
 public class Corpse extends PassiveEntity
   {
-  final public static int DEGRADATION_TIMEOUT=600; // 30 minutes at 300 ms
+  final public static int DEGRADATION_TIMEOUT=60; // 30 minutes at 300 ms
   private int degradation;
   private int stage;
 
@@ -56,12 +56,26 @@ public class Corpse extends PassiveEntity
     put("stage",stage);
 
     // Add slot if the source corpse hadn't one
-    if (!hasSlot("content"))
+    if(!hasSlot("content"))
       {
       addSlot(new RPSlot("content"));
       }
     }
 
+  public Corpse(String clazz, int x, int y) throws AttributeNotFoundException
+    {    
+    put("type","corpse");
+    put("class",clazz);
+
+    setx(x);
+    sety(y);
+    degradation=DEGRADATION_TIMEOUT;
+    stage=0;
+    put("stage",stage);
+
+    addSlot(new RPSlot("content"));
+    }
+    
   public Corpse(RPEntity entity) throws AttributeNotFoundException
     {
     put("type","corpse");
@@ -108,8 +122,18 @@ public class Corpse extends PassiveEntity
       stage=new_stage;
       put("stage",stage);
       
-      // only modify when the corpse is not inside a container
-      if(!isContained())
+      if(isContained())
+        {
+        // We modify the base container if the object change.
+        RPObject base=getContainer();
+        while(base.isContained())
+          {
+          base=base.getContainer();
+          }
+          
+        world.modify(base);
+        }
+      else
         {
         world.modify(this);
         }
@@ -124,7 +148,7 @@ public class Corpse extends PassiveEntity
       {
       if(isContained())
         {
-        getContainer().remove(this.getID());
+        getContainerSlot().remove(this.getID());
         }
       else
         {

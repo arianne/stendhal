@@ -419,19 +419,11 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\entity\item\Equipable.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Item.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Key.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\item\SimpleEquipableItem.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -925,10 +925,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           {
           entity = world.getRuleManager().getEntityManager().getItem(object.get("class"));
           }
-        else if(object.get("type").equals("corpse"))  // BUG: Not removed.
+        else if(object.get("type").equals("corpse"))  // NOTE: Look how it is done. I think we can improve it ( I mean we MUST improve it ).
           {
-          entity = new Corpse(object);
-          entity.put("class",object.get("class"));
+          removeCorpse((Corpse)object); // We remove this corpse (the dropped one )
+          
+          entity = new Corpse(object.get("class"), 0, 0); // Create a new corpse 
+          entity.put("stage",object.get("stage")); // Very ugly hack.
+          
+          addCorpse((Corpse)entity); // Add it now.
           }
         else
           {

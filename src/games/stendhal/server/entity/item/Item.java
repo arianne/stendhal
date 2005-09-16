@@ -42,6 +42,8 @@ public class Item extends PassiveEntity
     entity.add("class",RPClass.STRING); // class, sword/armor/...
     entity.add("name",RPClass.STRING);  // name of item (ie 'Kings Sword')
     entity.add("possibleslots",RPClass.STRING); // komma separated list of slots
+    entity.add("atk",RPClass.SHORT);  // Some items has attack values
+    entity.add("def",RPClass.SHORT);  // Some items has defense values
     }
 
   /**
