@@ -215,6 +215,9 @@ public class LoginDialog extends JDialog {
                     progressBar.cancel();//if something goes horribly just cancel the progressbar
                     setVisible(true);
                     JOptionPane.showMessageDialog(frame, "Stendhal can't find a Internet connection for getting online");
+                    
+                    ex.printStackTrace();
+                    
                     return;
                 }
                 
