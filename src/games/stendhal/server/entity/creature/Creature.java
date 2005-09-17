@@ -266,6 +266,16 @@ public class Creature extends NPC
   public void logic()
     {
     Log4J.startMethod(logger, "logic");
+
+    if(getNearestPlayer(20)==null) // if there is no player near and none will see us... 
+      {
+      stopAttack();
+      stop();
+      
+      world.modify(this);
+      return;
+      }
+
     if(!hasPath() && !isAttacking())
       {
       logger.debug("Creating Path for this entity");
@@ -284,13 +294,6 @@ public class Creature extends NPC
       setPath(nodes,true);
       }
     
-    if(getNearestPlayer(20)==null) // if there is no player near and none will see us... 
-      {
-      stop();
-      stopAttack();
-      return;
-      }
-
     if(isAttacked() && target==null)
       {
       clearPath();
