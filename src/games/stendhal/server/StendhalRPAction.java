@@ -51,6 +51,7 @@ public class StendhalRPAction
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(source.getID());
       if(!zone.has(target.getID()) || target.getHP()==0)
         {
+        logger.debug("Attack from "+source+" to "+target+" stopped because target was lost("+zone.has(target.getID())+") or dead.");
         target.onAttack(source, false);
         world.modify(source);
         return false;
@@ -76,7 +77,7 @@ public class StendhalRPAction
           risk=source.getATK()-target.getDEF()+roll-10;
           }
         
-        logger.debug("attack: Risk to strike: "+risk);
+        logger.debug("attack from "+source+" to "+target+": Risk to strike: "+risk);
         source.put("risk",risk);
 
         int damage=0;
@@ -122,15 +123,17 @@ public class StendhalRPAction
             {
             target.onDamage(source,damage);
             source.put("damage",damage);
-            logger.debug("attack: Damage done: "+damage);
+            logger.debug("attack from "+source.getID()+" to "+target.getID()+": Damage: "+damage);
             }
           else // Blocked
             {
             source.put("damage",0);
+            logger.debug("attack from "+source.getID()+" to "+target.getID()+": Damage: "+0);
             }
           }
         else // Missed
           {
+          logger.debug("attack from "+source.getID()+" to "+target.getID()+": Missed");
           source.put("damage",0);
           }
 
@@ -139,6 +142,7 @@ public class StendhalRPAction
         }
       else
         {
+        logger.debug("Attack from "+source+" to "+target+" failed because target is not near.");
         return false;
         }
       }

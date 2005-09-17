@@ -286,6 +286,8 @@ public class Creature extends NPC
     
     if(getNearestPlayer(20)==null) // if there is no player near and none will see us... 
       {
+      stop();
+      stopAttack();
       return;
       }
 
