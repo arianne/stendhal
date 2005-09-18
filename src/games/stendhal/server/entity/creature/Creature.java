@@ -213,7 +213,7 @@ public class Creature extends NPC
     }
 
 
-  private RPEntity getNearestPlayer(double range)
+  protected RPEntity getNearestPlayer(double range)
     {
     int x=getx();
     int y=gety();

@@ -186,6 +186,15 @@ public class Sheep extends Creature
   public void logic()
     {
     Log4J.startMethod(logger,"logic");
+
+    if(getNearestPlayer(20)==null && owner==null) // if there is no player near and none will see us... 
+      {
+      stopAttack();
+      stop();
+      
+      world.modify(this);
+      return;
+      }
     
     hungry++;
     Food food=null;
