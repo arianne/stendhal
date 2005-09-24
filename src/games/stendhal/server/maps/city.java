@@ -29,6 +29,7 @@ public class city
     zone.add(portal);
     zone.addPortal(portal);
 
+/**
     portal=new Portal();
     zone.assignRPObjectID(portal);
     portal.setx(62);
@@ -37,6 +38,8 @@ public class city
     portal.setDestination("valley",0);
     zone.add(portal);
     zone.addPortal(portal);
+**/
+    
 
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
@@ -74,6 +77,7 @@ public class city
     zone.add(sign);
 
 
+/**
     Chest chest=new Chest();
     zone.assignRPObjectID(chest);
     chest.setx(44);
@@ -82,7 +86,7 @@ public class city
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("shield"));
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("armor"));
     zone.add(chest);
-
+**/
     
     NPC npc=new BeggarNPC();
     zone.assignRPObjectID(npc);

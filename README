@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.31
+Version 0.32
 
 
 How to play
@@ -41,7 +41,7 @@ Please download it from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.30.jar
+  java -jar stendhal-0.32.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -62,6 +62,13 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.32 Sep 24, 2005
+- Many bug fixes
+- Support for chests ( disabled )
+- Inventory movement working
+- Less CPU usage
+- Threaded A*
+
 0.31 Jul 08, 2005
 - Fixed a bug at statistics system.
 - Speed up combat

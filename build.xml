@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <project name="stendhal" default="compile" basedir=".">
-  <property name="version" value="0.31"/>
+  <property name="version" value="0.32"/>
   <property name="src" value="src"/>
   <property name="maps" value="maps"/>
   <property name="data" value="data"/>
@@ -12,7 +12,7 @@
 
   <!-- EDIT HERE TO CONFIGURE YOUR JAR FILE NAMES -->
   <property name="marauroa_jar" value="marauroa.jar"/>
-  <property name="log4j_jar" value="log4j-1.2.11.jar"/>
+  <property name="log4j_jar" value="log4j.jar"/>
   <!-- [END] -->
   
   <property name="marauroa" value="../marauroa/lib/${marauroa_jar}"/>

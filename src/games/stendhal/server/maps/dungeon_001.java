@@ -50,14 +50,12 @@ public class dungeon_001
     zone.add(npc);    
     zone.addNPC(npc);
   
-//    Item itemo=new Sword();
     Item itemo = zone.getWorld().getRuleManager().getEntityManager().getItem("sword");
     zone.assignRPObjectID(itemo);
     itemo.setx(72);
     itemo.sety(48);
     zone.add(itemo);
 
-//    itemo=new Shield();
     itemo = zone.getWorld().getRuleManager().getEntityManager().getItem("shield");
     zone.assignRPObjectID(itemo);
     itemo.setx(75);
