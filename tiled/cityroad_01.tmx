@@ -57,7 +57,7 @@
  </layer>
  <layer name="cityroad_01_collision" width="128" height="64" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XXY7CIBQGUF9n/3uadfk0CSVt6eVPGM9JjNUIhftBW18vAAAAAAAAAAAAAAAAAAAAAAAA6OP3p8+L/mbUVv576lV3+e+ppu55m17ZWyd7kP98q8x5Rj7WwFFpzjPrEcmkdl/L/uhpnZ/00XNMpXONyv9bfaoOaS75d/nx32f5jzGqBqX7S/qbuyxacn/aB0d5Xc5qVapfKc+8j2h2kXnI/Zk8l/S4Zt+l/dZcl6P7u3RO+V8r7fHer9b+z8Z+Nyfr4N6q+fecl/zLRq6BtM/0/WoMPXKSf8yM/J+Ooab9yHF9s1nZR88XbUebmXsqeh77fbyZ9bX/9/CJ7GvasofWa4z899TjmTL6vMA6ZubvurCe1kwi60b+azq7Rl/l1vL8L/+13OU+6v+c7NcRvfe35v8f9v8b1SJADACAAAA=
+   H4sIAAAAAAAAAO3XXY7CIBQGUF9n/3uadfk0CSVt6eVPGM9JjNUECvcDrK8XAAAAAAAAAAAAAAAAAAAAAAAA9PH70+dFfzNqK/899aq7/PdUU/e8Ta/srZM9yH++VeY8Ix9r4Kg055n1iGRSu69lf/S0zk/66Dmm0r1G5f+tPlWHNJf8u/z677P8xxhVg8gZcpdFS+5P++Aor8tZrUr1K+WZ9xHNLjIPuT+T55Je1+y7tN+aczm6v0v3lP+10h7v/Wrt/2zsd3OyDu6tmn/Pecm/bOQaSPtM36/G0CMn+cfMyP/pGGrajxzXN5uVffR+0Xa0mbmnovex38ebWV/7fw+fyL6mLXtoPWPkv6cez5TR5wXWMTN/58J6WjOJrBv5r+nsjL7KreX5X/5ruct91P852a8j+tvfmv9/2P9vIfGDGACAAAA=
   </data>
  </layer>
 </map>
