@@ -14,15 +14,17 @@ package games.stendhal.server;
 
 import marauroa.common.game.*;
 import marauroa.server.game.*;
-import marauroa.common.Configuration;
 import games.stendhal.server.entity.*;
+import marauroa.common.Log4J;
 
 /** The mapacmancreateaccount extends the createaccount class of marauroa package
- *  so that it defines the specific behaviour for an account of mapacman */
+ *  so that it defines the specific behaviour for an account of stendhal */
 public class stendhalcreateaccount extends marauroa.server.createaccount
   {
   public static void main (String[] args)
     {
+    args = new String[] {"-u","root","-p","12345","-c","meier","-e","test@test.de"};
+    Log4J.init();
     Entity.generateRPClass();
     RPEntity.generateRPClass();
     Player.generateRPClass();
@@ -49,7 +51,7 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
     object.put("def",0);
     object.put("def_xp",0);
     object.put("xp",0);
-    object.put("devel",6);
+//    object.put("devel",6);
     
     return object;
     }
