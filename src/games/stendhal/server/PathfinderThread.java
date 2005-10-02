@@ -88,8 +88,8 @@ public class PathfinderThread extends Thread
     
     Pathfinder pathfinder = new Pathfinder();
     NavigableStendhalNode navMap=new NavigableStendhalNode(path.getEntity(), path.getX(),path.getY(),path.getDestX(), path.getDestY(), (StendhalRPZone) world.getRPZone(path.getEntity().getID()));
-// You may enable the 'distance-fix' here again
-//    navMap.setMaxCost(20.0);
+
+    navMap.setMaxCost(path.getMaxPathRadius());
     pathfinder.setNavigable(navMap);
     pathfinder.setEndpoints(path.getX(),path.getY(),path.getDestX(), path.getDestY());
     
@@ -100,10 +100,6 @@ public class PathfinderThread extends Thread
     {
       pathfinder.doStep();
       steps++;
-//      if (callback != null)
-//      {
-//        callback.stepDone(path.getBestNode());
-//      }
     }
     
     long endTime = System.currentTimeMillis();

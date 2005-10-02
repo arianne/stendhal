@@ -24,20 +24,22 @@ public final class QueuedPath
   private int y;
   private int destx;
   private int desty;
+  private double maxPathRadius;
   private List<Path.Node> path;
   private boolean canceled;
 
   /** Creates a new instance of QueuedPath */
-  public QueuedPath(PathListener listener, Entity entity, int x, int y, int destx, int desty)
+  public QueuedPath(PathListener listener, Entity entity, int x, int y, int destx, int desty, double maxPathRadius)
   {
-    this.listener = listener;
-    this.entity   = entity;
-    this.x        = x;
-    this.y        = y;
-    this.destx    = destx;
-    this.desty    = desty;
-    this.canceled = false;
-    this.path     = null;
+    this.listener      = listener;
+    this.entity        = entity;
+    this.x             = x;
+    this.y             = y;
+    this.destx         = destx;
+    this.desty         = desty;
+    this.maxPathRadius = maxPathRadius;
+    this.canceled      = false;
+    this.path          = null;
   }
   /** sets the path */
   public void setPath(List<Path.Node> path)
@@ -98,5 +100,12 @@ public final class QueuedPath
   {
     return canceled;
   }
+
+  /** returns the maximum radius a path is searched (negative if unlimited))*/
+  public double getMaxPathRadius()
+  {
+    return maxPathRadius;
+  }
+  
 }
 

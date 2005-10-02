@@ -91,14 +91,28 @@ public abstract class NPC extends RPEntity
    * searched and saved.
    * If the destination is less than min <code>min</code> the path is removed.
    * <p>
-   * <b>Warning:</b> The pathfinder is not asynchonous, so this thread is blocked
-   *        until a path is found.
    *
    * @param destEntity the destination entity
    * @param min minimum distance to have a path
    * @param max minimum distance to find a path
    */
   public void setAsynchonousMovement(Entity destEntity, double min, double max)
+  {
+    setAsynchonousMovement(destEntity, min, max, -1.0);
+  }
+  /** 
+   * Moves to the given entity. When the distance to the destination more than
+   * <code>max</code> and this entity does not have a path already one is
+   * searched and saved.
+   * If the destination is less than min <code>min</code> the path is removed.
+   * <p>
+   *
+   * @param destEntity the destination entity
+   * @param min minimum distance to have a path
+   * @param max minimum distance to find a path
+   * @param maxPathRadius the maximum radius in which a path is searched
+   */
+  public void setAsynchonousMovement(Entity destEntity, double min, double max, double maxPathRadius)
   {
     int destX = destEntity.getx();
     int destY = destEntity.gety();
@@ -109,7 +123,7 @@ public abstract class NPC extends RPEntity
 
     if(distance(destX,destY) > max && !hasPath())
     {
-      Path.searchPathAsynchonous(this, destEntity);
+      Path.searchPathAsynchonous(this, destEntity, maxPathRadius);
     }
   }
 
@@ -126,8 +140,9 @@ public abstract class NPC extends RPEntity
    * @param destEntity the destination entity
    * @param min minimum distance to the destination entity
    * @param max maximum distance to the destination entity
+   * @param maxPathRadius the maximum radius in which a path is searched
    */
-  public void setMovement(Entity destEntity, double min, double max)
+  public void setMovement(Entity destEntity, double min, double max, double maxPathRadius)
     {
     if(nextto(destEntity.getx(),destEntity.gety(),min) && hasPath())
       {
@@ -138,7 +153,7 @@ public abstract class NPC extends RPEntity
     if(distance(destEntity.getx(),destEntity.gety()) > max && !hasPath())
       {
       logger.debug("Creating path because ("+getx()+","+gety()+") distance("+destEntity.getx()+","+destEntity.gety()+")>"+max);
-      List<Path.Node> path=Path.searchPath(this,destEntity);
+      List<Path.Node> path=Path.searchPath(this,destEntity,maxPathRadius);
       setPath(path,false);
       }
     }

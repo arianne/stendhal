@@ -47,6 +47,10 @@ public class Path
       this.x=x;
       this.y=y;
       }
+    public String toString()
+      {
+      return "("+x+","+y+")";
+      }
     }
 
   public static void initialize(RPServerManager rpman, RPWorld world)
@@ -110,13 +114,28 @@ public class Path
    */
   public static List<Node> searchPath(Entity entity, int x, int y, int destx, int desty)
     {
+    return searchPath(entity, x, y, destx, desty, -1.0);
+    }
+
+  /** 
+   * Finds a path for the Entity <code>entity</code>.
+   * @param entity the Entity
+   * @param x start x
+   * @param y start y
+   * @param destx destination x
+   * @param desty destination y
+   * @param maxDistance the maximum distance (air line) a possible path may be
+   * @return a list with the path nodes or an empty list if no path is found
+   */
+  public static List<Node> searchPath(Entity entity, int x, int y, int destx, int desty, double maxDistance)
+    {
     Log4J.startMethod(logger, "searchPath");
     long startTime = System.currentTimeMillis();
 
     Pathfinder path=new Pathfinder();
     NavigableStendhalNode navMap=new NavigableStendhalNode(entity, x,y, destx, desty, (StendhalRPZone)world.getRPZone(entity.getID()));
-// You may enable the 'distance-fix' here again    
-//    navMap.setMaxCost(20.0);
+
+    navMap.setMaxCost(maxDistance);
     path.setNavigable(navMap);
     path.setEndpoints(x,y,destx,desty);
 
@@ -157,9 +176,10 @@ public class Path
    * Finds a path for the Entity <code>entity</code> to the other Entity <code>dest</code>.
    * @param entity the Entity (also start point)
    * @param dest the destination Entity
+   * @param maxPathRadius the maximum radius in which a path is searched
    * @return a list with the path nodes or an empty list if no path is found
    */
-  public static void searchPathAsynchonous(RPEntity entity, Entity dest)
+  public static void searchPathAsynchonous(RPEntity entity, Entity dest, double maxPathRadius)
     {
     boolean result = world.getPathfinder().queuePath(
              new QueuedPath(
@@ -168,7 +188,8 @@ public class Path
                  entity.getx(),
                  entity.gety(),
                  dest.getx(),
-                 dest.gety()
+                 dest.gety(),
+                 maxPathRadius
                  )
             );
     
@@ -177,7 +198,6 @@ public class Path
       logger.warn("Pathfinder queue is full...path not added");
       }
     }
-  
   
   /** 
    * Finds a path for the Entity <code>entity</code> to the other Entity <code>dest</code>.
@@ -188,6 +208,18 @@ public class Path
   public static List<Node> searchPath(Entity entity, Entity dest)
     {
     return searchPath(entity, (int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety());
+    }
+  
+  /** 
+   * Finds a path for the Entity <code>entity</code> to the other Entity <code>dest</code>.
+   * @param entity the Entity (also start point)
+   * @param dest the destination Entity
+   * @param maxDistance the maximum distance (air line) a possible path may be
+   * @return a list with the path nodes or an empty list if no path is found
+   */
+  public static List<Node> searchPath(Entity entity, Entity dest, double maxDistance)
+    {
+    return searchPath(entity, (int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety(), maxDistance);
     }
 
   public static boolean followPath(RPEntity entity, double speed)

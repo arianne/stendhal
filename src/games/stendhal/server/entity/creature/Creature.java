@@ -38,9 +38,20 @@ public class Creature extends NPC
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Creature.class);
   
+  /** Flag indicating that creatures are debugged */
+  private static final boolean DEBUG_ENABLED = false;
+
+  
+  /** the number of rounds the creature should wait when the path to the target
+   * is blocked and the target is not moving */
+  protected static final int WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED = 5;
+  
   private RespawnPoint point;
   private List<Path.Node> patrolPath;
   private RPEntity target;
+
+  /** the number of rounds to wait for a path the target */
+  private int waitRounds;
 
   /** the speed of this creature */
   private double speed;
@@ -54,6 +65,8 @@ public class Creature extends NPC
       {
       RPClass npc=new RPClass("creature");
       npc.isA("npc");
+      if (DEBUG_ENABLED)
+        npc.add("debug",RPClass.VERY_LONG_STRING, RPClass.VOLATILE);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -102,85 +115,17 @@ public class Creature extends NPC
     stop();
 
     logger.debug("Created Orc: "+this);
-    
     }
   
   protected void createPath()
     {
-    /** TODO: Creat paths in other way */
+    /** TODO: Create paths in other way */
     patrolPath=new LinkedList<Path.Node>();
     patrolPath.add(new Path.Node(0,0));
     patrolPath.add(new Path.Node(-6,0));
     patrolPath.add(new Path.Node(-6,6));
     patrolPath.add(new Path.Node(0,6));
     }
-
-//    /**
-//     * This function compute how much percentage of hp (in average) a player will lose against a creature
-//     * @param atk Attack stat of the creature
-//     * @param def Defense stat of the creature
-//     * @param hp Health Point stat of the creature
-//     * @param level Level of the player
-//     * @return double Percentage of remaining hp.
-//     */
-//  private static double leftTargetHPAverageCombat(int atk, int def, int hp, int level)
-//    {
-//    double patk = 2.0 + level/3.0; // Atk stat of a player of level level in average = 2 + level/3
-//    double pdef = patk; // Def stat of a player of level level
-//    double playerHp = 100.0 + (10.0 * level)/3.0; // HP Stat of a player of level level.
-//    double maxHp = playerHp;
-//    double creatureHP = hp;
-//    double damageCreature = StendhalRPAction.averageDamageAttack(atk, def, patk, pdef); // Average damage dealed by the creature each turn
-//    double damagePlayer = StendhalRPAction.averageDamageAttack(patk, pdef, atk, def); // Average damage dealed by the player each turn
-//    /* We now compute how much hp the player will have once he killed the creature */
-//    while(creatureHP > 0)
-//      {
-//      creatureHP -= damagePlayer;
-//      playerHp -= damageCreature;
-//      }
-//    /* We return the percentage of remaining hp */
-//    return (playerHp / maxHp);
-//    }
-//
-//    /**
-//     * This function return the number of xp a creature should be given base on its stats;
-//     * @param atk Attack stat of the creature
-//     * @param def Defense stat of the creature
-//     * @param hp Health Point stat of the creature
-//     * @return Number of xp of the creature
-//     */
-//  public int getInitialXP(int atk, int def, int hp)
-//    {
-//    int level, minLevel, maxLevel;
-//    minLevel = 0;
-//    maxLevel = Level.maxLevel();
-//
-//    if(leftTargetHPAverageCombat(atk, def, hp, minLevel) >= 0.1) // If the creature is level 0 or less...
-//      {
-//      return Level.getXP(minLevel + 1) -1;
-//      }
-//    else if(leftTargetHPAverageCombat(atk, def, hp, maxLevel) <= 0.1) // If the creature is level 99 or more...
-//      {
-//      return Level.getXP(maxLevel) + 1;
-//      }
-//    else
-//      {
-//      while(maxLevel - minLevel > 1) // We de a dichotomic search to find what is the level of the creature
-//        {
-//        level = minLevel + ((maxLevel - minLevel)/2);
-//        if(leftTargetHPAverageCombat(atk, def, hp, level) < 0.1) minLevel = level;
-//        else maxLevel = level;
-//        }
-//      /* Now minLevel is the level of the creature and maxLevel is minLevel + 1
-//       * We now give the XP corresponding to this level.
-//       */
-//      if(minLevel != Level.maxLevel())
-//        {
-//        return Level.getXP(minLevel + 1) - 1;
-//        }
-//      return Level.getXP(minLevel) + 1;
-//      }
-//    }
 
   public void setRespawnPoint(RespawnPoint point)
     {
@@ -269,12 +214,19 @@ public class Creature extends NPC
 
     if(getNearestPlayer(20)==null) // if there is no player near and none will see us... 
       {
+      // sleep so we don't waste cpu resources
       stopAttack();
       stop();
+      
+      if (DEBUG_ENABLED)
+        put("debug","action=sleep");
       
       world.modify(this);
       return;
       }
+    
+    // this will keep track of the logic so the client can display it
+    StringBuilder debug = new StringBuilder();
 
     if(!hasPath() && !isAttacking())
       {
@@ -283,6 +235,7 @@ public class Creature extends NPC
 
       int size=patrolPath.size();
 
+      long time = System.nanoTime();
       for(int i=0; i<size;i++)
         {
         Path.Node actual=patrolPath.get(i);
@@ -290,80 +243,150 @@ public class Creature extends NPC
 
         nodes.addAll(Path.searchPath(this,actual.x+getx(),actual.y+gety(),next.x+getx(),next.y+gety()));
         }
+      long time2 = System.nanoTime()-time;
+      
+      if (DEBUG_ENABLED)
+        debug.append("generatepatrolpath,").append(time2).append(",").append(nodes).append(";");
 
       setPath(nodes,true);
       }
     
+    // are we attacked and we don't attack ourself?
     if(isAttacked() && target==null)
       {
+      // Yep, we're attacked
       clearPath();
-      target=getNearestPlayer(8);
       
-      if(target==null)
+      // hit the attacker, but prefer players
+      target = getNearestPlayer(8);
+      if (target == null)
         {
-        target=this.getAttackSource(0);
+        target = this.getAttackSource(0);
         }
-        
+      
+      if (DEBUG_ENABLED)
+        debug.append("attacked,").append(target.getID().getObjectID()).append(';');
+
       logger.debug("Creature("+get("type")+") has been attacked by "+target.get("type"));
       }
     else if(target==null || (!target.get("zoneid").equals(get("zoneid")) && world.has(target.getID())) || !world.has(target.getID()))
       {
+      // no target or current target left the zone (or is dead)
       if(isAttacking())
         {
+        if (DEBUG_ENABLED)
+          debug.append("cancelattack;");
         target=null;
         clearPath();
         stopAttack();
+        waitRounds = 0;
         }
 
-      target=getNearestPlayer(8);
+      target = getNearestPlayer(8);
       if(target!=null)
         {
         logger.debug("Creature("+get("type")+") gets a new target.");
+        if (DEBUG_ENABLED)
+          debug.append("newtarget,").append(target.getID().getObjectID()).append(';');
         }
       }
 
     if(target==null)
       {
+      // No target, so patrol along 
       logger.debug("Following path");
       if(hasPath()) Path.followPath(this,getSpeed());
+      if (DEBUG_ENABLED)
+        debug.append("patrol;");
       }
     else if(distance(target)>16*16)
       {
+      // target out of reach
       logger.debug("Attacker is too far. Creature stops attack");
       target=null;
       clearPath();
       stopAttack();
       stop();
+      if (DEBUG_ENABLED)
+        debug.append("outofreachstopped;");
       }
     else if(!nextto(target,0.25) && !target.stopped())
       {
+      // target not near but in reach and is moving
       logger.debug("Moving to target. Searching new path");
       clearPath();
-      setMovement(target,0,0);
+      setMovement(target,0,0, 20.0);
       moveto(getSpeed());
+      waitRounds = 0;
+      if (DEBUG_ENABLED)
+        debug.append("targetmoved,").append(getPath()).append(";");
       }
     else if(nextto(target,0.25))
       {
+      if (DEBUG_ENABLED)
+        debug.append("attacking;");
+      // target is near
       logger.debug("Next to target. Creature stops and attacks");
       stop();
       attack(target);
       }
     else
       {
+      // target in reach and not moving
       logger.debug("Moving to target. Creature attacks");
-      if(collided()) clearPath();
-      attack(target);
-      setMovement(target,0,0);
-      moveto(getSpeed());
-      
-      if(getPath()==null || getPath().size()==0) // If creature is blocked choose a new target
+      if (DEBUG_ENABLED)
+        debug.append("movetotarget");
+      // our current Path is blocked...mostly by the target or another attacker
+      if(collided())
         {
-        logger.debug("Blocked. Choosing a new target.");
-        target=null;
+        if (DEBUG_ENABLED)
+          debug.append(",blocked");
+        // invalidate the path and stop
         clearPath();
-        stopAttack();
         stop();
+        // wait some rounds so the path can be cleared by other creatures
+        // (either they move away or die)
+        if (waitRounds > 0)
+          {
+          logger.error("waitRounds = "+waitRounds);
+          }
+        else
+          {
+          waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
+          }
         }
+      
+      attack(target);
+      // be sure to let the blocking creatures pass before trying to find a
+      // new path
+      if (waitRounds > 0)
+        {
+        if (DEBUG_ENABLED)
+          debug.append(",waiting");
+        waitRounds--;
+        // HACK: remove collision flag (we'return not moving after all)
+        collides(false);
+        }
+      else
+        {
+        setMovement(target,0,0, 20.0);
+        moveto(getSpeed());
+        if (DEBUG_ENABLED)
+          debug.append(",newpath,").append(getPath());
+
+        if (getPath() == null || getPath().size() == 0) // If creature is blocked choose a new target
+          {
+          if (DEBUG_ENABLED)
+            debug.append(",blocked");
+          logger.debug("Blocked. Choosing a new target.");
+          target=null;
+          clearPath();
+          stopAttack();
+          stop();
+          }
+        }
+        if (DEBUG_ENABLED)
+          debug.append(';');
       }
 
     if(!stopped())
@@ -376,6 +399,8 @@ public class Creature extends NPC
       StendhalRPAction.attack(this,getAttackTarget());
       }
 
+    if (DEBUG_ENABLED)
+      put("debug",debug.toString());
     world.modify(this);
     Log4J.finishMethod(logger, "logic");
     }

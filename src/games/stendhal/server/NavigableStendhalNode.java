@@ -44,7 +44,7 @@ public class NavigableStendhalNode implements Navigable
    */
   public NavigableStendhalNode(Entity entity, int x1, int y1, int x2, int y2, StendhalRPZone zone)
   {
-    this.maxCost = 0;
+    this.maxCost = -1.0;
     this.zone=zone;
     this.entity=entity;
     this.startNode = new Pathfinder.Node(x1,y1);
@@ -73,7 +73,7 @@ public class NavigableStendhalNode implements Navigable
       return true;
     }
     // if there is a max cost and the current path exceeds this length =>false
-    if (maxCost > 0 && (Math.abs(node.x-startNode.x) +  Math.abs(node.y-startNode.y) > maxCost))
+    if (maxCost > 0.0 && (Math.abs(node.x-startNode.x) +  Math.abs(node.y-startNode.y) > maxCost))
       //if (maxCost > 0 && node.parent.g > maxCost)
     {
       return false;

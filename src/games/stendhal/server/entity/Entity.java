@@ -182,6 +182,8 @@ public abstract class Entity extends RPObject
     return (x-entity.x)*(x-entity.x)+(y-entity.y)*(y-entity.y);
     }
 
+  /** This returns the manhattan distance.
+   *  It is faster than real distance */
   public double distance(int x, int y)
     {
     return (x-this.x)*(x-this.x)+(y-this.y)*(y-this.y);
