@@ -56,7 +56,7 @@ public class RespawnPoint
     maximum=0;
 
     respawning=true;
-    turnsToRespawn=TURNSTORESPAWN;
+    turnsToRespawn=1;  // respawn now
     }
 
   public void set(StendhalRPZone zone,Creature entity, int maximum)
