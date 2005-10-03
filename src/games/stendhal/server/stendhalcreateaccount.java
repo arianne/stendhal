@@ -17,13 +17,13 @@ import marauroa.server.game.*;
 import games.stendhal.server.entity.*;
 import marauroa.common.Log4J;
 
-/** The mapacmancreateaccount extends the createaccount class of marauroa package
+/** The stendhalcreateaccount extends the createaccount class of marauroa package
  *  so that it defines the specific behaviour for an account of stendhal */
 public class stendhalcreateaccount extends marauroa.server.createaccount
   {
   public static void main (String[] args)
     {
-    args = new String[] {"-u","root","-p","12345","-c","meier","-e","test@test.de"};
+//    args = new String[] {"-u","root","-p","12345","-c","meier","-e","test@test.de"};
     Log4J.init();
     Entity.generateRPClass();
     RPEntity.generateRPClass();
