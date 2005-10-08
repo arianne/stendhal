@@ -24,18 +24,18 @@ import java.lang.reflect.*;
 
 public abstract class Entity
   {
-	/** The current x location of this entity */ 
-	protected double x;
-	/** The current y location of this entity */
-	protected double y;
+  /** The current x location of this entity */ 
+  protected double x;
+  /** The current y location of this entity */
+  protected double y;
 	
-	private Direction direction;
-	private double speed;
+  private Direction direction;
+  private double speed;
 	
-	/** The current speed of this entity horizontally (pixels/sec) */
-	protected double dx;
-	/** The current speed of this entity vertically (pixels/sec) */
-	protected double dy;
+  /** The current speed of this entity horizontally (pixels/sec) */
+  protected double dx;
+  /** The current speed of this entity vertically (pixels/sec) */
+  protected double dy;
 
   /** The arianne object associated with this game entity */
   protected RPObject.ID id;
@@ -53,13 +53,13 @@ public abstract class Entity
   public Entity()
     {    
     }
-    
-	/**
-	 * Construct a entity based on a sprite image and a location.
-	 * 
- 	 * @param x The initial x location of this entity
-	 * @param y The initial y location of this entity
-	 */
+
+  /**
+   * Construct a entity based on a sprite image and a location.
+   * 
+   * @param x The initial x location of this entity
+   * @param y The initial y location of this entity
+   */
   public Entity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
 	  {
 	  this.gameObjects=gameObjects;
@@ -161,7 +161,7 @@ public abstract class Entity
     {
     screen.draw(sprite,x,y);
 
-    if(stendhal.showCollisionDetection)
+    if(stendhal.SHOW_COLLISION_DETECTION)
       {
       Graphics g2d=screen.expose();
       Rectangle2D rect=getArea();      
@@ -179,14 +179,14 @@ public abstract class Entity
       }
     }
     
-	public void move(long delta) 
-	  {
-		// update the location of the entity based on move speeds
-		x += (delta * dx) / 300;
-		y += (delta * dy) / 300;
-//		
-//		System.out.println (type+"(POS)-->"+x+","+y);
-  	}	
+  public void move(long delta) 
+    {
+    // update the location of the entity based on move speeds
+    x += (delta * dx) / 300;
+    y += (delta * dy) / 300;
+
+//    System.out.println (type+"(POS)-->"+x+","+y);
+    }	
   
   public boolean stopped()
     {

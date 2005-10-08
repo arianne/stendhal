@@ -501,6 +501,7 @@ public abstract class RPEntity extends Entity
     {
     this.path=null;
     this.pathPosition = 0;
+    this.pathLoop = false;
     }
 
   public boolean hasPath()

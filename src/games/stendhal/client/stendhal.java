@@ -19,11 +19,11 @@ public class stendhal extends Thread
   {
   public static boolean doLogin=false;
   
-  final public static boolean showCollisionDetection=false;
-  final public static boolean showEveryoneAttackInfo=false;
-  final public static boolean showEveryoneXPInfo=false;
+  public static final boolean SHOW_COLLISION_DETECTION  = false;
+  public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
+  public static final boolean SHOW_EVERYONE_XP_INFO     = false;
   
-  final public static String VERSION="0.32";
+  public static final String VERSION="0.32";
   
   public static void main(String args[]) 
     {

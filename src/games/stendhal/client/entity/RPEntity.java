@@ -146,7 +146,7 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(changes.has("level") && object.has("level"))
       {
-      if(stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID()))
+      if(stendhal.SHOW_EVERYONE_XP_INFO || getID().equals(client.getPlayer().getID()))
         {
         String text=getName()+" reachs Level "+ getLevel();
         
@@ -209,7 +209,7 @@ public abstract class RPEntity extends AnimatedEntity
     // This shows damage done by the player and to the player.
     boolean showAttackInfoForPlayer=client.getPlayer()!=null && (getID().equals(client.getPlayer().getID()) || source.getID().equals(client.getPlayer().getID()));
 
-    if(risk>0 && damage>0 && (stendhal.showEveryoneAttackInfo || showAttackInfoForPlayer))
+    if(risk>0 && damage>0 && (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer))
       {
       client.addEventLine(name+" loses with "+damage+" hitpoints due to an attack by "+source.getName(),Color.RED);
       }

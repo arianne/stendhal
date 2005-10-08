@@ -19,6 +19,7 @@ import games.stendhal.server.entity.npc.NPC;
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
+import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.game.*;
 import org.apache.log4j.Logger;
@@ -35,6 +36,19 @@ import org.apache.log4j.Logger;
  */
 public class Creature extends NPC
   {
+  /** Enum classifying the possible (AI) states a creature can be in */
+  private enum AiState
+  {
+    /** patroling, watching for an enemy */
+    PATROL,
+    /** moving towards a moving target */
+    APPROACHING_MOVING_TARGET,
+    /** moving towards a stopped target*/
+    APPROACHING_STOPPED_TARGET,
+    /** attacking */
+    ATTACKING
+  }
+  
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Creature.class);
   
@@ -184,7 +198,7 @@ public class Creature extends NPC
           }
         }
       }
-      
+
     for(Player player: rp.getPlayers())
       {
       if(player.get("zoneid").equals(get("zoneid")))
@@ -207,6 +221,19 @@ public class Creature extends NPC
     return chosen;
     }
 
+  /** returns a string-repesentation of the path */
+  private String pathToString()
+  {
+    int pos = getPathPosition();
+    List<Path.Node> thePath = getPath();
+    List<Path.Node> nodeList = thePath.subList(pos, thePath.size());
+//    if (isPathLoop())
+//    {
+//      nodeList.addAll(thePath.subList(0, pos));
+//    }
+    
+    return thePath.toString();
+  }
 
   public void logic()
     {
@@ -219,14 +246,14 @@ public class Creature extends NPC
       stop();
       
       if (DEBUG_ENABLED)
-        put("debug","action=sleep");
+        put("debug","sleep");
       
       world.modify(this);
       return;
       }
     
     // this will keep track of the logic so the client can display it
-    StringBuilder debug = new StringBuilder();
+    StringBuilder debug = new StringBuilder(100);
 
     if(!hasPath() && !isAttacking())
       {
@@ -244,11 +271,12 @@ public class Creature extends NPC
         nodes.addAll(Path.searchPath(this,actual.x+getx(),actual.y+gety(),next.x+getx(),next.y+gety()));
         }
       long time2 = System.nanoTime()-time;
-      
-      if (DEBUG_ENABLED)
-        debug.append("generatepatrolpath,").append(time2).append(",").append(nodes).append(";");
 
       setPath(nodes,true);
+      
+      if (DEBUG_ENABLED)
+        debug.append("generatepatrolpath;").append(time2).append("|");
+
       }
     
     // are we attacked and we don't attack ourself?
@@ -265,7 +293,7 @@ public class Creature extends NPC
         }
       
       if (DEBUG_ENABLED)
-        debug.append("attacked,").append(target.getID().getObjectID()).append(';');
+        debug.append("attacked;").append(target.getID().getObjectID()).append('|');
 
       logger.debug("Creature("+get("type")+") has been attacked by "+target.get("type"));
       }
@@ -275,7 +303,7 @@ public class Creature extends NPC
       if(isAttacking())
         {
         if (DEBUG_ENABLED)
-          debug.append("cancelattack;");
+          debug.append("cancelattack|");
         target=null;
         clearPath();
         stopAttack();
@@ -287,7 +315,7 @@ public class Creature extends NPC
         {
         logger.debug("Creature("+get("type")+") gets a new target.");
         if (DEBUG_ENABLED)
-          debug.append("newtarget,").append(target.getID().getObjectID()).append(';');
+          debug.append("newtarget;").append(target.getID().getObjectID()).append('|');
         }
       }
 
@@ -297,7 +325,7 @@ public class Creature extends NPC
       logger.debug("Following path");
       if(hasPath()) Path.followPath(this,getSpeed());
       if (DEBUG_ENABLED)
-        debug.append("patrol;");
+        debug.append("patrol;").append(pathToString()).append('|');
       }
     else if(distance(target)>16*16)
       {
@@ -308,7 +336,7 @@ public class Creature extends NPC
       stopAttack();
       stop();
       if (DEBUG_ENABLED)
-        debug.append("outofreachstopped;");
+        debug.append("outofreachstopped|");
       }
     else if(!nextto(target,0.25) && !target.stopped())
       {
@@ -319,12 +347,18 @@ public class Creature extends NPC
       moveto(getSpeed());
       waitRounds = 0;
       if (DEBUG_ENABLED)
-        debug.append("targetmoved,").append(getPath()).append(";");
+        {
+        List path = getPath();
+        if (path != null)
+          {
+          debug.append("targetmoved;").append(pathToString()).append("|");
+          }
+        }
       }
     else if(nextto(target,0.25))
       {
       if (DEBUG_ENABLED)
-        debug.append("attacking;");
+        debug.append("attacking|");
       // target is near
       logger.debug("Next to target. Creature stops and attacks");
       stop();
@@ -340,7 +374,7 @@ public class Creature extends NPC
       if(collided())
         {
         if (DEBUG_ENABLED)
-          debug.append(",blocked");
+          debug.append(";blocked");
         // invalidate the path and stop
         clearPath();
         stop();
@@ -362,31 +396,45 @@ public class Creature extends NPC
       if (waitRounds > 0)
         {
         if (DEBUG_ENABLED)
-          debug.append(",waiting");
+          debug.append(";waiting");
         waitRounds--;
-        // HACK: remove collision flag (we'return not moving after all)
+        // HACK: remove collision flag (we're not moving after all)
         collides(false);
+        clearPath();
         }
       else
         {
+        // Are we still patrol'ing?
+        if (isPathLoop())
+          {
+            // yep, so clear the patrol path
+            clearPath();
+          }
+
         setMovement(target,0,0, 20.0);
         moveto(getSpeed());
         if (DEBUG_ENABLED)
-          debug.append(",newpath,").append(getPath());
+          debug.append(";newpath;");
 
         if (getPath() == null || getPath().size() == 0) // If creature is blocked choose a new target
           {
           if (DEBUG_ENABLED)
-            debug.append(",blocked");
+            debug.append(";blocked");
           logger.debug("Blocked. Choosing a new target.");
           target=null;
           clearPath();
           stopAttack();
           stop();
           }
+        else
+          {
+          if (DEBUG_ENABLED)
+            debug.append(getPath());
+          }
         }
+
         if (DEBUG_ENABLED)
-          debug.append(';');
+          debug.append(";dummy|");
       }
 
     if(!stopped())

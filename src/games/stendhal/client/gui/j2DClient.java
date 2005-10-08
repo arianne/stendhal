@@ -254,13 +254,13 @@ public class j2DClient extends JFrame
     // setup our canvas size and put it into the content of the frame
     Canvas canvas=new Canvas();
     canvas.setBounds(0,0,640,460);
-      // Tell AWT not to bother repainting our canvas since we're
-      // going to do that our self in accelerated mode
-      canvas.setIgnoreRepaint(true);
-      panel.add(canvas);
+    // Tell AWT not to bother repainting our canvas since we're
+    // going to do that our self in accelerated mode
+    canvas.setIgnoreRepaint(true);
+    panel.add(canvas);
 
-      playerChatText=new JTextField("");
-      playerChatText.setBounds(0,460,640,20);
+    playerChatText=new JTextField("");
+    playerChatText.setBounds(0,460,640,20);
 
     StendhalChatLineListener chatListener=new StendhalChatLineListener();
     playerChatText.addActionListener(chatListener);
