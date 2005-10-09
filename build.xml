@@ -136,6 +136,7 @@
       <fileset dir="${marauroa_build}" excludes="**/server/**"/>
       <manifest>
         <attribute name="Main-Class" value="games.stendhal.client.stendhal"/>
+        <attribute name="Class-path" value="log4j.jar"/>
       </manifest>
     </jar>
   </target>
@@ -167,6 +168,7 @@
   
   <target name="release_client_binary" depends="sign_client_jar">
     <mkdir dir="stendhal-${version}"/>
+    <copy todir="stendhal-${version}" file="${log4j}"/>
     <copy todir="stendhal-${version}" file="${lib}/${client_jarname}"/>
     <copy todir="stendhal-${version}" file="AUTHORS"/>
     <copy todir="stendhal-${version}" file="BUGS"/>

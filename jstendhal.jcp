@@ -91,6 +91,14 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>stendhal-0.32.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.32.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\log4j.properties</path>
 				<source>true</source>
 			</fileitem>
@@ -252,10 +260,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\gui\ProgressBar.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\robot.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
