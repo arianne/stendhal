@@ -146,6 +146,7 @@
       <signjar jar="${lib}/${client_jarname}" alias="youralias" keystore="yourkeystore" storepass="yourpassword" />
     -->  	
     <signjar jar="${lib}/${client_jarname}" alias="miguelangelblanchlardin@hotmail.com" keystore="keystore.ks" storepass="qwerty" />
+    <signjar jar="${log4j}" alias="miguelangelblanchlardin@hotmail.com" keystore="keystore.ks" storepass="qwerty" />
   </target>
 
   <target name="jar" depends="client_jar,server_jar"/>
