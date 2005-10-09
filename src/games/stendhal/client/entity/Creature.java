@@ -124,7 +124,7 @@ public abstract class Creature extends NPC
         drawPath(screen,patrolPath, GameScreen.PIXEL_SCALE/2+1);
       }
 
-      if (moveToTargetNew  && moveToTargetPath != null)
+      if ((moveToTarget || moveToTargetNew)  && moveToTargetPath != null)
       {
         g2d.setColor(Color.blue);
         drawPath(screen,moveToTargetPath, GameScreen.PIXEL_SCALE/2+2);
@@ -177,6 +177,9 @@ public abstract class Creature extends NPC
       targetMoved = false;
       attacking = false;
       moveToTarget = false;
+      moveToTargetBlocked = false;
+      moveToTargetWaiting = false;
+      moveToTargetNew = false;
 
       String debug = changes.get("debug");
 

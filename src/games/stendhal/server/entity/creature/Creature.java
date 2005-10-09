@@ -33,12 +33,18 @@ import org.apache.log4j.Logger;
  * <p>
  * Not all creatures have to be hostile, but at the moment the default behavior 
  * is to attack the player.
+ * <p>
+ * The ai
  */
 public class Creature extends NPC
   {
   /** Enum classifying the possible (AI) states a creature can be in */
   private enum AiState
-  {
+    {
+    /** sleeping as there is no enemy in sight */
+    SLEEP,
+    /** doin' nothing */
+    IDLE,
     /** patroling, watching for an enemy */
     PATROL,
     /** moving towards a moving target */
@@ -46,8 +52,8 @@ public class Creature extends NPC
     /** moving towards a stopped target*/
     APPROACHING_STOPPED_TARGET,
     /** attacking */
-    ATTACKING
-  }
+    ATTACKING;
+    }
   
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Creature.class);
@@ -66,6 +72,8 @@ public class Creature extends NPC
 
   /** the number of rounds to wait for a path the target */
   private int waitRounds;
+  /** the current (logic)state */
+  private AiState aiState;
 
   /** the speed of this creature */
   private double speed;
@@ -79,8 +87,7 @@ public class Creature extends NPC
       {
       RPClass npc=new RPClass("creature");
       npc.isA("npc");
-      if (DEBUG_ENABLED)
-        npc.add("debug",RPClass.VERY_LONG_STRING, RPClass.VOLATILE);
+      npc.add("debug",RPClass.VERY_LONG_STRING, RPClass.VOLATILE);
       }
     catch(RPClass.SyntaxException e)
       {
@@ -127,8 +134,7 @@ public class Creature extends NPC
     setLevel(Level.getLevel(xp));
 
     stop();
-
-    logger.debug("Created Orc: "+this);
+    logger.debug("Created "+clazz+":"+this);
     }
   
   protected void createPath()
@@ -139,6 +145,7 @@ public class Creature extends NPC
     patrolPath.add(new Path.Node(-6,0));
     patrolPath.add(new Path.Node(-6,6));
     patrolPath.add(new Path.Node(0,6));
+    aiState = AiState.IDLE;
     }
 
   public void setRespawnPoint(RespawnPoint point)
@@ -223,64 +230,45 @@ public class Creature extends NPC
 
   /** returns a string-repesentation of the path */
   private String pathToString()
-  {
+    {
     int pos = getPathPosition();
     List<Path.Node> thePath = getPath();
     List<Path.Node> nodeList = thePath.subList(pos, thePath.size());
-//    if (isPathLoop())
-//    {
-//      nodeList.addAll(thePath.subList(0, pos));
-//    }
     
-    return thePath.toString();
-  }
+    return nodeList.toString();
+    }
+  
+  /** need to recalculate the ai when we stop the attack */
+  public void stopAttack()
+    {
+    aiState = AiState.IDLE;
+    super.stopAttack();
+    }
+
 
   public void logic()
     {
     Log4J.startMethod(logger, "logic");
 
-    if(getNearestPlayer(20)==null) // if there is no player near and none will see us... 
+    if (getNearestPlayer(20) == null) // if there is no player near and none will see us... 
       {
       // sleep so we don't waste cpu resources
       stopAttack();
       stop();
-      
+
       if (DEBUG_ENABLED)
         put("debug","sleep");
-      
+
+      aiState = AiState.SLEEP;
       world.modify(this);
       return;
       }
-    
+
     // this will keep track of the logic so the client can display it
     StringBuilder debug = new StringBuilder(100);
 
-    if(!hasPath() && !isAttacking())
-      {
-      logger.debug("Creating Path for this entity");
-      List<Path.Node> nodes=new LinkedList<Path.Node>();
-
-      int size=patrolPath.size();
-
-      long time = System.nanoTime();
-      for(int i=0; i<size;i++)
-        {
-        Path.Node actual=patrolPath.get(i);
-        Path.Node next=patrolPath.get((i+1)%size);
-
-        nodes.addAll(Path.searchPath(this,actual.x+getx(),actual.y+gety(),next.x+getx(),next.y+gety()));
-        }
-      long time2 = System.nanoTime()-time;
-
-      setPath(nodes,true);
-      
-      if (DEBUG_ENABLED)
-        debug.append("generatepatrolpath;").append(time2).append("|");
-
-      }
-    
     // are we attacked and we don't attack ourself?
-    if(isAttacked() && target==null)
+    if(isAttacked() && target == null)
       {
       // Yep, we're attacked
       clearPath();
@@ -302,6 +290,7 @@ public class Creature extends NPC
       // no target or current target left the zone (or is dead)
       if(isAttacking())
         {
+        // stop the attack...
         if (DEBUG_ENABLED)
           debug.append("cancelattack|");
         target=null;
@@ -310,6 +299,7 @@ public class Creature extends NPC
         waitRounds = 0;
         }
 
+      // ...and find another target
       target = getNearestPlayer(8);
       if(target!=null)
         {
@@ -319,11 +309,38 @@ public class Creature extends NPC
         }
       }
 
-    if(target==null)
+    
+    // now we check our current target
+    if (target == null)
       {
-      // No target, so patrol along 
+      // No target, so patrol along
+      if (aiState != AiState.PATROL || !hasPath())
+        {
+        // Create a patrolpath
+        logger.debug("Creating Path for this entity");
+        List<Path.Node> nodes = new LinkedList<Path.Node>();
+
+        int size = patrolPath.size();
+
+        long time = System.nanoTime();
+        for(int i=0; i<size;i++)
+          {
+          Path.Node actual=patrolPath.get(i);
+          Path.Node next=patrolPath.get((i+1)%size);
+
+          nodes.addAll(Path.searchPath(this,actual.x+getx(),actual.y+gety(),next.x+getx(),next.y+gety()));
+          }
+        long time2 = System.nanoTime()-time;
+
+        setPath(nodes,true);
+
+        if (DEBUG_ENABLED)
+          debug.append("generatepatrolpath;").append(time2).append("|");
+
+        }
       logger.debug("Following path");
       if(hasPath()) Path.followPath(this,getSpeed());
+      aiState = AiState.PATROL;
       if (DEBUG_ENABLED)
         debug.append("patrol;").append(pathToString()).append('|');
       }
@@ -335,6 +352,7 @@ public class Creature extends NPC
       clearPath();
       stopAttack();
       stop();
+
       if (DEBUG_ENABLED)
         debug.append("outofreachstopped|");
       }
@@ -345,7 +363,8 @@ public class Creature extends NPC
       clearPath();
       setMovement(target,0,0, 20.0);
       moveto(getSpeed());
-      waitRounds = 0;
+      waitRounds = 0; // clear waitrounds
+      aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
       if (DEBUG_ENABLED)
         {
         List path = getPath();
@@ -363,6 +382,7 @@ public class Creature extends NPC
       logger.debug("Next to target. Creature stops and attacks");
       stop();
       attack(target);
+      aiState = AiState.ATTACKING;
       }
     else
       {
@@ -380,17 +400,12 @@ public class Creature extends NPC
         stop();
         // wait some rounds so the path can be cleared by other creatures
         // (either they move away or die)
-        if (waitRounds > 0)
-          {
-          logger.error("waitRounds = "+waitRounds);
-          }
-        else
-          {
-          waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
-          }
+        waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
         }
-      
+
+      aiState = AiState.APPROACHING_STOPPED_TARGET;
       attack(target);
+
       // be sure to let the blocking creatures pass before trying to find a
       // new path
       if (waitRounds > 0)
@@ -405,7 +420,7 @@ public class Creature extends NPC
       else
         {
         // Are we still patrol'ing?
-        if (isPathLoop())
+        if (isPathLoop() || aiState == AiState.PATROL)
           {
             // yep, so clear the patrol path
             clearPath();
@@ -414,7 +429,7 @@ public class Creature extends NPC
         setMovement(target,0,0, 20.0);
         moveto(getSpeed());
         if (DEBUG_ENABLED)
-          debug.append(";newpath;");
+          debug.append(";newpath");
 
         if (getPath() == null || getPath().size() == 0) // If creature is blocked choose a new target
           {
@@ -425,11 +440,12 @@ public class Creature extends NPC
           clearPath();
           stopAttack();
           stop();
+          waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
           }
         else
           {
           if (DEBUG_ENABLED)
-            debug.append(getPath());
+            debug.append(';').append(getPath());
           }
         }
 
