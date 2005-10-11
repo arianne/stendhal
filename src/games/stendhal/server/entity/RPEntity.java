@@ -77,7 +77,7 @@ public abstract class RPEntity extends Entity
       entity.isA("entity");
       entity.add("name",RPClass.STRING);
       entity.add("level",RPClass.SHORT);
-      entity.add("xp",RPClass.INT,RPClass.HIDDEN);
+      entity.add("xp",RPClass.INT);
 
       entity.add("hp/base_hp",RPClass.FLOAT, RPClass.VOLATILE);
       entity.add("base_hp",RPClass.SHORT,RPClass.HIDDEN);

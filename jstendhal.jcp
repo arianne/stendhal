@@ -74,24 +74,6 @@
 			<folderitem>
 				<path>maps</path>
 			</folderitem>
-			<folderitem>
-				<path>log4j</path>
-			</folderitem>
-			<folderitem>
-				<path>log4j\org</path>
-			</folderitem>
-			<folderitem>
-				<path>log4j\org\apache</path>
-			</folderitem>
-			<folderitem>
-				<path>log4j\org\apache\log4j</path>
-			</folderitem>
-			<folderitem>
-				<path>log4j\org\apache\log4j\lf5</path>
-			</folderitem>
-			<folderitem>
-				<path>log4j\org\apache\log4j\lf5\config</path>
-			</folderitem>
 			<fileitem>
 				<path>build.xml</path>
 				<source>true</source>
@@ -538,10 +520,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\Rand.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>log4j\org\apache\log4j\lf5\config\defaultconfig.properties</path>
 				<source>true</source>
 			</fileitem>
 		</include>

@@ -27,7 +27,8 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 
-
+/** TODO: Move InGame classes to their own classes and package as they build the GUI 
+ *        and make this code hard to understand ( because of lots of GUI specific code */
 public class InGameGUI implements MouseListener, MouseMotionListener, KeyListener
   {
   /** the logger instance. */
@@ -402,7 +403,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       public void onAction(Object... param)
         {
         int playerid=client.getPlayer().getID().getObjectID();
-        if(param[0] instanceof Entity)
+        if(param[0] instanceof Entity) 
           {
           RPAction action=new RPAction();
           action.put("type","equip");
