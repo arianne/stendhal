@@ -86,6 +86,11 @@ public class NavigableStendhalNode implements Navigable
   public double getCost(Pathfinder.Node parent, Pathfinder.Node child)
   {
     //return Math.abs(parent.getX()-child.getX())+Math.abs(parent.getY()-child.getY());
+    if (zone.navigationMap.isStreet(child.x, child.y))
+    {
+      // very small preference for streets
+      return 0.9;
+    }
     return 1;
   }
   

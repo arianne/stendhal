@@ -51,9 +51,11 @@ public class StendhalRPZone extends MarauroaRPZone
   private List<RespawnPoint> respawnPoints;
   private List<Food> foodItems;
   
-  public  CollisionDetection collisionMap;
-  private NavigationPoints navigationMap;  
-  
+  /** contains data to if a certain area is walkable*/
+  public CollisionDetection collisionMap;
+  /** contains navigation point nodes and 'streets' */
+  public NavigationMap navigationMap;  
+
   private int width;
   private int height;
 
@@ -276,14 +278,19 @@ public class StendhalRPZone extends MarauroaRPZone
    
     try
       {
-      TransferContent content=new TransferContent();
-      content.name=name;
-      content.cacheable=true;
-      content.data=getBytesFromFile(filename);
-      content.timestamp=CRC.cmpCRC(content.data);
-
-      contents.add(content);
-      navigationMap.setNavigationPoints(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename)));
+//      TransferContent content=new TransferContent();
+//      content.name=name;
+//      content.cacheable=true;
+//      content.data=getBytesFromFile(filename);
+//      content.timestamp=CRC.cmpCRC(content.data);
+//      contents.add(content);
+      navigationMap = new NavigationMap();
+      InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
+      if (is == null)
+      {
+        throw new FileNotFoundException(filename);
+      }
+      navigationMap.setNavigationPoints(new InputStreamReader(is));
       }
     catch (FileNotFoundException fnfe)
       {
