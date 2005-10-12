@@ -60,4 +60,9 @@
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
  </layer>
+ <layer name="castle_navigation" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3ZoQ0AMAhFQWzHZP8lOkCxkNDcSQz5+kW88hTHZX7YAAAAAAAAAFvocwAAAAAAwKSJNtH9Q18BAKByAR6Wnl4AQAAA
+  </data>
+ </layer>
 </map>

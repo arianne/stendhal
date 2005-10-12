@@ -60,4 +60,9 @@
    H4sIAAAAAAAAAO2TMQ6AMAwDu/L/P/EuBsRiQWjVtB5yliwhpeBcE1q7dR61rHL3Az/88MNfid9573/8M3r7hjJrree9jJ528Ef5z7PW9Myq/Fn+L4be+qiy8tzzdyuDX+862uOoHvWYmadnmT//v3P+o/ufne3md2qUf7Wd2fDDDz/88MOPasuxexhjjLHbF4XsFNoAIAAA
   </data>
  </layer>
+ <layer name="afterlife_navigation" width="64" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WMREAMAgEwW8jM/5NpI0CYIZdBzTPJck9WWfjzQDM4AcBE1VsU9X+2VkAAH5dfdjZpZoYAPZ6TxojfgAgAAA=
+  </data>
+ </layer>
 </map>

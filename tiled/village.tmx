@@ -60,4 +60,9 @@
    H4sIAAAAAAAAAO2XQQ7DIAwEc+3//9R3VT1E6gFSx9iLCTNST2kIY4PBxwEAAAAAAAAQw/vV/u0C/nb/J8bFkvPz2RP9rezsDgAAAABQjV4ft0tPi7/W3zqmKu5V/VX0fO/4t967Gr/ifvN++5/H3THV69777u8Ykfms6N/6n9U50j8qNqP7LXM/K/IfUW8q+c+umar1vxJR9b9CPFT7ZPb5f/VMOa8KOT+pkJtRItfvisxYv976lzWXlfIXOc9Z/ivFO4Pd/UeoeAfYAYt/rxeuSnQtVXwnksizOPOOnFUvI88+i7+3t1H4Z+ZnpL/LvqN4elBPb+odR3FHU/jfnYOame69OewIMSAGXyLr8qqxzPD/AHKLNkoAQAAA
   </data>
  </layer>
+ <layer name="village_navigation" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YQQrAIAwEQK99Zv//id6L1EIrrjrzgAjBDdFSAABgX+eRVy+lBgAAALAG/x8AOVqzy2yDMWQPWMV9ntk94JveGanVfzpTZv/zppf6DQBz8f5hRu4lZJBFUl1CBI1nAEAAAA==
+  </data>
+ </layer>
 </map>

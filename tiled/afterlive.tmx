@@ -50,7 +50,7 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="afterlive_objects" width="32" height="32" visible="0">
+ <layer name="afterlive_objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGHoghROCR8EoGAWjYBSMglEwCrCB4dRO2IPml+Rh5LehCNaNhv8oGAWjYAgDAKxfj4gAEAAA
   </data>
@@ -58,6 +58,11 @@
  <layer name="afterlive_collision" width="32" height="32" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2VMQ4AIAgDXf3/n3yXk4mTtgoStU26kR4YAyWnVC5zk1VWnxkh8fE65F9E8lf6eGl+NtOLjzI89hIrr/mZXCv+6J1P8Gd1O3xUJ/izvNf5SG9RfFbii/8r3/L+yrLMuQLeJPN1ABAAAA==
+  </data>
+ </layer>
+ <layer name="afterlive_navigation" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3UwQkAIAwDwH4d0/2XEBcQ1EJR7t4hr5AIpt7uszsdJ3kA8lX8P/9bbcJeeFHGVwL1BjhdOxkAEAAA
   </data>
  </layer>
 </map>

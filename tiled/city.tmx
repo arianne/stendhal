@@ -50,14 +50,19 @@
    H4sIAAAAAAAAAO3YSQ4BQRTG8TIHa5YuwVFchC22hpVLGO5hWOACWNjiFp60Smph6lA91f+XfKmO0F0v8bq7SikAAAAAAOCaVsmLq8YlL0imTkqp7iO9lL3r1DKfv9PO2rv+Lzby/99Kdhb74F67rt88joKz1H2RXLkP4M+e3X/Mz2zflzSbz/j5i+Mo4Rn/Xj+t1EAyNMZROuxZBWcitU4lM2OcO1T/QmpdSlbGuHao/qTqO9rP2sTRftYW9HNo6L1geq8ZwFryVPTi5z06Sb2n6+c9Olyf9pm+2YcC/MqVlcpLCmV/v6tIqlZmFA91SSPsSQCABf/a7/VznqjuMQOIt72s0w9GjjFftwMAAABw1w3qBnUIAEAAAA==
   </data>
  </layer>
- <layer name="city_objects" width="64" height="64" visible="0">
+ <layer name="city_objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3awQ6DIAyAYa97Td1R38slHvYA27sZomSmITsoSGn/76yE1lKCoeuAur6P2jOo72wOwnvkb+M1D7EGvMZfitd85qqlOIbXPKZ4y8UxXnoUAABA+zh7AkBZo+iv70S/lc+0Tu4p/+J7Gos98L6nnonf2hoASrDYL4GrPqwLKGSlX1uJ4y4vI/nK0Vfpze2Z+WZQbhA1ulCz2LHnIOipAwBKab9rrXVed0jdj5ky5SPXOFp4rxMAwM/xDC7/1eCaFf8iuX0AQAAA
+   H4sIAAAAAAAAAO3aQQ6CMBAAQK5+Uz3qvzTx4AP0b4YokTTEA5ZSujNnaLrLsqWkXQfreu7WnsH65uagv0/+3qLmYaiBqPEvJWo+c9XSMEbUPE6JlotxvHoUAMD22XsCLOuU9Nf7RL9Nr9m6dE35Fd+xsdh70dfUOfG39g4AUMbD+kGFWvm+bSWOUq6N5CtHX9Wbt+fimVG5Q1KjNzXLhzWH3l4dAJWq/ax1rfMqYep8zDlTPnKNU4vodQLA13gPnv6r4T8vsDFEYABAAAA=
   </data>
  </layer>
  <layer name="city_collision" width="64" height="64" opacity="0.27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WWw4DIQhF57f731PX1fRjEmNQLwj4gJM0fajIoQ4zz5Mk6/l+VmewDql7uS5i/f7O5SsiUb0tiXyeSjRq8MY4sZ6z56DuTyfWQIPI7kmS2MHtK1Qvovo08toBjRw9/SXxpfmlf/rv4s+Jaenf20/Tv84f3YfyR/eRsvJs1XM0vZB8Wjkic9H9qHdqzug3DWauYUlMqn6SmFo9wMJ/5FG/o/1HY2/EX3s/jev4VH8tPP1H69H6WPmPekovxg3+o/HW3Jlzze2lSM7c/TViePiX3zmxevlZ3f96ec7Sc+Guece8/blnBv3/kfWtXDT9kdpE8q/z1z5rVI2Qmnn5a+7di3Wqf+uzxJ+af4I/mpOlP6ce1Nod/LljPZD6UeOzOUv9e7XkIl1XrvX03xHuuSl/R66z07HyQWu1uqa7+9fjo+9Jktij9cw6em5pzZ3ZY8Y5Kjf2WdTn5mcf5Pnwdn/PHjKLZh6nub9412BHds0rGZP/XdYg8Sfymdv5XuZB+sf2/wEzNUyzAEAAAA==
+   H4sIAAAAAAAAAO2WUY7DIAxE+9v736nnWu1HJIQMjM3YQPBIUZsAtt+EOPl8Uqn1+n1XV7BOVvZy3Y3+/TOXx426ldtTN++nUgwPnhgn+jm7D+r+dKIHDN3Mnkql/KTtK1Ivkvo0cuwgRo2R/Jb41vqSP/l34dfE9OTv5WPy1/WjeSR+NI9VK/dWPYfJhdTTqhGZi+aTfqU5o2sMzTzDlpiSf5aYrB7gwT/iqH/R/sPIjfCz8zGe41P5WYrkH61H/fHiH/WUXow38I/GW3Nn9rW2lyI1a/MzYkTwl+eaWL36vN5/s7701GPRrnnGovm13qD3H1nfqoXJz94bp/PX9bP3muQR4lkUPzN3L9ap/K3/Fn5p/gn8aE2e/Bo/pLU78GvHekL8k8Zna7by97zUyrquXBvJv6O0+6a8jjxnp8uLB/Vqtae789fjo/NUKuUv1jfr6LulNXcmxwzzrXpjn0V53vztg3wfvp0/sofMilnHaeyPoj3YUbvWlRor7116kIrXzXtu53dZhJL/bv4/g835ngBAAAA=
+  </data>
+ </layer>
+ <layer name="city_navigation" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YuQ2AMAwAwLSMyf5LUCEoQkQ+ZOCujPIVzmOn1G5dOgYHWgMAACCCUfnPU3nU6HXkfwD8UeT3Pzfn3ubd5s3uxK8Yh7zas+EsAQDAoeZ/HPkvfd5b5H0C39dzB5XG1tYPr/q31NNLdXkAAACAaNQt5toAaFAd4wBAAAA=
   </data>
  </layer>
 </map>

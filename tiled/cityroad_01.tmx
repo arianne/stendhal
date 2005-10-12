@@ -60,4 +60,9 @@
    H4sIAAAAAAAAAO3XXY7CIBQGUF9n/3uadfk0CSVt6eVPGM9JjNUECvcDrK8XAAAAAAAAAAAAAAAAAAAAAAAA9PH70+dFfzNqK/899aq7/PdUU/e8Ta/srZM9yH++VeY8Ix9r4Kg055n1iGRSu69lf/S0zk/66Dmm0r1G5f+tPlWHNJf8u/z677P8xxhVg8gZcpdFS+5P++Aor8tZrUr1K+WZ9xHNLjIPuT+T55Je1+y7tN+aczm6v0v3lP+10h7v/Wrt/2zsd3OyDu6tmn/Pecm/bOQaSPtM36/G0CMn+cfMyP/pGGrajxzXN5uVffR+0Xa0mbmnovex38ebWV/7fw+fyL6mLXtoPWPkv6cez5TR5wXWMTN/58J6WjOJrBv5r+nsjL7KreX5X/5ruct91P852a8j+tvfmv9/2P9vIfGDGACAAAA=
   </data>
  </layer>
+ <layer name="cityroad_01_navigation" width="128" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3ZwQkAIAwEQb+Waf9N2IFERIxhpoL7rZLWAAAAAAAAAAAAAAAAAAAA4MzorxesZd8HAAAAAABATdE7lXsWAABQgb8NABGRXtxuimYBALdle29k2wPAf3Zboj1UMAH0KI11AIAAAA==
+  </data>
+ </layer>
 </map>

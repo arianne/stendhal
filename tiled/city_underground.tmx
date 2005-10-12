@@ -60,4 +60,9 @@
    H4sIAAAAAAAAAO3UQQrDMAxE0Wx7/zvlXFkVjBfBVizP2P6CoVBCpCe7vX/XdRNCCCGEkNdESz230r7LDvDPq7pfT/+Z/rc5Z++s7Ot4/tGemc/jn+P/0tPJn/Vu/Ph7emb81hT+6H+H01ko3olf44/c1Sz/qBlG7kZ9jvh1fod58a/nH12r+Vv2ozDhx48ff6sj8t98mr+27Obv3cVu/i/W1f3Z98o5I2fMukv48ePHj9/b79jPbR78ejP+M/2R2s3fuoesWdX+08/fofDjx6/3/7+rPx1mzfK33oPy+V0SKfXMhBBS5gHhXb+/AEAAAA==
   </data>
  </layer>
+ <layer name="dungeon_000_navigation" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aSwrAIAwFQLc9Zu9/ie6LqPST2jhzgSQQfSCWAgAAULdv39YZqR/V45vuzA9Ablkyotfv3+Yhr9YuRu9plvMPrOvp/Hf/AUCcq7krrwGAM++cAAAwn1n+PwAAbQclGG31AEAAAA==
+  </data>
+ </layer>
 </map>
