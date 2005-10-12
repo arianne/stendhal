@@ -12,8 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.entity.Entity;
 import games.stendhal.common.CollisionDetection;
+import games.stendhal.common.Pair;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.LinkedList;
@@ -26,23 +32,18 @@ public class StaticGameLayers
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(StaticGameLayers.class);
   
-  static class Pair<X>
-    {
-    public String name;
-    public X content;
-    
-    Pair(String name, X content)
-      {
-      this.name=name;
-      this.content=content;      
-      }
-    }
+  /** x-pos of the minimap */
+  private static final int MINIMAP_X = 0;
+  /** y-pos of the minimap */
+  private static final int MINIMAP_Y = 0;
+  /** buffered minimap */
+  private BufferedImage minimap;
  
   /** List of pair name, layer */
-  private LinkedList<Pair<TileRenderer>> layers;
+  private LinkedList<Pair<String, TileRenderer>> layers;
 
   /** List of pair name, layer */
-  private LinkedList<Pair<CollisionDetection>> collisions;
+  private LinkedList<Pair<String, CollisionDetection>> collisions;
   
   /** Tilestore contains the tiles to draw */
   private TileStore tilestore;
@@ -52,8 +53,8 @@ public class StaticGameLayers
     
   public StaticGameLayers()
     {
-    layers=new LinkedList<Pair<TileRenderer>>();
-    collisions=new LinkedList<Pair<CollisionDetection>>();
+    layers=new LinkedList<Pair<String, TileRenderer>>();
+    collisions=new LinkedList<Pair<String, CollisionDetection>>();
     tilestore=TileStore.get();
     tilestore.add("tilesets/zelda_outside_0_chipset.png");
     tilestore.add("tilesets/zelda_outside_1_chipset.png");
@@ -74,13 +75,13 @@ public class StaticGameLayers
     {
     double width=0;
     
-    for(Pair<TileRenderer> p: layers)
+    for(Pair<String, TileRenderer> p: layers)
       {
-      if(area!=null && p.name.contains(area))
+      if(area!=null && p.first().contains(area))
         {
-        if(width<p.content.getWidth())
+        if(width<p.second().getWidth())
           {
-          width=p.content.getWidth();
+          width=p.second().getWidth();
           }
         }
       }
@@ -93,13 +94,13 @@ public class StaticGameLayers
     {
     double height=0;
     
-    for(Pair<TileRenderer> p: layers)
+    for(Pair<String, TileRenderer> p: layers)
       {
-      if(area!=null && p.name.contains(area))
+      if(area!=null && p.first().contains(area))
         {
-        if(height<p.content.getHeight())
+        if(height<p.second().getHeight())
           {
-          height=p.content.getHeight();
+          height=p.second().getHeight();
           }
         }
       }
@@ -121,26 +122,26 @@ public class StaticGameLayers
         int i;
         for( i=0;i<layers.size();i++)
           {
-          if(layers.get(i).name.compareTo(name)==0)
+          if(layers.get(i).first().compareTo(name)==0)
             {
             /** Repeated layers should be ignored. */
             return;
             }
         
-          if(layers.get(i).name.compareTo(name)>=0)
+          if(layers.get(i).first().compareTo(name)>=0)
             {
             break;
             }
           }
         
-        layers.add(i,new Pair<TileRenderer>(name, content));    
+        layers.add(i,new Pair<String, TileRenderer>(name, content));    
         }
       else
         {
         CollisionDetection collision=new CollisionDetection();
         collision.setCollisionData(reader);
         
-        collisions.add(new Pair<CollisionDetection>(name, collision));        
+        collisions.add(new Pair<String, CollisionDetection>(name, collision));        
         }
       }
     finally
@@ -151,11 +152,11 @@ public class StaticGameLayers
 
   public boolean collides(Rectangle2D shape)
     {
-    for(Pair<CollisionDetection> p: collisions)
+    for(Pair<String, CollisionDetection> p: collisions)
       {
-      if(area!=null && p.name.equals(area+"_collision"))
+      if(area!=null && p.first().equals(area+"_collision"))
         {
-        if(p.content.collides(shape))
+        if(p.second().collides(shape))
           {
           return true;          
           }          
@@ -179,6 +180,8 @@ public class StaticGameLayers
     {
     Log4J.startMethod(logger, "setRPZoneLayersSet");
     this.area=area;
+    // be sure to refresh the minimap too
+    minimap = null;
     Log4J.finishMethod(logger, "setRPZoneLayersSet");
     }
   
@@ -189,11 +192,11 @@ public class StaticGameLayers
     
   public void draw(GameScreen screen, String layer)
     {
-    for(Pair<TileRenderer> p: layers)
+    for(Pair<String, TileRenderer> p: layers)
       {
-      if(p.name.equals(layer))
+      if(p.first().equals(layer))
         {
-        p.content.draw(screen);
+        p.second().draw(screen);
         }
       }
     }
@@ -201,11 +204,82 @@ public class StaticGameLayers
   /** Render the choosen set of layers */
   public void draw(GameScreen screen)
     {
-    for(Pair<TileRenderer> p: layers)
+    for(Pair<String, TileRenderer> p: layers)
       {
-      if(area!=null && p.name.contains(area))
+      if(area!=null && p.first().contains(area))
         {
-        p.content.draw(screen);
+        p.second().draw(screen);
+        }
+      }
+    }
+
+  /** draws a cross at the given position */
+  private void drawCross(Graphics g, int x, int y, Color color)
+  {
+    int size = 4;
+    g.setColor(color);
+    g.drawLine(x-size,y-size, x+size,y+size);
+    g.drawLine(x-size,y+size, x+size,y-size);
+  }
+  
+  /** Draws a minimap in the top left corner. Only the collision layer is
+   * considered */
+  public void drawMiniMap(GameScreen screen, GameObjects gameObjects)
+    {
+    for(Pair<String, CollisionDetection> cdp: collisions)
+      {
+      if (area != null && cdp.first().contains(area))
+        {
+          CollisionDetection cd = cdp.second();
+          Graphics2D g = screen.expose();
+          Graphics minimapGraphics = g.create(MINIMAP_X+1,MINIMAP_Y+1, cd.getWidth(), cd.getHeight());
+
+          // draw frame
+          g.setColor(Color.BLACK);
+          g.drawRect(MINIMAP_X, MINIMAP_Y,MINIMAP_X + cd.getWidth()+2, MINIMAP_Y + cd.getHeight()+2);
+
+          if (minimap == null)
+          {
+            System.out.println("redraw minimap");
+            // create the minimap
+            minimap = g.getDeviceConfiguration().createCompatibleImage(cd.getWidth(), cd.getHeight());
+  
+            int freeColor    = new Color(0.8f, 0.8f, 0.8f).getRGB();
+            int blockedColor = new Color(1.0f, 0.0f, 0.0f).getRGB();
+
+            for (int x = 0; x < cd.getWidth(); x++)
+            {
+              for (int y = 0; y < cd.getHeight(); y++)
+              {
+                boolean walkable = cd.walkable((double) x, (double) y);
+                minimap.setRGB(x, y,  walkable ? freeColor : blockedColor);
+//                g.setColor(walkable ? freeColor : blockedColor);
+//                g.drawRect(x,y, 1,1);
+              }
+            }
+          }
+          
+          // now draw the map in the upper left corner
+          long time = System.currentTimeMillis();
+          minimapGraphics.drawImage(minimap,MINIMAP_X,MINIMAP_Y, null);
+          
+          long biTime = System.currentTimeMillis() - time;
+
+          Color playerColor = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+          Color otherColor = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+          
+          time = System.currentTimeMillis();
+          // The entities are drawn direct to the graphics canvas
+          for (Entity entity : gameObjects)
+          {
+            Rectangle2D rect = entity.getArea();
+            if (entity.getType().equals("player"))
+            {
+              drawCross(minimapGraphics, (int) rect.getMinX(), (int) rect.getMinY(), playerColor);
+            }
+          }
+          long entityTime = System.currentTimeMillis() - time;
+//          System.out.println("biTime="+biTime+" entityTime="+entityTime);
         }
       }
     }

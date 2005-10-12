@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import games.stendhal.common.Debug;
 import games.stendhal.common.Level;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
@@ -57,11 +58,7 @@ public class Creature extends NPC
   
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Creature.class);
-  
-  /** Flag indicating that creatures are debugged */
-  private static final boolean DEBUG_ENABLED = false;
 
-  
   /** the number of rounds the creature should wait when the path to the target
    * is blocked and the target is not moving */
   protected static final int WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED = 5;
@@ -256,7 +253,7 @@ public class Creature extends NPC
       stopAttack();
       stop();
 
-      if (DEBUG_ENABLED)
+      if (Debug.CREATRUES_DEBUG_SERVER)
         put("debug","sleep");
 
       aiState = AiState.SLEEP;
@@ -280,7 +277,7 @@ public class Creature extends NPC
         target = this.getAttackSource(0);
         }
       
-      if (DEBUG_ENABLED)
+      if (Debug.CREATRUES_DEBUG_SERVER)
         debug.append("attacked;").append(target.getID().getObjectID()).append('|');
 
       logger.debug("Creature("+get("type")+") has been attacked by "+target.get("type"));
@@ -291,7 +288,7 @@ public class Creature extends NPC
       if(isAttacking())
         {
         // stop the attack...
-        if (DEBUG_ENABLED)
+        if (Debug.CREATRUES_DEBUG_SERVER)
           debug.append("cancelattack|");
         target=null;
         clearPath();
@@ -304,7 +301,7 @@ public class Creature extends NPC
       if(target!=null)
         {
         logger.debug("Creature("+get("type")+") gets a new target.");
-        if (DEBUG_ENABLED)
+        if (Debug.CREATRUES_DEBUG_SERVER)
           debug.append("newtarget;").append(target.getID().getObjectID()).append('|');
         }
       }
@@ -334,14 +331,14 @@ public class Creature extends NPC
 
         setPath(nodes,true);
 
-        if (DEBUG_ENABLED)
+        if (Debug.CREATRUES_DEBUG_SERVER)
           debug.append("generatepatrolpath;").append(time2).append("|");
 
         }
       logger.debug("Following path");
       if(hasPath()) Path.followPath(this,getSpeed());
       aiState = AiState.PATROL;
-      if (DEBUG_ENABLED)
+      if (Debug.CREATRUES_DEBUG_SERVER)
         debug.append("patrol;").append(pathToString()).append('|');
       }
     else if(distance(target)>16*16)
@@ -353,7 +350,7 @@ public class Creature extends NPC
       stopAttack();
       stop();
 
-      if (DEBUG_ENABLED)
+      if (Debug.CREATRUES_DEBUG_SERVER)
         debug.append("outofreachstopped|");
       }
     else if(!nextto(target,0.25) && !target.stopped())
@@ -365,7 +362,7 @@ public class Creature extends NPC
       moveto(getSpeed());
       waitRounds = 0; // clear waitrounds
       aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
-      if (DEBUG_ENABLED)
+      if (Debug.CREATRUES_DEBUG_SERVER)
         {
         List path = getPath();
         if (path != null)
@@ -376,7 +373,7 @@ public class Creature extends NPC
       }
     else if(nextto(target,0.25))
       {
-      if (DEBUG_ENABLED)
+      if (Debug.CREATRUES_DEBUG_SERVER)
         debug.append("attacking|");
       // target is near
       logger.debug("Next to target. Creature stops and attacks");
@@ -388,12 +385,12 @@ public class Creature extends NPC
       {
       // target in reach and not moving
       logger.debug("Moving to target. Creature attacks");
-      if (DEBUG_ENABLED)
+      if (Debug.CREATRUES_DEBUG_SERVER)
         debug.append("movetotarget");
       // our current Path is blocked...mostly by the target or another attacker
       if(collided())
         {
-        if (DEBUG_ENABLED)
+        if (Debug.CREATRUES_DEBUG_SERVER)
           debug.append(";blocked");
         // invalidate the path and stop
         clearPath();
@@ -410,7 +407,7 @@ public class Creature extends NPC
       // new path
       if (waitRounds > 0)
         {
-        if (DEBUG_ENABLED)
+        if (Debug.CREATRUES_DEBUG_SERVER)
           debug.append(";waiting");
         waitRounds--;
         // HACK: remove collision flag (we're not moving after all)
@@ -428,12 +425,12 @@ public class Creature extends NPC
 
         setMovement(target,0,0, 20.0);
         moveto(getSpeed());
-        if (DEBUG_ENABLED)
+        if (Debug.CREATRUES_DEBUG_SERVER)
           debug.append(";newpath");
 
         if (getPath() == null || getPath().size() == 0) // If creature is blocked choose a new target
           {
-          if (DEBUG_ENABLED)
+          if (Debug.CREATRUES_DEBUG_SERVER)
             debug.append(";blocked");
           logger.debug("Blocked. Choosing a new target.");
           target=null;
@@ -444,12 +441,12 @@ public class Creature extends NPC
           }
         else
           {
-          if (DEBUG_ENABLED)
+          if (Debug.CREATRUES_DEBUG_SERVER)
             debug.append(';').append(getPath());
           }
         }
 
-        if (DEBUG_ENABLED)
+        if (Debug.CREATRUES_DEBUG_SERVER)
           debug.append(";dummy|");
       }
 
@@ -463,7 +460,7 @@ public class Creature extends NPC
       StendhalRPAction.attack(this,getAttackTarget());
       }
 
-    if (DEBUG_ENABLED)
+    if (Debug.CREATRUES_DEBUG_SERVER)
       put("debug",debug.toString());
     world.modify(this);
     Log4J.finishMethod(logger, "logic");

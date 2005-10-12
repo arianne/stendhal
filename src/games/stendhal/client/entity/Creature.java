@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.common.Debug;
 import java.util.StringTokenizer;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
@@ -31,9 +32,6 @@ public abstract class Creature extends NPC
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Creature.class);
-  
-  /** Flag indicating that creatures are debugged */
-  private static final boolean DEBUG_ENABLED = false;
 
   // some debug props
   /** should the path be hidden for this creature? */
@@ -107,7 +105,7 @@ public abstract class Creature extends NPC
     super.draw(screen);
     
     
-    if (DEBUG_ENABLED && !hidePath)
+    if (Debug.CREATRUES_DEBUG_CLIENT && !hidePath)
     {
       Graphics g2d=screen.expose();
 
@@ -166,7 +164,7 @@ public abstract class Creature extends NPC
     super.modifyAdded(object,changes);
     
     // Check if debug is enabled
-    if(changes.has("debug") && DEBUG_ENABLED)
+    if(changes.has("debug") && Debug.CREATRUES_DEBUG_CLIENT)
     {
       sleeping = false;
       attacked = false;
@@ -284,7 +282,7 @@ public abstract class Creature extends NPC
     {
     String[] superList = super.offeredActions();
     
-    if (!DEBUG_ENABLED)
+    if (!Debug.CREATRUES_DEBUG_CLIENT)
     {
       return superList;
     }
