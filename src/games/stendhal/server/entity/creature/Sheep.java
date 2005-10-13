@@ -116,6 +116,11 @@ public class Sheep extends Creature
       {
       owner.removeSheep(this);
       }
+    else
+      {
+      rp.removeNPC(this);
+      }
+    
       
     super.onDead(who);
     }

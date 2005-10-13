@@ -17,7 +17,7 @@ package games.stendhal.common;
 public class Debug
 {
   /** should the minimap be drawn? Note: This slows down performance */
-  public static final boolean DRAW_MINIMAP = false;
+  public static final boolean DRAW_MINIMAP = true;
   
   /** should the creature ai and pathfinding be shown? Note: The server must
    * send these infos (CREATRUES_DEBUG_SERVER) */
