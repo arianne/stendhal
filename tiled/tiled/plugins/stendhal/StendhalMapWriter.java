@@ -20,13 +20,16 @@ public class StendhalMapWriter implements MapWriter
      */
     public void writeMap(Map map, String filename) throws Exception {
         
+        File file = new File(filename);
         Iterator ml = map.getLayers();
         while (ml.hasNext()) 
           {
           MapLayer layer=(MapLayer)ml.next();
+          String stendFile = file.getParent()+File.separator+layer.getName()+".stend";
+          System.out.println("writing "+stendFile);
           
-          FileOutputStream os = new FileOutputStream(layer.getName()+".stend");              
-          PrintWriter writer = new PrintWriter(os);        
+          FileOutputStream os = new FileOutputStream(stendFile);
+          PrintWriter writer = new PrintWriter(os);
           
           writer.println(layer.getWidth()+" "+layer.getHeight());
 
