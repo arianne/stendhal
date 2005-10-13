@@ -247,7 +247,7 @@
     </taskdef>
    
   <!-- do the conversion -->
-    <mapconverter tmxPath="tiled" stendPath="c:/temp"/>
+    <mapconverter tmxPath="tiled" stendPath="maps"/>
   </target>
   
   
