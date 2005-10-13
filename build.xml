@@ -13,6 +13,7 @@
   <!-- EDIT HERE TO CONFIGURE YOUR JAR FILE NAMES -->
   <property name="marauroa_jar" value="marauroa.jar"/>
   <property name="log4j_jar" value="log4j.jar"/>
+  <property name="tiled_jar" value="tiled.jar"/>
   <!-- [END] -->
   
   <property name="marauroa" value="../marauroa/lib/${marauroa_jar}"/>
@@ -60,14 +61,14 @@
     </copy>
 
     <copy todir="${build}/games/stendhal/server/maps">
-    	<fileset file="${sprites}/*.collision"/>
+    <fileset file="${sprites}/*.collision"/>
     </copy>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
-           includes="**/games/**">
+           includes="**/games/**" excludes="games/stendhal/tools/**">
       <classpath>
         <pathelement path="${classpath}"/>
-      </classpath>    
+      </classpath>
     </javac>
   </target>
 
@@ -78,7 +79,7 @@
            author="true"
            version="true"
            use="true"
-	   classpath="${classpath}"
+           classpath="${classpath}"
            windowtitle="Marauroa API Documentation Version: ${version}">
       <fileset dir="${src}">
           <include name="**/*.java"/>
@@ -95,7 +96,7 @@
     </copy>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
-           includes="**/games/**" excludes="**/client/**">
+           includes="games/stendhal/server/**, games/stendhal/common/**" excludes="games/stendhal/client/**">
       <classpath>
         <pathelement path="${classpath}"/>
       </classpath>    
@@ -123,7 +124,7 @@
     </copy>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
-           includes="**/games/**" excludes="**/server/**">
+           includes="games/stendhal/client/**, games/stendhal/common/**" excludes="games/stendhal/server/**">
       <classpath>
         <pathelement path="${classpath}"/>
       </classpath>    
@@ -142,9 +143,9 @@
   </target>
 
   <target name="sign_client_jar" depends="client_jar" if="marauroa_build">
-    <!--  	
+    <!--  
       <signjar jar="${lib}/${client_jarname}" alias="youralias" keystore="yourkeystore" storepass="yourpassword" />
-    -->  	
+    -->  
     <signjar jar="${lib}/${client_jarname}" alias="miguelangelblanchlardin@hotmail.com" keystore="keystore.ks" storepass="qwerty" />
     <signjar jar="${log4j}" alias="miguelangelblanchlardin@hotmail.com" keystore="keystore.ks" storepass="qwerty" />
   </target>
@@ -184,10 +185,10 @@
   <target name="release_source" depends="clean">
     <mkdir dir="stendhal-${version}"/>
     <copy todir="stendhal-${version}/src">
-    	<fileset dir="src"/>
+      <fileset dir="src"/>
     </copy>
     <copy todir="stendhal-${version}/sprites">
-    	<fileset dir="sprites"/>
+      <fileset dir="sprites"/>
     </copy>
 
     <copy todir="stendhal-${version}/tilesets">
@@ -195,11 +196,11 @@
     </copy>
 
     <copy todir="stendhal-${version}/maps">
-    	<fileset dir="maps"/>
+      <fileset dir="maps"/>
     </copy>
     
     <copy todir="stendhal-${version}/data">
-    	<fileset dir="data"/>
+      <fileset dir="data"/>
     </copy>
     
     <copy todir="stendhal-${version}" file="build.xml"/>
@@ -208,7 +209,7 @@
     <copy todir="stendhal-${version}" file="COPYING"/>
     <copy todir="stendhal-${version}" file="LICENSE"/>
     <copy todir="stendhal-${version}" file="README"/>
-  	
+  
     <tar destfile="stendhal-${version}-src.tar.gz" compression="gzip">
        <tarfileset dir="stendhal-${version}" prefix="stendhal-${version}">
          <exclude name="**/CVS/**"/>
@@ -217,4 +218,37 @@
 
     <delete dir="stendhal-${version}"/>
   </target>
+  
+  
+  <target name="convertmaps" depends="init">
+  <!-- compile the tiled plugins -->
+    <javac srcdir="tiled" destdir="${build}" debug="true" debuglevel="source,lines"
+           includes="tiled/plugins/stendhal/**">
+      <classpath>
+        <pathelement path="${classpath}"/>
+        <pathelement path="${libdir}/${tiled_jar}"/>
+      </classpath>
+    </javac>
+  <!-- compile converter class -->
+    <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
+           includes="games/stendhal/tools/MapConverter.java">
+      <classpath>
+        <pathelement path="${build}"/>
+        <pathelement path="${libdir}/${tiled_jar}"/>
+      </classpath>
+    </javac>
+      
+  <!-- register taskdef -->
+    <taskdef name="mapconverter" classname="games.stendhal.tools.MapConverter">
+      <classpath>
+        <pathelement path="${build}"/>
+        <pathelement path="${libdir}/${tiled_jar}"/>
+      </classpath>
+    </taskdef>
+   
+  <!-- do the conversion -->
+    <mapconverter tmxPath="tiled" stendPath="c:/temp"/>
+  </target>
+  
+  
 </project>
