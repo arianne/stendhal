@@ -23,6 +23,7 @@
   
   <property name="server_jarname" value="stendhal-server-${version}.jar"/>
   <property name="client_jarname" value="stendhal-${version}.jar"/>
+  <property name="tiledplugin_jarname" value="plugin.jar"/>
 
   <target name="clean">
     <delete dir="${build}"/>
@@ -219,8 +220,7 @@
     <delete dir="stendhal-${version}"/>
   </target>
   
-  
-  <target name="convertmaps" depends="init">
+  <target name="convertmaps" depends="init" description="converts the *.tmx files to *.stend">
   <!-- compile the tiled plugins -->
     <javac srcdir="tiled" destdir="${build}" debug="true" debuglevel="source,lines"
            includes="tiled/plugins/stendhal/**">
@@ -249,6 +249,57 @@
   <!-- do the conversion -->
     <mapconverter tmxPath="tiled" stendPath="maps"/>
   </target>
+  
+  <target name="create_tiled_plugin" depends="init" description="creates the reader/writer-plugin jar for tiled">
+  <!-- compile the plugins. Note that it enforces java 1.4 compatibility -->
+    <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines" target="1.4" source="1.4"
+           includes="games/stendhal/tools/tiled/*.java">
+      <classpath>
+        <pathelement path="${libdir}/${tiled_jar}"/>
+      </classpath>
+    </javac>
+
+  <!--  create jar file -->
+    <jar jarfile="${lib}/${tiledplugin_jarname}">
+      <fileset dir="${build}">
+        <include name="games/stendhal/tools/tiled/*.class"/>
+      </fileset>
+      <manifest>
+        <attribute name="Reader-Class" value="games.stendhal.tools.tiled.StendhalMapReader"/>
+        <attribute name="Writer-Class" value="games.stendhal.tools.tiled.StendhalMapWriter"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="release_tiled" depends="create_tiled_plugin" description="creates the tiled zip with all maps and the stendhal plugins">
+    <mkdir dir="tiledplugin_tmp"/>
+    <mkdir dir="tiledplugin_tmp/plugins"/>
+    
+  <!-- copy reader/writer plugins -->
+    <copy todir="tiledplugin_tmp/plugins">
+      <fileset file="${lib}/${tiledplugin_jarname}"/>
+    </copy>
+  <!-- copy README, tiled.jar, maps, tileset images -->
+    <copy todir="tiledplugin_tmp">
+      <fileset file="${libdir}/${tiled_jar}"/>
+      <fileset file="COPYING"/>
+      <fileset dir="tiled">
+        <include name="*.tmx"/>
+        <include name="README"/>
+        <include name="README.Tiled"/>
+      </fileset>
+      <fileset dir="tilesets">
+        <include name="*.png"/>
+      </fileset>
+    </copy>
+
+    <!-- create zip file -->
+    <zip destfile="${lib}/stendhal_mapeditor-${version}.zip">
+      <zipfileset prefix="stendhal_mapeditor" dir="tiledplugin_tmp"/>
+    </zip>
+    <delete dir="tiledplugin_tmp"/>
+  </target>
+  
   
   
 </project>
