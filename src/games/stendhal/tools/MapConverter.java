@@ -1,22 +1,31 @@
+/* $Id$ */
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 /*
  * MapConverter.java
  *
  * Created on 13. Oktober 2005, 18:24
  *
- * To change this template, choose Tools | Options and locate the template under
- * the Source Creation and Management node. Right-click the template and choose
- * Open. You can then make changes to the template in the Source Editor.
  */
 
 package games.stendhal.tools;
 
+import games.stendhal.tools.tiled.StendhalMapWriter;
 import java.io.File;
 import java.io.FilenameFilter;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import tiled.core.Map;
 import tiled.io.xml.XMLMapTransformer;
-import tiled.plugins.stendhal.StendhalMapWriter;
 
 /**
  * Converts the stendhal maps from *.tmx to *.stend
@@ -63,7 +72,6 @@ public class MapConverter extends Task
       // and save it
       filename = stendPath+"\\"+file.getName().replaceAll("\\.tmx",".stend");
       new StendhalMapWriter().writeMap(map, filename);
-
     }
   }
   /** The setter for the "tmxPath" attribute */
@@ -94,7 +102,7 @@ public class MapConverter extends Task
   /** */
   public static void main(String[] args)
   {
-    args = new String[] {"G:\\project\\stendhal\\tiled","c:\\temp"};
+//    args = new String[] {"G:\\project\\stendhal\\tiled","c:\\temp"};
     if (args.length < 2)
     {
       System.out.println("usage: java games.stendhal.tools.MapConverter <path to *.tmx files> <path where the *.stend files goes>");
