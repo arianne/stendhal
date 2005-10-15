@@ -33,24 +33,32 @@ public class StaticGameLayers
   private static final Logger logger = Log4J.getLogger(StaticGameLayers.class);
   
   /** x-pos of the minimap */
-  private static final int MINIMAP_X = 0;
+  private static final int MINIMAP_X = 50;
   /** y-pos of the minimap */
-  private static final int MINIMAP_Y = 0;
+  private static final int MINIMAP_Y = 50;
+  /** width of the minimap */
+  private static final int MINIMAP_WIDTH = 129;
+  /** height of the minimap */
+  private static final int MINIMAP_HEIGTH = 129;
+  /** minimum scale of the minimap */
+  private static final int MINIMAP_MINIMUM_SCALE = 2;
+  /** size of the minimap frame */
+  private static final int MINIMAP_FRAME_SIZE = 5;
   /** buffered minimap */
-  private BufferedImage minimap;
+  private MiniMap minimap;
  
   /** List of pair name, layer */
   private LinkedList<Pair<String, TileRenderer>> layers;
 
   /** List of pair name, layer */
   private LinkedList<Pair<String, CollisionDetection>> collisions;
-  
+
   /** Tilestore contains the tiles to draw */
   private TileStore tilestore;
-  
+
   /** Name of the layers set that we are rendering right now */
   private String area;
-    
+
   public StaticGameLayers()
     {
     layers=new LinkedList<Pair<String, TileRenderer>>();
@@ -230,57 +238,159 @@ public class StaticGameLayers
       {
       if (area != null && cdp.first().contains(area))
         {
-          CollisionDetection cd = cdp.second();
-          Graphics2D g = screen.expose();
-          Graphics minimapGraphics = g.create(MINIMAP_X+1,MINIMAP_Y+1, cd.getWidth(), cd.getHeight());
-
-          // draw frame
-          g.setColor(Color.BLACK);
-          g.drawRect(MINIMAP_X, MINIMAP_Y,MINIMAP_X + cd.getWidth()+2, MINIMAP_Y + cd.getHeight()+2);
-
-          if (minimap == null)
+        // create the map if there is none yet
+        if (minimap == null)
           {
-            System.out.println("redraw minimap");
-            // create the minimap
-            minimap = g.getDeviceConfiguration().createCompatibleImage(cd.getWidth(), cd.getHeight());
-  
-            int freeColor    = new Color(0.8f, 0.8f, 0.8f).getRGB();
-            int blockedColor = new Color(1.0f, 0.0f, 0.0f).getRGB();
-
-            for (int x = 0; x < cd.getWidth(); x++)
+          minimap = new MiniMap(cdp.second(), screen.expose());
+          }
+        
+        Entity player = null;
+        // find the player
+        for (Entity entity : gameObjects)
+          {
+          if (entity.getType().equals("player"))
             {
-              for (int y = 0; y < cd.getHeight(); y++)
-              {
-                boolean walkable = cd.walkable((double) x, (double) y);
-                minimap.setRGB(x, y,  walkable ? freeColor : blockedColor);
-//                g.setColor(walkable ? freeColor : blockedColor);
-//                g.drawRect(x,y, 1,1);
-              }
+            player = entity;
+            break;
             }
           }
-          
-          // now draw the map in the upper left corner
-          long time = System.currentTimeMillis();
-          minimapGraphics.drawImage(minimap,MINIMAP_X,MINIMAP_Y, null);
-          
-          long biTime = System.currentTimeMillis() - time;
-
-          Color playerColor = new Color(0.0f, 0.0f, 1.0f, 1.0f);
-          Color otherColor = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-          
-          time = System.currentTimeMillis();
-          // The entities are drawn direct to the graphics canvas
-          for (Entity entity : gameObjects)
+        if (player != null)
           {
-            Rectangle2D rect = entity.getArea();
-            if (entity.getType().equals("player"))
-            {
-              drawCross(minimapGraphics, (int) rect.getMinX(), (int) rect.getMinY(), playerColor);
-            }
+          minimap.draw(screen.expose(), player.getx(),player.gety());
           }
-          long entityTime = System.currentTimeMillis() - time;
-//          System.out.println("biTime="+biTime+" entityTime="+entityTime);
+        else
+          {
+          minimap.draw(screen.expose(), 0.0, 0.0);
+          }
         }
       }
     }
+  
+  /** Encapsulates a minimap. */
+  private class MiniMap
+  {
+    /** the area this map is for */
+    private String area;
+    /** scale of map */
+    private int scale;
+    /** width of (scaled) minimap */
+    private int width;
+    /** height of (scaled) minimap */
+    private int height;
+    /** minimap image */
+    private BufferedImage image;
+    /** minimap image */
+    private BufferedImage frame;
+    
+    /** creates a new minimap from the CollisionDetection-layer */
+    public MiniMap(CollisionDetection cd, Graphics2D g)
+    {
+      // calculate size and scale
+      int w = cd. getWidth();
+      int h = cd.getHeight();
+
+      // calculate scale
+      scale = MINIMAP_MINIMUM_SCALE;
+      while ((w * (scale+1) < MINIMAP_WIDTH) && (h * (scale+1) < MINIMAP_HEIGTH))
+      {
+        scale++;
+      }
+      
+      // calculate size of map
+      width  = (w * scale < MINIMAP_WIDTH) ? w * scale : MINIMAP_WIDTH;
+      height = (h * scale < MINIMAP_HEIGTH) ? h * scale : MINIMAP_HEIGTH;
+
+
+      // create frame image
+      frame = g.getDeviceConfiguration().createCompatibleImage(width + MINIMAP_FRAME_SIZE*2+1, height + MINIMAP_FRAME_SIZE*2+1);
+      Graphics2D framegrapics = frame.createGraphics();
+      int colSteps = 255 / (MINIMAP_FRAME_SIZE);
+      for (int i = 0; i < MINIMAP_FRAME_SIZE; i++)
+      {
+        int col = colSteps * i;
+
+        framegrapics.setColor(new Color(col,col,col));
+        framegrapics.drawRect(i, i,width+(MINIMAP_FRAME_SIZE-i)*2-1, height+(MINIMAP_FRAME_SIZE-i)*2-1);
+      }
+
+      // create the image for the minimap
+      image = g.getDeviceConfiguration().createCompatibleImage(w*scale, h*scale);
+      Graphics2D mapgrapics = image.createGraphics();
+//      Color freeColor    = new Color(0.8f, 0.8f, 0.8f);
+      Color freeColor    = new Color(0.0f, 1.0f, 0.0f);      
+      Color blockedColor = new Color(1.0f, 0.0f, 0.0f);
+      for (int x = 0; x < w; x++)
+      {
+        for (int y = 0; y < h; y++)
+        {
+            boolean walkable = cd.walkable((double) x, (double) y);
+            mapgrapics.setColor(walkable ? freeColor : blockedColor);
+            mapgrapics.fillRect(x*scale, y*scale, scale, scale);
+        }
+      }
+    }
+    
+    /** Draws the minimap.
+     * @param g graphics object for the game main window
+     * @param x x-position of the player (used to pan big maps)
+     * @patam y y-position of the player (used to pan big maps)
+     */
+    public void draw(Graphics2D g, double x, double y)
+    {
+      // draw the frame
+      g.drawImage(frame, MINIMAP_X, MINIMAP_Y, null);
+
+
+      // now calculate how to pan the minimap
+      
+      int panx = 0;
+      int pany = 0;
+      
+      int w = image.getWidth();
+      int h = image.getHeight();
+      
+      int xpos = (int) (x * scale) - width / 2;
+      int ypos = (int) (y * scale) - width / 2;
+      
+      if (w > width)
+      {
+        // need to pan width
+        if ((xpos + width) > w)
+        {
+          // x is at the screen border
+          panx = w - width;
+        }
+        else if (xpos > 0)
+        {
+          panx = xpos;
+        }
+      }
+
+      if (h > height)
+      {
+        // need to pan height
+        if ((ypos + height) > h)
+        {
+          // y is at the screen border
+          pany = h - height;
+        }
+        else if (ypos > 0)
+        {
+          pany = ypos;
+        }
+      }
+      // draw minimap
+      Graphics mapg = g.create(MINIMAP_X+MINIMAP_FRAME_SIZE, MINIMAP_Y+MINIMAP_FRAME_SIZE, width,height);
+      mapg.drawImage(image,-panx, -pany,null);
+      
+      
+      Color playerColor = Color.BLUE;
+      // draw the player position
+      drawCross(mapg ,(int) (x*scale)-panx, (int) (y*scale)-pany, playerColor);
+      
+    }
+
+  }
+  
+  
   }
