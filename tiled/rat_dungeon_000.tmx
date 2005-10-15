@@ -30,7 +30,7 @@
  <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
   <image source="zelda_outside_2_chipset.png"/>
  </tileset>
- <layer name="rat_dungeon_001_0_floor" width="32" height="32">
+ <layer name="rat_dungeon_000_0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3NsQkAAAjAMBf//8Qb/UEcFBLo3AgArqqc5e/v//8PANsaeIQBOQAQAAA=
   </data>
