@@ -16,7 +16,6 @@ import games.stendhal.common.Debug;
 import java.util.StringTokenizer;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
-import games.stendhal.server.Path;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -55,13 +54,13 @@ public abstract class Creature extends NPC
   /** creature patrols along its path */
   private boolean patrol = false;
   /** the patrolpath */
-  private List<Path.Node> patrolPath;
+  private List<Node> patrolPath;
   /** target is out of reach */
   private boolean outOfReach = false;
   /** the target moved, so we'return trying to find a new path */
   private boolean targetMoved = false;
   /** new path to the target */
-  private List<Path.Node> targetMovedPath;
+  private List<Node> targetMovedPath;
   /** we're attacking */
   private boolean attacking = false;
   /** we're moving towards the target */
@@ -73,7 +72,7 @@ public abstract class Creature extends NPC
   /** searching new path to the target */
   private boolean moveToTargetNew = false;
   /** the path we got */
-  private List<Path.Node> moveToTargetPath;
+  private List<Node> moveToTargetPath;
   
   public Creature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
@@ -85,13 +84,13 @@ public abstract class Creature extends NPC
     return "sprites/monsters/"+type+".png";
     }
   
-  public void drawPath(GameScreen screen, List<Path.Node> path, int delta)
+  public void drawPath(GameScreen screen, List<Node> path, int delta)
   {
     Graphics g2d=screen.expose();
     Rectangle2D rect = getArea();
     Point2D p1 = screen.invtranslate(new Point.Double(getx(),gety()));
 
-    for (Path.Node node : path)
+    for (Node node : path)
     {
       Point2D p2 = screen.invtranslate(new Point.Double(node.x,node.y));
 
@@ -130,11 +129,11 @@ public abstract class Creature extends NPC
     }
   }
   
-  public List<Path.Node> getPath(String token)
+  public List<Node> getPath(String token)
   {
     String[] values = token.replace(',', ' ').replace('(', ' ').replace(')', ' ')
                            .replace('[', ' ').replace(']', ' ').split(" ");
-    List<Path.Node> list = new ArrayList<Path.Node>();
+    List<Node> list = new ArrayList<Node>();
 
     int x = 0;
     int pass = 1;
@@ -146,7 +145,7 @@ public abstract class Creature extends NPC
         int val = Integer.parseInt(value.trim());
         if (pass % 2 == 0)
         {
-          list.add(new Path.Node(x, val));
+          list.add(new Node(x, val));
         }
         else
         {
@@ -320,5 +319,14 @@ public abstract class Creature extends NPC
       }
     }
   
+  private class Node
+  {
+    int x, y;
+    public Node(int x, int y)
+    {
+      this.x = x;
+      this.y = y;
+    }
+  }
 
   }
