@@ -17,14 +17,14 @@ public class forest
     zone.add(portal);
     zone.addPortal(portal);
 
-    portal=new Portal();
-    zone.assignRPObjectID(portal);
-    portal.setx(31);
-    portal.sety(158);
-    portal.setNumber(1);
-    portal.setDestination("rat_dungeon_000",0);
-    zone.add(portal);
-    zone.addPortal(portal);
+//    portal=new Portal();
+//    zone.assignRPObjectID(portal);
+//    portal.setx(31);
+//    portal.sety(158);
+//    portal.setNumber(1);
+//    portal.setDestination("rat_dungeon_000",0);
+//    zone.add(portal);
+//    zone.addPortal(portal);
 
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
