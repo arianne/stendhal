@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.*;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.PassiveEntity;
 import games.stendhal.common.Direction;
 import java.awt.*;
 import java.awt.event.*;
@@ -889,19 +890,28 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         }
       }
     
-    for(InGameDroppableArea item: droppableAreas)    
+    for(InGameDroppableArea item: droppableAreas)
       {
       item.draw(screen);
-      } 
+      }
     
-    for(InGameButton button: buttons)    
+    for(InGameButton button: buttons)
       {
       button.draw(screen);
-      } 
+      }
     
     if(widget!=null)
       {
       widget.draw(screen);
       }
+
+    // if the currently dragged item is a passive entity (items, corpses)
+    // show it as a mouse cursor. Note: sign are also passive entities
+    if (choosenEntity != null && lastDraggedEvent != null && choosenEntity instanceof PassiveEntity)
+      {
+      Point2D p = lastDraggedEvent.getPoint();
+      screen.drawInScreen(choosenEntity.getSprite(), (int) p.getX(), (int) p.getY());
+      }
+    
     }
   }
