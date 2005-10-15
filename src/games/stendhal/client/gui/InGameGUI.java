@@ -546,6 +546,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       } 
     }
 
+  /** the user has pressed and released the mouse button */
   public void mouseClicked(MouseEvent e) 
     {
     Point2D screenPoint=e.getPoint();
@@ -560,6 +561,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         }
       }
 
+    // check if someone clicked the 'quit' or 'cancel' button
     for(InGameButton button: buttons)    
       {
       button.clicked(e.getPoint());
@@ -567,17 +569,21 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
 
     widget=null;
     
+    // get clicked entity
     Point2D point=screen.translate(screenPoint);
     Entity entity=gameObjects.at(point.getX(),point.getY());
+    // for the cliecked entity....
     if(entity!=null)
       {
       if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
         {        
+        // ... do the default action
         String action=entity.defaultAction();
         entity.onAction(client, action);
         }
       else if(e.getButton()==MouseEvent.BUTTON3)
         {
+        // ... show context menu
         String[] actions=entity.offeredActions();
         widget=new InGameList(actions,screenPoint.getX(),screenPoint.getY());      
         widgetAssociatedEntity=entity;  
@@ -585,6 +591,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       }
     }
 
+  /** the user has pressed the mouse button () */
   public void mousePressed(MouseEvent e) 
     {
     if(e.getButton()==MouseEvent.BUTTON1)
@@ -599,7 +606,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           if(item.isMouseOver(e.getPoint()))
             {
             System.out.println ("Pressed on "+item.getName());
-            choosenWidget=item;
+            choosenWidget = item;
             return;
             }
           } 
