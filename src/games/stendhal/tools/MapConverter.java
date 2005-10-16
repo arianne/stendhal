@@ -22,8 +22,12 @@ package games.stendhal.tools;
 import games.stendhal.tools.tiled.StendhalMapWriter;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.Task;
+import org.apache.tools.ant.types.FileSet;
 import tiled.core.Map;
 import tiled.io.xml.XMLMapTransformer;
 
@@ -35,49 +39,35 @@ import tiled.io.xml.XMLMapTransformer;
  */
 public class MapConverter extends Task
 {
-  /** path to the tmx files */
-  private String tmxPath;
   /** path where the *.stend goes */
   private String stendPath;
+  /** list of *.tmx files to convert */
+  private List<FileSet> filesets = new ArrayList<FileSet>();
+  
   /** Creates a new instance of MapConverter */
   public MapConverter()
   {}
   
   /** converts the map files */
-  public void convert() throws Exception
+  public void convert(String tmxFile) throws Exception
   {
-    System.out.println("tmxPath = "+tmxPath);
-    System.out.println("stendPath = "+stendPath);
-    
-    File tmxDir = new File(tmxPath);
-    if (!tmxDir.exists())
-    {
-      throw new IllegalArgumentException("path to tmxfiles ("+tmxPath+") does not exists");
-    }
-    // find all *.tmx files
-    File[] tmxFiles = tmxDir.listFiles(
-            new FilenameFilter()
-            {
-              public boolean accept(File dir, String name)
-              {
-                  return (name.endsWith(".tmx"));
-              }
-            } );
+    File file = new File(tmxFile);
 
-    for (File file : tmxFiles)
-    {
-      String filename = file.getAbsolutePath();
-      // some internal tiled magic: load the map 
-      Map map = new XMLMapTransformer().readMap(filename);
-      // and save it
-      filename = stendPath+"\\"+file.getName().replaceAll("\\.tmx",".stend");
-      new StendhalMapWriter().writeMap(map, filename);
-    }
+    String filename = file.getAbsolutePath();
+    // some internal tiled magic: load the map 
+    Map map = new XMLMapTransformer().readMap(filename);
+    // and save it
+    filename = stendPath+"\\"+file.getName().replaceAll("\\.tmx",".stend");
+    new StendhalMapWriter().writeMap(map, filename);
   }
-  /** The setter for the "tmxPath" attribute */
-  public void setTmxPath(String tmxPath)
+  
+  /**
+   * Adds a set of files to copy.
+   * @param set a set of files to copy
+   */
+  public void addFileset(FileSet set)
   {
-      this.tmxPath = tmxPath;
+      filesets.add(set);
   }
 
   /** The setter for the "stendPath" attribute */
@@ -91,7 +81,17 @@ public class MapConverter extends Task
   {
     try
     {
-      convert();
+      for (FileSet fileset : filesets)
+      {
+        DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
+        String[] includedFiles = ds.getIncludedFiles();
+        
+        for(String filename : includedFiles)
+        {
+          System.out.println(ds.getBasedir().getAbsolutePath()+File.separator+filename);
+          convert(ds.getBasedir().getAbsolutePath()+File.separator+filename);
+        }        
+      }
     }
     catch (Exception e)
     {
@@ -100,18 +100,17 @@ public class MapConverter extends Task
   }
   
   /** */
-  public static void main(String[] args)
+  public static void main(String[] args) throws Exception
   {
 //    args = new String[] {"G:\\project\\stendhal\\tiled","c:\\temp"};
     if (args.length < 2)
     {
-      System.out.println("usage: java games.stendhal.tools.MapConverter <path to *.tmx files> <path where the *.stend files goes>");
+      System.out.println("usage: java games.stendhal.tools.MapConverter <tmx file> <path where the *.stend files goes>");
       return;
     }
     // do the job
     MapConverter converter = new MapConverter();
-    converter.tmxPath = args[0];
     converter.stendPath = args[1];
-    converter.execute();
+    converter.convert(args[0]);
   }
 }

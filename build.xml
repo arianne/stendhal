@@ -247,7 +247,20 @@
     </taskdef>
    
   <!-- do the conversion -->
-    <mapconverter tmxPath="tiled" stendPath="maps"/>
+    <mapconverter stendPath="maps">
+      <fileset dir="tiled">
+        <include name="afterlife.tmx"/>
+        <include name="afterlive.tmx"/>
+        <include name="city.tmx"/>
+        <include name="city_underground.tmx"/>
+        <include name="dungeon_001.tmx"/>
+        <include name="forest.tmx"/>
+        <include name="plains.tmx"/>
+        <include name="rat_dungeon_000.tmx"/>
+        <include name="tavern.tmx"/>
+        <include name="village.tmx"/>
+      </fileset>
+    </mapconverter>
   </target>
   
   <target name="create_tiled_plugin" depends="init" description="creates the reader/writer-plugin jar for tiled">
