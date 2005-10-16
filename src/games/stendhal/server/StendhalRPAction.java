@@ -18,6 +18,7 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
@@ -81,8 +82,12 @@ public class StendhalRPAction
         source.put("risk",risk);
 
         int damage=0;
-
-        source.incATKXP();
+        
+        if (!(target instanceof SpeakerNPC))
+          {
+          // disabled attack xp for attacking NPC's
+          source.incATKXP();
+          }
         
         if(risk>0) //Hit
           {
