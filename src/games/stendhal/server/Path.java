@@ -181,6 +181,8 @@ public class Path
    */
   public static void searchPathAsynchonous(RPEntity entity, Entity dest, double maxPathRadius)
     {
+    world.checkPathfinder();
+
     boolean result = world.getPathfinder().queuePath(
              new QueuedPath(
                  new SimplePathListener(entity), 

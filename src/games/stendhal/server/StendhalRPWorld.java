@@ -57,6 +57,21 @@ public class StendhalRPWorld extends RPWorld
     return pathfinderThread;
   }
   
+  /** 
+   * checks if the pathfinder thread is still alive. If it is not, it is 
+   * restarted.
+   */
+  public void checkPathfinder()
+  {
+    if (pathfinderThread != null || !pathfinderThread.isAlive())
+    {
+      logger.fatal("Pathfinderthread died");
+      pathfinderThread = new PathfinderThread(this);
+      pathfinderThread.start();
+    }
+  }
+
+
   /** returns the current rulemanager. */
   public RuleManager getRuleManager()
   {
