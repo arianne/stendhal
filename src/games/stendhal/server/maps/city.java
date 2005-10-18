@@ -77,7 +77,6 @@ public class city
     zone.add(sign);
 
 
-/**
     Chest chest=new Chest();
     zone.assignRPObjectID(chest);
     chest.setx(44);
@@ -86,7 +85,6 @@ public class city
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("shield"));
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("armor"));
     zone.add(chest);
-**/
     
     NPC npc=new BeggarNPC();
     zone.assignRPObjectID(npc);

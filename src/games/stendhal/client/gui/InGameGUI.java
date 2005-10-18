@@ -37,29 +37,46 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(InGameGUI.class);
 
-  private wtList widget;
-  private java.util.List<wtButton> buttons;  
-  private java.util.List<wtDroppableArea> droppableAreas;
-  private Entity widgetAssociatedEntity;
-  
   private StendhalClient client;
   private GameObjects gameObjects;
   private GameScreen screen;
 
+  /** this is a list of commands that is shown when right click on an entity */
+  private wtList widgetCommandList;
+  
+  /** this is the entity to which it is associated the wtList */
+  private Entity widgetAssociatedEntity;
+
+  /** buttons to exit and return to game */
+  private java.util.List<wtButton> buttons;  
+
+  /** a list of droppable areas: gui, items, creatures,... */
+  private java.util.List<wtDroppableArea> droppableAreas;  
+  
+  /** a nicer way of handling the keyboard */
   private Map<Integer, Object> pressed;
   
+  
+  /** the sprite to show the player inventory */
   private Sprite inGameInventory;
-  private Sprite inGameDevelPoint;
+  
+  /** a graphical representation of some droppable areas. */
   private Sprite slot;
   
-  private RPSlot inspectedSlot;
-  private java.util.List<wtDroppableArea> inspectedDroppableAreas;
+  
+  /** player can inspect entities to check what they contains. This variable stores
+   *  the actual inspected entity. */
   private Entity inspectedEntity;
+  /** this is the slot of the above entity that is being inspecting right now. */
+  private RPSlot inspectedSlot;
+  
+  /** Stores droppable areas needed to represent content of the above slot. */  
+  private java.util.List<wtDroppableArea> inspectedDroppableAreas;
 
-  public InGameGUI(StendhalClient client)
+
+  private void fixkeyboardHandlinginX()
     {
     logger.debug("OS: "+System.getProperty("os.name"));
-    client.setGameGUI(this);
     
     if(System.getProperty("os.name").toLowerCase().contains("linux"))
       {
@@ -78,7 +95,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
               }
             catch(Exception e)
               {
-              System.out.println (e);
+              logger.fatal(e);
               }
             }
           });
@@ -88,8 +105,15 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         System.out.println (e);
         }
       }
-      
+    }
+    
+  public InGameGUI(StendhalClient client)
+    {
+    fixkeyboardHandlinginX();
+    
+    client.setGameGUI(this);
     this.client=client;
+    
     gameObjects=client.getGameObjects();
     screen=GameScreen.get();
     
@@ -102,10 +126,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     buildGUI();
     }
   
-  private void buildGUI()
-    {
-    SpriteStore st=SpriteStore.get();
-
+  private void createQuitMenuButtons(SpriteStore st)
+    {    
     wtButton button=new wtButton("exit",st.getSprite("data/exit.png"), st.getSprite("data/exit_pressed.png"), 320,360);
     button.addActionListener(new wtEventListener()
       {
@@ -133,8 +155,10 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       });
     button.setEnabled(false);
     buttons.add(button);
-    
-    /** Inventory */
+    }
+  
+  private void createPlayerInventory(SpriteStore st)
+    {
     inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.png",true);
     
     wtEventListener dropToInventory=new wtEventListener()
@@ -193,8 +217,11 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
 
     area=new wtDroppableArea("bag",601,122,32,32);
     area.addActionListener(dropToInventory);
-    droppableAreas.add(area);    
-    
+    droppableAreas.add(area);        
+    }
+
+  private void createInspectedEntity(SpriteStore st)
+    {
     slot=st.getSprite("data/slot.png");
 
     wtEventListener transferFromContainer=new wtEventListener()
@@ -221,6 +248,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         }
       };
 
+    wtDroppableArea area=null;
+
     area=new wtDroppableArea("left_001",6,414,32,32);
     area.addActionListener(transferFromContainer);
     inspectedDroppableAreas.add(area);
@@ -246,6 +275,15 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       disabledArea.setEnabled(false);
       }
     }
+    
+  private void buildGUI()
+    {
+    SpriteStore st=SpriteStore.get();
+    
+    createQuitMenuButtons(st);
+    createPlayerInventory(st);
+    createInspectedEntity(st);
+    }
   
   private wtDroppableArea getDroppableArea(String name)
     {
@@ -260,8 +298,14 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     return null;
     }
   
+  /** keeps track of the last drag event, its position mainly, so that we can know
+   *  it when the mouse button is released. */
   private MouseEvent lastDraggedEvent;
+  /** To manage too the drag event we need to record what was the entity in which the
+   *  mouse was pressed for the first drag event. */
   private Entity choosenEntity;
+  /** There is a second case where the use drag from a droppable area to game, and so 
+   *  we record from what droppable area the event started */
   private wtDroppableArea choosenWidget;
     
   public void mouseDragged(MouseEvent e) 
@@ -273,12 +317,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     {
     lastDraggedEvent=null;
     
-    if(widget!=null)
+    if(widgetCommandList!=null)  // Notify the wtList so it can update itself 
       {
-      widget.onMouseOver(e.getPoint());
+      widgetCommandList.onMouseOver(e.getPoint());
       }
     
-    for(wtButton button: buttons)    
+    for(wtButton button: buttons)  // Notify buttons so they can update itself     
       {
       button.onMouseOver(e.getPoint());
       } 
@@ -288,13 +332,17 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   public void mouseClicked(MouseEvent e) 
     {
     Point2D screenPoint=e.getPoint();
-        
-    if(widget!=null && widget.clicked(screenPoint))
+    
+    // check if the command list is clicked.    
+    if(widgetCommandList!=null && widgetCommandList.clicked(screenPoint))     
       {
-      if(gameObjects.has(widgetAssociatedEntity))
+      // check that the entity still exists
+      if(gameObjects.has(widgetAssociatedEntity))                             
         {
-        widgetAssociatedEntity.onAction(client, widget.choosen());
-        widget=null;
+        // execute the action
+        widgetAssociatedEntity.onAction(client, widgetCommandList.choosen()); 
+        // clean the command list.
+        widgetCommandList=null;                                               
         return;
         }
       }
@@ -304,13 +352,14 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       {
       button.clicked(e.getPoint());
       } 
-
-    widget=null;
+    
+    /* If no command list was clicked but a click happened then delete the actual command list  */
+    widgetCommandList=null;
     
     // get clicked entity
     Point2D point=screen.translate(screenPoint);
     Entity entity=gameObjects.at(point.getX(),point.getY());
-    // for the cliecked entity....
+    // for the clicked entity....
     if(entity!=null)
       {
       if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
@@ -321,70 +370,136 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         }
       else if(e.getButton()==MouseEvent.BUTTON3)
         {
-        // ... show context menu
+        // ... show context menu (aka command list) 
         String[] actions=entity.offeredActions();
-        widget=new wtList(actions,screenPoint.getX(),screenPoint.getY());      
+        widgetCommandList=new wtList(actions,screenPoint.getX(),screenPoint.getY());      
         widgetAssociatedEntity=entity;  
         }
       }
     }
 
-  /** the user has pressed the mouse button () */
+  /** the user has pressed the mouse button */
   public void mousePressed(MouseEvent e) 
     {
-    if(e.getButton()==MouseEvent.BUTTON1)
+    if(e.getButton()==MouseEvent.BUTTON1) 
       {        
       Point2D point=screen.translate(e.getPoint());
-      choosenEntity=gameObjects.at(point.getX(),point.getY());
+      choosenEntity=gameObjects.at(point.getX(),point.getY()); //check if entity exists at x,y
       
+      // If there is no entity there, check if there is a droppable area.
       if(choosenEntity==null)
         {
         for(wtDroppableArea item: droppableAreas)    
           {
           if(item.onMouseOver(e.getPoint()))
             {
-            System.out.println ("Pressed on "+item.getName());
-            choosenWidget = item;
-            return;
+            choosenWidget=item;
+            logger.debug("Pressed on droppable area named "+choosenWidget.getName());
+            break;
             }
           } 
         }
+      else
+        {
+        logger.debug("Pressed on entity "+choosenEntity);
+        choosenWidget=null;
+        }      
       }
     }
+  
+  /** This method request the player to displace the given entity to x,y */
+  private void displace(Entity entity, int x, int y)
+    {
+    entity.onAction(client,"Displace", Integer.toString(x),Integer.toString(y));
+    }
+  
+  private void drop(int x, int y)
+    {
+    int baseobjectid=0;
+    int item=-1;
+    String slot=null;
+    
+    if(inspectedSlot==null || !choosenWidget.getName().startsWith("left"))
+      {
+      /* If we are not inspecting any slot OR if the choosen widget from where we
+       * are going to drop the object doesn't start with left ( that are the droppable 
+       * areas used for inspecting objects ) that means we are dropping the item from
+       * one of our player slots */         
+      baseobjectid=client.getPlayer().getID().getObjectID();
+      slot=choosenWidget.getName();
+      logger.debug("Drop from player's slot "+slot);
+      }
+    else
+      {
+      /* On the other hand, if we are inspecting an entity and the slot starts with left
+       * that means that we want to drop the item from the entity that we are inspecting. */
+      baseobjectid=inspectedEntity.getID().getObjectID();
+      slot=inspectedSlot.getName();
+      
+      String choosenarea=choosenWidget.getName();
+      int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
+      
+      int i=0;
+      for(RPObject object: inspectedSlot)
+        {
+        if(i == (itemPos-1))
+          {
+          item=object.getID().getObjectID();
+          break;
+          }
+        i++;
+        }
+      }
+    
+    RPAction action=new RPAction();
+    action.put("type","drop");
+    action.put("baseobject",baseobjectid);
+    action.put("slot",slot);
+    action.put("item",item);
+    action.put("x",x);
+    action.put("y",y);
+    
+    InGameGUI.this.client.send(action);
+    }
 
+  /** the user has released the mouse button */
   public void mouseReleased(MouseEvent e) 
     {
-    if(lastDraggedEvent!=null && choosenEntity!=null)
+    // Check if we were dragging an entity.
+    if(lastDraggedEvent!=null && choosenEntity!=null) 
       {
       Point2D point=screen.translate(e.getPoint());
-      System.out.println (choosenEntity+" moved to "+point);
-      
+
       // We check first inventory and if it fails we wanted to move the object so. 
       for(wtDroppableArea item: droppableAreas)    
         {
+        // Returns true if it is released inside the droppable area
         if(item.released(e.getPoint(),choosenEntity))
           {
           // We dropped it in inventory
-          System.out.println ("Dropped "+choosenEntity+" into "+item.getName());
+          logger.debug("Dropped "+choosenEntity+" into "+item.getName());
           choosenEntity=null;
           lastDraggedEvent=null;
           return;
           }
         }
 
-      choosenEntity.onAction(client, "Displace", Integer.toString((int)point.getX()), Integer.toString((int)point.getY()));
+      logger.debug("Moved "+choosenEntity+" to "+point);
+      displace(choosenEntity,(int)point.getX(), (int)point.getY());
+      
       choosenEntity=null;
       lastDraggedEvent=null;
       }
 
+    // Check if we were dragging a widget ( droppable areas only ) 
     if(lastDraggedEvent!=null && choosenWidget!=null)
       {
       Point2D point=screen.translate(e.getPoint());
-      System.out.println (choosenWidget.getName()+" dropped to "+point);
 
       // We check first inventory and if it fails we wanted to move the object so. 
       for(wtDroppableArea item: droppableAreas)    
         {
+        // Returns true if it is released inside the droppable area
         if(item.released(e.getPoint(),choosenWidget))
           {
           // We dropped it in inventory
@@ -395,47 +510,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           }
         }
       
-      int baseobjectid=0;
-      int item=-1;
-      String slot=null;
-      
-      System.out.println (inspectedSlot);
-      System.out.println (inspectedEntity);
-      
-      if(inspectedSlot==null || !choosenWidget.getName().startsWith("left"))
-        {
-        baseobjectid=client.getPlayer().getID().getObjectID();
-        slot=choosenWidget.getName();
-        System.out.println ("Want to move from player");
-        }
-      else
-        {
-        baseobjectid=inspectedEntity.getID().getObjectID();
-        slot=inspectedSlot.getName();
-        
-        String choosenarea=choosenWidget.getName();
-        int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
-        
-        int i=0;
-        for(RPObject object: inspectedSlot)
-          {
-          if(i == (itemPos-1))
-            {
-            item=object.getID().getObjectID();
-            break;
-            }
-          i++;
-          }
-        }
-      
-      RPAction action=new RPAction();
-      action.put("type","drop");
-      action.put("baseobject",baseobjectid);
-      action.put("slot",slot);
-      action.put("item",item);
-      action.put("x",(int)point.getX());
-      action.put("y",(int)point.getY());
-      InGameGUI.this.client.send(action);
+      logger.debug(choosenWidget.getName()+" dropped to "+point);
+      drop((int)point.getX(),(int)point.getY());
 
       choosenWidget=null;
       lastDraggedEvent=null;
@@ -518,7 +594,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     
   public void keyPressed(KeyEvent e) 
     {
-    widget=null;
+    widgetCommandList=null;
     
     if(!pressed.containsKey(new Integer(e.getKeyCode())))
       {
@@ -645,9 +721,9 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       button.draw(screen);
       }
     
-    if(widget!=null)
+    if(widgetCommandList!=null)
       {
-      widget.draw(screen);
+      widgetCommandList.draw(screen);
       }
 
     // if the currently dragged item is a passive entity (items, corpses)
