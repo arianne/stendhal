@@ -13,18 +13,22 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.*;
-import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.PassiveEntity;
+import games.stendhal.client.entity.*;
+import games.stendhal.client.gui.wt.*;
 import games.stendhal.common.Direction;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Point2D;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
 import org.apache.log4j.Logger;
 
 
@@ -35,273 +39,9 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(InGameGUI.class);
 
-  interface InGameAction
-    {
-    public void onAction(Object... param);
-    }
-  
-  abstract class InGameActionListener implements InGameAction
-    {
-    abstract public void onAction(Object... param);
-    }
-    
-  static class InGameButton
-    {
-    private String name;
-    private Sprite[] buttons;
-    private Rectangle area;
-    private InGameAction action;
-    private boolean over;
-    private boolean enabled;
-    
-    public InGameButton(String name, Sprite normal, Sprite over, int x, int y)
-      {
-      buttons=new Sprite[2];
-      buttons[0]=normal;
-      buttons[1]=over;
-      
-      area=new Rectangle(x,y,buttons[0].getWidth(),buttons[0].getHeight());
-      this.over=false;
-      this.action=null;
-      this.enabled=true;
-      this.name=name;
-      }
-    
-    public String getName()
-      {
-      return name;
-      }
-    
-    public void setEnabled(boolean enabled)
-      {
-      this.enabled=enabled;
-      }
-
-    public void draw(GameScreen screen)
-      {
-      if(!enabled) return;
-      Sprite button;
-      
-      if(over)
-        {
-        button=buttons[1];
-        }
-      else
-        {
-        button=buttons[0];
-        }
-        
-      screen.drawInScreen(button,(int)area.getX(),(int)area.getY());
-      }
-    
-    public void addActionListener(InGameAction action)
-      {
-      this.action=action;
-      }
-
-    public boolean onMouseOver(Point2D point)
-      {
-      if(!enabled) return false;
-      if(area.contains(point))
-        {
-        over=true;
-        }
-      else
-        {
-        over=false;
-        }
-      
-      return false;
-      }
-    
-    public boolean clicked(Point2D point)
-      {
-      if(!enabled) return false;
-      if(area.contains(point))
-        {
-        action.onAction();
-        return true;
-        }
-      
-      return false;
-      }    
-    }
-
-  static class InGameDroppableArea
-    {
-    private String name;
-    private Rectangle area;
-    private InGameAction action;
-    private boolean enabled;
-    
-    public InGameDroppableArea(String name,int x, int y, int width, int height)
-      {
-      this.name=name;
-      area=new Rectangle(x,y,width,height);
-      this.action=null;
-      this.enabled=true;
-      }
-    
-    public String getName()
-      {
-      return name;
-      }
-    
-    public int getx()
-      {
-      return (int)area.getX();
-      }
-    
-    public int gety()
-      {
-      return (int)area.getY();
-      }
-
-    public void setEnabled(boolean enabled)
-      {
-      this.enabled=enabled;
-      }
-    
-    public void addActionListener(InGameAction action)
-      {
-      this.action=action;
-      }
-
-    public void draw(GameScreen screen)
-      {
-      if(!enabled) return;
-      Graphics g=screen.expose();
-      g.setColor(Color.white);
-      g.drawRect((int)area.getX(),(int)area.getY(),(int)area.getWidth(),(int)area.getHeight());      
-      }
-      
-    public boolean isMouseOver(Point2D point)
-      {
-      if(!enabled) return false;
-      if(area.contains(point))
-        {
-        return true;
-        }
-      
-      return false;
-      }
-      
-    public boolean released(Point2D point, Entity choosenEntity)
-      {
-      if(!enabled) return false;
-      if(area.contains(point))
-        {
-        action.onAction(choosenEntity,this);
-        return true;
-        }
-      
-      return false;
-      }    
-
-    public boolean released(Point2D point, InGameDroppableArea choosenWidget)
-      {
-      if(!enabled) return false;
-      if(area.contains(point))
-        {
-        action.onAction(choosenWidget,this);
-        return true;
-        }
-      
-      return false;
-      }    
-    }
-    
-  static class InGameList
-    {
-    private Rectangle area;
-    private String[] list;
-    private int choosen;
-    private int over;
-    private Sprite action_list;
-    
-    private Sprite render(double x, double y, double mouse_x, double mouse_y)
-      {
-      int width=70+6;
-      int height=6+16*list.length;
-      
-      area= new Rectangle((int)x,(int)y,width,height);
-      GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-      Image image = gc.createCompatibleImage(width,height,Transparency.BITMASK);    
-      Graphics g=image.getGraphics();
-
-      g.setColor(Color.gray);
-      g.fillRect(0,0,width,height);
-
-      g.setColor(Color.black);
-      g.drawRect(0,0,width-1,height-1);
-      
-      g.setColor(Color.yellow);
-      int i=0;
-      for(String item: list)
-        {
-        if((mouse_y-y)>16*i && (mouse_y-y)<16*(i+1))
-          {
-          g.setColor(Color.white);
-          g.drawRect(0,16*i,width-1,16);
-          g.drawString(item,3,13+16*i);
-          g.setColor(Color.yellow);
-          over=i;
-          }
-        else
-          {
-          g.drawString(item,3,13+16*i);
-          }
-          
-        i++;
-        }
-      
-      return new Sprite(image);
-      }
-    
-    public InGameList(String[] list, double x, double y)
-      {
-      this.list=list;
-      over=-1;
-      action_list=render(x,y,-1,-1);      
-      }
-    
-    public void draw(GameScreen screen)
-      {
-      Point2D translated=screen.translate(new Point((int)area.getX(),(int)area.getY()));      
-      screen.draw(action_list,translated.getX(),translated.getY());
-      }
-    
-    public boolean onMouseOver(Point2D point)
-      {
-      if(area.contains(point) && over!=(point.getY()-area.getY())/16)
-        {
-        action_list=render(area.getX(),area.getY(),point.getX(),point.getY());      
-        return true;
-        }
-      
-      return false;
-      }
-    
-    public boolean clicked(Point2D point)
-      {
-      if(area.contains(point))
-        {
-        choosen=(int)((point.getY()-area.getY())/16);
-        return true;
-        }
-      
-      return false;
-      }
-    
-    public String choosen()
-      {
-      return list[choosen];
-      }
-    }
-  
-  private InGameList widget;
-  private java.util.List<InGameButton> buttons;  
-  private java.util.List<InGameDroppableArea> droppableAreas;
+  private wtList widget;
+  private java.util.List<wtButton> buttons;  
+  private java.util.List<wtDroppableArea> droppableAreas;
   private Entity widgetAssociatedEntity;
   
   private StendhalClient client;
@@ -315,7 +55,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   private Sprite slot;
   
   private RPSlot inspectedSlot;
-  private java.util.List<InGameDroppableArea> inspectedDroppableAreas;
+  private java.util.List<wtDroppableArea> inspectedDroppableAreas;
   private Entity inspectedEntity;
 
   public InGameGUI(StendhalClient client)
@@ -357,9 +97,9 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     
     pressed=new HashMap<Integer, Object>();
     
-    buttons=new java.util.LinkedList<InGameButton>();
-    droppableAreas=new java.util.LinkedList<InGameDroppableArea>();
-    inspectedDroppableAreas=new java.util.LinkedList<InGameDroppableArea>();
+    buttons=new java.util.LinkedList<wtButton>();
+    droppableAreas=new java.util.LinkedList<wtDroppableArea>();
+    inspectedDroppableAreas=new java.util.LinkedList<wtDroppableArea>();
     
     buildGUI();
     }
@@ -368,8 +108,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     {
     SpriteStore st=SpriteStore.get();
 
-    InGameButton button=new InGameButton("exit",st.getSprite("data/exit.png"), st.getSprite("data/exit_pressed.png"), 320,360);
-    button.addActionListener(new InGameActionListener()
+    wtButton button=new wtButton("exit",st.getSprite("data/exit.png"), st.getSprite("data/exit_pressed.png"), 320,360);
+    button.addActionListener(new wtEventListener()
       {
       public void onAction(Object... param)
         {
@@ -379,12 +119,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     button.setEnabled(false);
     buttons.add(button);
     
-    button=new InGameButton("back",st.getSprite("data/back.png"), st.getSprite("data/back_pressed.png"), 220,360);
-    button.addActionListener(new InGameActionListener()
+    button=new wtButton("back",st.getSprite("data/back.png"), st.getSprite("data/back_pressed.png"), 220,360);
+    button.addActionListener(new wtEventListener()
       {
       public void onAction(Object... param)
         {
-        for(InGameButton button: buttons)    
+        for(wtButton button: buttons)    
           {
           if(button.getName().equals("exit") || button.getName().equals("back"))
             {
@@ -399,7 +139,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     /** Inventory */
     inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.png",true);
     
-    InGameActionListener dropToInventory=new InGameActionListener()
+    wtEventListener dropToInventory=new wtEventListener()
       {
       public void onAction(Object... param)
         {
@@ -409,57 +149,57 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           RPAction action=new RPAction();
           action.put("type","equip");
           action.put("target",((Entity)param[0]).getID().getObjectID());
-          action.put("slot",((InGameDroppableArea)param[1]).getName());
+          action.put("slot",((wtDroppableArea)param[1]).getName());
           action.put("baseobject",playerid);
           InGameGUI.this.client.send(action);
           }
-        else if(param[0] instanceof InGameDroppableArea)
+        else if(param[0] instanceof wtDroppableArea)
           {
           RPAction action=new RPAction();
           
           action.put("type","moveequip");
-          action.put("targetslot",((InGameDroppableArea)param[1]).getName());
+          action.put("targetslot",((wtDroppableArea)param[1]).getName());
           action.put("targetobject",playerid);
-          action.put("sourceslot",((InGameDroppableArea)param[0]).getName());
+          action.put("sourceslot",((wtDroppableArea)param[0]).getName());
           action.put("sourceobject",playerid);
           InGameGUI.this.client.send(action);
           }
         }
       };
     
-    InGameDroppableArea area=null;
+    wtDroppableArea area=null;
     
-    area=new InGameDroppableArea("lhand",515,68,32,32);
+    area=new wtDroppableArea("lhand",515,68,32,32);
     area.addActionListener(dropToInventory);
     droppableAreas.add(area);
     
-//    area=new InGameDroppableArea("head",558,14,32,32);
+//    area=new wtDroppableArea("head",558,14,32,32);
 //    area.addActionListener(dropToInventory);
 //    droppableAreas.add(area);
     
-    area=new InGameDroppableArea("armor",558,56,32,32);
+    area=new wtDroppableArea("armor",558,56,32,32);
     area.addActionListener(dropToInventory);
     droppableAreas.add(area);
     
-//    area=new InGameDroppableArea("legs",558,98,32,32);
+//    area=new wtDroppableArea("legs",558,98,32,32);
 //    area.addActionListener(dropToInventory);
 //    droppableAreas.add(area);
 //    
-//    area=new InGameDroppableArea("feet",558,141,32,32);
+//    area=new wtDroppableArea("feet",558,141,32,32);
 //    area.addActionListener(dropToInventory);
 //    droppableAreas.add(area);
     
-    area=new InGameDroppableArea("rhand",601,68,32,32);
+    area=new wtDroppableArea("rhand",601,68,32,32);
     area.addActionListener(dropToInventory);
     droppableAreas.add(area);    
 
-    area=new InGameDroppableArea("bag",601,122,32,32);
+    area=new wtDroppableArea("bag",601,122,32,32);
     area.addActionListener(dropToInventory);
     droppableAreas.add(area);    
     
     slot=st.getSprite("data/slot.png");
 
-    InGameActionListener transferFromContainer=new InGameActionListener()
+    wtEventListener transferFromContainer=new wtEventListener()
       {
       public void onAction(Object... param)
         {
@@ -469,49 +209,49 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           RPAction action=new RPAction();
           action.put("type","equip");
           action.put("target",((Entity)param[0]).getID().getObjectID());
-          action.put("slot",((InGameDroppableArea)param[1]).getName());
+          action.put("slot",((wtDroppableArea)param[1]).getName());
           InGameGUI.this.client.send(action);
           }
-        else if(param[0] instanceof InGameDroppableArea)
+        else if(param[0] instanceof wtDroppableArea)
           {
           RPAction action=new RPAction();
           action.put("type","moveequip");
-          action.put("targetslot",((InGameDroppableArea)param[1]).getName());
-          action.put("sourceslot",((InGameDroppableArea)param[0]).getName());
+          action.put("targetslot",((wtDroppableArea)param[1]).getName());
+          action.put("sourceslot",((wtDroppableArea)param[0]).getName());
           InGameGUI.this.client.send(action);
           }
         }
       };
 
-    area=new InGameDroppableArea("left_001",6,414,32,32);
+    area=new wtDroppableArea("left_001",6,414,32,32);
     area.addActionListener(transferFromContainer);
     inspectedDroppableAreas.add(area);
     droppableAreas.add(area);    
 
-    area=new InGameDroppableArea("left_002",6,369,32,32);
+    area=new wtDroppableArea("left_002",6,369,32,32);
     area.addActionListener(transferFromContainer);
     inspectedDroppableAreas.add(area);
     droppableAreas.add(area);    
 
-    area=new InGameDroppableArea("left_003",6,324,32,32);
+    area=new wtDroppableArea("left_003",6,324,32,32);
     area.addActionListener(transferFromContainer);
     inspectedDroppableAreas.add(area);
     droppableAreas.add(area);    
 
-    area=new InGameDroppableArea("left_004",6,279,32,32);
+    area=new wtDroppableArea("left_004",6,279,32,32);
     area.addActionListener(transferFromContainer);
     inspectedDroppableAreas.add(area);
     droppableAreas.add(area);    
 
-    for(InGameDroppableArea disabledArea:inspectedDroppableAreas)
+    for(wtDroppableArea disabledArea:inspectedDroppableAreas)
       {
       disabledArea.setEnabled(false);
       }
     }
   
-  private InGameDroppableArea getDroppableArea(String name)
+  private wtDroppableArea getDroppableArea(String name)
     {
-    for(InGameDroppableArea item: droppableAreas)
+    for(wtDroppableArea item: droppableAreas)
       {
       if(item.getName().equals(name))
         {
@@ -524,7 +264,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   
   private MouseEvent lastDraggedEvent;
   private Entity choosenEntity;
-  private InGameDroppableArea choosenWidget;
+  private wtDroppableArea choosenWidget;
     
   public void mouseDragged(MouseEvent e) 
     {
@@ -540,7 +280,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       widget.onMouseOver(e.getPoint());
       }
     
-    for(InGameButton button: buttons)    
+    for(wtButton button: buttons)    
       {
       button.onMouseOver(e.getPoint());
       } 
@@ -562,7 +302,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       }
 
     // check if someone clicked the 'quit' or 'cancel' button
-    for(InGameButton button: buttons)    
+    for(wtButton button: buttons)    
       {
       button.clicked(e.getPoint());
       } 
@@ -585,7 +325,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         {
         // ... show context menu
         String[] actions=entity.offeredActions();
-        widget=new InGameList(actions,screenPoint.getX(),screenPoint.getY());      
+        widget=new wtList(actions,screenPoint.getX(),screenPoint.getY());      
         widgetAssociatedEntity=entity;  
         }
       }
@@ -601,7 +341,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       
       if(choosenEntity==null)
         {
-        for(InGameDroppableArea item: droppableAreas)    
+        for(wtDroppableArea item: droppableAreas)    
           {
           if(item.isMouseOver(e.getPoint()))
             {
@@ -622,7 +362,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       System.out.println (choosenEntity+" moved to "+point);
       
       // We check first inventory and if it fails we wanted to move the object so. 
-      for(InGameDroppableArea item: droppableAreas)    
+      for(wtDroppableArea item: droppableAreas)    
         {
         if(item.released(e.getPoint(),choosenEntity))
           {
@@ -645,7 +385,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       System.out.println (choosenWidget.getName()+" dropped to "+point);
 
       // We check first inventory and if it fails we wanted to move the object so. 
-      for(InGameDroppableArea item: droppableAreas)    
+      for(wtDroppableArea item: droppableAreas)    
         {
         if(item.released(e.getPoint(),choosenWidget))
           {
@@ -803,7 +543,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       rpaction.put("type","stop");
       client.send(rpaction);
 
-      for(InGameButton button: buttons)    
+      for(wtButton button: buttons)    
         {
         if(button.getName().equals("exit") || button.getName().equals("back"))
           {
@@ -815,7 +555,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   
   public void inspect(Entity entity, RPSlot slot)
     {
-    for(InGameDroppableArea area:inspectedDroppableAreas)
+    for(wtDroppableArea area:inspectedDroppableAreas)
       {
       area.setEnabled(entity!=null);
       }
@@ -845,7 +585,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     {
     screen.drawInScreen(inGameInventory,510,10);
 
-    for(InGameDroppableArea item: droppableAreas)    
+    for(wtDroppableArea item: droppableAreas)    
       {
       item.draw(screen);
       } 
@@ -861,7 +601,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
          RPSlot slot=player.getSlot(slotName);
          if(slot.size()==1)
            {
-           InGameDroppableArea dropArea=getDroppableArea(slotName);
+           wtDroppableArea dropArea=getDroppableArea(slotName);
            RPObject object=slot.iterator().next();
            screen.drawInScreen(gameObjects.spriteType(object),dropArea.getx(),dropArea.gety());
            }
@@ -878,7 +618,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         int i=1;
         for(RPObject object: inspectedSlot)
           {
-          InGameDroppableArea area=getDroppableArea("left_00"+i);                    
+          wtDroppableArea area=getDroppableArea("left_00"+i);                    
           screen.drawInScreen(slot,area.getx()-4,area.gety()-4);
           screen.drawInScreen(gameObjects.spriteType(object),area.getx(),area.gety());
           i++;
@@ -886,7 +626,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
 
         if(inspectedEntity.distance(player)>2.5*2.5)
           {
-          for(InGameDroppableArea area:inspectedDroppableAreas)
+          for(wtDroppableArea area:inspectedDroppableAreas)
             {
             area.setEnabled(false);
             }
@@ -897,12 +637,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         }
       }
     
-    for(InGameDroppableArea item: droppableAreas)
+    for(wtDroppableArea item: droppableAreas)
       {
       item.draw(screen);
       }
     
-    for(InGameButton button: buttons)
+    for(wtButton button: buttons)
       {
       button.draw(screen);
       }

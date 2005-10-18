@@ -153,10 +153,10 @@ public class Minimap extends Panel
   /** draws a cross at the given position */
   private void drawCross(Graphics g, int x, int y, Color color)
   {
-    int size = 4;
+    int size = 2;
     g.setColor(color);
-    g.drawLine(x-size,y-size, x+size,y+size);
-    g.drawLine(x-size,y+size, x+size,y-size);
+    g.drawLine(x-size,y, x+size,y);
+    g.drawLine(x,y+size, x,y-size);
   }
   
   

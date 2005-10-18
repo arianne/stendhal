@@ -250,7 +250,6 @@
     <mapconverter stendPath="maps">
       <fileset dir="tiled">
         <include name="afterlife.tmx"/>
-        <include name="afterlive.tmx"/>
         <include name="city.tmx"/>
         <include name="city_underground.tmx"/>
         <include name="dungeon_001.tmx"/>

@@ -440,7 +440,7 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\afterlive.java</path>
+				<path>src\games\stendhal\server\maps\afterlife.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
