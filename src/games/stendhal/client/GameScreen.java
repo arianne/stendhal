@@ -41,8 +41,10 @@ public class GameScreen
   private int sw,sh;  
   /** Actual size of the world in world units */
   private int ww,wh;
-  
+  /** the singleton instance */
   private static GameScreen screen;
+  /** the awt-component which this screen belongs to */
+  private Component component;
   
   /** Create a screen with the given width and height */
   public static void createScreen(BufferStrategy strategy, int sw, int sh)
@@ -59,6 +61,18 @@ public class GameScreen
     return screen;
     }
   
+  /** sets the awt-component which this screen belongs to */
+  public void setComponent(Component component)
+    {
+    this.component= component;
+    }
+  
+  /** returns the awt-component which this screen belongs to */
+  public Component getComponent()
+    {
+    return component;
+    }
+  
   /** Returns screen width in world units */
   public double getWidth()
     {
@@ -69,6 +83,18 @@ public class GameScreen
   public double getHeight()
     {
     return sh/PIXEL_SCALE;
+    }
+
+  /** Returns screen width in pixels */
+  public int getWidthInPixels()
+    {
+    return sw;
+    }
+
+  /** Returns screen height in pixels */
+  public int getHeightInPixels()
+    {
+    return sh;
     }
    
   private GameScreen(BufferStrategy strategy, int sw, int sh)

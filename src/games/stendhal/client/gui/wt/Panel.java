@@ -19,7 +19,9 @@ package games.stendhal.client.gui.wt;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
@@ -42,7 +44,7 @@ import org.apache.log4j.Logger;
  * TODO: try to cache the static panel content in BufferdImage
  * @author mtotz
  */
-public class Panel
+public class Panel implements Draggable
 {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Panel.class);
@@ -62,10 +64,16 @@ public class Panel
   private boolean moveable;
   /** panel can be resized */
   private boolean resizeable;
+  /** panel can be minimized */
+  private boolean minimizeable;
+  /** true when the panel is minimized */
+  private boolean minimized;
   /** x-position relative to its parent */
   private int x;
   /** y-position relative to its parent */
   private int y;
+  /** the point where we were before the drag started */
+  private Point dragPosition;
   /** width of the panel inclusive frames and title bar */
   private int width;
   /** height of the panel inclusive frames and title bar */
@@ -73,7 +81,7 @@ public class Panel
   /** name of the panel */
   private String name;
   
-  /** all childs of this panel */
+  /** all childs of this panel. TODO: sort this by z-order */
   private List<Panel> childs;
   /** the parent of this panel */
   private Panel parent;
@@ -94,6 +102,58 @@ public class Panel
     this.frame       = false;
     this.moveable    = false;
     this.resizeable  = false;
+  }
+
+  /** returns x-position of the panel (relative to its parent) */
+  public int getX()
+  {
+    return x;
+  }
+
+  /** returns y-position of the panel (relative to its parent) */
+  public int getY()
+  {
+    return y;
+  }
+
+  /** returns width of the panel */
+  public int getWidth()
+  {
+    return width;
+  }
+
+  /** returns height of the panel */
+  public int getHeight()
+  {
+    return height;
+  }
+  
+  /**
+   * Moves the panel by dx pixels to the right and dy pixels down.
+   *
+   * @param dx amount of pixels to move rights ( < 0 is allowed, will move left)
+   * @param dy amount of pixels to move down ( < 0 is allowed, will move up)
+   * @return true when the operation is allowed (panel is moved) or false if not
+   *             (panel is not moved)
+   */
+  public boolean move(int dx, int dy)
+  {
+    return moveTo(x+dx,y+dy);
+  }
+
+  /**
+   * Moves the panel to the given position.
+   *
+   * @param x x-coordinale
+   * @param y y-coordinmate
+   * @return true when the operation is allowed (panel is moved) or false if not
+   *             (panel is not moved)
+   */
+  public boolean moveTo(int x, int y)
+  {
+    this.x = x;
+    this.y = y;
+    return true;
   }
 
   /** returns wether the panel has a title bar */
@@ -145,6 +205,32 @@ public class Panel
     this.resizeable = resizeable;
   }
   
+  /** returns wether the panel is minimizeable */
+  public boolean isMinimizeable()
+  {
+    return minimizeable;
+  }
+
+  /** enables/disables minimizing the panel. Note: the panel must have a
+   * title bar */
+  public void setMinimizeable(boolean minimizeable)
+  {
+    this.minimizeable = minimizeable;
+  }
+
+  /** returns whether the panel is minimized */
+  public boolean isMinimized()
+  {
+    return minimized;
+  }
+
+  /** sets the minimized state */
+  public void setMinimized(boolean minimized)
+  {
+    this.minimized = minimized;
+  }
+  
+  
   /** returns the parent of the panel */
   public Panel getParent()
   {
@@ -167,6 +253,24 @@ public class Panel
     }
     childs.add(panel);
     panel.parent = this;
+  }
+  
+  /** removes a child-panel from this panel */
+  public void removeChild(Panel panel)
+  {
+    if (childs.remove(panel))
+    {
+      // be sure to remove ourself from the other panel
+      panel.parent = null;
+    }
+  }
+
+  /** returns an unmodifiable list this panels childs.
+   * TODO: cache this
+   */
+  protected List<Panel> getChilds()
+  {
+    return Collections.unmodifiableList(childs);
   }
   
   /** resizes the panel so that the client area has the given width and height
@@ -233,12 +337,149 @@ public class Panel
       // update clipping
       panelGraphics = panelGraphics.create(0,TILLEBAR_SIZE+2, width-(FRAME_SIZE*2), height-(FRAME_SIZE*2)-TILLEBAR_SIZE-2);
     }
-
-    // now draw the childs
-    for (Panel panel : childs)
+    
+    if (!minimized)
     {
-      panel.draw(panelGraphics);
+      // now draw the childs
+      drawChilds(panelGraphics);
     }
+
     return panelGraphics;
   }
+  
+  /** draws all childs
+   * @param clientArea Graphics object clipped to the client region.
+   */
+  protected void drawChilds(Graphics clientArea)
+  {
+    for (Panel panel : childs)
+    {
+      panel.draw(clientArea);
+    }
+  }
+  
+  /** 
+   * Checks if the Point p is inside the Panel. Note that the coordinates are
+   * local to the parent, not local to this Panel.
+   *
+   * @param p point to check (in parents coordinate space)
+   * @return true when the point is in this panel, false otherwise
+   */
+  public boolean isHit(Point p)
+  {
+    return isHit(p.x, p.y);
+  }
+  
+  /** Checks if the point is inside the Panel. Note that the coordinates are
+   * local to the parent, not local to this Panel.
+   *
+   * @param x x-coordinate to check (in parents coordinate space)
+   * @param y y-coordinate to check (in parents coordinate space)
+   * @return true when the point is in this panel, false otherwise
+   */
+  public boolean isHit(int x, int y)
+  {
+    if (x < this.x || y < this.y || x > this.x + width || y > this.y + height)
+      return false;
+    return true;
+  }
+  
+  /** return true if the point is in the title */
+  private boolean hitTitle(int x,int y)
+  {
+    // do we have a title
+    if (!titleBar)
+      return false;
+    
+    // 
+    if (x < FRAME_SIZE || y < FRAME_SIZE || x > width-FRAME_SIZE || y > FRAME_SIZE+TILLEBAR_SIZE)
+      return false;
+    
+    return true;
+  }
+  
+  /** return a object for dragging which is at the position p or null */
+  protected Draggable getDragged(Point p)
+  {
+    return getDragged(p.x,p.y);
+  }
+  
+  /** return a object for dragging which is at the position (x,y) or null */
+  protected Draggable getDragged(int x, int y)
+  {
+    // if the user drags our titlebar we return ourself
+    if (hitTitle(x,y))
+      return this;
+
+    // check all childs
+    for (Panel panel : childs)
+    {
+      // only if the point is inside the child
+      if (panel.isHit(x,y))
+      {
+        Draggable draggedObject = panel.getDragged(x - panel.getX(), y-panel.getY());
+
+        // did we get an object
+        if (draggedObject != null)
+        {
+          return draggedObject;
+        }
+      }
+    }
+
+    // no more dragging allowed
+    return null;
+  }
+  
+  /** callback for a mouse click */
+  public void onMouseClick(Point p)
+  {
+  }
+  
+  /** callback for a doubleclick */
+  public void onMouseDoubleClick(Point p)
+  {
+    if (hitTitle(p.x,  p.y))
+    {
+      // is have a have a title bar and are minimizeable
+      if (titleBar && minimizeable)
+      {
+        // change minimized state
+        minimized = !minimized;
+      }
+    }
+  }
+  
+  /** when the user starts to drag this object 
+   * @returns a draggable object which is either <code>this</code> or a sub-panel
+   */
+  public Draggable onMouseDragStart()
+  {
+    return null;
+  }
+
+  /** callback for a mouse click */
+  public void onMouseDropped()
+  {
+  }
+
+  /** ignored */
+  public boolean dragStarted()
+  {
+    dragPosition = new Point(x,y);
+    return true;
+  }
+  
+  /** ignored */
+  public boolean dragFinished(Point p)
+  {
+    return false;
+  }
+
+  /** move the frame to the requested position */
+  public boolean dragMoved(Point p)
+  {
+    return moveTo(dragPosition.x+p.x, dragPosition.y+p.y);
+  }
+
 }

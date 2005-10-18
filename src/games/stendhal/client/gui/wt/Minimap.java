@@ -48,6 +48,11 @@ public class Minimap extends Panel
   private int height;
   /** minimap image */
   private BufferedImage image;
+  /** x-position of the player */
+  private double playerX;
+  /** y-position of the player */
+  private double playerY;
+  
   
   /** Creates a new instance of Minimap */
   public Minimap(CollisionDetection cd, GraphicsConfiguration gc, String zone)
@@ -97,11 +102,11 @@ public class Minimap extends Panel
    * @param x x-position of the player (used to pan big maps)
    * @patam y y-position of the player (used to pan big maps)
    */
-  public void draw(Graphics g, double x, double y)
+  public Graphics draw(Graphics g)
   {
     // draw frame and title
     Graphics clientg = super.draw(g);
-    
+
     // now calculate how to pan the minimap
     int panx = 0;
     int pany = 0;
@@ -109,8 +114,8 @@ public class Minimap extends Panel
     int w = image.getWidth();
     int h = image.getHeight();
 
-    int xpos = (int) (x * scale) - width / 2;
-    int ypos = (int) (y * scale) - width / 2;
+    int xpos = (int) (playerX * scale) - width / 2;
+    int ypos = (int) (playerY * scale) - width / 2;
 
     if (w > width)
     {
@@ -146,8 +151,9 @@ public class Minimap extends Panel
 
     Color playerColor = Color.BLUE;
     // draw the player position
-    drawCross(clientg,(int) (x*scale)-panx, (int) (y*scale)-pany, playerColor);
+    drawCross(clientg,(int) (playerX*scale)-panx, (int) (playerY*scale)-pany, playerColor);
 
+    return g;
   }
 
   /** draws a cross at the given position */
@@ -159,5 +165,9 @@ public class Minimap extends Panel
     g.drawLine(x,y+size, x,y-size);
   }
   
-  
+  public void setPlayerPos(double x, double y)
+  {
+    playerX = x;
+    playerY = y;
+  }
 }

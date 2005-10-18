@@ -323,7 +323,8 @@ public class j2DClient extends JFrame
     strategy = canvas.getBufferStrategy();
 
     GameScreen.createScreen(strategy,640,480);
-    screen=GameScreen.get();
+    screen = GameScreen.get();
+    screen.setComponent(canvas);
 
     inGameGUI=new InGameGUI(client);
 
