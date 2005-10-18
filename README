@@ -62,6 +62,10 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.33 Oct XX, 2005
+- Fixed ghost sheep bug
+- Added minimap
+
 0.32 Sep 24, 2005
 - Many bug fixes
 - Support for chests ( disabled )
