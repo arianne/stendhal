@@ -45,6 +45,9 @@
 				<path>src\games\stendhal\client\gui</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\client\gui\wt</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\server</path>
 			</folderitem>
 			<folderitem>
@@ -70,6 +73,12 @@
 			</folderitem>
 			<folderitem>
 				<path>src\games\stendhal\common</path>
+			</folderitem>
+			<folderitem>
+				<path>src\games\stendhal\tools</path>
+			</folderitem>
+			<folderitem>
+				<path>src\games\stendhal\tools\tiled</path>
 			</folderitem>
 			<folderitem>
 				<path>maps</path>
@@ -259,6 +268,14 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\Minimap.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\Panel.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\Navigable.java</path>
 				<source>true</source>
 			</fileitem>
@@ -267,7 +284,7 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\NavigationPoints.java</path>
+				<path>src\games\stendhal\server\NavigationMap.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -507,6 +524,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\common\Debug.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\common\Direction.java</path>
 				<source>true</source>
 			</fileitem>
@@ -520,6 +541,18 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\Rand.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\tools\MapConverter.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\tools\tiled\StendhalMapReader.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\tools\tiled\StendhalMapWriter.java</path>
 				<source>true</source>
 			</fileitem>
 		</include>

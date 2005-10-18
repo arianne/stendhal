@@ -337,7 +337,7 @@ public class Player extends RPEntity
 
     world.modify(who);
 
-    StendhalRPAction.changeZone(this,"afterlive");
+    StendhalRPAction.changeZone(this,"afterlife");
     StendhalRPAction.transferContent(this);
     }
 

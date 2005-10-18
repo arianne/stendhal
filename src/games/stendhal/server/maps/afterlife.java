@@ -4,9 +4,9 @@ import marauroa.common.game.*;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
 
-public class afterlive 
+public class afterlife 
   {
-  public afterlive(StendhalRPZone zone)
+  public afterlife(StendhalRPZone zone)
     {
     Portal portal=new Portal();
     zone.assignRPObjectID(portal);
