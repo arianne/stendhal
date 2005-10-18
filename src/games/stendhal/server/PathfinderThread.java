@@ -16,7 +16,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import marauroa.common.Log4J;
 import marauroa.server.game.RPWorld;
+import org.apache.log4j.Logger;
 
 /**
  * A Thread for finding a path without blocking the main game thread
@@ -25,6 +27,9 @@ import marauroa.server.game.RPWorld;
  */
 public class PathfinderThread extends Thread
 {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(PathfinderThread.class);
+  
   /** The maximum time spent on a search for one particular path (in ms) */
   private static final int MAX_PATHFINDING_TIME = 100;
   /** Max size of the queue */
@@ -69,10 +74,13 @@ public class PathfinderThread extends Thread
         QueuedPath path = pathQueue.take();
         searchPath(path);
       }
+      logger.info("pathfinder terminated, finished="+finished);
     }
-    catch (InterruptedException ie)
+    catch (Exception e)
     {
-      throw new RuntimeException(ie);
+      // log the error
+      logger.fatal("Pathfinder loop terminated with exeption (finished="+finished+")",e);
+      throw new RuntimeException(e);
     }
   }
   
