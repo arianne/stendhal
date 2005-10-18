@@ -5,6 +5,7 @@ import games.stendhal.client.entity.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+/** This is a list of items where the user can click and choose one of the items */
 public class wtList
   {
   private Rectangle area;
@@ -65,6 +66,7 @@ public class wtList
     screen.draw(action_list,translated.getX(),translated.getY());
     }
   
+  /** Returns true if mouse is over this component */
   public boolean onMouseOver(Point2D point)
     {
     if(area.contains(point) && over!=(point.getY()-area.getY())/16)
@@ -76,6 +78,7 @@ public class wtList
     return false;
     }
   
+  /** Returns true if mouse is over this component AND it has been clicked */
   public boolean clicked(Point2D point)
     {
     if(area.contains(point))
@@ -87,6 +90,7 @@ public class wtList
     return false;
     }
   
+  /** Returns the choosen option of the list */
   public String choosen()
     {
     return list[choosen];

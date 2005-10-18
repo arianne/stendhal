@@ -32,8 +32,6 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 
-/** TODO: Move InGame classes to their own classes and package as they build the GUI 
- *        and make this code hard to understand ( because of lots of GUI specific code */
 public class InGameGUI implements MouseListener, MouseMotionListener, KeyListener
   {
   /** the logger instance. */
@@ -343,7 +341,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         {
         for(wtDroppableArea item: droppableAreas)    
           {
-          if(item.isMouseOver(e.getPoint()))
+          if(item.onMouseOver(e.getPoint()))
             {
             System.out.println ("Pressed on "+item.getName());
             choosenWidget = item;

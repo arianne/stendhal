@@ -4,6 +4,8 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+/** This class is just a button with two positions: pressed and released.
+ *  You must provide all the graphics. */
 public class wtButton 
   {
   private String name;
@@ -26,11 +28,13 @@ public class wtButton
     this.name=name;
     }
   
+  /** Returns component's name */
   public String getName()
     {
     return name;
     }
   
+  /** Set to false to disable this component */
   public void setEnabled(boolean enabled)
     {
     this.enabled=enabled;
@@ -58,6 +62,7 @@ public class wtButton
     this.action=action;
     }
 
+  /** Returns true if mouse is over this component */
   public boolean onMouseOver(Point2D point)
     {
     if(!enabled) return false;
@@ -73,6 +78,7 @@ public class wtButton
     return false;
     }
   
+  /** Returns true if mouse is over this component AND it has been clicked */
   public boolean clicked(Point2D point)
     {
     if(!enabled) return false;

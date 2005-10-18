@@ -5,6 +5,8 @@ import games.stendhal.client.entity.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+/** This class is a empty box of the given size that can be used to drop and drag 
+ *  items on the box. Mainly used for inventory */
 public class wtDroppableArea
   {
   private String name;
@@ -20,6 +22,7 @@ public class wtDroppableArea
     this.enabled=true;
     }
   
+  /** Returns component's name */
   public String getName()
     {
     return name;
@@ -53,7 +56,8 @@ public class wtDroppableArea
     g.drawRect((int)area.getX(),(int)area.getY(),(int)area.getWidth(),(int)area.getHeight());      
     }
     
-  public boolean isMouseOver(Point2D point)
+  /** Returns true if mouse is over this component */
+  public boolean onMouseOver(Point2D point)
     {
     if(!enabled) return false;
     if(area.contains(point))
@@ -64,6 +68,8 @@ public class wtDroppableArea
     return false;
     }
     
+  /** Returns true if mouse is over this component AND has been released.
+   *  This method also calls the action listener if the above conditions happens. */
   public boolean released(Point2D point, Entity choosenEntity)
     {
     if(!enabled) return false;
@@ -76,6 +82,8 @@ public class wtDroppableArea
     return false;
     }    
 
+  /** Returns true if mouse is over this component AND has been released.
+   *  This method also calls the action listener if the above conditions happens. */
   public boolean released(Point2D point, wtDroppableArea choosenWidget)
     {
     if(!enabled) return false;
