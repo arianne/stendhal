@@ -63,7 +63,7 @@ public class StendhalRPWorld extends RPWorld
    */
   public void checkPathfinder()
   {
-    if (pathfinderThread != null || !pathfinderThread.isAlive())
+    if (pathfinderThread == null || !pathfinderThread.isAlive())
     {
       logger.fatal("Pathfinderthread died");
       pathfinderThread = new PathfinderThread(this);
