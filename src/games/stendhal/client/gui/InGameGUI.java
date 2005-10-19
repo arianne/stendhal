@@ -196,6 +196,26 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
             action.put("sourceslot","content");
             
             /** BUG: Handle case of multiple items. */
+            int item=-1;
+            
+            String choosenarea=sourceSlot.getName();
+            int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
+            
+            int i=0;
+            for(RPObject object: inspectedSlot)
+              {
+              if(i == (itemPos-1))
+                {
+                item=object.getID().getObjectID();
+                break;
+                }
+              i++;
+              }
+
+            if(item>0)
+              {
+              action.put("item",item);              
+              }
             }
           else
             {

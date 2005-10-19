@@ -891,9 +891,29 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           RPSlot sourceslot=baseEntity.getSlot(sourceSlot);
           if(sourceslot.size()>0)
             {
-            Entity item=(Entity)sourceslot.iterator().next();
+            RPObject item = null;
+            if(action.has("item"))
+              {
+              int itemid = action.getInt("item");
+              // scan through the slot to find the requested item
+              for(RPObject rpobject : sourceslot)
+                {
+                if(rpobject.getID().getObjectID() == itemid)
+                  {
+                  item = rpobject;
+                  break;
+                  }
+                }
+              
+              }
+
+            // no item found...we take the first one
+            if(item==null)
+              {
+              item = sourceslot.iterator().next();
+              }
             
-            sourceslot.clear();
+            sourceslot.remove(item.getID());
             
             targetslot.assignValidID(item);
             targetslot.add(item);
