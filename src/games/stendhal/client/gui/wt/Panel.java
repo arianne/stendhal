@@ -153,6 +153,20 @@ public class Panel implements Draggable
   {
     this.x = x;
     this.y = y;
+    
+    // check if we are inside the bounds of our parent
+    if (x < 0)
+      this.x = 0;
+    
+    if (hasParent() && parent.getWidth() - width < x)
+      this.x = parent.getWidth() - width;
+
+    if (y < 0)
+      this.y = 0;
+    
+    if (hasParent() && parent.getHeight() - height < y)
+      this.y = parent.getHeight() - height;
+
     return true;
   }
 
@@ -309,6 +323,13 @@ public class Panel implements Draggable
     // draw frame
     if (frame)
     {
+      int height = this.height;
+      // if this frame is minimized, reduce frame to enclose the title bar only
+      if (isMinimized())
+      {
+        height = TILLEBAR_SIZE+FRAME_SIZE*2;
+      }
+
       int colSteps = 255 / (FRAME_SIZE);
       for (int i = 0; i < FRAME_SIZE; i++)
       {
@@ -450,19 +471,6 @@ public class Panel implements Draggable
     }
   }
   
-  /** when the user starts to drag this object 
-   * @returns a draggable object which is either <code>this</code> or a sub-panel
-   */
-  public Draggable onMouseDragStart()
-  {
-    return null;
-  }
-
-  /** callback for a mouse click */
-  public void onMouseDropped()
-  {
-  }
-
   /** ignored */
   public boolean dragStarted()
   {

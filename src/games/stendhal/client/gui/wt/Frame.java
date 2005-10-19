@@ -154,7 +154,8 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
   /**
    * Invoked when a mouse button is pressed on a component and then 
    * dragged.
-   * This event is ignored but will be processed in future versions.
+   * This event will find the panel just under the mouse cursor and starts to
+   * drag (if the panel allows it)
    */
   public synchronized void mouseDragged(MouseEvent e)
   {
@@ -194,7 +195,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
    * Invoked when the mouse cursor has been moved onto a component
    * but no buttons have been pushed.
    *
-   * This event is ignored. It may be processed in future versions.
+   * This event stopps all dragging operations.
    */
   public synchronized void mouseMoved(java.awt.event.MouseEvent e)
   {

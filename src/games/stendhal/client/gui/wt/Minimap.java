@@ -93,6 +93,7 @@ public class Minimap extends Panel
     setTitleBar(true);
     setFrame(true);
     setMoveable(true);
+    setMinimizeable(true);
     // now resize the panel to match the size of the map
     resizeToFitClientArea(width, height);
   }
@@ -106,6 +107,10 @@ public class Minimap extends Panel
   {
     // draw frame and title
     Graphics clientg = super.draw(g);
+    
+    // don't draw the minimap when we're miminized
+    if (isMinimized())
+      return clientg;
 
     // now calculate how to pan the minimap
     int panx = 0;
