@@ -194,6 +194,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
             // To inspected object
             action.put("baseobject",inspectedEntity.getID().getObjectID());
             action.put("sourceslot","content");
+            
+            /** BUG: Handle case of multiple items. */
             }
           else
             {
