@@ -59,7 +59,6 @@ public class Chest extends AnimatedEntity
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
-//    super.modifyAdded(object,changes);
     super.modifyRemoved(object,changes);
     
     if(changes.has("open"))
@@ -89,7 +88,7 @@ public class Chest extends AnimatedEntity
     String[] list=null;
     if(open)
       {
-      list=new String[]{"Look","Close"};
+      list=new String[]{"Look","Inspect","Close"};
       }
     else
       {
@@ -107,16 +106,17 @@ public class Chest extends AnimatedEntity
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);
       }
+    else if(action.equals("Inspect"))
+      {
+      client.getGameGUI().inspect(this,content);
+      }
     else if(action.equals("Open") || action.equals("Close"))
       {
-      if(!open)
+      if(open)
         {
-        client.getGameGUI().inspect(this,content);
-        }
-      else
-        {
+        // If is it already open, this action means close...
         client.getGameGUI().inspect(null,null);
-        }              
+        }
         
       RPAction rpaction=new RPAction();
       rpaction.put("type","use");

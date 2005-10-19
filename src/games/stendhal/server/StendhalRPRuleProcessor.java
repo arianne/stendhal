@@ -756,6 +756,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Log4J.startMethod(logger,"equip");
 
+    logger.info("EQUIP");
+
     if(action.has("target") && action.has("slot") && action.has("baseobject"))
       {
       int targetObject=action.getInt("target");
@@ -764,6 +766,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
       if(!zone.has(targetid))
         {
+        logger.info("Rejected because zone doesn't have target object");
         return;
         }
 
@@ -772,24 +775,28 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       RPObject.ID baseobjectid=new RPObject.ID(baseObject, zone.getID());
       if(!zone.has(baseobjectid))
         {
+        logger.info("Rejected because zone doesn't have base object");
         return;
         }
         
       RPObject target=zone.get(targetid);
       if(!(target instanceof PassiveEntity))
         {
+        logger.info("Rejected because target object isn't a passive entity");
         return;
         }
 
       RPObject base=zone.get(baseobjectid);
       if(!(base instanceof Player || base instanceof Corpse || base instanceof Chest))
         {
+        logger.info("Rejected because base object isn't a player, a corpse or a chest");
         return;
         }
       
       if(base instanceof Player && !player.getID().equals(base.getID()))
         {
         // Only allowed to equip our own player.
+        logger.info("Rejected because base object is a player that is not yourrs");
         return;
         }
         
@@ -799,7 +806,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(player.nextto(targetEntity,0.25) && player.nextto(baseEntity,0.25) && baseEntity.hasSlot(action.get("slot")))
         {
         RPSlot slot=baseEntity.getSlot(action.get("slot"));
-        if(slot.size()==0)
+        /* BUG: Slots should provide info about the amount of objects that they can handle */
+        if(!slot.isFull())
           {
           world.remove(targetEntity.getID());
           
@@ -825,29 +833,88 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Log4J.startMethod(logger,"moveequip");
 
-    if(action.has("sourceslot") && action.has("targetslot"))
+    logger.info("MOVEEEQUIP");
+
+    if(action.has("sourceslot") && action.has("targetslot") && action.has("targetobject") && action.has("baseobject"))
       {
       String sourceSlot=action.get("sourceslot");
       String targetSlot=action.get("targetslot");
 
-      if(player.hasSlot(sourceSlot) && player.hasSlot(targetSlot))
+      int targetObject=action.getInt("targetobject");
+
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
+      if(!zone.has(targetid))
         {
-        RPSlot target=player.getSlot(targetSlot);
-        if(target.size()==0)
+        logger.info("Rejected because zone doesn't have target object");
+        return;
+        }
+
+      int baseObject=action.getInt("baseobject");
+
+      RPObject.ID baseobjectid=new RPObject.ID(baseObject, zone.getID());
+      if(!zone.has(baseobjectid))
+        {
+        logger.info("Rejected because zone doesn't have base object");
+        return;
+        }
+        
+      RPObject target=zone.get(targetid);
+      if(!(target instanceof Player || target instanceof Corpse || target instanceof Chest))
+        {
+        logger.info("Rejected because target object isn't a player, a corpse or a chest");
+        return;
+        }
+
+      RPObject base=zone.get(baseobjectid);
+      if(!(base instanceof Player || base instanceof Corpse || base instanceof Chest))
+        {
+        logger.info("Rejected because base object isn't a player, a corpse or a chest");
+        return;
+        }
+      
+      if(base instanceof Player && !player.getID().equals(base.getID()))
+        {
+        // Only allowed to equip our own player.
+        logger.info("Rejected because base object is a player that is not yourrs");
+        return;
+        }
+        
+      Entity targetEntity=(Entity)target;
+      Entity baseEntity=(Entity)base;
+
+      if(baseEntity.hasSlot(sourceSlot) && targetEntity.hasSlot(targetSlot))
+        {
+        RPSlot targetslot=targetEntity.getSlot(targetSlot);
+        if(!targetslot.isFull())
           {
-          RPSlot source=player.getSlot(sourceSlot);
-          if(source.size()>0)
+          RPSlot sourceslot=baseEntity.getSlot(sourceSlot);
+          if(sourceslot.size()>0)
             {
-            Entity item=(Entity)source.iterator().next();
+            Entity item=(Entity)sourceslot.iterator().next();
             
-            source.clear();
+            sourceslot.clear();
             
-            target.assignValidID(item);
-            target.add(item);
+            targetslot.assignValidID(item);
+            targetslot.add(item);
             
-            world.modify(player);
+            world.modify(baseEntity);
+            world.modify(targetEntity);
+            }
+          else
+            {
+            logger.info("Rejected because source slot is empty");
             }
           }
+        else
+          {
+          logger.info("Rejected because target slot is full");
+          }
+        }
+      else
+        {
+        logger.info("Rejected because source slot("+sourceSlot+") doesn't exists in "+baseEntity);
+        logger.info("Rejected because target slot("+targetSlot+") doesn't exists in "+targetEntity);
         }
       }
 
@@ -904,20 +971,20 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         RPObject object = null;
         int item = action.getInt("item");
         // scan through the slot to find the requested item
-        for (RPObject rpobject : slot)
-        {
-          if (rpobject.getID().getObjectID() == item)
+        for(RPObject rpobject : slot)
           {
+          if(rpobject.getID().getObjectID() == item)
+            {
             object = rpobject;
             break;
+            }
           }
-        }
         
         // no item found...we take the first one
-        if (object == null)
-        {
+        if(object==null)
+          {
           object = slot.iterator().next();
-        }
+          }
         
         Entity entity;
         

@@ -191,7 +191,7 @@ public class Player extends RPEntity
         }          
       }
     
-    String[] slots={"rhand","lhand","armor"};
+    String[] slots={"rhand","lhand","armor","bag"};
     
     for(String slotName: slots)
       {

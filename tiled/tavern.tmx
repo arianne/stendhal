@@ -60,4 +60,9 @@
    H4sIAAAAAAAAADvGycBwbBhhEKCWfmLMgqnBBnCJ4zMXm/249FECsNlLqh/obT8xcUEP+/GxybUfm1uoGc+E7KcFwJV26WU/PvcMhP3obqFH/CObRYz9hPThcxcp4qTajy8tkSNOrN3Y7MelhxL/49JDSt1CSD0p6Z8eZQMIAwB0FsCGgAgAAA==
   </data>
  </layer>
+ <layer name="tavern_navigation" width="32" height="17">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjgDBI5KSuOlqbMQqGLsAV/8SI42KPglFAKaAkXVLDnuEIAC4BaqeACAAA
+  </data>
+ </layer>
 </map>
