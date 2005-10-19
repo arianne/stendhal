@@ -17,6 +17,7 @@ import games.stendhal.client.gui.wt.Frame;
 import games.stendhal.client.gui.wt.Minimap;
 import games.stendhal.client.gui.wt.Panel;
 import games.stendhal.common.CollisionDetection;
+import games.stendhal.common.Debug;
 import games.stendhal.common.Pair;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -231,6 +232,10 @@ public class StaticGameLayers
         if (frame == null)
         {
           frame = new Frame(screen);
+          if (Debug.SHOW_TEST_CHARACTER_PANEL)
+          {
+            frame.addChild(new games.stendhal.client.gui.wt.Character());
+          }
           // register native event handler
           screen.getComponent().addMouseListener(frame);
           screen.getComponent().addMouseMotionListener(frame);
@@ -240,7 +245,7 @@ public class StaticGameLayers
           {
           minimap = new Minimap(cdp.second(), screen.expose().getDeviceConfiguration(), area);
           frame.addChild(minimap);
-          minimap.moveTo(100,100);
+          minimap.moveTo(0,0);
           }
         
         Entity player = null;

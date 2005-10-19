@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                      (C) Copyright 2005 - Marauroa                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -302,7 +302,7 @@ public class Panel implements Draggable
       this.width  += FRAME_SIZE * 2;
       this.height += FRAME_SIZE * 2;
     }
-    
+
     // adjust size to include the title bar
     if (titleBar)
     {
@@ -450,6 +450,40 @@ public class Panel implements Draggable
 
     // no more dragging allowed
     return null;
+  }
+  
+  /** 
+   * checks if there is a droptarget direct under the position (x,y) 
+   * @param x x-coordinate in client space
+   * @param y y-coordinate in client space
+   * @param droppedObject the dropped object
+   * @return true when this panel or a child panel is a droptarget and has
+   *         received the object, false when there is no droptarget found
+   */
+  protected boolean checkDropped(int x, int y, Draggable droppedObject)
+  {
+    // are we ourself a drop target
+    if (this instanceof DropTarget)
+    {
+      // yep, so cast ourself to the interface, call the callback and return
+      DropTarget target = (DropTarget) this;
+      target.onDrop(droppedObject);
+      return true;
+    }
+
+    // now ask each child
+    for (Panel panel : childs)
+    {
+      // only if the point is inside the child
+      if (panel.isHit(x,y))
+      {
+        // the child checks itself
+        if (panel.checkDropped(x - panel.getX(), y-panel.getY(), droppedObject))
+          return true;
+      }
+    }
+    // no drop target found
+    return false;
   }
   
   /** callback for a mouse click */

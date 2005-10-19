@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                      (C) Copyright 2005 - Marauroa                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -91,6 +91,8 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
       Point p = e.getPoint();
       p.translate(dragStartPoint.x,dragStartPoint.y);
       draggedObject.dragFinished(p);
+      // now check if there is a drop-target direct unter the mouse cursor
+      checkDropped(p.x, p.y, draggedObject);
     }
     dragInProgress = false;
   }
