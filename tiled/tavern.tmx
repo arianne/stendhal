@@ -42,12 +42,12 @@
  </layer>
  <layer name="tavern_2_object" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB8kcTAwJENxCgcFBuEAXKwI9kR2BoZJ7KjyDUA7G6G4CYv9RSyU2a8Btf8I0Jz1QLs3ALER0B5jIDbhgIjD5LEBe1bs4pQAEaC9okAsRoPwxgX4OelnFzZwFBjuR4D4MBQfQaKPQtnH2AmbQy44xoLJBtHY2IMNHB5At6HbO5BuAYHBGkf0ALjKKBhIYoVgYsBxoFnPsZh3jERxUuxHdz8rK/b4JFUc2X58YofRygBs5h2HiqODYzjE8QFYeOAKE2Uc9mATh6knJf0Tsp9aAACO8pOpgAgAAA==
+   H4sIAAAAAAAAAGNgIB8kcTAwJENxCgcFBuEAXKwI9kR2BoZJ7KjyDUA7G6G4CYv9RSyU2a8Btf8I0Jz1QLs3ALER0B5jIDbhgIjD5LEBe1bs4pQAEaC9okAsRoPwHsxACejfo8DwPwzER5BomNgxdsJmUAqOsUAwPvZgA4cH0G3o9g6kW0BgsMYRPQCuMgoGklghmBhwHGjWcyzmHSNRnBT70d3Pyoo9PkkVR7Yfn9hhJL0gc7CZdxwqjg6O4RDHB2DhgStMlHHYg00cpp6U9E/IfmoBANGEtwSACAAA
   </data>
  </layer>
  <layer name="tavern_3_roof" width="32" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA/aORgYOjgIKKIhGLV/cNjPx8nAwAvFfEg0P5QtwElb+2kJPrCjYnTxUTC8AaH4Hwz5b9T+UfuHo/0AL4hqT4AIAAA=
+   H4sIAAAAAAAAAGNgwA/aORgYOjgIKKIhGLV/cNj/EYj5ORkYeIGYD4mGiQlw0tZ+WoIP7KgYXXwUDG9AKP4HQ/4btX/U/uFoPwAMb4ImgAgAAA==
   </data>
  </layer>
  <layer name="tavern_objects" width="32" height="17">
@@ -57,7 +57,7 @@
  </layer>
  <layer name="tavern_collision" width="32" height="17" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN2SUQ7AIAhD/d397+S5ln2YGNMiHciSNfFDtDwI9Ku1/qPzKMvvyTX+ILG4lRfxmS8ixFV7qOIrszvFn+9rPIOPasmc845/Qmx3q/hWPV/w11oq5j/n8vB3PqsuJa7yrV16E/eyEZ95Iv0zD5u/0jt6i/KjGrlv5Wo8AIAIAAA=
+   H4sIAAAAAAAAADvGycBwbBhhEKCWfmLMgqnBBnCJ4zMXm/249FECsNlLqh/obT8xcUEP+/GxybUfm1uoGc+E7KcFwJV26WU/PvcMhP3obqFH/CObRYz9hPThcxcp4qTajy8tkSNOrN3Y7MelhxL/49JDSt1CSD0p6Z8eZQMIAwB0FsCGgAgAAA==
   </data>
  </layer>
 </map>
