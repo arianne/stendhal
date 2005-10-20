@@ -19,6 +19,8 @@ import java.awt.geom.*;
 
 public class Corpse extends PassiveEntity 
   {
+  private RPSlot content;
+
   public Corpse(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
     super(gameObjects, object);
@@ -33,6 +35,16 @@ public class Corpse extends PassiveEntity
     {
     return new Rectangle.Double(x,y,1,1);
     }  
+
+  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    super.modifyAdded(object,changes);
+    
+    if(changes.hasSlot("content"))
+      {
+      content=changes.getSlot("content");
+      }
+    }
     
   public String defaultAction()
     {
@@ -41,7 +53,7 @@ public class Corpse extends PassiveEntity
 
   public String[] offeredActions()
     {
-    String[] list={"Look"};
+    String[] list={"Look","Inspect"};
     return list;
     }
 
@@ -50,6 +62,10 @@ public class Corpse extends PassiveEntity
     if(action.equals("Look"))
       {
       StendhalClient.get().addEventLine("You see a corpse",Color.green);
+      }
+    else if(action.equals("Inspect"))
+      {
+      client.getGameGUI().inspect(this,content);
       }
     else
       {

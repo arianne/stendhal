@@ -19,6 +19,7 @@ import games.stendhal.common.*;
 import games.stendhal.server.*;
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.*;
 
 import games.stendhal.server.entity.*;
 
@@ -104,11 +105,6 @@ public class Corpse extends PassiveEntity
     rect.setRect(x,y,1,1);
     }  
   
-  public void add(PassiveEntity entity)
-    {
-    
-    }
-  
   public int getDegradation()
     {
     return degradation;
@@ -157,5 +153,23 @@ public class Corpse extends PassiveEntity
         
       rp.removeCorpse(this);
       }
+    }
+
+  public void add(PassiveEntity entity)
+    {
+    RPSlot content=getSlot("content");
+    content.assignValidID(entity);
+    content.add(entity);
+    }
+  
+  public int size()
+    {
+    return getSlot("content").size();
+    }  
+  
+  public Iterator<RPObject> getContent()
+    {
+    RPSlot content=getSlot("content");
+    return content.iterator();
     }
   }
