@@ -58,7 +58,7 @@ public class Portal extends Entity
       RPAction rpaction=new RPAction();
       rpaction.put("type","use");
       int id=getID().getObjectID();
-      rpaction.put("object",id);      
+      rpaction.put("target",id);      
       client.send(rpaction);
       }
     }

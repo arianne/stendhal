@@ -117,11 +117,16 @@ public class Chest extends AnimatedEntity
         // If is it already open, this action means close...
         client.getGameGUI().inspect(null,null);
         }
+      else
+        {
+        // If it was close, open it and inspect it...
+        client.getGameGUI().inspect(this,content);
+        }
         
       RPAction rpaction=new RPAction();
       rpaction.put("type","use");
       int id=getID().getObjectID();
-      rpaction.put("object",id);      
+      rpaction.put("target",id);      
       client.send(rpaction);
       }
     }

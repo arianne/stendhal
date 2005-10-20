@@ -172,7 +172,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           RPAction action=new RPAction();
           action.put("type","equip");
           action.put("target",((Entity)param[0]).getID().getObjectID());
-          action.put("slot",((wtDroppableArea)param[1]).getName());
+          action.put("baseslot",((wtDroppableArea)param[1]).getName());
           action.put("baseobject",playerid);
           InGameGUI.this.client.send(action);
           }
@@ -193,7 +193,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
             {
             // To inspected object
             action.put("baseobject",inspectedEntity.getID().getObjectID());
-            action.put("sourceslot","content");
+            action.put("baseslot","content");
             
             /** BUG: Handle case of multiple items. */
             int item=-1;
@@ -221,7 +221,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
             {
             // To player
             action.put("baseobject",playerid);
-            action.put("sourceslot",sourceSlot.getName());
+            action.put("baseslot",sourceSlot.getName());
             }
 
           InGameGUI.this.client.send(action);
@@ -277,7 +277,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           action.put("target",((Entity)param[0]).getID().getObjectID());
           /* It doesn't matter which droppable area we use, the slot name is
            * content for chests and corpses. */
-          action.put("slot","content"); 
+          action.put("baseslot","content"); 
           action.put("baseobject",inspectedEntity.getID().getObjectID());
           InGameGUI.this.client.send(action);
           }
@@ -296,7 +296,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           action.put("targetslot","content");          
           action.put("targetobject",inspectedEntity.getID().getObjectID());
           
-          action.put("sourceslot",sourceSlot.getName());
+          action.put("baseslot",sourceSlot.getName());
           if(sourceSlot.getName().startsWith("left"))
             {
             // To inspected object
@@ -522,7 +522,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     RPAction action=new RPAction();
     action.put("type","drop");
     action.put("baseobject",baseobjectid);
-    action.put("slot",slot);
+    action.put("baseslot",slot);
     action.put("item",item);
     action.put("x",x);
     action.put("y",y);

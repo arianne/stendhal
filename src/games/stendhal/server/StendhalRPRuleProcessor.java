@@ -296,6 +296,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         addBuddy(player, action);
         }
+      else if(type.equals("removebuddy"))
+        {
+        removeBuddy(player, action);
+        }
       else if(type.equals("outfit"))
         {
         outfit(player, action);
@@ -347,6 +351,25 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     world.modify(player);
 
     Log4J.finishMethod(logger,"move");
+    }
+
+  /**
+   * faces to the given direction
+   * Params:
+   *      dir (int) - direction
+   */
+  private void face(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
+    {
+    Log4J.startMethod(logger,"face");
+
+    if(action.has("dir"))
+      {
+      player.stop();
+      player.setDirection(Direction.build(action.getInt("dir")));
+      world.modify(player);
+      }
+
+    Log4J.finishMethod(logger,"face");
     }
 
   /**
@@ -436,7 +459,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     }
 
   /**
-   * Moves an item ?
+   * Moves an item that is on the floor to another point.
+   * This method also displace players and creatures one position.
    * Params:
    *   target (int) - object id of the target
    *        x (int) - destination x coordinate
@@ -511,20 +535,20 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   /**
    * Posts a private message to another player
    * Params:
-   *   who (String) - name of the other player
-   *  text (String) - text to tell
+   *  target (String) - name of the other player
+   *  text   (String) - text to tell
    */
   private void tell(Player player, RPAction action)
     {
     Log4J.startMethod(logger,"tell");
     try
       {
-      if(action.has("who") && action.has("text"))
+      if(action.has("target") && action.has("text"))
         {
         String message = player.getName() +  " tells you: " + action.get("text");
         for(Player p : getPlayers())
           {
-          if(p.getName().equals(action.get("who")))
+          if(p.getName().equals(action.get("target")))
             {
             p.setPrivateText(message);
             player.setPrivateText("You tell " + p.getName() + ": " + action.get("text"));
@@ -536,11 +560,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             return;
             }
           }
-        player.setPrivateText(action.get("who") + " is not currently logged.");
+        player.setPrivateText(action.get("target") + " is not currently logged.");
         }
       else
         {
-          logger.warn("Tell is not working right...");
+        logger.warn("Tell is not working right...");
         }
       }
     finally
@@ -560,9 +584,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.startMethod(logger,"where");
     try
       {
-      if(action.has("who"))
+      if(action.has("target"))
         {
-        String who=action.get("who");
+        String who=action.get("target");
         for(Player p : getPlayers())
           {
           if(p.getName().equals(who))
@@ -585,7 +609,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           return;
           }
           
-        player.setPrivateText(action.get("who") + " is not currently logged.");
+        player.setPrivateText(action.get("target") + " is not currently logged.");
         }
       }
     finally
@@ -597,16 +621,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   /**
    * adds a buddy to this players buddy list
    * Params:
-   *   who (String) - name of other player.
+   *   target (String) - name of other player.
    */
   private void addBuddy(Player player, RPAction action)
     {
+    /** TODO: Refactor this once invisible attributes are added */
     Log4J.startMethod(logger,"addBuddy");
     try
       {
-      if(action.has("who"))
+      if(action.has("target"))
         {
-        String who=action.get("who");
+        String who=action.get("target");
         RPSlot slot=player.getSlot("!buddy");
         
         RPObject listBuddies=null;
@@ -641,6 +666,20 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       Log4J.finishMethod(logger,"addBuddy");
       }
     }
+
+  /**
+   * removeBuddy a buddy to this players buddy list
+   * Params:
+   *   target (String) - name of other player.
+   */
+  private void removeBuddy(Player player, RPAction action)
+    {
+    /** TODO: Refactor this once invisible attributes are added */
+    Log4J.startMethod(logger,"removeBuddy");
+    /** TODO: Code this */
+    Log4J.finishMethod(logger,"removeBuddy");
+    }
+    
   
   public void online(String who)
     {
@@ -689,8 +728,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   /**
    * changes the outfit of the current player
    * Params:
-   *   who (String) - name of other player.
-   *    value (???) - new outfit
+   *    value (int) - new outfit with a code determine by client
    */
   private void outfit(Player player, RPAction action)
     {
@@ -728,29 +766,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     }
 
   /**
-   * faces to the given direction
-   * Params:
-   *      dir (int) - direction
-   */
-  private void face(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
-    {
-    Log4J.startMethod(logger,"face");
-
-    if(action.has("dir"))
-      {
-      player.stop();
-      player.setDirection(Direction.build(action.getInt("dir")));
-      world.modify(player);
-      }
-
-    Log4J.finishMethod(logger,"face");
-    }
-
-  /**
    * tries to equip an item
    * Params:
-   *   target (int) - object id of the item to equip
-   *  slot (String) - name of the slot
+   *   target     (int) - object id of the item to equip
+   *  baseslot (String) - name of the slot
+   *  baseobject  (int) - object id of the object that owns the baseslot
    */
   private void equip(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
@@ -758,7 +778,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     logger.info("EQUIP");
 
-    if(action.has("target") && action.has("slot") && action.has("baseobject"))
+    if(action.has("target") && action.has("baseslot") && action.has("baseobject"))
       {
       int targetObject=action.getInt("target");
 
@@ -803,9 +823,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       PassiveEntity targetEntity=(PassiveEntity)target;
       Entity baseEntity=(Entity)base;
 
-      if(player.nextto(targetEntity,0.25) && player.nextto(baseEntity,0.25) && baseEntity.hasSlot(action.get("slot")))
+      if(player.nextto(targetEntity,0.25) && player.nextto(baseEntity,0.25) && baseEntity.hasSlot(action.get("baseslot")))
         {
-        RPSlot slot=baseEntity.getSlot(action.get("slot"));
+        RPSlot slot=baseEntity.getSlot(action.get("baseslot"));
         /* BUG: Slots should provide info about the amount of objects that they can handle */
         if(!slot.isFull())
           {
@@ -824,7 +844,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     }
 
   /**
-   * moves an item from one slot to another of the player
+   * moves an item from one slot to another of the player or another object
    * Params:
    *  sourceslot (String) - name of the source-slot
    *  targetslot (String) - name of the target-slot
@@ -833,11 +853,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Log4J.startMethod(logger,"moveequip");
 
-    logger.info("MOVEEEQUIP");
-
-    if(action.has("sourceslot") && action.has("targetslot") && action.has("targetobject") && action.has("baseobject"))
+    if(action.has("baseslot") && action.has("targetslot") && action.has("targetobject") && action.has("baseobject"))
       {
-      String sourceSlot=action.get("sourceslot");
+      String sourceSlot=action.get("baseslot");
       String targetSlot=action.get("targetslot");
 
       int targetObject=action.getInt("targetobject");
@@ -952,7 +970,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Log4J.startMethod(logger,"drop");    
 
-    if(action.has("baseobject") && action.has("slot") && action.has("x") && action.has("y") && action.has("item"))
+    if(action.has("baseobject") && action.has("baseslot") && action.has("x") && action.has("y") && action.has("item"))
       {
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
         
@@ -979,9 +997,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       Entity baseEntity=(Entity)base;
 
-      if(baseEntity.hasSlot(action.get("slot")))
+      if(baseEntity.hasSlot(action.get("baseslot")))
         {
-        RPSlot slot=baseEntity.getSlot(action.get("slot"));
+        RPSlot slot=baseEntity.getSlot(action.get("baseslot"));
         
         if(slot.size()==0)
           {
@@ -1051,15 +1069,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   /**
    * tries to use an item
    * Params:
-   *  object (int) - object id of the item
+   *  target (int) - object id of the item
    */
   private void use(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger,"use");
 
-    if(action.has("object"))
+    if(action.has("target"))
       {
-      int usedObject=action.getInt("object");
+      int usedObject=action.getInt("target");
 
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
       RPObject.ID targetid=new RPObject.ID(usedObject, zone.getID());

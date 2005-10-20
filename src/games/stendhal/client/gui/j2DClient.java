@@ -96,7 +96,7 @@ public class j2DClient extends JFrame
           {
           RPAction tell = new RPAction();
           tell.put("type","tell");
-          tell.put("who", command[1]);
+          tell.put("target", command[1]);
           tell.put("text", command[2]);
           client.send(tell);
           }
@@ -108,7 +108,7 @@ public class j2DClient extends JFrame
           {
           RPAction tell = new RPAction();
           tell.put("type","where");
-          tell.put("who", command[1]);
+          tell.put("target", command[1]);
           client.send(tell);
           }
         }
@@ -118,14 +118,25 @@ public class j2DClient extends JFrame
         who.put("type","who");
         client.send(who);
         }
-      else if(text.startsWith("/add ")) // Tell command
+      else if(text.startsWith("/add ")) // Add a new buddy to buddy list
         {
         String[] command = parseString(text, 2);
         if(command != null)
           {
           RPAction tell = new RPAction();
           tell.put("type","addbuddy");
-          tell.put("who", command[1]);
+          tell.put("target", command[1]);
+          client.send(tell);
+          }
+        }
+      else if(text.startsWith("/remove ")) // Removes a existing buddy from buddy list
+        {
+        String[] command = parseString(text, 2);
+        if(command != null)
+          {
+          RPAction tell = new RPAction();
+          tell.put("type","removebuddy");
+          tell.put("target", command[1]);
           client.send(tell);
           }
         }
