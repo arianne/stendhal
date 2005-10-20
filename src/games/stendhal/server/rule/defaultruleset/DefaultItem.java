@@ -13,7 +13,7 @@
 package games.stendhal.server.rule.defaultruleset;
 
 import games.stendhal.common.Pair;
-import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +29,8 @@ public enum DefaultItem
   SWORD ("sword" , "weapon", new String[] {"rhand","lhand"}, -1, new Pair<String, String>("atk","14")),
   CLUB  ("club"  , "weapon", new String[] {"rhand","lhand"}, -1, new Pair<String, String>("atk","7")),
   ARMOR ("armor" , "armor" , new String[] {"armor"}        , -1, new Pair<String, String>("def","14")),
-  SHIELD("shield", "armor" , new String[] {"lhand","rhand"}, -1, new Pair<String, String>("def","7"));
+  SHIELD("shield", "armor" , new String[] {"lhand","rhand"}, -1, new Pair<String, String>("def","7")),
+  MONEY ("money",  "money" , new String[] {"lhand","rhand","bag"}, -1, new Pair<String, String>("quantity","1"));
 
   /** items class */
   private String clazz;
@@ -67,9 +68,16 @@ public enum DefaultItem
   
   /** returns an item-instance */
   public Item getItem()
-  {
-    return new Item(name, clazz, slots, attributes);
-  }
+    {
+    if(clazz.equals("money"))
+      {
+      return new Money(name, clazz, slots, attributes);
+      }
+    else
+      {
+      return new Item(name, clazz, slots, attributes);
+      }
+    }
   
   /** returns the tileid */
   public int getTileId()

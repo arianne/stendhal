@@ -84,6 +84,7 @@ public class city
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("sword"));
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("shield"));
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("armor"));
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("money"));
     zone.add(chest);
     
     NPC npc=new BeggarNPC();

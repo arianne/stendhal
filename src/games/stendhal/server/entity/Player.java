@@ -206,7 +206,6 @@ public class Player extends RPEntity
           
           if(item.get("type").equals("item")) // We simply ignore corpses...
             {
-            // Item entity = Item.create(item.get("class"));
             Item entity = world.getRuleManager().getEntityManager().getItem(item.get("class"));
             entity.put("#db_id",item.get("#db_id"));
             entity.setID(item.getID());

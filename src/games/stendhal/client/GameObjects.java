@@ -87,6 +87,7 @@ public class GameObjects implements Iterable<Entity>
     register("item","club",Item.class);
     register("item","sword",Item.class);
     register("item","armor",Item.class);
+    register("item","money",Money.class);
 
     register("portal",null,Portal.class);
     }
