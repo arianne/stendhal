@@ -822,7 +822,6 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         /* If we are inspecting an object, we draw all the objects that the 
          * inspected object's slot contains. */
         int i=1;
-        System.out.println (inspectedSlot);
         for(RPObject object: inspectedSlot)
           {
           // BUG: Only draws upto existing areas... we can have a problem with this...

@@ -993,7 +993,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   /**
    * drops an item to the ground
    * Params:
-   *  slot (String) - name of the slot where the item is atm
+   *  baseObject (int) - id of the container of the dropped object.
+   *  baseslot (String) - name of the slot where the item is atm
    *        x (int) - destination x coordinate
    *        y (int) - destination y coordinate
    */

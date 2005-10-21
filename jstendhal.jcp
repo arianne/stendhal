@@ -80,9 +80,6 @@
 			<folderitem>
 				<path>src\games\stendhal\tools\tiled</path>
 			</folderitem>
-			<folderitem>
-				<path>maps</path>
-			</folderitem>
 			<fileitem>
 				<path>build.xml</path>
 				<source>true</source>
@@ -184,6 +181,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\Money.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\NormalCreature.java</path>
 				<source>true</source>
 			</fileitem>
@@ -268,7 +269,19 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\Character.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\Draggable.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\DropTarget.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\EntitySlot.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -468,6 +481,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Money.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\maps\afterlife.java</path>
 				<source>true</source>
 			</fileitem>
@@ -587,6 +604,9 @@
 		<exclude>
 			<folderitem>
 				<path>jars</path>
+			</folderitem>
+			<folderitem>
+				<path>maps</path>
 			</folderitem>
 			<folderitem>
 				<path>tiled</path>
