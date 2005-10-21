@@ -59,7 +59,9 @@ public class Corpse extends PassiveEntity
     // Add slot if the source corpse hadn't one
     if(!hasSlot("content"))
       {
-      addSlot(new RPSlot("content"));
+      RPSlot slot=new RPSlot("content");
+      slot.setCapacity(4);
+      addSlot(slot);
       }
     }
 
@@ -74,7 +76,9 @@ public class Corpse extends PassiveEntity
     stage=0;
     put("stage",stage);
 
-    addSlot(new RPSlot("content"));
+    RPSlot slot=new RPSlot("content");
+    slot.setCapacity(4);
+    addSlot(slot);
     }
     
   public Corpse(RPEntity entity) throws AttributeNotFoundException
@@ -97,7 +101,9 @@ public class Corpse extends PassiveEntity
     stage=0;
     put("stage",stage);
 
-    addSlot(new RPSlot("content"));
+    RPSlot slot=new RPSlot("content");
+    slot.setCapacity(4);
+    addSlot(slot);
     }
 
   public void getArea(Rectangle2D rect, double x, double y)

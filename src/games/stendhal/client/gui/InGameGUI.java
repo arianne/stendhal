@@ -157,6 +157,92 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     buttons.add(button);
     }
   
+  private void equipManagement(Integer baseObject, String baseSlot, Integer baseItem, Integer targetObject, String targetSlot, Integer targetItem)
+    {
+    /** 
+     * 1) Equip from floor to container's inventory:
+     *    baseobject is null
+     *    baseslot is null
+     *    baseitem is object to equip in inventory
+     *    targetobject is the container ( ex. a player )
+     *    targetslot is the container's slot where the item is going to be placed
+     *    targetitem is the item that exists in the slot position where the user released the mouse.
+     *         This is mainly used for adding items, like coins, arrows, ...
+     *         It CAN be null.
+     *
+     * 2) Equip from the inspected object slot to player's inventory
+     *    baseobject is the inspected object
+     *    baseslot is the inspected slot
+     *    baseitem is object to equip in inventory
+     *    targetobject is player
+     *    targetslot is the player's slot where the item is going to be placed
+     *    targetitem is the item that exists in the slot position where the user released the mouse.
+     *         This is mainly used for adding items, like coins, arrows, ...
+     *         It CAN be null.
+     *
+     * 3) Move an item inside the container's inventory
+     *    baseobject is container
+     *    baseslot is the container original slot
+     *    baseitem is the item that exists in the slot position where the user pressed the mouse.
+     *         This is mainly used for adding items, like coins, arrows, ...
+     *    targetobject is container
+     *    targetslot is the container's slot where the item is going to be placed
+     *    targetitem is the item that exists in the slot position where the user released the mouse.
+     *         This is mainly used for adding items, like coins, arrows, ...
+     *         It CAN be null.
+     **/
+
+    RPAction action=new RPAction();
+
+    action.put("type","equip");
+    if(baseObject!=null)
+      {
+      // Case 2 and 3
+      action.put("baseobject",baseObject);
+      action.put("baseslot",baseSlot);
+      }
+    else
+      {
+      // Case 1
+      }
+    
+    action.put("baseitem",baseItem);
+    
+    action.put("targetobject",targetObject);
+    action.put("targetslot",targetSlot);
+ 
+    if(targetItem!=null)
+      {
+      action.put("targetitem",targetItem);
+      }
+    
+    InGameGUI.this.client.send(action);     
+
+    logger.info(action);
+    }
+
+  private void dropManagement(Integer baseObject, String baseslot, Integer baseItem, Integer x, Integer y)
+    {
+    /**
+     * 1) Drop an item from the container's inventory to floor
+     *    baseobject is container
+     *    baseslot is the container original slot
+     *    baseitem is the item that exists in the slot position where the user pressed the mouse.
+     *         This is mainly used for adding items, like coins, arrows, ...
+     *    x 
+     *    y
+     **/
+    RPAction action=new RPAction();
+    action.put("type","drop");
+    action.put("baseobject",baseObject);
+    action.put("baseslot",baseslot);
+    action.put("baseitem",baseItem);
+    action.put("x",x);
+    action.put("y",y);
+    
+    InGameGUI.this.client.send(action);
+    }
+  
   private void createPlayerInventory(SpriteStore st)
     {
     inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.png",true);
@@ -168,34 +254,20 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         int playerid=client.getPlayer().getID().getObjectID();
         if(param[0] instanceof Entity) 
           {
-          // From floor to inventory
-          RPAction action=new RPAction();
-          action.put("type","equip");
-          action.put("target",((Entity)param[0]).getID().getObjectID());
-          action.put("baseslot",((wtDroppableArea)param[1]).getName());
-          action.put("baseobject",playerid);
-          InGameGUI.this.client.send(action);
+          // Moved from floor to droppable area
+          wtDroppableArea targetSlot=((wtDroppableArea)param[1]); 
+          Entity baseItem=((Entity)param[0]);
+          equipManagement(null,null,baseItem.getID().getObjectID(),playerid,targetSlot.getName(),null /* TODO: Should compute item id*/);
           }
         else if(param[0] instanceof wtDroppableArea)
           {
-          // From another droppable area to inventory
-          RPAction action=new RPAction();
+          // Moved from another droppable area to player's droppable area
+          wtDroppableArea sourceSlot=((wtDroppableArea)param[0]); 
+          wtDroppableArea targetSlot=((wtDroppableArea)param[1]); 
 
-          wtDroppableArea sourceSlot=((wtDroppableArea)param[0]); //left_003
-          wtDroppableArea targetSlot=((wtDroppableArea)param[1]); //bag
-          
-          logger.info("Drop slot "+sourceSlot.getName()+" to slot "+targetSlot.getName());
-          
-          action.put("type","moveequip");
-          action.put("targetslot",targetSlot.getName());
-          action.put("targetobject",playerid);
           if(sourceSlot.getName().startsWith("left"))
             {
-            // To inspected object
-            action.put("baseobject",inspectedEntity.getID().getObjectID());
-            action.put("baseslot","content");
-            
-            /** BUG: Handle case of multiple items. */
+            // Equip from the inspected object
             int item=-1;
             
             String choosenarea=sourceSlot.getName();
@@ -212,19 +284,13 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
               i++;
               }
 
-            if(item>0)
-              {
-              action.put("item",item);              
-              }
+            equipManagement(inspectedEntity.getID().getObjectID(),"content",item,playerid, targetSlot.getName(),null/* TODO: Should compute item id*/);
             }
           else
             {
-            // To player
-            action.put("baseobject",playerid);
-            action.put("baseslot",sourceSlot.getName());
+            int item=client.getPlayer().getSlot(sourceSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+            equipManagement(playerid,sourceSlot.getName(),item,playerid,targetSlot.getName(),null/* TODO: Should compute item id*/);
             }
-
-          InGameGUI.this.client.send(action);
           }
         }
       };
@@ -271,47 +337,43 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         if(param[0] instanceof Entity)
           {
           // Moved from floor to droppable area
-          logger.info("Drop object "+param[0]+" to slot "+((wtDroppableArea)param[1]).getName());
-          RPAction action=new RPAction();
-          action.put("type","equip");
-          action.put("target",((Entity)param[0]).getID().getObjectID());
-          /* It doesn't matter which droppable area we use, the slot name is
-           * content for chests and corpses. */
-          action.put("baseslot","content"); 
-          action.put("baseobject",inspectedEntity.getID().getObjectID());
-          InGameGUI.this.client.send(action);
+          Entity baseItem=((Entity)param[0]);
+          equipManagement(null,null,baseItem.getID().getObjectID(),inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
           }
         else if(param[0] instanceof wtDroppableArea)
           {
           // Move from other droppable area to droppable object
           wtDroppableArea sourceSlot=((wtDroppableArea)param[0]);
           wtDroppableArea targetSlot=((wtDroppableArea)param[1]);
-          
-          logger.info("Drop slot "+sourceSlot.getName()+" to slot "+targetSlot.getName());
-          RPAction action=new RPAction();
-          action.put("type","moveequip");
 
-          /* It doesn't matter which droppable area we use, the slot name is
-           * content for chests and corpses. */
-          action.put("targetslot","content");          
-          action.put("targetobject",inspectedEntity.getID().getObjectID());
-          
-          action.put("baseslot",sourceSlot.getName());
           if(sourceSlot.getName().startsWith("left"))
             {
-            // To inspected object
-            action.put("baseobject",inspectedEntity.getID().getObjectID());
+            // Moving from a droppable area to a droppable area of inspected item 
+            int item=-1;
+            
+            String choosenarea=sourceSlot.getName();
+            int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
+            
+            int i=0;
+            for(RPObject object: inspectedSlot)
+              {
+              if(i == (itemPos-1))
+                {
+                item=object.getID().getObjectID();
+                break;
+                }
+              i++;
+              }
+
+            equipManagement(inspectedEntity.getID().getObjectID(),"content",item,inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
             }
           else
             {
-            // To player
+            // Moving from player's inventory to droppable area
             int playerid=client.getPlayer().getID().getObjectID();
-            action.put("baseobject",playerid);
+            int item=client.getPlayer().getSlot(sourceSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+            equipManagement(playerid,sourceSlot.getName(),item,inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
             }
-           
-          InGameGUI.this.client.send(action);
-
-          logger.info("Action: "+action);
           }
         }
       };
@@ -483,26 +545,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   
   private void drop(int x, int y)
     {
-    int baseobjectid=0;
-    int item=-1;
-    String slot=null;
-    
-    if(inspectedSlot==null || !choosenWidget.getName().startsWith("left"))
+    if(inspectedSlot!=null && choosenWidget.getName().startsWith("left"))      
       {
-      /* If we are not inspecting any slot OR if the choosen widget from where we
-       * are going to drop the object doesn't start with left ( that are the droppable 
-       * areas used for inspecting objects ) that means we are dropping the item from
-       * one of our player slots */         
-      baseobjectid=client.getPlayer().getID().getObjectID();
-      slot=choosenWidget.getName();
-      logger.debug("Drop from player's slot "+slot);
-      }
-    else
-      {
-      /* On the other hand, if we are inspecting an entity and the slot starts with left
-       * that means that we want to drop the item from the entity that we are inspecting. */
-      baseobjectid=inspectedEntity.getID().getObjectID();
-      slot=inspectedSlot.getName();
+      // Moving from a droppable area to a droppable area of inspected baseItem 
+      int baseItem=-1;
+      int baseobjectid=inspectedEntity.getID().getObjectID();
+      String slot=inspectedSlot.getName();
       
       String choosenarea=choosenWidget.getName();
       int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
@@ -512,22 +560,21 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         {
         if(i == (itemPos-1))
           {
-          item=object.getID().getObjectID();
+          baseItem=object.getID().getObjectID();
           break;
           }
         i++;
         }
+
+      dropManagement(inspectedEntity.getID().getObjectID(),"content",baseItem,x,y);
       }
-    
-    RPAction action=new RPAction();
-    action.put("type","drop");
-    action.put("baseobject",baseobjectid);
-    action.put("baseslot",slot);
-    action.put("item",item);
-    action.put("x",x);
-    action.put("y",y);
-    
-    InGameGUI.this.client.send(action);
+    else
+      {
+      // Moving from player's inventory to droppable area
+      int playerid=client.getPlayer().getID().getObjectID();
+      int item=client.getPlayer().getSlot(choosenWidget.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+      dropManagement(playerid,choosenWidget.getName(),item,x,y);
+      }
     }
 
   /** the user has released the mouse button */
@@ -775,6 +822,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         /* If we are inspecting an object, we draw all the objects that the 
          * inspected object's slot contains. */
         int i=1;
+        System.out.println (inspectedSlot);
         for(RPObject object: inspectedSlot)
           {
           // BUG: Only draws upto existing areas... we can have a problem with this...

@@ -38,7 +38,9 @@ public class Chest extends Entity
     
     if(!hasSlot("content"))
       {
-      addSlot(new RPSlot("content"));
+      RPSlot slot=new RPSlot("content");
+      slot.setCapacity(4);
+      addSlot(slot);
       }
       
     update();
@@ -49,7 +51,10 @@ public class Chest extends Entity
     super();
     put("type","chest");
     open=false;
-    addSlot(new RPSlot("content"));
+
+    RPSlot slot=new RPSlot("content");
+    slot.setCapacity(4);
+    addSlot(slot);
     }
 
   public void getArea(Rectangle2D rect, double x, double y)

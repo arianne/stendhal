@@ -264,10 +264,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         equip(player,action);
         }
-      else if(type.equals("moveequip"))
-        {
-        moveequip(player,action);
-        }
       else if(type.equals("drop"))
         {
         drop(player,action);
@@ -765,198 +761,233 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"chat");
     }
 
-  /**
-   * tries to equip an item
-   * Params:
-   *   target     (int) - object id of the item to equip
-   *  baseslot (String) - name of the slot
-   *  baseobject  (int) - object id of the object that owns the baseslot
-   */
+
   private void equip(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
     {
-    Log4J.startMethod(logger,"equip");
+    Log4J.startMethod(logger,"equip");    
 
-    logger.info("EQUIP");
-
-    if(action.has("target") && action.has("baseslot") && action.has("baseobject"))
+    if(action.has("baseitem") && action.has("targetobject") && action.has("targetslot"))
       {
-      int targetObject=action.getInt("target");
-
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
-      if(!zone.has(targetid))
-        {
-        logger.info("Rejected because zone doesn't have target object");
-        return;
-        }
-
-      int baseObject=action.getInt("baseobject");
-
-      RPObject.ID baseobjectid=new RPObject.ID(baseObject, zone.getID());
-      if(!zone.has(baseobjectid))
-        {
-        logger.info("Rejected because zone doesn't have base object");
-        return;
-        }
-        
-      RPObject target=zone.get(targetid);
-      if(!(target instanceof PassiveEntity))
-        {
-        logger.info("Rejected because target object isn't a passive entity");
-        return;
-        }
-
-      RPObject base=zone.get(baseobjectid);
-      if(!(base instanceof Player || base instanceof Corpse || base instanceof Chest))
-        {
-        logger.info("Rejected because base object isn't a player, a corpse or a chest");
-        return;
-        }
+       // The base item
+      Entity base=null;
+      // The container that contains base item, a player, a chest, etc...
+      Entity baseObject=null;
+      // The slot of the container where base item is stored
+      RPSlot baseSlot=null;
       
-      if(base instanceof Player && !player.getID().equals(base.getID()))
+      if(action.has("baseobject") && action.has("baseslot"))
         {
-        // Only allowed to equip our own player.
-        logger.info("Rejected because base object is a player that is not yourrs");
-        return;
-        }
-        
-      PassiveEntity targetEntity=(PassiveEntity)target;
-      Entity baseEntity=(Entity)base;
+        // Taking the item from another object or player
+        int id=action.getInt("baseobject");
 
-      if(player.nextto(targetEntity,0.25) && player.nextto(baseEntity,0.25) && baseEntity.hasSlot(action.get("baseslot")))
-        {
-        RPSlot slot=baseEntity.getSlot(action.get("baseslot"));
-        /* BUG: Slots should provide info about the amount of objects that they can handle */
-        if(!slot.isFull())
+        StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+        RPObject.ID objectid=new RPObject.ID(id, zone.getID());
+        if(!zone.has(objectid))
           {
-          world.remove(targetEntity.getID());
-          
-          // Gives a valid id inside the slot
-          slot.assignValidID(targetEntity);
-          slot.add(targetEntity);
-            
-          world.modify(baseEntity);
+          logger.info("Rejected because zone doesn't have base object");
+          logger.info(action);
+          return;
           }
-        }
-      }
 
-    Log4J.finishMethod(logger,"equip");
-    }
 
-  /**
-   * moves an item from one slot to another of the player or another object
-   * Params:
-   *  sourceslot (String) - name of the source-slot
-   *  targetslot (String) - name of the target-slot
-   */
-  private void moveequip(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException
-    {
-    Log4J.startMethod(logger,"moveequip");
-
-    if(action.has("baseslot") && action.has("targetslot") && action.has("targetobject") && action.has("baseobject"))
-      {
-      String sourceSlot=action.get("baseslot");
-      String targetSlot=action.get("targetslot");
-
-      int targetObject=action.getInt("targetobject");
-
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
-      if(!zone.has(targetid))
-        {
-        logger.info("Rejected because zone doesn't have target object");
-        return;
-        }
-
-      int baseObject=action.getInt("baseobject");
-
-      RPObject.ID baseobjectid=new RPObject.ID(baseObject, zone.getID());
-      if(!zone.has(baseobjectid))
-        {
-        logger.info("Rejected because zone doesn't have base object");
-        return;
-        }
-        
-      RPObject target=zone.get(targetid);
-      if(!(target instanceof Player || target instanceof Corpse || target instanceof Chest))
-        {
-        logger.info("Rejected because target object isn't a player, a corpse or a chest");
-        return;
-        }
-
-      RPObject base=zone.get(baseobjectid);
-      if(!(base instanceof Player || base instanceof Corpse || base instanceof Chest))
-        {
-        logger.info("Rejected because base object isn't a player, a corpse or a chest");
-        return;
-        }
-      
-      if(base instanceof Player && !player.getID().equals(base.getID()))
-        {
-        // Only allowed to equip our own player.
-        logger.info("Rejected because base object is a player that is not yourrs");
-        return;
-        }
-        
-      Entity targetEntity=(Entity)target;
-      Entity baseEntity=(Entity)base;
-
-      if(baseEntity.hasSlot(sourceSlot) && targetEntity.hasSlot(targetSlot))
-        {
-        RPSlot targetslot=targetEntity.getSlot(targetSlot);
-        if(!targetslot.isFull())
+        RPObject object=zone.get(objectid);
+        if(!(object instanceof Player || 
+             object instanceof Chest  ||
+             object instanceof Corpse))
           {
-          RPSlot sourceslot=baseEntity.getSlot(sourceSlot);
-          if(sourceslot.size()>0)
-            {
-            RPObject item = null;
-            if(action.has("item"))
-              {
-              int itemid = action.getInt("item");
-              // scan through the slot to find the requested item
-              for(RPObject rpobject : sourceslot)
-                {
-                if(rpobject.getID().getObjectID() == itemid)
-                  {
-                  item = rpobject;
-                  break;
-                  }
-                }
-              
-              }
-
-            // no item found...we take the first one
-            if(item==null)
-              {
-              item = sourceslot.iterator().next();
-              }
-            
-            sourceslot.remove(item.getID());
-            
-            targetslot.assignValidID(item);
-            targetslot.add(item);
-            
-            world.modify(baseEntity);
-            world.modify(targetEntity);
-            }
-          else
-            {
-            logger.info("Rejected because source slot is empty");
-            }
+          logger.info("Rejected because base object isn't a passive entity or a player");
+          logger.info(object);
+          logger.info(action);
+          return;
           }
-        else
+        
+        baseObject=(Entity)object;
+
+        if(baseObject instanceof Player && !player.getID().equals(baseObject.getID()))
           {
-          logger.info("Rejected because target slot is full");
+          // Only allowed to equip our own player.
+          logger.info("Rejected because base object is a player that is not yours");
+          logger.info(baseObject);
+          logger.info(action);
+          return;
+          }
+
+        if(!baseObject.hasSlot(action.get("baseslot")))
+          {
+          logger.info("Rejected because base object don't have slot base slot");
+          logger.info(action);
+          return;
+          }        
+
+        baseSlot=baseObject.getSlot(action.get("baseslot"));
+        
+        int baseItem=action.getInt("baseitem");
+        for(RPObject item: baseSlot)
+          {
+          if(item.getID().getObjectID()==baseItem)
+            {
+            base=(Entity)item;            
+            break;
+            }
+          }        
+        
+        if(base==null)
+          {
+          logger.info("Rejected because base item isn't stored inside base slot");
+          logger.info(baseObject);
+          logger.info(action);
+          return;
           }
         }
       else
         {
-        logger.info("Rejected because source slot("+sourceSlot+") doesn't exists in "+baseEntity);
-        logger.info("Rejected because target slot("+targetSlot+") doesn't exists in "+targetEntity);
+        // Taking item from floor
+        int id=action.getInt("baseitem");
+
+        StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+        RPObject.ID objectid=new RPObject.ID(id, zone.getID());
+        if(!zone.has(objectid))
+          {
+          logger.info("Rejected because zone doesn't have base item");
+          logger.info(action);
+          return;
+          }
+
+
+        RPObject object=zone.get(objectid);
+        if(!(object instanceof PassiveEntity))
+          {
+          logger.info("Rejected because base item isn't a passive entity");
+          logger.info(object);
+          logger.info(action);
+          return;
+          }
+        
+        base=(Entity)object;
+        }
+        
+
+      Entity target=null;
+      // The container that contains target item, a player, a chest, etc...
+      Entity targetObject=null;
+      // The slot of the container where target item is stored
+      RPSlot targetSlot=null;
+      
+      // Taking the item from another object or player
+      int id=action.getInt("targetobject");
+
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      RPObject.ID objectid=new RPObject.ID(id, zone.getID());
+      if(!zone.has(objectid))
+        {
+        logger.info("Rejected because zone doesn't have target object");
+        logger.info(action);
+        return;
+        }
+
+
+      RPObject object=zone.get(objectid);
+      if(!(object instanceof Player || 
+           object instanceof Chest  ||
+           object instanceof Corpse))
+        {
+        logger.info("Rejected because target object isn't a passive entity or a player");
+        logger.info(object);
+        logger.info(action);
+        return;
+        }
+      
+      targetObject=(Entity)object;
+
+      if(targetObject instanceof Player && !player.getID().equals(targetObject.getID()))
+        {
+        // Only allowed to equip our own player.
+        logger.info("Rejected because target object is a player that is not yours");
+        logger.info(targetObject);
+        logger.info(action);
+        return;
+        }
+
+      if(!targetObject.hasSlot(action.get("targetslot")))
+        {
+        logger.info("Rejected because target object don't have slot target slot");
+        logger.info(action);
+        return;
+        }        
+
+      targetSlot=targetObject.getSlot(action.get("targetslot"));
+      
+      if(action.has("targetitem"))
+        {
+        int targetItem=action.getInt("targetitem");
+        for(RPObject item: targetSlot)
+          {
+          if(item.getID().getObjectID()==targetItem)
+            {
+            target=(Entity)item;            
+            break;
+            }
+          }        
+        
+        if(target==null)
+          {
+          logger.info("Rejected because target item isn't stored inside target slot");
+          logger.info(targetObject);
+          logger.info(action);
+          return;
+          }
+        }
+        
+
+      /* Now just do it :) Remove from base and add to target slot. */
+      if(player.nextto(targetObject,0.25) && 
+         ( baseObject!=null && player.nextto(baseObject,0.25)  // If base object is stored in a slot
+         || 
+           player.nextto(base,0.25) // If base object is on floor
+        ))
+        {
+        if(!targetSlot.isFull())
+          {
+          if(baseObject==null)
+            {
+            // Floor case
+            world.remove(base.getID());
+            
+            // Gives a valid id inside the slot
+            targetSlot.assignValidID(base);
+            targetSlot.add(base);
+              
+            world.modify(targetObject);
+            }
+          else
+            {
+            // From another slot
+            baseSlot.remove(base.getID());
+            
+            targetSlot.assignValidID(base);
+            targetSlot.add(base);
+            
+            world.modify(baseObject);
+            world.modify(targetObject);
+            }
+          }
+        else
+          {
+          logger.info("targetSlot is full");
+          logger.info(targetObject);
+          }
+        }
+      else
+        {
+        logger.info("baseObject or base or Target is not near the player");
+        logger.info(player);
+        logger.info(targetObject);
+        logger.info(baseObject);
+        logger.info(base);
         }
       }
 
-    Log4J.finishMethod(logger,"moveequip");
+    Log4J.finishMethod(logger,"equip");
     }
 
   /**
@@ -970,7 +1001,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     {
     Log4J.startMethod(logger,"drop");    
 
-    if(action.has("baseobject") && action.has("baseslot") && action.has("x") && action.has("y") && action.has("item"))
+    if(action.has("baseobject") && action.has("baseslot") && action.has("x") && action.has("y") && action.has("baseitem"))
       {
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
         
@@ -1007,7 +1038,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           }
           
         RPObject object = null;
-        int item = action.getInt("item");
+        int item = action.getInt("baseitem");
         // scan through the slot to find the requested item
         for(RPObject rpobject : slot)
           {
@@ -1084,7 +1115,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if(object instanceof Portal) // Can use only portal by now
+        if(object instanceof Portal)
           {
           Portal portal=(Portal)object;
 
@@ -1134,8 +1165,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     int objects=0;
     for(IRPZone zone: world) objects+=zone.size();
 
-    logger.info("lists: CO:"+corpses.size()+",F:"+foodItems.size()+",NPC:"+npcs.size()+",P:"+playersObject.size()+",CR:"+creatures+",OB:"+objects);
-    logger.info("lists: CO:"+corpsesToRemove.size()+",NPC:"+npcsToAdd.size()+",NPC:"+npcsToRemove.size()+",P:"+playersObjectRmText.size()+",R:"+respawnPoints.size());
+    logger.debug("lists: CO:"+corpses.size()+",F:"+foodItems.size()+",NPC:"+npcs.size()+",P:"+playersObject.size()+",CR:"+creatures+",OB:"+objects);
+    logger.debug("lists: CO:"+corpsesToRemove.size()+",NPC:"+npcsToAdd.size()+",NPC:"+npcsToRemove.size()+",P:"+playersObjectRmText.size()+",R:"+respawnPoints.size());
     
 
     try
@@ -1216,7 +1247,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     finally
       {
-      logger.info("Begin turn: "+(System.nanoTime()-start)/1000000.0);
+      logger.debug("Begin turn: "+(System.nanoTime()-start)/1000000.0);
       Log4J.finishMethod(logger,"beginTurn");
       }
     }
@@ -1237,7 +1268,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     finally
       {
-      logger.info("End turn: "+(System.nanoTime()-start)/1000000.0);
+      logger.debug("End turn: "+(System.nanoTime()-start)/1000000.0);
       Log4J.finishMethod(logger,"endTurn");
       }
     }
