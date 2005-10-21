@@ -1099,10 +1099,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           object = slot.iterator().next();
           }
         
-        Entity entity;
+        Entity entity=null;
         
-        
-        /** BUG: HACK: Why do items need to be created again??? */
+        /** BUG: HACK: Why do items need to be created again??? 
+         *  Explanation: Ok, it has to be done this way because of delta^2.
+         *  I think it can be fixed with a bit of work, but not a trivial fix.*/        
         if(object.get("type").equals("item"))
           {
           entity = world.getRuleManager().getEntityManager().getItem(object.get("class"));
@@ -1229,7 +1230,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         
       entityToKill.clear();
 
-      // TODO: Done this way because a problem with comodification... :(
+      // Done this way because a problem with comodification... :(
       npcs.removeAll(npcsToRemove);
       corpses.removeAll(corpsesToRemove);
       npcs.addAll(npcsToAdd);

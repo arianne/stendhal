@@ -93,6 +93,7 @@ public class city
     npc.setx(24);
     npc.sety(42);
     npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
     zone.add(npc);    
     zone.addNPC(npc);
       
@@ -118,6 +119,7 @@ public class city
     npc.setx(40);
     npc.sety(44);
     npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
     zone.add(npc);    
     zone.addNPC(npc);
 
@@ -136,6 +138,7 @@ public class city
     npc.setx(5);
     npc.sety(45);
     npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
     zone.add(npc);    
     zone.addNPC(npc);
     }  

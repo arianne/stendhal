@@ -57,6 +57,7 @@ public class village
     npc.setx(33);
     npc.sety(44);
     npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
     zone.add(npc);    
     zone.addNPC(npc);
     }

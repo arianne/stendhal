@@ -47,6 +47,7 @@ public class dungeon_001
     npc.setx(67);
     npc.sety(12);
     npc.setBaseHP(1000);
+    npc.setHP(npc.getBaseHP());
     zone.add(npc);    
     zone.addNPC(npc);
   

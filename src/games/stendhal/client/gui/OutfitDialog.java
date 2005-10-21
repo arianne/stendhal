@@ -112,13 +112,10 @@ public class OutfitDialog extends javax.swing.JDialog {
     }
 
     /**
-     * TODO: change this to get the sprites (images) from chache
-     *
      * Loads the sprites into the arrays
      */
     private void loadSprites() {
-        SpriteStore st=SpriteStore.get();
-        
+        SpriteStore st=SpriteStore.get();        
         
         // load the sprites
         for (int i = 1; i < hairs.length; i++)
@@ -466,15 +463,6 @@ public class OutfitDialog extends javax.swing.JDialog {
         timer.cancel();
         this.dispose();
     }//GEN-LAST:event_jbtOKActionPerformed
-    
-    /**
-     * TODO: remove the main method, this was just for testing the dialog
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        new OutfitDialog(null, "Stendhal - choose outfit", 11, 9, 5, 11).setVisible(true);
-    }
     
     private void sendAction()
       {

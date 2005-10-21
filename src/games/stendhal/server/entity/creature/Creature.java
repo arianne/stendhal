@@ -128,6 +128,7 @@ public class Creature extends NPC
     setDEF(defense);
     setXP(xp);
     setBaseHP(hp);
+    setHP(hp);
     setLevel(Level.getLevel(xp));
 
     stop();

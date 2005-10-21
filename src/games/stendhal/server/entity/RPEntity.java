@@ -223,10 +223,6 @@ public abstract class RPEntity extends Entity
     this.base_hp=hp;
     put("base_hp",hp);
 
-    //BUG: Not sure we want this here
-    this.hp=hp;
-    put("hp",hp);
-
     if(base_hp!=0)
       {
       put("hp/base_hp",(double)hp/(double)base_hp);

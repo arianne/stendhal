@@ -25,6 +25,7 @@ public class tavern
     npc.setx(17);
     npc.sety(12);
     npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
     zone.add(npc);    
     zone.addNPC(npc);
 
@@ -46,6 +47,7 @@ public class tavern
     npc.setx(2);
     npc.sety(14);
     npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
     zone.add(npc);    
     zone.addNPC(npc);
     }  
