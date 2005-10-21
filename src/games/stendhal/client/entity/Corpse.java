@@ -41,8 +41,13 @@ public class Corpse extends PassiveEntity
     super.modifyAdded(object,changes);
     
     if(changes.hasSlot("content"))
-      {
+      {      
       content=changes.getSlot("content");
+      }
+
+    if(object.hasSlot("content"))
+      {      
+      content=object.getSlot("content");
       }
     }
     

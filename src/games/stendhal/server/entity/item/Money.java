@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.item;
 
-import marauroa.common.game.RPClass;
+import marauroa.common.game.*;
 import java.util.Map;
 
 public class Money extends Item
@@ -10,12 +10,20 @@ public class Money extends Item
   public Money(String name, String clazz, String[] slots, Map<String, String> attributes)
     {
     super("money","money", new String[0], attributes);
+    update();
     }
 
   public Money(int quantity)
     {
     super("money","money", new String[0], null);
     put("quantity",quantity);
+
+    this.quantity=quantity;
+    }
+  
+  public void update() throws AttributeNotFoundException
+    {
+    if(has("quantity")) quantity=getInt("quantity");
     }
   
   public int getQuantity()
@@ -39,5 +47,17 @@ public class Money extends Item
     {
     setQuantity(money.quantity+quantity);
     return quantity;
+    }
+  
+  public static void main(String[] args)
+    {
+    Money a=new Money(1);
+    Money b=new Money(1);
+    Money c=new Money(2);
+    
+    System.out.println (a.add(b));
+    System.out.println (a.add(c));
+    
+    System.out.println (a);
     }
   }

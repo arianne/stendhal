@@ -54,11 +54,11 @@ public class Chest extends AnimatedEntity
     if(changes.hasSlot("content"))
       {      
       content=changes.getSlot("content");
-      
-      if(client.getGameGUI().isInspecting(this,"content"))
-        {
-        client.getGameGUI().inspect(this,content);
-        }
+      }
+
+    if(object.hasSlot("content"))
+      {      
+      content=object.getSlot("content");
       }
     }
 

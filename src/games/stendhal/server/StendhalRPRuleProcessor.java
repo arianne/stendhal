@@ -16,6 +16,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.Pair;
 import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.Money;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
@@ -937,6 +938,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           return;
           }
         }
+      else
+        {
+        logger.info("No targetitem attribute");        
+        }
         
 
       /* Now just do it :) Remove from base and add to target slot. */
@@ -946,6 +951,44 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
            player.nextto(base,0.25) // If base object is on floor
         ))
         {
+        
+        if(target!=null)
+          {
+          // If we place a money item over another money item we add them
+          if(base instanceof Money && target instanceof Money)
+            {
+            if(baseObject==null)
+              {
+              // Floor case
+              world.remove(base.getID());
+              }
+            else
+              {
+              // From another slot
+              baseSlot.remove(base.getID());
+              world.modify(baseObject);
+              }
+              
+            logger.info("Adding money("+target+") + money("+base+")");
+            int result=((Money)target).add((Money)base);
+            logger.info("Added money: "+result);
+            logger.info(target);            
+            
+            logger.info("PLAYER: "+targetObject);
+            
+            world.modify(targetObject);
+            return;
+            }
+          else
+            {
+            logger.info("Can't add items ("+base+") and ("+target+")");
+            }
+          }
+        else
+          {
+          logger.info("There is no target item");
+          }
+          
         if(!targetSlot.isFull())
           {
           if(baseObject==null)
@@ -1058,9 +1101,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         
         Entity entity;
         
+        
+        /** BUG: HACK: Why do items need to be created again??? */
         if(object.get("type").equals("item"))
           {
           entity = world.getRuleManager().getEntityManager().getItem(object.get("class"));
+          if(object.get("class").equals("money")) entity.put("quantity",object.get("quantity"));            
           }
         else if(object.get("type").equals("corpse"))  // NOTE: Look how it is done. I think we can improve it ( I mean we MUST improve it ).
           {

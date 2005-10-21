@@ -257,7 +257,14 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           // Moved from floor to droppable area
           wtDroppableArea targetSlot=((wtDroppableArea)param[1]); 
           Entity baseItem=((Entity)param[0]);
-          equipManagement(null,null,baseItem.getID().getObjectID(),playerid,targetSlot.getName(),null /* TODO: Should compute item id*/);
+          
+          Integer targetid=null;
+          if(client.getPlayer().getSlot(targetSlot.getName()).size()!=0)
+            {
+            targetid=client.getPlayer().getSlot(targetSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+            }
+          
+          equipManagement(null,null,baseItem.getID().getObjectID(),playerid,targetSlot.getName(),targetid);
           }
         else if(param[0] instanceof wtDroppableArea)
           {
@@ -284,12 +291,25 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
               i++;
               }
 
-            equipManagement(inspectedEntity.getID().getObjectID(),"content",item,playerid, targetSlot.getName(),null/* TODO: Should compute item id*/);
+            Integer targetid=null;
+            if(client.getPlayer().getSlot(targetSlot.getName()).size()!=0)
+              {
+              targetid=client.getPlayer().getSlot(targetSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+              }
+
+            equipManagement(inspectedEntity.getID().getObjectID(),"content",item,playerid, targetSlot.getName(),targetid);
             }
           else
             {
             int item=client.getPlayer().getSlot(sourceSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
-            equipManagement(playerid,sourceSlot.getName(),item,playerid,targetSlot.getName(),null/* TODO: Should compute item id*/);
+
+            Integer targetid=null;
+            if(client.getPlayer().getSlot(targetSlot.getName()).size()!=0)
+              {
+              targetid=client.getPlayer().getSlot(targetSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+              }
+
+            equipManagement(playerid,sourceSlot.getName(),item,playerid,targetSlot.getName(),targetid);
             }
           }
         }
