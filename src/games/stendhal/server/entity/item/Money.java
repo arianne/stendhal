@@ -48,16 +48,4 @@ public class Money extends Item
     setQuantity(money.quantity+quantity);
     return quantity;
     }
-  
-  public static void main(String[] args)
-    {
-    Money a=new Money(1);
-    Money b=new Money(1);
-    Money c=new Money(2);
-    
-    System.out.println (a.add(b));
-    System.out.println (a.add(c));
-    
-    System.out.println (a);
-    }
   }
