@@ -121,7 +121,14 @@
     </copy>
 
     <copy todir="${build}/data">
-      <fileset dir="${data}"/>
+      <fileset dir="${data}">
+        <exclude name="paneldrock*.jpg"/>
+        <exclude name="panelmetal003.gif"/>
+        <exclude name="panelrock016.jpg"/>
+        <exclude name="panelwood006.jpg"/>
+        <exclude name="panelwood032.gif"/>
+        <exclude name="panelwood119.jpg"/>
+      </fileset>
     </copy>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
