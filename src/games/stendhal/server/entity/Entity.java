@@ -220,6 +220,32 @@ public abstract class Entity extends RPObject
 
     return false;
     }
+  
+  public Direction directionTo(int px, int py)
+    {
+    if(Math.abs(px-x)>Math.abs(py-y))
+      {
+      if(px-x>0)
+        {
+        return Direction.RIGHT;
+        }
+      else
+        {
+        return Direction.LEFT;
+        }
+      }
+    else
+      {
+      if(py-y>0)
+        {
+        return Direction.DOWN;
+        }
+      else
+        {
+        return Direction.UP;
+        }
+      }
+    }
 
   public Rectangle2D getArea(double ex, double ey)
     {

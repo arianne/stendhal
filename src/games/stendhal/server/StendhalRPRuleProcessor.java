@@ -273,6 +273,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         displace(player,action);
         }
+      else if(type.equals("displacerpentity"))
+        {
+        displaceRPEntity(player,action);
+        }
       else if(type.equals("who"))
         {
         who(player);
@@ -455,6 +459,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"own");
     }
 
+
+  /**
+   * Moves an item that is on the floor to another point.
+   * This method also displace players and creatures one position.
+   * Params:
+   *   target (int) - object id of the target
+   *      dir (int) - direction to displace
+   */
+  private void displaceRPEntity(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
+    {
+    /** TODO */
+    }
+
   /**
    * Moves an item that is on the floor to another point.
    * This method also displace players and creatures one position.
@@ -482,7 +499,24 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
             RPEntity entity=(RPEntity)object;
             if(player.nextto(entity,0.25))
               {
-              /** TODO: No idea how to displace it */
+              if(action.has("x") && action.has("y"))
+                {
+                try
+                  {
+                  int x=action.getInt("x");
+                  int y=action.getInt("y");
+
+                  RPAction displaceRPEntity=(RPAction)action.copy();
+                  displaceRPEntity.put("type","displacerpentity");
+                  displaceRPEntity.put("dir",player.directionTo(x,y).get());
+                  
+                  rpman.addRPAction(displaceRPEntity);
+                  }                
+                catch(ActionInvalidException e)
+                  {
+                  logger.error(e);
+                  }
+                }
               }
             }
           }
