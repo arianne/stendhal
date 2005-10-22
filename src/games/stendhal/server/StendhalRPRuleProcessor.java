@@ -1099,44 +1099,22 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           object = slot.iterator().next();
           }
         
-        Entity entity=null;
+        // It is always an entity
+        Entity entity=(Entity)object;
         
-        /** BUG: HACK: Why do items need to be created again??? 
-         *  Explanation: Ok, it has to be done this way because of delta^2.
-         *  I think it can be fixed with a bit of work, but not a trivial fix.*/        
-        if(object.get("type").equals("item"))
-          {
-          entity = world.getRuleManager().getEntityManager().getItem(object.get("class"));
-          if(object.get("class").equals("money")) entity.put("quantity",object.get("quantity"));            
-          }
-        else if(object.get("type").equals("corpse"))  // NOTE: Look how it is done. I think we can improve it ( I mean we MUST improve it ).
-          {
-          removeCorpse((Corpse)object); // We remove this corpse (the dropped one )
-          
-          entity = new Corpse(object.get("class"), 0, 0); // Create a new corpse 
-          entity.put("stage",object.get("stage")); // Very ugly hack.
-          
-          addCorpse((Corpse)entity); // Add it now.
-          }
-        else
-          {
-          logger.error("tried to drop "+object);
-          entity=null;
-          return;
-          }
-
         int x=action.getInt("x");
         int y=action.getInt("y");
         
-        zone.assignRPObjectID(entity);
         if(player.nextto(baseEntity,0.25) && baseEntity.distance(x,y)<8*8 && !zone.simpleCollides(entity,x,y))
           {
-          slot.remove(object.getID());
+          slot.remove(entity.getID());
   
           entity.setx(x);
           entity.sety(y);
-          zone.add(entity);
           
+          zone.assignRPObjectID(entity);
+          zone.add(entity);
+
           world.modify(baseEntity);
           }        
         }

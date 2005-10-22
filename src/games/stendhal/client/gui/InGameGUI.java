@@ -301,6 +301,12 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
             }
           else
             {
+            if(client.getPlayer().getSlot(sourceSlot.getName()).size()==0)
+              {
+              // If slot is empty you can't equip anything...
+              return;
+              }
+              
             int item=client.getPlayer().getSlot(sourceSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
 
             Integer targetid=null;
@@ -391,6 +397,13 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
             {
             // Moving from player's inventory to droppable area
             int playerid=client.getPlayer().getID().getObjectID();
+
+            if(client.getPlayer().getSlot(sourceSlot.getName()).size()==0)
+              {
+              // If slot is empty you can't equip anything...
+              return;
+              }
+
             int item=client.getPlayer().getSlot(sourceSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
             equipManagement(playerid,sourceSlot.getName(),item,inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
             }
@@ -592,6 +605,13 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       {
       // Moving from player's inventory to droppable area
       int playerid=client.getPlayer().getID().getObjectID();
+
+      if(client.getPlayer().getSlot(choosenWidget.getName()).size()==0)
+        {
+        // If slot is empty you can't drop anything...
+        return;
+        }
+
       int item=client.getPlayer().getSlot(choosenWidget.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
       dropManagement(playerid,choosenWidget.getName(),item,x,y);
       }

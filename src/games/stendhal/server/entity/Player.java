@@ -15,7 +15,7 @@ package games.stendhal.server.entity;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.*;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import marauroa.common.Log4J;
@@ -208,7 +208,16 @@ public class Player extends RPEntity
             {
             Item entity = world.getRuleManager().getEntityManager().getItem(item.get("class"));
             entity.put("#db_id",item.get("#db_id"));
+            
+            // HACK: We have to manually copy some attributes
             entity.setID(item.getID());
+            
+            if(entity instanceof Money)
+              {
+              Money money=(Money)entity;
+              money.setQuantity(item.getInt("quantity"));
+              }
+            
             slot.add(entity);
             }
           }

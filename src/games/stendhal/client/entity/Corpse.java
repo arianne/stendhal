@@ -66,7 +66,9 @@ public class Corpse extends PassiveEntity
     {
     if(action.equals("Look"))
       {
-      StendhalClient.get().addEventLine("You see a corpse",Color.green);
+      String text="You see a corpse";
+      StendhalClient.get().addEventLine(text,Color.green);
+      gameObjects.addText(this, text, Color.green);
       }
     else if(action.equals("Inspect"))
       {
