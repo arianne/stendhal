@@ -22,13 +22,16 @@ public class Debug
   /** a character panel based on the window toolkit */
   public static final boolean SHOW_TEST_CHARACTER_PANEL = false;
   
+  /** enables cycling through the panel textures by clicking at the title bar */
+  public static final boolean CYCLE_PANEL_TEXTURES = false;
+  
   /** should the creature ai and pathfinding be shown? Note: The server must
    * send these infos (CREATRUES_DEBUG_SERVER) */
-  public static final boolean CREATRUES_DEBUG_CLIENT = true;
+  public static final boolean CREATRUES_DEBUG_CLIENT = false;
   
   /** should the server send debug information about creature ai and pathfinding
    * to the client? Note: CREATRUES_DEBUG_CLIENT should be enabled too */
-  public static final boolean CREATRUES_DEBUG_SERVER = true;
+  public static final boolean CREATRUES_DEBUG_SERVER = false;
   
   
   /** no instance */

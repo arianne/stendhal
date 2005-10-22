@@ -16,10 +16,18 @@
  */
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.common.Debug;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -41,7 +49,8 @@ import org.apache.log4j.Logger;
  *  </ul>
  * <b>Note:</b> This class is not thread safe.
  *
- * TODO: try to cache the static panel content in BufferdImage
+ *
+ * @see http://www.grsites.com/ for the textures
  * @author mtotz
  */
 public class Panel implements Draggable
@@ -54,7 +63,7 @@ public class Panel implements Draggable
   /** size of the titlebar font */
   private static final int TILLEBAR_FONT_SIZE = 12;
   /** thickness of the frame */
-  private static final int FRAME_SIZE = 5;
+  private static final int FRAME_SIZE = 3;
 
   /** panel has a title bar */
   private boolean titleBar;
@@ -85,6 +94,19 @@ public class Panel implements Draggable
   private List<Panel> childs;
   /** the parent of this panel */
   private Panel parent;
+  
+  /** chaches the titlebar/frame image */
+  private BufferedImage cachedImage;
+
+  
+  /////////////////
+  // Debug stuff //
+  /////////////////
+
+  /** current texture */
+  private int texture;
+  /** list of textures */
+  private List<Sprite> textureSprites;
 
   /**
    * Creates a new panel. The panel is not moveable or resizeable and has no
@@ -102,6 +124,22 @@ public class Panel implements Draggable
     this.frame       = false;
     this.moveable    = false;
     this.resizeable  = false;
+    texture = 0;
+    textureSprites = new ArrayList<Sprite>();
+
+    // get texture sprite
+    SpriteStore st = SpriteStore.get();
+
+    textureSprites.add(st.getSprite("data/panelwood003.jpg"));
+    if (Debug.CYCLE_PANEL_TEXTURES)
+    {
+      textureSprites.add(st.getSprite("data/panelwood006.jpg"));
+      textureSprites.add(st.getSprite("data/panelwood032.gif"));
+      textureSprites.add(st.getSprite("data/panelwood119.jpg"));
+      textureSprites.add(st.getSprite("data/paneldrock009.jpg"));
+      textureSprites.add(st.getSprite("data/paneldrock048.jpg"));
+      textureSprites.add(st.getSprite("data/panelmetal003.gif"));
+    }
   }
 
   /** returns x-position of the panel (relative to its parent) */
@@ -180,6 +218,8 @@ public class Panel implements Draggable
   public void setTitleBar(boolean titleBar)
   {
     this.titleBar = titleBar;
+    // refresh cached panel image
+    cachedImage = null;
   }
 
   /** returns wether the panel has a frame */
@@ -192,6 +232,8 @@ public class Panel implements Draggable
   public void setFrame(boolean frame)
   {
     this.frame = frame;
+    // refresh cached panel image
+    cachedImage = null;
   }
 
   /** returns wether the panel is moveable */
@@ -242,6 +284,8 @@ public class Panel implements Draggable
   public void setMinimized(boolean minimized)
   {
     this.minimized = minimized;
+    // refresh cached panel image
+    cachedImage = null;
   }
   
   
@@ -308,8 +352,142 @@ public class Panel implements Draggable
     {
       this.height += TILLEBAR_SIZE;
     }
-    
+    // refresh cached panel image
+    cachedImage = null;
   }
+  
+//  /** creates the image background as an image */
+//  private BufferedImage recreatePanelImage(Graphics g)
+//  {
+//    int localHeight = this.height;
+//
+//    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+//    BufferedImage tempImage = gc.createCompatibleImage(width, height);
+//    Graphics panelGraphics = tempImage.createGraphics();
+//
+//    // if this frame is minimized, reduce frame to enclose the title bar only
+//    if (isMinimized())
+//    {
+//      localHeight = TILLEBAR_SIZE+FRAME_SIZE*2;
+//    }
+//    
+//    // draw frame
+//    if (frame)
+//    {
+//      int colSteps = 255 / (FRAME_SIZE);
+//      for (int i = 0; i < FRAME_SIZE; i++)
+//      {
+//        int col = colSteps * i;
+//        panelGraphics.setColor(new Color(col,col,col));
+//        panelGraphics.drawRect(i, i,width-(i*2)-1,localHeight-(i*2)-1);
+//      }
+//      // update clipping to exclude the frame
+//      panelGraphics = panelGraphics.create(FRAME_SIZE,FRAME_SIZE,width-(FRAME_SIZE*2), localHeight-(FRAME_SIZE*2));
+//    }
+//      
+//    // draw title bar
+//    if (titleBar)
+//    {
+//      panelGraphics.drawLine(0,TILLEBAR_SIZE,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
+//      panelGraphics.drawLine(0,TILLEBAR_SIZE+1,width-(FRAME_SIZE*2), TILLEBAR_SIZE+1);
+//
+//      panelGraphics.setColor(Color.BLUE);
+//      panelGraphics.fillRect(0,0,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
+//
+//      panelGraphics.setColor(Color.WHITE);
+//      Font font = panelGraphics.getFont();
+//      panelGraphics.setFont(font.deriveFont(Font.BOLD, (float) TILLEBAR_FONT_SIZE));
+//      panelGraphics.drawString(name, 3,TILLEBAR_FONT_SIZE);
+//
+//      // update clipping
+//      panelGraphics = panelGraphics.create(0,TILLEBAR_SIZE+2, width-(FRAME_SIZE*2), height-(FRAME_SIZE*2)-TILLEBAR_SIZE-2);
+//    }
+//
+//    BufferedImage image = gc.createCompatibleImage(width, localHeight);
+//    image.createGraphics().drawImage(tempImage,0,0,null);
+//
+//    return image;
+//  }
+  
+  /** creates the image background as an image */
+  private BufferedImage recreatePanelImage(Graphics g)
+  {
+    int localHeight = this.height;
+
+    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+    BufferedImage tempImage = gc.createCompatibleImage(width, height, Transparency.TRANSLUCENT);
+    Graphics panelGraphics = tempImage.createGraphics();
+
+    // if this frame is minimized, reduce frame to enclose the title bar only
+    if (isMinimized())
+    {
+      localHeight = TILLEBAR_SIZE+FRAME_SIZE*2;
+    }
+    
+    // get texture sprite
+    Sprite woodTexture = textureSprites.get(texture);
+
+    int repeatx = width / woodTexture.getWidth() + 1;
+    int repeaty = height / woodTexture.getHeight() + 1;
+    
+    for (int x = 0; x < repeatx; x++)
+    {
+      for (int y = 0; y < repeaty; y++)
+      {
+        woodTexture.draw(panelGraphics, x*woodTexture.getWidth(), y * woodTexture.getHeight());
+      }
+    }
+    
+    Color darkColor = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+    Color lightColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+
+    // draw frame
+    if (frame)
+    {
+      int colSteps = 255 / (FRAME_SIZE);
+      for (int i = 0; i < FRAME_SIZE; i++)
+      {
+        int col = colSteps * i;
+//        panelGraphics.setColor(new Color(col,col,col, 255-col));
+//        panelGraphics.drawRect(i, i,width-(i*2)-1,localHeight-(i*2)-1);
+        panelGraphics.setColor(lightColor);
+        panelGraphics.drawLine(i, i, width-i-2, i);
+        panelGraphics.drawLine(i, i, i, localHeight-i-2);
+        
+        panelGraphics.setColor(darkColor);
+        panelGraphics.drawLine(width-i-1, i              , width-i-1, localHeight-i-1);
+        panelGraphics.drawLine(      i  , localHeight-i-1, width-i-1, localHeight-i-1);
+      }
+      // update clipping to exclude the frame
+      panelGraphics = panelGraphics.create(FRAME_SIZE,FRAME_SIZE,width-(FRAME_SIZE*2), localHeight-(FRAME_SIZE*2));
+    }
+
+    // draw title bar
+    if (titleBar)
+    {
+      panelGraphics.setColor(lightColor);
+      Rectangle rect = getMiminizeButton();
+      panelGraphics.fillRect(rect.x-FRAME_SIZE, rect.y-FRAME_SIZE, rect.width, rect.height);
+      
+      panelGraphics.setColor(darkColor);
+      panelGraphics.drawLine(0,TILLEBAR_SIZE,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
+      panelGraphics.drawLine(0,TILLEBAR_SIZE+1,width-(FRAME_SIZE*2), TILLEBAR_SIZE+1);
+      
+      panelGraphics.setColor(new Color(0.8f, 0.8f, 0.8f, 1.0f));
+      Font font = panelGraphics.getFont();
+      panelGraphics.setFont(font.deriveFont(Font.BOLD, (float) TILLEBAR_FONT_SIZE));
+      panelGraphics.drawString(name, 3,TILLEBAR_FONT_SIZE);
+
+      // update clipping
+      panelGraphics = panelGraphics.create(0,TILLEBAR_SIZE+2, width-(FRAME_SIZE*2), height-(FRAME_SIZE*2)-TILLEBAR_SIZE-2);
+    }
+
+    BufferedImage image = gc.createCompatibleImage(width, localHeight);
+    image.createGraphics().drawImage(tempImage,0,0,null);
+
+    return image;
+  }
+  
   
   /** draws the panel into the graphics object
    * @param g graphics where to render to
@@ -320,45 +498,25 @@ public class Panel implements Draggable
   {
     // get correct clipped graphics
     Graphics panelGraphics = g.create(x,y,width, height);
-    // draw frame
-    if (frame)
+    
+    // only draw something when we have a title bar or a frame
+    if (frame || titleBar)
     {
-      int height = this.height;
-      // if this frame is minimized, reduce frame to enclose the title bar only
-      if (isMinimized())
+      BufferedImage image = cachedImage;
+      // (re)create the image if it does not exist
+      if (image == null)
       {
-        height = TILLEBAR_SIZE+FRAME_SIZE*2;
+        image  = recreatePanelImage(g);
+        cachedImage = image;
       }
-
-      int colSteps = 255 / (FRAME_SIZE);
-      for (int i = 0; i < FRAME_SIZE; i++)
-      {
-        int col = colSteps * i;
-        panelGraphics.setColor(new Color(col,col,col));
-        panelGraphics.drawRect(i, i,width-(i*2)-1,height-(i*2)-1);
-      }
-      // update clipping to exclude the frame
-      panelGraphics = panelGraphics.create(FRAME_SIZE,FRAME_SIZE,width-(FRAME_SIZE*2), height-(FRAME_SIZE*2));
+      panelGraphics.drawImage(image,0,0,null);
     }
       
-    // draw title bar
+    if (frame)
+      panelGraphics = panelGraphics.create(FRAME_SIZE,FRAME_SIZE,width-(FRAME_SIZE*2), height-(FRAME_SIZE*2));
     if (titleBar)
-    {
-      panelGraphics.drawLine(0,TILLEBAR_SIZE,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
-      panelGraphics.drawLine(0,TILLEBAR_SIZE+1,width-(FRAME_SIZE*2), TILLEBAR_SIZE+1);
-
-      panelGraphics.setColor(Color.BLUE);
-      panelGraphics.fillRect(0,0,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
-
-      panelGraphics.setColor(Color.WHITE);
-      Font font = panelGraphics.getFont();
-      panelGraphics.setFont(font.deriveFont(Font.BOLD, (float) TILLEBAR_FONT_SIZE));
-      panelGraphics.drawString(name, 3,TILLEBAR_FONT_SIZE);
-
-      // update clipping
       panelGraphics = panelGraphics.create(0,TILLEBAR_SIZE+2, width-(FRAME_SIZE*2), height-(FRAME_SIZE*2)-TILLEBAR_SIZE-2);
-    }
-    
+
     if (!minimized)
     {
       // now draw the childs
@@ -486,23 +644,44 @@ public class Panel implements Draggable
     return false;
   }
   
+  /** returns the rectangle for the minimize button */
+  private Rectangle getMiminizeButton()
+  {
+    return new Rectangle(width-TILLEBAR_SIZE-FRAME_SIZE, FRAME_SIZE+1, TILLEBAR_SIZE-2,TILLEBAR_SIZE-2);
+  }
+  
+  /** returns true when the point (x,y) is inside the minimize button */
+  private boolean hitMinimizeButton(int x, int y)
+  {
+    return getMiminizeButton().contains(x,y);
+  }
+  
+  
   /** callback for a mouse click */
   public void onMouseClick(Point p)
   {
-  }
-  
-  /** callback for a doubleclick */
-  public void onMouseDoubleClick(Point p)
-  {
-    if (hitTitle(p.x,  p.y))
+    if (hitMinimizeButton(p.x,  p.y))
     {
       // is have a have a title bar and are minimizeable
       if (titleBar && minimizeable)
       {
         // change minimized state
-        minimized = !minimized;
+        setMinimized(!minimized);
+        return;
       }
     }
+    
+    
+    if (Debug.CYCLE_PANEL_TEXTURES && hitTitle(p.x,  p.y))
+    {
+      texture = (texture + 1) % textureSprites.size();
+      cachedImage = null;
+    }
+  }
+  
+  /** callback for a doubleclick */
+  public void onMouseDoubleClick(Point p)
+  {
   }
   
   /** ignored */
