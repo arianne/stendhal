@@ -218,7 +218,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     
     InGameGUI.this.client.send(action);     
 
-    logger.info(action);
+    logger.debug(action);
     }
 
   private void dropManagement(Integer baseObject, String baseslot, Integer baseItem, Integer x, Integer y)

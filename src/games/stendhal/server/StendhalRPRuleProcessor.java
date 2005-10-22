@@ -785,8 +785,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         RPObject.ID objectid=new RPObject.ID(id, zone.getID());
         if(!zone.has(objectid))
           {
-          logger.info("Rejected because zone doesn't have base object");
-          logger.info(action);
+          logger.debug("Rejected because zone doesn't have base object");
+          logger.debug(action);
           return;
           }
 
@@ -796,9 +796,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
              object instanceof Chest  ||
              object instanceof Corpse))
           {
-          logger.info("Rejected because base object isn't a passive entity or a player");
-          logger.info(object);
-          logger.info(action);
+          logger.debug("Rejected because base object isn't a passive entity or a player");
+          logger.debug(object);
+          logger.debug(action);
           return;
           }
         
@@ -807,16 +807,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         if(baseObject instanceof Player && !player.getID().equals(baseObject.getID()))
           {
           // Only allowed to equip our own player.
-          logger.info("Rejected because base object is a player that is not yours");
-          logger.info(baseObject);
-          logger.info(action);
+          logger.debug("Rejected because base object is a player that is not yours");
+          logger.debug(baseObject);
+          logger.debug(action);
           return;
           }
 
         if(!baseObject.hasSlot(action.get("baseslot")))
           {
-          logger.info("Rejected because base object don't have slot base slot");
-          logger.info(action);
+          logger.debug("Rejected because base object don't have slot base slot");
+          logger.debug(action);
           return;
           }        
 
@@ -834,9 +834,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         
         if(base==null)
           {
-          logger.info("Rejected because base item isn't stored inside base slot");
-          logger.info(baseObject);
-          logger.info(action);
+          logger.debug("Rejected because base item isn't stored inside base slot");
+          logger.debug(baseObject);
+          logger.debug(action);
           return;
           }
         }
@@ -849,8 +849,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         RPObject.ID objectid=new RPObject.ID(id, zone.getID());
         if(!zone.has(objectid))
           {
-          logger.info("Rejected because zone doesn't have base item");
-          logger.info(action);
+          logger.debug("Rejected because zone doesn't have base item");
+          logger.debug(action);
           return;
           }
 
@@ -858,9 +858,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         RPObject object=zone.get(objectid);
         if(!(object instanceof PassiveEntity))
           {
-          logger.info("Rejected because base item isn't a passive entity");
-          logger.info(object);
-          logger.info(action);
+          logger.debug("Rejected because base item isn't a passive entity");
+          logger.debug(object);
+          logger.debug(action);
           return;
           }
         
@@ -881,8 +881,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       RPObject.ID objectid=new RPObject.ID(id, zone.getID());
       if(!zone.has(objectid))
         {
-        logger.info("Rejected because zone doesn't have target object");
-        logger.info(action);
+        logger.debug("Rejected because zone doesn't have target object");
+        logger.debug(action);
         return;
         }
 
@@ -892,9 +892,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
            object instanceof Chest  ||
            object instanceof Corpse))
         {
-        logger.info("Rejected because target object isn't a passive entity or a player");
-        logger.info(object);
-        logger.info(action);
+        logger.debug("Rejected because target object isn't a passive entity or a player");
+        logger.debug(object);
+        logger.debug(action);
         return;
         }
       
@@ -903,16 +903,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       if(targetObject instanceof Player && !player.getID().equals(targetObject.getID()))
         {
         // Only allowed to equip our own player.
-        logger.info("Rejected because target object is a player that is not yours");
-        logger.info(targetObject);
-        logger.info(action);
+        logger.debug("Rejected because target object is a player that is not yours");
+        logger.debug(targetObject);
+        logger.debug(action);
         return;
         }
 
       if(!targetObject.hasSlot(action.get("targetslot")))
         {
-        logger.info("Rejected because target object don't have slot target slot");
-        logger.info(action);
+        logger.debug("Rejected because target object don't have slot target slot");
+        logger.debug(action);
         return;
         }        
 
@@ -932,15 +932,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         
         if(target==null)
           {
-          logger.info("Rejected because target item isn't stored inside target slot");
-          logger.info(targetObject);
-          logger.info(action);
+          logger.debug("Rejected because target item isn't stored inside target slot");
+          logger.debug(targetObject);
+          logger.debug(action);
           return;
           }
         }
       else
         {
-        logger.info("No targetitem attribute");        
+        logger.debug("No targetitem attribute");        
         }
         
 
@@ -969,24 +969,24 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
               world.modify(baseObject);
               }
               
-            logger.info("Adding money("+target+") + money("+base+")");
+            logger.debug("Adding money("+target+") + money("+base+")");
             int result=((Money)target).add((Money)base);
-            logger.info("Added money: "+result);
-            logger.info(target);            
+            logger.debug("Added money: "+result);
+            logger.debug(target);            
             
-            logger.info("PLAYER: "+targetObject);
+            logger.debug("PLAYER: "+targetObject);
             
             world.modify(targetObject);
             return;
             }
           else
             {
-            logger.info("Can't add items ("+base+") and ("+target+")");
+            logger.debug("Can't add items ("+base+") and ("+target+")");
             }
           }
         else
           {
-          logger.info("There is no target item");
+          logger.debug("There is no target item");
           }
           
         if(!targetSlot.isFull())
@@ -1016,17 +1016,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           }
         else
           {
-          logger.info("targetSlot is full");
-          logger.info(targetObject);
+          logger.debug("targetSlot is full");
+          logger.debug(targetObject);
           }
         }
       else
         {
-        logger.info("baseObject or base or Target is not near the player");
-        logger.info(player);
-        logger.info(targetObject);
-        logger.info(baseObject);
-        logger.info(base);
+        logger.debug("baseObject or base or Target is not near the player");
+        logger.debug(player);
+        logger.debug(targetObject);
+        logger.debug(baseObject);
+        logger.debug(base);
         }
       }
 

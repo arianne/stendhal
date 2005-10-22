@@ -15,6 +15,7 @@ package games.stendhal.server.rule;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import marauroa.common.game.RPSlot;
+import java.util.List;
 
 /**
  * Ruleset Interface for processing actions in Stendhal.
@@ -24,7 +25,9 @@ import marauroa.common.game.RPSlot;
 public interface ActionManager
   {
   String canEquip(RPEntity entity, Item item);
+  
   boolean onEquip(RPEntity entity, String slotName, Item item);
+  //boolean onDrop(RPEntity entity, String slotName, Item item);
 
   void onAttack();
   void onTalk();
