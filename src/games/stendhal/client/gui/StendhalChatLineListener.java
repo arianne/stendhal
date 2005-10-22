@@ -138,7 +138,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
       String text = playerChatText.getText();
       text.trim();
       
-      if(text[0]!='/')
+      if(text.charAt(0)!='/')
         {
         // Chat command. The most frecuent one.
         RPAction chat=new RPAction();
@@ -209,9 +209,11 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
                           "- /add <player>            \tAdd player to the buddy list",
                           "- /remove <player>         \tRemoves player from buddy list",
                           "- /where <player>          \tPrints the location of the player"
-                          );
-          StendhalClient.get().addEventLine(text,Color.green);
-          gameObjects.addText(this, text, Color.green);
+                          };
+          for(String line: lines)
+            {
+            StendhalClient.get().addEventLine(line,Color.grey);
+            }
           }  
         }
 
