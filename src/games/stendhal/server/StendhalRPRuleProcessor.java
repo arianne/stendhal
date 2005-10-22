@@ -160,68 +160,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   public boolean onActionAdd(RPAction action, List<RPAction> actionList)
     {
-    Log4J.startMethod(logger,"onActionAdd");
-    try
-      {
-      if(action.get("type").equals("moveto") || action.get("type").equals("move") || action.get("type").equals("face"))
-        {
-        // Cancel previous moveto actions
-        Iterator it=actionList.iterator();
-        while(it.hasNext())
-          {
-          RPAction act=(RPAction)it.next();
-          if(act.get("type").equals("moveto"))
-            {
-            logger.debug("Removed action: "+act);
-            it.remove();
-            }
-          }
-        }
-
-      return true;
-      }
-    catch(AttributeNotFoundException e)
-      {
-      logger.error("error in onActionAdd",e);
-      return false;
-      }
-    finally
-      {
-      Log4J.finishMethod(logger,"onActionAdd");
-      }
+    return true;
     }
 
   public boolean onIncompleteActionAdd(RPAction action, List<RPAction> actionList)
     {
-    Log4J.startMethod(logger,"onIncompleteActionAdd");
-    try
-      {
-      if(action.get("type").equals("moveto"))
-        {
-        // Cancel this action because there is a new more important one
-        Iterator it=actionList.iterator();
-        while(it.hasNext())
-          {
-          RPAction act=(RPAction)it.next();
-          if(act.get("type").equals("moveto") || act.get("type").equals("move") || act.get("type").equals("face"))
-            {
-            logger.debug("Not readded action: "+action);
-            return false;
-            }
-          }
-        }
-
-      return true;
-      }
-    catch(AttributeNotFoundException e)
-      {
-      logger.error("onIncompleteActionAdd",e);
-      return false;
-      }
-    finally
-      {
-      Log4J.finishMethod(logger,"onIncompleteActionAdd");
-      }
+    return true;
     }
 
 
@@ -272,10 +216,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       else if(type.equals("displace"))
         {
         displace(player,action);
-        }
-      else if(type.equals("displacerpentity"))
-        {
-        displaceRPEntity(player,action);
         }
       else if(type.equals("who"))
         {
@@ -459,19 +399,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"own");
     }
 
-
-  /**
-   * Moves an item that is on the floor to another point.
-   * This method also displace players and creatures one position.
-   * Params:
-   *   target (int) - object id of the target
-   *      dir (int) - direction to displace
-   */
-  private void displaceRPEntity(Player player, RPAction action) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
-    {
-    /** TODO */
-    }
-
   /**
    * Moves an item that is on the floor to another point.
    * This method also displace players and creatures one position.
@@ -494,29 +421,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         RPObject object=zone.get(targetid);
         if(object instanceof RPEntity) /** Player, Creatures and NPCs */
           {
-          if(!player.equals(object))
+          RPEntity entity=(RPEntity)object;
+          if(player.nextto(entity,0.25))
             {
-            RPEntity entity=(RPEntity)object;
-            if(player.nextto(entity,0.25))
+            if(action.has("x") && action.has("y"))
               {
-              if(action.has("x") && action.has("y"))
-                {
-                try
-                  {
-                  int x=action.getInt("x");
-                  int y=action.getInt("y");
-
-                  RPAction displaceRPEntity=(RPAction)action.copy();
-                  displaceRPEntity.put("type","displacerpentity");
-                  displaceRPEntity.put("dir",player.directionTo(x,y).get());
-                  
-                  rpman.addRPAction(displaceRPEntity);
-                  }                
-                catch(ActionInvalidException e)
-                  {
-                  logger.error(e);
-                  }
-                }
+              int x=action.getInt("x");
+              int y=action.getInt("y");
+              
+              /** TODO: Code displace here */
               }
             }
           }

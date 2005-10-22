@@ -265,6 +265,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\StendhalChatLineListener.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\StendhalFirstScreen.java</path>
 				<source>true</source>
 			</fileitem>
