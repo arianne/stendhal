@@ -207,6 +207,18 @@ public class Panel implements Draggable
 
     return true;
   }
+  
+  /** sets the name */
+  public void setName(String name)
+  {
+    this.name = name;
+  }
+  
+  /** returns the name */
+  public String getName()
+  {
+    return name;
+  }
 
   /** returns wether the panel has a title bar */
   public boolean hasTitleBar()

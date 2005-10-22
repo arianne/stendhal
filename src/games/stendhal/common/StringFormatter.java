@@ -97,6 +97,16 @@ public class StringFormatter
     }
   }
   
+  /** sets the value of a parameter */
+  public void set(String param, int value)
+  {
+    if (parameter.containsKey(param))
+    {
+      parameter.put(param,Integer.toString(value));
+      refreshCache = true;
+    }
+  }
+  
   
   /** toString formats the string */
   public String toString()

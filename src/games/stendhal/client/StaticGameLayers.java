@@ -15,15 +15,10 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.wt.Frame;
 import games.stendhal.client.gui.wt.Minimap;
-import games.stendhal.client.gui.wt.Panel;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Pair;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.LinkedList;
@@ -230,16 +225,16 @@ public class StaticGameLayers
         {
         // create the frame if it does not exists yet
         if (frame == null)
-        {
+          {
           frame = new Frame(screen);
           if (Debug.SHOW_TEST_CHARACTER_PANEL)
-          {
-            frame.addChild(new games.stendhal.client.gui.wt.Character());
-          }
+            {
+            frame.addChild(new games.stendhal.client.gui.wt.Character(gameObjects));
+            }
           // register native event handler
           screen.getComponent().addMouseListener(frame);
           screen.getComponent().addMouseMotionListener(frame);
-        }
+          }
         // create the map if there is none yet
         if (minimap == null)
           {

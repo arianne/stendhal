@@ -18,8 +18,10 @@
 
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import java.awt.Graphics;
+import marauroa.common.game.RPObject;
 
 /**
  * This is a container which contains exactly one Entity. The name do not
@@ -33,20 +35,38 @@ import java.awt.Graphics;
  */
 public class EntitySlot extends Panel implements DropTarget
 {
-  /** the sprite for this slot */
+  /** the (background) sprite for this slot */
   private Sprite graphic;
+  /** the content of the slot */
+  private RPObject content;
+  
+  /** need this to find the sprite for each RPObject */
+  private GameObjects gameObjects;
   
   /** Creates a new instance of RPObjectSlot */
-  public EntitySlot(String name, Sprite graphic, int x, int y)
+  public EntitySlot(String name, Sprite graphic, int x, int y, GameObjects gameObjects)
   {
     super(name, x,y, graphic.getWidth(), graphic.getHeight());
     this.graphic = graphic;
+    this.gameObjects = gameObjects;
   }
 
   /** called when an object is dropped. */
   public boolean onDrop(Draggable droppedObject)
   {
     return false;
+  }
+  
+  /** clears the content of this slit */
+  public void clear()
+  {
+    content = null;
+  }
+  
+  /** adds an object to this slot */
+  public void add(RPObject object)
+  {
+    content = object;
   }
 
   /**
@@ -57,10 +77,20 @@ public class EntitySlot extends Panel implements DropTarget
    */
   public Graphics draw(Graphics g)
   {
-
     Graphics childArea = super.draw(g);
     
+    // draw the background image
     graphic.draw(childArea,0,0);
+    // draw the content (if there is any)
+    if (content != null)
+    {
+      Sprite sprite = gameObjects.spriteType(content);
+      // be sure to center the sprite
+      int x = (getWidth() - sprite.getWidth()) / 2;
+      int y = (getHeight() - sprite.getHeight()) / 2;
+      sprite.draw(childArea,x,y);
+      
+    }
     
     return childArea;
   }
