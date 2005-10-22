@@ -28,6 +28,10 @@ public interface ActionManager
   
   boolean onEquip(RPEntity entity, String slotName, Item item);
   //boolean onDrop(RPEntity entity, String slotName, Item item);
+  //boolean onUse(RPEntity entity, Entity usedEntity)
+
+  //void onAttack(RPEntity source, RPEntity target);
+  //void onTalk(RPEntity source, RPEntity target);
 
   void onAttack();
   void onTalk();

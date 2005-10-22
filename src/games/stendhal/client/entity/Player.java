@@ -33,7 +33,7 @@ public class Player extends Speaker
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Player.class);
   
-  private int outfit;
+  private int outfit;  
   
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {

@@ -13,11 +13,11 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
+import games.stendhal.server.entity.item.*;
+import marauroa.common.game.*;
+import java.util.*;
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.IRPZone;
 import org.apache.log4j.Logger;
 
 
@@ -42,63 +42,119 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
     put("class","weaponsellernpc");
     }
   
+  private int playermoney(Player player)
+    {
+    int money=0;
+    
+    Iterator<RPSlot> it=player.slotsIterator();
+    while(it.hasNext())
+      {
+      RPSlot slot=(RPSlot)it.next();
+      for(RPObject object: slot)
+        {
+        if(object instanceof Money)
+          {
+          money+=((Money)object).getQuantity();
+          }
+        }
+      }
+    
+    return money;
+    }
+
+  private boolean chargePlayer(Player player, int amount)
+    {
+    int left=amount;
+    
+    Iterator<RPSlot> it=player.slotsIterator();
+    while(it.hasNext() && left!=0)
+      {
+      RPSlot slot=(RPSlot)it.next();
+      for(RPObject object: slot)
+        {
+        if(object instanceof Money)
+          {
+          int quantity=((Money)object).getQuantity();
+          if(left>=quantity)
+            {
+            slot.remove(object.getID());
+            left-=quantity;
+            }
+          else
+            {
+            ((Money)object).setQuantity(quantity-left);
+            left=0;
+            break;
+            }
+          }
+        }
+      }
+    
+    world.modify(player);
+    
+    return left==0;
+    }
+  
   private boolean sell(Player player, String itemName)
-  {
+    {
     // find item in stock list
     SellableItem[] items = SellableItem.values();
     String uppercaseItemName = itemName.toUpperCase();
     for (SellableItem itemEnum : items)
-    {
-      if (itemEnum.name().equals(uppercaseItemName))
       {
+      if (itemEnum.name().equals(uppercaseItemName))
+        {
         // found it
         Item item = itemEnum.getItem();
-        // has the player already one of these items?
-        if (!player.hasItem(item.getPossibleSlots(), item.getItemClass()))
-        {
-          if (player.getXP() < itemEnum.getPrice())
-          {
-            say("A real pity! You don't have enough XP!");
-            return false;
-          }
-          logger.debug("Selling a "+itemName+" to player "+player.getName());
-          
-          Item theItem = (Item) item;
-          theItem.put("zoneid",player.get("zoneid"));
-          IRPZone zone=world.getRPZone(getID());
-          zone.assignRPObjectID(theItem);
-          
-          if (player.equip(item))
-          {
-            player.setXP(player.getXP()-itemEnum.getPrice());
-            world.modify(player);
 
-            say("Congratulations! Here is your "+itemName+"!");
-            return true;
-          }
-          else
+        if (playermoney(player) < itemEnum.getSellPrice())
           {
-            say("Sorry, but you cannot equip the "+itemName+".");
+          say("A real pity! You don't have enough money!");
+          return false;
           }
-        }
+          
+        logger.debug("Selling a "+itemName+" to player "+player.getName());
+        
+        Item theItem = (Item) item;
+        theItem.put("zoneid",player.get("zoneid"));
+        IRPZone zone=world.getRPZone(getID());
+        zone.assignRPObjectID(theItem);
+        
+        if(player.equip(item))
+          {
+          chargePlayer(player,itemEnum.getSellPrice());
+
+          say("Congratulations! Here is your "+itemName+"!");
+          return true;
+          }
         else
-        {
-          say("you already have a "+item.getItemClass()+". One is enough for you.");
-        }
+          {
+          say("Sorry, but you cannot equip the "+itemName+".");
+          }
+
         // item found, but player cannot equip the item
         return false;
+        }
       }
-    }
     // item not found
     return false;
-  }
+    }
 
   public boolean chat(Player player) throws AttributeNotFoundException
     {
     String text=player.get("text").toLowerCase();
     if(text.contains("offer"))
       {
-      say("You pay equipment with XP points: a club(1000), an armor(5000), a shield(10000) and a sword(20000).");
+      // Build the offer dinamically
+      StringBuffer st=new StringBuffer("I can offer you: ");
+
+      for(SellableItem item: SellableItem.values())
+        {
+        st.append("a "+item);
+        st.append("("+item.getSellPrice()+"),");
+        }
+        
+      say(st.toString());
       return true;
       }
     else if(text.contains("buy")||text.contains("purchase"))
@@ -153,23 +209,31 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
   /** all item this npc sells */
   private enum SellableItem
   {
-    CLUB  (1000 ,DefaultItem.CLUB.getItem()),
-    ARMOR (5000 ,DefaultItem.ARMOR.getItem()),
-    SHIELD(10000,DefaultItem.SHIELD.getItem()),
-    SWORD (20000,DefaultItem.SWORD.getItem());
+          
+    CLUB  (10 ,3  ,DefaultItem.CLUB.getItem()),
+    ARMOR (50 ,15 ,DefaultItem.ARMOR.getItem()),
+    SHIELD(100,30 ,DefaultItem.SHIELD.getItem()),
+    SWORD (200,60 ,DefaultItem.SWORD.getItem());
     
-    private int price;
+    private int sellPrice;
+    private int buyPrice;
     private Item item;
     
-    private SellableItem(int price, Item item)
+    private SellableItem(int sellPrice, int buyPrice, Item item)
     {
-      this.price = price;
+      this.sellPrice = sellPrice;
+      this.buyPrice = buyPrice;
       this.item  = item;
     }
 
-    public int getPrice()
+    public int getSellPrice()
     {
-      return price;
+      return sellPrice;
+    }
+
+    public int getBuyPrice()
+    {
+      return buyPrice;
     }
 
     public Item getItem()
