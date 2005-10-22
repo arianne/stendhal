@@ -208,7 +208,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
                           "- /who                     \tShow online players",
                           "- /add <player>            \tAdd player to the buddy list",
                           "- /remove <player>         \tRemoves player from buddy list",
-                          "- /where <player>          \tPrints the location of the player",
+                          "- /where <player>          \tPrints the location of the player"
                           );
           StendhalClient.get().addEventLine(text,Color.green);
           gameObjects.addText(this, text, Color.green);
