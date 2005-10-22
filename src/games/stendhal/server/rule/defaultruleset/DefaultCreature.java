@@ -22,22 +22,26 @@ import games.stendhal.server.entity.creature.Creature;
  */
 public enum DefaultCreature
 {
-//          ("clazz",   tileid,HP, ATK, DEF, XP,size,SPEED);
-  BOAR      ("boar"     , 20,  30,  8,  5,   300, 1, 0.5),
-  CAVERAT   ("caverat"  , 13,  30,  7,  3,   200, 0, 0.5),
-  COBRA     ("cobra"    , 15,  15, 15,  1,   200, 1, 1.0),
-  GARGOYLE  ("gargoyle" , 17, 100, 28, 15,  2160, 1, 0.5),
-  GIANTRAT  ("giantrat" , 23, 800, 70, 30, 90000, 0, 0.7),
-  GOBLIN    ("goblin"   , 22,  50, 20, 10,   580, 1, 0.5),
-  KOBOLD    ("kobold"   , 19,  30, 15,  8,   400, 1, 0.5),
-  OGRE      ("ogre"     , 18, 200, 30, 17,  2200, 1, 0.2),
-  ORC       ("orc"      , 16,  70, 25, 14,   940, 1, 1.0),
-  ORCHUNTER ("orchunter", -1,  70, 25, 14,   940, 1, 1.0),
-  ORCLORD   ("orclord"  , -1,  70, 25, 14,   940, 1, 1.0),
-  ORCWARRIOR("orcwar"   , -1,  70, 25, 14,   940, 1, 1.0),
-  RAT       ("rat"      , 12,  20,  3,  2,   100, 0, 0.5),
-  TROLL     ("troll"    , 21,  40, 17,  9,   500, 1, 0.4),
-  WOLF      ("wolf"     , 14,  30,  9,  4,   360, 1, 0.5);
+//                  ("clazz",       tileid,  HP, ATK, DEF, XP,size,SPEED);
+  BOAR              ("boar"           , 20,  30,  8,  5,   300, 1, 0.5),
+  CAVERAT           ("caverat"        , 13,  30,  7,  3,   200, 0, 0.5),
+  COBRA             ("cobra"          , 15,  15, 15,  1,   200, 1, 1.0),
+  GARGOYLE          ("gargoyle"       , 17, 100, 28, 15,  2160, 1, 0.5),
+  DEMON_ORC         ("demon_orc"      , -1,  70, 25, 14,   940, 1, 1.0),
+  DEMON_ORCHUNTER   ("demon_orchunter", -1,  70, 25, 14,   940, 1, 1.0),
+  DEMON_ORCLORD     ("demon_orclord"  , -1,  70, 25, 14,   940, 1, 1.0),
+  DEMON_ORCWARRIOR  ("demon_orcwar"   , -1,  70, 25, 14,   940, 1, 1.0),
+  GIANTRAT          ("giantrat"       , 23, 800, 70, 30, 90000, 0, 0.7),
+  GOBLIN            ("goblin"         , 22,  50, 20, 10,   580, 1, 0.5),
+  KOBOLD            ("kobold"         , 19,  30, 15,  8,   400, 1, 0.5),
+  OGRE              ("ogre"           , 18, 200, 30, 17,  2200, 1, 0.2),
+  ORC               ("orc"            , 16,  70, 25, 14,   940, 1, 1.0),
+  ORCHUNTER         ("orchunter"      , -1,  70, 25, 14,   940, 1, 1.0),
+  ORCLORD           ("orclord"        , -1,  70, 25, 14,   940, 1, 1.0),
+  ORCWARRIOR        ("orcwar"         , -1,  70, 25, 14,   940, 1, 1.0),
+  RAT               ("rat"            , 12,  20,  3,  2,   100, 0, 0.5),
+  TROLL             ("troll"          , 21,  40, 17,  9,   500, 1, 0.4),
+  WOLF              ("wolf"           , 14,  30,  9,  4,   360, 1, 0.5);
 
   /** Creature class */
   private String clazz;
