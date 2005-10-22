@@ -212,7 +212,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
                           };
           for(String line: lines)
             {
-            StendhalClient.get().addEventLine(line,Color.grey);
+            StendhalClient.get().addEventLine(line,Color.gray);
             }
           }  
         }
