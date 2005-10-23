@@ -234,6 +234,8 @@ public class StendhalClient extends ariannexp
           {
           y=staticLayers.getHeight()-screen.getHeight();
           }
+          
+        getGameGUI().inspect(null,null);
         
         screen.place(x,y);
         screen.move(0,0);        
