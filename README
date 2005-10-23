@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.33
+Version 0.39
 
 
 How to play
@@ -62,13 +62,27 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.33 Oct XX, 2005
+0.39 Oct 23, 2005
 - Fixed ghost sheep bug
 - Added minimap
 - Fixed inventory
 - Added money
 - Weapons cost money now
 - Sheeps cost money now
+- Money objects can be joined in a single object
+- Corpses has items inside
+- Item amount appears in inventory
+- Now you can move items inside inspected entities
+- You can't inspect/open a entity while you are not near it
+- Refactored equip, moveequip and drop actions
+- Fixed a bug at RPSlot.assignValidID that blocked server
+- Corpses now are removed from player slots on load
+- You can't attack anymore NPC, yehy won't increase your stats.
+- Fixed icon on Java webstart version
+- Replaced afterlife map
+- Added navigation maps for all maps
+- Create a batch converter for maps.
+
 
 0.32 Sep 24, 2005
 - Many bug fixes

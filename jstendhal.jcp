@@ -301,6 +301,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\TextPanel.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\wtButton.java</path>
 				<source>true</source>
 			</fileitem>
@@ -590,6 +594,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\Rand.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\common\StringFormatter.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

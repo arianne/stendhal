@@ -143,6 +143,9 @@ public class KTextEdit extends JPanel
    */
   public static void main(String args[])
     {
+    /* BUG: This short example doesn't work. It doesn't throw any exception or anything.
+     *  It just doesn't work. If you remove all teh edit.addLine but one it works.
+     *  Can anyone with Swing/AWT abilities have a look to it? */
     JFrame frame = new JFrame("KTextEdit Test-Frame");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     KTextEdit edit = new KTextEdit();
@@ -159,7 +162,8 @@ public class KTextEdit extends JPanel
     edit.addLine("Dragon", "Well, there is really not much to tell about. !", new Color(240, 123, 56));
     edit.addLine("Little ant", "Well, there is really not much to tell about. !", Color.yellow);
 
-    frame.setSize(400, 200);
+    frame.setPreferredSize(new Dimension(400, 200));
+    frame.pack();
     frame.setVisible(true);
     }
   }

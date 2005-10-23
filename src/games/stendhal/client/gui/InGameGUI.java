@@ -875,6 +875,14 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           wtDroppableArea area=getDroppableArea("left_00"+i);                    
           screen.drawInScreen(slot,area.getx()-4,area.gety()-4);
           screen.drawInScreen(gameObjects.spriteType(object),area.getx(),area.gety());
+
+           // HACK: Do this in a proper way. Require refactoring 
+           if(object.has("class") && object.get("class").equals("money"))
+             {
+             int quantity=object.getInt("quantity");
+             screen.drawInScreen(GameScreen.get().createString(Integer.toString(quantity),Color.white),area.getx(),area.gety()+30);             
+             }
+
           i++;
           }
         
