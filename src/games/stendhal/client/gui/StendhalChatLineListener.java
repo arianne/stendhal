@@ -135,6 +135,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
   
     public void actionPerformed(ActionEvent e)
       {
+      System.out.println ("Player wrote: "+playerChatText.getText());
       String text = playerChatText.getText();
       text.trim();
       

@@ -53,6 +53,7 @@ public class j2DClient extends JFrame
   public j2DClient(StendhalClient sc)
     {
     super();
+    this.client=sc;
 
     // create a frame to contain our game
     setTitle("Stendhal "+stendhal.VERSION+" - a multiplayer online game using Arianne");
@@ -98,8 +99,6 @@ public class j2DClient extends JFrame
         gameRunning=false;
         }
       });
-
-    this.client=sc;
 
     canvas.addFocusListener(new FocusListener()
       {
