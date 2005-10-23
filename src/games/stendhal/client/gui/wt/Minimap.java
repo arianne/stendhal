@@ -57,7 +57,7 @@ public class Minimap extends Panel
   /** Creates a new instance of Minimap */
   public Minimap(CollisionDetection cd, GraphicsConfiguration gc, String zone)
   {
-    super("Minimap "+zone, 0, 0, 100, 100);
+    super(zone, 0, 0, 100, 100);
     
     // calculate size and scale
     int w = cd. getWidth();

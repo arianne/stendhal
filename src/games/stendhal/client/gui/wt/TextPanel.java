@@ -20,7 +20,10 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.common.StringFormatter;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  * A simple panel with text.
@@ -29,9 +32,9 @@ import java.awt.Graphics;
 public class TextPanel extends Panel
 {
   /** default font size */
-  private static final int DEFAULT_FONT_SIZE = 12;
+  public static final int DEFAULT_FONT_SIZE = 12;
   /** default font size */
-  private static final Color DEFAULT_COLOR = Color.WHITE;
+  public static final Color DEFAULT_COLOR = Color.WHITE;
 
   /** the text to display */
   private StringFormatter formatter;
@@ -39,6 +42,11 @@ public class TextPanel extends Panel
   private int fontSize;
   /** the font color */
   private Color color;
+  /** last height of the text in pixels */
+  private int lastHeight;
+  
+  /** enable automatic line breaks? */
+  private boolean autoLineBreaks;
   
   /** Creates a new TextPanel */
   public TextPanel(String name, int x, int y, int width, int height)
@@ -53,6 +61,14 @@ public class TextPanel extends Panel
     this.formatter = new StringFormatter(formatString);
     this.fontSize = DEFAULT_FONT_SIZE;
     this.color = DEFAULT_COLOR;
+    autoLineBreaks = true;
+  }
+  
+  /** returns the estimated height of the text in pixels.
+   * The calculation is based in the text and the current font size */
+  public int getLastHeight()
+  {
+    return lastHeight;
   }
   
   /** sets the font size */
@@ -102,18 +118,22 @@ public class TextPanel extends Panel
       // don't draw minimized windows
       return clientArea;
     }
-    
+
+    Font font = clientArea.getFont().deriveFont((float) fontSize);
     // set font and color
-    clientArea.setFont(clientArea.getFont().deriveFont((float) fontSize));
+    clientArea.setFont(font);
     clientArea.setColor(color);
     
     String text = formatter.toString();
+    
+    FontMetrics metrics = ((Graphics2D) clientArea).getFontMetrics();
     
     int index;
     int oldIndex = 0;
     int pos = fontSize;
     int lineHeight = (int) (fontSize * 1.2f);
     
+
     do
     {
       String string;
@@ -128,17 +148,46 @@ public class TextPanel extends Panel
       {
         string = text.substring(oldIndex);
       }
-
-      clientArea.drawString(string, 0, pos);
+      
+      // now check if the string fits in te window.
+      if (autoLineBreaks && metrics.stringWidth(text) > getWidth())
+      {
+        StringBuilder buf = new StringBuilder();
+        int currentWidth = 0;
+        for (int i = 0; i < string.length(); i++)
+        {
+          char theChar = string.charAt(i);
+          int charWidth = metrics.charWidth(theChar);
+          // is the current string longer than the width of the panel?
+          if (currentWidth + charWidth > getWidth())
+          {
+            // yep, end this line and start in the next one
+            clientArea.drawString(buf.toString(), 0, pos);
+            pos += lineHeight;
+            buf.setLength(0);
+            currentWidth = 0;
+          }
+          
+          //in all lines except the first one skip leading spaces
+          if ( !(i > 0 && buf.length() == 0 && theChar == ' ') )
+          {
+            buf.append(theChar);
+            currentWidth += charWidth;
+          }
+        }
+        clientArea.drawString(buf.toString(), 0, pos);
+      }
+      else
+      {
+        clientArea.drawString(string, 0, pos);
+      }
       // next line
       pos += lineHeight;
     }
     while (index >= 0);
 
+    lastHeight = pos;
     
     return clientArea;
   }
-  
-  
-  
 }

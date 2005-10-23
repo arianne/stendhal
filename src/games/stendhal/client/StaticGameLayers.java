@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 import games.stendhal.client.gui.wt.Frame;
+import games.stendhal.client.gui.wt.MessageBox;
 import games.stendhal.client.gui.wt.Minimap;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
@@ -229,7 +230,7 @@ public class StaticGameLayers
           if (Debug.SHOW_TEST_CHARACTER_PANEL)
             {
             frame.addChild(new games.stendhal.client.gui.wt.Character(gameObjects));
-            //frame.addChild(new MessageBox("Alert", 150, 300, 200, "the world is going under and we're all gonna die."));
+            frame.addChild(new MessageBox("Alert", 150, 300, 200, "the world is going under and we're all gonna die.",  MessageBox.ButtonCombination.OK));
             }
           // register native event handler
           screen.getComponent().addMouseListener(frame);
@@ -242,7 +243,7 @@ public class StaticGameLayers
           frame.addChild(minimap);
           minimap.moveTo(0,0);
           }
-        
+
         RPObject player = StendhalClient.get().getPlayer();
         minimap.setPlayerPos(player.getInt("x"),player.getInt("y"));
         

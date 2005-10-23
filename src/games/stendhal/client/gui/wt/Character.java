@@ -48,7 +48,7 @@ public class Character extends Panel
   /** Creates a new instance of Character */
   public Character(GameObjects gameObjects)
   {
-    super("character", 640-170, 0, 132, 265);
+    super("character", 640-132, 0, 132, 265);
     this.gameObjects = gameObjects;
     setTitleBar(true);
     setFrame(true);

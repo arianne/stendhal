@@ -69,6 +69,8 @@ public class Panel implements Draggable
   private boolean titleBar;
   /** panel has a frame */
   private boolean frame;
+  /** is the frame embossed? */
+  private boolean frameEmbossed;
   /** panel is moveable */
   private boolean moveable;
   /** panel can be resized */
@@ -166,6 +168,43 @@ public class Panel implements Draggable
     return height;
   }
   
+  /** returns width of the client area */
+  protected int getClientWidth()
+  {
+    return (frame ? width - FRAME_SIZE*2 : width);
+  }
+
+  /** returns height of the panel */
+  protected int getClientHeight()
+  {
+    int clientHeight = height;
+    if (frame)
+      clientHeight  -= FRAME_SIZE*2;
+    
+    if (titleBar)
+      clientHeight  -= TILLEBAR_SIZE;
+
+    return clientHeight;
+  }
+  
+  /** returns x-pos of the client area */
+  protected int getClientX()
+  {
+    return (frame ? FRAME_SIZE : 0);
+  }
+
+  /** returns y-pos of the client area */
+  protected int getClientY()
+  {
+    int clienty = (frame ? FRAME_SIZE : 0);
+
+    if (titleBar)
+      clienty += TILLEBAR_SIZE;
+    
+
+    return clienty;
+  }
+  
   /**
    * Moves the panel by dx pixels to the right and dy pixels down.
    *
@@ -252,6 +291,19 @@ public class Panel implements Draggable
   public boolean isMoveable()
   {
     return moveable;
+  }
+
+  /** sets the embossed-state of then frame */
+  public void setEmboss(boolean emboss)
+  {
+    this.frameEmbossed = emboss;
+    cachedImage = null;
+  }
+
+  /** returns wether the panels frame is embossed */
+  public boolean isEmbossed()
+  {
+    return frameEmbossed;
   }
 
   /** enables/disables moving the panel. Note: the panel must have a title bar
@@ -368,59 +420,6 @@ public class Panel implements Draggable
     cachedImage = null;
   }
   
-//  /** creates the image background as an image */
-//  private BufferedImage recreatePanelImage(Graphics g)
-//  {
-//    int localHeight = this.height;
-//
-//    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-//    BufferedImage tempImage = gc.createCompatibleImage(width, height);
-//    Graphics panelGraphics = tempImage.createGraphics();
-//
-//    // if this frame is minimized, reduce frame to enclose the title bar only
-//    if (isMinimized())
-//    {
-//      localHeight = TILLEBAR_SIZE+FRAME_SIZE*2;
-//    }
-//    
-//    // draw frame
-//    if (frame)
-//    {
-//      int colSteps = 255 / (FRAME_SIZE);
-//      for (int i = 0; i < FRAME_SIZE; i++)
-//      {
-//        int col = colSteps * i;
-//        panelGraphics.setColor(new Color(col,col,col));
-//        panelGraphics.drawRect(i, i,width-(i*2)-1,localHeight-(i*2)-1);
-//      }
-//      // update clipping to exclude the frame
-//      panelGraphics = panelGraphics.create(FRAME_SIZE,FRAME_SIZE,width-(FRAME_SIZE*2), localHeight-(FRAME_SIZE*2));
-//    }
-//      
-//    // draw title bar
-//    if (titleBar)
-//    {
-//      panelGraphics.drawLine(0,TILLEBAR_SIZE,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
-//      panelGraphics.drawLine(0,TILLEBAR_SIZE+1,width-(FRAME_SIZE*2), TILLEBAR_SIZE+1);
-//
-//      panelGraphics.setColor(Color.BLUE);
-//      panelGraphics.fillRect(0,0,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
-//
-//      panelGraphics.setColor(Color.WHITE);
-//      Font font = panelGraphics.getFont();
-//      panelGraphics.setFont(font.deriveFont(Font.BOLD, (float) TILLEBAR_FONT_SIZE));
-//      panelGraphics.drawString(name, 3,TILLEBAR_FONT_SIZE);
-//
-//      // update clipping
-//      panelGraphics = panelGraphics.create(0,TILLEBAR_SIZE+2, width-(FRAME_SIZE*2), height-(FRAME_SIZE*2)-TILLEBAR_SIZE-2);
-//    }
-//
-//    BufferedImage image = gc.createCompatibleImage(width, localHeight);
-//    image.createGraphics().drawImage(tempImage,0,0,null);
-//
-//    return image;
-//  }
-  
   /** creates the image background as an image */
   private BufferedImage recreatePanelImage(Graphics g)
   {
@@ -460,13 +459,11 @@ public class Panel implements Draggable
       for (int i = 0; i < FRAME_SIZE; i++)
       {
         int col = colSteps * i;
-//        panelGraphics.setColor(new Color(col,col,col, 255-col));
-//        panelGraphics.drawRect(i, i,width-(i*2)-1,localHeight-(i*2)-1);
-        panelGraphics.setColor(lightColor);
+        panelGraphics.setColor(frameEmbossed ? darkColor : lightColor);
         panelGraphics.drawLine(i, i, width-i-2, i);
         panelGraphics.drawLine(i, i, i, localHeight-i-2);
         
-        panelGraphics.setColor(darkColor);
+        panelGraphics.setColor(frameEmbossed ? lightColor : darkColor);
         panelGraphics.drawLine(width-i-1, i              , width-i-1, localHeight-i-1);
         panelGraphics.drawLine(      i  , localHeight-i-1, width-i-1, localHeight-i-1);
       }
@@ -477,14 +474,20 @@ public class Panel implements Draggable
     // draw title bar
     if (titleBar)
     {
-      panelGraphics.setColor(lightColor);
-      Rectangle rect = getMiminizeButton();
-      panelGraphics.fillRect(rect.x-FRAME_SIZE, rect.y-FRAME_SIZE, rect.width, rect.height);
+      if (isMinimizeable())
+      {
+        // minimize button
+        panelGraphics.setColor(lightColor);
+        Rectangle rect = getMiminizeButton();
+        panelGraphics.fillRect(rect.x-FRAME_SIZE, rect.y-FRAME_SIZE, rect.width, rect.height);
+      }
       
+      //  the dark line under the title bar
       panelGraphics.setColor(darkColor);
       panelGraphics.drawLine(0,TILLEBAR_SIZE,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
       panelGraphics.drawLine(0,TILLEBAR_SIZE+1,width-(FRAME_SIZE*2), TILLEBAR_SIZE+1);
       
+      // panels name
       panelGraphics.setColor(new Color(0.8f, 0.8f, 0.8f, 1.0f));
       Font font = panelGraphics.getFont();
       panelGraphics.setFont(font.deriveFont(Font.BOLD, (float) TILLEBAR_FONT_SIZE));
@@ -602,6 +605,10 @@ public class Panel implements Draggable
     if (hitTitle(x,y))
       return this;
 
+    // translate point to client coordinates
+    x -= getClientX();
+    y -= getClientY();
+
     // check all childs
     for (Panel panel : childs)
     {
@@ -641,6 +648,10 @@ public class Panel implements Draggable
       return true;
     }
 
+    // translate point to client coordinates
+    x -= getClientX();
+    y -= getClientY();
+
     // now ask each child
     for (Panel panel : childs)
     {
@@ -659,7 +670,7 @@ public class Panel implements Draggable
   /** returns the rectangle for the minimize button */
   private Rectangle getMiminizeButton()
   {
-    return new Rectangle(width-TILLEBAR_SIZE-FRAME_SIZE, FRAME_SIZE+1, TILLEBAR_SIZE-2,TILLEBAR_SIZE-2);
+    return new Rectangle(width-(TILLEBAR_SIZE*2)-FRAME_SIZE, FRAME_SIZE+1, TILLEBAR_SIZE-2,TILLEBAR_SIZE-2);
   }
   
   /** returns true when the point (x,y) is inside the minimize button */
@@ -669,8 +680,9 @@ public class Panel implements Draggable
   }
   
   
-  /** callback for a mouse click */
-  public void onMouseClick(Point p)
+  /** callback for a mouse click. returns true when the click has been 
+   * processed */
+  public boolean onMouseClick(Point p)
   {
     if (hitMinimizeButton(p.x,  p.y))
     {
@@ -679,16 +691,35 @@ public class Panel implements Draggable
       {
         // change minimized state
         setMinimized(!minimized);
-        return;
+        return true;
       }
     }
-    
-    
+
     if (Debug.CYCLE_PANEL_TEXTURES && hitTitle(p.x,  p.y))
     {
       texture = (texture + 1) % textureSprites.size();
       cachedImage = null;
     }
+    
+    // translate point to client coordinates
+    Point p2 = p.getLocation();
+    p2.translate(-getClientX(), -getClientY());
+
+    // be sure to inform all childs of the mouse click
+    for (Panel panel : childs)
+    {
+      // only if the point is inside the child
+      if (panel.isHit(p2.x,p2.y))
+      {
+        Point point = p2.getLocation();
+        point.translate(-panel.getX(), -panel.getY());
+        // click the child
+        if (panel.onMouseClick(point))
+          return true;
+      }
+    }
+    // click not processed
+    return false;
   }
   
   /** callback for a doubleclick */
