@@ -147,7 +147,7 @@ public class MessageBox extends Panel
     /** contructor */
     private ButtonCombination(ButtonEnum ... buttons)
     {
-      List buttonList = new ArrayList<ButtonEnum>();
+      List<ButtonEnum> buttonList = new ArrayList<ButtonEnum>();
       for (ButtonEnum button : buttons)
       {
         buttonList.add(button);
