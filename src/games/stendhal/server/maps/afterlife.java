@@ -10,8 +10,8 @@ public class afterlife
     {
     Portal portal=new Portal();
     zone.assignRPObjectID(portal);
-    portal.setx(13);
-    portal.sety(1);
+    portal.setx(30);
+    portal.sety(6);
     portal.setNumber(0);
     portal.setDestination("city",0);
     zone.add(portal);
@@ -19,12 +19,22 @@ public class afterlife
 
     portal=new Portal();
     zone.assignRPObjectID(portal);
-    portal.setx(14);
-    portal.sety(1);
+    portal.setx(31);
+    portal.sety(6);
     portal.setNumber(0);
     portal.setDestination("city",0);
     zone.add(portal);
     zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(32);
+    portal.sety(6);
+    portal.setNumber(0);
+    portal.setDestination("city",0);
+    zone.add(portal);
+    zone.addPortal(portal);
+
     
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
