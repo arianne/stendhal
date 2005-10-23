@@ -11,8 +11,6 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client;
-
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.wt.Frame;
 import games.stendhal.client.gui.wt.Minimap;
 import games.stendhal.common.CollisionDetection;
@@ -23,6 +21,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.LinkedList;
 import marauroa.common.Log4J;
+import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 /** This class stores the layers that make the floor and the buildings */
@@ -230,6 +229,7 @@ public class StaticGameLayers
           if (Debug.SHOW_TEST_CHARACTER_PANEL)
             {
             frame.addChild(new games.stendhal.client.gui.wt.Character(gameObjects));
+            //frame.addChild(new MessageBox("Alert", 150, 300, 200, "the world is going under and we're all gonna die."));
             }
           // register native event handler
           screen.getComponent().addMouseListener(frame);
@@ -243,25 +243,9 @@ public class StaticGameLayers
           minimap.moveTo(0,0);
           }
         
-        Entity player = null;
-        // find the player
-        for (Entity entity : gameObjects)
-          {
-          if (entity.getType().equals("player"))
-            {
-            player = entity;
-            break;
-            }
-          }
-
-        if (player != null)
-          {
-          minimap.setPlayerPos(player.getx(),player.gety());
-          }
-        else
-          {
-          minimap.setPlayerPos(0.0, 0.0);
-          }
+        RPObject player = StendhalClient.get().getPlayer();
+        minimap.setPlayerPos(player.getInt("x"),player.getInt("y"));
+        
         frame.draw(screen.expose());
         }
       }
