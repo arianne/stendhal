@@ -432,7 +432,7 @@ public class StendhalRPZone extends MarauroaRPZone
     return collisionMap.collides(area);
     }
     
-  public boolean collides(Entity entity, double x, double y) throws AttributeNotFoundException  
+  public synchronized boolean collides(Entity entity, double x, double y) throws AttributeNotFoundException
     {
     Rectangle2D area=entity.getArea(x,y);
     
@@ -452,13 +452,13 @@ public class StendhalRPZone extends MarauroaRPZone
             }
           }
         }
-              
+
       return false;
-      }   
+      }
     else
       {
       return true;
-      }    
+      }
     }
 
   private static byte[] getBytesFromFile(String file) throws IOException 
