@@ -70,8 +70,11 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
     while(it.hasNext() && left!=0)
       {
       RPSlot slot=(RPSlot)it.next();
-      for(RPObject object: slot)
+
+      Iterator<RPObject> object_it=slot.iterator();
+      while(object_it.hasNext())
         {
+        RPObject object=object_it.next();
         if(object instanceof Money)
           {
           int quantity=((Money)object).getQuantity();
@@ -79,6 +82,8 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
             {
             slot.remove(object.getID());
             left-=quantity;
+            
+            object_it=slot.iterator();
             }
           else
             {

@@ -1061,6 +1061,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           
           zone.assignRPObjectID(entity);
           zone.add(entity);
+          
+          // HACK: Avoid a problem on database 
+          if(entity.has("#db_id"))
+            {
+            entity.remove("#db_id");
+            }
 
           world.modify(baseEntity);
           }        

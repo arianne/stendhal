@@ -301,7 +301,7 @@ public class StendhalRPAction
       }
     else
       {
-      logger.warn("Unable to choose a new zone ("+zone.getWidth()+","+zone.getHeight()+")");
+      logger.warn("Unable to choose a new zone from ("+zoneid+":"+zone.getWidth()+","+zone.getHeight()+")");
       }
     }
 
