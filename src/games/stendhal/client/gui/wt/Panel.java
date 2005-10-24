@@ -30,6 +30,7 @@ import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
@@ -79,6 +80,8 @@ public class Panel implements Draggable
   private boolean minimizeable;
   /** true when the panel is minimized */
   private boolean minimized;
+  /** true when the panel is closeable */
+  private boolean closeable;
   /** x-position relative to its parent */
   private int x;
   /** y-position relative to its parent */
@@ -96,6 +99,10 @@ public class Panel implements Draggable
   private List<Panel> childs;
   /** the parent of this panel */
   private Panel parent;
+  /** List of registered CloseListener */
+  protected List<CloseListener> closeListeners;
+  /** List of registered ClickListener */
+  protected List<ClickListener> clickListeners;
   
   /** chaches the titlebar/frame image */
   private BufferedImage cachedImage;
@@ -126,8 +133,11 @@ public class Panel implements Draggable
     this.frame       = false;
     this.moveable    = false;
     this.resizeable  = false;
-    texture = 0;
-    textureSprites = new ArrayList<Sprite>();
+    this.closeable   = true;
+    this.texture = 0;
+    this.textureSprites = new ArrayList<Sprite>();
+    this.closeListeners = new ArrayList<CloseListener>();
+    this.clickListeners = new ArrayList<ClickListener>();
 
     // get texture sprite
     SpriteStore st = SpriteStore.get();
@@ -143,6 +153,39 @@ public class Panel implements Draggable
       textureSprites.add(st.getSprite("data/panelmetal003.gif"));
     }
   }
+  
+  /** 
+   * Adds a CloseListener to this panel. All registered closelistener are
+   * notified before the panel is closed
+   */
+  public void registerCloseListener(CloseListener listener)
+  {
+    closeListeners.add(listener);
+  }
+  
+  /** removes a (registered) closelistener */
+  public void removeCloseListener(CloseListener listener)
+  {
+    closeListeners.remove(listener);
+  }
+  
+  /** 
+   * Adds a ClickListener to this panel. All registered ClickListener are
+   * notified when user clicks on the panel.
+   * Note that not all panels must support/notify this type listener.
+   * The default panel for example ignores all click events.
+   */
+  public void registerClickListener(ClickListener listener)
+  {
+    clickListeners.add(listener);
+  }
+  
+  /** removes a (registered) ClickListener */
+  public void removeClickListener(ClickListener listener)
+  {
+    clickListeners.remove(listener);
+  }
+  
 
   /** returns x-position of the panel (relative to its parent) */
   public int getX()
@@ -352,6 +395,18 @@ public class Panel implements Draggable
     cachedImage = null;
   }
   
+  /** returns wether the panel is closeable */
+  public boolean isCloseable()
+  {
+    return closeable;
+  }
+
+  /** enables/disables closing the panel. Note: the panel must have a
+   * title bar */
+  public void setCloseable(boolean minimizeable)
+  {
+    this.closeable = closeable;
+  }
   
   /** returns the parent of the panel */
   public Panel getParent()
@@ -384,6 +439,38 @@ public class Panel implements Draggable
     {
       // be sure to remove ourself from the other panel
       panel.parent = null;
+    }
+  }
+  
+  /** closes this panel and all sub-panels. */
+  public void close()
+  {
+    // tell all childs to close
+    for (Iterator<Panel> childIt = childs.iterator(); childIt.hasNext(); )
+    {
+      Panel child = childIt.next();
+      child.parent = null;
+      child.close();
+      childIt.remove();
+    }
+    // remove ourself from the parent
+    if (parent != null)
+    {
+      parent.removeChild(this);
+    }
+    // now tell all listeners we're closed
+    for (CloseListener listener : closeListeners)
+    {
+      listener.onClose(name);
+    }
+  }
+  
+  /** notifies all registered clicklisteners that this panel has been clicked */
+  protected void notifyClickListeners(String name)
+  {
+    for (ClickListener listener : clickListeners)
+    {
+      listener.onClick(name);
     }
   }
 
@@ -480,8 +567,27 @@ public class Panel implements Draggable
         panelGraphics.setColor(lightColor);
         Rectangle rect = getMiminizeButton();
         panelGraphics.fillRect(rect.x-FRAME_SIZE, rect.y-FRAME_SIZE, rect.width, rect.height);
+        
+        panelGraphics.setColor(Color.BLACK);
+        panelGraphics.fillRect(rect.x-FRAME_SIZE+1, rect.y-FRAME_SIZE+rect.height-3, rect.width-2, 2);
       }
       
+      if (isCloseable())
+      {
+        // minimize button
+        panelGraphics.setColor(lightColor);
+        Rectangle rect = getCloseButton();
+        panelGraphics.fillRect(rect.x-FRAME_SIZE, rect.y-FRAME_SIZE, rect.width, rect.height);
+        
+        panelGraphics.setColor(Color.BLACK);
+        panelGraphics.drawLine(rect.x-FRAME_SIZE+1, rect.y-FRAME_SIZE+1, rect.x-FRAME_SIZE+rect.width-2, rect.y-FRAME_SIZE+rect.height-2);
+        panelGraphics.drawLine(rect.x-FRAME_SIZE+2, rect.y-FRAME_SIZE+1, rect.x-FRAME_SIZE+rect.width-2, rect.y-FRAME_SIZE+rect.height-3);
+        panelGraphics.drawLine(rect.x-FRAME_SIZE+1, rect.y-FRAME_SIZE+2, rect.x-FRAME_SIZE+rect.width-3, rect.y-FRAME_SIZE+rect.height-2);
+        panelGraphics.drawLine(rect.x-FRAME_SIZE+rect.width-2  , rect.y-FRAME_SIZE+1  , rect.x-FRAME_SIZE+1  , rect.y-FRAME_SIZE+rect.height-2  );
+        panelGraphics.drawLine(rect.x-FRAME_SIZE+rect.width-2-1, rect.y-FRAME_SIZE+1  , rect.x-FRAME_SIZE+1  , rect.y-FRAME_SIZE+rect.height-2-1);
+        panelGraphics.drawLine(rect.x-FRAME_SIZE+rect.width-2  , rect.y-FRAME_SIZE+1+1, rect.x-FRAME_SIZE+1+1, rect.y-FRAME_SIZE+rect.height-2  );
+      }
+
       //  the dark line under the title bar
       panelGraphics.setColor(darkColor);
       panelGraphics.drawLine(0,TILLEBAR_SIZE,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
@@ -679,20 +785,36 @@ public class Panel implements Draggable
     return getMiminizeButton().contains(x,y);
   }
   
+  /** returns the rectangle for the close button */
+  private Rectangle getCloseButton()
+  {
+    return new Rectangle(width-TILLEBAR_SIZE-FRAME_SIZE, FRAME_SIZE+1, TILLEBAR_SIZE-2,TILLEBAR_SIZE-2);
+  }
+  
+  /** returns true when the point (x,y) is inside the close button */
+  private boolean hitCloseButton(int x, int y)
+  {
+    return getCloseButton().contains(x,y);
+  }
   
   /** callback for a mouse click. returns true when the click has been 
    * processed */
   public boolean onMouseClick(Point p)
   {
-    if (hitMinimizeButton(p.x,  p.y))
+    // check if the minimize button has been clicked
+    if (titleBar && minimizeable && hitMinimizeButton(p.x,  p.y))
     {
-      // is have a have a title bar and are minimizeable
-      if (titleBar && minimizeable)
-      {
-        // change minimized state
-        setMinimized(!minimized);
-        return true;
-      }
+      // change minimized state
+      setMinimized(!isMinimized());
+      return true;
+    }
+    
+    // check if the close button has been clicked
+    if (titleBar && closeable && hitCloseButton(p.x,  p.y))
+    {
+      // close the window
+      close();
+      return true;
     }
 
     if (Debug.CYCLE_PANEL_TEXTURES && hitTitle(p.x,  p.y))
@@ -746,4 +868,11 @@ public class Panel implements Draggable
     return moveTo(dragPosition.x+p.x, dragPosition.y+p.y);
   }
 
+  
+  
+  /** toString */
+  public String toString()
+  {
+    return super.toString()+": "+name+" at "+x+"x"+y+" size:"+width+"x"+height;
+  }
 }

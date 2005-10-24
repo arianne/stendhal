@@ -28,7 +28,7 @@ import java.util.List;
  *
  * @author matthias
  */
-public class MessageBox extends Panel
+public class MessageBox extends Panel implements ClickListener, CloseListener
 {
   /** the max height of the panel */
   private static final int MAX_HEIGHT = 100;
@@ -39,6 +39,8 @@ public class MessageBox extends Panel
   private TextPanel textPanel;
   /** the button */
   private List<Button> buttons;
+  /** name of the button clicked when the window is closed */
+  private String closeButtonName;
   
   /** false when the messagebox still has to layout the buttons */
   private boolean layedout;
@@ -48,14 +50,17 @@ public class MessageBox extends Panel
   {
     super(name, x, y, width, MAX_HEIGHT);
     
-    textPanel = new TextPanel("messagebox", 5,0, width-20, MAX_HEIGHT, message);
+    textPanel = new TextPanel("messageboxtext", 5,0, width-20, MAX_HEIGHT, message);
     addChild(textPanel);
     
     buttons = new ArrayList<Button>();
-    for (ButtonEnum button : buttonCombination.getButtons())
+    for (ButtonEnum buttonEnum : buttonCombination.getButtons())
     {
-      buttons.add(button.getButton());
+      Button button = buttonEnum.getButton();
+      button.registerClickListener(this);
+      buttons.add(button);
     }
+    this.closeButtonName = buttonCombination.getCloseButton().getName();
 
     int fullWidth = (buttons.size()-1) * BUTTON_SPACING;
     for (Button button : buttons)
@@ -71,12 +76,12 @@ public class MessageBox extends Panel
       button.moveTo(xpos, 0);
       xpos += button.getWidth()+BUTTON_SPACING;
     }
-    
-
 
     setMinimizeable(false);
     setFrame(true);
     setTitleBar(true);
+    // we're watching ourself
+    registerCloseListener(this);
   }
   
   /** draws the String */
@@ -97,6 +102,20 @@ public class MessageBox extends Panel
     }
 
     return clientArea;
+  }
+
+  /** clicked a button */
+  public void onClick(String name)
+  {
+    // tell our listeners that a button has been clicked
+    notifyClickListeners(name);
+  }
+
+  /** closed the window */
+  public void onClose(String name)
+  {
+    // pseudoclicked the close button
+    onClick(closeButtonName);
   }
   
   /** some default buttons */
@@ -136,18 +155,22 @@ public class MessageBox extends Panel
   /** some button combinations */
   public enum ButtonCombination
   {
-    OK           (ButtonEnum.OK),
-    YES_NO       (ButtonEnum.YES, ButtonEnum.NO),
-    YES_NO_CANCEL(ButtonEnum.YES, ButtonEnum.NO, ButtonEnum.CANCEL),
-    OK_CANCEL    (ButtonEnum.OK, ButtonEnum.CANCEL),
-    QUIT_CANCEL  (ButtonEnum.QUIT, ButtonEnum.CANCEL);
+    OK           (ButtonEnum.OK     , ButtonEnum.OK),
+    YES_NO       (ButtonEnum.NO     , ButtonEnum.YES, ButtonEnum.NO),
+    YES_NO_CANCEL(ButtonEnum.CANCEL , ButtonEnum.YES, ButtonEnum.NO, ButtonEnum.CANCEL),
+    OK_CANCEL    (ButtonEnum.CANCEL , ButtonEnum.OK, ButtonEnum.CANCEL),
+    QUIT_CANCEL  (ButtonEnum.CANCEL , ButtonEnum.QUIT, ButtonEnum.CANCEL);
     
+    /** list of buttons for this combination*/
     private List<ButtonEnum> buttons;
+    /** default button when the window is closed */
+    private ButtonEnum closeButton;
     
     /** contructor */
-    private ButtonCombination(ButtonEnum ... buttons)
+    private ButtonCombination(ButtonEnum closeButton, ButtonEnum ... buttons)
     {
       List<ButtonEnum> buttonList = new ArrayList<ButtonEnum>();
+      this.closeButton = closeButton;
       for (ButtonEnum button : buttons)
       {
         buttonList.add(button);
@@ -159,6 +182,12 @@ public class MessageBox extends Panel
     public List<ButtonEnum> getButtons()
     {
       return buttons;
+    }
+    
+    /** returns a list with the buttons */
+    public ButtonEnum getCloseButton()
+    {
+      return closeButton;
     }
     
   }

@@ -21,6 +21,8 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.Sprite;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple button. It features a onClick() callback.
@@ -38,16 +40,12 @@ public class Button extends Panel
   /** image for the button */
   private Sprite image;
   
-  /** */
-  private Point dragPosition;
   
   /** Creates a new Button with text */
   public Button(String name, int width, int height, String text)
   {
     super(name, 0, 0, width, height);
-    setMinimizeable(false);
-    setTitleBar(false);
-    setFrame(true);
+    initialize();
     int clientHeight = (getClientHeight()-TextPanel.DEFAULT_FONT_SIZE)/2;
     TextPanel textPanel = new TextPanel(name+"text", 2,clientHeight, width, height, text);
     addChild(textPanel);
@@ -57,10 +55,17 @@ public class Button extends Panel
   public Button(String name, int width, int height, Sprite image)
   {
     super(name, 0, 0, width, height);
+    initialize();
     this.image = image;
+  }
+  
+  /** some initialisations */
+  private void initialize()
+  {
     setMinimizeable(false);
     setTitleBar(false);
     setFrame(true);
+    
   }
   
   
@@ -78,9 +83,12 @@ public class Button extends Panel
     return clientArea;
   }
 
+  /** button is clicked */
   public boolean onMouseClick(Point p)
   {
     setEmboss(!isEmbossed());
+    // tell all registered listeners that we're clicked
+    notifyClickListeners(getName());
     return true;
   }
   
