@@ -69,7 +69,9 @@ Changelog
 - Fixed weapon seller bug when money==item price
 - Fixed problem with player stats not being stored
 - Fixed version number mismatch
+- Fixed a bug on Items being dropped and not allowing player that equip them to logout correctly.
 - Fixed bug on where command player is not logged
+- Fixed the same bug that items in sheeps.
 
 0.39 Oct 23, 2005
 - Fixed ghost sheep bug

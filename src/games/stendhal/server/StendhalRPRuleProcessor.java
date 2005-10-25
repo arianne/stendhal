@@ -363,6 +363,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       sheep.setOwner(null);
       addNPC(sheep);
       
+      // HACK: Avoid a problem on database 
+      if(sheep.has("#db_id"))
+        {
+        sheep.remove("#db_id");
+        }
+
       world.modify(player);
       return;
       }
