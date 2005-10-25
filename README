@@ -69,6 +69,7 @@ Changelog
 - Fixed weapon seller bug when money==item price
 - Fixed problem with player stats not being stored
 - Fixed version number mismatch
+- Fixed bug on where command player is not logged
 
 0.39 Oct 23, 2005
 - Fixed ghost sheep bug
