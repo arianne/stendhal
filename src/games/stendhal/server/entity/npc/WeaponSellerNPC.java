@@ -215,16 +215,16 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
   private enum SellableItem
   {
           
-    CLUB  (10 ,3  ,DefaultItem.CLUB.getItem()),
-    ARMOR (50 ,15 ,DefaultItem.ARMOR.getItem()),
-    SHIELD(100,30 ,DefaultItem.SHIELD.getItem()),
-    SWORD (200,60 ,DefaultItem.SWORD.getItem());
+    CLUB  (10 ,3  ,DefaultItem.CLUB),
+    ARMOR (50 ,15 ,DefaultItem.ARMOR),
+    SHIELD(100,30 ,DefaultItem.SHIELD),
+    SWORD (200,60 ,DefaultItem.SWORD);
     
     private int sellPrice;
     private int buyPrice;
-    private Item item;
+    private DefaultItem item;
     
-    private SellableItem(int sellPrice, int buyPrice, Item item)
+    private SellableItem(int sellPrice, int buyPrice, DefaultItem item)
     {
       this.sellPrice = sellPrice;
       this.buyPrice = buyPrice;
@@ -243,7 +243,7 @@ public abstract class WeaponSellerNPC extends SpeakerNPC
 
     public Item getItem()
     {
-      return item;
+      return item.getItem();
     }
   }
   }

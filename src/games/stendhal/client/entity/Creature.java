@@ -277,6 +277,11 @@ public abstract class Creature extends NPC
     }
   }
   
+  public String defaultAction()
+    {
+    return "Attack";
+    }
+
   public String[] offeredActions()
     {
     String[] superList = super.offeredActions();

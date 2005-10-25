@@ -72,6 +72,10 @@ Changelog
 - Fixed a bug on Items being dropped and not allowing player that equip them to logout correctly.
 - Fixed bug on where command player is not logged
 - Fixed the same bug that items in sheeps.
+- Fixed a bug at WeaponSellerNPC
+- Fixed item duplication bug
+- Double click on corpses inspect them
+- Double click on creature attack them
 
 0.39 Oct 23, 2005
 - Fixed ghost sheep bug
