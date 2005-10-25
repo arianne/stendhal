@@ -554,6 +554,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           }
           
         player.setPrivateText(action.get("target") + " is not currently logged.");
+        playersObjectRmText.add(player);
         }
       }
     finally
