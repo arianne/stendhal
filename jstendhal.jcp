@@ -93,10 +93,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>stendhal-0.39.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>stendhal-server-0.39.zip</path>
 				<source>true</source>
 			</fileitem>
@@ -282,6 +278,14 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\Character.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\ClickListener.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\CloseListener.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
