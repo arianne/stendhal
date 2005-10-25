@@ -53,7 +53,7 @@ public class Corpse extends PassiveEntity
     
   public String defaultAction()
     {
-    return "Look";
+    return "Inspect";
     }
 
   public String[] offeredActions()

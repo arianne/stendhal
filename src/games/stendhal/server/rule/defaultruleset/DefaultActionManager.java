@@ -94,7 +94,7 @@ public class DefaultActionManager implements ActionManager
 //    }
     
     RPSlot slot = entity.getSlot(slotName);
-    
+    slot.assignValidID(item);
     slot.add(item);
     return true;
   }

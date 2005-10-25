@@ -135,7 +135,7 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(changes.has("xp") && object.has("xp"))
       {
-      if((changes.getInt("xp") - object.getInt("xp"))>0)
+      if(((changes.getInt("xp") - object.getInt("xp"))>0) &&  distance(client.getPlayer())<15*15)
         {
         damageSprites.add(GameScreen.get().createString("+"+Integer.toString(changes.getInt("xp") - object.getInt("xp")),Color.cyan));
         damageSpritesTimes.add(new Long(System.currentTimeMillis()));
@@ -146,7 +146,7 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(changes.has("level") && object.has("level"))
       {
-      if(stendhal.SHOW_EVERYONE_XP_INFO || getID().equals(client.getPlayer().getID()))
+      if(getID().equals(client.getPlayer().getID()) || distance(client.getPlayer())<15*15)
         {
         String text=getName()+" reachs Level "+ getLevel();
         
