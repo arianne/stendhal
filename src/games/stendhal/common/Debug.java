@@ -16,6 +16,9 @@ package games.stendhal.common;
  */
 public class Debug
 {
+  /** if this is enable tileset are loaded on demand. */
+  public static final boolean VERY_FAST_CLIENT_START = false;
+
   /** should the minimap be drawn? Note: This slows down performance */
   public static final boolean DRAW_MINIMAP = true;
 

@@ -125,16 +125,16 @@ public class TileRenderer
 
 
     // Double daisy
-    addAnimatedTile(124,new int[]{124,154,184,214});
-    addAnimatedTile(154,new int[]{154,184,214,124});
-    addAnimatedTile(184,new int[]{184,214,124,154});
-    addAnimatedTile(214,new int[]{214,124,154,184});
+    addAnimatedTile(124,new int[]{124,154,184,214,214,214,214,214,214,214,214,214});
+    addAnimatedTile(154,new int[]{154,184,214,124,124,124,124,124,124,124,124,124});
+    addAnimatedTile(184,new int[]{184,214,124,154,154,154,154,154,154,154,154,154});
+    addAnimatedTile(214,new int[]{214,124,154,184,184,184,184,184,184,184,184,184});
 
     // Single daisy
-    addAnimatedTile(125,new int[]{125,155,185,215});
-    addAnimatedTile(155,new int[]{155,185,215,125});
-    addAnimatedTile(185,new int[]{185,215,125,155});
-    addAnimatedTile(215,new int[]{215,125,155,185});
+    addAnimatedTile(125,new int[]{125,155,185,215,215,215,215,215,215,215,215,215});
+    addAnimatedTile(155,new int[]{155,185,215,125,125,125,125,125,125,125,125,125});
+    addAnimatedTile(185,new int[]{185,215,125,155,155,155,155,155,155,155,155,155});
+    addAnimatedTile(215,new int[]{215,125,155,185,185,185,185,185,185,185,185,185});
 
     // Waterfall start
     addAnimatedTile(145,new int[]{145,175,205,235});

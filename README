@@ -76,6 +76,7 @@ Changelog
 - Fixed item duplication bug
 - Double click on corpses inspect them
 - Double click on creature attack them
+- Speed up client initialization
 
 0.39 Oct 23, 2005
 - Fixed ghost sheep bug

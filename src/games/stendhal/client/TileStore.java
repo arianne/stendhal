@@ -117,35 +117,40 @@ public class TileStore extends SpriteStore
   
   public void add(String ref, int amount)    
     {
-    int base=tileset.size();
-    
+    int base=tileset.size();    
     tileset.setSize(tileset.size()+amount);
-    rangesTiles.add(new RangeFilename(base,amount,ref));
-//    
-//    SpriteStore sprites;
-//    sprites=get();
-//    Sprite tiles=sprites.getSprite(ref);
-//    
-//    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-//    
-//    for(int j=0;j<tiles.getHeight()/TILE_HEIGHT;j++)
-//      {      
-//      for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
-//        {
-//        Image image = gc.createCompatibleImage(TILE_WIDTH,TILE_HEIGHT, Transparency.BITMASK);
-//        tiles.draw(image.getGraphics(),0,0,i*TILE_WIDTH,j*TILE_HEIGHT);
-//        
-//        // create a sprite, add it the cache then return it
-//        tileset.set(base+i+j*tiles.getWidth()/TILE_WIDTH,new Sprite(image));
-//        }
-//      }
+    
+    if(Debug.VERY_FAST_CLIENT_START)
+      {
+      rangesTiles.add(new RangeFilename(base,amount,ref));
+      }
+    else
+      {
+      SpriteStore sprites;
+      sprites=get();
+      Sprite tiles=sprites.getSprite(ref);
+      
+      GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+      
+      for(int j=0;j<tiles.getHeight()/TILE_HEIGHT;j++)
+        {      
+        for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
+          {
+          Image image = gc.createCompatibleImage(TILE_WIDTH,TILE_HEIGHT, Transparency.BITMASK);
+          tiles.draw(image.getGraphics(),0,0,i*TILE_WIDTH,j*TILE_HEIGHT);
+          
+          // create a sprite, add it the cache then return it
+          tileset.set(base+i+j*tiles.getWidth()/TILE_WIDTH,new Sprite(image));
+          }
+        }
+      }    
     }
 
   public Sprite getTile(int i) 
     {
     Sprite sprite=tileset.get(i);
 
-    if(sprite==null)
+    if(Debug.VERY_FAST_CLIENT_START && sprite==null)
       {
       for(RangeFilename range: rangesTiles)
         {
