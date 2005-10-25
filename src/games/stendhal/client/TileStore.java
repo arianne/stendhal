@@ -12,18 +12,88 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.awt.*;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
+import java.awt.Transparency;
+import java.awt.Color;
+import java.awt.Image;
 import java.io.*;
 import java.util.*;
 import marauroa.common.*;
+import games.stendhal.common.*;
 
 
 /** It is class to get tiles from the tileset */
 public class TileStore extends SpriteStore
   {
+  private class RangeFilename
+    {
+    int base;
+    int amount;
+    String filename;
+    boolean loaded;
+    
+    RangeFilename(int base, int amount, String filename)
+      {
+      this.base=base;
+      this.amount=amount;
+      this.filename=filename;
+      this.loaded=false;
+      }
+    
+    boolean isInRange(int i)
+      {
+      if(i>=base && i<base+amount)
+        {
+        return true;
+        }
+      
+      return false;
+      }
+    
+    String getFilename()
+      {
+      return filename;
+      }
+    
+    public boolean isloaded()
+      {
+      return loaded;
+      }
+    
+    public String toString()
+      {
+      return filename+"["+base+","+(base+amount)+"]";
+      }
+    
+    public void load()
+      {
+      SpriteStore sprites;
+      sprites=get();
+      Sprite tiles=sprites.getSprite(filename);
+      
+      GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+      
+      for(int j=0;j<tiles.getHeight()/TILE_HEIGHT;j++)
+        {      
+        for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
+          {
+          Image image = gc.createCompatibleImage(TILE_WIDTH,TILE_HEIGHT, Transparency.BITMASK);
+          tiles.draw(image.getGraphics(),0,0,i*TILE_WIDTH,j*TILE_HEIGHT);
+          
+          // create a sprite, add it the cache then return it
+          tileset.set(base+i+j*tiles.getWidth()/TILE_WIDTH,new Sprite(image));
+          }
+        }
+      
+      loaded=true;
+      }    
+    }
+    
   private static final int TILE_WIDTH=32;
   private static final int TILE_HEIGHT=32;
   
+  private List<RangeFilename> rangesTiles;
   private Vector<Sprite> tileset;
   
   private static TileStore singleton;
@@ -42,31 +112,54 @@ public class TileStore extends SpriteStore
     {
     super();
     tileset=new Vector<Sprite>();
+    rangesTiles=new LinkedList<RangeFilename>();
     }
   
-  public void add(String ref)
+  public void add(String ref, int amount)    
     {
-    SpriteStore sprites;
-    sprites=get();
-    Sprite tiles=sprites.getSprite(ref);
+    int base=tileset.size();
     
-    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-    
-    for(int j=0;j<tiles.getHeight()/TILE_HEIGHT;j++)
-      {      
-      for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
-        {
-        Image image = gc.createCompatibleImage(TILE_WIDTH,TILE_HEIGHT, Transparency.BITMASK);
-        tiles.draw(image.getGraphics(),0,0,i*TILE_WIDTH,j*TILE_HEIGHT);
-        
-        // create a sprite, add it the cache then return it
-        tileset.add(new Sprite(image));
-        }
-      }
+    tileset.setSize(tileset.size()+amount);
+    rangesTiles.add(new RangeFilename(base,amount,ref));
+//    
+//    SpriteStore sprites;
+//    sprites=get();
+//    Sprite tiles=sprites.getSprite(ref);
+//    
+//    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+//    
+//    for(int j=0;j<tiles.getHeight()/TILE_HEIGHT;j++)
+//      {      
+//      for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
+//        {
+//        Image image = gc.createCompatibleImage(TILE_WIDTH,TILE_HEIGHT, Transparency.BITMASK);
+//        tiles.draw(image.getGraphics(),0,0,i*TILE_WIDTH,j*TILE_HEIGHT);
+//        
+//        // create a sprite, add it the cache then return it
+//        tileset.set(base+i+j*tiles.getWidth()/TILE_WIDTH,new Sprite(image));
+//        }
+//      }
     }
 
   public Sprite getTile(int i) 
     {
-    return tileset.get(i);
+    Sprite sprite=tileset.get(i);
+
+    if(sprite==null)
+      {
+      for(RangeFilename range: rangesTiles)
+        {
+        if(range.isInRange(i) && !range.isloaded())
+          {
+          StendhalClient.get().addEventLine("Loading tileset "+range.getFilename(),Color.pink);
+          range.load();
+          
+          sprite=tileset.get(i);
+          break;
+          }
+        }
+      }
+    
+    return sprite;
     }
   }
