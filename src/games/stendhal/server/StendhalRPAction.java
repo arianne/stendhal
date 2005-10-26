@@ -62,16 +62,21 @@ public class StendhalRPAction
 
       if(source.nextto(target,1))
         {
+        boolean criticalSuccess=false;
+        boolean criticalFailure=false;
+        
         int roll=Rand.roll1D20();
         int risk=0;
         
         if(roll>18) // Critical success
           {
           risk=1;
+          criticalSuccess=true;
           }
         else if(roll<2) // Critical failure
           {
           risk=0;
+          criticalFailure=true;
           }
         else
           {
@@ -83,7 +88,7 @@ public class StendhalRPAction
 
         int damage=0;
         
-        if (!(target instanceof SpeakerNPC))
+        if ((target instanceof SpeakerNPC)==false)
           {
           // disabled attack xp for attacking NPC's
           source.incATKXP();
@@ -97,26 +102,32 @@ public class StendhalRPAction
           int shield=0;
           int armor=0;
           
-          if(source.hasWeapon())
+          if(!criticalFailure)
             {
-            weapon=source.getWeapon().getAttack();
-            }
-
-          for(int i=0;i<source.getATK()+weapon;i++)
-            {
-            damage+=Rand.roll1D6();
-            }
-            
-          if(target.hasShield())
-            {
-            shield=target.getShield().getDefense();
-            }
-
-          if(target.hasArmor())
-            {
-            armor=target.getArmor().getDefense();
+            if(source.hasWeapon())
+              {
+              weapon=source.getWeapon().getAttack();
+              }
+  
+            for(int i=0;i<source.getATK()+weapon;i++)
+              {
+              damage+=Rand.roll1D6();
+              }
             }
           
+          if(!criticalSuccess)  
+            {
+            if(target.hasShield())
+              {
+              shield=target.getShield().getDefense();
+              }
+  
+            if(target.hasArmor())
+              {
+              armor=target.getArmor().getDefense();
+              }
+            }
+            
           for(int i=0;i<target.getDEF()+shield+armor*2;i++)
             {
             damage-=Rand.roll1D6();

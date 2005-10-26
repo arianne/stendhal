@@ -186,6 +186,10 @@ public class j2DClient extends JFrame
     GameObjects gameObjects=client.getGameObjects();
 
     long oldTime=System.nanoTime();
+    
+    // Clear the first screen with black color
+    screen.expose().setColor(Color.black);
+    screen.expose().fill(new Rectangle(0,0,640,480));
 
     screen.place(-100,-100);
     RenderingPipeline pipeline=RenderingPipeline.get();

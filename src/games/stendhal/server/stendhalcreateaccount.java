@@ -23,8 +23,7 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
   {
   public static void main (String[] args)
     {
-//    args = new String[] {"-u","root","-p","12345","-c","meier","-e","test@test.de"};
-    Log4J.init();
+    Log4J.init("games/stendhal/stendhalcreateaccount.properties");
     Entity.generateRPClass();
     RPEntity.generateRPClass();
     Player.generateRPClass();
@@ -46,12 +45,11 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
     object.put("outfit",0);
     object.put("base_hp",100);
     object.put("hp",100);
-    object.put("atk",0);
-    object.put("atk_xp",0);
-    object.put("def",0);
-    object.put("def_xp",0);
+    object.put("atk",2);
+    object.put("atk_xp",100);
+    object.put("def",2);
+    object.put("def_xp",100);
     object.put("xp",0);
-//    object.put("devel",6);
     
     return object;
     }

@@ -509,7 +509,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         return;
         }
       }
-
+      
     // check if someone clicked the 'quit' or 'cancel' button
     for(wtButton button: buttons)    
       {
