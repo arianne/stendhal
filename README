@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.40
+Version 0.39.1
 
 
 How to play
@@ -62,7 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.40 Nov XX, 2005
+0.39.1 Oct 26, 2005
 - Fixed chat bug
 - Fixed inspected slot and sync problem
 - Fixed afterlife problem
@@ -78,6 +78,9 @@ Changelog
 - Double click on creature attack them
 - Speed up client initialization
 - Daisy animations is more calm
+- Fixed stendhalaccountcreation that wasn't working at all
+- Added critical hit/critical failure
+
 
 0.39 Oct 23, 2005
 - Fixed ghost sheep bug

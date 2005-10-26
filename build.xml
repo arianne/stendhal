@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <project name="stendhal" default="compile" basedir=".">
-  <property name="version" value="0.39"/>
+  <property name="version" value="0.39.1"/>
   <property name="src" value="src"/>
   <property name="maps" value="maps"/>
   <property name="data" value="data"/>
@@ -41,8 +41,8 @@
     <mkdir dir="${build}"/>
 
     <replaceregexp file="${src}/games/stendhal/client/stendhal.java"
-                   match="final public static String VERSION=&quot;.*&quot;;"
-                   replace="final public static String VERSION=&quot;${version}&quot;;"
+                   match="public static final String VERSION=&quot;.*&quot;;"
+                   replace="public static final String VERSION=&quot;${version}&quot;;"
                    byline="true"/>
                    
     <copy todir="${build}/sprites">
@@ -81,7 +81,7 @@
            version="true"
            use="true"
            classpath="${classpath}"
-           windowtitle="Marauroa API Documentation Version: ${version}">
+           windowtitle="Stendhal API Documentation Version: ${version}">
       <fileset dir="${src}">
           <include name="**/*.java"/>
       </fileset>
@@ -95,6 +95,9 @@
     <copy todir="${build}/games/stendhal/server/maps">
       <fileset dir="${maps}"/>
     </copy>
+
+    <copy todir="${build}/game/stendhal/" file="${src}/game/stendhal/log4j.properties"/>
+    <copy todir="${build}/game/stendhal/" file="${src}/game/stendhal/stendhalcreateaccount.properties"/>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
            includes="games/stendhal/server/**, games/stendhal/common/**" excludes="games/stendhal/client/**">
@@ -130,6 +133,8 @@
         <exclude name="panelwood119.jpg"/>
       </fileset>
     </copy>
+
+    <copy todir="${build}/game/stendhal/" file="${src}/game/stendhal/log4j.properties"/>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
            includes="games/stendhal/client/**, games/stendhal/common/**" excludes="games/stendhal/server/**">
