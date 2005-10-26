@@ -10,6 +10,7 @@ package games.stendhal.client;
 import java.awt.Color;
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
+import org.apache.log4j.spi.ThrowableInformation;
 
 /**
  * Log4J appender which logs to the game console
@@ -21,11 +22,16 @@ public class GameConsoleAppender extends AppenderSkeleton
   {
     StringBuilder buf = new StringBuilder();
     buf.append(getLayout().format(loggingEvent));
-    String cause[] = loggingEvent.getThrowableInformation().getThrowableStrRep();
+    ThrowableInformation ti = loggingEvent.getThrowableInformation();
     
-    for (String line : cause)
+    if (ti != null)
     {
-      buf.append(line).append('\n');
+      String cause[] = ti.getThrowableStrRep();
+
+      for (String line : cause)
+      {
+        buf.append(line).append('\n');
+      }
     }
     
     StendhalClient.get().addEventLine(buf.toString(),Color.GRAY);
