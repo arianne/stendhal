@@ -96,8 +96,8 @@
       <fileset dir="${maps}"/>
     </copy>
 
-    <copy todir="${build}/game/stendhal/" file="${src}/game/stendhal/log4j.properties"/>
-    <copy todir="${build}/game/stendhal/" file="${src}/game/stendhal/stendhalcreateaccount.properties"/>
+    <copy todir="${build}/games/stendhal/" file="${src}/games/stendhal/log4j.properties"/>
+    <copy todir="${build}/games/stendhal/" file="${src}/games/stendhal/stendhalcreateaccount.properties"/>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
            includes="games/stendhal/server/**, games/stendhal/common/**" excludes="games/stendhal/client/**">
@@ -134,7 +134,7 @@
       </fileset>
     </copy>
 
-    <copy todir="${build}/game/stendhal/" file="${src}/game/stendhal/log4j.properties"/>
+    <copy todir="${build}/games/stendhal/" file="${src}/games/stendhal/log4j.properties"/>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
            includes="games/stendhal/client/**, games/stendhal/common/**" excludes="games/stendhal/server/**">
