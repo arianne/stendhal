@@ -31,6 +31,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
@@ -95,8 +96,8 @@ public class Panel implements Draggable
   /** name of the panel */
   private String name;
   
-  /** all childs of this panel. TODO: sort this by z-order */
-  private List<Panel> childs;
+  /** all childs of this panel. */
+  private LinkedList<Panel> childs;
   /** the parent of this panel */
   private Panel parent;
   /** List of registered CloseListener */
@@ -106,6 +107,9 @@ public class Panel implements Draggable
   
   /** chaches the titlebar/frame image */
   private BufferedImage cachedImage;
+  /** true when the window is closed already */
+  private boolean closed;
+
 
   
   /////////////////
@@ -128,12 +132,13 @@ public class Panel implements Draggable
     this.y           = y;
     this.width       = width;
     this.height      = height;
-    this.childs      = new ArrayList<Panel>();
+    this.childs      = new LinkedList<Panel>();
     this.titleBar    = false;
     this.frame       = false;
     this.moveable    = false;
     this.resizeable  = false;
     this.closeable   = true;
+    this.closed    = false;
     this.texture = 0;
     this.textureSprites = new ArrayList<Sprite>();
     this.closeListeners = new ArrayList<CloseListener>();
@@ -160,12 +165,22 @@ public class Panel implements Draggable
    */
   public void registerCloseListener(CloseListener listener)
   {
+    // window is closed anyway. No more closelisteners
+    // Note: this is necessary to avoid ConcurrentModificationExceptions
+    if (isClosed())
+      return;
+
     closeListeners.add(listener);
   }
   
   /** removes a (registered) closelistener */
   public void removeCloseListener(CloseListener listener)
   {
+    // window is closed anyway and all listeners are notified
+    // Note: this is necessary to avoid ConcurrentModificationExceptions
+    if (isClosed())
+      return;
+
     closeListeners.remove(listener);
   }
   
@@ -403,7 +418,7 @@ public class Panel implements Draggable
 
   /** enables/disables closing the panel. Note: the panel must have a
    * title bar */
-  public void setCloseable(boolean minimizeable)
+  public void setCloseable(boolean closeable)
   {
     this.closeable = closeable;
   }
@@ -421,7 +436,7 @@ public class Panel implements Draggable
   }
 
   /** adds a child-panel to this panel */
-  public void addChild(Panel panel)
+  public synchronized void addChild(Panel panel)
   {
     if (panel.hasParent())
     {
@@ -433,7 +448,7 @@ public class Panel implements Draggable
   }
   
   /** removes a child-panel from this panel */
-  public void removeChild(Panel panel)
+  public synchronized void removeChild(Panel panel)
   {
     if (childs.remove(panel))
     {
@@ -442,35 +457,43 @@ public class Panel implements Draggable
     }
   }
   
-  /** closes this panel and all sub-panels. */
+  /** returns true when the window is scheduled to be closed. */
+  protected boolean isClosed()
+  {
+    return closed;
+  }
+  
+  /** tells this panel (and all subpanels) to close */
   public void close()
   {
-    // tell all childs to close
-    for (Iterator<Panel> childIt = childs.iterator(); childIt.hasNext(); )
+    if (closed)
+      return;
+    
+    closed = true;
+    
+    // tell the childs to close too
+    for (Panel child : childs)
     {
-      Panel child = childIt.next();
-      child.parent = null;
       child.close();
-      childIt.remove();
     }
-    // remove ourself from the parent
-    if (parent != null)
-    {
-      parent.removeChild(this);
-    }
-    // now tell all listeners we're closed
+    
+    // clear the parent
+    parent = null;
+    
+    // inform all listeners we're closed
     for (CloseListener listener : closeListeners)
     {
       listener.onClose(name);
     }
+    
   }
-  
+
   /** notifies all registered clicklisteners that this panel has been clicked */
-  protected void notifyClickListeners(String name)
+  protected void notifyClickListeners(String name, boolean pressed)
   {
     for (ClickListener listener : clickListeners)
     {
-      listener.onClick(name);
+      listener.onClick(name,pressed);
     }
   }
 
@@ -617,6 +640,13 @@ public class Panel implements Draggable
    */
   public Graphics draw(Graphics g)
   {
+    // first scan for closed panels and remove them
+    checkClosed();
+    // are we closed too? then don't draw anything
+    if (isClosed())
+      return g;
+    
+    
     // get correct clipped graphics
     Graphics panelGraphics = g.create(x,y,width, height);
     
@@ -652,10 +682,25 @@ public class Panel implements Draggable
    */
   protected void drawChilds(Graphics clientArea)
   {
-    for (Panel panel : childs)
+    for (int i = 0; i < childs.size(); i++)
     {
-      panel.draw(clientArea);
+      childs.get(childs.size()-i-1).draw(clientArea);
     }
+  }
+  
+  /** scans the child list for closed ones and removes them */
+  private void checkClosed()
+  {
+    // remove all closed childs
+    for (Iterator<Panel> childIt = childs.iterator(); childIt.hasNext();)
+    {
+      Panel child = childIt.next();
+      if (child.isClosed())
+      {
+        childIt.remove();
+      }
+    }
+    
   }
   
   /** 
@@ -679,6 +724,14 @@ public class Panel implements Draggable
    */
   public boolean isHit(int x, int y)
   {
+    int height = this.height;
+    int width = this.width;
+    
+    if (isMinimized())
+    {
+      height = TILLEBAR_SIZE + (frame ? FRAME_SIZE*2 : 0);
+    }
+    
     if (x < this.x || y < this.y || x > this.x + width || y > this.y + height)
       return false;
     return true;
@@ -726,8 +779,13 @@ public class Panel implements Draggable
         // did we get an object
         if (draggedObject != null)
         {
+          // activate the panel
+          focus(panel);
           return draggedObject;
         }
+        
+        // this child don't want to be dragged. Ignore all childs below this one
+        return null;
       }
     }
 
@@ -799,7 +857,7 @@ public class Panel implements Draggable
   
   /** callback for a mouse click. returns true when the click has been 
    * processed */
-  public boolean onMouseClick(Point p)
+  public synchronized boolean onMouseClick(Point p)
   {
     // check if the minimize button has been clicked
     if (titleBar && minimizeable && hitMinimizeButton(p.x,  p.y))
@@ -833,11 +891,18 @@ public class Panel implements Draggable
       // only if the point is inside the child
       if (panel.isHit(p2.x,p2.y))
       {
+        focus(panel);
         Point point = p2.getLocation();
         point.translate(-panel.getX(), -panel.getY());
         // click the child
-        if (panel.onMouseClick(point))
-          return true;
+        panel.onMouseClick(point);
+        
+        // bail out when we're closed during a callback
+        if (isClosed())
+          break;
+        
+        // click processed
+        return true;
       }
     }
     // click not processed
@@ -845,7 +910,7 @@ public class Panel implements Draggable
   }
   
   /** callback for a doubleclick */
-  public void onMouseDoubleClick(Point p)
+  public synchronized void onMouseDoubleClick(Point p)
   {
   }
   
@@ -868,6 +933,14 @@ public class Panel implements Draggable
     return moveTo(dragPosition.x+p.x, dragPosition.y+p.y);
   }
 
+  /** moves the child panel on top of all others */
+  private void focus(Panel child)
+  {
+    if (!childs.remove(child))
+      return;
+
+    childs.addFirst(child);
+  }
   
   
   /** toString */

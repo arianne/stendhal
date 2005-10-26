@@ -28,7 +28,8 @@ public interface ClickListener
    * the panel has been clicked
    * @param name name of the panel. Note that the panels name does not need to
    *             be unique
+   * @param true when the button in pressed and false when it is not pressed
    */
-  public void onClick(String name);
+  public void onClick(String name, boolean pressed);
   
 }

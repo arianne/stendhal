@@ -88,9 +88,19 @@ public class Button extends Panel
   {
     setEmboss(!isEmbossed());
     // tell all registered listeners that we're clicked
-    notifyClickListeners(getName());
+    notifyClickListeners(getName(),  isEmbossed());
     return true;
   }
   
+  /** returns true when the button in pressed and false when it is released */
+  public boolean isPressed()
+  {
+    return isEmbossed();
+  }
   
+  /** sets the state of the button */
+  public void setPressed(boolean pressed)
+  {
+    setEmboss(pressed);
+  }
 }

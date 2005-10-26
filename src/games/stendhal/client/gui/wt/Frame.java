@@ -48,14 +48,19 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
   /** Creates the Frame from the given GameScreen instance */
   public Frame(GameScreen screen)
   {
-    super("", 0, 0, screen.getWidthInPixels(), screen.getHeightInPixels());
+    super("baseframe", 0, 0, screen.getWidthInPixels(), screen.getHeightInPixels());
+    setFrame(false);
+    setTitleBar(false);
+    setMinimizeable(false);
+    setCloseable(false);
+    setMoveable(false);
   }
 
   /** resizing is disabled */
   public void resizeToFitClientArea(int width, int height)
   {  }
   
-  /** returns the currently dragged object or null if there is no */
+  /** returns the currently dragged object or null if there is none */
   public synchronized Draggable getDraggedObject()
   {
     // currently no drag operation?
@@ -77,9 +82,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
    */
   public synchronized Graphics draw(Graphics g)
   {
-    // ignore frame/border status, just draw the childs
-    drawChilds(g);
-    return g;
+    return super.draw(g);
   }
   
   /** stops the dragging operations */
@@ -120,6 +123,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
     }
   }
 
+ 
   /** 
    * Invoked when the mouse button has been clicked (pressed and released) on
    * a component.
@@ -133,25 +137,17 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
       return;
 
     Point p = e.getPoint();
-    // check all childs
-    for (Panel panel : getChilds())
+    
+    if (e.getClickCount() == 1)
     {
-      // only if the point is inside the child
-      if (panel.isHit(p))
-      {
-        p.translate(-panel.getX(), -panel.getY());
-        if (e.getClickCount() == 1)
-        {
-          panel.onMouseClick(p);
-        }
-        else if (e.getClickCount() == 2)
-        {
-          panel.onMouseDoubleClick(p);
-        }
-        break;
-      }
+      onMouseClick(p);
+    }
+    else if (e.getClickCount() == 2)
+    {
+      onMouseDoubleClick(p);
     }
   }
+  
 
   /**
    * Invoked when a mouse button is pressed on a component and then 
@@ -204,4 +200,13 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
     // be sure to stop dragging operations
     stopDrag(e);
   }
+
+  /** disabled */
+  public void setName(String name)  { }
+  /** disabled */
+  public void setTitleBar(boolean titleBar)  {  }
+  /** disabled */
+  public void setFrame(boolean frame)  {  }
+  /** disabled */
+  public void setCloseable(boolean minimizeable)  {  }
 }

@@ -22,6 +22,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.Money;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,8 @@ public class Character extends Panel
   private Map<String, EntitySlot> slotPanels;
   /** the player */
   private RPObject player;
+  /** the money we have */
+  int money;
   
   /** need this to find the sprite for each RPObject */
   private GameObjects gameObjects;
@@ -99,20 +102,14 @@ public class Character extends Panel
       return;
     }
     
-    setName(player.get("name"));
-    statsPanel.set("hp"   ,player.get("hp"));
-    statsPanel.set("maxhp",player.get("base_hp"));
-    statsPanel.set("atk"  ,player.get("atk"));
-    statsPanel.set("def"  ,player.get("def"));
-    statsPanel.set("atkxp",player.get("atk_xp"));
-    statsPanel.set("defxp",player.get("def_xp"));
-    statsPanel.set("xp"   ,player.get("xp"));
-    statsPanel.set("money",0);
+
+    money = 0;
 
     // taverse all slots
     for (RPSlot slot : player.slots())
     {
       String slotName = slot.getName();
+      
       EntitySlot entitySlot = slotPanels.get(slotName);
       if (entitySlot != null)
       {
@@ -123,7 +120,28 @@ public class Character extends Panel
           entitySlot.add(content);
         }
       }
+      
+      // found a gui element for this slot
+      for (RPObject content : slot)
+      {
+        if (content.get("class").equals("money") && content.has("quantity"))
+        {
+          money += content.getInt("quantity");
+        }
+      }
+      
     }
+    
+    setName(player.get("name"));
+    statsPanel.set("hp"   ,player.get("hp"));
+    statsPanel.set("maxhp",player.get("base_hp"));
+    statsPanel.set("atk"  ,player.get("atk"));
+    statsPanel.set("def"  ,player.get("def"));
+    statsPanel.set("atkxp",player.get("atk_xp"));
+    statsPanel.set("defxp",player.get("def_xp"));
+    statsPanel.set("xp"   ,player.get("xp"));
+    statsPanel.set("money",money);
+    
   }
   
   /** refreshes the player stats and draws them */

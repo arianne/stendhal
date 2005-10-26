@@ -14,6 +14,7 @@ package games.stendhal.client;
 import games.stendhal.client.gui.wt.Frame;
 import games.stendhal.client.gui.wt.MessageBox;
 import games.stendhal.client.gui.wt.Minimap;
+import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Pair;
@@ -31,10 +32,12 @@ public class StaticGameLayers
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(StaticGameLayers.class);
 
-  /** buffered minimap */
-  private Minimap minimap;
+  /** flag indicating that the minimap should be refreshed asap */
+  private boolean refreshMinimap;
   /** the main frame */
   private Frame frame;
+  /** settings panel */
+  private SettingsPanel settings;
   
  
   /** List of pair name, layer */
@@ -177,13 +180,8 @@ public class StaticGameLayers
   public void setRPZoneLayersSet(String area)
     {
     Log4J.startMethod(logger, "setRPZoneLayersSet");
-    this.area=area;
-    // be sure to refresh the minimap too
-    if (frame != null && minimap != null)
-    {
-      frame.removeChild(minimap);
-      minimap = null;
-    }
+    this.area = area;
+    refreshMinimap = true;
     Log4J.finishMethod(logger, "setRPZoneLayersSet");
     }
   
@@ -227,26 +225,22 @@ public class StaticGameLayers
         if (frame == null)
           {
           frame = new Frame(screen);
-          if (Debug.SHOW_TEST_CHARACTER_PANEL)
-            {
-            frame.addChild(new games.stendhal.client.gui.wt.Character(gameObjects));
-            frame.addChild(new MessageBox("Alert", 150, 300, 200, "the world is going under and we're all gonna die.",  MessageBox.ButtonCombination.OK));
-            }
+          settings = new SettingsPanel(frame, gameObjects);
+          frame.addChild(settings);
           // register native event handler
           screen.getComponent().addMouseListener(frame);
           screen.getComponent().addMouseMotionListener(frame);
           }
         // create the map if there is none yet
-        if (minimap == null)
+        if (refreshMinimap)
           {
-          minimap = new Minimap(cdp.second(), screen.expose().getDeviceConfiguration(), area);
-          frame.addChild(minimap);
-          minimap.moveTo(0,0);
+          refreshMinimap = false;
+          settings.updateMinimap(cdp.second(), screen.expose().getDeviceConfiguration(), area);
           }
 
         RPObject player = StendhalClient.get().getPlayer();
-        minimap.setPlayerPos(player.getInt("x"),player.getInt("y"));
-        
+        settings.setPlayer(player);
+
         frame.draw(screen.expose());
         }
       }

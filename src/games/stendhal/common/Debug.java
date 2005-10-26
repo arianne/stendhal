@@ -21,12 +21,9 @@ public class Debug
 
   /** should the minimap be drawn? Note: This slows down performance */
   public static final boolean DRAW_MINIMAP = true;
-
-  /** a character panel based on the window toolkit */
-  public static final boolean SHOW_TEST_CHARACTER_PANEL = false;
   
   /** enables cycling through the panel textures by clicking at the title bar */
-  public static final boolean CYCLE_PANEL_TEXTURES = false;
+  public static final boolean CYCLE_PANEL_TEXTURES = true;
   
   /** should the creature ai and pathfinding be shown? Note: The server must
    * send these infos (CREATRUES_DEBUG_SERVER) */
