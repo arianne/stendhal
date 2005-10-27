@@ -42,10 +42,10 @@ public class Player extends RPEntity
       RPClass player=new RPClass("player");
       player.isA("rpentity");
       player.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
-      player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.HIDDEN|RPClass.VOLATILE));
+      player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
-      player.add("dead",RPClass.FLAG,RPClass.HIDDEN);
-      player.add("reset",RPClass.FLAG,(byte)(RPClass.HIDDEN|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
+      player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
+      player.add("reset",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
 
       player.add("outfit",RPClass.INT);
       }

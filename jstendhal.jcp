@@ -101,6 +101,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\stendhalcreateaccount.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\GameConsoleAppender.java</path>
 				<source>true</source>
 			</fileitem>
