@@ -245,13 +245,35 @@ public class Player extends RPEntity
     if(player.getSlot("!buddy").size()>0)
       {
       RPObject buddies=player.getSlot("!buddy").iterator().next();
-      for(Player buddy: rp.getPlayers())
+      for(String name: buddies)
         {
-        if(buddies.has(buddy.getName()))
+        if(name.charAt(0)=='_')
           {
-          player.notifyOnline(buddy.getName());
-          }          
+          boolean online=false;
+          for(Player buddy: rp.getPlayers())
+            {
+            if(name.equals(buddy.getName()))
+              {
+              player.notifyOnline(buddy.getName());
+              online=true;
+              break;            
+              }          
+            }
+          
+          if(!online)
+            {
+            player.notifyOffline(name.substring(1));
+            }
+          }
         }
+        
+//      for(Player buddy: rp.getPlayers())
+//        {
+//        if(buddies.has(buddy.getName()))
+//          {
+//          player.notifyOnline(buddy.getName());
+//          }          
+//        }
       }
 
     player.setPrivateText("This release is EXPERIMENTAL. We are trying new RP system. Please report problems, suggestions and bugs.");
@@ -435,6 +457,8 @@ public class Player extends RPEntity
   
   public void notifyOnline(String who)
     {    
+    String playerOnline="_"+who;
+    
     boolean found=false;
     RPSlot slot=getSlot("!buddy");
     if(slot.size()>0)
@@ -442,9 +466,9 @@ public class Player extends RPEntity
       RPObject buddies=slot.iterator().next();
       for(String name: buddies)
         {
-        if(who.equals(name))
+        if(playerOnline.equals(name))
           {
-          buddies.put(who,1);
+          buddies.put(playerOnline,1);
           world.modify(this);
           found=true;
           break;
@@ -467,6 +491,8 @@ public class Player extends RPEntity
   
   public void notifyOffline(String who)
     {
+    String playerOffline="_"+who;
+
     boolean found=false;
     RPSlot slot=getSlot("!buddy");
     if(slot.size()>0)
@@ -474,9 +500,9 @@ public class Player extends RPEntity
       RPObject buddies=slot.iterator().next();
       for(String name: buddies)
         {
-        if(who.equals(name))
+        if(playerOffline.equals(name))
           {
-          buddies.put(who,0);
+          buddies.put(playerOffline,0);
           world.modify(this);
           found=true;
           break;

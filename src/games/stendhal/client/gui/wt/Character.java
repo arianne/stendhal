@@ -124,8 +124,6 @@ public class Character extends Panel
       // found a gui element for this slot
       for (RPObject content : slot)
       {
-        System.out.println (slot);
-        System.out.println (content);
         if (content.get("class").equals("money") && content.has("quantity"))
         {
           money += content.getInt("quantity");

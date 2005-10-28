@@ -597,18 +597,21 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           slot.add(listBuddies);
           }
         
-        int online=0;
+        boolean online=false;
         for(Player p : getPlayers())
           {
           if(p.getName().equals(who))
             {
-            online=1;  
+            player.notifyOnline(who);
+            online=true;  
             break;          
             }
           }
-          
-        listBuddies.put(who,online);
-        world.modify(player);
+        
+        if(!online)
+          {
+          player.notifyOffline(who);
+          }
         }
       }
     finally
