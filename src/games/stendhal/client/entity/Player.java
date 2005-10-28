@@ -16,6 +16,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import java.util.List;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -113,19 +114,23 @@ public class Player extends Speaker
       buildAnimations(changes);
       }
     
-    if(object.hasSlot("!buddy") && changes.hasSlot("!buddy"))
+    if(changes.has("online"))
       {
-      RPSlot slot=changes.getSlot("!buddy");
-      if(slot.size()>0)
+      System.out.println (changes.get("online"));
+      String[] players=changes.get("online").split(",");
+      for(String name: players)
         {
-        RPObject buddies=slot.iterator().next();
-        for(String name: buddies)
-          {          
-          if(name.startsWith("!") && buddies.getInt(name)==1)
-            {
-            client.addEventLine(name.substring(1)+" has joined Stendhal.",Color.orange);
-            }
-          }
+        client.addEventLine(name+" has joined Stendhal.",Color.orange);
+        }
+      }
+
+    if(changes.has("offline"))
+      {
+      System.out.println (changes.get("offline"));
+      String[] players=changes.get("offline").split(",");
+      for(String name: players)
+        {
+        client.addEventLine(name+" has leaved Stendhal.",Color.orange);
         }
       }
     }

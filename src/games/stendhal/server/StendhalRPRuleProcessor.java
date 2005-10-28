@@ -576,7 +576,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
    */
   private void addBuddy(Player player, RPAction action)
     {
-    /** TODO: Refactor this once invisible attributes are added */
     Log4J.startMethod(logger,"addBuddy");
     try
       {
@@ -594,7 +593,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         else
           {
           listBuddies=new RPObject();
-          listBuddies.put("zoneid",player.get("zoneid"));           //Fixme: fix this at marauroa.
           slot.assignValidID(listBuddies);
           slot.add(listBuddies);
           }
@@ -604,11 +602,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           {
           if(p.getName().equals(who))
             {
-            online=1;            
+            online=1;  
+            break;          
             }
           }
           
-        listBuddies.put("_"+who,online);
+        listBuddies.put(who,online);
         world.modify(player);
         }
       }
@@ -631,51 +630,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     Log4J.finishMethod(logger,"removeBuddy");
     }
     
-  
-  public void online(String who)
-    {
-    who="_"+who;
-    for(Player p : getPlayers())
-      {
-      RPSlot slot=p.getSlot("!buddy");
-      if(slot.size()>0)
-        {
-        RPObject buddies=slot.iterator().next();
-        for(String name: buddies)
-          {
-          if(who.equals(name))
-            {
-            buddies.put(who,1);
-            world.modify(p);
-            break;
-            }
-          }
-        }
-      }
-    }
-
-  public void offline(String who)
-    {
-    who="_"+who;
-    for(Player p : getPlayers())
-      {
-      RPSlot slot=p.getSlot("!buddy");
-      if(slot.size()>0)
-        {
-        RPObject buddies=slot.iterator().next();
-        for(String name: buddies)
-          {
-          if(who.equals(name))
-            {
-            buddies.put(who,0);
-            world.modify(p);
-            break;
-            }
-          }
-        }
-      }
-    }  
-
   /**
    * changes the outfit of the current player
    * Params:
@@ -895,6 +849,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       else
         {
         logger.debug("No targetitem attribute");        
+        }
+        
+      if(target!=null && base.equals(target))
+        {
+        //Stupid case, put an item in itself.
+        logger.debug("Putting an item in itself");        
+        return;
         }
         
 
@@ -1197,6 +1158,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           world.modify(object);
           }
 
+        if(object.has("online"))
+          {
+          object.remove("online");
+          world.modify(object);
+          }
+
+        if(object.has("offline"))
+          {
+          object.remove("offline");
+          world.modify(object);
+          }
+
         if(!object.stopped())
           {
           StendhalRPAction.move(object);
@@ -1269,7 +1242,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       playersObjectRmText.add(player);
       playersObject.add(player);
       
-      online(player.getName());
+      // Notify other players about this event
+      for(Player p : getPlayers())
+        {
+        p.notifyOnline(player.getName());
+        }
       
       return true;
       }
@@ -1293,7 +1270,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         {
         if(object.getID().equals(id))
           {
-          offline(object.getName());
+          // Notify other players about this event
+          for(Player p : getPlayers())
+            {
+            p.notifyOffline(object.getName());
+            }
 
           Player.destroy(object);
 

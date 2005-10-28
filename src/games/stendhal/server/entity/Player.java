@@ -46,10 +46,16 @@ public class Player extends RPEntity
       player.add("sheep",RPClass.INT);
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
       player.add("reset",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
+
+      // We use this for the buddy system
+      player.add("online",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
+      player.add("offline",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
+      
       player.addRPSlot("rhand",1);
       player.addRPSlot("lhand",1);
       player.addRPSlot("armor",1);
       player.addRPSlot("bag",10);
+      
       player.addRPSlot("!buddy",1,RPClass.HIDDEN);
 
       player.add("outfit",RPClass.INT);
@@ -204,8 +210,9 @@ public class Player extends RPEntity
         {
         RPSlot slot=player.getSlot(slotName);
         
-        if(slot.size()!=0)
+        if(slot.size()!=0)        
           {
+          // BUG: Loads only one object
           RPObject item=slot.iterator().next();
           slot.clear();
           
@@ -238,20 +245,12 @@ public class Player extends RPEntity
     if(player.getSlot("!buddy").size()>0)
       {
       RPObject buddies=player.getSlot("!buddy").iterator().next();
-      for(String name: buddies)
-        {
-        if(name.startsWith("_"))
-          {
-          buddies.put(name,"0");
-          }
-        }
-  
       for(Player buddy: rp.getPlayers())
         {
-        if(buddies.has("_"+buddy.getName()))
+        if(buddies.has(buddy.getName()))
           {
-          buddies.put(buddy.getName(),"1");
-          }
+          player.notifyOnline(buddy.getName());
+          }          
         }
       }
 
@@ -431,6 +430,70 @@ public class Player extends RPEntity
     finally
       {
       Log4J.finishMethod(logger, "retrieveSheep");
+      }
+    }
+  
+  public void notifyOnline(String who)
+    {    
+    boolean found=false;
+    RPSlot slot=getSlot("!buddy");
+    if(slot.size()>0)
+      {
+      RPObject buddies=slot.iterator().next();
+      for(String name: buddies)
+        {
+        if(who.equals(name))
+          {
+          buddies.put(who,1);
+          world.modify(this);
+          found=true;
+          break;
+          }
+        }
+      }
+    
+    if(found)
+      {
+      if(has("online"))
+        {
+        put("online",get("online")+","+who);
+        }
+      else
+        {
+        put("online",who);
+        }
+      }
+    }
+  
+  public void notifyOffline(String who)
+    {
+    boolean found=false;
+    RPSlot slot=getSlot("!buddy");
+    if(slot.size()>0)
+      {
+      RPObject buddies=slot.iterator().next();
+      for(String name: buddies)
+        {
+        if(who.equals(name))
+          {
+          buddies.put(who,0);
+          world.modify(this);
+          found=true;
+          break;
+          }
+        }
+      }
+    
+    if(found)
+      {
+      if(has("offline"))
+        {
+        put("offline",get("offline")+","+who);
+        }
+      else
+        {
+        put("offline",who);
+        }
       }
     }
   }
