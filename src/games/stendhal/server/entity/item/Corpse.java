@@ -35,6 +35,7 @@ public class Corpse extends PassiveEntity
     entity.isA("entity");
     entity.add("class",RPClass.STRING);
     entity.add("stage",RPClass.BYTE);
+    entity.addRPSlot("content",4);
     }
   
   public Corpse(RPObject object) throws AttributeNotFoundException

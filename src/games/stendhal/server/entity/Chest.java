@@ -29,6 +29,7 @@ public class Chest extends Entity
     RPClass chest=new RPClass("chest");
     chest.isA("entity");
     chest.add("open",RPClass.FLAG);
+    chest.addRPSlot("content",4);
     }
   
   public Chest(RPObject object) throws AttributeNotFoundException

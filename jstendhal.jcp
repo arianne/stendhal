@@ -321,6 +321,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\SettingsPanel.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\TextPanel.java</path>
 				<source>true</source>
 			</fileitem>
