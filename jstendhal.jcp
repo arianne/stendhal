@@ -509,10 +509,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\entity\item\Key.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Money.java</path>
 				<source>true</source>
 			</fileitem>
