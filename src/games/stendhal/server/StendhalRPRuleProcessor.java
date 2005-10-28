@@ -627,10 +627,35 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
    */
   private void removeBuddy(Player player, RPAction action)
     {
-    /** TODO: Refactor this once invisible attributes are added */
     Log4J.startMethod(logger,"removeBuddy");
-    /** TODO: Code this */
-    Log4J.finishMethod(logger,"removeBuddy");
+    try
+      {
+      if(action.has("target"))
+        {
+        String who="_"+action.get("target");
+        RPSlot slot=player.getSlot("!buddy");
+        
+        RPObject listBuddies=null;
+        
+        if(slot.size()>0)
+          {
+          listBuddies=slot.iterator().next();
+          for(String name: listBuddies)
+            {
+            if(name.equals(who))
+              {
+              listBuddies.remove(name);
+              world.modify(player);
+              return;
+              }            
+            }
+          }
+        }
+      }
+    finally
+      {
+      Log4J.finishMethod(logger,"removeBuddy");
+      }
     }
     
   /**

@@ -266,14 +266,6 @@ public class Player extends RPEntity
             }
           }
         }
-        
-//      for(Player buddy: rp.getPlayers())
-//        {
-//        if(buddies.has(buddy.getName()))
-//          {
-//          player.notifyOnline(buddy.getName());
-//          }          
-//        }
       }
 
     player.setPrivateText("This release is EXPERIMENTAL. We are trying new RP system. Please report problems, suggestions and bugs.");
