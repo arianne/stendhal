@@ -50,14 +50,19 @@
    H4sIAAAAAAAAAO3FoQEAAAgDoAX/v8uzzGaLAQoJAFddewAA+GYAfQnegwAQAAA=
   </data>
  </layer>
- <layer name="rat_dungeon_000_objects" width="32" height="32">
+ <layer name="rat_dungeon_000_objects" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3QsQ0AIAgFUVr2tMVBnNqKxlCCYnKv1ZjziwAAMix9XVBjBv8yjc+ju9UtzprsX9FRvWsGb8z+v7/XcYOz6VbjaLgFAOAPG3jVCXwAEAAA
   </data>
  </layer>
- <layer name="rat_dungeon_000_collision" width="32" height="32" opacity="0.25">
+ <layer name="rat_dungeon_000_collision" width="32" height="32" visible="0" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMgsEHjnFSB9PTfmz6KLWfFPXoND3tH2n6CcXxqP2DO/6Gin5SypqBLv+oaf8oGAWjYBSMAtoBAGPpEGUAEAAA
+  </data>
+ </layer>
+ <layer name="rat_dungeon_000_navigation" width="32" height="32" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
 </map>

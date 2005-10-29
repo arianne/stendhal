@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+<map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -30,39 +30,39 @@
  <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
   <image source="zelda_outside_2_chipset.png"/>
  </tileset>
- <layer name="castle_0_floor" width="64" height="64">
+ <layer name="castle_0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YSw6DMAxE2ZXPHemJuux9W6RWQggSsJ04g2cxqoIE8dPLt33XdT3DZDKP7ac0/7MBRvKTn/zkJz/5PfivRsIh7ceD/zWl21r+95Rue/NH999KUPjPjue78kf3j8w/b/pbP9OuXymu3DpZY//fjoGj/krwS2shf1v8kj2f/Hj81kHirxVU/uW8l2rfmf/xfWcc88/If2/+YXn39xuVfwjOT/9Y/BZ3Liv/Hve/vTOqhl/j36IWb36tf3R++sfjt1z/tP5b/f+rhn+LWrz50fZ/+qd/+qf/qP6P9twrSfmXfM/7/nMl67rX/vd4pN9H4v8HiV87RlPz/8zcys270muAZsycmf+113NP/px/79qt+KXrv3ftJWK5/yPG8vyHGPqnf/qnf/qnf/qPzU//sflb8f8Bub0/ngBAAAA=
+   H4sIAAAAAAAAAO3aS27CMAAEUHblc8f2RF32vi1SKyEgHxw3djJv8YRSCbA8mcQOPR4OhyMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwa+/n/rWeoz27zu9HBxnLX/7yl7/85S9/+ctf/vKXv/zXyf9VJTmWfk/rOdqzoVw+L+PHS/P/uowfy79t/vqfoTSXtch/G/nPvZ7Lvy/6n03+2e7XZvfrtaXrt7Fcp9aJ9v/rnQNTffuP/EvHgvzpJ/+SPb/8+yH/bHPzr03+fehpznsaS4oac3593jd2LP9+LZ3zt5/3nM/Tf5N/n+SfrVb+p+t7f1/lvx018z/Jf3P0P5v+56rxm1ut/vv9r03+c5/Nzsl/Sf9rjIW2+S/tv/y3nb/+b4v+Z6u9/lvaf+u/NueA/X8u+/9s+p9N/7Ppfzb9z6b/uYb23K8Y63/J59n/r5v/0P/oz3Gb223/n+VZ+vmt52jPauf/R/7bUHJ9vr9Gj93/59xbpu47reeIx3NmKP9n939d3pcl/W89durkX7r+bz126qu5/2d7aj7/Y3v0P5v+Z9P/bPqfTf+z6X82/c+m/9n0P5v+Z9P/bPqfTf+z6X82/c+m/9n0P5v+Z9P/bPqfTf+z6X82/c+m/9n0P5v+Z9P/R9+PA0/TAAABAA==
   </data>
  </layer>
- <layer name="castle_1_terrain" width="64" height="64">
+ <layer name="castle_1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1aSW/UMBQOcJr4xtYD+xHUwyCVA0vhRqVBYt8K0tyQUAtiKRwqsUhckIAWREGVWP4LB/gHULYD+x+AguCA4LNqax6Z5zgJ48TT8Sd9yiRj+70v8+x58UsUBdhwUETRHfBP7C/vwr8Lwo3+OsbdCL6HnQ8e8iM4AP82Oda/ueD4We+b1FEEg8Jv/bqf6T5o3YMFx+8W/ab+Wvd8138Ex6Pg27jFYzg/3iP6L+J4huF4j+ifwvEew+ku0a/jdzgj36l1jYv7JOk8+BRntzGs+pWh3xS/FPT6b6Xf1M80DxZkHJ/2K0P/SNweu03mfEJxhSXuTfNgDY73FZsJTU3yneZoSfnPCJOfPBDmcx33n9HviyWmdRs6D2zja1SpPw067heCiyzxTNuM59Thq/4pFZ9rwXWWeKZtpueJfo3t6LtD+WaKZ9omL8rS34CdfnA9uEFxl7onO8m1/oL3KQlqh6P2Zcix/t0Ydw/4Mp6LAXm/36j/7adK6zMcZ+JWm06A2qGkdnSb/fDvgCP9pzDuXvA7sfkT/AVuwfWt4DZwNm616QSoHfp/T+3oNvtw/Zwj/Tcw7mKyBkiby/G5j/zXT6g2SwzrRJZY5vSb7FBfBlSb2470S9QZ/cn5lrZOjlpiwtTHZsf12meymeZXg/l9hyz6TX26Sb9eJ5P5Xp78L3nOrWu+6pfr5GnRnu/lzf/o+VlmXfNVv1wnb4p/c7ki+R89n2TWNV/1ayRzOXp+CcfL4BXwqpg7t/Wx+eKb/jTIfPch+Ah8LPjnuby+dJN+F74E/UG/S19k/fMQeJjYPI/PY8JdzdEnX/T9PgFb18Fr4MmS4s4HX7i8vqx554MvQX/Qn9z/cr3n5JMvpv0vl3tOPvli2v9yuefkky9p+18u95yy+lLF/lcVc79KX4L+oL9X9ZueOV7juErYuVqkv5+p3y9dmWEsyVdx9c8/T3LQ9nxCx88zbpXPP3kgf6Mf4FKDf/L6sv8cv6z8N62GZapr0TomB1rPNNXJuDozrZOUkf+mvb/Fkeaouo75vBZFLwhnau31TK7mS+vMXP3Edf4r6xpZ3uEy1Wh1vvgVer8Rztba8zmu5kvrzJw9rk7SKei6xmQOak2N2FzH06gzbfty2uPqJFUiOWfS4lO3LSOWy0JyzqTFZ5623QI5Z26J1jsLafGZp21AQEBAQEBAQEBAQHH8BQPT2BwAQAAA
+   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
   </data>
  </layer>
- <layer name="castle_2_object" width="64" height="64">
+ <layer name="castle_2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WywnCQBCA4TmokNiFWojaogfL8lWHrw6c44IeImgSzffBf8lhmYEsbAQAADS3qyL22SE7Zqfqt85/x2b6/O2c81yya3bL7h+er8n52xdz0U99+p+78O37AgDQN95/3n8AAAAAwH8a1RHjoknd9UTtmuW+86LFwPZf5r6rovXA9gcAAADa9wCXo2F9AEAAAA==
+   H4sIAAAAAAAAAO3YOQoCQRAF0ApUmPEW6kHUKxp4LLdzuN3AChs0mEAdx34PftJBU/ChGyoCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPhXuyZinzlkjplTM6z76W4zfT47Zx+XzDVzy9zf3E+X+7cv5gJ+j/e8bp/+LwAAAADol/1f3ez/AAAAAAAAAAAAAIZl1EaMi0zavifim2bZ97zIQv9VWWbfqyJr/QMAAAAAAAAAAAAAAAAAAAA9ewDM/IFbAAABAA==
   </data>
  </layer>
- <layer name="castle_3_roof" width="64" height="64">
+ <layer name="castle_3_roof" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WsQkAIBADwLS//1QuIo6hK4ggiHeQNlWKJAAAsKdX0lZGvdkPN9kzAMBf/D8AAAAAAAAAAADgxAQVqIrqAEAAAA==
+   H4sIAAAAAAAAAO3YsQkAIBADwLS//1QuIo6hK9gIPneQNmWKJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAZ7OScbLqz34A3rDnAAAAANCX/w8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4sQGs2JvFAAABAA==
   </data>
  </layer>
- <layer name="castle_objects" width="64" height="64">
+ <layer name="castle_objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="castle_collision" width="64" height="64" opacity="0.25">
+ <layer name="castle_collision" width="128" height="128" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="castle_navigation" width="64" height="64">
+ <layer name="castle_navigation" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ZoQ0AMAhFQWzHZP8lOkCxkNDcSQz5+kW88hTHZX7YAAAAAAAAAFvocwAAAAAAwKSJNtH9Q18BAKByAR6Wnl4AQAAA
+   H4sIAAAAAAAAAO3bQQ0AMAgEQb6ViX8T9VACTciMATgBGwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGyU5/cHdRs2AAAAAAAAAAAAAAAAAMA0fR4AAAAAAAAAAAAAAMC7iTaj+4a+BAAAAAAAAAAAAAAAAKi6StsIUQAAAQA=
   </data>
  </layer>
 </map>
