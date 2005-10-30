@@ -56,11 +56,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   
   public static void register(String action, ActionListener actionClass)
     {
+    if(actionsMap.get(action)!=null)
+      {
+      logger.error("Registering twice the same action handler: "+action);
+      }
+      
     actionsMap.put(action, actionClass);
     }
   
   private void registerActions()
     {
+    Administration.register();
     Attack.register();
     Buddy.register();
     Chat.register();

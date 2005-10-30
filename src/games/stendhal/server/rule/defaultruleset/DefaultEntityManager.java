@@ -173,6 +173,26 @@ public class DefaultEntityManager implements EntityManager
     return classToCreature.containsKey(clazz);
   }
 
+  public boolean isItem(int id)
+  {
+    if (id < 0)
+      return false;
+
+    String clazz = idToClass.get(id);
+    if (clazz == null)
+      return false;
+
+    return isItem(clazz);
+  }
+
+  /** return true if the Entity is a creature */
+  public boolean isItem(String clazz)
+  {
+    if (clazz == null)
+      throw new NullPointerException("entity class is null");
+    return classToItem.containsKey(clazz);
+  }
+
   /** 
    * returns the item or <code>null</code> if the id is unknown 
    */

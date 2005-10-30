@@ -48,6 +48,21 @@ public interface EntityManager
    */
   boolean isCreature(String clazz) throws NullPointerException;
 
+  /**
+   * return true if the Entity is a Item
+   * @param id the tile id
+   * @return true if it is a Item, false otherwise
+   */
+  boolean isItem(int id);
+  
+  /**
+   * return true if the Entity is a Item
+   * @param clazz the Item class
+   * @return true if it is a Item, false otherwise
+   * @throws NullPointerException if clazz is <code>null</code>
+   */
+  boolean isItem(String clazz) throws NullPointerException;
+
   /** 
    * returns the creature or <code>null</code> if the id is unknown.
    * @param id the tile id

@@ -166,10 +166,10 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
           String[] command = parseString(text, 2);
           if(command != null)
             {
-            RPAction tell = new RPAction();
-            tell.put("type","where");
-            tell.put("target", command[1]);
-            client.send(tell);
+            RPAction where = new RPAction();
+            where.put("type","where");
+            where.put("target", command[1]);
+            client.send(where);
             }
           }
         else if(text.equals("/who")) // Who command
@@ -183,10 +183,10 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
           String[] command = parseString(text, 2);
           if(command != null)
             {
-            RPAction tell = new RPAction();
-            tell.put("type","addbuddy");
-            tell.put("target", command[1]);
-            client.send(tell);
+            RPAction add = new RPAction();
+            add.put("type","addbuddy");
+            add.put("target", command[1]);
+            client.send(add);
             }
           }
         else if(text.startsWith("/remove ")) // Removes a existing buddy from buddy list
@@ -194,11 +194,69 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
           String[] command = parseString(text, 2);
           if(command != null)
             {
-            RPAction tell = new RPAction();
-            tell.put("type","removebuddy");
-            tell.put("target", command[1]);
-            client.send(tell);
+            RPAction remove = new RPAction();
+            remove.put("type","removebuddy");
+            remove.put("target", command[1]);
+            client.send(remove);
             }
+          }
+        else if(text.startsWith("/tellall ")) // Tell everybody admin command
+          {
+          String[] command = parseString(text, 2);
+          if(command != null)
+            {
+            RPAction tellall = new RPAction();
+            tellall.put("type","tellall");
+            tellall.put("text", command[1]);
+            client.send(tellall);
+            }
+          }
+        else if(text.startsWith("/teleport ")) // Teleport target(PLAYER NAME) to  zone-x,y
+          {
+          String[] command = parseString(text, 5);
+          if(command != null)
+            {
+            RPAction teleport = new RPAction();
+            teleport.put("type","teleport");
+            teleport.put("target", command[1]);
+            teleport.put("zone", command[2]);
+            teleport.put("x", command[3]);
+            teleport.put("y", command[4]);
+            client.send(teleport);
+            }
+          }
+        else if(text.startsWith("/alter ")) // Set/Add/Substract target(PLAYER NAME) attribute
+          {
+          String[] command = parseString(text, 5);
+          if(command != null)
+            {
+            RPAction alter = new RPAction();
+            alter.put("type","alter");
+            alter.put("target", command[1]);
+            alter.put("stat", command[2]);
+            alter.put("mode", command[3]);
+            alter.put("value", command[4]);
+            client.send(alter);
+            }
+          }
+        else if(text.startsWith("/summon ")) // Summon a creature at x,y
+          {
+          String[] command = parseString(text, 4);
+          if(command != null)
+            {
+            RPAction summon = new RPAction();
+            summon.put("type","summon");
+            summon.put("creature", command[1]);
+            summon.put("x", command[2]);
+            summon.put("y", command[3]);
+            client.send(summon);
+            }
+          }
+        else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
+          {
+          RPAction invisible = new RPAction();
+          invisible.put("type","invisible");
+          client.send(invisible);
           }
         else if(text.equals("/help")) // Help command
           {          
@@ -210,6 +268,22 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
                           "- /add <player>            \tAdd player to the buddy list",
                           "- /remove <player>         \tRemoves player from buddy list",
                           "- /where <player>          \tPrints the location of the player"
+                          };
+          for(String line: lines)
+            {
+            StendhalClient.get().addEventLine(line,Color.gray);
+            }
+          }  
+
+        else if(text.equals("/gmhelp")) // Help command
+          {          
+          String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php/StendhalManual#Admin",
+                          "This brief help show you the most used commands:",
+                          "- /tellall <message>                     \tWrites a private message to all players",
+                          "- /teleport <player> <zone> <x> <y>      \tTeleport the player ",
+                          "- /alter <player> <attrib> <mode> <value>\tChange by SETting, ADDing or SUBstrating the stat of player",
+                          "- /summon <creature|item> <x> <y>        \tSummon and item or creature at x,y",
+                          "- /invisible                             \tMakes this player invisible for creatures",
                           };
           for(String line: lines)
             {

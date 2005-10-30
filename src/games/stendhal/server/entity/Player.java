@@ -47,16 +47,20 @@ public class Player extends RPEntity
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
       player.add("reset",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
 
-      // We use this for the buddy system
-      player.add("online",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
-      player.add("offline",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
-      
+      // Use this for admin menus and usage.
+      player.add("admin",RPClass.FLAG,RPClass.HIDDEN);
+      player.add("invisible",RPClass.FLAG,RPClass.HIDDEN);
+
       player.addRPSlot("rhand",1);
       player.addRPSlot("lhand",1);
       player.addRPSlot("armor",1);
       player.addRPSlot("bag",10);
       
       player.addRPSlot("!buddy",1,RPClass.HIDDEN);
+      // We use this for the buddy system
+      player.add("online",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
+      player.add("offline",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
+      
 
       player.add("outfit",RPClass.INT);
       }

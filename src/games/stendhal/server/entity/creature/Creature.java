@@ -162,6 +162,11 @@ public class Creature extends NPC
       {
       point.notifyDead(this);
       }
+    else
+      {
+      // Perhaps a summoned creature
+      rp.removeNPC(this);
+      }
 
     super.onDead(who);
     }
@@ -206,6 +211,11 @@ public class Creature extends NPC
 
     for(Player player: rp.getPlayers())
       {
+      if(player.has("invisible"))
+        {
+        continue;        
+        }
+        
       if(player.get("zoneid").equals(get("zoneid")))
         {
         java.awt.geom.Rectangle2D rect=player.getArea(player.getx(),player.gety());
