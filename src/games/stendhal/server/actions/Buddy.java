@@ -1,0 +1,107 @@
+package games.stendhal.server.actions;
+
+
+import org.apache.log4j.Logger;
+
+import marauroa.common.game.*;
+import marauroa.server.game.*;
+import games.stendhal.common.*;
+import games.stendhal.server.*;
+import games.stendhal.server.entity.*;
+
+import marauroa.common.Log4J;
+
+public class Buddy extends ActionListener 
+  {
+  private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
+  
+  public static void register()
+    {
+    Buddy buddy=new Buddy();
+    StendhalRPRuleProcessor.register("addbuddy",buddy);
+    StendhalRPRuleProcessor.register("removebuddy",buddy);    
+    }
+
+  public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    if(action.get("type").equals("addbuddy"))
+      {
+      onAddBuddy(world,rules,player,action);
+      }
+    else
+      {
+      onRemoveBuddy(world,rules,player,action);
+      }    
+    }
+  
+  private void onAddBuddy(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"addBuddy");
+
+    if(action.has("target"))
+      {
+      String who=action.get("target");
+      RPSlot slot=player.getSlot("!buddy");
+      
+      RPObject listBuddies=null;
+      
+      if(slot.size()>0)
+        {
+        listBuddies=slot.iterator().next();
+        }
+      else
+        {
+        listBuddies=new RPObject();
+        slot.assignValidID(listBuddies);
+        slot.add(listBuddies);
+        }
+      
+      boolean online=false;
+      for(Player p : rules.getPlayers())
+        {
+        if(p.getName().equals(who))
+          {
+          player.notifyOnline(who);
+          online=true;  
+          break;          
+          }
+        }
+      
+      if(!online)
+        {
+        player.notifyOffline(who);
+        }
+      }
+
+    Log4J.finishMethod(logger,"addBuddy");
+    }
+
+  private void onRemoveBuddy(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"removeBuddy");
+
+    if(action.has("target"))
+      {
+      String who="_"+action.get("target");
+      RPSlot slot=player.getSlot("!buddy");
+      
+      RPObject listBuddies=null;
+      
+      if(slot.size()>0)
+        {
+        listBuddies=slot.iterator().next();
+        for(String name: listBuddies)
+          {
+          if(name.equals(who))
+            {
+            listBuddies.remove(name);
+            world.modify(player);
+            return;
+            }            
+          }
+        }
+      }
+
+    Log4J.finishMethod(logger,"removeBuddy");
+    }
+  }

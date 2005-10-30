@@ -72,6 +72,9 @@
 				<path>src\games\stendhal\server\rule\defaultruleset</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\server\actions</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\common</path>
 			</folderitem>
 			<folderitem>
@@ -586,6 +589,58 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\rule\defaultruleset\DefaultRuleManager.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\ActionListener.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Attack.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Buddy.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Chat.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Displace.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Equipment.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Face.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Move.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Outfit.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Own.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\PlayersQuery.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Stop.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Use.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

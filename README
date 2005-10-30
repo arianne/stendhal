@@ -65,6 +65,7 @@ Changelog
 0.40 Noc XX, 2005
 - Fixed a bug when dropping an item over itself
 - Modified private and hidden attributes
+- Fixed sync facing problem
 
 0.39.1 Oct 26, 2005
 - Fixed chat bug
