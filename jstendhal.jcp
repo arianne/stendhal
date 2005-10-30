@@ -596,6 +596,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\actions\Administration.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\actions\Attack.java</path>
 				<source>true</source>
 			</fileitem>

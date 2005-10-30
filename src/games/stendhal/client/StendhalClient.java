@@ -183,8 +183,7 @@ public class StendhalClient extends ariannexp
       if(message.getTypePerception()==1/*Perception.SYNC*/)
         {
         logger.debug("UPDATING screen position");
-        GameScreen screen=GameScreen.get();
-        
+        GameScreen screen=GameScreen.get();        
         
         /** Full object is normal object+hidden objects */
         RPObject hidden=message.getMyRPObject();
