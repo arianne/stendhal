@@ -734,7 +734,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   public void onKeyReleased(KeyEvent e)  
     {
     RPAction action=new RPAction();
-    action.put("type","move");
+    action.put("type","stop");
 
     switch(e.getKeyCode())
       {
@@ -746,7 +746,6 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
         int keys=(pressed.containsKey(KeyEvent.VK_LEFT)?1:0)+(pressed.containsKey(KeyEvent.VK_RIGHT)?1:0)+(pressed.containsKey(KeyEvent.VK_UP)?1:0)+(pressed.containsKey(KeyEvent.VK_DOWN)?1:0);   
         if(keys==1)
           {
-          action.put("dir",Direction.STOP.get());
           client.send(action);
           }
         break;

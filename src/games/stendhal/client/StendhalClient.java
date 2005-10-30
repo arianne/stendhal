@@ -240,6 +240,12 @@ public class StendhalClient extends ariannexp
         screen.place(x,y);
         screen.move(0,0);        
         }
+        
+//      /** BUG/FEATURE: This code emulate a perception loss. */
+//      if(message.getTypePerception()!=1 && message.getPerceptionTimestamp()%30==0)
+//        {
+//        return;
+//        }
 
       handler.apply(message,world_objects);      
       }

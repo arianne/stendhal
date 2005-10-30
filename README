@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.39.1
+Version 0.40
 
 
 How to play
@@ -62,6 +62,10 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.40 Noc XX, 2005
+- Fixed a bug when dropping an item over itself
+- Modified private and hidden attributes
+
 0.39.1 Oct 26, 2005
 - Fixed chat bug
 - Fixed inspected slot and sync problem

@@ -22,7 +22,7 @@ public class stendhal extends Thread
   public static final boolean SHOW_COLLISION_DETECTION  = false;
   public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
   
-  public static final String VERSION="0.39";
+  public static final String VERSION="0.40";
   
   public static void main(String args[]) 
     {

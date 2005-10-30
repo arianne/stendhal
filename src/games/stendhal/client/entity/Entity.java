@@ -68,6 +68,7 @@ public abstract class Entity
     type=object.get("type");
     id=object.getID();    
     x=y=dx=dy=0;
+    direction=Direction.STOP;
 
     loadSprite(object);
     }
@@ -129,19 +130,17 @@ public abstract class Entity
     {
     if(changes.has("dir"))
       {
-      double speed=1;
-      
+      direction=Direction.build(changes.getInt("dir"));
+      }
+    
+    if(changes.has("speed"))
+      {
       if(object.has("speed")) speed=object.getDouble("speed");
       if(changes.has("speed")) speed=changes.getDouble("speed");
-      
-      Direction dir=Direction.build(changes.getInt("dir"));
-      
-      this.direction=dir;
-      this.speed=speed;
-      
-      dx=(int)dir.getdx()*speed;
-      dy=(int)dir.getdy()*speed;
       }
+      
+    dx=(int)direction.getdx()*speed;
+    dy=(int)direction.getdy()*speed;
 
     if(object.has("x") && dx==0) x=object.getInt("x");
     if(object.has("y") && dy==0) y=object.getInt("y");

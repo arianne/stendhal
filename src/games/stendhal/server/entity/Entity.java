@@ -151,13 +151,13 @@ public abstract class Entity extends RPObject
 
   public void stop()
     {
-    setDirection(Direction.STOP);
+//    setDirection(Direction.STOP);
     setSpeed(0);
     }
 
   public boolean stopped()
     {
-    return direction==Direction.STOP;
+    return speed==0; //direction==Direction.STOP;
     }
 
   public void collides(boolean val)
