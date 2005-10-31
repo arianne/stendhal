@@ -39,6 +39,41 @@ public class village
     sign.setText("[CLOSED]|The tavern has moved to a much|better and central house in town.|Come buy your weapons, find your|quests and hang out there instead.");
     zone.add(sign);
     
+    NPC npc=new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(33,44));
+        nodes.add(new Path.Node(33,42));
+        nodes.add(new Path.Node(23,42));
+        nodes.add(new Path.Node(23,44));
+        setPath(nodes,true);
+        }
+      
+      protected void createDialog()
+        {
+        Map<String,Integer> items=new HashMap<String,Integer>();
+        items.put("shield",10);
+        items.put("armor",20);
+        items.put("sword",100);
+        
+        Behaviours.addGreeting(this);
+        Behaviours.addGoodbye(this);
+        Behaviours.addSeller(this,items);
+        }
+      };
+      
+    zone.assignRPObjectID(npc);
+    npc.put("class","sellernpc");
+    npc.setName("Nishiya");
+    npc.setx(33);
+    npc.sety(44);
+    npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
+    zone.add(npc);    
+    zone.addNPC(npc);
+
 //    SellerNPC npc=new SellerNPC()
 //      {
 //      protected void createPath()

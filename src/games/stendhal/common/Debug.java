@@ -23,7 +23,7 @@ public class Debug
   public static final boolean DRAW_MINIMAP = true;
   
   /** enables cycling through the panel textures by clicking at the title bar */
-  public static final boolean CYCLE_PANEL_TEXTURES = true;
+  public static final boolean CYCLE_PANEL_TEXTURES = false;
   
   /** should the creature ai and pathfinding be shown? Note: The server must
    * send these infos (CREATRUES_DEBUG_SERVER) */

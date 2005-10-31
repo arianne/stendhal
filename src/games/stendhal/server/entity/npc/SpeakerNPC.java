@@ -2,7 +2,9 @@ package games.stendhal.server.entity.npc;
 
 import java.util.List;
 import java.util.LinkedList;
-//import java.awt.*;
+import java.util.Map;
+import java.util.HashMap;
+
 import java.awt.geom.*;
 import marauroa.common.*;
 import marauroa.common.game.*;
@@ -12,8 +14,21 @@ import games.stendhal.common.*;
 
 import games.stendhal.server.entity.*;
 
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
+
+/** This is a finite state automata that implements a chat system.
+ *  See examples to understand how it works.
+ *  RULES:
+ *  - State 0 is always the initial state
+ *  - State 1 is the state where only one player can talk to NPC
+ *  - State -1 is used for jump from any state when the trigger is present.
+ *  - States from 2 to 100 are reserved for Behaviours uses. */
 public abstract class SpeakerNPC extends NPC 
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(SpeakerNPC.class);
+
   // FSA state table
   private List<StatePath> statesTable;
   // FSA actual state
@@ -29,6 +44,9 @@ public abstract class SpeakerNPC extends NPC
   
   // Attended players
   private Player attending;
+  
+  private Map<String, Map<String,Integer>> behavioursData;
+  private String tmpData;
     
   
   public SpeakerNPC() throws AttributeNotFoundException
@@ -40,12 +58,34 @@ public abstract class SpeakerNPC extends NPC
     actualState=0;
     lastMessageTurn=0;
     
+    behavioursData=new HashMap<String, Map<String,Integer>>();
+    
     createDialog();
     }
 
   abstract protected void createPath();
   abstract protected void createDialog();
+  
+  public void setBehaviourData(String behaviour, Map<String,Integer> data)
+    {
+    behavioursData.put(behaviour,data);
+    }
+  
+  public Map<String,Integer> getBehaviourData(String behaviour)
+    {
+    return behavioursData.get(behaviour);
+    }
 
+  public void setTemporalData(String tmp)
+    {
+    tmpData=tmp;
+    }
+    
+  public String getTemporalData()
+    {
+    return tmpData;
+    }
+  
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y+1,1,1);
@@ -87,6 +127,10 @@ public abstract class SpeakerNPC extends NPC
       Path.followPath(this,0.2);
       StendhalRPAction.move(this);
       }
+    else if(!stopped())
+      {
+      stop();
+      }
     
     List<Player> speakers=getNearestPlayersThatHasSpeaken(this,5);
     for(Player speaker: speakers)
@@ -97,7 +141,7 @@ public abstract class SpeakerNPC extends NPC
     world.modify(this);
     }
 
-  abstract public class ChatAction
+  abstract public static class ChatAction
     {    
     abstract public void fire(Player player, String text, SpeakerNPC engine);
     }
@@ -196,12 +240,14 @@ public abstract class SpeakerNPC extends NPC
     // If we are no attening a player attend, this one.
     if(actualState==0)
       {
+      logger.debug("Attending player "+player.getName());
       attending=player;
       }
     
     // If the attended player got idle, attend this one.
-    if(System.currentTimeMillis()-lastMessageTurn>TIMEOUT_PLAYER_CHAT)
+    if(rp.getTurn()-lastMessageTurn>TIMEOUT_PLAYER_CHAT)
       {
+      logger.debug("Attended player "+attending+" went timeout");
       attending=player;
       actualState=0;
       }
@@ -209,6 +255,7 @@ public abstract class SpeakerNPC extends NPC
     // If we are attending another player make this one waits.
     if(!attending.equals(player))
       {
+      logger.debug("Already attending a player");
       if(waitMessage!=null)
         {
         say(waitMessage);
@@ -222,13 +269,14 @@ public abstract class SpeakerNPC extends NPC
       return true;
       }
       
-    lastMessageTurn=System.currentTimeMillis();
+    lastMessageTurn=rp.getTurn();
     
     // First we try to match with stateless states.
     for(StatePath state: statesTable)
       {
       if(state.absoluteJump(actualState,text))
         {
+        logger.debug("Matched a stateless state: "+state);
         executeState(player,text,state);
         return true;        
         }
@@ -239,6 +287,7 @@ public abstract class SpeakerNPC extends NPC
       {
       if(state.equals(actualState,text))
         {
+        logger.debug("Matched a exact trigger state: "+state);
         executeState(player,text,state);
         return true;        
         }
@@ -249,13 +298,20 @@ public abstract class SpeakerNPC extends NPC
       {
       if(state.contains(actualState,text))
         {
+        logger.debug("Matched a similar trigger state: "+state);
         executeState(player,text,state);
         return true;        
         }
       }
 
     // Couldn't match the text with the current FSA state
+    logger.debug("Couldn't match any state");
     return false;
+    }
+  
+  public void setActualState(int state)
+    {
+    actualState=state;
     }
   
   private void executeState(Player player, String text, StatePath state)
@@ -266,11 +322,11 @@ public abstract class SpeakerNPC extends NPC
       say(state.reply);
       }
 
+    actualState=nextState;
+
     if(state.action!=null)
       {
       state.action.fire(player,text,this);
       }
-
-    actualState=nextState;
     }
   }

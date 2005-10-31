@@ -444,27 +444,7 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\AngelNPC.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\BeggarNPC.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\ButcherNPC.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\BuyerNPC.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\ChatEngine.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\JournalistNPC.java</path>
+				<path>src\games\stendhal\server\entity\npc\Behaviours.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -472,31 +452,7 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\OrcBuyerNPC.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\SellerNPC.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\server\entity\npc\SpeakerNPC.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\TavernBarMaidNPC.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\TrainingDummy.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\WeaponSellerNPC.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\entity\npc\WelcomerNPC.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -702,6 +658,9 @@
 			</folderitem>
 			<folderitem>
 				<path>maps</path>
+			</folderitem>
+			<folderitem>
+				<path>src\games\stendhal\server\entity\npc\toport</path>
 			</folderitem>
 			<folderitem>
 				<path>tiled</path>

@@ -16,7 +16,7 @@ import games.stendhal.common.*;
 import games.stendhal.server.actions.*;
 import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.item.*;
-import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.*;
 import games.stendhal.server.entity.creature.Sheep;
 
 import java.util.*;
@@ -114,6 +114,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       this.world = (StendhalRPWorld) world;
 
       StendhalRPAction.initialize(rpman,this,world);
+      Behaviours.initialize(rpman,this,world);
       Path.initialize(rpman,world);
 
       NPC.setRPContext(this, this.world);
