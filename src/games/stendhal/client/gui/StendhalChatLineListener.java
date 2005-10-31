@@ -3,25 +3,25 @@ package games.stendhal.client.gui;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JTextField;
-import java.util.LinkedList;
+import java.util.*;
 import marauroa.common.game.RPAction;
 import games.stendhal.client.*;
 
 public class StendhalChatLineListener implements ActionListener, KeyListener
+  {
+  private StendhalClient client;
+  private JTextField playerChatText;
+  private LinkedList<String> lines;
+  private int actual;
+  
+  public StendhalChatLineListener(StendhalClient client, JTextField playerChatText)
     {
-    private StendhalClient client;
-    private JTextField playerChatText;
-    private LinkedList<String> lines;
-    private int actual;
-    
-    public StendhalChatLineListener(StendhalClient client, JTextField playerChatText)
-      {
-      super();
-      this.client=client;
-      this.playerChatText=playerChatText;
-      lines=new LinkedList<String>();
-      actual=0;
-      }
+    super();
+    this.client=client;
+    this.playerChatText=playerChatText;
+    lines=new LinkedList<String>();
+    actual=0;
+    }
 
   private static String[] parseString(String s, int nbPart)
     {

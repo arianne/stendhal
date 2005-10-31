@@ -113,7 +113,20 @@ public class Administration extends ActionListener
           }
         }
       
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID(action.get("zone")));
+      if(teleported==null)
+        {
+        logger.debug("Player "+name+" not found");
+        return;
+        }
+        
+      IRPZone.ID zoneid=new IRPZone.ID(action.get("zone"));
+      if(!world.hasRPZone(zoneid))
+        {
+        logger.debug("Zone "+zoneid+" not found");
+        return;
+        }
+      
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(zoneid);
       int x=action.getInt("x");
       int y=action.getInt("y");
       
@@ -148,28 +161,35 @@ public class Administration extends ActionListener
           break;
           }
         }      
+ 
+      if(changed==null)
+        {
+        logger.debug("Player "+name+" not found");
+        return;
+        }
+        
        
-       String stat=action.get("stat");
+      String stat=action.get("stat");
        
-       if(changed.getRPClass().hasAttribute(stat) && changed.has(stat))
-         {
-         String mode=action.get("mode");
-         if(mode.equals("set"))
-           {
-           changed.put(stat, action.get("value"));
-           }
-         else if(mode.equals("add"))
-           {
-           changed.put(stat, changed.getInt(stat)+action.getInt("value"));
-           }
-         else if(mode.equals("sub"))
-           {
-           changed.put(stat, changed.getInt(stat)-action.getInt("value"));
-           }
+      if(changed.getRPClass().hasAttribute(stat) && changed.has(stat))
+        {
+        String mode=action.get("mode");
+        if(mode.equals("set"))
+          {
+          changed.put(stat, action.get("value"));
+          }
+        else if(mode.equals("add"))
+          {
+          changed.put(stat, changed.getInt(stat)+action.getInt("value"));
+          }
+        else if(mode.equals("sub"))
+          {
+          changed.put(stat, changed.getInt(stat)-action.getInt("value"));
+          }
          
-         changed.update();
-         world.modify(changed);
-         }      
+        changed.update();
+        world.modify(changed);
+        }      
       }
 
     Log4J.finishMethod(logger,"onChangePlayer");
@@ -227,7 +247,6 @@ public class Administration extends ActionListener
       {
       player.put("invisible","");
       }
-
 
     Log4J.finishMethod(logger,"onTellEverybody");
     }

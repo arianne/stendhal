@@ -66,6 +66,10 @@ Changelog
 - Fixed a bug when dropping an item over itself
 - Modified private and hidden attributes
 - Fixed sync facing problem
+- Use a bit less of memory
+- Refactor StendhalRPRuleProcessor
+- Clear action code
+- Added Game master commands
 
 0.39.1 Oct 26, 2005
 - Fixed chat bug

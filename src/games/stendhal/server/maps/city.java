@@ -87,59 +87,59 @@ public class city
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("money"));
     zone.add(chest);
     
-    NPC npc=new BeggarNPC();
-    zone.assignRPObjectID(npc);
-    npc.setName("Diogenes");
-    npc.setx(24);
-    npc.sety(42);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    zone.addNPC(npc);
-      
-    npc=new BuyerNPC()
-      {
-      protected void createPath()
-        {
-        List<Path.Node> nodes=new LinkedList<Path.Node>();
-        nodes.add(new Path.Node(40,44));
-        nodes.add(new Path.Node(58,44));
-        nodes.add(new Path.Node(58,21));
-        nodes.add(new Path.Node(39,21));
-        nodes.add(new Path.Node(39,14));
-        nodes.add(new Path.Node(20,14));
-        nodes.add(new Path.Node(20,21));
-        nodes.add(new Path.Node(23,21));
-        nodes.add(new Path.Node(23,44));
-        setPath(nodes,true);
-        }
-      };
-    zone.assignRPObjectID(npc);
-    npc.setName("Sato");
-    npc.setx(40);
-    npc.sety(44);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    zone.addNPC(npc);
-
-    npc=new WelcomerNPC()
-      {
-      protected void createPath()
-        {
-        List<Path.Node> nodes=new LinkedList<Path.Node>();
-        nodes.add(new Path.Node(5,45));
-        nodes.add(new Path.Node(18,45));
-        setPath(nodes,true);
-        }
-      };
-    zone.assignRPObjectID(npc);
-    npc.setName("Carmen");
-    npc.setx(5);
-    npc.sety(45);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    zone.addNPC(npc);
+//    NPC npc=new BeggarNPC();
+//    zone.assignRPObjectID(npc);
+//    npc.setName("Diogenes");
+//    npc.setx(24);
+//    npc.sety(42);
+//    npc.setBaseHP(100);
+//    npc.setHP(npc.getBaseHP());
+//    zone.add(npc);    
+//    zone.addNPC(npc);
+//      
+//    npc=new BuyerNPC()
+//      {
+//      protected void createPath()
+//        {
+//        List<Path.Node> nodes=new LinkedList<Path.Node>();
+//        nodes.add(new Path.Node(40,44));
+//        nodes.add(new Path.Node(58,44));
+//        nodes.add(new Path.Node(58,21));
+//        nodes.add(new Path.Node(39,21));
+//        nodes.add(new Path.Node(39,14));
+//        nodes.add(new Path.Node(20,14));
+//        nodes.add(new Path.Node(20,21));
+//        nodes.add(new Path.Node(23,21));
+//        nodes.add(new Path.Node(23,44));
+//        setPath(nodes,true);
+//        }
+//      };
+//    zone.assignRPObjectID(npc);
+//    npc.setName("Sato");
+//    npc.setx(40);
+//    npc.sety(44);
+//    npc.setBaseHP(100);
+//    npc.setHP(npc.getBaseHP());
+//    zone.add(npc);    
+//    zone.addNPC(npc);
+//
+//    npc=new WelcomerNPC()
+//      {
+//      protected void createPath()
+//        {
+//        List<Path.Node> nodes=new LinkedList<Path.Node>();
+//        nodes.add(new Path.Node(5,45));
+//        nodes.add(new Path.Node(18,45));
+//        setPath(nodes,true);
+//        }
+//      };
+//    zone.assignRPObjectID(npc);
+//    npc.setName("Carmen");
+//    npc.setx(5);
+//    npc.sety(45);
+//    npc.setBaseHP(100);
+//    npc.setHP(npc.getBaseHP());
+//    zone.add(npc);    
+//    zone.addNPC(npc);
     }  
   }

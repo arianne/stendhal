@@ -17,7 +17,6 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.*;
 import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
 import marauroa.common.Log4J;
@@ -93,7 +92,6 @@ public class StendhalRPWorld extends RPWorld
     RPEntity.generateRPClass();
     
     NPC.generateRPClass();
-    TrainingDummy.generateRPClass();
 
     Creature.generateRPClass();
     Sheep.generateRPClass();

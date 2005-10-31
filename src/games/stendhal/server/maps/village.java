@@ -39,26 +39,26 @@ public class village
     sign.setText("[CLOSED]|The tavern has moved to a much|better and central house in town.|Come buy your weapons, find your|quests and hang out there instead.");
     zone.add(sign);
     
-    SellerNPC npc=new SellerNPC()
-      {
-      protected void createPath()
-        {
-        List<Path.Node> nodes=new LinkedList<Path.Node>();
-        nodes.add(new Path.Node(33,44));
-        nodes.add(new Path.Node(33,42));
-        nodes.add(new Path.Node(23,42));
-        nodes.add(new Path.Node(23,44));
-        setPath(nodes,true);
-        }
-      };
-      
-    zone.assignRPObjectID(npc);
-    npc.setName("Nishiya");
-    npc.setx(33);
-    npc.sety(44);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    zone.addNPC(npc);
+//    SellerNPC npc=new SellerNPC()
+//      {
+//      protected void createPath()
+//        {
+//        List<Path.Node> nodes=new LinkedList<Path.Node>();
+//        nodes.add(new Path.Node(33,44));
+//        nodes.add(new Path.Node(33,42));
+//        nodes.add(new Path.Node(23,42));
+//        nodes.add(new Path.Node(23,44));
+//        setPath(nodes,true);
+//        }
+//      };
+//      
+//    zone.assignRPObjectID(npc);
+//    npc.setName("Nishiya");
+//    npc.setx(33);
+//    npc.sety(44);
+//    npc.setBaseHP(100);
+//    npc.setHP(npc.getBaseHP());
+//    zone.add(npc);    
+//    zone.addNPC(npc);
     }
   }

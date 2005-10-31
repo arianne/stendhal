@@ -30,26 +30,26 @@ public class dungeon_001
     zone.add(portal);
     zone.addPortal(portal);
 
-    NPC npc=new OrcBuyerNPC()
-      {
-      protected void createPath()
-        {
-        List<Path.Node> nodes=new LinkedList<Path.Node>();
-        nodes.add(new Path.Node(67,12));
-        nodes.add(new Path.Node(59,12));
-        nodes.add(new Path.Node(59,16));
-        nodes.add(new Path.Node(67,16));
-        setPath(nodes,true);
-        }
-      };
-    zone.assignRPObjectID(npc);
-    npc.setName("Tor'Koom");
-    npc.setx(67);
-    npc.sety(12);
-    npc.setBaseHP(1000);
-    npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    zone.addNPC(npc);
+//    NPC npc=new OrcBuyerNPC()
+//      {
+//      protected void createPath()
+//        {
+//        List<Path.Node> nodes=new LinkedList<Path.Node>();
+//        nodes.add(new Path.Node(67,12));
+//        nodes.add(new Path.Node(59,12));
+//        nodes.add(new Path.Node(59,16));
+//        nodes.add(new Path.Node(67,16));
+//        setPath(nodes,true);
+//        }
+//      };
+//    zone.assignRPObjectID(npc);
+//    npc.setName("Tor'Koom");
+//    npc.setx(67);
+//    npc.sety(12);
+//    npc.setBaseHP(1000);
+//    npc.setHP(npc.getBaseHP());
+//    zone.add(npc);    
+//    zone.addNPC(npc);
   
     Item itemo = zone.getWorld().getRuleManager().getEntityManager().getItem("sword");
     zone.assignRPObjectID(itemo);

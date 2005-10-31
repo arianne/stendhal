@@ -460,6 +460,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\npc\ChatEngine.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\npc\JournalistNPC.java</path>
 				<source>true</source>
 			</fileitem>

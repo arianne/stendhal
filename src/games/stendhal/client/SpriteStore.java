@@ -90,6 +90,12 @@ public class SpriteStore {
       return animatedSprite;
     }
   
+  public void free(String ref)
+    {
+    sprites.put(ref,null);
+    sprites.remove(ref);
+    }
+  
 	/**
 	 * Retrieve a sprite from the store
 	 * 
