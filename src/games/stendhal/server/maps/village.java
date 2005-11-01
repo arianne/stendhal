@@ -66,6 +66,7 @@ public class village
             
           public boolean onSell(SpeakerNPC seller, Player player, String itemName, int itemPrice)
             {
+            System.out.println ("selling sheep!");
             if(!player.hasSheep())
               {
               seller.say("Congratulations! Here is your sheep!Keep it safe!");
@@ -98,7 +99,7 @@ public class village
         
         Behaviours.addGreeting(this);
         Behaviours.addGoodbye(this);
-        Behaviours.addSeller(this,new Behaviours.SellerBehaviour(items));
+        Behaviours.addSeller(this,new SheepSellerBehaviour(items));
         }
       };
       
