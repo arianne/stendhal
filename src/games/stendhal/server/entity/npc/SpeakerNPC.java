@@ -23,7 +23,60 @@ import org.apache.log4j.Logger;
  *  - State 0 is always the initial state
  *  - State 1 is the state where only one player can talk to NPC
  *  - State -1 is used for jump from any state when the trigger is present.
- *  - States from 2 to 100 are reserved for Behaviours uses. */
+ *  - States from 2 to 100 are reserved for Behaviours uses.
+ *
+ *  How it works: Example
+ *  First we need to create a message to greet the player and attend it.
+ *  We add a hi event
+ *
+ *  add(0, "hi", 1, "Welcome player!", null)
+ *
+ *  State 0 is the initial state, so once NPC is in that state and listen "hi", 
+ *  it will say "Welcome player!" and pass to state 1.
+ *
+ *  Now let's add some options when player is in state 1 like job, offer, buy, sell, etc.
+ *  
+ *  add(1, "job", 1, "I work as a part time example showman",null)
+ *  add(1, "offer", 1, "I sell best quality swords",null)
+ *
+ *  Ok, two new events: job and offer, they go from state 1 to 1, because after listening to them
+ *  the NPC can listen something like job.   
+ *
+ *  add(1, "buy", 20, null, new ChatAction()
+ *    {
+ *    public void fire(Player player, String text, SpeakerNPC engine)
+ *      {
+ *      int i=text.indexOf(" ");
+ *      String item=text.substring(i+1);
+ *       
+ *      if(item.equals("sword"))
+ *        {
+ *        engine.say(item+" costs 10 GP. Do you want to buy?");
+ *        }
+ *      else
+ *        {
+ *        engine.say("Sorry, I don't sell "+item);
+ *        engine.setActualState(1);          
+ *        }
+ *      }
+ *    });
+ *
+ *  Now the hard part, we listen to buy so we need to process the text, and for that we use the 
+ *  ChatAction class, we create a new class that will handle the event.
+ *  Also see that we move to a new state, 20, because we are replying to a question, so 
+ *  only expect two possible replies: yes or no.
+ *
+ *  add(20, "yes", 1, null, null);  // See Behaviours.java for exact code.
+ *  add(20, "no", 1, null, null); // See Behaviours.java for exact code.
+ *
+ *  Whatever the reply is, return to state 1 so we can listen to new things.
+ *  Finally we want to finish the conversation, so whatever state we are we want to finish a conversation 
+ *  with Bye.
+ *
+ *  add(-1, "bye", 0, "Bye!.", null);
+ *
+ *  We use -1 as a wildcard, so it text is bye the transition.happens.
+ **/ 
 public abstract class SpeakerNPC extends NPC 
   {
   /** the logger instance. */
