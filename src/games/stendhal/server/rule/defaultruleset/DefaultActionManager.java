@@ -15,10 +15,7 @@ package games.stendhal.server.rule.defaultruleset;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.ActionManager;
-import java.util.List;
-import marauroa.common.Log4J;
 import marauroa.common.game.RPSlot;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -26,8 +23,6 @@ import org.apache.log4j.Logger;
  */
 public class DefaultActionManager implements ActionManager
 {
-  /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(DefaultActionManager.class);
   
   /** the singleton instance, lazy initialisation */
   private static DefaultActionManager manager;

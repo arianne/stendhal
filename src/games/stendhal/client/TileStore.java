@@ -12,15 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.Transparency;
-import java.awt.Color;
-import java.awt.Image;
-import java.io.*;
-import java.util.*;
-import marauroa.common.*;
-import games.stendhal.common.*;
+import games.stendhal.common.Debug;
+
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 
 
 /** It is class to get tiles from the tileset */

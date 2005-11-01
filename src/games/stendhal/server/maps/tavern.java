@@ -1,10 +1,7 @@
 package games.stendhal.server.maps;
 
-import marauroa.common.game.*;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.npc.*;
-import java.util.*;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Portal;
 
 public class tavern 
   {

@@ -117,8 +117,7 @@ public class MessageBox extends Panel implements ClickListener, CloseListener
   public void onClose(String name)
   {
     // pseudoclicked the close button
-    onClick(name, true);
-    //notifyClickListeners(name);
+    onClick(closeButtonName, true);
   }
   
   /** some default buttons */

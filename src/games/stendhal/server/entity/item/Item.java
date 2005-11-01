@@ -12,25 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 import games.stendhal.server.entity.PassiveEntity;
+
 import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
-import marauroa.common.Log4J;
+
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
-import marauroa.common.game.RPObject;
-import org.apache.log4j.Logger;
 
 /**
  * This is an item.
  */
 public class Item extends PassiveEntity
   {
-  /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(Item.class);
   
   /** list of possible slots for this item */
   private String[] possibleSlots;

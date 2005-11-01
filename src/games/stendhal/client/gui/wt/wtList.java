@@ -1,7 +1,8 @@
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.*;
-import games.stendhal.client.entity.*;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 

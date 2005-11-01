@@ -12,13 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
 import games.stendhal.client.*;
-import games.stendhal.common.*;
-import java.util.*;
-import java.awt.*;
-import java.awt.geom.*;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.LinkedList;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 
 /** This class is a link between client graphical objects and server attributes objects.<br>
@@ -173,9 +178,6 @@ public abstract class RPEntity extends AnimatedEntity
       targetEntity=new RPObject.ID(target,changes.get("zoneid"));
       gameObjects.attack(this,targetEntity,risk,damage);
       }
-
-    int risk=(changes.has("risk")?changes.getInt("risk"):-1);
-    int damage=(changes.has("damage")?changes.getInt("damage"):-1);
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
@@ -397,4 +399,36 @@ public abstract class RPEntity extends AnimatedEntity
       return 0;
       }
     }
+
+  /**
+   * @return Returns the atk.
+   */
+  public int getAtk()
+  {
+    return atk;
+  }
+
+  /**
+   * @return Returns the def.
+   */
+  public int getDef()
+  {
+    return def;
+  }
+
+  /**
+   * @return Returns the xp.
+   */
+  public int getXp()
+  {
+    return xp;
+  }
+
+  /**
+   * @return Returns the base_hp.
+   */
+  public int getBase_hp()
+  {
+    return base_hp;
+  }
   }

@@ -12,19 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
-import java.util.List;
+import games.stendhal.client.*;
+
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
+
 import org.apache.log4j.Logger;
 
 

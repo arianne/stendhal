@@ -13,26 +13,26 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.*;
-import games.stendhal.common.Direction;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 import java.net.URL;
-import java.util.LinkedList;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+
+import javax.swing.*;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+
 import org.apache.log4j.Logger;
 
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends JFrame
   {
+  private static final long serialVersionUID = 3356310866399084117L;
+
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(j2DClient.class);
   
@@ -43,9 +43,6 @@ public class j2DClient extends JFrame
 
   private StendhalClient client;
 
-  private String host;
-  private String username;
-  private String password;
 
   /** NOTE: It sounds bad to see here a GUI component. Try other way. */
   private JTextField playerChatText;
@@ -264,14 +261,6 @@ public class j2DClient extends JFrame
 
       double x=object.getDouble("x");
       double y=object.getDouble("y");
-      double dx=0;
-      double dy=0;
-
-      double speed=object.getDouble("speed");
-
-      Direction dir=Direction.build(object.getInt("dir"));
-      dx=dir.getdx();
-      dy=dir.getdy();
 
       GameScreen screen=GameScreen.get();
       double screenx=screen.getX();
@@ -283,9 +272,6 @@ public class j2DClient extends JFrame
 
       double dsx=screenx+screenw/2;
       double dsy=screeny+screenh/2;
-
-      double layerw=gameLayers.getWidth();
-      double layerh=gameLayers.getHeight();
 
       if(dsx-x<-2)
         {

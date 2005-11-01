@@ -15,11 +15,13 @@ package games.stendhal.server;
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+
 import java.util.LinkedList;
 import java.util.List;
+
 import marauroa.common.Log4J;
-import marauroa.server.game.RPServerManager;
 import marauroa.server.game.RPWorld;
+
 import org.apache.log4j.Logger;
 
 
@@ -28,7 +30,6 @@ public class Path
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Path.class);
 
-  private static RPServerManager rpman;
   private static StendhalRPWorld world;
   private static StepCallback callback;
   
@@ -53,9 +54,8 @@ public class Path
       }
     }
 
-  public static void initialize(RPServerManager rpman, RPWorld world)
+  public static void initialize(RPWorld world)
     {
-    Path.rpman = rpman;
     Path.world = (StendhalRPWorld) world;
     }
   

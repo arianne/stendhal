@@ -140,7 +140,9 @@ public class StendhalRPWorld extends RPWorld
       {
       Class entityClass=Class.forName("games.stendhal.server.maps."+name);
       java.lang.reflect.Constructor constr=entityClass.getConstructor(StendhalRPZone.class);
-      Object object=constr.newInstance(area);
+
+      // simply creatre a new instance. The constructor creates all additionally objects  
+      constr.newInstance(area);
       }
     catch(Exception e)
       {

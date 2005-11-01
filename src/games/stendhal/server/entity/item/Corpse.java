@@ -12,16 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
+import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.RPEntity;
 
-import games.stendhal.server.entity.*;
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+
+import marauroa.common.game.*;
 
 public class Corpse extends PassiveEntity
   {

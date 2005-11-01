@@ -1,11 +1,13 @@
 package games.stendhal.client.gui;
 import java.awt.Frame;
 import java.net.URL;
+
 import javax.swing.*;
 
 
 public class ProgressBar extends JFrame {
-    
+    private static final long serialVersionUID = 6241161656154797719L;
+
     private Frame frame;
     private JPanel contentPane;
     private JProgressBar m_progressBar;

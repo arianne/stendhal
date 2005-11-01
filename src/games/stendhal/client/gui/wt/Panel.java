@@ -565,10 +565,8 @@ public class Panel implements Draggable
     // draw frame
     if (frame)
     {
-      int colSteps = 255 / (FRAME_SIZE);
       for (int i = 0; i < FRAME_SIZE; i++)
       {
-        int col = colSteps * i;
         panelGraphics.setColor(frameEmbossed ? darkColor : lightColor);
         panelGraphics.drawLine(i, i, width-i-2, i);
         panelGraphics.drawLine(i, i, i, localHeight-i-2);

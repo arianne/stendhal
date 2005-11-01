@@ -38,8 +38,6 @@ public class Minimap extends Panel
   private static final int MINIMAP_MINIMUM_SCALE = 2;
   
   
-  /** the area this map is for */
-  private String area;
   /** scale of map */
   private int scale;
   /** width of (scaled) minimap */

@@ -28,7 +28,8 @@ public class textClient extends Thread
   private String character;
   
   private Map<RPObject.ID,RPObject> world_objects;
-  private RPObject myRPObject;
+  // TODO: never used? remove me
+  // private RPObject myRPObject;
 
   private marauroa.client.ariannexp clientManager;
   private PerceptionHandler handler;
@@ -55,7 +56,8 @@ public class textClient extends Thread
         {
         if(changed)
           {
-          myRPObject=object;
+          // TODO: never used? remove me
+          // myRPObject=object;
           }
             
         return false;

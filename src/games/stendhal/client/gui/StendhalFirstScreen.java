@@ -12,11 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
+
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
 import java.net.URL;
-import games.stendhal.client.*;
+
+import javax.swing.*;
 
 
 /**
@@ -24,6 +27,8 @@ import games.stendhal.client.*;
  *
  */
 public class StendhalFirstScreen extends JFrame {
+    private static final long serialVersionUID = -7825572598938892220L;
+
     // Variables declaration
     private JButton loginButton;
     private JButton createAccountButton;
@@ -68,6 +73,7 @@ public class StendhalFirstScreen extends JFrame {
                 g.drawImage(background,0,0,this);
                 super.paint(g);
             }
+            private static final long serialVersionUID = -4272347652159225492L;
             
         });
         contentPane = (JPanel)this.getContentPane();

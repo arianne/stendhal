@@ -27,6 +27,8 @@ import marauroa.client.*;
  *
  */
 public class LoginDialog extends JDialog {
+    private static final long serialVersionUID = 4436228792112530975L;
+
     // Variables declaration
     private JLabel usernameLabel;
     private JLabel serverLabel;
@@ -174,13 +176,14 @@ public class LoginDialog extends JDialog {
         this.setSize(new Dimension(410, 205));
         this.setLocationRelativeTo(frame);
     }
-    
-    /** Add Component Without a Layout Manager (Absolute Positioning) */
-    private void addComponent(Container container, Component c, int x, int y,
-            int width, int height) {
-        c.setBounds(x, y, width, height);
-        container.add(c);
-    }
+
+// TODO: Never used? remove me
+//    /** Add Component Without a Layout Manager (Absolute Positioning) */
+//    private void addComponent(Container container, Component c, int x, int y,
+//            int width, int height) {
+//        c.setBounds(x, y, width, height);
+//        container.add(c);
+//    }
     
     private void loginButton_actionPerformed(ActionEvent e, boolean saveLoginBoxStatus) {
         final String username = usernameField.getText();

@@ -12,6 +12,8 @@ import java.awt.*;
 
 public class KTextEdit extends JPanel
   {
+  private static final long serialVersionUID = -698232821850852452L;
+  
   private static final int TEXT_SIZE = 11;
   private static final Color HEADER_COLOR = Color.gray;
   private JTextPane textPane;

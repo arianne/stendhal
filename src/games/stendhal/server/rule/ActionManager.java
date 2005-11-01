@@ -14,8 +14,6 @@ package games.stendhal.server.rule;
 
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
-import marauroa.common.game.RPSlot;
-import java.util.List;
 
 /**
  * Ruleset Interface for processing actions in Stendhal.

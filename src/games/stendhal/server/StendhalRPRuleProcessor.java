@@ -12,18 +12,21 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import games.stendhal.common.*;
+import games.stendhal.common.Pair;
 import games.stendhal.server.actions.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.Food;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.NPC;
 
 import java.util.*;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
+
 import org.apache.log4j.Logger;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor
@@ -115,7 +118,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       StendhalRPAction.initialize(rpman,this,world);
       Behaviours.initialize(rpman,this,world);
-      Path.initialize(rpman,world);
+      Path.initialize(world);
 
       NPC.setRPContext(this, this.world);
 

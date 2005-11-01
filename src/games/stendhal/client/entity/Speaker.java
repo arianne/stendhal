@@ -12,21 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
-import games.stendhal.client.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Color;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
 
 /** A Player entity */
 public abstract class Speaker extends RPEntity
   {
-  private final static int TEXT_PERSISTENCE_TIME=5000;
-
-  private Sprite textImage;
-  private long textImageTime;
-
   public Speaker(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);

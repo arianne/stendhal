@@ -313,7 +313,7 @@ public class StendhalClient extends ariannexp
         writer.close();
 
         logger.debug("File cached. Timestamp: "+Integer.toString(item.timestamp));
-        long timestamp=item.timestamp;
+
         
         conf.set(item.name,Integer.toString(item.timestamp));
           

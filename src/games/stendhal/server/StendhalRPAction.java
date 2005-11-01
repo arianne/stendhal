@@ -13,10 +13,7 @@
 package games.stendhal.server;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.Portal;
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import marauroa.common.Log4J;
@@ -26,6 +23,7 @@ import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.server.game.NoRPZoneException;
 import marauroa.server.game.RPServerManager;
 import marauroa.server.game.RPWorld;
+
 import org.apache.log4j.Logger;
 
 public class StendhalRPAction
@@ -33,8 +31,14 @@ public class StendhalRPAction
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(StendhalRPAction.class);
   
+  /** server manager */
   private static RPServerManager rpman;
+  
+  /** the rule processor. it is not used at the moment */
+  @SuppressWarnings("unused")
   private static StendhalRPRuleProcessor rules;
+  
+  /** our world */
   private static RPWorld world;
 
   public static void initialize(RPServerManager rpman, StendhalRPRuleProcessor rules, RPWorld world)

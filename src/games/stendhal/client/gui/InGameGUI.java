@@ -370,7 +370,6 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
           {
           // Move from other droppable area to droppable object
           wtDroppableArea sourceSlot=((wtDroppableArea)param[0]);
-          wtDroppableArea targetSlot=((wtDroppableArea)param[1]);
 
           if(sourceSlot.getName().startsWith("left"))
             {
@@ -582,8 +581,6 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       {
       // Moving from a droppable area to a droppable area of inspected baseItem 
       int baseItem=-1;
-      int baseobjectid=inspectedEntity.getID().getObjectID();
-      String slot=inspectedSlot.getName();
       
       String choosenarea=choosenWidget.getName();
       int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));

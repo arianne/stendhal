@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client;
 import games.stendhal.client.gui.wt.Frame;
-import games.stendhal.client.gui.wt.MessageBox;
-import games.stendhal.client.gui.wt.Minimap;
 import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.common.CollisionDetection;
-import games.stendhal.common.Debug;
 import games.stendhal.common.Pair;
+
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.LinkedList;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
+
 import org.apache.log4j.Logger;
 
 /** This class stores the layers that make the floor and the buildings */

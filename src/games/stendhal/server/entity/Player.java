@@ -15,14 +15,15 @@ package games.stendhal.server.entity;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.item.*;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.Money;
+
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
+import marauroa.common.game.*;
+
 import org.apache.log4j.Logger;
 
 
@@ -31,9 +32,6 @@ public class Player extends RPEntity
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Player.class);
 
-  private int devel;
-  private int leave;
-  private boolean hasLeave;
 
   public static void generateRPClass()
     {
@@ -329,8 +327,6 @@ public class Player extends RPEntity
     {
     super(object);
     put("type","player");
-    hasLeave=false;
-
     update();
     }
 
@@ -401,6 +397,8 @@ public class Player extends RPEntity
 
   public static class NoSheepException extends RuntimeException
     {
+    private static final long serialVersionUID = -6689072547778842040L;
+
     public NoSheepException()
       {
       super();

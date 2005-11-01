@@ -17,7 +17,6 @@
 
 package games.stendhal.client.gui.wt;
 
-import java.awt.Graphics;
 import java.awt.Point;
 
 

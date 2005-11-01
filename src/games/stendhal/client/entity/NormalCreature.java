@@ -12,11 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
 
-import java.awt.*;
-import java.awt.geom.*;
 
 
 /** A Creature entity */

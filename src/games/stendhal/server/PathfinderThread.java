@@ -103,14 +103,13 @@ public class PathfinderThread extends Thread
     
     int steps = 0;
     pathfinder.init();
-    // HACK: Time limited the A* search.
+    // HACK: Time limit the A* search.
     while(pathfinder.getStatus() == Pathfinder.IN_PROGRESS && ((System.currentTimeMillis() - startTime) < MAX_PATHFINDING_TIME))
     {
       pathfinder.doStep();
       steps++;
     }
     
-    long endTime = System.currentTimeMillis();
     List<Path.Node> list = new LinkedList<Path.Node>();
     Pathfinder.Node node = pathfinder.getBestNode();
     while(node!=null)

@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.common;
 
-import java.util.Random;
 
 public enum Direction 
   {

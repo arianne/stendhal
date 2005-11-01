@@ -55,6 +55,7 @@ public enum DefaultItem
     this.attributes.put(attribute.first(), attribute.second());
   }
 
+  @SuppressWarnings("unused")
   DefaultItem(String clazz, String name, String[] slots, int tileid, List<Pair<String, String>> attributes)
   {
     this.clazz = clazz;

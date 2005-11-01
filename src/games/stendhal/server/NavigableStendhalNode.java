@@ -23,12 +23,9 @@ import games.stendhal.server.entity.Entity;
 public class NavigableStendhalNode implements Navigable
 {
   private Entity entity;
-  private Entity dest;
   private StendhalRPZone zone;
   private Pathfinder.Node startNode;
   private Pathfinder.Node endNode;
-  /** The best direct distance from the start to the end */
-  private double bestDistance;
   /** The max cost the path may have. It is identical to the steps needed. */
   private double maxCost;
   
@@ -49,13 +46,11 @@ public class NavigableStendhalNode implements Navigable
     this.entity=entity;
     this.startNode = new Pathfinder.Node(x1,y1);
     this.endNode = new Pathfinder.Node(x2,y2);
-    this.bestDistance = getHeuristic(startNode,endNode);
   }
   
   public NavigableStendhalNode(Entity entity, Entity dest, StendhalRPZone zone)
   {
     this(entity,entity.getx(), entity.gety(), dest.getx(),dest.gety(),zone);
-    this.dest=dest;
   }
   
   public void setMaxCost(double cost)

@@ -20,13 +20,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
+@SuppressWarnings("unused")
 public abstract class Creature extends NPC
   {
   /** the logger instance. */
@@ -87,7 +87,6 @@ public abstract class Creature extends NPC
   public void drawPath(GameScreen screen, List<Node> path, int delta)
   {
     Graphics g2d=screen.expose();
-    Rectangle2D rect = getArea();
     Point2D p1 = screen.invtranslate(new Point.Double(getx(),gety()));
 
     for (Node node : path)

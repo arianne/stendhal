@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*;
-import java.util.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
+import javax.swing.*;
 
 /**
  * Summary description for GameLogDialog
@@ -24,11 +24,10 @@ import java.util.*;
  */
 public class GameLogDialog extends JDialog
   {
+  private static final long serialVersionUID = 18385076971138410L;
   // Variables declaration
   private KTextEdit jEditArea;
-  private JTextArea jTextArea;
   
-  private JScrollPane jScrollPane;
   private JPanel contentPane;
   private JTextField playerChat;
   // End of variables declaration

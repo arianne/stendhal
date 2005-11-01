@@ -12,12 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import java.awt.*;
-import java.awt.geom.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.server.*;
+import java.awt.geom.Rectangle2D;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
 
 public class Food extends Entity 
   {

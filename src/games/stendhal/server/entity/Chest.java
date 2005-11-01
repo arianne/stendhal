@@ -12,13 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import java.awt.*;
-import java.awt.geom.*;
-import marauroa.common.*;
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+
 import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.server.*;
-import java.util.*;
 
 public class Chest extends Entity
   {

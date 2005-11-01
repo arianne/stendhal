@@ -21,7 +21,6 @@ package games.stendhal.tools;
 
 import games.stendhal.tools.tiled.StendhalMapWriter;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tools.ant.BuildException;

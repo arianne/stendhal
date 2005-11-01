@@ -18,22 +18,18 @@
 
 package games.stendhal.client.gui;
 
-import games.stendhal.client.*;
-import marauroa.common.game.*;
-
-/**
- *
- * @author  Joao Costa [ joao.mailbox@netvisao.pt ] http://joaocosta.site.vu
- */
-
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
+
 import java.awt.Graphics;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.ImageIcon;
+
+import marauroa.common.game.RPAction;
 
 public class OutfitDialog extends javax.swing.JDialog {
+  private static final long serialVersionUID = 4628210176721975735L;
     // to keep the sprites to show
     private Sprite[] hairs = null;
     private Sprite[] heads = null;

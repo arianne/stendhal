@@ -19,10 +19,8 @@ import java.awt.geom.*;
 
 public class Sign extends Entity 
   {
-  private final static int TEXT_PERSISTENCE_TIME=5000;
   private String text;
   private Sprite textImage;
-  private long delta;
   
   public Sign(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    

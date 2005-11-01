@@ -17,21 +17,23 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Food;
 import games.stendhal.server.entity.Portal;
-import games.stendhal.server.entity.creature.*;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.net.TransferContent;
 import marauroa.server.game.MarauroaRPZone;
+
 import org.apache.log4j.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone
@@ -55,9 +57,6 @@ public class StendhalRPZone extends MarauroaRPZone
   public CollisionDetection collisionMap;
   /** contains navigation point nodes and 'streets' */
   public NavigationMap navigationMap;  
-
-  private int width;
-  private int height;
 
   public StendhalRPZone(String name, StendhalRPWorld world)
     {
@@ -304,7 +303,6 @@ public class StendhalRPZone extends MarauroaRPZone
     String text=file.readLine();
     String[] size=text.split(" ");
     int width=Integer.parseInt(size[0]);
-    int height=Integer.parseInt(size[1]);
     
     int j=0;
     

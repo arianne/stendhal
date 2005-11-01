@@ -12,15 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.*;
-import marauroa.common.game.*;
 import games.stendhal.client.*;
-import games.stendhal.common.*;
-import java.util.*;
-import java.awt.*;
-import java.awt.geom.*;
+import games.stendhal.common.Direction;
 
-import java.lang.reflect.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
 
 public abstract class Entity
   {

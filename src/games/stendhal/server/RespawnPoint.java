@@ -27,7 +27,6 @@ public class RespawnPoint
   
   private int x;
   private int y;
-  private double radius;
 
   private int maximum;
   private Creature entity;
@@ -52,7 +51,6 @@ public class RespawnPoint
     {
     this.x=x;
     this.y=y;
-    this.radius=radius;
     maximum=0;
 
     respawning=true;

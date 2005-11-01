@@ -1,11 +1,9 @@
 package games.stendhal.server.maps;
 
-import java.util.*;
-import marauroa.common.game.*;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.item.*;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.Sign;
 
 public class city 
   {

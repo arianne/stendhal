@@ -22,7 +22,6 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.entity.Money;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,14 +44,10 @@ public class Character extends Panel
   /** the money we have */
   int money;
   
-  /** need this to find the sprite for each RPObject */
-  private GameObjects gameObjects;
-  
   /** Creates a new instance of Character */
   public Character(GameObjects gameObjects)
   {
     super("character", 640-132, 0, 132, 265);
-    this.gameObjects = gameObjects;
     setTitleBar(true);
     setFrame(true);
     setMoveable(true);

@@ -12,13 +12,10 @@
  ***************************************************************************/
 package games.stendhal.common;
 
-import java.util.*;
-import java.io.*;
-import java.awt.*;
-import java.awt.geom.*;
-
-import games.stendhal.common.*;
-import marauroa.common.*;
+import java.awt.geom.Rectangle2D;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
 
 /** This class loads the map and allow you to determine if a player collides or 
  *  not with any of the non trespasable areas of the world */

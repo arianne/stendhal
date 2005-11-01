@@ -14,15 +14,22 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Debug;
 import games.stendhal.common.Level;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
+import games.stendhal.server.Path;
+import games.stendhal.server.RespawnPoint;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
+
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
-import marauroa.common.Configuration;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.*;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+
 import org.apache.log4j.Logger;
 
 

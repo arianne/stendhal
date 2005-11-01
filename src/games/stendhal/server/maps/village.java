@@ -1,11 +1,13 @@
 package games.stendhal.server.maps;
 
-import marauroa.common.game.*;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
+import games.stendhal.server.Path;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+
 import java.util.*;
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.entity.creature.*;
 
 public class village 
   {

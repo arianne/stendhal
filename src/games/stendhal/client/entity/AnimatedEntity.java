@@ -14,7 +14,6 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
-import games.stendhal.common.*;
 import java.util.*;
 
 /** This class is a special type of GameEntity that has animation, that is

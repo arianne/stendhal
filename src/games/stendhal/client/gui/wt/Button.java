@@ -21,8 +21,7 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.Sprite;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * A simple button. It features a onClick() callback.
@@ -32,11 +31,6 @@ import java.util.List;
  */
 public class Button extends Panel
 {
-  /** size of the button-frame */
-  private static final int FRAME_SIZE = 3;
-  
-  /** text for the button */
-  private String text;
   /** image for the button */
   private Sprite image;
   
