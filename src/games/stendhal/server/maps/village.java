@@ -3,6 +3,8 @@ package games.stendhal.server.maps;
 import games.stendhal.server.Path;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -54,15 +56,49 @@ public class village
         }
       
       protected void createDialog()
-        {
+        {        
+        class SheepSellerBehaviour extends Behaviours.SellerBehaviour
+          {
+          SheepSellerBehaviour(Map<String,Integer> items)
+            {
+            super(items);
+            }
+            
+          public boolean onSell(SpeakerNPC seller, Player player, String itemName, int itemPrice)
+            {
+            if(!player.hasSheep())
+              {
+              seller.say("Congratulations! Here is your sheep!Keep it safe!");
+              StendhalRPZone zone=(StendhalRPZone)world.getRPZone(seller.getID());
+              
+              Sheep sheep=new Sheep(player);
+              zone.assignRPObjectID(sheep);
+
+              sheep.setx(seller.getx());
+              sheep.sety(seller.gety()+2);
+              
+              world.add(sheep);
+              
+              player.setSheep(sheep);        
+              world.modify(player);
+
+              chargePlayer(player,itemPrice);
+              return true;
+              }
+            else
+              {
+              say("You already have a sheep. Take care of it first!");
+              return false;
+              }
+            }
+          }
+          
         Map<String,Integer> items=new HashMap<String,Integer>();
-        items.put("shield",10);
-        items.put("armor",20);
-        items.put("sword",100);
+        items.put("sheep",30);
         
         Behaviours.addGreeting(this);
         Behaviours.addGoodbye(this);
-        Behaviours.addSeller(this,items);
+        Behaviours.addSeller(this,new Behaviours.SellerBehaviour(items));
         }
       };
       

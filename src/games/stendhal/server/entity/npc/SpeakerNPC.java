@@ -45,9 +45,7 @@ public abstract class SpeakerNPC extends NPC
   // Attended players
   private Player attending;
   
-  private Map<String, Map<String,Integer>> behavioursData;
-  private String tmpData;
-    
+  private Map<String, Object> behavioursData;
   
   public SpeakerNPC() throws AttributeNotFoundException
     {
@@ -58,7 +56,7 @@ public abstract class SpeakerNPC extends NPC
     actualState=0;
     lastMessageTurn=0;
     
-    behavioursData=new HashMap<String, Map<String,Integer>>();
+    behavioursData=new HashMap<String, Object>();
     
     createDialog();
     }
@@ -66,26 +64,16 @@ public abstract class SpeakerNPC extends NPC
   abstract protected void createPath();
   abstract protected void createDialog();
   
-  public void setBehaviourData(String behaviour, Map<String,Integer> data)
+  public void setBehaviourData(String behaviour, Object data)
     {
     behavioursData.put(behaviour,data);
     }
   
-  public Map<String,Integer> getBehaviourData(String behaviour)
+  public Object getBehaviourData(String behaviour)
     {
     return behavioursData.get(behaviour);
     }
 
-  public void setTemporalData(String tmp)
-    {
-    tmpData=tmp;
-    }
-    
-  public String getTemporalData()
-    {
-    return tmpData;
-    }
-  
   public void getArea(Rectangle2D rect, double x, double y)
     {
     rect.setRect(x,y+1,1,1);
