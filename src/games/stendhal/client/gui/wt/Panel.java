@@ -299,6 +299,13 @@ public class Panel implements Draggable
     if (y < 0)
       this.y = 0;
     
+    int height = 0;
+    if (hasTitleBar())
+      height += TILLEBAR_SIZE;
+    
+    if (hasFrame())
+      height += FRAME_SIZE;
+    
     if (hasParent() && parent.getHeight() - height < y)
       this.y = parent.getHeight() - height;
 

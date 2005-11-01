@@ -32,6 +32,13 @@ import org.apache.log4j.Logger;
 public class j2DClient extends JFrame
   {
   private static final long serialVersionUID = 3356310866399084117L;
+  /** height of the chat line */
+  private static final int CHAT_LINE_SIZE = 20;
+  /** width of the game screen (without the chat line) */
+  private static final int SCREEN_WIDTH = 640;
+  /** height of the game screen (without the chat line) */
+  private static final int SCREEN_HEIGHT = 480;
+
 
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(j2DClient.class);
@@ -60,19 +67,19 @@ public class j2DClient extends JFrame
 
     // get hold the content of the frame and set up the resolution of the game
     JPanel panel = (JPanel) this.getContentPane();
-    panel.setPreferredSize(new Dimension(640,480));
+    panel.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT+CHAT_LINE_SIZE));
     panel.setLayout(null);
 
     // setup our canvas size and put it into the content of the frame
     Canvas canvas=new Canvas();
-    canvas.setBounds(0,0,640,460);
+    canvas.setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
     // Tell AWT not to bother repainting our canvas since we're
     // going to do that our self in accelerated mode
     canvas.setIgnoreRepaint(true);
     panel.add(canvas);
 
     playerChatText=new JTextField("");
-    playerChatText.setBounds(0,460,640,20);
+    playerChatText.setBounds(0,SCREEN_HEIGHT,SCREEN_WIDTH,CHAT_LINE_SIZE);
 
     StendhalChatLineListener chatListener=new StendhalChatLineListener(client,playerChatText);
     playerChatText.addActionListener(chatListener);
@@ -131,7 +138,7 @@ public class j2DClient extends JFrame
     canvas.createBufferStrategy(2);
     strategy = canvas.getBufferStrategy();
 
-    GameScreen.createScreen(strategy,640,480);
+    GameScreen.createScreen(strategy,SCREEN_WIDTH,SCREEN_HEIGHT);
     screen = GameScreen.get();
     screen.setComponent(canvas);
 
