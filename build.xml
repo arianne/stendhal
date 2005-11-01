@@ -1,14 +1,7 @@
 <?xml version='1.0'?>
 <project name="stendhal" default="compile" basedir=".">
-  <property name="version" value="0.39.1"/>
-  <property name="src" value="src"/>
-  <property name="maps" value="maps"/>
-  <property name="data" value="data"/>
-  <property name="sprites" value="sprites"/>
-  <property name="tilesets" value="tilesets"/>
-  <property name="build" value="build"/>
-  <property name="lib"  value="lib"/>
-  <property name="docs" value="javadocs"/>
+
+  <property file="build.ant.properties"/>
 
   <!-- EDIT HERE TO CONFIGURE YOUR JAR FILE NAMES -->
   <property name="marauroa_jar" value="marauroa.jar"/>
@@ -25,6 +18,7 @@
   <property name="client_jarname" value="stendhal-${version}.jar"/>
   <property name="tiledplugin_jarname" value="plugin.jar"/>
 
+
   <target name="clean">
     <delete dir="${build}"/>
     <delete dir="${lib}"/>
@@ -37,9 +31,29 @@
     <mkdir dir="${docs}" />
   </target>
 
-  <target name="compile" depends="init">
+  <target name="copy-resources" description="copies the game resources">
     <mkdir dir="${build}"/>
 
+    <copy todir="${build}/sprites">
+      <fileset dir="${sprites}"/>
+    </copy>
+
+    <copy todir="${build}/tilesets">
+      <fileset dir="${tilesets}"/>
+    </copy>
+
+    <copy todir="${build}/data">
+      <fileset dir="${data}"/>
+    </copy>
+
+    <copy todir="${build}/games/stendhal/server/maps">
+      <fileset dir="${maps}"/>
+    </copy>
+
+    <copy todir="${build}/games/stendhal/" file="${src}/games/stendhal/log4j.properties"/>
+  </target>
+    
+  <target name="compile" depends="init">
     <replaceregexp file="${src}/games/stendhal/client/stendhal.java"
                    match="public static final String VERSION=&quot;.*&quot;;"
                    replace="public static final String VERSION=&quot;${version}&quot;;"
@@ -62,7 +76,7 @@
     </copy>
 
     <copy todir="${build}/games/stendhal/server/maps">
-    <fileset file="${sprites}/*.collision"/>
+      <fileset file="${sprites}/*.collision"/>
     </copy>
 
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
