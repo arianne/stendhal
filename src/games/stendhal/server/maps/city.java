@@ -1,9 +1,16 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.Sign;
+import java.util.*;
+import games.stendhal.common.Rand;
+import games.stendhal.server.Path;
 
 public class city 
   {
@@ -26,18 +33,6 @@ public class city
     portal.setDestination("tavern",0);
     zone.add(portal);
     zone.addPortal(portal);
-
-/**
-    portal=new Portal();
-    zone.assignRPObjectID(portal);
-    portal.setx(62);
-    portal.sety(31);
-    portal.setNumber(2);
-    portal.setDestination("valley",0);
-    zone.add(portal);
-    zone.addPortal(portal);
-**/
-    
 
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
@@ -85,41 +80,95 @@ public class city
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("money"));
     zone.add(chest);
     
-//    NPC npc=new BeggarNPC();
-//    zone.assignRPObjectID(npc);
-//    npc.setName("Diogenes");
-//    npc.setx(24);
-//    npc.sety(42);
-//    npc.setBaseHP(100);
-//    npc.setHP(npc.getBaseHP());
-//    zone.add(npc);    
-//    zone.addNPC(npc);
-//      
-//    npc=new BuyerNPC()
-//      {
-//      protected void createPath()
-//        {
-//        List<Path.Node> nodes=new LinkedList<Path.Node>();
-//        nodes.add(new Path.Node(40,44));
-//        nodes.add(new Path.Node(58,44));
-//        nodes.add(new Path.Node(58,21));
-//        nodes.add(new Path.Node(39,21));
-//        nodes.add(new Path.Node(39,14));
-//        nodes.add(new Path.Node(20,14));
-//        nodes.add(new Path.Node(20,21));
-//        nodes.add(new Path.Node(23,21));
-//        nodes.add(new Path.Node(23,44));
-//        setPath(nodes,true);
-//        }
-//      };
-//    zone.assignRPObjectID(npc);
-//    npc.setName("Sato");
-//    npc.setx(40);
-//    npc.sety(44);
-//    npc.setBaseHP(100);
-//    npc.setHP(npc.getBaseHP());
-//    zone.add(npc);    
-//    zone.addNPC(npc);
+    NPC npc=new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(22,42));
+        nodes.add(new Path.Node(26,42));
+        nodes.add(new Path.Node(26,44));
+        nodes.add(new Path.Node(31,44));
+        nodes.add(new Path.Node(31,42));
+        nodes.add(new Path.Node(35,42));
+        nodes.add(new Path.Node(35,28));
+        nodes.add(new Path.Node(22,28));
+        setPath(nodes,true);
+        }
+        
+      protected void createDialog()
+        {        
+        Behaviours.addGreeting(this);
+        Behaviours.addJob(this,"Hehehe! Job! hehehe! Muahahaha!.");
+        Behaviours.addHelp(this,"I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.");
+        Behaviours.addGoodbye(this);
+        
+        add(1, "quest", 1, null, new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player, String text, SpeakerNPC engine)
+            {
+            switch(Rand.rand(2))
+              {
+              case 0:        
+                say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");
+                break;
+              case 1:
+                say("I have been told that on the deepest place of the dungeon under this city someone also buy sheeps, but *it* pays better!.");
+                break;
+              }
+            }
+          });
+        }
+      };
+    
+    zone.assignRPObjectID(npc);
+    npc.setName("Diogenes");
+    npc.put("class","beggarnpc");
+    npc.setx(24);
+    npc.sety(42);
+    npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
+    zone.add(npc);    
+    zone.addNPC(npc);
+      
+    npc=new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(40,44));
+        nodes.add(new Path.Node(58,44));
+        nodes.add(new Path.Node(58,21));
+        nodes.add(new Path.Node(39,21));
+        nodes.add(new Path.Node(39,14));
+        nodes.add(new Path.Node(20,14));
+        nodes.add(new Path.Node(20,21));
+        nodes.add(new Path.Node(23,21));
+        nodes.add(new Path.Node(23,44));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {        
+        Map<String,Integer> items=new HashMap<String,Integer>();
+        items.put("shield",30);
+
+        Behaviours.addGreeting(this);
+        Behaviours.addJob(this,"I work as the main Semos' sheep buyer.");
+        Behaviours.addHelp(this,"I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!.");
+        Behaviours.addBuyer(this,new Behaviours.BuyerBehaviour(items));
+        Behaviours.addGoodbye(this);
+        }
+      };
+    zone.assignRPObjectID(npc);
+    npc.setName("Sato");
+    npc.put("class","buyernpc");
+    npc.setx(40);
+    npc.sety(44);
+    npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
+    zone.add(npc);    
+    zone.addNPC(npc);
 //
 //    npc=new WelcomerNPC()
 //      {

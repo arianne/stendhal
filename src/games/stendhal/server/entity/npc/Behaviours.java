@@ -33,6 +33,16 @@ public class Behaviours
     npc.add(0,new String[]{"hi","hello","greetings"}, 1,"Greetings! How may I help you?",null);
     }
 
+  public static void addJob(SpeakerNPC npc, String jobDescription)
+    {
+    npc.add(1,new String[]{"job","work"}, 1,jobDescription,null);
+    }
+
+  public static void addHelp(SpeakerNPC npc, String helpDescription)
+    {
+    npc.add(1,new String[]{"help","ayuda"}, 1,helpDescription,null);
+    }
+
   public static void addGoodbye(SpeakerNPC npc)
     {
     npc.add(-1,new String[]{"bye","farewell","cya"}, 1,"Bye.",null);
@@ -207,6 +217,165 @@ public class Behaviours
         logger.debug("Selling a "+itemName+" to player "+player.getName());
         
         sellableItems.onSell(engine,player,itemName, itemPrice);
+        }
+      });
+    npc.add(20,"no", 1,"Ok, how may I help you?",null);
+    }
+    
+
+  public static class BuyerBehaviour
+    {
+    private Map<String,Integer> items;
+    private String choosenItem;
+    
+    public BuyerBehaviour(Map<String,Integer> items)
+      {
+      this.items=items;
+      }
+      
+    public Set<String> getItems()
+      {
+      return items.keySet();
+      }
+      
+    public boolean hasItem(String item)
+      {
+      return items.containsKey(item);
+      }
+      
+    public int getPrice(String item)
+      {
+      return items.get(item);
+      }
+    
+    public void setChoosenItem(String item)
+      {
+      choosenItem=item;
+      }
+    
+    public String getChoosenItem()
+      {
+      return choosenItem;
+      }
+      
+    public void payPlayer(Player player, int amount)
+      {
+      boolean found=false;
+      Iterator<RPSlot> it=player.slotsIterator();
+      while(it.hasNext())
+        {
+        RPSlot slot=(RPSlot)it.next();
+  
+        Iterator<RPObject> object_it=slot.iterator();
+        while(object_it.hasNext())
+          {
+          RPObject object=object_it.next();
+          if(object instanceof Money)
+            {
+            ((Money)object).add(amount);
+            found=true;
+            }
+          }
+        }
+      
+      if(!found)
+        {
+        RPSlot slot=player.getSlot("bag");
+        Money money= new Money(amount);
+        slot.assignValidID(money);
+        slot.add(money);
+        }
+      
+      world.modify(player);
+      }
+
+    public boolean removeItem(Player player, String itemName)
+      {
+      Iterator<RPSlot> it=player.slotsIterator();
+      while(it.hasNext())
+        {
+        RPSlot slot=(RPSlot)it.next();
+  
+        Iterator<RPObject> object_it=slot.iterator();
+        while(object_it.hasNext())
+          {
+          RPObject object=object_it.next();
+          if(object instanceof Item && object.get("class").equals(itemName))
+            {
+            slot.remove(object.getID());
+            world.modify(player);      
+            return true;
+            }
+          }
+        }
+      
+      return false;
+      }
+
+    public boolean onBuy(SpeakerNPC seller, Player player, String itemName, int itemPrice)
+      {
+      if(removeItem(player,itemName))
+        {
+        payPlayer(player,itemPrice);
+        seller.say("Thanks!. Here is your money");
+        return true;
+        }
+      else
+        {
+        seller.say("Sorry!. You don't have any "+itemName);
+        return false;
+        }
+      }
+    }
+
+
+  public static void addBuyer(SpeakerNPC npc, BuyerBehaviour items)
+    {
+    npc.setBehaviourData("buyer",items);
+    
+    StringBuffer st=new StringBuffer();
+    for(String item: items.getItems())
+      {
+      st.append(item+",");
+      }
+       
+    npc.add(1,"offer", 1,"I buy "+st.toString(),null);
+    npc.add(1,"sell",20, null,new SpeakerNPC.ChatAction()
+      {
+      public void fire(Player player, String text, SpeakerNPC engine)
+        {
+        BuyerBehaviour buyableItems=(BuyerBehaviour)engine.getBehaviourData("buyer");
+        
+        int i=text.indexOf(" ");
+        String item=text.substring(i+1);
+        
+        if(buyableItems.hasItem(item))
+          {
+          int price=buyableItems.getPrice(item);
+          buyableItems.setChoosenItem(item);
+
+          engine.say(item+" is worth "+price+". Do you want to sell?");
+          }
+        else
+          {
+          engine.say("Sorry, I don't buy "+item);
+          engine.setActualState(1);          
+          }
+        }
+      });
+      
+    npc.add(20,"yes", 1,"Thanks.",new SpeakerNPC.ChatAction()
+      {
+      public void fire(Player player, String text, SpeakerNPC engine)
+        {
+        BuyerBehaviour buyableItems=(BuyerBehaviour)engine.getBehaviourData("buyer");
+
+        String itemName=buyableItems.getChoosenItem();        
+        int itemPrice=buyableItems.getPrice(itemName);
+
+        logger.debug("Buying a "+itemName+" from player "+player.getName());
+        
+        buyableItems.onBuy(engine,player,itemName, itemPrice);
         }
       });
     npc.add(20,"no", 1,"Ok, how may I help you?",null);
