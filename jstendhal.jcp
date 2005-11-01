@@ -84,6 +84,10 @@
 				<path>src\games\stendhal\tools\tiled</path>
 			</folderitem>
 			<fileitem>
+				<path>build.ant.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>build.xml</path>
 				<source>true</source>
 			</fileitem>

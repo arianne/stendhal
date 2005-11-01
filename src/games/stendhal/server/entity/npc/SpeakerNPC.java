@@ -17,7 +17,9 @@ import games.stendhal.server.entity.*;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
-/** This is a finite state automata that implements a chat system.
+/** This is a finite state machine that implements a chat system.
+ *  See: http://en.wikipedia.org/wiki/Finite_state_machine
+ *
  *  See examples to understand how it works.
  *  RULES:
  *  - State 0 is always the initial state
@@ -82,9 +84,9 @@ public abstract class SpeakerNPC extends NPC
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(SpeakerNPC.class);
 
-  // FSA state table
+  // FSM state table
   private List<StatePath> statesTable;
-  // FSA actual state
+  // FSM actual state
   private int actualState;
   // Default wait message when NPC is busy
   private String waitMessage;
@@ -187,7 +189,7 @@ public abstract class SpeakerNPC extends NPC
     abstract public void fire(Player player, String text, SpeakerNPC engine);
     }
     
-  class StatePath
+  private class StatePath
     {
     public int state;
     public int nextState;
@@ -248,14 +250,27 @@ public abstract class SpeakerNPC extends NPC
     waitAction=action;
     }
 
-  /** Add a new state to FSA */
+  private StatePath get(int state, String trigger)
+    {
+    for(StatePath i: statesTable)
+      {
+      if(i.equals(state,trigger))
+        {
+        return i;
+        }
+      }    
+    
+    return null;
+    }  
+
+  /** Add a new state to FSM */
   public void add(int state, String trigger, int next_state, String reply, ChatAction action)
     {
     StatePath item=new StatePath(state, trigger,next_state, reply, action);
     statesTable.add(item);
     }
-
-  /** Add a new set of states to FSA */
+    
+  /** Add a new set of states to FSM */
   public void add(Integer[] states, String trigger, int next_state, String reply, ChatAction action)
     {
     for(int state: states)
@@ -265,7 +280,7 @@ public abstract class SpeakerNPC extends NPC
       }
     }
 
-  /** Add a new set of states to FSA */
+  /** Add a new set of states to FSM */
   public void add(int state, String[] triggers, int next_state, String reply, ChatAction action)
     {
     for(String trigger: triggers)
@@ -275,7 +290,7 @@ public abstract class SpeakerNPC extends NPC
       }
     }
   
-  /** This function evolves the FSA */
+  /** This function evolves the FSM */
   private boolean tell(Player player, String text)
     {
     // If we are no attening a player attend, this one.
@@ -345,7 +360,7 @@ public abstract class SpeakerNPC extends NPC
         }
       }
 
-    // Couldn't match the text with the current FSA state
+    // Couldn't match the text with the current FSM state
     logger.debug("Couldn't match any state");
     return false;
     }
