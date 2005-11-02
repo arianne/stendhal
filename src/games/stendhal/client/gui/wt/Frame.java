@@ -103,9 +103,6 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
     if (dragInProgress && draggedObject != null)
     {
       Point p = e.getPoint();
-      System.out.println("drag stopped at "+p);
-//      p.translate(dragStartPoint.x,dragStartPoint.y);
-//      System.out.println("drag stopped at (translated) "+p);
       draggedObject.dragFinished(p);
       // now check if there is a drop-target direct unter the mouse cursor
       checkDropped(p.x, p.y, draggedObject);

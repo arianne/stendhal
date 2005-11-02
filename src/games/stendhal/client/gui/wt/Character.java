@@ -109,6 +109,7 @@ public class Character extends Panel
       if (entitySlot != null)
       {
         entitySlot.clear();
+        entitySlot.setParent(player);
         // found a gui element for this slot
         for (RPObject content : slot)
         {
@@ -116,7 +117,7 @@ public class Character extends Panel
         }
       }
       
-      // found a gui element for this slot
+      // count all money
       for (RPObject content : slot)
       {
         if (content.get("class").equals("money") && content.has("quantity"))
