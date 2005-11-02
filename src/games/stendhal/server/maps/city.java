@@ -2,6 +2,7 @@ package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -150,13 +151,52 @@ public class city
 
       protected void createDialog()
         {        
-        Map<String,Integer> items=new HashMap<String,Integer>();
-        items.put("shield",30);
+        class SheepBuyerBehaviour extends Behaviours.BuyerBehaviour
+          {
+          SheepBuyerBehaviour(Map<String,Integer> items)
+            {
+            super(items);
+            }
+            
+          public boolean onBuy(SpeakerNPC seller, Player player, String itemName, int itemPrice)
+            {
+            if(player.hasSheep())
+              {
+              Sheep sheep=(Sheep)world.get(player.getSheep());
+              if(seller.distance(sheep)>5*5)
+                {
+                seller.say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
+                }
+              else
+                {
+                say("Thanks! Here is your money.");
+      
+                rp.removeNPC(sheep);
+                world.remove(sheep.getID());
+                player.removeSheep(sheep);
+                
+                payPlayer(player,itemPrice);
+                
+                world.modify(player);
+                return true;
+                }
+              }
+            else
+              {
+              seller.say("You ain't got a sheep!! What game you trying to play, "+player.get("name")+"?");
+              }
+            
+            return false;
+            }
+          }
+
+        Map<String,Integer> buyitems=new HashMap<String,Integer>();
+        buyitems.put("sheep",150);
 
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"I work as the main Semos' sheep buyer.");
         Behaviours.addHelp(this,"I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!.");
-        Behaviours.addBuyer(this,new Behaviours.BuyerBehaviour(items));
+        Behaviours.addBuyer(this,new SheepBuyerBehaviour(buyitems));
         Behaviours.addGoodbye(this);
         }
       };
@@ -169,24 +209,34 @@ public class city
     npc.setHP(npc.getBaseHP());
     zone.add(npc);    
     zone.addNPC(npc);
-//
-//    npc=new WelcomerNPC()
-//      {
-//      protected void createPath()
-//        {
-//        List<Path.Node> nodes=new LinkedList<Path.Node>();
-//        nodes.add(new Path.Node(5,45));
-//        nodes.add(new Path.Node(18,45));
-//        setPath(nodes,true);
-//        }
-//      };
-//    zone.assignRPObjectID(npc);
-//    npc.setName("Carmen");
-//    npc.setx(5);
-//    npc.sety(45);
-//    npc.setBaseHP(100);
-//    npc.setHP(npc.getBaseHP());
-//    zone.add(npc);    
-//    zone.addNPC(npc);
+
+    npc=new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(5,45));
+        nodes.add(new Path.Node(18,45));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+        Behaviours.addGreeting(this);
+        Behaviours.addJob(this, "I have healing abilities and I heal wounded players.");
+        Behaviours.addHelp(this, "Ask me to heal you and I will help you");
+        Behaviours.addHealer(this, 0);
+        Behaviours.addGoodbye(this);               
+        }
+      };
+    zone.assignRPObjectID(npc);
+    npc.put("class","welcomernpc");
+    npc.setName("Carmen");
+    npc.setx(5);
+    npc.sety(45);
+    npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
+    zone.add(npc);    
+    zone.addNPC(npc);
     }  
   }

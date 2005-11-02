@@ -266,6 +266,14 @@ public abstract class SpeakerNPC extends NPC
   /** Add a new state to FSM */
   public void add(int state, String trigger, int next_state, String reply, ChatAction action)
     {
+    StatePath existing=get(state,trigger);
+    if(existing!=null)
+      {
+      // A previous state, trigger combination exist.
+      logger.warn("Adding to "+existing+ " the state ["+state+","+trigger+","+next_state+"]");
+      existing.reply=existing.reply+" "+reply;
+      }
+      
     StatePath item=new StatePath(state, trigger,next_state, reply, action);
     statesTable.add(item);
     }

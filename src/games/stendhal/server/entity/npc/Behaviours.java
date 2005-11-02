@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc;
 
 import java.util.Map;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.Iterator;
 import games.stendhal.server.*;
@@ -45,13 +46,13 @@ public class Behaviours
 
   public static void addGoodbye(SpeakerNPC npc)
     {
-    npc.add(-1,new String[]{"bye","farewell","cya"}, 1,"Bye.",null);
+    npc.add(-1,new String[]{"bye","farewell","cya"}, 0,"Bye.",null);
     }
   
   public static class SellerBehaviour
     {
-    private Map<String,Integer> items;
-    private String choosenItem;
+    protected Map<String,Integer> items;
+    protected String choosenItem;
     
     public SellerBehaviour(Map<String,Integer> items)
       {
@@ -340,7 +341,7 @@ public class Behaviours
       }
        
     npc.add(1,"offer", 1,"I buy "+st.toString(),null);
-    npc.add(1,"sell",20, null,new SpeakerNPC.ChatAction()
+    npc.add(1,"sell",30, null,new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
@@ -364,7 +365,7 @@ public class Behaviours
         }
       });
       
-    npc.add(20,"yes", 1,"Thanks.",new SpeakerNPC.ChatAction()
+    npc.add(30,"yes", 1,"Thanks.",new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
@@ -378,6 +379,68 @@ public class Behaviours
         buyableItems.onBuy(engine,player,itemName, itemPrice);
         }
       });
-    npc.add(20,"no", 1,"Ok, how may I help you?",null);
+    npc.add(30,"no", 1,"Ok, how may I help you?",null);
+    }
+
+  public static class HealerBehaviour extends SellerBehaviour
+    {
+    public HealerBehaviour(int cost)
+      {
+      super(null);
+      items=new HashMap<String,Integer>();
+      items.put("heal",cost);
+      }
+    
+    public void heal(Player player, SpeakerNPC engine)
+      {
+      player.setHP(player.getBaseHP());
+      world.modify(player);
+      }
+    }
+
+
+  public static void addHealer(SpeakerNPC npc, int cost)
+    {
+    npc.setBehaviourData("healer",new HealerBehaviour(cost));
+    
+    npc.add(1,"offer", 1,"I heal",null);
+    npc.add(1,"heal",40, null,new SpeakerNPC.ChatAction()
+      {
+      public void fire(Player player, String text, SpeakerNPC engine)
+        {
+        HealerBehaviour healer=(HealerBehaviour)engine.getBehaviourData("healer");
+        int cost=healer.getPrice("heal");
+        
+        if(cost>0)
+          {
+          engine.say("Healing costs "+cost+". Do you want to pay?");
+          }
+        else
+          {
+          engine.say("You are healed. How may I help you?");
+          healer.heal(player,engine);
+          
+          engine.setActualState(1);
+          }
+        }
+      });
+      
+    npc.add(40,"yes", 1,"Thanks.",new SpeakerNPC.ChatAction()
+      {
+      public void fire(Player player, String text, SpeakerNPC engine)
+        {
+        HealerBehaviour healer=(HealerBehaviour)engine.getBehaviourData("healer");
+        int itemPrice=healer.getPrice("heal");
+
+        if(healer.playerMoney(player)<itemPrice)
+          {
+          engine.say("A real pity! You don't have enough money!");
+          return;
+          }
+        
+        healer.chargePlayer(player,itemPrice);        
+        }
+      });
+    npc.add(40,"no", 1,"Ok, how may I help you?",null);
     }
   }

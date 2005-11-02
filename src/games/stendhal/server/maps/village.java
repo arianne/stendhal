@@ -66,7 +66,6 @@ public class village
             
           public boolean onSell(SpeakerNPC seller, Player player, String itemName, int itemPrice)
             {
-            System.out.println ("selling sheep!");
             if(!player.hasSheep())
               {
               seller.say("Congratulations! Here is your sheep!Keep it safe!");
