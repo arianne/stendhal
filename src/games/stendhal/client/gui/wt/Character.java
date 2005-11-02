@@ -127,7 +127,7 @@ public class Character extends Panel
       
     }
     
-    setName(player.get("name"));
+    setTitletext(player.get("name"));
     statsPanel.set("hp"   ,player.get("hp"));
     statsPanel.set("maxhp",player.get("base_hp"));
     statsPanel.set("atk"  ,player.get("atk"));

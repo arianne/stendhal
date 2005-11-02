@@ -43,6 +43,7 @@ public class Button extends Panel
     int clientHeight = (getClientHeight()-TextPanel.DEFAULT_FONT_SIZE)/2;
     TextPanel textPanel = new TextPanel(name+"text", 2,clientHeight, width, height, text);
     addChild(textPanel);
+    setTitletext(text);
   }
   
   /** Creates a new Button with an image */

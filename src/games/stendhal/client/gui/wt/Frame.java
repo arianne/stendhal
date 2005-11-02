@@ -82,7 +82,18 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
    */
   public synchronized Graphics draw(Graphics g)
   {
-    return super.draw(g);
+    super.draw(g);
+
+    // do we have a dragged object?
+    if (dragInProgress && draggedObject != null)
+    {
+      // translate graphics to local start of the dragged object
+      Graphics dragg = g.create();
+      dragg.translate(dragStartPoint.x,dragStartPoint.y);
+      // yep, draw it
+      draggedObject.drawDragged(dragg);
+    }
+    return g;
   }
   
   /** stops the dragging operations */
@@ -92,7 +103,9 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
     if (dragInProgress && draggedObject != null)
     {
       Point p = e.getPoint();
-      p.translate(dragStartPoint.x,dragStartPoint.y);
+      System.out.println("drag stopped at "+p);
+//      p.translate(dragStartPoint.x,dragStartPoint.y);
+//      System.out.println("drag stopped at (translated) "+p);
       draggedObject.dragFinished(p);
       // now check if there is a drop-target direct unter the mouse cursor
       checkDropped(p.x, p.y, draggedObject);
@@ -158,6 +171,8 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
   public synchronized void mouseDragged(MouseEvent e)
   {
     Point p = e.getPoint();
+
+    System.out.println("dragged to "+p);
     
     if (!dragInProgress)
     {

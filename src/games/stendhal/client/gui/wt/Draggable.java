@@ -17,6 +17,7 @@
 
 package games.stendhal.client.gui.wt;
 
+import java.awt.Graphics;
 import java.awt.Point;
 
 
@@ -49,4 +50,8 @@ public interface Draggable
    * @return true when this item can be moved to this point, false otherwise
    */
   public boolean dragMoved(Point p);
+  /**
+   * draws the dragged item
+   */
+  public void drawDragged(Graphics g);
 }

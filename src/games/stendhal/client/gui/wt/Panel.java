@@ -69,6 +69,8 @@ public class Panel implements Draggable
 
   /** panel has a title bar */
   private boolean titleBar;
+  /** text of the title */
+  private String titleText;
   /** panel has a frame */
   private boolean frame;
   /** is the frame embossed? */
@@ -128,6 +130,7 @@ public class Panel implements Draggable
   public Panel(String name, int x, int y, int width, int height)
   {
     this.name        = name;
+    this.titleText   = name;
     this.x           = x;
     this.y           = y;
     this.width       = width;
@@ -336,6 +339,12 @@ public class Panel implements Draggable
     this.titleBar = titleBar;
     // refresh cached panel image
     cachedImage = null;
+  }
+  
+  /** sets the text in the titlebar */
+  public void setTitletext(String text)
+  {
+    this.titleText = text;
   }
 
   /** returns wether the panel has a frame */
@@ -621,11 +630,11 @@ public class Panel implements Draggable
       panelGraphics.drawLine(0,TILLEBAR_SIZE,width-(FRAME_SIZE*2), TILLEBAR_SIZE);
       panelGraphics.drawLine(0,TILLEBAR_SIZE+1,width-(FRAME_SIZE*2), TILLEBAR_SIZE+1);
       
-      // panels name
+      // panels title text
       panelGraphics.setColor(new Color(0.8f, 0.8f, 0.8f, 1.0f));
       Font font = panelGraphics.getFont();
       panelGraphics.setFont(font.deriveFont(Font.BOLD, (float) TILLEBAR_FONT_SIZE));
-      panelGraphics.drawString(name, 3,TILLEBAR_FONT_SIZE);
+      panelGraphics.drawString(titleText, 3,TILLEBAR_FONT_SIZE);
 
       // update clipping
       panelGraphics = panelGraphics.create(0,TILLEBAR_SIZE+2, width-(FRAME_SIZE*2), height-(FRAME_SIZE*2)-TILLEBAR_SIZE-2);
@@ -678,9 +687,15 @@ public class Panel implements Draggable
       // now draw the childs
       drawChilds(panelGraphics);
     }
+    
 
     return panelGraphics;
   }
+  
+  /** panels draw themselves */
+  public void drawDragged(Graphics g)
+  { }
+  
   
   /** draws all childs
    * @param clientArea Graphics object clipped to the client region.

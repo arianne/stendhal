@@ -21,6 +21,8 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import java.awt.Graphics;
+import java.awt.Point;
+
 import marauroa.common.game.RPObject;
 
 /**
@@ -54,6 +56,14 @@ public class EntitySlot extends Panel implements DropTarget
   /** called when an object is dropped. */
   public boolean onDrop(Draggable droppedObject)
   {
+    System.out.println("dropped "+droppedObject);
+    
+    if (droppedObject instanceof MoveableEntityContainer)
+    {
+      MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
+      this.content = container.getContent();
+    }
+    
     return false;
   }
   
@@ -89,12 +99,74 @@ public class EntitySlot extends Panel implements DropTarget
       int x = (getWidth() - sprite.getWidth()) / 2;
       int y = (getHeight() - sprite.getHeight()) / 2;
       sprite.draw(childArea,x,y);
-      
     }
     
     return childArea;
   }
   
+  /**
+   * returns a draggable object
+   */
+  protected Draggable getDragged(int x, int y)
+  {
+    return (content!= null) ? (new MoveableEntityContainer(content)) : null;
+  }
+  
 
+  /** this container is used to drag the entities around */
+  private class MoveableEntityContainer implements Draggable
+  {
+    private int startX;
+    private int startY;
+    
+    private int x;
+    private int y;
+    
+    private RPObject content;
+    
+    public MoveableEntityContainer(RPObject content)
+    {
+      this.content = content;
+    }
+    
+    /** returns the content */
+    public RPObject getContent()
+    {
+      return content;
+    }
+    
+    /** drag started */
+    public boolean dragStarted()
+    {
+      startX = 0;
+      startY = 0;
+ 
+      return true;
+    }
+
+    /** drag finished */
+    public boolean dragFinished(Point p)
+    {
+      return true;
+    }
+
+    /** moved */
+    public boolean dragMoved(Point p)
+    {
+      x = p.x;
+      y = p.y;
+      return true;
+    }
+
+    /**
+     * draws the entity
+     */
+    public void drawDragged(Graphics g)
+    {
+      gameObjects.spriteType(this.content).draw(g,startX+x,startY+y);
+      
+    }
+    
+  }
   
 }

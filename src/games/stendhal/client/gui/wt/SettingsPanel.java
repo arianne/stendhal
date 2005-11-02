@@ -36,9 +36,6 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   /** width of this panel */
   private static final int WIDTH = 200;
   
-  /** the minimap panel */
-  private Minimap minimap;
-  
   /** buffered collision detection layer for minimap */
   private CollisionDetection cd;
   /** buffered GraphicsConfiguration for minimap */
@@ -51,6 +48,10 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   
   /** the Character panel */
   private Character character;
+  /** the minimap panel */
+  private Minimap minimap;
+  /** the inventory */
+  private Inventory inventory;
   /** the frame */
   private Frame frame;
   /** the player */
@@ -61,27 +62,37 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   private boolean minimapEnabled;
   /** is the character panel enabled (shown) */
   private boolean characterEnabled;
+  /** is the inventory panel enabled (shown) */
+  private boolean inventoryEnabled;
   
 
 
   /** Creates a new instance of OptionsPanel */
   public SettingsPanel(Frame frame, GameObjects gameObjects)
   {
-    super("Settings", (frame.getWidth()-WIDTH)/2, 50, WIDTH, 200 );
+    super("settings", (frame.getWidth()-WIDTH)/2, 50, WIDTH, 200 );
+    setTitletext("Settings");
     setFrame(true);
     setTitleBar(true);
     setMinimizeable(true);
     setCloseable(false);
     minimapEnabled = true;
     characterEnabled = true;
+    inventoryEnabled = true;
 
     character = new Character(gameObjects);
+    character.registerCloseListener(this);
     frame.addChild(character);
+
+    inventory = new Inventory(gameObjects);
+    inventory.registerCloseListener(this);
+    frame.addChild(inventory);
     
     
     buttonMap = new HashMap<String,Button>();
     buttonMap.put("minimap",new Button("minimap", 150, 30, "Enable Minimap"));
     buttonMap.put("character",new Button("character", 150, 30, "Enable Character"));
+    buttonMap.put("inventory",new Button("inventory", 150, 30, "Enable Inventory"));
     
     int y = 10;
     for (Button button : buttonMap.values())
@@ -164,10 +175,10 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
       return;
     }
     
-    // check character pamel
+    // check character panel
     if (name.equals("character"))
     {
-      // minimap disabled?
+      // character disabled?
       if (characterEnabled && !pressed)
       {
         character.close();
@@ -175,7 +186,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
       }
       else if (!characterEnabled && pressed)
       {
-        // minimap enabled
+        // character enabled
         character = new Character(gameObjects);
         character.registerCloseListener(this);
         character.setPlayer(player);
@@ -187,22 +198,34 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
       return;
     }
     
+    // check inventory panel
+    if (name.equals("inventory"))
+    {
+      // inventory disabled?
+      if (inventoryEnabled && !pressed)
+      {
+        inventory.close();
+        inventory = null;
+      }
+      else if (!inventoryEnabled && pressed)
+      {
+        // character enabled
+        inventory = new Inventory(gameObjects);
+        inventory.registerCloseListener(this);
+        frame.addChild(inventory);
+      }
+      inventoryEnabled = pressed;
+      // be sure to update the button
+      buttonMap.get(name).setPressed(pressed);
+      return;
+    }
   }
 
   /** a window is closed */
   public void onClose(String name)
   {
     // pseudo-release the button
-    
-    // minimap is named after its zone
-    if (name.equals(zone))
-    {
-      onClick("minimap", false);
-    }
-    if (name.equals(player.get("name")))
-    {
-      onClick("character", false);
-    }
+    onClick(name, false);
   }
   
   
