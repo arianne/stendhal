@@ -170,9 +170,18 @@ public abstract class SpeakerNPC extends NPC
       Path.followPath(this,0.2);
       StendhalRPAction.move(this);
       }
-    else if(!stopped())
+    else
       {
-      stop();
+      if(rp.getTurn()-lastMessageTurn>TIMEOUT_PLAYER_CHAT)
+        {
+        actualState=0;
+        attending=null;
+        }
+      
+      if(!stopped())
+        {
+        stop();
+        }
       }
     
     List<Player> speakers=getNearestPlayersThatHasSpeaken(this,5);
