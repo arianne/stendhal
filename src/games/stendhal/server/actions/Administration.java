@@ -40,6 +40,7 @@ public class Administration extends ActionListener
     StendhalRPRuleProcessor.register("teleport",Administration);
     StendhalRPRuleProcessor.register("alter",Administration);
     StendhalRPRuleProcessor.register("summon",Administration);
+    StendhalRPRuleProcessor.register("summonat",Administration);
     StendhalRPRuleProcessor.register("invisible",Administration);
     }
 
@@ -69,6 +70,10 @@ public class Administration extends ActionListener
     else if(type.equals("summon"))
       {
       onSummon(world,rules,player,action);
+      }          
+    else if(type.equals("summonat"))
+      {
+      onSummonAt(world,rules,player,action);
       }          
     else if(type.equals("invisible"))
       {
@@ -233,6 +238,60 @@ public class Administration extends ActionListener
       }
 
     Log4J.finishMethod(logger,"onSummon");
+    }
+
+  private void onSummonAt(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"onSummonAt");
+
+    if(action.has("target") && action.has("slot") && action.has("item"))
+      {
+      Player changed=null;
+      
+      String name=action.get("target");
+      for(Player p : rules.getPlayers())
+        {
+        if(p.getName().equals(name))
+          {
+          changed=p;
+          break;
+          }
+        }      
+ 
+      if(changed==null)
+        {
+        logger.debug("Player "+name+" not found");
+        return;
+        }
+      
+      String slotName=action.get("slot");
+      if(!changed.hasSlot(slotName))
+        {
+        logger.debug("Player "+name+" has not RPSlot "+slotName);
+        return;
+        }
+      
+      RPSlot slot=changed.getSlot(slotName);      
+      
+      if(!slot.isFull())
+        {
+        EntityManager manager = ((StendhalRPWorld)world).getRuleManager().getEntityManager();
+        String type=action.get("item");
+
+        // Is the entity an item
+        if(manager.isItem(type))
+          {
+          Item item=manager.getItem(type);
+          
+          slot.assignValidID(item);
+          slot.add(item);
+          
+          world.modify(changed);
+          }
+        }        
+      }
+
+    Log4J.finishMethod(logger,"onSummonAt");
     }
 
   private void onInvisible(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)

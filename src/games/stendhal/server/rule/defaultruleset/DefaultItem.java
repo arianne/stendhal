@@ -25,19 +25,23 @@ import java.util.Map;
  */
 public enum DefaultItem
 {
-//            class    ,  name,     all possible slots,         tileid,  properties
-  SWORD      ("sword" , "weapon", new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","14")),
-  BROADSWORD ("sword" , "weapon", new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","14")),
-  BUSTER     ("sword" , "weapon", new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","14")),
-  CLUB       ("club"  , "weapon", new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","7")),
-  ARMOR      ("armor" , "armor" , new String[] {"armor"}        ,       -1, new Pair<String, String>("def","14")),
-  SHIELD     ("shield", "armor" , new String[] {"lhand","rhand"},       -1, new Pair<String, String>("def","7")),
-  MONEY      ("money",  "money" , new String[] {"lhand","rhand","bag"}, -1, new Pair<String, String>("quantity","1"));
+  //            class    , subclass   ,  name,   , weight  ,  all possible slots,            tileid,  properties
+  SWORD      ("sword" , "sword"     ,"weapon", 1         ,new String[] {"rhand","lhand"},        -1, new Pair<String, String>("atk","14")),
+  BROADSWORD ("sword" , "broadsword","weapon", 1         , new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","14")),
+  BUSTER     ("sword" , "buster"    ,"weapon", 1         , new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","14")),
+  CLUB       ("club"  , "club"      ,"weapon", 1         , new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","7")),
+  ARMOR      ("armor" , "armor"     ,"armor" , 1         , new String[] {"armor"}        ,       -1, new Pair<String, String>("def","14")),
+  SHIELD     ("shield", "shield"    ,"armor" , 1         , new String[] {"lhand","rhand"},       -1, new Pair<String, String>("def","7")),
+  MONEY      ("money",  "gold"      ,"money" , 0         , new String[] {"lhand","rhand","bag"}, -1, new Pair<String, String>("quantity","1"));
 
   /** items class */
   private String clazz;
+  /** items sub class */
+  private String subclazz;
   /** items type */
   private String name;
+  
+  private int weight;
   /** slots where this item can be equiped */
   private String[] slots;
   /** Map Tile Id */
@@ -45,10 +49,12 @@ public enum DefaultItem
   /** Attributes of the item */
   private Map<String, String> attributes;
   
-  DefaultItem(String clazz, String name, String[] slots, int tileid, Pair<String, String> attribute)
+  DefaultItem(String clazz, String subclazz, String name, int weight, String[] slots, int tileid, Pair<String, String> attribute)
   {
     this.clazz = clazz;
+    this.subclazz = subclazz;
     this.name = name;
+    this.weight=weight;
     this.slots = slots;
     this.tileid = tileid;
     this.attributes = new HashMap<String, String>();
@@ -56,10 +62,12 @@ public enum DefaultItem
   }
 
   @SuppressWarnings("unused")
-  DefaultItem(String clazz, String name, String[] slots, int tileid, List<Pair<String, String>> attributes)
+  DefaultItem(String clazz, String subclazz, String name, int weight, String[] slots, int tileid, List<Pair<String, String>> attributes)
   {
     this.clazz = clazz;
+    this.subclazz = subclazz;
     this.name = name;
+    this.weight=weight;
     this.slots = slots;
     this.tileid = tileid;
     this.attributes = new HashMap<String, String>();
