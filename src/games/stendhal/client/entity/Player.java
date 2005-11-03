@@ -92,10 +92,10 @@ public class Player extends Speaker
       player=setOutFitPlayer(store,object);            
       }
 
-    sprites.put("move_up", store.getAnimatedSprite(player,0,4,48,64));
-    sprites.put("move_right", store.getAnimatedSprite(player,1,4,48,64));
-    sprites.put("move_down", store.getAnimatedSprite(player,2,4,48,64));
-    sprites.put("move_left", store.getAnimatedSprite(player,3,4,48,64));
+    sprites.put("move_up", store.getAnimatedSprite(player,0,4,1.5,2));
+    sprites.put("move_right", store.getAnimatedSprite(player,1,4,1.5,2));
+    sprites.put("move_down", store.getAnimatedSprite(player,2,4,1.5,2));
+    sprites.put("move_left", store.getAnimatedSprite(player,3,4,1.5,2));
 
     sprites.get("move_up")[3]=sprites.get("move_up")[1];
     sprites.get("move_right")[3]=sprites.get("move_right")[1];

@@ -193,7 +193,7 @@ public class j2DClient extends JFrame
     
     // Clear the first screen with black color
     screen.expose().setColor(Color.black);
-    screen.expose().fill(new Rectangle(0,0,640,480));
+    screen.expose().fill(new Rectangle(0,0,SCREEN_WIDTH,SCREEN_HEIGHT));
 
     screen.place(-100,-100);
     RenderingPipeline pipeline=RenderingPipeline.get();

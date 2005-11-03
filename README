@@ -70,6 +70,7 @@ Changelog
 - Refactor StendhalRPRuleProcessor
 - Clear action code
 - Added Game master commands
+- Refactored NPC chat system
 
 0.39.1 Oct 26, 2005
 - Fixed chat bug

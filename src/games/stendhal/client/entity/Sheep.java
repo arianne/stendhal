@@ -32,14 +32,14 @@ public class Sheep extends NPC
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")),0,3,32,32));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")),1,3,32,32));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")),2,3,32,32));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")),3,3,32,32));      
-    sprites.put("big_move_up", store.getAnimatedSprite(translate(object.get("type")),4,3,32,32));      
-    sprites.put("big_move_right", store.getAnimatedSprite(translate(object.get("type")),5,3,32,32));      
-    sprites.put("big_move_down", store.getAnimatedSprite(translate(object.get("type")),6,3,32,32));      
-    sprites.put("big_move_left", store.getAnimatedSprite(translate(object.get("type")),7,3,32,32));      
+    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")),0,3,1,1));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")),1,3,1,1));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")),2,3,1,1));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")),3,3,1,1));      
+    sprites.put("big_move_up", store.getAnimatedSprite(translate(object.get("type")),4,3,1,1));      
+    sprites.put("big_move_right", store.getAnimatedSprite(translate(object.get("type")),5,3,1,1));      
+    sprites.put("big_move_down", store.getAnimatedSprite(translate(object.get("type")),6,3,1,1));      
+    sprites.put("big_move_left", store.getAnimatedSprite(translate(object.get("type")),7,3,1,1));      
     }
   
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException

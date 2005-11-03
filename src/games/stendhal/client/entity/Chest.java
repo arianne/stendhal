@@ -31,8 +31,8 @@ public class Chest extends AnimatedEntity
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("close", store.getAnimatedSprite(translate(object.get("type")),0,1,32,32));      
-    sprites.put("open", store.getAnimatedSprite(translate(object.get("type")),1,1,32,32));      
+    sprites.put("close", store.getAnimatedSprite(translate(object.get("type")),0,1,1,1));      
+    sprites.put("open", store.getAnimatedSprite(translate(object.get("type")),1,1,1,1));      
     }
   
   protected Sprite defaultAnimation()

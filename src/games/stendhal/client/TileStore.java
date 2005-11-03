@@ -89,8 +89,8 @@ public class TileStore extends SpriteStore
       }    
     }
     
-  private static final int TILE_WIDTH=32;
-  private static final int TILE_HEIGHT=32;
+  private static final int TILE_WIDTH=GameScreen.PIXEL_SCALE;
+  private static final int TILE_HEIGHT=GameScreen.PIXEL_SCALE;
   
   private List<RangeFilename> rangesTiles;
   private Vector<Sprite> tileset;

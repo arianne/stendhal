@@ -30,12 +30,12 @@ public class Food extends AnimatedEntity
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("0", store.getAnimatedSprite(translate(object.get("type")),0,1,32,32));      
-    sprites.put("1", store.getAnimatedSprite(translate(object.get("type")),1,1,32,32));      
-    sprites.put("2", store.getAnimatedSprite(translate(object.get("type")),2,1,32,32));      
-    sprites.put("3", store.getAnimatedSprite(translate(object.get("type")),3,1,32,32));      
-    sprites.put("4", store.getAnimatedSprite(translate(object.get("type")),4,1,32,32));      
-    sprites.put("5", store.getAnimatedSprite(translate(object.get("type")),5,1,32,32));      
+    sprites.put("0", store.getAnimatedSprite(translate(object.get("type")),0,1,1,1));      
+    sprites.put("1", store.getAnimatedSprite(translate(object.get("type")),1,1,1,1));      
+    sprites.put("2", store.getAnimatedSprite(translate(object.get("type")),2,1,1,1));      
+    sprites.put("3", store.getAnimatedSprite(translate(object.get("type")),3,1,1,1));      
+    sprites.put("4", store.getAnimatedSprite(translate(object.get("type")),4,1,1,1));      
+    sprites.put("5", store.getAnimatedSprite(translate(object.get("type")),5,1,1,1));      
     }
   
   protected Sprite defaultAnimation()

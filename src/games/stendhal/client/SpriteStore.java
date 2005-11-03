@@ -58,7 +58,7 @@ public class SpriteStore {
      *  @param width of the frame
      *  @param height of the frame
      */
- public Sprite[] getAnimatedSprite(String ref, int animation, int frames, int width, int height)
+ public Sprite[] getAnimatedSprite(String ref, int animation, int frames, double width, double height)
 	  {
       Log4J.startMethod(logger, "getAnimatedSprite");
       try
@@ -71,9 +71,12 @@ public class SpriteStore {
         }
 	  }
 
- public Sprite[] getAnimatedSprite(Sprite animImage, int animation, int frames, int width, int height)
+ public Sprite[] getAnimatedSprite(Sprite animImage, int animation, int frames, double width, double height)
     {
       Log4J.startMethod(logger, "getAnimatedSprite");
+
+      int iwidth=(int)(width*GameScreen.PIXEL_SCALE);
+      int iheight=(int)(height*GameScreen.PIXEL_SCALE);
 
       Sprite[] animatedSprite=new Sprite[frames];
     
@@ -81,8 +84,8 @@ public class SpriteStore {
 
       for(int i=0;i<frames;i++)
         {
-        Image image = gc.createCompatibleImage(width,height,Transparency.BITMASK);
-        animImage.draw(image.getGraphics(),0,0,i*width,animation*height);
+        Image image = gc.createCompatibleImage(iwidth,iheight,Transparency.BITMASK);
+        animImage.draw(image.getGraphics(),0,0,i*iwidth,animation*iheight);
         animatedSprite[i]=new Sprite(image);
         }
       

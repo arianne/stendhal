@@ -28,7 +28,7 @@ public class TrainingDummy extends RPEntity
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("default", store.getAnimatedSprite(translate(object.get("type")),0,1,32,64));      
+    sprites.put("default", store.getAnimatedSprite(translate(object.get("type")),0,1,1,2));      
     }
   
   protected Sprite defaultAnimation()

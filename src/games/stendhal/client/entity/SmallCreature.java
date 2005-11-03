@@ -31,10 +31,10 @@ public class SmallCreature extends Creature
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("class")),0,4,32,32));      
-    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("class")),1,4,32,32));      
-    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("class")),2,4,32,32));      
-    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("class")),3,4,32,32));      
+    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("class")),0,4,1,1));      
+    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("class")),1,4,1,1));      
+    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("class")),2,4,1,1));      
+    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("class")),3,4,1,1));      
 
     sprites.get("move_up")[3]=sprites.get("move_up")[1];
     sprites.get("move_right")[3]=sprites.get("move_right")[1];

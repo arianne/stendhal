@@ -316,11 +316,19 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\Inventory.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\MessageBox.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\Minimap.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\MoveableEntityContainer.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
