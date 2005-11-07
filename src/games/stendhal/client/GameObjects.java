@@ -168,7 +168,7 @@ public class GameObjects implements Iterable<Entity>
       return null;
       }
     }
-  
+
   private void sort()
     {
     Collections.sort(sortObjects,new Comparator<Entity>()

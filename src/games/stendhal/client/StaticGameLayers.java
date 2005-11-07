@@ -11,8 +11,7 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client;
-import games.stendhal.client.gui.wt.Frame;
-import games.stendhal.client.gui.wt.SettingsPanel;
+import games.stendhal.client.gui.wt.*;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Pair;
 
@@ -225,11 +224,15 @@ public class StaticGameLayers
         if (frame == null)
           {
           frame = new Frame(screen);
-          settings = new SettingsPanel(frame, gameObjects);
-          frame.addChild(settings);
           // register native event handler
           screen.getComponent().addMouseListener(frame);
           screen.getComponent().addMouseMotionListener(frame);
+          // create ground
+          Panel ground = new GroundContainer(screen,gameObjects);
+          frame.addChild(ground);
+          // the settings panel creates all other
+          settings = new SettingsPanel(ground, gameObjects);
+          ground.addChild(settings);
           }
         // create the map if there is none yet
         if (refreshMinimap)

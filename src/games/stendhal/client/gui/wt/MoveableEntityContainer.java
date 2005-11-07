@@ -13,6 +13,8 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.entity.Entity;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -23,57 +25,63 @@ import marauroa.common.game.RPObject;
 /** this container is used to drag the entities around */
 public class MoveableEntityContainer implements Draggable
 {
-  private int         x;
-  private int         y;
+  /** current x-pos of the dragged item */
+  private int      x;
+  /** current y-pos of the dragged item */
+  private int      y;
+  /** the sprite */
+  private Sprite   sprite;
 
-  /** this is the moved object */
-  private RPObject    content;
+  /** id of the moved object */
+  private int      content;
   /** parent(container) of the moved object, may be null */
-  private RPObject    parent;
+  private RPObject parent;
   /** the slot this item is in. makes only sense when parent is != null */
-  private String      slot;
+  private String   slot;
 
-  /** need this to find the sprite for each RPObject */
-  private GameObjects gameObjects;
+  /** x-pos of the item on the ground */
+  private int      objectx;
+  /** y-pos of the item on the ground */
+  private int      objecty;
 
+  /** constuctor to use when the item is inside a container */
   public MoveableEntityContainer(RPObject content, RPObject parent,
       String slot, GameObjects gameObjects)
   {
-    this.content = content;
-    this.parent = parent;
-    this.slot = slot;
-    this.gameObjects = gameObjects;
+    this.content = content.getID().getObjectID();
+    this.parent  = parent;
+    this.slot    = slot;
+    this.sprite  = gameObjects.spriteType(content);
   }
 
-  /** returns the content */
-  public RPObject getContent()
+  /** constuctor to use when the item is on the ground */
+  public MoveableEntityContainer(Entity content, int x, int y,
+      GameObjects gameObjects)
   {
-    return content;
-  }
-  
-  /** returns the parent */
-  public RPObject getParent()
-  {
-    return parent;
+    this.content = content.getID().getObjectID();
+    this.objectx = x;
+    this.objecty = y;
+    this.parent  = null;
+    this.sprite  = content.getSprite();
   }
 
-  /** returns the slot */
-  public String getSlot()
-  {
-    return slot;
-  }
-  
-  /** fills the action with the apropiate 'move from' parameters*/
+  /** fills the action with the appropiate 'move from' parameters */
   public void fillRPAction(RPAction action)
   {
     if (parent != null)
     {
-      action.put("baseobject",parent.getID().getObjectID());
-      action.put("baseslot",slot);
+      // the item is inside a container
+      action.put("baseobject", parent.getID().getObjectID());
+      action.put("baseslot", slot);
+    } else
+    {
+      // the item is on the ground
+      action.put("x", objectx);
+      action.put("y", objecty);
     }
-    action.put("baseitem",content.getID().getObjectID());
+    action.put("baseitem", content);
   }
-  
+
   /** drag started */
   public boolean dragStarted()
   {
@@ -99,7 +107,7 @@ public class MoveableEntityContainer implements Draggable
    */
   public void drawDragged(Graphics g)
   {
-    gameObjects.spriteType(this.content).draw(g, x, y);
+    sprite.draw(g, x, y);
   }
 
 }

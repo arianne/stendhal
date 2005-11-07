@@ -65,9 +65,7 @@ public class EntitySlot extends Panel implements DropTarget
   /** called when an object is dropped. */
   public boolean onDrop(Draggable droppedObject)
   {
-    System.out.println("dropped " + droppedObject+" to "+this);
-
-    if (droppedObject instanceof MoveableEntityContainer)
+    if (droppedObject instanceof MoveableEntityContainer && parent != null)
     {
       MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
       RPAction action = new RPAction();

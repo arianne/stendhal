@@ -53,7 +53,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   /** the inventory */
   private Inventory inventory;
   /** the frame */
-  private Frame frame;
+  private Panel frame;
   /** the player */
   private RPObject player;
   /** map of the buttons (for faster access) )*/
@@ -68,7 +68,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
 
 
   /** Creates a new instance of OptionsPanel */
-  public SettingsPanel(Frame frame, GameObjects gameObjects)
+  public SettingsPanel(Panel frame, GameObjects gameObjects)
   {
     super("settings", (frame.getWidth()-WIDTH)/2, 50, WIDTH, 200 );
     setTitletext("Settings");
