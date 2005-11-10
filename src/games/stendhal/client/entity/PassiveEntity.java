@@ -15,7 +15,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public abstract class PassiveEntity extends Entity
@@ -27,15 +26,15 @@ public abstract class PassiveEntity extends Entity
 
   public void onAction(StendhalClient client, String action, String... params)
     {
-    if(action.equals("Displace"))
-      {
-      RPAction rpaction=new RPAction();
-      rpaction.put("type","displace");
-      int id=getID().getObjectID();
-      rpaction.put("target",id);
-      rpaction.put("x",params[0]);
-      rpaction.put("y",params[1]);
-      client.send(rpaction);
-      }
+//    if(action.equals("Displace"))
+//      {
+//      RPAction rpaction=new RPAction();
+//      rpaction.put("type","displace");
+//      int id=getID().getObjectID();
+//      rpaction.put("target",id);
+//      rpaction.put("x",params[0]);
+//      rpaction.put("y",params[1]);
+//      client.send(rpaction);
+//      }
     }
   }

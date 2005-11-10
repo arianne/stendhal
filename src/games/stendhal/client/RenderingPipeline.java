@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.common.Debug;
-
-
 public class RenderingPipeline 
   {
   private static RenderingPipeline renderPipeline;
@@ -53,10 +50,6 @@ public class RenderingPipeline
     gameLayers.draw(screen,set+"_2_object");
     gameObjects.draw(screen);
     gameLayers.draw(screen,set+"_3_roof");
-    if (Debug.DRAW_MINIMAP)
-    {
-      gameLayers.drawMiniMap(screen, gameObjects);
-    }
     gameObjects.drawText(screen);
     }  
   }

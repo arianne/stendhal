@@ -35,9 +35,9 @@ public class Displace extends ActionListener
   public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
     Log4J.startMethod(logger,"displace");
-    if(action.has("target"))
+    if(action.has("baseitem"))
       {
-      int targetObject=action.getInt("target");
+      int targetObject=action.getInt("baseitem");
 
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
       RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());

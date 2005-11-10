@@ -42,7 +42,7 @@ public class EntitySlot extends Panel implements DropTarget
   /** the content of the slot */
   private RPObject    content;
   /** the parent of the slot */
-  private RPObject    parent;
+  private RPObject.ID parent;
 
   /** need this to find the sprite for each RPObject */
   private GameObjects gameObjects;
@@ -57,7 +57,7 @@ public class EntitySlot extends Panel implements DropTarget
   }
 
   /** */
-  public void setParent(RPObject parent)
+  public void setParent(RPObject.ID parent)
   {
     this.parent = parent;
   }
@@ -75,7 +75,7 @@ public class EntitySlot extends Panel implements DropTarget
       // fill 'moved from' parameters
       container.fillRPAction(action);
       // tell the server who we are
-      action.put("targetobject",parent.getID().getObjectID());
+      action.put("targetobject",parent.getObjectID());
       action.put("targetslot",getName());
       StendhalClient.get().send(action);
     }
@@ -83,7 +83,7 @@ public class EntitySlot extends Panel implements DropTarget
     return false;
   }
 
-  /** clears the content of this slit */
+  /** clears the content of this slot */
   public void clear()
   {
     content = null;

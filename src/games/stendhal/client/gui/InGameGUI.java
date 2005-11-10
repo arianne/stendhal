@@ -15,9 +15,9 @@ package games.stendhal.client.gui;
 import games.stendhal.client.*;
 import games.stendhal.client.entity.*;
 import games.stendhal.client.gui.wt.*;
+import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 
-import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Point2D;
 
@@ -32,7 +32,7 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 
-public class InGameGUI implements MouseListener, MouseMotionListener, KeyListener
+public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListener
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(InGameGUI.class);
@@ -55,13 +55,21 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   
   /** a nicer way of handling the keyboard */
   private Map<Integer, Object> pressed;
+
+  /** the main frame */
+  private Frame frame;
+  /** this is the ground */
+  private Panel ground; 
+  /** settings panel */
+  private SettingsPanel settings;
   
   
-  /** the sprite to show the player inventory */
-  private Sprite inGameInventory;
   
-  /** a graphical representation of some droppable areas. */
-  private Sprite slot;
+//  /** the sprite to show the player inventory */
+//  private Sprite inGameInventory;
+//  
+//  /** a graphical representation of some droppable areas. */
+//  private Sprite slot;
   
   
   /** player can inspect entities to check what they contains. This variable stores
@@ -70,8 +78,8 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
   /** this is the slot of the above entity that is being inspecting right now. */
   private RPSlot inspectedSlot;
   
-  /** Stores droppable areas needed to represent content of the above slot. */  
-  private java.util.List<wtDroppableArea> inspectedDroppableAreas;
+//  /** Stores droppable areas needed to represent content of the above slot. */  
+//  private java.util.List<wtDroppableArea> inspectedDroppableAreas;
 
 
   private void fixkeyboardHandlinginX()
@@ -121,7 +129,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     
     buttons=new java.util.LinkedList<wtButton>();
     droppableAreas=new java.util.LinkedList<wtDroppableArea>();
-    inspectedDroppableAreas=new java.util.LinkedList<wtDroppableArea>();
+//    inspectedDroppableAreas=new java.util.LinkedList<wtDroppableArea>();
     
     buildGUI();
     }
@@ -157,312 +165,312 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     buttons.add(button);
     }
   
-  private void equipManagement(Integer baseObject, String baseSlot, Integer baseItem, Integer targetObject, String targetSlot, Integer targetItem)
-    {
-    /** 
-     * 1) Equip from floor to container's inventory:
-     *    baseobject is null
-     *    baseslot is null
-     *    baseitem is object to equip in inventory
-     *    targetobject is the container ( ex. a player )
-     *    targetslot is the container's slot where the item is going to be placed
-     *    targetitem is the item that exists in the slot position where the user released the mouse.
-     *         This is mainly used for adding items, like coins, arrows, ...
-     *         It CAN be null.
-     *
-     * 2) Equip from the inspected object slot to player's inventory
-     *    baseobject is the inspected object
-     *    baseslot is the inspected slot
-     *    baseitem is object to equip in inventory
-     *    targetobject is player
-     *    targetslot is the player's slot where the item is going to be placed
-     *    targetitem is the item that exists in the slot position where the user released the mouse.
-     *         This is mainly used for adding items, like coins, arrows, ...
-     *         It CAN be null.
-     *
-     * 3) Move an item inside the container's inventory
-     *    baseobject is container
-     *    baseslot is the container original slot
-     *    baseitem is the item that exists in the slot position where the user pressed the mouse.
-     *         This is mainly used for adding items, like coins, arrows, ...
-     *    targetobject is container
-     *    targetslot is the container's slot where the item is going to be placed
-     *    targetitem is the item that exists in the slot position where the user released the mouse.
-     *         This is mainly used for adding items, like coins, arrows, ...
-     *         It CAN be null.
-     **/
-
-    RPAction action=new RPAction();
-
-    action.put("type","equip");
-    if(baseObject!=null)
-      {
-      // Case 2 and 3
-      action.put("baseobject",baseObject);
-      action.put("baseslot",baseSlot);
-      }
-    else
-      {
-      // Case 1
-      }
-    
-    action.put("baseitem",baseItem);
-    
-    action.put("targetobject",targetObject);
-    action.put("targetslot",targetSlot);
- 
-    if(targetItem!=null)
-      {
-      action.put("targetitem",targetItem);
-      }
-    
-    InGameGUI.this.client.send(action);     
-
-    logger.debug(action);
-    }
-
-  private void dropManagement(Integer baseObject, String baseslot, Integer baseItem, Integer x, Integer y)
-    {
-    /**
-     * 1) Drop an item from the container's inventory to floor
-     *    baseobject is container
-     *    baseslot is the container original slot
-     *    baseitem is the item that exists in the slot position where the user pressed the mouse.
-     *         This is mainly used for adding items, like coins, arrows, ...
-     *    x 
-     *    y
-     **/
-    RPAction action=new RPAction();
-    action.put("type","drop");
-    action.put("baseobject",baseObject);
-    action.put("baseslot",baseslot);
-    action.put("baseitem",baseItem);
-    action.put("x",x);
-    action.put("y",y);
-    
-    InGameGUI.this.client.send(action);
-    }
+//  private void equipManagement(Integer baseObject, String baseSlot, Integer baseItem, Integer targetObject, String targetSlot, Integer targetItem)
+//    {
+//    /** 
+//     * 1) Equip from floor to container's inventory:
+//     *    baseobject is null
+//     *    baseslot is null
+//     *    baseitem is object to equip in inventory
+//     *    targetobject is the container ( ex. a player )
+//     *    targetslot is the container's slot where the item is going to be placed
+//     *    targetitem is the item that exists in the slot position where the user released the mouse.
+//     *         This is mainly used for adding items, like coins, arrows, ...
+//     *         It CAN be null.
+//     *
+//     * 2) Equip from the inspected object slot to player's inventory
+//     *    baseobject is the inspected object
+//     *    baseslot is the inspected slot
+//     *    baseitem is object to equip in inventory
+//     *    targetobject is player
+//     *    targetslot is the player's slot where the item is going to be placed
+//     *    targetitem is the item that exists in the slot position where the user released the mouse.
+//     *         This is mainly used for adding items, like coins, arrows, ...
+//     *         It CAN be null.
+//     *
+//     * 3) Move an item inside the container's inventory
+//     *    baseobject is container
+//     *    baseslot is the container original slot
+//     *    baseitem is the item that exists in the slot position where the user pressed the mouse.
+//     *         This is mainly used for adding items, like coins, arrows, ...
+//     *    targetobject is container
+//     *    targetslot is the container's slot where the item is going to be placed
+//     *    targetitem is the item that exists in the slot position where the user released the mouse.
+//     *         This is mainly used for adding items, like coins, arrows, ...
+//     *         It CAN be null.
+//     **/
+//
+//    RPAction action=new RPAction();
+//
+//    action.put("type","equip");
+//    if(baseObject!=null)
+//      {
+//      // Case 2 and 3
+//      action.put("baseobject",baseObject);
+//      action.put("baseslot",baseSlot);
+//      }
+//    else
+//      {
+//      // Case 1
+//      }
+//    
+//    action.put("baseitem",baseItem);
+//    
+//    action.put("targetobject",targetObject);
+//    action.put("targetslot",targetSlot);
+// 
+//    if(targetItem!=null)
+//      {
+//      action.put("targetitem",targetItem);
+//      }
+//    
+//    InGameGUI.this.client.send(action);     
+//
+//    logger.debug(action);
+//    }
+//
+//  private void dropManagement(Integer baseObject, String baseslot, Integer baseItem, Integer x, Integer y)
+//    {
+//    /**
+//     * 1) Drop an item from the container's inventory to floor
+//     *    baseobject is container
+//     *    baseslot is the container original slot
+//     *    baseitem is the item that exists in the slot position where the user pressed the mouse.
+//     *         This is mainly used for adding items, like coins, arrows, ...
+//     *    x 
+//     *    y
+//     **/
+//    RPAction action=new RPAction();
+//    action.put("type","drop");
+//    action.put("baseobject",baseObject);
+//    action.put("baseslot",baseslot);
+//    action.put("baseitem",baseItem);
+//    action.put("x",x);
+//    action.put("y",y);
+//    
+//    InGameGUI.this.client.send(action);
+//    }
   
-  private void createPlayerInventory(SpriteStore st)
-    {
-    inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.png",true);
-    
-    wtEventListener dropToInventory=new wtEventListener()
-      {
-      public void onAction(Object... param)
-        {
-        int playerid=client.getPlayer().getID().getObjectID();
-        if(param[0] instanceof Entity) 
-          {
-          // Moved from floor to droppable area
-          wtDroppableArea targetSlot=((wtDroppableArea)param[1]); 
-          Entity baseItem=((Entity)param[0]);
-          
-          Integer targetid=null;
-          if(client.getPlayer().getSlot(targetSlot.getName()).size()!=0)
-            {
-            targetid=client.getPlayer().getSlot(targetSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
-            }
-          
-          equipManagement(null,null,baseItem.getID().getObjectID(),playerid,targetSlot.getName(),targetid);
-          }
-        else if(param[0] instanceof wtDroppableArea)
-          {
-          // Moved from another droppable area to player's droppable area
-          wtDroppableArea sourceSlot=((wtDroppableArea)param[0]); 
-          wtDroppableArea targetSlot=((wtDroppableArea)param[1]); 
-
-          if(sourceSlot.getName().startsWith("left"))
-            {
-            // Equip from the inspected object
-            int item=-1;
-            
-            String choosenarea=sourceSlot.getName();
-            int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
-            
-            int i=0;
-            for(RPObject object: inspectedSlot)
-              {
-              if(i == (itemPos-1))
-                {
-                item=object.getID().getObjectID();
-                break;
-                }
-              i++;
-              }
-
-            Integer targetid=null;
-            if(client.getPlayer().getSlot(targetSlot.getName()).size()!=0)
-              {
-              targetid=client.getPlayer().getSlot(targetSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
-              }
-
-            equipManagement(inspectedEntity.getID().getObjectID(),"content",item,playerid, targetSlot.getName(),targetid);
-            }
-          else
-            {
-            if(client.getPlayer().getSlot(sourceSlot.getName()).size()==0)
-              {
-              // If slot is empty you can't equip anything...
-              return;
-              }
-              
-            int item=client.getPlayer().getSlot(sourceSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
-
-            Integer targetid=null;
-            if(client.getPlayer().getSlot(targetSlot.getName()).size()!=0)
-              {
-              targetid=client.getPlayer().getSlot(targetSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
-              }
-
-            equipManagement(playerid,sourceSlot.getName(),item,playerid,targetSlot.getName(),targetid);
-            }
-          }
-        }
-      };
-    
-    wtDroppableArea area=null;
-    
-    area=new wtDroppableArea("lhand",515,68,32,32);
-    area.addActionListener(dropToInventory);
-    droppableAreas.add(area);
-    
-//    area=new wtDroppableArea("head",558,14,32,32);
-//    area.addActionListener(dropToInventory);
-//    droppableAreas.add(area);
-    
-    area=new wtDroppableArea("armor",558,56,32,32);
-    area.addActionListener(dropToInventory);
-    droppableAreas.add(area);
-    
-//    area=new wtDroppableArea("legs",558,98,32,32);
+//  private void createPlayerInventory(SpriteStore st)
+//    {
+//    inGameInventory=SpriteStore.get().getSprite("data/equipmentGUI.png",true);
+//    
+//    wtEventListener dropToInventory=new wtEventListener()
+//      {
+//      public void onAction(Object... param)
+//        {
+//        int playerid=client.getPlayer().getID().getObjectID();
+//        if(param[0] instanceof Entity) 
+//          {
+//          // Moved from floor to droppable area
+//          wtDroppableArea targetSlot=((wtDroppableArea)param[1]); 
+//          Entity baseItem=((Entity)param[0]);
+//          
+//          Integer targetid=null;
+//          if(client.getPlayer().getSlot(targetSlot.getName()).size()!=0)
+//            {
+//            targetid=client.getPlayer().getSlot(targetSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+//            }
+//          
+//          equipManagement(null,null,baseItem.getID().getObjectID(),playerid,targetSlot.getName(),targetid);
+//          }
+//        else if(param[0] instanceof wtDroppableArea)
+//          {
+//          // Moved from another droppable area to player's droppable area
+//          wtDroppableArea sourceSlot=((wtDroppableArea)param[0]); 
+//          wtDroppableArea targetSlot=((wtDroppableArea)param[1]); 
+//
+//          if(sourceSlot.getName().startsWith("left"))
+//            {
+//            // Equip from the inspected object
+//            int item=-1;
+//            
+//            String choosenarea=sourceSlot.getName();
+//            int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
+//            
+//            int i=0;
+//            for(RPObject object: inspectedSlot)
+//              {
+//              if(i == (itemPos-1))
+//                {
+//                item=object.getID().getObjectID();
+//                break;
+//                }
+//              i++;
+//              }
+//
+//            Integer targetid=null;
+//            if(client.getPlayer().getSlot(targetSlot.getName()).size()!=0)
+//              {
+//              targetid=client.getPlayer().getSlot(targetSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+//              }
+//
+//            equipManagement(inspectedEntity.getID().getObjectID(),"content",item,playerid, targetSlot.getName(),targetid);
+//            }
+//          else
+//            {
+//            if(client.getPlayer().getSlot(sourceSlot.getName()).size()==0)
+//              {
+//              // If slot is empty you can't equip anything...
+//              return;
+//              }
+//              
+//            int item=client.getPlayer().getSlot(sourceSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+//
+//            Integer targetid=null;
+//            if(client.getPlayer().getSlot(targetSlot.getName()).size()!=0)
+//              {
+//              targetid=client.getPlayer().getSlot(targetSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+//              }
+//
+//            equipManagement(playerid,sourceSlot.getName(),item,playerid,targetSlot.getName(),targetid);
+//            }
+//          }
+//        }
+//      };
+//    
+//    wtDroppableArea area=null;
+//    
+//    area=new wtDroppableArea("lhand",515,68,32,32);
 //    area.addActionListener(dropToInventory);
 //    droppableAreas.add(area);
 //    
-//    area=new wtDroppableArea("feet",558,141,32,32);
+////    area=new wtDroppableArea("head",558,14,32,32);
+////    area.addActionListener(dropToInventory);
+////    droppableAreas.add(area);
+//    
+//    area=new wtDroppableArea("armor",558,56,32,32);
 //    area.addActionListener(dropToInventory);
 //    droppableAreas.add(area);
-    
-    area=new wtDroppableArea("rhand",601,68,32,32);
-    area.addActionListener(dropToInventory);
-    droppableAreas.add(area);    
+//    
+////    area=new wtDroppableArea("legs",558,98,32,32);
+////    area.addActionListener(dropToInventory);
+////    droppableAreas.add(area);
+////    
+////    area=new wtDroppableArea("feet",558,141,32,32);
+////    area.addActionListener(dropToInventory);
+////    droppableAreas.add(area);
+//    
+//    area=new wtDroppableArea("rhand",601,68,32,32);
+//    area.addActionListener(dropToInventory);
+//    droppableAreas.add(area);    
+//
+//    area=new wtDroppableArea("bag",601,122,32,32);
+//    area.addActionListener(dropToInventory);
+//    droppableAreas.add(area);        
+//    }
 
-    area=new wtDroppableArea("bag",601,122,32,32);
-    area.addActionListener(dropToInventory);
-    droppableAreas.add(area);        
-    }
-
-  private void createInspectedEntity(SpriteStore st)
-    {
-    slot=st.getSprite("data/slot.png");
-
-    wtEventListener transferFromContainer=new wtEventListener()
-      {
-      public void onAction(Object... param)
-        {
-        if(param[0] instanceof Entity)
-          {
-          // Moved from floor to droppable area
-          Entity baseItem=((Entity)param[0]);
-          equipManagement(null,null,baseItem.getID().getObjectID(),inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
-          }
-        else if(param[0] instanceof wtDroppableArea)
-          {
-          // Move from other droppable area to droppable object
-          wtDroppableArea sourceSlot=((wtDroppableArea)param[0]);
-
-          if(sourceSlot.getName().startsWith("left"))
-            {
-            // Moving from a droppable area to a droppable area of inspected item 
-            int item=-1;
-            
-            String choosenarea=sourceSlot.getName();
-            int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
-            
-            int i=0;
-            for(RPObject object: inspectedSlot)
-              {
-              if(i == (itemPos-1))
-                {
-                item=object.getID().getObjectID();
-                break;
-                }
-              i++;
-              }
-
-            equipManagement(inspectedEntity.getID().getObjectID(),"content",item,inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
-            }
-          else
-            {
-            // Moving from player's inventory to droppable area
-            int playerid=client.getPlayer().getID().getObjectID();
-
-            if(client.getPlayer().getSlot(sourceSlot.getName()).size()==0)
-              {
-              // If slot is empty you can't equip anything...
-              return;
-              }
-
-            int item=client.getPlayer().getSlot(sourceSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
-            equipManagement(playerid,sourceSlot.getName(),item,inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
-            }
-          }
-        }
-      };
-
-    wtDroppableArea area=null;
-
-    area=new wtDroppableArea("left_001",6,414,32,32);
-    area.addActionListener(transferFromContainer);
-    inspectedDroppableAreas.add(area);
-    droppableAreas.add(area);    
-
-    area=new wtDroppableArea("left_002",6,369,32,32);
-    area.addActionListener(transferFromContainer);
-    inspectedDroppableAreas.add(area);
-    droppableAreas.add(area);    
-
-    area=new wtDroppableArea("left_003",6,324,32,32);
-    area.addActionListener(transferFromContainer);
-    inspectedDroppableAreas.add(area);
-    droppableAreas.add(area);    
-
-    area=new wtDroppableArea("left_004",6,279,32,32);
-    area.addActionListener(transferFromContainer);
-    inspectedDroppableAreas.add(area);
-    droppableAreas.add(area);    
-
-    for(wtDroppableArea disabledArea:inspectedDroppableAreas)
-      {
-      disabledArea.setEnabled(false);
-      }
-    }
+//  private void createInspectedEntity(SpriteStore st)
+//    {
+//    slot=st.getSprite("data/slot.png");
+//
+//    wtEventListener transferFromContainer=new wtEventListener()
+//      {
+//      public void onAction(Object... param)
+//        {
+//        if(param[0] instanceof Entity)
+//          {
+//          // Moved from floor to droppable area
+//          Entity baseItem=((Entity)param[0]);
+//          equipManagement(null,null,baseItem.getID().getObjectID(),inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
+//          }
+//        else if(param[0] instanceof wtDroppableArea)
+//          {
+//          // Move from other droppable area to droppable object
+//          wtDroppableArea sourceSlot=((wtDroppableArea)param[0]);
+//
+//          if(sourceSlot.getName().startsWith("left"))
+//            {
+//            // Moving from a droppable area to a droppable area of inspected item 
+//            int item=-1;
+//            
+//            String choosenarea=sourceSlot.getName();
+//            int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
+//            
+//            int i=0;
+//            for(RPObject object: inspectedSlot)
+//              {
+//              if(i == (itemPos-1))
+//                {
+//                item=object.getID().getObjectID();
+//                break;
+//                }
+//              i++;
+//              }
+//
+//            equipManagement(inspectedEntity.getID().getObjectID(),"content",item,inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
+//            }
+//          else
+//            {
+//            // Moving from player's inventory to droppable area
+//            int playerid=client.getPlayer().getID().getObjectID();
+//
+//            if(client.getPlayer().getSlot(sourceSlot.getName()).size()==0)
+//              {
+//              // If slot is empty you can't equip anything...
+//              return;
+//              }
+//
+//            int item=client.getPlayer().getSlot(sourceSlot.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+//            equipManagement(playerid,sourceSlot.getName(),item,inspectedEntity.getID().getObjectID(), "content",null/* TODO: Should compute item id*/);
+//            }
+//          }
+//        }
+//      };
+//
+//    wtDroppableArea area=null;
+//
+//    area=new wtDroppableArea("left_001",6,414,32,32);
+//    area.addActionListener(transferFromContainer);
+//    inspectedDroppableAreas.add(area);
+//    droppableAreas.add(area);    
+//
+//    area=new wtDroppableArea("left_002",6,369,32,32);
+//    area.addActionListener(transferFromContainer);
+//    inspectedDroppableAreas.add(area);
+//    droppableAreas.add(area);    
+//
+//    area=new wtDroppableArea("left_003",6,324,32,32);
+//    area.addActionListener(transferFromContainer);
+//    inspectedDroppableAreas.add(area);
+//    droppableAreas.add(area);    
+//
+//    area=new wtDroppableArea("left_004",6,279,32,32);
+//    area.addActionListener(transferFromContainer);
+//    inspectedDroppableAreas.add(area);
+//    droppableAreas.add(area);    
+//
+//    for(wtDroppableArea disabledArea:inspectedDroppableAreas)
+//      {
+//      disabledArea.setEnabled(false);
+//      }
+//    }
     
   private void buildGUI()
     {
     SpriteStore st=SpriteStore.get();
     
     createQuitMenuButtons(st);
-    createPlayerInventory(st);
-    createInspectedEntity(st);
+//    createPlayerInventory(st);
+//    createInspectedEntity(st);
     }
   
-  private wtDroppableArea getDroppableArea(String name)
-    {
-    for(wtDroppableArea item: droppableAreas)
-      {
-      if(item.getName().equals(name))
-        {
-        return item;
-        }     
-      }
-    
-    return null;
-    }
-  
-  /** keeps track of the last drag event, its position mainly, so that we can know
-   *  it when the mouse button is released. */
-  private MouseEvent lastDraggedEvent;
+//  private wtDroppableArea getDroppableArea(String name)
+//    {
+//    for(wtDroppableArea item: droppableAreas)
+//      {
+//      if(item.getName().equals(name))
+//        {
+//        return item;
+//        }     
+//      }
+//    
+//    return null;
+//    }
+//  
+//  /** keeps track of the last drag event, its position mainly, so that we can know
+//   *  it when the mouse button is released. */
+//  private MouseEvent lastDraggedEvent;
   /** To manage too the drag event we need to record what was the entity in which the
    *  mouse was pressed for the first drag event. */
   private Entity choosenEntity;
@@ -470,25 +478,25 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
    *  we record from what droppable area the event started */
   private wtDroppableArea choosenWidget;
     
-  public void mouseDragged(MouseEvent e) 
-    {
-    lastDraggedEvent=e;
-    }
+//  public void mouseDragged(MouseEvent e) 
+//    {
+//    lastDraggedEvent=e;
+//    }
     
-  public void mouseMoved(MouseEvent e)  
-    {
-    lastDraggedEvent=null;
-    
-    if(widgetCommandList!=null)  // Notify the wtList so it can update itself 
-      {
-      widgetCommandList.onMouseOver(e.getPoint());
-      }
-    
-    for(wtButton button: buttons)  // Notify buttons so they can update itself     
-      {
-      button.onMouseOver(e.getPoint());
-      } 
-    }
+//  public void mouseMoved(MouseEvent e)  
+//    {
+//    lastDraggedEvent=null;
+//    
+//    if(widgetCommandList!=null)  // Notify the wtList so it can update itself 
+//      {
+//      widgetCommandList.onMouseOver(e.getPoint());
+//      }
+//    
+//    for(wtButton button: buttons)  // Notify buttons so they can update itself     
+//      {
+//      button.onMouseOver(e.getPoint());
+//      } 
+//    }
 
   /** the user has pressed and released the mouse button */
   public void mouseClicked(MouseEvent e) 
@@ -569,105 +577,105 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       }
     }
   
-  /** This method request the player to displace the given entity to x,y */
-  private void displace(Entity entity, int x, int y)
-    {
-    entity.onAction(client,"Displace", Integer.toString(x),Integer.toString(y));
-    }
-  
-  private void drop(int x, int y)
-    {
-    if(inspectedSlot!=null && choosenWidget.getName().startsWith("left"))      
-      {
-      // Moving from a droppable area to a droppable area of inspected baseItem 
-      int baseItem=-1;
-      
-      String choosenarea=choosenWidget.getName();
-      int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
-      
-      int i=0;
-      for(RPObject object: inspectedSlot)
-        {
-        if(i == (itemPos-1))
-          {
-          baseItem=object.getID().getObjectID();
-          break;
-          }
-        i++;
-        }
-
-      dropManagement(inspectedEntity.getID().getObjectID(),"content",baseItem,x,y);
-      }
-    else
-      {
-      // Moving from player's inventory to droppable area
-      int playerid=client.getPlayer().getID().getObjectID();
-
-      if(client.getPlayer().getSlot(choosenWidget.getName()).size()==0)
-        {
-        // If slot is empty you can't drop anything...
-        return;
-        }
-
-      int item=client.getPlayer().getSlot(choosenWidget.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
-      dropManagement(playerid,choosenWidget.getName(),item,x,y);
-      }
-    }
+//  /** This method request the player to displace the given entity to x,y */
+//  private void displace(Entity entity, int x, int y)
+//    {
+//    entity.onAction(client,"Displace", Integer.toString(x),Integer.toString(y));
+//    }
+//  
+//  private void drop(int x, int y)
+//    {
+//    if(inspectedSlot!=null && choosenWidget.getName().startsWith("left"))      
+//      {
+//      // Moving from a droppable area to a droppable area of inspected baseItem 
+//      int baseItem=-1;
+//      
+//      String choosenarea=choosenWidget.getName();
+//      int itemPos=Integer.parseInt(choosenarea.substring(choosenarea.length()-1));
+//      
+//      int i=0;
+//      for(RPObject object: inspectedSlot)
+//        {
+//        if(i == (itemPos-1))
+//          {
+//          baseItem=object.getID().getObjectID();
+//          break;
+//          }
+//        i++;
+//        }
+//
+//      dropManagement(inspectedEntity.getID().getObjectID(),"content",baseItem,x,y);
+//      }
+//    else
+//      {
+//      // Moving from player's inventory to droppable area
+//      int playerid=client.getPlayer().getID().getObjectID();
+//
+//      if(client.getPlayer().getSlot(choosenWidget.getName()).size()==0)
+//        {
+//        // If slot is empty you can't drop anything...
+//        return;
+//        }
+//
+//      int item=client.getPlayer().getSlot(choosenWidget.getName()).iterator().next().getID().getObjectID(); // TODO: HACK: Ummm... not sure this is nice 
+//      dropManagement(playerid,choosenWidget.getName(),item,x,y);
+//      }
+//    }
 
   /** the user has released the mouse button */
   public void mouseReleased(MouseEvent e) 
     {
-    // Check if we were dragging an entity.
-    if(lastDraggedEvent!=null && choosenEntity!=null) 
-      {
-      Point2D point=screen.translate(e.getPoint());
-
-      // We check first inventory and if it fails we wanted to move the object so. 
-      for(wtDroppableArea item: droppableAreas)    
-        {
-        // Returns true if it is released inside the droppable area
-        if(item.released(e.getPoint(),choosenEntity))
-          {
-          // We dropped it in inventory
-          logger.debug("Dropped "+choosenEntity+" into "+item.getName());
-          choosenEntity=null;
-          lastDraggedEvent=null;
-          return;
-          }
-        }
-
-      logger.debug("Moved "+choosenEntity+" to "+point);
-      displace(choosenEntity,(int)point.getX(), (int)point.getY());
-      
-      choosenEntity=null;
-      lastDraggedEvent=null;
-      }
-
-    // Check if we were dragging a widget ( droppable areas only ) 
-    if(lastDraggedEvent!=null && choosenWidget!=null)
-      {
-      Point2D point=screen.translate(e.getPoint());
-
-      // We check first inventory and if it fails we wanted to move the object so. 
-      for(wtDroppableArea item: droppableAreas)    
-        {
-        // Returns true if it is released inside the droppable area
-        if(item.released(e.getPoint(),choosenWidget))
-          {
-          // We dropped it in inventory
-          System.out.println ("Moved from "+choosenWidget.getName()+" into "+item.getName());
-          choosenWidget=null;
-          lastDraggedEvent=null;
-          return;
-          }
-        }
-      
-      logger.debug(choosenWidget.getName()+" dropped to "+point);
-      drop((int)point.getX(),(int)point.getY());
-
-      choosenWidget=null;
-      lastDraggedEvent=null;
-      }
+//    // Check if we were dragging an entity.
+//    if(lastDraggedEvent!=null && choosenEntity!=null) 
+//      {
+//      Point2D point=screen.translate(e.getPoint());
+//
+//      // We check first inventory and if it fails we wanted to move the object so. 
+//      for(wtDroppableArea item: droppableAreas)    
+//        {
+//        // Returns true if it is released inside the droppable area
+//        if(item.released(e.getPoint(),choosenEntity))
+//          {
+//          // We dropped it in inventory
+//          logger.debug("Dropped "+choosenEntity+" into "+item.getName());
+//          choosenEntity=null;
+//          lastDraggedEvent=null;
+//          return;
+//          }
+//        }
+//
+//      logger.debug("Moved "+choosenEntity+" to "+point);
+//      displace(choosenEntity,(int)point.getX(), (int)point.getY());
+//      
+//      choosenEntity=null;
+//      lastDraggedEvent=null;
+//      }
+//
+//    // Check if we were dragging a widget ( droppable areas only ) 
+//    if(lastDraggedEvent!=null && choosenWidget!=null)
+//      {
+//      Point2D point=screen.translate(e.getPoint());
+//
+//      // We check first inventory and if it fails we wanted to move the object so. 
+//      for(wtDroppableArea item: droppableAreas)    
+//        {
+//        // Returns true if it is released inside the droppable area
+//        if(item.released(e.getPoint(),choosenWidget))
+//          {
+//          // We dropped it in inventory
+//          System.out.println ("Moved from "+choosenWidget.getName()+" into "+item.getName());
+//          choosenWidget=null;
+//          lastDraggedEvent=null;
+//          return;
+//          }
+//        }
+//      
+//      logger.debug(choosenWidget.getName()+" dropped to "+point);
+//      drop((int)point.getX(),(int)point.getY());
+//
+//      choosenWidget=null;
+//      lastDraggedEvent=null;
+//      }
     }
 
   public void mouseEntered(MouseEvent e) 
@@ -789,13 +797,19 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
    * To stop inspecting this method is called with entity=null */
   public void inspect(Entity entity, RPSlot slot)
     {
-    for(wtDroppableArea area:inspectedDroppableAreas)
-      {
-      area.setEnabled(entity!=null);
-      }
-      
+    if (entity == null || slot == null || ground == null)
+    {
+      return;
+    }
+    
+    System.out.println("inspecting "+entity+" "+slot);
     inspectedEntity=entity;
     inspectedSlot=slot;
+    
+    EntityContainer container = new EntityContainer(gameObjects,"chest",2,2);
+    container.setSlot(entity.getID(),slot);
+    ground.addChild(container);
+    
     }
 
   /** Returns true if the given object is being inspected */
@@ -809,7 +823,7 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
     if(inspectedEntity.getID().equals(entity.getID()) && inspectedSlot.getName().equals(slot))
       {
       return true;
-      }    
+      }
     else
       {
       return false;
@@ -818,83 +832,83 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
 
   public void draw(GameScreen screen)
     {
-    // Draw the inventory graphics 
-    screen.drawInScreen(inGameInventory,510,10);
+//    // Draw the inventory graphics 
+//    screen.drawInScreen(inGameInventory,510,10);
+//
+//    // Draw the inventory's droppable areas
+//    for(wtDroppableArea item: droppableAreas)    
+//      {
+//      item.draw(screen);
+//      } 
+//    
+//    RPObject player=client.getPlayer();
+//    if(player!=null)
+//      {
+//      // For each of the existing slots we draw the item in it.
+//      String[] slots=new String[]{"lhand","rhand","armor","bag"};
+//      for(String slotName: slots)
+//       {
+//       if(player.hasSlot(slotName))
+//         {
+//         RPSlot slot=player.getSlot(slotName);
+//         if(slot.size()>0)
+//           {
+//           // BUG: Only draws one object... we need a new way of drawing slots.
+//           wtDroppableArea dropArea=getDroppableArea(slotName);
+//           RPObject object=slot.iterator().next();
+//           screen.drawInScreen(gameObjects.spriteType(object),dropArea.getx(),dropArea.gety());
+//           
+//           // HACK: Do this in a proper way. Require refactoring 
+//           if(object.has("class") && object.get("class").equals("money"))
+//             {
+//             int quantity=object.getInt("quantity");
+//             screen.drawInScreen(GameScreen.get().createString(Integer.toString(quantity),Color.white),dropArea.getx(),dropArea.gety()+30);             
+//             }
+//           }
+//         }
+//       }
 
-    // Draw the inventory's droppable areas
-    for(wtDroppableArea item: droppableAreas)    
-      {
-      item.draw(screen);
-      } 
-    
-    RPObject player=client.getPlayer();
-    if(player!=null)
-      {
-      // For each of the existing slots we draw the item in it.
-      String[] slots=new String[]{"lhand","rhand","armor","bag"};
-      for(String slotName: slots)
-       {
-       if(player.hasSlot(slotName))
-         {
-         RPSlot slot=player.getSlot(slotName);
-         if(slot.size()>0)
-           {
-           // BUG: Only draws one object... we need a new way of drawing slots.
-           wtDroppableArea dropArea=getDroppableArea(slotName);
-           RPObject object=slot.iterator().next();
-           screen.drawInScreen(gameObjects.spriteType(object),dropArea.getx(),dropArea.gety());
-           
-           // HACK: Do this in a proper way. Require refactoring 
-           if(object.has("class") && object.get("class").equals("money"))
-             {
-             int quantity=object.getInt("quantity");
-             screen.drawInScreen(GameScreen.get().createString(Integer.toString(quantity),Color.white),dropArea.getx(),dropArea.gety()+30);             
-             }
-           }
-         }
-       }
-
-      // Write player info in screen
-      screen.drawInScreen(screen.createString("HP : "+player.get("hp")+"/"+player.get("base_hp"),Color.white),550, 184);
-      screen.drawInScreen(screen.createString("ATK: "+player.get("atk")+" ("+player.get("atk_xp")+")",Color.white),550, 204);
-      screen.drawInScreen(screen.createString("DEF: "+player.get("def")+" ("+player.get("def_xp")+")",Color.white),550, 224);
-      screen.drawInScreen(screen.createString("XP : "+player.get("xp"),Color.white),550, 244);
+//      // Write player info in screen
+//      screen.drawInScreen(screen.createString("HP : "+player.get("hp")+"/"+player.get("base_hp"),Color.white),550, 184);
+//      screen.drawInScreen(screen.createString("ATK: "+player.get("atk")+" ("+player.get("atk_xp")+")",Color.white),550, 204);
+//      screen.drawInScreen(screen.createString("DEF: "+player.get("def")+" ("+player.get("def_xp")+")",Color.white),550, 224);
+//      screen.drawInScreen(screen.createString("XP : "+player.get("xp"),Color.white),550, 244);
       
-      if(inspectedSlot!=null)
-        {
-        /* If we are inspecting an object, we draw all the objects that the 
-         * inspected object's slot contains. */
-        int i=1;
-        for(RPObject object: inspectedSlot)
-          {
-          // BUG: Only draws upto existing areas... we can have a problem with this...
-          wtDroppableArea area=getDroppableArea("left_00"+i);                    
-          screen.drawInScreen(slot,area.getx()-4,area.gety()-4);
-          screen.drawInScreen(gameObjects.spriteType(object),area.getx(),area.gety());
-
-           // HACK: Do this in a proper way. Require refactoring 
-           if(object.has("class") && object.get("class").equals("money"))
-             {
-             int quantity=object.getInt("quantity");
-             screen.drawInScreen(GameScreen.get().createString(Integer.toString(quantity),Color.white),area.getx(),area.gety()+30);             
-             }
-
-          i++;
-          }
-        
-        /* If we are far from the inspected object, we stop inspecting it. */
-        if(inspectedEntity.distance(player)>2.5*2.5)
-          {
-          for(wtDroppableArea area:inspectedDroppableAreas)
-            {
-            area.setEnabled(false);
-            }
-            
-          inspectedEntity=null;
-          inspectedSlot=null;
-          }
-        }
-      }
+//      if(inspectedSlot!=null)
+//        {
+//        /* If we are inspecting an object, we draw all the objects that the 
+//         * inspected object's slot contains. */
+//        int i=1;
+//        for(RPObject object: inspectedSlot)
+//          {
+//          // BUG: Only draws upto existing areas... we can have a problem with this...
+//          wtDroppableArea area=getDroppableArea("left_00"+i);                    
+//          screen.drawInScreen(slot,area.getx()-4,area.gety()-4);
+//          screen.drawInScreen(gameObjects.spriteType(object),area.getx(),area.gety());
+//
+//           // HACK: Do this in a proper way. Require refactoring 
+//           if(object.has("class") && object.get("class").equals("money"))
+//             {
+//             int quantity=object.getInt("quantity");
+//             screen.drawInScreen(GameScreen.get().createString(Integer.toString(quantity),Color.white),area.getx(),area.gety()+30);             
+//             }
+//
+//          i++;
+//          }
+//        
+//        /* If we are far from the inspected object, we stop inspecting it. */
+//        if(inspectedEntity.distance(player)>2.5*2.5)
+//          {
+//          for(wtDroppableArea area:inspectedDroppableAreas)
+//            {
+//            area.setEnabled(false);
+//            }
+//            
+//          inspectedEntity=null;
+//          inspectedSlot=null;
+//          }
+//        }
+//      }
 
     // Draw any relevant button if needed.    
     for(wtButton button: buttons)
@@ -908,12 +922,44 @@ public class InGameGUI implements MouseListener, MouseMotionListener, KeyListene
       widgetCommandList.draw(screen);
       }
 
-    // if the currently dragged item is a passive entity (items, corpses)
-    // show it as a mouse cursor. Note: sign are also passive entities
-    if (choosenEntity != null && lastDraggedEvent != null && choosenEntity instanceof PassiveEntity)
+//    // if the currently dragged item is a passive entity (items, corpses)
+//    // show it as a mouse cursor. Note: sign are also passive entities
+//    if (choosenEntity != null && lastDraggedEvent != null && choosenEntity instanceof PassiveEntity)
+//      {
+//      Point2D p = lastDraggedEvent.getPoint();
+//      screen.drawInScreen(choosenEntity.getSprite(), (int) p.getX(), (int) p.getY());
+//      }
+    
+      // create the frame if it does not exists yet
+      if (frame == null)
       {
-      Point2D p = lastDraggedEvent.getPoint();
-      screen.drawInScreen(choosenEntity.getSprite(), (int) p.getX(), (int) p.getY());
-      }    
+        frame = new Frame(screen);
+        // register native event handler
+        screen.getComponent().addMouseListener(frame);
+        screen.getComponent().addMouseMotionListener(frame);
+        // create ground
+        ground = new GroundContainer(screen,gameObjects);
+        frame.addChild(ground);
+        // the settings panel creates all other
+        settings = new SettingsPanel(ground, gameObjects);
+        ground.addChild(settings);
+      }
+      // create the map if there is none yet
+      StaticGameLayers gl = client.getStaticGameLayers();
+      if (gl.changedArea())
+      {
+        CollisionDetection cd = gl.getCollisionDetection();
+        if (cd != null)
+        {
+          gl.resetChangedArea();
+          settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gl.getArea());
+        }
+      }
+  
+      RPObject player = StendhalClient.get().getPlayer();
+      settings.setPlayer(player);
+  
+      frame.draw(screen.expose());
+    
     }
   }

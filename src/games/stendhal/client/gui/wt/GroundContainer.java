@@ -64,8 +64,16 @@ public class GroundContainer extends Panel
       Point2D point = screen.translate(new Point2D.Double(x,y));
       RPAction action = new RPAction();
 
-      // looks like an drop
-      action.put("type","drop");
+      if (container.isContained())
+      {
+        // looks like an drop
+        action.put("type","drop");
+      }
+      else
+      {
+        // it is a displace
+        action.put("type","displace");
+      }
       // fill 'moved from' parameters
       container.fillRPAction(action);
       // tell the server where the item goes to

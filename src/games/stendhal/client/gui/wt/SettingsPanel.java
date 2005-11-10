@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import marauroa.common.game.RPObject;
 
+
 /**
  * The panel where you can adjust your settings
  *
@@ -51,7 +52,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   /** the minimap panel */
   private Minimap minimap;
   /** the inventory */
-  private Inventory inventory;
+  private EntityContainer inventory;
   /** the frame */
   private Panel frame;
   /** the player */
@@ -84,11 +85,10 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
     character.registerCloseListener(this);
     frame.addChild(character);
 
-    inventory = new Inventory(gameObjects);
+    inventory = new EntityContainer(gameObjects,"bag",3,4);
     inventory.registerCloseListener(this);
     frame.addChild(inventory);
-    
-    
+
     buttonMap = new HashMap<String,Button>();
     buttonMap.put("minimap",new Button("minimap", 150, 30, "Enable Minimap"));
     buttonMap.put("character",new Button("character", 150, 30, "Enable Character"));
@@ -132,10 +132,19 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   /** updates the minimap */
   public void setPlayer(RPObject player)
   {
+    if (player == null)
+    {
+      return;
+    }
+    
     this.player = player;
     if (character != null)
     {
       character.setPlayer(player);
+    }
+    if (inventory != null)
+    {
+      inventory.setSlot(player.getID(),player.getSlot("bag"));
     }
   }
 
@@ -210,7 +219,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
       else if (!inventoryEnabled && pressed)
       {
         // character enabled
-        inventory = new Inventory(gameObjects);
+        inventory = new EntityContainer(gameObjects,"bag",3,4);
         inventory.registerCloseListener(this);
         frame.addChild(inventory);
       }

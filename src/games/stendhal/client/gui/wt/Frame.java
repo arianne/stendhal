@@ -169,8 +169,6 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
   {
     Point p = e.getPoint();
 
-    System.out.println("dragged to "+p);
-    
     if (!dragInProgress)
     {
       draggedObject = getDragged(p);

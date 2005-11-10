@@ -109,7 +109,7 @@ public class Character extends Panel
       if (entitySlot != null)
       {
         entitySlot.clear();
-        entitySlot.setParent(player);
+        entitySlot.setParent(player.getID());
         // found a gui element for this slot
         for (RPObject content : slot)
         {

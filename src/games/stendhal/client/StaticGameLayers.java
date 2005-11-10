@@ -11,7 +11,6 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client;
-import games.stendhal.client.gui.wt.*;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Pair;
 
@@ -21,7 +20,6 @@ import java.io.Reader;
 import java.util.LinkedList;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
@@ -31,14 +29,6 @@ public class StaticGameLayers
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(StaticGameLayers.class);
 
-  /** flag indicating that the minimap should be refreshed asap */
-  private boolean refreshMinimap;
-  /** the main frame */
-  private Frame frame;
-  /** settings panel */
-  private SettingsPanel settings;
-  
- 
   /** List of pair name, layer */
   private LinkedList<Pair<String, TileRenderer>> layers;
 
@@ -50,6 +40,8 @@ public class StaticGameLayers
 
   /** Name of the layers set that we are rendering right now */
   private String area;
+  /** true when the area has been changed */
+  private boolean areaChanged;
 
   public StaticGameLayers()
     {
@@ -68,6 +60,7 @@ public class StaticGameLayers
     tilestore.add("tilesets/zelda_outside_2_chipset.png"  ,30*16);
 
     area=null;
+    areaChanged = true;
     }
   
   /** Returns width in world units */
@@ -180,7 +173,7 @@ public class StaticGameLayers
     {
     Log4J.startMethod(logger, "setRPZoneLayersSet");
     this.area = area;
-    refreshMinimap = true;
+    this.areaChanged = true;
     Log4J.finishMethod(logger, "setRPZoneLayersSet");
     }
   
@@ -212,40 +205,44 @@ public class StaticGameLayers
       }
     }
 
-  /** Draws a minimap in the top left corner. Only the collision layer is
-   * considered */
-  public void drawMiniMap(GameScreen screen, GameObjects gameObjects)
-    {
+  /**
+   * @return the CollisionDetection Layer for the current map
+   */
+  public CollisionDetection getCollisionDetection()
+  {
     for(Pair<String, CollisionDetection> cdp: collisions)
-      {
+    {
       if (area != null && cdp.first().contains(area))
-        {
-        // create the frame if it does not exists yet
-        if (frame == null)
-          {
-          frame = new Frame(screen);
-          // register native event handler
-          screen.getComponent().addMouseListener(frame);
-          screen.getComponent().addMouseMotionListener(frame);
-          // create ground
-          Panel ground = new GroundContainer(screen,gameObjects);
-          frame.addChild(ground);
-          // the settings panel creates all other
-          settings = new SettingsPanel(ground, gameObjects);
-          ground.addChild(settings);
-          }
-        // create the map if there is none yet
-        if (refreshMinimap)
-          {
-          refreshMinimap = false;
-          settings.updateMinimap(cdp.second(), screen.expose().getDeviceConfiguration(), area);
-          }
-
-        RPObject player = StendhalClient.get().getPlayer();
-        settings.setPlayer(player);
-
-        frame.draw(screen.expose());
-        }
+      {
+        return cdp.second();
       }
     }
+    return null;
+  }
+
+  /**
+   * @return the current area/map
+   */
+  public String getArea()
+  {
+    return area;
+  }
+
+  /**
+   * @return true when the area has changed since the last {@see resetChangedArea()} 
+   */
+  public boolean changedArea()
+  {
+    return areaChanged;
+  }
+
+  /**
+   * resets the {@see changedArea()} flag
+   */
+  public void resetChangedArea()
+  {
+    areaChanged = false;
+  }
+  
+  
   }
