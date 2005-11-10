@@ -28,7 +28,7 @@ public class GameScreen
   private static final Logger logger = Log4J.getLogger(GameScreen.class);
   
   /** One unit is 16 pixels */
-  public final static int PIXEL_SCALE=32;
+  public final static int SIZE_UNIT_PIXELS=32;
   
   private BufferStrategy strategy;
   private Graphics2D g;
@@ -76,13 +76,13 @@ public class GameScreen
   /** Returns screen width in world units */
   public double getWidth()
     {
-    return sw/PIXEL_SCALE;
+    return sw/SIZE_UNIT_PIXELS;
     }
 
   /** Returns screen height in world units */
   public double getHeight()
     {
-    return sh/PIXEL_SCALE;
+    return sh/SIZE_UNIT_PIXELS;
     }
 
   /** Returns screen width in pixels */
@@ -193,26 +193,26 @@ public class GameScreen
   /** Translate to world coordinates the given screen coordinate */
   public Point2D translate(Point2D point)
     {
-    double tx=point.getX()/(float)GameScreen.PIXEL_SCALE+x;
-    double ty=point.getY()/(float)GameScreen.PIXEL_SCALE+y;
+    double tx=point.getX()/(float)GameScreen.SIZE_UNIT_PIXELS+x;
+    double ty=point.getY()/(float)GameScreen.SIZE_UNIT_PIXELS+y;
     return new Point.Double(tx,ty);
     }
 
   /** Translate to screen coordinates the given world coordinate */
   public Point2D invtranslate(Point2D point)
     {
-    double tx=(point.getX()-x)*(float)GameScreen.PIXEL_SCALE;
-    double ty=(point.getY()-y)*(float)GameScreen.PIXEL_SCALE;
+    double tx=(point.getX()-x)*(float)GameScreen.SIZE_UNIT_PIXELS;
+    double ty=(point.getY()-y)*(float)GameScreen.SIZE_UNIT_PIXELS;
     return new Point.Double(tx,ty);
     }
     
   /** Draw a sprite in screen given its world coordinates */
   public void draw(Sprite sprite, double wx, double wy)
     {
-    int sx=(int)((wx-x)*(float)GameScreen.PIXEL_SCALE);
-    int sy=(int)((wy-y)*(float)GameScreen.PIXEL_SCALE);
+    int sx=(int)((wx-x)*(float)GameScreen.SIZE_UNIT_PIXELS);
+    int sy=(int)((wy-y)*(float)GameScreen.SIZE_UNIT_PIXELS);
     
-    if((sx>=-(float)GameScreen.PIXEL_SCALE*2 && sx<sw) && (sy>=-(float)GameScreen.PIXEL_SCALE*2 && sy<sh))
+    if((sx>=-(float)GameScreen.SIZE_UNIT_PIXELS*2 && sx<sw) && (sy>=-(float)GameScreen.SIZE_UNIT_PIXELS*2 && sy<sh))
       {
       sprite.draw(g,sx,sy);
       }

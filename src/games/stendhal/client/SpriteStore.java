@@ -75,8 +75,8 @@ public class SpriteStore {
     {
       Log4J.startMethod(logger, "getAnimatedSprite");
 
-      int iwidth=(int)(width*GameScreen.PIXEL_SCALE);
-      int iheight=(int)(height*GameScreen.PIXEL_SCALE);
+      int iwidth=(int)(width*GameScreen.SIZE_UNIT_PIXELS);
+      int iheight=(int)(height*GameScreen.SIZE_UNIT_PIXELS);
 
       Sprite[] animatedSprite=new Sprite[frames];
     

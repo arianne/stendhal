@@ -109,21 +109,21 @@ public abstract class Creature extends NPC
 
       if (targetMoved && targetMovedPath != null)
       {
-        int delta = GameScreen.PIXEL_SCALE/2;
+        int delta = GameScreen.SIZE_UNIT_PIXELS/2;
         g2d.setColor(Color.red);
-        drawPath(screen,targetMovedPath, GameScreen.PIXEL_SCALE/2);
+        drawPath(screen,targetMovedPath, GameScreen.SIZE_UNIT_PIXELS/2);
       }
 
       if (patrol && patrolPath != null)
       {
         g2d.setColor(Color.green);
-        drawPath(screen,patrolPath, GameScreen.PIXEL_SCALE/2+1);
+        drawPath(screen,patrolPath, GameScreen.SIZE_UNIT_PIXELS/2+1);
       }
 
       if ((moveToTarget || moveToTargetNew)  && moveToTargetPath != null)
       {
         g2d.setColor(Color.blue);
-        drawPath(screen,moveToTargetPath, GameScreen.PIXEL_SCALE/2+2);
+        drawPath(screen,moveToTargetPath, GameScreen.SIZE_UNIT_PIXELS/2+2);
       }
     }
   }

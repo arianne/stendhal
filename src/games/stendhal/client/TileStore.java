@@ -71,15 +71,15 @@ public class TileStore extends SpriteStore
       
       GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
       
-      for(int j=0;j<tiles.getHeight()/TILE_HEIGHT;j++)
+      for(int j=0;j<tiles.getHeight()/GameScreen.SIZE_UNIT_PIXELS;j++)
         {      
-        for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
+        for(int i=0;i<tiles.getWidth()/GameScreen.SIZE_UNIT_PIXELS;i++)
           {
-          Image image = gc.createCompatibleImage(TILE_WIDTH,TILE_HEIGHT, Transparency.BITMASK);
-          tiles.draw(image.getGraphics(),0,0,i*TILE_WIDTH,j*TILE_HEIGHT);
+          Image image = gc.createCompatibleImage(GameScreen.SIZE_UNIT_PIXELS,GameScreen.SIZE_UNIT_PIXELS, Transparency.BITMASK);
+          tiles.draw(image.getGraphics(),0,0,i*GameScreen.SIZE_UNIT_PIXELS,j*GameScreen.SIZE_UNIT_PIXELS);
           
           // create a sprite, add it the cache then return it
-          tileset.set(base+i+j*tiles.getWidth()/TILE_WIDTH,new Sprite(image));
+          tileset.set(base+i+j*tiles.getWidth()/GameScreen.SIZE_UNIT_PIXELS,new Sprite(image));
           }
         }
       
@@ -89,9 +89,6 @@ public class TileStore extends SpriteStore
       }    
     }
     
-  private static final int TILE_WIDTH=GameScreen.PIXEL_SCALE;
-  private static final int TILE_HEIGHT=GameScreen.PIXEL_SCALE;
-  
   private List<RangeFilename> rangesTiles;
   private Vector<Sprite> tileset;
   
@@ -125,23 +122,7 @@ public class TileStore extends SpriteStore
       }
     else
       {
-      SpriteStore sprites;
-      sprites=get();
-      Sprite tiles=sprites.getSprite(ref);
-      
-      GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-      
-      for(int j=0;j<tiles.getHeight()/TILE_HEIGHT;j++)
-        {      
-        for(int i=0;i<tiles.getWidth()/TILE_WIDTH;i++)
-          {
-          Image image = gc.createCompatibleImage(TILE_WIDTH,TILE_HEIGHT, Transparency.BITMASK);
-          tiles.draw(image.getGraphics(),0,0,i*TILE_WIDTH,j*TILE_HEIGHT);
-          
-          // create a sprite, add it the cache then return it
-          tileset.set(base+i+j*tiles.getWidth()/TILE_WIDTH,new Sprite(image));
-          }
-        }
+      new RangeFilename(base,amount,ref).load();
       }    
     }
 
