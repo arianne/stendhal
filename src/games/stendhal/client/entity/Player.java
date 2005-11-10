@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
 
 
 /** A Player entity */
-public class Player extends Speaker
+public class Player extends RPEntity
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Player.class);
@@ -37,36 +37,6 @@ public class Player extends Speaker
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
-    }
-
-  protected static Sprite setOutFitPlayer(SpriteStore store,RPObject object)
-    {
-    int outfit=object.getInt("outfit");
-    
-    System.out.println ("OUTFIT is ("+outfit+")");
-    
-    Sprite player=store.getSprite("sprites/outfit/player_base_"+outfit%10+".png");
-    player=player.copy();
-    outfit/=100;
-
-    if(outfit%10!=0)
-      {
-      Sprite dress=store.getSprite("sprites/outfit/dress_"+outfit%10+".png");
-      dress.draw(player.getGraphics(),0,0);
-      }
-    outfit/=100;
-
-    Sprite head=store.getSprite("sprites/outfit/head_"+outfit%10+".png");
-    head.draw(player.getGraphics(),0,0);
-    outfit/=100;
-
-    if(outfit%10!=0)
-      {
-      Sprite hair=store.getSprite("sprites/outfit/hair_"+outfit%100+".png");
-      hair.draw(player.getGraphics(),0,0);
-      }
-    
-    return player;
     }
 
   protected void buildAnimations(RPObject object)

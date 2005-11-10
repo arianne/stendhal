@@ -122,6 +122,7 @@ public class OutfitDialog extends javax.swing.JDialog {
             bodies[i] = st.getSprite("sprites/outfit/player_base_" + i + ".png");
         for (int i = 1; i < clothes.length; i++)
             clothes[i] = st.getSprite("sprites/outfit/dress_" + i + ".png");
+            
         // to allow choosing no hair and no clothes
         hairs[0] = st.getSprite("sprites/outfit/sprite_empty.png");
         clothes[0] = st.getSprite("sprites/outfit/sprite_empty.png");
@@ -502,5 +503,10 @@ public class OutfitDialog extends javax.swing.JDialog {
             // draws final player
             drawFinalPlayer(jlblFinalResult.getGraphics());
         }
+
+    }
+
+    public static void main(String args[]) {
+         new OutfitDialog(null, "Stendhal - choose outfit", 11, 9, 5, 11).setVisible(true);
     }
 }

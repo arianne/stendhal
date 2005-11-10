@@ -18,7 +18,7 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class NPC extends Speaker
+public class NPC extends RPEntity
   {
   private Sprite ideaImage;
 

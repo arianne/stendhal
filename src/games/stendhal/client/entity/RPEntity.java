@@ -109,6 +109,57 @@ public abstract class RPEntity extends AnimatedEntity
     return hp;
     }
 
+  protected static Sprite setOutFitPlayer(SpriteStore store,RPObject object)
+    {
+    int outfit=object.getInt("outfit");
+    
+    System.out.println ("OUTFIT is ("+outfit+")");
+    
+    Sprite player=store.getSprite("sprites/outfit/player_base_"+outfit%100+".png");
+    player=player.copy();
+    outfit/=100;
+
+    if(outfit%100!=0)
+      {
+      Sprite dress=store.getSprite("sprites/outfit/dress_"+outfit%100+".png");
+      dress.draw(player.getGraphics(),0,0);
+      }
+    outfit/=100;
+
+    Sprite head=store.getSprite("sprites/outfit/head_"+outfit%100+".png");
+    head.draw(player.getGraphics(),0,0);
+    outfit/=100;
+
+    if(outfit%100!=0)
+      {
+      Sprite hair=store.getSprite("sprites/outfit/hair_"+outfit%100+".png");
+      hair.draw(player.getGraphics(),0,0);
+      }
+    
+    return player;
+    }
+
+  protected void buildAnimations(RPObject object)
+    {
+    SpriteStore store=SpriteStore.get();
+
+    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")),0,4,1.5,2));
+    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")),1,4,1.5,2));
+    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")),2,4,1.5,2));
+    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")),3,4,1.5,2));
+
+    sprites.get("move_up")[3]=sprites.get("move_up")[1];
+    sprites.get("move_right")[3]=sprites.get("move_right")[1];
+    sprites.get("move_down")[3]=sprites.get("move_down")[1];
+    sprites.get("move_left")[3]=sprites.get("move_left")[1];
+    }
+
+  protected Sprite defaultAnimation()
+    {
+    animation="move_up";
+    return sprites.get("move_up")[0];
+    }
+
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
@@ -177,6 +228,28 @@ public abstract class RPEntity extends AnimatedEntity
 
       targetEntity=new RPObject.ID(target,changes.get("zoneid"));
       gameObjects.attack(this,targetEntity,risk,damage);
+      }
+
+    /** Add text lines */
+    if(changes.has("text") && distance(client.getPlayer())<15*15)
+      {
+      String text=changes.get("text");
+      client.addEventLine(getName(),text);
+
+      gameObjects.addText(this, getName()+" says: "+text.replace("|",""), Color.yellow);
+      }
+
+    if(changes.has("private_text"))
+      {
+      client.addEventLine(changes.get("private_text"),Color.orange);
+      gameObjects.addText(this, changes.get("private_text").replace("|",""), Color.orange);
+      }
+
+    if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
+      {
+      System.out.println (getID());
+      if(client.getPlayer()!=null) System.out.println (client.getPlayer().getID());
+      client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
       }
     }
 
