@@ -295,7 +295,8 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
                           "- /tellall <message>                     \tWrites a private message to all players",
                           "- /teleport <player> <zone> <x> <y>      \tTeleport the player ",
                           "- /alter <player> <attrib> <mode> <value>\tChange by SETting, ADDing or SUBstrating the stat of player",
-                          "- /summon <creature|item> <x> <y>        \tSummon and item or creature at x,y",
+                          "- /summon <creature|item> <x> <y>        \tSummon an item or creature at x,y",
+                          "- /summonat <player> <slot> <ite>        \tSummon an item at the slot of the given player",
                           "- /invisible                             \tMakes this player invisible for creatures",
                           };
           for(String line: lines)

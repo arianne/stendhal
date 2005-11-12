@@ -62,7 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.40 Noc XX, 2005
+0.40 Nov XX, 2005
 - Fixed a bug when dropping an item over itself
 - Modified private and hidden attributes
 - Fixed sync facing problem
@@ -71,6 +71,11 @@ Changelog
 - Clear action code
 - Added Game master commands
 - Refactored NPC chat system
+- Created Quest system
+- Changed all NPCs
+- Using charas of 48x64 so RPGMaker 2000 exportage of charas is inmediate
+- Added new GUI System
+- Now weapon seller buys stuff too.
 
 0.39.1 Oct 26, 2005
 - Fixed chat bug

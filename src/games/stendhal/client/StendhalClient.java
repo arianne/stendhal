@@ -132,7 +132,7 @@ public class StendhalClient extends ariannexp
 
   public OutfitDialog getOutfitDialog()
     {
-    return new OutfitDialog(frame, "Set outfit",12/*hair*/,10/*head*/,10/*body*/,12/*clothes*/);
+    return new OutfitDialog(frame, "Set outfit");
     }
   
   public void addEventLine(String text)

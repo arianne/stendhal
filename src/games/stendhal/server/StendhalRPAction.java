@@ -66,33 +66,17 @@ public class StendhalRPAction
 
       if(source.nextto(target,1))
         {
-        boolean criticalSuccess=false;
-        boolean criticalFailure=false;
-        
         int roll=Rand.roll1D20();
         int risk=0;
         
-        if(roll>18) // Critical success
-          {
-          risk=1;
-          criticalSuccess=true;
-          }
-        else if(roll<2) // Critical failure
-          {
-          risk=0;
-          criticalFailure=true;
-          }
-        else
-          {
-          risk=source.getATK()-target.getDEF()+roll-10;
-          }
+        risk=2*source.getATK()-target.getDEF()+roll-10;        
         
         logger.debug("attack from "+source+" to "+target+": Risk to strike: "+risk);
         source.put("risk",risk);
 
         int damage=0;
         
-        if ((target instanceof SpeakerNPC)==false)
+        if((target instanceof SpeakerNPC)==false)
           {
           // disabled attack xp for attacking NPC's
           source.incATKXP();
@@ -106,38 +90,27 @@ public class StendhalRPAction
           int shield=0;
           int armor=0;
           
-          if(!criticalFailure)
+          if(source.hasWeapon())
             {
-            if(source.hasWeapon())
-              {
-              weapon=source.getWeapon().getAttack();
-              }
-  
-            for(int i=0;i<source.getATK()+weapon;i++)
-              {
-              damage+=Rand.roll1D6();
-              }
+            weapon=source.getWeapon().getAttack();
             }
+
+          float maxDamage=(float)source.getATK()+4.0f*(float)weapon;
+          float attackerComponent=0.8f*(float)Rand.roll1D100()/100.0f*(float)source.getATK()+4.0f*(float)weapon;
+
+          if(target.hasShield())
+            {
+            shield=target.getShield().getDefense();
+            }
+
+          if(target.hasArmor())
+            {
+            armor=target.getArmor().getDefense();
+            }
+
+          float defenderComponent=0.6f*(float)Rand.roll1D100()/100.0f*(float)target.getDEF()+1.5f*(float)shield+2.0f*(float)armor;
           
-          if(!criticalSuccess)  
-            {
-            if(target.hasShield())
-              {
-              shield=target.getShield().getDefense();
-              }
-  
-            if(target.hasArmor())
-              {
-              armor=target.getArmor().getDefense();
-              }
-            }
-            
-          for(int i=0;i<target.getDEF()+shield+armor*2;i++)
-            {
-            damage-=Rand.roll1D6();
-            }
-          
-          damage=damage>>2;
+          damage=(int)(((attackerComponent-defenderComponent)/maxDamage)*(maxDamage/10.0f));
 
           if(damage>0) // Hit
             {

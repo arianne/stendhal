@@ -119,7 +119,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       StendhalRPAction.initialize(rpman,this,world);
       Behaviours.initialize(rpman,this,world);
       Path.initialize(world);
-
+      
       NPC.setRPContext(this, this.world);
 
       for(IRPZone zone: world)
@@ -129,6 +129,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         respawnPoints.addAll(szone.getRespawnPointList());
         foodItems.addAll(szone.getFoodItemList());
         }
+
+      /* Initialize quests*/ 
+      StendhalQuestSystem quests=new StendhalQuestSystem(this.world,this);    
       }
     catch(Exception e)
       {

@@ -58,13 +58,6 @@ public class city
 
     sign=new Sign();
     zone.assignRPObjectID(sign);
-    sign.setx(43);
-    sign.sety(40);
-    sign.setText("Talk to Sato to sell your sheep!.|He probably won't give you a fair price but this is a small village...|The price he will offer you depends on the weight of your sheep.");
-    zone.add(sign);
-
-    sign=new Sign();
-    zone.assignRPObjectID(sign);
     sign.setx(44);
     sign.sety(62);
     sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
@@ -132,83 +125,6 @@ public class city
     zone.add(npc);    
     zone.addNPC(npc);
       
-    npc=new SpeakerNPC()
-      {
-      protected void createPath()
-        {
-        List<Path.Node> nodes=new LinkedList<Path.Node>();
-        nodes.add(new Path.Node(40,44));
-        nodes.add(new Path.Node(58,44));
-        nodes.add(new Path.Node(58,21));
-        nodes.add(new Path.Node(39,21));
-        nodes.add(new Path.Node(39,14));
-        nodes.add(new Path.Node(20,14));
-        nodes.add(new Path.Node(20,21));
-        nodes.add(new Path.Node(23,21));
-        nodes.add(new Path.Node(23,44));
-        setPath(nodes,true);
-        }
-
-      protected void createDialog()
-        {        
-        class SheepBuyerBehaviour extends Behaviours.BuyerBehaviour
-          {
-          SheepBuyerBehaviour(Map<String,Integer> items)
-            {
-            super(items);
-            }
-            
-          public boolean onBuy(SpeakerNPC seller, Player player, String itemName, int itemPrice)
-            {
-            if(player.hasSheep())
-              {
-              Sheep sheep=(Sheep)world.get(player.getSheep());
-              if(seller.distance(sheep)>5*5)
-                {
-                seller.say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
-                }
-              else
-                {
-                say("Thanks! Here is your money.");
-      
-                rp.removeNPC(sheep);
-                world.remove(sheep.getID());
-                player.removeSheep(sheep);
-                
-                payPlayer(player,itemPrice);
-                
-                world.modify(player);
-                return true;
-                }
-              }
-            else
-              {
-              seller.say("You ain't got a sheep!! What game you trying to play, "+player.get("name")+"?");
-              }
-            
-            return false;
-            }
-          }
-
-        Map<String,Integer> buyitems=new HashMap<String,Integer>();
-        buyitems.put("sheep",150);
-
-        Behaviours.addGreeting(this);
-        Behaviours.addJob(this,"I work as the main Semos' sheep buyer.");
-        Behaviours.addHelp(this,"I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!.");
-        Behaviours.addBuyer(this,new SheepBuyerBehaviour(buyitems));
-        Behaviours.addGoodbye(this);
-        }
-      };
-    zone.assignRPObjectID(npc);
-    npc.setName("Sato");
-    npc.put("class","buyernpc");
-    npc.setx(40);
-    npc.sety(44);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    zone.addNPC(npc);
 
     npc=new SpeakerNPC()
       {

@@ -49,6 +49,8 @@ public class Player extends RPEntity
       {
       if(outfit==object.getInt("outfit") && outfit!=0)
         {
+        // We avoid creating again the outfiot if it is already done.
+        // Save CPU cycles.
         return;
         }
       

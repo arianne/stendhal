@@ -25,6 +25,8 @@ import games.stendhal.client.StendhalClient;
 import java.awt.Graphics;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.io.File;
+import java.io.FilenameFilter;
 
 import marauroa.common.game.RPAction;
 
@@ -78,6 +80,33 @@ public class OutfitDialog extends javax.swing.JDialog {
         timer = new Timer();
         timer.schedule(new AnimationTask(), 1000, 2500);
     }
+
+    public OutfitDialog(java.awt.Frame parent, String title) {
+        super(parent, true);
+        initComponents();
+        setTitle(title);
+        
+        client=StendhalClient.get();
+
+        File outfitFolder=new File("sprites/outfit");
+        int total_hairs=outfitFolder.list(new HairFilter()).length;
+        int total_heads=outfitFolder.list(new HeadFilter()).length;
+        int total_bodies=outfitFolder.list(new BodyFilter()).length;
+        int total_clothes=outfitFolder.list(new ClothesFilter()).length;
+
+        // initializes the arrays
+        hairs = new Sprite[total_hairs]; // Plus 1 to add the sprite_empty.png that is always at 0
+        heads = new Sprite[total_heads];
+        bodies = new Sprite[total_bodies];
+        clothes = new Sprite[total_clothes]; // Plus 1 to add the sprite_empty.png that is always at 0
+        // loads the sprites
+        loadSprites();
+        
+        // updates the draws every 2500 milliseconds
+        timer = new Timer();
+        timer.schedule(new AnimationTask(), 1000, 2500);
+    }
+    
     
     /**
      * @return a String with the name of the selected hair sprite file
@@ -143,7 +172,7 @@ public class OutfitDialog extends javax.swing.JDialog {
      */
     private void drawSinglePart(Sprite sprite, Graphics g) {
         clean(g);
-        SpriteStore.get().getAnimatedSprite(sprite, animation, 3, frameWidth, frameHeight)[1].draw(g, 2, 2);
+        SpriteStore.get().getAnimatedSprite(sprite, animation, 3, 1.5, 2)[1].draw(g, 2, 2);
     }
     
     /**
@@ -151,10 +180,10 @@ public class OutfitDialog extends javax.swing.JDialog {
      */
     private void drawFinalPlayer(Graphics g) {
         clean(g);
-        SpriteStore.get().getAnimatedSprite(bodies[bodies_index], animation, 3, frameWidth, frameHeight)[1].draw(g, 2, 2);
-        SpriteStore.get().getAnimatedSprite(clothes[clothes_index], animation, 3, frameWidth, frameHeight)[1].draw(g, 2, 2);
-        SpriteStore.get().getAnimatedSprite(heads[heads_index], animation, 3, frameWidth, frameHeight)[1].draw(g, 2, 2);
-        SpriteStore.get().getAnimatedSprite(hairs[hairs_index], animation, 3, frameWidth, frameHeight)[1].draw(g, 2, 2);
+        SpriteStore.get().getAnimatedSprite(bodies[bodies_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+        SpriteStore.get().getAnimatedSprite(clothes[clothes_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+        SpriteStore.get().getAnimatedSprite(heads[heads_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+        SpriteStore.get().getAnimatedSprite(hairs[hairs_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
     }
     
     /** This method is called from within the constructor to
@@ -463,6 +492,13 @@ public class OutfitDialog extends javax.swing.JDialog {
     
     private void sendAction()
       {
+      if(client==null)
+        {
+        /** If running standalone, just print the outfit */
+        System.out.println ("OUTFIT is: "+(bodies_index+clothes_index*100+heads_index*100*100+hairs_index*100*100*100));
+        return;
+        }
+        
       RPAction rpaction=new RPAction();
       rpaction.put("type","outfit");
       rpaction.put("value",bodies_index+clothes_index*100+heads_index*100*100+hairs_index*100*100*100);
@@ -505,8 +541,60 @@ public class OutfitDialog extends javax.swing.JDialog {
         }
 
     }
+    
+    static class HeadFilter implements FilenameFilter
+      {
+      public boolean accept(File dir, String name)
+        {
+        if(name.startsWith("head"))
+          {
+          return true;
+          }
+        
+        return false;
+        }
+      }
+
+    static class HairFilter implements FilenameFilter
+      {
+      public boolean accept(File dir, String name)
+        {
+        if(name.startsWith("hair"))
+          {
+          return true;
+          }
+        
+        return false;
+        }
+      }
+
+    static class BodyFilter implements FilenameFilter
+      {
+      public boolean accept(File dir, String name)
+        {
+        if(name.startsWith("player_base"))
+          {
+          return true;
+          }
+        
+        return false;
+        }
+      }
+
+    static class ClothesFilter implements FilenameFilter
+      {
+      public boolean accept(File dir, String name)
+        {
+        if(name.startsWith("dress"))
+          {
+          return true;
+          }
+        
+        return false;
+        }
+      } 
 
     public static void main(String args[]) {
-         new OutfitDialog(null, "Stendhal - choose outfit", 11, 9, 5, 11).setVisible(true);
+         new OutfitDialog(null, "Stendhal - choose outfit").setVisible(true); //, 13, 11, 11, 13).setVisible(true);
     }
 }

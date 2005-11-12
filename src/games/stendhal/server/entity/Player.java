@@ -57,11 +57,12 @@ public class Player extends RPEntity
       player.addRPSlot("feet",1);
       player.addRPSlot("bag",10);
       
-      player.addRPSlot("!buddy",1,RPClass.HIDDEN);
       // We use this for the buddy system
+      player.addRPSlot("!buddy",1,RPClass.HIDDEN);
       player.add("online",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("offline",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       
+      player.addRPSlot("!quests",1,RPClass.HIDDEN);
 
       player.add("outfit",RPClass.INT);
       }
@@ -207,7 +208,7 @@ public class Player extends RPEntity
         }          
       }
     
-    String[] slots={"rhand","lhand","armor","bag"};
+    String[] slots={"rhand","lhand","head","armor","legs","feet","bag"};
     
     for(String slotName: slots)
       {
@@ -224,9 +225,9 @@ public class Player extends RPEntity
           if(item.get("type").equals("item")) // We simply ignore corpses...
             {
             Item entity = world.getRuleManager().getEntityManager().getItem(item.get("class"));
-            entity.put("#db_id",item.get("#db_id"));
             
             // HACK: We have to manually copy some attributes
+            entity.put("#db_id",item.get("#db_id"));
             entity.setID(item.getID());
             
             if(entity instanceof Money)
@@ -272,6 +273,16 @@ public class Player extends RPEntity
           }
         }
       }
+
+    if(!player.hasSlot("!quests"))
+      {
+      player.addSlot(new RPSlot("!quests"));
+      RPSlot slot=player.getSlot("!quests");
+      
+      RPObject quests=new RPObject();
+      slot.assignValidID(quests);
+      slot.add(quests);
+      }          
 
     player.setPrivateText("This release is EXPERIMENTAL. We are trying new RP system. Please report problems, suggestions and bugs.");
 
@@ -518,5 +529,93 @@ public class Player extends RPEntity
         put("offline",who);
         }
       }
+    }
+  
+  public boolean isQuestCompleted(String name)
+    {
+    if(!hasSlot("!quests"))
+      {
+      logger.error("Expected to find !quests slot");
+      return false;
+      }
+      
+    RPSlot slot=getSlot("!quests");
+    if(slot.size()==0)
+      {
+      logger.error("Expected to find something !quests slot");
+      return false;
+      }
+    
+    RPObject quests=(RPObject)slot.iterator().next();
+    
+    if(quests.has(name) && quests.getInt(name)==1)
+      {
+      return true;
+      }
+    else
+      {
+      return false;
+      }
+    }
+
+  public boolean isQuestInProgress(String name)
+    {
+    if(!hasSlot("!quests"))
+      {
+      logger.error("Expected to find !quests slot");
+      return false;
+      }
+      
+    RPSlot slot=getSlot("!quests");
+    if(slot.size()==0)
+      {
+      logger.error("Expected to find something !quests slot");
+      return false;
+      }
+    
+    RPObject quests=(RPObject)slot.iterator().next();
+    
+    if(quests.has(name) && quests.getInt(name)!=1)
+      {
+      return true;
+      }
+    else
+      {
+      return false;
+      }
+    }
+
+  public void startQuest(String name)
+    {
+    if(!hasSlot("!quests"))
+      {
+      logger.error("Expected to find !quests slot");
+      }
+      
+    RPSlot slot=getSlot("!quests");
+    if(slot.size()==0)
+      {
+      logger.error("Expected to find something !quests slot");
+      }
+    
+    RPObject quests=(RPObject)slot.iterator().next();
+    quests.put(name,0);
+    }
+
+  public void completeQuest(String name)
+    {
+    if(!hasSlot("!quests"))
+      {
+      logger.error("Expected to find !quests slot");
+      }
+      
+    RPSlot slot=getSlot("!quests");
+    if(slot.size()==0)
+      {
+      logger.error("Expected to find something !quests slot");
+      }
+    
+    RPObject quests=(RPObject)slot.iterator().next();
+    quests.put(name,1);
     }
   }

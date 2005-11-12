@@ -12,20 +12,29 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
 import games.stendhal.client.*;
+
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.geom.*;
 
 public class NPC extends RPEntity
   {
+  private static final Logger logger = Log4J.getLogger(NPC.class);
   private Sprite ideaImage;
 
   private static Sprite eat;
   private static Sprite food;
   private static Sprite walk;
   private static Sprite follow;
+
+  private int outfit;  
   
   static
     {
@@ -46,10 +55,37 @@ public class NPC extends RPEntity
     {
     SpriteStore store=SpriteStore.get();
 
-    sprites.put("move_up", store.getAnimatedSprite(translate(object.get("class")),0,4,1.5,2));
-    sprites.put("move_right", store.getAnimatedSprite(translate(object.get("class")),1,4,1.5,2));
-    sprites.put("move_down", store.getAnimatedSprite(translate(object.get("class")),2,4,1.5,2));
-    sprites.put("move_left", store.getAnimatedSprite(translate(object.get("class")),3,4,1.5,2));
+    Sprite aspect;
+    
+    try
+      {
+      if(object.has("outfit"))
+        {
+        if(outfit==object.getInt("outfit") && outfit!=0)
+          {
+          // We avoid creating again the outfiot if it is already done.
+          // Save CPU cycles.
+          return;
+          }
+        
+        outfit=object.getInt("outfit");
+        aspect=setOutFitPlayer(store,object);      
+        }
+      else
+        {
+        aspect=store.getSprite(translate(object.get("class")));
+        }      
+      }
+    catch(Exception e)
+      {
+      logger.error("cannot build Animations",e);
+      aspect=store.getSprite(translate(object.get("class")));
+      }
+
+    sprites.put("move_up", store.getAnimatedSprite(aspect,0,4,1.5,2));
+    sprites.put("move_right", store.getAnimatedSprite(aspect,1,4,1.5,2));
+    sprites.put("move_down", store.getAnimatedSprite(aspect,2,4,1.5,2));
+    sprites.put("move_left", store.getAnimatedSprite(aspect,3,4,1.5,2));
 
     sprites.get("move_up")[3]=sprites.get("move_up")[1];
     sprites.get("move_right")[3]=sprites.get("move_right")[1];

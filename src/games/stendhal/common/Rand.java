@@ -32,6 +32,11 @@ public class Rand
     {
     return rand.nextInt(20)+1;
     }
+
+  public static int roll1D100()
+    {
+    return rand.nextInt(100)+1;
+    }
   
   public static int rand(int max)
     {

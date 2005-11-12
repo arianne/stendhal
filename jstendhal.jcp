@@ -75,6 +75,9 @@
 				<path>src\games\stendhal\server\actions</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\server\quests</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\common</path>
 			</folderitem>
 			<folderitem>
@@ -308,6 +311,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\EntityContainer.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\EntitySlot.java</path>
 				<source>true</source>
 			</fileitem>
@@ -317,10 +324,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\GroundContainer.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\Inventory.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -409,6 +412,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\stendhalcreateaccount.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\StendhalQuestSystem.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -621,6 +628,18 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\actions\Use.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\quests\IQuest.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\quests\OrcishHappyMeal.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\quests\SheepGrowing.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
