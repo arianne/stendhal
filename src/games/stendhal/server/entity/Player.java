@@ -209,42 +209,52 @@ public class Player extends RPEntity
       }
     
     String[] slots={"rhand","lhand","head","armor","legs","feet","bag"};
-    
+
     for(String slotName: slots)
       {
       try
         {
-        RPSlot slot=player.getSlot(slotName);
-        
-        if(slot.size()!=0)        
+        if (player.hasSlot(slotName))
           {
-          // BUG: Loads only one object
-          RPObject item=slot.iterator().next();
-          slot.clear();
+          RPSlot slot=player.getSlot(slotName);
           
-          if(item.get("type").equals("item")) // We simply ignore corpses...
+          if(slot.size()!=0)        
             {
-            Item entity = world.getRuleManager().getEntityManager().getItem(item.get("class"));
+            // BUG: Loads only one object
+            RPObject item=slot.iterator().next();
+            slot.clear();
             
-            // HACK: We have to manually copy some attributes
-            entity.put("#db_id",item.get("#db_id"));
-            entity.setID(item.getID());
-            
-            if(entity instanceof Money)
+            if(item.get("type").equals("item")) // We simply ignore corpses...
               {
-              Money money=(Money)entity;
-              money.setQuantity(item.getInt("quantity"));
+              Item entity = world.getRuleManager().getEntityManager().getItem(item.get("class"));
+              
+              // HACK: We have to manually copy some attributes
+              entity.put("#db_id",item.get("#db_id"));
+              entity.setID(item.getID());
+              
+              if(entity instanceof Money)
+                {
+                Money money=(Money)entity;
+                money.setQuantity(item.getInt("quantity"));
+                }
+              
+              slot.add(entity);
               }
-            
-            slot.add(entity);
             }
+          }
+          else
+          {
+            logger.warn("player "+player.getName()+" does not have the slot "+slotName);
           }
         }
       catch(Exception e)
         {
         logger.error("cannot create player",e);
-        RPSlot slot=player.getSlot(slotName);
-        slot.clear();
+        if (player.hasSlot(slotName))
+          {
+          RPSlot slot=player.getSlot(slotName);
+          slot.clear();
+          }
         }
       }
     
