@@ -20,6 +20,13 @@ public class StendhalQuestSystem
     
     File questsFolder=new File("games/stendhal/server/quests");
     String[] files=questsFolder.list();
+    
+    if (files == null)
+    {
+      logger.error("quest folder not found. should be "+questsFolder.getAbsolutePath());
+      return;
+    }
+    
     for(String file: files)
       {
       String className=file.substring(0,file.indexOf("."));
