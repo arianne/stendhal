@@ -806,7 +806,7 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     inspectedEntity=entity;
     inspectedSlot=slot;
     
-    EntityContainer container = new EntityContainer(gameObjects,"chest",2,2);
+    EntityContainer container = new EntityContainer(gameObjects,entity.getType(),2,2);
     container.setSlot(entity,slot.getName());
     ground.addChild(container);
     

@@ -52,7 +52,7 @@ public class Money extends Item
     
     if(quantityImage!=null)
       {
-      screen.draw(quantityImage,x+1,y+1);
+      screen.draw(quantityImage,x,y);
       }
     }
   }

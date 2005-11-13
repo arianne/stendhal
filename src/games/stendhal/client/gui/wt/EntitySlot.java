@@ -18,11 +18,10 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameObjects;
-import games.stendhal.client.Sprite;
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.*;
 import games.stendhal.client.entity.Entity;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import marauroa.common.game.RPAction;
@@ -44,9 +43,12 @@ public class EntitySlot extends Panel implements DropTarget
   private RPObject    content;
   /** the parent of the slot */
   private Entity      parent;
-
   /** need this to find the sprite for each RPObject */
   private GameObjects gameObjects;
+  /** sprite for showing the quartity */
+  private Sprite      quantityImage;
+  /** cached old quantity */
+  private int         oldQuantity;
 
   /** Creates a new instance of RPObjectSlot */
   public EntitySlot(String name, Sprite graphic, int x, int y,
@@ -96,6 +98,19 @@ public class EntitySlot extends Panel implements DropTarget
     content = object;
   }
 
+  
+  /**
+   * ensures that the quantity image is set 
+   */
+  private void checkQuantityImage(int quantity)
+  {
+    if (quantityImage == null || quantity != oldQuantity)
+    {
+      oldQuantity = quantity;
+      quantityImage = GameScreen.get().createString(Integer.toString(quantity),Color.white);      
+    }
+  }
+  
   /**
    * draws the panel into the graphics object
    * 
@@ -118,6 +133,15 @@ public class EntitySlot extends Panel implements DropTarget
       int x = (getWidth() - sprite.getWidth()) / 2;
       int y = (getHeight() - sprite.getHeight()) / 2;
       sprite.draw(childArea, x, y);
+      
+      // draw the amount if this item is stackable
+      if (content.has("quantity"))
+      {
+        int quantity = content.getInt("quantity");
+        checkQuantityImage(quantity);
+        quantityImage.draw(childArea,0,0);
+      }
+      
     }
 
     return childArea;
