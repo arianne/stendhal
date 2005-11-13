@@ -14,15 +14,14 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.*;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
-
-import java.awt.*;
-import java.awt.geom.*;
 
 public class NPC extends RPEntity
   {

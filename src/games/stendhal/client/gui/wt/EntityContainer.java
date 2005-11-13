@@ -15,7 +15,9 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.entity.Entity;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,7 +26,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * This is the inventory
+ * This panel is a container showing all items in a slot
  * 
  * @author mtotz
  */
@@ -32,8 +34,15 @@ public class EntityContainer extends Panel
 {
   /** the panels for each item */
   private List<EntitySlot> slotPanels;
+  /** the object which has the slot */
+  private Entity parent;
+  /** the slots name */
+  private String slotName;
+  
+  /** current size of the slot (to refresh the content once something changed) */
+  private int slotSize;
 
-  /** creates the inventory panel */
+  /** creates the panel */
   public EntityContainer(GameObjects gameObjects, String name, int width,
       int height)
   {
@@ -43,6 +52,7 @@ public class EntityContainer extends Panel
     setFrame(true);
     setMinimizeable(true);
     setCloseable(true);
+    slotSize = 0;
 
     SpriteStore st = SpriteStore.get();
     Sprite slotSprite = st.getSprite("data/slot.png");
@@ -52,9 +62,9 @@ public class EntityContainer extends Panel
 
     slotPanels = new ArrayList<EntitySlot>();
     // add the slots
-    for (int x = 0; x < width; x++)
+    for (int y = 0; y < height; y++)
     {
-      for (int y = 0; y < height; y++)
+      for (int x = 0; x < width; x++)
       {
         EntitySlot entitySlot = new EntitySlot(name, slotSprite, x
             * spriteWidth + x, y * spriteHeight + y, gameObjects);
@@ -71,10 +81,16 @@ public class EntityContainer extends Panel
       addChild(entitySlot);
     }
   }
-
-  /** sets the player entity */
-  public void setSlot(RPObject.ID parent, RPSlot rpslot)
+  
+  /** rescans the content of the slot */
+  private void  rescanSlotContent()
   {
+    if (parent == null || slotName == null)
+    {
+      return;
+    }
+
+    RPSlot rpslot = parent.getSlot(slotName);
     Iterator<RPObject> it = (rpslot != null) ? rpslot.iterator() : null;
 
     for (EntitySlot entitySlot : slotPanels)
@@ -91,6 +107,34 @@ public class EntityContainer extends Panel
         entitySlot.add(it.next());
       }
     }
+  }
+
+  /** sets the player entity */
+  public void setSlot(Entity parent, String slot)
+  {
+    this.parent = parent;
+    this.slotName = slot;
+    rescanSlotContent();
+  }
+
+  /**
+   * draws the panel. it also checks for modified slot content
+   */
+  public Graphics draw(Graphics g)
+  {
+    if (parent != null && slotName != null)
+    {
+      RPSlot rpslot = parent.getSlot(slotName);
+      // rescan the content if the size changes
+      int newSlotSize = rpslot.size(); 
+      if (newSlotSize != slotSize)
+      {
+        rescanSlotContent();
+        slotSize = newSlotSize; 
+      }
+    }
+
+    return super.draw(g);
   }
 
 }

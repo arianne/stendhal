@@ -43,14 +43,14 @@ public abstract class RPEntity extends AnimatedEntity
     missed=st.getSprite("sprites/combat/missed.png");
     }
 
-  private enum RESOLUTION
+  private enum Resolution
     {
     HITTED(0),
     BLOCKED(1),
     MISSED(2);
 
     private final int val;
-    RESOLUTION(int val)
+    Resolution(int val)
       {
       this.val=val;
       }
@@ -79,7 +79,9 @@ public abstract class RPEntity extends AnimatedEntity
   private boolean attacked;
   private boolean attacking;
   private RPObject.ID targetEntity;
-  private RESOLUTION resolution;
+  private Resolution resolution;
+  private int atkXp;
+  private int defXp;
 
   /** Create a new game entity based on the arianne object passed */
   public RPEntity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
@@ -164,14 +166,15 @@ public abstract class RPEntity extends AnimatedEntity
     {
     super.modifyAdded(object,changes);
 
-    if(changes.has("base_hp")) base_hp=changes.getInt("base_hp");
-    if(changes.has("hp")) hp=changes.getInt("hp");
+    if(changes.has("base_hp"))    base_hp=changes.getInt("base_hp");
+    if(changes.has("hp"))         hp=changes.getInt("hp");
     if(changes.has("hp/base_hp")) hp_base_hp=(float)changes.getDouble("hp/base_hp");
-    
-    if(changes.has("atk")) atk=changes.getInt("atk");
-    if(changes.has("def")) def=changes.getInt("def");
-    if(changes.has("xp")) xp=changes.getInt("xp");
-    if(changes.has("level")) level=changes.getInt("level");
+    if(changes.has("atk"))        atk=changes.getInt("atk");
+    if(changes.has("def"))        def=changes.getInt("def");
+    if(changes.has("xp"))         xp=changes.getInt("xp");
+    if(changes.has("level"))      level=changes.getInt("level");
+    if(changes.has("atk_xp"))     atkXp = changes.getInt("atk_xp");
+    if(changes.has("def_xp"))     defXp = changes.getInt("def_xp");
 
     if(changes.has("name"))
       {
@@ -251,6 +254,7 @@ public abstract class RPEntity extends AnimatedEntity
       if(client.getPlayer()!=null) System.out.println (client.getPlayer().getID());
       client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
       }
+
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
@@ -293,15 +297,15 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(risk<=0)
       {
-      resolution=RESOLUTION.MISSED;
+      resolution=Resolution.MISSED;
       }
     else if(damage<=0)
       {
-      resolution=RESOLUTION.BLOCKED;
+      resolution=Resolution.BLOCKED;
       }
     else
       {
-      resolution=RESOLUTION.HITTED;
+      resolution=Resolution.HITTED;
 
       damageSprites.add(GameScreen.get().createString(Integer.toString(damage),Color.red));
       damageSpritesTimes.add(new Long(System.currentTimeMillis()));
@@ -439,7 +443,7 @@ public abstract class RPEntity extends AnimatedEntity
       RPAction rpaction=new RPAction();
       rpaction.put("type","displace");
       int id=getID().getObjectID();
-      rpaction.put("target",id);
+      rpaction.put("baseitem",id);
       client.send(rpaction);
       }
     }
@@ -503,5 +507,21 @@ public abstract class RPEntity extends AnimatedEntity
   public int getBase_hp()
   {
     return base_hp;
+  }
+
+  /**
+   * @return the attack xp
+   */
+  public int getAtkXp()
+  {
+    return atkXp;
+  }
+
+  /**
+   * @return the defence xp
+   */
+  public int getDefXp()
+  {
+    return defXp;
   }
   }

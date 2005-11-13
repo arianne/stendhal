@@ -21,6 +21,7 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.Entity;
 
 import java.awt.Graphics;
 
@@ -42,7 +43,7 @@ public class EntitySlot extends Panel implements DropTarget
   /** the content of the slot */
   private RPObject    content;
   /** the parent of the slot */
-  private RPObject.ID parent;
+  private Entity      parent;
 
   /** need this to find the sprite for each RPObject */
   private GameObjects gameObjects;
@@ -57,7 +58,7 @@ public class EntitySlot extends Panel implements DropTarget
   }
 
   /** */
-  public void setParent(RPObject.ID parent)
+  public void setParent(Entity parent)
   {
     this.parent = parent;
   }
@@ -75,7 +76,7 @@ public class EntitySlot extends Panel implements DropTarget
       // fill 'moved from' parameters
       container.fillRPAction(action);
       // tell the server who we are
-      action.put("targetobject",parent.getObjectID());
+      action.put("targetobject",parent.getID().getObjectID());
       action.put("targetslot",getName());
       StendhalClient.get().send(action);
     }

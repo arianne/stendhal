@@ -21,10 +21,12 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.Player;
+
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -39,8 +41,9 @@ public class Character extends Panel
   private TextPanel statsPanel;
   /** the stats panel */
   private Map<String, EntitySlot> slotPanels;
-  /** the player */
-  private RPObject player;
+  /** cached player entity */
+  private Player playerEntity; 
+  
   /** the money we have */
   int money;
   
@@ -78,30 +81,26 @@ public class Character extends Panel
     statsPanel.setFrame(false);
     statsPanel.setTitleBar(false);
     addChild(statsPanel);
-    
-    player = StendhalClient.get().getPlayer();
   }
   
   
   /** sets the player entity */
-  public void setPlayer(RPObject player)
+  public void setPlayer(Player playerEntity)
   {
-    this.player = player;
+    this.playerEntity = playerEntity;
   }
   
   /** refreshes the player stats and updates the text/slot panels */
   private void refreshPlayerStats()
   {
-    if (player == null)
+    if (playerEntity == null)
     {
       return;
     }
-    
-
     money = 0;
 
     // taverse all slots
-    for (RPSlot slot : player.slots())
+    for (RPSlot slot : playerEntity.getSlots())
     {
       String slotName = slot.getName();
       
@@ -109,7 +108,7 @@ public class Character extends Panel
       if (entitySlot != null)
       {
         entitySlot.clear();
-        entitySlot.setParent(player.getID());
+        entitySlot.setParent(playerEntity);
         // found a gui element for this slot
         for (RPObject content : slot)
         {
@@ -125,17 +124,16 @@ public class Character extends Panel
           money += content.getInt("quantity");
         }
       }
-      
     }
-    
-    setTitletext(player.get("name"));
-    statsPanel.set("hp"   ,player.get("hp"));
-    statsPanel.set("maxhp",player.get("base_hp"));
-    statsPanel.set("atk"  ,player.get("atk"));
-    statsPanel.set("def"  ,player.get("def"));
-    statsPanel.set("atkxp",player.get("atk_xp"));
-    statsPanel.set("defxp",player.get("def_xp"));
-    statsPanel.set("xp"   ,player.get("xp"));
+
+    setTitletext(playerEntity.getName());
+    statsPanel.set("hp"   ,playerEntity.getHP());
+    statsPanel.set("maxhp",playerEntity.getBase_hp());
+    statsPanel.set("atk"  ,playerEntity.getAtk());
+    statsPanel.set("def"  ,playerEntity.getDef());
+    statsPanel.set("atkxp",playerEntity.getAtkXp());
+    statsPanel.set("defxp",playerEntity.getDefXp());
+    statsPanel.set("xp"   ,playerEntity.getXp());
     statsPanel.set("money",money);
     
   }
@@ -143,7 +141,6 @@ public class Character extends Panel
   /** refreshes the player stats and draws them */
   public Graphics draw(Graphics g)
   {
-    player = StendhalClient.get().getPlayer();
     refreshPlayerStats();
     return super.draw(g);
   }

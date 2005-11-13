@@ -13,21 +13,18 @@
 package games.stendhal.server.actions;
 
 
-import org.apache.log4j.Logger;
-
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.common.*;
 import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.creature.*;
-import games.stendhal.server.entity.item.*;
-
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
-
-import java.util.*;
 import marauroa.common.Log4J;
+import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPSlot;
+import marauroa.server.game.RPWorld;
+
+import org.apache.log4j.Logger;
 
 public class Administration extends ActionListener 
   {

@@ -20,9 +20,12 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 public abstract class Entity
   {
@@ -40,7 +43,7 @@ public abstract class Entity
   protected double dy;
 
   /** The arianne object associated with this game entity */
-  protected RPObject.ID id;
+  protected RPObject rpObject;
   protected String type;
   
   /** The object sprite. Animationless, just one frame */
@@ -68,8 +71,11 @@ public abstract class Entity
     this.client=StendhalClient.get();
 
     type=object.get("type");
-    id=object.getID();    
-    x=y=dx=dy=0;
+    rpObject = object;    
+    x = 0.0;
+    y = 0.0;
+    dx = 0.0;
+    dy = 0.0;
     direction=Direction.STOP;
 
     loadSprite(object);
@@ -83,7 +89,7 @@ public abstract class Entity
   /** Returns the represented arianne object id */
   public RPObject.ID getID()
     {
-    return id;
+    return rpObject.getID();
     }
   
   public double getx()
@@ -193,7 +199,30 @@ public abstract class Entity
     {
     return dx==0 && dy==0;
     }
+  
+  /** returns the number of slots this entity has */
+  public int getNumSlots()
+  {
+    return rpObject.slots().size();
+  }
 
+  /** returns the slot with the specified name or null if the entity does not have
+   * this slot */
+  public RPSlot getSlot(String name)
+  {
+    if (rpObject.hasSlot(name))
+    {
+      return rpObject.getSlot(name);
+    }
+    return null;
+  }
+
+  /** returns a list of slots */
+  public List<RPSlot> getSlots()
+  {
+    return new ArrayList<RPSlot>(rpObject.slots());
+  }
+  
   abstract public Rectangle2D getArea();
   abstract public Rectangle2D getDrawedArea();
 

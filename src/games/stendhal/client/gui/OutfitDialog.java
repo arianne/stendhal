@@ -42,9 +42,6 @@ public class OutfitDialog extends javax.swing.JDialog {
     private int heads_index = 0;
     private int bodies_index = 0;
     private int clothes_index = 0;
-    // each sprite frame size
-    private final int frameWidth = 48;
-    private final int frameHeight = 64;
     // to handle the draws update
     private Timer timer = null;
     // 0 for animation UP, 1 RIGHT, 2 DOWN and 3 LEFT

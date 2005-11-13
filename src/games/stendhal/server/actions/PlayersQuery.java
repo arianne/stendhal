@@ -13,16 +13,14 @@
 package games.stendhal.server.actions;
 
 
-import org.apache.log4j.Logger;
-
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.creature.*;
-
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.creature.Sheep;
 import marauroa.common.Log4J;
+import marauroa.common.game.RPAction;
+import marauroa.server.game.RPWorld;
+
+import org.apache.log4j.Logger;
 
 public class PlayersQuery extends ActionListener 
   {

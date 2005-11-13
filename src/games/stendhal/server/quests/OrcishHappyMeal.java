@@ -1,21 +1,15 @@
 package games.stendhal.server.quests;
 
-import marauroa.common.game.IRPZone;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalRPRuleProcessor;
-
-import games.stendhal.server.entity.Sign;
-import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.entity.npc.Behaviours;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-
+import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
-
-import games.stendhal.server.Path;
+import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.*;
+
+import marauroa.common.game.IRPZone;
 
 public class OrcishHappyMeal implements IQuest 
   {

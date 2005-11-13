@@ -19,11 +19,14 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
+import games.stendhal.client.entity.Player;
 import games.stendhal.common.CollisionDetection;
+
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.util.HashMap;
 import java.util.Map;
+
 import marauroa.common.game.RPObject;
 
 
@@ -56,7 +59,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   /** the frame */
   private Panel frame;
   /** the player */
-  private RPObject player;
+  private Player player;
   /** map of the buttons (for faster access) )*/
   private Map<String,Button> buttonMap;
   /** is the minimap enabled (shown) */
@@ -71,11 +74,12 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   /** Creates a new instance of OptionsPanel */
   public SettingsPanel(Panel frame, GameObjects gameObjects)
   {
-    super("settings", (frame.getWidth()-WIDTH)/2, 50, WIDTH, 200 );
+    super("settings", (frame.getWidth()-WIDTH)/2, 0, WIDTH, 200 );
     setTitletext("Settings");
     setFrame(true);
     setTitleBar(true);
     setMinimizeable(true);
+    setMinimized(true);
     setCloseable(false);
     minimapEnabled = true;
     characterEnabled = true;
@@ -130,21 +134,29 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   }
   
   /** updates the minimap */
-  public void setPlayer(RPObject player)
+  public void setPlayer(RPObject playerObject)
   {
-    if (player == null)
+    if (playerObject == null)
     {
       return;
     }
     
-    this.player = player;
+    Player newPlayer = (Player) gameObjects.get(playerObject.getID());
+    // check if the player object has changed. Note: this is an exact object reference check
+    if (newPlayer == player)
+    {
+      return;
+    }
+    System.out.println("player changed");
+    this.player = newPlayer;
+
     if (character != null)
     {
       character.setPlayer(player);
     }
     if (inventory != null)
     {
-      inventory.setSlot(player.getID(),player.getSlot("bag"));
+      inventory.setSlot(player,"bag");
     }
   }
 
@@ -153,7 +165,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   {
     if (minimap != null && player != null)
     {
-      minimap.setPlayerPos(player.getDouble("x"), player.getDouble("y"));
+      minimap.setPlayerPos(player.getx(), player.gety());
     }
     
     return super.draw(g);

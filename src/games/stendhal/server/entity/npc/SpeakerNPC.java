@@ -1,20 +1,16 @@
 package games.stendhal.server.entity.npc;
 
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.HashMap;
+import games.stendhal.server.Path;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
 
-import java.awt.geom.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.server.*;
-import games.stendhal.common.*;
-
-import games.stendhal.server.entity.*;
+import java.awt.geom.Rectangle2D;
+import java.util.*;
 
 import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+
 import org.apache.log4j.Logger;
 
 /** This is a finite state machine that implements a chat system.

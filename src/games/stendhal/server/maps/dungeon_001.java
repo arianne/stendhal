@@ -1,15 +1,8 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.entity.npc.Behaviours;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import java.util.*;
-import games.stendhal.server.Path;
 
 public class dungeon_001 
   {

@@ -459,6 +459,10 @@ public class Panel implements Draggable
       logger.error("Panel "+panel.name+" cannot be added to "+name+" because it already is a child of "+panel.parent.name);
       return;
     }
+//    LinkedList<Panel> newChilds = new LinkedList<Panel>(childs);
+//    newChilds.add(panel);
+//    this.childs = newChilds;
+    
     childs.add(panel);
     panel.parent = this;
   }
@@ -466,6 +470,12 @@ public class Panel implements Draggable
   /** removes a child-panel from this panel */
   public synchronized void removeChild(Panel panel)
   {
+//    LinkedList<Panel> newChilds = new LinkedList<Panel>(childs);
+//    newChilds.remove(panel);
+//    this.childs = newChilds;
+//    // be sure to remove ourself from the other panel
+//    panel.parent = null;
+    
     if (childs.remove(panel))
     {
       // be sure to remove ourself from the other panel

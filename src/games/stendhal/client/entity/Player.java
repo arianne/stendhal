@@ -32,8 +32,8 @@ public class Player extends RPEntity
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Player.class);
   
-  private int outfit;  
-  
+  private int outfit;
+
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
@@ -49,7 +49,7 @@ public class Player extends RPEntity
       {
       if(outfit==object.getInt("outfit") && outfit!=0)
         {
-        // We avoid creating again the outfiot if it is already done.
+        // We avoid creating again the outfit if it is already done.
         // Save CPU cycles.
         return;
         }

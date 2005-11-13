@@ -807,7 +807,7 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     inspectedSlot=slot;
     
     EntityContainer container = new EntityContainer(gameObjects,"chest",2,2);
-    container.setSlot(entity.getID(),slot);
+    container.setSlot(entity,slot.getName());
     ground.addChild(container);
     
     }
@@ -956,7 +956,7 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
         }
       }
   
-      RPObject player = StendhalClient.get().getPlayer();
+      RPObject player = client.getPlayer();
       settings.setPlayer(player);
   
       frame.draw(screen.expose());

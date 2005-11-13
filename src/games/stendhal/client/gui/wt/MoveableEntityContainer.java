@@ -35,7 +35,7 @@ public class MoveableEntityContainer implements Draggable
   /** id of the moved object */
   private int      content;
   /** parent(container) of the moved object, may be null */
-  private RPObject.ID parent;
+  private Entity   parent;
   /** the slot this item is in. makes only sense when parent is != null */
   private String   slot;
 
@@ -45,7 +45,7 @@ public class MoveableEntityContainer implements Draggable
   private int      objecty;
 
   /** constuctor to use when the item is inside a container */
-  public MoveableEntityContainer(RPObject content, RPObject.ID parent,
+  public MoveableEntityContainer(RPObject content, Entity parent,
       String slot, GameObjects gameObjects)
   {
     this.content = content.getID().getObjectID();
@@ -77,7 +77,7 @@ public class MoveableEntityContainer implements Draggable
     if (parent != null)
     {
       // the item is inside a container
-      action.put("baseobject", parent.getObjectID());
+      action.put("baseobject", parent.getID().getObjectID());
       action.put("baseslot", slot);
     } else
     {
