@@ -103,6 +103,21 @@ public class Player extends RPEntity
       object.addSlot(new RPSlot("armor"));
       }
 
+    if(!object.hasSlot("head"))
+      {
+      object.addSlot(new RPSlot("head"));
+      }
+
+    if(!object.hasSlot("legs"))
+      {
+      object.addSlot(new RPSlot("legs"));
+      }
+
+    if(!object.hasSlot("feet"))
+      {
+      object.addSlot(new RPSlot("feet"));
+      }
+
     if(!object.hasSlot("bag"))
       {
       object.addSlot(new RPSlot("bag"));
@@ -214,7 +229,7 @@ public class Player extends RPEntity
       {
       try
         {
-        if (player.hasSlot(slotName))
+        if(player.hasSlot(slotName))
           {
           RPSlot slot=player.getSlot(slotName);
           
@@ -242,9 +257,9 @@ public class Player extends RPEntity
               }
             }
           }
-          else
+        else
           {
-            logger.warn("player "+player.getName()+" does not have the slot "+slotName);
+          logger.warn("player "+player.getName()+" does not have the slot "+slotName);
           }
         }
       catch(Exception e)

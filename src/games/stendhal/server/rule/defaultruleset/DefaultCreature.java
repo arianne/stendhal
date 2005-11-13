@@ -23,8 +23,9 @@ import games.stendhal.server.entity.creature.Creature;
 public enum DefaultCreature
 {
 //                  ("clazz",       tileid,  HP, ATK, DEF, XP,size,SPEED);
+  RAT               ("rat"            , 12,  20, 10,  7,   100, 0, 0.5),
+  CAVERAT           ("caverat"        , 13,  30, 12,  9,   200, 0, 0.5),
   BOAR              ("boar"           , 20,  30,  8,  5,   300, 1, 0.5),
-  CAVERAT           ("caverat"        , 13,  30,  7,  3,   200, 0, 0.5),
   COBRA             ("cobra"          , 15,  15, 15,  1,   200, 1, 1.0),
   GARGOYLE          ("gargoyle"       , 17, 100, 28, 15,  2160, 1, 0.5),
   DEMON_ORC         ("demon_orc"      , -1,  70, 25, 14,   940, 1, 1.0),
@@ -39,7 +40,6 @@ public enum DefaultCreature
   ORCHUNTER         ("orchunter"      , -1,  70, 25, 14,   940, 1, 1.0),
   ORCLORD           ("orclord"        , -1,  70, 25, 14,   940, 1, 1.0),
   ORCWARRIOR        ("orcwar"         , -1,  70, 25, 14,   940, 1, 1.0),
-  RAT               ("rat"            , 12,  20,  3,  2,   100, 0, 0.5),
   TROLL             ("troll"          , 21,  40, 17,  9,   500, 1, 0.4),
   WOLF              ("wolf"           , 14,  30,  9,  4,   360, 1, 0.5);
 
