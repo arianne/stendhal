@@ -371,6 +371,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\.new.StendhalRPWorld.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\Navigable.java</path>
 				<source>true</source>
 			</fileitem>
@@ -424,10 +428,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\StendhalRPRuleProcessor.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\StendhalRPWorld.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
