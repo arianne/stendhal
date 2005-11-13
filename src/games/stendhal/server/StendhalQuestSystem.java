@@ -22,10 +22,10 @@ public class StendhalQuestSystem
     String[] files=questsFolder.list();
     
     if (files == null)
-    {
+      {
       logger.error("quest folder not found. should be "+questsFolder.getAbsolutePath());
       return;
-    }
+      }
     
     for(String file: files)
       {
