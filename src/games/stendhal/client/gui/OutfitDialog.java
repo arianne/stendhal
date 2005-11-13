@@ -27,10 +27,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.net.URI;
+
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
 
 import marauroa.common.game.RPAction;
 
 public class OutfitDialog extends javax.swing.JDialog {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(OutfitDialog.class);
+
   private static final long serialVersionUID = 4628210176721975735L;
     // to keep the sprites to show
     private Sprite[] hairs = null;
@@ -85,7 +92,24 @@ public class OutfitDialog extends javax.swing.JDialog {
         
         client=StendhalClient.get();
 
-        File outfitFolder=new File("sprites/outfit");
+        URI url;
+        try
+          {
+          url=this.getClass().getClassLoader().getResource("sprites/outfit").toURI(); 
+          }
+        catch(java.net.URISyntaxException e)
+          {
+          logger.error("Can't find file: "+"sprites/outfit",e);
+          return;
+          }
+      
+        if(url==null) 
+          {
+          logger.error("Can't find file: "+"sprites/outfit");
+          return;
+          }
+
+        File outfitFolder=new File(url);
         int total_hairs=outfitFolder.list(new HairFilter()).length;
         int total_heads=outfitFolder.list(new HeadFilter()).length;
         int total_bodies=outfitFolder.list(new BodyFilter()).length;

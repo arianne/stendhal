@@ -95,8 +95,8 @@ public class StendhalRPAction
             weapon=source.getWeapon().getAttack();
             }
 
-          float maxDamage=(float)source.getATK()*(float)source.getATK()+4.0f*(float)weapon;
-          float attackerComponent=0.8f*(float)Rand.roll1D100()/100.0f*(float)source.getATK()*(float)source.getATK()+4.0f*(float)weapon;
+          float maxDamage=(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
+          float attackerComponent=0.8f*(float)Rand.roll1D100()/100.0f*(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
 
           if(target.hasShield())
             {
@@ -108,9 +108,9 @@ public class StendhalRPAction
             armor=target.getArmor().getDefense();
             }
 
-          float defenderComponent=0.6f*(float)Rand.roll1D100()/100.0f*(float)target.getDEF()*(float)target.getDEF()+1.5f*(float)shield+2.0f*(float)armor;
+          float defenderComponent=0.6f*(float)Rand.roll1D100()/100.0f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor;
           
-          damage=(int)(((attackerComponent-defenderComponent)/maxDamage)*(maxDamage/10.0f));
+          damage=(int)(((attackerComponent-defenderComponent)/maxDamage)*(maxDamage/(float)source.getATK()));
 
           if(damage>0) // Hit
             {

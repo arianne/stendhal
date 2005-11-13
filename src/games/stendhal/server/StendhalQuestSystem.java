@@ -3,6 +3,7 @@ package games.stendhal.server;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 import java.io.File;
+import java.net.URI;
 import games.stendhal.server.quests.IQuest;
 
 public class StendhalQuestSystem 
@@ -18,10 +19,27 @@ public class StendhalQuestSystem
     this.world=world;
     this.rules=rules;
     
-    File questsFolder=new File("games/stendhal/server/quests");
+    URI url;
+    try
+      {
+      url=this.getClass().getClassLoader().getResource("games/stendhal/server/quests").toURI(); 
+      }
+    catch(java.net.URISyntaxException e)
+      {
+      logger.error("Can't find file: games/stendhal/server/quests",e);
+      return;
+      }
+  
+    if(url==null) 
+      {
+      logger.error("Can't find file: games/stendhal/server/quests");
+      return;
+      }
+
+    File questsFolder=new File(url);
     String[] files=questsFolder.list();
     
-    if (files == null)
+    if(files == null)
       {
       logger.error("quest folder not found. should be "+questsFolder.getAbsolutePath());
       return;
