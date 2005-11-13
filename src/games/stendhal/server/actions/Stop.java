@@ -35,7 +35,11 @@ public class Stop extends ActionListener
     Log4J.startMethod(logger,"stop");
 
     player.stop();
-    player.stopAttack();
+    
+    if(action.has("attack"))
+      {
+      player.stopAttack();
+      }
 
     world.modify(player);
 

@@ -781,6 +781,7 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
       // On ESC key we stop the player and 
       RPAction rpaction=new RPAction();
       rpaction.put("type","stop");
+      rpaction.put("attack","");
       client.send(rpaction);
 
       for(wtButton button: buttons)    

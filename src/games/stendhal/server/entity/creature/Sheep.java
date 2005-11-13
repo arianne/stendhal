@@ -195,7 +195,6 @@ public class Sheep extends Creature
 
     if(getNearestPlayer(20)==null && owner==null) // if there is no player near and none will see us... 
       {
-      stopAttack();
       stop();
       
       world.modify(this);
