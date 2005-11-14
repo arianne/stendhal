@@ -19,21 +19,14 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.common.Debug;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Transparency;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
+
 import marauroa.common.Log4J;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -459,28 +452,20 @@ public class Panel implements Draggable
       logger.error("Panel "+panel.name+" cannot be added to "+name+" because it already is a child of "+panel.parent.name);
       return;
     }
-//    LinkedList<Panel> newChilds = new LinkedList<Panel>(childs);
-//    newChilds.add(panel);
-//    this.childs = newChilds;
-    
-    childs.add(panel);
+    LinkedList<Panel> newChilds = new LinkedList<Panel>(childs);
+    newChilds.addFirst(panel);
+    this.childs = newChilds;
     panel.parent = this;
   }
   
   /** removes a child-panel from this panel */
   public synchronized void removeChild(Panel panel)
   {
-//    LinkedList<Panel> newChilds = new LinkedList<Panel>(childs);
-//    newChilds.remove(panel);
-//    this.childs = newChilds;
-//    // be sure to remove ourself from the other panel
-//    panel.parent = null;
-    
-    if (childs.remove(panel))
-    {
-      // be sure to remove ourself from the other panel
-      panel.parent = null;
-    }
+    LinkedList<Panel> newChilds = new LinkedList<Panel>(childs);
+    newChilds.remove(panel);
+    this.childs = newChilds;
+    // be sure to remove ourself from the other panel
+    panel.parent = null;
   }
   
   /** returns true when the window is scheduled to be closed. */
