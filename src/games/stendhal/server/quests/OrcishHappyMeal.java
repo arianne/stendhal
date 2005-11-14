@@ -11,6 +11,23 @@ import java.util.*;
 
 import marauroa.common.game.IRPZone;
 
+/** 
+ * QUEST: Orcish Happy Meal
+ * PARTICIPANTS: 
+ * - Nishiya 
+ * - Tor'Koom 
+ * 
+ * STEPS: 
+ * - Buy a sheep from Nishiya in Village 
+ * - Grow sheep in plains 
+ * - Sell sheep to Tor'Koom in Dungeon 
+ * 
+ * REWARD: 
+ * - You get the weight of the sheep * 50 in gold coins.
+ *
+ * REPETITIONS:
+ * - As much as wanted.
+ */
 public class OrcishHappyMeal implements IQuest 
   {
   public OrcishHappyMeal(StendhalRPWorld world, StendhalRPRuleProcessor rules)
