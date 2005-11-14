@@ -62,9 +62,7 @@ public class DefaultActionManager implements ActionManager
       if (entity.hasSlot(slot))
         {
         RPSlot rpslot=entity.getSlot(slot);
-// TODO: Change me when slot capacity is enabled at Marauroa
-//        if(!rpslot.isFull())   
-        if(rpslot.size()==0) // It will work as it is only used when players AND bag has size==1 now, otherwise BUG!
+        if(!rpslot.isFull())   
           {
           return slot;
           }
@@ -94,12 +92,4 @@ public class DefaultActionManager implements ActionManager
     return true;
   }
 
-  public void onTalk()
-  {
-  }
-
-  public void onAttack()
-  {
-  }
-  
 }

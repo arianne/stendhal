@@ -315,7 +315,7 @@ public abstract class RPEntity extends Entity
     if(status)
       {
       who.attackTarget = this;
-      if ( ! attackSource.contains(who) )
+      if(!attackSource.contains(who))
         {
         attackSource.add(who);
         }

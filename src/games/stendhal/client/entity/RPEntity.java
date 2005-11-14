@@ -287,6 +287,7 @@ public abstract class RPEntity extends AnimatedEntity
 
     // This shows damage done by the player and to the player.
     boolean showAttackInfoForPlayer=client.getPlayer()!=null && (getID().equals(client.getPlayer().getID()) || source.getID().equals(client.getPlayer().getID()));
+    showAttackInfoForPlayer=showAttackInfoForPlayer&(!stendhal.FILTER_ATTACK_MESSAGES);
 
     if(risk>0 && damage>0 && (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer))
       {
