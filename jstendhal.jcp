@@ -499,6 +499,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Stackable.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\maps\afterlife.java</path>
 				<source>true</source>
 			</fileitem>
@@ -552,6 +556,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\rule\RuleSetFactory.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\rule\defaultruleset\creatures.xml</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
