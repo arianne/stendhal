@@ -29,6 +29,7 @@ public class Sheep extends Creature
   private static final Logger logger = Log4J.getLogger(Sheep.class);
   
   final private double SPEED=0.25;
+  final public int MAX_WEIGHT=100;
   
   final private static int HP=30;
   final private static int ATK=0;
@@ -180,7 +181,7 @@ public class Sheep extends Creature
       world.modify(food);
       hungry=0;
       
-      if(weight<100)
+      if(weight<MAX_WEIGHT)
         {
         setWeight(weight+1);
         }
