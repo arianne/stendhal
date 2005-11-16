@@ -530,7 +530,7 @@ public class Equipment extends ActionListener
         parent = getEntityFromId(player,world,action.getInt(BASE_OBJECT));
         slot = action.get(BASE_SLOT);
 
-        base = (Entity) parent.getSlot(slot).get(baseItemId);
+        base = (Entity) parent.getSlot(slot).get(baseItemId.getObjectID());
       }
       else
       {
