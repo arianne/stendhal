@@ -111,6 +111,12 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
     this.frame = frame;
   }
   
+  /** we're using the window manager */
+  protected boolean useWindowManager()
+  {
+    return true;
+  }
+
   /** updates the minimap */
   public void updateMinimap(CollisionDetection cd, GraphicsConfiguration gc, String zone)
   {

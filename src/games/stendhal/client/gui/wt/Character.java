@@ -83,6 +83,12 @@ public class Character extends Panel
     addChild(statsPanel);
   }
   
+  /** we're using the window manager */
+  protected boolean useWindowManager()
+  {
+    return true;
+  }
+  
   
   /** sets the player entity */
   public void setPlayer(Player playerEntity)

@@ -81,6 +81,12 @@ public class EntityContainer extends Panel
       addChild(entitySlot);
     }
   }
+
+  /** we're using the window manager */
+  protected boolean useWindowManager()
+  {
+    return true;
+  }
   
   /** rescans the content of the slot */
   private void  rescanSlotContent()

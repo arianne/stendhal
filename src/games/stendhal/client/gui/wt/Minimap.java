@@ -96,6 +96,13 @@ public class Minimap extends Panel
     // now resize the panel to match the size of the map
     resizeToFitClientArea(width, height);
   }
+  
+  /** we're using the window manager */
+  protected boolean useWindowManager()
+  {
+    return true;
+  }
+  
 
   /** Draws the minimap.
    * @param g graphics object for the game main window

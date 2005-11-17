@@ -39,6 +39,7 @@ import org.apache.log4j.Logger;
  *   <ul>
  *    <li>can be moved</li>
  *    <li>can can be minimized (reduces the panel to the title bar)</li>
+ *    <li>can be closed</li>
  *   </ul>
  *  </li>
  *  </ul>
@@ -139,6 +140,11 @@ public class Panel implements Draggable
     this.textureSprites = new ArrayList<Sprite>();
     this.closeListeners = new ArrayList<CloseListener>();
     this.clickListeners = new ArrayList<ClickListener>();
+    
+    if (useWindowManager())
+    {
+      WindowManager.getInstance().formatWindow(this);
+    }
 
     // get texture sprite
     SpriteStore st = SpriteStore.get();
@@ -197,6 +203,14 @@ public class Panel implements Draggable
     clickListeners.remove(listener);
   }
   
+  /**
+   * Override this if you want to save your window positions in the
+   * WindowManager. Default is not to use the WindowManager. 
+   */
+  protected boolean useWindowManager()
+  {
+    return false;
+  }
 
   /** returns x-position of the panel (relative to its parent) */
   public int getX()
@@ -304,6 +318,12 @@ public class Panel implements Draggable
     
     if (hasParent() && parent.getHeight() - height < y)
       this.y = parent.getHeight() - height;
+    
+    // tell the windowmanager we're moved (if we use is)
+    if (useWindowManager())
+    {
+      WindowManager.getInstance().moveTo(this,this.x,this.y);
+    }
 
     return true;
   }
@@ -417,6 +437,12 @@ public class Panel implements Draggable
     this.minimized = minimized;
     // refresh cached panel image
     cachedImage = null;
+
+    // tell the windowmanager we're changed (if we use it)
+    if (useWindowManager())
+    {
+      WindowManager.getInstance().setMinimized(this,minimized);
+    }
   }
   
   /** returns wether the panel is closeable */
