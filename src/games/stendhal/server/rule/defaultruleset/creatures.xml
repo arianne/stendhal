@@ -1,6 +1,6 @@
 <creatures>
   <!-- Example creature
-  <creature name="name of the creature>
+  <creature name="name of the creature">
   	  <type class="class of the creature"
   	     subclass="subclass of the creature"/>
   	  <attributes atk="" def="" hp=""/>

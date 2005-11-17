@@ -1,0 +1,160 @@
+<items>
+  <!-- Example creature
+  <item name="name of the item">
+  	  <type class="class of the item"
+  	     subclass="subclass of the item"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="0"/>
+  	  	<attribute name="def" value="0"/>
+  	  	<attribute name="quantity" value="0"/>
+  	  </attributes>
+  	  <weight value="weight of the item"/>
+  	  <equipable>
+  	  	<slot name="name of the slot where item can be equipped">
+  	  </equipable>
+  </item>
+  -->
+
+  <item name="knife">
+  	  <type class="sword" subclass="knife"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="7"/>
+  	  </attributes>
+  	  <weight value="0.2"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="dagger">
+  	  <type class="sword" subclass="dagger"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="8"/>
+  	  </attributes>
+  	  <weight value="0.2"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="short sword">
+  	  <type class="sword" subclass="short sword"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="11"/>
+  	  </attributes>
+  	  <weight value="2"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="sword">
+  	  <type class="sword" subclass="sword"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="14"/>
+  	  </attributes>
+  	  <weight value="4"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="small axe">
+  	  <type class="axe" subclass="small axe"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="7"/>
+  	  </attributes>
+  	  <weight value="0.5"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="hand axe">
+  	  <type class="axe" subclass="hand axe"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="9"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="axe">
+  	  <type class="axe" subclass="axe"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="12"/>
+  	  </attributes>
+  	  <weight value="3"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="club">
+  	  <type class="club" subclass="club"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="7"/>
+  	  </attributes>
+  	  <weight value="2"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="staff">
+  	  <type class="club" subclass="staff"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="9"/>
+  	  </attributes>
+  	  <weight value="4"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="mace">
+  	  <type class="club" subclass="mace"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="12"/>
+  	  </attributes>
+  	  <weight value="8"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+/**
+        Ranged weapons                        
+Bow           12       0        90
+Arrows(10)    0        0        10
+
+        Shields                        
+Wooden        0        14       15
+Studded       0        15       50
+Plate         0        16       160
+        Armors                        
+Dress         0        1        20
+Leather       0        4        50
+Studded       0        5        130
+Chain         0        6        420
+        Helmets                        
+Leather       0        1        20
+Studded       0        2        60
+Chain         0        4        210
+        Leg armors                        
+Leather       0        1        30
+Studded       0        2        70
+Chain         0        4        200**/  
+</items>

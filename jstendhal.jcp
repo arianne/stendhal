@@ -99,6 +99,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>pom.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>README</path>
 				<source>true</source>
 			</fileitem>
