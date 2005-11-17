@@ -11,24 +11,22 @@
  *                                                                         *
  ***************************************************************************/
 /*
- * CloseListener.java
+ * DropTarget.java
  *
- * Created on 24. Oktober 2005, 19:49
+ * Created on 19. Oktober 2005, 20:45
  */
 
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui.wt.core;
+
 
 /**
- * Callback for closing on a panel
+ * Each Panel wanting to reveive events when an object is dropped over them
+ * must inplement this interface.
+ *
  * @author mtotz
  */
-public interface CloseListener
+public interface DropTarget
 {
-  /** 
-   * the panel has been closed
-   * @param name name of the panel. Note that the panels name does not need to
-   *             be unique
-   */
-  public void onClose(String name);
-  
+  /** called when an object is dropped. */
+  public boolean onDrop(Draggable droppedObject);
 }

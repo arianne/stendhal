@@ -14,7 +14,7 @@
  * Panel.java
  * Created on 16. Oktober 2005, 10:55
  */
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;

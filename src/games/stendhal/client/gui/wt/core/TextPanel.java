@@ -16,7 +16,7 @@
  * Created on 22. Oktober 2005, 20:52
  */
 
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.common.StringFormatter;
 import java.awt.Color;

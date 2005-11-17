@@ -22,6 +22,8 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.gui.wt.core.Panel;
+import games.stendhal.client.gui.wt.core.TextPanel;
 
 import java.awt.Graphics;
 import java.util.HashMap;

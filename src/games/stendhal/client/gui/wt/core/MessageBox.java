@@ -16,7 +16,7 @@
  * Created on 23. Oktober 2005, 11:09
  */
 
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui.wt.core;
 
 import java.awt.Graphics;
 import java.util.ArrayList;

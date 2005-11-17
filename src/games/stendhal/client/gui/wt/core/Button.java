@@ -16,7 +16,7 @@
  * Created on 23. Oktober 2005, 09:47
  */
 
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.Sprite;
 import java.awt.Graphics;

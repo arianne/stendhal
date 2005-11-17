@@ -15,6 +15,8 @@ package games.stendhal.client.gui;
 import games.stendhal.client.*;
 import games.stendhal.client.entity.*;
 import games.stendhal.client.gui.wt.*;
+import games.stendhal.client.gui.wt.core.Frame;
+import games.stendhal.client.gui.wt.core.Panel;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 

@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui.wt.core;
 
 import java.util.HashMap;
 import java.util.Map;

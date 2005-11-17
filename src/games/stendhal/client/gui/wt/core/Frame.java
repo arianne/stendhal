@@ -16,9 +16,10 @@
  * Created on 18. Oktober 2005, 19:40
  */
 
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.GameScreen;
+
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;

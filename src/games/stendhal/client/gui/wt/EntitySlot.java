@@ -20,6 +20,9 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.*;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.gui.wt.core.Draggable;
+import games.stendhal.client.gui.wt.core.DropTarget;
+import games.stendhal.client.gui.wt.core.Panel;
 
 import java.awt.Color;
 import java.awt.Graphics;

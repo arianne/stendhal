@@ -20,6 +20,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.gui.wt.core.*;
 import games.stendhal.common.CollisionDetection;
 
 import java.awt.Graphics;

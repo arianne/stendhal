@@ -16,6 +16,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.gui.wt.core.Panel;
 
 import java.awt.Graphics;
 import java.util.ArrayList;

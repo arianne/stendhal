@@ -15,7 +15,7 @@
  * Created on 17. Oktober 2005, 17:50
  */
 
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui.wt.core;
 
 import java.awt.Graphics;
 import java.awt.Point;

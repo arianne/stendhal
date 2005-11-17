@@ -11,25 +11,24 @@
  *                                                                         *
  ***************************************************************************/
 /*
- * ClickListener.java
+ * CloseListener.java
  *
  * Created on 24. Oktober 2005, 19:49
  */
 
-package games.stendhal.client.gui.wt;
+package games.stendhal.client.gui.wt.core;
 
 /**
- * Callback for clicking on a panel
+ * Callback for closing on a panel
  * @author mtotz
  */
-public interface ClickListener
+public interface CloseListener
 {
   /** 
-   * the panel has been clicked
+   * the panel has been closed
    * @param name name of the panel. Note that the panels name does not need to
    *             be unique
-   * @param true when the button in pressed and false when it is not pressed
    */
-  public void onClick(String name, boolean pressed);
+  public void onClose(String name);
   
 }
