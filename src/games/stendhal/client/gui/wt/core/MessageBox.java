@@ -142,7 +142,7 @@ public class MessageBox extends Panel implements ClickListener, CloseListener
     }
     
     /** returns the name of this button */
-    private String getName()
+    public String getName()
     {
       return name;
     }
