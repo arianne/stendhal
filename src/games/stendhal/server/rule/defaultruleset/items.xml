@@ -135,26 +135,175 @@
   	  	<slot name="bag">
   	  </equipable>
   </item>
-/**
-        Ranged weapons                        
-Bow           12       0        90
-Arrows(10)    0        0        10
+  <item name="bow">
+  	  <type class="range" subclass="bow"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="12"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="arrow">
+  	  <type class="projectile" subclass="arrow"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="1"/>
+  	  </attributes>
+  	  <weight value="0.1"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="wooden shield">
+  	  <type class="shield" subclass="wooden shield"/>
+  	  <attributes>
+  	  	<attribute name="def" value="14"/>
+  	  </attributes>
+  	  <weight value="12"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="studded shield">
+  	  <type class="shield" subclass="studded shield"/>
+  	  <attributes>
+  	  	<attribute name="def" value="15"/>
+  	  </attributes>
+  	  <weight value="15"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="plate shield">
+  	  <type class="shield" subclass="plate shield"/>
+  	  <attributes>
+  	  	<attribute name="def" value="16"/>
+  	  </attributes>
+  	  <weight value="24"/>
+  	  <equipable>
+  	  	<slot name="lhand">
+  	  	<slot name="rhand">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="dress">
+  	  <type class="armor" subclass="dress"/>
+  	  <attributes>
+  	  	<attribute name="def" value="1"/>
+  	  </attributes>
+  	  <weight value="5"/>
+  	  <equipable>
+  	  	<slot name="armor">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="leather armor">
+  	  <type class="armor" subclass="leather armor"/>
+  	  <attributes>
+  	  	<attribute name="def" value="4"/>
+  	  </attributes>
+  	  <weight value="15"/>
+  	  <equipable>
+  	  	<slot name="armor">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="studded armor">
+  	  <type class="armor" subclass="studded armor"/>
+  	  <attributes>
+  	  	<attribute name="def" value="5"/>
+  	  </attributes>
+  	  <weight value="25"/>
+  	  <equipable>
+  	  	<slot name="armor">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="chain armor">
+  	  <type class="armor" subclass="chain armor"/>
+  	  <attributes>
+  	  	<attribute name="def" value="5"/>
+  	  </attributes>
+  	  <weight value="45"/>
+  	  <equipable>
+  	  	<slot name="armor">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="leather helmet">
+  	  <type class="helmet" subclass="leather helmet"/>
+  	  <attributes>
+  	  	<attribute name="def" value="1"/>
+  	  </attributes>
+  	  <weight value="2"/>
+  	  <equipable>
+  	  	<slot name="head">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="studded helmet">
+  	  <type class="helmet" subclass="studded helmet"/>
+  	  <attributes>
+  	  	<attribute name="def" value="2"/>
+  	  </attributes>
+  	  <weight value="4"/>
+  	  <equipable>
+  	  	<slot name="head">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="chain helmet">
+  	  <type class="helmet" subclass="chain helmet"/>
+  	  <attributes>
+  	  	<attribute name="def" value="4"/>
+  	  </attributes>
+  	  <weight value="5"/>
+  	  <equipable>
+  	  	<slot name="head">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
 
-        Shields                        
-Wooden        0        14       15
-Studded       0        15       50
-Plate         0        16       160
-        Armors                        
-Dress         0        1        20
-Leather       0        4        50
-Studded       0        5        130
-Chain         0        6        420
-        Helmets                        
-Leather       0        1        20
-Studded       0        2        60
-Chain         0        4        210
-        Leg armors                        
-Leather       0        1        30
-Studded       0        2        70
-Chain         0        4        200**/  
+  <item name="leather legs">
+  	  <type class="legs" subclass="leather legs"/>
+  	  <attributes>
+  	  	<attribute name="def" value="1"/>
+  	  </attributes>
+  	  <weight value="10"/>
+  	  <equipable>
+  	  	<slot name="legs">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="studded legs">
+  	  <type class="legs" subclass="studded legs"/>
+  	  <attributes>
+  	  	<attribute name="def" value="2"/>
+  	  </attributes>
+  	  <weight value="12"/>
+  	  <equipable>
+  	  	<slot name="legs">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
+  <item name="chain legs">
+  	  <type class="legs" subclass="chain legs"/>
+  	  <attributes>
+  	  	<attribute name="def" value="4"/>
+  	  </attributes>
+  	  <weight value="15"/>
+  	  <equipable>
+  	  	<slot name="legs">
+  	  	<slot name="bag">
+  	  </equipable>
+  </item>
 </items>
