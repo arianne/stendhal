@@ -76,6 +76,9 @@ Changelog
 - Using charas of 48x64 so RPGMaker 2000 exportage of charas is inmediate
 - Added new GUI System
 - Now weapon seller buys stuff too.
+- Creatures and Items XML definition
+- New combat system
+
 
 0.39.1 Oct 26, 2005
 - Fixed chat bug

@@ -119,7 +119,8 @@ public class CreatureXMLLoader extends DefaultHandler
       }
     else if(qName.equals("experience"))
       {
-      xp=Integer.parseInt(attrs.getValue("value"));
+      // XP rewarded is right now 5% of the creature real XP 
+      xp=Integer.parseInt(attrs.getValue("value"))*20;
       }
     else if(qName.equals("attribute"))
       {
