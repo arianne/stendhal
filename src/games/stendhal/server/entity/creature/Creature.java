@@ -82,7 +82,8 @@ public class Creature extends NPC
   /** the speed of this creature */
   private double speed;
   /** size in width of a tile */
-  private int size; 
+  private int width; 
+  private int height; 
   
   
   public static void generateRPClass()
@@ -118,14 +119,15 @@ public class Creature extends NPC
 
   /** creates a new creature with the given properties
    */
-  public Creature(String clazz, int hp, int attack, int defense, int xp, int size, double speed) throws AttributeNotFoundException
+  public Creature(String clazz, int hp, int attack, int defense, int xp, int width, int height, double speed) throws AttributeNotFoundException
     {
     super();
     put("type","creature");
     createPath();
     
     this.speed = speed;
-    this.size = size;
+    this.width = width;
+    this.height = height;
 
     put("class",clazz);
     put("x",0);
@@ -180,7 +182,15 @@ public class Creature extends NPC
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
-    rect.setRect(x,y+size,1,1);
+    if(width==1 && height==2)
+      {
+      // The size 1,2 is a bit special... :)
+      rect.setRect(x,y+1,1,1);
+      }
+    else
+      {
+      rect.setRect(x,y,width,height);
+      }
     }
 
   public double getSpeed()

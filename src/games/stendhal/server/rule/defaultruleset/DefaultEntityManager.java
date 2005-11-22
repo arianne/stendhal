@@ -17,6 +17,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.EntityManager;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,22 +39,34 @@ public class DefaultEntityManager implements EntityManager
   private Map<String, DefaultItem> classToItem;
 
   /** no public constructor */
-  private DefaultEntityManager()
+  private DefaultEntityManager() 
   {
     idToClass = new HashMap<Integer, String>();
     // Build the creatures tables
     classToCreature = new HashMap<String,DefaultCreature>();
-    DefaultCreature[] creatures = DefaultCreature.values();
-    for (DefaultCreature creature : creatures )
-    {
-      int id = creature.getTileId();
-      String clazz = creature.getCreatureClass();
-      classToCreature.put(clazz, creature);
-      if (id > 0)
+    
+    CreatureXMLLoader loader=CreatureXMLLoader.get();
+    
+    try
       {
-        idToClass.put(id, clazz);
+      List<DefaultCreature> creatures=loader.load("games/stendhal/server/rule/defaultruleset/creatures.xml");
+
+      for (DefaultCreature creature : creatures )
+      {
+        int id = creature.getTileId();
+        String clazz = creature.getCreatureClass();
+        classToCreature.put(clazz, creature);
+        if (id > 0)
+        {
+          idToClass.put(id, clazz);
+        }
       }
-    }
+      }
+    catch(org.xml.sax.SAXException e)
+      {
+      e.printStackTrace();      
+      }
+    
     
     // Build the items tables
     classToItem = new HashMap<String,DefaultItem>();

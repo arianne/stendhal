@@ -71,6 +71,16 @@ public class StendhalRPAction
         
         risk=2*source.getATK()-target.getDEF()+roll-10;        
         
+        if(risk<0)
+          {
+          risk=0;
+          }
+        
+        if(risk>1)
+          {
+          risk=1;
+          }
+        
         logger.debug("attack from "+source+" to "+target+": Risk to strike: "+risk);
         source.put("risk",risk);
 

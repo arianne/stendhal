@@ -22,9 +22,9 @@
   	  </attributes>
   	  <weight value="0.2"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="dagger">
@@ -34,9 +34,9 @@
   	  </attributes>
   	  <weight value="0.2"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="short sword">
@@ -46,9 +46,9 @@
   	  </attributes>
   	  <weight value="2"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="sword">
@@ -58,9 +58,9 @@
   	  </attributes>
   	  <weight value="4"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="small axe">
@@ -70,9 +70,9 @@
   	  </attributes>
   	  <weight value="0.5"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="hand axe">
@@ -82,9 +82,9 @@
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="axe">
@@ -94,9 +94,9 @@
   	  </attributes>
   	  <weight value="3"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="club">
@@ -106,9 +106,9 @@
   	  </attributes>
   	  <weight value="2"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="staff">
@@ -118,9 +118,9 @@
   	  </attributes>
   	  <weight value="4"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="mace">
@@ -130,9 +130,9 @@
   	  </attributes>
   	  <weight value="8"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="bow">
@@ -142,9 +142,9 @@
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="arrow">
@@ -154,9 +154,9 @@
   	  </attributes>
   	  <weight value="0.1"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="wooden shield">
@@ -166,9 +166,9 @@
   	  </attributes>
   	  <weight value="12"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="studded shield">
@@ -178,9 +178,9 @@
   	  </attributes>
   	  <weight value="15"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="plate shield">
@@ -190,9 +190,9 @@
   	  </attributes>
   	  <weight value="24"/>
   	  <equipable>
-  	  	<slot name="lhand">
-  	  	<slot name="rhand">
-  	  	<slot name="bag">
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="dress">
@@ -203,7 +203,7 @@
   	  <weight value="5"/>
   	  <equipable>
   	  	<slot name="armor">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="leather armor">
@@ -214,7 +214,7 @@
   	  <weight value="15"/>
   	  <equipable>
   	  	<slot name="armor">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="studded armor">
@@ -225,7 +225,7 @@
   	  <weight value="25"/>
   	  <equipable>
   	  	<slot name="armor">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="chain armor">
@@ -236,7 +236,7 @@
   	  <weight value="45"/>
   	  <equipable>
   	  	<slot name="armor">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="leather helmet">
@@ -247,7 +247,7 @@
   	  <weight value="2"/>
   	  <equipable>
   	  	<slot name="head">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="studded helmet">
@@ -258,7 +258,7 @@
   	  <weight value="4"/>
   	  <equipable>
   	  	<slot name="head">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="chain helmet">
@@ -269,7 +269,7 @@
   	  <weight value="5"/>
   	  <equipable>
   	  	<slot name="head">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
 
@@ -281,7 +281,7 @@
   	  <weight value="10"/>
   	  <equipable>
   	  	<slot name="legs">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="studded legs">
@@ -292,7 +292,7 @@
   	  <weight value="12"/>
   	  <equipable>
   	  	<slot name="legs">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
   <item name="chain legs">
@@ -303,7 +303,7 @@
   	  <weight value="15"/>
   	  <equipable>
   	  	<slot name="legs">
-  	  	<slot name="bag">
+  	  	<slot name="bag"/>
   	  </equipable>
   </item>
 </items>
