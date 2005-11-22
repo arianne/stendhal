@@ -41,12 +41,6 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
   private GameObjects gameObjects;
   private GameScreen screen;
 
-//  /** this is a list of commands that is shown when right click on an entity */
-//  private wtList widgetCommandList;
-//  
-//  /** this is the entity to which it is associated the wtList */
-//  private Entity widgetAssociatedEntity;
-
   /** a nicer way of handling the keyboard */
   private Map<Integer, Object> pressed;
 
@@ -133,23 +127,6 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
   public void mouseClicked(MouseEvent e) 
     {
     Point2D screenPoint=e.getPoint();
-    
-//    // check if the command list is clicked.    
-//    if(widgetCommandList!=null && widgetCommandList.clicked(screenPoint))     
-//      {
-//      // check that the entity still exists
-//      if(gameObjects.has(widgetAssociatedEntity))                             
-//        {
-//        // execute the action
-//        widgetAssociatedEntity.onAction(client, widgetCommandList.choosen()); 
-//        // clean the command list.
-//        widgetCommandList=null;                                               
-//        return;
-//        }
-//      }
-//    
-//    /* If no command list was clicked but a click happened then delete the actual command list  */
-//    widgetCommandList=null;
     
     // get clicked entity
     Point2D point=screen.translate(screenPoint);
@@ -267,8 +244,6 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     
   public void keyPressed(KeyEvent e) 
     {
-//    widgetCommandList=null;
-    
     if(!pressed.containsKey(Integer.valueOf(e.getKeyCode())))
       {
       onKeyPressed(e);
@@ -358,12 +333,6 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
 
   public void draw(GameScreen screen)
     {
-//    // If there is a context menu (aka Command list) open, draw it 
-//    if(widgetCommandList!=null)
-//      {
-//      widgetCommandList.draw(screen);
-//      }
-
       // create the map if there is none yet
       StaticGameLayers gl = client.getStaticGameLayers();
       if (gl.changedArea())
