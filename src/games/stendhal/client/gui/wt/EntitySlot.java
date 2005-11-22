@@ -20,12 +20,11 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.*;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.gui.wt.core.Draggable;
-import games.stendhal.client.gui.wt.core.DropTarget;
-import games.stendhal.client.gui.wt.core.Panel;
+import games.stendhal.client.gui.wt.core.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -113,7 +112,7 @@ public class EntitySlot extends Panel implements DropTarget
       quantityImage = GameScreen.get().createString(Integer.toString(quantity),Color.white);      
     }
   }
-  
+
   /**
    * draws the panel into the graphics object
    * 
@@ -156,9 +155,22 @@ public class EntitySlot extends Panel implements DropTarget
   protected Draggable getDragged(int x, int y)
   {
     if (content != null)
+    {
       return new MoveableEntityContainer(content, parent, getName(),gameObjects);
+    }
 
     return null;
+  }
+  
+  /** right mouse button was clicked */
+  public synchronized boolean onMouseRightClick(Point p)
+  {
+    // create the context menu
+    StendhalClient client = StendhalClient.get();
+    Entity entity = gameObjects.entityType(content);
+    List list = new CommandList(getName(),entity.offeredActions(),0,0,100,100,client,entity);
+    setContextMenu(list);
+    return true;
   }
 
 }

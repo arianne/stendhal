@@ -951,9 +951,59 @@ public class Panel implements Draggable
   }
   
   /** callback for a doubleclick */
-  public synchronized void onMouseDoubleClick(Point p)
+  public synchronized boolean onMouseDoubleClick(Point p)
   {
+    // translate point to client coordinates
+    Point p2 = p.getLocation();
+    p2.translate(-getClientX(), -getClientY());
+    
+    // be sure to inform all childs of the mouse click
+    for (Panel panel : childs)
+    {
+      // only if the point is inside the child
+      if (panel.isHit(p2.x,p2.y))
+      {
+        Point point = p2.getLocation();
+        point.translate(-panel.getX(), -panel.getY());
+        // right-click the child
+        if (panel.onMouseDoubleClick(point))
+        {
+          // the click was processed, bail out
+          return true;
+        }
+      }
+    }
+    // not processed
+    return false;
   }
+  
+  /** the right mouse button has been clicked (callback) */
+  public synchronized boolean onMouseRightClick(Point p)
+  {
+    // translate point to client coordinates
+    Point p2 = p.getLocation();
+    p2.translate(-getClientX(), -getClientY());
+    
+    // be sure to inform all childs of the mouse click
+    for (Panel panel : childs)
+    {
+      // only if the point is inside the child
+      if (panel.isHit(p2.x,p2.y))
+      {
+        Point point = p2.getLocation();
+        point.translate(-panel.getX(), -panel.getY());
+        // right-click the child
+        if (panel.onMouseRightClick(point))
+        {
+          // the click was processed, bail out
+          return true;
+        }
+      }
+    }
+    // not processed
+    return false;
+  }
+  
   
   /** ignored */
   public boolean dragStarted()
@@ -983,6 +1033,22 @@ public class Panel implements Draggable
     childs.addFirst(child);
   }
   
+  /**
+   * Sets the context menu. It is closed automatically one the user clicks.
+   * outside of it.
+   * Note: This implementation forwards the context menu to its parent (if it
+   * has one) until someone feels responsible to handle it. This is most times
+   * the very root of the window hierarchy. 
+   */
+  public void setContextMenu(games.stendhal.client.gui.wt.core.List contextMenu)
+  {
+    if (parent != null)
+    {
+      // moves the contex-menu to match the position of this panel 
+      contextMenu.move(x,y);
+      parent.setContextMenu(contextMenu);
+    }
+  }
   
   /** toString */
   public String toString()

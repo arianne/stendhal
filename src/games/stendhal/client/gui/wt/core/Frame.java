@@ -45,6 +45,11 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
   private Point dragStartPoint;
   /** true when there is a dragging operation in progress */
   private boolean dragInProgress;
+  /** the context menu, if there is one */
+  private List contextMenu;
+  
+  /** a flag for tracking ContextMenu changes */
+  private boolean recreatedContextMenu;
 
   /** Creates the Frame from the given GameScreen instance */
   public Frame(GameScreen screen)
@@ -76,6 +81,21 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
     return draggedObject;
   }
   
+  /**
+   * Sets the context menu. It is closed automatically one the user clicks.
+   * outside of it. 
+   */
+  public void setContextMenu(List contextMenu)
+  {
+    if (this.contextMenu != null)
+    {
+      this.contextMenu.close();
+    }
+    this.contextMenu = contextMenu;
+    recreatedContextMenu = true;
+    System.out.println("contextmenu at "+contextMenu.getX()+"x"+contextMenu.getY()+" created");
+  }
+  
   
   /** draws the frame into the graphics object
    * @param g graphics where to render to
@@ -83,7 +103,14 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
    */
   public synchronized Graphics draw(Graphics g)
   {
+    // draw the stuff
     super.draw(g);
+
+    // draw the context menu if we have one
+    if (contextMenu != null)
+    {
+      contextMenu.draw(g);
+    }
 
     // do we have a dragged object?
     if (dragInProgress && draggedObject != null)
@@ -143,22 +170,49 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
    */
   public synchronized void mouseClicked(MouseEvent e)
   {
-    // only process left mouse mutton clicks
-    if (e.getButton() != MouseEvent.BUTTON1)
-      return;
-
     Point p = e.getPoint();
-    
-    if (e.getClickCount() == 1)
+    recreatedContextMenu = false;
+
+    if (e.getButton() == MouseEvent.BUTTON1)
     {
-      onMouseClick(p);
+      if (e.getClickCount() == 1)
+      {
+        boolean contextMenuClicked = false;
+        // do we have a context menu?
+        if (contextMenu != null && !contextMenu.isClosed())
+        {
+          // yep, so inform it of the mouse click
+          Point other = new Point(p);
+          other.translate(-contextMenu.getX(),-contextMenu.getY());
+          contextMenuClicked = contextMenu.onMouseClick(other);
+        }
+        
+        // process the rest if the context menu wasn't clicked 
+        if (!contextMenuClicked)
+        {
+          onMouseClick(p);
+        }
+      }
+      else if (e.getClickCount() == 2)
+      {
+        onMouseDoubleClick(p);
+      }
     }
-    else if (e.getClickCount() == 2)
+    else if (e.getButton() == MouseEvent.BUTTON3)
     {
-      onMouseDoubleClick(p);
+      // no double rightclick supported
+      onMouseRightClick(p);
     }
+
+    // whatever the click was...delete the context menu (if it wasn't recreated
+    // during the callbacks)
+    if (contextMenu != null && !recreatedContextMenu)
+    {
+      contextMenu.close();
+      contextMenu = null;
+    }
+    recreatedContextMenu = false;
   }
-  
 
   /**
    * Invoked when a mouse button is pressed on a component and then 
@@ -211,7 +265,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
     // be sure to stop dragging operations
     stopDrag(e);
   }
-
+  
   /** disabled */
   public void setName(String name)  { }
   /** disabled */

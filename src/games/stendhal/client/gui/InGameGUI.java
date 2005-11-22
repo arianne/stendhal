@@ -32,7 +32,6 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-
 public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListener
   {
   /** the logger instance. */
@@ -42,11 +41,11 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
   private GameObjects gameObjects;
   private GameScreen screen;
 
-  /** this is a list of commands that is shown when right click on an entity */
-  private wtList widgetCommandList;
-  
-  /** this is the entity to which it is associated the wtList */
-  private Entity widgetAssociatedEntity;
+//  /** this is a list of commands that is shown when right click on an entity */
+//  private wtList widgetCommandList;
+//  
+//  /** this is the entity to which it is associated the wtList */
+//  private Entity widgetAssociatedEntity;
 
   /** a nicer way of handling the keyboard */
   private Map<Integer, Object> pressed;
@@ -135,22 +134,22 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     {
     Point2D screenPoint=e.getPoint();
     
-    // check if the command list is clicked.    
-    if(widgetCommandList!=null && widgetCommandList.clicked(screenPoint))     
-      {
-      // check that the entity still exists
-      if(gameObjects.has(widgetAssociatedEntity))                             
-        {
-        // execute the action
-        widgetAssociatedEntity.onAction(client, widgetCommandList.choosen()); 
-        // clean the command list.
-        widgetCommandList=null;                                               
-        return;
-        }
-      }
-    
-    /* If no command list was clicked but a click happened then delete the actual command list  */
-    widgetCommandList=null;
+//    // check if the command list is clicked.    
+//    if(widgetCommandList!=null && widgetCommandList.clicked(screenPoint))     
+//      {
+//      // check that the entity still exists
+//      if(gameObjects.has(widgetAssociatedEntity))                             
+//        {
+//        // execute the action
+//        widgetAssociatedEntity.onAction(client, widgetCommandList.choosen()); 
+//        // clean the command list.
+//        widgetCommandList=null;                                               
+//        return;
+//        }
+//      }
+//    
+//    /* If no command list was clicked but a click happened then delete the actual command list  */
+//    widgetCommandList=null;
     
     // get clicked entity
     Point2D point=screen.translate(screenPoint);
@@ -166,10 +165,12 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
         }
       else if(e.getButton()==MouseEvent.BUTTON3)
         {
-        // ... show context menu (aka command list) 
+        // ... show context menu (aka command list)
         String[] actions=entity.offeredActions();
-        widgetCommandList=new wtList(actions,screenPoint.getX(),screenPoint.getY());      
-        widgetAssociatedEntity=entity;  
+        if (actions.length > 0)
+          {
+          frame.setContextMenu(new CommandList(entity.getType(),actions,(int) screenPoint.getX(),(int) screenPoint.getY(),100,100,client,entity));
+          }
         }
       }
     }
@@ -206,7 +207,7 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
       
     if(e.getKeyCode()==KeyEvent.VK_L && e.isControlDown())
       {
-      /* Ifwe Ctrl+L we set the Game log dialog visible */
+      /* If Ctrl+L we set the Game log dialog visible */
       client.getGameLogDialog().setVisible(true);
       }
     else if(e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT || e.getKeyCode()==KeyEvent.VK_UP || e.getKeyCode()==KeyEvent.VK_DOWN)
@@ -266,7 +267,7 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     
   public void keyPressed(KeyEvent e) 
     {
-    widgetCommandList=null;
+//    widgetCommandList=null;
     
     if(!pressed.containsKey(Integer.valueOf(e.getKeyCode())))
       {
@@ -328,7 +329,6 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
       return;
     }
     
-    System.out.println("inspecting "+entity+" "+slot);
     inspectedEntity=entity;
     inspectedSlot=slot;
     
@@ -358,11 +358,11 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
 
   public void draw(GameScreen screen)
     {
-    // If there is a context menu (aka Command list) open, draw it 
-    if(widgetCommandList!=null)
-      {
-      widgetCommandList.draw(screen);
-      }
+//    // If there is a context menu (aka Command list) open, draw it 
+//    if(widgetCommandList!=null)
+//      {
+//      widgetCommandList.draw(screen);
+//      }
 
       // create the map if there is none yet
       StaticGameLayers gl = client.getStaticGameLayers();

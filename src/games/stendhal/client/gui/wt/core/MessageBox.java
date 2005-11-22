@@ -84,7 +84,7 @@ public class MessageBox extends Panel implements ClickListener, CloseListener
     registerCloseListener(this);
   }
   
-  /** draws the String */
+  /** draws the MessageBox */
   public Graphics draw(Graphics g)
   {
     // draw frame/title bar
