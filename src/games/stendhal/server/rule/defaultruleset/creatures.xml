@@ -1,28 +1,12 @@
 <creatures>
-  <!-- Example creature
-  <creature name="name of the creature">
-  	  <type class="class of the creature"
-  	     subclass="subclass of the creature"/>
-  	  <attributes atk="" def="" hp=""/>
-      <level value="0"/>
-  	  <experience value=""/>
-  	  <drops>
-  	  	<item value="item name" quantity="[min,max]" probability="0 to 100"/>
-  	  </drops>
-  	  <slots>
-  	  	<slot name="name of the slot" capacity="a number"/>
-  	  </slots>
-  	  <equips>
-  	  	<item name="name of the item" slot="name of the slot"/>  	  	      
-  	  </equips>
-  	  <ai>
-  	  	<profile name="AI profile."/>
-  	  </ai> 
-  </creature>
-  -->
+  <!-- Level -1 -->
   <creature name="deer">
   	<type class="animal" subclass="deer"/>
-  	<attributes atk="5" def="5" hp="5"/>
+  	<attributes>
+  		<attribute name="atk" value="5"/>
+  		<attribute name="def" value="5"/>
+  		<attribute name="hp" value="5"/>
+    </attributes>  		
     <level value="0"/>
   	<experience value="0"/>
   	<drops>
@@ -38,9 +22,16 @@
   		<profile name="coward"/>
   	</ai>
   </creature>
+  
+  <!-- Level 0 -->
+
   <creature name="rat">
   	<type class="animal" subclass="rat"/>
-  	<attributes atk="17" def="9" hp="20"/>
+  	<attributes>
+  		<attribute name="atk" value="17"/>
+  		<attribute name="def" value="9"/>
+  		<attribute name="hp" value="20"/>
+    </attributes>  		
     <level value="0"/>
   	<experience value="5"/>
   	<drops>
@@ -57,9 +48,14 @@
   		<profile name="coward"/>
   	</ai>
   </creature>
+
   <creature name="caverat">
   	<type class="animal" subclass="caverat"/>
-  	<attributes atk="19" def="9" hp="30"/>
+  	<attributes>
+  		<attribute name="atk" value="19"/>
+  		<attribute name="def" value="9"/>
+  		<attribute name="hp" value="30"/>
+    </attributes>  		
     <level value="0"/>
   	<experience value="10"/>
   	<drops>
@@ -76,9 +72,16 @@
   		<profile name="coward"/>
   	</ai>
   </creature>
+  
+  <!-- Level 1 -->
+  
   <creature name="cobra">
   	<type class="animal" subclass="cobra"/>
-  	<attributes atk="30" def="10" hp="15"/>
+  	<attributes>
+  		<attribute name="atk" value="30"/>
+  		<attribute name="def" value="10"/>
+  		<attribute name="hp" value="15"/>
+    </attributes>  		
     <level value="1"/>
   	<experience value="10"/>
   	<drops>
@@ -96,7 +99,11 @@
   </creature>
   <creature name="boar">
   	<type class="animal" subclass="boar"/>
-  	<attributes atk="34" def="11" hp="30"/>
+  	<attributes>
+  		<attribute name="atk" value="34"/>
+  		<attribute name="def" value="11"/>
+  		<attribute name="hp" value="30"/>
+    </attributes>  		
     <level value="1"/>
   	<experience value="15"/>
   	<drops>
@@ -113,7 +120,11 @@
   </creature>
   <creature name="wolf">
   	<type class="animal" subclass="wolf"/>
-  	<attributes atk="35" def="11" hp="30"/>
+  	<attributes>
+  		<attribute name="atk" value="35"/>
+  		<attribute name="def" value="11"/>
+  		<attribute name="hp" value="30"/>
+    </attributes>  		
     <level value="1"/>
   	<experience value="18"/>
   	<drops>
@@ -129,9 +140,16 @@
   		<profile name="ofensive"/>
   	</ai>
   </creature>
+  
+  <!-- Level 2 -->
+  
   <creature name="bear">
   	<type class="animal" subclass="bear"/>
-  	<attributes atk="45" def="11" hp="50"/>
+  	<attributes>
+  		<attribute name="atk" value="45"/>
+  		<attribute name="def" value="11"/>
+  		<attribute name="hp" value="50"/>
+    </attributes>  		
     <level value="2"/>
   	<experience value="20"/>
   	<drops>
@@ -147,9 +165,16 @@
   		<profile name="ofensive"/>
   	</ai>
   </creature>
+  
+  <!-- Level 3 -->
+  
   <creature name="skeleton">
   	<type class="undead" subclass="skeleton"/>
-  	<attributes atk="47" def="14" hp="30"/>
+  	<attributes>
+  		<attribute name="atk" value="47"/>
+  		<attribute name="def" value="14"/>
+  		<attribute name="hp" value="30"/>
+    </attributes>  		
     <level value="3"/>
   	<experience value="20"/>
   	<drops>
@@ -170,7 +195,11 @@
   </creature>
   <creature name="kobold">
   	<type class="kobold" subclass="kobold"/>
-  	<attributes atk="47" def="13" hp="30"/>
+  	<attributes>
+  		<attribute name="atk" value="47"/>
+  		<attribute name="def" value="13"/>
+  		<attribute name="hp" value="30"/>
+    </attributes>  		
     <level value="3"/>
   	<experience value="20"/>
   	<drops>
@@ -191,7 +220,11 @@
   </creature>
   <creature name="troll">
   	<type class="troll" subclass="troll"/>
-  	<attributes atk="50" def="13" hp="40"/>
+  	<attributes>
+  		<attribute name="atk" value="50"/>
+  		<attribute name="def" value="13"/>
+  		<attribute name="hp" value="40"/>
+    </attributes>  		
     <level value="3"/>
   	<experience value="25"/>
   	<drops>
@@ -212,7 +245,11 @@
   </creature>
  <creature name="goblin">
   	<type class="goblin" subclass="goblin"/>
-  	<attributes atk="47" def="14" hp="30"/>
+  	<attributes>
+  		<attribute name="atk" value="47"/>
+  		<attribute name="def" value="14"/>
+  		<attribute name="hp" value="30"/>
+    </attributes>  		
     <level value="3"/>
   	<experience value="30"/>
   	<drops>
@@ -230,9 +267,16 @@
   		<profile name="ofensive"/>
   	</ai>
   </creature>
+  
+  <!-- Level 4 -->
+  
  <creature name="orc">
   	<type class="orc" subclass="orc"/>
-  	<attributes atk="45" def="14" hp="40"/>
+  	<attributes>
+  		<attribute name="atk" value="45"/>
+  		<attribute name="def" value="14"/>
+  		<attribute name="hp" value="40"/>
+    </attributes>  		
     <level value="4"/>
   	<experience value="50"/>
   	<drops>
@@ -250,9 +294,16 @@
   		<profile name="ofensive"/>
   	</ai>
   </creature>
+  
+  <!-- Level 5 -->
+  
  <creature name="elf">
   	<type class="elf" subclass="elf"/>
-  	<attributes atk="48" def="13" hp="40"/>
+  	<attributes>
+  		<attribute name="atk" value="48"/>
+  		<attribute name="def" value="13"/>
+  		<attribute name="hp" value="40"/>
+    </attributes>  		
     <level value="5"/>
   	<experience value="50"/>
   	<drops>
@@ -274,7 +325,11 @@
   </creature>
  <creature name="dwarf">
   	<type class="dwarf" subclass="dwarf"/>
-  	<attributes atk="49" def="13" hp="50"/>
+  	<attributes>
+  		<attribute name="atk" value="49"/>
+  		<attribute name="def" value="13"/>
+  		<attribute name="hp" value="50"/>
+    </attributes>  		
     <level value="5"/>
   	<experience value="60"/>
   	<drops>
@@ -295,9 +350,16 @@
         <profile name="brave"/>
   	</ai>
  </creature>
+ 
+ <!-- Level 6 -->
+ 	
  <creature name="gargoyle">
   	<type class="gargoyle" subclass="gargoyle"/>
-  	<attributes atk="54" def="14" hp="55"/>
+  	<attributes>
+  		<attribute name="atk" value="54"/>
+  		<attribute name="def" value="14"/>
+  		<attribute name="hp" value="55"/>
+    </attributes>  		
     <level value="6"/>
   	<experience value="80"/>
   	<drops>
@@ -315,9 +377,16 @@
         <profile name="brave"/>
   	</ai>
  </creature>
+ 
+ <!-- Level 7 -->
+ 	
  <creature name="ogre">
   	<type class="ogre" subclass="ogre"/>
-  	<attributes atk="57" def="14" hp="70"/>
+  	<attributes>
+  		<attribute name="atk" value="57"/>
+  		<attribute name="def" value="14"/>
+  		<attribute name="hp" value="70"/>
+    </attributes>  		
     <level value="7"/>
   	<experience value="120"/>
   	<drops>
@@ -335,9 +404,16 @@
         <profile name="brave"/>
   	</ai>
  </creature>
+ 
+ <!-- Level 8 -->
+ 
  <creature name="cyclops">
   	<type class="cyclops" subclass="cyclops"/>
-  	<attributes atk="60" def="15" hp="80"/>
+  	<attributes>
+  		<attribute name="atk" value="60"/>
+  		<attribute name="def" value="15"/>
+  		<attribute name="hp" value="80"/>
+    </attributes>  		
     <level value="8"/>
   	<experience value="120"/>
   	<drops>
@@ -355,9 +431,16 @@
         <profile name="brave"/>
   	</ai>
  </creature>
+ 
+ <!-- Level 15 -->
+ 	
  <creature name="giantrat">
   	<type class="animal" subclass="giantrat"/>
-  	<attributes atk="80" def="20" hp="100"/>
+  	<attributes>
+  		<attribute name="atk" value="80"/>
+  		<attribute name="def" value="20"/>
+  		<attribute name="hp" value="100"/>
+    </attributes>  		
     <level value="15"/>
   	<experience value="1200"/>
   	<drops>
