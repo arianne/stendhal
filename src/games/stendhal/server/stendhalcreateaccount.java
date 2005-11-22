@@ -15,6 +15,7 @@ package games.stendhal.server;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 import games.stendhal.server.entity.*;
+import games.stendhal.server.rule.*;
 import marauroa.common.Log4J;
 
 /** The stendhalcreateaccount extends the createaccount class of marauroa package
@@ -45,11 +46,31 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
     object.put("outfit",0);
     object.put("base_hp",100);
     object.put("hp",100);
-    object.put("atk",2);
-    object.put("atk_xp",100);
-    object.put("def",2);
-    object.put("def_xp",100);
+    object.put("atk",10);
+    object.put("atk_xp",0);
+    object.put("def",10);
+    object.put("def_xp",0);
     object.put("xp",0);
+    
+    RuleManager manager=RuleSetFactory.getRuleSet("default");
+    
+    RPSlot slot=new RPSlot("armor");
+    object.addSlot(slot);
+    Entity entity=manager.getEntityManager().getItem("armor");
+    slot.assignValidID(entity);
+    slot.add(entity);
+
+    slot=new RPSlot("lhand");
+    object.addSlot(slot);
+    entity=manager.getEntityManager().getItem("shield");
+    slot.assignValidID(entity);
+    slot.add(entity);
+
+    slot=new RPSlot("rhand");
+    object.addSlot(slot);
+    entity=manager.getEntityManager().getItem("club");
+    slot.assignValidID(entity);
+    slot.add(entity);
     
     return object;
     }

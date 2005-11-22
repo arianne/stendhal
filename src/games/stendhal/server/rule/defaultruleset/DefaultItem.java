@@ -30,8 +30,8 @@ public enum DefaultItem
   BROADSWORD ("sword" , "broadsword","weapon", 1         , new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","14")),
   BUSTER     ("sword" , "buster"    ,"weapon", 1         , new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","14")),
   CLUB       ("club"  , "club"      ,"weapon", 1         , new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","7")),
-  ARMOR      ("armor" , "armor"     ,"armor" , 1         , new String[] {"armor"}        ,       -1, new Pair<String, String>("def","14")),
-  SHIELD     ("shield", "shield"    ,"armor" , 1         , new String[] {"lhand","rhand"},       -1, new Pair<String, String>("def","7")),
+  ARMOR      ("armor" , "armor"     ,"armor" , 1         , new String[] {"armor"}        ,       -1, new Pair<String, String>("def","4")),
+  SHIELD     ("shield", "shield"    ,"armor" , 1         , new String[] {"lhand","rhand"},       -1, new Pair<String, String>("def","14")),
   MONEY      ("money",  "gold"      ,"money" , 0         , new String[] {"lhand","rhand","bag"}, -1, new Pair<String, String>("quantity","1"));
 
   /** items class */

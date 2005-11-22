@@ -181,7 +181,7 @@ public abstract class RPEntity extends Entity
     put("atk_xp",atk_xp);
 
     int newLevel=Level.getLevel(atk_xp);
-    int levels=newLevel-getATK();
+    int levels=newLevel-(getATK()-10);
     
     if(levels>0)
       {
@@ -208,7 +208,7 @@ public abstract class RPEntity extends Entity
     put("def_xp",def_xp);
 
     int newLevel=Level.getLevel(def_xp);
-    int levels=newLevel-getDEF();
+    int levels=newLevel-(getDEF()-10);
     
     if(levels>0)
       {
@@ -609,38 +609,38 @@ public abstract class RPEntity extends Entity
   /** returns true if the entity has a weapon equipped */
   public boolean hasWeapon()
     {
-    return checkSlotForItem("lhand", "weapon") || checkSlotForItem("rhand", "weapon");
+    return checkSlotForItem("lhand", "club") || checkSlotForItem("rhand", "club");
     }
   
   public Item getWeapon()
     {
-    Item item = getFirstItemFromSlot("lhand", "weapon");
+    Item item = getFirstItemFromSlot("lhand", "club");
     if (item != null)
       {
       return item;
       }
     else
       {
-      return getFirstItemFromSlot("rhand", "weapon");
+      return getFirstItemFromSlot("rhand", "club");
       }
     }
   
   /** returns true if the entity has a shield equipped */
   public boolean hasShield()
     {
-    return checkSlotForItem("lhand", "armor") || checkSlotForItem("rhand", "armor");
+    return checkSlotForItem("lhand", "shield") || checkSlotForItem("rhand", "shield");
     }
   
   public Item getShield()
     {
-    Item item = getFirstItemFromSlot("lhand", "armor");
+    Item item = getFirstItemFromSlot("lhand", "shield");
     if (item != null)
       {
       return item;
       }
     else
       {
-      return getFirstItemFromSlot("rhand", "armor");
+      return getFirstItemFromSlot("rhand", "shield");
       }
     }
     

@@ -71,6 +71,8 @@ public class StendhalRPAction
         
         risk=2*source.getATK()-target.getDEF()+roll-10;        
         
+        logger.debug("attack from "+source+" to "+target+": Risk to strike: "+risk);
+
         if(risk<0)
           {
           risk=0;
@@ -81,7 +83,6 @@ public class StendhalRPAction
           risk=1;
           }
         
-        logger.debug("attack from "+source+" to "+target+": Risk to strike: "+risk);
         source.put("risk",risk);
 
         int damage=0;
@@ -105,8 +106,10 @@ public class StendhalRPAction
             weapon=source.getWeapon().getAttack();
             }
 
-          float maxDamage=(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
-          float attackerComponent=0.8f*(float)Rand.roll1D100()/100.0f*(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
+          logger.debug("attacker has "+source.getATK()+" and uses a weapon of "+weapon);
+
+          float maxAttackerComponent=0.8f*(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
+          float attackerComponent=((float)Rand.roll1D100()/100.0f)*maxAttackerComponent;
 
           if(target.hasShield())
             {
@@ -118,9 +121,12 @@ public class StendhalRPAction
             armor=target.getArmor().getDefense();
             }
 
-          float defenderComponent=0.6f*(float)Rand.roll1D100()/100.0f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor;
+          logger.debug("defender has "+target.getDEF()+" and uses shield of "+shield+" and armor of "+armor);
+
+          float maxDefenderComponent=0.6f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor;
+          float defenderComponent=((float)Rand.roll1D100()/100.0f)*maxDefenderComponent;
           
-          damage=(int)(((attackerComponent-defenderComponent)/maxDamage)*(maxDamage/(float)source.getATK()));
+          damage=(int)(((attackerComponent-defenderComponent)/maxAttackerComponent)*(maxAttackerComponent/maxDefenderComponent)*((float)source.getATK()/10.0f));
 
           if(damage>0) // Hit
             {
