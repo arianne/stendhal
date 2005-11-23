@@ -15,6 +15,8 @@ package games.stendhal.client;
 import games.stendhal.client.gui.GameLogDialog;
 import games.stendhal.client.gui.InGameGUI;
 import games.stendhal.client.gui.OutfitDialog;
+import games.stendhal.client.gui.wt.core.WindowManager;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -357,6 +359,8 @@ public class StendhalClient extends ariannexp
     {
     Log4J.startMethod(logger,"requestLogout");
     keepRunning=false;
+    // try to save the window configuration
+    WindowManager.getInstance().save();
     Log4J.finishMethod(logger,"requestLogout");
     }
   

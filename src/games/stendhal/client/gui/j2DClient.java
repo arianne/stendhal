@@ -13,6 +13,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.*;
+import games.stendhal.client.gui.wt.core.WindowManager;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -101,6 +102,8 @@ public class j2DClient extends JFrame
       public void windowClosing(WindowEvent e)
         {
         gameRunning=false;
+        // try to save the window configuration
+        WindowManager.getInstance().save();
         }
       });
 

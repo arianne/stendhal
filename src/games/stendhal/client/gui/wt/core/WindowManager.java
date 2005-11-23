@@ -12,10 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt.core;
 
+import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
 
 /**
  * This manager keeps track of all the windows and their positions/
@@ -25,12 +28,23 @@ import java.util.Properties;
  */
 public class WindowManager
 {
+  /** filename for the settings persistence */
+  private static final String FILE_NAME = "windows.properties";
+  /** the saved window positions */
+  private Properties properties;
   /** the instance */
   private static WindowManager instance;
   
   /** maps the window names to their configs */
   private Map<String, WindowConfiguration> configs = new HashMap<String, WindowConfiguration>();
   
+  /** no public constuctor */
+  private WindowManager()
+  {
+    // try to read the configurations from disk
+    read();
+  }
+
   /** returns the windowmanagers instance */
   public static WindowManager getInstance()
   {
@@ -40,19 +54,55 @@ public class WindowManager
     }
     return instance;
   }
-
-  /** no public constuctor */
-  private WindowManager()
-  { }
   
-  /** */
-  private WindowConfiguration getConfig(String name)
+  /** saves the current settings to a file */
+  public void save()
   {
-    if (!configs.containsKey(name))
+    StringBuilder buf = new StringBuilder(); 
+    for (WindowConfiguration config : configs.values())
     {
-      configs.put(name,new WindowConfiguration(name));
+      buf.append(config.writeToPropertyString());
     }
-    return configs.get(name);
+    try
+    {
+      File file = new File(FILE_NAME);
+      FileWriter writer = new FileWriter(file);
+      writer.append(buf.toString());
+      writer.close();
+    }
+    catch (IOException e)
+    {
+      // ignore exception
+      e.printStackTrace();
+    } 
+  }
+
+  /** saves the current settings to a file */
+  public void read()
+  {
+    properties = new Properties();
+    try
+    {
+      InputStream propsFile = new FileInputStream(new File(FILE_NAME));
+      properties.load(propsFile);
+    }
+    catch (IOException e)
+    {
+      // ignore exception
+      e.printStackTrace();
+    }
+  }
+  
+  /** returns the config. If it does not exist yet, a new one is created. */
+  private WindowConfiguration getConfig(Panel panel)
+  {
+    if (!configs.containsKey(panel.getName()))
+    {
+      WindowConfiguration config = new WindowConfiguration(panel.getName());
+      config.readFromProperties(properties, panel);
+      configs.put(panel.getName(),config);
+    }
+    return configs.get(panel.getName());
   }
 
   /** Formats the window with the saved config.
@@ -60,7 +110,8 @@ public class WindowManager
    */
   public void formatWindow(Panel panel)
   {
-    WindowConfiguration config = configs.get(panel.getName());
+    System.out.println("formating "+panel.getName());
+    WindowConfiguration config = getConfig(panel);
     if (config == null)
     {
       // window not supervised
@@ -74,7 +125,7 @@ public class WindowManager
   /** the panel was moved, so update the internal representation */
   public void moveTo(Panel panel, int x, int y)
   {
-    WindowConfiguration config = getConfig(panel.getName());
+    WindowConfiguration config = getConfig(panel);
     config.x = x;
     config.y = y;
   }
@@ -82,7 +133,7 @@ public class WindowManager
   /** the panels minimized state changed, update the internal representation */
   public void setMinimized(Panel panel, boolean state)
   {
-    WindowConfiguration config = getConfig(panel.getName());
+    WindowConfiguration config = getConfig(panel);
     config.minimized = state;
   }
   
@@ -131,12 +182,12 @@ public class WindowManager
     }
 
     /** reads the config from the properties */
-    public void readFromProperties(Properties props)
+    public void readFromProperties(Properties props, Panel defaults)
     {
-      minimized = Boolean.parseBoolean(props.getProperty("window."+name+".minimized","false"));
+      minimized = Boolean.parseBoolean(props.getProperty("window."+name+".minimized",Boolean.toString(defaults.isMinimized())));
       enabled = Boolean.parseBoolean(props.getProperty("window."+name+".enabled","true"));
-      x = Integer.parseInt(props.getProperty("window."+name+".x","0"));
-      y = Integer.parseInt(props.getProperty("window."+name+".y","0"));
+      x = Integer.parseInt(props.getProperty("window."+name+".x",Integer.toString(defaults.getX())));
+      y = Integer.parseInt(props.getProperty("window."+name+".y",Integer.toString(defaults.getY())));
     }
     
   }

@@ -128,8 +128,11 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
     // close the old minimap if there is one
     if (minimap != null)
     {
-      minimap.close();
+      boolean enabled = minimapEnabled; 
+      minimap.close(); // onClose() Listener disables the minimap
       minimap = null;
+      
+      minimapEnabled = enabled; // restore enabled state
     }
     if (minimapEnabled)
     {
