@@ -1,20 +1,4 @@
 <items>
-  <!-- Example creature
-  <item name="name of the item">
-  	  <type class="class of the item"
-  	     subclass="subclass of the item"/>
-  	  <attributes>
-  	  	<attribute name="atk" value="0"/>
-  	  	<attribute name="def" value="0"/>
-  	  	<attribute name="quantity" value="0"/>
-  	  </attributes>
-  	  <weight value="weight of the item"/>
-  	  <equipable>
-  	  	<slot name="name of the slot where item can be equipped">
-  	  </equipable>
-  </item>
-  -->
-
   <item name="knife">
   	  <type class="sword" subclass="knife"/>
   	  <attributes>
@@ -149,6 +133,7 @@
   </item>
   <item name="arrow">
   	  <type class="projectile" subclass="arrow"/>
+  	  <stackable/>
   	  <attributes>
   	  	<attribute name="atk" value="1"/>
   	  </attributes>
@@ -202,7 +187,7 @@
   	  </attributes>
   	  <weight value="5"/>
   	  <equipable>
-  	  	<slot name="armor">
+  	  	<slot name="armor"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
@@ -213,7 +198,7 @@
   	  </attributes>
   	  <weight value="15"/>
   	  <equipable>
-  	  	<slot name="armor">
+  	  	<slot name="armor"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
@@ -224,7 +209,7 @@
   	  </attributes>
   	  <weight value="25"/>
   	  <equipable>
-  	  	<slot name="armor">
+  	  	<slot name="armor"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
@@ -235,7 +220,7 @@
   	  </attributes>
   	  <weight value="45"/>
   	  <equipable>
-  	  	<slot name="armor">
+  	  	<slot name="armor"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
@@ -246,7 +231,7 @@
   	  </attributes>
   	  <weight value="2"/>
   	  <equipable>
-  	  	<slot name="head">
+  	  	<slot name="head"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
@@ -257,7 +242,7 @@
   	  </attributes>
   	  <weight value="4"/>
   	  <equipable>
-  	  	<slot name="head">
+  	  	<slot name="head"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
@@ -268,7 +253,7 @@
   	  </attributes>
   	  <weight value="5"/>
   	  <equipable>
-  	  	<slot name="head">
+  	  	<slot name="head"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
@@ -280,7 +265,7 @@
   	  </attributes>
   	  <weight value="10"/>
   	  <equipable>
-  	  	<slot name="legs">
+  	  	<slot name="legs"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
@@ -291,7 +276,7 @@
   	  </attributes>
   	  <weight value="12"/>
   	  <equipable>
-  	  	<slot name="legs">
+  	  	<slot name="legs"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
@@ -302,7 +287,30 @@
   	  </attributes>
   	  <weight value="15"/>
   	  <equipable>
-  	  	<slot name="legs">
+  	  	<slot name="legs"/>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+
+  <item name="money">
+  	  <type class="money" subclass="gold"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  </attributes>
+  	  <weight value="0.01"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+  <item name="meat">
+  	  <type class="food" subclass="meat"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>

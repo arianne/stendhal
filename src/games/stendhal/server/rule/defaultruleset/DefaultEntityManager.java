@@ -20,12 +20,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
+
 /**
  * entity manager for the default ruleset
  * @author Matthias Totz
  */
 public class DefaultEntityManager implements EntityManager
 {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(DefaultEntityManager.class);
+
   /** the singleton instance, lazy initialisation */
   private static DefaultEntityManager manager;
 
@@ -45,16 +51,21 @@ public class DefaultEntityManager implements EntityManager
     // Build the creatures tables
     classToCreature = new HashMap<String,DefaultCreature>();
     
-    CreatureXMLLoader loader=CreatureXMLLoader.get();
-    
     try
       {
+      CreatureXMLLoader loader=CreatureXMLLoader.get();    
       List<DefaultCreature> creatures=loader.load("games/stendhal/server/rule/defaultruleset/creatures.xml");
 
       for (DefaultCreature creature : creatures )
       {
         int id = creature.getTileId();
-        String clazz = creature.getCreatureClass();
+        String clazz = creature.getCreatureName();
+        
+        if(classToCreature.containsKey(clazz))
+          {
+          logger.warn("Repeated creature name: "+clazz);
+          }
+
         classToCreature.put(clazz, creature);
         if (id > 0)
         {
@@ -70,17 +81,33 @@ public class DefaultEntityManager implements EntityManager
     
     // Build the items tables
     classToItem = new HashMap<String,DefaultItem>();
-    DefaultItem[] items = DefaultItem.values();
-    for (DefaultItem item : items)
-    {
-      int id = item.getTileId();
-      String clazz = item.getItemClass();
-      classToItem.put(clazz, item);
-      if (id > 0)
+    
+    try
       {
-        idToClass.put(id, clazz);
+      ItemXMLLoader loader=ItemXMLLoader.get();
+      List<DefaultItem> items=loader.load("games/stendhal/server/rule/defaultruleset/items.xml");
+
+      for (DefaultItem item : items)
+      {
+        int id = item.getTileId();
+        String clazz = item.getItemName();
+        
+        if(classToItem.containsKey(clazz))
+          {
+          logger.warn("Repeated item name: "+clazz);
+          }
+        
+        classToItem.put(clazz, item);
+        if (id > 0)
+        {
+          idToClass.put(id, clazz);
+        }
       }
-    }
+      }
+    catch(org.xml.sax.SAXException e)
+      {
+      e.printStackTrace();      
+      }
   }
 
   /** 

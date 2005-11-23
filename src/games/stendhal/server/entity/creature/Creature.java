@@ -119,7 +119,7 @@ public class Creature extends NPC
 
   /** creates a new creature with the given properties
    */
-  public Creature(String clazz, int hp, int attack, int defense, int xp, int width, int height, double speed) throws AttributeNotFoundException
+  public Creature(String clazz, int hp, int attack, int defense, int level, int xp, int width, int height, double speed) throws AttributeNotFoundException
     {
     super();
     put("type","creature");
@@ -138,7 +138,8 @@ public class Creature extends NPC
     setXP(xp);
     setBaseHP(hp);
     setHP(hp);
-    setLevel(Level.getLevel(xp));
+
+    setLevel(level);
 
     stop();
     logger.debug("Created "+clazz+":"+this);

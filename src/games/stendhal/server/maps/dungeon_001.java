@@ -26,13 +26,13 @@ public class dungeon_001
     zone.add(portal);
     zone.addPortal(portal);
 
-    Item itemo = zone.getWorld().getRuleManager().getEntityManager().getItem("sword");
+    Item itemo = zone.getWorld().getRuleManager().getEntityManager().getItem("short sword");
     zone.assignRPObjectID(itemo);
     itemo.setx(72);
     itemo.sety(48);
     zone.add(itemo);
 
-    itemo = zone.getWorld().getRuleManager().getEntityManager().getItem("shield");
+    itemo = zone.getWorld().getRuleManager().getEntityManager().getItem("studded shield");
     zone.assignRPObjectID(itemo);
     itemo.setx(75);
     itemo.sety(83);

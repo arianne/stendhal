@@ -16,6 +16,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.ActionManager;
 import marauroa.common.game.RPSlot;
+import java.util.List;
 
 /**
  *
@@ -55,7 +56,7 @@ public class DefaultActionManager implements ActionManager
   public String canEquip(RPEntity entity, Item item)
   {
     // get all possible slots for this item
-    String[] slots = item.getPossibleSlots();
+    List<String> slots = item.getPossibleSlots();
 
     for (String slot : slots)
     {

@@ -147,7 +147,7 @@ public class StendhalRPWorld extends RPWorld
       }
     catch(Exception e)
       {
-      logger.info("Zone '"+name+"' doesn't have an extra populate method");
+      logger.info("Zone '"+name+"' doesn't have an extra populate method",e);
       }
     }
   

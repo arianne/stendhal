@@ -298,6 +298,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\CommandList.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\EntityContainer.java</path>
 				<source>true</source>
 			</fileitem>
@@ -322,10 +326,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\wtList.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\core\Button.java</path>
 				<source>true</source>
 			</fileitem>
@@ -347,6 +347,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\core\Frame.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\core\List.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -558,6 +562,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\rule\defaultruleset\CreatureXMLLoader.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\rule\defaultruleset\DefaultActionManager.java</path>
 				<source>true</source>
 			</fileitem>
@@ -579,6 +587,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\rule\defaultruleset\items.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\rule\defaultruleset\ItemXMLLoader.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -66,9 +66,9 @@ public class city
     zone.assignRPObjectID(chest);
     chest.setx(44);
     chest.sety(60);
-    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("sword"));
-    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("shield"));
-    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("armor"));
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("knife"));
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("wooden shield"));
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("leather armor"));
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("money"));
     zone.add(chest);
     

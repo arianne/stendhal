@@ -15,6 +15,7 @@ import games.stendhal.server.entity.PassiveEntity;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
+import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -26,13 +27,14 @@ public class Item extends PassiveEntity
   {
   
   /** list of possible slots for this item */
-  private String[] possibleSlots;
+  private List<String> possibleSlots;
 
   public static void generateRPClass()
     {
     RPClass entity=new RPClass("item");
     entity.isA("entity");
     entity.add("class",RPClass.STRING); // class, sword/armor/...
+    entity.add("subclass",RPClass.STRING); // subclass, long sword/leather armor/...
     entity.add("name",RPClass.STRING);  // name of item (ie 'Kings Sword')
     entity.add("possibleslots",RPClass.STRING); // komma separated list of slots
     entity.add("atk",RPClass.SHORT);  // Some items has attack values
@@ -48,10 +50,11 @@ public class Item extends PassiveEntity
    * @param slots slots where this item may be equipped. may be empty
    * @param attributes attributes (like attack). may be empty or <code>null</code>
    */
-  public Item(String name, String clazz, String[] slots, Map<String, String> attributes)
+  public Item(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
   {
     this();
     put("class",clazz);
+    put("subclass",subclass);
     put("name",name);
     // save slots
     possibleSlots = slots;
@@ -129,6 +132,15 @@ public class Item extends PassiveEntity
 
     throw new IllegalStateException("the item does not have a class: "+this);
   }
+
+  /** returns the type of the item */
+  public String getItemSubclass()
+  {
+    if (has("class"))
+      return get("class");
+
+    throw new IllegalStateException("the item does not have a class: "+this);
+  }
   
   /** returns the name of the item */
   public String getName()
@@ -137,7 +149,7 @@ public class Item extends PassiveEntity
   }
   
   /** returns the list of possible slots for this item */
-  public String[] getPossibleSlots()
+  public List<String> getPossibleSlots()
   {
     return possibleSlots;
   }

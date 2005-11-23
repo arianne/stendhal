@@ -14,20 +14,22 @@ package games.stendhal.server.entity.item;
 
 import marauroa.common.game.*;
 import java.util.Map;
+import java.util.List;
+import java.util.LinkedList;
 
 public class Money extends Item implements Stackable
   {
   private int quantity;
   
-  public Money(String name, String clazz, String[] slots, Map<String, String> attributes)
+  public Money(String name, String clazz, List<String> slots, Map<String, String> attributes)
     {
-    super("money","money", new String[0], attributes);
+    super("money","money", "gold", slots, attributes);
     update();
     }
 
   public Money(int quantity)
     {
-    super("money","money", new String[0], null);
+    super("money","money", "gold", new LinkedList<String>(), null);
     put("quantity",quantity);
 
     this.quantity=quantity;

@@ -65,7 +65,7 @@ public class DefaultCreature
   /** returns a creature-instance */
   public Creature getCreature()
   {
-    return new Creature(clazz, hp, atk, def, xp, width, height, speed);
+    return new Creature(clazz, hp, atk, def, level, xp, width, height, speed);
   }
   
   /** returns the tileid */
@@ -78,5 +78,10 @@ public class DefaultCreature
   public String  getCreatureClass()
   {
     return clazz;
+  }
+
+  public String  getCreatureName()
+  {
+    return name;
   }
 }

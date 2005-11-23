@@ -29,8 +29,19 @@ public class Item extends PassiveEntity
 
   protected void loadSprite(RPObject object)
     {
-    SpriteStore store=SpriteStore.get();        
-    sprite=store.getSprite("sprites/items/"+object.get("class")+".png");
+    SpriteStore store=SpriteStore.get();   
+    String name=null;
+    
+    if(object.has("subclass"))
+      {
+      name=object.get("class")+"/"+object.get("subclass");
+      }     
+    else
+      {
+      name=object.get("class");
+      }     
+    
+    sprite=store.getSprite("sprites/items/"+name+".png");
     }
 
 

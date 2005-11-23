@@ -23,17 +23,8 @@ import java.util.Map;
  * point and stuff that increase the defense points
  * @author Matthias Totz
  */
-public enum DefaultItem
+public class DefaultItem
 {
-  //            class    , subclass   ,  name,   , weight  ,  all possible slots,            tileid,  properties
-  SWORD      ("sword" , "sword"     ,"weapon", 1         ,new String[] {"rhand","lhand"},        -1, new Pair<String, String>("atk","14")),
-  BROADSWORD ("sword" , "broadsword","weapon", 1         , new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","14")),
-  BUSTER     ("sword" , "buster"    ,"weapon", 1         , new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","14")),
-  CLUB       ("club"  , "club"      ,"weapon", 1         , new String[] {"rhand","lhand"},       -1, new Pair<String, String>("atk","7")),
-  ARMOR      ("armor" , "armor"     ,"armor" , 1         , new String[] {"armor"}        ,       -1, new Pair<String, String>("def","4")),
-  SHIELD     ("shield", "shield"    ,"armor" , 1         , new String[] {"lhand","rhand"},       -1, new Pair<String, String>("def","14")),
-  MONEY      ("money",  "gold"      ,"money" , 0         , new String[] {"lhand","rhand","bag"}, -1, new Pair<String, String>("quantity","1"));
-
   /** items class */
   private String clazz;
   /** items sub class */
@@ -41,15 +32,15 @@ public enum DefaultItem
   /** items type */
   private String name;
   
-  private int weight;
+  private double weight;
   /** slots where this item can be equiped */
-  private String[] slots;
+  private List<String> slots;
   /** Map Tile Id */
   private int tileid;
   /** Attributes of the item */
   private Map<String, String> attributes;
   
-  DefaultItem(String clazz, String subclazz, String name, int weight, String[] slots, int tileid, Pair<String, String> attribute)
+  public DefaultItem(String clazz, String subclazz, String name, double weight, List<String> slots, int tileid, Pair<String, String> attribute)
   {
     this.clazz = clazz;
     this.subclazz = subclazz;
@@ -61,8 +52,7 @@ public enum DefaultItem
     this.attributes.put(attribute.first(), attribute.second());
   }
 
-  @SuppressWarnings("unused")
-  DefaultItem(String clazz, String subclazz, String name, int weight, String[] slots, int tileid, List<Pair<String, String>> attributes)
+  public DefaultItem(String clazz, String subclazz, String name, double weight, List<String> slots, int tileid, List<Pair<String, String>> attributes)
   {
     this.clazz = clazz;
     this.subclazz = subclazz;
@@ -86,7 +76,7 @@ public enum DefaultItem
       }
     else
       {
-      return new Item(name, clazz, slots, attributes);
+      return new Item(name, clazz, subclazz, slots, attributes);
       }
     }
   
@@ -102,4 +92,8 @@ public enum DefaultItem
     return clazz;
   }
   
+  public String  getItemName()
+  {
+    return name;
+  }
 }
