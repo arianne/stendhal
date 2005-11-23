@@ -93,7 +93,6 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
     }
     this.contextMenu = contextMenu;
     recreatedContextMenu = true;
-    System.out.println("contextmenu at "+contextMenu.getX()+"x"+contextMenu.getY()+" created");
   }
   
   

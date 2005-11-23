@@ -12,9 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameObjects;
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.*;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.wt.core.Panel;
 
@@ -33,6 +31,9 @@ import marauroa.common.game.RPSlot;
  */
 public class EntityContainer extends Panel
 {
+  /** when the player is this far away from the container, the panel is closed*/
+  private static final int MAX_DISTANCE = 5;
+  
   /** the panels for each item */
   private List<EntitySlot> slotPanels;
   /** the object which has the slot */
@@ -67,15 +68,13 @@ public class EntityContainer extends Panel
     {
       for (int x = 0; x < width; x++)
       {
-        EntitySlot entitySlot = new EntitySlot(name, slotSprite, x
-            * spriteWidth + x, y * spriteHeight + y, gameObjects);
+        EntitySlot entitySlot = new EntitySlot(name, slotSprite, x * spriteWidth + x, y * spriteHeight + y, gameObjects);
         slotPanels.add(entitySlot);
       }
     }
 
     // resize panel
-    this.resizeToFitClientArea(width * spriteWidth + (width - 1), height
-        * spriteHeight + (height - 1));
+    this.resizeToFitClientArea(width * spriteWidth + (width - 1), height * spriteHeight + (height - 1));
 
     for (EntitySlot entitySlot : slotPanels)
     {
@@ -96,7 +95,7 @@ public class EntityContainer extends Panel
     {
       return;
     }
-
+    
     RPSlot rpslot = parent.getSlot(slotName);
     Iterator<RPObject> it = (rpslot != null) ? rpslot.iterator() : null;
 
@@ -116,6 +115,27 @@ public class EntityContainer extends Panel
     }
   }
 
+  /**
+   * Check the distance of the player to the base item. When the player si too
+   * far away, this panel closes itself. Note that this is clientside only.  
+   */
+  private void checkDistance()
+  {
+    RPObject player = StendhalClient.get().getPlayer();
+    
+    int px = player.getInt("x");
+    int py = player.getInt("y");
+    int ix = (int) parent.getx();
+    int iy = (int) parent.gety();
+    
+    int distance = Math.abs(px-ix)+Math.abs(py-iy);
+
+    if (distance > MAX_DISTANCE)
+    {
+      close();
+    }
+  }
+
   /** sets the player entity */
   public void setSlot(Entity parent, String slot)
   {
@@ -129,7 +149,7 @@ public class EntityContainer extends Panel
    */
   public Graphics draw(Graphics g)
   {
-    if (parent != null && slotName != null)
+    if (parent != null && slotName != null && !isClosed())
     {
       RPSlot rpslot = parent.getSlot(slotName);
       // rescan the content if the size changes
@@ -139,6 +159,7 @@ public class EntityContainer extends Panel
         rescanSlotContent();
         slotSize = newSlotSize; 
       }
+      checkDistance();
     }
 
     return super.draw(g);
