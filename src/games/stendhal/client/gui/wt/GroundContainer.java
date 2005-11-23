@@ -20,6 +20,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Item;
 import games.stendhal.client.gui.wt.core.Draggable;
 import games.stendhal.client.gui.wt.core.Panel;
 
@@ -100,7 +101,8 @@ public class GroundContainer extends Panel
     Point2D point = screen.translate(new Point2D.Double(x,y));
     Entity object = gameObjects.at(point.getX(),point.getY());
     
-    if (object != null)
+    // only Items can be dragged
+    if (object != null && object instanceof Item)
     {
       return new MoveableEntityContainer(object, (int) point.getX(), (int) point.getY(), gameObjects);
     }
