@@ -102,7 +102,7 @@ public class GroundContainer extends Panel
     Entity object = gameObjects.at(point.getX(),point.getY());
     
     // only Items can be dragged
-    if (object != null && object instanceof Item)
+    if (object != null && object instanceof PassiveEntity)
     {
       return new MoveableEntityContainer(object, (int) point.getX(), (int) point.getY(), gameObjects);
     }
