@@ -273,7 +273,8 @@ public abstract class RPEntity extends Entity
     int newLevel=Level.getLevel(getXP());
     int levels=newLevel-getLevel();
 
-    if(levels>0)
+    // In case we level up several levels at a single time.
+    for(int i=0;i<levels;i++)
       {
       setBaseHP(getBaseHP()+10);
       setLevel(newLevel);
