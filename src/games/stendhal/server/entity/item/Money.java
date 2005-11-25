@@ -34,34 +34,6 @@ public class Money extends StackableItem
 
     this.quantity=quantity;
     }
-  
-  public void update() throws AttributeNotFoundException
-    {
-    if(has("quantity")) quantity=getInt("quantity");
-    }
-  
-  public int getQuantity()
-    {
-    return quantity;
-    }
-
-  public void setQuantity(int amount)
-    {
-    quantity=amount;
-    put("quantity",quantity);
-    }
-
-  public int add(int amount)
-    {
-    setQuantity(amount+quantity);
-    return quantity;
-    }
-  
-  public int add(Stackable other)
-    {
-    setQuantity(other.getQuantity()+quantity);
-    return quantity;
-    }
 
   public boolean isStackable(Stackable other)
     {
