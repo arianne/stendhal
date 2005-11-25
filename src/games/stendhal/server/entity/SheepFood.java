@@ -19,7 +19,7 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
 /** TODO: This is sheep food, it should be ported to the new Items system */
-public class Food extends Entity 
+public class SheepFood extends Entity 
   {
   private int amount;
   private double grow;
@@ -32,14 +32,14 @@ public class Food extends Entity
     food.add("amount",RPClass.BYTE);
     }
   
-  public Food(RPObject object) throws AttributeNotFoundException
+  public SheepFood(RPObject object) throws AttributeNotFoundException
     {
     super(object);
     put("type","food");
     update();
     }
 
-  public Food() throws AttributeNotFoundException
+  public SheepFood() throws AttributeNotFoundException
     {
     super();
     put("type","food");

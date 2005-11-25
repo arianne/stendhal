@@ -16,6 +16,7 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.item.Money;
 
 import java.awt.geom.Rectangle2D;
@@ -43,6 +44,8 @@ public class Player extends RPEntity
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
+      player.add("food",RPClass.INT,RPClass.HIDDEN);
+      
       player.add("reset",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
 
       // Use this for admin menus and usage.
@@ -637,10 +640,64 @@ public class Player extends RPEntity
     RPSlot slot=getSlot("!quests");
     if(slot.size()==0)
       {
-      logger.error("Expected to find something !quests slot");
+      logger.error("Expected to find something in !quests slot");
       }
     
     RPObject quests=(RPObject)slot.iterator().next();
     quests.put(name,1);
+    }
+  
+  public void eat(Food food)
+    {
+    if(has("food"))
+      {
+      System.out.println ("Consuming food: "+food.getAmount());
+      add("food",food.getAmount());
+      }
+    else
+      {
+      System.out.println ("Consuming food: "+food.getAmount());
+      put("food",food.getAmount());
+      }
+    
+    if(food.isContained())
+      {
+      // We modify the base container if the object change.
+      RPObject base=food.getContainer();      
+
+      while(base.isContained())
+        {
+        base=base.getContainer();
+        }
+      
+      RPSlot slot=food.getContainerSlot();
+      slot.remove(food.getID());
+      
+      world.modify(base);
+      }
+    else
+      {
+      world.remove(food.getID());
+      }
+    }
+  
+  public void consume()
+    {
+    if(has("food"))
+      {
+      int amount=getInt("food");
+      if(amount>0)
+        {
+        put("food",amount-1);
+        setHP(getHP()+1);
+  
+        world.modify(this);
+        }
+      else
+        {
+        remove("food");
+        world.modify(this);
+        }      
+      }
     }
   }

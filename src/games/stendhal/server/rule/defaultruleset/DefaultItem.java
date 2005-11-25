@@ -76,7 +76,11 @@ public class DefaultItem
     {
     if(clazz.equals("money"))
       {
-      return new Money(name, clazz, slots, attributes);
+      return new Money(slots, attributes);
+      }
+    else if(clazz.equals("food"))
+      {
+      return new Food(name, clazz, subclazz, slots, attributes);
       }
     else if(stackable)
       {

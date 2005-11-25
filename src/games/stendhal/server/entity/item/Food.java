@@ -17,25 +17,22 @@ import java.util.Map;
 import java.util.List;
 import java.util.LinkedList;
 
-public class Money extends StackableItem
+public class Food extends StackableItem
   {
   private int quantity;
   
-  public Money(List<String> slots, Map<String, String> attributes)
+  public Food(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
     {
-    super("money","money", "gold", slots, attributes);
+    super(name,clazz, subclass, slots, attributes);
     }
-
-  public Money(int quantity)
+  
+  public int getAmount()
     {
-    super("money","money", "gold", new LinkedList<String>(), null);
-    put("quantity",quantity);
-
-    this.quantity=quantity;
+    return getInt("amount");
     }
 
   public boolean isStackable(Stackable other)
     {
-    return (other.getClass() == Money.class);
+    return (other.getClass() == Food.class);
     }
   }

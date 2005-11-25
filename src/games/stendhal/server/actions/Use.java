@@ -17,6 +17,7 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import marauroa.common.Log4J;
@@ -56,6 +57,11 @@ public class Use extends ActionListener
             {
             StendhalRPAction.transferContent(player);
             }
+          }
+        else if(object instanceof Food)
+          {
+          player.eat((Food)object);
+          world.modify(player);
           }
         else if(object instanceof Chest)
           {          

@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.entity.Food;
+import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import java.awt.geom.Rectangle2D;
@@ -143,15 +143,15 @@ public class Sheep extends Creature
     return weight;
     }
 
-  private Food getNearestFood(double range)
+  private SheepFood getNearestFood(double range)
     {
     int x=getx();
     int y=gety();
     
     double distance=range*range; // We save this way several sqrt operations
-    Food chosen=null;
+    SheepFood chosen=null;
     
-    for(Food food: rp.getFoodItems())
+    for(SheepFood food: rp.getFoodItems())
       {
       if(food.get("zoneid").equals(get("zoneid")))
         {
@@ -172,7 +172,7 @@ public class Sheep extends Creature
     return chosen;
     }  
   
-  private void eat(Food food)
+  private void eat(SheepFood food)
     {
     int amount=food.getAmount();
     if(amount>0)
@@ -203,7 +203,7 @@ public class Sheep extends Creature
       }
     
     hungry++;
-    Food food=null;
+    SheepFood food=null;
     
     if(hungry>100 && (food=getNearestFood(6))!=null)
       {

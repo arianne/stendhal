@@ -24,8 +24,7 @@ import marauroa.common.game.RPClass;
  * This is an item.
  */
 public class Item extends PassiveEntity
-  {
-  
+  {  
   /** list of possible slots for this item */
   private List<String> possibleSlots;
 
@@ -39,6 +38,7 @@ public class Item extends PassiveEntity
     entity.add("possibleslots",RPClass.STRING); // komma separated list of slots
     entity.add("atk",RPClass.SHORT);  // Some items has attack values
     entity.add("def",RPClass.SHORT);  // Some items has defense values
+    entity.add("amount",RPClass.INT); // Some items has amount of something ( a bottle, a piece of meat ).
     entity.add("quantity",RPClass.INT); // Some items has quantity
     }
 

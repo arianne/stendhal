@@ -15,7 +15,7 @@ package games.stendhal.server;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Food;
+import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
@@ -51,7 +51,7 @@ public class StendhalRPZone extends MarauroaRPZone
 
   private List<NPC> npcs;
   private List<RespawnPoint> respawnPoints;
-  private List<Food> foodItems;
+  private List<SheepFood> foodItems;
   
   /** contains data to if a certain area is walkable*/
   public CollisionDetection collisionMap;
@@ -71,7 +71,7 @@ public class StendhalRPZone extends MarauroaRPZone
 
     npcs=new LinkedList<NPC>();
     respawnPoints=new LinkedList<RespawnPoint>();
-    foodItems=new LinkedList<Food>();
+    foodItems=new LinkedList<SheepFood>();
     
     collisionMap=new CollisionDetection();
     }
@@ -117,7 +117,7 @@ public class StendhalRPZone extends MarauroaRPZone
     return respawnPoints;
     }
 
-  public List<Food> getFoodItemList()
+  public List<SheepFood> getFoodItemList()
     {
     return foodItems;
     }
@@ -360,9 +360,9 @@ public class StendhalRPZone extends MarauroaRPZone
           break;
         case 91: /* sign */
           break;
-        case 92: /* Food */
+        case 92: /* SheepFood */
           {
-          Food food=new Food();
+          SheepFood food=new SheepFood();
           assignRPObjectID(food);
           food.setAmount(5);
           food.setx(x);

@@ -57,12 +57,12 @@ public class Item extends PassiveEntity
     
   public String defaultAction()
     {
-    return "Look";
+    return "Use";
     }
 
   public String[] offeredActions()
     {
-    String[] list={"Look"};
+    String[] list={"Use", "Look"};
     return list;
     }
 
@@ -71,6 +71,14 @@ public class Item extends PassiveEntity
     if(action.equals("Look"))
       {
       StendhalClient.get().addEventLine("You see a "+type,Color.green);
+      }
+    else if(action.equals("Use"))
+      {
+      RPAction rpaction=new RPAction();
+      rpaction.put("type","use");
+      int id=getID().getObjectID();
+      rpaction.put("target",id);      
+      client.send(rpaction);
       }
     else
       {

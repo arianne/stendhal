@@ -202,10 +202,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\entity\Money.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\entity\NormalCreature.java</path>
 				<source>true</source>
 			</fileitem>
@@ -243,6 +239,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\Speaker.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\StackableItem.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -499,6 +499,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Stackable.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\item\StackableItem.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

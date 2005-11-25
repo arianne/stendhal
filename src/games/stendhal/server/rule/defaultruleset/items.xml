@@ -308,6 +308,7 @@
   	  <stackable/>
   	  <attributes>
   	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="80"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -319,6 +320,7 @@
   	  <stackable/>
   	  <attributes>
   	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="20"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>

@@ -14,7 +14,7 @@ package games.stendhal.server;
 
 import games.stendhal.common.Pair;
 import games.stendhal.server.actions.*;
-import games.stendhal.server.entity.Food;
+import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
@@ -53,7 +53,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private List<Pair<RPEntity,RPEntity> > entityToKill;
 
   private List<RespawnPoint> respawnPoints;
-  private List<Food> foodItems;
+  private List<SheepFood> foodItems;
   private List<Corpse> corpses;
   private List<Corpse> corpsesToRemove;
   
@@ -90,7 +90,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     playersObjectRmText=new LinkedList<Player>();
     npcs=new LinkedList<NPC>();
     respawnPoints=new LinkedList<RespawnPoint>();
-    foodItems=new LinkedList<Food>();
+    foodItems=new LinkedList<SheepFood>();
     npcsToAdd=new LinkedList<NPC>();
     npcsToRemove=new LinkedList<NPC>();
     
@@ -183,7 +183,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     return playersObject;
     }
 
-  public List<Food> getFoodItems()
+  public List<SheepFood> getFoodItems()
     {
     return foodItems;
     }
@@ -319,6 +319,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           {
           StendhalRPAction.attack(object,object.getAttackTarget());
           }
+        
+        if(getTurn()%5==0 && object.has("food")) //1 round = 5 turns
+          {
+          System.out.println ("eating");
+          object.consume();
+          }
         }
 
       for(NPC npc: npcs) npc.logic();
@@ -357,7 +363,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     long start=System.nanoTime();
     try
       {
-      for(Food food: foodItems) food.regrow();
+      for(SheepFood food: foodItems) food.regrow();
       for(RespawnPoint point: respawnPoints) point.nextTurn();
       for(Corpse corpse: corpses) corpse.logic();
       }
