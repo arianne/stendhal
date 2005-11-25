@@ -39,8 +39,10 @@ public class DefaultItem
   private int tileid;
   /** Attributes of the item */
   private Map<String, String> attributes;
+  /** Is this item type stackable */
+  private boolean stackable;
   
-  public DefaultItem(String clazz, String subclazz, String name, double weight, List<String> slots, int tileid, Pair<String, String> attribute)
+  public DefaultItem(String clazz, String subclazz, String name, double weight, List<String> slots, int tileid, Pair<String, String> attribute, boolean stackable)
   {
     this.clazz = clazz;
     this.subclazz = subclazz;
@@ -50,9 +52,10 @@ public class DefaultItem
     this.tileid = tileid;
     this.attributes = new HashMap<String, String>();
     this.attributes.put(attribute.first(), attribute.second());
+    this.stackable=stackable;
   }
 
-  public DefaultItem(String clazz, String subclazz, String name, double weight, List<String> slots, int tileid, List<Pair<String, String>> attributes)
+  public DefaultItem(String clazz, String subclazz, String name, double weight, List<String> slots, int tileid, List<Pair<String, String>> attributes, boolean stackable)
   {
     this.clazz = clazz;
     this.subclazz = subclazz;
@@ -65,6 +68,7 @@ public class DefaultItem
     {
       this.attributes.put(attribute.first(), attribute.second());
     }
+    this.stackable=stackable;
   }
   
   /** returns an item-instance */
@@ -73,6 +77,10 @@ public class DefaultItem
     if(clazz.equals("money"))
       {
       return new Money(name, clazz, slots, attributes);
+      }
+    else if(stackable)
+      {
+      return new StackableItem(name, clazz, subclazz, slots, attributes);
       }
     else
       {

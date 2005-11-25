@@ -48,37 +48,7 @@ public class DefaultEntityManager implements EntityManager
   private DefaultEntityManager() 
   {
     idToClass = new HashMap<Integer, String>();
-    // Build the creatures tables
-    classToCreature = new HashMap<String,DefaultCreature>();
-    
-    try
-      {
-      CreatureXMLLoader loader=CreatureXMLLoader.get();    
-      List<DefaultCreature> creatures=loader.load("games/stendhal/server/rule/defaultruleset/creatures.xml");
 
-      for (DefaultCreature creature : creatures )
-      {
-        int id = creature.getTileId();
-        String clazz = creature.getCreatureName();
-        
-        if(classToCreature.containsKey(clazz))
-          {
-          logger.warn("Repeated creature name: "+clazz);
-          }
-
-        classToCreature.put(clazz, creature);
-        if (id > 0)
-        {
-          idToClass.put(id, clazz);
-        }
-      }
-      }
-    catch(org.xml.sax.SAXException e)
-      {
-      e.printStackTrace();      
-      }
-    
-    
     // Build the items tables
     classToItem = new HashMap<String,DefaultItem>();
     
@@ -98,6 +68,41 @@ public class DefaultEntityManager implements EntityManager
           }
         
         classToItem.put(clazz, item);
+        if (id > 0)
+        {
+          idToClass.put(id, clazz);
+        }
+      }
+      }
+    catch(org.xml.sax.SAXException e)
+      {
+      e.printStackTrace();      
+      }
+
+    // Build the creatures tables
+    classToCreature = new HashMap<String,DefaultCreature>();
+    
+    try
+      {
+      CreatureXMLLoader loader=CreatureXMLLoader.get();    
+      List<DefaultCreature> creatures=loader.load("games/stendhal/server/rule/defaultruleset/creatures.xml");
+
+      for (DefaultCreature creature : creatures )
+      {
+        int id = creature.getTileId();
+        String clazz = creature.getCreatureName();
+        
+        if(classToCreature.containsKey(clazz))
+          {
+          logger.warn("Repeated creature name: "+clazz);          
+          }
+        
+        if(!creature.verifyDroppedItems(this))
+          {
+          logger.warn("Items dropped by creature name: "+clazz+" doesn't exists");          
+          }
+
+        classToCreature.put(clazz, creature);
         if (id > 0)
         {
           idToClass.put(id, clazz);

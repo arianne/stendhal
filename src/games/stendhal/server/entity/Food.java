@@ -18,6 +18,7 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
+/** TODO: This is sheep food, it should be ported to the new Items system */
 public class Food extends Entity 
   {
   private int amount;

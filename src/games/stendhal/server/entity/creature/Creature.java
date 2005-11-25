@@ -14,11 +14,15 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Debug;
 import games.stendhal.common.Level;
+import games.stendhal.common.Rand;
 import games.stendhal.server.Path;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.rule.EntityManager;
 import games.stendhal.server.entity.npc.NPC;
 
 import java.awt.geom.Rectangle2D;
@@ -46,6 +50,30 @@ import org.apache.log4j.Logger;
  */
 public class Creature extends NPC
   {
+  public static class DropItem
+    {
+    public String name;
+    public double probability;
+    public int min;
+    public int max;
+    
+    public DropItem(String name, double probability, int min, int max)
+      {
+      this.name=name;
+      this.probability=probability;
+      this.min=min;
+      this.max=max;
+      }
+
+    public DropItem(String name, double probability, int amount)
+      {
+      this.name=name;
+      this.probability=probability;
+      this.min=amount;
+      this.max=amount;
+      }
+    }
+
   /** Enum classifying the possible (AI) states a creature can be in */
   private enum AiState
     {
@@ -81,9 +109,13 @@ public class Creature extends NPC
 
   /** the speed of this creature */
   private double speed;
+
   /** size in width of a tile */
   private int width; 
   private int height; 
+
+  /** Ths list of items this creature may drop */
+  private List<Creature.DropItem> dropsItems;
   
   
   public static void generateRPClass()
@@ -119,7 +151,7 @@ public class Creature extends NPC
 
   /** creates a new creature with the given properties
    */
-  public Creature(String clazz, int hp, int attack, int defense, int level, int xp, int width, int height, double speed) throws AttributeNotFoundException
+  public Creature(String clazz, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems) throws AttributeNotFoundException
     {
     super();
     put("type","creature");
@@ -128,6 +160,8 @@ public class Creature extends NPC
     this.speed = speed;
     this.width = width;
     this.height = height;
+    
+    this.dropsItems=dropItems;
 
     put("class",clazz);
     put("x",0);
@@ -179,6 +213,14 @@ public class Creature extends NPC
       }
 
     super.onDead(who);
+    }
+
+  protected void dropItemsOn(Corpse corpse)
+    {
+    for(Item item: createDroppedItems(world.getRuleManager().getEntityManager(), Rand.roll1D100()))
+      {
+      corpse.add(item);
+      }
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
@@ -493,5 +535,22 @@ public class Creature extends NPC
       put("debug",debug.toString());
     world.modify(this);
     Log4J.finishMethod(logger, "logic");
+    }
+
+  
+  private List<Item> createDroppedItems(EntityManager manager, double probability)
+    {
+    List<Item> list=new LinkedList<Item>();
+    
+    for(Creature.DropItem dropped: dropsItems)
+      {
+      if(dropped.probability<=probability)
+        {
+        Item item=manager.getItem(dropped.name);
+        list.add(item);
+        }
+      }
+    
+    return list;
     }
   }

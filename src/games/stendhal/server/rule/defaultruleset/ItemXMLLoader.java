@@ -26,6 +26,8 @@ public class ItemXMLLoader extends DefaultHandler
   private String subclass;
 
   private double weight;
+  
+  private boolean stackable;
 
   /** slots where this item can be equiped */
   private List<String> slots;
@@ -117,11 +119,16 @@ public class ItemXMLLoader extends DefaultHandler
       name=attrs.getValue("name");
       attributes=new LinkedList<Pair<String,String>>();
       slots=new LinkedList<String>();
+      stackable=false;
       }
     else if(qName.equals("type"))
       {
       clazz=attrs.getValue("class");
       subclass=attrs.getValue("subclass");
+      }
+    else if(qName.equals("stackable"))
+      {
+      stackable=true;
       }
     else if(qName.equals("weight"))
       {
@@ -156,7 +163,7 @@ public class ItemXMLLoader extends DefaultHandler
     {
     if(qName.equals("item"))
       {
-      DefaultItem item=new DefaultItem(clazz,subclass,name,weight,slots,-1,attributes);
+      DefaultItem item=new DefaultItem(clazz,subclass,name,weight,slots,-1,attributes,stackable);
       list.add(item);
       }
     }

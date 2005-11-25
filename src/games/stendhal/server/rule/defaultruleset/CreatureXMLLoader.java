@@ -11,7 +11,9 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 
+import games.stendhal.server.entity.creature.Creature;
 import marauroa.common.Log4J;
+import marauroa.common.Pair;
 import org.apache.log4j.Logger;
 
 
@@ -35,6 +37,8 @@ public class CreatureXMLLoader extends DefaultHandler
   
   private int xp;
   private int level;
+  
+  private List<Creature.DropItem> dropsItems;
   
   private List<DefaultCreature> list;
 
@@ -76,7 +80,7 @@ public class CreatureXMLLoader extends DefaultHandler
       // Parse the input
       SAXParser saxParser = factory.newSAXParser();
       
-      saxParser.parse(getClass().getClassLoader().getResourceAsStream(ref), this);
+      saxParser.parse(new File(ref) /* getClass().getClassLoader().getResourceAsStream(ref)*/ , this);
       } 
     catch(ParserConfigurationException t) 
       {
@@ -98,12 +102,16 @@ public class CreatureXMLLoader extends DefaultHandler
   public void endDocument() throws SAXException
     {
     }
+  
+  private boolean drops;
 
   public void startElement(String namespaceURI, String lName, String qName, Attributes attrs)throws SAXException
     {
     if(qName.equals("creature"))
       {
       name=attrs.getValue("name");
+      drops=false;
+      dropsItems=new LinkedList<Creature.DropItem>();
       }
     else if(qName.equals("type"))
       {
@@ -121,6 +129,41 @@ public class CreatureXMLLoader extends DefaultHandler
       {
       // XP rewarded is right now 5% of the creature real XP 
       xp=Integer.parseInt(attrs.getValue("value"))*20;
+      }
+    else if(qName.equals("drops"))
+      {
+      drops=true;
+      }
+    else if(qName.equals("item"))
+      {
+      if(drops)
+        {
+        String name=null;
+        Double probability=null;
+        String range=null;
+        
+        for(int i=0;i<attrs.getLength();i++)
+          {
+          if(attrs.getQName(i).equals("value"))
+            {
+            name=attrs.getValue(i);
+            }
+          else if(attrs.getQName(i).equals("probability"))
+            {
+            probability=Double.parseDouble(attrs.getValue(i));
+            }
+          else if(attrs.getQName(i).equals("quantity"))
+            {
+            range=attrs.getValue(i);
+            }
+          }
+        
+        if(name!=null && probability!=null)
+          {          
+          /** TODO: Compute range */
+          dropsItems.add(new Creature.DropItem(name,probability,1));
+          }
+        }
       }
     else if(qName.equals("attribute"))
       {
@@ -170,8 +213,12 @@ public class CreatureXMLLoader extends DefaultHandler
     {
     if(qName.equals("creature"))
       {
-      DefaultCreature creature=new DefaultCreature(clazz,subclass,name,tileid,hp,atk,def,level,xp, sizeWidth, sizeHeight,speed);
+      DefaultCreature creature=new DefaultCreature(clazz,subclass,name,tileid,hp,atk,def,level,xp, sizeWidth, sizeHeight,speed,dropsItems);
       list.add(creature);
+      }
+    else if(qName.equals("drops"))
+      {
+      drops=false;
       }
     }
 

@@ -314,4 +314,15 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+  <item name="cheese">
+  	  <type class="food" subclass="cheese"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
 </items>

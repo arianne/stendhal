@@ -17,24 +17,16 @@ import java.util.Map;
 import java.util.List;
 import java.util.LinkedList;
 
-public class Money extends StackableItem
+public class StackableItem extends Item implements Stackable
   {
   private int quantity;
   
-  public Money(String name, String clazz, List<String> slots, Map<String, String> attributes)
+  public StackableItem(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
     {
-    super("money","money", "gold", slots, attributes);
+    super(name, clazz, subclass, slots, attributes);
     update();
     }
 
-  public Money(int quantity)
-    {
-    super("money","money", "gold", new LinkedList<String>(), null);
-    put("quantity",quantity);
-
-    this.quantity=quantity;
-    }
-  
   public void update() throws AttributeNotFoundException
     {
     if(has("quantity")) quantity=getInt("quantity");
@@ -65,6 +57,6 @@ public class Money extends StackableItem
 
   public boolean isStackable(Stackable other)
     {
-    return (other.getClass() == Money.class);
+    return (other.getClass() == StackableItem.class);
     }
   }

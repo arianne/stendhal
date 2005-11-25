@@ -408,13 +408,7 @@ public abstract class RPEntity extends Entity
     Corpse corpse=new Corpse(this);
     
     // Add some reward inside the corpse
-    int amount=(int)(getXP()/100)+(Rand.roll1D6()-3);
-    if(amount>0)
-      {
-      Money money=(Money)world.getRuleManager().getEntityManager().getItem("money");
-      money.setQuantity(amount);
-      corpse.add(money);
-      }
+    dropItemsOn(corpse);
     
     IRPZone zone=world.getRPZone(getID());
     zone.assignRPObjectID(corpse);    
@@ -426,6 +420,17 @@ public abstract class RPEntity extends Entity
     if(remove)
       {
       world.remove(getID());
+      }
+    }
+  
+  protected void dropItemsOn(Corpse corpse)
+    {
+    int amount=(int)(getXP()/100)+(Rand.roll1D6()-3);
+    if(amount>0)
+      {
+      Money money=(Money)world.getRuleManager().getEntityManager().getItem("money");
+      money.setQuantity(amount);
+      corpse.add(money);
       }
     }
 

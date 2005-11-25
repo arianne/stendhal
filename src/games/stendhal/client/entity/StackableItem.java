@@ -22,14 +22,14 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 /**
- * This is the money item. Money is stackable  
+ * This is the money item. StackableItem is stackable  
  */
-public class Money extends Item
+public class StackableItem extends Item
   {
   private int quantity;
   private Sprite quantityImage;
   
-  public Money(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+  public StackableItem(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
     super(gameObjects, object);
     quantity=0;
