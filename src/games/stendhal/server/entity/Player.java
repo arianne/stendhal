@@ -21,6 +21,8 @@ import games.stendhal.server.entity.item.StackableItem;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
+import java.util.List;
+import java.util.LinkedList;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.*;
@@ -44,7 +46,7 @@ public class Player extends RPEntity
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
-      player.add("food",RPClass.INT,RPClass.HIDDEN);
+      player.add("food",RPClass.INT,(byte)(RPClass.HIDDEN|RPClass.VOLATILE));
       
       player.add("reset",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
 
@@ -236,12 +238,15 @@ public class Player extends RPEntity
           {
           RPSlot slot=player.getSlot(slotName);
           
-          if(slot.size()>0)        
+          List<RPObject> objects=new LinkedList<RPObject>();
+          for(RPObject objectInSlot: slot)
             {
-            // BUG: Loads only one object
-            RPObject item=slot.iterator().next();
-            slot.clear();
-            
+            objects.add(objectInSlot);
+            }
+          slot.clear();
+          
+          for(RPObject item: objects)
+            {
             if(item.get("type").equals("item")) // We simply ignore corpses...
               {
               Item entity = world.getRuleManager().getEntityManager().getItem(item.get("name"));
@@ -649,6 +654,31 @@ public class Player extends RPEntity
   
   public void eat(Food food)
     {
+    if(food.isContained())
+      {
+      // We modify the base container if the object change.
+      RPObject base=food.getContainer();      
+
+      while(base.isContained())
+        {
+        base=base.getContainer();
+        }
+
+      if(!nextto((Entity)base,0.25))
+        {
+        logger.debug("Food item is too far");
+        return;
+        }
+      }
+    else
+      {
+      if(!nextto(food,0.25))
+        {
+        logger.debug("Food item is too far");
+        return;
+        }
+      }
+
     if(has("food"))
       {
       logger.debug("Consuming food: "+food.getAmount());
@@ -660,24 +690,36 @@ public class Player extends RPEntity
       put("food",food.getAmount());
       }
     
-    if(food.isContained())
+    if(food.getQuantity()>1)
       {
-      // We modify the base container if the object change.
-      RPObject base=food.getContainer();      
-
-      while(base.isContained())
+      food.setQuantity(food.getQuantity()-1);
+      if(!food.isContained())
         {
-        base=base.getContainer();
+        world.modify(food);
         }
-      
-      RPSlot slot=food.getContainerSlot();
-      slot.remove(food.getID());
-      
-      world.modify(base);
       }
     else
       {
-      world.remove(food.getID());
+      /* If quantity=1 then it means that item has to be removed */
+      if(food.isContained())
+        {
+        // We modify the base container if the object change.
+        RPObject base=food.getContainer();      
+  
+        while(base.isContained())
+          {
+          base=base.getContainer();
+          }
+        
+        RPSlot slot=food.getContainerSlot();
+        slot.remove(food.getID());
+        
+        world.modify(base);
+        }
+      else
+        {
+        world.remove(food.getID());
+        }
       }
     }
   

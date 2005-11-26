@@ -168,7 +168,8 @@ public class EntitySlot extends Panel implements DropTarget
     // create the context menu
     StendhalClient client = StendhalClient.get();
     Entity entity = gameObjects.entityType(content);
-    List list = new CommandList(getName(),entity.offeredActions(),0,0,100,100,client,entity);
+    CommandList list = new CommandList(getName(),entity.offeredActions(),0,0,100,100,client,entity);
+    list.setContext(parent.getID().getObjectID(),getName());
     setContextMenu(list);
     return true;
   }

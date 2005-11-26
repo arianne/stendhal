@@ -77,7 +77,20 @@ public class Item extends PassiveEntity
       RPAction rpaction=new RPAction();
       rpaction.put("type","use");
       int id=getID().getObjectID();
-      rpaction.put("target",id);      
+      
+      System.out.println (params.length+":"+params);
+
+      if(params.length>0)
+        {
+        rpaction.put("baseobject",params[0]);   
+        rpaction.put("baseslot",params[1]);   
+        rpaction.put("baseitem",id);   
+        }
+      else
+        {
+        rpaction.put("target",id);         
+        }
+           
       client.send(rpaction);
       }
     else
