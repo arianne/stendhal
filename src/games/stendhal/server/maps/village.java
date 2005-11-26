@@ -31,24 +31,30 @@ public class village
     sign.setText("[CLOSED]|The tavern has moved to a much|better and central house in town.|Come buy your weapons, find your|quests and hang out there instead.");
     zone.add(sign);
     
+    createHouse(world,zone,0,29,40);
+    }
+  
+  public void createHouse(StendhalRPWorld world, StendhalRPZone zone, int num, int x, int y) throws java.io.IOException
+    {
+    String name=zone.getID().getID()+"_house_"+Integer.toString(num);
+    
     Door door=new Door();
-    door.setx(29);
-    door.sety(40);
-    door.setNumber(0);
-    door.setDestination("house_village_0",0);
+    door.setx(x);
+    door.sety(y);
+    door.setNumber(num);
+    door.setDestination(name,0);
     zone.assignRPObjectID(door);
     zone.add(door);
     zone.addPortal(door);
     
-    StendhalRPZone house=world.addArea("house_village_0","house_000");
+    StendhalRPZone house=world.addArea(name,"house_000",false);
     Portal portal=new Portal();
-    portal.setDestination("village",0);
+    portal.setDestination(zone.getID().getID(),num);
     portal.setx(7);
     portal.sety(1);
     portal.setNumber(0);
     house.assignRPObjectID(portal);
     house.add(portal);
-    house.addPortal(portal);
-    
+    house.addPortal(portal);    
     }
   }

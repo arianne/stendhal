@@ -92,6 +92,7 @@ public class GameObjects implements Iterable<Entity>
     register("item","money",StackableItem.class);
 
     register("portal",null,Portal.class);
+    register("door",null,Portal.class);
     }
 
   public static void register(String type, String eclass, Class entityClass)

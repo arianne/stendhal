@@ -128,10 +128,10 @@ public class StendhalRPWorld extends RPWorld
   
   public StendhalRPZone addArea(String name) throws java.io.IOException
     {
-    return addArea(name,name);
+    return addArea(name,name,true);
     }
     
-  public StendhalRPZone addArea(String name, String content) throws java.io.IOException
+  public StendhalRPZone addArea(String name, String content, boolean populate) throws java.io.IOException
     {
     StendhalRPZone area=new StendhalRPZone(name, this);
     area.addLayer(name+"_0_floor","games/stendhal/server/maps/"+content+"_0_floor.stend");
@@ -142,20 +142,23 @@ public class StendhalRPWorld extends RPWorld
     area.addNavigationLayer(name+"_navigation","games/stendhal/server/maps/"+content+"_navigation.stend");
     area.populate("games/stendhal/server/maps/"+content+"_objects.stend");
     addRPZone(area);
-
-    try
-      {
-      Class entityClass=Class.forName("games.stendhal.server.maps."+name);
-      java.lang.reflect.Constructor constr=entityClass.getConstructor(StendhalRPWorld.class, StendhalRPZone.class);
-
-      // simply creatre a new instance. The constructor creates all additionally objects  
-      constr.newInstance(this, area);
-      }
-    catch(Exception e)
-      {
-      logger.info("Zone '"+name+"' doesn't have an extra populate method",e);
-      }
     
+    if(populate)
+      {
+      try
+        {
+        Class entityClass=Class.forName("games.stendhal.server.maps."+name);
+        java.lang.reflect.Constructor constr=entityClass.getConstructor(StendhalRPWorld.class, StendhalRPZone.class);
+  
+        // simply creatre a new instance. The constructor creates all additionally objects  
+        constr.newInstance(this, area);
+        }
+      catch(Exception e)
+        {
+        logger.info("Zone '"+name+"' doesn't have an extra populate method",e);
+        }
+      }
+
     return area;
     }
   
