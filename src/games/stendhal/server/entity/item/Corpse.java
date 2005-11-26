@@ -14,6 +14,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Player;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
@@ -32,37 +33,13 @@ public class Corpse extends PassiveEntity
     entity.isA("entity");
     entity.add("class",RPClass.STRING);
     entity.add("stage",RPClass.BYTE);
+
+    entity.add("name",RPClass.STRING);
+    entity.add("killer",RPClass.STRING);
+    
     entity.addRPSlot("content",4);
     }
   
-  public Corpse(RPObject object) throws AttributeNotFoundException
-    {
-    super(object);
-    put("type","corpse");
-    
-    if(object.has("class"))
-      {
-      put("class",object.get("class"));
-      }
-    else
-      {
-      put("class",object.get("type"));
-      }
-
-    stage=0;
-    degradation=DEGRADATION_TIMEOUT;
-    update();
-    put("stage",stage);
-
-    // Add slot if the source corpse hadn't one
-    if(!hasSlot("content"))
-      {
-      RPSlot slot=new RPSlot("content");
-      slot.setCapacity(4);
-      addSlot(slot);
-      }
-    }
-
   public Corpse(String clazz, int x, int y) throws AttributeNotFoundException
     {    
     put("type","corpse");
@@ -79,7 +56,7 @@ public class Corpse extends PassiveEntity
     addSlot(slot);
     }
     
-  public Corpse(RPEntity entity) throws AttributeNotFoundException
+  public Corpse(RPEntity entity, RPEntity killer) throws AttributeNotFoundException
     {
     put("type","corpse");
 
@@ -92,6 +69,30 @@ public class Corpse extends PassiveEntity
       put("class",entity.get("type"));
       }
 
+    if(killer!=null && entity instanceof Player)
+      {
+      put("name",entity.getName());        
+      
+      if(killer.has("name"))
+        {
+        put("killer",killer.getName());
+        }
+      else if(killer.has("subclass"))
+        {
+        put("killer",killer.get("subclass"));
+        }
+      else if(killer.has("class"))
+        {
+        put("killer",killer.get("class"));
+        }
+      else if(killer.has("type"))
+        {
+        put("killer",killer.get("type"));
+        }
+      }  
+
+    // Corpses are 1,1 while other entities are 1.5,2.
+    // This fix the problem
     Rectangle2D rect=entity.getArea(entity.getx(),entity.gety());
     setx((int)rect.getX());
     sety((int)rect.getY());

@@ -405,7 +405,7 @@ public abstract class RPEntity extends Entity
       }
 
     // Add a corpse
-    Corpse corpse=new Corpse(this);
+    Corpse corpse=new Corpse(this,who);
     
     // Add some reward inside the corpse
     dropItemsOn(corpse);

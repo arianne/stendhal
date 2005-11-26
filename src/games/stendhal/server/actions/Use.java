@@ -45,8 +45,6 @@ public class Use extends ActionListener
 
     if(action.has("baseitem") && action.has("baseobject") && action.has("baseslot"))
       {
-      System.out.println (action);
-      
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
         
       int baseObject=action.getInt("baseobject");
