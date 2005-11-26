@@ -1,12 +1,13 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.Sign;
 
 public class forest 
   {
-  public forest(StendhalRPZone zone)
+  public forest(StendhalRPWorld world, StendhalRPZone zone)
     {
     Portal portal=new Portal();
     zone.assignRPObjectID(portal);

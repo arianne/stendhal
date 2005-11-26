@@ -3,6 +3,7 @@ package games.stendhal.server.maps;
 import games.stendhal.common.Rand;
 import games.stendhal.server.Path;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class city 
   {
-  public city(StendhalRPZone zone)
+  public city(StendhalRPWorld world, StendhalRPZone zone)
     {
     Portal portal=new Portal();
     zone.assignRPObjectID(portal);

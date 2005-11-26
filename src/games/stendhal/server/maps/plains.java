@@ -1,11 +1,12 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Sign;
 
 public class plains 
   {
-  public plains(StendhalRPZone zone)
+  public plains(StendhalRPWorld world, StendhalRPZone zone)
     {
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);

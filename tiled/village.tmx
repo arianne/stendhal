@@ -32,7 +32,7 @@
  </tileset>
  <layer name="village_0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2bQW7DIBBFvWtWSU/RVZKDOLlED+KTuIdtIhkFIcAM/BkGzOKrVmPDvD/DGBr1NE3TaWhoaGjTYv0MXfuecZUyT8p9GtRKnL3wx+bjjmXk+ng+tNSLOHM+RO897u9KvQw9f/Qa7V295vY3oNpxtc4f6xPI+EvH05L/WuvriDXfQ1577ce9KjVfiLzWrI2cudF7Um1rA3VmXQLXqZ5oqwuJeLTVgpTXNveqJCaunC0RRvszKR+k9r5cfkrMxR1Taq41rA20J7G1YN8Tuo/DE2S+qe8yBM865b3HOeucOrbPB+765zzvU/ZDKZyhMdbEOSSUs9d134/UnGvgLpX0HkAq/1SenB5gPv8hqGaOc9j2fG6VP+dZ+9ruHdr5Y+cA6jg+PzXzx/o7qudp5o+xxry5RsZyewCV/6+iD6l18ub/eum2yb42994ayT/lzHd+6WKx7okaC2fuqZ77fLkS2N/6zmDk8gBRc1R+o4ugNPJLyo3Z9OM99pTzyuyZ72EpFNNDUJT8h7yKeWHXwN15dvbE89zx1LfeQz2gpDeg3j8h/j3lnIfRvRDF/9xyTeEvEfeeiJKb2bqm8qfUNQcr+m8xZh+E4ucaw9fPEF6YHoCo/xQehG/I71JL+N1ad9k41zpyHZT2Px+7lA8lOk+ffRb3+tfogan9HP6cGqnNG+JH9T9OZo7vILj5kR5w/N+LBD9ayH1Ai/xI9cI/8t8n/z/qpc/9AEAAAA==
+   H4sIAAAAAAAAAO2bQXLCMAxFsysr6Cm6gh4kcIkehJOkhy3MxFONx3Ys+0tWHC/+YCCJ9b5kxSnT0zRNp6GhoaFVT/IaG4fO8ZUzT85xFrSXOHvhT80nHcvI9fF82FMvksz5EL/3+J/Vehk7/+g12rt6ze1PRK3j2jt/qk8g46+9npX8t1pfR6z5HvLaaz/uVbn5QuS1ZW2UzI3ek1pbG6hn1mdknOuJtbrQiMdaLWh5TbkXIzFJ5eyZYKTfafmgtfeV8lNjLumYcnNtYW2gPUmtBXpM7DgJT5D55t7LEDzLVHYfl6xz7rVDPkjXv+TzPmc/lMMZu8aSOYeGSva6/v2Rm3ML3LXS3gNo5Z/LU9ID3PdfDLXMcQnbls975S85l45p77DOn3oO4F4n5Kdl/lR/R/U8y/wp1pQ3V+/9RMZ+D+Dy/zb0IbdO3vwfL91W0bE79lbIbyH3sePOL10I65a4sUjmnut5yJcrg/2tzwJGKQ8QNcfld7ooyiK/pvyYXT/eYs95XpkD892JYjHdFcXJf8yrlBe0Br69c+dAPI8NT0PrPdYDanoD6v4T499SyfMwuhei+B9rrjn8NZLeE3FyM5Mxlz+nriVY0X+LcfsgFL/UNUL9DOGF6wGI+s/hQfiG/C21ht+vdZ9Ncq0j10Ft/wuxa/lQo/P0v8+SXv8WPXC1X8JfUiOteWP8qP4nySzxG4Q0P9IDif970eBHC7kP2CM/Ur3wj/z3yf8HOWsS7wBAAAA=
   </data>
  </layer>
  <layer name="village_1_terrain" width="64" height="64">
@@ -57,7 +57,7 @@
  </layer>
  <layer name="village_collision" width="64" height="64" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XQQ7DIAwEc+3//9R3VT1E6gFSx9iLCTNST2kIY4PBxwEAAAAAAAAQw/vV/u0C/nb/J8bFkvPz2RP9rezsDgAAAABQjV4ft0tPi7/W3zqmKu5V/VX0fO/4t967Gr/ifvN++5/H3THV69777u8Ykfms6N/6n9U50j8qNqP7LXM/K/IfUW8q+c+umar1vxJR9b9CPFT7ZPb5f/VMOa8KOT+pkJtRItfvisxYv976lzWXlfIXOc9Z/ivFO4Pd/UeoeAfYAYt/rxeuSnQtVXwnksizOPOOnFUvI88+i7+3t1H4Z+ZnpL/LvqN4elBPb+odR3FHU/jfnYOame69OewIMSAGXyLr8qqxzPD/AHKLNkoAQAAA
+   H4sIAAAAAAAAAO2XQQ7DIAwEc+3//9R3VT1E6gFSx9iLCTNST2kIY4PBxwEAAAAAAAAQw/vV/u0C/nb/J8bFkvPz2RP9rezsDgAAAABQjV4ft0tPi7/W3zqmKu5V/VX0fO/4t967Gr/ifvN++5/H3THV69777u8Ykfms6N/6n9U50j8qNqP7LXM/K/IfUW8q+c+umVdnRsX8K4iq/xXiodons8//q2fKeVXI+UmF3IwSuX5XZMb69da/rLmslL/Iec7yXyneGezuP0LFO8AOWPx7vXBVomup4juRRJ7FmXfkrHoZefZZ/L29jcI/Mz8j/V32HcXTg3p6U+84ijuawv/uHNTMdO/NYUeIATH4ElmXV41lhv8HLJB9DQBAAAA=
   </data>
  </layer>
  <layer name="village_navigation" width="64" height="64">

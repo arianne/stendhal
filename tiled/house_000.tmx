@@ -55,9 +55,9 @@
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="house_000_collision" width="16" height="16" opacity="0.25">
+ <layer name="house_000_collision" width="16" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
+   H4sIAAAAAAAAADvGycBwbJBhYgCpeii1kxpuxmcWPfVjM2Ow6CfWTHL0UyP+qJ1uBxoDADy4AjkABAAA
   </data>
  </layer>
  <layer name="house_000_navigation" width="16" height="16">

@@ -1,11 +1,14 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.Door;
 
 public class village 
   {
-  public village(StendhalRPZone zone)
+  public village(StendhalRPWorld world, StendhalRPZone zone) throws java.io.IOException
     {
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
@@ -27,5 +30,25 @@ public class village
     sign.sety(35);
     sign.setText("[CLOSED]|The tavern has moved to a much|better and central house in town.|Come buy your weapons, find your|quests and hang out there instead.");
     zone.add(sign);
+    
+    Door door=new Door();
+    door.setx(29);
+    door.sety(40);
+    door.setNumber(0);
+    door.setDestination("house_village_0",0);
+    zone.assignRPObjectID(door);
+    zone.add(door);
+    zone.addPortal(door);
+    
+    StendhalRPZone house=world.addArea("house_village_0","house_000");
+    Portal portal=new Portal();
+    portal.setDestination("village",0);
+    portal.setx(7);
+    portal.sety(1);
+    portal.setNumber(0);
+    house.assignRPObjectID(portal);
+    house.add(portal);
+    house.addPortal(portal);
+    
     }
   }

@@ -1,11 +1,12 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Portal;
 
 public class rat_dungeon_000 
   {
-  public rat_dungeon_000(StendhalRPZone zone)
+  public rat_dungeon_000(StendhalRPWorld world, StendhalRPZone zone)
     {
     Portal portal=new Portal();
     zone.assignRPObjectID(portal);

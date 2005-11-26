@@ -1,6 +1,7 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.Behaviours;
@@ -10,7 +11,7 @@ import java.util.*;
 
 public class tavern 
   {
-  public tavern(StendhalRPZone zone)
+  public tavern(StendhalRPWorld world, StendhalRPZone zone)
     {
     Portal portal=new Portal();
     zone.assignRPObjectID(portal);

@@ -5,7 +5,7 @@ import games.stendhal.server.entity.*;
 
 public class afterlife 
   {
-  public afterlife(StendhalRPZone zone)
+  public afterlife(StendhalRPWorld world, StendhalRPZone zone)
     {
     Portal portal=new Portal();
     zone.assignRPObjectID(portal);
