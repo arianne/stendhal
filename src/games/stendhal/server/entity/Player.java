@@ -17,7 +17,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Food;
-import games.stendhal.server.entity.item.Money;
+import games.stendhal.server.entity.item.StackableItem;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
@@ -236,7 +236,7 @@ public class Player extends RPEntity
           {
           RPSlot slot=player.getSlot(slotName);
           
-          if(slot.size()!=0)        
+          if(slot.size()>0)        
             {
             // BUG: Loads only one object
             RPObject item=slot.iterator().next();
@@ -250,9 +250,9 @@ public class Player extends RPEntity
               entity.put("#db_id",item.get("#db_id"));
               entity.setID(item.getID());
               
-              if(entity instanceof Money)
+              if(entity instanceof StackableItem)
                 {
-                Money money=(Money)entity;
+                StackableItem money=(StackableItem)entity;
                 money.setQuantity(item.getInt("quantity"));
                 }
               
@@ -651,12 +651,12 @@ public class Player extends RPEntity
     {
     if(has("food"))
       {
-      System.out.println ("Consuming food: "+food.getAmount());
+      logger.debug("Consuming food: "+food.getAmount());
       add("food",food.getAmount());
       }
     else
       {
-      System.out.println ("Consuming food: "+food.getAmount());
+      logger.debug("Consuming food: "+food.getAmount());
       put("food",food.getAmount());
       }
     

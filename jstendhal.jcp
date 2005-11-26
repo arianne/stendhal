@@ -442,10 +442,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\entity\Food.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\server\entity\PassiveEntity.java</path>
 				<source>true</source>
 			</fileitem>
@@ -459,6 +455,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\RPEntity.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\SheepFood.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -487,6 +487,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Corpse.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Food.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

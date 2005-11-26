@@ -117,10 +117,10 @@ public class StendhalRPWorld extends RPWorld
     addArea("plains");
     addArea("dungeon_000");
     addArea("dungeon_001");
-//    addArea("rat_dungeon_000");
-//    addArea("rat_dungeon_001");
     addArea("afterlife");
     addArea("forest");
+//    addArea("rat_dungeon_000");
+//    addArea("rat_dungeon_001");
 //    addArea("valley");
 //    addArea("template");
     }
