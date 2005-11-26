@@ -162,6 +162,34 @@ public class StendhalRPWorld extends RPWorld
     return area;
     }
   
+  /** Creates a new house and add it to the zone.
+   *  num is the unique idenfier for portals 
+   *  x and y are the position of the door of the house. 
+   */
+  public void createHouse(int num, StendhalRPZone zone, int x, int y) throws java.io.IOException
+    {
+    String name=zone.getID().getID()+"_house_"+Integer.toString(num);
+    
+    Door door=new Door();
+    door.setx(x);
+    door.sety(y);
+    door.setNumber(num);
+    door.setDestination(name,0);
+    zone.assignRPObjectID(door);
+    zone.add(door);
+    zone.addPortal(door);
+    
+    StendhalRPZone house=addArea(name,"house_000",false);
+    Portal portal=new Portal();
+    portal.setDestination(zone.getID().getID(),num);
+    portal.setx(7);
+    portal.sety(1);
+    portal.setNumber(0);
+    house.assignRPObjectID(portal);
+    house.add(portal);
+    house.addPortal(portal);    
+    }
+
   public void onFinish() throws Exception
     {
     }
