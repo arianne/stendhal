@@ -332,5 +332,23 @@ public abstract class Creature extends NPC
       this.y = y;
     }
   }
+  
+  protected Sprite loadAnimationSprite(RPObject object)
+  {
+    String name=null;
+    
+    if(object.has("subclass"))
+      {
+      name=object.get("class")+"/"+object.get("subclass");
+      }     
+    else
+      {
+      name=object.get("class");
+      }     
+    
+    SpriteStore store=SpriteStore.get();  
+    sprite=store.getSprite("sprites/monsters/"+name+".png");
+    return sprite;
+  }
 
   }

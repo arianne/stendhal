@@ -161,7 +161,7 @@ public class StendhalRPWorld extends RPWorld
 
     return area;
     }
-  
+    
   /** Creates a new house and add it to the zone.
    *  num is the unique idenfier for portals 
    *  x and y are the position of the door of the house. 

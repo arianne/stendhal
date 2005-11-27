@@ -38,6 +38,7 @@ public abstract class NPC extends RPEntity
       RPClass npc=new RPClass("npc");
       npc.isA("rpentity");
       npc.add("class",RPClass.STRING);
+      npc.add("subclass",RPClass.STRING);
       npc.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
       npc.add("idea",RPClass.STRING, RPClass.VOLATILE);
       }
