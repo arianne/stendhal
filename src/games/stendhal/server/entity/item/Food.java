@@ -33,6 +33,12 @@ public class Food extends StackableItem
 
   public boolean isStackable(Stackable other)
     {
-    return (other.getClass() == Food.class);
+    StackableItem otheri=(StackableItem)other;
+    
+    System.out.println (getItemClass()+"\t"+getItemSubclass());
+    System.out.println (otheri.getItemClass()+"\t"+otheri.getItemSubclass());
+    
+    return getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass());
+    //return (other.getClass() == Food.class);
     }
   }

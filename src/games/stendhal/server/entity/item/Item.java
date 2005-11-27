@@ -136,10 +136,10 @@ public class Item extends PassiveEntity
   /** returns the type of the item */
   public String getItemSubclass()
   {
-    if (has("class"))
-      return get("class");
+    if (has("subclass"))
+      return get("subclass");
 
-    throw new IllegalStateException("the item does not have a class: "+this);
+    throw new IllegalStateException("the item does not have a subclass: "+this);
   }
   
   /** returns the name of the item */
