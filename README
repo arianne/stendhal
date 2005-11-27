@@ -78,6 +78,11 @@ Changelog
 - Now weapon seller buys stuff too.
 - Creatures and Items XML definition
 - New combat system
+- Creatures drops items now
+- Added Food
+- Food restore HP when eaten
+- Added houses system (for NPC by now).
+- Added door.
 
 
 0.39.1 Oct 26, 2005
