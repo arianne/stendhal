@@ -1,7 +1,7 @@
 <creatures>
   <!-- Level -1 -->
   <creature name="deer">
-  	<type class="deer" subclass="deer" tileid="-1"/>
+  	<type class="animal" subclass="deer" tileid="-1"/>
   	<attributes>
   		<attribute name="atk" value="5"/>
   		<attribute name="def" value="5"/>
@@ -28,7 +28,7 @@
   <!-- Level 0 -->
 
   <creature name="rat">
-  	<type class="rat" subclass="rat" tileid="12"/>
+  	<type class="small animal" subclass="rat" tileid="12"/>
   	<attributes>
   		<attribute name="atk" value="17"/>
   		<attribute name="def" value="9"/>
@@ -54,7 +54,7 @@
   </creature>
 
   <creature name="caverat">
-  	<type class="caverat" subclass="caverat" tileid="13"/>
+  	<type class="small animal" subclass="caverat" tileid="13"/>
   	<attributes>
   		<attribute name="atk" value="19"/>
   		<attribute name="def" value="9"/>
@@ -82,7 +82,7 @@
   <!-- Level 1 -->
   
   <creature name="cobra">
-  	<type class="cobra" subclass="cobra" tileid="15"/>
+  	<type class="animal" subclass="cobra" tileid="15"/>
   	<attributes>
   		<attribute name="atk" value="30"/>
   		<attribute name="def" value="10"/>
@@ -107,7 +107,7 @@
   </creature>
   
   <creature name="boar">
-  	<type class="boar" subclass="boar" tileid="20"/>
+  	<type class="animal" subclass="boar" tileid="20"/>
   	<attributes>
   		<attribute name="atk" value="34"/>
   		<attribute name="def" value="11"/>
@@ -131,7 +131,7 @@
   </creature>
 
   <creature name="wolf">
-  	<type class="wolf" subclass="wolf" tileid="14"/>
+  	<type class="animal" subclass="wolf" tileid="14"/>
   	<attributes>
   		<attribute name="atk" value="35"/>
   		<attribute name="def" value="11"/>
@@ -158,7 +158,7 @@
   <!-- Level 2 -->
   
   <creature name="bear">
-  	<type class="bear" subclass="bear" tileid="-1"/>
+  	<type class="animal" subclass="bear" tileid="-1"/>
   	<attributes>
   		<attribute name="atk" value="45"/>
   		<attribute name="def" value="11"/>
@@ -417,7 +417,7 @@
  <!-- Level 7 -->
  	
  <creature name="ogre">
-  	<type class="ogre" subclass="ogre" tileid="18"/>
+  	<type class="giant" subclass="ogre" tileid="18"/>
   	<attributes>
   		<attribute name="atk" value="57"/>
   		<attribute name="def" value="14"/>
@@ -446,7 +446,7 @@
  <!-- Level 8 -->
  
  <creature name="cyclops">
-  	<type class="cyclops" subclass="cyclops" tileid="-1"/>
+  	<type class="giant" subclass="cyclops" tileid="-1"/>
   	<attributes>
   		<attribute name="atk" value="60"/>
   		<attribute name="def" value="15"/>
@@ -475,7 +475,7 @@
  <!-- Level 15 -->
  	
  <creature name="giantrat">
-  	<type class="giantrat" subclass="giantrat" tileid="23"/>
+  	<type class="giant animal" subclass="giantrat" tileid="23"/>
   	<attributes>
   		<attribute name="atk" value="80"/>
   		<attribute name="def" value="20"/>

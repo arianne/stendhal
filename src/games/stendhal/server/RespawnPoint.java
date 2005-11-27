@@ -119,7 +119,7 @@ public class RespawnPoint
     try
       {
       // Creature newentity = entity.getClass().newInstance();
-      String clazz = entity.get("class");
+      String clazz = entity.get("name");
       Creature newentity = zone.getWorld().getRuleManager().getEntityManager().getCreature(clazz);
 
       zone.assignRPObjectID(newentity);

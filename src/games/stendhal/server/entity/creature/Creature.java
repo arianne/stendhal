@@ -151,7 +151,7 @@ public class Creature extends NPC
 
   /** creates a new creature with the given properties
    */
-  public Creature(String clazz, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems) throws AttributeNotFoundException
+  public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems) throws AttributeNotFoundException
     {
     super();
     put("type","creature");
@@ -164,6 +164,8 @@ public class Creature extends NPC
     this.dropsItems=dropItems;
 
     put("class",clazz);
+    put("subclass",subclass);
+    put("name",name);
     put("x",0);
     put("y",0);
 
