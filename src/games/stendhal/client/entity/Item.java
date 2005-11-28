@@ -20,11 +20,32 @@ import java.awt.geom.*;
 public class Item extends PassiveEntity 
   {
   private String type;
+  private String name;
+  private String atk;
+  private String def;
   
   public Item(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
     super(gameObjects, object);
     type=object.get("class");
+    name=object.get("name");
+    if(object.has("atk")) 
+      {
+      atk=object.get("atk");
+      }
+    else
+      {
+      atk="0";
+      }
+      
+    if(object.has("def")) 
+      {
+      def=object.get("def");
+      }
+    else
+      {
+      def="0";
+      }
     }
 
   protected void loadSprite(RPObject object)
@@ -70,7 +91,7 @@ public class Item extends PassiveEntity
     {
     if(action.equals("Look"))
       {
-      StendhalClient.get().addEventLine("You see a "+type,Color.green);
+      StendhalClient.get().addEventLine("You see a "+name+". Stats are (ATK: "+atk+", DEF: "+def+")",Color.green);
       }
     else if(action.equals("Use"))
       {

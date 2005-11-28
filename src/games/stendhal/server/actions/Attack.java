@@ -45,7 +45,8 @@ public class Attack extends ActionListener
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if(object instanceof RPEntity && !(object instanceof Player)) // Disabled Player
+        // Enabled PVP
+        if(object instanceof RPEntity /*&& !(object instanceof Player)*/) // Disabled Player
           {
           if(!player.equals(object))
             {
