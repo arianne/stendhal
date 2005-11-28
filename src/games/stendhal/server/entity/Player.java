@@ -47,6 +47,8 @@ public class Player extends RPEntity
       player.add("sheep",RPClass.INT);
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
       player.add("food",RPClass.INT,(byte)(RPClass.HIDDEN|RPClass.VOLATILE));
+
+      player.add("outfit",RPClass.INT);
       
       player.add("reset",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
 
@@ -68,8 +70,6 @@ public class Player extends RPEntity
       player.add("offline",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       
       player.addRPSlot("!quests",1,RPClass.HIDDEN);
-
-      player.add("outfit",RPClass.INT);
       }
     catch(RPClass.SyntaxException e)
       {

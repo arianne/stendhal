@@ -49,6 +49,7 @@ public abstract class RPEntity extends Entity
   private int hp;
   private int xp;
   private int level;
+  private int blood;
   
   /** List of all attackers of this entity */
   private List<RPEntity> attackSource;
@@ -65,6 +66,8 @@ public abstract class RPEntity extends Entity
   private int pathPosition;
   /** true if the path is a loop */
   private boolean pathLoop;
+  
+  private static int TURNS_WHEN_ATK_DEF_XP_INCREASE=10;
   
 
   public static void generateRPClass()
@@ -217,6 +220,7 @@ public abstract class RPEntity extends Entity
     
     return def_xp;
     }
+    
 
   public void setBaseHP(int hp)
     {
@@ -307,6 +311,22 @@ public abstract class RPEntity extends Entity
 
     attackTarget = null;
     }
+  
+  public void bloodHappens()
+    {
+    blood=TURNS_WHEN_ATK_DEF_XP_INCREASE;
+    }
+  
+  public boolean stillHasBlood()
+    {
+    if(blood>0)
+      {
+      blood--;
+      return true;
+      }
+      
+    return false;
+    }
 
   /** This method is called on each round when this entity has been attacked by
    *  RPEntity who and status is true to means keep attacking and false mean stop
@@ -395,9 +415,9 @@ public abstract class RPEntity extends Entity
     totalDamageReceived = 0;
     
     // Stats about dead
-    if(has("class"))
+    if(has("name"))
       {
-      stats.add("Killed "+get("class"),1);
+      stats.add("Killed "+get("name"),1);
       }
     else
       {

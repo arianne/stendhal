@@ -46,13 +46,23 @@ public class Attack extends ActionListener
         {
         RPObject object=zone.get(targetid);
         // Enabled PVP
-        if(object instanceof RPEntity /*&& !(object instanceof Player)*/) // Disabled Player
+        if(object instanceof RPEntity) // Disabled Player
           {
-          if(!player.equals(object))
+          RPEntity entity=(RPEntity)object;
+          
+          if(!player.equals(entity))
             {
-            player.attack((RPEntity)object);
+            if(entity instanceof Player)
+              {
+              logger.info(player.getName()+" is attacking "+entity.getName());
+              }
+
+            player.bloodHappens();
+            entity.bloodHappens();
+            
+            player.attack(entity);
             world.modify(player);
-            }
+            }          
           }
         }
       }

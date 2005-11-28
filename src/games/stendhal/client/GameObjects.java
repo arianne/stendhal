@@ -75,13 +75,14 @@ public class GameObjects implements Iterable<Entity>
     register("corpse","troll",Corpse.class);
     register("corpse","gargoyle",Corpse.class);
     register("corpse","goblin",Corpse.class);
-    register("corpse","ogre",Corpse.class);
+    register("corpse","giant",Corpse.class);
     register("corpse","kobold",Corpse.class);
-    register("corpse","boar",Corpse.class);
-    register("corpse","cobra",Corpse.class);
-    register("corpse","wolf",Corpse.class);
-    register("corpse","caverat",Corpse.class);
-    register("corpse","rat",Corpse.class);
+    register("corpse","animal",Corpse.class);
+    register("corpse","small animal",Corpse.class);
+    register("corpse","giant animal",Corpse.class);
+    register("corpse","dwarf",Corpse.class);
+    register("corpse","elf",Corpse.class);
+    register("corpse","skeleton",Corpse.class);
     register("corpse","sheep",Corpse.class);
     
     register("sign",null,Sign.class);

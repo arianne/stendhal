@@ -87,7 +87,7 @@ public class StendhalRPAction
 
         int damage=0;
         
-        if((target instanceof SpeakerNPC)==false)
+        if((target instanceof SpeakerNPC)==false && source.stillHasBlood())
           {
           // disabled attack xp for attacking NPC's
           source.incATKXP();
@@ -95,7 +95,10 @@ public class StendhalRPAction
         
         if(risk>0) //Hit
           {
-          target.incDEFXP();
+          if(target.stillHasBlood())
+            {
+            target.incDEFXP();
+            }
           
           int weapon=0;
           int shield=0;
@@ -145,6 +148,9 @@ public class StendhalRPAction
             target.onDamage(source,damage);
             source.put("damage",damage);
             logger.debug("attack from "+source.getID()+" to "+target.getID()+": Damage: "+damage);
+            
+            target.bloodHappens();
+            source.bloodHappens();
             }
           else // Blocked
             {
