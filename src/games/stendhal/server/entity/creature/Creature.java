@@ -219,7 +219,7 @@ public class Creature extends NPC
 
   protected void dropItemsOn(Corpse corpse)
     {
-    for(Item item: createDroppedItems(world.getRuleManager().getEntityManager(), Rand.roll1D100()))
+    for(Item item: createDroppedItems(world.getRuleManager().getEntityManager()))
       {
       corpse.add(item);
       }
@@ -540,13 +540,14 @@ public class Creature extends NPC
     }
 
   
-  private List<Item> createDroppedItems(EntityManager manager, double probability)
+  private List<Item> createDroppedItems(EntityManager manager)
     {
     List<Item> list=new LinkedList<Item>();
     
     for(Creature.DropItem dropped: dropsItems)
       {
-      if(dropped.probability<=probability)
+      int probability=Rand.roll1D100();
+      if(dropped.probability>=probability)
         {
         Item item=manager.getItem(dropped.name);
         list.add(item);
