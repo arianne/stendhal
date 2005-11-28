@@ -67,7 +67,7 @@ public abstract class RPEntity extends Entity
   /** true if the path is a loop */
   private boolean pathLoop;
   
-  private static int TURNS_WHEN_ATK_DEF_XP_INCREASE=10;
+  private static int TURNS_WHEN_ATK_DEF_XP_INCREASE=40;
   
 
   public static void generateRPClass()
