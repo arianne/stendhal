@@ -263,9 +263,25 @@
         <pathelement path="${libdir}/${tiled_jar}"/>
       </classpath>
     </javac>
+  <!-- compile converter class -->
+    <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
+           includes="games/stendhal/tools/ImageMapConverter.java">
+      <classpath>
+        <pathelement path="${build}"/>
+        <pathelement path="${libdir}/${tiled_jar}"/>
+      </classpath>
+    </javac>
       
   <!-- register taskdef -->
     <taskdef name="mapconverter" classname="games.stendhal.tools.MapConverter">
+      <classpath>
+        <pathelement path="${build}"/>
+        <pathelement path="${libdir}/${tiled_jar}"/>
+      </classpath>
+    </taskdef>
+
+  <!-- register taskdef -->
+    <taskdef name="imagemapconverter" classname="games.stendhal.tools.ImageMapConverter">
       <classpath>
         <pathelement path="${build}"/>
         <pathelement path="${libdir}/${tiled_jar}"/>
@@ -275,19 +291,16 @@
   <!-- do the conversion -->
     <mapconverter stendPath="maps">
       <fileset dir="tiled">
-        <include name="afterlife.tmx"/>
-        <include name="city.tmx"/>
-        <include name="city_underground.tmx"/>
-        <include name="dungeon_001.tmx"/>
-        <include name="forest.tmx"/>
-        <include name="plains.tmx"/>
-        <include name="rat_dungeon_000.tmx"/>
-        <include name="tavern.tmx"/>
-        <include name="village.tmx"/>
+    	<fileset dir="tiled/" includes="**/*.tmx"/>    	
       </fileset>
     </mapconverter>
-  </target>
+
+    <imagemapconverter stendPath="images">
+    	<fileset dir="tiled/" includes="**/*.tmx"/>    	
+    </imagemapconverter>
   
+    </target>
+    
   <target name="create_tiled_plugin" depends="init" description="creates the reader/writer-plugin jar for tiled">
   <!-- compile the plugins. Note that it enforces java 1.4 compatibility -->
     <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines" target="1.4" source="1.4"
