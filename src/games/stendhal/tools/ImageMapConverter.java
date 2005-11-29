@@ -117,9 +117,13 @@ public class ImageMapConverter extends Task
     {
       for (FileSet fileset : filesets)
       {
-        DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
-        String[] includedFiles = ds.getIncludedFiles();
-        
+//        DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
+//        String[] includedFiles = ds.getIncludedFiles();
+
+    DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
+    File dir = fileset.getDir(getProject());
+    String[] includedFiles = ds.getIncludedFiles();
+            
         for(String filename : includedFiles)
         {
           System.out.println(ds.getBasedir().getAbsolutePath()+File.separator+filename);
@@ -129,6 +133,7 @@ public class ImageMapConverter extends Task
     }
     catch (Exception e)
     {
+      e.printStackTrace();
       throw new BuildException(e);
     }
   }
