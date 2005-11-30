@@ -60,44 +60,47 @@
  <tileset name="Untitled" firstgid="246" tilewidth="128" tileheight="128">
   <image source="sub_7_kanmararn_jail.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="247" tilewidth="128" tileheight="128">
+  <image source="sub_2_kotoch_entrance.png"/>
+ </tileset>
  <layer name="Underground Level -7" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OMQ0AAAgDsPkXzI2FfSSkVdAEoDPXAQAAAAAAAAAAAAAAAAAAeGwBCAEsyABAAAA=
+   H4sIAAAAAAAAAO3OIREAAAgEsO8fhnhoKiA5bmJ+laQAFvrAAQAAAAAAAAAAAAAAAAAAvhoSJR07AEAAAA==
   </data>
  </layer>
  <layer name="Underground Level -6" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Otw2AABAEQfovFO9NzpVA9hKakTbfpgH4pk1d6tNQ/FJhTFOa01L8UmFNW9rTUfxS4UxXutNT/AIAAAAAAAAAAAAAAAAA/NMLesphKQBAAAA=
+   H4sIAAAAAAAAAO3OuxGCUBQFwNd/MZSFgMpHJOeUYPTmjrPB5ju01gaAH4zxiCnmAp/elnjGK94FPr2tscUeR4FPb5844xtXgQ8AAAAAAAAAAAAAAAAA8H9uVnq02wBAAAA=
   </data>
  </layer>
  <layer name="Underground Level -5" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OxwmAABQFQZsx59B/bb4KvH6QGdj7Ng3AtzZ1qU9D8UuFMU1pTkvxS4U1bWlPR/FLhTNd6U5P8QsAAAAAAAAAAAAAAAAA8G8vnl1D9ABAAAA=
+   H4sIAAAAAAAAAO3OwRGCQBQFsG0GFEQBsW5q5FXAceePk0PuOVtrJ8CNIcZ4xLPAp7cp5njFUuDT2zs+scZW4NPbHt844lfgAwAAAAAAAAAAAAAAAAD8rwvEngXcAEAAAA==
   </data>
  </layer>
  <layer name="Underground Level -4" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OxwmAABQFQfsv0JxDH74KvH6QGdj7Ng3AtzZ1qU9D8UuFMU1pTkvxS4U1bWlPR+1KiTNd6U5P8QsAAAAAAAAAAAAAAAAA8G8vTEb5SwBAAAA=
+   H4sIAAAAAAAAAO3OyRGCQBQFwMk/GMJBQGURyYMXgcepX1Yf+t5Da20A+GGMR0wxF/j0tsQzXvEu8OltjS32OAp8evvEGd+4CnwAAAAAAAAAAAAAAAAAgP91AxaFv2MAQAAA
   </data>
  </layer>
  <layer name="Underground Level -3" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OsQ3AIBAEQZrCYEP/dfEdEF7gGWnzbQ246dWTngga1UxPBL3Vl54IWtVOTwAAAAAAAAAAAAAAAAAA/MABA9rvAABAAAA=
+   H4sIAAAAAAAAAO3OsQ2AMAwAsDwFFMrNvbG5gDUR8uDdKyIW8OlIZ4NHlSuNBo8qd3oaPKrM9DZ4AAAAAAAAAAAAAAAAAAD83QZBkLv9AEAAAA==
   </data>
  </layer>
  <layer name="Underground Level -2" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OtREDQBDAQPdfiJmZmRn7sTpw9hdYO6NcmYykX7KUi54IlKdC9ESgIpWiJwKVqRI9ISVQpRrVqUFNalGbOoFfqXSpR30a0JBGNKZJ4FcqU5rRnBa0pBWtaRO3lcyWdrSnAx3pRGe6BH6lcqUb3elBT3rRmz6BX5IkSZIkSZIkSZIkSZIkSZIkSfo/X5es3XQAQAAA
+   H4sIAAAAAAAAAO3PWVLCUAAF0UTR/a9CBSU4AiKoODIoM2thVOkV+JfwqtJV9/z3TaIoSiT96wSnWGCJFdYBdGXlDEVssMUPfgPoykoJ5/hDFDMcxPvvysoFyjjkcwFHOM7Rf+VLBZe4wjVucIu7ANrSVkUNddyjgQc00QqgL22PeMIz2njBK97wHkBf2j7wiQ666KGPL3wH0Je2AYYYYYwJpphhHkCfJEmSJEmSJEmSJEmSJEmSJEmS8mMHkzrinQBAAAA=
   </data>
  </layer>
- <layer name="Underground Level -1" width="64" height="64">
+ <layer name="Underground Level -1" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OuREAIBDEML4W6b8VrgJCNkCace7W4K5XIz0RNKuVngAA4ImdHgAAAAAAAAAAAAAAAOBrB9KLRUwAQAAA
+   H4sIAAAAAAAAAO3OOQ0AIBAAsOOxiE00ggI2wiV06N4ZERMOylYTPF5pW0/wAADgvpHgAAAAAAAAAAAAAAAAwL8WrJ7GsgBAAAA=
   </data>
  </layer>
- <layer name="Ground Level 0" width="64" height="64">
+ <layer name="Ground Level 0" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ORVJDURgF4Uxwl+1AIDjBSQEhuGtwdw3u7rpPegFM3/0np6u+eft8Sv3fNGbQhGaMYBRjGDf8ctUs5tCCMKKYwCSmDL9cVY0a1KLO+MWiejSgESHjF4viEI8EJBq/WJSEZKQg1fjFojSkIwOZxi8WZSEbOcg1fnFRHvLhRwHucI8HPKIVEbSh3WbR0woRQBGK8YRnvOAVHehEF7ptFj2tBKUoQzne8I4PfKIHvehDv82ip1WgEkFU4Qvf+MEvBjCIIQwbPXrZPBawiCXsI4YDHBp+uWoZK1jFGo5wjBOcGn65ah0b2MQWznCOC1zabTlrGzvYxR6ucI0b3Bp+KaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJ/wrzM9gBAAAA=
+   H4sIAAAAAAAAAO3OQ3JEYRiG0Z7ExnZimxXb6Ni2bTuZ9hrzLCDD+9/6qvIOzvyEAoFASOQPk5hCHeoxhGEEMWLg59o0ZtCARoxiDOOYMPBzrQzlqEClgY/fqlCNGtQa+PgtDOGIQKSBj9+iEI0YxBr4+C0O8UhAooGP35KQjBSkGvi4loZ0ZCATt7jDPR7QhGa0oNXA12tZyEYOcvGIJzzjBW1oRwc6DXy9lod8FKAQr3jDOz7QhW70oNfA12tFKEYJSvGJL3zjB33oxwAGDXy9Nos5zGMBu9jDPg4M/FxbxBKWsYJDHOEYJwZ+rq1iDevYwCnOcI4LAz/XNrGFbezgEle4xo2Bn4iIiIiIiIiIiIiIiIiIiIiIiIiIiIj8X7/RDQ28AEAAAA==
   </data>
  </layer>
 </map>

@@ -450,6 +450,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\OneWayPortal.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\PassiveEntity.java</path>
 				<source>true</source>
 			</fileitem>
@@ -518,23 +522,15 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\Zone_0_semos_city.java</path>
+				<path>src\games\stendhal\server\maps\Afterlife.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\Zone_0_semos_south_plains.java</path>
+				<path>src\games\stendhal\server\maps\IContent.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\Zone_0_semos_village.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\maps\Zone_int_afterlife.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\maps\Zone_int_semos_tavern.java</path>
+				<path>src\games\stendhal\server\maps\Semos.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
