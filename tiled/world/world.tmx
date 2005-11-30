@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="128" tileheight="128">
+ <tileset name="Untitled" firstgid="1" tilewidth="128" tileheight="128">
+  <image source="sub_1_semos_dungeon.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="5" tilewidth="128" tileheight="128">
+  <image source="0_semos_forest.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="21" tilewidth="128" tileheight="128">
+  <image source="sub_6_kanmararn_city.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="37" tilewidth="128" tileheight="128">
+  <image source="sub_5_kanmararn_entrace.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="53" tilewidth="128" tileheight="128">
+  <image source="sub_3_semos_dungeon.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="61" tilewidth="128" tileheight="128">
+  <image source="0_orril_castle.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="77" tilewidth="128" tileheight="128">
+  <image source="0_semos_south_plains.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="85" tilewidth="128" tileheight="128">
+  <image source="sub_1_orril_forest_dungeon.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="86" tilewidth="128" tileheight="128">
+  <image source="0_semos_city.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="90" tilewidth="128" tileheight="128">
+  <image source="0_nalwor_forest.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="106" tilewidth="128" tileheight="128">
+  <image source="0_semos_road_ados.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="114" tilewidth="128" tileheight="128">
+  <image source="0_semos_village.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="118" tilewidth="128" tileheight="128">
+  <image source="0_orril_river.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="134" tilewidth="128" tileheight="128">
+  <image source="0_orril_forest_river.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="150" tilewidth="128" tileheight="128">
+  <image source="0_orril_forest.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="166" tilewidth="128" tileheight="128">
+  <image source="sub_2_semos_dungeon.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="174" tilewidth="128" tileheight="128">
+  <image source="sub_2_orril_forest_dungeon.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="214" tilewidth="128" tileheight="128">
+  <image source="sub_4_semos_dungeon.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="230" tilewidth="128" tileheight="128">
+  <image source="sub_6_kanmararn_city.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="246" tilewidth="128" tileheight="128">
+  <image source="sub_7_kanmararn_jail.png"/>
+ </tileset>
+ <layer name="Underground Level -7" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OMQ0AAAgDsPkXzI2FfSSkVdAEoDPXAQAAAAAAAAAAAAAAAAAAeGwBCAEsyABAAAA=
+  </data>
+ </layer>
+ <layer name="Underground Level -6" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3Otw2AABAEQfovFO9NzpVA9hKakTbfpgH4pk1d6tNQ/FJhTFOa01L8UmFNW9rTUfxS4UxXutNT/AIAAAAAAAAAAAAAAAAA/NMLesphKQBAAAA=
+  </data>
+ </layer>
+ <layer name="Underground Level -5" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OxwmAABQFQZsx59B/bb4KvH6QGdj7Ng3AtzZ1qU9D8UuFMU1pTkvxS4U1bWlPR/FLhTNd6U5P8QsAAAAAAAAAAAAAAAAA8G8vnl1D9ABAAAA=
+  </data>
+ </layer>
+ <layer name="Underground Level -4" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OxwmAABQFQfsv0JxDH74KvH6QGdj7Ng3AtzZ1qU9D8UuFMU1pTkvxS4U1bWlPR+1KiTNd6U5P8QsAAAAAAAAAAAAAAAAA8G8vTEb5SwBAAAA=
+  </data>
+ </layer>
+ <layer name="Underground Level -3" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OsQ3AIBAEQZrCYEP/dfEdEF7gGWnzbQ246dWTngga1UxPBL3Vl54IWtVOTwAAAAAAAAAAAAAAAAAA/MABA9rvAABAAAA=
+  </data>
+ </layer>
+ <layer name="Underground Level -2" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OtREDQBDAQPdfiJmZmRn7sTpw9hdYO6NcmYykX7KUi54IlKdC9ESgIpWiJwKVqRI9ISVQpRrVqUFNalGbOoFfqXSpR30a0JBGNKZJ4FcqU5rRnBa0pBWtaRO3lcyWdrSnAx3pRGe6BH6lcqUb3elBT3rRmz6BX5IkSZIkSZIkSZIkSZIkSZIkSfo/X5es3XQAQAAA
+  </data>
+ </layer>
+ <layer name="Underground Level -1" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OuREAIBDEML4W6b8VrgJCNkCace7W4K5XIz0RNKuVngAA4ImdHgAAAAAAAAAAAAAAAOBrB9KLRUwAQAAA
+  </data>
+ </layer>
+ <layer name="Ground Level 0" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3ORVJDURgF4Uxwl+1AIDjBSQEhuGtwdw3u7rpPegFM3/0np6u+eft8Sv3fNGbQhGaMYBRjGDf8ctUs5tCCMKKYwCSmDL9cVY0a1KLO+MWiejSgESHjF4viEI8EJBq/WJSEZKQg1fjFojSkIwOZxi8WZSEbOcg1fnFRHvLhRwHucI8HPKIVEbSh3WbR0woRQBGK8YRnvOAVHehEF7ptFj2tBKUoQzne8I4PfKIHvehDv82ip1WgEkFU4Qvf+MEvBjCIIQwbPXrZPBawiCXsI4YDHBp+uWoZK1jFGo5wjBOcGn65ah0b2MQWznCOC1zabTlrGzvYxR6ucI0b3Bp+KaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJ/wrzM9gBAAAA=
+  </data>
+ </layer>
+</map>
