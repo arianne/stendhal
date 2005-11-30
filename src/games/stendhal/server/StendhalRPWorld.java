@@ -19,10 +19,14 @@ import games.stendhal.server.entity.item.*;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
+import games.stendhal.server.maps.IContent;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPClass;
 import marauroa.server.game.RPWorld;
 import org.apache.log4j.Logger;
+
+import java.io.File;
+import java.io.FilenameFilter;
 
 public class StendhalRPWorld extends RPWorld
   {
@@ -105,59 +109,148 @@ public class StendhalRPWorld extends RPWorld
         
     Log4J.finishMethod(logger,"createRPClasses");
     }
-  
+    
   public void onInit() throws Exception
     {
     // create the pathfinder thread and start it
     pathfinderThread = new PathfinderThread(this);
     pathfinderThread.start();
+   
+    // Load zones
+    addArea("0_semos_village");
+    addArea("0_semos_city");
+    addArea("0_semos_road_ados");
 
-    addArea("village");
-    addArea("tavern");
-    addArea("city");
-    addArea("plains");
-    addArea("dungeon_000");
-    addArea("dungeon_001");
-    addArea("afterlife");
-    addArea("forest");
-//    addArea("rat_dungeon_000");
-//    addArea("rat_dungeon_001");
-//    addArea("valley");
-//    addArea("template");
-    }
-  
-  public StendhalRPZone addArea(String name) throws java.io.IOException
-    {
-    return addArea(name,name,true);
-    }
-    
-  public StendhalRPZone addArea(String name, String content, boolean populate) throws java.io.IOException
-    {
-    StendhalRPZone area=new StendhalRPZone(name, this);
-    area.addLayer(name+"_0_floor","games/stendhal/server/maps/"+content+"_0_floor.stend");
-    area.addLayer(name+"_1_terrain","games/stendhal/server/maps/"+content+"_1_terrain.stend");
-    area.addLayer(name+"_2_object","games/stendhal/server/maps/"+content+"_2_object.stend");
-    area.addLayer(name+"_3_roof","games/stendhal/server/maps/"+content+"_3_roof.stend");
-    area.addCollisionLayer(name+"_collision","games/stendhal/server/maps/"+content+"_collision.stend");
-    area.addNavigationLayer(name+"_navigation","games/stendhal/server/maps/"+content+"_navigation.stend");
-    area.populate("games/stendhal/server/maps/"+content+"_objects.stend");
-    addRPZone(area);
-    
-    if(populate)
+    addArea("0_semos_south_plains");
+
+    addArea("0_semos_forest");
+
+    addArea("0_orril_castle");
+    addArea("0_orril_forest");
+    addArea("0_nalwor_forest");
+
+    addArea("0_orril_river");
+    addArea("0_orril_forest_river");
+
+    addArea("int_afterlife");
+    addArea("int_semos_tavern");
+
+
+    // Populate zones
+    File questsFolder=new File("games/stendhal/server/maps");
+    String[] files=questsFolder.list(new FilenameFilter()
       {
-      try
+      public boolean accept(File dir, String name)      
         {
-        Class entityClass=Class.forName("games.stendhal.server.maps."+name);
-        java.lang.reflect.Constructor constr=entityClass.getConstructor(StendhalRPWorld.class, StendhalRPZone.class);
-  
-        // simply creatre a new instance. The constructor creates all additionally objects  
-        constr.newInstance(this, area);
+        return name.contains(".class");
         }
-      catch(Exception e)
+      });
+    
+    if(files == null)
+      {
+      logger.error("Maps folder not found. should be "+questsFolder.getAbsolutePath());
+      return;
+      }
+    
+    for(String file: files)
+      {
+      String className=file.substring(0,file.indexOf("."));
+      if(!className.equals("IContent"))
         {
-        logger.info("Zone '"+name+"' doesn't have an extra populate method",e);
+        populateZone(className);
         }
       }
+    }
+  
+  private boolean populateZone(String name)
+    {
+    try
+      {
+      Class entityClass=Class.forName("games.stendhal.server.maps."+name);
+      
+      boolean implementsIContent=false;
+      
+      Class[] interfaces=entityClass.getInterfaces();
+      for(Class interf: interfaces)
+        {
+        if(interf.equals(IContent.class))
+          {
+          implementsIContent=true;
+          break;
+          }        
+        }
+      
+      if(implementsIContent==false)
+        {
+        logger.debug("Class don't implement IContent interface.");
+        return false;
+        }
+      
+      logger.info("Loading Zone populate class: "+name);
+      java.lang.reflect.Constructor constr=entityClass.getConstructor(StendhalRPWorld.class);
+
+      // simply creatre a new instance. The constructor creates all additionally objects  
+      constr.newInstance(this);
+      return true;
+      }
+    catch(Exception e)
+      {
+      logger.warn("Zone Populate class("+name+") loading failed.",e);
+      return false;
+      }
+    }
+
+  public StendhalRPZone addArea(String name) throws org.xml.sax.SAXException, java.io.IOException
+    {
+    return addArea(name,name);
+    }
+    
+  public StendhalRPZone addArea(String name, String content) throws org.xml.sax.SAXException, java.io.IOException
+    {
+    StendhalRPZone area=new StendhalRPZone(name, this);
+    
+    ZoneXMLLoader instance=ZoneXMLLoader.get();
+    ZoneXMLLoader.XMLZone xmlzone=instance.load("games/stendhal/server/maps/"+content+".xstend");
+    
+    area.addLayer(name+"_0_floor",xmlzone.getLayer("0_floor"));
+    area.addLayer(name+"_1_terrain",xmlzone.getLayer("1_terrain"));
+    area.addLayer(name+"_2_object",xmlzone.getLayer("2_object"));
+    area.addLayer(name+"_3_roof",xmlzone.getLayer("3_roof"));
+    
+    area.addCollisionLayer(name+"_collision",xmlzone.getLayer("collision"));
+    area.addNavigationLayer(name+"_navigation",xmlzone.getLayer("navigation"));
+    
+    if(xmlzone.isInterior())
+      {
+      area.setPosition();
+      }
+    else
+      {
+      area.setPosition(xmlzone.getLevel(),xmlzone.getx(),xmlzone.gety());
+      }
+    
+    area.populate(xmlzone.getLayer("objects"));
+    addRPZone(area);
+    
+//    if(populate)
+//      {
+//      try
+//        {
+//        Class entityClass=Class.forName("games.stendhal.server.maps.Zone_"+name.replace("-","sub_"));
+//        java.lang.reflect.Constructor constr=entityClass.getConstructor(StendhalRPWorld.class, StendhalRPZone.class);
+//  
+//        // simply creatre a new instance. The constructor creates all additionally objects  
+//        constr.newInstance(this, area);
+//        }
+//      catch(ClassNotFoundException e)
+//        {
+//        logger.debug("Zone '"+name+"' doesn't have an extra populate method");
+//        }
+//      catch(Exception e)
+//        {
+//        logger.info("Zone '"+name+"' fails to load extra populate method",e);
+//        }
+//      }
 
     return area;
     }
@@ -166,9 +259,9 @@ public class StendhalRPWorld extends RPWorld
    *  num is the unique idenfier for portals 
    *  x and y are the position of the door of the house. 
    */
-  public void createHouse(int num, StendhalRPZone zone, int x, int y) throws java.io.IOException
+  public void createHouse(int num, StendhalRPZone zone, int x, int y) throws org.xml.sax.SAXException, java.io.IOException
     {
-    String name=zone.getID().getID()+"_house_"+Integer.toString(num);
+    String name="int_"+zone.getID().getID()+"_house_"+Integer.toString(num);
     
     Door door=new Door();
     door.setx(x);
@@ -179,7 +272,7 @@ public class StendhalRPWorld extends RPWorld
     zone.add(door);
     zone.addPortal(door);
     
-    StendhalRPZone house=addArea(name,"house_000",false);
+    StendhalRPZone house=addArea(name,"int_house_000");
     Portal portal=new Portal();
     portal.setDestination(zone.getID().getID(),num);
     portal.setx(7);

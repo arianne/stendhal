@@ -51,7 +51,8 @@ public class CollisionDetection
     
     while((text=file.readLine())!=null)
       {
-      if(text.trim().equals(""))
+      text=text.trim();
+      if(text.equals(""))
         {
         break;
         }

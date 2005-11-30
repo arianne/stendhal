@@ -161,17 +161,17 @@ public class Player extends RPEntity
 
       if(firstVisit)
         {
-        player.put("zoneid","city");        
+        player.put("zoneid","0_semos_city");        
         }
 
       world.add(player);
       }
     catch(Exception e) // If placing the player at its last position fails we reset it to city entry point
       {
-      logger.warn("cannot place player at its last position. reseting to city entry point",e);
+      logger.warn("cannot place player at its last position. reseting to semos city entry point",e);
       
       firstVisit=true;
-      player.put("zoneid","city");        
+      player.put("zoneid","0_semos_city");        
 
       world.add(player);
       }
@@ -410,7 +410,7 @@ public class Player extends RPEntity
 
     world.modify(who);
 
-    StendhalRPAction.changeZone(this,"afterlife");
+    StendhalRPAction.changeZone(this,"int_afterlife");
     StendhalRPAction.transferContent(this);
     }
 

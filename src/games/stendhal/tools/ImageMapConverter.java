@@ -82,8 +82,20 @@ public class ImageMapConverter extends Task
     Graphics2D g = i.createGraphics();
     g.setClip(0, 0, d.width, d.height);
     myView.paint(g);
+    
+    String geolocation=null;
+    
+    filename=file.getParentFile().getName();
+    if(filename.contains("Level "))
+      {
+      geolocation=filename.split("Level ")[1]+"_";
+      }
+    else
+      {
+      geolocation="int_";
+      }
 
-    filename = stendPath+"\\"+file.getName().replaceAll("\\.tmx",".png");
+    filename = stendPath+"\\"+geolocation+file.getName().replaceAll("\\.tmx",".png");
 
     try 
       {
@@ -117,12 +129,8 @@ public class ImageMapConverter extends Task
     {
       for (FileSet fileset : filesets)
       {
-//        DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
-//        String[] includedFiles = ds.getIncludedFiles();
-
-    DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
-    File dir = fileset.getDir(getProject());
-    String[] includedFiles = ds.getIncludedFiles();
+        DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
+        String[] includedFiles = ds.getIncludedFiles();
             
         for(String filename : includedFiles)
         {

@@ -290,13 +290,11 @@
    
   <!-- do the conversion -->
     <mapconverter stendPath="maps">
-      <fileset dir="tiled">
-    	<fileset dir="tiled/" includes="**/*.tmx"/>    	
-      </fileset>
+    	<fileset dir="tiled/" includes="**/*.tmx" excludes ="maps"/>    	
     </mapconverter>
 
     <imagemapconverter stendPath="images">
-    	<fileset dir="tiled/" includes="**/*.tmx"/>    	
+    	<fileset dir="tiled/" includes="**/*.tmx" excludes ="maps"/>    	
     </imagemapconverter>
   
     </target>

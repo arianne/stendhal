@@ -285,40 +285,40 @@ public class StendhalRPAction
 
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
 
-    if(zoneid.equals("village") && x>zone.getWidth()-4)
+    if(zoneid.equals("0_semos_village") && x>zone.getWidth()-4)
       {
-      changeZone(player,"city");
+      changeZone(player,"0_semos_city");
       transferContent(player);
       }
-    else if(zoneid.equals("city") && x<4)
+    else if(zoneid.equals("0_semos_city") && x<4)
       {
-      changeZone(player,"village");
+      changeZone(player,"0_semos_village");
       transferContent(player);
       }
-    else if((zoneid.equals("city") || zoneid.equals("village")) && y>zone.getHeight()-4)
+    else if((zoneid.equals("0_semos_city") || zoneid.equals("0_semos_village")) && y>zone.getHeight()-4)
       {
-      if(zoneid.equals("city")) player.setx(player.getx()+64);
-      changeZone(player,"plains");
+      if(zoneid.equals("0_semos_city")) player.setx(player.getx()+64);
+      changeZone(player,"0_semos_south_plains");
       transferContent(player);
       }
-    else if(zoneid.equals("plains") && y<4 && x<zone.getWidth()/2)
+    else if(zoneid.equals("0_semos_south_plains") && y<4 && x<zone.getWidth()/2)
       {
-      changeZone(player,"village");
+      changeZone(player,"0_semos_village");
       transferContent(player);
       }
-    else if(zoneid.equals("plains") && y<4 && x>=zone.getWidth()/2)
+    else if(zoneid.equals("0_semos_south_plains") && y<4 && x>=zone.getWidth()/2)
       {
-      changeZone(player,"city");
+      changeZone(player,"0_semos_city");
       transferContent(player);
       }
-    else if(zoneid.equals("plains") && y>zone.getHeight()-4)
+    else if(zoneid.equals("0_semos_south_plains") && y>zone.getHeight()-4)
       {
-      changeZone(player,"forest");
+      changeZone(player,"0_semos_forest");
       transferContent(player);
       }
-    else if(zoneid.equals("forest") && y<4)
+    else if(zoneid.equals("0_semos_forest") && y<4)
       {
-      changeZone(player,"plains");
+      changeZone(player,"0_semos_south_plains");
       transferContent(player);
       }
     else

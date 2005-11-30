@@ -16,6 +16,7 @@ import tiled.core.*;
 import tiled.io.*;
 import java.util.Stack;
 import java.util.Iterator;
+import java.util.Properties;
 import java.io.*;
 
 /**
@@ -32,27 +33,60 @@ public class StendhalMapWriter implements MapWriter
    * @throws Exception
    */
   public void writeMap(Map map, String filename) throws Exception
-  {
+  {  
+    String level=null;
 
-    File file = new File(filename);
+    File file = new File(map.getFilename());
+
+    String fileContainer=file.getParentFile().getName();
+    if(fileContainer.contains("Level "))
+      {
+      level=fileContainer.split("Level ")[1];
+      }
+    else
+      {
+      level="int";
+      }
+      
+    String destination=new File(filename).getParent();
+    String mapName=file.getName().split(".tmx")[0];
+
+    FileOutputStream os = new FileOutputStream(destination+File.separator+level+"_"+mapName+".xstend");
+    PrintWriter writer = new PrintWriter(os);
+    
+    writer.println("<map name=\""+mapName+"\">");
+    
+    Properties prop=map.getProperties();
+    String x=(String)prop.get("x");
+    String y=(String)prop.get("y");
+
+    if(level.equals("int")==false)
+      {
+      writer.println("  <location level=\""+level+"\" x=\""+x+"\" y=\""+y+"\"/>");
+      }
+    else
+      {
+      writer.println("  <location level=\"int\"/>");
+      }
+
     Iterator ml = map.getLayers();
+    boolean firstTime=true;
     while (ml.hasNext())
     {
       MapLayer layer = (MapLayer) ml.next();
-      String stendFile = file.getParent() + File.separator + layer.getName()
-          + ".stend";
-      System.out.println("writing " + stendFile);
-
-      FileOutputStream os = new FileOutputStream(stendFile);
-      PrintWriter writer = new PrintWriter(os);
-
-      writer.println(layer.getWidth() + " " + layer.getHeight());
-
-      for (int y = 0; y < layer.getHeight(); y++)
+      
+      if(firstTime)
       {
-        for (int x = 0; x < layer.getWidth(); x++)
+        firstTime=false;        
+        writer.println("  <size width=\""+layer.getWidth()+"\" height=\""+layer.getHeight()+"\"/>");
+      }
+      
+      writer.println("  <layer name=\""+layer.getName()+"\">");
+      for (int j = 0; j < layer.getHeight(); j++)
+      {
+        for (int i = 0; i < layer.getWidth(); i++)
         {
-          Tile tile = ((TileLayer) layer).getTileAt(x, y);
+          Tile tile = ((TileLayer) layer).getTileAt(i, j);
           int gid = 0;
 
           if (tile != null)
@@ -60,17 +94,19 @@ public class StendhalMapWriter implements MapWriter
             gid = tile.getGid();
           }
 
-          // writer.format("%1$3d"+((x==layer.getWidth()-1)?"":":"),gid);
-          writer.print(gid + ((x == layer.getWidth() - 1) ? "" : ","));
+          writer.print(gid + ((i == layer.getWidth() - 1) ? "" : ","));
         }
 
         writer.println();
       }
-
-      writer.println();
-      writer.close();
+      writer.println("  </layer>");
+    
     }
+
+    writer.println("  </map>");
+    writer.close();
   }
+ 
 
   /**
    * Method writeTileset. Tilesets won't be written.
@@ -111,7 +147,7 @@ public class StendhalMapWriter implements MapWriter
     try
     {
       String path = pathname.getCanonicalPath().toLowerCase();
-      if (path.endsWith(".stend"))
+      if (path.endsWith(".xstend"))
       {
         return true;
       }
@@ -123,7 +159,7 @@ public class StendhalMapWriter implements MapWriter
 
   public String getFilter() throws Exception
   {
-    return "*.stend";
+    return "*.xstend";
   }
 
   public String getName()

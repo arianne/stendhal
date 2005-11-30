@@ -19,24 +19,7 @@ public class StendhalQuestSystem
     this.world=world;
     this.rules=rules;
     
-    URI url;
-    try
-      {
-      url=this.getClass().getClassLoader().getResource("games/stendhal/server/quests").toURI(); 
-      }
-    catch(java.net.URISyntaxException e)
-      {
-      logger.error("Can't find file: games/stendhal/server/quests",e);
-      return;
-      }
-  
-    if(url==null) 
-      {
-      logger.error("Can't find file: games/stendhal/server/quests");
-      return;
-      }
-
-    File questsFolder=new File(url);
+    File questsFolder=new File("games/stendhal/server/quests");
     String[] files=questsFolder.list();
     
     if(files == null)

@@ -52,9 +52,16 @@ public class StendhalRPZone extends MarauroaRPZone
   private List<NPC> npcs;
   private List<RespawnPoint> respawnPoints;
   private List<SheepFood> foodItems;
-  
+
   /** contains data to if a certain area is walkable*/
   public CollisionDetection collisionMap;
+
+  /** Position of this zone in the world map */
+  private boolean interior;
+  private int level;
+  private int x;
+  private int y;
+  
   /** contains navigation point nodes and 'streets' */
   public NavigationMap navigationMap;  
 
@@ -242,63 +249,77 @@ public class StendhalRPZone extends MarauroaRPZone
     }
   
   
-  public void addLayer(String name, String filename) throws IOException
+  public void addLayer(String name, String byteContents) throws IOException
     {
     Log4J.startMethod(logger,"addLayer");
     TransferContent content=new TransferContent();
     content.name=name;
     content.cacheable=true;
-    content.data=getBytesFromFile(filename);
+    content.data=byteContents.getBytes();
     content.timestamp=CRC.cmpCRC(content.data);
     
     contents.add(content);
     Log4J.finishMethod(logger,"addLayer");
     }
 
-  public void addCollisionLayer(String name, String filename) throws IOException
+  public void addCollisionLayer(String name, String byteContents) throws IOException
     {
     Log4J.startMethod(logger,"addCollisionLayer");
     TransferContent content=new TransferContent();
     content.name=name;
     content.cacheable=true;
     logger.debug("Layer timestamp: "+Integer.toString(content.timestamp));
-    content.data=getBytesFromFile(filename);
+    content.data=byteContents.getBytes();
     content.timestamp=CRC.cmpCRC(content.data);
     
     contents.add(content);
     
-    collisionMap.setCollisionData(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename))); //new FileReader(filename));
+    collisionMap.setCollisionData(new StringReader(byteContents));//new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename)));
     Log4J.finishMethod(logger,"addCollisionLayer");
     }
   
-  public void addNavigationLayer(String name, String filename) throws IOException
+  public void setPosition(int level, int x,int y)
+    {
+    this.interior=false;
+    this.level=level;
+    this.x=x;    
+    this.y=y;
+    }
+
+  public void setPosition()
+    {
+    this.interior=true;
+    }
+  
+  public void addNavigationLayer(String name, String byteContents) throws IOException
     {
     Log4J.startMethod(logger,"addNavigationLayer");
    
+    if(byteContents==null)    
+      {
+      logger.info("No navigation map for "+name+" found.");
+      return;
+      }
+      
     try
       {
       navigationMap = new NavigationMap();
-      InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
-      if (is == null)
-      {
-        throw new FileNotFoundException(filename);
+      navigationMap.setNavigationPoints(new StringReader(byteContents));
+      return;
       }
-      navigationMap.setNavigationPoints(new InputStreamReader(is));
-      }
-    catch (FileNotFoundException fnfe)
+    catch (IOException fnfe)
       {
       logger.info("No navigation map for "+name+" found.", fnfe);
-      }
+      }    
       
     Log4J.finishMethod(logger,"addNavigationLayer");
     }  
   
-  public void populate(String filename) throws IOException, RPObjectInvalidException
+  public void populate(String byteContents) throws IOException, RPObjectInvalidException
     {
     Log4J.startMethod(logger,"populate");
     
-    InputStream in=getClass().getClassLoader().getResourceAsStream(filename);
-    BufferedReader file=new BufferedReader(new InputStreamReader(in));
+    BufferedReader file=new BufferedReader(new StringReader(byteContents));
     
     String text=file.readLine();
     String[] size=text.split(" ");

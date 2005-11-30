@@ -434,6 +434,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\ZoneXMLLoader.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\Chest.java</path>
 				<source>true</source>
 			</fileitem>
@@ -514,43 +518,23 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\afterlife.java</path>
+				<path>src\games\stendhal\server\maps\Zone_0_semos_city.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\city.java</path>
+				<path>src\games\stendhal\server\maps\Zone_0_semos_south_plains.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\dungeon_000.java</path>
+				<path>src\games\stendhal\server\maps\Zone_0_semos_village.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\dungeon_001.java</path>
+				<path>src\games\stendhal\server\maps\Zone_int_afterlife.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\forest.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\maps\plains.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\maps\rat_dungeon_000.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\maps\tavern.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\maps\valley.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\maps\village.java</path>
+				<path>src\games\stendhal\server\maps\Zone_int_semos_tavern.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -703,6 +687,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\StringFormatter.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\tools\ImageMapConverter.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
