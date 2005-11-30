@@ -30,6 +30,14 @@ import org.apache.tools.ant.types.FileSet;
 import tiled.core.Map;
 import tiled.io.xml.XMLMapTransformer;
 
+import tiled.core.MapLayer;
+import tiled.view.MapView;
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
+import javax.imageio.ImageIO;
+import java.util.ListIterator;
+
 /**
  * Converts the stendhal maps from *.tmx to *.stend
  * This class can be started from the command line or through an ant task
@@ -40,6 +48,7 @@ public class MapConverter extends Task
 {
   /** path where the *.stend goes */
   private String stendPath;
+  private String imagePath;
   /** list of *.tmx files to convert */
   private List<FileSet> filesets = new ArrayList<FileSet>();
   
@@ -55,9 +64,69 @@ public class MapConverter extends Task
     String filename = file.getAbsolutePath();
     // some internal tiled magic: load the map 
     Map map = new XMLMapTransformer().readMap(filename);
+    
+    saveMap(map,tmxFile);
+    saveImageMap(map,tmxFile);
+  }
+
+ 
+  private void saveMap(Map map,String tmxFile) throws Exception
+    {
+    File file = new File(tmxFile);
+
     // and save it
-    filename = stendPath+"\\"+file.getName().replaceAll("\\.tmx",".stend");
+    String filename = stendPath+File.separator+file.getName().replaceAll("\\.tmx",".stend");
     new StendhalMapWriter().writeMap(map, filename);
+  }
+  
+  private void saveImageMap(Map map,String tmxFile)
+  {
+    File file = new File(tmxFile);
+    String filename = file.getAbsolutePath();
+
+    ListIterator it= map.getLayers();
+    
+    while(it.hasNext())
+      {
+      MapLayer layer=(MapLayer)it.next();
+      if(layer.getName().equals("navigation") || layer.getName().equals("collision") || layer.getName().equals("objects"))
+        {
+        layer.setVisible(false);
+        }
+      }
+
+    MapView myView = MapView.createViewforMap(map);
+    myView.enableMode(MapView.PF_NOSPECIAL);
+    myView.setZoom(0.125);
+    Dimension d = myView.getPreferredSize();
+    BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
+    Graphics2D g = i.createGraphics();
+    g.setClip(0, 0, d.width, d.height);
+    myView.paint(g);
+    
+    String geolocation=null;
+    
+    filename=file.getParentFile().getName();
+    if(filename.contains("Level "))
+      {
+      geolocation=filename.split("Level ")[1]+"_";
+      geolocation=geolocation.replace("-","sub_");
+      }
+    else
+      {
+      geolocation="int_";
+      }
+
+    filename = imagePath+File.separator+geolocation+file.getName().replaceAll("\\.tmx",".png");
+
+    try 
+      {
+      ImageIO.write(i, "png", new File(filename));
+      }
+    catch (java.io.IOException e) 
+      {
+      e.printStackTrace();
+      }
   }
   
   /**
@@ -73,6 +142,12 @@ public class MapConverter extends Task
   public void setStendPath(String stendPath)
   {
       this.stendPath = stendPath;
+  }
+  
+  /** The setter for the "stendPath" attribute */
+  public void setImagePath(String imagePath)
+  {
+      this.imagePath = imagePath;
   }
   
   /** ants execute method. */

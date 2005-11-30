@@ -83,6 +83,9 @@ Changelog
 - Food restore HP when eaten
 - Added houses system (for NPC by now).
 - Added door.
+- Automagically choose the new zone when reaching map border
+- Added several new zones and dungeons ( multiplied map size by 4 )
+- Code to avoid trainer campers.
 
 
 0.39.1 Oct 26, 2005

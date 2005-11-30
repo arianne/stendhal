@@ -289,16 +289,11 @@
     </taskdef>
    
   <!-- do the conversion -->
-    <mapconverter stendPath="maps">
-    	<fileset dir="tiled/" includes="**/*.tmx" excludes ="maps"/>    	
-    </mapconverter>
-    
     <mkdir dir="maps/images"/>
 
-    <imagemapconverter stendPath="maps/images">
+    <mapconverter stendPath="maps" imagePath="maps/images">
     	<fileset dir="tiled/" includes="**/*.tmx" excludes ="maps"/>    	
-    </imagemapconverter>
-  
+    </mapconverter>
     </target>
     
   <target name="create_tiled_plugin" depends="init" description="creates the reader/writer-plugin jar for tiled">

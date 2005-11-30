@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="128" tileheight="128">
+<map version="0.99a" orientation="orthogonal" width="20" height="20" tilewidth="128" tileheight="128">
  <tileset name="Untitled" firstgid="1" tilewidth="128" tileheight="128">
   <image source="sub_1_semos_dungeon.png"/>
  </tileset>
@@ -63,14 +63,14 @@
  <tileset name="Untitled" firstgid="247" tilewidth="128" tileheight="128">
   <image source="sub_2_kotoch_entrance.png"/>
  </tileset>
- <layer name="Underground Level -7" width="64" height="64">
+ <layer name="Underground Level -7" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OIREAAAgEsO8fhnhoKiA5bmJ+laQAFvrAAQAAAAAAAAAAAAAAAAAAvhoSJR07AEAAAA==
+   H4sIAAAAAAAAAFvHwMCwbhTTDX8bBG4YxaN4FI9iamAAgxevikAGAAA=
   </data>
  </layer>
- <layer name="Underground Level -6" width="64" height="64">
+ <layer name="Underground Level -6" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OuxGCUBQFwNd/MZSFgMpHJOeUYPTmjrPB5ju01gaAH4zxiCnmAp/elnjGK94FPr2tscUeR4FPb5844xtXgQ8AAAAAAAAAAAAAAAAA8H9uVnq02wBAAAA=
+   H4sIAAAAAAAAAO3QuRGAMBDF0O2/GJcFBhvfzlEROwzBD16qQMHMgnzmwImIy6F3IyHjcegVVDR0h97AxML+wX8R8fMCdc7ip0AGAAA=
   </data>
  </layer>
  <layer name="Underground Level -5" width="64" height="64">
@@ -93,12 +93,12 @@
    H4sIAAAAAAAAAO3PWVLCUAAF0UTR/a9CBSU4AiKoODIoM2thVOkV+JfwqtJV9/z3TaIoSiT96wSnWGCJFdYBdGXlDEVssMUPfgPoykoJ5/hDFDMcxPvvysoFyjjkcwFHOM7Rf+VLBZe4wjVucIu7ANrSVkUNddyjgQc00QqgL22PeMIz2njBK97wHkBf2j7wiQ666KGPL3wH0Je2AYYYYYwJpphhHkCfJEmSJEmSJEmSJEmSJEmSJEmS8mMHkzrinQBAAAA=
   </data>
  </layer>
- <layer name="Underground Level -1" width="64" height="64" visible="0">
+ <layer name="Underground Level -1" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OOQ0AIBAAsOOxiE00ggI2wiV06N4ZERMOylYTPF5pW0/wAADgvpHgAAAAAAAAAAAAAAAAwL8WrJ7GsgBAAAA=
   </data>
  </layer>
- <layer name="Ground Level 0" width="64" height="64" visible="0">
+ <layer name="Ground Level 0" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OQ3JEYRiG0Z7ExnZimxXb6Ni2bTuZ9hrzLCDD+9/6qvIOzvyEAoFASOQPk5hCHeoxhGEEMWLg59o0ZtCARoxiDOOYMPBzrQzlqEClgY/fqlCNGtQa+PgtDOGIQKSBj9+iEI0YxBr4+C0O8UhAooGP35KQjBSkGvi4loZ0ZCATt7jDPR7QhGa0oNXA12tZyEYOcvGIJzzjBW1oRwc6DXy9lod8FKAQr3jDOz7QhW70oNfA12tFKEYJSvGJL3zjB33oxwAGDXy9Nos5zGMBu9jDPg4M/FxbxBKWsYJDHOEYJwZ+rq1iDevYwCnOcI4LAz/XNrGFbezgEle4xo2Bn4iIiIiIiIiIiIiIiIiIiIiIiIiIiIj8X7/RDQ28AEAAAA==
   </data>
