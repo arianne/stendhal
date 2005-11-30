@@ -89,6 +89,7 @@ public class ImageMapConverter extends Task
     if(filename.contains("Level "))
       {
       geolocation=filename.split("Level ")[1]+"_";
+      geolocation=geolocation.replace("-","sub_");
       }
     else
       {

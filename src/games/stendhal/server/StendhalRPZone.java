@@ -16,6 +16,7 @@ import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.SheepFood;
+import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
@@ -289,6 +290,34 @@ public class StendhalRPZone extends MarauroaRPZone
   public void setPosition()
     {
     this.interior=true;
+    }
+  
+  public int getx()
+    {
+    return x;
+    }
+
+  public int gety()
+    {
+    return y;
+    }
+
+  public int getLevel()
+    {
+    return level;
+    }
+
+  public boolean isInterior()
+    {
+    return interior;
+    }
+  
+  public boolean contains(Player player, int level, int player_x, int player_y)
+    {
+    Rectangle2D area=player.getArea(player_x,player_y);
+    Rectangle2D zone=new Rectangle(x,y,getWidth(),getHeight());
+    
+    return zone.intersects(area);
     }
   
   public void addNavigationLayer(String name, String byteContents) throws IOException

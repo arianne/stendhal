@@ -232,7 +232,7 @@ public class StendhalRPAction
             if(zone.leavesZone(player,x+dx,y+dy))
               {
               logger.debug("Leaving zone from ("+x+","+y+") to ("+(x+dx)+","+(y+dy)+")");
-              decideChangeZone(player);
+              decideChangeZone(player, x+dx, y+dy);
               player.stop();
               world.modify(player);
               return;
@@ -277,53 +277,45 @@ public class StendhalRPAction
     Log4J.finishMethod(logger, "transferContent");
     }
 
-  public static void decideChangeZone(Player player) throws AttributeNotFoundException, NoRPZoneException
+  public static void decideChangeZone(Player player, int x, int y) throws AttributeNotFoundException, NoRPZoneException
     {
     String zoneid=player.get("zoneid");
-    int x=player.getx();
-    int y=player.gety();
+    
+    StendhalRPZone origin=(StendhalRPZone)world.getRPZone(player.getID());
+    int player_x=x+origin.getx();
+    int player_y=y+origin.gety();
 
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+    boolean found=false;
+    
+    for(IRPZone izone: world)
+      {
+      StendhalRPZone zone=(StendhalRPZone)izone;      
+      if(zone.isInterior()==false && zone.getLevel()==origin.getLevel())
+        {
+        if(zone.contains(player, origin.getLevel(), player_x, player_y))
+          {
+          if(found)
+            {
+            logger.error("Already contained at :"+zone.getID());
+            }
+            
+          found=true;
+          logger.debug("Contained at :"+zone.getID());
+          
+          player.setx(/*Math.abs*/(player_x-zone.getx()));
+          player.sety(/*Math.abs*/(player_y-zone.gety()));
 
-    if(zoneid.equals("0_semos_village") && x>zone.getWidth()-4)
-      {
-      changeZone(player,"0_semos_city");
-      transferContent(player);
+          logger.debug(player.getName()+" pos would be ("+player.getx()+","+player.gety()+")");          
+          
+          changeZone(player,zone.getID().getID(),false);
+          transferContent(player);
+          }
+        }
       }
-    else if(zoneid.equals("0_semos_city") && x<4)
+    
+    if(!found)
       {
-      changeZone(player,"0_semos_village");
-      transferContent(player);
-      }
-    else if((zoneid.equals("0_semos_city") || zoneid.equals("0_semos_village")) && y>zone.getHeight()-4)
-      {
-      if(zoneid.equals("0_semos_city")) player.setx(player.getx()+64);
-      changeZone(player,"0_semos_south_plains");
-      transferContent(player);
-      }
-    else if(zoneid.equals("0_semos_south_plains") && y<4 && x<zone.getWidth()/2)
-      {
-      changeZone(player,"0_semos_village");
-      transferContent(player);
-      }
-    else if(zoneid.equals("0_semos_south_plains") && y<4 && x>=zone.getWidth()/2)
-      {
-      changeZone(player,"0_semos_city");
-      transferContent(player);
-      }
-    else if(zoneid.equals("0_semos_south_plains") && y>zone.getHeight()-4)
-      {
-      changeZone(player,"0_semos_forest");
-      transferContent(player);
-      }
-    else if(zoneid.equals("0_semos_forest") && y<4)
-      {
-      changeZone(player,"0_semos_south_plains");
-      transferContent(player);
-      }
-    else
-      {
-      logger.warn("Unable to choose a new zone from ("+zoneid+":"+zone.getWidth()+","+zone.getHeight()+")");
+      logger.warn("Unable to choose a new zone for player("+player+")");
       }
     }
 
@@ -412,6 +404,11 @@ public class StendhalRPAction
 
   public static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException
     {
+    changeZone(player,destination,true);
+    }
+    
+  private static void changeZone(Player player, String destination, boolean placePlayer) throws AttributeNotFoundException, NoRPZoneException
+    {
     Log4J.startMethod(logger, "changeZone");
 
     String source=player.getID().getZoneID();
@@ -435,7 +432,11 @@ public class StendhalRPAction
       }
 
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-    zone.placeObjectAtZoneChangePoint(oldzone,player);
+    
+    if(placePlayer)
+      {
+      zone.placeObjectAtZoneChangePoint(oldzone,player);
+      }
 
     placeat(zone,player,player.getInt("x"),player.getInt("y"));
     player.stop();

@@ -292,8 +292,10 @@
     <mapconverter stendPath="maps">
     	<fileset dir="tiled/" includes="**/*.tmx" excludes ="maps"/>    	
     </mapconverter>
+    
+    <mkdir dir="maps/images"/>
 
-    <imagemapconverter stendPath="images">
+    <imagemapconverter stendPath="maps/images">
     	<fileset dir="tiled/" includes="**/*.tmx" excludes ="maps"/>    	
     </imagemapconverter>
   
