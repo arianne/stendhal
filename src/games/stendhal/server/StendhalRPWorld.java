@@ -132,6 +132,8 @@ public class StendhalRPWorld extends RPWorld
     addArea("0_orril_river");
     addArea("0_orril_forest_river");
 
+    addArea("-1_semos_dungeon");
+
     addArea("int_afterlife");
     addArea("int_semos_tavern");
 
@@ -202,7 +204,7 @@ public class StendhalRPWorld extends RPWorld
 
   public StendhalRPZone addArea(String name) throws org.xml.sax.SAXException, java.io.IOException
     {
-    return addArea(name,name);
+    return addArea(name,name.replace("-","sub_"));
     }
     
   public StendhalRPZone addArea(String name, String content) throws org.xml.sax.SAXException, java.io.IOException

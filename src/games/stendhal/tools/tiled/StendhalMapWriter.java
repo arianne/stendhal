@@ -51,7 +51,8 @@ public class StendhalMapWriter implements MapWriter
     String destination=new File(filename).getParent();
     String mapName=file.getName().split(".tmx")[0];
 
-    FileOutputStream os = new FileOutputStream(destination+File.separator+level+"_"+mapName+".xstend");
+    filename=destination+File.separator+level.replace("-","sub_")+"_"+mapName+".xstend";
+    FileOutputStream os = new FileOutputStream(filename);
     PrintWriter writer = new PrintWriter(os);
     
     writer.println("<map name=\""+mapName+"\">");
