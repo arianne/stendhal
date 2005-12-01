@@ -63,6 +63,9 @@
  <tileset name="Untitled" firstgid="247" tilewidth="128" tileheight="128">
   <image source="sub_2_kotoch_entrance.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="263" tilewidth="128" tileheight="128">
+  <image source="0_semos_west_plains.png"/>
+ </tileset>
  <layer name="Underground Level -7" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFvHwMCwbhTTDX8bBG4YxaN4FI9iamAAgxevikAGAAA=
@@ -100,7 +103,7 @@
  </layer>
  <layer name="Ground Level 0" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OQ3JEYRiG0Z7ExnZimxXb6Ni2bTuZ9hrzLCDD+9/6qvIOzvyEAoFASOQPk5hCHeoxhGEEMWLg59o0ZtCARoxiDOOYMPBzrQzlqEClgY/fqlCNGtQa+PgtDOGIQKSBj9+iEI0YxBr4+C0O8UhAooGP35KQjBSkGvi4loZ0ZCATt7jDPR7QhGa0oNXA12tZyEYOcvGIJzzjBW1oRwc6DXy9lod8FKAQr3jDOz7QhW70oNfA12tFKEYJSvGJL3zjB33oxwAGDXy9Nos5zGMBu9jDPg4M/FxbxBKWsYJDHOEYJwZ+rq1iDevYwCnOcI4LAz/XNrGFbezgEle4xo2Bn4iIiIiIiIiIiIiIiIiIiIiIiIiIiIj8X7/RDQ28AEAAAA==
+   H4sIAAAAAAAAAO3PRVIDYQBE4WEBgQgJSeA2uLsW7u7u7u7uzpYz8g4xM/VX0Ytv06vXv5Zl/YrAE2NZ8UiAF5NsU6hFHQYxhGGMGNBrNx+f/QggEdNsM6hHA0YxhnFMGNBrtyCfQ0hCGKVsZShHhQF9TovwOYpkpKCSrQrVqDGgz22xiIMH8Qb0uC0BXvjgN6DHbQEkIoiQAT1uS0IYEUQN6HFaKtKQjgzc4g73eEAjmtCMFgN67ZaJLGQjB494wjNe0Io2tKPDgF675SIP+SjAK97wjg90ogvd6DGg126FKEIxSvCJL3zjB73oQz8GDOi12yzmMI8F7GIP+zgwoM9pi1jCMlZwiCMc48SAPqetYg3r2MApznCOCwP6nLaJLWxjB5e4wjVuDOgTERERERERERERERERERERERERERERkf/rDynq0XgAQAAA
   </data>
  </layer>
 </map>

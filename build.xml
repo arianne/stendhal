@@ -280,14 +280,6 @@
       </classpath>
     </taskdef>
 
-  <!-- register taskdef -->
-    <taskdef name="imagemapconverter" classname="games.stendhal.tools.ImageMapConverter">
-      <classpath>
-        <pathelement path="${build}"/>
-        <pathelement path="${libdir}/${tiled_jar}"/>
-      </classpath>
-    </taskdef>
-   
   <!-- do the conversion -->
     <mkdir dir="maps/images"/>
 

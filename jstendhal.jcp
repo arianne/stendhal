@@ -686,10 +686,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\tools\ImageMapConverter.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\tools\MapConverter.java</path>
 				<source>true</source>
 			</fileitem>
