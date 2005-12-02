@@ -23,7 +23,6 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.Rectangle;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
 import java.util.LinkedList;
@@ -518,7 +517,7 @@ public class StendhalRPZone extends MarauroaRPZone
       Entity otherEntity = (Entity) other;
       
       Rectangle2D rect = otherEntity.getArea(otherEntity.getx(),otherEntity.gety());
-      if(rect.contains(new Point2D.Double(x,y)))
+      if(rect.contains(x,y))
         {
         return otherEntity;
         }
