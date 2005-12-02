@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
 import java.util.LinkedList;
@@ -508,27 +509,44 @@ public class StendhalRPZone extends MarauroaRPZone
       return true;
       }
     }
-
-  private static byte[] getBytesFromFile(String file) throws IOException 
+  
+  /** @return the entity at x,y or null if there is none */
+  public synchronized Entity getEntityAt(double x, double y) throws AttributeNotFoundException
     {
-    ByteArrayOutputStream out=new ByteArrayOutputStream();
-    InputStream is= StendhalRPZone.class.getClassLoader().getResourceAsStream(file);
-    
-    if(is==null)
+    for(RPObject other: objects.values())
       {
-      logger.warn("cannot find file "+file);
-      throw new FileNotFoundException(file);
+      Entity otherEntity = (Entity) other;
+      
+      Rectangle2D rect = otherEntity.getArea(otherEntity.getx(),otherEntity.gety());
+      if(rect.contains(new Point2D.Double(x,y)))
+        {
+        return otherEntity;
+        }
       }
-    
-    byte[] buffer=new byte[1024];
-    int len=0;
-    while((len=is.read(buffer,0,1024))!=-1)
-      {
-      out.write(buffer,0,len);
-      }
-
-    return out.toByteArray();
+    return null;
     }
+  
+// TODO: remove me
+//  private static byte[] getBytesFromFile(String file) throws IOException 
+//    {
+//    ByteArrayOutputStream out=new ByteArrayOutputStream();
+//    InputStream is= StendhalRPZone.class.getClassLoader().getResourceAsStream(file);
+//    
+//    if(is==null)
+//      {
+//      logger.warn("cannot find file "+file);
+//      throw new FileNotFoundException(file);
+//      }
+//    
+//    byte[] buffer=new byte[1024];
+//    int len=0;
+//    while((len=is.read(buffer,0,1024))!=-1)
+//      {
+//      out.write(buffer,0,len);
+//      }
+//
+//    return out.toByteArray();
+//    }
   
   public String toString()
   {
