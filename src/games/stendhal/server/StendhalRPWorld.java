@@ -138,30 +138,32 @@ public class StendhalRPWorld extends RPWorld
     addArea("int_semos_tavern");
 
 
-    // Populate zones
-    File questsFolder=new File("games/stendhal/server/maps");
-    String[] files=questsFolder.list(new FilenameFilter()
-      {
-      public boolean accept(File dir, String name)      
-        {
-        return name.contains(".class");
-        }
-      });
-    
-    if(files == null)
-      {
-      logger.error("Maps folder not found. should be "+questsFolder.getAbsolutePath());
-      return;
-      }
-    
-    for(String file: files)
-      {
-      String className=file.substring(0,file.indexOf("."));
-      if(!className.equals("IContent"))
-        {
-        populateZone(className);
-        }
-      }
+//    // Populate zones
+//    File questsFolder=new File("games/stendhal/server/maps");
+//    String[] files=questsFolder.list(new FilenameFilter()
+//      {
+//      public boolean accept(File dir, String name)
+//        {
+//        return name.contains(".class");
+//        }
+//      });
+//    
+//    if(files == null)
+//      {
+//      logger.error("Maps folder not found. should be "+questsFolder.getAbsolutePath());
+//      return;
+//      }
+//    
+//    for(String file: files)
+//      {
+//      String className=file.substring(0,file.indexOf("."));
+//      if(!className.equals("IContent"))
+//        {
+//        populateZone(className);
+//        }
+//      }
+    populateZone("Afterlife");
+    populateZone("Semos");
     }
   
   private boolean populateZone(String name)
