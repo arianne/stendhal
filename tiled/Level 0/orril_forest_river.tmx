@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <property name="x" value="500000"/>
- 
  <property name="y" value="500384"/>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../zelda_outside_0_chipset.png" trans="ffffff"/>
@@ -35,7 +34,7 @@
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ZQW6DMBRFUWbZSffV7It2IVX31k4iRVYAGxx/g8/gzKK0cF+sKNymaboBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqz4aiL7GnnxuuELvlqJ71u5fW3Sf0TeQ9vhu3H+kLUS3zvmc3/99rTiyjznjPaIbjbCDtUb3DHv2MSfvYQN9dS/pn7OPtO9P5utG6d9yAyVndI3+r86JtdeNuoHn641s/q7+JUbbwFaHls176D/KBkp7tGjeS//fhf8pullU+wj6j9X7DP173EJ0p9oev81E9l/6DtDDDqL7XL17yRmwZxPR97k3vXWv0Z/zdn929DnDGTw6vOM5y1m7X3kHae/c6z9yD+bCv9ers28gffa197NQKrpb7bOg9tm4dQbXEn3vrkgXAAAAAAAAAFj2B0RizxkAAAEA
+   H4sIAAAAAAAAAO3ZQW6DMBRFUYZZSffV7It2IVX31k4iRVYAGxx/g8/gzKK0cF+sKNymaboBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqz4aiL7GnnxuuELvlqJ71u5fW3Sf0TeQ9vhu3H+kLUS3zvmc3/99rTiyjznjPaIbjbCDtUb3DHv2MSfvYQN9dS/pn7OPtO9P5utG6d9yAyVndI3+r86JtdeNuoHn641s/q7+JUbbwFaHls176D/KBkp7tGjeS//fhf8pullU+wj6j9X7DP173EJ0p9oev81E9l/6DtDDDqL7XL17yRmwZxPR97k3vXWv0Z/zdn929DnDGTw6vOM5y1m7X3kHae/c6z9yD+bCv9ers28gffa197NQKrpb7bOg9tm4dQbXEn3vrkgXAAAAAAAAAFj2B/p2zrMAAAEA
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">

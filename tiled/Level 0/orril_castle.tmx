@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <property name="x" value="499872"/>
- 
  <property name="y" value="500256"/>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../zelda_outside_0_chipset.png" trans="ffffff"/>
@@ -50,20 +49,20 @@
  </layer>
  <layer name="3_roof" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YsQkAIBADwLS//1QuIo6hK9gIPneQNmWKJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAZ7OScbLqz34A3rDnAAAAANCX/w8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4sQGs2JvFAAABAA==
+   H4sIAAAAAAAAAO3cQS4EQRyF8ZreTXAQHAQHwUFwOBcRG1xBVWI2YiYho9+r//u+pJK3krSNX6S7WsvrY9PaWz/vG3Zap0trZ/2cLOyxkzrvz3vRz+XC3u2Ervtz3vRztbC/7+rd9me86+d+Yf+0K/fUn++hn8eFvW9XzMHVs+xqubh6ll0tF1fPsqvl4upZdrVcXD3LrpaLq2fZ1XJx9Sy7Wi6unmVXy8XVs+xqubh6ll0tF1fPsqvl4upZdsUcXD3LrpiDq2fZVVO7epadkou33XZaam+77dQc7O2w03NxOP7X52Jy/K/LweT43y8Hq+N/fS5ux//6XAyP/3U5GB7/63IwPP7X5+J5/K/LwfP4X5eD5/G/NrXn8b82tefxvz4X2+N/XQ62x/+6HGyP/7WpbY//taltj//1uTgf/2tycT7+1+TifPyvy8H5+F+b2vn4X5va+fhfm9r5+F+fi/nxvy4H8+N/XQ7mx/+6HMyP/3U5mB//a1ObH/9rU5sf/2tTmx//68P/x+tl29pzP6/buX4+/s8O/xP+X7///nvx2/B/dvifRvifduF/wv/Z4X/C/9nh/+zwf3b4//i5/f/vUPg/O/xP+D87/J8d/s8O/2eH/7PD/9nh/+zwf3b4Pzf+/58b7//kxvv/ufH+f268/58Z3//mxve/2fH9b3Z8/5sZ9//kpL7nB/9rU9/zg/+1qe/5wf+6HO75wf+6HO75xP+aXO75xP/r5mB7/L9O11+/RwfP4/91czA8/tfkYnj8v35qt+N/bWq3439dDm7H/7oc3I7/dTm4Hf9rU7sd/+tzMTz+1/UXex8K/9MI/9MI/xP+J/xP+J9G+J/wP43wP+3C/4T/aYT/aYT/s8P/hP+zw//Z4X/C/9nt8/8nxNkr3wAAAQA=
   </data>
  </layer>
- <layer name="objects" width="128" height="128">
+ <layer name="objects" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.25">
+ <layer name="collision" width="128" height="128" visible="0" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="navigation" width="128" height="128">
+ <layer name="navigation" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3bQQ0AMAgEQb6ViX8T9VACTciMATgBGwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGyU5/cHdRs2AAAAAAAAAAAAAAAAAMA0fR4AAAAAAAAAAAAAAMC7iTaj+4a+BAAAAAAAAAAAAAAAAKi6StsIUQAAAQA=
   </data>

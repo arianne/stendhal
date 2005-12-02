@@ -66,6 +66,9 @@
  <tileset name="Untitled" firstgid="263" tilewidth="128" tileheight="128">
   <image source="0_semos_west_plains.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="279" tilewidth="128" tileheight="128">
+  <image source="0_orril_north_forest.png"/>
+ </tileset>
  <layer name="Underground Level -7" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFvHwMCwbhTTDX8bBG4YxaN4FI9iamAAgxevikAGAAA=
@@ -103,7 +106,7 @@
  </layer>
  <layer name="Ground Level 0" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PRVIDYQBE4WEBgQgJSeA2uLsW7u7u7u7uzpYz8g4xM/VX0Ytv06vXv5Zl/YrAE2NZ8UiAF5NsU6hFHQYxhGGMGNBrNx+f/QggEdNsM6hHA0YxhnFMGNBrtyCfQ0hCGKVsZShHhQF9TovwOYpkpKCSrQrVqDGgz22xiIMH8Qb0uC0BXvjgN6DHbQEkIoiQAT1uS0IYEUQN6HFaKtKQjgzc4g73eEAjmtCMFgN67ZaJLGQjB494wjNe0Io2tKPDgF675SIP+SjAK97wjg90ogvd6DGg126FKEIxSvCJL3zjB73oQz8GDOi12yzmMI8F7GIP+zgwoM9pi1jCMlZwiCMc48SAPqetYg3r2MApznCOCwP6nLaJLWxjB5e4wjVuDOgTERERERERERERERERERERERERERERkf/rDynq0XgAQAAA
+   H4sIAAAAAAAAAO3URVJdYRSF0ZdGAgECBIi7ziLurhV3d3d3d3dPlzFmMYd7q/6q7Mbq7NZ3Oqe30Wj0RtDUr9FoZiAtnLKdZh3rOcRhjnC0gN6qtbq5jUG0c8Z2lg1s5BjHOcHJAnqr1uHmTgbTxTLbclawsoC+unW7uYchDGWVbTVrWFtAX92GuXk4IxhJf9sAmmguoK9uo9w8mjGM7fuDthZaaSugr27j3DyeCUzs+4O2djroLKCvbpPcPJkpTO37g7YuuukpoK9u05jODGbyjvd84COb2MwWthbQW7VZzGYOc/nEZ77wlW1sZwc7C+it2jzms4CFfOM7P/jJLnazh70F9FZtEYtZwlJ+8Zs//GUf+znAwQJ6q3aO81zgIve4zwMeFtBXt0tc5gpXecRjnvC0gL66XeM6N7jJM57zgpcF9NXtFre5w11e8Zo3vC2gLyIiIiIiIiIiIiIiIiIiIiIiIiIiIiL+X/8AoVY5qQBAAAA=
   </data>
  </layer>
 </map>

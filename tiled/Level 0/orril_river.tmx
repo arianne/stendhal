@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <property name="x" value="499872"/>
- 
  <property name="y" value="500384"/>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../zelda_outside_0_chipset.png" trans="ffffff"/>
@@ -35,7 +34,7 @@
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cQW7bMBAFUO98k9wruVfbgxS5SHKZ1kAECARJkTJFivJbvFWCeKQ/HNGx5PvtdrsDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwIW8R4yuiTG564PrKclZD1zPVq6//vsd8Sfyu6OPhXb5L7l/ZIQ9MPpYeD7/ktz1wHWE2ZfmnuqB0cfD/vz/7sz/82YGzKwk/3vmZ64Dc3t2/euBubXKP7wO6IHza3H9//rxLf/p1O79vwKxzOU/j9zar81a/nPJzf49Wct7LqnZH9vHyflaUtmv5/zoGjk2/zD7cOaPrpF+2X/I/iU8co59vje6LvrlL3sAeD2P/f2y3x9dC/JH/sgf+dMn++VzvtH10Df79f/9c/m//RhdM+3EPufPZS//awnv8flM5Px20wNXVJJ/mP3DnvvAcvcMxV7jVXotd+xHnY/lb8XyDzPaqmcr4/B58dgzIT2O+UxqM299flL5x57Z2Zt/7rnh1PcF5F53RCaz5F9b65Jb6vmOVDY1a7/k2ZGtHujRC73n7xHZ19ZWktE6m2V2r7PYs+5b9kCrdXDUeT4y55o6Y/WWrtH1nA7vB4xd22tyT91n2KoPSPdrzYxOrdG93w3xbP6z9MaoOrfea+3Nr8U6z+W/niWl14Se/XKGGlrV1nLtthDrp969MNqrZl8ze/TC/syPmNsjeyFlZI/UfDdiz3pGZ3amHinJonQvEuZdWlOPfphxzp+hP3J7kZZ74KP64FXX/KyenQs1M4jz25pNR74PBwAAAAAAAAAAAADY8g8gXTo9AAABAA==
+   H4sIAAAAAAAAAO3cUU7jMBQF0P7BStgX7GuYhYzYCLOZmUpEiizbsVPHjtPzcb5A9CX3+cWlSV9vt9srAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFzIe8TomhiTuz64npKc9cD1bOX667/PiN+R3x19LLTLf8n9IyPsgdHHwuP5l+SuB64jzL4091QPjD4e9uf/Z2f+XzczYGYl+b9kfuY6MLdH178emFur/MPrgB44vxbX/+8ff+U/ndq9/3cglrn855Fb+7VZy38uudm/J2t5zyU1+2P7ODlfSyr79ZwfXSPH5h9mH8780TXSL/sP2T+Fe86xz/dG10W//GUPAM/nvr9f9vuja0H+yB/5I3/6ZL98zje6Hvpmv/6/fy7/tx+ja6ad2Of8uezlfy3hPT5fiZzfbnrgikryD7O/23MfWO6eodhrPEuv5Y79qPOx/K1Y/mFGW/VsZRw+Lx57JqTHMZ9Jbeatz08q/9gzO3vzzz03nPq+gNzrjshklvxra11ySz3fkcqmZu2XPDuy1QM9eqH3/D0i+9raSjJaZ7PM7nUWe9Z9yx5otQ6OOs9H5lxTZ6ze0jW6ntPh/YCxa3tN7qn7DFv1Ael+rZnRqTW697shHs1/lt4YVefWe629+bVY57n817Ok9JrQs1/OUEOr2lqu3RZi/dS7F0Z71uxrZo9e2J/5EXN7ZC+kjOyRmu9G7FnP6MzO1CMlWZTuRcK8S2vq0Q8zzvkz9EduL9JyD3xUHzzrmp/Vo3OhZgZxfluz6cj34QAAAAAAAAAAAAAAW/4Bqy62cQAAAQA=
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
