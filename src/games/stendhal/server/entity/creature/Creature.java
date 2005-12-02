@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Debug;
-import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.server.Path;
 import games.stendhal.server.RespawnPoint;
@@ -397,8 +396,10 @@ public class Creature extends NPC
           {
           Path.Node actual=patrolPath.get(i);
           Path.Node next=patrolPath.get((i+1)%size);
+          
+          
 
-          nodes.addAll(Path.searchPath(this,actual.x+getx(),actual.y+gety(),next.x+getx(),next.y+gety()));
+          nodes.addAll(Path.searchPath(this,actual.x+getx(),actual.y+gety(),new Rectangle2D.Double(next.x+getx(),next.y+gety(),1.0,1.0)));
           }
         long time2 = System.nanoTime()-time;
 

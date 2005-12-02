@@ -102,8 +102,8 @@ public class CollisionDetection
     {
     double x=shape.getX();
     double y=shape.getY();
-    double w=shape.getWidth();
-    double h=shape.getHeight();
+//    double w=shape.getWidth();
+//    double h=shape.getHeight();
     
     if(x<0 || x/*+w*/>=getWidth())
       {

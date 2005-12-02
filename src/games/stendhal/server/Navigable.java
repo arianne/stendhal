@@ -21,9 +21,12 @@
 
 package games.stendhal.server;
 
+import games.stendhal.server.Pathfinder.Node;
+
 /**
  * A simple interface to allow pathfinders like the A* algorithm to navigate
  * through the environment.
+ * 
  * @author James Matthews
  */
 public interface Navigable {
@@ -61,12 +64,25 @@ public interface Navigable {
      * @return the (estimated) distance between the two nodes.
      */    
     public double getHeuristic(Pathfinder.Node n1, Pathfinder.Node n2);
+    
     /**
      * Generate a unique ID for a given node. Note that the ID must be tied to 
      * its properties, such as positional information. Nodes with the same 
      * information should be assigned the same ID.
      * @param node the node.
      * @return the node's ID.
+     * 
+     * @deprecated no need to assign ids to nodes. @see reachedGoal(Node); 
      */    
     public int createNodeID(Pathfinder.Node node);
+
+    /**
+     * Checks if the calculated node can be considerd a goal. This way a "goal
+     * area" can be archived.
+     * 
+     * @param nodeBest the current best node
+     * @return true when <i>nodeBest</i> can be considered a "goal"
+     */
+    public boolean reachedGoal(Node nodeBest);
+    
 }

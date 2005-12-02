@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server;
 
+import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -95,11 +96,12 @@ public class PathfinderThread extends Thread
     long startTime = System.currentTimeMillis();
     
     Pathfinder pathfinder = new Pathfinder();
-    NavigableStendhalNode navMap=new NavigableStendhalNode(path.getEntity(), path.getX(),path.getY(),path.getDestX(), path.getDestY(), (StendhalRPZone) world.getRPZone(path.getEntity().getID()));
+    Rectangle2D dest = path.getDestination();
+    NavigableStendhalNode navMap=new NavigableStendhalNode(path.getEntity(), path.getX(),path.getY(),dest, (StendhalRPZone) world.getRPZone(path.getEntity().getID()));
 
     navMap.setMaxCost(path.getMaxPathRadius());
     pathfinder.setNavigable(navMap);
-    pathfinder.setEndpoints(path.getX(),path.getY(),path.getDestX(), path.getDestY());
+    pathfinder.setEndpoints(path.getX(),path.getY(),(int) dest.getX(), (int) dest.getY());
     
     int steps = 0;
     pathfinder.init();

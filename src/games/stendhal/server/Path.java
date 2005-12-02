@@ -16,6 +16,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
+import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -112,9 +113,9 @@ public class Path
    * @param desty destination y
    * @return a list with the path nodes or an empty list if no path is found
    */
-  public static List<Node> searchPath(Entity entity, int x, int y, int destx, int desty)
+  public static List<Node> searchPath(Entity entity, int x, int y, Rectangle2D destination)
     {
-    return searchPath(entity, x, y, destx, desty, -1.0);
+    return searchPath(entity, x, y, destination, -1.0);
     }
 
   /** 
@@ -122,22 +123,23 @@ public class Path
    * @param entity the Entity
    * @param x start x
    * @param y start y
-   * @param destx destination x
-   * @param desty destination y
+   * @param destination the destination area
    * @param maxDistance the maximum distance (air line) a possible path may be
    * @return a list with the path nodes or an empty list if no path is found
    */
-  public static List<Node> searchPath(Entity entity, int x, int y, int destx, int desty, double maxDistance)
+  public static List<Node> searchPath(Entity entity, int x, int y, Rectangle2D destination, double maxDistance)
     {
     Log4J.startMethod(logger, "searchPath");
     long startTime = System.currentTimeMillis();
 
     Pathfinder path=new Pathfinder();
-    NavigableStendhalNode navMap=new NavigableStendhalNode(entity, x,y, destx, desty, (StendhalRPZone)world.getRPZone(entity.getID()));
+    NavigableStendhalNode navMap=new NavigableStendhalNode(entity, x,y, destination, (StendhalRPZone)world.getRPZone(entity.getID()));
 
     navMap.setMaxCost(maxDistance);
     path.setNavigable(navMap);
-    path.setEndpoints(x,y,destx,desty);
+    path.setStart(new Pathfinder.Node(x,y));
+    path.setGoal(new Pathfinder.Node((int) destination.getX(),(int) destination.getY()));
+    
 
     steps = 0;
     path.init();
@@ -158,7 +160,7 @@ public class Path
       }
     
     long endTime = System.currentTimeMillis();
-    logger.debug("Route ("+x+","+y+")-("+destx+","+desty+") S:"+steps+" OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime)+"ms");
+    logger.debug("Route ("+x+","+y+")-("+destination+") S:"+steps+" OL:"+path.getOpen().size()+" CL:"+path.getClosed().size()+" in "+(endTime-startTime)+"ms");
 
     List<Node> list=new LinkedList<Node>();
     Pathfinder.Node node=path.getBestNode();
@@ -189,8 +191,7 @@ public class Path
                  entity, 
                  entity.getx(),
                  entity.gety(),
-                 dest.getx(),
-                 dest.gety(),
+                 dest.getArea(dest.getx(),dest.gety()),
                  maxPathRadius
                  )
             );
@@ -209,7 +210,7 @@ public class Path
    */
   public static List<Node> searchPath(Entity entity, Entity dest)
     {
-    return searchPath(entity, (int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety());
+    return searchPath(entity, (int)entity.getx(),(int)entity.gety(),dest.getArea(dest.getx(),dest.gety()));
     }
   
   /** 
@@ -221,7 +222,7 @@ public class Path
    */
   public static List<Node> searchPath(Entity entity, Entity dest, double maxDistance)
     {
-    return searchPath(entity, (int)entity.getx(),(int)entity.gety(),(int)dest.getx(),(int)dest.gety(), maxDistance);
+    return searchPath(entity, (int)entity.getx(),(int)entity.gety(),dest.getArea(dest.getx(),dest.gety()), maxDistance);
     }
 
   public static boolean followPath(RPEntity entity, double speed)

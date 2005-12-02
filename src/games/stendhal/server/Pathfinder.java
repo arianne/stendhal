@@ -102,7 +102,7 @@ public class Pathfinder
             return;
         }
         
-        if (nodeBest.nodeNumber == nodeGoal.nodeNumber) {
+        if (navMap.reachedGoal(nodeBest)) {
             pathStatus = PATH_FOUND;
             return;
         }
@@ -123,8 +123,8 @@ public class Pathfinder
             throw new IllegalArgumentException("navigation map not set!");
         
         // Initialize the node numbers
-        nodeStart.nodeNumber = navMap.createNodeID(nodeStart);
-        nodeGoal.nodeNumber  = navMap.createNodeID(nodeGoal);
+//        nodeStart.nodeNumber = navMap.createNodeID(nodeStart);
+//        nodeGoal.nodeNumber  = navMap.createNodeID(nodeGoal);
 
         nodeBest = null;
         pathStatus = IN_PROGRESS;
@@ -158,6 +158,7 @@ public class Pathfinder
      * @param sy the start y-position.
      * @param gx the goal x-position.
      * @param gy the goal y-position.
+     * 
      */    
     public void setEndpoints(int sx, int sy, int gx, int gy) {
         setEndpoints(new Node(sx, sy), new Node(gx, gy));
@@ -169,6 +170,7 @@ public class Pathfinder
      * the other necessary node parameters.
      * @param start the start node.
      * @param goal the goal node.
+     * 
      */    
     public void setEndpoints(Node start, Node goal) {
         nodeStart = start;
@@ -281,7 +283,7 @@ public class Pathfinder
      */    
     protected void linkChild(Node parent, int x, int y) {
         Node child = new Node(x, y);
-        child.nodeNumber = navMap.createNodeID(child); // generate unique id
+//        child.nodeNumber = navMap.createNodeID(child); // generate unique id
         
         // get cost for traversing from the parent node to the new node and
         // sum the cost
@@ -417,7 +419,8 @@ public class Pathfinder
         
         do {
             check = (Node)iter.next();
-            if (check.nodeNumber == node.nodeNumber)
+//            if (check.nodeNumber == node.nodeNumber)
+            if (check == node)            
                 return check;
             
         } while (iter.hasNext());
@@ -499,7 +502,7 @@ public class Pathfinder
         /**
          * The node identifier.
          */        
-        public int nodeNumber;
+//        public int nodeNumber;
         /**
          * The parent of the node.
          */        

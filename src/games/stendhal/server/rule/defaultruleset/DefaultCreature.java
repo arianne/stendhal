@@ -14,11 +14,8 @@ package games.stendhal.server.rule.defaultruleset;
 
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.entity.item.Item;
 
 import java.util.List;
-import java.util.LinkedList;
-import marauroa.common.Pair;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 

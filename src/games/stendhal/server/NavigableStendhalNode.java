@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server;
 
+import java.awt.geom.Rectangle2D;
+
+import games.stendhal.server.Pathfinder.Node;
 import games.stendhal.server.entity.Entity;
 
 /**
@@ -22,10 +25,12 @@ import games.stendhal.server.entity.Entity;
  */
 public class NavigableStendhalNode implements Navigable
 {
+  /** the destination area */
+  private Rectangle2D destinationArea;
+  
   private Entity entity;
   private StendhalRPZone zone;
   private Pathfinder.Node startNode;
-  private Pathfinder.Node endNode;
   /** The max cost the path may have. It is identical to the steps needed. */
   private double maxCost;
   
@@ -35,22 +40,16 @@ public class NavigableStendhalNode implements Navigable
    * @param entity the entity trying to move
    * @param x1 start x
    * @param y1 start x
-   * @param x2 dest x
-   * @param y2 dest y
+   * @param destination the destination area
    * @param zone the zone we're searching a path in
    */
-  public NavigableStendhalNode(Entity entity, int x1, int y1, int x2, int y2, StendhalRPZone zone)
+  public NavigableStendhalNode(Entity entity, int x1, int y1, Rectangle2D destination, StendhalRPZone zone)
   {
     this.maxCost = -1.0;
     this.zone=zone;
     this.entity=entity;
     this.startNode = new Pathfinder.Node(x1,y1);
-    this.endNode = new Pathfinder.Node(x2,y2);
-  }
-  
-  public NavigableStendhalNode(Entity entity, Entity dest, StendhalRPZone zone)
-  {
-    this(entity,entity.getx(), entity.gety(), dest.getx(),dest.gety(),zone);
+    this.destinationArea = destination;
   }
   
   public void setMaxCost(double cost)
@@ -63,16 +62,17 @@ public class NavigableStendhalNode implements Navigable
   {
     // return true if the destination is reached...even if it is an unpassable
     // tile
-    if (node.x == endNode.x && node.y == endNode.y)
+    if (reachedGoal(node))
     {
       return true;
     }
     // if there is a max cost and the current path exceeds this length =>false
     if (maxCost > 0.0 && (Math.abs(node.x-startNode.x) +  Math.abs(node.y-startNode.y) > maxCost))
-      //if (maxCost > 0 && node.parent.g > maxCost)
+    //if (maxCost > 0.0 && node.parent.g > maxCost)
     {
       return false;
     }
+    
     // Ask the zone if the tile is walkable for our entity
     return !zone.collides(entity, node.getX(),node.getY());
   }
@@ -105,5 +105,16 @@ public class NavigableStendhalNode implements Navigable
   public int createNodeID(Pathfinder.Node node)
   {
     return node.getY()*zone.getWidth()+node.getX();
+  }
+
+  /**
+   * Checks if the calculated node can be considerd a goal. 
+   * 
+   * @param nodeBest the current best node
+   * @return true when <i>nodeBest</i> can be considered a "goal"
+   */
+  public boolean reachedGoal(Node nodeBest)
+  {
+    return destinationArea.contains(nodeBest.x, nodeBest.y);
   }
 }

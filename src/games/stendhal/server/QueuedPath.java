@@ -8,6 +8,8 @@
 package games.stendhal.server;
 
 import games.stendhal.server.entity.Entity;
+
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 /**
@@ -22,21 +24,19 @@ public final class QueuedPath
   private Entity entity;
   private int x;
   private int y;
-  private int destx;
-  private int desty;
+  private Rectangle2D destination;
   private double maxPathRadius;
   private List<Path.Node> path;
   private boolean canceled;
 
   /** Creates a new instance of QueuedPath */
-  public QueuedPath(PathListener listener, Entity entity, int x, int y, int destx, int desty, double maxPathRadius)
+  public QueuedPath(PathListener listener, Entity entity, int x, int y, Rectangle2D destination, double maxPathRadius)
   {
     this.listener      = listener;
     this.entity        = entity;
     this.x             = x;
     this.y             = y;
-    this.destx         = destx;
-    this.desty         = desty;
+    this.destination   = destination;
     this.maxPathRadius = maxPathRadius;
     this.canceled      = false;
     this.path          = null;
@@ -65,16 +65,10 @@ public final class QueuedPath
     return y;
   }
   
-  /** returns destination x */
-  public int getDestX()
+  /** returns the destination arae */
+  public Rectangle2D getDestination()
   {
-    return destx;
-  }
-  
-  /** returns destination y */
-  public int getDestY()
-  {
-    return desty;
+    return destination;
   }
   
   /** returns the entity */
