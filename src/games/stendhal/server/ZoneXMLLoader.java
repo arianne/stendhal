@@ -11,15 +11,10 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 
-import games.stendhal.common.Pair;
-import marauroa.common.Log4J;
-import org.apache.log4j.Logger;
 
 
 public class ZoneXMLLoader extends DefaultHandler
   {
-  /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(ZoneXMLLoader.class);
   
   public static class XMLZone
     {
@@ -76,6 +71,7 @@ public class ZoneXMLLoader extends DefaultHandler
     try
     {
     XMLZone zone=new ZoneXMLLoader().load(argv[0]);
+    System.out.println("zone "+zone.name+" loaded successfully");
     }
     catch(Throwable e)
     {
@@ -112,7 +108,13 @@ public class ZoneXMLLoader extends DefaultHandler
       // Parse the input
       SAXParser saxParser = factory.newSAXParser();
       
-      saxParser.parse(new File(ref), this); //getClass().getClassLoader().getResourceAsStream(ref)
+      InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
+      if (is == null)
+        {
+        throw new FileNotFoundException("cannot find resource '"+ref+"' in classpath");
+        }
+      
+      saxParser.parse(is, this);
       } 
     catch(ParserConfigurationException t) 
       {

@@ -12,15 +12,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 
 import games.stendhal.common.Pair;
-import marauroa.common.Log4J;
-import org.apache.log4j.Logger;
 
 
 public class ItemXMLLoader extends DefaultHandler
   {
-  /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(ItemXMLLoader.class);
-
   private String name;
   private String clazz;
   private String subclass;
@@ -89,7 +84,12 @@ public class ItemXMLLoader extends DefaultHandler
       // Parse the input
       SAXParser saxParser = factory.newSAXParser();
       
-      saxParser.parse(new File(ref), this); //getClass().getClassLoader().getResourceAsStream(ref)
+      InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
+      if (is == null)
+        {
+        throw new FileNotFoundException("cannot find resource '"+ref+"' in classpath");
+        }
+      saxParser.parse(is, this);
       } 
     catch(ParserConfigurationException t) 
       {
@@ -170,6 +170,6 @@ public class ItemXMLLoader extends DefaultHandler
 
   public void characters(char buf[], int offset, int len) throws SAXException
     {
-    String s = new String(buf, offset, len);
+//    String s = new String(buf, offset, len);
     }
   }
