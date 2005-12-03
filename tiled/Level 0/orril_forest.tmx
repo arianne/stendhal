@@ -32,12 +32,12 @@
  <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
   <image source="../zelda_outside_2_chipset.png"/>
  </tileset>
- <layer name="0_floor" width="128" height="128" visible="0">
+ <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQ0AMAwDsFxTQJQ/zsLYpPnw7yYpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwhDn3DwAAAAAAAAAAAAAAAAAAAAAAAPxrAS9Xd80AAAEA
   </data>
  </layer>
- <layer name="1_terrain" width="128" height="128" visible="0">
+ <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3ZOwrDMBAFQBlydSdpgg+RT5WLhNwj54ga1ZYbrWBn4HUuHiwsYl0KAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAn9tSyrtmW6KbMFKbe8vX/FMx99w+Zg8AADCNS801ugRhnjWvnW/WmvOALszpXvOILgEAHNLzfvudRjQhgvcbR9kHOZgz0OztA/fi3HruxcBc7O3c7G16+Nebm1shAAAAAAAAAAAAAAAAADCzP8NlR+EAAAEA
   </data>
@@ -54,7 +54,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cQW6DMBAFULY5bNOq+x4td+sCIVGrQiRhwJ55T8o+9jf2WDZME0CfPm5X/wMAIIp1fh/9BH9VfiYqtb1SWyGru+cYdnnc5h+1rDOX/6xaP6yf/Wptb5kHa2pzNwZy2bOn/y9/4yC/o/eJWfedP0nbVdGnLOEpWef1KpzrEKnH8WWd3/ZKZj3mDNHs/xiRun2mFoCZOQGI5OywX/bw+fWQsTmgFnkDAGfpodYF4q3vpttvwHicxY7v6vnXO0rna/v66jHAuZa8IzKPWhPsDWO8Mxas/wAAAAAAAADHcQYLwMKaAIC1ILeM+brrDYB302qTPQAcR11Vj7yJ/PYDALSc6QAAjOVb/ZaafAEAgJZ9Qm4R+bprgDFQz/qekfzrkfk19HtN7nbWJXMAACCjjN88AwCeox6oRd4A0A/rMgBADVt132g14ddg/xegF6PN9wAAW34B/kip5AAAAQA=
+   H4sIAAAAAAAAAO3cQW7DIBAF0Gxzz27TVt33aL1bF1YkF0WWk3oMzLwnZR/4GAaBfbkAjOl27f0PAIAo1vl99BP8VfmZqNT2Sm2FrN49x7DLz3X5Ucs6c/kvqvXD+tmv1vaWebCmNndjIJc9e/pH+RsH+R29T8y67/xO2q6KPmQJT8k6r1fhXIdII44v6/y2VzIbMWeIZv/HjNTtC7UALMwJNbzJmU6cHY7LHj6/ETI2B9QibwDgLCPUukC89d10+w2Yj7PY+fWef72jdL62r3uPAc51zzsi86g1wd4wxn/GgvUfAAAAAAAA4DjOYAG4syYAYC3ILWO+7noD4N202mQPAMdRV9UjbyK//QAALWc6AABz+VK/pSZfAACgZZ+QW0S+7hpgDNSzvmck/3pk3od+r8ndzrpkDgAAZJTxm2cAwHPUA7XIGwDGYV0GAKhhq+6brSb8nOz/AoxitvkeAGDLL/ZO76sAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
