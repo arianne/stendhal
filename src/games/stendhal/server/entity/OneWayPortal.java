@@ -7,4 +7,9 @@ public class OneWayPortal extends Portal
     {
     throw new IllegalArgumentException("One way portals are only destination of other portals");
     }    
+
+  public boolean isCollisionable()
+    {
+    return false;
+    }
   }

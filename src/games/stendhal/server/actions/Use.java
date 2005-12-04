@@ -44,6 +44,7 @@ public class Use extends ActionListener
     {
     Log4J.startMethod(logger,"use");
 
+    // When use is casted over something in a slot 
     if(action.has("baseitem") && action.has("baseobject") && action.has("baseslot"))
       {
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
@@ -109,6 +110,7 @@ public class Use extends ActionListener
           }
         }
       }
+    // When use is cast over something on the floor
     else if(action.has("target"))
       {
       int usedObject=action.getInt("target");
@@ -118,8 +120,14 @@ public class Use extends ActionListener
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if(object instanceof Portal && !(object instanceof OneWayPortal))
+        if(object instanceof Portal)
           {
+          if((object instanceof OneWayPortal))
+            {
+            // One way portals are just destination points. Can't be used.
+            return;
+            }
+            
           Portal portal=(Portal)object;
 
           if(StendhalRPAction.usePortal(player, portal))

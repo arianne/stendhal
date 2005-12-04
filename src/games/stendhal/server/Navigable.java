@@ -65,16 +65,16 @@ public interface Navigable {
      */    
     public double getHeuristic(Pathfinder.Node n1, Pathfinder.Node n2);
     
-    /**
-     * Generate a unique ID for a given node. Note that the ID must be tied to 
-     * its properties, such as positional information. Nodes with the same 
-     * information should be assigned the same ID.
-     * @param node the node.
-     * @return the node's ID.
-     * 
-     * @deprecated no need to assign ids to nodes. @see reachedGoal(Node); 
-     */    
-    public int createNodeID(Pathfinder.Node node);
+//    /**
+//     * Generate a unique ID for a given node. Note that the ID must be tied to 
+//     * its properties, such as positional information. Nodes with the same 
+//     * information should be assigned the same ID.
+//     * @param node the node.
+//     * @return the node's ID.
+//     * 
+//     * @deprecated no need to assign ids to nodes. @see reachedGoal(Node); 
+//     */    
+//    public int createNodeID(Pathfinder.Node node);
 
     /**
      * Checks if the calculated node can be considerd a goal. This way a "goal

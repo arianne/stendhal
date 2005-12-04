@@ -394,6 +394,8 @@ public class StendhalRPZone extends MarauroaRPZone
           break;
           }
         case 3: /* portal  */
+          {
+          }
           break;
         case 11: /* sheep  */
           break;
@@ -524,28 +526,6 @@ public class StendhalRPZone extends MarauroaRPZone
       }
     return null;
     }
-  
-// TODO: remove me
-//  private static byte[] getBytesFromFile(String file) throws IOException 
-//    {
-//    ByteArrayOutputStream out=new ByteArrayOutputStream();
-//    InputStream is= StendhalRPZone.class.getClassLoader().getResourceAsStream(file);
-//    
-//    if(is==null)
-//      {
-//      logger.warn("cannot find file "+file);
-//      throw new FileNotFoundException(file);
-//      }
-//    
-//    byte[] buffer=new byte[1024];
-//    int len=0;
-//    while((len=is.read(buffer,0,1024))!=-1)
-//      {
-//      out.write(buffer,0,len);
-//      }
-//
-//    return out.toByteArray();
-//    }
   
   public String toString()
   {
