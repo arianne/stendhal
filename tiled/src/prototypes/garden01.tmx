@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<map name="garden01" orientation="orthogonal">
+ <tileset src="garden.tsx" firstgid="0"/>
+ <tileset src="garden_ext.tsx" firstgid="144"/>
+ <tileset src="cave.tsx" firstgid="150"/>
+ <tileset name="garden01_specific" firstgid="214">
+  <tile id="0">
+   <image source="grass01.tga"/>
+  </tile>
+  <tile id="1">
+   <image source="grass02.tga"/>
+  </tile>
+  <tile id="2">
+   <link target="garden02"/>
+   <image source="grass02_link.tga"/>
+  </tile>
+ </tileset>
+ <layer name="ground" width="125" height="35">
+  <data encoding="base64">
+   Jds54a543k5j4k54lH5JKLDSAHUIHNJkhkdsajhdsauildsAjkljklfdJK534LH...
+  </data>
+ </layer>
+ <layer name="foliage" width="125" height="35" opacity="0.5">
+  <data>
+   <tile/>
+   <tile/>
+   ...
+   <tile gid="214"/>
+   <tile gid="215"/>
+   ...
+  </data>
+ </layer>
+</map>
