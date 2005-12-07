@@ -18,7 +18,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Portal;
-import games.stendhal.server.entity.VerticalPortal;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
@@ -423,8 +422,8 @@ public class StendhalRPZone extends MarauroaRPZone
         case 3: /* portal stairs up  */
         case 4: /* portal stairs down  */
           {
-          logger.info ("Vertical portal at "+this+": "+x+","+y);
-          Portal portal=new VerticalPortal();
+          logger.info ("Portal stairs at "+this+": "+x+","+y);
+          Portal portal=new Portal();
           assignRPObjectID(portal);
           portal.setx(x);
           portal.sety(y);
