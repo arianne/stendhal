@@ -185,6 +185,7 @@ public class MapConverter extends Task
     // do the job
     MapConverter converter = new MapConverter();
     converter.stendPath = args[1];
+    converter.imagePath = args[2];
     converter.convert(args[0]);
   }
 }

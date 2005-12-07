@@ -22,11 +22,13 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.VerticalPortal;
 import games.stendhal.server.entity.OneWayPortal;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.IRPZone;
 import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
@@ -120,14 +122,14 @@ public class Use extends ActionListener
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
+        if((object instanceof OneWayPortal))
+          {
+          // One way portals are just destination points. Can't be used.
+          return;
+          }
+          
         if(object instanceof Portal)
           {
-          if((object instanceof OneWayPortal))
-            {
-            // One way portals are just destination points. Can't be used.
-            return;
-            }
-            
           Portal portal=(Portal)object;
 
           if(StendhalRPAction.usePortal(player, portal))

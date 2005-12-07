@@ -23,6 +23,8 @@ public class Portal extends Entity
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Portal.class);
+  
+  private boolean settedDestination;
 
   private int number;
   private String destinationZone;
@@ -45,6 +47,7 @@ public class Portal extends Entity
     {
     super();
     put("type","portal");
+    settedDestination=false;
     }
   
   public void setNumber(int number)
@@ -61,6 +64,7 @@ public class Portal extends Entity
     {
     this.destinationNumber=number;
     this.destinationZone=zone;
+    this.settedDestination=true;
     }
   
   public int getDestinationNumber()
@@ -71,6 +75,11 @@ public class Portal extends Entity
   public String getDestinationZone()
     {
     return destinationZone;
+    }
+  
+  public boolean loaded()
+    {
+    return settedDestination;
     }
 
   public void getArea(Rectangle2D rect, double x, double y)

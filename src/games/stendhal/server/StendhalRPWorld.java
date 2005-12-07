@@ -134,6 +134,8 @@ public class StendhalRPWorld extends RPWorld
 
     addArea("-1_semos_dungeon");
 
+    addArea("-2_semos_dungeon");
+
     addArea("int_afterlife");
     addArea("int_semos_tavern");
 

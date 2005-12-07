@@ -34,7 +34,7 @@
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PuQ0AIAwEQQdUQP/F0gFENt+sdPHoIiSdXG85468NPv9nP3M3/K/yZ/H5/H2+9GoDOJKfvQAQAAA=
+   H4sIAAAAAAAAANNmYGDQHsWjeBQPWizEQhs8aj9hO0btH7V/JNtPSzwU/D9Syr9R+0ftH7V/FI/ikYUBCO0jGAAQAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">

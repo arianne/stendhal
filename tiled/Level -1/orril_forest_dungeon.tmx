@@ -34,7 +34,7 @@
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PsQ0AIAhFQRr338QZ2YBCE8V4L/n1QYQkqWtzrI3P57/vVzfd6tSffD6fX/k7+91PZlugvgAQAAA=
+   H4sIAAAAAAAAAO3QsQkAIBAEwU+s5nu3RjsQUUTFCTae4zIiUpJ0ZbXMxefz3/d7m3Yao5/w+Xz+KX+l3/0GN9MJ0QAQAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
@@ -57,12 +57,12 @@
    H4sIAAAAAAAAAO3VIRIAIAgFUSr31Ij3jyaLQ5TxM7OvYlgxaAYAeGH674IaK7lXeD7Pzla3qIkGjZ2cfSq+/d2k2AgA0DBE/ogNKOZcSgAQAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="32" opacity="0.25">
+ <layer name="collision" width="32" height="32" visible="0" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAADvGycBwbBSP4lE8ikcxxRgEaGEmMQDZfmq6g1ww3O0npGbU/uEd//SyH5+7aG3HqP2j9o/aP2r/YLWfEjDU7acGBgCwV7YAABAAAA==
   </data>
  </layer>
- <layer name="navigation" width="32" height="32">
+ <layer name="navigation" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>

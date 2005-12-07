@@ -478,6 +478,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\VerticalPortal.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\npc\Behaviours.java</path>
 				<source>true</source>
 			</fileitem>

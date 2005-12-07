@@ -53,7 +53,7 @@ public class StendhalMapWriter implements MapWriter
 
     filename=destination+File.separator+level.replace("-","sub_")+"_"+mapName+".xstend";
     FileOutputStream os = new FileOutputStream(filename);
-    PrintWriter writer = new PrintWriter(os);
+    PrintWriter writer = new PrintWriter(new java.util.zip.DeflaterOutputStream(os));
     
     writer.println("<map name=\""+mapName+"\">");
     

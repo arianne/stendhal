@@ -114,7 +114,7 @@ public class ZoneXMLLoader extends DefaultHandler
         throw new FileNotFoundException("cannot find resource '"+ref+"' in classpath");
         }
       
-      saxParser.parse(is, this);
+      saxParser.parse(new java.util.zip.InflaterInputStream(is), this);
       } 
     catch(ParserConfigurationException t) 
       {

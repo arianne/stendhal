@@ -284,7 +284,7 @@
     <mkdir dir="maps/images"/>
 
     <mapconverter stendPath="maps" imagePath="maps/images">
-    	<fileset dir="tiled/" includes="**/*.tmx" excludes ="maps"/>    	
+    	<fileset dir="tiled/" includes="**/*.tmx" excludes ="tiled"/>    	
     </mapconverter>
     </target>
     

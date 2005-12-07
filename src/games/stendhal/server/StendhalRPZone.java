@@ -16,8 +16,9 @@ import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.SheepFood;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.VerticalPortal;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
@@ -34,6 +35,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.net.TransferContent;
 import marauroa.server.game.MarauroaRPZone;
+import marauroa.common.game.IRPZone;
 
 import org.apache.log4j.Logger;
 
@@ -138,6 +140,23 @@ public class StendhalRPZone extends MarauroaRPZone
   public void addPortal(Portal portal)
     {
     portals.add(portal);
+    }
+  
+  public int assignPortalID(Portal portal)
+    {
+    int max=-1;
+    
+    for(Portal p: portals)
+      {
+      if(p.getNumber()>max)
+        {
+        max=p.getNumber();
+        }
+      }
+    
+    portal.setNumber(max+1);
+    
+    return portal.getNumber();
     }
 
   public void addNPC(NPC npc)
@@ -312,12 +331,20 @@ public class StendhalRPZone extends MarauroaRPZone
     return interior;
     }
   
-  public boolean contains(Player player, int level, int player_x, int player_y)
+  public boolean contains(Entity player, int level, int player_x, int player_y)
     {
     Rectangle2D area=player.getArea(player_x,player_y);
     Rectangle2D zone=new Rectangle(x,y,getWidth(),getHeight());
     
     return zone.intersects(area);
+    }
+
+  public boolean contains(Entity entity, StendhalRPZone zone)
+    {
+    Rectangle2D area=entity.getArea(entity.getx()+zone.x,entity.gety()+zone.y);
+    Rectangle2D zonearea=new Rectangle(x,y,getWidth(),getHeight());
+    
+    return zonearea.intersects(area);
     }
   
   public void addNavigationLayer(String name, String byteContents) throws IOException
@@ -393,10 +420,72 @@ public class StendhalRPZone extends MarauroaRPZone
           addZoneChange(entryPoint);
           break;
           }
-        case 3: /* portal  */
+        case 3: /* portal stairs up  */
+        case 4: /* portal stairs down  */
           {
+          logger.info ("Vertical portal at "+this+": "+x+","+y);
+          Portal portal=new VerticalPortal();
+          assignRPObjectID(portal);
+          portal.setx(x);
+          portal.sety(y);
+          add(portal);
+          addPortal(portal);
+
+          if(isInterior())
+            {
+            // The algo doesn't work on interiors
+            return;                        
+            }
+          
+          for(IRPZone i: world)
+            {
+            StendhalRPZone zone=(StendhalRPZone)i;
+            
+            if(zone.isInterior()==false && Math.abs(zone.getLevel()-getLevel())==1)
+              {
+              if(!zone.contains(portal,this))
+                {
+                continue;
+                }
+
+              logger.info (zone+" contains "+portal);
+                
+              for(Portal target: zone.getPortals())
+                {
+                if(target.loaded())
+                  {
+                  logger.info (target+ " already loaded");
+                  continue;
+                  }
+                  
+                logger.info (target+ " isn't loaded");
+                
+                if(target.getx()+zone.getx()==portal.getx()+getx() && target.gety()+zone.gety()==portal.gety()+gety())
+                  {
+                  int source=assignPortalID(portal);
+                  int dest=zone.assignPortalID(target);
+
+                  portal.setDestination(zone.getID().getID(),dest);
+                  target.setDestination(getID().getID(),source);
+                  
+                  logger.info ("Portals LINKED");
+                  logger.info (portal);
+                  logger.info (target);
+                  return;
+                  }
+                else
+                  {
+                  logger.info ("can't assign because it is a different portal");
+                  }
+                }
+              }
+            }
           }
           break;
+        case 5: /* portal */
+        case 6: /* one way portal */
+          break;
+          
         case 11: /* sheep  */
           break;
         case 71: /* the npcs  */
@@ -528,7 +617,7 @@ public class StendhalRPZone extends MarauroaRPZone
     }
   
   public String toString()
-  {
-    return "zone "+zoneid;
-  }
+    {
+    return "zone "+zoneid+" at ("+x+","+y+")";
+    }
   }

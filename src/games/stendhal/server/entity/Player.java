@@ -731,9 +731,11 @@ public class Player extends RPEntity
       if(amount>0)
         {
         put("food",amount-1);
-        setHP(getHP()+1);
-  
-        world.modify(this);
+        if(getHP()<getBaseHP())
+          {
+          setHP(getHP()+1);
+          world.modify(this);
+          }
         }
       else
         {
