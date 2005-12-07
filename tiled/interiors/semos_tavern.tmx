@@ -52,15 +52,15 @@
  </layer>
  <layer name="objects" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGF4ghXOgXTAKRsEoGAWjYBSMglGAHwAAp3O29YAJAAA=
+   H4sIAAAAAAAAAGNgGF4gjXOgXTAKRsEoGAWjYBSMglGAHwAAACXjvoAJAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="19" visible="0" opacity="0.36">
+ <layer name="collision" width="32" height="19" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvGycBwbBhhEKCWfmLMgqnBBnCJ4zMXm/249FECsNlLqh/obT8xcUEP+/GxybUfm1uoGc+E7KcFwJV26WU/PvcMhP3obqFH/CObRYz9hPThcxcp4qTajy8tkSNOrN3Y7MelhxL/49JDSt1CSD0p6Z8eZcNA5LvBBgB3CI8mgAkAAA==
+   H4sIAAAAAAAAADvGycBwbBhhEKCWfmLMgqnBBnCJ4zMXm/249FECsNlLqh/obT8xcUEP+/GxybUfm1uoGc+E7KcFwJV26WU/PvcMhP3obqFH/CObRYz9hPThcxcp4qTajy8tkSNOrN3Y7MelhxL/49JDSt1CSD0p6Z8eZcMoZmAAAGMmMPKACQAA
   </data>
  </layer>
- <layer name="navigation" width="32" height="19" visible="0">
+ <layer name="navigation" width="32" height="19">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjgDBI5KSuOlqbMQqGLsAV/8SI42KPglFAKaAkXVLDnlEw/AAAEwrLDIAJAAA=
   </data>

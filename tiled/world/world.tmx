@@ -75,6 +75,15 @@
  <tileset name="Untitled" firstgid="303" tilewidth="128" tileheight="128">
   <image source="0_nalwor_north_forest.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="319" tilewidth="128" tileheight="128">
+  <image source="0_nalwor_city.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="335" tilewidth="128" tileheight="128">
+  <image source="0_nalwor_forest_river.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="351" tilewidth="128" tileheight="128">
+  <image source="0_nalwor_river.png"/>
+ </tileset>
  <layer name="Underground Level -7" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFvHwMCwbhTTDX8bBG4YxaN4FI9iamAAgxevikAGAAA=
@@ -112,7 +121,7 @@
  </layer>
  <layer name="Ground Level 0" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UxVJcYRgE0GGRQIAAAeLu7i4Qd5eKu7u7u7u7Z8sz5sw73Kn8dfMtzqZX3ZtuKRQKLSFQXlYoVNCGSk7KTrGWdRzkEIc5kkDfrFXZXE1bajgtO8N6NnCUYxznRAJ9s1Zrcx3tqGepbBnLWcFA2SAGM6Ts3/fNWoNNjbSnAytlq1jNGobKhjGcETnc39GmTnSmC61krSmngpGyUYxmTA73d7WpG93pUfxBWSVVVDNWNo7xTMjh/p429aI3fYo/KKuhljomyiYxmSk53N/Xpn70Z0DxB2X1NNDIVNk0mmjO4f4mmpnODN7yjvd8YCOb2MyWBPpmbSazmM0cPvKJz3xhK9vYzo4E+mZtLvOYzwK+8o3v/GAnu9jNngT6Zm0hi1jMEn7yi9/8YS/72M+BBPpm7SznOM8F7nKP+zxIoF+pXeQSl7nCQx7xmCcJ9Cu1q1zjOjd4yjOe8yKBfqV2k1vc5g4vecVr3iTQL4QQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEML/6y+jsc1/AEAAAA==
+   H4sIAAAAAAAAAO3WRVNXURzH4T8LBRFFAbu7u1sREBQRBaVFQQHB7u7u7o6tr9HnvgdmZO78Fs/mO2dxPndx5v7NZDJ/QyA7K5PJYQC5nLSdYg91dNPDYY70gfv2toGa8xjEYE7bzlBPA0c5xnFO9IH79rZ8zUMYSgHbbVXsoJoZtpnMYnbW/79vbyvUVMQwhrPTtosaapljm8s85qewf4SmkYxiNP1s/ckmhwW2hSxicQr7x2gayzjGJ++gLZeB5LHEtpRlLE9h/wRNE5nE5OQdtA0mnyGssK1kFatT2D9F01SmMT15B20FFFLEGtta1rE+hf3rWM8GNvKWd7znA4000UxLcs432MgmilPwPTZRzGZK+MgnPvOFvbSyj/3JOc0llFKWgv5SythCOV/5xnd+0EY7BziYnNNcTgVbU9BfwVa2UclPfvGbP3TQSReHknOaK5P/JKpS0H+Wc5znAne5x30esENjdfJfxC5a2cd+2lLQf5FLXOYKD3nEY55Qo7GW3eyhnQMcpCMF/Ve5xnVu8JRnPOcFdRrraaCRTro4RHcK+m9yi9vc4SWveM0bmjQ208JeejjMEY6moD+EEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBC3/UPL+61wABAAAA=
   </data>
  </layer>
 </map>
