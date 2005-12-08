@@ -20,7 +20,8 @@ Some of these people are NPC, they will give you tasks to accomplish and hints t
   </security>
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+"/>
-    <jar href="stendhal-0.30.jar" main="true"/>
+    <jar href="log4j.jar" download="eager"/>
+    <jar href="stendhal-0.39.1.jar" main="true" download="eager"/>
   </resources>
   <application-desc/>
 </jnlp>
