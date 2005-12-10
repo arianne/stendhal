@@ -142,7 +142,7 @@ public class XMLMapWriter implements MapWriter
                 firstgid += tileset.getMaxTileId() + 1;
             }
 
-            Iterator ml = map.getLayers();
+            Iterator ml = map.iterator();
             while (ml.hasNext()) {
                 MapLayer layer = (MapLayer)ml.next();
                 writeMapLayer(layer, w);

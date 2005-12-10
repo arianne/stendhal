@@ -26,7 +26,7 @@ import java.util.*;
  * MultilayerPlane makes up the core functionality of both Maps and Brushes.
  * This class handles the order of layers as a group.
  */
-public class MultilayerPlane
+public class MultilayerPlane implements Iterable<MapLayer>
 {
   private List<MapLayer> layers;
   protected int          widthInTiles;
@@ -146,11 +146,27 @@ public class MultilayerPlane
   }
 
   /**
+   * Returns the layer at the specified index.
+   * 
+   * @param i
+   *          the index of the layer to return
+   * @return the layer at the specified index, or null if the index is out of
+   *         bounds
+   */
+  public MapLayer getLayer(int i)
+  {
+    if (i >= 0 || i < layers.size())
+      return layers.get(i);
+
+    return null;
+  }
+
+  /**
    * Returns a list with the layers.
    * 
    * @return a list with the layers.
    */
-  public List<MapLayer> getLayerVector()
+  public List<MapLayer> getLayerList()
   {
     return new ArrayList<MapLayer>(layers);
   }
@@ -161,7 +177,7 @@ public class MultilayerPlane
    * @param layers
    *          the new set of layers
    */
-  public void setLayerVector(List<MapLayer> layers)
+  public void setLayers(List<MapLayer> layers)
   {
     this.layers = new ArrayList<MapLayer>(layers);
   }
@@ -224,27 +240,11 @@ public class MultilayerPlane
   }
 
   /**
-   * Returns the layer at the specified vector index.
-   * 
-   * @param i
-   *          the index of the layer to return
-   * @return the layer at the specified index, or null if the index is out of
-   *         bounds
-   */
-  public MapLayer getLayer(int i)
-  {
-    if (i >= 0 || i < layers.size())
-      return layers.get(i);
-
-    return null;
-  }
-
-  /**
    * Gets a listIterator of all layers.
    * 
    * @return a listIterator
    */
-  public ListIterator<MapLayer> getLayers()
+  public ListIterator<MapLayer> iterator()
   {
     return layers.listIterator();
   }
@@ -266,7 +266,7 @@ public class MultilayerPlane
    */
   public void resize(int width, int height, int dx, int dy)
   {
-    ListIterator<MapLayer> itr = getLayers();
+    ListIterator<MapLayer> itr = iterator();
 
     while (itr.hasNext())
     {

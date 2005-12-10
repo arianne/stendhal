@@ -19,87 +19,82 @@
 package tiled.mapeditor.widget;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import tiled.view.MapView;
+import tiled.view.test.MapView;
+
 
 
 public class MiniMapViewer extends JPanel
 {
   private static final long serialVersionUID = -1243207988158851225L;
 
-    public static final int MAX_HEIGHT = 150;
+  public static final int MAX_HEIGHT = 150;
 
-    private MapView myView;
-    private JScrollPane mainPanel;
-    private double scale = 0.0625;
-    private BufferedImage renderedMap;
+  private MapView mapView;
+  private JScrollPane mapScrollPane;
+  
+  public MiniMapViewer()
+  {
+    setSize(MAX_HEIGHT, MAX_HEIGHT);
+  }
+
+  public void setView(MapView view)
+  {
+    mapView = view;
+    revalidate();
+  }
+  
+  public Dimension getPreferredSize()
+  {
+    if (mapView == null)
+    {
+      return new Dimension(100, 100);
+    }
+    Image image = mapView.getMinimap();
+    if (image == null)
+    {
+      return new Dimension(100, 100);
+    }
+    return new Dimension(image.getWidth(null), image.getHeight(null));
+  }
+
+  public void setMainPanel(JScrollPane main)
+  {
+    mapScrollPane = main;
+  }
     
-    public MiniMapViewer() {
-        setSize(MAX_HEIGHT, MAX_HEIGHT);
+  public void paintComponent(Graphics g)
+  {
+    Rectangle clip = g.getClipBounds();
+    g.setColor(Color.BLACK);
+    g.fillRect(clip.x,clip.y,clip.width, clip.height);
+    
+    if (mapView == null || mapView.getMinimap() == null)
+    {
+      return;
     }
 
-    public MiniMapViewer(MapView view) {
-        this();
-        setView(view);
-    }
+    ((Graphics2D)g).drawImage(mapView.getMinimap(),0,0,null);
 
-    public void setView(MapView view) {
-//        myView = view;
-//        myView.setZoom(scale);
-//        Dimension d = myView.getPreferredSize();
-//        renderedMap = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
-//        //scale = MAX_HEIGHT / (double)d.height;
-//        Graphics2D g = renderedMap.createGraphics();
-//        g.setClip(0, 0, d.width, d.height);
-//        myView.paint(g);
-    }
-    
-    public Dimension getPreferredSize() {
-        if(myView != null) {
-            return myView.getPreferredSize();
-        }
-        return new Dimension(0, 0);
-    }
-    
-    public Dimension getPreferredScrollableViewportSize() {
-        return getPreferredSize();
-    }
-    
-    public void setMainPanel(JScrollPane main) {
-        mainPanel = main;
-    }
+    if (mapScrollPane != null)
+    {
+      g.setColor(Color.yellow);
+      Point viewPoint = mapScrollPane.getViewport().getViewPosition();
+      Dimension viewSize = mapScrollPane.getViewport().getExtentSize();
 
-    public void refresh() {
-        if(renderedMap != null && myView != null) {
-            Dimension d = myView.getPreferredSize();
-	        Graphics2D g = renderedMap.createGraphics();
-	        g.setClip(0, 0, d.width, d.height);
-	        myView.paint(g);
-        }
+      double scale = mapView.getMinimapScale() / mapView.getScale();
+
+      if (viewPoint != null && viewSize != null)
+      {
+        g.drawRect(
+                (int)((viewPoint.x-1) * scale),
+                (int)((viewPoint.y-1) * scale),
+                (int)((viewSize.width-1) * scale),
+                (int)((viewSize.height-1) * scale));
+      }
     }
-    
-    public void paint(Graphics g) {
-        /*if (myView != null) {
-            myView.paint(g);
-        }*/
-        if(renderedMap != null) {
-            g.drawImage(renderedMap, 0, 0, null);
-        }
-        
-        if (mainPanel != null) {
-            g.setColor(Color.yellow);
-            Rectangle viewArea = mainPanel.getViewport().getBounds();
-            if (viewArea != null) {
-                g.drawRect(
-                        (int)((viewArea.x-1) * scale),
-                        (int)((viewArea.y-1) * scale),
-                        (int)((viewArea.width-1) * scale),
-                        (int)((viewArea.height-1) * scale));
-            }
-        }
-    }
+  }
 }

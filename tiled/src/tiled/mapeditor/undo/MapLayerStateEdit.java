@@ -42,13 +42,13 @@ public class MapLayerStateEdit extends AbstractUndoableEdit
   public void undo() throws CannotUndoException
   {
     super.undo();
-    map.setLayerVector(layersBefore);
+    map.setLayers(layersBefore);
   }
 
   public void redo() throws CannotRedoException
   {
     super.redo();
-    map.setLayerVector(layersAfter);
+    map.setLayers(layersAfter);
   }
 
   public String getPresentationName()

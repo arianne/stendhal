@@ -27,7 +27,7 @@ public class CustomBrush extends AbstractBrush
 
     public CustomBrush(MultilayerPlane m) {
         this();
-        this.addAllLayers(m.getLayerVector());
+        this.addAllLayers(m.getLayerList());
     }
 
     public void setAffectedLayers(int num) {
@@ -60,7 +60,7 @@ public class CustomBrush extends AbstractBrush
         int centerx = (int)(x - (bounds.width / 2));
         int centery = (int)(y - (bounds.height / 2));
 
-        ListIterator itr = getLayers();
+        ListIterator itr = iterator();
         while (itr.hasNext()) {
             TileLayer tl = (TileLayer)itr.next();
             TileLayer tm = (TileLayer)mp.getLayer(initLayer++);

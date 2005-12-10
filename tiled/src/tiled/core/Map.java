@@ -191,7 +191,7 @@ public class Map extends MultilayerPlane
         Iterator<Tile> tileIterator = s.iterator();
         while (tileIterator.hasNext()) {
             Tile tile = tileIterator.next();
-            Iterator<MapLayer> layerIterator = getLayers();
+            Iterator<MapLayer> layerIterator = iterator();
             while (layerIterator.hasNext()) {
                 MapLayer ml = layerIterator.next();
                 if (ml instanceof TileLayer) {
@@ -257,8 +257,8 @@ public class Map extends MultilayerPlane
         fireMapChanged();
     }
 
-    public void setLayerVector(List<MapLayer> layers) {
-        super.setLayerVector(layers);
+    public void setLayers(List<MapLayer> layers) {
+        super.setLayers(layers);
         fireMapChanged();
     }
 

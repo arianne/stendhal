@@ -94,6 +94,8 @@ public class ToolBar extends JToolBar
     add(new TButton(mapEditor.zoomInAction));
     add(new TButton(mapEditor.zoomOutAction));
 
+    add(new MemMonitor());
+
   }
   
   private AbstractButton createToggleButton(Icon icon, String command,String tt)

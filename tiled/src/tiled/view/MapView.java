@@ -192,7 +192,7 @@ public abstract class MapView extends JPanel implements Scrollable
         TiledConfiguration conf = TiledConfiguration.getInstance();
 
         double currentZoom = zoom;
-        Iterator li = myMap.getLayers();
+        Iterator li = myMap.iterator();
         MapLayer layer;
         Rectangle clip = g2d.getClipBounds();
 

@@ -11,6 +11,9 @@
  ***************************************************************************/
 package tiled.mapeditor.widget;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.Icon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
@@ -25,7 +28,7 @@ import tiled.mapeditor.util.MapEventAdapter;
  * The menu bar
  * @author Matthias Totz <mtotz@users.sourceforge.net>
  */
-public class MainMenu extends JMenuBar
+public class MainMenu extends JMenuBar implements ActionListener
 {
   private static final long serialVersionUID = 6139028013794826255L;
   
@@ -47,24 +50,20 @@ public class MainMenu extends JMenuBar
   private JMenuItem layerMergeAll;
 
   // view menu
-  private JCheckBoxMenuItem cursorMenuItem;
   private JCheckBoxMenuItem coordinatesMenuItem;
   private JCheckBoxMenuItem gridMenuItem;
   private JCheckBoxMenuItem boundaryMenuItem;
 
-  /**
-   * 
-   */
+  /** creates the main menu */
   public MainMenu(MapEditor mapEditor, MapEventAdapter mapEventAdapter)
   {
     super();
     this.mapEditor = mapEditor;
 
-    JMenuItem save        = createMenuItem("Save", null, "Save current map", "control S");
-    JMenuItem saveAs      = createMenuItem("Save as...", null,"Save current map as new file", "control shift S");
-    JMenuItem saveAsImage = createMenuItem("Save as Image...", null, "Save current map as an image", "control shift I");
-    JMenuItem close       = createMenuItem("Close", null, "Close this map", "control W");
-    JMenuItem print       = createMenuItem("Print...", null, "Print the map", "control P");
+    JMenuItem save        = new TMenuItem(mapEditor.saveMapAction);
+    JMenuItem saveAs      = new TMenuItem(mapEditor.saveMapAsAction);
+    JMenuItem saveAsImage = new TMenuItem(mapEditor.saveMapAsImageAction);
+    JMenuItem close       = new TMenuItem(mapEditor.closeMapAction);
     
     recentMenu = new JMenu("Open Recent");
     
@@ -72,23 +71,17 @@ public class MainMenu extends JMenuBar
     mapEventAdapter.addListener(saveAs);
     mapEventAdapter.addListener(saveAsImage);
     mapEventAdapter.addListener(close);
-    mapEventAdapter.addListener(print);
     
     JMenu fileMenu = new JMenu("File");
-    fileMenu.add(createMenuItem("New...", null, "Start a new map", "control N"));
-    fileMenu.add(createMenuItem("Open...", null, "Open a map", "control O"));
+    fileMenu.add(new TMenuItem(mapEditor.newMapAction));
+    fileMenu.add(new TMenuItem(mapEditor.openMapAction));    
     fileMenu.add(recentMenu);
     fileMenu.add(save);
     fileMenu.add(saveAs);
     fileMenu.add(saveAsImage);
-    // TODO: Re-add print menuitem when printing is functional
-    //fileMenu.addSeparator();
-    //fileMenu.add(print);
-    //mapEventAdapter.addListener(print);
     fileMenu.addSeparator();
     fileMenu.add(close);
-    fileMenu.add(createMenuItem("Exit", null, "Exit the map editor",
-            "control Q"));
+    fileMenu.add(new TMenuItem(mapEditor.exitApplicationAction));
     
     undoMenuItem = new TMenuItem(mapEditor.undoAction);
     redoMenuItem = new TMenuItem(mapEditor.redoAction);
@@ -122,7 +115,6 @@ public class MainMenu extends JMenuBar
     editMenu.add(transformSub);
     editMenu.addSeparator();
     editMenu.add(createMenuItem("Preferences...", null, "Configure options of the editor", null));
-    editMenu.add(createMenuItem("Brush...", null, "Configure the brush", "control B"));
     
     mapEventAdapter.addListener(undoMenuItem);
     mapEventAdapter.addListener(redoMenuItem);
@@ -133,23 +125,21 @@ public class MainMenu extends JMenuBar
     
     JMenu mapMenu = new JMenu("Map");
     mapMenu.add(createMenuItem("Resize", null, "Modify map dimensions"));
-    mapMenu.add(createMenuItem("Search", null,
-            "Search for/Replace tiles"));
+    mapMenu.add(createMenuItem("Search", null,"Search for/Replace tiles"));
     mapMenu.addSeparator();
-    mapMenu.add(createMenuItem("Properties", null, "Map properties"));
+    mapMenu.add(new TMenuItem(mapEditor.mapPropertiesAction));
     mapEventAdapter.addListener(mapMenu);
     
     
-    JMenuItem layerAdd = createMenuItem("Add Layer", null, "Add a layer");
-    layerClone = createMenuItem("Duplicate Layer", null, "Duplicate current layer");
-    layerDel = createMenuItem("Delete Layer", null, "Delete current layer");
-    layerUp = createMenuItem("Move Layer Up", null, "Move layer up one in layer stack", "shift PAGE_UP");
-    layerDown = createMenuItem("Move Layer Down", null, "Move layer down one in layer stack", "shift PAGE_DOWN");
-    layerMerge = createMenuItem("Merge Down", null, "Merge current layer onto next lower", "shift control M");
-    layerMergeAll = createMenuItem("Merge All", null, "Merge all layers");
-    JMenuItem layerProperties = createMenuItem("Layer Properties", null,
-        "Current layer properties");
-    
+    JMenuItem layerAdd = createMenuItemWithThisAsActionListener("Add Layer", null, "Add a layer",null);
+    layerClone = createMenuItemWithThisAsActionListener("Duplicate Layer", null, "Duplicate current layer",null);
+    layerDel = createMenuItemWithThisAsActionListener("Delete Layer", null, "Delete current layer",null);
+    layerUp = createMenuItemWithThisAsActionListener("Move Layer Up", null, "Move layer up one in layer stack", "shift PAGE_UP");
+    layerDown = createMenuItemWithThisAsActionListener("Move Layer Down", null, "Move layer down one in layer stack", "shift PAGE_DOWN");
+    layerMerge = createMenuItemWithThisAsActionListener("Merge Down", null, "Merge current layer onto next lower", "shift control M");
+    layerMergeAll = createMenuItemWithThisAsActionListener("Merge All", null, "Merge all layers",null);
+    JMenuItem layerProperties = new TMenuItem(mapEditor.layerPropertiesAction);
+
     mapEventAdapter.addListener(layerAdd);
     
     JMenu layerMenu = new JMenu("Layer");
@@ -164,15 +154,12 @@ public class MainMenu extends JMenuBar
     layerMenu.add(layerMergeAll);
     layerMenu.addSeparator();
     layerMenu.add(layerProperties);
-    
+
     JMenu tilesetMenu = new JMenu("Tilesets");
-    tilesetMenu.add(createMenuItem("New Tileset...", null,
-            "Add a new internal tileset"));
-    tilesetMenu.add(createMenuItem("Import Tileset...", null,
-            "Import an external tileset"));
+    tilesetMenu.add(new TMenuItem(mapEditor.newTilesetAction));
+    tilesetMenu.add(new TMenuItem(mapEditor.importTilesetAction));
     tilesetMenu.addSeparator();
-    tilesetMenu.add(createMenuItem("Tileset Manager", null,
-            "Open the tileset manager"));
+    tilesetMenu.add(new TMenuItem(mapEditor.tilesetManagerAction));
     
     
     /*
@@ -198,11 +185,6 @@ public class MainMenu extends JMenuBar
     gridMenuItem.setToolTipText("Toggle grid");
     gridMenuItem.setAccelerator(KeyStroke.getKeyStroke("control G"));
     
-    cursorMenuItem = new JCheckBoxMenuItem("Highlight Cursor");
-    cursorMenuItem.setSelected(mapEditor.configuration.keyHasValue("tiled.cursorhighlight", 1));
-    cursorMenuItem.addActionListener(mapEditor);
-    cursorMenuItem.setToolTipText("Toggle highlighting on-map cursor position");
-    
     boundaryMenuItem = new JCheckBoxMenuItem("Show Boundaries");
     boundaryMenuItem.addActionListener(mapEditor);
     boundaryMenuItem.setToolTipText("Toggle layer boundaries");
@@ -218,7 +200,6 @@ public class MainMenu extends JMenuBar
     viewMenu.add(new TMenuItem(mapEditor.zoomNormalAction));
     viewMenu.addSeparator();
     viewMenu.add(gridMenuItem);
-    viewMenu.add(cursorMenuItem);
     // TODO: Enable when boudary drawing code finished.
     //viewMenu.add(boundaryMenuItem);
     viewMenu.add(coordinatesMenuItem);
@@ -257,6 +238,26 @@ public class MainMenu extends JMenuBar
     return menuItem;
   }
   
+  private JMenuItem createMenuItemWithThisAsActionListener(String name, Icon icon, String tt, String keyStroke)
+  {
+    JMenuItem menuItem = new JMenuItem(name);
+    menuItem.addActionListener(this);
+    if (icon != null)
+    {
+        menuItem.setIcon(icon);
+    }
+    if (tt != null)
+    {
+        menuItem.setToolTipText(tt);
+    }
+    if (keyStroke != null)
+    {
+      menuItem.setAccelerator(KeyStroke.getKeyStroke(keyStroke));
+    }
+    return menuItem;
+  }
+  
+  
   private JMenuItem createMenuItem(String name, Icon icon, String tt, String keyStroke)
   {
     JMenuItem menuItem = createMenuItem(name, icon, tt);
@@ -291,11 +292,6 @@ public class MainMenu extends JMenuBar
     redoMenuItem.setEnabled(enable);
   }
   
-  public boolean isHighlightCursorSelected()
-  {
-    return cursorMenuItem.isSelected();
-  }
-
   public void clearAllRecent()
   {
     recentMenu.removeAll();
@@ -316,6 +312,19 @@ public class MainMenu extends JMenuBar
   public void setShowCoordinates(boolean mode)
   {
     coordinatesMenuItem.setState(mode);
+  }
+
+  public void actionPerformed(ActionEvent event)
+  {
+    String command = event.getActionCommand();
+    
+    if (command.equals("Add Layer") || command.equals("Duplicate Layer")
+        || command.equals("Delete Layer") || command.equals("Move Layer Up")
+        || command.equals("Move Layer Down") || command.equals("Merge Down")
+        || command.equals("Merge All"))
+    {
+      mapEditor.doLayerStateChange(event);
+    }    
   }
   
   

@@ -1,0 +1,236 @@
+/**
+ * 
+ */
+package tiled.view.test;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import tiled.core.Map;
+import tiled.core.TileLayer;
+import tiled.util.TiledConfiguration;
+
+/**
+ * Base class for all views
+ * @author mtotz
+ */
+public abstract class MapView
+{
+  /** default zoom level for the minimap */
+  protected static final double DEFAULT_MINIMAP_ZOOM = 0.0625;
+  private static final int DEFAULT_ZOOM_LEVEL = 5;
+  /** valid zoom levels */
+  protected static double[] zoomLevels = {0.0625, 0.125, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0};
+  /** the zoom-level index */
+  private int zoomLevel = DEFAULT_ZOOM_LEVEL;
+  /** the map */
+  protected Map map;
+  /** current zoom */
+  protected double zoom = 1.0;
+  /** the cached minimap image */
+  protected BufferedImage minimapImage;
+  /** the background color */
+  private Color backgroundColor;
+
+  
+  public MapView()
+  {
+    // get the background color
+    try
+    {
+      TiledConfiguration conf = TiledConfiguration.getInstance();
+      String colorString = conf.getValue("tiled.background.color");
+      backgroundColor = Color.decode(colorString);
+    }
+    catch (NumberFormatException e)
+    {
+      backgroundColor = new Color(64, 64, 64);
+    }
+    
+  }
+
+  /** sets the map */
+  public void setMap(Map map)
+  {
+    this.map = map;
+    if (map != null)
+    {
+      minimapImage = prepareMinimapImage();
+    }
+  }
+
+  /** size of the view (in pixel) */
+  public abstract Dimension getSize();
+  
+  /**
+   * (re)draws a portion of the map. Note that clipArea is in Tile coordinate
+   * space, not pixel space. The destination is always the upper left
+   * corner(0,0) of g.
+   * The MapView should check the clipping area of g too, to avoid unneccessary
+   * drawing operation.
+   * 
+   *  @param g the graphic to draw to
+   *  @param clipArea the are to draw in tile coordinates
+   */
+  public void draw(Graphics g)
+  {
+    Rectangle clip = g.getClipBounds();
+    if (clip == null)
+    {
+      return;
+    }
+
+    // clear the background
+    g.setColor(backgroundColor);
+    g.fillRect(clip.x, clip.y, clip.width, clip.height);
+    
+    
+    // draw the map
+    if (map != null)
+    {
+      // the rectangle should be a little bigger than the screen
+      Rectangle rect = new Rectangle(clip);
+      rect.width  += map.getTileWidth();
+      rect.height += map.getTileHeight();
+      
+      Rectangle tileRect = screenToTileRect(rect);
+      draw(g,tileRect);
+    }
+  }
+
+  
+  /** 
+   * converts the screen position to tile position.
+   * 
+   * @param tileCoords tile coords
+   * @return screen coords
+   */
+  public Rectangle screenToTileRect(Rectangle tileCoords)
+  {
+    Point upperPoint = screenToTileCoords(new Point(tileCoords.x, tileCoords.y)); 
+    Point lowerPoint = screenToTileCoords(new Point(tileCoords.x+tileCoords.width, tileCoords.y+tileCoords.height));
+    
+    return new Rectangle(upperPoint.x,upperPoint.y,lowerPoint.x-upperPoint.x,lowerPoint.y-upperPoint.y);
+  }
+
+  /**
+   * converts the tile position to screen position.
+   * 
+   * @param screenCoords screen coords
+   * @return tile coords
+   */
+  public Rectangle tileToScreenRect(Rectangle screenCoords)
+  {
+    Point upperPoint = tileToScreenCoords(new Point(screenCoords.x                     , screenCoords.y)); 
+    Point lowerPoint = tileToScreenCoords(new Point(screenCoords.x + screenCoords.width, screenCoords.y + screenCoords.height));
+    
+    return new Rectangle(upperPoint.x,upperPoint.y,lowerPoint.x-upperPoint.x,lowerPoint.y-upperPoint.y);
+  }
+
+  /** 
+   * Returns a minimap image. Its the responsibility of the MapView to update
+   * the image on changes.
+   */
+  public Image getMinimap()
+  {
+    return minimapImage;
+  }
+
+  /** Sets the layer opacity in the graphics context g */
+  protected void setLayerOpacity(Graphics g, TileLayer layer)
+  {
+    float opacity = layer.getOpacity();
+    if (layer.isVisible() && opacity > 0.0f)
+    {
+      if (opacity < 1.0f)
+      {
+        ((Graphics2D) g).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, opacity));
+      }
+      else
+      {
+        ((Graphics2D) g).setComposite(AlphaComposite.SrcOver);
+      }
+    }
+  }
+  
+  /**
+   * Prepares the minimap. The view can use the <i>DEFAULT_MINIMAP_ZOOM</i>.
+   * The map is already set and non-null when this method is called.
+   * The view must return the image of the minimap (and not set the field in
+   * this baseclass directly).
+   */
+  protected abstract BufferedImage prepareMinimapImage();
+  
+  /**
+   * (re)draws a portion of the map. Note that clipArea is in Tile coordinate
+   * space, not pixel space. The destination is always the upper left
+   * corner(0,0) of g.
+   * The MapView should check the clipping area of g too, to avoid unneccessary
+   * drawing operation.
+   * 
+   *  @param g the graphic to draw to
+   *  @param clipArea the are to draw in tile coordinates
+   */
+  public abstract void draw(Graphics g, Rectangle clipArea);
+
+  
+  /** 
+   * converts the screen position to tile position.
+   * 
+   * @param tileCoords tile coords
+   * @return screen coords
+   */
+  public abstract Point screenToTileCoords(Point screenCoords);
+
+  /**
+   * converts the tile position to screen position.
+   * 
+   * @param screenCoords screen coords
+   * @return tile coords
+   */
+  public abstract Point tileToScreenCoords(Point tileCoords);
+
+  /** returns the minimap zoom level. */
+  public double getMinimapScale()
+  {
+    return DEFAULT_MINIMAP_ZOOM;
+  }
+
+  /** returns the current zoom level */
+  public double getScale()
+  {
+    return zoom;
+  }
+  
+  /** sets the zoom level */
+  private void setZoomLevel(int zoomLevel)
+  {
+    if (zoomLevel >= 0 && zoomLevel < zoomLevels.length)
+    {
+      this.zoomLevel = zoomLevel;
+      this.zoom = zoomLevels[zoomLevel];
+    }
+  }
+
+  /** zooms in one unit */
+  public boolean zoomIn()
+  {
+    setZoomLevel(zoomLevel + 1);
+    return zoomLevel < zoomLevels.length - 1;
+  }
+
+  /** zooms out one unit */
+  public boolean zoomOut() 
+  {
+    setZoomLevel(zoomLevel - 1);
+    return zoomLevel > 0;
+  }
+
+  /** restores default zoom */
+  public void zoomNormalize()
+  {
+    setZoomLevel(DEFAULT_ZOOM_LEVEL);
+  }
+}
+
+

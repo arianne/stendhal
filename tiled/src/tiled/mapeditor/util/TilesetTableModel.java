@@ -95,7 +95,7 @@ public class TilesetTableModel extends AbstractTableModel
 
         while (tileIterator.hasNext()) {
             Tile tile = (Tile)tileIterator.next();
-            Iterator itr = map.getLayers();
+            Iterator itr = map.iterator();
 
             while (itr.hasNext()) {
                 MapLayer ml = (MapLayer)itr.next();

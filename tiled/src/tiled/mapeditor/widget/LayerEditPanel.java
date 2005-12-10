@@ -42,21 +42,16 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
   private MapEditor mapEditor;
 
   private MiniMapViewer miniMap;
-
   private JTable layerTable;
-
   private JSlider opacitySlider;
   
   private int currentLayer;
 
+  // the buttons
   private AbstractButton layerAddButton;
-
   private AbstractButton layerDelButton;
-
   private AbstractButton layerCloneButton;
-
   private AbstractButton layerUpButton;
-
   private AbstractButton layerDownButton;
 
   /**
@@ -74,8 +69,6 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     Icon imgUp = MapEditor.loadIcon("resources/gnome-up.png");
     Icon imgDown = MapEditor.loadIcon("resources/gnome-down.png");
 
-    //navigation and tool options
-    //TODO: the minimap is prohibitively slow, need to speed this up before it can be used
     miniMap = new MiniMapViewer();
     miniMap.setMainPanel(mapEditor.mapScrollPane);
     JScrollPane miniMapSp = new JScrollPane();
@@ -170,7 +163,8 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     return button;
   }
   
-  public void updateLayerTable(int currentLayer, Map currentMap)
+  /** updates the map (called when a new map is loaded) */
+  public void setMap(int currentLayer, Map currentMap)
   {
     if (layerTable.isEditing())
     {
@@ -185,11 +179,14 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
         currentLayer = 0;
       }
 
-      setCurrentLayer(currentLayer,currentMap);
+      setLayer(currentLayer,currentMap);
     }
+    
+//    miniMap.setView(mapEditor.mapView);
   }
   
-  public void setCurrentLayer(int currentLayer, Map currentMap)
+  /** updates the selected layer */
+  public void setLayer(int currentLayer, Map currentMap)
   {
     if (currentMap != null)
     {
@@ -203,6 +200,7 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     }
   }
   
+  /** enables/disables the layer operation buttons */
   public void updateLayerOperations(boolean validSelection, boolean notBottom, boolean notTop)
   {
     layerCloneButton.setEnabled(validSelection);
@@ -212,8 +210,16 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
 
     opacitySlider.setEnabled(validSelection);
   }
-
   
+  /** returns the minimap panel */
+  public MiniMapViewer getMiniMap()
+  {
+    return miniMap;
+  }
+  
+  //
+  // callback interfaces
+  //
   public void valueChanged(ListSelectionEvent e)
   {
     int selectedRow = layerTable.getSelectedRow();
@@ -243,7 +249,5 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
       MapLayer layer = mapEditor.getCurrentLayer();
       layer.setOpacity(opacitySlider.getValue() / 100.0f);
     }
-}
-  
-
+  }
 }
