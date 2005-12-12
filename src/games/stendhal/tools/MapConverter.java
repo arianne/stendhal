@@ -31,12 +31,11 @@ import tiled.core.Map;
 import tiled.io.xml.XMLMapTransformer;
 
 import tiled.core.MapLayer;
-import tiled.view.MapView;
+import tiled.view.old.MapView;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
-import java.util.ListIterator;
 
 /**
  * Converts the stendhal maps from *.tmx to *.stend
