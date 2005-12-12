@@ -28,16 +28,5 @@ public class CopyAction extends AbstractAction
 
   public void actionPerformed(ActionEvent evt)
   {
-    if (mapEditor.currentMap != null && mapEditor.marqueeSelection != null)
-    {
-      if (mapEditor.getCurrentLayer() instanceof TileLayer)
-      {
-        mapEditor.clipboardLayer = new TileLayer(mapEditor.marqueeSelection.getSelectedAreaBounds());
-      } else if (mapEditor.getCurrentLayer() instanceof ObjectGroup)
-      {
-        mapEditor.clipboardLayer = new ObjectGroup(mapEditor.marqueeSelection.getSelectedAreaBounds());
-      }
-      mapEditor.clipboardLayer.maskedCopyFrom(mapEditor.getCurrentLayer(), mapEditor.marqueeSelection.getSelectedArea());
-    }
   }
 }

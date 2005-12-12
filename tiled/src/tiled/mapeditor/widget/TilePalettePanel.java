@@ -30,6 +30,7 @@ import tiled.core.*;
 import tiled.mapeditor.brush.Brush;
 import tiled.mapeditor.brush.MultiTileBrush;
 import tiled.mapeditor.util.*;
+import tiled.util.Util;
 
 public class TilePalettePanel extends JPanel implements MouseInputListener
 {
@@ -133,28 +134,6 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
       }
     }
   }
-  
-  /** returns a rectangle for these points */
-  private Rectangle getRectangle(Point p1, Point p2)
-  {
-    int x = p1.x;
-    int y = p1.y;
-    int w = p2.x - x;
-    int h = p2.y - y;
-    
-    if (w < 0)
-    {
-      w = -w;
-      x -= w;
-    }
-    if (h < 0)
-    {
-      h = -h;
-      y -= h;
-    }
-    
-    return new Rectangle(x,y,w,h);
-  }
 
   /** returns the tile at the given position (or null if there is no tile) */
   public Tile getTileAtPoint(int x, int y)
@@ -239,7 +218,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
       // drag selection rectangle
       if (dragInProgress)
       {
-        Rectangle rect = getRectangle(dragStartPoint, currentDragPoint);
+        Rectangle rect = Util.getRectangle(dragStartPoint, currentDragPoint);
         
         g.setColor(Color.WHITE);
         g.drawRect(rect.x  ,rect.y  ,rect.width  , rect.height);
@@ -354,7 +333,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
       dragStartPoint = getMousePosition();
       currentDragPoint = dragStartPoint;
     }
-    refreshSelectedTiles(getRectangle(dragStartPoint, currentDragPoint));
+    refreshSelectedTiles(Util.getRectangle(dragStartPoint, currentDragPoint));
     fireTileSelectionEvent(selectedTiles,selectedBrush);
     repaint();
   }
@@ -364,7 +343,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
   {
     if (dragInProgress)
     {
-      refreshSelectedTiles(getRectangle(dragStartPoint, currentDragPoint));
+      refreshSelectedTiles(Util.getRectangle(dragStartPoint, currentDragPoint));
     }
     dragInProgress = false;
     repaint();

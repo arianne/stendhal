@@ -16,12 +16,15 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Rectangle;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
@@ -35,13 +38,15 @@ import tiled.mapeditor.util.MapEventAdapter;
  * 
  * @author Matthias Totz <mtotz@users.sourceforge.net>
  */
-public class LayerEditPanel extends JPanel implements ListSelectionListener, ChangeListener
+public class LayerEditPanel extends JPanel implements ListSelectionListener, ChangeListener, TableModelListener
 {
   private static final long serialVersionUID = 314584416481357898L;
   
   private MapEditor mapEditor;
 
   private MiniMapViewer miniMap;
+  private BrushBrowser brushBrowser;
+  
   private JTable layerTable;
   private JSlider opacitySlider;
   
@@ -54,6 +59,7 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
   private AbstractButton layerUpButton;
   private AbstractButton layerDownButton;
 
+
   /**
    * 
    */
@@ -62,13 +68,6 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     super();
     this.mapEditor = mapEditor;
     
-    // Try to load the icons
-    Icon imgAdd = MapEditor.loadIcon("resources/gnome-new.png");
-    Icon imgDel = MapEditor.loadIcon("resources/gnome-delete.png");
-    Icon imgDup = MapEditor.loadIcon("resources/gimp-duplicate-16.png");
-    Icon imgUp = MapEditor.loadIcon("resources/gnome-up.png");
-    Icon imgDown = MapEditor.loadIcon("resources/gnome-down.png");
-
     miniMap = new MiniMapViewer();
     miniMap.setMainPanel(mapEditor.mapScrollPane);
     JScrollPane miniMapSp = new JScrollPane();
@@ -76,7 +75,9 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     miniMapSp.setMinimumSize(new Dimension(120, 120));
 
     // Layer table
-    layerTable = new JTable(new LayerTableModel(mapEditor.currentMap));
+    LayerTableModel tableModel = new LayerTableModel(mapEditor.currentMap);
+    tableModel.addTableModelListener(this);
+    layerTable = new JTable(tableModel);
     layerTable.getColumnModel().getColumn(0).setPreferredWidth(32);
     layerTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     layerTable.getSelectionModel().addListSelectionListener(this);
@@ -98,11 +99,11 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     sliderPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE,sliderPanel.getPreferredSize().height));
 
     // Layer buttons
-    layerAddButton = createButton(imgAdd, "Add Layer", "Add Layer");
-    layerDelButton = createButton(imgDel, "Delete Layer", "Delete Layer");
-    layerCloneButton = createButton(imgDup, "Duplicate Layer","Duplicate Layer");
-    layerUpButton = createButton(imgUp, "Move Layer Up", "Move Layer Up");
-    layerDownButton = createButton(imgDown, "Move Layer Down","Move Layer Down");
+    layerAddButton = createButton(mapEditor.addLayerAction);
+    layerDelButton = createButton(mapEditor.delLayerAction);
+    layerCloneButton = createButton(mapEditor.duplicateLayerAction);
+    layerUpButton = createButton(mapEditor.moveLayerUpAction);
+    layerDownButton = createButton(mapEditor.moveLayerDownAction);
 
     mapEventAdapter.addListener(layerAddButton);
 
@@ -125,42 +126,29 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     layerPanel.add(layerTableScrollPane);
     layerPanel.add(layerButtons);
     
+    JTabbedPane pane = new JTabbedPane();
+    pane.add("Layers",layerPanel);
+    brushBrowser = new BrushBrowser(mapEditor);
+    pane.add("Brushes",brushBrowser);
 
     setLayout(new BorderLayout());
     add(miniMapSp, BorderLayout.NORTH);
-    add(layerPanel, BorderLayout.CENTER);
+    add(pane, BorderLayout.CENTER);
     
   }
   
+  /** creates an image-only button */
+  private AbstractButton createButton(Action action)
+  {
+    JButton button = new JButton(action);
+    button.setText("");
+    button.setMargin(new Insets(0, 0, 0, 0));
+    return button;
+  }
+
   public int getCurrentLayer()
   {
     return currentLayer;
-  }
-  
-  private AbstractButton createButton(Icon icon, String command, String tt)
-  {
-    return createButton(icon, command, false, tt);
-  }
-
-  private AbstractButton createButton(Icon icon, String command, boolean toggleButton, String tt)
-  {
-    AbstractButton button;
-    if (toggleButton)
-    {
-        button = new JToggleButton("", icon);
-    }
-    else
-    {
-        button = new JButton("", icon);
-    }
-    button.setMargin(new Insets(0, 0, 0, 0));
-    button.setActionCommand(command);
-    button.addActionListener(mapEditor);
-    if (tt != null)
-    {
-        button.setToolTipText(tt);
-    }
-    return button;
   }
   
   /** updates the map (called when a new map is loaded) */
@@ -171,6 +159,8 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
       layerTable.getCellEditor(layerTable.getEditingRow(),layerTable.getEditingColumn()).cancelCellEditing();
     }
     ((LayerTableModel)layerTable.getModel()).setMap(currentMap);
+    
+    brushBrowser.setMap(currentMap);
 
     if (currentMap != null)
     {
@@ -181,8 +171,6 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
 
       setLayer(currentLayer,currentMap);
     }
-    
-//    miniMap.setView(mapEditor.mapView);
   }
   
   /** updates the selected layer */
@@ -193,7 +181,6 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
       int totalLayers = currentMap.getTotalLayers();
       if (totalLayers > currentLayer && currentLayer >= 0)
       {
-        mapEditor.currentLayer = currentLayer;
         this.currentLayer = currentLayer;
         layerTable.changeSelection(totalLayers - currentLayer - 1, 0,false, false);
       }
@@ -227,14 +214,15 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     // At the moment, this can only be a new layer selection
     if (mapEditor.currentMap != null && selectedRow >= 0)
     {
-      mapEditor.currentLayer = mapEditor.currentMap.getTotalLayers() - selectedRow - 1;
+      mapEditor.setCurrentLayer(mapEditor.currentMap.getTotalLayers() - selectedRow - 1);
 
+      // set opacity
       float opacity = mapEditor.getCurrentLayer().getOpacity();
       opacitySlider.setValue((int)(opacity * 100));
     }
     else
     {
-      mapEditor.currentLayer = -1;
+      mapEditor.setCurrentLayer(-1);
     }
 
     mapEditor.updateLayerOperations();
@@ -246,8 +234,20 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
 
     if (mapEditor.currentMap != null && currentLayer >= 0)
     {
+      // set opacity
       MapLayer layer = mapEditor.getCurrentLayer();
       layer.setOpacity(opacitySlider.getValue() / 100.0f);
+      // redraw the map
+      mapEditor.mapEditPanel.repaint();
+      // refresh minimap
+      mapEditor.mapEditPanel.getMapView().updateMinimapImage(new Rectangle(0,0,layer.getWidth(), layer.getHeight()));
+      miniMap.repaint();
     }
+  }
+
+  /** only consider */
+  public void tableChanged(TableModelEvent e)
+  {
+    mapEditor.mapEditPanel.repaint();
   }
 }

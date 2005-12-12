@@ -8,6 +8,11 @@
  * 
  *  Adam Turk <aturk@biggeruniverse.com>
  *  Bjorn Lindeijer <b.lindeijer@xs4all.nl>
+ *  
+ *  modified for stendhal, an Arianne powered RPG 
+ *  (http://arianne.sf.net)
+ *
+ *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
 package tiled.mapeditor.brush;
@@ -18,12 +23,8 @@ import java.awt.Rectangle;
 import tiled.core.MultilayerPlane;
 
 
-public abstract class Brush extends MultilayerPlane
+public interface Brush 
 {
-    public Brush() {
-        super();
-    }
-
     /**
      * This will set the number of layers to affect, the default is 1 - the
      * layer specified in commitPaint.
@@ -31,11 +32,11 @@ public abstract class Brush extends MultilayerPlane
      * @see Brush#commitPaint(MultilayerPlane, int, int, int)
      * @param num   the number of layers to affect.
      */
-    public abstract void setAffectedLayers(int num);
+    public void setAffectedLayers(int num);
     
-    public abstract int getAffectedLayers();
+    public int getAffectedLayers();
     
-    public abstract Rectangle getBounds();
+    public Rectangle getBounds();
     
     /**
      * This is the main processing method for a Brush object. Painting starts
@@ -49,10 +50,9 @@ public abstract class Brush extends MultilayerPlane
      * @param initLayer  The first layer to paint to.
      * @return The rectangular region affected by the painting  
      */
-    public abstract Rectangle commitPaint(MultilayerPlane mp, int x, int y,
-            int initLayer);
+    public Rectangle commitPaint(MultilayerPlane mp, int x, int y,int initLayer);
     
-    public abstract void paint(Graphics g, int x, int y);
+    public void paint(Graphics g, int x, int y);
     
-    public abstract boolean equals(Brush b);
+    public boolean equals(Brush b);
 }

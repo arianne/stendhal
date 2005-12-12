@@ -131,11 +131,11 @@ public class MainMenu extends JMenuBar implements ActionListener
     mapEventAdapter.addListener(mapMenu);
     
     
-    JMenuItem layerAdd = createMenuItemWithThisAsActionListener("Add Layer", null, "Add a layer",null);
-    layerClone = createMenuItemWithThisAsActionListener("Duplicate Layer", null, "Duplicate current layer",null);
-    layerDel = createMenuItemWithThisAsActionListener("Delete Layer", null, "Delete current layer",null);
-    layerUp = createMenuItemWithThisAsActionListener("Move Layer Up", null, "Move layer up one in layer stack", "shift PAGE_UP");
-    layerDown = createMenuItemWithThisAsActionListener("Move Layer Down", null, "Move layer down one in layer stack", "shift PAGE_DOWN");
+    JMenuItem layerAdd = new TMenuItem(mapEditor.addLayerAction);
+    layerClone = new TMenuItem(mapEditor.duplicateLayerAction);
+    layerDel =   new TMenuItem(mapEditor.delLayerAction);
+    layerUp =    new TMenuItem(mapEditor.moveLayerUpAction);
+    layerDown =  new TMenuItem(mapEditor.moveLayerDownAction);
     layerMerge = createMenuItemWithThisAsActionListener("Merge Down", null, "Merge current layer onto next lower", "shift control M");
     layerMergeAll = createMenuItemWithThisAsActionListener("Merge All", null, "Merge all layers",null);
     JMenuItem layerProperties = new TMenuItem(mapEditor.layerPropertiesAction);
@@ -318,10 +318,7 @@ public class MainMenu extends JMenuBar implements ActionListener
   {
     String command = event.getActionCommand();
     
-    if (command.equals("Add Layer") || command.equals("Duplicate Layer")
-        || command.equals("Delete Layer") || command.equals("Move Layer Up")
-        || command.equals("Move Layer Down") || command.equals("Merge Down")
-        || command.equals("Merge All"))
+    if (command.equals("Merge Down") || command.equals("Merge All"))
     {
       mapEditor.doLayerStateChange(event);
     }    

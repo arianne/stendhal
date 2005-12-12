@@ -8,12 +8,19 @@
  * 
  *  Adam Turk <aturk@biggeruniverse.com>
  *  Bjorn Lindeijer <b.lindeijer@xs4all.nl>
+ *  
+ *  modified for stendhal, an Arianne powered RPG 
+ *  (http://arianne.sf.net)
+ *
+ *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
 package tiled.mapeditor.brush;
 
+import tiled.core.MultilayerPlane;
 
-public abstract class AbstractBrush extends Brush
+
+public abstract class AbstractBrush extends MultilayerPlane implements Brush
 {
     protected int numLayers = 1;
 

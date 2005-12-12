@@ -9,26 +9,9 @@
  *  Adam Turk <aturk@biggeruniverse.com>
  *  Bjorn Lindeijer <b.lindeijer@xs4all.nl>
  */
-package tiled.mapeditor.dungeon;
-
-import tiled.core.Map;
+package tiled.mapeditor.builder;
 
 
-public class CorridorBuilder extends Builder
+public class CorridorBuilder
 {
-	
-    public void iterate() {
-        
-    }
-
-    public Builder spawn() {
-        
-        return null;
-    }
-
-	
-	public void store(Map m) {
-		
-		
-	}
 }

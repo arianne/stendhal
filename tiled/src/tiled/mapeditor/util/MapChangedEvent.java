@@ -12,8 +12,6 @@
 
 package tiled.mapeditor.util;
 
-//import java.util.EventObject;
-
 import tiled.core.Map;
 
 

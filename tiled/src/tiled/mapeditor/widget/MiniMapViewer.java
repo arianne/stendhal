@@ -23,7 +23,7 @@ import java.awt.*;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import tiled.view.test.MapView;
+import tiled.view.MapView;
 
 
 
@@ -35,6 +35,9 @@ public class MiniMapViewer extends JPanel
 
   private MapView mapView;
   private JScrollPane mapScrollPane;
+
+  /** last viewpoint in the map editing panel */
+  private Point lastViewPoint;
   
   public MiniMapViewer()
   {
@@ -66,12 +69,17 @@ public class MiniMapViewer extends JPanel
     mapScrollPane = main;
   }
     
-  public void paintComponent(Graphics g)
+  /** clears the background */
+  private void clearBackground(Graphics g)
   {
     Rectangle clip = g.getClipBounds();
     g.setColor(Color.BLACK);
     g.fillRect(clip.x,clip.y,clip.width, clip.height);
-    
+  }
+
+  public void paintComponent(Graphics g)
+  {
+    clearBackground(g);
     if (mapView == null || mapView.getMinimap() == null)
     {
       return;
@@ -89,11 +97,17 @@ public class MiniMapViewer extends JPanel
 
       if (viewPoint != null && viewSize != null)
       {
-        g.drawRect(
-                (int)((viewPoint.x-1) * scale),
-                (int)((viewPoint.y-1) * scale),
-                (int)((viewSize.width-1) * scale),
-                (int)((viewSize.height-1) * scale));
+        Rectangle rect = new Rectangle((int)((viewPoint.x-1)    * scale),(int)((viewPoint.y-1)     * scale),
+                                       (int)((viewSize.width-1) * scale),(int)((viewSize.height-1) * scale));
+
+        // only update scrolling when the main viewport has changed
+        g.drawRect(rect.x, rect.y, rect.width, rect.height);
+        if (!viewPoint.equals(lastViewPoint))
+        {
+          scrollRectToVisible(rect);
+          repaint();
+        }
+        lastViewPoint = viewPoint;
       }
     }
   }

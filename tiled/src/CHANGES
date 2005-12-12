@@ -1,12 +1,25 @@
 0.0.1 - December 6th, 2005
 
 * restarted versioning from scratch (new name too)
+* fixed a bunch of compiler warnings (unused imports/variables, stuff like that)
+* overall cleanup
 * biggest change: the code is java 1.5.0 now. never look back.
-* cleaned the window code
 * added a new panel with tabs for each tileset (removed the tileset button)
 * added selecting multiple tiles from the tileset. The brush now draws all
   selected tiles at once (only one layer at the moment)
-* fixed a bunch of compiler warnings (unused imports/variables, stuff like that)
+* added memory monitor
+* properly implemented the minimap
+* properly implemented brushes
+* properly implemented builders
+* refactored mapview system
+* refactored action system
+* playing around with creating custom brushes
+
+Broken things:
+* some undo features
+* grid/coordinate map view (won't fix this)
+* save as image
+* select all/none/invert
 
 
 0.5.2 - TBD (+ means planned change)

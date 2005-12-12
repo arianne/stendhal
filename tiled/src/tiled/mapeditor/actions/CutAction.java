@@ -31,36 +31,5 @@ public class CutAction extends AbstractAction
 
   public void actionPerformed(ActionEvent evt)
   {
-    if (mapEditor.currentMap != null && mapEditor.marqueeSelection != null)
-    {
-      MapLayer ml = mapEditor.getCurrentLayer();
-
-      if (mapEditor.getCurrentLayer() instanceof TileLayer)
-      {
-        mapEditor.clipboardLayer = new TileLayer(mapEditor.marqueeSelection.getSelectedAreaBounds());
-      } else if (mapEditor.getCurrentLayer() instanceof ObjectGroup)
-      {
-        mapEditor.clipboardLayer = new ObjectGroup(mapEditor.marqueeSelection.getSelectedAreaBounds());
-      }
-      mapEditor.clipboardLayer.maskedCopyFrom(ml, mapEditor.marqueeSelection.getSelectedArea());
-
-      Rectangle area = mapEditor.marqueeSelection.getSelectedAreaBounds();
-      Area mask = mapEditor.marqueeSelection.getSelectedArea();
-      if (ml instanceof TileLayer)
-      {
-        TileLayer tl = (TileLayer) ml;
-        for (int i = area.y; i < area.height + area.y; i++)
-        {
-          for (int j = area.x; j < area.width + area.x; j++)
-          {
-            if (mask.contains(j, i))
-            {
-              tl.setTileAt(j, i, mapEditor.currentMap.getNullTile());
-            }
-          }
-        }
-      }
-      // mapView.repaintRegion(area);
-    }
   }
 }

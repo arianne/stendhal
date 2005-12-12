@@ -9,37 +9,31 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package tiled.mapeditor.actions;
+package tiled.core;
 
-import java.awt.event.ActionEvent;
+import java.awt.Point;
 
-import javax.swing.AbstractAction;
-import javax.swing.KeyStroke;
-
-import tiled.mapeditor.MapEditor;
 
 /**
- * This action loads a new file
- * 
- * @author mtotz
+ * Stores coordinates for the tile
+ * @author mtotz   
  */
-public class OpenAction extends AbstractAction
+public class StatefulTile
 {
-  private static final long serialVersionUID = 2453067107619628364L;
+  public int layer;
+  public Point p;
+  public Tile tile;
 
-  private MapEditor mapEditor;
+  public StatefulTile(Point p, int layer, Tile tile)
+  {
+    this.p = new Point(p);
+    this.layer = layer;
+    this.tile = tile;
+  }
   
-  public OpenAction(MapEditor mapEditor)
+  public String toString()
   {
-    super("Open...");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control O"));
-    putValue(SHORT_DESCRIPTION, "Opens a new file");
-    this.mapEditor = mapEditor;
+    return "[TileWrapper: "+p+" "+tile+"]";
   }
-
-  public void actionPerformed(ActionEvent e)
-  {
-    mapEditor.openMap();
-  }
-
+  
 }

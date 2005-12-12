@@ -20,12 +20,11 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import tiled.core.MapLayer;
-import tiled.core.TileLayer;
 import tiled.mapeditor.MapEditor;
-import tiled.mapeditor.brush.Brush;
+import tiled.mapeditor.builder.Builder;
 import tiled.mapeditor.util.MapModifyListener;
-import tiled.view.test.MapView;
+import tiled.util.Util;
+import tiled.view.MapView;
 
 /**
  * This Panel contains the map editor itself.
@@ -49,8 +48,12 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
   private MapEditor mapEditor;
   /** last drawn cursor rectangle */
   private Rectangle lastDrawnCursor;
-  /** should the cursor be shown? */
-  private boolean showCursor;
+  /** dragging op in progress? */
+  private boolean dragInProgress;
+  /** point where the drag started */
+  private Point dragStartPoint;
+  /** */
+  private DragType dragType;
 
   /** constuctor */
   public MapEditPanel(MapEditor mapEditor)
@@ -68,6 +71,12 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
     revalidate();
   }
   
+  /** returns the current map view (may be null) */
+  public MapView getMapView()
+  {
+    return mapView;
+  }
+
   /** sets the minimap panel. */
   public void setMinimapPanel(MiniMapViewer miniMapViewer)
   {
@@ -100,19 +109,31 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
         miniMapViewer.repaint();
       }
       
-      if (showCursor)
+      Point p = getMousePosition();
+      Builder builder = mapEditor.currentBuilder;
+      if (p != null && builder != null)
       {
-        Point p = getMousePosition();
-        Brush brush = mapEditor.currentBrush;
-        if (p != null && brush != null)
-        {
-          Rectangle cursor = mapView.tileToScreenRect(brush.getBounds());
-          Point tilePoint = mapView.tileToScreenCoords(mapView.screenToTileCoords(p));
-          cursor.translate(tilePoint.x, tilePoint.y);
-          g.setColor(Color.WHITE);
-          g.drawRect(cursor.x, cursor.y, cursor.width-1, cursor.height-1);
-          lastDrawnCursor = cursor;
-        }
+        Rectangle cursor = mapView.tileToScreenRect(builder.getBounds());
+        Point tilePoint = mapView.tileToScreenCoords(mapView.screenToTileCoords(p));
+        cursor.translate(tilePoint.x, tilePoint.y);
+        g.setColor(Color.WHITE);
+        g.drawRect(cursor.x, cursor.y, cursor.width-1, cursor.height-1);
+        lastDrawnCursor = cursor;
+      }
+      
+      if (p != null && dragInProgress && dragType == DragType.SELECT && dragStartPoint != null)
+      {
+        g.setColor(Color.BLUE);
+        Rectangle rect = Util.getRectangle(p,dragStartPoint); 
+        g.drawRect(rect.x, rect.y,rect.width,rect.height);
+      }
+      
+      List<Point> points = mapEditor.getSelectedTiles();
+      
+      g.setColor(Color.YELLOW);
+      for (Point tile: points)
+      {
+        mapView.drawTileHighlight(g,tile);
       }
     }
   }
@@ -150,11 +171,11 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
     }
   }
   
-  /** draws at the point p (in screen coords) the current brush */
-  private void drawTo(Point p)
+  /** converts screen to tile coords */
+  private Point getTilePosition(Point p)
   {
     if (p == null || mapView == null)
-      return;
+      return null;
     
     Container parent = getParent();
     if (parent != null && parent instanceof JScrollPane)
@@ -163,22 +184,85 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
       Point other = pane.getViewport().getViewPosition();
       p.translate(other.x, other.y);
     }
-    
-    Point tile = mapView.screenToTileCoords(p);
-    
-    Brush brush = mapEditor.currentBrush;
-    MapLayer layer = mapEditor.getCurrentLayer();
-    if (layer instanceof TileLayer)
+
+    return mapView.screenToTileCoords(p);
+  }
+  
+  /** updates the affected region */
+  private void updateModifiedRegion(Rectangle affectedRegion)
+  {
+    if (affectedRegion != null)
     {
-      Rectangle affectedRegion = brush.commitPaint(mapEditor.currentMap, tile.x, tile.y, mapEditor.currentLayer);
+      mapView.updateMinimapImage(affectedRegion);
       repaintRegion(affectedRegion);
     }
+  }
+  
+  /** draws at the point p (in screen coords) the current brush */
+  private void drawTo(Point p, boolean dragged)
+  {
+    Point tile = getTilePosition(p);
+    Builder builder = mapEditor.currentBuilder;
+    
+    if (tile != null && builder != null)
+    {
+      Rectangle affectedRegion = null;
+      if (!dragged)
+      {
+        affectedRegion = builder.startBuilder(tile);
+      }
+      else
+      {
+        affectedRegion = builder.moveBuilder(tile);
+      }
+
+      updateModifiedRegion(affectedRegion);
+    }
+  }
+
+  /** finishes the dragging operation */
+  private void finishDrag(Point point)
+  {
+    if (!dragInProgress)
+      return;
+    
+    switch (dragType) 
+    {
+      case DRAW:
+        Point tile = getTilePosition(point);
+        Builder builder = mapEditor.currentBuilder;
+        
+        if (tile != null && builder != null)
+        {
+          updateModifiedRegion(builder.finishBuilder(tile));
+        }
+        break;
+      case SELECT:
+        repaint();
+        Rectangle rect = Util.getRectangle(point,dragStartPoint);
+        List<Point> tiles = mapView.getSelectedTiles(rect,mapEditor.currentLayer);
+        mapEditor.setSelectedTiles(tiles);
+        break;
+      default:
+        break;
+        
+    }
+    
+    dragInProgress = false;
   }
   
 
   public void mouseClicked(MouseEvent e)
   {
-    drawTo(e.getPoint());
+    if (e.getButton() == MouseEvent.BUTTON1)
+    {
+      drawTo(e.getPoint(),false);
+      finishDrag(e.getPoint());
+    } else if (e.getButton() == MouseEvent.BUTTON3)
+    {
+      mapEditor.clearSelectedTiles();
+      repaint();
+    }
   }
 
   public void mousePressed(MouseEvent e)
@@ -187,42 +271,55 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
 
   public void mouseReleased(MouseEvent e)
   {
+    finishDrag(e.getPoint());
   }
 
   public void mouseEntered(MouseEvent e)
   {
-    showCursor = true;
     repaintLastCursorPosition();
   }
 
 
   public void mouseExited(MouseEvent e)
   {
-    showCursor = false;
     repaintLastCursorPosition();
   }
 
   public void mouseDragged(MouseEvent e) 
   {
-    if ((e.getModifiers() & MouseEvent.BUTTON1_MASK) != 0)
+    if ((e.getModifiers() & MouseEvent.BUTTON1_MASK) == MouseEvent.BUTTON1_MASK)
     {
-      drawTo(e.getPoint());
+      dragInProgress = true;
+      dragType = DragType.DRAW;
+      drawTo(e.getPoint(),true);
       repaintLastCursorPosition();
+    } else if ((e.getModifiers() & MouseEvent.BUTTON3_MASK) == MouseEvent.BUTTON3_MASK)
+    {
+      if (!dragInProgress)
+      {
+        dragStartPoint = e.getPoint();
+      }
+      dragInProgress = true;
+      dragType = DragType.SELECT;
+      repaint();
     }
+    
   }
 
   public void mouseMoved(MouseEvent e)
   {
+    finishDrag(e.getPoint());
+
     if (mapView == null)
       return;
     
     Point p = getMousePosition();
     if (p != null)
     {
-      Brush brush = mapEditor.currentBrush;
-      if (brush != null)
+      Builder builder = mapEditor.currentBuilder;
+      if (builder != null)
       {
-        Rectangle cursor = mapView.tileToScreenRect(brush.getBounds());
+        Rectangle cursor = mapView.tileToScreenRect(builder.getBounds());
         Point tilePoint = mapView.tileToScreenCoords(mapView.screenToTileCoords(p));
         cursor.translate(tilePoint.x, tilePoint.y);
         
@@ -231,5 +328,14 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
       }
     }
   }
+  
+  
+  /** enum indicating the current drag operation*/
+  public enum DragType
+  {
+    DRAW,
+    SELECT;
+  }
+  
   
 }

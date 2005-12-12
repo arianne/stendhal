@@ -3,7 +3,9 @@
  */
 package tiled.mapeditor.actions;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
@@ -28,12 +30,7 @@ public class CancelSelectionAction extends AbstractAction
   {
     if (mapEditor.currentMap != null)
     {
-      if (mapEditor.marqueeSelection != null)
-      {
-        mapEditor.currentMap.removeLayerSpecial(mapEditor.marqueeSelection);
-      }
-
-      mapEditor.marqueeSelection = null;
+      mapEditor.setSelectedTiles(new ArrayList<Point>());
     }
   }
 }

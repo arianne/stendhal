@@ -47,6 +47,9 @@ public class Map extends MultilayerPlane
     private List<MapLayer> specialLayers;
     private List<TileSet> tilesets;
     private LinkedList<MapObject> objects;
+    
+    /** List of user-brushes */
+    private List<List<StatefulTile>> userBrushes;
 
     int tileWidth, tileHeight;
     int totalObjects = 0;
@@ -74,6 +77,7 @@ public class Map extends MultilayerPlane
         tilesets = new ArrayList<TileSet>();
         specialLayers = new ArrayList<MapLayer>();
         objects = new LinkedList<MapObject>();
+        userBrushes = new ArrayList<List<StatefulTile>>();
     }
 
     /**
@@ -221,6 +225,19 @@ public class Map extends MultilayerPlane
 
     public void setProperties(Properties prop) {
         properties = prop;
+    }
+    
+    /** adds a user brush */
+    public void addUserBrush(List<StatefulTile> tiles)
+    {
+      userBrushes.add(tiles);
+      fireMapChanged();
+    }
+    
+    /** returns the user brushes */
+    public List<List<StatefulTile>> getUserBrushes()
+    {
+      return userBrushes;
     }
 
     /**

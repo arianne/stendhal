@@ -1,10 +1,12 @@
 /**
  * 
  */
-package tiled.view.test;
+package tiled.view;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import tiled.core.MapLayer;
 import tiled.core.Tile;
@@ -53,11 +55,6 @@ public class Orthogonal extends MapView
   public void draw(Graphics g, Rectangle clipArea)
   {
     draw(g,clipArea,zoom);
-    
-    // update minimap as well
-    Graphics minimapGraphics = minimapImage.createGraphics();
-    draw(minimapGraphics,clipArea,getMinimapScale());
-    
   }
   
   /** draws the map with the given zoom level */
@@ -69,7 +66,7 @@ public class Orthogonal extends MapView
     // draw each tile layer
     for (MapLayer layer : map.getLayerList())
     {
-      if (layer instanceof TileLayer)
+      if (layer instanceof TileLayer && layer.isVisible())
       {
         TileLayer tileLayer = (TileLayer) layer;
         paintLayer(g,tileLayer,clipArea,zoom);
@@ -117,13 +114,13 @@ public class Orthogonal extends MapView
   /** 
    * converts the screen position to tile position.
    * 
-   * @param tileCoords tile coords
+   * @param screenCoords tile coords
    * @return screen coords (upper left corner of the tile)
    */
-  public Point screenToTileCoords(Point tileCoords)
+  public Point screenToTileCoords(Point screenCoords)
   {
     Dimension tsize = getTileSize(zoom);
-    Point p = new Point(tileCoords.x / tsize.width, tileCoords.y / tsize.height);
+    Point p = new Point(screenCoords.x / tsize.width, screenCoords.y / tsize.height);
     if (p.x > map.getWidth())
     {
       p.x = map.getWidth();
@@ -139,13 +136,13 @@ public class Orthogonal extends MapView
   /**
    * converts the tile position to screen position.
    * 
-   * @param screenCoords screen coords
+   * @param tileCoords screen coords
    * @return tile coords
    */
-  public Point tileToScreenCoords(Point screenCoords)
+  public Point tileToScreenCoords(Point tileCoords)
   {
     Dimension tsize = getTileSize(zoom);
-    return new Point(screenCoords.x * tsize.width, screenCoords.y * tsize.height);
+    return new Point(tileCoords.x * tsize.width, tileCoords.y * tsize.height);
   }
 
   /** returns a minimap */
@@ -171,5 +168,85 @@ public class Orthogonal extends MapView
   {
     return (1.0 / (map.getTileWidth() / MINIMAP_TILE_SIZE));
   }
+
+  /** updates the minimap */
+  public void updateMinimapImage(Rectangle modifiedRegion)
+  {
+    if (minimapImage == null)
+    {
+      // minimap not prepared yet
+      return;
+    }
+
+    Graphics minimapGraphics = minimapImage.createGraphics();
+    draw(minimapGraphics,modifiedRegion,getMinimapScale());
+    
+  }
+
+  /**
+   * Retuns list of tiles that lies in the given rectangle
+   * @param rect the rectangle (in tile coordinate space)
+   * @return list of tiles in the rectangle
+   */
+  public List<Point> getSelectedTiles(Rectangle rect,int layer)
+  {
+    List<Point> list = new ArrayList<Point>();
+
+    MapLayer mapLayer = map.getLayer(layer);
+    if (!(mapLayer instanceof TileLayer))
+    {
+      return list;
+    }
+    
+    TileLayer tileLayer = (TileLayer) mapLayer;
+    
+    Dimension tsize = getTileSize(zoom);
+    Point p1 = rect.getLocation();
+    Point p2 = rect.getLocation();
+    p2.translate(rect.width,rect.height);
+    
+    if (p2.x % tsize.width > 0)
+    {
+      p2.x += tsize.width;
+    }
+    if (p2.y % tsize.height > 0)
+    {
+      p2.y += tsize.height;
+    }
+    
+    p1 = screenToTileCoords(p1);
+    p2 = screenToTileCoords(p2);
+    
+
+    // Draw this map layer
+    for (int y = p1.y; y < p2.y; y++)
+    {
+      for (int x = p1.x; x < p2.x; x++)
+      {
+        Tile tile = tileLayer.getTileAt(x, y);
+
+        if (tile != null && tile != map.getNullTile())
+        {
+          list.add(new Point(x,y));
+        }
+      }
+    }
+    
+    return list;
+  }
+
+  /**
+   * draws a frame around the tile.
+   * @param g graphics context
+   * @param tile the tile
+   */
+  public void drawTileHighlight(Graphics g, Point tile)
+  {
+    Point p = tileToScreenCoords(tile);
+    Dimension tsize = getTileSize(zoom);
+    g.drawRect(p.x, p.y, tsize.width, tsize.height);
+  }
   
+  
+
 }

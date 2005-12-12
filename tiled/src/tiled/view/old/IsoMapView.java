@@ -15,7 +15,7 @@
  *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
-package tiled.view;
+package tiled.view.old;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;

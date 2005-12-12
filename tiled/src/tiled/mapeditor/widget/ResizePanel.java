@@ -24,7 +24,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import tiled.core.Map;
-import tiled.view.MapView;
+import tiled.view.old.MapView;
 
 
 /**

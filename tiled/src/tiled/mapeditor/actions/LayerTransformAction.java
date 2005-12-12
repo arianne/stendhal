@@ -65,19 +65,6 @@ public class LayerTransformAction extends AbstractAction
     MapLayerEdit transEdit;
     transEdit = new MapLayerEdit(currentLayer, mapEditor.createLayerCopy(currentLayer));
 
-    if (mapEditor.marqueeSelection != null)
-    {
-      if (currentLayer instanceof TileLayer)
-      {
-        layer = new TileLayer(mapEditor.marqueeSelection.getSelectedAreaBounds());
-      } else if (currentLayer instanceof ObjectGroup)
-      {
-        layer = new ObjectGroup(mapEditor.marqueeSelection.getSelectedAreaBounds());
-      }
-      layer.setMap(mapEditor.currentMap);
-      layer.maskedCopyFrom(currentLayer, mapEditor.marqueeSelection.getSelectedArea());
-    }
-
     switch (transform)
     {
       case MapLayer.ROTATE_90:
@@ -97,11 +84,6 @@ public class LayerTransformAction extends AbstractAction
         layer.mirror(MapLayer.MIRROR_HORIZONTAL);
         // if(marqueeSelection != null) marqueeSelection.mirror(transform);
         break;
-    }
-
-    if (mapEditor.marqueeSelection != null)
-    {
-      layer.mergeOnto(currentLayer);
     }
 
     transEdit.end(mapEditor.createLayerCopy(currentLayer));

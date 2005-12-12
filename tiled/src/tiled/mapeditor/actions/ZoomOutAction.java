@@ -30,6 +30,7 @@ public class ZoomOutAction extends AbstractAction
     if (mapEditor.currentMap != null)
     {
       mapEditor.mapView.zoomOut();
+      mapEditor.statusBar.setZoom(mapEditor.mapView.getScale());
       mapEditor.mapEditPanel.repaint();
     }
   }

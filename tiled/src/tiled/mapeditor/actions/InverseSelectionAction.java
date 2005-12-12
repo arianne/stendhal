@@ -26,10 +26,5 @@ public class InverseSelectionAction extends AbstractAction
 
   public void actionPerformed(ActionEvent e)
   {
-    if (mapEditor.marqueeSelection != null)
-    {
-      mapEditor.marqueeSelection.invert();
-      // mapView.repaint();
-    }
   }
 }

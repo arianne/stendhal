@@ -17,36 +17,78 @@
 
 package tiled.mapeditor;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Frame;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
 import javax.swing.undo.UndoableEditSupport;
 
-import tiled.core.*;
-import tiled.view.test.MapView;
-import tiled.view.test.Orthogonal;
-import tiled.mapeditor.TilesetManager;
-import tiled.mapeditor.actions.*;
-import tiled.mapeditor.brush.*;
-import tiled.mapeditor.dialog.*;
-import tiled.mapeditor.plugin.PluginClassLoader;
-import tiled.mapeditor.selection.SelectionLayer;
-import tiled.mapeditor.util.*;
-import tiled.mapeditor.widget.*;
-import tiled.mapeditor.undo.*;
-import tiled.util.TiledConfiguration;
-import tiled.util.Util;
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.ObjectGroup;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
 import tiled.io.MapHelper;
 import tiled.io.MapReader;
 import tiled.io.MapWriter;
+import tiled.mapeditor.actions.*;
+import tiled.mapeditor.brush.Brush;
+import tiled.mapeditor.brush.ShapeBrush;
+import tiled.mapeditor.builder.Builder;
+import tiled.mapeditor.builder.SimpleBuilder;
+import tiled.mapeditor.dialog.AboutDialog;
+import tiled.mapeditor.dialog.ConfigurationDialog;
+import tiled.mapeditor.dialog.NewMapDialog;
+import tiled.mapeditor.dialog.PluginDialog;
+import tiled.mapeditor.dialog.ResizeDialog;
+import tiled.mapeditor.dialog.SearchDialog;
+import tiled.mapeditor.plugin.PluginClassLoader;
+import tiled.mapeditor.undo.MapLayerEdit;
+import tiled.mapeditor.undo.MapLayerStateEdit;
+import tiled.mapeditor.undo.UndoStack;
+import tiled.mapeditor.util.MapChangeListener;
+import tiled.mapeditor.util.MapChangedEvent;
+import tiled.mapeditor.util.MapEventAdapter;
+import tiled.mapeditor.util.TileSelectionEvent;
+import tiled.mapeditor.util.TiledFileFilter;
+import tiled.mapeditor.widget.LayerEditPanel;
+import tiled.mapeditor.widget.MainMenu;
+import tiled.mapeditor.widget.MapEditPanel;
+import tiled.mapeditor.widget.StatusBar;
+import tiled.mapeditor.widget.TilesetChooserTabbedPane;
+import tiled.mapeditor.widget.ToolBar;
+import tiled.util.TiledConfiguration;
+import tiled.util.Util;
+import tiled.view.MapView;
+import tiled.view.Orthogonal;
 
 /**
  * The main class for the Tiled Map Editor.
@@ -67,27 +109,25 @@ public class MapEditor implements ActionListener, MouseListener,
   /** current release version */
   public static final String  version          = "0.0.1";
 
-  public Map                  currentMap;
   public MapView              mapView;
-  public UndoStack           undoStack;
-  public UndoableEditSupport undoSupport;
+  public UndoStack            undoStack;
+  public UndoableEditSupport  undoSupport;
   private MapEventAdapter     mapEventAdapter;
-  public PluginClassLoader   pluginLoader;
+  public PluginClassLoader    pluginLoader;
   public TiledConfiguration   configuration;
 
   int                         currentPointerState;
-  // Tile currentTile;
-  private List<Tile>          currentTiles;
 
-  public int                  currentLayer     = -1;
   boolean                     bMouseIsDown     = false;
-  SelectionLayer              cursorHighlight;
-  Point                       mousePressLocation, mouseInitialPressLocation;
-  Point                       moveDist;
-  int                         mouseButton;
-  public Brush                       currentBrush;
-  public SelectionLayer              marqueeSelection = null;
-  public MapLayer                    clipboardLayer   = null;
+
+  private List<Point>         selectedTiles;
+  private List<Tile>          currentTiles;
+  public Map                  currentMap;
+  private Brush               currentBrush;
+  public Builder              currentBuilder;
+  public int                  currentLayer     = -1;
+
+  public MapLayer             clipboardLayer   = null;
 
   // GUI components
   public MainMenu             mainMenu;
@@ -98,13 +138,11 @@ public class MapEditor implements ActionListener, MouseListener,
 
   JPanel                      mainPanel;
 
-  JPanel                      statusBar;
+  public StatusBar            statusBar;
   public JScrollPane          mapScrollPane;
 
-  public JFrame                      appFrame;
-  JLabel                      zoomLabel, tileCoordsLabel;
+  public JFrame               appFrame;
 
-  TilePaletteDialog           tilePaletteDialog;
   AboutDialog                 aboutDialog;
   MapLayerEdit                paintEdit;
 
@@ -137,6 +175,13 @@ public class MapEditor implements ActionListener, MouseListener,
   public Action               tilesetManagerAction;
   public Action               mapPropertiesAction;
   public Action               layerPropertiesAction;
+  public Action               createSingleLayerBrushAction;
+  public Action               createMultiLayerBrushAction;
+  public Action               addLayerAction;
+  public Action               delLayerAction;
+  public Action               duplicateLayerAction;
+  public Action               moveLayerUpAction;
+  public Action               moveLayerDownAction;
 
   public MapEditor()
   {
@@ -146,11 +191,6 @@ public class MapEditor implements ActionListener, MouseListener,
     undoStack = new UndoStack();
     undoSupport = new UndoableEditSupport();
     undoSupport.addUndoableEditListener(new UndoAdapter());
-
-    cursorHighlight = new SelectionLayer(1, 1);
-    cursorHighlight.select(0, 0);
-    cursorHighlight.setVisible(configuration.keyHasValue(
-        "tiled.cursorhighlight", 1));
 
     mapEventAdapter = new MapEventAdapter();
 
@@ -188,6 +228,13 @@ public class MapEditor implements ActionListener, MouseListener,
     tilesetManagerAction = new TilesetManagerAction(this);
     mapPropertiesAction = new MapPropertiesAction(this);
     layerPropertiesAction = new LayerPropertiesAction(this);
+    createSingleLayerBrushAction = new CreateSingleLayerBrushAction(this);
+    createMultiLayerBrushAction = new CreateMultiLayerBrushAction(this);
+    addLayerAction = new AddLayerAction(this);
+    delLayerAction = new DelLayerAction(this);
+    duplicateLayerAction = new DuplicateLayerAction(this);
+    moveLayerUpAction = new MoveLayerUpAction(this);
+    moveLayerDownAction = new MoveLayerDownAction(this);
 
     // Create our frame
     appFrame = new JFrame("Stendhal Mapeditor");
@@ -225,7 +272,8 @@ public class MapEditor implements ActionListener, MouseListener,
 
   private JPanel createContentPane()
   {
-    createStatusBar();
+    statusBar = new StatusBar();
+
     // minimap needs the mapScrollPane
     mapScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -271,24 +319,6 @@ public class MapEditor implements ActionListener, MouseListener,
     }
   }
 
-  private void createStatusBar()
-  {
-    statusBar = new JPanel();
-    statusBar.setLayout(new BoxLayout(statusBar, BoxLayout.X_AXIS));
-
-    zoomLabel = new JLabel("100%");
-    zoomLabel.setPreferredSize(zoomLabel.getPreferredSize());
-    tileCoordsLabel = new JLabel(" ", SwingConstants.CENTER);
-
-    statusBar.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
-    JPanel largePart = new JPanel();
-
-    statusBar.add(largePart);
-    statusBar.add(tileCoordsLabel);
-    statusBar.add(Box.createRigidArea(new Dimension(20, 0)));
-    statusBar.add(zoomLabel);
-  }
-
   private void updateLayerTable()
   {
     layerEditPanel.setMap(currentLayer, currentMap);
@@ -315,6 +345,24 @@ public class MapEditor implements ActionListener, MouseListener,
     mainMenu.updateLayerOperations(validSelection, notBottom, notTop,
         nrLayers > 1);
     layerEditPanel.updateLayerOperations(validSelection, notBottom, notTop);
+  }
+  
+  /**
+   * Updates the builder to match the current selected map/layer/brush.
+   * Creates a new SimpleBuilder when there is none 
+   * */
+  public void updateBuilder()
+  {
+    if (currentBuilder == null)
+    {
+      currentBuilder = new SimpleBuilder(currentMap,currentBrush,currentLayer);
+    }
+    else
+    {
+      currentBuilder.setMap(currentMap);
+      currentBuilder.setBrush(currentBrush);
+      currentBuilder.setStartLayer(currentLayer);
+    }
   }
 
   /**
@@ -365,59 +413,7 @@ public class MapEditor implements ActionListener, MouseListener,
     String command = event.getActionCommand();
     List<MapLayer> layersBefore = currentMap.getLayerList();
 
-    if (command.equals("Add Layer"))
-    {
-      currentMap.addLayer();
-      setCurrentLayer(currentMap.getTotalLayers() - 1);
-    } else if (command.equals("Duplicate Layer"))
-    {
-      if (currentLayer >= 0)
-      {
-        try
-        {
-          MapLayer clone = (MapLayer) getCurrentLayer().clone();
-          clone.setName(clone.getName() + " copy");
-          currentMap.addLayer(clone);
-        } catch (CloneNotSupportedException ex)
-        {
-          ex.printStackTrace();
-        }
-        setCurrentLayer(currentMap.getTotalLayers() - 1);
-      }
-    } else if (command.equals("Move Layer Up"))
-    {
-      if (currentLayer >= 0)
-      {
-        try
-        {
-          currentMap.swapLayerUp(currentLayer);
-          setCurrentLayer(currentLayer + 1);
-        } catch (Exception ex)
-        {
-          System.out.println(ex.toString());
-        }
-      }
-    } else if (command.equals("Move Layer Down"))
-    {
-      if (currentLayer >= 0)
-      {
-        try
-        {
-          currentMap.swapLayerDown(currentLayer);
-          setCurrentLayer(currentLayer - 1);
-        } catch (Exception ex)
-        {
-          System.out.println(ex.toString());
-        }
-      }
-    } else if (command.equals("Delete Layer"))
-    {
-      if (currentLayer >= 0)
-      {
-        currentMap.removeLayer(currentLayer);
-        setCurrentLayer(currentLayer < 0 ? 0 : currentLayer);
-      }
-    } else if (command.equals("Merge Down"))
+    if (command.equals("Merge Down"))
     {
       if (currentLayer >= 0)
       {
@@ -461,8 +457,8 @@ public class MapEditor implements ActionListener, MouseListener,
         currentMap.getLayerList(), command));
   }
 
-  private void doMouse(MouseEvent event)
-  {
+//  private void doMouse(MouseEvent event)
+//  {
     // if (currentMap == null || currentLayer < 0) {
     // return;
     // }
@@ -554,11 +550,10 @@ public class MapEditor implements ActionListener, MouseListener,
     // break;
     // }
     // }
-  }
+//  }
 
   public void mouseExited(MouseEvent e)
   {
-    tileCoordsLabel.setText(" ");
   }
 
   public void mouseClicked(MouseEvent e)
@@ -766,77 +761,81 @@ public class MapEditor implements ActionListener, MouseListener,
     }
   }
 
-  private void pour(TileLayer layer, int x, int y, List<Tile> tiles, Tile oldTile)
-  {
-
-    Tile newTile = (tiles != null && tiles.size() > 0) ? tiles.get(0) : null;
-
-    if (newTile == oldTile)
-      return;
-
-    Rectangle area = null;
-    TileLayer before = new TileLayer(layer);
-    TileLayer after;
-
-    if (marqueeSelection == null)
-    {
-      area = new Rectangle(new Point(x, y));
-      Stack<Point> stack = new Stack<Point>();
-
-      stack.push(new Point(x, y));
-      while (!stack.empty())
-      {
-        // Remove the next tile from the stack
-        Point p = (Point) stack.pop();
-
-        // If the tile it meets the requirements, set it and push its
-        // neighbouring tiles on the stack.
-        if (currentMap.inBounds(p.x, p.y)
-            && layer.getTileAt(p.x, p.y) == oldTile)
-        {
-          layer.setTileAt(p.x, p.y, newTile);
-          area.add(p);
-
-          stack.push(new Point(p.x, p.y - 1));
-          stack.push(new Point(p.x, p.y + 1));
-          stack.push(new Point(p.x + 1, p.y));
-          stack.push(new Point(p.x - 1, p.y));
-        }
-      }
-    } else
-    {
-      if (marqueeSelection.getSelectedArea().contains(x, y))
-      {
-        area = marqueeSelection.getSelectedAreaBounds();
-        for (int i = area.y; i < area.height + area.y; i++)
-        {
-          for (int j = area.x; j < area.width + area.x; j++)
-          {
-            if (marqueeSelection.getSelectedArea().contains(j, i))
-            {
-              layer.setTileAt(j, i, newTile);
-            }
-          }
-        }
-      } else
-      {
-        return;
-      }
-    }
-
-    Rectangle bounds = new Rectangle(area.x, area.y, area.width + 1,
-        area.height + 1);
-    after = new TileLayer(bounds);
-    after.copyFrom(layer);
-
-    MapLayerEdit mle = new MapLayerEdit(layer, before, after);
-    mle.setPresentationName("Fill");
-    undoSupport.postEdit(mle);
-  }
+//  private void pour(TileLayer layer, int x, int y, List<Tile> tiles, Tile oldTile)
+//  {
+//
+//    Tile newTile = (tiles != null && tiles.size() > 0) ? tiles.get(0) : null;
+//
+//    if (newTile == oldTile)
+//      return;
+//
+//    Rectangle area = null;
+//    TileLayer before = new TileLayer(layer);
+//    TileLayer after;
+//
+//    if (marqueeSelection == null)
+//    {
+//      area = new Rectangle(new Point(x, y));
+//      Stack<Point> stack = new Stack<Point>();
+//
+//      stack.push(new Point(x, y));
+//      while (!stack.empty())
+//      {
+//        // Remove the next tile from the stack
+//        Point p = (Point) stack.pop();
+//
+//        // If the tile it meets the requirements, set it and push its
+//        // neighbouring tiles on the stack.
+//        if (currentMap.inBounds(p.x, p.y)
+//            && layer.getTileAt(p.x, p.y) == oldTile)
+//        {
+//          layer.setTileAt(p.x, p.y, newTile);
+//          area.add(p);
+//
+//          stack.push(new Point(p.x, p.y - 1));
+//          stack.push(new Point(p.x, p.y + 1));
+//          stack.push(new Point(p.x + 1, p.y));
+//          stack.push(new Point(p.x - 1, p.y));
+//        }
+//      }
+//    } else
+//    {
+//      if (marqueeSelection.getSelectedArea().contains(x, y))
+//      {
+//        area = marqueeSelection.getSelectedAreaBounds();
+//        for (int i = area.y; i < area.height + area.y; i++)
+//        {
+//          for (int j = area.x; j < area.width + area.x; j++)
+//          {
+//            if (marqueeSelection.getSelectedArea().contains(j, i))
+//            {
+//              layer.setTileAt(j, i, newTile);
+//            }
+//          }
+//        }
+//      } else
+//      {
+//        return;
+//      }
+//    }
+//
+//    Rectangle bounds = new Rectangle(area.x, area.y, area.width + 1,
+//        area.height + 1);
+//    after = new TileLayer(bounds);
+//    after.copyFrom(layer);
+//
+//    MapLayerEdit mle = new MapLayerEdit(layer, before, after);
+//    mle.setPresentationName("Fill");
+//    undoSupport.postEdit(mle);
+//  }
 
   public void setBrush(Brush b)
   {
     currentBrush = b;
+    if (currentBuilder != null)
+    {
+      currentBuilder.setBrush(currentBrush);
+    }
   }
 
   /** updates the title to match the currently loaded map name */
@@ -1195,11 +1194,10 @@ public class MapEditor implements ActionListener, MouseListener,
       mapEventAdapter.fireEvent(MapEventAdapter.ME_MAPINACTIVE);
       mapView = null;
       setCurrentPointerState(PS_POINT);
-      tileCoordsLabel.setPreferredSize(null);
-      tileCoordsLabel.setText(" ");
-      zoomLabel.setText(" ");
-      setCurrentTile(null);
+      statusBar.clearLabels();
+      setCurrentTiles((List<Tile>) null);
       mapEditPanel.setMapView(null);
+      currentBuilder = null;
     } else
     {
       mapEventAdapter.fireEvent(MapEventAdapter.ME_MAPACTIVE);
@@ -1207,6 +1205,7 @@ public class MapEditor implements ActionListener, MouseListener,
       mapView.setMap(currentMap);
       mapEditPanel.setMapView(mapView);
       setCurrentPointerState(PS_PAINT);
+      setCurrentLayer(0);
 
       currentMap.addMapChangeListener(this);
 
@@ -1217,36 +1216,19 @@ public class MapEditor implements ActionListener, MouseListener,
       if (tilesets.size() > 0)
       {
         TileSet first = (TileSet) tilesets.get(0);
-        setCurrentTile(first.getFirstTile());
+        setCurrentTiles(Arrays.asList(new Tile[] {first.getFirstTile()}));
       } else
       {
-        setCurrentTile(null);
+        setCurrentTiles((List<Tile>) null);
       }
-
-      tileCoordsLabel.setText("" + (currentMap.getWidth() - 1) + ", "
-          + (currentMap.getHeight() - 1));
-      tileCoordsLabel.setPreferredSize(null);
-      Dimension size = tileCoordsLabel.getPreferredSize();
-      tileCoordsLabel.setText(" ");
-      tileCoordsLabel.setMinimumSize(size);
-      tileCoordsLabel.setPreferredSize(size);
-      //zoomLabel.setText("" + (int)(mapEditPanel.getZoom() * 100) + "%");
+      statusBar.setMap(currentMap);
+      statusBar.setZoom(mapEditPanel.getMapView().getScale());
+      
+      updateBuilder();
     }
 
     zoomInAction.setEnabled(mapLoaded);
     zoomOutAction.setEnabled(mapLoaded);
-    // zoomNormalAction.setEnabled(mapLoaded && mapView.getZoomLevel() !=
-    // MapView.ZOOM_NORMALSIZE);
-
-    if (tilePaletteDialog != null)
-    {
-      tilePaletteDialog.setMap(currentMap);
-    }
-
-    if (currentMap != null)
-    {
-      currentMap.addLayerSpecial(cursorHighlight);
-    }
 
     undoStack.discardAllEdits();
     updateLayerTable();
@@ -1254,44 +1236,38 @@ public class MapEditor implements ActionListener, MouseListener,
     updateHistory();
   }
 
-  private void setCurrentLayer(int index)
+  public void setCurrentLayer(int index)
   {
+    currentLayer = index;
     layerEditPanel.setLayer(index, currentMap);
+    if (currentBuilder != null)
+    {
+      currentBuilder.setStartLayer(index);
+    }
   }
 
   /**
-   * Changes the currently selected tile.
+   * Changes the currently selected tiles.
    * 
-   * @param tile
-   *          the new tile to be selected
+   * @param tiles list of currently selected tiles
    */
-  private void setCurrentTile(Tile tile)
+  public void setCurrentTiles(List<Tile> tiles)
   {
-    ShapeBrush brush = new ShapeBrush();
-    brush.makeQuadBrush(new Rectangle(0, 0, 1, 1));
-    brush.setTile(tile);
-    currentBrush = brush;
+    currentTiles = tiles;
   }
-
+  
   /**
-   * Changes the currently selected tile.
+   * Changes the currently selected tiles from an TileSelectionEvent
    * 
-   * @param tile
-   *          the new tile to be selected
+   * @param e the event
    */
   public void setCurrentTiles(TileSelectionEvent e)
   {
     List<Tile> tiles = e.getTiles();
     if (tiles != null)
     {
-      currentTiles = tiles;
-      if (tiles.size() == 1)
-      {
-        setCurrentTile(tiles.get(0));
-      } else if (tiles.size() > 1)
-      {
-        currentBrush = e.getBrush();
-      }
+      setCurrentTiles(tiles);
+      setBrush(e.getBrush());
     }
   }
 
@@ -1350,4 +1326,31 @@ public class MapEditor implements ActionListener, MouseListener,
     }
   }
 
+  /**
+   * sets the selected tiles. The points are in tile coordinates
+   * @param tiles the selected tiles
+   */
+  public void setSelectedTiles(List<Point> tiles)
+  {
+    selectedTiles = tiles;
+  }
+  
+  /**
+   * returns the selected tiles. The points are in tile coordinates
+   * @return the currently selected tiles
+   */
+  public List<Point> getSelectedTiles( )
+  {
+    if (selectedTiles == null)
+    {
+      selectedTiles = new ArrayList<Point>();
+    }
+    return selectedTiles;
+  }
+
+  /** clears the selected tiles list */
+  public void clearSelectedTiles()
+  {
+    getSelectedTiles().clear();
+  }
 }

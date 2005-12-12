@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tiled.core.MultilayerPlane;
+import tiled.core.StatefulTile;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 
@@ -30,29 +31,29 @@ public class MultiTileBrush extends AbstractBrush
 {
   private Rectangle cachedBounds;
   /** the list with the tiles */
-  private List<TileWrapper> tileList;
+  private List<StatefulTile> tileList;
   
   
   public MultiTileBrush(MultiTileBrush otherBrush)
   {
-    tileList = new ArrayList<TileWrapper>(otherBrush.tileList);
+    tileList = new ArrayList<StatefulTile>(otherBrush.tileList);
   }
 
   public MultiTileBrush()
   {
-    tileList = new ArrayList<TileWrapper>();
+    tileList = new ArrayList<StatefulTile>();
   }
   
   /** adds a tile with position to the brush */
   public void addTile(int x, int y, Tile tile)
   {
-    tileList.add(new TileWrapper(x,y,tile));
+    tileList.add(new StatefulTile(new Point(x,y),0,tile));
   }
   
   /** removes a tile from the brush */
   public void removeTile(int x, int y, Tile tile)
   {
-    for (TileWrapper tileWrapped : tileList)
+    for (StatefulTile tileWrapped : tileList)
     {
       if (tileWrapped.tile == tile)
       {
@@ -77,26 +78,26 @@ public class MultiTileBrush extends AbstractBrush
     Point p1 = null;
     Point p2 = null;
     
-    for (TileWrapper tile : tileList)
+    for (StatefulTile tile : tileList)
     {
       if (p1 == null)
       {
-        p1 = new Point(tile.x,tile.y);
+        p1 = new Point(tile.p);
         p2 = new Point(p1);
       }
       else
       {
-        if (tile.x < p1.x)
-          p1.x = tile.x;
+        if (tile.p.x < p1.x)
+          p1.x = tile.p.x;
 
-        if (tile.y < p1.y)
-          p1.y = tile.y;
+        if (tile.p.y < p1.y)
+          p1.y = tile.p.y;
         
-        if (tile.x > p2.x)
-          p2.x = tile.x;
+        if (tile.p.x > p2.x)
+          p2.x = tile.p.x;
 
-        if (tile.y > p2.y)
-          p2.y = tile.y;
+        if (tile.p.y > p2.y)
+          p2.y = tile.p.y;
       }
     }
     
@@ -109,9 +110,9 @@ public class MultiTileBrush extends AbstractBrush
     TileLayer tileLayer = (TileLayer) mp.getLayer(initLayer);
     if (tileLayer != null)
     {
-      for (TileWrapper tile : tileList)
+      for (StatefulTile tile : tileList)
       {
-        tileLayer.setTileAt(tile.x+x, tile.y+y, tile.tile);
+        tileLayer.setTileAt(tile.p.x+x, tile.p.y+y, tile.tile);
       }
     }
     
@@ -136,34 +137,12 @@ public class MultiTileBrush extends AbstractBrush
     buf.append("[MultiTileBrush: ");
     
     
-    for (TileWrapper tile : tileList)
+    for (StatefulTile tile : tileList)
     {
       buf.append(tile);
     }
     
     return buf.toString()+"]";
-  }
-  
-
-  /** stores coordinates for the tile   */
-  public class TileWrapper
-  {
-    public int x;
-    public int y;
-    public Tile tile;
-
-    public TileWrapper(int x, int y, Tile tile)
-    {
-      this.x = x;
-      this.y = y;
-      this.tile = tile;
-    }
-    
-    public String toString()
-    {
-      return "[TileWrapper: "+x+"x"+y+" "+tile+"]";
-    }
-    
   }
   
 }
