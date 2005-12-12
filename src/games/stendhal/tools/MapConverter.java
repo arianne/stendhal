@@ -84,11 +84,8 @@ public class MapConverter extends Task
     File file = new File(tmxFile);
     String filename = file.getAbsolutePath();
 
-    ListIterator it= map.getLayers();
-    
-    while(it.hasNext())
+    for(MapLayer layer: map)
       {
-      MapLayer layer=(MapLayer)it.next();
       if(layer.getName().equals("navigation") || layer.getName().equals("collision") || layer.getName().equals("objects"))
         {
         layer.setVisible(false);

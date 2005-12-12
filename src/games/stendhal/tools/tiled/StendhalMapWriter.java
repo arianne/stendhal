@@ -70,12 +70,9 @@ public class StendhalMapWriter implements MapWriter
       writer.println("  <location level=\"int\"/>");
       }
 
-    Iterator ml = map.getLayers();
     boolean firstTime=true;
-    while (ml.hasNext())
+    for(MapLayer layer: map)
     {
-      MapLayer layer = (MapLayer) ml.next();
-      
       if(firstTime)
       {
         firstTime=false;        
