@@ -37,7 +37,7 @@
  </layer>
  <layer name="1_terrain" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2Yy0rEMBiFi6Ob5gGKMIo6OxdeQBcu1KXgQkEXow74AF5QFy4EL/sRdCEqeHk3FX0OPSEppj+ZtmnSIE4OfJOm6fwnp2E6k4kioQUWRTNglonj/6ZFZJoD80wcU4X8IX/IL/K3wRbYrshnHEVfcfX3u661AzoG+U/BkQUDoGFZw3WtM4P8e7jf96w6Y2A8Z3y3oG9Sqyz7sVl+nUZK9pdQY5llx78H8TIkjs8xdgEuwRUTfXpNWi+tZeKvk21+Xjsh5xLFs3AcuUZltid4PIMX8MpEn15j60flYv25JhrZlqrVyLZ0fnnSjefVKzOfVDb51Xs6DJqyNR0vm9+Vnyrb9edz4/e4SdpEGW/J82pblLmXiuoVzcdl/rD+v+rHzz+X6+dxkf7i89/0+5f2Tdff1k+VSf5VXDtZA1PgHXyQ+/smz0/X5MtZKZF/DawzN/sWHRtgU/qrv/98eFN/Xf4DcMjc7Ft0HIMT6a/+/vPhTf11+bvgmtnvNfK47ZG/W7Mv50bxp7Ld85vQIfnbnnzV/wKobPf8pntxNb9P79Sf6g7nHjzxSPL79E79g4KCgoKCgoL6VT+3VMduACAAAA==
+   H4sIAAAAAAAAAO2Yy0rEMBiFi6ObZqsUYRR1di68gC5cqEvBhYIuRh3wAbygLlwIXvYj6EJU8PJ2+gpu9YS0mP5kmqZJgzg58E2apvOfnIbpTCaKhJZYFM2BeSaO/5uWkWkBLDJxTBXyh/whv8jfBjtgtyIfcRR9xtXf77rWHugY5D8HJxYMgIZlDde1LgzyH+B+P7LqTIDJgvF9Td+kVlkOY7P8Ko2V7K+gxirLj38P4mVIHF9i7Apcgxsm+vSarF5Wy8RfJdv8vHZCziWSp3YcucbTbC/weAVv4J2JPr3G1o/KxfpzTTXyLVWrkW/p/IqkGi+qV2Y+mWzyy/d0FDTT1nS8bH5XfrJs15/Pjd/jJmkTabyVnpdbXeZe0tXTzcdl/rD+v+rHzz+X6+exTn/x+W/6/Uv7putv6yfLJP86rp2ugRnwBUaI/zAT52dr8uWslci/ATaZm32Lii2wnfrLv/98eFN/Vf4jcMzc7FtUnIKz1F/+/efDm/qr8nfBLbPfaxRx3yN/t2Zfzp3kT2W75zehQ/K3PfnK/wVQ2e75Tfficn6f3pk/1QPOPXnimeT36Z35BwUFBQUFBQX1q34Agz+jsQAgAAA=
   </data>
  </layer>
  <layer name="2_object" width="64" height="32">
@@ -55,7 +55,7 @@
    H4sIAAAAAAAAAO3YsQkAIAxE0bSZU8iUDmcjiAukCO/BL26FiwCAPpUvAAAAgGn2/TxW/hsAoMMByp2ySwAgAAA=
   </data>
  </layer>
- <layer name="collision" width="64" height="32" opacity="0.25">
+ <layer name="collision" width="64" height="32" visible="0" opacity="0.57">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2TQQrAIAwEvfb/f+q7eiheFpoqRveQWVgQYtmMSVt7dV+1rHL3Az/88MNfhd/99n/8K4oY+1lrI99l9HSCP8rvZ63pnV35q/xfDKP1WWXluefvVga/vnW0x1E96jEzT+8yf/5/5/xn9z87283v1Cz/bjuz4Ycffvjhhx/VlmP3MMYYY7cf05UFYgAgAAA=
   </data>
