@@ -56,13 +56,13 @@ public class Player extends RPEntity
       player.add("admin",RPClass.FLAG,RPClass.HIDDEN);
       player.add("invisible",RPClass.FLAG,RPClass.HIDDEN);
 
-      player.addRPSlot("head",1);
-      player.addRPSlot("rhand",1);
-      player.addRPSlot("lhand",1);
-      player.addRPSlot("armor",1);
-      player.addRPSlot("legs",1);
-      player.addRPSlot("feet",1);
-      player.addRPSlot("bag",10);
+      player.addRPSlot("head",1,RPClass.PRIVATE);
+      player.addRPSlot("rhand",1,RPClass.PRIVATE);
+      player.addRPSlot("lhand",1,RPClass.PRIVATE);
+      player.addRPSlot("armor",1,RPClass.PRIVATE);
+      player.addRPSlot("legs",1,RPClass.PRIVATE);
+      player.addRPSlot("feet",1,RPClass.PRIVATE);
+      player.addRPSlot("bag",10,RPClass.PRIVATE);
       
       // We use this for the buddy system
       player.addRPSlot("!buddy",1,RPClass.HIDDEN);

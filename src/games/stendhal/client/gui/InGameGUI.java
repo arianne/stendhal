@@ -379,6 +379,8 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
   
       RPObject player = client.getPlayer();
       settings.setPlayer(player);
+      
+      System.out.println (player);
   
       frame.draw(screen.expose());
     
