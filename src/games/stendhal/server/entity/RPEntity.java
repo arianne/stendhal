@@ -405,9 +405,21 @@ public abstract class RPEntity extends Entity
       for(Map.Entry<RPEntity , Integer> entry : damageReceived.entrySet())
         {
         int damageDone = ((Integer) entry.getValue()).intValue();
-        String name=(entry.getKey().has("name")?entry.getKey().get("name"):entry.getKey().get("type"));
+        RPEntity entity=entry.getKey();
+
+        String name=(entity.has("name")?entity.get("name"):entity.get("type"));
         logger.debug(name + " did " + damageDone + " of " + totalDamageReceived + ". Reward was " + xp_reward);
-        entry.getKey().addXP((int) (xp_reward * ((float) damageDone / (float) totalDamageReceived)));
+        
+        int xp_earn=(int) (xp_reward * ((float) damageDone / (float) totalDamageReceived));
+        
+        /** We limit xp gain for up to five levels difference */
+        double gain_xp_limitation=1+((getLevel()-entity.getLevel())*(1.0/8.0));
+        if(gain_xp_limitation<0)
+          {
+          gain_xp_limitation=0;
+          }
+        
+        entity.addXP((int)(xp_earn*gain_xp_limitation));
         }
       }
       

@@ -92,8 +92,6 @@ public class Corpse extends PassiveEntity
         text="You see "+name+". It was killed by "+killer;
         }
         
-      System.out.println (text+"\t"+clazz);
-        
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);
       }

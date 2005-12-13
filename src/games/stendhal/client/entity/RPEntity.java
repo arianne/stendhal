@@ -115,8 +115,6 @@ public abstract class RPEntity extends AnimatedEntity
     {
     int outfit=object.getInt("outfit");
     
-    System.out.println ("OUTFIT is ("+outfit+")");
-    
     Sprite player=store.getSprite("sprites/outfit/player_base_"+outfit%100+".png");
     player=player.copy();
     outfit/=100;
@@ -194,7 +192,7 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(changes.has("xp") && object.has("xp"))
       {
-      if(((changes.getInt("xp") - object.getInt("xp"))>0) &&  distance(client.getPlayer())<15*15)
+      if(/*((changes.getInt("xp") - object.getInt("xp"))>0) &&*/  distance(client.getPlayer())<15*15)
         {
         damageSprites.add(GameScreen.get().createString("+"+Integer.toString(changes.getInt("xp") - object.getInt("xp")),Color.cyan));
         damageSpritesTimes.add(new Long(System.currentTimeMillis()));
@@ -250,8 +248,6 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
       {
-      System.out.println (getID());
-      if(client.getPlayer()!=null) System.out.println (client.getPlayer().getID());
       client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
       }
 
@@ -262,7 +258,6 @@ public abstract class RPEntity extends AnimatedEntity
     super.modifyRemoved(object,changes);    
     if(changes.has("target"))
       {
-      System.out.println ("Stop attacking");
       attacking=false;
       gameObjects.attackStop(this,targetEntity);
       targetEntity=null;
@@ -273,7 +268,6 @@ public abstract class RPEntity extends AnimatedEntity
     {
     if(attacking)
       {
-      System.out.println ("Stop attacking");
       attacking=false;
       gameObjects.attackStop(this,targetEntity);
       targetEntity=null;

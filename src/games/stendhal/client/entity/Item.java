@@ -102,8 +102,6 @@ public class Item extends PassiveEntity
       rpaction.put("type","use");
       int id=getID().getObjectID();
       
-      System.out.println (params.length+":"+params);
-
       if(params.length>0)
         {
         rpaction.put("baseobject",params[0]);   

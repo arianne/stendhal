@@ -191,8 +191,6 @@ public abstract class Entity
     // update the location of the entity based on move speeds
     x += (delta * dx) / 300;
     y += (delta * dy) / 300;
-
-//    System.out.println (type+"(POS)-->"+x+","+y);
     }	
   
   public boolean stopped()

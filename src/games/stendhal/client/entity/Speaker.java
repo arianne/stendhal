@@ -71,8 +71,6 @@ public abstract class Speaker extends RPEntity
 
     if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
       {
-      System.out.println (getID());
-      if(client.getPlayer()!=null) System.out.println (client.getPlayer().getID());
       client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
       }
     }

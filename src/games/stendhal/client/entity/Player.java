@@ -86,7 +86,6 @@ public class Player extends RPEntity
     
     if(changes.has("online"))
       {
-      System.out.println (changes.get("online"));
       String[] players=changes.get("online").split(",");
       for(String name: players)
         {
@@ -96,7 +95,6 @@ public class Player extends RPEntity
 
     if(changes.has("offline"))
       {
-      System.out.println (changes.get("offline"));
       String[] players=changes.get("offline").split(",");
       for(String name: players)
         {

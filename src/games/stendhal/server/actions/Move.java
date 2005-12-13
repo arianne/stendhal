@@ -68,7 +68,6 @@ public class Move extends ActionListener
   private void moveto(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
     Log4J.startMethod(logger,"moveto");
-    System.out.println ("Move to!"+action);
     
     if(player.hasPath())
       {
