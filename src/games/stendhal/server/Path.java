@@ -118,6 +118,11 @@ public class Path
     return searchPath(entity, x, y, destination, -1.0);
     }
 
+  public static List<Node> searchPath(Entity entity,int ex, int ey)
+    {
+    return searchPath(entity, entity.getx(),entity.gety(), entity.getArea(ex,ey), -1.0);
+    }
+
   /** 
    * Finds a path for the Entity <code>entity</code>.
    * @param entity the Entity

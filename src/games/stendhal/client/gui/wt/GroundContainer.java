@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.wt;
 
 import java.awt.geom.Point2D;
+import java.awt.Point;
 
 import marauroa.common.game.RPAction;
 
@@ -110,4 +111,22 @@ public class GroundContainer extends Panel
     return null;
   }
 
+  public synchronized boolean onMouseDoubleClick(Point p)
+  {
+    Point2D point = screen.translate(p);
+    Entity entity=gameObjects.at(point.getX(),point.getY());
+    
+    if(entity==null)
+    {
+      RPAction action = new RPAction();
+      // looks like an drop
+      action.put("type","moveto");
+      action.put("x",(int) point.getX());
+      action.put("y",(int) point.getY());
+      StendhalClient.get().send(action);
+      return true;
+    }
+    
+    return false;
+  }
 }

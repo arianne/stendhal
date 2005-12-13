@@ -46,7 +46,7 @@ public class Administration extends ActionListener
     if(!player.has("admin"))
       {
       // Admininistrador only commands
-      logger.debug("Player "+player.getName()+" trying to run admin commands");
+      logger.warn("Player "+player.getName()+" trying to run admin commands");
       return;
       }
       

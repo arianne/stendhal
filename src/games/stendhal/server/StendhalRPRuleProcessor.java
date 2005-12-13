@@ -255,7 +255,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     logger.debug("lists: CO:"+corpses.size()+",F:"+foodItems.size()+",NPC:"+npcs.size()+",P:"+playersObject.size()+",CR:"+creatures+",OB:"+objects);
     logger.debug("lists: CO:"+corpsesToRemove.size()+",NPC:"+npcsToAdd.size()+",NPC:"+npcsToRemove.size()+",P:"+playersObjectRmText.size()+",R:"+respawnPoints.size());
     
-
     try
       {
       // We keep the number of players logged.
@@ -310,6 +309,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           world.modify(object);
           }
 
+        if(object.hasPath())
+          {
+          if(Path.followPath(object,1))
+            {
+            object.stop();
+            object.clearPath();
+            }
+            
+          world.modify(object);
+          }
+        
         if(!object.stopped())
           {
           StendhalRPAction.move(object);

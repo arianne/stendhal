@@ -134,7 +134,27 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     // for the clicked entity....
     if(entity!=null)
       {
-      if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
+      if(e.getButton()==MouseEvent.BUTTON1 && isCtrlDown)
+        {        
+        java.util.List<String> actions=java.util.Arrays.asList(entity.offeredActions());
+        if(actions.contains("Attack"))
+          {
+          entity.onAction(client, "Attack");
+          }
+        else if(actions.contains("Inspect"))
+          {
+          entity.onAction(client, "Inspect");
+          }
+        else if(actions.contains("Use"))
+          {
+          entity.onAction(client, "Use");
+          }
+        }
+      else if(e.getButton()==MouseEvent.BUTTON1 && isShiftDown)
+        {        
+        entity.onAction(client, "Look");
+        }
+      else if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
         {        
         // ... do the default action
         String action=entity.defaultAction();
@@ -170,6 +190,10 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
   public void mouseExited(MouseEvent e) 
     {
     }    
+  
+  private boolean isCtrlDown;
+  private boolean isShiftDown;
+  private boolean isAltDown;
 
   public void onKeyPressed(KeyEvent e)  
     {
@@ -244,6 +268,10 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     
   public void keyPressed(KeyEvent e) 
     {
+    isAltDown=e.isAltDown();
+    isCtrlDown=e.isControlDown();
+    isShiftDown=e.isShiftDown();
+    
     if(!pressed.containsKey(Integer.valueOf(e.getKeyCode())))
       {
       onKeyPressed(e);
@@ -253,6 +281,10 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
       
   public void keyReleased(KeyEvent e) 
     {
+    isAltDown=e.isAltDown();
+    isCtrlDown=e.isControlDown();
+    isShiftDown=e.isShiftDown();
+    
     onKeyReleased(e);
     pressed.remove(Integer.valueOf(e.getKeyCode()));
     }

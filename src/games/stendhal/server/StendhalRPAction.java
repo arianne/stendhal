@@ -410,6 +410,8 @@ public class StendhalRPAction
   private static void changeZone(Player player, String destination, boolean placePlayer) throws AttributeNotFoundException, NoRPZoneException
     {
     Log4J.startMethod(logger, "changeZone");
+    
+    player.clearPath();
 
     String source=player.getID().getZoneID();
 
