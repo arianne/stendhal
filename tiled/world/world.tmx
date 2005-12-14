@@ -90,37 +90,37 @@
  <tileset name="Untitled" firstgid="383" tilewidth="128" tileheight="128">
   <image source="0_ados_west_forest.png"/>
  </tileset>
- <layer name="Underground Level -7" width="20" height="20" visible="0">
+ <layer name="Underground Level -7" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFvHwMCwbhTTDX8bBG4YxaN4FI9iamAAgxevikAGAAA=
   </data>
  </layer>
- <layer name="Underground Level -6" width="20" height="20" visible="0">
+ <layer name="Underground Level -6" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3QuRGAMBDF0O2/GJcFBhvfzlEROwzBD16qQMHMgnzmwImIy6F3IyHjcegVVDR0h97AxML+wX8R8fMCdc7ip0AGAAA=
   </data>
  </layer>
- <layer name="Underground Level -5" width="64" height="64" visible="0">
+ <layer name="Underground Level -5" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OwRGCQBQFsG0GFEQBsW5q5FXAceePk0PuOVtrJ8CNIcZ4xLPAp7cp5njFUuDT2zs+scZW4NPbHt844lfgAwAAAAAAAAAAAAAAAAD8rwvEngXcAEAAAA==
   </data>
  </layer>
- <layer name="Underground Level -4" width="64" height="64" visible="0">
+ <layer name="Underground Level -4" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OyRGCQBQFwMk/GMJBQGURyYMXgcepX1Yf+t5Da20A+GGMR0wxF/j0tsQzXvEu8OltjS32OAp8evvEGd+4CnwAAAAAAAAAAAAAAAAAgP91AxaFv2MAQAAA
   </data>
  </layer>
- <layer name="Underground Level -3" width="64" height="64" visible="0">
+ <layer name="Underground Level -3" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OsQ2AMAwAsDwFFMrNvbG5gDUR8uDdKyIW8OlIZ4NHlSuNBo8qd3oaPKrM9DZ4AAAAAAAAAAAAAAAAAAD83QZBkLv9AEAAAA==
   </data>
  </layer>
- <layer name="Underground Level -2" width="64" height="64" visible="0">
+ <layer name="Underground Level -2" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3PWVLCUAAF0UTR/a9CBSU4AiKoODIoM2thVOkV+JfwqtJV9/z3TaIoSiT96wSnWGCJFdYBdGXlDEVssMUPfgPoykoJ5/hDFDMcxPvvysoFyjjkcwFHOM7Rf+VLBZe4wjVucIu7ANrSVkUNddyjgQc00QqgL22PeMIz2njBK97wHkBf2j7wiQ666KGPL3wH0Je2AYYYYYwJpphhHkCfJEmSJEmSJEmSJEmSJEmSJEmS8mMHkzrinQBAAAA=
   </data>
  </layer>
- <layer name="Underground Level -1" width="64" height="64" visible="0">
+ <layer name="Underground Level -1" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OOQ0AIBAAsOOxiE00ggI2wiV06N4ZERMOylYTPF5pW0/wAADgvpHgAAAAAAAAAAAAAAAAwL8WrJ7GsgBAAAA=
   </data>

@@ -44,7 +44,7 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3c223UQBQGYG9SABBog4sog8CGNgJ1UQmiDyAl8J5kUOJo41y0F499xuf7pJGsPFn6j2cz+mV3HQAAAAAAAADQihdHXfeyrFdHc98Jc3hbcn9X1nv5p/OpZH5a1ueyvpS1XugMnKy67vVgvVnNfVcxnJfMv5X1fcHZP8U8LNPm874LM9C+5573bZiBdh2afc8MtGes7HtmIL59f+e3ZQZi+1A5n6/yD2vs/X5I9rGtK+bzUfZN+D8DZxtrLJ79Nu2yJ5ytHl+yb9v6mb1g14x1o+0a/jbs81zrRvPK0o3ytKV3owAAAAAAAAAAAADAfd4hya2Fd0jMaD2b75DsY4psWpjRVh36DskU2Rw6o9QzRTbec4pLNgAAAAAAdehG49KN5pa1G/VNyhuRu9EfFe9JH3gjcjf6M+A9MY3fJfs/lfP/5zv1YV2W7K88/wTg/DqP4ffja1xvw/l1PsP/T/vrzb8fcr2NiOfXrH7NkEHkM1IG/Vngb1kXMkjn7ixw3HWr47nvBgBgeXSj8elGc9ON5qUbzU03ShS60XnoRh+XaR51ow9Fm8cp6UbjzWNtutH7os1jbbpRAAAAAAAydaM8lLkbpb1u1H41rta6UftVbq3tV4yrtf0KAAAAAFi+vrcip763IqdT2ad2fpv/NVUtJTMAAAEA
+   H4sIAAAAAAAAAO3cXW7TQBgFUKddAL/b4Ecsg0JgG4V1sQGyBMQ72UGBJfAODCpGrhNLJvHYM/7OkUaK8lBZup/Hta6dpgEAAAAAAAAAanHvomnup/XgYukjYQlPUu5P03om/3Bepsyv0nqV1uu0tiudgYebpnnUW483Sx9VGa5T5u/Ser/i7D8eyXpnHlare74fy/6YnRlYhaHzfQwzULdzsm+ZgTpNkX3LDNThlOv8WGagfM8z5rNPf/ut/Is15X7fJ/vybVM+XzJl9EL2VfgzA286a4p5cO7Xa+yesO/NTXfJvm7bgb1gf0LGutF69a8Np5zXutG4onSjDFt7NwoAAAAAAAAwZOh53J1nqlYp1/PXlE/2/C/XAQBYp71r/B2R3iGR/aEa3iGJNKNz675Dcoo5sqlhRmt17jskc2Rz7oySzxzZeM+pXLIBAAAAAMhDN1ou3WhsUbtRv0l5q+Ru9EPGY9IH3iq5G/1U4DExj5uU/dfM+f/wrGWxfqbsfzn/KYD712X0fz8+x+cx3L8up///afu5+/05n8co8f41qs8LZFDyPVIE7b3At7S+yyCcf/cCl02zuVz6aAAA1kc3Wj7daGy60bh0o7HpRimFbnQZutHjIs2jbvRQafM4J91oefOYm270rtLmMTfdKAAAAAAAkbpRDkXuRqmvG7VfTau2btR+FVtt+xXTqm2/AgAAAADWr+2tiKntrYjpSvahXf/N/zdG2iF4AAABAA==
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
@@ -57,9 +57,9 @@
    H4sIAAAAAAAAAO3bOw6DMBAFQFoOi0KT+1MhUSSKEtlhPzMnsM2+FdhmWQAAAIAItvXuEbwXeWyjdJgj8UWqw0hj+Ye75tttnclFfQIAMNLT+yUAAAAAAACU80hwDuguXA4ZagnIQd8HTvoBs6mxPjxr4EpPAAAAAACAz+ync1IL0IvMw+/2QvnRCwAAAAAAAACcnUIn8g7oA8xQ6V4hAAAAAAAQh7MtrtQD9CLzAAAAAMAs9h8BfYBuuv8DKvMAAAAwj+9u+N6r3MgSGajTsSqsZ4U5AAAAANDTAVU5Uh8AAAEA
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.37">
+ <layer name="collision" width="128" height="128" opacity="0.67">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3cUYrCMBSGUV9n/3uadQ0yiCMWKkySe9P/HOh7mi+tsRVvNwAAAAAAAABgF99fz4M8+uf6294ayKM/AHBV9jjZ9M+mfzb9AYBP2TNk0z+Xd2PZ9AcAAAAAAIBf3pdl0x8A4Jo+2efZC16X30Zm0/+cOcq2Q//RY+x+viv9d25XrB/950nszzj6Z9MGAAAA9uY/ZrLpn03//ka+v5lxJNvh3Yj+8+g/9lx307n/7O7p7e86z4XuuVz32Vbc+62D/jr0t15qdLn+9a+hP3fVn9n616ruTy39Ad5V742ppX+uLt+PWW9Fe/370jyXaz6bez8P1f2tlxpd7gHd+ncbzyz6H+s2nhUqz7nbfHcbz2z2bK/S5kJ/zhytC2slw1ln6wAArs/nPXDEMwSAa/KcOJv+2Xbrv9t4u9ttPncbL2Ppn01/AAAAAKAbzyyz6Z9N/2yP/j9I+6xqAAABAA==
   </data>
  </layer>
  <layer name="navigation" width="128" height="128">
