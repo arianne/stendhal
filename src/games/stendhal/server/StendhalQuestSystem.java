@@ -19,23 +19,8 @@ public class StendhalQuestSystem
     this.world=world;
     this.rules=rules;
     
-    File questsFolder=new File("games/stendhal/server/quests");
-    String[] files=questsFolder.list();
-    
-    if(files == null)
-      {
-      logger.error("quest folder not found. should be "+questsFolder.getAbsolutePath());
-      return;
-      }
-    
-    for(String file: files)
-      {
-      String className=file.substring(0,file.indexOf("."));
-      if(!className.equals("IQuest"))
-        {
-        loadQuest(className);
-        }
-      }
+    loadQuest("SheepGrowing");
+    loadQuest("OrcishHappyMeal.java");   
     }
   
   public static void main(String[] args)
@@ -76,7 +61,7 @@ public class StendhalQuestSystem
       }
     catch(Exception e)
       {
-      logger.warn("Quest("+name+") loading failed.");
+      logger.warn("Quest("+name+") loading failed.",e);
       return false;
       }
     }

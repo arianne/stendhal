@@ -13,6 +13,7 @@
   	<delete dir="build_server/"/>
   	<delete dir="build_server_maps/"/>
   	<delete dir="build_server_quests/"/>
+  	<delete dir="build_server_xmlconf/"/>
   	<delete dir="build_tiled_convertmaps"/>
   </target>  	
 
@@ -20,6 +21,7 @@
     <property name="server_jarname" value="stendhal-server-${version}.jar"/>
 	<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
 	<property name="quests_jarname" value="stendhal-quests-${version}.jar"/>
+	<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
  
     <property name="build_server" value="build_server/"/>
   	<mkdir dir="${build_server}/"/>
@@ -38,7 +40,7 @@
 
     <jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">    
       <manifest>
-        <attribute name="Class-path" value="${maps_jarname} ${quests_jarname} log4j.jar"/>
+        <attribute name="Class-path" value="${maps_jarname} ${quests_jarname} ${xmlconf_jarname} log4j.jar"/>
       </manifest>
     </jar>
 
@@ -71,8 +73,17 @@
         <pathelement path="${log4j_jar}"/>
       </classpath>    
     </javac>
-
+    
     <jar jarfile="${lib}/${quests_jarname}" basedir="${build_server_quests}"/>    
+
+    <property name="build_server_xmlconf" value="build_server_xmlconf/"/>
+  	<mkdir dir="${build_server_xmlconf}/"/>
+  	
+    <copy todir="${build_server_xmlconf}/games/stendhal/server/rule/defaultruleset" file="${src}/games/stendhal/server/rule/defaultruleset/creatures.xml"/>
+    <copy todir="${build_server_xmlconf}/games/stendhal/server/rule/defaultruleset" file="${src}/games/stendhal/server/rule/defaultruleset/items.xml"/>
+
+    <jar jarfile="${lib}/${xmlconf_jarname}" basedir="${build_server_xmlconf}"/>    
+
   </target>
   
   
