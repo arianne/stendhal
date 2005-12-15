@@ -32,7 +32,7 @@ public class OrcishHappyMeal implements IQuest
   {
   public OrcishHappyMeal(StendhalRPWorld world, StendhalRPRuleProcessor rules)
     {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("dungeon_001")); //TODO: Update to new map zone naming!
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("-4_semos_dungeon"));
     
     NPC npc=new SpeakerNPC()
       {

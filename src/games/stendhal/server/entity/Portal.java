@@ -86,4 +86,9 @@ public class Portal extends Entity
     {
     rect.setRect(x,y,1,1);
     }  
+  
+  public String toString()
+    {
+    return "Portal at "+get("zoneid")+"["+getx()+","+gety()+"]";
+    }
   }

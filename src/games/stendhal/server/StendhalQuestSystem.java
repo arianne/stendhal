@@ -20,7 +20,7 @@ public class StendhalQuestSystem
     this.rules=rules;
     
     loadQuest("SheepGrowing");
-    loadQuest("OrcishHappyMeal.java");   
+    loadQuest("OrcishHappyMeal");   
     }
   
   public static void main(String[] args)

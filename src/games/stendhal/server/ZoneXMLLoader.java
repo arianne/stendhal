@@ -11,11 +11,14 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 
-
+import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
 
 public class ZoneXMLLoader extends DefaultHandler
   {
-  
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(ZoneXMLLoader.class);
+
   public static class XMLZone
     {
     public String name;
@@ -118,11 +121,11 @@ public class ZoneXMLLoader extends DefaultHandler
       } 
     catch(ParserConfigurationException t) 
       {
-      t.printStackTrace();
+      logger.error(t);
       }
     catch(IOException e)
       {
-      e.printStackTrace();
+      logger.error(e);
       throw new SAXException(e);
       }
     

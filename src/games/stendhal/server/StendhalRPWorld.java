@@ -22,6 +22,7 @@ import games.stendhal.server.rule.RuleSetFactory;
 import games.stendhal.server.maps.IContent;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPClass;
+import marauroa.common.game.IRPZone;
 import marauroa.server.game.RPWorld;
 import org.apache.log4j.Logger;
 
@@ -117,55 +118,73 @@ public class StendhalRPWorld extends RPWorld
     pathfinderThread.start();
    
     // Load zones
+    // Ground level
+    addArea("0_semos_west_plains");
     addArea("0_semos_village");
     addArea("0_semos_city");
-    addArea("0_semos_road_ados");
-
+      addArea("int_semos_tavern");
     addArea("0_semos_south_plains");
+    addArea("0_semos_road_ados");
+    addArea("0_semos_south_road_ados");
+    addArea("0_ados_west_forest");
 
+    addArea("0_orril_north_forest");
     addArea("0_semos_forest");
+    addArea("0_nalwor_forest_north");
+    addArea("0_nalwor_north_forest");
 
     addArea("0_orril_castle");
     addArea("0_orril_forest");
     addArea("0_nalwor_forest");
+    addArea("0_nalwor_city");
 
     addArea("0_orril_river");
     addArea("0_orril_forest_river");
-
+    addArea("0_nalwor_forest_river");
+    addArea("0_nalwor_river");
+    
+    // Level -1
     addArea("-1_semos_dungeon");
+    addArea("-1_orril_forest_dungeon");
 
+    // Level -2
     addArea("-2_semos_dungeon");
+    addArea("-2_kotoch_entrance");
+    addArea("-2_orril_forest_dungeon");
 
+    // Level -3
+    addArea("-3_semos_dungeon");
+
+    // Level -4
+    addArea("-4_semos_dungeon");
+
+    // Level -5
+    addArea("-5_kanmararn_entrace");
+
+    // Level -6
+    addArea("-6_kanmararn_city");
+
+    // Level -7
+    addArea("-7_kanmararn_jail");
+    
+    // Interiors
     addArea("int_afterlife");
-    addArea("int_semos_tavern");
-
-
-//    // Populate zones
-//    File questsFolder=new File("games/stendhal/server/maps");
-//    String[] files=questsFolder.list(new FilenameFilter()
-//      {
-//      public boolean accept(File dir, String name)
-//        {
-//        return name.contains(".class");
-//        }
-//      });
-//    
-//    if(files == null)
-//      {
-//      logger.error("Maps folder not found. should be "+questsFolder.getAbsolutePath());
-//      return;
-//      }
-//    
-//    for(String file: files)
-//      {
-//      String className=file.substring(0,file.indexOf("."));
-//      if(!className.equals("IContent"))
-//        {
-//        populateZone(className);
-//        }
-//      }
+    
+    
     populateZone("Afterlife");
     populateZone("Semos");
+
+    /** After all the zones has been loaded, check how many portals are unpaired */
+    for(IRPZone zone: this)
+      {
+      for(Portal portal: ((StendhalRPZone)zone).getPortals())
+        {
+        if(!portal.loaded())
+          {
+          logger.warn(portal+" has no destination");
+          }
+        }
+      }
     }
   
   private boolean populateZone(String name)
@@ -213,6 +232,7 @@ public class StendhalRPWorld extends RPWorld
     
   public StendhalRPZone addArea(String name, String content) throws org.xml.sax.SAXException, java.io.IOException
     {
+    logger.info("Loading area: "+name);
     StendhalRPZone area=new StendhalRPZone(name, this);
     
     ZoneXMLLoader instance=ZoneXMLLoader.get();
@@ -238,26 +258,6 @@ public class StendhalRPWorld extends RPWorld
     area.populate(xmlzone.getLayer("objects"));
     addRPZone(area);
     
-//    if(populate)
-//      {
-//      try
-//        {
-//        Class entityClass=Class.forName("games.stendhal.server.maps.Zone_"+name.replace("-","sub_"));
-//        java.lang.reflect.Constructor constr=entityClass.getConstructor(StendhalRPWorld.class, StendhalRPZone.class);
-//  
-//        // simply creatre a new instance. The constructor creates all additionally objects  
-//        constr.newInstance(this, area);
-//        }
-//      catch(ClassNotFoundException e)
-//        {
-//        logger.debug("Zone '"+name+"' doesn't have an extra populate method");
-//        }
-//      catch(Exception e)
-//        {
-//        logger.info("Zone '"+name+"' fails to load extra populate method",e);
-//        }
-//      }
-
     return area;
     }
     

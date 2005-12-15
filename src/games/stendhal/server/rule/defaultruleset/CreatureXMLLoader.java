@@ -1,21 +1,23 @@
 package games.stendhal.server.rule.defaultruleset;
 
 import java.io.*;
-
 import java.util.*;
-
 import org.xml.sax.*;
 import org.xml.sax.helpers.DefaultHandler;
-
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
-
 import games.stendhal.server.entity.creature.Creature;
+import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+
 
 
 public class CreatureXMLLoader extends DefaultHandler
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(CreatureXMLLoader.class);
+ 
   private String name;
   private String clazz;
   private String subclass;
@@ -84,11 +86,11 @@ public class CreatureXMLLoader extends DefaultHandler
       } 
     catch(ParserConfigurationException t) 
       {
-      t.printStackTrace();
+      logger.error(t);
       }
     catch(IOException e)
       {
-      e.printStackTrace();
+      logger.error(e);
       throw new SAXException(e);
       }
     

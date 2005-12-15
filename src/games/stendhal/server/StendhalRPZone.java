@@ -422,13 +422,15 @@ public class StendhalRPZone extends MarauroaRPZone
         case 3: /* portal stairs up  */
         case 4: /* portal stairs down  */
           {
-          logger.info ("Portal stairs at "+this+": "+x+","+y);
+          logger.debug ("Portal stairs at "+this+": "+x+","+y);
           Portal portal=new Portal();
           assignRPObjectID(portal);
           portal.setx(x);
           portal.sety(y);
           add(portal);
           addPortal(portal);
+
+          boolean assigned=false;
 
           if(isInterior())
             {
@@ -447,17 +449,17 @@ public class StendhalRPZone extends MarauroaRPZone
                 continue;
                 }
 
-              logger.info (zone+" contains "+portal);
+              logger.debug (zone+" contains "+portal);
                 
               for(Portal target: zone.getPortals())
                 {
                 if(target.loaded())
                   {
-                  logger.info (target+ " already loaded");
+                  logger.debug (target+ " already loaded");
                   continue;
                   }
                   
-                logger.info (target+ " isn't loaded");
+                logger.debug (target+ " isn't loaded");
                 
                 if(target.getx()+zone.getx()==portal.getx()+getx() && target.gety()+zone.gety()==portal.gety()+gety())
                   {
@@ -467,22 +469,29 @@ public class StendhalRPZone extends MarauroaRPZone
                   portal.setDestination(zone.getID().getID(),dest);
                   target.setDestination(getID().getID(),source);
                   
-                  logger.info ("Portals LINKED");
-                  logger.info (portal);
-                  logger.info (target);
-                  return;
+                  logger.debug ("Portals LINKED");
+                  logger.debug (portal);
+                  logger.debug (target);
+                  assigned=true;
+                  break;
                   }
                 else
                   {
-                  logger.info ("can't assign because it is a different portal");
+                  logger.debug ("can't assign because it is a different portal");
                   }
                 }
               }
+            }
+          
+          if(!assigned)
+            {
+            logger.debug(portal+ " has no destination");
             }
           }
           break;
         case 5: /* portal */
         case 6: /* one way portal */
+        case 7: /* door */
           break;
           
         case 11: /* sheep  */
@@ -529,7 +538,7 @@ public class StendhalRPZone extends MarauroaRPZone
               }
               else
               {
-                logger.warn("Unknown Entity (type: "+type+") at ("+x+","+y+") found");
+                logger.warn("Unknown Entity (type: "+type+") at ("+x+","+y+") of "+getID()+" found");
               }
             }
           break;
