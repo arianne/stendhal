@@ -18,6 +18,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
@@ -419,11 +420,21 @@ public class StendhalRPZone extends MarauroaRPZone
           addZoneChange(entryPoint);
           break;
           }
+        case 6: /* one way portal */
         case 3: /* portal stairs up  */
         case 4: /* portal stairs down  */
           {
           logger.debug ("Portal stairs at "+this+": "+x+","+y);
-          Portal portal=new Portal();
+          Portal portal;
+          if(type!=6)
+            {
+            portal=new Portal();
+            }
+          else
+            {
+            portal=new OneWayPortal();
+            }
+            
           assignRPObjectID(portal);
           portal.setx(x);
           portal.sety(y);
@@ -466,7 +477,10 @@ public class StendhalRPZone extends MarauroaRPZone
                   int source=assignPortalID(portal);
                   int dest=zone.assignPortalID(target);
 
-                  portal.setDestination(zone.getID().getID(),dest);
+                  if(type!=6) 
+                    {
+                    portal.setDestination(zone.getID().getID(),dest);
+                    }
                   target.setDestination(getID().getID(),source);
                   
                   logger.debug ("Portals LINKED");
@@ -490,7 +504,6 @@ public class StendhalRPZone extends MarauroaRPZone
           }
           break;
         case 5: /* portal */
-        case 6: /* one way portal */
         case 7: /* door */
           break;
           

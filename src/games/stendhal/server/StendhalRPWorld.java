@@ -149,7 +149,7 @@ public class StendhalRPWorld extends RPWorld
 
     // Level -2
     addArea("-2_semos_dungeon");
-    addArea("-2_kotoch_entrance");
+    //addArea("-2_kotoch_entrance");
     addArea("-2_orril_forest_dungeon");
 
     // Level -3
@@ -159,13 +159,13 @@ public class StendhalRPWorld extends RPWorld
     addArea("-4_semos_dungeon");
 
     // Level -5
-    addArea("-5_kanmararn_entrace");
+    // addArea("-5_kanmararn_entrace");
 
     // Level -6
-    addArea("-6_kanmararn_city");
+    // addArea("-6_kanmararn_city");
 
     // Level -7
-    addArea("-7_kanmararn_jail");
+    // addArea("-7_kanmararn_jail");
     
     // Interiors
     addArea("int_afterlife");
