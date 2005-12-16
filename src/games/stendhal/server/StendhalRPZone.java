@@ -144,7 +144,8 @@ public class StendhalRPZone extends MarauroaRPZone
   
   public int assignPortalID(Portal portal)
     {
-    int max=-1;
+    // We reserve the first 64 portals ids for hand made portals
+    int max=64;
     
     for(Portal p: portals)
       {
@@ -438,6 +439,7 @@ public class StendhalRPZone extends MarauroaRPZone
           assignRPObjectID(portal);
           portal.setx(x);
           portal.sety(y);
+          assignPortalID(portal);
           add(portal);
           addPortal(portal);
 
@@ -474,13 +476,14 @@ public class StendhalRPZone extends MarauroaRPZone
                 
                 if(target.getx()+zone.getx()==portal.getx()+getx() && target.gety()+zone.gety()==portal.gety()+gety())
                   {
-                  int source=assignPortalID(portal);
+                  int source=portal.getNumber();//assignPortalID(portal);
                   int dest=zone.assignPortalID(target);
 
                   if(type!=6) 
                     {
                     portal.setDestination(zone.getID().getID(),dest);
                     }
+                    
                   target.setDestination(getID().getID(),source);
                   
                   logger.debug ("Portals LINKED");

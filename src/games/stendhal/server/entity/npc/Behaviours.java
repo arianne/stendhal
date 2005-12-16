@@ -301,7 +301,7 @@ public class Behaviours
         while(object_it.hasNext())
           {
           RPObject object=object_it.next();
-          if(object instanceof Item && object.get("class").equals(itemName))
+          if(object instanceof Item && object.get("name").equals(itemName))
             {
             slot.remove(object.getID());
             world.modify(player);      
