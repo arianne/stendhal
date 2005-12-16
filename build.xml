@@ -1,5 +1,5 @@
 <?xml version='1.0'?>
-<project name="stendhal" default="dist" basedir=".">
+<project name="stendhal" default="compile" basedir=".">
   <property file="build.ant.properties"/>
   
   <target name="init">

@@ -105,16 +105,18 @@ public class Semos implements IContent
       protected void createDialog()
         {        
         Map<String,Integer> sellitems=new HashMap<String,Integer>();
+        sellitems.put("knife",10);
+        sellitems.put("small axe",10);
         sellitems.put("club",10);
-        sellitems.put("armor",50);
-        sellitems.put("shield",100);
-        sellitems.put("sword",200);
+        sellitems.put("wooden shield",15);
+        sellitems.put("dress",20);
+        sellitems.put("leather helmet",20);
+        sellitems.put("leather legs",30);
 
         Map<String,Integer> buyitems=new HashMap<String,Integer>();
-        buyitems.put("club",3);
-        buyitems.put("armor",15);
-        buyitems.put("shield",30);
+        buyitems.put("short sword",15);
         buyitems.put("sword",60);
+        buyitems.put("studded shield",20);
         
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"Shhh! I sell adventurers stuff.");
