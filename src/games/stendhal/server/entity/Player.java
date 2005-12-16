@@ -56,6 +56,7 @@ public class Player extends RPEntity
       player.add("admin",RPClass.FLAG,RPClass.HIDDEN);
       player.add("invisible",RPClass.FLAG,RPClass.HIDDEN);
 
+      // TODO: When we fix Marauroa myRPObject problem, changed slots to private.
       player.addRPSlot("head",1);
       player.addRPSlot("rhand",1);
       player.addRPSlot("lhand",1);

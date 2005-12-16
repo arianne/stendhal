@@ -160,10 +160,20 @@ public class CreatureXMLLoader extends DefaultHandler
             }
           }
         
-        if(name!=null && probability!=null)
+        if(name!=null && probability!=null && range!=null)
           {          
-          /** TODO: Compute range */
-          dropsItems.add(new Creature.DropItem(name,probability,1));
+          if(range.contains("["))
+            {
+            range=range.replace("[","");
+            range=range.replace("]","");
+            String[] amount=range.split(",");
+            
+            dropsItems.add(new Creature.DropItem(name,probability,Integer.parseInt(amount[0]),Integer.parseInt(amount[1])));
+            }
+          else
+            {
+            dropsItems.add(new Creature.DropItem(name,probability,Integer.parseInt(range)));
+            }            
           }
         }
       }

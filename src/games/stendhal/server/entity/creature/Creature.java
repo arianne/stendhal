@@ -20,6 +20,7 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.rule.EntityManager;
 import games.stendhal.server.entity.npc.NPC;
@@ -549,9 +550,18 @@ public class Creature extends NPC
       {
       int probability=Rand.roll1D100();
       if(dropped.probability>=probability)
-        {
+        {        
         Item item=manager.getItem(dropped.name);
-        list.add(item);
+        if(dropped.min==dropped.max)
+          {
+          list.add(item);
+          }
+        else
+          {
+          StackableItem stackItem=(StackableItem)item;
+          stackItem.setQuantity(Rand.rand(dropped.max-dropped.min)+dropped.min);          
+          list.add(stackItem);
+          }
         }
       }
     

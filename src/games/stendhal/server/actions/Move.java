@@ -54,6 +54,12 @@ public class Move extends ActionListener
   private void move(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
     Log4J.startMethod(logger,"move");
+
+    if(player.hasPath())
+      {
+      player.clearPath();      
+      }
+
     if(action.has("dir"))
       {
       player.setDirection(Direction.build(action.getInt("dir")));
