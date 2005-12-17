@@ -79,6 +79,7 @@ public class Chest extends AnimatedEntity
       {
       open=false;
       animation="close";
+      requestOpen = false;
       }
     }
 
