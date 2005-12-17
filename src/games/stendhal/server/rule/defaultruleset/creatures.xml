@@ -88,7 +88,7 @@
   		<attribute name="def" value="10"/>
   		<attribute name="hp" value="15"/>
   		<attribute name="speed" value="1"/>
-  		<attribute name="size" value="1,1"/>
+  		<attribute name="size" value="1,2"/>
     </attributes>  		
     <level value="1"/>
   	<experience value="10"/>
