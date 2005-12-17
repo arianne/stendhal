@@ -47,8 +47,8 @@ public class GameObjects implements Iterable<Entity>
     register("creature","giant",NormalCreature.class);
     register("creature","kobold",NormalCreature.class);
     register("creature","animal",NormalCreature.class);
-    register("creature","small animal",SmallCreature.class);
-    register("creature","giant animal",BigCreature.class);
+    register("creature","small_animal",SmallCreature.class);
+    register("creature","giant_animal",BigCreature.class);
     register("creature","dwarf",NormalCreature.class);
     register("creature","elf",NormalCreature.class);
     register("creature","skeleton",NormalCreature.class);
@@ -78,8 +78,8 @@ public class GameObjects implements Iterable<Entity>
     register("corpse","giant",Corpse.class);
     register("corpse","kobold",Corpse.class);
     register("corpse","animal",Corpse.class);
-    register("corpse","small animal",Corpse.class);
-    register("corpse","giant animal",Corpse.class);
+    register("corpse","small_animal",Corpse.class);
+    register("corpse","giant_animal",Corpse.class);
     register("corpse","dwarf",Corpse.class);
     register("corpse","elf",Corpse.class);
     register("corpse","skeleton",Corpse.class);

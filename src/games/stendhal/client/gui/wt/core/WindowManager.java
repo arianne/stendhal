@@ -66,9 +66,13 @@ public class WindowManager
     try
     {
       File file = new File(FILE_NAME);
-      FileWriter writer = new FileWriter(file);
-      writer.append(buf.toString());
-      writer.close();
+      
+      if(file.exists())
+        {
+        FileWriter writer = new FileWriter(file);
+        writer.append(buf.toString());
+        writer.close();
+        }
     }
     catch (IOException e)
     {

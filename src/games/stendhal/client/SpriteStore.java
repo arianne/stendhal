@@ -138,6 +138,7 @@ public class SpriteStore {
 			// use ImageIO to read the image in
 			sourceImage = ImageIO.read(url);
 		} catch (IOException e) {
+		  e.printStackTrace();
 			fail("Failed to load: "+ref);
 		}
 		

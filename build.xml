@@ -163,7 +163,9 @@
   
   <target name="sign_jars" depends="server_build, client_build">
   	<signjar alias="miguelangelblanchlardin@hotmail.com" keystore="keystore.ks" storepass="qwerty"> 
-  		<fileset dir="${lib}"/>
+  		<fileset dir="${lib}">
+  		  <include name="**/*.jar"/>
+  		</fileset>
   		<fileset file="${log4j_jar}"/>
   		<fileset file="${marauroa_jar}"/>
   	</signjar>  

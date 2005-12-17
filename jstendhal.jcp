@@ -89,6 +89,24 @@
 			<folderitem>
 				<path>src\games\stendhal\tools\tiled</path>
 			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf\games</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf\games\stendhal</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf\games\stendhal\server</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf\games\stendhal\server\rule</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf\games\stendhal\server\rule\defaultruleset</path>
+			</folderitem>
 			<fileitem>
 				<path>build.ant.properties</path>
 				<source>true</source>
@@ -107,6 +125,14 @@
 			</fileitem>
 			<fileitem>
 				<path>README</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.40.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.40.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -693,19 +719,39 @@
 				<path>src\games\stendhal\tools\tiled\StendhalMapWriter.java</path>
 				<source>true</source>
 			</fileitem>
+			<fileitem>
+				<path>build_server_xmlconf\games\stendhal\server\rule\defaultruleset\creatures.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_server_xmlconf\games\stendhal\server\rule\defaultruleset\items.xml</path>
+				<source>true</source>
+			</fileitem>
 		</include>
 		<exclude>
 			<folderitem>
+				<path>build_client</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server</path>
+			</folderitem>
+			<folderitem>
 				<path>jars</path>
+			</folderitem>
+			<folderitem>
+				<path>javadocs</path>
+			</folderitem>
+			<folderitem>
+				<path>lib</path>
 			</folderitem>
 			<folderitem>
 				<path>maps</path>
 			</folderitem>
 			<folderitem>
 				<path>src\games\stendhal\server\entity\npc\toport</path>
-			</folderitem>
-			<folderitem>
-				<path>src\src</path>
 			</folderitem>
 			<folderitem>
 				<path>tiled</path>
