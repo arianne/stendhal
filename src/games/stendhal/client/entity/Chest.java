@@ -21,10 +21,13 @@ public class Chest extends AnimatedEntity
   {
   private boolean open;
   private RPSlot content;
+  /** true means the user requested to open this chest */
+  private boolean requestOpen;
   
   public Chest(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
+    requestOpen = false;
     }
   
   protected void buildAnimations(RPObject object)
@@ -49,6 +52,12 @@ public class Chest extends AnimatedEntity
       {
       open=true;
       animation="open";
+      // we're wanted to open this?
+      if (requestOpen)
+        {
+        client.getGameGUI().inspect(this,content);
+        requestOpen = false;
+        }
       }
     
     if(changes.hasSlot("content"))
@@ -117,15 +126,10 @@ public class Chest extends AnimatedEntity
       }
     else if(action.equals("Open") || action.equals("Close"))
       {
-      if(open)
+      if(!open)
         {
-        // If is it already open, this action means close...
-        client.getGameGUI().inspect(null,null);
-        }
-      else
-        {
-        // If it was close, open it and inspect it...
-        client.getGameGUI().inspect(this,content);
+        // If it was closed, open it and inspect it...
+        requestOpen = true;
         }
         
       RPAction rpaction=new RPAction();
