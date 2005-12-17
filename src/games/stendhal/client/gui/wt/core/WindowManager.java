@@ -65,14 +65,9 @@ public class WindowManager
     }
     try
     {
-      File file = new File(FILE_NAME);
-      
-      if(file.exists())
-        {
-        FileWriter writer = new FileWriter(file);
-        writer.append(buf.toString());
-        writer.close();
-        }
+      FileWriter writer = new FileWriter(new File(FILE_NAME));
+      writer.append(buf.toString());
+      writer.close();
     }
     catch (IOException e)
     {
@@ -87,8 +82,12 @@ public class WindowManager
     properties = new Properties();
     try
     {
-      InputStream propsFile = new FileInputStream(new File(FILE_NAME));
-      properties.load(propsFile);
+      File file = new File(FILE_NAME);
+      if(file.exists())
+        {
+        InputStream propsFile = new FileInputStream(file);
+        properties.load(propsFile);
+        }
     }
     catch (IOException e)
     {

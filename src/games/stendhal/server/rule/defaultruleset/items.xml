@@ -23,8 +23,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="short sword">
-  	  <type class="sword" subclass="short sword"/>
+  <item name="short_sword">
+  	  <type class="sword" subclass="short_sword"/>
   	  <attributes>
   	  	<attribute name="atk" value="11"/>
   	  </attributes>
@@ -47,8 +47,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="small axe">
-  	  <type class="axe" subclass="small axe"/>
+  <item name="small_axe">
+  	  <type class="axe" subclass="small_axe"/>
   	  <attributes>
   	  	<attribute name="atk" value="7"/>
   	  </attributes>
@@ -59,8 +59,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="hand axe">
-  	  <type class="axe" subclass="hand axe"/>
+  <item name="hand_axe">
+  	  <type class="axe" subclass="hand_axe"/>
   	  <attributes>
   	  	<attribute name="atk" value="9"/>
   	  </attributes>
@@ -144,8 +144,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="wooden shield">
-  	  <type class="shield" subclass="wooden shield"/>
+  <item name="wooden_shield">
+  	  <type class="shield" subclass="wooden_shield"/>
   	  <attributes>
   	  	<attribute name="def" value="14"/>
   	  </attributes>
@@ -156,8 +156,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="studded shield">
-  	  <type class="shield" subclass="studded shield"/>
+  <item name="studded_shield">
+  	  <type class="shield" subclass="studded_shield"/>
   	  <attributes>
   	  	<attribute name="def" value="15"/>
   	  </attributes>
@@ -168,8 +168,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="plate shield">
-  	  <type class="shield" subclass="plate shield"/>
+  <item name="plate_shield">
+  	  <type class="shield" subclass="plate_shield"/>
   	  <attributes>
   	  	<attribute name="def" value="16"/>
   	  </attributes>
@@ -191,8 +191,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="leather armor">
-  	  <type class="armor" subclass="leather armor"/>
+  <item name="leather_armor">
+  	  <type class="armor" subclass="leather_armor"/>
   	  <attributes>
   	  	<attribute name="def" value="4"/>
   	  </attributes>
@@ -202,8 +202,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="studded armor">
-  	  <type class="armor" subclass="studded armor"/>
+  <item name="studded_armor">
+  	  <type class="armor" subclass="studded_armor"/>
   	  <attributes>
   	  	<attribute name="def" value="5"/>
   	  </attributes>
@@ -213,8 +213,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="chain armor">
-  	  <type class="armor" subclass="chain armor"/>
+  <item name="chain_armor">
+  	  <type class="armor" subclass="chain_armor"/>
   	  <attributes>
   	  	<attribute name="def" value="5"/>
   	  </attributes>
@@ -224,8 +224,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="leather helmet">
-  	  <type class="helmet" subclass="leather helmet"/>
+  <item name="leather_helmet">
+  	  <type class="helmet" subclass="leather_helmet"/>
   	  <attributes>
   	  	<attribute name="def" value="1"/>
   	  </attributes>
@@ -235,8 +235,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="studded helmet">
-  	  <type class="helmet" subclass="studded helmet"/>
+  <item name="studded_helmet">
+  	  <type class="helmet" subclass="studded_helmet"/>
   	  <attributes>
   	  	<attribute name="def" value="2"/>
   	  </attributes>
@@ -246,8 +246,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="chain helmet">
-  	  <type class="helmet" subclass="chain helmet"/>
+  <item name="chain_helmet">
+  	  <type class="helmet" subclass="chain_helmet"/>
   	  <attributes>
   	  	<attribute name="def" value="4"/>
   	  </attributes>
@@ -258,8 +258,8 @@
   	  </equipable>
   </item>
 
-  <item name="leather legs">
-  	  <type class="legs" subclass="leather legs"/>
+  <item name="leather_legs">
+  	  <type class="legs" subclass="leather_legs"/>
   	  <attributes>
   	  	<attribute name="def" value="1"/>
   	  </attributes>
@@ -269,8 +269,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="studded legs">
-  	  <type class="legs" subclass="studded legs"/>
+  <item name="studded_legs">
+  	  <type class="legs" subclass="studded_legs"/>
   	  <attributes>
   	  	<attribute name="def" value="2"/>
   	  </attributes>
@@ -280,8 +280,8 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="chain legs">
-  	  <type class="legs" subclass="chain legs"/>
+  <item name="chain_legs">
+  	  <type class="legs" subclass="chain_legs"/>
   	  <attributes>
   	  	<attribute name="def" value="4"/>
   	  </attributes>

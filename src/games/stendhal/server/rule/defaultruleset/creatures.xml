@@ -28,7 +28,7 @@
   <!-- Level 0 -->
 
   <creature name="rat">
-  	<type class="small animal" subclass="rat" tileid="12"/>
+  	<type class="small_animal" subclass="rat" tileid="12"/>
   	<attributes>
   		<attribute name="atk" value="17"/>
   		<attribute name="def" value="9"/>
@@ -54,7 +54,7 @@
   </creature>
 
   <creature name="caverat">
-  	<type class="small animal" subclass="caverat" tileid="13"/>
+  	<type class="small_animal" subclass="caverat" tileid="13"/>
   	<attributes>
   		<attribute name="atk" value="19"/>
   		<attribute name="def" value="9"/>
@@ -199,7 +199,7 @@
   		<item value="money" quantity="[3,10]" probability="35"/>
   		<item value="wooden shield" quantity="1" probability="10"/>
   		<item value="dagger" quantity="1" probability="10"/>
-  		<item value="leather armor" quantity="1" probability="5"/>
+  		<item value="leather_armor" quantity="1" probability="5"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -225,9 +225,9 @@
   	<experience value="20"/>
   	<drops>
   		<item value="money" quantity="[3,10]" probability="35"/>
-  		<item value="wooden shield" quantity="1" probability="10"/>
+  		<item value="wooden_shield" quantity="1" probability="10"/>
   		<item value="club" quantity="1" probability="10"/>
-  		<item value="leather armor" quantity="1" probability="5"/>
+  		<item value="leather_armor" quantity="1" probability="5"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -253,9 +253,9 @@
   	<experience value="25"/>
   	<drops>
   		<item value="money" quantity="[3,10]" probability="35"/>
-  		<item value="wooden shield" quantity="1" probability="15"/>
-  		<item value="small axe" quantity="1" probability="15"/>
-  		<item value="leather armor" quantity="1" probability="7"/>
+  		<item value="wooden_shield" quantity="1" probability="15"/>
+  		<item value="small_axe" quantity="1" probability="15"/>
+  		<item value="leather_armor" quantity="1" probability="7"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -281,9 +281,9 @@
   	<experience value="30"/>
   	<drops>
   		<item value="money" quantity="[4,15]" probability="40"/>
-  		<item value="studded shield" quantity="1" probability="10"/>
+  		<item value="studded_shield" quantity="1" probability="10"/>
   		<item value="staff" quantity="1" probability="10"/>
-  		<item value="studded armor" quantity="1" probability="5"/>
+  		<item value="studded_armor" quantity="1" probability="5"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -310,9 +310,9 @@
   	<experience value="50"/>
   	<drops>
   		<item value="money" quantity="[4,20]" probability="60"/>
-  		<item value="studded shield" quantity="1" probability="12"/>
-  		<item value="short sword" quantity="1" probability="12"/>
-  		<item value="studded armor" quantity="1" probability="7"/>
+  		<item value="studded_shield" quantity="1" probability="12"/>
+  		<item value="short_sword" quantity="1" probability="12"/>
+  		<item value="studded_armor" quantity="1" probability="7"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -339,10 +339,10 @@
   	<experience value="50"/>
   	<drops>
   		<item value="money" quantity="[4,20]" probability="70"/>
-  		<item value="studded shield" quantity="1" probability="12"/>
-  		<item value="short sword" quantity="1" probability="12"/>
+  		<item value="studded_shield" quantity="1" probability="12"/>
+  		<item value="short_sword" quantity="1" probability="12"/>
   		<item value="sword" quantity="1" probability="3"/>
-  		<item value="studded armor" quantity="1" probability="12"/>
+  		<item value="studded_armor" quantity="1" probability="12"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -368,11 +368,11 @@
   	<experience value="60"/>
   	<drops>
   		<item value="money" quantity="[4,30]" probability="70"/>
-  		<item value="plate shield" quantity="1" probability="12"/>
-  		<item value="hand axe" quantity="1" probability="12"/>
+  		<item value="plate_shield" quantity="1" probability="12"/>
+  		<item value="hand_axe" quantity="1" probability="12"/>
   		<item value="axe" quantity="1" probability="3"/>
-  		<item value="studded armor" quantity="1" probability="10"/>
-  		<item value="chain armor" quantity="1" probability="3"/>
+  		<item value="studded_armor" quantity="1" probability="10"/>
+  		<item value="chain_armor" quantity="1" probability="3"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -401,7 +401,7 @@
   	<drops>
   		<item value="money" quantity="[4,25]" probability="70"/>
   		<item value="axe" quantity="1" probability="10"/>
-  		<item value="chain armor" quantity="1" probability="10"/>
+  		<item value="chain_armor" quantity="1" probability="10"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -430,7 +430,7 @@
   	<drops>
   		<item value="money" quantity="[4,30]" probability="70"/>
   		<item value="mace" quantity="1" probability="10"/>
-  		<item value="leather armor" quantity="1" probability="10"/>
+  		<item value="leather_armor" quantity="1" probability="10"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -459,7 +459,7 @@
   	<drops>
   		<item value="money" quantity="[4,30]" probability="80"/>
   		<item value="mace" quantity="1" probability="13"/>
-  		<item value="studded armor" quantity="1" probability="13"/>
+  		<item value="studded_armor" quantity="1" probability="13"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -475,7 +475,7 @@
  <!-- Level 15 -->
  	
  <creature name="giantrat">
-  	<type class="giant animal" subclass="giantrat" tileid="23"/>
+  	<type class="giant_animal" subclass="giantrat" tileid="23"/>
   	<attributes>
   		<attribute name="atk" value="80"/>
   		<attribute name="def" value="20"/>

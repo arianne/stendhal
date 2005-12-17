@@ -233,8 +233,8 @@ public class Semos implements IContent
     chest.setx(44);
     chest.sety(60);
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("knife"));
-    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("wooden shield"));
-    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("leather armor"));
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("wooden_shield"));
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("leather_armor"));
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("money"));
     zone.add(chest);
     
