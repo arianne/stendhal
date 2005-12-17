@@ -55,6 +55,20 @@ public class WindowManager
     return instance;
   }
   
+  /** 
+   * Sets default window properties. These are used only when there are no 
+   * properties known for this panel. 
+   */
+  public void setDefaultProperties(String name, boolean minimized, int x, int y)
+  {
+    if (!configs.containsKey(name))
+    {
+      WindowConfiguration config = new WindowConfiguration(name);
+      config.readFromProperties(properties, minimized,x,y);
+      configs.put(name,config);
+    }
+  }
+  
   /** saves the current settings to a file */
   public void save()
   {
@@ -185,13 +199,20 @@ public class WindowManager
     }
 
     /** reads the config from the properties */
+    public void readFromProperties(Properties props, boolean defaultMinimized, int defaultX, int defaultY)
+    {
+      minimized = Boolean.parseBoolean(props.getProperty("window."+name+".minimized",Boolean.toString(minimized)));
+      enabled = Boolean.parseBoolean(props.getProperty("window."+name+".enabled","true"));
+      x = Integer.parseInt(props.getProperty("window."+name+".x",Integer.toString(defaultX)));
+      y = Integer.parseInt(props.getProperty("window."+name+".y",Integer.toString(defaultY)));
+    }
+
+    /** reads the config from the properties */
     public void readFromProperties(Properties props, Panel defaults)
     {
-      minimized = Boolean.parseBoolean(props.getProperty("window."+name+".minimized",Boolean.toString(defaults.isMinimized())));
-      enabled = Boolean.parseBoolean(props.getProperty("window."+name+".enabled","true"));
-      x = Integer.parseInt(props.getProperty("window."+name+".x",Integer.toString(defaults.getX())));
-      y = Integer.parseInt(props.getProperty("window."+name+".y",Integer.toString(defaults.getY())));
+      readFromProperties(props, defaults.isMinimized(),defaults.getX(),defaults.getY());
     }
+    
     
   }
   

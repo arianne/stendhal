@@ -120,6 +120,11 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     // the settings panel creates all other
     settings = new SettingsPanel(ground, gameObjects);
     ground.addChild(settings);
+    
+    // set some default window positions 
+    WindowManager windowManager = WindowManager.getInstance(); 
+    windowManager.setDefaultProperties("corpse",false,  0, 190);
+    windowManager.setDefaultProperties("chest" ,false,100, 190);
     }
   
 
