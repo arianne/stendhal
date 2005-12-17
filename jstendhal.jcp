@@ -89,24 +89,6 @@
 			<folderitem>
 				<path>src\games\stendhal\tools\tiled</path>
 			</folderitem>
-			<folderitem>
-				<path>build_server_xmlconf</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server_xmlconf\games</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server_xmlconf\games\stendhal</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server_xmlconf\games\stendhal\server</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server_xmlconf\games\stendhal\server\rule</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server_xmlconf\games\stendhal\server\rule\defaultruleset</path>
-			</folderitem>
 			<fileitem>
 				<path>build.ant.properties</path>
 				<source>true</source>
@@ -719,14 +701,6 @@
 				<path>src\games\stendhal\tools\tiled\StendhalMapWriter.java</path>
 				<source>true</source>
 			</fileitem>
-			<fileitem>
-				<path>build_server_xmlconf\games\stendhal\server\rule\defaultruleset\creatures.xml</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_server_xmlconf\games\stendhal\server\rule\defaultruleset\items.xml</path>
-				<source>true</source>
-			</fileitem>
 		</include>
 		<exclude>
 			<folderitem>
@@ -737,6 +711,9 @@
 			</folderitem>
 			<folderitem>
 				<path>build_server</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf</path>
 			</folderitem>
 			<folderitem>
 				<path>jars</path>

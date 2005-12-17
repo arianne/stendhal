@@ -44,7 +44,7 @@ public class Afterlife implements IContent
     sign.setText("I regret to tell you that you have died!|You have lost some of your items and 10% of your eXPerience points.|Be more careful next time. On the up side you can now return to city.");    
     zone.add(sign);
 
-    Sign sign=new Sign();
+    sign=new Sign();
     zone.assignRPObjectID(sign);
     sign.setx(33);
     sign.sety(22);
