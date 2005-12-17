@@ -244,6 +244,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
         inventory = new EntityContainer(gameObjects,"bag",3,4);
         inventory.registerCloseListener(this);
         frame.addChild(inventory);
+        inventory.setSlot(player,"bag");
       }
       inventoryEnabled = pressed;
       // be sure to update the button
