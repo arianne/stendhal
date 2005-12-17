@@ -296,6 +296,21 @@ public class Panel implements Draggable
    */
   public boolean moveTo(int x, int y)
   {
+    return moveTo(x,y,false);
+  }
+
+  /**
+   * Moves the panel to the given position.
+   *
+   * @param x x-coordinale
+   * @param y y-coordinmate
+   * @param checkHeight when true the height must be completely inside the
+   *        parent
+   * @return true when the operation is allowed (panel is moved) or false if not
+   *             (panel is not moved)
+   */
+  public boolean moveTo(int x, int y, boolean checkHeight)
+  {
     this.x = x;
     this.y = y;
     
@@ -305,19 +320,26 @@ public class Panel implements Draggable
     
     if (hasParent() && parent.getWidth() - width < x)
       this.x = parent.getWidth() - width;
-
+    
     if (y < 0)
       this.y = 0;
     
-    int height = 0;
-    if (hasTitleBar())
-      height += TILLEBAR_SIZE;
-    
-    if (hasFrame())
-      height += FRAME_SIZE;
-    
-    if (hasParent() && parent.getHeight() - height < y)
-      this.y = parent.getHeight() - height;
+    if (checkHeight && hasParent() && parent.getHeight() - getHeight() < y)
+    {
+      this.y = parent.getHeight() - getHeight();
+    }
+    else
+    {
+      int height = 0;
+      if (hasTitleBar())
+        height += TILLEBAR_SIZE;
+      
+      if (hasFrame())
+        height += FRAME_SIZE;
+  
+      if (hasParent() && parent.getHeight() - height < y)
+        this.y = parent.getHeight() - height;
+    }
     
     // tell the windowmanager we're moved (if we use it)
     if (useWindowManager())
@@ -462,6 +484,13 @@ public class Panel implements Draggable
   public Panel getParent()
   {
     return parent;
+  }
+
+  /** Sets the parent of the panel. Do not use this function if you don't know
+   * exactly what you're doing. */
+  protected void setParent(Panel parent)
+  {
+    this.parent = parent;
   }
 
   /** returns wether the panel has a parent */

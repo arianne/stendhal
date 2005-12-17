@@ -171,7 +171,10 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
         String[] actions=entity.offeredActions();
         if (actions.length > 0)
           {
-          frame.setContextMenu(new CommandList(entity.getType(),actions,(int) screenPoint.getX(),(int) screenPoint.getY(),100,100,client,entity));
+          CommandList list = new CommandList(entity.getType(),actions,(int) screenPoint.getX(),(int) screenPoint.getY(),100,100,client,entity);
+          frame.setContextMenu(list);
+          // the moveto ensures that the panel is completely inside the window
+          list.moveTo((int) screenPoint.getX(),(int) screenPoint.getY(),true);
           }
         }
       }

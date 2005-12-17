@@ -92,6 +92,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
       this.contextMenu.close();
     }
     this.contextMenu = contextMenu;
+    this.contextMenu.setParent(this);
     recreatedContextMenu = true;
   }
   
@@ -207,6 +208,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
     // during the callbacks)
     if (contextMenu != null && !recreatedContextMenu)
     {
+      contextMenu.setParent(null);
       contextMenu.close();
       contextMenu = null;
     }
