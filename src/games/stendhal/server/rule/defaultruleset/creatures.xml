@@ -12,7 +12,7 @@
     <level value="0"/>
   	<experience value="0"/>
   	<drops>
-  		<item value="meat" probability="40"/>
+  		<item value="meat" probability="80"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -39,8 +39,8 @@
     <level value="0"/>
   	<experience value="5"/>
   	<drops>
-  		<item value="cheese" quantity="1" probability="20"/>
-  		<item value="money"  quantity="[1,3]" probability="10"/>
+  		<item value="cheese" quantity="1" probability="60"/>
+  		<item value="money"  quantity="[1,3]" probability="70"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -65,8 +65,8 @@
     <level value="0"/>
   	<experience value="10"/>
   	<drops>
-  		<item value="cheese" quantity="[1,3]" probability="30"/>
-  		<item value="money"  quantity="[1,6]" probability="15"/>
+  		<item value="cheese" quantity="[1,3]" probability="70"/>
+  		<item value="money"  quantity="[1,6]" probability="90"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -93,7 +93,7 @@
     <level value="1"/>
   	<experience value="10"/>
   	<drops>
-  		<item value="money"  quantity="[1,3]" probability="20"/>
+  		<item value="money"  quantity="[1,3]" probability="60"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -118,7 +118,7 @@
     <level value="1"/>
   	<experience value="15"/>
   	<drops>
-  		<item value="meat"  quantity="[1,4]" probability="20"/>
+  		<item value="meat"  quantity="[1,4]" probability="80"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -142,8 +142,8 @@
     <level value="1"/>
   	<experience value="18"/>
   	<drops>
-  		<item value="money"  quantity="[2,5]" probability="25"/>
-  		<item value="meat"  quantity="[1,4]" probability="20"/>
+  		<item value="money"  quantity="[2,5]" probability="70"/>
+  		<item value="meat"  quantity="[1,4]" probability="80"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -169,8 +169,8 @@
     <level value="2"/>
   	<experience value="20"/>
   	<drops>
-  		<item value="money"  quantity="[4,9]" probability="25"/>
-  		<item value="meat"  quantity="[1,4]" probability="40"/>
+  		<item value="money"  quantity="[4,9]" probability="80"/>
+  		<item value="meat"  quantity="[1,4]" probability="90"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -196,10 +196,10 @@
     <level value="3"/>
   	<experience value="20"/>
   	<drops>
-  		<item value="money" quantity="[3,10]" probability="35"/>
-  		<item value="wooden shield" quantity="1" probability="10"/>
-  		<item value="dagger" quantity="1" probability="10"/>
-  		<item value="leather_armor" quantity="1" probability="5"/>
+  		<item value="money" quantity="[3,10]" probability="90"/>
+  		<item value="wooden shield" quantity="1" probability="40"/>
+  		<item value="dagger" quantity="1" probability="30"/>
+  		<item value="leather_armor" quantity="1" probability="10"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -224,10 +224,10 @@
     <level value="3"/>
   	<experience value="20"/>
   	<drops>
-  		<item value="money" quantity="[3,10]" probability="35"/>
-  		<item value="wooden_shield" quantity="1" probability="10"/>
-  		<item value="club" quantity="1" probability="10"/>
-  		<item value="leather_armor" quantity="1" probability="5"/>
+  		<item value="money" quantity="[3,10]" probability="90"/>
+  		<item value="wooden_shield" quantity="1" probability="20"/>
+  		<item value="club" quantity="1" probability="20"/>
+  		<item value="leather_armor" quantity="1" probability="10"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -252,10 +252,10 @@
     <level value="3"/>
   	<experience value="25"/>
   	<drops>
-  		<item value="money" quantity="[3,10]" probability="35"/>
-  		<item value="wooden_shield" quantity="1" probability="15"/>
-  		<item value="small_axe" quantity="1" probability="15"/>
-  		<item value="leather_armor" quantity="1" probability="7"/>
+  		<item value="money" quantity="[3,10]" probability="90"/>
+  		<item value="wooden_shield" quantity="1" probability="35"/>
+  		<item value="small_axe" quantity="1" probability="25"/>
+  		<item value="leather_armor" quantity="1" probability="15"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -280,10 +280,10 @@
     <level value="3"/>
   	<experience value="30"/>
   	<drops>
-  		<item value="money" quantity="[4,15]" probability="40"/>
-  		<item value="studded_shield" quantity="1" probability="10"/>
-  		<item value="staff" quantity="1" probability="10"/>
-  		<item value="studded_armor" quantity="1" probability="5"/>
+  		<item value="money" quantity="[4,15]" probability="90"/>
+  		<item value="studded_shield" quantity="1" probability="20"/>
+  		<item value="staff" quantity="1" probability="20"/>
+  		<item value="studded_armor" quantity="1" probability="10"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -309,10 +309,10 @@
     <level value="4"/>
   	<experience value="50"/>
   	<drops>
-  		<item value="money" quantity="[4,20]" probability="60"/>
-  		<item value="studded_shield" quantity="1" probability="12"/>
-  		<item value="short_sword" quantity="1" probability="12"/>
-  		<item value="studded_armor" quantity="1" probability="7"/>
+  		<item value="money" quantity="[4,20]" probability="100"/>
+  		<item value="studded_shield" quantity="1" probability="40"/>
+  		<item value="short_sword" quantity="1" probability="30"/>
+  		<item value="studded_armor" quantity="1" probability="20"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -338,11 +338,11 @@
     <level value="5"/>
   	<experience value="50"/>
   	<drops>
-  		<item value="money" quantity="[4,20]" probability="70"/>
-  		<item value="studded_shield" quantity="1" probability="12"/>
-  		<item value="short_sword" quantity="1" probability="12"/>
-  		<item value="sword" quantity="1" probability="3"/>
-  		<item value="studded_armor" quantity="1" probability="12"/>
+  		<item value="money" quantity="[4,20]" probability="100"/>
+  		<item value="studded_shield" quantity="1" probability="40"/>
+  		<item value="short_sword" quantity="1" probability="40"/>
+  		<item value="sword" quantity="1" probability="10"/>
+  		<item value="studded_armor" quantity="1" probability="25"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -367,12 +367,12 @@
     <level value="5"/>
   	<experience value="60"/>
   	<drops>
-  		<item value="money" quantity="[4,30]" probability="70"/>
-  		<item value="plate_shield" quantity="1" probability="12"/>
-  		<item value="hand_axe" quantity="1" probability="12"/>
-  		<item value="axe" quantity="1" probability="3"/>
-  		<item value="studded_armor" quantity="1" probability="10"/>
-  		<item value="chain_armor" quantity="1" probability="3"/>
+  		<item value="money" quantity="[4,30]" probability="100"/>
+  		<item value="plate_shield" quantity="1" probability="40"/>
+  		<item value="hand_axe" quantity="1" probability="50"/>
+  		<item value="axe" quantity="1" probability="10"/>
+  		<item value="studded_armor" quantity="1" probability="40"/>
+  		<item value="chain_armor" quantity="1" probability="10"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -399,9 +399,9 @@
     <level value="6"/>
   	<experience value="80"/>
   	<drops>
-  		<item value="money" quantity="[4,25]" probability="70"/>
-  		<item value="axe" quantity="1" probability="10"/>
-  		<item value="chain_armor" quantity="1" probability="10"/>
+  		<item value="money" quantity="[4,25]" probability="90"/>
+  		<item value="axe" quantity="1" probability="30"/>
+  		<item value="chain_armor" quantity="1" probability="30"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -428,9 +428,9 @@
     <level value="7"/>
   	<experience value="120"/>
   	<drops>
-  		<item value="money" quantity="[4,30]" probability="70"/>
-  		<item value="mace" quantity="1" probability="10"/>
-  		<item value="leather_armor" quantity="1" probability="10"/>
+  		<item value="money" quantity="[4,30]" probability="100"/>
+  		<item value="mace" quantity="1" probability="40"/>
+  		<item value="leather_armor" quantity="1" probability="70"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -457,9 +457,9 @@
     <level value="8"/>
   	<experience value="120"/>
   	<drops>
-  		<item value="money" quantity="[4,30]" probability="80"/>
-  		<item value="mace" quantity="1" probability="13"/>
-  		<item value="studded_armor" quantity="1" probability="13"/>
+  		<item value="money" quantity="[4,30]" probability=100"/>
+  		<item value="mace" quantity="1" probability="40"/>
+  		<item value="studded_armor" quantity="1" probability="40"/>
   	</drops>
   	<slots>  		
   	</slots>
@@ -486,8 +486,8 @@
     <level value="15"/>
   	<experience value="1200"/>
   	<drops>
-  		<item value="money" quantity="[10,200]" probability="90"/>
-  		<item value="cheese" quantity="[5,10]" probability="50"/>
+  		<item value="money" quantity="[10,200]" probability="100"/>
+  		<item value="cheese" quantity="[5,10]" probability="100"/>
   	</drops>
   	<slots>  		
   	</slots>
