@@ -113,13 +113,21 @@ public class GroundContainer extends Panel
 
   public synchronized boolean onMouseDoubleClick(Point p)
   {
+    // base class checks if the click is within a child
+    if (super.onMouseClick(p))
+    {
+      // yes, click already processed
+      return true;
+    }
+    
+    // doubleclick is outside of all windows
     Point2D point = screen.translate(p);
     Entity entity=gameObjects.at(point.getX(),point.getY());
-    
+
     if(entity==null)
     {
       RPAction action = new RPAction();
-      // looks like an drop
+      // moveto action
       action.put("type","moveto");
       action.put("x",(int) point.getX());
       action.put("y",(int) point.getY());
