@@ -84,51 +84,7 @@ public class OutfitDialog extends javax.swing.JDialog {
         timer = new Timer();
         timer.schedule(new AnimationTask(), 1000, 2500);
     }
-
-    public OutfitDialog(java.awt.Frame parent, String title) {
-        super(parent, true);
-        initComponents();
-        setTitle(title);
-        
-        client=StendhalClient.get();
-
-        URI url;
-        try
-          {
-          url=this.getClass().getClassLoader().getResource("sprites/outfit").toURI(); 
-          }
-        catch(java.net.URISyntaxException e)
-          {
-          logger.error("Can't find file: "+"sprites/outfit",e);
-          return;
-          }
-      
-        if(url==null) 
-          {
-          logger.error("Can't find file: "+"sprites/outfit");
-          return;
-          }
-
-        File outfitFolder=new File(url);
-        int total_hairs=outfitFolder.list(new HairFilter()).length;
-        int total_heads=outfitFolder.list(new HeadFilter()).length;
-        int total_bodies=outfitFolder.list(new BodyFilter()).length;
-        int total_clothes=outfitFolder.list(new ClothesFilter()).length;
-
-        // initializes the arrays
-        hairs = new Sprite[total_hairs]; // Plus 1 to add the sprite_empty.png that is always at 0
-        heads = new Sprite[total_heads];
-        bodies = new Sprite[total_bodies];
-        clothes = new Sprite[total_clothes]; // Plus 1 to add the sprite_empty.png that is always at 0
-        // loads the sprites
-        loadSprites();
-        
-        // updates the draws every 2500 milliseconds
-        timer = new Timer();
-        timer.schedule(new AnimationTask(), 1000, 2500);
-    }
-    
-    
+   
     /**
      * @return a String with the name of the selected hair sprite file
      */
@@ -616,6 +572,6 @@ public class OutfitDialog extends javax.swing.JDialog {
       } 
 
     public static void main(String args[]) {
-         new OutfitDialog(null, "Stendhal - choose outfit").setVisible(true); //, 13, 11, 11, 13).setVisible(true);
+         new OutfitDialog(null, "Stendhal - choose outfit", 13, 11, 11, 13).setVisible(true);
     }
 }
