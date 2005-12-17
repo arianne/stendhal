@@ -53,12 +53,6 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
   /** the dialog "really quit?" */
   private Panel quitDialog;
 
-  /** player can inspect entities to check what they contains. This variable stores
-   *  the actual inspected entity. */
-  private Entity inspectedEntity;
-  /** this is the slot of the above entity that is being inspecting right now. */
-  private RPSlot inspectedSlot;
-
   private void fixkeyboardHandlinginX()
     {
     logger.debug("OS: "+System.getProperty("os.name"));
@@ -344,31 +338,10 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
       return;
     }
     
-    inspectedEntity=entity;
-    inspectedSlot=slot;
-    
     EntityContainer container = new EntityContainer(gameObjects,entity.getType(),2,2);
     container.setSlot(entity,slot.getName());
     ground.addChild(container);
     
-    }
-
-  /** Returns true if the given object is being inspected */
-  public boolean isInspecting(Entity entity, String slot)
-    {
-    if(inspectedEntity==null || inspectedSlot==null)
-      {
-      return false;
-      }
-      
-    if(inspectedEntity.getID().equals(entity.getID()) && inspectedSlot.getName().equals(slot))
-      {
-      return true;
-      }
-    else
-      {
-      return false;
-      }
     }
 
   public void draw(GameScreen screen)
