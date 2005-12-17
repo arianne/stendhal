@@ -319,7 +319,7 @@ public class Panel implements Draggable
     if (hasParent() && parent.getHeight() - height < y)
       this.y = parent.getHeight() - height;
     
-    // tell the windowmanager we're moved (if we use is)
+    // tell the windowmanager we're moved (if we use it)
     if (useWindowManager())
     {
       WindowManager.getInstance().moveTo(this,this.x,this.y);
