@@ -92,8 +92,10 @@ public class LoginDialog extends JDialog {
         //
         // serverPortField
         //
-        if(loginInfo.countTokens() == 2) {
+        if(loginInfo.countTokens() == 3) {
             saveLoginBox.setSelected(true);
+            
+            serverField.setSelectedItem(loginInfo.nextToken());
             //
             // usernameField
             //
@@ -194,7 +196,7 @@ public class LoginDialog extends JDialog {
         final ProgressBar progressBar = new ProgressBar(frame);
         
         if(saveLoginBoxStatus)
-            saveLoginInfo(username, password);
+            saveLoginInfo(server, username, password);
         
         try {
             port = Integer.parseInt(serverPortField.getText());
@@ -262,13 +264,13 @@ public class LoginDialog extends JDialog {
    *comment: Thegeneral has added encoding for password and username
    */
     
-    private void saveLoginInfo(String usrName, String pwd) {
+    private void saveLoginInfo(String server, String usrName, String pwd) {
         Encoder encode = new Encoder();
         try {
             File loginFile = new File("user.dat");
             PrintWriter fos = new PrintWriter(loginFile);
             
-            fos.print(encode.encode(usrName + " " + pwd));
+            fos.print(encode.encode(server + " " + usrName + " " + pwd));
             fos.close();
         } catch (IOException ioex) {
             JOptionPane.showMessageDialog(this, "Something went wrong when saving login information, nothing saved", "Login information save problem", JOptionPane.WARNING_MESSAGE);
