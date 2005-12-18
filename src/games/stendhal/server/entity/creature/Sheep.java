@@ -122,7 +122,7 @@ public class Sheep extends Creature
         }
       else
         {        
-        logger.warn("INCOHERENCE: Sheep "+this+" isn't owned by "+owner");
+        logger.warn("INCOHERENCE: Sheep "+this+" isn't owned by "+owner);
         }
       }
     else
