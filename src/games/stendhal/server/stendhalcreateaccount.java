@@ -56,7 +56,7 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
     
     RPSlot slot=new RPSlot("armor");
     object.addSlot(slot);
-    Entity entity=manager.getEntityManager().getItem("leather armor");
+    Entity entity=manager.getEntityManager().getItem("leather_armor");
     slot.assignValidID(entity);
     slot.add(entity);
 
