@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import org.apache.log4j.Logger;
+
+import marauroa.common.Log4J;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Player;
@@ -23,6 +26,8 @@ import marauroa.common.game.*;
 
 public class Corpse extends PassiveEntity
   {
+  private static final Logger logger = Log4J.getLogger(Corpse.class);
+
   final public static int DEGRADATION_TIMEOUT=3000; // 30 minutes at 300 ms
   private int degradation;
   private int stage;
@@ -129,6 +134,12 @@ public class Corpse extends PassiveEntity
         RPObject base=getContainer();
         while(base.isContained())
           {
+          if(base==base.getContainer())
+            {
+            logger.fatal("A corpse is contained by itself.");
+            break;
+            }
+            
           base=base.getContainer();
           }
           
@@ -150,6 +161,7 @@ public class Corpse extends PassiveEntity
       if(isContained())
         {
         getContainerSlot().remove(this.getID());
+        world.modify(getContainer());
         }
       else
         {
