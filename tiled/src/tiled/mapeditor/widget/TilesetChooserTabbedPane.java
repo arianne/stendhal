@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import tiled.core.Map;
 import tiled.core.TileSet;
 import tiled.mapeditor.MapEditor;
 import tiled.mapeditor.util.TileSelectionEvent;
@@ -63,8 +64,7 @@ public class TilesetChooserTabbedPane extends JTabbedPane implements TileSelecti
       {
         if (tileset != null)
         {
-          TilePalettePanel tilePanel = new TilePalettePanel();
-          tilePanel.setTileset(tileset);
+          TilePalettePanel tilePanel = new TilePalettePanel(tileset);
           tilePanels.add(tilePanel);
           JScrollPane paletteScrollPane = new JScrollPane(tilePanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
           addTab(tileset.getName(), paletteScrollPane);
@@ -103,6 +103,19 @@ public class TilesetChooserTabbedPane extends JTabbedPane implements TileSelecti
   public void tileSelected(TileSelectionEvent e)
   {
     mapEditor.setCurrentTiles(e);
+  }
+
+  /** sets the tiles panes to the the ones from this map */
+  public void setMap(Map currentMap)
+  {
+    if (currentMap == null)
+    {
+      removeAll();
+    }
+    else
+    {
+      setTilesets(currentMap.getTilesets());
+    }
   }
   
 }

@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tiled.core.MapLayer;
+import tiled.core.StatefulTile;
 import tiled.core.Tile;
+import tiled.core.TileGroup;
 import tiled.core.TileLayer;
 
 /**
+ * Simple orthogonal map.
  * @author mtotz
  */
 public class Orthogonal extends MapView
@@ -247,6 +250,51 @@ public class Orthogonal extends MapView
     g.drawRect(p.x, p.y, tsize.width, tsize.height);
   }
   
-  
+  /**
+   * Draws the tilegroup to a BufferedImage. 
+   * @param tileGroup the tilegroup
+   */
+  public BufferedImage drawTileGroup(TileGroup tileGroup)
+  {
+    int tileWidth = -1;
+    int tileHeight = -1;
+    
+    BufferedImage image = null;
+    Graphics g = null;
+    
+    for (MapLayer layer : map.getLayerList())
+    {
+      if (layer instanceof TileLayer)
+      {
+        TileLayer tileLayer = (TileLayer) layer;
+        if (g != null)
+        {
+          setLayerOpacity(g,tileLayer);
+        }
+
+        List<StatefulTile> tileList = tileGroup.getTileLayer(tileLayer);
+        if (tileList != null)
+        {
+          for (StatefulTile tile : tileList)
+          {
+            if (tileWidth < 0)
+            {
+              tileWidth = tile.tile.getWidth();
+              tileHeight = tile.tile.getHeight();
+              GraphicsConfiguration config = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+              image = config.createCompatibleImage(tileWidth * tileGroup.getWidth(),tileHeight * tileGroup.getHeight(),Transparency.TRANSLUCENT);
+              g = image.createGraphics();
+              g.setColor(Color.BLACK);
+              g.fillRect(0,0,image.getWidth(), image.getHeight());
+            }
+            tile.tile.draw(g,tile.p.x*tileWidth,tile.p.y*tileHeight,1.0);
+          }
+        }
+      }
+    }
+    
+    return image;
+  }
+
 
 }

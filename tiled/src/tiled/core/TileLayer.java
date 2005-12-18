@@ -234,7 +234,7 @@ public class TileLayer extends MapLayer
      * @throws Exception
      */
     public void removeTile(Tile tile) throws Exception {
-        if (getLocked()) {
+        if (isLocked()) {
             throw new Exception(
                     "Attempted to remove tile when this layer is locked.");
         }

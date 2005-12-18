@@ -8,13 +8,11 @@
  *
  *  Adam Turk <aturk@biggeruniverse.com>
  *  Bjorn Lindeijer <b.lindeijer@xs4all.nl>
- */
-
-/*
- *  (c) 2005 - Stendhal, an Arianne powered RPG 
- *  http://arianne.sf.net
+ *  
+ *  modified for stendhal, an Arianne powered RPG 
+ *  (http://arianne.sf.net)
  *
- * Matthias Totz <mtotz@users.sourceforge.net>
+ *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
 package tiled.core;
@@ -44,12 +42,11 @@ public class Map extends MultilayerPlane
     /** shifted (used for iso and hex) */
     public static final int MDO_SHIFTED = 5;
 
-    private List<MapLayer> specialLayers;
     private List<TileSet> tilesets;
     private LinkedList<MapObject> objects;
     
     /** List of user-brushes */
-    private List<List<StatefulTile>> userBrushes;
+    private List<TileGroup> userBrushes;
 
     int tileWidth, tileHeight;
     int totalObjects = 0;
@@ -75,9 +72,8 @@ public class Map extends MultilayerPlane
         mapChangeListeners = new EventListenerList();
         properties = new Properties();
         tilesets = new ArrayList<TileSet>();
-        specialLayers = new ArrayList<MapLayer>();
         objects = new LinkedList<MapObject>();
-        userBrushes = new ArrayList<List<StatefulTile>>();
+        userBrushes = new ArrayList<TileGroup>();
     }
 
     /**
@@ -102,35 +98,24 @@ public class Map extends MultilayerPlane
     /**
      * Notifies all registered map change listeners about a change.
      */
-    protected void fireMapChanged() {
-        Object[] listeners = mapChangeListeners.getListenerList();
-        MapChangedEvent event = null;
+    protected void fireMapChanged(MapChangedEvent.Type type)
+    {
+      MapChangeListener[] listeners = mapChangeListeners.getListeners(MapChangeListener.class);
+      if (listeners.length == 0)
+        return;
 
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == MapChangeListener.class) {
-                if (event == null) event = new MapChangedEvent(this);
-                ((MapChangeListener)listeners[i + 1]).mapChanged(event);
-            }
-        }
-    }
+      MapChangedEvent event = new MapChangedEvent(this,type);
 
-    /**
-     * Causes a MapChangedEvent to be fired.
-     */
-    public void touch() {
-        fireMapChanged();
-    }
-
-    public void addLayerSpecial(MapLayer l) {
-        l.setMap(this);
-        specialLayers.add(l);
-        fireMapChanged();
+      for (MapChangeListener listener : listeners)
+      {
+        listener.mapChanged(event);
+      }
     }
 
     public MapLayer addLayer(MapLayer l) {
         l.setMap(this);
         super.addLayer(l);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
         return l;
     }
 
@@ -143,7 +128,7 @@ public class Map extends MultilayerPlane
         MapLayer layer = new TileLayer(this, widthInTiles, heightInTiles);
         layer.setName("Layer "+super.getTotalLayers());
         super.addLayer(layer);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
         return layer;
     }
 
@@ -175,7 +160,7 @@ public class Map extends MultilayerPlane
         s.setStandardWidth(tileWidth);
         tilesets.add(s);
         s.setMap(this);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
     }
 
     /**
@@ -205,7 +190,7 @@ public class Map extends MultilayerPlane
         }
 
         tilesets.remove(s);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
     }
 
     public void addObject(MapObject o) {
@@ -228,14 +213,14 @@ public class Map extends MultilayerPlane
     }
     
     /** adds a user brush */
-    public void addUserBrush(List<StatefulTile> tiles)
+    public void addUserBrush(TileGroup tileGroup)
     {
-      userBrushes.add(tiles);
-      fireMapChanged();
+      userBrushes.add(tileGroup);
+      fireMapChanged(MapChangedEvent.Type.BRUSHES);
     }
     
     /** returns the user brushes */
-    public List<List<StatefulTile>> getUserBrushes()
+    public List<TileGroup> getUserBrushes()
     {
       return userBrushes;
     }
@@ -247,20 +232,8 @@ public class Map extends MultilayerPlane
      */
     public MapLayer removeLayer(int index) {
         MapLayer layer = super.removeLayer(index);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
         return layer;
-    }
-
-    public MapLayer removeLayerSpecial(MapLayer l) {
-        if (specialLayers.remove(l)) {
-            fireMapChanged();
-        }
-        return l;
-    }
-
-    public void removeAllSpecialLayers() {
-        specialLayers.clear();
-        fireMapChanged();
     }
 
     /**
@@ -268,15 +241,14 @@ public class Map extends MultilayerPlane
      * 
      * @see MultilayerPlane#removeAllLayers
      */
-
     public void removeAllLayers() {
         super.removeAllLayers();
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
     }
 
     public void setLayers(List<MapLayer> layers) {
         super.setLayers(layers);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
     }
 
     /**
@@ -284,7 +256,7 @@ public class Map extends MultilayerPlane
      */
     public void swapLayerUp(int index) throws Exception {
         super.swapLayerUp(index);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
     }
 
     /**
@@ -292,7 +264,7 @@ public class Map extends MultilayerPlane
      */
     public void swapLayerDown(int index) throws Exception {
         super.swapLayerDown(index);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
     }
 
     /**
@@ -300,7 +272,7 @@ public class Map extends MultilayerPlane
      */
     public void mergeLayerDown(int index) throws Exception {
         super.mergeLayerDown(index);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.LAYERS);
     }
 
     public void setFilename(String filename) {
@@ -312,7 +284,7 @@ public class Map extends MultilayerPlane
      */
     public void setTileWidth(int width) {
         tileWidth = width;
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.PROPERTIES);
     }
 
     /**
@@ -320,7 +292,7 @@ public class Map extends MultilayerPlane
      */
     public void setTileHeight(int height) {
         tileHeight = height;
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.PROPERTIES);
     }
 
     /**
@@ -328,7 +300,7 @@ public class Map extends MultilayerPlane
      */
     public void resize(int width, int height, int dx, int dy) {
         super.resize(width, height, dx, dy);
-        fireMapChanged();
+        fireMapChanged(MapChangedEvent.Type.SIZE);
     }
 
     public void setOrientation(int orientation) {
@@ -340,12 +312,8 @@ public class Map extends MultilayerPlane
         return filename;
     }
 
-    public Iterator<MapLayer> getLayersSpecial() {
-        return specialLayers.iterator();
-    }
-
     /**
-     * Returns a vector with the currently loaded tilesets.
+     * Returns a list with the currently loaded tilesets.
      */
     public List<TileSet> getTilesets() {
         return tilesets;
@@ -364,16 +332,17 @@ public class Map extends MultilayerPlane
      * Get the tile set that matches the given global tile id, only to be used
      * when loading a map.
      */
-    public TileSet findTileSetForTileGID(int gid) {
-        Iterator itr = tilesets.iterator();
-        TileSet has = null;
-        while (itr.hasNext()) {
-            TileSet ts = (TileSet)itr.next();
-            if (ts.getFirstGid() <= gid) {
-                has = ts;
-            }
+    public TileSet findTileSetForTileGID(int gid)
+    {
+      TileSet has = null;
+      for (TileSet ts : tilesets)
+      {
+        if (ts.getFirstGid() <= gid)
+        {
+          has = ts;
         }
-        return has;
+      }
+      return has;
     }
 
     /**
@@ -435,25 +404,6 @@ public class Map extends MultilayerPlane
 
         return maxHeight;
     }
-
-    /**
-     * Returns the sum of the size of each tile set.
-     * 
-     * @return
-     */
-    /*
-    public int getTotalTiles() {
-        int totalTiles = 0;
-        Iterator itr = tilesets.iterator();
-
-        while (itr.hasNext()) {
-            TileSet cur = (TileSet)itr.next();
-            totalTiles += cur.getTotalTiles();
-        }
-
-        return totalTiles;
-    }
-    */
 
     /**
      * Returns the amount of objects on the map.

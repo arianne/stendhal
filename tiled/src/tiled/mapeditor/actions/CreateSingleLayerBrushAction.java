@@ -21,6 +21,7 @@ import javax.swing.AbstractAction;
 import tiled.core.Map;
 import tiled.core.StatefulTile;
 import tiled.core.Tile;
+import tiled.core.TileGroup;
 import tiled.core.TileLayer;
 import tiled.mapeditor.MapEditor;
 
@@ -76,10 +77,10 @@ public class CreateSingleLayerBrushAction extends AbstractAction
         tile.p.y -= miny;
       }
       
-      map.addUserBrush(brushList);
+      map.addUserBrush(new TileGroup(map,brushList,null));
       mapEditor.layerEditPanel.repaint();
-      System.out.println("added "+brushList.size()+" tiles in userbrush");
     }
+    
   }
 
 }

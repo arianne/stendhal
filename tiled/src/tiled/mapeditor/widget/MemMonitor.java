@@ -4,6 +4,8 @@
 package tiled.mapeditor.widget;
 
 
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
@@ -29,6 +31,11 @@ public class MemMonitor extends JPanel
     Thread updaterThread = new Thread(new Updater());
     updaterThread.setDaemon(true);
     updaterThread.start();
+  }
+  
+  public Dimension getPreferredSize()
+  {
+    return progressBar.getPreferredSize();
   }
   
   

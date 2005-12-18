@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 import tiled.core.Map;
+import tiled.core.TileGroup;
 import tiled.core.TileLayer;
 import tiled.util.TiledConfiguration;
 
@@ -261,6 +262,12 @@ public abstract class MapView
    * @param tile the tile
    */
   public abstract void drawTileHighlight(Graphics g, Point tile);
+  
+  /**
+   * Draws the tilegroup to a BufferedImage. 
+   * @param tileGroup the tilegroup
+   */
+  public abstract BufferedImage drawTileGroup(TileGroup tileGroup);
   
 }
 

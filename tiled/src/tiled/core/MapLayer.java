@@ -16,6 +16,8 @@ import java.awt.Rectangle;
 import java.awt.geom.Area;
 import java.util.Properties;
 
+import tiled.mapeditor.util.MapChangedEvent;
+
 
 /**
  * A layer of a map.
@@ -142,7 +144,7 @@ public abstract class MapLayer implements Cloneable
             this.opacity = opacity;
 
             if (isVisible() && myMap != null) {
-                myMap.fireMapChanged();
+                myMap.fireMapChanged(MapChangedEvent.Type.LAYERS);
             }
         }
     }
@@ -158,7 +160,7 @@ public abstract class MapLayer implements Cloneable
         if (isVisible != visible) {
             isVisible = visible;
             if (myMap != null) {
-                myMap.fireMapChanged();
+                myMap.fireMapChanged(MapChangedEvent.Type.LAYERS);
             }
         }
     }
@@ -291,7 +293,7 @@ public abstract class MapLayer implements Cloneable
      *
      * @see MapLayer#setLocked(boolean)
      */
-    public boolean getLocked() {
+    public boolean isLocked() {
         return bLocked;
     }
 
@@ -314,6 +316,6 @@ public abstract class MapLayer implements Cloneable
     }
 
     public boolean canEdit() {
-        return !getLocked() && isVisible();
+        return !isLocked() && isVisible();
     }
 }

@@ -228,23 +228,6 @@ public abstract class MapView extends JPanel implements Scrollable
             }
         }
 
-        if (!getMode(PF_NOSPECIAL)) {
-            li = myMap.getLayersSpecial();
-
-            while (li.hasNext()) {
-                layer = (MapLayer) li.next();
-                if (layer.isVisible()) {
-                    if (layer instanceof SelectionLayer) {
-                        g2d.setComposite(AlphaComposite.getInstance(
-                                    AlphaComposite.SRC_ATOP, 0.3f));
-                        g2d.setColor(
-                                ((SelectionLayer)layer).getHighlightColor());
-                    }
-                    paintLayer(g2d, (TileLayer)layer, currentZoom);
-                }
-            }
-        }
-
         // Grid color (also used for coordinates)
         try {
             String colorString = conf.getValue("tiled.grid.color");

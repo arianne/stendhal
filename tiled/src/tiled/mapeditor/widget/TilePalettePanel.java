@@ -53,21 +53,20 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
   /** the current endpoint of the drag operation */
   private Point currentDragPoint;
   
-  /** */
+  /** some cached tile properties*/
   private int twidth;
   private int theight;
-
   private int tilesPerRow;
 
 
-
-
-  public TilePalettePanel()
+  public TilePalettePanel(TileSet set)
   {
+    this.tileset = set;
     tileSelectionListeners = new EventListenerList();
     selectedTiles = new ArrayList<Tile>();
     selectedBrush = new MultiTileBrush();
-
+    refreshTileProperties();
+    
     addMouseListener(this);
     addMouseMotionListener(this);
   }
@@ -92,33 +91,30 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
   protected void fireTileSelectionEvent(List<Tile> selectedTiles, Brush brush)
   {
     TileSelectionListener[] listeners = tileSelectionListeners.getListeners(TileSelectionListener.class);
-    TileSelectionEvent event = null;
+    if (listeners.length == 0)
+      return;
+
+    TileSelectionEvent event = new TileSelectionEvent(this, new ArrayList<Tile>(selectedTiles), brush);
 
     for (TileSelectionListener listener : listeners)
     {
-      if (event == null)
-      {
-        event = new TileSelectionEvent(this, new ArrayList<Tile>(selectedTiles), brush);
-      }
       listener.tileSelected(event);
     }
   }
 
-  /**
-   * Change the tilesets displayed by this palette panel.
-   */
-  public void setTileset(TileSet set)
-  {
-    tileset = set;
-    selectedTiles.clear();
-    refreshTileProperties();
-    setSize(getPreferredSize());
-    repaint();
-  }
+//  /**
+//   * Change the tilesets displayed by this palette panel.
+//   */
+//  public void setTileset(TileSet set)
+//  {
+//    tileset = set;
+//    selectedTiles.clear();
+//    refreshTileProperties();
+//    setSize(getPreferredSize());
+//    repaint();
+//  }
   
-  /**
-   * 
-   */
+  /** calculates some tile properties */
   private void refreshTileProperties()
   {
     twidth = tileset.getStandardWidth() + 1;
@@ -174,11 +170,8 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
     if (tileset != null)
     {
       // Draw the tiles
-//      twidth = tileset.getStandardWidth() + 1;
-//      maxHeight = tileset.getTileHeightMax() + 1;
       int width = getWidth() - twidth;
 
-//      int tilesPerRow = tileset.getPreferredTilesPerRow();
       if (tilesPerRow > 0)
       {
         width = tilesPerRow * twidth - 1;
@@ -205,7 +198,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
       }
       // draw selected tiles
       g.setColor(Color.YELLOW);
-      
+
       for (Tile tile : selectedTiles)
       {
         int id = tile.getId();

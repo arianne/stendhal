@@ -13,14 +13,17 @@
 * properly implemented builders
 * refactored mapview system
 * refactored action system
-* playing around with creating custom brushes
+* support for custom brushes (single and multilayer)
 
 Broken things:
 * some undo features
+* pour
 * grid/coordinate map view (won't fix this)
 * save as image
 * select all/none/invert
 
+Todo:
+* Save custom brushes in map (invent a new map file format?)
 
 0.5.2 - TBD (+ means planned change)
 

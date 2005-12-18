@@ -148,15 +148,15 @@ public class MultilayerPlane implements Iterable<MapLayer>
   /**
    * Returns the layer at the specified index.
    * 
-   * @param i
+   * @param index
    *          the index of the layer to return
    * @return the layer at the specified index, or null if the index is out of
    *         bounds
    */
-  public MapLayer getLayer(int i)
+  public MapLayer getLayer(int index)
   {
-    if (i >= 0 || i < layers.size())
-      return layers.get(i);
+    if (index >= 0 || index < layers.size())
+      return layers.get(index);
 
     return null;
   }

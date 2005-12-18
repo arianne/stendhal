@@ -63,6 +63,7 @@ public class MultiTileBrush extends AbstractBrush
     }
   }
   
+  /** returns the bounds of the brush in tile coordinates */
   public Rectangle getBounds()
   {
     if (cachedBounds == null)

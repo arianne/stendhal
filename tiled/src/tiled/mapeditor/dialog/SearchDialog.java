@@ -151,7 +151,7 @@ public class SearchDialog extends JDialog implements ActionListener
         String command = e.getActionCommand();
 
         if (command.equalsIgnoreCase("close")) {
-            myMap.removeLayerSpecial(sl);
+//            myMap.removeLayerSpecial(sl);
             this.dispose();
         } else if (command.equalsIgnoreCase("find")) {
             if (searchCBox.getSelectedItem() instanceof Tile) {
@@ -159,7 +159,7 @@ public class SearchDialog extends JDialog implements ActionListener
             }
         } else if (command.equalsIgnoreCase("find all")) {
             if (sl != null) {
-                myMap.removeLayerSpecial(sl);
+//                myMap.removeLayerSpecial(sl);
             }
 
             sl = new SelectionLayer(myMap.getWidth(), myMap.getHeight());
@@ -177,8 +177,8 @@ public class SearchDialog extends JDialog implements ActionListener
                     }
                 }
             }
-            myMap.addLayerSpecial(sl);
-            myMap.touch();
+//            myMap.addLayerSpecial(sl);
+//            myMap.touch();
 
         } else if (command.equalsIgnoreCase("replace all")) {
             if (!(searchCBox.getSelectedItem() instanceof TileSet) && !(replaceCBox.getSelectedItem() instanceof TileSet))
@@ -219,15 +219,15 @@ public class SearchDialog extends JDialog implements ActionListener
                 ((TileLayer)layer).replaceTile(f,r);
             }
         }
-        myMap.touch();
+//        myMap.touch();
     }
 
     private void find(Tile f) {
         boolean bFound = false;
 
         if (sl != null) {
-            myMap.removeLayerSpecial(sl);
-            myMap.touch();
+//            myMap.removeLayerSpecial(sl);
+//            myMap.touch();
         }
 
         sl = new SelectionLayer(myMap.getWidth(), myMap.getHeight());
@@ -260,9 +260,9 @@ public class SearchDialog extends JDialog implements ActionListener
             }
         }
 
-        if (bFound) {
-            myMap.addLayerSpecial(sl);
-            myMap.touch();
-        }
+//        if (bFound) {
+//            myMap.addLayerSpecial(sl);
+//            myMap.touch();
+//        }
     }
 }

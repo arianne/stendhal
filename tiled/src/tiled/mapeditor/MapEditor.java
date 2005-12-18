@@ -34,7 +34,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -55,7 +54,6 @@ import tiled.core.MapLayer;
 import tiled.core.ObjectGroup;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
-import tiled.core.TileSet;
 import tiled.io.MapHelper;
 import tiled.io.MapReader;
 import tiled.io.MapWriter;
@@ -121,7 +119,6 @@ public class MapEditor implements ActionListener, MouseListener,
   boolean                     bMouseIsDown     = false;
 
   private List<Point>         selectedTiles;
-  private List<Tile>          currentTiles;
   public Map                  currentMap;
   private Brush               currentBrush;
   public Builder              currentBuilder;
@@ -182,6 +179,7 @@ public class MapEditor implements ActionListener, MouseListener,
   public Action               duplicateLayerAction;
   public Action               moveLayerUpAction;
   public Action               moveLayerDownAction;
+  public Action               selectBrushAction;
 
   public MapEditor()
   {
@@ -235,6 +233,7 @@ public class MapEditor implements ActionListener, MouseListener,
     duplicateLayerAction = new DuplicateLayerAction(this);
     moveLayerUpAction = new MoveLayerUpAction(this);
     moveLayerDownAction = new MoveLayerDownAction(this);
+    selectBrushAction = new SelectBrushAction(this);
 
     // Create our frame
     appFrame = new JFrame("Stendhal Mapeditor");
@@ -275,21 +274,18 @@ public class MapEditor implements ActionListener, MouseListener,
     statusBar = new StatusBar();
 
     // minimap needs the mapScrollPane
-    mapScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    mapScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     layerEditPanel = new LayerEditPanel(this, mapEventAdapter);
 
     mapEditPanel = new MapEditPanel(this);
     mapEditPanel.setMinimapPanel(layerEditPanel.getMiniMap());
     mapScrollPane.setViewportView(mapEditPanel);
 
-    JSplitPane mainSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, false,
-        mapScrollPane, layerEditPanel);
+    JSplitPane mainSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, false,mapScrollPane, layerEditPanel);
     mainSplit.setResizeWeight(1.0);
 
     tilePalettePanel = new TilesetChooserTabbedPane(this);
-    JSplitPane baseSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false,
-        mainSplit, tilePalettePanel);
+    JSplitPane baseSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false,mainSplit, tilePalettePanel);
     baseSplit.setOneTouchExpandable(true);
     baseSplit.setResizeWeight(0.9);
 
@@ -323,10 +319,6 @@ public class MapEditor implements ActionListener, MouseListener,
   {
     layerEditPanel.setMap(currentLayer, currentMap);
     updateLayerOperations();
-    if (currentMap != null)
-    {
-      tilePalettePanel.setTilesets(currentMap.getTilesets());
-    }
   }
 
   public void updateLayerOperations()
@@ -673,20 +665,7 @@ public class MapEditor implements ActionListener, MouseListener,
   {
     String command = event.getActionCommand();
 
-    if (command.equals("Show Boundaries")
-        || command.equals("Hide Boundaries"))
-    {
-      // mapView.toggleMode(MapView.PF_BOUNDARYMODE);
-    } else if (command.equals("Show Grid"))
-    {
-      // Toggle grid
-      // mapView.toggleMode(MapView.PF_GRIDMODE);
-    } else if (command.equals("Show Coordinates"))
-    {
-      // Toggle coordinates
-      // mapView.toggleMode(MapView.PF_COORDINATES);
-      // mapView.repaint();
-    } else if (command.equals("Resize"))
+    if (command.equals("Resize"))
     {
       ResizeDialog rd = new ResizeDialog(appFrame, this);
       rd.setVisible(true);
@@ -734,21 +713,24 @@ public class MapEditor implements ActionListener, MouseListener,
 
   public void componentResized(ComponentEvent event)
   {
-    // This can currently only happen when the map changes size
-    // zoomLabel.setText("" + (int)(mapView.getZoom() * 100) + "%");
   }
 
   public void componentShown(ComponentEvent event)
   {
   }
 
+  /** map properties/fields changed */
   public void mapChanged(MapChangedEvent e)
   {
     if (e.getMap() == currentMap)
     {
-      // mapScrollPane.setViewportView(mapView);
       updateLayerTable();
-      // mapView.repaint();
+
+      // update the tilesets when they change
+      if (e.getType() == MapChangedEvent.Type.TILESETS)
+      {
+        tilePalettePanel.setTilesets(currentMap.getTilesets());
+      }
     }
   }
 
@@ -1195,7 +1177,7 @@ public class MapEditor implements ActionListener, MouseListener,
       mapView = null;
       setCurrentPointerState(PS_POINT);
       statusBar.clearLabels();
-      setCurrentTiles((List<Tile>) null);
+//      setCurrentTiles((List<Tile>) null);
       mapEditPanel.setMapView(null);
       currentBuilder = null;
     } else
@@ -1208,19 +1190,6 @@ public class MapEditor implements ActionListener, MouseListener,
       setCurrentLayer(0);
 
       currentMap.addMapChangeListener(this);
-
-      // mainMenu.setShowGrid(mapView.getMode(MapView.PF_GRIDMODE));
-      // mainMenu.setShowCoordinates(mapView.getMode(MapView.PF_GRIDMODE));
-
-      List<TileSet> tilesets = currentMap.getTilesets();
-      if (tilesets.size() > 0)
-      {
-        TileSet first = (TileSet) tilesets.get(0);
-        setCurrentTiles(Arrays.asList(new Tile[] {first.getFirstTile()}));
-      } else
-      {
-        setCurrentTiles((List<Tile>) null);
-      }
       statusBar.setMap(currentMap);
       statusBar.setZoom(mapEditPanel.getMapView().getScale());
       
@@ -1232,6 +1201,7 @@ public class MapEditor implements ActionListener, MouseListener,
 
     undoStack.discardAllEdits();
     updateLayerTable();
+    tilePalettePanel.setMap(currentMap);
     updateTitle();
     updateHistory();
   }
@@ -1245,16 +1215,6 @@ public class MapEditor implements ActionListener, MouseListener,
       currentBuilder.setStartLayer(index);
     }
   }
-
-  /**
-   * Changes the currently selected tiles.
-   * 
-   * @param tiles list of currently selected tiles
-   */
-  public void setCurrentTiles(List<Tile> tiles)
-  {
-    currentTiles = tiles;
-  }
   
   /**
    * Changes the currently selected tiles from an TileSelectionEvent
@@ -1266,7 +1226,6 @@ public class MapEditor implements ActionListener, MouseListener,
     List<Tile> tiles = e.getTiles();
     if (tiles != null)
     {
-      setCurrentTiles(tiles);
       setBrush(e.getBrush());
     }
   }
@@ -1329,6 +1288,7 @@ public class MapEditor implements ActionListener, MouseListener,
   /**
    * sets the selected tiles. The points are in tile coordinates
    * @param tiles the selected tiles
+   * @param selectionRectangle the selection rectangle in pixel coordinates
    */
   public void setSelectedTiles(List<Point> tiles)
   {
@@ -1347,7 +1307,7 @@ public class MapEditor implements ActionListener, MouseListener,
     }
     return selectedTiles;
   }
-
+  
   /** clears the selected tiles list */
   public void clearSelectedTiles()
   {

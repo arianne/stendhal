@@ -44,7 +44,7 @@ public class BrushBrowser extends JPanel
     add(new JButton(mapEditor.createMultiLayerBrushAction));
     
     JScrollPane brushListScrollPane = new JScrollPane();
-    brushList = new BrushList();
+    brushList = new BrushList(mapEditor);
     brushListScrollPane.getViewport().setView(brushList);
     
     add(brushListScrollPane);

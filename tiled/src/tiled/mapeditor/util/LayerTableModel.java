@@ -74,7 +74,7 @@ public class LayerTableModel extends AbstractTableModel
           switch (col)
           {
             case 0:
-              return new Boolean(layer.getLocked() || !layer.isVisible());
+              return new Boolean(layer.isLocked() || !layer.isVisible());
             case 1:
               return new Boolean(layer.isVisible());
             case 2:

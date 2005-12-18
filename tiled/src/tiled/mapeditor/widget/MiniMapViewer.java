@@ -19,6 +19,9 @@
 package tiled.mapeditor.widget;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -26,8 +29,14 @@ import javax.swing.JScrollPane;
 import tiled.view.MapView;
 
 
-
-public class MiniMapViewer extends JPanel
+/**
+ * This is the minimap panel.
+ * TODO: There are some ugly visual artefacts when scrolling the minimap.
+ *        This is due to lazy repaints/dirty rectangle handling 
+ * 
+ * @author mtotz
+ */
+public class MiniMapViewer extends JPanel implements MouseListener, MouseMotionListener
 {
   private static final long serialVersionUID = -1243207988158851225L;
 
@@ -38,10 +47,12 @@ public class MiniMapViewer extends JPanel
 
   /** last viewpoint in the map editing panel */
   private Point lastViewPoint;
-  
+
   public MiniMapViewer()
   {
     setSize(MAX_HEIGHT, MAX_HEIGHT);
+    addMouseListener(this);
+    addMouseMotionListener(this);
   }
 
   public void setView(MapView view)
@@ -111,4 +122,42 @@ public class MiniMapViewer extends JPanel
       }
     }
   }
+  
+  /** scrolls the viewport of the map edit panel to this point */
+  private void scrollMainViewport(Point p)
+  {
+    if (p == null)
+      return;
+    
+    if (mapView != null && mapScrollPane != null)
+    {
+      double scale = mapView.getScale() / mapView.getMinimapScale();
+      
+      p.x *= scale;
+      p.y *= scale;
+      
+      Dimension size = mapScrollPane.getViewport().getExtentSize();
+      Point p2 = new Point(p.x - (size.width / 2), p.y - (size.height / 2));
+      
+      mapScrollPane.getViewport().setViewPosition(p2);
+      repaint();
+    }
+    
+  }
+
+  public void mouseClicked(MouseEvent e)
+  {
+    scrollMainViewport(e.getPoint());
+
+  }
+  public void mouseDragged(MouseEvent e)
+  {
+    scrollMainViewport(e.getPoint());
+  }
+
+  public void mousePressed(MouseEvent e)   { }
+  public void mouseReleased(MouseEvent e)  { }
+  public void mouseEntered(MouseEvent e)   { }
+  public void mouseExited(MouseEvent e)    { }
+  public void mouseMoved(MouseEvent e)     { }
 }
