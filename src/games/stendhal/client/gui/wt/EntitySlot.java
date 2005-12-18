@@ -165,12 +165,15 @@ public class EntitySlot extends Panel implements DropTarget
   /** right mouse button was clicked */
   public synchronized boolean onMouseRightClick(Point p)
   {
-    // create the context menu
-    StendhalClient client = StendhalClient.get();
-    Entity entity = gameObjects.entityType(content);
-    CommandList list = new CommandList(getName(),entity.offeredActions(),0,0,100,100,client,entity);
-    list.setContext(parent.getID().getObjectID(),getName());
-    setContextMenu(list);
+    if (content != null)
+    {
+      // create the context menu
+      StendhalClient client = StendhalClient.get();
+      Entity entity = gameObjects.entityType(content);
+      CommandList list = new CommandList(getName(),entity.offeredActions(),0,0,100,100,client,entity);
+      list.setContext(parent.getID().getObjectID(),getName());
+      setContextMenu(list);
+    }
     return true;
   }
 
