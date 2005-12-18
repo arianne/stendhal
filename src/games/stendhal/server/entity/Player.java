@@ -15,17 +15,20 @@ package games.stendhal.server.entity;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Food;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.*;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -418,7 +421,10 @@ public class Player extends RPEntity
   public void removeSheep(Sheep sheep)
     {
     Log4J.startMethod(logger, "removeSheep");
-    remove("sheep");
+    if (has("sheep"))
+      {
+      remove("sheep");
+      }
 
     rp.removeNPC(sheep);
 

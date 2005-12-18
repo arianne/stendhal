@@ -26,6 +26,7 @@ import games.stendhal.server.rule.EntityManager;
 import games.stendhal.server.entity.npc.NPC;
 
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -147,21 +148,28 @@ public class Creature extends NPC
     super();
     put("type","creature");
     createPath();
+    dropsItems = new ArrayList<Creature.DropItem>();
     }
 
   /** creates a new creature with the given properties
    */
   public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems) throws AttributeNotFoundException
     {
+    /*
     super();
     put("type","creature");
     createPath();
+    */
+    this();
     
     this.speed = speed;
     this.width = width;
     this.height = height;
     
-    this.dropsItems=dropItems;
+    if (dropItems != null)
+    {
+      this.dropsItems = dropItems;
+    }
 
     put("class",clazz);
     put("subclass",subclass);
