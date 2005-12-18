@@ -560,6 +560,12 @@ public class Creature extends NPC
       if(dropped.probability>=probability)
         {        
         Item item=manager.getItem(dropped.name);
+        if(item==null)
+          {
+          logger.error("Unable to create item: "+dropped.name);
+          continue;
+          }
+          
         if(dropped.min==dropped.max)
           {
           list.add(item);
