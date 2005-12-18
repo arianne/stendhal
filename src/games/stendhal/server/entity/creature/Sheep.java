@@ -116,7 +116,14 @@ public class Sheep extends Creature
     {
     if(owner!=null)
       {
-      owner.removeSheep(this);
+      if(owner.hasSheep())
+        {
+        owner.removeSheep(this);
+        }
+      else
+        {        
+        logger.warn("INCOHERENCE: Sheep "+this+" isn't owned by "+owner");
+        }
       }
     else
       {

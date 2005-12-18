@@ -421,9 +421,13 @@ public class Player extends RPEntity
   public void removeSheep(Sheep sheep)
     {
     Log4J.startMethod(logger, "removeSheep");
-    if (has("sheep"))
+    if(has("sheep"))
       {
       remove("sheep");
+      }
+    else
+      {
+      logger.warn("Called removeSheep but player has not sheep: "+this);      
       }
 
     rp.removeNPC(sheep);
