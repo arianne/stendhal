@@ -81,9 +81,9 @@ public class Equipment extends ActionListener
   
   /** constuctor */
   public Equipment()
-  {
+    {
     validContainerClassesList = Arrays.asList(validContainerClasses);
-  }
+    }
 
   public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
@@ -99,39 +99,32 @@ public class Equipment extends ActionListener
   
   /** callback for the equip action */
   private void onEquip(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
-  {
+    {
     double MAXDISTANCE = 0.25;
 
     Log4J.startMethod(logger,"equip");
 
-    String type = action.get(TYPE);
-    if (!type.equals("equip"))
-    {
-      logger.error("wrong type for action. is '"+type+"' and should be 'equip'");
-      return;
-    }
-    
     // get source and check it
     SourceObject source = new SourceObject(action,world,player);
     if (!source.isValid() || !source.checkDistance(player,MAXDISTANCE) || !source.checkClass(validContainerClassesList))
-    {
+      {
       // source is not valid
       return;
-    }
+      }
     
     // get destination and check it
     DestinationObject dest = new DestinationObject(action,world,player);
     if (!dest.isValid() || !dest.checkDistance(player,MAXDISTANCE) || !dest.checkClass(validContainerClassesList))
-    {
+      {
       // destination is not valid
       return;
-    }
+      }
     
     // looks good
     source.moveTo(dest,world);
     
     Log4J.finishMethod(logger,"equip");
-  }
+    }
 
   private void onDrop(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
@@ -239,7 +232,7 @@ public class Equipment extends ActionListener
       // base item must be there
       if (!action.has(BASE_ITEM))
       {
-        logger.debug("action does not have a base item. action: "+action);
+        logger.warn("action does not have a base item. action: "+action);
         return;
       }
 
@@ -260,10 +253,17 @@ public class Equipment extends ActionListener
         {
           // trying to remove an item from another player
           return;
-        }
-        
+        }        
         
         slot = action.get(BASE_SLOT);
+        
+        RPSlot baseSlot=parent.getSlot(slot);
+        
+        if(!baseSlot.has(baseItemId))
+          {
+          logger.warn("Base item("+parent+") doesn't containt item("+baseItemId+") on given slot("+slot+")");
+          return;
+          }
 
         base = (Entity) parent.getSlot(slot).get(baseItemId);
       }
@@ -283,9 +283,7 @@ public class Equipment extends ActionListener
       }
       
       removeFromWorld(world);
-      dest.addToWorld(base,world);
-
-      return false;
+      return dest.addToWorld(base,world);
     }
 
     /** returns true when this SourceObject is valid */
@@ -307,7 +305,7 @@ public class Equipment extends ActionListener
       {
         return true;
       }
-      logger.error("distance check failed "+other.distance(checker));
+      logger.debug("distance check failed "+other.distance(checker));
       return false;
     }
     
@@ -334,6 +332,7 @@ public class Equipment extends ActionListener
         if (!isCorrectClass(validClasses,parent))
         {
           logger.error("parent is the wrong class "+parent.getClass().getName());
+          return false;
         }
       }
       return true;
@@ -449,7 +448,9 @@ public class Equipment extends ActionListener
         if (parent.getID().equals(entity.getID()))
         {
           // tried to add the item to itself
+          return false;
         }
+        
         RPSlot rpslot = parent.getSlot(slot);
 
         // check if the item can be merged with one already in the slot
@@ -483,6 +484,7 @@ public class Equipment extends ActionListener
           rpslot.assignValidID(entity);
           rpslot.add(entity);
         }
+        
         world.modify(parent);
       }
       else
