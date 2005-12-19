@@ -175,6 +175,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   public void removeCorpse(Corpse corpse)
     {
+    for(RPSlot slot: corpse.slots())
+      {
+      for(RPObject object: slot)
+        {
+        if(object instanceof Corpse)
+          {
+          removeCorpse((Corpse)object);
+          }
+        }
+      }
+      
     corpsesToRemove.add(corpse);
     }
 

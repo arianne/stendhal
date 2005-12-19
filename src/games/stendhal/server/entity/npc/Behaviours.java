@@ -57,16 +57,18 @@ public class Behaviours
     public SellerBehaviour(Map<String,Integer> items)
       {
       this.items=items;
-      
-      EntityManager entityMan=world.getRuleManager().getEntityManager();
-      
-      for(String item: items.keySet())
-        {
-        if(!entityMan.isItem(item))
-          {
-          logger.warn("Seller trying to sell an unexisting item: "+item);
-          }
-        }
+
+// TODO: Enable this check correctly after 0.40 release      
+//
+//      EntityManager entityMan=world.getRuleManager().getEntityManager();
+//      
+//      for(String item: items.keySet())
+//        {
+//        if(!entityMan.isItem(item))
+//          {
+//          logger.warn("Seller trying to sell an unexisting item: "+item);
+//          }
+//        }
       }
       
     public Set<String> getItems()
