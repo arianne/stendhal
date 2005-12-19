@@ -104,6 +104,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
     {
       button.moveTo(10, y);
       y += 40;
+      button.setPressed(true);
       button.registerClickListener(this);
       addChild(button);
     }
