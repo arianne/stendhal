@@ -364,6 +364,15 @@ public class Equipment extends ActionListener
       {
         // get base item and slot
         parent = getEntityFromId(player,world,action.getInt(TARGET_OBJECT));
+        
+        // check slot
+        if (parent == null)
+        {
+          logger.warn("cannot find target entity for action "+action);
+          // Not valid...
+          return;
+        }
+        
         slot = action.get(TARGET_SLOT);
 
         // is the container a player and not the current one?
@@ -403,6 +412,13 @@ public class Equipment extends ActionListener
       {
         if (parent.getSlot(slot).isFull())
         {
+          return false;
+        }
+        
+        if (parent.getID().equals(entity.getID()))
+        {
+          logger.warn("tried to put an item into itself");
+          // tried to put the item in itself
           return false;
         }
       }
@@ -447,6 +463,7 @@ public class Equipment extends ActionListener
         // drop the entity into a slot
         if (parent.getID().equals(entity.getID()))
         {
+          logger.warn("tried to put an item into itself");
           // tried to add the item to itself
           return false;
         }
