@@ -29,6 +29,10 @@ public class Debug
   /** should the server send debug information about creature ai and pathfinding
    * to the client? Note: CREATRUES_DEBUG_CLIENT should be enabled too */
   public static final boolean CREATRUES_DEBUG_SERVER = false;
+
+  /** This emulates perception losses. Never make this true and commit it to
+   * CVS */
+  public static final boolean EMULATE_PERCEPTION_LOSS = false;
   
   
   /** no instance */

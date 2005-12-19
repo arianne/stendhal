@@ -16,6 +16,7 @@ import games.stendhal.client.gui.GameLogDialog;
 import games.stendhal.client.gui.InGameGUI;
 import games.stendhal.client.gui.OutfitDialog;
 import games.stendhal.client.gui.wt.core.WindowManager;
+import games.stendhal.common.Debug;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -30,6 +31,7 @@ import marauroa.client.net.DefaultPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
+import marauroa.common.game.Perception;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.MessageS2CPerception;
 import marauroa.common.net.TransferContent;
@@ -243,11 +245,11 @@ public class StendhalClient extends ariannexp
         screen.move(0,0);        
         }
         
-//      /** BUG/FEATURE: This code emulate a perception loss. */
-//      if(message.getTypePerception()!=1 && message.getPerceptionTimestamp()%30==0)
-//        {
-//        return;
-//        }
+      /** This code emulate a perception loss. */
+      if(Debug.EMULATE_PERCEPTION_LOSS && message.getTypePerception() != Perception.SYNC && (message.getPerceptionTimestamp() % 30) == 0)
+        {
+        return;
+        }
 
       handler.apply(message,world_objects);      
       }
