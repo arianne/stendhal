@@ -186,13 +186,19 @@ public abstract class SpeakerNPC extends NPC
       tell(speaker, speaker.get("text"));
       }
 
-    if(attending!=null && attending.distance(this)>8*8)
+    if(talking() && attending!=null && attending.distance(this)>8*8)
       {
       // If the player is to far away, we force him to say bye to NPC :) 
       tell(attending,"bye");
+      attending=null;
       }
      
     world.modify(this);
+    }
+  
+  public boolean talking()
+    {
+    return actualState!=0;
     }
 
   abstract public static class ChatAction
