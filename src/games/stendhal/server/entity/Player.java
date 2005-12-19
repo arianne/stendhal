@@ -321,7 +321,7 @@ public class Player extends RPEntity
       slot.add(quests);
       }          
 
-    player.setPrivateText("This release is EXPERIMENTAL. We are trying new RP system. Please report problems, suggestions and bugs.");
+    player.setPrivateText("This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne");
 
     logger.debug("Finally player is :"+player);
     return player;
