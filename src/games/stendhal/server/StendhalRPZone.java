@@ -16,7 +16,6 @@ import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.SheepFood;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.creature.Creature;
