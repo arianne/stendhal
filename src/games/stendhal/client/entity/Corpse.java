@@ -44,7 +44,10 @@ public class Corpse extends PassiveEntity
     {
     super.modifyAdded(object,changes);
     
-    clazz=changes.get("class");
+    if (changes.has("class"))
+      {
+      clazz=changes.get("class");
+      }
     
     if(changes.has("name"))
       {
