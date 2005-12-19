@@ -201,6 +201,21 @@ public abstract class RPEntity extends AnimatedEntity
         }
       }
 
+    if(changes.has("hp") && object.has("hp"))
+      {
+      if(distance(client.getPlayer())<15*15)
+        {
+        int healing=changes.getInt("hp") - object.getInt("hp");
+        if(healing>0)
+          {
+          damageSprites.add(GameScreen.get().createString("+"+Integer.toString(healing),Color.green));
+          damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+ 
+          client.addEventLine(getName() + " heals " + healing + " HP points." , Color.green);
+          }
+        }
+      }
+
     if(changes.has("level") && object.has("level"))
       {
       if(getID().equals(client.getPlayer().getID()) || distance(client.getPlayer())<15*15)

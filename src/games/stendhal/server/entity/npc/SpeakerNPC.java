@@ -91,7 +91,7 @@ public abstract class SpeakerNPC extends NPC
   
   // Timeout control value
   private long lastMessageTurn;
-  private static long TIMEOUT_PLAYER_CHAT=100; // 30 seconds at 300ms.
+  private static long TIMEOUT_PLAYER_CHAT=60; // 20 seconds at 300ms.
   
   // Attended players
   private Player attending;
@@ -186,6 +186,12 @@ public abstract class SpeakerNPC extends NPC
       tell(speaker, speaker.get("text"));
       }
 
+    if(attending!=null && attending.distance(this)>8*8)
+      {
+      // If the player is to far away, we force him to say bye to NPC :) 
+      tell(attending,"bye");
+      }
+     
     world.modify(this);
     }
 
