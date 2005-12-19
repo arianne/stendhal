@@ -15,7 +15,7 @@ public class Afterlife implements IContent
     portal.setx(30);
     portal.sety(6);
     portal.setNumber(0);
-    portal.setDestination("0_semos_city",0);
+    portal.setDestination("0_semos_city",1);
     zone.add(portal);
     zone.addPortal(portal);
 
@@ -24,7 +24,7 @@ public class Afterlife implements IContent
     portal.setx(31);
     portal.sety(6);
     portal.setNumber(0);
-    portal.setDestination("0_semos_city",0);
+    portal.setDestination("0_semos_city",1);
     zone.add(portal);
     zone.addPortal(portal);
 
@@ -33,7 +33,7 @@ public class Afterlife implements IContent
     portal.setx(32);
     portal.sety(6);
     portal.setNumber(0);
-    portal.setDestination("0_semos_city",0);
+    portal.setDestination("0_semos_city",1);
     zone.add(portal);
     zone.addPortal(portal);
     

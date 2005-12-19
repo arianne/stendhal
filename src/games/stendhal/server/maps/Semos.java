@@ -11,6 +11,7 @@ import games.stendhal.server.entity.Door;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
@@ -198,6 +199,14 @@ public class Semos implements IContent
     portal.setDestination("int_semos_tavern",0);
     zone.add(portal);
     zone.addPortal(portal);
+    
+    portal=new OneWayPortal();
+    zone.assignRPObjectID(portal);
+    portal.setx(12);
+    portal.sety(49);
+    portal.setNumber(1);
+    zone.add(portal);
+    zone.addPortal(portal);    
 
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
