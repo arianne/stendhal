@@ -106,17 +106,17 @@ public class Semos implements IContent
         {        
         Map<String,Integer> sellitems=new HashMap<String,Integer>();
         sellitems.put("knife",10);
-        sellitems.put("small axe",10);
+        sellitems.put("small_axe",10);
         sellitems.put("club",10);
-        sellitems.put("wooden shield",15);
+        sellitems.put("wooden_shield",15);
         sellitems.put("dress",20);
-        sellitems.put("leather helmet",20);
-        sellitems.put("leather legs",30);
+        sellitems.put("leather_helmet",20);
+        sellitems.put("leather_legs",30);
 
         Map<String,Integer> buyitems=new HashMap<String,Integer>();
-        buyitems.put("short sword",15);
+        buyitems.put("short_sword",15);
         buyitems.put("sword",60);
-        buyitems.put("studded shield",20);
+        buyitems.put("studded_shield",20);
         
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"Shhh! I sell adventurers stuff.");

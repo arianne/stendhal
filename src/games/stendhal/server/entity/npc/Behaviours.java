@@ -147,6 +147,12 @@ public class Behaviours
       EntityManager manager = world.getRuleManager().getEntityManager();
        
       Item item=manager.getItem(itemName);
+      if(item==null)
+        {
+        logger.error("Trying to sell an unexisting item: "+itemName);
+        return false;
+        }
+        
       item.put("zoneid",player.get("zoneid"));
       IRPZone zone=world.getRPZone(player.getID());
       zone.assignRPObjectID(item);
