@@ -87,7 +87,7 @@ public class Equipment extends ActionListener
 
   public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
-    if(action.get("type").equals("equip"))
+    if(action.get(TYPE).equals("equip"))
       {
       onEquip(world,rules,player,action);
       }
@@ -293,7 +293,7 @@ public class Equipment extends ActionListener
       {
         return true;
       }
-      logger.error("source is not valid, base == null");
+      logger.debug("source is not valid, base == null");
       return false;
     }
     
@@ -331,7 +331,7 @@ public class Equipment extends ActionListener
       {
         if (!isCorrectClass(validClasses,parent))
         {
-          logger.error("parent is the wrong class "+parent.getClass().getName());
+          logger.debug("parent is the wrong class "+parent.getClass().getName());
           return false;
         }
       }
@@ -412,7 +412,35 @@ public class Equipment extends ActionListener
       {
         if (parent.getSlot(slot).isFull())
         {
-          return false;
+          boolean isStackable = false;
+          // is the entity stackable
+          if (entity instanceof Stackable)
+          {
+            Stackable stackEntity = (Stackable) entity;
+            // now check if it can be stacked on top of another item
+            Iterator<RPObject> it = parent.getSlot(slot).iterator();
+            while (it.hasNext())
+            {
+              RPObject object = it.next();
+              if (object instanceof Stackable)
+              {
+                // found another stackable
+                Stackable other = (Stackable) object;
+                if (other.isStackable(stackEntity))
+                {
+                  // other is the same type...merge them
+                  isStackable = true;
+                }
+              }
+            }
+          }
+          
+          if (!isStackable)
+          {
+            // entity cannot be stacked on top of another...
+            // so the equip is invalid
+            return false;
+          }
         }
         
         if (parent.getID().equals(entity.getID()))
