@@ -110,6 +110,14 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>stendhal-0.40.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.40.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\log4j.properties</path>
 				<source>true</source>
 			</fileitem>
