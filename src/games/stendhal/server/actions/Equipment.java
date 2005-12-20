@@ -449,22 +449,25 @@ public class Equipment extends ActionListener
         // various levels of indirection)
         if (rpslot.hasAsParent(entity.getID()))
         {
-          logger.warn("tried to put item "+entity.getID()+" into itself");
+          logger.warn("tried to put item "+entity.getID()+" into itself, equip rejected");
           return false;
         }
         
-        // check the maximum level of contained elements 
-        if (entity.slots().size() > 0 && rpslot.getContainedDepth() > MAX_CONTAINED_DEPTH)
+        // not very accurate...the containment level of this slot
+        int depth = rpslot.getContainedDepth();
+
+        // count items in source item (if it is an container) 
+        for (RPSlot sourceSlot : entity.slots())
         {
-          // this will never happen, as the client UI does not support opening
-          // contained containers
-          logger.warn("maximum contained depth reached");
+          depth += sourceSlot.getNumberOfContainedItems();
+        }
+
+        // check the maximum level of contained elements 
+        if (entity.slots().size() > 0 &&  depth > MAX_CONTAINED_DEPTH)
+        {
+          logger.warn("maximum contained depth (is: "+depth+" max: "+MAX_CONTAINED_DEPTH+") reached, equip rejected");
           return false;
         }
-        
-        // TODO: still one to do: check (slot depth in entity)+(slot depth in
-        // target) < MAX_CONTAINED_DEPTH
-        
       }
       else
       {
