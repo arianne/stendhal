@@ -252,6 +252,8 @@ public class CreateAccountDialog extends JDialog {
                         progressBar.cancel();
                         setVisible(true);
                         JOptionPane.showMessageDialog(frame, result, "Creata account status", JOptionPane.ERROR_MESSAGE);
+
+                        return;
                     } else {
                         progressBar.step();
                         progressBar.finish();
