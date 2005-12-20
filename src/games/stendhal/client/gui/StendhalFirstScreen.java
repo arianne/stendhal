@@ -97,7 +97,8 @@ public class StendhalFirstScreen extends JFrame {
         createAccountButton.setEnabled(true);
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(StendhalFirstScreen.this, "To create an account for Stendhal please visit \n http://stendhal.ombres.ambre.net" ,"Create account",JOptionPane.INFORMATION_MESSAGE);
+                new CreateAccountDialog(StendhalFirstScreen.this, client);
+                //JOptionPane.showMessageDialog(StendhalFirstScreen.this, "To create an account for Stendhal please visit \n http://stendhal.ombres.ambre.net" ,"Create account",JOptionPane.INFORMATION_MESSAGE);
             }
             
         });

@@ -80,7 +80,7 @@ public class Corpse extends PassiveEntity
       
       if(killer.has("name"))
         {
-        put("killer",killer.getName());
+        put("killer",killer.get("name"));
         }
       else if(killer.has("subclass"))
         {
@@ -95,6 +95,12 @@ public class Corpse extends PassiveEntity
         put("killer",killer.get("type"));
         }
       }  
+    
+    if(killer==null && has("killer"))
+      {
+      logger.error("Corpse: ("+entity+") with null killer: ("+killer+")");
+      remove("killer");
+      }
 
     // Corpses are 1,1 while other entities are 1.5,2.
     // This fix the problem
@@ -161,7 +167,20 @@ public class Corpse extends PassiveEntity
       if(isContained())
         {
         getContainerSlot().remove(this.getID());
-        world.modify(getContainer());
+        // We modify the base container if the object change.
+        RPObject base=getContainer();
+        while(base.isContained())
+          {
+          if(base==base.getContainer())
+            {
+            logger.fatal("A corpse is contained by itself.");
+            break;
+            }
+            
+          base=base.getContainer();
+          }
+          
+        world.modify(base);
         }
       else
         {

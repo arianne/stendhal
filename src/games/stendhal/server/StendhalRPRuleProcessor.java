@@ -152,6 +152,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       }
     }
 
+  public boolean createAccount(String username, String password, String email)
+    {
+    stendhalcreateaccount account=new stendhalcreateaccount();
+    return account.execute(username, password, email);
+    }
 
   public void addNPC(NPC npc)
     {

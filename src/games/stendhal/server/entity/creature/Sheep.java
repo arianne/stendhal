@@ -32,8 +32,8 @@ public class Sheep extends Creature
   final public int MAX_WEIGHT=100;
   
   final private static int HP=30;
-  final private static int ATK=0;
-  final private static int DEF=1;
+  final private static int ATK=5;
+  final private static int DEF=15;
   final private static int XP=0;
   
   private int weight;
@@ -212,7 +212,7 @@ public class Sheep extends Creature
     hungry++;
     SheepFood food=null;
     
-    if(hungry>100 && (food=getNearestFood(6))!=null)
+    if(hungry>50 && (food=getNearestFood(6))!=null)
       {
       if(nextto(food,0.25))
         {

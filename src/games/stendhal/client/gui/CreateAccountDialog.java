@@ -23,10 +23,10 @@ import games.stendhal.client.*;
 import marauroa.client.*;
 
 /**
- * Summary description for LoginDialog
+ * Summary description for CreateAccountDialog
  *
  */
-public class LoginDialog extends JDialog {
+public class CreateAccountDialog extends JDialog {
     private static final long serialVersionUID = 4436228792112530975L;
 
     // Variables declaration
@@ -34,14 +34,17 @@ public class LoginDialog extends JDialog {
     private JLabel serverLabel;
     private JLabel serverPortLabel;
     private JLabel passwordLabel;
-    private JCheckBox saveLoginBox;
+    private JLabel passwordretypeLabel;
+    private JLabel emailLabel;
     
     private JTextField usernameField;
     private JPasswordField passwordField;
+    private JPasswordField passwordretypeField;
+    private JTextField emailField;
     private JComboBox serverField;
     private JTextField serverPortField;
     
-    private JButton loginButton;
+    private JButton createAccountButton;
     
     private JPanel contentPane;
     
@@ -50,7 +53,7 @@ public class LoginDialog extends JDialog {
     
     private Frame frame;
     
-    public LoginDialog(Frame w, StendhalClient client) {
+    public CreateAccountDialog(Frame w, StendhalClient client) {
         super(w);
         this.client = client;
         frame = w;
@@ -69,19 +72,25 @@ public class LoginDialog extends JDialog {
      */
     private void initializeComponent() {
         serverLabel = new JLabel("Choose your Stendhal Server");
-        serverPortLabel = new JLabel("Choose your Server-port");
-        usernameLabel = new JLabel("Type your username");
-        passwordLabel = new JLabel("Type your password");
-        saveLoginBox = new JCheckBox("Remember login info");
-        usernameField = new JTextField();
-        passwordField = new JPasswordField();
         serverField = new JComboBox();
         serverField.setEditable(true);
+        serverPortLabel = new JLabel("Choose your Server-port");
         serverPortField = new JTextField("32160");
-        loginButton = new JButton();
+
+        usernameLabel = new JLabel("Type your username");
+        usernameField = new JTextField();
+
+        passwordLabel = new JLabel("Type your password");
+        passwordField = new JPasswordField();
+
+        passwordretypeLabel = new JLabel("Retype your password");
+        passwordretypeField = new JPasswordField();
+
+        emailLabel = new JLabel("Type your email");
+        emailField = new JTextField();
+
+        createAccountButton = new JButton();
         contentPane = (JPanel) this.getContentPane();
-        
-        StringTokenizer loginInfo = new StringTokenizer(getLoginInfo());
         
         //
         // serverField
@@ -92,26 +101,13 @@ public class LoginDialog extends JDialog {
         //
         // serverPortField
         //
-        if(loginInfo.countTokens() == 3) {
-            saveLoginBox.setSelected(true);
-            
-            serverField.setSelectedItem(loginInfo.nextToken());
-            //
-            // usernameField
-            //
-            usernameField.setText(loginInfo.nextToken());
-            //
-            // passwordField
-            //
-            passwordField.setText(loginInfo.nextToken());
-        }
         //
-        // loginButton
+        // createAccountButton
         //
-        loginButton.setText("Login to Server");
-        loginButton.addActionListener(new ActionListener() {
+        createAccountButton.setText("Create account");
+        createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                loginButton_actionPerformed(e, saveLoginBox.isSelected());
+                createAccountButton_actionPerformed(e, false);
             }
         });
         //
@@ -163,19 +159,33 @@ public class LoginDialog extends JDialog {
         c.gridx=0;
         c.gridy=4;
         c.fill = GridBagConstraints.NONE;
-        contentPane.add(saveLoginBox,c);
+        contentPane.add(passwordretypeLabel,c);
         c.gridx=1;
         c.gridy=4;
+        c.fill = GridBagConstraints.BOTH;
+        contentPane.add(passwordretypeField,c);
+        //row 5
+        c.gridx=0;
+        c.gridy=5;
+        c.fill = GridBagConstraints.NONE;
+        contentPane.add(emailLabel,c);
+        c.gridx=1;
+        c.gridy=5;
+        c.fill = GridBagConstraints.BOTH;
+        contentPane.add(emailField,c);
+        //row 6
+        c.gridx=1;
+        c.gridy=6;
         c.anchor = GridBagConstraints.CENTER;
         c.insets = new Insets(15, 4, 4, 4);
-        contentPane.add(loginButton,c);
+        contentPane.add(createAccountButton,c);
         
         //
-        // LoginDialog
+        // CreateAccountDialog
         //
-        this.setTitle("Login to Server");
+        this.setTitle("Create account");
         this.setResizable(false);
-        this.setSize(new Dimension(410, 205));
+        this.setSize(new Dimension(410, 275));
         this.setLocationRelativeTo(frame);
     }
 
@@ -187,16 +197,23 @@ public class LoginDialog extends JDialog {
 //        container.add(c);
 //    }
     
-    private void loginButton_actionPerformed(ActionEvent e, boolean saveLoginBoxStatus) {
+    private void createAccountButton_actionPerformed(ActionEvent e, boolean saveLoginBoxStatus) {
         final String username = usernameField.getText();
         final String password = new String(passwordField.getPassword());
+        final String passwordretype = new String(passwordField.getPassword());
+        
+        if(!password.equals(passwordretype))
+          {
+          JOptionPane.showMessageDialog(frame, "Password mismatch. Please retype", "Passwords mismatch", JOptionPane.WARNING_MESSAGE);
+          return;
+          }
+        
+        final String email = emailField.getText();
         final String server = (String) serverField.getSelectedItem();
         int port = 32160;
+        
         final int finalPort;//port couldnt be accessed from inner class
         final ProgressBar progressBar = new ProgressBar(frame);
-        
-        if(saveLoginBoxStatus)
-            saveLoginInfo(server, username, password);
         
         try {
             port = Integer.parseInt(serverPortField.getText());
@@ -227,6 +244,31 @@ public class LoginDialog extends JDialog {
                 }
                 
                 try {
+                    if (client.createAccount(username, password, email) == false) {
+                        String result = client.getEvent();
+                        if (result == null) {
+                            result = "Server is not available right now. Check it is online";
+                        }
+                        progressBar.cancel();
+                        setVisible(true);
+                        JOptionPane.showMessageDialog(frame, result, "Creata account status", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        progressBar.step();
+                        progressBar.finish();
+//                        try {//wait just long enough for progress bar to close
+//                            progressBar.m_run.join();
+//                        }catch (InterruptedException ie) {}
+                        
+//                        setVisible(false);
+//                        frame.setVisible(false);
+                    }
+                } catch (ariannexpTimeoutException ex) {
+                    progressBar.cancel();
+                    setVisible(true);
+                    JOptionPane.showMessageDialog(frame, "Can't connect to server. Server down?", "Create account status", JOptionPane.ERROR_MESSAGE);
+                }
+
+                try {
                     if (client.login(username, password) == false) {
                         String result = client.getEvent();
                         if (result == null) {
@@ -251,54 +293,13 @@ public class LoginDialog extends JDialog {
                     setVisible(true);
                     JOptionPane.showMessageDialog(frame, "Can't connect to server. Server down?", "Login status", JOptionPane.ERROR_MESSAGE);
                 }
+                
             }
         };
         m_connectionThread.start();
     }
     
-  /*
-   * Author: Da_MusH
-   * Description: Methods for saving and loading login information to disk.
-   *        These should probably make a separate class in the future,
-   *        but it will work for now.
-   *comment: Thegeneral has added encoding for password and username
-   */
-    
-    private void saveLoginInfo(String server, String usrName, String pwd) {
-        Encoder encode = new Encoder();
-        try {
-            File loginFile = new File("user.dat");
-            PrintWriter fos = new PrintWriter(loginFile);
-            
-            fos.print(encode.encode(server + " " + usrName + " " + pwd));
-            fos.close();
-        } catch (IOException ioex) {
-            JOptionPane.showMessageDialog(this, "Something went wrong when saving login information, nothing saved", "Login information save problem", JOptionPane.WARNING_MESSAGE);
-        }
-    }
-    
-    private String getLoginInfo() {
-        Encoder decode = new Encoder();
-        String loginLine = "";
-        
-        try {
-            FileReader fr = new FileReader("user.dat");
-            BufferedReader fin = new BufferedReader(fr);
-            
-            loginLine = decode.decode(fin.readLine());
-            if(loginLine == null)
-                loginLine = "no_data";
-            fin.close();
-        } catch (FileNotFoundException fnfe) {
-            loginLine = "no_file";
-        } catch (IOException ioex) {
-            JOptionPane.showMessageDialog(this, "Something went wrong when loading login information, nothing loaded", "Login information load problem", JOptionPane.WARNING_MESSAGE);
-        }
-        
-        return loginLine;
-    }
-
     public static void main(String args[]) {
-         new LoginDialog(null,null).setVisible(true);
+         new CreateAccountDialog(null,null).setVisible(true);
     }
 }

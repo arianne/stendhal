@@ -420,6 +420,7 @@ public abstract class RPEntity extends Entity
           }
         
         entity.addXP((int)(xp_earn*gain_xp_limitation));
+        world.modify(entity);
         }
       }
       

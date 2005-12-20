@@ -16,6 +16,7 @@ import marauroa.common.game.*;
 import marauroa.server.game.*;
 import games.stendhal.server.entity.*;
 import games.stendhal.server.rule.*;
+import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 
 /** The stendhalcreateaccount extends the createaccount class of marauroa package
@@ -36,6 +37,13 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
   public stendhalcreateaccount()
     {
     super();
+    }
+
+  public boolean execute(String username, String password, String email)
+    {
+    String[] args={"-u",username,"-p", password,"-c", username, "-e", email, "-i",Configuration.getConfigurationFile()};
+
+    return (run(args)==0);
     }
     
   public RPObject populatePlayerRPObject(IPlayerDatabase playerDatabase) throws Exception
