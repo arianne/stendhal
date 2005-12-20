@@ -353,6 +353,16 @@ public abstract class RPEntity extends AnimatedEntity
 
       Point2D p=new Point.Double(x,y);
       p=screen.invtranslate(p);
+      
+      if(hp_base_hp>1)
+        {
+        hp_base_hp=1;
+        }
+        
+      if(hp_base_hp<0)
+        {
+        hp_base_hp=0;
+        }
 
       float r=1-hp_base_hp;r*=2.0;
       float g=hp_base_hp;g*=2.0;
