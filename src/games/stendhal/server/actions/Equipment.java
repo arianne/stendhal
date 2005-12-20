@@ -69,6 +69,7 @@ public class Equipment extends ActionListener
 
   /** the list of valid container classes */
   private static final Class[] validContainerClasses = new Class[] {Player.class, Chest.class, Corpse.class};
+  private static final int MAX_CONTAINED_DEPTH = 3;
   /** List of the valid container classes for easy access */
   private List<Class> validContainerClassesList;
 
@@ -265,7 +266,7 @@ public class Equipment extends ActionListener
           return;
           }
 
-        base = (Entity) parent.getSlot(slot).get(baseItemId);
+        base = (Entity) baseSlot.get(baseItemId);
       }
       else
       {
@@ -410,7 +411,8 @@ public class Equipment extends ActionListener
       
       if (parent != null)
       {
-        if (parent.getSlot(slot).isFull())
+        RPSlot rpslot = parent.getSlot(slot); 
+        if (rpslot.isFull())
         {
           boolean isStackable = false;
           // is the entity stackable
@@ -418,7 +420,7 @@ public class Equipment extends ActionListener
           {
             Stackable stackEntity = (Stackable) entity;
             // now check if it can be stacked on top of another item
-            Iterator<RPObject> it = parent.getSlot(slot).iterator();
+            Iterator<RPObject> it = rpslot.iterator();
             while (it.hasNext())
             {
               RPObject object = it.next();
@@ -443,12 +445,26 @@ public class Equipment extends ActionListener
           }
         }
         
-        if (parent.getID().equals(entity.getID()))
+        // check if someone tried to put an item into itself (maybe through
+        // various levels of indirection)
+        if (rpslot.hasAsParent(entity.getID()))
         {
-          logger.warn("tried to put an item into itself");
-          // tried to put the item in itself
+          logger.warn("tried to put item "+entity.getID()+" into itself");
           return false;
         }
+        
+        // check the maximum level of contained elements 
+        if (entity.slots().size() > 0 && rpslot.getContainedDepth() > MAX_CONTAINED_DEPTH)
+        {
+          // this will never happen, as the client UI does not support opening
+          // contained containers
+          logger.warn("maximum contained depth reached");
+          return false;
+        }
+        
+        // TODO: still one to do: check (slot depth in entity)+(slot depth in
+        // target) < MAX_CONTAINED_DEPTH
+        
       }
       else
       {
