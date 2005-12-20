@@ -69,7 +69,7 @@ public class Equipment extends ActionListener
 
   /** the list of valid container classes */
   private static final Class[] validContainerClasses = new Class[] {Player.class, Chest.class, Corpse.class};
-  private static final int MAX_CONTAINED_DEPTH = 3;
+  private static final int MAX_CONTAINED_DEPTH = 25;
   /** List of the valid container classes for easy access */
   private List<Class> validContainerClassesList;
 
