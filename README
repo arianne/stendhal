@@ -65,6 +65,7 @@ Changelog
 0.41 Jan XX, 2005
 - Fixed a bug on legs slot name.
 - When selling an item, we search first inside bag.
+- NPC are non attackable.
 
 0.40 Dec 21, 2005
 - Fixed a bug when dropping an item over itself
