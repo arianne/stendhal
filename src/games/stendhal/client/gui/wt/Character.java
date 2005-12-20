@@ -70,7 +70,7 @@ public class Character extends Panel
     slotPanels.put("armor",new EntitySlot("armor", slotSprite, dist*1, dist   , gameObjects));
     slotPanels.put("lhand",new EntitySlot("lhand", slotSprite,      0, dist+10, gameObjects));
     slotPanels.put("rhand",new EntitySlot("rhand", slotSprite, dist*2, dist+10, gameObjects));
-    slotPanels.put("lower",new EntitySlot("lower", slotSprite, dist  , dist*2 , gameObjects));
+    slotPanels.put("legs",new EntitySlot("legs", slotSprite, dist  , dist*2 , gameObjects));
     slotPanels.put("feet", new EntitySlot("feet",  slotSprite, dist  , dist*3 , gameObjects));
     
     for (EntitySlot slot : slotPanels.values())
