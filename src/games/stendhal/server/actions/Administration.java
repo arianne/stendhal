@@ -172,6 +172,12 @@ public class Administration extends ActionListener
         
        
       String stat=action.get("stat");
+      
+      if(stat.equals("name"))
+        {
+        logger.warn("Admin "+player.getName()+" trying to change player "+name+"'s name");
+        return;
+        }
        
       if(changed.getRPClass().hasAttribute(stat) && changed.has(stat))
         {
