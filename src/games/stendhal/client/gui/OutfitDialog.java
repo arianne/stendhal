@@ -66,7 +66,7 @@ public class OutfitDialog extends javax.swing.JDialog {
      * @param total_clothes an integer with the total of sprites with clothes
      */
     public OutfitDialog(java.awt.Frame parent, String title, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
-        super(parent, true);
+        super(parent, false);
         initComponents();
         setTitle(title);
         
