@@ -307,24 +307,41 @@ public class Behaviours
       
       world.modify(player);
       }
+    
+    private boolean removeItem(RPSlot slot, String itemName)
+      {
+      Iterator<RPObject> object_it=slot.iterator();
+      while(object_it.hasNext())
+        {
+        RPObject object=object_it.next();
+        if(object instanceof Item && object.get("name").equals(itemName))
+          {
+          slot.remove(object.getID());
+          return true;
+          }
+        }
+      
+      return false;
+      }
 
     public boolean removeItem(Player player, String itemName)
       {
+      /* We iterate first the bag */
+      if(removeItem(player.getSlot("bag"),itemName))
+        {
+        world.modify(player);      
+        return true;
+        }
+        
       Iterator<RPSlot> it=player.slotsIterator();
       while(it.hasNext())
         {
         RPSlot slot=(RPSlot)it.next();
-  
-        Iterator<RPObject> object_it=slot.iterator();
-        while(object_it.hasNext())
+        
+        if(removeItem(slot,itemName))
           {
-          RPObject object=object_it.next();
-          if(object instanceof Item && object.get("name").equals(itemName))
-            {
-            slot.remove(object.getID());
-            world.modify(player);      
-            return true;
-            }
+          world.modify(player);      
+          return true;
           }
         }
       

@@ -16,6 +16,7 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.RPEntity;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
@@ -45,13 +46,22 @@ public class Attack extends ActionListener
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        // Enabled PVP
+
         if(object instanceof RPEntity) // Disabled Player
           {
           RPEntity entity=(RPEntity)object;
           
           if(!player.equals(entity))
             {
+            // Disable attacking NPCS.
+            // Just make sure no creature is instanceof SpeakerNPC... 
+            if(entity instanceof SpeakerNPC)
+              {
+              logger.info(player.getName()+" is attacking "+entity.getName());
+              return;
+              }
+              
+            // Enabled PVP
             if(entity instanceof Player)
               {
               logger.info(player.getName()+" is attacking "+entity.getName());
