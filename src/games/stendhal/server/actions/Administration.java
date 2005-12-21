@@ -22,6 +22,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.RPClass;
 import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
@@ -175,24 +176,66 @@ public class Administration extends ActionListener
       
       if(stat.equals("name"))
         {
-        logger.warn("Admin "+player.getName()+" trying to change player "+name+"'s name");
+        logger.error("DENIED: Admin "+player.getName()+" trying to change player "+name+"'s name");
         return;
+        }
+        
+      RPClass clazz=changed.getRPClass();
+      
+      boolean isNumerical=false;
+      
+      byte type=clazz.getType(stat);      
+      if(type==RPClass.BYTE || type==RPClass.SHORT ||type==RPClass.INT)
+        {
+        isNumerical=true;        
         }
        
       if(changed.getRPClass().hasAttribute(stat) && changed.has(stat))
         {
+        String value=action.get("value");
         String mode=action.get("mode");
-        if(mode.equals("set"))
+        
+        if(isNumerical)
           {
-          changed.put(stat, action.get("value"));
+          int numberValue=Integer.parseInt(value);
+          if(mode.equals("add"))
+            {
+            numberValue+=changed.getInt(stat);
+            }
+            
+          if(mode.equals("sub"))
+            {
+            numberValue-=changed.getInt(stat);
+            }
+            
+          if(stat.equals("hp") && changed.getInt("base_hp")<numberValue)
+            {
+            logger.error("DENIED: Admin "+player.getName()+" trying to set player "+name+"'s HP over its Base HP");
+            return;
+            }
+          
+          switch(type)
+            {
+            case RPClass.BYTE:
+              if(numberValue>Byte.MAX_VALUE || numberValue<Byte.MIN_VALUE) return;
+              break;
+            case RPClass.SHORT:
+              if(numberValue>Short.MAX_VALUE || numberValue<Short.MIN_VALUE) return;
+              break;
+            case RPClass.INT:
+              if(numberValue>Integer.MAX_VALUE || numberValue<Integer.MIN_VALUE) return;
+              break;
+            }
+
+          changed.put(stat, numberValue);
           }
-        else if(mode.equals("add"))
+        else
           {
-          changed.put(stat, changed.getInt(stat)+action.getInt("value"));
-          }
-        else if(mode.equals("sub"))
-          {
-          changed.put(stat, changed.getInt(stat)-action.getInt("value"));
+          // Can be only setif value is not a number
+          if(mode.equals("set"))
+            {
+            changed.put(stat, action.get("value"));
+            }
           }
          
         changed.update();

@@ -66,6 +66,8 @@ Changelog
 - Fixed a bug on legs slot name.
 - When selling an item, we search first inside bag.
 - NPC are non attackable.
+- Modified dungeons and added a cyclops tavern! :)
+- Fixed administrator alter command for not breaking player anymore
 
 0.40 Dec 21, 2005
 - Fixed a bug when dropping an item over itself
