@@ -19,6 +19,13 @@ public class stendhal extends Thread
   {
   public static boolean doLogin=false;
   
+  public static final String[] SERVERS_LIST=
+    {
+    "stendhal.game-server.cc",
+    "stendhal.ombres.ambre.net",
+    "localhost"    
+    };
+  
   public static final boolean SHOW_COLLISION_DETECTION  = false;
   public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
   public static final boolean FILTER_ATTACK_MESSAGES = true;

@@ -86,9 +86,11 @@ public class LoginDialog extends JDialog {
         //
         // serverField
         //
-        serverField.addItem("stendhal.ombres.ambre.net");
-        serverField.addItem("stendhal.game-server.cc");
-        serverField.addItem("localhost");
+        for(String server: stendhal.SERVERS_LIST)
+          {
+          serverField.addItem(server);
+          }
+          
         //
         // serverPortField
         //

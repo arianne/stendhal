@@ -222,10 +222,10 @@ public abstract class RPEntity extends Entity
     }
     
 
-  public void setBaseHP(int hp)
+  public void setBaseHP(int newhp)
     {
-    this.base_hp=hp;
-    put("base_hp",hp);
+    this.base_hp=newhp;
+    put("base_hp",newhp);
 
     if(base_hp!=0)
       {
