@@ -121,20 +121,110 @@ public class TileRenderer
     // Navigation = 2400 - 2400
     // Objects = 2401 - 2500
     // Collision = 2501 - 2502
-    // Outside_3 = 2503 - 2982
+    // Outside_2 = 2503 - 2982
 
 
-    // Double daisy
-    addAnimatedTile(124,new int[]{124,154,184,214,214,214,214,214,214,214,214,214});
-    addAnimatedTile(154,new int[]{154,184,214,124,124,124,124,124,124,124,124,124});
-    addAnimatedTile(184,new int[]{184,214,124,154,154,154,154,154,154,154,154,154});
-    addAnimatedTile(214,new int[]{214,124,154,184,184,184,184,184,184,184,184,184});
+    // Double white daisy
+    addAnimatedTile(22,new int[]{22,52,82,112,112,112,112,112,112,112,112,112});
+    addAnimatedTile(52,new int[]{52,82,112,22,22,22,22,22,22,22,22,22});
+    addAnimatedTile(82,new int[]{82,112,22,52,52,52,52,52,52,52,52,52});
+    addAnimatedTile(112,new int[]{112,22,52,82,82,82,82,82,82,82,82,82});
 
-    // Single daisy
-    addAnimatedTile(125,new int[]{125,155,185,215,215,215,215,215,215,215,215,215});
-    addAnimatedTile(155,new int[]{155,185,215,125,125,125,125,125,125,125,125,125});
-    addAnimatedTile(185,new int[]{185,215,125,155,155,155,155,155,155,155,155,155});
-    addAnimatedTile(215,new int[]{215,125,155,185,185,185,185,185,185,185,185,185});
+    // Single white daisy
+    addAnimatedTile(23,new int[]{23,53,83,113,113,113,113,113,113,113,113,113});
+    addAnimatedTile(53,new int[]{53,83,113,23,23,23,23,23,23,23,23,23});
+    addAnimatedTile(83,new int[]{83,113,23,53,53,53,53,53,53,53,53,53});
+    addAnimatedTile(113,new int[]{113,23,53,83,83,83,83,83,83,83,83,83});
+
+    // Double yellow daisy
+    addAnimatedTile(24,new int[]{24,54,84,114,114,114,114,114,114,114,114,114});
+    addAnimatedTile(54,new int[]{54,84,114,24,24,24,24,24,24,24,24,24});
+    addAnimatedTile(84,new int[]{84,114,24,54,54,54,54,54,54,54,54,54});
+    addAnimatedTile(114,new int[]{114,24,54,84,84,84,84,84,84,84,84,84});
+    
+    // Single yellow daisy
+    addAnimatedTile(25,new int[]{25,55,85,115,115,115,115,115,115,115,115,115});
+    addAnimatedTile(55,new int[]{55,85,115,25,25,25,25,25,25,25,25,25});
+    addAnimatedTile(85,new int[]{85,115,25,55,55,55,55,55,55,55,55,55});
+    addAnimatedTile(115,new int[]{115,25,55,85,85,85,85,85,85,85,85,85});
+    
+    // Double red daisy
+    addAnimatedTile(26,new int[]{26,56,86,116,116,116,116,116,116,116,116,116});
+    addAnimatedTile(56,new int[]{56,86,116,26,26,26,26,26,26,26,26,26});
+    addAnimatedTile(86,new int[]{86,116,26,56,56,56,56,56,56,56,56,56});
+    addAnimatedTile(116,new int[]{116,26,56,86,86,86,86,86,86,86,86,86});
+    
+    // Single red daisy
+    addAnimatedTile(27,new int[]{27,57,87,117,117,117,117,117,117,117,117,117});
+    addAnimatedTile(57,new int[]{57,87,117,27,27,27,27,27,27,27,27,27});
+    addAnimatedTile(87,new int[]{87,117,27,57,57,57,57,57,57,57,57,57});
+    addAnimatedTile(117,new int[]{117,27,57,87,87,87,87,87,87,87,87,87});
+
+    // Double blue daisy
+    addAnimatedTile(28,new int[]{28,58,88,118,118,118,118,118,118,118,118,118});
+    addAnimatedTile(58,new int[]{58,88,118,28,28,28,28,28,28,28,28,28});
+    addAnimatedTile(88,new int[]{88,118,28,58,58,58,58,58,58,58,58,58});
+    addAnimatedTile(118,new int[]{118,28,58,88,88,88,88,88,88,88,88,88});
+
+    // Single blue daisy
+    addAnimatedTile(29,new int[]{29,59,89,119,119,119,119,119,119,119,119,119});
+    addAnimatedTile(59,new int[]{59,89,119,29,29,29,29,29,29,29,29,29});
+    addAnimatedTile(89,new int[]{89,119,29,59,59,59,59,59,59,59,59,59});
+    addAnimatedTile(119,new int[]{119,29,59,89,89,89,89,89,89,89,89,89});
+
+
+
+    // Green Water, Upper Left 
+    addAnimatedTile(2503,new int[]{2503,2506,2509,2506});
+    addAnimatedTile(2506,new int[]{2506,2509,2506,2503});
+    addAnimatedTile(2509,new int[]{2509,2506,2503,2506});
+
+    // Green Water, Upper
+    addAnimatedTile(2504,new int[]{2504,2507,2510,2507});
+    addAnimatedTile(2507,new int[]{2507,2510,2507,2504});
+    addAnimatedTile(2510,new int[]{2510,2507,2504,2507});
+
+    // Green Water, Upper Right 
+    addAnimatedTile(2505,new int[]{2505,2508,2511,2508});
+    addAnimatedTile(2508,new int[]{2508,2511,2508,2505});
+    addAnimatedTile(2511,new int[]{2511,2508,2505,2508});
+    
+    // Green Water, Left
+    addAnimatedTile(2533,new int[]{2533,2536,2539,2536});
+    addAnimatedTile(2536,new int[]{2536,2539,2536,2533});
+    addAnimatedTile(2539,new int[]{2539,2536,2533,2536});
+
+    // Green Water, pond
+    addAnimatedTile(2534,new int[]{2534,2537,2540,2537});
+    addAnimatedTile(2537,new int[]{2537,2540,2537,2534});
+    addAnimatedTile(2540,new int[]{2540,2537,2534,2537});
+
+    // Green Water, Right
+    addAnimatedTile(2535,new int[]{2535,2538,2541,2538});
+    addAnimatedTile(2538,new int[]{2538,2541,2538,2535});
+    addAnimatedTile(2541,new int[]{2541,2538,2535,2538});
+    
+    // Green Water, Bottom Left
+    addAnimatedTile(2563,new int[]{2563,2566,2569,2566});
+    addAnimatedTile(2566,new int[]{2566,2569,2566,2563});
+    addAnimatedTile(2569,new int[]{2569,2566,2563,2566});
+
+    // Green Water, Bottom 
+    addAnimatedTile(2564,new int[]{2564,2567,2570,2567});
+    addAnimatedTile(2567,new int[]{2567,2570,2567,2564});
+    addAnimatedTile(2570,new int[]{2570,2567,2564,2567});
+
+    // Green Water, Bottom Right
+    addAnimatedTile(2565,new int[]{2565,2568,2571,2568});
+    addAnimatedTile(2568,new int[]{2568,2571,2568,2565});
+    addAnimatedTile(2571,new int[]{2571,2568,2565,2568});
+
+    // Water, Center
+    addAnimatedTile(2689,new int[]{2689,2690,2691,2690});
+    addAnimatedTile(2690,new int[]{2690,2691,2690,2689});
+    addAnimatedTile(2691,new int[]{2691,2690,2689,2690});
+
+
 
     // Waterfall start
     addAnimatedTile(145,new int[]{145,175,205,235});
@@ -197,6 +287,38 @@ public class TileRenderer
     addAnimatedTile(329,new int[]{329,359,269,299});
     addAnimatedTile(359,new int[]{359,269,299,329});
 
+
+    // Dungeon_1 = 1440 - 1919
+
+    // Golden Teleport 
+    addAnimatedTile(1443,new int[]{1443,1444,1445});
+    addAnimatedTile(1444,new int[]{1444,1445,1443});
+    addAnimatedTile(1445,new int[]{1445,1443,1444});
+    
+    // White Teleport 
+    addAnimatedTile(1473,new int[]{1473,1474,1475});
+    addAnimatedTile(1474,new int[]{1474,1475,1473});
+    addAnimatedTile(1475,new int[]{1475,1473,1474});
+
+    // Gray Teleport 
+    addAnimatedTile(1503,new int[]{1503,1504,1505});
+    addAnimatedTile(1504,new int[]{1504,1505,1503});
+    addAnimatedTile(1505,new int[]{1505,1503,1504});
+
+    // Red Teleport 
+    addAnimatedTile(1533,new int[]{1533,1534,1535});
+    addAnimatedTile(1534,new int[]{1534,1535,1533});
+    addAnimatedTile(1535,new int[]{1535,1533,1534});
+
+    // Green Teleport 
+    addAnimatedTile(1563,new int[]{1563,1564,1565});
+    addAnimatedTile(1564,new int[]{1564,1565,1563});
+    addAnimatedTile(1565,new int[]{1565,1563,1564});
+
+    // Blue Teleport 
+    addAnimatedTile(1593,new int[]{1593,1594,1595});
+    addAnimatedTile(1594,new int[]{1594,1595,1593});
+    addAnimatedTile(1595,new int[]{1595,1593,1594});
     }
   
   /** Render the data to screen. We assume that Gamescreen will clip.
