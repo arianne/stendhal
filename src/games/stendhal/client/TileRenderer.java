@@ -121,8 +121,8 @@ public class TileRenderer
     // Navigation = 2400 - 2400
     // Objects = 2401 - 2500
     // Collision = 2501 - 2502
-    // Outside_2 = 2503 - 2982
-
+    // Buildings_0 = 2503 - 2982
+    // Outside_2 = 2983 - 3462
 
     // Double white daisy
     addAnimatedTile(22,new int[]{22,52,82,112,112,112,112,112,112,112,112,112});
@@ -175,29 +175,29 @@ public class TileRenderer
 
 
     // Green Water, Upper Left 
-    addAnimatedTile(2503,new int[]{2503,2506,2509,2506});
-    addAnimatedTile(2506,new int[]{2506,2509,2506,2503});
-    addAnimatedTile(2509,new int[]{2509,2506,2503,2506});
+    addAnimatedTile(2953,new int[]{2953,2956,2959,2956});
+    addAnimatedTile(2956,new int[]{2956,2959,2956,2953});
+    addAnimatedTile(2959,new int[]{2959,2956,2953,2956});
 
     // Green Water, Upper
-    addAnimatedTile(2504,new int[]{2504,2507,2510,2507});
-    addAnimatedTile(2507,new int[]{2507,2510,2507,2504});
-    addAnimatedTile(2510,new int[]{2510,2507,2504,2507});
+    addAnimatedTile(2954,new int[]{2954,2957,2960,2957});
+    addAnimatedTile(2957,new int[]{2957,2960,2957,2954});
+    addAnimatedTile(2960,new int[]{2960,2957,2954,2957});
 
     // Green Water, Upper Right 
-    addAnimatedTile(2505,new int[]{2505,2508,2511,2508});
-    addAnimatedTile(2508,new int[]{2508,2511,2508,2505});
-    addAnimatedTile(2511,new int[]{2511,2508,2505,2508});
+    addAnimatedTile(2955,new int[]{2955,2958,2961,2958});
+    addAnimatedTile(2958,new int[]{2958,2961,2958,2955});
+    addAnimatedTile(2961,new int[]{2961,2958,2955,2958});
     
     // Green Water, Left
-    addAnimatedTile(2533,new int[]{2533,2536,2539,2536});
-    addAnimatedTile(2536,new int[]{2536,2539,2536,2533});
-    addAnimatedTile(2539,new int[]{2539,2536,2533,2536});
+    addAnimatedTile(2983,new int[]{2983,2986,2989,2986});
+    addAnimatedTile(2986,new int[]{2986,2989,2986,2983});
+    addAnimatedTile(2989,new int[]{2989,2986,2983,2986});
 
     // Green Water, pond
-    addAnimatedTile(2534,new int[]{2534,2537,2540,2537});
-    addAnimatedTile(2537,new int[]{2537,2540,2537,2534});
-    addAnimatedTile(2540,new int[]{2540,2537,2534,2537});
+    addAnimatedTile(2984,new int[]{2984,2987,2990,2987});
+    addAnimatedTile(2987,new int[]{2987,2990,2987,2984});
+    addAnimatedTile(2990,new int[]{2990,2987,2984,2987});
 
     // Green Water, Right
     addAnimatedTile(2535,new int[]{2535,2538,2541,2538});
@@ -205,24 +205,24 @@ public class TileRenderer
     addAnimatedTile(2541,new int[]{2541,2538,2535,2538});
     
     // Green Water, Bottom Left
-    addAnimatedTile(2563,new int[]{2563,2566,2569,2566});
-    addAnimatedTile(2566,new int[]{2566,2569,2566,2563});
-    addAnimatedTile(2569,new int[]{2569,2566,2563,2566});
+    addAnimatedTile(3013,new int[]{3013,3016,3019,3016});
+    addAnimatedTile(3016,new int[]{3016,3019,3016,3013});
+    addAnimatedTile(3019,new int[]{3019,3016,3013,3016});
 
     // Green Water, Bottom 
-    addAnimatedTile(2564,new int[]{2564,2567,2570,2567});
-    addAnimatedTile(2567,new int[]{2567,2570,2567,2564});
-    addAnimatedTile(2570,new int[]{2570,2567,2564,2567});
+    addAnimatedTile(3014,new int[]{3014,3017,3020,3017});
+    addAnimatedTile(3017,new int[]{3017,3020,3017,3014});
+    addAnimatedTile(3020,new int[]{3020,3017,3014,3017});
 
     // Green Water, Bottom Right
-    addAnimatedTile(2565,new int[]{2565,2568,2571,2568});
-    addAnimatedTile(2568,new int[]{2568,2571,2568,2565});
-    addAnimatedTile(2571,new int[]{2571,2568,2565,2568});
+    addAnimatedTile(3015,new int[]{3015,3018,3021,3018});
+    addAnimatedTile(3018,new int[]{3018,3021,3018,3015});
+    addAnimatedTile(3021,new int[]{3021,3018,3015,3018});
 
     // Water, Center
-    addAnimatedTile(2689,new int[]{2689,2690,2691,2690});
-    addAnimatedTile(2690,new int[]{2690,2691,2690,2689});
-    addAnimatedTile(2691,new int[]{2691,2690,2689,2690});
+    addAnimatedTile(3139,new int[]{3139,3140,3141,3140});
+    addAnimatedTile(3140,new int[]{3140,3141,3140,3139});
+    addAnimatedTile(3141,new int[]{3141,3140,3139,3140});
 
 
 
