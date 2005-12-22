@@ -225,6 +225,17 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
             client.send(teleport);
             }
           }
+        else if(text.startsWith("/teleportto ")) // TeleportTo target(PLAYER NAME)
+          {
+          String[] command = parseString(text, 2);
+          if(command != null)
+            {
+            RPAction teleport = new RPAction();
+            teleport.put("type","teleportto");
+            teleport.put("target", command[1]);
+            client.send(teleport);
+            }
+          }
         else if(text.startsWith("/alter ")) // Set/Add/Substract target(PLAYER NAME) attribute
           {
           String[] command = parseString(text, 5);
@@ -294,6 +305,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
                           "This brief help show you the most used commands:",
                           "- /tellall <message>                     \tWrites a private message to all players",
                           "- /teleport <player> <zone> <x> <y>      \tTeleport the player ",
+                          "- /teleportto <player>                   \tTeleport us to the player ",
                           "- /alter <player> <attrib> <mode> <value>\tChange by SETting, ADDing or SUBstrating the stat of player",
                           "- /summon <creature|item> <x> <y>        \tSummon an item or creature at x,y",
                           "- /summonat <player> <slot> <ite>        \tSummon an item at the slot of the given player",

@@ -57,9 +57,15 @@ public class KTextEdit extends JPanel
     Style s = textPane.addStyle("normal", regular);
     StyleConstants.setBold(s, true);
     StyleConstants.setForeground(s, HEADER_COLOR);
+
     s = textPane.addStyle("header", regular);
     StyleConstants.setItalic(s, true);
     StyleConstants.setFontSize(s, TEXT_SIZE);
+    StyleConstants.setForeground(s, HEADER_COLOR);
+
+    s = textPane.addStyle("timestamp", regular);
+    StyleConstants.setItalic(s, true);
+    StyleConstants.setFontSize(s, TEXT_SIZE-1);
     StyleConstants.setForeground(s, HEADER_COLOR);
     }
 
@@ -101,6 +107,22 @@ public class KTextEdit extends JPanel
       }
     }
 
+  public void insertTimestamp(String header)
+    {
+    Document doc = textPane.getDocument();
+    try 
+      {
+      if(header.length() > 0)
+        {
+        doc.insertString(doc.getLength(), header, textPane.getStyle("timestamp"));
+        }
+      } 
+    catch (BadLocationException ble) 
+      {
+      System.err.println("Couldn't insert initial text.");
+      }
+    }
+
   /**
    * The implemented method
    *
@@ -113,12 +135,12 @@ public class KTextEdit extends JPanel
     Document doc = textPane.getDocument();
     try 
       {
-      insertHeader(header);
-
       java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
       String dateString = formatter.format(new Date());
-
-      doc.insertString(doc.getLength(), dateString + line + "\r\n", getColor(color));
+      
+      insertTimestamp(dateString);
+      insertHeader(header);
+      doc.insertString(doc.getLength(), line + "\r\n", getColor(color));
       textPane.setCaretPosition(textPane.getDocument().getLength ());
       lineNumber++;
       } 

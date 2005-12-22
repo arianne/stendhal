@@ -36,6 +36,7 @@ public class Administration extends ActionListener
     Administration Administration=new Administration();
     StendhalRPRuleProcessor.register("tellall",Administration);
     StendhalRPRuleProcessor.register("teleport",Administration);
+    StendhalRPRuleProcessor.register("teleportto",Administration);
     StendhalRPRuleProcessor.register("alter",Administration);
     StendhalRPRuleProcessor.register("summon",Administration);
     StendhalRPRuleProcessor.register("summonat",Administration);
@@ -60,6 +61,10 @@ public class Administration extends ActionListener
     else if(type.equals("teleport"))
       {
       onTeleport(world,rules,player,action);
+      }    
+    else if(type.equals("teleportto"))
+      {
+      onTeleportTo(world,rules,player,action);
       }    
     else if(type.equals("alter"))
       {
@@ -160,6 +165,47 @@ public class Administration extends ActionListener
       }
 
     Log4J.finishMethod(logger,"onTeleport");
+    }
+
+
+  private void onTeleportTo(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"onTeleportTo");
+
+    if(action.has("target"))
+      {
+      Player teleported=null;
+      
+      String name=action.get("target");
+      for(Player p : rules.getPlayers())
+        {
+        if(p.getName().equals(name))
+          {
+          teleported=p;
+          break;
+          }
+        }
+      
+      if(teleported==null)
+        {
+        String text="Player "+name+" not found";
+
+        player.setPrivateText(text);
+        rules.removePlayerText(player);
+
+        logger.debug(text);
+        return;
+        }
+      
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(teleported.getID());
+      int x=teleported.getx();
+      int y=teleported.gety();
+      
+      StendhalRPAction.placeat(zone,player,x,y);
+      world.modify(player);
+      }
+
+    Log4J.finishMethod(logger,"onTeleportTo");
     }
 
   private void onChangePlayer(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
