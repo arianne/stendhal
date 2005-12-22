@@ -118,14 +118,24 @@ public class Administration extends ActionListener
       
       if(teleported==null)
         {
-        logger.debug("Player "+name+" not found");
+        String text="Player "+name+" not found";
+
+        player.setPrivateText(text);
+        rules.removePlayerText(player);
+
+        logger.debug(text);
         return;
         }
         
       IRPZone.ID zoneid=new IRPZone.ID(action.get("zone"));
       if(!world.hasRPZone(zoneid))
         {
-        logger.debug("Zone "+zoneid+" not found");
+        String text="Zone "+zoneid+" not found";
+
+        player.setPrivateText(text);
+        rules.removePlayerText(player);
+
+        logger.debug(text);
         return;
         }
       
@@ -141,6 +151,11 @@ public class Administration extends ActionListener
         teleported.setx(x);
         teleported.sety(y); 
         world.modify(teleported);      
+        }
+      else
+        {
+        player.setPrivateText("Position ["+x+","+y+"] is occupied");
+        rules.removePlayerText(player);
         }
       }
 
