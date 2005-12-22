@@ -456,6 +456,7 @@ public abstract class RPEntity extends AnimatedEntity
       {
       RPAction rpaction=new RPAction();
       rpaction.put("type","stop");
+      rpaction.put("attack","");
       client.send(rpaction);
       }
     else if(action.equals("Displace"))
