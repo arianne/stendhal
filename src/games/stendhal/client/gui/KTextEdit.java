@@ -1,5 +1,7 @@
 package games.stendhal.client.gui;
 
+import java.util.Date;
+
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
@@ -112,7 +114,11 @@ public class KTextEdit extends JPanel
     try 
       {
       insertHeader(header);
-      doc.insertString(doc.getLength(), line + "\r\n", getColor(color));
+
+      java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
+      String dateString = formatter.format(new Date());
+
+      doc.insertString(doc.getLength(), dateString + line + "\r\n", getColor(color));
       textPane.setCaretPosition(textPane.getDocument().getLength ());
       lineNumber++;
       } 
