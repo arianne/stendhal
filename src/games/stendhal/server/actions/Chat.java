@@ -78,7 +78,9 @@ public class Chat extends ActionListener
           return;
           }
         }
+        
       player.setPrivateText(action.get("target") + " is not currently logged.");
+      rules.removePlayerText(player);
       }
 
     Log4J.finishMethod(logger,"tell");
