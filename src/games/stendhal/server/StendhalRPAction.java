@@ -327,6 +327,11 @@ public class StendhalRPAction
       {
       return false;
       }
+      
+    if(portal.getDestinationZone()==null) //This portal is incomplete
+      {
+      return false;
+      }
 
     StendhalRPZone destZone=(StendhalRPZone)world.getRPZone(new IRPZone.ID(portal.getDestinationZone()));
     Portal dest=destZone.getPortal(portal.getDestinationNumber());

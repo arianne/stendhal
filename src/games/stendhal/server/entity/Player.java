@@ -67,6 +67,7 @@ public class Player extends RPEntity
       player.addRPSlot("legs",1);
       player.addRPSlot("feet",1);
       player.addRPSlot("bag",12);
+      player.addRPSlot("#flock",1,RPClass.HIDDEN);
       
       // We use this for the buddy system
       player.addRPSlot("!buddy",1,RPClass.HIDDEN);
