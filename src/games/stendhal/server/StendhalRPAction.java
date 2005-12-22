@@ -373,7 +373,7 @@ public class StendhalRPAction
     return true;
     }
 
-  public static void placeat(StendhalRPZone zone, Entity entity, int x, int y)
+  public static boolean placeat(StendhalRPZone zone, Entity entity, int x, int y)
     {
     if(zone.collides(entity,x,y))
       {
@@ -387,7 +387,7 @@ public class StendhalRPAction
               {
               entity.setx(x+i);
               entity.sety(y+j);
-              return;
+              return true;
               }
             }
           }
@@ -399,7 +399,10 @@ public class StendhalRPAction
       {
       entity.setx(x);
       entity.sety(y);
+      return true;
       }
+    
+    return false;
     }
 
   public static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException
