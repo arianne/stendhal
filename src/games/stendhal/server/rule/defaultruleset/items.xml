@@ -119,31 +119,6 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="bow">
-  	  <type class="range" subclass="bow"/>
-  	  <attributes>
-  	  	<attribute name="atk" value="12"/>
-  	  </attributes>
-  	  <weight value="1"/>
-  	  <equipable>
-  	  	<slot name="lhand"/>
-  	  	<slot name="rhand"/>
-  	  	<slot name="bag"/>
-  	  </equipable>
-  </item>
-  <item name="arrow">
-  	  <type class="projectile" subclass="arrow"/>
-  	  <stackable/>
-  	  <attributes>
-  	  	<attribute name="atk" value="1"/>
-  	  </attributes>
-  	  <weight value="0.1"/>
-  	  <equipable>
-  	  	<slot name="lhand"/>
-  	  	<slot name="rhand"/>
-  	  	<slot name="bag"/>
-  	  </equipable>
-  </item>
   <item name="wooden_shield">
   	  <type class="shield" subclass="wooden_shield"/>
   	  <attributes>
@@ -327,4 +302,32 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+
+<!--
+  <item name="bow">
+  	  <type class="range" subclass="bow"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="12"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+  <item name="arrow">
+  	  <type class="projectile" subclass="arrow"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="atk" value="1"/>
+  	  </attributes>
+  	  <weight value="0.1"/>
+  	  <equipable>
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+--> 
 </items>
