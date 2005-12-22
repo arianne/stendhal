@@ -443,11 +443,38 @@
   	</ai>
  </creature>
  
- <!-- Level 8 -->
+ <creature name="venomrat">
+  	<type class="animal" subclass="venomrat" tileid="29"/>
+  	<attributes>
+  		<attribute name="atk" value="30"/>
+  		<attribute name="def" value="20"/>
+  		<attribute name="hp" value="70"/>
+  		<attribute name="speed" value="0.9"/>
+  		<attribute name="size" value="1,1"/>
+    </attributes>  		
+    <level value="7"/>
+	<experience value="80"/>
+	<drops>
+		<item value="money" quantity="[4,25]" probability="100"/>
+		<item value="cheese" quantity="[1,3]" probability="50"/>
+	</drops>
+	<slots>  		
+	</slots>
+	<equips>  		
+	</equips>
+	<ai>
+		<profile name="animal"/>
+		<profile name="ofensive"/>
+		<profile name="brave"/>
+	</ai>
+ </creature>
+
+
+<!-- Level 8 -->
  
  <creature name="cyclops">
-  	<type class="giant" subclass="cyclops" tileid="25"/>
-  	<attributes>
+	<type class="giant" subclass="cyclops" tileid="25"/>
+	<attributes>
   		<attribute name="atk" value="60"/>
   		<attribute name="def" value="15"/>
   		<attribute name="hp" value="80"/>
