@@ -257,7 +257,6 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   /** a window is closed */
   public void onClose(String name)
   {
-    System.out.println("closing "+name);
     // pseudo-release the button
     onClick(name, false);
   }

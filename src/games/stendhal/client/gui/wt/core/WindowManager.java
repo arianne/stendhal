@@ -127,7 +127,6 @@ public class WindowManager
    */
   public void formatWindow(Panel panel)
   {
-    System.out.println("formating "+panel.getName());
     WindowConfiguration config = getConfig(panel);
     if (config == null)
     {
