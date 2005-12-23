@@ -137,11 +137,14 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
       {
       System.out.println ("Player wrote: "+playerChatText.getText());
       String text = playerChatText.getText();
-      text.trim();
+      text = text.trim();
+      
+      if (text.length() == 0)
+        return;
       
       if(text.charAt(0)!='/')
         {
-        // Chat command. The most frecuent one.
+        // Chat command. The most frequent one.
         RPAction chat=new RPAction();
         chat.put("type","chat");
         chat.put("text",playerChatText.getText());
