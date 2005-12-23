@@ -97,7 +97,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
     buttonMap = new HashMap<String,Button>();
     buttonMap.put("minimap",new Button("minimap", 150, 30, "Enable Minimap"));
     buttonMap.put("character",new Button("character", 150, 30, "Enable Character"));
-    buttonMap.put("inventory",new Button("inventory", 150, 30, "Enable Inventory"));
+    buttonMap.put("bag",new Button("bag", 150, 30, "Enable Inventory"));
     
     int y = 10;
     for (Button button : buttonMap.values())
@@ -231,7 +231,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
     }
     
     // check inventory panel
-    if (name.equals("inventory"))
+    if (name.equals("bag"))
     {
       // inventory disabled?
       if (inventoryEnabled && !pressed)
@@ -249,7 +249,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
       }
       inventoryEnabled = pressed;
       // be sure to update the button
-      buttonMap.get(name).setPressed(pressed);
+      buttonMap.get("bag").setPressed(pressed);
       return;
     }
   }
@@ -257,6 +257,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   /** a window is closed */
   public void onClose(String name)
   {
+    System.out.println("closing "+name);
     // pseudo-release the button
     onClick(name, false);
   }
