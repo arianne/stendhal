@@ -109,6 +109,7 @@ public class StendhalRPWorld extends RPWorld
 
     chatAction=new RPClass("tell");
     chatAction.add("text",RPClass.LONG_STRING);
+    chatAction.add("target",RPClass.STRING);
     
         
     Log4J.finishMethod(logger,"createRPClasses");
