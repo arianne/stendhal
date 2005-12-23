@@ -12,8 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.*;
-import marauroa.common.*;
+import games.stendhal.client.gui.StendhalFirstScreen;
+import games.stendhal.client.gui.j2DClient;
+import marauroa.common.Log4J;
 
 public class stendhal extends Thread
   {

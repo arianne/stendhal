@@ -19,8 +19,11 @@ import java.awt.geom.*;
 
 public class Sign extends Entity 
   {
+  private final static long STANDARD_PERSISTENCE_TIME=5000;
+  
   private String text;
   private Sprite textImage;
+  private long textPersistTime;
   
   public Sign(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
@@ -72,6 +75,9 @@ public class Sign extends Entity
         }
         
       textImage=new Sprite(image);      
+
+      textPersistTime = Math.max( STANDARD_PERSISTENCE_TIME,
+            text.length() * STANDARD_PERSISTENCE_TIME / 50 );
       }
     }
     
@@ -100,8 +106,9 @@ public class Sign extends Entity
     {
     if(action.equals("Look"))
       {
-      gameObjects.addText(this, textImage);
-      StendhalClient.get().addEventLine("You read \""+text.replace("|","\n")+"\"",Color.green);
+      gameObjects.addText(this, textImage, textPersistTime );
+      StendhalClient.get().addEventLine("You read \""+text.replace("|","\n")+"\"",
+            new Color( 0x006400 ) );  // dark green
       }
     }
 
@@ -109,4 +116,5 @@ public class Sign extends Entity
     {
     return -1;
     }
+  
   }

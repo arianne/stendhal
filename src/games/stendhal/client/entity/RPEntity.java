@@ -222,7 +222,7 @@ public abstract class RPEntity extends AnimatedEntity
         {
         String text=getName()+" reachs Level "+ getLevel();
         
-        gameObjects.addText(this, GameScreen.get().createString(text,Color.green));
+        gameObjects.addText(this, GameScreen.get().createString(text,Color.green), 0);
         client.addEventLine(text,Color.green);
         }
       }

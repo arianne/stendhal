@@ -19,20 +19,25 @@ import java.awt.geom.*;
 
 public class Text extends Entity 
   {
-  private final static int TEXT_PERSISTENCE_TIME=5000;
+  private final static long STANDARD_PERSISTENCE_TIME=5000;
 
   private double x;
   private double y;
   private Sprite textImage;
   private long textImageTime;
+  private long textPersistTime;
   
-  public Text(GameObjects gameObjects, Sprite text, double x, double y) throws AttributeNotFoundException  
+  public Text(GameObjects gameObjects, Sprite text, double x, double y,
+              long persistTime ) throws AttributeNotFoundException  
     {    
     this.gameObjects=gameObjects;
     this.client=StendhalClient.get();
     
     textImage=text;
     textImageTime=System.currentTimeMillis();
+
+    if ( (textPersistTime = persistTime) == 0 )
+       textPersistTime = STANDARD_PERSISTENCE_TIME;
 
     this.x=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
     this.y=y-0.5;
@@ -45,6 +50,7 @@ public class Text extends Entity
     
     textImage=GameScreen.get().createTextBox(text,240,color,null);
     textImageTime=System.currentTimeMillis();
+    textPersistTime = Math.max( STANDARD_PERSISTENCE_TIME, text.length() * STANDARD_PERSISTENCE_TIME / 50 );
 
     this.x=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
     this.y=y+1;
@@ -88,7 +94,7 @@ public class Text extends Entity
     {
     screen.draw(textImage,x,y);
     
-    if(System.currentTimeMillis()-textImageTime>TEXT_PERSISTENCE_TIME) 
+    if( System.currentTimeMillis() - textImageTime > textPersistTime ) 
       {
       gameObjects.removeText(this);
       }

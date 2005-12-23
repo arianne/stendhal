@@ -212,9 +212,9 @@ public class GameObjects implements Iterable<Entity>
     texts.add(entity);
     }
 
-  public void addText(Entity speaker, Sprite sprite)
+  public void addText(Entity speaker, Sprite sprite, long persistTime )
     {
-    Text entity=new Text(this,sprite, speaker.getx(), speaker.gety());
+    Text entity=new Text(this,sprite, speaker.getx(), speaker.gety(), persistTime );
     texts.add(entity);
     }
   
