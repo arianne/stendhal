@@ -94,12 +94,11 @@ public class EntitySlot extends Panel implements DropTarget
     content = null;
   }
 
-  /** adds an object to this slot */
+  /** adds an object to this slot, this replaces any previous content */
   public void add(RPObject object)
   {
     content = object;
   }
-
   
   /**
    * ensures that the quantity image is set 
@@ -176,5 +175,33 @@ public class EntitySlot extends Panel implements DropTarget
     }
     return true;
   }
+  
+  /** doubleclick moves this item to the players inventory */
+  public synchronized boolean onMouseDoubleClick ( Point p )
+  {
+    // check if the baseclass wants to process the event
+    if ( super.onMouseDoubleClick( p ) )
+    {
+      return true;
+    }
+ 
+    RPObject player = StendhalClient.get().getPlayer();
+    
+    System.out.println( "-- mouse doubleclick -- : " + getName() ); 
+    
+    RPAction action = new RPAction();
+    action.put("type","equip");
+    // source object and content from THIS container
+    action.put("baseobject", parent.getID().getObjectID());
+    action.put("baseslot", getName());
+    action.put("baseitem", content.getID().getObjectID());
+    // target is player's bag
+    action.put("targetobject", player.getID().getObjectID());
+    action.put("targetslot","bag");
+    StendhalClient.get().send(action);
+ 
+    return true;
+  }
+  
 
 }

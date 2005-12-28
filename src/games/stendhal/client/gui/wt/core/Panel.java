@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
  *  <li>can have a border and a title bar. If they have a title bar they
  *   <ul>
  *    <li>can be moved</li>
- *    <li>can can be minimized (reduces the panel to the title bar)</li>
+ *    <li>can be minimized (reduces the panel to the title bar)</li>
  *    <li>can be closed</li>
  *   </ul>
  *  </li>
@@ -103,7 +103,7 @@ public class Panel implements Draggable
   
   /** chaches the titlebar/frame image */
   private BufferedImage cachedImage;
-  /** true when the window is closed already */
+  /** true when the window is already closed */
   private boolean closed;
 
 
