@@ -32,7 +32,7 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListener
+public class InGameGUI implements KeyListener
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(InGameGUI.class);
@@ -109,7 +109,7 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     screen.getComponent().addMouseListener(frame);
     screen.getComponent().addMouseMotionListener(frame);
     // create ground
-    ground = new GroundContainer(screen,gameObjects);
+    ground = new GroundContainer(screen,gameObjects,this);
     frame.addChild(ground);
     // the settings panel creates all other
     settings = new SettingsPanel(ground, gameObjects);
@@ -133,7 +133,7 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     // for the clicked entity....
     if(entity!=null)
       {
-      if(e.getButton()==MouseEvent.BUTTON1 && isCtrlDown)
+      if(e.getButton()==MouseEvent.BUTTON1 && ctrlDown)
         {        
         java.util.List<String> actions=java.util.Arrays.asList(entity.offeredActions());
         if(actions.contains("Attack"))
@@ -149,7 +149,7 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
           entity.onAction(client, "Use");
           }
         }
-      else if(e.getButton()==MouseEvent.BUTTON1 && isShiftDown)
+      else if(e.getButton()==MouseEvent.BUTTON1 && shiftDown)
         {        
         entity.onAction(client, "Look");
         }
@@ -193,9 +193,9 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     {
     }    
   
-  private boolean isCtrlDown;
-  private boolean isShiftDown;
-  private boolean isAltDown;
+  private boolean ctrlDown;
+  private boolean shiftDown;
+  private boolean altDown;
 
   public void onKeyPressed(KeyEvent e)  
     {
@@ -270,9 +270,9 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
     
   public void keyPressed(KeyEvent e) 
     {
-    isAltDown=e.isAltDown();
-    isCtrlDown=e.isControlDown();
-    isShiftDown=e.isShiftDown();
+    altDown=e.isAltDown();
+    ctrlDown=e.isControlDown();
+    shiftDown=e.isShiftDown();
     
     if(!pressed.containsKey(Integer.valueOf(e.getKeyCode())))
       {
@@ -283,9 +283,9 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
       
   public void keyReleased(KeyEvent e) 
     {
-    isAltDown=e.isAltDown();
-    isCtrlDown=e.isControlDown();
-    isShiftDown=e.isShiftDown();
+    altDown=e.isAltDown();
+    ctrlDown=e.isControlDown();
+    shiftDown=e.isShiftDown();
     
     onKeyReleased(e);
     pressed.remove(Integer.valueOf(e.getKeyCode()));
@@ -364,4 +364,37 @@ public class InGameGUI implements MouseListener, KeyListener //,MouseMotionListe
       frame.draw(screen.expose());
     
     }
+
+  /**
+   * @return Returns the altDown.
+   */
+  public boolean isAltDown()
+    {
+    return altDown;
+    }
+
+  /**
+   * @return Returns the ctrlDown.
+   */
+  public boolean isCtrlDown()
+    {
+    return ctrlDown;
+    }
+
+  /**
+   * @return Returns the shiftDown.
+   */
+  public boolean isShiftDown()
+    {
+    return shiftDown;
+    }
+
+  /**
+   * @return Returns the window toolkit baseframe.
+   */
+  public Frame getFrame()
+    {
+    return frame;
+    }
+
   }
