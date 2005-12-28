@@ -187,8 +187,6 @@ public class EntitySlot extends Panel implements DropTarget
  
     RPObject player = StendhalClient.get().getPlayer();
     
-    System.out.println( "-- mouse doubleclick -- : " + getName() ); 
-    
     RPAction action = new RPAction();
     action.put("type","equip");
     // source object and content from THIS container
