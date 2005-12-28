@@ -116,7 +116,7 @@ public class EntityContainer extends Panel
   }
 
   /**
-   * Check the distance of the player to the base item. When the player si too
+   * Check the distance of the player to the base item. When the player is too
    * far away, this panel closes itself. Note that this is clientside only.  
    */
   private void checkDistance()

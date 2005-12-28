@@ -995,11 +995,10 @@ public class Panel implements Draggable
         Point point = p2.getLocation();
         point.translate(-panel.getX(), -panel.getY());
         // right-click the child
-        if (panel.onMouseDoubleClick(point))
-        {
-          // the click was processed, bail out
-          return true;
-        }
+        panel.onMouseDoubleClick(point);
+        
+        // the doubleclick hit the window, bail out
+        return true;
       }
     }
     // not processed
@@ -1022,11 +1021,9 @@ public class Panel implements Draggable
         Point point = p2.getLocation();
         point.translate(-panel.getX(), -panel.getY());
         // right-click the child
-        if (panel.onMouseRightClick(point))
-        {
-          // the click was processed, bail out
-          return true;
-        }
+        panel.onMouseRightClick(point);
+        // the rightclick hit the window, bail out
+        return true;
       }
     }
     // not processed
