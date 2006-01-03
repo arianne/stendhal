@@ -160,6 +160,7 @@ public abstract class Entity
     {
     }
 
+  /** called when the server removes the entity */
   public void removed() throws AttributeNotFoundException
     {
     }
