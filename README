@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.40
+Version 0.41
 
 
 How to play
@@ -62,12 +62,23 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.41 Jan XX, 2005
+0.41 Jan 03, 2005
 - Fixed a bug on legs slot name.
 - When selling an item, we search first inside bag.
 - NPC are non attackable.
 - Modified dungeons and added a cyclops tavern! :)
 - Fixed administrator alter command for not breaking player anymore
+- Added admin command teleportto
+- Fixed build.xml script
+- Fixed Wolf GFX sprite
+- Fixed items selection at screen ( by Janet )
+- Longer text last longer ( by Janet )
+- Sheep quest not giving money if sheep wasn't fully grow.
+- Fixed stop attack entry.
+- Fixed /msg command
+- Added timestamp at chat window
+- Fixed animated water and flowers
+- Fixed legs slot not working
 
 0.40 Dec 21, 2005
 - Fixed a bug when dropping an item over itself
