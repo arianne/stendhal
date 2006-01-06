@@ -51,6 +51,8 @@ public class EntitySlot extends Panel implements DropTarget
   private Sprite      quantityImage;
   /** cached old quantity */
   private int         oldQuantity;
+  /** cached sprite for the entity */
+  private Sprite sprite;
 
   /** Creates a new instance of RPObjectSlot */
   public EntitySlot(String name, Sprite graphic, int x, int y,
@@ -92,12 +94,14 @@ public class EntitySlot extends Panel implements DropTarget
   public void clear()
   {
     content = null;
+    sprite = null;
   }
 
   /** adds an object to this slot, this replaces any previous content */
   public void add(RPObject object)
   {
     content = object;
+    sprite = gameObjects.spriteType(content);
   }
   
   /**
@@ -127,9 +131,8 @@ public class EntitySlot extends Panel implements DropTarget
     // draw the background image
     graphic.draw(childArea, 0, 0);
     // draw the content (if there is any)
-    if (content != null)
+    if (content != null && sprite != null)
     {
-      Sprite sprite = gameObjects.spriteType(content);
       // be sure to center the sprite
       int x = (getWidth() - sprite.getWidth()) / 2;
       int y = (getHeight() - sprite.getHeight()) / 2;
