@@ -197,7 +197,7 @@ public abstract class RPEntity extends AnimatedEntity
         damageSprites.add(GameScreen.get().createString("+"+Integer.toString(changes.getInt("xp") - object.getInt("xp")),Color.cyan));
         damageSpritesTimes.add(new Long(System.currentTimeMillis()));
 
-        client.addEventLine(getName() + " earns " + (changes.getInt("xp") - object.getInt("xp")) + " XP points." , Color.blue);
+        client.addEventLine(getName() + " earns " + (changes.getInt("xp") - object.getInt("xp")) + " experience points." , Color.blue);
         }
       }
 
@@ -211,7 +211,7 @@ public abstract class RPEntity extends AnimatedEntity
           damageSprites.add(GameScreen.get().createString("+"+Integer.toString(healing),Color.green));
           damageSpritesTimes.add(new Long(System.currentTimeMillis()));
  
-          client.addEventLine(getName() + " heals " + healing + " HP points." , Color.green);
+          client.addEventLine(getName() + " heals " + healing + " health points." , Color.green);
           }
         }
       }
