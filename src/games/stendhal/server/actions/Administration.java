@@ -266,12 +266,12 @@ public class Administration extends ActionListener
           int numberValue=Integer.parseInt(value);
           if(mode.equals("add"))
             {
-            numberValue+=changed.getInt(stat);
+            numberValue=changed.getInt(stat)+numberValue;
             }
             
           if(mode.equals("sub"))
             {
-            numberValue-=changed.getInt(stat);
+            numberValue=changed.getInt(stat)-numberValue;
             }
             
           if(stat.equals("hp") && changed.getInt("base_hp")<numberValue)
