@@ -1,4 +1,43 @@
+<!---------------------------------------------------------------
+items.xml 
+This file contains all the data about objects in the game,it's divided 
+into seweral sections, depending on what item type it is.
+
+To ease the editing for you, make search for the item type you want
+to add, and add it there. 
+
+If you want you can place it at anywhere in the file, but I suggest 
+that you place it in the apropriate section to ease the search for it
+next time.
+----------------------------------------------------------------->
+
+<!----------------------------------------------------------------
+
+Index:
+<!-- Swords_section -->
+<!-- Axes_section -->
+<!-- Clubs_section -->
+<!-- Ranged_section -->
+<!-- Projectiles_section -->
+<!-- Shield_section -->
+<!-- Armor_section -->
+<!-- Helmet_section -->
+<!-- Legs_section -->
+<!-- Boots_section -->
+<!-- Food_section -->
+<!-- Misc_section -->
+
+<!----------------------------------------------------------------
+Make a search for any of these lines and you should find it, they
+only appear twice in this file, and thats in this index and it's place
+in the file.
+----------------------------------------------------------------->
+
 <items>
+
+
+<!-- Swords_section -->
+
   <item name="knife">
   	  <type class="sword" subclass="knife"/>
   	  <attributes>
@@ -59,6 +98,10 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+
+
+<!-- Axes_section -->
+
   <item name="hand_axe">
   	  <type class="axe" subclass="hand_axe"/>
   	  <attributes>
@@ -83,6 +126,10 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+
+
+<!-- Clubs_section -->
+
   <item name="club">
   	  <type class="club" subclass="club"/>
   	  <attributes>
@@ -119,6 +166,47 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+
+
+<!-- Ranged_section -->
+
+<!--
+  <item name="bow">
+  	  <type class="range" subclass="bow"/>
+  	  <attributes>
+  	  	<attribute name="atk" value="12"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+-->
+
+
+<!-- Projectiles_section -->
+
+<!--
+  <item name="arrow">
+  	  <type class="projectile" subclass="arrow"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="atk" value="1"/>
+  	  </attributes>
+  	  <weight value="0.1"/>
+  	  <equipable>
+  	  	<slot name="lhand"/>
+  	  	<slot name="rhand"/>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+--> 
+
+
+<!-- Shields_section -->
+
   <item name="wooden_shield">
   	  <type class="shield" subclass="wooden_shield"/>
   	  <attributes>
@@ -155,6 +243,10 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+
+
+<!-- Armors_section -->
+
   <item name="dress">
   	  <type class="armor" subclass="dress"/>
   	  <attributes>
@@ -169,7 +261,7 @@
   <item name="leather_armor">
   	  <type class="armor" subclass="leather_armor"/>
   	  <attributes>
-  	  	<attribute name="def" value="4"/>
+  	  	<attribute name="def" value="3"/>
   	  </attributes>
   	  <weight value="15"/>
   	  <equipable>
@@ -180,7 +272,7 @@
   <item name="studded_armor">
   	  <type class="armor" subclass="studded_armor"/>
   	  <attributes>
-  	  	<attribute name="def" value="5"/>
+  	  	<attribute name="def" value="4"/>
   	  </attributes>
   	  <weight value="25"/>
   	  <equipable>
@@ -199,6 +291,10 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+
+
+<!-- Helmets_section-->
+
   <item name="leather_helmet">
   	  <type class="helmet" subclass="leather_helmet"/>
   	  <attributes>
@@ -215,7 +311,7 @@
   	  <attributes>
   	  	<attribute name="def" value="2"/>
   	  </attributes>
-  	  <weight value="4"/>
+  	  <weight value="3"/>
   	  <equipable>
   	  	<slot name="head"/>
   	  	<slot name="bag"/>
@@ -226,12 +322,15 @@
   	  <attributes>
   	  	<attribute name="def" value="4"/>
   	  </attributes>
-  	  <weight value="5"/>
+  	  <weight value="6"/>
   	  <equipable>
   	  	<slot name="head"/>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+
+
+<!-- Legs_section -->
 
   <item name="leather_legs">
   	  <type class="legs" subclass="leather_legs"/>
@@ -267,13 +366,54 @@
   	  </equipable>
   </item>
 
-  <item name="money">
-  	  <type class="money" subclass="gold"/>
+
+<!-- Boots_section -->
+
+  <item name="leather_boots">
+  	  <type class="boots" subclass="leather_boots"/>
+  	  <attributes>
+  	  	<attribute name="def" value="1"/>
+  	  </attributes>
+  	  <weight value="2"/>
+  	  <equipable>
+  	  	<slot name="boots"/>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+<!--  <item name="studded_boots">
+  	  <type class="boots" subclass="studded_boots"/>
+  	  <attributes>
+  	  	<attribute name="def" value="2"/>
+  	  </attributes>
+  	  <weight value="5"/>
+  	  <equipable>
+  	  	<slot name="boots"/>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+  <item name="chain_boots">
+  	  <type class="boots" subclass="chain_boots"/>
+  	  <attributes>
+  	  	<attribute name="def" value="4"/>
+  	  </attributes>
+  	  <weight value="10"/>
+  	  <equipable>
+  	  	<slot name="boots"/>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+-->
+
+<!-- Food_section -->
+
+  <item name="cheese">
+  	  <type class="food" subclass="cheese"/>
   	  <stackable/>
   	  <attributes>
   	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="20"/>
   	  </attributes>
-  	  <weight value="0.01"/>
+  	  <weight value="1"/>
   	  <equipable>
   	  	<slot name="bag"/>
   	  </equipable>
@@ -290,44 +430,20 @@
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
-  <item name="cheese">
-  	  <type class="food" subclass="cheese"/>
+
+
+<!-- Misc_section -->
+
+  <item name="money">
+  	  <type class="money" subclass="gold"/>
   	  <stackable/>
   	  <attributes>
   	  	<attribute name="quantity" value="1"/>
-  	  	<attribute name="amount" value="20"/>
   	  </attributes>
-  	  <weight value="1"/>
+  	  <weight value="0.01"/>
   	  <equipable>
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
 
-<!--
-  <item name="bow">
-  	  <type class="range" subclass="bow"/>
-  	  <attributes>
-  	  	<attribute name="atk" value="12"/>
-  	  </attributes>
-  	  <weight value="1"/>
-  	  <equipable>
-  	  	<slot name="lhand"/>
-  	  	<slot name="rhand"/>
-  	  	<slot name="bag"/>
-  	  </equipable>
-  </item>
-  <item name="arrow">
-  	  <type class="projectile" subclass="arrow"/>
-  	  <stackable/>
-  	  <attributes>
-  	  	<attribute name="atk" value="1"/>
-  	  </attributes>
-  	  <weight value="0.1"/>
-  	  <equipable>
-  	  	<slot name="lhand"/>
-  	  	<slot name="rhand"/>
-  	  	<slot name="bag"/>
-  	  </equipable>
-  </item>
---> 
 </items>
