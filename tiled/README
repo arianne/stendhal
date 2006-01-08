@@ -8,24 +8,34 @@ How to create a new map file
 ----------------------------
 Create a new map file of any size, but with tile size of 32x32
 Now click on tileset and add in this order:
-- zelda_outside_chipset.gif
-- zelda_dungeon_chipset.gif
-- zelda_objects_chipset.gif
-- zelda_collision_chipset.gif
+- zelda_outside_0_chipset.png
+- zelda_outside_1_chipset.png
+- zelda_dungeon_0_chipset.png
+- zelda_dungeon_1_chipset.png
+- zelda_interior_0_chipset.png
+- zelda_navigation_chipset.png
+- zelda_objects_chipset.png
+- zelda_collision_chipset.png
+- zelda_building_0_tileset.png
+- zelda_outside_2_chipset.png
 
 Now create 5 layers:
 - <map>_0_floor
-- <map>_1_object
-- <map>_2_roof
+- <map>_1_terrain
+- <map>_2_object
+- <map>_3_roof
+- <map>_4_roof_add
 - <map>_objects
 - <map>_collision
+- <map>_navigation
 
-They should appear on the top of them all collision.
+
+They should appear on the top of them all navigation.
 
 Alternatively you can use template.tmx for an empty framework of 128x128
 
 Now simply draw your map.
-Objects in roof apears over any other object that is draw.
+Objects in roof and roof_add apears over any other object that is drawn.
 Objects contain objects that will be inserted in the world, add at least one zone entry or zone change object.
 
 Finally draw in red the areas the objects won't be able to enter.
