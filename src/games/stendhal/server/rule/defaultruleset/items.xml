@@ -191,7 +191,7 @@
   <item name="chain_armor">
   	  <type class="armor" subclass="chain_armor"/>
   	  <attributes>
-  	  	<attribute name="def" value="5"/>
+  	  	<attribute name="def" value="6"/>
   	  </attributes>
   	  <weight value="45"/>
   	  <equipable>

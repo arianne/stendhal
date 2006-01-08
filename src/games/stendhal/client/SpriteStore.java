@@ -38,7 +38,11 @@ public class SpriteStore {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(SpriteStore.class);
 	/** The single instance of this class */
-    private static SpriteStore single = new SpriteStore();
+  private static SpriteStore single = new SpriteStore();
+  
+  protected SpriteStore()
+    {
+    }
 	
 	/**
 	 * Get the single instance of this class 

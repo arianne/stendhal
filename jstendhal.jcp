@@ -81,6 +81,9 @@
 				<path>src\games\stendhal\server\quests</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\server\pathfinder</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\common</path>
 			</folderitem>
 			<folderitem>
@@ -667,6 +670,18 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\quests\SheepGrowing.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\Graph.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\Graphable.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\GraphItem.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

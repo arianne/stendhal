@@ -18,6 +18,7 @@ public class RenderingPipeline
   private StaticGameLayers gameLayers;
   private GameObjects gameObjects;
   
+  /** singlenton class. */
   private RenderingPipeline()
     {    
     }

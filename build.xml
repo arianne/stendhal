@@ -122,7 +122,9 @@
     </copy>
 
     <copy todir="${build_client_data}/tilesets">
-      <fileset dir="${tilesets}"/>
+      <fileset dir="${tiled}">
+        <include name="*.png"/>
+      </fileset>
     </copy>
 
     <copy todir="${build_client_data}/data">

@@ -37,9 +37,7 @@ public abstract class AnimatedEntity extends Entity
     }
 
   /** This method fills the sprites map */
-  protected void buildAnimations(RPObject object)
-    {
-    }
+  abstract protected void buildAnimations(RPObject object);
     
   /** This method sets the default animation */
   protected Sprite defaultAnimation()
