@@ -17,7 +17,7 @@
 			<application_ref>&lt;Default&gt;</application_ref>
 			<applet_ref>&lt;Default&gt;</applet_ref>
 			<debugger_ref>&lt;Default&gt;</debugger_ref>
-			<param>-h 127.0.0.1 -u miguel -p password</param>
+			<param>-h 127.0.0.1 -u miguel -p password -port 32161</param>
 			<run>games.stendhal.client.gui.j2DClient</run>
 		</runtime>
 	</runtimes>
