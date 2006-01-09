@@ -323,6 +323,7 @@ public class j2DClient extends JFrame
     if(args.length>0)
       {
       int i=0;
+      String port=null;
       String username=null;
       String password=null;
       String host=null;
@@ -341,15 +342,19 @@ public class j2DClient extends JFrame
           {
           host=args[i+1];
           }
+        else if(args[i].equals("-port"))
+          {
+          port=args[i+1];
+          }
         i++;
         }
 
-      if(username!=null && password!=null && host!=null)
+      if(username!=null && password!=null && host!=null && port!=null)
         {
         StendhalClient client=StendhalClient.get();
         try
           {
-          client.connect(host,32160);
+          client.connect(host,Integer.parseInt(port));
           client.login(username,password);
 
           new j2DClient(client).setVisible(true);

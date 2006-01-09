@@ -121,11 +121,19 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>stendhal-0.42.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>stendhal-server-0.40.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>stendhal-server-0.41.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.42.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

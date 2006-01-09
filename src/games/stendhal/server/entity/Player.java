@@ -17,7 +17,10 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.item.Money;
+import games.stendhal.common.Rand;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
@@ -38,6 +41,7 @@ public class Player extends RPEntity
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Player.class);
 
+  private List<Food> foodToEat;
 
   public static void generateRPClass()
     {
@@ -49,7 +53,6 @@ public class Player extends RPEntity
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
-      player.add("food",RPClass.INT,(byte)(RPClass.HIDDEN|RPClass.VOLATILE));
 
       player.add("outfit",RPClass.INT);
       
@@ -376,6 +379,9 @@ public class Player extends RPEntity
     {
     super(object);
     put("type","player");
+    
+    foodToEat=new LinkedList<Food>();  
+
     update();
     }
 
@@ -410,13 +416,84 @@ public class Player extends RPEntity
     super.onDead(who, false);
 
     // Penalize: Respawn on afterlive zone and 10% less experience
-    setXP((int)(getXP()*0.9));
+    subXP((int)(getXP()*0.1));
+    
+    setATK((int)(getATK()*0.9));
+    setATKXP((int)(getATKXP()*0.9));
+    
+    setDEF((int)(getDEF()*0.9));
+    setDEFXP((int)(getDEFXP()*0.9));
+    
     setHP(getBaseHP());
 
     world.modify(who);
 
     StendhalRPAction.changeZone(this,"int_afterlife");
     StendhalRPAction.transferContent(this);
+    }
+
+  protected void dropItemsOn(Corpse corpse)
+    {
+    int amount=Rand.rand(4);
+    
+    if(amount==0)
+      {
+      return;      
+      }
+      
+    String[] slots={"bag","rhand","lhand","head","armor","legs","feet"};
+
+    for(String slotName: slots)
+      {
+      if(hasSlot(slotName))
+        {
+        RPSlot slot=getSlot(slotName);
+        
+        List<RPObject> objects=new LinkedList<RPObject>();
+        for(RPObject objectInSlot: slot)
+          {
+          if(amount==0)
+            {
+            break;
+            }
+
+          if(Rand.roll1D6()<4)
+            {
+            objects.add(objectInSlot);
+            amount--;
+            }
+          }
+        
+        for(RPObject object: objects)
+          {
+          if(object instanceof StackableItem)
+            {
+            StackableItem item=(StackableItem) object;
+
+            double percentage=(Rand.rand(40)+10)/100.0;
+            int quantity=item.getQuantity();
+
+            item.setQuantity((int)(quantity*(1.0-percentage)));
+            
+            StackableItem rest_item=(StackableItem)world.getRuleManager().getEntityManager().getItem(object.get("name"));
+            rest_item.setQuantity((int)(quantity*percentage));
+            corpse.add(rest_item);
+            }
+          else if(object instanceof PassiveEntity)
+            {
+            slot.remove(object.getID());
+          
+            corpse.add((PassiveEntity)object);
+            amount--;
+            }            
+          }
+        }
+      
+      if(amount==0)
+        {
+        return;
+        }
+      }
     }
 
   public void removeSheep(Sheep sheep)
@@ -691,17 +768,10 @@ public class Player extends RPEntity
         }
       }
 
-    if(has("food"))
-      {
-      logger.debug("Consuming food: "+food.getAmount());
-      add("food",food.getAmount());
-      }
-    else
-      {
-      logger.debug("Consuming food: "+food.getAmount());
-      put("food",food.getAmount());
-      }
-    
+    logger.debug("Consuming food: "+food.getAmount());    
+    System.out.println ("Consuming food: "+food.getAmount());    
+    foodToEat.add(food);
+
     if(food.getQuantity()>1)
       {
       food.setQuantity(food.getQuantity()-1);
@@ -737,23 +807,33 @@ public class Player extends RPEntity
   
   public void consume()
     {
-    if(has("food"))
+    System.out.println ("Trying to consume");
+    while(foodToEat.size()>0)
       {
-      int amount=getInt("food");
-      if(amount>0)
+      Food food=foodToEat.get(0);
+      if(!food.consumed())
         {
-        put("food",amount-1);
-        if(getHP()<getBaseHP())
+        System.out.println ("Consuming: "+food);
+        food.consume();
+        int amount=food.getRegen();
+
+        if(getHP()+amount<getBaseHP())
           {
-          setHP(getHP()+1);
-          world.modify(this);
+          setHP(getHP()+amount);
           }
+        else
+          {
+          setHP(getBaseHP());
+          }
+
+        world.modify(this);
+        return;
         }
       else
         {
-        remove("food");
-        world.modify(this);
-        }      
+        System.out.println ("Consumed: "+food);
+        foodToEat.remove(0);
+        }
       }
     }
   }

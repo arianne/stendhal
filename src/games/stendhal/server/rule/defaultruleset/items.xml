@@ -1,4 +1,4 @@
-<!---------------------------------------------------------------
+<!--
 items.xml 
 This file contains all the data about objects in the game,it's divided 
 into seweral sections, depending on what item type it is.
@@ -9,11 +9,9 @@ to add, and add it there.
 If you want you can place it at anywhere in the file, but I suggest 
 that you place it in the apropriate section to ease the search for it
 next time.
------------------------------------------------------------------>
+-->
 
-<!----------------------------------------------------------------
-
-Index:
+<!-- Index: -->
 <!-- Swords_section -->
 <!-- Axes_section -->
 <!-- Clubs_section -->
@@ -27,11 +25,11 @@ Index:
 <!-- Food_section -->
 <!-- Misc_section -->
 
-<!----------------------------------------------------------------
+<!--
 Make a search for any of these lines and you should find it, they
 only appear twice in this file, and thats in this index and it's place
 in the file.
------------------------------------------------------------------>
+-->
 
 <items>
 
@@ -412,6 +410,7 @@ in the file.
   	  <attributes>
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="20"/>
+  	  	<attribute name="regen" value="1"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -424,6 +423,7 @@ in the file.
   	  <attributes>
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="80"/>
+  	  	<attribute name="regen" value="5"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>

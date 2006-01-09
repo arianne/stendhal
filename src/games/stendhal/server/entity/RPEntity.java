@@ -178,6 +178,17 @@ public abstract class RPEntity extends Entity
     return atk;
     }
   
+  public void setATKXP(int atk)
+    {
+    this.atk_xp=atk;
+    put("atk_xp",atk_xp);
+    }
+
+  public int getATKXP()
+    {
+    return atk_xp;
+    }
+
   public int incATKXP()
     {
     this.atk_xp++;
@@ -203,6 +214,17 @@ public abstract class RPEntity extends Entity
   public int getDEF()
     {
     return def;
+    }
+
+  public void setDEFXP(int def)
+    {
+    this.def_xp=def;
+    put("def_xp",def_xp);
+    }
+
+  public int getDEFXP()
+    {
+    return def_xp;
     }
 
   public int incDEFXP()
@@ -268,6 +290,11 @@ public abstract class RPEntity extends Entity
     put("xp",xp);
     }
 
+  public void subXP(int newxp)
+    {
+    addXP(-newxp);
+    }
+    
   public void addXP(int newxp)
     {
     // Increment experience points
@@ -278,9 +305,11 @@ public abstract class RPEntity extends Entity
     int levels=newLevel-getLevel();
 
     // In case we level up several levels at a single time.
-    for(int i=0;i<levels;i++)
+    for(int i=0;i<Math.abs(levels);i++)
       {
-      setBaseHP(getBaseHP()+10);
+      setBaseHP(getBaseHP()+(int)Math.signum(levels)*10);
+      setHP(getHP()+(int)Math.signum(levels)*10);
+      
       setLevel(newLevel);
       }
     }
@@ -418,6 +447,11 @@ public abstract class RPEntity extends Entity
           {
           gain_xp_limitation=0;
           }
+          
+        if(gain_xp_limitation>1)
+          {
+          gain_xp_limitation=1;
+          }
         
         entity.addXP((int)(xp_earn*gain_xp_limitation));
         world.modify(entity);
@@ -456,16 +490,7 @@ public abstract class RPEntity extends Entity
       }
     }
   
-  protected void dropItemsOn(Corpse corpse)
-    {
-    int amount=(int)(getXP()/100)+(Rand.roll1D6()-3);
-    if(amount>0)
-      {
-      Money money=(Money)world.getRuleManager().getEntityManager().getItem("money");
-      money.setQuantity(amount);
-      corpse.add(money);
-      }
-    }
+  abstract protected void dropItemsOn(Corpse corpse);
 
   /** Return true if this entity is attacked */
   public boolean isAttacked()

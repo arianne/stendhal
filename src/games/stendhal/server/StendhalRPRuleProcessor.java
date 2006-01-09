@@ -346,7 +346,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           StendhalRPAction.attack(object,object.getAttackTarget());
           }
         
-        if(getTurn()%30==0 && object.has("food")) //6 round = 30 turns
+        if(getTurn()%30==0) //6 round = 30 turns
           {
           object.consume();
           }

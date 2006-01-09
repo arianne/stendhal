@@ -28,7 +28,7 @@ public class Corpse extends PassiveEntity
   {
   private static final Logger logger = Log4J.getLogger(Corpse.class);
 
-  final public static int DEGRADATION_TIMEOUT=3000; // 30 minutes at 300 ms
+  final public static int DEGRADATION_TIMEOUT=30; // 30 minutes at 300 ms
   private int degradation;
   private int stage;
 
@@ -166,7 +166,6 @@ public class Corpse extends PassiveEntity
       {
       if(isContained())
         {
-        getContainerSlot().remove(this.getID());
         // We modify the base container if the object change.
         RPObject base=getContainer();
         while(base.isContained())
@@ -181,6 +180,8 @@ public class Corpse extends PassiveEntity
           }
           
         world.modify(base);
+
+        getContainerSlot().remove(this.getID());
         }
       else
         {

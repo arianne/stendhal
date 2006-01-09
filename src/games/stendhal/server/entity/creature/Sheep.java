@@ -212,7 +212,7 @@ public class Sheep extends Creature
     hungry++;
     SheepFood food=null;
     
-    if(hungry>50 && (food=getNearestFood(6))!=null)
+    if(hungry>50 && (food=getNearestFood(6))!=null  && weight<MAX_WEIGHT)
       {
       if(nextto(food,0.25))
         {

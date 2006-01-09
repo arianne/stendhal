@@ -19,16 +19,32 @@ import java.util.LinkedList;
 
 public class Food extends StackableItem
   {
-  private int quantity;
+  public int left;
   
   public Food(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
     {
     super(name,clazz, subclass, slots, attributes);
+    left=getAmount();
     }
   
   public int getAmount()
     {
     return getInt("amount");
+    }
+  
+  public int getRegen()
+    {
+    return getInt("regen");
+    }  
+  
+  public void consume()
+    {
+    left-=getRegen();
+    }
+  
+  public boolean consumed()
+    {
+    return left<=0;
     }
 
   public boolean isStackable(Stackable other)

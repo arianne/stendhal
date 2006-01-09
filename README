@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.41
+Version 0.42
 
 
 How to play
@@ -62,6 +62,10 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.42 Jan XX, 2005
+- Added Venom rat
+- On death player lose Levels, XP, ATK and DEF
+
 0.41 Jan 03, 2005
 - Fixed a bug on legs slot name.
 - When selling an item, we search first inside bag.

@@ -225,10 +225,6 @@
       <fileset dir="sprites"/>
     </copy>
 
-    <copy todir="stendhal-${version}-src/tilesets">
-      <fileset dir="${tilesets}"/>
-    </copy>
-
     <copy todir="stendhal-${version}-src/tiled">
       <fileset dir="${tiled}"/>
     </copy>

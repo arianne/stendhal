@@ -4,6 +4,7 @@ import games.stendhal.server.Path;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Corpse;
 
 import java.awt.geom.Rectangle2D;
 import java.util.*;
@@ -155,6 +156,11 @@ public abstract class SpeakerNPC extends NPC
     {
     setHP(getBaseHP());
     world.modify(this);
+    }
+
+  protected void dropItemsOn(Corpse corpse)
+    {
+    // They can't die
     }
    
   public void logic()

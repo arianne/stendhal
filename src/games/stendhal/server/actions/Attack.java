@@ -67,9 +67,9 @@ public class Attack extends ActionListener
               logger.info(player.getName()+" is attacking "+entity.getName());
               }
 
-            player.bloodHappens();
-            entity.bloodHappens();
-            
+//            player.bloodHappens();
+//            entity.bloodHappens();
+//            
             player.attack(entity);
             world.modify(player);
             }          

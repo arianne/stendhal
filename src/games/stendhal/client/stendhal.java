@@ -31,7 +31,7 @@ public class stendhal extends Thread
   public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
   public static final boolean FILTER_ATTACK_MESSAGES = true;
   
-  public static final String VERSION="0.41";
+  public static final String VERSION="0.42";
   
   public static void main(String args[]) 
     {
