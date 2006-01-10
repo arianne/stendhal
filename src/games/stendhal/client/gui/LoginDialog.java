@@ -269,7 +269,7 @@ public class LoginDialog extends JDialog {
     private void saveLoginInfo(String server, String usrName, String pwd) {
         Encoder encode = new Encoder();
         try {
-            File loginFile = new File("user.dat");
+            File loginFile = new File(stendhal.STENDHAL_FOLDER+"user.dat");
             PrintWriter fos = new PrintWriter(loginFile);
             
             fos.print(encode.encode(server + " " + usrName + " " + pwd));
@@ -284,7 +284,7 @@ public class LoginDialog extends JDialog {
         String loginLine = "";
         
         try {
-            FileReader fr = new FileReader("user.dat");
+            FileReader fr = new FileReader(stendhal.STENDHAL_FOLDER+"user.dat");
             BufferedReader fin = new BufferedReader(fr);
             
             loginLine = decode.decode(fin.readLine());

@@ -62,7 +62,7 @@ public class StendhalClient extends ariannexp
   
   private static StendhalClient client;  
   
-  private static final String LOG4J_PROPERTIES = "games/stendhal/log4j.properties";
+  private static final String LOG4J_PROPERTIES = "games/stendhal/client/log4j.properties";
   
   public static StendhalClient get()
     {
@@ -87,10 +87,12 @@ public class StendhalClient extends ariannexp
     try
       {
       // Create file.
-      new File("cache/").mkdir();
-      new File("cache/stendhal.cache").createNewFile();
+      new File(stendhal.STENDHAL_FOLDER).mkdir();
       
-      Configuration.setConfigurationFile("cache/stendhal.cache");
+      new File(stendhal.STENDHAL_FOLDER+"cache/").mkdir();
+      new File(stendhal.STENDHAL_FOLDER+"cache/stendhal.cache").createNewFile();
+      
+      Configuration.setConfigurationFile(stendhal.STENDHAL_FOLDER+"cache/stendhal.cache");
       conf=Configuration.getConfiguration();
       }
     catch(Exception e)
@@ -269,7 +271,7 @@ public class StendhalClient extends ariannexp
     Log4J.startMethod(logger,"onTransferREQ");
     for(TransferContent item: items)
       {
-      File file=new File("cache/"+item.name);
+      File file=new File(stendhal.STENDHAL_FOLDER+"cache/"+item.name);
 
       if(file.exists() && conf.has(item.name) && Integer.parseInt(conf.get(item.name))==item.timestamp)
         {
@@ -311,9 +313,9 @@ public class StendhalClient extends ariannexp
         {
         String data=new String(item.data);
         
-        new File("cache").mkdir();
+        new File(stendhal.STENDHAL_FOLDER+"cache").mkdir();
         
-        Writer writer=new BufferedWriter(new FileWriter("cache/"+item.name));
+        Writer writer=new BufferedWriter(new FileWriter(stendhal.STENDHAL_FOLDER+"cache/"+item.name));
         writer.write(data);
         writer.close();
 

@@ -769,7 +769,6 @@ public class Player extends RPEntity
       }
 
     logger.debug("Consuming food: "+food.getAmount());    
-    System.out.println ("Consuming food: "+food.getAmount());    
     foodToEat.add(food);
 
     if(food.getQuantity()>1)
@@ -807,13 +806,11 @@ public class Player extends RPEntity
   
   public void consume()
     {
-    System.out.println ("Trying to consume");
     while(foodToEat.size()>0)
       {
       Food food=foodToEat.get(0);
       if(!food.consumed())
         {
-        System.out.println ("Consuming: "+food);
         food.consume();
         int amount=food.getRegen();
 
@@ -831,7 +828,6 @@ public class Player extends RPEntity
         }
       else
         {
-        System.out.println ("Consumed: "+food);
         foodToEat.remove(0);
         }
       }

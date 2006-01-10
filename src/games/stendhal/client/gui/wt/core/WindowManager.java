@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import games.stendhal.client.stendhal;
 
 /**
  * This manager keeps track of all the windows and their positions/
@@ -79,7 +80,7 @@ public class WindowManager
     }
     try
     {
-      FileWriter writer = new FileWriter(new File(FILE_NAME));
+      FileWriter writer = new FileWriter(new File(stendhal.STENDHAL_FOLDER+FILE_NAME));
       writer.append(buf.toString());
       writer.close();
     }
@@ -96,7 +97,7 @@ public class WindowManager
     properties = new Properties();
     try
     {
-      File file = new File(FILE_NAME);
+      File file = new File(stendhal.STENDHAL_FOLDER+FILE_NAME);
       if(file.exists())
         {
         InputStream propsFile = new FileInputStream(file);
