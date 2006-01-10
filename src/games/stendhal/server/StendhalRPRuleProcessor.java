@@ -154,6 +154,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   
   private boolean isValidUsername(String username)
     {
+    /** TODO: Complete this. Should read the list from XML file */
     if(username.indexOf(' ')!=-1) return false;
     if(username.toLowerCase().contains("admin")) return false;
     
