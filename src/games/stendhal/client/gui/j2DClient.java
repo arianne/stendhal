@@ -375,6 +375,7 @@ public class j2DClient extends JFrame
     System.out.println("  games.stendhal.j2DClient -u username -p pass -h host -c character\n");
     System.out.println("Required parameters");
     System.out.println("* -h\tHost that is running Marauroa server");
+    System.out.println("* -port\tport of the Marauroa server (try 32160)");
     System.out.println("* -u\tUsername to log into Marauroa server");
     System.out.println("* -p\tPassword to log into Marauroa server");
     }
