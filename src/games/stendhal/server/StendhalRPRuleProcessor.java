@@ -151,9 +151,23 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       return false;
       }
     }
-
+  
+  private boolean isValidUsername(String username)
+    {
+    if(username.indexOf(' ')!=-1) return false;
+    if(username.toLowerCase().contains("admin")) return false;
+    
+    return true;
+    }
+  
   public boolean createAccount(String username, String password, String email)
     {
+    if(!isValidUsername(username))
+      {
+      return false;
+      }
+    
+    
     stendhalcreateaccount account=new stendhalcreateaccount();
     return account.execute(username, password, email);
     }
