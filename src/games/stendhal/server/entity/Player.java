@@ -26,6 +26,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -749,6 +751,13 @@ public class Player extends RPEntity
   
   public void eat(Food food)
     {
+    if(foodToEat.size()>4)
+      {
+      setPrivateText("You can't eat anymore");
+      rp.removePlayerText(this);
+      return;
+      }
+      
     if(food.isContained())
       {
       // We modify the base container if the object change.
@@ -776,6 +785,20 @@ public class Player extends RPEntity
 
     logger.debug("Consuming food: "+food.getAmount());    
     foodToEat.add(food);
+
+    Collections.sort(foodToEat, new Comparator<Food>()
+      {
+      public int compare(Food o1, Food o2) 
+        {
+        return o2.getRegen()-o1.getRegen();
+        }
+        
+      public boolean equals(Object obj)  
+        {
+        return true;
+        }
+      });
+      
 
     if(food.getQuantity()>1)
       {
@@ -809,12 +832,13 @@ public class Player extends RPEntity
         }
       }
     }
-  
+
   public void consume()
     {
     while(foodToEat.size()>0)
       {
       Food food=foodToEat.get(0);
+
       if(!food.consumed())
         {
         food.consume();
@@ -827,6 +851,7 @@ public class Player extends RPEntity
         else
           {
           setHP(getBaseHP());
+          foodToEat.clear();
           }
 
         world.modify(this);

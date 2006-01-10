@@ -244,10 +244,10 @@ public class j2DClient extends JFrame
       long wait=frameLenght-delta;
       if(wait>0)
         {
-        if(wait>50) 
+        if(wait>100) 
           {
           logger.info("Waiting "+wait+" ms");
-          wait=50;
+          wait=100;
           }
           
         try{Thread.sleep(wait);}catch(Exception e){};

@@ -408,7 +408,7 @@ public class Administration extends ActionListener
 
   private void onInvisible(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
-    Log4J.startMethod(logger,"onTellEverybody");
+    Log4J.startMethod(logger,"onInvisible");
     
     if(player.has("invisible"))
       {
@@ -419,7 +419,6 @@ public class Administration extends ActionListener
       player.put("invisible","");
       }
 
-    Log4J.finishMethod(logger,"onTellEverybody");
+    Log4J.finishMethod(logger,"onInvisible");
     }
-
   }
