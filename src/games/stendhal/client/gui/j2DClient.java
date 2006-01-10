@@ -187,6 +187,9 @@ public class j2DClient extends JFrame
   public void gameLoop()
     {
     long lastLoopTime = System.currentTimeMillis();
+    
+    final int frameLenght=(int)(1000.0 / (float)stendhal.FPS_LIMIT);
+    
     int fps=0;
 
     StaticGameLayers staticLayers=client.getStaticGameLayers();
@@ -238,7 +241,7 @@ public class j2DClient extends JFrame
       gameRunning&=client.shouldContinueGame();
       
       logger.debug("Start sleeping");
-      long wait=20-delta;
+      long wait=frameLenght-delta;
       if(wait>0)
         {
         if(wait>50) 

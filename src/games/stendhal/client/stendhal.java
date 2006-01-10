@@ -27,14 +27,15 @@ public class stendhal extends Thread
     "localhost"    
     };
   
+  public static final String STENDHAL_FOLDER = "stendhal/";  
+  public static final String VERSION="0.42";
+  
+
   public static final boolean SHOW_COLLISION_DETECTION  = false;
   public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
   public static final boolean FILTER_ATTACK_MESSAGES = true;
+  public static final int FPS_LIMIT = 20;
 
-  public static final String STENDHAL_FOLDER = "stendhal/";
-  
-  public static final String VERSION="0.42";
-  
   public static void main(String args[]) 
     {
     

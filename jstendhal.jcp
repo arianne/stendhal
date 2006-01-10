@@ -157,6 +157,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\log4j.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\RenderingPipeline.java</path>
 				<source>true</source>
 			</fileitem>

@@ -41,7 +41,7 @@ Please download it from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.32.jar
+  java -jar stendhal-0.42.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
