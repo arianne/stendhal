@@ -30,6 +30,7 @@ public class Chat extends ActionListener
     Chat chat=new Chat();
     StendhalRPRuleProcessor.register("chat",chat);
     StendhalRPRuleProcessor.register("tell",chat);    
+    StendhalRPRuleProcessor.register("support",chat);    
     }
 
   public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
@@ -38,9 +39,13 @@ public class Chat extends ActionListener
       {
       onChat(world,rules,player,action);
       }
-    else
+    else if(action.get("type").equals("tell"))
       {
       onTell(world,rules,player,action);
+      }
+    else
+      {
+      onSupport(world,rules,player,action);
       }    
     }
   
@@ -81,6 +86,31 @@ public class Chat extends ActionListener
         
       player.setPrivateText(action.get("target") + " is not currently logged.");
       rules.removePlayerText(player);
+      }
+
+    Log4J.finishMethod(logger,"tell");
+    }
+
+  private void onSupport(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"support");
+
+    if(action.has("text"))
+      {
+      String message = player.getName() +  " ask for support to ADMIN: " + action.get("text");
+      for(Player p : rules.getPlayers())
+        {
+        if(p.isAdmin())
+          {
+          p.setPrivateText(message);
+          world.modify(p);
+          rules.removePlayerText(p);
+          }
+        }
+        
+      player.setPrivateText("You ask for support: " + action.get("text"));
+      rules.removePlayerText(player);
+      world.modify(player);
       }
 
     Log4J.finishMethod(logger,"tell");

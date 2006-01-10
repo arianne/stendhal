@@ -45,7 +45,7 @@ public class Administration extends ActionListener
 
   public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
-    if(!player.has("admin"))
+    if(!player.isAdmin())
       {
       // Admininistrador only commands
       logger.warn("Player "+player.getName()+" trying to run admin commands");

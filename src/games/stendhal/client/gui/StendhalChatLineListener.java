@@ -164,6 +164,17 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
             client.send(tell);
             }
           }
+        else if(text.startsWith("/support ")) // Support command
+          {
+          String[] command = parseString(text, 2);
+          if(command != null)
+            {
+            RPAction tell = new RPAction();
+            tell.put("type","support");
+            tell.put("text", command[1]);
+            client.send(tell);
+            }
+          }
         else if(text.startsWith("/where ")) // Tell command
           {
           String[] command = parseString(text, 2);
@@ -291,6 +302,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
                           "This brief help show you the most used commands:",
                           "- /tell <player> <message> \tWrites a private message to player",
                           "- /msg <player> <message>  \tWrites a private message to player",
+                          "- /support <message>       \tAsk for support to admins",
                           "- /who                     \tShow online players",
                           "- /add <player>            \tAdd player to the buddy list",
                           "- /remove <player>         \tRemoves player from buddy list",

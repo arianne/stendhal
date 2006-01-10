@@ -395,6 +395,11 @@ public class Player extends RPEntity
     {
     put("private_text", text);
     }
+  
+  public boolean isAdmin()
+    {
+    return has("admin");
+    }
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
