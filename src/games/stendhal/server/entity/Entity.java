@@ -224,6 +224,11 @@ public abstract class Entity extends RPObject
     return false;
     }
   
+  public void faceto(Entity entity)
+    {
+    setDirection(directionTo(entity.getx(),entity.gety()));
+    }
+  
   public Direction directionTo(int px, int py)
     {
     if(Math.abs(px-x)>Math.abs(py-y))
