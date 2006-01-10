@@ -326,6 +326,7 @@ public class Player extends RPEntity
       }          
 
     player.setPrivateText("This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne");
+    rp.removePlayerText(player);
 
     logger.debug("Finally player is :"+player);
     return player;

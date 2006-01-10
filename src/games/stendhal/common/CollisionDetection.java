@@ -60,7 +60,7 @@ public class CollisionDetection
       String[] items=text.split(",");
       for(String item: items)
         {
-        blocked[j]=(Integer.parseInt(item)-(2502-1))==1;
+        blocked[j]=Integer.parseInt(item)!=0;//(Integer.parseInt(item)-(2502-1))==1;
         j++;      
         }
       }

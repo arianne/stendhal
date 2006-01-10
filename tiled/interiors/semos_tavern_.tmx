@@ -50,7 +50,7 @@
    H4sIAAAAAAAAAGNgGAWjgDD4yMHAwM/JwMALxHxINExMgHOgXTgKRsEoGAWjYBQMHQAAUyzsdIAJAAA=
   </data>
  </layer>
- <layer name="objects" width="32" height="19" visible="0">
+ <layer name="objects" width="32" height="19">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjAAFSOAfaBaNgFIyCUTAKRgH5IG2I1GMAIgg7ooAJAAA=
   </data>
@@ -63,6 +63,11 @@
  <layer name="navigation" width="32" height="19">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjgDBI5KSuOlqbMQqGLsAV/8SI42KPglFAKaAkXVLDnlEw/AAAEwrLDIAJAAA=
+  </data>
+ </layer>
+ <layer name="protection" width="32" height="19">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQsvoAAAeBoUK4qJgAkAAA==
   </data>
  </layer>
 </map>

@@ -57,19 +57,24 @@ public class Attack extends ActionListener
             // Just make sure no creature is instanceof SpeakerNPC... 
             if(entity instanceof SpeakerNPC)
               {
-              logger.info(player.getName()+" is attacking "+entity.getName());
+              logger.info("REJECTED. "+player.getName()+" is attacking "+entity.getName());
               return;
               }
               
             // Enabled PVP
             if(entity instanceof Player)
               {
-              logger.info(player.getName()+" is attacking "+entity.getName());
+              if(zone.isInProtectionArea(entity))
+                {
+                logger.info("REJECTED. "+entity.getName()+" is in a protection zone");
+                player.setPrivateText("You can't attack "+entity.getName()+" because he/she is in a protection area.");
+                rules.removePlayerText(player);
+                return;
+                }
+
+              logger.info(player.getName()+" is attacking "+entity.getName());              
               }
 
-//            player.bloodHappens();
-//            entity.bloodHappens();
-//            
             player.attack(entity);
             world.modify(player);
             }          

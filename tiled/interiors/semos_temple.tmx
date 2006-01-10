@@ -67,4 +67,9 @@
    H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQB8GfAKkrAACQAA
   </data>
  </layer>
+ <layer name="protection" width="24" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQB8GfAKkrAACQAA
+  </data>
+ </layer>
 </map>

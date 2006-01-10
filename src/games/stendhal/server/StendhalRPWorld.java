@@ -104,9 +104,11 @@ public class StendhalRPWorld extends RPWorld
 
     Player.generateRPClass();
     
+    // Chat action class
     RPClass chatAction=new RPClass("chat");
     chatAction.add("text",RPClass.LONG_STRING);
 
+    // Tell action class
     chatAction=new RPClass("tell");
     chatAction.add("text",RPClass.LONG_STRING);
     chatAction.add("target",RPClass.STRING);
@@ -248,6 +250,7 @@ public class StendhalRPWorld extends RPWorld
     area.addLayer(name+"_3_roof",xmlzone.getLayer("3_roof"));
     
     area.addCollisionLayer(name+"_collision",xmlzone.getLayer("collision"));
+    area.addProtectionLayer(name+"_protection",xmlzone.getLayer("protection"));
     area.addNavigationLayer(name+"_navigation",xmlzone.getLayer("navigation"));
     
     if(xmlzone.isInterior())

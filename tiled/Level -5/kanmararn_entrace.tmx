@@ -57,12 +57,17 @@
    H4sIAAAAAAAAAO3dsQ0AIAgEQFr31P1XcAOsDAncTfAlny+IAAAAAAAAAAAAAAAAAAAAAAAAAACAOfaqTgAAAFAj60O6EgBAP+4/AAAAAAAA4Ad7IwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9HD8IAAAAAAAAB4ufIt41wAAAQA=
   </data>
  </layer>
- <layer name="collision" width="128" height="128" visible="0" opacity="0.65">
+ <layer name="collision" width="128" height="128" opacity="0.65">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3VWW4cMQxFUf9m/3vyuvwVoNFQSeJMqS6BB8RDlUgetfP77+fnlxBCCCGEEEIIIYQQQgghhBBCCCGEECLOqE48g/jZZFT13OTZ/8QzyPNeVzvP8sA9drcr49n9wF+2546l3f/Os/j39rcYSJ7Hv9ccGv/vZ/B/j//I4ul57787mue6pVv/+J+x72797HhEVvXe8JffEYvjW/wlM3rsVrNPzfvxl/t7lLe/Zf8nu1X4W3YY6W+ZvXr/1dnZ9+p+4H9u8H93Mvw/C/9esfiPKtNfelfw9/OflYf/Tk9WP/zP9rf64i/7rHlUtv/sfR7vOD2WubTGVf4eVe3V3d+rnyh/64zVXt39Pcvb32PGaq9O/pX9ZPl33BH+678do7L2Vb0b/Os8Ou0If/zxx9+644j/J/Hvn1v8M3ut3ssb/KV93Ox/U0X6R/eEv700c3v9npel9iz84/bj/eys56g5dvyz71bmnPjjr+070r96Lyd4VOzj6Wtv/91n3uYv/Xx41uw+ePh7P3OT/6if73+PerX6zZ7FP7ef1fe8/Vf2+Pe7E9L5LPb43+2/st85X/vcKf6VdyTLf1a75pWzRvlHzLl7xu55GbV7Jv72uaVnWXqy+Gv7xd937qjnd/1379Ib/Hfnl+6m2/2RPnOqv7THp5/P7kOUn+TORvrv7vhm/90+oqra3/udN/lH7aWTv9dd7ewf1X/kTrR7j+rpdP+TdmL53J02K/5rf2lFunTzr64Mf+ncb/Ov7LXKf3UHIubHv9f8M3P86x2r/b13gH+v+Z/so3Zwsv9qV53i1efsXliq0/zd/at3rX3vbK/R+/PsM2qvklks9yKrz92+Vz/r4t8l2s8R/rX+Xp9J/M/z36m3+mf0VOkvKQ9/yxnSXvA/z9+rF+lzs767+XevLnuS3k3pz7rM5XV2lWsH/8ydW+fy7Ockf4mFl3/GDqTv9+7jFHur/2r+3d3c5l91hkdfXncW/7wztPuUOOPf219zjmRPXv6jO4C/r7+mMv0z9iGZ6wR/D0NLXzf5a+7+bkX6e8xi8fec17oPT3+vXrP9pSbSPe2c9flsxE5P89eU5W5p3+fprz37JP/dHWl6tf6e1kHj5mVX6S+ZXbKjKv/RHYh0uME/6lxLr6vC/05/6+9J78rqWetdxP8c/yqrm/wt50n8sz6bb/a3VtUeov0jqrO/93nddnRzsv3/P+fdE/69/GefzQgr/PP9d9+Lf99E+j/Z4N8nWf6zvwfd/aOq2j7LP2uO6HeP/Fa+37v9/H61Pf7yHc2sZ78fvW/8a/01VW2Pv25Ht/pTuVVtj39tVdvjX1vV9kT+GfH8zFTPReT+nlU9F8nzH72rei6y7z+6ByPPp69H76qei+z7R1T1XIQQQgghhJBz8gdPBExfAAABAA==
   </data>
  </layer>
  <layer name="navigation" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+  </data>
+ </layer>
+ <layer name="protection" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>

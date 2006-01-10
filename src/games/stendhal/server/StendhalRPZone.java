@@ -58,6 +58,9 @@ public class StendhalRPZone extends MarauroaRPZone
   /** contains data to if a certain area is walkable*/
   public CollisionDetection collisionMap;
 
+  /** Contains data to verify is someone is in a PK-free area. */
+  public CollisionDetection protectionMap;
+
   /** Position of this zone in the world map */
   private boolean interior;
   private int level;
@@ -83,6 +86,7 @@ public class StendhalRPZone extends MarauroaRPZone
     foodItems=new LinkedList<SheepFood>();
     
     collisionMap=new CollisionDetection();
+    protectionMap=new CollisionDetection();
     }
   
   public void onInit() throws Exception
@@ -294,8 +298,24 @@ public class StendhalRPZone extends MarauroaRPZone
     
     contents.add(content);
     
-    collisionMap.setCollisionData(new StringReader(byteContents));//new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename)));
+    collisionMap.setCollisionData(new StringReader(byteContents));
     Log4J.finishMethod(logger,"addCollisionLayer");
+    }
+
+  public void addProtectionLayer(String name, String byteContents) throws IOException
+    {
+    Log4J.startMethod(logger,"addProtectionLayer");
+    TransferContent content=new TransferContent();
+    content.name=name;
+    content.cacheable=true;
+    logger.debug("Layer timestamp: "+Integer.toString(content.timestamp));
+    content.data=byteContents.getBytes();
+    content.timestamp=CRC.cmpCRC(content.data);
+    
+    contents.add(content);
+    
+    protectionMap.setCollisionData(new StringReader(byteContents));
+    Log4J.finishMethod(logger,"addProtectionLayer");
     }
   
   public void setPosition(int level, int x,int y)
@@ -582,6 +602,12 @@ public class StendhalRPZone extends MarauroaRPZone
     return contents;
     }
   
+  public boolean isInProtectionArea(Entity entity) throws AttributeNotFoundException  
+    {
+    Rectangle2D area=entity.getArea(entity.getx(),entity.gety());
+    return protectionMap.collides(area);
+    }
+    
   public boolean leavesZone(Entity entity, double x, double y) throws AttributeNotFoundException  
     {
     Rectangle2D area=entity.getArea(x,y);
