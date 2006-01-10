@@ -150,7 +150,7 @@ public class StendhalRPAction
             logger.debug("attack from "+source.getID()+" to "+target.getID()+": Damage: "+damage);
             
             target.bloodHappens();
-            source.bloodHappens();
+            //source.bloodHappens();
             }
           else // Blocked
             {

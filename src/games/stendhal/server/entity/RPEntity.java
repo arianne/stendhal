@@ -67,7 +67,7 @@ public abstract class RPEntity extends Entity
   /** true if the path is a loop */
   private boolean pathLoop;
   
-  private static int TURNS_WHEN_ATK_DEF_XP_INCREASE=40;
+  private static int TURNS_WHILE_ATK_DEF_XP_INCREASE=40;
   
 
   public static void generateRPClass()
@@ -343,7 +343,7 @@ public abstract class RPEntity extends Entity
   
   public void bloodHappens()
     {
-    blood=TURNS_WHEN_ATK_DEF_XP_INCREASE;
+    blood=TURNS_WHILE_ATK_DEF_XP_INCREASE;
     }
   
   public boolean stillHasBlood()
