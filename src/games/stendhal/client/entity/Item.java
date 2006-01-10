@@ -127,6 +127,10 @@ public class Item extends PassiveEntity
       {
       return -1;
       }
+    else if(entity instanceof Item)
+      {
+      return 0;
+      }
       
     return 1;
     }
