@@ -64,8 +64,11 @@ public class Equipment extends ActionListener
   private static final String TYPE = "type";
   private static final String TARGET_OBJECT = "targetobject";
   private static final String TARGET_SLOT = "targetslot";
-  private static final String GROUND_X = "X";
-  private static final String GROUND_Y = "Y";
+  private static final String GROUND_X = "x";
+  private static final String GROUND_Y = "y";
+  
+  private double MAXDISTANCE = 0.25;
+  
 
   /** the list of valid container classes */
   private static final Class[] validContainerClasses = new Class[] {Player.class, Chest.class, Corpse.class};
@@ -101,7 +104,6 @@ public class Equipment extends ActionListener
   /** callback for the equip action */
   private void onEquip(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
-    double MAXDISTANCE = 0.25;
 
     Log4J.startMethod(logger,"equip");
 
@@ -122,14 +124,47 @@ public class Equipment extends ActionListener
       }
     
     // looks good
-    source.moveTo(dest,world);
+    source.moveTo(dest,world, player);
     
     Log4J.finishMethod(logger,"equip");
     }
 
   private void onDrop(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
-    Log4J.startMethod(logger,"drop");    
+    Log4J.startMethod(logger,"drop");
+    
+    
+    final boolean USE_NEW_CODE = true;
+    
+// New Code Starts Here
+// FIXME: This code does not work. 
+    
+    if (USE_NEW_CODE)
+      {
+      // get source and check it
+      SourceObject source = new SourceObject(action,world,player);
+      if (!source.isValid() || !source.checkDistance(player,MAXDISTANCE) || !source.checkClass(validContainerClassesList))
+        {
+        // source is not valid
+        return;
+        }
+      
+      // get destination and check it
+      DestinationObject dest = new DestinationObject(action,world,player);
+      if (!dest.isValid() || !dest.checkDistance(player,5.0) || !dest.checkClass(validContainerClassesList))
+        {
+        logger.warn("destination is invalid. action is: "+action);
+        // destination is not valid
+        return;
+        }
+  
+//  FIXME: This will remove the item from the slot, but it does not reappear
+//         on the ground. See DestinationObject.addToWorld()#600 
+      source.moveTo(dest,world, player);
+      return;
+    }
+//  Old Code Starts Here
+    
 
     if(action.has("baseobject") && action.has("baseslot") && action.has("x") && action.has("y") && action.has("baseitem"))
       {
@@ -276,15 +311,20 @@ public class Equipment extends ActionListener
     }
     
     /** moves this entity to the destination */
-    public boolean moveTo(DestinationObject dest, RPWorld world)
+    public boolean moveTo(DestinationObject dest, RPWorld world, Player player)
     {
       if (!dest.isValid() || !dest.preCheck(base,world))
       {
+        logger.warn("moveto not possible");
         return false;
       }
       
       removeFromWorld(world);
-      return dest.addToWorld(base,world);
+      logger.warn("item removed");
+      dest.addToWorld(base,world, player);
+      logger.warn("item readded");
+
+      return true;
     }
 
     /** returns true when this SourceObject is valid */
@@ -408,7 +448,7 @@ public class Equipment extends ActionListener
     public boolean preCheck(Entity entity, RPWorld world)
     {
       StendhalRPZone zone = (StendhalRPZone) world.getRPZone(entity.getID());
-      
+
       if (parent != null)
       {
         RPSlot rpslot = parent.getSlot(slot); 
@@ -471,11 +511,20 @@ public class Equipment extends ActionListener
       }
       else
       {
-        // check if the destination is free and in reach
-        if (zone.simpleCollides(entity,x,y) || entity.distance(x,y) > 8*8)
+        logger.warn("entity: "+entity+" zone: "+zone);
+        // check if the destination is free
+        if (zone != null && zone.simpleCollides(entity,x,y))
         {
+          logger.warn("object "+entity+" collides with "+x+"x"+y);
           return false;
         }
+        // and in reach
+        if (entity.has("x") && entity.has("y") && entity.distance(x,y) > 8*8)
+        {
+          logger.warn("object "+entity+" is too far away from "+x+"x"+y);
+          return false;
+        }
+          
       }
  
       return true;
@@ -494,8 +543,9 @@ public class Equipment extends ActionListener
       {
         return (other.nextto(parent,distance));
       }
+      
       // should be dropped to the ground
-      return (other.nextto(x,y,distance));  
+      return (other.nextto(x,y,distance));        
     }
 
     /** add the entity to the world (specified by the action during constuction).
@@ -503,7 +553,7 @@ public class Equipment extends ActionListener
      * before adding an item to the world 
      * @return true when the item is added, false otherwise  
      */
-    public boolean addToWorld(Entity entity, RPWorld world)
+    public boolean addToWorld(Entity entity, RPWorld world, Player player)
     {
       if (parent != null)
       {
@@ -553,8 +603,9 @@ public class Equipment extends ActionListener
       }
       else
       {
-        // drop the entity to the ground
-        StendhalRPZone zone = (StendhalRPZone) world.getRPZone(entity.getID());
+        // drop the entity to the ground. Do this always in the players zone
+        StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+        logger.warn("adding "+entity.get("name")+" to "+zone);
 
         // HACK: Avoid a problem on database 
         if(entity.has("#db_id"))
@@ -564,7 +615,12 @@ public class Equipment extends ActionListener
         
         entity.setx(x);
         entity.setx(y);
+        logger.warn("entity set to "+x+"x"+y);
+        
         zone.assignRPObjectID(entity);
+        logger.warn("entity has valid id: "+entity.getID());
+
+        // FIXME: This should add the item to the zone.  
         zone.add(entity);
       }
       return true;
