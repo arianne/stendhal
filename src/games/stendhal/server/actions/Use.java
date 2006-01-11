@@ -27,7 +27,6 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.game.IRPZone;
 import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;

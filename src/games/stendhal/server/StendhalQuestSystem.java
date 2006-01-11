@@ -2,8 +2,6 @@ package games.stendhal.server;
 
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
-import java.io.File;
-import java.net.URI;
 import games.stendhal.server.quests.IQuest;
 
 public class StendhalQuestSystem 

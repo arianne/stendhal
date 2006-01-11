@@ -19,7 +19,6 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.gui.wt.core.Panel;
 import games.stendhal.common.CollisionDetection;
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;

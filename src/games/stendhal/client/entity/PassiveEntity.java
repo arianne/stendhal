@@ -13,7 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.StendhalClient;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
