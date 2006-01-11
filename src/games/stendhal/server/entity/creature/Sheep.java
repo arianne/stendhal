@@ -15,6 +15,8 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.RPEntity;
 import java.awt.geom.Rectangle2D;
 import marauroa.common.Log4J;
@@ -148,6 +150,13 @@ public class Sheep extends Creature
   public int getWeight()
     {
     return weight;
+    }
+
+  protected void dropItemsOn(Corpse corpse)
+    {
+    Food food=(Food)world.getRuleManager().getEntityManager().getItem("meat");    
+    food.setQuantity(getWeight()/10);    
+    corpse.add(food);
     }
 
   private SheepFood getNearestFood(double range)
