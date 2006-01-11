@@ -27,16 +27,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.io.File;
 import java.io.FilenameFilter;
-import java.net.URI;
-
-import marauroa.common.Log4J;
-import org.apache.log4j.Logger;
 
 import marauroa.common.game.RPAction;
 
 public class OutfitDialog extends javax.swing.JDialog {
   /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(OutfitDialog.class);
+//  private static final Logger logger = Log4J.getLogger(OutfitDialog.class);
 
   private static final long serialVersionUID = 4628210176721975735L;
     // to keep the sprites to show
