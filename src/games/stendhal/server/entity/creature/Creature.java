@@ -334,7 +334,7 @@ public class Creature extends NPC
       stopAttack();
       stop();
 
-      if (Debug.CREATRUES_DEBUG_SERVER)
+      if (Debug.CREATURES_DEBUG_SERVER)
         put("debug","sleep");
 
       aiState = AiState.SLEEP;
@@ -358,7 +358,7 @@ public class Creature extends NPC
         target = this.getAttackSource(0);
         }
       
-      if (Debug.CREATRUES_DEBUG_SERVER)
+      if (Debug.CREATURES_DEBUG_SERVER)
         debug.append("attacked;").append(target.getID().getObjectID()).append('|');
 
       logger.debug("Creature("+get("type")+") has been attacked by "+target.get("type"));
@@ -369,7 +369,7 @@ public class Creature extends NPC
       if(isAttacking())
         {
         // stop the attack...
-        if (Debug.CREATRUES_DEBUG_SERVER)
+        if (Debug.CREATURES_DEBUG_SERVER)
           debug.append("cancelattack|");
         target=null;
         clearPath();
@@ -382,7 +382,7 @@ public class Creature extends NPC
       if(target!=null)
         {
         logger.debug("Creature("+get("type")+") gets a new target.");
-        if (Debug.CREATRUES_DEBUG_SERVER)
+        if (Debug.CREATURES_DEBUG_SERVER)
           debug.append("newtarget;").append(target.getID().getObjectID()).append('|');
         }
       }
@@ -414,14 +414,14 @@ public class Creature extends NPC
 
         setPath(nodes,true);
 
-        if (Debug.CREATRUES_DEBUG_SERVER)
+        if (Debug.CREATURES_DEBUG_SERVER)
           debug.append("generatepatrolpath;").append(time2).append("|");
 
         }
       logger.debug("Following path");
       if(hasPath()) Path.followPath(this,getSpeed());
       aiState = AiState.PATROL;
-      if (Debug.CREATRUES_DEBUG_SERVER)
+      if (Debug.CREATURES_DEBUG_SERVER)
         debug.append("patrol;").append(pathToString()).append('|');
       }
     else if(distance(target)>16*16)
@@ -433,7 +433,7 @@ public class Creature extends NPC
       stopAttack();
       stop();
 
-      if (Debug.CREATRUES_DEBUG_SERVER)
+      if (Debug.CREATURES_DEBUG_SERVER)
         debug.append("outofreachstopped|");
       }
     else if(!nextto(target,0.25) && !target.stopped())
@@ -445,7 +445,7 @@ public class Creature extends NPC
       moveto(getSpeed());
       waitRounds = 0; // clear waitrounds
       aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
-      if (Debug.CREATRUES_DEBUG_SERVER)
+      if (Debug.CREATURES_DEBUG_SERVER)
         {
         List path = getPath();
         if (path != null)
@@ -456,7 +456,7 @@ public class Creature extends NPC
       }
     else if(nextto(target,0.25))
       {
-      if (Debug.CREATRUES_DEBUG_SERVER)
+      if (Debug.CREATURES_DEBUG_SERVER)
         debug.append("attacking|");
       // target is near
       logger.debug("Next to target. Creature stops and attacks");
@@ -468,12 +468,12 @@ public class Creature extends NPC
       {
       // target in reach and not moving
       logger.debug("Moving to target. Creature attacks");
-      if (Debug.CREATRUES_DEBUG_SERVER)
+      if (Debug.CREATURES_DEBUG_SERVER)
         debug.append("movetotarget");
       // our current Path is blocked...mostly by the target or another attacker
       if(collided())
         {
-        if (Debug.CREATRUES_DEBUG_SERVER)
+        if (Debug.CREATURES_DEBUG_SERVER)
           debug.append(";blocked");
         // invalidate the path and stop
         clearPath();
@@ -490,7 +490,7 @@ public class Creature extends NPC
       // new path
       if (waitRounds > 0)
         {
-        if (Debug.CREATRUES_DEBUG_SERVER)
+        if (Debug.CREATURES_DEBUG_SERVER)
           debug.append(";waiting");
         waitRounds--;
         // HACK: remove collision flag (we're not moving after all)
@@ -508,12 +508,12 @@ public class Creature extends NPC
 
         setMovement(target,0,0, 20.0);
         moveto(getSpeed());
-        if (Debug.CREATRUES_DEBUG_SERVER)
+        if (Debug.CREATURES_DEBUG_SERVER)
           debug.append(";newpath");
 
         if (getPath() == null || getPath().size() == 0) // If creature is blocked choose a new target
           {
-          if (Debug.CREATRUES_DEBUG_SERVER)
+          if (Debug.CREATURES_DEBUG_SERVER)
             debug.append(";blocked");
           logger.debug("Blocked. Choosing a new target.");
           target=null;
@@ -524,12 +524,12 @@ public class Creature extends NPC
           }
         else
           {
-          if (Debug.CREATRUES_DEBUG_SERVER)
+          if (Debug.CREATURES_DEBUG_SERVER)
             debug.append(';').append(getPath());
           }
         }
 
-        if (Debug.CREATRUES_DEBUG_SERVER)
+        if (Debug.CREATURES_DEBUG_SERVER)
           debug.append(";dummy|");
       }
 
@@ -543,7 +543,7 @@ public class Creature extends NPC
       StendhalRPAction.attack(this,getAttackTarget());
       }
 
-    if (Debug.CREATRUES_DEBUG_SERVER)
+    if (Debug.CREATURES_DEBUG_SERVER)
       put("debug",debug.toString());
     world.modify(this);
     Log4J.finishMethod(logger, "logic");

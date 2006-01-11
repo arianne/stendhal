@@ -103,7 +103,7 @@ public abstract class Creature extends NPC
     super.draw(screen);
     
     
-    if (Debug.CREATRUES_DEBUG_CLIENT && !hidePath)
+    if (Debug.CREATURES_DEBUG_CLIENT && !hidePath)
     {
       Graphics g2d=screen.expose();
 
@@ -162,7 +162,7 @@ public abstract class Creature extends NPC
     super.modifyAdded(object,changes);
     
     // Check if debug is enabled
-    if(changes.has("debug") && Debug.CREATRUES_DEBUG_CLIENT)
+    if(changes.has("debug") && Debug.CREATURES_DEBUG_CLIENT)
     {
       sleeping = false;
       attacked = false;
@@ -285,7 +285,7 @@ public abstract class Creature extends NPC
     {
     String[] superList = super.offeredActions();
     
-    if (!Debug.CREATRUES_DEBUG_CLIENT)
+    if (!Debug.CREATURES_DEBUG_CLIENT)
     {
       return superList;
     }
