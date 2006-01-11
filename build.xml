@@ -178,7 +178,7 @@
   
   
 
-  <target name="dist" depends="convertmaps, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
+  <target name="dist" depends="sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
   <target name="dist_binary" depends="dist_server_binary,dist_client_binary"/>
   
   <target name="dist_server_binary">
