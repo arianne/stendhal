@@ -19,7 +19,7 @@
  *
  */
 
-package games.stendhal.server;
+package games.stendhal.server.pathfinder;
 
 import java.util.*;
 

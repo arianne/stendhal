@@ -6,6 +6,7 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.*;
 

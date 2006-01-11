@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server;
+package games.stendhal.server.pathfinder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 /**
  * Stores all Navigation points. These are used to create streets.
- * @author Loïc
+ * @author Loï¿½c
  * @author mtotz
  */
 public class NavigationMap

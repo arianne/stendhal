@@ -13,9 +13,8 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Level;
-import games.stendhal.common.Rand;
-import games.stendhal.server.Path;
 import games.stendhal.server.entity.item.*;
+import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.ActionManager;
 import java.util.ArrayList;
 import java.util.HashMap;

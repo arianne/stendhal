@@ -19,9 +19,9 @@
  *
  */
 
-package games.stendhal.server;
+package games.stendhal.server.pathfinder;
 
-import games.stendhal.server.Pathfinder.Node;
+import games.stendhal.server.pathfinder.Pathfinder.Node;
 
 /**
  * A simple interface to allow pathfinders like the A* algorithm to navigate

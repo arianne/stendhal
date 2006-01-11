@@ -10,12 +10,13 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server;
+package games.stendhal.server.pathfinder;
 
 import java.awt.geom.Rectangle2D;
 
-import games.stendhal.server.Pathfinder.Node;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.pathfinder.Pathfinder.Node;
 
 /**
  * The callback stuff for A*

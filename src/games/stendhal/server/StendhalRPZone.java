@@ -20,6 +20,7 @@ import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.pathfinder.NavigationMap;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.Rectangle;

@@ -10,7 +10,9 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server;
+package games.stendhal.server.pathfinder;
+
+import games.stendhal.server.StendhalRPZone;
 
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;

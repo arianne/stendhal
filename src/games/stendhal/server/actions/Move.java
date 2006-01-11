@@ -20,6 +20,8 @@ import marauroa.server.game.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
+import games.stendhal.server.pathfinder.Path;
+
 import java.util.List;
 
 import marauroa.common.Log4J;

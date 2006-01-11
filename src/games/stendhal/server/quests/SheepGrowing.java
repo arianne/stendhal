@@ -12,8 +12,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.pathfinder.Path;
 
-import games.stendhal.server.Path;
 
 import java.util.*;
 

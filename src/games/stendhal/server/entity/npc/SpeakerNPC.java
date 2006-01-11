@@ -1,10 +1,10 @@
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.Path;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.pathfinder.Path;
 
 import java.awt.geom.Rectangle2D;
 import java.util.*;

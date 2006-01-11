@@ -19,7 +19,6 @@ import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.item.Money;
 import games.stendhal.common.Rand;
 
 import java.awt.geom.Rectangle2D;

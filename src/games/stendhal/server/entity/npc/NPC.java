@@ -13,9 +13,10 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.pathfinder.Path;
+
 import java.util.List;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;

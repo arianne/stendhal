@@ -20,6 +20,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.*;
 

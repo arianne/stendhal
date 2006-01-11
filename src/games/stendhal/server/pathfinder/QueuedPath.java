@@ -5,7 +5,7 @@
  *
  */
 
-package games.stendhal.server;
+package games.stendhal.server.pathfinder;
 
 import games.stendhal.server.entity.Entity;
 

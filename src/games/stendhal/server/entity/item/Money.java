@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import marauroa.common.game.*;
 import java.util.Map;
 import java.util.List;
 import java.util.LinkedList;
