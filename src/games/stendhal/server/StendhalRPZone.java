@@ -495,7 +495,7 @@ public class StendhalRPZone extends MarauroaRPZone
                 
                 if(target.getx()+zone.getx()==portal.getx()+getx() && target.gety()+zone.gety()==portal.gety()+gety())
                   {
-                  int source=portal.getNumber();//assignPortalID(portal);
+                  int source=portal.getNumber();
                   int dest=zone.assignPortalID(target);
 
                   if(type!=6) 

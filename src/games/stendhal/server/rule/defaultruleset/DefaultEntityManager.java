@@ -55,7 +55,7 @@ public class DefaultEntityManager implements EntityManager
     try
       {
       ItemXMLLoader loader=ItemXMLLoader.get();
-      List<DefaultItem> items=loader.load("games/stendhal/server/rule/defaultruleset/items.xml");
+      List<DefaultItem> items=loader.load("data/conf/items.xml");
 
       for (DefaultItem item : items)
       {
@@ -85,7 +85,7 @@ public class DefaultEntityManager implements EntityManager
     try
       {
       CreatureXMLLoader loader=CreatureXMLLoader.get();    
-      List<DefaultCreature> creatures=loader.load("games/stendhal/server/rule/defaultruleset/creatures.xml");
+      List<DefaultCreature> creatures=loader.load("data/conf/creatures.xml");
 
       for (DefaultCreature creature : creatures )
       {

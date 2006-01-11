@@ -25,7 +25,7 @@ public class stendhalcreateaccount extends marauroa.server.createaccount
   {
   public static void main (String[] args)
     {
-    Log4J.init("games/stendhal/stendhalcreateaccount.properties");
+    Log4J.init("data/conf/stendhalcreateaccount.properties");
     Entity.generateRPClass();
     RPEntity.generateRPClass();
     Player.generateRPClass();

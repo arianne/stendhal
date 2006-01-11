@@ -62,7 +62,7 @@ public class Character extends Panel
 
     // now add the slots
     SpriteStore st = SpriteStore.get();
-    Sprite slotSprite = st.getSprite("data/slot.png");
+    Sprite slotSprite = st.getSprite("data/gui/slot.png");
     
     int dist = 42; // the distance of the slot images with each other
     

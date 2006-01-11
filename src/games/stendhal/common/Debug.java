@@ -13,6 +13,8 @@ package games.stendhal.common;
 /**
  * Gathers all Debug constants in one place
  * @author mtotz
+ *
+ * TODO: Reemplaze with a XML configuration file? 
  */
 public class Debug
 {

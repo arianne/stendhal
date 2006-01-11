@@ -38,9 +38,9 @@ public abstract class RPEntity extends AnimatedEntity
     {
     SpriteStore st=SpriteStore.get();
 
-    hitted=st.getSprite("sprites/combat/hitted.png");
-    blocked=st.getSprite("sprites/combat/blocked.png");
-    missed=st.getSprite("sprites/combat/missed.png");
+    hitted=st.getSprite("data/sprites/combat/hitted.png");
+    blocked=st.getSprite("data/sprites/combat/blocked.png");
+    missed=st.getSprite("data/sprites/combat/missed.png");
     }
 
   private enum Resolution
@@ -115,24 +115,24 @@ public abstract class RPEntity extends AnimatedEntity
     {
     int outfit=object.getInt("outfit");
     
-    Sprite player=store.getSprite("sprites/outfit/player_base_"+outfit%100+".png");
+    Sprite player=store.getSprite("data/sprites/outfit/player_base_"+outfit%100+".png");
     player=player.copy();
     outfit/=100;
 
     if(outfit%100!=0)
       {
-      Sprite dress=store.getSprite("sprites/outfit/dress_"+outfit%100+".png");
+      Sprite dress=store.getSprite("data/sprites/outfit/dress_"+outfit%100+".png");
       dress.draw(player.getGraphics(),0,0);
       }
     outfit/=100;
 
-    Sprite head=store.getSprite("sprites/outfit/head_"+outfit%100+".png");
+    Sprite head=store.getSprite("data/sprites/outfit/head_"+outfit%100+".png");
     head.draw(player.getGraphics(),0,0);
     outfit/=100;
 
     if(outfit%100!=0)
       {
-      Sprite hair=store.getSprite("sprites/outfit/hair_"+outfit%100+".png");
+      Sprite hair=store.getSprite("data/sprites/outfit/hair_"+outfit%100+".png");
       hair.draw(player.getGraphics(),0,0);
       }
     

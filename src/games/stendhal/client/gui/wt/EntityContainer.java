@@ -57,7 +57,7 @@ public class EntityContainer extends Panel
     slotSize = 0;
 
     SpriteStore st = SpriteStore.get();
-    Sprite slotSprite = st.getSprite("data/slot.png");
+    Sprite slotSprite = st.getSprite("data/gui/slot.png");
 
     int spriteWidth = slotSprite.getWidth();
     int spriteHeight = slotSprite.getHeight();

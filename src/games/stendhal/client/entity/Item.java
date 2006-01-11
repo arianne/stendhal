@@ -62,7 +62,7 @@ public class Item extends PassiveEntity
       name=object.get("class");
       }     
     
-    sprite=store.getSprite("sprites/items/"+name+".png");
+    sprite=store.getSprite("data/sprites/items/"+name+".png");
     }
 
 
@@ -114,10 +114,6 @@ public class Item extends PassiveEntity
         }
            
       client.send(rpaction);
-      }
-    else
-      {
-      super.onAction(client,action,params);
       }
     }
 

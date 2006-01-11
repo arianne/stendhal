@@ -43,7 +43,7 @@ public class StendhalFirstScreen extends JFrame {
         super();
         this.client=client;
         
-        URL url = this.getClass().getClassLoader().getResource("data/StendhalSplash.jpg");
+        URL url = this.getClass().getClassLoader().getResource("data/gui/StendhalSplash.jpg");
         ImageIcon imageIcon = new ImageIcon(url);
         background=imageIcon.getImage();
         

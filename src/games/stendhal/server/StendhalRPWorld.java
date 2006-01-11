@@ -242,7 +242,7 @@ public class StendhalRPWorld extends RPWorld
     StendhalRPZone area=new StendhalRPZone(name, this);
     
     ZoneXMLLoader instance=ZoneXMLLoader.get();
-    ZoneXMLLoader.XMLZone xmlzone=instance.load("games/stendhal/server/maps/"+content+".xstend");
+    ZoneXMLLoader.XMLZone xmlzone=instance.load("data/maps/"+content+".xstend");
     
     area.addLayer(name+"_0_floor",xmlzone.getLayer("0_floor"));
     area.addLayer(name+"_1_terrain",xmlzone.getLayer("1_terrain"));

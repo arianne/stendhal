@@ -81,7 +81,7 @@ public abstract class Creature extends NPC
 
   protected static String translate(String type)
     {
-    return "sprites/monsters/"+type+".png";
+    return "data/sprites/monsters/"+type+".png";
     }
   
   public void drawPath(GameScreen screen, List<Node> path, int delta)
@@ -347,7 +347,7 @@ public abstract class Creature extends NPC
       }     
     
     SpriteStore store=SpriteStore.get();  
-    sprite=store.getSprite("sprites/monsters/"+name+".png");
+    sprite=store.getSprite("data/sprites/monsters/"+name+".png");
     return sprite;
   }
 

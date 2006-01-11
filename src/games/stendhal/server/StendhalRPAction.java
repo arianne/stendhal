@@ -302,8 +302,8 @@ public class StendhalRPAction
           found=true;
           logger.debug("Contained at :"+zone.getID());
           
-          player.setx(/*Math.abs*/(player_x-zone.getx()));
-          player.sety(/*Math.abs*/(player_y-zone.gety()));
+          player.setx(player_x-zone.getx());
+          player.sety(player_y-zone.gety());
 
           logger.debug(player.getName()+" pos would be ("+player.getx()+","+player.gety()+")");          
           

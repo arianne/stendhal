@@ -39,10 +39,10 @@ public class NPC extends RPEntity
     {
     SpriteStore st=SpriteStore.get();
     
-    eat=st.getSprite("sprites/ideas/eat.png");
-    food=st.getSprite("sprites/ideas/food.png");
-    walk=st.getSprite("sprites/ideas/walk.png");
-    follow=st.getSprite("sprites/ideas/follow.png");
+    eat=st.getSprite("data/sprites/ideas/eat.png");
+    food=st.getSprite("data/sprites/ideas/food.png");
+    walk=st.getSprite("data/sprites/ideas/walk.png");
+    follow=st.getSprite("data/sprites/ideas/follow.png");
     }
     
   public NPC(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException

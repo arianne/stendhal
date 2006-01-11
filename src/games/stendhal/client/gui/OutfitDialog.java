@@ -121,13 +121,13 @@ public class OutfitDialog extends javax.swing.JDialog {
         
         // load the sprites
         for (int i = 1; i < hairs.length; i++)
-            hairs[i] = st.getSprite("sprites/outfit/hair_" + i + ".png");
+            hairs[i] = st.getSprite("data/sprites/outfit/hair_" + i + ".png");
         for (int i = 0; i < heads.length; i++)
-            heads[i] = st.getSprite("sprites/outfit/head_" + i + ".png");
+            heads[i] = st.getSprite("data/sprites/outfit/head_" + i + ".png");
         for (int i = 0; i < bodies.length; i++)
-            bodies[i] = st.getSprite("sprites/outfit/player_base_" + i + ".png");
+            bodies[i] = st.getSprite("data/sprites/outfit/player_base_" + i + ".png");
         for (int i = 1; i < clothes.length; i++)
-            clothes[i] = st.getSprite("sprites/outfit/dress_" + i + ".png");
+            clothes[i] = st.getSprite("data/sprites/outfit/dress_" + i + ".png");
             
         // to allow choosing no hair and no clothes
         hairs[0] = st.getSprite("sprites/outfit/sprite_empty.png");

@@ -23,18 +23,4 @@ public abstract class PassiveEntity extends Entity
     {    
     super(gameObjects, object);
     }
-
-  public void onAction(StendhalClient client, String action, String... params)
-    {
-//    if(action.equals("Displace"))
-//      {
-//      RPAction rpaction=new RPAction();
-//      rpaction.put("type","displace");
-//      int id=getID().getObjectID();
-//      rpaction.put("target",id);
-//      rpaction.put("x",params[0]);
-//      rpaction.put("y",params[1]);
-//      client.send(rpaction);
-//      }
-    }
   }

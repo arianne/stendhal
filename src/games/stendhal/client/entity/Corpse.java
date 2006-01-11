@@ -59,6 +59,8 @@ public class Corpse extends PassiveEntity
       killer=changes.get("killer");
       }
     
+    /* BUG: Possible bug. Please double check this later.
+     * If an slot is modified the changes are not seen */
     if(changes.hasSlot("content"))
       {      
       content=changes.getSlot("content");
@@ -101,10 +103,6 @@ public class Corpse extends PassiveEntity
     else if(action.equals("Inspect"))
       {
       client.getGameGUI().inspect(this,content);
-      }
-    else
-      {
-      super.onAction(client,action,params);
       }
     }
 

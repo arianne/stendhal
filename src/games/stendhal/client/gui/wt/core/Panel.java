@@ -149,15 +149,15 @@ public class Panel implements Draggable
     // get texture sprite
     SpriteStore st = SpriteStore.get();
 
-    textureSprites.add(st.getSprite("data/panelwood003.jpg"));
+    textureSprites.add(st.getSprite("data/gui/panelwood003.jpg"));
     if (Debug.CYCLE_PANEL_TEXTURES)
     {
-      textureSprites.add(st.getSprite("data/panelwood006.jpg"));
-      textureSprites.add(st.getSprite("data/panelwood032.gif"));
-      textureSprites.add(st.getSprite("data/panelwood119.jpg"));
-      textureSprites.add(st.getSprite("data/paneldrock009.jpg"));
-      textureSprites.add(st.getSprite("data/paneldrock048.jpg"));
-      textureSprites.add(st.getSprite("data/panelmetal003.gif"));
+      textureSprites.add(st.getSprite("data/gui/panelwood006.jpg"));
+      textureSprites.add(st.getSprite("data/gui/panelwood032.gif"));
+      textureSprites.add(st.getSprite("data/gui/panelwood119.jpg"));
+      textureSprites.add(st.getSprite("data/gui/paneldrock009.jpg"));
+      textureSprites.add(st.getSprite("data/gui/paneldrock048.jpg"));
+      textureSprites.add(st.getSprite("data/gui/panelmetal003.gif"));
     }
   }
   

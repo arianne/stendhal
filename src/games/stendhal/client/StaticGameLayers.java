@@ -47,17 +47,18 @@ public class StaticGameLayers
     {
     layers=new LinkedList<Pair<String, TileRenderer>>();
     collisions=new LinkedList<Pair<String, CollisionDetection>>();
+    
     tilestore=TileStore.get();
-    tilestore.add("tilesets/zelda_outside_0_chipset.png"  ,30*16);
-    tilestore.add("tilesets/zelda_outside_1_chipset.png"  ,30*16);
-    tilestore.add("tilesets/zelda_dungeon_0_chipset.png"  ,30*16);
-    tilestore.add("tilesets/zelda_dungeon_1_chipset.png"  ,30*16);
-    tilestore.add("tilesets/zelda_interior_0_chipset.png" ,30*16);
-    tilestore.add("tilesets/zelda_navigation_chipset.png" ,1);
-    tilestore.add("tilesets/zelda_objects_chipset.png"    ,10*10);
-    tilestore.add("tilesets/zelda_collision_chipset.png"  ,2);
-    tilestore.add("tilesets/zelda_building_0_tileset.png" ,30*16);
-    tilestore.add("tilesets/zelda_outside_2_chipset.png"  ,30*16);
+    tilestore.add("data/tilesets/zelda_outside_0_chipset.png"  ,30*16);
+    tilestore.add("data/tilesets/zelda_outside_1_chipset.png"  ,30*16);
+    tilestore.add("data/tilesets/zelda_dungeon_0_chipset.png"  ,30*16);
+    tilestore.add("data/tilesets/zelda_dungeon_1_chipset.png"  ,30*16);
+    tilestore.add("data/tilesets/zelda_interior_0_chipset.png" ,30*16);
+    tilestore.add("data/tilesets/zelda_navigation_chipset.png" ,1);
+    tilestore.add("data/tilesets/zelda_objects_chipset.png"    ,10*10);
+    tilestore.add("data/tilesets/zelda_collision_chipset.png"  ,2);
+    tilestore.add("data/tilesets/zelda_building_0_tileset.png" ,30*16);
+    tilestore.add("data/tilesets/zelda_outside_2_chipset.png"  ,30*16);
 
     area=null;
     areaChanged = true;
