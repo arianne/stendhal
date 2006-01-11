@@ -74,6 +74,7 @@ Changelog
 - Improved item stacking.
 - Banned some improper usernames.
 - Better source and data organization.
+- Fixed a bug that happen when you kill a sheep.
 
 0.41 Jan 03, 2005
 - Fixed a bug on legs slot name.
