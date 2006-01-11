@@ -15,10 +15,6 @@ package games.stendhal.client.gui;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import java.io.*;
-import java.util.StringTokenizer;
-
 import games.stendhal.client.*;
 import marauroa.client.*;
 
