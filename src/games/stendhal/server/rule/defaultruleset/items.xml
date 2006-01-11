@@ -404,6 +404,19 @@ in the file.
 
 <!-- Food_section -->
 
+  <item name="cherry">
+  	  <type class="food" subclass="cherry"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="10"/>
+  	  	<attribute name="regen" value="2"/>
+  	  </attributes>
+  	  <weight value="0.1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
   <item name="cheese">
   	  <type class="food" subclass="cheese"/>
   	  <stackable/>
@@ -417,12 +430,38 @@ in the file.
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+  <item name="carrot">
+  	  <type class="food" subclass="carrot"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="30"/>
+  	  	<attribute name="regen" value="2"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+  <item name="apple">
+  	  <type class="food" subclass="apple"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="30"/>
+  	  	<attribute name="regen" value="3"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
   <item name="meat">
   	  <type class="food" subclass="meat"/>
   	  <stackable/>
   	  <attributes>
   	  	<attribute name="quantity" value="1"/>
-  	  	<attribute name="amount" value="80"/>
+  	  	<attribute name="amount" value="60"/>
   	  	<attribute name="regen" value="5"/>
   	  </attributes>
   	  <weight value="1"/>
@@ -430,7 +469,48 @@ in the file.
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+  <item name="ham">
+  	  <type class="food" subclass="ham"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="80"/>
+  	  	<attribute name="regen" value="6"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
 
+  <item name="beer">
+  	  <type class="food" subclass="beer"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="10"/>
+  	  	<attribute name="regen" value="1"/>
+<!--		<attribute name="alcoholic" value="5"> -->
+
+<!-- Dunno if this is a good place or a good way to describe an alcoholic effect,
+       maybe value can be how powerful the alcoholic drink is, and be the one
+       determining how much you can drink before you pass out.
+       The total value stack up and could decrease while time passes, but if you
+       reach a value of say 100 perhaps, then you pass out and can't do anything 
+       until you wake upp, ie alcoholic effect reaches 25 perhaps?
+       
+       This alcoholic passout limit could also be a skill you train, in order to be better
+       in drinking races. We have to use the skill system in all aspects after all :P
+       
+       Maybe a bug item should be added for alcoholic effects, so we can add it later,
+       let it just work as some poor food for now
+-->
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
 
 <!-- Misc_section -->
 
