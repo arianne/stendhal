@@ -23,6 +23,7 @@ next time.
 <!-- Legs_section -->
 <!-- Boots_section -->
 <!-- Food_section -->
+<!-- Drinks_section -->
 <!-- Misc_section -->
 
 <!--
@@ -483,15 +484,7 @@ in the file.
   	  </equipable>
   </item>
 
-  <item name="beer">
-  	  <type class="food" subclass="beer"/>
-  	  <stackable/>
-  	  <attributes>
-  	  	<attribute name="quantity" value="1"/>
-  	  	<attribute name="amount" value="10"/>
-  	  	<attribute name="regen" value="1"/>
-<!--		<attribute name="alcoholic" value="5"> -->
-
+<!-- Drinks_section -->
 <!-- Dunno if this is a good place or a good way to describe an alcoholic effect,
        maybe value can be how powerful the alcoholic drink is, and be the one
        determining how much you can drink before you pass out.
@@ -505,6 +498,70 @@ in the file.
        Maybe a bug item should be added for alcoholic effects, so we can add it later,
        let it just work as some poor food for now
 -->
+
+  <item name="beer">
+  	  <type class="drink" subclass="beer"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="6"/>
+  	  	<attribute name="regen" value="1"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+
+  <item name="wine">
+  	  <type class="drink" subclass="wine"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="10"/>
+  	  	<attribute name="regen" value="2"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+
+  <item name="minor_potion">
+  	  <type class="drink" subclass="minor_potion"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="50"/>
+  	  	<attribute name="regen" value="50"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+
+  <item name="potion">
+  	  <type class="drink" subclass="potion"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="100"/>
+  	  	<attribute name="regen" value="100"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+
+  <item name="greater_potion">
+  	  <type class="drink" subclass="greater_potion"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="300"/>
+  	  	<attribute name="regen" value="300"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
