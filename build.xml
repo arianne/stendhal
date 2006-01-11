@@ -32,8 +32,7 @@
     <property name="build_server" value="build_server/"/>
   	<mkdir dir="${build_server}/"/>
   	
-    <copy todir="${build_server}/games/stendhal/" file="${src}/games/stendhal/log4j.properties"/>
-    <copy todir="${build_server}/games/stendhal/" file="${src}/games/stendhal/stendhalcreateaccount.properties"/>
+    <copy todir="${build_server}/data/conf/" file="data/conf/stendhalcreateaccount.properties"/>
 
     <javac srcdir="${src}" destdir="${build_server}" debug="true" debuglevel="source,lines"
            includes="games/stendhal/server/**, games/stendhal/common/**" 
@@ -62,7 +61,7 @@
       </classpath>    
     </javac>
 
-    <copy todir="${build_server_maps}/games/stendhal/server/maps">
+    <copy todir="${build_server_maps}/data/maps">
       <fileset file="${maps}/*.xstend"/>
     </copy>
 
@@ -85,8 +84,8 @@
     <property name="build_server_xmlconf" value="build_server_xmlconf/"/>
   	<mkdir dir="${build_server_xmlconf}/"/>
   	
-    <copy todir="${build_server_xmlconf}/games/stendhal/server/rule/defaultruleset" file="${src}/games/stendhal/server/rule/defaultruleset/creatures.xml"/>
-    <copy todir="${build_server_xmlconf}/games/stendhal/server/rule/defaultruleset" file="${src}/games/stendhal/server/rule/defaultruleset/items.xml"/>
+    <copy todir="${build_server_xmlconf}/data/conf" file="data/conf/creatures.xml"/>
+    <copy todir="${build_server_xmlconf}/data/conf" file="data/conf/items.xml"/>
 
     <jar jarfile="${lib}/${xmlconf_jarname}" basedir="${build_server_xmlconf}"/>    
 
@@ -100,8 +99,6 @@
 
     <property name="build_client" value="build_client/"/>
   	<mkdir dir="${build_client}/"/>
-
-    <copy todir="${build_client}/games/stendhal/" file="${src}/games/stendhal/log4j.properties"/>
 
     <javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines"
            includes="games/stendhal/client/**, games/stendhal/common/**" 
@@ -123,17 +120,17 @@
     <property name="build_client_data" value="build_client_data/"/>
   	<mkdir dir="${build_client_data}/"/>
 
-    <copy todir="${build_client_data}/sprites">
+    <copy todir="${build_client_data}/data/sprites">
       <fileset dir="${sprites}"/>
     </copy>
 
-    <copy todir="${build_client_data}/tilesets">
+    <copy todir="${build_client_data}/data/tilesets">
       <fileset dir="${tiled}">
         <include name="*.png"/>
       </fileset>
     </copy>
 
-    <copy todir="${build_client_data}/data">
+    <copy todir="${build_client_data}/data/gui">
       <fileset dir="${data}">
         <exclude name="paneldrock*.jpg"/>
         <exclude name="panelmetal003.gif"/>
@@ -144,7 +141,7 @@
       </fileset>
     </copy>
 
-    <copy todir="${build_client_data}/games/stendhal/" file="${src}/games/stendhal/log4j.properties"/>
+    <copy todir="${build_client_data}/data/conf/" file="data/conf/log4j.properties"/>
     <jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>    
   </target>
   
@@ -221,20 +218,12 @@
     <copy todir="stendhal-${version}-src/src">
       <fileset dir="src"/>
     </copy>
-    <copy todir="stendhal-${version}-src/sprites">
-      <fileset dir="sprites"/>
+    <copy todir="stendhal-${version}-src/data">
+      <fileset dir="data"/>
     </copy>
 
     <copy todir="stendhal-${version}-src/tiled">
       <fileset dir="${tiled}"/>
-    </copy>
-
-    <copy todir="stendhal-${version}-src/maps">
-      <fileset dir="maps"/>
-    </copy>
-    
-    <copy todir="stendhal-${version}-src/data">
-      <fileset dir="data"/>
     </copy>
     
     <copy todir="stendhal-${version}-src" file="build.xml"/>
@@ -283,7 +272,7 @@
     </taskdef>
 
     <mkdir dir="tiled/world/"/>
-    <mapconverter stendPath="maps" imagePath="tiled/world/">
+    <mapconverter stendPath="data/maps" imagePath="tiled/world/">
       <fileset dir="tiled/">
      	<include name="Level 0/**/*.tmx"/>
     	<include name="Level -1/**/*.tmx"/>
