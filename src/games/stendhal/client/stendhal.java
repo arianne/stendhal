@@ -39,7 +39,7 @@ public class stendhal extends Thread
   public static void main(String args[]) 
     {
     
-    Log4J.init("games/stendhal/log4j.properties");
+    Log4J.init("data/conf/log4j.properties");
     
     StendhalClient client=StendhalClient.get();
     new StendhalFirstScreen(client);
