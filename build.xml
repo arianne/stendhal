@@ -23,7 +23,7 @@
   	<delete dir="build_tiled_convertmaps"/>
   </target>  	
   
-  <target name="install" description="Copy all the resource files to build folder">
+  <target name="copy-resource" description="Copy all the resource files to build folder">
   	<mkdir dir="${build}"/>
     <copy todir="${build}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
     <copy todir="${build}/data/conf" file="data/conf/creatures.xml"/>
