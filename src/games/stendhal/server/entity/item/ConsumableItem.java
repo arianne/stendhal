@@ -15,10 +15,40 @@ package games.stendhal.server.entity.item;
 import java.util.Map;
 import java.util.List;
 
-public class Food extends ConsumableItem
+public class ConsumableItem extends StackableItem
   {
-  public Food(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
+  private int left;
+  
+  public ConsumableItem(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
     {
     super(name,clazz, subclass, slots, attributes);
+    left=getAmount();
+    }
+  
+  public int getAmount()
+    {
+    return getInt("amount");
+    }
+  
+  public int getRegen()
+    {
+    return getInt("regen");
+    }  
+  
+  public void consume()
+    {
+    left-=getRegen();
+    }
+  
+  public boolean consumed()
+    {
+    return left<=0;
+    }
+
+  public boolean isStackable(Stackable other)
+    {
+    StackableItem otheri=(StackableItem)other;
+    
+    return getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass());
     }
   }

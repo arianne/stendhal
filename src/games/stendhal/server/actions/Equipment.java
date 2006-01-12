@@ -614,7 +614,7 @@ public class Equipment extends ActionListener
         }
         
         entity.setx(x);
-        entity.setx(y);
+        entity.sety(y);
         logger.warn("entity set to "+x+"x"+y);
         
         zone.assignRPObjectID(entity);

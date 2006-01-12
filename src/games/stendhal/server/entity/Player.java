@@ -16,6 +16,8 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Food;
+import games.stendhal.server.entity.item.Drink;
+import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.StackableItem;
@@ -42,7 +44,8 @@ public class Player extends RPEntity
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Player.class);
 
-  private List<Food> foodToEat;
+  private List<ConsumableItem> foodToEat;
+  private List<ConsumableItem> drinkToConsume;
 
   public static void generateRPClass()
     {
@@ -382,7 +385,8 @@ public class Player extends RPEntity
     super(object);
     put("type","player");
     
-    foodToEat=new LinkedList<Food>();  
+    foodToEat=new LinkedList<ConsumableItem>();  
+    drinkToConsume=new LinkedList<ConsumableItem>();  
 
     update();
     }
@@ -748,19 +752,30 @@ public class Player extends RPEntity
     quests.put(name,1);
     }
   
-  public void eat(Food food)
+  public void drink(Drink drink)
     {
-    if(foodToEat.size()>4)
+    System.out.println ("Drinking");
+    consumeItem(drink,drinkToConsume);
+    }
+    
+  public void eat(Food food)
+    {    
+    consumeItem(food,foodToEat);
+    }
+  
+  private void consumeItem(ConsumableItem item, List<ConsumableItem> itemToConsume)
+    {    
+    if(itemToConsume.size()>4)
       {
       setPrivateText("You can't eat anymore");
       rp.removePlayerText(this);
       return;
       }
       
-    if(food.isContained())
+    if(item.isContained())
       {
       // We modify the base container if the object change.
-      RPObject base=food.getContainer();      
+      RPObject base=item.getContainer();      
 
       while(base.isContained())
         {
@@ -775,19 +790,19 @@ public class Player extends RPEntity
       }
     else
       {
-      if(!nextto(food,0.25))
+      if(!nextto(item,0.25))
         {
         logger.debug("Food item is too far");
         return;
         }
       }
 
-    logger.debug("Consuming food: "+food.getAmount());    
-    foodToEat.add(food);
+    logger.debug("Consuming item: "+item.getAmount());    
+    itemToConsume.add(item);
 
-    Collections.sort(foodToEat, new Comparator<Food>()
+    Collections.sort(itemToConsume, new Comparator<ConsumableItem>()
       {
-      public int compare(Food o1, Food o2) 
+      public int compare(ConsumableItem o1, ConsumableItem o2) 
         {
         return o2.getRegen()-o1.getRegen();
         }
@@ -799,44 +814,44 @@ public class Player extends RPEntity
       });
       
 
-    if(food.getQuantity()>1)
+    if(item.getQuantity()>1)
       {
-      food.setQuantity(food.getQuantity()-1);
-      if(!food.isContained())
+      item.setQuantity(item.getQuantity()-1);
+      if(!item.isContained())
         {
-        world.modify(food);
+        world.modify(item);
         }
       }
     else
       {
       /* If quantity=1 then it means that item has to be removed */
-      if(food.isContained())
+      if(item.isContained())
         {
         // We modify the base container if the object change.
-        RPObject base=food.getContainer();      
+        RPObject base=item.getContainer();      
   
         while(base.isContained())
           {
           base=base.getContainer();
           }
         
-        RPSlot slot=food.getContainerSlot();
-        slot.remove(food.getID());
+        RPSlot slot=item.getContainerSlot();
+        slot.remove(item.getID());
         
         world.modify(base);
         }
       else
         {
-        world.remove(food.getID());
+        world.remove(item.getID());
         }
       }
     }
-
-  public void consume()
+    
+  private void consume(List<ConsumableItem> itemToConsume)
     {
-    while(foodToEat.size()>0)
+    while(itemToConsume.size()>0)
       {
-      Food food=foodToEat.get(0);
+      ConsumableItem food=itemToConsume.get(0);
 
       if(!food.consumed())
         {
@@ -850,7 +865,7 @@ public class Player extends RPEntity
         else
           {
           setHP(getBaseHP());
-          foodToEat.clear();
+          itemToConsume.clear();
           }
 
         world.modify(this);
@@ -858,8 +873,19 @@ public class Player extends RPEntity
         }
       else
         {
-        foodToEat.remove(0);
+        itemToConsume.remove(0);
         }
+      }
+    }
+
+  public void consume(int turn)
+    {
+    consume(drinkToConsume);
+    
+    // We eat each 30 turns.
+    if(turn%30==0)
+      {
+      consume(foodToEat);
       }
     }
   }

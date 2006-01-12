@@ -82,6 +82,10 @@ public class DefaultItem
       {
       return new Food(name, clazz, subclazz, slots, attributes);
       }
+    else if(clazz.equals("drink"))
+      {
+      return new Drink(name, clazz, subclazz, slots, attributes);
+      }
     else if(stackable)
       {
       return new StackableItem(name, clazz, subclazz, slots, attributes);

@@ -15,9 +15,9 @@ package games.stendhal.server.entity.item;
 import java.util.Map;
 import java.util.List;
 
-public class Food extends ConsumableItem
+public class Drink extends ConsumableItem
   {
-  public Food(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
+  public Drink(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
     {
     super(name,clazz, subclass, slots, attributes);
     }

@@ -20,6 +20,7 @@ import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Food;
+import games.stendhal.server.entity.item.Drink;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.OneWayPortal;
@@ -108,6 +109,12 @@ public class Use extends ActionListener
           player.eat((Food)entity);
           world.modify(player);
           }
+        else if(object instanceof Drink)
+          {
+          /* This will happen when item is on the floor */
+          player.drink((Drink)object);
+          world.modify(player);
+          }
         }
       }
     // When use is cast over something on the floor
@@ -139,6 +146,12 @@ public class Use extends ActionListener
           {
           /* This will happen when item is on the floor */
           player.eat((Food)object);
+          world.modify(player);
+          }
+        else if(object instanceof Drink)
+          {
+          /* This will happen when item is on the floor */
+          player.drink((Drink)object);
           world.modify(player);
           }
         else if(object instanceof Chest)
