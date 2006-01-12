@@ -449,7 +449,7 @@ in the file.
   	  <stackable/>
   	  <attributes>
   	  	<attribute name="quantity" value="1"/>
-  	  	<attribute name="amount" value="30"/>
+  	  	<attribute name="amount" value="20"/>
   	  	<attribute name="regen" value="3"/>
   	  </attributes>
   	  <weight value="1"/>
@@ -506,6 +506,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="6"/>
   	  	<attribute name="regen" value="1"/>
+<!--  	  	<attribute name="alcoholic" value="5"/> -->
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -520,6 +521,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="10"/>
   	  	<attribute name="regen" value="2"/>
+<!--  	  	<attribute name="alcoholic" value="10"/> -->
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
