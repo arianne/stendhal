@@ -160,7 +160,7 @@
       <fileset dir="${sprites}"/>
     </copy>
 
-    <copy todir="${build}/data/sounds"> 
+    <copy todir="${build_client_data}/data/sounds"> 
       <fileset dir="data/sounds"> 
         <include name="**.*"/> 
       </fileset> 
