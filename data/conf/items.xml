@@ -585,4 +585,33 @@ in the file.
   	  </equipable>
   </item>
 
+<!--
+This is an attempt on describing a key item.
+My idea is that target_id should be described in the map
+file where the door is placed, (probably the java file for 
+the map right now) the key will only work for doors that has
+the same target_id as the key has, so one key could 
+actually lead to seweral doors, as long as the doors have 
+the same id.
+
+I have no clue if I have named the class and subclass
+correctly, but just change them to proper names, if im wrong.
+
+There is no rat_key graphics for now... so the subclass should 
+probably just be named key.
+-->
+
+<!--
+  <item name="rat_key">
+	<type class="key" subclass="rat_key">
+	<attributes>
+		<attribute name="target_id" value="XXXX"/>
+	</attributes>
+	<weight value="1">
+	<equipable>
+		<slot name="bag">
+	</equipable>
+  </item>
+-->
+
 </items>
