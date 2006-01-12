@@ -35,10 +35,17 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
+
+
 public abstract class Entity
   {
-   /** session wide instance identifier for this class */ 
-   private byte[] ID_Token = new byte[0];
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(Entity.class);
+
+  /** session wide instance identifier for this class */ 
+  private byte[] ID_Token = new byte[0];
 
   /** The current x location of this entity */ 
   protected double x;
@@ -85,16 +92,14 @@ public abstract class Entity
 	  this.gameObjects=gameObjects;
       this.client=StendhalClient.get();
 
-    
-    try { 
-       subtype = object.get("name");
-       name = subtype;
-       }
-    catch ( AttributeNotFoundException e )
-    {}
+    if(object.has("name"))
+      {
+      subtype = object.get("name");
+      name = subtype;
+      }
     
     type=object.get("type");
-System.out.println("- Entity type = " + type + (name == null ? "" : " / " + name ));     
+    logger.debug("- Entity type = " + type + (name == null ? "" : " / " + name ));     
     rpObject = object;    
     x = 0.0;
     y = 0.0;
