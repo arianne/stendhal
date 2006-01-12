@@ -22,6 +22,36 @@
   	<delete dir="build_server_xmlconf/"/>
   	<delete dir="build_tiled_convertmaps"/>
   </target>  	
+  
+  <target name="install" description="Copy all the resource files to build folder">
+  	<mkdir dir="${build}"/>
+    <copy todir="${build}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
+    <copy todir="${build}/data/conf" file="data/conf/creatures.xml"/>
+    <copy todir="${build}/data/conf" file="data/conf/items.xml"/>
+
+    <copy todir="${build}/data/sprites">
+      <fileset dir="${sprites}"/>
+    </copy>
+
+    <copy todir="${build}/data/tilesets">
+      <fileset dir="${tiled}">
+        <include name="*.png"/>
+      </fileset>
+    </copy>
+
+    <copy todir="${build}/data/gui">
+      <fileset dir="${data}">
+        <exclude name="paneldrock*.jpg"/>
+        <exclude name="panelmetal003.gif"/>
+        <exclude name="panelrock016.jpg"/>
+        <exclude name="panelwood006.jpg"/>
+        <exclude name="panelwood032.gif"/>
+        <exclude name="panelwood119.jpg"/>
+      </fileset>
+    </copy>
+
+    <copy todir="${build_client_data}/data/conf/" file="data/conf/log4j.properties"/>
+  </target>
 
   <target name="server_build" depends="init" description="Build JAR file for Stendhal server">
     <property name="server_jarname" value="stendhal-server-${version}.jar"/>
