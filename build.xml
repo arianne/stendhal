@@ -316,20 +316,4 @@
       </fileset>
     </mapconverter>
   </target>
- 
-  <!-- Utiltiy target to support ant based IDEs. copies all resources where
-      they belong to. -->
-  <target name="copy-resources" description="copies the game resources">
-    <mkdir dir="${build}"/>
-
-    <copy todir="${build}/data">
-      <fileset dir="data"/>
-    </copy>
-
-    <copy todir="${build}/data/tilesets">
-      <fileset dir="${tiled}">
-        <include name="*.png"/>
-      </fileset>
-    </copy>
-  </target>
 </project>
