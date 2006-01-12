@@ -99,7 +99,9 @@ public abstract class Entity
       }
     
     type=object.get("type");
+    
     logger.debug("- Entity type = " + type + (name == null ? "" : " / " + name ));     
+    
     rpObject = object;    
     x = 0.0;
     y = 0.0;
