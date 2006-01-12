@@ -12,10 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
-import java.awt.*;
-import java.awt.geom.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.wt.EntityContainer;
+
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 public class Corpse extends PassiveEntity 
   {
@@ -24,6 +31,7 @@ public class Corpse extends PassiveEntity
   private String killer;
   
   private RPSlot content;
+  private EntityContainer contentWindow;
 
   public Corpse(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
@@ -102,9 +110,18 @@ public class Corpse extends PassiveEntity
       }
     else if(action.equals("Inspect"))
       {
-      client.getGameGUI().inspect(this,content);
+       if ( !isContentShowing() )
+       {
+          contentWindow = client.getGameGUI().inspect(this,content);
+       }
       }
     }
+  
+  /** whether the inspect window is showing for this corpse. */
+  public boolean isContentShowing ()
+  {
+     return contentWindow != null && !contentWindow.isClosed();
+  }
 
   public int compare(Entity entity)
     {

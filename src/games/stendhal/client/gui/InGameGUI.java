@@ -331,17 +331,18 @@ public class InGameGUI implements KeyListener
   
   /** This methods inspects an entity by enabling all the droppable areas.
    * To stop inspecting this method is called with entity=null */
-  public void inspect(Entity entity, RPSlot slot)
+  public EntityContainer inspect(Entity entity, RPSlot slot)
     {
     if (entity == null || slot == null || ground == null)
     {
-      return;
+      return null;
     }
     
     EntityContainer container = new EntityContainer(gameObjects,entity.getType(),2,2);
     container.setSlot(entity,slot.getName());
     ground.addChild(container);
     
+    return container;
     }
 
   public void draw(GameScreen screen)
