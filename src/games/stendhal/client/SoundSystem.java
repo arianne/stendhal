@@ -101,8 +101,9 @@ public class SoundSystem
    
    private static SoundSystem singleton;
    private static float[] dBValues = new float[101];
-   private HashMap sfxmap = new HashMap( 256 );
-   private HashMap cycleMap = new HashMap<WeakReference,SoundCycle>();
+   
+   private Map<String, Object> sfxmap = new HashMap<String, Object>( 256 );
+   private Map<WeakReference<byte[]>,SoundCycle> cycleMap = new HashMap<WeakReference<byte[]>,SoundCycle>();
    private JarFile soundFile;
    
    private Mixer mixer;
@@ -327,7 +328,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
             if ( c1 != null )
                c1.terminate();
                
-            sys.cycleMap.put( entity_token, cycle );
+            sys.cycleMap.put(new WeakReference<byte[]>(entity_token), cycle );
          }
          catch ( IllegalStateException e )
          {
@@ -419,7 +420,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
    private void init ()
    {
       Properties prop;
-      HashMap dataList = new HashMap();
+      Map<String,byte[]> dataList = new HashMap<String,byte[]>();
       ZipEntry zipEntry;
       File file;
       InputStream in;
@@ -940,7 +941,7 @@ private static class SoundCycle extends Thread
          throw new IllegalStateException( "undefined sound sample: " + token );
       
       this.ID_Token = entity.get_IDToken();
-      this.entityRef = new WeakReference( entity );
+      this.entityRef = new WeakReference<Entity>( entity );
       this.token = token;
       this.period = period;
       this.volBot = volBot;

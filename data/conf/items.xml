@@ -425,6 +425,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="20"/>
   	  	<attribute name="regen" value="1"/>
+  	  	<attribute name="speed" value="20"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
