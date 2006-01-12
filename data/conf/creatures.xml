@@ -10,15 +10,15 @@
 			<attribute name="hp" value="5"/>
 			<attribute name="speed" value="1"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="0"/>
 		<experience value="0"/>
 		<drops>
 			<item value="meat" probability="80"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="animal"/>
@@ -37,16 +37,16 @@
 			<attribute name="hp" value="20"/>
 			<attribute name="speed" value="0.5"/>
 			<attribute name="size" value="1,1"/>
-		</attributes>  		
+		</attributes>
 		<level value="0"/>
 		<experience value="5"/>
 		<drops>
 			<item value="cheese" quantity="1" probability="60"/>
 			<item value="money"  quantity="[1,3]" probability="70"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="animal"/>
@@ -63,16 +63,16 @@
 			<attribute name="hp" value="30"/>
 			<attribute name="speed" value="0.5"/>
 			<attribute name="size" value="1,1"/>
-		</attributes>  		
+		</attributes>
 		<level value="0"/>
 		<experience value="10"/>
 		<drops>
 			<item value="cheese" quantity="[1,3]" probability="70"/>
 			<item value="money"  quantity="[1,6]" probability="90"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="animal"/>
@@ -91,20 +91,20 @@
 			<attribute name="hp" value="15"/>
 			<attribute name="speed" value="1"/>
 			<attribute name="size" value="1,2"/>
+			<attribute name="poisonous" value="1"/>
 <!--			<attribute name="noise" value="ZzZzZzzz!"/> -->
-		</attributes>  		
+		</attributes>
 		<level value="1"/>
 		<experience value="10"/>
 		<drops>
 			<item value="money"  quantity="[1,3]" probability="60"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="poisonous"/>
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
@@ -117,15 +117,15 @@
 			<attribute name="hp" value="30"/>
 			<attribute name="speed" value="0.5"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="1"/>
 		<experience value="15"/>
 		<drops>
 			<item value="meat"  quantity="[1,4]" probability="80"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="animal"/>
@@ -142,16 +142,16 @@
 			<attribute name="speed" value="0.5"/>
 			<attribute name="size" value="1,2"/>
 <!--			<attribute name="noise" value="Aooooooouuhhh!!"/> -->
-		</attributes>  		
+		</attributes>
 		<level value="1"/>
 		<experience value="18"/>
 		<drops>
 			<item value="money"  quantity="[2,5]" probability="70"/>
 			<item value="meat"  quantity="[1,4]" probability="80"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="animal"/>
@@ -169,16 +169,16 @@
 			<attribute name="hp" value="50"/>
 			<attribute name="speed" value="0.4"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="2"/>
 		<experience value="20"/>
 		<drops>
 			<item value="money"  quantity="[4,9]" probability="80"/>
 			<item value="meat"  quantity="[1,4]" probability="90"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="animal"/>
@@ -196,7 +196,7 @@
 			<attribute name="hp" value="30"/>
 			<attribute name="speed" value="0.5"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="3"/>
 		<experience value="20"/>
 		<drops>
@@ -205,9 +205,9 @@
 			<item value="dagger" quantity="1" probability="30"/>
 			<item value="leather_armor" quantity="1" probability="10"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -224,7 +224,7 @@
 			<attribute name="hp" value="30"/>
 			<attribute name="speed" value="0.5"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="3"/>
 		<experience value="20"/>
 		<drops>
@@ -233,9 +233,9 @@
 			<item value="club" quantity="1" probability="20"/>
 			<item value="leather_armor" quantity="1" probability="10"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -252,7 +252,7 @@
 			<attribute name="hp" value="40"/>
 			<attribute name="speed" value="0.5"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="3"/>
 		<experience value="25"/>
 		<drops>
@@ -261,9 +261,9 @@
 			<item value="small_axe" quantity="1" probability="25"/>
 			<item value="leather_armor" quantity="1" probability="15"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -280,7 +280,7 @@
 			<attribute name="hp" value="30"/>
 			<attribute name="speed" value="0.5"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="3"/>
 		<experience value="30"/>
 		<drops>
@@ -289,9 +289,9 @@
 			<item value="staff" quantity="1" probability="20"/>
 			<item value="studded_armor" quantity="1" probability="10"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -309,7 +309,7 @@
 			<attribute name="hp" value="40"/>
 			<attribute name="speed" value="1"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="4"/>
 		<experience value="50"/>
 		<drops>
@@ -318,9 +318,9 @@
 			<item value="short_sword" quantity="1" probability="30"/>
 			<item value="studded_armor" quantity="1" probability="20"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -338,7 +338,7 @@
 			<attribute name="hp" value="40"/>
 			<attribute name="speed" value="1"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="5"/>
 		<experience value="50"/>
 		<drops>
@@ -348,9 +348,9 @@
 			<item value="sword" quantity="1" probability="10"/>
 			<item value="studded_armor" quantity="1" probability="25"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -367,7 +367,7 @@
 			<attribute name="hp" value="50"/>
 			<attribute name="speed" value="1"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="5"/>
 		<experience value="60"/>
 		<drops>
@@ -378,9 +378,9 @@
 			<item value="studded_armor" quantity="1" probability="40"/>
 			<item value="chain_armor" quantity="1" probability="10"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -399,7 +399,7 @@
 			<attribute name="hp" value="55"/>
 			<attribute name="speed" value="1"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="6"/>
 		<experience value="80"/>
 		<drops>
@@ -407,9 +407,9 @@
 			<item value="axe" quantity="1" probability="30"/>
 			<item value="chain_armor" quantity="1" probability="30"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -428,16 +428,17 @@
 			<attribute name="hp" value="70"/>
 			<attribute name="speed" value="0.9"/>
 			<attribute name="size" value="1,1"/>
-		</attributes>  		
+			<attribute name="poisonous" value="2"/>
+		</attributes>
 		<level value="7"/>
 		<experience value="80"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="100"/>
 			<item value="cheese" quantity="[1,3]" probability="50"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="animal"/>
@@ -454,7 +455,7 @@
 			<attribute name="hp" value="70"/>
 			<attribute name="speed" value="0.6"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="7"/>
 		<experience value="120"/>
 		<drops>
@@ -462,9 +463,9 @@
 			<item value="mace" quantity="1" probability="40"/>
 			<item value="leather_armor" quantity="1" probability="70"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -483,7 +484,7 @@
 			<attribute name="hp" value="80"/>
 			<attribute name="speed" value="1"/>
 			<attribute name="size" value="1,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="8"/>
 		<experience value="120"/>
 		<drops>
@@ -491,9 +492,9 @@
 			<item value="mace" quantity="1" probability="40"/>
 			<item value="studded_armor" quantity="1" probability="40"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -512,16 +513,16 @@
 			<attribute name="hp" value="100"/>
 			<attribute name="speed" value="1"/>
 			<attribute name="size" value="2,2"/>
-		</attributes>  		
+		</attributes>
 		<level value="15"/>
 		<experience value="1200"/>
 		<drops>
 			<item value="money" quantity="[10,200]" probability="100"/>
 			<item value="cheese" quantity="[5,10]" probability="100"/>
 		</drops>
-		<slots>  		
+		<slots>
 		</slots>
-		<equips>  		
+		<equips>
 		</equips>
 		<ai>
 			<profile name="animal"/>
