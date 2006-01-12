@@ -40,7 +40,7 @@ public class Item extends PassiveEntity
     entity.add("def",RPClass.SHORT);  // Some items has defense values
     entity.add("amount",RPClass.INT); // Some items has amount of something ( a bottle, a piece of meat ).
     entity.add("regen",RPClass.INT); // Some items(food) has regeneration speed
-    entity.add("speed",RPClass.INT); // Some items(food) has regeneration speed
+    entity.add("frequency",RPClass.INT); // Some items(food) has regeneration speed
     entity.add("quantity",RPClass.INT); // Some items has quantity
     }
 
