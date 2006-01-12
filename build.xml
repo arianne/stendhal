@@ -33,12 +33,18 @@
       <fileset dir="${sprites}"/>
     </copy>
 
+   <copy todir="${build}/data/sounds"> 
+     <fileset dir="data/sounds"> 
+       <include name="**.*"/> 
+     </fileset> 
+   </copy> 
+
     <copy todir="${build}/data/tilesets">
       <fileset dir="${tiled}">
         <include name="*.png"/>
       </fileset>
     </copy>
-
+   
     <copy todir="${build}/data/gui">
       <fileset dir="${data}">
         <exclude name="paneldrock*.jpg"/>
@@ -154,6 +160,12 @@
       <fileset dir="${sprites}"/>
     </copy>
 
+    <copy todir="${build}/data/sounds"> 
+      <fileset dir="data/sounds"> 
+        <include name="**.*"/> 
+      </fileset> 
+    </copy> 
+ 
     <copy todir="${build_client_data}/data/tilesets">
       <fileset dir="${tiled}">
         <include name="*.png"/>
