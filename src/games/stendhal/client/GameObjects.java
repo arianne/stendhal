@@ -335,6 +335,11 @@ public class GameObjects implements Iterable<Entity>
   public void clear()
     {
     Log4J.startMethod(logger,"clear");
+    
+    // invalidate all entity objects
+    for ( Iterator it = iterator(); it.hasNext(); )
+       ((Entity)it.next()).removed();
+    
     objects.clear();
     sortObjects.clear();
     texts.clear();

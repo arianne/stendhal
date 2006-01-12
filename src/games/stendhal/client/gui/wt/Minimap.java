@@ -162,7 +162,7 @@ public class Minimap extends Panel
 
     Color playerColor = Color.BLUE;
     // draw the player position
-    drawCross(clientg,(int) (playerX*scale)-panx, (int) (playerY*scale)-pany, playerColor);
+    drawCross(clientg,(int) (playerX*scale)-panx+1, (int) (playerY*scale)-pany+2, playerColor);
 
     return g;
   }

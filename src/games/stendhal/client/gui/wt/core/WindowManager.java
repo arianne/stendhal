@@ -12,10 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt.core;
 
-import java.io.*;
+import games.stendhal.client.SoundSystem;
+import games.stendhal.client.gui.wt.Character;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -102,6 +106,7 @@ public class WindowManager
         {
         InputStream propsFile = new FileInputStream(file);
         properties.load(propsFile);
+        propsFile.close();
         }
     }
     catch (IOException e)
@@ -114,13 +119,15 @@ public class WindowManager
   /** returns the config. If it does not exist yet, a new one is created. */
   private WindowConfiguration getConfig(Panel panel)
   {
-    if (!configs.containsKey(panel.getName()))
+    String name = panel.getName();
+    WindowConfiguration winC = configs.get(name); 
+    if ( winC == null )
     {
-      WindowConfiguration config = new WindowConfiguration(panel.getName());
-      config.readFromProperties(properties, panel);
-      configs.put(panel.getName(),config);
+      winC = new WindowConfiguration(name);
+      winC.readFromProperties(properties, panel);
+      configs.put(name,winC);
     }
-    return configs.get(panel.getName());
+    return winC;
   }
 
   /** Formats the window with the saved config.
@@ -151,6 +158,26 @@ public class WindowManager
   public void setMinimized(Panel panel, boolean state)
   {
     WindowConfiguration config = getConfig(panel);
+    
+    if ( config.minimized != state )
+       if ( !state )
+       {
+          if ( config.name.equals("bag") ) 
+             SoundSystem.playSound( "inventory-open", 10 );
+          
+          else if ( (panel instanceof Character) )
+              SoundSystem.playSound( "window-open-1", 40 );
+          
+          else if ( config.name.equals("settings") || config.name.equals("minimap") )
+             SoundSystem.playSound( "window-open-2", 30 );
+   
+          else if ( config.name.equals("chest") )
+             SoundSystem.playSound( "chest-open", 75 );
+       }
+       else
+          SoundSystem.playSound( "window-close", 10 );
+          
+    
     config.minimized = state;
   }
   

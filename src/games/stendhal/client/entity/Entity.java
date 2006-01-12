@@ -12,7 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.SoundSystem;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
@@ -23,12 +29,17 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sound.sampled.DataLine;
+
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public abstract class Entity
   {
+   /** session wide instance identifier for this class */ 
+   private byte[] ID_Token = new byte[0];
+
   /** The current x location of this entity */ 
   protected double x;
   /** The current y location of this entity */
@@ -45,12 +56,14 @@ public abstract class Entity
   /** The arianne object associated with this game entity */
   protected RPObject rpObject;
   protected String type;
+  protected String subtype;
   
   /** The object sprite. Animationless, just one frame */
   protected Sprite sprite;
 
   protected Rectangle2D area;
   protected Rectangle2D drawedArea;
+  protected double audibleRange = Double.POSITIVE_INFINITY;
 
   protected GameObjects gameObjects;
   protected StendhalClient client;
@@ -66,11 +79,22 @@ public abstract class Entity
    * @param y The initial y location of this entity
    */
   public Entity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-	  {
+  {
+     String name = null; 
+     
 	  this.gameObjects=gameObjects;
-    this.client=StendhalClient.get();
+      this.client=StendhalClient.get();
 
+    
+    try { 
+       subtype = object.get("name");
+       name = subtype;
+       }
+    catch ( AttributeNotFoundException e )
+    {}
+    
     type=object.get("type");
+System.out.println("- Entity type = " + type + (name == null ? "" : " / " + name ));     
     rpObject = object;    
     x = 0.0;
     y = 0.0;
@@ -79,12 +103,65 @@ public abstract class Entity
     direction=Direction.STOP;
 
     loadSprite(object);
+    
+    // cyclic sound management
+    if ( type.startsWith( "creature" ) )
+    {
+       if ( name.equals( "wolf" ) )
+          SoundSystem.startSoundCycle( this, "wolf-patrol", 40000, 10, 50, 100 );
+       else if ( name.equals( "rat" ) || name.equals( "caverat" ) )
+          SoundSystem.startSoundCycle( this, "rats-patrol", 15000, 10, 30, 80 );
+       else if ( name.equals( "gargoyle" ) )
+          SoundSystem.startSoundCycle( this, "gargoyle-patrol", 45000, 10, 50, 100 );
+       else if ( name.equals( "bear" ) )
+          SoundSystem.startSoundCycle( this, "bear-patrol", 45000, 30, 80, 75 );
+       else if ( name.equals( "giantrat" ) )
+          SoundSystem.startSoundCycle( this, "giantrat-patrol", 30000, 30, 60, 65 );
+       else if ( name.equals( "cobra" ) )
+          SoundSystem.startSoundCycle( this, "cobra-patrol", 60000, 20, 60, 65 );
+       else if ( name.equals( "kobold" ) )
+          SoundSystem.startSoundCycle( this, "kobold-patrol", 30000, 40, 70, 80 );
+       else if ( name.equals( "goblin" ) )
+          SoundSystem.startSoundCycle( this, "goblin-patrol", 50000, 30, 85, 65 );
+       else if ( name.equals( "troll" ) )
+          SoundSystem.startSoundCycle( this, "troll-patrol", 25000, 20, 60, 100 );
+       else if ( name.equals( "orc" ) )
+          SoundSystem.startSoundCycle( this, "orc-patrol", 45000, 30, 80, 50 );
+       else if ( name.equals( "ogre" ) )
+          SoundSystem.startSoundCycle( this, "ogre-patrol", 40000, 30, 60, 80 );
+       else if ( name.equals( "skeleton" ) )
+          SoundSystem.startSoundCycle( this, "skeleton-patrol", 60000, 30, 60, 80 );
+       else if ( name.equals( "cyclops" ) )
+          SoundSystem.startSoundCycle( this, "cyclops-patrol", 45000, 30, 75, 100 );
     }
+    else if ( type.startsWith( "npc" ) )
+    {
+       setAudibleRange( 3 );
+       if ( name.equals( "Diogenes" ) )
+          SoundSystem.startSoundCycle( this, "Diogenes-patrol", 10000, 20, 50, 100 );
+       else if ( name.equals( "Carmen" ) )
+          SoundSystem.startSoundCycle( this, "Carmen-patrol", 40000, 20, 50, 80 );
+       else if ( name.equals( "Nishiya" ) )
+          SoundSystem.startSoundCycle( this, "Nishiya-patrol", 40000, 20, 50, 80 );
+       else if ( name.equals( "Margaret" ) )
+          SoundSystem.startSoundCycle( this, "Margaret-patrol", 30000, 10, 30, 70 );
+    }
+    }  // constructor
+  
+  public byte[] get_IDToken ()
+  {
+     return ID_Token;
+  }
   
   public String getType()
     {
     return type;
     }
+
+  public String getSubType()
+  {
+  return subtype;
+  }
 
   /** Returns the represented arianne object id */
   public RPObject.ID getID()
@@ -107,6 +184,12 @@ public abstract class Entity
     return direction;
     }
   
+  /** the absolute position on the map of this entity */
+  public Point2D getPosition ()
+  {
+     return new Point2D.Double( x, y );
+  }
+  
   public double getSpeed()
     {
     return speed;
@@ -127,6 +210,31 @@ public abstract class Entity
     return sprite;
     }
     
+  /** Returns the absolute world area (coordinates) to which audibility of 
+   *  entity sounds is confined. Returns <b>null</b> if confines do
+   *  not exist (audible everywhere).
+   */
+  public Rectangle2D getAudibleArea ()
+  {
+     if ( audibleRange == Double.POSITIVE_INFINITY )
+        return null;
+
+     double width = audibleRange*2;
+     return new Rectangle2D.Double( getx()-audibleRange, gety()-audibleRange, width, width );
+  }
+  
+  /** Sets the audible range as radius distance from this entity's position,
+   *  expressed in coordinate units.
+   *  This reflects an abstract capacity of this unit to emit sounds and influences
+   *  the result of <code>getAudibleArea()</code>.
+   *  
+   *  @param range double audibility area radius in coordinate units
+   */  
+  public void setAudibleRange ( double range )
+  {
+     audibleRange = range;
+  }
+  
   /** Loads the sprite that represent this entity */
   protected void loadSprite(RPObject object)
     {
@@ -163,6 +271,8 @@ public abstract class Entity
   /** called when the server removes the entity */
   public void removed() throws AttributeNotFoundException
     {
+     System.out.println("----- Entity removed = " + type );     
+        SoundSystem.stopSoundCycle( ID_Token );
     }
 
   public void draw(GameScreen screen)
@@ -198,6 +308,38 @@ public abstract class Entity
     {
     return dx==0 && dy==0;
     }
+  
+  /** Makes this entity play a sound on the map, at its current location. 
+   *  The sound is audible to THE player in relation to distance and hearing 
+   *  or audibility confines. Occurence of this soundplaying can be subject 
+   *  to random (<code>chance</code>).
+   *  
+   * @param token sound library name of the sound to be played
+   * @param volBot bottom volume (0..100)
+   * @param volTop top volume (0..100)
+   * @param chance chance of being performed (0..100)
+   * @return the sound <code>DataLine</code> that is being played,
+   *         or <b>null</b> if not performing
+   */
+  public  DataLine playSound ( String token, int volBot, int volTop, int chance )
+  {
+     return SoundSystem.playMapSound( getPosition(), getAudibleArea(), token, volBot, volTop, chance );
+  }
+  
+  /** Makes this entity play a sound on the map, at its current location. 
+   *  The sound is audible to THE player in relation to distance and hearing 
+   *  or audibility confines.
+   *  
+   * @param token sound library name of the sound to be played
+   * @param volBot bottom volume (0..100)
+   * @param volTop top volume (0..100)
+   * @return the sound <code>DataLine</code> that is being played,
+   *         or <b>null</b> if not performing
+   */
+  public DataLine playSound ( String token, int volBot, int volTop )
+  {
+     return SoundSystem.playMapSound( getPosition(), getAudibleArea(), token, volBot, volTop, 100 );
+  }
   
   /** returns the number of slots this entity has */
   public int getNumSlots()

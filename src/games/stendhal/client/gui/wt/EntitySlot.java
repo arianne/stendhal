@@ -18,9 +18,15 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.SoundSystem;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.gui.wt.core.*;
+import games.stendhal.client.gui.wt.core.Draggable;
+import games.stendhal.client.gui.wt.core.DropTarget;
+import games.stendhal.client.gui.wt.core.Panel;
 
 import java.awt.Color;
 import java.awt.Graphics;

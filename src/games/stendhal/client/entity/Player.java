@@ -29,14 +29,18 @@ import org.apache.log4j.Logger;
 /** A Player entity */
 public class Player extends RPEntity
   {
+   public static final double DEFAULT_HEARINGRANGE = 20; 
+
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Player.class);
   
   private int outfit;
+  private double hearingRange;
 
   public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects, object);
+    setHearingRange( DEFAULT_HEARINGRANGE );
     }
 
   protected void buildAnimations(RPObject object)
@@ -98,7 +102,7 @@ public class Player extends RPEntity
       String[] players=changes.get("offline").split(",");
       for(String name: players)
         {
-        client.addEventLine(name+" has leaved Stendhal.",Color.orange);
+        client.addEventLine(name+" has left Stendhal.",Color.orange);
         }
       }
     }
@@ -112,7 +116,26 @@ public class Player extends RPEntity
     {
     return new Rectangle.Double(x,y,1,2);
     }  
-    
+   
+  /** the absolute world area (coordinates) where the player can possibly hear sounds */
+  public Rectangle2D getHearingArea()
+  {
+     double width = hearingRange*2;
+     return new Rectangle2D.Double( getx()-hearingRange, gety()-hearingRange, width, width );
+  }  
+  
+  /** Sets the hearing range as radius distance from a player's position,
+   *  expressed in coordinate units.
+   *  This reflects an abstract hearing capacity of this unit and influences
+   *  the result of <code>getHearingArea()</code>.
+   *  
+   *  @param range double approx. hearing area radius in coordinate units
+   */  
+  public void setHearingRange ( double range )
+  {
+     hearingRange = range;
+  }
+  
   public String[] offeredActions()
     {
     if(getID().equals(client.getPlayer().getID()))
@@ -149,6 +172,7 @@ public class Player extends RPEntity
       rpaction.put("type","own");
       rpaction.put("target","-1");
       client.send(rpaction);
+      playSound( "sheep-chat-2", 15, 50 );
       }
     else
       {

@@ -25,6 +25,7 @@ import games.stendhal.common.CollisionDetection;
 
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 

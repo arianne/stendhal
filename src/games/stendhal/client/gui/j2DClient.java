@@ -182,7 +182,7 @@ public class j2DClient extends JFrame
     // return until the game has finished running. Hence we are
     // using the actual main thread to run the game.
     gameLoop();
-    }
+    }  // constructor
 
   public void gameLoop()
     {
@@ -206,6 +206,8 @@ public class j2DClient extends JFrame
     pipeline.addGameLayer(staticLayers);
     pipeline.addGameObjects(gameObjects);
 
+    SoundSystem.get().playSound( "welcome", 100 );
+    
     // keep looping round til the game ends
     while (gameRunning)
       {
@@ -258,7 +260,8 @@ public class j2DClient extends JFrame
 
     logger.info("Request logout");
     client.logout();
-
+    SoundSystem.get().exit();
+    
     logger.debug("Exit");
     System.exit(0);
     }

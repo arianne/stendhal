@@ -104,7 +104,7 @@ public class TileStore extends SpriteStore
     return singleton;
     }
   
-  public TileStore()
+  private TileStore()
     {
     super();
     tileset=new Vector<Sprite>();

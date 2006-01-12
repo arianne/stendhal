@@ -524,7 +524,7 @@ public class Panel implements Draggable
   }
   
   /** returns true when the window is scheduled to be closed. */
-  protected boolean isClosed()
+  public boolean isClosed()
   {
     return closed;
   }

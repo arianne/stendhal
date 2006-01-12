@@ -281,6 +281,8 @@ public abstract class RPEntity extends AnimatedEntity
 
   public void removed() throws AttributeNotFoundException
     {
+    super.removed();
+    
     if(attacking)
       {
       attacking=false;
@@ -315,6 +317,7 @@ public abstract class RPEntity extends AnimatedEntity
       }
     else
       {
+      playSound( "punch-mix", 20, 60, 80 ); 
       resolution=Resolution.HITTED;
 
       damageSprites.add(GameScreen.get().createString(Integer.toString(damage),Color.red));

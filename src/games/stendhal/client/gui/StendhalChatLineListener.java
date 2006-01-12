@@ -306,7 +306,9 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
                           "- /who                     \tShow online players",
                           "- /add <player>            \tAdd player to the buddy list",
                           "- /remove <player>         \tRemoves player from buddy list",
-                          "- /where <player>          \tPrints the location of the player"
+                          "- /where <player>          \tPrints the location of the player",
+                          "- /sound volume <value>    \tsets sound system loudness (0..100)",
+                          "- /sound mute <value>      \tsets sound system mute (on/off)"
                           };
           for(String line: lines)
             {
@@ -330,7 +332,26 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
             {
             StendhalClient.get().addEventLine(line,Color.gray);
             }
-          }  
+          } 
+        
+        else if(text.startsWith("/sound ")) // Sound Setup command
+        {
+           String[] command = parseString(text, 3);
+           if ( command != null )
+           {
+              if ( command[1].equals( "mute" ) )
+              {
+                 SoundSystem.get().setMute( command[2].indexOf("on") != -1 );
+              }
+                    
+              if ( command[1].equals( "volume" ) )
+              {
+                 int vol = Integer.parseInt(command[2]);
+                 SoundSystem.get().setVolume( vol );
+              }
+           }
+        }
+        
         }
 
       lines.add(playerChatText.getText());

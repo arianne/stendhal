@@ -12,11 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import java.awt.*;
-import java.awt.geom.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 /** A Sheep entity */
 public class Sheep extends NPC 
@@ -48,10 +55,38 @@ public class Sheep extends NPC
     
     if(changes.has("weight"))
       {
+      int oldWeight = weight;
       weight=changes.getInt("weight");
+      if ( weight > oldWeight )
+         playSound( "sheep-eat", 8, 15 );
       }
       
-    if(weight>60 && !animation.startsWith("big_"))
+    if(changes.has("idea"))
+    {
+    String idea=changes.get("idea");
+    if(idea.equals("eat"))
+      {
+       System.out.println( "- sheep idea: EAT");   
+       probableChat( 15 );
+      }
+    else if(idea.equals("food"))
+      {
+       System.out.println( "- sheep idea: FOOD");       
+       probableChat( 20 );
+      }
+    else if(idea.equals("walk"))
+      {
+       System.out.println( "- sheep idea: WALK");       
+       probableChat( 20 );
+      }
+    else if(idea.equals("follow"))
+      {
+       System.out.println( "- sheep idea: FOLLOW");       
+       probableChat( 20 );
+      }
+    }
+
+  if(weight>60 && !animation.startsWith("big_"))
       {      
       animation="big_"+animation;
       }
@@ -75,27 +110,28 @@ public class Sheep extends NPC
 
   public String[] offeredActions()
     {
-    java.util.Vector<String> vector=new java.util.Vector<String>();
+    java.util.ArrayList<String> list=new java.util.ArrayList<String>();
     for(String item: super.offeredActions())
       {
-      vector.add(item);
+      list.add(item);
       }
 
     if(!client.getPlayer().has("sheep"))
       {
-      vector.add("Own");
+      list.add("Own");
       }
    
-      return vector.toArray(new String[0]);
+    return list.toArray(new String[0]);
     }
 
   public void onAction(StendhalClient client, String action, String... params)
     {
     if(action.equals("Look"))
       {
-      String text="You see a sheep that weights "+weight;
+      String text="You see a sheep that weighs "+weight;
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);
+      playSound( (weight > 50 ? "sheep-chat-2" : "sheep-chat"), 15, 40 );
       }
     else if(action.equals("Own"))
       {
@@ -104,10 +140,18 @@ public class Sheep extends NPC
       int id=getID().getObjectID();
       rpaction.put("target",id);
       client.send(rpaction);
+      playSound( "sheep-chat-2", 25, 60 );
       }
     else
       {
       super.onAction(client,action,params);
       }
     }
+  
+  private void probableChat ( int chance )
+  {
+     String token = weight > 50 ? "sheep-mix2" : "sheep-mix";
+     playSound( token, 20, 35, chance );
+  }
+   
   }

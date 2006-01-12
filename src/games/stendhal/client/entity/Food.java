@@ -12,10 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
-import java.awt.*;
-import java.awt.geom.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
+
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
 
 public class Food extends AnimatedEntity 
   {
@@ -50,8 +57,13 @@ public class Food extends AnimatedEntity
     
     if(changes.has("amount"))
       {
+      int oldAmount = amount; 
       animation=changes.get("amount");
       amount=changes.getInt("amount");
+      
+      // TODO this causes problems because of unidentified content refresh events (e.g. synchronizing)  
+      if ( amount > oldAmount )
+         playSound( "fruit-regrow", 10, 25 );
       }
     else if(object.has("amount"))
       {
