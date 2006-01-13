@@ -552,6 +552,21 @@ in the file.
   	  </equipable>
   </item>
 
+  <item name="antidote">
+  	  <type class="drink" subclass="antidote"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="0"/>
+  	  	<attribute name="regen" value="0"/>
+  	  	<attribute name="frequency" value="1"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+
   <item name="potion">
   	  <type class="drink" subclass="potion"/>
   	  <stackable/>

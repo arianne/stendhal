@@ -811,6 +811,10 @@ public class Player extends RPEntity
       {
       itemsToConsume.add(item);
       }
+    if(item.getRegen()==0) // if regen==0 is antidote
+      {
+      poisonToConsume.clear();
+      }
     else
       {
       poisonToConsume.add(item);
