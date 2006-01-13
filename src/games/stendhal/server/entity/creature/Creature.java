@@ -19,6 +19,7 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.pathfinder.Path;
@@ -29,6 +30,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -117,6 +120,8 @@ public class Creature extends NPC
 
   /** Ths list of items this creature may drop */
   private List<Creature.DropItem> dropsItems;
+
+  private Map<String, String> aiProfiles;
   
   
   public static void generateRPClass()
@@ -138,6 +143,9 @@ public class Creature extends NPC
     super(object);
     put("type","creature");
     createPath();
+
+    dropsItems = new ArrayList<Creature.DropItem>();
+    aiProfiles = new HashMap<String,String>();
     }
 
   /** creates a new creature without properties. These must be set in the
@@ -147,19 +155,17 @@ public class Creature extends NPC
     {
     super();
     put("type","creature");
+    
     createPath();
+    
     dropsItems = new ArrayList<Creature.DropItem>();
+    aiProfiles = new HashMap<String,String>();
     }
 
   /** creates a new creature with the given properties
    */
-  public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems) throws AttributeNotFoundException
+  public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems, Map<String, String> aiProfiles) throws AttributeNotFoundException
     {
-    /*
-    super();
-    put("type","creature");
-    createPath();
-    */
     this();
     
     this.speed = speed;
@@ -167,9 +173,11 @@ public class Creature extends NPC
     this.height = height;
     
     if (dropItems != null)
-    {
+      {
       this.dropsItems = dropItems;
-    }
+      }
+    
+    this.aiProfiles=aiProfiles;
 
     put("class",clazz);
     put("subclass",subclass);
@@ -541,6 +549,39 @@ public class Creature extends NPC
     if(rp.getTurn()%5==0  && isAttacking())
       {
       StendhalRPAction.attack(this,getAttackTarget());
+      
+      if(aiProfiles.containsKey("poisonous"))
+        {
+        int roll=Rand.roll1D100();
+        String[] poison=aiProfiles.get("poisonous").split(",");
+        int prob= Integer.parseInt(poison[0]);
+        String poisonType=poison[1];
+        
+        if(roll<=prob)
+          {
+          ConsumableItem item=(ConsumableItem)world.getRuleManager().getEntityManager().getItem(poisonType);
+          if(item==null)
+            {
+            logger.error("Creature unable to poisoning with "+poisonType);
+            }
+          else
+            {
+            RPEntity entity=getAttackTarget();
+            
+            if(entity instanceof Player)
+              {
+              Player player=(Player)entity;
+              
+              if(!player.isPoisoned())
+                {
+                player.setPrivateText("You have been poisoned by a "+getName());
+                rp.removePlayerText(player);
+                player.poison(item);
+                }
+              }
+            }          
+          }
+        }
       }
 
     if (Debug.CREATURES_DEBUG_SERVER)

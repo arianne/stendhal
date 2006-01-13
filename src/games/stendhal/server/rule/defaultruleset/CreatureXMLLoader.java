@@ -107,6 +107,7 @@ public class CreatureXMLLoader extends DefaultHandler
     }
   
   private boolean drops;
+  private boolean ai;
 
   public void startElement(String namespaceURI, String lName, String qName, Attributes attrs)throws SAXException
     {
@@ -114,6 +115,7 @@ public class CreatureXMLLoader extends DefaultHandler
       {
       name=attrs.getValue("name");
       drops=false;
+      ai=false;
       dropsItems=new LinkedList<Creature.DropItem>();
       aiProfiles=new HashMap<String,String>();
       }
@@ -138,45 +140,46 @@ public class CreatureXMLLoader extends DefaultHandler
       {
       drops=true;
       }
-    else if(qName.equals("item"))
+    else if(qName.equals("ai"))
       {
-      if(drops)
+      ai=true;
+      }
+    else if(qName.equals("item") && drops)
+      {
+      String name=null;
+      Double probability=null;
+      String range=null;
+      
+      for(int i=0;i<attrs.getLength();i++)
         {
-        String name=null;
-        Double probability=null;
-        String range=null;
-        
-        for(int i=0;i<attrs.getLength();i++)
+        if(attrs.getQName(i).equals("value"))
           {
-          if(attrs.getQName(i).equals("value"))
-            {
-            name=attrs.getValue(i);
-            }
-          else if(attrs.getQName(i).equals("probability"))
-            {
-            probability=Double.parseDouble(attrs.getValue(i));
-            }
-          else if(attrs.getQName(i).equals("quantity"))
-            {
-            range=attrs.getValue(i);
-            }
+          name=attrs.getValue(i);
           }
-        
-        if(name!=null && probability!=null && range!=null)
-          {          
-          if(range.contains("["))
-            {
-            range=range.replace("[","");
-            range=range.replace("]","");
-            String[] amount=range.split(",");
-            
-            dropsItems.add(new Creature.DropItem(name,probability,Integer.parseInt(amount[0]),Integer.parseInt(amount[1])));
-            }
-          else
-            {
-            dropsItems.add(new Creature.DropItem(name,probability,Integer.parseInt(range)));
-            }            
+        else if(attrs.getQName(i).equals("probability"))
+          {
+          probability=Double.parseDouble(attrs.getValue(i));
           }
+        else if(attrs.getQName(i).equals("quantity"))
+          {
+          range=attrs.getValue(i);
+          }
+        }
+      
+      if(name!=null && probability!=null && range!=null)
+        {          
+        if(range.contains("["))
+          {
+          range=range.replace("[","");
+          range=range.replace("]","");
+          String[] amount=range.split(",");
+          
+          dropsItems.add(new Creature.DropItem(name,probability,Integer.parseInt(amount[0]),Integer.parseInt(amount[1])));
+          }
+        else
+          {
+          dropsItems.add(new Creature.DropItem(name,probability,Integer.parseInt(range)));
+          }            
         }
       }
     else if(qName.equals("attribute"))
@@ -221,6 +224,11 @@ public class CreatureXMLLoader extends DefaultHandler
         ;
         }
       }
+    else if(qName.equals("profile"))
+      {
+      aiProfiles.put(attrs.getValue("name"),attrs.getValue("params"));
+      }
+      
     }
 
   public void endElement(String namespaceURI, String sName, String qName) throws SAXException
@@ -233,6 +241,10 @@ public class CreatureXMLLoader extends DefaultHandler
     else if(qName.equals("drops"))
       {
       drops=false;
+      }
+    else if(qName.equals("ai"))
+      {
+      ai=false;
       }
     }
 

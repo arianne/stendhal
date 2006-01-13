@@ -62,7 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.42 Jan XX, 2005
+0.42 Jan 14, 2005
 - Added Venom rat.
 - On death player lose Levels, XP, ATK and DEF.
 - Organized data in Java Webstart. Everything is now inside stendhal folder.
@@ -76,6 +76,12 @@ Changelog
 - Better source and data organization.
 - Fixed a bug that happen when you kill a sheep.
 - Improved data structure.
+- New food system.
+- Added sound system.
+- Added drinks.
+- Added poisons.
+- Added poisonous creatures.
+
 
 0.41 Jan 03, 2005
 - Fixed a bug on legs slot name.

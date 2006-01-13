@@ -757,6 +757,11 @@ public class Player extends RPEntity
     quests.put(name,1);
     }
   
+  public boolean isPoisoned()
+    {
+    return !(poisonToConsume.size()==0);
+    }
+    
   public void poison(ConsumableItem item)
     {
     poisonToConsume.add(item);
@@ -810,7 +815,7 @@ public class Player extends RPEntity
       {
       public int compare(ConsumableItem o1, ConsumableItem o2) 
         {
-        return o2.getRegen()-o1.getRegen();
+        return Math.abs(o2.getRegen())-Math.abs(o1.getRegen());
         }
         
       public boolean equals(Object obj)  
