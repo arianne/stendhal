@@ -136,6 +136,12 @@ public class EntityContainer extends Panel
     int iy = (int) parent.gety();
     
     int distance = Math.abs(px-ix)+Math.abs(py-iy);
+    
+    if(player.getID().equals(parent.getID()))
+      {
+      // We don't want to close our own stuff       
+      return;
+      }
 
     if (distance > MAX_DISTANCE)
     {
