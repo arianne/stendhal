@@ -134,7 +134,7 @@ public class Equipment extends ActionListener
     Log4J.startMethod(logger,"drop");
     
     
-    final boolean USE_NEW_CODE = true;
+    final boolean USE_NEW_CODE = false;
     
 // New Code Starts Here
 // FIXME: This code does not work. 
