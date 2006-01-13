@@ -62,7 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.42 Jan 14, 2005
+0.42 Jan 14, 2006
 - Added Venom rat.
 - On death player lose Levels, XP, ATK and DEF.
 - Organized data in Java Webstart. Everything is now inside stendhal folder.
@@ -83,6 +83,8 @@ Changelog
 - Added poisonous creatures.
 - Fixed inventory self closes bug.
 - Stats show now equipped stuff too.
+- New event system.
+- Some creatures can heal themselves.
 
 
 0.41 Jan 03, 2005
