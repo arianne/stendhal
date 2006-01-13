@@ -24,6 +24,10 @@ import java.util.List;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
+
 /**
  * This panel is a container showing all items in a slot
  * 
@@ -31,6 +35,9 @@ import marauroa.common.game.RPSlot;
  */
 public class EntityContainer extends Panel
 {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(EntityContainer.class);
+
   /** when the player is this far away from the container, the panel is closed*/
   private static final int MAX_DISTANCE = 5;
   
@@ -132,6 +139,7 @@ public class EntityContainer extends Panel
 
     if (distance > MAX_DISTANCE)
     {
+      logger.info("Closing "+slotName+" container because "+px+","+py+" is far from "+ix+","+iy);
       close();
     }
   }

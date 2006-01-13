@@ -761,6 +761,11 @@ public class Player extends RPEntity
     {
     return !(poisonToConsume.size()==0);
     }
+  
+  public void healPoison()
+    {
+    poisonToConsume.clear();
+    }
     
   public void poison(ConsumableItem item)
     {

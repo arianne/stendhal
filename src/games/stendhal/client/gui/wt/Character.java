@@ -28,6 +28,9 @@ import games.stendhal.client.gui.wt.core.TextPanel;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.Arrays;
+
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -79,7 +82,7 @@ public class Character extends Panel
     }
     
     
-    statsPanel = new TextPanel("stats",  5, dist*4, 170,100,"HP: ${hp}/${maxhp}\nATK: ${atk} (${atkxp})\nDEF: ${def} (${defxp})\nXP:${xp}\nCash: $${money}");
+    statsPanel = new TextPanel("stats",  5, dist*4, 170,100,"HP: ${hp}/${maxhp}\nATK: ${atk}(+${atkitem}) (${atkxp})\nDEF: ${def}(+${defitem}) (${defxp})\nXP:${xp}\nCash: $${money}");
     statsPanel.setFrame(false);
     statsPanel.setTitleBar(false);
     addChild(statsPanel);
@@ -106,6 +109,9 @@ public class Character extends Panel
       return;
     }
     money = 0;
+    
+    int atkitem=0;
+    int defitem=0;
 
     // taverse all slots
     for (RPSlot slot : playerEntity.getSlots())
@@ -131,6 +137,18 @@ public class Character extends Panel
         {
           money += content.getInt("quantity");
         }
+        
+        final List<String> weapons=Arrays.asList("sword","axe","club");
+        final List<String> defense=Arrays.asList("shield","armor","helmet","legs","boots");
+
+        if(weapons.contains(content.get("class")))
+        {
+          atkitem+=content.getInt("atk");
+        }
+        if(defense.contains(content.get("class")))
+        {
+          defitem+=content.getInt("def");
+        }
       }
     }
 
@@ -139,6 +157,8 @@ public class Character extends Panel
     statsPanel.set("maxhp",playerEntity.getBase_hp());
     statsPanel.set("atk"  ,playerEntity.getAtk());
     statsPanel.set("def"  ,playerEntity.getDef());
+    statsPanel.set("atkitem"  ,atkitem);
+    statsPanel.set("defitem"  ,defitem);
     statsPanel.set("atkxp",playerEntity.getAtkXp());
     statsPanel.set("defxp",playerEntity.getDefXp());
     statsPanel.set("xp"   ,playerEntity.getXp());

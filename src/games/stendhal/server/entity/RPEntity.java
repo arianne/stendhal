@@ -755,6 +755,16 @@ public abstract class RPEntity extends Entity
     return getFirstItemFromSlot("legs", "legs");
     }
   
+  public boolean hasBoots()
+    {
+    return checkSlotForItem("boots", "boots");
+    }
+  
+  public Item getBoots()
+    {
+    return getFirstItemFromSlot("boots", "boots");
+    }
+  
   /** checks if the entity has at least one item of type <i>type</i> in one
    * of the given slots
    */

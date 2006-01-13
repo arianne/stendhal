@@ -105,6 +105,7 @@ public class StendhalRPAction
           int armor=0;
           int helmet=0;
           int legs=0;
+          int boots=0;
           
           if(source.hasWeapon())
             {
@@ -136,9 +137,14 @@ public class StendhalRPAction
             legs=target.getLegs().getDefense();
             }
 
+          if(target.hasBoots())
+            {
+            boots=target.getBoots().getDefense();
+            }
+
           logger.debug("defender has "+target.getDEF()+" and uses shield of "+shield+" and armor of "+armor);
 
-          float maxDefenderComponent=0.6f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor+(float)target.getDEF()*(float)helmet+(float)target.getDEF()*(float)legs;
+          float maxDefenderComponent=0.6f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor+(float)target.getDEF()*(float)helmet+(float)target.getDEF()*(float)legs+(float)target.getDEF()*(float)boots;
           float defenderComponent=((float)Rand.roll1D100()/100.0f)*maxDefenderComponent;
           
           damage=(int)(((attackerComponent-defenderComponent)/maxAttackerComponent)*(maxAttackerComponent/maxDefenderComponent)*((float)source.getATK()/10.0f));

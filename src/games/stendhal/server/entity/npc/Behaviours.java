@@ -429,6 +429,7 @@ public class Behaviours
     public void heal(Player player, SpeakerNPC engine)
       {
       player.setHP(player.getBaseHP());
+      player.healPoison();
       world.modify(player);
       }
     }

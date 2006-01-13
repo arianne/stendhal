@@ -15,6 +15,8 @@ package games.stendhal.client.entity;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.wt.EntityContainer;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.GameScreen;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -40,13 +42,27 @@ public class Corpse extends PassiveEntity
 
   public Rectangle2D getArea()
     {
-    return new Rectangle.Double(x,y,1,1);
+    
+    return new Rectangle.Double(x,y,sprite.getWidth()/GameScreen.SIZE_UNIT_PIXELS,sprite.getHeight()/GameScreen.SIZE_UNIT_PIXELS);
     }
     
   public Rectangle2D getDrawedArea()
     {
-    return new Rectangle.Double(x,y,1,1);
+    return new Rectangle.Double(x,y,sprite.getWidth()/GameScreen.SIZE_UNIT_PIXELS,sprite.getHeight()/GameScreen.SIZE_UNIT_PIXELS);
     }  
+
+  protected void loadSprite(RPObject object)  
+    {
+    String corpseType=object.get("type");
+    
+    if(object.get("class").equals("player"))
+      {
+      corpseType=corpseType+"_player";
+      }
+      
+    SpriteStore store=SpriteStore.get();        
+    sprite=store.getSprite(translate(corpseType));
+    }
 
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
