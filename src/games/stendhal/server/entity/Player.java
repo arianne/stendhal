@@ -754,7 +754,6 @@ public class Player extends RPEntity
   
   public void drink(Drink drink)
     {
-    System.out.println ("Drinking");
     consumeItem(drink,drinkToConsume);
     }
     
@@ -847,11 +846,16 @@ public class Player extends RPEntity
       }
     }
     
-  private void consume(List<ConsumableItem> itemToConsume)
+  private void consume(int turn, List<ConsumableItem> itemToConsume)
     {
     while(itemToConsume.size()>0)
       {
       ConsumableItem food=itemToConsume.get(0);
+      
+      if(turn%food.getFrecuency()!=0)
+        {
+        return;
+        }
 
       if(!food.consumed())
         {
@@ -880,12 +884,7 @@ public class Player extends RPEntity
 
   public void consume(int turn)
     {
-    consume(drinkToConsume);
-    
-    // We eat each 30 turns.
-    if(turn%30==0)
-      {
-      consume(foodToEat);
-      }
+    consume(turn, drinkToConsume);
+    consume(turn, foodToEat);
     }
   }

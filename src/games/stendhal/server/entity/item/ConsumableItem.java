@@ -30,6 +30,16 @@ public class ConsumableItem extends StackableItem
     return getInt("amount");
     }
   
+  public int getFrecuency()
+    {
+    if(!has("frequency"))
+      {
+      return 20;
+      }
+      
+    return getInt("frequency");
+    }
+
   public int getRegen()
     {
     return getInt("regen");

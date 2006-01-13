@@ -465,6 +465,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="60"/>
   	  	<attribute name="regen" value="5"/>
+  	  	<attribute name="frequency" value="10"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -507,6 +508,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="6"/>
   	  	<attribute name="regen" value="1"/>
+  	  	<attribute name="frequency" value="5"/>
 <!--  	  	<attribute name="alcoholic" value="5"/> -->
   	  </attributes>
   	  <weight value="1"/>
@@ -522,6 +524,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="10"/>
   	  	<attribute name="regen" value="2"/>
+  	  	<attribute name="frequency" value="5"/>
 <!--  	  	<attribute name="alcoholic" value="10"/> -->
   	  </attributes>
   	  <weight value="1"/>
@@ -537,6 +540,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="50"/>
   	  	<attribute name="regen" value="50"/>
+  	  	<attribute name="frequency" value="1"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -551,6 +555,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="100"/>
   	  	<attribute name="regen" value="100"/>
+  	  	<attribute name="frequency" value="1"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -565,6 +570,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="300"/>
   	  	<attribute name="regen" value="300"/>
+  	  	<attribute name="frequency" value="1"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>

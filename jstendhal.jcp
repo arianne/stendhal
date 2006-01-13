@@ -99,6 +99,9 @@
 				<path>data\conf</path>
 			</folderitem>
 			<folderitem>
+				<path>data\sounds</path>
+			</folderitem>
+			<folderitem>
 				<path>stendhal-0.42</path>
 			</folderitem>
 			<folderitem>
@@ -150,6 +153,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\RenderingPipeline.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\SoundSystem.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -389,42 +396,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\Navigable.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\NavigableStendhalNode.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\NavigationMap.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\Path.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\Pathfinder.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\PathfinderThread.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\PathListener.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\PathState.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\QueuedPath.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\server\RespawnPoint.java</path>
 				<source>true</source>
 			</fileitem>
@@ -522,6 +493,14 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Corpse.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Drink.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Food.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -677,6 +656,42 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\Navigable.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\NavigableStendhalNode.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\NavigationMap.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\Path.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\Pathfinder.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\PathfinderThread.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\PathListener.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\PathState.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\QueuedPath.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\common\CollisionDetection.java</path>
 				<source>true</source>
 			</fileitem>
@@ -734,6 +749,14 @@
 			</fileitem>
 			<fileitem>
 				<path>data\conf\stendhalcreateaccount.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>data\sounds\stensounds.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>data\sounds\stensounds0.jar</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
