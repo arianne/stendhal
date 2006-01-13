@@ -216,6 +216,16 @@ public abstract class RPEntity extends AnimatedEntity
         }
       }
 
+    if(changes.has("poisoned"))
+      {
+      int poisoned=changes.getInt("poisoned");
+
+      damageSprites.add(GameScreen.get().createString(Integer.toString(poisoned),Color.red));
+      damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+
+      client.addEventLine(getName() + " is poisoned with " + poisoned + " health points." , Color.red);
+      }
+
     if(changes.has("level") && object.has("level"))
       {
       if(getID().equals(client.getPlayer().getID()) || distance(client.getPlayer())<15*15)

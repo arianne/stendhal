@@ -32,11 +32,6 @@ public class ConsumableItem extends StackableItem
   
   public int getFrecuency()
     {
-    if(!has("frequency"))
-      {
-      return 20;
-      }
-      
     return getInt("frequency");
     }
 
@@ -52,7 +47,14 @@ public class ConsumableItem extends StackableItem
   
   public boolean consumed()
     {
-    return left<=0;
+    if(getRegen()>0)
+      {
+      return left<=0;
+      }
+    else
+      {
+      return left>=0;
+      }
     }
 
   public boolean isStackable(Stackable other)

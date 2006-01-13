@@ -45,6 +45,7 @@ public class Player extends RPEntity
   private static final Logger logger = Log4J.getLogger(Player.class);
 
   private List<ConsumableItem> itemsToConsume;
+  private List<ConsumableItem> poisonToConsume;
 
   public static void generateRPClass()
     {
@@ -55,6 +56,7 @@ public class Player extends RPEntity
       player.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
+      player.add("poisoned",RPClass.SHORT,RPClass.PRIVATE);
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
 
       player.add("outfit",RPClass.INT);
@@ -385,6 +387,7 @@ public class Player extends RPEntity
     put("type","player");
     
     itemsToConsume=new LinkedList<ConsumableItem>();  
+    poisonToConsume=new LinkedList<ConsumableItem>();  
 
     update();
     }
@@ -421,6 +424,9 @@ public class Player extends RPEntity
       
       remove("sheep");
       }
+      
+    // We stop eating anything
+    itemsToConsume.clear();
 
     super.onDead(who, false);
 
@@ -750,9 +756,14 @@ public class Player extends RPEntity
     quests.put(name,1);
     }
   
+  public void poison(ConsumableItem item)
+    {
+    poisonToConsume.add(item);
+    }
+  
   public void consumeItem(ConsumableItem item)
     {    
-    if(itemsToConsume.size()>9)
+    if(item.getRegen()>0 && itemsToConsume.size()>9)
       {
       setPrivateText("You can't consume anymore");
       rp.removePlayerText(this);
@@ -784,8 +795,15 @@ public class Player extends RPEntity
         }
       }
 
-    logger.debug("Consuming item: "+item.getAmount());    
-    itemsToConsume.add(item);
+    logger.debug("Consuming item: "+item.getAmount());        
+    if(item.getRegen()>0)
+      {
+      itemsToConsume.add(item);
+      }
+    else
+      {
+      poisonToConsume.add(item);
+      }
 
     Collections.sort(itemsToConsume, new Comparator<ConsumableItem>()
       {
@@ -836,13 +854,52 @@ public class Player extends RPEntity
     
   public void consume(int turn)
     {
+    if(has("poisoned"))
+      {
+      remove("poisoned");      
+      }
+      
+    while(poisonToConsume.size()>0)
+      {
+      ConsumableItem consumableItem=poisonToConsume.get(0);
+      
+      if(turn%consumableItem.getFrecuency()!=0)
+        {
+        break;
+        }
+
+      if(!consumableItem.consumed())
+        {
+        consumableItem.consume();
+        int amount=consumableItem.getRegen();
+        put("poisoned",amount);
+
+        if(getHP()+amount<getBaseHP())
+          {
+          setHP(getHP()+amount);
+          }
+        else
+          {
+          setHP(getBaseHP());
+          poisonToConsume.clear();
+          }
+
+        world.modify(this);
+        break;
+        }
+      else
+        {
+        poisonToConsume.remove(0);
+        }
+      }
+
     while(itemsToConsume.size()>0)
       {
       ConsumableItem consumableItem=itemsToConsume.get(0);
       
       if(turn%consumableItem.getFrecuency()!=0)
         {
-        return;
+        break;
         }
 
       if(!consumableItem.consumed())
@@ -861,7 +918,7 @@ public class Player extends RPEntity
           }
 
         world.modify(this);
-        return;
+        break;
         }
       else
         {

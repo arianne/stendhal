@@ -412,6 +412,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="10"/>
   	  	<attribute name="regen" value="2"/>
+  	  	<attribute name="frequency" value="15"/>
   	  </attributes>
   	  <weight value="0.1"/>
   	  <equipable>
@@ -439,6 +440,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="30"/>
   	  	<attribute name="regen" value="2"/>
+  	  	<attribute name="frequency" value="20"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -452,6 +454,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="20"/>
   	  	<attribute name="regen" value="3"/>
+  	  	<attribute name="frequency" value="20"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -479,6 +482,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="80"/>
   	  	<attribute name="regen" value="6"/>
+  	  	<attribute name="frequency" value="5"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -577,6 +581,22 @@ in the file.
   	  	<slot name="bag"/>
   	  </equipable>
   </item>
+
+  <item name="poison">
+  	  <type class="drink" subclass="poison"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="-100"/>
+  	  	<attribute name="regen" value="-10"/>
+  	  	<attribute name="frequency" value="30"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+
 
 <!-- Misc_section -->
 
