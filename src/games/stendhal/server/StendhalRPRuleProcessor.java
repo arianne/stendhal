@@ -35,6 +35,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
   
+  private JDBCPlayerDatabase database;
+  
   private static Map<String, ActionListener> actionsMap;
   static
     {
@@ -87,6 +89,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   public StendhalRPRuleProcessor()
     {
+    database=(JDBCPlayerDatabase)JDBCPlayerDatabase.getDatabase();
+    
     playersObject=new LinkedList<Player>();
     playersObjectRmText=new LinkedList<Player>();
     npcs=new LinkedList<NPC>();
@@ -100,9 +104,22 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     corpses=new LinkedList<Corpse>();
     corpsesToRemove=new LinkedList<Corpse>();
     
-    registerActions();
+    registerActions();    
     }
 
+  public void addGameEvent(String source, String event, String... params)
+    {
+    try
+      {
+      Transaction transaction=database.getTransaction();
+      database.addGameEvent(transaction, source, event, params);
+      transaction.commit();
+      }
+    catch(Exception e)
+      {
+      logger.warn("Can't store game event",e);
+      }
+    }
 
   /**
    * Set the context where the actions are executed.
@@ -432,6 +449,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         p.notifyOnline(player.getName());
         }
       
+      addGameEvent(player.getName(),"login");
       return true;
       }
     catch(Exception e)
@@ -464,6 +482,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
           playersObject.remove(object);
 
+          addGameEvent(object.getName(),"logout");
           logger.debug("removed player "+object);
           break;
           }

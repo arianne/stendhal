@@ -102,6 +102,8 @@ public class Use extends ActionListener
         // It is always an entity
         Entity entity=(Entity)object;
         
+        rules.addGameEvent(player.getName(),"use",entity.get("name"));
+
         if(entity instanceof ConsumableItem)
           {
           /* This will happen when item is on the player's slot */
@@ -137,6 +139,8 @@ public class Use extends ActionListener
           }
         else if(object instanceof ConsumableItem)
           {
+          rules.addGameEvent(player.getName(),"use",object.get("name"));
+
           /* This will happen when item is on the player's slot */
           player.consumeItem((ConsumableItem)object);
           world.modify(player);
@@ -144,6 +148,8 @@ public class Use extends ActionListener
 
         else if(object instanceof Chest)
           {          
+          rules.addGameEvent(player.getName(),"use","chest");
+          
           Chest chest=(Chest)object;
           
           if(player.nextto(chest,0.25))

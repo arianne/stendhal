@@ -300,6 +300,9 @@ public abstract class RPEntity extends Entity
     this.xp += newxp;
     put("xp",xp);
 
+    rp.addGameEvent(getName(),"added xp",Integer.toString(newxp));
+    rp.addGameEvent(getName(),"xp",Integer.toString(xp));
+    
     int newLevel=Level.getLevel(getXP());
     int levels=newLevel-getLevel();
 
@@ -383,10 +386,13 @@ public abstract class RPEntity extends Entity
     {
     logger.debug("Damaged "+damage+" points by "+who.getID());
 
+    rp.addGameEvent(who.getName(),"damaged",getName(),Integer.toString(damage));
+
     int leftHP=getHP()-damage;
     damage = (leftHP>=0 ? damage : getHP());
     
     totalDamageReceived += damage;
+
     if(damageReceived.containsKey(who))
       {
       damageReceived.put(who,damage+damageReceived.get(who));
@@ -424,6 +430,8 @@ public abstract class RPEntity extends Entity
     {
     stopAttack();
     who.stopAttack();
+
+    rp.addGameEvent(who.getName(),"killed",getName());
 
     // Establish how much xp points your are rewarded
     if(getXP()>0)

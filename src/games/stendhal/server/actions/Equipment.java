@@ -162,7 +162,7 @@ public class Equipment extends ActionListener
 //         on the ground. See DestinationObject.addToWorld()#600 
       source.moveTo(dest,world, player);
       return;
-    }
+      }
 //  Old Code Starts Here
     
 

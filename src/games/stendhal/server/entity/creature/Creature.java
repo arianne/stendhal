@@ -192,6 +192,8 @@ public class Creature extends NPC
     setHP(hp);
 
     setLevel(level);
+    
+    update();
 
     stop();
     logger.debug("Created "+clazz+":"+this);
@@ -574,6 +576,8 @@ public class Creature extends NPC
               
               if(!player.isPoisoned())
                 {
+                rp.addGameEvent(getName(),"poison",player.getName());
+                
                 player.setPrivateText("You have been poisoned by a "+getName());
                 rp.removePlayerText(player);
                 player.poison(item);

@@ -91,6 +91,8 @@ public class Administration extends ActionListener
     if(action.has("text"))
       {
       String message = "Administrator SHOUTS: " + action.get("text");
+      rules.addGameEvent(player.getName(),"tellall",action.get("text"));
+      
       for(Player p : rules.getPlayers())
         {
         p.setPrivateText(message);
@@ -155,6 +157,9 @@ public class Administration extends ActionListener
         
         teleported.setx(x);
         teleported.sety(y); 
+
+        rules.addGameEvent(player.getName(),"teleport",teleported.getName());
+
         world.modify(teleported);      
         }
       else
@@ -203,6 +208,8 @@ public class Administration extends ActionListener
       
       if(StendhalRPAction.placeat(zone,player,x,y))
         {
+        rules.addGameEvent(player.getName(),"teleportto",teleported.getName());
+
         StendhalRPAction.changeZone(player,zone.getID().getID());
         StendhalRPAction.transferContent(player);
         }
@@ -293,6 +300,7 @@ public class Administration extends ActionListener
               break;
             }
 
+          rules.addGameEvent(player.getName(),"alter",changed.getName(),stat,Integer.toString(numberValue));
           changed.put(stat, numberValue);
           }
         else
@@ -300,6 +308,7 @@ public class Administration extends ActionListener
           // Can be only setif value is not a number
           if(mode.equals("set"))
             {
+            rules.addGameEvent(player.getName(),"alter",changed.getName(),stat,action.get("value"));
             changed.put(stat, action.get("value"));
             }
           }
@@ -330,6 +339,7 @@ public class Administration extends ActionListener
         // Is the entity a creature
         if(manager.isCreature(type))
           {
+          rules.addGameEvent(player.getName(),"summon",type);
           Creature creature=manager.getCreature(type);
           
           zone.assignRPObjectID(creature);
@@ -340,6 +350,7 @@ public class Administration extends ActionListener
           }
         else if(manager.isItem(type))
           {
+          rules.addGameEvent(player.getName(),"summon",type);
           Item item=manager.getItem(type);
           
           zone.assignRPObjectID(item);
@@ -393,6 +404,7 @@ public class Administration extends ActionListener
         // Is the entity an item
         if(manager.isItem(type))
           {
+          rules.addGameEvent(player.getName(),"summonat",changed.getName(),slot.getName(),type);
           Item item=manager.getItem(type);
           
           slot.assignValidID(item);

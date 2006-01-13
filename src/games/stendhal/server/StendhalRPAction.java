@@ -425,6 +425,8 @@ public class StendhalRPAction
     {
     Log4J.startMethod(logger, "changeZone");
     
+    rules.addGameEvent(player.getName(),"change zone",destination);
+    
     player.clearPath();
 
     String source=player.getID().getZoneID();

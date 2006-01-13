@@ -75,6 +75,8 @@ public class Attack extends ActionListener
               logger.info(player.getName()+" is attacking "+entity.getName());              
               }
 
+            rules.addGameEvent(player.getName(),"attack",entity.getName());
+            
             player.attack(entity);
             player.faceto(entity);
             world.modify(player);

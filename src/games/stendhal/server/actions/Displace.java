@@ -71,6 +71,8 @@ public class Displace extends ActionListener
 
             if(player.nextto(entity,0.25) && player.distance(x,y)<8*8 && !zone.simpleCollides(entity,x,y))
               {
+              rules.addGameEvent(player.getName(),"displace",entity.get("type"));
+              
               entity.setx(x);
               entity.sety(y);
               world.modify(entity);

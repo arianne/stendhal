@@ -528,7 +528,7 @@
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
-			<profile name="heal" param="5,150"/>
+			<profile name="heal" params="5,150"/>
 		</ai>
 	</creature>
 

@@ -98,6 +98,9 @@ public class Chat extends ActionListener
     if(action.has("text"))
       {
       String message = player.getName() +  " ask for support to ADMIN: " + action.get("text");
+
+      rules.addGameEvent(player.getName(),"support",action.get("text"));
+
       for(Player p : rules.getPlayers())
         {
         if(p.isAdmin())

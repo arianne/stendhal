@@ -49,6 +49,8 @@ public class PlayersQuery extends ActionListener
     {
     Log4J.startMethod(logger,"who");
     
+    rules.addGameEvent(player.getName(),"who");
+    
     String online = "" + rules.getPlayers().size() + " Players online: ";
     for(Player p : rules.getPlayers())
       {
@@ -69,6 +71,9 @@ public class PlayersQuery extends ActionListener
     if(action.has("target"))
       {
       String who=action.get("target");
+
+      rules.addGameEvent(player.getName(),"where",who);
+      
       for(Player p : rules.getPlayers())
         {
         if(p.getName().equals(who))

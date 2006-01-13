@@ -36,6 +36,8 @@ public class Outfit extends ActionListener
 
     if(action.has("value"))
       {
+      rules.addGameEvent(player.getName(),"outfit",action.get("value"));
+      
       player.put("outfit",action.get("value"));
       world.modify(player);
       }
