@@ -91,7 +91,6 @@
 			<attribute name="hp" value="15"/>
 			<attribute name="speed" value="1"/>
 			<attribute name="size" value="1,2"/>
-			<attribute name="poisonous" value="1"/>
 <!--			<attribute name="noise" value="ZzZzZzzz!"/> -->
 		</attributes>
 		<level value="1"/>
@@ -106,6 +105,7 @@
 		<ai>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
+			<profile name="poisonous" param="1"/>
 		</ai>
 	</creature>
 
@@ -428,7 +428,6 @@
 			<attribute name="hp" value="70"/>
 			<attribute name="speed" value="0.9"/>
 			<attribute name="size" value="1,1"/>
-			<attribute name="poisonous" value="2"/>
 		</attributes>
 		<level value="7"/>
 		<experience value="80"/>
@@ -444,6 +443,7 @@
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
+			<profile name="poisonous" param="2"/>
 		</ai>
 	</creature>
 

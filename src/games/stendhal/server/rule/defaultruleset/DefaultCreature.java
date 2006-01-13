@@ -16,6 +16,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.List;
+import java.util.Map;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
@@ -50,11 +51,12 @@ public class DefaultCreature
 
   /** Ths list of items this creature may drop */
   private List<Creature.DropItem> dropsItems;
+  private Map<String, String> aiProfiles;
   
   /** speed relative to player [0.0 ... 1.0]*/
   private double speed;
   
-  public DefaultCreature(String clazz, String subclass, String name, int tileid, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<Creature.DropItem> dropsItems)
+  public DefaultCreature(String clazz, String subclass, String name, int tileid, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<Creature.DropItem> dropsItems, Map<String,String> aiProfiles)
   {
     this.clazz = clazz;
     this.subclass = subclass;
@@ -73,6 +75,7 @@ public class DefaultCreature
     this.speed = speed;
     
     this.dropsItems=dropsItems;
+    this.aiProfiles=aiProfiles;
   }
   
   /** returns a creature-instance */

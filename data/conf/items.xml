@@ -597,6 +597,21 @@ in the file.
   	  </equipable>
   </item>
 
+  <item name="greater_poison">
+  	  <type class="drink" subclass="greater_poison"/>
+  	  <stackable/>
+  	  <attributes>
+  	  	<attribute name="quantity" value="1"/>
+  	  	<attribute name="amount" value="-200"/>
+  	  	<attribute name="regen" value="-10"/>
+  	  	<attribute name="frequency" value="10"/>
+  	  </attributes>
+  	  <weight value="1"/>
+  	  <equipable>
+  	  	<slot name="bag"/>
+  	  </equipable>
+  </item>
+
 
 <!-- Misc_section -->
 

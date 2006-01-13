@@ -427,6 +427,7 @@ public class Player extends RPEntity
       
     // We stop eating anything
     itemsToConsume.clear();
+    poisonToConsume.clear();
 
     super.onDead(who, false);
 

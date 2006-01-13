@@ -35,6 +35,7 @@ public class CreatureXMLLoader extends DefaultHandler
   private int level;
   
   private List<Creature.DropItem> dropsItems;
+  private Map<String,String> aiProfiles;
   
   private List<DefaultCreature> list;
 
@@ -114,6 +115,7 @@ public class CreatureXMLLoader extends DefaultHandler
       name=attrs.getValue("name");
       drops=false;
       dropsItems=new LinkedList<Creature.DropItem>();
+      aiProfiles=new HashMap<String,String>();
       }
     else if(qName.equals("type"))
       {
@@ -225,7 +227,7 @@ public class CreatureXMLLoader extends DefaultHandler
     {
     if(qName.equals("creature"))
       {
-      DefaultCreature creature=new DefaultCreature(clazz,subclass,name,tileid,hp,atk,def,level,xp, sizeWidth, sizeHeight,speed,dropsItems);
+      DefaultCreature creature=new DefaultCreature(clazz,subclass,name,tileid,hp,atk,def,level,xp, sizeWidth, sizeHeight,speed,dropsItems, aiProfiles);
       list.add(creature);
       }
     else if(qName.equals("drops"))
