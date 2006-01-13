@@ -81,6 +81,8 @@ Changelog
 - Added drinks.
 - Added poisons.
 - Added poisonous creatures.
+- Fixed inventory self closes bug.
+- Stats show now equipped stuff too.
 
 
 0.41 Jan 03, 2005

@@ -582,6 +582,26 @@ public class Creature extends NPC
             }          
           }
         }
+
+      }
+
+    if(aiProfiles.containsKey("heal"))
+      {
+      String[] healing=aiProfiles.get("heal").split(",");
+      int amount=Integer.parseInt(healing[0]);
+      int frequency=Integer.parseInt(healing[1]);
+      
+      if(rp.getTurn()%frequency==0 && getHP()!=getBaseHP())
+        {
+        if(getHP()+amount<getBaseHP())
+          {
+          setHP(getHP()+amount);          
+          }
+        else
+          {
+          setHP(getBaseHP());
+          }
+        }
       }
 
     if (Debug.CREATURES_DEBUG_SERVER)
