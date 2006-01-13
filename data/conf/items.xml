@@ -454,7 +454,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="20"/>
   	  	<attribute name="regen" value="3"/>
-  	  	<attribute name="frequency" value="20"/>
+  	  	<attribute name="frequency" value="30"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -468,7 +468,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="60"/>
   	  	<attribute name="regen" value="5"/>
-  	  	<attribute name="frequency" value="10"/>
+  	  	<attribute name="frequency" value="30"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
@@ -482,7 +482,7 @@ in the file.
   	  	<attribute name="quantity" value="1"/>
   	  	<attribute name="amount" value="80"/>
   	  	<attribute name="regen" value="6"/>
-  	  	<attribute name="frequency" value="5"/>
+  	  	<attribute name="frequency" value="30"/>
   	  </attributes>
   	  <weight value="1"/>
   	  <equipable>
