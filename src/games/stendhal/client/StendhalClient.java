@@ -62,7 +62,7 @@ public class StendhalClient extends ariannexp
   
   private static StendhalClient client;  
   
-  private static final String LOG4J_PROPERTIES = "games/stendhal/client/log4j.properties";
+  private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
   
   public static StendhalClient get()
     {
