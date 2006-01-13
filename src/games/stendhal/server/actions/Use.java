@@ -19,8 +19,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.item.Food;
-import games.stendhal.server.entity.item.Drink;
+import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.OneWayPortal;
@@ -103,16 +102,10 @@ public class Use extends ActionListener
         // It is always an entity
         Entity entity=(Entity)object;
         
-        if(entity instanceof Food)
+        if(entity instanceof ConsumableItem)
           {
           /* This will happen when item is on the player's slot */
-          player.eat((Food)entity);
-          world.modify(player);
-          }
-        else if(object instanceof Drink)
-          {
-          /* This will happen when item is on the floor */
-          player.drink((Drink)object);
+          player.consumeItem((ConsumableItem)entity);
           world.modify(player);
           }
         }
@@ -142,18 +135,13 @@ public class Use extends ActionListener
             StendhalRPAction.transferContent(player);
             }
           }
-        else if(object instanceof Food)
+        else if(object instanceof ConsumableItem)
           {
-          /* This will happen when item is on the floor */
-          player.eat((Food)object);
+          /* This will happen when item is on the player's slot */
+          player.consumeItem((ConsumableItem)object);
           world.modify(player);
           }
-        else if(object instanceof Drink)
-          {
-          /* This will happen when item is on the floor */
-          player.drink((Drink)object);
-          world.modify(player);
-          }
+
         else if(object instanceof Chest)
           {          
           Chest chest=(Chest)object;

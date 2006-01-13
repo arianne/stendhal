@@ -44,8 +44,7 @@ public class Player extends RPEntity
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Player.class);
 
-  private List<ConsumableItem> foodToEat;
-  private List<ConsumableItem> drinkToConsume;
+  private List<ConsumableItem> itemsToConsume;
 
   public static void generateRPClass()
     {
@@ -385,8 +384,7 @@ public class Player extends RPEntity
     super(object);
     put("type","player");
     
-    foodToEat=new LinkedList<ConsumableItem>();  
-    drinkToConsume=new LinkedList<ConsumableItem>();  
+    itemsToConsume=new LinkedList<ConsumableItem>();  
 
     update();
     }
@@ -752,21 +750,11 @@ public class Player extends RPEntity
     quests.put(name,1);
     }
   
-  public void drink(Drink drink)
-    {
-    consumeItem(drink,drinkToConsume);
-    }
-    
-  public void eat(Food food)
+  public void consumeItem(ConsumableItem item)
     {    
-    consumeItem(food,foodToEat);
-    }
-  
-  private void consumeItem(ConsumableItem item, List<ConsumableItem> itemToConsume)
-    {    
-    if(itemToConsume.size()>4)
+    if(itemsToConsume.size()>9)
       {
-      setPrivateText("You can't eat anymore");
+      setPrivateText("You can't consume anymore");
       rp.removePlayerText(this);
       return;
       }
@@ -783,7 +771,7 @@ public class Player extends RPEntity
 
       if(!nextto((Entity)base,0.25))
         {
-        logger.debug("Food item is too far");
+        logger.debug("Consumable item is too far");
         return;
         }
       }
@@ -791,15 +779,15 @@ public class Player extends RPEntity
       {
       if(!nextto(item,0.25))
         {
-        logger.debug("Food item is too far");
+        logger.debug("Consumable item is too far");
         return;
         }
       }
 
     logger.debug("Consuming item: "+item.getAmount());    
-    itemToConsume.add(item);
+    itemsToConsume.add(item);
 
-    Collections.sort(itemToConsume, new Comparator<ConsumableItem>()
+    Collections.sort(itemsToConsume, new Comparator<ConsumableItem>()
       {
       public int compare(ConsumableItem o1, ConsumableItem o2) 
         {
@@ -846,21 +834,21 @@ public class Player extends RPEntity
       }
     }
     
-  private void consume(int turn, List<ConsumableItem> itemToConsume)
+  public void consume(int turn)
     {
-    while(itemToConsume.size()>0)
+    while(itemsToConsume.size()>0)
       {
-      ConsumableItem food=itemToConsume.get(0);
+      ConsumableItem consumableItem=itemsToConsume.get(0);
       
-      if(turn%food.getFrecuency()!=0)
+      if(turn%consumableItem.getFrecuency()!=0)
         {
         return;
         }
 
-      if(!food.consumed())
+      if(!consumableItem.consumed())
         {
-        food.consume();
-        int amount=food.getRegen();
+        consumableItem.consume();
+        int amount=consumableItem.getRegen();
 
         if(getHP()+amount<getBaseHP())
           {
@@ -869,7 +857,7 @@ public class Player extends RPEntity
         else
           {
           setHP(getBaseHP());
-          itemToConsume.clear();
+          itemsToConsume.clear();
           }
 
         world.modify(this);
@@ -877,14 +865,8 @@ public class Player extends RPEntity
         }
       else
         {
-        itemToConsume.remove(0);
+        itemsToConsume.remove(0);
         }
       }
-    }
-
-  public void consume(int turn)
-    {
-    consume(turn, drinkToConsume);
-    consume(turn, foodToEat);
     }
   }
