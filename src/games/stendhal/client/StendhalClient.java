@@ -463,7 +463,7 @@ public class StendhalClient extends ariannexp
     public int onTimeout()
       {      
       logger.debug("Request resync because of timeout");
-      StendhalClient.get().addEventLine("Timeout: Requesting synchronization",Color.gray);
+      StendhalClient.get().addEventLine("Timeout: Requesting synchronization because timeout",Color.gray);
       resync();
       return 0;
       }
@@ -478,6 +478,7 @@ public class StendhalClient extends ariannexp
     public int onUnsynced()
       {
       logger.debug("Request resync");
+      StendhalClient.get().addEventLine("Timeout: Requesting synchronization because of unsynced",Color.gray);
       resync();
       return 0;
       }
