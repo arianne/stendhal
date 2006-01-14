@@ -51,6 +51,8 @@ public class StendhalRPAction
   public static boolean attack(RPEntity source,RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
     Log4J.startMethod(logger, "attack");
+    boolean result=false;
+    
     try
       {
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(source.getID());
@@ -156,7 +158,8 @@ public class StendhalRPAction
             logger.debug("attack from "+source.getID()+" to "+target.getID()+": Damage: "+damage);
             
             target.bloodHappens();
-            //source.bloodHappens();
+            
+            result=true;
             }
           else // Blocked
             {
@@ -171,7 +174,7 @@ public class StendhalRPAction
           }
 
         world.modify(source);
-        return true;
+        return result;
         }
       else
         {

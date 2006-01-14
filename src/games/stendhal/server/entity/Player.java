@@ -57,8 +57,8 @@ public class Player extends RPEntity
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
 
-      player.add("poisoned",RPClass.SHORT,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
-      player.add("eating",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
+      player.add("poisoned",RPClass.BYTE,RPClass.VOLATILE);
+      player.add("eating",RPClass.FLAG,RPClass.VOLATILE);
       
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
 
@@ -813,6 +813,7 @@ public class Player extends RPEntity
     logger.debug("Consuming item: "+item.getAmount());        
     if(item.getRegen()>0)
       {
+      put("eating","");
       itemsToConsume.add(item);
       }
     else if(item.getRegen()==0) // if regen==0 is antidote
@@ -876,11 +877,13 @@ public class Player extends RPEntity
     if(has("poisoned") && poisonToConsume.size()==0)
       {
       remove("poisoned");      
+      world.modify(this);
       }
 
     if(has("eating") && itemsToConsume.size()==0)
       {
       remove("eating");      
+      world.modify(this);
       }
       
     while(poisonToConsume.size()>0)

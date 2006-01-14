@@ -43,6 +43,19 @@ public abstract class RPEntity extends AnimatedEntity
     missed=st.getSprite("data/sprites/combat/missed.png");
     }
 
+  private static Sprite eating;
+  private static Sprite poisoned;
+
+  static
+    {
+    SpriteStore st=SpriteStore.get();
+    
+    eating=st.getSprite("data/sprites/ideas/eat.png");
+    poisoned=st.getSprite("data/sprites/ideas/poisoned.png");
+    }
+    
+
+
   private enum Resolution
     {
     HITTED(0),
@@ -69,6 +82,8 @@ public abstract class RPEntity extends AnimatedEntity
   private int base_hp;
   private float hp_base_hp;
   private int level;
+  private boolean isEating;
+  private boolean isPoisoned;
 
   private Sprite nameImage;
 
@@ -173,6 +188,15 @@ public abstract class RPEntity extends AnimatedEntity
     if(changes.has("level"))      level=changes.getInt("level");
     if(changes.has("atk_xp"))     atkXp = changes.getInt("atk_xp");
     if(changes.has("def_xp"))     defXp = changes.getInt("def_xp");
+    
+    if(changes.has("eating")) 
+      {
+      isEating=true;    
+      }
+//    else if(!object.has("eating"))
+//      {
+//      isEating=false;
+//      }
 
     if(changes.has("name"))
       {
@@ -218,12 +242,20 @@ public abstract class RPEntity extends AnimatedEntity
 
     if(changes.has("poisoned"))
       {
-      int poisoned=changes.getInt("poisoned");
-
-      damageSprites.add(GameScreen.get().createString(Integer.toString(poisoned),Color.red));
-      damageSpritesTimes.add(new Long(System.currentTimeMillis()));
-
-      client.addEventLine(getName() + " is poisoned with " + poisoned + " health points." , Color.red);
+      if(getID().equals(client.getPlayer().getID()) || distance(client.getPlayer())<15*15)
+        {
+        isPoisoned=true;
+        int poisoned=changes.getInt("poisoned");
+  
+        damageSprites.add(GameScreen.get().createString(Integer.toString(poisoned),Color.red));
+        damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+  
+        client.addEventLine(getName() + " is poisoned with " + poisoned + " health points." , Color.red);
+        }
+      }
+    else if(!object.has("poisoned"))
+      {
+      isPoisoned=false;
       }
 
     if(changes.has("level") && object.has("level"))
@@ -287,6 +319,9 @@ public abstract class RPEntity extends AnimatedEntity
       gameObjects.attackStop(this,targetEntity);
       targetEntity=null;
       }
+    
+    if(changes.has("eating")) isEating=false;    
+    if(changes.has("poisoned")) isPoisoned=false;    
     }
 
   public void removed() throws AttributeNotFoundException
@@ -386,6 +421,22 @@ public abstract class RPEntity extends AnimatedEntity
       g2d.fillRect((int)p.getX(),(int)p.getY()-3,(int)(hp_base_hp*32.0),3);
       g2d.setColor(Color.black);
       g2d.drawRect((int)p.getX(),(int)p.getY()-3,32,3);
+      }
+    
+    if(isEating)
+      {
+      Rectangle2D rect=getArea();
+      double sx=rect.getMaxX();
+      double sy=rect.getMaxY();
+      screen.draw(eating,sx-0.75,sy-0.25);
+      }
+
+    if(isPoisoned)
+      {
+      Rectangle2D rect=getArea();
+      double sx=rect.getMaxX();
+      double sy=rect.getMaxY();
+      screen.draw(poisoned,sx-1.25,sy-0.25);
       }
 
     if(attacked && System.currentTimeMillis()-combatIconTime<4*300)

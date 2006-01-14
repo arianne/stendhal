@@ -552,41 +552,43 @@ public class Creature extends NPC
       {
       StendhalRPAction.attack(this,getAttackTarget());
       
-      if(aiProfiles.containsKey("poisonous"))
+      if(nextto(getAttackTarget(),0.25))
         {
-        int roll=Rand.roll1D100();
-        String[] poison=aiProfiles.get("poisonous").split(",");
-        int prob= Integer.parseInt(poison[0]);
-        String poisonType=poison[1];
-        
-        if(roll<=prob)
+        if(aiProfiles.containsKey("poisonous"))
           {
-          ConsumableItem item=(ConsumableItem)world.getRuleManager().getEntityManager().getItem(poisonType);
-          if(item==null)
+          int roll=Rand.roll1D100();
+          String[] poison=aiProfiles.get("poisonous").split(",");
+          int prob= Integer.parseInt(poison[0]);
+          String poisonType=poison[1];
+          
+          if(roll<=prob)
             {
-            logger.error("Creature unable to poisoning with "+poisonType);
-            }
-          else
-            {
-            RPEntity entity=getAttackTarget();
-            
-            if(entity instanceof Player)
+            ConsumableItem item=(ConsumableItem)world.getRuleManager().getEntityManager().getItem(poisonType);
+            if(item==null)
               {
-              Player player=(Player)entity;
-              
-              if(!player.isPoisoned())
-                {
-                rp.addGameEvent(getName(),"poison",player.getName());
-                
-                player.setPrivateText("You have been poisoned by a "+getName());
-                rp.removePlayerText(player);
-                player.poison(item);
-                }
+              logger.error("Creature unable to poisoning with "+poisonType);
               }
-            }          
+            else
+              {
+              RPEntity entity=getAttackTarget();
+              
+              if(entity instanceof Player)
+                {
+                Player player=(Player)entity;
+                
+                if(!player.isPoisoned())
+                  {
+                  rp.addGameEvent(getName(),"poison",player.getName());
+                  
+                  player.setPrivateText("You have been poisoned by a "+getName());
+                  rp.removePlayerText(player);
+                  player.poison(item);
+                  }
+                }
+              }          
+            }
           }
         }
-
       }
 
     if(aiProfiles.containsKey("heal"))
