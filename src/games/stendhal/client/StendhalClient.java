@@ -462,7 +462,7 @@ public class StendhalClient extends ariannexp
 
     public int onTimeout()
       {      
-      logger.debug("Request resync");
+      logger.debug("Request resync because of timeout");
       StendhalClient.get().addEventLine("Timeout: Requesting synchronization",Color.gray);
       resync();
       return 0;
