@@ -56,7 +56,10 @@ public class Player extends RPEntity
       player.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
+
       player.add("poisoned",RPClass.SHORT,RPClass.PRIVATE);
+      player.add("eating",RPClass.FLAG,RPClass.PRIVATE);
+      
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
 
       player.add("outfit",RPClass.INT);
@@ -770,6 +773,7 @@ public class Player extends RPEntity
     
   public void poison(ConsumableItem item)
     {
+    put("poisoned","0");
     poisonToConsume.add(item);
     }
   
@@ -812,7 +816,7 @@ public class Player extends RPEntity
       {
       itemsToConsume.add(item);
       }
-    if(item.getRegen()==0) // if regen==0 is antidote
+    else if(item.getRegen()==0) // if regen==0 is antidote
       {
       poisonToConsume.clear();
       }
@@ -870,9 +874,14 @@ public class Player extends RPEntity
     
   public void consume(int turn)
     {
-    if(has("poisoned"))
+    if(has("poisoned") && poisonToConsume.size()==0)
       {
       remove("poisoned");      
+      }
+
+    if(has("eating") && itemsToConsume.size()==0)
+      {
+      remove("eating");      
       }
       
     while(poisonToConsume.size()>0)

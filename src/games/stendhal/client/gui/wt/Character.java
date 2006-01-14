@@ -138,16 +138,19 @@ public class Character extends Panel
           money += content.getInt("quantity");
         }
         
-        final List<String> weapons=Arrays.asList("sword","axe","club");
-        final List<String> defense=Arrays.asList("shield","armor","helmet","legs","boots");
-
-        if(weapons.contains(content.get("class")))
+        if(!slot.getName().equals("bag"))
         {
-          atkitem+=content.getInt("atk");
-        }
-        if(defense.contains(content.get("class")))
-        {
-          defitem+=content.getInt("def");
+          final List<String> weapons=Arrays.asList("sword","axe","club");
+          final List<String> defense=Arrays.asList("shield","armor","helmet","legs","boots");
+  
+          if(weapons.contains(content.get("class")))
+          {
+            atkitem+=content.getInt("atk");
+          }
+          if(defense.contains(content.get("class")))
+          {
+            defitem+=content.getInt("def");
+          }
         }
       }
     }
