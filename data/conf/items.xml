@@ -161,7 +161,7 @@ in the file.
 	<item name="club">
 		<type class="club" subclass="club"/>
 		<attributes>
-			<attribute name="atk" value="7"/>
+			<attribute name="atk" value="6"/>
 		</attributes>
 		<weight value="2"/>
 		<equipable>
@@ -253,7 +253,7 @@ in the file.
 	<item name="wooden_shield">
 		<type class="shield" subclass="wooden_shield"/>
 		<attributes>
-			<attribute name="def" value="14"/>
+			<attribute name="def" value="10"/>
 		</attributes>
 		<weight value="12"/>
 		<equipable>
@@ -266,7 +266,7 @@ in the file.
 	<item name="studded_shield">
 		<type class="shield" subclass="studded_shield"/>
 		<attributes>
-			<attribute name="def" value="15"/>
+			<attribute name="def" value="12"/>
 		</attributes>
 		<weight value="15"/>
 		<equipable>
@@ -279,7 +279,7 @@ in the file.
 	<item name="plate_shield">
 		<type class="shield" subclass="plate_shield"/>
 		<attributes>
-			<attribute name="def" value="16"/>
+			<attribute name="def" value="14"/>
 		</attributes>
 		<weight value="24"/>
 		<equipable>
