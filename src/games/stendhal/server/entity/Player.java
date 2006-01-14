@@ -778,7 +778,7 @@ public class Player extends RPEntity
   
   public void consumeItem(ConsumableItem item)
     {    
-    if(item.getRegen()>0 && itemsToConsume.size()>9)
+    if(item.getRegen()>0 && itemsToConsume.size()>5)
       {
       setPrivateText("You can't consume anymore");
       rp.removePlayerText(this);
