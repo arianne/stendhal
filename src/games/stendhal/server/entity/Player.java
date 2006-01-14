@@ -57,8 +57,8 @@ public class Player extends RPEntity
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
 
-      player.add("poisoned",RPClass.SHORT,RPClass.PRIVATE);
-      player.add("eating",RPClass.FLAG,RPClass.PRIVATE);
+      player.add("poisoned",RPClass.SHORT,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
+      player.add("eating",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
 
@@ -268,7 +268,6 @@ public class Player extends RPEntity
               Item entity = world.getRuleManager().getEntityManager().getItem(item.get("name"));
               
               // HACK: We have to manually copy some attributes
-              System.out.println (item);
               entity.put("#db_id",item.get("#db_id"));
               entity.setID(item.getID());
               
