@@ -265,6 +265,7 @@ public class Player extends RPEntity
               Item entity = world.getRuleManager().getEntityManager().getItem(item.get("name"));
               
               // HACK: We have to manually copy some attributes
+              System.out.println (item);
               entity.put("#db_id",item.get("#db_id"));
               entity.setID(item.getID());
               
@@ -889,14 +890,13 @@ public class Player extends RPEntity
         int amount=consumableItem.getRegen();
         put("poisoned",amount);
 
-        if(getHP()+amount<getBaseHP())
+        if(getHP()+amount>0)
           {
           setHP(getHP()+amount);
           }
         else
           {
-          setHP(getBaseHP());
-          poisonToConsume.clear();
+          kill(this);
           }
 
         world.modify(this);

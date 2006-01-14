@@ -126,8 +126,8 @@ public class OutfitDialog extends javax.swing.JDialog {
             clothes[i] = st.getSprite("data/sprites/outfit/dress_" + i + ".png");
             
         // to allow choosing no hair and no clothes
-        hairs[0] = st.getSprite("sprites/outfit/sprite_empty.png");
-        clothes[0] = st.getSprite("sprites/outfit/sprite_empty.png");
+        hairs[0] = st.getSprite("data/sprites/outfit/sprite_empty.png");
+        clothes[0] = st.getSprite("data/sprites/outfit/sprite_empty.png");
     }
     
     /**

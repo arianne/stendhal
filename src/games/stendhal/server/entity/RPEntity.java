@@ -408,12 +408,16 @@ public abstract class RPEntity extends Entity
       }
     else
       {
-      setHP(0);
-      
-      rp.killRPEntity(this,who);
+      kill(who);
       }
       
     world.modify(this);
+    }
+  
+  protected void kill(RPEntity who)
+    {
+    setHP(0);
+    rp.killRPEntity(this,who);
     }
 
   /** This method is called when the entity has been killed ( hp==0 ). */

@@ -703,7 +703,7 @@ in the file.
 	</item>
 
 
-<!-----------------------------------------------------------
+<!--
 Hehe, we must have some special GM item after all :P
 I thought this item should give some special use power aswell,
 an antidote function perhaps?, well the real purpose of it
@@ -711,13 +711,13 @@ is an item we could do some extreme experiments with.
 
 Also an item we could test the idea about added commands in
 the right click menu we talked about before.
------------------------------------------------------------->
+-->
 	<item name="rod_of_the_gm">
 		<type class="club" subclass="rod_of_the_gm"/>
 		<attributes>
 			<attribute name="atk" value="100"/>
 			<attribute name="def" value="100"/>
-		<attributes>
+		</attributes>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="lhand"/>
