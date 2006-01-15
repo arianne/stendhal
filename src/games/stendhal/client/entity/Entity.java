@@ -74,9 +74,14 @@ public abstract class Entity
 
   protected GameObjects gameObjects;
   protected StendhalClient client;
+  
+  /** this counter is increased each time a perception is receveived for the
+   * object */
+  private long modificationCount;
 
-  public Entity()
-    {    
+  protected Entity()
+    {
+    modificationCount = 0;
     }
 
   /**
@@ -86,8 +91,11 @@ public abstract class Entity
    * @param y The initial y location of this entity
    */
   public Entity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-  {
-     String name = null; 
+    {
+    // initialite modification count
+    this();
+
+    String name = null; 
      
 	  this.gameObjects=gameObjects;
       this.client=StendhalClient.get();
@@ -97,7 +105,7 @@ public abstract class Entity
       subtype = object.get("name");
       name = subtype;
       }
-    
+
     type=object.get("type");
     
     logger.debug("- Entity type = " + type + (name == null ? "" : " / " + name ));     
@@ -113,7 +121,7 @@ public abstract class Entity
     
     // cyclic sound management
     if ( type.startsWith( "creature" ) )
-    {
+      {
        if ( name.equals( "wolf" ) )
           SoundSystem.startSoundCycle( this, "wolf-patrol", 40000, 10, 50, 100 );
        else if ( name.equals( "rat" ) || name.equals( "caverat" ) )
@@ -140,9 +148,9 @@ public abstract class Entity
           SoundSystem.startSoundCycle( this, "skeleton-patrol", 60000, 30, 60, 80 );
        else if ( name.equals( "cyclops" ) )
           SoundSystem.startSoundCycle( this, "cyclops-patrol", 45000, 30, 75, 100 );
-    }
+      }
     else if ( type.startsWith( "npc" ) )
-    {
+      {
        setAudibleRange( 3 );
        if ( name.equals( "Diogenes" ) )
           SoundSystem.startSoundCycle( this, "Diogenes-patrol", 10000, 20, 50, 100 );
@@ -152,7 +160,7 @@ public abstract class Entity
           SoundSystem.startSoundCycle( this, "Nishiya-patrol", 40000, 20, 50, 80 );
        else if ( name.equals( "Margaret" ) )
           SoundSystem.startSoundCycle( this, "Margaret-patrol", 30000, 10, 30, 70 );
-    }
+      }
     }  // constructor
   
   public byte[] get_IDToken ()
@@ -251,6 +259,7 @@ public abstract class Entity
 
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
+    modificationCount++;
     if(changes.has("dir"))
       {
       direction=Direction.build(changes.getInt("dir"));
@@ -273,12 +282,13 @@ public abstract class Entity
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
+    modificationCount++;
     }
 
   /** called when the server removes the entity */
   public void removed() throws AttributeNotFoundException
     {
-     System.out.println("----- Entity removed = " + type );     
+     logger.debug("----- Entity removed = " + type );     
         SoundSystem.stopSoundCycle( ID_Token );
     }
 
@@ -328,7 +338,7 @@ public abstract class Entity
    * @return the sound <code>DataLine</code> that is being played,
    *         or <b>null</b> if not performing
    */
-  public  DataLine playSound ( String token, int volBot, int volTop, int chance )
+  public DataLine playSound ( String token, int volBot, int volTop, int chance )
   {
      return SoundSystem.playMapSound( getPosition(), getAudibleArea(), token, volBot, volTop, chance );
   }
@@ -369,6 +379,26 @@ public abstract class Entity
   public List<RPSlot> getSlots()
   {
     return new ArrayList<RPSlot>(rpObject.slots());
+  }
+  
+  /** returns the modificationCount. This counter is increased each time a
+   * perception is received from the server (so all serverside changes increases
+   * the mod-count). This counters purpose is to be sure that this entity is
+   * modified or not (ie for gui elements). 
+   */
+  public long getModificationCount()
+  {
+    return modificationCount;
+  }
+  
+  /** Returns true when  the entity was modified since the <i>oldModificationCount</i>.
+   * @param oldModificationCount the old modificationCount
+   * @return true when the entity was modified, false otherwise 
+   * @see #getModificationCount()
+   * */
+  public boolean isModified(long oldModificationCount)
+  {
+    return oldModificationCount != modificationCount;
   }
   
   abstract public Rectangle2D getArea();
