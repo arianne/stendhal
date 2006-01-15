@@ -533,7 +533,7 @@ public class StendhalRPZone extends MarauroaRPZone
         case 7: /* door */
           try
             {
-            world.createHouse(numHouses,this,x,y);
+            world.createHouse(this,x,y);
             numHouses++;
             }
           catch(Exception e)

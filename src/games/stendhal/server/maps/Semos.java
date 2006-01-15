@@ -181,8 +181,6 @@ public class Semos implements IContent
     sign.sety(35);
     sign.setText("[CLOSED]|The tavern has moved to a much|better and central house in town.|Come buy your weapons, find your|quests and hang out there instead.");
     zone.add(sign);
-    
-    world.createHouse(0,zone,29,40);
     }
 
   private void buildSemosCityArea(StendhalRPZone zone)

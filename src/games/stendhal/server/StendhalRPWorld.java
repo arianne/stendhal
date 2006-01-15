@@ -270,14 +270,15 @@ public class StendhalRPWorld extends RPWorld
    *  num is the unique idenfier for portals 
    *  x and y are the position of the door of the house. 
    */
-  public void createHouse(int num, StendhalRPZone zone, int x, int y) throws org.xml.sax.SAXException, java.io.IOException
+  public void createHouse(StendhalRPZone zone, int x, int y) throws org.xml.sax.SAXException, java.io.IOException
     {
-    String name="int_"+zone.getID().getID()+"_house_"+Integer.toString(num);
-    
     Door door=new Door();
     door.setx(x);
     door.sety(y);
-    door.setNumber(num);
+    int dest=zone.assignPortalID(door);
+
+    String name="int_"+zone.getID().getID()+"_house_"+Integer.toString(dest);
+    
     door.setDestination(name,0);
     zone.assignRPObjectID(door);
     zone.add(door);
@@ -285,7 +286,7 @@ public class StendhalRPWorld extends RPWorld
     
     StendhalRPZone house=addArea(name,"int_house_000");
     Portal portal=new Portal();
-    portal.setDestination(zone.getID().getID(),num);
+    portal.setDestination(zone.getID().getID(),dest);
     portal.setx(7);
     portal.sety(1);
     portal.setNumber(0);

@@ -62,6 +62,9 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.43 Jan XX, 2006
+- Exit of tavern now belongs to tavern.
+
 0.42 Jan 14, 2006
 - Added Venom rat.
 - On death player lose Levels, XP, ATK and DEF.
