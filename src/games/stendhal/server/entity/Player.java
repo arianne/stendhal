@@ -807,20 +807,24 @@ public class Player extends RPEntity
         return;
         }
       }
+    
+    /* NOTE: We have a bug when consuming an stackableItem as when the first item runs out
+     * the other ones also runs out. Perhaps this must be fixed inside StackableItem itself */
+    ConsumableItem soloItem=(ConsumableItem)world.getRuleManager().getEntityManager().getEntity(item.getName());
 
-    logger.debug("Consuming item: "+item.getAmount());        
-    if(item.getRegen()>0)
+    logger.debug("Consuming item: "+soloItem.getAmount());        
+    if(soloItem.getRegen()>0)
       {
       put("eating","");
-      itemsToConsume.add(item);
+      itemsToConsume.add(soloItem);
       }
-    else if(item.getRegen()==0) // if regen==0 is antidote
+    else if(soloItem.getRegen()==0) // if regen==0 is antidote
       {
       poisonToConsume.clear();
       }
     else
       {
-      poisonToConsume.add(item);
+      poisonToConsume.add(soloItem);
       }
 
     Collections.sort(itemsToConsume, new Comparator<ConsumableItem>()
@@ -920,6 +924,7 @@ public class Player extends RPEntity
     while(itemsToConsume.size()>0)
       {
       ConsumableItem consumableItem=itemsToConsume.get(0);
+      logger.debug("Consuming item: "+consumableItem);        
       
       if(turn%consumableItem.getFrecuency()!=0)
         {
@@ -928,6 +933,7 @@ public class Player extends RPEntity
 
       if(!consumableItem.consumed())
         {
+        logger.debug("Consumed item: "+consumableItem);        
         consumableItem.consume();
         int amount=consumableItem.getRegen();
 
@@ -946,6 +952,7 @@ public class Player extends RPEntity
         }
       else
         {
+        logger.debug("Consumed completly item: "+consumableItem);        
         itemsToConsume.remove(0);
         }
       }
