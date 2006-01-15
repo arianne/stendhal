@@ -101,9 +101,8 @@ public class SoundSystem
    
    private static SoundSystem singleton;
    private static float[] dBValues = new float[101];
-   
-   private Map<String, Object> sfxmap = new HashMap<String, Object>( 256 );
-   private Map<WeakReference<byte[]>,SoundCycle> cycleMap = new HashMap<WeakReference<byte[]>,SoundCycle>();
+   private HashMap<String,Object> sfxmap = new HashMap<String,Object>( 256 );
+   private HashMap<byte[],SoundCycle> cycleMap = new HashMap<byte[],SoundCycle>();
    private JarFile soundFile;
    
    private Mixer mixer;
@@ -324,11 +323,11 @@ System.out.println("- loading from SOUND ZIP: " + name );
          try {
             cycle = new SoundCycle(entity, token, period, volBot, volTop, chance );
             
-            c1 = (SoundCycle)sys.cycleMap.get( entity_token );
+            c1 = sys.cycleMap.get( entity_token );
             if ( c1 != null )
                c1.terminate();
                
-            sys.cycleMap.put(new WeakReference<byte[]>(entity_token), cycle );
+            sys.cycleMap.put( entity_token, cycle );
          }
          catch ( IllegalStateException e )
          {
@@ -349,7 +348,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
       SoundSystem sys;
       
       sys = get(); 
-      if ( (cycle = (SoundCycle)sys.cycleMap.get(entity_ID)) != null )
+      if ( (cycle = sys.cycleMap.get(entity_ID)) != null )
       synchronized( sys.cycleMap )
       {
          sys.cycleMap.remove(entity_ID);
@@ -375,7 +374,6 @@ System.out.println("- loading from SOUND ZIP: " + name );
    private byte[] getZipData ( ZipEntry entry ) throws IOException
    {
       InputStream in;
-      OutputStream out;
       ByteArrayOutputStream bout;
 
       in = soundFile.getInputStream( entry );
@@ -420,12 +418,11 @@ System.out.println("- loading from SOUND ZIP: " + name );
    private void init ()
    {
       Properties prop;
-      Map<String,byte[]> dataList = new HashMap<String,byte[]>();
+      HashMap<String,byte[]> dataList = new HashMap<String,byte[]>();
       ZipEntry zipEntry;
       File file;
       InputStream in;
       OutputStream out;
-      ByteArrayOutputStream bout;
       String path, key, value, name;
       ClipRunner clip, sound;
       int loaded, failed, count, pos, i, loudness;
@@ -493,7 +490,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
             load |= name.indexOf('.') != -1;
             
             // look if sound data is already stored internally
-            if ( (soundData = (byte[])dataList.get( path )) == null )
+            if ( (soundData = dataList.get( path )) == null )
             {
                // else load sounddata from jar file
                zipEntry = soundFile.getEntry( path );
@@ -624,7 +621,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
     */ 
    public void setVolume ( int volume )
    {
-      float gain, dB;
+      float dB;
       
       if ( volume < 0 )
          volume = 0;
@@ -893,7 +890,7 @@ public void update ( LineEvent event )
 private static class SoundCycle extends Thread
 {
    private byte[] ID_Token;
-   private WeakReference entityRef;
+   private WeakReference<Entity> entityRef;
    private String token; 
    private int period;
    private int volBot;
@@ -980,7 +977,7 @@ System.out.println("  ** terminating cycle sound: " + token );
          if ( !executing )
             return;
          
-         if ( (o = (Entity)entityRef.get()) != null  )
+         if ( (o = entityRef.get()) != null  )
          {
 //System.out.println( "- entity cyclic sound: " + o.getSubType() + " (size = " + get().cycleMap.size() + ")" );
             playing = o.playSound( token, volBot, volTop, chance );
