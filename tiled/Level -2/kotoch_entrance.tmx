@@ -32,6 +32,9 @@
  <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
   <image source="../zelda_outside_2_chipset.png"/>
  </tileset>
+ <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
+  <image source="../zelda_interior_1_chipset.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3VMXrjMAyEUTc5Te6+Z0y5xXpjSQQwM+RfoEk+isA8SP5+vV7fFEVRIfXn699S90ThT+n8P5W654rZ1L251IT/kzsqelg5v8s7sKu/utRu+Pv5O/VSvRNVz5veVfzxx39P/5V9Wd01/D3fW/znfNz9q3Opfs+mHfDHX+3v0hP++O/iryr88ccffyf/q/cocjjRX+WDPzVVan/2Dn/88ccff/zxd7r307nuTCd2XtHfdDaVz3Pwr9wL/Pf2/zQD/vjv7r/yTcQff/zxf3pe7T/VX3XuLn24+ztkjr9ufofMK3Nf7fPuWfzxr7wrrZL8q2asykhtt5v/1Izd/kl54Y8//vjjn+X/7jlPnr2LeWffHf6rfT45++7v+Gf5Pz37v/9N+3ftUJp/56y/navcVSf/O3Ol+0/ltKv/lW/kyvz444//uf5T/eK/r/+dM/if7b/Sl6v/ag8n+1ecx3/WvyLLu/3h3+OfsDv4449/hn/1vqy6Vxb+ee89/vi7+7vn694f/vjjj7/CPiXHu32r+1rxV/ecVO4Z4o//7v7K3y/3DPHH37U3/PHHP9O/+jdlwnDS32UXKmet8Eq0xx9//PHHH/8T/N/13Zmj2rbbPzW3yrsm9xZ/D3/X7xr+ff5pv3H4448//vjn+ldl4bp7+Pv6T/Wa4K+yxx//ijyc+8Qff/z38HeZt9JfncWJhf/9nNS9pPjfvVOdBf799r/dq87ixFL5u9Zpc+Of6V/VG/7441+XxfR9qf6OO4O/1l+5A1Nz44+/0zeocw+e3IX/Pv7veunOD/9s/4ld6JoV/1p/p0yTenXKqHu+SVv88X+afceuVNYJ/m75qs3xxz/Bv6p3t3zV5vjjv4N/Ql2dqyPzZP/UvX86G/74K+5W7d2n+/E/2//KcxPydusH/7m8Hb9VSf4T/Tx9zqn+VTPhv7f/1XP4n+2fWvif7e+2a1P+VfdS+FP4d8xddYfaPW238M+rHf2VPaeVcyZq/xP2x3kmtZ+Lv3oO/Cn8qbu7sbo36nkoiqKov/UDcBzttAAAAQA=

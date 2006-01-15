@@ -32,6 +32,9 @@
  <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
   <image source="../zelda_outside_2_chipset.png"/>
  </tileset>
+ <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
+  <image source="../zelda_interior_1_chipset.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3WSXLbMBCFYS0ibzNcw5XhvrlDcqLcJfQiVbYjkui5Af6LVy5rILv7A0A93263Z0IIIYQQQgghhBBCCCGEEEIIIYQQIs7v+35mugfxt8lIdf9XD/7rZG+uRzPHf41IjUf8o2qb2b96v2j21dlnsjxmdp/Zf69u/Nf0t9SO/9z+1vq1vWrvW+1p9Z+tHvyv7S/x6HBedUu3+vHvNW9Jjx4z0swz4vzHP3ZmXv4R61N7X/x7+0v6wX9Of23v1Q4z+WtmmOFv6b3aoav/2Zw0pvj3icV/9HyP8rc+e/HX+0ue8Rb/kZrwx1/zbMJfP2trvP0ldUv8pfXPlhX8pXaR9c8W/PHX9hU5X/zxj/S39ljthn/O3sW/Zz2ZZ3e3GeGf6//+ftUzipp5dR1a/+y6qmeEP/7WfPlwnJn8M0zwz7eX/P7HX+f/ccunLZ93/H/d/RLpH/1bsML/bI965OuWb1u+b/nx6nVPd/z7+u/liv5H7+Mf7//IwPo5yV7u7J+9tv59Lttfsja0HhJ/j/t19J8tnib4xzloZ+r5HMe/xv3suTmj/9l38F/H3/s7+O+/d+aHf1//vdc6+nutm67+ln0QsSY03/X2jzg3Ovp7nYcSJ+/95xn88R+5p3UO+OM/o//oDKXvRc0tyt+6jlf2z9o3mppHv29ZE/jXxWvuV/GX1ijZS6v5j3zWWmtnf239lf7auePv5+85a4mtZe4Z/hlrYGX/SJesmrr4Z57RVbPuWBP+/f29a8O/1l/b91X8q2r1zqhj9hrAv85fsk7w///1jHPb0//l75+nt/9b/F9fo+Mzb1X/yFlnOVesAU//qjVcvdfwv7b/yP2tc13V38vEWl/WOl3N36t3q4t2jvjX+HufzZH7P/KcwL+Xv7UW6fdm9O+eWfy17+GPP/5yG220/kevSf2jetP6R8w023VGf+854C+vd7T+lfyP+shYA5H3i1irmutezT/7Ht38j/rFP8/fGkv9s/hH1uDpH2U82r+X/1EvWf7S/j3muJK/R7/Rew5/3TUj1t8V/b29Hn0O/xr/iBlF+Euuif/jWrJmpPG3ngGRvZ35rO4/WqfHOsnw97ar9Jf0vrK/9v4r+EcE/2v6W+ZiOas9fPD3ncds/pkziayxu3/0DCPnOkudK/tr6sbf7q+dQ7Y/qfN//97IdaV7unqes6Wbvyb45/tL1kb0WY0//lm/kTxTbY8//tH+GT3gjz/++OPfpzeCP3mbn3f8SS9/UrdHqvsi+BP8Cf4Ef0IIIYQQQkjf/AXjnjJMAAABAA==

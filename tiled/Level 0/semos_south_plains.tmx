@@ -32,6 +32,9 @@
  <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
   <image source="../zelda_outside_2_chipset.png"/>
  </tileset>
+ <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
+  <image source="../zelda_interior_1_chipset.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3ZSQ7CMAwF0HTHSbgt4gCcCHGfroEdqhg60MZO3+IJpC6I/Z1UCodSyoGQjh88n/UB1sc07zL7luO3/Mlpyr6VP6+c+QwNZ8KMxDM2E9m1R6bM1Q8+yUd2MM2pK+Xc1V8HdVwf2d/kT3Le/fvocYQ1RLPVvbXex5Thfwuzkz//FjJsoYZa+ev/uNq2rnFJ/q3mMaeurL1Ysve3qvkSoE97l3W+oQb7BYDsIrzL/rWGCLVANvaNvvBbi/Owdk0t9oxc+g/f0R8gjjXvApxt+yBnqMf+Y4kM85Nhjcgtcn9kkctWeUW6j6r9+wCZODPzkyFjmJO2yRdYg7Olbb2MAQAAAAAAgJ25A/9EBOQAgAAA
