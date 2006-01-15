@@ -289,7 +289,7 @@ public abstract class RPEntity extends AnimatedEntity
       }
 
     /** Add text lines */
-    if(changes.has("text") && distance(client.getPlayer())<15*15)
+    if(changes.has("text") && client.getPlayer()!= null &&distance(client.getPlayer())<15*15)
       {
       String text=changes.get("text");
       client.addEventLine(getName(),text);
