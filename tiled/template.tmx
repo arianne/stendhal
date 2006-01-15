@@ -32,7 +32,6 @@
  <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
   <image source="zelda_outside_2_chipset.png"/>
  </tileset>
- </tileset>
  <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
   <image source="../zelda_interior_1_chipset.png"/>
  </tileset>
