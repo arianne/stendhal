@@ -52,6 +52,8 @@ public class Character extends Panel
   
   /** the money we have */
   int money;
+  /** the last player modification counter */
+  private long oldPlayerModificationCount;
   
   /** Creates a new instance of Character */
   public Character(GameObjects gameObjects)
@@ -109,6 +111,12 @@ public class Character extends Panel
     {
       return;
     }
+    
+    if (!playerEntity.isModified(oldPlayerModificationCount))
+    {
+      return;
+    }
+    
     money = 0;
     
     int atkitem=0;
@@ -172,6 +180,7 @@ public class Character extends Panel
     statsPanel.set("xp"   ,playerEntity.getXp());
     statsPanel.set("money",money);
     
+    oldPlayerModificationCount = playerEntity.getModificationCount();
   }
   
   /** refreshes the player stats and draws them */
