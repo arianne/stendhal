@@ -36,7 +36,7 @@ public class ImportTilesetAction extends AbstractAction
     if (mapEditor.currentMap != null)
     {
       JFileChooser ch = new JFileChooser(mapEditor.currentMap.getFilename());
-      MapReader readers[] = (MapReader[]) mapEditor.pluginLoader.getReaders();
+      MapReader readers[] = mapEditor.pluginLoader.getReaders();
       for (int i = 0; i < readers.length; i++)
       {
         try

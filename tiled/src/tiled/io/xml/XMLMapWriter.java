@@ -549,8 +549,8 @@ public class XMLMapWriter implements MapWriter
         int shared = 0;
         int maxShared = Math.min(fromParents.size(), toParents.size());
         for (shared = 0; shared < maxShared; shared++) {
-            String fromParent = (String)fromParents.get(shared);
-            String toParent = (String)toParents.get(shared);
+            String fromParent = fromParents.get(shared);
+            String toParent = toParents.get(shared);
             if (!fromParent.equals(toParent)) {
                 break;
             }

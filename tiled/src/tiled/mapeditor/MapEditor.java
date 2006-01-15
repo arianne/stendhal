@@ -943,7 +943,7 @@ public class MapEditor implements ActionListener, MouseListener,
         ch = new JFileChooser(filename);
       }
 
-      MapWriter writers[] = (MapWriter[]) pluginLoader.getWriters();
+      MapWriter writers[] = pluginLoader.getWriters();
       for (int i = 0; i < writers.length; i++)
       {
         try
@@ -1057,7 +1057,7 @@ public class MapEditor implements ActionListener, MouseListener,
 
     try
     {
-      MapReader readers[] = (MapReader[]) pluginLoader.getReaders();
+      MapReader readers[] = pluginLoader.getReaders();
       for (int i = 0; i < readers.length; i++)
       {
         ch.addChoosableFileFilter(new TiledFileFilter(readers[i].getFilter(),
@@ -1155,7 +1155,7 @@ public class MapEditor implements ActionListener, MouseListener,
 
     for (int i = 0; i < recent.size(); i++)
     {
-      String file = (String) recent.get(i);
+      String file = recent.get(i);
       if (file != null)
       {
         String name = file.substring(file.lastIndexOf(File.separatorChar) + 1);

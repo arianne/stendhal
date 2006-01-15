@@ -103,7 +103,7 @@ public class Behaviours
       Iterator<RPSlot> it=player.slotsIterator();
       while(it.hasNext())
         {
-        RPSlot slot=(RPSlot)it.next();
+        RPSlot slot = it.next();
         for(RPObject object: slot)
           {
           if(object instanceof Money)
@@ -123,7 +123,7 @@ public class Behaviours
       Iterator<RPSlot> it=player.slotsIterator();
       while(it.hasNext() && left!=0)
         {
-        RPSlot slot=(RPSlot)it.next();
+        RPSlot slot = it.next();
   
         Iterator<RPObject> object_it=slot.iterator();
         while(object_it.hasNext())
@@ -283,7 +283,7 @@ public class Behaviours
       Iterator<RPSlot> it=player.slotsIterator();
       while(it.hasNext())
         {
-        RPSlot slot=(RPSlot)it.next();
+        RPSlot slot = it.next();
   
         Iterator<RPObject> object_it=slot.iterator();
         while(object_it.hasNext())
@@ -336,7 +336,7 @@ public class Behaviours
       Iterator<RPSlot> it=player.slotsIterator();
       while(it.hasNext())
         {
-        RPSlot slot=(RPSlot)it.next();
+        RPSlot slot = it.next();
         
         if(removeItem(slot,itemName))
           {

@@ -44,7 +44,7 @@ public class GroundContainer extends Panel
   /** creates a new groundcontainer */
   public GroundContainer(GameScreen screen, GameObjects gameObjects, InGameGUI gameGUI)
   {
-    super("ground", 0, 0, (int) screen.getWidthInPixels(), (int) screen.getHeightInPixels());
+    super("ground", 0, 0, screen.getWidthInPixels(), screen.getHeightInPixels());
     setMoveable(false);
     setCloseable(false);
     setFrame(false);

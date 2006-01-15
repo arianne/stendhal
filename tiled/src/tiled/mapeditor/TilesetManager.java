@@ -115,7 +115,7 @@ public class TilesetManager extends JDialog implements ActionListener,
         List<TileSet> tilesets = map.getTilesets();
         TileSet set = null;
         try {
-            set = (TileSet)tilesets.get(selectedRow);
+            set = tilesets.get(selectedRow);
         } catch (IndexOutOfBoundsException e) {
         }
 

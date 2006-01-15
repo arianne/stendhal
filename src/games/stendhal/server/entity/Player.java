@@ -12,23 +12,21 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.item.Food;
-import games.stendhal.server.entity.item.Drink;
 import games.stendhal.server.entity.item.ConsumableItem;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.common.Rand;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Collections;
-import java.util.Comparator;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;

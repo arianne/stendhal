@@ -639,7 +639,7 @@ public class TileSet implements Iterable<Tile>
      */
     public Image queryImage(Image image) {
         String hash = checksumImage(image);
-        return (Image)imageCache.get(hash);
+        return imageCache.get(hash);
     }
 
     /*
@@ -655,12 +655,12 @@ public class TileSet implements Iterable<Tile>
      */
     public Object queryImageId(Image image) {
         String hash = checksumImage(image);
-        image = (Image)imageCache.get(hash);
+        image = imageCache.get(hash);
         if (image != null) {
             Iterator itr = images.keySet().iterator();
             while (itr.hasNext()) {
                 Object key = itr.next();
-                Image[] imgs = (Image[])images.get(key);
+                Image[] imgs = images.get(key);
                 if (imgs[0] == image) {
                     //System.out.println("Success: " + key);
                     return key;
@@ -699,7 +699,7 @@ public class TileSet implements Iterable<Tile>
             Image[] imgs = new Image[8];
             imgs[0] = internImage(image);
             images.put(key, imgs);
-            return Integer.parseInt((String)key);
+            return Integer.parseInt(key);
         }
     }
 

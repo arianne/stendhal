@@ -52,7 +52,7 @@ public class Graph
 
     for (int i = 0; i < objList.size(); i++)
     {
-      GraphItem itm = (GraphItem) (objList.get(i));
+      GraphItem itm = objList.get(i);
 
       if (itm != null && itm.getIDInGraph() == IDNum)
         return itm.getInfo();
@@ -69,7 +69,7 @@ public class Graph
 
     for (i = 0; i < objList.size(); i++)
     {
-      GraphItem itm = (GraphItem) (objList.get(i));
+      GraphItem itm = objList.get(i);
       if (itm != null && itm.getInfo() == Obj)
         return itm;
 
@@ -82,7 +82,7 @@ public class Graph
     if (i > objList.size())
       return null;
 
-    return  (GraphItem) (objList.get(i));
+    return  objList.get(i);
   }
 
   public GraphItem addElement(Object Obj, int x, int y)
@@ -159,7 +159,7 @@ public class Graph
     // Remove ALL connections reaching this node
     for (int i = 0; i < objList.size(); i++)
     {
-      GraphItem currentItem = (GraphItem) (objList.get(i));
+      GraphItem currentItem = objList.get(i);
 
       if (currentItem != null)
         currentItem.getAdjList().remove(item);
@@ -228,7 +228,7 @@ public class Graph
 
     for (int i = 0; i < objList.size(); i++)
     {
-      GraphItem itm = (GraphItem) (objList.get(i));
+      GraphItem itm = objList.get(i);
       itm.dijkstraindex = i;
     }
 
@@ -251,7 +251,7 @@ public class Graph
 
     while (queue.isEmpty() == false)
     {
-      GraphItem w = (GraphItem) (queue.removeLast());
+      GraphItem w = queue.removeLast();
 
       if (v[w.dijkstraindex] == false)
       {
@@ -260,7 +260,7 @@ public class Graph
 
         for (int j = 0; j < list.size(); j++)
         {
-          GraphItem z = (GraphItem) (list.get(j));
+          GraphItem z = list.get(j);
 
           if (z != null && d[z.dijkstraindex] > d[w.dijkstraindex] + 1)
           {

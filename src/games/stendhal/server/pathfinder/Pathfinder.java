@@ -216,7 +216,7 @@ public class Pathfinder
     protected Node getBest() {
         if (listOpen.size() == 0) return null;
         
-        Node first = (Node)listOpen.getFirst();
+        Node first = listOpen.getFirst();
         
         listOpen.removeFirst();
         listClosed.addFirst(first);
@@ -389,7 +389,7 @@ public class Pathfinder
         
         Node parent;
         while (nodeStack.size() > 0) {
-            parent = (Node)nodeStack.pop();
+            parent = nodeStack.pop();
             c = parent.numChildren;
             for (int i=0; i<c; i++) {
                 kid = parent.children[i];

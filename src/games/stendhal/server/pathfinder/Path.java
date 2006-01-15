@@ -217,7 +217,7 @@ public class Path
    */
   public static List<Node> searchPath(Entity entity, Entity dest)
     {
-    return searchPath(entity, (int)entity.getx(),(int)entity.gety(),dest.getArea(dest.getx(),dest.gety()));
+    return searchPath(entity, entity.getx(),entity.gety(),dest.getArea(dest.getx(),dest.gety()));
     }
   
   /** 
@@ -229,7 +229,7 @@ public class Path
    */
   public static List<Node> searchPath(Entity entity, Entity dest, double maxDistance)
     {
-    return searchPath(entity, (int)entity.getx(),(int)entity.gety(),dest.getArea(dest.getx(),dest.gety()), maxDistance);
+    return searchPath(entity, entity.getx(),entity.gety(),dest.getArea(dest.getx(),dest.gety()), maxDistance);
     }
 
   public static boolean followPath(RPEntity entity, double speed)

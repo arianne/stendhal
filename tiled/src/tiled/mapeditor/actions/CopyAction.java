@@ -8,8 +8,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
-import tiled.core.ObjectGroup;
-import tiled.core.TileLayer;
 import tiled.mapeditor.MapEditor;
 
 public class CopyAction extends AbstractAction

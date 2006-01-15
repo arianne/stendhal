@@ -84,7 +84,7 @@ public class Minimap extends Panel
     {
       for (int y = 0; y < h; y++)
       {
-          boolean walkable = cd.walkable((double) x, (double) y);
+          boolean walkable = cd.walkable( x, y );
           mapgrapics.setColor(walkable ? freeColor : blockedColor);
           mapgrapics.fillRect(x*scale, y*scale, scale, scale);
       }
