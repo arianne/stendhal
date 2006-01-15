@@ -231,8 +231,8 @@ in the file.
 <!-- Projectiles_section -->
 
 <!--
-	<item name="arrow">
-		<type class="projectile" subclass="arrow"/>
+	<item name="wooden_arrow">
+		<type class="projectile" subclass="wooden_arrow"/>
 		<stackable/>
 		<attributes>
 			<attribute name="quantity" value="1"/>
