@@ -97,7 +97,7 @@ public class Food extends AnimatedEntity
     {
     if(action.equals("Look"))
       {
-      String text="You see a bush with "+amount+" fruits.";
+      String text="You see a bush with "+amount+" fruits. Only sheeps eat this bush.";
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);
       }

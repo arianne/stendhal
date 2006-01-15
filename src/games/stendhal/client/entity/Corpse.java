@@ -120,6 +120,8 @@ public class Corpse extends PassiveEntity
         {
         text="You see "+name+". It was killed by "+killer;
         }
+      
+      text=text+". You can <<Inspect>> it to see its contents.";
         
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);

@@ -85,6 +85,7 @@ Changelog
 - Stats show now equipped stuff too.
 - New event system.
 - Some creatures can heal themselves.
+- Fixed food stackable bug.
 
 
 0.41 Jan 03, 2005

@@ -117,7 +117,7 @@ public class Chest extends AnimatedEntity
     {
     if(action.equals("Look"))
       {
-      String text="You see a chest that is "+(open?"open.":"closed.");
+      String text="You see a chest that is "+(open?"open.":"closed.\n You can <<Inspect>> this item to see its content.");
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);
       }

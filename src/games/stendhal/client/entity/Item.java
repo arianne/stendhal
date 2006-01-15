@@ -23,12 +23,14 @@ public class Item extends PassiveEntity
   private String name;
   private String atk;
   private String def;
+  private String amount;
   
   public Item(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
     super(gameObjects, object);
     type=object.get("class");
     name=object.get("name");
+
     if(object.has("atk")) 
       {
       atk=object.get("atk");
@@ -45,6 +47,15 @@ public class Item extends PassiveEntity
     else
       {
       def="0";
+      }
+
+    if(object.has("amount")) 
+      {
+      amount=object.get("amount");
+      }
+    else
+      {
+      amount="0";
       }
     }
 
@@ -91,7 +102,23 @@ public class Item extends PassiveEntity
     {
     if(action.equals("Look"))
       {
-      String text="You see a "+name+". Stats are (ATK: "+atk+", DEF: "+def+")";
+      String text;
+      if(type.equals("sword") || type.equals("axe") || type.equals("club"))
+        {
+        text="You see a "+name+". This is a weapon. Stats are (ATK: "+atk+", DEF: "+def+").";
+        }
+      else if(type.equals("armor") || type.equals("legs") || type.equals("helmet") || type.equals("shield") || type.equals("boots"))
+        {
+        text="You see a "+name+". This is a defense item. Stats are (DEF: "+def+").";
+        }
+      else if(type.equals("food") || type.equals("drink"))
+        {
+        text="You see a "+name+". This is a consumable item. Stats are (HP: "+amount+").";
+        }
+      else
+        {
+        text="You see a "+name+". Stats are (ATK: "+atk+", DEF: "+def+")";
+        }
       
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);
