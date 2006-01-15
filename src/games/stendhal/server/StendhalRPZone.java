@@ -55,6 +55,7 @@ public class StendhalRPZone extends MarauroaRPZone
   private List<NPC> npcs;
   private List<RespawnPoint> respawnPoints;
   private List<SheepFood> foodItems;
+  private int numHouses;
 
   /** contains data to if a certain area is walkable*/
   public CollisionDetection collisionMap;
@@ -81,6 +82,7 @@ public class StendhalRPZone extends MarauroaRPZone
     entryPoints=new LinkedList<String>();
     zoneChangePoints=new LinkedList<String>();
     portals=new LinkedList<Portal>();
+    numHouses=0;
 
     npcs=new LinkedList<NPC>();
     respawnPoints=new LinkedList<RespawnPoint>();
@@ -527,9 +529,18 @@ public class StendhalRPZone extends MarauroaRPZone
           }
           break;
         case 5: /* portal */
-        case 7: /* door */
           break;
-          
+        case 7: /* door */
+          try
+            {
+            world.createHouse(numHouses,this,x,y);
+            numHouses++;
+            }
+          catch(Exception e)
+            {
+            logger.error("Error adding house to "+this,e);
+            }
+          break;          
         case 11: /* sheep  */
           break;
         case 71: /* the npcs  */
