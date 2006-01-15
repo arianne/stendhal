@@ -45,6 +45,12 @@
       </fileset>
     </copy>
    
+    <copy todir="${build}/data/maps">
+      <fileset dir="data/maps">
+        <include name="*.xstend"/>
+      </fileset>
+    </copy>
+
     <copy todir="${build}/data/gui">
       <fileset dir="${data}">
         <exclude name="paneldrock*.jpg"/>
@@ -56,7 +62,7 @@
       </fileset>
     </copy>
 
-    <copy todir="${build_client_data}/data/conf/" file="data/conf/log4j.properties"/>
+    <copy todir="${build}/data/conf/" file="data/conf/log4j.properties"/>
   </target>
 
   <target name="server_build" depends="init" description="Build JAR file for Stendhal server">
