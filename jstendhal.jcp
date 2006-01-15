@@ -101,12 +101,6 @@
 			<folderitem>
 				<path>data\sounds</path>
 			</folderitem>
-			<folderitem>
-				<path>stendhal-0.42</path>
-			</folderitem>
-			<folderitem>
-				<path>stendhal-0.42\stendhal</path>
-			</folderitem>
 			<fileitem>
 				<path>build.ant.properties</path>
 				<source>true</source>
@@ -748,6 +742,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>data\conf\npc.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>data\conf\stendhalcreateaccount.properties</path>
 				<source>true</source>
 			</fileitem>
@@ -757,42 +755,6 @@
 			</fileitem>
 			<fileitem>
 				<path>data\sounds\stensounds0.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.42\log4j.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.42\marauroa.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.42\stendhal-0.42.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.42\stendhal-data-0.42.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.42\stendhal-maps-0.42.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.42\stendhal-quests-0.42.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.42\stendhal-server-0.42.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.42\stendhal-xmlconf-0.42.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.42\stendhal\windows.properties</path>
 				<source>true</source>
 			</fileitem>
 		</include>
