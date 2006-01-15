@@ -64,6 +64,7 @@ Changelog
 ---------
 0.43 Jan XX, 2006
 - Exit of tavern now belongs to tavern.
+- Fixed a bug when player recieve text but client.getPlayer() stills return null 
 
 0.42 Jan 14, 2006
 - Added Venom rat.
@@ -71,18 +72,14 @@ Changelog
 - Organized data in Java Webstart. Everything is now inside stendhal folder.
 - Added Protection zones to avoid PK.
 - Fixed blood anticampers feature.
-- New food system.
-- Added potions.
+- New food, drinks, potions and poison system.
 - Added support command to talk with admin crew.
 - Improved item stacking.
 - Banned some improper usernames.
 - Better source and data organization.
 - Fixed a bug that happen when you kill a sheep.
 - Improved data structure.
-- New food system.
 - Added sound system.
-- Added drinks.
-- Added poisons.
 - Added poisonous creatures.
 - Fixed inventory self closes bug.
 - Stats show now equipped stuff too.

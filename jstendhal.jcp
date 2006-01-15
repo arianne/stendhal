@@ -17,7 +17,7 @@
 			<application_ref>&lt;Default&gt;</application_ref>
 			<applet_ref>&lt;Default&gt;</applet_ref>
 			<debugger_ref>&lt;Default&gt;</debugger_ref>
-			<param>-h 127.0.0.1 -u miguel -p password -port 32161</param>
+			<param>-h 127.0.0.1 -u miguel -p password -port 32160</param>
 			<run>games.stendhal.client.gui.j2DClient</run>
 		</runtime>
 	</runtimes>
@@ -100,6 +100,9 @@
 			</folderitem>
 			<folderitem>
 				<path>data\sounds</path>
+			</folderitem>
+			<folderitem>
+				<path>stendhal</path>
 			</folderitem>
 			<fileitem>
 				<path>build.ant.properties</path>
@@ -755,6 +758,10 @@
 			</fileitem>
 			<fileitem>
 				<path>data\sounds\stensounds0.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal\windows.properties</path>
 				<source>true</source>
 			</fileitem>
 		</include>
