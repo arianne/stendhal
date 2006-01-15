@@ -776,6 +776,22 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>stendhal-0.42\stendhal-maps-0.42.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.42\stendhal-quests-0.42.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.42\stendhal-server-0.42.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.42\stendhal-xmlconf-0.42.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>stendhal-0.42\stendhal\windows.properties</path>
 				<source>true</source>
 			</fileitem>
