@@ -236,7 +236,7 @@ public class j2DClient extends JFrame
       if(System.nanoTime()-oldTime>1000000000)
         {
         oldTime=System.nanoTime();
-        logger.info("FPS: "+Integer.toString(fps));
+        logger.debug("FPS: "+Integer.toString(fps));
         fps=0;
         }
 
