@@ -29,6 +29,7 @@ import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Arrays;
 
 
@@ -73,7 +74,7 @@ public class Character extends Panel
     slotPanels.put("armor",new EntitySlot("armor", slotSprite, dist*1, dist   , gameObjects));
     slotPanels.put("lhand",new EntitySlot("lhand", slotSprite,      0, dist+10, gameObjects));
     slotPanels.put("rhand",new EntitySlot("rhand", slotSprite, dist*2, dist+10, gameObjects));
-    slotPanels.put("legs", new EntitySlot("legs", slotSprite, dist  , dist*2 , gameObjects));
+    slotPanels.put("legs", new EntitySlot("legs",  slotSprite, dist  , dist*2 , gameObjects));
     slotPanels.put("feet", new EntitySlot("feet",  slotSprite, dist  , dist*3 , gameObjects));
     
     for (EntitySlot slot : slotPanels.values())
@@ -112,6 +113,8 @@ public class Character extends Panel
     
     int atkitem=0;
     int defitem=0;
+    
+    List<String> checkedItems=new LinkedList<String>();
 
     // taverse all slots
     for (RPSlot slot : playerEntity.getSlots())
@@ -143,13 +146,15 @@ public class Character extends Panel
           final List<String> weapons=Arrays.asList("sword","axe","club");
           final List<String> defense=Arrays.asList("shield","armor","helmet","legs","boots");
   
-          if(weapons.contains(content.get("class")))
+          if(weapons.contains(content.get("class")) && !checkedItems.contains(content.get("class")))
           {
             atkitem+=content.getInt("atk");
+            checkedItems.add(content.get("class"));
           }
-          if(defense.contains(content.get("class")))
+          if(defense.contains(content.get("class")) && !checkedItems.contains(content.get("class")))
           {
             defitem+=content.getInt("def");
+            checkedItems.add(content.get("class"));
           }
         }
       }
