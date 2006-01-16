@@ -15,9 +15,13 @@ package games.stendhal.client;
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
 import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
+
 
 public class stendhal extends Thread
   {
+  private static final Logger logger = Log4J.getLogger(stendhal.class);
+
   public static boolean doLogin=false;
   
   public static final String[] SERVERS_LIST=
@@ -27,7 +31,7 @@ public class stendhal extends Thread
     "localhost"    
     };
   
-  public static final String STENDHAL_FOLDER = "stendhal/";  
+  public static final String STENDHAL_FOLDER = System.getProperty("user.home")+"/stendhal/";  
   public static final String VERSION="0.42";
   
 
@@ -38,8 +42,10 @@ public class stendhal extends Thread
 
   public static void main(String args[]) 
     {
-    
+    System.out.println ("Setting base at :"+STENDHAL_FOLDER);   
     Log4J.init("data/conf/log4j.properties");
+    
+    logger.info("Setting base at :"+STENDHAL_FOLDER);   
     
     StendhalClient client=StendhalClient.get();
     new StendhalFirstScreen(client);

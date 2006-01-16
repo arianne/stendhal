@@ -199,6 +199,7 @@ public abstract class RPEntity extends Entity
     if(levels>0)
       {
       setATK(this.atk+1);
+      rp.addGameEvent(getName(),"atk",Integer.toString(getATK()));
       }
     
     return atk_xp;
@@ -237,6 +238,7 @@ public abstract class RPEntity extends Entity
     if(levels>0)
       {
       setDEF(this.def+1);
+      rp.addGameEvent(getName(),"def",Integer.toString(getDEF()));
       }
     
     return def_xp;

@@ -88,11 +88,20 @@ public class StendhalClient extends ariannexp
     try
       {
       // Create file.
-      new File(stendhal.STENDHAL_FOLDER).mkdir();
+      File file=new File(stendhal.STENDHAL_FOLDER);
+      if(!file.exists() && !file.mkdir())
+        {
+        logger.error("Can't create "+file.getAbsolutePath()+" folder");
+        }
       
-      new File(stendhal.STENDHAL_FOLDER+"cache/").mkdir();
+      file=new File(stendhal.STENDHAL_FOLDER+"cache/");
+      if(!file.exists() && !file.mkdir())
+        {
+        logger.error("Can't create "+file.getAbsolutePath()+" folder");
+        }
+        
       new File(stendhal.STENDHAL_FOLDER+"cache/stendhal.cache").createNewFile();
-      
+
       Configuration.setConfigurationFile(stendhal.STENDHAL_FOLDER+"cache/stendhal.cache");
       conf=Configuration.getConfiguration();
       }

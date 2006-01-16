@@ -91,6 +91,7 @@ public class WindowManager
     catch (IOException e)
     {
       // ignore exception
+      System.out.println ("Can't write "+stendhal.STENDHAL_FOLDER+FILE_NAME);
       e.printStackTrace();
     } 
   }
