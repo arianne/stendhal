@@ -202,6 +202,7 @@ public class Behaviours
         
         int i=text.indexOf(" ");
         String item=text.substring(i+1);
+        item=item.trim();
         
         if(sellableItems.hasItem(item))
           {
@@ -384,6 +385,7 @@ public class Behaviours
         
         int i=text.indexOf(" ");
         String item=text.substring(i+1);
+        item=item.trim();
         
         if(buyableItems.hasItem(item))
           {
