@@ -31,11 +31,11 @@ import java.util.List;
 
 import javax.sound.sampled.DataLine;
 
+import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 
@@ -97,8 +97,8 @@ public abstract class Entity
 
     String name = null; 
      
-	  this.gameObjects=gameObjects;
-      this.client=StendhalClient.get();
+    this.gameObjects=gameObjects;
+    this.client=StendhalClient.get();
 
     if(object.has("name"))
       {
@@ -108,7 +108,9 @@ public abstract class Entity
 
     type=object.get("type");
     
-    logger.debug("- Entity type = " + type + (name == null ? "" : " / " + name ));     
+    String hstr = "- Entity type = " + type + (name == null ? "" : " / " + name );
+    logger.debug( hstr );     
+//System.out.println( hstr );    
     
     rpObject = object;    
     x = 0.0;
@@ -121,7 +123,7 @@ public abstract class Entity
     
     // cyclic sound management
     if ( type.startsWith( "creature" ) )
-      {
+    {
        if ( name.equals( "wolf" ) )
           SoundSystem.startSoundCycle( this, "wolf-patrol", 40000, 10, 50, 100 );
        else if ( name.equals( "rat" ) || name.equals( "caverat" ) )
@@ -148,9 +150,9 @@ public abstract class Entity
           SoundSystem.startSoundCycle( this, "skeleton-patrol", 60000, 30, 60, 80 );
        else if ( name.equals( "cyclops" ) )
           SoundSystem.startSoundCycle( this, "cyclops-patrol", 45000, 30, 75, 100 );
-      }
+    }
     else if ( type.startsWith( "npc" ) )
-      {
+    {
        setAudibleRange( 3 );
        if ( name.equals( "Diogenes" ) )
           SoundSystem.startSoundCycle( this, "Diogenes-patrol", 10000, 20, 50, 100 );
@@ -160,7 +162,7 @@ public abstract class Entity
           SoundSystem.startSoundCycle( this, "Nishiya-patrol", 40000, 20, 50, 80 );
        else if ( name.equals( "Margaret" ) )
           SoundSystem.startSoundCycle( this, "Margaret-patrol", 30000, 10, 30, 70 );
-      }
+    }
     }  // constructor
   
   public byte[] get_IDToken ()
@@ -271,8 +273,8 @@ public abstract class Entity
       if(changes.has("speed")) speed=changes.getDouble("speed");
       }
       
-    dx=(int)direction.getdx()*speed;
-    dy=(int)direction.getdy()*speed;
+    dx=direction.getdx()*speed;
+    dy=direction.getdy()*speed;
 
     if(object.has("x") && dx==0) x=object.getInt("x");
     if(object.has("y") && dy==0) y=object.getInt("y");
@@ -288,6 +290,7 @@ public abstract class Entity
   /** called when the server removes the entity */
   public void removed() throws AttributeNotFoundException
     {
+//System.out.println("----- Entity removed = " + type );     
      logger.debug("----- Entity removed = " + type );     
         SoundSystem.stopSoundCycle( ID_Token );
     }

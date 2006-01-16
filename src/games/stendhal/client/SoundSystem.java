@@ -61,6 +61,8 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
@@ -97,6 +99,9 @@ import marauroa.common.game.RPObject;
  */
 public class SoundSystem
 {
+   /** the logger instance. */
+   private static final Logger logger = Log4J.getLogger( SoundSystem.class );
+   /** expected location of the sound definition file (classloader). */ 
    private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";  
    
    private static SoundSystem singleton;
@@ -221,7 +226,7 @@ public class SoundSystem
       int fogVolume;
       
       // broken cases
-      if ( where == null || chance < 0 )
+      if ( where == null | chance < 0 )
          throw new IllegalArgumentException();
       
       // lost chance cases (random)
@@ -244,6 +249,7 @@ public class SoundSystem
            (audibility != null && !audibility.contains( playerPosition )) )
          return null;
       
+      logger.debug( "SoundSystem: playing map sound (" + name + ") at pos " + (int)where.getX() + ", " + (int)where.getY() );
 //System.out.println("sound where: " + where.getX() + " : " + where.getY() );       
 //System.out.println("player position: " + playerPosition.getX() + " : " + playerPosition.getY() );       
       
@@ -275,7 +281,7 @@ public class SoundSystem
       else if ( o != null )
       {
          // load sounddata from soundfile
-System.out.println("- loading from SOUND ZIP: " + name );         
+         logger.debug( "- loading from external SOUND ZIP: " + name );         
          zipEntry = soundFile.getEntry( (String)o );
          if ( zipEntry != null )
             try {
@@ -313,6 +319,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
       SoundSystem sys;
       SoundCycle cycle, c1;
       byte[] entity_token;
+      String hstr;
       
       if ( !(sys = get()).isOperative() )
          return;
@@ -331,7 +338,9 @@ System.out.println("- loading from SOUND ZIP: " + name );
          }
          catch ( IllegalStateException e )
          {
-            System.out.println( "*** Undefined sound sample: " + token ); 
+            hstr = "*** Undefined sound sample: " + token;
+            logger.error( hstr, e );
+            System.out.println( hstr ); 
          }
       }
    }  // startSoundCycle
@@ -423,7 +432,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
       File file;
       InputStream in;
       OutputStream out;
-      String path, key, value, name;
+      String path, key, value, name, hstr;
       ClipRunner clip, sound;
       int loaded, failed, count, pos, i, loudness;
       byte[] soundData;
@@ -433,7 +442,9 @@ System.out.println("- loading from SOUND ZIP: " + name );
       
       if ( !initJavaSound() )
       {
-         System.out.println( "*** SOUNDSYSTEM JAVA INIT ERROR" );
+         hstr = "*** SOUNDSYSTEM JAVA INIT ERROR";
+         logger.error( hstr );
+         System.out.println( hstr );
          return;
       }
       
@@ -469,11 +480,11 @@ System.out.println("- loading from SOUND ZIP: " + name );
             if ( !key.startsWith( "sfx." ) )
                continue;
             
-//   System.out.println("- sound definition: " + key );            
-
             // name and declaraction of sound data
             name = key.substring( 4 );
             value = (String)entry.getValue();
+            
+            logger.debug("- sound definition: " + key + " = " + value );
             
             // decide on loading
             // (do not load when ",x" trailing path; always load when "." in name)
@@ -496,7 +507,9 @@ System.out.println("- loading from SOUND ZIP: " + name );
                zipEntry = soundFile.getEntry( path );
                if ( zipEntry == null )
                {
-                  System.out.println( "*** MISSING SOUND: " + name + "=" + path );
+                  hstr = "*** MISSING SOUND: " + name + "=" + path;
+                  logger.error( hstr );
+                  System.out.println( hstr ); 
                   failed++;
                   continue;
                }
@@ -529,8 +542,10 @@ System.out.println("- loading from SOUND ZIP: " + name );
             }
             catch ( Exception e )
             {
-               // could not validate sound file content 
-               System.out.println( "*** CORRUPTED SOUND: " + name + "=" + path );
+               // could not validate sound file content
+               hstr = "*** CORRUPTED SOUND: " + name + "=" + path;
+               logger.error( hstr, e );
+               System.out.println( hstr );
                System.out.println( e );
                failed++;
                continue;
@@ -539,6 +554,8 @@ System.out.println("- loading from SOUND ZIP: " + name );
             // store new sound object into soundsystem library map if opted
             if ( load )
             {
+               logger.debug("- storing mem-library soundclip: " + name );
+
                // stores the clip sound in memory
                if ( (clip = getSoundClip( name )) != null )
                   clip.addSample( sound );
@@ -550,21 +567,35 @@ System.out.println("- loading from SOUND ZIP: " + name );
                loaded++;
             }
             else
+            {
                // or stores just the sample data name
+               logger.debug("- storing external sound ref: " + name );
                sfxmap.put( name, path );
+            }
          }  // for
       
          // report to startup console
-         System.out.println( "Stendhal Soundsystem OK: " + count + " samples approved / " 
-               + loaded + " loaded / " + sfxmap.size() + " library sounds" );
+         
+         hstr = "Stendhal Soundsystem OK: " + count + " samples approved / " 
+               + loaded + " loaded / " + sfxmap.size() + " library sounds";
+         logger.info( hstr );
+         System.out.println( hstr );
          if ( failed != 0 )
-            System.out.println( "missing or corrupted sounds: " + failed );
+         {
+            hstr = "missing or corrupted sounds: " + failed;
+            logger.info( hstr );
+            System.out.println( hstr );
+         }
          
          operative = true;
       }
+
       catch ( IOException e )
       {
-         System.out.println( "*** SOUNDSYSTEM LOAD ERROR: \r\n" + e );
+         hstr = "*** SOUNDSYSTEM LOAD ERROR";
+         logger.error( hstr, e );
+         System.out.println( hstr );
+         System.out.println( e );
          return;
       }
    }  // init
@@ -593,7 +624,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
       }
       catch ( Exception e )
       {
-         System.out.println( "no master volume controls" );
+         logger.debug( "SoundSystem: no master volume controls" );
       }
       
       return true;
@@ -602,7 +633,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
    /** Sets the global Mute switch of this sound system. */
    public void setMute ( boolean v )
    {
-      System.out.println( "- sound system setting mute = " + (v ? "ON" : "OFF"));           
+      logger.info( "- sound system setting mute = " + (v ? "ON" : "OFF") );           
       muteSetting = v;
    }
 
@@ -629,7 +660,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
          volume = 100;
       
       dB = dBValues[ volume ];
-      System.out.println( "- sound system setting volume dB = " + dB 
+      logger.info( "- sound system setting volume dB = " + dB 
             + "  (gain " + volume + ")" );           
 
       if ( volumeCtrl != null )
@@ -678,6 +709,7 @@ System.out.println("- loading from SOUND ZIP: " + name );
             }
          catch ( Exception e ) 
          {}
+      logger.info( "sound system exit performed, inactive" );
    }
    
    private SoundSystem()
@@ -753,7 +785,9 @@ public ClipRunner ( String name, byte[] audioData, int volume )
       }
    }
    catch ( IOException e )
-   {}
+   {
+      logger.error( "- IO-Error reading sound data: ", e );
+   }
 }  // constructor
 
 /**
@@ -810,6 +844,7 @@ public DataLine play ( int volume, float correctionDB )
    float dB;
    int index;
    ByteArrayInputStream input;
+   String hstr;
    
    fo = format.getFormat(); 
    info = new DataLine.Info( Clip.class, fo );
@@ -843,7 +878,9 @@ public DataLine play ( int volume, float correctionDB )
          }
          catch ( Exception e )
          { 
-            System.out.println( "- no volume controls" );
+            hstr = "** AudioSystem: no master_gain controls for: " + name;
+            logger.error( hstr, e );
+            System.out.println( hstr );
             System.out.println( e );
          }
 
@@ -861,7 +898,9 @@ public DataLine play ( int volume, float correctionDB )
    } 
    catch (Exception ex) 
    {
-      System.out.println( "** AudioSystem: clip line unavailable for: " + name );
+      hstr = "** AudioSystem: clip line unavailable for: " + name;
+      logger.error( hstr, ex );
+      System.out.println( hstr );
       System.out.println( ex );
       return null;
    }   
@@ -954,7 +993,15 @@ private static class SoundCycle extends Thread
 
    public void terminate ()
    {
-System.out.println("  ** terminating cycle sound: " + token );   
+      Entity o;
+      String hstr;
+      
+      o = entityRef.get();
+      hstr = o == null ? "VOID" : o.getID().toString(); 
+      hstr = "  ** terminating cycle sound: " + token + " / entity=" + hstr;
+      logger.debug( hstr );
+//System.out.println( hstr );
+      
       if ( playing != null )
       {
          playing.stop();
@@ -979,7 +1026,7 @@ System.out.println("  ** terminating cycle sound: " + token );
          
          if ( (o = entityRef.get()) != null  )
          {
-//System.out.println( "- entity cyclic sound: " + o.getSubType() + " (size = " + get().cycleMap.size() + ")" );
+            logger.debug( "- start cyclic sound for entity: " + o.getType() + " / " + o.getSubType() );
             playing = o.playSound( token, volBot, volTop, chance );
          }
          else
