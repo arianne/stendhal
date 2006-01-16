@@ -102,18 +102,25 @@ public class Semos implements IContent
       protected void createDialog()
         {        
         Map<String,Integer> sellitems=new HashMap<String,Integer>();
-        sellitems.put("knife",10);
-        sellitems.put("small_axe",10);
+        sellitems.put("knife",15);
+        sellitems.put("small_axe",15);
         sellitems.put("club",10);
-        sellitems.put("wooden_shield",15);
-        sellitems.put("dress",20);
-        sellitems.put("leather_helmet",20);
+        sellitems.put("dagger",25);
+        sellitems.put("wooden_shield",25);
+        sellitems.put("dress",25);
+        sellitems.put("leather_helmet",25);
         sellitems.put("leather_legs",30);
 
         Map<String,Integer> buyitems=new HashMap<String,Integer>();
         buyitems.put("short_sword",15);
         buyitems.put("sword",60);
         buyitems.put("studded_shield",20);
+        buyitems.put("studded_armor",22);
+        buyitems.put("studded_helmet",17);
+        buyitems.put("studded_legs",20);
+        buyitems.put("chain_armor",42);
+        buyitems.put("chain_helmet",37);
+        buyitems.put("chain_legs",40);
         
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"Shhh! I sell adventurers stuff.");
@@ -305,9 +312,16 @@ public class Semos implements IContent
 
       protected void createDialog()
         {
+        Map<String,Integer> sellitems=new HashMap<String,Integer>();
+        sellitems.put("antidote",50);
+        sellitems.put("minor_potion",100);
+        sellitems.put("potion",250);
+        sellitems.put("greater_potion",500);
+
         Behaviours.addGreeting(this);
         Behaviours.addJob(this, "I have healing abilities and I heal wounded players.");
         Behaviours.addHelp(this, "Ask me to heal you and I will help you");
+        Behaviours.addSeller(this,new Behaviours.SellerBehaviour(sellitems));
         Behaviours.addHealer(this, 0);
         Behaviours.addGoodbye(this);               
         }
