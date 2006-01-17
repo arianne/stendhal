@@ -17,6 +17,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.rule.EntityManager;
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
@@ -406,6 +407,11 @@ public class Administration extends ActionListener
           {
           rules.addGameEvent(player.getName(),"summonat",changed.getName(),slot.getName(),type);
           Item item=manager.getItem(type);
+          
+          if(action.has("amount") && item instanceof StackableItem)
+            {
+            ((StackableItem)item).setQuantity(action.getInt("amount"));
+            }
           
           slot.assignValidID(item);
           slot.add(item);

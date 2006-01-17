@@ -279,15 +279,32 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
           }
         else if(text.startsWith("/summonat ")) // Summon a creature at x,y
           {
-          String[] command = parseString(text, 4);
-          if(command != null)
+          String[] command;
+          command = parseString(text, 5);
+          System.out.println ("command: "+command[4]);
+          if(command != null && !command[4].trim().equals(""))
             {
             RPAction summon = new RPAction();
             summon.put("type","summonat");
             summon.put("target", command[1]);
             summon.put("slot", command[2]);
             summon.put("item", command[3]);
+            summon.put("amount", command[4]);
             client.send(summon);
+            
+            }
+          else
+            {
+            command = parseString(text, 4);
+            if(command != null)
+              {
+              RPAction summon = new RPAction();
+              summon.put("type","summonat");
+              summon.put("target", command[1]);
+              summon.put("slot", command[2]);
+              summon.put("item", command[3]);
+              client.send(summon);
+              }
             }
           }
         else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
@@ -320,13 +337,13 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
           {          
           String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php/StendhalManual#Admin",
                           "This brief help show you the most used commands:",
-                          "- /tellall <message>                     \tWrites a private message to all players",
-                          "- /teleport <player> <zone> <x> <y>      \tTeleport the player ",
-                          "- /teleportto <player>                   \tTeleport us to the player ",
-                          "- /alter <player> <attrib> <mode> <value>\tChange by SETting, ADDing or SUBstrating the stat of player",
-                          "- /summon <creature|item> <x> <y>        \tSummon an item or creature at x,y",
-                          "- /summonat <player> <slot> <ite>        \tSummon an item at the slot of the given player",
-                          "- /invisible                             \tMakes this player invisible for creatures",
+                          "- /tellall <message>                      \tWrites a private message to all players",
+                          "- /teleport <player> <zone> <x> <y>       \tTeleport the player ",
+                          "- /teleportto <player>                    \tTeleport us to the player ",
+                          "- /alter <player> <attrib> <mode> <value> \tChange by SETting, ADDing or SUBstrating the stat of player",
+                          "- /summon <creature|item> <x> <y>         \tSummon an item or creature at x,y",
+                          "- /summonat <player> <slot> <ite> [amount]\tSummon an item at the slot of the given player",
+                          "- /invisible                              \tMakes this player invisible for creatures",
                           };
           for(String line: lines)
             {

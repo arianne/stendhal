@@ -343,46 +343,55 @@ public class StendhalRPAction
       }
 
     StendhalRPZone destZone=(StendhalRPZone)world.getRPZone(new IRPZone.ID(portal.getDestinationZone()));
+    
     Portal dest=destZone.getPortal(portal.getDestinationNumber());
+    player.setx(dest.getInt("x"));
+    player.sety(dest.getInt("y"));
 
-    String source=player.getID().getZoneID();
+    changeZone(player,portal.getDestinationZone());
 
-    if(player.hasSheep())
-      {
-      Sheep sheep=(Sheep)world.get(player.getSheep());
-
-      player.removeSheep(sheep);
-      
-      world.changeZone(source,portal.getDestinationZone(),sheep);
-      world.changeZone(source,portal.getDestinationZone(),player);
-
-      player.setSheep(sheep);
-      player.stop();
-      player.stopAttack();
-      }
-    else
-      {
-      world.changeZone(source,portal.getDestinationZone(),player);
-      }
-
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-
-    logger.debug("Place player");
-    placeat(zone,player,dest.getInt("x"),dest.getInt("y"));
-    player.stop();
-
-    if(player.hasSheep())
-      {
-      logger.debug("Place sheep");
-      Sheep sheep=(Sheep)world.get(player.getSheep());
-      placeat(zone,sheep,player.getInt("x")+1,player.getInt("y")+1);
-      sheep.clearPath();
-      sheep.stop();
-      }
-
-    /* There isn't any world.modify because there is already considered inside
-     * the implicit world.add call at changeZone */
-
+//    Portal dest=destZone.getPortal(portal.getDestinationNumber());
+//
+//    rules.addGameEvent(player.getName(),"change zone",portal.getDestinationZone());
+//
+//    String source=player.getID().getZoneID();
+//
+//    if(player.hasSheep())
+//      {
+//      Sheep sheep=(Sheep)world.get(player.getSheep());
+//
+//      player.removeSheep(sheep);
+//      
+//      world.changeZone(source,portal.getDestinationZone(),sheep);
+//      world.changeZone(source,portal.getDestinationZone(),player);
+//
+//      player.setSheep(sheep);
+//      player.stop();
+//      player.stopAttack();
+//      }
+//    else
+//      {
+//      world.changeZone(source,portal.getDestinationZone(),player);
+//      }
+//
+//    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+//
+//    logger.debug("Place player");
+//    placeat(zone,player,dest.getInt("x"),dest.getInt("y"));
+//    player.stop();
+//
+//    if(player.hasSheep())
+//      {
+//      logger.debug("Place sheep");
+//      Sheep sheep=(Sheep)world.get(player.getSheep());
+//      placeat(zone,sheep,player.getInt("x")+1,player.getInt("y")+1);
+//      sheep.clearPath();
+//      sheep.stop();
+//      }
+//
+//    /* There isn't any world.modify because there is already considered inside
+//     * the implicit world.add call at changeZone */
+//
     Log4J.finishMethod(logger, "usePortal");
     return true;
     }
