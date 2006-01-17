@@ -157,7 +157,7 @@ public abstract class Entity
        if ( name.equals( "Diogenes" ) )
           SoundSystem.startSoundCycle( this, "Diogenes-patrol", 10000, 20, 50, 100 );
        else if ( name.equals( "Carmen" ) )
-          SoundSystem.startSoundCycle( this, "Carmen-patrol", 40000, 20, 50, 80 );
+          SoundSystem.startSoundCycle( this, "Carmen-patrol", 60000, 20, 50, 75 );
        else if ( name.equals( "Nishiya" ) )
           SoundSystem.startSoundCycle( this, "Nishiya-patrol", 40000, 20, 50, 80 );
        else if ( name.equals( "Margaret" ) )

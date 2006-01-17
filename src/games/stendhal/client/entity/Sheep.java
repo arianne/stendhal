@@ -66,22 +66,22 @@ public class Sheep extends NPC
     String idea=changes.get("idea");
     if(idea.equals("eat"))
       {
-       System.out.println( "- sheep idea: EAT");   
+//       System.out.println( "- sheep idea: EAT");   
        probableChat( 15 );
       }
     else if(idea.equals("food"))
       {
-       System.out.println( "- sheep idea: FOOD");       
+//       System.out.println( "- sheep idea: FOOD");       
        probableChat( 20 );
       }
     else if(idea.equals("walk"))
       {
-       System.out.println( "- sheep idea: WALK");       
+//       System.out.println( "- sheep idea: WALK");       
        probableChat( 20 );
       }
     else if(idea.equals("follow"))
       {
-       System.out.println( "- sheep idea: FOLLOW");       
+//       System.out.println( "- sheep idea: FOLLOW");       
        probableChat( 20 );
       }
     }
