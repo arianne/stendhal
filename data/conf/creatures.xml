@@ -105,7 +105,7 @@
 		<ai>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
-			<profile name="poisonous" params="10,poison"/>
+			<profile name="poisonous" params="5,poison"/>
 		</ai>
 	</creature>
 
@@ -443,7 +443,7 @@
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
-			<profile name="poisonous" params="15,greater_poison"/>
+			<profile name="poisonous" params="5,greater_poison"/>
 		</ai>
 	</creature>
 
