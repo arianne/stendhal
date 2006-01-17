@@ -101,9 +101,6 @@
 			<folderitem>
 				<path>data\sounds</path>
 			</folderitem>
-			<folderitem>
-				<path>stendhal</path>
-			</folderitem>
 			<fileitem>
 				<path>build.ant.properties</path>
 				<source>true</source>
@@ -758,10 +755,6 @@
 			</fileitem>
 			<fileitem>
 				<path>data\sounds\stensounds0.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal\windows.properties</path>
 				<source>true</source>
 			</fileitem>
 		</include>

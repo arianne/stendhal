@@ -28,6 +28,8 @@ import java.util.TimerTask;
 import java.io.File;
 import java.io.FilenameFilter;
 
+import java.awt.*;
+
 import marauroa.common.game.RPAction;
 
 public class OutfitDialog extends javax.swing.JDialog {
@@ -566,6 +568,29 @@ public class OutfitDialog extends javax.swing.JDialog {
         return false;
         }
       } 
+    
+    private void generateAllOutfits()
+      {
+      /** TEST METHOD: DON'T NO USE */
+      for(bodies_index=0;bodies_index<bodies.length;bodies_index++)
+      for(clothes_index=0;clothes_index<clothes.length;clothes_index++)
+      for(heads_index=0;heads_index<heads.length;heads_index++)
+      for(hairs_index=0;hairs_index<hairs.length;hairs_index++)
+        {
+        String name=Integer.toString(bodies_index+clothes_index*100+heads_index*100*100+hairs_index*100*100*100);
+        System.out.println ("Creating "+name+".png");
+        Image image=new java.awt.image.BufferedImage(48,64,java.awt.image.BufferedImage.TYPE_INT_ARGB);
+        drawFinalPlayer(image.getGraphics());
+        try
+          {
+        javax.imageio.ImageIO.write((java.awt.image.RenderedImage)image,"png",new File("outfits\\"+name+".png"));
+          }
+        catch(Exception e)
+          {
+          e.printStackTrace();
+          }
+        }
+      }
 
     public static void main(String args[]) {
          new OutfitDialog(null, "Stendhal - choose outfit", 13, 11, 11, 13).setVisible(true);

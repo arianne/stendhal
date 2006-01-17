@@ -662,8 +662,8 @@ in the file.
 		<stackable/>
 		<attributes>
 			<attribute name="quantity" value="1"/>
-			<attribute name="amount" value="-100"/>
-			<attribute name="regen" value="-10"/>
+			<attribute name="amount" value="-50"/>
+			<attribute name="regen" value="-5"/>
 			<attribute name="frequency" value="30"/>
 		</attributes>
 		<weight value="1"/>
@@ -677,8 +677,8 @@ in the file.
 		<stackable/>
 		<attributes>
 			<attribute name="quantity" value="1"/>
-			<attribute name="amount" value="-200"/>
-			<attribute name="regen" value="-10"/>
+			<attribute name="amount" value="-100"/>
+			<attribute name="regen" value="-5"/>
 			<attribute name="frequency" value="10"/>
 		</attributes>
 		<weight value="1"/>
