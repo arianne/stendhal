@@ -70,7 +70,8 @@ Changelog
 - Admin can summonat player slot several items at once.
 - Venom rats are a bit more weak and poison hurts less.
 - Use portal use changeZone method.
-
+- Antidote gives now inmunity for 2 minutes.
+- Fixed a bug at Java Web start related to existence of stendhal file
 
 0.42 Jan 14, 2006
 - Added Venom rat.

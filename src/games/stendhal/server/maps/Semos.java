@@ -319,8 +319,8 @@ public class Semos implements IContent
         sellitems.put("greater_potion",500);
 
         Behaviours.addGreeting(this);
-        Behaviours.addJob(this, "I have healing abilities and I heal wounded players.");
-        Behaviours.addHelp(this, "Ask me to heal you and I will help you");
+        Behaviours.addJob(this, "I have healing abilities and I heal wounded players. I also sell potions and antidotes.");
+        Behaviours.addHelp(this, "Ask me to heal you and I will help you or ask me offer and I will show my shop's stuff.");
         Behaviours.addSeller(this,new Behaviours.SellerBehaviour(sellitems));
         Behaviours.addHealer(this, 0);
         Behaviours.addGoodbye(this);               
