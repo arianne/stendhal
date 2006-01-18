@@ -146,7 +146,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
   public synchronized void mouseExited(MouseEvent e)
   { }
  
-  private boolean leftMouseButtonPressed;
+  private boolean rightMouseButtonPressed;
 
   /** Invoked when a mouse button has been pressed on a component.  This event
    * is ignored. */
@@ -154,7 +154,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
   { 
     if(e.getButton() == MouseEvent.BUTTON3)
     {
-      leftMouseButtonPressed=true;
+      rightMouseButtonPressed=true;
     }
   }
 
@@ -169,7 +169,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
 
     if(e.getButton() == MouseEvent.BUTTON3)
     {
-      leftMouseButtonPressed=false;
+      rightMouseButtonPressed=false;
     }
   }
 
@@ -237,9 +237,9 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
   {
     Point p = e.getPoint();
     
-    if(leftMouseButtonPressed)      
+    if(rightMouseButtonPressed)      
     {
-      // Disallow dragging with left button.
+      // Disallow dragging with right button.
       return;
     }
 
