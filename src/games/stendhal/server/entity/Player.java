@@ -44,6 +44,7 @@ public class Player extends RPEntity
 
   private List<ConsumableItem> itemsToConsume;
   private List<ConsumableItem> poisonToConsume;
+  private int turnsLeftOfInmunity;
 
   public static void generateRPClass()
     {
@@ -770,10 +771,16 @@ public class Player extends RPEntity
     poisonToConsume.clear();
     }
     
-  public void poison(ConsumableItem item)
+  public boolean poison(ConsumableItem item)
     {
-    put("poisoned","0");
-    poisonToConsume.add(item);
+    if(turnsLeftOfInmunity==0)
+      {
+      put("poisoned","0");
+      poisonToConsume.add(item);
+      return true;
+      }
+    
+    return false;
     }
   
   public void consumeItem(ConsumableItem item)
@@ -823,10 +830,15 @@ public class Player extends RPEntity
     else if(soloItem.getRegen()==0) // if regen==0 is antidote
       {
       poisonToConsume.clear();
+      turnsLeftOfInmunity=soloItem.getAmount();
+      }
+    else if(turnsLeftOfInmunity==0)
+      {
+      poison(soloItem);
       }
     else
       {
-      poisonToConsume.add(soloItem);
+      // Player was poisoned, but antidote saved it.
       }
 
     Collections.sort(itemsToConsume, new Comparator<ConsumableItem>()
@@ -878,6 +890,11 @@ public class Player extends RPEntity
     
   public void consume(int turn)
     {
+    if(turnsLeftOfInmunity>0)
+      {
+      turnsLeftOfInmunity--;
+      }
+      
     if(has("poisoned") && poisonToConsume.size()==0)
       {
       remove("poisoned");      

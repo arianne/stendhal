@@ -617,7 +617,7 @@ in the file.
 		<stackable/>
 		<attributes>
 			<attribute name="quantity" value="1"/>
-			<attribute name="amount" value="0"/>
+			<attribute name="amount" value="400"/>
 			<attribute name="regen" value="0"/>
 			<attribute name="frequency" value="1"/>
 		</attributes>

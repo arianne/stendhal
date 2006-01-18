@@ -578,13 +578,12 @@ public class Creature extends NPC
                 {
                 Player player=(Player)entity;
                 
-                if(!player.isPoisoned())
+                if(!player.isPoisoned() && player.poison(item))
                   {
                   rp.addGameEvent(getName(),"poison",player.getName());
                   
                   player.setPrivateText("You have been poisoned by a "+getName());
                   rp.removePlayerText(player);
-                  player.poison(item);
                   }
                 }
               }          
