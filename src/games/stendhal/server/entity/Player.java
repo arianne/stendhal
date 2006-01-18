@@ -503,6 +503,8 @@ public class Player extends RPEntity
             corpse.add((PassiveEntity)object);
             amount--;
             }            
+
+          if(corpse.isFull()) return;      
           }
         }
       

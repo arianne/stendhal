@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.42
+Version 0.43
 
 
 How to play
@@ -64,8 +64,13 @@ Changelog
 ---------
 0.43 Jan XX, 2006
 - Exit of tavern now belongs to tavern.
-- Fixed a bug when player recieve text but client.getPlayer() stills return null 
+- Fixed a bug when player recieve text but client.getPlayer() stills return null.
 - Configuration files are stored now at ~/stendhal
+- Carmen at Semos sells potions and antidotes.
+- Admin can summonat player slot several items at once.
+- Venom rats are a bit more weak and poison hurts less.
+- Use portal use changeZone method.
+
 
 0.42 Jan 14, 2006
 - Added Venom rat.

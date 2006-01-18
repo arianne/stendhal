@@ -238,8 +238,10 @@ public class Creature extends NPC
   protected void dropItemsOn(Corpse corpse)
     {
     for(Item item: createDroppedItems(world.getRuleManager().getEntityManager()))
-      {
+      {      
       corpse.add(item);
+      
+      if(corpse.isFull()) break;      
       }
     }
 

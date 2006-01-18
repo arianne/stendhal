@@ -199,6 +199,12 @@ public class Corpse extends PassiveEntity
     content.add(entity);
     }
   
+  
+  public boolean isFull()
+    {
+    return getSlot("content").isFull();
+    }
+  
   public int size()
     {
     return getSlot("content").size();
