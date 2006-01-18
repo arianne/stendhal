@@ -95,6 +95,7 @@ public class StendhalClient extends ariannexp
         }
       else if(file.exists() && file.isFile())
         {
+        logger.error("Removing file "+file.getAbsolutePath()+" and creating a folder instead.");
         file.delete();
         file.mkdir();
         }
