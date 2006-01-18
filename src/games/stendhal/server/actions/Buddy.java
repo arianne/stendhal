@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
 
 public class Buddy extends ActionListener 
   {
-  private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
+  private static final Logger logger = Log4J.getLogger(Buddy.class);
   
   public static void register()
     {

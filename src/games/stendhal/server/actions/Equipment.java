@@ -57,7 +57,7 @@ import org.apache.log4j.Logger;
  */
 public class Equipment extends ActionListener 
   {
-  private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
+  private static final Logger logger = Log4J.getLogger(Equipment.class);
   private static final String BASE_ITEM = "baseitem";
   private static final String BASE_SLOT = "baseslot";
   private static final String BASE_OBJECT = "baseobject";

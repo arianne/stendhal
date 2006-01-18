@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 
 public class PlayersQuery extends ActionListener 
   {
-  private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
+  private static final Logger logger = Log4J.getLogger(PlayersQuery.class);
 
   public static void register()
     {

@@ -28,7 +28,7 @@ import marauroa.common.Log4J;
 
 public class Move extends ActionListener 
   {
-  private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
+  private static final Logger logger = Log4J.getLogger(Move.class);
 
   public static void register()
     {

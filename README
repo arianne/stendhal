@@ -72,6 +72,7 @@ Changelog
 - Use portal use changeZone method.
 - Antidote gives now inmunity for 2 minutes.
 - Fixed a bug at Java Web start related to existence of stendhal file
+- Workaround for inventory bug: left button dragging disabled.
 
 0.42 Jan 14, 2006
 - Added Venom rat.

@@ -25,7 +25,7 @@ import marauroa.common.Log4J;
 
 public class Face extends ActionListener 
   {
-  private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
+  private static final Logger logger = Log4J.getLogger(Face.class);
 
   public static void register()
     {

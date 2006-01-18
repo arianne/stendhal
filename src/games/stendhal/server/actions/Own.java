@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
 
 public class Own extends ActionListener 
   {
-  private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
+  private static final Logger logger = Log4J.getLogger(Own.class);
 
   public static void register()
     {
