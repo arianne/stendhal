@@ -237,6 +237,11 @@ public class j2DClient extends JFrame
         {
         oldTime=System.nanoTime();
         logger.debug("FPS: "+Integer.toString(fps));
+        long freeMemory=Runtime.getRuntime().freeMemory()/1024;
+        long totalMemory=Runtime.getRuntime().totalMemory()/1024;
+
+        logger.debug("Total/Used memory: "+totalMemory+"/"+(totalMemory-freeMemory));
+
         fps=0;
         }
 
