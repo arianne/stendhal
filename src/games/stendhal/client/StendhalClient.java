@@ -93,6 +93,12 @@ public class StendhalClient extends ariannexp
         {
         logger.error("Can't create "+file.getAbsolutePath()+" folder");
         }
+      else if(file.exists() && file.isFile())
+        {
+        file.delete();
+        file.mkdir();
+        }
+      
       
       file=new File(stendhal.STENDHAL_FOLDER+"cache/");
       if(!file.exists() && !file.mkdir())
