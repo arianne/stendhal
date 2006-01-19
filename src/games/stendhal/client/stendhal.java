@@ -42,10 +42,12 @@ public class stendhal extends Thread
 
   public static void main(String args[]) 
     {
-    System.out.println ("Setting base at :"+STENDHAL_FOLDER);   
     Log4J.init("data/conf/log4j.properties");
     
     logger.info("Setting base at :"+STENDHAL_FOLDER);   
+    logger.info("Stendhal "+VERSION);
+    logger.info("OS: "+System.getProperty("os.name")+" "+System.getProperty("os.version"));
+    logger.info("Java: "+System.getProperty("java.version"));
     
     StendhalClient client=StendhalClient.get();
     new StendhalFirstScreen(client);
