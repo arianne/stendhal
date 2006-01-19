@@ -405,8 +405,8 @@
 		<experience value="80"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="90"/>
-			<item value="axe" quantity="" probability="30"/>
-			<item value="chain_armor" quantity="" probability="10"/>
+			<item value="axe" quantity="1" probability="30"/>
+			<item value="chain_armor" quantity="1" probability="10"/>
 		</drops>
 		<slots>
 		</slots>

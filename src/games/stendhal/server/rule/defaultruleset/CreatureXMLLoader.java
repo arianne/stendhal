@@ -168,6 +168,7 @@ public class CreatureXMLLoader extends DefaultHandler
       
       if(name!=null && probability!=null && range!=null)
         {          
+        logger.info(name+":"+probability+":"+range);
         if(range.contains("["))
           {
           range=range.replace("[","");

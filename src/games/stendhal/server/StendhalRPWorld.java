@@ -180,6 +180,7 @@ public class StendhalRPWorld extends RPWorld
     
     
     populateZone("Afterlife");
+    populateZone("Jail");
     populateZone("Semos");
 
     /** After all the zones has been loaded, check how many portals are unpaired */
