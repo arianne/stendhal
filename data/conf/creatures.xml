@@ -619,7 +619,7 @@
 	</creature>
 
 	<creature name="orc_chief">
-		<type class="dwarf" subclass="orc_chief" tileid="35"/>
+		<type class="orc" subclass="orc_chief" tileid="35"/>
 		<attributes>
 			<attribute name="atk" value="47"/>
 			<attribute name="def" value="27"/>
