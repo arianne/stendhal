@@ -201,6 +201,7 @@ in the file.
 		<type class="club" subclass="skull_staff"/>
 		<attributes>
 			<attribute name="atk" value="14"/>
+			<attribute name="def" value="1"/>
 		</attributes>
 		<weight value="8"/>
 		<equipable>
@@ -662,8 +663,8 @@ in the file.
 		<stackable/>
 		<attributes>
 			<attribute name="quantity" value="1"/>
-			<attribute name="amount" value="-50"/>
-			<attribute name="regen" value="-5"/>
+			<attribute name="amount" value="-40"/>
+			<attribute name="regen" value="-2"/>
 			<attribute name="frequency" value="30"/>
 		</attributes>
 		<weight value="1"/>
@@ -677,9 +678,9 @@ in the file.
 		<stackable/>
 		<attributes>
 			<attribute name="quantity" value="1"/>
-			<attribute name="amount" value="-100"/>
-			<attribute name="regen" value="-5"/>
-			<attribute name="frequency" value="10"/>
+			<attribute name="amount" value="-60"/>
+			<attribute name="regen" value="-3"/>
+			<attribute name="frequency" value="15"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>

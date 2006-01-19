@@ -1,6 +1,34 @@
 <creatures>
 
-	<!-- Level -1 -->
+	<!-- Level 0 -->
+
+	<creature name="rat">
+		<type class="small_animal" subclass="rat" tileid="12"/>
+		<attributes>
+			<attribute name="atk" value="17"/>
+			<attribute name="def" value="9"/>
+			<attribute name="hp" value="20"/>
+			<attribute name="speed" value="0.5"/>
+			<attribute name="size" value="1,1"/>
+		</attributes>
+		<level value="0"/>
+		<experience value="5"/>
+		<drops>
+			<item value="cheese" quantity="1" probability="50"/>
+			<item value="money"  quantity="[1,3]" probability="70"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+			<profile name="coward"/>
+		</ai>
+	</creature>
+
+	<!-- Level 1 -->
 
 	<creature name="deer">
 		<type class="animal" subclass="deer" tileid="-1"/>
@@ -27,34 +55,6 @@
 		</ai>
 	</creature>
 
-	<!-- Level 0 -->
-
-	<creature name="rat">
-		<type class="small_animal" subclass="rat" tileid="12"/>
-		<attributes>
-			<attribute name="atk" value="17"/>
-			<attribute name="def" value="9"/>
-			<attribute name="hp" value="20"/>
-			<attribute name="speed" value="0.5"/>
-			<attribute name="size" value="1,1"/>
-		</attributes>
-		<level value="0"/>
-		<experience value="5"/>
-		<drops>
-			<item value="cheese" quantity="1" probability="60"/>
-			<item value="money"  quantity="[1,3]" probability="70"/>
-		</drops>
-		<slots>
-		</slots>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-			<profile name="coward"/>
-		</ai>
-	</creature>
-
 	<creature name="caverat">
 		<type class="small_animal" subclass="caverat" tileid="13"/>
 		<attributes>
@@ -64,10 +64,10 @@
 			<attribute name="speed" value="0.5"/>
 			<attribute name="size" value="1,1"/>
 		</attributes>
-		<level value="0"/>
+		<level value="1"/>
 		<experience value="10"/>
 		<drops>
-			<item value="cheese" quantity="[1,3]" probability="70"/>
+			<item value="cheese" quantity="[1,2]" probability="60"/>
 			<item value="money"  quantity="[1,6]" probability="90"/>
 		</drops>
 		<slots>
@@ -80,8 +80,6 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
-
-	<!-- Level 1 -->
 
 	<creature name="cobra">
 		<type class="animal" subclass="cobra" tileid="15"/>
@@ -121,7 +119,7 @@
 		<level value="1"/>
 		<experience value="15"/>
 		<drops>
-			<item value="meat"  quantity="[1,4]" probability="80"/>
+			<item value="meat"  quantity="[1,4]" probability="70"/>
 		</drops>
 		<slots>
 		</slots>
@@ -147,7 +145,7 @@
 		<experience value="18"/>
 		<drops>
 			<item value="money"  quantity="[2,5]" probability="70"/>
-			<item value="meat"  quantity="[1,4]" probability="80"/>
+			<item value="meat"  quantity="[1,4]" probability="60"/>
 		</drops>
 		<slots>
 		</slots>
@@ -174,7 +172,8 @@
 		<experience value="20"/>
 		<drops>
 			<item value="money"  quantity="[4,9]" probability="80"/>
-			<item value="meat"  quantity="[1,4]" probability="90"/>
+			<item value="meat"  quantity="[1,4]" probability="50"/>
+			<item value="ham"  quantity="[1,2]" probability="30"/>
 		</drops>
 		<slots>
 		</slots>
@@ -420,33 +419,6 @@
 
 	<!-- Level 7 -->
 
-	<creature name="venomrat">
-		<type class="small_animal" subclass="venomrat" tileid="29"/>
-		<attributes>
-			<attribute name="atk" value="30"/>
-			<attribute name="def" value="20"/>
-			<attribute name="hp" value="70"/>
-			<attribute name="speed" value="0.9"/>
-			<attribute name="size" value="1,1"/>
-		</attributes>
-		<level value="7"/>
-		<experience value="80"/>
-		<drops>
-			<item value="money" quantity="[4,25]" probability="100"/>
-			<item value="cheese" quantity="[1,3]" probability="50"/>
-		</drops>
-		<slots>
-		</slots>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-			<profile name="poisonous" params="5,greater_poison"/>
-		</ai>
-	</creature>
-
 	<creature name="ogre">
 		<type class="giant" subclass="ogre" tileid="18"/>
 		<attributes>
@@ -503,22 +475,22 @@
 		</ai>
 	</creature>
 
-	<!-- Level 15 -->
+	<!-- Level 12 -->
 
-	<creature name="giantrat">
-		<type class="giant_animal" subclass="giantrat" tileid="23"/>
+	<creature name="venomrat">
+		<type class="small_animal" subclass="venomrat" tileid="29"/>
 		<attributes>
-			<attribute name="atk" value="80"/>
+			<attribute name="atk" value="40"/>
 			<attribute name="def" value="20"/>
-			<attribute name="hp" value="100"/>
-			<attribute name="speed" value="1"/>
-			<attribute name="size" value="2,2"/>
+			<attribute name="hp" value="70"/>
+			<attribute name="speed" value="0.9"/>
+			<attribute name="size" value="1,1"/>
 		</attributes>
-		<level value="15"/>
-		<experience value="1200"/>
+		<level value="12"/>
+		<experience value="180"/>
 		<drops>
-			<item value="money" quantity="[10,200]" probability="100"/>
-			<item value="cheese" quantity="[5,10]" probability="100"/>
+			<item value="money" quantity="[4,25]" probability="100"/>
+			<item value="cheese" quantity="[1,3]" probability="50"/>
 		</drops>
 		<slots>
 		</slots>
@@ -526,6 +498,93 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+			<profile name="poisonous" params="5,greater_poison"/>
+		</ai>
+	</creature>
+
+<!-- Level 13 -->
+
+	<creature name="razorrat">
+		<type class="small_animal" subclass="razorrat" tileid="30"/>
+		<attributes>
+			<attribute name="atk" value="90"/>
+			<attribute name="def" value="15"/>
+			<attribute name="hp" value="40"/>
+			<attribute name="speed" value="1.1"/>
+			<attribute name="size" value="1,1"/>
+		</attributes>
+		<level value="13"/>
+		<experience value="210"/>
+		<drops>
+			<item value="money" quantity="[5,30]" probability="100"/>
+			<item value="cheese" quantity="[1,3]" probability="50"/>
+			<item value="leather_boots" quantity ="[1,1]" probability="3"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+	<!-- Level 15 -->
+
+	<creature name="giantrat">
+		<type class="giant_animal" subclass="giantrat" tileid="23"/>
+		<attributes>
+			<attribute name="atk" value="80"/>
+			<attribute name="def" value="20"/>
+			<attribute name="hp" value="120"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="2,2"/>
+		</attributes>
+		<level value="15"/>
+		<experience value="700"/>
+		<drops>
+			<item value="money" quantity="[10,200]" probability="100"/>
+			<item value="cheese" quantity="[3,7]" probability="80"/>
+			<item value="skull_staff" quantity ="[1,1]" probability="3"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+			<profile name="heal" params="5,150"/>
+		</ai>
+	</creature>
+
+	<creature name="ratman">
+		<type class="ratfolk" subclass="ratman" tileid="23"/>
+		<attributes>
+			<attribute name="atk" value="110"/>
+			<attribute name="def" value="25"/>
+			<attribute name="hp" value="150"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,1"/>
+		</attributes>
+		<level value="17"/>
+		<experience value="1000"/>
+		<drops>
+			<item value="money" quantity="[20,250]" probability="100"/>
+			<item value="cheese" quantity="[4,8]" probability="85"/>
+			<item value="katana" quantity ="[1,1]" probability="2"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="h40an"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,150"/>
