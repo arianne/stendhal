@@ -127,6 +127,8 @@ public class StendhalRPWorld extends RPWorld
     addArea("0_semos_village");
     addArea("0_semos_city");
       addArea("int_semos_tavern");
+      addArea("int_semos_temple");
+      addArea("int_semos_blacksmith");
     addArea("0_semos_south_plains");
     addArea("0_semos_road_ados");
     addArea("0_semos_south_road_ados");
@@ -153,17 +155,18 @@ public class StendhalRPWorld extends RPWorld
 
     // Level -2
     addArea("-2_semos_dungeon");
-    //addArea("-2_kotoch_entrance");
+    addArea("-2_kotoch_entrance");
     addArea("-2_orril_forest_dungeon");
 
     // Level -3
     addArea("-3_semos_dungeon");
+    addArea("-3_orril_forest_dungeon");
 
     // Level -4
     addArea("-4_semos_dungeon");
 
     // Level -5
-    // addArea("-5_kanmararn_entrace");
+     addArea("-5_kanmararn_entrace");
 
     // Level -6
     // addArea("-6_kanmararn_city");
@@ -173,6 +176,7 @@ public class StendhalRPWorld extends RPWorld
     
     // Interiors
     addArea("int_afterlife");
+    addArea("int_admin_jail");
     
     
     populateZone("Afterlife");

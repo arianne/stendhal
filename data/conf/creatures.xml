@@ -505,6 +505,32 @@
 		</ai>
 	</creature>
 
+	<creature name="orc_warrior">
+		<type class="orc" subclass="orc_warrior" tileid="34"/>
+		<attributes>
+			<attribute name="atk" value="45"/>
+			<attribute name="def" value="25"/>
+			<attribute name="hp" value="110"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
+		</attributes>
+		<level value="9"/>
+		<experience value="150"/>
+		<drops>
+			<item value="money" quantity="[7,35]" probability="100"/>
+			<item value="battle_axe" quantity="1" probability="4"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
 	<!-- Level 12 -->
 
 	<creature name="venomrat">
@@ -575,11 +601,38 @@
 			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="14"/>
-		<experience value="150"/>
+		<experience value="250"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
 			<item value="battle_axe" quantity="1" probability="8"/>
-			<item value="leather_boots" quantity="1"
+			<item value="leather_boots" quantity="1" probability="8"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+	<creature name="orc_chief">
+		<type class="dwarf" subclass="orc_chief" tileid="35"/>
+		<attributes>
+			<attribute name="atk" value="47"/>
+			<attribute name="def" value="27"/>
+			<attribute name="hp" value="160"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
+		</attributes>
+		<level value="14"/>
+		<experience value="250"/>
+		<drops>
+			<item value="money" quantity="[4,30]" probability="100"/>
+			<item value="battle_axe" quantity="1" probability="8"/>
+			<item value="leather_boots" quantity="1" probability="8"/>
 		</drops>
 		<slots>
 		</slots>

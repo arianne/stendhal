@@ -550,7 +550,7 @@ public class Creature extends NPC
       StendhalRPAction.move(this);
       }
 
-    if(rp.getTurn()%5==0  && isAttacking())
+    if(rp.getTurn()%5==0  && isAttacking() && getAttackTarget()!=null)
       {
       StendhalRPAction.attack(this,getAttackTarget());
       

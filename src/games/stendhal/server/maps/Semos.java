@@ -34,6 +34,57 @@ public class Semos implements IContent
     buildSemosTavernArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_tavern")));
     }
   
+  private void buildSemosBlacksmithArea(StendhalRPZone zone)
+    {
+    Portal portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(15);
+    portal.sety(14);
+    portal.setNumber(0);
+    portal.setDestination("0_semos_city",2);
+    zone.add(portal);
+    zone.addPortal(portal);
+    }
+
+  private void buildSemosTempleArea(StendhalRPZone zone)
+    {
+    Portal portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(10);
+    portal.sety(23);
+    portal.setNumber(0);
+    portal.setDestination("0_semos_city",1);
+    zone.add(portal);
+    zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(11);
+    portal.sety(23);
+    portal.setNumber(1);
+    portal.setDestination("0_semos_city",1);
+    zone.add(portal);
+    zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(12);
+    portal.sety(23);
+    portal.setNumber(2);
+    portal.setDestination("0_semos_city",1);
+    zone.add(portal);
+    zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(13);
+    portal.sety(23);
+    portal.setNumber(1);
+    portal.setDestination("0_semos_city",1);
+    zone.add(portal);
+    zone.addPortal(portal);
+    }
+
   private void buildSemosTavernArea(StendhalRPZone zone)
     {
     Portal portal=new Portal();
@@ -201,11 +252,29 @@ public class Semos implements IContent
     zone.add(portal);
     zone.addPortal(portal);
     
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(32);
+    portal.sety(21);
+    portal.setNumber(1);
+    portal.setDestination("int_semos_temple",0);
+    zone.add(portal);
+    zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(15);
+    portal.sety(41);
+    portal.setNumber(2);
+    portal.setDestination("int_semos_blacksmith",0);
+    zone.add(portal);
+    zone.addPortal(portal);
+
     portal=new OneWayPortal();
     zone.assignRPObjectID(portal);
     portal.setx(12);
     portal.sety(49);
-    portal.setNumber(1);
+    portal.setNumber(4);
     zone.add(portal);
     zone.addPortal(portal);    
 
