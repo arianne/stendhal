@@ -480,7 +480,7 @@
 	<!-- Level 9 -->
 
 	<creature name="dwarf_guardian">
-		<type class="dwarf" subclass="dwarf_guardian" tileid="25"/>
+		<type class="dwarf" subclass="dwarf_guardian" tileid="32"/>
 		<attributes>
 			<attribute name="atk" value="50"/>
 			<attribute name="def" value="25"/>
@@ -566,7 +566,7 @@
 	<!-- Level 14 -->
 
 	<creature name="elder_dwarf">
-		<type class="dwarf" subclass="elder_dwarf" tileid="25"/>
+		<type class="dwarf" subclass="elder_dwarf" tileid="33"/>
 		<attributes>
 			<attribute name="atk" value="50"/>
 			<attribute name="def" value="27"/>
@@ -623,7 +623,7 @@
 	</creature>
 
 	<creature name="ratman">
-		<type class="ratfolk" subclass="ratman" tileid="23"/>
+		<type class="ratfolk" subclass="ratman" tileid="31"/>
 		<attributes>
 			<attribute name="atk" value="110"/>
 			<attribute name="def" value="25"/>
