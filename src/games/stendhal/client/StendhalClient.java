@@ -293,7 +293,7 @@ public class StendhalClient extends ariannexp
 
       if(file.exists() && conf.has(item.name) && Integer.parseInt(conf.get(item.name))==item.timestamp)
         {
-        logger.debug("File is on cache. We save transfer");
+        logger.debug("Content "+file.getName()+" is on cache. We save transfer");
         item.ack=false;
         try
           {
@@ -307,7 +307,7 @@ public class StendhalClient extends ariannexp
         }
       else
         {
-        logger.debug("File is NOT on cache. We have to transfer");
+        logger.debug("Content "+file.getName()+" is NOT on cache. We have to transfer");
         item.ack=true;
         }
       }
@@ -337,7 +337,7 @@ public class StendhalClient extends ariannexp
         writer.write(data);
         writer.close();
 
-        logger.debug("File cached. Timestamp: "+Integer.toString(item.timestamp));
+        logger.debug("Content "+item.name+" cached now. Timestamp: "+Integer.toString(item.timestamp));
 
         
         conf.set(item.name,Integer.toString(item.timestamp));
