@@ -99,42 +99,45 @@
  <tileset name="Untitled" firstgid="431" tilewidth="128" tileheight="128">
   <image source="0_semos_north_west_crossing_south.png"/>
  </tileset>
- <layer name="Underground Level -7" width="24" height="24">
+ <tileset name="Untitled" firstgid="447" tilewidth="128" tileheight="128">
+  <image source="sub_3_orril_forest_dungeon.png"/>
+ </tileset>
+ <layer name="Underground Level -7" width="24" height="24" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFvHwMCwbhSPYjrjb4PADaN4FI/iUTyKRy4GAMvpVB8ACQAA
   </data>
  </layer>
- <layer name="Underground Level -6" width="24" height="24">
+ <layer name="Underground Level -6" width="24" height="24" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3RuQ3AIBAF0e2/GMrCGGPAV840sQhZP3jpJBPMLIhMFrEhYXfoZxwoOB36FQ0dl0P/xoMX3wK/RET+ZgCypYjgAAkAAA==
   </data>
  </layer>
- <layer name="Underground Level -5" width="64" height="64">
+ <layer name="Underground Level -5" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3PSw6CUBREwbcZBBXxu27WaE+cM+FxY6qTM+9aW2vrjlXfnnZ+Sf/UkE5pTFOBP707p0u6prnAn97d0pLu6VHgT++e6ZXe6VPgjyRJkiRJW/rt6B/8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pzb+wJ8mfeZAEAAAA==
   </data>
  </layer>
- <layer name="Underground Level -4" width="64" height="64">
+ <layer name="Underground Level -4" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3Puw2DUBREwdd/MZRjYxvwvw82cU7C48qalU6+M7TWhh2rvj3t/JL+qVM6pzFdCvzp3TXd0pTmAn96t6R7eqRngT+9e6V3+qRvgT+SJEmSJG3pt6N/8PPz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pzb28FSVNvFABAAAA=
   </data>
  </layer>
  <layer name="Underground Level -3" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PuQ3AMAwEQTXlV65ZNZqJcyUCCWMO2PxmtNbGwqpvpZ1f+ldbtBf4kdURnQV+ZHVFd4EfWfXoKfBDkiRJkiTN9y37Bz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8//3wvn+G1ugBAAAA=
+   H4sIAAAAAAAAAO3PuRHCQBREwVVQ3MSsGDgEFhAT4+DjiL9AT9Xzp8fW2jhjvW9OO7/0Wy3SsoMfVa3SuoMfVW3StoMfVe3SvoMf0ic6DK0d0ymd05Qu6TrUf6voFvc9Pf7UL0mSJH1zr1X/4Ofn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fnf78nhL2COwBAAAA=
   </data>
  </layer>
- <layer name="Underground Level -2" width="64" height="64">
+ <layer name="Underground Level -2" width="64" height="64" opacity="0.29">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3PR1ICURRG4W5R978KVJRGMYABCRKMIKBrERN6Js4pq17zCs6t+83/kyVJkgUU+4Vst19aLUXs4A0zvOMjgl152cUePvGFb8wj2JWXEvbxgyTlsZEuf1deDlBGgeZNbGF7jfq1Xio4xBGqOMYJTiPYFtoZaqjjHBe4xBUaEewL7RpNtNBGBzfoohfBvtD6GOAWd7jHAx7xFMG+0IYY4RljTDDFC14j2CdJkvQff7fsHfbbb7/99ttvv/3222+//fbbb7/99ttvv/3222+//fbbb7/99ttvv/3222+//fbbb//ifgGz15V3AEAAAA==
   </data>
  </layer>
- <layer name="Underground Level -1" width="64" height="64">
+ <layer name="Underground Level -1" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3PsQ3AIBAEwcemRbdJjSZx7oAXLzQnbX4zImIkVn2Zdn6dVJtdBX7s6p71Aj8kSZKU31PggyRJ0oq+7f7Bz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8//vxfb55sZAEAAAA==
   </data>
  </layer>
- <layer name="Ground Level 0" width="64" height="64">
+ <layer name="Ground Level 0" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3WQ7MdURSA0ZtBbNu2bdv2i23bdl5s2/Zvy+pBJkkqlYyS29ldtSa79uB8PTh1nmQymSffuZonk7nGdW5wjOOc4GSeH/d/5V//fnbmmxpvcZs75HKK05z5D/rvarzHfR5wlnOc58If9mejhxof8Thp5SKXuMyVFPY/1fSM57wgPwUoSCFW2lnFOMazkEUsZgnb7GxnBzuz8P+8dOZXvOYNhSlCUYqx2s4aJjCRpSxjOSvYZWc3e9ibhf1vnfkd7/lAcUpQklIMtTOM4YygvlkDGtKIfeznAAezsP+jM3/iM18oTRnKUo6RdkYxmjE0NmtCU5pxiMMc4WgW9n+vvIYKVKQSec3ykZ8CNDdrQUtasYzlrEjuihT0V9ZQhapUS+5Bs0IUpgitzdrQlnasSu4I1rA2Bf3VNdSgJrWSe9CsGMUpQXuzDnSkE+tYzwY2pqC/toY61KVecg+alaI0Zehs1oWudGMTm9nC1hT0d6Ub3enBGc5yjvNMYjJTmJrsae5BT3qloL8nvehNHy5wkUtcZhrTyWFGsqe5D33pl4L+vvSjPwO4wlWucZ2ZzGI2c5I9zQMYyKAU9A9kEIMZwg1ucovbzGUe81mQ7GkekryTGJaC/rWsYz0b2Ms+9nOA4RpHJO8iRjGdHGYwMwX9G9nEZrZwkEMc5gijNY5hLOOYxWzmMDcF/VvZxnZ2cJRjHOcE4zVOYCKTmMd8FrAwBf072cVu9nCSXE5xmskapzCVaSxiMUtYmoL+EML/4dv3t88R/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/dEf/b/vK5hRM04AQAAA
   </data>
