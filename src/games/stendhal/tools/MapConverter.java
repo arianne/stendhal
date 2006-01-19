@@ -85,7 +85,7 @@ public class MapConverter extends Task
 
     for(MapLayer layer: map)
       {
-      if(layer.getName().equals("navigation") || layer.getName().equals("collision") || layer.getName().equals("objects"))
+      if(layer.getName().equals("navigation") || layer.getName().equals("collision") || layer.getName().equals("objects") || layer.getName().equals("protection"))
         {
         layer.setVisible(false);
         }

@@ -522,6 +522,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\maps\Jail.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\maps\Semos.java</path>
 				<source>true</source>
 			</fileitem>
