@@ -61,10 +61,10 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /**
  * This sound system makes available a library of sounds which can be performed
@@ -100,12 +100,14 @@ import marauroa.common.game.RPObject;
 public class SoundSystem
 {
    /** the logger instance. */
-   private static final Logger logger = Log4J.getLogger( SoundSystem.class );
+   static final Logger logger = Log4J.getLogger( SoundSystem.class );
    /** expected location of the sound definition file (classloader). */ 
    private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";  
    
    private static SoundSystem singleton;
    private static float[] dBValues = new float[101];
+//   private static Timer timer = new Timer();
+   
    private HashMap<String,Object> sfxmap = new HashMap<String,Object>( 256 );
    private HashMap<byte[],SoundCycle> cycleMap = new HashMap<byte[],SoundCycle>();
    private JarFile soundFile;
@@ -268,24 +270,27 @@ public class SoundSystem
     *  specified library sound name.
     *  
     * @param name token of library sound
-    * @return <code>ClipRunner</code>
+    * @return <code>ClipRunner</code> or <b>null</b> if the sound is undefined
     */ 
    private ClipRunner getSoundClip ( String name )
    {
       ZipEntry zipEntry;
       Object o;
+      String path, hstr;
       
       if ( (o = sfxmap.get( name )) instanceof ClipRunner )
          return (ClipRunner)o;
       
-      else if ( o != null )
+      if ( o != null )
       {
          // load sounddata from soundfile
-         logger.debug( "- loading from external SOUND ZIP: " + name );         
-         zipEntry = soundFile.getEntry( (String)o );
+         path = (String)o;
+         hstr = name + "@" + path;
+         logger.debug( "- loading from external SOUND ZIP: " + hstr );         
+         zipEntry = soundFile.getEntry( path );
          if ( zipEntry != null )
             try {
-               return new ClipRunner( name, getZipData( zipEntry ) );
+               return new ClipRunner( hstr, getZipData( zipEntry ) );
             }
             catch ( Exception e )
             {}
@@ -338,9 +343,7 @@ public class SoundSystem
          }
          catch ( IllegalStateException e )
          {
-            hstr = "*** Undefined sound sample: " + token;
-            logger.error( hstr, e );
-            System.out.println( hstr ); 
+            logger.error( "*** Undefined sound sample: " + token, e );
          }
       }
    }  // startSoundCycle
@@ -442,9 +445,7 @@ public class SoundSystem
       
       if ( !initJavaSound() )
       {
-         hstr = "*** SOUNDSYSTEM JAVA INIT ERROR";
-         logger.error( hstr );
-         System.out.println( hstr );
+         logger.error( "*** SOUNDSYSTEM JAVA INIT ERROR" );
          return;
       }
       
@@ -509,7 +510,6 @@ public class SoundSystem
                {
                   hstr = "*** MISSING SOUND: " + name + "=" + path;
                   logger.error( hstr );
-                  System.out.println( hstr ); 
                   failed++;
                   continue;
                }
@@ -537,7 +537,7 @@ public class SoundSystem
                if ( (i = name.indexOf('.')) != -1 )
                   name = name.substring( 0, i );
                
-               sound = new ClipRunner( name, soundData, loudness );
+               sound = new ClipRunner( name + "@" + path, soundData, loudness );
                count++;
             }
             catch ( Exception e )
@@ -545,8 +545,6 @@ public class SoundSystem
                // could not validate sound file content
                hstr = "*** CORRUPTED SOUND: " + name + "=" + path;
                logger.error( hstr, e );
-               System.out.println( hstr );
-               System.out.println( e );
                failed++;
                continue;
             }
@@ -594,21 +592,23 @@ public class SoundSystem
       {
          hstr = "*** SOUNDSYSTEM LOAD ERROR";
          logger.error( hstr, e );
-         System.out.println( hstr );
-         System.out.println( e );
          return;
       }
    }  // init
    
    private boolean initJavaSound ()
    {
-      Mixer.Info mixInfos[];
+      Mixer.Info info, mixInfos[];
+      String hstr;
       double level;
       int i;
       
       if ( (mixInfos = AudioSystem.getMixerInfo()) == null ||
             mixInfos.length == 0 )
+      { 
+         logger.error( "*** SoundSystem: no sound driver available!" );
          return false;
+      }
 
       // init our volume -> decibel map
       for ( i = 0; i < 101; i++ )
@@ -618,6 +618,12 @@ public class SoundSystem
       }
       
       mixer = AudioSystem.getMixer( null ); //mixInfos[4] );
+      info = mixer.getMixerInfo();
+      hstr = "Sound driver: " + info.getName() + "(" + info.getDescription() + ")";
+      logger.info( hstr );
+      System.out.println( hstr );
+      
+      // try a master volume control 
       try {
          volumeCtrl = (FloatControl) mixer.getControl( FloatControl.Type.MASTER_GAIN );
          volumeCtrl.setValue( (float)0.0 );
@@ -740,34 +746,48 @@ public class SoundSystem
    
 private class ClipRunner implements LineListener
 {
-   private String name;
+   private String text;
    private byte[] data;
    private int loudness;
    private long maxLength;
    private AudioFileFormat format;
    private List <ClipRunner>samples;
    
-/**
- * Creates a ClipRunner instance by name, raw audio data and a relative
- * loudness setting.
- * 
- * @param name name of sound as in library
- * @param audioData raw audio data
- * @param volume standard loudness of sound 0 .. 100
- * @throws UnsupportedAudioFileException
- */   
-public ClipRunner ( String name, byte[] audioData, int volume )
+   /**
+    * Creates a ClipRunner instance by name and raw audio data.
+    * Loudness setting is at 100%.
+    * 
+    * @param text info about sound (docu)
+    * @param audioData raw audio data
+    * @throws UnsupportedAudioFileException
+    */   
+   public ClipRunner ( String text, byte[] audioData )
+      throws UnsupportedAudioFileException
+   {
+      this( text, audioData, 100 );
+   }
+
+   /**
+    * Creates a ClipRunner instance by name, raw audio data and a relative
+    * loudness setting.
+    * 
+    * @param text info about sound (docu)
+    * @param audioData raw audio data
+    * @param volume standard loudness of sound 0 .. 100
+    * @throws UnsupportedAudioFileException
+    */   
+public ClipRunner ( String text, byte[] audioData, int volume )
    throws UnsupportedAudioFileException
 {
    ByteArrayInputStream in;
    float frameRate, frames;
 
-   if ( name == null )
+   if ( text == null )
       throw new NullPointerException();
    if ( volume < 0 | volume > 100 )
       throw new IllegalArgumentException("illegal loudness value");
    
-   this.name = name;
+   this.text = text;
    data = audioData;
    loudness = volume;
 
@@ -789,20 +809,6 @@ public ClipRunner ( String name, byte[] audioData, int volume )
       logger.error( "- IO-Error reading sound data: ", e );
    }
 }  // constructor
-
-/**
- * Creates a ClipRunner instance by name and raw audio data.
- * Loudness setting is at 100%.
- * 
- * @param name name of sound as in library
- * @param audioData raw audio data
- * @throws UnsupportedAudioFileException
- */   
-public ClipRunner ( String name, byte[] audioData )
-   throws UnsupportedAudioFileException
-{
-   this( name, audioData, 100 );
-}
 
 /** Adds another clip as an alternate sound to be run under this clip. 
  *  Alternative sounds are played by random and equal chance.
@@ -828,14 +834,49 @@ public long maxPlayLength ()
    return maxLength;
 }
 
-/** Starts this clip to play with the given volume setting.
+/** Starts this clip to play with the given volume settings.
  * 
  *  @param volume loudness in 0 .. 100
  *  @param correctionDB decibel correction value from outward sources
- *  @return the sound <code>DataLine</code> that is being played,
+ *  @return the AudioSystem <code>DataLine</code> object that is being played,
  *          or <b>null</b> on error
  */
 public DataLine play ( int volume, float correctionDB )
+{
+   DataLine line;
+   
+   if ( (line = getAudioClip( volume, correctionDB )) != null )
+   {
+      line.start();
+   }
+   return line;
+}
+
+/** Starts this clip to loop endlessly with the given start volume setting.
+ * 
+ *  @param volume loudness in 0 .. 100
+ *  @return the AudioSystem <code>Clip</code> object that is being played,
+ *          or <b>null</b> on error
+ */
+public Clip loop ( int volume, float correctionDB )
+{
+   Clip line;
+   
+   if ( (line = getAudioClip( volume, correctionDB )) != null )
+   {
+      line.loop( Clip.LOOP_CONTINUOUSLY );
+   }
+   return line;
+}
+
+/** Returns a runnable AudioSystem sound clip with the given volume settings.
+ * 
+ *  @param volume loudness in 0 .. 100
+ *  @param correctionDB decibel correction value from outward sources
+ *  @return an AudioSystem sound <code>Clip</code> that represents this sound,
+ *          or <b>null</b> on error
+ */
+public Clip getAudioClip ( int volume, float correctionDB )
 {
    Clip clip;
    DataLine.Info info;
@@ -878,33 +919,28 @@ public DataLine play ( int volume, float correctionDB )
          }
          catch ( Exception e )
          { 
-            hstr = "** AudioSystem: no master_gain controls for: " + name;
+            hstr = "** AudioSystem: no master_gain controls for: " + this.text;
             logger.error( hstr, e );
-            System.out.println( hstr );
-            System.out.println( e );
          }
 
          // run clip
          clip.addLineListener( this );
-         clip.start();
          return clip;
       }
       
       // if choice is for other sample
       else
       {
-         return samples.get( index-1 ).play( volume, correctionDB );
+         return samples.get( index-1 ).getAudioClip( volume, correctionDB );
       }
    } 
    catch (Exception ex) 
    {
-      hstr = "** AudioSystem: clip line unavailable for: " + name;
+      hstr = "** AudioSystem: clip line unavailable for: " + this.text;
       logger.error( hstr, ex );
-      System.out.println( hstr );
-      System.out.println( ex );
       return null;
    }   
-}  // play
+}  // getAudioClip
 
 /* 
  * Overridden: @see javax.sound.sampled.LineListener#update(javax.sound.sampled.LineEvent)
@@ -923,7 +959,8 @@ public void update ( LineEvent event )
 /**
  * A sound cycle loops on performing a library sound. After each termination
  * of a sound performance it chooses a timepoint of the next performance 
- * at random within the range of the PEROID setting (milliseconds).
+ * at random within the range of the PEROID setting (milliseconds). It can
+ * be furthermore subject to probability. 
  * 
  */
 private static class SoundCycle extends Thread
@@ -1037,5 +1074,242 @@ private static class SoundCycle extends Thread
       }
    }
 }  // class SoundCycle
+
+/**
+ * An ambient sound is a compound sound consisting of any number of loop sounds 
+ * and cycle sounds. Loop sounds play continuously without interruption, cycle
+ * sounds work as described in class SoundCycle. The ambient sound can be played 
+ * global or fixed to a map location.  
+ */
+public static class AmbientSound implements LineListener
+{
+   private List<LoopSoundInfo> loopSounds = new ArrayList<LoopSoundInfo>(); 
+   private List<Clip> clipList = new ArrayList<Clip>();
+
+   private Point2D soundPos;
+   private Point2D playerPos;
+   private float loudnessDB;
+   private boolean playing; 
+   
+   private static class LoopSoundInfo
+   {
+      String name; 
+      float loudnessDB;
+      int delay;
+      
+      public LoopSoundInfo ( String sound, int volume, int delay )
+      {
+         name = sound;
+         loudnessDB = dBValues[ volume ];
+         this.delay = delay;
+      }
+   }
+   
+   private class SoundStarter extends Thread
+   {
+      private String sound;
+      private float loudnessDB, correctionDB;
+      private int delay;
+      private boolean isLoop;
+
+   /** Starts a one-time sound. */   
+   public SoundStarter ( String sound, float loudnessDB, int delay )
+   {
+      this.sound = sound;
+      this.delay = delay;
+      this.loudnessDB = loudnessDB;
+   }
+
+   /** Starts a looping sound. */   
+   public SoundStarter ( LoopSoundInfo loopInfo, float correctionDB )
+   {
+      this.sound = loopInfo.name;
+      this.delay = loopInfo.delay;
+      this.loudnessDB = loopInfo.loudnessDB;
+      this.correctionDB = correctionDB;
+      isLoop = true;
+   }
+   
+   public void run ()
+   {
+      ClipRunner libClip;
+      Clip clip;
+      
+      // get the library sound clip
+      if ( (libClip = get().getSoundClip( sound )) == null )
+         throw new IllegalArgumentException( "sound unknown: " + sound );
+      
+      // handle delay phase request on sample start
+      if ( delay > 0 )
+         try { sleep( delay ); }
+         catch ( InterruptedException e )
+         {}
+         
+      // start playing
+      clip = libClip.getAudioClip( 100, loudnessDB + correctionDB );  
+      clip.addLineListener( AmbientSound.this );
+      if ( isLoop )
+         clip.loop( Clip.LOOP_CONTINUOUSLY );
+      else
+         clip.start();
+      
+      // store running clip in AmbientSound clipList
+      clipList.add( clip );
+   }
+   }  // SoundStarter
+   
+   /** 
+    * Creates an unlocalized ambient sound (plays everywhere) with the
+    * given overall volume setting. 
+    * 
+    * @param volume int 0..100 loudness of ambient sound in total
+    */
+   public AmbientSound ( int volume )
+   {
+      this( null, volume );
+   }
+
+   /** 
+    * Creates an map localized ambient sound with the
+    * given overall volume setting. 
+    * 
+    * @param point <code>Point2D</code> map location expressed in coordinate units
+    * @param volume int 0..100 loudness of ambient sound in total
+    */
+   public AmbientSound ( Point2D point, int volume )
+   {
+      soundPos = point;
+      loudnessDB = dBValues[ volume ];
+   }
+
+   /** This adds a loop sound to the ambient sound definition.
+    *  
+    * @param sound library sound name
+    * @param volume relative play volume of the added sound
+    * @param delay milliseconds of start delay for playing the sound 
+    */
+   public void addLoop ( String sound, int volume, int delay )
+   {
+      SoundSystem sys;
+      ClipRunner clip;
+      LoopSoundInfo info;
+      
+      sys = get();
+      if ( !sys.contains( sound ) )
+      { 
+         logger.error( "** Ambient Sound: missing sound definition (" + sound + ")" );
+         return;
+      }
+      
+      info = new LoopSoundInfo( sound, volume, delay );
+      loopSounds.add( info );
+   }
+   
+   /** Starts playing this ambient sound. This will take required actions, 
+    * if this ambient sound is not yet playing, to make it audible relative
+    * to the player's position. This does nothing if this sound is already
+    * playing.
+    */
+   public void play ()
+   {
+      LoopSoundInfo soundInfo;
+      Iterator it;
+      float fogDB;
+      
+      if ( playing )
+         return;
+      
+      stop();
+      
+      fogDB = getPlayerVolume();
+      synchronized( clipList )
+      {
+         for ( it = loopSounds.iterator(); it.hasNext(); )
+         {
+            soundInfo = (LoopSoundInfo)it.next();
+            new SoundStarter( soundInfo, loudnessDB + fogDB ).start();
+         }
+         playing = true;
+      }
+   }  // play
+
+   /** Stops playing this ambient sound. */
+   public void stop ()
+   {
+      Iterator it;
+      
+      synchronized( clipList )
+      {
+         for ( it = clipList.iterator(); it.hasNext(); )
+         {
+            ((Clip)it.next()).stop();
+         }
+         playing = false;
+      }
+   }
+   
+   /** Returns the sound volume for this ambient sound relative to the 
+    * current player position (fog correction value).
+    * 
+    * @return float dB correction of loudness
+    */ 
+   private float getPlayerVolume ()
+   {
+      return 0;
+   }
+   
+   /** 
+    * Informs this ambient sound about the actual player's position.
+    * (This is required to adjust sound fog loudness.)
+    * 
+    * @param position actual player position in coordinate units
+    */
+   public void performPlayerPosition ( Point2D position )
+   {
+      SoundSystem sys;
+      Clip clip;
+      Iterator it;
+      boolean wasPlaying;
+      
+      // operation control
+      sys = SoundSystem.get();
+      if ( !sys.isOperative() | sys.getMute() )
+         return;
+      
+      // detect player distance and loudness fog value
+      
+      
+      //  
+      wasPlaying = playing;
+      play();
+      
+      // detect player distance and loudness fog value
+      
+      for ( it = clipList.iterator(); it.hasNext(); )
+      {
+         clip = ((Clip)it.next());
+         
+      }
+      
+   }  // performPlayerPosition
+   
+   /* 
+    * Overridden: @see javax.sound.sampled.LineListener#update(javax.sound.sampled.LineEvent)
+    */
+   public void update ( LineEvent event )
+   {
+      Line clip;
+      
+      // this discards line resources when the sound has stopped
+      if ( event.getType() == LineEvent.Type.STOP )
+      {
+         clip = ((Line)event.getSource()); 
+         clip.close();
+         clipList.remove( clip );
+      }
+   }
+
+
+}  // class AmbientSound
 
 }
