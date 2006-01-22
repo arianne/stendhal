@@ -252,8 +252,11 @@ public class LoginDialog extends JDialog {
                     progressBar.cancel();
                     setVisible(true);
                     JOptionPane.showMessageDialog(frame, "Can't connect to server. Server down?", "Login status", JOptionPane.ERROR_MESSAGE);
-                }
-            }
+                } catch (Exception ex) {
+                   progressBar.cancel();
+                   setVisible(true);
+                   JOptionPane.showMessageDialog(frame, "Connection error. Online?", "Login status", JOptionPane.ERROR_MESSAGE);
+               }            }
         };
         m_connectionThread.start();
     }
