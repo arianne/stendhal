@@ -550,11 +550,11 @@ public class Creature extends NPC
       StendhalRPAction.move(this);
       }
 
-    if(rp.getTurn()%5==0  && isAttacking() && getAttackTarget()!=null)
+    if(rp.getTurn()%5==0  && isAttacking())
       {
       StendhalRPAction.attack(this,getAttackTarget());
       
-      if(nextto(getAttackTarget(),0.25))
+      if( getAttackTarget()!=null && nextto(getAttackTarget(),0.25))
         {
         if(aiProfiles.containsKey("poisonous"))
           {

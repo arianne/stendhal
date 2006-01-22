@@ -62,6 +62,9 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.44 Feb XX, 2006
+- Fixed a null pointer bug at creature logic.
+
 0.43 Jan 20, 2006
 - Exit of tavern now belongs to tavern.
 - Fixed a bug when player recieve text but client.getPlayer() stills return null.

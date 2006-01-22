@@ -320,9 +320,9 @@ public class Equipment extends ActionListener
       }
       
       removeFromWorld(world);
-      logger.warn("item removed");
+      logger.debug("item removed");
       dest.addToWorld(base,world, player);
-      logger.warn("item readded");
+      logger.debug("item readded");
 
       return true;
     }
