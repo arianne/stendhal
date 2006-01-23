@@ -41,11 +41,14 @@ public class WorldObjects
 
    public static interface WorldListener
    {
+      /** Called when a world zone has been loaded. */ 
       public void zoneEntered ( String zoneName );
+
+      /** Called when a world zone has been unloaded. */ 
       public void zoneLeft ( String zoneName );
    }
 
-   
+   /** Adds a WorldListener to this event distributor. */
    public static void addWorldListener ( WorldListener a )
    {
       synchronized ( worldListeners )
@@ -55,6 +58,7 @@ public class WorldObjects
       }
    }
    
+   /** Removes a WorldListener from this event distributor. */
    public static void removeWorldListener ( WorldListener a )
    {
       synchronized ( worldListeners )
@@ -63,6 +67,7 @@ public class WorldObjects
       }
    }
 
+   /** Create a zone-entered event. */
    public static void fireZoneEntered ( String zoneName )
    {
       Iterator it;
@@ -76,6 +81,7 @@ public class WorldObjects
       }      
    }  // fireZoneEntered
    
+   /** Create a zone-left event. */
    public static void fireZoneLeft ( String zoneName )
    {
       Iterator it;
