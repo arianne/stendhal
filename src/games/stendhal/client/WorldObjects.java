@@ -3,16 +3,13 @@
  *  file: WorldObjects.java
  * 
  *  Project stendhal
- *  @author Wolfgang Keller
+ *  @author Jane Hunt
  *  Created 23.01.2006
  *  Version
  * 
- *  Copyright (c) 2006 by Wolfgang Keller, Munich, Germany
- * 
- This program is not freeware software but copyright protected to the author(s)
- stated above. However, you can use, redistribute and/or modify it under the terms 
- of the GNU General Public License as published by the Free Software Foundation, 
- version 2 of the License.
+ This program is free software. You can use, redistribute and/or modify it under
+ the termsof the GNU General Public License as published by the Free Software 
+ Foundation, version 2 of the License.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
