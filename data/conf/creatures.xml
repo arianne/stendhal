@@ -28,10 +28,9 @@
 		</ai>
 	</creature>
 
-	<!-- Level 1 -->
 
 	<creature name="deer">
-		<type class="animal" subclass="deer" tileid="-1"/>
+		<type class="animal" subclass="deer" tileid="36"/>
 		<attributes>
 			<attribute name="atk" value="5"/>
 			<attribute name="def" value="5"/>
@@ -43,7 +42,7 @@
 		<experience value="0"/>
 		<drops>
 			<item value="meat" quantity="[1,4]" probability="80"/>
-			<item value="ham" quantity="[1,2]" probability="60"/>
+			<item value="ham" quantity="[1,2]" probability="40"/>
 		</drops>
 		<slots>
 		</slots>
@@ -55,6 +54,8 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
+
+	<!-- Level 1 -->
 
 	<creature name="caverat">
 		<type class="small_animal" subclass="caverat" tileid="13"/>
@@ -373,10 +374,10 @@
 		<experience value="60"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
-			<item value="plate_shield" quantity="1" probability="40"/>
-			<item value="hand_axe" quantity="1" probability="50"/>
+			<item value="plate_shield" quantity="1" probability="15"/>
+			<item value="hand_axe" quantity="1" probability="30"/>
 			<item value="axe" quantity="1" probability="10"/>
-			<item value="studded_armor" quantity="1" probability="40"/>
+			<item value="studded_armor" quantity="1" probability="30"/>
 			<item value="chain_armor" quantity="1" probability="10"/>
 		</drops>
 		<slots>
@@ -387,6 +388,33 @@
 			<profile name="human"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
+		</ai>
+	</creature>
+
+	<creature name="black_bear">
+		<type class="animal" subclass="black_bear" tileid="37"/>
+		<attributes>
+			<attribute name="atk" value="51"/>
+			<attribute name="def" value="12"/>
+			<attribute name="hp" value="55"/>
+			<attribute name="speed" value="0.4"/>
+			<attribute name="size" value="1,2"/>
+<!--			<attribute name="noise" value="Roar!"/> -->
+		</attributes>
+		<level value="5"/>
+		<experience value="70"/>
+		<drops>
+			<item value="money"  quantity="[4,9]" probability="80"/>
+			<item value="meat"  quantity="[3,6]" probability="60"/>
+			<item value="ham"  quantity="[2,3]" probability="40"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
 		</ai>
 	</creature>
 
@@ -518,7 +546,7 @@
 		<experience value="150"/>
 		<drops>
 			<item value="money" quantity="[7,35]" probability="100"/>
-			<item value="battle_axe" quantity="1" probability="4"/>
+			<item value="battle_axe" quantity="1" probability="3"/>
 		</drops>
 		<slots>
 		</slots>
