@@ -208,6 +208,16 @@ public class StendhalClient extends ariannexp
       if(message.getTypePerception()==1/*Perception.SYNC*/)
         {
         logger.debug("UPDATING screen position");
+        
+        // If player exists, notify zone leaving.
+        if(player!=null)
+          {
+          WorldObjects.fireZoneLeft(player.getID().getZoneID());
+          }
+
+        // Notify zone entering.
+        WorldObjects.fireZoneEntered(message.getRPZoneID().getID());
+          
         GameScreen screen=GameScreen.get();        
         
         /** Full object is normal object+hidden objects */
