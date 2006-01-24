@@ -165,7 +165,7 @@ public class textClient extends Thread
     {
     try
       {
-      clientManager.connect(host,32160);      
+      clientManager.connect(host,32161);      
       clientManager.login(username,password);
       }
     catch(SocketException e)

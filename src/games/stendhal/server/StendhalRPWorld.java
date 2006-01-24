@@ -251,6 +251,12 @@ public class StendhalRPWorld extends RPWorld
     area.addLayer(name+"_1_terrain",xmlzone.getLayer("1_terrain"));
     area.addLayer(name+"_2_object",xmlzone.getLayer("2_object"));
     area.addLayer(name+"_3_roof",xmlzone.getLayer("3_roof"));
+
+    String layer=xmlzone.getLayer("4_roof_add");
+    if(layer!=null)
+      {
+      area.addLayer(name+"_4_roof_add",layer);
+      }
     
     area.addCollisionLayer(name+"_collision",xmlzone.getLayer("collision"));
     area.addProtectionLayer(name+"_protection",xmlzone.getLayer("protection"));

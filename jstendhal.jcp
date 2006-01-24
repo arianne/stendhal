@@ -186,6 +186,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\WorldObjects.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\AnimatedEntity.java</path>
 				<source>true</source>
 			</fileitem>
@@ -311,6 +315,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\gui\StendhalFirstScreen.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\gui\StendhalRobot.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
