@@ -710,7 +710,7 @@
 			<attribute name="def" value="25"/>
 			<attribute name="hp" value="150"/>
 			<attribute name="speed" value="1"/>
-			<attribute name="size" value="1,1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="17"/>
 		<experience value="1000"/>
