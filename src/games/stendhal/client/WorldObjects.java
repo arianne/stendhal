@@ -23,6 +23,8 @@
 
 package games.stendhal.client;
 
+import games.stendhal.client.entity.Player;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -46,6 +48,9 @@ public class WorldObjects
 
       /** Called when a world zone has been unloaded. */ 
       public void zoneLeft ( String zoneName );
+
+      /** Called when the player arrives at a map location. */
+      public void playerMoved ( Player player );
    }
 
    /** Adds a WorldListener to this event distributor. */
@@ -94,4 +99,19 @@ public class WorldObjects
          }
       }      
    }  // fireZoneLeft
+   
+   /** Create a player-moved event. */
+   public static void firePlayerMoved ( Player player )
+   {
+      Iterator it;
+      
+      synchronized ( worldListeners )
+      {
+         for ( it = worldListeners.iterator(); it.hasNext(); )
+         {
+            ((WorldListener)it.next()).playerMoved( player );
+         }
+      }      
+   }  // firePlayerMoved
+   
 }
