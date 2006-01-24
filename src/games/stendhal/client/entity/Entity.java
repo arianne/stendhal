@@ -19,6 +19,7 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.WorldObjects;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
@@ -275,11 +276,21 @@ public abstract class Entity
       
     dx=direction.getdx()*speed;
     dy=direction.getdy()*speed;
+    
+    double oldx=x, oldy=y;
 
     if(object.has("x") && dx==0) x=object.getInt("x");
     if(object.has("y") && dy==0) y=object.getInt("y");
     if(changes.has("x")) x=changes.getInt("x");
     if(changes.has("y")) y=changes.getInt("y");
+    
+    if(oldx!=x || oldy!=y)
+      {
+      if(this instanceof Player && client.getPlayer().getID().equals(getID()))
+        {
+        WorldObjects.firePlayerMoved((Player)this);
+        }
+      }
     }
 
   public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException

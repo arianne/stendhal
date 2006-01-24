@@ -45,7 +45,7 @@ public class Player extends RPEntity
   private List<ConsumableItem> itemsToConsume;
   private List<ConsumableItem> poisonToConsume;
   private int turnsLeftOfInmunity;
-
+  
   public static void generateRPClass()
     {
     try
