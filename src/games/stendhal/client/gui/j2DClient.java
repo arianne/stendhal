@@ -13,10 +13,12 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.*;
+import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.wt.core.WindowManager;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferStrategy;
 import java.net.URL;
 
@@ -90,7 +92,7 @@ public class j2DClient extends JFrame
 
     this.setLocation(new Point(100, 100));
 
-      // finally make the window visible
+    // finally make the window visible
     pack();
     setResizable(false);
     setVisible(true);
@@ -206,9 +208,11 @@ public class j2DClient extends JFrame
     pipeline.addGameLayer(staticLayers);
     pipeline.addGameObjects(gameObjects);
 
-    SoundSystem.get().playSound( "welcome", 100 );
-    
-    // keep looping round til the game ends
+    SoundSystem.playSound( "welcome", 100 );
+
+    int counter = 0;
+
+    // keep looping until the game ends
     while (gameRunning)
       {
       fps++;
@@ -220,7 +224,18 @@ public class j2DClient extends JFrame
 
       logger.debug("Move objects");
       gameObjects.move(delta);
+/*
+      // SOUND TEST ARRANGEMENT, simulating player move events
+      if ( counter++ % 50 == 0 )
+      {
+         Player player = null;
+         RPObject playerObj; 
 
+         if ( (playerObj = StendhalClient.get().getPlayer()) != null )
+            player = (Player) StendhalClient.get().getGameObjects().get(playerObj.getID());
+         WorldObjects.firePlayerMoved( player );
+      }
+*/      
       logger.debug("Draw screen");
       pipeline.draw(screen);
       inGameGUI.draw(screen);

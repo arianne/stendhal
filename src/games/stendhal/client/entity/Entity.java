@@ -18,8 +18,8 @@ import games.stendhal.client.SoundSystem;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.stendhal;
 import games.stendhal.client.WorldObjects;
+import games.stendhal.client.stendhal;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
@@ -76,11 +76,11 @@ public abstract class Entity
   protected GameObjects gameObjects;
   protected StendhalClient client;
   
-  /** this counter is increased each time a perception is receveived for the
+  /** this counter is increased each time a perception is received for the
    * object */
   private long modificationCount;
 
-  protected Entity()
+  public Entity()
     {
     modificationCount = 0;
     }
@@ -125,12 +125,17 @@ public abstract class Entity
     // cyclic sound management
     if ( type.startsWith( "creature" ) )
     {
+//System.out.println( hstr );    
        if ( name.equals( "wolf" ) )
           SoundSystem.startSoundCycle( this, "wolf-patrol", 40000, 10, 50, 100 );
-       else if ( name.equals( "rat" ) || name.equals( "caverat" ) )
+       else if ( name.equals( "rat" ) || name.equals( "caverat" ) || name.equals( "venomrat" ))
           SoundSystem.startSoundCycle( this, "rats-patrol", 15000, 10, 30, 80 );
+       else if ( name.equals( "razorrat" ) )
+          SoundSystem.startSoundCycle( this, "razorrat-patrol", 60000, 10, 50, 75 );
        else if ( name.equals( "gargoyle" ) )
           SoundSystem.startSoundCycle( this, "gargoyle-patrol", 45000, 10, 50, 100 );
+       else if ( name.equals( "boar" ) )
+          SoundSystem.startSoundCycle( this, "boar-patrol", 30000, 20, 50, 100 );
        else if ( name.equals( "bear" ) )
           SoundSystem.startSoundCycle( this, "bear-patrol", 45000, 30, 80, 75 );
        else if ( name.equals( "giantrat" ) )
@@ -154,6 +159,7 @@ public abstract class Entity
     }
     else if ( type.startsWith( "npc" ) )
     {
+ //System.out.println( hstr );    
        setAudibleRange( 3 );
        if ( name.equals( "Diogenes" ) )
           SoundSystem.startSoundCycle( this, "Diogenes-patrol", 10000, 20, 50, 100 );
@@ -163,6 +169,8 @@ public abstract class Entity
           SoundSystem.startSoundCycle( this, "Nishiya-patrol", 40000, 20, 50, 80 );
        else if ( name.equals( "Margaret" ) )
           SoundSystem.startSoundCycle( this, "Margaret-patrol", 30000, 10, 30, 70 );
+       else if ( name.equals( "Sato" ) )
+          SoundSystem.startSoundCycle( this, "Sato-patrol", 60000, 30, 50, 70 );
     }
     }  // constructor
   
@@ -184,7 +192,7 @@ public abstract class Entity
   /** Returns the represented arianne object id */
   public RPObject.ID getID()
     {
-    return rpObject.getID();
+    return rpObject != null ? rpObject.getID() : null;
     }
   
   public double getx()
@@ -284,9 +292,10 @@ public abstract class Entity
     if(changes.has("x")) x=changes.getInt("x");
     if(changes.has("y")) y=changes.getInt("y");
     
-    if(oldx!=x || oldy!=y)
+    if( (oldx!=x || oldy!=y) && this instanceof Player )
       {
-      if(this instanceof Player && client.getPlayer().getID().equals(getID()))
+      RPObject pl = client.getPlayer(); 
+      if( pl != null && pl.getID().equals(getID()))
         {
         WorldObjects.firePlayerMoved((Player)this);
         }

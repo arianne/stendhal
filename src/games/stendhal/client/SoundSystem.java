@@ -27,6 +27,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.SoundObject;
 import games.stendhal.common.Rand;
 
 import java.awt.geom.Point2D;
@@ -63,6 +64,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
 
 import org.apache.log4j.Logger;
 
@@ -97,7 +99,7 @@ import org.apache.log4j.Logger;
  * be also defined in the definition file under property "soundbase".      
  * 
  */
-public class SoundSystem
+public class SoundSystem implements WorldObjects.WorldListener
 {
    /** the logger instance. */
    static final Logger logger = Log4J.getLogger( SoundSystem.class );
@@ -108,8 +110,18 @@ public class SoundSystem
    private static float[] dBValues = new float[101];
 //   private static Timer timer = new Timer();
    
+   static {
+      // init our volume -> decibel map
+      for ( int i = 0; i < 101; i++ )
+      {
+         double level = ((double)i) / 100;
+         dBValues[i] = (float)(Math.log( level )/Math.log(10.0)*20.0);
+      }
+   }
+   
    private HashMap<String,Object> sfxmap = new HashMap<String,Object>( 256 );
    private HashMap<byte[],SoundCycle> cycleMap = new HashMap<byte[],SoundCycle>();
+   private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
    private JarFile soundFile;
    
    private Mixer mixer;
@@ -126,6 +138,7 @@ public class SoundSystem
     * @param name token of sound
     * @param volBot relative bottom volume in percent, ranges 0..100
     * @param volTop relative top volume in percent, ranges 0..100
+    * @param correctionDB loudness correction value (decibel)
     * @return the sound <code>DataLine</code> that is being played,
     *         or <b>null</b> on error
     */
@@ -255,7 +268,7 @@ public class SoundSystem
 //System.out.println("sound where: " + where.getX() + " : " + where.getY() );       
 //System.out.println("player position: " + playerPosition.getX() + " : " + playerPosition.getY() );       
       
-      // determine sound volume cutoff due to distance
+      // determine sound volume cutoff due to distance (fog value)
       distance = where.distance( playerPosition );
 //System.out.println("distance: " + distance );       
       maxDist = playerHearing.getWidth()/2;
@@ -265,6 +278,21 @@ public class SoundSystem
       
       return get().playSoundIntern( name, volBot, volTop, dBValues[fogVolume] );
    }  // playMapSound
+   
+   
+   
+   public static void playAmbientSound ( AmbientSound ambient )
+   {
+      SoundSystem sys;
+      
+      sys = get();
+      ambient.play();
+      
+      synchronized ( sys.ambientList )
+      {
+         sys.ambientList.add( ambient );
+      }
+   }  // playAmbientSound
    
    /** Returns a <code>ClipRunner</code> object ready to play a sound of the 
     *  specified library sound name.
@@ -312,7 +340,7 @@ public class SoundSystem
     * @param volTop top volume
     * @param chance percent chance of performance 
     */
-   public static void startSoundCycle ( 
+   public static SoundCycle startSoundCycle ( 
          Entity entity, 
          String token, 
          int period,
@@ -324,16 +352,17 @@ public class SoundSystem
       SoundSystem sys;
       SoundCycle cycle, c1;
       byte[] entity_token;
-      String hstr;
       
       if ( !(sys = get()).isOperative() )
-         return;
+         return null;
       
       entity_token = entity.get_IDToken();
+      cycle = null;
       synchronized( sys.cycleMap )
       {
          try {
             cycle = new SoundCycle(entity, token, period, volBot, volTop, chance );
+            cycle.play();
             
             c1 = sys.cycleMap.get( entity_token );
             if ( c1 != null )
@@ -346,6 +375,7 @@ public class SoundSystem
             logger.error( "*** Undefined sound sample: " + token, e );
          }
       }
+      return cycle;
    }  // startSoundCycle
    
    /**
@@ -585,6 +615,8 @@ public class SoundSystem
             System.out.println( hstr );
          }
          
+         // register listeners
+         WorldObjects.addWorldListener( this );
          operative = true;
       }
 
@@ -610,13 +642,6 @@ public class SoundSystem
          return false;
       }
 
-      // init our volume -> decibel map
-      for ( i = 0; i < 101; i++ )
-      {
-         level = ((double)i) / 100;
-         dBValues[i] = (float)(Math.log( level )/Math.log(10.0)*20.0);
-      }
-      
       mixer = AudioSystem.getMixer( null ); //mixInfos[4] );
       info = mixer.getMixerInfo();
       hstr = "Sound driver: " + info.getName() + "(" + info.getDescription() + ")";
@@ -636,12 +661,47 @@ public class SoundSystem
       return true;
    }  // initJavaSound
    
-   /** Sets the global Mute switch of this sound system. */
+   /** Stops and removes all ambient sounds. */
+   public void clearAmbientSounds ()
+   {
+      List list;
+      Iterator it;
+      
+      synchronized ( ambientList )
+      {
+         list = (List)ambientList.clone();
+         for ( it = list.iterator(); it.hasNext(); )
+         {
+            ((AmbientSound)it.next()).terminate();
+         }
+      }
+   }
+   
+   /** Sets the global Mute switch of this sound system. Does nothing
+    *  on duplicate call. */
    public void setMute ( boolean v )
    {
+      AmbientSound ambient;
+      Iterator it;
+
+      if ( v == muteSetting )
+         return;
+      
       logger.info( "- sound system setting mute = " + (v ? "ON" : "OFF") );           
       muteSetting = v;
-   }
+
+      synchronized ( ambientList )
+      {
+         for ( it = ambientList.iterator(); it.hasNext(); )
+         {
+            ambient = (AmbientSound)it.next();
+            if ( v )
+               ambient.stop();
+            else
+               ambient.play();
+         }
+      }
+   }  // setMute
 
    /** Returns the actual state of the global Mute switch of this sound system. 
     *  @return <b>true</b> if and only if Mute is ON (silent)
@@ -658,6 +718,8 @@ public class SoundSystem
     */ 
    public void setVolume ( int volume )
    {
+      AmbientSound ambient;
+      Iterator it;
       float dB;
       
       if ( volume < 0 )
@@ -669,6 +731,7 @@ public class SoundSystem
       logger.info( "- sound system setting volume dB = " + dB 
             + "  (gain " + volume + ")" );           
 
+      volumeSetting = volume;
       if ( volumeCtrl != null )
       {
          volumeCtrl.setValue( dB );
@@ -676,9 +739,17 @@ public class SoundSystem
       else
       {
          volumeDelta = dB;
+
+         // update ambient sounds
+         synchronized ( ambientList )
+         {
+            for ( it = ambientList.iterator(); it.hasNext(); )
+            {
+               ((AmbientSound)it.next()).updateVolume();
+            }
+         }
       }
-      volumeSetting = volume;
-   }
+   }  // setVolume
    
    /** Returns the current value of this sound system's voume setting. 
     * 
@@ -708,6 +779,7 @@ public class SoundSystem
     */
    public void exit ()
    {
+      clearAmbientSounds();
       if ( soundFile != null )
          try { 
             soundFile.close();
@@ -742,6 +814,8 @@ public class SoundSystem
          output.write( buffer, 0, len );
    }  // transferData
 
+   
+   
 //  *************  INNER CLASSES  ***********************
    
 private class ClipRunner implements LineListener
@@ -891,6 +965,7 @@ public Clip getAudioClip ( int volume, float correctionDB )
    info = new DataLine.Info( Clip.class, fo );
    if ( !AudioSystem.isLineSupported(info) ) 
    {
+      logger.error( "** AudioSystem: unsupported line format for: " + text );
       return null;
    }
 
@@ -963,7 +1038,7 @@ public void update ( LineEvent event )
  * be furthermore subject to probability. 
  * 
  */
-private static class SoundCycle extends Thread
+private static class SoundCycle extends Thread  implements Cloneable
 {
    private byte[] ID_Token;
    private WeakReference<Entity> entityRef;
@@ -973,10 +1048,11 @@ private static class SoundCycle extends Thread
    private int volTop;
    private int chance;
 
-   private DataLine playing;
+   private DataLine dataline;
    private long waitTime;
    private int playMax;
    private boolean executing;
+   private boolean stopped;
    
    /**
     * Creates a sound cycle for a game entity.
@@ -1024,27 +1100,57 @@ private static class SoundCycle extends Thread
       // calculate period minimum
       playMax = (int)clip.maxPlayLength();
 
-      executing = true;
-      start();
+      stopped = true;
    }  // constructor
 
    public void terminate ()
    {
       Entity o;
+      ID oid;
       String hstr;
       
       o = entityRef.get();
-      hstr = o == null ? "VOID" : o.getID().toString(); 
+      if ( o != null )
+      {
+         oid = o.getID();
+         hstr = oid == null ? "VOID" : oid.toString(); 
+      }
+      else
+         hstr = "VOID"; 
       hstr = "  ** terminating cycle sound: " + token + " / entity=" + hstr;
       logger.debug( hstr );
 //System.out.println( hstr );
       
-      if ( playing != null )
+      if ( dataline != null )
       {
-         playing.stop();
-         playing = null;
+         dataline.stop();
+         dataline = null;
       }
       executing = false;
+   }
+   
+   /** Temporarily ceases to perform sound playing. (May be resumed through
+    *  method <code>play()</code>.) */  
+   public void stopPlaying ()
+   {
+      stopped = true;
+   }
+   
+   /** Starts or resumes playing this sound cycle.
+    */
+   public void play ()
+   {
+      String hstr; 
+      
+      stopped = false;
+      if ( !isAlive() )
+      {
+         hstr = "  ** starting cycle sound: " + token + " / entity=?";
+         logger.debug( hstr );
+//   System.out.println( hstr );
+         executing = true;
+         start();
+      }
    }
    
    public void run ()
@@ -1061,10 +1167,13 @@ private static class SoundCycle extends Thread
          if ( !executing )
             return;
          
+         if ( stopped )
+            continue;
+         
          if ( (o = entityRef.get()) != null  )
          {
             logger.debug( "- start cyclic sound for entity: " + o.getType() + " / " + o.getSubType() );
-            playing = o.playSound( token, volBot, volTop, chance );
+            dataline = o.playSound( token, volBot, volTop, chance );
          }
          else
          {
@@ -1072,6 +1181,16 @@ private static class SoundCycle extends Thread
             terminate();
          }
       }
+   }
+   
+   /** Returns a full copy of this SoundCycle, which is not running.
+     */
+   public SoundCycle clone ()
+   {
+      SoundCycle c;
+      
+      c = new SoundCycle( entityRef.get(), token, period, volBot, volTop, chance );
+      return c;
    }
 }  // class SoundCycle
 
@@ -1081,21 +1200,28 @@ private static class SoundCycle extends Thread
  * sounds work as described in class SoundCycle. The ambient sound can be played 
  * global or fixed to a map location.  
  */
-public static class AmbientSound implements LineListener
+public static class AmbientSound 
 {
    private List<LoopSoundInfo> loopSounds = new ArrayList<LoopSoundInfo>(); 
-   private List<Clip> clipList = new ArrayList<Clip>();
+   private List<SoundCycle> cycleList = new ArrayList<SoundCycle>();
 
+   private String name;
+   private SoundObject soundObject;
    private Point2D soundPos;
    private Point2D playerPos;
+   private Rectangle2D playerHearing;
    private float loudnessDB;
    private boolean playing; 
    
-   private static class LoopSoundInfo
+   /** The LoopSoundInfo stores information which is required to start the 
+    *  continuously looping sound elements of this ambient sound. 
+    */
+   private static class LoopSoundInfo implements Cloneable
    {
       String name; 
       float loudnessDB;
       int delay;
+      Clip clip;
       
       public LoopSoundInfo ( String sound, int volume, int delay )
       {
@@ -1103,59 +1229,80 @@ public static class AmbientSound implements LineListener
          loudnessDB = dBValues[ volume ];
          this.delay = delay;
       }
+      
+      /** Returns a copy of this LoopSoundInfo with <code>clip</code> set
+       *  to <b>null</b> (clip not playing).
+       */   
+      public LoopSoundInfo clone ()
+      {
+         LoopSoundInfo si;
+         
+         try { 
+            si = (LoopSoundInfo)super.clone();
+            si.clip = null;
+         }
+         catch ( CloneNotSupportedException e )
+         { System.out.println("#### bad clone"); return null; }
+         
+         return si;
+      }
+      
+      public synchronized void stopClip ()
+      {
+         if ( clip != null )
+         {
+            clip.stop();
+            clip = null;
+         }
+      }
    }
    
    private class SoundStarter extends Thread
    {
-      private String sound;
-      private float loudnessDB, correctionDB;
-      private int delay;
-      private boolean isLoop;
-
-   /** Starts a one-time sound. */   
-   public SoundStarter ( String sound, float loudnessDB, int delay )
-   {
-      this.sound = sound;
-      this.delay = delay;
-      this.loudnessDB = loudnessDB;
-   }
-
-   /** Starts a looping sound. */   
-   public SoundStarter ( LoopSoundInfo loopInfo, float correctionDB )
-   {
-      this.sound = loopInfo.name;
-      this.delay = loopInfo.delay;
-      this.loudnessDB = loopInfo.loudnessDB;
-      this.correctionDB = correctionDB;
-      isLoop = true;
-   }
+      LoopSoundInfo soundInfo;
+      float correctionDB;
    
-   public void run ()
-   {
-      ClipRunner libClip;
-      Clip clip;
+      /** Starts a one-time sound.     
+      public SoundStarter ( String sound, float loudnessDB, int delay )
+      {
+         this.sound = sound;
+         this.delay = delay;
+         this.loudnessDB = loudnessDB;
+      }
+   */
+      /** Starts a looping sound. */   
+      public SoundStarter ( LoopSoundInfo loopInfo, float correctionDB )
+      {
+         this.soundInfo = loopInfo;
+         this.correctionDB = correctionDB;
+      }
       
-      // get the library sound clip
-      if ( (libClip = get().getSoundClip( sound )) == null )
-         throw new IllegalArgumentException( "sound unknown: " + sound );
-      
-      // handle delay phase request on sample start
-      if ( delay > 0 )
-         try { sleep( delay ); }
-         catch ( InterruptedException e )
-         {}
+      public void run ()
+      {
+         ClipRunner libClip;
          
-      // start playing
-      clip = libClip.getAudioClip( 100, loudnessDB + correctionDB );  
-      clip.addLineListener( AmbientSound.this );
-      if ( isLoop )
-         clip.loop( Clip.LOOP_CONTINUOUSLY );
-      else
-         clip.start();
-      
-      // store running clip in AmbientSound clipList
-      clipList.add( clip );
-   }
+         // get the library sound clip
+         if ( (libClip = get().getSoundClip( soundInfo.name )) == null )
+            throw new IllegalArgumentException( "sound unknown: " + soundInfo.name );
+         
+         // handle delay phase request on sample start
+         if ( soundInfo.delay > 0 )
+            try { sleep( soundInfo.delay ); }
+            catch ( InterruptedException e )
+            {}
+         
+         synchronized ( soundInfo )
+         {
+            // terminate an existing sound 
+            soundInfo.stopClip();
+               
+            // start playing
+            soundInfo.clip = libClip.getAudioClip( get().volumeSetting,  
+                  loudnessDB + soundInfo.loudnessDB + correctionDB );  
+            soundInfo.clip.loop( Clip.LOOP_CONTINUOUSLY );
+            playing = true;
+         }
+      }
    }  // SoundStarter
    
    /** 
@@ -1164,23 +1311,67 @@ public static class AmbientSound implements LineListener
     * 
     * @param volume int 0..100 loudness of ambient sound in total
     */
-   public AmbientSound ( int volume )
+   public AmbientSound ( String name, int volume )
    {
-      this( null, volume );
+      this( name, null, 0, volume );
    }
 
    /** 
-    * Creates an map localized ambient sound with the
+    * Creates a map-localized ambient sound with the
     * given overall volume setting. 
     * 
+    * @param name ambient sound name
     * @param point <code>Point2D</code> map location expressed in coordinate units
+    * @param radius audibility radius of sound object in coordinate units
     * @param volume int 0..100 loudness of ambient sound in total
     */
-   public AmbientSound ( Point2D point, int volume )
+   public AmbientSound ( String name, Point2D point, int radius, int volume )
    {
+      if ( name == null )
+         throw new NullPointerException();
+      
+      this.name = name;
       soundPos = point;
       loudnessDB = dBValues[ volume ];
-   }
+      
+      if ( soundPos != null )
+      {
+         soundObject = new SoundObject();
+         soundObject.setLocation( soundPos );
+         soundObject.setAudibleRange( radius );
+      }
+   }  // constructor
+
+   /** 
+    * Creates a map-localized ambient sound with the
+    * given settings and the sound composition taken from the parameter
+    * ambient sound. (The paradigm presets content equivalent to <code>addCycle()</code>
+    * and <code>addLoop()</code> calls.) 
+    * 
+    * @param sound <code>AmbientSound</code> as paradigm for sound composition 
+    * @param name ambient sound name
+    * @param point <code>Point2D</code> map location expressed in coordinate units
+    * @param radius audibility radius of sound object in coordinate units
+    * @param volume int 0..100 loudness of ambient sound in total
+    */
+   public AmbientSound ( AmbientSound sound, String name, 
+         Point2D point, int radius, int volume )
+   {
+      this( name, point, radius, volume );
+      
+      for( LoopSoundInfo c : sound.loopSounds )
+         loopSounds.add( c.clone() );
+      
+      for( SoundCycle c : sound.cycleList )
+      {
+         SoundCycle cycle = c.clone();
+         cycle.entityRef = new WeakReference<Entity>( soundObject );
+         cycleList.add( cycle );
+      }
+      
+      System.out.println( "-- created AMBIENT: " + name + " " + loopSounds.size() + 
+            " loops, " + cycleList.size() + " cycles" ); 
+   }  // constructor
 
    /** This adds a loop sound to the ambient sound definition.
     *  
@@ -1191,7 +1382,6 @@ public static class AmbientSound implements LineListener
    public void addLoop ( String sound, int volume, int delay )
    {
       SoundSystem sys;
-      ClipRunner clip;
       LoopSoundInfo info;
       
       sys = get();
@@ -1203,14 +1393,53 @@ public static class AmbientSound implements LineListener
       
       info = new LoopSoundInfo( sound, volume, delay );
       loopSounds.add( info );
+   }  // addLoop
+   
+   public void addCycle ( 
+         String token, 
+         int period,
+         int volBot,
+         int volTop,
+         int chance
+         )
+   {
+      SoundCycle cycle;
+      
+      // sorry, no cycles if not localized
+      if ( soundObject == null )
+         return;
+      
+      cycle = new SoundCycle( soundObject, token, period, volBot, volTop, chance );
+      cycleList.add( cycle );
+   }  // addCycle
+   
+   private boolean canPlay ()
+   {
+      return soundPos == null || (playerHearing.contains( soundPos ) && 
+             soundObject.getAudibleArea().contains( playerPos ));
    }
    
    /** Starts playing this ambient sound. This will take required actions, 
-    * if this ambient sound is not yet playing, to make it audible relative
-    * to the player's position. This does nothing if this sound is already
-    * playing.
+    * if this ambient sound is not yet playing, to make it audible, global or
+    * relative to the player's position depending on this sound's initializer. 
+    * This does nothing if this sound is already playing.  Playing is suppressed
+    * if sound position is outside the hearing range of the player.  
     */
-   public void play ()
+   protected void play ()
+   {
+      play( getPlayer() );
+   }
+   
+   /** Starts playing this ambient sound with the given player's
+    * hearing parameters. This will take required actions, 
+    * if this ambient sound is not yet playing, to make it audible, global or
+    * relative to the player's position depending on this sound's initializer. 
+    * This does nothing if this sound is already playing. Playing is suppressed
+    * if sound position is outside the hearing range of the player.  
+    * 
+    * @param player the client player object
+    */
+   protected void play ( Player player )
    {
       LoopSoundInfo soundInfo;
       Iterator it;
@@ -1220,82 +1449,225 @@ public static class AmbientSound implements LineListener
          return;
       
       stop();
-      
-      fogDB = getPlayerVolume();
-      synchronized( clipList )
+
+      // if map-localized
+      if ( soundPos != null )
       {
+         // adjust to player settings
+         if ( player != null )
+         {
+            playerPos = player.getPosition();
+            playerHearing = player.getHearingArea();
+            
+            // return if sound object is out of range
+            if ( !canPlay() )
+               return;
+         }
+         // return undone if no player 
+         else 
+            return;
+      }         
+      
+      // create and start loop sounds
+      synchronized( loopSounds )
+      {
+         fogDB = getPlayerVolume();
          for ( it = loopSounds.iterator(); it.hasNext(); )
          {
             soundInfo = (LoopSoundInfo)it.next();
-            new SoundStarter( soundInfo, loudnessDB + fogDB ).start();
+            new SoundStarter( soundInfo, fogDB ).start();
          }
-         playing = true;
       }
+      
+      // start cycle sounds
+      for ( SoundCycle c : cycleList )
+      {
+         c.play();
+      }
+
+      playing = true;
+System.out.println( "- playing ambient: " + name );          
    }  // play
 
-   /** Stops playing this ambient sound. */
-   public void stop ()
+   /** (Temporarily) stops playing this ambient sound. */
+   protected void stop ()
    {
       Iterator it;
       
-      synchronized( clipList )
+      if ( !playing )
+         return;
+      
+      // terminate loop sounds
+      synchronized( loopSounds )
       {
-         for ( it = clipList.iterator(); it.hasNext(); )
+         for ( it = loopSounds.iterator(); it.hasNext(); )
          {
-            ((Clip)it.next()).stop();
+            ((LoopSoundInfo)it.next()).stopClip();
          }
-         playing = false;
       }
-   }
+      
+      // stop cycle sounds
+      for ( it = cycleList.iterator(); it.hasNext(); )
+      {
+         ((SoundCycle)it.next()).stopPlaying();
+      }
+
+      playing = false;
+System.out.println( "- stopped ambient: " + name );          
+   }  // stop
+   
+   /** Unrevokably terminates this ambient sound. */
+   public void terminate ()
+   {
+      SoundSystem sys;
+      Iterator it;
+      
+      sys = get();
+      stop();
+
+      // terminate cycle sounds
+      for ( it = cycleList.iterator(); it.hasNext(); )
+      {
+         ((SoundCycle)it.next()).terminate();
+      }
+      
+      // clear internal sound lists
+      loopSounds.clear();
+      cycleList.clear();
+      
+      // remove this object from sound system
+      synchronized( sys.ambientList )
+      {
+         sys.ambientList.remove( this );
+      }
+      
+System.out.println( "- terminated ambient: " + name );          
+   }  // terminate
    
    /** Returns the sound volume for this ambient sound relative to the 
-    * current player position (fog correction value).
+    *  current player position (fog correction value). Returns 0.0 if
+    *  this sound is not map-localized.
     * 
-    * @return float dB correction of loudness
+    *  @return float dB correction of loudness
     */ 
    private float getPlayerVolume ()
    {
-      return 0;
-   }
+      double distance, maxDist;
+      int fogVolume;
+      
+      // if the sound is global (no position)
+      if ( soundPos == null )
+         return 0;
+
+      // if the sound is map localized
+      else
+      {
+         // maximum fog if no player infos available 
+         if ( playerPos == null | playerHearing == null )
+         {
+//    System.out.println( "ambient (" + name + ") fog volume: 0 (player unavailable)" );       
+            return dBValues[ 0 ];
+         }
+         
+         // determine sound volume cutoff due to distance (fog value)
+         distance = soundPos.distance( playerPos );
+         maxDist = playerHearing.getWidth()/2;
+//   System.out.println("ambient player hearing radius: " + maxDist );       
+         fogVolume = Math.max(0, (int)(95 * (maxDist - distance) / maxDist + 5) );
+//   System.out.println( "ambient (" + name + ") fog volume: dist=" + (int)distance + ", fog=" + fogVolume );
+         return dBValues[ fogVolume ];
+      }
+   }  // getPlayerVolume
    
    /** 
-    * Informs this ambient sound about the actual player's position.
-    * (This is required to adjust sound fog loudness.)
+    * Informs this ambient sound about the actual player's position
+    * and hearing parameters. Does nothing if player is <b>null</b>
+    * or the sound is not map-localized.
+    * (Otherwise this will adjust sound fog loudness.)
     * 
-    * @param position actual player position in coordinate units
+    * @param player client player object (may be <b>null</b>
     */
-   public void performPlayerPosition ( Point2D position )
+   public void performPlayerMoved ( Player player )
    {
       SoundSystem sys;
-      Clip clip;
-      Iterator it;
-      boolean wasPlaying;
       
       // operation control
       sys = SoundSystem.get();
-      if ( !sys.isOperative() | sys.getMute() )
+      if ( !sys.isOperative() | sys.getMute() | player == null | soundPos == null )
          return;
       
-      // detect player distance and loudness fog value
+      // if not yet playing, start playing 
+      if ( !playing )
+         play( player );
       
-      
-      //  
-      wasPlaying = playing;
-      play();
-      
-      // detect player distance and loudness fog value
-      
-      for ( it = clipList.iterator(); it.hasNext(); )
+      // if playing, correct loudness/status of clips
+      else
       {
-         clip = ((Clip)it.next());
+         // set new player parameters
+         playerPos = player.getPosition();
+         playerHearing = player.getHearingArea();
          
+         // decide on stopping to play (when sound object has moved out of range)
+         if ( !canPlay() )
+         {
+            stop();
+         }
+         // or updating sound loudness
+         else
+         {
+            updateVolume();
+         }
       }
-      
    }  // performPlayerPosition
+   
+   public void updateVolume ()
+   {
+      FloatControl volCtrl;
+      LoopSoundInfo info;
+      Iterator it;
+      float fogDB;
+      
+      // detect player loudness fog value
+      fogDB = getPlayerVolume();
+      
+      // set corrected volume to all running clips
+      synchronized( loopSounds )
+      {
+         for ( it = loopSounds.iterator(); it.hasNext(); )
+         {
+            info = ((LoopSoundInfo)it.next());
+            if ( info.clip != null )
+            {
+               volCtrl = (FloatControl) info.clip.getControl( FloatControl.Type.MASTER_GAIN );
+               volCtrl.setValue( get().volumeDelta + loudnessDB + info.loudnessDB + fogDB );
+            }
+         }
+      }
+   }  // updateVolume
+
+   /** Returns the game Player object or <b>null</b> if unavailable or
+    *  the sound is not map-localized.
+    *   
+    *  @return Player object
+    */
+   private Player getPlayer ()
+   {
+      Player player = null;
+      RPObject playerObj; 
+      
+      // try to obtain player parameters if relative playing is ordered
+      if ( soundPos != null )
+      {
+         if ( (playerObj = StendhalClient.get().getPlayer()) != null )
+            player = (Player) StendhalClient.get().getGameObjects().get(playerObj.getID());
+      }
+      return player;
+   }
    
    /* 
     * Overridden: @see javax.sound.sampled.LineListener#update(javax.sound.sampled.LineEvent)
     */
+/*   
    public void update ( LineEvent event )
    {
       Line clip;
@@ -1305,11 +1677,197 @@ public static class AmbientSound implements LineListener
       {
          clip = ((Line)event.getSource()); 
          clip.close();
-         clipList.remove( clip );
       }
    }
-
+*/
 
 }  // class AmbientSound
+
+private static class AmbientStore
+{
+   static Point2D soundPos = new Point2D.Double( 0, 0 ); 
+ 
+   
+   public static AmbientSound getAmbient ( String name )
+   {
+      AmbientSound ambient = null;
+      
+      if ( name.equals( "wind-tree-1" ) )
+      {
+         ambient = new SoundSystem.AmbientSound( 
+               name, soundPos, 100, 100 );
+         ambient.addLoop( "wind-loop-1", 25, 0 );
+         ambient.addLoop( "wind-loop-1", 25, 500 );
+         ambient.addLoop( "wind-loop-2", 50, 0 );
+         ambient.addCycle( "treecreak-1", 25000, 10, 30, 100 );
+      }
+      
+      else if ( name.equals( "water-beach-1" ) )
+      {
+         ambient = new SoundSystem.AmbientSound( 
+               name, soundPos, 100, 100 );
+         ambient.addCycle( "water-splash-1", 20000, 10, 35, 75 );
+         ambient.addCycle( "water-splash-2", 60000, 10, 50, 80 );
+         ambient.addCycle( "water-wave-1", 60000, 10, 30, 80 );
+      }
+      
+      else if ( name.equals( "meadow-larks-1" ) )
+      {
+         ambient = new SoundSystem.AmbientSound( 
+               name, soundPos, 100, 100 );
+         ambient.addCycle( "lark-1", 120000, 10, 40, 80 );
+         ambient.addCycle( "lark-2", 120000, 10, 40, 80 );
+      }
+      
+      else if ( name.equals( "water-flow-1" ) )
+      {
+         ambient = new SoundSystem.AmbientSound( 
+               name, soundPos, 100, 100 );
+         ambient.addLoop( "water-flow-1", 50, 0 );
+      }
+      
+
+      return ambient;
+   }
+}  // class AmbientStore
+
+private String actualZone = "";
+
+/* 
+ * Overridden: @see games.stendhal.client.WorldObjects.WorldListener#zoneEntered(java.lang.String)
+ */
+public void zoneEntered ( String zone )
+{
+   AmbientSound baseAmb, ambient;
+   Point2D soundPos;
+   
+   System.out.println( "-- SoundSys: ZONE ENTERED: " + zone ); 
+   actualZone = zone;
+   
+   if ( zone.equals( "0_semos_village" ) )
+   {
+      // creaking tree and wind
+      ambient = AmbientStore.getAmbient( "wind-tree-1" );
+      
+      soundPos = new Point2D.Double( 13, 42 ); 
+      ambient = new SoundSystem.AmbientSound( ambient, 
+            "semos-village-tree", soundPos, 30, 25 );
+      SoundSystem.playAmbientSound( ambient );
+   
+      // larks
+      baseAmb = AmbientStore.getAmbient( "meadow-larks-1" );
+
+      soundPos = new Point2D.Double( 50, 16 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "semos-village-larks-1", soundPos, 30, 50 );
+      SoundSystem.playAmbientSound( ambient );
+      
+   }
+   else if ( zone.equals( "int_semos_blacksmith" ) )
+   {
+      
+      soundPos = new Point2D.Double( 11, 3 ); 
+      ambient = new SoundSystem.AmbientSound( 
+            "blacksmith-forgefire-main", soundPos, 30, 50 );
+      ambient.addLoop( "forgefire-1", 50, 0 );
+//      ambient.addLoop( "wind-loop-1", 25, 0 );
+      ambient.addCycle( "firesparks-1", 60000, 10, 50, 80 );
+      SoundSystem.playAmbientSound( ambient );
+      
+      soundPos = new Point2D.Double( 3, 3 );
+      ambient = new SoundSystem.AmbientSound( 
+            "blacksmith-forgefire-side", soundPos, 6, 50 );
+      ambient.addLoop( "forgefire-2", 50, 0 );
+      ambient.addLoop( "forgefire-3", 50, 0 );
+      SoundSystem.playAmbientSound( ambient );
+      
+   }
+   else if ( zone.equals( "0_semos_road_ados" ) )
+   {
+      // creaking tree and wind
+      baseAmb = AmbientStore.getAmbient( "wind-tree-1" );
+
+      soundPos = new Point2D.Double( 10, 45 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "road-ados-tree-1", soundPos, 30, 30 );
+      SoundSystem.playAmbientSound( ambient );
+
+      soundPos = new Point2D.Double( 54, 59 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "road-ados-tree-2", soundPos, 100, 50 );
+      SoundSystem.playAmbientSound( ambient );
+
+      soundPos = new Point2D.Double( 65, 31 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "road-ados-tree-3", soundPos, 100, 30 );
+      SoundSystem.playAmbientSound( ambient );
+
+      // beach water
+      baseAmb = AmbientStore.getAmbient( "water-beach-1" );
+
+      soundPos = new Point2D.Double( 32, 46 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "road-ados-beachwater-1", soundPos, 7, 25 );
+      SoundSystem.playAmbientSound( ambient );
+
+      soundPos = new Point2D.Double( 43, 47 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "road-ados-beachwater-2", soundPos, 7, 25 );
+      SoundSystem.playAmbientSound( ambient );
+
+      soundPos = new Point2D.Double( 32, 55 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "road-ados-beachwater-3", soundPos, 12, 35 );
+      SoundSystem.playAmbientSound( ambient );
+
+      // larks
+      baseAmb = AmbientStore.getAmbient( "meadow-larks-1" );
+
+      soundPos = new Point2D.Double( 15, 15 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "road-ados-larks-1", soundPos, 30, 50 );
+      SoundSystem.playAmbientSound( ambient );
+      
+      soundPos = new Point2D.Double( 32, 33 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "road-ados-larks-2", soundPos, 30, 50 );
+      SoundSystem.playAmbientSound( ambient );
+
+      // water at bridge
+      baseAmb = AmbientStore.getAmbient( "water-flow-1" );
+
+      soundPos = new Point2D.Double( 47, 47 ); 
+      ambient = new SoundSystem.AmbientSound( baseAmb, 
+            "road-ados-bridge-1", soundPos, 3, 50 );
+      SoundSystem.playAmbientSound( ambient );
+      
+   }
+}
+
+/* 
+ * Overridden: @see games.stendhal.client.WorldObjects.WorldListener#zoneLeft(java.lang.String)
+ */
+public void zoneLeft ( String zone )
+{
+   System.out.println( "-- SoundSys: ZONE LEFT: " + zone ); 
+   if ( zone.equals( actualZone ) )
+      clearAmbientSounds();
+}
+
+/* 
+ * Overridden: @see games.stendhal.client.WorldObjects.WorldListener#playerMoved(games.stendhal.client.entity.Player)
+ */
+public void playerMoved ( Player player )
+{
+   // update ambient sounds about player position
+   synchronized ( ambientList )
+   {
+//System.out.println( "player moved to: " + (int)player.getx() + ", " + (int)player.gety() ); 
+      for ( AmbientSound a : ambientList )
+      {
+         a.performPlayerMoved( player );
+      }
+   }
+}
 
 }
