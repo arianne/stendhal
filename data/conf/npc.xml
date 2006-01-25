@@ -21,7 +21,7 @@
 <data>
 
 	<npc name="Carmen">
-		<type class="npc" subclass="welcommernpc">
+		<type class="npc" subclass="welcommernpc"/>
 		<attributes>
 			<attribute name="hp" value="100"/>
 			<attribute name="atk" value="0"/>
@@ -60,7 +60,7 @@
 	</npc>
 
 	<npc name="Margaret">
-		<type class="npc" subclass="tavernbarmaidnpc">
+		<type class="npc" subclass="tavernbarmaidnpc"/>
 		<attributes>
 			<attribute name="hp" value="100"/>
 			<attribute name="atk" value="0"/>
@@ -99,7 +99,7 @@
 	</npc>
 
 	<npc name="Xin Blanca">
-		<type class="npc" subclass="weaponsellernpc">
+		<type class="npc" subclass="weaponsellernpc"/>
 		<attributes>
 			<attribute name="hp" value="100"/>
 			<attribute name="atk" value="0"/>
@@ -135,14 +135,14 @@
 <!-- Shoplist, maybe we should put this in it's own xml file -->
 
 	<shop name="semos_tavern_drinks">
-		<type class="shop" subclass="semos_tavern_drinks">
+		<type class="shop" subclass="semos_tavern_drinks"/>
 		<selllist>
 			<add item="beer" price="10" />
 			<add item="wine" price="15"/>
 		</selllist>
 	</shop>
 	<shop name="semos_tavern_food">
-		<type class="shop" subclass="semos_tavern_food">
+		<type class="shop" subclass="semos_tavern_food"/>
 		<selllist>
 			<add item="cheese" price="20" />
 			<add item="meat" price="40"/>
@@ -151,7 +151,7 @@
 	</shop>
 
 	<shop name="semos_adventurers_shop">
-		<type class="shop" subclass="semos_adventurers_shop">
+		<type class="shop" subclass="semos_adventurers_shop"/>
 		<selllist>
 			<add item="knife" price="15" />
 			<add item="small_axe" price="15"/>

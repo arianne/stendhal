@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
 <!--
 items.xml 
 This file contains all the data about objects in the game,it's divided 
@@ -42,7 +40,7 @@ in the file.
 	<item name="knife">
 		<type class="sword" subclass="knife"/>
 		<attributes>
-		<atk value="7"/>
+		<attribute name="atk" value="7"/>
 		</attributes>
 		<weight value="0.2"/>
 		<equipable>
@@ -55,7 +53,7 @@ in the file.
 	<item name="dagger">
 		<type class="sword" subclass="dagger"/>
 		<attributes>
-			<atk value="8"/>
+			<attribute name="atk" value="8"/>
 		</attributes>
 		<weight value="0.2"/>
 		<equipable>
@@ -68,7 +66,7 @@ in the file.
 	<item name="short_sword">
 		<type class="sword" subclass="short_sword"/>
 		<attributes>
-			<atk value="11"/>
+			<attribute name="atk" value="11"/>
 		</attributes>
 		<weight value="2"/>
 		<equipable>
@@ -81,7 +79,7 @@ in the file.
 	<item name="sword">
 		<type class="sword" subclass="sword"/>
 		<attributes>
-			<atk value="14"/>
+			<attribute name="atk" value="14"/>
 		</attributes>
 		<weight value="4"/>
 		<equipable>
@@ -94,7 +92,7 @@ in the file.
 	<item name="katana">
 		<type class="sword" subclass="katana"/>
 		<attributes>
-			<atk value="16"/>
+			<attribute name="atk" value="16"/>
 		</attributes>
 		<weight value="4"/>
 		<equipable>
@@ -109,7 +107,7 @@ in the file.
 	<item name="small_axe">
 		<type class="axe" subclass="small_axe"/>
 		<attributes>
-			<atk value="7"/>
+			<attribute name="atk" value="7"/>
 		</attributes>
 		<weight value="0.5"/>
 		<equipable>
@@ -122,7 +120,7 @@ in the file.
 	<item name="hand_axe">
 		<type class="axe" subclass="hand_axe"/>
 		<attributes>
-			<atk value="9"/>
+			<attribute name="atk" value="9"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -135,7 +133,7 @@ in the file.
 	<item name="axe">
 		<type class="axe" subclass="axe"/>
 		<attributes>
-			<atk value="12"/>
+			<attribute name="atk" value="12"/>
 		</attributes>
 		<weight value="3"/>
 		<equipable>
@@ -148,7 +146,7 @@ in the file.
 	<item name="battle_axe">
 		<type class="axe" subclass="battle_axe"/>
 		<attributes>
-			<atk value="15"/>
+			<attribute name="atk" value="15"/>
 		</attributes>
 		<weight value="3"/>
 		<equipable>
@@ -163,7 +161,7 @@ in the file.
 	<item name="club">
 		<type class="club" subclass="club"/>
 		<attributes>
-			<atk value="6"/>
+			<attribute name="atk" value="6"/>
 		</attributes>
 		<weight value="2"/>
 		<equipable>
@@ -176,7 +174,7 @@ in the file.
 	<item name="staff">
 		<type class="club" subclass="staff"/>
 		<attributes>
-			<atk value="9"/>
+			<attribute name="atk" value="9"/>
 		</attributes>
 		<weight value="4"/>
 		<equipable>
@@ -189,7 +187,7 @@ in the file.
 	<item name="mace">
 		<type class="club" subclass="mace"/>
 		<attributes>
-			<atk value="12"/>
+			<attribute name="atk" value="12"/>
 		</attributes>
 		<weight value="8"/>
 		<equipable>
@@ -202,8 +200,8 @@ in the file.
 	<item name="skull_staff">
 		<type class="club" subclass="skull_staff"/>
 		<attributes>
-			<atk value="14"/>
-			<def value="1"/>
+			<attribute name="atk" value="14"/>
+			<attribute name="def" value="1"/>
 		</attributes>
 		<weight value="8"/>
 		<equipable>
@@ -219,7 +217,7 @@ in the file.
 	<item name="bow">
 		<type class="range" subclass="bow"/>
 		<attributes>
-			<atk value="12"/>
+			<attribute name="atk" value="12"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -238,8 +236,8 @@ in the file.
 		<type class="projectile" subclass="wooden_arrow"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<atk value="1"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="atk" value="1"/>
 		</attributes>
 		<weight value="0.1"/>
 		<equipable>
@@ -256,7 +254,7 @@ in the file.
 	<item name="wooden_shield">
 		<type class="shield" subclass="wooden_shield"/>
 		<attributes>
-			<def value="10"/>
+			<attribute name="def" value="10"/>
 		</attributes>
 		<weight value="12"/>
 		<equipable>
@@ -269,7 +267,7 @@ in the file.
 	<item name="studded_shield">
 		<type class="shield" subclass="studded_shield"/>
 		<attributes>
-			<def value="12"/>
+			<attribute name="def" value="12"/>
 		</attributes>
 		<weight value="15"/>
 		<equipable>
@@ -282,7 +280,7 @@ in the file.
 	<item name="plate_shield">
 		<type class="shield" subclass="plate_shield"/>
 		<attributes>
-			<def value="14"/>
+			<attribute name="def" value="14"/>
 		</attributes>
 		<weight value="24"/>
 		<equipable>
@@ -298,7 +296,7 @@ in the file.
 	<item name="dress">
 		<type class="armor" subclass="dress"/>
 		<attributes>
-			<def value="1"/>
+			<attribute name="def" value="1"/>
 		</attributes>
 		<weight value="5"/>
 		<equipable>
@@ -310,7 +308,7 @@ in the file.
 	<item name="leather_armor">
 		<type class="armor" subclass="leather_armor"/>
 		<attributes>
-			<def value="3"/>
+			<attribute name="def" value="3"/>
 		</attributes>
 		<weight value="15"/>
 		<equipable>
@@ -321,7 +319,7 @@ in the file.
 	<item name="studded_armor">
 		<type class="armor" subclass="studded_armor"/>
 		<attributes>
-			<def value="4"/>
+			<attribute name="def" value="4"/>
 		</attributes>
 		<weight value="25"/>
 		<equipable>
@@ -333,7 +331,7 @@ in the file.
 	<item name="chain_armor">
 		<type class="armor" subclass="chain_armor"/>
 		<attributes>
-			<def value="6"/>
+			<attribute name="def" value="6"/>
 		</attributes>
 		<weight value="45"/>
 		<equipable>
@@ -348,7 +346,7 @@ in the file.
 	<item name="leather_helmet">
 		<type class="helmet" subclass="leather_helmet"/>
 		<attributes>
-			<def value="1"/>
+			<attribute name="def" value="1"/>
 		</attributes>
 		<weight value="2"/>
 		<equipable>
@@ -360,7 +358,7 @@ in the file.
 	<item name="studded_helmet">
 		<type class="helmet" subclass="studded_helmet"/>
 		<attributes>
-			<def value="2"/>
+			<attribute name="def" value="2"/>
 		</attributes>
 		<weight value="3"/>
 		<equipable>
@@ -372,7 +370,7 @@ in the file.
 	<item name="chain_helmet">
 		<type class="helmet" subclass="chain_helmet"/>
 		<attributes>
-			<def value="4"/>
+			<attribute name="def" value="4"/>
 		</attributes>
 		<weight value="6"/>
 		<equipable>
@@ -387,7 +385,7 @@ in the file.
 	<item name="leather_legs">
 		<type class="legs" subclass="leather_legs"/>
 		<attributes>
-			<def value="1"/>
+			<attribute name="def" value="1"/>
 		</attributes>
 		<weight value="10"/>
 		<equipable>
@@ -399,7 +397,7 @@ in the file.
 	<item name="studded_legs">
 		<type class="legs" subclass="studded_legs"/>
 		<attributes>
-			<def value="2"/>
+			<attribute name="def" value="2"/>
 		</attributes>
 		<weight value="12"/>
 		<equipable>
@@ -411,7 +409,7 @@ in the file.
 	<item name="chain_legs">
 		<type class="legs" subclass="chain_legs"/>
 		<attributes>
-			<def value="4"/>
+			<attribute name="def" value="4"/>
 		</attributes>
 		<weight value="15"/>
 		<equipable>
@@ -426,7 +424,7 @@ in the file.
 	<item name="leather_boots">
 		<type class="boots" subclass="leather_boots"/>
 		<attributes>
-			<def value="1"/>
+			<attribute name="def" value="1"/>
 		</attributes>
 		<weight value="2"/>
 		<equipable>
@@ -439,7 +437,7 @@ in the file.
 	<item name="studded_boots">
 		<type class="boots" subclass="studded_boots"/>
 		<attributes>
-			<def value="2"/>
+			<attribute name="def" value="2"/>
 		</attributes>
 		<weight value="5"/>
 		<equipable>
@@ -451,7 +449,7 @@ in the file.
 	<item name="chain_boots">
 		<type class="boots" subclass="chain_boots"/>
 		<attributes>
-			<def value="4"/>
+			<attribute name="def" value="4"/>
 		</attributes>
 		<weight value="10"/>
 		<equipable>
@@ -467,10 +465,10 @@ in the file.
 		<type class="food" subclass="cherry"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="10"/>
-			<regen value="2"/>
-			<frequency value="15"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="10"/>
+			<attribute name="regen" value="2"/>
+			<attribute name="frequency" value="15"/>
 		</attributes>
 		<weight value="0.1"/>
 		<equipable>
@@ -482,10 +480,10 @@ in the file.
 		<type class="food" subclass="cheese"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="20"/>
-			<regen value="1"/>
-			<frequency value="20"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="20"/>
+			<attribute name="regen" value="1"/>
+			<attribute name="frequency" value="20"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -497,10 +495,10 @@ in the file.
 		<type class="food" subclass="carrot"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="30"/>
-			<regen value="2"/>
-			<frequency value="20"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="30"/>
+			<attribute name="regen" value="2"/>
+			<attribute name="frequency" value="20"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -512,10 +510,10 @@ in the file.
 		<type class="food" subclass="apple"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="20"/>
-			<regen value="3"/>
-			<frequency value="30"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="20"/>
+			<attribute name="regen" value="3"/>
+			<attribute name="frequency" value="30"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -527,10 +525,10 @@ in the file.
 		<type class="food" subclass="meat"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="60"/>
-			<regen value="5"/>
-			<frequency value="30"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="60"/>
+			<attribute name="regen" value="5"/>
+			<attribute name="frequency" value="30"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -542,10 +540,10 @@ in the file.
 		<type class="food" subclass="ham"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="80"/>
-			<regen value="6"/>
-			<frequency value="30"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="80"/>
+			<attribute name="regen" value="6"/>
+			<attribute name="frequency" value="30"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -572,10 +570,10 @@ in the file.
 		<type class="drink" subclass="beer"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="6"/>
-			<regen value="1"/>
-			<frequency value="5"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="6"/>
+			<attribute name="regen" value="1"/>
+			<attribute name="frequency" value="5"/>
 <!--			<attribute name="alcoholic" value="5"/> -->
 		</attributes>
 		<weight value="1"/>
@@ -588,10 +586,10 @@ in the file.
 		<type class="drink" subclass="wine"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="10"/>
-			<regen value="2"/>
-			<frequency value="5"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="10"/>
+			<attribute name="regen" value="2"/>
+			<attribute name="frequency" value="5"/>
 <!--			<attribute name="alcoholic" value="10"/> -->
 		</attributes>
 		<weight value="1"/>
@@ -604,10 +602,10 @@ in the file.
 		<type class="drink" subclass="minor_potion"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="50"/>
-			<regen value="50"/>
-			<frequency value="1"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="50"/>
+			<attribute name="regen" value="50"/>
+			<attribute name="frequency" value="1"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -619,10 +617,10 @@ in the file.
 		<type class="drink" subclass="antidote"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="400"/>
-			<regen value="0"/>
-			<frequency value="1"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="400"/>
+			<attribute name="regen" value="0"/>
+			<attribute name="frequency" value="1"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -634,10 +632,10 @@ in the file.
 		<type class="drink" subclass="potion"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="100"/>
-			<regen value="100"/>
-			<frequency value="1"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="100"/>
+			<attribute name="regen" value="100"/>
+			<attribute name="frequency" value="1"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -649,10 +647,10 @@ in the file.
 		<type class="drink" subclass="greater_potion"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="300"/>
-			<regen value="300"/>
-			<frequency value="1"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="300"/>
+			<attribute name="regen" value="300"/>
+			<attribute name="frequency" value="1"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -664,10 +662,10 @@ in the file.
 		<type class="drink" subclass="poison"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="-40"/>
-			<regen value="-2"/>
-			<frequency value="30"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="-40"/>
+			<attribute name="regen" value="-2"/>
+			<attribute name="frequency" value="30"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -679,10 +677,10 @@ in the file.
 		<type class="drink" subclass="greater_poison"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
-			<amount value="-60"/>
-			<regen value="-3"/>
-			<frequency value="15"/>
+			<attribute name="quantity" value="1"/>
+			<attribute name="amount" value="-60"/>
+			<attribute name="regen" value="-3"/>
+			<attribute name="frequency" value="15"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -697,7 +695,7 @@ in the file.
 		<type class="money" subclass="gold"/>
 		<stackable/>
 		<attributes>
-			<quantity value="1"/>
+			<attribute name="quantity" value="1"/>
 		</attributes>
 		<weight value="0.01"/>
 		<equipable>
@@ -718,8 +716,8 @@ the right click menu we talked about before.
 	<item name="rod_of_the_gm">
 		<type class="club" subclass="rod_of_the_gm"/>
 		<attributes>
-			<atk value="100"/>
-			<def value="100"/>
+			<attribute name="atk" value="100"/>
+			<attribute name="def" value="100"/>
 		</attributes>
 		<weight value="0.01"/>
 		<equipable>

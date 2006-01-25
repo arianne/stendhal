@@ -356,60 +356,60 @@ public class TileRenderer
     // Interior_1 = 3463 - 3942
 
     // Blacksmith fire (small), Top
-    addAnimatedTile(3560,new int[]{3560,3561,3562,3561});
-    addAnimatedTile(3561,new int[]{3560,3561,3562,3561});
-    addAnimatedTile(3562,new int[]{3560,3561,3562,3561});
+    addAnimatedTile(3560,new int[]{3560,3660,3561,3561,3562,3562,3561,3561});
+    addAnimatedTile(3561,new int[]{3560,3660,3561,3561,3562,3562,3561,3561});
+    addAnimatedTile(3562,new int[]{3560,3660,3561,3561,3562,3562,3561,3561});
 
     // Blacksmith fire (small), Bottom
-    addAnimatedTile(3590,new int[]{3590,3591,3592,3591});
-    addAnimatedTile(3591,new int[]{3590,3591,3592,3591});
-    addAnimatedTile(3592,new int[]{3590,3591,3592,3591});
+    addAnimatedTile(3590,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
+    addAnimatedTile(3591,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
+    addAnimatedTile(3592,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
 
     
     // Blacksmith fire (large), Top Left
-    addAnimatedTile(3558,new int[]{3558,3648,3738,3648});
-    addAnimatedTile(3648,new int[]{3558,3648,3738,3648});
-    addAnimatedTile(3738,new int[]{3558,3648,3738,3648});
+    addAnimatedTile(3558,new int[]{3558,3558,3648,3648,3738,3738,3648,3648});
+    addAnimatedTile(3648,new int[]{3558,3558,3648,3648,3738,3738,3648,3648});
+    addAnimatedTile(3738,new int[]{3558,3558,3648,3648,3738,3738,3648,3648});
 
     // Blacksmith fire (large), Top 
-    addAnimatedTile(3559,new int[]{3559,3649,3739,3649});
-    addAnimatedTile(3649,new int[]{3559,3649,3739,3649});
-    addAnimatedTile(3739,new int[]{3559,3649,3739,3649});
+    addAnimatedTile(3559,new int[]{3559,3559,3649,3649,3739,3739,3649,3649});
+    addAnimatedTile(3649,new int[]{3559,3559,3649,3649,3739,3739,3649,3649});
+    addAnimatedTile(3739,new int[]{3559,3559,3649,3649,3739,3739,3649,3649});
 
     // Blacksmith fire (large), Top Right
-    addAnimatedTile(3560,new int[]{3560,3650,3740,3650});
-    addAnimatedTile(3650,new int[]{3560,3650,3740,3650});
-    addAnimatedTile(3740,new int[]{3560,3650,3740,3650});
+    addAnimatedTile(3560,new int[]{3560,3560,3650,3650,3740,3740,3650,3650});
+    addAnimatedTile(3650,new int[]{3560,3560,3650,3650,3740,3740,3650,3650});
+    addAnimatedTile(3740,new int[]{3560,3560,3650,3650,3740,3740,3650,3650});
 
     // Blacksmith fire (large), Left
-    addAnimatedTile(3588,new int[]{3588,3678,3768,3678});
-    addAnimatedTile(3678,new int[]{3588,3678,3768,3678});
-    addAnimatedTile(3768,new int[]{3588,3678,3768,3678});
+    addAnimatedTile(3588,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
+    addAnimatedTile(3678,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
+    addAnimatedTile(3768,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
 
     // Blacksmith fire (large), Center
-    addAnimatedTile(3589,new int[]{3589,3679,3769,3679});
-    addAnimatedTile(3679,new int[]{3589,3679,3769,3679});
-    addAnimatedTile(3769,new int[]{3589,3679,3769,3679});
+    addAnimatedTile(3589,new int[]{3589,3589,3679,3679,3769,3769,3679,3679});
+    addAnimatedTile(3679,new int[]{3589,3589,3679,3679,3769,3769,3679,3679});
+    addAnimatedTile(3769,new int[]{3589,3589,3679,3679,3769,3769,3679,3679});
 
     // Blacksmith fire (large), Right
-    addAnimatedTile(3590,new int[]{3590,3680,3770,3680});
-    addAnimatedTile(3680,new int[]{3590,3680,3770,3680});
-    addAnimatedTile(3770,new int[]{3590,3680,3770,3680});
+    addAnimatedTile(3590,new int[]{3590,3590,3680,3680,3770,3770,3680,3680});
+    addAnimatedTile(3680,new int[]{3590,3590,3680,3680,3770,3770,3680,3680});
+    addAnimatedTile(3770,new int[]{3590,3590,3680,3680,3770,3770,3680,3680});
 
     // Blacksmith fire (large), Bottom Left
-    addAnimatedTile(3618,new int[]{3618,3708,3798,3708});
-    addAnimatedTile(3708,new int[]{3618,3708,3798,3708});
-    addAnimatedTile(3798,new int[]{3618,3708,3798,3708});
+    addAnimatedTile(3618,new int[]{3618,3618,3708,3708,3798,3798,3708,3708});
+    addAnimatedTile(3708,new int[]{3618,3618,3708,3708,3798,3798,3708,3708});
+    addAnimatedTile(3798,new int[]{3618,3618,3708,3708,3798,3798,3708,3708});
 
     // Blacksmith fire (large), Bottom
-    addAnimatedTile(3619,new int[]{3619,3709,3799,3709});
-    addAnimatedTile(3709,new int[]{3619,3709,3799,3709});
-    addAnimatedTile(3799,new int[]{3619,3709,3799,3709});
+    addAnimatedTile(3619,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
+    addAnimatedTile(3709,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
+    addAnimatedTile(3799,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
     
     // Blacksmith fire (large), Bottom Right
-    addAnimatedTile(3620,new int[]{3620,3710,3800,3710});
-    addAnimatedTile(3710,new int[]{3620,3710,3800,3710});
-    addAnimatedTile(3800,new int[]{3620,3710,3800,3710});
+    addAnimatedTile(3620,new int[]{3620,3620,3710,3710,3800,3800,3710,3710});
+    addAnimatedTile(3710,new int[]{3620,3620,3710,3710,3800,3800,3710,3710});
+    addAnimatedTile(3800,new int[]{3620,3620,3710,3710,3800,3800,3710,3710});
 
     }
   

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
 
 <creatures>
 
@@ -7,11 +7,11 @@
 	<creature name="rat">
 		<type class="small_animal" subclass="rat" tileid="12"/>
 		<attributes>
-			<atk value="17"/>
-			<def value="9"/>
-			<hp value="20"/>
-			<speed value="0.5"/>
-			<size value="1,1"/>
+			<attribute name="atk" value="17"/>
+			<attribute name="def" value="9"/>
+			<attribute name="hp" value="20"/>
+			<attribute name="speed" value="0.5"/>
+			<attribute name="size" value="1,1"/>
 		</attributes>
 		<level value="0"/>
 		<experience value="5"/>
@@ -34,11 +34,11 @@
 	<creature name="deer">
 		<type class="animal" subclass="deer" tileid="36"/>
 		<attributes>
-			<atk value="5"/>
-			<def value="5"/>
-			<hp value="5"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="5"/>
+			<attribute name="def" value="5"/>
+			<attribute name="hp" value="5"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="0"/>
 		<experience value="0"/>
@@ -62,11 +62,11 @@
 	<creature name="caverat">
 		<type class="small_animal" subclass="caverat" tileid="13"/>
 		<attributes>
-			<atk value="19"/>
-			<def value="9"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,1"/>
+			<attribute name="atk" value="19"/>
+			<attribute name="def" value="9"/>
+			<attribute name="hp" value="30"/>
+			<attribute name="speed" value="0.5"/>
+			<attribute name="size" value="1,1"/>
 		</attributes>
 		<level value="1"/>
 		<experience value="10"/>
@@ -88,11 +88,11 @@
 	<creature name="boar">
 		<type class="animal" subclass="boar" tileid="20"/>
 		<attributes>
-			<atk value="34"/>
-			<def value="11"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="34"/>
+			<attribute name="def" value="11"/>
+			<attribute name="hp" value="30"/>
+			<attribute name="speed" value="0.5"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="1"/>
 		<experience value="15"/>
@@ -112,11 +112,11 @@
 	<creature name="wolf">
 		<type class="animal" subclass="wolf" tileid="14"/>
 		<attributes>
-			<atk value="35"/>
-			<def value="11"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="35"/>
+			<attribute name="def" value="11"/>
+			<attribute name="hp" value="30"/>
+			<attribute name="speed" value="0.5"/>
+			<attribute name="size" value="1,2"/>
 <!--			<attribute name="noise" value="Aooooooouuhhh!!"/> -->
 		</attributes>
 		<level value="1"/>
@@ -140,11 +140,11 @@
 	<creature name="cobra">
 		<type class="animal" subclass="cobra" tileid="15"/>
 		<attributes>
-			<atk value="30"/>
-			<def value="10"/>
-			<hp value="15"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="30"/>
+			<attribute name="def" value="10"/>
+			<attribute name="hp" value="15"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 <!--			<attribute name="noise" value="SsSssSsssssss!"/> -->
 		</attributes>
 		<level value="2"/>
@@ -166,11 +166,11 @@
 	<creature name="bear">
 		<type class="animal" subclass="bear" tileid="28"/>
 		<attributes>
-			<atk value="45"/>
-			<def value="11"/>
-			<hp value="50"/>
-			<speed value="0.4"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="45"/>
+			<attribute name="def" value="11"/>
+			<attribute name="hp" value="50"/>
+			<attribute name="speed" value="0.4"/>
+			<attribute name="size" value="1,2"/>
 <!--			<attribute name="noise" value="Roar!"/> -->
 		</attributes>
 		<level value="2"/>
@@ -195,11 +195,11 @@
 	<creature name="skeleton">
 		<type class="skeleton" subclass="skeleton" tileid="24"/>
 		<attributes>
-			<atk value="47"/>
-			<def value="14"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="47"/>
+			<attribute name="def" value="14"/>
+			<attribute name="hp" value="30"/>
+			<attribute name="speed" value="0.5"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="3"/>
 		<experience value="20"/>
@@ -223,11 +223,11 @@
 	<creature name="kobold">
 		<type class="kobold" subclass="kobold" tileid="19"/>
 		<attributes>
-			<atk value="47"/>
-			<def value="13"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="47"/>
+			<attribute name="def" value="13"/>
+			<attribute name="hp" value="30"/>
+			<attribute name="speed" value="0.5"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="3"/>
 		<experience value="20"/>
@@ -251,11 +251,11 @@
 	 <creature name="goblin">
 		<type class="goblin" subclass="goblin" tileid="22"/>
 		<attributes>
-			<atk value="47"/>
-			<def value="14"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="47"/>
+			<attribute name="def" value="14"/>
+			<attribute name="hp" value="30"/>
+			<attribute name="speed" value="0.5"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="3"/>
 		<experience value="30"/>
@@ -280,11 +280,11 @@
 	<creature name="troll">
 		<type class="troll" subclass="troll" tileid="21"/>
 		<attributes>
-			<atk value="50"/>
-			<def value="14"/>
-			<hp value="40"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="50"/>
+			<attribute name="def" value="14"/>
+			<attribute name="hp" value="40"/>
+			<attribute name="speed" value="0.5"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="4"/>
 		<experience value="25"/>
@@ -308,11 +308,11 @@
 	<creature name="orc">
 		<type class="orc" subclass="orc" tileid="16"/>
 		<attributes>
-			<atk value="45"/>
-			<def value="14"/>
-			<hp value="40"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="45"/>
+			<attribute name="def" value="14"/>
+			<attribute name="hp" value="40"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="4"/>
 		<experience value="50"/>
@@ -337,11 +337,11 @@
 	<creature name="elf">
 		<type class="elf" subclass="elf" tileid="26"/>
 		<attributes>
-			<atk value="48"/>
-			<def value="13"/>
-			<hp value="40"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="48"/>
+			<attribute name="def" value="13"/>
+			<attribute name="hp" value="40"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="5"/>
 		<experience value="50"/>
@@ -366,11 +366,11 @@
 	<creature name="dwarf">
 		<type class="dwarf" subclass="dwarf" tileid="27"/>
 		<attributes>
-			<atk value="49"/>
-			<def value="13"/>
-			<hp value="50"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="49"/>
+			<attribute name="def" value="13"/>
+			<attribute name="hp" value="50"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="5"/>
 		<experience value="60"/>
@@ -396,11 +396,11 @@
 	<creature name="black_bear">
 		<type class="animal" subclass="black_bear" tileid="37"/>
 		<attributes>
-			<atk value="51"/>
-			<def value="12"/>
-			<hp value="55"/>
-			<speed value="0.4"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="51"/>
+			<attribute name="def" value="12"/>
+			<attribute name="hp" value="55"/>
+			<attribute name="speed" value="0.4"/>
+			<attribute name="size" value="1,2"/>
 <!--			<attribute name="noise" value="Roar!"/> -->
 		</attributes>
 		<level value="5"/>
@@ -425,11 +425,11 @@
 	<creature name="gargoyle">
 		<type class="gargoyle" subclass="gargoyle" tileid="17"/>
 		<attributes>
-			<atk value="54"/>
-			<def value="14"/>
-			<hp value="55"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="54"/>
+			<attribute name="def" value="14"/>
+			<attribute name="hp" value="55"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="6"/>
 		<experience value="80"/>
@@ -454,11 +454,11 @@
 	<creature name="ogre">
 		<type class="giant" subclass="ogre" tileid="18"/>
 		<attributes>
-			<atk value="57"/>
-			<def value="14"/>
-			<hp value="70"/>
-			<speed value="0.6"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="57"/>
+			<attribute name="def" value="14"/>
+			<attribute name="hp" value="70"/>
+			<attribute name="speed" value="0.6"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="7"/>
 		<experience value="120"/>
@@ -483,11 +483,11 @@
 	<creature name="cyclops">
 		<type class="giant" subclass="cyclops" tileid="25"/>
 		<attributes>
-			<atk value="60"/>
-			<def value="15"/>
-			<hp value="80"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="60"/>
+			<attribute name="def" value="15"/>
+			<attribute name="hp" value="80"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="8"/>
 		<experience value="120"/>
@@ -512,11 +512,11 @@
 	<creature name="dwarf_guardian">
 		<type class="dwarf" subclass="dwarf_guardian" tileid="32"/>
 		<attributes>
-			<atk value="50"/>
-			<def value="25"/>
-			<hp value="100"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="50"/>
+			<attribute name="def" value="25"/>
+			<attribute name="hp" value="100"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="9"/>
 		<experience value="150"/>
@@ -538,11 +538,11 @@
 	<creature name="orc_warrior">
 		<type class="orc" subclass="orc_warrior" tileid="34"/>
 		<attributes>
-			<atk value="45"/>
-			<def value="25"/>
-			<hp value="110"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="45"/>
+			<attribute name="def" value="25"/>
+			<attribute name="hp" value="110"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="9"/>
 		<experience value="150"/>
@@ -566,11 +566,11 @@
 	<creature name="venomrat">
 		<type class="small_animal" subclass="venomrat" tileid="29"/>
 		<attributes>
-			<atk value="40"/>
-			<def value="20"/>
-			<hp value="70"/>
-			<speed value="0.9"/>
-			<size value="1,1"/>
+			<attribute name="atk" value="40"/>
+			<attribute name="def" value="20"/>
+			<attribute name="hp" value="70"/>
+			<attribute name="speed" value="0.9"/>
+			<attribute name="size" value="1,1"/>
 		</attributes>
 		<level value="12"/>
 		<experience value="180"/>
@@ -595,11 +595,11 @@
 	<creature name="razorrat">
 		<type class="small_animal" subclass="razorrat" tileid="30"/>
 		<attributes>
-			<atk value="90"/>
-			<def value="15"/>
-			<hp value="40"/>
-			<speed value="1.1"/>
-			<size value="1,1"/>
+			<attribute name="atk" value="90"/>
+			<attribute name="def" value="15"/>
+			<attribute name="hp" value="40"/>
+			<attribute name="speed" value="1.1"/>
+			<attribute name="size" value="1,1"/>
 		</attributes>
 		<level value="13"/>
 		<experience value="210"/>
@@ -624,11 +624,11 @@
 	<creature name="elder_dwarf">
 		<type class="dwarf" subclass="elder_dwarf" tileid="33"/>
 		<attributes>
-			<atk value="50"/>
-			<def value="27"/>
-			<hp value="150"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="50"/>
+			<attribute name="def" value="27"/>
+			<attribute name="hp" value="150"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="14"/>
 		<experience value="250"/>
@@ -651,11 +651,11 @@
 	<creature name="orc_chief">
 		<type class="orc" subclass="orc_chief" tileid="35"/>
 		<attributes>
-			<atk value="47"/>
-			<def value="27"/>
-			<hp value="160"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="47"/>
+			<attribute name="def" value="27"/>
+			<attribute name="hp" value="160"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="14"/>
 		<experience value="250"/>
@@ -680,11 +680,11 @@
 	<creature name="giantrat">
 		<type class="giant_animal" subclass="giantrat" tileid="23"/>
 		<attributes>
-			<atk value="80"/>
-			<def value="20"/>
-			<hp value="120"/>
-			<speed value="1"/>
-			<size value="2,2"/>
+			<attribute name="atk" value="80"/>
+			<attribute name="def" value="20"/>
+			<attribute name="hp" value="120"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="2,2"/>
 		</attributes>
 		<level value="15"/>
 		<experience value="700"/>
@@ -710,11 +710,11 @@
 	<creature name="ratman">
 		<type class="ratfolk" subclass="ratman" tileid="31"/>
 		<attributes>
-			<atk value="110"/>
-			<def value="25"/>
-			<hp value="150"/>
-			<speed value="1"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="110"/>
+			<attribute name="def" value="25"/>
+			<attribute name="hp" value="150"/>
+			<attribute name="speed" value="1"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="17"/>
 		<experience value="1000"/>
@@ -742,11 +742,11 @@
 	<creature name="archrat">
 		<type class="ratfolk" subclass="archrat" tileid="-1"/>
 		<attributes>
-			<atk value="120"/>
-			<def value="70"/>
-			<hp value="2000"/>
-			<speed value="2"/>
-			<size value="1,2"/>
+			<attribute name="atk" value="120"/>
+			<attribute name="def" value="70"/>
+			<attribute name="hp" value="2000"/>
+			<attribute name="speed" value="2"/>
+			<attribute name="size" value="1,2"/>
 		</attributes>
 		<level value="30"/>
 		<experience value="10000"/>
