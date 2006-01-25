@@ -166,7 +166,7 @@ public class StendhalRPWorld extends RPWorld
     addArea("-4_semos_dungeon");
 
     // Level -5
-     addArea("-5_kanmararn_entrace");
+    addArea("-5_kanmararn_entrace");
 
     // Level -6
     // addArea("-6_kanmararn_city");

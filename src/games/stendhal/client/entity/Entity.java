@@ -294,8 +294,7 @@ public abstract class Entity
     
     if( (oldx!=x || oldy!=y) && this instanceof Player )
       {
-      RPObject pl = client.getPlayer(); 
-      if( pl != null && pl.getID().equals(getID()))
+      if(this instanceof Player && client.getPlayer()!=null && client.getPlayer().getID().equals(getID()))
         {
         WorldObjects.firePlayerMoved((Player)this);
         }
