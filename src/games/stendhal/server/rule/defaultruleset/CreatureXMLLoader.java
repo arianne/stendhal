@@ -108,6 +108,7 @@ public class CreatureXMLLoader extends DefaultHandler
   
   private boolean drops;
   private boolean ai;
+  private boolean attributes;
 
   public void startElement(String namespaceURI, String lName, String qName, Attributes attrs)throws SAXException
     {
@@ -183,47 +184,32 @@ public class CreatureXMLLoader extends DefaultHandler
           }            
         }
       }
-    else if(qName.equals("attribute"))
+    else if(qName.equals("attributes"))
       {
-      String name=null;
-      String value=null;
+      attributes=true;
+      }
+    else if(attributes && qName.equals("atk"))
+      {
+      atk=Integer.parseInt(attrs.getValue("value"));
+      }
+    else if(attributes && qName.equals("def"))
+      {
+      def=Integer.parseInt(attrs.getValue("value"));
+      }
+    else if(attributes && qName.equals("hp"))
+      {
+      hp=Integer.parseInt(attrs.getValue("value"));
+      }
+    else if(attributes && qName.equals("speed"))
+      {
+      speed=Double.parseDouble(attrs.getValue("value"));
+      }
+    else if(attributes && qName.equals("size"))
+      {
+      String[] size=attrs.getValue("value").split(",");
       
-      for(int i=0;i<attrs.getLength();i++)
-        {
-        if(attrs.getQName(i).equals("name"))
-          {
-          name=attrs.getValue(i);
-          }
-        else if(attrs.getQName(i).equals("value"))
-          {
-          value=attrs.getValue(i);
-          }
-        }
-      
-      if("atk".equals(name))
-        {
-        atk=Integer.parseInt(value);
-        }
-      if("def".equals(name))
-        {
-        def=Integer.parseInt(value);
-        }
-      if("hp".equals(name))
-        {
-        hp=Integer.parseInt(value);
-        }
-      if("speed".equals(name))
-        {
-        speed=Double.parseDouble(value);
-        }
-      if("size".equals(name))
-        {
-        String[] size=value.split(",");
-        
-        sizeWidth=Integer.parseInt(size[0]);
-        sizeHeight=Integer.parseInt(size[1]);
-        ;
-        }
+      sizeWidth=Integer.parseInt(size[0]);
+      sizeHeight=Integer.parseInt(size[1]);
       }
     else if(qName.equals("profile"))
       {
@@ -239,6 +225,10 @@ public class CreatureXMLLoader extends DefaultHandler
       DefaultCreature creature=new DefaultCreature(clazz,subclass,name,tileid,hp,atk,def,level,xp, sizeWidth, sizeHeight,speed,dropsItems, aiProfiles);
       list.add(creature);
       }
+    else if(qName.equals("attributes"))
+      {
+      attributes=false;
+      }
     else if(qName.equals("drops"))
       {
       drops=false;
@@ -251,6 +241,5 @@ public class CreatureXMLLoader extends DefaultHandler
 
   public void characters(char buf[], int offset, int len) throws SAXException
     {
-//    String s = new String(buf, offset, len);
     }
   }

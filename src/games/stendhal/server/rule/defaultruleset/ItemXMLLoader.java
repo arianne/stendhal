@@ -113,6 +113,8 @@ public class ItemXMLLoader extends DefaultHandler
   public void endDocument() throws SAXException
     {
     }
+  
+  private boolean attributesTag;
 
   public void startElement(String namespaceURI, String lName, String qName, Attributes attrs)throws SAXException
     {
@@ -140,7 +142,11 @@ public class ItemXMLLoader extends DefaultHandler
       {
       slots.add(attrs.getValue("name"));
       }
-    else if(qName.equals("attribute"))
+    else if(qName.equals("attributes"))
+      {
+      attributesTag=true;
+      }
+    else if(attributesTag)
       {
       String name=null;
       String value=null;
@@ -157,7 +163,10 @@ public class ItemXMLLoader extends DefaultHandler
           }
         }
       
-      attributes.add(new Pair<String,String>(name,value));      
+      if(name!=null && value!=null)
+        {
+        attributes.add(new Pair<String,String>(name,value));      
+        }
       }
     }
 
@@ -168,10 +177,13 @@ public class ItemXMLLoader extends DefaultHandler
       DefaultItem item=new DefaultItem(clazz,subclass,name,weight,slots,-1,attributes,stackable);
       list.add(item);
       }
+    else if(qName.equals("attributes"))
+      {
+      attributesTag=false;
+      }
     }
 
   public void characters(char buf[], int offset, int len) throws SAXException
     {
-//    String s = new String(buf, offset, len);
     }
   }
