@@ -216,8 +216,8 @@ in the file.
 <!-- Ranged_section -->
 
 <!--
-	<item name="bow">
-		<type class="range" subclass="bow"/>
+	<item name="wooden_bow">
+		<type class="ranged" subclass="wooden_bow"/>
 		<attributes>
 			<atk value="12"/>
 		</attributes>
