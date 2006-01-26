@@ -226,14 +226,20 @@ public abstract class Entity extends RPObject
   
   public void faceto(Entity entity)
     {
-    setDirection(directionTo(entity.getx(),entity.gety()));
+    Rectangle2D this_area=entity.getArea(entity.getx(),entity.gety());
+    setDirection(directionTo((int)this_area.getX(),(int)this_area.getY()));
     }
   
   public Direction directionTo(int px, int py)
     {
-    if(Math.abs(px-x)>Math.abs(py-y))
+    Rectangle2D area=getArea(x,y);
+    
+    int rx=(int)area.getX();
+    int ry=(int)area.getY();
+
+    if(Math.abs(px-rx)>Math.abs(py-ry))
       {
-      if(px-x>0)
+      if(px-rx>0)
         {
         return Direction.RIGHT;
         }
@@ -244,7 +250,7 @@ public abstract class Entity extends RPObject
       }
     else
       {
-      if(py-y>0)
+      if(py-ry>0)
         {
         return Direction.DOWN;
         }

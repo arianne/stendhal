@@ -497,16 +497,28 @@ public class StendhalClient extends ariannexp
     
     public int onSynced()
       {
+      times=0;
       logger.debug("Synced with server state.");
       StendhalClient.get().addEventLine("Synchronization completed",Color.gray);
       return 0;
       }
     
+    private int times;
+    
     public int onUnsynced()
       {
-      logger.debug("Request resync");
-      StendhalClient.get().addEventLine("Timeout: Requesting synchronization because of unsynced",Color.gray);
-      resync();
+      times++;
+      
+      if(times>3)
+        {
+        logger.debug("Request resync");
+        StendhalClient.get().addEventLine("Timeout: Requesting synchronization because of unsynced",Color.gray);
+        resync();
+        }
+      else
+        {
+        StendhalClient.get().addEventLine("Out of sync: Waiting "+times+" before requesting SYNC",Color.gray);
+        }
       return 0;
       }
    

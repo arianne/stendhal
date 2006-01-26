@@ -317,7 +317,7 @@ public class j2DClient extends JFrame
 
       if(dsx-x<-2)
         {
-        sdx+=0.2;
+        sdx+=0.4;
         }
       else if(dsx-x>-0.5 && dsx-x<0.5)
         {
@@ -325,13 +325,13 @@ public class j2DClient extends JFrame
         }
       else if(dsx-x>2)
         {
-        sdx-=0.2;
+        sdx-=0.4;
         }
 
 
       if(dsy-y<-2)
         {
-        sdy+=0.2;
+        sdy+=0.4;
         }
       else if(dsy-y>-0.5 && dsy-y<0.5)
         {
@@ -339,7 +339,7 @@ public class j2DClient extends JFrame
         }
       else if(dsy-y>2)
         {
-        sdy-=0.2;
+        sdy-=0.4;
         }
 
       screen.move(sdx,sdy);
