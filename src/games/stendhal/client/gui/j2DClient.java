@@ -190,7 +190,7 @@ public class j2DClient extends JFrame
     {
     long lastLoopTime = System.currentTimeMillis();
     
-    final int frameLenght=(int)(1000.0 / (float)stendhal.FPS_LIMIT);
+    final int frameLength=(int)(1000.0 / (float)stendhal.FPS_LIMIT);
     
     int fps=0;
 
@@ -213,14 +213,18 @@ public class j2DClient extends JFrame
     int counter = 0;
 
     // keep looping until the game ends
+    long refreshTime = System.currentTimeMillis();
     while (gameRunning)
       {
       fps++;
-      // work out how long its been since the last update, this
-      // will be used to calculate how far the entities should
-      // move this loop
-      long delta = System.currentTimeMillis() - lastLoopTime;
-      lastLoopTime = System.currentTimeMillis();
+      // figure out what time it is right after the screen flip then
+      // later we can figure out how long we have been doing redrawing
+      // / networking, then we know how long we need to sleep to make
+      // the next flip happen at the right time
+
+      screen.nextFrame();
+      long delta = System.currentTimeMillis() - refreshTime;
+      refreshTime = System.currentTimeMillis();
 
       logger.debug("Move objects");
       gameObjects.move(delta);
@@ -240,13 +244,11 @@ public class j2DClient extends JFrame
       pipeline.draw(screen);
       inGameGUI.draw(screen);
 
-      screen.nextFrame();
-
       logger.debug("Query network");
       client.loop(0);
 
       logger.debug("Move screen");
-      moveScreen(client.getPlayer(),staticLayers,delta);
+      moveScreen(client.getPlayer(),staticLayers);
 
       if(System.nanoTime()-oldTime>1000000000)
         {
@@ -263,7 +265,11 @@ public class j2DClient extends JFrame
       gameRunning&=client.shouldContinueGame();
       
       logger.debug("Start sleeping");
-      long wait=frameLenght-delta;
+      // we know how long we want per screen refresh (40ms) then
+      // we add the refresh time and subtract the current time
+      // leaving us with the amount we still need to sleep.
+      long wait=frameLength+refreshTime-System.currentTimeMillis();
+
       if(wait>0)
         {
         if(wait>100) 
@@ -286,7 +292,7 @@ public class j2DClient extends JFrame
     System.exit(0);
     }
 
-  private void moveScreen(RPObject object, StaticGameLayers gameLayers, long delta)
+  private void moveScreen(RPObject object, StaticGameLayers gameLayers)
     {
     try
       {
