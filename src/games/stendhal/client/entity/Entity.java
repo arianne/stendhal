@@ -111,7 +111,6 @@ public abstract class Entity
     
     String hstr = "- Entity type = " + type + (name == null ? "" : " / " + name );
     logger.debug( hstr );     
-//System.out.println( hstr );    
     
     rpObject = object;    
     x = 0.0;
@@ -125,7 +124,6 @@ public abstract class Entity
     // cyclic sound management
     if ( type.startsWith( "creature" ) )
     {
-//System.out.println( hstr );    
        if ( name.equals( "wolf" ) )
           SoundSystem.startSoundCycle( this, "wolf-patrol", 40000, 10, 50, 100 );
        else if ( name.equals( "rat" ) || name.equals( "caverat" ) || name.equals( "venomrat" ))
@@ -159,7 +157,6 @@ public abstract class Entity
     }
     else if ( type.startsWith( "npc" ) )
     {
- //System.out.println( hstr );    
        setAudibleRange( 3 );
        if ( name.equals( "Diogenes" ) )
           SoundSystem.startSoundCycle( this, "Diogenes-patrol", 10000, 20, 50, 100 );
@@ -309,7 +306,6 @@ public abstract class Entity
   /** called when the server removes the entity */
   public void removed() throws AttributeNotFoundException
     {
-//System.out.println("----- Entity removed = " + type );     
      logger.debug("----- Entity removed = " + type );     
         SoundSystem.stopSoundCycle( ID_Token );
     }

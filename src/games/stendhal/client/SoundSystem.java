@@ -256,8 +256,6 @@ public class SoundSystem implements WorldObjects.WorldListener
          return null;
       playerPosition = player.getPosition();
       playerHearing = player.getHearingArea();
-//System.out.println("player hearing bounds: " + playerHearing.getX() + " : " + playerHearing.getY() );       
-//System.out.println("player hearing width: " + playerHearing.getWidth() );       
       
       // exclusion cases
       if ( !playerHearing.contains( where ) || 
@@ -265,16 +263,11 @@ public class SoundSystem implements WorldObjects.WorldListener
          return null;
       
       logger.debug( "SoundSystem: playing map sound (" + name + ") at pos " + (int)where.getX() + ", " + (int)where.getY() );
-//System.out.println("sound where: " + where.getX() + " : " + where.getY() );       
-//System.out.println("player position: " + playerPosition.getX() + " : " + playerPosition.getY() );       
       
       // determine sound volume cutoff due to distance (fog value)
       distance = where.distance( playerPosition );
-//System.out.println("distance: " + distance );       
       maxDist = playerHearing.getWidth()/2;
-//System.out.println("max hear distance: " + maxDist );       
       fogVolume = Math.max(0, (int)(95 * (maxDist - distance) / maxDist + 5) );
-//System.out.println("playing (" + name + ") dist=" + (int)distance + ", fog=" + fogVolume );       
       
       return get().playSoundIntern( name, volBot, volTop, dBValues[fogVolume] );
    }  // playMapSound
@@ -545,8 +538,6 @@ public class SoundSystem implements WorldObjects.WorldListener
                }
                soundData = getZipData( zipEntry );
             }
-//            else
-//               System.out.println("- sound double: " + key );            
             
             // construct sound clip from sample data
             // (we always do that to verify sound sample format) 
@@ -557,7 +548,6 @@ public class SoundSystem implements WorldObjects.WorldListener
                {
                   try { 
                      loudness = Integer.parseInt( value.substring( pos+1 ) ); 
-//System.out.println( "loudness " + name + " = " + loudness );
                   }
                   catch ( Exception e )
                   {}
@@ -607,12 +597,11 @@ public class SoundSystem implements WorldObjects.WorldListener
          hstr = "Stendhal Soundsystem OK: " + count + " samples approved / " 
                + loaded + " loaded / " + sfxmap.size() + " library sounds";
          logger.info( hstr );
-         System.out.println( hstr );
+
          if ( failed != 0 )
          {
             hstr = "missing or corrupted sounds: " + failed;
             logger.info( hstr );
-            System.out.println( hstr );
          }
          
          // register listeners
@@ -646,7 +635,6 @@ public class SoundSystem implements WorldObjects.WorldListener
       info = mixer.getMixerInfo();
       hstr = "Sound driver: " + info.getName() + "(" + info.getDescription() + ")";
       logger.info( hstr );
-      System.out.println( hstr );
       
       // try a master volume control 
       try {
@@ -875,7 +863,6 @@ public ClipRunner ( String text, byte[] audioData, int volume )
       if ( frameRate != AudioSystem.NOT_SPECIFIED & frames != AudioSystem.NOT_SPECIFIED )
       {
          maxLength = (int)(frames / frameRate * 1000);
-//System.out.println( "sample length (" + name + ") " + maxLength ); 
       }
    }
    catch ( IOException e )
@@ -989,7 +976,6 @@ public Clip getAudioClip ( int volume, float correctionDB )
          try { 
             volCtrl = (FloatControl) clip.getControl( FloatControl.Type.MASTER_GAIN );
             dB = dBValues[ volume ] + dBValues[ loudness ] + correctionDB;
-//   System.out.println( "sound dB (" + name + ") = " + dB );          
             volCtrl.setValue( dB + volumeDelta );
          }
          catch ( Exception e )
@@ -1119,7 +1105,6 @@ private static class SoundCycle extends Thread  implements Cloneable
          hstr = "VOID"; 
       hstr = "  ** terminating cycle sound: " + token + " / entity=" + hstr;
       logger.debug( hstr );
-//System.out.println( hstr );
       
       if ( dataline != null )
       {
@@ -1147,7 +1132,6 @@ private static class SoundCycle extends Thread  implements Cloneable
       {
          hstr = "  ** starting cycle sound: " + token + " / entity=?";
          logger.debug( hstr );
-//   System.out.println( hstr );
          executing = true;
          start();
       }
@@ -1242,7 +1226,7 @@ public static class AmbientSound
             si.clip = null;
          }
          catch ( CloneNotSupportedException e )
-         { System.out.println("#### bad clone"); return null; }
+         { logger.warn("#### bad clone",e); return null; }
          
          return si;
       }
@@ -1369,7 +1353,7 @@ public static class AmbientSound
          cycleList.add( cycle );
       }
       
-      System.out.println( "-- created AMBIENT: " + name + " " + loopSounds.size() + 
+      logger.debug( "-- created AMBIENT: " + name + " " + loopSounds.size() + 
             " loops, " + cycleList.size() + " cycles" ); 
    }  // constructor
 
@@ -1486,7 +1470,7 @@ public static class AmbientSound
       }
 
       playing = true;
-System.out.println( "- playing ambient: " + name );          
+logger.debug( "- playing ambient: " + name );          
    }  // play
 
    /** (Temporarily) stops playing this ambient sound. */
@@ -1513,7 +1497,7 @@ System.out.println( "- playing ambient: " + name );
       }
 
       playing = false;
-System.out.println( "- stopped ambient: " + name );          
+logger.debug( "- stopped ambient: " + name );          
    }  // stop
    
    /** Unrevokably terminates this ambient sound. */
@@ -1541,7 +1525,7 @@ System.out.println( "- stopped ambient: " + name );
          sys.ambientList.remove( this );
       }
       
-System.out.println( "- terminated ambient: " + name );          
+logger.debug( "- terminated ambient: " + name );          
    }  // terminate
    
    /** Returns the sound volume for this ambient sound relative to the 
@@ -1565,16 +1549,14 @@ System.out.println( "- terminated ambient: " + name );
          // maximum fog if no player infos available 
          if ( playerPos == null | playerHearing == null )
          {
-//    System.out.println( "ambient (" + name + ") fog volume: 0 (player unavailable)" );       
+            logger.debug( "ambient (" + name + ") fog volume: 0 (player unavailable)" );       
             return dBValues[ 0 ];
          }
          
          // determine sound volume cutoff due to distance (fog value)
          distance = soundPos.distance( playerPos );
          maxDist = playerHearing.getWidth()/2;
-//   System.out.println("ambient player hearing radius: " + maxDist );       
          fogVolume = Math.max(0, (int)(95 * (maxDist - distance) / maxDist + 5) );
-//   System.out.println( "ambient (" + name + ") fog volume: dist=" + (int)distance + ", fog=" + fogVolume );
          return dBValues[ fogVolume ];
       }
    }  // getPlayerVolume
@@ -1741,7 +1723,7 @@ public void zoneEntered ( String zone )
    AmbientSound baseAmb, ambient;
    Point2D soundPos;
    
-   System.out.println( "-- SoundSys: ZONE ENTERED: " + zone ); 
+   logger.debug( "-- SoundSys: ZONE ENTERED: " + zone ); 
    actualZone = zone;
    
    if ( zone.equals( "0_semos_village" ) )
@@ -1849,7 +1831,7 @@ public void zoneEntered ( String zone )
  */
 public void zoneLeft ( String zone )
 {
-   System.out.println( "-- SoundSys: ZONE LEFT: " + zone ); 
+   logger.debug( "-- SoundSys: ZONE LEFT: " + zone ); 
    if ( zone.equals( actualZone ) )
       clearAmbientSounds();
 }
@@ -1862,7 +1844,6 @@ public void playerMoved ( Player player )
    // update ambient sounds about player position
    synchronized ( ambientList )
    {
-//System.out.println( "player moved to: " + (int)player.getx() + ", " + (int)player.gety() ); 
       for ( AmbientSound a : ambientList )
       {
          a.performPlayerMoved( player );

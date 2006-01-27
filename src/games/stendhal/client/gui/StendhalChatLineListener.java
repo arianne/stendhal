@@ -7,8 +7,14 @@ import java.util.*;
 import marauroa.common.game.RPAction;
 import games.stendhal.client.*;
 
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
+
 public class StendhalChatLineListener implements ActionListener, KeyListener
   {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(StendhalChatLineListener.class);
+
   private StendhalClient client;
   private JTextField playerChatText;
   private LinkedList<String> lines;
@@ -135,7 +141,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
   
     public void actionPerformed(ActionEvent e)
       {
-      System.out.println ("Player wrote: "+playerChatText.getText());
+      logger.debug ("Player wrote: "+playerChatText.getText());
       String text = playerChatText.getText();
       text = text.trim();
       
@@ -281,7 +287,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
           {
           String[] command;
           command = parseString(text, 5);
-          System.out.println ("command: "+command[4]);
+
           if(command != null && !command[4].trim().equals(""))
             {
             RPAction summon = new RPAction();

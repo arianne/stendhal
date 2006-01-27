@@ -25,6 +25,9 @@ import java.util.Map;
 import java.util.Properties;
 import games.stendhal.client.stendhal;
 
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
+
 /**
  * This manager keeps track of all the windows and their positions/
  * minimized state.
@@ -33,6 +36,9 @@ import games.stendhal.client.stendhal;
  */
 public class WindowManager
 {
+  /** the logger instance. */
+  private static final Logger logger = Log4J.getLogger(WindowManager.class);
+
   /** filename for the settings persistence */
   private static final String FILE_NAME = "windows.properties";
   /** the saved window positions */
@@ -91,7 +97,7 @@ public class WindowManager
     catch (IOException e)
     {
       // ignore exception
-      System.out.println ("Can't write "+stendhal.STENDHAL_FOLDER+FILE_NAME);
+      logger.error("Can't write "+stendhal.STENDHAL_FOLDER+FILE_NAME);
       e.printStackTrace();
     } 
   }

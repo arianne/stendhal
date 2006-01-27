@@ -81,7 +81,7 @@ public class InGameGUI implements KeyListener
         }
       catch(Exception e)
         {
-        System.out.println (e);
+        logger.error("Error setting keyboard handling",e);
         }
       }
     }

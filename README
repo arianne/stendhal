@@ -67,6 +67,7 @@ Changelog
 - Fixed Drink and food queue so you can consume potions even if full.
 - Speed up client
 - Changed sync event management so game is less laggy.
+- Can buy several items in a batch ( buy 5 potion )
 
 0.43 Jan 20, 2006
 - Exit of tavern now belongs to tavern.
