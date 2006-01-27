@@ -6,11 +6,11 @@
  <tileset name="0_nalwor_city.png" firstgid="17" tilewidth="64" tileheight="64">
   <image source="0_nalwor_city.png" trans="ffffff"/>
  </tileset>
- <tileset name="0_nalwor_forest_n.png" firstgid="33" tilewidth="64" tileheight="64">
-  <image source="0_nalwor_forest_n.png" trans="ffffff"/>
- </tileset>
- <tileset name="0_nalwor_forest_nw.png" firstgid="49" tilewidth="64" tileheight="64">
+ <tileset name="0_nalwor_forest_nw.png" firstgid="33" tilewidth="64" tileheight="64">
   <image source="0_nalwor_forest_nw.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="0_nalwor_forest_n.png" firstgid="49" tilewidth="64" tileheight="64">
+  <image source="0_nalwor_forest_n.png" trans="ffffff"/>
  </tileset>
  <tileset name="0_nalwor_forest_w.png" firstgid="65" tilewidth="64" tileheight="64">
   <image source="0_nalwor_forest_w.png" trans="ffffff"/>
@@ -39,11 +39,11 @@
  <tileset name="0_semos_city.png" firstgid="193" tilewidth="64" tileheight="64">
   <image source="0_semos_city.png" trans="ffffff"/>
  </tileset>
- <tileset name="0_semos_crossing_n_w2.png" firstgid="197" tilewidth="64" tileheight="64">
-  <image source="0_semos_crossing_n_w2.png" trans="ffffff"/>
+ <tileset name="0_semos_mountain_w2.png" firstgid="197" tilewidth="64" tileheight="64">
+  <image source="0_semos_mountain_w2.png" trans="ffffff"/>
  </tileset>
- <tileset name="0_semos_crossing_w2.png" firstgid="213" tilewidth="64" tileheight="64">
-  <image source="0_semos_crossing_w2.png" trans="ffffff"/>
+ <tileset name="0_semos_mountain_n_w2.png" firstgid="213" tilewidth="64" tileheight="64">
+  <image source="0_semos_mountain_n_w2.png" trans="ffffff"/>
  </tileset>
  <tileset name="0_semos_forest_s.png" firstgid="229" tilewidth="64" tileheight="64">
   <image source="0_semos_forest_s.png" trans="ffffff"/>
@@ -129,6 +129,18 @@
  <tileset name="sub_7_kanmararn_jail.png" firstgid="473" tilewidth="64" tileheight="64">
   <image source="sub_7_kanmararn_jail.png" trans="ffffff"/>
  </tileset>
+ <tileset name="0_semos_mountain_n_w3.png" firstgid="474" tilewidth="64" tileheight="64">
+  <image source="0_semos_mountain_n_w3.png"/>
+ </tileset>
+ <tileset name="0_orril_mountain_nw.png" firstgid="490" tilewidth="64" tileheight="64">
+  <image source="0_orril_mountain_nw.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="506" tilewidth="64" tileheight="64">
+  <image source="0_orril_river_sw.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="522" tilewidth="64" tileheight="64">
+  <image source="0_orril_mountain_w.png"/>
+ </tileset>
  <layer name="Layer 7" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OIQ0AAAgAMIhE/yS0oQKSsYv7V0YUAAAAa33gAAAAAAAAAAAAAAAAwD8DHNhtfwBAAAA=
@@ -166,7 +178,7 @@
  </layer>
  <layer name="Floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VZ9SPdRjA8T+P7Pl4Qna2x6ZCVEZFS0OoVFSSlpUGkdKgaTS0EC2V2dRW2ppEWxktMjIjo8/fS97meJ7b9eJzzn2u+9znXN9zfvf5NcmTSjUJIYQQwl4WpVKpxXzDt2xiM1v4J7X/99vXvtP4PT/wI1vZxr9sPwD6f9K4hJ/5hR3sZBepHLDfvrZU5jKWsyKdbJaXDPLlgP3+b+9r/IAP+YhiZsUpQUka0JB3vHuXSp4rU4WqeXYfiVReMsiXC/+Pj+38CfP5lFJmmZQmi0Y0Zp5373Go52pUpwYHmeWnAAVzYf9ndv6cL/iSg83KUJZy6T7yU4CC1KQWtalDId8UpghFc2H/V3ZewEK+5hCz8lSgYrqPwhShKHXJph71Keab4pSgZC7s39NYDeO4l/v4ld/4nT/S559qVKdGupemNOOwBPTfr+EBxvMgf7KSVfxFTWpRmzoczhE0p0UC+h/S8DCP8CirWcNa1lGXbOpRn5YcSStaJ6B/goaJTOIx/mY9G9hIAxrSiMYcxdEcQ5sE9A/QMJCrGMRNjOBmbqEt7WjPsen7kkxKk5WA/qs1XMO1XMet3MZIRnEcx9OBjun7kjKUpVwC+gdrGML1DOV27uBO7uIETuQkTk7fl5SnAhUT0D9Mww0M50bu5h5GM4ZT6MSpnEYlKlOFqgnon6xhCo/zBLN5nhd4kQu4kIvoxemcQWfOTED/kxqe4mmm8hIv8wpzuJjeXEIfutCVbpyVgP5nNDzLc0zjVV7jdd7gUi7jcq7gbM6hO+cmoH+6hhnMZBZv8hZvM5cr6Us/+nMe59ODngnoDyGEEEIIIYQQQgghhBBCCCGEEEIIIYSc6D9Cjnt6AEAAAA==
+   H4sIAAAAAAAAAO3X5W9WZxjA4VOhLXXa0hZnuMvcXZi7MXd3V+buDObu7mPusMHcN2DAcHfXXWd/Q5NxlvvDlZzcJye5f8nz5snbNydJ+oYQQgghGckoRvMXvyZJ8hu/8weLWMwSlib//b4NbQxjGcff/KlxJKMYzTKWs4KV/8P+8UxgIpPSM6BxDGMZxypWs4ZkLdi3oU1mClOZlp4BmeOZwMQ02SyXPPLXgn0b2lCNw/iSrygzK6eCSnrSi0+9+4xWnlvThrY5/x6JJJc88jP4+xhu5xF8zTc0Mauimhp604fPvfuCdTy3oz0daGRWQCFFGez/1s7f8T0/0NSsljrq0z4KKKSIjnSiM11o7JtiSijNYP+Pdv6Jn/mFZmbNaUHLtI9iSiilK93oTg/KfFNOBZUZ7J/ODGYyizs13MVA7mYSk5nC1PT80472dEh7WZf1WD+D/bOZw1zmMUjDYO7hXqYxnRnMpCOd6EwXNmBDNmLjDPbPZwELWcR9Gu7nAR5kFrOZw1y60o3u9GATNmUzNs9g/2KWsJRlPKThYR7hUeYxnwUspCe96E0ftmBLtmLrDPYXu7xLKKWMszSczTmcy5VcxdVcwzZsy3Zsn96XVFFNTQb7yzVXUEkTztNwPhdwIddyHddzAzuwIzvRL70vqaWO+gz2V2mupoamXKThYi7hUm7kJm7mFnZmF3Zlt/S+pDktaJnB/lrNddTTjMs0XM4AruBWbuN27mB39mBP9qIVrWlD2wz2L2cFK1nFYxoe5wme5DVe5w3e5CiO5hiOZW/2YV/2y2D/ataQ/onJ4SmPT/MMz/IWbzOEdziO4zmBE9mfAziQgzLYn6s5j3wa8ZyG53mBF3mX93ifDziJkzmFUzmY/hzCoRnsL9BcSBGNeUnDy7zCq3zIR3zMJ5zG6ZzBmRzG4RzBkRnsDyGEEEIIIYQQQgghhBBCCCGEEEIIIYQs+AcegKBIAEAAAA==
   </data>
  </layer>
 </map>

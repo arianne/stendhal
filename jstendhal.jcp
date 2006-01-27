@@ -734,6 +734,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\tools\GenerateWorldTileset.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\tools\MapConverter.java</path>
 				<source>true</source>
 			</fileitem>
