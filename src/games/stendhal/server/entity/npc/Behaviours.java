@@ -53,22 +53,11 @@ public class Behaviours
     {
     protected Map<String,Integer> items;
     protected String choosenItem;
+    protected int amount;
     
     public SellerBehaviour(Map<String,Integer> items)
       {
       this.items=items;
-
-// TODO: Enable this check correctly after 0.40 release      
-//
-//      EntityManager entityMan=world.getRuleManager().getEntityManager();
-//      
-//      for(String item: items.keySet())
-//        {
-//        if(!entityMan.isItem(item))
-//          {
-//          logger.warn("Seller trying to sell an unexisting item: "+item);
-//          }
-//        }
       }
       
     public Set<String> getItems()
@@ -96,6 +85,24 @@ public class Behaviours
       return choosenItem;
       }
       
+    public void setAmount(String text)
+      {
+      try
+        {
+        amount=Integer.parseInt(text);
+        }
+      catch(Exception e)
+        {
+        amount=1;
+        }
+      }
+
+    public int getAmount()
+      {
+      return amount;
+      }
+    
+    
     public int playerMoney(Player player)
       {
       int money=0;
@@ -154,7 +161,7 @@ public class Behaviours
       return left==0;
       }
 
-    public boolean onSell(SpeakerNPC seller, Player player, String itemName, int itemPrice)
+    public boolean onSell(SpeakerNPC seller, Player player, String itemName, int amount, int itemPrice)
       {
       EntityManager manager = world.getRuleManager().getEntityManager();
        
@@ -164,14 +171,23 @@ public class Behaviours
         logger.error("Trying to sell an unexisting item: "+itemName);
         return false;
         }
-        
+      
+      if(item instanceof StackableItem)
+        {
+        ((StackableItem)item).setQuantity(amount);
+        }
+      else        
+        {
+        amount=1;        
+        }
+      
       item.put("zoneid",player.get("zoneid"));
       IRPZone zone=world.getRPZone(player.getID());
       zone.assignRPObjectID(item);
       
       if(player.equip(item))
         {
-        chargePlayer(player,itemPrice);
+        chargePlayer(player,itemPrice*amount);
         seller.say("Congratulations! Here is your "+itemName+"!");
         return true;
         }
@@ -200,16 +216,28 @@ public class Behaviours
         {
         SellerBehaviour sellableItems=(SellerBehaviour)engine.getBehaviourData("seller");
         
-        int i=text.indexOf(" ");
-        String item=text.substring(i+1);
-        item=item.trim();
+        String[] words=text.split(" ");        
+
+        String amount="1";
+        String item=null;
+        if(words.length>2)
+          {
+          amount=words[1].trim();
+          item=words[2].trim();        
+          }
+        else
+          {
+          item=words[1].trim();        
+          }
         
         if(sellableItems.hasItem(item))
           {
-          int price=sellableItems.getPrice(item);
           sellableItems.setChoosenItem(item);
+          sellableItems.setAmount(amount);
 
-          engine.say(item+" costs "+price+". Do you want to buy?");
+          int price=sellableItems.getPrice(item)*sellableItems.getAmount();
+           
+          engine.say(amount+" "+item+" costs "+price+". Do you want to buy?");
           }
         else
           {
@@ -227,6 +255,7 @@ public class Behaviours
 
         String itemName=sellableItems.getChoosenItem();        
         int itemPrice=sellableItems.getPrice(itemName);
+        int itemAmount=sellableItems.getAmount();
 
         if(sellableItems.playerMoney(player)<itemPrice)
           {
@@ -236,7 +265,7 @@ public class Behaviours
           
         logger.debug("Selling a "+itemName+" to player "+player.getName());
         
-        sellableItems.onSell(engine,player,itemName, itemPrice);
+        sellableItems.onSell(engine,player,itemName, itemAmount, itemPrice);
         }
       });
     npc.add(20,"no", 1,"Ok, how may I help you?",null);
