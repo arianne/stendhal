@@ -258,6 +258,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\SoundObject.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\Speaker.java</path>
 				<source>true</source>
 			</fileitem>
@@ -743,6 +747,10 @@
 			</fileitem>
 			<fileitem>
 				<path>data\conf\creatures.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>data\conf\creatures.xsd</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

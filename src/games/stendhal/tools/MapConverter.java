@@ -93,27 +93,35 @@ public class MapConverter extends Task
 
     MapView myView = MapView.createViewforMap(map);
     myView.enableMode(MapView.PF_NOSPECIAL);
-    myView.setZoom(0.125);
+    myView.setZoom(0.0625);
     Dimension d = myView.getPreferredSize();
     BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
     Graphics2D g = i.createGraphics();
     g.setClip(0, 0, d.width, d.height);
     myView.paint(g);
     
-    String geolocation=null;
+    String area=file.getParentFile().getName();
+    String level;
     
-    filename=file.getParentFile().getName();
-    if(filename.contains("Level "))
+    String fileContainer=file.getParentFile().getParent();
+    
+    if(fileContainer.contains("Level "))
       {
-      geolocation=filename.split("Level ")[1]+"_";
-      geolocation=geolocation.replace("-","sub_");
+      level=fileContainer.split("Level ")[1];
       }
     else
       {
-      geolocation="int_";
+      level="int";
       }
 
-    filename = imagePath+File.separator+geolocation+file.getName().replaceAll("\\.tmx",".png");
+    if(level.equals("int") && area.equals("abstract"))
+      {
+      filename = imagePath+File.separator+level.replace("-","sub_")+"_"+file.getName().replaceAll("\\.tmx",".png");
+      }
+    else
+      {
+      filename = imagePath+File.separator+level.replace("-","sub_")+"_"+area+"_"+file.getName().replaceAll("\\.tmx",".png");
+      }
 
     try 
       {

@@ -35,10 +35,14 @@ public class StendhalMapWriter implements MapWriter
   public void writeMap(Map map, String filename) throws Exception
   {  
     String level=null;
+    String area=null;
 
     File file = new File(map.getFilename());
 
-    String fileContainer=file.getParentFile().getName();
+    area=file.getParentFile().getName();
+    
+    String fileContainer=file.getParentFile().getParent();
+    
     if(fileContainer.contains("Level "))
       {
       level=fileContainer.split("Level ")[1];
@@ -51,7 +55,15 @@ public class StendhalMapWriter implements MapWriter
     String destination=new File(filename).getParent();
     String mapName=file.getName().split(".tmx")[0];
 
-    filename=destination+File.separator+level.replace("-","sub_")+"_"+mapName+".xstend";
+    if(level.equals("int") && area.equals("abstract"))
+      {
+      filename=destination+File.separator+level.replace("-","sub_")+"_"+mapName+".xstend";
+      }
+    else
+      {
+      filename=destination+File.separator+level.replace("-","sub_")+"_"+area+"_"+mapName+".xstend";
+      }
+    
     FileOutputStream os = new FileOutputStream(filename);
     PrintWriter writer = new PrintWriter(new java.util.zip.DeflaterOutputStream(os));
     
