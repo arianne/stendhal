@@ -117,7 +117,7 @@
 			<hp value="30"/>
 			<speed value="0.5"/>
 			<size value="1,2"/>
-<!--			<attribute name="noise" value="Aooooooouuhhh!!"/> -->
+			<noise value="Aooooooouuhhh!!"/>
 		</attributes>
 		<level value="1"/>
 		<experience value="18"/>
@@ -145,7 +145,7 @@
 			<hp value="15"/>
 			<speed value="1"/>
 			<size value="1,2"/>
-<!--			<attribute name="noise" value="SsSssSsssssss!"/> -->
+			<noise value="SsSssSsssssss!"/>
 		</attributes>
 		<level value="2"/>
 		<experience value="10"/>
@@ -171,7 +171,7 @@
 			<hp value="50"/>
 			<speed value="0.4"/>
 			<size value="1,2"/>
-<!--			<attribute name="noise" value="Roar!"/> -->
+			<noise value="Roar!"/>
 		</attributes>
 		<level value="2"/>
 		<experience value="20"/>
@@ -401,7 +401,7 @@
 			<hp value="55"/>
 			<speed value="0.4"/>
 			<size value="1,2"/>
-<!--			<attribute name="noise" value="Roar!"/> -->
+			<noise value="Roar!"/>
 		</attributes>
 		<level value="5"/>
 		<experience value="70"/>
@@ -715,6 +715,7 @@
 			<hp value="150"/>
 			<speed value="1"/>
 			<size value="1,2"/>
+			<noise value="You humans never leave us alone!"/>
 		</attributes>
 		<level value="17"/>
 		<experience value="1000"/>
@@ -736,9 +737,9 @@
 	</creature>
 
 
-
 <!-- Extreme -->
 
+<!--
 	<creature name="archrat">
 		<type class="ratfolk" subclass="archrat" tileid="-1"/>
 		<attributes>
@@ -747,6 +748,7 @@
 			<hp value="2000"/>
 			<speed value="2"/>
 			<size value="1,2"/>
+			<noise value="Your messing with the rats?!"/>
 		</attributes>
 		<level value="30"/>
 		<experience value="10000"/>
@@ -764,5 +766,7 @@
 			<profile name="poisonous" params="40,greater_poison"/>
 		</ai>
 	</creature>
+-->
 
 </creatures>
+

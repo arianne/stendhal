@@ -69,6 +69,11 @@
 					<xsd:attribute name="value" type="xsd:string"/>
 				</xsd:complexType>
 			</xsd:element>
+			<xsd:element name="noise" minOccurs="0">
+				<xsd:complexType>
+					<xsd:attribute name="value" type="xsd:string"/>
+				</xsd:complexType>
+			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
 
