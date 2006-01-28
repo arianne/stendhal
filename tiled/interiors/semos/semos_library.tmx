@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+ <property name="x" value="500000"/>
+ <property name="y" value="500000"/>
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_0_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_1_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="zelda_interior_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
+  <image source="zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+  <image source="zelda_collision_chipset.png"/>
+ </tileset>
+ <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="zelda_building_0_tileset.png"/>
+ </tileset>
+ <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+  <image source="zelda_outside_2_chipset.png"/>
+ </tileset>
+ <layer name="semos_library_0_floor" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAEvjYGD4wI4dIwNcaijRkwq0+x2QzgDSfFjwZ6DcFyD+yo4pdxModguLOD49yDgdiN+yQ+znAbItORkYrDhx03PZicOEzIHR3Gj2hwPFIjhx0yCznwKxKyd2/AxqPyFzYDS6/cT4nxj7R/1PO/8Tg2np/4FO/0PB/8RiWvmfXPupbf6o/aP2j9o/av+o/aP2j9o/9O3vJwHTyn5yxQjZ7wVk89IZe0Lt9wDS79kHBrsD7QYAR96CAwAQAAA=
+  </data>
+ </layer>
+ <layer name="semos_library_1_object" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGFpAjYOBQR0Na3DQ3t6HQPwIiF2AdrmiYTcgtmfF1BPHiEqDwDEWBoYkLGoPA/ERIC5nZmCoYMbuhiMs5LsfpBeffpj/cIHDQL2roPq/sTMwfIfiH+zEuwHZDEqACDC8RaFYjIy4x+WGZ0Dx/yA5YPzEYYkjaoHDOOznANopC8RyQMyJxf4bePx6lshwOMoCwdgAyM/qQKyGw/8gO3Cl/1FAGWjlwI4pAfeBeTOaA4JNCJjVxoEdUwQ4IfmTmHxKTLrCpgZv+uOk0P2UgiFk/2j4Ux/8JSH/0SL8xTiIz38jHdAk/Q8hAGvT/eNAYFLadpQC5DYdrrbdcA9/5LCvHIThP9DgITA8HgHxYyB+wo5bbBQQDwAdtYBVABAAAA==
+  </data>
+ </layer>
+ <layer name="semos_library_2_roof" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgwA0cORgYnIDYmQOPIiroQQYlzAwMpczk6aUGmAS0e/IA2j+SwQmWgXbB4AdqwHyljoY1yMxro2AUwAAx6QqbmtH0Rx0wGv4DC0bDf2DBaPgPfjAa/qNgFAwvAADwUHnxABAAAA==
+  </data>
+ </layer>
+ <layer name="semos_library_objects" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3LIQEAAAjAMCxN6Z+ABmDAbfqPmFUuwdEDAAAA/GliulOXABAAAA==
+  </data>
+ </layer>
+ <layer name="semos_library_collision" width="32" height="32" visible="0" opacity="0.37">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3S0QoAEAyFYbfe/508l1utDIdM+VdKLft2SkrxVXL/jPo7b1p/Z0c7z861Pc/vzTpdSv727uVeNW/kndlFzaXYiu/ttLqv6s/+fcW/Wfj4+Pj4+Pj4+H/7EeeFqqxwv3sAEAAA
+  </data>
+ </layer>
+</map>
