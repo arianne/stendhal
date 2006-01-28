@@ -394,7 +394,7 @@ public class Semos implements IContent
         Behaviours.addHelp(this, "Ask me to heal you and I will help you or ask me offer and I will show my shop's stuff.");
         Behaviours.addSeller(this,new Behaviours.SellerBehaviour(sellitems));
         Behaviours.addHealer(this, 0);
-        Behaviours.addGoodbye(this);               
+        Behaviours.addGoodbye(this);
         }
       };
     zone.assignRPObjectID(npc);
