@@ -102,7 +102,7 @@ public class Semos implements IContent
     zone.assignRPObjectID(portal);
     portal.setx(13);
     portal.sety(23);
-    portal.setNumber(1);
+    portal.setNumber(3);
     portal.setDestination("0_semos_city",1);
     zone.add(portal);
     zone.addPortal(portal);
@@ -277,8 +277,8 @@ public class Semos implements IContent
     
     portal=new Portal();
     zone.assignRPObjectID(portal);
-    portal.setx(32);
-    portal.sety(21);
+    portal.setx(53);
+    portal.sety(37);
     portal.setNumber(1);
     portal.setDestination("int_semos_temple",0);
     zone.add(portal);
