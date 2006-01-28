@@ -34,6 +34,7 @@ public class Semos implements IContent
     buildSemosTavernArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_tavern")));
     buildSemosBlacksmithArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_blacksmith")));
     buildSemosTempleArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_temple")));
+    buildSemosLibraryArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_library"))); 
     }
   
   private void buildSemosBlacksmithArea(StendhalRPZone zone)
@@ -63,7 +64,7 @@ public class Semos implements IContent
     zone.assignRPObjectID(portal);
     portal.setx(21);
     portal.sety(1);
-    portal.setNumber(0);
+    portal.setNumber(1);
     portal.setDestination("0_semos_city",4);
     zone.add(portal);
     zone.addPortal(portal);
