@@ -58,7 +58,14 @@ public class MapConverter extends Task
   /** converts the map files */
   public void convert(String tmxFile) throws Exception
   {
+    File resourceFile=new File(stendPath+File.separator+getResourceFilename(tmxFile));
     File file = new File(tmxFile);
+    
+    if(file.lastModified()<resourceFile.lastModified())
+      {
+      System.out.println ("There are any changes. Already converted");
+      return;
+      }
 
     String filename = file.getAbsolutePath();
     // some internal tiled magic: load the map 
@@ -68,6 +75,39 @@ public class MapConverter extends Task
     saveImageMap(map,tmxFile);
   }
 
+  private String getResourceFilename(String tmxFile)
+    {
+    String filename=null;
+    
+    File file = new File(tmxFile);
+
+    String area=file.getParentFile().getName();   
+    String level=null;
+     
+    String fileContainer=file.getParentFile().getParent();
+    
+    if(fileContainer.contains("Level "))
+      {
+      level=fileContainer.split("Level ")[1];
+      }
+    else
+      {
+      level="int";
+      }
+      
+    String mapName=file.getName().split(".tmx")[0];
+
+    if(level.equals("int") && area.equals("abstract"))
+      {
+      filename=level.replace("-","sub_")+"_"+mapName+".xstend";
+      }
+    else
+      {
+      filename=level.replace("-","sub_")+"_"+area+"_"+mapName+".xstend";
+      }
+    
+    return filename;
+    }
  
   private void saveMap(Map map,String tmxFile) throws Exception
     {
