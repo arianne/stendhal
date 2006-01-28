@@ -56,7 +56,7 @@ public class Semos implements IContent
     portal.setx(8);
     portal.sety(1);
     portal.setNumber(0);
-    portal.setDestination("0_semos_city",3);
+    portal.setDestination("0_semos_city",4);
     zone.add(portal);
     zone.addPortal(portal);
 
@@ -65,7 +65,7 @@ public class Semos implements IContent
     portal.setx(21);
     portal.sety(1);
     portal.setNumber(1);
-    portal.setDestination("0_semos_city",4);
+    portal.setDestination("0_semos_city",3);
     zone.add(portal);
     zone.addPortal(portal);
     }
@@ -299,7 +299,7 @@ public class Semos implements IContent
     portal.setx(6);
     portal.sety(22);
     portal.setNumber(3);
-    portal.setDestination("int_semos_library",0);
+    portal.setDestination("int_semos_library",1);
     zone.add(portal);
     zone.addPortal(portal);
 
@@ -308,7 +308,7 @@ public class Semos implements IContent
     portal.setx(11);
     portal.sety(22);
     portal.setNumber(4);
-    portal.setDestination("int_semos_library",1);
+    portal.setDestination("int_semos_library",0);
     zone.add(portal);
     zone.addPortal(portal);
 
