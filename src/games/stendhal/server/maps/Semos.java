@@ -48,6 +48,27 @@ public class Semos implements IContent
     zone.addPortal(portal);
     }
 
+  private void buildSemosLibraryArea(StendhalRPZone zone)
+    {
+    Portal portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(8);
+    portal.sety(1);
+    portal.setNumber(0);
+    portal.setDestination("0_semos_city",3);
+    zone.add(portal);
+    zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(21);
+    portal.sety(1);
+    portal.setNumber(0);
+    portal.setDestination("0_semos_city",4);
+    zone.add(portal);
+    zone.addPortal(portal);
+    }
+
   private void buildSemosTempleArea(StendhalRPZone zone)
     {
     Portal portal=new Portal();
@@ -272,11 +293,29 @@ public class Semos implements IContent
     zone.add(portal);
     zone.addPortal(portal);
 
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(6);
+    portal.sety(22);
+    portal.setNumber(3);
+    portal.setDestination("int_semos_library",0);
+    zone.add(portal);
+    zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(11);
+    portal.sety(22);
+    portal.setNumber(4);
+    portal.setDestination("int_semos_library",1);
+    zone.add(portal);
+    zone.addPortal(portal);
+
     portal=new OneWayPortal();
     zone.assignRPObjectID(portal);
     portal.setx(12);
     portal.sety(49);
-    portal.setNumber(4);
+    portal.setNumber(60);
     zone.add(portal);
     zone.addPortal(portal);    
 
