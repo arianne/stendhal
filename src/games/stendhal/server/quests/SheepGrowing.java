@@ -39,7 +39,7 @@ public class SheepGrowing implements IQuest
   {
   public SheepGrowing(StendhalRPWorld world, StendhalRPRuleProcessor rules)
     {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village"));
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village_w"));
     
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);

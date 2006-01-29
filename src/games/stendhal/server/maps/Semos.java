@@ -29,8 +29,8 @@ public class Semos implements IContent
     {
     this.world=world;
     buildSemosCityArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_city")));
-    buildSemosVillageArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village")));
-    buildSemosSouthPlainsArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_south_plains")));
+    buildSemosVillageArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village_w")));
+    buildSemosSouthPlainsArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_plains_s")));
     buildSemosTavernArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_tavern")));
     buildSemosBlacksmithArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_blacksmith")));
     buildSemosTempleArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_temple")));

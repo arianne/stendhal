@@ -121,47 +121,48 @@ public class StendhalRPWorld extends RPWorld
     pathfinderThread = new PathfinderThread(this);
     pathfinderThread.start();
    
-    // Load zones
+    // Load zones. Written from left to right and from up to down.
+    // Please respect it!
+    
     // Ground level
-    addArea("0_semos_west_plains");
-    addArea("0_semos_village");
+    addArea("0_semos_plains_w");
+    addArea("0_semos_village_w");
     addArea("0_semos_city");
       addArea("int_semos_tavern");
       addArea("int_semos_temple");
       addArea("int_semos_blacksmith");
       addArea("int_semos_library");
-    addArea("0_semos_south_plains");
-    addArea("0_semos_road_ados");
-    addArea("0_semos_south_road_ados");
-    addArea("0_ados_west_forest");
+    addArea("0_semos_road_e");
+    addArea("0_semos_road_se");
+    addArea("0_semos_plains_s");
 
-    addArea("0_orril_north_forest");
-    addArea("0_semos_forest");
-    addArea("0_nalwor_forest_north");
-    addArea("0_nalwor_north_forest");
+    addArea("0_orril_forest_n");
+    addArea("0_semos_forest_s");
+    addArea("0_nalwor_forest_nw");
+    addArea("0_nalwor_forest_n");
 
     addArea("0_orril_castle");
-    addArea("0_orril_forest");
-    addArea("0_nalwor_forest");
+    addArea("0_orril_forest_e");
+    addArea("0_nalwor_forest_w");
     addArea("0_nalwor_city");
 
-    addArea("0_orril_river");
-    addArea("0_orril_forest_river");
-    addArea("0_nalwor_forest_river");
-    addArea("0_nalwor_river");
+    addArea("0_orril_river_s");
+    addArea("0_orril_river_se");
+    addArea("0_nalwor_river_sw");
+    addArea("0_nalwor_river_s");
     
     // Level -1
     addArea("-1_semos_dungeon");
-    addArea("-1_orril_forest_dungeon");
+    addArea("-1_orril_dungeon");
 
     // Level -2
     addArea("-2_semos_dungeon");
     addArea("-2_kotoch_entrance");
-    addArea("-2_orril_forest_dungeon");
+    addArea("-2_orril_dungeon");
 
     // Level -3
     addArea("-3_semos_dungeon");
-    addArea("-3_orril_forest_dungeon");
+    addArea("-3_orril_dungeon");
 
     // Level -4
     addArea("-4_semos_dungeon");
