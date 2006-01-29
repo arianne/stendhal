@@ -198,20 +198,27 @@ public abstract class RPEntity extends AnimatedEntity
 //      isEating=false;
 //      }
 
+    Color nameColor=Color.white;
+    
+    if(changes.has("admin") || object.has("admin"))
+      {
+      nameColor=Color.yellow;
+      }
+    
     if(changes.has("name"))
       {
       name=changes.get("name");
-      nameImage=GameScreen.get().createString(getName(),Color.white);
+      nameImage=GameScreen.get().createString(getName(),nameColor);
       }
     else if(name==null && changes.has("class"))
       {
       name=changes.get("class");
-      nameImage=GameScreen.get().createString(getName(),Color.white);
+      nameImage=GameScreen.get().createString(getName(),nameColor);
       }
     else if(name==null && changes.has("type"))
       {
       name=changes.get("type");
-      nameImage=GameScreen.get().createString(getName(),Color.white);
+      nameImage=GameScreen.get().createString(getName(),nameColor);
       }
 
     if(changes.has("xp") && object.has("xp"))
@@ -395,8 +402,10 @@ public abstract class RPEntity extends AnimatedEntity
 
     super.draw(screen);
 
-    if(nameImage!=null) screen.draw(nameImage,x,y-0.5);
+    if(nameImage!=null) 
       {
+      screen.draw(nameImage,x,y-0.5);      
+
       Graphics g2d=screen.expose();
 
       Point2D p=new Point.Double(x,y);

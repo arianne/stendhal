@@ -66,7 +66,7 @@ public class Player extends RPEntity
       player.add("reset",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
 
       // Use this for admin menus and usage.
-      player.add("admin",RPClass.FLAG,RPClass.HIDDEN);
+      player.add("admin",RPClass.FLAG);
       player.add("invisible",RPClass.FLAG,RPClass.HIDDEN);
 
       // TODO: When we fix Marauroa myRPObject problem, changed slots to private.
