@@ -73,7 +73,7 @@ public class OrcishHappyMeal implements IQuest
                 world.remove(sheep.getID());
                 player.removeSheep(sheep);
                 
-                payPlayer(player,itemPrice*(sheep.getWeight()/sheep.MAX_WEIGHT));
+                payPlayer(player,(int) (itemPrice * (((float) sheep.getWeight()) / (float)sheep.MAX_WEIGHT)));
                 
                 world.modify(player);
                 return true;

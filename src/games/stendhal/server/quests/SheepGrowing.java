@@ -172,7 +172,7 @@ public class SheepGrowing implements IQuest
                 world.remove(sheep.getID());
                 player.removeSheep(sheep);
                 
-                payPlayer(player,(int) (itemPrice * ((1.0f * sheep.getWeight()) / sheep.MAX_WEIGHT)));
+                payPlayer(player,(int) (itemPrice * (((float) sheep.getWeight()) / (float)sheep.MAX_WEIGHT)));
                 
                 world.modify(player);
                 return true;
