@@ -117,7 +117,6 @@
 			<hp value="30"/>
 			<speed value="0.5"/>
 			<size value="1,2"/>
-			<noise value="Aooooooouuhhh!!"/>
 		</attributes>
 		<level value="1"/>
 		<experience value="18"/>
@@ -129,7 +128,10 @@
 		</slots>
 		<equips>
 		</equips>
-		<ai>
+		<ai> 
+		    <says>
+  			  <noise value="Aooooooouuhhh!!"/>
+		    </says>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 		</ai>
@@ -145,7 +147,6 @@
 			<hp value="15"/>
 			<speed value="1"/>
 			<size value="1,2"/>
-			<noise value="SsSssSsssssss!"/>
 		</attributes>
 		<level value="2"/>
 		<experience value="10"/>
@@ -157,6 +158,9 @@
 		<equips>
 		</equips>
 		<ai>
+	        <says>
+  			  <noise value="SsSssSsssssss!"/>
+	        </says>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 			<profile name="poisonous" params="5,poison"/>
@@ -171,7 +175,6 @@
 			<hp value="50"/>
 			<speed value="0.4"/>
 			<size value="1,2"/>
-			<noise value="Roar!"/>
 		</attributes>
 		<level value="2"/>
 		<experience value="20"/>
@@ -185,6 +188,9 @@
 		<equips>
 		</equips>
 		<ai>
+	        <says>
+  			  <noise value="Roar!"/>
+	        </says>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 		</ai>
@@ -401,7 +407,6 @@
 			<hp value="55"/>
 			<speed value="0.4"/>
 			<size value="1,2"/>
-			<noise value="Roar!"/>
 		</attributes>
 		<level value="5"/>
 		<experience value="70"/>
@@ -415,6 +420,9 @@
 		<equips>
 		</equips>
 		<ai>
+	        <says>
+  			  <noise value="Roar!"/>
+	        </says>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 		</ai>
@@ -715,7 +723,6 @@
 			<hp value="150"/>
 			<speed value="1"/>
 			<size value="1,2"/>
-			<noise value="You humans never leave us alone!"/>
 		</attributes>
 		<level value="17"/>
 		<experience value="1000"/>
@@ -729,6 +736,9 @@
 		<equips>
 		</equips>
 		<ai>
+	        <says>
+  			  <noise value="You humans never leave us alone!"/>
+	        </says>
 			<profile name="human"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
@@ -748,7 +758,6 @@
 			<hp value="2000"/>
 			<speed value="2"/>
 			<size value="1,2"/>
-			<noise value="Your messing with the rats?!"/>
 		</attributes>
 		<level value="30"/>
 		<experience value="10000"/>
@@ -759,6 +768,9 @@
 		<equips>
 		</equips>
 		<ai>
+	        <says>
+ 			  <noise value="Your messing with the rats?!"/>
+	        </says>
 			<profile name="human"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
