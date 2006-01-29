@@ -282,6 +282,18 @@ public class Sheep extends Creature
         clearPath();
       }
       }
+    
+    if(rp.getTurn()%100==0 && getHP()<getBaseHP());
+      {
+      if(getHP()+5<=getBaseHP())      
+        {
+        setHP(getHP()+5);
+        }
+      else
+        {
+        setHP(getBaseHP());
+        }
+      }      
       
     world.modify(this);
     Log4J.finishMethod(logger,"logic");
