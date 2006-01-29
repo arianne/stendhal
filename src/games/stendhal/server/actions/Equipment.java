@@ -312,7 +312,10 @@ public class Equipment extends ActionListener
       else
       {
         // item is not contained
-        base = (Entity) world.get(baseItemId);
+        if(world.has(baseItemId))
+        {
+          base = (Entity) world.get(baseItemId);
+        }
       }
     }
     
