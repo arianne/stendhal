@@ -1813,7 +1813,7 @@ public void zoneEntered ( String zone )
    actualZone = zone;
    
    // 0_SEMOS_VILLAGE
-   if ( zone.equals( "0_semos_village" ) )
+   if ( zone.equals( "0_semos_village_w" ) )
    {
       // global ambient
       ambient = new SoundSystem.AmbientSound( "semos-village-overall-1", 10 );
@@ -1917,7 +1917,7 @@ public void zoneEntered ( String zone )
       
    }
    // 0_SEMOS_ROAD_ADOS
-   else if ( zone.equals( "0_semos_road_ados" ) )
+   else if ( zone.equals( "0_semos_road_e" ) )
    {
       // creaking tree and wind
       baseAmb = AmbientStore.getAmbient( "wind-tree-1" );

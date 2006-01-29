@@ -62,6 +62,9 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.45 Feb XX, 2006
+- Fixed ambient sounds.
+
 0.44 Jan 29, 2006
 - Fixed a null pointer bug at creature logic.
 - Fixed Drink and food queue so you can consume potions even if full.
