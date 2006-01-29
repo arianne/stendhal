@@ -148,25 +148,10 @@ public class ItemXMLLoader extends DefaultHandler
       }
     else if(attributesTag)
       {
-      String name=null;
-      String value=null;
+      String name=qName;
+      String value=attrs.getValue("value");
       
-      for(int i=0;i<attrs.getLength();i++)
-        {
-        if(attrs.getQName(i).equals("name"))
-          {
-          name=attrs.getValue(i);
-          }
-        else if(attrs.getQName(i).equals("value"))
-          {
-          value=attrs.getValue(i);
-          }
-        }
-      
-      if(name!=null && value!=null)
-        {
-        attributes.add(new Pair<String,String>(name,value));      
-        }
+      attributes.add(new Pair<String,String>(name,value));      
       }
     }
 

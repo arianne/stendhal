@@ -16,7 +16,11 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.ActionManager;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.RPObject;
 import java.util.List;
+import java.util.Iterator;
+
+import games.stendhal.server.entity.item.Stackable;
 
 /**
  *
@@ -86,10 +90,40 @@ public class DefaultActionManager implements ActionManager
 //      logger.warn("tried to equip the item ["+item.getName()+"] in a nonsupported slot ["+slotName+"]");
 //      return false;
 //    }
+
+    RPSlot rpslot = entity.getSlot(slotName);
     
-    RPSlot slot = entity.getSlot(slotName);
-    slot.assignValidID(item);
-    slot.add(item);
+    if (item instanceof Stackable)
+    {
+      Stackable stackEntity = (Stackable) item;
+      // find a stackable item of the same type
+      Iterator<RPObject> it = rpslot.iterator();
+      while (it.hasNext())
+      {
+        RPObject object = it.next();
+        if (object instanceof Stackable)
+        {
+          // found another stackable
+          Stackable other = (Stackable) object;
+          if (other.isStackable(stackEntity))
+          {
+            // other is the same type...merge them
+            other.add(stackEntity);
+            item  = null; // do not process the entity further
+            break;
+          }
+        }
+      }
+    }
+        
+    // entity still there?
+    if (item != null)
+    {
+      // yep, so it is stacked. simplay add it
+      rpslot.assignValidID(item);
+      rpslot.add(item);
+    }
+
     return true;
   }
 
