@@ -73,8 +73,13 @@ Changelog
 - Sheeps heals themselves slowly.
 - Admins are now denoted with yellow name.
 - NPC don't say bye if you are not talking to it.
+- Portals are walkable now. It looks better
+- Giant rats corpses are bigger.
+- Monsters does talk ( but not chat ).
+- Reworked map data structure. It is more organized now.
 - Added new area:
   - Library
+  - Orril dungeon
 - Added new monster:
   - Black bear
 
