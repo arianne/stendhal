@@ -35,6 +35,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.net.TransferContent;
 import marauroa.server.game.MarauroaRPZone;
+import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.common.game.IRPZone;
 
 import org.apache.log4j.Logger;
@@ -630,6 +631,16 @@ public class StendhalRPZone extends MarauroaRPZone
     {
     Rectangle2D area=entity.getArea(x,y);
     return collisionMap.collides(area);
+    }
+
+  public synchronized void add(RPObject object) throws RPObjectInvalidException
+    {
+    super.add(object);
+    }
+
+  public synchronized RPObject remove(RPObject.ID id) throws RPObjectNotFoundException
+    {
+    return super.remove(id);
     }
     
   public synchronized boolean collides(Entity entity, double x, double y) throws AttributeNotFoundException
