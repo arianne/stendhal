@@ -42,35 +42,45 @@ public class DefaultItem
   /** Is this item type stackable */
   private boolean stackable;
   
-  public DefaultItem(String clazz, String subclazz, String name, double weight, List<String> slots, int tileid, Pair<String, String> attribute, boolean stackable)
+  public DefaultItem(String clazz, String subclazz, String name, int tileid)
   {
     this.clazz = clazz;
     this.subclazz = subclazz;
     this.name = name;
-    this.weight=weight;
-    this.slots = slots;
     this.tileid = tileid;
+    this.stackable=false;
+  }
+  
+  public void setWeight(double weight)
+  {
+    this.weight=weight;
+  }
+  
+  public void setAttributes(Pair<String, String> attribute)
+  {
     this.attributes = new HashMap<String, String>();
     this.attributes.put(attribute.first(), attribute.second());
-    this.stackable=stackable;
   }
 
-  public DefaultItem(String clazz, String subclazz, String name, double weight, List<String> slots, int tileid, List<Pair<String, String>> attributes, boolean stackable)
+  public void setAttributes(List<Pair<String, String>> attributes)
   {
-    this.clazz = clazz;
-    this.subclazz = subclazz;
-    this.name = name;
-    this.weight=weight;
-    this.slots = slots;
-    this.tileid = tileid;
     this.attributes = new HashMap<String, String>();
     for (Pair<String, String> attribute : attributes)
     {
       this.attributes.put(attribute.first(), attribute.second());
     }
-    this.stackable=stackable;
   }
   
+  public void setConteinableSlots(List<String> slots)
+  {
+    this.slots=slots;
+  }
+  
+  public void setStackable()
+  {
+    stackable=true;
+  }
+
   /** returns an item-instance */
   public Item getItem()
     {

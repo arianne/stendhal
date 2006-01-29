@@ -159,7 +159,15 @@ public class ItemXMLLoader extends DefaultHandler
     {
     if(qName.equals("item"))
       {
-      DefaultItem item=new DefaultItem(clazz,subclass,name,weight,slots,-1,attributes,stackable);
+      DefaultItem item=new DefaultItem(clazz,subclass, name,-1);
+      item.setWeight(weight);
+      item.setConteinableSlots(slots);
+      item.setAttributes(attributes);
+      if(stackable)
+        {
+        item.setStackable();
+        }
+        
       list.add(item);
       }
     else if(qName.equals("attributes"))

@@ -35,6 +35,7 @@ public class CreatureXMLLoader extends DefaultHandler
   private int level;
   
   private List<Creature.DropItem> dropsItems;
+  private List<String> creatureSays;
   private Map<String,String> aiProfiles;
   
   private List<DefaultCreature> list;
@@ -108,6 +109,7 @@ public class CreatureXMLLoader extends DefaultHandler
   
   private boolean drops;
   private boolean ai;
+  private boolean says;
   private boolean attributes;
 
   public void startElement(String namespaceURI, String lName, String qName, Attributes attrs)throws SAXException
@@ -118,6 +120,7 @@ public class CreatureXMLLoader extends DefaultHandler
       drops=false;
       ai=false;
       dropsItems=new LinkedList<Creature.DropItem>();
+      creatureSays=new LinkedList<String>();
       aiProfiles=new HashMap<String,String>();
       }
     else if(qName.equals("type"))
@@ -140,10 +143,6 @@ public class CreatureXMLLoader extends DefaultHandler
     else if(qName.equals("drops"))
       {
       drops=true;
-      }
-    else if(qName.equals("ai"))
-      {
-      ai=true;
       }
     else if(qName.equals("item") && drops)
       {
@@ -211,18 +210,36 @@ public class CreatureXMLLoader extends DefaultHandler
       sizeWidth=Integer.parseInt(size[0]);
       sizeHeight=Integer.parseInt(size[1]);
       }
-    else if(qName.equals("profile"))
+    else if(qName.equals("ai"))
+      {
+      ai=true;
+      }
+    else if(ai && qName.equals("profile"))
       {
       aiProfiles.put(attrs.getValue("name"),attrs.getValue("params"));
       }
-      
+    else if(ai && qName.equals("says"))
+      {
+      says=true;
+      }
+    else if(says && qName.equals("noise"))
+      {
+      creatureSays.add(attrs.getValue("value"));
+      }
     }
 
   public void endElement(String namespaceURI, String sName, String qName) throws SAXException
     {
     if(qName.equals("creature"))
       {
-      DefaultCreature creature=new DefaultCreature(clazz,subclass,name,tileid,hp,atk,def,level,xp, sizeWidth, sizeHeight,speed,dropsItems, aiProfiles);
+      DefaultCreature creature=new DefaultCreature(clazz,subclass,name,tileid);
+      creature.setRPStats(hp,atk,def,speed);
+      creature.setLevel(level,xp);
+      creature.setSize(sizeWidth, sizeHeight);
+      creature.setDropItems(dropsItems);
+      creature.setAIProfiles(aiProfiles);
+      creature.setNoiseLines(creatureSays);
+      
       list.add(creature);
       }
     else if(qName.equals("attributes"))
@@ -232,6 +249,10 @@ public class CreatureXMLLoader extends DefaultHandler
     else if(qName.equals("drops"))
       {
       drops=false;
+      }
+    else if(ai && qName.equals("says"))
+      {
+      says=false;
       }
     else if(qName.equals("ai"))
       {
