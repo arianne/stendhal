@@ -490,6 +490,7 @@ public class StendhalClient extends ariannexp
     public int onTimeout()
       {      
       logger.debug("Request resync because of timeout");
+
       StendhalClient.get().addEventLine("Timeout: Requesting synchronization because timeout",Color.gray);
       resync();
       return 0;
@@ -498,6 +499,9 @@ public class StendhalClient extends ariannexp
     public int onSynced()
       {
       times=0;
+
+      gameGUI.online();
+
       logger.debug("Synced with server state.");
       StendhalClient.get().addEventLine("Synchronization completed",Color.gray);
       return 0;

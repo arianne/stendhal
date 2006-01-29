@@ -52,6 +52,9 @@ public class InGameGUI implements KeyListener
   private SettingsPanel settings;
   /** the dialog "really quit?" */
   private Panel quitDialog;
+  
+  private Sprite offlineIcon;
+  private boolean offline;
 
   private void fixkeyboardHandlinginX()
     {
@@ -98,7 +101,19 @@ public class InGameGUI implements KeyListener
     
     pressed=new HashMap<Integer, Object>();
     
+    offlineIcon=SpriteStore.get().getSprite("data/gui/offline.png");
+    
     buildGUI();
+    }
+  
+  public void offline()
+    {
+    offline=true;
+    }
+
+  public void online()
+    {
+    offline=false;
     }
   
   private void buildGUI()
@@ -345,6 +360,8 @@ public class InGameGUI implements KeyListener
     return container;
     }
 
+  private int blinkOffline;
+  
   public void draw(GameScreen screen)
     {
       // create the map if there is none yet
@@ -363,7 +380,23 @@ public class InGameGUI implements KeyListener
       settings.setPlayer(player);
       
       frame.draw(screen.expose());
-    
+      
+      System.out.println (offline+":"+blinkOffline);
+      
+      if(offline && blinkOffline>0)
+        {        
+        offlineIcon.draw(screen.expose(),560,420);
+        }
+
+      if(blinkOffline<-10)
+        {
+        blinkOffline=10;
+        }    
+      else
+        {
+        blinkOffline--;
+        }
+        
     }
 
   /**

@@ -70,8 +70,13 @@ Changelog
 - Can buy several items in a batch ( buy 5 potion )
 - Fixed sync error. Should happen less oftenly.
 - Items bought are automatically stacked.
+- Sheeps heals themselves slowly.
+- Admins are now denoted with yellow name.
+- NPC don't say bye if you are not talking to it.
 - Added new area:
   - Library
+
+
 
 0.43 Jan 20, 2006
 - Exit of tavern now belongs to tavern.

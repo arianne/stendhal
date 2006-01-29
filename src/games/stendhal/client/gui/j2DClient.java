@@ -214,6 +214,8 @@ public class j2DClient extends JFrame
 
     // keep looping until the game ends
     long refreshTime = System.currentTimeMillis();
+    long lastMessageHandle = refreshTime;
+    
     while (gameRunning)
       {
       fps++;
@@ -245,7 +247,10 @@ public class j2DClient extends JFrame
       inGameGUI.draw(screen);
 
       logger.debug("Query network");
-      client.loop(0);
+      if(client.loop(0))
+        {
+        lastMessageHandle=System.currentTimeMillis();
+        }
 
       logger.debug("Move screen");
       moveScreen(client.getPlayer(),staticLayers);
@@ -260,6 +265,11 @@ public class j2DClient extends JFrame
         logger.debug("Total/Used memory: "+totalMemory+"/"+(totalMemory-freeMemory));
 
         fps=0;
+        }
+      
+      if(refreshTime-lastMessageHandle>10000)
+        {        
+        inGameGUI.offline();
         }
 
       gameRunning&=client.shouldContinueGame();
