@@ -121,6 +121,9 @@ public class Creature extends NPC
   /** Ths list of items this creature may drop */
   private List<Creature.DropItem> dropsItems;
 
+  /** Ths list of items this creature may drop */
+  private List<String> noises;
+
   private Map<String, String> aiProfiles;
   
   
@@ -164,7 +167,7 @@ public class Creature extends NPC
 
   /** creates a new creature with the given properties
    */
-  public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems, Map<String, String> aiProfiles) throws AttributeNotFoundException
+  public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems, Map<String, String> aiProfiles, List<String> noises) throws AttributeNotFoundException
     {
     this();
     
@@ -178,6 +181,7 @@ public class Creature extends NPC
       }
     
     this.aiProfiles=aiProfiles;
+    this.noises=noises;
 
     put("class",clazz);
     put("subclass",subclass);
@@ -609,6 +613,13 @@ public class Creature extends NPC
             }
           }
         }
+      }
+    
+    if(Rand.roll1D100()<5)
+      {
+      // Random sound noises.
+      int pos=Rand.rand(noises.size());
+      say(noises.get(pos));
       }
 
     if (Debug.CREATURES_DEBUG_SERVER)

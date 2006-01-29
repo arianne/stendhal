@@ -104,7 +104,7 @@ public class DefaultCreature
   /** returns a creature-instance */
   public Creature getCreature()
   {
-    return new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed, dropsItems, aiProfiles);
+    return new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed, dropsItems, aiProfiles, creatureSays);
   }
   
   /** returns the tileid */
