@@ -77,12 +77,12 @@ Changelog
 - Giant rats corpses are bigger.
 - Monsters does talk ( but not chat ).
 - Reworked map data structure. It is more organized now.
+- Added ambient sounds.
 - Added new area:
   - Library
   - Orril dungeon
 - Added new monster:
   - Black bear
-
 
 
 0.43 Jan 20, 2006
@@ -111,6 +111,7 @@ Changelog
   - Elder Dwarf
   - Orc warrior
   - Orc chief
+  
 
 0.42 Jan 14, 2006
 - Added Venom rat.
