@@ -78,6 +78,7 @@ Changelog
 - Monsters does talk ( but not chat ).
 - Reworked map data structure. It is more organized now.
 - Added ambient sounds.
+- Fixed ATK and DEF loose on death.
 - Added new area:
   - Library
   - Orril dungeon

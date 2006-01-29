@@ -435,11 +435,7 @@ public class Player extends RPEntity
 
     // Penalize: Respawn on afterlive zone and 10% less experience
     subXP((int)(getXP()*0.1));
-    
-    setATK((int)(getATK()*0.9));
     setATKXP((int)(getATKXP()*0.9));
-    
-    setDEF((int)(getDEF()*0.9));
     setDEFXP((int)(getDEFXP()*0.9));
     
     setHP(getBaseHP());

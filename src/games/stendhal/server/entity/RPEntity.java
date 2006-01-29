@@ -181,6 +181,7 @@ public abstract class RPEntity extends Entity
     {
     this.atk_xp=atk;
     put("atk_xp",atk_xp);
+    incATKXP();
     }
 
   public int getATKXP()
@@ -196,9 +197,10 @@ public abstract class RPEntity extends Entity
     int newLevel=Level.getLevel(atk_xp);
     int levels=newLevel-(getATK()-10);
     
-    if(levels>0)
+    // In case we level up several levels at a single time.
+    for(int i=0;i<Math.abs(levels);i++)
       {
-      setATK(this.atk+1);
+      setATK(this.def+(int)Math.signum(levels)*1);
       rp.addGameEvent(getName(),"atk",Integer.toString(getATK()));
       }
     
@@ -219,7 +221,8 @@ public abstract class RPEntity extends Entity
   public void setDEFXP(int def)
     {
     this.def_xp=def;
-    put("def_xp",def_xp);
+    put("def_xp",def_xp);    
+    incDEFXP();
     }
 
   public int getDEFXP()
@@ -234,10 +237,11 @@ public abstract class RPEntity extends Entity
 
     int newLevel=Level.getLevel(def_xp);
     int levels=newLevel-(getDEF()-10);
-    
-    if(levels>0)
+
+    // In case we level up several levels at a single time.
+    for(int i=0;i<Math.abs(levels);i++)
       {
-      setDEF(this.def+1);
+      setDEF(this.def+(int)Math.signum(levels)*1);
       rp.addGameEvent(getName(),"def",Integer.toString(getDEF()));
       }
     

@@ -615,7 +615,7 @@ public class Creature extends NPC
         }
       }
     
-    if(Rand.roll1D100()<5 && noises.size()>0)
+    if(Rand.roll1D100()==1 && noises.size()>0)
       {
       // Random sound noises.
       int pos=Rand.rand(noises.size());

@@ -388,7 +388,7 @@ public class InGameGUI implements KeyListener
 
       if(blinkOffline<-10)
         {
-        blinkOffline=10;
+        blinkOffline=20;
         }    
       else
         {
