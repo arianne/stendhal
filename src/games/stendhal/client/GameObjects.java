@@ -350,11 +350,12 @@ public class GameObjects implements Iterable<Entity>
   
   private boolean collides(Entity entity)
     {
+    //TODO: Ugly, use similar method that server uses
     Rectangle2D area=entity.getArea();
 
     for(Entity other: sortObjects)
       {
-      if(!(other instanceof PassiveEntity))
+      if(!(other instanceof PassiveEntity) && !(other instanceof Portal))
         {
         if(area.intersects(other.getArea()) && !entity.getID().equals(other.getID()))
           {

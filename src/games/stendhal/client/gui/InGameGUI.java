@@ -381,8 +381,6 @@ public class InGameGUI implements KeyListener
       
       frame.draw(screen.expose());
       
-      System.out.println (offline+":"+blinkOffline);
-      
       if(offline && blinkOffline>0)
         {        
         offlineIcon.draw(screen.expose(),560,420);
