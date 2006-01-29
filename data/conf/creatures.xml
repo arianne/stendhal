@@ -98,6 +98,7 @@
 		<experience value="15"/>
 		<drops>
 			<item value="meat"  quantity="[1,4]" probability="70"/>
+			<item value="meat"  quantity="[1,2]" probability="20"/>
 		</drops>
 		<slots>
 		</slots>
