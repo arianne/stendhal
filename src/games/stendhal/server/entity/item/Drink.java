@@ -17,8 +17,8 @@ import java.util.List;
 
 public class Drink extends ConsumableItem
   {
-  public Drink(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
+  public Drink(String name, String clazz, String subclass, Map<String, String> attributes)
     {
-    super(name,clazz, subclass, slots, attributes);
+    super(name,clazz, subclass, attributes);
     }
   }

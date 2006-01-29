@@ -52,14 +52,12 @@ public class Item extends PassiveEntity
    * @param slots slots where this item may be equipped. may be empty
    * @param attributes attributes (like attack). may be empty or <code>null</code>
    */
-  public Item(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
+  public Item(String name, String clazz, String subclass, Map<String, String> attributes)
   {
     this();
     put("class",clazz);
     put("subclass",subclass);
     put("name",name);
-    // save slots
-    possibleSlots = slots;
 
     if (attributes != null)
     {
@@ -69,6 +67,12 @@ public class Item extends PassiveEntity
         put(key,attributes.get(key));
       }
     }
+  }
+  
+  public void setContenaibleSlots(List<String> slots)
+  {
+    // save slots
+    possibleSlots = slots;
   }
 
   /** no public 'default' item */

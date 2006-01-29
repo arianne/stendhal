@@ -20,9 +20,9 @@ public class StackableItem extends Item implements Stackable
   {
   private int quantity;
   
-  public StackableItem(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
+  public StackableItem(String name, String clazz, String subclass, Map<String, String> attributes)
     {
-    super(name, clazz, subclass, slots, attributes);
+    super(name, clazz, subclass, attributes);
     update();
     }
 

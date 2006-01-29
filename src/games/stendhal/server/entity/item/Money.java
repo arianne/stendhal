@@ -20,14 +20,14 @@ public class Money extends StackableItem
   {
   private int quantity;
   
-  public Money(List<String> slots, Map<String, String> attributes)
+  public Money(Map<String, String> attributes)
     {
-    super("money","money", "gold", slots, attributes);
+    super("money","money", "gold", attributes);
     }
 
   public Money(int quantity)
     {
-    super("money","money", "gold", new LinkedList<String>(), null);
+    super("money","money", "gold", null);
     put("quantity",quantity);
 
     this.quantity=quantity;

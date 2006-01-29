@@ -36,6 +36,7 @@ public class Portal extends Entity
       {
       RPClass portal=new RPClass("portal");
       portal.isA("entity");
+      portal.add("hidden",RPClass.FLAG);
       }
     catch(RPClass.SyntaxException e)
       {

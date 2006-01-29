@@ -84,26 +84,31 @@ public class DefaultItem
   /** returns an item-instance */
   public Item getItem()
     {
+    Item item=null;
+    
     if(clazz.equals("money"))
       {
-      return new Money(slots, attributes);
+      item=new Money(attributes);
       }
     else if(clazz.equals("food"))
       {
-      return new Food(name, clazz, subclazz, slots, attributes);
+      item=new Food(name, clazz, subclazz, attributes);
       }
     else if(clazz.equals("drink"))
       {
-      return new Drink(name, clazz, subclazz, slots, attributes);
+      item=new Drink(name, clazz, subclazz, attributes);
       }
     else if(stackable)
       {
-      return new StackableItem(name, clazz, subclazz, slots, attributes);
+      item=new StackableItem(name, clazz, subclazz, attributes);
       }
     else
       {
-      return new Item(name, clazz, subclazz, slots, attributes);
+      item=new Item(name, clazz, subclazz, attributes);
       }
+
+    item.setContenaibleSlots(slots);
+    return item;
     }
   
   /** returns the tileid */

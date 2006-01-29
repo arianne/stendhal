@@ -19,9 +19,9 @@ public class ConsumableItem extends StackableItem
   {
   private int left;
   
-  public ConsumableItem(String name, String clazz, String subclass, List<String> slots, Map<String, String> attributes)
+  public ConsumableItem(String name, String clazz, String subclass, Map<String, String> attributes)
     {
-    super(name,clazz, subclass, slots, attributes);
+    super(name,clazz, subclass, attributes);
     left=getAmount();
     }
   
