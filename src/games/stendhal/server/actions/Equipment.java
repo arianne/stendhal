@@ -284,6 +284,12 @@ public class Equipment extends ActionListener
  
         parent = getEntityFromId(player,world,action.getInt(BASE_OBJECT));
         
+        if(parent == null)
+        {
+          // Object doesn't exist.
+          return;
+        }
+        
         // is the container a player and not the current one?
         if (parent instanceof Player && !parent.getID().equals(player.getID()))
         {

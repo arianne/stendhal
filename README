@@ -41,7 +41,7 @@ Please download it from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.42.jar
+  java -jar stendhal-0.44.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -69,6 +69,7 @@ Changelog
 - Changed sync event management so game is less laggy.
 - Can buy several items in a batch ( buy 5 potion )
 - Fixed sync error. Should happen less oftenly.
+- Items bought are automatically stacked.
 - Added new area:
   - Library
 
