@@ -307,7 +307,10 @@ public abstract class RPEntity extends AnimatedEntity
     if(changes.has("private_text"))
       {
       client.addEventLine(changes.get("private_text"),Color.orange);
-      gameObjects.addText(this, changes.get("private_text").replace("|",""), Color.orange);
+      if(!(this instanceof Creature))
+        {
+        gameObjects.addText(this, changes.get("private_text").replace("|",""), Color.orange);
+        }
       }
 
     if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))

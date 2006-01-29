@@ -80,7 +80,7 @@ public class DefaultCreature
     this.xp=xp;
   }
   
-  public void setSize(int width, int heigth)
+  public void setSize(int width, int height)
   {
     this.width = width;
     this.height = height;
