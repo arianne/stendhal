@@ -361,7 +361,7 @@ public abstract class SpeakerNPC extends NPC
     // First we try to match with stateless states.
     for(StatePath state: statesTable)
       {
-      if(state.absoluteJump(actualState,text))
+      if(actualState!=0 && state.absoluteJump(actualState,text))
         {
         logger.debug("Matched a stateless state: "+state);
         executeState(player,text,state);
