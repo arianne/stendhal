@@ -200,6 +200,7 @@ public class GameObjects implements Iterable<Entity>
     Log4J.startMethod(logger,"add");
 
     Entity entity=entityType(object);
+    
     // HACK: The first time the object is EMPTY! 
     entity.modifyAdded(new RPObject(), object);
     
