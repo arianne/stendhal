@@ -37,17 +37,17 @@
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEvjYGD4wI4dIwNcaijRkwq0+x2QzgDSfFjwZ6DcFyD+yo4pdxModguLOD49yDgdiN+yQ+znAbItORkYrDhx03PZicOEzIHR3Gj2hwPFIjhx0yCznwKxKyd2/AxqPyFzYDS6/cT4nxj7R/1PO/8Tg2np/4FO/0PB/8RiWvmfXPupbf6o/aP2j9o/av+o/aP2j9o/9O3vJwHTyn5yxQjZ7wVk89IZe0Lt9wDS79kHBrsD7QYAR96CAwAQAAA=
+   H4sIAAAAAAAAAEvjYGD4wI4dg8AaVgiNSw02PS9YiNOTCrT7HZDOANJ8WPBnoNwXIP7Kjil3Eyh2C4s4Pj3IOB2I37JD7OcBsi05GRisOHHTc9mJw4TMgdHcaPaHA8UiOHHTILOfArErJ3b8DGo/IXNgNLr9xPifGPtH/U87/xODaen/gU7/Q8H/xGJa+Z9c+6lt/qj9o/aP2j9q/6j9o/aP2j/07e8nAdPKfnLFCNnvBWTz0hl7Qu33ANLv2QcGuwPtBgB91I3TABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OMQ0AIBAEwWs+ASPg3yEtBshTzBjYTYBfzEpG9bTX1d1NDwAAwDsHW24PLwAQAAA=
+   H4sIAAAAAAAAAO3OoQ0AIAxE0RqSYjoG7MEk7D8FAoMBQgLU/Kd7vRNZK7o5uJSZqYe/THvGLm4AfolBRINPdxp6s9MGAAAAAO80DvyEGAAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA0cOSC0MwceRVTQgwvEQ81IRDJLDchWR8MaWOxKpIL9yOAhED8CYhegua5o2A2I7Vkx9cQxotIgcIyFgSEJi9rDQHwEiMuZGRgqmLG74QgL+e4H6cWnH+Y/XOAwUO8qqP5v7AwM36H4BzvxbkA2gxIgAgxvUSgWIyOecbnhGVD8P0gOGD9xWOKIWuAwDvs5gHbKArEcEHNisf8GHr+eJTIcjrJAMDYA8rM6EKvh8D/IDlzpfxRQBlo5sGNKwH1g3ozmgGATAma1cWDHFAFOSP4kJp8Sk66wqcGb/jgpdD+lYAjZPxr+1Ad/Sch/tAh/MQ7i899IBzRJ/0MIwNp0/zgQmJS2HaUAuU2Hq2033MMfOewrB2H4DzR4CAyPR0D8GIifsOMWGwXEAwB+pw0YABAAAA==
+   H4sIAAAAAAAAAGNgwA0cOSC0MwceRVTQgwvEQ81IRDJLDchWR8MaHPj1UAM8BOJHQOwCNNcVDbsBsT0rpp44RlQaBI6xMDAkYVF7GIiPAHE5MwNDBTN2NxxhId/9IL349MP8hwscBupdBdX/jZ2B4TsU/2An3g3IZlACRIDhLQrFYmTEMy43PAOK/wfJAeMnDkscUQscxmE/B9BOWSCWA2JOLPbfwOPXs0SGw1EWCMYGQH5WB2I1HP4H2YEr/Y8CykArB3ZMCbgPzJvRHBBsQsCsNg7smCLACcmfxORTYtIVNjV40x8nhe6nFAwh+0fDn/rgLwn5jxbhL8ZBfP4b6YAm6X8IAVib7h8HApPStqMUILfpcLXthnv4I4d95SAM/4EGD4Hh8QiIHwPxE3bcYqOAeAAADa+ZOQAQAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
@@ -60,7 +60,7 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="objects" width="32" height="32">
+ <layer name="objects" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3LMQ0AAAgDsL0Yxb8EXBBC2r/JbV07BwAAAD4bdZlM7AAQAAA=
   </data>

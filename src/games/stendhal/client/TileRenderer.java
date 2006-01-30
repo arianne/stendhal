@@ -356,9 +356,9 @@ public class TileRenderer
     // Interior_1 = 3463 - 3942
 
     // Blacksmith fire (small), Top
-    addAnimatedTile(3560,new int[]{3560,3660,3561,3561,3562,3562,3561,3561});
-    addAnimatedTile(3561,new int[]{3560,3660,3561,3561,3562,3562,3561,3561});
-    addAnimatedTile(3562,new int[]{3560,3660,3561,3561,3562,3562,3561,3561});
+    addAnimatedTile(3560,new int[]{3560,3560,3561,3561,3562,3562,3561,3561});
+    addAnimatedTile(3561,new int[]{3560,3560,3561,3561,3562,3562,3561,3561});
+    addAnimatedTile(3562,new int[]{3560,3560,3561,3561,3562,3562,3561,3561});
 
     // Blacksmith fire (small), Bottom
     addAnimatedTile(3590,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
