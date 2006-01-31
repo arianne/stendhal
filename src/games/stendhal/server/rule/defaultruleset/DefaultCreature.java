@@ -74,10 +74,40 @@ public class DefaultCreature
     this.speed=speed;
   }
   
+  public int getHP()
+  {
+    return hp;
+  }
+  
+  public int getATK()
+  {
+    return atk;
+  }
+  
+  public int getDEF()
+  {
+    return def;
+  }
+  
+  public double getSpeed()
+  {
+    return speed;
+  }
+  
   public void setLevel(int level, int xp)
   {
     this.level=level;
     this.xp=xp;
+  }
+  
+  public int getLevel()
+  {
+    return level;
+  }
+  
+  public int getXP()
+  {
+    return xp;
   }
   
   public void setSize(int width, int height)
@@ -94,6 +124,11 @@ public class DefaultCreature
   public void setDropItems(List<Creature.DropItem> dropsItems)
   {
     this.dropsItems=dropsItems;
+  }
+
+  public List<Creature.DropItem> getDropItems()
+  {
+    return dropsItems;
   }
   
   public void setAIProfiles(Map<String, String> aiProfiles)

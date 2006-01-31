@@ -51,6 +51,9 @@
 				<path>src\games\stendhal\client\gui\wt\core</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\client\events</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\server</path>
 			</folderitem>
 			<folderitem>
@@ -723,6 +726,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\common\StringFormatter.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\tools\GenerateBestiaryAndItems.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

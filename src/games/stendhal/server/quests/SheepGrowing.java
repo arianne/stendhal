@@ -69,7 +69,7 @@ public class SheepGrowing implements IQuest
             super(items);
             }
             
-          public boolean onSell(SpeakerNPC seller, Player player, String itemName, int itemPrice)
+          public boolean onSell(SpeakerNPC seller, Player player, String itemName, int amount, int itemPrice)
             {
             if(!player.hasSheep())
               {
