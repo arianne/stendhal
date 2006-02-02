@@ -130,9 +130,9 @@
 		<equips>
 		</equips>
 		<ai> 
-		    <says>
-  			  <noise value="Aooooooouuhhh!!"/>
-		    </says>
+			<says>
+				<noise value="Aooooooouuhhh!!"/>
+			</says>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 		</ai>
@@ -159,9 +159,9 @@
 		<equips>
 		</equips>
 		<ai>
-	        <says>
-  			  <noise value="SsSssSsssssss!"/>
-	        </says>
+			<says>
+				<noise value="SsSssSsssssss!"/>
+			</says>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 			<profile name="poisonous" params="5,poison"/>
@@ -189,9 +189,9 @@
 		<equips>
 		</equips>
 		<ai>
-	        <says>
-  			  <noise value="Roar!"/>
-	        </says>
+			<says>
+				<noise value="Roar!"/>
+			</says>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 		</ai>
@@ -421,9 +421,9 @@
 		<equips>
 		</equips>
 		<ai>
-	        <says>
-  			  <noise value="Roar!"/>
-	        </says>
+			<says>
+				<noise value="Roar!"/>
+			</says>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
 		</ai>
@@ -743,9 +743,9 @@
 		<equips>
 		</equips>
 		<ai>
-	        <says>
-  			  <noise value="You humans never leave us alone!"/>
-	        </says>
+			<says>
+				<noise value="You humans never leave us alone!"/>
+			</says>
 			<profile name="human"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
@@ -756,18 +756,17 @@
 
 <!-- Extreme -->
 
-<!--
 	<creature name="archrat">
 		<type class="ratfolk" subclass="archrat" tileid="-1"/>
 		<attributes>
 			<atk value="120"/>
-			<def value="70"/>
+			<def value="30"/>
 			<hp value="2000"/>
-			<speed value="2"/>
+			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="30"/>
-		<experience value="10000"/>
+		<level value="20"/>
+		<experience value="5000"/>
 		<drops>
 		</drops>
 		<slots>
@@ -775,9 +774,11 @@
 		<equips>
 		</equips>
 		<ai>
-	        <says>
- 			  <noise value="Your messing with the rats?!"/>
-	        </says>
+			<says>
+				<noise value="Your messing with the rats?!"/>
+				<noise value="Your death has come!"/>
+				<noise value="Feel my wrath!"/>
+			</says>
 			<profile name="human"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
@@ -785,7 +786,6 @@
 			<profile name="poisonous" params="40,greater_poison"/>
 		</ai>
 	</creature>
--->
 
 </creatures>
 
