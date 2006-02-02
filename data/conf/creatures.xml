@@ -766,7 +766,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="20"/>
-		<experience value="5000"/>
+		<experience value="10000"/>
 		<drops>
 		</drops>
 		<slots>
@@ -782,7 +782,7 @@
 			<profile name="human"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
-			<profile name="heal" params="5,10"/>
+			<profile name="heal" params="5,50"/>
 			<profile name="poisonous" params="40,greater_poison"/>
 		</ai>
 	</creature>
