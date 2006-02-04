@@ -275,6 +275,7 @@
     </copy>
     
     <copy todir="stendhal-${version}-src" file="build.xml"/>
+    <copy todir="stendhal-${version}-src" file="build.ant.properties"/>
     <copy todir="stendhal-${version}-src" file="AUTHORS"/>
     <copy todir="stendhal-${version}-src" file="BUGS"/>
     <copy todir="stendhal-${version}-src" file="COPYING"/>
