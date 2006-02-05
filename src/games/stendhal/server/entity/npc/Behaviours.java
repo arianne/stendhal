@@ -225,7 +225,7 @@ public class Behaviours
           amount=words[1].trim();
           item=words[2].trim();        
           }
-        else
+        else if(words.length>1)
           {
           item=words[1].trim();        
           }

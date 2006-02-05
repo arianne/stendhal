@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.44
+Version 0.45
 
 
 How to play
@@ -68,6 +68,7 @@ Changelog
 - Fixed sheep inmortality bug.
 - Fixed equipment mess bug.
 - Fixed offline icon not showing.
+- Fixed equipment bug.
 
 0.44 Jan 29, 2006
 - Fixed a null pointer bug at creature logic.
