@@ -230,18 +230,7 @@ public class j2DClient extends JFrame
 
       logger.debug("Move objects");
       gameObjects.move(delta);
-/*
-      // SOUND TEST ARRANGEMENT, simulating player move events
-      if ( counter++ % 50 == 0 )
-      {
-         Player player = null;
-         RPObject playerObj; 
 
-         if ( (playerObj = StendhalClient.get().getPlayer()) != null )
-            player = (Player) StendhalClient.get().getGameObjects().get(playerObj.getID());
-         WorldObjects.firePlayerMoved( player );
-      }
-*/      
       logger.debug("Draw screen");
       pipeline.draw(screen);
       inGameGUI.draw(screen);
@@ -267,9 +256,14 @@ public class j2DClient extends JFrame
         fps=0;
         }
       
+      // Shows a offline icon if no messages are recieved in 10 seconds.
       if(refreshTime-lastMessageHandle>10000)
         {        
         inGameGUI.offline();
+        }
+      else
+        {
+        inGameGUI.online();
         }
 
       gameRunning&=client.shouldContinueGame();

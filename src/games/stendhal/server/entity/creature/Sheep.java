@@ -283,7 +283,7 @@ public class Sheep extends Creature
       }
       }
     
-    if(rp.getTurn()%100==0 && getHP()<getBaseHP());
+    if(rp.getTurn()%100==0 && getHP()<getBaseHP())
       {
       if(getHP()+5<=getBaseHP())      
         {
