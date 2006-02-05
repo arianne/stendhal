@@ -69,6 +69,7 @@ Changelog
 - Fixed equipment mess bug.
 - Fixed offline icon not showing.
 - Fixed equipment bug.
+- Fixed NPC talking bug.
 
 0.44 Jan 29, 2006
 - Fixed a null pointer bug at creature logic.
