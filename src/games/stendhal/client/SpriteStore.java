@@ -64,37 +64,26 @@ public class SpriteStore {
      */
  public Sprite[] getAnimatedSprite(String ref, int animation, int frames, double width, double height)
 	  {
-      Log4J.startMethod(logger, "getAnimatedSprite");
-      try
-        {
-        return getAnimatedSprite(getSprite(ref),animation,frames,width,height);
-        }
-      finally
-        {
-      Log4J.finishMethod(logger, "getAnimatedSprite");
-        }
+    return getAnimatedSprite(getSprite(ref),animation,frames,width,height);
 	  }
 
  public Sprite[] getAnimatedSprite(Sprite animImage, int animation, int frames, double width, double height)
     {
-      Log4J.startMethod(logger, "getAnimatedSprite");
+    int iwidth=(int)(width*GameScreen.SIZE_UNIT_PIXELS);
+    int iheight=(int)(height*GameScreen.SIZE_UNIT_PIXELS);
 
-      int iwidth=(int)(width*GameScreen.SIZE_UNIT_PIXELS);
-      int iheight=(int)(height*GameScreen.SIZE_UNIT_PIXELS);
+    Sprite[] animatedSprite=new Sprite[frames];
+  
+    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
-      Sprite[] animatedSprite=new Sprite[frames];
-    
-      GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-
-      for(int i=0;i<frames;i++)
-        {
-        Image image = gc.createCompatibleImage(iwidth,iheight,Transparency.BITMASK);
-        animImage.draw(image.getGraphics(),0,0,i*iwidth,animation*iheight);
-        animatedSprite[i]=new Sprite(image);
-        }
+    for(int i=0;i<frames;i++)
+      {
+      Image image = gc.createCompatibleImage(iwidth,iheight,Transparency.BITMASK);
+      animImage.draw(image.getGraphics(),0,0,i*iwidth,animation*iheight);
+      animatedSprite[i]=new Sprite(image);
+      }
       
-      Log4J.finishMethod(logger, "getAnimatedSprite");
-      return animatedSprite;
+    return animatedSprite;
     }
   
   public void free(String ref)
@@ -114,10 +103,6 @@ public class SpriteStore {
     }
     
   public Sprite getSprite(String ref, boolean loadAlpha) {
-	    try
-	    {
-      Log4J.startMethod(logger, "getSprite");
-         
 		// if we've already got the sprite in the cache
 		// then just return the existing version
 		if (sprites.get(ref) != null) {
@@ -167,11 +152,6 @@ public class SpriteStore {
 		sprites.put(ref,sprite);
 		
 		return sprite;
-		}
-		finally
-		{
-      Log4J.finishMethod(logger, "getSprite");
-		}
 	}
 	
 	/**

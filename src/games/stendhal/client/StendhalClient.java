@@ -205,7 +205,7 @@ public class StendhalClient extends ariannexp
         logger.debug("message: "+message);
         }
         
-      if(message.getTypePerception()==1/*Perception.SYNC*/)
+      if(message.getPerceptionType()==1/*Perception.SYNC*/)
         {
         logger.debug("UPDATING screen position");
         
@@ -221,19 +221,17 @@ public class StendhalClient extends ariannexp
         GameScreen screen=GameScreen.get();        
         
         /** Full object is normal object+hidden objects */
-        RPObject hidden=message.getMyRPObject();
+        RPObject hidden=message.getMyRPObjectAdded();
         RPObject object=null;
         
         for(RPObject search: message.getAddedRPObjects())
           {
           if(search.getID().equals(hidden.getID()))
             {
-            object=(RPObject)search.copy();
+            object=(RPObject)search.clone();
             break;
             }
           }
-        
-        object.applyDifferences(hidden,null);
         
         /** We clean the game object container */
         logger.debug("CLEANING static object list");
@@ -276,7 +274,7 @@ public class StendhalClient extends ariannexp
         }
         
       /** This code emulate a perception loss. */
-      if(Debug.EMULATE_PERCEPTION_LOSS && message.getTypePerception() != Perception.SYNC && (message.getPerceptionTimestamp() % 30) == 0)
+      if(Debug.EMULATE_PERCEPTION_LOSS && message.getPerceptionType() != Perception.SYNC && (message.getPerceptionTimestamp() % 30) == 0)
         {
         return;
         }
@@ -468,20 +466,45 @@ public class StendhalClient extends ariannexp
       return false;
       }
     
-    public boolean onMyRPObject(boolean changed,RPObject object)
+    public boolean onMyRPObject(RPObject added, RPObject deleted)
       {
       try
         {
-        if(changed)
-          {          
-          player=(RPObject)world_objects.get(object.getID());
-          gameObjects.modifyAdded(player,object);
-          player.applyDifferences(object,null);
+        RPObject.ID id=null;
+
+        if(added!=null)
+          {
+          id=added.getID();
+          }
+
+        if(deleted!=null)
+          {
+          id=deleted.getID();
+          }
+        
+        if(id==null)
+          {
+          // Unchanged.
+          return true;
+          }
+
+        player=(RPObject)world_objects.get(id);
+        
+        if(deleted!=null)
+          {
+          gameObjects.modifyRemoved(player,deleted);
+          player.applyDifferences(null,deleted);
+          }
+        
+        if(added!=null)
+          {
+          gameObjects.modifyAdded(player,added);
+          player.applyDifferences(added,null);
           }
         }
       catch(Exception e)
         {
-        logger.error("onMyRPObject failed, changed="+changed+" object="+object,e);
+        logger.error("onMyRPObject failed, added="+added+" deleted="+deleted,e);
         }
         
       return true;

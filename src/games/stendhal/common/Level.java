@@ -48,7 +48,15 @@ public class Level
       logger.debug("Level "+i+": "+table.get(i));
       }
     }
-
+  
+  public static void main(String[] args)
+    {
+    for(int i=0;i<LEVELS;i++)
+      {
+      System.out.println ("<tr><td>"+i+"</td><td>"+table.get(i)+"</td></tr>");
+      }
+    }
+  
   public static int maxLevel()
     {
       return LEVELS - 1;

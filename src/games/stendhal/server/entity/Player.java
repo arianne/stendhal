@@ -70,13 +70,15 @@ public class Player extends RPEntity
       player.add("invisible",RPClass.FLAG,RPClass.HIDDEN);
 
       // TODO: When we fix Marauroa myRPObject problem, changed slots to private.
-      player.addRPSlot("head",1);
-      player.addRPSlot("rhand",1);
-      player.addRPSlot("lhand",1);
-      player.addRPSlot("armor",1);
-      player.addRPSlot("legs",1);
-      player.addRPSlot("feet",1);
-      player.addRPSlot("bag",12);
+      player.addRPSlot("head",1,RPClass.PRIVATE);
+      player.addRPSlot("rhand",1,RPClass.PRIVATE);
+      player.addRPSlot("lhand",1,RPClass.PRIVATE);
+      player.addRPSlot("armor",1,RPClass.PRIVATE);
+      player.addRPSlot("legs",1,RPClass.PRIVATE);
+      player.addRPSlot("feet",1,RPClass.PRIVATE);
+      player.addRPSlot("bag",12,RPClass.PRIVATE);
+
+      // Store sheep at DB
       player.addRPSlot("#flock",1,RPClass.HIDDEN);
       
       // We use this for the buddy system
