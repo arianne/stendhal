@@ -65,6 +65,9 @@ Changelog
 0.45 Feb XX, 2006
 - Fixed ambient sounds.
 - Fixed sheep quest.
+- Fixed sheep inmortality bug.
+- Fixed equipment mess bug.
+- Fixed offline icon not showing.
 
 0.44 Jan 29, 2006
 - Fixed a null pointer bug at creature logic.

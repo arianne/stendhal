@@ -47,9 +47,7 @@ public class EntityContainer extends Panel
   private Entity parent;
   /** the slots name */
   private String slotName;
-  
-  /** current size of the slot (to refresh the content once something changed) */
-  private int slotSize;
+  private RPSlot shownSlot;
 
   /** creates the panel */
   public EntityContainer(GameObjects gameObjects, String name, int width,
@@ -61,7 +59,7 @@ public class EntityContainer extends Panel
     setFrame(true);
     setMinimizeable(true);
     setCloseable(true);
-    slotSize = 0;
+    shownSlot = null;
 
     SpriteStore st = SpriteStore.get();
     Sprite slotSprite = st.getSprite("data/gui/slot.png");
@@ -104,6 +102,8 @@ public class EntityContainer extends Panel
     }
     
     RPSlot rpslot = parent.getSlot(slotName);
+    shownSlot=(RPSlot)rpslot.clone();
+    
     Iterator<RPObject> it = (rpslot != null) ? rpslot.iterator() : null;
 
     for (EntitySlot entitySlot : slotPanels)
@@ -167,11 +167,9 @@ public class EntityContainer extends Panel
     {
       RPSlot rpslot = parent.getSlot(slotName);
       // rescan the content if the size changes
-      int newSlotSize = rpslot.size(); 
-      if (newSlotSize != slotSize)
+      if(!shownSlot.equals(rpslot))
       {
         rescanSlotContent();
-        slotSize = newSlotSize; 
       }
       checkDistance();
     }
