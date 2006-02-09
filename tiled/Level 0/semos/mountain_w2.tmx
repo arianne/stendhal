@@ -42,7 +42,7 @@
  </layer>
  <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3cXU7rQBAFYYuVwP43CShCQgJnJmGMj0/VJ90H4jx0d90/EGLbtu31ZdvePn7N+Hrv7PvT/bb7I/do8Ez/FvT+n7vaf/xaK/uz+3+y//i1ZvYfv9bM/uPXmtl//Foz++9/TGD//Y8J7L//MQFx5y/2Z+68h3iLZ3ZuvVPrXvfY/6Zxpxn2v2ncacaze7fdq22fWfa/adtnFqn/vZmvuM8K9h8/a2b/8bNmpL3t/xNpb/v/9Ne9r3K30ZxX2WM1+889b7Vi7yvczv6/s//c81b2n3veyv5zz1vZf+55K/vPPW9l/7nnrVbtnXy/mdmS5z+S/eff04iwt/33HbF30i1nZ0ma+T/Zn+vI26TcPWWORPZnO/o2CbdPmCGV/XWkhNt/nyFhHpKEe9v/PAn3tv95Eu5t//Mk3Nv+50m4d8IMVAm3T5iBKuH2CTNQJdw+YQaqhNsnzECVcPuEGagSbp8wA1XC7RNmoEq4fcIMRCl3T5mDJuXuKXPoHPbnsj2b/dnsz2V7Nvuz2f9/eGc2+7O19m/da7XWO7XutVLzjZp3W6X5Rs27rdL+s6NS50phfzb7s7X/7NDk2RLYn83+bPZnsz+b//9X898BqXMlab5R826rNN+oebdVWm/UutdqrXdq3Utz7M9l++tZ2cz+12N/tvavReo++7M1fx1aY/Znsx2b/dnsz/ZMf3/P9LA/26Mtbd/F/mz2Z3ukp+372J9ttqntO9mfzf5c/tvPZn8uP+9ns78eYX82+7PZn83+1+X3+LLZn83+XLZnsz+b/dnsz2U3Nvuz2Z/N7+9gsz+X39/B5p99Nvsf5x0ZNCgEAAABAA==
   </data>
  </layer>
  <layer name="2_object" width="128" height="128">
