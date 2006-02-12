@@ -110,7 +110,7 @@ public class TileSet implements Iterable<Tile>
             tilebmpFile = imgFilename;
         }
 
-        System.out.println("Importing " + imgFilename + "...");
+//        System.out.println("Importing " + imgFilename + "...");
 
         importTileBitmap(ImageIO.read(imgFile.toURL()), tileWidth,
                 tileHeight, spacing, createTiles);

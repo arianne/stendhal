@@ -15,7 +15,7 @@
  *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
-package tiled.io.xml;
+package tiled.plugins.tiled;
 
 import java.lang.String;
 import java.io.Writer;
@@ -91,7 +91,7 @@ public class XMLWriter
     }
 
     public void endElement() throws IOException {
-        String name = openElements.pop();
+        String name = (String)openElements.pop();
 
         // If start tag still open, end with />, else with </name>.
         if (bStartTagOpen) {

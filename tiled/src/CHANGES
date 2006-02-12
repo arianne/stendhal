@@ -6,7 +6,7 @@
 * biggest change: the code is java 1.5.0 now. never look back.
 * added a new panel with tabs for each tileset (removed the tileset button)
 * added selecting multiple tiles from the tileset. The brush now draws all
-  selected tiles at once (only one layer at the moment)
+  selected tiles at once
 * added memory monitor
 * properly implemented the minimap
 * properly implemented brushes
@@ -14,6 +14,9 @@
 * refactored mapview system
 * refactored action system
 * support for custom brushes (single and multilayer)
+* refactored the plugin system
+* updated GUI for managing tile properties
+
 
 Broken things:
 * some undo features
@@ -21,9 +24,13 @@ Broken things:
 * grid/coordinate map view (won't fix this)
 * save as image
 * select all/none/invert
+* plugins
 
 Todo:
-* Save custom brushes in map (invent a new map file format?)
+* Save custom brushes in map
+* repair undo/pour/save as image
+* improve selection
+* fix plugins
 
 0.5.2 - TBD (+ means planned change)
 

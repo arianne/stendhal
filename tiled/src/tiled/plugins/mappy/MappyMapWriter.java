@@ -27,7 +27,7 @@ import tiled.io.MapWriter;
 import tiled.core.Map;
 import tiled.core.TileSet;
 
-public class MappyMapWriter implements MapWriter
+public class MappyMapWriter implements MapWriter, FileFilter
 {
     private List<Chunk> chunks;
 
@@ -146,5 +146,11 @@ public class MappyMapWriter implements MapWriter
     private LinkedList findAllBlocks(Map m) {
         // TODO: this
         return null;
+    }
+    
+    /** returns a list of available filefilters */
+    public FileFilter[] getFilters()
+    {
+      return new FileFilter[] {this}; 
     }
 }

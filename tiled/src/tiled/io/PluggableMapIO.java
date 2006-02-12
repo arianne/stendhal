@@ -17,6 +17,7 @@
 
 package tiled.io;
 
+import java.io.FileFilter;
 import java.util.Stack;
 
 /**
@@ -32,6 +33,8 @@ public interface PluggableMapIO
      * 
      * @return a comma delimited string of supported file extensions
      * @throws Exception
+     * @deprecated this will be removed.
+     *   use <B>public FileFilter[] getFilters();</B>
      */
     public String getFilter() throws Exception;
 
@@ -68,4 +71,13 @@ public interface PluggableMapIO
      *           print messages from the plugin 
      */
     public void setErrorStack(Stack<String> es);
+    
+    /**
+     * Lists supported file extensions. This function is used by the editor to
+     * find the plugin to use for a specific file extension.
+     * 
+     * @return an array with the FileFilter instances for this plugin
+     */
+    public FileFilter[] getFilters();
+    
 }

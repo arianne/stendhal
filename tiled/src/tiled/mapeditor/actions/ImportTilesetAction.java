@@ -41,8 +41,7 @@ public class ImportTilesetAction extends AbstractAction
       {
         try
         {
-          ch.addChoosableFileFilter(new TiledFileFilter(readers[i]
-              .getFilter(), readers[i].getName()));
+          ch.addChoosableFileFilter(new TiledFileFilter(readers[i].getFilter(), readers[i].getName()));
         } catch (Exception e)
         {
           e.printStackTrace();

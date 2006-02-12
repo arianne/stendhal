@@ -15,7 +15,7 @@
  *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
-package tiled.io.xml;
+package tiled.plugins.tiled;
 
 
 public class XMLWriterException extends Exception

@@ -47,6 +47,8 @@ public class MiniMapViewer extends JPanel implements MouseListener, MouseMotionL
 
   /** last viewpoint in the map editing panel */
   private Point lastViewPoint;
+  /** need this to prevent recursive painting */
+  private boolean paintingInProgress;
 
   public MiniMapViewer()
   {
@@ -90,9 +92,16 @@ public class MiniMapViewer extends JPanel implements MouseListener, MouseMotionL
 
   public void paintComponent(Graphics g)
   {
+    if (paintingInProgress)
+    {
+      // recursive painting caused by scrollRectToVisible(..) 
+      return;
+    }
+    paintingInProgress = true;
     clearBackground(g);
     if (mapView == null || mapView.getMinimap() == null)
     {
+      paintingInProgress = false;
       return;
     }
 
@@ -121,6 +130,7 @@ public class MiniMapViewer extends JPanel implements MouseListener, MouseMotionL
         lastViewPoint = viewPoint;
       }
     }
+    paintingInProgress = false;
   }
   
   /** scrolls the viewport of the map edit panel to this point */

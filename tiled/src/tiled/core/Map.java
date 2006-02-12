@@ -42,18 +42,18 @@ public class Map extends MultilayerPlane
     /** shifted (used for iso and hex) */
     public static final int MDO_SHIFTED = 5;
 
+    /** all tilesets for this map */
     private List<TileSet> tilesets;
-    private LinkedList<MapObject> objects;
-    
     /** List of user-brushes */
     private List<TileGroup> userBrushes;
+    /** the properties layer */
+    private PropertiesLayer propertiesLayer;
 
-    int tileWidth, tileHeight;
-    int totalObjects = 0;
-    int orientation = MDO_ORTHO;
-    EventListenerList mapChangeListeners;
-    Properties properties;
-    String filename;
+    private int tileWidth, tileHeight;
+    private int orientation = MDO_ORTHO;
+    private EventListenerList mapChangeListeners;
+    private Properties properties;
+    private String filename;
 
     /**
      * @param width  the map width in tiles.
@@ -72,7 +72,6 @@ public class Map extends MultilayerPlane
         mapChangeListeners = new EventListenerList();
         properties = new Properties();
         tilesets = new ArrayList<TileSet>();
-        objects = new LinkedList<MapObject>();
         userBrushes = new ArrayList<TileGroup>();
     }
 
@@ -160,7 +159,7 @@ public class Map extends MultilayerPlane
         s.setStandardWidth(tileWidth);
         tilesets.add(s);
         s.setMap(this);
-        fireMapChanged(MapChangedEvent.Type.LAYERS);
+        fireMapChanged(MapChangedEvent.Type.TILESETS);
     }
 
     /**
@@ -191,14 +190,6 @@ public class Map extends MultilayerPlane
 
         tilesets.remove(s);
         fireMapChanged(MapChangedEvent.Type.LAYERS);
-    }
-
-    public void addObject(MapObject o) {
-        objects.add(o);
-    }
-
-    public Iterator<MapObject> getObjects() {
-        return objects.iterator();
     }
 
     /**
@@ -246,6 +237,7 @@ public class Map extends MultilayerPlane
         fireMapChanged(MapChangedEvent.Type.LAYERS);
     }
 
+    /** sets all layers */
     public void setLayers(List<MapLayer> layers) {
         super.setLayers(layers);
         fireMapChanged(MapChangedEvent.Type.LAYERS);
@@ -406,15 +398,6 @@ public class Map extends MultilayerPlane
     }
 
     /**
-     * Returns the amount of objects on the map.
-     * 
-     * @return The total objects in the map
-     */
-    public int getTotalObjects() {
-        return totalObjects;
-    }
-
-    /**
      * Returns the orientation of this map. Orientation will be one of
      * {@link Map#MDO_ISO}, {@link Map#MDO_ORTHO}, {@link Map#MDO_HEX},
      * {@link Map#MDO_OBLIQUE} and {@link Map#MDO_SHIFTED}.
@@ -439,15 +422,24 @@ public class Map extends MultilayerPlane
     }
 
     /**
-     * Determines wether the point (x,y) falls within the map boundaries.
-     * 
-     * @param x
-     * @param y
-     * @return <code>true</code> if the point is within the map boundaries, <code>false</code> otherwise
+     * @return Returns the properties layer.
      */
-    public boolean inBounds(int x, int y) {
-        return (x >= 0 && y >= 0 &&
-                x < this.widthInTiles && y < this.heightInTiles);
+    public PropertiesLayer getPropertiesLayer()
+    {
+      if (propertiesLayer == null)
+      {
+        propertiesLayer = new PropertiesLayer(getWidth(),getHeight());
+      }
+      return propertiesLayer;
+    }
+
+    /**
+     * Sets the properties layer
+     * @param propertiesLayer The properties layer to set.
+     */
+    public void setPropertiesLayer(PropertiesLayer propertiesLayer)
+    {
+      this.propertiesLayer = propertiesLayer;
     }
 
 }

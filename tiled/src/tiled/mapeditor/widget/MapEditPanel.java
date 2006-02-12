@@ -16,12 +16,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.List;
+import java.util.Properties;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import tiled.core.Map;
 import tiled.mapeditor.MapEditor;
 import tiled.mapeditor.builder.Builder;
+import tiled.mapeditor.dialog.PropertiesDialog;
 import tiled.mapeditor.util.MapModifyListener;
 import tiled.util.Util;
 import tiled.view.MapView;
@@ -35,7 +38,7 @@ import tiled.view.MapView;
  */
 public class MapEditPanel extends JPanel implements MouseListener, MouseMotionListener
 {
-  private static final long serialVersionUID = -7165936206773083620L;
+  private static final long serialVersionUID = 1L;
 
   /** the map view */
   private MapView mapView;
@@ -138,7 +141,7 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
     }
   }
 
-  /** repaints a portion of the map */
+  /** repaints a portion of the map. The rectangle is in tile coordinates */
   public void repaintRegion(Rectangle affectedRegion)
   {
     if (mapView != null)
@@ -258,10 +261,16 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
     {
       drawTo(e.getPoint(),false);
       finishDrag(e.getPoint());
+      mapEditor.clearSelectedTiles();
     } else if (e.getButton() == MouseEvent.BUTTON3)
     {
-      mapEditor.clearSelectedTiles();
-      repaint();
+      // show properties dialog
+      Map map = mapEditor.getCurrentMap();
+      Point p = getTilePosition(e.getPoint());
+      Properties props = map.getPropertiesLayer().getProps(p.x,p.y);
+      PropertiesDialog lpd = new PropertiesDialog(mapEditor.appFrame, props);
+      lpd.setTitle("Tile "+p.x+"x"+p.y+ " Properties");
+      lpd.getProps();
     }
   }
 
@@ -289,19 +298,30 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
   {
     if ((e.getModifiers() & MouseEvent.BUTTON1_MASK) == MouseEvent.BUTTON1_MASK)
     {
-      dragInProgress = true;
-      dragType = DragType.DRAW;
-      drawTo(e.getPoint(),true);
-      repaintLastCursorPosition();
-    } else if ((e.getModifiers() & MouseEvent.BUTTON3_MASK) == MouseEvent.BUTTON3_MASK)
-    {
-      if (!dragInProgress)
+      if (dragInProgress && ((!e.isShiftDown() && dragType == DragType.SELECT) || (e.isShiftDown() && dragType == DragType.DRAW)))
       {
-        dragStartPoint = e.getPoint();
+        finishDrag(e.getPoint());
       }
-      dragInProgress = true;
-      dragType = DragType.SELECT;
-      repaint();
+      
+      if (e.isShiftDown())
+      {
+        // Select
+        if (!dragInProgress)
+        {
+          dragStartPoint = e.getPoint();
+        }
+        dragInProgress = true;
+        dragType = DragType.SELECT;
+        repaint();
+      }
+      else
+      {
+        // Draw
+        dragInProgress = true;
+        dragType = DragType.DRAW;
+        drawTo(e.getPoint(),true);
+        repaintLastCursorPosition();
+      }
     }
     
   }

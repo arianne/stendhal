@@ -275,11 +275,13 @@ public class TileLayer extends MapLayer
      *         outside this layer
      */
     public Tile getTileAt(int tx, int ty) {
-        try {
-            return map[ty - bounds.y][tx - bounds.x];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return null;
-        }
+      int x = tx - bounds.x;
+      int y = ty - bounds.y;
+      if (x < 0 || y < 0 || x >= bounds.width || y >= bounds.height)
+      {
+        return null;
+      }
+      return  map[y][x];
     }
 
     /**

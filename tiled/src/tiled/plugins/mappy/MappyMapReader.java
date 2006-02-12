@@ -27,7 +27,7 @@ import java.util.Iterator;
 import tiled.io.MapReader;
 import tiled.core.*;
 
-public class MappyMapReader implements MapReader
+public class MappyMapReader implements MapReader, FileFilter
 {
     private List<Chunk> chunks;
     private List<BlkStr> blocks;
@@ -304,5 +304,10 @@ public class MappyMapReader implements MapReader
         ret.bits = in.read();
 
         return ret;
+    }
+    /** returns a list of available filefilters */
+    public FileFilter[] getFilters()
+    {
+      return new FileFilter[] {this}; 
     }
 }

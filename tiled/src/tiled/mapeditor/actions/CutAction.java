@@ -3,16 +3,11 @@
  */
 package tiled.mapeditor.actions;
 
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
-import java.awt.geom.Area;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
-import tiled.core.MapLayer;
-import tiled.core.ObjectGroup;
-import tiled.core.TileLayer;
 import tiled.mapeditor.MapEditor;
 
 public class CutAction extends AbstractAction

@@ -15,7 +15,7 @@
  *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
-package tiled.io.xml;
+package tiled.plugins.tiled;
 
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -35,7 +35,7 @@ import tiled.mapeditor.selection.SelectionLayer;
 import tiled.util.*;
 
 
-public class XMLMapWriter implements MapWriter
+public class XMLMapWriter implements MapWriter, FileFilter
 {
     /**
      * Saves a map to an XML file.
@@ -549,8 +549,8 @@ public class XMLMapWriter implements MapWriter
         int shared = 0;
         int maxShared = Math.min(fromParents.size(), toParents.size());
         for (shared = 0; shared < maxShared; shared++) {
-            String fromParent = fromParents.get(shared);
-            String toParent = toParents.get(shared);
+            String fromParent = (String)fromParents.get(shared);
+            String toParent = (String)toParents.get(shared);
             if (!fromParent.equals(toParent)) {
                 break;
             }
@@ -618,6 +618,18 @@ public class XMLMapWriter implements MapWriter
         return false;
     }
 
-    public void setErrorStack(Stack es) {
+    /* (non-Javadoc)
+     * @see tiled.io.PluggableMapIO#setErrorStack(java.util.Stack)
+     */
+    public void setErrorStack(Stack<String> es)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    /** returns a list of available filefilters */
+    public FileFilter[] getFilters()
+    {
+      return new FileFilter[] {this}; 
     }
 }

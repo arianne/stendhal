@@ -12,14 +12,13 @@
 
 package tiled.io;
 
-import java.io.FileFilter;
 import java.io.OutputStream;
 
 import tiled.core.Map;
 import tiled.core.TileSet;
 
 
-public interface MapWriter  extends PluggableMapIO, FileFilter
+public interface MapWriter extends PluggableMapIO
 {
     /**
      * Saves a map to a file.

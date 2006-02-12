@@ -21,7 +21,6 @@ package tiled.mapeditor;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -202,19 +201,17 @@ public class TilesetManager extends JDialog implements ActionListener,
 
     private int checkSetUsage(TileSet s) {
         int used = 0;
-        Iterator tileIterator = s.iterator();
 
-        while (tileIterator.hasNext()) {
-            Tile tile = (Tile)tileIterator.next();
-            Iterator layerIterator = map.iterator();
-
-            while (layerIterator.hasNext()) {
-                MapLayer ml = (MapLayer)layerIterator.next();
-                if (ml.isUsed(tile)) {
-                    used++;
-                    break;
-                }
+        for (Tile tile : s)
+        {
+          for (MapLayer ml : map.getLayerList())
+          {
+            if ((ml instanceof TileLayer) && (((TileLayer) ml).isUsed(tile)))
+            {
+              used++;
+              break;
             }
+          }
         }
 
         return used;

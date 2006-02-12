@@ -162,23 +162,10 @@ public class MainMenu extends JMenuBar implements ActionListener
     tilesetMenu.add(new TMenuItem(mapEditor.tilesetManagerAction));
     
     
-    /*
-    objectMenu = new JMenu("Objects");
-    objectMenu.add(createMenuItem("Add Object", null, "Add an object"));
-    mapEventAdapter.addListener(objectMenu);
-    
-    JMenu modifySub = new JMenu("Modify");
-    modifySub.add(createMenuItem("Expand Selection", null, ""));
-    modifySub.add(createMenuItem("Contract Selection", null, ""));
-    */
-    
     JMenu selectMenu = new JMenu("Select");
     selectMenu.add(new TMenuItem(mapEditor.selectAllAction, true));
     selectMenu.add(new TMenuItem(mapEditor.cancelSelectionAction, true));
     selectMenu.add(new TMenuItem(mapEditor.inverseAction, true));
-    //selectMenu.addSeparator();
-    //selectMenu.add(modifySub);
-    
     
     gridMenuItem = new JCheckBoxMenuItem("Show Grid");
     gridMenuItem.addActionListener(mapEditor);
@@ -221,7 +208,6 @@ public class MainMenu extends JMenuBar implements ActionListener
     add(mapMenu);
     add(layerMenu);
     add(tilesetMenu);
-    //menuBar.add(objectMenu);
     add(helpMenu);
   }
 

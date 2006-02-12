@@ -12,6 +12,7 @@
 package tiled.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -99,6 +100,14 @@ public class TileGroup
   public List<StatefulTile> getTileLayer(TileLayer layer)
   {
     return tileLayers.get(layer);
+  }
+  
+  /**
+   * returns a map with all layers/tilelists of this group.  
+   */
+  public java.util.Map<TileLayer,List<StatefulTile>> getTileLayers()
+  {
+    return Collections.unmodifiableMap(tileLayers);
   }
   
   /**

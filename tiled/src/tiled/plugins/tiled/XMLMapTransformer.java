@@ -15,7 +15,7 @@
  *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
-package tiled.io.xml;
+package tiled.plugins.tiled;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -44,7 +44,7 @@ import tiled.mapeditor.util.TransparentImageFilter;
 import tiled.util.*;
 
 
-public class XMLMapTransformer implements MapReader
+public class XMLMapTransformer implements MapReader, FileFilter
 {
     private Map map = null;
     private String xmlPath = null;
@@ -760,5 +760,11 @@ public class XMLMapTransformer implements MapReader
     
     public void setErrorStack(Stack<String> es) {
         warnings = es;
+    }
+
+    /** returns a list of available filefilters */
+    public FileFilter[] getFilters()
+    {
+      return new FileFilter[] {this}; 
     }
 }

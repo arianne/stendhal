@@ -20,39 +20,38 @@ package tiled.mapeditor.dialog;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.Properties;
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import tiled.mapeditor.MapEditor;
 import tiled.mapeditor.util.*;
 import tiled.mapeditor.widget.*;
 
-public class PropertiesDialog extends JDialog implements ActionListener,
-       ListSelectionListener
+public class PropertiesDialog extends JDialog implements ActionListener
 {
-  private static final long serialVersionUID = 6545364425824220311L;
+  private static final long serialVersionUID = 1L;
   
     private JTable tProperties;
     private JButton bOk, bCancel, bDel;
+    /** the modifyable properties */
     private Properties properties;
+    
     private PropertiesTableModel tableModel;
 
-    public PropertiesDialog(JFrame parent, Properties p) {
-        super(parent, "Properties", true);
-        properties = p;
-        init();
-        pack();
-        setLocationRelativeTo(getOwner());
+    public PropertiesDialog(JFrame parent, Properties p ) {
+      super(parent, "Properties", true);
+      this.properties = p;
+      init();
+      pack();
+      setLocationRelativeTo(getOwner());
     }
 
     private void init() {
-        tableModel = new PropertiesTableModel();
+        tableModel = new PropertiesTableModel(properties);
         tProperties = new JTable(tableModel);
-        tProperties.getSelectionModel().addListSelectionListener(this);
         JScrollPane propScrollPane = new JScrollPane(tProperties);
         propScrollPane.setPreferredSize(new Dimension(200, 150));
 
@@ -89,25 +88,25 @@ public class PropertiesDialog extends JDialog implements ActionListener,
         mainPanel.add(propScrollPane);
         mainPanel.add(user);
         mainPanel.add(buttons);
+        
+        tProperties.addKeyListener(new KeyAdapter()
+        {
+          public void keyPressed(KeyEvent e)
+          {
+            if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+            {
+              dispose();
+            }
+          }
+        
+        });
 
         getContentPane().add(mainPanel);
         getRootPane().setDefaultButton(bOk);
     }
 
-    private void updateInfo() {
-        // Make a copy of the properties that will be changed by the
-        // properties table model.
-        Properties props = new Properties();
-        Enumeration keys = properties.keys();
-        while (keys.hasMoreElements()) {
-            String key = (String)keys.nextElement(); 
-            props.put(key, properties.getProperty(key));
-        }
-        tableModel.update(props);
-    }
-
+    /** opens the (modal) properties dialog */
     public void getProps() {
-        updateInfo();
         setVisible(true);
     }
 
@@ -120,11 +119,7 @@ public class PropertiesDialog extends JDialog implements ActionListener,
             properties.clear();
 
             Properties newProps = tableModel.getProperties();
-            Enumeration keys = newProps.keys();
-            while (keys.hasMoreElements()) {
-                String key = (String)keys.nextElement(); 
-                properties.put(key, newProps.getProperty(key));
-            }
+            properties.putAll(newProps);
 
             dispose();
         } else if (source == bCancel) {
@@ -144,8 +139,5 @@ public class PropertiesDialog extends JDialog implements ActionListener,
                 }
             }            
         }
-    }
-
-    public void valueChanged(ListSelectionEvent e) {
     }
 }

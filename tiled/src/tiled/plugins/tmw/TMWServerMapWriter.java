@@ -33,7 +33,7 @@ import tiled.core.*;
  *  char[] (data)
  * </pre>
  */
-public class TMWServerMapWriter implements MapWriter
+public class TMWServerMapWriter implements MapWriter, FileFilter
 {
     /**
      * Loads a map from a file.
@@ -124,7 +124,12 @@ public class TMWServerMapWriter implements MapWriter
         return false;
     }
 
-    public void setErrorStack(Stack es) {
+    public void setErrorStack(Stack<String> es) {
         // TODO: implement setErrorStack
+    }
+    /** returns a list of available filefilters */
+    public FileFilter[] getFilters()
+    {
+      return new FileFilter[] {this}; 
     }
 }

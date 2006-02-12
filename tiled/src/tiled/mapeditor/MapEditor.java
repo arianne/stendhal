@@ -39,7 +39,6 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -55,8 +54,6 @@ import tiled.core.ObjectGroup;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.io.MapHelper;
-import tiled.io.MapReader;
-import tiled.io.MapWriter;
 import tiled.mapeditor.actions.*;
 import tiled.mapeditor.brush.Brush;
 import tiled.mapeditor.brush.ShapeBrush;
@@ -76,7 +73,6 @@ import tiled.mapeditor.util.MapChangeListener;
 import tiled.mapeditor.util.MapChangedEvent;
 import tiled.mapeditor.util.MapEventAdapter;
 import tiled.mapeditor.util.TileSelectionEvent;
-import tiled.mapeditor.util.TiledFileFilter;
 import tiled.mapeditor.widget.LayerEditPanel;
 import tiled.mapeditor.widget.MainMenu;
 import tiled.mapeditor.widget.MapEditPanel;
@@ -133,15 +129,15 @@ public class MapEditor implements ActionListener, MouseListener,
   public TilesetChooserTabbedPane tilePalettePanel;
   public MapEditPanel         mapEditPanel;
 
-  JPanel                      mainPanel;
+  private JPanel              mainPanel;
 
   public StatusBar            statusBar;
   public JScrollPane          mapScrollPane;
 
   public JFrame               appFrame;
 
-  AboutDialog                 aboutDialog;
-  MapLayerEdit                paintEdit;
+  private AboutDialog         aboutDialog;
+  private MapLayerEdit        paintEdit;
 
   // Actions
   public Action               zoomInAction;
@@ -870,6 +866,24 @@ public class MapEditor implements ActionListener, MouseListener,
   {
     return (currentMap != null && undoStack.canUndo() && !undoStack.isAllSaved());
   }
+  
+  /** opens a file chooser dialog to open a new map */
+  public void openMap()
+  {
+    if (!checkSave())
+    {
+      return;
+    }
+    
+    Map newMap = MapHelper.loadMap(appFrame);
+    if (newMap != null)
+    {
+      setCurrentMap(newMap);
+      updateRecent(newMap.getFilename());
+      return;
+    }
+  }
+  
 
   /**
    * Loads a map.
@@ -881,30 +895,21 @@ public class MapEditor implements ActionListener, MouseListener,
    */
   public boolean loadMap(String file)
   {
-    try
-    {
-      Map m = MapHelper.loadMap(file);
+    StringBuffer errorBuffer = new StringBuffer(); 
+    Map map = MapHelper.loadMap(appFrame,file,errorBuffer);
 
-      if (m != null)
-      {
-        setCurrentMap(m);
-        updateRecent(file);
-        // This is to try and clean up any previously loaded stuffs
-        return true;
-      } else
-      {
-        JOptionPane.showMessageDialog(appFrame, "Unsupported map format",
-            "Error while loading map", JOptionPane.ERROR_MESSAGE);
-      }
-    } catch (Exception e)
+    if (map == null && errorBuffer.length() > 0)
     {
-      JOptionPane.showMessageDialog(appFrame, "Error while loading "
-          + file
-          + ": "
-          + e.getMessage()
-          + (e.getCause() != null ? "\nCause: " + e.getCause().getMessage()
-              : ""), "Error while loading map", JOptionPane.ERROR_MESSAGE);
-      e.printStackTrace();
+      JOptionPane.showMessageDialog(appFrame, errorBuffer.toString(), "Error while loading map", JOptionPane.ERROR_MESSAGE);
+      return false;
+    }
+
+    if (map != null)
+    {
+      setCurrentMap(map);
+      updateRecent(file);
+      // This is to try and clean up any previously loaded stuffs
+      return true;
     }
 
     return false;
@@ -924,78 +929,83 @@ public class MapEditor implements ActionListener, MouseListener,
    */
   public void saveMap(boolean bSaveAs)
   {
-    if (currentMap == null)
-    {
-      return;
-    }
-
-    String filename = currentMap.getFilename(); 
-
-    if (bSaveAs || filename == null)
-    {
-      JFileChooser ch;
-
-      if (filename == null)
-      {
-        ch = new JFileChooser();
-      } else
-      {
-        ch = new JFileChooser(filename);
-      }
-
-      MapWriter writers[] = pluginLoader.getWriters();
-      for (int i = 0; i < writers.length; i++)
-      {
-        try
-        {
-          ch.addChoosableFileFilter(new TiledFileFilter(writers[i].getFilter(),writers[i].getName()));
-        } catch (Exception e)
-        {
-          e.printStackTrace();
-        }
-      }
-
-      ch.addChoosableFileFilter(new TiledFileFilter(TiledFileFilter.FILTER_TMX));
-
-      if (ch.showSaveDialog(appFrame) == JFileChooser.APPROVE_OPTION)
-      {
-        filename = ch.getSelectedFile().getAbsolutePath();
-      } else
-      {
-        // User cancelled operation, do nothing
-        return;
-      }
-    }
-
-    try
-    {
-      // Check if file exists
-      File exist = new File(filename);
-      if (exist.exists() && bSaveAs)
-      {
-        int result = JOptionPane
-            .showConfirmDialog(appFrame,
-                "The file already exists. Are you sure you want to "
-                    + "overwrite it?", "Overwrite file?",
-                JOptionPane.YES_NO_OPTION);
-        if (result != JOptionPane.OK_OPTION)
-        {
-          return;
-        }
-      }
-
-      MapHelper.saveMap(currentMap, filename);
-      currentMap.setFilename(filename);
-      updateRecent(filename);
-      undoStack.commitSave();
-      updateTitle();
-    } catch (Exception e)
-    {
-      e.printStackTrace();
-      JOptionPane.showMessageDialog(appFrame, "Error while saving " + filename
-          + ": " + e.toString(), "Error while saving map",
-          JOptionPane.ERROR_MESSAGE);
-    }
+    StringBuffer buf = new StringBuffer(); 
+    MapHelper.saveMapNew(appFrame,currentMap,bSaveAs,buf);
+    
+    
+    
+//    if (currentMap == null)
+//    {
+//      return;
+//    }
+//
+//    String filename = currentMap.getFilename(); 
+//
+//    if (bSaveAs || filename == null)
+//    {
+//      JFileChooser ch;
+//
+//      if (filename == null)
+//      {
+//        ch = new JFileChooser();
+//      } else
+//      {
+//        ch = new JFileChooser(filename);
+//      }
+//
+//      MapWriter writers[] = pluginLoader.getWriters();
+//      for (int i = 0; i < writers.length; i++)
+//      {
+//        try
+//        {
+//          ch.addChoosableFileFilter(new TiledFileFilter(writers[i].getFilter(),writers[i].getName()));
+//        } catch (Exception e)
+//        {
+//          e.printStackTrace();
+//        }
+//      }
+//
+//      ch.addChoosableFileFilter(new TiledFileFilter(TiledFileFilter.FILTER_TMX));
+//
+//      if (ch.showSaveDialog(appFrame) == JFileChooser.APPROVE_OPTION)
+//      {
+//        filename = ch.getSelectedFile().getAbsolutePath();
+//      } else
+//      {
+//        // User cancelled operation, do nothing
+//        return;
+//      }
+//    }
+//
+//    try
+//    {
+//      // Check if file exists
+//      File exist = new File(filename);
+//      if (exist.exists() && bSaveAs)
+//      {
+//        int result = JOptionPane
+//            .showConfirmDialog(appFrame,
+//                "The file already exists. Are you sure you want to "
+//                    + "overwrite it?", "Overwrite file?",
+//                JOptionPane.YES_NO_OPTION);
+//        if (result != JOptionPane.OK_OPTION)
+//        {
+//          return;
+//        }
+//      }
+//
+//      MapHelper.saveMap(currentMap, filename);
+//      currentMap.setFilename(filename);
+//      updateRecent(filename);
+//      undoStack.commitSave();
+//      updateTitle();
+//    } catch (Exception e)
+//    {
+//      e.printStackTrace();
+//      JOptionPane.showMessageDialog(appFrame, "Error while saving " + filename
+//          + ": " + e.toString(), "Error while saving map",
+//          JOptionPane.ERROR_MESSAGE);
+//    }
   }
 
   /**
@@ -1036,48 +1046,6 @@ public class MapEditor implements ActionListener, MouseListener,
     // JOptionPane.ERROR_MESSAGE);
     // }
     // }
-  }
-
-  public void openMap()
-  {
-    if (!checkSave())
-    {
-      return;
-    }
-    
-    String startLocation = "";
-
-    // Start at the location of the most recently loaded map file
-    if (configuration.hasOption("tiled.recent.1"))
-    {
-      startLocation = configuration.getValue("tiled.recent.1");
-    }
-
-    JFileChooser ch = new JFileChooser(startLocation);
-
-    try
-    {
-      MapReader readers[] = pluginLoader.getReaders();
-      for (int i = 0; i < readers.length; i++)
-      {
-        ch.addChoosableFileFilter(new TiledFileFilter(readers[i].getFilter(),
-            readers[i].getName()));
-      }
-    } catch (Throwable e)
-    {
-      JOptionPane.showMessageDialog(appFrame, "Error while loading plugins: "
-          + e.getMessage(), "Error while loading map",
-          JOptionPane.ERROR_MESSAGE);
-      e.printStackTrace();
-    }
-
-    ch.addChoosableFileFilter(new TiledFileFilter(TiledFileFilter.FILTER_TMX));
-
-    int ret = ch.showOpenDialog(appFrame);
-    if (ret == JFileChooser.APPROVE_OPTION)
-    {
-      loadMap(ch.getSelectedFile().getAbsolutePath());
-    }
   }
   
   /** closes the current map */

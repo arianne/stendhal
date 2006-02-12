@@ -8,8 +8,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import tiled.core.MapLayer;
-import tiled.core.ObjectGroup;
-import tiled.core.TileLayer;
 import tiled.mapeditor.MapEditor;
 import tiled.mapeditor.undo.MapLayerEdit;
 

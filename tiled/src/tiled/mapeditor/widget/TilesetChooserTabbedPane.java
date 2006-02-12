@@ -64,7 +64,7 @@ public class TilesetChooserTabbedPane extends JTabbedPane implements TileSelecti
       {
         if (tileset != null)
         {
-          TilePalettePanel tilePanel = new TilePalettePanel(tileset);
+          TilePalettePanel tilePanel = new TilePalettePanel(mapEditor,tileset);
           tilePanels.add(tilePanel);
           JScrollPane paletteScrollPane = new JScrollPane(tilePanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
           addTab(tileset.getName(), paletteScrollPane);

@@ -7,8 +7,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import tiled.core.MapLayer;
+import tiled.core.PropertiesLayer;
 import tiled.core.StatefulTile;
 import tiled.core.Tile;
 import tiled.core.TileGroup;
@@ -66,6 +68,8 @@ public class Orthogonal extends MapView
     if (map == null)
       return;
     
+    List<TileLayer> tileLayerList = new ArrayList<TileLayer>();
+    
     // draw each tile layer
     for (MapLayer layer : map.getLayerList())
     {
@@ -73,6 +77,76 @@ public class Orthogonal extends MapView
       {
         TileLayer tileLayer = (TileLayer) layer;
         paintLayer(g,tileLayer,clipArea,zoom);
+        tileLayerList.add(tileLayer);
+      }
+    }
+    PropertiesLayer propertiesLayer = map.getPropertiesLayer();
+    paintPropertiesLayer(g,propertiesLayer,tileLayerList,clipArea,zoom);
+  }
+
+  /** draws the properties overlay images */
+  private void paintPropertiesLayer(Graphics g, PropertiesLayer propertiesLayer, List<TileLayer> tileLayer, Rectangle clipArea, double zoom)
+  {
+    // no opacity for properties icons
+    ((Graphics2D) g).setComposite(AlphaComposite.SrcOver);
+    
+    // Determine tile size and offset
+    Dimension tsize = getTileSize(zoom);
+    if (tsize.width <= 0 || tsize.height <= 0)
+      return;
+    
+    g.setColor(Color.BLACK);
+    
+
+    int toffset = 0;
+
+    int startX = clipArea.x;
+    int startY = clipArea.y;
+    int endX   = clipArea.x + clipArea.width;
+    int endY   = clipArea.y + clipArea.height;
+    
+    int size = tsize.width / 4;
+    Polygon p = new Polygon();
+    p.addPoint(0,0);
+    p.addPoint(size,0);
+    p.addPoint(0,size);
+    
+    Polygon p2 = new Polygon();
+    p2.addPoint(tsize.width-1,0);
+    p2.addPoint(tsize.width-1-size,0);
+    p2.addPoint(tsize.width-1,size);
+    
+    
+    // Draw this map layer
+    for (int y = startY, gy = startY * tsize.height + toffset; y < endY; y++, gy += tsize.height)
+    {
+      for (int x = startX, gx = startX * tsize.width + toffset; x < endX; x++, gx += tsize.width)
+      {
+        Properties props = getPropertiesAt(tileLayer, x, y);
+
+        Graphics g2 = null;
+        if (props != null && props.size() > 0)
+        {
+          g2 = g.create(gx,gy,tsize.width,tsize.height);
+          g2.setColor(Color.YELLOW);
+          g2.fillPolygon(p2);
+          g2.setColor(Color.BLACK);
+          g2.drawPolygon(p2);
+        }
+        
+        props = propertiesLayer.getProps(x,y);
+        if (props != null && props.size() > 0)
+        {
+          if (g2 == null)
+            g2 = g.create(gx,gy,tsize.width,tsize.height);
+          
+          g2.setColor(Color.CYAN);
+          g2.fillPolygon(p);
+          g2.setColor(Color.BLACK);
+          g2.drawPolygon(p);
+          
+        }
+        
       }
     }
   }
@@ -81,7 +155,6 @@ public class Orthogonal extends MapView
   protected void paintLayer(Graphics g, TileLayer layer, Rectangle clipArea, double zoom)
   {
     setLayerOpacity(g,layer);
-    
     
     // Determine tile size and offset
     Dimension tsize = getTileSize(zoom);
@@ -152,17 +225,12 @@ public class Orthogonal extends MapView
   protected BufferedImage prepareMinimapImage()
   {
     int width = (int) (map.getWidth() * MINIMAP_TILE_SIZE);
-    int height = (int) (map.getWidth() * MINIMAP_TILE_SIZE);
+    int height = (int) (map.getHeight() * MINIMAP_TILE_SIZE);
     
     
     GraphicsConfiguration config = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
     BufferedImage image = config.createCompatibleImage(width,height);
-    
-    Graphics g = image.createGraphics();
-    Rectangle all = new Rectangle(0,0,map.getWidth(),map.getHeight());
 
-    draw(g,all,getMinimapScale());
-    
     return image;
   }
   
@@ -183,7 +251,6 @@ public class Orthogonal extends MapView
 
     Graphics minimapGraphics = minimapImage.createGraphics();
     draw(minimapGraphics,modifiedRegion,getMinimapScale());
-    
   }
 
   /**

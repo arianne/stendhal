@@ -21,14 +21,17 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import javax.swing.JPanel;
 import javax.swing.event.EventListenerList;
 import javax.swing.event.MouseInputListener;
 
 import tiled.core.*;
+import tiled.mapeditor.MapEditor;
 import tiled.mapeditor.brush.Brush;
 import tiled.mapeditor.brush.MultiTileBrush;
+import tiled.mapeditor.dialog.PropertiesDialog;
 import tiled.mapeditor.util.*;
 import tiled.util.Util;
 
@@ -53,15 +56,19 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
   /** the current endpoint of the drag operation */
   private Point currentDragPoint;
   
+  /** */
+  private MapEditor mapEditor;
+  
   /** some cached tile properties*/
   private int twidth;
   private int theight;
   private int tilesPerRow;
 
 
-  public TilePalettePanel(TileSet set)
+  public TilePalettePanel(MapEditor mapEditor, TileSet set)
   {
     this.tileset = set;
+    this.mapEditor = mapEditor;
     tileSelectionListeners = new EventListenerList();
     selectedTiles = new ArrayList<Tile>();
     selectedBrush = new MultiTileBrush();
@@ -69,6 +76,8 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
     
     addMouseListener(this);
     addMouseMotionListener(this);
+    
+    setToolTipText("text");
   }
 
   /**
@@ -101,18 +110,6 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
       listener.tileSelected(event);
     }
   }
-
-//  /**
-//   * Change the tilesets displayed by this palette panel.
-//   */
-//  public void setTileset(TileSet set)
-//  {
-//    tileset = set;
-//    selectedTiles.clear();
-//    refreshTileProperties();
-//    setSize(getPreferredSize());
-//    repaint();
-//  }
   
   /** calculates some tile properties */
   private void refreshTileProperties()
@@ -186,6 +183,22 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
           int x = gx;
           int y = gy + (theight - tile.getHeight());
           tile.drawRaw(g, x,y , 1.0);
+          Properties props = tile.getProperties();
+          if (props != null && props.size() > 0)
+          {
+            int w = tile.getWidth();
+            int size = w / 4;
+            Polygon p = new Polygon();
+            p.addPoint(x+w-1     , y);
+            p.addPoint(x+w-1-size, y);
+            p.addPoint(x+w-1     , y + size);
+            
+            g.setColor(Color.YELLOW);
+            g.fillPolygon(p);
+            g.setColor(Color.BLACK);
+            g.drawPolygon(p);
+            
+          }
           
         }
         gx += twidth;
@@ -275,6 +288,15 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
     refreshSelectedTiles(new Rectangle(point.x,point.y, 1,1));
     fireTileSelectionEvent(selectedTiles,selectedBrush);
     repaint();
+    Point p = e.getPoint();
+    if (e.getButton() == MouseEvent.BUTTON3 && p != null)
+    {
+      Tile tile = getTileAtPoint(p.x,p.y);
+      Properties props = tile.getProperties();
+      PropertiesDialog lpd = new PropertiesDialog(mapEditor.appFrame, props);
+      lpd.setTitle("Tile "+p.x+"x"+p.y+ " Properties");
+      lpd.getProps();
+    }
   }
 
   public void mouseEntered(MouseEvent e)
@@ -374,4 +396,23 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
     selectedBrush = brush;
   }
   
+  /** returns tooltip text */
+  public String getToolTipText(MouseEvent e)
+  {
+    Tile tile = getTileAtPoint(e.getPoint().x,e.getPoint().y);
+    if (tile == null)
+      return null;
+
+    StringBuilder buf = new StringBuilder();
+    buf.append("<html>Tile: ").append(tile.getId()).append("<br>");
+    Properties props = tile.getProperties();
+    if (props != null)
+    {
+      for (Object key : props.keySet())
+      {
+        buf.append(key).append(" = ").append(props.get(key)).append("<br>");
+      }
+    }
+    return buf.toString();
+  }
 }

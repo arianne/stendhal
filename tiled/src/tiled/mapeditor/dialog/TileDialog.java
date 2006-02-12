@@ -83,7 +83,7 @@ public class TileDialog extends JDialog
 
         // Tile properties table
 
-        tileProperties = new JTable(new PropertiesTableModel());
+        tileProperties = new JTable(new PropertiesTableModel(null));
         tileProperties.getSelectionModel().addListSelectionListener(this);
         JScrollPane propScrollPane = new JScrollPane(tileProperties);
         propScrollPane.setPreferredSize(new Dimension(150, 150));
@@ -375,13 +375,13 @@ public class TileDialog extends JDialog
     private void setCurrentTile(Tile tile) {
         // Update the old current tile's properties
         // (happens automatically as properties are changed in place now)
-        /*
-        if (currentTile != null) {
-            PropertiesTableModel model =
-                (PropertiesTableModel)tileProperties.getModel();
-            currentTile.setProperties(model.getProperties());
+        // ...
+        // Enabled again. The table model now copies the Properties
+        if (currentTile != null)
+        {
+          PropertiesTableModel model = (PropertiesTableModel)tileProperties.getModel();
+          currentTile.setProperties(model.getProperties());
         }
-        */
 
         currentTile = tile;
         updateTileInfo();
@@ -437,17 +437,8 @@ public class TileDialog extends JDialog
         }
 
         Properties tileProps = currentTile.getProperties();
-
-        // (disabled making a copy, as properties are changed in place now)
-        /*
-        Properties editProps = new Properties();
-        for (Enumeration keys = tileProps.keys(); keys.hasMoreElements();) {
-            String key = (String)keys.nextElement();
-            editProps.put(key, tileProps.getProperty(key));
-        }
-        */
-
-        ((PropertiesTableModel)tileProperties.getModel()).update(tileProps);
+        PropertiesTableModel tilePropertiesModel = new PropertiesTableModel(tileProps);
+        tileProperties.setModel(tilePropertiesModel);
     }
 
     public void actionPerformed(ActionEvent event) {

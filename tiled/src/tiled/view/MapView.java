@@ -3,11 +3,20 @@
  */
 package tiled.view;
 
-import java.awt.*;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.Properties;
 
 import tiled.core.Map;
+import tiled.core.Tile;
 import tiled.core.TileGroup;
 import tiled.core.TileLayer;
 import tiled.util.TiledConfiguration;
@@ -134,6 +143,12 @@ public abstract class MapView
     {
       // lazy minimap image creation
       minimapImage = prepareMinimapImage();
+      // update the image
+      Rectangle all = new Rectangle(0,0,map.getWidth(),map.getHeight());
+      Graphics g = minimapImage.createGraphics();
+      g.setColor(Color.BLACK);
+      g.fillRect(0,0,minimapImage.getWidth(),minimapImage.getHeight());
+      updateMinimapImage(all);
     }
     return minimapImage;
   }
@@ -244,6 +259,29 @@ public abstract class MapView
   {
     setZoomLevel(DEFAULT_ZOOM_LEVEL);
   }
+  
+  /**
+   * returns the properties at x,y.
+   * @param tileLayer a list of all tile layers
+   * @param x x-pos
+   * @param y y-pos
+   * @return the properties (may be empty)
+   */
+  protected Properties getPropertiesAt(List<TileLayer> tileLayer, int x, int y)
+  {
+    Properties props = new Properties();
+
+    for (TileLayer layer : tileLayer)
+    {
+      Tile tile = layer.getTileAt(x,y);
+      if (tile != null)
+      {
+        props.putAll(tile.getProperties());
+      }
+    }
+    return props;
+  }
+
 
   /**
    * Retuns list of tiles that lies in the given rectangle.
