@@ -128,10 +128,10 @@ public class StendhalRPWorld extends RPWorld
     addArea("0_semos_plains_w");
     addArea("0_semos_village_w");
     addArea("0_semos_city");
-//      addArea("int_semos_tavern");
-//      addArea("int_semos_temple");
-//      addArea("int_semos_blacksmith");
-//      addArea("int_semos_library");
+      addArea("int_semos_tavern");
+      addArea("int_semos_temple");
+      addArea("int_semos_blacksmith");
+      addArea("int_semos_library");
 //    addArea("0_semos_road_e");
 //    addArea("0_semos_road_se");
 //    addArea("0_semos_plains_s");
@@ -196,6 +196,11 @@ public class StendhalRPWorld extends RPWorld
           }
         }
       }
+    }
+  
+  public IRPZone getRPZone(String zone)
+    {
+    return getRPZone(new IRPZone.ID(zone));
     }
   
   private boolean populateZone(String name)

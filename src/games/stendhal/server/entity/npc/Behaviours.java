@@ -31,7 +31,12 @@ public class Behaviours
   
   public static void addGreeting(SpeakerNPC npc)
     {
-    npc.add(0,new String[]{"hi","hello","greetings"}, 1,"Greetings! How may I help you?",null);
+    addGreeting(npc,"Greetings! How may I help you?");
+    }
+  
+  public static void addGreeting(SpeakerNPC npc, String text)
+    {
+    npc.add(0,new String[]{"hi","hello","greetings","hola"}, 1,text,null);
     }
 
   public static void addJob(SpeakerNPC npc, String jobDescription)
@@ -46,7 +51,12 @@ public class Behaviours
 
   public static void addGoodbye(SpeakerNPC npc)
     {
-    npc.add(-1,new String[]{"bye","farewell","cya"}, 0,"Bye.",null);
+    addGoodbye(npc,"Bye.");
+    }
+
+  public static void addGoodbye(SpeakerNPC npc, String text)
+    {
+    npc.add(-1,new String[]{"bye","farewell","cya","adios"}, 0,text,null);
     }
   
   public static class SellerBehaviour

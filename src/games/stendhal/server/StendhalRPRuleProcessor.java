@@ -22,6 +22,9 @@ import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.pathfinder.Path;
 
+import org.python.util.PythonInterpreter;
+import org.python.core.*;
+
 import java.util.*;
 
 import marauroa.common.Log4J;
@@ -150,6 +153,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
       /* Initialize quests*/ 
       StendhalQuestSystem quests=new StendhalQuestSystem(this.world,this);    
+      
+      /* Run python script */
+      PythonInterpreter interpreter=new PythonInterpreter();
+      interpreter.execfile("data/conf/stendhal.py");
+      
+      PyInstance object=(PyInstance)interpreter.eval("Configuration()");
+      StendhalPythonConfig config=(StendhalPythonConfig)object.__tojava__(StendhalPythonConfig.class);
+      
+      config.setContext(this,this.world);
+      config.init();
       }
     catch(Exception e)
       {
