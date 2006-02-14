@@ -132,58 +132,58 @@ public class StendhalRPWorld extends RPWorld
       addArea("int_semos_temple");
       addArea("int_semos_blacksmith");
       addArea("int_semos_library");
-//    addArea("0_semos_road_e");
-//    addArea("0_semos_road_se");
-//    addArea("0_semos_plains_s");
-//
-//    addArea("0_orril_forest_n");
-//    addArea("0_semos_forest_s");
-//    addArea("0_nalwor_forest_nw");
-//    addArea("0_nalwor_forest_n");
-//
-//    addArea("0_orril_castle");
-//    addArea("0_orril_forest_e");
-//    addArea("0_nalwor_forest_w");
-//    addArea("0_nalwor_city");
-//
-//    addArea("0_orril_river_s");
-//    addArea("0_orril_river_se");
-//    addArea("0_nalwor_river_sw");
-//    addArea("0_nalwor_river_s");
-//    
-//    // Level -1
-//    addArea("-1_semos_dungeon");
-//    addArea("-1_orril_dungeon");
-//
-//    // Level -2
-//    addArea("-2_semos_dungeon");
-//    addArea("-2_kotoch_entrance");
-//    addArea("-2_orril_dungeon");
-//
-//    // Level -3
-//    addArea("-3_semos_dungeon");
-//    addArea("-3_orril_dungeon");
-//
-//    // Level -4
-//    addArea("-4_semos_dungeon");
-//
-//    // Level -5
-//    addArea("-5_kanmararn_entrace");
-//
-//    // Level -6
-//    // addArea("-6_kanmararn_city");
-//
-//    // Level -7
-//    // addArea("-7_kanmararn_jail");
-//    
-//    // Interiors
-//    addArea("int_afterlife");
-//    addArea("int_admin_jail");
-//    
-//    
-//    populateZone("Afterlife");
-//    populateZone("Jail");
-//    populateZone("Semos");
+    addArea("0_semos_road_e");
+    addArea("0_semos_road_se");
+    addArea("0_semos_plains_s");
+
+    addArea("0_orril_forest_n");
+    addArea("0_semos_forest_s");
+    addArea("0_nalwor_forest_nw");
+    addArea("0_nalwor_forest_n");
+
+    addArea("0_orril_castle");
+    addArea("0_orril_forest_e");
+    addArea("0_nalwor_forest_w");
+    addArea("0_nalwor_city");
+
+    addArea("0_orril_river_s");
+    addArea("0_orril_river_se");
+    addArea("0_nalwor_river_sw");
+    addArea("0_nalwor_river_s");
+    
+    // Level -1
+    addArea("-1_semos_dungeon");
+    addArea("-1_orril_dungeon");
+
+    // Level -2
+    addArea("-2_semos_dungeon");
+    addArea("-2_kotoch_entrance");
+    addArea("-2_orril_dungeon");
+
+    // Level -3
+    addArea("-3_semos_dungeon");
+    addArea("-3_orril_dungeon");
+
+    // Level -4
+    addArea("-4_semos_dungeon");
+
+    // Level -5
+    addArea("-5_kanmararn_entrace");
+
+    // Level -6
+    // addArea("-6_kanmararn_city");
+
+    // Level -7
+    // addArea("-7_kanmararn_jail");
+    
+    // Interiors
+    addArea("int_afterlife");
+    addArea("int_admin_jail");
+    
+    
+    populateZone("Afterlife");
+    populateZone("Jail");
+    populateZone("Semos");
 
     /** After all the zones has been loaded, check how many portals are unpaired */
     for(IRPZone zone: this)
