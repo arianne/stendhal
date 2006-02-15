@@ -808,6 +808,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>data\conf\stendhal.py</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>data\conf\stendhalcreateaccount.properties</path>
 				<source>true</source>
 			</fileitem>

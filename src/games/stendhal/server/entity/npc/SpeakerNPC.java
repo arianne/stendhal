@@ -300,16 +300,17 @@ public abstract class SpeakerNPC extends NPC
     StatePath item=new StatePath(state, trigger,next_state, reply, action);
     statesTable.add(item);
     }
-    
-  /** Add a new set of states to FSM */
-  public void add(Integer[] states, String trigger, int next_state, String reply, ChatAction action)
-    {
-    for(int state: states)
-      {
-      StatePath item=new StatePath(state, trigger,next_state, reply, action);
-      statesTable.add(item);
-      }
-    }
+
+// NOTE: Unused    
+//  /** Add a new set of states to FSM */
+//  public void add(Integer[] states, String trigger, int next_state, String reply, ChatAction action)
+//    {
+//    for(int state: states)
+//      {
+//      StatePath item=new StatePath(state, trigger,next_state, reply, action);
+//      statesTable.add(item);
+//      }
+//    }
 
   /** Add a new set of states to FSM */
   public void add(int state, String[] triggers, int next_state, String reply, ChatAction action)

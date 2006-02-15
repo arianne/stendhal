@@ -42,6 +42,7 @@ public abstract class NPC extends RPEntity
       npc.add("subclass",RPClass.STRING);
       npc.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
       npc.add("idea",RPClass.STRING, RPClass.VOLATILE);
+      npc.add("outfit",RPClass.INT);
       }
     catch(RPClass.SyntaxException e)
       {

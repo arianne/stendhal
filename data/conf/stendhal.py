@@ -6,9 +6,28 @@ from games.stendhal.server.scripting import *
 from marauroa.common.game import *
 from java.util import *
 
+conf=None
+
 class Configuration(StendhalPythonConfig):
     def __init__(self):
+        global conf
+
         StendhalPythonConfig.__init__(self)
+        self.shops={}
+        conf=self
+
+    def addShop(self,name, shop):
+        def convertItemMap(shopItems):
+            result=HashMap()
+            for k in shopItems.keys():
+                result.put(k,shopItems[k])
+
+            return result        
+
+        self.shops[name]=convertItemMap(shop)
+
+    def getShop(self, name):
+        return self.shops[name]
 
     def init(self):
         world=self.getWorld()
@@ -29,39 +48,45 @@ class Configuration(StendhalPythonConfig):
         sign.setText("Jython example")
         zone.add(sign)
         print "Adding sign to zone"
+
+        self.addShop("weapons",{"knife":15,
+                   "small_axe":15,
+                   "club":10,
+                   "dagger":25,
+                   "wooden_shield":25,
+                   "dress":25,
+                   "leather_helmet":25,
+                   "leather_legs":30})
+
+        self.addShop("healing",{"antidote":50,
+			"minor_potion":100,
+			"potion":250,
+			"greater_potion":500})
+
         
         def pythonillaMethod(npc):
+            global conf
+
+            # Set the NPC path
             npc.initializePath([(10,49),(10,40)])
-            
+
+            # Create an outfit for this player
+            npc.put("outfit",0)
+
+            # Adds all the behaviour chat
             Behaviours.addGreeting(npc,"Hello and welcome to Stendhal, ask me for #help whenever your in trouble.")
             Behaviours.addJob(npc,"I have healing abilities and I #heal wounded players.")
             Behaviours.addHelp(npc,"I can #heal you and I also have a nice #offer of sellable curative items.")
-
-            sellitems={"knife":15,
-                       "small_axe":15,
-                       "club":10,
-                       "dagger":25,
-                       "wooden_shield":25,
-                       "dress":25,
-                       "leather_helmet":25,
-                       "leather_legs":30}
-
-            Behaviours.addSeller(npc,Behaviours.SellerBehaviour(convertItemMap(sellitems)))
+            Behaviours.addReply(npc,"chat","Most people will #help you if you ask them, and you may also ask them about there #job. Some people also have a few #quests you could do for them.")
+            Behaviours.addQuest(npc,"I have heard Sato is looking for fat sheeps, talk to Nishaya just west of here to buy a sheep.")
+            Behaviours.addSeller(npc,Behaviours.SellerBehaviour(conf.getShop("healing")))
+            Behaviours.addHealer(npc,0)
             Behaviours.addGoodbye(npc,"Good luck in your travels!")
             
         addNPC(zone, rules,"Pythonilla",pythonillaMethod)
 
         # On this point:
         # - Game is starting.
-
-def convertItemMap(shopItems):
-    result=HashMap()
-    print shopItems
-    for k in shopItems.keys():
-        result.put(k,shopItems[k])
-
-    return result        
-
         
 def addNPC(zone, rules, name, method):
     class ScriptNPC(PythonNPC):
@@ -82,7 +107,6 @@ def addNPC(zone, rules, name, method):
     npc=ScriptNPC(method)
     zone.assignRPObjectID(npc)
     npc.setName(name);
-    npc.put("class","weaponsellernpc")
     pos=npc.getInitialPos()
     npc.setx(pos[0])
     npc.sety(pos[1])
