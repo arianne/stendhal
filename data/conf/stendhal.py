@@ -9,6 +9,12 @@ from java.util import *
 conf=None
 
 class Configuration(StendhalPythonConfig):
+    """ This class extends the Java configuration class so that it can be called from Java.
+        The init method is called to make this script create all the needed stuff.
+        You have two methods to access the context:
+        - getWorld() that gets the World object
+        - gerRules() that gets the Rules object
+    """
     def __init__(self):
         global conf
 
@@ -17,6 +23,7 @@ class Configuration(StendhalPythonConfig):
         conf=self
 
     def addShop(self,name, shop):
+        """ Add a shop to the shop list """
         def convertItemMap(shopItems):
             result=HashMap()
             for k in shopItems.keys():
@@ -27,6 +34,7 @@ class Configuration(StendhalPythonConfig):
         self.shops[name]=convertItemMap(shop)
 
     def getShop(self, name):
+        """ Get the shop using that name """
         return self.shops[name]
 
     def init(self):
@@ -40,15 +48,20 @@ class Configuration(StendhalPythonConfig):
         #
         # Write your code here:
         #
+
+        # Get the zone we are going to add NPC and objects to.
         zone=world.getRPZone("0_semos_city")
+
+        # We create now a sign and place it on position 8,45 with the text Jython example
         sign=Sign()
         zone.assignRPObjectID(sign)
         sign.setx(8)
         sign.sety(45)
         sign.setText("Jython example")
+        # Never forget to add it to the zone.
         zone.add(sign)
-        print "Adding sign to zone"
 
+        # We create now some shops. Split the shops as needed as they can be added later.
         self.addShop("weapons",{"knife":15,
                     "small_axe":15,
                     "club":10,
@@ -70,7 +83,19 @@ class Configuration(StendhalPythonConfig):
 		    "meat":40,
                     "ham":60})
 
-        
+
+        # Now we are going to define a NPC.
+        # It is done in two steps:
+        # 1) We create a method were we set the path, the outfit and add the behaviours.
+        #    Behaviours are used to make NPC talk. The idea is to make this data-driven so there is as little code as possible.
+        #    - addGreeting adds a greeting message to NPC when it listen hi
+        #    - addJob adds a description of the NPC's job when it listen job
+        #    - addHelp add a help message when it listen help
+        #    - addSeller add a list of items to buy from this NPC. It reply to offer with the list and buy item or buy <num> item and yes or no.
+        #    - addBuyer add a list of items to sell to this NPC. It reply to offer with the list and sell item or sell <num> item and yes or no.
+        #    - addHealer adds healing behaviour to this NPC in reply to heal word.
+        #    - addGoodbye add a Bye message to players
+        #    - addReply adds a specific reply for any word that is none of the above.
         def pythonillaMethod(npc):
             global conf
 
@@ -89,7 +114,7 @@ class Configuration(StendhalPythonConfig):
             Behaviours.addSeller(npc,Behaviours.SellerBehaviour(conf.getShop("healing")))
             Behaviours.addHealer(npc,0)
             Behaviours.addGoodbye(npc,"Good luck in your travels!")
-            
+        # 2) Finally add the NPC to the zone with the give name.    
         addNPC(zone, rules,"Pythonilla",pythonillaMethod)
 
         def diogenesMethod(npc):
@@ -138,8 +163,9 @@ class Configuration(StendhalPythonConfig):
 
         # On this point:
         # - Game is starting.
-        
+
 def addNPC(zone, rules, name, method):
+    """ This helper method create a new NPC and add it to the zone. """
     class ScriptNPC(PythonNPC):
         def __init__(self,method):
             PythonNPC.__init__(self)
