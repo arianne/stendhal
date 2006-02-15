@@ -5,6 +5,7 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.common.Rand;
 
 import java.awt.geom.Rectangle2D;
 import java.util.*;
@@ -321,6 +322,18 @@ public abstract class SpeakerNPC extends NPC
       statesTable.add(item);
       }
     }
+
+  public void add(int state, String[] triggers, int next_state, String[] replies, ChatAction action)
+    {
+    for(String trigger: triggers)
+      {
+      for(String reply: replies)
+        {
+        StatePath item=new StatePath(state, trigger,next_state, reply, action);
+        statesTable.add(item);
+        }
+      }
+    }
   
   /** This function evolves the FSM */
   private boolean tell(Player player, String text)
@@ -359,15 +372,24 @@ public abstract class SpeakerNPC extends NPC
       
     lastMessageTurn=rp.getTurn();
     
+    List<StatePath> list=new LinkedList<StatePath>();
+    
     // First we try to match with stateless states.
     for(StatePath state: statesTable)
       {
       if(actualState!=0 && state.absoluteJump(actualState,text))
         {
         logger.debug("Matched a stateless state: "+state);
-        executeState(player,text,state);
-        return true;        
+        list.add(state);
+        //executeState(player,text,state);
+        //return true;        
         }
+      }
+    
+    if(list.size()>0)
+      {
+      executeState(player,text,list.get(Rand.rand(list.size())));
+      return true;
       }
 
     // Now we try to match with the exact trigger string 
@@ -376,9 +398,16 @@ public abstract class SpeakerNPC extends NPC
       if(state.equals(actualState,text))
         {
         logger.debug("Matched a exact trigger state: "+state);
-        executeState(player,text,state);
-        return true;        
+        list.add(state);
+        //executeState(player,text,state);
+        //return true;        
         }
+      }
+
+    if(list.size()>0)
+      {
+      executeState(player,text,list.get(Rand.rand(list.size())));
+      return true;
       }
 
     // Finally we try to match with any string that starts with trigger
@@ -387,9 +416,16 @@ public abstract class SpeakerNPC extends NPC
       if(state.contains(actualState,text))
         {
         logger.debug("Matched a similar trigger state: "+state);
-        executeState(player,text,state);
-        return true;        
+        list.add(state);
+        //executeState(player,text,state);
+        //return true;        
         }
+      }
+
+    if(list.size()>0)
+      {
+      executeState(player,text,list.get(Rand.rand(list.size())));
+      return true;
       }
 
     // Couldn't match the text with the current FSM state
