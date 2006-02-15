@@ -44,6 +44,12 @@ public class Behaviours
     npc.add(1,trigger, 1,text,null);
     }
 
+  public static void addReply(SpeakerNPC npc, String[] triggers, String text)
+    {
+    npc.add(1,triggers, 1,text,null);
+    }
+
+
   public static void addQuest(SpeakerNPC npc, String text)
     {
     npc.add(1,new String[]{"quest","task"}, 1,text,null);

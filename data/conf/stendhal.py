@@ -112,6 +112,7 @@ class Configuration(StendhalPythonConfig):
             
         addNPC(zone, rules,"Diogenes",diogenesMethod)
 
+        zone=world.getRPZone("int_semos_tavern")
         def margaretMethod(npc):
             global conf
 
@@ -129,10 +130,10 @@ class Configuration(StendhalPythonConfig):
             shop=conf.getShop("drinks")
             shop.putAll(conf.getShop("food"))
             
+            Behaviours.addReply(npc,["food","drinks"],"Yes, I sell a good amount of different drinks and food. Ask me for my #offer");
             Behaviours.addSeller(npc,Behaviours.SellerBehaviour(shop))
             Behaviours.addGoodbye(npc,"Goodbye, come back again.")
             
-        zone=world.getRPZone("0_semos_tavern")
         addNPC(zone, rules,"Margaret",margaretMethod)
 
         # On this point:
