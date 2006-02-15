@@ -129,8 +129,10 @@ class Configuration(StendhalPythonConfig):
             # Adds all the behaviour chat
             Behaviours.addGreeting(npc,"Greetings, do you have a coin to spare?")
             Behaviours.addJob(npc,"Hehehe! Job! hehehe! Muahahaha!.")
-            Behaviours.addHelp(npc,"I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.")
+            Behaviours.addHelp(npc,"I can't help you, but you can help #Stendhal: tell your friends about #Stendhal and help us to create #maps.")
             Behaviours.addReply(npc,"chat","Most people will #help you if you ask them, and you may also ask them about there #job. Some people also have a few #quests you could do for them.")
+            Behaviours.addReply(npc,"stendhal","yes, yes... stendhal... very nice game... check our webbpage at http://arianne.sf.net")
+            Behaviours.addReply(npc,"maps","ahhh!, a willing map slave!, then you should check our map tutorial at http://arianne.sourceforge.net/wiki/index.php?title=HowToUseTiledToCreateStendhalMaps")
             Behaviours.addQuest(npc,["I have been told that on the deepest place of the dungeon under this city someone also buy sheeps, but *it* pays better!.",
                                      "Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :("])
             Behaviours.addGoodbye(npc,"Hey! My coin! Argh! ... ")
