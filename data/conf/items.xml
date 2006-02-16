@@ -215,7 +215,6 @@ in the file.
 
 <!-- Ranged_section -->
 
-<!--
 	<item name="wooden_bow">
 		<type class="ranged" subclass="wooden_bow"/>
 		<attributes>
@@ -228,14 +227,12 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
--->
 
 
 <!-- Projectiles_section -->
 
-<!--
 	<item name="wooden_arrow">
-		<type class="projectile" subclass="wooden_arrow"/>
+		<type class="projectiles" subclass="wooden_arrow"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -248,8 +245,6 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
---> 
-
 
 <!-- Shields_section -->
 

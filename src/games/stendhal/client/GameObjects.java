@@ -57,49 +57,19 @@ public class GameObjects implements Iterable<Entity>
     register("sheep",null,Sheep.class);    
     
     register("npc",null,NPC.class);
-    register("npc","beggarnpc",NPC.class);
-    register("npc","buyernpc",NPC.class);
-    register("npc","butchernpc",NPC.class);
-    register("npc","journalistnpc",NPC.class);
-    register("npc","welcomernpc",NPC.class);
-    register("npc","orcbuyernpc",NPC.class);
-    register("npc","sellernpc",NPC.class);
-    register("npc","weaponsellernpc",NPC.class);
-    register("npc","tavernbarmaidnpc",NPC.class);
-    register("trainingdummy",null,TrainingDummy.class);
     
     register("food",null,Food.class);
     register("chest",null,Chest.class);
     
-    register("corpse","player",Corpse.class);
-    register("corpse","orc",Corpse.class);
-    register("corpse","troll",Corpse.class);
-    register("corpse","gargoyle",Corpse.class);
-    register("corpse","goblin",Corpse.class);
-    register("corpse","giant",Corpse.class);
-    register("corpse","kobold",Corpse.class);
-    register("corpse","animal",Corpse.class);
-    register("corpse","small_animal",Corpse.class);
-    register("corpse","giant_animal",Corpse.class);
-    register("corpse","dwarf",Corpse.class);
-    register("corpse","elf",Corpse.class);
-    register("corpse","skeleton",Corpse.class);
-    register("corpse","sheep",Corpse.class);
-    register("corpse","ratfolk",Corpse.class);
-    
+    register("corpse",null,Corpse.class);
+
     register("sign",null,Sign.class);
     
-    register("item","shield",Item.class);
-    register("item","club",Item.class);
-    register("item","sword",Item.class);
-    register("item","axe",Item.class);
-    register("item","armor",Item.class);
-    register("item","helmet",Item.class);
-    register("item","legs",Item.class);
-    register("item","boots",Item.class);
+    register("item",null,Item.class);
     register("item","food",StackableItem.class);
     register("item","drink",StackableItem.class);
     register("item","money",StackableItem.class);
+    register("item","projectiles",StackableItem.class);
 
     register("portal",null,Portal.class);
     register("door",null,Portal.class);
@@ -150,6 +120,13 @@ public class GameObjects implements Iterable<Entity>
         }
         
       Class entityClass=entityMap.get(new Pair<String,String>(type,eclass));
+      
+      if(entityClass==null)
+        {
+        // If there is no entity, let's try without using class.
+        entityClass=entityMap.get(new Pair<String,String>(type,null));
+        }
+        
       java.lang.reflect.Constructor constr=entityClass.getConstructor(GameObjects.class, RPObject.class);
       return (Entity)constr.newInstance(this,object);
       }
@@ -164,16 +141,7 @@ public class GameObjects implements Iterable<Entity>
     {
     try
       {
-      String type=object.get("type");
-      String eclass=null;
-      if(object.has("class"))
-        {
-        eclass=object.get("class");
-        }
-        
-      Class entityClass=entityMap.get(new Pair<String,String>(type,eclass));
-      java.lang.reflect.Constructor constr=entityClass.getConstructor(GameObjects.class, RPObject.class);
-      return ((Entity)constr.newInstance(this,object)).getSprite();
+      return entityType(object).getSprite();
       }
     catch(Exception e)
       {
