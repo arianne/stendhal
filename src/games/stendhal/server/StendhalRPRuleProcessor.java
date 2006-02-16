@@ -156,7 +156,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       
       /* Run python script */
       PythonInterpreter interpreter=new PythonInterpreter();
-      interpreter.execfile("data/conf/stendhal.py");
+      interpreter.execfile("data/script/stendhal.py");
       
       PyInstance object=(PyInstance)interpreter.eval("Configuration()");
       StendhalPythonConfig config=(StendhalPythonConfig)object.__tojava__(StendhalPythonConfig.class);
