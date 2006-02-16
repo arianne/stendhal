@@ -1,4 +1,5 @@
 from games.stendhal.server import *
+from games.stendhal.server.scripting import *
 from games.stendhal.server.pathfinder import *
 from games.stendhal.server.entity import *
 from games.stendhal.server.entity.npc import *

@@ -1,5 +1,6 @@
-package games.stendhal.server;
+package games.stendhal.server.scripting;
 
+import games.stendhal.server.*;
 
 public class StendhalPythonConfig 
   {

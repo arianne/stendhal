@@ -47,6 +47,82 @@ public class StendhalRPAction
     StendhalRPAction.rules=rules;
     StendhalRPAction.world=world;
     }
+  
+  private static boolean riskToHit(RPEntity source,RPEntity target)
+    {
+    boolean result=false;
+    
+    int roll=Rand.roll1D20();
+    int risk=2*source.getATK()-target.getDEF()+roll-10;        
+    
+    logger.debug("attack from "+source+" to "+target+": Risk to strike: "+risk);
+
+    if(risk<0)
+      {
+      risk=0;
+      }
+    
+    if(risk>1)
+      {
+      risk=1;
+      result=true;
+      }
+    
+    source.put("risk",risk);
+    return result;
+    }
+  
+  private static int damageDone(RPEntity source, RPEntity target)  
+    {
+    int weapon=0;
+    int shield=0;
+    int armor=0;
+    int helmet=0;
+    int legs=0;
+    int boots=0;
+    
+    if(source.hasWeapon())
+      {
+      weapon=source.getWeapon().getAttack();
+      }
+
+    logger.debug("attacker has "+source.getATK()+" and uses a weapon of "+weapon);
+
+    float maxAttackerComponent=0.8f*(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
+    float attackerComponent=((float)Rand.roll1D100()/100.0f)*maxAttackerComponent;
+
+    if(target.hasShield())
+      {
+      shield=target.getShield().getDefense();
+      }
+
+    if(target.hasArmor())
+      {
+      armor=target.getArmor().getDefense();
+      }
+
+    if(target.hasHelmet())
+      {
+      helmet=target.getHelmet().getDefense();
+      }
+
+    if(target.hasLegs())
+      {
+      legs=target.getLegs().getDefense();
+      }
+
+    if(target.hasBoots())
+      {
+      boots=target.getBoots().getDefense();
+      }
+
+    logger.debug("defender has "+target.getDEF()+" and uses shield of "+shield+" and armor of "+armor);
+
+    float maxDefenderComponent=0.6f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor+(float)target.getDEF()*(float)helmet+(float)target.getDEF()*(float)legs+(float)target.getDEF()*(float)boots;
+    float defenderComponent=((float)Rand.roll1D100()/100.0f)*maxDefenderComponent;
+    
+    return (int)(((attackerComponent-defenderComponent)/maxAttackerComponent)*(maxAttackerComponent/maxDefenderComponent)*((float)source.getATK()/10.0f));
+    }
 
   public static boolean attack(RPEntity source,RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
     {
@@ -68,24 +144,7 @@ public class StendhalRPAction
 
       if(source.nextto(target,1))
         {
-        int roll=Rand.roll1D20();
-        int risk=0;
-        
-        risk=2*source.getATK()-target.getDEF()+roll-10;        
-        
-        logger.debug("attack from "+source+" to "+target+": Risk to strike: "+risk);
-
-        if(risk<0)
-          {
-          risk=0;
-          }
-        
-        if(risk>1)
-          {
-          risk=1;
-          }
-        
-        source.put("risk",risk);
+        boolean hitted=riskToHit(source,target);
 
         int damage=0;
         
@@ -95,61 +154,14 @@ public class StendhalRPAction
           source.incATKXP();
           }
         
-        if(risk>0) //Hit
+        if(hitted) //Hit
           {
           if(target.stillHasBlood())
             {
             target.incDEFXP();
             }
           
-          int weapon=0;
-          int shield=0;
-          int armor=0;
-          int helmet=0;
-          int legs=0;
-          int boots=0;
-          
-          if(source.hasWeapon())
-            {
-            weapon=source.getWeapon().getAttack();
-            }
-
-          logger.debug("attacker has "+source.getATK()+" and uses a weapon of "+weapon);
-
-          float maxAttackerComponent=0.8f*(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
-          float attackerComponent=((float)Rand.roll1D100()/100.0f)*maxAttackerComponent;
-
-          if(target.hasShield())
-            {
-            shield=target.getShield().getDefense();
-            }
-
-          if(target.hasArmor())
-            {
-            armor=target.getArmor().getDefense();
-            }
-
-          if(target.hasHelmet())
-            {
-            helmet=target.getHelmet().getDefense();
-            }
-
-          if(target.hasLegs())
-            {
-            legs=target.getLegs().getDefense();
-            }
-
-          if(target.hasBoots())
-            {
-            boots=target.getBoots().getDefense();
-            }
-
-          logger.debug("defender has "+target.getDEF()+" and uses shield of "+shield+" and armor of "+armor);
-
-          float maxDefenderComponent=0.6f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor+(float)target.getDEF()*(float)helmet+(float)target.getDEF()*(float)legs+(float)target.getDEF()*(float)boots;
-          float defenderComponent=((float)Rand.roll1D100()/100.0f)*maxDefenderComponent;
-          
-          damage=(int)(((attackerComponent-defenderComponent)/maxAttackerComponent)*(maxAttackerComponent/maxDefenderComponent)*((float)source.getATK()/10.0f));
+          damage=damageDone(source,target);
 
           if(damage>0) // Hit
             {
@@ -350,48 +362,6 @@ public class StendhalRPAction
 
     changeZone(player,portal.getDestinationZone());
 
-//    Portal dest=destZone.getPortal(portal.getDestinationNumber());
-//
-//    rules.addGameEvent(player.getName(),"change zone",portal.getDestinationZone());
-//
-//    String source=player.getID().getZoneID();
-//
-//    if(player.hasSheep())
-//      {
-//      Sheep sheep=(Sheep)world.get(player.getSheep());
-//
-//      player.removeSheep(sheep);
-//      
-//      world.changeZone(source,portal.getDestinationZone(),sheep);
-//      world.changeZone(source,portal.getDestinationZone(),player);
-//
-//      player.setSheep(sheep);
-//      player.stop();
-//      player.stopAttack();
-//      }
-//    else
-//      {
-//      world.changeZone(source,portal.getDestinationZone(),player);
-//      }
-//
-//    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-//
-//    logger.debug("Place player");
-//    placeat(zone,player,dest.getInt("x"),dest.getInt("y"));
-//    player.stop();
-//
-//    if(player.hasSheep())
-//      {
-//      logger.debug("Place sheep");
-//      Sheep sheep=(Sheep)world.get(player.getSheep());
-//      placeat(zone,sheep,player.getInt("x")+1,player.getInt("y")+1);
-//      sheep.clearPath();
-//      sheep.stop();
-//      }
-//
-//    /* There isn't any world.modify because there is already considered inside
-//     * the implicit world.add call at changeZone */
-//
     Log4J.finishMethod(logger, "usePortal");
     return true;
     }

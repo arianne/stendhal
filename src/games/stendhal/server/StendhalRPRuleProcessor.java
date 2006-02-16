@@ -25,6 +25,8 @@ import games.stendhal.server.pathfinder.Path;
 import org.python.util.PythonInterpreter;
 import org.python.core.*;
 
+import games.stendhal.server.scripting.StendhalPythonConfig;
+
 import java.util.*;
 
 import marauroa.common.Log4J;
