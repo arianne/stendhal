@@ -48,6 +48,21 @@ public class NPC extends RPEntity
   public NPC(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
     super(gameObjects,object);
+
+    if ( type.startsWith( "npc" ) )
+    {
+       setAudibleRange( 3 );
+       if ( getName().equals( "Diogenes" ) )
+          SoundSystem.startSoundCycle( this, "Diogenes-patrol", 10000, 20, 50, 100 );
+       else if ( getName().equals( "Carmen" ) )
+          SoundSystem.startSoundCycle( this, "Carmen-patrol", 60000, 20, 50, 75 );
+       else if ( getName().equals( "Nishiya" ) )
+          SoundSystem.startSoundCycle( this, "Nishiya-patrol", 40000, 20, 50, 80 );
+       else if ( getName().equals( "Margaret" ) )
+          SoundSystem.startSoundCycle( this, "Margaret-patrol", 30000, 10, 30, 70 );
+       else if ( getName().equals( "Sato" ) )
+          SoundSystem.startSoundCycle( this, "Sato-patrol", 60000, 30, 50, 70 );
+    }
     }
 
   protected void buildAnimations(RPObject object)

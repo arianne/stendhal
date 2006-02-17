@@ -77,6 +77,41 @@ public abstract class Creature extends NPC
   public Creature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
     super(gameObjects, object);
+
+    // cyclic sound management
+    if ( type.startsWith( "creature" ) )
+    {
+       if ( getName().equals( "wolf" ) )
+          SoundSystem.startSoundCycle( this, "wolf-patrol", 40000, 10, 50, 100 );
+       else if ( getName().equals( "rat" ) || getName().equals( "caverat" ) || getName().equals( "venomrat" ))
+          SoundSystem.startSoundCycle( this, "rats-patrol", 15000, 10, 30, 80 );
+       else if ( getName().equals( "razorrat" ) )
+          SoundSystem.startSoundCycle( this, "razorrat-patrol", 60000, 10, 50, 75 );
+       else if ( getName().equals( "gargoyle" ) )
+          SoundSystem.startSoundCycle( this, "gargoyle-patrol", 45000, 10, 50, 100 );
+       else if ( getName().equals( "boar" ) )
+          SoundSystem.startSoundCycle( this, "boar-patrol", 30000, 20, 50, 100 );
+       else if ( getName().equals( "bear" ) )
+          SoundSystem.startSoundCycle( this, "bear-patrol", 45000, 30, 80, 75 );
+       else if ( getName().equals( "giantrat" ) )
+          SoundSystem.startSoundCycle( this, "giantrat-patrol", 30000, 30, 60, 65 );
+       else if ( getName().equals( "cobra" ) )
+          SoundSystem.startSoundCycle( this, "cobra-patrol", 60000, 20, 60, 65 );
+       else if ( getName().equals( "kobold" ) )
+          SoundSystem.startSoundCycle( this, "kobold-patrol", 30000, 40, 70, 80 );
+       else if ( getName().equals( "goblin" ) )
+          SoundSystem.startSoundCycle( this, "goblin-patrol", 50000, 30, 85, 65 );
+       else if ( getName().equals( "troll" ) )
+          SoundSystem.startSoundCycle( this, "troll-patrol", 25000, 20, 60, 100 );
+       else if ( getName().equals( "orc" ) )
+          SoundSystem.startSoundCycle( this, "orc-patrol", 45000, 30, 80, 50 );
+       else if ( getName().equals( "ogre" ) )
+          SoundSystem.startSoundCycle( this, "ogre-patrol", 40000, 30, 60, 80 );
+       else if ( getName().equals( "skeleton" ) )
+          SoundSystem.startSoundCycle( this, "skeleton-patrol", 60000, 30, 60, 80 );
+       else if ( getName().equals( "cyclops" ) )
+          SoundSystem.startSoundCycle( this, "cyclops-patrol", 45000, 30, 75, 100 );
+    }
     }
 
   protected static String translate(String type)

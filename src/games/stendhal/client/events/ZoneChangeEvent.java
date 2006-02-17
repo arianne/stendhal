@@ -1,6 +1,6 @@
 package games.stendhal.client.events;
 
-interface ZoneChangeEvent 
+public interface ZoneChangeEvent 
   {
   // Called when entity enters a new zone
   public void onEnterZone(String zone);

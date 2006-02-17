@@ -13,6 +13,8 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.*;
+import games.stendhal.client.events.*;
+import games.stendhal.common.Direction;
 import games.stendhal.common.Pair;
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
@@ -169,6 +171,16 @@ public class GameObjects implements Iterable<Entity>
 
     Entity entity=entityType(object);
     
+    if(entity instanceof MovementEvent)
+      {
+      fireMovementEvent(entity, object, null);
+      }
+    
+    if(entity instanceof ZoneChangeEvent)
+      {
+      fireZoneChangeEvent(entity,object,null);
+      }
+    
     // HACK: The first time the object is EMPTY! 
     entity.modifyAdded(new RPObject(), object);
     
@@ -179,6 +191,198 @@ public class GameObjects implements Iterable<Entity>
     Log4J.finishMethod(logger,"add");
     }
   
+  /** Modify a existing Entity so its propierties change */  
+  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    Log4J.startMethod(logger,"modifyAdded");
+    Entity entity=objects.get(object.getID());
+    if(entity!=null)
+      {
+      if(entity instanceof MovementEvent)
+        {
+        fireMovementEvent(entity, object, changes);
+        }
+      
+      entity.modifyAdded(object, changes);
+      }
+      
+    Log4J.finishMethod(logger,"modifyAdded");
+    }
+
+  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+    {
+    Log4J.startMethod(logger,"modifyRemoved");
+    Entity entity=objects.get(object.getID());
+    if(entity!=null)
+      {
+      if(entity instanceof MovementEvent)
+        {
+        fireMovementEvent(entity, object, changes);
+        }
+      
+      entity.modifyRemoved(object, changes);
+      }
+      
+    Log4J.finishMethod(logger,"modifyRemoved");
+    }
+
+  public boolean has(Entity entity)
+    {
+    return objects.containsKey(entity.getID());
+    }
+
+  public Entity get(RPObject.ID id)
+    {
+    return objects.get(id);
+    }
+    
+  /** Removes a Entity from game */
+  public void remove(RPObject.ID id)
+    {
+    Log4J.startMethod(logger,"remove");
+    logger.debug("removed "+id);
+
+    Entity entity=objects.get(id);
+    if(entity!=null)
+      {
+      if(entity instanceof MovementEvent)
+        {
+        fireMovementEvent(entity, null, null);
+        }
+
+      if(entity instanceof ZoneChangeEvent)
+        {
+        fireZoneChangeEvent(entity,null,null);
+        }
+      
+      entity.removed();
+      }
+
+    Entity object=objects.remove(id);
+    sortObjects.remove(object);
+    Log4J.finishMethod(logger,"remove");
+    }
+  
+  /** Removes all the object entities */
+  public void clear()
+    {
+    Log4J.startMethod(logger,"clear");
+    
+    // invalidate all entity objects
+    for ( Iterator it = iterator(); it.hasNext(); )
+       ((Entity)it.next()).removed();
+    
+    objects.clear();
+    sortObjects.clear();
+    texts.clear();
+    Log4J.finishMethod(logger,"clear");
+    }
+  
+  
+  private void fireZoneChangeEvent(Entity entity, RPObject base, RPObject diff)
+    {
+    RPObject.ID id=entity.getID();
+    if(diff==null && base==null)
+      {
+      // Remove case       
+      entity.onLeaveZone(id.getZoneID());
+      }
+    else if(diff==null)
+      {
+      // First time case.
+      entity.onEnterZone(id.getZoneID());
+      }
+    }
+    
+  private void fireMovementEvent(Entity entity, RPObject base, RPObject diff)
+    {
+    if(diff==null && base==null)
+      {
+      // Remove case       
+      }
+    else if(diff==null)
+      {
+      // First time case.
+      int x=base.getInt("x");
+      int y=base.getInt("y");
+      
+      Direction direction=Direction.STOP;
+      if(base.has("dir")) direction=Direction.build(base.getInt("dir"));
+      
+      double speed=0;
+      if(base.has("speed")) speed=base.getDouble("speed");
+      
+      entity.onMove(x,y,direction,speed);
+      }
+    else
+      {
+      // Real movement case      
+      int x=base.getInt("x");
+      int y=base.getInt("y");
+      
+      int oldx=x,oldy=y;
+      
+      if(diff.has("x")) x=diff.getInt("x");
+      if(diff.has("y")) y=diff.getInt("y");
+      
+      Direction direction=Direction.STOP;
+      if(base.has("dir")) direction=Direction.build(base.getInt("dir"));
+      if(diff.has("dir")) direction=Direction.build(diff.getInt("dir"));
+        
+      double speed=0;
+      if(base.has("speed")) speed=base.getDouble("speed");
+      if(diff.has("speed")) speed=diff.getDouble("speed");
+      
+      if(direction==Direction.STOP || speed==0)
+        {
+        entity.onStop();
+        }
+      else
+        {
+        entity.onMove(x,y,direction, speed);
+        }    
+      
+      if(oldx!=x && oldy!=y)
+        {
+        entity.onLeave(oldx,oldy);
+        entity.onEnter(x,y);
+        }
+      }
+    }
+  
+
+
+  private boolean collides(Entity entity)
+    {
+    //TODO: Ugly, use similar method that server uses
+    Rectangle2D area=entity.getArea();
+
+    for(Entity other: sortObjects)
+      {
+      if(!(other instanceof PassiveEntity) && !(other instanceof Portal))
+        {
+        if(area.intersects(other.getArea()) && !entity.getID().equals(other.getID()))
+          {
+          return true;
+          }
+        }
+      }
+    
+    return false;
+    }
+  
+  /** Move objects based on the lapsus of time ellapsed since the last call. */
+  public void move(long delta)    
+    {
+    for(Entity entity: sortObjects)
+      {
+      if(!entity.stopped() && !collisionMap.collides(entity.getArea()) && !collides(entity))
+        {
+        entity.move(delta);
+        }      
+      }
+    }
+   
   public void addText(Entity speaker, String text, Color color)
     {
     Text entity=new Text(this,text, speaker.getx(), speaker.gety(), color);
@@ -224,31 +428,6 @@ public class GameObjects implements Iterable<Entity>
     return null;
     }  
 
-  /** Modify a existing Entity so its propierties change */  
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
-    {
-    Log4J.startMethod(logger,"modifyAdded");
-    Entity entity=objects.get(object.getID());
-    if(entity!=null)
-      {
-      entity.modifyAdded(object, changes);
-      }
-      
-    Log4J.finishMethod(logger,"modifyAdded");
-    }
-
-  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
-    {
-    Log4J.startMethod(logger,"modifyRemoved");
-    Entity entity=objects.get(object.getID());
-    if(entity!=null)
-      {
-      entity.modifyRemoved(object, changes);
-      }
-      
-    Log4J.finishMethod(logger,"modifyRemoved");
-    }
-
   public void attack(RPEntity source, RPObject.ID target, int risk, int damage) throws AttributeNotFoundException
     {
     Log4J.startMethod(logger,"attack");
@@ -275,79 +454,6 @@ public class GameObjects implements Iterable<Entity>
     Log4J.finishMethod(logger,"attackStop");
     }
   
-  public boolean has(Entity entity)
-    {
-    return objects.containsKey(entity.getID());
-    }
-
-  public Entity get(RPObject.ID id)
-    {
-    return objects.get(id);
-    }
-    
-  /** Removes a Entity from game */
-  public void remove(RPObject.ID id)
-    {
-    Log4J.startMethod(logger,"remove");
-    logger.debug("removed "+id);
-
-    Entity entity=objects.get(id);
-    if(entity!=null)
-      {
-      entity.removed();
-      }
-
-    Entity object=objects.remove(id);
-    sortObjects.remove(object);
-    Log4J.finishMethod(logger,"remove");
-    }
-  
-  /** Removes all the object entities */
-  public void clear()
-    {
-    Log4J.startMethod(logger,"clear");
-    
-    // invalidate all entity objects
-    for ( Iterator it = iterator(); it.hasNext(); )
-       ((Entity)it.next()).removed();
-    
-    objects.clear();
-    sortObjects.clear();
-    texts.clear();
-    Log4J.finishMethod(logger,"clear");
-    }
-  
-  private boolean collides(Entity entity)
-    {
-    //TODO: Ugly, use similar method that server uses
-    Rectangle2D area=entity.getArea();
-
-    for(Entity other: sortObjects)
-      {
-      if(!(other instanceof PassiveEntity) && !(other instanceof Portal))
-        {
-        if(area.intersects(other.getArea()) && !entity.getID().equals(other.getID()))
-          {
-          return true;
-          }
-        }
-      }
-    
-    return false;
-    }
-  
-  /** Move objects based on the lapsus of time ellapsed since the last call. */
-  public void move(long delta)    
-    {
-    for(Entity entity: sortObjects)
-      {
-      if(!entity.stopped() && !collisionMap.collides(entity.getArea()) && !collides(entity))
-        {
-        entity.move(delta);
-        }      
-      }
-    }
-   
   /** Draw all the objects in game */
   public void draw(GameScreen screen)
     {
