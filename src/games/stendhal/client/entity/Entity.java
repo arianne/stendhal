@@ -57,8 +57,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
 
   /** The arianne object associated with this game entity */
   protected RPObject rpObject;
-  protected String type;
-  protected String subtype;
+  private String type;
   
   /** The object sprite. Animationless, just one frame */
   protected Sprite sprite;
@@ -86,22 +85,11 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
    */
   public Entity(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {
-    String name = null; 
-     
     this.gameObjects=gameObjects;
     this.client=StendhalClient.get();
-
-    if(object.has("name"))
-      {
-      subtype = object.get("name");
-      name = subtype;
-      }
-
+    
     type=object.get("type");
-    
-    String hstr = "- Entity type = " + type + (name == null ? "" : " / " + name );
-    logger.debug( hstr );     
-    
+
     rpObject = object;    
     x = 0.0;
     y = 0.0;
@@ -116,21 +104,16 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
   {
      return ID_Token;
   }
-  
-  public String getType()
-    {
-    return type;
-    }
-
-  public String getSubType()
-  {
-  return subtype;
-  }
 
   /** Returns the represented arianne object id */
   public RPObject.ID getID()
     {
     return rpObject != null ? rpObject.getID() : null;
+    }
+  
+  public String getType()
+    {
+    return type;
     }
   
   public double getx()
@@ -294,7 +277,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
   /** called when the server removes the entity */
   public void removed() throws AttributeNotFoundException
     {
-     logger.debug("----- Entity removed = " + type );     
         SoundSystem.stopSoundCycle( ID_Token );
     }
 

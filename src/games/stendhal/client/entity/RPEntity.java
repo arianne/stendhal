@@ -21,6 +21,8 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 
+import games.stendhal.client.events.*;
+
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -28,7 +30,7 @@ import marauroa.common.game.RPObject;
 
 /** This class is a link between client graphical objects and server attributes objects.<br>
  *  You need to extend this object in order to add new elements to the game. */
-public abstract class RPEntity extends AnimatedEntity
+public abstract class RPEntity extends AnimatedEntity implements TalkEvent
   {
   private static Sprite hitted;
   private static Sprite blocked;
@@ -175,6 +177,28 @@ public abstract class RPEntity extends AnimatedEntity
     return sprites.get("move_up")[0];
     }
 
+  // Called when entity says text
+  public void onTalk(String text)
+    {
+    if(client.getPlayer()!= null && distance(client.getPlayer())<15*15)
+      {
+      if(!(this instanceof Creature)) // We avoid logging creature noises.
+        {
+        client.addEventLine(getName(),text);
+        }
+
+      gameObjects.addText(this, getName()+" says: "+text.replace("|",""), Color.yellow);
+      }
+    }
+    
+  // Called when entity listen to text from talker
+  public void onPrivateListen(String text)
+    {
+    client.addEventLine(text,Color.orange);
+    gameObjects.addText(this, text.replace("|",""), Color.orange);      
+    }
+
+
   public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
     {
     super.modifyAdded(object,changes);
@@ -296,24 +320,24 @@ public abstract class RPEntity extends AnimatedEntity
       }
 
     /** Add text lines */
-    if(changes.has("text") && client.getPlayer()!= null &&distance(client.getPlayer())<15*15)
-      {
-      String text=changes.get("text");
-
-      if(!(this instanceof Creature))
-        {
-        client.addEventLine(getName(),text);
-        }
-
-      gameObjects.addText(this, getName()+" says: "+text.replace("|",""), Color.yellow);
-      }
-
-    if(changes.has("private_text"))
-      {
-      client.addEventLine(changes.get("private_text"),Color.orange);
-      gameObjects.addText(this, changes.get("private_text").replace("|",""), Color.orange);
-      }
-
+//    if(changes.has("text") && client.getPlayer()!= null &&distance(client.getPlayer())<15*15)
+//      {
+//      String text=changes.get("text");
+//
+//      if(!(this instanceof Creature))
+//        {
+//        client.addEventLine(getName(),text);
+//        }
+//
+//      gameObjects.addText(this, getName()+" says: "+text.replace("|",""), Color.yellow);
+//      }
+//
+//    if(changes.has("private_text"))
+//      {
+//      client.addEventLine(changes.get("private_text"),Color.orange);
+//      gameObjects.addText(this, changes.get("private_text").replace("|",""), Color.orange);
+//      }
+//
     if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
       {
       client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());

@@ -181,6 +181,11 @@ public class GameObjects implements Iterable<Entity>
       fireZoneChangeEvent(entity,object,null);
       }
     
+    if(entity instanceof TalkEvent)
+      {
+      fireTalkEvent((TalkEvent)entity,object,null);
+      }
+    
     // HACK: The first time the object is EMPTY! 
     entity.modifyAdded(new RPObject(), object);
     
@@ -203,6 +208,11 @@ public class GameObjects implements Iterable<Entity>
         fireMovementEvent(entity, object, changes);
         }
       
+      if(entity instanceof TalkEvent)
+        {
+        fireTalkEvent((TalkEvent)entity,object,null);
+        }
+      
       entity.modifyAdded(object, changes);
       }
       
@@ -215,11 +225,6 @@ public class GameObjects implements Iterable<Entity>
     Entity entity=objects.get(object.getID());
     if(entity!=null)
       {
-      if(entity instanceof MovementEvent)
-        {
-        fireMovementEvent(entity, object, changes);
-        }
-      
       entity.modifyRemoved(object, changes);
       }
       
@@ -255,6 +260,11 @@ public class GameObjects implements Iterable<Entity>
         fireZoneChangeEvent(entity,null,null);
         }
       
+      if(entity instanceof TalkEvent)
+        {
+        fireTalkEvent((TalkEvent)entity,null,null);
+        }
+      
       entity.removed();
       }
 
@@ -279,6 +289,43 @@ public class GameObjects implements Iterable<Entity>
     }
   
   
+  private void fireTalkEvent(TalkEvent entity, RPObject base, RPObject diff)
+    {
+    if(diff==null && base==null)
+      {
+      // Remove case       
+      }
+    else if(diff==null)
+      {
+      // First time case. 
+      if(base.has("text")) 
+        {
+        String text=base.get("text");      
+        entity.onTalk(text);
+        }
+
+      if(base.has("private_text")) 
+        {
+        String text=base.get("private_text");      
+        entity.onPrivateListen(text);
+        }
+      }
+    else
+      {
+      if(diff.has("text")) 
+        {
+        String text=diff.get("text");      
+        entity.onTalk(text);
+        }
+
+      if(diff.has("private_text")) 
+        {
+        String text=diff.get("private_text");      
+        entity.onPrivateListen(text);
+        }
+      }
+    }
+    
   private void fireZoneChangeEvent(Entity entity, RPObject base, RPObject diff)
     {
     RPObject.ID id=entity.getID();

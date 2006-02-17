@@ -1183,7 +1183,7 @@ private static class SoundCycle extends Thread  implements Cloneable
          if ( entityRef != null )
             if ( (o = entityRef.get()) != null  )
             {
-               logger.debug( "- start cyclic sound for entity: " + o.getType() + " / " + o.getSubType() );
+               logger.debug( "- start cyclic sound for entity: " + o.getType());
                dataline = o.playSound( token, volBot, volTop, chance );
             }
             else

@@ -2,7 +2,7 @@ package games.stendhal.client.events;
 
 import games.stendhal.client.entity.*;
 
-interface AttackEvent 
+public interface AttackEvent 
   {
   // When this entity attacks target.
   public void onAttack(RPEntity target);
