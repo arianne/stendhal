@@ -1,6 +1,7 @@
 package games.stendhal.client.events;
 
 import games.stendhal.client.entity.*;
+import marauroa.common.game.*;
 import java.util.List;
 import java.util.LinkedList;
 
@@ -12,19 +13,18 @@ public class EventObserver
     {
     listenersAttackEvent=new LinkedList<AttackEvent>();
     }
-  
-  public void joinAttackEvent(AttackEvent e)
+
+  public void fireAdded(RPObject target)
     {
-    listenersAttackEvent.add(e);
+    // Code here all the logic for attack
     }
-  
-  public void leaveAttackEvent(AttackEvent e)
+
+  public void fireRemoved(RPObject target)
     {
-    listenersAttackEvent.remove(e);
+    // Code here all the logic for attack
     }
-  
-  // When this entity attacks target.
-  public void fireOnAttackEvent(RPEntity target)
+
+  public void fireChanged(RPObject object, RPObject changes)
     {
     // Code here all the logic for attack
     }

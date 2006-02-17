@@ -107,6 +107,9 @@
 			<folderitem>
 				<path>data\sounds</path>
 			</folderitem>
+			<folderitem>
+				<path>data\script</path>
+			</folderitem>
 			<fileitem>
 				<path>build.ant.properties</path>
 				<source>true</source>
@@ -408,6 +411,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\events\EventObserver.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\events\HPEvent.java</path>
 				<source>true</source>
 			</fileitem>
@@ -433,10 +440,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\stendhalcreateaccount.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\StendhalPythonConfig.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -740,6 +743,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\scripting\StendhalPythonConfig.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\common\CollisionDetection.java</path>
 				<source>true</source>
 			</fileitem>
@@ -808,10 +815,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>data\conf\stendhal.py</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>data\conf\stendhalcreateaccount.properties</path>
 				<source>true</source>
 			</fileitem>
@@ -821,6 +824,10 @@
 			</fileitem>
 			<fileitem>
 				<path>data\sounds\stensounds0.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>data\script\stendhal.py</path>
 				<source>true</source>
 			</fileitem>
 		</include>
