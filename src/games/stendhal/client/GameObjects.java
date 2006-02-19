@@ -82,7 +82,8 @@ public class GameObjects implements Iterable<Entity>
     entityMap.put(new Pair<String,String>(type,eclass),entityClass);
     }
   
-  private HashMap<RPObject.ID, Entity> objects;
+  private Map<RPObject.ID, Entity> objects;
+  private Map<RPEntity, RPEntity> attacks;
   private List<Text> texts;
   private List<Text> textsToRemove;
   
@@ -92,6 +93,8 @@ public class GameObjects implements Iterable<Entity>
   public GameObjects(StaticGameLayers collisionMap)
     {
     objects=new HashMap<RPObject.ID, Entity>();
+    attacks=new HashMap<RPEntity, RPEntity>();
+
     texts=new LinkedList<Text>();
     textsToRemove=new LinkedList<Text>();
     sortObjects=new LinkedList<Entity>();
@@ -185,10 +188,22 @@ public class GameObjects implements Iterable<Entity>
       {
       fireTalkEvent((TalkEvent)entity,object,null);
       }
+
+    if(entity instanceof HPEvent)
+      {
+      fireHPEvent((HPEvent)entity,object,null);
+      }
+
+    if(entity instanceof KillEvent)
+      {
+      fireKillEvent(((KillEvent)entity),object,null);
+      }
     
-    // HACK: The first time the object is EMPTY! 
-    entity.modifyAdded(new RPObject(), object);
-    
+    if(entity instanceof AttributeEvent)
+      {
+      entity.onAdded(object);
+      }
+
     objects.put(entity.getID(),entity);
     sortObjects.add(entity);
     
@@ -210,10 +225,23 @@ public class GameObjects implements Iterable<Entity>
       
       if(entity instanceof TalkEvent)
         {
-        fireTalkEvent((TalkEvent)entity,object,null);
+        fireTalkEvent((TalkEvent)entity,object,changes);
         }
-      
-      entity.modifyAdded(object, changes);
+
+      if(entity instanceof AttributeEvent)
+        {
+        entity.onChangedAdded(object,changes);
+        }
+
+      if(entity instanceof HPEvent)
+        {
+        fireHPEvent((HPEvent)entity,object,changes);
+        }
+  
+      if(entity instanceof KillEvent)
+        {
+        fireKillEvent(((KillEvent)entity),object,changes);
+        }      
       }
       
     Log4J.finishMethod(logger,"modifyAdded");
@@ -225,9 +253,22 @@ public class GameObjects implements Iterable<Entity>
     Entity entity=objects.get(object.getID());
     if(entity!=null)
       {
-      entity.modifyRemoved(object, changes);
+      if(entity instanceof AttributeEvent)
+        {
+        entity.onChangedRemoved(object,changes);
+        }        
+
+      if(entity instanceof HPEvent)
+        {
+        fireHPEventChangedRemoved((HPEvent)entity,object,changes);
+        }
+  
+      if(entity instanceof KillEvent)
+        {
+        fireKillEvent(((KillEvent)entity),object,changes);
+        }      
       }
-      
+
     Log4J.finishMethod(logger,"modifyRemoved");
     }
 
@@ -264,8 +305,21 @@ public class GameObjects implements Iterable<Entity>
         {
         fireTalkEvent((TalkEvent)entity,null,null);
         }
-      
-      entity.removed();
+
+      if(entity instanceof AttributeEvent)
+        {
+        entity.onRemoved();
+        }
+  
+      if(entity instanceof HPEvent)
+        {
+        fireHPEvent((HPEvent)entity,null,null);
+        }
+
+      if(entity instanceof KillEvent)
+        {
+        fireKillEvent(((KillEvent)entity),null,null);
+        }      
       }
 
     Entity object=objects.remove(id);
@@ -280,9 +334,10 @@ public class GameObjects implements Iterable<Entity>
     
     // invalidate all entity objects
     for ( Iterator it = iterator(); it.hasNext(); )
-       ((Entity)it.next()).removed();
+       ((Entity)it.next()).onRemoved();
     
     objects.clear();
+    attacks.clear();
     sortObjects.clear();
     texts.clear();
     Log4J.finishMethod(logger,"clear");
@@ -380,14 +435,12 @@ public class GameObjects implements Iterable<Entity>
       if(base.has("speed")) speed=base.getDouble("speed");
       if(diff.has("speed")) speed=diff.getDouble("speed");
       
+      entity.onMove(x,y,direction, speed);
+      
       if(direction==Direction.STOP || speed==0)
         {
         entity.onStop();
         }
-      else
-        {
-        entity.onMove(x,y,direction, speed);
-        }    
       
       if(oldx!=x && oldy!=y)
         {
@@ -396,7 +449,81 @@ public class GameObjects implements Iterable<Entity>
         }
       }
     }
+
+  private void fireHPEvent(HPEvent entity, RPObject base, RPObject diff)
+    {
+    if(diff==null && base==null)
+      {
+      // Remove case       
+      }
+    else if(diff==null)
+      {
+      // First time case.
+      }
+    else
+      {
+      if(diff.has("hp") && base.has("hp"))
+        {
+        int healing=diff.getInt("hp") - base.getInt("hp");
+        if(healing>0)
+          {
+          entity.onHealed(healing);
+          }
+        }
+
+      if(diff.has("poisoned"))
+        {
+        int poisoned=diff.getInt("poisoned");
+        entity.onPoisoned(poisoned);
+        }
+      
+      if(diff.has("eating"))
+        {
+        entity.onEat(0);
+        }
+      }
+    }
   
+  private void fireHPEventChangedRemoved(HPEvent entity, RPObject base, RPObject diff)   
+    {
+    if(diff.has("poisoned"))
+      {
+      entity.onPoisonEnd();
+      }
+
+    if(diff.has("eating"))
+      {
+      entity.onEatEnd();
+      }
+    }
+
+  private void fireKillEvent(KillEvent entity, RPObject base, RPObject diff)
+    {
+    if(diff==null && base==null)
+      {
+      // Remove case       
+      }
+    else if(diff==null)
+      {
+      // First time case.
+      }
+    else
+      {
+      if(diff.has("hp/base_hp") && diff.getDouble("hp/base_hp")==0)
+        {
+        RPEntity killer=null;
+        for(Map.Entry<RPEntity,RPEntity> entry: attacks.entrySet())
+          {
+          if(entry.getValue()==entity)
+            {
+            killer=entry.getKey();
+            }
+          }
+        
+        entity.onDeath(killer);
+        }
+      }
+    }
 
 
   private boolean collides(Entity entity)
@@ -410,6 +537,7 @@ public class GameObjects implements Iterable<Entity>
         {
         if(area.intersects(other.getArea()) && !entity.getID().equals(other.getID()))
           {
+          entity.onCollideWith(other);
           return true;
           }
         }
@@ -423,9 +551,19 @@ public class GameObjects implements Iterable<Entity>
     {
     for(Entity entity: sortObjects)
       {
-      if(!entity.stopped() && !collisionMap.collides(entity.getArea()) && !collides(entity))
+      if(!entity.stopped())      
         {
-        entity.move(delta);
+        if(!collisionMap.collides(entity.getArea()))
+          {
+          if(!collides(entity))
+            {
+            entity.move(delta);
+            }
+          }
+        else
+          {
+          entity.onCollide((int)entity.getx(),(int)entity.gety());
+          }
         }      
       }
     }
@@ -483,6 +621,8 @@ public class GameObjects implements Iterable<Entity>
       {
       RPEntity rpentity=(RPEntity)entity;
       rpentity.onAttack(source,risk, damage);
+
+      attacks.put(source,rpentity);
       }
       
     Log4J.finishMethod(logger,"attack");
@@ -496,6 +636,8 @@ public class GameObjects implements Iterable<Entity>
       {
       RPEntity rpentity=(RPEntity)entity;
       rpentity.onAttackStop(source);
+
+      attacks.remove(source);
       }
       
     Log4J.finishMethod(logger,"attackStop");

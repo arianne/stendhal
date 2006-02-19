@@ -34,7 +34,7 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 
-public abstract class Entity implements MovementEvent, ZoneChangeEvent
+public abstract class Entity implements MovementEvent, ZoneChangeEvent, AttributeEvent, CollisionEvent
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Entity.class);
@@ -98,12 +98,12 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
     direction=Direction.STOP;
 
     loadSprite(object);
-    }  // constructor
+    }
   
   public byte[] get_IDToken ()
-  {
-     return ID_Token;
-  }
+    {
+    return ID_Token;
+    }
 
   /** Returns the represented arianne object id */
   public RPObject.ID getID()
@@ -133,9 +133,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
   
   /** the absolute position on the map of this entity */
   public Point2D getPosition ()
-  {
-     return new Point2D.Double( x, y );
-  }
+    {
+    return new Point2D.Double( x, y );
+    }
   
   public double getSpeed()
     {
@@ -162,13 +162,15 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
    *  not exist (audible everywhere).
    */
   public Rectangle2D getAudibleArea ()
-  {
-     if ( audibleRange == Double.POSITIVE_INFINITY )
-        return null;
+    {
+    if( audibleRange == Double.POSITIVE_INFINITY)
+      {
+      return null;
+      }
 
-     double width = audibleRange*2;
-     return new Rectangle2D.Double( getx()-audibleRange, gety()-audibleRange, width, width );
-  }
+    double width = audibleRange*2;
+    return new Rectangle2D.Double( getx()-audibleRange, gety()-audibleRange, width, width );
+    }
   
   /** Sets the audible range as radius distance from this entity's position,
    *  expressed in coordinate units.
@@ -178,9 +180,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
    *  @param range double audibility area radius in coordinate units
    */  
   public void setAudibleRange ( double range )
-  {
-     audibleRange = range;
-  }
+    {
+    audibleRange = range;
+    }
   
   /** Loads the sprite that represent this entity */
   protected void loadSprite(RPObject object)
@@ -235,49 +237,35 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
     }
     
 
-
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onAdded(RPObject base)
     {
-    modificationCount++;
-//    if(changes.has("dir"))
-//      {
-//      direction=Direction.build(changes.getInt("dir"));
-//      }
-//    
-//    if(changes.has("speed"))
-//      {
-//      if(object.has("speed")) speed=object.getDouble("speed");
-//      if(changes.has("speed")) speed=changes.getDouble("speed");
-//      }
-//      
-//    dx=direction.getdx()*speed;
-//    dy=direction.getdy()*speed;
-//    
-//    double oldx=x, oldy=y;
-//
-//    if(object.has("x") && dx==0) x=object.getInt("x");
-//    if(object.has("y") && dy==0) y=object.getInt("y");
-//    if(changes.has("x")) x=changes.getInt("x");
-//    if(changes.has("y")) y=changes.getInt("y");
-//    
-//    if( (oldx!=x || oldy!=y) && this instanceof Player )
-//      {
-//      if(this instanceof Player && client.getPlayer()!=null && client.getPlayer().getID().equals(getID()))
-//        {
-//        WorldObjects.firePlayerMoved((Player)this);
-//        }
-//      }
+    // BUG: Work around for Bugs at 0.45
+    onChangedAdded(new RPObject(),base);
     }
-
-  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+    
+  public void onChangedAdded(RPObject base, RPObject diff)
     {
     modificationCount++;
     }
-
-  /** called when the server removes the entity */
-  public void removed() throws AttributeNotFoundException
+    
+  public void onChangedRemoved(RPObject base, RPObject diff)
     {
-        SoundSystem.stopSoundCycle( ID_Token );
+    modificationCount++;
+    }
+    
+  public void onRemoved()
+    {
+    SoundSystem.stopSoundCycle( ID_Token );
+    }
+
+  // Called when entity collides with another entity
+  public void onCollideWith(Entity entity)
+    {
+    }
+
+  // Called when entity collides with collision layer object.
+  public void onCollide(int x, int y)
+    {
     }
 
   public void draw(GameScreen screen)
@@ -327,9 +315,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
    *         or <b>null</b> if not performing
    */
   public DataLine playSound ( String token, int volBot, int volTop, int chance )
-  {
-     return SoundSystem.playMapSound( getPosition(), getAudibleArea(), token, volBot, volTop, chance );
-  }
+    {
+    return SoundSystem.playMapSound( getPosition(), getAudibleArea(), token, volBot, volTop, chance );
+    }
   
   /** Makes this entity play a sound on the map, at its current location. 
    *  The sound is audible to THE player in relation to distance and hearing 
@@ -342,32 +330,33 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
    *         or <b>null</b> if not performing
    */
   public DataLine playSound ( String token, int volBot, int volTop )
-  {
-     return SoundSystem.playMapSound( getPosition(), getAudibleArea(), token, volBot, volTop, 100 );
-  }
+    {
+    return SoundSystem.playMapSound( getPosition(), getAudibleArea(), token, volBot, volTop, 100 );
+    }
   
   /** returns the number of slots this entity has */
   public int getNumSlots()
-  {
+    {
     return rpObject.slots().size();
-  }
+    }
 
   /** returns the slot with the specified name or null if the entity does not have
    * this slot */
   public RPSlot getSlot(String name)
-  {
-    if (rpObject.hasSlot(name))
     {
+    if(rpObject.hasSlot(name))
+      {
       return rpObject.getSlot(name);
-    }
+      }
+    
     return null;
-  }
+    }
 
   /** returns a list of slots */
   public List<RPSlot> getSlots()
-  {
+    {
     return new ArrayList<RPSlot>(rpObject.slots());
-  }
+    }
   
   /** returns the modificationCount. This counter is increased each time a
    * perception is received from the server (so all serverside changes increases
@@ -375,9 +364,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
    * modified or not (ie for gui elements). 
    */
   public long getModificationCount()
-  {
+    {
     return modificationCount;
-  }
+    }
   
   /** Returns true when  the entity was modified since the <i>oldModificationCount</i>.
    * @param oldModificationCount the old modificationCount
@@ -385,9 +374,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent
    * @see #getModificationCount()
    * */
   public boolean isModified(long oldModificationCount)
-  {
+    {
     return oldModificationCount != modificationCount;
-  }
+    }
   
   abstract public Rectangle2D getArea();
   abstract public Rectangle2D getDrawedArea();

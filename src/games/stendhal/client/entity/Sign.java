@@ -30,15 +30,15 @@ public class Sign extends Entity
     super(gameObjects, object);
     }
   
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
     GameScreen screen=GameScreen.get();
 
     
-    if(changes.has("text"))
+    if(diff.has("text"))
       {
-      text=changes.get("text");
+      text=diff.get("text");
 
       Graphics g2d=screen.expose();
       

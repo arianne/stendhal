@@ -35,13 +35,13 @@ public class StackableItem extends Item
     quantity=0;
     }
   
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
     
-    if(changes.has("quantity"))
+    if(diff.has("quantity"))
       {
-      quantity=changes.getInt("quantity");
+      quantity=diff.getInt("quantity");
       quantityImage=GameScreen.get().createString(Integer.toString(quantity),Color.white);
       }
     }

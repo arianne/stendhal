@@ -58,11 +58,11 @@ public class Text extends Entity
     drawedArea=new Rectangle.Double(x,y,textImage.getWidth()/GameScreen.SIZE_UNIT_PIXELS, textImage.getHeight()/GameScreen.SIZE_UNIT_PIXELS);
     }
   
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
     }
 
-  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
     }
     

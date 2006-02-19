@@ -259,10 +259,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\entity\Speaker.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\entity\StackableItem.java</path>
 				<source>true</source>
 			</fileitem>
@@ -408,10 +404,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\events\EquipmentEvent.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\events\EventObserver.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

@@ -110,13 +110,13 @@ public class NPC extends RPEntity
     sprites.get("move_left")[3]=sprites.get("move_left")[1];
     }
 
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
     
-    if(changes.has("idea"))
+    if(diff.has("idea"))
       {
-      String idea=changes.get("idea");
+      String idea=diff.get("idea");
       if(idea.equals("eat"))
         {
         ideaImage=eat;

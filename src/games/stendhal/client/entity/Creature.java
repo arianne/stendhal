@@ -195,12 +195,12 @@ public abstract class Creature extends NPC
     return list;
   }
   
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
   {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
     
     // Check if debug is enabled
-    if(changes.has("debug") && Debug.CREATURES_DEBUG_CLIENT)
+    if(diff.has("debug") && Debug.CREATURES_DEBUG_CLIENT)
     {
       sleeping = false;
       attacked = false;
@@ -215,7 +215,7 @@ public abstract class Creature extends NPC
       moveToTargetWaiting = false;
       moveToTargetNew = false;
 
-      String debug = changes.get("debug");
+      String debug = diff.get("debug");
 
       if (watch)
       {

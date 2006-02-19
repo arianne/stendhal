@@ -30,7 +30,7 @@ import marauroa.common.game.RPObject;
 
 /** This class is a link between client graphical objects and server attributes objects.<br>
  *  You need to extend this object in order to add new elements to the game. */
-public abstract class RPEntity extends AnimatedEntity implements TalkEvent
+public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEvent, KillEvent
   {
   private static Sprite hitted;
   private static Sprite blocked;
@@ -198,98 +198,158 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent
     gameObjects.addText(this, text.replace("|",""), Color.orange);      
     }
 
-
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  // When entity gets healed
+  public void onHealed(int amount)
     {
-    super.modifyAdded(object,changes);
-
-    if(changes.has("base_hp"))    base_hp=changes.getInt("base_hp");
-    if(changes.has("hp"))         hp=changes.getInt("hp");
-    if(changes.has("hp/base_hp")) hp_base_hp=(float)changes.getDouble("hp/base_hp");
-    if(changes.has("atk"))        atk=changes.getInt("atk");
-    if(changes.has("def"))        def=changes.getInt("def");
-    if(changes.has("xp"))         xp=changes.getInt("xp");
-    if(changes.has("level"))      level=changes.getInt("level");
-    if(changes.has("atk_xp"))     atkXp = changes.getInt("atk_xp");
-    if(changes.has("def_xp"))     defXp = changes.getInt("def_xp");
-    
-    if(changes.has("eating")) 
+    if(distance(client.getPlayer())<15*15)
       {
-      isEating=true;    
+      damageSprites.add(GameScreen.get().createString("+"+Integer.toString(amount),Color.green));
+      damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+
+      client.addEventLine(getName() + " heals " + amount + " health points." , Color.green);
       }
-//    else if(!object.has("eating"))
+    }
+    
+  // When entity eats food 
+  public void onEat(int amount)
+    {
+    isEating=true;
+    }
+    
+  public void onEatEnd()
+    {
+    isEating=false;
+    }
+    
+  // When entity is poisoned
+  public void onPoisoned(int amount)
+    {
+    if(getID().equals(client.getPlayer().getID()) || distance(client.getPlayer())<15*15)
+      {
+      isPoisoned=true;
+      damageSprites.add(GameScreen.get().createString(Integer.toString(amount),Color.red));
+      damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+  
+      client.addEventLine(getName() + " is poisoned with " + amount + " health points." , Color.red);
+      }
+    }
+    
+  public void onPoisonEnd()
+    {
+    isPoisoned=false;
+    }
+
+  // Called when entity kills another entity
+  public void onKill(RPEntity killed)
+    {
+    }
+ 
+  // Called when entity is killed by killer
+  public void onDeath(RPEntity killer)
+    {
+    if(killer!=null)
+      {
+      client.addEventLine(getName()+ " has been killed by "+killer.getName());
+      }
+    
+    if(getID().equals(client.getPlayer().getID()))
+      {
+      client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
+      }
+    }
+    
+
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
+    {
+    super.onChangedAdded(base,diff);
+
+    if(diff.has("base_hp"))    base_hp=diff.getInt("base_hp");
+    if(diff.has("hp"))         hp=diff.getInt("hp");
+    if(diff.has("hp/base_hp")) hp_base_hp=(float)diff.getDouble("hp/base_hp");
+    if(diff.has("atk"))        atk=diff.getInt("atk");
+    if(diff.has("def"))        def=diff.getInt("def");
+    if(diff.has("xp"))         xp=diff.getInt("xp");
+    if(diff.has("level"))      level=diff.getInt("level");
+    if(diff.has("atk_xp"))     atkXp = diff.getInt("atk_xp");
+    if(diff.has("def_xp"))     defXp = diff.getInt("def_xp");
+    
+//    if(diff.has("eating")) 
 //      {
-//      isEating=false;
+//      isEating=true;    
 //      }
+////    else if(!base.has("eating"))
+////      {
+////      isEating=false;
+////      }
 
     Color nameColor=Color.white;
     
-    if(changes.has("admin") || object.has("admin"))
+    if(diff.has("admin") || base.has("admin"))
       {
       nameColor=Color.yellow;
       }
     
-    if(changes.has("name"))
+    if(diff.has("name"))
       {
-      name=changes.get("name");
+      name=diff.get("name");
       nameImage=GameScreen.get().createString(getName(),nameColor);
       }
-    else if(name==null && changes.has("class"))
+    else if(name==null && diff.has("class"))
       {
-      name=changes.get("class");
+      name=diff.get("class");
       nameImage=GameScreen.get().createString(getName(),nameColor);
       }
-    else if(name==null && changes.has("type"))
+    else if(name==null && diff.has("type"))
       {
-      name=changes.get("type");
+      name=diff.get("type");
       nameImage=GameScreen.get().createString(getName(),nameColor);
       }
 
-    if(changes.has("xp") && object.has("xp"))
+    if(diff.has("xp") && base.has("xp"))
       {
-      if(/*((changes.getInt("xp") - object.getInt("xp"))>0) &&*/  distance(client.getPlayer())<15*15)
+      if(/*((diff.getInt("xp") - base.getInt("xp"))>0) &&*/  distance(client.getPlayer())<15*15)
         {
-        damageSprites.add(GameScreen.get().createString("+"+Integer.toString(changes.getInt("xp") - object.getInt("xp")),Color.cyan));
+        damageSprites.add(GameScreen.get().createString("+"+Integer.toString(diff.getInt("xp") - base.getInt("xp")),Color.cyan));
         damageSpritesTimes.add(new Long(System.currentTimeMillis()));
 
-        client.addEventLine(getName() + " earns " + (changes.getInt("xp") - object.getInt("xp")) + " experience points." , Color.blue);
+        client.addEventLine(getName() + " earns " + (diff.getInt("xp") - base.getInt("xp")) + " experience points." , Color.blue);
         }
       }
 
-    if(changes.has("hp") && object.has("hp"))
-      {
-      if(distance(client.getPlayer())<15*15)
-        {
-        int healing=changes.getInt("hp") - object.getInt("hp");
-        if(healing>0)
-          {
-          damageSprites.add(GameScreen.get().createString("+"+Integer.toString(healing),Color.green));
-          damageSpritesTimes.add(new Long(System.currentTimeMillis()));
- 
-          client.addEventLine(getName() + " heals " + healing + " health points." , Color.green);
-          }
-        }
-      }
+//    if(diff.has("hp") && base.has("hp"))
+//      {
+//      if(distance(client.getPlayer())<15*15)
+//        {
+//        int healing=diff.getInt("hp") - base.getInt("hp");
+//        if(healing>0)
+//          {
+//          damageSprites.add(GameScreen.get().createString("+"+Integer.toString(healing),Color.green));
+//          damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+// 
+//          client.addEventLine(getName() + " heals " + healing + " health points." , Color.green);
+//          }
+//        }
+//      }
+//
+//    if(diff.has("poisoned"))
+//      {
+//      if(getID().equals(client.getPlayer().getID()) || distance(client.getPlayer())<15*15)
+//        {
+//        isPoisoned=true;
+//        int poisoned=diff.getInt("poisoned");
+//  
+//        damageSprites.add(GameScreen.get().createString(Integer.toString(poisoned),Color.red));
+//        damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+//  
+//        client.addEventLine(getName() + " is poisoned with " + poisoned + " health points." , Color.red);
+//        }
+//      }
+//    else if(!base.has("poisoned"))
+//      {
+//      isPoisoned=false;
+//      }
 
-    if(changes.has("poisoned"))
-      {
-      if(getID().equals(client.getPlayer().getID()) || distance(client.getPlayer())<15*15)
-        {
-        isPoisoned=true;
-        int poisoned=changes.getInt("poisoned");
-  
-        damageSprites.add(GameScreen.get().createString(Integer.toString(poisoned),Color.red));
-        damageSpritesTimes.add(new Long(System.currentTimeMillis()));
-  
-        client.addEventLine(getName() + " is poisoned with " + poisoned + " health points." , Color.red);
-        }
-      }
-    else if(!object.has("poisoned"))
-      {
-      isPoisoned=false;
-      }
-
-    if(changes.has("level") && object.has("level"))
+    if(diff.has("level") && base.has("level"))
       {
       if(getID().equals(client.getPlayer().getID()) || distance(client.getPlayer())<15*15)
         {
@@ -301,28 +361,28 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent
       }
 
     /** Attack code */
-    if(changes.has("target") && object.has("target"))
+    if(diff.has("target") && base.has("target"))
       {
       gameObjects.attackStop(this,targetEntity);
       targetEntity=null;
       }
       
-    if(changes.has("target") || object.has("target"))
+    if(diff.has("target") || base.has("target"))
       {
       attacking=true;
 
-      int risk=(changes.has("risk")?changes.getInt("risk"):0);
-      int damage=(changes.has("damage")?changes.getInt("damage"):0);
-      int target=(changes.has("target")?changes.getInt("target"):object.getInt("target"));
+      int risk=(diff.has("risk")?diff.getInt("risk"):0);
+      int damage=(diff.has("damage")?diff.getInt("damage"):0);
+      int target=(diff.has("target")?diff.getInt("target"):base.getInt("target"));
 
-      targetEntity=new RPObject.ID(target,changes.get("zoneid"));
+      targetEntity=new RPObject.ID(target,diff.get("zoneid"));
       gameObjects.attack(this,targetEntity,risk,damage);
       }
 
     /** Add text lines */
-//    if(changes.has("text") && client.getPlayer()!= null &&distance(client.getPlayer())<15*15)
+//    if(diff.has("text") && client.getPlayer()!= null &&distance(client.getPlayer())<15*15)
 //      {
-//      String text=changes.get("text");
+//      String text=diff.get("text");
 //
 //      if(!(this instanceof Creature))
 //        {
@@ -332,36 +392,36 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent
 //      gameObjects.addText(this, getName()+" says: "+text.replace("|",""), Color.yellow);
 //      }
 //
-//    if(changes.has("private_text"))
+//    if(diff.has("private_text"))
 //      {
-//      client.addEventLine(changes.get("private_text"),Color.orange);
-//      gameObjects.addText(this, changes.get("private_text").replace("|",""), Color.orange);
+//      client.addEventLine(diff.get("private_text"),Color.orange);
+//      gameObjects.addText(this, diff.get("private_text").replace("|",""), Color.orange);
 //      }
 //
-    if(changes.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
-      {
-      client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
-      }
+//    if(diff.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
+//      {
+//      client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
+//      }
 
     }
 
-  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyRemoved(object,changes);    
-    if(changes.has("target"))
+    super.onChangedRemoved(base,diff);    
+    if(diff.has("target"))
       {
       attacking=false;
       gameObjects.attackStop(this,targetEntity);
       targetEntity=null;
       }
-    
-    if(changes.has("eating")) isEating=false;    
-    if(changes.has("poisoned")) isPoisoned=false;    
+//    
+//    if(diff.has("eating")) isEating=false;    
+//    if(diff.has("poisoned")) isPoisoned=false;    
     }
 
-  public void removed() throws AttributeNotFoundException
+  public void onRemoved() throws AttributeNotFoundException
     {
-    super.removed();
+    super.onRemoved();
     
     if(attacking)
       {

@@ -2,7 +2,7 @@ package games.stendhal.client.events;
 
 import games.stendhal.client.entity.*;
 
-interface KillEvent 
+public interface KillEvent 
   {
   // Called when entity kills another entity
   public void onKill(RPEntity killed);

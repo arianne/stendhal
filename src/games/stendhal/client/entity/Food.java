@@ -51,24 +51,24 @@ public class Food extends AnimatedEntity
     return sprites.get("0")[0];
     }
 
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
     
-    if(changes.has("amount"))
+    if(diff.has("amount"))
       {
       int oldAmount = amount; 
-      animation=changes.get("amount");
-      amount=changes.getInt("amount");
+      animation=diff.get("amount");
+      amount=diff.getInt("amount");
       
       // TODO this causes problems because of unidentified content refresh events (e.g. synchronizing)  
       if ( amount > oldAmount )
          playSound( "fruit-regrow", 10, 25 );
       }
-    else if(object.has("amount"))
+    else if(base.has("amount"))
       {
-      animation=object.get("amount");
-      amount=changes.getInt("amount");
+      animation=base.get("amount");
+      amount=base.getInt("amount");
       }
     }
 

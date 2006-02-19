@@ -57,7 +57,7 @@ public class Player extends RPEntity
       player.add("sheep",RPClass.INT);
 
       player.add("poisoned",RPClass.BYTE,RPClass.VOLATILE);
-      player.add("eating",RPClass.FLAG,RPClass.VOLATILE);
+      player.add("eating",RPClass.BYTE,RPClass.VOLATILE);
       
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
 
@@ -822,7 +822,7 @@ public class Player extends RPEntity
     logger.debug("Consuming item: "+soloItem.getAmount());        
     if(soloItem.getRegen()>0)
       {
-      put("eating","");
+      put("eating",0);
       itemsToConsume.add(soloItem);
       }
     else if(soloItem.getRegen()==0) // if regen==0 is antidote
@@ -953,6 +953,7 @@ public class Player extends RPEntity
         logger.debug("Consumed item: "+consumableItem);        
         consumableItem.consume();
         int amount=consumableItem.getRegen();
+        put("eating",amount);
 
         if(getHP()+amount<getBaseHP())
           {

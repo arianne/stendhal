@@ -37,13 +37,13 @@ public class Player extends RPEntity
   private int outfit;
   private double hearingRange;
 
-  public Player(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+  public Player(GameObjects gameObjects, RPObject base) throws AttributeNotFoundException
     {
-    super(gameObjects, object);
+    super(gameObjects, base);
     setHearingRange( DEFAULT_HEARINGRANGE );
     }
 
-  protected void buildAnimations(RPObject object)
+  protected void buildAnimations(RPObject base)
     {
     SpriteStore store=SpriteStore.get();
     
@@ -51,21 +51,21 @@ public class Player extends RPEntity
     
     try
       {
-      if(outfit==object.getInt("outfit") && outfit!=0)
+      if(outfit==base.getInt("outfit") && outfit!=0)
         {
         // We avoid creating again the outfit if it is already done.
         // Save CPU cycles.
         return;
         }
       
-      outfit=object.getInt("outfit");
-      player=setOutFitPlayer(store,object);      
+      outfit=base.getInt("outfit");
+      player=setOutFitPlayer(store,base);      
       }
     catch(Exception e)
       {
       logger.error("cannot build Animations",e);
-      object.put("outfit",0);
-      player=setOutFitPlayer(store,object);            
+      base.put("outfit",0);
+      player=setOutFitPlayer(store,base);            
       }
 
     sprites.put("move_up", store.getAnimatedSprite(player,0,4,1.5,2));
@@ -79,27 +79,27 @@ public class Player extends RPEntity
     sprites.get("move_left")[3]=sprites.get("move_left")[1];
     }
   
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
 
-    if(changes.has("outfit"))
+    if(diff.has("outfit"))
       {      
-      buildAnimations(changes);
+      buildAnimations(diff);
       }
     
-    if(changes.has("online"))
+    if(diff.has("online"))
       {
-      String[] players=changes.get("online").split(",");
+      String[] players=diff.get("online").split(",");
       for(String name: players)
         {
         client.addEventLine(name+" has joined Stendhal.",Color.orange);
         }
       }
 
-    if(changes.has("offline"))
+    if(diff.has("offline"))
       {
-      String[] players=changes.get("offline").split(",");
+      String[] players=diff.get("offline").split(",");
       for(String name: players)
         {
         client.addEventLine(name+" has left Stendhal.",Color.orange);

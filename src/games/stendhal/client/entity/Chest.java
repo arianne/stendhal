@@ -24,18 +24,18 @@ public class Chest extends AnimatedEntity
   /** true means the user requested to open this chest */
   private boolean requestOpen;
   
-  public Chest(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+  public Chest(GameObjects gameObjects, RPObject base) throws AttributeNotFoundException
     {
-    super(gameObjects, object);
+    super(gameObjects, base);
     requestOpen = false;
     }
   
-  protected void buildAnimations(RPObject object)
+  protected void buildAnimations(RPObject base)
     {
     SpriteStore store=SpriteStore.get();  
 
-    sprites.put("close", store.getAnimatedSprite(translate(object.get("type")),0,1,1,1));      
-    sprites.put("open", store.getAnimatedSprite(translate(object.get("type")),1,1,1,1));      
+    sprites.put("close", store.getAnimatedSprite(translate(base.get("type")),0,1,1,1));      
+    sprites.put("open", store.getAnimatedSprite(translate(base.get("type")),1,1,1,1));      
     }
   
   protected Sprite defaultAnimation()
@@ -44,11 +44,11 @@ public class Chest extends AnimatedEntity
     return sprites.get("close")[0];
     }
 
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
     
-    if(changes.has("open"))
+    if(diff.has("open"))
       {
       open=true;
       animation="open";
@@ -60,22 +60,22 @@ public class Chest extends AnimatedEntity
         }
       }
     
-    if(changes.hasSlot("content"))
+    if(diff.hasSlot("content"))
       {      
-      content=changes.getSlot("content");
+      content=diff.getSlot("content");
       }
 
-    if(object.hasSlot("content"))
+    if(base.hasSlot("content"))
       {      
-      content=object.getSlot("content");
+      content=base.getSlot("content");
       }
     }
 
-  public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyRemoved(object,changes);
+    super.onChangedRemoved(base,diff);
     
-    if(changes.has("open"))
+    if(diff.has("open"))
       {
       open=false;
       animation="close";

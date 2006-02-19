@@ -49,21 +49,21 @@ public class Sheep extends NPC
     sprites.put("big_move_left", store.getAnimatedSprite(translate(object.get("type")),7,3,1,1));      
     }
   
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
     
-    if(changes.has("weight"))
+    if(diff.has("weight"))
       {
       int oldWeight = weight;
-      weight=changes.getInt("weight");
+      weight=diff.getInt("weight");
       if ( weight > oldWeight )
          playSound( "sheep-eat", 8, 15 );
       }
       
-    if(changes.has("idea"))
+    if(diff.has("idea"))
     {
-    String idea=changes.get("idea");
+    String idea=diff.get("idea");
     if(idea.equals("eat"))
       {
        probableChat( 15 );

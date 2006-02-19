@@ -68,35 +68,35 @@ public class Corpse extends PassiveEntity
     sprite=store.getSprite(translate(corpseType));
     }
 
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
     
-    if (changes.has("class"))
+    if (diff.has("class"))
       {
-      clazz=changes.get("class");
+      clazz=diff.get("class");
       }
     
-    if(changes.has("name"))
+    if(diff.has("name"))
       {
-      name=changes.get("name");
+      name=diff.get("name");
       }
 
-    if(changes.has("killer"))
+    if(diff.has("killer"))
       {
-      killer=changes.get("killer");
+      killer=diff.get("killer");
       }
     
     /* BUG: Possible bug. Please double check this later.
-     * If an slot is modified the changes are not seen */
-    if(changes.hasSlot("content"))
+     * If an slot is modified the diff are not seen */
+    if(diff.hasSlot("content"))
       {      
-      content=changes.getSlot("content");
+      content=diff.getSlot("content");
       }
 
-    if(object.hasSlot("content"))
+    if(base.hasSlot("content"))
       {      
-      content=object.getSlot("content");
+      content=base.getSlot("content");
       }
     }
     

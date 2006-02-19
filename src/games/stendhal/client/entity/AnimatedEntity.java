@@ -56,9 +56,9 @@ public abstract class AnimatedEntity extends Entity
 
   /** This method is called to modify the propierties of the game entity when the object
    *  that it represent has changed. */
-  public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException
+  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
-    super.modifyAdded(object,changes);
+    super.onChangedAdded(base,diff);
     
     if(!stopped())
       {
@@ -80,9 +80,9 @@ public abstract class AnimatedEntity extends Entity
         animation="move_up";
         }
       }
-    else if(changes.has("dir"))
+    else if(diff.has("dir"))
       {
-      int value=changes.getInt("dir");
+      int value=diff.getInt("dir");
       switch(value)
         {
         case 4:
