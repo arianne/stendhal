@@ -22,20 +22,7 @@ import tiled.core.MultilayerPlane;
 
 public abstract class AbstractBrush extends MultilayerPlane implements Brush
 {
-    protected int numLayers = 1;
-
-    public AbstractBrush() {
-    }
-
-    public AbstractBrush(AbstractBrush ab) {
-        numLayers = ab.numLayers;
-    }
-
-    public void setAffectedLayers(int num) {
-        numLayers = num;
-    }
-
-    public int getAffectedLayers() {
-        return numLayers;
-    }
+  public AbstractBrush()
+  {
+  }
 }

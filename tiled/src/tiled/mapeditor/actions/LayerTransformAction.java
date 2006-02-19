@@ -9,7 +9,6 @@ import javax.swing.AbstractAction;
 
 import tiled.core.MapLayer;
 import tiled.mapeditor.MapEditor;
-import tiled.mapeditor.undo.MapLayerEdit;
 
 public class LayerTransformAction extends AbstractAction
 {
@@ -60,32 +59,32 @@ public class LayerTransformAction extends AbstractAction
   {
     MapLayer currentLayer = mapEditor.getCurrentLayer();
     MapLayer layer = currentLayer;
-    MapLayerEdit transEdit;
-    transEdit = new MapLayerEdit(currentLayer, mapEditor.createLayerCopy(currentLayer));
+//    MapLayerEdit transEdit;
+//    transEdit = new MapLayerEdit(currentLayer, mapEditor.createLayerCopy(currentLayer));
 
     switch (transform)
     {
       case MapLayer.ROTATE_90:
       case MapLayer.ROTATE_180:
       case MapLayer.ROTATE_270:
-        transEdit.setPresentationName("Rotate");
+//        transEdit.setPresentationName("Rotate");
         layer.rotate(transform);
         // if(marqueeSelection != null) marqueeSelection.rotate(transform);
         break;
       case MapLayer.MIRROR_VERTICAL:
-        transEdit.setPresentationName("Vertical Flip");
+//        transEdit.setPresentationName("Vertical Flip");
         layer.mirror(MapLayer.MIRROR_VERTICAL);
         // if(marqueeSelection != null) marqueeSelection.mirror(transform);
         break;
       case MapLayer.MIRROR_HORIZONTAL:
-        transEdit.setPresentationName("Horizontal Flip");
+//        transEdit.setPresentationName("Horizontal Flip");
         layer.mirror(MapLayer.MIRROR_HORIZONTAL);
         // if(marqueeSelection != null) marqueeSelection.mirror(transform);
         break;
     }
 
-    transEdit.end(mapEditor.createLayerCopy(currentLayer));
-    mapEditor.undoSupport.postEdit(transEdit);
+//    transEdit.end(mapEditor.createLayerCopy(currentLayer));
+//    mapEditor.undoSupport.postEdit(transEdit);
     // mapView.repaint();
   }
 }

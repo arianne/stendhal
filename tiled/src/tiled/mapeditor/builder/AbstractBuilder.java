@@ -13,9 +13,15 @@ package tiled.mapeditor.builder;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.swing.undo.UndoManager;
 
 import tiled.core.Map;
+import tiled.core.MapLayer;
 import tiled.mapeditor.brush.Brush;
+import tiled.mapeditor.undo.MapLayerEdit;
 
 /**
  * Default builder base implementation. Takes care of handling the brush
@@ -31,10 +37,16 @@ public abstract class AbstractBuilder implements Builder
   protected Brush brush;
   /** the last point where the builder was called */
   protected Point lastPoint;
+  /** The undo manager to use */
+  protected UndoManager undoManager;
+  /** the current edit */
+  private MapLayerEdit edit;
   /** is builder started? */
-  protected boolean isStarted;
+  protected boolean started;
   /** the layer where to start drawing (for multilayer brushes) */
   protected int startLayer;
+  /** cached affected layers list for undo/redo feature */
+  private List<MapLayer> affectedLayers;
 
   
   /**
@@ -43,7 +55,7 @@ public abstract class AbstractBuilder implements Builder
    */
   public AbstractBuilder()
   {
-    this.isStarted = false;
+    this.started = false;
   }
 
   /**
@@ -80,6 +92,25 @@ public abstract class AbstractBuilder implements Builder
   }
   
   /**
+   * Sets the UndoableEditSupport. <code>null</code> disables undo support
+   * @param undoManager The UndoableEditSupport
+   */
+  public void setUndoManager(UndoManager undoManager)
+  {
+    this.undoManager = undoManager;
+    propertyChanged();
+  }
+  
+  /** 
+   * Returns true when the builder is started
+   * @return true when the builder is started
+   */
+  public boolean isStarted()
+  {
+    return started;
+  }
+  
+  /**
    * sets layer where the builder should start paining
    * @param startLayer the layer where to start painting
    */
@@ -96,7 +127,7 @@ public abstract class AbstractBuilder implements Builder
    */
   protected void ensureStarted(Point tile)
   {
-    if (!isStarted)
+    if (!started)
     {
       startBuilder(tile);
     }
@@ -108,7 +139,7 @@ public abstract class AbstractBuilder implements Builder
    */
   protected void ensureStopped(Point tile)
   {
-    if (isStarted && lastPoint != null)
+    if (started && lastPoint != null)
     {
       finishBuilder(tile);
     }
@@ -134,9 +165,42 @@ public abstract class AbstractBuilder implements Builder
    */
   protected void propertyChanged()
   {
-    // no defaultt implementation
+    // no default implementation
+  }
+  
+  /** Starts this builder. By now it caches the current map state if undo-
+   * support is enabled. Should be called before any drawings occur. */
+  protected void start(MapLayer currentLayer)
+  {
+    if (undoManager != null)
+    {
+      edit = new MapLayerEdit(map);
+      MapLayer[] layers = brush.getAffectedLayers();
+      if (layers.length == 0)
+      {
+        layers = new MapLayer[1];
+        layers[0] = currentLayer;
+      }
+      
+      affectedLayers = Arrays.asList(layers); 
+
+      edit.start(affectedLayers);
+    }
   }
 
+  /** Stops this builder. By now it saves the modified map state if undo-
+   * support is enabled. Should be called after the last drawing operation */
+  protected void finish()
+  {
+    if (undoManager != null && edit != null)
+    {
+      edit.setPresentationName("undo");
+      edit.end(affectedLayers);
+      undoManager.addEdit(edit);
+      edit = null;
+    }
+  }
+  
   /** 
    * Starts the building process. Either the user has clicked the tile (then
    * there is an imediate finishBuilder()) or he started a drag (expect some

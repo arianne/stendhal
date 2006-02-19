@@ -250,7 +250,6 @@ public class Sprite {
 	        y=(((int)currentFrame)/fpl)*(frameSize.height+borderWidth);
 	        x=(((int)currentFrame)%fpl)*(frameSize.width+borderWidth);
 	
-	        //System.out.println(""+currentFrame+": ("+x+"x"+y+")->("+frameSize.width+"x"+frameSize.height+")");
 	        g.drawImage(sprite,0,0,frameSize.width,frameSize.height,x,y,frameSize.width+x,frameSize.height+y,null);
         }
     }

@@ -46,11 +46,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
-import javax.swing.undo.UndoableEditSupport;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
-import tiled.core.ObjectGroup;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.io.MapHelper;
@@ -66,8 +64,6 @@ import tiled.mapeditor.dialog.PluginDialog;
 import tiled.mapeditor.dialog.ResizeDialog;
 import tiled.mapeditor.dialog.SearchDialog;
 import tiled.mapeditor.plugin.PluginClassLoader;
-import tiled.mapeditor.undo.MapLayerEdit;
-import tiled.mapeditor.undo.MapLayerStateEdit;
 import tiled.mapeditor.undo.UndoStack;
 import tiled.mapeditor.util.MapChangeListener;
 import tiled.mapeditor.util.MapChangedEvent;
@@ -105,7 +101,7 @@ public class MapEditor implements ActionListener, MouseListener,
 
   public MapView              mapView;
   public UndoStack            undoStack;
-  public UndoableEditSupport  undoSupport;
+//  public UndoableEditSupport  undoSupport;
   private MapEventAdapter     mapEventAdapter;
   public PluginClassLoader    pluginLoader;
   public TiledConfiguration   configuration;
@@ -137,7 +133,7 @@ public class MapEditor implements ActionListener, MouseListener,
   public JFrame               appFrame;
 
   private AboutDialog         aboutDialog;
-  private MapLayerEdit        paintEdit;
+//  private MapLayerEdit        paintEdit;
 
   // Actions
   public Action               zoomInAction;
@@ -182,9 +178,9 @@ public class MapEditor implements ActionListener, MouseListener,
     // Get instance of configuration
     configuration = TiledConfiguration.getInstance();
 
-    undoStack = new UndoStack();
-    undoSupport = new UndoableEditSupport();
-    undoSupport.addUndoableEditListener(new UndoAdapter());
+    undoStack = new UndoStack(this);
+//    undoSupport = new UndoableEditSupport();
+//    undoSupport.addUndoableEditListener(new UndoAdapter());
 
     mapEventAdapter = new MapEventAdapter();
 
@@ -343,7 +339,9 @@ public class MapEditor implements ActionListener, MouseListener,
   {
     if (currentBuilder == null)
     {
-      currentBuilder = new SimpleBuilder(currentMap,currentBrush,currentLayer);
+      SimpleBuilder builder = new SimpleBuilder(currentMap,currentBrush,currentLayer); 
+      builder.setUndoManager(undoStack);
+      currentBuilder = builder;
     }
     else
     {
@@ -441,8 +439,8 @@ public class MapEditor implements ActionListener, MouseListener,
       setCurrentLayer(0);
     }
 
-    undoSupport.postEdit(new MapLayerStateEdit(currentMap, layersBefore,
-        currentMap.getLayerList(), command));
+//    undoSupport.postEdit(new MapLayerStateEdit(currentMap, layersBefore,
+//        currentMap.getLayerList(), command));
   }
 
 //  private void doMouse(MouseEvent event)
@@ -1072,17 +1070,17 @@ public class MapEditor implements ActionListener, MouseListener,
     }
   }
 
-  public MapLayer createLayerCopy(MapLayer layer)
-  {
-    if (layer instanceof TileLayer)
-    {
-      return new TileLayer((TileLayer) layer);
-    } else if (layer instanceof ObjectGroup)
-    {
-      return new ObjectGroup((ObjectGroup) layer);
-    }
-    return null;
-  }
+//  public MapLayer createLayerCopy(MapLayer layer)
+//  {
+//    if (layer instanceof TileLayer)
+//    {
+//      return new TileLayer((TileLayer) layer);
+//    } else if (layer instanceof ObjectGroup)
+//    {
+//      return new ObjectGroup((ObjectGroup) layer);
+//    }
+//    return null;
+//  }
 
   private void updateRecent(String mapFile)
   {

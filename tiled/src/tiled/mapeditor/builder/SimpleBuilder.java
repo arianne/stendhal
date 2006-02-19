@@ -65,8 +65,9 @@ public class SimpleBuilder extends AbstractBuilder
   /** starts the builder. simply commits the brush to the given tile */
   public Rectangle startBuilder(Point tile)
   {
+    start(map.getLayer(startLayer));
     Rectangle modified = draw(tile,true);
-    isStarted = true;
+    started = true;
     return modified;
   }
 
@@ -83,13 +84,23 @@ public class SimpleBuilder extends AbstractBuilder
   /** finished the builder. the last brush commit. */
   public Rectangle finishBuilder(Point tile)
   {
+    if (!started)
+      return new Rectangle();
+
     Rectangle modified = null;
-    if (!tile.equals(lastPoint))
+    
+    if (tile != null)
     {
-      modified = draw(tile,false);
+      if (!tile.equals(lastPoint))
+      {
+        modified = draw(tile,false);
+      }
     }
-    isStarted = false;
+    started = false;
     updateLastPoint(null);
+    
+    finish();
+    
     return modified;
   }
 

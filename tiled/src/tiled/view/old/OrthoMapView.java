@@ -107,22 +107,22 @@ public class OrthoMapView extends MapView
         }
     }
 
-    protected void paintLayer(Graphics2D g, ObjectGroup layer, double zoom) {
-        Iterator itr = layer.getObjects();
-
-        while (itr.hasNext()) {
-            MapObject mo = (MapObject) itr.next();
-            double ox = mo.getX()*zoom;
-            double oy = mo.getY()*zoom;
-
-            g.setColor(Color.black);
-            g.fillOval((int)ox, (int)oy, (int)(10 * zoom), (int)(10 * zoom));
-            if (zoom > 0.0625) {
-                g.setColor(Color.white);
-                g.drawString(mo.getType(),(int)(ox - 12),(int)(oy - 5));
-            }
-        }
-    }
+//    protected void paintLayer(Graphics2D g, ObjectGroup layer, double zoom) {
+//        Iterator itr = layer.getObjects();
+//
+//        while (itr.hasNext()) {
+//            MapObject mo = (MapObject) itr.next();
+//            double ox = mo.getX()*zoom;
+//            double oy = mo.getY()*zoom;
+//
+//            g.setColor(Color.black);
+//            g.fillOval((int)ox, (int)oy, (int)(10 * zoom), (int)(10 * zoom));
+//            if (zoom > 0.0625) {
+//                g.setColor(Color.white);
+//                g.drawString(mo.getType(),(int)(ox - 12),(int)(oy - 5));
+//            }
+//        }
+//    }
 
     protected void paintGrid(Graphics2D g2d, double zoom) {
         // Determine tile size

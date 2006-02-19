@@ -16,6 +16,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ListIterator;
 
+import tiled.core.MapLayer;
 import tiled.core.MultilayerPlane;
 import tiled.core.TileLayer;
 
@@ -28,13 +29,6 @@ public class CustomBrush extends AbstractBrush
     public CustomBrush(MultilayerPlane m) {
         this();
         this.addAllLayers(m.getLayerList());
-    }
-
-    public void setAffectedLayers(int num) {
-    }
-
-    public int getAffectedLayers() {
-        return getTotalLayers();
     }
 
     public Rectangle getBounds() {
@@ -85,5 +79,11 @@ public class CustomBrush extends AbstractBrush
             //TODO: THIS
         }
         return false;
+    }
+
+    /** returns the affected layers */
+    public MapLayer[] getAffectedLayers()
+    {
+      return new MapLayer[0];
     }
 }

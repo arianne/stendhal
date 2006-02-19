@@ -89,14 +89,13 @@ public final class PluginClassLoader extends URLClassLoader
       // not a valid readable directory
       return;
     }
-    int total = 0;
+
     File[] files = dir.listFiles();
     
     // now read each jar
     for (int i = 0; i < files.length; i++)
     {
       String aPath = files[i].getAbsolutePath();
-      String aName = aPath.substring(aPath.lastIndexOf(File.separatorChar) + 1);
 
       if (aPath.endsWith(".jar"))
       {

@@ -17,6 +17,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import tiled.core.MapLayer;
 import tiled.core.MultilayerPlane;
 import tiled.core.StatefulTile;
 import tiled.core.Tile;
@@ -144,6 +145,12 @@ public class MultiTileBrush extends AbstractBrush
     }
     
     return buf.toString()+"]";
+  }
+
+  /** returns the affected layers */
+  public MapLayer[] getAffectedLayers()
+  {
+    return new MapLayer[0];
   }
   
 }

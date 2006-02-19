@@ -57,9 +57,9 @@ public class ObliqueMapView extends MapView
         // TODO Auto-generated method stub
     }
 
-    protected void paintLayer(Graphics2D g2d, ObjectGroup og, double zoom) {
-        // TODO Auto-generated method stub
-    }
+//    protected void paintLayer(Graphics2D g2d, ObjectGroup og, double zoom) {
+//        // TODO Auto-generated method stub
+//    }
 
     protected void paintGrid(Graphics2D g2d, double zoom) {
         // TODO: Implement paintGrid for ObliqueMapView

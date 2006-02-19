@@ -20,7 +20,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
@@ -37,8 +36,6 @@ import java.util.zip.GZIPInputStream;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
-import tiled.core.MapObject;
-import tiled.core.ObjectGroup;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.core.TileSet;
@@ -499,30 +496,30 @@ public class MapReader implements MapReaderPlugin
     }
   }
 
-  private MapObject unmarshalObject(Node t) throws Exception
-  {
-    MapObject obj = null;
-    try
-    {
-      obj = (MapObject) unmarshalClass(MapObject.class, t);
-    } catch (Exception e)
-    {
-      e.printStackTrace();
-    }
-
-    Properties objProps = obj.getProperties();
-    NodeList children = t.getChildNodes();
-
-    for (int i = 0; i < children.getLength(); i++)
-    {
-      Node child = children.item(i);
-      if (child.getNodeName().equalsIgnoreCase("property"))
-      {
-        objProps.setProperty(getAttributeValue(child, "name"), getAttributeValue(child, "value"));
-      }
-    }
-    return obj;
-  }
+//  private MapObject unmarshalObject(Node t) throws Exception
+//  {
+//    MapObject obj = null;
+//    try
+//    {
+//      obj = (MapObject) unmarshalClass(MapObject.class, t);
+//    } catch (Exception e)
+//    {
+//      e.printStackTrace();
+//    }
+//
+//    Properties objProps = obj.getProperties();
+//    NodeList children = t.getChildNodes();
+//
+//    for (int i = 0; i < children.getLength(); i++)
+//    {
+//      Node child = children.item(i);
+//      if (child.getNodeName().equalsIgnoreCase("property"))
+//      {
+//        objProps.setProperty(getAttributeValue(child, "name"), getAttributeValue(child, "value"));
+//      }
+//    }
+//    return obj;
+//  }
 
   private Tile unmarshalTile(Node t, String baseDir) throws Exception
   {
@@ -579,31 +576,31 @@ public class MapReader implements MapReaderPlugin
     return tile;
   }
 
-  private MapLayer unmarshalObjectGroup(Node t) throws Exception
-  {
-    ObjectGroup og = null;
-    try
-    {
-      og = (ObjectGroup) unmarshalClass(ObjectGroup.class, t);
-    } catch (Exception e)
-    {
-      e.printStackTrace();
-    }
-
-    // Read all objects from the group, "...and in the darkness bind them."
-    NodeList children = t.getChildNodes();
-
-    for (int i = 0; i < children.getLength(); i++)
-    {
-      Node child = children.item(i);
-      if (child.getNodeName().equalsIgnoreCase("object"))
-      {
-        og.bindObject(unmarshalObject(child));
-      }
-    }
-
-    return og;
-  }
+//  private MapLayer unmarshalObjectGroup(Node t) throws Exception
+//  {
+//    ObjectGroup og = null;
+//    try
+//    {
+//      og = (ObjectGroup) unmarshalClass(ObjectGroup.class, t);
+//    } catch (Exception e)
+//    {
+//      e.printStackTrace();
+//    }
+//
+//    // Read all objects from the group, "...and in the darkness bind them."
+//    NodeList children = t.getChildNodes();
+//
+//    for (int i = 0; i < children.getLength(); i++)
+//    {
+//      Node child = children.item(i);
+//      if (child.getNodeName().equalsIgnoreCase("object"))
+//      {
+//        og.bindObject(unmarshalObject(child));
+//      }
+//    }
+//
+//    return og;
+//  }
 
   /**
    * Loads a map layer from a layer node.
@@ -804,11 +801,11 @@ public class MapReader implements MapReaderPlugin
         }
       } else if (sibs.getNodeName().equals("objectgroup"))
       {
-        MapLayer layer = unmarshalObjectGroup(sibs);
-        if (layer != null)
-        {
-          map.addLayer(layer);
-        }
+//        MapLayer layer = unmarshalObjectGroup(sibs);
+//        if (layer != null)
+//        {
+//          map.addLayer(layer);
+//        }
       }
     }
     return map;
@@ -825,12 +822,12 @@ public class MapReader implements MapReaderPlugin
       factory.setExpandEntityReferences(false);
       DocumentBuilder builder = factory.newDocumentBuilder();
       doc = builder.parse(in, xmlPath);
-    } catch (SAXException e)
+      return buildMap(doc);
+    } catch (Exception e)
     {
       e.printStackTrace();
       throw new Exception("Error while parsing map file: " + e.toString());
     }
-    return buildMap(doc);
   }
 
 }

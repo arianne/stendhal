@@ -41,7 +41,7 @@ public abstract class MapLayer implements Cloneable
 
     protected String name;
     protected boolean isVisible = true;
-    protected boolean bLocked = false;
+    protected boolean locked = false;
     protected Map myMap;
     protected float opacity = 1.0f;
     protected Rectangle bounds;
@@ -101,10 +101,6 @@ public abstract class MapLayer implements Cloneable
         bounds.x += dx;
         bounds.y += dy;
     }
-
-    public abstract void rotate(int angle);
-
-    public abstract void mirror(int dir);
 
     /**
      * Sets the bounds (in tiles) to the specified Rectangle.
@@ -242,23 +238,6 @@ public abstract class MapLayer implements Cloneable
         return isVisible;
     }
 
-    public abstract void mergeOnto(MapLayer other);
-
-    public abstract void copyFrom(MapLayer other);
-
-    public abstract void maskedCopyFrom(MapLayer other, Area mask);
-
-    public abstract MapLayer createDiff(MapLayer ml);
-
-    /**
-     * Unlike mergeOnto, copyTo includes the null tile when merging
-     *
-     * @see tiled.core.MapLayer#copyFrom
-     * @see tiled.core.MapLayer#mergeOnto
-     * @param other the layer to copy this layer to
-     */
-    public abstract void copyTo(MapLayer other);
-
     /**
      * Creates a copy of this layer.
      *
@@ -276,15 +255,6 @@ public abstract class MapLayer implements Cloneable
         return clone;
     }
 
-    /**
-     * @see MultilayerPlane#resize
-     *
-     * @param width  the new width of the layer
-     * @param height the new height of the layer
-     * @param dx     the shift in x direction
-     * @param dy     the shift in y direction
-     */
-    public abstract void resize(int width, int height, int dx, int dy);
 
     /**
      * Get the locked status of the layer.
@@ -292,7 +262,7 @@ public abstract class MapLayer implements Cloneable
      * @see MapLayer#setLocked(boolean)
      */
     public boolean isLocked() {
-        return bLocked;
+        return locked;
     }
 
     /**
@@ -302,7 +272,7 @@ public abstract class MapLayer implements Cloneable
      *             unlock the layer
      */
     public void setLocked(boolean lock) {
-        bLocked = lock;
+        locked = lock;
     }
 
     public void setProperties(Properties p) {
@@ -316,4 +286,61 @@ public abstract class MapLayer implements Cloneable
     public boolean canEdit() {
         return !isLocked() && isVisible();
     }
+    
+    /**
+     * Copies the layer parameter (except the bounds and the map) to the 
+     * destination layer. It is a convenience method for #getLayerCopy().
+     * 
+     * <b>Note:</b> The class of the destination layer is not checked.  
+     *  
+     * @param destination the destination layer
+     */
+    protected void copyParameter(MapLayer destination)
+    {
+      destination.name      = name;
+      destination.isVisible = isVisible;
+      destination.locked    = locked;
+      destination.opacity   = opacity;
+      destination.properties.clear();
+      destination.properties.putAll(properties);
+    }
+    
+    /** rotates the layer */
+    public abstract void rotate(int angle);
+    /** mirrors the layer */
+    public abstract void mirror(int dir);
+    public abstract void mergeOnto(MapLayer other);
+    public abstract void copyFrom(MapLayer other);
+    public abstract void maskedCopyFrom(MapLayer other, Area mask);
+    public abstract MapLayer createDiff(MapLayer ml);
+    
+    /**
+     * @see MultilayerPlane#resize
+     *
+     * @param width  the new width of the layer
+     * @param height the new height of the layer
+     * @param dx     the shift in x direction
+     * @param dy     the shift in y direction
+     */
+    public abstract void resize(int width, int height, int dx, int dy);
+    
+    /**
+     * Unlike mergeOnto, copyTo includes the null tile when merging
+     *
+     * @param other the layer to copy this layer to
+     * @see tiled.core.MapLayer#copyFrom
+     * @see tiled.core.MapLayer#mergeOnto
+     */
+    public abstract void copyTo(MapLayer other);
+    
+    /**
+     * Returns a copy of this layer within the bounds <code>bounds</code>. If 
+     * <code>bounds</code> is <code>null</code> the layer should copy all.
+     *  
+     * @param bounds the bounds to the copied layer
+     * @return the copied layer
+     * @see #copyParameter(MapLayer)
+     */
+    public abstract MapLayer getLayerCopy(Rectangle bounds);
+    
 }

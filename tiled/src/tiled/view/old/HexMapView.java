@@ -137,8 +137,8 @@ public class HexMapView extends MapView
         }
     }
 
-    protected void paintLayer(Graphics2D g2d, ObjectGroup og, double zoom) {
-    }
+//    protected void paintLayer(Graphics2D g2d, ObjectGroup og, double zoom) {
+//    }
 
     /**
      * Returns the distance between the centres of two horizontally adjacent

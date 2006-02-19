@@ -196,33 +196,30 @@ public class TileLayer extends MapLayer
      *         layer, and the argument, or <b>null</b> if no difference exists.
      */
     public MapLayer createDiff(MapLayer ml) {
-        if (ml == null) { return null; }
+        if (ml == null || !(ml instanceof TileLayer)) { return null; }
 
-        if (ml instanceof TileLayer) {
-            Rectangle r = null;
+        Rectangle r = null;
+        TileLayer other = (TileLayer) ml;
 
-            for (int y = bounds.y; y < bounds.height + bounds.y; y++) {
-                for (int x = bounds.x; x < bounds.width + bounds.x; x++) {
-                    if (((TileLayer)ml).getTileAt(x, y) != getTileAt(x, y)) {
-                        if (r != null) {
-                            r.add(x, y);
-                        } else {
-                            r = new Rectangle(new Point(x, y));
-                        }
+        for (int y = bounds.y; y < bounds.height + bounds.y; y++) {
+            for (int x = bounds.x; x < bounds.width + bounds.x; x++) {
+                if (other.getTileAt(x, y) != getTileAt(x, y)) {
+                    if (r != null) {
+                        r.add(x, y);
+                    } else {
+                        r = new Rectangle(x, y, 0, 0);
                     }
                 }
             }
+        }
 
-            if (r != null) {
-                MapLayer diff = new TileLayer(
-                        new Rectangle(r.x, r.y, r.width + 1, r.height + 1));
-                diff.copyFrom(ml);
-                return diff;
-            } else {
-                return new TileLayer();
-            }
+        if (r != null) {
+            MapLayer diff = new TileLayer(new Rectangle(r.x, r.y, r.width + 1, r.height + 1));
+            diff.copyFrom(ml);
+            diff.setName(name);
+            return diff;
         } else {
-            return null;
+            return new TileLayer();
         }
     }
 
@@ -257,12 +254,9 @@ public class TileLayer extends MapLayer
      * @param ti the tile object to place
      */
     public void setTileAt(int tx, int ty, Tile ti) {
-        try {
-            if (canEdit()) {
-                map[ty - bounds.y][tx - bounds.x] = ti;
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            // Silently ignore out of bounds exception
+        if (canEdit() && contains(tx,ty))
+        {
+            map[ty - bounds.y][tx - bounds.x] = ti;
         }
     }
 
@@ -332,7 +326,7 @@ public class TileLayer extends MapLayer
      * @param other the insignificant layer to merge with
      */
     public void mergeOnto(MapLayer other) {
-        if(!other.canEdit())
+        if(!other.canEdit() || !(other instanceof TileLayer))
             return;
 
         for (int y = bounds.y; y < bounds.y + bounds.height; y++) {
@@ -349,16 +343,22 @@ public class TileLayer extends MapLayer
      * Copy data from another layer onto this layer. Unlike mergeOnto,
      * copyFrom() copies the empty cells as well.
      *
-     * @see tiled.core.MapLayer#mergeOnto
+     * @see tiled.core.MapLayer#copyFrom
      * @param other
      */
     public void copyFrom(MapLayer other) {
-        if (!canEdit())
+        if (!canEdit() || !(other instanceof TileLayer))
             return;
+        
+        TileLayer otherLayer = (TileLayer) other;
+        
+        Rectangle realBounds = bounds.intersection(other.getBounds());
 
-        for (int y = bounds.y; y < bounds.y + bounds.height; y++) {
-            for (int x = bounds.x; x < bounds.x + bounds.width; x++) {
-                setTileAt(x, y, ((TileLayer)other).getTileAt(x, y));
+        for (int y = realBounds.y; y < realBounds.y + realBounds.height; y++)
+        {
+            for (int x = realBounds.x; x < realBounds.x + realBounds.width; x++)
+            {
+                setTileAt(x, y, otherLayer.getTileAt(x,y));
             }
         }
     }
@@ -371,7 +371,7 @@ public class TileLayer extends MapLayer
      * @param mask
      */
     public void maskedCopyFrom(MapLayer other, Area mask) {
-        if (!canEdit())
+        if (!canEdit() || !(other instanceof TileLayer))
             return;
 
         Rectangle boundBox = mask.getBounds();
@@ -393,7 +393,7 @@ public class TileLayer extends MapLayer
      * @param other the layer to copy this layer to
      */
     public void copyTo(MapLayer other) {
-        if (!other.canEdit())
+        if (!other.canEdit() || !(other instanceof TileLayer))
             return;
 
         for (int y = bounds.y; y < bounds.y + bounds.height; y++) {
@@ -411,8 +411,7 @@ public class TileLayer extends MapLayer
      * @exception CloneNotSupportedException
      */
     public Object clone() throws CloneNotSupportedException {
-        TileLayer clone = null;
-        clone = (TileLayer)super.clone();
+        TileLayer clone = (TileLayer)super.clone();
 
         // Clone the layer data
         clone.map = new Tile[map.length][];
@@ -450,5 +449,24 @@ public class TileLayer extends MapLayer
         map = newMap;
         bounds.width = width;
         bounds.height = height;
+    }
+
+    /** copies the layer */
+    public MapLayer getLayerCopy(Rectangle bounds)
+    {
+      Rectangle realBounds = bounds.union(bounds);
+      TileLayer other = new TileLayer();
+      other.setBounds(realBounds);
+      copyParameter(other);
+
+      for (int x = realBounds.x; x < realBounds.x+realBounds.width; x++)
+      {
+        for (int y = realBounds.y; y < realBounds.y+realBounds.height; y++)
+        {
+          other.setTileAt(x,y,getTileAt(x,y));
+        }
+      }
+      
+      return other;
     }
 }

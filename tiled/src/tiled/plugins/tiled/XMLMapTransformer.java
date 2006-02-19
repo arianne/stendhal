@@ -386,26 +386,26 @@ public class XMLMapTransformer implements MapReader, FileFilter
         }
     }
 
-    private MapObject unmarshalObject(Node t) throws Exception {
-        MapObject obj = null;
-        try {
-            obj = (MapObject)unmarshalClass(MapObject.class, t);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        Properties objProps = obj.getProperties();
-        NodeList children = t.getChildNodes();
-
-        for (int i = 0; i < children.getLength(); i++) {
-            Node child = children.item(i);
-            if (child.getNodeName().equalsIgnoreCase("property")) {
-                objProps.setProperty(getAttributeValue(child, "name"),
-                        getAttributeValue(child, "value"));
-            }
-        }
-        return obj;
-    }
+//    private MapObject unmarshalObject(Node t) throws Exception {
+//        MapObject obj = null;
+//        try {
+//            obj = (MapObject)unmarshalClass(MapObject.class, t);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        Properties objProps = obj.getProperties();
+//        NodeList children = t.getChildNodes();
+//
+//        for (int i = 0; i < children.getLength(); i++) {
+//            Node child = children.item(i);
+//            if (child.getNodeName().equalsIgnoreCase("property")) {
+//                objProps.setProperty(getAttributeValue(child, "name"),
+//                        getAttributeValue(child, "value"));
+//            }
+//        }
+//        return obj;
+//    }
 
     private Tile unmarshalTile(Node t, String baseDir) throws Exception {
         Tile tile = null;
@@ -452,26 +452,26 @@ public class XMLMapTransformer implements MapReader, FileFilter
         return tile;
     }
 
-    private MapLayer unmarshalObjectGroup(Node t) throws Exception {
-        ObjectGroup og = null;
-        try {
-            og = (ObjectGroup)unmarshalClass(ObjectGroup.class, t);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        //Read all objects from the group, "...and in the darkness bind them."
-        NodeList children = t.getChildNodes();
-
-        for (int i = 0; i < children.getLength(); i++) {
-            Node child = children.item(i);
-            if (child.getNodeName().equalsIgnoreCase("object")) {
-                og.bindObject(unmarshalObject(child));
-            }
-        }
-        
-        return og;
-    }
+//    private MapLayer unmarshalObjectGroup(Node t) throws Exception {
+//        ObjectGroup og = null;
+//        try {
+//            og = (ObjectGroup)unmarshalClass(ObjectGroup.class, t);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        
+//        //Read all objects from the group, "...and in the darkness bind them."
+//        NodeList children = t.getChildNodes();
+//
+//        for (int i = 0; i < children.getLength(); i++) {
+//            Node child = children.item(i);
+//            if (child.getNodeName().equalsIgnoreCase("object")) {
+//                og.bindObject(unmarshalObject(child));
+//            }
+//        }
+//        
+//        return og;
+//    }
 
     /**
      * Loads a map layer from a layer node.
@@ -641,12 +641,12 @@ public class XMLMapTransformer implements MapReader, FileFilter
                     map.addLayer(layer);
                 }
             }
-            else if (sibs.getNodeName().equals("objectgroup")) {
-                MapLayer layer = unmarshalObjectGroup(sibs);
-                if (layer != null) {
-                    map.addLayer(layer);
-                }
-            }
+//            else if (sibs.getNodeName().equals("objectgroup")) {
+//                MapLayer layer = unmarshalObjectGroup(sibs);
+//                if (layer != null) {
+//                    map.addLayer(layer);
+//                }
+//            }
         }
     }
 

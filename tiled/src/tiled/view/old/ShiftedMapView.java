@@ -78,8 +78,8 @@ public class ShiftedMapView extends MapView
     protected void paintLayer(Graphics2D g2d, TileLayer layer, double zoom) {
     }
 
-    protected void paintLayer(Graphics2D g2d, ObjectGroup layer, double zoom) {
-    }
+//    protected void paintLayer(Graphics2D g2d, ObjectGroup layer, double zoom) {
+//    }
 
     protected void paintGrid(Graphics2D g2d, double zoom) {
         // Determine tile size

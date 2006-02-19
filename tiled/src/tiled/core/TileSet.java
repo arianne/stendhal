@@ -110,8 +110,6 @@ public class TileSet implements Iterable<Tile>
             tilebmpFile = imgFilename;
         }
 
-//        System.out.println("Importing " + imgFilename + "...");
-
         importTileBitmap(ImageIO.read(imgFile.toURL()), tileWidth,
                 tileHeight, spacing, createTiles);
     }
@@ -276,7 +274,6 @@ public class TileSet implements Iterable<Tile>
         }
 
         tiles.set(t.getId(), t);
-        //System.out.println("adding tile " +t.getId());
         t.setTileSet(this);
         t.setStandardHeight(standardHeight);
         if (standardWidth < t.getWidth()) {
@@ -662,7 +659,6 @@ public class TileSet implements Iterable<Tile>
                 Object key = itr.next();
                 Image[] imgs = images.get(key);
                 if (imgs[0] == image) {
-                    //System.out.println("Success: " + key);
                     return key;
                 }
             }
@@ -694,8 +690,6 @@ public class TileSet implements Iterable<Tile>
         if (key == null) {
             return addImage(image);
         } else {
-            //System.out.print(name+".addImage(Image, Object): " + key + " ");
-            //System.out.println("Checksum: " + cs);
             Image[] imgs = new Image[8];
             imgs[0] = internImage(image);
             images.put(key, imgs);
@@ -704,7 +698,6 @@ public class TileSet implements Iterable<Tile>
     }
 
     public void removeImage(String id) {
-        //System.out.println(name+".removeImage(Object): " + id);
         // This operation is siginificantly slower now that 'images' stores
         // images directly instead of storing hashes.  Fortunately this
         // operation is also extremely rare.

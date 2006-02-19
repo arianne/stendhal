@@ -13,6 +13,7 @@ package tiled.mapeditor.brush;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.List;
 
 import tiled.core.MapLayer;
@@ -29,6 +30,7 @@ import tiled.core.TileLayer;
 public class TileGroupBrush extends AbstractBrush
 {
   private TileGroup tileGroup;
+  private MapLayer[] cachedLayerIndices;
 
   /** creates a new brush based on the given tilegroup */
   public TileGroupBrush(TileGroup tileGroup)
@@ -83,5 +85,15 @@ public class TileGroupBrush extends AbstractBrush
     return "["+this.getClass().getName()+":"+tileGroup+"]";
   }
 
-  
+  /** returns the affected layers */
+  public MapLayer[] getAffectedLayers()
+  {
+    if (cachedLayerIndices == null)
+    {
+      List<TileLayer> layers = new ArrayList<TileLayer>(tileGroup.getTileLayers().keySet());
+      cachedLayerIndices = layers.toArray(new MapLayer[layers.size()]);
+    }
+
+    return cachedLayerIndices;
+  }
 }

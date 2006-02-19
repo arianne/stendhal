@@ -221,8 +221,8 @@ public abstract class MapView extends JPanel implements Scrollable
 
                     if (layer instanceof TileLayer) {
                         paintLayer(g2d, (TileLayer)layer, currentZoom);
-                    } else if (layer instanceof ObjectGroup) {
-                        paintLayer(g2d, (ObjectGroup)layer, currentZoom);
+//                    } else if (layer instanceof ObjectGroup) {
+//                        paintLayer(g2d, (ObjectGroup)layer, currentZoom);
                     }
                 }
             }
@@ -280,8 +280,8 @@ public abstract class MapView extends JPanel implements Scrollable
      * @param og    the ObjectGroup to be drawn
      * @param zoom  the zoom level to draw the layer on
      */
-    protected abstract void paintLayer(Graphics2D g2d, ObjectGroup og,
-            double zoom);
+//    protected abstract void paintLayer(Graphics2D g2d, ObjectGroup og,
+//            double zoom);
     
     protected void paintEdge(Graphics2D g2d, MapLayer layer, int x, int y) {
         /*

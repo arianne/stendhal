@@ -137,6 +137,16 @@ public class Reader
     }
     
     Map map = new Map(width,height);
+    
+    // read map properties 
+    Node propsNode = getNode(mapNode,"properties");
+    if (propsNode != null)
+    {
+      Properties props = new Properties(); 
+      readProperties(propsNode,props);
+      map.setProperties(props);
+    }
+    
     readTilesets(map,getNodes(mapNode,"tileset"));
     readLayer(map,getNodes(mapNode,"layer"));
     readPropertyLayer(map,getNode(mapNode,"propertieslayer"));

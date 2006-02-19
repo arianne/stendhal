@@ -85,8 +85,14 @@ public interface Builder
   /** 
    * Stops and finished the building process.
    * 
-   * @param tile the tile where to start the builder
+   * @param tile the tile where to stop the builder. May be <code>null</code>
    * @return modified region in tile coordinate space (may be null)
    */
   Rectangle finishBuilder(Point tile);
+  
+  /** 
+   * Returns true when the builder is started
+   * @return true when the builder is started
+   */
+  boolean isStarted();
 }

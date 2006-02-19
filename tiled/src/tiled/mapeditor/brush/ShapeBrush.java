@@ -22,6 +22,7 @@ public class ShapeBrush extends AbstractBrush
 {
     protected Area shape;
     protected Tile paintTile;
+    private int numLayers;
     
     public ShapeBrush() {
         super();
@@ -33,7 +34,7 @@ public class ShapeBrush extends AbstractBrush
     }
     
     public ShapeBrush(AbstractBrush sb) {
-        super(sb);
+        super();
         if (sb instanceof ShapeBrush) {
             shape = ((ShapeBrush)sb).shape;
             paintTile = ((ShapeBrush)sb).paintTile;
@@ -139,5 +140,11 @@ public class ShapeBrush extends AbstractBrush
             return ((ShapeBrush)b).shape.equals(shape);
         }
         return false;
+    }
+
+    /** returns the affected layers */
+    public MapLayer[] getAffectedLayers()
+    {
+      return new MapLayer[0];
     }
 }

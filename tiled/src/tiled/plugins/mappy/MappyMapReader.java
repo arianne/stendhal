@@ -201,10 +201,10 @@ public class MappyMapReader implements MapReader, FileFilter
         ml.setName("bg");
         ret.addLayer(ml);
         for(int i=1;i<7;i++) {
-            //TODO: I believe this should be ObjectGroup
-            ml = new ObjectGroup(ret, 0, 0);
-            ml.setName("ObjectLayer "+i);
-            ret.addLayer(ml);
+//            //TODO: I believe this should be ObjectGroup
+//            ml = new ObjectGroup(ret, 0, 0);
+//            ml.setName("ObjectLayer "+i);
+//            ret.addLayer(ml);
         }
         ml = new TileLayer(ret, ret.getWidth(),ret.getHeight());
         ml.setName("fg 1");

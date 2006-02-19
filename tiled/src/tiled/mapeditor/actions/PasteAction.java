@@ -11,7 +11,6 @@ import javax.swing.KeyStroke;
 
 import tiled.core.MapLayer;
 import tiled.mapeditor.MapEditor;
-import tiled.mapeditor.undo.MapLayerStateEdit;
 
 public class PasteAction extends AbstractAction
 {
@@ -31,11 +30,11 @@ public class PasteAction extends AbstractAction
   {
     if (mapEditor.currentMap != null && mapEditor.clipboardLayer != null)
     {
-      List<MapLayer> layersBefore = mapEditor.currentMap.getLayerList();
-      MapLayer ml = mapEditor.createLayerCopy(mapEditor.clipboardLayer);
-      ml.setName("Layer " + mapEditor.currentMap.getTotalLayers());
-      mapEditor.currentMap.addLayer(ml);
-      mapEditor.undoSupport.postEdit(new MapLayerStateEdit(mapEditor.currentMap, layersBefore,mapEditor.currentMap.getLayerList(), "Paste Selection"));
+//      List<MapLayer> layersBefore = mapEditor.currentMap.getLayerList();
+//      MapLayer ml = mapEditor.createLayerCopy(mapEditor.clipboardLayer);
+//      ml.setName("Layer " + mapEditor.currentMap.getTotalLayers());
+//      mapEditor.currentMap.addLayer(ml);
+//      mapEditor.undoSupport.postEdit(new MapLayerStateEdit(mapEditor.currentMap, layersBefore,mapEditor.currentMap.getLayerList(), "Paste Selection"));
     }
   }
 }

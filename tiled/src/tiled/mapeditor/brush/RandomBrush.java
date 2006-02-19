@@ -23,6 +23,7 @@ public class RandomBrush extends ShapeBrush
 {
     private MersenneTwister mt;
     private double ratio = 0.5;
+    private int numLayers;
 
     public RandomBrush() {
         super();

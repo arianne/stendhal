@@ -289,14 +289,14 @@ public class XMLMapWriter implements MapWriter, FileFilter
         }
     }
 
-    private void writeObjectGroup(ObjectGroup o, XMLWriter w)
-        throws IOException
-    {
-        Iterator itr = o.getObjects();
-        while (itr.hasNext()) {
-            writeObject((MapObject)itr.next(), o, w);
-        }
-    }
+//    private void writeObjectGroup(ObjectGroup o, XMLWriter w)
+//        throws IOException
+//    {
+//        Iterator itr = o.getObjects();
+//        while (itr.hasNext()) {
+//            writeObject((MapObject)itr.next(), o, w);
+//        }
+//    }
 
     /**
      * Writes this layer to an XMLWriter. This should be done <b>after</b> the
@@ -316,8 +316,8 @@ public class XMLMapWriter implements MapWriter, FileFilter
 
             if (l.getClass() == SelectionLayer.class) {
                 w.startElement("selection");
-            } else if(l instanceof ObjectGroup){
-                w.startElement("objectgroup");
+//            } else if(l instanceof ObjectGroup){
+//                w.startElement("objectgroup");
             } else {
                 w.startElement("layer");
             }
@@ -348,9 +348,9 @@ public class XMLMapWriter implements MapWriter, FileFilter
                 w.endElement();
             }
 
-            if (l instanceof ObjectGroup){
-                writeObjectGroup((ObjectGroup)l, w);
-            } else {
+//            if (l instanceof ObjectGroup){
+//                writeObjectGroup((ObjectGroup)l, w);
+//            } else {
                 w.startElement("data");
                 if (encodeLayerData) {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -403,7 +403,7 @@ public class XMLMapWriter implements MapWriter, FileFilter
                     }
                 }
                 w.endElement();
-            }
+//            }
             w.endElement();
         } catch (XMLWriterException e) {
             e.printStackTrace();
@@ -485,33 +485,33 @@ public class XMLMapWriter implements MapWriter, FileFilter
         }
     }
 
-    private void writeObject(MapObject m, ObjectGroup o, XMLWriter w)
-        throws IOException
-    {
-        try {
-            Rectangle b = o.getBounds();
-            w.startElement("object");
-            w.writeAttribute("x", "" + (m.getX() + b.x));
-            w.writeAttribute("y", "" + (m.getY() + b.y));
-            w.writeAttribute("type", m.getType());
-            if (m.getSource() != null) {
-                w.writeAttribute("source", m.getSource());
-            }
-
-            Properties props = m.getProperties();
-            for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
-                String key = (String) keys.nextElement();
-                w.startElement("property");
-                w.writeAttribute("name", key);
-                w.writeAttribute("value", props.getProperty(key));
-                w.endElement();
-            }
-
-            w.endElement();
-        } catch (XMLWriterException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void writeObject(MapObject m, ObjectGroup o, XMLWriter w)
+//        throws IOException
+//    {
+//        try {
+//            Rectangle b = o.getBounds();
+//            w.startElement("object");
+//            w.writeAttribute("x", "" + (m.getX() + b.x));
+//            w.writeAttribute("y", "" + (m.getY() + b.y));
+//            w.writeAttribute("type", m.getType());
+//            if (m.getSource() != null) {
+//                w.writeAttribute("source", m.getSource());
+//            }
+//
+//            Properties props = m.getProperties();
+//            for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
+//                String key = (String) keys.nextElement();
+//                w.startElement("property");
+//                w.writeAttribute("name", key);
+//                w.writeAttribute("value", props.getProperty(key));
+//                w.endElement();
+//            }
+//
+//            w.endElement();
+//        } catch (XMLWriterException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * Returns the relative path from one file to the other. The function

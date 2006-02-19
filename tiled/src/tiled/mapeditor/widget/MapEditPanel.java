@@ -213,10 +213,18 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
       if (!dragged)
       {
         affectedRegion = builder.startBuilder(tile);
+        builder.finishBuilder(null);
       }
       else
       {
-        affectedRegion = builder.moveBuilder(tile);
+        if (builder.isStarted())
+        {
+          affectedRegion = builder.moveBuilder(tile);
+        }
+        else
+        {
+          affectedRegion = builder.startBuilder(tile);
+        }
       }
 
       updateModifiedRegion(affectedRegion);
@@ -260,7 +268,6 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
     if (e.getButton() == MouseEvent.BUTTON1)
     {
       drawTo(e.getPoint(),false);
-      finishDrag(e.getPoint());
       mapEditor.clearSelectedTiles();
     } else if (e.getButton() == MouseEvent.BUTTON3)
     {
