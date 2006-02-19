@@ -32,7 +32,6 @@ public class Corpse extends PassiveEntity
   private String name;
   private String killer;
   
-  private RPSlot content;
   private EntityContainer contentWindow;
 
   public Corpse(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
@@ -86,18 +85,6 @@ public class Corpse extends PassiveEntity
       {
       killer=diff.get("killer");
       }
-    
-    /* BUG: Possible bug. Please double check this later.
-     * If an slot is modified the diff are not seen */
-    if(diff.hasSlot("content"))
-      {      
-      content=diff.getSlot("content");
-      }
-
-    if(base.hasSlot("content"))
-      {      
-      content=base.getSlot("content");
-      }
     }
     
   public String defaultAction()
@@ -132,10 +119,11 @@ public class Corpse extends PassiveEntity
       }
     else if(action.equals("Inspect"))
       {
-       if ( !isContentShowing() )
-       {
-          contentWindow = client.getGameGUI().inspect(this,content);
-       }
+      if ( !isContentShowing() )
+        {
+        RPSlot content=rpObject.getSlot("content");
+        contentWindow = client.getGameGUI().inspect(this,content);
+        }
       }
     }
   

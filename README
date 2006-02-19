@@ -70,6 +70,10 @@ Changelog
 - Fixed offline icon not showing.
 - Fixed equipment bug.
 - Fixed NPC talking bug.
+- Fixed corpses not showing correctly usable items.
+- Added Event system to ease development of client.
+- Added sword beam to show attack.
+- Added Python initialization script to ease modification of Server.
 
 0.44 Jan 29, 2006
 - Fixed a null pointer bug at creature logic.

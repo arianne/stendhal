@@ -856,7 +856,19 @@ public class Player extends RPEntity
     if(item.getQuantity()>1)
       {
       item.setQuantity(item.getQuantity()-1);
-      if(!item.isContained())
+      if(item.isContained())
+        {
+        // We modify the base container if the object change.
+        RPObject base=item.getContainer();      
+  
+        while(base.isContained())
+          {
+          base=base.getContainer();
+          }
+        
+        world.modify(base);
+        }
+      else
         {
         world.modify(item);
         }

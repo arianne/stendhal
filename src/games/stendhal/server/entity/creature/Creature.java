@@ -497,6 +497,7 @@ public class Creature extends NPC
       logger.debug("Next to target. Creature stops and attacks");
       stop();
       attack(target);
+      faceto(target);
       aiState = AiState.ATTACKING;
       }
     else
@@ -520,6 +521,7 @@ public class Creature extends NPC
 
       aiState = AiState.APPROACHING_STOPPED_TARGET;
       attack(target);
+      faceto(target);
 
       // be sure to let the blocking creatures pass before trying to find a
       // new path
@@ -573,7 +575,7 @@ public class Creature extends NPC
       StendhalRPAction.move(this);
       }
 
-    if(rp.getTurn()%5==0  && isAttacking())
+    if(rp.getTurn()%5==3  && isAttacking())
       {
       StendhalRPAction.attack(this,getAttackTarget());
       

@@ -104,12 +104,12 @@ public class EntityContainer extends Panel
     RPSlot rpslot = parent.getSlot(slotName);
     shownSlot=(RPSlot)rpslot.clone();
     
-    Iterator<RPObject> it = (rpslot != null) ? rpslot.iterator() : null;
+    Iterator<RPObject> it = (rpslot != null) ? shownSlot.iterator() : null;
 
     for (EntitySlot entitySlot : slotPanels)
     {
       // be sure to update the name
-      entitySlot.setName(rpslot.getName());
+      entitySlot.setName(shownSlot.getName());
       // remove old objects
       entitySlot.clear();
       // tell 'em the the parent
@@ -169,7 +169,19 @@ public class EntityContainer extends Panel
       // rescan the content if the size changes
       if(!shownSlot.equals(rpslot))
       {
+      logger.debug("DIFFERENT");
+      logger.debug("SHOWN: "+shownSlot);
+      logger.debug("ORIGINAL: "+rpslot);
         rescanSlotContent();
+      }
+      else
+      {
+      if(parent instanceof games.stendhal.client.entity.Corpse)
+      {
+      logger.debug("EQUAL");
+      logger.debug("SHOWN: "+shownSlot);
+      logger.debug("ORIGINAL: "+rpslot);
+      }
       }
       checkDistance();
     }
