@@ -20,6 +20,8 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
 
 import games.stendhal.client.events.*;
 
@@ -30,11 +32,15 @@ import marauroa.common.game.RPObject;
 
 /** This class is a link between client graphical objects and server attributes objects.<br>
  *  You need to extend this object in order to add new elements to the game. */
-public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEvent, KillEvent
+public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEvent, KillEvent, AttackEvent
   {
   private static Sprite hitted;
   private static Sprite blocked;
   private static Sprite missed;
+
+  private static Map<String,Sprite[]> blade_strikes;
+  private int frameBladeStrike;
+  private boolean showBladeStrike;
 
   static
     {
@@ -43,6 +49,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
     hitted=st.getSprite("data/sprites/combat/hitted.png");
     blocked=st.getSprite("data/sprites/combat/blocked.png");
     missed=st.getSprite("data/sprites/combat/missed.png");
+    
+    blade_strikes=new HashMap<String,Sprite[]>();
+    blade_strikes.put("move_up",st.getAnimatedSprite("data/sprites/combat/blade_strike.png",0,3,3,4));
+    blade_strikes.put("move_right",st.getAnimatedSprite("data/sprites/combat/blade_strike.png",1,3,3,4));
+    blade_strikes.put("move_down",st.getAnimatedSprite("data/sprites/combat/blade_strike.png",2,3,3,4));
+    blade_strikes.put("move_left",st.getAnimatedSprite("data/sprites/combat/blade_strike.png",3,3,3,4));
     }
 
   private static Sprite eating;
@@ -360,26 +372,26 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
         }
       }
 
-    /** Attack code */
-    if(diff.has("target") && base.has("target"))
-      {
-      gameObjects.attackStop(this,targetEntity);
-      targetEntity=null;
-      }
-      
-    if(diff.has("target") || base.has("target"))
-      {
-      attacking=true;
-
-      int risk=(diff.has("risk")?diff.getInt("risk"):0);
-      int damage=(diff.has("damage")?diff.getInt("damage"):0);
-      int target=(diff.has("target")?diff.getInt("target"):base.getInt("target"));
-
-      targetEntity=new RPObject.ID(target,diff.get("zoneid"));
-      gameObjects.attack(this,targetEntity,risk,damage);
-      }
-
-    /** Add text lines */
+//    /** Attack code */
+//    if(diff.has("target") && base.has("target"))
+//      {
+//      gameObjects.attackStop(this,targetEntity);
+//      targetEntity=null;
+//      }
+//      
+//    if(diff.has("target") || base.has("target"))
+//      {
+//      attacking=true;
+//
+//      int risk=(diff.has("risk")?diff.getInt("risk"):0);
+//      int damage=(diff.has("damage")?diff.getInt("damage"):0);
+//      int target=(diff.has("target")?diff.getInt("target"):base.getInt("target"));
+//
+//      targetEntity=new RPObject.ID(target,diff.get("zoneid"));
+//      gameObjects.attack(this,targetEntity,risk,damage);
+//      }
+//
+//    /** Add text lines */
 //    if(diff.has("text") && client.getPlayer()!= null &&distance(client.getPlayer())<15*15)
 //      {
 //      String text=diff.get("text");
@@ -408,12 +420,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
   public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
     super.onChangedRemoved(base,diff);    
-    if(diff.has("target"))
-      {
-      attacking=false;
-      gameObjects.attackStop(this,targetEntity);
-      targetEntity=null;
-      }
+//    if(diff.has("target"))
+//      {
+//      attacking=false;
+//      gameObjects.attackStop(this,targetEntity);
+//      targetEntity=null;
+//      }
 //    
 //    if(diff.has("eating")) isEating=false;    
 //    if(diff.has("poisoned")) isPoisoned=false;    
@@ -422,53 +434,53 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
   public void onRemoved() throws AttributeNotFoundException
     {
     super.onRemoved();
-    
-    if(attacking)
-      {
-      attacking=false;
-      gameObjects.attackStop(this,targetEntity);
-      targetEntity=null;
-      }
+//    
+//    if(attacking)
+//      {
+//      attacking=false;
+//      gameObjects.attackStop(this,targetEntity);
+//      targetEntity=null;
+//      }
     }
 
 
-  public void onAttack(RPEntity source, int risk, int damage)
-    {
-    attacked=true;
+//  public void onAttack(RPEntity source, int risk, int damage)
+//    {
+//    attacked=true;
+//
+//    // This shows damage done by the player and to the player.
+//    boolean showAttackInfoForPlayer=client.getPlayer()!=null && (getID().equals(client.getPlayer().getID()) || source.getID().equals(client.getPlayer().getID()));
+//    showAttackInfoForPlayer=showAttackInfoForPlayer&(!stendhal.FILTER_ATTACK_MESSAGES);
+//
+//    if(risk>0 && damage>0 && (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer))
+//      {
+//      client.addEventLine(name+" loses with "+damage+" hitpoints due to an attack by "+source.getName(),Color.RED);
+//      }
+//
+//    combatIconTime=System.currentTimeMillis();
+//
+//    if(risk<=0)
+//      {
+//      resolution=Resolution.MISSED;
+//      }
+//    else if(damage<=0)
+//      {
+//      resolution=Resolution.BLOCKED;
+//      }
+//    else
+//      {
+//      playSound( "punch-mix", 20, 60, 80 ); 
+//      resolution=Resolution.HITTED;
+//
+//      damageSprites.add(GameScreen.get().createString(Integer.toString(damage),Color.red));
+//      damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+//      }
+//    }
 
-    // This shows damage done by the player and to the player.
-    boolean showAttackInfoForPlayer=client.getPlayer()!=null && (getID().equals(client.getPlayer().getID()) || source.getID().equals(client.getPlayer().getID()));
-    showAttackInfoForPlayer=showAttackInfoForPlayer&(!stendhal.FILTER_ATTACK_MESSAGES);
-
-    if(risk>0 && damage>0 && (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer))
-      {
-      client.addEventLine(name+" loses with "+damage+" hitpoints due to an attack by "+source.getName(),Color.RED);
-      }
-
-    combatIconTime=System.currentTimeMillis();
-
-    if(risk<=0)
-      {
-      resolution=Resolution.MISSED;
-      }
-    else if(damage<=0)
-      {
-      resolution=Resolution.BLOCKED;
-      }
-    else
-      {
-      playSound( "punch-mix", 20, 60, 80 ); 
-      resolution=Resolution.HITTED;
-
-      damageSprites.add(GameScreen.get().createString(Integer.toString(damage),Color.red));
-      damageSpritesTimes.add(new Long(System.currentTimeMillis()));
-      }
-    }
-
-  public void onAttackStop(RPEntity source)
-    {
-    attacked=false;
-    }
+//  public void onAttackStop(RPEntity source)
+//    {
+//    attacked=false;
+//    }
 
 
   /** Draws this entity in the screen */
@@ -487,6 +499,26 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
       g2d.setColor(Color.black);
       g2d.drawRect((int)p.getX()-1,(int)p.getY()-1,(int)(rect.getWidth()*(float)GameScreen.SIZE_UNIT_PIXELS)+2,(int)(rect.getHeight()*(float)GameScreen.SIZE_UNIT_PIXELS)+2);
       }
+
+    if(isAttacking() && showBladeStrike)
+      {
+      Rectangle2D rect=getArea();
+      double sx=rect.getMaxX();
+      double sy=rect.getMaxY();
+      
+      if(frameBladeStrike<3)
+        {
+        screen.draw(blade_strikes.get(getAnimation())[frameBladeStrike],sx-1.5,sy-3.3);      
+        }
+      else
+        {
+        showBladeStrike=false;
+        frameBladeStrike=0;
+        }
+      
+      frameBladeStrike++;
+      }  
+
 
     super.draw(screen);
 
@@ -706,4 +738,83 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
   {
     return defXp;
   }
+
+
+  // When this entity attacks target.
+  public void onAttack(RPEntity target)
+    {
+    attacking=true;
+    }
+
+  // When attacker attacks this entity.
+  public void onAttacked(RPEntity attacker)
+    {
+    attacked=true;
+    }
+
+  // When this entity stops attacking 
+  public void onStopAttack()
+    {
+    attacking=false;
+    }
+
+  // When attacket stop attacking us
+  public void onStopAttacked(RPEntity attacker)
+    {
+    attacked=false;
+    }
+
+  
+  // When this entity causes damaged to adversary, with damage amount 
+  public void onAttackDamage(RPEntity target, int damage)
+    {
+    showBladeStrike=true;
+    }
+
+  // When this entity's attack is blocked by the adversary 
+  public void onAttackBlocked(RPEntity target)
+    {
+    showBladeStrike=true;
+    }
+
+  // When this entity's attack is missing the adversary 
+  public void onAttackMissed(RPEntity target)
+    {
+    showBladeStrike=true;
+    }
+
+
+  // When this entity is damaged by attacker with damage amount
+  public void onDamaged(RPEntity attacker, int damage)
+    {
+    combatIconTime=System.currentTimeMillis();
+    resolution=Resolution.HITTED;
+
+    playSound( "punch-mix", 20, 60, 80 ); 
+
+    damageSprites.add(GameScreen.get().createString(Integer.toString(damage),Color.red));
+    damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+
+    boolean showAttackInfoForPlayer=client.getPlayer()!=null && (getID().equals(client.getPlayer().getID()) || attacker.getID().equals(client.getPlayer().getID()));
+    showAttackInfoForPlayer=showAttackInfoForPlayer&(!stendhal.FILTER_ATTACK_MESSAGES);
+
+    if(stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer)
+      {
+      client.addEventLine(getName()+" loses with "+damage+" hitpoints due to an attack by "+attacker.getName(),Color.RED);
+      }
+    }
+
+  // When this entity blocks the attack by attacker
+  public void onBlocked(RPEntity attacker)
+    {
+    combatIconTime=System.currentTimeMillis();
+    resolution=Resolution.BLOCKED;
+    }
+
+  // When this entity skip attacker's attack.
+  public void onMissed(RPEntity attacker)
+    {
+    combatIconTime=System.currentTimeMillis();
+    resolution=Resolution.MISSED;
+    }
   }

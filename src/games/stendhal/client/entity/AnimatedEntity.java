@@ -100,6 +100,11 @@ public abstract class AnimatedEntity extends Entity
         }
       }    
     }    
+  
+  protected String getAnimation()
+    {
+    return animation;
+    }
  
    
   /** Returns the next Sprite we have to show */

@@ -199,6 +199,11 @@ public class GameObjects implements Iterable<Entity>
       fireKillEvent(((KillEvent)entity),object,null);
       }
     
+    if(entity instanceof AttackEvent)
+      {
+      fireAttackEvent(((RPEntity)entity),object,null);
+      }
+    
     if(entity instanceof AttributeEvent)
       {
       entity.onAdded(object);
@@ -242,6 +247,11 @@ public class GameObjects implements Iterable<Entity>
         {
         fireKillEvent(((KillEvent)entity),object,changes);
         }      
+        
+      if(entity instanceof AttackEvent)
+        {
+        fireAttackEvent(((RPEntity)entity),object,changes);
+        }    
       }
       
     Log4J.finishMethod(logger,"modifyAdded");
@@ -263,10 +273,10 @@ public class GameObjects implements Iterable<Entity>
         fireHPEventChangedRemoved((HPEvent)entity,object,changes);
         }
   
-      if(entity instanceof KillEvent)
+      if(entity instanceof AttackEvent)
         {
-        fireKillEvent(((KillEvent)entity),object,changes);
-        }      
+        fireAttackEventChangedRemoved(((RPEntity)entity),object,changes);
+        }    
       }
 
     Log4J.finishMethod(logger,"modifyRemoved");
@@ -319,6 +329,11 @@ public class GameObjects implements Iterable<Entity>
       if(entity instanceof KillEvent)
         {
         fireKillEvent(((KillEvent)entity),null,null);
+        }      
+
+      if(entity instanceof AttackEvent)
+        {
+        fireAttackEvent(((RPEntity)entity),null,null);
         }      
       }
 
@@ -525,6 +540,177 @@ public class GameObjects implements Iterable<Entity>
       }
     }
 
+  private void fireAttackEvent(RPEntity entity, RPObject base, RPObject diff)
+    {
+    if(diff==null && base==null)
+      {
+      // Remove case       
+      if(attacks.containsKey(entity))
+        {
+        entity.onStopAttack();
+
+        RPEntity target=attacks.get(entity);
+        if(target!=null)
+          {
+          target.onStopAttacked(entity);
+          }       
+        
+        attacks.remove(entity);
+        }
+      }
+    else if(diff==null)
+      {
+      // Modified case
+      if(base.has("target"))
+        {
+        int risk=(base.has("risk")?base.getInt("risk"):0);
+        int damage=(base.has("damage")?base.getInt("damage"):0);
+        int target=base.getInt("target");
+  
+        RPObject.ID targetEntityID=new RPObject.ID(target,base.get("zoneid"));
+        RPEntity targetEntity=(RPEntity)objects.get(targetEntityID);
+        if(targetEntity!=null)
+          {
+          if(!attacks.containsKey(entity))
+            {
+            entity.onAttack(targetEntity);
+            targetEntity.onAttacked(entity);
+            }
+          
+          if(risk==0)
+            {
+            entity.onAttackMissed(targetEntity);
+            targetEntity.onMissed(entity);
+            }
+          
+          if(risk>0 && damage==0)
+            {
+            entity.onAttackBlocked(targetEntity);
+            targetEntity.onBlocked(entity);
+            }
+          
+          if(risk>0 && damage>0)
+            {
+            entity.onAttackDamage(targetEntity,damage);
+            targetEntity.onDamaged(entity,damage);
+            }
+            
+//          targetEntity.onAttack(entity,risk,damage);
+          attacks.put(entity,targetEntity);
+          }
+        }
+      }
+    else
+      {
+      // Modified case
+      if(diff.has("target") && base.has("target") && !base.get("target").equals(diff.get("target")))
+        {
+        System.out.println ("Removing target: new target");
+        entity.onStopAttack();
+
+        RPEntity target=attacks.get(entity);
+        if(target!=null)
+          {
+          target.onStopAttacked(entity);
+          }       
+          
+        attacks.remove(entity);
+        }
+        
+      if(diff.has("target") || base.has("target"))
+        {
+        boolean thereIsEvent=false;
+        
+        int risk=0;
+        if(diff.has("risk"))
+          {
+          thereIsEvent=true;
+          risk=diff.getInt("risk");
+          }
+        else if(base.has("risk"))
+          {
+          risk=base.getInt("risk");          
+          }
+        else
+          {
+          risk=0;
+          }
+
+        int damage=0;
+        if(diff.has("damage"))
+          {
+          thereIsEvent=true;
+          damage=diff.getInt("damage");
+          }
+        else if(base.has("damage"))
+          {
+          damage=base.getInt("damage");          
+          }
+        else
+          {
+          damage=0;
+          }
+
+        int target=-1;
+        if(diff.has("target"))
+          {
+          target=diff.getInt("target");
+          }
+        else if(base.has("target"))
+          {
+          target=base.getInt("target");          
+          }
+        
+        RPObject.ID targetEntityID=new RPObject.ID(target,diff.get("zoneid"));
+        RPEntity targetEntity=(RPEntity)objects.get(targetEntityID);
+        if(targetEntity!=null)
+          {
+          entity.onAttack(targetEntity);
+          targetEntity.onAttacked(entity);
+          
+          if(thereIsEvent)
+            {
+            if(risk==0)
+              {
+              entity.onAttackMissed(targetEntity);
+              targetEntity.onMissed(entity);
+              }
+            
+            if(risk>0 && damage==0)
+              {
+              entity.onAttackBlocked(targetEntity);
+              targetEntity.onBlocked(entity);
+              }
+            
+            if(risk>0 && damage>0)
+              {
+              entity.onAttackDamage(targetEntity,damage);
+              targetEntity.onDamaged(entity,damage);
+              }
+            }
+            
+          attacks.put(entity,targetEntity);
+          }
+        }
+      }
+    }
+
+  private void fireAttackEventChangedRemoved(RPEntity entity, RPObject base, RPObject diff)
+    {
+    if(diff.has("target"))
+      {
+      entity.onStopAttack();
+
+      RPEntity target=attacks.get(entity);
+      if(target!=null)
+        {
+        target.onStopAttacked(entity);
+        }       
+        
+      attacks.remove(entity);
+      }
+    }
+
 
   private boolean collides(Entity entity)
     {
@@ -613,35 +799,35 @@ public class GameObjects implements Iterable<Entity>
     return null;
     }  
 
-  public void attack(RPEntity source, RPObject.ID target, int risk, int damage) throws AttributeNotFoundException
-    {
-    Log4J.startMethod(logger,"attack");
-    Entity entity=objects.get(target);
-    if(entity!=null && entity instanceof RPEntity)
-      {
-      RPEntity rpentity=(RPEntity)entity;
-      rpentity.onAttack(source,risk, damage);
-
-      attacks.put(source,rpentity);
-      }
-      
-    Log4J.finishMethod(logger,"attack");
-    }
-
-  public void attackStop(RPEntity source, RPObject.ID target) throws AttributeNotFoundException
-    {
-    Log4J.startMethod(logger,"attackStop");
-    Entity entity=objects.get(target);
-    if(entity!=null && entity instanceof RPEntity)
-      {
-      RPEntity rpentity=(RPEntity)entity;
-      rpentity.onAttackStop(source);
-
-      attacks.remove(source);
-      }
-      
-    Log4J.finishMethod(logger,"attackStop");
-    }
+//  public void attack(RPEntity source, RPObject.ID target, int risk, int damage) throws AttributeNotFoundException
+//    {
+//    Log4J.startMethod(logger,"attack");
+//    Entity entity=objects.get(target);
+//    if(entity!=null && entity instanceof RPEntity)
+//      {
+//      RPEntity rpentity=(RPEntity)entity;
+//      rpentity.onAttack(source,risk, damage);
+//
+//      attacks.put(source,rpentity);
+//      }
+//      
+//    Log4J.finishMethod(logger,"attack");
+//    }
+//
+//  public void attackStop(RPEntity source, RPObject.ID target) throws AttributeNotFoundException
+//    {
+//    Log4J.startMethod(logger,"attackStop");
+//    Entity entity=objects.get(target);
+//    if(entity!=null && entity instanceof RPEntity)
+//      {
+//      RPEntity rpentity=(RPEntity)entity;
+//      rpentity.onAttackStop(source);
+//
+//      attacks.remove(source);
+//      }
+//      
+//    Log4J.finishMethod(logger,"attackStop");
+//    }
   
   /** Draw all the objects in game */
   public void draw(GameScreen screen)

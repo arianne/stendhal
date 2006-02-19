@@ -69,11 +69,12 @@
     <mkdir dir="${dist}"/>
     <jar
       jarfile="${dist}/tiled.jar"
-      manifest="MANIFEST.MF"
       basedir="${build}"
-      excludes="tiled/plugins/**"
-      />
-    <ant dir="plugins" target="dist"/>
+      excludes="tiled/plugins/**">
+      <manifest>
+        <attribute name="Main-Class" value="tiled.mapeditor.MapEditor"/>
+      </manifest>
+    </jar>  
   </target>
 
   <target name="core" depends="clean,compile"
