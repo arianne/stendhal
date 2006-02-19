@@ -14,7 +14,9 @@ import tiled.plugins.TiledPlugin;
 import tiled.plugins.stendhal.StendReader;
 import tiled.plugins.stendhal.StendWriter;
 import tiled.plugins.stendhal.XStendReader;
+import tiled.plugins.stendhal.XStendWriter;
 import tiled.plugins.tiled.MapReader;
+import tiled.plugins.tiled.MapWriter;
 
 /**
  * A generic PlugIn Manager
@@ -56,6 +58,8 @@ public class PluginManager
     addPlugin(MapReaderPlugin.class, XStendReader.class);
     
     addPlugin(MapWriterPlugin.class, StendWriter.class);
+    addPlugin(MapWriterPlugin.class, XStendWriter.class);
+    addPlugin(MapWriterPlugin.class, MapWriter.class);
   }
 
   /**

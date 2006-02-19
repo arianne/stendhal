@@ -35,7 +35,7 @@ import tiled.mapeditor.selection.SelectionLayer;
 import tiled.util.*;
 
 
-public class XMLMapWriter implements MapWriter, FileFilter
+public class XMLMapWriter implements tiled.io.MapWriter, FileFilter
 {
     /**
      * Saves a map to an XML file.
