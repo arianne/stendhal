@@ -69,14 +69,9 @@ public abstract class MapView
   public abstract Dimension getSize();
   
   /**
-   * (re)draws a portion of the map. Note that clipArea is in Tile coordinate
-   * space, not pixel space. The destination is always the upper left
-   * corner(0,0) of g.
-   * The MapView should check the clipping area of g too, to avoid unneccessary
-   * drawing operation.
+   * Draws the whole map to the graphic canvas. 
    * 
    *  @param g the graphic to draw to
-   *  @param clipArea the are to draw in tile coordinates
    */
   public void draw(Graphics g)
   {

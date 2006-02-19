@@ -19,18 +19,20 @@
 
 
 Broken things:
-* some undo features
-* pour
+* some undo features (delete/rename layer, maybe: properties layer changes, map/layer/tile props)
+* pour (won't fix, replaced by brushes. maybe a pour brush?)
 * grid/coordinate map view (won't fix this)
-* save as image
 * select all/none/invert
 * plugins
 
 Todo:
+* create delete brush
+* restore shape brush
+* there are some ugly scrolling issues. scroll is separate thread? check SwingWorker and SwingUtilities.invokeLater
 * Save custom brushes in map
-* repair undo/pour/save as image
 * improve selection
 * fix plugins
+* correctly implement loading/saving plugin
 
 0.5.2 - TBD (+ means planned change)
 

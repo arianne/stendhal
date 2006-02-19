@@ -18,7 +18,9 @@
 package tiled.mapeditor;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -39,6 +41,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -1012,38 +1015,40 @@ public class MapEditor implements ActionListener, MouseListener,
    */
   public void saveMapImage()
   {
-    // JFileChooser ch = new JFileChooser();
-    // ch.setDialogTitle("Save as image");
-    //
-    // if (ch.showSaveDialog(appFrame) == JFileChooser.APPROVE_OPTION) {
-    // filename = ch.getSelectedFile().getAbsolutePath();
-    // }
-    //
-    // if (filename != null) {
-    // MapView myView = MapView.createViewforMap(currentMap);
-    // if (mapView.getMode(MapView.PF_GRIDMODE))
-    // myView.enableMode(MapView.PF_GRIDMODE);
-    // myView.enableMode(MapView.PF_NOSPECIAL);
-    // myView.setZoom(mapView.getZoom());
-    // Dimension d = myView.getPreferredSize();
-    // BufferedImage i = new BufferedImage(d.width, d.height,
-    // BufferedImage.TYPE_INT_ARGB);
-    // Graphics2D g = i.createGraphics();
-    // g.setClip(0, 0, d.width, d.height);
-    // myView.paint(g);
-    //
-    // String format = filename.substring(filename.lastIndexOf('.') + 1);
-    //
-    // try {
-    // ImageIO.write(i, format, new File(filename));
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // JOptionPane.showMessageDialog(appFrame,
-    // "Error while saving " + filename + ": " + e.toString(),
-    // "Error while saving map image",
-    // JOptionPane.ERROR_MESSAGE);
-    // }
-    // }
+    try
+    {
+      JFileChooser ch = new JFileChooser();
+      ch.setDialogTitle("Save as image");
+      
+      if (ch.showSaveDialog(appFrame) == JFileChooser.APPROVE_OPTION)
+      {
+        String filename = ch.getSelectedFile().getAbsolutePath();
+        
+        Dimension d = mapView.getSize();
+        BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = i.createGraphics();
+        
+        g.setClip(0,0,d.width,d.height);
+        mapView.draw(g);
+        
+      
+        String format = filename.substring(filename.lastIndexOf('.') + 1);
+      
+        try 
+        {
+          ImageIO.write(i, format, new File(filename));
+        }
+        catch (IOException e) 
+        {
+          e.printStackTrace();
+          JOptionPane.showMessageDialog(appFrame,"Error while saving " + filename + ": " + e.toString(),"Error while saving map image",JOptionPane.ERROR_MESSAGE);
+        }
+      }
+    }
+    catch (OutOfMemoryError e)
+    {
+      JOptionPane.showMessageDialog(appFrame,"Error while saving image: " + e, "Error while saving map image",JOptionPane.ERROR_MESSAGE);
+    }
   }
   
   /** closes the current map */
