@@ -74,6 +74,7 @@ Changelog
 - Added Event system to ease development of client.
 - Added sword beam to show attack.
 - Added Python initialization script to ease modification of Server.
+- Added Quest system.
 
 0.44 Jan 29, 2006
 - Fixed a null pointer bug at creature logic.

@@ -96,9 +96,6 @@
 				<path>src\games\stendhal\tools</path>
 			</folderitem>
 			<folderitem>
-				<path>src\games\stendhal\tools\tiled</path>
-			</folderitem>
-			<folderitem>
 				<path>data</path>
 			</folderitem>
 			<folderitem>
@@ -779,14 +776,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\tools\tiled\StendhalMapReader.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\tools\tiled\StendhalMapWriter.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>data\conf\creatures.xml</path>
 				<source>true</source>
 			</fileitem>
@@ -824,6 +813,9 @@
 			</fileitem>
 		</include>
 		<exclude>
+			<folderitem>
+				<path>src\games\stendhal\tools\tiled</path>
+			</folderitem>
 			<folderitem>
 				<path>tiled</path>
 			</folderitem>
