@@ -48,7 +48,17 @@ public class Behaviours
     {
     npc.add(1,triggers, 1,text,null);
     }
-
+    
+  
+  public static void addQuestion(SpeakerNPC npc,String trigger, SpeakerNPC.ChatAction question, Map<String, SpeakerNPC.ChatAction> replies)
+    {
+    int state=npc.getFreeState();
+    npc.add(1,trigger,state,null,question);
+    for(Map.Entry<String, SpeakerNPC.ChatAction> entry: replies.entrySet())
+      {
+      npc.add(state,entry.getKey(),1,null, entry.getValue());
+      }
+    }
 
   public static void addQuest(SpeakerNPC npc, String text)
     {

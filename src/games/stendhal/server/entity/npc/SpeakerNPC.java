@@ -86,6 +86,7 @@ public abstract class SpeakerNPC extends NPC
   private List<StatePath> statesTable;
   // FSM actual state
   private int actualState;
+  private int maxState;
   // Default wait message when NPC is busy
   private String waitMessage;
   // Default wait action when NPC is busy
@@ -107,6 +108,7 @@ public abstract class SpeakerNPC extends NPC
     
     statesTable=new LinkedList<StatePath>();
     actualState=0;
+    maxState=0;
     lastMessageTurn=0;
     
     behavioursData=new HashMap<String, Object>();
@@ -286,10 +288,21 @@ public abstract class SpeakerNPC extends NPC
     
     return null;
     }  
+  
+  public int getFreeState()
+    {
+    maxState++;
+    return maxState;
+    }
 
   /** Add a new state to FSM */
   public void add(int state, String trigger, int next_state, String reply, ChatAction action)
     {
+    if(state>maxState)
+      {
+      maxState=state;
+      }
+      
     StatePath existing=get(state,trigger);
     if(existing!=null)
       {
@@ -302,20 +315,14 @@ public abstract class SpeakerNPC extends NPC
     statesTable.add(item);
     }
 
-// NOTE: Unused    
-//  /** Add a new set of states to FSM */
-//  public void add(Integer[] states, String trigger, int next_state, String reply, ChatAction action)
-//    {
-//    for(int state: states)
-//      {
-//      StatePath item=new StatePath(state, trigger,next_state, reply, action);
-//      statesTable.add(item);
-//      }
-//    }
-
   /** Add a new set of states to FSM */
   public void add(int state, String[] triggers, int next_state, String reply, ChatAction action)
     {
+    if(state>maxState)
+      {
+      maxState=state;
+      }
+      
     for(String trigger: triggers)
       {
       StatePath item=new StatePath(state, trigger,next_state, reply, action);
@@ -325,6 +332,11 @@ public abstract class SpeakerNPC extends NPC
 
   public void add(int state, String[] triggers, int next_state, String[] replies, ChatAction action)
     {
+    if(state>maxState)
+      {
+      maxState=state;
+      }
+      
     for(String trigger: triggers)
       {
       for(String reply: replies)

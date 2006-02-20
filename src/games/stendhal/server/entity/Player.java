@@ -673,6 +673,22 @@ public class Player extends RPEntity
   
   public boolean isQuestCompleted(String name)
     {
+    if(hasQuest(name))
+      {
+      RPSlot slot=getSlot("!quests");
+      RPObject quests=(RPObject)slot.iterator().next();
+      
+      if(quests.get(name).equals("done"))
+        {
+        return true;
+        }
+      }
+
+    return false;
+    }
+
+  public boolean hasQuest(String name)
+    {
     if(!hasSlot("!quests"))
       {
       logger.error("Expected to find !quests slot");
@@ -688,7 +704,7 @@ public class Player extends RPEntity
     
     RPObject quests=(RPObject)slot.iterator().next();
     
-    if(quests.has(name) && quests.getInt(name)==1)
+    if(quests.has(name))
       {
       return true;
       }
@@ -698,66 +714,39 @@ public class Player extends RPEntity
       }
     }
 
-  public boolean isQuestInProgress(String name)
+  public String getQuest(String name)
     {
-    if(!hasSlot("!quests"))
+    if(hasQuest(name))
       {
-      logger.error("Expected to find !quests slot");
-      return false;
-      }
+      RPSlot slot=getSlot("!quests");
+      RPObject quests=(RPObject)slot.iterator().next();
       
-    RPSlot slot=getSlot("!quests");
-    if(slot.size()==0)
-      {
-      logger.error("Expected to find something !quests slot");
-      return false;
-      }
-    
-    RPObject quests=(RPObject)slot.iterator().next();
-    
-    if(quests.has(name) && quests.getInt(name)!=1)
-      {
-      return true;
+      return quests.get(name);
       }
     else
       {
-      return false;
+      return null;
+      } 
+    }
+
+  public void setQuest(String name, String status)
+    {
+    RPSlot slot=getSlot("!quests");
+    RPObject quests=(RPObject)slot.iterator().next();
+    quests.put(name,status);
+    }
+  
+  public void removeQuest(String name)
+    {
+    if(hasQuest(name))
+      {
+      RPSlot slot=getSlot("!quests");
+      RPObject quests=(RPObject)slot.iterator().next();
+      
+      quests.remove(name);
       }
     }
 
-  public void startQuest(String name)
-    {
-    if(!hasSlot("!quests"))
-      {
-      logger.error("Expected to find !quests slot");
-      }
-      
-    RPSlot slot=getSlot("!quests");
-    if(slot.size()==0)
-      {
-      logger.error("Expected to find something !quests slot");
-      }
-    
-    RPObject quests=(RPObject)slot.iterator().next();
-    quests.put(name,0);
-    }
-
-  public void completeQuest(String name)
-    {
-    if(!hasSlot("!quests"))
-      {
-      logger.error("Expected to find !quests slot");
-      }
-      
-    RPSlot slot=getSlot("!quests");
-    if(slot.size()==0)
-      {
-      logger.error("Expected to find something in !quests slot");
-      }
-    
-    RPObject quests=(RPObject)slot.iterator().next();
-    quests.put(name,1);
-    }
   
   public boolean isPoisoned()
     {

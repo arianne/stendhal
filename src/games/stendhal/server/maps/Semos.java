@@ -68,6 +68,136 @@ public class Semos implements IContent
     portal.setDestination("0_semos_city",3);
     zone.add(portal);
     zone.addPortal(portal);
+
+    NPC npc=new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(28,11));
+        nodes.add(new Path.Node(28,20));
+        setPath(nodes,true);
+        }
+      
+      protected void createDialog()
+        {        
+        Behaviours.addGreeting(this);
+        Behaviours.addJob(this,"I am the librarian.");
+        Behaviours.addHelp(this,"Read!.");
+
+        SpeakerNPC.ChatAction question=new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player, String text, SpeakerNPC engine)
+            {
+            if(player.isQuestCompleted("ceryl_book"))
+              {
+              say("I already got the book. Thank you!");
+              engine.setActualState(1);
+              }
+            else if(player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("jyanath"))
+              {
+              say("Thanks!");
+              player.addXP(100);
+              player.setQuest("ceryl_book","done");
+              player.removeQuest("ceryl_book");
+              engine.setActualState(1);
+              }
+            else if(player.hasQuest("ceryl_book"))
+              {
+              say("I really need that book now!. Go to talk with Jyanath.");
+              player.setQuest("ceryl_book","start");
+              engine.setActualState(1);
+              }
+            else            
+              {
+              say("Could you ask Jyanath for a #book that I am looking?");
+              }
+            }          
+          };
+          
+        Map<String, SpeakerNPC.ChatAction> replies=new HashMap<String, SpeakerNPC.ChatAction>();
+        replies.put("yes",new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player, String text, SpeakerNPC engine)
+            {
+            say("Great!. Start the quest now!");
+            player.setQuest("ceryl_book","start");
+            }
+          });
+        replies.put("no",new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player, String text, SpeakerNPC engine)
+            {
+            say("Oh!, Ok :(");
+            }
+          });
+          
+        Behaviours.addQuestion(this,"book",question,replies);
+        Behaviours.addGoodbye(this);
+        }
+      };
+    
+    zone.assignRPObjectID(npc);
+    npc.setName("Ceryl");
+    npc.put("class","tavernbarmaidnpc");
+    npc.setx(28);
+    npc.sety(11);
+    npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
+    zone.add(npc);    
+    zone.addNPC(npc);
+
+    npc=new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(9,20));
+        nodes.add(new Path.Node(9,11));
+        setPath(nodes,true);
+        }
+      
+      protected void createDialog()
+        {        
+        Behaviours.addGreeting(this);
+        Behaviours.addJob(this,"I am the investigator.");
+        Behaviours.addHelp(this,"Investigate!.");
+        
+        add(1,"book",1,null,new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player, String text, SpeakerNPC engine)
+            {
+            if(player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("start"))
+              {
+              player.setQuest("ceryl_book","jyanath");
+              say("Here you have the book Ceryl is looking for.");
+              engine.setActualState(1);
+              }
+            else if(player.hasQuest("ceryl_book"))
+              {
+              say("Hurry up! Grab the book to Ceryl.");
+              engine.setActualState(1);
+              }
+            else            
+              {
+              say("Shhhh!!! I am investigating!.");
+              }
+            }          
+          });
+          
+        Behaviours.addGoodbye(this);
+        }
+      };
+    
+    zone.assignRPObjectID(npc);
+    npc.setName("Jyanath");
+    npc.put("class","weaponsellernpc");
+    npc.setx(9);
+    npc.sety(20);
+    npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
+    zone.add(npc);    
+    zone.addNPC(npc);
     }
 
   private void buildSemosTempleArea(StendhalRPZone zone)
