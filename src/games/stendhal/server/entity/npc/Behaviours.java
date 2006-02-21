@@ -41,7 +41,7 @@ public class Behaviours
 
   public static void addReply(SpeakerNPC npc, String trigger, String text)
     {
-    npc.add(1,trigger, 1,text,null);
+    npc.add(1,trigger, null, 1,text,null);
     }
 
   public static void addReply(SpeakerNPC npc, String[] triggers, String text)
@@ -49,17 +49,6 @@ public class Behaviours
     npc.add(1,triggers, 1,text,null);
     }
     
-  
-  public static void addQuestion(SpeakerNPC npc,String trigger, SpeakerNPC.ChatAction question, Map<String, SpeakerNPC.ChatAction> replies)
-    {
-    int state=npc.getFreeState();
-    npc.add(1,trigger,state,null,question);
-    for(Map.Entry<String, SpeakerNPC.ChatAction> entry: replies.entrySet())
-      {
-      npc.add(state,entry.getKey(),1,null, entry.getValue());
-      }
-    }
-
   public static void addQuest(SpeakerNPC npc, String text)
     {
     npc.add(1,new String[]{"quest","task"}, 1,text,null);
@@ -250,8 +239,8 @@ public class Behaviours
       st.append(item+",");
       }
        
-    npc.add(1,"offer", 1,"I sell "+st.toString(),null);
-    npc.add(1,"buy",20, null,new SpeakerNPC.ChatAction()
+    npc.add(1,"offer", null, 1,"I sell "+st.toString(),null);
+    npc.add(1,"buy", null,20, null,new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
@@ -288,7 +277,7 @@ public class Behaviours
         }
       });
       
-    npc.add(20,"yes", 1,"Thanks.",new SpeakerNPC.ChatAction()
+    npc.add(20,"yes", null, 1,"Thanks.",new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
@@ -309,7 +298,7 @@ public class Behaviours
         sellableItems.onSell(engine,player,itemName, itemAmount, itemPrice);
         }
       });
-    npc.add(20,"no", 1,"Ok, how may I help you?",null);
+    npc.add(20,"no", null, 1,"Ok, how may I help you?",null);
     }
     
 
@@ -446,8 +435,8 @@ public class Behaviours
       st.append(item+",");
       }
        
-    npc.add(1,"offer", 1,"I buy "+st.toString(),null);
-    npc.add(1,"sell",30, null,new SpeakerNPC.ChatAction()
+    npc.add(1,"offer", null, 1,"I buy "+st.toString(),null);
+    npc.add(1,"sell", null, 30, null,new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
@@ -472,7 +461,7 @@ public class Behaviours
         }
       });
       
-    npc.add(30,"yes", 1,"Thanks.",new SpeakerNPC.ChatAction()
+    npc.add(30,"yes", null, 1,"Thanks.",new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
@@ -486,7 +475,7 @@ public class Behaviours
         buyableItems.onBuy(engine,player,itemName, itemPrice);
         }
       });
-    npc.add(30,"no", 1,"Ok, how may I help you?",null);
+    npc.add(30,"no", null, 1,"Ok, how may I help you?",null);
     }
 
   public static class HealerBehaviour extends SellerBehaviour
@@ -511,8 +500,8 @@ public class Behaviours
     {
     npc.setBehaviourData("healer",new HealerBehaviour(cost));
     
-    npc.add(1,"offer", 1,"I heal",null);
-    npc.add(1,"heal",40, null,new SpeakerNPC.ChatAction()
+    npc.add(1,"offer", null, 1,"I heal",null);
+    npc.add(1,"heal", null, 40, null,new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
@@ -533,7 +522,7 @@ public class Behaviours
         }
       });
       
-    npc.add(40,"yes", 1,"Thanks.",new SpeakerNPC.ChatAction()
+    npc.add(40,"yes", null, 1,"Thanks.",new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
@@ -549,6 +538,6 @@ public class Behaviours
         healer.chargePlayer(player,itemPrice);        
         }
       });
-    npc.add(40,"no", 1,"Ok, how may I help you?",null);
+    npc.add(40,"no", null, 1,"Ok, how may I help you?",null);
     }
   }

@@ -84,39 +84,54 @@ public class Semos implements IContent
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"I am the librarian.");
         Behaviours.addHelp(this,"Read!.");
-
-        SpeakerNPC.ChatAction question=new SpeakerNPC.ChatAction()
+        
+        add(1,"book",new ChatCondition()
+          {
+          public boolean fire(Player player, SpeakerNPC npc)
+            {
+            return player.isQuestCompleted("ceryl_book");
+            }
+          },
+            1,"I already got the book. Thank you!",null);
+            
+        add(1,"book",new ChatCondition()
+          {
+          public boolean fire(Player player, SpeakerNPC npc)
+            {
+            return player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("jyanath");
+            }
+          },
+            1,null,new ChatAction()
           {
           public void fire(Player player, String text, SpeakerNPC engine)
             {
-            if(player.isQuestCompleted("ceryl_book"))
-              {
-              say("I already got the book. Thank you!");
-              engine.setActualState(1);
-              }
-            else if(player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("jyanath"))
-              {
-              say("Thanks!");
-              player.addXP(100);
-              player.setQuest("ceryl_book","done");
-              player.removeQuest("ceryl_book");
-              engine.setActualState(1);
-              }
-            else if(player.hasQuest("ceryl_book"))
-              {
-              say("I really need that book now!. Go to talk with Jyanath.");
-              player.setQuest("ceryl_book","start");
-              engine.setActualState(1);
-              }
-            else            
-              {
-              say("Could you ask Jyanath for a #book that I am looking?");
-              }
-            }          
-          };
+            say("Thanks!");
+            player.addXP(100);
+            player.setQuest("ceryl_book","done");
+            player.removeQuest("ceryl_book");
+            }
+          });
           
-        Map<String, SpeakerNPC.ChatAction> replies=new HashMap<String, SpeakerNPC.ChatAction>();
-        replies.put("yes",new SpeakerNPC.ChatAction()
+        add(1,"book",new ChatCondition()
+          {
+          public boolean fire(Player player, SpeakerNPC npc)
+            {
+            return player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("start");
+            }
+          },
+            1,"I really need that book now!. Go to talk with Jyanath.",null);
+          
+        add(1,"book",new ChatCondition()
+          {
+          public boolean fire(Player player, SpeakerNPC npc)
+            {
+            return !player.hasQuest("ceryl_book");
+            }
+          },
+            60,"Could you ask Jyanath for a #book that I am looking?",null);
+            
+        add(60,"yes",null,
+            1,null,new ChatAction()
           {
           public void fire(Player player, String text, SpeakerNPC engine)
             {
@@ -124,15 +139,57 @@ public class Semos implements IContent
             player.setQuest("ceryl_book","start");
             }
           });
-        replies.put("no",new SpeakerNPC.ChatAction()
-          {
-          public void fire(Player player, String text, SpeakerNPC engine)
-            {
-            say("Oh!, Ok :(");
-            }
-          });
-          
-        Behaviours.addQuestion(this,"book",question,replies);
+
+        add(60,"no",null,1,"Oh! Ok :(",null);
+
+//        SpeakerNPC.ChatAction question=new SpeakerNPC.ChatAction()
+//          {
+//          public void fire(Player player, String text, SpeakerNPC engine)
+//            {
+//            if(player.isQuestCompleted("ceryl_book"))
+//              {
+//              say("I already got the book. Thank you!");
+//              engine.setActualState(1);
+//              }
+//            else if(player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("jyanath"))
+//              {
+//              say("Thanks!");
+//              player.addXP(100);
+//              player.setQuest("ceryl_book","done");
+//              player.removeQuest("ceryl_book");
+//              engine.setActualState(1);
+//              }
+//            else if(player.hasQuest("ceryl_book"))
+//              {
+//              say("I really need that book now!. Go to talk with Jyanath.");
+//              player.setQuest("ceryl_book","start");
+//              engine.setActualState(1);
+//              }
+//            else            
+//              {
+//              say("Could you ask Jyanath for a #book that I am looking?");
+//              }
+//            }          
+//          };
+//          
+//        Map<String, SpeakerNPC.ChatAction> replies=new HashMap<String, SpeakerNPC.ChatAction>();
+//        replies.put("yes",new SpeakerNPC.ChatAction()
+//          {
+//          public void fire(Player player, String text, SpeakerNPC engine)
+//            {
+//            say("Great!. Start the quest now!");
+//            player.setQuest("ceryl_book","start");
+//            }
+//          });
+//        replies.put("no",new SpeakerNPC.ChatAction()
+//          {
+//          public void fire(Player player, String text, SpeakerNPC engine)
+//            {
+//            say("Oh!, Ok :(");
+//            }
+//          });
+//          
+//        Behaviours.addQuestion(this,"book",question,replies);
         Behaviours.addGoodbye(this);
         }
       };
@@ -163,27 +220,60 @@ public class Semos implements IContent
         Behaviours.addJob(this,"I am the investigator.");
         Behaviours.addHelp(this,"Investigate!.");
         
-        add(1,"book",1,null,new SpeakerNPC.ChatAction()
+        add(1,"book",new ChatCondition()
+          {
+          public boolean fire(Player player, SpeakerNPC npc)
+            {
+            return player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("start");
+            }
+          },
+            1,null,new ChatAction()
           {
           public void fire(Player player, String text, SpeakerNPC engine)
             {
-            if(player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("start"))
-              {
-              player.setQuest("ceryl_book","jyanath");
-              say("Here you have the book Ceryl is looking for.");
-              engine.setActualState(1);
-              }
-            else if(player.hasQuest("ceryl_book"))
-              {
-              say("Hurry up! Grab the book to Ceryl.");
-              engine.setActualState(1);
-              }
-            else            
-              {
-              say("Shhhh!!! I am investigating!.");
-              }
-            }          
+            player.setQuest("ceryl_book","jyanath");
+            say("Here you have the book Ceryl is looking for.");
+            }
           });
+
+        add(1,"book",new ChatCondition()
+          {
+          public boolean fire(Player player, SpeakerNPC npc)
+            {
+            return player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("jyanath");
+            }
+          },
+            1,"Hurry up! Grab the book to Ceryl.", null);
+
+        add(1,"book",new ChatCondition()
+          {
+          public boolean fire(Player player, SpeakerNPC npc)
+            {
+            return !player.hasQuest("ceryl_book");
+            }
+          },
+            1,"Shhhh!!! I am investigating!.", null);
+          
+            
+//        add(1,"book",null ,1,null,new SpeakerNPC.ChatAction()
+//          {
+//          public void fire(Player player, String text, SpeakerNPC engine)
+//            {
+//            if(player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("start"))
+//              {
+//              player.setQuest("ceryl_book","jyanath");
+//              say("Here you have the book Ceryl is looking for.");
+//              }
+//            else if(player.hasQuest("ceryl_book"))
+//              {
+//              say("Hurry up! Grab the book to Ceryl.");
+//              }
+//            else            
+//              {
+//              say("Shhhh!!! I am investigating!.");
+//              }
+//            }          
+//          });
           
         Behaviours.addGoodbye(this);
         }
@@ -276,8 +366,8 @@ public class Semos implements IContent
         Behaviours.addHelp(this,"At the tavern you can get drinks and take a break to meet new people!.");
         Behaviours.addGoodbye(this);
         
-        add(1,"beer",1,"Beer! Excellent choice! Coming right up!",null);
-        add(1,"food",1,"Sure thing, a big strong adventurer like you will need lots of food!",null);
+        add(1,"beer", null,1,"Beer! Excellent choice! Coming right up!",null);
+        add(1,"food", null,1,"Sure thing, a big strong adventurer like you will need lots of food!",null);
         }
       };
     
@@ -512,7 +602,7 @@ public class Semos implements IContent
         Behaviours.addHelp(this,"I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.");
         Behaviours.addGoodbye(this);
         
-        add(1, "quest", 1, null, new SpeakerNPC.ChatAction()
+        add(1, "quest", null, 1, null, new SpeakerNPC.ChatAction()
           {
           public void fire(Player player, String text, SpeakerNPC engine)
             {

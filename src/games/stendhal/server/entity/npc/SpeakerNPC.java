@@ -214,18 +214,25 @@ public abstract class SpeakerNPC extends NPC
     {    
     abstract public void fire(Player player, String text, SpeakerNPC engine);
     }
+
+  abstract public static class ChatCondition
+    {    
+    abstract public boolean fire(Player player, SpeakerNPC engine);
+    }
     
   private class StatePath
     {
     public int state;
     public int nextState;
     public String trigger;
+    public ChatCondition condition;
     public String reply;
     public ChatAction action;
     
-    StatePath(int state, String trigger, int nextState, String reply, ChatAction action)
+    StatePath(int state, String trigger, ChatCondition condition, int nextState, String reply, ChatAction action)
       {
       this.state=state;
+      this.condition=condition;
       this.nextState=nextState;
       this.trigger=trigger.toLowerCase();
       this.reply=reply;
@@ -262,6 +269,18 @@ public abstract class SpeakerNPC extends NPC
       
       return false;
       }
+    
+    public boolean executeCondition(Player player, SpeakerNPC npc)
+      {
+      if(condition!=null)
+        {
+        return condition.fire(player,npc);
+        }
+      else
+        {
+        return true;
+        }
+      }
       
     public String toString()
       {
@@ -276,13 +295,16 @@ public abstract class SpeakerNPC extends NPC
     waitAction=action;
     }
 
-  private StatePath get(int state, String trigger)
+  private StatePath get(int state, String trigger, ChatCondition condition)
     {
     for(StatePath i: statesTable)
       {
       if(i.equals(state,trigger))
         {
-        return i;
+        if(i.condition==condition)
+          {
+          return i;
+          }
         }
       }    
     
@@ -296,53 +318,41 @@ public abstract class SpeakerNPC extends NPC
     }
 
   /** Add a new state to FSM */
-  public void add(int state, String trigger, int next_state, String reply, ChatAction action)
+  public void add(int state, String trigger, ChatCondition condition, int next_state, String reply, ChatAction action)
     {
     if(state>maxState)
       {
       maxState=state;
       }
       
-    StatePath existing=get(state,trigger);
+    StatePath existing=get(state,trigger,condition);
     if(existing!=null)
       {
       // A previous state, trigger combination exist.
       logger.warn("Adding to "+existing+ " the state ["+state+","+trigger+","+next_state+"]");
       existing.reply=existing.reply+" "+reply;
       }
-      
-    StatePath item=new StatePath(state, trigger,next_state, reply, action);
+    
+    StatePath item=new StatePath(state, trigger, condition, next_state, reply, action);
     statesTable.add(item);
     }
 
   /** Add a new set of states to FSM */
   public void add(int state, String[] triggers, int next_state, String reply, ChatAction action)
     {
-    if(state>maxState)
-      {
-      maxState=state;
-      }
-      
     for(String trigger: triggers)
       {
-      StatePath item=new StatePath(state, trigger,next_state, reply, action);
-      statesTable.add(item);
+      add(state, trigger, null, next_state, reply, action);
       }
     }
 
   public void add(int state, String[] triggers, int next_state, String[] replies, ChatAction action)
     {
-    if(state>maxState)
-      {
-      maxState=state;
-      }
-      
     for(String trigger: triggers)
       {
       for(String reply: replies)
         {
-        StatePath item=new StatePath(state, trigger,next_state, reply, action);
-        statesTable.add(item);
+        add(state,trigger, null, next_state, reply, action);
         }
       }
     }
@@ -389,7 +399,7 @@ public abstract class SpeakerNPC extends NPC
     // First we try to match with stateless states.
     for(StatePath state: statesTable)
       {
-      if(actualState!=0 && state.absoluteJump(actualState,text))
+      if(actualState!=0 && state.absoluteJump(actualState,text) && state.executeCondition(player,this))
         {
         logger.debug("Matched a stateless state: "+state);
         list.add(state);
@@ -407,7 +417,7 @@ public abstract class SpeakerNPC extends NPC
     // Now we try to match with the exact trigger string 
     for(StatePath state: statesTable)
       {
-      if(state.equals(actualState,text))
+      if(state.equals(actualState,text) && state.executeCondition(player,this))
         {
         logger.debug("Matched a exact trigger state: "+state);
         list.add(state);
@@ -425,7 +435,7 @@ public abstract class SpeakerNPC extends NPC
     // Finally we try to match with any string that starts with trigger
     for(StatePath state: statesTable)
       {
-      if(state.contains(actualState,text))
+      if(state.contains(actualState,text) && state.executeCondition(player,this))
         {
         logger.debug("Matched a similar trigger state: "+state);
         list.add(state);
@@ -436,7 +446,9 @@ public abstract class SpeakerNPC extends NPC
 
     if(list.size()>0)
       {
-      executeState(player,text,list.get(Rand.rand(list.size())));
+      // Execute one of the available options randomly.
+      int i=Rand.rand(list.size());
+      executeState(player,text,list.get(i));
       return true;
       }
 
