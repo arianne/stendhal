@@ -161,7 +161,7 @@ public class ItemXMLLoader extends DefaultHandler
       {
       DefaultItem item=new DefaultItem(clazz,subclass, name,-1);
       item.setWeight(weight);
-      item.setConteinableSlots(slots);
+      item.setEquipableSlots(slots);
       item.setAttributes(attributes);
       if(stackable)
         {

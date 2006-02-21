@@ -31,7 +31,6 @@ public abstract class Entity extends RPObject
   private double speed;
   private boolean collides;
 
-
   protected static StendhalRPRuleProcessor rp;
   protected static StendhalRPWorld world;
 
@@ -154,13 +153,12 @@ public abstract class Entity extends RPObject
 
   public void stop()
     {
-//    setDirection(Direction.STOP);
     setSpeed(0);
     }
 
   public boolean stopped()
     {
-    return speed==0; //direction==Direction.STOP;
+    return speed==0;
     }
 
   public void collides(boolean val)
@@ -182,7 +180,7 @@ public abstract class Entity extends RPObject
    *  It is faster than real distance */
   public double distance(Entity entity)
     {
-    return (x-entity.x)*(x-entity.x)+(y-entity.y)*(y-entity.y);
+    return distance(entity.x, entity.y);
     }
 
   /** This returns the manhattan distance.

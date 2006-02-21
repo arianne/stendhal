@@ -71,7 +71,7 @@ public class DefaultItem
     }
   }
   
-  public void setConteinableSlots(List<String> slots)
+  public void setEquipableSlots(List<String> slots)
   {
     this.slots=slots;
   }
@@ -107,7 +107,7 @@ public class DefaultItem
       item=new Item(name, clazz, subclazz, attributes);
       }
 
-    item.setContenaibleSlots(slots);
+    item.setEquipableSlots(slots);
     return item;
     }
   

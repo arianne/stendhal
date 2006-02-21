@@ -42,12 +42,16 @@ public abstract class RPEntity extends Entity
 
   private int atk;
   private int atk_xp;
+  
   private int def;
   private int def_xp;
+  
   private int base_hp;
   private int hp;
+  
   private int xp;
   private int level;
+  
   private int blood;
   
   /** List of all attackers of this entity */
@@ -200,7 +204,7 @@ public abstract class RPEntity extends Entity
     // In case we level up several levels at a single time.
     for(int i=0;i<Math.abs(levels);i++)
       {
-      setATK(this.def+(int)Math.signum(levels)*1);
+      setATK(this.atk+(int)Math.signum(levels)*1);
       rp.addGameEvent(getName(),"atk",Integer.toString(getATK()));
       }
     
@@ -326,6 +330,14 @@ public abstract class RPEntity extends Entity
     {
     return xp;
     }
+    
+    
+  
+  /*****************************************************************************
+   *                                                                           *
+   * Attack handling code.                                                     *
+   *                                                                           *
+   ****************************************************************************/
 
   /** Modify the entity to order to attack the target entity */
   public void attack(RPEntity target)
@@ -546,6 +558,14 @@ public abstract class RPEntity extends Entity
     return attackTarget;
     }
 
+
+
+  /*****************************************************************************
+   *                                                                           *
+   * Path handling code.                                                     *
+   *                                                                           *
+   ****************************************************************************/
+
   /**
    * Set a path to follow for this entity. A previos path is cleared and the
    * entity starts at the first node (so the first node should be its position,
@@ -621,43 +641,112 @@ public abstract class RPEntity extends Entity
     this.pathPosition=pathPos;
     }
   
+
+
+  /*****************************************************************************
+   *                                                                           *
+   * Equipment handling.                                                       *
+   *                                                                           *
+   ****************************************************************************/
+
   /** tries to equip the item in the appropriate slot. returns true if the item
    * can be equipped, else false 
    */
   public boolean equip(Item item)
-  {
+    {
     ActionManager manager = world.getRuleManager().getActionManager();
     
     String slot = manager.canEquip(this, item);
     if (slot != null)
-    {
+      {
       return manager.onEquip(this, slot, item);
-    }
+      }
+      
     // we cannot equip this item
     return false;
-  }
+    }
+
+  public Item drop(String name)
+    {
+    ActionManager manager = world.getRuleManager().getActionManager();
+    
+    RPSlot bag=getSlot("bag");
+    for(RPObject object: bag)
+      {
+      if(object instanceof Item)
+        {
+        Item item=(Item)object;
+        if(item.getName().equals(name))
+          {
+          bag.remove(item.getID());
+          return item;
+          }
+        }
+      }
+    
+    for(RPSlot slot: slots())
+      {
+      for(RPObject object: slot)
+        {
+        if(object instanceof Item)
+          {
+          Item item=(Item)object;
+          if(item.getName().equals(name))
+            {
+            slot.remove(item.getID());
+            return item;
+            }
+          }
+        }        
+      }
+    
+    return null;
+    }
+  
+  public boolean isEquipped(String name)
+    {
+    boolean found=false;
+    for(RPSlot slot: this.slots())
+      {
+      for(RPObject object: slot)
+        {
+        if(object instanceof Item)
+          {
+          Item item=(Item)object;
+          if(item.getName().equals(name))
+            {
+            found=true;
+            break;
+            }
+          }
+        }
+      }
+    
+    return found;
+    }
 
   /** checks if an item of class <i>clazz</i> is equipped in slot <i>slot</i>
    * returns true if it is, else false
    */
   private boolean checkSlotForItem(String slot, String clazz)
-  {
-    if(hasSlot(slot))
     {
+    if(hasSlot(slot))
+      {
       // get slot if the this entity has one
       RPSlot rpslot = getSlot(slot );
       // traverse all slot items
       for (RPObject item : rpslot)
-      {
-        if ((item instanceof Item) && ((Item)item).isOfClass(clazz))
         {
+        if ((item instanceof Item) && ((Item)item).isOfClass(clazz))
+          {
           return true;
-        }
+          }
+        } 
       }
-    }
+    
     // no slot, free slot or wrong item type
     return false;
-  }
+    }
   
   /** returns the first item of class <i>clazz</i> from the slot or <code>null</code>
    * if there is no item with the requested clazz

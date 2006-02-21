@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.Behaviours;
@@ -105,10 +106,21 @@ public class Semos implements IContent
           {
           public void fire(Player player, String text, SpeakerNPC engine)
             {
-            say("Thanks!");
-            player.addXP(100);
-            player.setQuest("ceryl_book","done");
-            player.removeQuest("ceryl_book");
+            Item item=player.drop("book_black");
+            if(item!=null)
+              {
+              say("Thanks!");
+              player.addXP(100);
+              world.modify(player);
+    
+              player.setQuest("ceryl_book","done");
+              player.removeQuest("ceryl_book");
+              }
+            else
+              {
+              say("Where did you put Jyanath's book?. You need to start again the search.");
+              player.removeQuest("ceryl_book");
+              }              
             }
           });
           
@@ -142,54 +154,6 @@ public class Semos implements IContent
 
         add(60,"no",null,1,"Oh! Ok :(",null);
 
-//        SpeakerNPC.ChatAction question=new SpeakerNPC.ChatAction()
-//          {
-//          public void fire(Player player, String text, SpeakerNPC engine)
-//            {
-//            if(player.isQuestCompleted("ceryl_book"))
-//              {
-//              say("I already got the book. Thank you!");
-//              engine.setActualState(1);
-//              }
-//            else if(player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("jyanath"))
-//              {
-//              say("Thanks!");
-//              player.addXP(100);
-//              player.setQuest("ceryl_book","done");
-//              player.removeQuest("ceryl_book");
-//              engine.setActualState(1);
-//              }
-//            else if(player.hasQuest("ceryl_book"))
-//              {
-//              say("I really need that book now!. Go to talk with Jyanath.");
-//              player.setQuest("ceryl_book","start");
-//              engine.setActualState(1);
-//              }
-//            else            
-//              {
-//              say("Could you ask Jyanath for a #book that I am looking?");
-//              }
-//            }          
-//          };
-//          
-//        Map<String, SpeakerNPC.ChatAction> replies=new HashMap<String, SpeakerNPC.ChatAction>();
-//        replies.put("yes",new SpeakerNPC.ChatAction()
-//          {
-//          public void fire(Player player, String text, SpeakerNPC engine)
-//            {
-//            say("Great!. Start the quest now!");
-//            player.setQuest("ceryl_book","start");
-//            }
-//          });
-//        replies.put("no",new SpeakerNPC.ChatAction()
-//          {
-//          public void fire(Player player, String text, SpeakerNPC engine)
-//            {
-//            say("Oh!, Ok :(");
-//            }
-//          });
-//          
-//        Behaviours.addQuestion(this,"book",question,replies);
         Behaviours.addGoodbye(this);
         }
       };
@@ -233,6 +197,9 @@ public class Semos implements IContent
             {
             player.setQuest("ceryl_book","jyanath");
             say("Here you have the book Ceryl is looking for.");
+
+            Item book=world.getRuleManager().getEntityManager().getItem("book_black");            
+            player.equip(book);
             }
           });
 
@@ -253,27 +220,6 @@ public class Semos implements IContent
             }
           },
             1,"Shhhh!!! I am investigating!.", null);
-          
-            
-//        add(1,"book",null ,1,null,new SpeakerNPC.ChatAction()
-//          {
-//          public void fire(Player player, String text, SpeakerNPC engine)
-//            {
-//            if(player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("start"))
-//              {
-//              player.setQuest("ceryl_book","jyanath");
-//              say("Here you have the book Ceryl is looking for.");
-//              }
-//            else if(player.hasQuest("ceryl_book"))
-//              {
-//              say("Hurry up! Grab the book to Ceryl.");
-//              }
-//            else            
-//              {
-//              say("Shhhh!!! I am investigating!.");
-//              }
-//            }          
-//          });
           
         Behaviours.addGoodbye(this);
         }

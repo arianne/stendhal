@@ -700,6 +700,14 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="book_black">
+		<type class="book" subclass="black"/>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 <!--
 Hehe, we must have some special GM item after all :P

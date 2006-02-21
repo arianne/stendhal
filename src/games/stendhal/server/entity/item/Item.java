@@ -69,7 +69,7 @@ public class Item extends PassiveEntity
     }
   }
   
-  public void setContenaibleSlots(List<String> slots)
+  public void setEquipableSlots(List<String> slots)
   {
     // save slots
     possibleSlots = slots;
