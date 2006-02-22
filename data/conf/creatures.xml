@@ -932,5 +932,62 @@
 		</ai>
 	</creature>
 
+	<creature name="hero_dwarf">
+		<type class="dwarf" subclass="hero_dwarf" tileid="33"/>
+		<attributes>
+			<atk value="50"/>
+			<def value="27"/>
+			<hp value="150"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="14"/>
+		<experience value="250"/>
+		<drops>
+			<item value="money" quantity="[4,30]" probability="100"/>
+			<item value="battle_axe" quantity="1" probability="8"/>
+			<item value="chain_legs" quantity="1" probability="10"/>
+			<item value="chain_helmet" quantity="1" probability="10"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+	<creature name="leader_dwarf">
+		<type class="dwarf" subclass="leader_dwarf" tileid="33"/>
+		<attributes>
+			<atk value="50"/>
+			<def value="27"/>
+			<hp value="150"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="14"/>
+		<experience value="250"/>
+		<drops>
+			<item value="money" quantity="[4,30]" probability="100"/>
+			<item value="battle_axe" quantity="1" probability="8"/>
+			<item value="chain_legs" quantity="1" probability="10"/>
+			<item value="chain_helmet" quantity="1" probability="10"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+
 </creatures>
 
