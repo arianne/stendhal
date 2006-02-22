@@ -760,6 +760,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\common\Line.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\common\Pair.java</path>
 				<source>true</source>
 			</fileitem>

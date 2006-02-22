@@ -787,5 +787,150 @@
 		</ai>
 	</creature>
 
+	<creature name="elephat">
+		<type class="animal" subclass="elephant" tileid="-1"/>
+		<attributes>
+			<atk value="10"/>
+			<def value="30"/>
+			<hp value="500"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="0"/>
+		<experience value="0"/>
+		<drops>
+			<item value="meat" quantity="[1,4]" probability="100"/>
+			<item value="ham" quantity="[2,8]" probability="70"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="non_ofensive"/>
+			<profile name="coward"/>
+		</ai>
+	</creature>
+
+	<creature name="lion">
+		<type class="animal" subclass="lion" tileid="-1"/>
+		<attributes>
+			<atk value="30"/>
+			<def value="20"/>
+			<hp value="50"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="0"/>
+		<experience value="0"/>
+		<drops>
+			<item value="meat" quantity="[1,4]" probability="60"/>
+			<item value="ham" quantity="[1,2]" probability="30"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
+	<creature name="tiger">
+		<type class="animal" subclass="tiger" tileid="-1"/>
+		<attributes>
+			<atk value="30"/>
+			<def value="20"/>
+			<hp value="50"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="0"/>
+		<experience value="0"/>
+		<drops>
+			<item value="meat" quantity="[1,4]" probability="60"/>
+			<item value="ham" quantity="[1,2]" probability="30"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
+	<creature name="young_beholder">
+		<type class="beholder" subclass="young_beholder" tileid="-1"/>
+		<attributes>
+			<atk value="30"/>
+			<def value="20"/>
+			<hp value="50"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="0"/>
+		<experience value="0"/>
+		<drops>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
+	<creature name="beholder">
+		<type class="beholder" subclass="beholder" tileid="-1"/>
+		<attributes>
+			<atk value="30"/>
+			<def value="20"/>
+			<hp value="50"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="0"/>
+		<experience value="0"/>
+		<drops>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
+	<creature name="elder_beholder">
+		<type class="beholder" subclass="elder_beholder" tileid="-1"/>
+		<attributes>
+			<atk value="30"/>
+			<def value="20"/>
+			<hp value="50"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="0"/>
+		<experience value="0"/>
+		<drops>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
 </creatures>
 
