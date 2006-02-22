@@ -97,6 +97,14 @@ public abstract class RPEntity extends Entity
       entity.add("risk",RPClass.BYTE, RPClass.VOLATILE);
       entity.add("damage",RPClass.SHORT, RPClass.VOLATILE);
       entity.add("target",RPClass.INT, RPClass.VOLATILE);
+
+      entity.addRPSlot("head",1,RPClass.PRIVATE);
+      entity.addRPSlot("rhand",1,RPClass.PRIVATE);
+      entity.addRPSlot("lhand",1,RPClass.PRIVATE);
+      entity.addRPSlot("armor",1,RPClass.PRIVATE);
+      entity.addRPSlot("legs",1,RPClass.PRIVATE);
+      entity.addRPSlot("feet",1,RPClass.PRIVATE);
+      entity.addRPSlot("bag",12,RPClass.PRIVATE);
       }
     catch(RPClass.SyntaxException e)
       {
