@@ -643,6 +643,11 @@ public class StendhalRPZone extends MarauroaRPZone
     return super.remove(id);
     }
     
+  public boolean collides(int x, int y) throws AttributeNotFoundException
+    {
+    return collisionMap.collides(x,y);
+    }
+    
   public synchronized boolean collides(Entity entity, double x, double y) throws AttributeNotFoundException
     {
     Rectangle2D area=entity.getArea(x,y);

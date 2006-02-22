@@ -155,6 +155,21 @@ public class CollisionDetection
     return false;
     }
 
+  public boolean collides(int x, int y)
+    {
+    if(x<0 || x>=getWidth())
+      {
+      return true;
+      }
+
+    if(y<0 || y>=getHeight())
+      {
+      return true;
+      }
+    
+    return blocked[y*width+x];
+    }
+
   public int getWidth()
     {
     return width;

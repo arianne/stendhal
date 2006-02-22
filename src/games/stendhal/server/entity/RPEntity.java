@@ -702,7 +702,7 @@ public abstract class RPEntity extends Entity
     
     return null;
     }
-  
+
   public boolean isEquipped(String name)
     {
     boolean found=false;
@@ -725,10 +725,56 @@ public abstract class RPEntity extends Entity
     return found;
     }
 
+  public Item getEquipped(String name)
+    {
+    boolean found=false;
+    for(RPSlot slot: this.slots())
+      {
+      for(RPObject object: slot)
+        {
+        if(object instanceof Item)
+          {
+          Item item=(Item)object;
+          if(item.getName().equals(name))
+            {
+            return item;
+            }
+          }
+        }
+      }
+    
+    return null;
+    }
+
+  public Item dropItemClass(String[] slots, String clazz)
+    {
+    ActionManager manager = world.getRuleManager().getActionManager();
+    
+    for(String slotName: slots)
+      {
+      RPSlot slot=getSlot(slotName);
+      
+      for(RPObject object: slot)
+        {
+        if(object instanceof Item)
+          {
+          Item item=(Item)object;
+          if(item.isOfClass(clazz))
+            {
+            slot.remove(item.getID());
+            return item;
+            }
+          }
+        }        
+      }
+    
+    return null;
+    }
+  
   /** checks if an item of class <i>clazz</i> is equipped in slot <i>slot</i>
    * returns true if it is, else false
    */
-  private boolean checkSlotForItem(String slot, String clazz)
+  public boolean isEquippedItemClass(String slot, String clazz)
     {
     if(hasSlot(slot))
       {
@@ -752,7 +798,7 @@ public abstract class RPEntity extends Entity
    * if there is no item with the requested clazz
    * returns the item or null
    */
-  private Item getFirstItemFromSlot(String slot, String clazz)
+  public Item getEquippedItemClass(String slot, String clazz)
   {
     if(hasSlot(slot))
     {
@@ -783,7 +829,7 @@ public abstract class RPEntity extends Entity
     
     for(String weaponClass: weaponsClasses)    
       {
-      if(checkSlotForItem("lhand", weaponClass) || checkSlotForItem("rhand", weaponClass))
+      if(isEquippedItemClass("lhand", weaponClass) || isEquippedItemClass("rhand", weaponClass))
         {
         return true;
         }
@@ -794,7 +840,7 @@ public abstract class RPEntity extends Entity
   
   public Item getWeapon()
     {
-    String[] weaponsClasses={"club","sword","axe"};
+    String[] weaponsClasses={"club","sword","axe","ranged"};
     
     for(String weaponClass: weaponsClasses)    
       {
@@ -802,7 +848,7 @@ public abstract class RPEntity extends Entity
       
       for(String slot: slots)
         {
-        Item item=getFirstItemFromSlot(slot, weaponClass);
+        Item item=getEquippedItemClass(slot, weaponClass);
         if(item!=null)
           {
           return item;
@@ -813,63 +859,79 @@ public abstract class RPEntity extends Entity
     return null;
     }
   
+  public Item getProjectiles()
+    {
+    String[] slots={"lhand","rhand"};
+    
+    for(String slot: slots)
+      {
+      Item item=getEquippedItemClass(slot, "projectiles");
+      if(item!=null)
+        {
+        return item;
+        }
+      }
+
+    return null;
+    }
+  
   /** returns true if the entity has a shield equipped */
   public boolean hasShield()
     {
-    return checkSlotForItem("lhand", "shield") || checkSlotForItem("rhand", "shield");
+    return isEquippedItemClass("lhand", "shield") || isEquippedItemClass("rhand", "shield");
     }
   
   public Item getShield()
     {
-    Item item = getFirstItemFromSlot("lhand", "shield");
+    Item item = getEquippedItemClass("lhand", "shield");
     if (item != null)
       {
       return item;
       }
     else
       {
-      return getFirstItemFromSlot("rhand", "shield");
+      return getEquippedItemClass("rhand", "shield");
       }
     }
     
   public boolean hasArmor()
     {
-    return checkSlotForItem("armor", "armor");
+    return isEquippedItemClass("armor", "armor");
     }
   
   public Item getArmor()
     {
-    return getFirstItemFromSlot("armor", "armor");
+    return getEquippedItemClass("armor", "armor");
     }
   
   public boolean hasHelmet()
     {
-    return checkSlotForItem("head", "helmet");
+    return isEquippedItemClass("head", "helmet");
     }
   
   public Item getHelmet()
     {
-    return getFirstItemFromSlot("head", "helmet");
+    return getEquippedItemClass("head", "helmet");
     }
   
   public boolean hasLegs()
     {
-    return checkSlotForItem("legs", "legs");
+    return isEquippedItemClass("legs", "legs");
     }
   
   public Item getLegs()
     {
-    return getFirstItemFromSlot("legs", "legs");
+    return getEquippedItemClass("legs", "legs");
     }
   
   public boolean hasBoots()
     {
-    return checkSlotForItem("boots", "boots");
+    return isEquippedItemClass("boots", "boots");
     }
   
   public Item getBoots()
     {
-    return getFirstItemFromSlot("boots", "boots");
+    return getEquippedItemClass("boots", "boots");
     }
   
   /** checks if the entity has at least one item of type <i>type</i> in one
@@ -880,7 +942,7 @@ public abstract class RPEntity extends Entity
     boolean retVal;
     for (String slot : slots)
       {
-      retVal = checkSlotForItem(slot, type);
+      retVal = isEquippedItemClass(slot, type);
       if (retVal)
         {
         return true;

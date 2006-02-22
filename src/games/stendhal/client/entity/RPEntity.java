@@ -268,8 +268,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
       {
       client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
       }
-    }
-    
+    }    
 
   public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
@@ -285,15 +284,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
     if(diff.has("atk_xp"))     atkXp = diff.getInt("atk_xp");
     if(diff.has("def_xp"))     defXp = diff.getInt("def_xp");
     
-//    if(diff.has("eating")) 
-//      {
-//      isEating=true;    
-//      }
-////    else if(!base.has("eating"))
-////      {
-////      isEating=false;
-////      }
-
     Color nameColor=Color.white;
     
     if(diff.has("admin") || base.has("admin"))
@@ -319,7 +309,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 
     if(diff.has("xp") && base.has("xp"))
       {
-      if(/*((diff.getInt("xp") - base.getInt("xp"))>0) &&*/  distance(client.getPlayer())<15*15)
+      if(distance(client.getPlayer())<15*15)
         {
         damageSprites.add(GameScreen.get().createString("+"+Integer.toString(diff.getInt("xp") - base.getInt("xp")),Color.cyan));
         damageSpritesTimes.add(new Long(System.currentTimeMillis()));
@@ -327,39 +317,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
         client.addEventLine(getName() + " earns " + (diff.getInt("xp") - base.getInt("xp")) + " experience points." , Color.blue);
         }
       }
-
-//    if(diff.has("hp") && base.has("hp"))
-//      {
-//      if(distance(client.getPlayer())<15*15)
-//        {
-//        int healing=diff.getInt("hp") - base.getInt("hp");
-//        if(healing>0)
-//          {
-//          damageSprites.add(GameScreen.get().createString("+"+Integer.toString(healing),Color.green));
-//          damageSpritesTimes.add(new Long(System.currentTimeMillis()));
-// 
-//          client.addEventLine(getName() + " heals " + healing + " health points." , Color.green);
-//          }
-//        }
-//      }
-//
-//    if(diff.has("poisoned"))
-//      {
-//      if(getID().equals(client.getPlayer().getID()) || distance(client.getPlayer())<15*15)
-//        {
-//        isPoisoned=true;
-//        int poisoned=diff.getInt("poisoned");
-//  
-//        damageSprites.add(GameScreen.get().createString(Integer.toString(poisoned),Color.red));
-//        damageSpritesTimes.add(new Long(System.currentTimeMillis()));
-//  
-//        client.addEventLine(getName() + " is poisoned with " + poisoned + " health points." , Color.red);
-//        }
-//      }
-//    else if(!base.has("poisoned"))
-//      {
-//      isPoisoned=false;
-//      }
 
     if(diff.has("level") && base.has("level"))
       {
@@ -371,117 +328,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
         client.addEventLine(text,Color.green);
         }
       }
-
-//    /** Attack code */
-//    if(diff.has("target") && base.has("target"))
-//      {
-//      gameObjects.attackStop(this,targetEntity);
-//      targetEntity=null;
-//      }
-//      
-//    if(diff.has("target") || base.has("target"))
-//      {
-//      attacking=true;
-//
-//      int risk=(diff.has("risk")?diff.getInt("risk"):0);
-//      int damage=(diff.has("damage")?diff.getInt("damage"):0);
-//      int target=(diff.has("target")?diff.getInt("target"):base.getInt("target"));
-//
-//      targetEntity=new RPObject.ID(target,diff.get("zoneid"));
-//      gameObjects.attack(this,targetEntity,risk,damage);
-//      }
-//
-//    /** Add text lines */
-//    if(diff.has("text") && client.getPlayer()!= null &&distance(client.getPlayer())<15*15)
-//      {
-//      String text=diff.get("text");
-//
-//      if(!(this instanceof Creature))
-//        {
-//        client.addEventLine(getName(),text);
-//        }
-//
-//      gameObjects.addText(this, getName()+" says: "+text.replace("|",""), Color.yellow);
-//      }
-//
-//    if(diff.has("private_text"))
-//      {
-//      client.addEventLine(diff.get("private_text"),Color.orange);
-//      gameObjects.addText(this, diff.get("private_text").replace("|",""), Color.orange);
-//      }
-//
-//    if(diff.has("dead"))// && (stendhal.showEveryoneXPInfo || getID().equals(client.getPlayer().getID())))
-//      {
-//      client.addEventLine(getName()+" has died. "+getName()+"'s new level is "+getLevel());
-//      }
-
     }
-
-  public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException
-    {
-    super.onChangedRemoved(base,diff);    
-//    if(diff.has("target"))
-//      {
-//      attacking=false;
-//      gameObjects.attackStop(this,targetEntity);
-//      targetEntity=null;
-//      }
-//    
-//    if(diff.has("eating")) isEating=false;    
-//    if(diff.has("poisoned")) isPoisoned=false;    
-    }
-
-  public void onRemoved() throws AttributeNotFoundException
-    {
-    super.onRemoved();
-//    
-//    if(attacking)
-//      {
-//      attacking=false;
-//      gameObjects.attackStop(this,targetEntity);
-//      targetEntity=null;
-//      }
-    }
-
-
-//  public void onAttack(RPEntity source, int risk, int damage)
-//    {
-//    attacked=true;
-//
-//    // This shows damage done by the player and to the player.
-//    boolean showAttackInfoForPlayer=client.getPlayer()!=null && (getID().equals(client.getPlayer().getID()) || source.getID().equals(client.getPlayer().getID()));
-//    showAttackInfoForPlayer=showAttackInfoForPlayer&(!stendhal.FILTER_ATTACK_MESSAGES);
-//
-//    if(risk>0 && damage>0 && (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer))
-//      {
-//      client.addEventLine(name+" loses with "+damage+" hitpoints due to an attack by "+source.getName(),Color.RED);
-//      }
-//
-//    combatIconTime=System.currentTimeMillis();
-//
-//    if(risk<=0)
-//      {
-//      resolution=Resolution.MISSED;
-//      }
-//    else if(damage<=0)
-//      {
-//      resolution=Resolution.BLOCKED;
-//      }
-//    else
-//      {
-//      playSound( "punch-mix", 20, 60, 80 ); 
-//      resolution=Resolution.HITTED;
-//
-//      damageSprites.add(GameScreen.get().createString(Integer.toString(damage),Color.red));
-//      damageSpritesTimes.add(new Long(System.currentTimeMillis()));
-//      }
-//    }
-
-//  public void onAttackStop(RPEntity source)
-//    {
-//    attacked=false;
-//    }
-
 
   /** Draws this entity in the screen */
   public void draw(GameScreen screen)

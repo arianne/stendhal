@@ -13,7 +13,9 @@
 package games.stendhal.server;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
+import games.stendhal.common.Line;
 import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.item.*;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import marauroa.common.Log4J;
@@ -23,6 +25,9 @@ import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.server.game.NoRPZoneException;
 import marauroa.server.game.RPServerManager;
 import marauroa.server.game.RPWorld;
+
+import java.util.Vector;
+import java.awt.Point;
 
 import org.apache.log4j.Logger;
 
@@ -80,10 +85,28 @@ public class StendhalRPAction
     int helmet=0;
     int legs=0;
     int boots=0;
+
+    Item weaponItem=source.getWeapon();
+    StackableItem projectileItem=null;
     
-    if(source.hasWeapon())
+    if(weaponItem!=null)
       {
-      weapon=source.getWeapon().getAttack();
+      weapon=weaponItem.getAttack();
+      
+      if(weaponItem.isOfClass("ranged"))
+        {
+        projectileItem=(StackableItem)source.getProjectiles();
+
+        if(projectileItem!=null)
+          {
+          weapon+=projectileItem.getAttack();
+          }
+        else
+          {
+          // If there are no projectiles...
+          return 0;
+          }
+        }      
       }
 
     logger.debug("attacker has "+source.getATK()+" and uses a weapon of "+weapon);
@@ -121,7 +144,27 @@ public class StendhalRPAction
     float maxDefenderComponent=0.6f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor+(float)target.getDEF()*(float)helmet+(float)target.getDEF()*(float)legs+(float)target.getDEF()*(float)boots;
     float defenderComponent=((float)Rand.roll1D100()/100.0f)*maxDefenderComponent;
     
-    return (int)(((attackerComponent-defenderComponent)/maxAttackerComponent)*(maxAttackerComponent/maxDefenderComponent)*((float)source.getATK()/10.0f));
+    int damage=(int)(((attackerComponent-defenderComponent)/maxAttackerComponent)*(maxAttackerComponent/maxDefenderComponent)*((float)source.getATK()/10.0f));
+    
+    if(weaponItem!=null && weaponItem.isOfClass("ranged"))
+      {
+      projectileItem.add(-1);
+      
+      if(projectileItem.getQuantity()==0)
+        {
+        String[] slots={"rhand","lhand"};
+        source.dropItemClass(slots,"projectiles");
+        }        
+        
+      double distance=source.distance(target);
+
+      double minrange=2*2;
+      double maxrange=7*7;
+      int rangeDamage=(int)(damage*(1.0-distance/maxrange)+(damage-damage*(1.0-(minrange/maxrange)))*(1.0-distance/maxrange));
+      return rangeDamage;
+      }
+    
+    return damage;
     }
 
   public static boolean attack(RPEntity source,RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException
@@ -141,13 +184,28 @@ public class StendhalRPAction
         }
 
       target.onAttack(source, true);
+      
+      Item weaponItem=source.getWeapon();
 
-      if(source.nextto(target,1))
+      if(source.nextto(target,1) || weaponItem.isOfClass("ranged"))
         {
+        if(weaponItem.isOfClass("ranged"))
+          {
+          // Check Line of View to see if there is any obstacle.
+          Vector<Point> points=Line.renderLine(source.getx(),source.gety(),target.getx(),target.gety());
+          for(Point point: points)
+            {
+            if(zone.collides((int)point.getX(),(int)point.getY()))
+              {
+              target.onAttack(source, false);
+              world.modify(source);
+              return false;
+              }
+            }
+          }
+          
         boolean hitted=riskToHit(source,target);
 
-        int damage=0;
-        
         if((target instanceof SpeakerNPC)==false && source.stillHasBlood())
           {
           // disabled attack xp for attacking NPC's
@@ -161,7 +219,7 @@ public class StendhalRPAction
             target.incDEFXP();
             }
           
-          damage=damageDone(source,target);
+          int damage=damageDone(source, target);
 
           if(damage>0) // Hit
             {
