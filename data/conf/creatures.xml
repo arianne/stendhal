@@ -341,6 +341,32 @@
 
 	<!-- Level 5 -->
 
+	<creature name="elephat">
+		<type class="animal" subclass="elephant" tileid="-1"/>
+		<attributes>
+			<atk value="10"/>
+			<def value="30"/>
+			<hp value="500"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="5"/>
+		<experience value="0"/>
+		<drops>
+			<item value="meat" quantity="[1,4]" probability="100"/>
+			<item value="ham" quantity="[2,8]" probability="70"/>
+		</drops>
+		<slots>
+		</slots>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="non_ofensive"/>
+			<profile name="coward"/>
+		</ai>
+	</creature>
+
 	<creature name="elf">
 		<type class="elf" subclass="elf" tileid="26"/>
 		<attributes>
@@ -765,7 +791,7 @@
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="20"/>
+		<level value="25"/>
 		<experience value="10000"/>
 		<drops>
 		</drops>
@@ -797,32 +823,6 @@
 
 
 
-	<creature name="elephat">
-		<type class="animal" subclass="elephant" tileid="-1"/>
-		<attributes>
-			<atk value="10"/>
-			<def value="30"/>
-			<hp value="500"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="0"/>
-		<experience value="0"/>
-		<drops>
-			<item value="meat" quantity="[1,4]" probability="100"/>
-			<item value="ham" quantity="[2,8]" probability="70"/>
-		</drops>
-		<slots>
-		</slots>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="non_ofensive"/>
-			<profile name="coward"/>
-		</ai>
-	</creature>
-
 	<creature name="lion">
 		<type class="animal" subclass="lion" tileid="-1"/>
 		<attributes>
@@ -832,7 +832,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="0"/>
+		<level value="4"/>
 		<experience value="0"/>
 		<drops>
 			<item value="meat" quantity="[1,4]" probability="60"/>
@@ -857,7 +857,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="0"/>
+		<level value="5"/>
 		<experience value="0"/>
 		<drops>
 			<item value="meat" quantity="[1,4]" probability="60"/>
@@ -882,7 +882,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="0"/>
+		<level value="6"/>
 		<experience value="0"/>
 		<drops>
 		</drops>
@@ -905,7 +905,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="0"/>
+		<level value="9"/>
 		<experience value="0"/>
 		<drops>
 		</drops>
@@ -928,7 +928,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="0"/>
+		<level value="15"/>
 		<experience value="0"/>
 		<drops>
 		</drops>
@@ -951,7 +951,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="14"/>
+		<level value="25"/>
 		<experience value="250"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
@@ -979,7 +979,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="14"/>
+		<level value="35"/>
 		<experience value="250"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
@@ -1007,7 +1007,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="5"/>
+		<level value="18"/>
 		<experience value="50"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
@@ -1036,7 +1036,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="5"/>
+		<level value="21"/>
 		<experience value="50"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
@@ -1065,7 +1065,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="5"/>
+		<level value="19"/>
 		<experience value="50"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
@@ -1094,7 +1094,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="5"/>
+		<level value="25"/>
 		<experience value="50"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
@@ -1123,7 +1123,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="5"/>
+		<level value="30"/>
 		<experience value="50"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
@@ -1152,7 +1152,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="5"/>
+		<level value="35"/>
 		<experience value="50"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
@@ -1181,7 +1181,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="6"/>
+		<level value="8"/>
 		<experience value="80"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="90"/>
@@ -1208,7 +1208,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="6"/>
+		<level value="10"/>
 		<experience value="80"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="90"/>
@@ -1235,7 +1235,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="6"/>
+		<level value="15"/>
 		<experience value="80"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="90"/>
@@ -1262,7 +1262,7 @@
 			<speed value="0.6"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="7"/>
+		<level value="17"/>
 		<experience value="120"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
@@ -1289,7 +1289,7 @@
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="20"/>
+		<level value="50"/>
 		<experience value="10000"/>
 		<drops>
 		</drops>
@@ -1314,7 +1314,7 @@
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="20"/>
+		<level value="70"/>
 		<experience value="10000"/>
 		<drops>
 		</drops>
@@ -1339,7 +1339,7 @@
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="20"/>
+		<level value="100"/>
 		<experience value="10000"/>
 		<drops>
 		</drops>
@@ -1364,7 +1364,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="5"/>
+		<level value="2"/>
 		<experience value="50"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
@@ -1393,7 +1393,7 @@
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="3"/>
+		<level value="7"/>
 		<experience value="30"/>
 		<drops>
 			<item value="money" quantity="[4,15]" probability="90"/>
@@ -1420,7 +1420,7 @@
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="3"/>
+		<level value="9"/>
 		<experience value="30"/>
 		<drops>
 			<item value="money" quantity="[4,15]" probability="90"/>
@@ -1447,7 +1447,7 @@
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="3"/>
+		<level value="7"/>
 		<experience value="20"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
@@ -1475,7 +1475,7 @@
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="3"/>
+		<level value="9"/>
 		<experience value="20"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
@@ -1503,7 +1503,7 @@
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="3"/>
+		<level value="15"/>
 		<experience value="20"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
@@ -1531,7 +1531,7 @@
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="3"/>
+		<level value="8"/>
 		<experience value="20"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
@@ -1559,7 +1559,7 @@
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="3"/>
+		<level value="12"/>
 		<experience value="20"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
@@ -1587,7 +1587,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="4"/>
+		<level value="14"/>
 		<experience value="50"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
@@ -1614,7 +1614,7 @@
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="4"/>
+		<level value="60"/>
 		<experience value="50"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
