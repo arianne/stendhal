@@ -111,8 +111,14 @@ public class StendhalRPAction
 
     logger.debug("attacker has "+source.getATK()+" and uses a weapon of "+weapon);
 
-    float maxAttackerComponent=0.8f*(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
-    float attackerComponent=((float)Rand.roll1D100()/100.0f)*maxAttackerComponent;
+/**
+    factor=o1["ATK"]*o1["ATK"]/10
+    attacker=factor+4*factor*o1["Weapon"]
+    attacker_rand=random()*attacker*0.8
+ **/
+    float attackFactor=source.getATK()*source.getATK()*0.1;    
+    float maxAttackerComponent=factor+4.0*factor*(float)weapon;
+    float attackerComponent=((float)Rand.roll1D100()/100.0f)*maxAttackerComponent*0.8;
 
     if(target.hasShield())
       {
