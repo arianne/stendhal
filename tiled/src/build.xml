@@ -70,7 +70,7 @@
     <jar
       jarfile="${dist}/tiled.jar"
       basedir="${build}"
-      excludes="tiled/plugins/**">
+      >
       <manifest>
         <attribute name="Main-Class" value="tiled.mapeditor.MapEditor"/>
       </manifest>
