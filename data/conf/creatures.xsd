@@ -126,7 +126,7 @@
 			<xsd:element name="rhand" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="body" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="legs" type="xsd:string" minOccurs="0"/>
-			<xsd:element name="boots" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="feet" type="xsd:string" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 

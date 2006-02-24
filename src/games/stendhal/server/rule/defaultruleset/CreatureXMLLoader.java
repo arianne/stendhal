@@ -35,6 +35,7 @@ public class CreatureXMLLoader extends DefaultHandler
   private int level;
   
   private List<Creature.DropItem> dropsItems;
+  private List<Creature.EquipItem> equipsItems;
   private List<String> creatureSays;
   private Map<String,String> aiProfiles;
   
@@ -108,6 +109,7 @@ public class CreatureXMLLoader extends DefaultHandler
     }
   
   private boolean drops;
+  private boolean equips;
   private boolean ai;
   private boolean says;
   private boolean attributes;
@@ -139,6 +141,13 @@ public class CreatureXMLLoader extends DefaultHandler
       {
       // XP rewarded is right now 5% of the creature real XP 
       xp=Integer.parseInt(attrs.getValue("value"))*20;
+      }
+    else if(qName.equals("equips"))
+      {
+      equips=true;
+      }
+    else if(qName.equals("slot") && equips)
+      {
       }
     else if(qName.equals("drops"))
       {
@@ -245,6 +254,10 @@ public class CreatureXMLLoader extends DefaultHandler
     else if(qName.equals("attributes"))
       {
       attributes=false;
+      }
+    else if(qName.equals("equips"))
+      {
+      equips=false;
       }
     else if(qName.equals("drops"))
       {

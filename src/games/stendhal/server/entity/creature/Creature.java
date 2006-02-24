@@ -78,6 +78,27 @@ public class Creature extends NPC
       }
     }
 
+  public static class EquipItem
+    {
+    public String slot;
+    public String name;
+    public int amount;
+    
+    public EquipItem(String slot, String name)
+      {
+      this.slot=slot;
+      this.name=name;
+      this.amount=1;
+      }
+
+    public EquipItem(String slot, String name, int amount)
+      {
+      this.slot=slot;
+      this.name=name;
+      this.amount=amount;
+      }
+    }
+
   /** Enum classifying the possible (AI) states a creature can be in */
   private enum AiState
     {
