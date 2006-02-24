@@ -89,13 +89,13 @@ public abstract class RPEntity extends Entity
       entity.add("base_hp",RPClass.SHORT,RPClass.PRIVATE);
       entity.add("hp",RPClass.SHORT,RPClass.PRIVATE);
 
-      entity.add("atk",RPClass.BYTE,RPClass.PRIVATE);
+      entity.add("atk",RPClass.SHORT,RPClass.PRIVATE);
       entity.add("atk_xp",RPClass.INT,RPClass.PRIVATE);
-      entity.add("def",RPClass.BYTE,RPClass.PRIVATE);
+      entity.add("def",RPClass.SHORT,RPClass.PRIVATE);
       entity.add("def_xp",RPClass.INT,RPClass.PRIVATE);
 
       entity.add("risk",RPClass.BYTE, RPClass.VOLATILE);
-      entity.add("damage",RPClass.SHORT, RPClass.VOLATILE);
+      entity.add("damage",RPClass.INT, RPClass.VOLATILE);
       entity.add("target",RPClass.INT, RPClass.VOLATILE);
 
       entity.addRPSlot("head",1,RPClass.PRIVATE);
