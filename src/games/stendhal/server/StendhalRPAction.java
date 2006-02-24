@@ -53,7 +53,7 @@ public class StendhalRPAction
     StendhalRPAction.world=world;
     }
   
-  private static boolean riskToHit(RPEntity source,RPEntity target)
+  public static boolean riskToHit(RPEntity source,RPEntity target)
     {
     boolean result=false;
     
@@ -77,7 +77,7 @@ public class StendhalRPAction
     return result;
     }
   
-  private static int damageDone(RPEntity source, RPEntity target)  
+  public static int damageDone(RPEntity source, RPEntity target)  
     {
     int weapon=0;
     int shield=0;

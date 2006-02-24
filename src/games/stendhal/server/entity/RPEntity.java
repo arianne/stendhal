@@ -674,6 +674,17 @@ public abstract class RPEntity extends Entity
     return false;
     }
 
+  public boolean equip(String name,Item item)
+    {
+    if(hasSlot(name))
+      {
+      getSlot(name).add(item);
+      return true;
+      }
+    
+    return false;
+    }
+
   public Item drop(String name)
     {
     ActionManager manager = world.getRuleManager().getActionManager();
@@ -934,12 +945,12 @@ public abstract class RPEntity extends Entity
   
   public boolean hasBoots()
     {
-    return isEquippedItemClass("boots", "boots");
+    return isEquippedItemClass("feet", "boots");
     }
   
   public Item getBoots()
     {
-    return getEquippedItemClass("boots", "boots");
+    return getEquippedItemClass("feet", "boots");
     }
   
   /** checks if the entity has at least one item of type <i>type</i> in one

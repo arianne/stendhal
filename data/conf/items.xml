@@ -425,7 +425,7 @@ in the file.
 		</attributes>
 		<weight value="2"/>
 		<equipable>
-			<slot name="boots"/>
+			<slot name="feet"/>
 			<slot name="bag"/>
 		</equipable>
 	</item>
@@ -438,7 +438,7 @@ in the file.
 		</attributes>
 		<weight value="5"/>
 		<equipable>
-			<slot name="boots"/>
+			<slot name="feet"/>
 			<slot name="bag"/>
 		</equipable>
 	</item>
@@ -450,7 +450,7 @@ in the file.
 		</attributes>
 		<weight value="10"/>
 		<equipable>
-			<slot name="boots"/>
+			<slot name="feet"/>
 			<slot name="bag"/>
 		</equipable>
 	</item>

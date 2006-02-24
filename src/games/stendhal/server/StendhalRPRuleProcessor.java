@@ -15,6 +15,7 @@ package games.stendhal.server;
 import games.stendhal.common.Pair;
 import games.stendhal.server.actions.*;
 import games.stendhal.server.entity.SheepFood;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
@@ -143,7 +144,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       Behaviours.initialize(rpman,this,world);
       Path.initialize(world);
       
-      NPC.setRPContext(this, this.world);
+      Entity.setRPContext(this, this.world);
 
       for(IRPZone zone: world)
         {
