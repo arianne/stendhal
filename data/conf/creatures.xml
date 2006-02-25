@@ -294,7 +294,7 @@
 	<creature name="kobold">
 		<type class="kobold" subclass="kobold" tileid="19"/>
 		<attributes>
-			<atk value="41"/>
+			<atk value="39"/>
 			<def value="14"/>
 			<hp value="45"/>
 			<speed value="0.5"/>
@@ -325,8 +325,8 @@
 	<creature name="elephant">
 		<type class="animal" subclass="elephant" tileid="-1"/>
 		<attributes>
-			<atk value="45"/>
-			<def value="12"/>
+			<atk value="30"/>
+			<def value="11"/>
 			<hp value="160"/>
 			<speed value="1"/>
 			<size value="1,2"/>
@@ -338,6 +338,8 @@
 			<item value="ham" quantity="[2,8]" probability="70"/>
 		</drops>
 		<equips>
+			<slot name="rhand" item="fangs"/>
+			<slot name="lhand" item="wooden_skin"/>
 		</equips>
 		<ai>
 			<profile name="animal"/>
