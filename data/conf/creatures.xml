@@ -342,11 +342,334 @@
 			<slot name="lhand" item="wooden_skin"/>
 		</equips>
 		<ai>
+			<says>
+				<noise value="WOOOOOOUUUUUUUUFFFF!!!!"/>
+			</says>
 			<profile name="animal"/>
 			<profile name="non_ofensive"/>
 			<profile name="coward"/>
 		</ai>
 	</creature>
+
+	<creature name="venomrat">
+		<type class="small_animal" subclass="venomrat" tileid="29"/>
+		<attributes>
+			<atk value="30"/>
+			<def value="14"/>
+			<hp value="50"/>
+			<speed value="0.9"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="5"/>
+		<experience value="180"/>
+		<drops>
+			<item value="money" quantity="[4,25]" probability="100"/>
+			<item value="cheese" quantity="[1,3]" probability="50"/>
+		</drops>
+		<equips>
+			<slot name="rhand" item="fangs"/>
+			<slot name="lhand" item="leather_skin"/>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+			<profile name="poisonous" params="5,greater_poison"/>
+		</ai>
+	</creature>
+
+	<creature name="tiger">
+		<type class="animal" subclass="tiger" tileid="-1"/>
+		<attributes>
+			<atk value="37"/>
+			<def value="13"/>
+			<hp value="50"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="5"/>
+		<experience value="0"/>
+		<drops>
+			<item value="meat" quantity="[1,4]" probability="60"/>
+			<item value="ham" quantity="[1,2]" probability="30"/>
+		</drops>
+		<equips>
+		<equips>
+			<slot name="rhand" item="fangs"/>
+			<slot name="lhand" item="leather_skin"/>
+		</equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Miiiiaaauuu!"/>
+			</says>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
+	<!-- Level 6 -->
+
+	<creature name="skeleton">
+		<type class="skeleton" subclass="skeleton" tileid="24"/>
+		<attributes>
+			<atk value="37"/>
+			<def value="15"/>
+			<hp value="50"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="6"/>
+		<experience value="20"/>
+		<drops>
+			<item value="money" quantity="[3,10]" probability="90"/>
+			<item value="wooden_shield" quantity="1" probability="30"/>
+			<item value="dagger" quantity="1" probability="30"/>
+			<item value="leather_armor" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+			<slot name="rhand" item="sword"/>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Thou shall not pass!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+
+	<creature name="gargoyle">
+		<type class="gargoyle" subclass="gargoyle" tileid="17"/>
+		<attributes>
+			<atk value="38"/>
+			<def value="15"/>
+			<hp value="55"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="6"/>
+		<experience value="80"/>
+		<drops>
+			<item value="money" quantity="[4,25]" probability="90"/>
+			<item value="axe" quantity="1" probability="30"/>
+			<item value="chain_armor" quantity="1" probability="10"/>
+		</drops>
+		<equips>
+			<slot name="rhand" item="claws"/>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+	<creature name="young_beholder">
+		<type class="beholder" subclass="young_beholder" tileid="-1"/>
+		<attributes>
+			<atk value="30"/>
+			<def value="14"/>
+			<hp value="70"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="6"/>
+		<experience value="0"/>
+		<drops>
+		</drops>
+		<equips>
+			<slot name="lhand" item="fangs"/>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Defend yourself! I can see you!"/>
+			</says>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
+
+	<!-- Level 7 -->
+
+	 <creature name="veteran_goblin">
+		<type class="goblin" subclass="veteran_goblin" tileid="22"/>
+		<attributes>
+			<atk value="38"/>
+			<def value="18"/>
+			<hp value="45"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="7"/>
+		<experience value="30"/>
+		<drops>
+			<item value="money" quantity="[4,15]" probability="90"/>
+			<item value="studded_shield" quantity="1" probability="20"/>
+			<item value="staff" quantity="1" probability="20"/>
+			<item value="studded_armor" quantity="1" probability="10"/>
+		</drops>
+		<equips>
+			<slot name="lhand" item="short_sword"/>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Breakfast time!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
+	<creature name="soldier_kobold">
+		<type class="kobold" subclass="soldier_kobold" tileid="19"/>
+		<attributes>
+			<atk value="37"/>
+			<def value="18"/>
+			<hp value="50"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="7"/>
+		<experience value="20"/>
+		<drops>
+			<item value="money" quantity="[3,10]" probability="90"/>
+			<item value="wooden_shield" quantity="1" probability="20"/>
+			<item value="club" quantity="1" probability="20"/>
+			<item value="leather_armor" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+			<slot name="lhand" item="short_sword"/>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Woorf wer warf!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+	<!-- Level 8 -->
+
+	<creature name="archer_kobold">
+		<type class="kobold" subclass="archer_kobold" tileid="19"/>
+		<attributes>
+			<atk value="40"/>
+			<def value="19"/>
+			<hp value="35"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="8"/>
+		<experience value="20"/>
+		<drops>
+			<item value="money" quantity="[3,10]" probability="90"/>
+			<item value="wooden_shield" quantity="1" probability="20"/>
+			<item value="club" quantity="1" probability="20"/>
+			<item value="leather_armor" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+			<slot name="lhand" item="wooden_bow"/>
+			<slot name="rhand" item="wooden_arrow" quantity="1000"/>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Wssss! Warf wit!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+	<creature name="black_bear">
+		<type class="animal" subclass="black_bear" tileid="37"/>
+		<attributes>
+			<atk value="42"/>
+			<def value="14"/>
+			<hp value="80"/>
+			<speed value="0.4"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="8"/>
+		<experience value="70"/>
+		<drops>
+			<item value="money"  quantity="[4,9]" probability="80"/>
+			<item value="meat"  quantity="[3,6]" probability="60"/>
+			<item value="ham"  quantity="[2,3]" probability="40"/>
+		</drops>
+		<equips>
+			<slot name="rhand" item="claws"/>
+			<slot name="lhand" item="leather_skin"/>
+		</equips>
+		<ai>
+			<says>
+				<noise value="ROOOOAAAAR!"/>
+			</says>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
+	<creature name="elder_gargoyle">
+		<type class="gargoyle" subclass="elder_gargoyle" tileid="17"/>
+		<attributes>
+			<atk value="41"/>
+			<def value="15"/>
+			<hp value="55"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="8"/>
+		<experience value="80"/>
+		<drops>
+			<item value="money" quantity="[4,25]" probability="90"/>
+			<item value="axe" quantity="1" probability="30"/>
+			<item value="chain_armor" quantity="1" probability="10"/>
+		</drops>
+		<equips>
+			<slot name="rhand" item="claws"/>
+			<slot name="lhand" item="wooden_skin"/>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+	<creature name="razorrat">
+		<type class="small_animal" subclass="razorrat" tileid="30"/>
+		<attributes>
+			<atk value="42"/>
+			<def value="17"/>
+			<hp value="40"/>
+			<speed value="1.1"/>
+			<size value="1,1"/>
+		</attributes>
+		<level value="8"/>
+		<experience value="210"/>
+		<drops>
+			<item value="money" quantity="[5,30]" probability="100"/>
+			<item value="cheese" quantity="[1,3]" probability="50"/>
+			<item value="leather_boots" quantity ="1" probability="12"/>
+		</drops>
+		<equips>
+			<slot name="rhand" item="claws"/>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+
 
 <!-- **************************************ALREADY BALANCED***************** -->
 
@@ -421,89 +744,6 @@
 		</ai>
 	</creature>
 
-	<creature name="black_bear">
-		<type class="animal" subclass="black_bear" tileid="37"/>
-		<attributes>
-			<atk value="51"/>
-			<def value="12"/>
-			<hp value="55"/>
-			<speed value="0.4"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="8"/>
-		<experience value="70"/>
-		<drops>
-			<item value="money"  quantity="[4,9]" probability="80"/>
-			<item value="meat"  quantity="[3,6]" probability="60"/>
-			<item value="ham"  quantity="[2,3]" probability="40"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<says>
-				<noise value="Roar!"/>
-			</says>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
-
-	<!-- Level 6 -->
-
-	<creature name="skeleton">
-		<type class="skeleton" subclass="skeleton" tileid="24"/>
-		<attributes>
-			<atk value="47"/>
-			<def value="14"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="6"/>
-		<experience value="20"/>
-		<drops>
-			<item value="money" quantity="[3,10]" probability="90"/>
-			<item value="wooden_shield" quantity="1" probability="30"/>
-			<item value="dagger" quantity="1" probability="30"/>
-			<item value="leather_armor" quantity="1" probability="20"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-
-
-	<creature name="gargoyle">
-		<type class="gargoyle" subclass="gargoyle" tileid="17"/>
-		<attributes>
-			<atk value="54"/>
-			<def value="14"/>
-			<hp value="55"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="6"/>
-		<experience value="80"/>
-		<drops>
-			<item value="money" quantity="[4,25]" probability="90"/>
-			<item value="axe" quantity="1" probability="30"/>
-			<item value="chain_armor" quantity="1" probability="10"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-
-	<!-- Level 7 -->
-
 	<creature name="ogre">
 		<type class="giant" subclass="ogre" tileid="18"/>
 		<attributes>
@@ -528,8 +768,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
-	<!-- Level 8 -->
 
 	<creature name="cyclops">
 		<type class="giant" subclass="cyclops" tileid="25"/>
@@ -663,57 +901,7 @@
 
 	<!-- Level 12 -->
 
-	<creature name="venomrat">
-		<type class="small_animal" subclass="venomrat" tileid="29"/>
-		<attributes>
-			<atk value="40"/>
-			<def value="20"/>
-			<hp value="70"/>
-			<speed value="0.9"/>
-			<size value="1,1"/>
-		</attributes>
-		<level value="5"/>
-		<experience value="180"/>
-		<drops>
-			<item value="money" quantity="[4,25]" probability="100"/>
-			<item value="cheese" quantity="[1,3]" probability="50"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-			<profile name="poisonous" params="5,greater_poison"/>
-		</ai>
-	</creature>
-
 	<!-- Level 13 -->
-
-	<creature name="razorrat">
-		<type class="small_animal" subclass="razorrat" tileid="30"/>
-		<attributes>
-			<atk value="90"/>
-			<def value="15"/>
-			<hp value="40"/>
-			<speed value="1.1"/>
-			<size value="1,1"/>
-		</attributes>
-		<level value="8"/>
-		<experience value="210"/>
-		<drops>
-			<item value="money" quantity="[5,30]" probability="100"/>
-			<item value="cheese" quantity="[1,3]" probability="50"/>
-			<item value="leather_boots" quantity ="1" probability="12"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
 
 	<!-- Level 14 -->
 
@@ -869,50 +1057,6 @@
 
 
 
-
-	<creature name="tiger">
-		<type class="animal" subclass="tiger" tileid="-1"/>
-		<attributes>
-			<atk value="30"/>
-			<def value="20"/>
-			<hp value="50"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="5"/>
-		<experience value="0"/>
-		<drops>
-			<item value="meat" quantity="[1,4]" probability="60"/>
-			<item value="ham" quantity="[1,2]" probability="30"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
-
-	<creature name="young_beholder">
-		<type class="beholder" subclass="young_beholder" tileid="-1"/>
-		<attributes>
-			<atk value="30"/>
-			<def value="20"/>
-			<hp value="50"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="6"/>
-		<experience value="0"/>
-		<drops>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
 
 	<creature name="beholder">
 		<type class="beholder" subclass="beholder" tileid="-1"/>
@@ -1170,31 +1314,6 @@
 		</ai>
 	</creature>
 
-	<creature name="elder_gargoyle">
-		<type class="gargoyle" subclass="elder_gargoyle" tileid="17"/>
-		<attributes>
-			<atk value="54"/>
-			<def value="14"/>
-			<hp value="55"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="8"/>
-		<experience value="80"/>
-		<drops>
-			<item value="money" quantity="[4,25]" probability="90"/>
-			<item value="axe" quantity="1" probability="30"/>
-			<item value="chain_armor" quantity="1" probability="10"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-
 	<creature name="dark_gargoyle">
 		<type class="gargoyle" subclass="dark_gargoyle" tileid="17"/>
 		<attributes>
@@ -1339,31 +1458,6 @@
 		</ai>
 	</creature>
 
-	 <creature name="veteran_goblin">
-		<type class="goblin" subclass="veteran_goblin" tileid="22"/>
-		<attributes>
-			<atk value="47"/>
-			<def value="14"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="7"/>
-		<experience value="30"/>
-		<drops>
-			<item value="money" quantity="[4,15]" probability="90"/>
-			<item value="studded_shield" quantity="1" probability="20"/>
-			<item value="staff" quantity="1" probability="20"/>
-			<item value="studded_armor" quantity="1" probability="10"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
-
 	 <creature name="soldier_goblin">
 		<type class="goblin" subclass="soldier_goblin" tileid="22"/>
 		<attributes>
@@ -1386,32 +1480,6 @@
 		<ai>
 			<profile name="human"/>
 			<profile name="ofensive"/>
-		</ai>
-	</creature>
-
-	<creature name="soldier_kobold">
-		<type class="kobold" subclass="soldier_kobold" tileid="19"/>
-		<attributes>
-			<atk value="47"/>
-			<def value="13"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="7"/>
-		<experience value="20"/>
-		<drops>
-			<item value="money" quantity="[3,10]" probability="90"/>
-			<item value="wooden_shield" quantity="1" probability="20"/>
-			<item value="club" quantity="1" probability="20"/>
-			<item value="leather_armor" quantity="1" probability="20"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
 		</ai>
 	</creature>
 
@@ -1451,32 +1519,6 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="15"/>
-		<experience value="20"/>
-		<drops>
-			<item value="money" quantity="[3,10]" probability="90"/>
-			<item value="wooden_shield" quantity="1" probability="20"/>
-			<item value="club" quantity="1" probability="20"/>
-			<item value="leather_armor" quantity="1" probability="20"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-
-	<creature name="archer_kobold">
-		<type class="kobold" subclass="archer_kobold" tileid="19"/>
-		<attributes>
-			<atk value="47"/>
-			<def value="13"/>
-			<hp value="30"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="8"/>
 		<experience value="20"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>

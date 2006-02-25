@@ -174,6 +174,12 @@ public class BalanceRPGame
           meanTurns+=turns;
           }        
 
+        if(level==creature.getLevel())
+          {
+          int proposedXPValue=20*(int)((creature.getLevel()+1)*((meanTurns/100.0)/2.0));
+          System.out.println ("Proposed XP: "+proposedXPValue+"\t Actual XP: "+creature.getXP());
+          }
+        
         System.out.print("Player("+level+") VS "+creature.getCreatureName()+":\t "+playerOKs+"\t Turns: "+meanTurns/100.0+"\tLeft HP:"+leftHP/100.0);
         if((playerOKs>80 && level>=creature.getLevel())||
             playerOKs<80 && level<creature.getLevel())
