@@ -360,7 +360,7 @@
 			<item value="leather_armor" quantity="1" probability="20"/>
 		</drops>
 		<equips>
-			<slot name="rhand" value="knife"/>
+			<slot name="rhand" item="knife"/>
 		</equips>
 		<ai>
 			<profile name="human"/>

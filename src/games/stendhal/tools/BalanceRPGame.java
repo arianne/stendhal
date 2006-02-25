@@ -105,6 +105,9 @@ public class BalanceRPGame
           {
           continue;
           }
+        
+        Creature target=creature.getCreature();
+        System.out.println (target);
         }
         
       System.out.println ("-- "+creature.getCreatureName()+"("+creature.getLevel()+")");

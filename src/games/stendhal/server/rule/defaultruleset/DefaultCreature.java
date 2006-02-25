@@ -51,6 +51,8 @@ public class DefaultCreature
 
   /** Ths list of items this creature may drop */
   private List<Creature.DropItem> dropsItems;
+  private List<Creature.EquipItem> equipsItems;
+  
   private List<String> creatureSays;
   private Map<String, String> aiProfiles;
   
@@ -121,6 +123,11 @@ public class DefaultCreature
     this.creatureSays=creatureSays;
   }
   
+  public void setEquipedItems(List<Creature.EquipItem> equipsItems)
+  {
+    this.equipsItems=equipsItems;
+  }
+
   public void setDropItems(List<Creature.DropItem> dropsItems)
   {
     this.dropsItems=dropsItems;
@@ -139,7 +146,10 @@ public class DefaultCreature
   /** returns a creature-instance */
   public Creature getCreature()
   {
-    return new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed, dropsItems, aiProfiles, creatureSays);
+    Creature creature=new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed, dropsItems, aiProfiles, creatureSays);
+    creature.equip(equipsItems);
+      
+    return creature;
   }
   
   /** returns the tileid */
@@ -159,9 +169,18 @@ public class DefaultCreature
     return name;
   }
  
-  public boolean verifyDroppedItems(EntityManager manager)
+  public boolean verifyItems(EntityManager manager)
   {
     for(Creature.DropItem item: dropsItems)
+    {
+      if(!manager.isItem(item.name))
+      {
+        logger.warn("Item "+item.name+" doesnt exists");
+        return false;  
+      }      
+    }
+  
+    for(Creature.EquipItem item: equipsItems)
     {
       if(!manager.isItem(item.name))
       {

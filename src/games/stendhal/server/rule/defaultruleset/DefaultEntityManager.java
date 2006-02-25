@@ -97,7 +97,7 @@ public class DefaultEntityManager implements EntityManager
           logger.warn("Repeated creature name: "+clazz);          
           }
         
-        if(!creature.verifyDroppedItems(this))
+        if(!creature.verifyItems(this))
           {
           logger.warn("Items dropped by creature name: "+clazz+" doesn't exists");          
           }

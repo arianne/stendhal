@@ -122,6 +122,7 @@ public class CreatureXMLLoader extends DefaultHandler
       drops=false;
       ai=false;
       dropsItems=new LinkedList<Creature.DropItem>();
+      equipsItems=new LinkedList<Creature.EquipItem>();
       creatureSays=new LinkedList<String>();
       aiProfiles=new HashMap<String,String>();
       }
@@ -148,6 +149,30 @@ public class CreatureXMLLoader extends DefaultHandler
       }
     else if(qName.equals("slot") && equips)
       {
+      String item=null;
+      String slot=null;
+      int quantity=1;
+      
+      for(int i=0;i<attrs.getLength();i++)
+        {
+        if(attrs.getQName(i).equals("item"))
+          {
+          item=attrs.getValue(i);
+          }
+        else if(attrs.getQName(i).equals("name"))
+          {
+          slot=attrs.getValue(i);
+          }
+        else if(attrs.getQName(i).equals("quantity"))
+          {
+          quantity=Integer.parseInt(attrs.getValue(i));
+          }
+        }
+      
+      if(item!=null && slot!=null)
+        {          
+        equipsItems.add(new Creature.EquipItem(slot,item,quantity));
+        }
       }
     else if(qName.equals("drops"))
       {
@@ -245,6 +270,7 @@ public class CreatureXMLLoader extends DefaultHandler
       creature.setRPStats(hp,atk,def,speed);
       creature.setLevel(level,xp);
       creature.setSize(sizeWidth, sizeHeight);
+      creature.setEquipedItems(equipsItems);
       creature.setDropItems(dropsItems);
       creature.setAIProfiles(aiProfiles);
       creature.setNoiseLines(creatureSays);

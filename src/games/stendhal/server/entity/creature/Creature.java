@@ -37,6 +37,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -82,20 +83,13 @@ public class Creature extends NPC
     {
     public String slot;
     public String name;
-    public int amount;
+    public int quantity;
     
-    public EquipItem(String slot, String name)
-      {
-      this.slot=slot;
-      this.name=name;
-      this.amount=1;
-      }
-
     public EquipItem(String slot, String name, int amount)
       {
       this.slot=slot;
       this.name=name;
-      this.amount=amount;
+      this.quantity=amount;
       }
     }
 
@@ -649,6 +643,29 @@ public class Creature extends NPC
       put("debug",debug.toString());
     world.modify(this);
     Log4J.finishMethod(logger, "logic");
+    }
+  
+  public void equip(List<EquipItem> items)
+    {
+    for(Creature.EquipItem equipedItem: items)
+      {
+      if(!hasSlot(equipedItem.slot))
+        {
+        addSlot(new RPSlot(equipedItem.slot));
+        }
+      
+      RPSlot slot=getSlot(equipedItem.slot);
+      EntityManager manager=world.getRuleManager().getEntityManager();
+      
+      Item item=manager.getItem(equipedItem.name);
+      
+      if(item instanceof StackableItem)
+        {
+        ((StackableItem)item).setQuantity(equipedItem.quantity);
+        }
+      
+      slot.add(item);
+      }
     }
 
   

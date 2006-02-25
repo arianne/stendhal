@@ -776,6 +776,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\tools\BalanceRPGame.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\tools\GenerateBestiaryAndItems.java</path>
 				<source>true</source>
 			</fileitem>
