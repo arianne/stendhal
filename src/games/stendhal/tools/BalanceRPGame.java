@@ -105,9 +105,6 @@ public class BalanceRPGame
           {
           continue;
           }
-        
-        Creature target=creature.getCreature();
-        System.out.println (target);
         }
         
       System.out.println ("-- "+creature.getCreatureName()+"("+creature.getLevel()+")");
@@ -122,6 +119,7 @@ public class BalanceRPGame
         
         int playerOKs=0;
         int meanTurns=0;
+        int leftHP=0;
         
         for(int i=0;i<100;i++)
           {
@@ -171,11 +169,12 @@ public class BalanceRPGame
             if(cl>=15 && cl<20 && around(player,0.2,1)) playerOKs++;
             if(cl>=20 && cl<30 && around(player,0.0,1)) playerOKs++;
             }
-          
+            
+          leftHP+=player.getHP();
           meanTurns+=turns;
           }        
 
-        System.out.print("Player("+level+") VS "+creature.getCreatureName()+":\t "+playerOKs+"\t Turns: "+meanTurns/100.0);
+        System.out.print("Player("+level+") VS "+creature.getCreatureName()+":\t "+playerOKs+"\t Turns: "+meanTurns/100.0+"\tLeft HP:"+leftHP/100.0);
         if((playerOKs>80 && level>=creature.getLevel())||
             playerOKs<80 && level<creature.getLevel())
           {
