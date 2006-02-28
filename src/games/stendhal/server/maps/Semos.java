@@ -25,10 +25,13 @@ import java.util.HashMap;
 public class Semos implements IContent
   {
   private StendhalRPWorld world;
+  private NPCList npcs;
   
   public Semos(StendhalRPWorld world) throws org.xml.sax.SAXException, java.io.IOException
     {
+    this.npcs=NPCList.get();
     this.world=world;
+    
     buildSemosCityArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_city")));
     buildSemosVillageArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village_w")));
     buildSemosSouthPlainsArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_plains_s")));
@@ -70,7 +73,7 @@ public class Semos implements IContent
     zone.add(portal);
     zone.addPortal(portal);
 
-    NPC npc=new SpeakerNPC()
+    NPC npc=npcs.add("Ceryl",new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -85,154 +88,14 @@ public class Semos implements IContent
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"I am the librarian.");
         Behaviours.addHelp(this,"Read!.");
-        
-        add(1,"book",new ChatCondition()
-          {
-          public boolean fire(Player player, SpeakerNPC npc)
-            {
-            return player.isQuestCompleted("ceryl_book");
-            }
-          },
-            1,"I already got the book. Thank you!",null);
-            
-        add(1,"book",new ChatCondition()
-          {
-          public boolean fire(Player player, SpeakerNPC npc)
-            {
-            return player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("jyanath");
-            }
-          },
-            1,null,new ChatAction()
-          {
-          public void fire(Player player, String text, SpeakerNPC engine)
-            {
-            Item item=player.drop("book_black");
-            if(item!=null)
-              {
-              say("Thanks!");
-              player.addXP(100);
-              world.modify(player);
-    
-              player.setQuest("ceryl_book","done");
-              player.removeQuest("ceryl_book");
-              }
-            else
-              {
-              say("Where did you put Jyanath's book?. You need to start again the search.");
-              player.removeQuest("ceryl_book");
-              }              
-            }
-          });
-          
-        add(1,"book",new ChatCondition()
-          {
-          public boolean fire(Player player, SpeakerNPC npc)
-            {
-            return player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("start");
-            }
-          },
-            1,"I really need that book now!. Go to talk with Jyanath.",null);
-          
-        add(1,"book",new ChatCondition()
-          {
-          public boolean fire(Player player, SpeakerNPC npc)
-            {
-            return !player.hasQuest("ceryl_book");
-            }
-          },
-            60,"Could you ask Jyanath for a #book that I am looking?",null);
-            
-        add(60,"yes",null,
-            1,null,new ChatAction()
-          {
-          public void fire(Player player, String text, SpeakerNPC engine)
-            {
-            say("Great!. Start the quest now!");
-            player.setQuest("ceryl_book","start");
-            }
-          });
-
-        add(60,"no",null,1,"Oh! Ok :(",null);
-
         Behaviours.addGoodbye(this);
         }
-      };
+      });
     
     zone.assignRPObjectID(npc);
-    npc.setName("Ceryl");
-    npc.put("class","tavernbarmaidnpc");
-    npc.setx(28);
-    npc.sety(11);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    zone.addNPC(npc);
-
-    npc=new SpeakerNPC()
-      {
-      protected void createPath()
-        {
-        List<Path.Node> nodes=new LinkedList<Path.Node>();
-        nodes.add(new Path.Node(9,20));
-        nodes.add(new Path.Node(9,11));
-        setPath(nodes,true);
-        }
-      
-      protected void createDialog()
-        {        
-        Behaviours.addGreeting(this);
-        Behaviours.addJob(this,"I am the investigator.");
-        Behaviours.addHelp(this,"Investigate!.");
-        
-        add(1,"book",new ChatCondition()
-          {
-          public boolean fire(Player player, SpeakerNPC npc)
-            {
-            return player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("start");
-            }
-          },
-            1,null,new ChatAction()
-          {
-          public void fire(Player player, String text, SpeakerNPC engine)
-            {
-            player.setQuest("ceryl_book","jyanath");
-            say("Here you have the book Ceryl is looking for.");
-
-            Item book=world.getRuleManager().getEntityManager().getItem("book_black");            
-            player.equip(book);
-            }
-          });
-
-        add(1,"book",new ChatCondition()
-          {
-          public boolean fire(Player player, SpeakerNPC npc)
-            {
-            return player.hasQuest("ceryl_book") && player.getQuest("ceryl_book").equals("jyanath");
-            }
-          },
-            1,"Hurry up! Grab the book to Ceryl.", null);
-
-        add(1,"book",new ChatCondition()
-          {
-          public boolean fire(Player player, SpeakerNPC npc)
-            {
-            return !player.hasQuest("ceryl_book");
-            }
-          },
-            1,"Shhhh!!! I am investigating!.", null);
-          
-        Behaviours.addGoodbye(this);
-        }
-      };
-    
-    zone.assignRPObjectID(npc);
-    npc.setName("Jyanath");
-    npc.put("class","weaponsellernpc");
-    npc.setx(9);
-    npc.sety(20);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
+    npc.setOutfit("0");
+    npc.set(28,11);
+    npc.initHP(100);
     zone.addNPC(npc);
     }
 

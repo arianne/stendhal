@@ -25,6 +25,34 @@ public class Jail implements IContent
   {
   public Jail(StendhalRPWorld world)
     {
-    /** TODO: Add a NPC that explain why you are a jail */
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_admin_jail"));
+    NPCList npcs=NPCList.get();
+    
+    SpeakerNPC npc=npcs.add("Sten Tanquilos", new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(4,14));
+        nodes.add(new Path.Node(27,14));
+        nodes.add(new Path.Node(27,17));
+        nodes.add(new Path.Node(4,17));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+        Behaviours.addGreeting(this);
+        Behaviours.addJob(this,"I am the jail keeper. You have been confined here because of your bad behaviour.");
+        Behaviours.addHelp(this,"Wait for an admin to come here and decide about you. There is meanwhile no exit from here.");
+        Behaviours.addGoodbye(this);
+        }
+      });
+
+    zone.assignRPObjectID(npc);
+    npc.setOutfit("0");
+    npc.set(33,44);
+    npc.initHP(100);
+    zone.add(npc);    
     }
   }

@@ -260,6 +260,11 @@ public abstract class RPEntity extends Entity
     return def_xp;
     }
     
+  public void initHP(int hp)
+    {
+    setBaseHP(hp);
+    setHP(hp);
+    }
 
   public void setBaseHP(int newhp)
     {

@@ -1,4 +1,4 @@
-package games.stendhal.server.quests;
+package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;

@@ -2,7 +2,7 @@ package games.stendhal.server;
 
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
-import games.stendhal.server.quests.IQuest;
+import games.stendhal.server.maps.quests.IQuest;
 
 public class StendhalQuestSystem 
   {

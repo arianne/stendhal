@@ -71,6 +71,12 @@ public abstract class Entity extends RPObject
     if(has("speed")) speed=getDouble("speed");
     if(has("dir")) direction=Direction.build(getInt("dir"));
     }
+  
+  public void set(int x, int y)
+    {
+    setx(x);
+    sety(y);
+    }
 
   public void setx(int x)
     {

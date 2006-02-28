@@ -79,6 +79,11 @@ public abstract class NPC extends RPEntity
     {
     return idea;
     }
+   
+  public void setOutfit(String outfit)
+    {
+    put("outfit",outfit);
+    }
 
   public void say(String text)
     {

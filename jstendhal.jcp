@@ -72,6 +72,9 @@
 				<path>src\games\stendhal\server\maps</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\server\maps\quests</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\server\rule</path>
 			</folderitem>
 			<folderitem>
@@ -568,7 +571,35 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\maps\NPCList.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\Orril.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\maps\Semos.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\ShopList.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\IQuest.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\LookBookforCeryl.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\OrcishHappyMeal.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\SheepGrowing.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -669,18 +700,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\actions\Use.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\quests\IQuest.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\quests\OrcishHappyMeal.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\quests\SheepGrowing.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

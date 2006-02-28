@@ -19,7 +19,6 @@
 
 package games.stendhal.tools;
 
-import games.stendhal.tools.tiled.StendhalMapWriter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +114,8 @@ public class MapConverter extends Task
 
     // and save it
     String filename = stendPath+File.separator+file.getName().replaceAll("\\.tmx",".stend");
-    new StendhalMapWriter().writeMap(map, filename);
+// BUG: Compile bug.    
+//    new StendhalMapWriter().writeMap(map, filename);
   }
   
   private void saveImageMap(Map map,String tmxFile)

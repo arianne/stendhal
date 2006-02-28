@@ -1,4 +1,4 @@
-package games.stendhal.server.quests;
+package games.stendhal.server.maps.quests;
 
 import marauroa.common.game.IRPZone;
 import games.stendhal.server.StendhalRPWorld;
