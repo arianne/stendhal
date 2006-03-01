@@ -843,14 +843,6 @@
 				<source>true</source>
 			</fileitem>
 		</include>
-		<exclude>
-			<folderitem>
-				<path>src\games\stendhal\tools\tiled</path>
-			</folderitem>
-			<folderitem>
-				<path>tiled</path>
-			</folderitem>
-		</exclude>
 	</files>
 	<tasks/>
 </project>

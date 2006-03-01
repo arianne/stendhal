@@ -90,6 +90,11 @@ public class StendhalMapReader implements MapReader
     return "*.stend";
   }
 
+  public FileFilter[] getFilters()
+  {
+    return null;
+  }
+
   public String getName()
   {
     return "Stendhal reader";

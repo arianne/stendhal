@@ -114,7 +114,7 @@ public class MapConverter extends Task
 
     // and save it
     String filename = stendPath+File.separator+file.getName().replaceAll("\\.tmx",".stend");
-    new tiled.plugins.stendhal.XStendWriter().writeMap(map, filename);
+    new games.stendhal.tools.tiled.StendhalMapWriter().writeMap(map, filename);
   }
   
   private void saveImageMap(Map map,String tmxFile)

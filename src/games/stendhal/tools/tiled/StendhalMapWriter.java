@@ -195,4 +195,10 @@ public class StendhalMapWriter implements MapWriter
   public void setErrorStack(Stack es)
   {
   }
+
+  public FileFilter[] getFilters()
+  {
+    return null;
+  }
+
 }
