@@ -4,6 +4,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.Behaviours;
@@ -243,11 +244,24 @@ public class IntroducePlayers implements IQuest
 
     }
     
+  private void initialize()
+    {
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_plains_n"));
+    
+    Chest chest=new Chest();
+    zone.assignRPObjectID(chest);
+    chest.set(106,47);
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("arandula"));
+    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("arandula"));
+    zone.add(chest);
+    }
   
   public IntroducePlayers(StendhalRPWorld w, StendhalRPRuleProcessor rules)
     {
     this.npcs=NPCList.get();
     this.world=w;
+    
+    initialize();
     
     step_1();
     step_2();
