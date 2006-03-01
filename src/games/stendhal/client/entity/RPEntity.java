@@ -294,16 +294,19 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
     if(diff.has("name"))
       {
       name=diff.get("name");
+      name=name.replace("_"," ");
       nameImage=GameScreen.get().createString(getName(),nameColor);
       }
     else if(name==null && diff.has("class"))
       {
       name=diff.get("class");
+      name=name.replace("_"," ");
       nameImage=GameScreen.get().createString(getName(),nameColor);
       }
     else if(name==null && diff.has("type"))
       {
       name=diff.get("type");
+      name=name.replace("_"," ");
       nameImage=GameScreen.get().createString(getName(),nameColor);
       }
 
