@@ -78,7 +78,7 @@
 
     <javac srcdir="${src}" destdir="${build_server}" debug="true" debuglevel="source,lines"
            includes="games/stendhal/server/**, games/stendhal/common/**" 
-           excludes="games/stendhal/server/maps/**, games/stendhal/server/quests/**, games/stendhal/client/**, games/stendhal/tools/**">
+           excludes="games/stendhal/server/maps/**, games/stendhal/client/**, games/stendhal/tools/**">
       <classpath>
         <pathelement path="${marauroa_jar}"/>
         <pathelement path="${log4j_jar}"/>
@@ -112,8 +112,8 @@
     <property name="build_server_quests" value="build_server_quests/"/>
   	<mkdir dir="${build_server_quests}/"/>
   	
-    <javac srcdir="${src}/games/stendhal/server/quests/" destdir="${build_server_quests}" debug="true" debuglevel="source,lines"
-           includes="*.java">
+    <javac srcdir="${src}/games/stendhal/server/maps/quests/" destdir="${build_server_quests}" debug="true" debuglevel="source,lines"
+           includes="games/stendhal/server/maps/**">
       <classpath>
         <pathelement path="${build_server}"/>
         <pathelement path="${marauroa_jar}"/>

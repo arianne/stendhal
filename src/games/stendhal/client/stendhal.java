@@ -32,7 +32,7 @@ public class stendhal extends Thread
     };
   
   public static final String STENDHAL_FOLDER = System.getProperty("user.home")+"/stendhal/";  
-  public static final String VERSION="0.44";
+  public static final String VERSION="0.45";
   
 
   public static final boolean SHOW_COLLISION_DETECTION  = false;

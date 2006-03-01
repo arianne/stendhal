@@ -23,8 +23,8 @@ import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.pathfinder.Path;
 
-import org.python.util.PythonInterpreter;
-import org.python.core.*;
+//import org.python.util.PythonInterpreter;
+//import org.python.core.*;
 
 import games.stendhal.server.scripting.StendhalPythonConfig;
 
