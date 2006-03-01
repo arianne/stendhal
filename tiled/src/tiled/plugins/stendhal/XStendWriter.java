@@ -25,7 +25,7 @@ public class XStendWriter extends Writer implements MapWriterPlugin
     try
     {
       FileOutputStream os = new FileOutputStream(new File(filename));
-      writeMap(map,os);
+      writeMap(map,os,true);
       os.close();
     } catch (Exception e)
     {

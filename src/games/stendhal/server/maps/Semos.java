@@ -49,7 +49,6 @@ public class Semos implements IContent
     portal.sety(14);
     portal.setNumber(0);
     portal.setDestination("0_semos_city",2);
-    zone.add(portal);
     zone.addPortal(portal);
     }
 
@@ -61,7 +60,6 @@ public class Semos implements IContent
     portal.sety(1);
     portal.setNumber(0);
     portal.setDestination("0_semos_city",4);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -70,7 +68,6 @@ public class Semos implements IContent
     portal.sety(1);
     portal.setNumber(1);
     portal.setDestination("0_semos_city",3);
-    zone.add(portal);
     zone.addPortal(portal);
 
     NPC npc=npcs.add("Ceryl",new SpeakerNPC()
@@ -107,7 +104,6 @@ public class Semos implements IContent
     portal.sety(23);
     portal.setNumber(0);
     portal.setDestination("0_semos_city",1);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -116,7 +112,6 @@ public class Semos implements IContent
     portal.sety(23);
     portal.setNumber(1);
     portal.setDestination("0_semos_city",1);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -125,7 +120,6 @@ public class Semos implements IContent
     portal.sety(23);
     portal.setNumber(2);
     portal.setDestination("0_semos_city",1);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -134,7 +128,6 @@ public class Semos implements IContent
     portal.sety(23);
     portal.setNumber(3);
     portal.setDestination("0_semos_city",1);
-    zone.add(portal);
     zone.addPortal(portal);
     }
 
@@ -146,7 +139,6 @@ public class Semos implements IContent
     portal.sety(1);
     portal.setNumber(0);
     portal.setDestination("0_semos_city",0);
-    zone.add(portal);
     zone.addPortal(portal);
 
     NPC npc=new SpeakerNPC()
@@ -187,7 +179,6 @@ public class Semos implements IContent
     npc.sety(12);
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
     zone.addNPC(npc);
 
 
@@ -242,7 +233,6 @@ public class Semos implements IContent
     npc.sety(14);
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
     zone.addNPC(npc);
     }
     
@@ -302,7 +292,6 @@ public class Semos implements IContent
     portal.sety(37);
     portal.setNumber(0);
     portal.setDestination("int_semos_tavern",0);
-    zone.add(portal);
     zone.addPortal(portal);
     
     portal=new Portal();
@@ -311,7 +300,6 @@ public class Semos implements IContent
     portal.sety(37);
     portal.setNumber(1);
     portal.setDestination("int_semos_temple",2);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -320,7 +308,6 @@ public class Semos implements IContent
     portal.sety(41);
     portal.setNumber(2);
     portal.setDestination("int_semos_blacksmith",0);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -329,7 +316,6 @@ public class Semos implements IContent
     portal.sety(22);
     portal.setNumber(3);
     portal.setDestination("int_semos_library",1);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -338,7 +324,6 @@ public class Semos implements IContent
     portal.sety(22);
     portal.setNumber(4);
     portal.setDestination("int_semos_library",0);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new OneWayPortal();
@@ -346,7 +331,6 @@ public class Semos implements IContent
     portal.setx(12);
     portal.sety(49);
     portal.setNumber(60);
-    zone.add(portal);
     zone.addPortal(portal);    
 
     Sign sign=new Sign();
@@ -436,7 +420,6 @@ public class Semos implements IContent
     npc.sety(42);
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
     zone.addNPC(npc);
       
 
@@ -473,7 +456,6 @@ public class Semos implements IContent
     npc.sety(45);
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
     zone.addNPC(npc);
     }
   }

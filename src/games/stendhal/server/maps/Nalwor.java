@@ -33,7 +33,6 @@ public class Nalwor implements IContent
     portal.sety(92);
     portal.setNumber(0);
     portal.setDestination("0_nalwor_forest_w",1);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -42,7 +41,6 @@ public class Nalwor implements IContent
     portal.sety(91);
     portal.setNumber(1);
     portal.setDestination("0_nalwor_forest_w",0);
-    zone.add(portal);
     zone.addPortal(portal);
     }
   }

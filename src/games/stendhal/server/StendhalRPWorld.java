@@ -149,6 +149,7 @@ public class StendhalRPWorld extends RPWorld
     addArea("0_nalwor_city");
 
     addArea("0_orril_river_s");
+      addArea("int_orril_jynath_house");
     addArea("0_orril_river_se");
     addArea("0_nalwor_river_sw");
     addArea("0_nalwor_river_s");
@@ -186,6 +187,8 @@ public class StendhalRPWorld extends RPWorld
     populateZone("Afterlife");
     populateZone("Jail");
     populateZone("Semos");
+    populateZone("Nalwor");
+    populateZone("Orril");
 
     /** After all the zones has been loaded, check how many portals are unpaired */
     for(IRPZone zone: this)
@@ -301,7 +304,6 @@ public class StendhalRPWorld extends RPWorld
     
     door.setDestination(name,0);
     zone.assignRPObjectID(door);
-    zone.add(door);
     zone.addPortal(door);
     
     StendhalRPZone house=addArea(name,"int_house_000");
@@ -311,7 +313,6 @@ public class StendhalRPWorld extends RPWorld
     portal.sety(1);
     portal.setNumber(0);
     house.assignRPObjectID(portal);
-    house.add(portal);
     house.addPortal(portal);    
     }
 

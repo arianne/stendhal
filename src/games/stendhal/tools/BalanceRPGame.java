@@ -173,26 +173,26 @@ public class BalanceRPGame
           if(level==creature.getLevel())
             {
             int proposedXPValue=20*(int)((creature.getLevel()+1)*((meanTurns/ROUNDS)/2.0));
-//            System.out.println ("Proposed XP: "+proposedXPValue+"\t Actual XP: "+creature.getXP());
+            System.out.println ("Proposed XP: "+proposedXPValue+"\t Actual XP: "+creature.getXP());
             creature.setLevel(creature.getLevel(),proposedXPValue);
             }          
             
           meanTurns=(int)(meanTurns/ROUNDS);
           int meanLeftHP=(int)(leftHP/ROUNDS);
           
-//          System.out.print("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(ROUNDS*meanLeftHP/(1.0* player.getBaseHP())));
+          System.out.print("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(ROUNDS*meanLeftHP/(1.0* player.getBaseHP())));
           
           if(isCorrectResult(level-creature.getLevel(),meanTurns, meanLeftHP/(1.0* player.getBaseHP())))
             {
-//            System.out.println ("\tOK");
+            System.out.println ("\tOK");
             balanced=true;
             }
           else
             {
-//            System.out.println ("\tFAIL");
+            System.out.println ("\tFAIL");
             level=minlevel;
             balance(target, level-creature.getLevel(), meanTurns, meanLeftHP);
-//            System.out.println ("New ATK: "+target.getATK()+"/DEF: "+target.getDEF()+"/HP: "+target.getBaseHP());
+            System.out.println ("New ATK: "+target.getATK()+"/DEF: "+target.getDEF()+"/HP: "+target.getBaseHP());
             }
           }
         }

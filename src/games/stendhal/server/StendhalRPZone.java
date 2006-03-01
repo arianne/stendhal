@@ -146,6 +146,7 @@ public class StendhalRPZone extends MarauroaRPZone
   
   public void addPortal(Portal portal)
     {
+    add(portal);
     portals.add(portal);
     }
   
@@ -169,6 +170,7 @@ public class StendhalRPZone extends MarauroaRPZone
 
   public void addNPC(NPC npc)
     {
+    add(npc);
     npcs.add(npc);
     }
 
@@ -463,7 +465,6 @@ public class StendhalRPZone extends MarauroaRPZone
           portal.setx(x);
           portal.sety(y);
           assignPortalID(portal);
-          add(portal);
           addPortal(portal);
 
           boolean assigned=false;

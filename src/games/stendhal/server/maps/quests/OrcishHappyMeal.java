@@ -105,7 +105,6 @@ public class OrcishHappyMeal implements IQuest
     npc.sety(12);
     npc.setBaseHP(1000);
     npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    rules.addNPC(npc);
+    zone.addNPC(npc);
     }  
   }

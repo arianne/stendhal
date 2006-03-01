@@ -146,6 +146,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       
       Entity.setRPContext(this, this.world);
 
+      /* Initialize quests*/ 
+      StendhalQuestSystem quests=new StendhalQuestSystem(this.world,this);    
+      
       for(IRPZone zone: world)
         {
         StendhalRPZone szone=(StendhalRPZone)zone;
@@ -154,18 +157,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
         foodItems.addAll(szone.getFoodItemList());
         }
 
-      /* Initialize quests*/ 
-      StendhalQuestSystem quests=new StendhalQuestSystem(this.world,this);    
-      
-      /* Run python script */
-      PythonInterpreter interpreter=new PythonInterpreter();
-      interpreter.execfile("data/script/stendhal.py");
-      
-      PyInstance object=(PyInstance)interpreter.eval("Configuration()");
-      StendhalPythonConfig config=(StendhalPythonConfig)object.__tojava__(StendhalPythonConfig.class);
-      
-      config.setContext(this,this.world);
-      config.init();
+//      /* Run python script */
+//      PythonInterpreter interpreter=new PythonInterpreter();
+//      interpreter.execfile("data/script/stendhal.py");
+//      
+//      PyInstance object=(PyInstance)interpreter.eval("Configuration()");
+//      StendhalPythonConfig config=(StendhalPythonConfig)object.__tojava__(StendhalPythonConfig.class);
+//      
+//      config.setContext(this,this.world);
+//      config.init();
       }
     catch(Exception e)
       {

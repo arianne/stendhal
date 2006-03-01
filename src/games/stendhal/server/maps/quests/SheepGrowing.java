@@ -116,8 +116,7 @@ public class SheepGrowing implements IQuest
     npc.sety(44);
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    rules.addNPC(npc);
+    zone.addNPC(npc);    
 
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_city"));
@@ -204,7 +203,6 @@ public class SheepGrowing implements IQuest
     npc.sety(44);
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
-    zone.add(npc);    
-    rules.addNPC(npc);
+    zone.addNPC(npc);    
     }
   }

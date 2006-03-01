@@ -187,9 +187,9 @@ public class StendhalRPAction
       
       Item weaponItem=source.getWeapon();
 
-      if(source.nextto(target,1) || weaponItem.isOfClass("ranged"))
+      if(source.nextto(target,1) || (weaponItem!=null && weaponItem.isOfClass("ranged")))
         {
-        if(weaponItem.isOfClass("ranged"))
+        if(weaponItem!=null && weaponItem.isOfClass("ranged"))
           {
           // Check Line of View to see if there is any obstacle.
           Vector<Point> points=Line.renderLine(source.getx(),source.gety(),target.getx(),target.gety());

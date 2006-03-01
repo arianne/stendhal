@@ -16,7 +16,6 @@ public class Afterlife implements IContent
     portal.sety(6);
     portal.setNumber(0);
     portal.setDestination("0_semos_city",60);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -25,7 +24,6 @@ public class Afterlife implements IContent
     portal.sety(6);
     portal.setNumber(0);
     portal.setDestination("0_semos_city",60);
-    zone.add(portal);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -34,7 +32,6 @@ public class Afterlife implements IContent
     portal.sety(6);
     portal.setNumber(0);
     portal.setDestination("0_semos_city",60);
-    zone.add(portal);
     zone.addPortal(portal);
     
     Sign sign=new Sign();
@@ -50,6 +47,5 @@ public class Afterlife implements IContent
     sign.sety(22);
     sign.setText("I regret to tell you that you have died!|You have lost some of your items and 10% of your eXPerience points.|Be more careful next time. On the up side you can now return to city.");    
     zone.add(sign);
-
     }
   }

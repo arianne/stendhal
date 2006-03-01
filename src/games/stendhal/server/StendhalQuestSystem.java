@@ -19,6 +19,7 @@ public class StendhalQuestSystem
     
     loadQuest("SheepGrowing");
     loadQuest("OrcishHappyMeal");   
+    loadQuest("LookBookforCeryl");
     }
   
   public static void main(String[] args)
@@ -30,7 +31,7 @@ public class StendhalQuestSystem
     {
     try
       {
-      Class entityClass=Class.forName("games.stendhal.server.quests."+name);
+      Class entityClass=Class.forName("games.stendhal.server.maps.quests."+name);
       
       boolean implementsIQuest=false;
       

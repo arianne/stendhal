@@ -31,7 +31,27 @@ public class Orril implements IContent
     this.npcs=NPCList.get();
     this.world=world;
     
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_s"));
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_river_s"));
+    Portal portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(39);
+    portal.sety(5);
+    portal.setNumber(0);
+    portal.setDestination("int_orril_jynath_house",0);
+    zone.addPortal(portal);
+    
+    buildJynathHouseArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_orril_jynath_house")));
+    }
+
+  private void buildJynathHouseArea(StendhalRPZone zone)
+    {
+    Portal portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(16);
+    portal.sety(30);
+    portal.setNumber(0);
+    portal.setDestination("0_orril_river_s",0);
+    zone.addPortal(portal);
 
     SpeakerNPC npc=npcs.add("Jynath",new SpeakerNPC()
       {
@@ -69,7 +89,6 @@ public class Orril implements IContent
     npc.setOutfit("0");
     npc.set(9,20);
     npc.initHP(100);
-    zone.add(npc);    
     zone.addNPC(npc);
     }
   }
