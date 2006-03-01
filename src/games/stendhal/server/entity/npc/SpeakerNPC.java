@@ -262,7 +262,7 @@ public abstract class SpeakerNPC extends NPC
     public boolean contains(int state, String text)
       {
       text=text.toLowerCase();
-      if(state==this.state && text.startsWith(trigger))
+      if(state==this.state && text.contains(trigger))
         {
         return true;
         }
@@ -453,7 +453,7 @@ public abstract class SpeakerNPC extends NPC
       }
 
     // Couldn't match the text with the current FSM state
-    logger.debug("Couldn't match any state");
+    logger.debug("Couldn't match any state: "+actualState+":"+text);
     return false;
     }
   

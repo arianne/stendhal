@@ -61,7 +61,7 @@ public class Semos implements IContent
     portal.setx(8);
     portal.sety(1);
     portal.setNumber(0);
-    portal.setDestination("0_semos_city",4);
+    portal.setDestination("0_semos_city",3);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -69,7 +69,7 @@ public class Semos implements IContent
     portal.setx(21);
     portal.sety(1);
     portal.setNumber(1);
-    portal.setDestination("0_semos_city",3);
+    portal.setDestination("0_semos_city",4);
     zone.addPortal(portal);
 
     NPC npc=npcs.add("Ceryl",new SpeakerNPC()

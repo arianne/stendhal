@@ -87,7 +87,7 @@ public class Orril implements IContent
     
     zone.assignRPObjectID(npc);
     npc.setOutfit("0");
-    npc.set(9,20);
+    npc.set(24,6);
     npc.initHP(100);
     zone.addNPC(npc);
     }

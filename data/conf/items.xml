@@ -784,6 +784,44 @@ in the file.
 		</equipable>
 	</item>
 
+<!-- Containers -->
+
+	<item name="flask">
+		<type class="container" subclass="bottle"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="bottle">
+		<type class="container" subclass="bottle"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="big_bottle">
+		<type class="container" subclass="bottle"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 <!-- Misc_section -->
 
@@ -807,6 +845,14 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="arandula">
+		<type class="misc" subclass="herbs"/>
+		<stackable/>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 
 <!--
 Hehe, we must have some special GM item after all :P

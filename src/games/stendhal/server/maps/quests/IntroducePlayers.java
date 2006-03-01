@@ -43,7 +43,7 @@ public class IntroducePlayers implements IQuest
   
   private void step_1()
     {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_library"));
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_city"));
 
     SpeakerNPC npc=npcs.get("Tad");
     
@@ -103,7 +103,7 @@ public class IntroducePlayers implements IQuest
   
   private void step_3()
     {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_orril_jynath_house"));
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_city"));
 
     SpeakerNPC npc=npcs.get("Tad");    
     
@@ -141,7 +141,7 @@ public class IntroducePlayers implements IQuest
   
   private void step_4()
     {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_orril_jynath_house"));
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_temple"));
 
     SpeakerNPC npc=npcs.get("Ilisa");    
     
@@ -175,13 +175,13 @@ public class IntroducePlayers implements IQuest
       }); 
 
     npc.add(1,"corpse",null,1,"There are tons of rats around Semos. They are a plague.",null);
-    npc.add(1,"herbs",null,1,"There are plains where grows at north of Semos a herb called arandula.",null);
+    npc.add(1,"herbs",null,1,"At north of Semos grows near trees a herb called arandula.",null);
     npc.add(1,"tad",null,1,"He need a very powerful potion to heal himself. He offers a good reward to anyone how help him.",null);
     }
 
   private void step_5()
     {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_orril_jynath_house"));
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_temple"));
 
     SpeakerNPC npc=npcs.get("Ilisa");    
     
@@ -218,7 +218,7 @@ public class IntroducePlayers implements IQuest
 
   private void step_6()
     {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_library"));
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_city"));
 
     SpeakerNPC npc=npcs.get("Tad");
 

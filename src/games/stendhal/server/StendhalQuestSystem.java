@@ -20,6 +20,7 @@ public class StendhalQuestSystem
     loadQuest("SheepGrowing");
     loadQuest("OrcishHappyMeal");   
     loadQuest("LookBookforCeryl");
+    loadQuest("IntroducePlayers");
     }
   
   public static void main(String[] args)
