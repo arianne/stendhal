@@ -848,6 +848,9 @@ in the file.
 	<item name="arandula">
 		<type class="misc" subclass="arandula"/>
 		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>

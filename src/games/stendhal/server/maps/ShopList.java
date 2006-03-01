@@ -24,6 +24,28 @@ public class ShopList
     shops.add("healing","minor_potion",100);
     shops.add("healing","potion",250);
     shops.add("healing","greater_potion",500);
+
+    shops.add("sellstuff","knife",15);
+    shops.add("sellstuff","small_axe",15);
+    shops.add("sellstuff","club",10);
+    shops.add("sellstuff","dagger",25);
+    shops.add("sellstuff","wooden_shield",25);
+    shops.add("sellstuff","dress",25);
+    shops.add("sellstuff","leather_helmet",25);
+    shops.add("sellstuff","leather_legs",35);
+
+    shops.add("sellrangedstuff","wooden_bow",300);
+    shops.add("sellrangedstuff","wooden_arrow",2);
+
+    shops.add("buystuff","short_sword",15);
+    shops.add("buystuff","sword",60);
+    shops.add("buystuff","studded_shield",20);
+    shops.add("buystuff","studded_armor",22);
+    shops.add("buystuff","studded_helmet",17);
+    shops.add("buystuff","studded_legs",20);
+    shops.add("buystuff","chain_armor",29);
+    shops.add("buystuff","chain_helmet",25);
+    shops.add("buystuff","chain_legs",27);
     }
   
   static private ShopList instance;
