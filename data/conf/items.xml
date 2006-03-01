@@ -846,7 +846,7 @@ in the file.
 	</item>
 
 	<item name="arandula">
-		<type class="misc" subclass="herbs"/>
+		<type class="misc" subclass="arandula"/>
 		<stackable/>
 		<weight value="0.01"/>
 		<equipable>
