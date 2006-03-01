@@ -66,6 +66,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
   private List<Corpse> corpses;
   private List<Corpse> corpsesToRemove;
   
+  private StendhalScriptSystem scripts;
+  
   public static void register(String action, ActionListener actionClass)
     {
     if(actionsMap.get(action)!=null)
@@ -109,6 +111,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     corpses=new LinkedList<Corpse>();
     corpsesToRemove=new LinkedList<Corpse>();
+    
+    scripts=StendhalScriptSystem.get();
     
     registerActions();    
     }
@@ -437,6 +441,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       for(SheepFood food: foodItems) food.regrow();
       for(RespawnPoint point: respawnPoints) point.nextTurn();
       for(Corpse corpse: corpses) corpse.logic();
+      
+      scripts.logic();
       }
     catch(Exception e)
       {

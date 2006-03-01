@@ -11,6 +11,8 @@ import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.scripting.ScriptAction;
+import games.stendhal.server.scripting.ScriptCondition;
 
 import java.util.*;
 
@@ -223,7 +225,7 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Tad");
 
-    npc.add(1,"hi",new SpeakerNPC.ChatCondition()
+    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -248,13 +250,33 @@ public class IntroducePlayers implements IQuest
     {
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_plains_n"));
     
-    Chest chest=new Chest();
+    chest=new Chest();
     zone.assignRPObjectID(chest);
     chest.set(106,47);
-    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("arandula"));
-    chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("arandula"));
+    chest.add(world.getRuleManager().getEntityManager().getItem("arandula"));
+    chest.add(world.getRuleManager().getEntityManager().getItem("arandula"));
+    chest.add(world.getRuleManager().getEntityManager().getItem("arandula"));
+    chest.add(world.getRuleManager().getEntityManager().getItem("arandula"));
     zone.add(chest);
+    
+    /** Add a script to fill automatically the chest. */
+    StendhalScriptSystem scripts=StendhalScriptSystem.get();
+    scripts.addScript(new ScriptCondition()
+      {
+      public boolean fire()
+        {
+        return chest.size()<1;
+        }
+      },new ScriptAction()
+      {
+      public void fire()
+        {
+        chest.add(world.getRuleManager().getEntityManager().getItem("arandula"));
+        }
+      });
     }
+  
+  public Chest chest;
   
   public IntroducePlayers(StendhalRPWorld w, StendhalRPRuleProcessor rules)
     {

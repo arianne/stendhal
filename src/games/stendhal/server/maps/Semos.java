@@ -1,6 +1,7 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Chest;
@@ -501,6 +502,7 @@ public class Semos implements IContent
     zone.assignRPObjectID(npc);
     npc.setOutfit("0");
     npc.set(9,47);
+    npc.setDirection(Direction.DOWN);
     npc.initHP(100);
     zone.addNPC(npc);
     }

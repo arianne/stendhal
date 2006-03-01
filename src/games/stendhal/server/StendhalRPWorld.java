@@ -127,7 +127,9 @@ public class StendhalRPWorld extends RPWorld
     // Please respect it!
     
     // Ground level
+    addArea("0_semos_mountain_n_w2");
     addArea("0_semos_plains_n");
+    addArea("0_semos_plains_ne");
     
     addArea("0_semos_plains_w");
     addArea("0_semos_village_w");

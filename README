@@ -62,7 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.45 Feb XX, 2006
+0.45 Mar 1, 2006
 - Fixed ambient sounds.
 - Fixed sheep quest.
 - Fixed sheep inmortality bug.
@@ -75,6 +75,11 @@ Changelog
 - Added sword beam to show attack.
 - Added Python initialization script to ease modification of Server.
 - Added Quest system.
+- Added a very basic scripts system.
+- Added ranged combat.
+- Added new monsters ( around 30 new monsters ).
+- Added new zones ( in this release 3 new zones, but really around 20 more ).
+
 
 0.44 Jan 29, 2006
 - Fixed a null pointer bug at creature logic.
