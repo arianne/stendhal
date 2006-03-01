@@ -42,11 +42,13 @@ public class GameObjects implements Iterable<Entity>
     {
     register("player",null,Player.class);
     
+    register("creature","beholder",NormalCreature.class);
     register("creature","orc",NormalCreature.class);
     register("creature","troll",NormalCreature.class);
     register("creature","gargoyle",NormalCreature.class);
     register("creature","goblin",NormalCreature.class);
     register("creature","giant",NormalCreature.class);
+    register("creature","gnome",NormalCreature.class);
     register("creature","kobold",NormalCreature.class);
     register("creature","animal",NormalCreature.class);
     register("creature","small_animal",SmallCreature.class);

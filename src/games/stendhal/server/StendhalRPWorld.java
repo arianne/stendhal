@@ -186,6 +186,7 @@ public class StendhalRPWorld extends RPWorld
     // Interiors
     addArea("int_afterlife");
     addArea("int_admin_jail");
+    addArea("int_admin_playground");
     
     
     populateZone("Afterlife");
