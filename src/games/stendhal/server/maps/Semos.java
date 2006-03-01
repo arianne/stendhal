@@ -133,7 +133,7 @@ public class Semos implements IContent
     zone.addPortal(portal);
 
 
-    npc=npcs.add("Ilisa",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add("Ilisa",new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -145,16 +145,10 @@ public class Semos implements IContent
 
       protected void createDialog()
         {
-        Map<String,Integer> sellitems=new HashMap<String,Integer>();
-        sellitems.put("antidote",50);
-        sellitems.put("minor_potion",100);
-        sellitems.put("potion",250);
-        sellitems.put("greater_potion",500);
-
         Behaviours.addGreeting(this);
         Behaviours.addJob(this, "I have healing abilities and I heal wounded players. I also sell potions and antidotes.");
-        Behaviours.addHelp(this, "Ask me to heal you and I will help you or ask me offer and I will show my shop's stuff.");
-        Behaviours.addSeller(this,new Behaviours.SellerBehaviour(sellitems));
+        Behaviours.addHelp(this, "Ask me to #heal you and I will help you or ask me #offer and I will show my shop's stuff.");
+        Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops.get("healing")));
         Behaviours.addHealer(this, 0);
         Behaviours.addGoodbye(this);
         }
@@ -162,13 +156,9 @@ public class Semos implements IContent
       
     zone.assignRPObjectID(npc);
     npc.put("class","welcomernpc");
-    npc.setName("Carmen");
-    npc.setx(5);
-    npc.sety(45);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
-    zone.addNPC(npc);
-    
+    npc.set(9,5);
+    npc.initHP(100);
+    zone.addNPC(npc);    
     }
 
   private void buildSemosTavernArea(StendhalRPZone zone)
@@ -204,12 +194,9 @@ public class Semos implements IContent
         {        
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"I am the bar maid for this fair tavern. We sell fine beers and food.");
-        Behaviours.addHelp(this,"At the tavern you can get drinks and take a break to meet new people!.");
+        Behaviours.addHelp(this,"At the tavern you can get a #offer of drinks and take a break to meet new people!.");
         Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops.get("food&drinks")));
         Behaviours.addGoodbye(this);
-        
-        add(1,"beer", null,1,"Beer! Excellent choice! Coming right up!",null);
-        add(1,"food", null,1,"Sure thing, a big strong adventurer like you will need lots of food!",null);
         }
       });
     

@@ -19,6 +19,11 @@ public class ShopList
     shops.add("food&drinks","carrot",10);
     shops.add("food&drinks","meat",40);
     shops.add("food&drinks","ham",80);
+
+    shops.add("healing","antidote",50);
+    shops.add("healing","minor_potion",100);
+    shops.add("healing","potion",250);
+    shops.add("healing","greater_potion",500);
     }
   
   static private ShopList instance;
