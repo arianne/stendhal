@@ -26,10 +26,12 @@ public class Semos implements IContent
   {
   private StendhalRPWorld world;
   private NPCList npcs;
+  private ShopList shops;
   
   public Semos(StendhalRPWorld world) throws org.xml.sax.SAXException, java.io.IOException
     {
     this.npcs=NPCList.get();
+    this.shops=ShopList.get();
     this.world=world;
     
     buildSemosCityArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_city")));
@@ -129,6 +131,44 @@ public class Semos implements IContent
     portal.setNumber(3);
     portal.setDestination("0_semos_city",1);
     zone.addPortal(portal);
+
+
+    npc=npcs.add("Ilisa",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(9,5));
+        nodes.add(new Path.Node(14,5));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+        Map<String,Integer> sellitems=new HashMap<String,Integer>();
+        sellitems.put("antidote",50);
+        sellitems.put("minor_potion",100);
+        sellitems.put("potion",250);
+        sellitems.put("greater_potion",500);
+
+        Behaviours.addGreeting(this);
+        Behaviours.addJob(this, "I have healing abilities and I heal wounded players. I also sell potions and antidotes.");
+        Behaviours.addHelp(this, "Ask me to heal you and I will help you or ask me offer and I will show my shop's stuff.");
+        Behaviours.addSeller(this,new Behaviours.SellerBehaviour(sellitems));
+        Behaviours.addHealer(this, 0);
+        Behaviours.addGoodbye(this);
+        }
+      });
+      
+    zone.assignRPObjectID(npc);
+    npc.put("class","welcomernpc");
+    npc.setName("Carmen");
+    npc.setx(5);
+    npc.sety(45);
+    npc.setBaseHP(100);
+    npc.setHP(npc.getBaseHP());
+    zone.addNPC(npc);
+    
     }
 
   private void buildSemosTavernArea(StendhalRPZone zone)
@@ -141,7 +181,7 @@ public class Semos implements IContent
     portal.setDestination("0_semos_city",0);
     zone.addPortal(portal);
 
-    NPC npc=new SpeakerNPC()
+    NPC npc=npcs.add("Margaret",new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -165,20 +205,18 @@ public class Semos implements IContent
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"I am the bar maid for this fair tavern. We sell fine beers and food.");
         Behaviours.addHelp(this,"At the tavern you can get drinks and take a break to meet new people!.");
+        Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops.get("food&drinks")));
         Behaviours.addGoodbye(this);
         
         add(1,"beer", null,1,"Beer! Excellent choice! Coming right up!",null);
         add(1,"food", null,1,"Sure thing, a big strong adventurer like you will need lots of food!",null);
         }
-      };
+      });
     
     zone.assignRPObjectID(npc);
-    npc.setName("Margaret");
     npc.put("class","tavernbarmaidnpc");
-    npc.setx(17);
-    npc.sety(12);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
+    npc.set(17,12);
+    npc.initHP(100);
     zone.addNPC(npc);
 
 
@@ -456,6 +494,27 @@ public class Semos implements IContent
     npc.sety(45);
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
+    zone.addNPC(npc);
+    
+    npc=npcs.add("Tad",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        setPath(nodes,false);
+        }
+
+      protected void createDialog()
+        {
+        Behaviours.addGreeting(this,"Ssshh! I have a #task for you.");
+        Behaviours.addGoodbye(this);
+        }
+      });
+      
+    zone.assignRPObjectID(npc);
+    npc.setOutfit("0");
+    npc.set(9,47);
+    npc.initHP(100);
     zone.addNPC(npc);
     }
   }

@@ -974,5 +974,4 @@ public abstract class RPEntity extends Entity
       }
     return false;
     }
-  
   }

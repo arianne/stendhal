@@ -4,6 +4,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
@@ -26,7 +27,8 @@ import marauroa.common.game.IRPZone;
  * - Return the book to Ceryl
  *
  * REWARD: 
- * -
+ * - 100 XP
+ * - 50 gold coins
  *
  * REPETITIONS:
  * - As much as wanted.
@@ -41,6 +43,8 @@ public class LookBookforCeryl implements IQuest
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_library"));
 
     SpeakerNPC npc=npcs.get("Ceryl");
+    
+    Behaviours.addQuest(npc,"I am looking for a very special #book");
     
     /** In case Quest is completed */
     npc.add(1,"book",new SpeakerNPC.ChatCondition()
@@ -85,6 +89,8 @@ public class LookBookforCeryl implements IQuest
         }
       },
         1,"I really need that #book now!. Go to talk with #Jynath.",null);
+
+    npc.add(1,"jynath",null,1,"Jynath is a witch that lives at south of Or'ril castle. So will you get me the #book?",null);
     }
   
   private void step_2()
@@ -158,7 +164,11 @@ public class LookBookforCeryl implements IQuest
         if(item!=null)
           {
           engine.say("Thanks!");
+          StackableItem money=(StackableItem)world.getRuleManager().getEntityManager().getItem("money");            
+
+          money.setQuantity(50);
           player.addXP(100);
+
           world.modify(player);
 
           player.setQuest("ceryl_book","done");

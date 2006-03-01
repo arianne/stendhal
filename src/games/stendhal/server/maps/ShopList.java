@@ -7,6 +7,20 @@ import java.util.LinkedHashMap;
 
 public class ShopList 
   {
+  static
+    {
+    ShopList shops=get();
+    
+    shops.add("food&drinks","beer",10);
+    shops.add("food&drinks","wine",15);
+    shops.add("food&drinks","flask",5);
+    shops.add("food&drinks","cheese",20);
+    shops.add("food&drinks","apple",10);
+    shops.add("food&drinks","carrot",10);
+    shops.add("food&drinks","meat",40);
+    shops.add("food&drinks","ham",80);
+    }
+  
   static private ShopList instance;
   
   static public ShopList get()

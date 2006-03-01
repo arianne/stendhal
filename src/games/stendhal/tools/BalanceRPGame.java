@@ -181,15 +181,14 @@ public class BalanceRPGame
           int meanLeftHP=(int)(leftHP/ROUNDS);
           
           System.out.print("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(ROUNDS*meanLeftHP/(1.0* player.getBaseHP())));
+          System.out.print("\t");
           
           if(isCorrectResult(level-creature.getLevel(),meanTurns, meanLeftHP/(1.0* player.getBaseHP())))
             {
-            System.out.println ("\tOK");
             balanced=true;
             }
           else
             {
-            System.out.println ("\tFAIL");
             level=minlevel;
             balance(target, level-creature.getLevel(), meanTurns, meanLeftHP);
             System.out.println ("New ATK: "+target.getATK()+"/DEF: "+target.getDEF()+"/HP: "+target.getBaseHP());
@@ -208,48 +207,40 @@ public class BalanceRPGame
     {
     if(levelDiff>0 && meanTurns>100)
       {
+      System.out.println ("FAILED beacause takes too much time to kill");
       return false;
       }
 
     if(levelDiff==0 && meanTurns>50)
       {
+      System.out.println ("FAILED beacause takes too much time to kill");
       return false;
       }
       
     if(levelDiff==0 && meanLeftHP>0.75)
       {
+      System.out.println ("CORRECT");
       return true;
       }
     
     if(levelDiff<0 && meanLeftHP>0.75)
       {
+      System.out.println ("FAILED beacause takes makes LITTLE damage to player at same level");
       return false;
       }    
     
     if(levelDiff>0 && meanLeftHP<0.75)
       {
+      System.out.println ("FAILED beacause takes makes MUCH damage to player at same level");
       return false;
       }    
     
+    System.out.println ("CORRECT: No reason");
     return true;
     }
   
   static private void balance(Creature target, int levelDiff, int meanTurns, double meanLeftHP)
     {
-    if(meanTurns>100)
-      {
-      target.setATK(target.getATK()+5);
-      target.setDEF(target.getDEF()-5);
-      return;
-      }
-
-    if(levelDiff==0 && meanTurns>40)
-      {
-      target.setATK(target.getATK()+1);
-      target.setDEF(target.getDEF()-1);
-      return;
-      }
-      
     if(meanLeftHP<0.8)
       {
       switch(Rand.roll1D6())
@@ -286,6 +277,21 @@ public class BalanceRPGame
           break;
         }
       }
+
+    if(meanTurns>100)
+      {
+      target.setATK(target.getATK()+5);
+      target.setDEF(target.getDEF()-5);
+      return;
+      }
+
+    if(levelDiff==0 && meanTurns>40)
+      {
+      target.setATK(target.getATK()+1);
+      target.setDEF(target.getDEF()-1);
+      return;
+      }
+      
     }
 
   
