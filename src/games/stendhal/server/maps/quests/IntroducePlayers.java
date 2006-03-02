@@ -178,8 +178,8 @@ public class IntroducePlayers implements IQuest
       }); 
 
     npc.add(1,"corpse",null,1,"There are tons of rats around Semos. They are a plague.",null);
-    npc.add(1,"herbs",null,1,"At north of Semos grows near trees a herb called arandula.",null);
-    npc.add(1,"tad",null,1,"He need a very powerful potion to heal himself. He offers a good reward to anyone how help him.",null);
+    npc.add(1,"herbs",null,1,"North of Semos near the tree grove, grows a herb called arandula.",null);
+    npc.add(1,"tad",null,1,"He need a very powerful potion to heal himself. He offers a good reward to anyone who helps him.",null);
     }
 
   private void step_5()
@@ -236,7 +236,7 @@ public class IntroducePlayers implements IQuest
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
-        engine.say("Thanks! I will go to talk with Ilisa as soon as possible.");
+        engine.say("Thanks! I will go talk with Ilisa as soon as possible.");
         player.addXP(100);
         world.modify(player);
 

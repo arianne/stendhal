@@ -529,7 +529,6 @@ in the file.
 		</equipable>
 	</item>
 
-<!--	
 	<item name="studded_boots">
 		<type class="boots" subclass="studded_boots"/>
 		<attributes>
@@ -553,7 +552,6 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
--->
 
 <!-- Food_section -->
 
