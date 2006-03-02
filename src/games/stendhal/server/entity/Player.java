@@ -56,8 +56,8 @@ public class Player extends RPEntity
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
 
-      player.add("poisoned",RPClass.BYTE,RPClass.VOLATILE);
-      player.add("eating",RPClass.BYTE,RPClass.VOLATILE);
+      player.add("poisoned",RPClass.INT,RPClass.VOLATILE);
+      player.add("eating",RPClass.INT,RPClass.VOLATILE);
       
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
 
