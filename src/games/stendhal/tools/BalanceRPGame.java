@@ -232,8 +232,25 @@ public class BalanceRPGame
             }
           }
         }
+      
+      boolean changed=false;
+      
+      if(creature.getATK()!=target.getATK())
+        {
+        changed=true;
+        }
 
-      System.out.println ("BALANCED: "+creature.getCreatureName()+"("+creature.getLevel()+")\t\tATK: "+target.getATK()+"\t\tDEF: "+target.getDEF()+"\t\tHP: "+target.getBaseHP()+"\t\tXP: "+creature.getXP());
+      if(creature.getDEF()!=target.getDEF())
+        {
+        changed=true;
+        }
+
+      if(creature.getHP()!=target.getBaseHP())
+        {
+        changed=true;
+        }
+
+      System.out.println ("BALANCED: "+creature.getCreatureName()+"("+creature.getLevel()+")\t"+(changed?"*\t":" \t")+"ATK: "+target.getATK()+"\t\tDEF: "+target.getDEF()+"\t\tHP: "+target.getBaseHP()+"\t\tXP: "+creature.getXP());
       st.append("BALANCED: "+creature.getCreatureName()+"("+creature.getLevel()+")\tATK: "+target.getATK()+"\tDEF: "+target.getDEF()+"\tHP: "+target.getBaseHP()+"\tXP: "+creature.getXP()+"\n");
       }
 
