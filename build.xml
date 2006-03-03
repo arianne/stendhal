@@ -68,7 +68,6 @@
   <target name="server_build" depends="init" description="Build JAR file for Stendhal server">
     <property name="server_jarname" value="stendhal-server-${version}.jar"/>
 	<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
-	<property name="quests_jarname" value="stendhal-quests-${version}.jar"/>
 	<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
  
     <property name="build_server" value="build_server/"/>
@@ -87,7 +86,7 @@
 
     <jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">    
       <manifest>
-        <attribute name="Class-path" value="${maps_jarname} ${quests_jarname} ${xmlconf_jarname} log4j.jar"/>
+        <attribute name="Class-path" value="${maps_jarname} ${xmlconf_jarname} log4j.jar"/>
       </manifest>
     </jar>
 
@@ -95,7 +94,8 @@
   	<mkdir dir="${build_server_maps}/"/>
   	
     <javac srcdir="${src}/games/stendhal/server/maps/" destdir="${build_server_maps}" debug="true" debuglevel="source,lines"
-           includes="*.java">
+           includes="**/*.java"
+           excludes="games/stendhal/server/maps/quests/**">
       <classpath>
         <pathelement path="${build_server}"/>
         <pathelement path="${marauroa_jar}"/>
@@ -108,20 +108,6 @@
     </copy>
 
     <jar jarfile="${lib}/${maps_jarname}" basedir="${build_server_maps}"/>    
-
-    <property name="build_server_quests" value="build_server_quests/"/>
-  	<mkdir dir="${build_server_quests}/"/>
-  	
-    <javac srcdir="${src}/games/stendhal/server/maps/quests/" destdir="${build_server_quests}" debug="true" debuglevel="source,lines"
-           includes="games/stendhal/server/maps/**">
-      <classpath>
-        <pathelement path="${build_server}"/>
-        <pathelement path="${marauroa_jar}"/>
-        <pathelement path="${log4j_jar}"/>
-      </classpath>    
-    </javac>
-    
-    <jar jarfile="${lib}/${quests_jarname}" basedir="${build_server_quests}"/>    
 
     <property name="build_server_xmlconf" value="build_server_xmlconf/"/>
   	<mkdir dir="${build_server_xmlconf}/"/>

@@ -158,12 +158,15 @@ public class Player extends RPEntity
     if(!object.has("release"))
       {
       object.put("release","0.00");
+      object.put("atk","10");
+      object.put("def","10");
       }
     
 
     Player player=new Player(object);
     player.stop();
     player.stopAttack();
+    
     
     boolean firstVisit=false;
     
