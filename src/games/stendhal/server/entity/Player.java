@@ -13,6 +13,7 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.Debug;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
@@ -56,18 +57,18 @@ public class Player extends RPEntity
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("sheep",RPClass.INT);
 
-      player.add("poisoned",RPClass.INT,RPClass.VOLATILE);
-      player.add("eating",RPClass.INT,RPClass.VOLATILE);
+      player.add("poisoned",RPClass.SHORT,RPClass.VOLATILE);
+      player.add("eating",RPClass.SHORT,RPClass.VOLATILE);
       
       player.add("dead",RPClass.FLAG,RPClass.PRIVATE);
 
       player.add("outfit",RPClass.INT);
-      
-      player.add("reset",RPClass.FLAG,(byte)(RPClass.PRIVATE|RPClass.VOLATILE)); // The reset attribute is used to reset player position on next login
 
       // Use this for admin menus and usage.
       player.add("admin",RPClass.FLAG);
       player.add("invisible",RPClass.FLAG,RPClass.HIDDEN);
+
+      player.add("release",RPClass.STRING,RPClass.HIDDEN);
 
       // Store sheep at DB
       player.addRPSlot("#flock",1,RPClass.HIDDEN);
@@ -152,6 +153,12 @@ public class Player extends RPEntity
       {
       object.remove("devel");
       }
+      
+    // From 0.44 to 0.50
+    if(!object.has("release"))
+      {
+      object.put("release","0.00");
+      }
     
 
     Player player=new Player(object);
@@ -162,7 +169,8 @@ public class Player extends RPEntity
     
     try
       {
-      if(!object.has("zoneid")|| !object.has("x") || !object.has("y") || object.has("reset"))
+      boolean newReleaseHappened=object.get("release").equals(Debug.VERSION);
+      if(!object.has("zoneid")|| !object.has("x") || !object.has("y") || newReleaseHappened)
         {
         firstVisit=true;
         }

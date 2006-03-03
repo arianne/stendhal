@@ -6,7 +6,7 @@
   	<mkdir dir="${lib}"/>
   	 
   	<!-- We update the version number -->
-    <replaceregexp file="${src}/games/stendhal/client/stendhal.java"
+    <replaceregexp file="${src}/games/stendhal/common/Debug.java"
                    match="public static final String VERSION=&quot;.*&quot;;"
                    replace="public static final String VERSION=&quot;${version}&quot;;"
                    byline="true"/>  

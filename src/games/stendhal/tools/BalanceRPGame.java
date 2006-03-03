@@ -24,7 +24,7 @@ public class BalanceRPGame
       }
     }
   
-  private static int ROUNDS=100;
+  private static int ROUNDS=250;
   
   public static Pair<Integer, Integer> combat(Player player, Creature target, int rounds)
     {

@@ -19,6 +19,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
 
+
+import java.io.*;
+import java.net.*;
+
 import javax.swing.*;
 
 
@@ -85,6 +89,29 @@ public class StendhalFirstScreen extends JFrame {
         loginButton.setToolTipText("Press this button to Login to a Stendhal server");
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                try
+                  {                  
+                  URL url = new URL("http://stendhal.game-server.cc/stendhal.version");
+                  HttpURLConnection.setFollowRedirects(false);
+                  HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                      
+                  BufferedReader br=new BufferedReader(new InputStreamReader( connection.getInputStream()));
+                  
+                  String version=br.readLine();
+                  
+                  if(!version.equals(stendhal.VERSION))
+                    {            
+                    //custom title, warning icon
+                    JOptionPane.showMessageDialog(null,
+                        "Your client is out of date. Latest version is "+version+".\nDownload from http://arianne.sourceforge.net",
+                        "Client out of date",
+                        JOptionPane.WARNING_MESSAGE);
+                    }                  
+                  }
+                catch(Exception ex)
+                  {
+                  }
+          
                 new LoginDialog(StendhalFirstScreen.this, client);
             }
             
@@ -97,6 +124,30 @@ public class StendhalFirstScreen extends JFrame {
         createAccountButton.setEnabled(true);
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+                try
+                  {                  
+                  URL url = new URL("http://stendhal.game-server.cc/stendhal.version");
+                  HttpURLConnection.setFollowRedirects(false);
+                  HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                      
+                  BufferedReader br=new BufferedReader(new InputStreamReader( connection.getInputStream()));
+                  
+                  String version=br.readLine();
+                  
+                  if(!version.equals(stendhal.VERSION))
+                    {            
+                    //custom title, warning icon
+                    JOptionPane.showMessageDialog(null,
+                        "Your client is out of date. Latest version is "+version+".\nDownload from http://arianne.sourceforge.net",
+                        "Client out of date",
+                        JOptionPane.WARNING_MESSAGE);
+                    }                  
+                  }
+                catch(Exception ex)
+                  {
+                  }
+          
                 new CreateAccountDialog(StendhalFirstScreen.this, client);
                 //JOptionPane.showMessageDialog(StendhalFirstScreen.this, "To create an account for Stendhal please visit \n http://stendhal.ombres.ambre.net" ,"Create account",JOptionPane.INFORMATION_MESSAGE);
             }
@@ -126,6 +177,8 @@ public class StendhalFirstScreen extends JFrame {
         addComponent(contentPane, loginButton, 220,340,200,32);
         addComponent(contentPane, createAccountButton, 220,380,200,32);
         addComponent(contentPane, exitButton, 220,420,200,32);
+        
+        
         //
         // LoginGUI
         //
@@ -136,6 +189,8 @@ public class StendhalFirstScreen extends JFrame {
         this.setIconImage(new ImageIcon(url).getImage());
         pack();
     }
+
+
     
     /** Add Component Without a Layout Manager (Absolute Positioning) */
     private void addComponent(Container container,Component c,int x,int y,int width,int height) {
