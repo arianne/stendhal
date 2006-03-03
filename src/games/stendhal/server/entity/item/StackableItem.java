@@ -56,6 +56,8 @@ public class StackableItem extends Item implements Stackable
 
   public boolean isStackable(Stackable other)
     {
-    return (other.getClass() == StackableItem.class);
+    StackableItem otheri=(StackableItem)other;
+    
+    return getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass());
     }
   }

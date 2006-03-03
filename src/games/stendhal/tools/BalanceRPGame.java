@@ -24,7 +24,7 @@ public class BalanceRPGame
       }
     }
   
-  private static int ROUNDS=25;
+  private static int ROUNDS=100;
   
   public static Pair<Integer, Integer> combat(Player player, Creature target, int rounds)
     {
@@ -110,8 +110,10 @@ public class BalanceRPGame
     
     int levels=10;
     //                0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
-    int[] atkLevels={10,12,12,13,13,13,14,14,14,14,15,15,15,15,15,16,16,16,16,16,16,16,16,17,17,17,17,17,18,18,18};
-    int[] defLevels={10,12,13,14,15,15,16,16,18,18,18,20,20,21,21,21,22,22,22,23,23,23,23,23,23,24,24,24,24,25,25};
+    int[] atkLevels={10,12,12,13,13,13,14,14,14,14,15,15,15,15,15,16,16,16,16,16,16,16,16,17,17,17,17,17,18,18,18,
+                     19,19,19,19,20,20,20,20,20,20,21,21,21,21,21,21,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23};
+    int[] defLevels={10,12,13,14,15,15,16,16,18,18,18,20,20,21,21,21,22,22,22,23,23,23,23,23,23,24,24,24,24,25,25,
+                     25,25,25,25,26,26,26,26,26,27,27,27,27,27,28,28,28,28,28,28,28,30,30,30,30,30,30,30,30,30,31};
     
     EntityManager em=DefaultEntityManager.getInstance();
     Item weapon=em.getItem("club");
@@ -150,13 +152,19 @@ public class BalanceRPGame
     
     StringBuffer st=new StringBuffer("Creatures done: \n");
     
+    boolean found=false;
+    
     for(DefaultCreature creature: creatures)
       {      
       if(args.length>0)
-        {        
-        if(!args[0].equals(creature.getCreatureName()))
+        {  
+        if(!args[0].equals(creature.getCreatureName()) && !found)
           {
           continue;
+          }
+        else
+          {
+          found=true;
           }
         }
         
@@ -197,7 +205,7 @@ public class BalanceRPGame
             
           //OUTPUT: System.out.println("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(100*meanLeftHP/(1.0* player.getBaseHP())));
           
-          if(isCorrectResult(level-creature.getLevel(),meanTurns, meanLeftHP/(1.0* player.getBaseHP())))
+          if(isCorrectResult(level, level-creature.getLevel(),meanTurns, meanLeftHP/(1.0* player.getBaseHP())))
             {
             balanced=true;
             }
@@ -269,21 +277,20 @@ public class BalanceRPGame
       score=leftHP*100+(turns/30.0);
       }
     
-    if(leftHP<0.1 && turns>30 && level-creatureLevel==0)
+    if(level-creatureLevel==0)
       {
-      score=1000-leftHP*100+(turns/10.0);
-      }
-    if(leftHP<0.7 && turns>30 && level-creatureLevel==0)
-      {
-      score=500-leftHP*100+(turns/10.0);
-      }
-    if(leftHP<0.7 && turns>30 && level-creatureLevel==0)
-      {
-      score=100-leftHP*100+(turns/10.0);
-      }      
-    if(leftHP>=0.7 && level-creatureLevel==0)
-      {
-      score=Math.abs(leftHP*100-80)+Math.abs(turns-30)/5.0;
+      if(leftHP<0.1 && turns>30)
+        {
+        score=1000-leftHP*100+(turns/10.0);
+        }
+      if(leftHP<0.7 && turns>30)
+        {
+        score=500-leftHP*100+(turns/10.0);
+        }
+      if(leftHP>=0.7)
+        {
+        score=Math.abs(leftHP*100-80)+Math.abs(turns-30)/5.0;
+        }
       }
       
     if(level-creatureLevel>0)
@@ -302,42 +309,29 @@ public class BalanceRPGame
     for(int i=0;i<9;i++)
       {
       creatures[i]=new Creature(creature);
-      creatures[i].setATK(creature.getATK()+Rand.roll1D20()-10);
-      creatures[i].setDEF(creature.getDEF()+Rand.roll1D20()-10);
+      creatures[i].setATK(creature.getATK()+Rand.roll1D6()-3);
+      creatures[i].setDEF(creature.getDEF()+Rand.roll1D6()-3);
       creatures[i].setBaseHP(creature.getBaseHP()+Rand.roll1D20()-10);
       }
-    
-//    creatures[0]=new Creature(creature);
-//    creatures[0].setATK(creature.getATK()+1);
-//    creatures[1]=new Creature(creature);
-//    creatures[1].setDEF(creature.getDEF()+1);
-//    creatures[2]=new Creature(creature);
-//    creatures[2].setBaseHP(creature.getBaseHP()+3);
-//    creatures[3]=new Creature(creature);
-//    creatures[3].setATK(creature.getATK()-1);
-//    creatures[4]=new Creature(creature);
-//    creatures[4].setDEF(creature.getDEF()-1);
-//    creatures[5]=new Creature(creature);
-//    creatures[5].setBaseHP(creature.getBaseHP()-3);
-//    
+
     return creatures;
     }
   
-  static private boolean isCorrectResult(int levelDiff,int meanTurns, double meanLeftHP)
+  static private boolean isCorrectResult(int level, int levelDiff,int meanTurns, double meanLeftHP)
     {
-    if(levelDiff>0 && meanTurns>100)
+    if(levelDiff>0 && meanTurns>100+level/10.0)
       {
       //OUTPUT: System.out.println ("FAILED beacause takes too much time to kill");
       return false;
       }
 
-    if(levelDiff==0 && meanTurns>50)
+    if(levelDiff==0 && meanTurns>50+level/10.0)
       {
       //OUTPUT: System.out.println ("FAILED beacause takes too much time to kill");
       return false;
       }
       
-    if(levelDiff==0 && meanLeftHP>0.75)
+    if(levelDiff==0 && meanLeftHP>0.75-level/100.0)
       {
       //OUTPUT: System.out.println ("CORRECT");
       return true;
@@ -349,7 +343,7 @@ public class BalanceRPGame
       return false;
       }    
     
-    if(levelDiff>0 && meanLeftHP<0.75)
+    if(levelDiff>0 && meanLeftHP<0.75-level/150.0)
       {
       //OUTPUT: System.out.println ("FAILED beacause takes makes MUCH damage to player at same level");
       return false;
@@ -358,62 +352,6 @@ public class BalanceRPGame
     //OUTPUT: System.out.println ("CORRECT: No reason");
     return true;
     }
-  
-  static private void balance(Creature target, int levelDiff, int meanTurns, double meanLeftHP)
-    {
-    if(meanLeftHP<0.8)
-      {
-      switch(Rand.roll1D6())
-        {
-        case 0:
-          target.setATK(target.getATK()-1);
-          break;
-        case 1:
-        case 2:
-        case 3:
-          target.setDEF(target.getDEF()-1);
-          break;
-        case 4:
-        case 5:
-          target.setBaseHP(target.getBaseHP()-3);
-          break;
-        }
-      }
-    else
-      {
-      switch(Rand.roll1D6())
-        {
-        case 0:
-        case 1:
-        case 2:
-          target.setATK(target.getATK()+1);
-          break;
-        case 3:
-        case 4:
-          target.setDEF(target.getDEF()+1);
-          break;
-        case 5:
-          target.setBaseHP(target.getBaseHP()+3);
-          break;
-        }
-      }
-
-    if(meanTurns>100)
-      {
-      target.setATK(target.getATK()+5);
-      target.setDEF(target.getDEF()-5);
-      return;
-      }
-
-    if(levelDiff==0 && meanTurns>40)
-      {
-      target.setATK(target.getATK()+1);
-      target.setDEF(target.getDEF()-1);
-      return;
-      }
-      
-    }
-
   
   static void equip(Player p, int level)
     {
@@ -437,19 +375,5 @@ public class BalanceRPGame
 //                        "H: "+p.getHelmet().getDefense()+" \t"+
 //                        "L: "+p.getLegs().getDefense()+" \t"+
 //                        "B: "+p.getBoots().getDefense()+" \t");
-    }
-  
-  static boolean around(Player p, double val,double top)
-    {
-    if(p.getHP()>=val*p.getBaseHP() && p.getHP()<=p.getBaseHP()*(top))
-      {
-//      //OUTPUT: System.out.println (p.getBaseHP()*val+"<="+p.getHP()+"<="+p.getBaseHP()*(top));
-      return true;
-      }
-    else
-      {
-//      //OUTPUT: System.out.println ("NOT "+p.getBaseHP()*val+"<="+p.getHP()+"<="+p.getBaseHP()*(top));
-      return false;
-      } 
     }
   }

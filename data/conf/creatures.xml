@@ -8,7 +8,7 @@
 		<type class="animal" subclass="deer" tileid="36"/>
 		<attributes>
 			<atk value="5"/>
-			<def value="5"/>
+			<def value="9"/>
 			<hp value="20"/>
 			<speed value="1"/>
 			<size value="1,2"/>
@@ -65,7 +65,7 @@
 			<size value="1,1"/>
 		</attributes>
 		<level value="1"/>
-		<experience value="10"/>
+		<experience value="15"/>
 		<drops>
 			<item value="money"  quantity="[1,6]" probability="90"/>
 			<item value="cheese" quantity="[1,2]" probability="60"/>
@@ -91,7 +91,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="2"/>
-		<experience value="15"/>
+		<experience value="35"/>
 		<drops>
 			<item value="meat"  quantity="[1,4]" probability="70"/>
 			<item value="meat"  quantity="[1,2]" probability="20"/>
@@ -117,7 +117,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="2"/>
-		<experience value="18"/>
+		<experience value="40"/>
 		<drops>
 			<item value="money"  quantity="[2,5]" probability="70"/>
 			<item value="meat"  quantity="[1,4]" probability="60"/>
@@ -168,14 +168,14 @@
 	<creature name="cobra">
 		<type class="animal" subclass="cobra" tileid="15"/>
 		<attributes>
-			<atk value="35"/>
-			<def value="11"/>
-			<hp value="30"/>
+			<atk value="37"/>
+			<def value="17"/>
+			<hp value="49"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="3"/>
-		<experience value="10"/>
+		<experience value="35"/>
 		<drops>
 			<item value="money"  quantity="[1,3]" probability="60"/>
 		</drops>
@@ -203,7 +203,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="4"/>
-		<experience value="20"/>
+		<experience value="80"/>
 		<drops>
 			<item value="money"  quantity="[4,9]" probability="80"/>
 			<item value="meat"  quantity="[1,4]" probability="50"/>
@@ -230,7 +230,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="4"/>
-		<experience value="0"/>
+		<experience value="85"/>
 		<drops>
 			<item value="meat" quantity="[1,4]" probability="60"/>
 			<item value="ham" quantity="[1,2]" probability="30"/>
@@ -258,7 +258,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="5"/>
-		<experience value="30"/>
+		<experience value="90"/>
 		<drops>
 			<item value="money" quantity="[4,15]" probability="90"/>
 			<item value="studded_shield" quantity="1" probability="20"/>
@@ -286,7 +286,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="5"/>
-		<experience value="20"/>
+		<experience value="100"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
 			<item value="wooden_shield" quantity="1" probability="20"/>
@@ -315,7 +315,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="5"/>
-		<experience value="0"/>
+		<experience value="100"/>
 		<drops>
 			<item value="meat" quantity="[1,4]" probability="100"/>
 			<item value="ham" quantity="[2,8]" probability="70"/>
@@ -335,14 +335,14 @@
 	<creature name="venomrat">
 		<type class="small_animal" subclass="venomrat" tileid="29"/>
 		<attributes>
-			<atk value="49"/>
+			<atk value="46"/>
 			<def value="15"/>
-			<hp value="65"/>
+			<hp value="70"/>
 			<speed value="0.9"/>
 			<size value="1,1"/>
 		</attributes>
 		<level value="5"/>
-		<experience value="180"/>
+		<experience value="90"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="100"/>
 			<item value="cheese" quantity="[1,3]" probability="50"/>
@@ -360,14 +360,14 @@
 	<creature name="tiger">
 		<type class="animal" subclass="tiger" tileid="69"/>
 		<attributes>
-			<atk value="41"/>
+			<atk value="42"/>
 			<def value="17"/>
 			<hp value="65"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="5"/>
-		<experience value="0"/>
+		<experience value="140"/>
 		<drops>
 			<item value="meat" quantity="[1,4]" probability="60"/>
 			<item value="ham" quantity="[1,2]" probability="30"/>
@@ -397,7 +397,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="6"/>
-		<experience value="20"/>
+		<experience value="135"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
 			<item value="wooden_shield" quantity="1" probability="30"/>
@@ -422,12 +422,12 @@
 		<attributes>
 			<atk value="41"/>
 			<def value="18"/>
-			<hp value="55"/>
+			<hp value="65"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="6"/>
-		<experience value="80"/>
+		<experience value="130"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="90"/>
 			<item value="axe" quantity="1" probability="30"/>
@@ -445,14 +445,14 @@
 	<creature name="young_beholder">
 		<type class="beholder" subclass="young_beholder" tileid="66"/>
 		<attributes>
-			<atk value="39"/>
-			<def value="18"/>
-			<hp value="80"/>
+			<atk value="44"/>
+			<def value="15"/>
+			<hp value="90"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="6"/>
-		<experience value="0"/>
+		<experience value="105"/>
 		<drops>
 		</drops>
 		<equips>
@@ -479,7 +479,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="7"/>
-		<experience value="30"/>
+		<experience value="150"/>
 		<drops>
 			<item value="money" quantity="[4,15]" probability="90"/>
 			<item value="studded_shield" quantity="1" probability="20"/>
@@ -507,7 +507,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="7"/>
-		<experience value="20"/>
+		<experience value="130"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
 			<item value="wooden_shield" quantity="1" probability="20"/>
@@ -532,13 +532,13 @@
 		<type class="kobold" subclass="archer_kobold" tileid="44"/>
 		<attributes>
 			<atk value="49"/>
-			<def value="30"/>
-			<hp value="41"/>
+			<def value="20"/>
+			<hp value="35"/>
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="8"/>
-		<experience value="20"/>
+		<experience value="125"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
 			<item value="wooden_shield" quantity="1" probability="20"/>
@@ -567,7 +567,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="8"/>
-		<experience value="70"/>
+		<experience value="200"/>
 		<drops>
 			<item value="money"  quantity="[4,9]" probability="80"/>
 			<item value="meat"  quantity="[3,6]" probability="60"/>
@@ -587,14 +587,14 @@
 	<creature name="elder_gargoyle">
 		<type class="gargoyle" subclass="elder_gargoyle" tileid="56"/>
 		<attributes>
-			<atk value="48"/>
-			<def value="18"/>
-			<hp value="55"/>
+			<atk value="46"/>
+			<def value="19"/>
+			<hp value="70"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="8"/>
-		<experience value="80"/>
+		<experience value="220"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="90"/>
 			<item value="axe" quantity="1" probability="30"/>
@@ -619,7 +619,7 @@
 			<size value="1,1"/>
 		</attributes>
 		<level value="8"/>
-		<experience value="210"/>
+		<experience value="170"/>
 		<drops>
 			<item value="money" quantity="[5,30]" probability="100"/>
 			<item value="cheese" quantity="[1,3]" probability="50"/>
@@ -639,14 +639,14 @@
 	<creature name="cyclops">
 		<type class="giant" subclass="cyclops" tileid="25"/>
 		<attributes>
-			<atk value="60"/>
-			<def value="15"/>
-			<hp value="80"/>
+			<atk value="50"/>
+			<def value="20"/>
+			<hp value="60"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="9"/>
-		<experience value="120"/>
+		<experience value="235"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
 			<item value="mace" quantity="1" probability="20"/>
@@ -671,7 +671,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="9"/>
-		<experience value="0"/>
+		<experience value="220"/>
 		<drops>
 		</drops>
 		<equips>
@@ -692,7 +692,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="9"/>
-		<experience value="30"/>
+		<experience value="125"/>
 		<drops>
 			<item value="money" quantity="[4,15]" probability="90"/>
 			<item value="studded_shield" quantity="1" probability="20"/>
@@ -717,7 +717,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="9"/>
-		<experience value="20"/>
+		<experience value="130"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
 			<item value="wooden_shield" quantity="1" probability="20"/>
@@ -745,7 +745,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="10"/>
-		<experience value="25"/>
+		<experience value="160"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
 			<item value="wooden_shield" quantity="1" probability="35"/>
@@ -764,14 +764,14 @@
 	<creature name="orc">
 		<type class="orc" subclass="orc" tileid="16"/>
 		<attributes>
-			<atk value="48"/>
+			<atk value="49"/>
 			<def value="23"/>
 			<hp value="45"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="10"/>
-		<experience value="50"/>
+		<experience value="215"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -790,14 +790,14 @@
 	<creature name="dark_gargoyle">
 		<type class="gargoyle" subclass="dark_gargoyle" tileid="57"/>
 		<attributes>
-			<atk value="54"/>
-			<def value="18"/>
-			<hp value="60"/>
+			<atk value="52"/>
+			<def value="21"/>
+			<hp value="65"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="10"/>
-		<experience value="80"/>
+		<experience value="135"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="90"/>
 			<item value="axe" quantity="1" probability="30"/>
@@ -827,7 +827,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="12"/>
-		<experience value="120"/>
+		<experience value="60"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
 			<item value="mace" quantity="1" probability="20"/>
@@ -845,14 +845,14 @@
 	<creature name="mummy">
 		<type class="mummy" subclass="mummy" tileid="41"/>
 		<attributes>
-			<atk value="55"/>
-			<def value="18"/>
-			<hp value="40"/>
+			<atk value="60"/>
+			<def value="21"/>
+			<hp value="60"/>
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="12"/>
-		<experience value="20"/>
+		<experience value="240"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
 			<item value="wooden_shield" quantity="1" probability="20"/>
@@ -868,21 +868,19 @@
 		</ai>
 	</creature>
 
-
 	<!-- Level 13 -->
-
 
 	<creature name="leader_kobold">
 		<type class="kobold" subclass="leader_kobold" tileid="45"/>
 		<attributes>
-			<atk value="60"/>
-			<def value="25"/>
-			<hp value="60"/>
+			<atk value="66"/>
+			<def value="19"/>
+			<hp value="65"/>
 			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="13"/>
-		<experience value="20"/>
+		<experience value="175"/>
 		<drops>
 			<item value="money" quantity="[3,10]" probability="90"/>
 			<item value="wooden_shield" quantity="1" probability="20"/>
@@ -903,14 +901,14 @@
 	<creature name="orc_warrior">
 		<type class="orc" subclass="orc_warrior" tileid="34"/>
 		<attributes>
-			<atk value="61"/>
-			<def value="19"/>
-			<hp value="120"/>
+			<atk value="60"/>
+			<def value="21"/>
+			<hp value="95"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="14"/>
-		<experience value="150"/>
+		<experience value="350"/>
 		<drops>
 			<item value="money" quantity="[7,35]" probability="100"/>
 			<item value="battle_axe" quantity="1" probability="3"/>
@@ -926,17 +924,42 @@
 		</ai>
 	</creature>
 
+	<creature name="orc_hunter">
+		<type class="orc" subclass="orc_hunter" tileid="40"/>
+		<attributes>
+			<atk value="59"/>
+			<def value="22"/>
+			<hp value="70"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="14"/>
+		<experience value="320"/>
+		<drops>
+			<item value="money" quantity="[4,20]" probability="100"/>
+			<item value="studded_shield" quantity="1" probability="40"/>
+			<item value="short_sword" quantity="1" probability="30"/>
+			<item value="studded_armor" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
 	<creature name="giantrat">
 		<type class="giant_animal" subclass="giantrat" tileid="23"/>
 		<attributes>
-			<atk value="60"/>
-			<def value="30"/>
+			<atk value="70"/>
+			<def value="15"/>
 			<hp value="100"/>
 			<speed value="1"/>
 			<size value="2,2"/>
 		</attributes>
 		<level value="15"/>
-		<experience value="700"/>
+		<experience value="100"/>
 		<drops>
 			<item value="money" quantity="[10,200]" probability="100"/>
 			<item value="cheese" quantity="[3,7]" probability="80"/>
@@ -952,45 +975,20 @@
 		</ai>
 	</creature>
 
-	<creature name="orc_hunter">
-		<type class="orc" subclass="orc_hunter" tileid="40"/>
-		<attributes>
-			<atk value="59"/>
-			<def value="22"/>
-			<hp value="70"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="14"/>
-		<experience value="50"/>
-		<drops>
-			<item value="money" quantity="[4,20]" probability="100"/>
-			<item value="studded_shield" quantity="1" probability="40"/>
-			<item value="short_sword" quantity="1" probability="30"/>
-			<item value="studded_armor" quantity="1" probability="20"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
-
 
 	<!-- Level 15 -->
 
 	<creature name="elf">
 		<type class="elf" subclass="elf" tileid="26"/>
 		<attributes>
-			<atk value="48"/>
+			<atk value="58"/>
 			<def value="20"/>
-			<hp value="110"/>
+			<hp value="120"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="15"/>
-		<experience value="50"/>
+		<experience value="300"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -1010,14 +1008,14 @@
 	<creature name="dwarf">
 		<type class="dwarf" subclass="dwarf" tileid="27"/>
 		<attributes>
-			<atk value="49"/>
-			<def value="13"/>
+			<atk value="58"/>
+			<def value="22"/>
 			<hp value="90"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="15"/>
-		<experience value="60"/>
+		<experience value="300"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
 			<item value="plate_shield" quantity="1" probability="15"/>
@@ -1038,14 +1036,14 @@
 	<creature name="ratman">
 		<type class="ratfolk" subclass="ratman" tileid="31"/>
 		<attributes>
-			<atk value="50"/>
-			<def value="16"/>
-			<hp value="100"/>
+			<atk value="63"/>
+			<def value="19"/>
+			<hp value="115"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="15"/>
-		<experience value="1000"/>
+		<experience value="270"/>
 		<drops>
 			<item value="money" quantity="[20,250]" probability="100"/>
 			<item value="cheese" quantity="[4,8]" probability="85"/>
@@ -1074,7 +1072,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="15"/>
-		<experience value="0"/>
+		<experience value="130"/>
 		<drops>
 		</drops>
 		<equips>
@@ -1092,13 +1090,13 @@
 		<type class="gargoyle" subclass="venom_gargoyle" tileid="55"/>
 		<attributes>
 			<atk value="75"/>
-			<def value="25"/>
+			<def value="20"/>
 			<hp value="55"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="16"/>
-		<experience value="80"/>
+		<experience value="150"/>
 		<drops>
 			<item value="money" quantity="[4,25]" probability="90"/>
 			<item value="axe" quantity="1" probability="30"/>
@@ -1119,14 +1117,14 @@
 	<creature name="elder_ogre">
 		<type class="giant" subclass="elder_ogre" tileid="54"/>
 		<attributes>
-			<atk value="80"/>
-			<def value="20"/>
-			<hp value="100"/>
+			<atk value="64"/>
+			<def value="22"/>
+			<hp value="115"/>
 			<speed value="0.6"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="17"/>
-		<experience value="120"/>
+		<experience value="400"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
 			<item value="mace" quantity="1" probability="20"/>
@@ -1146,14 +1144,14 @@
 	<creature name="dwarf_guardian">
 		<type class="dwarf" subclass="dwarf_guardian" tileid="32"/>
 		<attributes>
-			<atk value="90"/>
-			<def value="30"/>
-			<hp value="150"/>
+			<atk value="62"/>
+			<def value="24"/>
+			<hp value="85"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="18"/>
-		<experience value="150"/>
+		<experience value="445"/>
 		<drops>
 			<item value="money" quantity="[7,35]" probability="100"/>
 			<item value="battle_axe" quantity="1" probability="4"/>
@@ -1172,14 +1170,14 @@
 	<creature name="orc_chief">
 		<type class="orc" subclass="orc_chief" tileid="35"/>
 		<attributes>
-			<atk value="85"/>
-			<def value="27"/>
-			<hp value="160"/>
+			<atk value="69"/>
+			<def value="23"/>
+			<hp value="65"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="18"/>
-		<experience value="250"/>
+		<experience value="275"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
 			<item value="battle_axe" quantity="1" probability="7"/>
@@ -1198,14 +1196,14 @@
 	<creature name="militia_elf">
 		<type class="elf" subclass="militia_elf" tileid="59"/>
 		<attributes>
-			<atk value="90"/>
-			<def value="30"/>
-			<hp value="140"/>
+			<atk value="64"/>
+			<def value="22"/>
+			<hp value="100"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="18"/>
-		<experience value="50"/>
+		<experience value="380"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -1228,14 +1226,14 @@
 	<creature name="archer_elf">
 		<type class="elf" subclass="archer_elf" tileid="63"/>
 		<attributes>
-			<atk value="100"/>
-			<def value="35"/>
-			<hp value="150"/>
+			<atk value="64"/>
+			<def value="23"/>
+			<hp value="100"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="19"/>
-		<experience value="50"/>
+		<experience value="500"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -1257,14 +1255,14 @@
 	<creature name="elder_dwarf">
 		<type class="dwarf" subclass="elder_dwarf" tileid="33"/>
 		<attributes>
-			<atk value="100"/>
-			<def value="35"/>
-			<hp value="180"/>
+			<atk value="68"/>
+			<def value="23"/>
+			<hp value="95"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="20"/>
-		<experience value="250"/>
+		<experience value="440"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
 			<item value="battle_axe" quantity="1" probability="8"/>
@@ -1285,14 +1283,14 @@
 	<creature name="soldier_elf">
 		<type class="elf" subclass="soldier_elf" tileid="58"/>
 		<attributes>
-			<atk value="48"/>
-			<def value="13"/>
-			<hp value="40"/>
+			<atk value="67"/>
+			<def value="24"/>
+			<hp value="90"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="21"/>
-		<experience value="50"/>
+		<experience value="485"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -1314,14 +1312,14 @@
     <creature name="wooden_golem">
 		<type class="golem" subclass="wooden_golem" tileid="46"/>
 		<attributes>
-			<atk value="120"/>
-			<def value="30"/>
-			<hp value="2000"/>
+			<atk value="71"/>
+			<def value="26"/>
+			<hp value="100"/>
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="24"/>
-		<experience value="10000"/>
+		<experience value="575"/>
 		<drops>
 		</drops>
 		<equips>
@@ -1339,14 +1337,14 @@
 	<creature name="archrat">
 		<type class="ratfolk" subclass="archrat" tileid="39"/>
 		<attributes>
-			<atk value="120"/>
-			<def value="30"/>
-			<hp value="2000"/>
+			<atk value="72"/>
+			<def value="26"/>
+			<hp value="100"/>
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="25"/>
-		<experience value="10000"/>
+		<experience value="625"/>
 		<drops>
 		</drops>
 		<equips>
@@ -1368,14 +1366,14 @@
 	<creature name="hero_dwarf">
 		<type class="dwarf" subclass="hero_dwarf" tileid="65"/>
 		<attributes>
-			<atk value="50"/>
-			<def value="27"/>
-			<hp value="150"/>
+			<atk value="71"/>
+			<def value="26"/>
+			<hp value="106"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="25"/>
-		<experience value="250"/>
+		<experience value="635"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
 			<item value="battle_axe" quantity="1" probability="8"/>
@@ -1394,14 +1392,14 @@
 	<creature name="mage_elf">
 		<type class="elf" subclass="mage_elf" tileid="60"/>
 		<attributes>
-			<atk value="48"/>
-			<def value="13"/>
-			<hp value="40"/>
+			<atk value="75"/>
+			<def value="27"/>
+			<hp value="80"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="25"/>
-		<experience value="50"/>
+		<experience value="610"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -1423,14 +1421,14 @@
 	<creature name="commander_elf">
 		<type class="elf" subclass="commander_elf" tileid="61"/>
 		<attributes>
-			<atk value="48"/>
-			<def value="13"/>
-			<hp value="40"/>
+			<atk value="81"/>
+			<def value="28"/>
+			<hp value="100"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="30"/>
-		<experience value="50"/>
+		<experience value="630"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -1452,14 +1450,14 @@
 	<creature name="stone_golem">
 		<type class="golem" subclass="stone_golem" tileid="47"/>
 		<attributes>
-			<atk value="120"/>
-			<def value="30"/>
-			<hp value="2000"/>
+			<atk value="81"/>
+			<def value="31"/>
+			<hp value="100"/>
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="32"/>
-		<experience value="10000"/>
+		<experience value="775"/>
 		<drops>
 		</drops>
 		<equips>
@@ -1477,14 +1475,14 @@
 	<creature name="archmage_elf">
 		<type class="elf" subclass="archmage_elf" tileid="62"/>
 		<attributes>
-			<atk value="48"/>
-			<def value="13"/>
-			<hp value="40"/>
+			<atk value="86"/>
+			<def value="33"/>
+			<hp value="100"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="35"/>
-		<experience value="50"/>
+		<experience value="790"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -1504,14 +1502,14 @@
 	<creature name="leader_dwarf">
 		<type class="dwarf" subclass="leader_dwarf" tileid="64"/>
 		<attributes>
-			<atk value="50"/>
-			<def value="27"/>
-			<hp value="150"/>
+			<atk value="85"/>
+			<def value="31"/>
+			<hp value="115"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="35"/>
-		<experience value="250"/>
+		<experience value="800"/>
 		<drops>
 			<item value="money" quantity="[4,30]" probability="100"/>
 			<item value="battle_axe" quantity="1" probability="8"/>
@@ -1532,14 +1530,14 @@
 	<creature name="green_dragon">
 		<type class="giant_animal" subclass="green_dragon" tileid="51"/>
 		<attributes>
-			<atk value="120"/>
-			<def value="60"/>
-			<hp value="2000"/>
+			<atk value="100"/>
+			<def value="32"/>
+			<hp value="300"/>
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="50"/>
-		<experience value="10000"/>
+		<experience value="1400"/>
 		<drops>
 		</drops>
 		<equips>
@@ -1557,14 +1555,14 @@
 	<creature name="lich">
 		<type class="skeleton" subclass="lich" tileid="38"/>
 		<attributes>
-			<atk value="180"/>
-			<def value="70"/>
-			<hp value="25000"/>
+			<atk value="110"/>
+			<def value="26"/>
+			<hp value="600"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="60"/>
-		<experience value="50"/>
+		<experience value="1500"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -1585,13 +1583,13 @@
 		<type class="giant_animal" subclass="blue_dragon" tileid="52"/>
 		<attributes>
 			<atk value="120"/>
-			<def value="30"/>
-			<hp value="2000"/>
+			<def value="40"/>
+			<hp value="900"/>
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="70"/>
-		<experience value="10000"/>
+		<experience value="2500"/>
 		<drops>
 		</drops>
 		<equips>
@@ -1609,9 +1607,9 @@
 	<creature name="black_dragon">
 		<type class="giant_animal" subclass="black_dragon" tileid="53"/>
 		<attributes>
-			<atk value="120"/>
-			<def value="30"/>
-			<hp value="2000"/>
+			<atk value="150"/>
+			<def value="45"/>
+			<hp value="1200"/>
 			<speed value="1.5"/>
 			<size value="1,2"/>
 		</attributes>
@@ -1628,50 +1626,6 @@
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
-
-
-
-<!-- **************************************ALREADY BALANCED***************** -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Extreme -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 </creatures>
 

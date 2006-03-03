@@ -56,11 +56,4 @@ public class ConsumableItem extends StackableItem
       return left>=0;
       }
     }
-
-  public boolean isStackable(Stackable other)
-    {
-    StackableItem otheri=(StackableItem)other;
-    
-    return getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass());
-    }
   }
