@@ -127,10 +127,24 @@ public class StendhalRPWorld extends RPWorld
     // Please respect it!
     
     // Ground level
+    addArea("0_semos_mountain_n_w4");
+    addArea("0_semos_mountain_n2_w2");
+    addArea("0_semos_mountain_n2_w");
+    addArea("0_semos_mountain_n2");
+    addArea("0_semos_mountain_n2_e");
+    addArea("0_semos_mountain_n2_e2");
+    addArea("0_ados_mountain_n2_w2");
+    
+    addArea("0_semos_mountain_n_w3");
     addArea("0_semos_mountain_n_w2");
     addArea("0_semos_plains_n");
     addArea("0_semos_plains_ne");
-    
+    addArea("0_semos_mountain_n_e2");
+    addArea("0_ados_mountain_n_w2");
+    addArea("0_ados_mountain_nw");
+
+    addArea("0_orril_mountain_n2_w2");
+    addArea("0_semos_mountain_w2");
     addArea("0_semos_plains_w");
     addArea("0_semos_village_w");
     addArea("0_semos_city");
@@ -141,17 +155,25 @@ public class StendhalRPWorld extends RPWorld
     addArea("0_semos_road_e");
     addArea("0_semos_road_se");
     addArea("0_semos_plains_s");
+    addArea("0_ados_forest_w2");
+    addArea("0_ados_rock_w");
+    addArea("0_ados_rock");        
 
+    addArea("0_orril_mountain_nw");
     addArea("0_orril_forest_n");
     addArea("0_semos_forest_s");
     addArea("0_nalwor_forest_nw");
     addArea("0_nalwor_forest_n");
 
+    addArea("0_orril_mountain_w2");
+    addArea("0_orril_mountain_w");
     addArea("0_orril_castle");
     addArea("0_orril_forest_e");
     addArea("0_nalwor_forest_w");
     addArea("0_nalwor_city");
 
+    addArea("0_orril_river_s_w2");
+    addArea("0_orril_river_sw");
     addArea("0_orril_river_s");
       addArea("int_orril_jynath_house");
     addArea("0_orril_river_se");
