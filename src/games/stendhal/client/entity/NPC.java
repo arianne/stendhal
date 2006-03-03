@@ -50,7 +50,17 @@ public class NPC extends RPEntity
     super(gameObjects,object);
     
     String type=getType();
-    String name=object.get("name");
+    
+    String name=null;
+    if(object.has("name"))
+      {
+      name=object.get("name");
+      }
+    else
+      {
+      name=object.get("type");
+      }
+    
 
     if ( type.startsWith( "npc" ) )
     {
