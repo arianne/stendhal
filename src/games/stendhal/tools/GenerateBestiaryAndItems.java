@@ -42,7 +42,7 @@ public class GenerateBestiaryAndItems
       System.out.println ("|hp= "+creature.getHP()+"");
       System.out.println ("|atk= "+creature.getATK()+"");
       System.out.println ("|def= "+creature.getDEF()+"");
-      System.out.println ("|exp= "+creature.getXP()+"");
+      System.out.println ("|exp= "+creature.getXP()/20+"");
       System.out.println ("|behavior = '''(TODO)'''.");
       System.out.println ("|location = '''(TODO)'''.");
       System.out.println ("|strategy = '''(TODO)'''.");
@@ -50,7 +50,7 @@ public class GenerateBestiaryAndItems
       
       for(Creature.DropItem item: creature.getDropItems())
         {
-        System.out.println (item.min+"-"+item.max+" "+item.name);
+        System.out.println (item.min+"-"+item.max+" "+item.name+"<br>");
         }
         
       System.out.println ("}}");

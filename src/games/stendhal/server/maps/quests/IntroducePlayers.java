@@ -202,7 +202,7 @@ public class IntroducePlayers implements IQuest
         Item item=player.drop("arandula");
         if(item!=null)
           {          
-          engine.say("WOOOMMM!!! WUUOOAAAANNNN!!! WUUUUUNNN!!!|Tell #Tad that #potion is done and he should come here.");
+          engine.say("WOOOMMM!!! WUUOOAAAANNNN!!! WUUUUUNNN!!!| Tell #Tad that #potion is done and he should come here.");
           player.addXP(50);
 
           world.modify(player);
