@@ -169,10 +169,16 @@ public class Player extends RPEntity
     
     try
       {
-      boolean newReleaseHappened=object.get("release").equals(Debug.VERSION);
-      if(!object.has("zoneid")|| !object.has("x") || !object.has("y") || newReleaseHappened)
+      if(!object.has("zoneid")|| !object.has("x") || !object.has("y"))
         {
         firstVisit=true;
+        }
+      
+      boolean newReleaseHappened=!object.get("release").equals(Debug.VERSION);
+      if(newReleaseHappened)
+        {
+        firstVisit=true;
+        player.put("release",Debug.VERSION);
         }
 
       if(firstVisit)

@@ -502,8 +502,8 @@ public class Semos implements IContent
       
     zone.assignRPObjectID(npc);
     npc.setOutfit("0");
-    npc.set(9,47);
-    npc.setDirection(Direction.DOWN);
+    npc.set(7,50);
+    npc.setDirection(Direction.RIGHT);
     npc.initHP(100);
     zone.addNPC(npc);
     }

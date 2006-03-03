@@ -200,7 +200,7 @@ public class StendhalRPWorld extends RPWorld
     addArea("-5_kanmararn_entrace");
 
     // Level -6
-    // addArea("-6_kanmararn_city");
+     addArea("-6_kanmararn_city");
 
     // Level -7
     // addArea("-7_kanmararn_jail");
