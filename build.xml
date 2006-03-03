@@ -219,7 +219,6 @@
     <mkdir dir="stendhal-server-${version}"/>
     <copy todir="stendhal-server-${version}" file="${lib}/${server_jarname}"/>
     <copy todir="stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
-    <copy todir="stendhal-server-${version}" file="${lib}/${quests_jarname}"/>
     <copy todir="stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
     <copy todir="stendhal-server-${version}" file="AUTHORS"/>
     <copy todir="stendhal-server-${version}" file="BUGS"/>
