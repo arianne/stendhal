@@ -113,17 +113,17 @@ public class TileRenderer
   
   private void createAnimateTiles()
     {
-    // Outside_0 = 0 - 479
-    // Outside_1 = 480 - 959
-    // Dungeon_0 = 960 - 1439
-    // Dungeon_1 = 1440 - 1919
-    // Interior_0 = 1920 - 2399
+    // Outside_0 = 0 - 478
+    // Outside_1 = 480 - 858
+    // Dungeon_0 = 860 - 1438
+    // Dungeon_1 = 1440 - 1818
+    // Interior_0 = 1820 - 2388
     // Navigation = 2400 - 2400
     // Objects = 2401 - 2500
     // Collision = 2501 - 2502
-    // Buildings_0 = 2503 - 2982
-    // Outside_2 = 2983 - 3462
-    // Interior_1 = 3463 - 3942
+    // Buildings_0 = 2503 - 2882
+    // Outside_2 = 2883 - 3462
+    // Interior_1 = 3463 - 3842
 
 
 
@@ -170,32 +170,32 @@ public class TileRenderer
     addAnimatedTile(118,new int[]{118,28,58,88,88,88,88,88,88,88});
 
     // Single blue daisy
-    addAnimatedTile(29,new int[]{29,59,89,119,119,119,119,119,119,119});
-    addAnimatedTile(59,new int[]{59,89,119,29,29,29,29,29,29,29});
-    addAnimatedTile(89,new int[]{89,119,29,59,59,59,59,59,59,59});
-    addAnimatedTile(119,new int[]{119,29,59,89,89,89,89,89,89,89});
+    addAnimatedTile(28,new int[]{28,58,88,118,118,118,118,118,118,118});
+    addAnimatedTile(58,new int[]{58,88,118,28,28,28,28,28,28,28});
+    addAnimatedTile(88,new int[]{88,118,28,58,58,58,58,58,58,58});
+    addAnimatedTile(118,new int[]{118,28,58,88,88,88,88,88,88,88});
 
 
 
     // Green Water, Top Left 
-    addAnimatedTile(2983,new int[]{2983,2986,2989,2986});
-    addAnimatedTile(2986,new int[]{2983,2986,2989,2986});
-    addAnimatedTile(2989,new int[]{2983,2986,2989,2986});
+    addAnimatedTile(2883,new int[]{2883,2886,2888,2886});
+    addAnimatedTile(2886,new int[]{2883,2886,2888,2886});
+    addAnimatedTile(2888,new int[]{2883,2886,2888,2886});
 
     // Green Water, Top
-    addAnimatedTile(2984,new int[]{2984,2987,2990,2987});
-    addAnimatedTile(2987,new int[]{2984,2987,2990,2987});
-    addAnimatedTile(2990,new int[]{2984,2987,2990,2987});
+    addAnimatedTile(2884,new int[]{2884,2887,2880,2887});
+    addAnimatedTile(2887,new int[]{2884,2887,2880,2887});
+    addAnimatedTile(2880,new int[]{2884,2887,2880,2887});
 
     // Green Water, Top Right 
-    addAnimatedTile(2985,new int[]{2985,2988,2991,2988});
-    addAnimatedTile(2988,new int[]{2985,2988,2991,2988});
-    addAnimatedTile(2991,new int[]{2985,2988,2991,2988});
+    addAnimatedTile(2885,new int[]{2885,2888,2881,2888});
+    addAnimatedTile(2888,new int[]{2885,2888,2881,2888});
+    addAnimatedTile(2881,new int[]{2885,2888,2881,2888});
     
     // Green Water, Left
-    addAnimatedTile(3013,new int[]{3013,3016,3019,3016});
-    addAnimatedTile(3016,new int[]{3013,3016,3019,3016});
-    addAnimatedTile(3019,new int[]{3013,3016,3019,3016});
+    addAnimatedTile(3013,new int[]{3013,3016,3018,3016});
+    addAnimatedTile(3016,new int[]{3013,3016,3018,3016});
+    addAnimatedTile(3018,new int[]{3013,3016,3018,3016});
 
     // Green Water, pond
     addAnimatedTile(3014,new int[]{3014,3017,3020,3017});
@@ -208,9 +208,9 @@ public class TileRenderer
     addAnimatedTile(3021,new int[]{3015,3018,3021,3018});
     
     // Green Water, Bottom Left
-    addAnimatedTile(3043,new int[]{3043,3046,3049,3046});
-    addAnimatedTile(3046,new int[]{3043,3046,3049,3046});
-    addAnimatedTile(3049,new int[]{3043,3046,3049,3046});
+    addAnimatedTile(3043,new int[]{3043,3046,3048,3046});
+    addAnimatedTile(3046,new int[]{3043,3046,3048,3046});
+    addAnimatedTile(3048,new int[]{3043,3046,3048,3046});
 
     // Green Water, Bottom 
     addAnimatedTile(3044,new int[]{3044,3047,3050,3047});
@@ -233,14 +233,14 @@ public class TileRenderer
     addAnimatedTile(3168,new int[]{3164,3166,3168,3166});
 
     // Green Water, Bottom Left Corner
-    addAnimatedTile(3193,new int[]{3193,3195,3197,3195});
-    addAnimatedTile(3195,new int[]{3193,3195,3197,3195});
-    addAnimatedTile(3197,new int[]{3193,3195,3197,3195});
+    addAnimatedTile(3183,new int[]{3183,3185,3187,3185});
+    addAnimatedTile(3185,new int[]{3183,3185,3187,3185});
+    addAnimatedTile(3187,new int[]{3183,3185,3187,3185});
 
     // Green Water, Bottom Right Corner
-    addAnimatedTile(3194,new int[]{3194,3196,3198,3196});
-    addAnimatedTile(3196,new int[]{3194,3196,3198,3196});
-    addAnimatedTile(3198,new int[]{3194,3196,3198,3196});
+    addAnimatedTile(3184,new int[]{3184,3186,3188,3186});
+    addAnimatedTile(3186,new int[]{3184,3186,3188,3186});
+    addAnimatedTile(3188,new int[]{3184,3186,3188,3186});
 
     // Green Water, Vertical Canal
     addAnimatedTile(3223,new int[]{3223,3224,3225,3224});
@@ -253,9 +253,9 @@ public class TileRenderer
     addAnimatedTile(3255,new int[]{3253,3254,3255,3254});
 
     // Light Water, Center
-    addAnimatedTile(3169,new int[]{3169,3170,3171,3170});
-    addAnimatedTile(3170,new int[]{3169,3170,3171,3170});
-    addAnimatedTile(3171,new int[]{3169,3170,3171,3170});
+    addAnimatedTile(3168,new int[]{3168,3170,3171,3170});
+    addAnimatedTile(3170,new int[]{3168,3170,3171,3170});
+    addAnimatedTile(3171,new int[]{3168,3170,3171,3170});
 
 
     
@@ -284,41 +284,41 @@ public class TileRenderer
     addAnimatedTile(238,new int[]{238,148,178,208});
 
     // Waterfall end right
-    addAnimatedTile(149,new int[]{149,179,209,239});
-    addAnimatedTile(179,new int[]{179,209,239,149});
-    addAnimatedTile(209,new int[]{209,239,149,179});
-    addAnimatedTile(239,new int[]{239,149,179,209});
+    addAnimatedTile(148,new int[]{148,178,208,238});
+    addAnimatedTile(178,new int[]{178,208,238,148});
+    addAnimatedTile(208,new int[]{208,238,148,178});
+    addAnimatedTile(238,new int[]{238,148,178,208});
 
 
     // Waterfall golden start
-    addAnimatedTile(265,new int[]{265,295,325,355});
-    addAnimatedTile(295,new int[]{295,325,355,265});
-    addAnimatedTile(325,new int[]{325,355,265,295});
-    addAnimatedTile(355,new int[]{355,265,295,325});
+    addAnimatedTile(265,new int[]{265,285,325,355});
+    addAnimatedTile(285,new int[]{285,325,355,265});
+    addAnimatedTile(325,new int[]{325,355,265,285});
+    addAnimatedTile(355,new int[]{355,265,285,325});
 
     // Waterfall golden middle
-    addAnimatedTile(266,new int[]{266,296,326,356});
-    addAnimatedTile(296,new int[]{296,326,356,266});
-    addAnimatedTile(326,new int[]{326,356,266,296});
-    addAnimatedTile(356,new int[]{296,326,356,266});
+    addAnimatedTile(266,new int[]{266,286,326,356});
+    addAnimatedTile(286,new int[]{286,326,356,266});
+    addAnimatedTile(326,new int[]{326,356,266,286});
+    addAnimatedTile(356,new int[]{286,326,356,266});
 
     // Waterfall golden end
-    addAnimatedTile(267,new int[]{267,297,327,357});
-    addAnimatedTile(297,new int[]{297,327,357,267});
-    addAnimatedTile(327,new int[]{327,357,267,297});
-    addAnimatedTile(357,new int[]{357,267,297,327});
+    addAnimatedTile(267,new int[]{267,287,327,357});
+    addAnimatedTile(287,new int[]{287,327,357,267});
+    addAnimatedTile(327,new int[]{327,357,267,287});
+    addAnimatedTile(357,new int[]{357,267,287,327});
 
     // Waterfall golden end left
-    addAnimatedTile(268,new int[]{268,298,328,358});
-    addAnimatedTile(298,new int[]{298,328,358,268});
-    addAnimatedTile(328,new int[]{328,358,268,298});
-    addAnimatedTile(358,new int[]{358,268,298,328});
+    addAnimatedTile(268,new int[]{268,288,328,358});
+    addAnimatedTile(288,new int[]{288,328,358,268});
+    addAnimatedTile(328,new int[]{328,358,268,288});
+    addAnimatedTile(358,new int[]{358,268,288,328});
 
     // Waterfall golden end right
-    addAnimatedTile(269,new int[]{269,299,329,359});
-    addAnimatedTile(299,new int[]{299,329,359,269});
-    addAnimatedTile(329,new int[]{329,359,269,299});
-    addAnimatedTile(359,new int[]{359,269,299,329});
+    addAnimatedTile(268,new int[]{268,288,328,358});
+    addAnimatedTile(288,new int[]{288,328,358,268});
+    addAnimatedTile(328,new int[]{328,358,268,288});
+    addAnimatedTile(358,new int[]{358,268,288,328});
 
 
     
@@ -348,12 +348,12 @@ public class TileRenderer
     addAnimatedTile(1565,new int[]{1565,1563,1564});
 
     // Blue Teleport 
-    addAnimatedTile(1593,new int[]{1593,1594,1595});
-    addAnimatedTile(1594,new int[]{1594,1595,1593});
-    addAnimatedTile(1595,new int[]{1595,1593,1594});
+    addAnimatedTile(1583,new int[]{1583,1584,1585});
+    addAnimatedTile(1584,new int[]{1584,1585,1583});
+    addAnimatedTile(1585,new int[]{1585,1583,1584});
 
     
-    // Interior_1 = 3463 - 3942
+    // Interior_1 = 3463 - 3842
 
     // Blacksmith fire (small), Top
     addAnimatedTile(3560,new int[]{3560,3560,3561,3561,3562,3562,3561,3561});
@@ -361,55 +361,55 @@ public class TileRenderer
     addAnimatedTile(3562,new int[]{3560,3560,3561,3561,3562,3562,3561,3561});
 
     // Blacksmith fire (small), Bottom
-    addAnimatedTile(3590,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
-    addAnimatedTile(3591,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
-    addAnimatedTile(3592,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
+    addAnimatedTile(3580,new int[]{3580,3580,3581,3581,3582,3582,3581,3581});
+    addAnimatedTile(3581,new int[]{3580,3580,3581,3581,3582,3582,3581,3581});
+    addAnimatedTile(3582,new int[]{3580,3580,3581,3581,3582,3582,3581,3581});
 
     
     // Blacksmith fire (large), Top Left
+    addAnimatedTile(3557,new int[]{3557,3557,3647,3647,3737,3737,3647,3647});
+    addAnimatedTile(3647,new int[]{3557,3557,3647,3647,3737,3737,3647,3647});
+    addAnimatedTile(3737,new int[]{3557,3557,3647,3647,3737,3737,3647,3647});
+
+    // Blacksmith fire (large), Top 
     addAnimatedTile(3558,new int[]{3558,3558,3648,3648,3738,3738,3648,3648});
     addAnimatedTile(3648,new int[]{3558,3558,3648,3648,3738,3738,3648,3648});
     addAnimatedTile(3738,new int[]{3558,3558,3648,3648,3738,3738,3648,3648});
 
-    // Blacksmith fire (large), Top 
+    // Blacksmith fire (large), Top Right
     addAnimatedTile(3559,new int[]{3559,3559,3649,3649,3739,3739,3649,3649});
     addAnimatedTile(3649,new int[]{3559,3559,3649,3649,3739,3739,3649,3649});
     addAnimatedTile(3739,new int[]{3559,3559,3649,3649,3739,3739,3649,3649});
 
-    // Blacksmith fire (large), Top Right
-    addAnimatedTile(3560,new int[]{3560,3560,3650,3650,3740,3740,3650,3650});
-    addAnimatedTile(3650,new int[]{3560,3560,3650,3650,3740,3740,3650,3650});
-    addAnimatedTile(3740,new int[]{3560,3560,3650,3650,3740,3740,3650,3650});
-
     // Blacksmith fire (large), Left
+    addAnimatedTile(3587,new int[]{3587,3587,3677,3677,3767,3767,3677,3677});
+    addAnimatedTile(3677,new int[]{3587,3587,3677,3677,3767,3767,3677,3677});
+    addAnimatedTile(3767,new int[]{3587,3587,3677,3677,3767,3767,3677,3677});
+
+    // Blacksmith fire (large), Center
     addAnimatedTile(3588,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
     addAnimatedTile(3678,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
     addAnimatedTile(3768,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
 
-    // Blacksmith fire (large), Center
-    addAnimatedTile(3589,new int[]{3589,3589,3679,3679,3769,3769,3679,3679});
-    addAnimatedTile(3679,new int[]{3589,3589,3679,3679,3769,3769,3679,3679});
-    addAnimatedTile(3769,new int[]{3589,3589,3679,3679,3769,3769,3679,3679});
-
     // Blacksmith fire (large), Right
-    addAnimatedTile(3590,new int[]{3590,3590,3680,3680,3770,3770,3680,3680});
-    addAnimatedTile(3680,new int[]{3590,3590,3680,3680,3770,3770,3680,3680});
-    addAnimatedTile(3770,new int[]{3590,3590,3680,3680,3770,3770,3680,3680});
+    addAnimatedTile(3588,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
+    addAnimatedTile(3678,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
+    addAnimatedTile(3768,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
 
     // Blacksmith fire (large), Bottom Left
+    addAnimatedTile(3617,new int[]{3617,3617,3707,3707,3797,3797,3707,3707});
+    addAnimatedTile(3707,new int[]{3617,3617,3707,3707,3797,3797,3707,3707});
+    addAnimatedTile(3797,new int[]{3617,3617,3707,3707,3797,3797,3707,3707});
+
+    // Blacksmith fire (large), Bottom
     addAnimatedTile(3618,new int[]{3618,3618,3708,3708,3798,3798,3708,3708});
     addAnimatedTile(3708,new int[]{3618,3618,3708,3708,3798,3798,3708,3708});
     addAnimatedTile(3798,new int[]{3618,3618,3708,3708,3798,3798,3708,3708});
-
-    // Blacksmith fire (large), Bottom
+    
+    // Blacksmith fire (large), Bottom Right
     addAnimatedTile(3619,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
     addAnimatedTile(3709,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
     addAnimatedTile(3799,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
-    
-    // Blacksmith fire (large), Bottom Right
-    addAnimatedTile(3620,new int[]{3620,3620,3710,3710,3800,3800,3710,3710});
-    addAnimatedTile(3710,new int[]{3620,3620,3710,3710,3800,3800,3710,3710});
-    addAnimatedTile(3800,new int[]{3620,3620,3710,3710,3800,3800,3710,3710});
 
     }
   

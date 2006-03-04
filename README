@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.45
+Version 0.46
 
 
 How to play
@@ -62,7 +62,12 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.45 Mar 1, 2006
+0.46 Mar XX, 20006
+- Fixed sheep
+- Fixed blacksmith animations.
+- Fixed Nalwor waterfall animation.
+
+0.45 Mar 01, 2006
 - Fixed ambient sounds.
 - Fixed sheep quest.
 - Fixed sheep inmortality bug.

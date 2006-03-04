@@ -113,6 +113,8 @@ public class StendhalRPAction
 
     float maxAttackerComponent=0.8f*(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
     float attackerComponent=((float)Rand.roll1D100()/100.0f)*maxAttackerComponent;
+    
+    logger.debug("ATK MAX: "+maxAttackerComponent+"\t ATK VALUE: "+attackerComponent);
 
     if(target.hasShield())
       {
@@ -143,6 +145,8 @@ public class StendhalRPAction
 
     float maxDefenderComponent=0.6f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor+(float)target.getDEF()*(float)helmet+(float)target.getDEF()*(float)legs+(float)target.getDEF()*(float)boots;
     float defenderComponent=((float)Rand.roll1D100()/100.0f)*maxDefenderComponent;
+
+    logger.debug("DEF MAX: "+maxDefenderComponent+"\t DEF VALUE: "+defenderComponent);
     
     int damage=(int)(((attackerComponent-defenderComponent)/maxAttackerComponent)*(maxAttackerComponent/maxDefenderComponent)*((float)source.getATK()/10.0f));
     
@@ -197,8 +201,10 @@ public class StendhalRPAction
             {
             if(zone.collides((int)point.getX(),(int)point.getY()))
               {
+              /** NOTE: Disabled to ease ranged combat.
               target.onAttack(source, false);
               world.modify(source);
+              */
               return false;
               }
             }
@@ -206,7 +212,7 @@ public class StendhalRPAction
           
         boolean hitted=riskToHit(source,target);
 
-        if((target instanceof SpeakerNPC)==false && source.stillHasBlood())
+        if(source instanceof Player && (target instanceof SpeakerNPC)==false && source.stillHasBlood())
           {
           // disabled attack xp for attacking NPC's
           source.incATKXP();
@@ -214,7 +220,7 @@ public class StendhalRPAction
         
         if(hitted) //Hit
           {
-          if(target.stillHasBlood())
+          if(target instanceof Player && target.stillHasBlood())
             {
             target.incDEFXP();
             }
@@ -417,6 +423,8 @@ public class StendhalRPAction
     Portal dest=destZone.getPortal(portal.getDestinationNumber());
     player.setx(dest.getInt("x"));
     player.sety(dest.getInt("y"));
+    
+    player.stop();
 
     changeZone(player,portal.getDestinationZone());
 

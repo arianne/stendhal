@@ -24,7 +24,7 @@ public class BalanceRPGame
       }
     }
   
-  private static int ROUNDS=250;
+  private static int ROUNDS=25;
   
   public static Pair<Integer, Integer> combat(Player player, Creature target, int rounds)
     {
@@ -52,6 +52,12 @@ public class BalanceRPGame
     boolean combatFinishedWinPlayer=false;
     int turns=0;
     
+    System.out.println ("<combat>");
+          System.out.println ("("+player.getLevel()+")\tATK: "+player.getATK()+"\tDEF: "+player.getDEF()+"\tHP: "+player.getBaseHP()+
+             "\tWeapon: "+player.getWeapon().getAttack()+"\tShield: "+player.getShield().getDefense()+"\tArmor: "+player.getArmor().getDefense()+
+             "\tHelmet: "+player.getHelmet().getDefense()+"\tLegs: "+player.getLegs().getDefense()+"\tBoots: "+player.getBoots().getDefense());
+          
+    
     while(!combatFinishedWinPlayer)
       {
       turns++;            
@@ -60,7 +66,9 @@ public class BalanceRPGame
         {
         int damage=StendhalRPAction.damageDone(player,target);
         if(damage<0) damage=0;
+
         target.setHP(target.getHP()-damage);
+        System.out.println ("  <damage turn="+turns+"\t target value="+damage+" leftHP="+target.getHP()+">");
         }      
       
       if(target.getHP()<=0)
@@ -74,13 +82,19 @@ public class BalanceRPGame
         int damage=StendhalRPAction.damageDone(target,player);
         if(damage<0) damage=0;
         player.setHP(player.getHP()-damage);
+
+        System.out.println ("  <damage turn="+turns+"\t player value="+damage+" leftHP="+player.getHP()+">");
         }     
         
       if(player.getHP()<=0)
         {
+        combatFinishedWinPlayer=true;
         break;
         }
       }
+    
+    System.out.println ("<result turns="+turns+" leftHP="+player.getHP()+">");
+    System.out.println ("</combat>");
     
     return new Pair<Integer, Integer>(turns, player.getHP());
     }
@@ -108,12 +122,16 @@ public class BalanceRPGame
         }
       });
     
-    int levels=10;
-    //                0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
-    int[] atkLevels={10,12,12,13,13,13,14,14,14,14,15,15,15,15,15,16,16,16,16,16,16,16,16,17,17,17,17,17,18,18,18,
-                     19,19,19,19,20,20,20,20,20,20,21,21,21,21,21,21,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23};
-    int[] defLevels={10,12,13,14,15,15,16,16,18,18,18,20,20,21,21,21,22,22,22,23,23,23,23,23,23,24,24,24,24,25,25,
-                     25,25,25,25,26,26,26,26,26,27,27,27,27,27,28,28,28,28,28,28,28,30,30,30,30,30,30,30,30,30,31};
+    int[] atkLevels=new int[110];                     
+    int[] defLevels=new int[110];   
+    
+    for(int i=0;i<atkLevels.length;i++)
+      {
+      atkLevels[i]=10+(int)Math.round(Math.log(i+1)/Math.log(10)*7);
+      defLevels[i]=10+(int)Math.round(Math.log(i+1)/Math.log(10)*14);
+      }                  
+                     
+                        
     
     EntityManager em=DefaultEntityManager.getInstance();
     Item weapon=em.getItem("club");
@@ -149,7 +167,20 @@ public class BalanceRPGame
     player.equip(helmet);
     player.equip(legs);
     player.equip(boots);
-    
+
+//    for(int level=0;level<60;level++)
+//      {
+//      player.setBaseHP(100+10*level);
+//      player.setATK(atkLevels[level]);
+//      player.setDEF(defLevels[level]);      
+//      equip(player,level);    
+//      System.out.println ("("+level+")\tATK: "+player.getATK()+"\tDEF: "+player.getDEF()+"\tHP: "+player.getBaseHP()+
+//         "\tWeapon: "+player.getWeapon().getAttack()+"\tShield: "+player.getShield().getDefense()+"\tArmor: "+player.getArmor().getDefense()+
+//         "\tHelmet: "+player.getHelmet().getDefense()+"\tLegs: "+player.getLegs().getDefense()+"\tBoots: "+player.getBoots().getDefense());
+//      }
+//    
+//    System.exit(0);
+  
     StringBuffer st=new StringBuffer("Creatures done: \n");
     
     boolean found=false;
@@ -162,10 +193,10 @@ public class BalanceRPGame
           {
           continue;
           }
-        else
-          {
-          found=true;
-          }
+//        else
+//          {
+//          found=true;
+//          }
         }
         
       //OUTPUT: System.out.println ("-- "+creature.getCreatureName()+"("+creature.getLevel()+")");
@@ -186,6 +217,7 @@ public class BalanceRPGame
         
         while(balanced==false)
           {
+          player.setLevel(level);
           player.setBaseHP(100+10*level);
           player.setATK(atkLevels[level]);
           player.setDEF(defLevels[level]);      
@@ -203,8 +235,8 @@ public class BalanceRPGame
             creature.setLevel(creature.getLevel(),proposedXPValue);
             }          
             
-          //OUTPUT: System.out.println("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(100*meanLeftHP/(1.0* player.getBaseHP())));
-          
+          System.out.println("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(100*meanLeftHP/(1.0* player.getBaseHP())));
+
           if(isCorrectResult(level, level-creature.getLevel(),meanTurns, meanLeftHP/(1.0* player.getBaseHP())))
             {
             balanced=true;
@@ -355,19 +387,19 @@ public class BalanceRPGame
   
   static void equip(Player p, int level)
     {
-    p.getWeapon().put("atk",7+level*2/3);
+    p.getWeapon().put("atk",7+level*2/6);
     if(level==0)
       {
       p.getShield().put("def",0);
       }
     else
       {
-      p.getShield().put("def",14+level/4);
+      p.getShield().put("def",12+level/8);
       }
     p.getArmor().put("def",1+level/4);    
-    p.getHelmet().put("def",level/3);
-    p.getLegs().put("def",level/3);
-    p.getBoots().put("def",level/3);
+    p.getHelmet().put("def",1+level/7);
+    p.getLegs().put("def",1+level/7);
+    p.getBoots().put("def",1+level/10);
     
 //    //OUTPUT: System.out.println ("W: "+p.getWeapon().getAttack()+" \t"+
 //                        "S: "+p.getShield().getDefense()+" \t"+
