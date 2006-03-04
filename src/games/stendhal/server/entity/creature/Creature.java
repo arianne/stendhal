@@ -664,6 +664,7 @@ public class Creature extends NPC
         ((StackableItem)item).setQuantity(equipedItem.quantity);
         }
       
+      slot.assignValidID(item);
       slot.add(item);
       }
     }

@@ -44,6 +44,7 @@ public class GameObjects implements Iterable<Entity>
     
     register("creature","small_animal",SmallCreature.class);
     register("creature","giant_animal",BigCreature.class);
+    register("creature","huge_animal",HugeCreature.class);
     register("creature",null,NormalCreature.class);
 
     register("sheep",null,Sheep.class);    

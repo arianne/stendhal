@@ -546,6 +546,8 @@
 			<item value="leather_armor" quantity="1" probability="20"/>
 		</drops>
 		<equips>
+            <slot name="lhand" item="wooden_arrow" quantity="10000"/>
+            <slot name="rhand" item="wooden_bow"/>
 		</equips>
 		<ai>
 			<says>
@@ -1242,6 +1244,8 @@
 			<item value="studded_armor" quantity="1" probability="25"/>
 		</drops>
 		<equips>
+            <slot name="lhand" item="wooden_arrow" quantity="10000"/>
+            <slot name="rhand" item="wooden_bow"/>
 		</equips>
 		<ai>
 			<profile name="human"/>
@@ -1534,7 +1538,7 @@
 			<def value="32"/>
 			<hp value="300"/>
 			<speed value="1.5"/>
-			<size value="1,2"/>
+			<size value="2,2"/>
 		</attributes>
 		<level value="50"/>
 		<experience value="1400"/>
@@ -1586,7 +1590,7 @@
 			<def value="40"/>
 			<hp value="900"/>
 			<speed value="1.5"/>
-			<size value="1,2"/>
+			<size value="2,2"/>
 		</attributes>
 		<level value="70"/>
 		<experience value="2500"/>
@@ -1605,13 +1609,13 @@
 	<!-- Level 100 -->
     
 	<creature name="black_dragon">
-		<type class="giant_animal" subclass="black_dragon" tileid="53"/>
+		<type class="huge_animal" subclass="black_dragon" tileid="53"/>
 		<attributes>
 			<atk value="150"/>
 			<def value="45"/>
 			<hp value="1200"/>
 			<speed value="1.5"/>
-			<size value="1,2"/>
+			<size value="3,4"/>
 		</attributes>
 		<level value="100"/>
 		<experience value="10000"/>
