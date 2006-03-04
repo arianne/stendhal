@@ -66,6 +66,10 @@ Changelog
 - Fixed sheep
 - Fixed blacksmith animations.
 - Fixed Nalwor waterfall animation.
+- Creatures correctly balanced
+- Fixed dragons and added a new category Huge animals.
+- Fixed a bug at Attack system that weakens NPC.
+- Fixed some maps bugs.
 
 0.45 Mar 01, 2006
 - Fixed ambient sounds.
