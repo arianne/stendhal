@@ -100,7 +100,7 @@ public class NPC extends RPEntity
         }
       else
         {
-        aspect=store.getSprite(translate(object.get("class")));
+        aspect=store.getSprite(translate("npc/"+object.get("class")));
         }      
       }
     catch(Exception e)
