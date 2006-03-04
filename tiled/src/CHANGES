@@ -21,7 +21,6 @@
 Broken things:
 * some undo features (delete/rename layer, maybe: properties layer changes, map/layer/tile props)
 * pour (won't fix, replaced by brushes. maybe a pour brush?)
-* grid/coordinate map view (won't fix this)
 * select all/none/invert
 * plugins
 

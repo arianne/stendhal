@@ -173,6 +173,7 @@ public class MapEditor implements ActionListener, MouseListener,
   public Action               moveLayerUpAction;
   public Action               moveLayerDownAction;
   public Action               selectBrushAction;
+  public Action               toggleGridAction;
 
   public MapEditor()
   {
@@ -225,6 +226,7 @@ public class MapEditor implements ActionListener, MouseListener,
     moveLayerUpAction = new MoveLayerUpAction(this);
     moveLayerDownAction = new MoveLayerDownAction(this);
     selectBrushAction = new SelectBrushAction(this);
+    toggleGridAction = new ToggleGridAction(this);
 
     // Create our frame
     appFrame = new JFrame("Stendhal Mapeditor");

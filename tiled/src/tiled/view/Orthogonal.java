@@ -26,10 +26,10 @@ public class Orthogonal extends MapView
   private static final int MINIMAP_TILE_SIZE = 2;
   
   /** retuns the tile size depending on the given zoom level */
-  private Dimension getTileSize(double zoom)
+  private Dimension getTileSize(double zoom, int padding)
   {
-    return new Dimension((int)(map.getTileWidth() * zoom),
-                         (int)(map.getTileHeight() * zoom));
+    return new Dimension((int)(map.getTileWidth() * zoom + padding),
+                         (int)(map.getTileHeight() * zoom + padding));
   }
 
   /** size of the map */
@@ -40,7 +40,7 @@ public class Orthogonal extends MapView
       return new Dimension(1000, 1000);
     }
 
-    Dimension dim = getTileSize(zoom);
+    Dimension dim = getTileSize(zoom, padding);
     
     dim.width  *= map.getWidth();
     dim.height *= map.getHeight();
@@ -59,11 +59,11 @@ public class Orthogonal extends MapView
    */
   public void draw(Graphics g, Rectangle clipArea)
   {
-    draw(g,clipArea,zoom);
+    draw(g,clipArea,zoom, padding);
   }
   
   /** draws the map with the given zoom level */
-  private void draw(Graphics g, Rectangle clipArea, double zoom)
+  private void draw(Graphics g, Rectangle clipArea, double zoom, int padding)
   {
     if (map == null)
       return;
@@ -76,22 +76,22 @@ public class Orthogonal extends MapView
       if (layer instanceof TileLayer && layer.isVisible())
       {
         TileLayer tileLayer = (TileLayer) layer;
-        paintLayer(g,tileLayer,clipArea,zoom);
+        paintLayer(g,tileLayer,clipArea,zoom, padding);
         tileLayerList.add(tileLayer);
       }
     }
     PropertiesLayer propertiesLayer = map.getPropertiesLayer();
-    paintPropertiesLayer(g,propertiesLayer,tileLayerList,clipArea,zoom);
+    paintPropertiesLayer(g,propertiesLayer,tileLayerList,clipArea,zoom, padding);
   }
 
   /** draws the properties overlay images */
-  private void paintPropertiesLayer(Graphics g, PropertiesLayer propertiesLayer, List<TileLayer> tileLayer, Rectangle clipArea, double zoom)
+  private void paintPropertiesLayer(Graphics g, PropertiesLayer propertiesLayer, List<TileLayer> tileLayer, Rectangle clipArea, double zoom, int padding)
   {
     // no opacity for properties icons
     ((Graphics2D) g).setComposite(AlphaComposite.SrcOver);
     
     // Determine tile size and offset
-    Dimension tsize = getTileSize(zoom);
+    Dimension tsize = getTileSize(zoom, padding);
     if (tsize.width <= 0 || tsize.height <= 0)
       return;
     
@@ -152,12 +152,12 @@ public class Orthogonal extends MapView
   }
 
   /** paints the specified region of the layer */
-  protected void paintLayer(Graphics g, TileLayer layer, Rectangle clipArea, double zoom)
+  protected void paintLayer(Graphics g, TileLayer layer, Rectangle clipArea, double zoom, int padding)
   {
     setLayerOpacity(g,layer);
     
     // Determine tile size and offset
-    Dimension tsize = getTileSize(zoom);
+    Dimension tsize = getTileSize(zoom, padding);
     if (tsize.width <= 0 || tsize.height <= 0)
       return;
     
@@ -195,7 +195,7 @@ public class Orthogonal extends MapView
    */
   public Point screenToTileCoords(Point screenCoords)
   {
-    Dimension tsize = getTileSize(zoom);
+    Dimension tsize = getTileSize(zoom, padding);
     Point p = new Point(screenCoords.x / tsize.width, screenCoords.y / tsize.height);
     if (p.x > map.getWidth())
     {
@@ -217,7 +217,7 @@ public class Orthogonal extends MapView
    */
   public Point tileToScreenCoords(Point tileCoords)
   {
-    Dimension tsize = getTileSize(zoom);
+    Dimension tsize = getTileSize(zoom, padding);
     return new Point(tileCoords.x * tsize.width, tileCoords.y * tsize.height);
   }
 
@@ -237,7 +237,7 @@ public class Orthogonal extends MapView
   /** returns the minimap zoom level. */
   public double getMinimapScale()
   {
-    return (1.0 / (map.getTileWidth() / MINIMAP_TILE_SIZE));
+    return (1.0 / ((map.getTileWidth()) / MINIMAP_TILE_SIZE));
   }
 
   /** updates the minimap */
@@ -250,7 +250,7 @@ public class Orthogonal extends MapView
     }
 
     Graphics minimapGraphics = minimapImage.createGraphics();
-    draw(minimapGraphics,modifiedRegion,getMinimapScale());
+    draw(minimapGraphics,modifiedRegion,getMinimapScale(), 0);
   }
 
   /**
@@ -270,7 +270,7 @@ public class Orthogonal extends MapView
     
     TileLayer tileLayer = (TileLayer) mapLayer;
     
-    Dimension tsize = getTileSize(zoom);
+    Dimension tsize = getTileSize(zoom, padding);
     Point p1 = rect.getLocation();
     Point p2 = rect.getLocation();
     p2.translate(rect.width,rect.height);
@@ -313,7 +313,7 @@ public class Orthogonal extends MapView
   public void drawTileHighlight(Graphics g, Point tile)
   {
     Point p = tileToScreenCoords(tile);
-    Dimension tsize = getTileSize(zoom);
+    Dimension tsize = getTileSize(zoom, padding);
     g.drawRect(p.x, p.y, tsize.width, tsize.height);
   }
   

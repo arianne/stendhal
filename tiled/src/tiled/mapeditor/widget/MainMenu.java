@@ -52,7 +52,6 @@ public class MainMenu extends JMenuBar implements ActionListener
   // view menu
   private JCheckBoxMenuItem coordinatesMenuItem;
   private JCheckBoxMenuItem gridMenuItem;
-  private JCheckBoxMenuItem boundaryMenuItem;
 
   /** creates the main menu */
   public MainMenu(MapEditor mapEditor, MapEventAdapter mapEventAdapter)
@@ -167,16 +166,8 @@ public class MainMenu extends JMenuBar implements ActionListener
     selectMenu.add(new TMenuItem(mapEditor.cancelSelectionAction, true));
     selectMenu.add(new TMenuItem(mapEditor.inverseAction, true));
     
-    gridMenuItem = new JCheckBoxMenuItem("Show Grid");
-    gridMenuItem.addActionListener(mapEditor);
-    gridMenuItem.setToolTipText("Toggle grid");
-    gridMenuItem.setAccelerator(KeyStroke.getKeyStroke("control G"));
-    
-    boundaryMenuItem = new JCheckBoxMenuItem("Show Boundaries");
-    boundaryMenuItem.addActionListener(mapEditor);
-    boundaryMenuItem.setToolTipText("Toggle layer boundaries");
-    boundaryMenuItem.setAccelerator(KeyStroke.getKeyStroke("control E"));
-    
+    gridMenuItem = new JCheckBoxMenuItem(mapEditor.toggleGridAction);
+
     coordinatesMenuItem = new JCheckBoxMenuItem("Show Coordinates");
     coordinatesMenuItem.addActionListener(mapEditor);
     coordinatesMenuItem.setToolTipText("Toggle tile coordinates");
@@ -187,8 +178,6 @@ public class MainMenu extends JMenuBar implements ActionListener
     viewMenu.add(new TMenuItem(mapEditor.zoomNormalAction));
     viewMenu.addSeparator();
     viewMenu.add(gridMenuItem);
-    // TODO: Enable when boudary drawing code finished.
-    //viewMenu.add(boundaryMenuItem);
     viewMenu.add(coordinatesMenuItem);
     
     mapEventAdapter.addListener(layerMenu);

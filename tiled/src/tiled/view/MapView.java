@@ -29,6 +29,7 @@ public abstract class MapView
 {
   /** default zoom level for the minimap */
   protected static final double DEFAULT_MINIMAP_ZOOM = 0.0625;
+  /** index of default zoom (100%) in zoom level array*/
   private static final int DEFAULT_ZOOM_LEVEL = 5;
   /** valid zoom levels */
   protected static double[] zoomLevels = {0.0625, 0.125, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0};
@@ -42,6 +43,8 @@ public abstract class MapView
   protected BufferedImage minimapImage;
   /** the background color */
   private Color backgroundColor;
+  /** padding between the tiles */
+  protected int padding;
   
   public MapView()
   {
@@ -56,7 +59,6 @@ public abstract class MapView
     {
       backgroundColor = new Color(64, 64, 64);
     }
-    
   }
 
   /** sets the map */
@@ -164,54 +166,6 @@ public abstract class MapView
       }
     }
   }
-  
-  /**
-   * Prepares the minimap. The view can use the <i>DEFAULT_MINIMAP_ZOOM</i>.
-   * The map is already set and non-null when this method is called.
-   * The view must return the image of the minimap (and not set the field in
-   * this baseclass directly).
-   */
-  protected abstract BufferedImage prepareMinimapImage();
-  
-  /**
-   * Updates the minimap image. This method should always be called when there
-   * is a change in the map.
-   * <br>
-   * <b>Note: </b>The modified region is in tile coordinate space
-   * 
-   * @param modifiedRegion the region which was changed and therefor needs to
-   *                       be redrawn.   
-   */
-  public abstract void updateMinimapImage(Rectangle modifiedRegion);
-  
-  /**
-   * (re)draws a portion of the map. Note that clipArea is in Tile coordinate
-   * space, not pixel space. The destination is always the upper left
-   * corner(0,0) of g.
-   * The MapView should check the clipping area of g too, to avoid unneccessary
-   * drawing operation.
-   * 
-   *  @param g the graphic to draw to
-   *  @param clipArea the are to draw in tile coordinates
-   */
-  public abstract void draw(Graphics g, Rectangle clipArea);
-
-  
-  /** 
-   * converts the screen position to tile position.
-   * 
-   * @param tileCoords tile coords
-   * @return screen coords
-   */
-  public abstract Point screenToTileCoords(Point screenCoords);
-
-  /**
-   * converts the tile position to screen position.
-   * 
-   * @param screenCoords screen coords
-   * @return tile coords
-   */
-  public abstract Point tileToScreenCoords(Point tileCoords);
 
   /** returns the minimap zoom level. */
   public double getMinimapScale()
@@ -276,7 +230,71 @@ public abstract class MapView
     }
     return props;
   }
+  
+  /**
+   * Sets the padding of the tiles in pixels.
+   * @param padding the padding size in pixels
+   */
+  public void setPadding(int padding)
+  {
+    this.padding = padding;
+  }
+  
+  /**
+   * Returns the padding of the tiles in pixels.
+   * @return the padding size in pixels
+   */
+  public int getPadding()
+  {
+    return padding;
+  }
 
+  /**
+   * Prepares the minimap. The view can use the <i>DEFAULT_MINIMAP_ZOOM</i>.
+   * The map is already set and non-null when this method is called.
+   * The view must return the image of the minimap (and not set the field in
+   * this baseclass directly).
+   */
+  protected abstract BufferedImage prepareMinimapImage();
+  
+  /**
+   * Updates the minimap image. This method should always be called when there
+   * is a change in the map.
+   * <br>
+   * <b>Note: </b>The modified region is in tile coordinate space
+   * 
+   * @param modifiedRegion the region which was changed and therefor needs to
+   *                       be redrawn.   
+   */
+  public abstract void updateMinimapImage(Rectangle modifiedRegion);
+  
+  /**
+   * (re)draws a portion of the map. Note that clipArea is in Tile coordinate
+   * space, not pixel space. The destination is always the upper left
+   * corner(0,0) of g.
+   * The MapView should check the clipping area of g too, to avoid unneccessary
+   * drawing operation.
+   * 
+   *  @param g the graphic to draw to
+   *  @param clipArea the are to draw in tile coordinates
+   */
+  public abstract void draw(Graphics g, Rectangle clipArea);
+  
+  /** 
+   * converts the screen position to tile position.
+   * 
+   * @param tileCoords tile coords
+   * @return screen coords
+   */
+  public abstract Point screenToTileCoords(Point screenCoords);
+
+  /**
+   * converts the tile position to screen position.
+   * 
+   * @param screenCoords screen coords
+   * @return tile coords
+   */
+  public abstract Point tileToScreenCoords(Point tileCoords);
 
   /**
    * Retuns list of tiles that lies in the given rectangle.
