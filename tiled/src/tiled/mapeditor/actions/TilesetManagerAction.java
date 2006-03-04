@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import tiled.mapeditor.MapEditor;
-import tiled.mapeditor.TilesetManager;
+import tiled.mapeditor.dialog.TilesetManager;
 
 /**
  * Opens the tileset manager

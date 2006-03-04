@@ -96,4 +96,10 @@ public class TileGroupBrush extends AbstractBrush
 
     return cachedLayerIndices;
   }
+  
+  public String getName()
+  {
+    return "TileGroup Brush";
+  }
+  
 }

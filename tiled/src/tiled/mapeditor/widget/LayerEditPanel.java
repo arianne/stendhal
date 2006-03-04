@@ -45,8 +45,7 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
   private MapEditor mapEditor;
 
   private MiniMapViewer miniMap;
-  private BrushBrowser brushBrowser;
-  
+
   private JTable layerTable;
   private JSlider opacitySlider;
   
@@ -126,14 +125,9 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     layerPanel.add(layerTableScrollPane);
     layerPanel.add(layerButtons);
     
-    JTabbedPane pane = new JTabbedPane();
-    pane.add("Layers",layerPanel);
-    brushBrowser = new BrushBrowser(mapEditor);
-    pane.add("Brushes",brushBrowser);
-
     setLayout(new BorderLayout());
     add(miniMapSp, BorderLayout.NORTH);
-    add(pane, BorderLayout.CENTER);
+    add(layerPanel, BorderLayout.CENTER);
     
   }
   
@@ -160,8 +154,6 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     }
     ((LayerTableModel)layerTable.getModel()).setMap(currentMap);
     
-    brushBrowser.setMap(currentMap);
-
     if (currentMap != null)
     {
       if (currentMap.getTotalLayers() > 0 && currentLayer == -1)

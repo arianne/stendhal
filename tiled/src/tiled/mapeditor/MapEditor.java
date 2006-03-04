@@ -22,7 +22,6 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -52,8 +51,7 @@ import javax.swing.event.UndoableEditListener;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
-import tiled.core.Tile;
-import tiled.core.TileLayer;
+import tiled.core.StatefulTile;
 import tiled.io.MapHelper;
 import tiled.mapeditor.actions.*;
 import tiled.mapeditor.brush.Brush;
@@ -71,7 +69,6 @@ import tiled.mapeditor.undo.UndoStack;
 import tiled.mapeditor.util.MapChangeListener;
 import tiled.mapeditor.util.MapChangedEvent;
 import tiled.mapeditor.util.MapEventAdapter;
-import tiled.mapeditor.util.TileSelectionEvent;
 import tiled.mapeditor.widget.LayerEditPanel;
 import tiled.mapeditor.widget.MainMenu;
 import tiled.mapeditor.widget.MapEditPanel;
@@ -114,10 +111,11 @@ public class MapEditor implements ActionListener, MouseListener,
   boolean                     bMouseIsDown     = false;
 
   private List<Point>         selectedTiles;
-  public Map                  currentMap;
+  public  Map                 currentMap;
   private Brush               currentBrush;
-  public Builder              currentBuilder;
-  public int                  currentLayer     = -1;
+  public  Builder             currentBuilder;
+  public  int                 currentLayer     = -1;
+  private List<StatefulTile>  currentTiles;
 
   public MapLayer             clipboardLayer   = null;
 
@@ -188,9 +186,7 @@ public class MapEditor implements ActionListener, MouseListener,
     mapEventAdapter = new MapEventAdapter();
 
     // Create a default brush
-    ShapeBrush sb = new ShapeBrush();
-    sb.makeQuadBrush(new Rectangle(0, 0, 1, 1));
-    setBrush(sb);
+    setBrush(ShapeBrush.makeRectBrush(1,1));
 
     // Create the actions
     zoomInAction = new ZoomInAction(this);
@@ -810,6 +806,10 @@ public class MapEditor implements ActionListener, MouseListener,
 
   public void setBrush(Brush b)
   {
+    if (b != null && currentBrush != null)
+    {
+      b.setTiles(currentBrush.getTiles());
+    }
     currentBrush = b;
     if (currentBuilder != null)
     {
@@ -1173,6 +1173,7 @@ public class MapEditor implements ActionListener, MouseListener,
     undoStack.discardAllEdits();
     updateLayerTable();
     tilePalettePanel.setMap(currentMap);
+    toolBar.setMap(currentMap);
     updateTitle();
     updateHistory();
   }
@@ -1192,14 +1193,31 @@ public class MapEditor implements ActionListener, MouseListener,
    * 
    * @param e the event
    */
-  public void setCurrentTiles(TileSelectionEvent e)
+  public void setCurrentTiles(List<StatefulTile> tiles)
   {
-    List<Tile> tiles = e.getTiles();
-    if (tiles != null)
+    currentTiles = tiles;
+    currentBrush.setTiles(tiles);
+    toolBar.setButtonStates(PS_PAINT);
+  }
+  
+  /** sets the tile wich deletes the content 
+   * @param delete true when delete is enabled, false otherwise */
+  public void toggleDeleteTile(boolean delete)
+  {
+    if (delete)
     {
-      setBrush(e.getBrush());
+      List<StatefulTile> list = new ArrayList<StatefulTile>();
+      list.add(new StatefulTile(new Point(0,0),0,currentMap.getNullTile()));
+      currentBrush.setTiles(list);
+      toolBar.setButtonStates(PS_ERASE);
+    }
+    else
+    {
+      currentBrush.setTiles(currentTiles);
+      toolBar.setButtonStates(PS_PAINT);
     }
   }
+  
 
   private void setCurrentPointerState(int state)
   {

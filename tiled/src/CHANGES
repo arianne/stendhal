@@ -26,13 +26,13 @@ Broken things:
 * plugins
 
 Todo:
-* create delete brush
-* restore shape brush
 * there are some ugly scrolling issues. scroll is separate thread? check SwingWorker and SwingUtilities.invokeLater
-* Save custom brushes in map
+* when using positive zoom there are some problems with invalidating?
 * improve selection
 * fix plugins
 * correctly implement loading/saving plugin
+* remove the setMap()-methods in all panels and use a listener callback instead
+* return real brushes in Map.getUserBrushes();
 
 0.5.2 - TBD (+ means planned change)
 

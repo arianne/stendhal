@@ -44,6 +44,9 @@ public class SimpleBuilder extends AbstractBuilder
   {
     Rectangle brushSize = brush.getBounds();
     
+    if (brushSize.width == 0 || brushSize.height == 0)
+      return null;
+    
     if (lastPoint == null)
     {
       lastPoint = new Point(tile);

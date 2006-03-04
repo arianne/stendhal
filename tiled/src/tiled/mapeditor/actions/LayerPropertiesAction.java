@@ -17,7 +17,7 @@ import tiled.mapeditor.dialog.PropertiesDialog;
  */
 public class LayerPropertiesAction extends AbstractAction
 {
-  private static final long serialVersionUID = 4129513964166205585L;
+  private static final long serialVersionUID = 1L;
 
   private MapEditor mapEditor;
   

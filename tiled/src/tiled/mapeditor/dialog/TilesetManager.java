@@ -16,7 +16,7 @@
  *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
-package tiled.mapeditor;
+package tiled.mapeditor.dialog;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -30,7 +30,6 @@ import tiled.core.*;
 import tiled.io.MapHelper;
 import tiled.io.MapWriter;
 import tiled.mapeditor.util.*;
-import tiled.mapeditor.dialog.TileDialog;
 import tiled.mapeditor.plugin.PluginClassLoader;
 
 

@@ -20,32 +20,23 @@ package tiled.mapeditor.util;
 import java.util.EventObject;
 import java.util.List;
 
-import tiled.core.Tile;
-import tiled.mapeditor.brush.Brush;
+import tiled.core.StatefulTile;
 
 public class TileSelectionEvent extends EventObject
 {
   private static final long serialVersionUID = 4689788849006324950L;
 
   /** list of selected tiles */
-  private List<Tile>        tiles;
-  /** brush to draw the tiles */
-  private Brush             brush;
+  private List<StatefulTile>        tiles;
 
-  public TileSelectionEvent(Object source, List<Tile> tiles, Brush brush)
+  public TileSelectionEvent(Object source, List<StatefulTile> tiles)
   {
     super(source);
     this.tiles = tiles;
-    this.brush = brush;
   }
 
-  public List<Tile> getTiles()
+  public List<StatefulTile> getTiles()
   {
     return tiles;
-  }
-
-  public Brush getBrush()
-  {
-    return brush;
   }
 }

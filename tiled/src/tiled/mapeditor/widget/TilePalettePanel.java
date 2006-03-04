@@ -29,8 +29,6 @@ import javax.swing.event.MouseInputListener;
 
 import tiled.core.*;
 import tiled.mapeditor.MapEditor;
-import tiled.mapeditor.brush.Brush;
-import tiled.mapeditor.brush.MultiTileBrush;
 import tiled.mapeditor.dialog.PropertiesDialog;
 import tiled.mapeditor.util.*;
 import tiled.util.Util;
@@ -46,9 +44,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
   /** a list of listeners to be notified when the selected tile changes */
   private EventListenerList tileSelectionListeners;
   /** the currently selected tiles */
-  private List<Tile> selectedTiles;
-  /** brush to paint the selected tiles */
-  private MultiTileBrush selectedBrush;
+  private List<StatefulTile> selectedTiles;
   /** indicator that the user is drawing a frame to select multiple tiles */
   private boolean dragInProgress;
   /** the point where the drag started */
@@ -70,8 +66,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
     this.tileset = set;
     this.mapEditor = mapEditor;
     tileSelectionListeners = new EventListenerList();
-    selectedTiles = new ArrayList<Tile>();
-    selectedBrush = new MultiTileBrush();
+    selectedTiles = new ArrayList<StatefulTile>();
     refreshTileProperties();
     
     addMouseListener(this);
@@ -97,13 +92,13 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
     tileSelectionListeners.remove(TileSelectionListener.class, l);
   }
 
-  protected void fireTileSelectionEvent(List<Tile> selectedTiles, Brush brush)
+  protected void fireTileSelectionEvent(List<StatefulTile> selectedTiles)
   {
     TileSelectionListener[] listeners = tileSelectionListeners.getListeners(TileSelectionListener.class);
     if (listeners.length == 0)
       return;
 
-    TileSelectionEvent event = new TileSelectionEvent(this, new ArrayList<Tile>(selectedTiles), brush);
+    TileSelectionEvent event = new TileSelectionEvent(this, new ArrayList<StatefulTile>(selectedTiles));
 
     for (TileSelectionListener listener : listeners)
     {
@@ -212,13 +207,13 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
       // draw selected tiles
       g.setColor(Color.YELLOW);
 
-      for (Tile tile : selectedTiles)
+      for (StatefulTile tile : selectedTiles)
       {
-        int id = tile.getId();
+        int id = tile.tile.getId();
         int x = id % tilesPerRow;
         int y = id / tilesPerRow;
-        g.drawRect(x * twidth - 1, y * theight    , tile.getWidth() + 1,tile.getHeight() + 1);
-        g.drawRect(x * twidth    , y * theight + 1, tile.getWidth() - 1,tile.getHeight() - 1);
+        g.drawRect(x * twidth - 1, y * theight    , tile.tile.getWidth() + 1,tile.tile.getHeight() + 1);
+        g.drawRect(x * twidth    , y * theight + 1, tile.tile.getWidth() - 1,tile.tile.getHeight() - 1);
       }
       
       // drag selection rectangle
@@ -286,7 +281,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
   {
     Point point = getMousePosition();
     refreshSelectedTiles(new Rectangle(point.x,point.y, 1,1));
-    fireTileSelectionEvent(selectedTiles,selectedBrush);
+    fireTileSelectionEvent(selectedTiles);
     repaint();
     Point p = e.getPoint();
     if (e.getButton() == MouseEvent.BUTTON3 && p != null)
@@ -349,7 +344,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
       currentDragPoint = dragStartPoint;
     }
     refreshSelectedTiles(Util.getRectangle(dragStartPoint, currentDragPoint));
-    fireTileSelectionEvent(selectedTiles,selectedBrush);
+    fireTileSelectionEvent(selectedTiles);
     repaint();
   }
   
@@ -367,10 +362,6 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
   /** selects all tiles within the selection rectangle */
   private void refreshSelectedTiles(Rectangle rect)
   {
-    List<Tile> tileList = new ArrayList<Tile>();
-    
-    MultiTileBrush brush = new MultiTileBrush();
-    
     int twidth = tileset.getStandardWidth() + 1;
     int theight = tileset.getTileHeightMax() + 1;
     
@@ -379,6 +370,7 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
     int maxy = rect.y + rect.height;
     maxy += (maxy % theight > 0) ? theight - (maxy % theight) : 0;
     
+    List<StatefulTile> statefulTiles = new ArrayList<StatefulTile>();
 
     for (int x = rect.x, brushx = 0; x < maxx ; x += twidth, brushx++)
     {
@@ -387,13 +379,11 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
         Tile tile = getTileAtPoint(x,y);
         if (tile != null)
         {
-          tileList.add(tile);
-          brush.addTile(brushx,brushy,tile);
+          statefulTiles.add(new StatefulTile(new Point(x/twidth,y/twidth),0,tile));
         }
       }
     }
-    selectedTiles = tileList;
-    selectedBrush = brush;
+    selectedTiles = statefulTiles;
   }
   
   /** returns tooltip text */

@@ -11,16 +11,15 @@
  ***************************************************************************/
 package tiled.mapeditor.brush;
 
+
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import java.util.List;
 
 import tiled.core.MapLayer;
 import tiled.core.MultilayerPlane;
 import tiled.core.StatefulTile;
-import tiled.core.Tile;
 import tiled.core.TileLayer;
 
 /**
@@ -31,37 +30,14 @@ import tiled.core.TileLayer;
 public class MultiTileBrush extends AbstractBrush
 {
   private Rectangle cachedBounds;
-  /** the list with the tiles */
-  private List<StatefulTile> tileList;
-  
-  
-  public MultiTileBrush(MultiTileBrush otherBrush)
-  {
-    tileList = new ArrayList<StatefulTile>(otherBrush.tileList);
-  }
 
   public MultiTileBrush()
   {
-    tileList = new ArrayList<StatefulTile>();
   }
-  
-  /** adds a tile with position to the brush */
-  public void addTile(int x, int y, Tile tile)
+
+  public MultiTileBrush(MultiTileBrush otherBrush)
   {
-    tileList.add(new StatefulTile(new Point(x,y),0,tile));
-  }
-  
-  /** removes a tile from the brush */
-  public void removeTile(int x, int y, Tile tile)
-  {
-    for (StatefulTile tileWrapped : tileList)
-    {
-      if (tileWrapped.tile == tile)
-      {
-        tileList.remove(tileWrapped);
-        return;
-      }
-    }
+    setTiles(otherBrush.selectedTiles);
   }
   
   /** returns the bounds of the brush in tile coordinates */
@@ -80,7 +56,7 @@ public class MultiTileBrush extends AbstractBrush
     Point p1 = null;
     Point p2 = null;
     
-    for (StatefulTile tile : tileList)
+    for (StatefulTile tile : selectedTiles)
     {
       if (p1 == null)
       {
@@ -103,7 +79,21 @@ public class MultiTileBrush extends AbstractBrush
       }
     }
     
-    return (p1 == null) ? new Rectangle() : new Rectangle(p1.x,p1.y,p2.x-p1.x+1,p2.y-p1.y+1);
+    for (StatefulTile tile : selectedTiles)
+    {
+      tile.p.x -= p1.x;
+      tile.p.y -= p1.y;
+    }
+    
+    
+    return (p1 == null) ? new Rectangle() : new Rectangle(0,0,p2.x-p1.x+1,p2.y-p1.y+1);
+  }
+  
+  /** Sets the currently selected Tiles */
+  public void setTiles(List<StatefulTile> selectedTiles)
+  {
+    super.setTiles(selectedTiles);
+    cachedBounds = null;
   }
 
   /** draws the brush */
@@ -112,7 +102,7 @@ public class MultiTileBrush extends AbstractBrush
     TileLayer tileLayer = (TileLayer) mp.getLayer(initLayer);
     if (tileLayer != null)
     {
-      for (StatefulTile tile : tileList)
+      for (StatefulTile tile : selectedTiles)
       {
         tileLayer.setTileAt(tile.p.x+x, tile.p.y+y, tile.tile);
       }
@@ -139,7 +129,7 @@ public class MultiTileBrush extends AbstractBrush
     buf.append("[MultiTileBrush: ");
     
     
-    for (StatefulTile tile : tileList)
+    for (StatefulTile tile : selectedTiles)
     {
       buf.append(tile);
     }
@@ -153,4 +143,8 @@ public class MultiTileBrush extends AbstractBrush
     return new MapLayer[0];
   }
   
+  public String getName()
+  {
+    return "Selected Tiles Brush ("+getBounds().width+"x"+getBounds().height+")";
+  }
 }

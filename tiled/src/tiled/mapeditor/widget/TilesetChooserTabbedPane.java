@@ -102,7 +102,7 @@ public class TilesetChooserTabbedPane extends JTabbedPane implements TileSelecti
   /** informs the editor of the new tile */
   public void tileSelected(TileSelectionEvent e)
   {
-    mapEditor.setCurrentTiles(e);
+    mapEditor.setCurrentTiles(e.getTiles());
   }
 
   /** sets the tiles panes to the the ones from this map */

@@ -86,4 +86,9 @@ public class CustomBrush extends AbstractBrush
     {
       return new MapLayer[0];
     }
+    
+    public String getName()
+    {
+      return "Custom Brush";
+    }
 }

@@ -19,14 +19,17 @@ package tiled.mapeditor.brush;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.List;
 
 import tiled.core.MapLayer;
 import tiled.core.MultilayerPlane;
+import tiled.core.StatefulTile;
 
 /** A brush */
 public interface Brush 
 {
-  /** Returns the affected layers. If the returned array is empty
+  /**
+   * Returns the affected layers. If the returned array is empty
    * (length == 0) then this brush will not paint on a specific layer but on the
    * current selected one.
    * @return the layers of this brush or an empty array if the brush is
@@ -34,7 +37,8 @@ public interface Brush
    */
   public MapLayer[] getAffectedLayers();
   
-  /** returns the size in tiles of the brush
+  /** 
+   * Returns the size of the brush (in tiles).
    * @return size if the brush
    */
   public Rectangle getBounds();
@@ -53,7 +57,26 @@ public interface Brush
    */
   public Rectangle commitPaint(MultilayerPlane mp, int x, int y,int initLayer);
   
+  /** Returns a name for the brush.
+   * @return name of the brush
+   */
+  public String getName();
+  
+  /** Paints the brush */
   public void paint(Graphics g, int x, int y);
   
+  /** 
+   * Sets the tiles for the brush.
+   * @param tiles tiles to use
+   */
+  public void setTiles(List<StatefulTile> tiles);
+
+  /** 
+   * Returns the tiles.
+   * @return the currently used tiles 
+   */
+  public List<StatefulTile> getTiles();
+  
+  /** */
   public boolean equals(Brush b);
 }

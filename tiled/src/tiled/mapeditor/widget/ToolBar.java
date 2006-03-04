@@ -14,6 +14,8 @@ package tiled.mapeditor.widget;
 
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.AbstractButton;
 import javax.swing.Box;
@@ -22,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
+import tiled.core.Map;
 import tiled.mapeditor.MapEditor;
 import tiled.mapeditor.util.MapEventAdapter;
 
@@ -30,7 +33,7 @@ import tiled.mapeditor.util.MapEventAdapter;
  * 
  * @author Matthias Totz <mtotz@users.sourceforge.net>
  */
-public class ToolBar extends JToolBar
+public class ToolBar extends JToolBar implements ActionListener
 {
   private static final long serialVersionUID = -7604870611719476825L;
   
@@ -48,7 +51,7 @@ public class ToolBar extends JToolBar
 
   private AbstractButton moveButton;
 
-  private AbstractButton objectMoveButton;
+  private BrushMenu brushMenu;
 
   public ToolBar(MapEditor mapEditor, MapEventAdapter mapEventAdapter)
   {
@@ -62,7 +65,6 @@ public class ToolBar extends JToolBar
     Icon iconPour = MapEditor.loadIcon("resources/gimp-tool-bucket-fill-22.png");
     Icon iconEyed = MapEditor.loadIcon("resources/gimp-tool-color-picker-22.png");
     Icon iconMarquee = MapEditor.loadIcon("resources/gimp-tool-rect-select-22.png");
-    Icon iconMoveObject = MapEditor.loadIcon("resources/gimp-tool-object-move-22.png");
 
     paintButton = createToggleButton(iconPaint, "paint", "Paint");
     eraseButton = createToggleButton(iconErase, "erase", "Erase");
@@ -70,7 +72,7 @@ public class ToolBar extends JToolBar
     eyedButton = createToggleButton(iconEyed, "eyed", "Eye dropper");
     marqueeButton = createToggleButton(iconMarquee, "marquee", "Select");
     moveButton = createToggleButton(iconMove, "move", "Move layer");
-    objectMoveButton = createToggleButton(iconMoveObject, "moveobject", "Move Object");
+    brushMenu = new BrushMenu(mapEditor);
 
     mapEventAdapter.addListener(moveButton);
     mapEventAdapter.addListener(paintButton);
@@ -78,7 +80,6 @@ public class ToolBar extends JToolBar
     mapEventAdapter.addListener(pourButton);
     mapEventAdapter.addListener(eyedButton);
     mapEventAdapter.addListener(marqueeButton);
-    mapEventAdapter.addListener(objectMoveButton);
 
     setFloatable(false);
     add(moveButton);
@@ -88,11 +89,10 @@ public class ToolBar extends JToolBar
     add(eyedButton);
     add(marqueeButton);
     add(Box.createRigidArea(new Dimension(5, 5)));
-    //TODO: put this back when working...
-    //add(objectMoveButton);
-    //add(Box.createRigidArea(new Dimension(0, 5)));
     add(new TButton(mapEditor.zoomInAction));
     add(new TButton(mapEditor.zoomOutAction));
+    add(Box.createRigidArea(new Dimension(5, 5)));
+    add(brushMenu);
 
     add(new MemMonitor());
 
@@ -113,7 +113,7 @@ public class ToolBar extends JToolBar
     }
     button.setMargin(new Insets(0, 0, 0, 0));
     button.setActionCommand(command);
-    button.addActionListener(mapEditor);
+    button.addActionListener(this);
     if (tt != null) {
         button.setToolTipText(tt);
     }
@@ -132,9 +132,28 @@ public class ToolBar extends JToolBar
     eyedButton.setSelected(state == MapEditor.PS_EYED);
     marqueeButton.setSelected(state == MapEditor.PS_MARQUEE);
     moveButton.setSelected(state == MapEditor.PS_MOVE);
-    objectMoveButton.setSelected(state == MapEditor.PS_MOVEOBJ);
   }
   
+  /** sets the map */
+  public void setMap(Map map)
+  {
+    brushMenu.setMap(map);
+  }
+
+  /** action handler for the buttons */
+  public void actionPerformed(ActionEvent e)
+  {
+    String command = e.getActionCommand();
+    if (command.equals("erase"))
+    {
+      mapEditor.toggleDeleteTile(true);
+    } else
+    if (command.equals("paint"))
+    {
+      mapEditor.toggleDeleteTile(false);
+    }
+    
+  }
   
 
 }

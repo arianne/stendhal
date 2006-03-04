@@ -17,134 +17,134 @@ import java.awt.geom.*;
 
 import tiled.core.*;
 
-
 public class ShapeBrush extends AbstractBrush
 {
-    protected Area shape;
-    protected Tile paintTile;
-    private int numLayers;
-    
-    public ShapeBrush() {
-        super();
-    }
+  protected Shape shape;
+  protected Rectangle bounds;
 
-    public ShapeBrush(Area shape) {
-        super();
-        this.shape = shape;
-    }
-    
-    public ShapeBrush(AbstractBrush sb) {
-        super();
-        if (sb instanceof ShapeBrush) {
-            shape = ((ShapeBrush)sb).shape;
-            paintTile = ((ShapeBrush)sb).paintTile;
-        }
-    }
-    
-    /**
-     * Makes this brush a circular brush.
-     * 
-     * @param rad the radius of the circular region
-     */
-    public void makeCircleBrush(double rad) {
-        shape = new Area(new Ellipse2D.Double(0, 0, rad * 2, rad * 2));
-        this.resize((int)(rad * 2), (int)(rad * 2), 0, 0);
-    }
+  public ShapeBrush()
+  {
+    super();
+  }
 
-    /**
-     * Makes this brush a rectangular brush.
-     * 
-     * @param r a Rectangle to use as the shape of the brush
-     */
-    public void makeQuadBrush(Rectangle r) {
-        shape = new Area(new Rectangle2D.Double(r.x, r.y, r.width, r.height));
-        this.resize(r.width, r.height, 0, 0);
-    }
+  public ShapeBrush(Shape shape)
+  {
+    super();
+    this.shape = shape;
+  }
 
-    public void makePolygonBrush(Polygon p) {
-        
-    }
-    
-    public void setSize(int s) {
-        if (shape.isRectangular()) {
-            makeQuadBrush(new Rectangle(0, 0, s, s));
-        } else if (!shape.isPolygonal()) {
-            makeCircleBrush(s/2);
-        } else {
-            // TODO: scale the polygon brush
-        }
-    }
-    
-    /**
-     * Paints the entire area of the brush with the set tile. This brush can
-     * affect several layers. 
-     * 
-     * @see Brush#commitPaint(MultilayerPlane, int, int, int)
-     * @return a Rectangle of the bounds of the area that was modified
-     * @param mp The multilayer plane that will be modified
-     * @param x  The x-coordinate where the click occurred.
-     * @param y  The y-coordinate where the click occurred.
-     */
-    public Rectangle commitPaint(MultilayerPlane mp, int x, int y, int initLayer) {
-        Rectangle bounds = shape.getBounds();
-        int centerx = (int)(x - (bounds.width / 2));
-        int centery = (int)(y - (bounds.height / 2));
+  public ShapeBrush(ShapeBrush sb)
+  {
+    super();
+    shape = ((ShapeBrush) sb).shape;
+  }
 
-        // TODO: This loop does not take all edges into account
+  /**
+   * Creates a circular brush.
+   * 
+   * @param diameter
+   *          the diameter of the circular region
+   */
+  public static ShapeBrush makeCircleBrush(int diameter)
+  {
+    ShapeBrush brush = new ShapeBrush();
+    brush.shape = new Ellipse2D.Double(-0.1, -0.1, diameter-1, diameter-1);
+    brush.bounds = new Rectangle(0,0,diameter,diameter);
+    brush.resize(diameter, diameter, 0, 0);
+    return brush;
+  }
 
-        for(int l = 0; l < numLayers; l++) {
-            TileLayer tl = (TileLayer)mp.getLayer(initLayer - l);
-            if (tl != null) {
-                for (int i = 0; i <= bounds.height + 1; i++) {
-                    for (int j = 0; j <= bounds.width + 1; j++) {
-                        if (shape.contains(j, i)) {
-                            tl.setTileAt(j + centerx, i + centery, paintTile);
-                        }
-                    }
-                }
-            }
-        }
-        
-        // Return affected area
-        return new Rectangle(centerx, centery, bounds.width, bounds.height);
-    }
+  /**
+   * Creates a rectangular brush.
+   * 
+   * @param r
+   *          a Rectangle to use as the shape of the brush
+   */
+  public static ShapeBrush makeRectBrush(int width, int height)
+  {
+    ShapeBrush brush = new ShapeBrush();
+    brush.shape = new Rectangle2D.Double(-0.1, -0.1, width, height);
+    brush.bounds = new Rectangle(0, 0, width, height);
+    brush.resize(width, height, 0, 0);
+    return brush;
+  }
 
-    public void setTile(Tile t) {
-        paintTile = t;
-    }
-
-    public Tile getTile() {
-        return paintTile;
-    }
-    
-    public Rectangle getBounds() {
-        return shape.getBounds();
-    }
-
-    public boolean isRectangular() {
-        return shape.isRectangular();
-    }
-    
-    public void paint(Graphics g, int x, int y) {
-        if (shape.isRectangular()) {
-            Rectangle bounds = shape.getBounds();
-            g.fillRect(x, y, bounds.width, bounds.height);
-        } else if (!shape.isPolygonal()) {
-            Rectangle bounds = shape.getBounds();
-            g.fillOval(x, y, bounds.width, bounds.height);
-        }
-    }
-
-    public boolean equals(Brush b) {
-        if (b instanceof ShapeBrush) {
-            return ((ShapeBrush)b).shape.equals(shape);
-        }
-        return false;
-    }
-
-    /** returns the affected layers */
-    public MapLayer[] getAffectedLayers()
+  /**
+   * Paints the entire area of the brush with the set tile. This brush can
+   * affect several layers.
+   * 
+   * @see Brush#commitPaint(MultilayerPlane, int, int, int)
+   * @return a Rectangle of the bounds of the area that was modified
+   * @param mp
+   *          The multilayer plane that will be modified
+   * @param x
+   *          The x-coordinate where the click occurred.
+   * @param y
+   *          The y-coordinate where the click occurred.
+   */
+  public Rectangle commitPaint(MultilayerPlane mp, int x, int y, int initLayer)
+  {
+    if (selectedTiles.size() == 0)
     {
-      return new MapLayer[0];
+      return new Rectangle(x, y, 0, 0);
     }
+
+    Rectangle bounds = shape.getBounds();
+
+    TileLayer tileLayer = (TileLayer) mp.getLayer(initLayer);
+    Tile tile = selectedTiles.get(0).tile;
+
+    for (int x1 = 0; x1 < bounds.width+1; x1++)
+    {
+      for (int y1 = 0; y1 < bounds.height+1; y1++)
+      {
+        if (shape.contains(x1, y1))
+        {
+          tileLayer.setTileAt(x + x1, y + y1, tile);
+        }
+      }
+    }
+
+    // Return affected area
+    return new Rectangle(x, y, bounds.width, bounds.height);
+  }
+
+  public Rectangle getBounds()
+  {
+    return bounds;
+  }
+
+  public void paint(Graphics g, int x, int y)
+  {
+  }
+
+  public boolean equals(Brush b)
+  {
+    if (b instanceof ShapeBrush)
+    {
+      return ((ShapeBrush) b).shape.equals(shape);
+    }
+    return false;
+  }
+
+  /** returns the affected layers */
+  public MapLayer[] getAffectedLayers()
+  {
+    return new MapLayer[0];
+  }
+
+  public String getName()
+  {
+    if (shape instanceof Ellipse2D)
+    {
+      return "Circle Brush (" + ((int) bounds.getBounds().getWidth()) + ")";
+    }
+    if (shape instanceof Rectangle2D)
+    {
+      return "Rect Brush (" + ((int) bounds.getWidth()) + "x" + ((int) bounds.getHeight()) + ")";
+    }
+
+    return "Shape Brush";
+  }
+
 }
