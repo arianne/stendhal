@@ -186,6 +186,36 @@
 				<path>tiled\src\tiled\view\old</path>
 			</folderitem>
 			<folderitem>
+				<path>stendhal-0.45-src</path>
+			</folderitem>
+			<folderitem>
+				<path>stendhal-0.45-src\src</path>
+			</folderitem>
+			<folderitem>
+				<path>stendhal-0.45-src\src\games</path>
+			</folderitem>
+			<folderitem>
+				<path>stendhal-0.45-src\src\games\stendhal</path>
+			</folderitem>
+			<folderitem>
+				<path>stendhal-0.45-src\src\games\stendhal\client</path>
+			</folderitem>
+			<folderitem>
+				<path>stendhal-0.45-src\src\games\stendhal\client\events</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server\data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server\data\conf</path>
+			</folderitem>
+			<folderitem>
+				<path>lib</path>
+			</folderitem>
+			<folderitem>
 				<path>build_client_data</path>
 			</folderitem>
 			<folderitem>
@@ -198,15 +228,6 @@
 				<path>build_client_data\data\sounds</path>
 			</folderitem>
 			<folderitem>
-				<path>build_server</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server\data</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server\data\conf</path>
-			</folderitem>
-			<folderitem>
 				<path>build_server_xmlconf</path>
 			</folderitem>
 			<folderitem>
@@ -214,9 +235,6 @@
 			</folderitem>
 			<folderitem>
 				<path>build_server_xmlconf\data\conf</path>
-			</folderitem>
-			<folderitem>
-				<path>lib</path>
 			</folderitem>
 			<fileitem>
 				<path>build.ant.properties</path>
@@ -236,6 +254,10 @@
 			</fileitem>
 			<fileitem>
 				<path>README</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.45.jar</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -332,6 +354,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\Food.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\HugeCreature.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1613,27 +1639,7 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>build_client_data\data\conf\log4j.properties</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_client_data\data\sounds\stensounds.properties</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_client_data\data\sounds\stensounds0.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>build_server\data\conf\stendhalcreateaccount.properties</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_server_xmlconf\data\conf\creatures.xml</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_server_xmlconf\data\conf\items.xml</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1654,6 +1660,26 @@
 			</fileitem>
 			<fileitem>
 				<path>lib\stendhal-xmlconf-0.45.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_client_data\data\conf\log4j.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_client_data\data\sounds\stensounds.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_client_data\data\sounds\stensounds0.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_server_xmlconf\data\conf\creatures.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_server_xmlconf\data\conf\items.xml</path>
 				<source>true</source>
 			</fileitem>
 		</include>

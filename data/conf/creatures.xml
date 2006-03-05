@@ -59,7 +59,7 @@
 		<type class="small_animal" subclass="caverat" tileid="13"/>
 		<attributes>
 			<atk value="16"/>
-			<def value="12"/>
+			<def value="10"/>
 			<hp value="30"/>
 			<speed value="0.5"/>
 			<size value="1,1"/>
@@ -84,8 +84,8 @@
 	<creature name="boar">
 		<type class="animal" subclass="boar" tileid="20"/>
 		<attributes>
-			<atk value="40"/>
-			<def value="15"/>
+			<atk value="24"/>
+			<def value="11"/>
 			<hp value="50"/>
 			<speed value="0.5"/>
 			<size value="1,2"/>
@@ -110,8 +110,8 @@
 	<creature name="wolf">
 		<type class="animal" subclass="wolf" tileid="14"/>
 		<attributes>
-			<atk value="39"/>
-			<def value="16"/>
+			<atk value="24"/>
+			<def value="11"/>
 			<hp value="35"/>
 			<speed value="0.5"/>
 			<size value="1,2"/>
@@ -136,8 +136,8 @@
 	<creature name="gnome">
 		<type class="gnome" subclass="gnome" tileid="50"/>
 		<attributes>
-			<atk value="39"/>
-			<def value="15"/>
+			<atk value="26"/>
+			<def value="12"/>
 			<hp value="60"/>
 			<speed value="1"/>
 			<size value="1,2"/>
@@ -168,8 +168,8 @@
 	<creature name="cobra">
 		<type class="animal" subclass="cobra" tileid="15"/>
 		<attributes>
-			<atk value="41"/>
-			<def value="17"/>
+			<atk value="30"/>
+			<def value="12"/>
 			<hp value="55"/>
 			<speed value="1"/>
 			<size value="1,2"/>
@@ -197,7 +197,7 @@
 		<type class="animal" subclass="bear" tileid="28"/>
 		<attributes>
 			<atk value="45"/>
-			<def value="18"/>
+			<def value="16"/>
 			<hp value="50"/>
 			<speed value="0.4"/>
 			<size value="1,2"/>
@@ -224,7 +224,7 @@
 		<type class="animal" subclass="lion" tileid="70"/>
 		<attributes>
 			<atk value="44"/>
-			<def value="19"/>
+			<def value="16"/>
 			<hp value="45"/>
 			<speed value="1"/>
 			<size value="1,2"/>
