@@ -212,70 +212,73 @@ public class DijkstraPathfinder
   
   public List<Path.Node> getPath(int x0,int y0, int x1, int y1)
     {
-    int d[] = my_graph.dijkstra(my_graph.getItem(getRectangle(x0,y0)));
-
-    int dest=getContainedInt(x1,y1);
-    
-    int next=0;
-    
-    List<Rectangle> list=new LinkedList<Rectangle>();
-    
-    while(next!=-1)
-      {
-      next=d[dest];        
-      list.add(0,(Rectangle)my_graph.getItem(dest).getInfo());        
-      dest=next;
-      }
-    
     List<Path.Node> result=new LinkedList<Path.Node>();
-    
+      
     int x=x0;
     int y=y0;
     
-    for(int i=1;i<list.size();i++)        
+    int d[] = my_graph.dijkstra(my_graph.getItem(getRectangle(x0,y0)));
+    
+    if(d!=null)
       {
-      Rectangle previous=list.get(i-1);
-      Rectangle actual=list.get(i);
+      int dest=getContainedInt(x1,y1);
       
-      int destx=x;
-      int desty=y;
+      int next=dest;
       
-      if(actual.getY()==previous.getMaxY() || actual.getMaxY()==previous.getY())
+      List<Rectangle> list=new LinkedList<Rectangle>();
+      
+      while(next!=-1)
         {
-        if(actual.getWidth()<=previous.getWidth())
+        next=d[dest];        
+        list.add(0,(Rectangle)my_graph.getItem(dest).getInfo());        
+        dest=next;
+        }
+      
+      for(int i=1;i<list.size();i++)        
+        {
+        Rectangle previous=list.get(i-1);
+        Rectangle actual=list.get(i);
+        
+        int destx=x;
+        int desty=y;
+        
+        if(actual.getY()==previous.getMaxY() || actual.getMaxY()==previous.getY())
           {
-          destx=(int)actual.getCenterX();
-          desty=(int)actual.getY();
+          if(actual.getWidth()<=previous.getWidth())
+            {
+            destx=(int)actual.getCenterX();
+            desty=(int)actual.getY();
+            }
+          else
+            {
+            destx=(int)previous.getCenterX();
+            desty=(int)actual.getY();
+            }          
           }
-        else
+  
+        if(actual.getX()==previous.getMaxX() || actual.getMaxX()==previous.getX())
           {
-          destx=(int)previous.getCenterX();
-          desty=(int)actual.getY();
-          }          
-        }
-
-      if(actual.getX()==previous.getMaxX() || actual.getMaxX()==previous.getX())
-        {
-        if(actual.getHeight()<=previous.getHeight())
-          {
-          desty=(int)actual.getCenterY();
-          destx=(int)actual.getX();
+          if(actual.getHeight()<=previous.getHeight())
+            {
+            desty=(int)actual.getCenterY();
+            destx=(int)actual.getX();
+            }
+          else
+            {
+            desty=(int)previous.getCenterY();
+            destx=(int)actual.getX();
+            }          
           }
-        else
+  
+        Vector<Point> points=Line.renderLine(x,y,destx,desty);
+        for(Point p: points)
           {
-          desty=(int)previous.getCenterY();
-          destx=(int)actual.getX();
-          }          
+          result.add(new Path.Node(p.x, p.y));
+          }
+        
+        x=destx;
+        y=desty;
         }
-
-      Vector<Point> points=Line.renderLine(x,y,destx,desty);
-      for(Point p: points)
-        {
-        result.add(new Path.Node(p.x, p.y));
-        }
-      
-      x=destx;
-      y=desty;
       }
 
     Vector<Point> points=Line.renderLine(x,y,x1,y1);
