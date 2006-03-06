@@ -14,7 +14,7 @@ import java.util.*;
 public class Graph
 {
 
-  public List<GraphItem> objList   = null;     // A graph is a GraphItems Container
+  public Vector<GraphItem> objList   = null;     // A graph is a GraphItems Container
   public int    unique_id = 0;
   private int[] lastDijkstraParents;
   private int[] lastDijkstraDistances;
@@ -22,7 +22,7 @@ public class Graph
   /** Creates new Graph */
   public Graph()
   {
-    objList = new ArrayList<GraphItem>();
+    objList = new Vector<GraphItem>();
   }
 
   public boolean isEmpty()

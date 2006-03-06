@@ -287,7 +287,7 @@ public class Behaviours
         int itemPrice=sellableItems.getPrice(itemName);
         int itemAmount=sellableItems.getAmount();
 
-        if(sellableItems.playerMoney(player)<itemPrice)
+        if(sellableItems.playerMoney(player)<itemPrice*itemAmount)
           {
           engine.say("A real pity! You don't have enough money!");
           return;
