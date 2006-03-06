@@ -15,6 +15,7 @@ package games.stendhal.server.pathfinder;
 import games.stendhal.server.StendhalRPZone;
 
 import java.awt.geom.Rectangle2D;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -22,6 +23,12 @@ import java.util.concurrent.BlockingQueue;
 import marauroa.common.Log4J;
 import marauroa.server.game.RPWorld;
 import org.apache.log4j.Logger;
+
+import marauroa.common.game.*;
+import games.stendhal.common.*;
+import games.stendhal.server.*;
+import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.creature.*;
 
 /**
  * A Thread for finding a path without blocking the main game thread
@@ -143,6 +150,4 @@ public class PathfinderThread extends Thread
     path.getListener().onPathFinished(path, state);
     
   }
-  
-  
-}
+  }

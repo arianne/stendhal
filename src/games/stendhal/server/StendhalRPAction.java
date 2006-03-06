@@ -446,6 +446,20 @@ public class StendhalRPAction
               {
               entity.setx(x+i);
               entity.sety(y+j);
+        
+              if(entity instanceof Player)
+                {
+                Player player=(Player)entity;
+                
+                if(player.hasSheep())
+                  {
+                  Sheep sheep=(Sheep)world.get(player.getSheep());
+                  placeat(zone,sheep,x+i+1,y+j+1);
+                  sheep.clearPath();
+                  sheep.stop();
+                  }
+                }            
+            
               return true;
               }
             }
@@ -458,6 +472,20 @@ public class StendhalRPAction
       {
       entity.setx(x);
       entity.sety(y);
+
+      if(entity instanceof Player)
+        {
+        Player player=(Player)entity;
+        
+        if(player.hasSheep())
+          {
+          Sheep sheep=(Sheep)world.get(player.getSheep());
+          placeat(zone,sheep,x+1,y+1);
+          sheep.clearPath();
+          sheep.stop();
+          }
+        }            
+    
       return true;
       }
     

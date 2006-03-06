@@ -186,56 +186,15 @@
 				<path>tiled\src\tiled\view\old</path>
 			</folderitem>
 			<folderitem>
-				<path>stendhal-0.45-src</path>
+				<path>tiled\test</path>
 			</folderitem>
 			<folderitem>
-				<path>stendhal-0.45-src\src</path>
+				<path>tiled\test\Nueva carpeta</path>
 			</folderitem>
-			<folderitem>
-				<path>stendhal-0.45-src\src\games</path>
-			</folderitem>
-			<folderitem>
-				<path>stendhal-0.45-src\src\games\stendhal</path>
-			</folderitem>
-			<folderitem>
-				<path>stendhal-0.45-src\src\games\stendhal\client</path>
-			</folderitem>
-			<folderitem>
-				<path>stendhal-0.45-src\src\games\stendhal\client\events</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server\data</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server\data\conf</path>
-			</folderitem>
-			<folderitem>
-				<path>lib</path>
-			</folderitem>
-			<folderitem>
-				<path>build_client_data</path>
-			</folderitem>
-			<folderitem>
-				<path>build_client_data\data</path>
-			</folderitem>
-			<folderitem>
-				<path>build_client_data\data\conf</path>
-			</folderitem>
-			<folderitem>
-				<path>build_client_data\data\sounds</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server_xmlconf</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server_xmlconf\data</path>
-			</folderitem>
-			<folderitem>
-				<path>build_server_xmlconf\data\conf</path>
-			</folderitem>
+			<fileitem>
+				<path>AUTHORS</path>
+				<source>true</source>
+			</fileitem>
 			<fileitem>
 				<path>build.ant.properties</path>
 				<source>true</source>
@@ -254,18 +213,6 @@
 			</fileitem>
 			<fileitem>
 				<path>README</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.45.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.45.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-server-0.45.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -885,6 +832,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\PathfinderTest.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\pathfinder\PathfinderThread.java</path>
 				<source>true</source>
 			</fileitem>
@@ -1103,10 +1054,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>tiled\src\tiled\mapeditor\TilesetManager.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>tiled\src\tiled\mapeditor\actions\AddLayerAction.java</path>
 				<source>true</source>
 			</fileitem>
@@ -1212,6 +1159,10 @@
 			</fileitem>
 			<fileitem>
 				<path>tiled\src\tiled\mapeditor\actions\TilesetManagerAction.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>tiled\src\tiled\mapeditor\actions\ToggleGridAction.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1327,6 +1278,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>tiled\src\tiled\mapeditor\dialog\TilesetManager.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>tiled\src\tiled\mapeditor\plugin\PluginClassLoader.java</path>
 				<source>true</source>
 			</fileitem>
@@ -1415,11 +1370,7 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>tiled\src\tiled\mapeditor\widget\BrushBrowser.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>tiled\src\tiled\mapeditor\widget\BrushList.java</path>
+				<path>tiled\src\tiled\mapeditor\widget\BrushMenu.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1464,10 +1415,6 @@
 			</fileitem>
 			<fileitem>
 				<path>tiled\src\tiled\mapeditor\widget\TButton.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>tiled\src\tiled\mapeditor\widget\TileButton.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1639,50 +1586,43 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>build_server\data\conf\stendhalcreateaccount.properties</path>
+				<path>tiled\test\Nueva carpeta\creatures.xml</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>lib\stendhal-0.45.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>lib\stendhal-data-0.45.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>lib\stendhal-maps-0.45.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>lib\stendhal-server-0.45.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>lib\stendhal-xmlconf-0.45.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_client_data\data\conf\log4j.properties</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_client_data\data\sounds\stensounds.properties</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_client_data\data\sounds\stensounds0.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_server_xmlconf\data\conf\creatures.xml</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_server_xmlconf\data\conf\items.xml</path>
+				<path>tiled\test\Nueva carpeta\items.xml</path>
 				<source>true</source>
 			</fileitem>
 		</include>
+		<exclude>
+			<folderitem>
+				<path>build_client_data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf</path>
+			</folderitem>
+			<folderitem>
+				<path>lib</path>
+			</folderitem>
+			<folderitem>
+				<path>stendhal-0.45-src</path>
+			</folderitem>
+			<fileitem>
+				<path>stendhal-0.45.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-0.45.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.45.zip</path>
+				<source>true</source>
+			</fileitem>
+		</exclude>
 	</files>
 	<tasks/>
 </project>

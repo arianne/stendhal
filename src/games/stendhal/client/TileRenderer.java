@@ -126,7 +126,6 @@ public class TileRenderer
     // Interior_1 = 3463 - 3842
 
 
-
     // Double white daisy
     addAnimatedTile(22,new int[]{22,52,82,112,112,112,112,112,112,112});
     addAnimatedTile(52,new int[]{52,82,112,22,22,22,22,22,22,22});
@@ -170,32 +169,32 @@ public class TileRenderer
     addAnimatedTile(118,new int[]{118,28,58,88,88,88,88,88,88,88});
 
     // Single blue daisy
-    addAnimatedTile(28,new int[]{28,58,88,118,118,118,118,118,118,118});
-    addAnimatedTile(58,new int[]{58,88,118,28,28,28,28,28,28,28});
-    addAnimatedTile(88,new int[]{88,118,28,58,58,58,58,58,58,58});
-    addAnimatedTile(118,new int[]{118,28,58,88,88,88,88,88,88,88});
+    addAnimatedTile(29,new int[]{29,59,89,119,119,119,119,119,119,119});
+    addAnimatedTile(59,new int[]{59,89,119,29,29,29,29,29,29,29});
+    addAnimatedTile(89,new int[]{89,119,29,59,59,59,59,59,59,59});
+    addAnimatedTile(119,new int[]{119,29,59,89,89,89,89,89,89,89});
 
 
 
     // Green Water, Top Left 
-    addAnimatedTile(2883,new int[]{2883,2886,2888,2886});
-    addAnimatedTile(2886,new int[]{2883,2886,2888,2886});
-    addAnimatedTile(2888,new int[]{2883,2886,2888,2886});
+    addAnimatedTile(2983,new int[]{2983,2986,2989,2986});
+    addAnimatedTile(2986,new int[]{2983,2986,2989,2986});
+    addAnimatedTile(2989,new int[]{2983,2986,2989,2986});
 
     // Green Water, Top
-    addAnimatedTile(2884,new int[]{2884,2887,2880,2887});
-    addAnimatedTile(2887,new int[]{2884,2887,2880,2887});
-    addAnimatedTile(2880,new int[]{2884,2887,2880,2887});
+    addAnimatedTile(2984,new int[]{2984,2987,2990,2987});
+    addAnimatedTile(2987,new int[]{2984,2987,2990,2987});
+    addAnimatedTile(2990,new int[]{2984,2987,2990,2987});
 
     // Green Water, Top Right 
-    addAnimatedTile(2885,new int[]{2885,2888,2881,2888});
-    addAnimatedTile(2888,new int[]{2885,2888,2881,2888});
-    addAnimatedTile(2881,new int[]{2885,2888,2881,2888});
+    addAnimatedTile(2985,new int[]{2985,2988,2991,2988});
+    addAnimatedTile(2988,new int[]{2985,2988,2991,2988});
+    addAnimatedTile(2991,new int[]{2985,2988,2991,2988});
     
     // Green Water, Left
-    addAnimatedTile(3013,new int[]{3013,3016,3018,3016});
-    addAnimatedTile(3016,new int[]{3013,3016,3018,3016});
-    addAnimatedTile(3018,new int[]{3013,3016,3018,3016});
+    addAnimatedTile(3013,new int[]{3013,3016,3019,3016});
+    addAnimatedTile(3016,new int[]{3013,3016,3019,3016});
+    addAnimatedTile(3019,new int[]{3013,3016,3019,3016});
 
     // Green Water, pond
     addAnimatedTile(3014,new int[]{3014,3017,3020,3017});
@@ -208,9 +207,9 @@ public class TileRenderer
     addAnimatedTile(3021,new int[]{3015,3018,3021,3018});
     
     // Green Water, Bottom Left
-    addAnimatedTile(3043,new int[]{3043,3046,3048,3046});
-    addAnimatedTile(3046,new int[]{3043,3046,3048,3046});
-    addAnimatedTile(3048,new int[]{3043,3046,3048,3046});
+    addAnimatedTile(3043,new int[]{3043,3046,3049,3046});
+    addAnimatedTile(3046,new int[]{3043,3046,3049,3046});
+    addAnimatedTile(3049,new int[]{3043,3046,3049,3046});
 
     // Green Water, Bottom 
     addAnimatedTile(3044,new int[]{3044,3047,3050,3047});
@@ -233,14 +232,14 @@ public class TileRenderer
     addAnimatedTile(3168,new int[]{3164,3166,3168,3166});
 
     // Green Water, Bottom Left Corner
-    addAnimatedTile(3183,new int[]{3183,3185,3187,3185});
-    addAnimatedTile(3185,new int[]{3183,3185,3187,3185});
-    addAnimatedTile(3187,new int[]{3183,3185,3187,3185});
+    addAnimatedTile(3193,new int[]{3193,3195,3197,3195});
+    addAnimatedTile(3195,new int[]{3193,3195,3197,3195});
+    addAnimatedTile(3197,new int[]{3193,3195,3197,3195});
 
     // Green Water, Bottom Right Corner
-    addAnimatedTile(3184,new int[]{3184,3186,3188,3186});
-    addAnimatedTile(3186,new int[]{3184,3186,3188,3186});
-    addAnimatedTile(3188,new int[]{3184,3186,3188,3186});
+    addAnimatedTile(3194,new int[]{3194,3196,3198,3196});
+    addAnimatedTile(3196,new int[]{3194,3196,3198,3196});
+    addAnimatedTile(3198,new int[]{3194,3196,3198,3196});
 
     // Green Water, Vertical Canal
     addAnimatedTile(3223,new int[]{3223,3224,3225,3224});
@@ -253,9 +252,9 @@ public class TileRenderer
     addAnimatedTile(3255,new int[]{3253,3254,3255,3254});
 
     // Light Water, Center
-    addAnimatedTile(3168,new int[]{3168,3170,3171,3170});
-    addAnimatedTile(3170,new int[]{3168,3170,3171,3170});
-    addAnimatedTile(3171,new int[]{3168,3170,3171,3170});
+    addAnimatedTile(3169,new int[]{3169,3170,3171,3170});
+    addAnimatedTile(3170,new int[]{3169,3170,3171,3170});
+    addAnimatedTile(3171,new int[]{3169,3170,3171,3170});
 
 
     
@@ -284,41 +283,41 @@ public class TileRenderer
     addAnimatedTile(238,new int[]{238,148,178,208});
 
     // Waterfall end right
-    addAnimatedTile(148,new int[]{148,178,208,238});
-    addAnimatedTile(178,new int[]{178,208,238,148});
-    addAnimatedTile(208,new int[]{208,238,148,178});
-    addAnimatedTile(238,new int[]{238,148,178,208});
+    addAnimatedTile(149,new int[]{149,179,209,239});
+    addAnimatedTile(179,new int[]{179,209,239,149});
+    addAnimatedTile(209,new int[]{209,239,149,179});
+    addAnimatedTile(239,new int[]{239,149,179,209});
 
 
     // Waterfall golden start
-    addAnimatedTile(265,new int[]{265,285,325,355});
-    addAnimatedTile(285,new int[]{285,325,355,265});
-    addAnimatedTile(325,new int[]{325,355,265,285});
-    addAnimatedTile(355,new int[]{355,265,285,325});
+    addAnimatedTile(265,new int[]{265,295,325,355});
+    addAnimatedTile(295,new int[]{295,325,355,265});
+    addAnimatedTile(325,new int[]{325,355,265,295});
+    addAnimatedTile(355,new int[]{355,265,295,325});
 
     // Waterfall golden middle
-    addAnimatedTile(266,new int[]{266,286,326,356});
-    addAnimatedTile(286,new int[]{286,326,356,266});
-    addAnimatedTile(326,new int[]{326,356,266,286});
-    addAnimatedTile(356,new int[]{286,326,356,266});
+    addAnimatedTile(266,new int[]{266,296,326,356});
+    addAnimatedTile(296,new int[]{296,326,356,266});
+    addAnimatedTile(326,new int[]{326,356,266,296});
+    addAnimatedTile(356,new int[]{296,326,356,266});
 
     // Waterfall golden end
-    addAnimatedTile(267,new int[]{267,287,327,357});
-    addAnimatedTile(287,new int[]{287,327,357,267});
-    addAnimatedTile(327,new int[]{327,357,267,287});
-    addAnimatedTile(357,new int[]{357,267,287,327});
+    addAnimatedTile(267,new int[]{267,297,327,357});
+    addAnimatedTile(297,new int[]{297,327,357,267});
+    addAnimatedTile(327,new int[]{327,357,267,297});
+    addAnimatedTile(357,new int[]{357,267,297,327});
 
     // Waterfall golden end left
-    addAnimatedTile(268,new int[]{268,288,328,358});
-    addAnimatedTile(288,new int[]{288,328,358,268});
-    addAnimatedTile(328,new int[]{328,358,268,288});
-    addAnimatedTile(358,new int[]{358,268,288,328});
+    addAnimatedTile(268,new int[]{268,298,328,358});
+    addAnimatedTile(298,new int[]{298,328,358,268});
+    addAnimatedTile(328,new int[]{328,358,268,298});
+    addAnimatedTile(358,new int[]{358,268,298,328});
 
     // Waterfall golden end right
-    addAnimatedTile(268,new int[]{268,288,328,358});
-    addAnimatedTile(288,new int[]{288,328,358,268});
-    addAnimatedTile(328,new int[]{328,358,268,288});
-    addAnimatedTile(358,new int[]{358,268,288,328});
+    addAnimatedTile(269,new int[]{269,299,329,359});
+    addAnimatedTile(299,new int[]{299,329,359,269});
+    addAnimatedTile(329,new int[]{329,359,269,299});
+    addAnimatedTile(359,new int[]{359,269,299,329});
 
 
     
@@ -348,9 +347,9 @@ public class TileRenderer
     addAnimatedTile(1565,new int[]{1565,1563,1564});
 
     // Blue Teleport 
-    addAnimatedTile(1583,new int[]{1583,1584,1585});
-    addAnimatedTile(1584,new int[]{1584,1585,1583});
-    addAnimatedTile(1585,new int[]{1585,1583,1584});
+    addAnimatedTile(1593,new int[]{1593,1594,1595});
+    addAnimatedTile(1594,new int[]{1594,1595,1593});
+    addAnimatedTile(1595,new int[]{1595,1593,1594});
 
     
     // Interior_1 = 3463 - 3842
@@ -410,7 +409,6 @@ public class TileRenderer
     addAnimatedTile(3619,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
     addAnimatedTile(3709,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
     addAnimatedTile(3799,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
-
     }
   
   /** Render the data to screen. We assume that Gamescreen will clip.

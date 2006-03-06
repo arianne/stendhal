@@ -151,14 +151,11 @@ public class Administration extends ActionListener
       int x=action.getInt("x");
       int y=action.getInt("y");
       
-      if(!zone.collides(teleported,x,y))
+      if(StendhalRPAction.placeat(zone,player,x,y))
         {
         StendhalRPAction.changeZone(teleported,zone.getID().getID());
         StendhalRPAction.transferContent(teleported);
         
-        teleported.setx(x);
-        teleported.sety(y); 
-
         rules.addGameEvent(player.getName(),"teleport",teleported.getName());
 
         world.modify(teleported);      

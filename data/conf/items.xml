@@ -26,6 +26,7 @@ next time.
 <!-- Helmet_section -->
 <!-- Legs_section -->
 <!-- Boots_section -->
+<!-- Cloak_section -->
 <!-- Food_section -->
 <!-- Drinks_section -->
 <!-- Misc_section -->
@@ -549,6 +550,92 @@ in the file.
 		<weight value="10"/>
 		<equipable>
 			<slot name="feet"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+<!-- Cloak_section -->
+<!-- First version of cloaks - by Javier Correa aka CiX-->
+	<item name="cloak">
+		<type class="cloak" subclass="cloak"/>
+		<attributes>
+			<def value="1"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="dwarf_cloak">
+		<type class="cloak" subclass="red_cloak"/>
+		<attributes>
+			<def value="4"/>
+		</attributes>
+		<weight value="5"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="elf_cloak">
+		<type class="cloak" subclass="green_cloak"/>
+		<attributes>
+			<def value="3"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+		
+	<item name="lich_cloak">
+		<type class="cloak" subclass="purple_cloak"/>
+		<attributes>
+			<def value="11"/>
+		</attributes>
+		<weight value="2"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+		
+	<item name="green_dragon_cloak">
+		<type class="cloak" subclass="green_cloak"/>
+		<attributes>
+			<def value="10"/>
+		</attributes>
+		<weight value="5"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="blue_dragon_cloak">
+		<type class="cloak" subclass="blue_cloak"/>
+		<attributes>
+			<def value="13"/>
+		</attributes>
+		<weight value="5"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="black_dragon_cloak">
+		<type class="cloak" subclass="black_cloak"/>
+		<attributes>
+			<def value="18"/>
+		</attributes>
+		<weight value="5"/>
+		<equipable>
+			<slot name="cloak"/>
 			<slot name="bag"/>
 		</equipable>
 	</item>

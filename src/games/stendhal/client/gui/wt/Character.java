@@ -76,8 +76,8 @@ public class Character extends Panel
     slotPanels.put("armor",new EntitySlot("armor", slotSprite, dist*1, dist   , gameObjects));
     slotPanels.put("lhand",new EntitySlot("lhand", slotSprite,      0, dist+10, gameObjects));
     slotPanels.put("rhand",new EntitySlot("rhand", slotSprite, dist*2, dist+10, gameObjects));
-    slotPanels.put("legs", new EntitySlot("legs",  slotSprite, dist  , dist*2 , gameObjects));
-    slotPanels.put("feet", new EntitySlot("feet",  slotSprite, dist  , dist*3 , gameObjects));
+    slotPanels.put("legs", new EntitySlot("legs",  slotSprite, dist*1, dist*2 , gameObjects));
+    slotPanels.put("feet", new EntitySlot("feet",  slotSprite, dist*1, dist*3 , gameObjects));
     
     for (EntitySlot slot : slotPanels.values())
     {
@@ -151,7 +151,7 @@ public class Character extends Panel
         
         if(!slot.getName().equals("bag"))
         {
-          final List<String> weapons=Arrays.asList("sword","axe","club");
+          final List<String> weapons=Arrays.asList("sword","axe","club","ranged","projectiles");
           final List<String> defense=Arrays.asList("shield","armor","helmet","legs","boots");
   
           if(weapons.contains(content.get("class")) && !checkedItems.contains(content.get("class")))

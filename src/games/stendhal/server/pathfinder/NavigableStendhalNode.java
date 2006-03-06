@@ -102,12 +102,6 @@ public class NavigableStendhalNode implements Navigable
     return 1.001 * (Math.abs(parent.getX()-child.getX())+Math.abs(parent.getY()-child.getY()));
   }
   
-//  /** generates a unique id for the given node. */
-//  public int createNodeID(Pathfinder.Node node)
-//  {
-//    return node.getY()*zone.getWidth()+node.getX();
-//  }
-//
   /**
    * Checks if the calculated node can be considerd a goal. 
    * 

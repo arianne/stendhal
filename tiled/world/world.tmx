@@ -174,6 +174,9 @@
  <tileset name="Untitled" firstgid="816" tilewidth="64" tileheight="64">
   <image source="0_ados_mountain_n2_w2.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="848" tilewidth="64" tileheight="64">
+  <image source="sub_1_semos_mine_n2.png"/>
+ </tileset>
  <layer name="Layer 7" width="36" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQ0AAAgDMJA0/0Kwgw1CevRvuioAwAlz4AAAwD8LCoqbKAASAAA=
@@ -206,7 +209,7 @@
  </layer>
  <layer name="Layer 1" width="36" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Oyw2AIBRE0ScdEdFa/aC0ymwogTgxd3H2Jy8RGQCAiVYpBo9hk93gAWCeI0Wc6fvHcOlyG32qLo/R59WlGX0A4I86MpwzJQASAAA=
+   H4sIAAAAAAAAAO3Otw2AQBAEwOOpCGHqwHvTFp5W2YQOQJxeG0w+niPikdViVySBFDL3/0+OQwElVAo+NQ4NtNAp+PQ4DDDCpOBD9AYfAgWPRwiRggcRfWc2Iov5//FYcdkUfXZcDkWfE5dL0YeIyEY3/Kd15gASAAA=
   </data>
  </layer>
  <layer name="Floor" width="36" height="32">
