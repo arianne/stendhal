@@ -21,7 +21,7 @@ public class StendhalNavigable implements Navigable
   public boolean isValid(Pathfinder.Node node)
     {
     return !zone.simpleCollides(entity,node.x,node.y);
-    //return !zone.collides(node.x,node.y);
+    //return !zone.collides(entity, node.x,node.y);
     }
 
   public double getCost(Pathfinder.Node parent, Pathfinder.Node child)

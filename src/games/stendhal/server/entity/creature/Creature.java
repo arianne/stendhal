@@ -128,6 +128,8 @@ public class Creature extends NPC
 
   /** the speed of this creature */
   private double speed;
+  
+  private int attackTurn;
 
   /** size in width of a tile */
   private int width; 
@@ -164,6 +166,7 @@ public class Creature extends NPC
 
     dropsItems = new ArrayList<Creature.DropItem>();
     aiProfiles = new HashMap<String,String>();
+    attackTurn=Rand.rand(5);
     }
 
   /** creates a new creature without properties. These must be set in the
@@ -178,6 +181,7 @@ public class Creature extends NPC
     
     dropsItems = new ArrayList<Creature.DropItem>();
     aiProfiles = new HashMap<String,String>();
+    attackTurn=Rand.rand(5);
     }
 
   /** creates a new creature with the given properties
@@ -215,6 +219,7 @@ public class Creature extends NPC
     update();
 
     stop();
+    attackTurn=Rand.rand(5);
     logger.debug("Created "+clazz+":"+this);
     }
   
@@ -455,8 +460,6 @@ public class Creature extends NPC
           {
           Path.Node actual=patrolPath.get(i);
           Path.Node next=patrolPath.get((i+1)%size);
-          
-          
 
           nodes.addAll(Path.searchPath(this,actual.x+getx(),actual.y+gety(),new Rectangle2D.Double(next.x+getx(),next.y+gety(),1.0,1.0)));
           }
@@ -474,7 +477,7 @@ public class Creature extends NPC
       if (Debug.CREATURES_DEBUG_SERVER)
         debug.append("patrol;").append(pathToString()).append('|');
       }
-    else if(distance(target)>16*16)
+    else if(distance(target)>18*18)
       {
       // target out of reach
       logger.debug("Attacker is too far. Creature stops attack");
@@ -590,7 +593,7 @@ public class Creature extends NPC
       StendhalRPAction.move(this);
       }
 
-    if(rp.getTurn()%5==3  && isAttacking())
+    if(rp.getTurn()%5==attackTurn  && isAttacking())
       {
       StendhalRPAction.attack(this,getAttackTarget());
       

@@ -33,7 +33,7 @@ public class RespawnPoint
   private List<Creature> entities;
 
   private boolean respawning;
-  final public static int TURNSTORESPAWN=900; // Five minute at 300ms
+  final public static int TURNSTORESPAWN=90; // Five minute at 300ms
   private int turnsToRespawn;
 
   private StendhalRPZone zone;
@@ -84,20 +84,20 @@ public class RespawnPoint
     if(respawning)
       {
       logger.debug("Turns to respawn: "+turnsToRespawn);
-      turnsToRespawn--;
-      }
 
-    if(respawning && turnsToRespawn==0)
-      {
-      turnsToRespawn=TURNSTORESPAWN;
-      if(entities.size()<maximum)
+      if(turnsToRespawn==0)
         {
+        turnsToRespawn=TURNSTORESPAWN;
+
         respawn();
+
+        if(entities.size()==maximum)
+          {
+          respawning=false;
+          }
         }
-      else
-        {
-        respawning=false;
-        }
+
+      turnsToRespawn--;
       }
     
     for(Creature creature: entities)
