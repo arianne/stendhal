@@ -34,6 +34,8 @@ public class CreatureXMLLoader extends DefaultHandler
   private int xp;
   private int level;
   
+  private int respawn;
+  
   private List<Creature.DropItem> dropsItems;
   private List<Creature.EquipItem> equipsItems;
   private List<String> creatureSays;
@@ -174,6 +176,10 @@ public class CreatureXMLLoader extends DefaultHandler
         equipsItems.add(new Creature.EquipItem(slot,item,quantity));
         }
       }
+    else if(qName.equals("respawn"))
+      {
+      respawn=Integer.parseInt(attrs.getValue("value"));
+      }
     else if(qName.equals("drops"))
       {
       drops=true;
@@ -274,6 +280,7 @@ public class CreatureXMLLoader extends DefaultHandler
       creature.setDropItems(dropsItems);
       creature.setAIProfiles(aiProfiles);
       creature.setNoiseLines(creatureSays);
+      creature.setRespawnTime(respawn);
       
       list.add(creature);
       }

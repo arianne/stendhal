@@ -45,6 +45,8 @@ public class DefaultCreature
   private int xp;
   private int level;
   
+  private int respawn;
+  
   /** size of the creature.*/
   private int width;
   private int height;
@@ -100,6 +102,16 @@ public class DefaultCreature
   {
     this.level=level;
     this.xp=xp;
+  }
+  
+  public void setRespawnTime(int respawn)
+  {
+    this.respawn=respawn;
+  }
+
+  public int getRespawnTime()
+  {
+    return respawn;
   }
   
   public int getLevel()
