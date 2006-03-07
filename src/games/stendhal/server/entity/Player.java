@@ -759,7 +759,10 @@ public class Player extends RPEntity
     List<String> questsList=new LinkedList<String>();
     for(String q: quests)
       {
-      questsList.add(q);
+      if(!q.equals("id") && !q.equals("zoneid"))
+        {
+        questsList.add(q);
+        }
       }
     
     return questsList;

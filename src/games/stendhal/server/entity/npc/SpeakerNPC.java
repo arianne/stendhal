@@ -94,7 +94,7 @@ public abstract class SpeakerNPC extends NPC
   
   // Timeout control value
   private long lastMessageTurn;
-  private static long TIMEOUT_PLAYER_CHAT=60; // 20 seconds at 300ms.
+  private static long TIMEOUT_PLAYER_CHAT=90; // 30 seconds at 300ms.
   
   // Attended players
   private Player attending;
@@ -284,7 +284,7 @@ public abstract class SpeakerNPC extends NPC
       
     public String toString()
       {
-      return "["+state+","+trigger+","+nextState+"]";
+      return "["+state+","+trigger+","+nextState+","+condition+"]";
       }
     }
     
@@ -402,15 +402,26 @@ public abstract class SpeakerNPC extends NPC
       if(actualState!=0 && state.absoluteJump(actualState,text) && state.executeCondition(player,this))
         {
         logger.debug("Matched a stateless state: "+state);
-        list.add(state);
-        //executeState(player,text,state);
-        //return true;        
+        
+        if(state.condition==null)
+          {
+          list.add(list.size(),state);
+          }
+        else
+          {
+          list.add(0,state);
+          }
         }
       }
     
     if(list.size()>0)
       {
-      executeState(player,text,list.get(Rand.rand(list.size())));
+      for(StatePath s: list)
+        {
+        System.out.println ("SL: "+s);
+        }
+        
+      executeState(player,text,list.get(0));
       return true;
       }
 
@@ -420,15 +431,26 @@ public abstract class SpeakerNPC extends NPC
       if(state.equals(actualState,text) && state.executeCondition(player,this))
         {
         logger.debug("Matched a exact trigger state: "+state);
-        list.add(state);
-        //executeState(player,text,state);
-        //return true;        
+
+        if(state.condition==null)
+          {
+          list.add(list.size(),state);
+          }
+        else
+          {
+          list.add(0,state);
+          }
         }
       }
 
     if(list.size()>0)
       {
-      executeState(player,text,list.get(Rand.rand(list.size())));
+      for(StatePath s: list)
+        {
+        System.out.println ("EM: "+s);
+        }
+        
+      executeState(player,text,list.get(0));
       return true;
       }
 
@@ -438,17 +460,26 @@ public abstract class SpeakerNPC extends NPC
       if(state.contains(actualState,text) && state.executeCondition(player,this))
         {
         logger.debug("Matched a similar trigger state: "+state);
-        list.add(state);
-        //executeState(player,text,state);
-        //return true;        
+
+        if(state.condition==null)
+          {
+          list.add(list.size(),state);
+          }
+        else
+          {
+          list.add(0,state);
+          }
         }
       }
 
     if(list.size()>0)
       {
-      // Execute one of the available options randomly.
-      int i=Rand.rand(list.size());
-      executeState(player,text,list.get(i));
+      for(StatePath s: list)
+        {
+        System.out.println ("SM: "+s);
+        }
+        
+      executeState(player,text,list.get(0));
       return true;
       }
 
