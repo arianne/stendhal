@@ -357,6 +357,53 @@ public abstract class SpeakerNPC extends NPC
       }
     }
   
+  private boolean matchState(int type, Player player, String text)
+    {
+    List<StatePath> listCondition=new LinkedList<StatePath>();
+    List<StatePath> listConditionLess=new LinkedList<StatePath>();
+    
+    // First we try to match with stateless states.
+    for(StatePath state: statesTable)
+      {
+      if( (type==0 && actualState!=0 && state.absoluteJump(actualState,text)) ||
+          (type==1 && state.equals(actualState,text)) ||
+          (type==2 &&state.contains(actualState,text)))
+        {
+        if(state.executeCondition(player,this))
+          {
+          if(state.condition==null)
+            {
+            listConditionLess.add(state);
+            }
+          else
+            {
+            listCondition.add(state);
+            }
+          }
+        }
+      }
+    
+    if(listCondition.size()>0)
+      {
+      int i=Rand.rand(listCondition.size());
+      executeState(player,text,listCondition.get(i));
+      return true;
+      }
+
+    if(listConditionLess.size()>0)
+      {
+      int i=Rand.rand(listConditionLess.size());
+      executeState(player,text,listConditionLess.get(i));
+      return true;
+      }
+
+    return false;
+    }
+  
+  final private static int ABSOLUTE_JUMP=0;
+  final private static int EXACT_MATCH=1;
+  final private static int SIMILAR_MATCH=2;
+  
   /** This function evolves the FSM */
   private boolean tell(Player player, String text)
     {
@@ -394,98 +441,24 @@ public abstract class SpeakerNPC extends NPC
       
     lastMessageTurn=rp.getTurn();
     
-    List<StatePath> list=new LinkedList<StatePath>();
-    
-    // First we try to match with stateless states.
-    for(StatePath state: statesTable)
+    if(matchState(0,player,text))
       {
-      if(actualState!=0 && state.absoluteJump(actualState,text) && state.executeCondition(player,this))
-        {
-        logger.debug("Matched a stateless state: "+state);
-        
-        if(state.condition==null)
-          {
-          list.add(list.size(),state);
-          }
-        else
-          {
-          list.add(0,state);
-          }
-        }
-      }
-    
-    if(list.size()>0)
-      {
-      for(StatePath s: list)
-        {
-        System.out.println ("SL: "+s);
-        }
-        
-      executeState(player,text,list.get(0));
       return true;
       }
-
-    // Now we try to match with the exact trigger string 
-    for(StatePath state: statesTable)
+    else if(matchState(1,player,text))
       {
-      if(state.equals(actualState,text) && state.executeCondition(player,this))
-        {
-        logger.debug("Matched a exact trigger state: "+state);
-
-        if(state.condition==null)
-          {
-          list.add(list.size(),state);
-          }
-        else
-          {
-          list.add(0,state);
-          }
-        }
-      }
-
-    if(list.size()>0)
-      {
-      for(StatePath s: list)
-        {
-        System.out.println ("EM: "+s);
-        }
-        
-      executeState(player,text,list.get(0));
       return true;
       }
-
-    // Finally we try to match with any string that starts with trigger
-    for(StatePath state: statesTable)
+    else if(matchState(2,player,text))
       {
-      if(state.contains(actualState,text) && state.executeCondition(player,this))
-        {
-        logger.debug("Matched a similar trigger state: "+state);
-
-        if(state.condition==null)
-          {
-          list.add(list.size(),state);
-          }
-        else
-          {
-          list.add(0,state);
-          }
-        }
-      }
-
-    if(list.size()>0)
-      {
-      for(StatePath s: list)
-        {
-        System.out.println ("SM: "+s);
-        }
-        
-      executeState(player,text,list.get(0));
       return true;
       }
-
-    // Couldn't match the text with the current FSM state
-    logger.debug("Couldn't match any state: "+actualState+":"+text);
-    return false;
+    else
+      {
+      // Couldn't match the text with the current FSM state
+      logger.debug("Couldn't match any state: "+actualState+":"+text);
+      return false;
+      }
     }
   
   public void setActualState(int state)

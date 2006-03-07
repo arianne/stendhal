@@ -800,7 +800,7 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\pathfinder\DijkstraPathfinder.java</path>
+				<path>src\games\stendhal\server\pathfinder\BoxedZone.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -817,14 +817,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\pathfinder\Navigable.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\pathfinder\NavigableStendhalNode.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\pathfinder\NavigationMap.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1619,7 +1611,7 @@
 				<path>src\games\stendhal\server\pathfinder\old</path>
 			</folderitem>
 			<folderitem>
-				<path>src\games\stendhal\server\pathfinder_new</path>
+				<path>src\games\stendhal\server\pathfinder_old</path>
 			</folderitem>
 			<folderitem>
 				<path>stendhal-0.45-src</path>
