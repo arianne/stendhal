@@ -82,7 +82,8 @@ public class PathfinderThread extends Thread
       {
         // get a path and wait until one is available
         QueuedPath path = pathQueue.take();
-        searchPath(path);
+        path.setPath(Path.searchPath(path.getEntity(), path.getX(),path.getY(), path.getDestination()));
+        path.getListener().onPathFinished(path, PathState.PATH_FOUND);
       }
       logger.info("pathfinder terminated, finished="+finished);
     }
@@ -92,65 +93,5 @@ public class PathfinderThread extends Thread
       logger.fatal("Pathfinder loop terminated with exeption (finished="+finished+")",e);
       throw new RuntimeException(e);
     }
-  }
-  
-  /**
-   * Finds a path. The PathListener is called with the result.
-   *
-   * @param path the path definition
-   */
-  private void searchPath(QueuedPath path)
-  {
-  path.setPath(Path.searchPath(path.getEntity(), path.getX(),path.getY(), path.getDestination()));
-  path.getListener().onPathFinished(path, PathState.PATH_FOUND);
-  
-//    // Entity entity, int x, int y, int destx, int desty
-//    long startTime = System.currentTimeMillis();
-//    
-//    Pathfinder pathfinder = new Pathfinder();
-//    Rectangle2D dest = path.getDestination();
-//    StendhalNavigable navMap=new StendhalNavigable(path.getEntity(), path.getX(),path.getY(),dest, (StendhalRPZone) world.getRPZone(path.getEntity().getID()));
-//
-//    navMap.setMaxCost(path.getMaxPathRadius());
-//    pathfinder.setNavigable(navMap);
-//    pathfinder.setEndpoints(path.getX(),path.getY(),(int) dest.getX(), (int) dest.getY());
-//    
-//    int steps = 0;
-//    pathfinder.init();
-//    // HACK: Time limit the A* search.
-//    while(pathfinder.getStatus() == Pathfinder.IN_PROGRESS && ((System.currentTimeMillis() - startTime) < MAX_PATHFINDING_TIME))
-//    {
-//      pathfinder.doStep();
-//      steps++;
-//    }
-//    
-//    List<Path.Node> list = new LinkedList<Path.Node>();
-//    Pathfinder.Node node = pathfinder.getBestNode();
-//    while(node!=null)
-//    {
-//      list.add(0,new Path.Node(node.getX(),node.getY()));
-//      node = node.getParent();
-//    }
-//    // Set the calculated path
-//    path.setPath(list);
-//
-//    PathState state;
-//    switch (pathfinder.getStatus())
-//    {
-//      case Pathfinder.PATH_FOUND:
-//        state = PathState.PATH_FOUND;
-//        break;
-//      case Pathfinder.PATH_NOT_FOUND:
-//        state = PathState.PATH_NOT_FOUND;
-//        break;
-//      case Pathfinder.IN_PROGRESS:
-//        state = PathState.TIMEOUT_ON_SEARCH;
-//        break;
-//      default:
-//        state = PathState.PATH_NOT_FOUND;
-//    }
-//    
-//    path.getListener().onPathFinished(path, state);
-//    
-  }
+  }  
   }

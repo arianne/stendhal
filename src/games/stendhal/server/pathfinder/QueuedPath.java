@@ -35,14 +35,13 @@ public final class QueuedPath
   private boolean canceled;
 
   /** Creates a new instance of QueuedPath */
-  public QueuedPath(PathListener listener, Entity entity, int x, int y, Rectangle2D destination, double maxPathRadius)
+  public QueuedPath(PathListener listener, Entity entity, int x, int y, Rectangle2D destination)
   {
     this.listener      = listener;
     this.entity        = entity;
     this.x             = x;
     this.y             = y;
     this.destination   = destination;
-    this.maxPathRadius = maxPathRadius;
     this.canceled      = false;
     this.path          = null;
   }
@@ -100,11 +99,5 @@ public final class QueuedPath
     return canceled;
   }
 
-  /** returns the maximum radius a path is searched (negative if unlimited))*/
-  public double getMaxPathRadius()
-  {
-    return maxPathRadius;
-  }
-  
 }
 
