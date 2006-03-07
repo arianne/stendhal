@@ -711,7 +711,7 @@ public class GameObjects implements Iterable<Entity>
 
     for(Entity other: sortObjects)
       {
-      if(!(other instanceof PassiveEntity) && !(other instanceof Portal))
+      if(!(other instanceof PassiveEntity)) // && !(other instanceof Portal))
         {
         if(area.intersects(other.getArea()) && !entity.getID().equals(other.getID()))
           {

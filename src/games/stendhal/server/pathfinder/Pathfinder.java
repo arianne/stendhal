@@ -1,5 +1,5 @@
 /*
- * Pathfinder.java
+ * AStarPathfinder.java
  * Created on 20 October 2004, 13:33
  *
  * Copyright 2004, Generation5. All Rights Reserved.
@@ -29,8 +29,7 @@ import java.util.*;
  * @author James Matthews
  * @see org.generation5.ai.Navigable
  */
-public class Pathfinder
-  {
+public class Pathfinder{
     /**
      * Returned by <code>getStatus</code> if a path <i>cannot</i> be found.
      * @see #getStatus
@@ -56,30 +55,34 @@ public class Pathfinder
     /**
      * The open list.
      */    
-    protected LinkedList<Node> listOpen = new LinkedList<Node>();
+    protected List<Pathfinder.Node> listOpen = new ArrayList<Pathfinder.Node>();
+    protected HashMap<Integer,Pathfinder.Node> hashOpen=new HashMap<Integer,Pathfinder.Node>();
+    
     /**
      * The closed list.
      */    
-    protected LinkedList<Node> listClosed = new LinkedList<Node>();
+    protected List<Pathfinder.Node> listClosed = new LinkedList<Pathfinder.Node>();
+    protected HashMap<Integer,Pathfinder.Node> hashClosed=new HashMap<Integer,Pathfinder.Node>();
+    
     /**
      * The goal node.
      */    
-    protected Node nodeGoal = null;
+    protected Pathfinder.Node nodeGoal = null;
     /**
      * The start node.
      */    
-    protected Node nodeStart = null;
+    protected Pathfinder.Node nodeStart = null;
     /**
      * The current best node. The best node is taken from the open list after every
      * iteration of <code>doStep</code>.
      */    
-    protected Node nodeBest = null;
+    protected Pathfinder.Node nodeBest = null;
     /**
      * The current navigable environment.
      */    
     protected Navigable navMap = null;
     
-    /** Creates a new instance of Pathfinder */
+    /** Creates a new instance of AStarPathfinder */
     public Pathfinder() {
     }
     
@@ -102,7 +105,7 @@ public class Pathfinder
             return;
         }
         
-        if (navMap.reachedGoal(nodeBest)) {
+        if (nodeBest.nodeNumber.equals(nodeGoal.nodeNumber)) {
             pathStatus = PATH_FOUND;
             return;
         }
@@ -115,7 +118,9 @@ public class Pathfinder
      */    
     public void init() {
         listOpen.clear();       // Clear the open list
+        hashOpen.clear();
         listClosed.clear();     // Clear the closed list
+        hashClosed.clear();
         
         if (nodeGoal == null || nodeStart == null)
             throw new IllegalArgumentException("start/goal not yet set!");
@@ -123,17 +128,18 @@ public class Pathfinder
             throw new IllegalArgumentException("navigation map not set!");
         
         // Initialize the node numbers
-//        nodeStart.nodeNumber = navMap.createNodeID(nodeStart);
-//        nodeGoal.nodeNumber  = navMap.createNodeID(nodeGoal);
+        nodeStart.nodeNumber = navMap.createNodeID(nodeStart);
+        nodeGoal.nodeNumber  = navMap.createNodeID(nodeGoal);
 
         nodeBest = null;
         pathStatus = IN_PROGRESS;
         nodeStart.g = 0;
-        nodeStart.h = navMap.getHeuristic(nodeGoal, nodeStart);
+        nodeStart.h = navMap.getCost(nodeGoal, nodeStart);
         nodeStart.f = nodeStart.g + nodeStart.h;
         nodeStart.reset();
         
         listOpen.add(nodeStart);
+        hashOpen.put(nodeStart.nodeNumber, nodeStart);
     }
     
     /**
@@ -158,21 +164,19 @@ public class Pathfinder
      * @param sy the start y-position.
      * @param gx the goal x-position.
      * @param gy the goal y-position.
-     * 
      */    
     public void setEndpoints(int sx, int sy, int gx, int gy) {
-        setEndpoints(new Node(sx, sy), new Node(gx, gy));
+        setEndpoints(new Pathfinder.Node(sx, sy), new Pathfinder.Node(gx, gy));
     }
     
     /**
      * Set the starting and goal points for the pathfinder. This method uses
-     * <code>Node</code>'s <i>x</i> and <i>y</i> variables, the pathfinder sets all
+     * <code>Pathfinder.Node</code>'s <i>x</i> and <i>y</i> variables, the pathfinder sets all
      * the other necessary node parameters.
      * @param start the start node.
      * @param goal the goal node.
-     * 
      */    
-    public void setEndpoints(Node start, Node goal) {
+    public void setEndpoints(Pathfinder.Node start, Pathfinder.Node goal) {
         nodeStart = start;
         nodeGoal  = goal;
     }
@@ -181,7 +185,7 @@ public class Pathfinder
      * Returns the start node.
      * @return the start node.
      */    
-    public Node getStart() {
+    public Pathfinder.Node getStart() {
         return nodeStart;
     }
     
@@ -189,7 +193,7 @@ public class Pathfinder
      * Set the start node.
      * @param start the start node.
      */    
-    public void setStart(Node start) {
+    public void setStart(Pathfinder.Node start) {
         nodeStart = start;
     }
     
@@ -197,7 +201,7 @@ public class Pathfinder
      * Set the goal node.
      * @param goal the goal node.
      */    
-    public void setGoal(Node goal) {
+    public void setGoal(Pathfinder.Node goal) {
         nodeGoal = goal;
     }
     
@@ -205,7 +209,7 @@ public class Pathfinder
      * Returns the goal node.
      * @return the goal node.
      */    
-    public Node getGoal() {
+    public Pathfinder.Node getGoal() {
         return nodeGoal;
     }
     
@@ -213,13 +217,16 @@ public class Pathfinder
      * Assigns the best node from the open list.
      * @return the best node.
      */    
-    protected Node getBest() {
+    protected Pathfinder.Node getBest() {
         if (listOpen.size() == 0) return null;
         
-        Node first = listOpen.getFirst();
+        Pathfinder.Node first = (Pathfinder.Node)listOpen.get(0);
         
-        listOpen.removeFirst();
-        listClosed.addFirst(first);
+        listOpen.remove(0);
+        hashOpen.remove(first.nodeNumber);
+        
+        listClosed.add(0,first);
+        hashClosed.put(first.nodeNumber, first);
         
         return first;
     }
@@ -228,7 +235,7 @@ public class Pathfinder
      * Returns the current best node.
      * @return the best node.
      */    
-    public Node getBestNode() {
+    public Pathfinder.Node getBestNode() {
         return nodeBest;
     }
     
@@ -236,42 +243,8 @@ public class Pathfinder
      * Create the children surrounding the current best node.
      * @param node the node to create the children from.
      */    
-    protected void createChildren(Node node) {
-        int x = node.x, y = node.y;
-        Pathfinder.Node tempNode = new Pathfinder.Node();
-        
-        tempNode.x = x-1;
-        tempNode.y = y;
-        tempNode.parent = node;
-
-        if (navMap.isValid(tempNode) == true)
-          {
-          linkChild(node, x-1, y);
-          }
-
-        tempNode.x = x+1;
-        tempNode.y = y;
-
-        if (navMap.isValid(tempNode) == true)
-          {
-          linkChild(node, x+1, y);
-          }
-
-        tempNode.x = x;
-        tempNode.y = y-1;
-
-        if (navMap.isValid(tempNode) == true)
-          {
-          linkChild(node, x, y-1);
-          }
-
-        tempNode.x = x;
-        tempNode.y = y+1;
-
-        if (navMap.isValid(tempNode) == true)
-          {
-          linkChild(node, x, y+1);
-          }
+    protected void createChildren(Pathfinder.Node node) {
+        navMap.createChildren(this,node);
     }
     
     /**
@@ -281,103 +254,93 @@ public class Pathfinder
      * @param x the x-position of the new child.
      * @param y the y-position of the new child.
      */    
-    protected void linkChild(Node parent, int x, int y) {
-        Node child = new Node(x, y);
-//        child.nodeNumber = navMap.createNodeID(child); // generate unique id
+    public void linkChild(Pathfinder.Node node, int x, int y) {
+        Pathfinder.Node child = new Pathfinder.Node(x, y);
+        child.nodeNumber = Integer.valueOf(navMap.createNodeID(child));
         
-        // get cost for traversing from the parent node to the new node and
-        // sum the cost
-        double g = parent.g + navMap.getCost(parent, child);
-        // find the list the (new) node is in
-        Node openCheck   = checkOpen(child);
-        Node closedCheck = checkClosed(child);
+        double g = node.g + navMap.getCost(node, child);
         
-        // node is still open
+        Pathfinder.Node openCheck   = checkOpen(child);
+        Pathfinder.Node closedCheck = checkClosed(child);
+        
         if (openCheck != null) {
-            parent.addChild(openCheck); // Add child to parent
+            node.addChild(openCheck);
             
-            // Has the cost improved for the node (have we found a better path?)
             if (g < openCheck.g) {
-                // Yes, update the node with the current path
-                openCheck.parent = parent;
+                openCheck.parent = node;
                 openCheck.g = g;
                 openCheck.f = g + openCheck.h;
             }
         } else if (closedCheck != null) {
-            // node is closed already
-            parent.addChild(closedCheck); // keep track of parent
+            node.addChild(closedCheck);
             
-            // Has the cost improved for the node (have we found a better path?)
             if (g < closedCheck.g) {
-                // Yes we have, update the node with the current path
-                closedCheck.parent = parent;
+                closedCheck.parent = node;
                 closedCheck.g = g;
                 closedCheck.f = g + closedCheck.h;
-                // reconfigure the parents (update full path)
+
                 updateParents(closedCheck);
             }
         } else {
-            // not open and not closed...so this node is new.
-            // pre-calculate the heuristic (estimated distance) for this node.
-            // This is only done once for each node.
-            child.parent = parent;
+            child.parent = node;
             child.g = g;
-            child.h = navMap.getHeuristic(nodeGoal, child);
+            child.h = navMap.getCost(nodeGoal, child);
             child.f = child.g + child.h;
+//            child.nodeNumber = navMap.createNodeID(x,y);
             
-            // Add the new child to the open list and to the current path
             addToOpen(child);
-            parent.addChild(child);
+            node.addChild(child);
         }
     }
     
     /**
-     * Add the new child to the open list, ordering by the f-value. No check is
-     * made if the node is already in the list.
+     * Add the new child to the open list, ordering by the f-value.
      * @param node the node to add to the open list.
      */    
-    protected void addToOpen(Node node) {
+    protected void addToOpen(Pathfinder.Node node) {
         int index = 0;
-        Node openNode = null;
+        Pathfinder.Node openNode = null;
         ListIterator iter = listOpen.listIterator();
         
         if (listOpen.size() == 0) {
-            listOpen.addFirst(node);
+            listOpen.add(0,node);
+            hashOpen.put(node.nodeNumber, node);
             return;
         }
         
-        do {
-            openNode = (Node)iter.next();
-            if (node.f < openNode.f) {
-                listOpen.add(index,  node);
-                return;
+        int first=0;
+        int last=listOpen.size();
+
+        while(last - first > 1)
+          {
+          int current = first + ((last - first) / 2);
+          if(node.f < listOpen.get(current).f)
+            {
+            last = current;
             }
-            index = index + 1;
-        } while (iter.hasNext());
-        
-        listOpen.addLast(node);
+          else
+            {
+            first = current;
+            }
+          }
+          
+        listOpen.add(first,node);
+        hashOpen.put(node.nodeNumber, node);
     }
     
     /**
-     * Update the parents for the new route. This will replace from an already 
-     * calculated path from the beginning to this (closed) node. All nodes from
-     * this to the end of the tree will get a newly generated cost based on the
-     * current path.
-     *
+     * Update the parents for the new route.
      * @param node the root node.
      */    
-    protected void updateParents(Node node) {
+    protected void updateParents(Pathfinder.Node node) {
         double g = node.g;
         int c = node.numChildren;
-        Stack<Node> nodeStack = new Stack<Node>();
+        Stack<Pathfinder.Node> nodeStack = new Stack<Pathfinder.Node>();
         
-        // find all children with bad cost
-        Node kid = null;
+        Pathfinder.Node kid = null;
         for (int i=0; i<c; i++) {
             kid = node.children[i];
             
-            // note: the g+1 may be dangerous when getCost(node,kid) returns a 
-            // cost other than 1
             if (g+1 < kid.g) {
                 kid.g = g+1;
                 kid.f = kid.g + kid.h;
@@ -387,9 +350,9 @@ public class Pathfinder
             }
         }
         
-        Node parent;
+        Pathfinder.Node parent;
         while (nodeStack.size() > 0) {
-            parent = nodeStack.pop();
+            parent = (Pathfinder.Node)nodeStack.pop();
             c = parent.numChildren;
             for (int i=0; i<c; i++) {
                 kid = parent.children[i];
@@ -405,36 +368,28 @@ public class Pathfinder
         }
     }
     
-    /**
-     * Checks if the given node is in the list.
-     * @param iter the list iterator to check. The iterator should be at the
-     *             start of the list (unless you know what you are doing)
-     * @param node this node will be the node to check. Note that the check is
-     *             based on the <code>nodeNumber</code>-property, not on the object-instance
-     * @return the node from the list or <code>null</code> if the node is not in the list
-     */
-    private Node checkList(ListIterator iter, Node node) {
-        Node check = null;
-        if (!iter.hasNext()) return null;
-        
-        do {
-            check = (Node)iter.next();
+//    private Pathfinder.Node checkList(ListIterator iter, Pathfinder.Node node) {
+//        Pathfinder.Node check = null;
+//        if (!iter.hasNext()) return null;
+//        
+//        do {
+//            check = (Pathfinder.Node)iter.next();
 //            if (check.nodeNumber == node.nodeNumber)
-            if (check == node)            
-                return check;
-            
-        } while (iter.hasNext());
-        
-        return null;
-    }
-    
+//                return check;
+//            
+//        } while (iter.hasNext());
+//        
+//        return null;
+//    }
+//    
     /**
      * Check the open list for a given node.
      * @param node the node to check for.
      * @return the node, if found, otherwise null.
      */    
-    protected Node checkOpen(Node node) {
-        return checkList(listOpen.listIterator(), node);
+    protected Pathfinder.Node checkOpen(Pathfinder.Node node) {
+        return hashOpen.get(node.nodeNumber);
+        //return checkList(listOpen.listIterator(), node);
     }
     
     /**
@@ -442,15 +397,16 @@ public class Pathfinder
      * @param node the node to check for.
      * @return the node, if found, otherwise null.
      */    
-    protected Node checkClosed(Node node) {
-        return checkList(listClosed.listIterator(), node);
+    protected Pathfinder.Node checkClosed(Pathfinder.Node node) {
+        return hashClosed.get(node.nodeNumber);
+        //return checkList(listClosed.listIterator(), node);
     }
     
     /**
      * Return the open list.
      * @return the open list.
      */    
-    public LinkedList<Node> getOpen() {
+    public List getOpen() {
         return listOpen;
     }
     
@@ -458,33 +414,30 @@ public class Pathfinder
      * Return the closed list.
      * @return the closed list.
      */    
-    public LinkedList<Node> getClosed() {
+    public List getClosed() {
         return listClosed;
     }
     
     /**
      * The pathfinder node.
      */    
-    public static class Node {
+    public static class Node
+      {
         
         /**
          * The f-value.
-         * The sum of g and h.
-         * It is the (estimated) cost of the full path.
          */
         public double f;
         
         /**
          * The g-value.
-         * This is the cost from the start point to this point.
          */
         public double g;
         
         /**
-         * The h-value (heuristic).
-         * This is the estimated cost from this point to the goal point.
+         * The h-value.
          */        
-        public double h;
+        public double   h;
         
         /**
          * The x-position of the node.
@@ -502,15 +455,12 @@ public class Pathfinder
         /**
          * The node identifier.
          */        
-//        public int nodeNumber;
+        public Integer nodeNumber;
         /**
          * The parent of the node.
          */        
         protected Node  parent;
-        /**
-         * Array with the children, one for each direction
-         */
-        Node[] children = new Node[4];
+        Node[] children = new Node[8];
         
         /**
          * The default constructor.
@@ -536,7 +486,7 @@ public class Pathfinder
         public void reset() {
             f = g = h = 0.0;
             numChildren = 0;
-            for (int i=0; i<4; i++) 
+            for (int i=0; i<8; i++) 
                 children[i] = null;
         }
         
@@ -571,10 +521,5 @@ public class Pathfinder
         public Node getParent() {
             return parent;
         }
-        
-        public String toString() {
-            return "("+x+","+y+")";
-        }
-          
     }
 }

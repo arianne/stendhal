@@ -800,6 +800,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\DijkstraPathfinder.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\pathfinder\Graph.java</path>
 				<source>true</source>
 			</fileitem>
@@ -849,6 +853,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\pathfinder\QueuedPath.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\pathfinder\StendhalNavigable.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1606,6 +1614,12 @@
 			</folderitem>
 			<folderitem>
 				<path>lib</path>
+			</folderitem>
+			<folderitem>
+				<path>src\games\stendhal\server\pathfinder\old</path>
+			</folderitem>
+			<folderitem>
+				<path>src\games\stendhal\server\pathfinder_new</path>
 			</folderitem>
 			<folderitem>
 				<path>stendhal-0.45-src</path>

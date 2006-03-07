@@ -39,9 +39,7 @@ public class PathfinderTest
     int y1=0;
     
     StendhalRPWorld world=new StendhalRPWorld();
-    world.onInit();
-    
-    System.out.println (x0+","+y0+" to "+x1+","+y1);
+    world.addArea("-1_semos_dungeon");
     
     RPEntity player=new Player(new RPObject());
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone("-1_semos_dungeon");
@@ -70,6 +68,8 @@ public class PathfinderTest
       y1=Integer.parseInt(args[3]);      
       }
     
+    System.out.println (x0+","+y0+" to "+x1+","+y1);
+    
     
 //    for(int j=0;j<zone.getHeight();j++)
 //      {
@@ -95,8 +95,8 @@ public class PathfinderTest
 //      System.out.println();          
 //      }
 
-    DijkstraPathfinder box=new DijkstraPathfinder(zone);
-    
+//    DijkstraPathfinder box=new DijkstraPathfinder(zone);
+//    
     long startTime = System.currentTimeMillis();
     
     
@@ -104,7 +104,8 @@ public class PathfinderTest
     
     for(int i=0;i<10000;i++) 
       {
-      nodes=box.getPath(x0,y0,x1,y1);
+      //nodes=box.getPath(x0,y0,x1,y1);
+      nodes=searchAstartPath(zone,null,x0,y0,x1,y1);
       }
 
     long endTime = System.currentTimeMillis();
@@ -151,271 +152,94 @@ public class PathfinderTest
     System.out.println ("STATUS: "+null+ "\t TIME: "+(endTime-startTime));
     }    
   
-  public static class SplitBox
+  static public class GraphNavigable implements Navigable
     {
-    private Graph my_graph;
-    private List<Rectangle> boxes;
-    private StendhalRPZone zone;
+    Graph g;
+    int x;
+    int y;
+    StendhalRPZone zone;
     
-    public SplitBox(StendhalRPZone zone)
+    public GraphNavigable(StendhalRPZone zone, Graph g, int x, int y)
       {
       this.zone=zone;
-      boxes=new LinkedList<Rectangle>();      
+      this.g=g;
+      this.x=x;
+      this.y=y;
+      }
+        
+    public boolean isValid(Pathfinder.Node node)
+      {
+      return !zone.collides(node.x,node.y);
+      }
 
-      for(int j=0;j<zone.getHeight();j++)
-        {
-        for(int i=0;i<zone.getWidth();i++)
-          {
-          if(!zone.collides(i,j) && !isContained(i,j))
-            {
-            Rectangle rect=maxBox(i,j);
-            addBox(rect);
-            }          
-          }
-        }
+    public double getCost(Pathfinder.Node parent, Pathfinder.Node child)
+      {
+      int dx=parent.getX()-child.getX();
+      int dy=parent.getY()-child.getY();
+      
+      return (dx*dx)+(dy*dy);
+      }
 
-      my_graph=buildGraph();
+    public double getHeuristic(Pathfinder.Node parent, Pathfinder.Node child)
+      {
+      int dx=parent.getX()-child.getX();
+      int dy=parent.getY()-child.getY();
+      
+      return (dx*dx)+(dy*dy);
+      }
+
+    public boolean reachedGoal(Pathfinder.Node nodeBest)
+      {
+      return nodeBest.getX()==x && nodeBest.getY()==y;
+      }
+
+    public int createNodeID(Pathfinder.Node node)
+      {
+      return node.x+node.y*zone.getWidth();
       }
     
-    private void addBox(int x, int y, int width, int height)
+    public void createChildren(Pathfinder path,Pathfinder.Node node)
       {
-      boxes.add(new Rectangle(x,y,width,height));
-      }
-
-    private void addBox(Rectangle rect)
-      {
-      boxes.add(rect);
-      }
-     
-    private boolean isContained(int x, int y)
-      {
-      for(Rectangle rect: boxes)
-        {
-        if(rect.contains(x,y))
-          {
-          return true;
-          }
-        }
-      
-      return false;
-      }
-
-    private String getContainedString(int x, int y)
-      {
-      int i=0;
-      for(Rectangle rect: boxes)
-        {
-        if(rect.contains(x,y))
-          {          
-          if(i<10)
-            {
-            return "[ "+Integer.toString(i)+"]";          
+        int x = node.x, y = node.y;
+        Pathfinder.Node tempNode = new Pathfinder.Node();
+        
+        for (int i=-1; i<2; i++) {
+            for (int j=-1; j<2; j++) {
+                tempNode.x = x+i;
+                tempNode.y = y+j;
+                // If the node is this node, or invalid continue.
+                if ((i == 0 && j == 0) || (Math.abs(i)==Math.abs(j)) || isValid(tempNode) == false)
+                    continue;
+                
+                path.linkChild(node, x+i, y+j);
             }
-          else
-            {
-            return "["+Integer.toString(i)+"]";          
-            }
-          }
-        
-        i++;
         }
-      
-      return "[  ]";
-      }
-
-    private int getContainedInt(int x, int y)
-      {
-      int i=0;
-      for(Rectangle rect: boxes)
-        {
-        if(rect.contains(x,y))
-          {          
-          return i;          
-          }
-        
-        i++;
-        }
-      
-      return -1;
-      }
-    
-    private Rectangle getRectangle(int x, int y)
-      {
-      for(Rectangle rect: boxes)
-        {
-        if(rect.contains(x,y))
-          {          
-          return rect;          
-          }
-        }
-      
-      return null;
-      }
-    
-    private Rectangle maxBox(int x,int y)
-      {
-      int width=zone.getWidth()-x;
-      
-      for(int i=0;i<width;i++)
-        {
-        if(zone.collides(x+i,y) || isContained(x+i,y))
-          {
-          width=i;
-          break;
-          }
-        }
-        
-      int height=zone.getHeight()-y;
-      
-      for(int j=0;j<height;j++)
-        {
-        if(zone.collides(x,y+j) || isContained(x,y+j))
-          {
-          height=j;
-          break;
-          }
-        }
-      
-      boolean firstStep=false;
-      boolean secondStep=false;
-        
-      for(int i=0;i<width;i++)
-        {
-        for(int j=0;j<height;j++)
-          {
-          if(zone.collides(x+i,y+j) || isContained(x+i,y+j))
-            {
-            if(!firstStep)
-              {
-              firstStep=true;
-              height=j;
-              break;
-              }
-            else
-              {
-              secondStep=true;
-              width=i;
-              break;
-              }
-            }
-          }
-        
-        if(secondStep)
-          {
-          break;
-          }        
-        }      
-      
-      return new Rectangle(x,y,width,height);
-      }
-    
-    private Graph buildGraph()
-      {
-      Graph graph=new Graph();
-      
-      for(Rectangle rect: boxes)
-        {
-        graph.addElement(rect, (int)rect.getCenterX(), (int)rect.getCenterY());
-        }
-      
-
-      for(Rectangle rect: boxes)
-        {
-        for(Rectangle neighbour: boxes)
-          {
-          if(rect!=neighbour)
-            {
-            if(rect.getX()==neighbour.getMaxX() && rect.getY()<=neighbour.getMaxY() && rect.getY()>=neighbour.getY() ||
-               rect.getMaxX()==neighbour.getX() && rect.getY()<=neighbour.getMaxY() && rect.getY()>=neighbour.getY() ||
-               rect.getY()==neighbour.getMaxY() && rect.getX()<=neighbour.getMaxX() && rect.getX()>=neighbour.getX() ||
-               rect.getMaxY()==neighbour.getY() && rect.getX()<=neighbour.getMaxX() && rect.getX()>=neighbour.getX())
-              {
-              graph.addBiConnection(rect,neighbour);
-              }
-            }
-          }
-        }
-
-      return graph;
-      }
-    
-    public List<Path.Node> getPath(int x0,int y0, int x1, int y1)
-      {
-      int d[] = my_graph.dijkstra(my_graph.getItem(getRectangle(x0,y0)));
-  
-      int dest=getContainedInt(x1,y1);
-      
-      int next=0;
-      
-      List<Rectangle> list=new LinkedList<Rectangle>();
-      
-      while(next!=-1)
-        {
-        next=d[dest];        
-        list.add(0,(Rectangle)my_graph.getItem(dest).getInfo());        
-        dest=next;
-        }
-      
-      List<Path.Node> result=new LinkedList<Path.Node>();
-      
-      int x=x0;
-      int y=y0;
-      
-      for(int i=1;i<list.size();i++)        
-        {
-        Rectangle previous=list.get(i-1);
-        Rectangle actual=list.get(i);
-        
-        int destx=x;
-        int desty=y;
-        
-        if(actual.getY()==previous.getMaxY() || actual.getMaxY()==previous.getY())
-          {
-          if(actual.getWidth()<=previous.getWidth())
-            {
-            destx=(int)actual.getCenterX();
-            desty=(int)actual.getY();
-            }
-          else
-            {
-            destx=(int)previous.getCenterX();
-            desty=(int)actual.getY();
-            }          
-          }
-
-        if(actual.getX()==previous.getMaxX() || actual.getMaxX()==previous.getX())
-          {
-          if(actual.getHeight()<=previous.getHeight())
-            {
-            desty=(int)actual.getCenterY();
-            destx=(int)actual.getX();
-            }
-          else
-            {
-            desty=(int)previous.getCenterY();
-            destx=(int)actual.getX();
-            }          
-          }
-
-        Vector<Point> points=Line.renderLine(x,y,destx,desty);
-        for(Point p: points)
-          {
-          result.add(new Path.Node(p.x, p.y));
-          }
-        
-        x=destx;
-        y=desty;
-        }
-
-      Vector<Point> points=Line.renderLine(x,y,x1,y1);
-      for(Point p: points)
-        {
-        result.add(new Path.Node(p.x, p.y));
-        }
-      
-      return result;
       }
     }
+  
+  public static List<Path.Node> searchAstartPath(StendhalRPZone zone, Graph g, int x0,int y0, int x1, int y1)
+    {
+    Pathfinder path=new Pathfinder();
     
-    
+    Navigable navMap=new GraphNavigable(zone,g,x1,y1);
+    path.setNavigable(navMap);
+    path.setStart(new Pathfinder.Node(x0,y0));
+    path.setGoal(new Pathfinder.Node(x1,y1));
+
+    path.init();
+    while(path.getStatus()==Pathfinder.IN_PROGRESS)
+      {
+      path.doStep();
+      }
+
+    List<Path.Node> list=new LinkedList<Path.Node>();
+    Pathfinder.Node node=path.getBestNode();
+    while(node!=null)
+      {
+      list.add(0,new Path.Node(node.getX(),node.getY()));
+      node=node.getParent();
+      }
+
+    return list;
+    }
   }

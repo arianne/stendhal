@@ -105,12 +105,12 @@ public class CollisionDetection
 //    double w=shape.getWidth();
 //    double h=shape.getHeight();
     
-    if(x<0 || x/*+w*/>=getWidth())
+    if(x<0 || x/*+w*/>=width)
       {
       return true;
       }
 
-    if(y<0 || y/*+h*/>=getHeight())
+    if(y<0 || y/*+h*/>=height)
       {
       return true;
       }
@@ -126,12 +126,12 @@ public class CollisionDetection
     double w=shape.getWidth();
     double h=shape.getHeight();
     
-    if(x<0 || x/*+w*/>=getWidth())
+    if(x<0 || x/*+w*/>=width)
       {
       return true;
       }
 
-    if(y<0 || y/*+h*/>=getHeight())
+    if(y<0 || y/*+h*/>=height)
       {
       return true;
       }
@@ -157,12 +157,12 @@ public class CollisionDetection
 
   public boolean collides(int x, int y)
     {
-    if(x<0 || x>=getWidth())
+    if(x<0 || x>=width)
       {
       return true;
       }
 
-    if(y<0 || y>=getHeight())
+    if(y<0 || y>=height)
       {
       return true;
       }

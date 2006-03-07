@@ -4,7 +4,7 @@
  * Created on 18 de julio de 2002, 17:26
  *
  */
-package games.stendhal.server.pathfinder;
+package games.stendhal.server.pathfinder.old;
 
 /**
  * @author Ramon Talavera: maxdemian@terra.es

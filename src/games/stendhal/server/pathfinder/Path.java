@@ -140,9 +140,8 @@ public class Path
     long startTime = System.currentTimeMillis();
 
     Pathfinder path=new Pathfinder();
-    NavigableStendhalNode navMap=new NavigableStendhalNode(entity, x,y, destination, (StendhalRPZone)world.getRPZone(entity.getID()));
+    StendhalNavigable navMap=new StendhalNavigable(entity, (int) destination.getX(),(int) destination.getY());
 
-    navMap.setMaxCost(maxDistance);
     path.setNavigable(navMap);
     path.setStart(new Pathfinder.Node(x,y));
     path.setGoal(new Pathfinder.Node((int) destination.getX(),(int) destination.getY()));
@@ -188,7 +187,7 @@ public class Path
    * @param maxPathRadius the maximum radius in which a path is searched
    * @return a list with the path nodes or an empty list if no path is found
    */
-  public static void searchPathAsynchonous(RPEntity entity, Entity dest, double maxPathRadius)
+  public static void searchPathAsynchonous(RPEntity entity, Entity dest)
     {
     world.checkPathfinder();
 
@@ -198,9 +197,7 @@ public class Path
                  entity, 
                  entity.getx(),
                  entity.gety(),
-                 dest.getArea(dest.getx(),dest.gety()),
-                 maxPathRadius
-                 )
+                 dest.getArea(dest.getx(),dest.gety()))
             );
     
     if (!result)

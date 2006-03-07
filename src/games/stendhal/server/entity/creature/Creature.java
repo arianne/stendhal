@@ -378,7 +378,7 @@ public class Creature extends NPC
         }
       }
 
-    if (getNearestPlayer(20) == null) // if there is no player near and none will see us... 
+    if (getNearestPlayer(30) == null) // if there is no player near and none will see us... 
       {
       // sleep so we don't waste cpu resources
       stopAttack();

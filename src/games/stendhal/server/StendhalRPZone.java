@@ -20,9 +20,7 @@ import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.pathfinder.NavigationMap;
 import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.pathfinder.DijkstraPathfinder;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -70,10 +68,6 @@ public class StendhalRPZone extends MarauroaRPZone
   private int level;
   private int x;
   private int y;
-  
-  /** contains navigation point nodes and 'streets' */
-  public NavigationMap navigationMap;  
-  public DijkstraPathfinder pathfinding;
 
   public StendhalRPZone(String name, StendhalRPWorld world)
     {
@@ -308,8 +302,6 @@ public class StendhalRPZone extends MarauroaRPZone
     
     collisionMap.setCollisionData(new StringReader(byteContents));
 
-    pathfinding=new DijkstraPathfinder(this);
-    
     Log4J.finishMethod(logger,"addCollisionLayer");
     }
 
@@ -377,31 +369,32 @@ public class StendhalRPZone extends MarauroaRPZone
     
     return zonearea.intersects(area);
     }
-  
-  public void addNavigationLayer(String name, String byteContents) throws IOException
-    {
-    Log4J.startMethod(logger,"addNavigationLayer");
-   
-    if(byteContents==null)    
-      {
-      logger.info("No navigation map for "+name+" found.");
-      return;
-      }
-      
-    try
-      {
-      navigationMap = new NavigationMap();
-      navigationMap.setNavigationPoints(new StringReader(byteContents));
-      return;
-      }
-    catch (IOException fnfe)
-      {
-      logger.info("No navigation map for "+name+" found.", fnfe);
-      }    
-      
-    Log4J.finishMethod(logger,"addNavigationLayer");
-    }  
-  
+
+// NOTE: Navigation layer is useless.
+//  public void addNavigationLayer(String name, String byteContents) throws IOException
+//    {
+//    Log4J.startMethod(logger,"addNavigationLayer");
+//   
+//    if(byteContents==null)    
+//      {
+//      logger.info("No navigation map for "+name+" found.");
+//      return;
+//      }
+//      
+//    try
+//      {
+//      navigationMap = new NavigationMap();
+//      navigationMap.setNavigationPoints(new StringReader(byteContents));
+//      return;
+//      }
+//    catch (IOException fnfe)
+//      {
+//      logger.info("No navigation map for "+name+" found.", fnfe);
+//      }    
+//      
+//    Log4J.finishMethod(logger,"addNavigationLayer");
+//    }  
+//  
   public void populate(String byteContents) throws IOException, RPObjectInvalidException
     {
     Log4J.startMethod(logger,"populate");
@@ -613,11 +606,6 @@ public class StendhalRPZone extends MarauroaRPZone
   public int getHeight()
     {
     return collisionMap.getHeight();
-    }
-  
-  public DijkstraPathfinder getPathfinder()
-    {
-    return pathfinding;
     }
   
   public List<TransferContent> getContents()

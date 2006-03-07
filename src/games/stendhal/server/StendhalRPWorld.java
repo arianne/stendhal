@@ -302,7 +302,8 @@ public class StendhalRPWorld extends RPWorld
     
     area.addCollisionLayer(name+"_collision",xmlzone.getLayer("collision"));
     area.addProtectionLayer(name+"_protection",xmlzone.getLayer("protection"));
-    area.addNavigationLayer(name+"_navigation",xmlzone.getLayer("navigation"));
+    // NOTE: Navigation layer is not longer needed. 
+    //area.addNavigationLayer(name+"_navigation",xmlzone.getLayer("navigation"));
     
     if(xmlzone.isInterior())
       {

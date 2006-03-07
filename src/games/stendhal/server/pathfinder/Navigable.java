@@ -73,5 +73,7 @@ public interface Navigable {
      * @return true when <i>nodeBest</i> can be considered a "goal"
      */
     public boolean reachedGoal(Node nodeBest);
+    public int createNodeID(Pathfinder.Node node);    
+    public void createChildren(Pathfinder path,Pathfinder.Node node);
     
 }

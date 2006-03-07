@@ -131,7 +131,7 @@ public abstract class NPC extends RPEntity
 
     if(distance(destX,destY) > max && !hasPath())
     {
-      Path.searchPathAsynchonous(this, destEntity, maxPathRadius);
+      Path.searchPathAsynchonous(this, destEntity);
     }
   }
 

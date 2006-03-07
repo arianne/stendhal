@@ -22,13 +22,13 @@ import games.stendhal.common.Line;
 import games.stendhal.server.StendhalRPZone;
 
 
-public class DijkstraPathfinder 
+public class BoxedZone 
   {
   private Graph my_graph;
   private List<Rectangle> boxes;
   private StendhalRPZone zone;
   
-  public DijkstraPathfinder(StendhalRPZone zone)
+  public BoxedZone(StendhalRPZone zone)
     {
     this.zone=zone;
     boxes=new LinkedList<Rectangle>();      
@@ -210,13 +210,15 @@ public class DijkstraPathfinder
     return graph;
     }
   
-  public List<Path.Node> getPath(int x0,int y0, int x1, int y1)
+  public Graph getGraph()
     {
-    List<Path.Node> result=new LinkedList<Path.Node>();
-      
-    int x=x0;
-    int y=y0;
-    
+    return my_graph;
+    }
+  
+  public List<Rectangle> getPathArea(int x0,int y0, int x1, int y1)
+    {
+    List<Rectangle> list=new LinkedList<Rectangle>();
+     
     int d[] = my_graph.dijkstra(my_graph.getItem(getRectangle(x0,y0)));
     
     if(d!=null)
@@ -225,60 +227,76 @@ public class DijkstraPathfinder
       
       int next=dest;
       
-      List<Rectangle> list=new LinkedList<Rectangle>();
-      
       while(next!=-1)
         {
         next=d[dest];        
-        list.add(0,(Rectangle)my_graph.getItem(dest).getInfo());        
+        Rectangle rect=(Rectangle)my_graph.getItem(dest).getInfo();
+        System.out.println (rect);
+        list.add(0,rect);        
         dest=next;
         }
+      }
+    else
+      {
+      list.add(getRectangle(x0,y0));
+      }
+    
+    return list;
+    }
+    
+  public List<Path.Node> getPath(int x0,int y0, int x1, int y1)
+    {
+    List<Path.Node> result=new LinkedList<Path.Node>();
       
-      for(int i=1;i<list.size();i++)        
+    int x=x0;
+    int y=y0;
+    
+    List<Rectangle> list=getPathArea(x0,y0,x1,y1);
+    
+    for(int i=1;i<list.size();i++)        
+      {
+      Rectangle previous=list.get(i-1);
+      Rectangle actual=list.get(i);
+      
+      int destx=x;
+      int desty=y;
+      
+      if(actual.getY()==previous.getMaxY() || actual.getMaxY()==previous.getY())
         {
-        Rectangle previous=list.get(i-1);
-        Rectangle actual=list.get(i);
-        
-        int destx=x;
-        int desty=y;
-        
-        if(actual.getY()==previous.getMaxY() || actual.getMaxY()==previous.getY())
+        if(actual.getWidth()<=previous.getWidth())
           {
-          if(actual.getWidth()<=previous.getWidth())
-            {
-            destx=(int)actual.getCenterX();
-            desty=(int)actual.getY();
-            }
-          else
-            {
-            destx=(int)previous.getCenterX();
-            desty=(int)actual.getY();
-            }          
+          destx=(int)actual.getCenterX();
+          desty=(int)actual.getY();
           }
-  
-        if(actual.getX()==previous.getMaxX() || actual.getMaxX()==previous.getX())
+        else
           {
-          if(actual.getHeight()<=previous.getHeight())
-            {
-            desty=(int)actual.getCenterY();
-            destx=(int)actual.getX();
-            }
-          else
-            {
-            desty=(int)previous.getCenterY();
-            destx=(int)actual.getX();
-            }          
-          }
-  
-        Vector<Point> points=Line.renderLine(x,y,destx,desty);
-        for(Point p: points)
-          {
-          result.add(new Path.Node(p.x, p.y));
-          }
-        
-        x=destx;
-        y=desty;
+          destx=(int)previous.getCenterX();
+          desty=(int)actual.getY();
+          }          
         }
+
+      if(actual.getX()==previous.getMaxX() || actual.getMaxX()==previous.getX())
+        {
+        if(actual.getHeight()<=previous.getHeight())
+          {
+          desty=(int)actual.getCenterY();
+          destx=(int)actual.getX();
+          }
+        else
+          {
+          desty=(int)previous.getCenterY();
+          destx=(int)actual.getX();
+          }          
+        }
+
+      Vector<Point> points=Line.renderLine(x,y,destx,desty);
+      for(Point p: points)
+        {
+        result.add(new Path.Node(p.x, p.y));
+        }
+      
+      x=destx;
+      y=desty;
       }
 
     Vector<Point> points=Line.renderLine(x,y,x1,y1);
