@@ -155,7 +155,7 @@ public class Sheep extends Creature
   protected void dropItemsOn(Corpse corpse)
     {
     Food food=(Food)world.getRuleManager().getEntityManager().getItem("meat");    
-    food.setQuantity(getWeight()/10);    
+    food.setQuantity(getWeight()/10+1);    
     corpse.add(food);
     }
 
