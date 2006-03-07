@@ -114,6 +114,26 @@ public class DefaultEntityManager implements EntityManager
       e.printStackTrace();      
       }
   }
+  
+  public boolean addItem(DefaultItem item)
+  {
+    int id = item.getTileId();
+    String clazz = item.getItemName();
+    
+    if(classToItem.containsKey(clazz))
+      {
+      logger.warn("Repeated item name: "+clazz);
+      return false;
+      }
+    
+    classToItem.put(clazz, item);
+    if (id > 0)
+    {
+      idToClass.put(id, clazz);
+    }
+  
+    return true;
+  }
 
   /** 
    * returns the instance of this manager.

@@ -751,6 +751,20 @@ public class Player extends RPEntity
     quests.put(name,status);
     }
   
+  public List<String> getQuests()
+    {
+    RPSlot slot=getSlot("!quests");
+    RPObject quests=(RPObject)slot.iterator().next();
+
+    List<String> questsList=new LinkedList<String>();
+    for(String q: quests)
+      {
+      questsList.add(q);
+      }
+    
+    return questsList;
+    }
+  
   public void removeQuest(String name)
     {
     if(hasQuest(name))

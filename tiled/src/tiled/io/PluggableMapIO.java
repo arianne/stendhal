@@ -33,7 +33,6 @@ public interface PluggableMapIO
      * 
      * @return a comma delimited string of supported file extensions
      * @throws Exception
-     * @deprecated this will be removed.
      *   use <B>public FileFilter[] getFilters();</B>
      */
     public String getFilter() throws Exception;

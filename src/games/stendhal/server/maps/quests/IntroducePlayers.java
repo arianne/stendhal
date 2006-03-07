@@ -50,7 +50,21 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Tad");
     
-    Behaviours.addQuest(npc,"I need you to get a #flask from someone.");
+    npc.add(1,"task",null,
+        1,null,new SpeakerNPC.ChatAction()
+      {
+      public void fire(Player player, String text, SpeakerNPC engine)
+        {
+        if(player.isQuestCompleted("introduce_players"))
+          {
+          engine.say("I have nothing for you now.");
+          }
+        else
+          {
+          engine.say("I need you to get a #flask from someone.");
+          }
+        }
+      });
     
     /** In case Quest is completed */
     npc.add(1,"flask",new SpeakerNPC.ChatCondition()
@@ -60,7 +74,7 @@ public class IntroducePlayers implements IQuest
         return player.isQuestCompleted("introduce_players");
         }
       },
-        1,"Thanks for the potion.",null);
+        1,"You already did the quest.",null);
         
     /** If quest is not started yet, start it. */      
     npc.add(1,"flask",new SpeakerNPC.ChatCondition()
@@ -84,14 +98,14 @@ public class IntroducePlayers implements IQuest
 
     npc.add(60,"no",null,1,"Ok. But you should really consider it.|There is a nice reward :).",null);
 
-    npc.add(60,"margaret",null,60,"Margaret is the tavern maid that work in Semos tavern.",null);
+    npc.add(60,"margaret",null,60,"Margaret is the tavern maid that work in Semos tavern. So will you do it?",null);
 
     /** Remind player about the quest */
     npc.add(1,"flask",new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
-        return player.hasQuest("introduce_players") && player.getQuest("introduce_players").equals("start");
+        return player.hasQuest("introduce_players") && player.getQuest("introduce_players").equals("start") && !player.isEquipped("flask");
         }
       },
         1,"I really need that #flask now!. Go to talk with #Margaret.",null);
@@ -110,32 +124,25 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Tad");    
     
-    npc.add(1,"flask",new SpeakerNPC.ChatCondition()
+    npc.add(1,"hi",new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
-        return player.hasQuest("introduce_players") && player.getQuest("introduce_players").equals("start");
+        return player.hasQuest("introduce_players") && player.getQuest("introduce_players").equals("start") && player.isEquipped("flask");
         }
       },
         1,null, new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
         {
-        if(player.isEquipped("flask"))
-          {
-          engine.say("Ok!, now I need you to grab it to #Ilisa");
-          StackableItem money=(StackableItem)world.getRuleManager().getEntityManager().getItem("money");            
-          money.setQuantity(10);
-          player.addXP(10);
+        engine.say("Ok!, I see you have the flask!. Now I need you to grab it to #Ilisa");
+        StackableItem money=(StackableItem)world.getRuleManager().getEntityManager().getItem("money");            
+        money.setQuantity(10);
+        player.addXP(10);
 
-          world.modify(player);
+        world.modify(player);
 
-          player.setQuest("introduce_players","ilisa");
-          }
-        else
-          {
-          engine.say("Still don't have the #flask?");
-          }              
+        player.setQuest("introduce_players","ilisa");
         }
       });  
 
@@ -148,7 +155,7 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Ilisa");    
     
-    npc.add(1,"flask",new SpeakerNPC.ChatCondition()
+    npc.add(1,"hi",new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -163,7 +170,7 @@ public class IntroducePlayers implements IQuest
           {
           player.drop("flask");
           
-          engine.say("I need a rat #corpse and a few #herbs to create the potion for #Tad.");
+          engine.say("Thanks for the flask. Please I need a rat #corpse and a few #herbs to create the potion for #Tad.");
           player.addXP(10);
 
           world.modify(player);
@@ -172,7 +179,7 @@ public class IntroducePlayers implements IQuest
           }
         else
           {
-          engine.say("Sorry? What flask?");
+          engine.say("Weren't you supposed to have a flask for me? Go and get a flask.");
           }              
         }
       }); 
@@ -188,7 +195,7 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Ilisa");    
     
-    npc.add(1,"herbs",new SpeakerNPC.ChatCondition()
+    npc.add(1,"hi",new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {

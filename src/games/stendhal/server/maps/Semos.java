@@ -443,6 +443,17 @@ public class Semos implements IContent
               }
             }
           });
+          
+        add(1, "cleanme!", null, 1, "What?", new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player, String text, SpeakerNPC engine)
+            {
+            for(String quest: player.getQuests())
+              {
+              player.removeQuest(quest);
+              }
+            }
+          });
         }
       };
     

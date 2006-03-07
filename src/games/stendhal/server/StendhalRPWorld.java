@@ -127,110 +127,110 @@ public class StendhalRPWorld extends RPWorld
     // Please respect it!
     
     // Ground level
-//    addArea("0_semos_mountain_n_w4");
-//    addArea("0_semos_mountain_n2_w2");
-//    addArea("0_semos_mountain_n2_w");
-//    addArea("0_semos_mountain_n2");
-//    addArea("0_semos_mountain_n2_e");
-//    addArea("0_semos_mountain_n2_e2");
-//    addArea("0_ados_mountain_n2_w2");
-//    
-//    addArea("0_semos_mountain_n_w3");
-//    addArea("0_semos_mountain_n_w2");
-//    addArea("0_semos_plains_n");
-//    addArea("0_semos_plains_ne");
-//    addArea("0_semos_mountain_n_e2");
-//    addArea("0_ados_mountain_n_w2");
-//    addArea("0_ados_mountain_nw");
-//
-//    addArea("0_orril_mountain_n2_w2");
-//    addArea("0_semos_mountain_w2");
-//    addArea("0_semos_plains_w");
-//    addArea("0_semos_village_w");
-//    addArea("0_semos_city");
-//      addArea("int_semos_tavern");
-//      addArea("int_semos_temple");
-//      addArea("int_semos_blacksmith");
-//      addArea("int_semos_library");
-//    addArea("0_semos_road_e");
-//    addArea("0_semos_road_se");
-//    addArea("0_semos_plains_s");
-//    addArea("0_ados_forest_w2");
-//    addArea("0_ados_rock_w");
-//    addArea("0_ados_rock");        
-//
-//    addArea("0_orril_mountain_nw");
-//    addArea("0_orril_forest_n");
-//    addArea("0_semos_forest_s");
-//    addArea("0_nalwor_forest_nw");
-//    addArea("0_nalwor_forest_n");
-//
-//    addArea("0_orril_mountain_w2");
-//    addArea("0_orril_mountain_w");
-//    addArea("0_orril_castle");
-//    addArea("0_orril_forest_e");
-//    addArea("0_nalwor_forest_w");
-//    addArea("0_nalwor_city");
-//
-//    addArea("0_orril_river_s_w2");
-//    addArea("0_orril_river_sw");
-//    addArea("0_orril_river_s");
-//      addArea("int_orril_jynath_house");
-//    addArea("0_orril_river_se");
-//    addArea("0_nalwor_river_sw");
-//    addArea("0_nalwor_river_s");
-//    
-//    // Level -1
-//    addArea("-1_semos_mine_n2");
-//    addArea("-1_semos_dungeon");
-//    addArea("-1_orril_dungeon");
-//
-//    // Level -2
-//    addArea("-2_semos_dungeon");
-//    addArea("-2_kotoch_entrance");
-//    addArea("-2_orril_dungeon");
-//
-//    // Level -3
-//    addArea("-3_semos_dungeon");
-//    addArea("-3_orril_dungeon");
-//
-//    // Level -4
-//    addArea("-4_semos_dungeon");
-//
-//    // Level -5
-//    addArea("-5_kanmararn_entrace");
-//
-//    // Level -6
-//     addArea("-6_kanmararn_city");
-//
-//    // Level -7
-//    // addArea("-7_kanmararn_jail");
-//    
-//    // Interiors
-//    addArea("int_afterlife");
-//    addArea("int_admin_jail");
-//    addArea("int_admin_playground");
-//    
+    addArea("0_semos_mountain_n_w4");
+    addArea("0_semos_mountain_n2_w2");
+    addArea("0_semos_mountain_n2_w");
+    addArea("0_semos_mountain_n2");
+    addArea("0_semos_mountain_n2_e");
+    addArea("0_semos_mountain_n2_e2");
+    addArea("0_ados_mountain_n2_w2");
+    
+    addArea("0_semos_mountain_n_w3");
+    addArea("0_semos_mountain_n_w2");
+    addArea("0_semos_plains_n");
+    addArea("0_semos_plains_ne");
+    addArea("0_semos_mountain_n_e2");
+    addArea("0_ados_mountain_n_w2");
+    addArea("0_ados_mountain_nw");
+
+    addArea("0_orril_mountain_n2_w2");
+    addArea("0_semos_mountain_w2");
+    addArea("0_semos_plains_w");
+    addArea("0_semos_village_w");
+    addArea("0_semos_city");
+      addArea("int_semos_tavern");
+      addArea("int_semos_temple");
+      addArea("int_semos_blacksmith");
+      addArea("int_semos_library");
+    addArea("0_semos_road_e");
+    addArea("0_semos_road_se");
+    addArea("0_semos_plains_s");
+    addArea("0_ados_forest_w2");
+    addArea("0_ados_rock_w");
+    addArea("0_ados_rock");        
+
+    addArea("0_orril_mountain_nw");
+    addArea("0_orril_forest_n");
+    addArea("0_semos_forest_s");
+    addArea("0_nalwor_forest_nw");
+    addArea("0_nalwor_forest_n");
+
+    addArea("0_orril_mountain_w2");
+    addArea("0_orril_mountain_w");
+    addArea("0_orril_castle");
+    addArea("0_orril_forest_e");
+    addArea("0_nalwor_forest_w");
+    addArea("0_nalwor_city");
+
+    addArea("0_orril_river_s_w2");
+    addArea("0_orril_river_sw");
+    addArea("0_orril_river_s");
+      addArea("int_orril_jynath_house");
+    addArea("0_orril_river_se");
+    addArea("0_nalwor_river_sw");
+    addArea("0_nalwor_river_s");
+    
+    // Level -1
+    addArea("-1_semos_mine_n2");
+    addArea("-1_semos_dungeon");
+    addArea("-1_orril_dungeon");
+
+    // Level -2
+    addArea("-2_semos_dungeon");
+    addArea("-2_kotoch_entrance");
+    addArea("-2_orril_dungeon");
+
+    // Level -3
+    addArea("-3_semos_dungeon");
+    addArea("-3_orril_dungeon");
+
+    // Level -4
+    addArea("-4_semos_dungeon");
+
+    // Level -5
+    addArea("-5_kanmararn_entrace");
+
+    // Level -6
+     addArea("-6_kanmararn_city");
+
+    // Level -7
+    // addArea("-7_kanmararn_jail");
+    
+    // Interiors
+    addArea("int_afterlife");
+    addArea("int_admin_jail");
+    addArea("int_admin_playground");
+    
     addArea("int_pathfinding");
-//
-//    
-//    populateZone("Afterlife");
-//    populateZone("Jail");
-//    populateZone("Semos");
-//    populateZone("Nalwor");
-//    populateZone("Orril");
-//
-//    /** After all the zones has been loaded, check how many portals are unpaired */
-//    for(IRPZone zone: this)
-//      {
-//      for(Portal portal: ((StendhalRPZone)zone).getPortals())
-//        {
-//        if(!portal.loaded())
-//          {
-//          logger.warn(portal+" has no destination");
-//          }
-//        }
-//      }
+
+    
+    populateZone("Afterlife");
+    populateZone("Jail");
+    populateZone("Semos");
+    populateZone("Nalwor");
+    populateZone("Orril");
+
+    /** After all the zones has been loaded, check how many portals are unpaired */
+    for(IRPZone zone: this)
+      {
+      for(Portal portal: ((StendhalRPZone)zone).getPortals())
+        {
+        if(!portal.loaded())
+          {
+          logger.warn(portal+" has no destination");
+          }
+        }
+      }
     }
   
   public IRPZone getRPZone(String zone)
