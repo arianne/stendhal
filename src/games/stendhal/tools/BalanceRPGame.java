@@ -221,12 +221,12 @@ public class BalanceRPGame
   
           if(level==creature.getLevel())
             {
-            int proposedXPValue=1*(int)((creature.getLevel()+1)*(meanTurns/2.0));
+            int proposedXPValue=1*(int)(0.37*(creature.getLevel()+1)*(creature.getLevel()+1)*(meanTurns));
             //OUTPUT: System.out.println ("Proposed XP: "+proposedXPValue+"\t Actual XP: "+creature.getXP());
             creature.setLevel(creature.getLevel(),proposedXPValue);
             }          
             
-          //System.out.println("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(100*meanLeftHP/(1.0* player.getBaseHP())));
+          System.out.println("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(100*meanLeftHP/(1.0* player.getBaseHP())));
 
           if(isCorrectResult(level, level-creature.getLevel(),meanTurns, meanLeftHP/(1.0* player.getBaseHP())))
             {
@@ -320,7 +320,7 @@ public class BalanceRPGame
       // Weaker than creature.
       score=(1-leftHP)*100+(turns/5.0);
       }
-
+    
     return score;
     }
   
@@ -328,12 +328,31 @@ public class BalanceRPGame
     {
     Creature[] creatures=new Creature[9];
     
+    int val=0;
+    
     for(int i=0;i<9;i++)
       {
       creatures[i]=new Creature(creature);
-      creatures[i].setATK(creature.getATK()+Rand.roll1D6()-3);
-      creatures[i].setDEF(creature.getDEF()+Rand.roll1D6()-3);
-      creatures[i].setBaseHP(creature.getBaseHP()+Rand.roll1D20()-10);
+      val=creature.getATK()+Rand.roll1D6()-3;
+      if(val<1)
+        {
+        val=1;
+        }        
+      creatures[i].setATK(val);
+      
+      val=creature.getDEF()+Rand.roll1D6()-3;
+      if(val<1)
+        {
+        val=1;
+        }
+      creatures[i].setDEF(val);
+
+      val=creature.getBaseHP()+Rand.roll1D20()-10;
+      if(val<1)
+        {
+        val=1;
+        }        
+      creatures[i].setBaseHP(val);
       }
 
     return creatures;
