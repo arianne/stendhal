@@ -323,8 +323,8 @@ public class Pathfinder{
             first = current;
             }
           }
-          
-        listOpen.add(first,node);
+        
+        listOpen.add(last,node);
         hashOpen.put(node.nodeNumber, node);
     }
     
