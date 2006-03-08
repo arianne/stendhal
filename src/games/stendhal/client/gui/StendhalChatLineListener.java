@@ -339,6 +339,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
           String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
                           "This brief help show you the most used commands:",
                           "- /tell <player> <message> \tWrites a private message to player",
+                          "- // <message>             \tWrites a private message to last player we talked with",
                           "- /msg <player> <message>  \tWrites a private message to player",
                           "- /support <message>       \tAsk for support to admins",
                           "- /who                     \tShow online players",

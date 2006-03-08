@@ -205,9 +205,8 @@ public class Creature extends NPC
     put("class",clazz);
     put("subclass",subclass);
     put("name",name);
-    put("x",0);
-    put("y",0);
 
+    set(0,0);
     setATK(attack);
     setDEF(defense);
     setXP(xp);
