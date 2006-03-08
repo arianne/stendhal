@@ -102,6 +102,7 @@ public abstract class RPEntity extends Entity
       entity.addRPSlot("rhand",1,RPClass.PRIVATE);
       entity.addRPSlot("lhand",1,RPClass.PRIVATE);
       entity.addRPSlot("armor",1,RPClass.PRIVATE);
+      entity.addRPSlot("cloak",1,RPClass.PRIVATE);
       entity.addRPSlot("legs",1,RPClass.PRIVATE);
       entity.addRPSlot("feet",1,RPClass.PRIVATE);
       entity.addRPSlot("bag",12,RPClass.PRIVATE);
@@ -956,6 +957,16 @@ public abstract class RPEntity extends Entity
   public Item getBoots()
     {
     return getEquippedItemClass("feet", "boots");
+    }
+
+  public boolean hasCloak()
+    {
+    return isEquippedItemClass("cloak", "cloak");
+    }
+  
+  public Item getCloak()
+    {
+    return getEquippedItemClass("cloak", "cloak");
     }
   
   /** checks if the entity has at least one item of type <i>type</i> in one
