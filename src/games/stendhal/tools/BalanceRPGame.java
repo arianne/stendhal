@@ -24,7 +24,7 @@ public class BalanceRPGame
       }
     }
   
-  private static int ROUNDS=10;
+  private static int ROUNDS=100;
   
   public static Pair<Integer, Integer> combat(Player player, Creature target, int rounds)
     {
@@ -48,8 +48,6 @@ public class BalanceRPGame
     {
     target.setHP(target.getBaseHP());
     player.setHP(player.getBaseHP());
-    
-    int damageDone=0;
     
     boolean combatFinishedWinPlayer=false;
     int turns=0;
@@ -76,7 +74,6 @@ public class BalanceRPGame
         {
         int damage=StendhalRPAction.damageDone(target,player);
         if(damage<0) damage=0;
-        damageDone=+damage;
         player.setHP(player.getHP()-damage);
         }     
         
@@ -87,7 +84,7 @@ public class BalanceRPGame
         }
       }
     
-    return new Pair<Integer, Integer>(turns, player.getBaseHP()-damageDone);
+    return new Pair<Integer, Integer>(turns, player.getHP());
     }
   
   public static void main(String[] args) throws Exception
@@ -120,7 +117,8 @@ public class BalanceRPGame
       {
       atkLevels[i]=10+(int)Math.round(Math.log(i+1)/Math.log(10)*7);
       defLevels[i]=10+(int)Math.round(Math.log(i+1)/Math.log(10)*14);
-      }                                       
+      }                  
+                     
                         
     
     EntityManager em=DefaultEntityManager.getInstance();
@@ -158,7 +156,7 @@ public class BalanceRPGame
     player.equip(legs);
     player.equip(boots);
 
-//    for(int level=0;level<100;level++)
+//    for(int level=0;level<60;level++)
 //      {
 //      player.setBaseHP(100+10*level);
 //      player.setATK(atkLevels[level]);
@@ -200,7 +198,7 @@ public class BalanceRPGame
         }
 
       int maxlevel=creature.getLevel()+2;
-        
+
       for(int level=minlevel;level<maxlevel;level++)
         {
         boolean balanced=false;
@@ -220,12 +218,12 @@ public class BalanceRPGame
   
           if(level==creature.getLevel())
             {
-            int proposedXPValue=1*(int)(0.37*(creature.getLevel()+1)*(creature.getLevel()+1)*(meanTurns));
+            int proposedXPValue=1*(int)((creature.getLevel()+1)*(meanTurns/2.0));
             //OUTPUT: System.out.println ("Proposed XP: "+proposedXPValue+"\t Actual XP: "+creature.getXP());
             creature.setLevel(creature.getLevel(),proposedXPValue);
             }          
             
-          //System.out.println("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(100*meanLeftHP/(1.0* player.getBaseHP())));
+          System.out.println("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(100*meanLeftHP/(1.0* player.getBaseHP())));
 
           if(isCorrectResult(level, level-creature.getLevel(),meanTurns, meanLeftHP/(1.0* player.getBaseHP())))
             {
@@ -244,7 +242,7 @@ public class BalanceRPGame
               int leftHP=results.second();
               
               double childScore=score(turns, leftHP/(1.0* player.getBaseHP()),level,child);
-              //System.out.println ("Child ATK: "+child.getATK()+"/DEF: "+child.getDEF()+"/HP: "+child.getBaseHP()+"\t scored "+childScore+"\t Turns: "+turns+"\tLeft HP:"+Math.round(100*leftHP/(1.0* player.getBaseHP())));
+              OUTPUT: System.out.println ("Child ATK: "+child.getATK()+"/DEF: "+child.getDEF()+"/HP: "+child.getBaseHP()+"\t scored "+childScore+"\t Turns: "+turns+"\tLeft HP:"+Math.round(100*leftHP/(1.0* player.getBaseHP())));
               
               if(childScore<best)
                 {
@@ -256,8 +254,7 @@ public class BalanceRPGame
             target=bestCreature;            
             level=minlevel;
             
-            
-            //System.out.println ("New ATK: "+target.getATK()+"/DEF: "+target.getDEF()+"/HP: "+target.getBaseHP());
+            OUTPUT: System.out.println ("New ATK: "+target.getATK()+"/DEF: "+target.getDEF()+"/HP: "+target.getBaseHP());
             }
           }
         }
@@ -278,8 +275,9 @@ public class BalanceRPGame
         {
         changed=true;
         }
-
-      System.out.println ("BALANCED: "+creature.getCreatureName()+"("+creature.getLevel()+")\t"+(changed?"*\t":" \t")+"ATK: "+target.getATK()+"\t\tDEF: "+target.getDEF()+"\t\tHP: "+target.getBaseHP()+"\t\tXP: "+creature.getXP());
+      
+      System.out.print("BALANCED: ");
+      System.out.println (creature.getCreatureName()+"("+creature.getLevel()+")\t"+(changed?"*\t":" \t")+"ATK: "+target.getATK()+"\t\tDEF: "+target.getDEF()+"\t\tHP: "+target.getBaseHP()+"\t\tXP: "+creature.getXP());
       st.append("BALANCED: "+creature.getCreatureName()+"("+creature.getLevel()+")\tATK: "+target.getATK()+"\tDEF: "+target.getDEF()+"\tHP: "+target.getBaseHP()+"\tXP: "+creature.getXP()+"\n");
       }
 
@@ -295,31 +293,35 @@ public class BalanceRPGame
     if(level-creatureLevel<0)
       {
       // Weaker than creature.
-      score=leftHP*100+(turns/(10+creatureLevel/3.0));
+      score=leftHP*100+(turns/30.0);
       }
     
     if(level-creatureLevel==0)
       {
-      if(leftHP<0.1 && turns>(10+creatureLevel/3.0))
+      if(leftHP<0.1)
         {
-        score=1000-leftHP*100+(turns/10.0);
+        score=1000-leftHP*100+(Math.abs(turns-30)*3);
         }
-      if(leftHP<0.7 && turns>(10+creatureLevel/3.0))
+      else if(leftHP<0.7)
         {
-        score=500-leftHP*100+(turns/10.0);
+        score=500-leftHP*100+(Math.abs(turns-30)*3);
         }
-      if(leftHP>=0.7)
+      else if(leftHP>=0.7 && turns>=30  && turns<=40)
         {
-        score=Math.abs(leftHP*100-80)+Math.abs(turns-(10+creatureLevel/3.0))/5.0;
+        score=Math.abs(leftHP*100-85)+Math.abs(turns-40)*3;
+        }
+      else
+        {
+        score=Math.abs(leftHP*100-85)+Math.abs(turns-40)*6;
         }
       }
       
     if(level-creatureLevel>0)
       {
-      // Weaker than creature.
+      // Stronger than creature.
       score=(1-leftHP)*100+(turns/5.0);
       }
-    
+
     return score;
     }
   
@@ -327,31 +329,12 @@ public class BalanceRPGame
     {
     Creature[] creatures=new Creature[9];
     
-    int val=0;
-    
     for(int i=0;i<9;i++)
       {
       creatures[i]=new Creature(creature);
-      val=creature.getATK()+Rand.roll1D6()-3;
-      if(val<1)
-        {
-        val=1;
-        }        
-      creatures[i].setATK(val);
-      
-      val=creature.getDEF()+Rand.roll1D6()-3;
-      if(val<1)
-        {
-        val=1;
-        }
-      creatures[i].setDEF(val);
-
-      val=creature.getBaseHP()+Rand.roll1D20()-10;
-      if(val<1)
-        {
-        val=1;
-        }        
-      creatures[i].setBaseHP(val);
+      creatures[i].setATK(creature.getATK()+Rand.roll1D6()-3);
+      creatures[i].setDEF(creature.getDEF()+Rand.roll1D6()-3);
+      creatures[i].setBaseHP(creature.getBaseHP()+Rand.roll1D20()-10);
       }
 
     return creatures;
@@ -359,19 +342,19 @@ public class BalanceRPGame
   
   static private boolean isCorrectResult(int level, int levelDiff,int meanTurns, double meanLeftHP)
     {
-    if(levelDiff==0 && meanTurns>10+level*1.5)
+    if(levelDiff>0 && meanTurns>100+level/10.0)
       {
       //OUTPUT: System.out.println ("FAILED beacause takes too much time to kill");
       return false;
       }
 
-    if(levelDiff==0 && meanTurns<10-level*1.5)
+    if(levelDiff==0 && meanTurns>30+level/10.0)
       {
       //OUTPUT: System.out.println ("FAILED beacause takes too much time to kill");
       return false;
       }
       
-    if(levelDiff==0 && meanLeftHP>=1-(level/100.0))
+    if(levelDiff==0 && meanLeftHP>1-level/100.0)
       {
       //OUTPUT: System.out.println ("CORRECT");
       return true;
@@ -383,13 +366,13 @@ public class BalanceRPGame
       return false;
       }    
     
-    if(levelDiff>0 && meanLeftHP<1-(level/100.0))
+    if(levelDiff>0 && meanLeftHP<0.90-level/100.0)
       {
       //OUTPUT: System.out.println ("FAILED beacause takes makes MUCH damage to player at same level");
       return false;
       }    
     
-    //System.out.println ("FAILED: Any of the above reasons");
+    //OUTPUT: System.out.println ("CORRECT: No reason");
     return true;
     }
   

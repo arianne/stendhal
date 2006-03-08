@@ -60,7 +60,10 @@ public class StendhalRPAction
     int roll=Rand.roll1D20();
     int risk=2*source.getATK()-target.getDEF()+roll-10;        
     
-    logger.debug("attack from "+source+" to "+target+": Risk to strike: "+risk);
+    if(logger.isDebugEnabled())
+      {
+      logger.debug("attack from "+source+" to "+target+": Risk to strike: "+risk);
+      }
 
     if(risk<0)
       {
@@ -109,7 +112,10 @@ public class StendhalRPAction
         }      
       }
 
-    logger.debug("attacker has "+source.getATK()+" and uses a weapon of "+weapon);
+    if(logger.isDebugEnabled())
+      {
+      logger.debug("attacker has "+source.getATK()+" and uses a weapon of "+weapon);
+      }
 
     float maxAttackerComponent=0.8f*(float)source.getATK()*(float)source.getATK()+4.0f*(float)source.getATK()*(float)weapon;
     float attackerComponent=((float)Rand.roll1D100()/100.0f)*maxAttackerComponent;
@@ -141,12 +147,18 @@ public class StendhalRPAction
       boots=target.getBoots().getDefense();
       }
 
-    logger.debug("defender has "+target.getDEF()+" and uses shield of "+shield+" and armor of "+armor);
+    if(logger.isDebugEnabled())
+      {
+      logger.debug("defender has "+target.getDEF()+" and uses shield of "+shield+" and armor of "+armor);
+      }
 
     float maxDefenderComponent=0.6f*(float)target.getDEF()*(float)target.getDEF()+4.0f*(float)target.getDEF()*(float)shield+2.0f*(float)target.getDEF()*(float)armor+(float)target.getDEF()*(float)helmet+(float)target.getDEF()*(float)legs+(float)target.getDEF()*(float)boots;
     float defenderComponent=((float)Rand.roll1D100()/100.0f)*maxDefenderComponent;
 
-    logger.debug("DEF MAX: "+maxDefenderComponent+"\t DEF VALUE: "+defenderComponent);
+    if(logger.isDebugEnabled())
+      {
+      logger.debug("DEF MAX: "+maxDefenderComponent+"\t DEF VALUE: "+defenderComponent);
+      }
     
     int damage=(int)(((attackerComponent-defenderComponent)/maxAttackerComponent)*(maxAttackerComponent/maxDefenderComponent)*((float)source.getATK()/10.0f));
     
