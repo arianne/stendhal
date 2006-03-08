@@ -177,6 +177,12 @@
  <tileset name="Untitled" firstgid="848" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_n2.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="864" tilewidth="64" tileheight="64">
+  <image source="sub_1_orril_castle.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="880" tilewidth="64" tileheight="64">
+  <image source="sub_1_orril_castle_w.png"/>
+ </tileset>
  <layer name="Layer 7" width="36" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQ0AAAgDMJA0/0Kwgw1CevRvuioAwAlz4AAAwD8LCoqbKAASAAA=
@@ -209,10 +215,10 @@
  </layer>
  <layer name="Layer 1" width="36" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Otw2AQBAEwOOpCGHqwHvTFp5W2YQOQJxeG0w+niPikdViVySBFDL3/0+OQwElVAo+NQ4NtNAp+PQ4DDDCpOBD9AYfAgWPRwiRggcRfWc2Iov5//FYcdkUfXZcDkWfE5dL0YeIyEY3/Kd15gASAAA=
+   H4sIAAAAAAAAAO3VxRECQRRF0WYmoikkDnxwt8HdJQ2cVLkbEqCopgv+4qzf3T3Hp5QjflrYViqCKGL293viNCSQhGtAT4qGNDLIGtCToyGPAooG9AjxCX4EDOh4CSJkQIcQ4n1DPnKEMSYooYwKqjhaSp0sfT1TNmeYY4Ea6migiTMtF409SzZXWGODFjy00cGVlpvGni2bO+xxQBc99DHAnZaHxh4hhPhHT+CsyH0AEgAA
   </data>
  </layer>
- <layer name="Floor" width="36" height="32">
+ <layer name="Floor" width="36" height="32" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3WVbCVVRgG4A2H7u7uPjTSDdIopRLSICIYgIIiSjfYrZSCioRNIyogFoooJSDd3emzHO/cN+47HS6emT3fXuv73jn/2us/5RJEIuVu+U/ZmDAS+Ymf2cR4JjCRSTzGUIbxOH25j37cz+00oSnNuIu7uYeOlI0zh/JUoCKVqEyVuH/m+cWezfzKb0xmClOZxhMM50lG0J8HGMBAmtOClrSiE53pwr3cZmZVqlGdGtSkFrWj5Nliz1a2sZ3pPMOzPMdTPM1IRvEgD/Ewj9CaO7iTNnSlG93pQR0z61KP+jSgIY1oHCXPDnt+Zye7eJ4XeJGXGM0YxjKOQQxmCI/Slna0pwM96UVv+oTnaWYTmtKM5rSgJa2i5Nltzx/sYS9b1Layje1sjniW/MYWznOBi1yimD3FKUHJ8HyoSjWqc4rTnOEsERkSkJC4KHn2WbOfAxxkh9rv7GRXyKbFNrazg8tc4SrXKGVPacoQTw1qUovanOM8F7hIIhkSk4SkUfIcsuYwRzjKbrU/2MPekM3MnexiN9e5wU0ivi9rTznKUyGcF+pSj/pc4jJXuEoyGZKTgpRR8hyz5jgnOMk+tf0c4GDIZuwe9rIvRFBLSByJqGhPJSpThQY0pBGNucZ1bnCTVDKkJg1po+RZZM1iPuQjvjZzLetYT2pr0pCWdJSmDF/4bg25fc5DXvIl+OtPFvn7mEQSkc6H9GQgI/nITwEKRsnzsc2f8Cmf8Y0eG/iW70hvTQYykon48Iz40ndfkd/nAhSkEInVkpCUZGQyMzNZyEohClOEolHyfC7DEpayjO/1+IEf2Uhma7KQlWxhHklISjIKU4SiFCO5PSlISSqymZmdHOSkGMUpQckoeZbLsIKVrOInPX5mE7+Q3Zoc5CRXmEcKUpKK4pSgJKVIbU8a0oZnRS4zc5OHvJSiNGWIj5JntQxfsIYvOaR2mCMc5Rk9n+U5nmc/BzjIofC8KEBBClGO8lSgYuTfv0+/CmeYtazjmNpxTnCSF/R8kZd4mcMc4SjHKEwRioa7kUpUpgq3xZBnfTjDbODbcJ+qneYMZ3lFz1d5jdc5zglOcorilKBkuBupSjWqUyOGPN+FM8wP/BjuU7XzXOAib+j5Jm8xg9Oc4SznKE0Z4ilLTWpRmzox5Jkhw0xmMTvcnyQnBSl5SM+HeYRBPM1IRjGautSjPg3C/UAGMobfegx55pj5Nu8wN9yfpCYNaRms5xAe5THGMJZxjKchjWjM7eF+IAtZw289hjzzzHyX93ifdKQnAxkZqucwHucJJjCRSUymCU1pRvNwP5CDnOG3HkOe+WZ+wAIWkonMZCErw/V8khE8xRSmMo3ptKAlrWhNbvKQl3wx5MlmZnZykDO8j9Uuc4WrzNRzFrOZw2I+5CM+phvd6UFP7uBO2tA2hjy5ZMhNHvKG97HadW5wk7f1fIe5zOMTPuUzPqcXvelDX9rRng7cFUOefDLkpwAFw4uZBCQkLpwtpfd4n/ksYSnLWM599ON++nM399CRTjHkKWRmYYpQNPz/RmKSkDScLT0XsJBFrGAlq1jNAwxgIA/SmS7cS9cY8txyy//Fn/usaEAAEgAA
   </data>
