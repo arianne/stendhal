@@ -20,6 +20,8 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
   private LinkedList<String> lines;
   private int actual;
   
+  private String lastPlayerTell;
+  
   public StendhalChatLineListener(StendhalClient client, JTextField playerChatText)
     {
     super();
@@ -158,6 +160,18 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
         }
       else
         {
+        if(text.startsWith("//") && lastPlayerTell!=null)
+          {
+          String[] command = parseString(text, 2);
+          if(command != null)
+            {
+            RPAction tell = new RPAction();
+            tell.put("type","tell");
+            tell.put("target", lastPlayerTell);
+            tell.put("text", command[1]);
+            client.send(tell);
+            }
+          }
         if(text.startsWith("/tell ") ||text.startsWith("/msg ")) // Tell command
           {
           String[] command = parseString(text, 3);
@@ -165,6 +179,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
             {
             RPAction tell = new RPAction();
             tell.put("type","tell");
+            lastPlayerTell= command[1];
             tell.put("target", command[1]);
             tell.put("text", command[2]);
             client.send(tell);

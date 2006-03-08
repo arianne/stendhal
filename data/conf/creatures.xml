@@ -1685,7 +1685,7 @@
 	<creature name="black_dragon">
 		<type class="huge_animal" subclass="black_dragon" tileid="53"/>
 		<attributes>
-			<atk value="22'"/>
+			<atk value="220"/>
 			<def value="21"/>
 			<hp value="1200"/>
 			<speed value="1.5"/>
