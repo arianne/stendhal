@@ -437,6 +437,30 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="scale_armor">
+		<type class="armor" subclass="scale_armor"/>
+		<attributes>
+			<def value="8"/>
+		</attributes>
+		<weight value="45"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="plate_armor">
+		<type class="armor" subclass="plate_armor"/>
+		<attributes>
+			<def value="10"/>
+		</attributes>
+		<weight value="45"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 <!-- Helmets_section-->
 

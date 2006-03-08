@@ -3,7 +3,7 @@
  *
  * Created on 22 de julio de 2002, 0:27
  */
-package games.stendhal.server.pathfinder.old;
+package games.stendhal.server.pathfinder;
 
 import java.util.*;
 

@@ -33,7 +33,8 @@ public class RespawnPoint
   private List<Creature> entities;
 
   private boolean respawning;
-  final public static int TURNSTORESPAWN=90; // Five minute at 300ms
+  final public static int TURNSTORESPAWN=900; // Five minute at 300ms
+  private int respawnTime;
   private int turnsToRespawn;
 
   private StendhalRPZone zone;
@@ -55,6 +56,12 @@ public class RespawnPoint
 
     respawning=true;
     turnsToRespawn=1;  // respawn now
+    respawnTime=TURNSTORESPAWN;
+    }
+  
+  public void setRespawnTime(int respawnTime)
+    {
+    this.respawnTime=respawnTime;
     }
 
   public void set(StendhalRPZone zone,Creature entity, int maximum)

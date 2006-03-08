@@ -77,7 +77,9 @@ public class StendhalClient extends ariannexp
   private StendhalClient(String loggingProperties)
     {
     super(loggingProperties);
+
     SoundSystem.get();
+
     world_objects=new HashMap<RPObject.ID, RPObject>();
     staticLayers=new StaticGameLayers();
     gameObjects=new GameObjects(staticLayers);   

@@ -158,7 +158,7 @@ public class DefaultCreature
   /** returns a creature-instance */
   public Creature getCreature()
   {
-    Creature creature=new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed, dropsItems, aiProfiles, creatureSays);
+    Creature creature=new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed, dropsItems, aiProfiles, creatureSays, respawn);
     creature.equip(equipsItems);
       
     return creature;

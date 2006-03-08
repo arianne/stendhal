@@ -140,6 +140,8 @@ public class Creature extends NPC
 
   /** Ths list of items this creature may drop */
   private List<String> noises;
+  
+  private int respawnTime;
 
   private Map<String, String> aiProfiles;
   
@@ -186,7 +188,7 @@ public class Creature extends NPC
 
   /** creates a new creature with the given properties
    */
-  public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems, Map<String, String> aiProfiles, List<String> noises) throws AttributeNotFoundException
+  public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems, Map<String, String> aiProfiles, List<String> noises, int respawnTime) throws AttributeNotFoundException
     {
     this();
     
@@ -201,6 +203,8 @@ public class Creature extends NPC
     
     this.aiProfiles=aiProfiles;
     this.noises=noises;
+    
+    this.respawnTime=respawnTime;
 
     put("class",clazz);
     put("subclass",subclass);
@@ -237,7 +241,8 @@ public class Creature extends NPC
 
   public void setRespawnPoint(RespawnPoint point)
     {
-    this.point=point;
+    this.point=point;   
+    point.setRespawnTime(respawnTime);
     }
 
   public RespawnPoint getRespawnPoint()

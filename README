@@ -70,6 +70,14 @@ Changelog
 - Fixed dragons and added a new category Huge animals.
 - Fixed a bug at Attack system that weakens NPC.
 - Fixed some maps bugs.
+- Speed up path finding by a factor of x20
+- Added cloaks
+- Added plate armor
+- Rebalanced again creatures
+- Fixed a very fun bug at Seller NPC ;-)
+- Moved NPC GFX to its own folder.
+- Simplified quests.
+- Added Semos Mine and Orril Castle new zones.
 
 0.45 Mar 01, 2006
 - Fixed ambient sounds.
