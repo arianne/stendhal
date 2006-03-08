@@ -35,6 +35,57 @@ public class CollisionDetection
     for(int i=0;i<width*height;i++) blocked[i]=false;
     }
 
+  public void init(int width, int height) throws IOException
+    {
+    this.width=width;
+    this.height=height;
+    
+    blocked=new boolean[width*height];
+    clear();
+    }
+  
+  public void setCollide(int x, int y)
+    {
+    if(x<0 || x>=width || y<0 || y>=height)
+      {
+      return;
+      }
+
+    blocked[y*width+x]=true;
+    }
+
+  public void setCollide(Rectangle2D shape, boolean value)
+    {
+    double x=shape.getX();
+    double y=shape.getY();
+    double w=shape.getWidth();
+    double h=shape.getHeight();
+    
+    if(x<0 || x/*+w*/>=width)
+      {
+      return;
+      }
+
+    if(y<0 || y/*+h*/>=height)
+      {
+      return;
+      }
+    
+    int startx=(int)((x>=0)?x:0);
+    int endx=(int)((x+w<width)?x+w:width);
+    int starty=(int)((y)>=0?y:0);
+    int endy=(int)((y+h)<height?y+h:height);
+    
+    for(int k=starty;k<endy;k++)
+      {
+      for(int i=startx;i<endx;i++)
+        {
+        blocked[k*width+i]=true;
+        }
+      }
+    }
+    
+    
   public void setCollisionData(Reader reader) throws IOException
     {
     BufferedReader file=new BufferedReader(reader);

@@ -98,9 +98,9 @@ public class StendhalRPZone extends MarauroaRPZone
     }
   
   public StendhalRPWorld getWorld()
-  {
+    {
     return world;
-  }
+    }
   
   public List<NPC> getNPCList()
     {

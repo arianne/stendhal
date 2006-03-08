@@ -328,6 +328,17 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
               }
             }
           }
+        else if(text.startsWith("/inspect ")) // Returns a complete description of the target
+          {
+          String[] command = parseString(text, 2);
+          if(command != null)
+            {
+            RPAction add = new RPAction();
+            add.put("type","inspect");
+            add.put("target", command[1]);
+            client.send(add);
+            }
+          }
         else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
           {
           RPAction invisible = new RPAction();

@@ -60,7 +60,9 @@ public abstract class NPC extends RPEntity
     {
     super();
     put("type","npc");
-    set(0,0);
+
+    put("x",0);
+    put("y",0);
     }
 
   public void setIdea(String idea)

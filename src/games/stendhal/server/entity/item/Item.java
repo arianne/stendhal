@@ -35,13 +35,14 @@ public class Item extends PassiveEntity
     entity.add("class",RPClass.STRING); // class, sword/armor/...
     entity.add("subclass",RPClass.STRING); // subclass, long sword/leather armor/...
     entity.add("name",RPClass.STRING);  // name of item (ie 'Kings Sword')
-    entity.add("possibleslots",RPClass.STRING); // komma separated list of slots
     entity.add("atk",RPClass.SHORT);  // Some items has attack values
     entity.add("def",RPClass.SHORT);  // Some items has defense values
-    entity.add("amount",RPClass.INT); // Some items has amount of something ( a bottle, a piece of meat ).
+
+    entity.add("amount",RPClass.INT); // Some items(food) has amount of something ( a bottle, a piece of meat ).
     entity.add("regen",RPClass.INT); // Some items(food) has regeneration speed
     entity.add("frequency",RPClass.INT); // Some items(food) has regeneration speed
-    entity.add("quantity",RPClass.INT); // Some items has quantity
+
+    entity.add("quantity",RPClass.INT); // Some items(Stackable) has quantity
     }
 
   /**

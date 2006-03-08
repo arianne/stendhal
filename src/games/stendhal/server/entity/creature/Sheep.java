@@ -72,7 +72,8 @@ public class Sheep extends Creature
     this.owner=owner;
     put("type","sheep");
     
-    set(0,0);
+    put("x",0);
+    put("y",0);
     
     setATK(ATK);
     setDEF(DEF);

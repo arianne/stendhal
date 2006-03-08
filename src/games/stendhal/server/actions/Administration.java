@@ -23,6 +23,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.RPObject;
 import marauroa.common.game.RPClass;
 import marauroa.server.game.RPWorld;
 
@@ -35,6 +36,7 @@ public class Administration extends ActionListener
   public static void register()
     {
     Administration Administration=new Administration();
+    StendhalRPRuleProcessor.register("inspect",Administration);
     StendhalRPRuleProcessor.register("tellall",Administration);
     StendhalRPRuleProcessor.register("teleport",Administration);
     StendhalRPRuleProcessor.register("teleportto",Administration);
@@ -82,6 +84,10 @@ public class Administration extends ActionListener
     else if(type.equals("invisible"))
       {
       onInvisible(world,rules,player,action);
+      }          
+    else if(type.equals("inspect"))
+      {
+      onInspect(world,rules,player,action);
       }          
     }
   
@@ -435,5 +441,67 @@ public class Administration extends ActionListener
       }
 
     Log4J.finishMethod(logger,"onInvisible");
+    }
+
+  private void onInspect(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"onInspect");
+
+    if(action.has("target"))
+      {
+      Player inspected=null;
+      
+      String name=action.get("target");
+      for(Player p : rules.getPlayers())
+        {
+        if(p.getName().equals(name))
+          {
+          inspected=p;
+          break;
+          }
+        }
+      
+      if(inspected==null)
+        {
+        String text="Player "+name+" not found";
+
+        player.setPrivateText(text);
+        rules.removePlayerText(player);
+        return;
+        }
+      
+      StringBuffer st=new StringBuffer();
+      st.append("Inspected "+inspected.getName()+" is:");
+      st.append("\nATK:    "+inspected.getATK());
+      st.append("\nDEF:    "+inspected.getDEF());
+      st.append("\nBaseHP: "+inspected.getBaseHP());
+      st.append("\nXP:     "+inspected.getXP());
+      
+      st.append("\nequips");
+      for(RPSlot slot: inspected.slots())
+        {
+        if(slot.getName().equals("!quests") || slot.getName().equals("!buddy") )
+          {
+          continue;
+          }
+          
+        st.append("\n    Slot "+slot.getName());
+
+        for(RPObject object: slot)
+          {
+          String item=object.get("type");
+          if(object.has("name"))
+            {
+            item=object.get("name");
+            }
+            
+          st.append("\n        Item "+item);
+          }
+        }
+      
+      player.setPrivateText(st.toString());
+      }
+
+    Log4J.finishMethod(logger,"onInspect");
     }
   }
