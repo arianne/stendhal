@@ -1378,6 +1378,7 @@
 		<experience value="375"/>
 		<respawn value="900"/>
 		<drops>
+			<item value="hammer" quantity="1" probability="5"/>
 		</drops>
 		<equips>
 		</equips>
@@ -1437,7 +1438,7 @@
 		<respawn value="1000"/>
 		<drops>
 			<item value="money" quantity="[200,600]" probability="100"/>
-			<item value="battle_axe" quantity="1" probability="8"/>
+			<item value="hammer" quantity="1" probability="8"/>
 			<item value="chain_legs" quantity="1" probability="10"/>
 			<item value="chain_helmet" quantity="1" probability="10"/>
 			<item value="dwarf_cloak" quantity="1" probability="1"/>
@@ -1527,6 +1528,7 @@
 		<respawn value="1300"/>
 		<drops>
 			<item value="money" quantity="[200,800]" probability="100"/>
+			<item value="hammer" quantity="1" probability="12"/>
 		</drops>
 		<equips>
 		</equips>
@@ -1583,7 +1585,7 @@
 		<respawn value="1500"/>
 		<drops>
 			<item value="money" quantity="[300,1000]" probability="100"/>
-			<item value="battle_axe" quantity="1" probability="8"/>
+			<item value="hammer" quantity="1" probability="15"/>
 			<item value="chain_legs" quantity="1" probability="10"/>
 			<item value="chain_helmet" quantity="1" probability="10"/>
 			<item value="dwarf_cloak" quantity="1" probability="15"/>
@@ -1641,7 +1643,7 @@
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
-			<item value="short_sword" quantity="1" probability="30"/>
+			<item value="scythe" quantity="1" probability="5"/>
 			<item value="studded_armor" quantity="1" probability="20"/>
 			<item value="lich_cloak" quantity="1" probability="5"/>
 		</drops>

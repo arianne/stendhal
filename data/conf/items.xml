@@ -258,6 +258,31 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="bardiche">
+		<type class="axe" subclass="bardiche"/>
+		<attributes>
+			<atk value="18"/>
+		</attributes>
+		<weight value="10"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="scythe">
+		<type class="axe" subclass="scythe"/>
+		<attributes>
+			<atk value="27"/>
+		</attributes>
+		<weight value="10"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 <!-- Clubs_section -->
 
 	<item name="club">
@@ -299,6 +324,19 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="hammer">
+		<type class="club" subclass="hammer"/>
+		<attributes>
+			<atk value="15"/>
+		</attributes>
+		<weight value="8"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
 	<item name="skull_staff">
 		<type class="club" subclass="skull_staff"/>
 		<attributes>
