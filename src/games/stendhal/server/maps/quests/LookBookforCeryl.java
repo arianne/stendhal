@@ -44,7 +44,21 @@ public class LookBookforCeryl implements IQuest
 
     SpeakerNPC npc=npcs.get("Ceryl");
     
-    Behaviours.addQuest(npc,"I am looking for a very special #book");
+    npc.add(1, new String[]{"task","quest"},null,
+        1,null,new SpeakerNPC.ChatAction()
+      {
+      public void fire(Player player, String text, SpeakerNPC engine)
+        {
+        if(player.isQuestCompleted("introduce_players"))
+          {
+          engine.say("I have nothing for you now.");
+          }
+        else
+          {
+          engine.say("I am looking for a very special #book");
+          }
+        }
+      });
     
     /** In case Quest is completed */
     npc.add(1,"book",new SpeakerNPC.ChatCondition()
@@ -90,7 +104,7 @@ public class LookBookforCeryl implements IQuest
       },
         1,"I really need that #book now!. Go to talk with #Jynath.",null);
 
-    npc.add(1,"jynath",null,1,"Jynath is a witch that lives at south of Or'ril castle. So will you get me the #book?",null);
+    npc.add(1,"jynath",null,1,"Jynath is a witch that lives at south of Or'ril castle.",null);
     }
   
   private void step_2()
@@ -100,7 +114,7 @@ public class LookBookforCeryl implements IQuest
     SpeakerNPC npc=npcs.get("Jynath");    
     
     /** If player has quest and is in the correct state, just give him the book. */
-    npc.add(1,"book",new SpeakerNPC.ChatCondition()
+    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -112,7 +126,7 @@ public class LookBookforCeryl implements IQuest
       public void fire(Player player, String text, SpeakerNPC engine)
         {
         player.setQuest("ceryl_book","jynath");
-        engine.say("Here you have the book Ceryl is looking for.");
+        engine.say("I see you talked with Ceryl. Here you have the book he is looking for.");
 
         Item book=world.getRuleManager().getEntityManager().getItem("book_black");            
         player.equip(book);
@@ -120,7 +134,7 @@ public class LookBookforCeryl implements IQuest
       });
 
     /** If player keep asking for book, just tell him to hurry up */
-    npc.add(1,"book",new SpeakerNPC.ChatCondition()
+    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -149,7 +163,7 @@ public class LookBookforCeryl implements IQuest
     SpeakerNPC npc=npcs.get("Ceryl");
         
     /** Complete the quest */        
-    npc.add(1,"book",new SpeakerNPC.ChatCondition()
+    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -163,7 +177,7 @@ public class LookBookforCeryl implements IQuest
         Item item=player.drop("book_black");
         if(item!=null)
           {
-          engine.say("Thanks!");
+          engine.say("OH! The book! Thanks!");
           StackableItem money=(StackableItem)world.getRuleManager().getEntityManager().getItem("money");            
 
           money.setQuantity(50);

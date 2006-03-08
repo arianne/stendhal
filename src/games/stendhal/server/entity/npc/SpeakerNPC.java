@@ -338,6 +338,14 @@ public abstract class SpeakerNPC extends NPC
     }
 
   /** Add a new set of states to FSM */
+  public void add(int state, String[] triggers, ChatCondition condition, int next_state, String reply, ChatAction action)
+    {
+    for(String trigger: triggers)
+      {
+      add(state,trigger, condition, next_state, reply, action);
+      }
+    }
+    
   public void add(int state, String[] triggers, int next_state, String reply, ChatAction action)
     {
     for(String trigger: triggers)

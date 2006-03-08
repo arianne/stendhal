@@ -50,7 +50,7 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Tad");
     
-    npc.add(1,"task",null,
+    npc.add(1, new String[]{"task","quest"},null,
         1,null,new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)

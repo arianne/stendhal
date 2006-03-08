@@ -120,8 +120,7 @@ public class BalanceRPGame
       {
       atkLevels[i]=10+(int)Math.round(Math.log(i+1)/Math.log(10)*7);
       defLevels[i]=10+(int)Math.round(Math.log(i+1)/Math.log(10)*14);
-      }                  
-                     
+      }                                       
                         
     
     EntityManager em=DefaultEntityManager.getInstance();
@@ -159,7 +158,7 @@ public class BalanceRPGame
     player.equip(legs);
     player.equip(boots);
 
-//    for(int level=0;level<60;level++)
+//    for(int level=0;level<100;level++)
 //      {
 //      player.setBaseHP(100+10*level);
 //      player.setATK(atkLevels[level]);
@@ -226,7 +225,7 @@ public class BalanceRPGame
             creature.setLevel(creature.getLevel(),proposedXPValue);
             }          
             
-          System.out.println("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(100*meanLeftHP/(1.0* player.getBaseHP())));
+          //System.out.println("Player("+level+") VS "+creature.getCreatureName()+"\t Turns: "+meanTurns+"\tLeft HP:"+Math.round(100*meanLeftHP/(1.0* player.getBaseHP())));
 
           if(isCorrectResult(level, level-creature.getLevel(),meanTurns, meanLeftHP/(1.0* player.getBaseHP())))
             {
@@ -360,31 +359,31 @@ public class BalanceRPGame
   
   static private boolean isCorrectResult(int level, int levelDiff,int meanTurns, double meanLeftHP)
     {
-    if(levelDiff==0 && meanTurns>10+level/3.0*1.5)
+    if(levelDiff==0 && meanTurns>10+level*1.5)
       {
       //OUTPUT: System.out.println ("FAILED beacause takes too much time to kill");
       return false;
       }
 
-    if(levelDiff==0 && meanTurns<10-level/3.0*1.5)
+    if(levelDiff==0 && meanTurns<10-level*1.5)
       {
       //OUTPUT: System.out.println ("FAILED beacause takes too much time to kill");
       return false;
       }
       
-    if(levelDiff==0 && meanLeftHP>=1-level/50.0)
+    if(levelDiff==0 && meanLeftHP>=1-(level/100.0))
       {
       //OUTPUT: System.out.println ("CORRECT");
       return true;
       }
     
-    if(levelDiff<0 && meanLeftHP>1-level/50.0)
+    if(levelDiff<0 && meanLeftHP>1-level/100.0)
       {
       //OUTPUT: System.out.println ("FAILED beacause takes makes LITTLE damage to player at same level");
       return false;
       }    
     
-    if(levelDiff>0 && meanLeftHP<1-0.1-level/50.0)
+    if(levelDiff>0 && meanLeftHP<1-(level/100.0))
       {
       //OUTPUT: System.out.println ("FAILED beacause takes makes MUCH damage to player at same level");
       return false;
