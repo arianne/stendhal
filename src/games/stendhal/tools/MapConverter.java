@@ -98,11 +98,11 @@ public class MapConverter extends Task
 
     if(level.equals("int") && area.equals("abstract"))
       {
-      filename=level.replace("-","sub_")+"_"+mapName+".xstend";
+      filename=level.replace("-","sub_")+"_"+mapName.replace("-","sub_")+".xstend";
       }
     else
       {
-      filename=level.replace("-","sub_")+"_"+area+"_"+mapName+".xstend";
+      filename=level.replace("-","sub_")+"_"+area+"_"+mapName.replace("-","sub_")+".xstend";
       }
     
     return filename;

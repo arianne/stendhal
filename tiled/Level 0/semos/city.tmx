@@ -60,17 +60,17 @@
    H4sIAAAAAAAAAO3XPQ6CQBAGUAobOZ8X0Yt4LvEOlip3sHA3hIQCC/9W3Hkv+RIqYGBgd5oGAAAA+Cen9fvn2LZDotq3Q0r4xPuqwS3oc9itfn0H8w6p/7uU4xe/g1z7WP/0eAkuqe5rSh/4P0jdIq/xWak1HgBe9WhOnJubapwpn6mf2HKvbArMkvk6OVH30WP99tFEddb7AAAAAADAAt0BGIpmmQBAAAA=
   </data>
  </layer>
- <layer name="objects" width="64" height="64" visible="0">
+ <layer name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aTQ6DIBCGYbdes4m2C72h3q1pqtEYElAH+XTeZ+kPgXEAJ6GqgLLGunQPyjsag997xO/PaxzmHPA6/ly8xtMql+Y2vMYxxFss1uNljQIAANjvE/l/it23Ru15ztXfK1Ub6FfoGoD8uoS5l/LMnWz3lKeNL8b7nnpk/N5yBABgY2D/gKA9tbdynd4I9w35WKyramuz8jwDAJyjtuegjNeUB2/yAYAY9bPWqv26Quh8TG8UD6t2VHjPEwDAgho8ny/+YXd/AEAAAA==
+   H4sIAAAAAAAAAO3a3QqDMAyGYU+9zYHbDtwdunuToTIZhfqTNp/L+xxraWLatGDTAL7erfcM/B3Nwec98jeJmoelBqLGX0rUfFrV0jJG1DymRMvFOl72KAAAgP2emfPTvfL5irvnObnv6SVVR7VrC8Ck37D2tjxzJb895d/iy4neU4/EH61GAAA2BvoHBO25eyvf0zvhuaEci31VbW9WXmcAgHPUeg583OY6eFAPAMSo/2utOq8aUv/HvIzyYTWOiuh1AgD44g5ezggH0o4LAEAAAA==
   </data>
  </layer>
- <layer name="collision" width="64" height="64" visible="0" opacity="0.33">
+ <layer name="collision" width="64" height="64" opacity="0.33">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2WW47DIAxF+9v976nrGs1HJIQMvn4CwUeK2iZgfBzi5vMpivX8vqszWIfWvZ13Y/3+ndvjRm71juTm/dTiUYMnxon1tO6Dvj+dWAMPbnYviiIOaV+hehHVp5FjBzxyzPTXxNfmV/7lv4u/JObMn4tFjZ/lEeXf54+uQ/mj62hZubf6MZ5eSD6jHJGx6HrUJzWGO+eB5RnWxKTqp4lpOdBcI6DuP9p/PNZG/L3X83iOT/X3ItOfm4/WJ8qf6ymzGG/w566Pxlr2tbSXIjlL1/eIkeHf/pbEmuUX9f9nrcuMmYt0znMt219aG/T+I/NHuXj6e++N0/37/L33GlUjpGZZ/p5rz2Kd6j/6rvGnxp/gj+YU6S+pBzV3B3/pNQRuvsV/dF7jP6ulBsu8bP8dke6b9jzynJ1OlA9aq9U13d2/v879LooiHq93Vu69ZTTWsobF+Vbe2GdRnze/+yDvh2/3z+whVjzzOM39IbsGO7JrXgVP3buqQZHPzXtu5/+yDMr/bv8/jHWpGABAAAA=
   </data>
  </layer>
- <layer name="navigation" width="64" height="64" visible="0">
+ <layer name="navigation" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3YuQ2AMAwAwLSMyf5LUCEoQkQ+ZOCujPIVzmOn1G5dOgYHWgMAACCCUfnPU3nU6HXkfwD8UeT3Pzfn3ubd5s3uxK8Yh7zas+EsAQDAoeZ/HPkvfd5b5H0C39dzB5XG1tYPr/q31NNLdXkAAACAaNQt5toAaFAd4wBAAAA=
   </data>

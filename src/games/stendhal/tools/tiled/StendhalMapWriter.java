@@ -57,11 +57,11 @@ public class StendhalMapWriter implements MapWriter
 
     if(level.equals("int") && area.equals("abstract"))
       {
-      filename=destination+File.separator+level.replace("-","sub_")+"_"+mapName+".xstend";
+      filename=destination+File.separator+level.replace("-","sub_")+"_"+mapName.replace("-","sub_")+".xstend";
       }
     else
       {
-      filename=destination+File.separator+level.replace("-","sub_")+"_"+area+"_"+mapName+".xstend";
+      filename=destination+File.separator+level.replace("-","sub_")+"_"+area+"_"+mapName.replace("-","sub_")+".xstend";
       }
     
     FileOutputStream os = new FileOutputStream(filename);

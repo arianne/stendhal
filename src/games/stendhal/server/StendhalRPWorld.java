@@ -152,6 +152,8 @@ public class StendhalRPWorld extends RPWorld
       addArea("int_semos_temple");
       addArea("int_semos_blacksmith");
       addArea("int_semos_library");
+      addArea("int_semos_storage_0");
+      addArea("int_semos_storage_-1");
     addArea("0_semos_road_e");
     addArea("0_semos_road_se");
     addArea("0_semos_plains_s");
