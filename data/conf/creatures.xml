@@ -1611,7 +1611,7 @@
 			<size value="2,2"/>
 		</attributes>
 		<level value="50"/>
-		<experience value="870"/>
+		<experience value="6900"/>
 		<respawn value="19000"/>
 		<drops>
 			<item value="green_dragon_cloak" quantity="1" probability="5"/>
@@ -1638,7 +1638,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="60"/>
-		<experience value="950"/>
+		<experience value="9300"/>
 		<respawn value="25000"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
@@ -1667,7 +1667,7 @@
 			<size value="2,2"/>
 		</attributes>
 		<level value="70"/>
-		<experience value="2500"/>
+		<experience value="12500"/>
 		<respawn value="32000"/>
 		<drops>
 			<item value="blue_dragon_cloak" quantity="1" probability="5"/>
@@ -1694,7 +1694,7 @@
 			<size value="3,4"/>
 		</attributes>
 		<level value="100"/>
-		<experience value="10000"/>
+		<experience value="24000"/>
 		<respawn value="64000"/>
 		<drops>
 			<item value="black_dragon_cloak" quantity="1" probability="5"/>
