@@ -62,7 +62,7 @@
  </layer>
  <layer name="objects" width="128" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aPQrCQBAG0LQ5rKSytBKP5d0kRUAQlUCymc33XmUj7M6POyY7DPVcx7bfO4PkvfdCjoAj3P32ACt9m1kqzzKXwmtjH73kvJd19qpifCuuaW+Je/5ny5g8OoivGgDI5hyAtnqYDwHI5IxaR7yAlvx3Z6YOaMmsU4O+B1in8v1IYDtPvR5PDQBkM/cDQB7nPwAAZ7G84/CuI9Ocd7nPpgay/Lr/qQ7Oy71fyJTe+7eG+5/Gz89TePyhlZa9/o1+Z+EMAOAonutlen+2rwYyLTUg/8cy/wMAAFt7AQ59yt4AgAAA
+   H4sIAAAAAAAAAO3aMQ7CMAwF0K4cFjExMnIs7oY6VGKogIqQxv3vjV2a2I7ippmm47ie9h7BfpLnXoUcAQAVVOxZzgXHzG+q5LzKOKsaMb4jjunfEuf8ScuY3AvEVw0AZLMPQF8V+kMAMtmjthEvoCff7szUAT3pdcZg3QNsU/HeJLDdw1qPpwYAAACyOPcDAOAoln8c/nVkmvMu99nUQJZ39z/VwXG59wuZ0tf+reP8LyvvWnsGtNdzrcO37AEA9OZcL9Pr2b4ayLTUgPzvS/8PAAC09gS9j07fAIAAAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="64" opacity="0.39">
@@ -70,7 +70,7 @@
    H4sIAAAAAAAAAO2ZXW7EIAyE+9r736nn6kO1EnIJ+N+GzCdFu8kSM3hsEmm/vgAAt/Pz/XeAdwL/AQAAAAAAAAAAAAAAAAAAAAA38fkP9OkAd+PpP2rmPHb+S/yE//3h+A3/78TD84i6ATlY+z5q3wDxaPZ96iH8Pxet/x8fPeoH1GD13hJjpQnkUNX7nPcI4Ickn5J+hf/3oel3rzm6vDu8uQYlz3t6n8c8lf5n19lJzPYAa7xuNQD/8+joP9U2uy7VD2R0zuXuPair7lPonsvO/nvM0yG/nFxWPy86+v8mKv2H77VovO/kf9e60OZ1teaItXrp1NaHNR+aeszYT7Lz2EWvxQ9p7Mj9yCvOCf5X9r9m/tl93rmw3BORz8g6qdbXsSdGbZwxJ/vPXV9lfY6f9Hslnfozimr/V1pWYzKQrFmbtxv631PnLi5nroi63M0V5X80u3kr/J/Nm8U4P71Gv3/Ob/W/ov9n2irictbnsU9651SqwdP/yHqlmmb6V9dorJWfNIbUO+56IvLIuXeWK6pJojXa/8j9SRt7NWYWfzdnlf/cmJU1sOtx78Maf6Zdm09NrixjZr/B/7he7eZ/ZyJrYIw5fj5p8KiB7v5H1Yk1X/Tc0/+dVotPnrq4eldjZmuLxmPfXMWMzrElrrfXFn1VRGrIXLt0nmpfPGJbYox7zrjW7H1gHJcxl2R8ZV/u8NBYUd8z3Rnec/R09n2Ws6drnFi3YO3hU/3XjtGOr87Jqv69e//peVGFZi23Uel/dV7h/3+sa5XUzWpPiMj1Wzy0stoPnq7R+0/zP1NHFZz3HHqufQZ4acpAU+M3In32W3PTJb8W/38Bc4KLuwCAAAA=
   </data>
  </layer>
- <layer name="navigation" width="128" height="64" visible="0">
+ <layer name="navigation" width="128" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3ZwQ2AMAwEQX8pk/6bSAMIOZECxsxUcL9N5AgAAAAAAAAAAAAAAAAAAACAdefx9oJrVXcBAAAAAAD/kb1XuGsAAAAd+NsAkHHXi6daolkAwG7V3hvV9gDwPbMt0R46GDQSALgAgAAA
   </data>

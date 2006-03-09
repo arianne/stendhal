@@ -191,6 +191,15 @@
 			<folderitem>
 				<path>tiled\test\Nueva carpeta</path>
 			</folderitem>
+			<folderitem>
+				<path>build_client_sound_data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_sound_data\data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_sound_data\data\sounds</path>
+			</folderitem>
 			<fileitem>
 				<path>AUTHORS</path>
 				<source>true</source>
@@ -1593,6 +1602,14 @@
 				<path>tiled\test\Nueva carpeta\items.xml</path>
 				<source>true</source>
 			</fileitem>
+			<fileitem>
+				<path>build_client_sound_data\data\sounds\stensounds.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_client_sound_data\data\sounds\stensounds0.jar</path>
+				<source>true</source>
+			</fileitem>
 		</include>
 		<exclude>
 			<folderitem>
@@ -1606,12 +1623,6 @@
 			</folderitem>
 			<folderitem>
 				<path>lib</path>
-			</folderitem>
-			<folderitem>
-				<path>src\games\stendhal\server\pathfinder\old</path>
-			</folderitem>
-			<folderitem>
-				<path>src\games\stendhal\server\pathfinder_old</path>
 			</folderitem>
 			<folderitem>
 				<path>stendhal-0.45-src</path>

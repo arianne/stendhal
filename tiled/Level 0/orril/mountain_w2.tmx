@@ -37,7 +37,7 @@
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3a3Y3TQACFUT9CIaQTCtk0RiPQG0ICKcoaJ7bHc+fnPHyvyDPnrpNI3JZluQ3cd22W9uHPnz9//vz58+fPnz9//vz582fPnz1/9vz58+fPnz1//vzZ8+fPnz9//vzTd9ljaTP+/Pnz58+fP3/+/Pnz58+fP3/2/PnzZ8+fP3/2/PnzZz+nf/q+RivtyZ4/+88e/Me1b+ncadsW7qA195rnT/uOan3lPbf6XK2cqbVavjPu/fqXuEP2fdufvU/2Y9gfvdvWn6/XUvY9lLZhz549f/b82bNnzp89f/bs+fNnz58/f/782fNnP7d/+u5GKG3IP1/akT9//jbAnj9/G2DPnz1/9jbAfh7/9NmV2UD6vMr5p8+q3AbSZ1RmQ+nnkiRJ2tu3jdLPppy9TYzbEXe76LMrrPduwD7G9H53A94Tc9j7rOBuA8ztgLkdsLcDxjbAfcYdpO9upNKW3M/19W+j7yB9z2d9XlXq3x9hB2mz2vZn/ErvqfYG0kZJ6xI7uOq9UmMHabNW7feYXv35Mqt9bdPEdlIbSNvO5N3SDtLG3DM7SBuPbP/loZob6L202xX+djCX/Z9uK/497qDGM6at3v373eO55X9mAzX3kDZo0fpdz1f+pTZw1SbSJj3Zr/XvO3aPG0ibXGl9tfuzf28bSBtd7V+r59/aiQ3s3UHap2fvV/7v7qDWLnoo6XeV/5EN9LiPI8+cNivZx4b/iBtI33drvfIfaQPpu26xj2X8DaTvuOU+lvE2kL7TntrjX3oDyvdjsYGZ+/XkbwNzteZvA/N0Xz5/BuzZgB303X0pswFb6LOfy/YG9vrbQV/dH/rfd4GjO0ifTeX8vQvGbI+/7wTjdcTfb4Rxevz+t/U74OwG0ufUeveVjmyg5v8jUHn/Eu+BrQ2kz6n1fgOxTD8zAAABAA==
+   H4sIAAAAAAAAAO3awW3bMACFYR3rQeJNOki8SoGs0VunaHfrJQUMR5UtieIjqe/wXwuR34stA71O03QduO9aLO3Dnz9//vz58+fPnz9//vz58+fPnj97/uz58+fPnz97/vz5s+fPnz9//vz5p++yx9Jm/Pnz58+fP3/+/Pnz58+fP3/+7Pnz58+eP3/+7Pnz58/+nP7p+xqttCd7/uy/evAf176lc6dtW7iD1txrnj/tO6r1kffc6nO1cqbWavnOuPfrX+IO2fdtv/c+2Y9hv/VuW3++XkvZ91Dahj179vzZ82fPnjl/9vzZs+fPnz1//vz582fPn/25/dN3N0JpQ/750o78+fO3Afb8+dsAe/7s+bO3Afbn8U+fXZkNpM+rnH/6rMptIH1GZTaUfi5JkqS1vS2Ufjbl7G1i3La420WfHWG9dgP2Mab3qxvwOXEOe98V3G2AuR0wtwP2dsDYBrifcQfpuxuptCX3fV0+G30H6Xve6/OsUv/+CDtIm9W23+NXek+1N5A2SlqX2MFRnys1dpA2a9V+jenR3y9nta9tmthOagNp2zN5t7SDtDH3zA7SxiPbf7ur5gZ670iTH5eMvx3k7Wt3nfHvcQc1njFt9erf7xrPJf89G6i5h7RBi9avej7zL7WBozaRNunJfq5/79g9biBtcqT10e6P/r1tIG10tH+tHn9rJzawdgdpn569n/m/uoNau3hWzd/KLfod5b9lAy3uY4/diN6PvS/4j7iB9H231jP/kTaQvusWe5/G30CJZ/645K2O9B9pA+k77ak1/qU3oHw/Jxs4c38e/G3gXM3520C9foXfK2/T1++ANRuwg767TWU2YAt99nta3sBafzvoq9td/3sX2LqD9NlUzr+Xz4L0+1RvrfH3TjBeW/z9Rhin+/e/pd8BezeQPqfmu820ZQM1/x+ByvuX+BxY2kD6nJrvLzXghHcAAAEA
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
@@ -73,16 +73,6 @@
  <layer name="protection" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
-  </data>
- </layer>
- <layer name="Layer 8" width="1" height="5">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwAQAjZvVDxQAAAA=
-  </data>
- </layer>
- <layer name="Layer 9" width="1" height="5">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwAQAjZvVDxQAAAA=
   </data>
  </layer>
 </map>
