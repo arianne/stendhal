@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<map version="0.99a" orientation="orthogonal" width="32" height="16" tilewidth="32" tileheight="32">
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_outside_0_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_outside_1_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_interior_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_collision_chipset.png"/>
+ </tileset>
+ <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_building_0_tileset.png"/>
+ </tileset>
+ <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_outside_2_chipset.png"/>
+ </tileset>
+ <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
+  <image source="../../test/Nueva carpeta/zelda_interior_1_chipset.png"/>
+ </tileset>
+ <layer name="0_floor" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAUg0M9OXzzS7Ud3w0jzPyH7ae2mUfsHd/yP2j807KcWGCj7ATu/kvYACAAA
+  </data>
+ </layer>
+ <layer name="1_terrain" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBTAwBEWVJqe4DiSnf3sDAyr6OyGkW7/SAbrBzisz47G9YAAAPX7soYACAAA
+  </data>
+ </layer>
+ <layer name="2_object" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAKWUyy4EQRSGa8To6mBWRsJiiMsTWIhksGTskcxYuQwP4AHwCHgLl+AVJiQSQcLOwoLEJe4LJEj8lelOnzl9umuMSr6cU1Xn/H/3TFUXtVIvTpgvrH+TvWnkMx6zOlwzh1jU8Roc0/OEuIB4DE7AKUiBNlepdrecG5bAsscKq5lH/ugEWqkIDQrtaUL+YObmecBfxkVSqUam1ZWI7zH7vKfa0Y/3adaV5AStfcQDosvntfoPw38APDuVcK0rxGuiy+f/8Z90w2eJayVQU+cGfXxeq/+4cJ74WTIjg/+4g9FJzoXvfwbOnWB9FetrYJ08U0bop0N6lyxqBxlDgv8reLP4Z4V+m38etQXGlODPf/8d5Ltgj6zlhX6bv23wnkvEgg6YiNB5R90H+CS/2QbyTbAFth25z+b/g9jneZu4GOHfgvU0aCX7h8TzyMv9+16qL89NpN8A7u/rpgV927iBxi24A/eeP7/vfK3W+ycNSYvfd75Ge8Z0+JvqkwQNwImpyVWpJfWM6vC3lNKN/R7Qa6kb0XYtqecXBiAdFAAIAAA=
+  </data>
+ </layer>
+ <layer name="3_roof" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYOiBSbwMDNOAeBbvwNi/AWjvFiDeQSP7X3PQxlxiwKsBtPvlANo9lMEpdgaG0+wD7YpRMNQAALHt2RcACAAA
+  </data>
+ </layer>
+ <layer name="objects" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWUgDTOgXbBKBgFo2AUjAJageFcxgMA4Q2FcwAIAAA=
+  </data>
+ </layer>
+ <layer name="collision" width="32" height="16" opacity="0.52">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAADvGycBwbBSjYFIBqWZQYiex7kc3Fxd/1H7a2E+qOdjEyXXTqP2k6yE2Hgm5mdb2Ewtw5QdsfGrahSv/oYtR07/Usp+Y8mS4YQBH/NB1AAgAAA==
+  </data>
+ </layer>
+ <layer name="navigation" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBSAMAnrro8QAIAAA=
+  </data>
+ </layer>
+ <layer name="protection" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBSAMAnrro8QAIAAA=
+  </data>
+ </layer>
+</map>
