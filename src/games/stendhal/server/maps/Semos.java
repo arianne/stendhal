@@ -395,7 +395,7 @@ public class Semos implements IContent
     zone.assignRPObjectID(portal);
     portal.setx(52);
     portal.sety(19);
-    portal.setNumber(4);
+    portal.setNumber(5);
     portal.setDestination("int_semos_storage_0",0);
     zone.addPortal(portal);
 
