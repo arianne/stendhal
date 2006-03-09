@@ -14,8 +14,6 @@ next time.
 -->
 
 <!-- Index: -->
-<!-- Claws, Fangs, etc section -->
-<!-- Natural shields -->
 <!-- Swords_section -->
 <!-- Axes_section -->
 <!-- Clubs_section -->
@@ -38,104 +36,6 @@ in the file.
 -->
 
 <items>
-
-<!-- Claws, Fangs, etc section -->
-	<item name="small_claws">
-		<type class="sword" subclass="small_claws"/>
-		<attributes>
-		<atk value="6"/>
-		</attributes>
-		<weight value="0.2"/>
-		<equipable>
-			<slot name="lhand"/>
-			<slot name="rhand"/>
-		</equipable>
-	</item>
-	
-	<item name="claws">
-		<type class="sword" subclass="claws"/>
-		<attributes>
-		<atk value="12"/>
-		</attributes>
-		<weight value="0.2"/>
-		<equipable>
-			<slot name="lhand"/>
-			<slot name="rhand"/>
-		</equipable>
-	</item>
-	
-	<item name="big_claws">
-		<type class="sword" subclass="big_claws"/>
-		<attributes>
-		<atk value="24"/>
-		</attributes>
-		<weight value="0.2"/>
-		<equipable>
-			<slot name="lhand"/>
-			<slot name="rhand"/>
-		</equipable>
-	</item>
-
-	<item name="small_fangs">
-		<type class="sword" subclass="small_fangs"/>
-		<attributes>
-		<atk value="6"/>
-		</attributes>
-		<weight value="0.2"/>
-		<equipable>
-			<slot name="lhand"/>
-			<slot name="rhand"/>
-		</equipable>
-	</item>
-	
-	<item name="fangs">
-		<type class="sword" subclass="fangs"/>
-		<attributes>
-		<atk value="14"/>
-		</attributes>
-		<weight value="0.2"/>
-		<equipable>
-			<slot name="lhand"/>
-			<slot name="rhand"/>
-		</equipable>
-	</item>
-	
-	<item name="big_fangs">
-		<type class="sword" subclass="big_fangs"/>
-		<attributes>
-		<atk value="24"/>
-		</attributes>
-		<weight value="0.2"/>
-		<equipable>
-			<slot name="lhand"/>
-			<slot name="rhand"/>
-		</equipable>
-	</item>
-	
-<!-- Natural shields -->
-	<item name="leather_skin">
-		<type class="shield" subclass="leather_skin"/>
-		<attributes>
-		<atk value="2"/>
-		</attributes>
-		<weight value="0.2"/>
-		<equipable>
-			<slot name="lhand"/>
-			<slot name="rhand"/>
-		</equipable>
-	</item>
-
-	<item name="wooden_skin">
-		<type class="shield" subclass="wooden_skin"/>
-		<attributes>
-		<atk value="8"/>
-		</attributes>
-		<weight value="0.2"/>
-		<equipable>
-			<slot name="lhand"/>
-			<slot name="rhand"/>
-		</equipable>
-	</item>
 
 <!-- Swords_section -->
 
@@ -204,6 +104,19 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="fire_sword">
+		<type class="sword" subclass="fire_sword"/>
+		<attributes>
+			<atk value="28"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 <!-- Axes_section -->
 
 	<item name="small_axe">
@@ -261,7 +174,7 @@ in the file.
 	<item name="bardiche">
 		<type class="axe" subclass="bardiche"/>
 		<attributes>
-			<atk value="18"/>
+			<atk value="17"/>
 		</attributes>
 		<weight value="10"/>
 		<equipable>
@@ -274,7 +187,7 @@ in the file.
 	<item name="scythe">
 		<type class="axe" subclass="scythe"/>
 		<attributes>
-			<atk value="27"/>
+			<atk value="19"/>
 		</attributes>
 		<weight value="10"/>
 		<equipable>
@@ -425,6 +338,19 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="golden_shield">
+		<type class="shield" subclass="golden_shield"/>
+		<attributes>
+			<def value="14"/>
+		</attributes>
+		<weight value="34"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 <!-- Armors_section -->
 
@@ -491,6 +417,18 @@ in the file.
 		<type class="armor" subclass="plate_armor"/>
 		<attributes>
 			<def value="10"/>
+		</attributes>
+		<weight value="45"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="golden_armor">
+		<type class="armor" subclass="golden_armor"/>
+		<attributes>
+			<def value="16"/>
 		</attributes>
 		<weight value="45"/>
 		<equipable>
@@ -608,6 +546,18 @@ in the file.
 		<type class="boots" subclass="chain_boots"/>
 		<attributes>
 			<def value="4"/>
+		</attributes>
+		<weight value="10"/>
+		<equipable>
+			<slot name="feet"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="golden_boots">
+		<type class="boots" subclass="golden_boots"/>
+		<attributes>
+			<def value="8"/>
 		</attributes>
 		<weight value="10"/>
 		<equipable>

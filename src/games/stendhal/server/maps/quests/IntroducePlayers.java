@@ -138,6 +138,7 @@ public class IntroducePlayers implements IQuest
         engine.say("Ok!, I see you have the flask!. Now I need you to grab it to #Ilisa");
         StackableItem money=(StackableItem)world.getRuleManager().getEntityManager().getItem("money");            
         money.setQuantity(10);
+        player.equip(money);
         player.addXP(10);
 
         world.modify(player);

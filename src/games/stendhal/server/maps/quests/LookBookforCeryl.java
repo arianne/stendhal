@@ -181,6 +181,7 @@ public class LookBookforCeryl implements IQuest
           StackableItem money=(StackableItem)world.getRuleManager().getEntityManager().getItem("money");            
 
           money.setQuantity(50);
+          player.equip(money);
           player.addXP(100);
 
           world.modify(player);
