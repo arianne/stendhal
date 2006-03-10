@@ -485,7 +485,7 @@ public abstract class RPEntity extends Entity
         int xp_earn=(int) (xp_reward * ((float) damageDone / (float) totalDamageReceived));
         
         /** We limit xp gain for up to eight levels difference */
-        double gain_xp_limitation=1+((getLevel()-entity.getLevel())*(1.0/8.0));
+        double gain_xp_limitation=1+((getLevel()-entity.getLevel())/(20.0));
         if(gain_xp_limitation<0)
           {
           gain_xp_limitation=0;

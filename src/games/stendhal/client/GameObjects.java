@@ -167,6 +167,11 @@ public class GameObjects implements Iterable<Entity>
 
     Entity entity=entityType(object);
     
+    if(entity instanceof AttributeEvent)
+      {
+      entity.onAdded(object);
+      }
+
     if(entity instanceof MovementEvent)
       {
       fireMovementEvent(entity, object, null);
@@ -197,11 +202,6 @@ public class GameObjects implements Iterable<Entity>
       fireAttackEvent(((RPEntity)entity),object,null);
       }
     
-    if(entity instanceof AttributeEvent)
-      {
-      entity.onAdded(object);
-      }
-
     objects.put(entity.getID(),entity);
     sortObjects.add(entity);
     
@@ -216,6 +216,11 @@ public class GameObjects implements Iterable<Entity>
     Entity entity=objects.get(object.getID());
     if(entity!=null)
       {
+      if(entity instanceof AttributeEvent)
+        {
+        entity.onChangedAdded(object,changes);
+        }
+
       if(entity instanceof MovementEvent)
         {
         fireMovementEvent(entity, object, changes);
@@ -224,11 +229,6 @@ public class GameObjects implements Iterable<Entity>
       if(entity instanceof TalkEvent)
         {
         fireTalkEvent((TalkEvent)entity,object,changes);
-        }
-
-      if(entity instanceof AttributeEvent)
-        {
-        entity.onChangedAdded(object,changes);
         }
 
       if(entity instanceof HPEvent)
@@ -294,6 +294,11 @@ public class GameObjects implements Iterable<Entity>
     Entity entity=objects.get(id);
     if(entity!=null)
       {
+      if(entity instanceof AttributeEvent)
+        {
+        entity.onRemoved();
+        }
+  
       if(entity instanceof MovementEvent)
         {
         fireMovementEvent(entity, null, null);
@@ -309,11 +314,6 @@ public class GameObjects implements Iterable<Entity>
         fireTalkEvent((TalkEvent)entity,null,null);
         }
 
-      if(entity instanceof AttributeEvent)
-        {
-        entity.onRemoved();
-        }
-  
       if(entity instanceof HPEvent)
         {
         fireHPEvent((HPEvent)entity,null,null);

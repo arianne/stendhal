@@ -119,11 +119,11 @@ public class TileRenderer
     // Dungeon_1 = 1440 - 1818
     // Interior_0 = 1820 - 2388
     // Navigation = 2400 - 2400
-    // Objects = 2401 - 2500
-    // Collision = 2501 - 2502
-    // Buildings_0 = 2503 - 2882
-    // Outside_2 = 2883 - 3462
-    // Interior_1 = 3463 - 3842
+    // Objects = 2400 - 2500
+    // Collision = 2500 - 2502
+    // Buildings_0 = 2502 - 2882
+    // Outside_2 = 2882 - 3462
+    // Interior_1 = 3462 - 3842
 
 
     // Double white daisy
@@ -360,9 +360,9 @@ public class TileRenderer
     addAnimatedTile(3562,new int[]{3560,3560,3561,3561,3562,3562,3561,3561});
 
     // Blacksmith fire (small), Bottom
-    addAnimatedTile(3580,new int[]{3580,3580,3581,3581,3582,3582,3581,3581});
-    addAnimatedTile(3581,new int[]{3580,3580,3581,3581,3582,3582,3581,3581});
-    addAnimatedTile(3582,new int[]{3580,3580,3581,3581,3582,3582,3581,3581});
+    addAnimatedTile(3590,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
+    addAnimatedTile(3591,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
+    addAnimatedTile(3592,new int[]{3590,3590,3591,3591,3592,3592,3591,3591});
 
     
     // Blacksmith fire (large), Top Left
@@ -391,9 +391,9 @@ public class TileRenderer
     addAnimatedTile(3768,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
 
     // Blacksmith fire (large), Right
-    addAnimatedTile(3588,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
-    addAnimatedTile(3678,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
-    addAnimatedTile(3768,new int[]{3588,3588,3678,3678,3768,3768,3678,3678});
+    addAnimatedTile(3589,new int[]{3589,3589,3679,3679,3769,3769,3679,3679});
+    addAnimatedTile(3679,new int[]{3589,3589,3679,3679,3769,3769,3679,3679});
+    addAnimatedTile(3769,new int[]{3589,3589,3679,3679,3769,3769,3679,3679});
 
     // Blacksmith fire (large), Bottom Left
     addAnimatedTile(3617,new int[]{3617,3617,3707,3707,3797,3797,3707,3707});
