@@ -321,6 +321,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\MythicalCreature.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\NormalCreature.java</path>
 				<source>true</source>
 			</fileitem>
@@ -702,6 +706,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\maps\quests\OrcishHappyMeal.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\SevenCherubs.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

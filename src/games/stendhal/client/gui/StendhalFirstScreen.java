@@ -91,7 +91,7 @@ public class StendhalFirstScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try
                   {                  
-                  URL url = new URL("http://stendhal.game-server.cc/stendhal.version");
+                  URL url = new URL(stendhal.VERSION_LOCATION);
                   HttpURLConnection.setFollowRedirects(false);
                   HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                       
@@ -127,7 +127,7 @@ public class StendhalFirstScreen extends JFrame {
 
                 try
                   {                  
-                  URL url = new URL("http://stendhal.game-server.cc/stendhal.version");
+                  URL url = new URL(stendhal.VERSION_LOCATION);
                   HttpURLConnection.setFollowRedirects(false);
                   HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                       

@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.46
+Version 0.47
 
 
 How to play
@@ -62,6 +62,9 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.47 Mar XX, 2006
+- Fixed location of version file.
+
 0.46 Mar 10, 2006
 - Fixed sheep
 - Fixed blacksmith animations.

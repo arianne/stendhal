@@ -157,7 +157,7 @@ public class Administration extends ActionListener
       int x=action.getInt("x");
       int y=action.getInt("y");
       
-      if(StendhalRPAction.placeat(zone,player,x,y))
+      if(StendhalRPAction.placeat(zone,teleported,x,y))
         {
         StendhalRPAction.changeZone(teleported,zone.getID().getID());
         StendhalRPAction.transferContent(teleported);
@@ -500,6 +500,7 @@ public class Administration extends ActionListener
         }
       
       player.setPrivateText(st.toString());
+      rules.removePlayerText(player);
       }
 
     Log4J.finishMethod(logger,"onInspect");
