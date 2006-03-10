@@ -90,12 +90,12 @@ public class Semos implements IContent
       protected void createPath()
         {
         List<Path.Node> nodes=new LinkedList<Path.Node>();
-        nodes.add(new Path.Node(4,13));  //its around the table with the beers and to the furnance
-        nodes.add(new Path.Node(15,13));
-        nodes.add(new Path.Node(15,13));
-        nodes.add(new Path.Node(15,9));
-        nodes.add(new Path.Node(10,9));
-        nodes.add(new Path.Node(10,13));
+        nodes.add(new Path.Node(4,12));  //its around the table with the beers and to the furnance
+        nodes.add(new Path.Node(15,12));
+        nodes.add(new Path.Node(15,12));
+        nodes.add(new Path.Node(15,8));
+        nodes.add(new Path.Node(10,8));
+        nodes.add(new Path.Node(10,12));
         setPath(nodes,true);
         }
 
@@ -112,7 +112,7 @@ public class Semos implements IContent
 
     zone.assignRPObjectID(npc);
     npc.put("class","welcomernpc"); //unclear wat to put there.
-    npc.set(4,13);
+    npc.set(4,12);
     npc.initHP(100);
     zone.addNPC(npc);
 
