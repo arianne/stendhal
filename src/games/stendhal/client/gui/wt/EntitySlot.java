@@ -90,6 +90,8 @@ public class EntitySlot extends Panel implements DropTarget
       // tell the server who we are
       action.put("targetobject",parent.getID().getObjectID());
       action.put("targetslot",getName());
+      
+      System.out.println (action);
       StendhalClient.get().send(action);
     }
 

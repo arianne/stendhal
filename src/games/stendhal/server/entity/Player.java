@@ -161,6 +161,11 @@ public class Player extends RPEntity
       object.put("atk","10");
       object.put("def","10");
       }
+
+    if(!object.hasSlot("cloak"))
+      {
+      object.addSlot(new RPSlot("cloak"));
+      }
     
 
     Player player=new Player(object);
@@ -253,7 +258,7 @@ public class Player extends RPEntity
         }          
       }
     
-    String[] slots={"rhand","lhand","head","armor","legs","feet","bag"};
+    String[] slots={"bag","rhand","lhand","head","armor","legs","feet","cloak"};
 
     for(String slotName: slots)
       {
@@ -472,7 +477,7 @@ public class Player extends RPEntity
       return;      
       }
       
-    String[] slots={"bag","rhand","lhand","head","armor","legs","feet"};
+    String[] slots={"bag","rhand","lhand","head","armor","legs","feet","cloak"};
 
     for(String slotName: slots)
       {
