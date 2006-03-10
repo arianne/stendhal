@@ -249,8 +249,8 @@
     <copy todir="stendhal-${version}" file="COPYING"/>
     <copy todir="stendhal-${version}" file="LICENSE"/>
     <copy todir="stendhal-${version}" file="README"/>
-    <zip destfile="stendhal-${version}.zip" 
-         basedir="stendhal-FULL-${version}"/>
+    <zip destfile="stendhal-FULL-${version}.zip" 
+         basedir="stendhal-${version}"/>
     <delete dir="stendhal-${version}"/>
   </target>
 
