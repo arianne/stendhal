@@ -792,36 +792,6 @@ public class GameObjects implements Iterable<Entity>
     return null;
     }  
 
-//  public void attack(RPEntity source, RPObject.ID target, int risk, int damage) throws AttributeNotFoundException
-//    {
-//    Log4J.startMethod(logger,"attack");
-//    Entity entity=objects.get(target);
-//    if(entity!=null && entity instanceof RPEntity)
-//      {
-//      RPEntity rpentity=(RPEntity)entity;
-//      rpentity.onAttack(source,risk, damage);
-//
-//      attacks.put(source,rpentity);
-//      }
-//      
-//    Log4J.finishMethod(logger,"attack");
-//    }
-//
-//  public void attackStop(RPEntity source, RPObject.ID target) throws AttributeNotFoundException
-//    {
-//    Log4J.startMethod(logger,"attackStop");
-//    Entity entity=objects.get(target);
-//    if(entity!=null && entity instanceof RPEntity)
-//      {
-//      RPEntity rpentity=(RPEntity)entity;
-//      rpentity.onAttackStop(source);
-//
-//      attacks.remove(source);
-//      }
-//      
-//    Log4J.finishMethod(logger,"attackStop");
-//    }
-  
   /** Draw all the objects in game */
   public void draw(GameScreen screen)
     {
