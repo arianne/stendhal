@@ -85,16 +85,6 @@ public class Semos implements IContent
     portal.setDestination("int_semos_storage_-1",0);
     zone.addPortal(portal);
 
-    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_storage_-1"));
-    
-    portal=new Portal();
-    zone.assignRPObjectID(portal);
-    portal.setx(26);
-    portal.sety(10);
-    portal.setNumber(0);
-    portal.setDestination("int_semos_storage_0",1);
-    zone.addPortal(portal);
-
     SpeakerNPC npc=npcs.add("Eonna",new SpeakerNPC() 
       {
       protected void createPath()
@@ -125,6 +115,16 @@ public class Semos implements IContent
     npc.set(4,13);
     npc.initHP(100);
     zone.addNPC(npc);
+
+    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_storage_-1"));
+    
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.setx(26);
+    portal.sety(10);
+    portal.setNumber(0);
+    portal.setDestination("int_semos_storage_0",1);
+    zone.addPortal(portal);
     }
 
   private void buildSemosBlacksmithArea(StendhalRPZone zone)

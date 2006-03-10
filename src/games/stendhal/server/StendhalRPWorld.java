@@ -171,6 +171,7 @@ public class StendhalRPWorld extends RPWorld
     addArea("0_orril_mountain_w2");
     addArea("0_orril_mountain_w");
     addArea("0_orril_castle");
+      addArea("int_orril_castle_0");
     addArea("0_orril_forest_e");
     addArea("0_nalwor_forest_w");
     addArea("0_nalwor_city");
@@ -187,6 +188,8 @@ public class StendhalRPWorld extends RPWorld
     addArea("-1_semos_mine_n2");
     addArea("-1_semos_dungeon");
     addArea("-1_orril_dungeon");
+    addArea("-1_orril_castle_w");
+    addArea("-1_orril_castle");
 
     // Level -2
     addArea("-2_semos_dungeon");
