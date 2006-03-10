@@ -94,6 +94,37 @@ public class Semos implements IContent
     portal.setNumber(0);
     portal.setDestination("int_semos_storage_0",1);
     zone.addPortal(portal);
+
+    SpeakerNPC npc=npcs.add("Eonna",new SpeakerNPC() 
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(4,13));  //its around the table with the beers and to the furnance
+        nodes.add(new Path.Node(15,13));
+        nodes.add(new Path.Node(15,13));
+        nodes.add(new Path.Node(15,9));
+        nodes.add(new Path.Node(10,9));
+        nodes.add(new Path.Node(10,13));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+        Behaviours.addGreeting(this, "Hi there, could you #help me");
+        Behaviours.addJob(this, "I'm just a regular housewife");
+        Behaviours.addHelp(this, "I can't help you with anything, but you can help me clean my #storage_space it is crawling with rats");
+        Behaviours.addReply(this, "storage_space", "yes it down the stairs, there some rats and I think I saw a snake too so be careful");
+        Behaviours.addReply(this, "task", "I don't have a task for you just a favor to ask");
+        Behaviours.addGoodbye(this);
+        }
+      });
+
+    zone.assignRPObjectID(npc);
+    npc.put("class","welcomernpc"); //unclear wat to put there.
+    npc.set(4,13);
+    npc.initHP(100);
+    zone.addNPC(npc);
     }
 
   private void buildSemosBlacksmithArea(StendhalRPZone zone)

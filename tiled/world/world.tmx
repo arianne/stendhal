@@ -183,6 +183,12 @@
  <tileset name="Untitled" firstgid="880" tilewidth="64" tileheight="64">
   <image source="sub_1_orril_castle_w.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="896" tilewidth="64" tileheight="64">
+  <image source="sub_1_semos_mine_n2_w2.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="928" tilewidth="64" tileheight="64">
+  <image source="sub_1_semos_mine_nw.png"/>
+ </tileset>
  <layer name="Layer 7" width="36" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQ0AAAgDMJA0/0Kwgw1CevRvuioAwAlz4AAAwD8LCoqbKAASAAA=
@@ -215,7 +221,7 @@
  </layer>
  <layer name="Layer 1" width="36" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VxRECQRRF0WYmoikkDnxwt8HdJQ2cVLkbEqCopgv+4qzf3T3Hp5QjflrYViqCKGL293viNCSQhGtAT4qGNDLIGtCToyGPAooG9AjxCX4EDOh4CSJkQIcQ4n1DPnKEMSYooYwKqjhaSp0sfT1TNmeYY4Ea6migiTMtF409SzZXWGODFjy00cGVlpvGni2bO+xxQBc99DHAnZaHxh4hhPhHT+CsyH0AEgAA
+   H4sIAAAAAAAAAO3Wx1KTURyH4Q9yRRmB6wAVEMWGNCkWUKwUqQqoIIrRGALYsIOKWFBvzScLNqwYZjwJw1k869+7Ov+TLkuSdLSnDaWS5BbDjDDKGONMUE0NBzmU+v89t23cYZIpprnLPe5zmFrqqA/QM2NjlgfM8ZBHzPOYIzRwlGMBejI2nvCULM/IsUCeRo5zgpMBehZtLLHMc17wkle8DrC/3YrNN7zlHe/5wEc+FaFn1eYan/nCV9b5xkYRer7b/MFPfrHJb/7wtwg9O3WAihLo2FJJVQl0RFG0exe8eRfpoZdTnKaJM2TK3dvycD2XbF6mjys000IrbYW7ryUbsOeqzWtc5wbtnKWDzsL/Q0suYM9Nm/0MMEgX3ZzjfOEfpCUfsCeKomg/+gerl66zABIAAA==
   </data>
  </layer>
  <layer name="Floor" width="36" height="32">
