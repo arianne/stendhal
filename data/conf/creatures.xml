@@ -1602,13 +1602,13 @@
 	<!-- Level 50 -->
     
 	<creature name="green_dragon">
-		<type class="giant_animal" subclass="green_dragon" tileid="51"/>
+		<type class="huge_animal" subclass="green_dragon" tileid="51"/>
 		<attributes>
 			<atk value="121"/>
 			<def value="21"/>
 			<hp value="290"/>
 			<speed value="1"/>
-			<size value="2,2"/>
+			<size value="3,4"/>
 		</attributes>
 		<level value="50"/>
 		<experience value="6900"/>
@@ -1661,13 +1661,13 @@
 	<!-- Level 70 -->
     
 	<creature name="blue_dragon">
-		<type class="giant_animal" subclass="blue_dragon" tileid="52"/>
+		<type class="huge_animal" subclass="blue_dragon" tileid="52"/>
 		<attributes>
 			<atk value="180"/>
 			<def value="19"/>
 			<hp value="900"/>
 			<speed value="1"/>
-			<size value="2,2"/>
+			<size value="3,4"/>
 		</attributes>
 		<level value="70"/>
 		<experience value="12500"/>
@@ -1690,13 +1690,13 @@
 	<!-- Level 100 -->
     
 	<creature name="black_dragon">
-		<type class="huge_animal" subclass="black_dragon" tileid="53"/>
+		<type class="mythical_animal" subclass="black_dragon" tileid="53"/>
 		<attributes>
 			<atk value="220"/>
 			<def value="21"/>
 			<hp value="1200"/>
 			<speed value="1"/>
-			<size value="3,4"/>
+			<size value="6,8"/>
 		</attributes>
 		<level value="100"/>
 		<experience value="24000"/>
