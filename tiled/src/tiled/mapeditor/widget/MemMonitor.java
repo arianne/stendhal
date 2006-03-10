@@ -15,13 +15,14 @@ import javax.swing.JProgressBar;
  */
 public class MemMonitor extends JPanel
 {
-  private static final long serialVersionUID = 6273156555617191691L;
+  private static final long serialVersionUID = 1L;
 
   private JProgressBar progressBar;
 
   /** creates a new memory monitor */
   public MemMonitor()
   {
+    setOpaque(false);
     progressBar = new JProgressBar();
     progressBar.setMinimum(0);
     progressBar.setMaximum(100);
@@ -36,6 +37,11 @@ public class MemMonitor extends JPanel
   public Dimension getPreferredSize()
   {
     return progressBar.getPreferredSize();
+  }
+  
+  public Dimension getMinimumSize()
+  {
+    return progressBar.getMinimumSize();
   }
   
   

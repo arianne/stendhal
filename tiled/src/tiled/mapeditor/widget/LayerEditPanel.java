@@ -29,6 +29,7 @@ import javax.swing.event.TableModelListener;
 import tiled.core.Map;
 import tiled.core.MapLayer;
 import tiled.mapeditor.MapEditor;
+import tiled.mapeditor.brush.Brush;
 import tiled.mapeditor.util.LayerTableModel;
 import tiled.mapeditor.util.MapEventAdapter;
 
@@ -57,6 +58,8 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
   private AbstractButton layerCloneButton;
   private AbstractButton layerUpButton;
   private AbstractButton layerDownButton;
+
+  private BrushPreview brushPreview;
 
 
   /**
@@ -127,7 +130,13 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     
     setLayout(new BorderLayout());
     add(miniMapSp, BorderLayout.NORTH);
-    add(layerPanel, BorderLayout.CENTER);
+    
+    brushPreview = new BrushPreview();
+    
+    JTabbedPane south = new JTabbedPane(); 
+    south.addTab("Layer",layerPanel);
+    south.addTab("Brush Preview",brushPreview);
+    add(south, BorderLayout.CENTER);
     
   }
   
@@ -235,6 +244,12 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
       mapEditor.mapEditPanel.getMapView().updateMinimapImage(new Rectangle(0,0,layer.getWidth(), layer.getHeight()));
       miniMap.repaint();
     }
+  }
+  
+  /** called when a new Brush is selected */
+  public void updateBrush(Brush brush)
+  {
+    brushPreview.updateBrush(brush);
   }
 
   /** only consider */

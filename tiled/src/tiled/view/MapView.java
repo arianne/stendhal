@@ -180,6 +180,13 @@ public abstract class MapView
   }
   
   /** sets the zoom level */
+  public void setScale(double scale)
+  {
+    this.zoom = scale;
+  }
+  
+  
+  /** sets the zoom level */
   private void setZoomLevel(int zoomLevel)
   {
     if (zoomLevel >= 0 && zoomLevel < zoomLevels.length)

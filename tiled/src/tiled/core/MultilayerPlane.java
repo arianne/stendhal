@@ -155,10 +155,10 @@ public class MultilayerPlane implements Iterable<MapLayer>
    */
   public MapLayer getLayer(int index)
   {
-    if (index >= 0 || index < layers.size())
+//    if (index >= 0 && index < layers.size())
       return layers.get(index);
 
-    return null;
+//    return null;
   }
 
   /**

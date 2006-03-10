@@ -46,8 +46,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.event.UndoableEditListener;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
@@ -242,7 +240,7 @@ public class MapEditor implements ActionListener, MouseListener,
     // add the main menu
     mainMenu = new MainMenu(this, mapEventAdapter);
     appFrame.setJMenuBar(mainMenu);
-    appFrame.setSize(600, 400);
+    appFrame.setSize(1024, 768);
     setCurrentMap(null);
     updateRecent(null);
 
@@ -729,14 +727,14 @@ public class MapEditor implements ActionListener, MouseListener,
     }
   }
 
-  private class UndoAdapter implements UndoableEditListener
-  {
-    public void undoableEditHappened(UndoableEditEvent evt)
-    {
-      undoStack.addEdit(evt.getEdit());
-      updateHistory();
-    }
-  }
+//  private class UndoAdapter implements UndoableEditListener
+//  {
+//    public void undoableEditHappened(UndoableEditEvent evt)
+//    {
+//      undoStack.addEdit(evt.getEdit());
+//      updateHistory();
+//    }
+//  }
 
 //  private void pour(TileLayer layer, int x, int y, List<Tile> tiles, Tile oldTile)
 //  {
@@ -817,6 +815,9 @@ public class MapEditor implements ActionListener, MouseListener,
     {
       currentBuilder.setBrush(currentBrush);
     }
+    
+    if (layerEditPanel != null)
+      layerEditPanel.updateBrush(currentBrush);
   }
 
   /** updates the title to match the currently loaded map name */
@@ -1200,6 +1201,10 @@ public class MapEditor implements ActionListener, MouseListener,
     currentTiles = tiles;
     currentBrush.setTiles(tiles);
     toolBar.setButtonStates(PS_PAINT);
+
+    if (layerEditPanel != null)
+      layerEditPanel.updateBrush(currentBrush);
+    
   }
   
   /** sets the tile wich deletes the content 

@@ -3,13 +3,16 @@
  */
 package tiled.mapeditor.widget;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
 
 import tiled.core.Map;
 import tiled.core.TileGroup;
@@ -25,7 +28,7 @@ import tiled.mapeditor.util.MapChangedEvent;
  * Brush Menu
  * @author mtotz
  */
-public class BrushMenu extends JComboBox implements MapChangeListener
+public class BrushMenu extends JPanel implements MapChangeListener
 {
   private static final long serialVersionUID = 1L;
   /** the map */
@@ -34,11 +37,17 @@ public class BrushMenu extends JComboBox implements MapChangeListener
   private MapEditor mapEditor;
   /** */
   private List<BrushWrapper> defaultBrushes;
+  private JComboBox combobox;
 
 
   public BrushMenu(MapEditor mapEditor)
   {
     this.mapEditor = mapEditor;
+    
+    setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+    
+    combobox = new JComboBox();
+    add(combobox);
     
     defaultBrushes = new ArrayList<BrushWrapper>();
     defaultBrushes.add(new BrushWrapper(new MultiTileBrush()));
@@ -46,19 +55,29 @@ public class BrushMenu extends JComboBox implements MapChangeListener
     defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(2,2)));
     defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(4,4)));
     defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(8,8)));
-    
-    addActionListener(new ActionListener()
+
+    combobox.addActionListener(new ActionListener()
     {
     
       public void actionPerformed(ActionEvent e)
       {
-        Object o = getSelectedItem();
+        Object o = BrushMenu.this.combobox.getSelectedItem();
         if (o instanceof BrushWrapper)
         {
           BrushMenu.this.mapEditor.setBrush(((BrushWrapper)o).brush);
         }
       }
     });
+  }
+
+  public Dimension getPreferredSize()
+  {
+    return combobox.getPreferredSize();
+  }
+  
+  public Dimension getMaximumSize()
+  {
+    return getPreferredSize();
   }
   
   /** sets the map */
@@ -94,7 +113,8 @@ public class BrushMenu extends JComboBox implements MapChangeListener
       brushes.add(new BrushWrapper(new TileGroupBrush(group)));
     }
     
-    setModel(new DefaultComboBoxModel(brushes.toArray(new BrushWrapper[brushes.size()])));
+    combobox.setModel(new DefaultComboBoxModel(brushes.toArray(new BrushWrapper[brushes.size()])));
+    combobox.setSelectedIndex(1);
   }
   
 
