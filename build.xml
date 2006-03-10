@@ -250,7 +250,7 @@
     <copy todir="stendhal-${version}" file="LICENSE"/>
     <copy todir="stendhal-${version}" file="README"/>
     <zip destfile="stendhal-${version}.zip" 
-         basedir="stendhal-${version}"/>
+         basedir="stendhal-FULL-${version}"/>
     <delete dir="stendhal-${version}"/>
   </target>
 
