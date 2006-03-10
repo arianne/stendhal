@@ -51,12 +51,12 @@ public class HugeCreature extends Creature
 
   public Rectangle2D getArea()
     {
-    return new Rectangle.Double(x,y,4,4);
+    return new Rectangle.Double(x,y,3,4);
     }
     
   public Rectangle2D getDrawedArea()
     {
-    return new Rectangle.Double(x,y,4,4);
+    return new Rectangle.Double(x,y,3,4);
     }  
     
   }
