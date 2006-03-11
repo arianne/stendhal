@@ -218,8 +218,6 @@ public class Player extends RPEntity
     int x=player.getx();
     int y=player.gety();
         
-    StendhalRPAction.placeat(zone,player,x,y);
-    
     try
       {
       if(player.hasSheep())
@@ -257,6 +255,9 @@ public class Player extends RPEntity
         player.removeSlot("#flock");
         }          
       }
+
+    StendhalRPAction.placeat(zone,player,x,y);
+    
     
     String[] slots={"bag","rhand","lhand","head","armor","legs","feet","cloak"};
 

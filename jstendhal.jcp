@@ -1635,18 +1635,6 @@
 			<folderitem>
 				<path>stendhal-0.45-src</path>
 			</folderitem>
-			<fileitem>
-				<path>stendhal-0.45.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.45.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-server-0.45.zip</path>
-				<source>true</source>
-			</fileitem>
 		</exclude>
 	</files>
 	<tasks/>
