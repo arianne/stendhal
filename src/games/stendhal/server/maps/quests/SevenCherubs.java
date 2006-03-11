@@ -79,6 +79,7 @@ public class SevenCherubs implements IQuest
           List<String> list=Arrays.asList(done);
           
           player.setHP(player.getBaseHP());
+          player.healPoison();
           
           if(!list.contains(engine.getName()))
             {
@@ -91,7 +92,7 @@ public class SevenCherubs implements IQuest
             if(left>0)
               {
               engine.say("Only need to find "+(7-list.size())+" more. Farewell.");
-              player.addXP((7-left)*200);
+              player.addXP((7-left+1)*200);
               }
             else
               {
