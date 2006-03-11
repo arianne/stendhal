@@ -593,7 +593,7 @@ in the file.
 	</item>
 
 	<item name="elf_cloak">
-		<type class="cloak" subclass="green_cloak"/>
+		<type class="cloak" subclass="white_cloak"/>
 		<attributes>
 			<def value="3"/>
 		</attributes>
