@@ -581,6 +581,7 @@ public class StendhalRPZone extends MarauroaRPZone
                 Creature creature = manager.getCreature(type);
                 RespawnPoint point = new RespawnPoint(x,y,2);
                 point.set(this, creature,1);
+                point.setRespawnTime(creature.getRespawnTime());
                 respawnPoints.add(point);
               }
               else

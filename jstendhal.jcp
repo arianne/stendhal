@@ -981,15 +981,15 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>tiled\tiled-stendhal-20060311.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>tiled\tiled.jar</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>tiled\src\build.xml</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>tiled\src\dist\tiled.jar</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1388,6 +1388,10 @@
 			</fileitem>
 			<fileitem>
 				<path>tiled\src\tiled\mapeditor\widget\BrushMenu.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>tiled\src\tiled\mapeditor\widget\BrushPreview.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

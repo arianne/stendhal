@@ -78,7 +78,7 @@ public class RespawnPoint
     if(!respawning)
       {
       respawning=true;
-      turnsToRespawn=TURNSTORESPAWN;
+      turnsToRespawn=respawnTime;
       }
 
     entities.remove(dead);
@@ -94,7 +94,7 @@ public class RespawnPoint
 
       if(turnsToRespawn==0)
         {
-        turnsToRespawn=TURNSTORESPAWN;
+        turnsToRespawn=respawnTime;
 
         respawn();
 

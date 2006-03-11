@@ -83,8 +83,6 @@ public class SevenCherubs implements IQuest
           
           if(!list.contains(engine.getName()))
             {
-            System.out.println (npcDoneText);
-            
             player.setQuest("seven_cherubs",npcDoneText+";"+engine.getName());
             
             int left=7-list.size()+1;

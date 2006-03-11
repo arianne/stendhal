@@ -496,6 +496,8 @@ public abstract class RPEntity extends Entity
           gain_xp_limitation=1;
           }
         
+        System.out.println (xp_reward+"\t"+damageDone+"\t"+totalDamageReceived+"\t"+gain_xp_limitation);
+        
         entity.addXP((int)(xp_earn*gain_xp_limitation));
         world.modify(entity);
         }

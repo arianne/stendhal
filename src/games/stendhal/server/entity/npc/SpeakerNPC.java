@@ -262,7 +262,7 @@ public abstract class SpeakerNPC extends NPC
     public boolean contains(int state, String text)
       {
       text=text.toLowerCase();
-      if(state==this.state && text.contains(trigger))
+      if(state==this.state && text.startsWith(trigger))
         {
         return true;
         }

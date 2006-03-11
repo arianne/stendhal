@@ -242,7 +242,11 @@ public class Creature extends NPC
   public void setRespawnPoint(RespawnPoint point)
     {
     this.point=point;   
-    point.setRespawnTime(respawnTime);
+    }
+  
+  public int getRespawnTime()
+    {
+    return respawnTime;
     }
 
   public RespawnPoint getRespawnPoint()
