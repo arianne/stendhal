@@ -421,7 +421,6 @@ public abstract class RPEntity extends Entity
     rp.addGameEvent(who.getName(),"damaged",getName(),Integer.toString(damage));
 
     int leftHP=getHP()-damage;
-    damage = (leftHP>=0 ? damage : getHP());
     
     totalDamageReceived += damage;
 
