@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 
 
 import games.stendhal.server.*;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
@@ -447,10 +448,10 @@ public class Administration extends ActionListener
     {
     Log4J.startMethod(logger,"onInspect");
 
+    RPEntity inspected=null;
+      
     if(action.has("target"))
       {
-      Player inspected=null;
-      
       String name=action.get("target");
       for(Player p : rules.getPlayers())
         {
@@ -460,33 +461,64 @@ public class Administration extends ActionListener
           break;
           }
         }
+      }
+    else if(action.has("targetid"))
+      {
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
       
-      if(inspected==null)
+      RPObject.ID id=new RPObject.ID(action.getInt("targetid"),zone.getID().getID());
+      if(zone.has(id))
         {
-        String text="Player "+name+" not found";
-
-        player.setPrivateText(text);
-        rules.removePlayerText(player);
-        return;
-        }
-      
-      StringBuffer st=new StringBuffer();
-      st.append("Inspected "+inspected.getName()+" is:");
-      st.append("\nATK:    "+inspected.getATK());
-      st.append("\nDEF:    "+inspected.getDEF());
-      st.append("\nBaseHP: "+inspected.getBaseHP());
-      st.append("\nXP:     "+inspected.getXP());
-      
-      st.append("\nequips");
-      for(RPSlot slot: inspected.slots())
-        {
-        if(slot.getName().equals("!quests") || slot.getName().equals("!buddy") )
+        RPObject object=zone.get(id);
+        
+        if(object instanceof RPEntity)
           {
-          continue;
+          inspected=(RPEntity)object;
           }
-          
-        st.append("\n    Slot "+slot.getName());
+        }
+      }
+      
+    if(inspected==null)
+      {
+      String text="Entity not found";
 
+      player.setPrivateText(text);
+      rules.removePlayerText(player);
+      return;
+      }
+    
+    StringBuffer st=new StringBuffer();
+    st.append("Inspected "+inspected.getName()+" is:");
+    st.append("\nID:     "+inspected.getID());
+    st.append("\nATK:    "+inspected.getATK());
+    st.append("\nATK XP: "+inspected.getATKXP());
+    st.append("\nDEF:    "+inspected.getDEF());
+    st.append("\nDEF XP: "+inspected.getDEFXP());
+    st.append("\nHP:     "+inspected.getHP());
+    st.append("\nBaseHP: "+inspected.getBaseHP());
+    st.append("\nXP:     "+inspected.getXP());
+    st.append("\nLevel:  "+inspected.getLevel());
+    
+    st.append("\nequips");
+    for(RPSlot slot: inspected.slots())
+      {
+      if(slot.getName().equals("!buddy") )
+        {
+        continue;
+        }
+        
+      st.append("\n    Slot "+slot.getName());
+      
+      if(slot.getName().equals("!quests"))
+        {
+        for(RPObject object: slot)
+          {
+          st.append(object);
+          }
+        }
+      else
+        {
+        st.append("\n        ");
         for(RPObject object: slot)
           {
           String item=object.get("type");
@@ -494,14 +526,21 @@ public class Administration extends ActionListener
             {
             item=object.get("name");
             }
-            
-          st.append("\n        Item "+item);
+          
+          if(object instanceof StackableItem)
+            {            
+            st.append("["+item+" Q="+object.get("quantity")+"],");
+            }
+          else
+            {
+            st.append("["+item+"],");
+            }
           }
         }
-      
-      player.setPrivateText(st.toString());
-      rules.removePlayerText(player);
       }
+    
+    player.setPrivateText(st.toString());
+    rules.removePlayerText(player);
 
     Log4J.finishMethod(logger,"onInspect");
     }

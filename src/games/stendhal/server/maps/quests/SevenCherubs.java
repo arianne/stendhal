@@ -85,7 +85,7 @@ public class SevenCherubs implements IQuest
             {
             player.setQuest("seven_cherubs",npcDoneText+";"+engine.getName());
             
-            int left=7-list.size()+1;
+            int left=7-list.size();
             
             if(left>0)
               {
@@ -98,7 +98,15 @@ public class SevenCherubs implements IQuest
               
               String [] items={"golden_boots", "golden_armor", "fire_sword", "golden_shield"};
               Item item=world.getRuleManager().getEntityManager().getItem(items[Rand.rand(items.length)]);
-              player.equip(item);
+              if(!player.equip(item))
+                {
+                StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+                
+                zone.assignRPObjectID(item);
+                item.setx(player.getx());
+                item.sety(player.gety());
+                zone.add(item);
+                }
               
               player.addXP(2000);
               }

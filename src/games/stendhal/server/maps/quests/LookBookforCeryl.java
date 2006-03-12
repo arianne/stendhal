@@ -128,8 +128,18 @@ public class LookBookforCeryl implements IQuest
         player.setQuest("ceryl_book","jynath");
         engine.say("I see you talked with Ceryl. Here you have the book he is looking for.");
 
-        Item book=world.getRuleManager().getEntityManager().getItem("book_black");            
-        player.equip(book);
+        Item item=world.getRuleManager().getEntityManager().getItem("book_black");            
+
+        if(!player.equip(item))
+          {
+          StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+          
+          zone.assignRPObjectID(item);
+          item.setx(player.getx());
+          item.sety(player.gety());
+          zone.add(item);
+          }
+        
         }
       });
 

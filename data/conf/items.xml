@@ -341,7 +341,7 @@ in the file.
 	<item name="golden_shield">
 		<type class="shield" subclass="golden_shield"/>
 		<attributes>
-			<def value="14"/>
+			<def value="34"/>
 		</attributes>
 		<weight value="34"/>
 		<equipable>

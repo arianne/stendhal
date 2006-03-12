@@ -470,11 +470,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
     String[] list=null;
     if(client.getPlayer().has("target"))
       {
-      list=new String[]{"Look","Attack","Stop attack"};
+      list=new String[]{"Look","Attack","Stop attack","(*)Inspect"};
       }
     else
       {
-      list=new String[]{"Look","Attack"};
+      list=new String[]{"Look","Attack","(*)Inspect"};
       }
     return list;
     }
@@ -502,12 +502,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
       rpaction.put("attack","");
       client.send(rpaction);
       }
-    else if(action.equals("Displace"))
+    else if(action.equals("(*)Inspect"))
       {
       RPAction rpaction=new RPAction();
-      rpaction.put("type","displace");
+      rpaction.put("type","inspect");
       int id=getID().getObjectID();
-      rpaction.put("baseitem",id);
+      rpaction.put("targetid",id);
       client.send(rpaction);
       }
     }

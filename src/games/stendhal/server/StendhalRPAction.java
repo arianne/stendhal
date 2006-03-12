@@ -202,6 +202,12 @@ public class StendhalRPAction
         logger.debug("Attack from "+source+" to "+target+" stopped because target was lost("+zone.has(target.getID())+") or dead.");
         target.onAttack(source, false);
         world.modify(source);
+        
+        if(target.getHP()==0)
+          {
+          logger.error("ATTACK PROBLEM: "+target);
+          }
+          
         return false;
         }
 
