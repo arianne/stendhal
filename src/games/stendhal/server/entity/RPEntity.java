@@ -852,7 +852,7 @@ public abstract class RPEntity extends Entity
   /** returns true if the entity has a weapon equipped */
   public boolean hasWeapon()
     {
-    String[] weaponsClasses={"club","sword","axe"};
+    String[] weaponsClasses={"club","sword","axe","ranged"};
     
     for(String weaponClass: weaponsClasses)    
       {
