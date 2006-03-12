@@ -16,6 +16,7 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.events.UseEvent;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.Entity;
@@ -104,12 +105,19 @@ public class Use extends ActionListener
         
         rules.addGameEvent(player.getName(),"use",entity.get("name"));
 
-        if(entity instanceof ConsumableItem)
-          {
-          /* This will happen when item is on the player's slot */
-          player.consumeItem((ConsumableItem)entity);
-          world.modify(player);
+        if(object instanceof UseEvent)
+          {          
+          UseEvent entityUseEvent=(UseEvent)entity;
+          entityUseEvent.onUsed(player);
+          return;
           }
+          
+//        if(entity instanceof ConsumableItem)
+//          {
+//          /* This will happen when item is on the player's slot */
+//          player.consumeItem((ConsumableItem)entity);
+//          world.modify(player);
+//          }
         }
       }
     // When use is cast over something on the floor
@@ -122,50 +130,63 @@ public class Use extends ActionListener
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        if((object instanceof OneWayPortal))
+        
+        String name=object.get("type");
+        if(object.has("name"))
           {
-          // One way portals are just destination points. Can't be used.
+          name=object.get("name");
+          }
+
+        rules.addGameEvent(player.getName(),"use",name);
+        
+//        if((object instanceof OneWayPortal))
+//          {
+//          // One way portals are just destination points. Can't be used.
+//          return;
+//          }
+//        
+        if(object instanceof UseEvent)
+          {          
+          UseEvent item=(UseEvent)object;
+          item.onUsed(player);
           return;
           }
           
-        if(object instanceof Portal)
-          {
-          Portal portal=(Portal)object;
-
-          if(StendhalRPAction.usePortal(player, portal))
-            {
-            StendhalRPAction.transferContent(player);
-            }
-          }
-        else if(object instanceof ConsumableItem)
-          {
-          rules.addGameEvent(player.getName(),"use",object.get("name"));
-
-          /* This will happen when item is on the player's slot */
-          player.consumeItem((ConsumableItem)object);
-          world.modify(player);
-          }
-
-        else if(object instanceof Chest)
-          {          
-          rules.addGameEvent(player.getName(),"use","chest");
-          
-          Chest chest=(Chest)object;
-          
-          if(player.nextto(chest,0.25))
-            {
-            if(chest.isOpen())
-              {
-              chest.close();
-              }
-            else
-              {
-              chest.open();
-              }
-            
-            world.modify(chest);
-            }
-          }
+//        if(object instanceof Portal)
+//          {
+//          Portal portal=(Portal)object;
+//
+//          if(StendhalRPAction.usePortal(player, portal))
+//            {
+//            StendhalRPAction.transferContent(player);
+//            }
+//          }
+//        else if(object instanceof ConsumableItem)
+//          {
+//
+//          /* This will happen when item is on the player's slot */
+//          player.consumeItem((ConsumableItem)object);
+//          world.modify(player);
+//          }
+//
+//        else if(object instanceof Chest)
+//          {          
+//          Chest chest=(Chest)object;
+//          
+//          if(player.nextto(chest,0.25))
+//            {
+//            if(chest.isOpen())
+//              {
+//              chest.close();
+//              }
+//            else
+//              {
+//              chest.open();
+//              }
+//            
+//            world.modify(chest);
+//            }
+//          }
         }
       }
 

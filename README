@@ -65,6 +65,8 @@ Changelog
 0.47 Mar XX, 2006
 - Fixed location of version file.
 - Fixed teleport bug.
+- Fixed negative xp problem.
+- Fixed a problem that made players not to leave world because of sheeps.
 
 0.46 Mar 10, 2006
 - Fixed sheep

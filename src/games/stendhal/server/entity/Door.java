@@ -64,4 +64,12 @@ public class Door extends Portal
     {
     return open;
     }
+
+  public void onUsed(RPEntity user)
+    {
+    if(isOpen())
+      {
+      super.onUsed(user);
+      }
+    }  
   }

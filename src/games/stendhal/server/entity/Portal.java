@@ -13,13 +13,17 @@
 package games.stendhal.server.entity;
 
 import java.awt.geom.Rectangle2D;
+import games.stendhal.server.events.UseEvent;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.StendhalRPAction;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import org.apache.log4j.Logger;
 
 
-public class Portal extends Entity 
+public class Portal extends Entity implements UseEvent
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Portal.class);
@@ -92,4 +96,14 @@ public class Portal extends Entity
     {
     return "Portal at "+get("zoneid")+"["+getx()+","+gety()+"]";
     }
+    
+  public void onUsed(RPEntity user)
+    {
+    Player player=(Player)user;
+    
+    if(StendhalRPAction.usePortal(player, this))
+      {
+      StendhalRPAction.transferContent(player);
+      }
+    }  
   }

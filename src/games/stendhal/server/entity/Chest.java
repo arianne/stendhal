@@ -101,4 +101,23 @@ public class Chest extends Entity
     RPSlot content=getSlot("content");
     return content.iterator();
     }
+
+  public void onUsed(RPEntity user)
+    {
+    Player player=(Player)user;
+    
+    if(player.nextto(this,0.25))
+      {
+      if(isOpen())
+        {
+        close();
+        }
+      else
+        {
+        open();
+        }
+      
+      world.modify(this);
+      }
+    }
   }

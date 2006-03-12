@@ -14,8 +14,12 @@ package games.stendhal.server.entity.item;
 
 import java.util.Map;
 import java.util.List;
+import games.stendhal.server.events.UseEvent;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Player;
 
-public class ConsumableItem extends StackableItem
+
+public class ConsumableItem extends StackableItem implements UseEvent
   {
   private int left;
   
@@ -56,4 +60,11 @@ public class ConsumableItem extends StackableItem
       return left>=0;
       }
     }
+
+  public void onUsed(RPEntity user)
+    {
+    Player player=(Player)user;
+    player.consumeItem((ConsumableItem)this);
+    getWorld().modify(player);
+    }  
   }

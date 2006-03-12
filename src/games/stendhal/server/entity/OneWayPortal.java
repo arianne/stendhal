@@ -22,4 +22,9 @@ public class OneWayPortal extends Portal
     {
     return false;
     }
+
+  public void onUsed(RPEntity user)
+    {
+    // Does nothing
+    }  
   }
