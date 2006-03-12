@@ -278,22 +278,29 @@ public class Player extends RPEntity
           
           for(RPObject item: objects)
             {
-            if(item.get("type").equals("item")) // We simply ignore corpses...
+            try
               {
-              Item entity = world.getRuleManager().getEntityManager().getItem(item.get("name"));
-              
-              // HACK: We have to manually copy some attributes
-              entity.put("#db_id",item.get("#db_id"));
-              entity.setID(item.getID());
-              
-              if(entity instanceof StackableItem)
+              if(item.get("type").equals("item")) // We simply ignore corpses...
                 {
-                StackableItem money=(StackableItem)entity;
-                money.setQuantity(item.getInt("quantity"));
+                Item entity = world.getRuleManager().getEntityManager().getItem(item.get("name"));
+                
+                // HACK: We have to manually copy some attributes
+                entity.put("#db_id",item.get("#db_id"));
+                entity.setID(item.getID());
+                
+                if(entity instanceof StackableItem)
+                  {
+                  StackableItem money=(StackableItem)entity;
+                  money.setQuantity(item.getInt("quantity"));
+                  }
+                
+                slot.add(entity);
                 }
-              
-              slot.add(entity);
               }
+            catch(Exception e)
+              {
+              logger.error("Error adding "+item+" to player slot" + slot);
+              }            
             }
           }
         else
