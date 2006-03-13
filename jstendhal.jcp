@@ -90,6 +90,9 @@
 				<path>src\games\stendhal\server\scripting</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\server\events</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\common</path>
 			</folderitem>
 			<folderitem>
@@ -665,6 +668,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\maps\FeaturesTestArea.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\maps\IContent.java</path>
 				<source>true</source>
 			</fileitem>
@@ -885,6 +892,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\events\UseEvent.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\common\CollisionDetection.java</path>
 				<source>true</source>
 			</fileitem>
@@ -978,10 +989,6 @@
 			</fileitem>
 			<fileitem>
 				<path>tiled\tiled-stendhal-20060223.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>tiled\tiled-stendhal-20060311.jar</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
