@@ -352,10 +352,11 @@ public class StendhalRPAction
               if(player.nextto(portal,0.25) && player.facingto(portal))
                 {
                 logger.debug("Using portal "+portal);
-                if(usePortal(player, portal))
-                  {
-                  transferContent(player);
-                  }
+                portal.onUsed(player);
+//                if(usePortal(player, portal))
+//                  {
+//                  transferContent(player);
+//                  }
                 return;
                 }
               }

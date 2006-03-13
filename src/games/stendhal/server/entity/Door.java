@@ -69,7 +69,12 @@ public class Door extends Portal
     {
     if(isOpen())
       {
+      System.out.println ("Door is open");
       super.onUsed(user);
+      }
+    else
+      {
+      System.out.println ("Door is closed");
       }
     }  
   }

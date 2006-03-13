@@ -1809,6 +1809,33 @@
 		</ai>
 	</creature>
 
+	<creature name="zombie">
+		<type class="skeleton" subclass="zombie" tileid="75"/>
+		<attributes>
+			<atk value="60"/>
+			<def value="20"/>
+			<hp value="80"/>
+			<speed value="0.4"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="12"/>
+		<experience value="180"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[3,40]" probability="90"/>
+			<item value="wooden_shield" quantity="1" probability="20"/>
+			<item value="club" quantity="1" probability="20"/>
+			<item value="leather_armor" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
 
 
 -->
