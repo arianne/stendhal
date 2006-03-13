@@ -189,6 +189,9 @@
  <tileset name="Untitled" firstgid="928" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_nw.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="960" tilewidth="64" tileheight="64">
+  <image source="sub_2_orril_lich_palace.png"/>
+ </tileset>
  <layer name="Layer 7" width="36" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQ0AAAgDMJA0/0Kwgw1CevRvuioAwAlz4AAAwD8LCoqbKAASAAA=
@@ -216,7 +219,7 @@
  </layer>
  <layer name="Layer 2" width="36" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OtRFCARRFwU9JRLi7u7u7S/2cjBLeDNxg83W7HMctIiLyZy64wgMvfPAbfm64I4AgQggbfh54IoIoYogbfl54I4EkUkgbfuQrgyxyyKOAIkooG3wqqKKGOhpoooW2waeDLnroY4AhRhgbfCaYYoY5FlhihbXBZ4MtdtjjgCNOOBt8RER+2QcBcXFeABIAAA==
+   H4sIAAAAAAAAAO3ONXYDURREwfHRihSZUWYmmZmZ7fWZGbbkyjQb+GcCvaCSTvqWG7KsHEIIIdSZcy5opIlmWgrsueSKVtpop6PAnmtu6KSLbnoK7Lnljgq99NFfYE+oGWCQIYYZYZQxxhP+3pey7IFHnkq1fYJJpphmhlmqzCXsedbwwitvuZ55FlhkiWVWWGUtYc+7hg8++cr1rLPBJltss8Muewl7vjX88MtfrmefAw454pgTTjlL2BNCCPXoH2j89KUAEgAA
   </data>
  </layer>
  <layer name="Layer 1" width="36" height="32">
@@ -224,7 +227,7 @@
    H4sIAAAAAAAAAO3Wx1KTURyH4Q9yRRmB6wAVEMWGNCkWUKwUqQqoIIrRGALYsIOKWFBvzScLNqwYZjwJw1k869+7Ov+TLkuSdLSnDaWS5BbDjDDKGONMUE0NBzmU+v89t23cYZIpprnLPe5zmFrqqA/QM2NjlgfM8ZBHzPOYIzRwlGMBejI2nvCULM/IsUCeRo5zgpMBehZtLLHMc17wkle8DrC/3YrNN7zlHe/5wEc+FaFn1eYan/nCV9b5xkYRer7b/MFPfrHJb/7wtwg9O3WAihLo2FJJVQl0RFG0exe8eRfpoZdTnKaJM2TK3dvycD2XbF6mjys000IrbYW7ryUbsOeqzWtc5wbtnKWDzsL/Q0suYM9Nm/0MMEgX3ZzjfOEfpCUfsCeKomg/+gerl66zABIAAA==
   </data>
  </layer>
- <layer name="Floor" width="36" height="32">
+ <layer name="Floor" width="36" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3WVbCVVRgG4A2H7u7uPjTSDdIopRLSICIYgIIiSjfYrZSCioRNIyogFoooJSDd3emzHO/cN+47HS6emT3fXuv73jn/2us/5RJEIuVu+U/ZmDAS+Ymf2cR4JjCRSTzGUIbxOH25j37cz+00oSnNuIu7uYeOlI0zh/JUoCKVqEyVuH/m+cWezfzKb0xmClOZxhMM50lG0J8HGMBAmtOClrSiE53pwr3cZmZVqlGdGtSkFrWj5Nliz1a2sZ3pPMOzPMdTPM1IRvEgD/Ewj9CaO7iTNnSlG93pQR0z61KP+jSgIY1oHCXPDnt+Zye7eJ4XeJGXGM0YxjKOQQxmCI/Slna0pwM96UVv+oTnaWYTmtKM5rSgJa2i5Nltzx/sYS9b1Layje1sjniW/MYWznOBi1yimD3FKUHJ8HyoSjWqc4rTnOEsERkSkJC4KHn2WbOfAxxkh9rv7GRXyKbFNrazg8tc4SrXKGVPacoQTw1qUovanOM8F7hIIhkSk4SkUfIcsuYwRzjKbrU/2MPekM3MnexiN9e5wU0ivi9rTznKUyGcF+pSj/pc4jJXuEoyGZKTgpRR8hyz5jgnOMk+tf0c4GDIZuwe9rIvRFBLSByJqGhPJSpThQY0pBGNucZ1bnCTVDKkJg1po+RZZM1iPuQjvjZzLetYT2pr0pCWdJSmDF/4bg25fc5DXvIl+OtPFvn7mEQSkc6H9GQgI/nITwEKRsnzsc2f8Cmf8Y0eG/iW70hvTQYykon48Iz40ndfkd/nAhSkEInVkpCUZGQyMzNZyEohClOEolHyfC7DEpayjO/1+IEf2Uhma7KQlWxhHklISjIKU4SiFCO5PSlISSqymZmdHOSkGMUpQckoeZbLsIKVrOInPX5mE7+Q3Zoc5CRXmEcKUpKK4pSgJKVIbU8a0oZnRS4zc5OHvJSiNGWIj5JntQxfsIYvOaR2mCMc5Rk9n+U5nmc/BzjIofC8KEBBClGO8lSgYuTfv0+/CmeYtazjmNpxTnCSF/R8kZd4mcMc4SjHKEwRioa7kUpUpgq3xZBnfTjDbODbcJ+qneYMZ3lFz1d5jdc5zglOcorilKBkuBupSjWqUyOGPN+FM8wP/BjuU7XzXOAib+j5Jm8xg9Oc4SznKE0Z4ilLTWpRmzox5Jkhw0xmMTvcnyQnBSl5SM+HeYRBPM1IRjGautSjPg3C/UAGMobfegx55pj5Nu8wN9yfpCYNaRms5xAe5THGMJZxjKchjWjM7eF+IAtZw289hjzzzHyX93ifdKQnAxkZqucwHucJJjCRSUymCU1pRvNwP5CDnOG3HkOe+WZ+wAIWkonMZCErw/V8khE8xRSmMo3ptKAlrWhNbvKQl3wx5MlmZnZykDO8j9Uuc4WrzNRzFrOZw2I+5CM+phvd6UFP7uBO2tA2hjy5ZMhNHvKG97HadW5wk7f1fIe5zOMTPuUzPqcXvelDX9rRng7cFUOefDLkpwAFw4uZBCQkLpwtpfd4n/ksYSnLWM599ON++nM399CRTjHkKWRmYYpQNPz/RmKSkDScLT0XsJBFrGAlq1jNAwxgIA/SmS7cS9cY8txyy//Fn/usaEAAEgAA
   </data>
