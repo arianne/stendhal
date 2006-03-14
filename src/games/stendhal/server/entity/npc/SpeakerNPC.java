@@ -346,6 +346,14 @@ public abstract class SpeakerNPC extends NPC
       }
     }
     
+  public void add(int[] states, String trigger, ChatCondition condition, int next_state, String reply, ChatAction action)
+    {
+    for(int state: states)
+      {
+      add(state,trigger, condition, next_state, reply, action);
+      }
+    }
+    
   public void add(int state, String[] triggers, int next_state, String reply, ChatAction action)
     {
     for(String trigger: triggers)

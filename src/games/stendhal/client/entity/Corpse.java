@@ -62,6 +62,14 @@ public class Corpse extends PassiveEntity
       {
       corpseType=corpseType+"_giantrat";
       }
+    else if(object.get("class").equals("huge_animal"))
+      {
+      corpseType=corpseType+"_giantrat";
+      }
+    else if(object.get("class").equals("mythical_animal"))
+      {
+      corpseType=corpseType+"_giantrat";
+      }
      
     SpriteStore store=SpriteStore.get();        
     sprite=store.getSprite(translate(corpseType));

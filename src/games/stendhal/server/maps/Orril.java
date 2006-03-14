@@ -120,7 +120,7 @@ public class Orril implements IContent
 
     Door door=new Door("dungeon_silver_key","skulldoor_s",1);
     zone.assignRPObjectID(door);
-    door.set(69,38);
+    door.set(69,37);
     door.setNumber(0);
     door.setDestination("-2_orril_lich_palace",0);
     zone.addPortal(door);    
@@ -130,7 +130,7 @@ public class Orril implements IContent
 
     Portal portal=new Portal();
     zone.assignRPObjectID(portal);
-    portal.set(69,38);
+    portal.set(70,38);
     portal.setNumber(0);
     portal.setDestination("-1_orril_castle_w",0);
     zone.addPortal(portal);
@@ -166,7 +166,6 @@ public class Orril implements IContent
     portal.setNumber(3);
     portal.setDestination("-2_orril_lich_palace",1);
     zone.addPortal(portal);
-
     }
     
   private void buildCastleInsideArea(StendhalRPZone zone)

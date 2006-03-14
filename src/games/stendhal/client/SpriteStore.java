@@ -120,16 +120,19 @@ public class SpriteStore {
 			// up here.
 			URL url = this.getClass().getClassLoader().getResource(ref);
 			
-			if (url == null) {
-				fail("Can't find ref: "+ref);
-			}
+			if (url == null) 
+			  {
+        logger.fatal("Can't find ref: "+ref);
+				return getSprite("data/sprites/failsafe.png");
+  			}
 			
 			// use ImageIO to read the image in
 			sourceImage = ImageIO.read(url);
 		} catch (IOException e) {
 		  e.printStackTrace();
-			fail("Failed to load: "+ref);
-		}
+      logger.fatal("Failed to load: "+ref);
+      return getSprite("data/sprites/failsafe.png");
+    }
 		
 		// create an accelerated image of the right size to store our sprite in
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
@@ -152,17 +155,5 @@ public class SpriteStore {
 		sprites.put(ref,sprite);
 		
 		return sprite;
-	}
-	
-	/**
-	 * Utility method to handle resource loading failure
-	 * 
-	 * @param message The message to display on failure
-	 */
-	private void fail(String message) {
-		// we're pretty dramatic here, if a resource isn't available
-		// we dump the message and exit the game
-        logger.fatal(message+". Exiting");
-        System.exit(0);
 	}
 }
