@@ -135,6 +135,30 @@ public class DefaultEntityManager implements EntityManager
     return true;
   }
 
+  public boolean addCreature(DefaultCreature creature)
+  {
+    int id = creature.getTileId();
+    String clazz = creature.getCreatureName();
+    
+    if(classToCreature.containsKey(clazz))
+      {
+      logger.warn("Repeated creature name: "+clazz);          
+      }
+    
+    if(!creature.verifyItems(this))
+      {
+      logger.warn("Items dropped by creature name: "+clazz+" doesn't exists");          
+      }
+
+    classToCreature.put(clazz, creature);
+    if (id > 0)
+    {
+      idToClass.put(id, clazz);
+    }
+
+    return true;
+  }
+
   /** 
    * returns the instance of this manager.
    * Note: This method is synchonized.

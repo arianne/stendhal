@@ -25,14 +25,15 @@ public class Door extends Portal
     RPClass door=new RPClass("door");
     door.isA("entity");
     door.add("class",RPClass.STRING);
-    door.add("locked",RPClass.INT);
+    door.add("locked",RPClass.STRING);
     door.add("open",RPClass.FLAG);
     }  
 
-  public Door() throws AttributeNotFoundException
+  public Door(String key) throws AttributeNotFoundException
     {
     super();
     put("type","door");
+    put("locked",key);
     open=false;
     }
 
@@ -66,18 +67,27 @@ public class Door extends Portal
     }
 
   public void onUsed(RPEntity user)
-    {
-    world.modify(this);
-    if(isOpen())
+    {    
+    if(has("locked") && user.isEquipped(get("locked")))
       {
-      System.out.println ("Door is open");
-      super.onUsed(user);
-      close();
+      if(!isOpen())
+        {
+        open();
+        world.modify(this);
+        }
       }
     else
       {
-      open();
-      System.out.println ("Door is closed");
+      if(isOpen())
+        {
+        close();
+        world.modify(this);
+        }
+      }
+      
+    if(isOpen())
+      {
+      super.onUsed(user);
       }
     }  
   }

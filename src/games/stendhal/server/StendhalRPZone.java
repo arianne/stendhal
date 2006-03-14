@@ -130,6 +130,11 @@ public class StendhalRPZone extends MarauroaRPZone
     return respawnPoints;
     }
 
+  public void addRespawnPoint(RespawnPoint point)
+    {
+    respawnPoints.add(point);
+    }
+
   public List<SheepFood> getFoodItemList()
     {
     return foodItems;

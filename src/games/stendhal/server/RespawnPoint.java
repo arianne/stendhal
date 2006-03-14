@@ -127,7 +127,7 @@ public class RespawnPoint
       {
       // Creature newentity = entity.getClass().newInstance();
       String clazz = entity.get("name");
-      Creature newentity = zone.getWorld().getRuleManager().getEntityManager().getCreature(clazz);
+      Creature newentity = new Creature(entity);//zone.getWorld().getRuleManager().getEntityManager().getCreature(clazz);
 
       zone.assignRPObjectID(newentity);
       StendhalRPAction.placeat(zone,newentity,x,y);

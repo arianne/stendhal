@@ -123,8 +123,9 @@ public class Creature extends NPC
 
   /** the number of rounds to wait for a path the target */
   private int waitRounds;
+  
   /** the current (logic)state */
-  private AiState aiState;
+  protected AiState aiState;
 
   /** the speed of this creature */
   private double speed;
@@ -136,10 +137,10 @@ public class Creature extends NPC
   private int height; 
 
   /** Ths list of items this creature may drop */
-  private List<Creature.DropItem> dropsItems;
+  protected List<Creature.DropItem> dropsItems;
 
   /** Ths list of items this creature may drop */
-  private List<String> noises;
+  protected List<String> noises;
   
   private int respawnTime;
 
@@ -169,6 +170,45 @@ public class Creature extends NPC
     dropsItems = new ArrayList<Creature.DropItem>();
     aiProfiles = new HashMap<String,String>();
     attackTurn=Rand.rand(5);
+    }
+  
+  public Creature(Creature copy)
+    {
+    this();
+
+    this.speed = copy.speed;
+    this.width = copy.width;
+    this.height = copy.height;
+    
+    if (copy.dropsItems != null)
+      {
+      this.dropsItems = copy.dropsItems;
+      }
+    
+    this.aiProfiles=copy.aiProfiles;
+    this.noises=copy.noises;
+    
+    this.respawnTime=copy.respawnTime;
+
+    put("class",copy.get("class"));
+    put("subclass",copy.get("subclass"));
+    put("name",copy.get("name"));
+
+    put("x",0);
+    put("y",0);
+    
+    setATK(copy.getATK());
+    setDEF(copy.getDEF());
+    setXP(copy.getXP());
+    initHP(copy.getBaseHP());
+
+    setLevel(copy.getLevel());
+    
+    update();
+
+    stop();
+    attackTurn=Rand.rand(5);
+    logger.debug("Created "+get("class")+":"+this);
     }
 
   /** creates a new creature without properties. These must be set in the

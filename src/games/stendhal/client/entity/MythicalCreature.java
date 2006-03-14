@@ -35,7 +35,7 @@ public class MythicalCreature extends Creature
     sprites.put("move_up", store.getAnimatedSprite(creature,0,4,6,8));      
     sprites.put("move_right", store.getAnimatedSprite(creature,1,4,6,8));      
     sprites.put("move_down", store.getAnimatedSprite(creature,2,4,6,8));      
-    sprites.put("move_left", store.getAnimatedSprite(creature,6,8,6,8));      
+    sprites.put("move_left", store.getAnimatedSprite(creature,3,4,6,8));      
 
     sprites.get("move_up")[3]=sprites.get("move_up")[1];
     sprites.get("move_right")[3]=sprites.get("move_right")[1];

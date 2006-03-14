@@ -334,7 +334,7 @@ public class StendhalRPWorld extends RPWorld
    */
   public void createHouse(StendhalRPZone zone, int x, int y) throws org.xml.sax.SAXException, java.io.IOException
     {
-    Door door=new Door();
+    Portal door=new Portal();
     door.setx(x);
     door.sety(y);
     int dest=zone.assignPortalID(door);

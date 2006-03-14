@@ -67,6 +67,7 @@ Changelog
 - Fixed teleport bug.
 - Fixed negative xp problem.
 - Fixed a problem that made players not to leave world because of sheeps.
+- Added door and keys
 
 0.46 Mar 10, 2006
 - Fixed sheep
