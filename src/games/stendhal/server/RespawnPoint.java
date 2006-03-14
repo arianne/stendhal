@@ -33,7 +33,7 @@ public class RespawnPoint
   private List<Creature> entities;
 
   private boolean respawning;
-  final public static int TURNSTORESPAWN=900; // Five minute at 300ms
+  final public static int TURNSTORESPAWN=90; // Five minute at 300ms
   private int respawnTime;
   private int turnsToRespawn;
 
@@ -126,8 +126,9 @@ public class RespawnPoint
     try
       {
       // Creature newentity = entity.getClass().newInstance();
-      String clazz = entity.get("name");
-      Creature newentity = new Creature(entity);//zone.getWorld().getRuleManager().getEntityManager().getCreature(clazz);
+      // String clazz = entity.get("name");
+      // Creature newentity = new Creature(entity);//zone.getWorld().getRuleManager().getEntityManager().getCreature(clazz);
+      Creature newentity=entity.getInstance();
 
       zone.assignRPObjectID(newentity);
       StendhalRPAction.placeat(zone,newentity,x,y);

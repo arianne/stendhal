@@ -548,17 +548,6 @@ public class StendhalRPZone extends MarauroaRPZone
           break;          
         case 11: /* sheep  */
           break;
-        case 71: /* the npcs  */
-        case 72:
-        case 73:
-        case 74:
-        case 75:
-        case 76:
-        case 77:
-        case 78:
-        case 79:
-        case 80:
-          break;
         case 91: /* sign */
           break;
         case 92: /* SheepFood */

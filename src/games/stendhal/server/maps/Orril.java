@@ -54,26 +54,31 @@ public class Orril implements IContent
     buildCastleDungeonArea();
     }
 
-  static class QuestDropItemOnDeath extends Creature
+  public static class QuestDropItemOnDeath extends Creature
     {
-    private String keyType;
+    private String itemType;
     
-    public QuestDropItemOnDeath(Creature copy, String keyType)
+    public QuestDropItemOnDeath(Creature copy, String itemType)
       {
-      super(copy);     
-      this.keyType=keyType;
+      super((Creature)copy);     
+      this.itemType=itemType;
       
-      if(!world.getRuleManager().getEntityManager().isItem(keyType))
+      if(!world.getRuleManager().getEntityManager().isItem(itemType))
         {
-        logger.error(copy.getName()+ " drops unexisting item "+keyType);
+        logger.error(copy.getName()+ " drops unexisting item "+itemType);
         }
       }
     
+    public Creature getInstance()
+      {    
+      return new QuestDropItemOnDeath(this,itemType);
+      }
+  
     public void onDead(RPEntity who)
-      {
-      if(!who.isEquipped(keyType))
+      {      
+      if(!who.isEquipped(itemType))
         {
-        Item item=world.getRuleManager().getEntityManager().getItem(keyType);
+        Item item=world.getRuleManager().getEntityManager().getItem(itemType);
         if(!who.equip(item))
           {
           StendhalRPZone zone=(StendhalRPZone)world.getRPZone(who.getID());
@@ -141,7 +146,7 @@ public class Orril implements IContent
     point.setRespawnTime(creature.getRespawnTime());
     zone.addRespawnPoint(point);
         
-    door=new Door("lich_gold_key","skulldoor_s",1);
+    door=new Door("lich_gold_key","skulldoor_n",1);
     zone.assignRPObjectID(door);
     door.set(54,52);
     door.setNumber(1);

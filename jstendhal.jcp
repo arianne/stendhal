@@ -292,10 +292,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\entity\Book.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\entity\Chest.java</path>
 				<source>true</source>
 			</fileitem>
@@ -305,6 +301,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\Creature.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\Door.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -321,6 +321,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\Item.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\MiscItem.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>

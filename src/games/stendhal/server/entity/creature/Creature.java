@@ -162,8 +162,9 @@ public class Creature extends NPC
     }
 
   public Creature(RPObject object) throws AttributeNotFoundException
-    {
+    {    
     super(object);
+    
     put("type","creature");
     createPath();
 
@@ -193,7 +194,7 @@ public class Creature extends NPC
     put("class",copy.get("class"));
     put("subclass",copy.get("subclass"));
     put("name",copy.get("name"));
-
+   
     put("x",0);
     put("y",0);
     
@@ -201,6 +202,8 @@ public class Creature extends NPC
     setDEF(copy.getDEF());
     setXP(copy.getXP());
     initHP(copy.getBaseHP());
+    setName(copy.getName());
+
 
     setLevel(copy.getLevel());
     
@@ -211,6 +214,11 @@ public class Creature extends NPC
     logger.debug("Created "+get("class")+":"+this);
     }
 
+  public Creature getInstance()
+    {    
+    return new Creature(this);
+    }
+    
   /** creates a new creature without properties. These must be set in the
    * deriving class
    */
