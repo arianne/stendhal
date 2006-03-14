@@ -195,6 +195,7 @@ public class StendhalRPWorld extends RPWorld
     // Level -2
     addArea("-2_semos_dungeon");
     addArea("-2_kotoch_entrance");
+    addArea("-2_orril_lich_palace");
     addArea("-2_orril_dungeon");
 
     // Level -3

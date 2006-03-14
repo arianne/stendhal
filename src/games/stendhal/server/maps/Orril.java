@@ -3,8 +3,13 @@ package games.stendhal.server.maps;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.Door;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.Sign;
@@ -12,6 +17,8 @@ import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
+import games.stendhal.server.rule.defaultruleset.DefaultItem;
 
 import marauroa.common.game.IRPZone;
 
@@ -44,8 +51,119 @@ public class Orril implements IContent
 
     buildCastleArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_castle")));
     buildCastleInsideArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_orril_castle_0")));
+    buildCastleDungeonArea();
     }
 
+  static class QuestDropItemOnDeath extends Creature
+    {
+    private String keyType;
+    
+    public QuestDropItemOnDeath(Creature copy, String keyType)
+      {
+      super(copy);     
+      this.keyType=keyType;
+      
+      if(!world.getRuleManager().getEntityManager().isItem(keyType))
+        {
+        logger.error(copy.getName()+ " drops unexisting item "+keyType);
+        }
+      }
+    
+    public void onDead(RPEntity who)
+      {
+      if(!who.isEquipped(keyType))
+        {
+        Item item=world.getRuleManager().getEntityManager().getItem(keyType);
+        if(!who.equip(item))
+          {
+          StendhalRPZone zone=(StendhalRPZone)world.getRPZone(who.getID());
+          
+          zone.assignRPObjectID(item);
+          item.setx(who.getx());
+          item.sety(who.gety());
+          zone.add(item);
+          }
+        }
+        
+      super.onDead(who);
+      }
+  
+    public void update()
+      {
+      this.noises.add("Thou shall not obtain the key!");
+      }
+    }
+  
+  private void buildCastleDungeonArea()
+    {
+    DefaultEntityManager manager=(DefaultEntityManager)world.getRuleManager().getEntityManager();
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("-1_orril_castle_w"));
+
+    List<String> slots=new LinkedList<String>();
+    slots.add("bag");
+
+    DefaultItem item=new DefaultItem("key","silver","dungeon_silver_key",-1);
+    item.setWeight(1);
+    item.setEquipableSlots(slots);
+    manager.addItem(item);
+
+    Creature creature = new QuestDropItemOnDeath(manager.getCreature("green_dragon"),"dungeon_silver_key");
+    RespawnPoint point = new RespawnPoint(69,43,2);
+    point.set(zone, creature,1);
+    point.setRespawnTime(creature.getRespawnTime());
+    zone.addRespawnPoint(point);
+
+    Door door=new Door("dungeon_silver_key","skulldoor_s",1);
+    zone.assignRPObjectID(door);
+    door.set(69,38);
+    door.setNumber(0);
+    door.setDestination("-2_orril_lich_palace",0);
+    zone.addPortal(door);    
+        
+        
+    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("-2_orril_lich_palace"));
+
+    Portal portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.set(69,38);
+    portal.setNumber(0);
+    portal.setDestination("-1_orril_castle_w",0);
+    zone.addPortal(portal);
+
+    item=new DefaultItem("key","gold","lich_gold_key",-1);
+    item.setWeight(1);
+    item.setEquipableSlots(slots);
+    manager.addItem(item);
+
+    creature = new QuestDropItemOnDeath(manager.getCreature("royal_mummy"),"lich_gold_key");
+    point = new RespawnPoint(54,48,2);
+    point.set(zone, creature,1);
+    point.setRespawnTime(creature.getRespawnTime());
+    zone.addRespawnPoint(point);
+        
+    door=new Door("lich_gold_key","skulldoor_s",1);
+    zone.assignRPObjectID(door);
+    door.set(54,52);
+    door.setNumber(1);
+    door.setDestination("-2_orril_lich_palace",2);
+    zone.addPortal(door);    
+        
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.set(54,57);
+    portal.setNumber(2);
+    portal.setDestination("-2_orril_lich_palace",1);
+    zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.set(55,57);
+    portal.setNumber(3);
+    portal.setDestination("-2_orril_lich_palace",1);
+    zone.addPortal(portal);
+
+    }
+    
   private void buildCastleInsideArea(StendhalRPZone zone)
     {
     for(int i=0;i<3;i++)

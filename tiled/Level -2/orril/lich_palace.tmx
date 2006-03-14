@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <property name="x" value="500000"/>
- <property name="y" value="500000"/>
+ <property name="x" value="499744"/>
+ <property name="y" value="500256"/>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -62,7 +62,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dUQ6CMAwAUH69qHfgBCbcRLkk8cPgl9G50Y69dwISRte1XZgmAAAAAAAAAACAc7tfop8AiDSLAams3gfJyRso8bBuAAAAAAAAAKq46r8CAABfWhqdH8yFnpf7JbmY3aemVrHbnrB7xVDfLhDhl9xfzgf16d8BAIzlmf/JAQFgDJ9qr61mMgAAAAAAgBhq/5Qyo9+G/3cBAPAPd/6Bd2JCH9RYAOiNvQsgD/1+AACAHNTM6JnZZQAAAAAAAIAx6A8DHO8m9gIQyBkAAAAAgGgbS9Q6NwAAAQA=
+   H4sIAAAAAAAAAO3dyw2DMAwAUK4s2h06AVI3KV2y4kRPiE9SO+S9CZBAjmM7YRgAAAAAAAAAAADu7T1GPwEQ6SkGpPLxPkhO3sAZs+8GAAAAAAAAoIiH/isAALDTq9L+wVzofTlfkovZfUqqFbutCSsxFIh0JPcXr6A8/TsAgL4s+Z8cEAD6sFV7rTWTAQAAAAAAxFD75ywz+nX4fxcAAFe4rwP4JSa0QY0FgNZYuwDy0O8HAADIQc2MlpldBgAAAAAAAOiD/jDA/01iLwCB7AEAAAAAiPYFHj2X0gAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">

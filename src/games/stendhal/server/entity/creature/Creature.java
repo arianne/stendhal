@@ -111,7 +111,7 @@ public class Creature extends NPC
     }
   
   /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(Creature.class);
+  protected static final Logger logger = Log4J.getLogger(Creature.class);
 
   /** the number of rounds the creature should wait when the path to the target
    * is blocked and the target is not moving */
