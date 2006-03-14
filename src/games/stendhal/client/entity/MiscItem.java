@@ -17,20 +17,30 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Book extends Item 
+public class MiscItem extends Item 
   {
-  public Book(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
+  private String name;
+  
+  public MiscItem(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
-    super(gameObjects, object);
+    super(gameObjects, object);    
     }
 
   protected void loadSprite(RPObject object)
     {
     SpriteStore store=SpriteStore.get();   
     
-    String name=object.get("class")+"_"+object.get("subclass");
-    
-    sprite=store.getSprite("data/sprites/items/misc/"+name+".png");
+    String miscName=object.get("class")+"_"+object.get("subclass");
+    sprite=store.getSprite("data/sprites/items/misc/"+object.get("class")+"/"+miscName+".png");
+
+    if(object.has("name"))
+      {
+      name=object.get("name");
+      }
+    else
+      {
+      name=miscName;
+      }
     }
 
 
@@ -38,7 +48,7 @@ public class Book extends Item
     {
     if(action.equals("Look"))
       {
-      String text="You see a book.";
+      String text="You see a "+name.replace("_"," ")+".";
       
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);

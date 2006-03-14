@@ -31,7 +31,7 @@ public class FeaturesTestArea implements IContent
     
     public void onDead(RPEntity who)
       {
-      if(!who.isEquipped("golden_key"))
+      if(!who.isEquipped("key_golden"))
         {
         Item item=world.getRuleManager().getEntityManager().getItem("key_golden");
         if(!who.equip(item))
@@ -78,7 +78,7 @@ public class FeaturesTestArea implements IContent
     List<String> slots=new LinkedList<String>();
     slots.add("bag");
 
-    DefaultItem item=new DefaultItem("key","golden","key_golden",-1);
+    DefaultItem item=new DefaultItem("key","gold","key_golden",-1);
     item.setWeight(1);
     item.setEquipableSlots(slots);
     manager.addItem(item);
