@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Collections;
 
 
 public class Orril implements IContent
@@ -95,7 +96,9 @@ public class Orril implements IContent
   
     public void update()
       {
-      this.noises.add("Thou shall not obtain the key!");
+      // We create a new list so only specific creatures has this noise */
+      noises=new LinkedList<String>(noises);
+      noises.add("Thou shall not obtain the "+itemType.replace("_"," ")+"!");
       }
     }
   
