@@ -39,6 +39,10 @@ public class FeaturesTestArea implements IContent
     portal.setDestination("int_pathfinding",0);
     zone.addPortal(portal);
     
-    DefaultItem item=new DefaultItem("misc","key","key_000",-1);
+    DefaultItem item=new DefaultItem("key","golden","key_golden",-1);
+    item.setWeight(1);
+    List<String> slots=new LinkedList<String>();
+    slots.add("bag");
+    item.setEquipableSlots(slots);
     }
   }
