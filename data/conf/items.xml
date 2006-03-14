@@ -476,6 +476,18 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="golden_helmet">
+		<type class="helmet" subclass="golden_helmet"/>
+		<attributes>
+			<def value="6"/>
+		</attributes>
+		<weight value="15"/>
+		<equipable>
+			<slot name="head"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 <!-- Legs_section -->
 
@@ -515,6 +527,17 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="golden_legs">
+		<type class="legs" subclass="golden_legs"/>
+		<attributes>
+			<def value="8"/>
+		</attributes>
+		<weight value="25"/>
+		<equipable>
+			<slot name="legs"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 
 <!-- Boots_section -->
 
@@ -559,7 +582,7 @@ in the file.
 		<attributes>
 			<def value="8"/>
 		</attributes>
-		<weight value="10"/>
+		<weight value="17"/>
 		<equipable>
 			<slot name="feet"/>
 			<slot name="bag"/>
@@ -593,7 +616,7 @@ in the file.
 	</item>
 
 	<item name="elf_cloak">
-		<type class="cloak" subclass="white_cloak"/>
+		<type class="cloak" subclass="cloak"/>
 		<attributes>
 			<def value="3"/>
 		</attributes>
@@ -908,7 +931,7 @@ in the file.
 	</item>
 
 	<item name="big_bottle">
-		<type class="container" subclass="bottle"/>
+		<type class="container" subclass="big_bottle"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -966,7 +989,8 @@ the right click menu we talked about before.
 	<item name="rod_of_the_gm">
 		<type class="club" subclass="rod_of_the_gm"/>
 		<attributes>
-			<atk value="100"/>
+			<atk value="100"/>lol
+			
 			<def value="100"/>
 		</attributes>
 		<weight value="0.01"/>
