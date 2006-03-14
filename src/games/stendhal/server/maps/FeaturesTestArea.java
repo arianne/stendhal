@@ -59,7 +59,7 @@ public class FeaturesTestArea implements IContent
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_pathfinding"));    
     DefaultEntityManager manager=(DefaultEntityManager)world.getRuleManager().getEntityManager();
 
-    Portal portal=new Door("key_golden");
+    Portal portal=new Door("key_golden","skulldoor_s",1);
     zone.assignRPObjectID(portal);
     portal.setx(50);
     portal.sety(10);

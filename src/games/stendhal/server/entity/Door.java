@@ -19,6 +19,7 @@ import marauroa.common.game.RPClass;
 public class Door extends Portal 
   {
   private boolean open;
+  private int width;
   
   public static void generateRPClass()
     {
@@ -29,17 +30,19 @@ public class Door extends Portal
     door.add("open",RPClass.FLAG);
     }  
 
-  public Door(String key) throws AttributeNotFoundException
+  public Door(String key, String clazz, int width) throws AttributeNotFoundException
     {
     super();
     put("type","door");
+    put("class",clazz);
     put("locked",key);
+    this.width=width;
     open=false;
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
-    rect.setRect(x,y,1,1);
+    rect.setRect(x,y,width,1);
     }
 
   public void update()
