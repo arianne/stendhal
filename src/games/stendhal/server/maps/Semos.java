@@ -408,7 +408,7 @@ public class Semos implements IContent
     portal.setx(42);
     portal.sety(37);
     portal.setNumber(0);
-    portal.setDestination("int_semos_tavern",0);
+    portal.setDestination("int_semos_tavern_0",0);
     zone.addPortal(portal);
     
     portal=new Portal();

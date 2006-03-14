@@ -5,6 +5,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.*;
+import games.stendhal.server.rule.defaultruleset.*;
 
 import marauroa.common.game.IRPZone;
 
@@ -37,5 +38,7 @@ public class FeaturesTestArea implements IContent
     portal.setNumber(1);
     portal.setDestination("int_pathfinding",0);
     zone.addPortal(portal);
+    
+    DefaultItem item=new DefaultItem("misc","key","key_000",-1);
     }
   }

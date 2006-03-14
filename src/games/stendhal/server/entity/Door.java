@@ -67,13 +67,16 @@ public class Door extends Portal
 
   public void onUsed(RPEntity user)
     {
+    world.modify(this);
     if(isOpen())
       {
       System.out.println ("Door is open");
       super.onUsed(user);
+      close();
       }
     else
       {
+      open();
       System.out.println ("Door is closed");
       }
     }  

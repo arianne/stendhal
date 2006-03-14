@@ -104,6 +104,7 @@ public class Portal extends Entity implements UseEvent
     if(StendhalRPAction.usePortal(player, this))
       {
       StendhalRPAction.transferContent(player);
+      world.modify(player);
       }
     }  
   }

@@ -451,7 +451,7 @@ public class StendhalRPAction
     
     player.stop();
 
-    changeZone(player,portal.getDestinationZone());
+    changeZone(player,portal.getDestinationZone(),true);
 
     Log4J.finishMethod(logger, "usePortal");
     return true;
