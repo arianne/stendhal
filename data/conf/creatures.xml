@@ -1304,6 +1304,34 @@
 		</ai>
 	</creature>
 
+	<creature name="zombie">
+		<type class="skeleton" subclass="zombie" tileid="75"/>
+		<attributes>
+			<atk value="70"/>
+			<def value="23"/>
+			<hp value="80"/>
+			<speed value="0.4"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="19"/>
+		<experience value="300"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[3,40]" probability="90"/>
+			<item value="wooden_shield" quantity="1" probability="20"/>
+			<item value="club" quantity="1" probability="20"/>
+			<item value="leather_armor" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
+
 	<!-- Level 20 -->
 
 	<creature name="elder_dwarf">
@@ -1362,6 +1390,39 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
+	
+	<!-- Level 23 -->
+		
+	<creature name="warrior_skeleton">
+		<type class="skeleton" subclass="warrior_skeleton" tileid="73"/>
+		<attributes>
+			<atk value="74"/>
+			<def value="24"/>
+			<hp value="90"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="23"/>
+		<experience value="360"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[3,10]" probability="90"/>
+			<item value="plate_shield" quantity="1" probability="30"/>
+			<item value="dagger" quantity="1" probability="30"/>
+			<item value="chain_armor" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Thou shall not kill!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+	
 
     <!-- Level 24 -->
 
@@ -1387,6 +1448,33 @@
 			<profile name="ofensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
+		</ai>
+	</creature>
+
+	<creature name="royal_mummy">
+		<type class="mummy" subclass="royal_mummy" tileid="72"/>
+		<attributes>
+			<atk value="90"/>
+			<def value="25"/>
+			<hp value="80"/>
+			<speed value="0.4"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="24"/>
+		<experience value="287"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[3,40]" probability="90"/>
+			<item value="wooden_shield" quantity="1" probability="20"/>
+			<item value="club" quantity="1" probability="20"/>
+			<item value="leather_armor" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
 		</ai>
 	</creature>
 
@@ -1598,6 +1686,38 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
+	
+	<!-- Level 37 -->		
+
+	<creature name="demon_skeleton">
+		<type class="skeleton" subclass="demon_skeleton" tileid="74"/>
+		<attributes>
+			<atk value="140"/>
+			<def value="18"/>
+			<hp value="100"/>
+			<speed value="0.8"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="37"/>
+		<experience value="600"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[3,10]" probability="90"/>
+			<item value="wooden_shield" quantity="1" probability="30"/>
+			<item value="dagger" quantity="1" probability="30"/>
+			<item value="leather_armor" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Thou shall not rob!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
 
 	<!-- Level 50 -->
     
@@ -1720,122 +1840,5 @@
 </creatures>
 
 <!-- To add
-
-	<creature name="warrior_skeleton">
-		<type class="skeleton" subclass="warrior_skeleton" tileid="73"/>
-		<attributes>
-			<atk value="70"/>
-			<def value="20"/>
-			<hp value="100"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="6"/>
-		<experience value="65"/>
-		<respawn value="900"/>
-		<drops>
-			<item value="money" quantity="[3,10]" probability="90"/>
-			<item value="wooden_shield" quantity="1" probability="30"/>
-			<item value="dagger" quantity="1" probability="30"/>
-			<item value="leather_armor" quantity="1" probability="20"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<says>
-				<noise value="Thou shall not kill!"/>
-			</says>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-	
-
-	<creature name="demon_skeleton">
-		<type class="skeleton" subclass="demon_skeleton" tileid="74"/>
-		<attributes>
-			<atk value="140"/>
-			<def value="15"/>
-			<hp value="100"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="6"/>
-		<experience value="65"/>
-		<respawn value="900"/>
-		<drops>
-			<item value="money" quantity="[3,10]" probability="90"/>
-			<item value="wooden_shield" quantity="1" probability="30"/>
-			<item value="dagger" quantity="1" probability="30"/>
-			<item value="leather_armor" quantity="1" probability="20"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<says>
-				<noise value="Thou shall not rob!"/>
-			</says>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-
-	<creature name="royal_mummy">
-		<type class="mummy" subclass="royal_mummy" tileid="72"/>
-		<attributes>
-			<atk value="90"/>
-			<def value="25"/>
-			<hp value="80"/>
-			<speed value="0.4"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="12"/>
-		<experience value="180"/>
-		<respawn value="900"/>
-		<drops>
-			<item value="money" quantity="[3,40]" probability="90"/>
-			<item value="wooden_shield" quantity="1" probability="20"/>
-			<item value="club" quantity="1" probability="20"/>
-			<item value="leather_armor" quantity="1" probability="20"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-
-	<creature name="zombie">
-		<type class="skeleton" subclass="zombie" tileid="75"/>
-		<attributes>
-			<atk value="60"/>
-			<def value="20"/>
-			<hp value="80"/>
-			<speed value="0.4"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="12"/>
-		<experience value="180"/>
-		<respawn value="900"/>
-		<drops>
-			<item value="money" quantity="[3,40]" probability="90"/>
-			<item value="wooden_shield" quantity="1" probability="20"/>
-			<item value="club" quantity="1" probability="20"/>
-			<item value="leather_armor" quantity="1" probability="20"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-
-
 
 -->
