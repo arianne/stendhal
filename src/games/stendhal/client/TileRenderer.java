@@ -409,6 +409,13 @@ public class TileRenderer
     addAnimatedTile(3619,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
     addAnimatedTile(3709,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
     addAnimatedTile(3799,new int[]{3619,3619,3709,3709,3799,3799,3709,3709});
+    
+    // Flame Brazier
+    addAnimatedTile(1567,new int[]{1567,1597,1627,1597});
+    addAnimatedTile(1597,new int[]{1567,1597,1627,1597});
+    addAnimatedTile(1527,new int[]{1567,1597,1627,1597});
+
+
     }
   
   /** Render the data to screen. We assume that Gamescreen will clip.
