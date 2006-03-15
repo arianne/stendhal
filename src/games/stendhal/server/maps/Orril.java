@@ -1,6 +1,7 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.RespawnPoint;
