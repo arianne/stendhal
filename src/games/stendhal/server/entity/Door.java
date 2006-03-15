@@ -30,19 +30,21 @@ public class Door extends Portal
     door.add("open",RPClass.FLAG);
     }  
 
-  public Door(String key, String clazz, int width) throws AttributeNotFoundException
+  public Door(String key, String clazz, Direction dir) throws AttributeNotFoundException
     {
     super();
     put("type","door");
     put("class",clazz);
     put("locked",key);
-    this.width=width;
+    
+    setDirection(dir);
+    
     open=false;
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
     {
-    rect.setRect(x,y,width,1);
+    rect.setRect(x,y,1,1);
     }
 
   public void update()
