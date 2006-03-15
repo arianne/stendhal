@@ -117,7 +117,7 @@ public class Orril implements IContent
     point.setRespawnTime(creature.getRespawnTime());
     zone.addRespawnPoint(point);
 
-    Door door=new Door("dungeon_silver_key","skulldoor_s",1);
+    Door door=new Door("dungeon_silver_key","skulldoor",Direction.DOWN);
     zone.assignRPObjectID(door);
     door.set(69,37);
     door.setNumber(0);
@@ -145,7 +145,7 @@ public class Orril implements IContent
     point.setRespawnTime(creature.getRespawnTime());
     zone.addRespawnPoint(point);
         
-    door=new Door("lich_gold_key","skulldoor_n",1);
+    door=new Door("lich_gold_key","skulldoor",Direction.UP);
     zone.assignRPObjectID(door);
     door.set(54,52);
     door.setNumber(1);

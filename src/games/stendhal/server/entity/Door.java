@@ -15,6 +15,7 @@ package games.stendhal.server.entity;
 import java.awt.geom.Rectangle2D;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
+import games.stendhal.common.Direction;
 
 public class Door extends Portal 
   {
