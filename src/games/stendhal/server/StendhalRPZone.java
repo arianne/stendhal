@@ -31,6 +31,7 @@ import java.util.List;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.net.TransferContent;
 import marauroa.server.game.MarauroaRPZone;
@@ -634,6 +635,49 @@ public class StendhalRPZone extends MarauroaRPZone
   public synchronized RPObject remove(RPObject.ID id) throws RPObjectNotFoundException
     {
     return super.remove(id);
+    }
+
+  public synchronized RPObject remove(RPObject object) throws RPObjectNotFoundException
+    {
+    if(object.isContained())
+      {
+      // We modify the base container if the object change.
+      RPObject base=object.getContainer();      
+
+      while(base.isContained())
+        {
+        base=base.getContainer();
+        }
+      
+      modify(base);
+
+      RPSlot slot=object.getContainerSlot();
+      return slot.remove(object.getID());      
+      }
+    else
+      {
+      return remove(object.getID());
+      }
+    }
+
+  public synchronized void modify(RPObject object)
+    {
+    if(object.isContained())
+      {
+      // We modify the base container if the object change.
+      RPObject base=object.getContainer();      
+
+      while(base.isContained())
+        {
+        base=base.getContainer();
+        }
+      
+      super.modify(base);
+      }
+    else
+      {
+      super.modify(object);
+      }
     }
     
   public boolean collides(int x, int y) throws AttributeNotFoundException

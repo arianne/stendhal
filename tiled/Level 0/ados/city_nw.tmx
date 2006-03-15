@@ -37,7 +37,7 @@
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XsXHDMAAEQTakptx/Ee7AkYcH4TfYWCDuEejzPM8HAAAAAAAAAAAAAAAAAAAAAAAAAADgDz8vqL+RprtNnKfubgu666+9DehuB7rrr7/++uuvvw1or/92e/2329uB/vprbwPa24D2+m+311//+q5PU/fQX3/99ddfe/31119//fXXX3/99ddff/31119//fXXX3/99ddff/1tQHv99bcB/W1AexvQXn/tbUD77R3U93eDuqHuvbqn7r26rfb6696re9uA/nZgAzbQq1vbhv62oP3pm7ltj3WHG9VN9ddfe/1PbF//vv7n3EHdabH/t3xz3fCkuzj5Tr/13Prf+531Zupv/8/7qM9N178+M/qjPe/2r8+L9rzfvz4rXXv976P9Lm9/l/9727Tf5e1v036Xt79N+23679J+m/a7vP1t2m/Tf5f22/Tfpv95fgHYuIvoAAABAA==
+   H4sIAAAAAAAAAO3DAQ0AAAzDoBqaf3sXckhYNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVd8/QkhzUwAAAQA=
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">

@@ -37,7 +37,7 @@
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YwXHDMAxFQTfkptJ/ESnBI4kUAfw97DkkHixp8v18Pt+X/F3w1pnQH/3RH/3RH/3RH/05swenz8jZ/nZgLu+BbPpn0z+b/uifTf9s+qM/+mfzDMimfzbfgdn0z6Z/Nv8LzqY/diDblf52YB79sQPZ9M+mP3Ygm/7YAfTPpj92IJvvgGxX+9uBefTP5hmAHcimf7Y7/e3ALPpjB9A/m2cA+mMHsnkPoH82zwD0z6Y/diCb7wD0z+YZkO1Ofzswx93+dmAG/bM96W8H+nva3w70tqK/HehrVX870JP+uVa2178f/XOtbm8HetnV3w7Ut7O9PajtbkO7MMOTbnagt6fNvBP6WtHKd0FfqzrZgX5W9lnV3w7Ubf+rjR3oYXcT/Ws60UP/Gk7+HvXPbW8HtL97ltOz6+pp850NTv/96Sq3v3PG0/PspHp3O1BjnhXmXuksE+zoX+UdYBfOtK/2DKhy7mq6znHnuZN2oOsM9a8/x85nT9mDzrN7o3+Fe3adYffzV7xvp/lNuMP0HZp0lwm7MGleJ/qfvnO3mU26S5V7d5vZpLtUuHfHmU24w+l7T5ld57NXmkfXGXY5Z8W5TOgPAAAAAAAAAAAAAMBv/0TdHOcAAAEA
+   H4sIAAAAAAAAAO3DAQ0AAAzDoBqaf3sXckhYNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVd8/QkhzUwAAAQA=
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
