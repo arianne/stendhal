@@ -63,6 +63,9 @@ public class Orril implements IContent
       {
       super((Creature)copy);     
       this.itemType=itemType;
+
+      noises=new LinkedList<String>(noises);
+      noises.add("Thou shall not obtain the "+itemType.replace("_"," ")+"!");
       
       if(!world.getRuleManager().getEntityManager().isItem(itemType))
         {
@@ -92,13 +95,6 @@ public class Orril implements IContent
         }
         
       super.onDead(who);
-      }
-  
-    public void update()
-      {
-      // We create a new list so only specific creatures has this noise */
-      noises=new LinkedList<String>(noises);
-      noises.add("Thou shall not obtain the "+itemType.replace("_"," ")+"!");
       }
     }
   
