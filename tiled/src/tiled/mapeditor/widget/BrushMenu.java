@@ -55,19 +55,6 @@ public class BrushMenu extends JPanel implements MapChangeListener
     defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(2,2)));
     defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(4,4)));
     defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(8,8)));
-
-    combobox.addActionListener(new ActionListener()
-    {
-    
-      public void actionPerformed(ActionEvent e)
-      {
-        Object o = BrushMenu.this.combobox.getSelectedItem();
-        if (o instanceof BrushWrapper)
-        {
-          BrushMenu.this.mapEditor.setBrush(((BrushWrapper)o).brush);
-        }
-      }
-    });
   }
 
   public Dimension getPreferredSize()
@@ -96,7 +83,7 @@ public class BrushMenu extends JPanel implements MapChangeListener
   {
     if (e.getType() != MapChangedEvent.Type.BRUSHES)
       return;
-    
+
     updateBrushes();
   }
 
@@ -115,6 +102,17 @@ public class BrushMenu extends JPanel implements MapChangeListener
     
     combobox.setModel(new DefaultComboBoxModel(brushes.toArray(new BrushWrapper[brushes.size()])));
     combobox.setSelectedIndex(1);
+    combobox.addActionListener(new ActionListener()
+        {
+          public void actionPerformed(ActionEvent e)
+          {
+            Object o = BrushMenu.this.combobox.getSelectedItem();
+            if (o instanceof BrushWrapper)
+            {
+              BrushMenu.this.mapEditor.setBrush(((BrushWrapper)o).brush);
+            }
+          }
+        });
   }
   
 

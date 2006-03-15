@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 
 import tiled.core.Map;
 import tiled.core.StatefulTile;
@@ -38,8 +39,9 @@ public class CreateSingleLayerBrushAction extends AbstractAction
   
   public CreateSingleLayerBrushAction(MapEditor mapEditor)
   {
-    super("New brush");
+    super("");
     putValue(SHORT_DESCRIPTION, "Creates a new singlelayer brush");
+    putValue(SMALL_ICON, MapEditor.loadIcon("resources/plus.png"));
     this.mapEditor = mapEditor;
   }
 
@@ -49,7 +51,8 @@ public class CreateSingleLayerBrushAction extends AbstractAction
     
     List<StatefulTile> brushList = new ArrayList<StatefulTile>();
     int layer = mapEditor.currentLayer;
-    Map map = mapEditor.currentMap;
+    Map map = mapEditor.getCurrentMap();
+
     TileLayer tileLayer = (TileLayer) map.getLayer(layer);
     
     int minx = map.getWidth();
@@ -77,8 +80,20 @@ public class CreateSingleLayerBrushAction extends AbstractAction
         tile.p.y -= miny;
       }
       
-      map.addUserBrush(new TileGroup(map,brushList,null));
-      mapEditor.layerEditPanel.repaint();
+      
+      String s = (String) JOptionPane.showInputDialog(
+          mapEditor.appFrame,
+          "Enter a name for the brush:",
+          "Brush Name",
+          JOptionPane.PLAIN_MESSAGE,
+          null,
+          null,
+          "name");
+
+      TileGroup group = new TileGroup(map,brushList,s == null ? "unnamed" : s);
+
+      map.addUserBrush(group);
+      mapEditor.toolBar.repaint();
     }
     
   }

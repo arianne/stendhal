@@ -23,7 +23,7 @@ import javax.swing.JTextArea;
  */
 public class ExceptionDialog extends JDialog
 {
-  private static final long serialVersionUID = 0L;
+  private static final long serialVersionUID = 1L;
 
   
   public static void showDialog(JFrame parent, Exception exception, String text)
@@ -63,8 +63,6 @@ public class ExceptionDialog extends JDialog
       }
     });
     contentPane.add(okButton,BorderLayout.SOUTH);
-    
-    setContentPane(contentPane);
   }
 
   /**

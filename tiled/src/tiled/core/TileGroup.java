@@ -39,7 +39,7 @@ public class TileGroup
   
   /** default constuctor is private */
   private TileGroup()
-  {    
+  {
     this.name = "";
     tileLayers = new HashMap<TileLayer, List<StatefulTile>>();
   }
@@ -103,6 +103,22 @@ public class TileGroup
   }
   
   /**
+   * returns the tilelist for a specific layer or null if there are no tiles
+   * for the layer in this group
+   */
+  public List<StatefulTile> getTileLayer(String layerName)
+  {
+    for (TileLayer layer : tileLayers.keySet())
+    {
+      if (layer.getName().equals(layerName))
+      {
+        return tileLayers.get(layer);
+      }
+    }
+    return null;
+  }
+  
+  /**
    * returns a map with all layers/tilelists of this group.  
    */
   public java.util.Map<TileLayer,List<StatefulTile>> getTileLayers()
@@ -157,6 +173,13 @@ public class TileGroup
   {
     return name;
   }
+
+  /** sets the name if the tilegroup */
+  public void setName(String name)
+  {
+    this.name = name;
+  }
+  
 
   /** retuns the width in tiles */
   public int getWidth()

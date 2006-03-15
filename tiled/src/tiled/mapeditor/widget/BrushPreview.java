@@ -86,5 +86,4 @@ public class BrushPreview extends JPanel
     orthogonal.setScale(scale);
     orthogonal.draw(g);
   }
-
 }

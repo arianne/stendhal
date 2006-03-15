@@ -61,16 +61,14 @@ public class ToolBar extends JToolBar implements ActionListener
     Icon iconPaint = MapEditor.loadIcon("resources/gimp-tool-pencil-22.png");
     Icon iconErase = MapEditor.loadIcon("resources/gimp-tool-eraser-22.png");
     Icon iconEyed = MapEditor.loadIcon("resources/gimp-tool-color-picker-22.png");
-    Icon iconBrush = MapEditor.loadIcon("resources/plus.png");
-    Icon iconBrushExt = MapEditor.loadIcon("resources/plus2.png");
 
     paintButton = createToggleButton(iconPaint, "paint", "Paint");
     eraseButton = createToggleButton(iconErase, "erase", "Erase");
     eyedButton = createToggleButton(iconEyed, "eyed", "Eye dropper");
     moveButton = createToggleButton(iconMove, "move", "Move layer");
     brushMenu = new BrushMenu(mapEditor);
-    brushButton = createToggleButton(iconBrush, "create brush", "create brush");
-    brushExtButton = createToggleButton(iconBrushExt, "create ext. brush", "create extended brush");
+    brushButton = new JButton(mapEditor.createSingleLayerBrushAction);
+    brushExtButton = new JButton(mapEditor.createMultiLayerBrushAction);
 
     mapEventAdapter.addListener(moveButton);
     mapEventAdapter.addListener(paintButton);
@@ -102,7 +100,7 @@ public class ToolBar extends JToolBar implements ActionListener
     return createButton(icon, command, true, tt);
   }
 
-  private AbstractButton createButton(Icon icon, String command, boolean toggleButton, String tt)
+  private AbstractButton createButton(Icon icon, String command, boolean toggleButton, String tooltipText)
   {
     AbstractButton button;
     if (toggleButton) {
@@ -113,8 +111,8 @@ public class ToolBar extends JToolBar implements ActionListener
     button.setMargin(new Insets(0, 0, 0, 0));
     button.setActionCommand(command);
     button.addActionListener(this);
-    if (tt != null) {
-        button.setToolTipText(tt);
+    if (tooltipText != null) {
+        button.setToolTipText(tooltipText);
     }
     return button;
   }
@@ -135,6 +133,9 @@ public class ToolBar extends JToolBar implements ActionListener
   public void setMap(Map map)
   {
     brushMenu.setMap(map);
+    boolean state = (map != null);
+    brushButton.setEnabled(state);
+    brushExtButton.setEnabled(state);
   }
 
   /** action handler for the buttons */
@@ -149,7 +150,6 @@ public class ToolBar extends JToolBar implements ActionListener
     {
       mapEditor.toggleDeleteTile(false);
     }
-    
   }
   
 

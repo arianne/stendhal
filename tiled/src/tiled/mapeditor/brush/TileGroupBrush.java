@@ -56,7 +56,7 @@ public class TileGroupBrush extends AbstractBrush
       if (mapLayer instanceof TileLayer && !mapLayer.isLocked())
       {
         TileLayer tileLayer = (TileLayer) mapLayer;
-        List<StatefulTile> groupLayer = tileGroup.getTileLayer(tileLayer);
+        List<StatefulTile> groupLayer = tileGroup.getTileLayer(tileLayer.getName());
         // ...commit all tiles from for the layer
         if (groupLayer != null)
         {
@@ -99,7 +99,21 @@ public class TileGroupBrush extends AbstractBrush
   
   public String getName()
   {
-    return "TileGroup Brush";
+    return "TileGroup Brush "+tileGroup.getName();
   }
+  
+  /** returns the used tiles */
+  public List<StatefulTile> getTiles()
+  {
+    List<StatefulTile> tileList = new ArrayList<StatefulTile>();
+    
+    for (List<StatefulTile> tile : tileGroup.getTileLayers().values())
+    {
+      tileList.addAll(tile);
+    }
+    
+    return tileList;
+  }
+  
   
 }

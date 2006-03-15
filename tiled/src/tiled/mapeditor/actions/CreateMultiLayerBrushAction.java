@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
@@ -30,8 +31,9 @@ public class CreateMultiLayerBrushAction extends AbstractAction
   
   public CreateMultiLayerBrushAction(MapEditor mapEditor)
   {
-    super("New ext. brush");
-    putValue(SHORT_DESCRIPTION, "Creates a new multilayer brush using all vivible layers");
+    super("");
+    putValue(SHORT_DESCRIPTION, "Creates a new multilayer brush using all visible layers");
+    putValue(SMALL_ICON, MapEditor.loadIcon("resources/plus2.png"));
     this.mapEditor = mapEditor;
   }
 
@@ -63,7 +65,16 @@ public class CreateMultiLayerBrushAction extends AbstractAction
 
     if (brushList.size() > 0)
     {
-      TileGroup tileGroup = new TileGroup(map,brushList,null);
+      String s = (String) JOptionPane.showInputDialog(
+          mapEditor.appFrame,
+          "Enter a name for the brush:",
+          "Brush Name",
+          JOptionPane.PLAIN_MESSAGE,
+          null,
+          null,
+          "name");
+
+      TileGroup tileGroup = new TileGroup(map,brushList,s == null ? "unnamed" : s);
       map.addUserBrush(tileGroup.normalize());
       mapEditor.layerEditPanel.repaint();
     }
