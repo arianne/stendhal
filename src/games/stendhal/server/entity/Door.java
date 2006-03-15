@@ -26,7 +26,7 @@ public class Door extends Portal
     RPClass door=new RPClass("door");
     door.isA("entity");
     door.add("class",RPClass.STRING);
-    door.add("locked",RPClass.STRING);
+    door.add("locked",RPClass.STRING, RPClass.PRIVATE);
     door.add("open",RPClass.FLAG);
     }  
 
