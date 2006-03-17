@@ -350,15 +350,15 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
           String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
                           "This brief help show you the most used commands:",
                           "- /tell <player> <message> \tWrites a private message to player",
-                          "- // <message>             \tWrites a private message to last player we talked with",
-                          "- /msg <player> <message>  \tWrites a private message to player",
-                          "- /support <message>       \tAsk for support to admins",
-                          "- /who                     \tShow online players",
-                          "- /add <player>            \tAdd player to the buddy list",
-                          "- /remove <player>         \tRemoves player from buddy list",
-                          "- /where <player>          \tPrints the location of the player",
-                          "- /sound volume <value>    \tsets sound system loudness (0..100)",
-                          "- /sound mute <value>      \tsets sound system mute (on/off)"
+                          "- /msg <player> <message> \tWrites a private message to player",
+                          "- // <message> \t\tWrites a private message to last player we talked with",
+                          "- /support <message> \tAsk for support to admins",
+                          "- /who \t\tShow online players",
+                          "- /add <player> \t\tAdd player to the buddy list",
+                          "- /remove <player> \tRemoves player from buddy list",
+                          "- /where <player> \t\tPrints the location of the player",
+                          "- /sound volume <value> \tsets sound system loudness (0..100)",
+                          "- /sound mute <value> \tsets sound system mute (on/off)"
                           };
           for(String line: lines)
             {
@@ -369,14 +369,15 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
         else if(text.equals("/gmhelp")) // Help command
           {          
           String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php/StendhalManual#Admin",
-                          "This brief help show you the most used commands:",
-                          "- /tellall <message>                      \tWrites a private message to all players",
-                          "- /teleport <player> <zone> <x> <y>       \tTeleport the player ",
-                          "- /teleportto <player>                    \tTeleport us to the player ",
-                          "- /alter <player> <attrib> <mode> <value> \tChange by SETting, ADDing or SUBstrating the stat of player",
-                          "- /summon <creature|item> <x> <y>         \tSummon an item or creature at x,y",
-                          "- /summonat <player> <slot> <ite> [amount]\tSummon an item at the slot of the given player",
-                          "- /invisible                              \tMakes this player invisible for creatures",
+                          "This brief help show you the most used gm commands:",
+                          "- /tellall <message> \t\tWrites a private message to all players",
+                          "- /teleport <player> <zone> <x> <y> \tTeleport the player ",
+                          "- /teleportto <player> \t\tTeleport us to the player ",
+                          "- /alter <player> <attrib> <mode> <value> \tChange by SETting, ADDing or SUBtracting the stat of player",
+                          "- /summon <creature|item> <x> <y> \tSummon an item or creature at x,y",
+                          "- /summonat <player> <slot> <item> <amount> Summon an item at the slot of the given player",
+                          "- /invisible \t\t\tMakes this player invisible for creatures",
+			  "- /inspect <player> \t\t\tShows detailed info about the player"
                           };
           for(String line: lines)
             {

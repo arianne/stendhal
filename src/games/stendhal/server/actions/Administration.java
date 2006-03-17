@@ -51,7 +51,7 @@ public class Administration extends ActionListener
     {
     if(!player.isAdmin())
       {
-      // Admininistrador only commands
+      // Admininistrator only commands
       logger.warn("Player "+player.getName()+" trying to run admin commands");
       return;
       }
@@ -65,31 +65,31 @@ public class Administration extends ActionListener
     else if(type.equals("teleport"))
       {
       onTeleport(world,rules,player,action);
-      }    
+      }
     else if(type.equals("teleportto"))
       {
       onTeleportTo(world,rules,player,action);
-      }    
+      }
     else if(type.equals("alter"))
       {
       onChangePlayer(world,rules,player,action);
-      }    
+      }
     else if(type.equals("summon"))
       {
       onSummon(world,rules,player,action);
-      }          
+      }
     else if(type.equals("summonat"))
       {
       onSummonAt(world,rules,player,action);
-      }          
+      }
     else if(type.equals("invisible"))
       {
       onInvisible(world,rules,player,action);
-      }          
+      }
     else if(type.equals("inspect"))
       {
       onInspect(world,rules,player,action);
-      }          
+      }
     }
   
   private void onTellEverybody(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
@@ -241,7 +241,7 @@ public class Administration extends ActionListener
           changed=p;
           break;
           }
-        }      
+        }
  
       if(changed==null)
         {
@@ -265,7 +265,7 @@ public class Administration extends ActionListener
       byte type=clazz.getType(stat);      
       if(type==RPClass.BYTE || type==RPClass.SHORT ||type==RPClass.INT)
         {
-        isNumerical=true;        
+        isNumerical=true;
         }
        
       if(changed.getRPClass().hasAttribute(stat) && changed.has(stat))
@@ -362,7 +362,7 @@ public class Administration extends ActionListener
           StendhalRPAction.placeat(zone,item,x,y);
           zone.add(item);
           }
-        }        
+        }
       }
 
     Log4J.finishMethod(logger,"onSummon");
@@ -384,7 +384,7 @@ public class Administration extends ActionListener
           changed=p;
           break;
           }
-        }      
+        }
  
       if(changed==null)
         {
@@ -422,7 +422,7 @@ public class Administration extends ActionListener
           
           world.modify(changed);
           }
-        }        
+        }
       }
 
     Log4J.finishMethod(logger,"onSummonAt");
@@ -490,12 +490,9 @@ public class Administration extends ActionListener
     StringBuffer st=new StringBuffer();
     st.append("Inspected "+inspected.getName()+" is:");
     st.append("\nID:     "+inspected.getID());
-    st.append("\nATK:    "+inspected.getATK());
-    st.append("\nATK XP: "+inspected.getATKXP());
-    st.append("\nDEF:    "+inspected.getDEF());
-    st.append("\nDEF XP: "+inspected.getDEFXP());
-    st.append("\nHP:     "+inspected.getHP());
-    st.append("\nBaseHP: "+inspected.getBaseHP());
+    st.append("\nATK:    "+inspected.getATK()+"("+inspected.getATKXP()+")");
+    st.append("\nDEF:    "+inspected.getDEF()+"("+inspected.getDEFXP()+")");
+    st.append("\nHP:     "+inspected.getHP()+" / "+inspected.getBaseHP());
     st.append("\nXP:     "+inspected.getXP());
     st.append("\nLevel:  "+inspected.getLevel());
     
@@ -507,7 +504,7 @@ public class Administration extends ActionListener
         continue;
         }
         
-      st.append("\n    Slot "+slot.getName());
+      st.append("\n    Slot "+slot.getName()+": ");
       
       if(slot.getName().equals("!quests"))
         {
@@ -518,7 +515,6 @@ public class Administration extends ActionListener
         }
       else
         {
-        st.append("\n        ");
         for(RPObject object: slot)
           {
           String item=object.get("type");
@@ -528,12 +524,12 @@ public class Administration extends ActionListener
             }
           
           if(object instanceof StackableItem)
-            {            
-            st.append("["+item+" Q="+object.get("quantity")+"],");
+            {
+            st.append("["+item+" Q="+object.get("quantity")+"], ");
             }
           else
             {
-            st.append("["+item+"],");
+            st.append("["+item+"], ");
             }
           }
         }
