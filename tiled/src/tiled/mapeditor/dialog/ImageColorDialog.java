@@ -9,7 +9,7 @@
  *  Adam Turk <aturk@biggeruniverse.com>
  *  Bjorn Lindeijer <b.lindeijer@xs4all.nl>
  *  
- *  modified for stendhal, an Arianne powered RPG 
+ *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
  *  Matthias Totz <mtotz@users.sourceforge.net>

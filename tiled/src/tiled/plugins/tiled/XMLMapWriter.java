@@ -9,7 +9,7 @@
  *  Adam Turk <aturk@biggeruniverse.com>
  *  Bjorn Lindeijer <b.lindeijer@xs4all.nl>
  *  
- *  modified for stendhal, an Arianne powered RPG 
+ *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
  *  Matthias Totz <mtotz@users.sourceforge.net>
@@ -35,6 +35,9 @@ import tiled.mapeditor.selection.SelectionLayer;
 import tiled.util.*;
 
 
+/**
+ * Writes tiled maps  
+ */
 public class XMLMapWriter implements tiled.io.MapWriter, FileFilter
 {
     /**
@@ -585,7 +588,7 @@ public class XMLMapWriter implements tiled.io.MapWriter, FileFilter
     }
 
     /**
-     * @see tiled.io.MapReader#getFilter()
+     *
      */
     public String getFilter() throws Exception {
         return "*.tmx,*.tsx,*.tmx.gz";

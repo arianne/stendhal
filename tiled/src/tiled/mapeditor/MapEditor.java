@@ -9,7 +9,7 @@
  *  Adam Turk <aturk@biggeruniverse.com>
  *  Bjorn Lindeijer <b.lindeijer@xs4all.nl>
  *  
- *  modified for stendhal, an Arianne powered RPG 
+ *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
  *  Matthias Totz <mtotz@users.sourceforge.net>
@@ -95,7 +95,8 @@ public class MapEditor implements ActionListener, MouseListener,
   public static final int     PS_MOVEOBJ       = 7;
 
   /** current release version */
-  public static final String  version          = "0.0.1";
+  public static final String VERSION          = "0.0.1";
+  public static final String TITLE            = "Stendhal Mapeditor";
 
   public MapView              mapView;
   public UndoStack            undoStack;
@@ -170,7 +171,6 @@ public class MapEditor implements ActionListener, MouseListener,
   public Action               duplicateLayerAction;
   public Action               moveLayerUpAction;
   public Action               moveLayerDownAction;
-  public Action               selectBrushAction;
   public Action               toggleGridAction;
 
   public MapEditor()
@@ -223,11 +223,10 @@ public class MapEditor implements ActionListener, MouseListener,
     duplicateLayerAction = new DuplicateLayerAction(this);
     moveLayerUpAction = new MoveLayerUpAction(this);
     moveLayerDownAction = new MoveLayerDownAction(this);
-    selectBrushAction = new SelectBrushAction(this);
     toggleGridAction = new ToggleGridAction(this);
 
     // Create our frame
-    appFrame = new JFrame("Stendhal Mapeditor");
+    appFrame = new JFrame(TITLE);
     appFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     appFrame.addWindowListener(new WindowAdapter()
     {
@@ -396,7 +395,6 @@ public class MapEditor implements ActionListener, MouseListener,
     }
 
     String command = event.getActionCommand();
-    List<MapLayer> layersBefore = currentMap.getLayerList();
 
     if (command.equals("Merge Down"))
     {
@@ -666,7 +664,7 @@ public class MapEditor implements ActionListener, MouseListener,
     {
       SearchDialog sd = new SearchDialog(appFrame, currentMap);
       sd.setVisible(true);
-    } else if (command.equals("About Tiled"))
+    } else if (command.equals("About"))
     {
       if (aboutDialog == null)
       {
@@ -823,7 +821,7 @@ public class MapEditor implements ActionListener, MouseListener,
   /** updates the title to match the currently loaded map name */
   private void updateTitle()
   {
-    String title = "Tiled";
+    String title = TITLE;
 
     if (currentMap != null)
     {
@@ -1151,7 +1149,6 @@ public class MapEditor implements ActionListener, MouseListener,
       mapView = null;
       setCurrentPointerState(PS_POINT);
       statusBar.clearLabels();
-//      setCurrentTiles((List<Tile>) null);
       mapEditPanel.setMapView(null);
       currentBuilder = null;
     } else

@@ -9,7 +9,7 @@
  *  Adam Turk <aturk@biggeruniverse.com>
  *  Bjorn Lindeijer <b.lindeijer@xs4all.nl>
  *  
- *  modified for stendhal, an Arianne powered RPG 
+ *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
  *  Matthias Totz <mtotz@users.sourceforge.net>
@@ -24,6 +24,9 @@ import java.util.List;
 import tiled.core.*;
 import tiled.core.Map;
 
+/**
+ * Some helper methods for merging tile images
+ */
 public class TileMergeHelper {
     private Map myMap;
     private TileSet myTs;

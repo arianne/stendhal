@@ -32,6 +32,8 @@ Todo:
 * correctly implement loading/saving plugin
 * remove the setMap()-methods in all panels and use a listener callback instead
 * return real brushes in Map.getUserBrushes();
+* update minimap  when undo/redo
+* reenable layer-transform (rotate/mirror) with undo/redo support
 
 0.5.2 - TBD (+ means planned change)
 

@@ -8,6 +8,11 @@
  *
  *  Adam Turk <aturk@biggeruniverse.com>
  *  Bjorn Lindeijer <b.lindeijer@xs4all.nl>
+ *  
+ *  modified for Stendhal, an Arianne powered RPG 
+ *  (http://arianne.sf.net)
+ *
+ *  Matthias Totz <mtotz@users.sourceforge.net>
  */
 
 package tiled.util;
@@ -17,8 +22,15 @@ import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 
+/** 
+ * Various static utility methods 
+ */
 public class Util
 {
+  
+  /** no public constructor, no instance allowed */
+  private Util()
+  { }
   /**
    * This function converts an <code>int</code> integer array to a
    * <code>byte</code> array. Each integer element is broken into 4 bytes and
