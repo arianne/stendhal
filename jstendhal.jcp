@@ -1182,10 +1182,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>tiled\src\tiled\mapeditor\actions\SelectBrushAction.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>tiled\src\tiled\mapeditor\actions\TilesetManagerAction.java</path>
 				<source>true</source>
 			</fileitem>
