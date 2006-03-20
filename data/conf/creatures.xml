@@ -402,7 +402,7 @@
 	<!-- Level 6 -->
 
 	<creature name="skeleton">
-		<type class="skeleton" subclass="skeleton" tileid="24"/>
+		<type class="undead" subclass="skeleton" tileid="24"/>
 		<attributes>
 			<atk value="51"/>
 			<def value="13"/>
@@ -1305,7 +1305,7 @@
 	</creature>
 
 	<creature name="zombie">
-		<type class="skeleton" subclass="zombie" tileid="75"/>
+		<type class="undead" subclass="zombie" tileid="75"/>
 		<attributes>
 			<atk value="70"/>
 			<def value="23"/>
@@ -1394,7 +1394,7 @@
 	<!-- Level 23 -->
 		
 	<creature name="warrior_skeleton">
-		<type class="skeleton" subclass="warrior_skeleton" tileid="73"/>
+		<type class="undead" subclass="warrior_skeleton" tileid="73"/>
 		<attributes>
 			<atk value="74"/>
 			<def value="24"/>
@@ -1690,7 +1690,7 @@
 	<!-- Level 37 -->		
 
 	<creature name="demon_skeleton">
-		<type class="skeleton" subclass="demon_skeleton" tileid="74"/>
+		<type class="undead" subclass="demon_skeleton" tileid="74"/>
 		<attributes>
 			<atk value="170"/>
 			<def value="25"/>
@@ -1751,7 +1751,7 @@
 	<!-- Level 60 -->
     
 	<creature name="lich">
-		<type class="skeleton" subclass="lich" tileid="38"/>
+		<type class="undead" subclass="lich" tileid="38"/>
 		<attributes>
 			<atk value="140"/>
 			<def value="25"/>
