@@ -91,6 +91,15 @@ public abstract class SpeakerNPC extends NPC
   private String waitMessage;
   // Default wait action when NPC is busy
   private ChatAction waitAction;
+
+  // Default bye message when NPC stop chatting with the player
+  private String byeMessage;
+  // Default bye action when NPC stop chatting with the player
+  private ChatAction byeAction;
+  
+  private ChatCondition initChatCondition;
+  // Default initChat action when NPC stop chatting with the player
+  private ChatAction initChatAction;
   
   // Timeout control value
   private long lastMessageTurn;
@@ -146,13 +155,46 @@ public abstract class SpeakerNPC extends NPC
       int px=player.getx();
       int py=player.gety();
       
-      if(get("zoneid").equals(player.get("zoneid")) && Math.abs(px-x)<range && Math.abs(py-y)<range && player.has("text"))
+      if(player.has("text") && get("zoneid").equals(player.get("zoneid")) && Math.abs(px-x)<range && Math.abs(py-y)<range)
         {
         players.add(player);
         }
       }
     
     return players;
+    }
+  
+  private Player getNearestPlayer(double range)
+    {
+    int x=getx();
+    int y=gety();
+    
+    Player nearest=null;
+    
+    int dist=Integer.MAX_VALUE;
+    
+    for(Player player: rp.getPlayers())
+      {
+      int px=player.getx();
+      int py=player.gety();
+      
+      if(get("zoneid").equals(player.get("zoneid")) && Math.abs(px-x)<range && Math.abs(py-y)<range)
+        {
+        int actual=(px-x)*(px-x)+(py-y)*(py-y);
+        if(actual<dist)
+          {
+          dist=actual;
+          nearest=player;
+          }
+        }
+      }
+    
+    return nearest;
+    }
+  
+  public Player getAttending()
+    {
+    return attending;
     }
       
   public void onDead(RPEntity who)
@@ -181,11 +223,32 @@ public abstract class SpeakerNPC extends NPC
         {
         actualState=0;
         attending=null;
+        if(byeMessage!=null)
+          {
+          say(byeMessage);          
+          }
+        
+        if(byeAction!=null);
+          {
+          byeAction.fire(null,null,this);
+          }
         }
       
       if(!stopped())
         {
         stop();
+        }
+      }
+    
+    if(!talking())
+      {
+      Player nearest=getNearestPlayer(6);
+      if(nearest!=null)
+        {
+        if(initChatCondition==null || initChatCondition.fire(nearest,this))
+          {    
+          initChatAction.fire(nearest,null,this);
+          }
         }
       }
     
@@ -289,10 +352,24 @@ public abstract class SpeakerNPC extends NPC
     }
     
   /** Message when NPC is attending another player. */
-  public void addWaitMessage(String trigger, ChatAction action)
+  public void addWaitMessage(String text, ChatAction action)
     {
-    waitMessage=trigger;
+    waitMessage=text;
     waitAction=action;
+    }
+
+  /** Message when NPC is attending another player. */
+  public void addByeMessage(String text, ChatAction action)
+    {
+    byeMessage=text;
+    byeAction=action;
+    }
+
+  /** Message when NPC is attending another player. */
+  public void addInitChatMessage(ChatCondition condition, ChatAction action)
+    {
+    initChatCondition=condition;
+    initChatAction=action;
     }
 
   private StatePath get(int state, String trigger, ChatCondition condition)
@@ -436,6 +513,16 @@ public abstract class SpeakerNPC extends NPC
       logger.debug("Attended player "+attending+" went timeout");
       attending=player;
       actualState=0;
+
+      if(byeMessage!=null)
+        {
+        say(byeMessage);          
+        }
+      
+      if(byeAction!=null);
+        {
+        byeAction.fire(null,null,this);
+        }
       }
     
     // If we are attending another player make this one waits.

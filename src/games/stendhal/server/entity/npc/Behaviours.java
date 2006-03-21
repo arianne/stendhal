@@ -32,6 +32,13 @@ public class Behaviours
   public static void addGreeting(SpeakerNPC npc)
     {
     addGreeting(npc,"Greetings! How may I help you?");
+    npc.addWaitMessage(null,new SpeakerNPC.ChatAction()
+      {
+      public void fire(Player player, String text, SpeakerNPC engine)
+        {
+        engine.say("Please wait!. I am attending "+engine.getAttending().getName());
+        }
+      });
     }
   
   public static void addGreeting(SpeakerNPC npc, String text)
@@ -76,6 +83,7 @@ public class Behaviours
 
   public static void addGoodbye(SpeakerNPC npc, String text)
     {
+    npc.addByeMessage(text,null);
     npc.add(-1,new String[]{"bye","farewell","cya","adios"}, 0,text,null);
     }
   
