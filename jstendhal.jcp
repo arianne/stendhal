@@ -544,7 +544,15 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\stendhal_init.sql</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\stendhalcreateaccount.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\StendhalPlayerDatabase.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1001,6 +1009,10 @@
 			</fileitem>
 			<fileitem>
 				<path>tiled\src\build.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>tiled\src\dist\tiled.jar</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1642,9 +1654,6 @@
 			</folderitem>
 			<folderitem>
 				<path>lib</path>
-			</folderitem>
-			<folderitem>
-				<path>stendhal-0.45-src</path>
 			</folderitem>
 		</exclude>
 	</files>
