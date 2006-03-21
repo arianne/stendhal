@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+import games.stendhal.common.Direction;
 import java.util.*;
 
 /** This class is a special type of GameEntity that has animation, that is
@@ -54,11 +55,9 @@ public abstract class AnimatedEntity extends Entity
     sprite=defaultAnimation();
     }
 
-  /** This method is called to modify the propierties of the game entity when the object
-   *  that it represent has changed. */
-  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
+  public void onMove(int x, int y, Direction direction, double speed)
     {
-    super.onChangedAdded(base,diff);
+    super.onMove(x,y,direction,speed);
     
     if(!stopped())
       {
@@ -79,10 +78,10 @@ public abstract class AnimatedEntity extends Entity
         {
         animation="move_up";
         }
-      }
-    else if(diff.has("dir"))
+      }     
+    else
       {
-      int value=diff.getInt("dir");
+      int value=direction.get();
       switch(value)
         {
         case 4:
