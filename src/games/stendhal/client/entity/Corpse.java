@@ -31,6 +31,7 @@ public class Corpse extends PassiveEntity
   private String clazz;
   private String name;
   private String killer;
+  private int stage;
   
   private EntityContainer contentWindow;
 
@@ -93,6 +94,11 @@ public class Corpse extends PassiveEntity
       {
       killer=diff.get("killer");
       }
+    
+    if(diff.has("stage"))
+      {
+      stage=diff.getInt("stage");
+      }
     }
     
   public String defaultAction()
@@ -113,14 +119,14 @@ public class Corpse extends PassiveEntity
       String text=null;
       if(name==null)
         {
-        text="You see a corpse";
+        text="("+stage+") You see a corpse";
         }
       else
         {
-        text="You see "+name+". It was killed by "+killer;
+        text="("+stage+") You see "+name+". It was killed by "+killer;
         }
       
-      text=text+". You can <<Inspect>> it to see its contents.";
+      text=text+". You can #Inspect it to see its contents.";
         
       StendhalClient.get().addEventLine(text,Color.green);
       gameObjects.addText(this, text, Color.green);

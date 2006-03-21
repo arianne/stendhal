@@ -28,7 +28,7 @@ public class Corpse extends PassiveEntity
   {
   private static final Logger logger = Log4J.getLogger(Corpse.class);
 
-  final public static int DEGRADATION_TIMEOUT=3000; // 30 minutes at 300 ms
+  final public static int DEGRADATION_TIMEOUT=90; // 30 minutes at 300 ms
   private int degradation;
   private int stage;
 

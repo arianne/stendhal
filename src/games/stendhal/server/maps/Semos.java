@@ -311,7 +311,7 @@ public class Semos implements IContent
       });
 
     zone.assignRPObjectID(npc);
-    npc.put("class","oldmannpc");
+    npc.put("class","wisemannpc");
     npc.set(28,11);
     npc.initHP(100);
     zone.addNPC(npc);
@@ -876,9 +876,18 @@ public class Semos implements IContent
           {
           public void fire(Player player, String text, SpeakerNPC engine)
             {
-            for(String quest: player.getQuests())
+            if(player.isAdmin())
               {
-              player.removeQuest(quest);
+              for(String quest: player.getQuests())
+                {
+                player.removeQuest(quest);
+                }
+              }
+            else
+              {
+              say("Ummm! No, you clean me! begin with my back!");
+              player.setHP(player.getHP()-5);
+              world.modify(player);
               }
             }
           });
