@@ -311,7 +311,7 @@ public class Semos implements IContent
       });
 
     zone.assignRPObjectID(npc);
-    npc.put("class","wisemannpc");
+    npc.put("class","investigatornpc");
     npc.set(28,11);
     npc.initHP(100);
     zone.addNPC(npc);

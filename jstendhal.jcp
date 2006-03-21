@@ -604,6 +604,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\PersonalChest.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\Player.java</path>
 				<source>true</source>
 			</fileitem>
@@ -712,6 +716,14 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\BeerForHayunn.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\HatForMonogenes.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\maps\quests\IntroducePlayers.java</path>
 				<source>true</source>
 			</fileitem>
@@ -721,6 +733,38 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\maps\quests\LookBookforCeryl.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\MeetHackim.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\MeetHayunn.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\MeetIo.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\MeetKetteh.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\MeetMonogenes.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\MeetNomyr.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\MeetZynn.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\NewsFromHackim.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -961,6 +1005,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\tools\tiled\StendhalMapWriter.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>data\conf\admins.list</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
