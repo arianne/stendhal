@@ -450,9 +450,9 @@ public class Player extends RPEntity
         }
       }
       
-    if(!player.has("admin"))
+    if(!has("admin"))
       {
-      player.put("admin","");
+      put("admin","");
       }
             
     return adminNames.contains(getName());
