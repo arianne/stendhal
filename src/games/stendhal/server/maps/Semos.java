@@ -28,24 +28,24 @@ public class Semos implements IContent
   private StendhalRPWorld world;
   private NPCList npcs;
   private ShopList shops;
-  
+
   public Semos(StendhalRPWorld world) throws org.xml.sax.SAXException, java.io.IOException
     {
     this.npcs=NPCList.get();
     this.shops=ShopList.get();
     this.world=world;
-    
+
     buildSemosCityArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_city")));
     buildSemosVillageArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village_w")));
     buildSemosSouthPlainsArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_plains_s")));
     buildSemosTavernArea();
     buildSemosBlacksmithArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_blacksmith")));
     buildSemosTempleArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_temple")));
-    buildSemosLibraryArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_library"))); 
-    buildSemosStorageArea(); 
-    buildSemosBankArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_bank"))); 
+    buildSemosLibraryArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_library")));
+    buildSemosStorageArea();
+    buildSemosBankArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_bank")));
     }
-  
+
   private void buildSemosBankArea(StendhalRPZone zone)
     {
     Portal portal=new Portal();
@@ -68,7 +68,7 @@ public class Semos implements IContent
   private void buildSemosStorageArea()
     {
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_storage_0"));
-    
+
     Portal portal=new Portal();
     zone.assignRPObjectID(portal);
     portal.setx(9);
@@ -85,7 +85,7 @@ public class Semos implements IContent
     portal.setDestination("int_semos_storage_-1",0);
     zone.addPortal(portal);
 
-    SpeakerNPC npc=npcs.add("Eonna",new SpeakerNPC() 
+    SpeakerNPC npc=npcs.add("Eonna",new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -116,8 +116,38 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
 
+    npc=npcs.add("Ketteh Wehoh",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(21,5));
+        nodes.add(new Path.Node(29,5));
+        nodes.add(new Path.Node(29,9));
+        nodes.add(new Path.Node(21,9));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+        Behaviours.addHelp(this,"I am the good manners and decency observer. I can help you by telling you about obvious and common sense things you should already know like not wandering naked around...");
+
+        Behaviours.addJob(this,"I am committed to keep civilized customs in Semos. I know any kind of protocol ever known and one hundred manners of doing the same thing wrong. Well, I doubt about when it should be used the spoon or the fork but on the other hand nobody uses cutlery in Semos");
+
+        add(1,new String[]{"quest","task"},null,1,"I do not have any task for you right now. If you need anything from me just say it.",null);
+
+        Behaviours.addGoodbye(this);
+        }
+      });
+
+    zone.assignRPObjectID(npc);
+    npc.put("class","elegantladynpc");
+    npc.set(21,5);
+    npc.initHP(100);
+    zone.addNPC(npc);
+
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_storage_-1"));
-    
+
     portal=new Portal();
     zone.assignRPObjectID(portal);
     portal.setx(26);
@@ -136,6 +166,58 @@ public class Semos implements IContent
     portal.setNumber(0);
     portal.setDestination("0_semos_city",2);
     zone.addPortal(portal);
+
+    SpeakerNPC npc=npcs.add("Hackim Easso",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(5,1));
+        nodes.add(new Path.Node(8,1));
+        nodes.add(new Path.Node(7,1));
+        nodes.add(new Path.Node(7,6));
+        nodes.add(new Path.Node(16,6));
+        nodes.add(new Path.Node(16,1));
+        nodes.add(new Path.Node(15,1));
+        nodes.add(new Path.Node(16,1));
+        nodes.add(new Path.Node(16,6));
+        nodes.add(new Path.Node(7,6));
+        nodes.add(new Path.Node(7,1));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player,String text,SpeakerNPC engine)
+            {
+		//A little trick to make NPC remember if it has met player before anc react accordingly
+		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+	    if (!player.isQuestCompleted("Hackim"))
+              {
+              engine.say("Hi foreigner, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
+              player.setQuest("Hackim","done");
+              }
+            else
+              {
+              engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
+              }
+            }
+	  });
+        Behaviours.addHelp(this,"I'm the blacksmith's assistant. I can help you by sharing my curiosity with you... Have you come here to buy weapons?");
+
+        Behaviours.addJob(this,"I help Xoderos the blacksmith in making weapons for the Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
+
+        Behaviours.addGoodbye(this);
+        }
+      });
+
+    zone.assignRPObjectID(npc);
+    npc.put("class","naughtyteennpc");
+    npc.set(5,1);
+    npc.initHP(100);
+    zone.addNPC(npc);
     }
 
   private void buildSemosLibraryArea(StendhalRPZone zone)
@@ -156,7 +238,60 @@ public class Semos implements IContent
     portal.setDestination("0_semos_city",4);
     zone.addPortal(portal);
 
-    NPC npc=npcs.add("Ceryl",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add("Zynn Iwuhos",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(15,2));
+        nodes.add(new Path.Node(12,2));
+        nodes.add(new Path.Node(12,5));
+        nodes.add(new Path.Node(13,5));
+        nodes.add(new Path.Node(13,6));
+        nodes.add(new Path.Node(13,5));
+        nodes.add(new Path.Node(15,5));
+        nodes.add(new Path.Node(15,6));
+        nodes.add(new Path.Node(15,5));
+        nodes.add(new Path.Node(17,5));
+        nodes.add(new Path.Node(17,6));
+        nodes.add(new Path.Node(17,2));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player,String text,SpeakerNPC engine)
+            {
+		//A little trick to make NPC remember if it has met player before anc react accordingly
+		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+	    if (!player.isQuestCompleted("Zynn"))
+              {
+              engine.say("Hi, potential reader. Here's recorded all the history of Semos city and some facts about the whole island of Faiumoni in which we are. I can give you an introduction to its #geography and #history. I can report you the latest #news.");
+              player.setQuest("Zynn","done");
+              }
+            else
+              {
+              engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
+              }
+            }
+	  });
+        Behaviours.addHelp(this,"I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news.");
+
+        Behaviours.addJob(this,"I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
+
+        add(1,new String[]{"quest","task"},null,1,"I do not have any task for you right now. If you need anything from me just say it.",null);
+
+        }
+      });
+    zone.assignRPObjectID(npc);
+    npc.put("class","wisemannpc");
+    npc.set(15,2);
+    npc.initHP(100);
+    zone.addNPC(npc);
+
+    npc=npcs.add("Ceryl",new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -165,16 +300,16 @@ public class Semos implements IContent
         nodes.add(new Path.Node(28,20));
         setPath(nodes,true);
         }
-      
+
       protected void createDialog()
-        {        
+        {
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"I am the librarian.");
         Behaviours.addHelp(this,"Read!.");
         Behaviours.addGoodbye(this);
         }
       });
-    
+
     zone.assignRPObjectID(npc);
     npc.setOutfit("0");
     npc.set(28,11);
@@ -237,12 +372,68 @@ public class Semos implements IContent
         Behaviours.addGoodbye(this);
         }
       });
-      
+
     zone.assignRPObjectID(npc);
     npc.put("class","welcomernpc");
     npc.set(9,5);
     npc.initHP(100);
-    zone.addNPC(npc);    
+    zone.addNPC(npc);
+
+    npc=npcs.add("Io Flotto",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(8,18));
+        nodes.add(new Path.Node(8,19));
+        nodes.add(new Path.Node(15,19));
+        nodes.add(new Path.Node(15,18));
+        nodes.add(new Path.Node(16,18));
+        nodes.add(new Path.Node(16,13));
+        nodes.add(new Path.Node(15,13));
+        nodes.add(new Path.Node(15,12));
+        nodes.add(new Path.Node(12,12));
+        nodes.add(new Path.Node(8,12));
+        nodes.add(new Path.Node(8,13));
+        nodes.add(new Path.Node(7,13));
+        nodes.add(new Path.Node(7,18));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player,String text,SpeakerNPC engine)
+            {
+		//A little trick to make NPC remember if it has met player before anc react accordingly
+		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+	    if (!player.isQuestCompleted("Io"))
+              {
+              engine.say("I waited you, "+player.getName()+". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
+              player.setQuest("Io","done");
+              }
+            else
+              {
+              engine.say("Hi again, "+player.getName()+". How can I #help you this time? Not that I don't already know...");
+              }
+            }
+	  });
+        Behaviours.addHelp(this,"I'm a telepath and telekinetic. I can help you by sharing my mental skills with you... Do you want me to show you the six basic elements of telepathy? I already know the answer but I'm being polite...");
+
+        Behaviours.addJob(this,"I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion");
+
+        add(1,new String[]{"quest","task"},null,1,"I do not have any task for you right now. If you need anything from me just say it. I think it's simply unkind reading one's mind without permission.",null);
+
+        Behaviours.addGoodbye(this);
+        }
+      });
+
+    zone.assignRPObjectID(npc);
+    npc.put("class","floattingladynpc");
+    npc.set(8,18);
+    npc.initHP(100);
+    zone.addNPC(npc);
     }
 
   private void buildSemosTavernArea()
@@ -256,7 +447,7 @@ public class Semos implements IContent
     portal.setDestination("0_semos_city",0);
     zone.addPortal(portal);
 
-    NPC npc=npcs.add("Margaret",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add("Margaret",new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -274,9 +465,9 @@ public class Semos implements IContent
         nodes.add(new Path.Node(17,10));
         setPath(nodes,true);
         }
-      
+
       protected void createDialog()
-        {        
+        {
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"I am the bar maid for this fair tavern. We sell fine beers and food.");
         Behaviours.addHelp(this,"At the tavern you can get a #offer of drinks and take a break to meet new people!.");
@@ -284,7 +475,7 @@ public class Semos implements IContent
         Behaviours.addGoodbye(this);
         }
       });
-    
+
     zone.assignRPObjectID(npc);
     npc.put("class","tavernbarmaidnpc");
     npc.set(17,12);
@@ -292,7 +483,7 @@ public class Semos implements IContent
     zone.addNPC(npc);
 
 
-    npc=new SpeakerNPC()
+    npc=npcs.add("Xin Blanca",new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -305,7 +496,7 @@ public class Semos implements IContent
         }
 
       protected void createDialog()
-        {        
+        {
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"Shhh! I sell adventurers stuff.");
         Behaviours.addHelp(this,"I buy and sell several items, ask me for my offer");
@@ -313,10 +504,9 @@ public class Semos implements IContent
         Behaviours.addBuyer(this,new Behaviours.BuyerBehaviour(shops.get("buystuff")));
         Behaviours.addGoodbye(this);
         }
-      };
+	});
 
     zone.assignRPObjectID(npc);
-    npc.setName("Xin Blanca");
     npc.put("class","weaponsellernpc");
     npc.setx(2);
     npc.sety(14);
@@ -337,7 +527,7 @@ public class Semos implements IContent
         }
 
       protected void createDialog()
-        {        
+        {
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"I sell bows and arrows stuff.");
         Behaviours.addHelp(this,"I sell several items, ask me for my #offer");
@@ -352,7 +542,7 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
     }
-    
+
   private void buildSemosSouthPlainsArea(StendhalRPZone zone)
     {
     Sign sign=new Sign();
@@ -361,7 +551,7 @@ public class Semos implements IContent
     sign.sety(43);
     sign.setText("You are about to leave this area to move to the forest.|You may fatten up your sheep there on wild berries.|Be careful though, these forests crawl with wolves.");
     zone.add(sign);
-    
+
     sign=new Sign();
     zone.assignRPObjectID(sign);
     sign.setx(38);
@@ -390,9 +580,9 @@ public class Semos implements IContent
     zone.assignRPObjectID(sign);
     sign.setx(60);
     sign.sety(47);
-    sign.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");    
+    sign.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");
     zone.add(sign);
-    
+
     sign=new Sign();
     zone.assignRPObjectID(sign);
     sign.setx(16);
@@ -410,7 +600,7 @@ public class Semos implements IContent
     portal.setNumber(0);
     portal.setDestination("int_semos_tavern_0",0);
     zone.addPortal(portal);
-    
+
     portal=new Portal();
     zone.assignRPObjectID(portal);
     portal.setx(53);
@@ -432,7 +622,7 @@ public class Semos implements IContent
     portal.setx(6);
     portal.sety(22);
     portal.setNumber(3);
-    portal.setDestination("int_semos_library",1);
+    portal.setDestination("int_semos_library",0);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -440,7 +630,7 @@ public class Semos implements IContent
     portal.setx(11);
     portal.sety(22);
     portal.setNumber(4);
-    portal.setDestination("int_semos_library",0);
+    portal.setDestination("int_semos_library",1);
     zone.addPortal(portal);
 
     portal=new Portal();
@@ -464,15 +654,15 @@ public class Semos implements IContent
     portal.setx(12);
     portal.sety(49);
     portal.setNumber(60);
-    zone.addPortal(portal);    
+    zone.addPortal(portal);
 
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
     sign.setx(4);
     sign.sety(41);
-    sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");    
+    sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
     zone.add(sign);
-    
+
     sign=new Sign();
     zone.assignRPObjectID(sign);
     sign.setx(8);
@@ -504,8 +694,146 @@ public class Semos implements IContent
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("leather_armor"));
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("money"));
     zone.add(chest);
-    
-    NPC npc=new SpeakerNPC()
+
+    SpeakerNPC npc=npcs.add("Nomyr Ahba",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(46,19));
+        nodes.add(new Path.Node(46,20));
+        nodes.add(new Path.Node(50,20));
+        nodes.add(new Path.Node(50,19));
+        nodes.add(new Path.Node(50,20));
+        nodes.add(new Path.Node(46,20));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player,String text,SpeakerNPC engine)
+            {
+		//A little trick to make NPC remember if it has met player before anc react accordingly
+		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+	    if (!player.isQuestCompleted("Nomyr"))
+              {
+              engine.say("I've heard cries inside and I was just... but you look disoriented, foreigner. Do you want to know what has been happening around here lately?");
+              player.setQuest("Nomyr","done");
+              }
+            else
+              {
+              engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
+              }
+            }
+	  });
+        Behaviours.addHelp(this,"I'm a... hmmm... observer. I can help you by sharing my information about rumours with you... Do you want to know what has been happening around here lately?");
+
+        Behaviours.addJob(this,"I am committed to peek every curious fact about Semos. I know any rumor that has ever existed in Semos and I have invented most of them. Well, except that about Hackim smuggling Deniran's army weapons to wandering adventurer's like you");
+
+        add(1,new String[]{"quest","task"},null,1,"I do not have any task for you right now. If you need anything from me just say it.",null);
+
+        Behaviours.addGoodbye(this);
+        }
+      });
+
+    zone.assignRPObjectID(npc);
+    npc.put("class","thiefnpc");
+    npc.set(46,19);
+    npc.initHP(100);
+    zone.addNPC(npc);
+
+    npc=npcs.add("Monogenes",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        setPath(nodes,false);
+        }
+
+      protected void createDialog()
+        {
+	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player,String text,SpeakerNPC engine)
+            {
+		//A little trick to make NPC remember if it has met player before anc react accordingly
+		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+	    if (!player.isQuestCompleted("Monogenes"))
+              {
+              engine.say("Hi foreigner, don't be surprised if people here are reserved: the fear of the advances of Blordrough's dark legion has affected everybody, including me. Do you want to know how to socialize with Semos' people?");
+              player.setQuest("Monogenes","done");
+              }
+            else
+              {
+              engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
+              }
+            }
+	  });
+        Behaviours.addHelp(this,"I'm diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?");
+
+        Behaviours.addJob(this,"I am committed to give directions to foreigners and show them how to talk to people here. However, when I'm in a bad mood I give them misleading directions hehehe... What is not necessarily bad because I can give wrong directions unwillingly anyway and they can result in being the right directions");
+
+        Behaviours.addGoodbye(this);
+        }
+      });
+
+    zone.assignRPObjectID(npc);
+    npc.put("class","oldmannpc");
+    npc.set(27,21);
+    npc.setDirection(Direction.DOWN);
+    npc.initHP(100);
+    zone.addNPC(npc);
+
+    npc=npcs.add("Hayunn Naratha",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        nodes.add(new Path.Node(27,37));
+        nodes.add(new Path.Node(27,38));
+        nodes.add(new Path.Node(29,38));
+        nodes.add(new Path.Node(29,37));
+        nodes.add(new Path.Node(29,38));
+        nodes.add(new Path.Node(27,38));
+        setPath(nodes,true);
+        }
+
+      protected void createDialog()
+        {
+	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player,String text,SpeakerNPC engine)
+            {
+		//A little trick to make NPC remember if it has met player before anc react accordingly
+		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+	    if (!player.isQuestCompleted("Hayunn"))
+              {
+              engine.say("Hi. I am Hayunn Naratha, a retired adventurer. Do you want me to tell you how I used to kill creatures?");
+              player.setQuest("Hayunn","done");
+              }
+            else
+              {
+              engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
+              }
+            }
+	  });
+        Behaviours.addHelp(this,"Well, I'm a retired adventurer as I've told you before. I only can help you by sharing my experience with you... Do you want me to tell you how I used to kill creatures?");
+
+        Behaviours.addJob(this,"I've sworn defending with my life the people of Semos from any creature that dares to get out of this dungeon. With all our young people battling Blordrough's dark legion at south, monsters are getting more and more confident to go to the surface.");
+
+        Behaviours.addGoodbye(this);
+        }
+      });
+
+    zone.assignRPObjectID(npc);
+    npc.put("class","oldheronpc");
+    npc.set(27,37);
+    npc.initHP(100);
+    zone.addNPC(npc);
+
+    npc=new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -520,21 +848,21 @@ public class Semos implements IContent
         nodes.add(new Path.Node(22,28));
         setPath(nodes,true);
         }
-        
+
       protected void createDialog()
-        {        
+        {
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"Hehehe! Job! hehehe! Muahahaha!.");
         Behaviours.addHelp(this,"I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.");
         Behaviours.addGoodbye(this);
-        
+
         add(1, "quest", null, 1, null, new SpeakerNPC.ChatAction()
           {
           public void fire(Player player, String text, SpeakerNPC engine)
             {
             switch(Rand.rand(2))
               {
-              case 0:        
+              case 0:
                 say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");
                 break;
               case 1:
@@ -543,7 +871,7 @@ public class Semos implements IContent
               }
             }
           });
-          
+
         add(1, "cleanme!", null, 1, "What?", new SpeakerNPC.ChatAction()
           {
           public void fire(Player player, String text, SpeakerNPC engine)
@@ -555,17 +883,16 @@ public class Semos implements IContent
             }
           });
         }
-      };
-    
+       };
+
     zone.assignRPObjectID(npc);
-    npc.setName("Diogenes");
     npc.put("class","beggarnpc");
+    npc.setName("Diogenes");
     npc.setx(24);
     npc.sety(42);
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
     zone.addNPC(npc);
-      
 
     npc=new SpeakerNPC()
       {
@@ -595,7 +922,7 @@ public class Semos implements IContent
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
     zone.addNPC(npc);
-    
+
     npc=npcs.add("Tad",new SpeakerNPC()
       {
       protected void createPath()
@@ -610,7 +937,7 @@ public class Semos implements IContent
         Behaviours.addGoodbye(this);
         }
       });
-      
+
     zone.assignRPObjectID(npc);
     npc.setOutfit("0");
     npc.set(7,50);

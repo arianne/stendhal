@@ -68,6 +68,8 @@ Changelog
 - Fixed negative xp problem.
 - Fixed a problem that made players not to leave world because of sheeps.
 - Added door and keys
+- Added new quests
+- Added stendhal own database that speed up game turns
 
 0.46 Mar 10, 2006
 - Fixed sheep

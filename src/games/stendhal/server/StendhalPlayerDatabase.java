@@ -213,6 +213,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase
       {
       if(playerDatabase==null)
         {
+        logger.info("Starting Stendhal JDBC Database");
         playerDatabase=resetDatabaseConnection();
         }
         
