@@ -284,8 +284,6 @@ public class Player extends RPEntity
                 {
                 Item entity = world.getRuleManager().getEntityManager().getItem(item.get("name"));
                 
-                // HACK: We have to manually copy some attributes
-                entity.put("#db_id",item.get("#db_id"));
                 entity.setID(item.getID());
                 
                 if(entity instanceof StackableItem)
@@ -299,7 +297,7 @@ public class Player extends RPEntity
               }
             catch(Exception e)
               {
-              logger.error("Error adding "+item+" to player slot" + slot);
+              logger.error("Error adding "+item+" to player slot" + slot,e);
               }            
             }
           }
