@@ -100,10 +100,17 @@ public abstract class ActionListener
    */
   protected boolean isCorrectClass(List<Class> validClasses, RPObject object)
   {
-    if (validClasses.contains(object.getClass()))
+  for(Class clazz: validClasses)
     {
+    if(clazz.isInstance(object))
+      {
       return true;
+      }
     }
+//    if (validClasses.contains(object.getClass()))
+//    {
+//      return true;
+//    }
     
     logger.debug("object "+object.getID()+" is not of the correct class. it is "+object.getClass().getName());
     return false;

@@ -128,7 +128,7 @@ public class Corpse extends PassiveEntity
   
   public int decDegradation()
     {
-    int new_stage=5-(int)(((float)degradation/(float)DEGRADATION_TIMEOUT)*6.0);
+    int new_stage=5-(int)(((float)degradation/(float)DEGRADATION_TIMEOUT)*5.0);
     if(stage!=new_stage)
       {
       stage=new_stage;

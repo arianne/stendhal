@@ -74,6 +74,9 @@ public class Player extends RPEntity
       // Store sheep at DB
       player.addRPSlot("#flock",1,RPClass.HIDDEN);
       
+      // Bank system
+      player.addRPSlot("bank",10,RPClass.HIDDEN);
+      
       // We use this for the buddy system
       player.addRPSlot("!buddy",1,RPClass.HIDDEN);
       player.add("online",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
@@ -166,6 +169,11 @@ public class Player extends RPEntity
     if(!object.hasSlot("cloak"))
       {
       object.addSlot(new RPSlot("cloak"));
+      }
+
+    if(!object.hasSlot("bank"))
+      {
+      object.addSlot(new RPSlot("bank"));
       }
     
 

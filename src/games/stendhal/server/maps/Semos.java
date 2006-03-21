@@ -5,6 +5,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.PersonalChest;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.item.Item;
@@ -63,6 +64,18 @@ public class Semos implements IContent
     portal.setNumber(1);
     portal.setDestination("0_semos_city",6);
     zone.addPortal(portal);
+    
+    PersonalChest chest=new PersonalChest();
+    zone.assignRPObjectID(chest);
+    chest.setx(28);
+    chest.sety(6);
+    zone.add(chest);
+
+    chest=new PersonalChest();
+    zone.assignRPObjectID(chest);
+    chest.setx(20);
+    chest.sety(6);
+    zone.add(chest);
     }
 
   private void buildSemosStorageArea()

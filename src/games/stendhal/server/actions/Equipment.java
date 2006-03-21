@@ -104,7 +104,6 @@ public class Equipment extends ActionListener
   /** callback for the equip action */
   private void onEquip(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
-
     Log4J.startMethod(logger,"equip");
 
     // get source and check it
@@ -112,6 +111,7 @@ public class Equipment extends ActionListener
     if (!source.isValid() || !source.checkDistance(player,MAXDISTANCE) || !source.checkClass(validContainerClassesList))
       {
       // source is not valid
+      logger.debug("Source is not valid");
       return;
       }
     
@@ -120,6 +120,7 @@ public class Equipment extends ActionListener
     if (!dest.isValid() || !dest.checkDistance(player,MAXDISTANCE) || !dest.checkClass(validContainerClassesList))
       {
       // destination is not valid
+      logger.debug("Destination is not valid");
       return;
       }
     
@@ -428,6 +429,7 @@ public class Equipment extends ActionListener
         // is the container a player and not the current one?
         if (parent instanceof Player && !parent.getID().equals(player.getID()))
         {
+          logger.warn("trying to drop an item into another players inventory");
           // trying to drop an item into another players inventory
           return;
         }
@@ -435,6 +437,7 @@ public class Equipment extends ActionListener
         // check slot
         if (!parent.hasSlot(slot))
         {
+          logger.warn("Parent don't have slot: "+ action);
           return;
         }
         // ok, action is valid

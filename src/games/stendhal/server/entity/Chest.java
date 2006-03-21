@@ -14,10 +14,11 @@ package games.stendhal.server.entity;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
+import games.stendhal.server.events.UseEvent;
 
 import marauroa.common.game.*;
 
-public class Chest extends Entity
+public class Chest extends Entity implements UseEvent
   {
   private boolean open;
   
