@@ -22,6 +22,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 
+import java.io.*;
 import java.awt.geom.Rectangle2D;
 import java.util.Collections;
 import java.util.Comparator;
@@ -425,9 +426,36 @@ public class Player extends RPEntity
     put("private_text", text);
     }
   
+  private static List<String> adminNames;
+  
   public boolean isAdmin()
     {
-    return has("admin");
+    if(adminNames==null)
+      {
+      adminNames=new LinkedList<String>();
+      
+      try
+        {
+        BufferedReader in=new BufferedReader(new FileReader("data/conf/admins.list"));
+        
+        String line;
+        while((line=in.readLine())!=null)
+          {
+          adminNames.add(line);
+          }
+        }
+      catch(Exception e)
+        {
+        logger.error("Error loading admin names",e);
+        }
+      }
+      
+    if(!player.has("admin"))
+      {
+      player.put("admin","");
+      }
+            
+    return adminNames.contains(getName());
     }
 
   public void getArea(Rectangle2D rect, double x, double y)
