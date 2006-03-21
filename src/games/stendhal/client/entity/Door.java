@@ -21,6 +21,7 @@ import java.awt.geom.*;
 public class Door extends AnimatedEntity 
   {
   private boolean open;
+  private int orientation;
 
   /** true means the user requested to open this Door */
   private boolean requestOpen;
@@ -36,9 +37,27 @@ public class Door extends AnimatedEntity
     SpriteStore store=SpriteStore.get();  
     
     String clazz=base.get("class");
+    String direction=null;
 
-    sprites.put("open", store.getAnimatedSprite("data/sprites/doors/"+clazz+".png",0,1,3,2));      
-    sprites.put("close", store.getAnimatedSprite("data/sprites/doors/"+clazz+".png",1,1,3,2));      
+    orientation=base.getInt("dir");
+    switch(orientation)
+      {
+      case 4:
+        direction="w";
+        break;
+      case 2:
+        direction="e";
+        break;
+      case 1:
+        direction="n";
+        break;
+      case 3:
+        direction="s";
+        break;
+      }
+    
+    sprites.put("open", store.getAnimatedSprite("data/sprites/doors/"+clazz+"_"+direction+".png",0,1,3,2));      
+    sprites.put("close", store.getAnimatedSprite("data/sprites/doors/"+clazz+"_"+direction+".png",1,1,3,2));      
     }
   
   protected Sprite defaultAnimation()
@@ -50,8 +69,16 @@ public class Door extends AnimatedEntity
   // When rpentity moves, it will be called with the data.
   public void onMove(int x, int y, Direction direction, double speed)
     {
-    this.x=x-1;
-    this.y=y;
+    if(orientation==1 || orientation==3)
+      {
+      this.x=x-1;
+      this.y=y;
+      }
+    else
+      {
+      this.x=x;
+      this.y=y-1;
+      }
     }
 
   public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
