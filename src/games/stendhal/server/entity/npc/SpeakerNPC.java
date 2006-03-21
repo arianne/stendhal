@@ -221,17 +221,18 @@ public abstract class SpeakerNPC extends NPC
       {
       if(rp.getTurn()-lastMessageTurn>TIMEOUT_PLAYER_CHAT)
         {
-        actualState=0;
-        attending=null;
         if(byeMessage!=null)
           {
           say(byeMessage);          
           }
         
-        if(byeAction!=null);
+        if(byeAction!=null)
           {
-          byeAction.fire(null,null,this);
+          byeAction.fire(attending,null,this);
           }
+
+        actualState=0;
+        attending=null;
         }
       
       if(!stopped())
@@ -242,10 +243,10 @@ public abstract class SpeakerNPC extends NPC
     
     if(!talking())
       {
-      Player nearest=getNearestPlayer(6);
+      Player nearest=getNearestPlayer(7);
       if(nearest!=null)
         {
-        if(initChatCondition==null || initChatCondition.fire(nearest,this))
+        if(initChatAction!=null && (initChatCondition==null || initChatCondition.fire(nearest,this)))
           {    
           initChatAction.fire(nearest,null,this);
           }
@@ -497,6 +498,11 @@ public abstract class SpeakerNPC extends NPC
   final private static int EXACT_MATCH=1;
   final private static int SIMILAR_MATCH=2;
   
+  public void listenTo(Player player, String text)
+    {
+    tell(player,text);
+    }
+  
   /** This function evolves the FSM */
   private boolean tell(Player player, String text)
     {
@@ -510,19 +516,20 @@ public abstract class SpeakerNPC extends NPC
     // If the attended player got idle, attend this one.
     if(rp.getTurn()-lastMessageTurn>TIMEOUT_PLAYER_CHAT)
       {
-      logger.debug("Attended player "+attending+" went timeout");
-      attending=player;
-      actualState=0;
-
       if(byeMessage!=null)
         {
         say(byeMessage);          
         }
       
-      if(byeAction!=null);
+      if(byeAction!=null)
         {
-        byeAction.fire(null,null,this);
+        byeAction.fire(attending,null,this);
         }
+
+      logger.debug("Attended player "+attending+" went timeout");
+
+      attending=player;
+      actualState=0;
       }
     
     // If we are attending another player make this one waits.

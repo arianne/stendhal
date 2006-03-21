@@ -933,12 +933,29 @@ public class Semos implements IContent
 
       protected void createDialog()
         {
-        Behaviours.addGreeting(this,"Ssshh! I have a #task for you.");
+        Behaviours.addGreeting(this,null, new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player, String text, SpeakerNPC engine)
+            {
+            engine.say("Ssshh! Come here "+player.getName()+"!. I have a #task for you.");
+            }
+          });
         Behaviours.addGoodbye(this);
         }
       });
 
     zone.assignRPObjectID(npc);
+    npc.addInitChatMessage(null,new SpeakerNPC.ChatAction()
+      {      
+      public void fire(Player player, String text, SpeakerNPC engine)
+        {
+        if(!player.hasQuest("TadFirstChat"))
+          {
+          player.setQuest("TadFirstChat","done");
+          engine.listenTo(player, "hi");
+          }
+        }
+      });
     npc.setOutfit("0");
     npc.set(7,50);
     npc.setDirection(Direction.RIGHT);

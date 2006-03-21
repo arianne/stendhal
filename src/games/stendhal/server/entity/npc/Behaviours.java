@@ -31,7 +31,18 @@ public class Behaviours
   
   public static void addGreeting(SpeakerNPC npc)
     {
-    addGreeting(npc,"Greetings! How may I help you?");
+    addGreeting(npc,"Greetings! How may I help you?", null);
+    }
+  
+  public static void addGreeting(SpeakerNPC npc, String text)
+    {
+    addGreeting(npc,text,null);
+    }
+
+  public static void addGreeting(SpeakerNPC npc, String text, SpeakerNPC.ChatAction action)
+    {
+    npc.add(0,new String[]{"hi","hello","greetings","hola"}, 1,text,action);
+
     npc.addWaitMessage(null,new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
@@ -40,12 +51,7 @@ public class Behaviours
         }
       });
     }
-  
-  public static void addGreeting(SpeakerNPC npc, String text)
-    {
-    npc.add(0,new String[]{"hi","hello","greetings","hola"}, 1,text,null);
-    }
-
+    
   public static void addReply(SpeakerNPC npc, String trigger, String text)
     {
     npc.add(1,trigger, null, 1,text,null);
