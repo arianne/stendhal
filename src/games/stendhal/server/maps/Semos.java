@@ -311,7 +311,7 @@ public class Semos implements IContent
       });
 
     zone.assignRPObjectID(npc);
-    npc.setOutfit("0");
+    npc.put("class","oldmannpc");
     npc.set(28,11);
     npc.initHP(100);
     zone.addNPC(npc);
@@ -956,7 +956,7 @@ public class Semos implements IContent
           }
         }
       });
-    npc.setOutfit("0");
+    npc.put("class","childnpc");
     npc.set(7,50);
     npc.setDirection(Direction.RIGHT);
     npc.initHP(100);

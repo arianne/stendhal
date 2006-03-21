@@ -50,7 +50,7 @@ public class Jail implements IContent
       });
 
     zone.assignRPObjectID(npc);
-    npc.setOutfit("0");
+    npc.put("class","youngsoldiernpc");
     npc.set(33,44);
     npc.initHP(100);
     zone.add(npc);    
