@@ -187,7 +187,9 @@ public class StendhalRPWorld extends RPWorld
     addArea("0_nalwor_river_s");
     
     // Level -1
+    addArea("-1_semos_mine_n2_w2");
     addArea("-1_semos_mine_n2");
+    addArea("-1_semos_mine_nw");
     addArea("-1_semos_dungeon");
     addArea("-1_orril_dungeon");
     addArea("-1_orril_castle_w");
