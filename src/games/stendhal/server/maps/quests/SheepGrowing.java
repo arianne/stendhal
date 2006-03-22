@@ -142,8 +142,7 @@ public class SheepGrowing implements IQuest
         nodes.add(new Path.Node(58,21));
         nodes.add(new Path.Node(39,21));
         nodes.add(new Path.Node(39,14));
-        nodes.add(new Path.Node(20,14));
-        nodes.add(new Path.Node(20,21));
+        nodes.add(new Path.Node(23,14));
         nodes.add(new Path.Node(23,21));
         nodes.add(new Path.Node(23,44));
         setPath(nodes,true);

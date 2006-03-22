@@ -80,17 +80,18 @@ public class Semos implements IContent
     portal.setDestination("0_semos_city",6);
     zone.addPortal(portal);
     
-    PersonalChest chest=new PersonalChest();
-    zone.assignRPObjectID(chest);
-    chest.setx(28);
-    chest.sety(6);
-    zone.add(chest);
+    for(int i=0;i<4;i++)
+      {
+      PersonalChest chest=new PersonalChest();
+      zone.assignRPObjectID(chest);
+      chest.set(2+6*i,2);
+      zone.add(chest);
 
-    chest=new PersonalChest();
-    zone.assignRPObjectID(chest);
-    chest.setx(20);
-    chest.sety(6);
-    zone.add(chest);
+      chest=new PersonalChest();
+      zone.assignRPObjectID(chest);
+      chest.set(2+6*i,15);
+      zone.add(chest);
+      }
     }
 
   private void buildSemosStorageArea()

@@ -27,7 +27,7 @@ public class Chest extends Entity implements UseEvent
     RPClass chest=new RPClass("chest");
     chest.isA("entity");
     chest.add("open",RPClass.FLAG);
-    chest.addRPSlot("content",4);
+    chest.addRPSlot("content",20);
     }
   
   public Chest(RPObject object) throws AttributeNotFoundException
