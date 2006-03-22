@@ -123,7 +123,7 @@ public class Chest extends AnimatedEntity
       }
     else if(action.equals("Inspect"))
       {
-      client.getGameGUI().inspect(this,content);
+      client.getGameGUI().inspect(this,content,4,5);
       }
     else if(action.equals("Open") || action.equals("Close"))
       {
