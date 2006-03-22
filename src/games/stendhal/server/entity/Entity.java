@@ -39,6 +39,10 @@ public abstract class Entity extends RPObject
     return world;
     }
 
+  public static StendhalRPRuleProcessor getRPRuleProcessor()
+    {
+    return rp;
+    }
 
   public static void setRPContext(StendhalRPRuleProcessor rpContext,StendhalRPWorld worldContext)
     {

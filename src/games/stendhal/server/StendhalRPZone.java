@@ -18,6 +18,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.OneWayPortal;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
@@ -27,6 +28,9 @@ import java.awt.geom.Rectangle2D;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -42,11 +46,14 @@ import org.apache.log4j.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone
   {
+  final public static int DEGRADATION_TIMEOUT=10800; // 30 minutes at 300 ms
+
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(StendhalRPZone.class);
+
   /** the world */
   private StendhalRPWorld world;
-  
+
   private List<TransferContent> contents;
 
   private List<String> entryPoints;
@@ -80,6 +87,7 @@ public class StendhalRPZone extends MarauroaRPZone
     entryPoints=new LinkedList<String>();
     zoneChangePoints=new LinkedList<String>();
     portals=new LinkedList<Portal>();
+    itemsOnFloor=new HashMap<Item,Integer>();
     numHouses=0;
 
     npcs=new LinkedList<NPC>();
@@ -626,15 +634,35 @@ public class StendhalRPZone extends MarauroaRPZone
     Rectangle2D area=entity.getArea(x,y);
     return collisionMap.collides(area);
     }
+  
+  private Map<Item,Integer> itemsOnFloor;
 
   public synchronized void add(RPObject object) throws RPObjectInvalidException
     {
     super.add(object);
+    
+    if(object instanceof Item)
+      {      
+      int droppedOn=0;
+      if(Entity.getRPRuleProcessor()!=null)
+        {
+        droppedOn=Entity.getRPRuleProcessor().getTurn();        
+        }
+      
+      itemsOnFloor.put((Item)object,droppedOn);
+      }
     }
 
   public synchronized RPObject remove(RPObject.ID id) throws RPObjectNotFoundException
     {
-    return super.remove(id);
+    RPObject object=super.remove(id);
+
+    if(object instanceof Item)
+      {
+      itemsOnFloor.remove((Item)object);      
+      }
+
+    return object;
     }
 
   public synchronized RPObject remove(RPObject object) throws RPObjectNotFoundException
@@ -677,6 +705,29 @@ public class StendhalRPZone extends MarauroaRPZone
     else
       {
       super.modify(object);
+      }
+    }
+
+  public void nextTurn()
+    {
+    super.nextTurn();    
+    
+    int turn=0;
+    if(Entity.getRPRuleProcessor()!=null)
+      {
+      turn=Entity.getRPRuleProcessor().getTurn();        
+      }
+
+    Iterator<Map.Entry<Item,Integer>> it=itemsOnFloor.entrySet().iterator();
+    
+    while(it.hasNext())
+      {
+      Map.Entry<Item,Integer> entry=it.next();
+      
+      if(turn-entry.getValue()>DEGRADATION_TIMEOUT)
+        {
+        remove(entry.getKey().getID());
+        }
       }
     }
     
