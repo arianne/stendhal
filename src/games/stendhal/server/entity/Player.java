@@ -210,7 +210,7 @@ public class Player extends RPEntity
       logger.warn("cannot place player at its last position. reseting to semos city entry point",e);
       
       firstVisit=true;
-      player.put("zoneid","0_semos_city");        
+      player.put("zoneid","int_semos_townhall");        
 
       world.add(player);
       }
