@@ -75,7 +75,7 @@ public class Player extends RPEntity
       player.addRPSlot("#flock",1,RPClass.HIDDEN);
       
       // Bank system
-      player.addRPSlot("bank",10,RPClass.HIDDEN);
+      player.addRPSlot("bank",20,RPClass.HIDDEN);
       
       // We use this for the buddy system
       player.addRPSlot("!buddy",1,RPClass.HIDDEN);

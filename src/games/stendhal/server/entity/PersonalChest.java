@@ -8,13 +8,14 @@ import games.stendhal.server.StendhalScriptSystem;
 public class PersonalChest extends Chest
   {
   private Player attending;
+  private IRPZone zone;
   private PersonalChest outer;
   
   public PersonalChest() throws AttributeNotFoundException
     {
     super();
     outer=this;
-    
+
     attending=null;    
 
     /** Add a script to copy automatically. */
@@ -36,7 +37,7 @@ public class PersonalChest extends Chest
             }
           
           /* If player is not next to depot clean it. */
-          if(!nextto(attending,0.25))
+          if(!nextto(attending,0.25) || !zone.has(attending.getID()))
             {
             attending=null;
             content=getSlot("content");
@@ -52,6 +53,8 @@ public class PersonalChest extends Chest
   public void onUsed(RPEntity user)
     {
     Player player=(Player)user;    
+
+    zone=world.getRPZone(player.getID());    
     
     if(player.nextto(this,0.25))
       {

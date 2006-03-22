@@ -55,7 +55,7 @@ public class Chest extends AnimatedEntity
       // we're wanted to open this?
       if (requestOpen)
         {
-        client.getGameGUI().inspect(this,content);
+        client.getGameGUI().inspect(this,content,4,5);
         requestOpen = false;
         }
       }

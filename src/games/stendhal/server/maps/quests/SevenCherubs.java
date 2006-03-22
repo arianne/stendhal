@@ -96,7 +96,7 @@ public class SevenCherubs implements IQuest
               {
               engine.say("Thou have proven yourself brave enough to wear this present!.");
               
-              String [] items={"golden_boots", "golden_armor", "fire_sword", "golden_shield"};
+              String [] items={"golden_boots", "golden_armor", "fire_sword", "golden_shield","golden_legs","golden_helmet"};
               Item item=world.getRuleManager().getEntityManager().getItem(items[Rand.rand(items.length)]);
               if(!player.equip(item))
                 {

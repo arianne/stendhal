@@ -348,12 +348,17 @@ public class InGameGUI implements KeyListener
    * To stop inspecting this method is called with entity=null */
   public EntityContainer inspect(Entity entity, RPSlot slot)
     {
+    return inspect(entity,slot,2,2);
+    }
+    
+  public EntityContainer inspect(Entity entity, RPSlot slot, int width, int height)
+    {
     if (entity == null || slot == null || ground == null)
     {
       return null;
     }
     
-    EntityContainer container = new EntityContainer(gameObjects,entity.getType(),2,2);
+    EntityContainer container = new EntityContainer(gameObjects,entity.getType(),width,height);
     container.setSlot(entity,slot.getName());
     ground.addChild(container);
     
