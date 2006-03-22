@@ -18,7 +18,7 @@ package games.stendhal.common;
  */
 public class Debug
 {
-  public static final String VERSION="0.46";
+  public static final String VERSION="0.47";
 
   /** if this is enable tileset are loaded on demand. */
   public static final boolean VERY_FAST_CLIENT_START = true;

@@ -29,6 +29,33 @@
 		</ai>
 	</creature>
 
+	<creature name="crab">
+		<type class="animal" subclass="crab" tileid="79"/>
+		<attributes>
+			<atk value="10"/>
+			<def value="5"/>
+			<hp value="10"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="0"/>
+		<experience value="3"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money"  quantity="[2,5]" probability="70"/>
+			<item value="meat"  quantity="[1,4]" probability="60"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai> 
+			<says>
+				<noise value="Aooooooouuhhh!!"/>
+			</says>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
 	<creature name="rat">
 		<type class="small_animal" subclass="rat" tileid="12"/>
 		<attributes>
@@ -57,6 +84,30 @@
 
 	<!-- Level 1 -->
 
+	<creature name="bat">
+		<type class="animal" subclass="bat" tileid="77"/>
+		<attributes>
+			<atk value="19"/>
+			<def value="13"/>
+			<hp value="20"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="1"/>
+		<experience value="5"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money"  quantity="[2,5]" probability="70"/>
+			<item value="meat"  quantity="[1,4]" probability="60"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai> 
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
 	<creature name="caverat">
 		<type class="small_animal" subclass="caverat" tileid="13"/>
 		<attributes>
@@ -82,7 +133,61 @@
 		</ai>
 	</creature>
 
+	<creature name="penguin">
+		<type class="animal" subclass="penguin" tileid="78"/>
+		<attributes>
+			<atk value="27"/>
+			<def value="13"/>
+			<hp value="20"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="1"/>
+		<experience value="10"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money"  quantity="[2,5]" probability="70"/>
+			<item value="meat"  quantity="[1,4]" probability="60"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai> 
+			<says>
+				<noise value="Aooooooouuhhh!!"/>
+			</says>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
+
 	<!-- Level 2 -->
+
+	<creature name="monkey">
+		<type class="animal" subclass="monkey" tileid="76"/>
+		<attributes>
+			<atk value="27"/>
+			<def value="13"/>
+			<hp value="35"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="2"/>
+		<experience value="25"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money"  quantity="[2,5]" probability="70"/>
+			<item value="meat"  quantity="[1,4]" probability="60"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai> 
+			<says>
+				<noise value="Aooooooouuhhh!!"/>
+			</says>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+		</ai>
+	</creature>
 
 	<creature name="boar">
 		<type class="animal" subclass="boar" tileid="20"/>
@@ -140,6 +245,37 @@
 
 	<creature name="gnome">
 		<type class="gnome" subclass="gnome" tileid="50"/>
+		<attributes>
+			<atk value="35"/>
+			<def value="12"/>
+			<hp value="50"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="2"/>
+		<experience value="35"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[4,20]" probability="100"/>
+			<item value="studded_shield" quantity="1" probability="40"/>
+			<item value="short_sword" quantity="1" probability="40"/>
+			<item value="sword" quantity="1" probability="10"/>
+			<item value="studded_armor" quantity="1" probability="25"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Giiiiiaaants! Run away!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="coward"/>
+		</ai>
+	</creature>
+
+	<creature name="mage_gnome">
+		<type class="gnome" subclass="woman_gnome" tileid="87"/>
 		<attributes>
 			<atk value="35"/>
 			<def value="12"/>
@@ -546,6 +682,30 @@
 	</creature>
 
 	<!-- Level 8 -->
+
+	<creature name="green_slime">
+		<type class="animal" subclass="green_slime" tileid="81"/>
+		<attributes>
+			<atk value="51"/>
+			<def value="17"/>
+			<hp value="90"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="8"/>
+		<experience value="130"/>
+		<respawn value="1500"/>
+		<drops>
+			<item value="money" quantity="[5,10]" probability="100"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
 
 	<creature name="archer_kobold">
 		<type class="kobold" subclass="archer_kobold" tileid="44"/>
@@ -989,6 +1149,37 @@
 
 	<!-- Level 15 -->
 
+	<creature name="ghost">
+		<type class="undead" subclass="ghost" tileid="90"/>
+		<attributes>
+			<atk value="59"/>
+			<def value="20"/>
+			<hp value="140"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="15"/>
+		<experience value="240"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[4,20]" probability="100"/>
+			<item value="studded_shield" quantity="1" probability="40"/>
+			<item value="short_sword" quantity="1" probability="40"/>
+			<item value="sword" quantity="1" probability="10"/>
+			<item value="studded_armor" quantity="1" probability="25"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Ooooouuuuuh!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="coward"/>
+		</ai>
+	</creature>
+
 	<creature name="giantrat">
 		<type class="giant_animal" subclass="giantrat" tileid="23"/>
 		<attributes>
@@ -1128,6 +1319,30 @@
 
 
 	<!-- Level 16 -->
+
+	<creature name="brown_slime">
+		<type class="animal" subclass="brown_slime" tileid="82"/>
+		<attributes>
+			<atk value="66"/>
+			<def value="17"/>
+			<hp value="160"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="16"/>
+		<experience value="260"/>
+		<respawn value="1500"/>
+		<drops>
+			<item value="money" quantity="[5,10]" probability="100"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
 
 	<creature name="venom_gargoyle">
 		<type class="gargoyle" subclass="venom_gargoyle" tileid="55"/>
@@ -1426,6 +1641,30 @@
 
     <!-- Level 24 -->
 
+	<creature name="black_slime">
+		<type class="animal" subclass="black_slime" tileid="83"/>
+		<attributes>
+			<atk value="77"/>
+			<def value="17"/>
+			<hp value="210"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="24"/>
+		<experience value="360"/>
+		<respawn value="1500"/>
+		<drops>
+			<item value="money" quantity="[5,10]" probability="100"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+		</ai>
+	</creature>
+
     <creature name="wooden_golem">
 		<type class="golem" subclass="wooden_golem" tileid="46"/>
 		<attributes>
@@ -1570,6 +1809,34 @@
 	</creature>
 
     <!-- Level 30 -->
+
+	<creature name="death">
+		<type class="undead" subclass="death" tileid="89"/>
+		<attributes>
+			<atk value="84"/>
+			<def value="23"/>
+			<hp value="120"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="30"/>
+		<experience value="400"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[4,20]" probability="100"/>
+			<item value="studded_shield" quantity="1" probability="40"/>
+			<item value="short_sword" quantity="1" probability="40"/>
+			<item value="sword" quantity="1" probability="10"/>
+			<item value="studded_armor" quantity="1" probability="25"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="coward"/>
+		</ai>
+	</creature>
 
 	<creature name="commander_elf">
 		<type class="elf" subclass="commander_elf" tileid="61"/>
@@ -1719,261 +1986,7 @@
 		</ai>
 	</creature>
 
-	<!-- Level 50 -->
-    
-	<creature name="green_dragon">
-		<type class="huge_animal" subclass="green_dragon" tileid="51"/>
-		<attributes>
-			<atk value="121"/>
-			<def value="25"/>
-			<hp value="300"/>
-			<speed value="1"/>
-			<size value="3,4"/>
-		</attributes>
-		<level value="50"/>
-		<experience value="6900"/>
-		<respawn value="19000"/>
-		<drops>
-			<item value="green_dragon_cloak" quantity="1" probability="5"/>
-			<item value="greater_potion" quantity="[1,3]" probability="50"/>
-			<item value="money" quantity="[100,2500]" probability="100"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-			<profile name="heal" params="5,50"/>
-		</ai>
-	</creature>
-
-	<!-- Level 60 -->
-    
-	<creature name="lich">
-		<type class="undead" subclass="lich" tileid="38"/>
-		<attributes>
-			<atk value="140"/>
-			<def value="25"/>
-			<hp value="650"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="60"/>
-		<experience value="9300"/>
-		<respawn value="25000"/>
-		<drops>
-			<item value="greater_potion" quantity="[1,3]" probability="50"/>
-			<item value="money" quantity="[100,2500]" probability="100"/>
-			<item value="studded_shield" quantity="1" probability="40"/>
-			<item value="scythe" quantity="1" probability="5"/>
-			<item value="studded_armor" quantity="1" probability="20"/>
-			<item value="lich_cloak" quantity="1" probability="5"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
-
-	<!-- Level 70 -->
-    
-	<creature name="blue_dragon">
-		<type class="huge_animal" subclass="blue_dragon" tileid="52"/>
-		<attributes>
-			<atk value="180"/>
-			<def value="25"/>
-			<hp value="900"/>
-			<speed value="1"/>
-			<size value="3,4"/>
-		</attributes>
-		<level value="70"/>
-		<experience value="12500"/>
-		<respawn value="32000"/>
-		<drops>
-			<item value="blue_dragon_cloak" quantity="1" probability="5"/>
-			<item value="greater_potion" quantity="[3,7]" probability="80"/>
-			<item value="money" quantity="[800,5000]" probability="100"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-			<profile name="heal" params="5,50"/>
-		</ai>
-	</creature>
-
-	<!-- Level 100 -->
-    
-	<creature name="black_dragon">
-		<type class="mythical_animal" subclass="black_dragon" tileid="53"/>
-		<attributes>
-			<atk value="220"/>
-			<def value="21"/>
-			<hp value="1200"/>
-			<speed value="1"/>
-			<size value="6,8"/>
-		</attributes>
-		<level value="100"/>
-		<experience value="24000"/>
-		<respawn value="64000"/>
-		<drops>
-			<item value="greater_potion" quantity="[5,10]" probability="50"/>
-			<item value="money" quantity="[1000,15000]" probability="100"/>
-			<item value="fire_sword" quantity="1" probability="25"/>
-			<item value="black_dragon_cloak" quantity="1" probability="5"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-			<profile name="heal" params="5,50"/>
-		</ai>
-	</creature>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<creature name="monkey">
-		<type class="animal" subclass="monkey" tileid="76"/>
-		<attributes>
-			<atk value="27"/>
-			<def value="13"/>
-			<hp value="35"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="2"/>
-		<experience value="25"/>
-		<respawn value="900"/>
-		<drops>
-			<item value="money"  quantity="[2,5]" probability="70"/>
-			<item value="meat"  quantity="[1,4]" probability="60"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai> 
-			<says>
-				<noise value="Aooooooouuhhh!!"/>
-			</says>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
-
-	<creature name="bat">
-		<type class="animal" subclass="bat" tileid="77"/>
-		<attributes>
-			<atk value="19"/>
-			<def value="13"/>
-			<hp value="20"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="1"/>
-		<experience value="5"/>
-		<respawn value="900"/>
-		<drops>
-			<item value="money"  quantity="[2,5]" probability="70"/>
-			<item value="meat"  quantity="[1,4]" probability="60"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai> 
-			<says>
-				<noise value="Aooooooouuhhh!!"/>
-			</says>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
-
-	<creature name="penguin">
-		<type class="animal" subclass="penguin" tileid="78"/>
-		<attributes>
-			<atk value="27"/>
-			<def value="13"/>
-			<hp value="20"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="1"/>
-		<experience value="10"/>
-		<respawn value="900"/>
-		<drops>
-			<item value="money"  quantity="[2,5]" probability="70"/>
-			<item value="meat"  quantity="[1,4]" probability="60"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai> 
-			<says>
-				<noise value="Aooooooouuhhh!!"/>
-			</says>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
-
-	<creature name="crab">
-		<type class="animal" subclass="crab" tileid="79"/>
-		<attributes>
-			<atk value="10"/>
-			<def value="5"/>
-			<hp value="10"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="0"/>
-		<experience value="3"/>
-		<respawn value="900"/>
-		<drops>
-			<item value="money"  quantity="[2,5]" probability="70"/>
-			<item value="meat"  quantity="[1,4]" probability="60"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai> 
-			<says>
-				<noise value="Aooooooouuhhh!!"/>
-			</says>
-			<profile name="animal"/>
-			<profile name="ofensive"/>
-		</ai>
-	</creature>
+	<!-- Level 45 -->		
 
 	<creature name="elf_sacerdotist">
 		<type class="elf" subclass="elf_sacerdotist" tileid="80"/>
@@ -2004,78 +2017,9 @@
 		</ai>
 	</creature>
 
-	<creature name="green_slime">
-		<type class="animal" subclass="green_slime" tileid="81"/>
-		<attributes>
-			<atk value="51"/>
-			<def value="17"/>
-			<hp value="90"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="8"/>
-		<experience value="130"/>
-		<respawn value="1500"/>
-		<drops>
-			<item value="money" quantity="[5,10]" probability="100"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
 
-	<creature name="brown_slime">
-		<type class="animal" subclass="brown_slime" tileid="82"/>
-		<attributes>
-			<atk value="66"/>
-			<def value="17"/>
-			<hp value="160"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="16"/>
-		<experience value="260"/>
-		<respawn value="1500"/>
-		<drops>
-			<item value="money" quantity="[5,10]" probability="100"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-
-	<creature name="black_slime">
-		<type class="animal" subclass="black_slime" tileid="83"/>
-		<attributes>
-			<atk value="77"/>
-			<def value="17"/>
-			<hp value="210"/>
-			<speed value="1"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="24"/>
-		<experience value="360"/>
-		<respawn value="1500"/>
-		<drops>
-			<item value="money" quantity="[5,10]" probability="100"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<profile name="human"/>
-			<profile name="ofensive"/>
-			<profile name="brave"/>
-		</ai>
-	</creature>
-
+	<!-- Level 50 -->
+    
 	<creature name="earth_elemental">
 		<type class="elemental" subclass="earth_elemental" tileid="85"/>
 		<attributes>
@@ -2148,37 +2092,35 @@
 		</ai>
 	</creature>
 
-	<creature name="woman_gnome">
-		<type class="gnome" subclass="woman_gnome" tileid="87"/>
+	<creature name="green_dragon">
+		<type class="huge_animal" subclass="green_dragon" tileid="51"/>
 		<attributes>
-			<atk value="35"/>
-			<def value="12"/>
-			<hp value="50"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
+			<atk value="121"/>
+			<def value="27"/>
+			<hp value="300"/>
+			<speed value="1"/>
+			<size value="3,4"/>
 		</attributes>
-		<level value="2"/>
-		<experience value="35"/>
-		<respawn value="900"/>
+		<level value="50"/>
+		<experience value="6900"/>
+		<respawn value="19000"/>
 		<drops>
-			<item value="money" quantity="[4,20]" probability="100"/>
-			<item value="studded_shield" quantity="1" probability="40"/>
-			<item value="short_sword" quantity="1" probability="40"/>
-			<item value="sword" quantity="1" probability="10"/>
-			<item value="studded_armor" quantity="1" probability="25"/>
+			<item value="green_dragon_cloak" quantity="1" probability="5"/>
+			<item value="greater_potion" quantity="[1,3]" probability="50"/>
+			<item value="money" quantity="[100,2500]" probability="100"/>
 		</drops>
 		<equips>
 		</equips>
 		<ai>
-			<says>
-				<noise value="Giiiiiaaants! Run away!"/>
-			</says>
-			<profile name="human"/>
+			<profile name="animal"/>
 			<profile name="ofensive"/>
-			<profile name="coward"/>
+			<profile name="brave"/>
+			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
-
+	
+	<!-- Level 52 -->
+		
 	<creature name="death_knight">
 		<type class="undead" subclass="death_knight" tileid="88"/>
 		<attributes>
@@ -2207,66 +2149,95 @@
 		</ai>
 	</creature>
 
-	<creature name="death">
-		<type class="undead" subclass="death" tileid="89"/>
+
+	<!-- Level 60 -->
+    
+	<creature name="lich">
+		<type class="undead" subclass="lich" tileid="38"/>
 		<attributes>
-			<atk value="84"/>
-			<def value="23"/>
-			<hp value="120"/>
-			<speed value="0.5"/>
+			<atk value="135"/>
+			<def value="30"/>
+			<hp value="650"/>
+			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
-		<level value="30"/>
-		<experience value="400"/>
-		<respawn value="900"/>
+		<level value="60"/>
+		<experience value="9300"/>
+		<respawn value="25000"/>
 		<drops>
-			<item value="money" quantity="[4,20]" probability="100"/>
+			<item value="greater_potion" quantity="[1,3]" probability="50"/>
+			<item value="money" quantity="[100,2500]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
-			<item value="short_sword" quantity="1" probability="40"/>
-			<item value="sword" quantity="1" probability="10"/>
-			<item value="studded_armor" quantity="1" probability="25"/>
+			<item value="scythe" quantity="1" probability="5"/>
+			<item value="studded_armor" quantity="1" probability="20"/>
+			<item value="lich_cloak" quantity="1" probability="5"/>
 		</drops>
 		<equips>
 		</equips>
 		<ai>
 			<profile name="human"/>
 			<profile name="ofensive"/>
-			<profile name="coward"/>
 		</ai>
 	</creature>
 
-	<creature name="ghost">
-		<type class="undead" subclass="ghost" tileid="90"/>
+	<!-- Level 70 -->
+    
+	<creature name="blue_dragon">
+		<type class="huge_animal" subclass="blue_dragon" tileid="52"/>
 		<attributes>
-			<atk value="59"/>
-			<def value="20"/>
-			<hp value="140"/>
-			<speed value="0.5"/>
-			<size value="1,2"/>
+			<atk value="180"/>
+			<def value="25"/>
+			<hp value="900"/>
+			<speed value="1"/>
+			<size value="3,4"/>
 		</attributes>
-		<level value="15"/>
-		<experience value="240"/>
-		<respawn value="900"/>
+		<level value="70"/>
+		<experience value="12500"/>
+		<respawn value="32000"/>
 		<drops>
-			<item value="money" quantity="[4,20]" probability="100"/>
-			<item value="studded_shield" quantity="1" probability="40"/>
-			<item value="short_sword" quantity="1" probability="40"/>
-			<item value="sword" quantity="1" probability="10"/>
-			<item value="studded_armor" quantity="1" probability="25"/>
+			<item value="blue_dragon_cloak" quantity="1" probability="5"/>
+			<item value="greater_potion" quantity="[3,7]" probability="80"/>
+			<item value="money" quantity="[800,5000]" probability="100"/>
 		</drops>
 		<equips>
 		</equips>
 		<ai>
-			<says>
-				<noise value="Ooooouuuuuh!"/>
-			</says>
-			<profile name="human"/>
+			<profile name="animal"/>
 			<profile name="ofensive"/>
-			<profile name="coward"/>
+			<profile name="brave"/>
+			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
 
-
+	<!-- Level 100 -->
+    
+	<creature name="black_dragon">
+		<type class="mythical_animal" subclass="black_dragon" tileid="53"/>
+		<attributes>
+			<atk value="220"/>
+			<def value="25"/>
+			<hp value="1200"/>
+			<speed value="1"/>
+			<size value="6,8"/>
+		</attributes>
+		<level value="100"/>
+		<experience value="24000"/>
+		<respawn value="64000"/>
+		<drops>
+			<item value="greater_potion" quantity="[5,10]" probability="50"/>
+			<item value="money" quantity="[1000,15000]" probability="100"/>
+			<item value="fire_sword" quantity="1" probability="25"/>
+			<item value="black_dragon_cloak" quantity="1" probability="5"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+			<profile name="heal" params="5,50"/>
+		</ai>
+	</creature>
 
 </creatures>
 
