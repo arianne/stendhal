@@ -45,6 +45,21 @@ public class Semos implements IContent
     buildSemosLibraryArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_library")));
     buildSemosStorageArea();
     buildSemosBankArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_bank")));
+    buildSemosTownhallArea((StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_townhall")));
+    }
+
+  private void buildSemosTownhallArea(StendhalRPZone zone)
+    {
+    for(int i=0;i<5;i++)
+      {
+      Portal portal=new Portal();
+      zone.assignRPObjectID(portal);
+      portal.setx(13+i);
+      portal.sety(46);
+      portal.setNumber(i);
+      portal.setDestination("0_semos_city",7);
+      zone.addPortal(portal);    
+      }
     }
 
   private void buildSemosBankArea(StendhalRPZone zone)
@@ -201,23 +216,23 @@ public class Semos implements IContent
 
       protected void createDialog()
         {
-	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
-          {
-          public void fire(Player player,String text,SpeakerNPC engine)
-            {
-		//A little trick to make NPC remember if it has met player before anc react accordingly
-		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
-	    if (!player.isQuestCompleted("Hackim"))
-              {
-              engine.say("Hi foreigner, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
-              player.setQuest("Hackim","done");
-              }
-            else
-              {
-              engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
-              }
-            }
-	  });
+      	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+                {
+                public void fire(Player player,String text,SpeakerNPC engine)
+                  {
+      		//A little trick to make NPC remember if it has met player before anc react accordingly
+      		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+      	    if (!player.isQuestCompleted("Hackim"))
+                    {
+                    engine.say("Hi foreigner, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
+                    player.setQuest("Hackim","done");
+                    }
+                  else
+                    {
+                    engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
+                    }
+                  }
+      	  });
         Behaviours.addHelp(this,"I'm the blacksmith's assistant. I can help you by sharing my curiosity with you... Have you come here to buy weapons?");
 
         Behaviours.addJob(this,"I help Xoderos the blacksmith in making weapons for the Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
@@ -273,23 +288,23 @@ public class Semos implements IContent
 
       protected void createDialog()
         {
-	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
-          {
-          public void fire(Player player,String text,SpeakerNPC engine)
-            {
-		//A little trick to make NPC remember if it has met player before anc react accordingly
-		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
-	    if (!player.isQuestCompleted("Zynn"))
-              {
-              engine.say("Hi, potential reader. Here's recorded all the history of Semos city and some facts about the whole island of Faiumoni in which we are. I can give you an introduction to its #geography and #history. I can report you the latest #news.");
-              player.setQuest("Zynn","done");
-              }
-            else
-              {
-              engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
-              }
-            }
-	  });
+      	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+                {
+                public void fire(Player player,String text,SpeakerNPC engine)
+                  {
+      		//A little trick to make NPC remember if it has met player before anc react accordingly
+      		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+      	    if (!player.isQuestCompleted("Zynn"))
+                    {
+                    engine.say("Hi, potential reader. Here's recorded all the history of Semos city and some facts about the whole island of Faiumoni in which we are. I can give you an introduction to its #geography and #history. I can report you the latest #news.");
+                    player.setQuest("Zynn","done");
+                    }
+                  else
+                    {
+                    engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
+                    }
+                  }
+      	  });
         Behaviours.addHelp(this,"I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news.");
 
         Behaviours.addJob(this,"I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
@@ -415,23 +430,23 @@ public class Semos implements IContent
 
       protected void createDialog()
         {
-	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
-          {
-          public void fire(Player player,String text,SpeakerNPC engine)
-            {
-		//A little trick to make NPC remember if it has met player before anc react accordingly
-		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
-	    if (!player.isQuestCompleted("Io"))
-              {
-              engine.say("I waited you, "+player.getName()+". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
-              player.setQuest("Io","done");
-              }
-            else
-              {
-              engine.say("Hi again, "+player.getName()+". How can I #help you this time? Not that I don't already know...");
-              }
-            }
-	  });
+      	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+                {
+                public void fire(Player player,String text,SpeakerNPC engine)
+                  {
+      		//A little trick to make NPC remember if it has met player before anc react accordingly
+      		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+      	    if (!player.isQuestCompleted("Io"))
+                    {
+                    engine.say("I waited you, "+player.getName()+". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
+                    player.setQuest("Io","done");
+                    }
+                  else
+                    {
+                    engine.say("Hi again, "+player.getName()+". How can I #help you this time? Not that I don't already know...");
+                    }
+                  }
+      	  });
         Behaviours.addHelp(this,"I'm a telepath and telekinetic. I can help you by sharing my mental skills with you... Do you want me to show you the six basic elements of telepathy? I already know the answer but I'm being polite...");
 
         Behaviours.addJob(this,"I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion");
@@ -656,11 +671,22 @@ public class Semos implements IContent
 
     portal=new Portal();
     zone.assignRPObjectID(portal);
-    portal.setx(32);
-    portal.sety(21);
+    portal.setx(18);
+    portal.sety(22);
     portal.setNumber(6);
     portal.setDestination("int_semos_bank",0);
     zone.addPortal(portal);
+
+    for(int i=0;i<3;i++)
+      {
+      portal=new Portal();
+      zone.assignRPObjectID(portal);
+      portal.setx(29+i);
+      portal.sety(13);
+      portal.setNumber(7+i);
+      portal.setDestination("int_semos_townhall",2);
+      zone.addPortal(portal);
+      }
 
     portal=new OneWayPortal();
     zone.assignRPObjectID(portal);
@@ -724,23 +750,23 @@ public class Semos implements IContent
 
       protected void createDialog()
         {
-	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
-          {
-          public void fire(Player player,String text,SpeakerNPC engine)
-            {
-		//A little trick to make NPC remember if it has met player before anc react accordingly
-		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
-	    if (!player.isQuestCompleted("Nomyr"))
-              {
-              engine.say("I've heard cries inside and I was just... but you look disoriented, foreigner. Do you want to know what has been happening around here lately?");
-              player.setQuest("Nomyr","done");
-              }
-            else
-              {
-              engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
-              }
-            }
-	  });
+      	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+                {
+                public void fire(Player player,String text,SpeakerNPC engine)
+                  {
+      		//A little trick to make NPC remember if it has met player before anc react accordingly
+      		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+      	    if (!player.isQuestCompleted("Nomyr"))
+                    {
+                    engine.say("I've heard cries inside and I was just... but you look disoriented, foreigner. Do you want to know what has been happening around here lately?");
+                    player.setQuest("Nomyr","done");
+                    }
+                  else
+                    {
+                    engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
+                    }
+                  }
+      	  });
         Behaviours.addHelp(this,"I'm a... hmmm... observer. I can help you by sharing my information about rumours with you... Do you want to know what has been happening around here lately?");
 
         Behaviours.addJob(this,"I am committed to peek every curious fact about Semos. I know any rumor that has ever existed in Semos and I have invented most of them. Well, except that about Hackim smuggling Deniran's army weapons to wandering adventurer's like you");
@@ -767,23 +793,23 @@ public class Semos implements IContent
 
       protected void createDialog()
         {
-	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
-          {
-          public void fire(Player player,String text,SpeakerNPC engine)
-            {
-		//A little trick to make NPC remember if it has met player before anc react accordingly
-		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
-	    if (!player.isQuestCompleted("Monogenes"))
-              {
-              engine.say("Hi foreigner, don't be surprised if people here are reserved: the fear of the advances of Blordrough's dark legion has affected everybody, including me. Do you want to know how to socialize with Semos' people?");
-              player.setQuest("Monogenes","done");
-              }
-            else
-              {
-              engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
-              }
-            }
-	  });
+      	add(0,"hi",null,1,null, new SpeakerNPC.ChatAction()
+                {
+                public void fire(Player player,String text,SpeakerNPC engine)
+                  {
+      		//A little trick to make NPC remember if it has met player before anc react accordingly
+      		//NPC_name quest doesn't exist anywhere else neither is used for any other purpose
+      	    if (!player.isQuestCompleted("Monogenes"))
+                    {
+                    engine.say("Hi foreigner, don't be surprised if people here are reserved: the fear of the advances of Blordrough's dark legion has affected everybody, including me. Do you want to know how to socialize with Semos' people?");
+                    player.setQuest("Monogenes","done");
+                    }
+                  else
+                    {
+                    engine.say("Hi again, "+player.getName()+". How can I #help you this time?");
+                    }
+                  }
+      	  });
         Behaviours.addHelp(this,"I'm diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?");
 
         Behaviours.addJob(this,"I am committed to give directions to foreigners and show them how to talk to people here. However, when I'm in a bad mood I give them misleading directions hehehe... What is not necessarily bad because I can give wrong directions unwillingly anyway and they can result in being the right directions");
@@ -794,7 +820,7 @@ public class Semos implements IContent
 
     zone.assignRPObjectID(npc);
     npc.put("class","oldmannpc");
-    npc.set(27,21);
+    npc.set(26,21);
     npc.setDirection(Direction.DOWN);
     npc.initHP(100);
     zone.addNPC(npc);

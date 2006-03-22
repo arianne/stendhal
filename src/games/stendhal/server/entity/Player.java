@@ -200,7 +200,7 @@ public class Player extends RPEntity
 
       if(firstVisit)
         {
-        player.put("zoneid","0_semos_city");        
+        player.put("zoneid","int_semos_townhall");        
         }
 
       world.add(player);
