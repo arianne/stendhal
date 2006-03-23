@@ -1295,6 +1295,37 @@
 		</ai>
 	</creature>
 
+	<creature name="ratwoman">
+		<type class="ratfolk" subclass="ratwoman" tileid="96"/>
+		<attributes>
+			<atk value="58"/>
+			<def value="14"/>
+			<hp value="225"/>
+			<speed value="0.9"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="15"/>
+		<experience value="275"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[20,130]" probability="100"/>
+			<item value="cheese" quantity="[4,8]" probability="85"/>
+			<item value="katana" quantity ="1" probability="2"/>
+			<item value="cloak" quantity="1" probability="20"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="You humans never leave us alone!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+			<profile name="heal" params="5,150"/>
+		</ai>
+	</creature>
+
 	<creature name="elder_beholder">
 		<type class="beholder" subclass="elder_beholder" tileid="67"/>
 		<attributes>
