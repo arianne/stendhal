@@ -105,8 +105,10 @@ public class Corpse extends PassiveEntity
     // Corpses are 1,1 while other entities are 1.5,2.
     // This fix the problem
     Rectangle2D rect=entity.getArea(entity.getx(),entity.gety());
-    setx((int)rect.getX());
-    sety((int)rect.getY());
+    
+    setx((int)rect.getCenterX());
+    sety((int)rect.getCenterY());
+    
     degradation=DEGRADATION_TIMEOUT;
     stage=0;
     put("stage",stage);
