@@ -466,6 +466,28 @@ public class Equipment extends ActionListener
         RPSlot rpslot = parent.getSlot(slot); 
         if(rpslot.isFull())
         {
+//          RPSlot bag=parent.getSlot("bag");
+//              
+//          if(!bag.isFull())
+//            {
+//            // We change the entity 
+//            RPObject object=rpslot.getFirst();
+//
+//            System.out.println (object);
+//            System.out.println ("BEFORE SLOT: "+rpslot);
+//            System.out.println ("BEFORE BAG: "+bag);
+//    
+//            rpslot.remove(object.getID());
+//            bag.assignValidID(object);
+//            bag.add(object);
+//
+//            System.out.println ("AFTER SLOT: "+rpslot);
+//            System.out.println ("AFTER BAG: "+bag);
+//    
+//            return true;
+//            }        
+//
+//
           boolean isStackable = false;
           // is the entity stackable
           if (entity instanceof Stackable)
@@ -489,11 +511,11 @@ public class Equipment extends ActionListener
             }
           }
           
-          if (!isStackable)
+        if (!isStackable)
           {
-            // entity cannot be stacked on top of another...
-            // so the equip is invalid
-            return false;
+          // entity cannot be stacked on top of another...
+          // so the equip is invalid
+          return false;
           }
         }
         
@@ -578,7 +600,7 @@ public class Equipment extends ActionListener
         }
         
         RPSlot rpslot = parent.getSlot(slot);
-
+        
         // check if the item can be merged with one already in the slot
         if (entity instanceof Stackable)
         {

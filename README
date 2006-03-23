@@ -62,7 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.47 Mar XX, 2006
+0.47 Mar 23, 2006
 - Fixed location of version file.
 - Fixed teleport bug.
 - Fixed negative xp problem.
@@ -70,6 +70,15 @@ Changelog
 - Added door and keys
 - Added new quests
 - Added stendhal own database that speed up game turns
+- Added a Townhall
+- Added several NPC to help players introduce into the game
+- Added new monsters ( around 15 more )
+- Added kobold's city
+- Fixed a bug about invincible creatures
+- Added a depot to place items safely.
+- Fixed NPC outfits
+- Fixed break dance bug
+- Better corpse representation
 
 0.46 Mar 10, 2006
 - Fixed sheep
