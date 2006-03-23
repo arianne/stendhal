@@ -457,13 +457,15 @@ public class Player extends RPEntity
         logger.error("Error loading admin names",e);
         }
       }
+    
+    boolean is=adminNames.contains(getName());
       
-    if(!has("admin"))
+    if(!has("admin") && is)
       {
       put("admin","");
       }
             
-    return adminNames.contains(getName());
+    return is;
     }
 
   public void getArea(Rectangle2D rect, double x, double y)

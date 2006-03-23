@@ -689,7 +689,7 @@
 			<atk value="51"/>
 			<def value="17"/>
 			<hp value="90"/>
-			<speed value="1"/>
+			<speed value="0.3"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="8"/>
@@ -1326,7 +1326,7 @@
 			<atk value="66"/>
 			<def value="17"/>
 			<hp value="160"/>
-			<speed value="1"/>
+			<speed value="0.4"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="16"/>
@@ -1647,7 +1647,7 @@
 			<atk value="77"/>
 			<def value="17"/>
 			<hp value="210"/>
-			<speed value="1"/>
+			<speed value="0.5"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="24"/>
