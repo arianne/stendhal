@@ -62,6 +62,9 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
+0.48 Apr XX, 2006
+- Enabled equipping on full slot.
+
 0.47 Mar 23, 2006
 - Fixed location of version file.
 - Fixed teleport bug.
