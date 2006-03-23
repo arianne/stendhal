@@ -50,7 +50,8 @@ public class FeaturesTestArea implements IContent
   
     public void update()
       {
-      this.noises.add("Thou shall not obtain the key!");
+      noises=new LinkedList<String>(noises);
+      noises.add("Thou shall not obtain the key!");
       }
     }
   

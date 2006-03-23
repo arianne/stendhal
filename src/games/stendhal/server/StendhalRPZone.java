@@ -719,6 +719,7 @@ public class StendhalRPZone extends MarauroaRPZone
       }
 
     Iterator<Map.Entry<Item,Integer>> it=itemsOnFloor.entrySet().iterator();
+    List<Item> toRemove=new LinkedList<Item>();
     
     while(it.hasNext())
       {
@@ -726,8 +727,13 @@ public class StendhalRPZone extends MarauroaRPZone
       
       if(turn-entry.getValue()>DEGRADATION_TIMEOUT)
         {
-        remove(entry.getKey().getID());
+        toRemove.add(entry.getKey());
         }
+      }
+    
+    for(Item item: toRemove)
+      {
+      remove(item.getID());
       }
     }
     

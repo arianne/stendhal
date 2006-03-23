@@ -83,6 +83,18 @@ public class EntitySlot extends Panel implements DropTarget
       MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
       RPAction action = new RPAction();
 
+//      Entity contained=container.getEntity();
+//      if(contained.distance(StendhalClient.get().getPlayer())>2)
+//        {
+//        System.out.println (contained);
+//
+//        RPAction rpaction = new RPAction();
+//        rpaction.put("type","moveto");
+//        rpaction.put("x",(int)contained.getx());
+//        rpaction.put("y",(int)contained.gety());
+//        StendhalClient.get().send(rpaction);
+//        }
+//      
       // looks like an equip
       action.put("type","equip");
       // fill 'moved from' parameters
@@ -197,6 +209,17 @@ public class EntitySlot extends Panel implements DropTarget
     }
  
     RPObject player = StendhalClient.get().getPlayer();
+
+//    if(parent.distance(StendhalClient.get().getPlayer())>2)
+//      {
+//      RPAction rpaction = new RPAction();
+//      rpaction.put("type","moveto");
+//      System.out.println (parent);
+//      rpaction.put("x",(int)parent.getx());
+//      rpaction.put("y",(int)parent.gety());
+//      StendhalClient.get().send(rpaction);
+//      }
+      
     
     RPAction action = new RPAction();
     action.put("type","equip");

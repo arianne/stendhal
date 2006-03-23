@@ -325,7 +325,7 @@ public class Equipment extends ActionListener
     {
       if (!dest.isValid() || !dest.preCheck(base,world))
       {
-        logger.warn("moveto not possible");
+        logger.warn("moveto not possible: "+dest.isValid()+"\t"+dest.preCheck(base,world));
         return false;
       }
       
@@ -464,7 +464,7 @@ public class Equipment extends ActionListener
       if (parent != null)
       {
         RPSlot rpslot = parent.getSlot(slot); 
-        if (rpslot.isFull())
+        if(rpslot.isFull())
         {
           boolean isStackable = false;
           // is the entity stackable

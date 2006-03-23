@@ -470,11 +470,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
     String[] list=null;
     if(client.getPlayer().has("target"))
       {
-      list=new String[]{"Look","Attack","Stop attack","(*)Inspect"};
+      list=new String[]{"Look","Attack","Stop attack","(*)Inspect","(*)Destroy"};
       }
     else
       {
-      list=new String[]{"Look","Attack","(*)Inspect"};
+      list=new String[]{"Look","Attack","(*)Inspect","(*)Destroy"};
       }
     return list;
     }
@@ -489,6 +489,16 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
       }
     else if(action.equals("Attack"))
       {
+// NOTE: Dunno about this feature...      
+//      if(distance(client.getPlayer())>2)
+//        {
+//        RPAction rpaction = new RPAction();
+//        rpaction.put("type","moveto");
+//        rpaction.put("x",(int)getx());
+//        rpaction.put("y",(int)gety());
+//        StendhalClient.get().send(rpaction);
+//        }
+      
       RPAction rpaction=new RPAction();
       rpaction.put("type","attack");
       int id=getID().getObjectID();
@@ -506,6 +516,14 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
       {
       RPAction rpaction=new RPAction();
       rpaction.put("type","inspect");
+      int id=getID().getObjectID();
+      rpaction.put("targetid",id);
+      client.send(rpaction);
+      }
+    else if(action.equals("(*)Destroy"))
+      {
+      RPAction rpaction=new RPAction();
+      rpaction.put("type","destroy");
       int id=getID().getObjectID();
       rpaction.put("targetid",id);
       client.send(rpaction);

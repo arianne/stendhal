@@ -60,6 +60,45 @@ public class Semos implements IContent
       portal.setDestination("0_semos_city",7);
       zone.addPortal(portal);    
       }
+
+    SpeakerNPC npc=npcs.add("Tad",new SpeakerNPC()
+      {
+      protected void createPath()
+        {
+        List<Path.Node> nodes=new LinkedList<Path.Node>();
+        setPath(nodes,false);
+        }
+
+      protected void createDialog()
+        {
+        Behaviours.addGreeting(this,null, new SpeakerNPC.ChatAction()
+          {
+          public void fire(Player player, String text, SpeakerNPC engine)
+            {
+            engine.say("Ssshh! Come here #"+player.getName()+"!. I have a #task for you.");
+            }
+          });
+        Behaviours.addGoodbye(this);
+        }
+      });
+
+    zone.assignRPObjectID(npc);
+    npc.addInitChatMessage(null,new SpeakerNPC.ChatAction()
+      {      
+      public void fire(Player player, String text, SpeakerNPC engine)
+        {
+        if(!player.hasQuest("TadFirstChat"))
+          {
+          player.setQuest("TadFirstChat","done");
+          engine.listenTo(player, "hi");
+          }
+        }
+      });
+    npc.put("class","childnpc");
+    npc.set(13,37);
+    npc.setDirection(Direction.RIGHT);
+    npc.initHP(100);
+    zone.addNPC(npc);
     }
 
   private void buildSemosBankArea(StendhalRPZone zone)
@@ -970,45 +1009,6 @@ public class Semos implements IContent
     npc.sety(45);
     npc.setBaseHP(100);
     npc.setHP(npc.getBaseHP());
-    zone.addNPC(npc);
-
-    npc=npcs.add("Tad",new SpeakerNPC()
-      {
-      protected void createPath()
-        {
-        List<Path.Node> nodes=new LinkedList<Path.Node>();
-        setPath(nodes,false);
-        }
-
-      protected void createDialog()
-        {
-        Behaviours.addGreeting(this,null, new SpeakerNPC.ChatAction()
-          {
-          public void fire(Player player, String text, SpeakerNPC engine)
-            {
-            engine.say("Ssshh! Come here "+player.getName()+"!. I have a #task for you.");
-            }
-          });
-        Behaviours.addGoodbye(this);
-        }
-      });
-
-    zone.assignRPObjectID(npc);
-    npc.addInitChatMessage(null,new SpeakerNPC.ChatAction()
-      {      
-      public void fire(Player player, String text, SpeakerNPC engine)
-        {
-        if(!player.hasQuest("TadFirstChat"))
-          {
-          player.setQuest("TadFirstChat","done");
-          engine.listenTo(player, "hi");
-          }
-        }
-      });
-    npc.put("class","childnpc");
-    npc.set(7,50);
-    npc.setDirection(Direction.RIGHT);
-    npc.initHP(100);
     zone.addNPC(npc);
     }
   }

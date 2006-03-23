@@ -36,15 +36,16 @@ public class Administration extends ActionListener
 
   public static void register()
     {
-    Administration Administration=new Administration();
-    StendhalRPRuleProcessor.register("inspect",Administration);
-    StendhalRPRuleProcessor.register("tellall",Administration);
-    StendhalRPRuleProcessor.register("teleport",Administration);
-    StendhalRPRuleProcessor.register("teleportto",Administration);
-    StendhalRPRuleProcessor.register("alter",Administration);
-    StendhalRPRuleProcessor.register("summon",Administration);
-    StendhalRPRuleProcessor.register("summonat",Administration);
-    StendhalRPRuleProcessor.register("invisible",Administration);
+    Administration administration=new Administration();
+    StendhalRPRuleProcessor.register("inspect",administration);
+    StendhalRPRuleProcessor.register("destroy",administration);
+    StendhalRPRuleProcessor.register("tellall",administration);
+    StendhalRPRuleProcessor.register("teleport",administration);
+    StendhalRPRuleProcessor.register("teleportto",administration);
+    StendhalRPRuleProcessor.register("alter",administration);
+    StendhalRPRuleProcessor.register("summon",administration);
+    StendhalRPRuleProcessor.register("summonat",administration);
+    StendhalRPRuleProcessor.register("invisible",administration);
     }
 
   public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
@@ -89,6 +90,10 @@ public class Administration extends ActionListener
     else if(type.equals("inspect"))
       {
       onInspect(world,rules,player,action);
+      }
+    else if(type.equals("destroy"))
+      {
+      onDestroy(world,rules,player,action);
       }
     }
   
@@ -536,6 +541,55 @@ public class Administration extends ActionListener
       }
     
     player.setPrivateText(st.toString());
+    rules.removePlayerText(player);
+
+    Log4J.finishMethod(logger,"onInspect");
+    }
+
+
+  private void onDestroy(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"onDestroy");
+
+    RPEntity inspected=null;
+      
+    if(action.has("targetid"))
+      {
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
+      
+      RPObject.ID id=new RPObject.ID(action.getInt("targetid"),zone.getID().getID());
+      if(zone.has(id))
+        {
+        RPObject object=zone.get(id);
+        
+        if(object instanceof RPEntity)
+          {
+          inspected=(RPEntity)object;
+          }
+        }
+      }
+      
+    if(inspected==null)
+      {
+      String text="Entity not found";
+
+      player.setPrivateText(text);
+      rules.removePlayerText(player);
+      return;
+      }
+    
+    if(inspected instanceof Player)
+      {
+      String text="You can't remove players";
+
+      player.setPrivateText(text);
+      rules.removePlayerText(player);
+      return;
+      }
+    
+    inspected.onDead(player);
+    
+    player.setPrivateText("Removed entity "+action.get("targetid"));;
     rules.removePlayerText(player);
 
     Log4J.finishMethod(logger,"onInspect");

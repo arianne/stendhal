@@ -44,6 +44,11 @@ public class MoveableEntityContainer implements Draggable
   private int      objectx;
   /** y-pos of the item on the ground */
   private int      objecty;
+  
+  public Entity getEntity()
+  {
+    return parent;
+  }
 
   /** constuctor to use when the item is inside a container */
   public MoveableEntityContainer(RPObject content, Entity parent,
