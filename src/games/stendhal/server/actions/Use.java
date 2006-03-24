@@ -111,13 +111,6 @@ public class Use extends ActionListener
           entityUseEvent.onUsed(player);
           return;
           }
-          
-//        if(entity instanceof ConsumableItem)
-//          {
-//          /* This will happen when item is on the player's slot */
-//          player.consumeItem((ConsumableItem)entity);
-//          world.modify(player);
-//          }
         }
       }
     // When use is cast over something on the floor
@@ -139,54 +132,12 @@ public class Use extends ActionListener
 
         rules.addGameEvent(player.getName(),"use",name);
         
-//        if((object instanceof OneWayPortal))
-//          {
-//          // One way portals are just destination points. Can't be used.
-//          return;
-//          }
-//        
         if(object instanceof UseEvent)
           {          
           UseEvent item=(UseEvent)object;
           item.onUsed(player);
           return;
           }
-          
-//        if(object instanceof Portal)
-//          {
-//          Portal portal=(Portal)object;
-//
-//          if(StendhalRPAction.usePortal(player, portal))
-//            {
-//            StendhalRPAction.transferContent(player);
-//            }
-//          }
-//        else if(object instanceof ConsumableItem)
-//          {
-//
-//          /* This will happen when item is on the player's slot */
-//          player.consumeItem((ConsumableItem)object);
-//          world.modify(player);
-//          }
-//
-//        else if(object instanceof Chest)
-//          {          
-//          Chest chest=(Chest)object;
-//          
-//          if(player.nextto(chest,0.25))
-//            {
-//            if(chest.isOpen())
-//              {
-//              chest.close();
-//              }
-//            else
-//              {
-//              chest.open();
-//              }
-//            
-//            world.modify(chest);
-//            }
-//          }
         }
       }
 
