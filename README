@@ -29,7 +29,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.47
+Version 0.47.1
 
 
 How to play
@@ -64,6 +64,9 @@ Changelog
 ---------
 0.48 Apr XX, 2006
 - Enabled equipping on full slot.
+
+0.47.1 Mar 24, 2006
+- Fixed a important problem at StendhalPlayerDatabase
 
 0.47 Mar 23, 2006
 - Fixed location of version file.
