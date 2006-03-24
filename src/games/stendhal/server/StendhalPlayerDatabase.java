@@ -155,6 +155,12 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase
       {
       name=object.get("name");
       }
+
+    String outfit="0";
+    if(object.has("outfit"))
+      {
+      outfit=object.get("outfit");
+      }
       
     int level=0;
     if(object.has("level"))
@@ -172,11 +178,11 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase
       
     if(objectid!=null && hasRPObject(trans, object_id))
       {
-      query="update avatars set name='"+name+"',level="+level+",xp="+xp+",data=? where object_id="+objectid;
+      query="update avatars set name='"+name+"',outfit='"+outfit+"',level="+level+",xp="+xp+",data=? where object_id="+objectid;
       }
     else
       {
-      query="insert into avatars(object_id,name,level,xp,data) values("+objectid+",'"+name+"',"+level+","+xp+",?)";
+      query="insert into avatars(object_id,name,outfit,level,xp,data) values("+objectid+",'"+name+"','"+outfit+"',"+level+","+xp+",?)";
       }
     logger.debug("storeRPObject is executing query "+query);
 
@@ -199,7 +205,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase
       stmt.close();
       }
     
-    return -1;
+    return object_id;
     }
 
   private static IPlayerDatabase playerDatabase=null;

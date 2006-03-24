@@ -42,7 +42,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEvjYGD4wE4Y/waq+0NltalANe+AdAaQ5iOAJTkZGKQ4CasjVm06EL9lh9jPA2STC8z5ydPHTSX7yQWU2D8JqH4yFjyFBHMosX8DUP1GLHgTneynBhi1f/DY7wVk85KIWYGYDYjZydALwp5Q+z2A9Ht20rEyUJ8KEKuSqR+E3YF617IOLE4js05xBLKdgNgZi3561D/xQJwAxIkU1j+XgfgKOyJdGvMxMJjQCJvyIeyZDrRzBhB/BOJPSPYHAtUEYcEKzAgcgCYXgCaPTT8IByPZvxVo5zYs+R+X/dTAyPbjKn+Gkv1WbJTbj57+8NmvAoxbRRzxCxJXwRP36PaPpr+hn/6oYT8p6U+JQPpTGk1/Qy7+B9r+0fJvZMf/QNs/Wv6N7PgfaPtHyz/U8M8HqimgES4kIv7pBUbtHx3/AY3/AABbkwVEABgAAA==
+   H4sIAAAAAAAAAEvjYGD4wE4Y/waq+0NltalANe+AdAaQ5iOAJTkZGKQ4CasjVm06EL9lh9jPA2STC8z5ydPHTSX7yQWU2D8JqH4yFjyFBHMosX8DUP1GLHgTneynBhi1f/DY7wVk85KIWYGYDYjZydALwp5Q+z2A9Ht20rEyUJ8KEKuSqR+E3YF617IOLE4js05xBLKdgNgZi3561D/xQJwAxIkU1j+XgfgKOyJdGvMxMJjQCJvyIeyZDrRzBhB/BOJPSPYHAtUEYcEKzAgcgCYXgCaPTT8IByPZvxVo5zYs+R+X/dTAyPbjKn+Gkv1WbJTbj57+8NmvAoxbRRzxCxJXwRP36PaPpr+hn/6oYT8p6U+JQPpTGk1/Qy7+B9r+0fJvZMf/QNs/Wv6N7PgfaPtHyz/U8M8HqimgES4kIv7pBUbtJ3/8Bzb2A8PkjAFRMv4DG/uBYXLHgEDjPwCPXp0IABgAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="48">
@@ -62,15 +62,15 @@
  </layer>
  <layer name="objects" width="32" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XMREAMAgAMVZsMtS/hMrggETBrx8BAMAUld0FAAAAN7wF//UBLqJ4uwAYAAA=
+   H4sIAAAAAAAAAO3OsQ0AMAjAMFbeZOj/J3TkBASypeyJAABgi8rpAwAAgPtedpt9hTf+dwAYAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="48" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UQQpAIQhE23b/O3Wutm3qpw2VvzcgBJkvZbDklAphUpvfO8/U8PIVWu1/dY6R+QrBv4vv3Rmndxb8f/B3y8L/+u/ofvbNbsG380e51j7wH3z8F2v+r/Pxn07w8V+0+b/Ox386wb+L7wlVnZNRAVpD1HYAGAAA
+   H4sIAAAAAAAAAO2UQQrAIAwEvfb/f/JdXr3UurqoqbMQEIwZE5bkJ6VMSKrz3849NUb5Ds32PzvHyHyH4J/FH90Zu3cW/H/wV0vhf/23dd/7ZrXg6/xWrtoH/oOP/2LN/3Y+/vMJPv6LNv/b+fjPJ/hn8dVw1toZBZaW6fEAGAAA
   </data>
  </layer>
- <layer name="navigation" width="32" height="48">
+ <layer name="navigation" width="32" height="48" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAAAA8GY/w/7KABgAAA==
   </data>

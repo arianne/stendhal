@@ -77,7 +77,10 @@ public class Chest extends Entity implements UseEvent
   public void close()
     {
     this.open=false;
-    remove("open");
+    if(has("open"))
+      {
+      remove("open");
+      }
     }
   
   public boolean isOpen()

@@ -49,7 +49,7 @@
 		</equips>
 		<ai> 
 			<says>
-				<noise value="Aooooooouuhhh!!"/>
+				<noise value="click-clack-click"/>
 			</says>
 			<profile name="animal"/>
 			<profile name="ofensive"/>
@@ -1863,6 +1863,9 @@
 		<equips>
 		</equips>
 		<ai>
+			<says>
+				<noise value="Uuuuhhhhh!, i'm gonna take you!"/>
+			</says>
 			<profile name="human"/>
 			<profile name="ofensive"/>
 			<profile name="coward"/>

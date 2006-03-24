@@ -24,6 +24,7 @@ import games.stendhal.server.entity.item.StackableItem;
 
 import java.io.*;
 import java.awt.geom.Rectangle2D;
+import java.net.URL;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -444,7 +445,9 @@ public class Player extends RPEntity
       
       try
         {
-        BufferedReader in=new BufferedReader(new FileReader("data/conf/admins.list"));
+        InputStream is=getClass().getClassLoader().getResourceAsStream("data/conf/admins.list");
+        
+        BufferedReader in=new BufferedReader(new InputStreamReader(is)); 
         
         String line;
         while((line=in.readLine())!=null)

@@ -26,6 +26,14 @@ public class GenerateBestiaryAndItems
       
     int level=-1;
     
+//    for(DefaultCreature creature: creatures)
+//      {
+//      System.out.print("\""+creature.getCreatureName()+"\",");
+//      }
+//    System.out.println ();
+//    
+//    System.exit(0);
+    
     for(DefaultCreature creature: creatures)
       {
       if(creature.getLevel()!=level)
