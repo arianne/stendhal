@@ -8,4 +8,5 @@ create table if not exists avatars
   data blob,  
   
   primary key(object_id)
-  );
+  )
+  TYPE=INNODB;

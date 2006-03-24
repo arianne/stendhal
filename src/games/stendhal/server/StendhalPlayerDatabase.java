@@ -198,7 +198,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase
     if(objectid==null)
       {
       Statement stmt = connection.createStatement();
-      query = "select LAST_INSERT_ID() as inserted_id from rpobject";
+      query = "select LAST_INSERT_ID() as inserted_id from avatars";
       logger.debug("storeRPObject is executing query "+query);
       ResultSet result = stmt.executeQuery(query);
 
