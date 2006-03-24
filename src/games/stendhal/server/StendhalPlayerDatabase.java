@@ -109,7 +109,10 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase
       rs.close();
       stmt.close();
 
-      return (RPObject)inser.readObject(new RPObject());
+      RPObject object=(RPObject)inser.readObject(new RPObject());
+      object.put("#db_id",id);
+      
+      return object;
       }
       
     rs.close();
