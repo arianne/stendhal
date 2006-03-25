@@ -339,6 +339,17 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
             client.send(add);
             }
           }
+        else if(text.startsWith("/jail ")) // Returns a complete description of the target
+          {
+          String[] command = parseString(text, 2);
+          if(command != null)
+            {
+            RPAction add = new RPAction();
+            add.put("type","jail");
+            add.put("target", command[1]);
+            client.send(add);
+            }
+          }
         else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
           {
           RPAction invisible = new RPAction();
@@ -371,13 +382,15 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
           String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php/StendhalManual#Admin",
                           "This brief help show you the most used gm commands:",
                           "- /tellall <message> \t\tWrites a private message to all players",
+                          "- /jail <player> \t\tSend a player directly to jail",
                           "- /teleport <player> <zone> <x> <y> \tTeleport the player ",
                           "- /teleportto <player> \t\tTeleport us to the player ",
                           "- /alter <player> <attrib> <mode> <value> \tChange by SETting, ADDing or SUBtracting the stat of player",
                           "- /summon <creature|item> <x> <y> \tSummon an item or creature at x,y",
                           "- /summonat <player> <slot> <item> <amount> Summon an item at the slot of the given player",
                           "- /invisible \t\t\tMakes this player invisible for creatures",
-			  "- /inspect <player> \t\t\tShows detailed info about the player"
+                          "- /inspect <player> \t\t\tShows detailed info about the player",
+                          "- /destroy <entity> \t\t\tDestroy completly an entity."
                           };
           for(String line: lines)
             {

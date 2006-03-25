@@ -95,6 +95,10 @@ public class Administration extends ActionListener
       {
       onDestroy(world,rules,player,action);
       }
+    else if(type.equals("jail"))
+      {
+      onJail(world,rules,player,action);
+      }
     }
   
   private void onTellEverybody(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
@@ -551,7 +555,7 @@ public class Administration extends ActionListener
     {
     Log4J.startMethod(logger,"onDestroy");
 
-    RPEntity inspected=null;
+    Entity inspected=null;
       
     if(action.has("targetid"))
       {
@@ -562,9 +566,9 @@ public class Administration extends ActionListener
         {
         RPObject object=zone.get(id);
         
-        if(object instanceof RPEntity)
+        if(object instanceof Entity)
           {
-          inspected=(RPEntity)object;
+          inspected=(Entity)object;
           }
         }
       }
@@ -587,11 +591,83 @@ public class Administration extends ActionListener
       return;
       }
     
-    inspected.onDead(player);
+    if(inspected instanceof RPEntity)
+      {
+      inspected.onDead(player);
+      }
+    else if(inspected instanceof Item)
+      {
+      world.remove(inspected.getID());
+      }    
     
     player.setPrivateText("Removed entity "+action.get("targetid"));;
     rules.removePlayerText(player);
 
     Log4J.finishMethod(logger,"onInspect");
     }
+
+  private void onJail(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"onTeleport");
+
+    if(action.has("target"))
+      {
+      Player teleported=null;
+      
+      String name=action.get("target");
+      for(Player p : rules.getPlayers())
+        {
+        if(p.getName().equals(name))
+          {
+          teleported=p;
+          break;
+          }
+        }
+      
+      if(teleported==null)
+        {
+        String text="Player "+name+" not found";
+
+        player.setPrivateText(text);
+        rules.removePlayerText(player);
+
+        logger.debug(text);
+        return;
+        }
+        
+      IRPZone.ID zoneid=new IRPZone.ID("int_admin_jail");
+      if(!world.hasRPZone(zoneid))
+        {
+        String text="Zone "+zoneid+" not found";
+
+        player.setPrivateText(text);
+        rules.removePlayerText(player);
+
+        logger.debug(text);
+        return;
+        }
+      
+      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(zoneid);
+      int x=15;
+      int y=20;
+      
+      if(StendhalRPAction.placeat(zone,teleported,x,y))
+        {
+        StendhalRPAction.changeZone(teleported,zone.getID().getID());
+        StendhalRPAction.transferContent(teleported);
+        
+        rules.addGameEvent(player.getName(),"teleport",teleported.getName());
+
+        world.modify(teleported);      
+        }
+      else
+        {
+        player.setPrivateText("Position ["+x+","+y+"] is occupied");
+        rules.removePlayerText(player);
+        }
+      }
+
+    Log4J.finishMethod(logger,"onTeleport");
+    }
+
   }

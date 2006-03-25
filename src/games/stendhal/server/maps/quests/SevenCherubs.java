@@ -64,7 +64,7 @@ public class SevenCherubs implements IQuest
     
     protected void createDialog()
       {        
-      add(0,"hi",null,
+      add(0,new String[]{"hi","hello","hola"},null,
           0,null,new SpeakerNPC.ChatAction()
         {
         public void fire(Player player, String text, SpeakerNPC engine)
