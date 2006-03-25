@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 
 
 import games.stendhal.server.*;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Creature;
