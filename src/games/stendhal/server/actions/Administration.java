@@ -594,7 +594,7 @@ public class Administration extends ActionListener
     
     if(inspected instanceof RPEntity)
       {
-      inspected.onDead(player);
+      ((RPEntity)inspected).onDead(player);
       }
     else if(inspected instanceof Item)
       {
