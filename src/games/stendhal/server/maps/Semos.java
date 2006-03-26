@@ -584,8 +584,11 @@ public class Semos implements IContent
         Behaviours.addGreeting(this);
         Behaviours.addJob(this,"Shhh! I sell adventurers stuff.");
         Behaviours.addHelp(this,"I buy and sell several items, ask me for my offer");
-        Behaviours.addSeller(this,new Behaviours.SellerBehaviour(shops.get("sellstuff")));
-        Behaviours.addBuyer(this,new Behaviours.BuyerBehaviour(shops.get("buystuff")));
+        
+        Behaviours.addSeller(this,new Behaviours.SellerBehaviour(shops.get("sellstuff")),false);
+        Behaviours.addBuyer(this,new Behaviours.BuyerBehaviour(shops.get("buystuff")),false);
+        add(1,"offer",null,1,"Have a look at the blackboards on the wall to see my offers", null);
+        
         Behaviours.addGoodbye(this);
 
         StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_tavern_0"));
@@ -593,13 +596,13 @@ public class Semos implements IContent
         Blackboard board=new Blackboard(false);
         zone.assignRPObjectID(board);
         board.set(2,11);
-        board.setText(shops.toString("sellstuff","-- Selling --\n"));
+        board.setText(shops.toString("sellstuff","-- Selling --"));
         zone.add(board);
     
         board=new Blackboard(false);
         zone.assignRPObjectID(board);
         board.set(3,11);
-        board.setText(shops.toString("buystuff","-- Buying --\n"));
+        board.setText(shops.toString("buystuff","-- Buying --"));
         zone.add(board);    
         }
 	    });

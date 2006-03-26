@@ -245,6 +245,11 @@ public class Behaviours
  
   public static void addSeller(SpeakerNPC npc, SellerBehaviour items)
     {
+    addSeller(npc,items, true);
+    }
+    
+  public static void addSeller(SpeakerNPC npc, SellerBehaviour items, boolean offer)
+    {
     npc.setBehaviourData("seller",items);
     
     StringBuffer st=new StringBuffer();
@@ -253,7 +258,11 @@ public class Behaviours
       st.append(item+",");
       }
        
-    npc.add(1,"offer", null, 1,"I sell "+st.toString(),null);
+    if(offer)
+      {
+      npc.add(1,"offer", null, 1,"I sell "+st.toString(),null);
+      }
+      
     npc.add(1,"buy", null,20, null,new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
@@ -438,8 +447,12 @@ public class Behaviours
       }
     }
 
-
   public static void addBuyer(SpeakerNPC npc, BuyerBehaviour items)
+    {
+    addBuyer(npc, items, true);
+    }
+
+  public static void addBuyer(SpeakerNPC npc, BuyerBehaviour items, boolean offer)
     {
     npc.setBehaviourData("buyer",items);
     
@@ -448,8 +461,12 @@ public class Behaviours
       {
       st.append(item+",");
       }
-       
-    npc.add(1,"offer", null, 1,"I buy "+st.toString(),null);
+    
+    if(offer)
+      {
+      npc.add(1,"offer", null, 1,"I buy "+st.toString(),null);
+      }
+      
     npc.add(1,"sell", null, 30, null,new SpeakerNPC.ChatAction()
       {
       public void fire(Player player, String text, SpeakerNPC engine)
