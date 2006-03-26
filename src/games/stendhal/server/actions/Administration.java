@@ -47,6 +47,7 @@ public class Administration extends ActionListener
     StendhalRPRuleProcessor.register("summon",administration);
     StendhalRPRuleProcessor.register("summonat",administration);
     StendhalRPRuleProcessor.register("invisible",administration);
+    StendhalRPRuleProcessor.register("jail",administration);
     }
 
   public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
