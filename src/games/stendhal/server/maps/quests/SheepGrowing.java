@@ -9,6 +9,7 @@ import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.maps.NPCList;
 
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
@@ -40,6 +41,7 @@ public class SheepGrowing implements IQuest
   public SheepGrowing(StendhalRPWorld world, StendhalRPRuleProcessor rules)
     {
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village_w"));
+    NPCList npcs=NPCList.get();
 
     Sign sign=new Sign();
     zone.assignRPObjectID(sign);
@@ -48,7 +50,7 @@ public class SheepGrowing implements IQuest
     sign.setText("Talk to Nishiya to buy a sheep!.|He has the best prices for miles.");
     zone.add(sign);
 
-    NPC npc=new SpeakerNPC()
+    SpeakerNPC npc=npcs.add("Nishiya", new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -108,18 +110,15 @@ public class SheepGrowing implements IQuest
         Behaviours.addSeller(this,new SheepSellerBehaviour(items));
         add(1,"care",null,1,"To feed your sheep just stand near bushes and she'll eat red cherries from them. She won't lose weight neither die from starvation. Right-click on her and choose LOOK to see her weight.",null);
         add(1,"travel",null,1,"Sometimes you'll have to say #sheep to call her because you have to be close to her to change between zones. Be patient and don't right-click on YOU and choose LEAVE SHEEP: she would never do that with you!",null);
-	add(1,"sell",null,1,"When your sheep weighs 100 (same as the number of cherries eaten) sell her to Sato, but only then or surely you'll feel cheated with his buying price.",null);
-	add(1,"own",null,1,"If you happen to see a wild or better unfairly abandoned sheep, you can own her by right-clicking on HER and choosing OWN.",null);
+	      add(1,"sell",null,1,"When your sheep weighs 100 (same as the number of cherries eaten) sell her to Sato, but only then or surely you'll feel cheated with his buying price.",null);
+	      add(1,"own",null,1,"If you happen to see a wild or better unfairly abandoned sheep, you can own her by right-clicking on HER and choosing OWN.",null);
         }
-      };
+      });
 
     zone.assignRPObjectID(npc);
     npc.put("class","sellernpc");
-    npc.setName("Nishiya");
-    npc.setx(33);
-    npc.sety(44);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
+    npc.set(33,44);
+    npc.initHP(100);
     zone.addNPC(npc);
 
 
@@ -132,7 +131,7 @@ public class SheepGrowing implements IQuest
     sign.setText("Talk to Sato to sell your sheep!.|He probably won't give you a fair price but this is a small village...|The price he will offer you depends on the weight of your sheep.");
     zone.add(sign);
 
-    npc=new SpeakerNPC()
+    npc=npcs.add("Sato", new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -198,14 +197,11 @@ public class SheepGrowing implements IQuest
         Behaviours.addBuyer(this,new SheepBuyerBehaviour(buyitems));
         Behaviours.addGoodbye(this);
         }
-      };
+      });
     zone.assignRPObjectID(npc);
-    npc.setName("Sato");
     npc.put("class","buyernpc");
-    npc.setx(40);
-    npc.sety(44);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
+    npc.set(40,44);
+    npc.initHP(100);
     zone.addNPC(npc);
     }
   }

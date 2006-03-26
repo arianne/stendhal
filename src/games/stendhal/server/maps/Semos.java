@@ -945,7 +945,7 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
 
-    npc=new SpeakerNPC()
+    npc=npcs.add("Diogenes",new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -1004,18 +1004,15 @@ public class Semos implements IContent
             }
           });
         }
-       };
+       });
 
     zone.assignRPObjectID(npc);
     npc.put("class","beggarnpc");
-    npc.setName("Diogenes");
-    npc.setx(24);
-    npc.sety(42);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
+    npc.set(24,42);
+    npc.initHP(100);
     zone.addNPC(npc);
 
-    npc=new SpeakerNPC()
+    npc=npcs.add("Carmen",new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -1034,14 +1031,11 @@ public class Semos implements IContent
         Behaviours.addHealer(this, 0);
         Behaviours.addGoodbye(this);
         }
-      };
+      });
     zone.assignRPObjectID(npc);
     npc.put("class","welcomernpc");
-    npc.setName("Carmen");
-    npc.setx(5);
-    npc.sety(45);
-    npc.setBaseHP(100);
-    npc.setHP(npc.getBaseHP());
+    npc.set(5,45);
+    npc.initHP(100);
     zone.addNPC(npc);
     }
   }

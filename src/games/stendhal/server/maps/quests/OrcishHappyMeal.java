@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.maps.NPCList;
 
 import java.util.*;
 
@@ -34,8 +35,9 @@ public class OrcishHappyMeal implements IQuest
   public OrcishHappyMeal(StendhalRPWorld world, StendhalRPRuleProcessor rules)
     {
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("-4_semos_dungeon"));
+    NPCList npcs=NPCList.get();
     
-    NPC npc=new SpeakerNPC()
+    SpeakerNPC npc=npcs.add("Tor'Koom", new SpeakerNPC()
       {
       protected void createPath()
         {
@@ -97,14 +99,11 @@ public class OrcishHappyMeal implements IQuest
         Behaviours.addBuyer(this,new SheepBuyerBehaviour(buyitems));
         Behaviours.addGoodbye(this);
         }
-      };
+      });
     zone.assignRPObjectID(npc);
     npc.put("class","orcbuyernpc");
-    npc.setName("Tor'Koom");
-    npc.setx(67);
-    npc.sety(12);
-    npc.setBaseHP(1000);
-    npc.setHP(npc.getBaseHP());
+    npc.set(67,12);
+    npc.initHP(100);
     zone.addNPC(npc);
     }  
   }
