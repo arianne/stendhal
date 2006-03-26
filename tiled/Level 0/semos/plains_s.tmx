@@ -55,7 +55,7 @@
    H4sIAAAAAAAAAO3aSVLEIBSAYcLWYeEtHBbeQj2I7UGc7+FwD1vvoC5602u1HQ7gy6JLpAISAzHt+7+qV/UWKNAEAkmMAQAA0OfEGnMqcSZxbv+6NejbhYz5pcSVxDXjr86NjPlY4lbijvEHAAA94yyiG2cR3TiLAAAAAACA/+beGvPQEI88+1g4uZ9dcw0slhLPrrkG+hNai1PX41LPrkNt4l4BABgyvunQjW86yhr6/OKbjrKYX7oxv1DS0O8vpWnvv/b7i/b+a7+/aO8/AADoRvtZQjvtZwntOEsAAAAAAAAAAICh4j2mbrzH1I33mMPgrsMTZWuy5r7P1evwgcS+xMjJNazJ7j1opPR+VK/DxxKHEkdOrmFNztH3t8qYd4mPqlw7U8yk/tcq3h6/zDx/kXiSeHZyv0zpPobaVqLe2S/6HmrPslwrKxJrHedLyvjFrEr9SzbeHr9M27xrH33TxLblrjfn77Ah+abEdsc2poxfzJaUX7fx9vhl2uZd+9im/U31Ts33a6ZEXW1/h13J92x8D5kyt1PGL2S+j92x4fZMGsq0zUP/M1feZ725fod63/DT/rlpbjedPfw6Us8hoT18LHf3vW3/lvwr/wQEBsc5AIAAAA==
   </data>
  </layer>
- <layer name="objects" width="128" height="64" visible="0">
+ <layer name="objects" width="128" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3bW07EMAyF4XllsSyDXcHeEA+ITkhH7kxi+9j/J/GG1CbHubTN3G4AAOzx9fb3Z/V54X+7y9xXx9yv5I8c3l/M7Dj2yb8XMt9v7F/6uwbrvDuur7vyV6+rV9cxD8/e4671VT1zVRlqtUL2GfoRQCzmAWShuq5a7/s41hh393gX1lun/Bn7c6rZK94zrpvlrFqzuG7MmuzzGvcSq/YWfLPX4fX9J1LFNsGO/Hsjf3hTqDnesaw3PvtkRw2sVXUPDTuVGmDsIwq1B4B5ADMqeyisN55zyVILzFU+ZnlnqYEf1MFeZ1lnyT9Cp5o7m/875t8p95muuUfpPNYqeXbeJH99szOYyG9VTh3O9FW0Mqds83j3fbxFxf6ZtcmzjUrPTxXHyKN3ORFtzFwP1bL/Natr5oB+Ks5vgAK1OVDtfmcqtMELfbUffRyDfrejrwDgP56Z7TzfMey81tlZSBXR73t2Z+N1rfEa2Wsg4gyC57lRlRy6Oas5curJ85vDBzWGA+oBuFftdz2McbtHa7ByDQBdfQN7o4lAAIAAAA==
   </data>
@@ -70,9 +70,9 @@
    H4sIAAAAAAAAAO3aMQ6AIAwFUFaP6f0v4eqkJAJ+4L2dFpIy0FIKsLvzGLPmqz9y9tjDPUbCmQAAAAAAAFjLLPM/9pZQc0976H2PEs4PAAAAAADMp3bGYBYBAAAAzKJlH+Mtlp4Jq1DL1FAnAAAAAJCj9f/PkfOVlJi9cumlAgAAkMqbFQAgxwX2XhzDAIAAAA==
   </data>
  </layer>
- <layer name="protection" width="128" height="64">
+ <layer name="protection" width="128" height="64" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABim/B8BAIAAAA==
+   H4sIAAAAAAAAAO3TwQ3DMAwEQX/Tf1FuK0gJdiSf5JsF9i9yxfNzHCdJkiRJkiRJkiRJkiRJkiS38Ef6DRzb8yrpN/P55vq/wxGkZ6D+zLTXf09Hkp6Fufb67+UM0jMx134E6b00uDLp3axuA6P2k26l+z1G7unpRpr/z4ydpe5S9+vMvhl3uT7adKN/N/p3o383+nejfzf6d6N/N/p3o383+nejfzd3+/sD70D/bvTvRv9u9O9G/270h/7d6A/9u9G/G/2hfzf6d6N/N/rvwxeRiTDwAIAAAA==
   </data>
  </layer>
 </map>

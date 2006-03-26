@@ -77,7 +77,7 @@
  </layer>
  <layer name="protection" width="128" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABim/B8BAIAAAA==
+   H4sIAAAAAAAAAO3SwRGDMAADQb7pv6i0lRogNmfD7owqOB0HAAAAAAAAAAAAAAAAAAAAAAAAcJfv5/x4jiv9feA5rvb3g2f4t78P7E3/dxvR3w/2pf+7jezvA/sZ3d8H9jKjvx/sY2Z/H1jf7P5+sLa7+vvAmu7sf/YL/jZf1X+Vj71d3Uj/Vt1I/1bdSP9W3Uj/Vt1I/1bdSP9W3Uj/Vt1I/1bdSP9W3Uj/Vt1I+9YPdaHbqwCAAAA=
   </data>
  </layer>
 </map>
