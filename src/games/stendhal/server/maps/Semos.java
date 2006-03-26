@@ -572,7 +572,7 @@ public class Semos implements IContent
         Behaviours.addBuyer(this,new Behaviours.BuyerBehaviour(shops.get("buystuff")));
         Behaviours.addGoodbye(this);
         }
-	});
+	    });
 
     zone.assignRPObjectID(npc);
     npc.put("class","weaponsellernpc");

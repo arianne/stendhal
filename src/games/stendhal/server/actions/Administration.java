@@ -610,6 +610,7 @@ public class Administration extends ActionListener
 
   private void onJail(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
+    System.out.println ("On Jail: "+action);
     Log4J.startMethod(logger,"onTeleport");
 
     if(action.has("target"))
@@ -650,8 +651,8 @@ public class Administration extends ActionListener
         }
       
       StendhalRPZone zone=(StendhalRPZone)world.getRPZone(zoneid);
-      int x=15;
-      int y=20;
+      int x=20;
+      int y=14;
       
       if(StendhalRPAction.placeat(zone,teleported,x,y))
         {

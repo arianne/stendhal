@@ -203,11 +203,6 @@ public class StendhalRPAction
         target.onAttack(source, false);
         world.modify(source);
         
-        if(target.getHP()==0)
-          {
-          logger.error("ATTACK PROBLEM: "+target);
-          }
-          
         return false;
         }
 
