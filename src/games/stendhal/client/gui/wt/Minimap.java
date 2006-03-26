@@ -60,7 +60,7 @@ public class Minimap extends Panel
     setTitletext(zone);
 
     // calculate size and scale
-    int w = cd. getWidth();
+    int w = cd.getWidth();
     int h = cd.getHeight();
 
     // calculate scale

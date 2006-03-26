@@ -35,7 +35,7 @@
  </tileset>
  <layer name="0_floor" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONnYWDgH0Y4gYM8ff3suDEl7pnLjh2P2k8f+wc6/kftH7V/KNhPChbCgnGJo6shhNeyIjCp9hMrP4oHH+blIA4PtDupjQGcHFuTgAkAAA==
+   H4sIAAAAAAAAAONnYWDgH0Y4gYM8ff3suDE93D1q/6j9o/aP2j9Q9pOChbBgXOLoagjhtawITKr9xMqP4sGHeTmIwwPtTmpjAECMDamACQAA
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="19">
@@ -45,12 +45,12 @@
  </layer>
  <layer name="2_object" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB8kcTAwJENxCgcFBhEBJrIzMExiRxVrANrZCMVNWOwvYqGe/euBdm8AYiOgPcZAbALER6DmH8Fhjz0r9eyHARGgvaJALEbj8B5sQAno36PA8D8MxEeQaJjYMXbCZlAKjrFAMD72YAOHB9Bt6PYOpFtAYLDGET0ArjIKBpJYIZgYcBxo1nM0845hESNGjlj70d3PyooZn9jEiJGD2Y9P7DCSXpA56OYdh4phA8fwyOFzD7L9R9HcroxmHsgOdDF09aSkf1LSwyggHwAAVx4KFoAJAAA=
+   H4sIAAAAAAAAAGNgIB8kcTAwJENxCgfx+tr4SLdrIjsDwyR2VLEGoJ2NUNyExf4iFuxmLSHD/vVAuzcAsRHQHmMgNgHiI1Dzj+Cwx54Vu/ghMuyHARGgvaJALEZCeA8HoAT071Fg+B8G4iNINEzsGDthMygFx1ggGB97sIHDA+g2dHsH0i0gMFjjiB4AVxlFDjgONOs5mnnHsIgRI0csQHc/KytmfGITI0YOF0hCKr8PI+kFmYNu3nGoGDZwDI8cPruR7T+K5nZlNPNAdqCLoasnxf/o9o8C2gAAsjjmeYAJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDD4yMHAwM/JwMALxHxINExMgHOgXTgKRsEoGAWjYBQMHQAAUyzsdIAJAAA=
+   H4sIAAAAAAAAAGNgoC7Q40Ow9ZHYunyYakfB0AEfORgY+DkZGHiBmA+JhokJcA60C0fBKBgF9AIdg7A8X4nHTYz81LULm3krBmGYwEDWIHbbSAYAzINwG4AJAAA=
   </data>
  </layer>
  <layer name="objects" width="32" height="19">
@@ -60,12 +60,12 @@
  </layer>
  <layer name="collision" width="32" height="19" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvGycBwbBSThQkBfGqIMZdYMXIAMX6ill2k2I/Lr9SID0rspzagl/249FISdtRwy0DYj+6WkRD/pNqPSx02cWLEcMkNRvtx2Y2rbKSm/aTYPRjspxSQWraTUxfQ2g5qYAAjmZWagAkAAA==
+   H4sIAAAAAAAAADvGycBwbBSThQkBfGqIMZdYMXIAMX6ill2k2I/Lr9SID0rspzagl/249FISdtRwy0DYj+6WkRD/xNpPSB02cWLEcMkNBfsJlY20tJ8Y+YG0n1JAatlOTl1AazuogQH03m1NgAkAAA==
   </data>
  </layer>
  <layer name="navigation" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDBI5KSuOlqbMQqGLsAV/8SI42KPglFAKaAkXVLDnlEw/AAAEwrLDIAJAAA=
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQsvoAAAeBoUK4qJgAkAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="19">

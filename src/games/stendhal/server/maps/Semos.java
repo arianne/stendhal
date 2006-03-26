@@ -8,6 +8,7 @@ import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.PersonalChest;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.Sign;
@@ -506,13 +507,28 @@ public class Semos implements IContent
 
   private void buildSemosTavernArea()
     {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_tavern_0"));
+    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_tavern_1"));
     Portal portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.set(4,4);
+    portal.setNumber(0);
+    portal.setDestination("int_semos_tavern_0",1);
+    zone.addPortal(portal);
+
+    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_tavern_0"));
+    portal=new Portal();
     zone.assignRPObjectID(portal);
     portal.setx(22);
     portal.sety(17);
     portal.setNumber(0);
     portal.setDestination("0_semos_city",0);
+    zone.addPortal(portal);
+
+    portal=new Portal();
+    zone.assignRPObjectID(portal);
+    portal.set(4,4);
+    portal.setNumber(1);
+    portal.setDestination("int_semos_tavern_1",0);
     zone.addPortal(portal);
 
     SpeakerNPC npc=npcs.add("Margaret",new SpeakerNPC()
@@ -573,6 +589,16 @@ public class Semos implements IContent
         Behaviours.addGoodbye(this);
         }
 	    });
+	  
+	  Blackboard board=new Blackboard(false);
+	  board.set(2,11);
+	  board.setText("== SELL ==\n");
+	  zone.add(board);
+
+    board=new Blackboard(false);
+    board.set(3,11);
+    board.setText("== SELL ==\n");
+    zone.add(board);
 
     zone.assignRPObjectID(npc);
     npc.put("class","weaponsellernpc");
