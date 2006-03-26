@@ -495,7 +495,7 @@ public abstract class RPEntity extends Entity
           gain_xp_limitation=1;
           }
         
-        logger.info("OnDEAD: "+xp_reward+"\t"+damageDone+"\t"+totalDamageReceived+"\t"+gain_xp_limitation);
+        logger.debug("OnDEAD: "+xp_reward+"\t"+damageDone+"\t"+totalDamageReceived+"\t"+gain_xp_limitation);
         
         if(entity instanceof Player) // XP reward only for players         
           {
