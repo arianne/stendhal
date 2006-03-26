@@ -6,7 +6,7 @@ import java.util.*;
 
 public class GenerateBestiaryAndItems 
   {
-  public static void main(String[] args) throws Exception
+  public static void generateCreatures() throws Exception
     {
     CreatureXMLLoader creatureLoader=CreatureXMLLoader.get();
     List<DefaultCreature> creatures=creatureLoader.load("data/conf/creatures.xml");
@@ -64,6 +64,44 @@ public class GenerateBestiaryAndItems
       System.out.println ("}}");
       System.out.println ("");
       }
+    }
+
+  public static void generateItems() throws Exception
+    {
+    ItemXMLLoader itemLoader=ItemXMLLoader.get();
+    List<DefaultItem> items=itemLoader.load("data/conf/items.xml");
+
+    String clazz=null;
+    
+    for(DefaultItem item: items)
+      {
+      if(!item.getItemClass().equals(clazz))
+        {
+        clazz=item.getItemClass();
+        System.out.println ("= "+clazz+" =");
+        }
+       
+      System.out.println ("{{Item|");
+      System.out.println ("|name       = "+item.getItemName().replace("_"," "));
+      System.out.println ("|class      = "+item.getItemClass());
+      System.out.println ("|image      = "+item.getItemName());
+      System.out.println ("|description= TODO");
+      System.out.println ("|attributes = ");
+      System.out.println ("Attack "+"<br>");
+      System.out.println ("Defense "+"<br>");
+      System.out.println ("|equip      = ");
+      System.out.println ("<br>");
+      System.out.println ("       "); 
+      System.out.println ("}}");
+      System.out.println ("");
+      }
+    }
+
+  public static void main(String[] args) throws Exception
+    {
+//    generateCreatures();
+    generateItems();
+    }
       
 
 /**
@@ -84,6 +122,22 @@ This monster list is sorted from weakest creature to most mighty one.
   |strategy = Just hit first. Rats are not strong opponents.
   |loot = 0-7 GP
 }}
+
+
+
+{{Item|
+|name       = Club
+|class      = Weapon
+|image      = club
+|description= This common club, a bit more sofisticated than a wood stick.
+|attributes = 
+Attack 10<br>
+Defense 0<br>
+|equip      = 
+Left hand<br>
+Right hand<br>
+Bag
+}}
  */    
-    }
+ 
   }

@@ -228,30 +228,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>stendhal-0.47.1.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-0.47.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-FULL-0.47.1.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-FULL-0.47.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-server-0.47.1.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-server-0.47.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\GameConsoleAppender.java</path>
 				<source>true</source>
 			</fileitem>
