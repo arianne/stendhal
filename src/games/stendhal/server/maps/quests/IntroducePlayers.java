@@ -124,7 +124,7 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Tad");    
     
-    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
+    npc.add(0,new String[]{"hi","hello","hola"},new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -156,7 +156,7 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Ilisa");    
     
-    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
+    npc.add(0,new String[]{"hi","hello","hola"},new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -196,7 +196,7 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Ilisa");    
     
-    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
+    npc.add(0,new String[]{"hi","hello","hola"},new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -233,7 +233,7 @@ public class IntroducePlayers implements IQuest
 
     SpeakerNPC npc=npcs.get("Tad");
 
-    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
+    npc.add(0,new String[]{"hi","hello","hola"},new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {

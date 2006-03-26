@@ -114,7 +114,7 @@ public class LookBookforCeryl implements IQuest
     SpeakerNPC npc=npcs.get("Jynath");    
     
     /** If player has quest and is in the correct state, just give him the book. */
-    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
+    npc.add(0,new String[]{"hi","hello","hola"},new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -144,7 +144,7 @@ public class LookBookforCeryl implements IQuest
       });
 
     /** If player keep asking for book, just tell him to hurry up */
-    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
+    npc.add(0,new String[]{"hi","hello","hola"},new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
@@ -173,7 +173,7 @@ public class LookBookforCeryl implements IQuest
     SpeakerNPC npc=npcs.get("Ceryl");
         
     /** Complete the quest */        
-    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
+    npc.add(0,new String[]{"hi","hello","hola"},new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC npc)
         {
