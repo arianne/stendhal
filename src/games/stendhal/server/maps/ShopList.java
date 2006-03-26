@@ -72,6 +72,20 @@ public class ShopList
     return contents.get(name);
     }
   
+  public String toString(String name, String header)
+    {
+    Map<String, Integer> items=contents.get(name);
+    
+    StringBuffer sb=new StringBuffer(header);    
+    
+    for(String item: items.keySet())
+      {
+      sb.append(item+"\t"+items.get(item)+"\n");      
+      }
+    
+    return sb.toString();
+    }
+  
   public void add(String name,String item, int price)
     {
     Map<String, Integer> shop;

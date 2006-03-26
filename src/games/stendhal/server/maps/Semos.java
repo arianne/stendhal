@@ -587,19 +587,23 @@ public class Semos implements IContent
         Behaviours.addSeller(this,new Behaviours.SellerBehaviour(shops.get("sellstuff")));
         Behaviours.addBuyer(this,new Behaviours.BuyerBehaviour(shops.get("buystuff")));
         Behaviours.addGoodbye(this);
+
+        StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_semos_tavern_0"));
+        
+        Blackboard board=new Blackboard(false);
+        zone.assignRPObjectID(board);
+        board.set(2,11);
+        board.setText(shops.toString("sellstuff","-- Selling --\n"));
+        zone.add(board);
+    
+        board=new Blackboard(false);
+        zone.assignRPObjectID(board);
+        board.set(3,11);
+        board.setText(shops.toString("buystuff","-- Buying --\n"));
+        zone.add(board);    
         }
 	    });
 	  
-	  Blackboard board=new Blackboard(false);
-	  board.set(2,11);
-	  board.setText("== SELL ==\n");
-	  zone.add(board);
-
-    board=new Blackboard(false);
-    board.set(3,11);
-    board.setText("== SELL ==\n");
-    zone.add(board);
-
     zone.assignRPObjectID(npc);
     npc.put("class","weaponsellernpc");
     npc.setx(2);
