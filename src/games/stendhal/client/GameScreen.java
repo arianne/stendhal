@@ -212,7 +212,10 @@ public class GameScreen
     int sx=(int)((wx-x)*(float)GameScreen.SIZE_UNIT_PIXELS);
     int sy=(int)((wy-y)*(float)GameScreen.SIZE_UNIT_PIXELS);
     
-    if((sx>=-(float)GameScreen.SIZE_UNIT_PIXELS*8 && sx<sw) && (sy>=-(float)GameScreen.SIZE_UNIT_PIXELS*8 && sy<sh))
+    float spritew=sprite.getWidth()+2;
+    float spriteh=sprite.getHeight()+2;
+    
+    if((sx>=-spritew && sx<sw) && (sy>=-spriteh && sy<sh))
       {
       sprite.draw(g,sx,sy);
       }
