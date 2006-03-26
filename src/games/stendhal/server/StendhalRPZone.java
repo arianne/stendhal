@@ -634,7 +634,7 @@ public class StendhalRPZone extends MarauroaRPZone
     Rectangle2D area=entity.getArea(x,y);
     return collisionMap.collides(area);
     }
-  
+
   private Map<Item,Integer> itemsOnFloor;
 
   public synchronized void add(RPObject object) throws RPObjectInvalidException

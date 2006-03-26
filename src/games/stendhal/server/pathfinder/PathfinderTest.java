@@ -70,33 +70,6 @@ public class PathfinderTest
     
     System.out.println (x0+","+y0+" to "+x1+","+y1);
     
-    
-//    for(int j=0;j<zone.getHeight();j++)
-//      {
-//      for(int i=0;i<zone.getWidth();i++)
-//        {
-//        if(x0==i && y0==j)
-//          {
-//          System.out.print("O");          
-//          }
-//        else if(x1==i && y1==j)
-//          {
-//          System.out.print("D");          
-//          }
-//        else if(zone.collides(i,j))
-//          {
-//          System.out.print("*");          
-//          }
-//        else
-//          {
-//          System.out.print(".");          
-//          }
-//        }
-//      System.out.println();          
-//      }
-
-//    DijkstraPathfinder box=new DijkstraPathfinder(zone);
-//    
     long startTime = System.currentTimeMillis();
     
     

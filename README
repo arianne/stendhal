@@ -65,6 +65,7 @@ Changelog
 0.48 Apr XX, 2006
 - Enabled equipping on full slot.
 - Added jail command
+- Added protection zone around Semos
 
 0.47.1 Mar 24, 2006
 - Fixed a important problem at StendhalPlayerDatabase

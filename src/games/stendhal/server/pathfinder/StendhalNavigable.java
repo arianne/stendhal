@@ -2,6 +2,7 @@ package games.stendhal.server.pathfinder;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import java.awt.geom.Rectangle2D;
 
 public class StendhalNavigable implements Navigable
   {
@@ -13,7 +14,7 @@ public class StendhalNavigable implements Navigable
   public StendhalNavigable(Entity entity, int x, int y)
     {    
     this.entity=entity;
-    this.zone=(StendhalRPZone)entity.getWorld().getRPZone(entity.getID());;
+    this.zone=(StendhalRPZone)entity.getWorld().getRPZone(entity.getID());    
     this.x=x;
     this.y=y;
     }
@@ -42,6 +43,7 @@ public class StendhalNavigable implements Navigable
 
   public boolean reachedGoal(Pathfinder.Node nodeBest)
     {
+    //return Math.abs(nodeBest.x-x)<=1 && Math.abs(nodeBest.y-y)<=1;
     return nodeBest.getX()==x && nodeBest.getY()==y;
     }
 

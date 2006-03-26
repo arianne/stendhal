@@ -18,6 +18,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
@@ -175,7 +176,7 @@ public class Path
       list.add(0,new Node(node.getX(),node.getY()));
       node=node.getParent();
       }
-
+    
     Log4J.finishMethod(logger, "searchPath");
     return list;
     }
@@ -226,7 +227,7 @@ public class Path
    */
   public static List<Node> searchPath(Entity entity, Entity dest, double maxDistance)
     {
-    return searchPath(entity, entity.getx(),entity.gety(),dest.getArea(dest.getx(),dest.gety()), maxDistance);
+    return searchPath(entity, entity.getx(),entity.gety(),new Rectangle(dest.getx(),dest.gety(),1,1), maxDistance);
     }
 
   public static boolean followPath(RPEntity entity, double speed)
