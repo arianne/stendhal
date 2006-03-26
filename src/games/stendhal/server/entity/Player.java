@@ -244,8 +244,9 @@ public class Player extends RPEntity
         world.add(sheep);
         x=sheep.getx();
         y=sheep.gety();
-        StendhalRPAction.placeat(zone,sheep,x,y);
         player.setSheep(sheep);
+
+        StendhalRPAction.placeat(zone,sheep,x,y);
         }
       }
     catch(Exception e) /** No idea how but some players get a sheep but they don't have it really.
