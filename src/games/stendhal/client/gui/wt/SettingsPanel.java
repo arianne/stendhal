@@ -54,6 +54,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   
   /** the Character panel */
   private Character character;
+  private Buddies buddies;
   /** the minimap panel */
   private Minimap minimap;
   /** the inventory */
@@ -90,6 +91,10 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
     character = new Character(gameObjects);
     character.registerCloseListener(this);
     frame.addChild(character);
+
+    buddies = new Buddies(gameObjects);
+    buddies.registerCloseListener(this);
+    frame.addChild(buddies);
 
     inventory = new EntityContainer(gameObjects,"bag",3,4);
     inventory.registerCloseListener(this);

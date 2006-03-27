@@ -22,6 +22,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.Panel;
 import games.stendhal.client.gui.wt.core.TextPanel;
 
@@ -58,7 +59,7 @@ public class Character extends Panel
   /** Creates a new instance of Character */
   public Character(GameObjects gameObjects)
   {
-    super("character", 640-132, 0, 132, 265);
+    super("character", j2DClient.SCREEN_WIDTH-132, 0, 132, 265);
     setTitleBar(true);
     setFrame(true);
     setMoveable(true);

@@ -689,8 +689,12 @@ public abstract class RPEntity extends Entity
     {
     if(hasSlot(name))
       {
-      getSlot(name).add(item);
-      return true;
+      RPSlot slot=getSlot(name);
+      if(slot.isFull())
+        {
+        slot.add(item);
+        return true;
+        }
       }
     
     return false;

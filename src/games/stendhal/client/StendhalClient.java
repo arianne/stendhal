@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.gui.GameLogDialog;
 import games.stendhal.client.gui.InGameGUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.OutfitDialog;
 import games.stendhal.client.gui.wt.core.WindowManager;
 import games.stendhal.common.Debug;
@@ -246,7 +247,7 @@ public class StendhalClient extends ariannexp
         /** And finally place player in screen */
         Graphics2D g=screen.expose();
         g.setColor(Color.BLACK);
-        g.fill(new Rectangle(0,0,640,480));
+        g.fill(new Rectangle(0,0,j2DClient.SCREEN_WIDTH,j2DClient.SCREEN_HEIGHT));
         
         double x=object.getDouble("x")-screen.getWidth()/2;
         double y=object.getDouble("y")-screen.getHeight()/2;

@@ -38,9 +38,16 @@ public class j2DClient extends JFrame
   /** height of the chat line */
   private static final int CHAT_LINE_SIZE = 20;
   /** width of the game screen (without the chat line) */
-  private static final int SCREEN_WIDTH = 640;
+  public static final int SCREEN_WIDTH;
   /** height of the game screen (without the chat line) */
-  private static final int SCREEN_HEIGHT = 480;
+  public static final int SCREEN_HEIGHT;
+  
+  static
+    {
+    String[] dim=stendhal.SCREEN_SIZE.split("x");    
+    SCREEN_WIDTH=Integer.parseInt(dim[0]);
+    SCREEN_HEIGHT=Integer.parseInt(dim[1]);
+    }
 
 
   /** the logger instance. */
