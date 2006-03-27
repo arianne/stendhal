@@ -138,26 +138,26 @@ public class Player extends RPEntity
   
   public String[] offeredActions()
     {
+    java.util.Vector<String> vector=new java.util.Vector<String>();
+    for(String item: super.offeredActions())
+      {
+      vector.add(item);
+      }
+
     if(getID().equals(client.getPlayer().getID()))
       {
-      java.util.Vector<String> vector=new java.util.Vector<String>();
-      for(String item: super.offeredActions())
-        {
-        vector.add(item);
-        }
-
       vector.add("Set outfit");
       if(client.getPlayer().has("sheep"))
         {
         vector.add("Leave sheep");
         }
-     
-      return vector.toArray(new String[0]);
       }
     else
       {
-      return super.offeredActions();
+      vector.add("Add to Buddies");
       }
+
+    return vector.toArray(new String[0]);
     }
 
   public void onAction(StendhalClient client, String action, String... params)
@@ -173,6 +173,13 @@ public class Player extends RPEntity
       rpaction.put("target","-1");
       client.send(rpaction);
       playSound( "sheep-chat-2", 15, 50 );
+      }
+    else if(action.equals("Add to Buddies"))
+      {
+      RPAction rpaction=new RPAction();
+      rpaction.put("type","addbuddy");
+      rpaction.put("target", getName());
+      client.send(rpaction);
       }
     else
       {

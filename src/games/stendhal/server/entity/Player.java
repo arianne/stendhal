@@ -79,7 +79,7 @@ public class Player extends RPEntity
       player.addRPSlot("bank",20,RPClass.HIDDEN);
       
       // We use this for the buddy system
-      player.addRPSlot("!buddy",1,RPClass.HIDDEN);
+      player.addRPSlot("!buddy",1,RPClass.PRIVATE);
       player.add("online",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       player.add("offline",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
       

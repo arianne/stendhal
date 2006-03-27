@@ -153,7 +153,7 @@ public class Character extends Panel
         if(!slot.getName().equals("bag"))
         {
           final List<String> weapons=Arrays.asList("sword","axe","club","ranged","projectiles");
-          final List<String> defense=Arrays.asList("shield","armor","helmet","legs","boots");
+          final List<String> defense=Arrays.asList("shield","armor","helmet","legs","boots","cloak");
   
           if(weapons.contains(content.get("class")) && !checkedItems.contains(content.get("class")))
           {

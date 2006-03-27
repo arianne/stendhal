@@ -266,32 +266,42 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase
   
   public static void main(String[] args) throws Exception
     {
-    System.out.println ("PORTING RPOBJECT, RPATTRIBUTE and RPSLOT tables to AVATARS new system");
-    System.out.println ();
     Configuration.setConfigurationFile("stendhal.ini");
-    JDBCPlayerDatabase odb=(JDBCPlayerDatabase)JDBCPlayerDatabase.getDatabase();
-
+    StendhalRPWorld world=new StendhalRPWorld();
     JDBCPlayerDatabase sdb=(JDBCPlayerDatabase)StendhalPlayerDatabase.resetDatabaseConnection();
-
-    Transaction transA=odb.getTransaction();
     Transaction transB=sdb.getTransaction();
     
-    JDBCPlayerDatabase.RPObjectIterator it=odb.iterator(transA);
+    System.out.println (sdb.getRPObject(transB,"miguel","miguel"));
     
-    while(it.hasNext())
-      {
-      int id=it.next();
+    
 
-      long p1=System.currentTimeMillis();
-      RPObject object=odb.loadRPObject(transA, id);
-      System.out.println ("Porting: "+object.get("name"));
 
-      long p2=System.currentTimeMillis();
-      sdb.storeRPObject(transB,object);
-      transB.commit();
-      long p3=System.currentTimeMillis();
-      
-      System.out.println ("Times LOAD("+(p2-p1)/1000.0+")\tSTORE("+(p3-p2)/1000.0+")");
-      }
+//    System.out.println ("PORTING RPOBJECT, RPATTRIBUTE and RPSLOT tables to AVATARS new system");
+//    System.out.println ();
+//    Configuration.setConfigurationFile("stendhal.ini");
+//    JDBCPlayerDatabase odb=(JDBCPlayerDatabase)JDBCPlayerDatabase.getDatabase();
+//
+//    JDBCPlayerDatabase sdb=(JDBCPlayerDatabase)StendhalPlayerDatabase.resetDatabaseConnection();
+//
+//    Transaction transA=odb.getTransaction();
+//    Transaction transB=sdb.getTransaction();
+//    
+//    JDBCPlayerDatabase.RPObjectIterator it=odb.iterator(transA);
+//    
+//    while(it.hasNext())
+//      {
+//      int id=it.next();
+//
+//      long p1=System.currentTimeMillis();
+//      RPObject object=odb.loadRPObject(transA, id);
+//      System.out.println ("Porting: "+object.get("name"));
+//
+//      long p2=System.currentTimeMillis();
+//      sdb.storeRPObject(transB,object);
+//      transB.commit();
+//      long p3=System.currentTimeMillis();
+//      
+//      System.out.println ("Times LOAD("+(p2-p1)/1000.0+")\tSTORE("+(p3-p2)/1000.0+")");
+//      }
     }
   }

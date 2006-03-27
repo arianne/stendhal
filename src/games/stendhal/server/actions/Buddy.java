@@ -67,22 +67,8 @@ public class Buddy extends ActionListener
         slot.assignValidID(listBuddies);
         slot.add(listBuddies);
         }
-      
-      boolean online=false;
-      for(Player p : rules.getPlayers())
-        {
-        if(p.getName().equals(who))
-          {
-          player.notifyOnline(who);
-          online=true;  
-          break;          
-          }
-        }
-      
-      if(!online)
-        {
-        player.notifyOffline(who);
-        }
+       
+      listBuddies.put("_"+who,"");      
       }
 
     Log4J.finishMethod(logger,"addBuddy");
@@ -102,14 +88,9 @@ public class Buddy extends ActionListener
       if(slot.size()>0)
         {
         listBuddies=slot.iterator().next();
-        for(String name: listBuddies)
+        if(listBuddies.has("_"+who))
           {
-          if(name.equals(who))
-            {
-            listBuddies.remove(name);
-            world.modify(player);
-            return;
-            }            
+          listBuddies.remove("_"+who);
           }
         }
       }
