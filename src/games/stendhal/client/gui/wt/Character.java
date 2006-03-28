@@ -131,6 +131,11 @@ public class Character extends Panel
     {
       String slotName = slot.getName();
       
+      if(slotName.equals("!buddy"))
+        {
+        continue;
+        }
+      
       EntitySlot entitySlot = slotPanels.get(slotName);
       if (entitySlot != null)
       {
@@ -145,7 +150,7 @@ public class Character extends Panel
       
       // count all money
       for (RPObject content : slot)
-      {
+      {        
         if (content.get("class").equals("money") && content.has("quantity"))
         {
           money += content.getInt("quantity");

@@ -67,8 +67,19 @@ public class Buddy extends ActionListener
         slot.assignValidID(listBuddies);
         slot.add(listBuddies);
         }
-       
-      listBuddies.put("_"+who,"");      
+      
+      int online=0;
+      
+      for(Player p: rules.getPlayers()) 
+        {
+        if(p.getName().equals(who))
+          {
+          online=1;
+          break;
+          }
+        }
+        
+      listBuddies.put("_"+who,online);      
       }
 
     Log4J.finishMethod(logger,"addBuddy");
@@ -77,7 +88,7 @@ public class Buddy extends ActionListener
   private void onRemoveBuddy(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
     Log4J.startMethod(logger,"removeBuddy");
-
+    
     if(action.has("target"))
       {
       String who="_"+action.get("target");
@@ -87,10 +98,11 @@ public class Buddy extends ActionListener
       
       if(slot.size()>0)
         {
-        listBuddies=slot.iterator().next();
-        if(listBuddies.has("_"+who))
+        listBuddies=slot.getFirst();
+        
+        if(listBuddies.has(who))
           {
-          listBuddies.remove("_"+who);
+          listBuddies.remove(who);
           }
         }
       }

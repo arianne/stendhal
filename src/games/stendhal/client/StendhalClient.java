@@ -22,6 +22,7 @@ import games.stendhal.common.Debug;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import javax.swing.JTextField;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +59,7 @@ public class StendhalClient extends ariannexp
   private boolean keepRunning=true;
   private GameLogDialog gameDialog;
   private InGameGUI gameGUI;
+  private JTextField textLineGUI;
   private JFrame frame;
   private Configuration conf;
   
@@ -157,6 +159,16 @@ public class StendhalClient extends ariannexp
     return gameGUI;
     }
 
+  public void setTextLineGUI(JTextField line)
+    {
+    textLineGUI=line;
+    }
+  
+  public JTextField getTextLineGUI()
+    {
+    return textLineGUI;
+    }
+  
   public OutfitDialog getOutfitDialog()
     {
 // int total_hairs, int total_heads, int total_bodies, int total_clothes) {

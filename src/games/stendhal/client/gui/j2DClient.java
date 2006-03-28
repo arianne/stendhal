@@ -162,6 +162,8 @@ public class j2DClient extends JFrame
     // add a key input system (defined below) to our canvas so we can respond to key pressed
     playerChatText.addKeyListener(inGameGUI);
 
+    client.setTextLineGUI(playerChatText);
+
     client.setGameLogDialog(new GameLogDialog(this, playerChatText));
 
     addComponentListener(new ComponentAdapter()
@@ -192,7 +194,7 @@ public class j2DClient extends JFrame
     // using the actual main thread to run the game.
     gameLoop();
     }  // constructor
-
+  
   public void gameLoop()
     {
     long lastLoopTime = System.currentTimeMillis();

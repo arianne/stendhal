@@ -176,6 +176,17 @@ public class Player extends RPEntity
       {
       object.addSlot(new RPSlot("bank"));
       }
+
+    if(object.hasSlot("!buddy"))
+      {
+      RPSlot buddy=object.getSlot("!buddy");
+      if(buddy.size()==0)
+        {
+        RPObject data=new RPObject();
+        buddy.assignValidID(data);
+        buddy.add(data);
+        }
+      }
     
 
     Player player=new Player(object);
