@@ -17,6 +17,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.entity.item.*;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.ActionManager;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -421,12 +422,17 @@ public abstract class RPEntity extends Entity
 
     rp.addGameEvent(who.getName(),"damaged",getName(),Integer.toString(damage));
 
-    Blood blood=new Blood(this);
-    IRPZone zone=world.getRPZone(getID());
-    zone.assignRPObjectID(blood);    
-    zone.add(blood);
-    rp.addBlood(blood);
+    Rectangle2D rect=getArea(getx(),gety());
+    if(!rp.bloodAt((int)rect.getX(),(int)rect.getY()))
+      {
+      Blood blood=new Blood(this);
+      IRPZone zone=world.getRPZone(getID());
+      zone.assignRPObjectID(blood);    
+      zone.add(blood);
+      rp.addBlood(blood);
+      }
 
+    
     int leftHP=getHP()-damage;
     
     totalDamageReceived += damage;
