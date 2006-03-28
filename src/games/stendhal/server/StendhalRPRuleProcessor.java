@@ -18,6 +18,7 @@ import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
@@ -63,8 +64,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
   private List<RespawnPoint> respawnPoints;
   private List<SheepFood> foodItems;
+
   private List<Corpse> corpses;
   private List<Corpse> corpsesToRemove;
+
+  private List<Blood> bloods;
+  private List<Blood> bloodsToRemove;
   
   private StendhalScriptSystem scripts;
   
@@ -111,6 +116,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 
     corpses=new LinkedList<Corpse>();
     corpsesToRemove=new LinkedList<Corpse>();
+
+    bloods=new LinkedList<Blood>();
+    bloodsToRemove=new LinkedList<Blood>();
     
     scripts=StendhalScriptSystem.get();
     
@@ -247,6 +255,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
     corpsesToRemove.add(corpse);
     }
 
+  public void addBlood(Blood blood)
+    {
+    bloods.add(blood);
+    }
+
+  public void removeBlood(Blood blood)
+    {
+    bloodsToRemove.add(blood);
+    }
+
   public List<Player> getPlayers()
     {
     return playersObject;
@@ -340,11 +358,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       // Done this way because a problem with comodification... :(
       npcs.removeAll(npcsToRemove);
       corpses.removeAll(corpsesToRemove);
+      bloods.removeAll(bloodsToRemove);
       npcs.addAll(npcsToAdd);
 
       npcsToAdd.clear();
       npcsToRemove.clear();
       corpsesToRemove.clear();
+      bloodsToRemove.clear();
 
       for(Player object: playersObject)
         {
@@ -441,6 +461,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
       for(SheepFood food: foodItems) food.regrow();
       for(RespawnPoint point: respawnPoints) point.nextTurn();
       for(Corpse corpse: corpses) corpse.logic();
+      for(Blood blood: bloods) blood.logic();
       
       scripts.logic();
       }

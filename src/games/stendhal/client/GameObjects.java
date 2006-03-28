@@ -57,6 +57,7 @@ public class GameObjects implements Iterable<Entity>
     
     register("corpse",null,Corpse.class);
 
+    register("blood",null,Blood.class);
     register("sign",null,Sign.class);
     register("blackboard",null,Sign.class);
     
@@ -716,7 +717,7 @@ public class GameObjects implements Iterable<Entity>
 
     for(Entity other: sortObjects)
       {
-      if(!(other instanceof PassiveEntity)) // && !(other instanceof Portal))
+      if(!(other instanceof PassiveEntity) && !(other instanceof Blood))
         {
         if(area.intersects(other.getArea()) && !entity.getID().equals(other.getID()))
           {

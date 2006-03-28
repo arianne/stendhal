@@ -13,6 +13,7 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Level;
+import games.stendhal.server.*;
 import games.stendhal.server.entity.item.*;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.ActionManager;
@@ -419,6 +420,12 @@ public abstract class RPEntity extends Entity
     logger.debug("Damaged "+damage+" points by "+who.getID());
 
     rp.addGameEvent(who.getName(),"damaged",getName(),Integer.toString(damage));
+
+    Blood blood=new Blood(this);
+    IRPZone zone=world.getRPZone(getID());
+    zone.assignRPObjectID(blood);    
+    zone.add(blood);
+    rp.addBlood(blood);
 
     int leftHP=getHP()-damage;
     
