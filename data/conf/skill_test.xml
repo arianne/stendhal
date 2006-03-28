@@ -1,0 +1,60 @@
+<!-- ${XXX} means that XXX is a defined variable name-->
+
+<!-- Quick Strike - Waste some MP to fire a few fast arrows towards one opponent -->
+<skill = "Quick_Strike">
+	<class = "Archer" />
+	<bonus>	</bonus>
+<!-- preparation is time before skill is cast, 0 == instant -->
+	<preparation = "0" /> 
+<!-- duration is the time the skill lasts, 0 == no duration (same as normal melee attack) -->
+	<duration = "0" /> 
+<!-- effect is gfx eye candy that the skill uses, like fire, ice, freeze etc effects -->
+	<effect>
+		<multiple_arrows />
+	</effect>
+<!-- skill_LVL_bonus is added bonuses you get per skill lvl -->
+	<skill_LVL_bonus>
+		<LVL = "ALL">
+			<bonus damage="${SKILL_LVL}*0.5" />
+			<MP_cost = "${SKILL_LVL}*XX" />
+	</skill_LVL_bonus>
+</skill>
+
+<!-- Arrow Shower - Waste some MP to fire seweral arrows towards seweral monster in one attack -->
+<skill = "Arrow_Shower">
+	<class = "Archer" />
+<!-- The 10 at the end of Quick_Strike means the skill lvl needed in the skill Quick_Strike-->
+	<prereqs name="Quick_Strike" level="10" />
+	<bonus></bonus>
+	<preparation = "0" /> 
+	<duration = "0" /> 
+	<effect>
+		<multiple_arrows />
+	</effect>
+	<skill_LVL_bonus>
+		<LVL = "ALL">
+<!-- the attack parameter means number of attacks that can be made -->
+			<bonus attacks="(${SKILL_LVL}/2)+1" />
+			<MP_cost = "${SKILL_LVL}*XX" />
+		</LVL>
+	</skill_LVL_bonus>
+</skill>
+
+<!-- Falcon Eyes - Increases max range for the archer -->
+<skill = "Falcon_Eyes">
+	<class = "Archer" />
+	<bonus></bonus>
+<!-- auto means that as soon as you have the skill, it self casts -->
+	<preparation = "auto" /> 
+<!-- permanent means it is always activated -->
+	<duration = "permanent" /> 
+	<effect>
+		<multiple_arrows />
+	</effect>
+	<skill_LVL_bonus>
+		<LVL = "ALL">
+<!-- the attack_range parameter increses the range of ranged attacks -->
+			<bonus attack_range="(${SKILL_LVL}/10)+1" />
+		</LVL>
+	</skill_LVL_bonus>
+</skill>
