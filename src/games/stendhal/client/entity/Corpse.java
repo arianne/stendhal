@@ -149,6 +149,11 @@ public class Corpse extends PassiveEntity
 
   public int compare(Entity entity)
     {
+    if(entity instanceof Blood)
+      {
+      return 1;
+      }
+      
     return -1;
     }
   }

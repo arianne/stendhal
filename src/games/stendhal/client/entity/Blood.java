@@ -25,8 +25,6 @@ public class Blood extends AnimatedEntity
   public Blood(GameObjects gameObjects, RPObject base) throws AttributeNotFoundException
     {
     super(gameObjects, base);
-    
-    System.out.println (base);
     }
   
   protected void buildAnimations(RPObject base)
