@@ -432,6 +432,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
           StendhalRPAction.attack(object,object.getAttackTarget());
           }
         
+        if(getTurn()%180==0)
+          {
+          System.out.println ("Ageing "+object.getName()+": "+object.getAge());
+          object.setAge(object.getAge()+1);
+          world.modify(object);
+          }
+        
         object.consume(getTurn());
         }
 

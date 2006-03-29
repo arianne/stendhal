@@ -44,7 +44,9 @@ public class Player extends RPEntity
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(Player.class);
-
+  
+  private int age;
+  
   private List<ConsumableItem> itemsToConsume;
   private List<ConsumableItem> poisonToConsume;
   private int turnsLeftOfInmunity;
@@ -71,6 +73,8 @@ public class Player extends RPEntity
       player.add("invisible",RPClass.FLAG,RPClass.HIDDEN);
 
       player.add("release",RPClass.STRING,RPClass.HIDDEN);
+
+      player.add("age",RPClass.INT);
 
       // Store sheep at DB
       player.addRPSlot("#flock",1,RPClass.HIDDEN);
@@ -186,6 +190,11 @@ public class Player extends RPEntity
         buddy.assignValidID(data);
         buddy.add(data);
         }
+      }
+    
+    if(!object.has("age"))
+      {
+      object.put("age","0");
       }
     
 
@@ -440,6 +449,8 @@ public class Player extends RPEntity
   public void update() throws AttributeNotFoundException
     {
     super.update();
+    
+    if(has("age")) age=getInt("age");
     }
 
   public void setPrivateText(String text)
@@ -680,6 +691,17 @@ public class Player extends RPEntity
       {
       Log4J.finishMethod(logger, "retrieveSheep");
       }
+    }
+  
+  public int getAge()
+    {
+    return age;
+    }
+
+  public void setAge(int age)
+    {
+    this.age=age;
+    put("age",age);
     }
   
   public void notifyOnline(String who)

@@ -1048,6 +1048,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>data\conf\skill_test.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>data\conf\stendhalcreateaccount.properties</path>
 				<source>true</source>
 			</fileitem>

@@ -78,6 +78,7 @@ Changelog
 - Fixed a very important bug on pathfinding that was being abused by players.
 - Added tavern second floor.
 - Big monsters are now draw when part of them is out of screen.
+- You can query now player's age.
 
 0.47.1 Mar 24, 2006
 - Fixed a important problem at StendhalPlayerDatabase

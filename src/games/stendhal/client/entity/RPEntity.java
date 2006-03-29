@@ -19,6 +19,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
@@ -467,16 +468,31 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 
   public String[] offeredActions()
     {
-    String[] list=null;
+    List<String> list=new LinkedList<String>();
+    
+    list.add("Look");
+    list.add("Attack");
+    
     if(client.getPlayer().has("target"))
       {
-      list=new String[]{"Look","Attack","Stop attack","(*)Inspect","(*)Destroy"};
+      list.add("Stop attack");
       }
-    else
+      
+    if(client.isAdmin())
       {
-      list=new String[]{"Look","Attack","(*)Inspect","(*)Destroy"};
+      list.add("(*)Inspect");
+      list.add("(*)Destroy");
       }
-    return list;
+    
+    String[] result= new String[list.size()];
+    int i=0;
+    for(String item: list)  
+      {
+      result[i]=item;
+      i++;
+      }
+    
+    return result;
     }
 
   public void onAction(StendhalClient client, String action, String... params)

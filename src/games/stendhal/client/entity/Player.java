@@ -35,6 +35,7 @@ public class Player extends RPEntity
   private static final Logger logger = Log4J.getLogger(Player.class);
   
   private int outfit;
+  private int age;
   private double hearingRange;
 
   public Player(GameObjects gameObjects, RPObject base) throws AttributeNotFoundException
@@ -86,6 +87,11 @@ public class Player extends RPEntity
     if(diff.has("outfit"))
       {      
       buildAnimations(diff);
+      }
+    
+    if(diff.has("age"))
+      {
+      age=diff.getInt("age");
       }
     
     if(diff.has("online"))
@@ -162,7 +168,17 @@ public class Player extends RPEntity
 
   public void onAction(StendhalClient client, String action, String... params)
     {
-    if(action.equals("Set outfit"))
+    if(action.equals("Look"))
+      {
+      int hours=age/60;
+      int minutes=age%60;
+      String time=hours+" hours and "+minutes+" minutes";
+
+      String text="You see " + getName() + "(Level " + getLevel() + ". It has been playing "+time+" minutes).";
+      StendhalClient.get().addEventLine(text, Color.green);
+      gameObjects.addText(this, text, Color.green);
+      }
+    else if(action.equals("Set outfit"))
       {
       client.getOutfitDialog().setVisible(true);
       }
