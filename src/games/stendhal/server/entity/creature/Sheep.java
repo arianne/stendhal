@@ -89,6 +89,9 @@ public class Sheep extends Creature
   public Sheep(RPObject object, Player owner) throws AttributeNotFoundException
     {
     super(object);
+    
+    setContainer(null,null);    
+    
     put("type","sheep");
     this.owner=owner;
 
@@ -236,8 +239,8 @@ public class Sheep extends Creature
         {
         logger.debug("Sheep moves to food");
         setIdea("food");
-//        setMovement(food,0,0);
-        setAsynchonousMovement(food,0,0);
+        setMovement(food,0,0,20);
+//        setAsynchonousMovement(food,0,0);
         moveto(SPEED);
         }
       }
@@ -251,8 +254,8 @@ public class Sheep extends Creature
       {
       logger.debug("Sheep(owner) moves to Owner");
       setIdea("follow");
-//      setMovement(owner,0,0);
-      setAsynchonousMovement(owner,0,0);
+      setMovement(owner,0,0,20);
+//      setAsynchonousMovement(owner,0,0);
       moveto(SPEED);
       }
     else
@@ -268,8 +271,8 @@ public class Sheep extends Creature
       logger.debug("Sheep(owner) moves to Owner");
       setIdea("follow");
       clearPath();
-//      setMovement(owner,0,0);
-      setAsynchonousMovement(owner,0,0);
+      setMovement(owner,0,0,20);
+//      setAsynchonousMovement(owner,0,0);
       moveto(SPEED);
       }
 

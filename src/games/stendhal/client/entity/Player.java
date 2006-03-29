@@ -153,6 +153,7 @@ public class Player extends RPEntity
     if(getID().equals(client.getPlayer().getID()))
       {
       vector.add("Set outfit");
+      
       if(client.getPlayer().has("sheep"))
         {
         vector.add("Leave sheep");

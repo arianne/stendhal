@@ -59,7 +59,6 @@ public class Player extends RPEntity
       player.isA("rpentity");
       player.add("text",RPClass.LONG_STRING, RPClass.VOLATILE);
       player.add("private_text",RPClass.LONG_STRING,(byte)(RPClass.PRIVATE|RPClass.VOLATILE));
-      player.add("sheep",RPClass.INT);
 
       player.add("poisoned",RPClass.SHORT,RPClass.VOLATILE);
       player.add("eating",RPClass.SHORT,RPClass.VOLATILE);
@@ -78,7 +77,8 @@ public class Player extends RPEntity
 
       // Store sheep at DB
       player.addRPSlot("#flock",1,RPClass.HIDDEN);
-      
+      player.add("sheep",RPClass.INT);
+
       // Bank system
       player.addRPSlot("bank",20,RPClass.HIDDEN);
       
@@ -262,12 +262,12 @@ public class Player extends RPEntity
           }
 
         world.add(sheep);
+        
         x=sheep.getx();
         y=sheep.gety();
         player.setSheep(sheep);
 
         StendhalRPAction.placeat(zone,sheep,x,y);
-        System.out.println (sheep);
         }
       }
     catch(Exception e) /** No idea how but some players get a sheep but they don't have it really.
@@ -677,10 +677,11 @@ public class Player extends RPEntity
         RPSlot slot=getSlot("#flock");
         if(slot.size()>0)
           {
-          Iterator<RPObject> it=slot.iterator();
-
-          Sheep sheep=new Sheep(it.next(),this);
-
+          RPObject object=slot.getFirst();
+          slot.remove(object.getID());
+          
+          Sheep sheep=new Sheep(object,this);
+          
           removeSlot("#flock");
           return sheep;
           }

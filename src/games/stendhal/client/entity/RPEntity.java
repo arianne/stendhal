@@ -493,15 +493,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
       list.add("(*)Destroy");
       }
     
-    String[] result= new String[list.size()];
-    int i=0;
-    for(String item: list)  
-      {
-      result[i]=item;
-      i++;
-      }
-    
-    return result;
+    return list.toArray(new String[0]);
     }
 
   public void onAction(StendhalClient client, String action, String... params)

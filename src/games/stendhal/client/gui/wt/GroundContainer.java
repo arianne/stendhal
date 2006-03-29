@@ -216,7 +216,7 @@ public class GroundContainer extends Panel
       String[] actions=entity.offeredActions();
       if (actions.length > 0)
       {
-        CommandList list = new CommandList(entity.getType(),actions,(int) p.getX(),(int) p.getY(),100,100,client,entity);
+        CommandList list = new CommandList(entity.getType(),actions,(int) p.getX(),(int) p.getY(),100,150,client,entity);
         ingameGUI.getFrame().setContextMenu(list);
         // the moveto ensures that the panel is completely inside the window
         list.moveTo((int) p.getX(),(int) p.getY(),true);
