@@ -58,6 +58,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
     blade_strikes.put("move_left",st.getAnimatedSprite("data/sprites/combat/blade_strike.png",3,3,3,4));
     }
 
+  private static Sprite pk;
   private static Sprite eating;
   private static Sprite poisoned;
 
@@ -65,6 +66,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
     {
     SpriteStore st=SpriteStore.get();
     
+    pk=st.getSprite("data/sprites/ideas/pk.png");
     eating=st.getSprite("data/sprites/ideas/eat.png");
     poisoned=st.getSprite("data/sprites/ideas/poisoned.png");
     }
