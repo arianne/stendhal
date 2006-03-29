@@ -210,6 +210,11 @@ public class StendhalClient extends ariannexp
     return player;
     }
   
+  public boolean isAdmin()
+    {
+    return player!=null && player.has("admin");
+    }
+  
   protected void onPerception(MessageS2CPerception message)
     {
     try

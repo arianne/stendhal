@@ -82,7 +82,7 @@ public class Player extends RPEntity
   public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
     {
     super.onChangedAdded(base,diff);
-
+    
     if(diff.has("outfit"))
       {      
       buildAnimations(diff);

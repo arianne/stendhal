@@ -594,6 +594,6 @@ public class OutfitDialog extends javax.swing.JDialog {
 
 //  public OutfitDialog(java.awt.Frame parent, String title, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
      public static void main(String args[]) {
-         new OutfitDialog(null, "Stendhal - choose outfit", 14, 11, 11, 17).setVisible(true);
+         new OutfitDialog(null, "Stendhal - choose outfit", 14, 11, 11, 17).generateAllOutfits();
     }
 }
