@@ -236,11 +236,6 @@ public class Panel implements Draggable
     return height;
   }
   
-  public void setHeight(int height)
-  {
-    this.height=height;
-  }
-
   /** returns width of the client area */
   protected int getClientWidth()
   {

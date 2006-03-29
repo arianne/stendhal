@@ -78,7 +78,6 @@ public class Buddies extends Panel
   String[] actions={"Talk", "Where", "Remove"};
   
   int i=((int)p.getY()-2)/20-1;
-  System.out.println (i);
   
   if(i<buddies.size() && i>=0)
     {
@@ -153,7 +152,7 @@ public class Buddies extends Panel
         }
       }
     
-    setHeight(i*20+20);
+    resizeToFitClientArea(132,i*20+3);
     
     return clientg;
   }
