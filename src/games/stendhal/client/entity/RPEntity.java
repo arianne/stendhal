@@ -199,8 +199,15 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
         {
         client.addEventLine(getName(),text);
         }
+      
+      String line=text.replace("|","");
+      
+      if(line.length()>25)
+        {
+        line=line.substring(0,25)+"...";
+        }
 
-      gameObjects.addText(this, getName()+" says: "+text.replace("|",""), Color.yellow);
+      gameObjects.addText(this, getName()+" says: "+line, Color.yellow);
       }
     }
     

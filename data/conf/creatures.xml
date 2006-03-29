@@ -2166,7 +2166,7 @@
 		</attributes>
 		<level value="52"/>
 		<experience value="7000"/>
-		<respawn value="900"/>
+		<respawn value="25000"/>
 		<drops>
 			<item value="money" quantity="[4,20]" probability="100"/>
 			<item value="studded_shield" quantity="1" probability="40"/>
@@ -2197,7 +2197,7 @@
 		</attributes>
 		<level value="60"/>
 		<experience value="9300"/>
-		<respawn value="25000"/>
+		<respawn value="45000"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,3]" probability="50"/>
 			<item value="money" quantity="[100,2500]" probability="100"/>
@@ -2227,7 +2227,7 @@
 		</attributes>
 		<level value="70"/>
 		<experience value="12500"/>
-		<respawn value="32000"/>
+		<respawn value="65000"/>
 		<drops>
 			<item value="blue_dragon_cloak" quantity="1" probability="5"/>
 			<item value="greater_potion" quantity="[3,7]" probability="80"/>
@@ -2256,7 +2256,7 @@
 		</attributes>
 		<level value="100"/>
 		<experience value="24000"/>
-		<respawn value="64000"/>
+		<respawn value="100000"/>
 		<drops>
 			<item value="greater_potion" quantity="[5,10]" probability="50"/>
 			<item value="money" quantity="[1000,15000]" probability="100"/>

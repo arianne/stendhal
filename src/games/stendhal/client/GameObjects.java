@@ -754,7 +754,26 @@ public class GameObjects implements Iterable<Entity>
    
   public void addText(Entity speaker, String text, Color color)
     {
-    Text entity=new Text(this,text, speaker.getx(), speaker.gety(), color);
+    double x=speaker.getx();
+    double y=speaker.gety();
+    
+    boolean found=true;
+    
+    while(found==true)
+      {
+      found=false;
+      for(Text item: texts)
+        {
+        if(item.getx()==x && item.gety()==y)
+          {
+          found=true;
+          y+=0.5;
+          break;
+          }
+        }
+      }
+
+    Text entity=new Text(this,text, x, y, color);
     texts.add(entity);
     }
 

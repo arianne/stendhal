@@ -21,11 +21,12 @@ public class Text extends Entity
   {
   private final static long STANDARD_PERSISTENCE_TIME=5000;
 
-  private double x;
-  private double y;
+  private double tx;
+  private double ty;
   private Sprite textImage;
   private long textImageTime;
   private long textPersistTime;
+  private String text;
   
   public Text(GameObjects gameObjects, Sprite text, double x, double y,
               long persistTime ) throws AttributeNotFoundException  
@@ -39,8 +40,15 @@ public class Text extends Entity
     if ( (textPersistTime = persistTime) == 0 )
        textPersistTime = STANDARD_PERSISTENCE_TIME;
 
-    this.x=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
-    this.y=y-0.5;
+    this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
+    this.ty=y-0.5;
+    this.x=x;
+    this.y=y;
+    }
+  
+  public String toString()
+    {
+    return text;
     }
     
   public Text(GameObjects gameObjects, String text, double x, double y, Color color) throws AttributeNotFoundException
@@ -52,8 +60,12 @@ public class Text extends Entity
     textImageTime=System.currentTimeMillis();
     textPersistTime = Math.max( STANDARD_PERSISTENCE_TIME, text.length() * STANDARD_PERSISTENCE_TIME / 50 );
 
-    this.x=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
-    this.y=y+1;
+    this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
+    this.ty=y-0.5;
+    this.x=x;
+    this.y=y;
+
+    this.text=text;
     
     drawedArea=new Rectangle.Double(x,y,textImage.getWidth()/GameScreen.SIZE_UNIT_PIXELS, textImage.getHeight()/GameScreen.SIZE_UNIT_PIXELS);
     }
@@ -87,12 +99,12 @@ public class Text extends Entity
     
   public Rectangle2D getDrawedArea()
     {
-    return new Rectangle.Double(x,y,textImage.getWidth()/GameScreen.SIZE_UNIT_PIXELS,textImage.getHeight()/GameScreen.SIZE_UNIT_PIXELS);
+    return new Rectangle.Double(tx,ty,textImage.getWidth()/GameScreen.SIZE_UNIT_PIXELS,textImage.getHeight()/GameScreen.SIZE_UNIT_PIXELS);
     }  
 
   public void draw(GameScreen screen)
     {
-    screen.draw(textImage,x,y);
+    screen.draw(textImage,tx,ty);
     
     if( System.currentTimeMillis() - textImageTime > textPersistTime ) 
       {
