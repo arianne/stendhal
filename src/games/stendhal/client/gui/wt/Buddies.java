@@ -153,6 +153,8 @@ public class Buddies extends Panel
         }
       }
     
+    setHeight(i*20+20);
+    
     return clientg;
   }
 }

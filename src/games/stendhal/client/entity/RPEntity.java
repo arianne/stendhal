@@ -548,7 +548,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 
   public int compare(Entity entity)
     {
-    if(entity instanceof PassiveEntity)
+    if(entity instanceof PassiveEntity || entity instanceof Blood)
       {
       return 1;
       }

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.entity.creature.Creature;
 import java.util.LinkedList;
 import java.util.List;
@@ -77,8 +78,9 @@ public class RespawnPoint
     Log4J.startMethod(logger, "notifyDead");
     if(!respawning)
       {
-      respawning=true;
-      turnsToRespawn=respawnTime;
+      respawning=true;      
+      turnsToRespawn=Rand.rand(respawnTime,respawnTime/30);
+      System.out.println (turnsToRespawn);
       }
 
     entities.remove(dead);

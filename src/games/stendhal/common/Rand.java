@@ -42,4 +42,9 @@ public class Rand
     {
     return rand.nextInt(max);
     }
+  
+  public static int rand(int n, int sd)
+    {
+    return (int)(rand.nextGaussian()*sd+n);
+    }
   }
