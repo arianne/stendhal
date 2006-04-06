@@ -62,8 +62,7 @@ No warranties. But let me know if it doesn't works.
 
 Changelog
 ---------
-0.48 Apr 30, 2006
-- Enabled equipping on full slot.
+0.48 Apr 31, 2006
 - Added jail command
 - Added protection zone around Semos
 - Added Buddy system
@@ -79,6 +78,12 @@ Changelog
 - Added tavern second floor.
 - Big monsters are now draw when part of them is out of screen.
 - You can query now player's age.
+- Randomize a bit creatures and its respawn time.
+- Fixed sheep bug related to sheep not responding to any command.
+- Screen move less and faster now.
+- Hide admin commands for not confusing players.
+- Added new items ( a few: around 20 more )
+- Added a new area on the top east, near Ados.
 
 0.47.1 Mar 24, 2006
 - Fixed a important problem at StendhalPlayerDatabase
