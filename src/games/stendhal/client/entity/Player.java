@@ -93,22 +93,26 @@ public class Player extends RPEntity
       {
       age=diff.getInt("age");
       }
-    
-    if(diff.has("online"))
-      {
-      String[] players=diff.get("online").split(",");
-      for(String name: players)
-        {
-        client.addEventLine(name+" has joined Stendhal.",Color.orange);
-        }
-      }
 
-    if(diff.has("offline"))
+    // The first time we ignore it.    
+    if(base!=null)
       {
-      String[] players=diff.get("offline").split(",");
-      for(String name: players)
+      if(diff.has("online"))
         {
-        client.addEventLine(name+" has left Stendhal.",Color.orange);
+        String[] players=diff.get("online").split(",");
+        for(String name: players)
+          {
+          client.addEventLine(name+" has joined Stendhal.",Color.orange);
+          }
+        }
+  
+      if(diff.has("offline"))
+        {
+        String[] players=diff.get("offline").split(",");
+        for(String name: players)
+          {
+          client.addEventLine(name+" has left Stendhal.",Color.orange);
+          }
         }
       }
     }

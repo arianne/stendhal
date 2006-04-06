@@ -78,14 +78,14 @@ public class SevenCherubs implements IQuest
           String[] done=npcDoneText.split(";");
           List<String> list=Arrays.asList(done);
           
-          player.setHP(player.getBaseHP());
-          player.healPoison();
-          
           if(!list.contains(engine.getName()))
             {
             player.setQuest("seven_cherubs",npcDoneText+";"+engine.getName());
             
             int left=7-list.size();
+
+            player.setHP(player.getBaseHP());
+            player.healPoison();
             
             if(left>0)
               {

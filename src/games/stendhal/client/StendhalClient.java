@@ -403,7 +403,7 @@ public class StendhalClient extends ariannexp
   
   protected void onError(int code, String reason)
     {
-    logger.error("got error code: "+code+" reason"+reason);
+    logger.error("got error code: "+code+" reason: "+reason);
     }
 
   public void requestLogout()

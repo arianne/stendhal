@@ -143,6 +143,7 @@ public class StendhalRPWorld extends RPWorld
     addArea("0_semos_mountain_n_e2");
     addArea("0_ados_mountain_n_w2");
     addArea("0_ados_mountain_nw");
+    addArea("0_ados_outside_nw");
 
     addArea("0_orril_mountain_n2_w2");
     addArea("0_semos_mountain_w2");
@@ -164,12 +165,15 @@ public class StendhalRPWorld extends RPWorld
     addArea("0_ados_forest_w2");
     addArea("0_ados_rock_w");
     addArea("0_ados_rock");        
+    addArea("0_ados_outside_w");
 
     addArea("0_orril_mountain_nw");
     addArea("0_orril_forest_n");
     addArea("0_semos_forest_s");
     addArea("0_nalwor_forest_nw");
     addArea("0_nalwor_forest_n");
+    addArea("0_nalwor_forest_ne");
+    addArea("0_ados_swamp");
 
     addArea("0_orril_mountain_w2");
     addArea("0_orril_mountain_w");

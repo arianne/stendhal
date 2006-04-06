@@ -38,9 +38,9 @@ public class j2DClient extends JFrame
   /** height of the chat line */
   private static final int CHAT_LINE_SIZE = 20;
   /** width of the game screen (without the chat line) */
-  public static final int SCREEN_WIDTH;
+  public static int SCREEN_WIDTH;
   /** height of the game screen (without the chat line) */
-  public static final int SCREEN_HEIGHT;
+  public static int SCREEN_HEIGHT;
   
   static
     {
@@ -54,6 +54,7 @@ public class j2DClient extends JFrame
   private static final Logger logger = Log4J.getLogger(j2DClient.class);
   
   private GameScreen screen;
+  private Canvas canvas;
   private InGameGUI inGameGUI;
 
   private boolean gameRunning=true;
@@ -79,9 +80,9 @@ public class j2DClient extends JFrame
     JPanel panel = (JPanel) this.getContentPane();
     panel.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT+CHAT_LINE_SIZE));
     panel.setLayout(null);
-
+    
     // setup our canvas size and put it into the content of the frame
-    Canvas canvas=new Canvas();
+    canvas=new Canvas();
     canvas.setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
     // Tell AWT not to bother repainting our canvas since we're
     // going to do that our self in accelerated mode
@@ -97,7 +98,7 @@ public class j2DClient extends JFrame
     panel.add(playerChatText);
 
 
-    this.setLocation(new Point(100, 100));
+    this.setLocation(new Point(20, 20));
 
     // finally make the window visible
     pack();
@@ -266,7 +267,7 @@ public class j2DClient extends JFrame
         }
       
       // Shows a offline icon if no messages are recieved in 10 seconds.
-      if(refreshTime-lastMessageHandle>10000)
+      if(refreshTime-lastMessageHandle>120000)
         {        
         inGameGUI.offline();
         }

@@ -99,7 +99,8 @@ public class GenerateBestiaryAndItems
 
   public static void main(String[] args) throws Exception
     {
-//    generateCreatures();
+    generateCreatures();
+    System.out.println (" *************************** ");
     generateItems();
     }
       

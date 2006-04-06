@@ -610,7 +610,6 @@ public class Administration extends ActionListener
 
   private void onJail(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
-    System.out.println ("On Jail: "+action);
     Log4J.startMethod(logger,"onTeleport");
 
     if(action.has("target"))

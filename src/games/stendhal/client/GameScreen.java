@@ -49,7 +49,7 @@ public class GameScreen
   /** Create a screen with the given width and height */
   public static void createScreen(BufferStrategy strategy, int sw, int sh)
     {
-    if(screen==null)
+//    if(screen==null)
       {
       screen=new GameScreen(strategy,sw,sh);
       }

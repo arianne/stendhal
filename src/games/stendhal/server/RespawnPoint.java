@@ -80,7 +80,6 @@ public class RespawnPoint
       {
       respawning=true;      
       turnsToRespawn=Rand.rand(respawnTime,respawnTime/30);
-      System.out.println (turnsToRespawn);
       }
 
     entities.remove(dead);
@@ -131,6 +130,10 @@ public class RespawnPoint
       // String clazz = entity.get("name");
       // Creature newentity = new Creature(entity);//zone.getWorld().getRuleManager().getEntityManager().getCreature(clazz);
       Creature newentity=entity.getInstance();
+      
+      // A bit of randomization to make Joan and Snaketails a bit happier. :)
+      newentity.setATK(Rand.rand(newentity.getATK(),newentity.getATK()/10));
+      newentity.setDEF(Rand.rand(newentity.getDEF(),newentity.getDEF()/10));
 
       zone.assignRPObjectID(newentity);
       StendhalRPAction.placeat(zone,newentity,x,y);

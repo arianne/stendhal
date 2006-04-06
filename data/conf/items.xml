@@ -91,10 +91,75 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="scimitar">
+		<type class="sword" subclass="scimitar"/>
+		<attributes>
+			<atk value="15"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="katana">
 		<type class="sword" subclass="katana"/>
 		<attributes>
 			<atk value="16"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="claymore">
+		<type class="sword" subclass="claymore"/>
+		<attributes>
+			<atk value="18"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="broadsword">
+		<type class="sword" subclass="broadsword"/>
+		<attributes>
+			<atk value="24"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="biting_sword">
+		<type class="sword" subclass="biting_sword"/>
+		<attributes>
+			<atk value="24"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="ice_sword">
+		<type class="sword" subclass="ice_sword"/>
+		<attributes>
+			<atk value="27"/>
 		</attributes>
 		<weight value="4"/>
 		<equipable>
@@ -116,6 +181,20 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
+
+	<item name="great_sword">
+		<type class="sword" subclass="great_sword"/>
+		<attributes>
+			<atk value="30"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 <!-- Axes_section -->
 
@@ -196,6 +275,46 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
+
+	<item name="twoside_axe">
+		<type class="axe" subclass="twosided_poleaxe"/>
+		<attributes>
+			<atk value="19"/>
+		</attributes>
+		<weight value="3"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="halberd">
+		<type class="axe" subclass="halberd"/>
+		<attributes>
+			<atk value="20"/>
+		</attributes>
+		<weight value="10"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="twoside_axe +3">
+		<type class="axe" subclass="golden_twosided_poleaxe"/>
+		<attributes>
+			<atk value="22"/>
+		</attributes>
+		<weight value="3"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 <!-- Clubs_section -->
 
 	<item name="club">
@@ -237,6 +356,71 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="flail">
+		<type class="club" subclass="flail"/>
+		<attributes>
+			<atk value="13"/>
+		</attributes>
+		<weight value="8"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="mace +1">
+		<type class="club" subclass="enhanced_mace"/>
+		<attributes>
+			<atk value="13"/>
+		</attributes>
+		<weight value="8"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="mace +2">
+		<type class="club" subclass="golden_mace"/>
+		<attributes>
+			<atk value="14"/>
+		</attributes>
+		<weight value="8"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="skull_staff">
+		<type class="club" subclass="skull_staff"/>
+		<attributes>
+			<atk value="14"/>
+		</attributes>
+		<weight value="8"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="flail +2">
+		<type class="club" subclass="golden_flail"/>
+		<attributes>
+			<atk value="15"/>
+		</attributes>
+		<weight value="8"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="hammer">
 		<type class="club" subclass="hammer"/>
 		<attributes>
@@ -250,11 +434,10 @@ in the file.
 		</equipable>
 	</item>
 	
-	<item name="skull_staff">
-		<type class="club" subclass="skull_staff"/>
+	<item name="hammer +3">
+		<type class="club" subclass="golden_hammer"/>
 		<attributes>
-			<atk value="14"/>
-			<def value="1"/>
+			<atk value="18"/>
 		</attributes>
 		<weight value="8"/>
 		<equipable>
@@ -263,13 +446,52 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-
+	
+	<item name="war_hammer">
+		<type class="club" subclass="grand_warhammer.png"/>
+		<attributes>
+			<atk value="21"/>
+		</attributes>
+		<weight value="8"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
 <!-- Ranged_section -->
 
 	<item name="wooden_bow">
 		<type class="ranged" subclass="wooden_bow"/>
 		<attributes>
 			<atk value="12"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="longbow">
+		<type class="ranged" subclass="longbow"/>
+		<attributes>
+			<atk value="14"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="longbow +1">
+		<type class="ranged" subclass="composite_bow"/>
+		<attributes>
+			<atk value="15"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -297,7 +519,50 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="steel_arrow">
+		<type class="projectiles" subclass="steel_arrow"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+			<atk value="3"/>
+		</attributes>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="golden_arrow">
+		<type class="projectiles" subclass="golden_arrow"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+			<atk value="4"/>
+		</attributes>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 <!-- Shields_section -->
+
+	<item name="buckler">
+		<type class="shield" subclass="buckler"/>
+		<attributes>
+			<def value="6"/>
+		</attributes>
+		<weight value="12"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 
 	<item name="wooden_shield">
 		<type class="shield" subclass="wooden_shield"/>
@@ -329,6 +594,71 @@ in the file.
 		<type class="shield" subclass="plate_shield"/>
 		<attributes>
 			<def value="14"/>
+		</attributes>
+		<weight value="24"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="lion_shield">
+		<type class="shield" subclass="lion_shield"/>
+		<attributes>
+			<def value="16"/>
+		</attributes>
+		<weight value="24"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="unicorn_shield">
+		<type class="shield" subclass="unicorn_shield"/>
+		<attributes>
+			<def value="18"/>
+		</attributes>
+		<weight value="24"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="lion_shield +1">
+		<type class="shield" subclass="enhanced_lion_shield"/>
+		<attributes>
+			<def value="20"/>
+		</attributes>
+		<weight value="24"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="skull_shield">
+		<type class="shield" subclass="skull_shield"/>
+		<attributes>
+			<def value="22"/>
+		</attributes>
+		<weight value="24"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="crown_shield">
+		<type class="shield" subclass="skull_shield"/>
+		<attributes>
+			<def value="24"/>
 		</attributes>
 		<weight value="24"/>
 		<equipable>
@@ -377,10 +707,47 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	<item name="studded_armor">
-		<type class="armor" subclass="studded_armor"/>
+
+	<item name="leather_cuirass">
+		<type class="armor" subclass="leather_cuirass"/>
 		<attributes>
 			<def value="4"/>
+		</attributes>
+		<weight value="15"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="leather_armor +1">
+		<type class="armor" subclass="leather_scale_armor"/>
+		<attributes>
+			<def value="4"/>
+		</attributes>
+		<weight value="15"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="leather_cuirass +1">
+		<type class="armor" subclass="enhanced_leather_cuirass"/>
+		<attributes>
+			<def value="5"/>
+		</attributes>
+		<weight value="15"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+    <item name="studded_armor">
+		<type class="armor" subclass="studded_armor"/>
+		<attributes>
+			<def value="5"/>
 		</attributes>
 		<weight value="25"/>
 		<equipable>
@@ -401,6 +768,18 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="chain_armor +1">
+		<type class="armor" subclass="enhanced_chain_armor"/>
+		<attributes>
+			<def value="7"/>
+		</attributes>
+		<weight value="45"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="scale_armor">
 		<type class="armor" subclass="scale_armor"/>
 		<attributes>
@@ -413,6 +792,42 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="scale_armor +1">
+		<type class="armor" subclass="iron_scale_armor"/>
+		<attributes>
+			<def value="8"/>
+		</attributes>
+		<weight value="45"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="chain_armor +3">
+		<type class="armor" subclass="golden_chainmail"/>
+		<attributes>
+			<def value="9"/>
+		</attributes>
+		<weight value="45"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="scale_armor +2">
+		<type class="armor" subclass="enhanched_iron_cuirass.png"/>
+		<attributes>
+			<def value="9"/>
+		</attributes>
+		<weight value="45"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+    
 	<item name="plate_armor">
 		<type class="armor" subclass="plate_armor"/>
 		<attributes>
@@ -452,6 +867,18 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="robins_hat">
+		<type class="helmet" subclass="robins_hat.png"/>
+		<attributes>
+			<def value="2"/>
+		</attributes>
+		<weight value="6"/>
+		<equipable>
+			<slot name="head"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="studded_helmet">
 		<type class="helmet" subclass="studded_helmet"/>
 		<attributes>
@@ -476,10 +903,46 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="viking_helmet">
+		<type class="helmet" subclass="horned_helmet"/>
+		<attributes>
+			<def value="5"/>
+		</attributes>
+		<weight value="6"/>
+		<equipable>
+			<slot name="head"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="chain_helmet +2">
+		<type class="helmet" subclass="aventail"/>
+		<attributes>
+			<def value="6"/>
+		</attributes>
+		<weight value="6"/>
+		<equipable>
+			<slot name="head"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="golden_helmet">
 		<type class="helmet" subclass="golden_helmet"/>
 		<attributes>
-			<def value="6"/>
+			<def value="9"/>
+		</attributes>
+		<weight value="15"/>
+		<equipable>
+			<slot name="head"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="golden_helmet +3">
+		<type class="helmet" subclass="golden_horned_barbute.png"/>
+		<attributes>
+			<def value="12"/>
 		</attributes>
 		<weight value="15"/>
 		<equipable>
@@ -577,6 +1040,18 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="steel_boots">
+		<type class="boots" subclass="steel_boots"/>
+		<attributes>
+			<def value="6"/>
+		</attributes>
+		<weight value="10"/>
+		<equipable>
+			<slot name="feet"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="golden_boots">
 		<type class="boots" subclass="golden_boots"/>
 		<attributes>
@@ -603,18 +1078,6 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="dwarf_cloak">
-		<type class="cloak" subclass="red_cloak"/>
-		<attributes>
-			<def value="4"/>
-		</attributes>
-		<weight value="5"/>
-		<equipable>
-			<slot name="cloak"/>
-			<slot name="bag"/>
-		</equipable>
-	</item>
-
 	<item name="elf_cloak">
 		<type class="cloak" subclass="white_cloak"/>
 		<attributes>
@@ -627,18 +1090,30 @@ in the file.
 		</equipable>
 	</item>
 		
-	<item name="lich_cloak">
-		<type class="cloak" subclass="purple_cloak"/>
+	<item name="dwarf_cloak">
+		<type class="cloak" subclass="red_cloak"/>
 		<attributes>
-			<def value="11"/>
+			<def value="4"/>
 		</attributes>
-		<weight value="2"/>
+		<weight value="5"/>
 		<equipable>
 			<slot name="cloak"/>
 			<slot name="bag"/>
 		</equipable>
 	</item>
-		
+
+	<item name="elf_cloak +2">
+		<type class="cloak" subclass="lightblue_cloak"/>
+		<attributes>
+			<def value="8"/>
+		</attributes>
+		<weight value="5"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="green_dragon_cloak">
 		<type class="cloak" subclass="green_cloak"/>
 		<attributes>
@@ -651,6 +1126,18 @@ in the file.
 		</equipable>
 	</item>
 	
+    <item name="lich_cloak">
+		<type class="cloak" subclass="purple_cloak"/>
+		<attributes>
+			<def value="11"/>
+		</attributes>
+		<weight value="2"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+		
 	<item name="blue_dragon_cloak">
 		<type class="cloak" subclass="blue_cloak"/>
 		<attributes>
@@ -667,6 +1154,18 @@ in the file.
 		<type class="cloak" subclass="black_cloak"/>
 		<attributes>
 			<def value="18"/>
+		</attributes>
+		<weight value="5"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="golden_cloak">
+		<type class="cloak" subclass="golden_cloak"/>
+		<attributes>
+			<def value="19"/>
 		</attributes>
 		<weight value="5"/>
 		<equipable>

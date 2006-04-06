@@ -36,7 +36,7 @@ public class stendhal extends Thread
   public static final String VERSION=Debug.VERSION;
   
   public static final String VERSION_LOCATION="http://arianne.sourceforge.net/stendhal.version";
-  public static final String SCREEN_SIZE="640x480";
+  public static String SCREEN_SIZE="640x480";
   
 
   public static final boolean SHOW_COLLISION_DETECTION  = false;
@@ -46,6 +46,24 @@ public class stendhal extends Thread
 
   public static void main(String args[]) 
     {
+    String size=null;
+    int i=0;
+
+    while(i!=args.length)
+      {
+      if(args[i].equals("-s"))
+        {
+        size=args[i+1];
+        }
+      i++;
+      }
+    
+    if(size!=null)
+      {
+      SCREEN_SIZE=size;
+      }     
+
+
     Log4J.init("data/conf/log4j.properties");
     
     logger.info("Setting base at :"+STENDHAL_FOLDER);   

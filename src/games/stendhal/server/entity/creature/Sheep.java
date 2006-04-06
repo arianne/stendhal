@@ -90,8 +90,8 @@ public class Sheep extends Creature
     {
     super(object);
     
-    setContainer(null,null);    
-    
+//    setContainer(null,null);    
+//    
     put("type","sheep");
     this.owner=owner;
 

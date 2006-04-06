@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <property name="x" value="500000"/>
- <property name="y" value="500000"/>
+ <property name="x" value="500640"/>
+ <property name="y" value="499872"/>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -42,7 +42,7 @@
  </layer>
  <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3dTW6cMBgGYJQDtN1121yiq/6o2zS77NLkHJO0l++gqtLIggw2NtjmeSQvssgEePFnbKzJMBzDp5thuL3Z+yjYi/yPTf7HdTrn/u3cvsu/G2OmXxe2Mfunc3uWf9NOQaa/FrYx+9+yb9ZpIvMx09eFTfZ1iandl7k/ybQasRlO5RlTv2Veh6laHNtiarfc6xDmHpuhPPc1V6+X/l6YuwzrsHQcnqvXsc9ect9fyjx4rl579mrDXOZLx+G5/IzV+ayZE8XUb/PguuSYE8XUb5nXIeecaKs6HNaoo8pRq2t6Nk6dBxxNzlpdU+6p84CeTfWJnLW6ZO6x/XntPKAVse/99+6zqeNMbH9uPdcpb/Xf1DWPLa/TKfJ4U96R1JR7mNefhGO7traV+73/tf4ZnkPKvqPaxpZLpdYoxvZl5WeU7r9L+md4Dr3tOyq1RjG2x5WfUfrajXuCf1zph+E59LbvqOQaxUuGz7iUe311yZ7g8BxayLRHa56l3qo1z/Ks3v/sc6+v6stllKjTLTxLtShnTinPyL08R7cqZ04pz8jqdB4Pib+XMyd5AVBa6ngHUJLaBAAc2ce9D2CBFo6RcuQPQKuMYQCs9XnvA7ii9uOL4V0RAAAAAAAAAAAAAAAAAAAAAAAA0LqS34fa0/fPpXINAFjD958CAKQxH6+P/8kD/+SsT2rdNtQvgG1ZEwUAoBbvzu19Q+1DmcvQjdjr2aK978Ge7umfDbWe5boHYq7nfaa/uZW7Yf97sOQ9bWw7nrvg57VjCe0J7wGOJ9fYVivvQADY2lb7nuxjo2f2D0I5R+1fxk0AAEjzF0aSFloAAAEA
   </data>
  </layer>
  <layer name="2_object" width="128" height="128">
@@ -62,12 +62,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3bsQ3AIAwAQbcZNtOwTMajiuQmBYllitxNQGVZ8EQAAAAAAAAAAAAAAAAAAAAAAAAAT8ax+wQAALDGDgsAAAAAAAAAdMiNwqVXAAAAfka3DQAAAAAAQBdvU9z0mgAAAAAAUON05w7wmVkKvKGDAQAAAAAAAAAAAAA6+PcAUMM8BQAAsgmUlk6qAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3VOw7CMBBF0bTsf0+siyJCokiT4N/znCOlRBrPjcNx1PB+nQ816V+b/nV92+u/j9+mdx5yPW2ufbZ/u2u/lhY9NZ2rVUPNs+hek57ZnnbQcG2+xfX4D66nVz/d23Eva9K8psTm3qPTyo1Gnqca3deYe4SUb/Lo2ZOl7WHEO7hD1yvpe6rWvcVso3dz9/e73eeR51ltL2nz9jC75czdpc/fQs/z9tjZ6EaJTXdV9Y6ifRq9MvTqpH2G2U21n0svAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgtg87+R5KAAABAA==
   </data>
  </layer>
  <layer name="navigation" width="128" height="128">
