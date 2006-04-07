@@ -75,9 +75,9 @@
    H4sIAAAAAAAAAO3ZwQ2AMAwEQX8pk/6bSAMIOZECxsxUcL9N5AgAAAAAAAAAAAAAAAAAAACAdefx9oJrVXcBAAAAAAD/kb1XuGsAAAAd+NsAkHHXi6daolkAwG7V3hvV9gDwPbMt0R46GDQSALgAgAAA
   </data>
  </layer>
- <layer name="protection" width="128" height="64">
+ <layer name="protection" width="128" height="64" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SwRGDMAADQb7pv6i0lRogNmfD7owqOB0HAAAAAAAAAAAAAAAAAAAAAAAAcJfv5/x4jiv9feA5rvb3g2f4t78P7E3/dxvR3w/2pf+7jezvA/sZ3d8H9jKjvx/sY2Z/H1jf7P5+sLa7+vvAmu7sf/YL/jZf1X+Vj71d3Uj/Vt1I/1bdSP9W3Uj/Vt1I/1bdSP9W3Uj/Vt1I/1bdSP9W3Uj/Vt1I+9YPdaHbqwCAAAA=
+   H4sIAAAAAAAAAO3SwRGDMAADQb7pv6i0lRogNmfD7owqOB0HAAAAAAAAAAAAAAAAAAAAAAAAcJfv5/x4jiv9feA5rvb3g2f4t78P7E3/dxvR3w/2pf+7jezvA/sZ3d8H9jKjvx/sY2Z/H1jf7P5+sLa7+vvAmu7sf/YL/jZf1X+Vj71d3Uj/Vt3IB1p1H/1bdR/tW3Uj/Vt1I/1bdSP9W3Uj/Vt1I/1bdSP9W3Uj7Vs/LYrXQQCAAAA=
   </data>
  </layer>
 </map>

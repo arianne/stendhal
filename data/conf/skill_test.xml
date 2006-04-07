@@ -1,60 +1,103 @@
 <!-- ${XXX} means that XXX is a defined variable name-->
 
 <!-- Quick Strike - Waste some MP to fire a few fast arrows towards one opponent -->
-<skill = "Quick_Strike">
-	<class = "Archer" />
+<skill name = "Quick_Strike">
+	<class name = "Archer" />
 	<bonus>	</bonus>
 <!-- preparation is time before skill is cast, 0 == instant -->
-	<preparation = "0" /> 
+	<preparation time = "0" /> 
 <!-- duration is the time the skill lasts, 0 == no duration (same as normal melee attack) -->
-	<duration = "0" /> 
+	<duration time = "0" /> 
 <!-- effect is gfx eye candy that the skill uses, like fire, ice, freeze etc effects -->
 	<effect>
 		<multiple_arrows />
 	</effect>
 <!-- skill_LVL_bonus is added bonuses you get per skill lvl -->
 	<skill_LVL_bonus>
-		<LVL = "ALL">
+		<LVL  value="ALL">
 			<bonus damage="${SKILL_LVL}*0.5" />
 			<MP_cost = "${SKILL_LVL}*XX" />
 	</skill_LVL_bonus>
 </skill>
 
 <!-- Arrow Shower - Waste some MP to fire seweral arrows towards seweral monster in one attack -->
-<skill = "Arrow_Shower">
-	<class = "Archer" />
+<skill name="Arrow_Shower">
+	<class name="Archer" />
 <!-- The 10 at the end of Quick_Strike means the skill lvl needed in the skill Quick_Strike-->
-	<prereqs name="Quick_Strike" level="10" />
+	<requiers>
+		<skill name="Quick_Strike" level="10" />
+	</requiers>
 	<bonus></bonus>
-	<preparation = "0" /> 
-	<duration = "0" /> 
+	<preparation time="0" /> 
+	<duration time="0" /> 
 	<effect>
 		<multiple_arrows />
 	</effect>
 	<skill_LVL_bonus>
-		<LVL = "ALL">
+		<LVL value="ALL">
 <!-- the attack parameter means number of attacks that can be made -->
 			<bonus attacks="(${SKILL_LVL}/2)+1" />
-			<MP_cost = "${SKILL_LVL}*XX" />
+			<MP_cost value= "${SKILL_LVL}*XX" />
 		</LVL>
 	</skill_LVL_bonus>
 </skill>
 
 <!-- Falcon Eyes - Increases max range for the archer -->
 <skill = "Falcon_Eyes">
-	<class = "Archer" />
+	<class name="Archer" />
 	<bonus></bonus>
 <!-- auto means that as soon as you have the skill, it self casts -->
-	<preparation = "auto" /> 
+	<preparation time="auto" /> 
 <!-- permanent means it is always activated -->
-	<duration = "permanent" /> 
+	<duration time="permanent" /> 
 	<effect>
 		<multiple_arrows />
 	</effect>
 	<skill_LVL_bonus>
-		<LVL = "ALL">
+		<LVL value="ALL">
 <!-- the attack_range parameter increses the range of ranged attacks -->
 			<bonus attack_range="(${SKILL_LVL}/10)+1" />
+		</LVL>
+	</skill_LVL_bonus>
+</skill>
+
+<!-- Power Strike - Waste some MP to boost attack power and max damage in one attack -->
+<skill name ="Power_Strike">
+	<class name="Warrior" />
+	<requiers = weapon="melee" />
+	<bonus></bonus>
+	<preparation time="0" /> 
+	<duration time="0" />
+	<effect></effect>
+	<skill_LVL_bonus>
+		<LVL value="ALL">
+			<bonus damage="(${SKILL_LVL}/10)*2" />
+		</LVL>
+	</skill_LVL_bonus>
+</skill>
+
+<!-- Body Training - Increases MAX HP -->
+<skill name ="Body_Training">
+	<class name = "Warrior" />
+	<preparation time="auto" /> 
+	<duration time="permanent" />
+	<skill_LVL_bonus>
+		<LVL value="ALL">
+			<bonus hp="${SKILL_LVL}+${SKILL_LVL}*0.2" />
+		</LVL>
+	</skill_LVL_bonus>
+</skill>
+
+<skill name ="Recovery">
+	<class name="Warrior" />
+	<requiers>
+		<skill name="Body_Training" level="10" />
+	</requiers>
+	<preparation time="auto" /> 
+	<duration time="permanent" />
+	<skill_LVL_bonus>
+		<LVL value="ALL">
+			<bonus hp="${SKILL_LVL}+${SKILL_LVL}*0.2" />
 		</LVL>
 	</skill_LVL_bonus>
 </skill>
