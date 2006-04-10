@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-
 <creatures>
-
 	<!-- Level 0 -->
-
 	<creature name="deer">
 		<type class="animal" subclass="deer" tileid="36"/>
 		<attributes>
@@ -28,7 +25,6 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
-
 	<creature name="crab">
 		<type class="animal" subclass="crab" tileid="79"/>
 		<attributes>
@@ -54,7 +50,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="rat">
 		<type class="small_animal" subclass="rat" tileid="12"/>
 		<attributes>
@@ -79,10 +74,7 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
-
-
 	<!-- Level 1 -->
-
 	<creature name="bat">
 		<type class="animal" subclass="bat" tileid="77"/>
 		<attributes>
@@ -105,7 +97,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="caverat">
 		<type class="small_animal" subclass="caverat" tileid="13"/>
 		<attributes>
@@ -130,7 +121,6 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
-
 	<creature name="penguin">
 		<type class="animal" subclass="penguin" tileid="78"/>
 		<attributes>
@@ -156,9 +146,7 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<!-- Level 2 -->
-
 	<creature name="monkey">
 		<type class="animal" subclass="monkey" tileid="76"/>
 		<attributes>
@@ -185,7 +173,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="boar">
 		<type class="animal" subclass="boar" tileid="20"/>
 		<attributes>
@@ -212,7 +199,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="wolf">
 		<type class="animal" subclass="wolf" tileid="14"/>
 		<attributes>
@@ -239,7 +225,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="gnome">
 		<type class="gnome" subclass="gnome" tileid="50"/>
 		<attributes>
@@ -269,7 +254,6 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
-
 	<creature name="mage_gnome">
 		<type class="gnome" subclass="woman_gnome" tileid="87"/>
 		<attributes>
@@ -300,9 +284,7 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
-
 	<!-- Level 3 -->
-
 	<creature name="cobra">
 		<type class="animal" subclass="cobra" tileid="15"/>
 		<attributes>
@@ -329,9 +311,7 @@
 			<profile name="poisonous" params="5,poison"/>
 		</ai>
 	</creature>
-
 	<!-- Level 4 -->
-
 	<creature name="bear">
 		<type class="animal" subclass="bear" tileid="28"/>
 		<attributes>
@@ -358,7 +338,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="lion">
 		<type class="animal" subclass="lion" tileid="70"/>
 		<attributes>
@@ -385,9 +364,7 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<!-- Level 5 -->
-
 	 <creature name="goblin">
 		<type class="goblin" subclass="goblin" tileid="22"/>
 		<attributes>
@@ -416,7 +393,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="kobold">
 		<type class="kobold" subclass="kobold" tileid="19"/>
 		<attributes>
@@ -446,7 +422,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="elephant">
 		<type class="animal" subclass="elephant" tileid="71"/>
 		<attributes>
@@ -474,7 +449,6 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
-
 	<creature name="venomrat">
 		<type class="small_animal" subclass="venomrat" tileid="29"/>
 		<attributes>
@@ -500,7 +474,6 @@
 			<profile name="poisonous" params="5,greater_poison"/>
 		</ai>
 	</creature>
-
 	<creature name="tiger">
 		<type class="animal" subclass="tiger" tileid="69"/>
 		<attributes>
@@ -529,9 +502,7 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<!-- Level 6 -->
-
 	<creature name="skeleton">
 		<type class="undead" subclass="skeleton" tileid="24"/>
 		<attributes>
@@ -560,8 +531,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
-
 	<creature name="gargoyle">
 		<type class="gargoyle" subclass="gargoyle" tileid="17"/>
 		<attributes>
@@ -587,7 +556,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="young_beholder">
 		<type class="beholder" subclass="young_beholder" tileid="66"/>
 		<attributes>
@@ -613,10 +581,7 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
-
 	<!-- Level 7 -->
-
 	 <creature name="veteran_goblin">
 		<type class="goblin" subclass="veteran_goblin" tileid="48"/>
 		<attributes>
@@ -645,7 +610,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="soldier_kobold">
 		<type class="kobold" subclass="soldier_kobold" tileid="43"/>
 		<attributes>
@@ -675,9 +639,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<!-- Level 8 -->
-
 	<creature name="green_slime">
 		<type class="animal" subclass="green_slime" tileid="81"/>
 		<attributes>
@@ -701,7 +663,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="archer_kobold">
 		<type class="kobold" subclass="archer_kobold" tileid="44"/>
 		<attributes>
@@ -732,7 +693,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="black_bear">
 		<type class="animal" subclass="black_bear" tileid="37"/>
 		<attributes>
@@ -759,7 +719,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="elder_gargoyle">
 		<type class="gargoyle" subclass="elder_gargoyle" tileid="56"/>
 		<attributes>
@@ -785,7 +744,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="razorrat">
 		<type class="small_animal" subclass="razorrat" tileid="30"/>
 		<attributes>
@@ -810,9 +768,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<!-- Level 9 -->
-
 	<creature name="cyclops">
 		<type class="giant" subclass="cyclops" tileid="25"/>
 		<attributes>
@@ -841,7 +797,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="beholder">
 		<type class="beholder" subclass="beholder" tileid="68"/>
 		<attributes>
@@ -864,7 +819,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	 <creature name="soldier_goblin">
 		<type class="goblin" subclass="soldier_goblin" tileid="49"/>
 		<attributes>
@@ -891,7 +845,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
 	<creature name="veteran_kobold">
 		<type class="kobold" subclass="veteran_kobold" tileid="42"/>
 		<attributes>
@@ -919,9 +872,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<!-- Level 10 -->
-
 	<creature name="troll">
 		<type class="troll" subclass="troll" tileid="21"/>
 		<attributes>
@@ -950,7 +901,6 @@
 			<profile name="coward" params="fire"/>
 		</ai>
 	</creature>
-
 	<creature name="orc">
 		<type class="orc" subclass="orc" tileid="16"/>
 		<attributes>
@@ -976,8 +926,6 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
-
 	<creature name="dark_gargoyle">
 		<type class="gargoyle" subclass="dark_gargoyle" tileid="57"/>
 		<attributes>
@@ -1005,12 +953,8 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<!-- Level 11 -->
-
-
 	<!-- Level 12 -->
-
 	<creature name="ogre">
 		<type class="giant" subclass="ogre" tileid="18"/>
 		<attributes>
@@ -1038,7 +982,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="mummy">
 		<type class="mummy" subclass="mummy" tileid="41"/>
 		<attributes>
@@ -1068,9 +1011,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<!-- Level 13 -->
-
 	<creature name="leader_kobold">
 		<type class="kobold" subclass="leader_kobold" tileid="45"/>
 		<attributes>
@@ -1101,9 +1042,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<!-- Level 14 -->
-
 	<creature name="orc_warrior">
 		<type class="orc" subclass="orc_warrior" tileid="34"/>
 		<attributes>
@@ -1134,7 +1073,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="orc_hunter">
 		<type class="orc" subclass="orc_hunter" tileid="40"/>
 		<attributes>
@@ -1161,10 +1099,7 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
-
 	<!-- Level 15 -->
-
 	<creature name="ghost">
 		<type class="undead" subclass="ghost" tileid="90"/>
 		<attributes>
@@ -1191,7 +1126,6 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
-
 	<creature name="giantrat">
 		<type class="giant_animal" subclass="giantrat" tileid="23"/>
 		<attributes>
@@ -1218,7 +1152,6 @@
 			<profile name="heal" params="5,150"/>
 		</ai>
 	</creature>
-
 	<creature name="elf">
 		<type class="elf" subclass="elf" tileid="26"/>
 		<attributes>
@@ -1247,7 +1180,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="dwarf">
 		<type class="dwarf" subclass="dwarf" tileid="27"/>
 		<attributes>
@@ -1277,7 +1209,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="ratman">
 		<type class="ratfolk" subclass="ratman" tileid="31"/>
 		<attributes>
@@ -1308,7 +1239,6 @@
 			<profile name="heal" params="5,150"/>
 		</ai>
 	</creature>
-
 	<creature name="ratwoman">
 		<type class="ratfolk" subclass="ratwoman" tileid="96"/>
 		<attributes>
@@ -1339,7 +1269,6 @@
 			<profile name="heal" params="5,150"/>
 		</ai>
 	</creature>
-
 	<creature name="elder_beholder">
 		<type class="beholder" subclass="elder_beholder" tileid="67"/>
 		<attributes>
@@ -1363,10 +1292,7 @@
 			<profile name="ofensive"/>
 		</ai>
 	</creature>
-
-
 	<!-- Level 16 -->
-
 	<creature name="brown_slime">
 		<type class="animal" subclass="brown_slime" tileid="82"/>
 		<attributes>
@@ -1390,7 +1316,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="venom_gargoyle">
 		<type class="gargoyle" subclass="venom_gargoyle" tileid="55"/>
 		<attributes>
@@ -1419,10 +1344,7 @@
 			<profile name="poisonous" params="15,poison"/>
 		</ai>
 	</creature>
-
-
 	<!-- Level 17 -->
-
 	<creature name="elder_ogre">
 		<type class="giant" subclass="elder_ogre" tileid="54"/>
 		<attributes>
@@ -1450,9 +1372,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<!-- Level 18 -->
-
 	<creature name="dwarf_guardian">
 		<type class="dwarf" subclass="dwarf_guardian" tileid="32"/>
 		<attributes>
@@ -1482,7 +1402,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="orc_chief">
 		<type class="orc" subclass="orc_chief" tileid="35"/>
 		<attributes>
@@ -1511,7 +1430,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="militia_elf">
 		<type class="elf" subclass="militia_elf" tileid="59"/>
 		<attributes>
@@ -1540,10 +1458,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
-
 	<!-- Level 19 -->
-
 	<creature name="archer_elf">
 		<type class="elf" subclass="archer_elf" tileid="63"/>
 		<attributes>
@@ -1573,7 +1488,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="zombie">
 		<type class="undead" subclass="zombie" tileid="75"/>
 		<attributes>
@@ -1601,10 +1515,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
-
 	<!-- Level 20 -->
-
 	<creature name="elder_dwarf">
 		<type class="dwarf" subclass="elder_dwarf" tileid="33"/>
 		<attributes>
@@ -1635,9 +1546,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
     <!-- Level 21 -->
-
 	<creature name="soldier_elf">
 		<type class="elf" subclass="soldier_elf" tileid="58"/>
 		<attributes>
@@ -1703,9 +1612,7 @@
 		</ai>
 	</creature>
 	
-
     <!-- Level 24 -->
-
 	<creature name="black_slime">
 		<type class="animal" subclass="black_slime" tileid="83"/>
 		<attributes>
@@ -1729,7 +1636,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
     <creature name="wooden_golem">
 		<type class="golem" subclass="wooden_golem" tileid="46"/>
 		<attributes>
@@ -1754,7 +1660,6 @@
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
-
 	<creature name="royal_mummy">
 		<type class="mummy" subclass="royal_mummy" tileid="72"/>
 		<attributes>
@@ -1782,7 +1687,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<!-- Level 25 -->
 		
 	<creature name="archrat">
@@ -1816,7 +1720,6 @@
 			<profile name="poisonous" params="40,greater_poison"/>
 		</ai>
 	</creature>
-
 	<creature name="hero_dwarf">
 		<type class="dwarf" subclass="hero_dwarf" tileid="65"/>
 		<attributes>
@@ -1847,7 +1750,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="mage_elf">
 		<type class="elf" subclass="mage_elf" tileid="60"/>
 		<attributes>
@@ -1873,9 +1775,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
     <!-- Level 30 -->
-
 	<creature name="death">
 		<type class="undead" subclass="death" tileid="89"/>
 		<attributes>
@@ -1904,7 +1804,6 @@
 			<profile name="coward"/>
 		</ai>
 	</creature>
-
 	<creature name="commander_elf">
 		<type class="elf" subclass="commander_elf" tileid="61"/>
 		<attributes>
@@ -1934,9 +1833,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
     <!-- Level 32 -->
-
 	<creature name="stone_golem">
 		<type class="golem" subclass="stone_golem" tileid="47"/>
 		<attributes>
@@ -1961,7 +1858,6 @@
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
-
     <!-- Level 35 -->
     
 	<creature name="archmage_elf">
@@ -1990,7 +1886,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="leader_dwarf">
 		<type class="dwarf" subclass="leader_dwarf" tileid="64"/>
 		<attributes>
@@ -2023,7 +1918,6 @@
 	</creature>
 	
 	<!-- Level 37 -->		
-
 	<creature name="demon_skeleton">
 		<type class="undead" subclass="demon_skeleton" tileid="74"/>
 		<attributes>
@@ -2051,9 +1945,7 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<!-- Level 45 -->		
-
 	<creature name="elf_sacerdotist">
 		<type class="elf" subclass="elf_sacerdotist" tileid="80"/>
 		<attributes>
@@ -2080,8 +1972,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
-
 	<!-- Level 50 -->
     
 	<creature name="earth_elemental">
@@ -2107,7 +1997,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="fire_elemental">
 		<type class="elemental" subclass="fire_elemental" tileid="84"/>
 		<attributes>
@@ -2131,7 +2020,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="water_elemental">
 		<type class="elemental" subclass="water_elemental" tileid="86"/>
 		<attributes>
@@ -2155,7 +2043,6 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
-
 	<creature name="green_dragon">
 		<type class="huge_animal" subclass="green_dragon" tileid="51"/>
 		<attributes>
@@ -2216,8 +2103,6 @@
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
-
-
 	<!-- Level 60 -->
     
 	<creature name="lich">
@@ -2251,7 +2136,6 @@
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
-
 	<!-- Level 70 -->
     
 	<creature name="blue_dragon">
@@ -2280,7 +2164,6 @@
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
-
 	<!-- Level 100 -->
     
 	<creature name="black_dragon">
@@ -2309,10 +2192,6 @@
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
-
 </creatures>
-
 <!-- To add
-
-
 -->
