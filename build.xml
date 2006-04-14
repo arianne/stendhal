@@ -187,7 +187,50 @@
  
   </target>
   
-  
+  <target name="client_data_build" depends="init" description="Build JAR file for Stendhal client">
+    <property name="client_data" value="stendhal-data-${version}.jar"/>
+    <property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
+
+    <property name="build_client_data" value="build_client_data/"/>
+  	<mkdir dir="${build_client_data}/"/>
+
+    <copy todir="${build_client_data}/data/sprites">
+      <fileset dir="${sprites}"/>
+    </copy>
+
+    <copy todir="${build_client_data}/data/tilesets">
+      <fileset dir="${tiled}">
+        <include name="*.png"/>
+      </fileset>
+    </copy>
+
+    <copy todir="${build_client_data}/data/gui">
+      <fileset dir="${data}">
+        <exclude name="paneldrock*.jpg"/>
+        <exclude name="panelmetal003.gif"/>
+        <exclude name="panelrock016.jpg"/>
+        <exclude name="panelwood006.jpg"/>
+        <exclude name="panelwood032.gif"/>
+        <exclude name="panelwood119.jpg"/>
+      </fileset>
+    </copy>
+
+    <copy todir="${build_client_data}/data/conf/" file="data/conf/log4j.properties"/>
+    <jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>    
+
+    <property name="build_client_sound_data" value="build_client_sound_data/"/>
+  	<mkdir dir="${build_client_sound_data}/"/>
+
+    <copy todir="${build_client_sound_data}/data/sounds"> 
+      <fileset dir="data/sounds"> 
+        <include name="**.*"/> 
+      </fileset> 
+    </copy> 
+
+    <jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>    
+ 
+  </target>
+
   
   <target name="docs" depends="server_build, client_build" description="Build javadocs for Stendhal">
     <javadoc packagenames="games.stendhal.*"           
