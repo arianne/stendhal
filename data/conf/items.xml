@@ -769,7 +769,7 @@ in the file.
 	</item>
 
 	<item name="chain_armor +1">
-		<type class="armor" subclass="enhanced_chain_armor"/>
+		<type class="armor" subclass="enhanced_chainmail"/>
 		<attributes>
 			<def value="7"/>
 		</attributes>
