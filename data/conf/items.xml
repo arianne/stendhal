@@ -302,7 +302,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="twoside_axe +3">
+	<item name="twoside_axe_+3">
 		<type class="axe" subclass="golden_twosided_poleaxe"/>
 		<attributes>
 			<atk value="22"/>
@@ -369,7 +369,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="mace +1">
+	<item name="mace_+1">
 		<type class="club" subclass="enhanced_mace"/>
 		<attributes>
 			<atk value="13"/>
@@ -382,7 +382,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="mace +2">
+	<item name="mace_+2">
 		<type class="club" subclass="golden_mace"/>
 		<attributes>
 			<atk value="14"/>
@@ -408,7 +408,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="flail +2">
+	<item name="flail_+2">
 		<type class="club" subclass="golden_flail"/>
 		<attributes>
 			<atk value="15"/>
@@ -434,7 +434,7 @@ in the file.
 		</equipable>
 	</item>
 	
-	<item name="hammer +3">
+	<item name="hammer_+3">
 		<type class="club" subclass="golden_hammer"/>
 		<attributes>
 			<atk value="18"/>
@@ -488,7 +488,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="longbow +1">
+	<item name="longbow_+1">
 		<type class="ranged" subclass="composite_bow"/>
 		<attributes>
 			<atk value="15"/>
@@ -629,7 +629,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="lion_shield +1">
+	<item name="lion_shield_+1">
 		<type class="shield" subclass="enhanced_lion_shield"/>
 		<attributes>
 			<def value="20"/>
@@ -720,7 +720,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="leather_armor +1">
+	<item name="leather_armor_+1">
 		<type class="armor" subclass="leather_scale_armor"/>
 		<attributes>
 			<def value="4"/>
@@ -732,7 +732,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="leather_cuirass +1">
+	<item name="leather_cuirass_+1">
 		<type class="armor" subclass="enhanced_leather_cuirass"/>
 		<attributes>
 			<def value="5"/>
@@ -768,7 +768,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="chain_armor +1">
+	<item name="chain_armor_+1">
 		<type class="armor" subclass="enhanced_chainmail"/>
 		<attributes>
 			<def value="7"/>
@@ -792,7 +792,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="scale_armor +1">
+	<item name="scale_armor_+1">
 		<type class="armor" subclass="iron_scale_armor"/>
 		<attributes>
 			<def value="8"/>
@@ -804,7 +804,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="chain_armor +3">
+	<item name="chain_armor_+3">
 		<type class="armor" subclass="golden_chainmail"/>
 		<attributes>
 			<def value="9"/>
@@ -816,7 +816,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="scale_armor +2">
+	<item name="scale_armor_+2">
 		<type class="armor" subclass="enhanched_iron_cuirass.png"/>
 		<attributes>
 			<def value="9"/>
@@ -915,7 +915,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="chain_helmet +2">
+	<item name="chain_helmet_+2">
 		<type class="helmet" subclass="aventail"/>
 		<attributes>
 			<def value="6"/>
@@ -939,7 +939,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="golden_helmet +3">
+	<item name="golden_helmet_+3">
 		<type class="helmet" subclass="golden_horned_barbute.png"/>
 		<attributes>
 			<def value="12"/>
@@ -1102,7 +1102,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="elf_cloak +2">
+	<item name="elf_cloak_+2">
 		<type class="cloak" subclass="lightblue_cloak"/>
 		<attributes>
 			<def value="8"/>

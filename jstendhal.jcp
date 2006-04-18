@@ -120,9 +120,6 @@
 				<path>tiled\src</path>
 			</folderitem>
 			<folderitem>
-				<path>tiled\src\dist</path>
-			</folderitem>
-			<folderitem>
 				<path>tiled\src\doc</path>
 			</folderitem>
 			<folderitem>
@@ -189,10 +186,25 @@
 				<path>tiled\src\tiled\view\old</path>
 			</folderitem>
 			<folderitem>
-				<path>tiled\test</path>
+				<path>build_server</path>
 			</folderitem>
 			<folderitem>
-				<path>tiled\test\Nueva carpeta</path>
+				<path>build_server\data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server\data\conf</path>
+			</folderitem>
+			<folderitem>
+				<path>lib</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_data\data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_data\data\conf</path>
 			</folderitem>
 			<folderitem>
 				<path>build_client_sound_data</path>
@@ -202,6 +214,15 @@
 			</folderitem>
 			<folderitem>
 				<path>build_client_sound_data\data\sounds</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf\data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf\data\conf</path>
 			</folderitem>
 			<fileitem>
 				<path>AUTHORS</path>
@@ -228,23 +249,11 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>stendhal-0.47.1.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>stendhal-0.48.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>stendhal-FULL-0.47.1.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>stendhal-FULL-0.48.zip</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>stendhal-server-0.47.1.zip</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1104,10 +1113,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>tiled\src\dist\tiled.jar</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>tiled\src\doc\index.htm</path>
 				<url>tiled\src\doc\index.htm</url>
 				<source>true</source>
@@ -1718,11 +1723,35 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>tiled\test\Nueva carpeta\creatures.xml</path>
+				<path>build_server\data\conf\stendhalcreateaccount.properties</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>tiled\test\Nueva carpeta\items.xml</path>
+				<path>lib\stendhal-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-data-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-maps-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-server-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-sound-data-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-xmlconf-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_client_data\data\conf\log4j.properties</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1731,6 +1760,14 @@
 			</fileitem>
 			<fileitem>
 				<path>build_client_sound_data\data\sounds\stensounds0.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_server_xmlconf\data\conf\creatures.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_server_xmlconf\data\conf\items.xml</path>
 				<source>true</source>
 			</fileitem>
 		</include>
