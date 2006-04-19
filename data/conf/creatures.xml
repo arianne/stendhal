@@ -516,7 +516,7 @@
 		<experience value="65"/>
 		<respawn value="900"/>
 		<drops>
-			<item value="money" quantity="[3,80]" probability="90"/>
+			<item value="money" quantity="[3,10]" probability="90"/>
 			<item value="wooden_shield" quantity="1" probability="20"/>
 			<item value="dagger" quantity="1" probability="10"/>
 		</drops>
@@ -757,7 +757,7 @@
 		<experience value="100"/>
 		<respawn value="900"/>
 		<drops>
-			<item value="money" quantity="[5,30]" probability="100"/>
+			<item value="money" quantity="[5,20]" probability="100"/>
 			<item value="cheese" quantity="[1,3]" probability="50"/>
 		</drops>
 		<equips>
