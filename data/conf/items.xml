@@ -370,7 +370,8 @@ in the file.
 	</item>
 
 	<item name="mace_+1">
-		<type class="club" subclass="enhanced_mace"/>
+<!-- graphics was enhanced_mace, wich didnt exist, so im giving it the mace gfx -->
+		<type class="club" subclass="mace"/>
 		<attributes>
 			<atk value="13"/>
 		</attributes>
@@ -448,7 +449,7 @@ in the file.
 	</item>
 	
 	<item name="war_hammer">
-		<type class="club" subclass="grand_warhammer.png"/>
+		<type class="club" subclass="grand_warhammer"/>
 		<attributes>
 			<atk value="21"/>
 		</attributes>
@@ -733,7 +734,7 @@ in the file.
 	</item>
 
 	<item name="leather_cuirass_+1">
-		<type class="armor" subclass="enhanced_leather_cuirass"/>
+		<type class="armor" subclass="enhanched_leather_cuirass"/>
 		<attributes>
 			<def value="5"/>
 		</attributes>
@@ -817,7 +818,7 @@ in the file.
 	</item>
 
 	<item name="scale_armor_+2">
-		<type class="armor" subclass="enhanched_iron_cuirass.png"/>
+		<type class="armor" subclass="enhanched_iron_cuirass"/>
 		<attributes>
 			<def value="9"/>
 		</attributes>
@@ -868,7 +869,7 @@ in the file.
 	</item>
 
 	<item name="robins_hat">
-		<type class="helmet" subclass="robins_hat.png"/>
+		<type class="helmet" subclass="robins_hat"/>
 		<attributes>
 			<def value="2"/>
 		</attributes>
@@ -940,7 +941,7 @@ in the file.
 	</item>
 
 	<item name="golden_helmet_+3">
-		<type class="helmet" subclass="golden_horned_barbute.png"/>
+		<type class="helmet" subclass="golden_horned_barbute"/>
 		<attributes>
 			<def value="12"/>
 		</attributes>
