@@ -24,7 +24,8 @@ public class Sign extends Entity
   private String text;
   private Sprite textImage;
   private long textPersistTime;
-  
+// Give Signs same color on Screen and Log window. intensifly@gmx.com  
+  static final private Color signColor = new Color( 0x006400 );  // dark green
   public Sign(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
     {    
     super(gameObjects, object);
@@ -63,14 +64,15 @@ public class Sign extends Entity
       Graphics g=image.getGraphics();
       g.setColor(Color.white);
       g.fillRect(0,0,width,height);
-      g.setColor(Color.black);
+      g.setColor(signColor);
       g.drawRect(0,0,width-1,height-1);
             
       int j=0;
       for(String line: lines)
         {
-        g.setColor(Color.black);
-        g.drawString(line,2,11+j*16);
+        g.setColor(signColor);
+        // Give 1 more pixel distance to top sign border. intensifly@gmx.com
+        g.drawString(line,2,12+j*16);
         j++;
         }
         
@@ -108,7 +110,7 @@ public class Sign extends Entity
       {
       gameObjects.addText(this, textImage, textPersistTime );
       StendhalClient.get().addEventLine("You read \""+text.replace("|","\n")+"\"",
-            new Color( 0x006400 ) );  // dark green
+            signColor ); 
       }
     }
 

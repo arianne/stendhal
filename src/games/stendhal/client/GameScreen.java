@@ -13,6 +13,9 @@
 package games.stendhal.client;
 
 import java.awt.*;
+import java.awt.font.*;
+import java.text.*;
+import java.util.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferStrategy;
 import marauroa.common.Log4J;
@@ -248,7 +251,10 @@ public class GameScreen
     String[] words=text.split(" ");
     
     int i=1;
-    String textUnderWidth=words[0];
+    // Bugfix: Prevent NPE for empty text      intensifly@gmx.com
+    String textUnderWidth="";
+    if(words!=null)
+	textUnderWidth=words[0];
     
     while(i<words.length && g.getFontMetrics().stringWidth(textUnderWidth+" "+words[i])<width)
       {
@@ -269,15 +275,85 @@ public class GameScreen
     return textUnderWidth.length();
     }
 
+        // Added support formatted text displaying #keywords in another color    intensifly@gmx.com
+	// ToDo: optimize the alghorithm, it's a little long ;)
+
+	public AttributedString formatLine(String line, Font fn, Color textColor) {
+		Font fh = fn.deriveFont(Font.ITALIC);
+		
+		ArrayList<String> list = new ArrayList<String>();
+		for (int c = 0, j = 0, h=0; c < line.length(); c++) {
+			if (line.charAt(c) == '#' || (h==1 && (line.charAt(c) == ' ' || line.charAt(c) == '.')) ) {
+				if (c != j) {
+					list.add(line.substring(j, c));
+				}
+				if(line.charAt(c) == '#')
+					h=1;
+				else
+					h=0;
+				j = c ;
+			} else if (c == line.length() - 1) {
+				list.add(line.substring(j, c + 1));
+			}
+		}
+		int number = list.size();
+		AttributedString aStyledText;
+		
+		for (int j = 0; j < number; j++) {
+			String tok = list.get(j).toString();
+			if(tok.charAt(0) == '#') {
+				tok = tok.substring(1);
+			}
+		}
+		line = "";
+		for (int j = 0; j < number; j++) {
+			String tok = list.get(j).toString();
+			if(tok.charAt(0) == '#') {
+				tok = tok.substring(1);
+			}
+			line += tok;
+		}
+		
+		aStyledText = new AttributedString(line);
+		Font f;
+		Color col;
+		
+		for (int j = 0, s=0; j < number; j++) {
+			String tok = list.get(j).toString();
+			f = fn;
+			col = textColor;
+			if(tok.charAt(0) == '#') {
+				tok = tok.substring(1);
+				f = fh;
+				col = Color.blue;
+			}
+			if(tok.length()>0) {
+				aStyledText.addAttribute(TextAttribute.FONT, f, s, s+ tok.length());
+				aStyledText.addAttribute(TextAttribute.FOREGROUND, col, s, s+ tok.length());
+			}
+			s += tok.length();
+		}
+		
+		return(aStyledText);
+		
+		
+	}
+
   public Sprite createTextBox(String text, int width, Color textColor, Color fillColor)
     {
     java.util.List<String> lines=new java.util.LinkedList<String>();
     
     int i=0;
+    // Added support for speech balloons. If drawn, they take 10 pixels from the left.    intensifly@gmx.com
+
+    int delta = 0;
+
+    if(fillColor!=null)
+        delta = 10;
     text=text.trim();
     while(text.length()>0)
       {
-      int pos=positionStringOfSize(text,width);
+      int pos=positionStringOfSize(text,width-delta);
       lines.add(text.substring(0,pos).trim());
       text=text.substring(pos);
       i++;
@@ -296,30 +372,47 @@ public class GameScreen
       }    
     
     GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-    Image image = gc.createCompatibleImage(((lineLengthPixels<width)?lineLengthPixels:width)+4,16*numLines,Transparency.BITMASK);
+    Image image = gc.createCompatibleImage(((lineLengthPixels+delta<width)?lineLengthPixels+delta:width)+4,16*numLines,Transparency.BITMASK);
     
-    Graphics g2d=image.getGraphics();
+    Graphics2D g2d= (Graphics2D)image.getGraphics();
+    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
     if(fillColor!=null)
       {
-      g2d.setColor(textColor);
-      g2d.drawRect(0,0,((lineLengthPixels<width)?lineLengthPixels:width)+4-1,16*numLines-1);
-    
-      g2d.setColor(fillColor);
-      g2d.fillRect(1,1,((lineLengthPixels<width)?lineLengthPixels:width)+4-2,16*numLines-2);
+	Polygon p = new Polygon();
+	p.addPoint(10,3);
+	p.addPoint(0,16);
+	p.addPoint(11,12);
+	Composite xac = g2d.getComposite();
+	AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.8f); 
+	g2d.setComposite(ac);     
+	g2d.setColor(fillColor);
+	g2d.fillRoundRect(10,0,((lineLengthPixels<width)?lineLengthPixels:width)+3,16*numLines-1,4,4);
+	g2d.setColor(textColor);
+	g2d.drawRoundRect(10,0,((lineLengthPixels<width)?lineLengthPixels:width)+3,16*numLines-1,4,4);
+	g2d.setComposite(xac);     
+	g2d.setColor(fillColor);
+	g2d.fillPolygon(p);
+	g2d.setColor(textColor);
+	p.addPoint(0,16);
+	g2d.drawPolygon(p);
       }
 
     i=0;
     for(String line: lines)
       {
-      g2d.setColor(Color.black);
-      g2d.drawString(line,0,i*16+9);
-      g2d.drawString(line,0,i*16+11);
-      g2d.drawString(line,2,i*16+9);
-      g2d.drawString(line,2,i*16+11);
-
-      g2d.setColor(textColor);
-      g2d.drawString(line,1,i*16+10);
+	AttributedString aStyledText = formatLine(line, g2d.getFont(), textColor);
+	
+	if(fillColor==null) {
+		g2d.setColor(Color.black);
+		g2d.drawString(aStyledText.getIterator(),1,2+i*16+9);
+		g2d.drawString(aStyledText.getIterator(),1,2+i*16+11);
+		g2d.drawString(aStyledText.getIterator(),3,2+i*16+9);
+		g2d.drawString(aStyledText.getIterator(),3,2+i*16+11);
+	}	  
+	g2d.setColor(textColor);
+	
+	g2d.drawString(aStyledText.getIterator(),2+delta,2+i*16+10);
       i++;      
       }    
     

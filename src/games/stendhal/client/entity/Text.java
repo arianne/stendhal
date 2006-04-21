@@ -40,8 +40,12 @@ public class Text extends Entity
     if ( (textPersistTime = persistTime) == 0 )
        textPersistTime = STANDARD_PERSISTENCE_TIME;
 
-    this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
-    this.ty=y-0.5;
+    // Speech bubbles should be top right of speaker intensifly@gmx.com
+//    this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
+    this.tx=x+1;
+
+//    this.ty=y-0.5;
+    this.ty=y;
     this.x=x;
     this.y=y;
     }
@@ -56,12 +60,17 @@ public class Text extends Entity
     this.gameObjects=gameObjects;
     this.client=StendhalClient.get();
     
-    textImage=GameScreen.get().createTextBox(text,240,color,null);
+    // Speech bubbles will only be drawn if there's a background color   intensifly@gmx.com
+    textImage=GameScreen.get().createTextBox(text,240,color,Color.white);
     textImageTime=System.currentTimeMillis();
     textPersistTime = Math.max( STANDARD_PERSISTENCE_TIME, text.length() * STANDARD_PERSISTENCE_TIME / 50 );
 
-    this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
-    this.ty=y-0.5;
+    // Speech bubbles should be top right of speaker intensifly@gmx.com
+//    this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
+    this.tx=x+1;
+
+//    this.ty=y-0.5;
+    this.ty=y;
     this.x=x;
     this.y=y;
 

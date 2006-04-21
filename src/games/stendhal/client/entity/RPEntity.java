@@ -204,20 +204,36 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
       
       String line=text.replace("|","");
       
-      if(line.length()>25)
+    // Allow for more characters and cut the text if possible at the nearest space etc. intensifly@gmx.com
+      if(line.length()>84)
         {
-        line=line.substring(0,25)+"...";
+        line=line.substring(0,84);
+		int l = line.lastIndexOf(" ");
+		int ln = line.lastIndexOf("-");
+		if(ln>l) l=ln;
+		ln = line.lastIndexOf(".");
+		if(ln>l) l=ln;
+		ln = line.lastIndexOf(",");
+		if(ln>l) l=ln;
+		if(l>0)
+			line=line.substring(0,l);
+		line = line +" ...";
+
         }
 
-      gameObjects.addText(this, getName()+" says: "+line, Color.yellow);
+
+
+      gameObjects.addText(this, /*getName()+" says: "+*/ line, Color.black);
       }
     }
     
   // Called when entity listen to text from talker
   public void onPrivateListen(String text)
     {
-    client.addEventLine(text,Color.orange);
-    gameObjects.addText(this, text.replace("|",""), Color.orange);      
+// Change text color for private messages. intensifly@gmx.com
+    client.addEventLine(text,Color.cyan);
+
+    gameObjects.addText(this, text.replace("|",""), Color.cyan);      
     }
 
   // When entity gets healed

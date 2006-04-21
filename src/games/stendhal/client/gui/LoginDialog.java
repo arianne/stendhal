@@ -90,13 +90,13 @@ public class LoginDialog extends JDialog {
           {
           serverField.addItem(server);
           }
-          
-        //
-        // serverPortField
-        //
-        if(loginInfo.countTokens() == 3) {
+        // Added support for saving port number    intensifly@gmx.com
+        int tokens = loginInfo.countTokens();
+        if( tokens >= 3) {
             saveLoginBox.setSelected(true);
-            
+            //
+            // serverField
+			//
             serverField.setSelectedItem(loginInfo.nextToken());
             //
             // usernameField
@@ -106,6 +106,13 @@ public class LoginDialog extends JDialog {
             // passwordField
             //
             passwordField.setText(loginInfo.nextToken());
+        }
+        // Added support for saving port number    intensifly@gmx.com
+        if(tokens == 4) {
+            //
+            // serverPortField
+            //
+            serverPortField.setText(loginInfo.nextToken());
         }
         //
         // loginButton
@@ -197,11 +204,12 @@ public class LoginDialog extends JDialog {
         final int finalPort;//port couldnt be accessed from inner class
         final ProgressBar progressBar = new ProgressBar(frame);
         
-        if(saveLoginBoxStatus)
-            saveLoginInfo(server, username, password);
-        
         try {
             port = Integer.parseInt(serverPortField.getText());
+            // Support for saving port number. Only save when input is a number    intensifly@gmx.com
+
+            if(saveLoginBoxStatus)
+                saveLoginInfo(server, username, password,serverPortField.getText());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(frame, "You typed in a invalid port, try again", "Invalid port", JOptionPane.WARNING_MESSAGE);
             return;
@@ -269,13 +277,13 @@ public class LoginDialog extends JDialog {
    *comment: Thegeneral has added encoding for password and username
    */
     
-    private void saveLoginInfo(String server, String usrName, String pwd) {
+    private void saveLoginInfo(String server, String usrName, String pwd, String port) {
         Encoder encode = new Encoder();
         try {
             File loginFile = new File(stendhal.STENDHAL_FOLDER+"user.dat");
             PrintWriter fos = new PrintWriter(loginFile);
             
-            fos.print(encode.encode(server + " " + usrName + " " + pwd));
+            fos.print(encode.encode(server + " " + usrName + " " + pwd + " " + port));
             fos.close();
         } catch (IOException ioex) {
             JOptionPane.showMessageDialog(this, "Something went wrong when saving login information, nothing saved", "Login information save problem", JOptionPane.WARNING_MESSAGE);

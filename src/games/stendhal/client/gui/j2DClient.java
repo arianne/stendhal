@@ -116,6 +116,10 @@ public class j2DClient extends JFrame
         WindowManager.getInstance().save();
         }
       });
+	  
+      // adding FocusListeners makes Mac OS X actually prevent giving the focus to playerChatText
+      if(!System.getProperty("os.name").toLowerCase().contains("os x"))
+     {
 
     canvas.addFocusListener(new FocusListener()
       {
@@ -128,6 +132,7 @@ public class j2DClient extends JFrame
         {
         }
       });
+     }
 
     addFocusListener(new FocusListener()
       {
@@ -141,11 +146,10 @@ public class j2DClient extends JFrame
         }
       });
 
-    // request the focus so key events come to us
-    playerChatText.requestFocus();
-    requestFocus();
+
 
     // create the buffering strategy which will allow AWT
+
     // to manage our accelerated graphics
     BufferStrategy strategy;
     canvas.createBufferStrategy(2);
@@ -162,6 +166,12 @@ public class j2DClient extends JFrame
 
     // add a key input system (defined below) to our canvas so we can respond to key pressed
     playerChatText.addKeyListener(inGameGUI);
+	
+    // because Mac OS X doesn't allow to give the focus back to playerChatText (see comment above)
+    // we need to add the KeyListener to canvas, too      intensifly@gmx.com
+	
+    if(System.getProperty("os.name").toLowerCase().contains("os x"))
+        canvas.addKeyListener(inGameGUI);
 
     client.setTextLineGUI(playerChatText);
 
@@ -189,6 +199,11 @@ public class j2DClient extends JFrame
         }
       });
 
+    // Moved to the end of the initializing sequence to regain focus from log window   intensifly@gmx.com
+    // request the focus so key events come to us
+
+    playerChatText.requestFocus();
+    requestFocus();
 
     // Start the main game loop, note: this method will not
     // return until the game has finished running. Hence we are

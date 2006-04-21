@@ -185,7 +185,14 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
     Point p = e.getPoint();
     recreatedContextMenu = false;
 
-    if (e.getButton() == MouseEvent.BUTTON1)
+    // Added support for ctrl + click for Mac OS X    intensifly@gmx.com
+
+    int onmask = MouseEvent.CTRL_DOWN_MASK;
+	if(System.getProperty("os.name").toLowerCase().contains("os x") && (e.getModifiersEx() & onmask) == onmask) {
+      onMouseRightClick(p);
+    }
+
+    else if (e.getButton() == MouseEvent.BUTTON1)
     {
       if (e.getClickCount() == 1)
       {

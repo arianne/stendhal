@@ -136,78 +136,8 @@ public class InGameGUI implements KeyListener
     windowManager.setDefaultProperties("chest" ,false,100, 190);
     }
   
+    // MouseListener event functions where unused and therefore have been removed     intensifly@gmx.com
 
-  /** the user has pressed and released the mouse button */
-  public void mouseClicked(MouseEvent e) 
-    {
-    Point2D screenPoint=e.getPoint();
-    
-    // get clicked entity
-    Point2D point=screen.translate(screenPoint);
-    Entity entity=gameObjects.at(point.getX(),point.getY());
-    // for the clicked entity....
-    if(entity!=null)
-      {
-      if(e.getButton()==MouseEvent.BUTTON1 && ctrlDown)
-        {        
-        java.util.List<String> actions=java.util.Arrays.asList(entity.offeredActions());
-        if(actions.contains("Attack"))
-          {
-          entity.onAction(client, "Attack");
-          }
-        else if(actions.contains("Inspect"))
-          {
-          entity.onAction(client, "Inspect");
-          }
-        else if(actions.contains("Use"))
-          {
-          entity.onAction(client, "Use");
-          }
-        }
-      else if(e.getButton()==MouseEvent.BUTTON1 && shiftDown)
-        {        
-        entity.onAction(client, "Look");
-        }
-      else if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()>1)
-        {        
-        // ... do the default action
-        String action=entity.defaultAction();
-        entity.onAction(client, action);
-        }
-      else if(e.getButton()==MouseEvent.BUTTON3)
-        {
-        // ... show context menu (aka command list)
-        String[] actions=entity.offeredActions();
-        if (actions.length > 0)
-          {
-          CommandList list = new CommandList(entity.getType(),actions,(int) screenPoint.getX(),(int) screenPoint.getY(),100,100,client,entity);
-          frame.setContextMenu(list);
-          // the moveto ensures that the panel is completely inside the window
-          list.moveTo((int) screenPoint.getX(),(int) screenPoint.getY(),true);
-          }
-        }
-      }
-    }
-
-  /** the user has pressed the mouse button */
-  public void mousePressed(MouseEvent e) 
-    {
-    }
-  
-
-  /** the user has released the mouse button */
-  public void mouseReleased(MouseEvent e) 
-    {
-    }
-
-  public void mouseEntered(MouseEvent e) 
-    {
-    }
-
-  public void mouseExited(MouseEvent e) 
-    {
-    }    
-  
   private boolean ctrlDown;
   private boolean shiftDown;
   private boolean altDown;

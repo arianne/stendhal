@@ -164,7 +164,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
     {
       return;
     }
-    System.out.println("player changed");
+
     this.player = newPlayer;
 
     if (character != null)

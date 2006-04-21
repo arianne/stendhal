@@ -76,7 +76,13 @@ public class TileStore extends SpriteStore
         for(int i=0;i<tiles.getWidth()/GameScreen.SIZE_UNIT_PIXELS;i++)
           {
           Image image = gc.createCompatibleImage(GameScreen.SIZE_UNIT_PIXELS,GameScreen.SIZE_UNIT_PIXELS, Transparency.BITMASK);
-          tiles.draw(image.getGraphics(),0,0,i*GameScreen.SIZE_UNIT_PIXELS,j*GameScreen.SIZE_UNIT_PIXELS);
+          Graphics2D g = (Graphics2D) image.getGraphics();        
+          
+        // Bugfixs: parameters width and height added, see comment in Sprite.java
+        // tiles.draw(g,0,0,i*GameScreen.SIZE_UNIT_PIXELS,j*GameScreen.SIZE_UNIT_PIXELS);
+      	// intensifly @ gmx.com, April 20th, 2006
+          
+          tiles.draw(g,0,0,i*GameScreen.SIZE_UNIT_PIXELS,j*GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
           
           // create a sprite, add it the cache then return it
           tileset.set(base+i+j*tiles.getWidth()/GameScreen.SIZE_UNIT_PIXELS,new Sprite(image));
