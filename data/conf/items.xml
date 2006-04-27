@@ -1476,6 +1476,51 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
+	
+	<item name="empty_scroll">
+		<type class="scroll" subclass="yellow"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="0"/>
+			<regen value="0"/>
+			<frequency value="0"/>
+		</attributes>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="home_scroll">
+		<type class="scroll" subclass="red"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="0"/>
+			<regen value="0"/>
+			<frequency value="0"/>
+			<infostring value="0_semos_city 30 40"/>
+		</attributes>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="marked_scroll">
+		<type class="scroll" subclass="black"/>
+		<weight value="0.01"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="0"/>
+			<regen value="0"/>
+			<frequency value="0"/>
+		</attributes>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 
 <!--
 Hehe, we must have some special GM item after all :P
