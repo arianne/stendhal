@@ -80,8 +80,11 @@ public class Player extends RPEntity
       player.add("sheep",RPClass.INT);
 
       // Bank system
-      player.addRPSlot("bank",20,RPClass.HIDDEN);
-      
+      player.addRPSlot("bank", 20, RPClass.HIDDEN);
+
+      // Kills recorder - needed for quest
+      player.addRPSlot("!kills", 1, RPClass.HIDDEN);
+
       // We use this for the buddy system
       player.addRPSlot("!buddy",1,RPClass.PRIVATE);
       player.add("online",RPClass.LONG_STRING, (byte)(RPClass.PRIVATE|RPClass.VOLATILE));
@@ -383,8 +386,15 @@ public class Player extends RPEntity
       RPObject quests=new RPObject();
       slot.assignValidID(quests);
       slot.add(quests);
-      }          
-
+      }
+    if (!player.hasSlot("!kills"))
+      {
+      player.addSlot(new RPSlot("!kills"));
+      RPSlot slot = player.getSlot("!kills");
+      RPObject kills = new RPObject();
+      slot.assignValidID(kills);
+      slot.add(kills);
+      }
     player.setPrivateText("This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne");
     rp.removePlayerText(player);
 
@@ -867,7 +877,91 @@ public class Player extends RPEntity
       }
     }
 
-  
+  /** *** */
+  public boolean hasKilledSolo(String name)
+    {
+    if (hasKilled(name))
+      {
+      RPSlot slot = getSlot("!kills");
+      RPObject kills = (RPObject) slot.iterator().next();
+      if (kills.get(name).equals("solo"))
+        {
+        return true;
+        }
+      }
+    return false;
+    }
+
+  public boolean hasKilled(String name)
+    {
+    if (!hasSlot("!kills"))
+      {
+      logger.error("Expected to find !kills slot");
+      return false;
+      }
+    RPSlot slot = getSlot("!kills");
+    if (slot.size() == 0)
+      {
+      logger.error("Expected to find something !kills slot");
+      return false;
+      }
+    RPObject kills = (RPObject) slot.iterator().next();
+    if (kills.has(name))
+      {
+      return true;
+      } else
+      {
+      return false;
+      }
+    }
+
+  public String getKill(String name)
+    {
+    if (hasKilled(name))
+      {
+      RPSlot slot = getSlot("!kills");
+      RPObject kills = (RPObject) slot.iterator().next();
+      return kills.get(name);
+      } else
+      {
+      return null;
+      }
+    }
+
+  public void setKill(String name, String mode)
+    {
+    RPSlot slot = getSlot("!kills");
+    RPObject kills = (RPObject) slot.iterator().next();
+    kills.put(name, mode);
+    }
+
+  public List<String> getKills()
+    {
+    RPSlot slot = getSlot("!kills");
+    RPObject kills = (RPObject) slot.iterator().next();
+    List<String> killsList = new LinkedList<String>();
+    for (String k : kills)
+      {
+      if (!k.equals("id") && !k.equals("zoneid"))
+        {
+        killsList.add(k);
+        }
+      }
+    return killsList;
+    }
+
+  public void removeKill(String name)
+    {
+    if (hasKilled(name))
+      {
+      RPSlot slot = getSlot("!kills");
+      RPObject kills = (RPObject) slot.iterator().next();
+      kills.remove(name);
+      }
+    }
+
+  /** *** */
+
   public boolean isPoisoned()
     {
     return !(poisonToConsume.size()==0);

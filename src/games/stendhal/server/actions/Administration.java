@@ -517,7 +517,7 @@ public class Administration extends ActionListener
         
       st.append("\n    Slot "+slot.getName()+": ");
       
-      if(slot.getName().equals("!quests"))
+      if(slot.getName().equals("!quests")  || slot.getName().equals("!kills"))
         {
         for(RPObject object: slot)
           {

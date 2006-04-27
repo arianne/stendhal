@@ -43,6 +43,7 @@ public class Item extends PassiveEntity
     entity.add("frequency",RPClass.INT); // Some items(food) has regeneration speed
 
     entity.add("quantity",RPClass.INT); // Some items(Stackable) has quantity
+    entity.add("infostring",RPClass.STRING); // To store additional info with an item     
     }
 
   /**

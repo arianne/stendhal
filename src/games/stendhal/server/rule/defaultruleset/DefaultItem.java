@@ -98,6 +98,10 @@ public class DefaultItem
       {
       item=new Drink(name, clazz, subclazz, attributes);
       }
+    else if(clazz.equals("scroll"))
+      {
+      item = new Scroll(name,clazz,subclazz,attributes);
+      }
     else if(stackable)
       {
       item=new StackableItem(name, clazz, subclazz, attributes);

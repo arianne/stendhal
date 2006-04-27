@@ -32,6 +32,7 @@ public class StendhalQuestSystem
     loadQuest("HatForMonogenes");
     loadQuest("NewsFromHackim");
     loadQuest("MeetKetteh");
+    loadQuest("CleanStorageSpace");
     }
 
   public static void main(String[] args)

@@ -170,11 +170,9 @@ public class Semos implements IContent
 
       protected void createDialog()
         {
-        Behaviours.addGreeting(this, "Hi there, could you #help me");
+        Behaviours.addGreeting(this, "Hi there, young hero.");
         Behaviours.addJob(this, "I'm just a regular housewife");
-        Behaviours.addHelp(this, "I can't help you with anything, but you can help me clean my #storage_space it is crawling with rats");
-        Behaviours.addReply(this, "storage_space", "yes it down the stairs, there some rats and I think I saw a snake too so be careful");
-        Behaviours.addReply(this, "task", "I don't have a task for you just a favor to ask");
+        Behaviours.addHelp(this, "I think I can't help you with anything.");
         Behaviours.addGoodbye(this);
         }
       });
@@ -346,12 +344,14 @@ public class Semos implements IContent
                     }
                   }
       	  });
-        Behaviours.addHelp(this,"I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news.");
-
+        Behaviours.addHelp(this,"I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news. I'm also selling location #scrolls.");
         Behaviours.addJob(this,"I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
+        Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops.get("scrolls")));
 
         add(1,new String[]{"quest","task"},null,1,"I do not have any task for you right now. If you need anything from me just say it.",null);
-
+        add(1,new String[]{"scroll","scrolls"},null,1,"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked.",null);
+        add(1,new String[]{"home"},null,1,"Home scrolls take you home immediately, a good way to esape danger!",null);
+        add(1,new String[]{"empty","marked"},null,1,"Empty scrolls are used to mark a position. Marked scrolls can take you back to that position. They are a little expensive, though.",null);
         }
       });
     zone.assignRPObjectID(npc);
