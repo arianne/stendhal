@@ -62,7 +62,7 @@ public class Semos implements IContent
       zone.addPortal(portal);    
       }
 
-    SpeakerNPC npc=npcs.add("Tad",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Tad")
       {
       protected void createPath()
         {
@@ -76,7 +76,12 @@ public class Semos implements IContent
           {
           public void fire(Player player, String text, SpeakerNPC engine)
             {
-            engine.say("Ssshh! Come here #"+player.getName()+"!. I have a #task for you.");
+            if(!player.isQuestCompleted("introduce_players"))
+              {
+              engine.say("Ssshh! Come here #"+player.getName()+"!. I have a #task for you.");
+              } else {
+              engine.say("Hi again "+player.getName()+"!. Thanks again, I'm feeling much better now.");
+             }
             }
           });
         Behaviours.addGoodbye(this);
@@ -154,7 +159,7 @@ public class Semos implements IContent
     portal.setDestination("int_semos_storage_-1",0);
     zone.addPortal(portal);
 
-    SpeakerNPC npc=npcs.add("Eonna",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Eonna")
       {
       protected void createPath()
         {
@@ -183,7 +188,7 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
 
-    npc=npcs.add("Ketteh Wehoh",new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Ketteh Wehoh")
       {
       protected void createPath()
         {
@@ -234,7 +239,7 @@ public class Semos implements IContent
     portal.setDestination("0_semos_city",2);
     zone.addPortal(portal);
 
-    SpeakerNPC npc=npcs.add("Hackim Easso",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Hackim Easso")
       {
       protected void createPath()
         {
@@ -305,7 +310,7 @@ public class Semos implements IContent
     portal.setDestination("0_semos_city",4);
     zone.addPortal(portal);
 
-    SpeakerNPC npc=npcs.add("Zynn Iwuhos",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Zynn Iwuhos")
       {
       protected void createPath()
         {
@@ -360,7 +365,7 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
 
-    npc=npcs.add("Ceryl",new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Ceryl")
       {
       protected void createPath()
         {
@@ -421,7 +426,7 @@ public class Semos implements IContent
     zone.addPortal(portal);
 
 
-    SpeakerNPC npc=npcs.add("Ilisa",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Ilisa")
       {
       protected void createPath()
         {
@@ -448,7 +453,7 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
 
-    npc=npcs.add("Io Flotto",new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Io Flotto")
       {
       protected void createPath()
         {
@@ -531,7 +536,7 @@ public class Semos implements IContent
     portal.setDestination("int_semos_tavern_1",0);
     zone.addPortal(portal);
 
-    SpeakerNPC npc=npcs.add("Margaret",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Margaret")
       {
       protected void createPath()
         {
@@ -567,7 +572,7 @@ public class Semos implements IContent
     zone.addNPC(npc);
 
 
-    npc=npcs.add("Xin Blanca",new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Xin Blanca")
       {
       protected void createPath()
         {
@@ -615,7 +620,7 @@ public class Semos implements IContent
     npc.setHP(npc.getBaseHP());
     zone.addNPC(npc);
 
-    npc=npcs.add("Ouchit",new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Ouchit")
       {
       protected void createPath()
         {
@@ -807,7 +812,7 @@ public class Semos implements IContent
     chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem("money"));
     zone.add(chest);
 
-    SpeakerNPC npc=npcs.add("Nomyr Ahba",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Nomyr Ahba")
       {
       protected void createPath()
         {
@@ -856,7 +861,7 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
 
-    npc=npcs.add("Monogenes",new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Monogenes")
       {
       protected void createPath()
         {
@@ -898,7 +903,7 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
 
-    npc=npcs.add("Hayunn Naratha",new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Hayunn Naratha")
       {
       protected void createPath()
         {
@@ -945,7 +950,7 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
 
-    npc=npcs.add("Diogenes",new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Diogenes")
       {
       protected void createPath()
         {
@@ -1012,7 +1017,7 @@ public class Semos implements IContent
     npc.initHP(100);
     zone.addNPC(npc);
 
-    npc=npcs.add("Carmen",new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Carmen")
       {
       protected void createPath()
         {

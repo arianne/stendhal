@@ -36,14 +36,12 @@ public class NPCList
     return contents.containsKey(name);
     }
   
-  public SpeakerNPC add(String name, SpeakerNPC npc)
+  public SpeakerNPC add(SpeakerNPC npc)
     {
-    if(!contents.containsKey(name))
+    if(!contents.containsKey(npc.getName()))
       {
-      contents.put(name, npc);            
-      }
-    
-    npc.setName(name);
+      contents.put(npc.getName(), npc);            
+      }    
     return npc;
     }
   }

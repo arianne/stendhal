@@ -110,7 +110,7 @@ public abstract class SpeakerNPC extends NPC
   
   private Map<String, Object> behavioursData;
   
-  public SpeakerNPC() throws AttributeNotFoundException
+  public SpeakerNPC(String name) throws AttributeNotFoundException
     {
     super();
     createPath();
@@ -121,7 +121,7 @@ public abstract class SpeakerNPC extends NPC
     lastMessageTurn=0;
     
     behavioursData=new HashMap<String, Object>();
-    
+    setName(name);
     createDialog();
     }
 

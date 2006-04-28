@@ -50,7 +50,7 @@ public class SheepGrowing implements IQuest
     sign.setText("Talk to Nishiya to buy a sheep!.|He has the best prices for miles.");
     zone.add(sign);
 
-    SpeakerNPC npc=npcs.add("Nishiya", new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Nishiya")
       {
       protected void createPath()
         {
@@ -131,7 +131,7 @@ public class SheepGrowing implements IQuest
     sign.setText("Talk to Sato to sell your sheep!.|He probably won't give you a fair price but this is a small village...|The price he will offer you depends on the weight of your sheep.");
     zone.add(sign);
 
-    npc=npcs.add("Sato", new SpeakerNPC()
+    npc=npcs.add(new SpeakerNPC("Sato")
       {
       protected void createPath()
         {

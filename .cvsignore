@@ -3,3 +3,11 @@ bin
 .classpath
 .project
 .externalToolBuilders
+build_client
+build_client_data
+build_client_sound_data
+build_server
+build_server_maps
+build_server_xmlconf
+lib
+build

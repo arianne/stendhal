@@ -37,7 +37,7 @@ public class OrcishHappyMeal implements IQuest
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("-4_semos_dungeon"));
     NPCList npcs=NPCList.get();
     
-    SpeakerNPC npc=npcs.add("Tor'Koom", new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Tor'Koom")
       {
       protected void createPath()
         {
@@ -94,8 +94,8 @@ public class OrcishHappyMeal implements IQuest
         buyitems.put("sheep",1500);
 
         Behaviours.addGreeting(this);
-        Behaviours.addJob(this,"Tor'Koom" /*getName() returns null*/ +" du buy cheepz frrom humanz.");
-        Behaviours.addHelp(this,"Tor'Koom" /*getName() returns null*/+" buy sheep! Sell me sheep! "+"Tor'Koom" /*getName() returns null*/+" is hungry!");
+        Behaviours.addJob(this,getName() +" du buy cheepz frrom humanz.");
+        Behaviours.addHelp(this,getName() +" buy sheep! Sell me sheep! "+ getName()+" is hungry!");
         Behaviours.addBuyer(this,new SheepBuyerBehaviour(buyitems));
         Behaviours.addGoodbye(this);
         }

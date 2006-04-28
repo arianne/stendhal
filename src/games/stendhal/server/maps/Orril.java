@@ -250,7 +250,7 @@ public class Orril implements IContent
     portal.setDestination("0_orril_river_s",0);
     zone.addPortal(portal);
 
-    SpeakerNPC npc=npcs.add("Jynath",new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Jynath")
       {
       protected void createPath()
         {

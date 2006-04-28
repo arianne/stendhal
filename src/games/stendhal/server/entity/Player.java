@@ -326,6 +326,12 @@ public class Player extends RPEntity
                   StackableItem money=(StackableItem)entity;
                   money.setQuantity(item.getInt("quantity"));
                   }
+                // make sure saved individual information is restored
+                if(item.has("infostring"))
+                  {
+                  StackableItem money=(StackableItem)entity;
+                  entity.put("infostring",item.get("infostring"));
+                  }
                 
                 slot.add(entity);
                 }

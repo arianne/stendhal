@@ -44,13 +44,6 @@ public class CleanStorageSpace implements IQuest
               if(!player.isQuestCompleted("clean_storage"))
                 {
                 engine.say("My #storage_space it is crawling with rats. Will you #help me?");
-                engine.add(
-                        60,
-                        "storage_space",
-                        null,
-                        60,
-                        "yes it down the stairs, there some rats and I think I saw a snake too so be careful. So, will you do it?",
-                        null);
                 } else
                 {
                 engine.say("Thanks again, I don't think it needs to be cleaned again yet. If I can help you somehow just say it.");
@@ -59,37 +52,44 @@ public class CleanStorageSpace implements IQuest
               }
           });
 
-    npc
-        .add(
-            60,
-            "yes",
-            null,
-            1,
-            "Thank you! I'll be waiting for your return. Now if I can help you in anything just ask.",
-            new SpeakerNPC.ChatAction()
+    npc.add(
+        60,
+        "yes",
+        null,
+        1,
+        "Thank you! I'll be waiting for your return. Now if I can help you in anything just ask.",
+        new SpeakerNPC.ChatAction()
+          {
+            public void fire(Player player, String text, SpeakerNPC engine)
               {
-                public void fire(Player player, String text, SpeakerNPC engine)
-                  {
-                  player.setQuest("clean_storage","start");
-                  player.removeKill("rat");
-                  player.removeKill("cobra");
-                  player.removeKill("caverat");
-                  }
-              });
+              player.setQuest("clean_storage","start");
+              player.removeKill("rat");
+              player.removeKill("cobra");
+              player.removeKill("caverat");
+              }
+          });
 
     npc.add(
-            60,
-            "no",
-            null,
-            1,
-            "Maybe you are not the hero I thought you would be. *sighs* Now if I can help you in anything *sighs* just ask.",
-            new SpeakerNPC.ChatAction()
+        60,
+        "no",
+        null,
+        1,
+        "Maybe you are not the hero I thought you would be. *sighs* Now if I can help you in anything *sighs* just ask.",
+        new SpeakerNPC.ChatAction()
+          {
+            public void fire(Player player, String text, SpeakerNPC engine)
               {
-                public void fire(Player player, String text, SpeakerNPC engine)
-                  {
-                  player.setQuest("clean_storage","rejected");
-                  }
-              });
+              player.setQuest("clean_storage","rejected");
+              }
+          });
+
+    npc.add(
+        60,
+        "storage_space",
+        null,
+        60,
+        "yes it down the stairs, there some rats and I think I saw a snake too so be careful. So, will you do it?",
+        null);
 
     }
 
@@ -113,31 +113,30 @@ public class CleanStorageSpace implements IQuest
           return player.hasQuest("clean_storage")
               && player.getQuest("clean_storage").equals("start");
           }
-      },62,null,new SpeakerNPC.ChatAction()
+      },70,null,new SpeakerNPC.ChatAction()
       {
         public void fire(Player player, String text, SpeakerNPC engine)
           {
           if(player.hasKilled("rat") && player.hasKilled("caverat")
               && player.hasKilled("cobra"))
             {
-            engine
-                .say("Oh wow! A fine hero at last! Thank you! Now can I help you with anything?");
+            engine.say("Oh wow! A fine hero at last! Thank you! Now can I help you with anything?");
             player.addXP(25);
             player.setQuest("clean_storage","done");
+            engine.setActualState(1);
             } else
             {
-            engine.say("Don't you remember... you promised to clean my #storage_space. Anyway, what can I do for you?");
-            engine.add(
-                    60,
-                    "storage_space",
-                    null,
-                    60,
-                    "Did you forget? It's down the stairs, there some rats and I think I saw a snake too so be careful.",
-                    null);
-            engine.setActualState(1);
+            engine.say("Don't you remember... you promised to clean my #storage_space.");
             }
           }
       });
+    npc.add(
+        70,
+        "storage_space",
+        null,
+        1,
+        "Did you forget? It's down the stairs, there some rats and I think I saw a snake too so be careful. Please hurry.",
+        null);
 
     }
 

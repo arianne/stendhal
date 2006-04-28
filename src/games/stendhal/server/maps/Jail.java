@@ -28,7 +28,7 @@ public class Jail implements IContent
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("int_admin_jail"));
     NPCList npcs=NPCList.get();
     
-    SpeakerNPC npc=npcs.add("Sten Tanquilos", new SpeakerNPC()
+    SpeakerNPC npc=npcs.add(new SpeakerNPC("Sten Tanquilos")
       {
       protected void createPath()
         {

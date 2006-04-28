@@ -42,9 +42,9 @@ public class SevenCherubs implements IQuest
   
   static class CherubNPC extends SpeakerNPC
     {
-    public CherubNPC(int x, int y)
+    public CherubNPC(String name, int x, int y)
       {
-      super();
+      super(name);
       
       put("class","angelnpc");
       set(x,y);
@@ -133,37 +133,37 @@ public class SevenCherubs implements IQuest
     NPC npc;
     
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village_w"));
-    npc=npcs.add("Cherubiel",new CherubNPC(48,59));
+    npc=npcs.add(new CherubNPC("Cherubiel",48,59));
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_nalwor_city"));
-    npc=npcs.add("Gabriel",new CherubNPC(105,16));
+    npc=npcs.add(new CherubNPC("Gabriel",105,16));
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_river_s"));
-    npc=npcs.add("Ophaniel",new CherubNPC(105,78));
+    npc=npcs.add(new CherubNPC("Ophaniel",105,78));
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_river_s_w2"));
-    npc=npcs.add("Raphael",new CherubNPC(95,29));
+    npc=npcs.add(new CherubNPC("Raphael",95,29));
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_mountain_w2"));
-    npc=npcs.add("Uriel",new CherubNPC(47,26));
+    npc=npcs.add(new CherubNPC("Uriel",47,26));
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_mountain_n2_w2"));
-    npc=npcs.add("Zophiel",new CherubNPC(16,2));
+    npc=npcs.add(new CherubNPC("Zophiel",16,2));
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_ados_rock"));
-    npc=npcs.add("Azazel",new CherubNPC(67,23));
+    npc=npcs.add(new CherubNPC("Azazel",67,23));
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
     }
