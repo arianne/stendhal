@@ -513,8 +513,8 @@ public abstract class SpeakerNPC extends NPC
       attending=player;
       }
     
-    // If the attended player got idle, attend this one.
-    if(rp.getTurn()-lastMessageTurn>TIMEOUT_PLAYER_CHAT)
+    // If the attended player with state != 0 got idle, attend this one.
+    if(rp.getTurn()-lastMessageTurn>TIMEOUT_PLAYER_CHAT && actualState!=0)
       {
       if(byeMessage!=null)
         {
