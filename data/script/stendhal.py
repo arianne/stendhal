@@ -140,7 +140,7 @@ class Configuration(StendhalPythonConfig):
             
         addNPC(zone, rules,"Diogenes",diogenesMethod)
 
-        zone=world.getRPZone("int_semos_tavern")
+        zone=world.getRPZone("int_semos_tavern_0")
         def margaretMethod(npc):
             global conf
 

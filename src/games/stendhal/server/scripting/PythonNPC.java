@@ -7,7 +7,7 @@ public abstract class PythonNPC extends SpeakerNPC
   {
   public PythonNPC()
     {
-    super();
+    super("PythonNPC");
     }
   
   protected void createPath()
