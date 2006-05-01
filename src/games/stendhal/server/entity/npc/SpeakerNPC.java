@@ -351,7 +351,17 @@ public abstract class SpeakerNPC extends NPC
       return "["+state+","+trigger+","+nextState+","+condition+"]";
       }
     }
-    
+
+  public void say(String text)
+    {
+    // be polite and face the player we are talking to
+    if(!facingto(attending))
+      {
+      faceto(attending);
+      }    
+    super.say(text);
+    }
+   
   /** Message when NPC is attending another player. */
   public void addWaitMessage(String text, ChatAction action)
     {
