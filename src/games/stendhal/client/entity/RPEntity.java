@@ -205,25 +205,24 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
       String line=text.replace("|","");
       
     // Allow for more characters and cut the text if possible at the nearest space etc. intensifly@gmx.com
-      if(line.length()>84)
+      if(line.length() > 84)
         {
-        line=line.substring(0,84);
-		int l = line.lastIndexOf(" ");
-		int ln = line.lastIndexOf("-");
-		if(ln>l) l=ln;
-		ln = line.lastIndexOf(".");
-		if(ln>l) l=ln;
-		ln = line.lastIndexOf(",");
-		if(ln>l) l=ln;
-		if(l>0)
-			line=line.substring(0,l);
-		line = line +" ...";
-
+        line = line.substring(0,84);
+        int l = line.lastIndexOf(" ");
+        int ln = line.lastIndexOf("-");
+        if(ln > l)
+          l = ln;
+        ln = line.lastIndexOf(".");
+        if(ln > l)
+          l = ln;
+        ln = line.lastIndexOf(",");
+        if(ln > l)
+          l = ln;
+        if(l > 0)
+          line = line.substring(0,l);
+        line = line + " ...";
         }
-
-
-
-      gameObjects.addText(this, /*getName()+" says: "+*/ line, Color.black);
+      gameObjects.addText(this, /*getName()+" says: "+*/line,Color.black,true);
       }
     }
     
@@ -231,9 +230,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
   public void onPrivateListen(String text)
     {
 // Change text color for private messages. intensifly@gmx.com
-    client.addEventLine(text,Color.cyan);
+    client.addEventLine(text,Color.darkGray);
 
-    gameObjects.addText(this, text.replace("|",""), Color.cyan);      
+    gameObjects.addText(this, text.replace("|",""), Color.darkGray,false);      
     }
 
   // When entity gets healed
@@ -514,13 +513,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 
   public void onAction(StendhalClient client, String action, String... params)
     {
-    if(action.equals("Look"))
-      {
-      String text="You see " + getName() + "(Level " + level + ").";
-      StendhalClient.get().addEventLine(text, Color.green);
-      gameObjects.addText(this, text, Color.green);
-      }
-    else if(action.equals("Attack"))
+    if(action.equals("Attack"))
       {
 // NOTE: Dunno about this feature...      
 //      if(distance(client.getPlayer())>2)
@@ -561,6 +554,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
       rpaction.put("targetid",id);
       client.send(rpaction);
       }
+    else
+      super.onAction(client, action, params);
     }
 
   public int compare(Entity entity)

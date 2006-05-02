@@ -91,8 +91,6 @@ public class GroundContainer extends Panel
       action.put("y",(int) point.getY());
       StendhalClient.get().send(action);
       
-      System.out.println (action);
-      
       return true;
     }
 

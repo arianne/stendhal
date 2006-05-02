@@ -339,7 +339,7 @@ public class GameScreen
 		
 	}
 
-  public Sprite createTextBox(String text, int width, Color textColor, Color fillColor)
+  public Sprite createTextBox(String text, int width, Color textColor, Color fillColor, boolean isTalking)
     {
     java.util.List<String> lines=new java.util.LinkedList<String>();
     
@@ -377,42 +377,58 @@ public class GameScreen
     Graphics2D g2d= (Graphics2D)image.getGraphics();
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
-    if(fillColor!=null)
+    if(fillColor != null)
       {
-	Polygon p = new Polygon();
-	p.addPoint(10,3);
-	p.addPoint(0,16);
-	p.addPoint(11,12);
-	Composite xac = g2d.getComposite();
-	AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.8f); 
-	g2d.setComposite(ac);     
-	g2d.setColor(fillColor);
-	g2d.fillRoundRect(10,0,((lineLengthPixels<width)?lineLengthPixels:width)+3,16*numLines-1,4,4);
-	g2d.setColor(textColor);
-	g2d.drawRoundRect(10,0,((lineLengthPixels<width)?lineLengthPixels:width)+3,16*numLines-1,4,4);
-	g2d.setComposite(xac);     
-	g2d.setColor(fillColor);
-	g2d.fillPolygon(p);
-	g2d.setColor(textColor);
-	p.addPoint(0,16);
-	g2d.drawPolygon(p);
+      Composite xac = g2d.getComposite();
+      AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.8f);
+      g2d.setComposite(ac);
+      g2d.setColor(fillColor);
+      g2d.fillRoundRect(10,0,((lineLengthPixels < width) ? lineLengthPixels : width) + 3,16 * numLines - 1,4,4);
+      g2d.setColor(textColor);
+      if(isTalking)
+        {
+        g2d.drawRoundRect(10,0,((lineLengthPixels < width) ? lineLengthPixels : width) + 3,16 * numLines - 1,4,4);    
+        }
+      else
+        {
+        float dash[] = { 4, 2 };
+        BasicStroke newStroke = new BasicStroke(2,BasicStroke.CAP_ROUND,BasicStroke.JOIN_MITER,1,dash,0);
+        Stroke oldStroke = g2d.getStroke();
+        g2d.setStroke( newStroke );
+        g2d.drawRect(10,0,((lineLengthPixels < width) ? lineLengthPixels : width) + 3,16 * numLines - 1);        
+        g2d.setStroke( oldStroke );
+        }
+      g2d.setComposite(xac);
+      if(isTalking)
+        {
+        g2d.setColor(fillColor);
+        Polygon p = new Polygon();
+        p.addPoint(10,3);
+        p.addPoint(0,16);
+        p.addPoint(11,12);
+        g2d.fillPolygon(p);
+        g2d.setColor(textColor);
+        p.addPoint(0,16);
+        g2d.drawPolygon(p);
+        }
       }
 
     i=0;
     for(String line: lines)
       {
-	AttributedString aStyledText = formatLine(line, g2d.getFont(), textColor);
-	
-	if(fillColor==null) {
-		g2d.setColor(Color.black);
-		g2d.drawString(aStyledText.getIterator(),1,2+i*16+9);
-		g2d.drawString(aStyledText.getIterator(),1,2+i*16+11);
-		g2d.drawString(aStyledText.getIterator(),3,2+i*16+9);
-		g2d.drawString(aStyledText.getIterator(),3,2+i*16+11);
-	}	  
-	g2d.setColor(textColor);
-	
-	g2d.drawString(aStyledText.getIterator(),2+delta,2+i*16+10);
+      AttributedString aStyledText = formatLine(line,g2d.getFont(),textColor);
+
+      if(fillColor == null)
+        {
+        g2d.setColor(Color.black);
+        g2d.drawString(aStyledText.getIterator(),1,2 + i * 16 + 9);
+        g2d.drawString(aStyledText.getIterator(),1,2 + i * 16 + 11);
+        g2d.drawString(aStyledText.getIterator(),3,2 + i * 16 + 9);
+        g2d.drawString(aStyledText.getIterator(),3,2 + i * 16 + 11);
+        }
+      g2d.setColor(textColor);
+
+      g2d.drawString(aStyledText.getIterator(),2 + delta,2 + i * 16 + 10);
       i++;      
       }    
     

@@ -115,13 +115,7 @@ public class Chest extends AnimatedEntity
 
   public void onAction(StendhalClient client, String action, String... params)
     {
-    if(action.equals("Look"))
-      {
-      String text="You see a chest that is "+(open?"open.":"closed.\n You can <<Inspect>> this item to see its content.");
-      StendhalClient.get().addEventLine(text,Color.green);
-      gameObjects.addText(this, text, Color.green);
-      }
-    else if(action.equals("Inspect"))
+    if(action.equals("Inspect"))
       {
       client.getGameGUI().inspect(this,content,4,5);
       }
@@ -139,6 +133,10 @@ public class Chest extends AnimatedEntity
       rpaction.put("target",id);      
       client.send(rpaction);
       }
+    else
+      {
+      super.onAction(client,action,params);
+      }      
     }
 
   public int compare(Entity entity)

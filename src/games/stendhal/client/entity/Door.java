@@ -135,13 +135,7 @@ public class Door extends AnimatedEntity
 
   public void onAction(StendhalClient client, String action, String... params)
     {
-    if(action.equals("Look"))
-      {
-      String text="You see a Door that is "+(open?"open.":"closed.");
-      StendhalClient.get().addEventLine(text,Color.green);
-      gameObjects.addText(this, text, Color.green);
-      }
-    else if(action.equals("Open") || action.equals("Close"))
+    if(action.equals("Open") || action.equals("Close"))
       {
       if(!open)
         {
@@ -154,6 +148,10 @@ public class Door extends AnimatedEntity
       int id=getID().getObjectID();
       rpaction.put("target",id);      
       client.send(rpaction);
+      }
+    else
+      {
+      super.onAction(client,action,params);
       }
     }
 

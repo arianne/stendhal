@@ -173,17 +173,7 @@ public class Player extends RPEntity
 
   public void onAction(StendhalClient client, String action, String... params)
     {
-    if(action.equals("Look"))
-      {
-      int hours=age/60;
-      int minutes=age%60;
-      String time=hours+" hours and "+minutes+" minutes";
-
-      String text="You see " + getName() + "(Level " + getLevel() + ". It has been playing "+time+").";
-      StendhalClient.get().addEventLine(text, Color.green);
-      gameObjects.addText(this, text, Color.green);
-      }
-    else if(action.equals("Set outfit"))
+    if(action.equals("Set outfit"))
       {
       client.getOutfitDialog().setVisible(true);
       }

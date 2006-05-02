@@ -70,23 +70,4 @@ public class Blood extends AnimatedEntity
     return -1;
     }
       
-  public String defaultAction()
-    {
-    return "Look";
-    }
-
-  public String[] offeredActions()
-    {    
-    return new String[]{"Look"};
-    }
-    
-  public void onAction(StendhalClient client, String action, String... params)
-    {
-    if(action.equals("Look"))
-      {
-      String text="You see a blood pool.";
-      StendhalClient.get().addEventLine(text,Color.green);
-      gameObjects.addText(this, text, Color.green);
-      }
-    }
   }

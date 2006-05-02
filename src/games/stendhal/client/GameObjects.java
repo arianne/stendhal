@@ -752,7 +752,7 @@ public class GameObjects implements Iterable<Entity>
       }
     }
    
-  public void addText(Entity speaker, String text, Color color)
+  public void addText(Entity speaker, String text, Color color, boolean isTalking)
     {
     double x=speaker.getx();
     double y=speaker.gety();
@@ -773,7 +773,7 @@ public class GameObjects implements Iterable<Entity>
         }
       }
 
-    Text entity=new Text(this,text, x, y, color);
+    Text entity=new Text(this,text, x, y, color, isTalking);
     texts.add(entity);
     }
 

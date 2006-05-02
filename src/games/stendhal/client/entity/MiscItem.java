@@ -43,7 +43,7 @@ public class MiscItem extends Item
       }
     }
 
-
+/*
   public void onAction(StendhalClient client, String action, String... params)
     {
     if(action.equals("Look"))
@@ -58,4 +58,5 @@ public class MiscItem extends Item
       super.onAction(client,action,params);
       }
     }
+*/    
   }

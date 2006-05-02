@@ -114,30 +114,17 @@ public class Corpse extends PassiveEntity
 
   public void onAction(StendhalClient client, String action, String... params)
     {
-    if(action.equals("Look"))
-      {
-      String text=null;
-      if(name==null)
-        {
-        text="("+stage+") You see a corpse";
-        }
-      else
-        {
-        text="("+stage+") You see "+name+". It was killed by "+killer;
-        }
-      
-      text=text+". You can #Inspect it to see its contents.";
-        
-      StendhalClient.get().addEventLine(text,Color.green);
-      gameObjects.addText(this, text, Color.green);
-      }
-    else if(action.equals("Inspect"))
+    if(action.equals("Inspect"))
       {
       if ( !isContentShowing() )
         {
         RPSlot content=rpObject.getSlot("content");
         contentWindow = client.getGameGUI().inspect(this,content);
         }
+      }
+    else
+      {
+      super.onAction(client,action,params);
       }
     }
   

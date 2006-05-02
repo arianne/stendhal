@@ -122,14 +122,7 @@ public class Sheep extends NPC
 
   public void onAction(StendhalClient client, String action, String... params)
     {
-    if(action.equals("Look"))
-      {
-      String text="You see a sheep that weighs "+weight;
-      StendhalClient.get().addEventLine(text,Color.green);
-      gameObjects.addText(this, text, Color.green);
-      playSound( (weight > 50 ? "sheep-chat-2" : "sheep-chat"), 15, 40 );
-      }
-    else if(action.equals("Own"))
+    if(action.equals("Own"))
       {
       RPAction rpaction=new RPAction();
       rpaction.put("type","own");
@@ -140,6 +133,7 @@ public class Sheep extends NPC
       }
     else
       {
+      playSound( (weight > 50 ? "sheep-chat-2" : "sheep-chat"), 15, 40 );
       super.onAction(client,action,params);
       }
     }

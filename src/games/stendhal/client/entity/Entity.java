@@ -30,6 +30,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
@@ -381,9 +382,38 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
   abstract public Rectangle2D getArea();
   abstract public Rectangle2D getDrawedArea();
 
-  public abstract String defaultAction();
-  public abstract String[] offeredActions();
-  public abstract void onAction(StendhalClient client, String action, String... params);
+  public String defaultAction()
+    {
+    return "Look";
+    }
+  
+  public String[] offeredActions()
+    {
+    String[] list={"Look"};
+    return list;
+    }
+  
+  public void onAction(StendhalClient client, String action, String... params)
+    {
+    if(action.equals("Look"))
+      {
+      RPAction rpaction=new RPAction();
+      rpaction.put("type","look");
+      int id=getID().getObjectID();
+      
+      if(params.length>0)
+        {
+        rpaction.put("baseobject",params[0]);   
+        rpaction.put("baseslot",params[1]);   
+        rpaction.put("baseitem",id);   
+        }
+      else
+        {
+        rpaction.put("target",id);         
+        }    
+      client.send(rpaction);
+      }
+    }
   
   abstract public int compare(Entity entity);
   }

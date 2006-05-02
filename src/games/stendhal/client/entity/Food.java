@@ -82,27 +82,6 @@ public class Food extends AnimatedEntity
     return new Rectangle.Double(x,y,1,1);
     }  
 
-  public String defaultAction()
-    {
-    return "Look";
-    }
-
-  public String[] offeredActions()
-    {
-    String[] list={"Look"};
-    return list;
-    }
-
-  public void onAction(StendhalClient client, String action, String... params)
-    {
-    if(action.equals("Look"))
-      {
-      String text="You see a bush with "+amount+" fruits. Only sheeps eat this bush.";
-      StendhalClient.get().addEventLine(text,Color.green);
-      gameObjects.addText(this, text, Color.green);
-      }
-    }
-
   public int compare(Entity entity)
     {
     if(entity instanceof Item)

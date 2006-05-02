@@ -55,25 +55,31 @@ public class Text extends Entity
     return text;
     }
     
-  public Text(GameObjects gameObjects, String text, double x, double y, Color color) throws AttributeNotFoundException
+  public Text(GameObjects gameObjects, String text, double x, double y, Color color, boolean isTalking) throws AttributeNotFoundException
     {    
     this.gameObjects=gameObjects;
     this.client=StendhalClient.get();
     
     // Speech bubbles will only be drawn if there's a background color   intensifly@gmx.com
-    textImage=GameScreen.get().createTextBox(text,240,color,Color.white);
+    textImage=GameScreen.get().createTextBox(text,240,color,Color.white,isTalking);
     textImageTime=System.currentTimeMillis();
     textPersistTime = Math.max( STANDARD_PERSISTENCE_TIME, text.length() * STANDARD_PERSISTENCE_TIME / 50 );
 
-    // Speech bubbles should be top right of speaker intensifly@gmx.com
-//    this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
-    this.tx=x+1;
-
-//    this.ty=y-0.5;
-    this.ty=y;
+    if(isTalking)
+      {
+      // Speech bubbles should be top right of speaker intensifly@gmx.com
+      this.tx=x+1;
+      this.ty=y;
+     
+      }
+    else
+      {
+      this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
+      this.ty=y+1.5;
+      }
+    
     this.x=x;
     this.y=y;
-
     this.text=text;
     
     drawedArea=new Rectangle.Double(x,y,textImage.getWidth()/GameScreen.SIZE_UNIT_PIXELS, textImage.getHeight()/GameScreen.SIZE_UNIT_PIXELS);
