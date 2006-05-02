@@ -30,6 +30,7 @@ public abstract class Entity extends RPObject
   private Direction direction;
   private double speed;
   private boolean collides;
+  private String description;
 
   protected static StendhalRPRuleProcessor rp;
   protected static StendhalRPWorld world;
@@ -53,6 +54,7 @@ public abstract class Entity extends RPObject
   public static void generateRPClass()
     {
     RPClass entity=new RPClass("entity");
+    entity.add("description",RPClass.LONG_STRING, RPClass.HIDDEN); // Some things may have a textual description     
     entity.add("x",RPClass.SHORT);
     entity.add("y",RPClass.SHORT);
     entity.add("dir",RPClass.BYTE, RPClass.VOLATILE);
@@ -80,6 +82,30 @@ public abstract class Entity extends RPObject
     if(has("y")) y=getInt("y");
     if(has("speed")) speed=getDouble("speed");
     if(has("dir")) direction=Direction.build(getInt("dir"));
+    }
+  
+  public boolean hasDescription()
+    {
+    if(has("description"))
+      {
+      return(getDescription() != null && getDescription().length()>0);
+      }
+    return(false);
+    }
+  
+  public void setDescription(String text)
+    {
+    if(text == null)
+      {
+      text = "";
+      }
+    this.description = text;
+    put("description",this.description);
+    }
+  
+  public String getDescription()
+    {
+    return(description);
     }
   
   public void set(int x, int y)
@@ -283,5 +309,30 @@ public abstract class Entity extends RPObject
     }
 
   abstract public void getArea(Rectangle2D rect, double x, double y);
+  
+  public String describe()
+    {
+    String ret = "You see ";
+    if(hasDescription())
+      return(getDescription());
+    if(has("name") && get("name") != null)
+      ret += get("name").replace("_"," ");
+    else if(has("subclass"))
+      ret += "a " + get("subclass");
+    else if(has("class"))
+      ret += "a " + get("class");
+    else
+      {
+      ret += "something rather undescribed";
+      if(has("type"))
+        ret += " of type " + get("type");
+      if(has("id"))
+        ret += " with id " + get("id");
+      if(has("zone"))
+        ret += " in zone " + get("zone");
+      }
+    return(ret + ".");
+    }
+  
   }
 

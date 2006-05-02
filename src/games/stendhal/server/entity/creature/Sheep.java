@@ -302,4 +302,13 @@ public class Sheep extends Creature
     world.modify(this);
     Log4J.finishMethod(logger,"logic");
     }
+  
+  public String describe()
+    {
+    String text="You see a sheep that weighs "+weight;
+    if(hasDescription())
+      text = getDescription();
+    return(text);
+    }
+
   }

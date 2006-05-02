@@ -32,18 +32,18 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
-public class Use extends ActionListener 
+public class Look extends ActionListener 
   {
   private static final Logger logger = Log4J.getLogger(Use.class);
 
   public static void register()
     {
-    StendhalRPRuleProcessor.register("use",new Use());
+    StendhalRPRuleProcessor.register("look",new Look());
     }
 
   public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
     {
-    Log4J.startMethod(logger,"use");
+    Log4J.startMethod(logger,"look");
 
     // When use is casted over something in a slot 
     if(action.has("baseitem") && action.has("baseobject") && action.has("baseslot"))
@@ -59,19 +59,14 @@ public class Use extends ActionListener
         }
 
       RPObject base=zone.get(baseobjectid);
-      if(!(base instanceof Player || base instanceof Corpse || base instanceof Chest))
+      if(!(base instanceof Entity))
         {
-        // Only allow to use objects from players, corpses or chests 
+        // Shouldn't reall happen because everything is an entity
         return;
         }
 
-      if(base instanceof Player && !player.getID().equals(base.getID()))
-        {
-        // Only allowed to use item of our own player.
-        return;
-        }        
-
       Entity baseEntity=(Entity)base;
+      Entity entity = baseEntity;
 
       if(baseEntity.hasSlot(action.get("baseslot")))
         {
@@ -101,18 +96,20 @@ public class Use extends ActionListener
           }
         
         // It is always an entity
-        Entity entity=(Entity)object;
-        
-        rules.addGameEvent(player.getName(),"use",entity.get("name"));
-
-        if(object instanceof UseEvent)
-          {          
-          UseEvent entityUseEvent=(UseEvent)entity;
-          entityUseEvent.onUsed(player);
-          return;
-          }
+        entity=(Entity)object;
         }
-      }
+      
+      String name=entity.get("type");
+      if(entity.has("name"))
+        {
+        name=entity.get("name");
+        }     
+      rules.addGameEvent(player.getName(),"look",name);
+      player.setPrivateText(entity.describe());
+      world.modify(player);
+      rules.removePlayerText(player);
+      return;  
+    }
     // When use is cast over something on the floor
     else if(action.has("target"))
       {
@@ -123,24 +120,20 @@ public class Use extends ActionListener
       if(zone.has(targetid))
         {
         RPObject object=zone.get(targetid);
-        
-        String name=object.get("type");
-        if(object.has("name"))
+        // It is always an entity
+        Entity entity=(Entity)object;
+        String name=entity.get("type");
+        if(entity.has("name"))
           {
-          name=object.get("name");
-          }
-
-        rules.addGameEvent(player.getName(),"use",name);
-        
-        if(object instanceof UseEvent)
-          {          
-          UseEvent item=(UseEvent)object;
-          item.onUsed(player);
-          return;
-          }
+          name=entity.get("name");
+          }     
+        rules.addGameEvent(player.getName(),"look",name);
+        player.setPrivateText(entity.describe());
+        world.modify(player);
+        rules.removePlayerText(player);
         }
       }
 
-    Log4J.finishMethod(logger,"use");
+    Log4J.finishMethod(logger,"look");
     }
   }

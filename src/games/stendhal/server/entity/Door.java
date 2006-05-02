@@ -96,4 +96,13 @@ public class Door extends Portal
       super.onUsed(user);
       }
     }  
-  }
+  
+  public String describe()
+    {
+    String text="You see a door.";
+    if(hasDescription())
+      text = getDescription();
+    text +=" It is "+(isOpen()?"open.":"closed.");
+    return(text);
+    }
+ }

@@ -173,4 +173,47 @@ public class Item extends PassiveEntity
     return "Item, "+super.toString();
   }
 
+  public String describe()
+    {
+    String atk = "0";
+    String def = "0";
+    String amount ="0";
+    String text = "You see a " + getName().replace("_"," ") + ". ";
+    String stats = "";
+    String type = get("class");
+    if(hasDescription())
+      {
+      text = getDescription();
+      }
+    if(has("atk")) 
+      {
+      atk=get("atk");
+      }
+    if(has("def")) 
+      {
+      def=get("def");
+      }
+    if(has("amount")) 
+      {
+      amount=get("amount");
+      }
+    if(!atk.equals("0"))
+      {
+      stats += " ATK: " + atk;
+      }
+    if(!def.equals("0"))
+      {
+      stats += " DEF: " + def;
+      }
+    if(!amount.equals("0"))
+      {
+      stats += " HP: " + amount;
+      }
+    if(stats.length()>0)
+      {
+      stats = " Stats are (" + stats + ").";
+      }
+    return(text + stats);
+    }
+  
   }

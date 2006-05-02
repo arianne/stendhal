@@ -67,4 +67,9 @@ public class Blood extends Entity
       rp.removeBlood(this);
       }
     }
+  
+  public String describe()
+    {
+    return("You see a blood pool.");
+    }
   }

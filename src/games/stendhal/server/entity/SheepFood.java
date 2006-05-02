@@ -81,5 +81,11 @@ public class SheepFood extends Entity
         }
       }
     }
+  
+  public String describe()
+    {
+    String text="You see a bush with "+getAmount()+" fruits. Only sheeps eat this bush.";
+    return(text);
+    }
 
   }

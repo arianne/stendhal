@@ -31,6 +31,8 @@ public class DefaultItem
   private String subclazz;
   /** items type */
   private String name;
+  /** optional item description **/
+  private String description;
   
   private double weight;
   /** slots where this item can be equiped */
@@ -81,6 +83,11 @@ public class DefaultItem
     stackable=true;
   }
 
+  public void setDescription(String text)
+    {
+    this.description = text;
+    }
+  
   /** returns an item-instance */
   public Item getItem()
     {
@@ -112,6 +119,8 @@ public class DefaultItem
       }
 
     item.setEquipableSlots(slots);
+    item.setDescription(description);
+    
     return item;
     }
   

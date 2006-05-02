@@ -87,5 +87,15 @@ public class Scroll extends ConsumableItem implements UseEvent
       }
     getWorld().modify(player);
     }
+  
+  public String describe()
+    {
+    String text = super.describe();
+    if(has("infostring") && get("infostring") != null)
+      {
+      text += " It is marked with: " + get("infostring");
+      }
+    return(text);
+    }
 
   }

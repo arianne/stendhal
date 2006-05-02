@@ -21,6 +21,8 @@ public class ItemXMLLoader extends DefaultHandler
   private String name;
   private String clazz;
   private String subclass;
+  private String description;
+  private String text;
 
   private double weight;
   
@@ -118,12 +120,14 @@ public class ItemXMLLoader extends DefaultHandler
 
   public void startElement(String namespaceURI, String lName, String qName, Attributes attrs)throws SAXException
     {
+    text = "";
     if(qName.equals("item"))
       {
       name=attrs.getValue("name");
       attributes=new LinkedList<Pair<String,String>>();
       slots=new LinkedList<String>();
       stackable=false;
+      description=null;
       }
     else if(qName.equals("type"))
       {
@@ -163,6 +167,7 @@ public class ItemXMLLoader extends DefaultHandler
       item.setWeight(weight);
       item.setEquipableSlots(slots);
       item.setAttributes(attributes);
+      item.setDescription(description);
       if(stackable)
         {
         item.setStackable();
@@ -174,9 +179,18 @@ public class ItemXMLLoader extends DefaultHandler
       {
       attributesTag=false;
       }
+    else if(qName.equals("description"))
+      {
+      if(text != null)
+        {
+        description=text.trim();       
+        }
+      text = "";
+      }
     }
 
   public void characters(char buf[], int offset, int len) throws SAXException
     {
+    text = text + (new String(buf, offset, len)).trim() + " ";
     }
   }

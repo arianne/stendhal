@@ -217,4 +217,20 @@ public class Corpse extends PassiveEntity
     RPSlot content=getSlot("content");
     return content.iterator();
     }
+  
+  public String describe()
+    {
+    String stageText [] = {"new", "fresh", "cold", "slightly rotten", "rotten", "very rotten"};
+    String text="You see the " + stageText[stage] + " corpse of ";
+    if(!has("name"))
+      {
+      text += "a " + get("class").replace("_"," ");
+      }
+    else
+      {
+      text += get("name")+". It was killed by "+get("killer");
+      }
+    text=text+". You can #inspect it to see its contents.";
+    return(text);
+    }
   }

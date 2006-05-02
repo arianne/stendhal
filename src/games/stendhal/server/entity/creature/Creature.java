@@ -197,7 +197,7 @@
    
     put("x",0);
     put("y",0);
-    
+    setDescription(copy.getDescription());    
     setATK(copy.getATK());
     setDEF(copy.getDEF());
     setXP(copy.getXP());
@@ -216,8 +216,7 @@
 
   public Creature getInstance()
     {    
-    return new Creature(this);
-    }
+    return new Creature(this);    }
     
   /** creates a new creature without properties. These must be set in the
    * deriving class
@@ -232,11 +231,11 @@
     dropsItems = new ArrayList<Creature.DropItem>();
     aiProfiles = new HashMap<String,String>();
     attackTurn=Rand.rand(5);
-    }
+    }
 
   /** creates a new creature with the given properties
    */
-  public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems, Map<String, String> aiProfiles, List<String> noises, int respawnTime) throws AttributeNotFoundException
+  public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp, int width, int height, double speed, List<DropItem> dropItems, Map<String, String> aiProfiles, List<String> noises, int respawnTime, String description) throws AttributeNotFoundException
     {
     this();
     
@@ -260,7 +259,7 @@
 
     put("x",0);
     put("y",0);
-    
+    setDescription(description);
     setATK(attack);
     setDEF(defense);
     setXP(xp);
@@ -273,7 +272,8 @@
 
     stop();
     attackTurn=Rand.rand(5);
-    logger.debug("Created "+clazz+":"+this);
+
+    logger.debug("Created "+clazz+":"+this);
     }
   
   protected void createPath()

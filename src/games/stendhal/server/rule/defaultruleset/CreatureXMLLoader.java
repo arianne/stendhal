@@ -21,6 +21,8 @@ public class CreatureXMLLoader extends DefaultHandler
   private String name;
   private String clazz;
   private String subclass;
+  private String description;
+  private String text;
   private int tileid;
   
   private int atk;
@@ -118,6 +120,7 @@ public class CreatureXMLLoader extends DefaultHandler
 
   public void startElement(String namespaceURI, String lName, String qName, Attributes attrs)throws SAXException
     {
+    text = "";
     if(qName.equals("creature"))
       {
       name=attrs.getValue("name");
@@ -127,6 +130,7 @@ public class CreatureXMLLoader extends DefaultHandler
       equipsItems=new LinkedList<Creature.EquipItem>();
       creatureSays=new LinkedList<String>();
       aiProfiles=new HashMap<String,String>();
+      description=null;
       }
     else if(qName.equals("type"))
       {
@@ -281,7 +285,7 @@ public class CreatureXMLLoader extends DefaultHandler
       creature.setAIProfiles(aiProfiles);
       creature.setNoiseLines(creatureSays);
       creature.setRespawnTime(respawn);
-      
+      creature.setDescription(description);
       list.add(creature);
       }
     else if(qName.equals("attributes"))
@@ -304,9 +308,18 @@ public class CreatureXMLLoader extends DefaultHandler
       {
       ai=false;
       }
+    else if(qName.equals("description"))
+      {
+      if(text != null)
+        {
+        description=text.trim();       
+        }
+      text = "";
+      }
     }
 
   public void characters(char buf[], int offset, int len) throws SAXException
     {
+    text = text + (new String(buf, offset, len)).trim() + " ";
     }
   }

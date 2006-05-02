@@ -255,7 +255,7 @@ public class Behaviours
     StringBuffer st=new StringBuffer();
     for(String item: items.getItems())
       {
-      st.append(item+",");
+      st.append(item+", ");
       }
        
     if(offer)
@@ -459,7 +459,7 @@ public class Behaviours
     StringBuffer st=new StringBuffer();
     for(String item: items.getItems())
       {
-      st.append(item+",");
+      st.append(item+", ");
       }
     
     if(offer)

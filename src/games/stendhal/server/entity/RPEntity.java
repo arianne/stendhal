@@ -1015,4 +1015,11 @@ public abstract class RPEntity extends Entity
       }
     return false;
     }
+  
+    public String describe()
+      {
+      String text=super.describe();
+      text += " It is level " + getLevel() + ".";
+      return(text);
+      }
   }

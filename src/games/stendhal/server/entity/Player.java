@@ -1196,4 +1196,17 @@ public class Player extends RPEntity
         }
       }
     }
+  
+  public String describe()
+    {
+    int hours=age/60;
+    int minutes=age%60;
+    String time=hours+" hours and "+minutes+" minutes";
+    String text="You see " + getName() + ".";
+    if(hasDescription())
+      text = getDescription();
+    text += "\n" + getName() + " is level " + getLevel() + " and has been playing "+time+".";
+    return(text);
+    }
+  
   }

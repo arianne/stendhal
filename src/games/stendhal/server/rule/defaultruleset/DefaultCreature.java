@@ -31,6 +31,8 @@ public class DefaultCreature
   private String subclass;
   /** Creature name */
   private String name;
+  /** optional creature description **/
+  private String description;
   
   /** Map Tile Id */
   private int tileid;
@@ -69,6 +71,11 @@ public class DefaultCreature
     
     this.tileid = tileid;
   }
+ 
+  public void setDescription(String text)
+    {
+    this.description = text;
+    }
   
   public void setRPStats(int hp, int atk, int def, double speed)
   {
@@ -158,9 +165,8 @@ public class DefaultCreature
   /** returns a creature-instance */
   public Creature getCreature()
   {
-    Creature creature=new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed, dropsItems, aiProfiles, creatureSays, respawn);
-    creature.equip(equipsItems);
-      
+    Creature creature=new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed, dropsItems, aiProfiles, creatureSays, respawn, description);
+    creature.equip(equipsItems);    
     return creature;
   }
   

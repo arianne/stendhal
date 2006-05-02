@@ -124,4 +124,19 @@ public class Chest extends Entity implements UseEvent
       world.modify(this);
       }
     }
+  
+  public String describe()
+    {
+    String text="You see a chest.";
+    if(hasDescription())
+      {
+      text = getDescription();
+      }
+    text +=" It is "+(isOpen()?"open.":"closed.");
+    if(isOpen())
+      {
+      text +=" You can #inspect this item to see its content.";
+      }
+    return(text);
+    }
   }
