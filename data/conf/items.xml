@@ -567,6 +567,9 @@ in the file.
 
 	<item name="wooden_shield">
 		<type class="shield" subclass="wooden_shield"/>
+		<description>You see shield. It is  made of cheap wood and heavily used.
+		However, it still seems to offer you some kind of basic protection.
+		</description>
 		<attributes>
 			<def value="10"/>
 		</attributes>

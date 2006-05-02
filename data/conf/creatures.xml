@@ -52,6 +52,8 @@
 	</creature>
 	<creature name="rat">
 		<type class="small_animal" subclass="rat" tileid="12"/>
+		<description>You see a small rat that seems to be extremely hungry.
+		</description>
 		<attributes>
 			<atk value="11"/>
 			<def value="9"/>
