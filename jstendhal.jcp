@@ -721,6 +721,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\item\Scroll.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\item\Stackable.java</path>
 				<source>true</source>
 			</fileitem>
@@ -766,6 +770,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\maps\quests\BeerForHayunn.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\CleanStorageSpace.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -902,6 +910,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\actions\Face.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\actions\Look.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
