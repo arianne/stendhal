@@ -187,7 +187,7 @@
  
   </target>
   
-  <target name="client_data_build" depends="init" description="Build JAR file for Stendhal client">
+  <target name="client_data_build" depends="init" description="Build data JAR files for Stendhal client">
     <property name="client_data" value="stendhal-data-${version}.jar"/>
     <property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
 
