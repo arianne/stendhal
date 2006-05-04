@@ -1,485 +1,449 @@
 -------------------------------------------------------------------------------
-| This program is free software; you can redistribute it and/or modify         
-| it under the terms of the GNU General Public License as published by
-| the Free Software Foundation.
-| 
-| This program is distributed in the hope that it will be useful,
-| but WITHOUT ANY WARRANTY; without even the implied warranty of
-| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-| doc/GPL.license file for more details.
--------------------------------------------------------------------------------
+| This program is free software; you can redistribute it and/or modify         
+| it under the terms of the GNU General Public License as published by
+| the Free Software Foundation.
+| 
+| This program is distributed in the hope that it will be useful,
+| but WITHOUT ANY WARRANTY; without even the implied warranty of
+| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+| doc/GPL.license file for more details.
+-------------------------------------------------------------------------------
 
 Stendhal
---------
+--------
 Are you looking for adventure? Want to fight for riches?
-Develop yourself and your social standing? Meet new people?
-Do you want to be part of a brave new world? 
-
+Develop yourself and your social standing? Meet new people?
+Do you want to be part of a brave new world? 
 Stendhal is a full fledged multiplayer online adventures game (MMORPG) developed using the Arianne game development system. 
-
 Stendhal features a new, rich and expanding world in which you can explore towns, buildings, plains, caves and dungeons. 
-You will meet NPCs and acquire tasks and quests for valuable experience and cold hard cash.
+You will meet NPCs and acquire tasks and quests for valuable experience and cold hard cash.
 
-Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your 
-armour and weapons. And for the blood thirsty of your; satisfy your killing desires by roaming the world in search of evil monsters! 
+Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your 
+armour and weapons. And for the blood thirsty of your; satisfy your killing desires by roaming the world in search of evil monsters! 
 
-Stendhal is totally platform independent, written using Java 1.5 and the Java2D environment. 
+Stendhal is totally platform independent, written using Java 1.5 and the Java2D environment. 
 
-So what are you waiting for?! A whole new world awaits...
+So what are you waiting for?! A whole new world awaits...
 
-Current Version
----------------
+
+Current Version
+---------------
 Version 0.48
 
 
-How to play
------------
+How to play
+-----------
 You need arianne's Stendhal client in order to be able to play Stendhal.
-You also need Java JRE 1.5 ( http://www.java.com/es/download )
-
+You also need Java JRE 1.5 ( http://www.java.com/es/download )
 Please download it from http://arianne.sourceforge.net
 
-Then just do:
-
+Then just do:
   java -jar stendhal-0.44.jar
-
 Alternatively you can run it using Java Webstart technology at:
-
   http://arianne.sourceforge.net/jws/stendhal.jnlp
 
-To play Arianne you have to use keyboard and mouse.
-
+To play Arianne you have to use keyboard and mouse.
 Read manual at http://arianne.sourceforge.net/wiki/index.php/StendhalManual
 
-
 How to compile Stendhal
------------------------
+-----------------------
 http://arianne.sourceforge.net/wiki/index.php/HowToBuildStendhal
 
-No warranties. But let me know if it doesn't works.
-
-
+No warranties. But let me know if it doesn't works.
 
 Changelog
----------
+---------
 0.50 May XX, 2006
-- Fixed MacOS bug.
-- Added magic scrolls.
-- Added banker NPC.
-- Nicer text bubble.
-
+- Fixed MacOS display and focus bug.
+- Added magic scrolls.
+- Added banker NPC.
+- Nicer text bubble.
+- Moved description text (Look event) to server side
+- Changed NPC to look at the character it's talking to
 0.48 Apr 31, 2006
 - Added jail command
-- Added protection zone around Semos
-- Added Buddy system
-- Added Blood pool on fights
-- Fixed improper GFX.
-- Fixed bug that makes equip command fails if the slot is full.
-- Fixed several minor maps bugs.
-- Cloack now adds DEF (client side fix).
-- Fixed NPC keywords ( now quests works too with hello and hola ).
-- Added a Jail keeper NPC.
-- Simplified Xin Blanca items lists.
-- Fixed a very important bug on pathfinding that was being abused by players.
-- Added tavern second floor.
-- Big monsters are now draw when part of them is out of screen.
-- You can query now player's age.
-- Randomize a bit creatures and its respawn time.
-- Fixed sheep bug related to sheep not responding to any command.
-- Screen move less and faster now.
-- Hide admin commands for not confusing players.
-- Added new items ( a few: around 20 more )
-- Added a new area on the top east, near Ados.
+- Added protection zone around Semos
+- Added Buddy system
+- Added Blood pool on fights
+- Fixed improper GFX.
+- Fixed bug that makes equip command fails if the slot is full.
+- Fixed several minor maps bugs.
+- Cloack now adds DEF (client side fix).
+- Fixed NPC keywords ( now quests works too with hello and hola ).
+- Added a Jail keeper NPC.
+- Simplified Xin Blanca items lists.
+- Fixed a very important bug on pathfinding that was being abused by players.
+- Added tavern second floor.
+- Big monsters are now draw when part of them is out of screen.
+- You can query now player's age.
+- Randomize a bit creatures and its respawn time.
+- Fixed sheep bug related to sheep not responding to any command.
+- Screen move less and faster now.
+- Hide admin commands for not confusing players.
+- Added new items ( a few: around 20 more )
+- Added a new area on the top east, near Ados.
 
-0.47.1 Mar 24, 2006
+0.47.1 Mar 24, 2006
 - Fixed a important problem at StendhalPlayerDatabase
-
 0.47 Mar 23, 2006
 - Fixed location of version file.
-- Fixed teleport bug.
-- Fixed negative xp problem.
-- Fixed a problem that made players not to leave world because of sheeps.
-- Added door and keys
-- Added new quests
-- Added stendhal own database that speed up game turns
-- Added a Townhall
-- Added several NPC to help players introduce into the game
-- Added new monsters ( around 15 more )
-- Added kobold's city
-- Fixed a bug about invincible creatures
-- Added a depot to place items safely.
-- Fixed NPC outfits
-- Fixed break dance bug
-- Better corpse representation
-
+- Fixed teleport bug.
+- Fixed negative xp problem.
+- Fixed a problem that made players not to leave world because of sheeps.
+- Added door and keys
+- Added new quests
+- Added stendhal own database that speed up game turns
+- Added a Townhall
+- Added several NPC to help players introduce into the game
+- Added new monsters ( around 15 more )
+- Added kobold's city
+- Fixed a bug about invincible creatures
+- Added a depot to place items safely.
+- Fixed NPC outfits
+- Fixed break dance bug
+- Better corpse representation
 0.46 Mar 10, 2006
 - Fixed sheep
-- Fixed blacksmith animations.
-- Fixed Nalwor waterfall animation.
-- Creatures correctly balanced
-- Fixed dragons and added a new category Huge animals.
-- Fixed a bug at Attack system that weakens NPC.
-- Fixed some maps bugs.
-- Speed up path finding by a factor of x20
-- Added cloaks
-- Added plate armor
-- Rebalanced again creatures
-- Fixed a very fun bug at Seller NPC ;-)
-- Moved NPC GFX to its own folder.
-- Simplified quests.
-- Added Semos Mine and Orril Castle new zones.
-- Added new quests and new items
-- Added bank at Semos. It will contain player items.
-- Added Orril castle.
-- Weakened XP earn limits.
+- Fixed blacksmith animations.
+- Fixed Nalwor waterfall animation.
+- Creatures correctly balanced
+- Fixed dragons and added a new category Huge animals.
+- Fixed a bug at Attack system that weakens NPC.
+- Fixed some maps bugs.
+- Speed up path finding by a factor of x20
+- Added cloaks
+- Added plate armor
+- Rebalanced again creatures
+- Fixed a very fun bug at Seller NPC ;-)
+- Moved NPC GFX to its own folder.
+- Simplified quests.
+- Added Semos Mine and Orril Castle new zones.
+- Added new quests and new items
+- Added bank at Semos. It will contain player items.
+- Added Orril castle.
+- Weakened XP earn limits.
 
 0.45 Mar 01, 2006
 - Fixed ambient sounds.
-- Fixed sheep quest.
-- Fixed sheep inmortality bug.
-- Fixed equipment mess bug.
-- Fixed offline icon not showing.
-- Fixed equipment bug.
-- Fixed NPC talking bug.
-- Fixed corpses not showing correctly usable items.
-- Added Event system to ease development of client.
-- Added sword beam to show attack.
-- Added Python initialization script to ease modification of Server.
-- Added Quest system.
-- Added a very basic scripts system.
-- Added ranged combat.
-- Added new monsters ( around 30 new monsters ).
-- Added new zones ( in this release 3 new zones, but really around 20 more ).
-
-
+- Fixed sheep quest.
+- Fixed sheep inmortality bug.
+- Fixed equipment mess bug.
+- Fixed offline icon not showing.
+- Fixed equipment bug.
+- Fixed NPC talking bug.
+- Fixed corpses not showing correctly usable items.
+- Added Event system to ease development of client.
+- Added sword beam to show attack.
+- Added Python initialization script to ease modification of Server.
+- Added Quest system.
+- Added a very basic scripts system.
+- Added ranged combat.
+- Added new monsters ( around 30 new monsters ).
+- Added new zones ( in this release 3 new zones, but really around 20 more ).
 0.44 Jan 29, 2006
 - Fixed a null pointer bug at creature logic.
-- Fixed Drink and food queue so you can consume potions even if full.
-- Speed up client
-- Changed sync event management so game is less laggy.
-- Can buy several items in a batch ( buy 5 potion )
-- Fixed sync error. Should happen less oftenly.
-- Items bought are automatically stacked.
-- Sheeps heals themselves slowly.
-- Admins are now denoted with yellow name.
-- NPC don't say bye if you are not talking to it.
-- Portals are walkable now. It looks better
-- Giant rats corpses are bigger.
-- Monsters does talk ( but not chat ).
-- Reworked map data structure. It is more organized now.
-- Added ambient sounds.
-- Fixed ATK and DEF loose on death.
-- Added new area:
-  - Library
-  - Orril dungeon
-- Added new monster:
-  - Black bear
-
-
+- Fixed Drink and food queue so you can consume potions even if full.
+- Speed up client
+- Changed sync event management so game is less laggy.
+- Can buy several items in a batch ( buy 5 potion )
+- Fixed sync error. Should happen less oftenly.
+- Items bought are automatically stacked.
+- Sheeps heals themselves slowly.
+- Admins are now denoted with yellow name.
+- NPC don't say bye if you are not talking to it.
+- Portals are walkable now. It looks better
+- Giant rats corpses are bigger.
+- Monsters does talk ( but not chat ).
+- Reworked map data structure. It is more organized now.
+- Added ambient sounds.
+- Fixed ATK and DEF loose on death.
+- Added new area:
+  - Library
+  - Orril dungeon
+- Added new monster:
+  - Black bear
 0.43 Jan 20, 2006
 - Exit of tavern now belongs to tavern.
-- Fixed a bug when player recieve text but client.getPlayer() stills return null.
-- Configuration files are stored now at ~/stendhal
-- Carmen at Semos sells potions and antidotes.
-- Admin can summonat player slot several items at once.
-- Venom rats are a bit more weak and poison hurts less.
-- Use portal use changeZone method.
-- Antidote gives now inmunity for 2 minutes.
-- Fixed a bug at Java Web start related to existence of stendhal file
-- Workaround for inventory bug: left button dragging disabled.
-- Fixed a bug at Creature.logic
-- Added new areas:
-  - Temple
-  - Blacksmith
-  - Kanmararn entrace
-  - Or'ril dungeon level 3
-  - Jail
-- Added new creatures:
-  - Razor rat
-  - Ratman
-  - Dwarf
-  - Guardian Dwarf
-  - Elder Dwarf
-  - Orc warrior
-  - Orc chief
-  
-
-0.42 Jan 14, 2006
+- Fixed a bug when player recieve text but client.getPlayer() stills return null.
+- Configuration files are stored now at ~/stendhal
+- Carmen at Semos sells potions and antidotes.
+- Admin can summonat player slot several items at once.
+- Venom rats are a bit more weak and poison hurts less.
+- Use portal use changeZone method.
+- Antidote gives now inmunity for 2 minutes.
+- Fixed a bug at Java Web start related to existence of stendhal file
+- Workaround for inventory bug: left button dragging disabled.
+- Fixed a bug at Creature.logic
+- Added new areas:
+  - Temple
+  - Blacksmith
+  - Kanmararn entrace
+  - Or'ril dungeon level 3
+  - Jail
+- Added new creatures:
+  - Razor rat
+  - Ratman
+  - Dwarf
+  - Guardian Dwarf
+  - Elder Dwarf
+  - Orc warrior
+  - Orc chief
+ 
+0.42 Jan 14, 2006
 - Added Venom rat.
-- On death player lose Levels, XP, ATK and DEF.
-- Organized data in Java Webstart. Everything is now inside stendhal folder.
-- Added Protection zones to avoid PK.
-- Fixed blood anticampers feature.
-- New food, drinks, potions and poison system.
-- Added support command to talk with admin crew.
-- Improved item stacking.
-- Banned some improper usernames.
-- Better source and data organization.
-- Fixed a bug that happen when you kill a sheep.
-- Improved data structure.
-- Added sound system.
-- Added poisonous creatures.
-- Fixed inventory self closes bug.
-- Stats show now equipped stuff too.
-- New event system.
-- Some creatures can heal themselves.
-- Fixed food stackable bug.
-
-
+- On death player lose Levels, XP, ATK and DEF.
+- Organized data in Java Webstart. Everything is now inside stendhal folder.
+- Added Protection zones to avoid PK.
+- Fixed blood anticampers feature.
+- New food, drinks, potions and poison system.
+- Added support command to talk with admin crew.
+- Improved item stacking.
+- Banned some improper usernames.
+- Better source and data organization.
+- Fixed a bug that happen when you kill a sheep.
+- Improved data structure.
+- Added sound system.
+- Added poisonous creatures.
+- Fixed inventory self closes bug.
+- Stats show now equipped stuff too.
+- New event system.
+- Some creatures can heal themselves.
+- Fixed food stackable bug.
 0.41 Jan 03, 2005
 - Fixed a bug on legs slot name.
-- When selling an item, we search first inside bag.
-- NPC are non attackable.
-- Modified dungeons and added a cyclops tavern! :)
-- Fixed administrator alter command for not breaking player anymore
-- Added admin command teleportto
-- Fixed build.xml script
-- Fixed Wolf GFX sprite
-- Fixed items selection at screen ( by Janet )
-- Longer text last longer ( by Janet )
-- Sheep quest not giving money if sheep wasn't fully grow.
-- Fixed stop attack entry.
-- Fixed /msg command
-- Added timestamp at chat window
-- Fixed animated water and flowers
-- Fixed legs slot not working
-
+- When selling an item, we search first inside bag.
+- NPC are non attackable.
+- Modified dungeons and added a cyclops tavern! :)
+- Fixed administrator alter command for not breaking player anymore
+- Added admin command teleportto
+- Fixed build.xml script
+- Fixed Wolf GFX sprite
+- Fixed items selection at screen ( by Janet )
+- Longer text last longer ( by Janet )
+- Sheep quest not giving money if sheep wasn't fully grow.
+- Fixed stop attack entry.
+- Fixed /msg command
+- Added timestamp at chat window
+- Fixed animated water and flowers
+- Fixed legs slot not working
 0.40 Dec 21, 2005
 - Fixed a bug when dropping an item over itself
-- Modified private and hidden attributes
-- Fixed sync facing problem
-- Use a bit less of memory
-- Refactor StendhalRPRuleProcessor
-- Clear action code
-- Added Game master commands
-- Refactored NPC chat system
-- Created Quest system
-- Changed all NPCs
-- Using charas of 48x64 so RPGMaker 2000 exportage of charas is inmediate
-- Added new GUI System
-- Now weapon seller buys stuff too.
-- Creatures and Items XML definition
-- New combat system
-- Creatures drops items now
-- Added Food
-- Food restore HP when eaten
-- Added houses system (for NPC by now).
-- Added door.
-- Automagically choose the new zone when reaching map border
-- Added several new zones and dungeons ( multiplied map size by 4 )
-- Code to avoid trainer campers.
-
-
+- Modified private and hidden attributes
+- Fixed sync facing problem
+- Use a bit less of memory
+- Refactor StendhalRPRuleProcessor
+- Clear action code
+- Added Game master commands
+- Refactored NPC chat system
+- Created Quest system
+- Changed all NPCs
+- Using charas of 48x64 so RPGMaker 2000 exportage of charas is inmediate
+- Added new GUI System
+- Now weapon seller buys stuff too.
+- Creatures and Items XML definition
+- New combat system
+- Creatures drops items now
+- Added Food
+- Food restore HP when eaten
+- Added houses system (for NPC by now).
+- Added door.
+- Automagically choose the new zone when reaching map border
+- Added several new zones and dungeons ( multiplied map size by 4 )
+- Code to avoid trainer campers.
 0.39.1 Oct 26, 2005
-- Fixed chat bug
-- Fixed inspected slot and sync problem
-- Fixed afterlife problem
-- Fixed weapon seller bug when money==item price
-- Fixed problem with player stats not being stored
-- Fixed version number mismatch
-- Fixed a bug on Items being dropped and not allowing player that equip them to logout correctly.
-- Fixed bug on where command player is not logged
-- Fixed the same bug that items in sheeps.
-- Fixed a bug at WeaponSellerNPC
-- Fixed item duplication bug
-- Double click on corpses inspect them
-- Double click on creature attack them
-- Speed up client initialization
-- Daisy animations is more calm
-- Fixed stendhalaccountcreation that wasn't working at all
-- Added critical hit/critical failure
 
-
+- Fixed chat bug
+- Fixed inspected slot and sync problem
+- Fixed afterlife problem
+- Fixed weapon seller bug when money==item price
+- Fixed problem with player stats not being stored
+- Fixed version number mismatch
+- Fixed a bug on Items being dropped and not allowing player that equip them to logout correctly.
+- Fixed bug on where command player is not logged
+- Fixed the same bug that items in sheeps.
+- Fixed a bug at WeaponSellerNPC
+- Fixed item duplication bug
+- Double click on corpses inspect them
+- Double click on creature attack them
+- Speed up client initialization
+- Daisy animations is more calm
+- Fixed stendhalaccountcreation that wasn't working at all
+- Added critical hit/critical failure
 0.39 Oct 23, 2005
 - Fixed ghost sheep bug
-- Added minimap
-- Fixed inventory
-- Added money
-- Weapons cost money now
-- Sheeps cost money now
-- Money objects can be joined in a single object
-- Corpses has items inside
-- Item amount appears in inventory
-- Now you can move items inside inspected entities
-- You can't inspect/open a entity while you are not near it
-- Refactored equip, moveequip and drop actions
-- Fixed a bug at RPSlot.assignValidID that blocked server
-- Corpses now are removed from player slots on load
-- You can't attack anymore NPC, yehy won't increase your stats.
-- Fixed icon on Java webstart version
-- Replaced afterlife map
-- Added navigation maps for all maps
-- Create a batch converter for maps.
-
-
+- Added minimap
+- Fixed inventory
+- Added money
+- Weapons cost money now
+- Sheeps cost money now
+- Money objects can be joined in a single object
+- Corpses has items inside
+- Item amount appears in inventory
+- Now you can move items inside inspected entities
+- You can't inspect/open a entity while you are not near it
+- Refactored equip, moveequip and drop actions
+- Fixed a bug at RPSlot.assignValidID that blocked server
+- Corpses now are removed from player slots on load
+- You can't attack anymore NPC, yehy won't increase your stats.
+- Fixed icon on Java webstart version
+- Replaced afterlife map
+- Added navigation maps for all maps
+- Create a batch converter for maps.
 0.32 Sep 24, 2005
 - Many bug fixes
-- Support for chests ( disabled )
-- Inventory movement working
-- Less CPU usage
-- Threaded A*
-
+- Support for chests ( disabled )
+- Inventory movement working
+- Less CPU usage
+- Threaded A*
 0.31 Jul 08, 2005
 - Fixed a bug at statistics system.
-- Speed up combat
-- Ease creature killing.
-- No more drop item bug
-- Move item in inventory
-- Fixed bug at Weapon seller.
-- Fix render order
-- Added Giant rat
-- Added three new areas: valley and rat dungeon (two levels)
-- Fixed a problem with long sentences
-- Changed sprites to PNG
-- Added Bag slot (1 item only)
-- Modifiable server name at login text area
-
+- Speed up combat
+- Ease creature killing.
+- No more drop item bug
+- Move item in inventory
+- Fixed bug at Weapon seller.
+- Fix render order
+- Added Giant rat
+- Added three new areas: valley and rat dungeon (two levels)
+- Fixed a problem with long sentences
+- Changed sprites to PNG
+- Added Bag slot (1 item only)
+- Modifiable server name at login text area
 0.30 Jul 03, 2005
 - Added items system
-- Fixed close bug
-- Fixed a bug that blocks game
-- Reestructured client entity system
-- Completed dungeon_001 map
-- Fixed cache bug definitively
-- Added slots
-- Added club, sword, shield and armor
-- New combat system
-- New monsters stats
-- Several map fixes
-- Move tilesets to PNG
-- Added 6 devel points on player creation
-- New NPC dialogs
-- Added a weapon seller
-- Removed ownerless sheeps
-- Sato doesn't kill sheeps anymore
-
+- Fixed close bug
+- Fixed a bug that blocks game
+- Reestructured client entity system
+- Completed dungeon_001 map
+- Fixed cache bug definitively
+- Added slots
+- Added club, sword, shield and armor
+- New combat system
+- New monsters stats
+- Several map fixes
+- Move tilesets to PNG
+- Added 6 devel points on player creation
+- New NPC dialogs
+- Added a weapon seller
+- Removed ownerless sheeps
+- Sato doesn't kill sheeps anymore
 0.25 Jun 09, 2005
 - Fixed a bug on dead
-- Fixed a bug on cache timestamp
-- Fixed a bug on stendhalcreateaccount
-- Fixed a sheepless player that get blocked bug.
-- Fixed a createTextBox bug with whitespaces.
-- Fixed blocked Creatures AI bug
-- Fixed bug on tell
-- Fixed corpses problem
-- Added where command
-- Added msg command
-- Added items
-- Added item displacement
-- Added own and release sheep commands
-
+- Fixed a bug on cache timestamp
+- Fixed a bug on stendhalcreateaccount
+- Fixed a sheepless player that get blocked bug.
+- Fixed a createTextBox bug with whitespaces.
+- Fixed blocked Creatures AI bug
+- Fixed bug on tell
+- Fixed corpses problem
+- Added where command
+- Added msg command
+- Added items
+- Added item displacement
+- Added own and release sheep commands
 0.20 Jun 05, 2005
 - Added new monsters
-- Implemented shared XP
-- Fixed a bug related to sheep duplication
-- Added storable/volatile attributes
-- Logout position remembered
-- Text over all 
-- Double click for default action ( instead of a single one ).
-- Added push action
-- Limited to 50 fps. Save CPU cycles.
-- Added butcher, poller and angel
-- Added set outfit option
-- Added new dungeon
-- Added new tilesets
-- Initial support for inventory
-- Fixed a bug because of cache directory
-- Added new RP values
-
+- Implemented shared XP
+- Fixed a bug related to sheep duplication
+- Added storable/volatile attributes
+- Logout position remembered
+- Text over all 
+- Double click for default action ( instead of a single one ).
+- Added push action
+- Limited to 50 fps. Save CPU cycles.
+- Added butcher, poller and angel
+- Added set outfit option
+- Added new dungeon
+- Added new tilesets
+- Initial support for inventory
+- Fixed a bug because of cache directory
+- Added new RP values
 0.13 May 30, 2005
 - Added API for identifing several attackers.
-- Improved creature AI to attack anyone near it.
-- Added icon to main game window
-- Fix zone change problem
-- Fix placeat problem
-- Improved NPC and Sign texts
-- Improved perception sizes
-- Fixed a bug onMyRPObject handling method
-- Added a progress bar for connect
-- Added storage of username and password
-- Added forest
-- Added afterlive
-- Added GUI
-- Changed XP reward for each creature
-- Changed Rat, Cave rat, Wolf and Orc RP attributes.
-- Added Level attribute.
-- Fixed portal collision bug
-
+- Improved creature AI to attack anyone near it.
+- Added icon to main game window
+- Fix zone change problem
+- Fix placeat problem
+- Improved NPC and Sign texts
+- Improved perception sizes
+- Fixed a bug onMyRPObject handling method
+- Added a progress bar for connect
+- Added storage of username and password
+- Added forest
+- Added afterlive
+- Added GUI
+- Changed XP reward for each creature
+- Changed Rat, Cave rat, Wolf and Orc RP attributes.
+- Added Level attribute.
+- Fixed portal collision bug
 0.12 May 22, 2005
 - Fixed a severe bug that happens when a creature respawn over a player.
-- Disabled the attack yourself feature
-- Added reward for player killing
-- Correctly assign XP for sheep
-- NPC don't repeat text on zone change any more
-- Better rendering order
-- Corpses are now under everything
-- Improved client speed
-
+- Disabled the attack yourself feature
+- Added reward for player killing
+- Correctly assign XP for sheep
+- NPC don't repeat text on zone change any more
+- Better rendering order
+- Corpses are now under everything
+- Improved client speed
 0.11 May 20, 2005
 - Added Rat
-- Added Cave Rat
-- Added dungeon
-- Added portal
-- Added Beggar
-- Improved Welcomer messages
-- Improved A*
-- Fixed sheep AI
-- Improved Creatures AI
-- Added RP combat system: ATK, DEF, XP and HP
-- Added Level and XP awards
-- Fixed rendering order
-
+- Added Cave Rat
+- Added dungeon
+- Added portal
+- Added Beggar
+- Improved Welcomer messages
+- Improved A*
+- Fixed sheep AI
+- Improved Creatures AI
+- Added RP combat system: ATK, DEF, XP and HP
+- Added Level and XP awards
+- Fixed rendering order
 0.10 May 12, 2005
 - Color game dialog log console.
-- Major server and client refactoring
-- True attack system
-- True dead
-- Added Wolf
-- Improved sheep movement
-- Optimized A*
-- Major bug fixes
-
+- Major server and client refactoring
+- True attack system
+- True dead
+- Added Wolf
+- Improved sheep movement
+- Optimized A*
+- Major bug fixes
 0.03 Apr 28, 2005
 - Added A*
-- Fixed a bug with Sheep weight due to signed/unsigned
-- Fixed Sheep movement
-- Added Patrol action
-- Added follow path
-- Fixed collision detection area
-- Game Chat dialog opens with Ctrl+L
-- NPC counts sheeps sold and bought
-- Client reconnect on out of sync
-- A single text line is visible now
-- Combat icon is centered on the bottom right corner.
-- Optional collision detection boxes.
-
+- Fixed a bug with Sheep weight due to signed/unsigned
+- Fixed Sheep movement
+- Added Patrol action
+- Added follow path
+- Fixed collision detection area
+- Game Chat dialog opens with Ctrl+L
+- NPC counts sheeps sold and bought
+- Client reconnect on out of sync
+- A single text line is visible now
+- Combat icon is centered on the bottom right corner.
+- Optional collision detection boxes.
 0.02 Apr 17, 2005
 - Fixed a problem related to message sorting
-- Removed EntryPointNotFoundException
-- Added sheep
-- Better NPC interaction
-- Better player movement
-- Combat feedback
-- Better collision detection
-- Added chat dialog
-
+- Removed EntryPointNotFoundException
+- Added sheep
+- Better NPC interaction
+- Better player movement
+- Combat feedback
+- Better collision detection
+- Added chat dialog
 0.01 Apr 05, 2005
 - Added bigger maps
-- Changed the way maps are loaded
-- Better screen movement
-- Mouse interaction support
-- Player can chat, move and change zone
-- More intutive change zone feature
-- Refactored server code to use Java objects
-- Added collision detection
-- Added GUI
-
+- Changed the way maps are loaded
+- Better screen movement
+- Mouse interaction support
+- Player can chat, move and change zone
+- More intutive change zone feature
+- Refactored server code to use Java objects
+- Added collision detection
+- Added GUI
 0.00 Mar 01, 2005
 - Initial release
 
-
 Legal
------
+-----
 Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005
-arianne_rpg at users dot sourceforge dot net
+arianne_rpg at users dot sourceforge dot net
 
