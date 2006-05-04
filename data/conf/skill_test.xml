@@ -1,103 +1,185 @@
-<!-- ${XXX} means that XXX is a defined variable name-->
+<!-- This is just an experimental file that me (danter) is using for creating the new RP system, there is no guarantee that this file or the values in it will be used later -->
+
+
+<!-- The table below is best viewed with a tabspace of 4 and a monospaced font-->
+
+
+<!-- KEYWORDS - keywords is the ones starting a new tag, ie: <keyword> -->
+<!-- class 				= the class type the described skill belongs to -->
+<!-- requiers 			= requierments needed in order to learn or use the skill. These Keywords is awailable here for now, more will surely come when I "define" more skills -->
+<!-- 						weapon 			= indicates a specific weapon type that needs to be equipped -->
+<!-- 						skill 			= specifies a skill you need to learn before you can get this skill, the level value is the required lvl needed in that skill -->
+<!-- effect 			= gfx eye candy that the skill uses, like fire, ice, freeze etc effects, this needs to be evolved more -->
+<!-- skill_LVL_bonus 	= added bonuses you get per skill lvl, this area needs atleast one <LVL> section -->
+<!-- LVL 				= describes the skill lvl range the parameters in the section is used on -->
+<!-- bonus 				= bonuses that is added to your stats or attacks when the skill is used. The keywords awailable for the bonus keyword is these for now, more will surely come when I "define" more skills: -->
+<!-- 						damage 			= Increases the total damage of your attacks -->
+<!-- 						attacks 		= Amount of attacks that can be made -->
+<!-- 						attack_range 	= Max attack range with a ranged weapon -->
+<!-- 						base_hp 		= Defines the max hp you can have -->
+<!-- 						regen_hp 		= Regeneration speed for your hp -->
+<!-- 						atk_spd 		= Max attack speed when attacking -->
+<!-- 						evade 			= Chance of evading an attack -->
+<!-- 						speed 			= Max walking speed when moving -->
+<!-- mp_cost 			= how much mp the skill burns at usage -->
+<!-- preparation 		= time before skill is cast, 0 = instant -->
+<!-- duration 			= the time the skill lasts, 0 = no duration (same as normal melee attack) -->
+
+
+<!-- CONSTANTS - Constant values use capital letters-->
+<!-- AUTO 				= as soon as you have the skill, it self casts -->
+<!-- PERMANENT 			= once it has been casted, it's always activated -->
+<!-- ALL				= the formula is used in all skill lvls -->
+<!-- MELEE				= means you have to have a melee weapon equipped -->
+<!-- RANGED				= means you have to have a ranged weapon equipped -->
+
+
+<!-- VARIABLES - Variables is incapsulated by the ${XXX} symbols, the XXX in this example is the variable name-->
+<!-- SKILL_LVL			= Gets the skill lvl of the current skill -->
+
+
+
 
 <!-- Quick Strike - Waste some MP to fire a few fast arrows towards one opponent -->
-<skill name = "Quick_Strike">
-	<class name = "Archer" />
-	<bonus>	</bonus>
-<!-- preparation is time before skill is cast, 0 == instant -->
-	<preparation time = "0" /> 
-<!-- duration is the time the skill lasts, 0 == no duration (same as normal melee attack) -->
-	<duration time = "0" /> 
-<!-- effect is gfx eye candy that the skill uses, like fire, ice, freeze etc effects -->
+<skill name="Quick_Strike">
+	<class value="Archer" />
+	<requiers>
+		<weapon value="RANGED" />
+	</requiers>
 	<effect>
 		<multiple_arrows />
 	</effect>
-<!-- skill_LVL_bonus is added bonuses you get per skill lvl -->
 	<skill_LVL_bonus>
-		<LVL  value="ALL">
+		<LVL value="ALL">
 			<bonus damage="${SKILL_LVL}*0.5" />
-			<MP_cost = "${SKILL_LVL}*XX" />
+			<mp_cost value="${SKILL_LVL}*XX" />
+			<preparation value="0" />
+			<duration value="0" />
+		</LVL>
 	</skill_LVL_bonus>
 </skill>
 
 <!-- Arrow Shower - Waste some MP to fire seweral arrows towards seweral monster in one attack -->
 <skill name="Arrow_Shower">
-	<class name="Archer" />
-<!-- The 10 at the end of Quick_Strike means the skill lvl needed in the skill Quick_Strike-->
+	<class value="Archer" />
 	<requiers>
-		<skill name="Quick_Strike" level="10" />
+		<skill value="Quick_Strike" level="10" />
+		<weapon value="RANGED" />
 	</requiers>
-	<bonus></bonus>
-	<preparation time="0" /> 
-	<duration time="0" /> 
 	<effect>
 		<multiple_arrows />
 	</effect>
 	<skill_LVL_bonus>
 		<LVL value="ALL">
-<!-- the attack parameter means number of attacks that can be made -->
 			<bonus attacks="(${SKILL_LVL}/2)+1" />
-			<MP_cost value= "${SKILL_LVL}*XX" />
+			<mp_cost value="${SKILL_LVL}*XX" />
+			<preparation value="0" />
+			<duration value="0" />
 		</LVL>
 	</skill_LVL_bonus>
 </skill>
 
 <!-- Falcon Eyes - Increases max range for the archer -->
-<skill = "Falcon_Eyes">
-	<class name="Archer" />
-	<bonus></bonus>
-<!-- auto means that as soon as you have the skill, it self casts -->
-	<preparation time="auto" /> 
-<!-- permanent means it is always activated -->
-	<duration time="permanent" /> 
+<skill name="Falcon_Eyes">
+	<class value="Archer" />
 	<effect>
 		<multiple_arrows />
 	</effect>
 	<skill_LVL_bonus>
 		<LVL value="ALL">
-<!-- the attack_range parameter increses the range of ranged attacks -->
+			<preparation value="AUTO" />
+			<duration value="PERMANENT" />
 			<bonus attack_range="(${SKILL_LVL}/10)+1" />
 		</LVL>
 	</skill_LVL_bonus>
 </skill>
 
 <!-- Power Strike - Waste some MP to boost attack power and max damage in one attack -->
-<skill name ="Power_Strike">
-	<class name="Warrior" />
-	<requiers = weapon="melee" />
-	<bonus></bonus>
-	<preparation time="0" /> 
-	<duration time="0" />
+<skill name="Power_Strike">
+	<class value="Warrior" />
+	<requiers>
+		<weapon value="MELEE" />
+	</requiers>
 	<effect></effect>
 	<skill_LVL_bonus>
 		<LVL value="ALL">
+			<preparation value="0" />
+			<duration time="0" />
 			<bonus damage="(${SKILL_LVL}/10)*2" />
 		</LVL>
 	</skill_LVL_bonus>
 </skill>
 
 <!-- Body Training - Increases MAX HP -->
-<skill name ="Body_Training">
-	<class name = "Warrior" />
-	<preparation time="auto" /> 
-	<duration time="permanent" />
+<skill name="Body_Training">
+	<class value="Warrior" />
 	<skill_LVL_bonus>
 		<LVL value="ALL">
-			<bonus hp="${SKILL_LVL}+${SKILL_LVL}*0.2" />
+			<preparation value="AUTO" />
+			<duration value="PERMANENT" />
+			<bonus base_hp="${SKILL_LVL}+${SKILL_LVL}*0.2" />
 		</LVL>
 	</skill_LVL_bonus>
 </skill>
 
-<skill name ="Recovery">
-	<class name="Warrior" />
+<!-- Recovery - Increases HP Regeneration Speed -->
+<skill name="Recovery">
+	<class value="Warrior" />
 	<requiers>
-		<skill name="Body_Training" level="10" />
+		<skill value="Body_Training" level="10" />
 	</requiers>
-	<preparation time="auto" /> 
-	<duration time="permanent" />
 	<skill_LVL_bonus>
 		<LVL value="ALL">
-			<bonus hp="${SKILL_LVL}+${SKILL_LVL}*0.2" />
+			<preparation value="AUTO" />
+			<duration value="PERMANENT" />
+			<bonus regen_hp="${SKILL_LVL}+${SKILL_LVL}*0.2" />
+		</LVL>
+	</skill_LVL_bonus>
+</skill>
+
+<!-- Sprint - Increases walk speed for a very short time -->
+<skill name="Sprint">
+	<class value="Warrior" />
+	<requiers>
+		<weapon value="MELEE" />
+	</requiers>
+	<skill_LVL_bonus>
+		<LVL value="ALL">
+			<preparation value="0" />
+			<duration value="..." />
+			<bonus speed="..." />
+		</LVL>
+	</skill_LVL_bonus>
+</skill>
+	
+<!-- Quickness - Increases Attack speed -->
+<skill name="Quickness">
+	<class value="Warrior" />
+	<requiers>
+		<skill value="Sprint" level="10" />
+		<weapon value="MELEE" />
+	</requiers>
+	<skill_LVL_bonus>
+		<LVL value="ALL">
+			<preparation value="0" />
+			<duration value="..." />
+			<bonus atk_spd="..." />
+		</LVL>
+	</skill_LVL_bonus>
+</skill>
+
+<!-- Swiftness - Increases Dodge Rate -->
+<skill name="Swiftness">
+	<class value="Warrior"/>
+	<requiers>
+		<skill value="Sprint" level="20" />
+		<weapon value="MELEE" />
+	</requiers>
+	<skill_LVL_bonus>
+		<LVL value="ALL">
+			<preparation value="0" />
+			<duration value="..." />
+			<bonus evade="..." />
 		</LVL>
 	</skill_LVL_bonus>
 </skill>
