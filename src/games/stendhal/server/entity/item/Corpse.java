@@ -29,9 +29,11 @@ public class Corpse extends PassiveEntity
   private static final Logger logger = Log4J.getLogger(Corpse.class);
 
   final public static int DEGRADATION_TIMEOUT=3000; // 30 minutes at 300 ms
+  final public static int MAX_STAGE=5;              // number of degradation steps
   private int degradation;
   private int stage;
-
+  private boolean isDegrading = true;
+ 
   public static void generateRPClass()
     {
     RPClass entity=new RPClass("corpse");
@@ -122,6 +124,22 @@ public class Corpse extends PassiveEntity
     {
     rect.setRect(x,y,1,1);
     }  
+
+  public void setDegrading(boolean isDegrading)
+    {
+    this.isDegrading = isDegrading;
+    } 
+
+  // set it to MAX_STAGE will remove the corpse
+  public void setStage(int new_stage)
+    {
+    if(new_stage >= 0 && new_stage <= MAX_STAGE)
+      {
+      degradation = DEGRADATION_TIMEOUT - (new_stage * DEGRADATION_TIMEOUT) / MAX_STAGE;
+      stage = new_stage;
+      put("stage",stage);
+      }
+    }   
   
   public int getDegradation()
     {
@@ -130,7 +148,7 @@ public class Corpse extends PassiveEntity
   
   public int decDegradation()
     {
-    int new_stage=5-(int)(((float)degradation/(float)DEGRADATION_TIMEOUT)*5.0);
+    int new_stage=MAX_STAGE-(int)(((float)degradation/(float)DEGRADATION_TIMEOUT)*(float)MAX_STAGE);
     if(stage!=new_stage)
       {
       stage=new_stage;
@@ -164,7 +182,7 @@ public class Corpse extends PassiveEntity
     
   public void logic()
     {
-    if(decDegradation()==0)
+    if(isDegrading && decDegradation()<1)
       {
       if(isContained())
         {
@@ -222,7 +240,11 @@ public class Corpse extends PassiveEntity
     {
     String stageText [] = {"new", "fresh", "cold", "slightly rotten", "rotten", "very rotten"};
     String text="You see the " + stageText[stage] + " corpse of ";
-    if(!has("name"))
+    if(hasDescription())
+      {
+      text = getDescription();
+      }
+    else if(!has("name"))
       {
       text += "a " + get("class").replace("_"," ");
       }
