@@ -29,10 +29,17 @@ public class StendhalScriptSystem
     return instance;
     }
   
-  public void addScript(ScriptCondition condition, ScriptAction action)
+  public Pair<ScriptCondition, ScriptAction> addScript(ScriptCondition condition, ScriptAction action)
     {
-    scripts.add(new Pair<ScriptCondition, ScriptAction>(condition,action));
+    Pair<ScriptCondition, ScriptAction> scriptPair = new Pair<ScriptCondition, ScriptAction>(condition,action);
+    scripts.add(scriptPair);
+    return(scriptPair);
     }
+
+  public void removeScript(Pair<ScriptCondition, ScriptAction> scriptPair)
+    {
+    scripts.remove(scriptPair);
+    }  
   
   public void logic()
     {
