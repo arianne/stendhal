@@ -660,7 +660,7 @@ in the file.
 	</item>
 
 	<item name="crown_shield">
-		<type class="shield" subclass="skull_shield"/>
+		<type class="shield" subclass="crown_shield"/>
 		<attributes>
 			<def value="24"/>
 		</attributes>
@@ -1473,6 +1473,17 @@ in the file.
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
+		</attributes>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="note">
+		<type class="misc" subclass="paper"/>
+		<attributes>
+			<infostring value="..."/>
 		</attributes>
 		<weight value="0.01"/>
 		<equipable>
