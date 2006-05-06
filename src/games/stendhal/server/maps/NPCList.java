@@ -35,7 +35,7 @@ public class NPCList
     {
     return contents.containsKey(name);
     }
-  
+
   public SpeakerNPC add(SpeakerNPC npc)
     {
     if(!contents.containsKey(npc.getName()))
@@ -44,4 +44,10 @@ public class NPCList
       }    
     return npc;
     }
+  
+  public SpeakerNPC remove(String name)
+    {
+    return contents.remove(name);
+    }
+
   }
