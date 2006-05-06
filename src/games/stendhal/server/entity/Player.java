@@ -329,7 +329,6 @@ public class Player extends RPEntity
                 // make sure saved individual information is restored
                 if(item.has("infostring"))
                   {
-                  StackableItem money=(StackableItem)entity;
                   entity.put("infostring",item.get("infostring"));
                   }
                 
