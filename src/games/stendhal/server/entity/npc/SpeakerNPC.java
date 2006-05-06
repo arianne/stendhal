@@ -214,8 +214,10 @@ public abstract class SpeakerNPC extends NPC
     
     if(actualState==0)
       {
-      Path.followPath(this,0.2);
-      StendhalRPAction.move(this);
+      if(hasPath()) {
+        Path.followPath(this,0.2);
+        StendhalRPAction.move(this);
+      }
       }
     else
       {
@@ -433,7 +435,13 @@ public abstract class SpeakerNPC extends NPC
       add(state,trigger, condition, next_state, reply, action);
       }
     }
-    
+
+  public void add(int state, List<String> triggers, ChatCondition condition, int next_state, String reply, ChatAction action)
+    {
+    add(state,triggers.toArray(new String [2]), condition, next_state, reply, action);
+    }
+  
+  
   public void add(int[] states, String trigger, ChatCondition condition, int next_state, String reply, ChatAction action)
     {
     for(int state: states)
@@ -450,6 +458,12 @@ public abstract class SpeakerNPC extends NPC
       }
     }
 
+  public void add(int state, List<String> triggers, int next_state, String reply, ChatAction action)
+    {
+    add(state, triggers.toArray(new String [2]), null, next_state, reply, action);
+    }
+  
+  
   public void add(int state, String[] triggers, int next_state, String[] replies, ChatAction action)
     {
     for(String trigger: triggers)
@@ -459,6 +473,11 @@ public abstract class SpeakerNPC extends NPC
         add(state,trigger, null, next_state, reply, action);
         }
       }
+    }
+ 
+  public void add(int state, List<String> triggers, int next_state, List<String> replies, ChatAction action)
+    {
+    add(state,triggers.toArray(new String [2]), next_state, replies.toArray(new String [2]), action);
     }
   
   private boolean matchState(int type, Player player, String text)
