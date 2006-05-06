@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.List;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.*;
@@ -61,7 +62,12 @@ public class Behaviours
     {
     npc.add(1,triggers, 1,text,null);
     }
-    
+ 
+  public static void addReply(SpeakerNPC npc, List<String> triggers, String text)
+    {
+    addReply(npc, triggers.toArray(new String [2]),text);
+    }  
+  
   public static void addQuest(SpeakerNPC npc, String text)
     {
     npc.add(1,new String[]{"quest","task"}, 1,text,null);
@@ -98,12 +104,17 @@ public class Behaviours
     protected Map<String,Integer> items;
     protected String choosenItem;
     protected int amount;
+ 
+    public SellerBehaviour()
+      {
+      this.items=new HashMap<String,Integer>();
+      }
     
     public SellerBehaviour(Map<String,Integer> items)
       {
       this.items=items;
       }
-      
+
     public Set<String> getItems()
       {
       return items.keySet();
@@ -330,11 +341,12 @@ public class Behaviours
     private Map<String,Integer> items;
     private String choosenItem;
     
+    
     public BuyerBehaviour(Map<String,Integer> items)
       {
       this.items=items;
       }
-      
+   
     public Set<String> getItems()
       {
       return items.keySet();
@@ -513,8 +525,7 @@ public class Behaviours
     {
     public HealerBehaviour(int cost)
       {
-      super(null);
-      items=new HashMap<String,Integer>();
+      super();
       items.put("heal",cost);
       }
     
