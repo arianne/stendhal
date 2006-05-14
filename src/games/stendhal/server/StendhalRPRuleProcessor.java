@@ -92,6 +92,7 @@
     Displace.register();
     Equipment.register();
     Face.register();
+     Look.register();
     Move.register();
     Outfit.register();
     Own.register();
@@ -578,4 +579,3 @@
   }
 
 
-
