@@ -410,7 +410,12 @@ package games.stendhal.client.gui;
             client.send(script);
             }
           }
-         else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
+ 
+        else if(text.startsWith("/quit"))
+          {
+          client.getGameGUI().showQuitDialog();
+          }
+                else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
           {
           RPAction invisible = new RPAction();
           invisible.put("type","invisible");
@@ -429,7 +434,9 @@ package games.stendhal.client.gui;
                           "- /add <player> \t\tAdd player to the buddy list",
                           "- /remove <player> \tRemoves player from buddy list",
                           "- /where <player> \t\tPrints the location of the player",
-                          "- /sound volume <value> \tsets sound system loudness (0..100)",
+                          "- /quit \t\tLeaves the game",
+                          
+                          "- /sound volume <value> \tsets sound system loudness (0..100)",
                           "- /sound mute <value> \tsets sound system mute (on/off)"
                           };
           for(String line: lines)
