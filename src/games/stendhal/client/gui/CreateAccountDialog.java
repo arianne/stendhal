@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import games.stendhal.client.*;
 import marauroa.client.*;
@@ -103,6 +104,7 @@ public class CreateAccountDialog extends JDialog {
         // createAccountButton
         //
         createAccountButton.setText("Create account");
+        createAccountButton.setMnemonic(KeyEvent.VK_C);
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 createAccountButton_actionPerformed(e, false);
