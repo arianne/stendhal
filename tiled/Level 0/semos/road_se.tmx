@@ -47,7 +47,7 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3by03EMBAAUGe3HqAPfn0AbaygD8SnDcSnDz4VAHdgVmwkg3LgwCbZzHvSSM4tE/swYzulAAAAAEB/dmel7EXsz4Z+E4ZyZO7Tu401cBdxH/FgPaTzGHP+FPEccb4ak8dHzPfncs7npdy0Y1LbijWwHbFjLaRT9wUHiea/zbfO/TBR/rVlX3AccZIo/zbfjLl3GVtfsJitd8xPdV/wMsB3qvuRPsZD5DhmdV/QzAd4gbof6WE8SI4bQC+Q1zp7ga56O2PfMXbrqoe76m219zjVvcDin8Zj6Cn4m64zAvV2Hp1nBOptAAAAYOU0+v2z1d4+ALlk+afAuUZyzjVIqq7zM/5TnP3O0kXkfxlxFXGd/FsAAGyarDU8wJS9NqW8Rbw338/t3X4ApiP7njwAAEyBu/QA0/Z7rx6AabE/DwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABk8AUfe6xAAAABAA==
+   H4sIAAAAAAAAAO3by03EMBAAUGe3HqAPfn0AbaygD8SnDcSnDz4VAHdgVmwkg3LgwCbZzHvSSM4tE/swY8elAAAAAEB/dmel7EXsz4Z+E4ZyZO7Tu401cBdxH/FgPaTzGHP+FPEccb4ak8dHzPfncs7npdy0Y1LbijWwHbFjLaRT9wUHiea/zbfO/TBR/rVlX3AccZIo/zbfjLl3GVtfsJitd8xPdV/wMsB3qvuRPsZD5DhmdV/QzAd4gbof6WE8SI4bQC+Q1zp7ga56W+09Puuqh7vqbbX3ONW9wOKfxmPoKfibrjMC9XYenWcE6m0AAABg5TT6/bPV3j4AuWS5U+BcIznnGiRV1/kZ7xRnuivR5SLyv4y4irhO/i0AADZN1hoeYMpem1LeIt6b7+f2334ApiP7njwAAEyBf+kBpu33Xj0A02J/HgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADI4AvF7lh4AAABAA==
   </data>
  </layer>
  <layer name="3_roof" width="128" height="64">
@@ -60,7 +60,7 @@
    H4sIAAAAAAAAAO3csQ3AIAwEQNoMixggYndWSBFIeO4msGS9sF1QCgDAc/X6ugJgBVk/h15DlibTkfQVAIAdmFsBYG/ecpiryxj80i2bBDHPAZDC/gQAAPAut0MAAAAAAAAAAAAAAIC5/GUEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApBt4+iMmAAABAA==
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.37">
+ <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XQU4DMRAEwL3y/z/xLpQDh4SgaBOve+ypklriAh5PmyCOYy/fX+cy6ixq0H9v+u9N/3s622vV8J50b/rPSvem/3nSHVXMiJ2uIL3nqukiveeq6SK958pJdfH49cyzJdf/Yw+pc6VGD6lzJdfDbxdp6Z1XSkfpnVdLR+mdV0pX6b3re6yzd0v3UL37nd/KTbqL6v13oI/edN9b1f4rvY/0LDPO93v+V5U7zJhB9/eq3UP//8898mdVfMvp87uo8J5fzcT1qnZ/9SxV/8aMOuvTuWer9Dk0wqr9p+1whxv97++K/yFG59nMjJHu9qrPk1XNvne6W/3fm3XvdKfez3Pvzn72nulO9P/albOnO9H/POn9V0hn6d3rPSvdgf7HSe9z9awuvb/VM3L/Cen9rZ6Ru58pvbcd82kHM6V3tWM+6eDM94yQ3tWOqSy9mw6pLL2bDqksvZsO0W/v6L939N87Ou4d/feO/ntH372j/97Rfe/ovnd03zv67x299o7uRfoGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADiOH0h9oOsAAAEA
   </data>
