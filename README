@@ -61,6 +61,11 @@ No warranties. But let me know if it doesn't works.
 - Moved description text (Look event) to server side
 - Changed NPC to look at the character it's talking to
 - Fixed minimap incorrect bug
+- Added Groovy script support with dynamic reloading by /script command
+- Added Groovy sample script with sign that groovy is active (groovy.groovy)
+- Added Groovy sample script with NPC McPegleg (mcpegleg.groovy)
+- Added Groovy sample script with Kanmararn quest (kanmararn.groovy)
+- Added Groovy sample script with daily quest (dailyquest.groovy)
 
 0.48 Apr 31, 2006
 - Added jail command
