@@ -10,6 +10,7 @@ package games.stendhal.server.rule;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+import java.util.Collection;
 
 /**
  * Ruleset Interface for resolving Entities in Stendhal.
@@ -64,6 +65,11 @@ public interface EntityManager
   boolean isItem(String clazz) throws NullPointerException;
 
   /** 
+   * returns a list of all Creatures that are used at least once
+   */
+  public Collection<Creature> getCreatures();
+  
+  /** 
    * returns the creature or <code>null</code> if the id is unknown.
    * @param id the tile id
    * @return the creature or <code>null</code>
@@ -77,6 +83,11 @@ public interface EntityManager
    * @throws NullPointerException if clazz is <code>null</code>
    */
   Creature getCreature(String clazz) throws NullPointerException;
+ 
+  /** 
+   * returns a list of all Items that are being used at least once
+   */
+  public Collection<Item> getItems();
   
   /** 
    * returns the item or <code>null</code> if the id is unknown.

@@ -19,6 +19,8 @@ import games.stendhal.server.rule.EntityManager;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Collection;
+
 
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
@@ -44,6 +46,13 @@ public class DefaultEntityManager implements EntityManager
   /** maps the item names to the actual item enums */
   private Map<String, DefaultItem> classToItem;
 
+  /** lists all creatures that are being used at least once */
+  private Map<String, Creature> createdCreature;
+
+  /** lists all items that are being used at least once */
+  private Map<String, Item> createdItem;
+  
+  
   /** no public constructor */
   private DefaultEntityManager() 
   {
@@ -51,6 +60,7 @@ public class DefaultEntityManager implements EntityManager
 
     // Build the items tables
     classToItem = new HashMap<String,DefaultItem>();
+    createdItem = new HashMap<String,Item>();
     
     try
       {
@@ -81,6 +91,7 @@ public class DefaultEntityManager implements EntityManager
 
     // Build the creatures tables
     classToCreature = new HashMap<String,DefaultCreature>();
+    createdCreature = new HashMap<String,Creature>();
     
     try
       {
@@ -159,6 +170,23 @@ public class DefaultEntityManager implements EntityManager
     return true;
   }
 
+  
+  /** 
+   * returns a list of all Creatures that are instantiated
+   */
+  public Collection<Creature> getCreatures()
+  {
+    return createdCreature.values();
+  }  
+
+  /** 
+   * returns a list of all Items that are instantiated
+   */
+  public Collection<Item> getItems()
+  {
+    return createdItem.values();
+  }
+  
   /** 
    * returns the instance of this manager.
    * Note: This method is synchonized.
@@ -236,8 +264,14 @@ public class DefaultEntityManager implements EntityManager
     // Lookup the clazz in the creature table
     DefaultCreature creature = classToCreature.get(clazz);
     if (creature != null)
+      {
+      if(createdCreature.get(clazz)==null)
+        {
+        createdCreature.put(clazz,creature.getCreature());
+        }
       return  creature.getCreature();
-    
+      }
+   
     return null;
   }
 
@@ -309,7 +343,13 @@ public class DefaultEntityManager implements EntityManager
     // Lookup the clazz in the item table
     DefaultItem item = classToItem.get(clazz);
     if (item != null)
+      {
+      if(createdItem.get(clazz)==null)
+        {
+        createdItem.put(clazz,item.getItem());
+        }
       return  item.getItem();
+      }
     
     return null;
   }
