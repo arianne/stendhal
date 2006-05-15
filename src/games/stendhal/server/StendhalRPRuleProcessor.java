@@ -187,6 +187,9 @@
       /* Run groovy script extension */
       StendhalServerExtension.getInstance("games.stendhal.server.scripting.StendhalGroovyRunner",this, this.world).init();
       
+      
+      /* Run http server */
+      StendhalServerExtension.getInstance("games.stendhal.server.StendhalHttpServer",this, this.world).init();
        
             }
     catch(Exception e)

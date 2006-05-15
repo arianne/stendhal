@@ -35,13 +35,13 @@ public class StendhalGroovyRunner extends StendhalServerExtension
         }});
       for (int i=0; i < strs.length; i++)
         {
-        load(strs[i]);
+        perform(strs[i]);
         }
       }
     
     }
  
-  public synchronized boolean load(String name)
+  public synchronized boolean perform(String name)
     {
     boolean ret = false;
     StendhalGroovyScript gr;
@@ -68,6 +68,5 @@ public class StendhalGroovyRunner extends StendhalServerExtension
       }
     return(null);
     }
-
   
   }

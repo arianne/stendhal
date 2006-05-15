@@ -688,16 +688,17 @@ public class Administration extends ActionListener
       {
       String script=action.get("target");
       String text = "Groovy script system not initialized.";
-      if(rules.getGroovyRunner()!=null)
+      StendhalServerExtension groovyRunner = StendhalServerExtension.getInstance("games.stendhal.server.scripting.StendhalGroovyRunner");
+      if(groovyRunner!=null)
         {
         text = "Script " + script + "not found!";
-        if(rules.getGroovyRunner().load(script))
+        if(groovyRunner.perform(script))
           {
           text = "Script " + script + " was successfully executed.";
           }
         else
           {
-          String msg = rules.getGroovyRunner().getMessage(script);
+          String msg = groovyRunner.getMessage(script);
           if (msg != null)
             {
             text = msg;            

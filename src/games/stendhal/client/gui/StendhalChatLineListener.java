@@ -398,7 +398,19 @@ package games.stendhal.client.gui;
             client.send(add);
             }
           }
-        else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
+ 
+        else if(text.startsWith("/script ")) // Script command
+          {
+          String[] command = parseString(text, 2);
+          if(command != null)
+            {
+            RPAction script = new RPAction();
+            script.put("type","script");
+            script.put("target", command[1]);
+            client.send(script);
+            }
+          }
+         else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
           {
           RPAction invisible = new RPAction();
           invisible.put("type","invisible");
@@ -432,7 +444,9 @@ package games.stendhal.client.gui;
                           "This brief help show you the most used gm commands:",
                           "- /tellall <message> \t\tWrites a private message to all players",
                           "- /jail <player> \t\tSend a player directly to jail",
-                          "- /teleport <player> <zone> <x> <y> \tTeleport the player ",
+                          "- /script <scriptname> \t\tload or reload a server side groovy script",
+
+                          "- /teleport <player> <zone> <x> <y> \tTeleport the player ",
                           "- /teleportto <player> \t\tTeleport us to the player ",
                           "- /alter <player> <attrib> <mode> <value> \tChange by SETting, ADDing or SUBtracting the stat of player",
                           "- /summon <creature|item> <x> <y> \tSummon an item or creature at x,y",
