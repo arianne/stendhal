@@ -28,6 +28,7 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPClass;
 import marauroa.server.game.RPWorld;
+import games.stendhal.server.scripting.StendhalGroovyRunner;
 
 import org.apache.log4j.Logger;
 
@@ -48,6 +49,7 @@ public class Administration extends ActionListener
     StendhalRPRuleProcessor.register("summonat",administration);
     StendhalRPRuleProcessor.register("invisible",administration);
     StendhalRPRuleProcessor.register("jail",administration);
+    StendhalRPRuleProcessor.register("script",administration);
     }
 
   public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
@@ -100,6 +102,10 @@ public class Administration extends ActionListener
     else if(type.equals("jail"))
       {
       onJail(world,rules,player,action);
+      }
+    else if(type.equals("script"))
+      {
+      onScript(world,rules,player,action);
       }
     }
   
@@ -670,6 +676,42 @@ public class Administration extends ActionListener
       }
 
     Log4J.finishMethod(logger,"onTeleport");
+    }
+  
+  private void onScript(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"onScript");
+
+    System.out.println("onScript " + action);
+    
+    if(action.has("target"))
+      {
+      String script=action.get("target");
+      String text = "Groovy script system not initialized.";
+      if(rules.getGroovyRunner()!=null)
+        {
+        text = "Script " + script + "not found!";
+        if(rules.getGroovyRunner().load(script))
+          {
+          text = "Script " + script + " was successfully executed.";
+          }
+        else
+          {
+          String msg = rules.getGroovyRunner().getMessage(script);
+          if (msg != null)
+            {
+            text = msg;            
+            }
+          else
+            {
+            text = "Script " + script + " not found or unexpected error!";
+            }
+          }
+        }
+      player.setPrivateText(text);
+      rules.removePlayerText(player);
+      }
+    Log4J.finishMethod(logger,"onScript");
     }
 
   }
