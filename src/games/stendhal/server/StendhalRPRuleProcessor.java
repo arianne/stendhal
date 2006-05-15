@@ -27,7 +27,7 @@
 //import org.python.util.PythonInterpreter;
 //import org.python.core.*;
 
-import games.stendhal.server.scripting.StendhalPythonConfig;
+//import games.stendhal.server.scripting.StendhalPythonConfig;
 
 import java.util.*;
 
@@ -179,7 +179,16 @@
 //      
 //      config.setContext(this,this.world);
 //      config.init();
-      }
+
+      /* Run optional StendhalServerExtension(s)
+       * TODO: Read the extensions to load from configuration file
+       */
+      
+      /* Run groovy script extension */
+      StendhalServerExtension.getInstance("games.stendhal.server.scripting.StendhalGroovyRunner",this, this.world).init();
+      
+       
+            }
     catch(Exception e)
       {
       logger.fatal("cannot set Context. exiting",e);
