@@ -413,6 +413,7 @@ package games.stendhal.client.gui;
                           "- // <message> \t\tWrites a private message to last player we talked with",
                           "- /support <message> \tAsk for support to admins",
                           "- /who \t\tShow online players",
+                          "- /drop <quantity> <item>\tDrops a amount of items from player.",
                           "- /add <player> \t\tAdd player to the buddy list",
                           "- /remove <player> \tRemoves player from buddy list",
                           "- /where <player> \t\tPrints the location of the player",
