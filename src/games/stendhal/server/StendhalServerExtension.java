@@ -1,13 +1,17 @@
 package games.stendhal.server;
 
 import games.stendhal.server.*;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.entity.Player;
+import marauroa.common.game.RPAction;
+import marauroa.server.game.RPWorld;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public abstract class StendhalServerExtension
+public abstract class StendhalServerExtension extends ActionListener 
   {
   /** our connection points to the game objects * */
   static protected StendhalRPRuleProcessor rules;
@@ -35,6 +39,11 @@ public abstract class StendhalServerExtension
     return(null);
     }
   
+  public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    return;
+    }
+    
   
   public static StendhalServerExtension getInstance(String name)
     {

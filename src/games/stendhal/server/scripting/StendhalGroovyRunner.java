@@ -8,6 +8,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.LinkedList;
 import games.stendhal.server.*;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.entity.Player;
+import marauroa.common.game.RPAction;
+import marauroa.server.game.RPWorld;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
@@ -19,8 +23,9 @@ public class StendhalGroovyRunner extends StendhalServerExtension
 
   public StendhalGroovyRunner(StendhalRPRuleProcessor rp, StendhalRPWorld world)
     {
-     super(rp, world);
+    super(rp, world);
     scripts = new HashMap<String, StendhalGroovyScript>();
+    StendhalRPRuleProcessor.register("script",this);
     }
  
   public void init()
@@ -67,6 +72,38 @@ public class StendhalGroovyRunner extends StendhalServerExtension
       return(gr.getMessage());
       }
     return(null);
+    }
+  
+  public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
+    {
+    Log4J.startMethod(logger,"onScript");
+
+    System.out.println("onScript " + action);
+    
+    if(action.has("target"))
+      {
+      String script=action.get("target");
+      String text = "Script " + script + "not found!";
+      if(perform(script))
+        {
+        text = "Script " + script + " was successfully executed.";
+        }
+      else
+        {
+        String msg = getMessage(script);
+        if (msg != null)
+          {
+          text = msg;            
+          }
+        else
+          {
+          text = "Script " + script + " not found or unexpected error!";
+          }
+        }
+      player.setPrivateText(text);
+      rules.removePlayerText(player);
+      }
+    Log4J.finishMethod(logger,"onScript");
     }
   
   }
