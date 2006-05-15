@@ -12,18 +12,15 @@ public abstract class StendhalServerExtension
   /** our connection points to the game objects * */
   static protected StendhalRPRuleProcessor rules;
   static protected StendhalRPWorld world;
-  /** the class instance. */
-  static protected StendhalServerExtension instance;
   /** the logger instance. */
   protected static final Logger logger = Log4J.getLogger(StendhalServerExtension.class);
   /** lists the instances of the loaded extensions*/
-  private static Map<String, StendhalServerExtension> loadedInstances = new HashMap();
+  private static Map<String, StendhalServerExtension> loadedInstances = new HashMap<String, StendhalServerExtension>();
 
   public StendhalServerExtension(StendhalRPRuleProcessor rules, StendhalRPWorld world)
     {
     this.rules = rules;
     this.world = world;
-    this.instance = this;
     }
    
   public abstract void init();
