@@ -364,7 +364,14 @@
       // In order for the last hit to be visible dead happens at two steps.
       for(Pair<RPEntity, RPEntity> entity: entityToKill) 
         {
-        entity.first().onDead(entity.second());
+         try
+           {
+           entity.first().onDead(entity.second());
+           }
+         catch(Exception e)
+           {
+           logger.fatal("Player has logout before dead",e);
+           }
         }
         
       entityToKill.clear();
@@ -535,6 +542,12 @@
         {
         if(object.getID().equals(id))
           {
+           if(entityToKill.contains(object))
+             {
+             logger.info("Logout before dead");
+             return false;
+             }
+          
           // Notify other players about this event
           for(Player p : getPlayers())
             {
