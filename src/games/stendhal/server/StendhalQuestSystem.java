@@ -29,6 +29,7 @@ public class StendhalQuestSystem
     loadQuest("MeetNomyr");
     loadQuest("MeetZynn");
     loadQuest("BeerForHayunn");
+    loadQuest("ArmorForDagobert");
     loadQuest("HatForMonogenes");
     loadQuest("NewsFromHackim");
     loadQuest("MeetKetteh");
