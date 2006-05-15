@@ -331,7 +331,11 @@ public class Player extends RPEntity
                   {
                   entity.put("infostring",item.get("infostring"));
                   }
-                
+                if(item.has("description"))
+                  {
+                  entity.put("description",item.get("description"));
+                  }
+               
                 slot.add(entity);
                 }
               }
