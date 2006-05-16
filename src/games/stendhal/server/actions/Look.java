@@ -12,18 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-
-import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.events.UseEvent;
-import games.stendhal.server.entity.Chest;
-import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.Portal;
-import games.stendhal.server.entity.OneWayPortal;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -32,108 +24,95 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
-public class Look extends ActionListener 
-  {
-  private static final Logger logger = Log4J.getLogger(Use.class);
+public class Look extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(Look.class);
 
-  public static void register()
-    {
-    StendhalRPRuleProcessor.register("look",new Look());
-    }
+	public static void register() {
+		StendhalRPRuleProcessor.register("look", new Look());
+	}
 
-  public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
-    {
-    Log4J.startMethod(logger,"look");
+	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
+			Player player, RPAction action) {
+		Log4J.startMethod(logger, "look");
 
-    // When use is casted over something in a slot 
-    if(action.has("baseitem") && action.has("baseobject") && action.has("baseslot"))
-      {
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-        
-      int baseObject=action.getInt("baseobject");
+		// When look is casted over something in a slot
+		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
+			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
 
-      RPObject.ID baseobjectid=new RPObject.ID(baseObject, zone.getID());
-      if(!zone.has(baseobjectid))
-        {
-        return;
-        }
+			int baseObject = action.getInt("baseobject");
 
-      RPObject base=zone.get(baseobjectid);
-      if(!(base instanceof Entity))
-        {
-        // Shouldn't reall happen because everything is an entity
-        return;
-        }
+			RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
+			if (!zone.has(baseobjectid)) {
+				return;
+			}
 
-      Entity baseEntity=(Entity)base;
-      Entity entity = baseEntity;
+			RPObject base = zone.get(baseobjectid);
+			if (!(base instanceof Entity)) {
+				// Shouldn't really happen because everything is an entity
+				return;
+			}
 
-      if(baseEntity.hasSlot(action.get("baseslot")))
-        {
-        RPSlot slot=baseEntity.getSlot(action.get("baseslot"));
-        
-        if(slot.size()==0)
-          {
-          return;
-          }
-          
-        RPObject object = null;
-        int item = action.getInt("baseitem");
-        // scan through the slot to find the requested item
-        for(RPObject rpobject : slot)
-          {
-          if(rpobject.getID().getObjectID() == item)
-            {
-            object = rpobject;
-            break;
-            }
-          }
-        
-        // no item found...we take the first one
-        if(object==null)
-          {
-          object = slot.iterator().next();
-          }
-        
-        // It is always an entity
-        entity=(Entity)object;
-        }
-      
-      String name=entity.get("type");
-      if(entity.has("name"))
-        {
-        name=entity.get("name");
-        }     
-      rules.addGameEvent(player.getName(),"look",name);
-      player.setPrivateText(entity.describe());
-      world.modify(player);
-      rules.removePlayerText(player);
-      return;  
-    }
-    // When use is cast over something on the floor
-    else if(action.has("target"))
-      {
-      int usedObject=action.getInt("target");
+			Entity baseEntity = (Entity) base;
+			Entity entity = baseEntity;
 
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-      RPObject.ID targetid=new RPObject.ID(usedObject, zone.getID());
-      if(zone.has(targetid))
-        {
-        RPObject object=zone.get(targetid);
-        // It is always an entity
-        Entity entity=(Entity)object;
-        String name=entity.get("type");
-        if(entity.has("name"))
-          {
-          name=entity.get("name");
-          }     
-        rules.addGameEvent(player.getName(),"look",name);
-        player.setPrivateText(entity.describe());
-        world.modify(player);
-        rules.removePlayerText(player);
-        }
-      }
+			if (baseEntity.hasSlot(action.get("baseslot"))) {
+				RPSlot slot = baseEntity.getSlot(action.get("baseslot"));
 
-    Log4J.finishMethod(logger,"look");
-    }
-  }
+				if (slot.size() == 0) {
+					return;
+				}
+
+				RPObject object = null;
+				int item = action.getInt("baseitem");
+				// scan through the slot to find the requested item
+				for (RPObject rpobject : slot) {
+					if (rpobject.getID().getObjectID() == item) {
+						object = rpobject;
+						break;
+					}
+				}
+
+				// no item found...we take the first one
+				if (object == null) {
+					object = slot.iterator().next();
+				}
+
+				// It is always an entity
+				entity = (Entity) object;
+			}
+
+			String name = entity.get("type");
+			if (entity.has("name")) {
+				name = entity.get("name");
+			}
+			rules.addGameEvent(player.getName(), "look", name);
+			player.setPrivateText(entity.describe());
+			world.modify(player);
+			rules.removePlayerText(player);
+			return;
+		}
+		// When use is cast over something on the floor
+		else if (action.has("target")) {
+			int usedObject = action.getInt("target");
+
+			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+					.getID());
+			RPObject.ID targetid = new RPObject.ID(usedObject, zone.getID());
+			if (zone.has(targetid)) {
+				RPObject object = zone.get(targetid);
+				// It is always an entity
+				Entity entity = (Entity) object;
+				String name = entity.get("type");
+				if (entity.has("name")) {
+					name = entity.get("name");
+				}
+				rules.addGameEvent(player.getName(), "look", name);
+				player.setPrivateText(entity.describe());
+				world.modify(player);
+				rules.removePlayerText(player);
+			}
+		}
+
+		Log4J.finishMethod(logger, "look");
+	}
+}
