@@ -189,7 +189,7 @@
       
       
       /* Run http server */
-      StendhalServerExtension.getInstance("games.stendhal.server.StendhalHttpServer",this, this.world).init();
+ //     StendhalServerExtension.getInstance("games.stendhal.server.StendhalHttpServer",this, this.world).init();
        
             }
     catch(Exception e)
