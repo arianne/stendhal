@@ -34,8 +34,8 @@ Current Version
 How to play
 -----------
 You need arianne's Stendhal client in order to be able to play Stendhal.
-You also need Java JRE 1.5 ( http://www.java.com/es/download )
-Please download it from http://arianne.sourceforge.net
+You also need Java JRE 1.5 ( http://www.java.com/en/download )
+Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
   java -jar stendhal-0.44.jar
@@ -49,14 +49,14 @@ To play Arianne you have to use keyboard and mouse.
 -----------------------
 http://arianne.sourceforge.net/wiki/index.php/HowToBuildStendhal
 
-No warranties. But let me know if it doesn't works.
+No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
 0.50 May XX, 2006
 - Fixed MacOS display and focus bug.
 - Added magic scrolls.
-- Added banker NPC.
+- Added banker NPC with new quest.
 - Nicer text bubble.
 - Moved description text (Look event) to server side
 - Changed NPC to look at the character it's talking to
@@ -66,6 +66,7 @@ No warranties. But let me know if it doesn't works.
 - Added Groovy sample script with NPC McPegleg (mcpegleg.groovy)
 - Added Groovy sample script with Kanmararn quest (kanmararn.groovy)
 - Added Groovy sample script with daily quest (dailyquest.groovy)
+- Added ability to sell multiple items at the same time.
 
 0.48 Apr 31, 2006
 - Added jail command
