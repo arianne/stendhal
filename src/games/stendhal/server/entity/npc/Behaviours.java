@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
@@ -309,6 +310,8 @@ public class Behaviours {
 		private Map<String, Integer> items;
 
 		private String choosenItem;
+		
+		private int amount;
 
 		public BuyerBehaviour(Map<String, Integer> items) {
 			this.items = items;
@@ -334,6 +337,18 @@ public class Behaviours {
 			return choosenItem;
 		}
 
+		public void setAmount(String text) {
+			try {
+				amount = Integer.parseInt(text);
+			} catch (Exception e) {
+				amount = 1;
+			}
+		}
+
+		public int getAmount() {
+			return amount;
+		}
+		
 		public void payPlayer(Player player, int amount) {
 			boolean found = false;
 			Iterator<RPSlot> it = player.slotsIterator();
@@ -360,23 +375,46 @@ public class Behaviours {
 			world.modify(player);
 		}
 
-		private boolean removeItem(RPSlot slot, String itemName) {
-			Iterator<RPObject> object_it = slot.iterator();
-			while (object_it.hasNext()) {
-				RPObject object = object_it.next();
+		/**
+		 * Tries to remove some of the items of the given type from a slot.
+		 * If there are not enough items, 
+		 * @param slot The slot 
+		 * @param itemName
+		 * @param amount
+		 * @return
+		 */
+		private boolean removeItem(RPSlot slot, String itemName, int amount) {
+			// First iterate over the slot to count the number of available
+			// items with the given itemName; we must make sure that enough
+			// are available to fulfil the requested amount.
+			// To avoid a second iteration, we store items that can later be
+			// removed in a LinkedList.
+			int count = 0;
+			LinkedList<RPObject> toBeRemoved = new LinkedList<RPObject>();
+			
+			Iterator<RPObject> countIterator = slot.iterator();
+			while (countIterator.hasNext() && count < amount) {
+				RPObject object = countIterator.next();
 				if (object instanceof Item
 						&& object.get("name").equals(itemName)) {
-					slot.remove(object.getID());
-					return true;
+					count++;
+					toBeRemoved.add(object);
 				}
 			}
-
-			return false;
+			if (count < amount) {
+				// not enough items in the slot. Don't change anything.
+				return false;
+			} else {
+				for (RPObject object: toBeRemoved) {
+					slot.remove(object.getID());
+				}
+			}
+			return true;
 		}
 
-		public boolean removeItem(Player player, String itemName) {
+		public boolean removeItem(Player player, String itemName, int amount) {
 			/* We iterate first the bag */
-			if (removeItem(player.getSlot("bag"), itemName)) {
+			if (removeItem(player.getSlot("bag"), itemName, amount)) {
 				world.modify(player);
 				return true;
 			}
@@ -385,7 +423,7 @@ public class Behaviours {
 			while (it.hasNext()) {
 				RPSlot slot = it.next();
 
-				if (removeItem(slot, itemName)) {
+				if (removeItem(slot, itemName, amount)) {
 					world.modify(player);
 					return true;
 				}
@@ -395,13 +433,13 @@ public class Behaviours {
 		}
 
 		public boolean onBuy(SpeakerNPC seller, Player player, String itemName,
-				int itemPrice) {
-			if (removeItem(player, itemName)) {
-				payPlayer(player, itemPrice);
+				int amount, int itemPrice) {
+			if (removeItem(player, itemName, amount)) {
+				payPlayer(player, itemPrice * amount);
 				seller.say("Thanks! Here is your money.");
 				return true;
 			} else {
-				seller.say("Sorry! You don't have any " + itemName + ".");
+				seller.say("Sorry! You don't have enough " + itemName + ".");
 				return false;
 			}
 		}
@@ -429,15 +467,25 @@ public class Behaviours {
 				BuyerBehaviour buyableItems = (BuyerBehaviour) engine
 						.getBehaviourData("buyer");
 
-				int i = text.indexOf(" ");
-				String item = text.substring(i + 1);
-				item = item.trim();
+				String[] words = text.split(" ");
+
+				String amount = "1";
+				String item = null;
+				if (words.length > 2) {
+					amount = words[1].trim();
+					item = words[2].trim();
+				} else if (words.length > 1) {
+					item = words[1].trim();
+				}
 
 				if (buyableItems.hasItem(item)) {
-					int price = buyableItems.getPrice(item);
 					buyableItems.setChoosenItem(item);
+					buyableItems.setAmount(amount);
+					int price = buyableItems.getPrice(item)
+					* buyableItems.getAmount();
 
-					engine.say(item + " is worth " + price
+
+					engine.say(amount + " " + item + " is worth " + price
 							+ ". Do you want to sell?");
 				} else {
 					engine.say("Sorry, I don't buy " + item);
@@ -453,11 +501,12 @@ public class Behaviours {
 
 				String itemName = buyableItems.getChoosenItem();
 				int itemPrice = buyableItems.getPrice(itemName);
+				int itemAmount = buyableItems.getAmount();
 
-				logger.debug("Buying a " + itemName + " from player "
+				logger.debug("Buying " + itemAmount + " " + itemName + " from player "
 						+ player.getName());
 
-				buyableItems.onBuy(engine, player, itemName, itemPrice);
+				buyableItems.onBuy(engine, player, itemName, itemAmount, itemPrice);
 			}
 		});
 		npc.add(30, "no", null, SpeakerNPC.ATTENDING_STATE, "Ok, how may I help you?", null);
