@@ -25,14 +25,14 @@
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.PassiveEntity;
 import games.stendhal.client.gui.InGameGUI;
-import games.stendhal.client.gui.wt.core.Draggable;
-import games.stendhal.client.gui.wt.core.Panel;
+import games.stendhal.client.gui.wt.core.WtDraggable;
+import games.stendhal.client.gui.wt.core.WtPanel;
 
 /**
  * This container is the ground
  * @author mtotz
  */
-public class GroundContainer extends Panel
+public class GroundContainer extends WtPanel
 {
   /** list of game objects */
   private GameObjects gameObjects;
@@ -58,7 +58,7 @@
   /**
    * drops an item to the ground
    */
-  protected boolean checkDropped(int x, int y, Draggable droppedObject)
+  protected boolean checkDropped(int x, int y, WtDraggable droppedObject)
   {
     // check all childpanels
     boolean dropped = super.checkDropped(x, y, droppedObject);
@@ -105,9 +105,9 @@
   }
   
   /** drags an item from the ground */
-  protected Draggable getDragged(int x, int y)
+  protected WtDraggable getDragged(int x, int y)
   {
-    Draggable other = super.getDragged(x, y);
+	WtDraggable other = super.getDragged(x, y);
     if (other != null)
       return other;
     

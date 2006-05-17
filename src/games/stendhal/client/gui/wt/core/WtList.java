@@ -18,7 +18,7 @@ package games.stendhal.client.gui.wt.core;
  * 
  * @author mtotz
  */
-public class List extends Panel implements ClickListener
+public class WtList extends WtPanel implements WtClickListener
 {
   private static final int BUTTON_HEIGHT = 20;
 
@@ -33,7 +33,7 @@ public class List extends Panel implements ClickListener
    * @param maxHeight max height (height is dynamically calculated from the
    *         items)
    */
-  public List(String name, String[] items, int x, int y, int width, int maxHeight)
+  public WtList(String name, String[] items, int x, int y, int width, int maxHeight)
   {
     super(name,x,y,width,10);
     
@@ -50,7 +50,7 @@ public class List extends Panel implements ClickListener
     for (int i = 0; i < items.length; i++)
     {
       String item = items[i];
-      Button button = new Button(item,clientWidth,BUTTON_HEIGHT,item); 
+      WtButton button = new WtButton(item,clientWidth,BUTTON_HEIGHT,item); 
       button.moveTo(0,i*BUTTON_HEIGHT);
       button.registerClickListener(this);
       addChild(button);

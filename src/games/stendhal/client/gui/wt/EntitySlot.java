@@ -24,9 +24,9 @@ import games.stendhal.client.SoundSystem;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.gui.wt.core.Draggable;
-import games.stendhal.client.gui.wt.core.DropTarget;
-import games.stendhal.client.gui.wt.core.Panel;
+import games.stendhal.client.gui.wt.core.WtDraggable;
+import games.stendhal.client.gui.wt.core.WtDropTarget;
+import games.stendhal.client.gui.wt.core.WtPanel;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -43,7 +43,7 @@ import marauroa.common.game.RPObject;
  * 
  * @author mtotz
  */
-public class EntitySlot extends Panel implements DropTarget
+public class EntitySlot extends WtPanel implements WtDropTarget
 {
   /** the (background) sprite for this slot */
   private Sprite      graphic;
@@ -76,7 +76,7 @@ public class EntitySlot extends Panel implements DropTarget
   }
 
   /** called when an object is dropped. */
-  public boolean onDrop(Draggable droppedObject)
+  public boolean onDrop(WtDraggable droppedObject)
   {
     if (droppedObject instanceof MoveableEntityContainer && parent != null)
     {
@@ -174,7 +174,7 @@ public class EntitySlot extends Panel implements DropTarget
   /**
    * returns a draggable object
    */
-  protected Draggable getDragged(int x, int y)
+  protected WtDraggable getDragged(int x, int y)
   {
     if (content != null)
     {

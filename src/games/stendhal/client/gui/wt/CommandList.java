@@ -5,14 +5,14 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.gui.wt.core.List;
+import games.stendhal.client.gui.wt.core.WtList;
 
 /**
  * This is the command list of any entities
  * 
  * @author mtotz
  */
-public class CommandList extends List
+public class CommandList extends WtList
 {
   /** the entity associated with the command list */
   private Entity entity;

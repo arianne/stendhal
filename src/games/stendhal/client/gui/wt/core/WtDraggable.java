@@ -26,7 +26,7 @@ import java.awt.Point;
  *
  * @author mtotz
  */
-public interface Draggable
+public interface WtDraggable
 {
   /** this object has been started to drag around
    * @return true when this item can be dragged, false otherwise

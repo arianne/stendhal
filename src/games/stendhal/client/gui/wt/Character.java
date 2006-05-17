@@ -23,8 +23,8 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.gui.wt.core.Panel;
-import games.stendhal.client.gui.wt.core.TextPanel;
+import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.gui.wt.core.WtTextPanel;
 
 import java.awt.Graphics;
 import java.util.HashMap;
@@ -42,10 +42,10 @@ import marauroa.common.game.RPSlot;
  *
  * @author mtotz
  */
-public class Character extends Panel
+public class Character extends WtPanel
 {
   /** the stats panel */
-  private TextPanel statsPanel;
+  private WtTextPanel statsPanel;
   /** the stats panel */
   private Map<String, EntitySlot> slotPanels;
   /** cached player entity */
@@ -87,7 +87,7 @@ public class Character extends Panel
     }
     
     
-    statsPanel = new TextPanel("stats",  5, dist*4, 170,100,"HP: ${hp}/${maxhp}\nATK: ${atk}(+${atkitem}) (${atkxp})\nDEF: ${def}(+${defitem}) (${defxp})\nXP:${xp}\nCash: $${money}");
+    statsPanel = new WtTextPanel("stats",  5, dist*4, 170,100,"HP: ${hp}/${maxhp}\nATK: ${atk}(+${atkitem}) (${atkxp})\nDEF: ${def}(+${defitem}) (${defxp})\nXP:${xp}\nCash: $${money}");
     statsPanel.setFrame(false);
     statsPanel.setTitleBar(false);
     addChild(statsPanel);

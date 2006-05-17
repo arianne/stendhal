@@ -37,22 +37,22 @@ import java.awt.event.MouseMotionListener;
  *
  * @author mtotz
  */
-public class Frame extends Panel implements MouseListener, MouseMotionListener
+public class WtFrame extends WtPanel implements MouseListener, MouseMotionListener
 {
   /** the currently dragged object or null if there is no such drag operation */
-  private Draggable draggedObject;
+  private WtDraggable draggedObject;
   /** the point where the drag started */
   private Point dragStartPoint;
   /** true when there is a dragging operation in progress */
   private boolean dragInProgress;
   /** the context menu, if there is one */
-  private List contextMenu;
+  private WtList contextMenu;
   
   /** a flag for tracking ContextMenu changes */
   private boolean recreatedContextMenu;
 
   /** Creates the Frame from the given GameScreen instance */
-  public Frame(GameScreen screen)
+  public WtFrame(GameScreen screen)
   {
     super("baseframe", 0, 0, screen.getWidthInPixels(), screen.getHeightInPixels());
     setFrame(false);
@@ -67,14 +67,14 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
   {  }
   
   /** returns the currently dragged object or null if there is none */
-  public synchronized Draggable getDraggedObject()
+  public synchronized WtDraggable getDraggedObject()
   {
     // currently no drag operation?
     if (!dragInProgress || draggedObject == null)
       return null;
 
     // we handle all panels ourself
-    if (draggedObject instanceof Panel)
+    if (draggedObject instanceof WtPanel)
       return null;
 
     // return the object
@@ -85,7 +85,7 @@ public class Frame extends Panel implements MouseListener, MouseMotionListener
    * Sets the context menu. It is closed automatically one the user clicks.
    * outside of it. 
    */
-  public void setContextMenu(List contextMenu)
+  public void setContextMenu(WtList contextMenu)
   {
     if (this.contextMenu != null)
     {

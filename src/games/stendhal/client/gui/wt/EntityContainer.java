@@ -14,7 +14,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.*;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.gui.wt.core.Panel;
+import games.stendhal.client.gui.wt.core.WtPanel;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
  * 
  * @author mtotz
  */
-public class EntityContainer extends Panel
+public class EntityContainer extends WtPanel
 {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(EntityContainer.class);

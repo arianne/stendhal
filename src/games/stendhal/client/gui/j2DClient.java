@@ -14,7 +14,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.*;
 import games.stendhal.client.entity.Player;
-import games.stendhal.client.gui.wt.core.WindowManager;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.*;
 import java.awt.event.*;

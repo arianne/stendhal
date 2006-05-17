@@ -11,25 +11,22 @@
  *                                                                         *
  ***************************************************************************/
 /*
- * ClickListener.java
+ * DropTarget.java
  *
- * Created on 24. Oktober 2005, 19:49
+ * Created on 19. Oktober 2005, 20:45
  */
 
 package games.stendhal.client.gui.wt.core;
 
+
 /**
- * Callback for clicking on a panel
+ * Each Panel wanting to reveive events when an object is dropped over them
+ * must inplement this interface.
+ *
  * @author mtotz
  */
-public interface ClickListener
+public interface WtDropTarget
 {
-  /** 
-   * the panel has been clicked
-   * @param name name of the panel. Note that the panels name does not need to
-   *             be unique
-   * @param true when the button in pressed and false when it is not pressed
-   */
-  public void onClick(String name, boolean pressed);
-  
+  /** called when an object is dropped. */
+  public boolean onDrop(WtDraggable droppedObject);
 }

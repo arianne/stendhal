@@ -49,10 +49,10 @@ import org.apache.log4j.Logger;
  * @see http://www.grsites.com/ for the textures
  * @author mtotz
  */
-public class Panel implements Draggable
+public class WtPanel implements WtDraggable
 {
   /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(Panel.class);
+  private static final Logger logger = Log4J.getLogger(WtPanel.class);
 
   /** size of the titlebar */
   private static final int TILLEBAR_SIZE = 14;
@@ -93,13 +93,13 @@ public class Panel implements Draggable
   private String name;
   
   /** all childs of this panel. */
-  private LinkedList<Panel> childs;
+  private LinkedList<WtPanel> childs;
   /** the parent of this panel */
-  private Panel parent;
+  private WtPanel parent;
   /** List of registered CloseListener */
-  protected List<CloseListener> closeListeners;
+  protected List<WtCloseListener> closeListeners;
   /** List of registered ClickListener */
-  protected List<ClickListener> clickListeners;
+  protected List<WtClickListener> clickListeners;
   
   /** chaches the titlebar/frame image */
   private BufferedImage cachedImage;
@@ -121,7 +121,7 @@ public class Panel implements Draggable
    * Creates a new panel. The panel is not moveable or resizeable and has no
    * title bar or frame;
    */
-  public Panel(String name, int x, int y, int width, int height)
+  public WtPanel(String name, int x, int y, int width, int height)
   {
     this.name        = name;
     this.titleText   = name;
@@ -129,7 +129,7 @@ public class Panel implements Draggable
     this.y           = y;
     this.width       = width;
     this.height      = height;
-    this.childs      = new LinkedList<Panel>();
+    this.childs      = new LinkedList<WtPanel>();
     this.titleBar    = false;
     this.frame       = false;
     this.moveable    = false;
@@ -138,12 +138,12 @@ public class Panel implements Draggable
     this.closed    = false;
     this.texture = 0;
     this.textureSprites = new ArrayList<Sprite>();
-    this.closeListeners = new ArrayList<CloseListener>();
-    this.clickListeners = new ArrayList<ClickListener>();
+    this.closeListeners = new ArrayList<WtCloseListener>();
+    this.clickListeners = new ArrayList<WtClickListener>();
     
     if (useWindowManager())
     {
-      WindowManager.getInstance().formatWindow(this);
+      WtWindowManager.getInstance().formatWindow(this);
     }
 
     // get texture sprite
@@ -165,7 +165,7 @@ public class Panel implements Draggable
    * Adds a CloseListener to this panel. All registered closelistener are
    * notified before the panel is closed
    */
-  public void registerCloseListener(CloseListener listener)
+  public void registerCloseListener(WtCloseListener listener)
   {
     // window is closed anyway. No more closelisteners
     // Note: this is necessary to avoid ConcurrentModificationExceptions
@@ -176,7 +176,7 @@ public class Panel implements Draggable
   }
   
   /** removes a (registered) closelistener */
-  public void removeCloseListener(CloseListener listener)
+  public void removeCloseListener(WtCloseListener listener)
   {
     // window is closed anyway and all listeners are notified
     // Note: this is necessary to avoid ConcurrentModificationExceptions
@@ -192,13 +192,13 @@ public class Panel implements Draggable
    * Note that not all panels must support/notify this type listener.
    * The default panel for example ignores all click events.
    */
-  public void registerClickListener(ClickListener listener)
+  public void registerClickListener(WtClickListener listener)
   {
     clickListeners.add(listener);
   }
   
   /** removes a (registered) ClickListener */
-  public void removeClickListener(ClickListener listener)
+  public void removeClickListener(WtClickListener listener)
   {
     clickListeners.remove(listener);
   }
@@ -344,7 +344,7 @@ public class Panel implements Draggable
     // tell the windowmanager we're moved (if we use it)
     if (useWindowManager())
     {
-      WindowManager.getInstance().moveTo(this,this.x,this.y);
+      WtWindowManager.getInstance().moveTo(this,this.x,this.y);
     }
 
     return true;
@@ -463,7 +463,7 @@ public class Panel implements Draggable
     // tell the windowmanager we're changed (if we use it)
     if (useWindowManager())
     {
-      WindowManager.getInstance().setMinimized(this,minimized);
+      WtWindowManager.getInstance().setMinimized(this,minimized);
     }
   }
   
@@ -481,14 +481,14 @@ public class Panel implements Draggable
   }
   
   /** returns the parent of the panel */
-  public Panel getParent()
+  public WtPanel getParent()
   {
     return parent;
   }
 
   /** Sets the parent of the panel. Do not use this function if you don't know
    * exactly what you're doing. */
-  protected void setParent(Panel parent)
+  protected void setParent(WtPanel parent)
   {
     this.parent = parent;
   }
@@ -500,23 +500,23 @@ public class Panel implements Draggable
   }
 
   /** adds a child-panel to this panel */
-  public synchronized void addChild(Panel panel)
+  public synchronized void addChild(WtPanel panel)
   {
     if (panel.hasParent())
     {
       logger.error("Panel "+panel.name+" cannot be added to "+name+" because it already is a child of "+panel.parent.name);
       return;
     }
-    LinkedList<Panel> newChilds = new LinkedList<Panel>(childs);
+    LinkedList<WtPanel> newChilds = new LinkedList<WtPanel>(childs);
     newChilds.addFirst(panel);
     this.childs = newChilds;
     panel.parent = this;
   }
   
   /** removes a child-panel from this panel */
-  public synchronized void removeChild(Panel panel)
+  public synchronized void removeChild(WtPanel panel)
   {
-    LinkedList<Panel> newChilds = new LinkedList<Panel>(childs);
+    LinkedList<WtPanel> newChilds = new LinkedList<WtPanel>(childs);
     newChilds.remove(panel);
     this.childs = newChilds;
     // be sure to remove ourself from the other panel
@@ -538,7 +538,7 @@ public class Panel implements Draggable
     closed = true;
     
     // tell the childs to close too
-    for (Panel child : childs)
+    for (WtPanel child : childs)
     {
       child.close();
     }
@@ -547,7 +547,7 @@ public class Panel implements Draggable
     parent = null;
     
     // inform all listeners we're closed
-    for (CloseListener listener : closeListeners)
+    for (WtCloseListener listener : closeListeners)
     {
       listener.onClose(name);
     }
@@ -557,7 +557,7 @@ public class Panel implements Draggable
   /** notifies all registered clicklisteners that this panel has been clicked */
   protected void notifyClickListeners(String name, boolean pressed)
   {
-    for (ClickListener listener : clickListeners)
+    for (WtClickListener listener : clickListeners)
     {
       listener.onClick(name,pressed);
     }
@@ -566,7 +566,7 @@ public class Panel implements Draggable
   /** returns an unmodifiable list this panels childs.
    * TODO: cache this
    */
-  protected List<Panel> getChilds()
+  protected List<WtPanel> getChilds()
   {
     return Collections.unmodifiableList(childs);
   }
@@ -762,9 +762,9 @@ public class Panel implements Draggable
   private void checkClosed()
   {
     // remove all closed childs
-    for (Iterator<Panel> childIt = childs.iterator(); childIt.hasNext();)
+    for (Iterator<WtPanel> childIt = childs.iterator(); childIt.hasNext();)
     {
-      Panel child = childIt.next();
+      WtPanel child = childIt.next();
       if (child.isClosed())
       {
         childIt.remove();
@@ -822,13 +822,13 @@ public class Panel implements Draggable
   }
   
   /** return a object for dragging which is at the position p or null */
-  protected Draggable getDragged(Point p)
+  protected WtDraggable getDragged(Point p)
   {
     return getDragged(p.x,p.y);
   }
   
   /** return a object for dragging which is at the position (x,y) or null */
-  protected Draggable getDragged(int x, int y)
+  protected WtDraggable getDragged(int x, int y)
   {
     // if the user drags our titlebar we return ourself
     if (hitTitle(x,y))
@@ -839,12 +839,12 @@ public class Panel implements Draggable
     y -= getClientY();
 
     // check all childs
-    for (Panel panel : childs)
+    for (WtPanel panel : childs)
     {
       // only if the point is inside the child
       if (panel.isHit(x,y))
       {
-        Draggable draggedObject = panel.getDragged(x - panel.getX(), y-panel.getY());
+        WtDraggable draggedObject = panel.getDragged(x - panel.getX(), y-panel.getY());
 
         // did we get an object
         if (draggedObject != null)
@@ -871,13 +871,13 @@ public class Panel implements Draggable
    * @return true when this panel or a child panel is a droptarget and has
    *         received the object, false when there is no droptarget found
    */
-  protected boolean checkDropped(int x, int y, Draggable droppedObject)
+  protected boolean checkDropped(int x, int y, WtDraggable droppedObject)
   {
     // are we ourself a drop target
-    if (this instanceof DropTarget)
+    if (this instanceof WtDropTarget)
     {
       // yep, so cast ourself to the interface, call the callback and return
-      DropTarget target = (DropTarget) this;
+      WtDropTarget target = (WtDropTarget) this;
       target.onDrop(droppedObject);
       return true;
     }
@@ -887,7 +887,7 @@ public class Panel implements Draggable
     y -= getClientY();
 
     // now ask each child
-    for (Panel panel : childs)
+    for (WtPanel panel : childs)
     {
       // only if the point is inside the child
       if (panel.isHit(x,y))
@@ -956,7 +956,7 @@ public class Panel implements Draggable
     p2.translate(-getClientX(), -getClientY());
 
     // be sure to inform all childs of the mouse click
-    for (Panel panel : childs)
+    for (WtPanel panel : childs)
     {
       // only if the point is inside the child
       if (panel.isHit(p2.x,p2.y))
@@ -987,7 +987,7 @@ public class Panel implements Draggable
     p2.translate(-getClientX(), -getClientY());
     
     // be sure to inform all childs of the mouse click
-    for (Panel panel : childs)
+    for (WtPanel panel : childs)
     {
       // only if the point is inside the child
       if (panel.isHit(p2.x,p2.y))
@@ -1013,7 +1013,7 @@ public class Panel implements Draggable
     p2.translate(-getClientX(), -getClientY());
     
     // be sure to inform all childs of the mouse click
-    for (Panel panel : childs)
+    for (WtPanel panel : childs)
     {
       // only if the point is inside the child
       if (panel.isHit(p2.x,p2.y))
@@ -1051,7 +1051,7 @@ public class Panel implements Draggable
   }
 
   /** moves the child panel on top of all others */
-  private void focus(Panel child)
+  private void focus(WtPanel child)
   {
     if (!childs.remove(child))
       return;
@@ -1066,7 +1066,7 @@ public class Panel implements Draggable
    * has one) until someone feels responsible to handle it. This is most times
    * the very root of the window hierarchy. 
    */
-  public void setContextMenu(games.stendhal.client.gui.wt.core.List contextMenu)
+  public void setContextMenu(games.stendhal.client.gui.wt.core.WtList contextMenu)
   {
     if (parent != null)
     {

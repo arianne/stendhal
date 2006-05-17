@@ -34,34 +34,34 @@ import org.apache.log4j.Logger;
  * 
  * @author mtotz
  */
-public class WindowManager
+public class WtWindowManager
 {
   /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(WindowManager.class);
+  private static final Logger logger = Log4J.getLogger(WtWindowManager.class);
 
   /** filename for the settings persistence */
   private static final String FILE_NAME = "windows.properties";
   /** the saved window positions */
   private Properties properties;
   /** the instance */
-  private static WindowManager instance;
+  private static WtWindowManager instance;
   
   /** maps the window names to their configs */
   private Map<String, WindowConfiguration> configs = new HashMap<String, WindowConfiguration>();
   
   /** no public constuctor */
-  private WindowManager()
+  private WtWindowManager()
   {
     // try to read the configurations from disk
     read();
   }
 
   /** returns the windowmanagers instance */
-  public static WindowManager getInstance()
+  public static WtWindowManager getInstance()
   {
     if (instance == null)
     {
-      instance = new WindowManager();
+      instance = new WtWindowManager();
     }
     return instance;
   }
@@ -124,7 +124,7 @@ public class WindowManager
   }
   
   /** returns the config. If it does not exist yet, a new one is created. */
-  private WindowConfiguration getConfig(Panel panel)
+  private WindowConfiguration getConfig(WtPanel panel)
   {
     String name = panel.getName();
     WindowConfiguration winC = configs.get(name); 
@@ -140,7 +140,7 @@ public class WindowManager
   /** Formats the window with the saved config.
    * Nothing happens when this windows config is not known. 
    */
-  public void formatWindow(Panel panel)
+  public void formatWindow(WtPanel panel)
   {
     WindowConfiguration config = getConfig(panel);
     if (config == null)
@@ -154,7 +154,7 @@ public class WindowManager
   }
   
   /** the panel was moved, so update the internal representation */
-  public void moveTo(Panel panel, int x, int y)
+  public void moveTo(WtPanel panel, int x, int y)
   {
     WindowConfiguration config = getConfig(panel);
     config.x = x;
@@ -162,7 +162,7 @@ public class WindowManager
   }
 
   /** the panels minimized state changed, update the internal representation */
-  public void setMinimized(Panel panel, boolean state)
+  public void setMinimized(WtPanel panel, boolean state)
   {
     WindowConfiguration config = getConfig(panel);
     
@@ -242,7 +242,7 @@ public class WindowManager
     }
 
     /** reads the config from the properties */
-    public void readFromProperties(Properties props, Panel defaults)
+    public void readFromProperties(Properties props, WtPanel defaults)
     {
       readFromProperties(props, defaults.isMinimized(),defaults.getX(),defaults.getY());
     }

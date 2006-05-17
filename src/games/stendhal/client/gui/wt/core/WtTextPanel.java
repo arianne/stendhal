@@ -29,7 +29,7 @@ import java.awt.Graphics2D;
  * A simple panel with text.
  * @author matthias
  */
-public class TextPanel extends Panel
+public class WtTextPanel extends WtPanel
 {
   /** default font size */
   public static final int DEFAULT_FONT_SIZE = 12;
@@ -49,13 +49,13 @@ public class TextPanel extends Panel
   private boolean autoLineBreaks;
   
   /** Creates a new TextPanel */
-  public TextPanel(String name, int x, int y, int width, int height)
+  public WtTextPanel(String name, int x, int y, int width, int height)
   {
     this(name, x, y, width, height,"");
   }
 
   /** Creates a new TextPanel with the given StringFormatter. */
-  public TextPanel(String name, int x, int y, int width, int height, String formatString)
+  public WtTextPanel(String name, int x, int y, int width, int height, String formatString)
   {
     super(name, x, y, width, height);
     this.formatter = new StringFormatter(formatString);

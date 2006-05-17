@@ -46,16 +46,16 @@ public class InGameGUI implements KeyListener {
 	private Map<Integer, Object> pressed;
 
 	/** the main frame */
-	private Frame frame;
+	private WtFrame frame;
 
 	/** this is the ground */
-	private Panel ground;
+	private WtPanel ground;
 
 	/** settings panel */
 	private SettingsPanel settings;
 
 	/** the dialog "really quit?" */
-	private Panel quitDialog;
+	private WtPanel quitDialog;
 
 	private Sprite offlineIcon;
 
@@ -113,7 +113,7 @@ public class InGameGUI implements KeyListener {
 
 	private void buildGUI() {
 		// create the frame
-		frame = new Frame(screen);
+		frame = new WtFrame(screen);
 		// register native event handler
 		screen.getComponent().addMouseListener(frame);
 		screen.getComponent().addMouseMotionListener(frame);
@@ -125,7 +125,7 @@ public class InGameGUI implements KeyListener {
 		ground.addChild(settings);
 
 		// set some default window positions
-		WindowManager windowManager = WindowManager.getInstance();
+		WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
 	}
@@ -241,14 +241,14 @@ public class InGameGUI implements KeyListener {
 		// quit messagebox already showing?
 		if (quitDialog == null) {
 			// no, so show it
-			quitDialog = new MessageBox("quit", 220, 220, 200,
-					"quit stendhal?", MessageBox.ButtonCombination.YES_NO);
-			quitDialog.registerClickListener(new ClickListener() {
+			quitDialog = new WtMessageBox("quit", 220, 220, 200,
+					"quit stendhal?", WtMessageBox.ButtonCombination.YES_NO);
+			quitDialog.registerClickListener(new WtClickListener() {
 				public void onClick(String name, boolean pressed) {
 					quitDialog = null; // remove field as the messagebox is
 										// closed now
 					if (pressed
-							&& name.equals(MessageBox.ButtonEnum.YES
+							&& name.equals(WtMessageBox.ButtonEnum.YES
 									.getName())) {
 						// Yes-Button clicked...logut and quit.
 						client.requestLogout();
@@ -341,7 +341,7 @@ public class InGameGUI implements KeyListener {
 	/**
 	 * @return Returns the window toolkit baseframe.
 	 */
-	public Frame getFrame() {
+	public WtFrame getFrame() {
 		return frame;
 	}
 }

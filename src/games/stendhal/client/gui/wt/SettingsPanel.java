@@ -37,7 +37,7 @@ import marauroa.common.game.RPObject;
  *
  * @author mtotz
  */
-public class SettingsPanel extends Panel implements ClickListener, CloseListener
+public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseListener
 {
   /** width of this panel */
   private static final int WIDTH = 200;
@@ -60,11 +60,11 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
   /** the inventory */
   private EntityContainer inventory;
   /** the frame */
-  private Panel frame;
+  private WtPanel frame;
   /** the player */
   private Player player;
   /** map of the buttons (for faster access) )*/
-  private Map<String,Button> buttonMap;
+  private Map<String,WtButton> buttonMap;
   /** is the minimap enabled (shown) */
   private boolean minimapEnabled;
   /** is the character panel enabled (shown) */
@@ -75,7 +75,7 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
 
 
   /** Creates a new instance of OptionsPanel */
-  public SettingsPanel(Panel frame, GameObjects gameObjects)
+  public SettingsPanel(WtPanel frame, GameObjects gameObjects)
   {
     super("settings", (frame.getWidth()-WIDTH)/2, 0, WIDTH, 200 );
     setTitletext("Settings");
@@ -100,13 +100,13 @@ public class SettingsPanel extends Panel implements ClickListener, CloseListener
     inventory.registerCloseListener(this);
     frame.addChild(inventory);
 
-    buttonMap = new HashMap<String,Button>();
-    buttonMap.put("minimap",new Button("minimap", 150, 30, "Enable Minimap"));
-    buttonMap.put("character",new Button("character", 150, 30, "Enable Character"));
-    buttonMap.put("bag",new Button("bag", 150, 30, "Enable Inventory"));
+    buttonMap = new HashMap<String,WtButton>();
+    buttonMap.put("minimap",new WtButton("minimap", 150, 30, "Enable Minimap"));
+    buttonMap.put("character",new WtButton("character", 150, 30, "Enable Character"));
+    buttonMap.put("bag",new WtButton("bag", 150, 30, "Enable Inventory"));
     
     int y = 10;
-    for (Button button : buttonMap.values())
+    for (WtButton button : buttonMap.values())
     {
       button.moveTo(10, y);
       y += 40;

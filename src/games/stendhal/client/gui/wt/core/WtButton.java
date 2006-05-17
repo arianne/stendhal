@@ -29,25 +29,25 @@ import java.awt.Point;
  *
  * @author mtotz
  */
-public class Button extends Panel
+public class WtButton extends WtPanel
 {
   /** image for the button */
   private Sprite image;
   
   
   /** Creates a new Button with text */
-  public Button(String name, int width, int height, String text)
+  public WtButton(String name, int width, int height, String text)
   {
     super(name, 0, 0, width, height);
     initialize();
-    int clientHeight = (getClientHeight()-TextPanel.DEFAULT_FONT_SIZE)/2;
-    TextPanel textPanel = new TextPanel(name+"text", 2,clientHeight, width, height, text);
+    int clientHeight = (getClientHeight()-WtTextPanel.DEFAULT_FONT_SIZE)/2;
+    WtTextPanel textPanel = new WtTextPanel(name+"text", 2,clientHeight, width, height, text);
     addChild(textPanel);
     setTitletext(text);
   }
   
   /** Creates a new Button with an image */
-  public Button(String name, int width, int height, Sprite image)
+  public WtButton(String name, int width, int height, Sprite image)
   {
     super(name, 0, 0, width, height);
     initialize();

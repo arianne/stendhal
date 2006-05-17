@@ -22,7 +22,7 @@ package games.stendhal.client.gui.wt.core;
  * Callback for closing on a panel
  * @author mtotz
  */
-public interface CloseListener
+public interface WtCloseListener
 {
   /** 
    * the panel has been closed

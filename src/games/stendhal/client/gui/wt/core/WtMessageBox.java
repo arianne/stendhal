@@ -28,7 +28,7 @@ import java.util.List;
  *
  * @author matthias
  */
-public class MessageBox extends Panel implements ClickListener, CloseListener
+public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseListener
 {
   /** the max height of the panel */
   private static final int MAX_HEIGHT = 100;
@@ -36,9 +36,9 @@ public class MessageBox extends Panel implements ClickListener, CloseListener
   private static final int BUTTON_SPACING = 5;
   
   /** the text panel */
-  private TextPanel textPanel;
+  private WtTextPanel textPanel;
   /** the button */
-  private List<Button> buttons;
+  private List<WtButton> buttons;
   /** name of the button clicked when the window is closed */
   private String closeButtonName;
   
@@ -46,24 +46,24 @@ public class MessageBox extends Panel implements ClickListener, CloseListener
   private boolean layedout;
   
   /** Creates a new instance of MessageBox */
-  public MessageBox(String name, int x, int y, int width, String message, ButtonCombination buttonCombination)
+  public WtMessageBox(String name, int x, int y, int width, String message, ButtonCombination buttonCombination)
   {
     super(name, x, y, width, MAX_HEIGHT);
     
-    textPanel = new TextPanel("messageboxtext", 5,0, width-20, MAX_HEIGHT, message);
+    textPanel = new WtTextPanel("messageboxtext", 5,0, width-20, MAX_HEIGHT, message);
     addChild(textPanel);
     
-    buttons = new ArrayList<Button>();
+    buttons = new ArrayList<WtButton>();
     for (ButtonEnum buttonEnum : buttonCombination.getButtons())
     {
-      Button button = buttonEnum.getButton();
+      WtButton button = buttonEnum.getButton();
       button.registerClickListener(this);
       buttons.add(button);
     }
     this.closeButtonName = buttonCombination.getCloseButton().getName();
 
     int fullWidth = (buttons.size()-1) * BUTTON_SPACING;
-    for (Button button : buttons)
+    for (WtButton button : buttons)
     {
       fullWidth += button.getWidth();
       addChild(button);
@@ -71,7 +71,7 @@ public class MessageBox extends Panel implements ClickListener, CloseListener
     
     int xpos = (getWidth() - fullWidth) / 2;
 
-    for (Button button : buttons)
+    for (WtButton button : buttons)
     {
       button.moveTo(xpos, 0);
       xpos += button.getWidth()+BUTTON_SPACING;
@@ -94,7 +94,7 @@ public class MessageBox extends Panel implements ClickListener, CloseListener
     if (!layedout)
     {
       int lastHeight = textPanel.getLastHeight();
-      for (Button button : buttons)
+      for (WtButton button : buttons)
       {
         button.moveTo(button.getX(), lastHeight);
       }
@@ -148,9 +148,9 @@ public class MessageBox extends Panel implements ClickListener, CloseListener
     }
 
     /** returns a new wt-button */
-    public Button getButton()
+    public WtButton getButton()
     {
-      return new Button(name, width, height, name);
+      return new WtButton(name, width, height, name);
     }
   }
   

@@ -21,9 +21,9 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.*;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.gui.wt.core.Panel;
-import games.stendhal.client.gui.wt.core.TextPanel;
-import games.stendhal.client.gui.wt.core.List;
+import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.gui.wt.core.WtTextPanel;
+import games.stendhal.client.gui.wt.core.WtList;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -40,7 +40,7 @@ import marauroa.common.game.RPSlot;
  *
  * @author mtotz
  */
-public class Buddies extends Panel
+public class Buddies extends WtPanel
 {
   /** cached player entity */
   private RPSlot playerBuddies; 
@@ -81,7 +81,7 @@ public class Buddies extends Panel
   
   if(i<buddies.size() && i>=0)
     {
-    List list = new List(buddies.get(i),actions,-100,0,100,100)
+    WtList list = new WtList(buddies.get(i),actions,-100,0,100,100)
       {
       public void onClick(String name, boolean pressed)
         {

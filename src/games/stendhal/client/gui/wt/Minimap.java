@@ -16,7 +16,7 @@
  */
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.gui.wt.core.Panel;
+import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -29,7 +29,7 @@ import java.awt.image.BufferedImage;
  *
  * @author mtotz
  */
-public class Minimap extends Panel
+public class Minimap extends WtPanel
 {
   /** width of the minimap */
   private static final int MINIMAP_WIDTH = 129;
