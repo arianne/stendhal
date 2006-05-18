@@ -4,6 +4,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -32,7 +33,11 @@ public class ArmorForDagobert implements IQuest {
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Dagobert");
 
-		npc.add(1, new String[] { "quest", "task" }, null, 60, null,
+		npc.add(ConversationStates.ATTENDING,
+				new String[] { "quest", "task" },
+				null,
+				ConversationStates.QUEST_OFFERED,
+				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
@@ -46,11 +51,10 @@ public class ArmorForDagobert implements IQuest {
 				});
 
 		// player is willing to help
-		npc.add(
-				60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"yes",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Once I had a nice #leather_cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -59,11 +63,10 @@ public class ArmorForDagobert implements IQuest {
 				});
 		
 		// player is not willing to help
-		npc.add(
-				60,
+		npc.add(ConversationStates.ATTENDING,
 				"no",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Well, then I guess I'll just duck and cover.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -72,11 +75,10 @@ public class ArmorForDagobert implements IQuest {
 				});
 		
 		// player wants to know what a leather_cuirass is
-		npc.add(
-				1,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"leather_cuirass",
 				null,
-				1,
+				ConversationStates.QUEST_OFFERED,
 				"A leather_cuirass is the traditional cyclops armor. Some cyclopes are living in the dungeon deep under the city.",
 				null);
 	}
@@ -89,42 +91,58 @@ public class ArmorForDagobert implements IQuest {
 		SpeakerNPC npc = npcs.get("Dagobert");
 
 		// player returns while quest is still active
-		npc.add(0, "hi", new SpeakerNPC.ChatCondition() {
-			public boolean fire(Player player, SpeakerNPC engine) {
-				return player.hasQuest("armor_dagobert")
-						&& player.getQuest("armor_dagobert").equals("start");
-			}
-		}, 62, null, new SpeakerNPC.ChatAction() {
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				if (player.isEquipped("leather_cuirass")) {
-					engine.say("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?");
-				} else {
-					engine.say("Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?");
-					// engine.setActualState(1);
-				}
-			}
-		});
+		npc.add(ConversationStates.IDLE,
+				"hi",
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return player.hasQuest("armor_dagobert")
+								&& player.getQuest("armor_dagobert").equals("start");
+					}
+				}, 
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						if (player.isEquipped("leather_cuirass")) {
+							engine.say("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?");
+						} else {
+							engine.say("Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?");
+							// engine.setActualState(1);
+						}
+					}
+				});
 
-		npc.add(62, "yes", null, 1, null, new SpeakerNPC.ChatAction() {
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				player.drop("leather_cuirass");
-
-		        StackableItem money = (StackableItem) world.getRuleManager().getEntityManager().getItem("money");            
-		        money.setQuantity(80);
-		        player.equip(money);
-				player.addXP(50);
-
-				world.modify(player);
-				player.setQuest("armor_dagobert", "done");
-				engine.say("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.");
-			}
-		});
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+				"yes",
+				// make sure the player isn't cheating by putting the armor
+				// away and then saying "yes"
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return player.isEquipped("leather_cuirass");
+					}
+				}, 
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						player.drop("leather_cuirass");
+						
+						StackableItem money = (StackableItem) world.getRuleManager().getEntityManager().getItem("money");            
+						money.setQuantity(80);
+						player.equip(money);
+						player.addXP(50);
+						
+						world.modify(player);
+						player.setQuest("armor_dagobert", "done");
+						engine.say("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.");
+					}
+				});
 
 		npc.add(
-				62,
+				ConversationStates.QUEST_ITEM_BROUGHT,
 				"no",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Well then, I hope you find another one which you can give to me before I get robbed again.",
 				null);
 	}
