@@ -18,56 +18,80 @@ import org.apache.log4j.Logger;
 /**
  * This is a finite state machine that implements a chat system. See:
  * http://en.wikipedia.org/wiki/Finite_state_machine In fact, it is a
- * transducer. - States are denoted by integers. Some constants are defined here
- * for often-used states. - Input is the text that the player says to the
- * SpeakerNPC. - Output is the text that the SpeakerNPC answers. - State 0
- * (INITIAL_STATE) is both the start state and the state that will end the
- * conversation between the player and the SpeakerNPC.
+ * transducer.
+ * * States are denoted by integers. Some constants are defined in
+ *   ConversationStates for often-used states.
+ * * Input is the text that the player says to the SpeakerNPC.
+ * * Output is the text that the SpeakerNPC answers.
  * 
  * See examples to understand how it works. RULES:
- * * State 0 (INITIAL_STATE) is the state in which the SpeakerNPC is waiting
- *   for a player to start a conversation.
- * * State 1 (ATTENDING_STATE) is the state where only one player can talk to NPC -
- * * State -1 (ANY_STATE) is a wildcard and is used for jump from any state when
- *   the trigger is present.
- * * States from 2 to 100 are reserved for special Behaviours and quests.
+ * * State 0 (IDLE_STATE) is both the start state and the state that
+ *   will end the conversation between the player and the SpeakerNPC.
+ * * State 1 (ATTENDING_STATE) is the state where only one player can talk to
+ *   NPC and where the prior talk doesn't matter.
+ * * State -1 (ANY_STATE) is a wildcard and is used to jump from any state
+ *   whenever the trigger is active.
+ * * States from 2 to 100 are reserved for special behaviours and quests.
  * 
- * How it works: Example First we need to create a message to greet the player
- * and attend it. We add a hi event
+ * Example how it works: First we need to create a message to greet the player
+ * and attend it. We add a hi event:
  * 
- * add(SpeakerNPC.INITIAL_STATE, "hi", SpeakerNPC.ATTENDING_STATE, "Welcome
- * player!", null)
+ * add(ConversationStates.IDLE_STATE,
+ *     "hi",
+ *     ConversationStates.ATTENDING_STATE,
+ *     "Welcome player!",
+ *     null)
  * 
- * Once the NPC is in the INITIAL_STATE and hears the word "hi", it will say
+ * Once the NPC is in the IDLE_STATE and hears the word "hi", it will say
  * "Welcome player!" and move to ATTENDING_STATE.
  * 
  * Now let's add some options when player is in ATTENDING_STATE, like job,
  * offer, buy, sell, etc.
  * 
- * add(SpeakerNPC.ATTENDING_STATE, "job", SpeakerNPC.ATTENDING_STATE, "I work as
- * a part time example showman",null) add(SpeakerNPC.ATTENDING_STATE, "offer",
- * SpeakerNPC.ATTENDING_STATE, "I sell best quality swords",null)
+ * add(ConversationStates.ATTENDING_STATE,
+ *     "job",
+ *     ConversationStates.ATTENDING_STATE,
+ *     "I work as a part time example showman",
+ *     null)
+ * 
+ * add(ConversationStates.ATTENDING_STATE,
+ *     "offer",
+ *     ConversationStates.ATTENDING_STATE,
+ *     "I sell best quality swords",
+ *     null)
  * 
  * Ok, two new events: job and offer, they go from ATTENDING_STATE to
  * ATTENDING_STATE, because after reacting to "job" or "offer", the NPC can
  * directly react to one of these again.
  * 
- * add(SpeakerNPC.ATTENDING_STATE, "buy", 20, null, new ChatAction() { public
- * void fire(Player player, String text, SpeakerNPC engine) { int
- * i=text.indexOf(" "); String item=text.substring(i+1);
- * 
- * if(item.equals("sword")) { engine.say(item+" costs 10 GP. Do you want to
- * buy?"); } else { engine.say("Sorry, I don't sell "+item);
- * engine.setActualState(1); } } });
+ * add(ConversationStates.ATTENDING_STATE,
+ *     "buy",
+ *     ConversationStates.BUY_PRICE_OFFERED,
+ *     null,
+ *     new ChatAction() {
+ *         public void fire(Player player, String text, SpeakerNPC engine) {
+ *             int i=text.indexOf(" "); String item=text.substring(i+1);
+ *             if(item.equals("sword")) {
+ *             engine.say(item+" costs 10 coins. Do you want to buy?");
+ *         } else {
+ *             engine.say("Sorry, I don't sell "+item);
+ *             engine.setActualState(1);
+ *         }
+ *    }
+ * });
  * 
  * Now the hard part. We listen to "buy", so we need to process the text, and
  * for that we use the ChatAction class, we create a new class that will handle
- * the event. Also see that we move to a new state, 20, because we are replying
- * to a question, so we only expect two possible replies: yes or no.
+ * the event. Also see that we move to a new state, BUY_PRICE_OFFERED (20).
+ * The player is then replying to a question, so we only expect two possible
+ * replies: yes or no.
  * 
- * add(20, "yes", SpeakerNPC.ATTENDING_STATE, null, null); // See
- * Behaviours.java for exact code. add(20, "no", SpeakerNPC.ATTENDING_STATE,
- * null, null); // See Behaviours.java for exact code.
+ * add(ConversationStates.BUY_PRICE_OFFERED,
+ *     "yes",
+ *     ConversationStates.ATTENDING_STATE,
+ *     "Sorry, I changed my mind. I won't sell anything.",
+ *     null);
+ *      // See Behaviours.java for a working example.
  * 
  * Whatever the reply is, return to ATTENDING_STATE so we can listen to new
  * things.
@@ -75,7 +99,11 @@ import org.apache.log4j.Logger;
  * Finally we want to finish the conversation, so whatever state we are, we want
  * to finish a conversation with "Bye!".
  * 
- * add(SpeakerNPC.ANY_STATE, "bye", 0, "Bye!", null);
+ * add(ConversationStates.ANY_STATE,
+ *     "bye",
+ *     ConversationStates.IDLE_STATE,
+ *     "Bye!",
+ *     null);
  * 
  * We use ANY_STATE (-1) as a wildcard, so if the input text is "bye" the
  * transition happens.
@@ -404,7 +432,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * @deprecated this isn't used anymore.
+	 * 
 	 */
 	public void add(int state, List<String> triggers, ChatCondition condition,
 			int nextState, String reply, ChatAction action) {
@@ -427,7 +455,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * @deprecated this isn't used anymore.
+	 * 
 	 */
 	public void add(int state, List<String> triggers, int nextState,
 			String reply, ChatAction action) {
@@ -445,7 +473,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * @deprecated this isn't used anymore.
+	 * 
 	 */
 	public void add(int state, List<String> triggers, int nextState,
 			List<String> replies, ChatAction action) {
