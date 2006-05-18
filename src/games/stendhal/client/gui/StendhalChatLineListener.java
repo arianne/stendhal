@@ -447,7 +447,7 @@ package games.stendhal.client.gui;
 
         else if(text.equals("/gmhelp")) // Help command
           {          
-          String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php/StendhalManual#Admin",
+          String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php?title=Stendhal:Administration",
                           "This brief help show you the most used gm commands:",
                           "- /tellall <message> \t\tWrites a private message to all players",
                           "- /jail <player> \t\tSend a player directly to jail",
@@ -501,4 +501,3 @@ package games.stendhal.client.gui;
       }
     }  
     
-
