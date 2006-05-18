@@ -119,26 +119,12 @@ public abstract class SpeakerNPC extends NPC {
 
 	private Map<String, Object> behavioursData;
 
-	/** A wildcard that always matches, regardless of the current state */
-	public static final int ANY_STATE = -1;
-
-	/** The state in which a player can start a conversation with the SpeakerNPC. */
-	public static final int INITIAL_STATE = 0;
-
-	/** The state in which the SpeakerNPC is attending one player. */
-	public static final int ATTENDING_STATE = 1;
-
-	// TODO: These constants should be used everywhere to improve
-	// maintainability.
-	// TODO: We should consider using an enumeration instead of constants for
-	// the states.
-
 	public SpeakerNPC(String name) throws AttributeNotFoundException {
 		super();
 		createPath();
 
 		statesTable = new LinkedList<StatePath>();
-		actualState = INITIAL_STATE;
+		actualState = ConversationStates.IDLE;
 		maxState = 0;
 		lastMessageTurn = 0;
 
@@ -226,7 +212,7 @@ public abstract class SpeakerNPC extends NPC {
 			remove("text");
 
 		// if no player is talking to the NPC, the NPC can move around.
-		if (actualState == INITIAL_STATE) {
+		if (actualState == ConversationStates.IDLE) {
 			if (hasPath()) {
 				Path.followPath(this, 0.2);
 				StendhalRPAction.move(this);
@@ -239,7 +225,7 @@ public abstract class SpeakerNPC extends NPC {
 				if (byeAction != null) {
 					byeAction.fire(attending, null, this);
 				}
-				actualState = INITIAL_STATE;
+				actualState = ConversationStates.IDLE;
 				attending = null;
 			}
 			if (!stopped()) {
@@ -272,7 +258,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	public boolean talking() {
-		return actualState != INITIAL_STATE;
+		return actualState != ConversationStates.IDLE;
 	}
 
 	abstract public static class ChatAction {
@@ -309,7 +295,7 @@ public abstract class SpeakerNPC extends NPC {
 
 		// TODO: docu please
 		public boolean absoluteJump(int state, String text) {
-			if (this.state == ANY_STATE && trigger.equalsIgnoreCase(text)) {
+			if (this.state == ConversationStates.ANY && trigger.equalsIgnoreCase(text)) {
 				return true;
 			}
 			return false;
@@ -474,7 +460,7 @@ public abstract class SpeakerNPC extends NPC {
 
 		// First we try to match with stateless states.
 		for (StatePath state : statesTable) {
-			if ((type == 0 && actualState != INITIAL_STATE
+			if ((type == 0 && actualState != ConversationStates.IDLE
 					&& state.absoluteJump(actualState, text))
 					|| (type == 1 && state.equals(actualState, text))
 					|| (type == 2 && state.contains(actualState, text))) {
@@ -518,14 +504,14 @@ public abstract class SpeakerNPC extends NPC {
 	/** This function evolves the FSM */
 	private boolean tell(Player player, String text) {
 		// If we are no attening a player attend, this one.
-		if (actualState == INITIAL_STATE) {
+		if (actualState == ConversationStates.IDLE) {
 			logger.debug("Attending player " + player.getName());
 			attending = player;
 		}
 
 		// If the attended player with state != 0 got idle, attend this one.
 		if (rp.getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT
-				&& actualState != INITIAL_STATE) {
+				&& actualState != ConversationStates.IDLE) {
 			if (byeMessage != null) {
 				say(byeMessage);
 			}
@@ -537,7 +523,7 @@ public abstract class SpeakerNPC extends NPC {
 			logger.debug("Attended player " + attending + " went timeout");
 
 			attending = player;
-			actualState = INITIAL_STATE;
+			actualState = ConversationStates.IDLE;
 		}
 
 		// If we are attending another player make this one waits.

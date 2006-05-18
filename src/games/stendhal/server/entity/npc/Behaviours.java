@@ -41,7 +41,7 @@ public class Behaviours {
 
 	public static void addGreeting(SpeakerNPC npc, String text,
 			SpeakerNPC.ChatAction action) {
-		npc.add(SpeakerNPC.INITIAL_STATE, new String[] { "hi", "hello", "greetings", "hola" }, SpeakerNPC.ATTENDING_STATE,
+		npc.add(ConversationStates.IDLE, new String[] { "hi", "hello", "greetings", "hola" }, ConversationStates.ATTENDING,
 				text, action);
 
 		npc.addWaitMessage(null, new SpeakerNPC.ChatAction() {
@@ -60,7 +60,7 @@ public class Behaviours {
 	 * @param text The answer
 	 */
 	public static void addReply(SpeakerNPC npc, String trigger, String text) {
-		npc.add(SpeakerNPC.ATTENDING_STATE, trigger, null, SpeakerNPC.ATTENDING_STATE, text, null);
+		npc.add(ConversationStates.ATTENDING, trigger, null, ConversationStates.ATTENDING, text, null);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class Behaviours {
 	 * @param text The answer
 	 */
 	public static void addReply(SpeakerNPC npc, String[] triggers, String text) {
-		npc.add(SpeakerNPC.ATTENDING_STATE, triggers, SpeakerNPC.ATTENDING_STATE, text, null);
+		npc.add(ConversationStates.ATTENDING, triggers, ConversationStates.ATTENDING, text, null);
 	}
 
 	/**
@@ -83,11 +83,11 @@ public class Behaviours {
 	}
 
 	public static void addQuest(SpeakerNPC npc, String text) {
-		npc.add(SpeakerNPC.ATTENDING_STATE, new String[] { "quest", "task" }, SpeakerNPC.ATTENDING_STATE, text, null);
+		npc.add(ConversationStates.ATTENDING, new String[] { "quest", "task" }, ConversationStates.ATTENDING, text, null);
 	}
 
 	public static void addQuest(SpeakerNPC npc, String[] texts) {
-		npc.add(SpeakerNPC.ATTENDING_STATE, new String[] { "quest", "task" }, SpeakerNPC.ATTENDING_STATE, texts, null);
+		npc.add(ConversationStates.ATTENDING, new String[] { "quest", "task" }, ConversationStates.ATTENDING, texts, null);
 	}
 
 	public static void addJob(SpeakerNPC npc, String jobDescription) {
@@ -104,7 +104,7 @@ public class Behaviours {
 
 	public static void addGoodbye(SpeakerNPC npc, String text) {
 		npc.addByeMessage(text, null);
-		npc.add(SpeakerNPC.ANY_STATE, new String[] { "bye", "farewell", "cya", "adios" }, SpeakerNPC.INITIAL_STATE,
+		npc.add(ConversationStates.ANY, new String[] { "bye", "farewell", "cya", "adios" }, ConversationStates.IDLE,
 				text, null);
 	}
 
@@ -247,10 +247,10 @@ public class Behaviours {
 		}
 
 		if (offer) {
-			npc.add(SpeakerNPC.ATTENDING_STATE, "offer", null, SpeakerNPC.ATTENDING_STATE, "I sell " + st.toString(), null);
+			npc.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "I sell " + st.toString(), null);
 		}
 
-		npc.add(SpeakerNPC.ATTENDING_STATE, "buy", null, 20, null, new SpeakerNPC.ChatAction() {
+		npc.add(ConversationStates.ATTENDING, "buy", null, 20, null, new SpeakerNPC.ChatAction() {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				SellerBehaviour sellableItems = (SellerBehaviour) engine
 						.getBehaviourData("seller");
@@ -277,12 +277,12 @@ public class Behaviours {
 							+ ". Do you want to buy?");
 				} else {
 					engine.say("Sorry, I don't sell " + item);
-					engine.setActualState(SpeakerNPC.ATTENDING_STATE);
+					engine.setActualState(ConversationStates.ATTENDING);
 				}
 			}
 		});
 
-		npc.add(20, "yes", null, SpeakerNPC.ATTENDING_STATE, "Thanks.", new SpeakerNPC.ChatAction() {
+		npc.add(20, "yes", null, ConversationStates.ATTENDING, "Thanks.", new SpeakerNPC.ChatAction() {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				SellerBehaviour sellableItems = (SellerBehaviour) engine
 						.getBehaviourData("seller");
@@ -303,7 +303,7 @@ public class Behaviours {
 						itemPrice);
 			}
 		});
-		npc.add(20, "no", null, SpeakerNPC.ATTENDING_STATE, "Ok, how may I help you?", null);
+		npc.add(20, "no", null, ConversationStates.ATTENDING, "Ok, how may I help you?", null);
 	}
 
 	public static class BuyerBehaviour {
@@ -459,10 +459,10 @@ public class Behaviours {
 		}
 
 		if (offer) {
-			npc.add(SpeakerNPC.ATTENDING_STATE, "offer", null, SpeakerNPC.ATTENDING_STATE, "I buy " + st.toString(), null);
+			npc.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "I buy " + st.toString(), null);
 		}
 
-		npc.add(SpeakerNPC.ATTENDING_STATE, "sell", null, 30, null, new SpeakerNPC.ChatAction() {
+		npc.add(ConversationStates.ATTENDING, "sell", null, 30, null, new SpeakerNPC.ChatAction() {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				BuyerBehaviour buyableItems = (BuyerBehaviour) engine
 						.getBehaviourData("buyer");
@@ -489,12 +489,12 @@ public class Behaviours {
 							+ ". Do you want to sell?");
 				} else {
 					engine.say("Sorry, I don't buy " + item);
-					engine.setActualState(SpeakerNPC.ATTENDING_STATE);
+					engine.setActualState(ConversationStates.ATTENDING);
 				}
 			}
 		});
 
-		npc.add(30, "yes", null, SpeakerNPC.ATTENDING_STATE, "Thanks.", new SpeakerNPC.ChatAction() {
+		npc.add(30, "yes", null, ConversationStates.ATTENDING, "Thanks.", new SpeakerNPC.ChatAction() {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				BuyerBehaviour buyableItems = (BuyerBehaviour) engine
 						.getBehaviourData("buyer");
@@ -509,7 +509,7 @@ public class Behaviours {
 				buyableItems.onBuy(engine, player, itemName, itemAmount, itemPrice);
 			}
 		});
-		npc.add(30, "no", null, SpeakerNPC.ATTENDING_STATE, "Ok, how may I help you?", null);
+		npc.add(30, "no", null, ConversationStates.ATTENDING, "Ok, how may I help you?", null);
 	}
 
 	public static class HealerBehaviour extends SellerBehaviour {
@@ -528,8 +528,8 @@ public class Behaviours {
 	public static void addHealer(SpeakerNPC npc, int cost) {
 		npc.setBehaviourData("healer", new HealerBehaviour(cost));
 
-		npc.add(SpeakerNPC.ATTENDING_STATE, "offer", null, SpeakerNPC.ATTENDING_STATE, "I heal", null);
-		npc.add(SpeakerNPC.ATTENDING_STATE, "heal", null, 40, null, new SpeakerNPC.ChatAction() {
+		npc.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "I heal", null);
+		npc.add(ConversationStates.ATTENDING, "heal", null, 40, null, new SpeakerNPC.ChatAction() {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				HealerBehaviour healer = (HealerBehaviour) engine
 						.getBehaviourData("healer");
@@ -542,12 +542,12 @@ public class Behaviours {
 					engine.say("You are healed. How may I help you?");
 					healer.heal(player, engine);
 
-					engine.setActualState(SpeakerNPC.ATTENDING_STATE);
+					engine.setActualState(ConversationStates.ATTENDING);
 				}
 			}
 		});
 
-		npc.add(40, "yes", null, SpeakerNPC.ATTENDING_STATE, "Thanks.", new SpeakerNPC.ChatAction() {
+		npc.add(40, "yes", null, ConversationStates.ATTENDING, "Thanks.", new SpeakerNPC.ChatAction() {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				HealerBehaviour healer = (HealerBehaviour) engine
 						.getBehaviourData("healer");
@@ -561,6 +561,6 @@ public class Behaviours {
 				healer.chargePlayer(player, itemPrice);
 			}
 		});
-		npc.add(40, "no", null, SpeakerNPC.ATTENDING_STATE, "Ok, how may I help you?", null);
+		npc.add(40, "no", null, ConversationStates.ATTENDING, "Ok, how may I help you?", null);
 	}
 }
