@@ -19,43 +19,36 @@ import marauroa.common.game.RPClass;
 import org.apache.log4j.Logger;
 
 
-public class Blackboard extends Sign 
-  {
-  /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(Sign.class);
+public class Blackboard extends Sign {
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(Sign.class);
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass sign=new RPClass("blackboard");
-      sign.isA("sign");
-      sign.add("writtable",RPClass.FLAG);
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      logger.error("cannot generate RPClass",e);
-      }
-    }
-  
-  public Blackboard(boolean writtable) throws AttributeNotFoundException
-    {
-    super();
-    put("type","blackboard");
-    
-    if(writtable)
-      {
-      put("writtable","");
-      }
-    }
+	public static void generateRPClass() {
+		try {
+			RPClass sign = new RPClass("blackboard");
+			sign.isA("sign");
+			// TODO: fix typo
+			sign.add("writtable", RPClass.FLAG);
+		} catch (RPClass.SyntaxException e) {
+			logger.error("cannot generate RPClass", e);
+		}
+	}
 
-  public void getArea(Rectangle2D rect, double x, double y)
-    {
-    rect.setRect(x,y,1,1);
-    }  
+	public Blackboard(boolean writable) throws AttributeNotFoundException {
+		super();
+		put("type", "blackboard");
 
-  public void setText(String text)
-    {
-    put("text",text);
-    }
-  }
+		if (writable) {
+			// TODO: fix typo
+			put("writtable", "");
+		}
+	}
+
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y, 1, 1);
+	}
+
+	public void setText(String text) {
+		put("text", text);
+	}
+}
