@@ -15,10 +15,7 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.Corpse;
-import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.RPEntity;
-import java.awt.geom.Rectangle2D;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -33,7 +30,7 @@ import org.apache.log4j.Logger;
  * @author Daniel Herding
  *
  */
-public class Sheep extends Creature {
+public class Sheep extends DomesticAnimal {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Sheep.class);
 
@@ -52,14 +49,7 @@ public class Sheep extends Creature {
 
 	final private static int XP = 0;
 
-	/**
-	 * The weight of a sheep is a value between 0 and MAX_WEIGHT.
-	 */
-	private int weight;
-
 	private int hunger;
-
-	private Player owner;
 
 	public static void generateRPClass() {
 		try {
@@ -73,7 +63,7 @@ public class Sheep extends Creature {
 	}
 
 	/**
-	 * Creates a new sheep that is owned by nobody.
+	 * Creates a new wild Sheep.
 	 * @throws AttributeNotFoundException
 	 */
 	public Sheep() throws AttributeNotFoundException {
@@ -81,16 +71,12 @@ public class Sheep extends Creature {
 	}
 
 	/**
-	 * Creates a new sheep that is owned by a player.
+	 * Creates a new Sheep that is owned by a player.
 	 * @throws AttributeNotFoundException
 	 */
 	public Sheep(Player owner) throws AttributeNotFoundException {
-		super();
-		this.owner = owner;
+		super(owner);
 		put("type", "sheep");
-
-		put("x", 0);
-		put("y", 0);
 
 		setATK(ATK);
 		setDEF(DEF);
@@ -104,47 +90,22 @@ public class Sheep extends Creature {
 	}
 
 	/**
-	 * Creates a sheep based on an existing sheep RPObject, and assigns it to
+	 * Creates a Sheep based on an existing sheep RPObject, and assigns it to
 	 * a player.
 	 * @param object
 	 * @param owner The player who should own the sheep
 	 * @throws AttributeNotFoundException
 	 */
 	public Sheep(RPObject object, Player owner) throws AttributeNotFoundException {
-		super(object);
+		super(object, owner);
 
 		put("type", "sheep");
-		this.owner = owner;
-
 		hunger = 0;
 
 		update();
 		logger.debug("Created Sheep: " + this);
 	}
 
-	/**
-	 * Returns a rectangle of size 1x1, located at the sheep's current
-	 * position.
-	 */
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
-	}
-
-	public void setOwner(Player owner) {
-		this.owner = owner;
-	}
-
-	public Player getOwner() {
-		return owner;
-	}
-
-	public void update() throws AttributeNotFoundException {
-		super.update();
-
-		if (has("weight")) {
-			weight = getInt("weight");
-		}
-	}
 
 	/**
 	 * Is called when the sheep dies. Removes the dead sheep from the owner.
@@ -167,27 +128,6 @@ public class Sheep extends Creature {
 
 	public double getSpeed() {
 		return SPEED;
-	}
-
-	public void setWeight(int weight) {
-		this.weight = weight;
-		put("weight", weight);
-	}
-
-	public int getWeight() {
-		return weight;
-	}
-
-	/**
-	 * Can be called when the sheep dies. Puts meat onto its corpse; the
-	 * amount of meat depends on the sheep's weight.
-	 * @param corpse The corpse on which to put the meat
-	 */
-	protected void dropItemsOn(Corpse corpse) {
-		Food food = (Food) world.getRuleManager().getEntityManager().getItem(
-				"meat");
-		food.setQuantity(getWeight() / 10 + 1);
-		corpse.add(food);
 	}
 
 	/**
