@@ -80,6 +80,13 @@ public class StendhalGroovyRunner extends StendhalServerExtension
 
     System.out.println("onScript " + action);
     
+    if(!player.isAdmin())
+      {
+      // Admininistrator only command
+      logger.warn("Player "+player.getName()+" trying to run admin commands");
+      return;
+      }
+    
     if(action.has("target"))
       {
       String script=action.get("target");
