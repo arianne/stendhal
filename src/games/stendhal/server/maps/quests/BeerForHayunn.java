@@ -4,17 +4,18 @@ import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
  * QUEST: Beer For Hayunn
  * PARTICIPANTS:
- * - Hayunn Naratha
+ * - Hayunn Naratha (the veteran warrior in Semos)
  *
  * STEPS:
  * - Hayunn asks you to buy a beer from Margaret.
  * - Margaret sells you a beer.
- * - Hayunn sees your beer asks for it and then thanks you.
+ * - Hayunn sees your beer, asks for it and then thanks you.
  *
  * REWARD:
  * - 10 XP
@@ -31,10 +32,10 @@ public class BeerForHayunn implements IQuest {
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				new String[] { "quest", "task" },
 				null,
-				60,
+				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -47,10 +48,10 @@ public class BeerForHayunn implements IQuest {
 					}
 				});
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"yes",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Thanks, bud. I'll be waiting for your return. Now if I can help you in anything just ask.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
@@ -59,10 +60,10 @@ public class BeerForHayunn implements IQuest {
 					}
 				});
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"no",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Yes, forget it bud. Now that I think about it you do not look like you can afford inviting this old guy. Now if I can help you in anything just ask.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
@@ -71,24 +72,24 @@ public class BeerForHayunn implements IQuest {
 					}
 				});
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"tavern",
 				null,
-				60,
-				"You don't know where the inn is? Go and ask monogenes. So, will you do it?",
+				ConversationStates.QUEST_OFFERED,
+				"You don't know where the inn is? Go and ask Monogenes. So, will you do it?",
 				null);
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"beer",
 				null,
-				60,
+				ConversationStates.QUEST_OFFERED,
 				"A bottle of cool beer from #Margaret will be more than enough. So, will you do it?",
 				null);
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"Margaret",
 				null,
-				60,
+				ConversationStates.QUEST_OFFERED,
 				"Margaret is the pretty tavernmaid hehehe... Well, definitely... will you do it?",
 				null);
 	}
@@ -101,7 +102,7 @@ public class BeerForHayunn implements IQuest {
 
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
-		npc.add(0,
+		npc.add(ConversationStates.IDLE,
 				"hi",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
@@ -109,7 +110,7 @@ public class BeerForHayunn implements IQuest {
 								&& player.getQuest("beer_hayunn").equals("start");
 					}
 				},
-				62,
+				ConversationStates.QUEST_ITEM_BROUGHT,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -122,11 +123,17 @@ public class BeerForHayunn implements IQuest {
 					}
 				});
 
-		npc.add(62,
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				"yes",
-				null,
-				1,
-				null,
+				// make sure the player isn't cheating by putting the beer
+				// away and then saying "yes"
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return player.isEquipped("beer");
+					}
+				}, 
+				ConversationStates.ATTENDING,
+				"Slurp! Thanks for the beer bud! If there is anything I can do for you now just say it.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("beer");
@@ -139,14 +146,13 @@ public class BeerForHayunn implements IQuest {
 		
 						world.modify(player);
 						player.setQuest("beer_hayunn", "done");
-						engine.say("Slurp! Thanks for the beer bud! If there is anything I can do for you now just say it.");
 					}
 				});
 
-		npc.add(62,
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				"no",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Darn! Ok, but remember I asked you a beer for me too. How can I help you then?",
 				null);
 	}
