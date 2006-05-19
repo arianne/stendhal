@@ -6,6 +6,7 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptCondition;
@@ -20,10 +21,10 @@ import marauroa.common.game.IRPZone;
  * - Ilisa
  * 
  * STEPS: 
- * - Tad ask you to buy a flask to give it to Margaret.
- * - Margaret sell you a flask
- * - Tad thanks you and ask you to take the flask to Ilisa
- * - Ilisa ask you for a rat corpse and a few herbs.
+ * - Tad asks you to buy a flask to give it to Margaret.
+ * - Margaret sells you a flask
+ * - Tad thanks you and asks you to take the flask to Ilisa
+ * - Ilisa asks you for a rat corpse and a few herbs.
  * - Return the created dress potion to Tad.
  *
  * REWARD: 
@@ -41,10 +42,10 @@ public class IntroducePlayers implements IQuest {
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Tad");
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				new String[] { "task", "quest" },
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -57,33 +58,33 @@ public class IntroducePlayers implements IQuest {
 				});
 
 		/** In case Quest is completed */
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"flask",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.isQuestCompleted("introduce_players");
 					}
 				},
-				1,
+				ConversationStates.ATTENDING,
 				"You already did the quest.",
 				null);
 
 		/** If quest is not started yet, start it. */
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"flask",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return !player.hasQuest("introduce_players");
 					}
 				},
-				60,
+				ConversationStates.QUEST_OFFERED,
 				"Could you buy a flask from #Margaret?",
 				null);
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"yes",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -92,22 +93,22 @@ public class IntroducePlayers implements IQuest {
 					}
 				});
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"no",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Ok. But you should really consider it.|There is a nice reward :).",
 				null);
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"margaret",
 				null,
-				60,
+				ConversationStates.QUEST_OFFERED,
 				"Margaret is the tavern maid that work in Semos tavern. So will you do it?",
 				null);
 
 		/** Remind player about the quest */
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"flask",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
@@ -116,14 +117,14 @@ public class IntroducePlayers implements IQuest {
 								&& !player.isEquipped("flask");
 					}
 				},
-				1,
+				ConversationStates.ATTENDING,
 				"I really need that #flask now! Go to talk with #Margaret.",
 				null);
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"margaret",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Margaret is the tavern maid that work in Semos tavern.",
 				null);
 	}
@@ -135,7 +136,7 @@ public class IntroducePlayers implements IQuest {
 	private void step_3() {
 		SpeakerNPC npc = npcs.get("Tad");
 
-		npc.add(0,
+		npc.add(ConversationStates.IDLE,
 				new String[] { "hi", "hello", "hola" },
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
@@ -144,7 +145,7 @@ public class IntroducePlayers implements IQuest {
 										"start") && player.isEquipped("flask");
 					}
 				},
-				1,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
@@ -163,10 +164,10 @@ public class IntroducePlayers implements IQuest {
 					}
 				});
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"ilisa",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Ilisa is the summon healer at Semos temple.",
 				null);
 	}
@@ -174,7 +175,7 @@ public class IntroducePlayers implements IQuest {
 	private void step_4() {
 		SpeakerNPC npc = npcs.get("Ilisa");
 
-		npc.add(0,
+		npc.add(ConversationStates.IDLE,
 				new String[] { "hi", "hello", "hola" },
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
@@ -183,7 +184,7 @@ public class IntroducePlayers implements IQuest {
 										"ilisa");
 					}
 				},
-				1,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
@@ -202,24 +203,24 @@ public class IntroducePlayers implements IQuest {
 					}
 				});
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"corpse",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"There are tons of rats around Semos. They are a plague.",
 				null);
 		
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"herbs",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"North of Semos, near the tree grove, grows a herb called arandula.",
 				null);
 		
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"tad",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"He need a very powerful potion to heal himself. He offers a good reward to anyone who helps him.",
 				null);
 	}
@@ -227,7 +228,7 @@ public class IntroducePlayers implements IQuest {
 	private void step_5() {
 		SpeakerNPC npc = npcs.get("Ilisa");
 
-		npc.add(0,
+		npc.add(ConversationStates.IDLE,
 				new String[] { "hi", "hello", "hola" },
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
@@ -236,7 +237,7 @@ public class IntroducePlayers implements IQuest {
 										"corpse&herbs");
 					}
 				},
-				1,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
@@ -255,10 +256,10 @@ public class IntroducePlayers implements IQuest {
 					}
 				});
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"potion",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"The potion that #Tad is waiting for",
 				null);
 	}
@@ -266,7 +267,7 @@ public class IntroducePlayers implements IQuest {
 	private void step_6() {
 		SpeakerNPC npc = npcs.get("Tad");
 
-		npc.add(0,
+		npc.add(ConversationStates.IDLE,
 				new String[] { "hi", "hello", "hola" },
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
@@ -275,7 +276,7 @@ public class IntroducePlayers implements IQuest {
 										"potion");
 					}
 				},
-				1,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
