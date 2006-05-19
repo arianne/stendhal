@@ -5,6 +5,7 @@ import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /** 
@@ -34,10 +35,10 @@ public class LookBookforCeryl implements IQuest {
 
 		SpeakerNPC npc = npcs.get("Ceryl");
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				new String[] { "task", "quest" },
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
@@ -51,57 +52,56 @@ public class LookBookforCeryl implements IQuest {
 				});
 
 		/** In case quest is completed */
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"book",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.isQuestCompleted("ceryl_book");
 					}
 				},
-				1,
+				ConversationStates.ATTENDING,
 				"I already got the book. Thank you!",
 				null);
 
 		/** If quest is not started yet, start it. */
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"book",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return !player.hasQuest("ceryl_book");
 					}
 				},
-				60,
+				ConversationStates.QUEST_OFFERED,
 				"Could you ask #Jynath for a #book that I am looking?",
 				null);
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"yes",
 				null,
-				1,
-				null,
+				ConversationStates.ATTENDING,
+				"Great! Start the quest now!",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("Great!. Start the quest now!");
 						player.setQuest("ceryl_book", "start");
 					}
 				});
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"no",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Oh! Ok :(",
 				null);
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"jynath",
 				null,
-				60,
+				ConversationStates.QUEST_OFFERED,
 				"Jynath is a witch that lives South of Or'ril castle. So will you get me the #book?",
 				null);
 
 		/** Remind player about the quest */
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"book",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
@@ -109,26 +109,23 @@ public class LookBookforCeryl implements IQuest {
 								&& player.getQuest("ceryl_book").equals("start");
 					}
 				},
-				1,
-				"I really need that #book now!. Go to talk with #Jynath.",
+				ConversationStates.ATTENDING,
+				"I really need that #book now! Go to talk with #Jynath.",
 				null);
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"jynath",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Jynath is a witch that lives at south of Or'ril castle.",
 				null);
 	}
 
 	private void step_2() {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
-				"int_orril_jynath_house"));
-
 		SpeakerNPC npc = npcs.get("Jynath");
 
 		/** If player has quest and is in the correct state, just give him the book. */
-		npc.add(0,
+		npc.add(ConversationStates.IDLE,
 				new String[] { "hi", "hello", "hola" },
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
@@ -137,17 +134,14 @@ public class LookBookforCeryl implements IQuest {
 										.equals("start");
 					}
 				},
-				1,
-				null,
+				ConversationStates.ATTENDING,
+				"I see you talked with Ceryl. Here you have the book he is looking for.",
 				new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("ceryl_book", "jynath");
-						engine.say("I see you talked with Ceryl. Here you have the book he is looking for.");
 
 						Item item = world.getRuleManager().getEntityManager()
 								.getItem("book_black");
-
 						if (!player.equip(item)) {
 							StendhalRPZone zone = (StendhalRPZone) world
 									.getRPZone(player.getID());
@@ -161,7 +155,7 @@ public class LookBookforCeryl implements IQuest {
 				});
 
 		/** If player keep asking for book, just tell him to hurry up */
-		npc.add(0,
+		npc.add(ConversationStates.IDLE,
 				new String[] { "hi", "hello", "hola" },
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
@@ -170,27 +164,27 @@ public class LookBookforCeryl implements IQuest {
 										"jynath");
 					}
 				},
-				1,
-				"Hurry up! Grab the book to #Ceryl.",
+				ConversationStates.ATTENDING,
+				"Hurry up! Bring the book to #Ceryl.",
 				null);
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"ceryl",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Ceryl is the book keeper at Semos's library",
 				null);
 
-		/** Finally if player didn't started the quest, just ignore him/her */
-		npc.add(1,
+		/** Finally if player didn't start the quest, just ignore him/her */
+		npc.add(ConversationStates.ATTENDING,
 				"book",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return !player.hasQuest("ceryl_book");
 					}
 				},
-				1,
-				"Shhhh!!! I am working on a new potion!.",
+				ConversationStates.ATTENDING,
+				"Shhhh!!! I am working on a new potion!",
 				null);
 	}
 
@@ -198,7 +192,7 @@ public class LookBookforCeryl implements IQuest {
 		SpeakerNPC npc = npcs.get("Ceryl");
 
 		/** Complete the quest */
-		npc.add(0,
+		npc.add(ConversationStates.IDLE,
 				new String[] { "hi", "hello", "hola" },
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
@@ -207,7 +201,7 @@ public class LookBookforCeryl implements IQuest {
 										"jynath");
 					}
 				},
-				1,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
