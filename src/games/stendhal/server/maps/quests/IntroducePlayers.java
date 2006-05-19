@@ -32,7 +32,7 @@ import marauroa.common.game.IRPZone;
  * - 10 gold coins 
  *
  * REPETITIONS:
- * - As much as wanted.
+ * - None.
  */
 public class IntroducePlayers implements IQuest {
 	private StendhalRPWorld world;
@@ -57,7 +57,7 @@ public class IntroducePlayers implements IQuest {
 					}
 				});
 
-		/** In case Quest is completed */
+		/** In case Quest has already been completed */
 		npc.add(ConversationStates.ATTENDING,
 				"flask",
 				new SpeakerNPC.ChatCondition() {
@@ -150,7 +150,7 @@ public class IntroducePlayers implements IQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						engine.say("Ok!, I see you have the flask! Now I need you to grab it to #Ilisa");
+						engine.say("Ok!, I see you have the flask! Now I need you to take it to #Ilisa");
 						StackableItem money = (StackableItem) world
 								.getRuleManager().getEntityManager().getItem(
 										"money");
@@ -221,7 +221,7 @@ public class IntroducePlayers implements IQuest {
 				"tad",
 				null,
 				ConversationStates.ATTENDING,
-				"He need a very powerful potion to heal himself. He offers a good reward to anyone who helps him.",
+				"He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him.",
 				null);
 	}
 
@@ -244,7 +244,7 @@ public class IntroducePlayers implements IQuest {
 							SpeakerNPC engine) {
 						Item item = player.drop("arandula");
 						if (item != null) {
-							engine.say("WOOOMMM!!! WUUOOAAAANNNN!!! WUUUUUNNN!!!| Tell #Tad that #potion is done and he should come here.");
+							engine.say("WOOOMMM!!! WUUOOAAAANNNN!!! WUUUUUNNN!!!| Tell #Tad that his potion is ready and that he should come here.");
 							player.addXP(50);
 
 							world.modify(player);
