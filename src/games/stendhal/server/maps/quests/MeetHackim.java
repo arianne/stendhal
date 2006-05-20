@@ -4,6 +4,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -30,31 +31,31 @@ public class MeetHackim implements IQuest {
 
 		SpeakerNPC npc = npcs.get("Hackim Easso");
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"yes",
 				null,
-				50,
+				ConversationStates.INFORMATION_1,
 				"We don't sell weapons to wandering adventurers like you! We just make them for the glorious Deniran empire army who's fighting bravely Blordrough's dark legion in the South! Your mere presence here is offending!... Shhh Can you get your ear close?",
 				null);
 
-		npc.add(50,
+		npc.add(ConversationStates.INFORMATION_1,
 				"yes",
 				null,
-				51,
+				ConversationStates.INFORMATION_2,
 				"Go to the tavern and talk to Xin Blanca... Ask him what he has to #offer, look at what he #sells, and then say #buy #name_of_item, as in #buy #wooden_shield. He can also be interested in buying weapons from you. Do you want to know how to do it?",
 				null);
 
-		npc.add(51,
+		npc.add(ConversationStates.INFORMATION_2,
 				"yes",
 				null,
-				52,
+				ConversationStates.INFORMATION_3,
 				"Ask him what he has to #offer but now look at what he #buys and then say #sell #name_of_item, as in #sell #studded_armor. Do you want to know my little secret?",
 				null);
 
-		npc.add(52,
+		npc.add(ConversationStates.INFORMATION_3,
 				"yes",
 				null,
-				0,
+				ConversationStates.IDLE,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -80,13 +81,13 @@ public class MeetHackim implements IQuest {
 					}
 				});
 
-		npc.add(new int[] { 1,
-				            50,
-				            51,
-				            52 },
+		npc.add(new int[] { ConversationStates.ATTENDING,
+				            ConversationStates.INFORMATION_1,
+				            ConversationStates.INFORMATION_2,
+				            ConversationStates.INFORMATION_3 },
 				"no",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Ok, but don't even happen to touch any weapon. They are counted.",
 				null);
 
