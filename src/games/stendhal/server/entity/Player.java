@@ -689,7 +689,7 @@ public class Player extends RPEntity {
 	public boolean isQuestCompleted(String name) {
 		if (hasQuest(name)) {
 			RPSlot slot = getSlot("!quests");
-			RPObject quests = (RPObject) slot.iterator().next();
+			RPObject quests = slot.iterator().next();
 
 			if (quests.get(name).equals("done")) {
 				return true;
@@ -711,19 +711,15 @@ public class Player extends RPEntity {
 			return false;
 		}
 
-		RPObject quests = (RPObject) slot.iterator().next();
+		RPObject quests = slot.iterator().next();
 
-		if (quests.has(name)) {
-			return true;
-		} else {
-			return false;
-		}
+		return quests.has(name);
 	}
 
 	public String getQuest(String name) {
 		if (hasQuest(name)) {
 			RPSlot slot = getSlot("!quests");
-			RPObject quests = (RPObject) slot.iterator().next();
+			RPObject quests = slot.iterator().next();
 
 			return quests.get(name);
 		} else {
@@ -733,13 +729,13 @@ public class Player extends RPEntity {
 
 	public void setQuest(String name, String status) {
 		RPSlot slot = getSlot("!quests");
-		RPObject quests = (RPObject) slot.iterator().next();
+		RPObject quests = slot.iterator().next();
 		quests.put(name, status);
 	}
 
 	public List<String> getQuests() {
 		RPSlot slot = getSlot("!quests");
-		RPObject quests = (RPObject) slot.iterator().next();
+		RPObject quests = slot.iterator().next();
 
 		List<String> questsList = new LinkedList<String>();
 		for (String q : quests) {
@@ -754,7 +750,7 @@ public class Player extends RPEntity {
 	public void removeQuest(String name) {
 		if (hasQuest(name)) {
 			RPSlot slot = getSlot("!quests");
-			RPObject quests = (RPObject) slot.iterator().next();
+			RPObject quests = slot.iterator().next();
 
 			quests.remove(name);
 		}
@@ -766,7 +762,7 @@ public class Player extends RPEntity {
 	public boolean hasKilledSolo(String name) {
 		if (hasKilled(name)) {
 			RPSlot slot = getSlot("!kills");
-			RPObject kills = (RPObject) slot.iterator().next();
+			RPObject kills = slot.iterator().next();
 			if (kills.get(name).equals("solo")) {
 				return true;
 			}
@@ -784,7 +780,7 @@ public class Player extends RPEntity {
 			logger.error("Expected to find something !kills slot");
 			return false;
 		}
-		RPObject kills = (RPObject) slot.iterator().next();
+		RPObject kills = slot.iterator().next();
 		if (kills.has(name)) {
 			return true;
 		} else {
@@ -795,7 +791,7 @@ public class Player extends RPEntity {
 	public String getKill(String name) {
 		if (hasKilled(name)) {
 			RPSlot slot = getSlot("!kills");
-			RPObject kills = (RPObject) slot.iterator().next();
+			RPObject kills = slot.iterator().next();
 			return kills.get(name);
 		} else {
 			return null;
@@ -804,13 +800,13 @@ public class Player extends RPEntity {
 
 	public void setKill(String name, String mode) {
 		RPSlot slot = getSlot("!kills");
-		RPObject kills = (RPObject) slot.iterator().next();
+		RPObject kills = slot.iterator().next();
 		kills.put(name, mode);
 	}
 
 	public List<String> getKills() {
 		RPSlot slot = getSlot("!kills");
-		RPObject kills = (RPObject) slot.iterator().next();
+		RPObject kills = slot.iterator().next();
 		List<String> killsList = new LinkedList<String>();
 		for (String k : kills) {
 			if (!k.equals("id") && !k.equals("zoneid")) {
@@ -823,7 +819,7 @@ public class Player extends RPEntity {
 	public void removeKill(String name) {
 		if (hasKilled(name)) {
 			RPSlot slot = getSlot("!kills");
-			RPObject kills = (RPObject) slot.iterator().next();
+			RPObject kills = slot.iterator().next();
 			kills.remove(name);
 		}
 	}
