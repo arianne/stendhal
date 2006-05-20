@@ -156,13 +156,13 @@ public class SheepGrowing implements IQuest {
 						super(items);
 					}
 
-					public boolean onBuy(SpeakerNPC seller, Player player,
-							String itemName, int itemPrice) {
+					public boolean onBuy(SpeakerNPC seller, Player player, String itemName,
+							int amount, int itemPrice) {
+						// amount is currently ignored.
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) world.get(player.getSheep());
 							if (seller.distance(sheep) > 5 * 5) {
-								seller
-										.say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
+								seller.say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
 							} else {
 								say("Thanks! Here is your money.");
 
@@ -170,9 +170,8 @@ public class SheepGrowing implements IQuest {
 								world.remove(sheep.getID());
 								player.removeSheep(sheep);
 
-								payPlayer(
-										player,
-										(int) (itemPrice * (((float) sheep
+								payPlayer(player,
+										  (int) (itemPrice * (((float) sheep
 												.getWeight()) / (float) sheep.MAX_WEIGHT)));
 
 								world.modify(player);
