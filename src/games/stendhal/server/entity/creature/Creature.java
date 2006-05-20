@@ -227,7 +227,24 @@ public class Creature extends NPC {
 	}
 
 	/**
-	 * creates a new creature with the given properties
+	 * Creates a new creature with the given properties.
+	 * @param clazz The creature's class, e.g. "golem"
+	 * @param subclass The creature's subclass, e.g. "wooden_golem"
+	 * @param name Typically the same as clazz, except for NPCs
+	 * @param hp The creature's maximum health points
+	 * @param attack The creature's attack strength
+	 * @param defense The creature's attack strength
+	 * @param level The creature's level
+	 * @param xp The creature's experience
+	 * @param width The creature's width, in squares
+	 * @param height The creature's height, in squares
+	 * @param speed
+	 * @param dropItems
+	 * @param aiProfiles
+	 * @param noises
+	 * @param respawnTime
+	 * @param description
+	 * @throws AttributeNotFoundException
 	 */
 	public Creature(String clazz, String subclass, String name, int hp,
 			int attack, int defense, int level, int xp, int width, int height,
