@@ -4,7 +4,6 @@ import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.Behaviours;
-import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.maps.NPCList;
@@ -30,81 +29,76 @@ import marauroa.common.game.IRPZone;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class OrcishHappyMeal implements IQuest 
-  {
-  public OrcishHappyMeal(StendhalRPWorld world, StendhalRPRuleProcessor rules)
-    {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("-4_semos_dungeon"));
-    NPCList npcs=NPCList.get();
-    
-    SpeakerNPC npc = new SpeakerNPC("Tor'Koom")
-      {
-      protected void createPath()
-        {
-        List<Path.Node> nodes=new LinkedList<Path.Node>();
-        nodes.add(new Path.Node(67,12));
-        nodes.add(new Path.Node(59,12));
-        nodes.add(new Path.Node(59,16));
-        nodes.add(new Path.Node(67,16));
-        setPath(nodes,true);
-        }
+public class OrcishHappyMeal implements IQuest {
+	public OrcishHappyMeal(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+				"-4_semos_dungeon"));
+		NPCList npcs = NPCList.get();
+		
+		// Nishiya's part has already been defined in the quest SheepGrowing.
 
-      protected void createDialog()
-        {        
-        class SheepBuyerBehaviour extends Behaviours.BuyerBehaviour
-          {
-          SheepBuyerBehaviour(Map<String,Integer> items)
-            {
-            super(items);
-            }
-            
-          public boolean onBuy(SpeakerNPC seller, Player player, String itemName, int itemPrice)
-            {
-            if(player.hasSheep())
-              {
-              Sheep sheep=(Sheep)world.get(player.getSheep());
-              if(seller.distance(sheep)>5*5)
-                {
-                seller.say("*drool* Sheep flesh! Bring da sheep here!");
-                }
-              else
-                {
-                say("*LOVELY*. Take dis money!.");
-      
-                rp.removeNPC(sheep);
-                world.remove(sheep.getID());
-                player.removeSheep(sheep);
-                
-                payPlayer(player,(int) (itemPrice * (((float) sheep.getWeight()) / (float)sheep.MAX_WEIGHT)));
-                
-                world.modify(player);
-                return true;
-                }
-              }
-            else
-              {
-              seller.say("Sell what? Don't cheat me or I might 'ave to hurt you!");
-              }
-            
-            return false;
-            }
-          }
+		SpeakerNPC npc = new SpeakerNPC("Tor'Koom") {
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(67, 12));
+				nodes.add(new Path.Node(59, 12));
+				nodes.add(new Path.Node(59, 16));
+				nodes.add(new Path.Node(67, 16));
+				setPath(nodes, true);
+			}
 
-        Map<String,Integer> buyitems=new HashMap<String,Integer>();
-        buyitems.put("sheep",1500);
+			protected void createDialog() {
+				class SheepBuyerBehaviour extends Behaviours.BuyerBehaviour {
+					SheepBuyerBehaviour(Map<String, Integer> items) {
+						super(items);
+					}
 
-        Behaviours.addGreeting(this);
-        Behaviours.addJob(this,getName() +" du buy cheepz frrom humanz.");
-        Behaviours.addHelp(this,getName() +" buy sheep! Sell me sheep! "+ getName()+" is hungry!");
-        Behaviours.addBuyer(this,new SheepBuyerBehaviour(buyitems));
-        Behaviours.addGoodbye(this);
-        }
-      };
-	npcs.add(npc);
-    zone.assignRPObjectID(npc);
-    npc.put("class","orcbuyernpc");
-    npc.set(67,12);
-    npc.initHP(100);
-    zone.addNPC(npc);
-    }  
-  }
+					public boolean onBuy(SpeakerNPC seller, Player player, String itemName,
+							int amount, int itemPrice) {
+						// amount is currently ignored.
+						if (player.hasSheep()) {
+							Sheep sheep = (Sheep) world.get(player.getSheep());
+							if (seller.distance(sheep) > 5 * 5) {
+								seller.say("*drool* Sheep flesh! Bring da sheep here!");
+							} else {
+								say("*LOVELY*. Take dis money!");
+
+								rp.removeNPC(sheep);
+								world.remove(sheep.getID());
+								player.removeSheep(sheep);
+
+								payPlayer(player,
+										  (int) (itemPrice * (((float) sheep
+												.getWeight()) / (float) sheep.MAX_WEIGHT)));
+
+								world.modify(player);
+								return true;
+							}
+						} else {
+							seller.say("Sell what? Don't cheat me or I might 'ave to hurt you!");
+						}
+						return false;
+					}
+				}
+
+				Map<String, Integer> buyitems = new HashMap<String, Integer>();
+				buyitems.put("sheep", 1500);
+
+				Behaviours.addGreeting(this);
+				Behaviours.addJob(this, getName()
+						+ " du buy cheepz frrom humanz.");
+				Behaviours.addHelp(this, getName()
+						+ " buy sheep! Sell me sheep! " + getName()
+						+ " is hungry!");
+				Behaviours.addBuyer(this, new SheepBuyerBehaviour(buyitems));
+				Behaviours.addGoodbye(this);
+			}
+		};
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		npc.put("class", "orcbuyernpc");
+		npc.set(67, 12);
+		npc.initHP(100);
+		zone.addNPC(npc);
+	}
+}
