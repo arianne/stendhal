@@ -247,63 +247,87 @@ public class Behaviours {
 		}
 
 		if (offer) {
-			npc.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "I sell " + st.toString(), null);
+			npc.add(ConversationStates.ATTENDING,
+					"offer",
+					null,
+					ConversationStates.ATTENDING,
+					"I sell " + st.toString(),
+					null);
 		}
 
-		npc.add(ConversationStates.ATTENDING, "buy", null, 20, null, new SpeakerNPC.ChatAction() {
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				SellerBehaviour sellableItems = (SellerBehaviour) engine
-						.getBehaviourData("seller");
+		npc.add(ConversationStates.ATTENDING,
+				"buy",
+				null,
+				20,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						SellerBehaviour sellableItems = (SellerBehaviour) engine
+								.getBehaviourData("seller");
+		
+						// find out what the player wants to buy, and how
+						// much of it
+						String[] words = text.split(" ");
+		
+						String amount = "1";
+						String item = null;
+						if (words.length > 2) {
+							amount = words[1].trim();
+							item = words[2].trim();
+						} else if (words.length > 1) {
+							item = words[1].trim();
+						}
+		
+						// find out if the NPC sells this item, and if so,
+						// how much it costs.
+						if (sellableItems.hasItem(item)) {
+							sellableItems.setChoosenItem(item);
+							sellableItems.setAmount(amount);
+		
+							int price = sellableItems.getPrice(item)
+									* sellableItems.getAmount();
+		
+							engine.say(amount + " " + item + " costs " + price
+									+ ". Do you want to buy?");
+						} else {
+							engine.say("Sorry, I don't sell " + item);
+							engine.setActualState(ConversationStates.ATTENDING);
+						}
+					}
+				});
 
-				String[] words = text.split(" ");
+		npc.add(20,
+				"yes",
+				null,
+				ConversationStates.ATTENDING,
+				"Thanks.",
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						SellerBehaviour sellableItems = (SellerBehaviour) engine
+								.getBehaviourData("seller");
+		
+						String itemName = sellableItems.getChoosenItem();
+						int itemPrice = sellableItems.getPrice(itemName);
+						int itemAmount = sellableItems.getAmount();
+		
+						if (sellableItems.playerMoney(player) < itemPrice * itemAmount) {
+							engine.say("A real pity! You don't have enough money!");
+							return;
+						}
+		
+						logger.debug("Selling a " + itemName + " to player "
+								+ player.getName());
+		
+						sellableItems.onSell(engine, player, itemName, itemAmount,
+								itemPrice);
+					}
+				});
 
-				String amount = "1";
-				String item = null;
-				if (words.length > 2) {
-					amount = words[1].trim();
-					item = words[2].trim();
-				} else if (words.length > 1) {
-					item = words[1].trim();
-				}
-
-				if (sellableItems.hasItem(item)) {
-					sellableItems.setChoosenItem(item);
-					sellableItems.setAmount(amount);
-
-					int price = sellableItems.getPrice(item)
-							* sellableItems.getAmount();
-
-					engine.say(amount + " " + item + " costs " + price
-							+ ". Do you want to buy?");
-				} else {
-					engine.say("Sorry, I don't sell " + item);
-					engine.setActualState(ConversationStates.ATTENDING);
-				}
-			}
-		});
-
-		npc.add(20, "yes", null, ConversationStates.ATTENDING, "Thanks.", new SpeakerNPC.ChatAction() {
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				SellerBehaviour sellableItems = (SellerBehaviour) engine
-						.getBehaviourData("seller");
-
-				String itemName = sellableItems.getChoosenItem();
-				int itemPrice = sellableItems.getPrice(itemName);
-				int itemAmount = sellableItems.getAmount();
-
-				if (sellableItems.playerMoney(player) < itemPrice * itemAmount) {
-					engine.say("A real pity! You don't have enough money!");
-					return;
-				}
-
-				logger.debug("Selling a " + itemName + " to player "
-						+ player.getName());
-
-				sellableItems.onSell(engine, player, itemName, itemAmount,
-						itemPrice);
-			}
-		});
-		npc.add(20, "no", null, ConversationStates.ATTENDING, "Ok, how may I help you?", null);
+		npc.add(20,
+				"no",
+				null,
+				ConversationStates.ATTENDING, "Ok, how may I help you?",
+				null);
 	}
 
 	public static class BuyerBehaviour {
@@ -459,57 +483,78 @@ public class Behaviours {
 		}
 
 		if (offer) {
-			npc.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "I buy " + st.toString(), null);
+			npc.add(ConversationStates.ATTENDING,
+					"offer",
+					null,
+					ConversationStates.ATTENDING,
+					"I buy " + st.toString(),
+					null);
 		}
 
-		npc.add(ConversationStates.ATTENDING, "sell", null, 30, null, new SpeakerNPC.ChatAction() {
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				BuyerBehaviour buyableItems = (BuyerBehaviour) engine
-						.getBehaviourData("buyer");
+		npc.add(ConversationStates.ATTENDING,
+				"sell",
+				null,
+				30,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						BuyerBehaviour buyableItems = (BuyerBehaviour) engine
+								.getBehaviourData("buyer");
+		
+						String[] words = text.split(" ");
+		
+						String amount = "1";
+						String item = null;
+						if (words.length > 2) {
+							amount = words[1].trim();
+							item = words[2].trim();
+						} else if (words.length > 1) {
+							item = words[1].trim();
+						}
+		
+						if (buyableItems.hasItem(item)) {
+							buyableItems.setChoosenItem(item);
+							buyableItems.setAmount(amount);
+							int price = buyableItems.getPrice(item)
+							* buyableItems.getAmount();
+		
+		
+							engine.say(amount + " " + item + " is worth " + price
+									+ ". Do you want to sell?");
+						} else {
+							engine.say("Sorry, I don't buy " + item);
+							engine.setActualState(ConversationStates.ATTENDING);
+						}
+					}
+				});
 
-				String[] words = text.split(" ");
+		npc.add(30,
+				"yes",
+				null,
+				ConversationStates.ATTENDING,
+				"Thanks.",
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						BuyerBehaviour buyableItems = (BuyerBehaviour) engine
+								.getBehaviourData("buyer");
+		
+						String itemName = buyableItems.getChoosenItem();
+						int itemPrice = buyableItems.getPrice(itemName);
+						int itemAmount = buyableItems.getAmount();
+		
+						logger.debug("Buying " + itemAmount + " " + itemName + " from player "
+								+ player.getName());
+		
+						buyableItems.onBuy(engine, player, itemName, itemAmount, itemPrice);
+					}
+				});
 
-				String amount = "1";
-				String item = null;
-				if (words.length > 2) {
-					amount = words[1].trim();
-					item = words[2].trim();
-				} else if (words.length > 1) {
-					item = words[1].trim();
-				}
-
-				if (buyableItems.hasItem(item)) {
-					buyableItems.setChoosenItem(item);
-					buyableItems.setAmount(amount);
-					int price = buyableItems.getPrice(item)
-					* buyableItems.getAmount();
-
-
-					engine.say(amount + " " + item + " is worth " + price
-							+ ". Do you want to sell?");
-				} else {
-					engine.say("Sorry, I don't buy " + item);
-					engine.setActualState(ConversationStates.ATTENDING);
-				}
-			}
-		});
-
-		npc.add(30, "yes", null, ConversationStates.ATTENDING, "Thanks.", new SpeakerNPC.ChatAction() {
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				BuyerBehaviour buyableItems = (BuyerBehaviour) engine
-						.getBehaviourData("buyer");
-
-				String itemName = buyableItems.getChoosenItem();
-				int itemPrice = buyableItems.getPrice(itemName);
-				int itemAmount = buyableItems.getAmount();
-
-				logger.debug("Buying " + itemAmount + " " + itemName + " from player "
-						+ player.getName());
-
-				buyableItems.onBuy(engine, player, itemName, itemAmount, itemPrice);
-			}
-		});
-		npc.add(30, "no", null, ConversationStates.ATTENDING, "Ok, how may I help you?", null);
+		npc.add(30,
+				"no",
+				null,
+				ConversationStates.ATTENDING,
+				"Ok, how may I help you?",
+				null);
 	}
 
 	public static class HealerBehaviour extends SellerBehaviour {
@@ -528,7 +573,13 @@ public class Behaviours {
 	public static void addHealer(SpeakerNPC npc, int cost) {
 		npc.setBehaviourData("healer", new HealerBehaviour(cost));
 
-		npc.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "I heal", null);
+		npc.add(ConversationStates.ATTENDING,
+				"offer",
+				null,
+				ConversationStates.ATTENDING,
+				"I heal",
+				null);
+		
 		npc.add(ConversationStates.ATTENDING, "heal", null, 40, null, new SpeakerNPC.ChatAction() {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				HealerBehaviour healer = (HealerBehaviour) engine
@@ -547,20 +598,31 @@ public class Behaviours {
 			}
 		});
 
-		npc.add(40, "yes", null, ConversationStates.ATTENDING, "Thanks.", new SpeakerNPC.ChatAction() {
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				HealerBehaviour healer = (HealerBehaviour) engine
-						.getBehaviourData("healer");
-				int itemPrice = healer.getPrice("heal");
+		npc.add(40,
+				"yes",
+				null,
+				ConversationStates.ATTENDING,
+				"Thanks.",
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						HealerBehaviour healer = (HealerBehaviour) engine
+								.getBehaviourData("healer");
+						int itemPrice = healer.getPrice("heal");
+		
+						if (healer.playerMoney(player) < itemPrice) {
+							engine.say("A real pity! You don't have enough money!");
+							return;
+						}
+						healer.chargePlayer(player, itemPrice);
+						// TODO: where does the NPC heal the player?
+					}
+				});
 
-				if (healer.playerMoney(player) < itemPrice) {
-					engine.say("A real pity! You don't have enough money!");
-					return;
-				}
-
-				healer.chargePlayer(player, itemPrice);
-			}
-		});
-		npc.add(40, "no", null, ConversationStates.ATTENDING, "Ok, how may I help you?", null);
-	}
+		npc.add(40,
+				"no",
+				null,
+				ConversationStates.ATTENDING,
+				"OK, how may I help you?",
+				null);
+		}
 }
