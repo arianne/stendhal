@@ -4,6 +4,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -31,10 +32,10 @@ public class NewsFromHackim implements IQuest {
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Hackim Easso");
 
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				new String[] { "quest", "task" },
 				null,
-				60,
+				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
@@ -43,15 +44,15 @@ public class NewsFromHackim implements IQuest {
 							engine.say("Shhh come here: Do me a favour and tell #Xin Blanca that the new supply of weapons is ready, will you?");
 						} else {
 							engine.say("Thanks, but I don't have any new message for #Xin. I can't smuggle so often and even now I think Xoderos is beginning to suspect something. Anyway, if I can help you somehow say it.");
-							engine.setActualState(1);
+							engine.setActualState(ConversationStates.ATTENDING);
 						}
 					}
 				});
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"yes",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Thanks. I'm sure that Xin will reward you generously. Now if I can help you in anything just ask.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
@@ -60,10 +61,10 @@ public class NewsFromHackim implements IQuest {
 					}
 				});
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"no",
 				null,
-				1,
+				ConversationStates.ATTENDING,
 				"Yes, now that I think about it, it isn't wise to involve anyone else in this small business. Forget it bud, I haven't told you anything... Now if I can help you just ask.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
@@ -72,10 +73,10 @@ public class NewsFromHackim implements IQuest {
 					}
 				});
 
-		npc.add(60,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"Xin",
 				null,
-				60,
+				ConversationStates.QUEST_OFFERED,
 				"You don't know who Xin is? Everybody at the tavern knows Xin. He's the guy who owes money for beer to most people in Semus. So, will you do it?",
 				null);
 	}
@@ -84,7 +85,7 @@ public class NewsFromHackim implements IQuest {
 
 		SpeakerNPC npc = npcs.get("Xin Blanca");
 
-		npc.add(0,
+		npc.add(ConversationStates.IDLE,
 				"hi",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
@@ -92,7 +93,7 @@ public class NewsFromHackim implements IQuest {
 								&& player.getQuest("news_hackim").equals("start");
 					}
 				},
-				1,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
