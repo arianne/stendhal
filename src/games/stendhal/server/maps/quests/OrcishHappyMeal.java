@@ -37,7 +37,7 @@ public class OrcishHappyMeal implements IQuest
     StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("-4_semos_dungeon"));
     NPCList npcs=NPCList.get();
     
-    SpeakerNPC npc=npcs.add(new SpeakerNPC("Tor'Koom")
+    SpeakerNPC npc = new SpeakerNPC("Tor'Koom")
       {
       protected void createPath()
         {
@@ -99,7 +99,8 @@ public class OrcishHappyMeal implements IQuest
         Behaviours.addBuyer(this,new SheepBuyerBehaviour(buyitems));
         Behaviours.addGoodbye(this);
         }
-      });
+      };
+	npcs.add(npc);
     zone.assignRPObjectID(npc);
     npc.put("class","orcbuyernpc");
     npc.set(67,12);

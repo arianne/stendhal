@@ -250,7 +250,7 @@ public class Orril implements IContent
     portal.setDestination("0_orril_river_s",0);
     zone.addPortal(portal);
 
-    SpeakerNPC npc=npcs.add(new SpeakerNPC("Jynath")
+    SpeakerNPC npc = new SpeakerNPC("Jynath")
       {
       protected void createPath()
         {
@@ -280,7 +280,8 @@ public class Orril implements IContent
         Behaviours.addHelp(this,"You may want to buy some potions or do some #task for me.");
         Behaviours.addGoodbye(this);
         }
-      });
+      };
+    npcs.add(npc);
     
     zone.assignRPObjectID(npc);
     npc.put("class","witchnpc");

@@ -48,7 +48,7 @@ public class SheepGrowing implements IQuest {
 		sign.setText("Talk to Nishiya to buy a sheep!.|He has the best prices for miles.");
 		zone.add(sign);
 
-		SpeakerNPC npc = npcs.add(new SpeakerNPC("Nishiya") {
+		SpeakerNPC npc = new SpeakerNPC("Nishiya") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(33, 44));
@@ -118,7 +118,8 @@ public class SheepGrowing implements IQuest {
 						"own",
 						"If you happen to see a wild or better unfairly abandoned sheep, you can own her by right-clicking on HER and choosing OWN.");
 			}
-		});
+		};
+		npcs.add(npc);
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "sellernpc");
@@ -135,7 +136,7 @@ public class SheepGrowing implements IQuest {
 		sign.setText("Talk to Sato to sell your sheep!.|He probably won't give you a fair price but this is a small village...|The price he will offer you depends on the weight of your sheep.");
 		zone.add(sign);
 
-		npc = npcs.add(new SpeakerNPC("Sato") {
+		npc = new SpeakerNPC("Sato") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(40, 44));
@@ -199,7 +200,8 @@ public class SheepGrowing implements IQuest {
 				Behaviours.addBuyer(this, new SheepBuyerBehaviour(buyitems));
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "buyernpc");
 		npc.set(40, 44);

@@ -60,7 +60,7 @@ public class Semos implements IContent {
 			portal.setDestination("0_semos_city", 7);
 			zone.addPortal(portal);
 		}
-		SpeakerNPC npc = npcs.add(new SpeakerNPC("Tad") {
+		SpeakerNPC npc = new SpeakerNPC("Tad") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
@@ -82,7 +82,8 @@ public class Semos implements IContent {
 				});
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 			public void fire(Player player, String text, SpeakerNPC engine) {
@@ -124,7 +125,7 @@ public class Semos implements IContent {
 			chest.set(2 + 6 * i, 15);
 			zone.add(chest);
 		}
-		SpeakerNPC npc = npcs.add(new SpeakerNPC("Dagobert") {
+		SpeakerNPC npc = new SpeakerNPC("Dagobert") {
 			protected void createPath() {
 				// NPC doesn't move
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -143,7 +144,8 @@ public class Semos implements IContent {
 
 				Behaviours.addGoodbye(this, "It was a pleasure to serve you.");
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "youngnpc");
 		npc.set(9, 22);
@@ -169,7 +171,7 @@ public class Semos implements IContent {
 		portal.setNumber(1);
 		portal.setDestination("int_semos_storage_-1", 0);
 		zone.addPortal(portal);
-		SpeakerNPC npc = npcs.add(new SpeakerNPC("Eonna") {
+		SpeakerNPC npc = new SpeakerNPC("Eonna") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(4, 12)); // its around the table with
@@ -190,13 +192,14 @@ public class Semos implements IContent {
 						"I think I can't help you with anything.");
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "welcomernpc"); // unclear wat to put there.
 		npc.set(4, 12);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = npcs.add(new SpeakerNPC("Ketteh Wehoh") {
+		npc = new SpeakerNPC("Ketteh Wehoh") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(21, 5));
@@ -224,7 +227,9 @@ public class Semos implements IContent {
 						null);
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
+
 		zone.assignRPObjectID(npc);
 		npc.put("class", "elegantladynpc");
 		npc.set(21, 5);
@@ -249,7 +254,7 @@ public class Semos implements IContent {
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 2);
 		zone.addPortal(portal);
-		SpeakerNPC npc = npcs.add(new SpeakerNPC("Hackim Easso") {
+		SpeakerNPC npc = new SpeakerNPC("Hackim Easso") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(5, 1));
@@ -294,7 +299,8 @@ public class Semos implements IContent {
 								"I help Xoderos the blacksmith in making weapons for the Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "naughtyteennpc");
 		npc.set(5, 1);
@@ -317,7 +323,7 @@ public class Semos implements IContent {
 		portal.setNumber(1);
 		portal.setDestination("0_semos_city", 4);
 		zone.addPortal(portal);
-		SpeakerNPC npc = npcs.add(new SpeakerNPC("Zynn Iwuhos") {
+		SpeakerNPC npc = new SpeakerNPC("Zynn Iwuhos") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(15, 2));
@@ -392,13 +398,15 @@ public class Semos implements IContent {
 						"Empty scrolls are used to mark a position. Marked scrolls can take you back to that position. They are a little expensive, though.",
 						null);
 			}
-		});
+		};
+		npcs.add(npc);
+
 		zone.assignRPObjectID(npc);
 		npc.put("class", "wisemannpc");
 		npc.set(15, 2);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = npcs.add(new SpeakerNPC("Ceryl") {
+		npc = new SpeakerNPC("Ceryl") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(28, 11));
@@ -412,7 +420,8 @@ public class Semos implements IContent {
 				Behaviours.addHelp(this, "Read!.");
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "investigatornpc");
 		npc.set(28, 11);
@@ -449,7 +458,7 @@ public class Semos implements IContent {
 		portal.setNumber(3);
 		portal.setDestination("0_semos_city", 1);
 		zone.addPortal(portal);
-		SpeakerNPC npc = npcs.add(new SpeakerNPC("Ilisa") {
+		SpeakerNPC npc = new SpeakerNPC("Ilisa") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(9, 5));
@@ -472,13 +481,14 @@ public class Semos implements IContent {
 				Behaviours.addHealer(this, 0);
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "welcomernpc");
 		npc.set(9, 5);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = npcs.add(new SpeakerNPC("Io Flotto") {
+		npc = new SpeakerNPC("Io Flotto") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(8, 18));
@@ -536,7 +546,9 @@ public class Semos implements IContent {
 						null);
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
+		
 		zone.assignRPObjectID(npc);
 		npc.put("class", "floattingladynpc");
 		npc.set(8, 18);
@@ -568,7 +580,7 @@ public class Semos implements IContent {
 		portal.setNumber(1);
 		portal.setDestination("int_semos_tavern_1", 0);
 		zone.addPortal(portal);
-		SpeakerNPC npc = npcs.add(new SpeakerNPC("Margaret") {
+		SpeakerNPC npc = new SpeakerNPC("Margaret") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(17, 12));
@@ -598,13 +610,14 @@ public class Semos implements IContent {
 						.get("food&drinks")));
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "tavernbarmaidnpc");
 		npc.set(17, 12);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = npcs.add(new SpeakerNPC("Xin Blanca") {
+		npc = new SpeakerNPC("Xin Blanca") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(2, 14));
@@ -644,7 +657,9 @@ public class Semos implements IContent {
 				board.setText(shops.toString("buystuff", "-- Buying --"));
 				zone.add(board);
 			}
-		});
+		};
+		npcs.add(npc);
+		
 		zone.assignRPObjectID(npc);
 		npc.put("class", "weaponsellernpc");
 		npc.setx(2);
@@ -652,7 +667,7 @@ public class Semos implements IContent {
 		npc.setBaseHP(100);
 		npc.setHP(npc.getBaseHP());
 		zone.addNPC(npc);
-		npc = npcs.add(new SpeakerNPC("Ouchit") {
+		npc = new SpeakerNPC("Ouchit") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(24, 3));
@@ -671,7 +686,8 @@ public class Semos implements IContent {
 						.get("sellrangedstuff")));
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "weaponsellernpc");
 		npc.set(24, 3);
@@ -835,7 +851,7 @@ public class Semos implements IContent {
 		chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem(
 				"money"));
 		zone.add(chest);
-		SpeakerNPC npc = npcs.add(new SpeakerNPC("Nomyr Ahba") {
+		SpeakerNPC npc = new SpeakerNPC("Nomyr Ahba") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(46, 19));
@@ -882,13 +898,14 @@ public class Semos implements IContent {
 						null);
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "thiefnpc");
 		npc.set(46, 19);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = npcs.add(new SpeakerNPC("Monogenes") {
+		npc = new SpeakerNPC("Monogenes") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
@@ -922,14 +939,15 @@ public class Semos implements IContent {
 								"I am committed to give directions to foreigners and show them how to talk to people here. However, when I'm in a bad mood I give them misleading directions hehehe... What is not necessarily bad because I can give wrong directions unwillingly anyway and they can result in being the right directions");
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "oldmannpc");
 		npc.set(26, 21);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = npcs.add(new SpeakerNPC("Hayunn Naratha") {
+		npc = new SpeakerNPC("Hayunn Naratha") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(27, 37));
@@ -969,13 +987,14 @@ public class Semos implements IContent {
 								"I've sworn defending with my life the people of Semos from any creature that dares to get out of this dungeon. With all our young people battling Blordrough's dark legion at south, monsters are getting more and more confident to go to the surface.");
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "oldheronpc");
 		npc.set(27, 37);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = npcs.add(new SpeakerNPC("Diogenes") {
+		npc = new SpeakerNPC("Diogenes") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(22, 42));
@@ -1026,13 +1045,14 @@ public class Semos implements IContent {
 							}
 						});
 			}
-		});
+		};
+		npcs.add(npc);		
 		zone.assignRPObjectID(npc);
 		npc.put("class", "beggarnpc");
 		npc.set(24, 42);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = npcs.add(new SpeakerNPC("Carmen") {
+		npc = new SpeakerNPC("Carmen") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(5, 45));
@@ -1055,7 +1075,8 @@ public class Semos implements IContent {
 				Behaviours.addHealer(this, 0);
 				Behaviours.addGoodbye(this);
 			}
-		});
+		};
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "welcomernpc");
 		npc.set(5, 45);

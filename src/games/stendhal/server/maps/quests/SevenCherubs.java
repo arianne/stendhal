@@ -5,10 +5,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.Behaviours;
-import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 
@@ -130,42 +127,48 @@ public class SevenCherubs implements IQuest
     this.world=w;
     
     StendhalRPZone zone;
-    NPC npc;
+    SpeakerNPC npc;
     
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village_w"));
-    npc=npcs.add(new CherubNPC("Cherubiel",48,59));
+    npc = new CherubNPC("Cherubiel",48,59);
+	npcs.add(npc);
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_nalwor_city"));
-    npc=npcs.add(new CherubNPC("Gabriel",105,16));
+    npc = new CherubNPC("Gabriel",105,16);
+	npcs.add(npc);
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_river_s"));
-    npc=npcs.add(new CherubNPC("Ophaniel",105,78));
+    npc = new CherubNPC("Ophaniel",105,78);
+	npcs.add(npc);
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_river_s_w2"));
-    npc=npcs.add(new CherubNPC("Raphael",95,29));
+    npc = new CherubNPC("Raphael",95,29);
+	npcs.add(npc);
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_mountain_w2"));
-    npc=npcs.add(new CherubNPC("Uriel",47,26));
+    npc = new CherubNPC("Uriel",47,26);
+	npcs.add(npc);
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_mountain_n2_w2"));
-    npc=npcs.add(new CherubNPC("Zophiel",16,2));
+    npc = new CherubNPC("Zophiel",16,2);
+	npcs.add(npc);
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
 
     zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_ados_rock"));
-    npc=npcs.add(new CherubNPC("Azazel",67,23));
+    npc = new CherubNPC("Azazel",67,23);
+	npcs.add(npc);
     zone.assignRPObjectID(npc);
     zone.addNPC(npc);
     }
   }
-    

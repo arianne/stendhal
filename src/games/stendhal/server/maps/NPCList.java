@@ -42,11 +42,10 @@ public class NPCList {
 		return contents.containsKey(name);
 	}
 
-	public SpeakerNPC add(SpeakerNPC npc) {
+	public void add(SpeakerNPC npc) {
 		if (!contents.containsKey(npc.getName())) {
 			contents.put(npc.getName(), npc);
 		}
-		return npc;
 	}
 
 	public SpeakerNPC remove(String name) {
