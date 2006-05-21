@@ -32,143 +32,149 @@ import marauroa.common.game.IRPZone;
  * REPETITIONS:
  * - Just once.
  */
-public class SevenCherubs implements IQuest 
-  {
-  private StendhalRPWorld world;
-  private NPCList npcs;
-  
-  static class CherubNPC extends SpeakerNPC
-    {
-    public CherubNPC(String name, int x, int y)
-      {
-      super(name);
-      
-      put("class","angelnpc");
-      set(x,y);
-      initHP(100);
+public class SevenCherubs implements IQuest {
+	private StendhalRPWorld world;
 
-      List<Path.Node> nodes=new LinkedList<Path.Node>();
-      nodes.add(new Path.Node(x,y));
-      nodes.add(new Path.Node(x-2,y));
-      nodes.add(new Path.Node(x-2,y-2));
-      nodes.add(new Path.Node(x,y-2));
-      setPath(nodes,true);
-      }
+	private NPCList npcs;
 
-    protected void createPath()
-      {
-      }
-    
-    protected void createDialog()
-      {        
-      add(0,new String[]{"hi","hello","hola"},null,
-          0,null,new SpeakerNPC.ChatAction()
-        {
-        public void fire(Player player, String text, SpeakerNPC engine)
-          {
-          if(!player.hasQuest("seven_cherubs"))
-            {
-            player.setQuest("seven_cherubs","");
-            }          
-          
-          String npcDoneText=player.getQuest("seven_cherubs");
-          String[] done=npcDoneText.split(";");
-          List<String> list=Arrays.asList(done);
-          
-          if(!list.contains(engine.getName()))
-            {
-            player.setQuest("seven_cherubs",npcDoneText+";"+engine.getName());
-            
-            int left=7-list.size();
+	static class CherubNPC extends SpeakerNPC {
+		public CherubNPC(String name, int x, int y) {
+			super(name);
 
-            player.setHP(player.getBaseHP());
-            player.healPoison();
-            
-            if(left>0)
-              {
-              engine.say("Only need to find "+(7-list.size())+" more. Farewell.");
-              player.addXP((7-left+1)*200);
-              }
-            else
-              {
-              engine.say("Thou have proven yourself brave enough to wear this present!.");
-              
-              String [] items={"golden_boots", "golden_armor", "fire_sword", "golden_shield","golden_legs","golden_helmet"};
-              Item item=world.getRuleManager().getEntityManager().getItem(items[Rand.rand(items.length)]);
-              if(!player.equip(item))
-                {
-                StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-                
-                zone.assignRPObjectID(item);
-                item.setx(player.getx());
-                item.sety(player.gety());
-                zone.add(item);
-                }
-              
-              player.addXP(2000);
-              }
-            }
-          else
-            {
-            engine.say("Find the rest of us to get the reward");
-            }          
+			put("class", "angelnpc");
+			set(x, y);
+			initHP(100);
 
-          world.modify(player);
-          }
-        });
-  
-      Behaviours.addGoodbye(this);
-      }
-    }
-  
-  public SevenCherubs(StendhalRPWorld w, StendhalRPRuleProcessor rules)
-    {
-    this.npcs=NPCList.get();
-    this.world=w;
-    
-    StendhalRPZone zone;
-    SpeakerNPC npc;
-    
-    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_village_w"));
-    npc = new CherubNPC("Cherubiel",48,59);
-	npcs.add(npc);
-    zone.assignRPObjectID(npc);
-    zone.addNPC(npc);
+			List<Path.Node> nodes = new LinkedList<Path.Node>();
+			nodes.add(new Path.Node(x, y));
+			nodes.add(new Path.Node(x - 2, y));
+			nodes.add(new Path.Node(x - 2, y - 2));
+			nodes.add(new Path.Node(x, y - 2));
+			setPath(nodes, true);
+		}
 
-    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_nalwor_city"));
-    npc = new CherubNPC("Gabriel",105,16);
-	npcs.add(npc);
-    zone.assignRPObjectID(npc);
-    zone.addNPC(npc);
+		protected void createPath() {
+		}
 
-    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_river_s"));
-    npc = new CherubNPC("Ophaniel",105,78);
-	npcs.add(npc);
-    zone.assignRPObjectID(npc);
-    zone.addNPC(npc);
+		protected void createDialog() {
+			add(0,
+				new String[] { "hi", "hello", "hola" },
+				null,
+				0,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
+						if (!player.hasQuest("seven_cherubs")) {
+							player.setQuest("seven_cherubs", "");
+						}
+	
+						String npcDoneText = player
+								.getQuest("seven_cherubs");
+						String[] done = npcDoneText.split(";");
+						List<String> list = Arrays.asList(done);
+	
+						if (!list.contains(engine.getName())) {
+							player.setQuest("seven_cherubs", npcDoneText
+									+ ";" + engine.getName());
+	
+							int left = 7 - list.size();
+	
+							player.setHP(player.getBaseHP());
+							player.healPoison();
+	
+							if (left > 0) {
+								engine.say("Only need to find "
+										+ (7 - list.size())
+										+ " more. Farewell.");
+								player.addXP((7 - left + 1) * 200);
+							} else {
+								engine.say("Thou have proven yourself brave enough to wear this present!.");
+	
+								String[] items = { "golden_boots",
+										"golden_armor", "fire_sword",
+										"golden_shield", "golden_legs",
+										"golden_helmet" };
+								Item item = world
+										.getRuleManager()
+										.getEntityManager()
+										.getItem(
+												items[Rand
+														.rand(items.length)]);
+								if (!player.equip(item)) {
+									StendhalRPZone zone = (StendhalRPZone) world
+											.getRPZone(player.getID());
+	
+									zone.assignRPObjectID(item);
+									item.setx(player.getx());
+									item.sety(player.gety());
+									zone.add(item);
+								}
+								player.addXP(2000);
+							}
+						} else {
+							engine.say("Find the rest of us to get the reward");
+						}
+						world.modify(player);
+					}
+				});
+			Behaviours.addGoodbye(this);
+		}
+	}
 
-    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_river_s_w2"));
-    npc = new CherubNPC("Raphael",95,29);
-	npcs.add(npc);
-    zone.assignRPObjectID(npc);
-    zone.addNPC(npc);
+	public SevenCherubs(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
+		this.npcs = NPCList.get();
+		this.world = w;
 
-    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_orril_mountain_w2"));
-    npc = new CherubNPC("Uriel",47,26);
-	npcs.add(npc);
-    zone.assignRPObjectID(npc);
-    zone.addNPC(npc);
+		StendhalRPZone zone;
+		SpeakerNPC npc;
 
-    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_mountain_n2_w2"));
-    npc = new CherubNPC("Zophiel",16,2);
-	npcs.add(npc);
-    zone.assignRPObjectID(npc);
-    zone.addNPC(npc);
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+				"0_semos_village_w"));
+		npc = new CherubNPC("Cherubiel", 48, 59);
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		zone.addNPC(npc);
 
-    zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_ados_rock"));
-    npc = new CherubNPC("Azazel",67,23);
-	npcs.add(npc);
-    zone.assignRPObjectID(npc);
-    zone.addNPC(npc);
-    }
-  }
+		zone = (StendhalRPZone) world
+				.getRPZone(new IRPZone.ID("0_nalwor_city"));
+		npc = new CherubNPC("Gabriel", 105, 16);
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		zone.addNPC(npc);
+
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+				"0_orril_river_s"));
+		npc = new CherubNPC("Ophaniel", 105, 78);
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		zone.addNPC(npc);
+
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+				"0_orril_river_s_w2"));
+		npc = new CherubNPC("Raphael", 95, 29);
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		zone.addNPC(npc);
+
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+				"0_orril_mountain_w2"));
+		npc = new CherubNPC("Uriel", 47, 26);
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		zone.addNPC(npc);
+
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+				"0_semos_mountain_n2_w2"));
+		npc = new CherubNPC("Zophiel", 16, 2);
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		zone.addNPC(npc);
+
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_ados_rock"));
+		npc = new CherubNPC("Azazel", 67, 23);
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		zone.addNPC(npc);
+	}
+}
