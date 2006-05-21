@@ -187,6 +187,11 @@ public class Behaviours {
 			return amount;
 		}
 
+		/**
+		 * Returns the amount of money that the player has.
+		 * @param player
+		 * @return
+		 */
 		public int playerMoney(Player player) {
 			int money = 0;
 
@@ -365,9 +370,9 @@ public class Behaviours {
 	public static class BuyerBehaviour {
 		private Map<String, Integer> items;
 
-		private String choosenItem;
+		private String chosenItem;
 		
-		private int amount;
+		private int amount = 0;
 
 		public BuyerBehaviour(Map<String, Integer> items) {
 			this.items = items;
@@ -381,16 +386,16 @@ public class Behaviours {
 			return items.containsKey(item);
 		}
 
-		public int getPrice(String item) {
+		public int getUnitPrice(String item) {
 			return items.get(item);
 		}
 
-		public void setChoosenItem(String item) {
-			choosenItem = item;
+		public void setChosenItem(String item) {
+			chosenItem = item;
 		}
 
-		public String getChoosenItem() {
-			return choosenItem;
+		public String getChosenItem() {
+			return chosenItem;
 		}
 
 		public void setAmount(String text) {
@@ -405,7 +410,15 @@ public class Behaviours {
 			return amount;
 		}
 		
-		public void payPlayer(Player player, int amount) {
+		public int getCharge(Player player) {
+			if (chosenItem == null) {
+				return 0;
+			} else {
+				return amount * getUnitPrice(chosenItem);
+			}
+		}
+		
+		public void payPlayer(Player player) {
 			boolean found = false;
 			Iterator<RPSlot> it = player.slotsIterator();
 			while (it.hasNext()) {
@@ -415,7 +428,7 @@ public class Behaviours {
 				while (object_it.hasNext()) {
 					RPObject object = object_it.next();
 					if (object instanceof Money) {
-						((Money) object).add(amount);
+						((Money) object).add(getCharge(player));
 						found = true;
 					}
 				}
@@ -423,7 +436,7 @@ public class Behaviours {
 
 			if (!found) {
 				RPSlot slot = player.getSlot("bag");
-				Money money = new Money(amount);
+				Money money = new Money(getCharge(player));
 				slot.assignValidID(money);
 				slot.add(money);
 			}
@@ -487,14 +500,13 @@ public class Behaviours {
 			return false;
 		}
 
-		public boolean onBuy(SpeakerNPC seller, Player player, String itemName,
-				int amount, int itemPrice) {
-			if (removeItem(player, itemName, amount)) {
-				payPlayer(player, itemPrice * amount);
+		public boolean onBuy(SpeakerNPC seller, Player player) {
+			if (removeItem(player, chosenItem, amount)) {
+				payPlayer(player);
 				seller.say("Thanks! Here is your money.");
 				return true;
 			} else {
-				seller.say("Sorry! You don't have enough " + itemName + ".");
+				seller.say("Sorry! You don't have enough " + chosenItem + ".");
 				return false;
 			}
 		}
@@ -544,11 +556,9 @@ public class Behaviours {
 						}
 		
 						if (buyableItems.hasItem(item)) {
-							buyableItems.setChoosenItem(item);
+							buyableItems.setChosenItem(item);
 							buyableItems.setAmount(amount);
-							int price = buyableItems.getPrice(item)
-							* buyableItems.getAmount();
-		
+							int price = buyableItems.getCharge(player);
 		
 							engine.say(amount + " " + item + " is worth " + price
 									+ ". Do you want to sell?");
@@ -569,14 +579,10 @@ public class Behaviours {
 						BuyerBehaviour buyableItems = (BuyerBehaviour) engine
 								.getBehaviourData("buyer");
 		
-						String itemName = buyableItems.getChoosenItem();
-						int itemPrice = buyableItems.getPrice(itemName);
-						int itemAmount = buyableItems.getAmount();
-		
-						logger.debug("Buying " + itemAmount + " " + itemName + " from player "
+						logger.debug("Buying something from player "
 								+ player.getName());
 		
-						buyableItems.onBuy(engine, player, itemName, itemAmount, itemPrice);
+						buyableItems.onBuy(engine, player);
 					}
 				});
 
