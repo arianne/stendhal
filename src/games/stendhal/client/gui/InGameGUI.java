@@ -20,7 +20,6 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 
 import java.awt.event.*;
-import java.awt.geom.Point2D;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -242,7 +241,7 @@ public class InGameGUI implements KeyListener {
 		if (quitDialog == null) {
 			// no, so show it
 			quitDialog = new WtMessageBox("quit", 220, 220, 200,
-					"quit stendhal?", WtMessageBox.ButtonCombination.YES_NO);
+					"Quit Stendhal?", WtMessageBox.ButtonCombination.YES_NO);
 			quitDialog.registerClickListener(new WtClickListener() {
 				public void onClick(String name, boolean pressed) {
 					quitDialog = null; // remove field as the messagebox is
