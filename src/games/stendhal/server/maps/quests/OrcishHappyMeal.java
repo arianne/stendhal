@@ -48,13 +48,25 @@ public class OrcishHappyMeal implements IQuest {
 			}
 
 			protected void createDialog() {
+				// TODO: The code is identical to Sato's SheepBuyerBehaviour,
+				// except that the phrasing is different. Unite them.
 				class SheepBuyerBehaviour extends Behaviours.BuyerBehaviour {
 					SheepBuyerBehaviour(Map<String, Integer> items) {
 						super(items);
 					}
 
-					public boolean onBuy(SpeakerNPC seller, Player player, String itemName,
-							int amount, int itemPrice) {
+					@Override
+					public int getCharge(Player player) {
+						if (player.hasSheep()) {
+							Sheep sheep = (Sheep) world.get(player.getSheep());
+							return Math.round(getUnitPrice(getChosenItem()) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+						} else {
+							return 0;
+						}
+					}
+
+					@Override
+					public boolean onBuy(SpeakerNPC seller, Player player) {
 						// amount is currently ignored.
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) world.get(player.getSheep());
@@ -67,9 +79,7 @@ public class OrcishHappyMeal implements IQuest {
 								world.remove(sheep.getID());
 								player.removeSheep(sheep);
 
-								payPlayer(player,
-										  (int) (itemPrice * (((float) sheep
-												.getWeight()) / (float) sheep.MAX_WEIGHT)));
+								payPlayer(player);
 
 								world.modify(player);
 								return true;

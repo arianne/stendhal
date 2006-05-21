@@ -156,8 +156,18 @@ public class SheepGrowing implements IQuest {
 						super(items);
 					}
 
-					public boolean onBuy(SpeakerNPC seller, Player player, String itemName,
-							int amount, int itemPrice) {
+					@Override
+					public int getCharge(Player player) {
+						if (player.hasSheep()) {
+							Sheep sheep = (Sheep) world.get(player.getSheep());
+							return Math.round(getUnitPrice(getChosenItem()) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+						} else {
+							return 0;
+						}
+					}
+					
+					@Override
+					public boolean onBuy(SpeakerNPC seller, Player player) {
 						// amount is currently ignored.
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) world.get(player.getSheep());
@@ -165,22 +175,18 @@ public class SheepGrowing implements IQuest {
 								seller.say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
 							} else {
 								say("Thanks! Here is your money.");
+								payPlayer(player);
 
 								rp.removeNPC(sheep);
 								world.remove(sheep.getID());
 								player.removeSheep(sheep);
 
-								payPlayer(player,
-										  (int) (itemPrice * (((float) sheep
-												.getWeight()) / (float) sheep.MAX_WEIGHT)));
-
 								world.modify(player);
 								return true;
 							}
 						} else {
-							seller
-									.say("You ain't got a sheep!! What game you trying to play, "
-											+ player.get("name") + "?");
+							seller.say("You ain't got a sheep!! What game you trying to play, "
+									   + player.get("name") + "?");
 						}
 
 						return false;
