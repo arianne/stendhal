@@ -64,8 +64,8 @@ public class SheepGrowing implements IQuest {
 						super(items);
 					}
 
-					public boolean onSell(SpeakerNPC seller, Player player,
-							String itemName, int amount, int itemPrice) {
+					@Override
+					public boolean transactAgreedSale(SpeakerNPC seller, Player player) {
 						if (!player.hasSheep()) {
 							seller.say("Congratulations! Here is your sheep! Keep it safe!");
 							StendhalRPZone zone = (StendhalRPZone) world
@@ -82,7 +82,7 @@ public class SheepGrowing implements IQuest {
 							player.setSheep(sheep);
 							world.modify(player);
 
-							chargePlayer(player, itemPrice);
+							chargePlayer(player);
 							return true;
 						} else {
 							say("You already have a sheep. Take care of it first!");

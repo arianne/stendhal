@@ -143,7 +143,7 @@ public class Behaviours {
 	public static class SellerBehaviour {
 		protected Map<String, Integer> items;
 
-		protected String choosenItem;
+		protected String chosenItem;
 
 		protected int amount;
 
@@ -163,16 +163,16 @@ public class Behaviours {
 			return items.containsKey(item);
 		}
 
-		public int getPrice(String item) {
+		public int getUnitPrice(String item) {
 			return items.get(item);
 		}
 
-		public void setChoosenItem(String item) {
-			choosenItem = item;
+		public void setChosenItem(String item) {
+			chosenItem = item;
 		}
 
-		public String getChoosenItem() {
-			return choosenItem;
+		public String getChosenItem() {
+			return chosenItem;
 		}
 
 		public void setAmount(String text) {
@@ -185,6 +185,14 @@ public class Behaviours {
 
 		public int getAmount() {
 			return amount;
+		}
+
+		public int getCharge(Player player) {
+			if (chosenItem == null) {
+				return 0;
+			} else {
+				return amount * getUnitPrice(chosenItem);
+			}
 		}
 
 		/**
@@ -204,12 +212,12 @@ public class Behaviours {
 					}
 				}
 			}
-
 			return money;
 		}
 
-		public boolean chargePlayer(Player player, int amount) {
-			int left = amount;
+		// TODO: why does this return boolean, not void? There's no return statement.
+		public boolean chargePlayer(Player player) {
+			int left = getCharge(player);
 
 			Iterator<RPSlot> it = player.slotsIterator();
 			while (it.hasNext() && left != 0) {
@@ -239,16 +247,17 @@ public class Behaviours {
 			return left == 0;
 		}
 
-		public boolean onSell(SpeakerNPC seller, Player player,
-				String itemName, int amount, int itemPrice) {
+		public boolean transactAgreedSale(SpeakerNPC seller, Player player) {
 			EntityManager manager = world.getRuleManager().getEntityManager();
 
-			Item item = manager.getItem(itemName);
+			Item item = manager.getItem(getChosenItem());
 			if (item == null) {
-				logger.error("Trying to sell an unexisting item: " + itemName);
+				logger.error("Trying to sell an unexisting item: " + getChosenItem());
 				return false;
 			}
 
+			// TODO: When the user tries to buy several of a non-stackable
+			// item, he is forced to buy only one.
 			if (item instanceof StackableItem) {
 				((StackableItem) item).setQuantity(amount);
 			} else {
@@ -260,11 +269,11 @@ public class Behaviours {
 			zone.assignRPObjectID(item);
 
 			if (player.equip(item)) {
-				chargePlayer(player, itemPrice * amount);
-				seller.say("Congratulations! Here is your " + itemName + "!");
+				chargePlayer(player);
+				seller.say("Congratulations! Here is your " + getChosenItem() + "!");
 				return true;
 			} else {
-				seller.say("Sorry, but you cannot equip the " + itemName + ".");
+				seller.say("Sorry, but you cannot equip the " + getChosenItem() + ".");
 				return false;
 			}
 		}
@@ -318,10 +327,10 @@ public class Behaviours {
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
 						if (sellableItems.hasItem(item)) {
-							sellableItems.setChoosenItem(item);
+							sellableItems.setChosenItem(item);
 							sellableItems.setAmount(amount);
 		
-							int price = sellableItems.getPrice(item)
+							int price = sellableItems.getUnitPrice(item)
 									* sellableItems.getAmount();
 		
 							engine.say(amount + " " + item + " costs " + price
@@ -343,8 +352,8 @@ public class Behaviours {
 						SellerBehaviour sellableItems = (SellerBehaviour) engine
 								.getBehaviourData("seller");
 		
-						String itemName = sellableItems.getChoosenItem();
-						int itemPrice = sellableItems.getPrice(itemName);
+						String itemName = sellableItems.getChosenItem();
+						int itemPrice = sellableItems.getUnitPrice(itemName);
 						int itemAmount = sellableItems.getAmount();
 		
 						if (sellableItems.playerMoney(player) < itemPrice * itemAmount) {
@@ -355,8 +364,7 @@ public class Behaviours {
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 		
-						sellableItems.onSell(engine, player, itemName, itemAmount,
-								itemPrice);
+						sellableItems.transactAgreedSale(engine, player);
 					}
 				});
 
@@ -626,7 +634,9 @@ public class Behaviours {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						HealerBehaviour healer = (HealerBehaviour) engine
 								.getBehaviourData("healer");
-						int cost = healer.getPrice("heal");
+						healer.setChosenItem("heal");
+						healer.setAmount("1");
+						int cost = healer.getCharge(player);
 		
 						if (cost > 0) {
 							engine.say("Healing costs " + cost
@@ -644,19 +654,19 @@ public class Behaviours {
 				"yes",
 				null,
 				ConversationStates.ATTENDING,
-				"Thanks.",
+				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						HealerBehaviour healer = (HealerBehaviour) engine
 								.getBehaviourData("healer");
-						int itemPrice = healer.getPrice("heal");
-		
-						if (healer.playerMoney(player) < itemPrice) {
+						
+						if (healer.playerMoney(player) < healer.getCharge(player)) {
 							engine.say("A real pity! You don't have enough money!");
-							return;
+						} else {
+							healer.chargePlayer(player);
+							healer.heal(player, engine);
+							engine.say("You are healed. How may I help you?");
 						}
-						healer.chargePlayer(player, itemPrice);
-						// TODO: where does the NPC heal the player?
 					}
 				});
 
