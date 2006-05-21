@@ -308,7 +308,7 @@ public class Behaviours {
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						SellerBehaviour sellableItems = (SellerBehaviour) engine
+						SellerBehaviour sellerBehaviour = (SellerBehaviour) engine
 								.getBehaviourData("seller");
 		
 						// find out what the player wants to buy, and how
@@ -326,12 +326,12 @@ public class Behaviours {
 		
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
-						if (sellableItems.hasItem(item)) {
-							sellableItems.setChosenItem(item);
-							sellableItems.setAmount(amount);
+						if (sellerBehaviour.hasItem(item)) {
+							sellerBehaviour.setChosenItem(item);
+							sellerBehaviour.setAmount(amount);
 		
-							int price = sellableItems.getUnitPrice(item)
-									* sellableItems.getAmount();
+							int price = sellerBehaviour.getUnitPrice(item)
+									* sellerBehaviour.getAmount();
 		
 							engine.say(amount + " " + item + " costs " + price
 									+ ". Do you want to buy?");
@@ -349,14 +349,14 @@ public class Behaviours {
 				"Thanks.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						SellerBehaviour sellableItems = (SellerBehaviour) engine
+						SellerBehaviour sellerBehaviour = (SellerBehaviour) engine
 								.getBehaviourData("seller");
 		
-						String itemName = sellableItems.getChosenItem();
-						int itemPrice = sellableItems.getUnitPrice(itemName);
-						int itemAmount = sellableItems.getAmount();
+						String itemName = sellerBehaviour.getChosenItem();
+						int itemPrice = sellerBehaviour.getUnitPrice(itemName);
+						int itemAmount = sellerBehaviour.getAmount();
 		
-						if (sellableItems.playerMoney(player) < itemPrice * itemAmount) {
+						if (sellerBehaviour.playerMoney(player) < itemPrice * itemAmount) {
 							engine.say("A real pity! You don't have enough money!");
 							return;
 						}
@@ -364,7 +364,7 @@ public class Behaviours {
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 		
-						sellableItems.transactAgreedSale(engine, player);
+						sellerBehaviour.transactAgreedSale(engine, player);
 					}
 				});
 
@@ -429,26 +429,23 @@ public class Behaviours {
 		public void payPlayer(Player player) {
 			boolean found = false;
 			Iterator<RPSlot> it = player.slotsIterator();
+			// First try to stack the money on existing money
 			while (it.hasNext()) {
 				RPSlot slot = it.next();
-
-				Iterator<RPObject> object_it = slot.iterator();
-				while (object_it.hasNext()) {
-					RPObject object = object_it.next();
+				for (RPObject object: slot) {
 					if (object instanceof Money) {
 						((Money) object).add(getCharge(player));
 						found = true;
 					}
 				}
 			}
-
 			if (!found) {
+				// The player has no money. Put the money into an empty slot.  
 				RPSlot slot = player.getSlot("bag");
 				Money money = new Money(getCharge(player));
 				slot.assignValidID(money);
 				slot.add(money);
 			}
-
 			world.modify(player);
 		}
 
@@ -469,9 +466,7 @@ public class Behaviours {
 			int count = 0;
 			LinkedList<RPObject> toBeRemoved = new LinkedList<RPObject>();
 			
-			Iterator<RPObject> countIterator = slot.iterator();
-			while (countIterator.hasNext() && count < amount) {
-				RPObject object = countIterator.next();
+			for(RPObject object: slot) {
 				if (object instanceof Item
 						&& object.get("name").equals(itemName)) {
 					count++;
@@ -549,7 +544,7 @@ public class Behaviours {
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						BuyerBehaviour buyableItems = (BuyerBehaviour) engine
+						BuyerBehaviour buyerBehaviour = (BuyerBehaviour) engine
 								.getBehaviourData("buyer");
 		
 						String[] words = text.split(" ");
@@ -563,10 +558,10 @@ public class Behaviours {
 							item = words[1].trim();
 						}
 		
-						if (buyableItems.hasItem(item)) {
-							buyableItems.setChosenItem(item);
-							buyableItems.setAmount(amount);
-							int price = buyableItems.getCharge(player);
+						if (buyerBehaviour.hasItem(item)) {
+							buyerBehaviour.setChosenItem(item);
+							buyerBehaviour.setAmount(amount);
+							int price = buyerBehaviour.getCharge(player);
 		
 							engine.say(amount + " " + item + " is worth " + price
 									+ ". Do you want to sell?");
@@ -584,13 +579,13 @@ public class Behaviours {
 				"Thanks.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						BuyerBehaviour buyableItems = (BuyerBehaviour) engine
+						BuyerBehaviour buyerBehaviour = (BuyerBehaviour) engine
 								.getBehaviourData("buyer");
 		
 						logger.debug("Buying something from player "
 								+ player.getName());
 		
-						buyableItems.onBuy(engine, player);
+						buyerBehaviour.onBuy(engine, player);
 					}
 				});
 
@@ -657,14 +652,14 @@ public class Behaviours {
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						HealerBehaviour healer = (HealerBehaviour) engine
+						HealerBehaviour healerBehaviour = (HealerBehaviour) engine
 								.getBehaviourData("healer");
 						
-						if (healer.playerMoney(player) < healer.getCharge(player)) {
+						if (healerBehaviour.playerMoney(player) < healerBehaviour.getCharge(player)) {
 							engine.say("A real pity! You don't have enough money!");
 						} else {
-							healer.chargePlayer(player);
-							healer.heal(player, engine);
+							healerBehaviour.chargePlayer(player);
+							healerBehaviour.heal(player, engine);
 							engine.say("You are healed. How may I help you?");
 						}
 					}
