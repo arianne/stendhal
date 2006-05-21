@@ -220,7 +220,7 @@ public class Semos implements IContent {
 								"I am committed to keep civilized customs in Semos. I know any kind of protocol ever known and one hundred manners of doing the same thing wrong. Well, I doubt about when it should be used the spoon or the fork but on the other hand nobody uses cutlery in Semos");
 				add(
 						1,
-						new String[] { "quest", "task" },
+						Behaviours.QUEST_MESSAGES,
 						null,
 						1,
 						"I do not have any task for you right now. If you need anything from me just say it.",
@@ -272,31 +272,32 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0, "hi", null, 1, null, new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						// A little trick to make NPC remember if it has met
-						// player before anc react accordingly
-						// NPC_name quest doesn't exist anywhere else neither is
-						// used for any other purpose
-						if (!player.isQuestCompleted("Hackim")) {
-							engine
-									.say("Hi foreigner, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
-							player.setQuest("Hackim", "done");
-						} else {
-							engine.say("Hi again, " + player.getName()
-									+ ". How can I #help you this time?");
+				add(0,
+					Behaviours.GREETING_MESSAGES,
+					null,
+					1,
+					null,
+					new SpeakerNPC.ChatAction() {
+						public void fire(Player player, String text,
+								SpeakerNPC engine) {
+							// A little trick to make NPC remember if it has met
+							// player before anc react accordingly
+							// NPC_name quest doesn't exist anywhere else neither is
+							// used for any other purpose
+							if (!player.isQuestCompleted("Hackim")) {
+								engine
+										.say("Hi foreigner, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
+								player.setQuest("Hackim", "done");
+							} else {
+								engine.say("Hi again, " + player.getName()
+										+ ". How can I #help you this time?");
+							}
 						}
-					}
-				});
-				Behaviours
-						.addHelp(
-								this,
-								"I'm the blacksmith's assistant. I can help you by sharing my curiosity with you... Have you come here to buy weapons?");
-				Behaviours
-						.addJob(
-								this,
-								"I help Xoderos the blacksmith in making weapons for the Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
+					});
+				Behaviours.addHelp(this,
+									"I'm the blacksmith's assistant. I can help you by sharing my curiosity with you... Have you come here to buy weapons?");
+				Behaviours.addJob(this,
+								  "I help Xoderos the blacksmith in making weapons for the Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
 				Behaviours.addGoodbye(this);
 			}
 		};
@@ -342,61 +343,59 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0, "hi", null, 1, null, new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						// A little trick to make NPC remember if it has met
-						// player before anc react accordingly
-						// NPC_name quest doesn't exist anywhere else neither is
-						// used for any other purpose
-						if (!player.isQuestCompleted("Zynn")) {
-							engine
-									.say("Hi, potential reader. Here's recorded all the history of Semos city and some facts about the whole island of Faiumoni in which we are. I can give you an introduction to its #geography and #history. I can report you the latest #news.");
-							player.setQuest("Zynn", "done");
-						} else {
-							engine.say("Hi again, " + player.getName()
-									+ ". How can I #help you this time?");
+				add(0,
+					Behaviours.GREETING_MESSAGES,
+					null,
+					1,
+					null,
+					new SpeakerNPC.ChatAction() {
+						public void fire(Player player, String text,
+								SpeakerNPC engine) {
+							// A little trick to make NPC remember if it has met
+							// player before anc react accordingly
+							// NPC_name quest doesn't exist anywhere else neither is
+							// used for any other purpose
+							if (!player.isQuestCompleted("Zynn")) {
+								engine
+										.say("Hi, potential reader. Here's recorded all the history of Semos city and some facts about the whole island of Faiumoni in which we are. I can give you an introduction to its #geography and #history. I can report you the latest #news.");
+								player.setQuest("Zynn", "done");
+							} else {
+								engine.say("Hi again, " + player.getName()
+										+ ". How can I #help you this time?");
+							}
 						}
-					}
-				});
-				Behaviours
-						.addHelp(
-								this,
-								"I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news. I'm also selling location #scrolls.");
-				Behaviours
-						.addJob(
-								this,
-								"I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
-				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
-						.get("scrolls")));
-				add(
-						1,
-						new String[] { "quest", "task" },
-						null,
-						1,
-						"I do not have any task for you right now. If you need anything from me just say it.",
-						null);
-				add(
-						1,
-						new String[] { "scroll", "scrolls" },
-						null,
-						1,
-						"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked.",
-						null);
-				add(
-						1,
-						new String[] { "home" },
-						null,
-						1,
-						"Home scrolls take you home immediately, a good way to esape danger!",
-						null);
-				add(
-						1,
-						new String[] { "empty", "marked" },
-						null,
-						1,
-						"Empty scrolls are used to mark a position. Marked scrolls can take you back to that position. They are a little expensive, though.",
-						null);
+					});
+				Behaviours.addHelp(this,
+								   "I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news. I'm also selling location #scrolls.");
+				Behaviours.addJob(this,
+								  "I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
+				Behaviours.addSeller(this,
+						new Behaviours.SellerBehaviour(shops.get("scrolls")));
+				
+				add(1,
+					Behaviours.QUEST_MESSAGES,
+					null,
+					1,
+					"I do not have any task for you right now. If you need anything from me just say it.",
+					null);
+				add(1,
+					new String[] { "scroll", "scrolls" },
+					null,
+					1,
+					"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked.",
+					null);
+				add(1,
+					new String[] { "home" },
+					null,
+					1,
+					"Home scrolls take you home immediately, a good way to esape danger!",
+					null);
+				add(1,
+					new String[] { "empty", "marked" },
+					null,
+					1,
+					"Empty scrolls are used to mark a position. Marked scrolls can take you back to that position. They are a little expensive, though.",
+					null);
 			}
 		};
 		npcs.add(npc);
@@ -508,26 +507,31 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0, "hi", null, 1, null, new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						// A little trick to make NPC remember if it has met
-						// player before anc react accordingly
-						// NPC_name quest doesn't exist anywhere else neither is
-						// used for any other purpose
-						if (!player.isQuestCompleted("Io")) {
-							engine
-									.say("I waited you, "
-											+ player.getName()
-											+ ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
-							player.setQuest("Io", "done");
-						} else {
-							engine
-									.say("Hi again, "
-											+ player.getName()
-											+ ". How can I #help you this time? Not that I don't already know...");
+				add(0,
+					Behaviours.GREETING_MESSAGES,
+					null,
+					1,
+					null,
+					new SpeakerNPC.ChatAction() {
+						public void fire(Player player, String text,
+								SpeakerNPC engine) {
+							// A little trick to make NPC remember if it has met
+							// player before anc react accordingly
+							// NPC_name quest doesn't exist anywhere else neither is
+							// used for any other purpose
+							if (!player.isQuestCompleted("Io")) {
+								engine
+										.say("I waited you, "
+												+ player.getName()
+												+ ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
+								player.setQuest("Io", "done");
+							} else {
+								engine
+										.say("Hi again, "
+												+ player.getName()
+												+ ". How can I #help you this time? Not that I don't already know...");
+							}
 						}
-					}
 				});
 				Behaviours
 						.addHelp(
@@ -539,7 +543,7 @@ public class Semos implements IContent {
 								"I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion");
 				add(
 						1,
-						new String[] { "quest", "task" },
+						Behaviours.QUEST_MESSAGES,
 						null,
 						1,
 						"I do not have any task for you right now. If you need anything from me just say it. I think it's simply unkind reading one's mind without permission.",
@@ -864,34 +868,35 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0, "hi", null, 1, null, new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						// A little trick to make NPC remember if it has met
-						// player before anc react accordingly
-						// NPC_name quest doesn't exist anywhere else neither is
-						// used for any other purpose
-						if (!player.isQuestCompleted("Nomyr")) {
-							engine
-									.say("I've heard cries inside and I was just... but you look disoriented, foreigner. Do you want to know what has been happening around here lately?");
-							player.setQuest("Nomyr", "done");
-						} else {
-							engine.say("Hi again, " + player.getName()
-									+ ". How can I #help you this time?");
+				add(0,
+					Behaviours.GREETING_MESSAGES,
+					null,
+					1,
+					null,
+					new SpeakerNPC.ChatAction() {
+						public void fire(Player player, String text,
+								SpeakerNPC engine) {
+							// A little trick to make NPC remember if it has met
+							// player before anc react accordingly
+							// NPC_name quest doesn't exist anywhere else neither is
+							// used for any other purpose
+							if (!player.isQuestCompleted("Nomyr")) {
+								engine
+										.say("I've heard cries inside and I was just... but you look disoriented, foreigner. Do you want to know what has been happening around here lately?");
+								player.setQuest("Nomyr", "done");
+							} else {
+								engine.say("Hi again, " + player.getName()
+										+ ". How can I #help you this time?");
+							}
 						}
-					}
-				});
-				Behaviours
-						.addHelp(
-								this,
-								"I'm a... hmmm... observer. I can help you by sharing my information about rumours with you... Do you want to know what has been happening around here lately?");
-				Behaviours
-						.addJob(
-								this,
-								"I am committed to peek every curious fact about Semos. I know any rumor that has ever existed in Semos and I have invented most of them. Well, except that about Hackim smuggling Deniran's army weapons to wandering adventurer's like you");
+					});
+				Behaviours.addHelp(this,
+								   "I'm a... hmmm... observer. I can help you by sharing my information about rumours with you... Do you want to know what has been happening around here lately?");
+				Behaviours.addJob(this,
+								  "I am committed to peek every curious fact about Semos. I know any rumor that has ever existed in Semos and I have invented most of them. Well, except that about Hackim smuggling Deniran's army weapons to wandering adventurer's like you");
 				add(
 						1,
-						new String[] { "quest", "task" },
+						Behaviours.QUEST_MESSAGES,
 						null,
 						1,
 						"I do not have any task for you right now. If you need anything from me just say it.",
@@ -912,27 +917,32 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0, "hi", null, 1, null, new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text,
+				add(0,
+					Behaviours.GREETING_MESSAGES,
+					null,
+					1,
+					null,
+					new SpeakerNPC.ChatAction() {
+						public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						// A little trick to make NPC remember if it has met
-						// player before anc react accordingly
-						// NPC_name quest doesn't exist anywhere else neither is
-						// used for any other purpose
-						if (!player.isQuestCompleted("Monogenes")) {
-							engine
-									.say("Hi foreigner, don't be surprised if people here are reserved: the fear of the advances of Blordrough's dark legion has affected everybody, including me. Do you want to know how to socialize with Semos' people?");
-							player.setQuest("Monogenes", "done");
-						} else {
-							engine.say("Hi again, " + player.getName()
-									+ ". How can I #help you this time?");
+							// A little trick to make NPC remember if it has met
+							// player before anc react accordingly
+							// NPC_name quest doesn't exist anywhere else neither is
+							// used for any other purpose
+							if (!player.isQuestCompleted("Monogenes")) {
+								engine
+										.say("Hi foreigner, don't be surprised if people here are reserved: the fear of the advances of Blordrough's dark legion has affected everybody, including me. Do you want to know how to socialize with Semos' people?");
+								player.setQuest("Monogenes", "done");
+							} else {
+								engine.say("Hi again, " + player.getName()
+										+ ". How can I #help you this time?");
+							}
 						}
-					}
-				});
+					});
 				Behaviours
 						.addHelp(
 								this,
-								"I'm diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?");
+								"I'm Diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?");
 				Behaviours
 						.addJob(
 								this,
@@ -960,23 +970,28 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0, "hi", null, 1, null, new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						// A little trick to make NPC remember if it has met
-						// player before anc react accordingly
-						// NPC_name quest doesn't exist anywhere else neither is
-						// used for any other purpose
-						if (!player.isQuestCompleted("Hayunn")) {
-							engine
-									.say("Hi. I am Hayunn Naratha, a retired adventurer. Do you want me to tell you how I used to kill creatures?");
-							player.setQuest("Hayunn", "done");
-						} else {
-							engine.say("Hi again, " + player.getName()
-									+ ". How can I #help you this time?");
+				add(0,
+					Behaviours.GREETING_MESSAGES,
+					null,
+					1,
+					null,
+					new SpeakerNPC.ChatAction() {
+						public void fire(Player player, String text,
+								SpeakerNPC engine) {
+							// A little trick to make NPC remember if it has met
+							// player before anc react accordingly
+							// NPC_name quest doesn't exist anywhere else neither is
+							// used for any other purpose
+							if (!player.isQuestCompleted("Hayunn")) {
+								engine
+										.say("Hi. I am Hayunn Naratha, a retired adventurer. Do you want me to tell you how I used to kill creatures?");
+								player.setQuest("Hayunn", "done");
+							} else {
+								engine.say("Hi again, " + player.getName()
+										+ ". How can I #help you this time?");
+							}
 						}
-					}
-				});
+					});
 				Behaviours
 						.addHelp(
 								this,
@@ -1016,34 +1031,44 @@ public class Semos implements IContent {
 								this,
 								"I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.");
 				Behaviours.addGoodbye(this);
-				add(1, "quest", null, 1, null, new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						switch (Rand.rand(2)) {
-						case 0:
-							say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");
-							break;
-						case 1:
-							say("I have been told that on the deepest place of the dungeon under this city someone also buy sheeps, but *it* pays better!.");
-							break;
-						}
-					}
-				});
-				add(1, "cleanme!", null, 1, "What?",
-						new SpeakerNPC.ChatAction() {
-							public void fire(Player player, String text,
-									SpeakerNPC engine) {
-								if (player.isAdmin()) {
-									for (String quest : player.getQuests()) {
-										player.removeQuest(quest);
-									}
-								} else {
-									say("Ummm! No, you clean me! begin with my back!");
-									player.setHP(player.getHP() - 5);
-									world.modify(player);
-								}
+				add(1,
+					Behaviours.QUEST_MESSAGES,
+					null,
+					1,
+					null,
+					new SpeakerNPC.ChatAction() {
+						public void fire(Player player, String text,
+								SpeakerNPC engine) {
+							switch (Rand.rand(2)) {
+							case 0:
+								say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");
+								break;
+							case 1:
+								say("I have been told that on the deepest place of the dungeon under this city someone also buy sheeps, but *it* pays better!.");
+								break;
 							}
-						});
+						}
+					});
+				
+				add(1,
+					"cleanme!",
+					null,
+					1,
+					"What?",
+					new SpeakerNPC.ChatAction() {
+						public void fire(Player player, String text,
+								SpeakerNPC engine) {
+							if (player.isAdmin()) {
+								for (String quest : player.getQuests()) {
+									player.removeQuest(quest);
+								}
+							} else {
+								say("Ummm! No, you clean me! begin with my back!");
+								player.setHP(player.getHP() - 5);
+								world.modify(player);
+							}
+						}
+					});
 			}
 		};
 		npcs.add(npc);		
@@ -1062,14 +1087,10 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				Behaviours.addGreeting(this);
-				Behaviours
-						.addJob(
-								this,
-								"I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
-				Behaviours
-						.addHelp(
-								this,
-								"Ask me to #heal you and I will help you or ask me for an #offer and I will show my shop's stuff.");
+				Behaviours.addJob(this,
+								  "I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
+				Behaviours.addHelp(this,
+								   "Ask me to #heal you and I will help you or ask me for an #offer and I will show my shop's stuff.");
 				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
 						.get("healing")));
 				Behaviours.addHealer(this, 0);

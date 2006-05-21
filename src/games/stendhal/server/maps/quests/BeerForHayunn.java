@@ -4,6 +4,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -33,7 +34,7 @@ public class BeerForHayunn implements IQuest {
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
 		npc.add(ConversationStates.ATTENDING,
-				new String[] { "quest", "task" },
+				Behaviours.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -103,7 +104,7 @@ public class BeerForHayunn implements IQuest {
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
 		npc.add(ConversationStates.IDLE,
-				"hi",
+				Behaviours.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("beer_hayunn")

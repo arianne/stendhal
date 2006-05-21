@@ -40,7 +40,9 @@ public class MeetKetteh implements IQuest
 
     SpeakerNPC npc=npcs.get("Ketteh Wehoh");
 
-    npc.add(0,"hi",new SpeakerNPC.ChatCondition()
+    npc.add(0,
+    		Behaviours.GREETING_MESSAGES,
+    		new SpeakerNPC.ChatCondition()
       {
       public boolean fire(Player player, SpeakerNPC engine)
         {

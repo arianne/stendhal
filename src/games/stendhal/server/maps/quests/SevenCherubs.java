@@ -6,6 +6,7 @@ import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 
@@ -57,10 +58,10 @@ public class SevenCherubs implements IQuest {
 		}
 
 		protected void createDialog() {
-			add(0,
-				new String[] { "hi", "hello", "hola" },
+			add(ConversationStates.IDLE,
+				Behaviours.GREETING_MESSAGES,
 				null,
-				0,
+				ConversationStates.IDLE,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,

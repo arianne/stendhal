@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -31,7 +32,7 @@ public class HatForMonogenes implements IQuest {
 		SpeakerNPC npc = npcs.get("Monogenes");
 
 		npc.add(ConversationStates.ATTENDING,
-				new String[] { "quest", "task" },
+				Behaviours.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -85,7 +86,7 @@ public class HatForMonogenes implements IQuest {
 		SpeakerNPC npc = npcs.get("Monogenes");
 
 		npc.add(ConversationStates.IDLE,
-				"hi",
+				Behaviours.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("hat_monogenes")

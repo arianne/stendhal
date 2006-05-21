@@ -6,6 +6,7 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.scripting.ScriptAction;
@@ -43,7 +44,7 @@ public class IntroducePlayers implements IQuest {
 		SpeakerNPC npc = npcs.get("Tad");
 
 		npc.add(ConversationStates.ATTENDING,
-				new String[] { "task", "quest" },
+				Behaviours.QUEST_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -137,7 +138,7 @@ public class IntroducePlayers implements IQuest {
 		SpeakerNPC npc = npcs.get("Tad");
 
 		npc.add(ConversationStates.IDLE,
-				new String[] { "hi", "hello", "hola" },
+				Behaviours.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")
@@ -176,7 +177,7 @@ public class IntroducePlayers implements IQuest {
 		SpeakerNPC npc = npcs.get("Ilisa");
 
 		npc.add(ConversationStates.IDLE,
-				new String[] { "hi", "hello", "hola" },
+				Behaviours.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")
@@ -229,7 +230,7 @@ public class IntroducePlayers implements IQuest {
 		SpeakerNPC npc = npcs.get("Ilisa");
 
 		npc.add(ConversationStates.IDLE,
-				new String[] { "hi", "hello", "hola" },
+				Behaviours.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")
@@ -268,7 +269,7 @@ public class IntroducePlayers implements IQuest {
 		SpeakerNPC npc = npcs.get("Tad");
 
 		npc.add(ConversationStates.IDLE,
-				new String[] { "hi", "hello", "hola" },
+				Behaviours.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")

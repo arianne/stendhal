@@ -23,6 +23,7 @@ public class ScriptingNPC extends SpeakerNPC
     sety(path.get(0).y);
     }
   
+  // TODO: use message constants from Behaviours.java
   public void behave(String method, String reply)
     {
     if("greet".equalsIgnoreCase(method))

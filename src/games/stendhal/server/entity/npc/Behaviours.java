@@ -24,7 +24,17 @@ public class Behaviours {
 	// private static StendhalRPRuleProcessor rules;
 
 	private static StendhalRPWorld world;
+	
+	public static final String[] GREETING_MESSAGES = {"hi", "hello", "greetings", "hola"};
+	
+	public static final String[] JOB_MESSAGES = {"job", "work"};
 
+	public static final String[] HELP_MESSAGES = {"help", "ayuda"};
+
+	public static final String[] QUEST_MESSAGES = {"task", "quest"};
+
+	public static final String[] GOODBYE_MESSAGES = {"bye", "farewell", "cya", "adios"};
+	
 	public static void initialize(RPServerManager rpman, StendhalRPRuleProcessor rules, RPWorld world) {
 		// Behaviours.rpman = rpman;
 		// Behaviours.rules = rules;
@@ -42,7 +52,7 @@ public class Behaviours {
 	public static void addGreeting(SpeakerNPC npc, String text,
 			SpeakerNPC.ChatAction action) {
 		npc.add(ConversationStates.IDLE,
-				new String[] { "hi", "hello", "greetings", "hola" },
+				GREETING_MESSAGES,
 				ConversationStates.ATTENDING,
 				text,
 				action);
@@ -117,13 +127,13 @@ public class Behaviours {
 
 	public static void addJob(SpeakerNPC npc, String jobDescription) {
 		addReply(npc,
-				new String[] { "job", "work" },
+				JOB_MESSAGES,
 				jobDescription);
 	}
 
 	public static void addHelp(SpeakerNPC npc, String helpDescription) {
 		addReply(npc,
-				new String[] { "help", "ayuda" },
+				HELP_MESSAGES,
 				helpDescription);
 	}
 
@@ -134,7 +144,7 @@ public class Behaviours {
 	public static void addGoodbye(SpeakerNPC npc, String text) {
 		npc.addByeMessage(text, null);
 		npc.add(ConversationStates.ANY,
-				new String[] { "bye", "farewell", "cya", "adios" },
+				GOODBYE_MESSAGES,
 				ConversationStates.IDLE,
 				text,
 				null);

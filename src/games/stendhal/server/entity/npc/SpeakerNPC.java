@@ -37,7 +37,7 @@ import org.apache.log4j.Logger;
  * and attend it. We add a hi event:
  * 
  * add(ConversationStates.IDLE_STATE,
- *     "hi",
+ *     Behaviours.GREETING_MESSAGES,
  *     ConversationStates.ATTENDING_STATE,
  *     "Welcome player!",
  *     null)
@@ -49,7 +49,7 @@ import org.apache.log4j.Logger;
  * offer, buy, sell, etc.
  * 
  * add(ConversationStates.ATTENDING_STATE,
- *     "job",
+ *     Behaviours.JOB_MESSAGES,
  *     ConversationStates.ATTENDING_STATE,
  *     "I work as a part time example showman",
  *     null)
@@ -100,7 +100,7 @@ import org.apache.log4j.Logger;
  * to finish a conversation with "Bye!".
  * 
  * add(ConversationStates.ANY_STATE,
- *     "bye",
+ *     Behaviours.GOODBYE_MESSAGES,
  *     ConversationStates.IDLE_STATE,
  *     "Bye!",
  *     null);
