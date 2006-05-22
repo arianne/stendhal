@@ -34,7 +34,7 @@ import org.apache.log4j.Logger;
  * <p>
  * Panels
  * <ul>
- * <li>can have other panels as childs</li>
+ * <li>can have other panels as children</li>
  * <li>can have a border and a title bar. If they have a title bar they
  * <ul>
  * <li>can be moved</li>
@@ -107,8 +107,8 @@ public class WtPanel implements WtDraggable {
 	/** name of the panel */
 	private String name;
 
-	/** all childs of this panel. */
-	private LinkedList<WtPanel> childs;
+	/** all children of this panel. */
+	private LinkedList<WtPanel> children;
 
 	/** the parent of this panel */
 	private WtPanel parent;
@@ -146,7 +146,7 @@ public class WtPanel implements WtDraggable {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.childs = new LinkedList<WtPanel>();
+		this.children = new LinkedList<WtPanel>();
 		this.titleBar = false;
 		this.frame = false;
 		this.moveable = false;
@@ -491,17 +491,17 @@ public class WtPanel implements WtDraggable {
 					+ " because it already is a child of " + panel.parent.name);
 			return;
 		}
-		LinkedList<WtPanel> newChilds = new LinkedList<WtPanel>(childs);
-		newChilds.addFirst(panel);
-		this.childs = newChilds;
+		LinkedList<WtPanel> newChildren = new LinkedList<WtPanel>(children);
+		newChildren.addFirst(panel);
+		this.children = newChildren;
 		panel.parent = this;
 	}
 
 	/** removes a child-panel from this panel */
 	public synchronized void removeChild(WtPanel panel) {
-		LinkedList<WtPanel> newChilds = new LinkedList<WtPanel>(childs);
-		newChilds.remove(panel);
-		this.childs = newChilds;
+		LinkedList<WtPanel> newChildren = new LinkedList<WtPanel>(children);
+		newChildren.remove(panel);
+		this.children = newChildren;
 		// be sure to remove ourself from the other panel
 		panel.parent = null;
 	}
@@ -519,7 +519,7 @@ public class WtPanel implements WtDraggable {
 		closed = true;
 
 		// tell the childs to close too
-		for (WtPanel child : childs) {
+		for (WtPanel child : children) {
 			child.close();
 		}
 
@@ -543,8 +543,8 @@ public class WtPanel implements WtDraggable {
 	/**
 	 * returns an unmodifiable list this panels childs. TODO: cache this
 	 */
-	protected List<WtPanel> getChilds() {
-		return Collections.unmodifiableList(childs);
+	protected List<WtPanel> getChildren() {
+		return Collections.unmodifiableList(children);
 	}
 
 	/**
@@ -678,7 +678,7 @@ public class WtPanel implements WtDraggable {
 			panelGraphics.setColor(new Color(0.8f, 0.8f, 0.8f, 1.0f));
 			Font font = panelGraphics.getFont();
 			panelGraphics.setFont(font.deriveFont(Font.BOLD,
-					(float) TILLEBAR_FONT_SIZE));
+					TILLEBAR_FONT_SIZE));
 			panelGraphics.drawString(titleText, 3, TILLEBAR_FONT_SIZE);
 
 			// update clipping
@@ -749,15 +749,15 @@ public class WtPanel implements WtDraggable {
 	 *            Graphics object clipped to the client region.
 	 */
 	protected void drawChilds(Graphics clientArea) {
-		for (int i = 0; i < childs.size(); i++) {
-			childs.get(childs.size() - i - 1).draw(clientArea);
+		for (int i = 0; i < children.size(); i++) {
+			children.get(children.size() - i - 1).draw(clientArea);
 		}
 	}
 
 	/** scans the child list for closed ones and removes them */
 	private void checkClosed() {
 		// remove all closed childs
-		for (Iterator<WtPanel> childIt = childs.iterator(); childIt.hasNext();) {
+		for (Iterator<WtPanel> childIt = children.iterator(); childIt.hasNext();) {
 			WtPanel child = childIt.next();
 			if (child.isClosed()) {
 				childIt.remove();
@@ -832,7 +832,7 @@ public class WtPanel implements WtDraggable {
 		y -= getClientY();
 
 		// check all childs
-		for (WtPanel panel : childs) {
+		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(x, y)) {
 				WtDraggable draggedObject = panel.getDragged(x - panel.getX(),
@@ -882,7 +882,7 @@ public class WtPanel implements WtDraggable {
 		y -= getClientY();
 
 		// now ask each child
-		for (WtPanel panel : childs) {
+		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(x, y)) {
 				// the child checks itself
@@ -946,7 +946,7 @@ public class WtPanel implements WtDraggable {
 		p2.translate(-getClientX(), -getClientY());
 
 		// be sure to inform all childs of the mouse click
-		for (WtPanel panel : childs) {
+		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {
 				focus(panel);
@@ -974,7 +974,7 @@ public class WtPanel implements WtDraggable {
 		p2.translate(-getClientX(), -getClientY());
 
 		// be sure to inform all childs of the mouse click
-		for (WtPanel panel : childs) {
+		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {
 				Point point = p2.getLocation();
@@ -997,7 +997,7 @@ public class WtPanel implements WtDraggable {
 		p2.translate(-getClientX(), -getClientY());
 
 		// be sure to inform all childs of the mouse click
-		for (WtPanel panel : childs) {
+		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {
 				Point point = p2.getLocation();
@@ -1030,10 +1030,10 @@ public class WtPanel implements WtDraggable {
 
 	/** moves the child panel on top of all others */
 	private void focus(WtPanel child) {
-		if (!childs.remove(child))
+		if (!children.remove(child))
 			return;
 
-		childs.addFirst(child);
+		children.addFirst(child);
 	}
 
 	/**
