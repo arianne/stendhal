@@ -71,10 +71,10 @@ public class WtButton extends WtPanel {
 	}
 
 	/** button is clicked */
-	public boolean onMouseClick(Point p) {
+	public boolean onMouseClick(Point point) {
 		setEmboss(!isEmbossed());
 		// tell all registered listeners that we're clicked
-		notifyClickListeners(getName(), isEmbossed());
+		notifyClickListeners(getName(), point);
 		return true;
 	}
 

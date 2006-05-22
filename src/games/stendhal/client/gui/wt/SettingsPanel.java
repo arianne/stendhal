@@ -188,68 +188,72 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	}
 
 	/** a button was clicked */
-	public void onClick(String name, boolean pressed) {
+	public void onClick(String name, Point point) {
 		// check minimap
 		if (name.equals("minimap")) {
 			// minimap disabled?
-			if (minimapEnabled && !pressed) {
+			if (minimapEnabled) {
 				minimap.close();
 				minimap = null;
-			} else if (!minimapEnabled && pressed) {
+				minimapEnabled = false;
+				// be sure to update the button
+				buttonMap.get(name).setPressed(false);
+			} else if (!minimapEnabled) {
 				// minimap enabled
 				minimap = new Minimap(cd, gc, zone);
 				minimap.registerCloseListener(this);
 				frame.addChild(minimap);
+				minimapEnabled = true;
+				buttonMap.get(name).setPressed(true);
 			}
-			minimapEnabled = pressed;
-			// be sure to update the button
-			buttonMap.get(name).setPressed(pressed);
-			return;
 		}
 
 		// check character panel
 		if (name.equals("character")) {
 			// character disabled?
-			if (characterEnabled && !pressed) {
+			if (characterEnabled) {
 				character.close();
 				character = null;
-			} else if (!characterEnabled && pressed) {
+				characterEnabled = false;
+				// be sure to update the button
+				buttonMap.get(name).setPressed(false);
+			} else if (!characterEnabled) {
 				// character enabled
 				character = new Character(gameObjects);
 				character.registerCloseListener(this);
 				character.setPlayer(player);
 				frame.addChild(character);
+				characterEnabled = true;
+				buttonMap.get(name).setPressed(true);
 			}
-			characterEnabled = pressed;
-			// be sure to update the button
-			buttonMap.get(name).setPressed(pressed);
-			return;
 		}
 
 		// check inventory panel
 		if (name.equals("bag")) {
 			// inventory disabled?
-			if (inventoryEnabled && !pressed) {
+			if (inventoryEnabled) {
 				inventory.close();
 				inventory = null;
-			} else if (!inventoryEnabled && pressed) {
+				inventoryEnabled = false;
+				// be sure to update the button
+				buttonMap.get("bag").setPressed(false);
+			} else if (!inventoryEnabled) {
 				// character enabled
 				inventory = new EntityContainer(gameObjects, "bag", 3, 4);
 				inventory.registerCloseListener(this);
 				frame.addChild(inventory);
 				inventory.setSlot(player, "bag");
+				inventoryEnabled = true;
+				// be sure to update the button
+				buttonMap.get("bag").setPressed(true);
 			}
-			inventoryEnabled = pressed;
-			// be sure to update the button
-			buttonMap.get("bag").setPressed(pressed);
-			return;
 		}
 	}
 
 	/** a window is closed */
 	public void onClose(String name) {
 		// pseudo-release the button
-		onClick(name, false);
+		onClick(name, null);
 	}
 
 }

@@ -19,9 +19,11 @@
 package games.stendhal.client.gui.wt.core;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 
 /**
  * A simple MessageBox.
@@ -103,9 +105,9 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	}
 
 	/** clicked a button */
-	public void onClick(String name, boolean pressed) {
+	public void onClick(String name, Point point) {
 		// tell our listeners that a button has been clicked
-		notifyClickListeners(name, true);
+		notifyClickListeners(name, point);
 		removeCloseListener(this);
 		close();
 	}
@@ -113,7 +115,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	/** closed the window */
 	public void onClose(String name) {
 		// pseudoclicked the close button
-		onClick(closeButtonName, true);
+		onClick(closeButtonName, null);
 	}
 
 	/** some default buttons */

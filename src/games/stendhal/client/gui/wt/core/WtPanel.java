@@ -534,9 +534,9 @@ public class WtPanel implements WtDraggable {
 	}
 
 	/** notifies all registered clicklisteners that this panel has been clicked */
-	protected void notifyClickListeners(String name, boolean pressed) {
+	protected void notifyClickListeners(String name, Point point) {
 		for (WtClickListener listener : clickListeners) {
-			listener.onClick(name, pressed);
+			listener.onClick(name, point);
 		}
 	}
 

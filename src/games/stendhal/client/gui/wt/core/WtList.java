@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt.core;
 
+import java.awt.Point;
+
 /**
  * A list similar to a context menu.
  * 
@@ -65,9 +67,9 @@ public class WtList extends WtPanel implements WtClickListener {
 	}
 
 	/** an action has been chosen */
-	public void onClick(String name, boolean pressed) {
+	public void onClick(String name, Point point) {
 		// tell all listeners what happend
-		notifyClickListeners(name, pressed);
+		notifyClickListeners(name, point);
 		// close ourself
 		close();
 	}

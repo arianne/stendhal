@@ -1,11 +1,9 @@
-/**
- * 
- */
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.wt.core.WtList;
+import java.awt.Point;
 
 /**
  * This is the command list of any entities
@@ -47,7 +45,7 @@ public class CommandList extends WtList {
 	}
 
 	/** an action has been chosen */
-	public void onClick(String name, boolean pressed) {
+	public void onClick(String name, Point point) {
 		// tell the entity what happened
 		if (contained) {
 			entity.onAction(client, name, baseObject, baseSlot);
@@ -55,7 +53,7 @@ public class CommandList extends WtList {
 			entity.onAction(client, name);
 		}
 		// the base class takes care of the rest
-		super.onClick(name, pressed);
+		super.onClick(name, point);
 	}
 
 }

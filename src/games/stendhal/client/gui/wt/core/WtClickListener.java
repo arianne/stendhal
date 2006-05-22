@@ -18,6 +18,7 @@
 
 package games.stendhal.client.gui.wt.core;
 
+import java.awt.Point;
 /**
  * Callback for clicking on a panel
  * 
@@ -30,9 +31,9 @@ public interface WtClickListener {
 	 * @param name
 	 *            name of the panel. Note that the panels name does not need to
 	 *            be unique
-	 * @param true
-	 *            when the button in pressed and false when it is not pressed
+	 * @param point
+	 *            coordinate of the clicked point within the clicked panel
 	 */
-	public void onClick(String name, boolean pressed);
+	public void onClick(String name, Point point);
 
 }
