@@ -82,12 +82,13 @@
       <classpath>
         <pathelement path="${marauroa_jar}"/>
         <pathelement path="${log4j_jar}"/>
+        <pathelement path="${groovy_jar}"/>
       </classpath>    
     </javac>
 
     <jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">    
       <manifest>
-        <attribute name="Class-path" value="${maps_jarname} ${xmlconf_jarname} log4j.jar"/>
+        <attribute name="Class-path" value="${maps_jarname} ${xmlconf_jarname} log4j.jar groovy.jar"/>
       </manifest>
     </jar>
 
