@@ -5,26 +5,27 @@ import groovy.lang.Binding;
 import groovy.lang.Closure;
 import java.io.File;
 import java.util.List;
-import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import games.stendhal.common.Pair;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.Player;
 import games.stendhal.server.rule.defaultruleset.*;
 import marauroa.common.game.RPObject;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
+import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.maps.NPCList;
-
 
 public class StendhalGroovyScript 
   {
   private String groovyScript;
   private Binding groovyBinding;
-  private List<NPC> loadedNPCs = new LinkedList<NPC>();
-  private List<RPObject> loadedRPObjects = new LinkedList<RPObject>();
-  private List<Pair<ScriptCondition, ScriptAction>> loadedScripts = new LinkedList<Pair<ScriptCondition, ScriptAction>>(); 
+  private List<NPC> loadedNPCs = new CopyOnWriteArrayList<NPC>();
+  private List<RPObject> loadedRPObjects = new CopyOnWriteArrayList<RPObject>();
+  private List<Pair<ScriptCondition, ScriptAction>> loadedScripts = new CopyOnWriteArrayList<Pair<ScriptCondition, ScriptAction>>(); 
   private StendhalScriptSystem scripts;
   private String groovyExceptionMessage;
 
@@ -50,6 +51,43 @@ public class StendhalGroovyScript
     zone=(StendhalRPZone)world.getRPZone(name);
     return(zone!=null);
     }
+
+  public StendhalRPZone addZone(String name)
+    {
+    try 
+      {
+      zone = world.addArea(name);
+      logger.warn("Groovy added area: " + name);
+      }
+    catch (Exception e)
+      {
+      logger.error("Exception while tyring to add area: " + e); 
+      zone = null;
+      }
+    return(zone);
+    }  
+  
+  public boolean transferPlayer(Player player, String zoneName, int x, int y) 
+    {
+    StendhalRPZone zone = (StendhalRPZone) world.getRPZone(zoneName);
+    if( zone != null && StendhalRPAction.placeat(zone,player,x,y))
+      {
+      StendhalRPAction.changeZone(player,zone.getID().getID());
+      StendhalRPAction.transferContent(player);
+      world.modify(player);
+      return(true);
+      }
+    return(false);
+    }  
+  
+  public boolean playerIsInZone(Player player, String zoneName) 
+    {
+    if( zoneName == player.get("zoneid"))
+      {
+      return(true);
+      }
+    return(false);
+    }  
   
   public void add(NPC npc) 
     {
@@ -74,10 +112,12 @@ public class StendhalGroovyScript
       }
     }
  
-  public void add(ScriptCondition condition, ScriptAction action)
+  public Pair<ScriptCondition, ScriptAction> add(ScriptCondition condition, ScriptAction action)
     {
-    loadedScripts.add(scripts.addScript(condition, action));
+    Pair<ScriptCondition, ScriptAction> script = scripts.addScript(condition, action);
+    loadedScripts.add(script);
     logger.warn("Groovy added a script.");
+    return(script);
     }
   
   public Creature [] getCreatures() {
@@ -96,6 +136,21 @@ public class StendhalGroovyScript
       zone.assignRPObjectID(item);
       }
     return(item);
+    }
+  
+  public Creature add(Creature template, int x, int y)
+    {    
+    Creature creature = new Creature(template);
+    if(zone!=null)
+      {
+      zone.assignRPObjectID(creature);
+      StendhalRPAction.placeat(zone,creature,x,y);
+      zone.add(creature);
+      rules.addNPC(creature);
+      loadedNPCs.add(creature);
+      logger.warn("Groovy added creature: " + creature);
+      }
+    return(creature);
     }
   
   public boolean load() 
@@ -121,6 +176,74 @@ public class StendhalGroovyScript
     return(groovyExceptionMessage);
     }
   
+  public void remove(NPC npc) 
+    {
+    logger.warn("Removing groovy added NPC: " + npc);
+    try
+      {
+      String id = npc.getID().getZoneID();
+      zone=(StendhalRPZone)world.getRPZone(id);
+      NPCList.get().remove(npc.getName());
+      rules.removeNPC(npc);
+      zone.getNPCList().remove(npc);
+      zone.remove(npc);  
+      loadedNPCs.remove(npc);
+      }
+    catch (Exception e)
+      {
+      logger.warn("Exception while removing groovy added NPC: " + e);
+      }
+    }
+
+  public void remove(RPObject object) 
+    {
+    try
+      {
+      logger.warn("Removing groovy added object: " + object);
+      String id = object.getID().getZoneID();
+      zone=(StendhalRPZone)world.getRPZone(id);
+      zone.remove(object);
+      loadedRPObjects.remove(object);
+      }
+    catch (Exception e)
+      {
+      logger.warn("Exception while removing groovy added object: " + e);
+      }
+    }
+  
+  public void remove (Pair<ScriptCondition, ScriptAction> script)
+    {
+    scripts.removeScript(script);
+    loadedScripts.remove(script);
+    }
+
+  // removes the first loaded script that has the required action
+  public void remove (ScriptAction scriptAction)
+    {
+    for(Pair<ScriptCondition, ScriptAction> script: loadedScripts)
+      {
+      if(script.second() == scriptAction)
+        {
+        logger.warn("Removing groovy added script.");
+        remove(script);
+        return;
+        }
+      }
+   }  
+  
+  // removes the first loaded script that has the required condition
+  public void remove (ScriptCondition scriptCondition)
+    {
+    for(Pair<ScriptCondition, ScriptAction> script: loadedScripts)
+      {
+      if(script.first() == scriptCondition)
+        {
+        logger.warn("Removing groovy added script.");
+        remove(script);
+        }
+      }  
+   }  
+  
   public void unload() 
     {
     Log4J.startMethod(logger,"unload");
@@ -128,26 +251,17 @@ public class StendhalGroovyScript
     for(Pair<ScriptCondition, ScriptAction> script: loadedScripts)
       {
       logger.warn("Removing groovy added script.");
-      scripts.removeScript(script);
+      remove(script);
       }  
     
     for(NPC npc: loadedNPCs)
       {
-      logger.warn("Removing groovy added NPC: " + npc);
-      String id = npc.getID().getZoneID();
-      zone=(StendhalRPZone)world.getRPZone(id);
-      NPCList.get().remove(npc.getName());
-      rules.removeNPC(npc);
-      zone.getNPCList().remove(npc);
-      zone.remove(npc);
+      remove(npc);
       }
 
     for(RPObject object: loadedRPObjects)
       {
-      logger.warn("Removing groovy added object: " + object);
-      String id = object.getID().getZoneID();
-      zone=(StendhalRPZone)world.getRPZone(id);
-      zone.remove(object);
+      remove(object);
       }  
     
     Log4J.finishMethod(logger,"unload");

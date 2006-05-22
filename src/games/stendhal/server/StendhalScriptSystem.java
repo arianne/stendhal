@@ -6,7 +6,8 @@ import games.stendhal.common.Pair;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptCondition;
 
-import java.util.*;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class StendhalScriptSystem 
   {
@@ -14,7 +15,7 @@ public class StendhalScriptSystem
   
   private StendhalScriptSystem()
     {
-    scripts=new LinkedList<Pair<ScriptCondition, ScriptAction>>();
+    scripts=new CopyOnWriteArrayList<Pair<ScriptCondition, ScriptAction>>();
     }
   
   private static StendhalScriptSystem instance;
