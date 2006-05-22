@@ -24,102 +24,95 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /** this container is used to drag the entities around */
-public class MoveableEntityContainer implements WtDraggable
-{
-  /** current x-pos of the dragged item */
-  private int      x;
-  /** current y-pos of the dragged item */
-  private int      y;
-  /** the sprite */
-  private Sprite   sprite;
+public class MoveableEntityContainer implements WtDraggable {
+	/** current x-pos of the dragged item */
+	private int x;
 
-  /** id of the moved object */
-  private int      content;
-  /** parent(container) of the moved object, may be null */
-  private Entity   parent;
-  /** the slot this item is in. makes only sense when parent is != null */
-  private String   slot;
+	/** current y-pos of the dragged item */
+	private int y;
 
-  /** x-pos of the item on the ground */
-  private int      objectx;
-  /** y-pos of the item on the ground */
-  private int      objecty;
-  
-  public Entity getEntity()
-  {
-    return parent;
-  }
+	/** the sprite */
+	private Sprite sprite;
 
-  /** constuctor to use when the item is inside a container */
-  public MoveableEntityContainer(RPObject content, Entity parent,
-      String slot, GameObjects gameObjects)
-  {
-    this.content = content.getID().getObjectID();
-    this.parent  = parent;
-    this.slot    = slot;
-    this.sprite  = gameObjects.spriteType(content);
-  }
+	/** id of the moved object */
+	private int content;
 
-  /** constuctor to use when the item is on the ground */
-  public MoveableEntityContainer(Entity content, int x, int y,
-      GameObjects gameObjects)
-  {
-    this.content = content.getID().getObjectID();
-    this.objectx = x;
-    this.objecty = y;
-    this.parent  = null;
-    this.sprite  = content.getSprite();
-  }
-  
-  /** returns true when the item represented by this container is inside a slot */
-  public boolean isContained()
-  {
-    return (parent != null);
-  }
+	/** parent(container) of the moved object, may be null */
+	private Entity parent;
 
-  /** fills the action with the appropiate 'move from' parameters */
-  public void fillRPAction(RPAction action)
-  {
-    if (parent != null)
-    {
-      // the item is inside a container
-      action.put("baseobject", parent.getID().getObjectID());
-      action.put("baseslot", slot);
-    } else
-    {
-      // the item is on the ground
-      action.put("x", objectx);
-      action.put("y", objecty);
-    }
-    action.put("baseitem", content);
-  }
+	/** the slot this item is in. makes only sense when parent is != null */
+	private String slot;
 
-  /** drag started */
-  public boolean dragStarted()
-  {
-    return true;
-  }
+	/** x-pos of the item on the ground */
+	private int objectx;
 
-  /** drag finished */
-  public boolean dragFinished(Point p)
-  {
-    return true;
-  }
+	/** y-pos of the item on the ground */
+	private int objecty;
 
-  /** moved */
-  public boolean dragMoved(Point p)
-  {
-    x = p.x;
-    y = p.y;
-    return true;
-  }
+	public Entity getEntity() {
+		return parent;
+	}
 
-  /**
-   * draws the entity
-   */
-  public void drawDragged(Graphics g)
-  {
-    sprite.draw(g, x, y);
-  }
+	/** constuctor to use when the item is inside a container */
+	public MoveableEntityContainer(RPObject content, Entity parent,
+			String slot, GameObjects gameObjects) {
+		this.content = content.getID().getObjectID();
+		this.parent = parent;
+		this.slot = slot;
+		this.sprite = gameObjects.spriteType(content);
+	}
+
+	/** constuctor to use when the item is on the ground */
+	public MoveableEntityContainer(Entity content, int x, int y,
+			GameObjects gameObjects) {
+		this.content = content.getID().getObjectID();
+		this.objectx = x;
+		this.objecty = y;
+		this.parent = null;
+		this.sprite = content.getSprite();
+	}
+
+	/** returns true when the item represented by this container is inside a slot */
+	public boolean isContained() {
+		return (parent != null);
+	}
+
+	/** fills the action with the appropiate 'move from' parameters */
+	public void fillRPAction(RPAction action) {
+		if (parent != null) {
+			// the item is inside a container
+			action.put("baseobject", parent.getID().getObjectID());
+			action.put("baseslot", slot);
+		} else {
+			// the item is on the ground
+			action.put("x", objectx);
+			action.put("y", objecty);
+		}
+		action.put("baseitem", content);
+	}
+
+	/** drag started */
+	public boolean dragStarted() {
+		return true;
+	}
+
+	/** drag finished */
+	public boolean dragFinished(Point p) {
+		return true;
+	}
+
+	/** moved */
+	public boolean dragMoved(Point p) {
+		x = p.x;
+		y = p.y;
+		return true;
+	}
+
+	/**
+	 * draws the entity
+	 */
+	public void drawDragged(Graphics g) {
+		sprite.draw(g, x, y);
+	}
 
 }

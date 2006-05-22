@@ -12,58 +12,63 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt.core;
 
-
 /**
  * A list similar to a context menu.
  * 
  * @author mtotz
  */
-public class WtList extends WtPanel implements WtClickListener
-{
-  private static final int BUTTON_HEIGHT = 20;
+public class WtList extends WtPanel implements WtClickListener {
+	private static final int BUTTON_HEIGHT = 20;
 
-  /**
-   * Creates a new List.
-   * 
-   * @param name Name of the list. This is also the title.
-   * @param items items to show
-   * @param x x-pos
-   * @param y y-pos
-   * @param width width
-   * @param maxHeight max height (height is dynamically calculated from the
-   *         items)
-   */
-  public WtList(String name, String[] items, int x, int y, int width, int maxHeight)
-  {
-    super(name,x,y,width,10);
-    
-    setTitleBar(true);
-    setFrame(true);
-    setCloseable(true);
-    setMinimizeable(false);
-    setMoveable(false);
-    
-    this.resizeToFitClientArea(width,(items.length*BUTTON_HEIGHT < maxHeight) ? (items.length*BUTTON_HEIGHT) : maxHeight);
+	/**
+	 * Creates a new List.
+	 * 
+	 * @param name
+	 *            Name of the list. This is also the title.
+	 * @param items
+	 *            items to show
+	 * @param x
+	 *            x-pos
+	 * @param y
+	 *            y-pos
+	 * @param width
+	 *            width
+	 * @param maxHeight
+	 *            max height (height is dynamically calculated from the items)
+	 */
+	public WtList(String name, String[] items, int x, int y, int width,
+			int maxHeight) {
+		super(name, x, y, width, 10);
 
-    int clientWidth = getClientWidth();
-    
-    for (int i = 0; i < items.length; i++)
-    {
-      String item = items[i];
-      WtButton button = new WtButton(item,clientWidth,BUTTON_HEIGHT,item); 
-      button.moveTo(0,i*BUTTON_HEIGHT);
-      button.registerClickListener(this);
-      addChild(button);
-    }
-  }
+		setTitleBar(true);
+		setFrame(true);
+		setCloseable(true);
+		setMinimizeable(false);
+		setMoveable(false);
 
-  /** an action has been chosen */
-  public void onClick(String name, boolean pressed)
-  {
-    // tell all listeners what happend
-    notifyClickListeners(name,pressed);
-    // close ourself
-    close();
-  }
+		this
+				.resizeToFitClientArea(
+						width,
+						(items.length * BUTTON_HEIGHT < maxHeight) ? (items.length * BUTTON_HEIGHT)
+								: maxHeight);
+
+		int clientWidth = getClientWidth();
+
+		for (int i = 0; i < items.length; i++) {
+			String item = items[i];
+			WtButton button = new WtButton(item, clientWidth, BUTTON_HEIGHT,
+					item);
+			button.moveTo(0, i * BUTTON_HEIGHT);
+			button.registerClickListener(this);
+			addChild(button);
+		}
+	}
+
+	/** an action has been chosen */
+	public void onClick(String name, boolean pressed) {
+		// tell all listeners what happend
+		notifyClickListeners(name, pressed);
+		// close ourself
+		close();
+	}
 }
-

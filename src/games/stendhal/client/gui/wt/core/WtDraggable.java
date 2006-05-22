@@ -20,38 +20,43 @@ package games.stendhal.client.gui.wt.core;
 import java.awt.Graphics;
 import java.awt.Point;
 
-
 /**
  * Every Object that is draggable must implement this interface.
- *
+ * 
  * @author mtotz
  */
-public interface WtDraggable
-{
-  /** this object has been started to drag around
-   * @return true when this item can be dragged, false otherwise
-   */
-  public boolean dragStarted();
-  
-  /** this object has been started to drag around
-   * @param p the point where the mouse cursor is at the moment (relative to the
-   *          drag startpoint)
-   * @return true when this item can be dropped on point p, false otherwise
-   */
-  public boolean dragFinished(Point p);
-  
-  /** 
-   * This object is draged around the screen. When this method returns false
-   * the ui should move it back to it's start point to show the user that it
-   * is not allowed to drop the object here.
-   *
-   * @param p the point where the mouse cursor is at the moment (relative to the
-   *          drag startpoint)
-   * @return true when this item can be moved to this point, false otherwise
-   */
-  public boolean dragMoved(Point p);
-  /**
-   * draws the dragged item
-   */
-  public void drawDragged(Graphics g);
+public interface WtDraggable {
+	/**
+	 * this object has been started to drag around
+	 * 
+	 * @return true when this item can be dragged, false otherwise
+	 */
+	public boolean dragStarted();
+
+	/**
+	 * this object has been started to drag around
+	 * 
+	 * @param p
+	 *            the point where the mouse cursor is at the moment (relative to
+	 *            the drag startpoint)
+	 * @return true when this item can be dropped on point p, false otherwise
+	 */
+	public boolean dragFinished(Point p);
+
+	/**
+	 * This object is draged around the screen. When this method returns false
+	 * the ui should move it back to it's start point to show the user that it
+	 * is not allowed to drop the object here.
+	 * 
+	 * @param p
+	 *            the point where the mouse cursor is at the moment (relative to
+	 *            the drag startpoint)
+	 * @return true when this item can be moved to this point, false otherwise
+	 */
+	public boolean dragMoved(Point p);
+
+	/**
+	 * draws the dragged item
+	 */
+	public void drawDragged(Graphics g);
 }
