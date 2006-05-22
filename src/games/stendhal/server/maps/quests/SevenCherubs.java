@@ -90,7 +90,7 @@ public class SevenCherubs implements IQuest {
 										+ " more. Farewell.");
 								player.addXP((7 - left + 1) * 200);
 							} else {
-								engine.say("Thou have proven yourself brave enough to wear this present!.");
+								engine.say("Thou have proven yourself brave enough to wear this present!");
 	
 								String[] items = { "golden_boots",
 										"golden_armor", "fire_sword",
@@ -99,9 +99,7 @@ public class SevenCherubs implements IQuest {
 								Item item = world
 										.getRuleManager()
 										.getEntityManager()
-										.getItem(
-												items[Rand
-														.rand(items.length)]);
+										.getItem(items[Rand.rand(items.length)]);
 								if (!player.equip(item)) {
 									StendhalRPZone zone = (StendhalRPZone) world
 											.getRPZone(player.getID());
