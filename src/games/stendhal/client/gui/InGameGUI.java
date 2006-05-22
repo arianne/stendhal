@@ -46,7 +46,7 @@ public class InGameGUI implements KeyListener {
 	private Map<Integer, Object> pressed;
 
 	/** the main frame */
-	private WtFrame frame;
+	private WtBaseframe frame;
 
 	/** this is the ground */
 	private WtPanel ground;
@@ -113,7 +113,7 @@ public class InGameGUI implements KeyListener {
 
 	private void buildGUI() {
 		// create the frame
-		frame = new WtFrame(screen);
+		frame = new WtBaseframe(screen);
 		// register native event handler
 		screen.getComponent().addMouseListener(frame);
 		screen.getComponent().addMouseMotionListener(frame);
@@ -339,7 +339,7 @@ public class InGameGUI implements KeyListener {
 	/**
 	 * @return Returns the window toolkit baseframe.
 	 */
-	public WtFrame getFrame() {
+	public WtBaseframe getFrame() {
 		return frame;
 	}
 }

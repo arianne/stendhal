@@ -37,7 +37,7 @@ import java.awt.event.MouseMotionListener;
  * 
  * @author mtotz
  */
-public class WtFrame extends WtPanel implements MouseListener,
+public class WtBaseframe extends WtPanel implements MouseListener,
 		MouseMotionListener {
 	/** the currently dragged object or null if there is no such drag operation */
 	private WtDraggable draggedObject;
@@ -55,7 +55,7 @@ public class WtFrame extends WtPanel implements MouseListener,
 	private boolean recreatedContextMenu;
 
 	/** Creates the Frame from the given GameScreen instance */
-	public WtFrame(GameScreen screen) {
+	public WtBaseframe(GameScreen screen) {
 		super("baseframe", 0, 0, screen.getWidthInPixels(), screen
 				.getHeightInPixels());
 		setFrame(false);
