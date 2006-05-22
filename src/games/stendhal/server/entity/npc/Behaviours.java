@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
@@ -34,6 +35,31 @@ public class Behaviours {
 	public static final String[] QUEST_MESSAGES = {"task", "quest"};
 
 	public static final String[] GOODBYE_MESSAGES = {"bye", "farewell", "cya", "adios"};
+	
+	/**
+	 * Helper function to nicely formulate an enumeration of a collection.
+	 * For example, for a collection containing the 3 elements x, y, z,
+	 * returns the string "x, y, and z".
+	 * @param collection The collection whose elements should be enumerated 
+	 * @return A nice String representation of the collection
+	 */
+	private static String enumerateCollection(Collection<String> collection) {
+		String[] elements = collection.toArray(new String[collection.size()]);
+		if (elements.length == 0) {
+			return "";
+		} else if (elements.length == 1) {
+			return elements[0];
+		} else if (elements.length == 2) {
+			return elements[0] + " and " + elements[1];
+		} else {
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < elements.length - 1; i++) {
+				sb.append(elements[i] + ", ");
+			}
+			sb.append("and " + elements[elements.length - 1]);
+			return sb.toString();
+		}
+	}
 	
 	public static void initialize(RPServerManager rpman, StendhalRPRuleProcessor rules, RPWorld world) {
 		// Behaviours.rpman = rpman;
@@ -311,17 +337,12 @@ public class Behaviours {
 			boolean offer) {
 		npc.setBehaviourData("seller", items);
 
-		StringBuffer st = new StringBuffer();
-		for (String item : items.getItems()) {
-			st.append(item + ", ");
-		}
-
 		if (offer) {
 			npc.add(ConversationStates.ATTENDING,
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I sell " + st.toString(),
+					"I sell " + enumerateCollection(items.getItems()) + ".",
 					null);
 		}
 
@@ -547,17 +568,12 @@ public class Behaviours {
 			boolean offer) {
 		npc.setBehaviourData("buyer", items);
 
-		StringBuffer st = new StringBuffer();
-		for (String item : items.getItems()) {
-			st.append(item + ", ");
-		}
-
 		if (offer) {
 			npc.add(ConversationStates.ATTENDING,
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I buy " + st.toString(),
+					"I buy " + enumerateCollection(items.getItems()) + ".",
 					null);
 		}
 
