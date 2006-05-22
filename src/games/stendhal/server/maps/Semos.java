@@ -12,6 +12,7 @@ import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 import marauroa.common.game.IRPZone;
@@ -25,8 +26,7 @@ public class Semos implements IContent {
 
 	private ShopList shops;
 
-	public Semos(StendhalRPWorld world) throws org.xml.sax.SAXException,
-			java.io.IOException {
+	public Semos(StendhalRPWorld world) {
 		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
 		this.world = world;
@@ -72,11 +72,11 @@ public class Semos implements IContent {
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("introduce_players")) {
 							engine.say("Ssshh! Come here #" + player.getName()
-									+ "!. I have a #task for you.");
+									+ "! I have a #task for you.");
 						} else {
 							engine.say("Hi again "
 									+ player.getName()
-									+ "!. Thanks again, I'm feeling much better now.");
+									+ "! Thanks again, I'm feeling much better now.");
 						}
 					}
 				});
@@ -133,13 +133,10 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours
-						.addGreeting(this,
-								"Welcome to the bank of Semos! Do you need #help on your personal chest?");
-				Behaviours
-						.addHelp(
-								this,
-								"You can find your personal chest down the floor to the right. If you open it, you can store your belongings in it. I will take care that nobody else will touch them.");
+				Behaviours.addGreeting(this,
+						"Welcome to the bank of Semos! Do you need #help on your personal chest?");
+				Behaviours.addHelp(this,
+						"You can find your personal chest down the floor to the right. If you open it, you can store your belongings in it. I will take care that nobody else will touch them.");
 				Behaviours.addJob(this, "I'm the customer consultant.");
 
 				Behaviours.addGoodbye(this, "It was a pleasure to serve you.");
@@ -195,7 +192,7 @@ public class Semos implements IContent {
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "welcomernpc"); // unclear wat to put there.
+		npc.put("class", "welcomernpc");
 		npc.set(4, 12);
 		npc.initHP(100);
 		zone.addNPC(npc);
@@ -210,21 +207,16 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours
-						.addHelp(
-								this,
-								"I am the good manners and decency observer. I can help you by telling you about obvious and common sense things you should already know like not wandering naked around...");
-				Behaviours
-						.addJob(
-								this,
-								"I am committed to keep civilized customs in Semos. I know any kind of protocol ever known and one hundred manners of doing the same thing wrong. Well, I doubt about when it should be used the spoon or the fork but on the other hand nobody uses cutlery in Semos");
-				add(
-						1,
-						Behaviours.QUEST_MESSAGES,
-						null,
-						1,
-						"I do not have any task for you right now. If you need anything from me just say it.",
-						null);
+				Behaviours.addHelp(this,
+						"I am the good manners and decency observer. I can help you by telling you about obvious and common sense things you should already know like not wandering naked around...");
+				Behaviours.addJob(this,
+						"I am committed to keep civilized customs in Semos. I know any kind of protocol ever known and one hundred manners of doing the same thing wrong. Well, I doubt about when it should be used the spoon or the fork but on the other hand nobody uses cutlery in Semos");
+				add(ConversationStates.ATTENDING,
+					Behaviours.QUEST_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"I do not have any task for you right now. If you need anything from me just say it.",
+					null);
 				Behaviours.addGoodbye(this);
 			}
 		};
@@ -272,21 +264,20 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0,
+				add(ConversationStates.IDLE,
 					Behaviours.GREETING_MESSAGES,
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
 							// A little trick to make NPC remember if it has met
-							// player before anc react accordingly
+							// player before and react accordingly
 							// NPC_name quest doesn't exist anywhere else neither is
 							// used for any other purpose
 							if (!player.isQuestCompleted("Hackim")) {
-								engine
-										.say("Hi foreigner, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
+								engine.say("Hi foreigner, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
 								player.setQuest("Hackim", "done");
 							} else {
 								engine.say("Hi again, " + player.getName()
@@ -343,10 +334,10 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0,
+				add(ConversationStates.IDLE,
 					Behaviours.GREETING_MESSAGES,
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
@@ -372,16 +363,16 @@ public class Semos implements IContent {
 				Behaviours.addSeller(this,
 						new Behaviours.SellerBehaviour(shops.get("scrolls")));
 				
-				add(1,
+				add(ConversationStates.ATTENDING,
 					Behaviours.QUEST_MESSAGES,
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					"I do not have any task for you right now. If you need anything from me just say it.",
 					null);
-				add(1,
+				add(ConversationStates.ATTENDING,
 					new String[] { "scroll", "scrolls" },
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked.",
 					null);
 				add(1,
@@ -416,7 +407,7 @@ public class Semos implements IContent {
 			protected void createDialog() {
 				Behaviours.addGreeting(this);
 				Behaviours.addJob(this, "I am the librarian.");
-				Behaviours.addHelp(this, "Read!.");
+				Behaviours.addHelp(this, "Read!");
 				Behaviours.addGoodbye(this);
 			}
 		};
@@ -467,14 +458,10 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				Behaviours.addGreeting(this);
-				Behaviours
-						.addJob(
-								this,
-								"I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
-				Behaviours
-						.addHelp(
-								this,
-								"Ask me to #heal you and I will help you or ask me #offer and I will show my shop's stuff.");
+				Behaviours.addJob(this,
+						"I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
+				Behaviours.addHelp(this,
+						"Ask me to #heal you and I will help you or ask me #offer and I will show my shop's stuff.");
 				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
 						.get("healing")));
 				Behaviours.addHealer(this, 0);
@@ -507,10 +494,10 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0,
+				add(ConversationStates.IDLE,
 					Behaviours.GREETING_MESSAGES,
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
@@ -533,21 +520,16 @@ public class Semos implements IContent {
 							}
 						}
 				});
-				Behaviours
-						.addHelp(
-								this,
-								"I'm a telepath and telekinetic. I can help you by sharing my mental skills with you... Do you want me to show you the six basic elements of telepathy? I already know the answer but I'm being polite...");
-				Behaviours
-						.addJob(
-								this,
-								"I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion");
-				add(
-						1,
-						Behaviours.QUEST_MESSAGES,
-						null,
-						1,
-						"I do not have any task for you right now. If you need anything from me just say it. I think it's simply unkind reading one's mind without permission.",
-						null);
+				Behaviours.addHelp(this,
+						"I'm a telepath and telekinetic. I can help you by sharing my mental skills with you... Do you want me to show you the six basic elements of telepathy? I already know the answer but I'm being polite...");
+				Behaviours.addJob(this,
+						"I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion");
+				add(ConversationStates.ATTENDING,
+					Behaviours.QUEST_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"I do not have any task for you right now. If you need anything from me just say it. I think it's simply unkind reading one's mind without permission.",
+					null);
 				Behaviours.addGoodbye(this);
 			}
 		};
@@ -603,13 +585,10 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				Behaviours.addGreeting(this);
-				Behaviours
-						.addJob(this,
-								"I am the bar maid for this fair tavern. We sell fine beers and food.");
-				Behaviours
-						.addHelp(
-								this,
-								"At the tavern you can get an #offer of drinks and take a break to meet new people!.");
+				Behaviours.addJob(this,
+						"I am the bar maid for this fair tavern. We sell fine beers and food.");
+				Behaviours.addHelp(this,
+						"At the tavern you can get an #offer of drinks and take a break to meet new people!");
 				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
 						.get("food&drinks")));
 				Behaviours.addGoodbye(this);
@@ -640,13 +619,12 @@ public class Semos implements IContent {
 						.get("sellstuff")), false);
 				Behaviours.addBuyer(this, new Behaviours.BuyerBehaviour(shops
 						.get("buystuff")), false);
-				add(
-						1,
-						"offer",
-						null,
-						1,
-						"Have a look at the blackboards on the wall to see my offers",
-						null);
+				add(ConversationStates.ATTENDING,
+					"offer",
+					null,
+					ConversationStates.ATTENDING,
+					"Have a look at the blackboards on the wall to see my offers",
+					null);
 				Behaviours.addGoodbye(this);
 				StendhalRPZone zone = (StendhalRPZone) world
 						.getRPZone(new IRPZone.ID("int_semos_tavern_0"));
@@ -705,15 +683,13 @@ public class Semos implements IContent {
 		zone.assignRPObjectID(sign);
 		sign.setx(118);
 		sign.sety(43);
-		sign
-				.setText("You are about to leave this area to move to the forest.|You may fatten up your sheep there on wild berries.|Be careful though, these forests crawl with wolves.");
+		sign.setText("You are about to leave this area to move to the forest.|You may fatten up your sheep there on wild berries.|Be careful though, these forests crawl with wolves.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(38);
 		sign.sety(3);
-		sign
-				.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
+		sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
@@ -724,28 +700,24 @@ public class Semos implements IContent {
 		zone.add(sign);
 	}
 
-	private void buildSemosVillageArea(StendhalRPZone zone)
-			throws org.xml.sax.SAXException, java.io.IOException {
+	private void buildSemosVillageArea(StendhalRPZone zone) {
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(23);
 		sign.sety(61);
-		sign
-				.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
+		sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(60);
 		sign.sety(47);
-		sign
-				.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");
+		sign.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(16);
 		sign.sety(35);
-		sign
-				.setText("[CLOSED]|The tavern has moved to a much|better and central house in town.|Come buy your weapons, find your|quests and hang out there instead.");
+		sign.setText("[CLOSED]|The tavern has moved to a much|better and central house in town.|Come buy your weapons, find your|quests and hang out there instead.");
 		zone.add(sign);
 	}
 
@@ -818,29 +790,25 @@ public class Semos implements IContent {
 		zone.assignRPObjectID(sign);
 		sign.setx(4);
 		sign.sety(41);
-		sign
-				.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
+		sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(8);
 		sign.sety(47);
-		sign
-				.setText("Welcome to Stendhal!| Please report any problems and issues at our webpage.");
+		sign.setText("Welcome to Stendhal!| Please report any problems and issues at our webpage.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(26);
 		sign.sety(40);
-		sign
-				.setText("You are about to enter the Dungeons.|But Beware! This area is infested with rats and legend has |it that many Adventurers have died down there...");
+		sign.setText("You are about to enter the Dungeons.|But Beware! This area is infested with rats and legend has |it that many Adventurers have died down there...");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(44);
 		sign.sety(62);
-		sign
-				.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
+		sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
 		zone.add(sign);
 		Chest chest = new Chest();
 		zone.assignRPObjectID(chest);
@@ -868,10 +836,10 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0,
+				add(ConversationStates.IDLE,
 					Behaviours.GREETING_MESSAGES,
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
@@ -894,13 +862,12 @@ public class Semos implements IContent {
 								   "I'm a... hmmm... observer. I can help you by sharing my information about rumours with you... Do you want to know what has been happening around here lately?");
 				Behaviours.addJob(this,
 								  "I am committed to peek every curious fact about Semos. I know any rumor that has ever existed in Semos and I have invented most of them. Well, except that about Hackim smuggling Deniran's army weapons to wandering adventurer's like you");
-				add(
-						1,
-						Behaviours.QUEST_MESSAGES,
-						null,
-						1,
-						"I do not have any task for you right now. If you need anything from me just say it.",
-						null);
+				add(ConversationStates.ATTENDING,
+					Behaviours.QUEST_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"I do not have any task for you right now. If you need anything from me just say it.",
+					null);
 				Behaviours.addGoodbye(this);
 			}
 		};
@@ -917,10 +884,10 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0,
+				add(ConversationStates.IDLE,
 					Behaviours.GREETING_MESSAGES,
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
@@ -939,14 +906,10 @@ public class Semos implements IContent {
 							}
 						}
 					});
-				Behaviours
-						.addHelp(
-								this,
-								"I'm Diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?");
-				Behaviours
-						.addJob(
-								this,
-								"I am committed to give directions to foreigners and show them how to talk to people here. However, when I'm in a bad mood I give them misleading directions hehehe... What is not necessarily bad because I can give wrong directions unwillingly anyway and they can result in being the right directions");
+				Behaviours.addHelp(this,
+						"I'm Diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?");
+				Behaviours.addJob(this,
+						"I am committed to give directions to foreigners and show them how to talk to people here. However, when I'm in a bad mood I give them misleading directions hehehe... What is not necessarily bad because I can give wrong directions unwillingly anyway and they can result in being the right directions");
 				Behaviours.addGoodbye(this);
 			}
 		};
@@ -970,10 +933,10 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				add(0,
+				add(ConversationStates.IDLE,
 					Behaviours.GREETING_MESSAGES,
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
@@ -992,14 +955,10 @@ public class Semos implements IContent {
 							}
 						}
 					});
-				Behaviours
-						.addHelp(
-								this,
-								"Well, I'm a retired adventurer as I've told you before. I only can help you by sharing my experience with you... Do you want me to tell you how I used to kill creatures?");
-				Behaviours
-						.addJob(
-								this,
-								"I've sworn defending with my life the people of Semos from any creature that dares to get out of this dungeon. With all our young people battling Blordrough's dark legion at south, monsters are getting more and more confident to go to the surface.");
+				Behaviours.addHelp(this,
+						"Well, I'm a retired adventurer as I've told you before. I only can help you by sharing my experience with you... Do you want me to tell you how I used to kill creatures?");
+				Behaviours.addJob(this,
+						"I've sworn defending with my life the people of Semos from any creature that dares to get out of this dungeon. With all our young people battling Blordrough's dark legion at south, monsters are getting more and more confident to go to the surface.");
 				Behaviours.addGoodbye(this);
 			}
 		};
@@ -1025,35 +984,34 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				Behaviours.addGreeting(this);
-				Behaviours.addJob(this, "Hehehe! Job! hehehe! Muahahaha!.");
-				Behaviours
-						.addHelp(
-								this,
-								"I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.");
+				Behaviours.addJob(this, "Hehehe! Job! hehehe! Muahahaha!");
+				Behaviours.addHelp(this,
+						"I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.");
 				Behaviours.addGoodbye(this);
-				add(1,
+				add(ConversationStates.ATTENDING,
 					Behaviours.QUEST_MESSAGES,
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
+							// randomly select between two different messages
 							switch (Rand.rand(2)) {
 							case 0:
 								say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");
 								break;
 							case 1:
-								say("I have been told that on the deepest place of the dungeon under this city someone also buy sheeps, but *it* pays better!.");
+								say("I have been told that on the deepest place of the dungeon under this city someone also buy sheeps, but *it* pays better!");
 								break;
 							}
 						}
 					});
 				
-				add(1,
+				add(ConversationStates.ATTENDING,
 					"cleanme!",
 					null,
-					1,
+					ConversationStates.ATTENDING,
 					"What?",
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
