@@ -84,7 +84,7 @@ public class StendhalGroovyScript
     {
     if( zoneName == player.get("zoneid"))
       {
-      return(true);
+      return(zone.has(player.getID()));
       }
     return(false);
     }  
