@@ -197,6 +197,11 @@ public class Behaviours {
 			return amount;
 		}
 
+		/**
+		 * Returns the price of the desired amount of the chosen item.
+		 * @param player The player who considers buying
+		 * @return The price; 0 if no item was chosen or if the amount is 0.
+		 */
 		public int getCharge(Player player) {
 			if (chosenItem == null) {
 				return 0;
@@ -225,7 +230,9 @@ public class Behaviours {
 			return money;
 		}
 
-		// TODO: why does this return boolean, not void? There's no return statement.
+		// TODO: why does this return boolean, when there's no return statement?
+		// Consider making playerMoney() obsolete by using this function's return
+		// value in order to check if the player is able to pay.
 		public boolean chargePlayer(Player player) {
 			int left = getCharge(player);
 
@@ -251,12 +258,19 @@ public class Behaviours {
 					}
 				}
 			}
-
 			world.modify(player);
 
 			return left == 0;
 		}
 
+		/**
+		 * Transacts the sale that has been agreed on earlier via
+		 * setChosenItem() and setAmount().
+		 * @param seller The NPC who sells
+		 * @param player The player who buys
+		 * @return true iff the transaction was successful, that is when the
+		 *              player was able to equip the item(s).
+		 */
 		public boolean transactAgreedSale(SpeakerNPC seller, Player player) {
 			EntityManager manager = world.getRuleManager().getEntityManager();
 
@@ -627,7 +641,7 @@ public class Behaviours {
 				"offer",
 				null,
 				ConversationStates.ATTENDING,
-				"I heal",
+				"I can #heal you.",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
