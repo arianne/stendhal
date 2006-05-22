@@ -44,6 +44,8 @@ public class Item extends PassiveEntity
 
     entity.add("quantity",RPClass.INT); // Some items(Stackable) has quantity
     entity.add("infostring",RPClass.STRING); // To store additional info with an item     
+
+    entity.add("persistent",RPClass.SHORT);  // Some items have individual values
     }
 
   /**
@@ -120,6 +122,19 @@ public class Item extends PassiveEntity
       return getInt("def");
 
     return 0;
+  }
+
+  /**
+   * Returns if the item is persistent. Persistent items do not update
+   * their stats from the item database and thus can have individual stats
+   * @return true if item is persistent 
+   */
+  public boolean isPersistent()
+  {
+    if (has("persistent"))
+      return (getInt("persistent")==1);
+
+    return false;
   }
   
   /**

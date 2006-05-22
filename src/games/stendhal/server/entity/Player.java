@@ -34,6 +34,7 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.Attributes;
 
 import org.apache.log4j.Logger;
 
@@ -289,6 +290,11 @@ public class Player extends RPEntity {
 
 								entity.setID(item.getID());
 
+                 if(item.has("persistent") && item.getInt("persistent")==1) {
+                   entity.fill((Attributes)item);
+                 }
+                
+                
 								if (entity instanceof StackableItem) {
 									StackableItem money = (StackableItem) entity;
 									money.setQuantity(item.getInt("quantity"));
