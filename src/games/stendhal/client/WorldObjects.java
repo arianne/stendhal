@@ -30,88 +30,73 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Class meant to work as a global event multiplexer for world objects and zones.
- * Events shall be reported dependent on succession of game flow and in
- * particular free from events caused by perceptions and sync operations
- * of the lower client layers.
- *  
- *  Currently works for zone events.  
+ * Class meant to work as a global event multiplexer for world objects and
+ * zones. Events shall be reported dependent on succession of game flow and in
+ * particular free from events caused by perceptions and sync operations of the
+ * lower client layers.
+ * 
+ * Currently works for zone events.
  */
-public class WorldObjects
-{
-   private static List<WorldListener> worldListeners = new ArrayList<WorldListener>();
+public class WorldObjects {
+	private static List<WorldListener> worldListeners = new ArrayList<WorldListener>();
 
-   public static interface WorldListener
-   {
-      /** Called when a world zone has been loaded. */ 
-      public void zoneEntered ( String zoneName );
+	public static interface WorldListener {
+		/** Called when a world zone has been loaded. */
+		public void zoneEntered(String zoneName);
 
-      /** Called when a world zone has been unloaded. */ 
-      public void zoneLeft ( String zoneName );
+		/** Called when a world zone has been unloaded. */
+		public void zoneLeft(String zoneName);
 
-      /** Called when the player arrives at a map location. */
-      public void playerMoved ( Player player );
-   }
+		/** Called when the player arrives at a map location. */
+		public void playerMoved(Player player);
+	}
 
-   /** Adds a WorldListener to this event distributor. */
-   public static void addWorldListener ( WorldListener a )
-   {
-      synchronized ( worldListeners )
-      {
-         if ( !worldListeners.contains( a ) )
-            worldListeners.add( a );
-      }
-   }
-   
-   /** Removes a WorldListener from this event distributor. */
-   public static void removeWorldListener ( WorldListener a )
-   {
-      synchronized ( worldListeners )
-      {
-         worldListeners.remove( a );
-      }
-   }
+	/** Adds a WorldListener to this event distributor. */
+	public static void addWorldListener(WorldListener a) {
+		synchronized (worldListeners) {
+			if (!worldListeners.contains(a))
+				worldListeners.add(a);
+		}
+	}
 
-   /** Create a zone-entered event. */
-   public static void fireZoneEntered ( String zoneName )
-   {
-      Iterator it;
-      
-      synchronized ( worldListeners )
-      {
-         for ( it = worldListeners.iterator(); it.hasNext(); )
-         {
-            ((WorldListener)it.next()).zoneEntered( zoneName );
-         }
-      }      
-   }  // fireZoneEntered
-   
-   /** Create a zone-left event. */
-   public static void fireZoneLeft ( String zoneName )
-   {
-      Iterator it;
-      
-      synchronized ( worldListeners )
-      {
-         for ( it = worldListeners.iterator(); it.hasNext(); )
-         {
-            ((WorldListener)it.next()).zoneLeft( zoneName );
-         }
-      }      
-   }  // fireZoneLeft
-   
-   /** Create a player-moved event. */
-   public static void firePlayerMoved ( Player player )
-   {
-      Iterator it;
-      
-      synchronized ( worldListeners )
-      {
-         for ( it = worldListeners.iterator(); it.hasNext(); )
-         {
-            ((WorldListener)it.next()).playerMoved( player );
-         }
-      }      
-   }  // firePlayerMoved
-   
+	/** Removes a WorldListener from this event distributor. */
+	public static void removeWorldListener(WorldListener a) {
+		synchronized (worldListeners) {
+			worldListeners.remove(a);
+		}
+	}
+
+	/** Create a zone-entered event. */
+	public static void fireZoneEntered(String zoneName) {
+		Iterator it;
+
+		synchronized (worldListeners) {
+			for (it = worldListeners.iterator(); it.hasNext();) {
+				((WorldListener) it.next()).zoneEntered(zoneName);
+			}
+		}
+	} // fireZoneEntered
+
+	/** Create a zone-left event. */
+	public static void fireZoneLeft(String zoneName) {
+		Iterator it;
+
+		synchronized (worldListeners) {
+			for (it = worldListeners.iterator(); it.hasNext();) {
+				((WorldListener) it.next()).zoneLeft(zoneName);
+			}
+		}
+	} // fireZoneLeft
+
+	/** Create a player-moved event. */
+	public static void firePlayerMoved(Player player) {
+		Iterator it;
+
+		synchronized (worldListeners) {
+			for (it = worldListeners.iterator(); it.hasNext();) {
+				((WorldListener) it.next()).playerMoved(player);
+			}
+		}
+	} // firePlayerMoved
+
 }

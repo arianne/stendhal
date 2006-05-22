@@ -15,39 +15,41 @@ package games.stendhal.client;
 import java.awt.*;
 
 /**
- * A sprite to be displayed on the screen. Note that a sprite
- * contains no state information, i.e. its just the image and 
- * not the location. This allows us to use a single sprite in
- * lots of different places without having to store multiple 
- * copies of the image.
+ * A sprite to be displayed on the screen. Note that a sprite contains no state
+ * information, i.e. its just the image and not the location. This allows us to
+ * use a single sprite in lots of different places without having to store
+ * multiple copies of the image.
  * 
  * @author Kevin Glass
  */
-public class Sprite
-  {
+public class Sprite {
 	/** The image to be drawn for this sprite */
 	protected Image image;
-	
+
 	/**
 	 * Create a new sprite based on an image
 	 * 
-	 * @param image The image that is this sprite
+	 * @param image
+	 *            The image that is this sprite
 	 */
-    public Sprite(Image image) {
+	public Sprite(Image image) {
 		this.image = image;
 	}
-   
-   public Graphics getGraphics() {
-    return image.getGraphics();
-  }
-   
-  public Sprite copy() {
-    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-    Image image = gc.createCompatibleImage(getWidth(),getHeight(),Transparency.BITMASK);
-    draw(image.getGraphics(),0,0);
-    return new Sprite(image);
-  }
-	
+
+	public Graphics getGraphics() {
+		return image.getGraphics();
+	}
+
+	public Sprite copy() {
+		GraphicsConfiguration gc = GraphicsEnvironment
+				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration();
+		Image image = gc.createCompatibleImage(getWidth(), getHeight(),
+				Transparency.BITMASK);
+		draw(image.getGraphics(), 0, 0);
+		return new Sprite(image);
+	}
+
 	/**
 	 * Get the width of the drawn sprite
 	 * 
@@ -65,34 +67,39 @@ public class Sprite
 	public int getHeight() {
 		return image.getHeight(null);
 	}
-	
+
 	/**
 	 * Draw the sprite onto the graphics context provided
 	 * 
-	 * @param g The graphics context on which to draw the sprite
-	 * @param x The x location at which to draw the sprite
-	 * @param y The y location at which to draw the sprite
+	 * @param g
+	 *            The graphics context on which to draw the sprite
+	 * @param x
+	 *            The x location at which to draw the sprite
+	 * @param y
+	 *            The y location at which to draw the sprite
 	 */
-	public void draw(Graphics g,int x,int y) {
-		g.drawImage(image,x,y,null);
+	public void draw(Graphics g, int x, int y) {
+		g.drawImage(image, x, y, null);
 	}
 
 	// Bugfix: to use image.getWidth()/getHeight() is not correct for images
 	// coming from the Tilestore, as those are used to draw more than 1 Sprite
-	// from the same image. The relevant image size is that of the image 
+	// from the same image. The relevant image size is that of the image
 	// that we're painting in, but the Graphics context doesn't say anything
 	// about the size of the image it belongs to so I had to add parameters
 	// for width and height. This bug was responsible for the drawing problems
-	// on Mac OS X. 
+	// on Mac OS X.
 	// What I don't understand now though is why it worked well on Windows ;)
-	// This bugfix also affects Sprite.draw in TileStore.java and SpriteStore.java
+	// This bugfix also affects Sprite.draw in TileStore.java and
+	// SpriteStore.java
 	// intensifly @ gmx.com, April 20th, 2006
-	
-//	public void draw(Graphics g, int destx, int desty, int x,int y) {
 
-    public void draw(Graphics g, int destx, int desty, int x,int y, int w, int h) {
+	// public void draw(Graphics g, int destx, int desty, int x,int y) {
 
-//        g.drawImage(image,destx,desty,image.getWidth(null),image.getHeight(null),x,y,x+image.getWidth(null),y+image.getHeight(null),null);
-        g.drawImage(image,destx,desty,w,h,x,y,x+w,y+h,null);
-    }
+	public void draw(Graphics g, int destx, int desty, int x, int y, int w,
+			int h) {
+
+		// g.drawImage(image,destx,desty,image.getWidth(null),image.getHeight(null),x,y,x+image.getWidth(null),y+image.getHeight(null),null);
+		g.drawImage(image, destx, desty, w, h, x, y, x + w, y + h, null);
+	}
 }

@@ -23,149 +23,135 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
-public class NPC extends RPEntity
-  {
-  private static final Logger logger = Log4J.getLogger(NPC.class);
-  private Sprite ideaImage;
+public class NPC extends RPEntity {
+	private static final Logger logger = Log4J.getLogger(NPC.class);
 
-  private static Sprite eat;
-  private static Sprite food;
-  private static Sprite walk;
-  private static Sprite follow;
+	private Sprite ideaImage;
 
-  private int outfit;  
-  
-  static
-    {
-    SpriteStore st=SpriteStore.get();
-    
-    eat=st.getSprite("data/sprites/ideas/eat.png");
-    food=st.getSprite("data/sprites/ideas/food.png");
-    walk=st.getSprite("data/sprites/ideas/walk.png");
-    follow=st.getSprite("data/sprites/ideas/follow.png");
-    }
-    
-  public NPC(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-    {
-    super(gameObjects,object);
-    
-    String type=getType();
-    
-    String name=null;
-    if(object.has("name"))
-      {
-      name=object.get("name");
-      }
-    else
-      {
-      name=object.get("type");
-      }
-    
+	private static Sprite eat;
 
-    if ( type.startsWith( "npc" ) )
-    {
-       setAudibleRange( 3 );
-       if ( name.equals( "Diogenes" ) )
-          SoundSystem.startSoundCycle( this, "Diogenes-patrol", 10000, 20, 50, 100 );
-       else if ( name.equals( "Carmen" ) )
-          SoundSystem.startSoundCycle( this, "Carmen-patrol", 60000, 20, 50, 75 );
-       else if ( name.equals( "Nishiya" ) )
-          SoundSystem.startSoundCycle( this, "Nishiya-patrol", 40000, 20, 50, 80 );
-       else if ( name.equals( "Margaret" ) )
-          SoundSystem.startSoundCycle( this, "Margaret-patrol", 30000, 10, 30, 70 );
-       else if ( name.equals( "Sato" ) )
-          SoundSystem.startSoundCycle( this, "Sato-patrol", 60000, 30, 50, 70 );
-    }
-    }
+	private static Sprite food;
 
-  protected void buildAnimations(RPObject object)
-    {
-    SpriteStore store=SpriteStore.get();
+	private static Sprite walk;
 
-    Sprite aspect;
-    
-    try
-      {
-      if(object.has("outfit"))
-        {
-        if(outfit==object.getInt("outfit") && outfit!=0)
-          {
-          // We avoid creating again the outfiot if it is already done.
-          // Save CPU cycles.
-          return;
-          }
-        
-        outfit=object.getInt("outfit");
-        aspect=setOutFitPlayer(store,object);      
-        }
-      else
-        {
-        aspect=store.getSprite(translate("npc/"+object.get("class")));
-        }      
-      }
-    catch(Exception e)
-      {
-      logger.error("cannot build Animations",e);
-      aspect=store.getSprite(translate(object.get("class")));
-      }
+	private static Sprite follow;
 
-    sprites.put("move_up", store.getAnimatedSprite(aspect,0,4,1.5,2));
-    sprites.put("move_right", store.getAnimatedSprite(aspect,1,4,1.5,2));
-    sprites.put("move_down", store.getAnimatedSprite(aspect,2,4,1.5,2));
-    sprites.put("move_left", store.getAnimatedSprite(aspect,3,4,1.5,2));
+	private int outfit;
 
-    sprites.get("move_up")[3]=sprites.get("move_up")[1];
-    sprites.get("move_right")[3]=sprites.get("move_right")[1];
-    sprites.get("move_down")[3]=sprites.get("move_down")[1];
-    sprites.get("move_left")[3]=sprites.get("move_left")[1];
-    }
+	static {
+		SpriteStore st = SpriteStore.get();
 
-  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
-    {
-    super.onChangedAdded(base,diff);
-    
-    if(diff.has("idea"))
-      {
-      String idea=diff.get("idea");
-      if(idea.equals("eat"))
-        {
-        ideaImage=eat;
-        }
-      else if(idea.equals("food"))
-        {
-        ideaImage=food;
-        }
-      else if(idea.equals("walk"))
-        {
-        ideaImage=walk;
-        }
-      else if(idea.equals("follow"))
-        {
-        ideaImage=follow;
-        }
-      }
-    }
+		eat = st.getSprite("data/sprites/ideas/eat.png");
+		food = st.getSprite("data/sprites/ideas/food.png");
+		walk = st.getSprite("data/sprites/ideas/walk.png");
+		follow = st.getSprite("data/sprites/ideas/follow.png");
+	}
 
-  public Rectangle2D getArea()
-    {
-    return new Rectangle.Double(x,y+1,1,1);
-    }
-    
-  public Rectangle2D getDrawedArea()
-    {
-    return new Rectangle.Double(x,y,1.5,2);
-    }  
-    
-  public void draw(GameScreen screen)
-    {
-    super.draw(screen);
-    
-    if(ideaImage!=null)
-      {
-      Rectangle2D rect=getArea();
-      double sx=rect.getMaxX();
-      double sy=rect.getY();
-      screen.draw(ideaImage,sx-0.25,sy-0.25);
-      }
-    }
-  }
+	public NPC(GameObjects gameObjects, RPObject object)
+			throws AttributeNotFoundException {
+		super(gameObjects, object);
+
+		String type = getType();
+
+		String name = null;
+		if (object.has("name")) {
+			name = object.get("name");
+		} else {
+			name = object.get("type");
+		}
+
+		if (type.startsWith("npc")) {
+			setAudibleRange(3);
+			if (name.equals("Diogenes"))
+				SoundSystem.startSoundCycle(this, "Diogenes-patrol", 10000, 20,
+						50, 100);
+			else if (name.equals("Carmen"))
+				SoundSystem.startSoundCycle(this, "Carmen-patrol", 60000, 20,
+						50, 75);
+			else if (name.equals("Nishiya"))
+				SoundSystem.startSoundCycle(this, "Nishiya-patrol", 40000, 20,
+						50, 80);
+			else if (name.equals("Margaret"))
+				SoundSystem.startSoundCycle(this, "Margaret-patrol", 30000, 10,
+						30, 70);
+			else if (name.equals("Sato"))
+				SoundSystem.startSoundCycle(this, "Sato-patrol", 60000, 30, 50,
+						70);
+		}
+	}
+
+	protected void buildAnimations(RPObject object) {
+		SpriteStore store = SpriteStore.get();
+
+		Sprite aspect;
+
+		try {
+			if (object.has("outfit")) {
+				if (outfit == object.getInt("outfit") && outfit != 0) {
+					// We avoid creating again the outfiot if it is already
+					// done.
+					// Save CPU cycles.
+					return;
+				}
+
+				outfit = object.getInt("outfit");
+				aspect = setOutFitPlayer(store, object);
+			} else {
+				aspect = store
+						.getSprite(translate("npc/" + object.get("class")));
+			}
+		} catch (Exception e) {
+			logger.error("cannot build Animations", e);
+			aspect = store.getSprite(translate(object.get("class")));
+		}
+
+		sprites.put("move_up", store.getAnimatedSprite(aspect, 0, 4, 1.5, 2));
+		sprites
+				.put("move_right", store
+						.getAnimatedSprite(aspect, 1, 4, 1.5, 2));
+		sprites.put("move_down", store.getAnimatedSprite(aspect, 2, 4, 1.5, 2));
+		sprites.put("move_left", store.getAnimatedSprite(aspect, 3, 4, 1.5, 2));
+
+		sprites.get("move_up")[3] = sprites.get("move_up")[1];
+		sprites.get("move_right")[3] = sprites.get("move_right")[1];
+		sprites.get("move_down")[3] = sprites.get("move_down")[1];
+		sprites.get("move_left")[3] = sprites.get("move_left")[1];
+	}
+
+	public void onChangedAdded(RPObject base, RPObject diff)
+			throws AttributeNotFoundException {
+		super.onChangedAdded(base, diff);
+
+		if (diff.has("idea")) {
+			String idea = diff.get("idea");
+			if (idea.equals("eat")) {
+				ideaImage = eat;
+			} else if (idea.equals("food")) {
+				ideaImage = food;
+			} else if (idea.equals("walk")) {
+				ideaImage = walk;
+			} else if (idea.equals("follow")) {
+				ideaImage = follow;
+			}
+		}
+	}
+
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y + 1, 1, 1);
+	}
+
+	public Rectangle2D getDrawedArea() {
+		return new Rectangle.Double(x, y, 1.5, 2);
+	}
+
+	public void draw(GameScreen screen) {
+		super.draw(screen);
+
+		if (ideaImage != null) {
+			Rectangle2D rect = getArea();
+			double sx = rect.getMaxX();
+			double sy = rect.getY();
+			screen.draw(ideaImage, sx - 0.25, sy - 0.25);
+		}
+	}
+}

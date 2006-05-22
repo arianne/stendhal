@@ -18,35 +18,33 @@ import games.stendhal.client.SpriteStore;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
-
-
 /** A Creature entity */
-public class NormalCreature extends Creature 
-  {
-  public NormalCreature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-    {
-    super(gameObjects, object);
-    }
-  
-  protected void buildAnimations(RPObject object)
-    {
-    SpriteStore store=SpriteStore.get();  
-    Sprite creature=loadAnimationSprite(object);
+public class NormalCreature extends Creature {
+	public NormalCreature(GameObjects gameObjects, RPObject object)
+			throws AttributeNotFoundException {
+		super(gameObjects, object);
+	}
 
-    sprites.put("move_up", store.getAnimatedSprite(creature,0,4,1.5,2));      
-    sprites.put("move_right", store.getAnimatedSprite(creature,1,4,1.5,2));      
-    sprites.put("move_down", store.getAnimatedSprite(creature,2,4,1.5,2));      
-    sprites.put("move_left", store.getAnimatedSprite(creature,3,4,1.5,2));      
+	protected void buildAnimations(RPObject object) {
+		SpriteStore store = SpriteStore.get();
+		Sprite creature = loadAnimationSprite(object);
 
-    sprites.get("move_up")[3]=sprites.get("move_up")[1];
-    sprites.get("move_right")[3]=sprites.get("move_right")[1];
-    sprites.get("move_down")[3]=sprites.get("move_down")[1];
-    sprites.get("move_left")[3]=sprites.get("move_left")[1];
-    }
-  
-  protected Sprite defaultAnimation()
-    {
-    animation="move_up";
-    return sprites.get("move_up")[0];
-    }
-  }
+		sprites.put("move_up", store.getAnimatedSprite(creature, 0, 4, 1.5, 2));
+		sprites.put("move_right", store.getAnimatedSprite(creature, 1, 4, 1.5,
+				2));
+		sprites.put("move_down", store
+				.getAnimatedSprite(creature, 2, 4, 1.5, 2));
+		sprites.put("move_left", store
+				.getAnimatedSprite(creature, 3, 4, 1.5, 2));
+
+		sprites.get("move_up")[3] = sprites.get("move_up")[1];
+		sprites.get("move_right")[3] = sprites.get("move_right")[1];
+		sprites.get("move_down")[3] = sprites.get("move_down")[1];
+		sprites.get("move_left")[3] = sprites.get("move_left")[1];
+	}
+
+	protected Sprite defaultAnimation() {
+		animation = "move_up";
+		return sprites.get("move_up")[0];
+	}
+}

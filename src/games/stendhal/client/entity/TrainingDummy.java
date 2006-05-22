@@ -17,34 +17,30 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class TrainingDummy extends RPEntity 
-  {
-  public TrainingDummy(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-    {    
-    super(gameObjects, object);
-    }
+public class TrainingDummy extends RPEntity {
+	public TrainingDummy(GameObjects gameObjects, RPObject object)
+			throws AttributeNotFoundException {
+		super(gameObjects, object);
+	}
 
-  protected void buildAnimations(RPObject object)
-    {
-    SpriteStore store=SpriteStore.get();  
+	protected void buildAnimations(RPObject object) {
+		SpriteStore store = SpriteStore.get();
 
-    sprites.put("default", store.getAnimatedSprite(translate(object.get("type")),0,1,1,2));      
-    }
-  
-  protected Sprite defaultAnimation()
-    {
-    animation="default";
-    return sprites.get("default")[0];
-    }
+		sprites.put("default", store.getAnimatedSprite(translate(object
+				.get("type")), 0, 1, 1, 2));
+	}
 
-  public Rectangle2D getArea()
-    {
-    return new Rectangle.Double(x,y+1,1,1);
-    }
-    
-  public Rectangle2D getDrawedArea()
-    {
-    return new Rectangle.Double(x,y,1,2);
-    }  
-    
-  }
+	protected Sprite defaultAnimation() {
+		animation = "default";
+		return sprites.get("default")[0];
+	}
+
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y + 1, 1, 1);
+	}
+
+	public Rectangle2D getDrawedArea() {
+		return new Rectangle.Double(x, y, 1, 2);
+	}
+
+}

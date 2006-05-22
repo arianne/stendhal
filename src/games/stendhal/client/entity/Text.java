@@ -17,118 +17,118 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Text extends Entity 
-  {
-  private final static long STANDARD_PERSISTENCE_TIME=5000;
+public class Text extends Entity {
+	private final static long STANDARD_PERSISTENCE_TIME = 5000;
 
-  private double tx;
-  private double ty;
-  private Sprite textImage;
-  private long textImageTime;
-  private long textPersistTime;
-  private String text;
-  
-  public Text(GameObjects gameObjects, Sprite text, double x, double y,
-              long persistTime ) throws AttributeNotFoundException  
-    {    
-    this.gameObjects=gameObjects;
-    this.client=StendhalClient.get();
-    
-    textImage=text;
-    textImageTime=System.currentTimeMillis();
+	private double tx;
 
-    if ( (textPersistTime = persistTime) == 0 )
-       textPersistTime = STANDARD_PERSISTENCE_TIME;
+	private double ty;
 
-    // Speech bubbles should be top right of speaker intensifly@gmx.com
-//    this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
-    this.tx=x+1;
+	private Sprite textImage;
 
-//    this.ty=y-0.5;
-    this.ty=y;
-    this.x=x;
-    this.y=y;
-    }
-  
-  public String toString()
-    {
-    return text;
-    }
-    
-  public Text(GameObjects gameObjects, String text, double x, double y, Color color, boolean isTalking) throws AttributeNotFoundException
-    {    
-    this.gameObjects=gameObjects;
-    this.client=StendhalClient.get();
-    
-    // Speech bubbles will only be drawn if there's a background color   intensifly@gmx.com
-    textImage=GameScreen.get().createTextBox(text,240,color,Color.white,isTalking);
-    textImageTime=System.currentTimeMillis();
-    textPersistTime = Math.max( STANDARD_PERSISTENCE_TIME, text.length() * STANDARD_PERSISTENCE_TIME / 50 );
+	private long textImageTime;
 
-    if(isTalking)
-      {
-      // Speech bubbles should be top right of speaker intensifly@gmx.com
-      this.tx=x+1;
-      this.ty=y;
-     
-      }
-    else
-      {
-      this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
-      this.ty=y+1.5;
-      }
-    
-    this.x=x;
-    this.y=y;
-    this.text=text;
-    
-    drawedArea=new Rectangle.Double(x,y,textImage.getWidth()/GameScreen.SIZE_UNIT_PIXELS, textImage.getHeight()/GameScreen.SIZE_UNIT_PIXELS);
-    }
-  
-  public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException
-    {
-    }
+	private long textPersistTime;
 
-  public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException
-    {
-    }
-    
-  public String defaultAction()
-    {
-    return null;
-    }
+	private String text;
 
-  public String[] offeredActions()
-    {
-    return null;
-    }
+	public Text(GameObjects gameObjects, Sprite text, double x, double y,
+			long persistTime) throws AttributeNotFoundException {
+		this.gameObjects = gameObjects;
+		this.client = StendhalClient.get();
 
-  public void onAction(StendhalClient client, String action, String... params)
-    {
-    }
+		textImage = text;
+		textImageTime = System.currentTimeMillis();
 
-  public Rectangle2D getArea()
-    {
-    return null;
-    }
-    
-  public Rectangle2D getDrawedArea()
-    {
-    return new Rectangle.Double(tx,ty,textImage.getWidth()/GameScreen.SIZE_UNIT_PIXELS,textImage.getHeight()/GameScreen.SIZE_UNIT_PIXELS);
-    }  
+		if ((textPersistTime = persistTime) == 0)
+			textPersistTime = STANDARD_PERSISTENCE_TIME;
 
-  public void draw(GameScreen screen)
-    {
-    screen.draw(textImage,tx,ty);
-    
-    if( System.currentTimeMillis() - textImageTime > textPersistTime ) 
-      {
-      gameObjects.removeText(this);
-      }
-    }
+		// Speech bubbles should be top right of speaker intensifly@gmx.com
+		// this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
+		this.tx = x + 1;
 
-  public int compare(Entity entity)
-    {
-    return 1;
-    }
-  }
+		// this.ty=y-0.5;
+		this.ty = y;
+		this.x = x;
+		this.y = y;
+	}
+
+	public String toString() {
+		return text;
+	}
+
+	public Text(GameObjects gameObjects, String text, double x, double y,
+			Color color, boolean isTalking) throws AttributeNotFoundException {
+		this.gameObjects = gameObjects;
+		this.client = StendhalClient.get();
+
+		// Speech bubbles will only be drawn if there's a background color
+		// intensifly@gmx.com
+		textImage = GameScreen.get().createTextBox(text, 240, color,
+				Color.white, isTalking);
+		textImageTime = System.currentTimeMillis();
+		textPersistTime = Math.max(STANDARD_PERSISTENCE_TIME, text.length()
+				* STANDARD_PERSISTENCE_TIME / 50);
+
+		if (isTalking) {
+			// Speech bubbles should be top right of speaker intensifly@gmx.com
+			this.tx = x + 1;
+			this.ty = y;
+
+		} else {
+			this.tx = x
+					+ 0.7
+					- (textImage.getWidth() / ((float) GameScreen.SIZE_UNIT_PIXELS * 2.0f));
+			this.ty = y + 1.5;
+		}
+
+		this.x = x;
+		this.y = y;
+		this.text = text;
+
+		drawedArea = new Rectangle.Double(x, y, textImage.getWidth()
+				/ GameScreen.SIZE_UNIT_PIXELS, textImage.getHeight()
+				/ GameScreen.SIZE_UNIT_PIXELS);
+	}
+
+	public void onChangedAdded(RPObject base, RPObject diff)
+			throws AttributeNotFoundException {
+	}
+
+	public void onChangedRemoved(RPObject base, RPObject diff)
+			throws AttributeNotFoundException {
+	}
+
+	public String defaultAction() {
+		return null;
+	}
+
+	public String[] offeredActions() {
+		return null;
+	}
+
+	public void onAction(StendhalClient client, String action, String... params) {
+	}
+
+	public Rectangle2D getArea() {
+		return null;
+	}
+
+	public Rectangle2D getDrawedArea() {
+		return new Rectangle.Double(tx, ty, textImage.getWidth()
+				/ GameScreen.SIZE_UNIT_PIXELS, textImage.getHeight()
+				/ GameScreen.SIZE_UNIT_PIXELS);
+	}
+
+	public void draw(GameScreen screen) {
+		screen.draw(textImage, tx, ty);
+
+		if (System.currentTimeMillis() - textImageTime > textPersistTime) {
+			gameObjects.removeText(this);
+		}
+	}
+
+	public int compare(Entity entity) {
+		return 1;
+	}
+}

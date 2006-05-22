@@ -17,58 +17,47 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Portal extends Entity 
-  {
-  public Portal(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-    {    
-    super(gameObjects, object);
-    }
-    
-  protected void loadSprite(RPObject object)
-    {
-    sprite=null;
-    }
-    
-  public Rectangle2D getArea()
-    {
-    return new Rectangle.Double(x,y,1,1);
-    }
-    
-  public Rectangle2D getDrawedArea()
-    {
-    return new Rectangle.Double(x,y,1,1);
-    }  
-    
+public class Portal extends Entity {
+	public Portal(GameObjects gameObjects, RPObject object)
+			throws AttributeNotFoundException {
+		super(gameObjects, object);
+	}
 
-  public String defaultAction()
-    {
-    return "Use";
-    }
+	protected void loadSprite(RPObject object) {
+		sprite = null;
+	}
 
-  public String[] offeredActions()
-    {
-    String[] list={"Use"};
-    return list;
-    }
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y, 1, 1);
+	}
 
-  public void onAction(StendhalClient client, String action, String... params)
-    {
-    if(action.equals("Use"))
-      {
-      RPAction rpaction=new RPAction();
-      rpaction.put("type","use");
-      int id=getID().getObjectID();
-      rpaction.put("target",id);      
-      client.send(rpaction);
-      }
-    }
+	public Rectangle2D getDrawedArea() {
+		return new Rectangle.Double(x, y, 1, 1);
+	}
 
-  public void draw(GameScreen screen)
-    {
-    }
+	public String defaultAction() {
+		return "Use";
+	}
 
-  public int compare(Entity entity)
-    {
-    return -1;
-    }
-  }
+	public String[] offeredActions() {
+		String[] list = { "Use" };
+		return list;
+	}
+
+	public void onAction(StendhalClient client, String action, String... params) {
+		if (action.equals("Use")) {
+			RPAction rpaction = new RPAction();
+			rpaction.put("type", "use");
+			int id = getID().getObjectID();
+			rpaction.put("target", id);
+			client.send(rpaction);
+		}
+	}
+
+	public void draw(GameScreen screen) {
+	}
+
+	public int compare(Entity entity) {
+		return -1;
+	}
+}

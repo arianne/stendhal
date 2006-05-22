@@ -18,67 +18,65 @@ import marauroa.common.Log4J;
 import games.stendhal.common.Debug;
 import org.apache.log4j.Logger;
 
+public class stendhal extends Thread {
+	private static final Logger logger = Log4J.getLogger(stendhal.class);
 
-public class stendhal extends Thread
-  {
-  private static final Logger logger = Log4J.getLogger(stendhal.class);
+	public static boolean doLogin = false;
 
-  public static boolean doLogin=false;
-  
-  public static final String[] SERVERS_LIST=
-    {
-    "stendhal.game-server.cc",
-    "stendhal.ombres.ambre.net",
-    "localhost"    
-    };
-  
-  public static final String STENDHAL_FOLDER = System.getProperty("user.home")+"/stendhal/";  
-  public static final String VERSION=Debug.VERSION;
-  
-  public static final String VERSION_LOCATION="http://arianne.sourceforge.net/stendhal.version";
-  public static String SCREEN_SIZE="640x480";
-  
+	public static final String[] SERVERS_LIST = { "stendhal.game-server.cc",
+			"stendhal.ombres.ambre.net", "localhost" };
 
-  public static final boolean SHOW_COLLISION_DETECTION  = false;
-  public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
-  public static final boolean FILTER_ATTACK_MESSAGES = true;
-  public static final int FPS_LIMIT = 25;
+	public static final String STENDHAL_FOLDER = System
+			.getProperty("user.home")
+			+ "/stendhal/";
 
-  public static void main(String args[]) 
-    {
-    String size=null;
-    int i=0;
+	public static final String VERSION = Debug.VERSION;
 
-    while(i!=args.length)
-      {
-      if(args[i].equals("-s"))
-        {
-        size=args[i+1];
-        }
-      i++;
-      }
-    
-    if(size!=null)
-      {
-      SCREEN_SIZE=size;
-      }     
+	public static final String VERSION_LOCATION = "http://arianne.sourceforge.net/stendhal.version";
 
+	public static String SCREEN_SIZE = "640x480";
 
-    Log4J.init("data/conf/log4j.properties");
-    
-    logger.info("Setting base at :"+STENDHAL_FOLDER);   
-    logger.info("Stendhal "+VERSION);
-    logger.info("OS: "+System.getProperty("os.name")+" "+System.getProperty("os.version"));
-    logger.info("Java: "+System.getProperty("java.version"));
-    
-    StendhalClient client=StendhalClient.get();
-    new StendhalFirstScreen(client);
-    
-    while(!doLogin)
-      {
-      try{Thread.sleep(200);}catch(Exception e){}
-      }
-    
-    new j2DClient(client);
-    }    
-  }
+	public static final boolean SHOW_COLLISION_DETECTION = false;
+
+	public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
+
+	public static final boolean FILTER_ATTACK_MESSAGES = true;
+
+	public static final int FPS_LIMIT = 25;
+
+	public static void main(String args[]) {
+		String size = null;
+		int i = 0;
+
+		while (i != args.length) {
+			if (args[i].equals("-s")) {
+				size = args[i + 1];
+			}
+			i++;
+		}
+
+		if (size != null) {
+			SCREEN_SIZE = size;
+		}
+
+		Log4J.init("data/conf/log4j.properties");
+
+		logger.info("Setting base at :" + STENDHAL_FOLDER);
+		logger.info("Stendhal " + VERSION);
+		logger.info("OS: " + System.getProperty("os.name") + " "
+				+ System.getProperty("os.version"));
+		logger.info("Java: " + System.getProperty("java.version"));
+
+		StendhalClient client = StendhalClient.get();
+		new StendhalFirstScreen(client);
+
+		while (!doLogin) {
+			try {
+				Thread.sleep(200);
+			} catch (Exception e) {
+			}
+		}
+
+		new j2DClient(client);
+	}
+}

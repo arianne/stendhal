@@ -14,49 +14,36 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
-import java.awt.*;
-import java.awt.geom.*;
 
-public class MiscItem extends Item 
-  {
-  private String name;
-  
-  public MiscItem(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-    {    
-    super(gameObjects, object);    
-    }
+public class MiscItem extends Item {
+	private String name;
 
-  protected void loadSprite(RPObject object)
-    {
-    SpriteStore store=SpriteStore.get();   
-    
-    String miscName=object.get("class")+"_"+object.get("subclass");
-    sprite=store.getSprite("data/sprites/items/misc/"+object.get("class")+"/"+miscName+".png");
+	public MiscItem(GameObjects gameObjects, RPObject object)
+			throws AttributeNotFoundException {
+		super(gameObjects, object);
+	}
 
-    if(object.has("name"))
-      {
-      name=object.get("name");
-      }
-    else
-      {
-      name=miscName;
-      }
-    }
+	protected void loadSprite(RPObject object) {
+		SpriteStore store = SpriteStore.get();
 
-/*
-  public void onAction(StendhalClient client, String action, String... params)
-    {
-    if(action.equals("Look"))
-      {
-      String text="You see a "+name.replace("_"," ")+".";
-      
-      StendhalClient.get().addEventLine(text,Color.green);
-      gameObjects.addText(this, text, Color.green);
-      }
-    else
-      {
-      super.onAction(client,action,params);
-      }
-    }
-*/    
-  }
+		String miscName = object.get("class") + "_" + object.get("subclass");
+		sprite = store.getSprite("data/sprites/items/misc/"
+				+ object.get("class") + "/" + miscName + ".png");
+
+		if (object.has("name")) {
+			name = object.get("name");
+		} else {
+			name = miscName;
+		}
+	}
+
+	/*
+	 * public void onAction(StendhalClient client, String action, String...
+	 * params) { if(action.equals("Look")) { String text="You see a
+	 * "+name.replace("_"," ")+".";
+	 * 
+	 * StendhalClient.get().addEventLine(text,Color.green);
+	 * gameObjects.addText(this, text, Color.green); } else {
+	 * super.onAction(client,action,params); } }
+	 */
+}

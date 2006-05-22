@@ -31,111 +31,93 @@ import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObject.ID;
 
-public class SoundObject extends Entity
-{
+public class SoundObject extends Entity {
 
-   private String name;
-   private int volume;
+	private String name;
 
-public SoundObject ()
-{
-   super();
-   // TODO Auto-generated constructor stub
-}
+	private int volume;
 
-public SoundObject ( int x, int y )
-{
-   super();
-   this.x = x;
-   this.y = y;
-}
+	public SoundObject() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-public SoundObject ( GameObjects gameObjects, RPObject object )
-      throws AttributeNotFoundException
-{
-   super( gameObjects, object );
-   // TODO Auto-generated constructor stub
-}
+	public SoundObject(int x, int y) {
+		super();
+		this.x = x;
+		this.y = y;
+	}
 
+	public SoundObject(GameObjects gameObjects, RPObject object)
+			throws AttributeNotFoundException {
+		super(gameObjects, object);
+		// TODO Auto-generated constructor stub
+	}
 
+	@Override
+	public Rectangle2D getArea() {
+		return null;
+	}
 
+	@Override
+	public Rectangle2D getDrawedArea() {
+		return null;
+	}
 
-@Override
-public Rectangle2D getArea ()
-{
-   return null;
-}
+	@Override
+	public String defaultAction() {
+		return null;
+	}
 
-@Override
-public Rectangle2D getDrawedArea ()
-{
-   return null;
-}
+	@Override
+	public String[] offeredActions() {
+		return null;
+	}
 
-@Override
-public String defaultAction ()
-{
-   return null;
-}
+	@Override
+	public void onAction(StendhalClient client, String action, String... params) {
+	}
 
-@Override
-public String[] offeredActions ()
-{
-   return null;
-}
+	@Override
+	public int compare(Entity entity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-@Override
-public void onAction ( StendhalClient client, String action, String... params )
-{
-}
+	public void setLocation(Point2D position) {
+		x = position.getX();
+		y = position.getY();
+	}
 
-@Override
-public int compare ( Entity entity )
-{
-   // TODO Auto-generated method stub
-   return 0;
-}
+	/**
+	 * @return returns the name.
+	 */
+	public String getName() {
+		return name;
+	}
 
-public void setLocation ( Point2D position )
-{
-   x = position.getX();
-   y = position.getY();
-}
+	/**
+	 * @param name -
+	 *            the new value for name to set.
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-/**
- * @return returns the name.
- */
-public String getName ()
-{
-   return name;
-}
+	/**
+	 * @return returns the volume.
+	 */
+	public int getVolume() {
+		return volume;
+	}
 
-/**
- * @param name - the new value for name to set.
- */
-public void setName ( String name )
-{
-   this.name = name;
-}
-
-/**
- * @return returns the volume.
- */
-public int getVolume ()
-{
-   return volume;
-}
-
-/**
- * @param volume - the new value for volume to set.
- */
-public void setVolume ( int volume )
-{
-   this.volume = volume;
-}
-
- 
+	/**
+	 * @param volume -
+	 *            the new value for volume to set.
+	 */
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
 
 }

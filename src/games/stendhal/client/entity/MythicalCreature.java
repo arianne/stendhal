@@ -18,45 +18,41 @@ import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
 
-
 /** A Creature entity */
-public class MythicalCreature extends Creature 
-  {
-  public MythicalCreature(GameObjects gameObjects, RPObject object) throws AttributeNotFoundException
-    {
-    super(gameObjects, object);
-    }
-  
-  protected void buildAnimations(RPObject object)
-    {
-    SpriteStore store=SpriteStore.get();  
-    Sprite creature=loadAnimationSprite(object);
+public class MythicalCreature extends Creature {
+	public MythicalCreature(GameObjects gameObjects, RPObject object)
+			throws AttributeNotFoundException {
+		super(gameObjects, object);
+	}
 
-    sprites.put("move_up", store.getAnimatedSprite(creature,0,4,6,8));      
-    sprites.put("move_right", store.getAnimatedSprite(creature,1,4,6,8));      
-    sprites.put("move_down", store.getAnimatedSprite(creature,2,4,6,8));      
-    sprites.put("move_left", store.getAnimatedSprite(creature,3,4,6,8));      
+	protected void buildAnimations(RPObject object) {
+		SpriteStore store = SpriteStore.get();
+		Sprite creature = loadAnimationSprite(object);
 
-    sprites.get("move_up")[3]=sprites.get("move_up")[1];
-    sprites.get("move_right")[3]=sprites.get("move_right")[1];
-    sprites.get("move_down")[3]=sprites.get("move_down")[1];
-    sprites.get("move_left")[3]=sprites.get("move_left")[1];
-    }
-  
-  protected Sprite defaultAnimation()
-    {
-    animation="move_up";
-    return sprites.get("move_up")[0];
-    }
+		sprites.put("move_up", store.getAnimatedSprite(creature, 0, 4, 6, 8));
+		sprites
+				.put("move_right", store
+						.getAnimatedSprite(creature, 1, 4, 6, 8));
+		sprites.put("move_down", store.getAnimatedSprite(creature, 2, 4, 6, 8));
+		sprites.put("move_left", store.getAnimatedSprite(creature, 3, 4, 6, 8));
 
-  public Rectangle2D getArea()
-    {
-    return new Rectangle.Double(x,y,6,8);
-    }
-    
-  public Rectangle2D getDrawedArea()
-    {
-    return new Rectangle.Double(x,y,6,8);
-    }  
-    
-  }
+		sprites.get("move_up")[3] = sprites.get("move_up")[1];
+		sprites.get("move_right")[3] = sprites.get("move_right")[1];
+		sprites.get("move_down")[3] = sprites.get("move_down")[1];
+		sprites.get("move_left")[3] = sprites.get("move_left")[1];
+	}
+
+	protected Sprite defaultAnimation() {
+		animation = "move_up";
+		return sprites.get("move_up")[0];
+	}
+
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y, 6, 8);
+	}
+
+	public Rectangle2D getDrawedArea() {
+		return new Rectangle.Double(x, y, 6, 8);
+	}
+
+}
