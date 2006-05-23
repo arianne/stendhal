@@ -2,7 +2,6 @@ package games.stendhal.server.scripting;
 
 import groovy.lang.GroovyShell;
 import groovy.lang.Binding;
-import groovy.lang.Closure;
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -12,7 +11,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.rule.defaultruleset.*;
 import marauroa.common.game.RPObject;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
@@ -217,7 +215,7 @@ public class StendhalGroovyScript
     loadedScripts.remove(script);
     }
 
-  // removes the first loaded script that has the required action
+  /** removes the first loaded script that has the required action */
   public void remove (ScriptAction scriptAction)
     {
     for(Pair<ScriptCondition, ScriptAction> script: loadedScripts)
@@ -231,7 +229,7 @@ public class StendhalGroovyScript
       }
    }  
   
-  // removes the first loaded script that has the required condition
+  /** removes the first loaded script that has the required condition */
   public void remove (ScriptCondition scriptCondition)
     {
     for(Pair<ScriptCondition, ScriptAction> script: loadedScripts)
