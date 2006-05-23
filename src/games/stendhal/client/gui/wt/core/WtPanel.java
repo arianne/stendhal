@@ -54,10 +54,10 @@ public class WtPanel implements WtDraggable {
 	private static final Logger logger = Log4J.getLogger(WtPanel.class);
 
 	/** size of the titlebar */
-	private static final int TILLEBAR_SIZE = 14;
+	private static final int TITLEBAR_SIZE = 14;
 
 	/** size of the titlebar font */
-	private static final int TILLEBAR_FONT_SIZE = 12;
+	private static final int TITLEBAR_FONT_SIZE = 12;
 
 	/** thickness of the frame */
 	private static final int FRAME_SIZE = 3;
@@ -254,7 +254,7 @@ public class WtPanel implements WtDraggable {
 			clientHeight -= FRAME_SIZE * 2;
 
 		if (titleBar)
-			clientHeight -= TILLEBAR_SIZE;
+			clientHeight -= TITLEBAR_SIZE;
 
 		return clientHeight;
 	}
@@ -269,7 +269,7 @@ public class WtPanel implements WtDraggable {
 		int clienty = (frame ? FRAME_SIZE : 0);
 
 		if (titleBar)
-			clienty += TILLEBAR_SIZE;
+			clienty += TITLEBAR_SIZE;
 
 		return clienty;
 	}
@@ -334,7 +334,7 @@ public class WtPanel implements WtDraggable {
 		} else {
 			int height = 0;
 			if (hasTitleBar())
-				height += TILLEBAR_SIZE;
+				height += TITLEBAR_SIZE;
 
 			if (hasFrame())
 				height += FRAME_SIZE;
@@ -567,7 +567,7 @@ public class WtPanel implements WtDraggable {
 
 		// adjust size to include the title bar
 		if (titleBar) {
-			this.height += TILLEBAR_SIZE;
+			this.height += TITLEBAR_SIZE;
 		}
 		// refresh cached panel image
 		cachedImage = null;
@@ -587,7 +587,7 @@ public class WtPanel implements WtDraggable {
 		// if this frame is minimized, reduce frame to enclose the title bar
 		// only
 		if (isMinimized()) {
-			localHeight = TILLEBAR_SIZE + FRAME_SIZE * 2;
+			localHeight = TITLEBAR_SIZE + FRAME_SIZE * 2;
 		}
 
 		// get texture sprite
@@ -669,22 +669,22 @@ public class WtPanel implements WtDraggable {
 
 			// the dark line under the title bar
 			panelGraphics.setColor(darkColor);
-			panelGraphics.drawLine(0, TILLEBAR_SIZE, width - (FRAME_SIZE * 2),
-					TILLEBAR_SIZE);
-			panelGraphics.drawLine(0, TILLEBAR_SIZE + 1, width
-					- (FRAME_SIZE * 2), TILLEBAR_SIZE + 1);
+			panelGraphics.drawLine(0, TITLEBAR_SIZE, width - (FRAME_SIZE * 2),
+					TITLEBAR_SIZE);
+			panelGraphics.drawLine(0, TITLEBAR_SIZE + 1, width
+					- (FRAME_SIZE * 2), TITLEBAR_SIZE + 1);
 
 			// panels title text
 			panelGraphics.setColor(new Color(0.8f, 0.8f, 0.8f, 1.0f));
 			Font font = panelGraphics.getFont();
 			panelGraphics.setFont(font.deriveFont(Font.BOLD,
-					TILLEBAR_FONT_SIZE));
-			panelGraphics.drawString(titleText, 3, TILLEBAR_FONT_SIZE);
+					TITLEBAR_FONT_SIZE));
+			panelGraphics.drawString(titleText, 3, TITLEBAR_FONT_SIZE);
 
 			// update clipping
-			panelGraphics = panelGraphics.create(0, TILLEBAR_SIZE + 2, width
+			panelGraphics = panelGraphics.create(0, TITLEBAR_SIZE + 2, width
 					- (FRAME_SIZE * 2), height - (FRAME_SIZE * 2)
-					- TILLEBAR_SIZE - 2);
+					- TITLEBAR_SIZE - 2);
 		}
 
 		BufferedImage image = gc.createCompatibleImage(width, localHeight);
@@ -726,9 +726,9 @@ public class WtPanel implements WtDraggable {
 			panelGraphics = panelGraphics.create(FRAME_SIZE, FRAME_SIZE, width
 					- (FRAME_SIZE * 2), height - (FRAME_SIZE * 2));
 		if (titleBar)
-			panelGraphics = panelGraphics.create(0, TILLEBAR_SIZE + 2, width
+			panelGraphics = panelGraphics.create(0, TITLEBAR_SIZE + 2, width
 					- (FRAME_SIZE * 2), height - (FRAME_SIZE * 2)
-					- TILLEBAR_SIZE - 2);
+					- TITLEBAR_SIZE - 2);
 
 		if (!minimized) {
 			// now draw the childs
@@ -793,7 +793,7 @@ public class WtPanel implements WtDraggable {
 		int width = this.width;
 
 		if (isMinimized()) {
-			height = TILLEBAR_SIZE + (frame ? FRAME_SIZE * 2 : 0);
+			height = TITLEBAR_SIZE + (frame ? FRAME_SIZE * 2 : 0);
 		}
 
 		if (x < this.x || y < this.y || x > this.x + width
@@ -810,7 +810,7 @@ public class WtPanel implements WtDraggable {
 
 		// 
 		if (x < FRAME_SIZE || y < FRAME_SIZE || x > width - FRAME_SIZE
-				|| y > FRAME_SIZE + TILLEBAR_SIZE)
+				|| y > FRAME_SIZE + TITLEBAR_SIZE)
 			return false;
 
 		return true;
@@ -897,8 +897,8 @@ public class WtPanel implements WtDraggable {
 
 	/** returns the rectangle for the minimize button */
 	private Rectangle getMiminizeButton() {
-		return new Rectangle(width - (TILLEBAR_SIZE * 2) - FRAME_SIZE,
-				FRAME_SIZE + 1, TILLEBAR_SIZE - 2, TILLEBAR_SIZE - 2);
+		return new Rectangle(width - (TITLEBAR_SIZE * 2) - FRAME_SIZE,
+				FRAME_SIZE + 1, TITLEBAR_SIZE - 2, TITLEBAR_SIZE - 2);
 	}
 
 	/** returns true when the point (x,y) is inside the minimize button */
@@ -908,8 +908,8 @@ public class WtPanel implements WtDraggable {
 
 	/** returns the rectangle for the close button */
 	private Rectangle getCloseButton() {
-		return new Rectangle(width - TILLEBAR_SIZE - FRAME_SIZE,
-				FRAME_SIZE + 1, TILLEBAR_SIZE - 2, TILLEBAR_SIZE - 2);
+		return new Rectangle(width - TITLEBAR_SIZE - FRAME_SIZE,
+				FRAME_SIZE + 1, TITLEBAR_SIZE - 2, TITLEBAR_SIZE - 2);
 	}
 
 	/** returns true when the point (x,y) is inside the close button */
