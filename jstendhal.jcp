@@ -4,7 +4,7 @@
 		<version>1.01</version>
 		<label>jstendhal</label>
 		<root_path>\</root_path>
-		<output_path>..\compiled\</output_path>
+		<output_path>D:\Desarrollo\arianne\compiled\</output_path>
 		<version>1.01</version>
 		<source_path>src\</source_path>
 		<jdkprofile_ref>JDK version 1.5.0</jdkprofile_ref>
@@ -184,6 +184,45 @@
 			</folderitem>
 			<folderitem>
 				<path>tiled\src\tiled\view\old</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_data\data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_data\data\conf</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_sound_data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_sound_data\data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_client_sound_data\data\sounds</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server\data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server\data\conf</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf\data</path>
+			</folderitem>
+			<folderitem>
+				<path>build_server_xmlconf\data\conf</path>
+			</folderitem>
+			<folderitem>
+				<path>lib</path>
 			</folderitem>
 			<fileitem>
 				<path>AUTHORS</path>
@@ -450,50 +489,6 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\Button.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\ClickListener.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\CloseListener.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\Draggable.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\DropTarget.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\Frame.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\List.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\MessageBox.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\Panel.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\TextPanel.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\WindowManager.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\core\WtButton.java</path>
 				<source>true</source>
 			</fileitem>
@@ -614,6 +609,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\StendhalServerExtension.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\ZoneXMLLoader.java</path>
 				<source>true</source>
 			</fileitem>
@@ -674,6 +673,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\npc\ConversationStates.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\npc\NPC.java</path>
 				<source>true</source>
 			</fileitem>
@@ -683,6 +686,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\creature\Creature.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\creature\DomesticAnimal.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -759,6 +766,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\maps\ShopList.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\ArmorForDagobert.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -995,6 +1006,18 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\scripting\ScriptCondition.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\scripting\ScriptingNPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\scripting\StendhalGroovyRunner.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\scripting\StendhalGroovyScript.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1725,6 +1748,54 @@
 			</fileitem>
 			<fileitem>
 				<path>tiled\src\tiled\view\old\ShiftedMapView.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_client_data\data\conf\log4j.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_client_sound_data\data\sounds\stensounds.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_client_sound_data\data\sounds\stensounds0.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_server\data\conf\stendhalcreateaccount.properties</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_server_xmlconf\data\conf\creatures.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>build_server_xmlconf\data\conf\items.xml</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-data-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-maps-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-server-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-sound-data-0.48.jar</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>lib\stendhal-xmlconf-0.48.jar</path>
 				<source>true</source>
 			</fileitem>
 		</include>
