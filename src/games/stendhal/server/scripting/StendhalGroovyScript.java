@@ -82,7 +82,7 @@ public class StendhalGroovyScript
   
   public boolean playerIsInZone(Player player, String zoneName) 
     {
-    if( zoneName == player.get("zoneid"))
+    if( zoneName.equals(player.get("zoneid")))
       {
       return(zone.has(player.getID()));
       }
