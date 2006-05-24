@@ -67,6 +67,9 @@ No warranties. But let us know if it doesn't work.
 - Added Groovy sample script with Kanmararn quest (kanmararn.groovy)
 - Added Groovy sample script with daily quest (dailyquest.groovy)
 - Added ability to sell multiple items at the same time.
+- Added Groovy scripts for Deathmatch challenge (dailyquest.groovy)
+- Added support for alternate LayerRenderer (in addition to the TileRenderer)
+
 
 0.48 Apr 31, 2006
 - Added jail command
