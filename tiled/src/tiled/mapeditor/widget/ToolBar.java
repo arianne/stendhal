@@ -50,11 +50,11 @@ public class ToolBar extends JToolBar implements ActionListener
   private AbstractButton eraseButton;
 
   private AbstractButton eyedButton;
-
+  /** the dropdown list with all available brushes */
   private BrushMenu brushMenu;
-
+  /** create simple singlelayer brush */
   private AbstractButton brushButton;
-
+  /** create multilayer brush */
   private AbstractButton brushExtButton;
 
   public ToolBar(MapEditor mapEditor, MapEventAdapter mapEventAdapter)
@@ -142,6 +142,12 @@ public class ToolBar extends JToolBar implements ActionListener
     boolean state = (map != null);
     brushButton.setEnabled(state);
     brushExtButton.setEnabled(state);
+  }
+  
+  /** returns the brush menu */
+  public BrushMenu getBrushMenu()
+  {
+    return brushMenu;
   }
 
   /** action handler for the buttons */

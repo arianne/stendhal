@@ -49,9 +49,12 @@ public class BrushMenu extends JPanel implements MapChangeListener
   private Map map;
   /** the mapeditor instance */
   private MapEditor mapEditor;
-  /** */
+  /** list of default brushes */
   private List<BrushWrapper> defaultBrushes;
+  /** dropdown list */
   private JComboBox combobox;
+  /** the brush selected before the delete brush was selected */
+  private BrushWrapper oldBrush;
 
 
   public BrushMenu(MapEditor mapEditor)
@@ -129,6 +132,26 @@ public class BrushMenu extends JPanel implements MapChangeListener
         });
   }
   
+  /** selects the first shape brush (when another is currently active) */
+  public void selectDefaultDeleteBrush()
+  {
+    BrushWrapper brushWrapper = (BrushWrapper) combobox.getSelectedItem();
+    if (!(brushWrapper.brush instanceof ShapeBrush))
+    {
+      //select the first ShapeBrush, it is the second default one
+      combobox.setSelectedItem(defaultBrushes.get(1));
+      oldBrush = brushWrapper;
+    }
+  }
+  
+  /** selects the first shape brush (when another is currently active) */
+  public void unselectDefaultDeleteBrush()
+  {
+    if (oldBrush != null)
+    {
+      combobox.setSelectedItem(oldBrush);
+    }
+  }
 
   /** wraps a brush to create a nice toString() (for the selection box) */
   private class BrushWrapper

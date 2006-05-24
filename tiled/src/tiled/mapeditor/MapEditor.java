@@ -81,8 +81,7 @@ import tiled.view.Orthogonal;
 /**
  * The main class for the Tiled Map Editor.
  */
-public class MapEditor implements ActionListener, MouseListener,
-    MouseMotionListener, MapChangeListener, ComponentListener
+public class MapEditor implements ActionListener, MouseListener, MouseMotionListener, MapChangeListener, ComponentListener
 {
   // Constants and the like
   public static final int     PS_POINT         = 0;
@@ -100,7 +99,6 @@ public class MapEditor implements ActionListener, MouseListener,
 
   public MapView              mapView;
   public UndoStack            undoStack;
-//  public UndoableEditSupport  undoSupport;
   private MapEventAdapter     mapEventAdapter;
   public PluginClassLoader    pluginLoader;
   public TiledConfiguration   configuration;
@@ -133,7 +131,6 @@ public class MapEditor implements ActionListener, MouseListener,
   public JFrame               appFrame;
 
   private AboutDialog         aboutDialog;
-//  private MapLayerEdit        paintEdit;
 
   // Actions
   public Action               zoomInAction;
@@ -1214,11 +1211,13 @@ public class MapEditor implements ActionListener, MouseListener,
       list.add(new StatefulTile(new Point(0,0),0,currentMap.getNullTile()));
       currentBrush.setTiles(list);
       toolBar.setButtonStates(PS_ERASE);
+      toolBar.getBrushMenu().selectDefaultDeleteBrush();
     }
     else
     {
       currentBrush.setTiles(currentTiles);
       toolBar.setButtonStates(PS_PAINT);
+      toolBar.getBrushMenu().unselectDefaultDeleteBrush();
     }
   }
   
