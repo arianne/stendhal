@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  * This is a helper class to render coherent tiles based on the tileset. This
  * should be replaced by independent tiles as soon as possible .
  */
-public class TileRenderer {
+public class TileRenderer extends LayerRenderer {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(TileRenderer.class);
 
@@ -34,18 +34,19 @@ public class TileRenderer {
 
 	private int[] map;
 
-	private int width;
+//	private int width;
 
-	private int height;
+//	private int height;
 
 	private int frame;
 
 	private long delta;
 
 	public TileRenderer(TileStore tiles) {
+    super();
 		this.tiles = tiles;
 		map = null;
-		frame = width = height = 0;
+		frame = 0;
 		animatedTiles = new HashMap<Integer, List<Integer>>();
 		createAnimateTiles();
 		delta = System.currentTimeMillis();
@@ -82,15 +83,16 @@ public class TileRenderer {
 		Log4J.finishMethod(logger, "setMapData");
 	}
 
+  
 	/** Returns the widht in world units */
-	public int getWidth() {
-		return width;
-	}
+//	public int getWidth() {
+//		return width;
+//	}
 
 	/** Returns the height in world units */
-	public int getHeight() {
-		return height;
-	}
+//	public int getHeight() {
+//		return height;
+//	}
 
 	private int get(int x, int y) {
 		return map[y * width + x];

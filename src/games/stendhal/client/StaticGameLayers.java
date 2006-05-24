@@ -34,6 +34,10 @@ import java.io.IOException;
 
 import java.io.Reader;
 
+import java.io.File;
+
+import java.net.URL;
+
 import java.util.LinkedList;
 
 import marauroa.common.Log4J;
@@ -53,7 +57,7 @@ public class StaticGameLayers
 
 	/** List of pair name, layer */
 
-	private LinkedList<Pair<String, TileRenderer>> layers;
+	private LinkedList<Pair<String, LayerRenderer>> layers;
 
 	/** List of pair name, layer */
 
@@ -75,7 +79,7 @@ public class StaticGameLayers
 
 	{
 
-		layers = new LinkedList<Pair<String, TileRenderer>>();
+		layers = new LinkedList<Pair<String, LayerRenderer>>();
 
 		collisions = new LinkedList<Pair<String, CollisionDetection>>();
 
@@ -117,7 +121,7 @@ public class StaticGameLayers
 
 		double width = 0;
 
-		for (Pair<String, TileRenderer> p : layers)
+		for (Pair<String, LayerRenderer> p : layers)
 
 		{
 
@@ -149,7 +153,7 @@ public class StaticGameLayers
 
 		double height = 0;
 
-		for (Pair<String, TileRenderer> p : layers)
+		for (Pair<String, LayerRenderer> p : layers)
 
 		{
 
@@ -181,17 +185,25 @@ public class StaticGameLayers
 
 		Log4J.startMethod(logger, "addLayer");
 
-		try
+    try
 
 		{
 
 			if (!name.contains("collision"))
 
 			{
-
-				TileRenderer content = new TileRenderer(tilestore);
-
-				content.setMapData(reader);
+        
+        LayerRenderer content = null;
+        URL url = getClass().getClassLoader().getResource("data/layers/"+name+".jpg");
+        if(url != null)
+          {
+          content = new ImageRenderer(url);
+          }
+        if(content == null)
+          {
+          content = new TileRenderer(tilestore);
+				  ((TileRenderer)content).setMapData(reader);
+          }
 
 				int i;
 
@@ -219,7 +231,7 @@ public class StaticGameLayers
 
 				}
 
-				layers.add(i, new Pair<String, TileRenderer>(name, content));
+				layers.add(i, new Pair<String, LayerRenderer>(name, content));
 
 			}
 
@@ -318,7 +330,7 @@ public class StaticGameLayers
 
 	{
 
-		for (Pair<String, TileRenderer> p : layers)
+		for (Pair<String, LayerRenderer> p : layers)
 
 		{
 
@@ -340,7 +352,7 @@ public class StaticGameLayers
 
 	{
 
-		for (Pair<String, TileRenderer> p : layers)
+		for (Pair<String, LayerRenderer> p : layers)
 
 		{
 
