@@ -955,6 +955,17 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="trophy_helm">
+		<type class="helmet" subclass="golden_horned_barbute"/>
+		<attributes>
+			<def value="1"/>
+		</attributes>
+		<weight value="10"/>
+		<equipable>
+			<slot name="head"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 
 <!-- Legs_section -->
 
