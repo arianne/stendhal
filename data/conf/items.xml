@@ -955,7 +955,7 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="trophy_helm">
+	<item name="trophy_helmet">
 		<type class="helmet" subclass="golden_horned_barbute"/>
 		<attributes>
 			<def value="1"/>

@@ -62,7 +62,7 @@ class DeathmatchAction extends ScriptAction {
       if(questLast != null && (new Date()).getTime() - new Long( questLast) > bailDelay ) {
         questState = "cancel";
         player.setQuest("deathmatch", questState);
-        Item helm  = player.getEquipped("trophy_helm");
+        Item helm  = player.getEquipped("trophy_helmet");
         if(helm != null) {
           int defense = 1;
           if(helm.has("def")) {
@@ -179,9 +179,9 @@ class DoneAction extends SpeakerNPC.ChatAction {
     String questLast  = tokens[2];
     if("victory".equals(questState)) {
       boolean isNew = false;
-      Item helm  = player.getEquipped("trophy_helm");
+      Item helm  = player.getEquipped("trophy_helmet");
       if(helm == null) {
-        helm = game.getItem("trophy_helm");
+        helm = game.getItem("trophy_helmet");
         engine.say("Congratulations! Here is your special trophy helm. Enjoy it. Now, tell me if you want to #leave.");
         isNew = true;
       }
@@ -240,7 +240,7 @@ class BailAction extends SpeakerNPC.ChatAction {
       return;
     }
     player.setQuest("deathmatch", "bail;"+ questLevel + ";" + (new Date()).getTime());
-    Item helm  = player.getEquipped("trophy_helm");
+    Item helm  = player.getEquipped("trophy_helmet");
     if(helm != null) {
       engine.say("Coward! I'm sorry to inform you, for this your helm has been magically weakened.")
     }
@@ -262,7 +262,7 @@ if(!game.setZone(myZone))   // if zone doesn't exist
 if(game.setZone(myZone))    // if zone exists
   {   
   // show the player the potential trophy
-  Item helm = game.getItem("trophy_helm");
+  Item helm = game.getItem("trophy_helmet");
   helm.put("def","20")
   helm.setDescription("This is the grand prize for Deathmatch winners.")
   helm.setx(17)
@@ -280,7 +280,7 @@ if(game.setZone(myZone))    // if zone exists
   npc.behave("job","I'm the deathmatch assistant. Tell me, if you need #help on that.")
   npc.behave("help","Say '#start' when you're ready! Keep killing #everything that #appears. Say 'victory' when you survived.")
   npc.behave(["everything","appears"],"Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!")
-  npc.behave(["trophy","helm"],"If you win the deathmatch, we reward you with a trophy helm. Each #victory will strengthen it.")
+  npc.behave(["trophy","helm","helmet"],"If you win the deathmatch, we reward you with a trophy helmet. Each #victory will strengthen it.")
   npc.behave("bye","I hope you enjoy the Deathmatch!")  
   
   // 'start' command will start spawning creatures
