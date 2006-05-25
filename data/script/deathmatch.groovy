@@ -267,6 +267,7 @@ if(game.setZone(myZone))    // if zone exists
   helm.setDescription("This is the grand prize for Deathmatch winners.")
   helm.setx(17)
   helm.sety(4)
+  helm.put("persistent",1)
   game.add(helm);
   
   // We create an NPC
