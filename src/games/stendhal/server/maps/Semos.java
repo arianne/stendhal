@@ -920,6 +920,32 @@ public class Semos implements IContent {
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.addNPC(npc);
+
+		npc = new SpeakerNPC("Balduin") {
+			protected void createPath() {
+				// NPC doesn't move
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+
+			protected void createDialog() {
+				Behaviours.addHelp(this,
+						"...");
+				Behaviours.addJob(this, "I'm much too old for hard work. I'm just living here as a hermit.");
+
+				Behaviours.addGoodbye(this, "It was nice to meet you.");
+			}
+			// remaining behaviour is defined in maps.quests.WeaponsCollector.
+		};
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		npc.put("class", "oldwizardnpc");
+		npc.set(40, 38);
+		npc.setDirection(Direction.DOWN);
+		npc.initHP(100);
+		zone.addNPC(npc);
+		
+		
 		npc = new SpeakerNPC("Hayunn Naratha") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
