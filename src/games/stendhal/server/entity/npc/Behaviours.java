@@ -43,7 +43,7 @@ public class Behaviours {
 	 * @param collection The collection whose elements should be enumerated 
 	 * @return A nice String representation of the collection
 	 */
-	private static String enumerateCollection(Collection<String> collection) {
+	public static String enumerateCollection(Collection<String> collection) {
 		String[] elements = collection.toArray(new String[collection.size()]);
 		if (elements.length == 0) {
 			return "";
