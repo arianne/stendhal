@@ -930,8 +930,9 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				Behaviours.addHelp(this,
-						"...");
-				Behaviours.addJob(this, "I'm much too old for hard work. I'm just living here as a hermit.");
+								   "There is a swamp east of this mountain where you might get some rare weapons.");
+				Behaviours.addJob(this,
+						          "I'm much too old for hard work. I'm just living here as a hermit.");
 
 				Behaviours.addGoodbye(this, "It was nice to meet you.");
 			}
