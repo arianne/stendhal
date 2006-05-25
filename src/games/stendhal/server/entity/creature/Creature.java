@@ -416,7 +416,7 @@ public class Creature extends NPC {
 			int amount = Integer.parseInt(healing[0]);
 			int frequency = Integer.parseInt(healing[1]);
 
-			if (rp.getTurn() % frequency == 0 && getHP() != getBaseHP()) {
+			if (rp.getTurn() % frequency == 0 && getHP() != getBaseHP() && getHP() > 0 ) {
 				if (getHP() + amount < getBaseHP()) {
 					setHP(getHP() + amount);
 				} else {
