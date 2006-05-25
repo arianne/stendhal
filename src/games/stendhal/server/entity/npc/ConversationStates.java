@@ -76,4 +76,11 @@ public class ConversationStates {
 	 * it should be used for the quest. 
 	 */
 	public static final int QUEST_ITEM_BROUGHT = 62;
+	
+	/**
+	 * Multi-purpose states
+	 */
+	public static final int QUESTION_1 = 70;
+	public static final int QUESTION_2 = 71;
+	public static final int QUESTION_3 = 72;
 }
