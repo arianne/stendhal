@@ -123,13 +123,26 @@ public class WeaponsCollector implements IQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				"yes",
 				null,
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						engine.say("If you help me to complete my #collection, I will give you something nice in exchange.");
+						player.setQuest("weapons_collector", "");
+					}
+				});
+		
+		// player is willing to help
+		npc.add(ConversationStates.ATTENDING,
+				"collection",
+				null,
 				ConversationStates.QUESTION_1,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
 						engine.say("There are " + needed.size() + " weapons which are still missing in my collection: "
-								+ Behaviours.enumerateCollection(needed) + ". If you can bring them all, I will give you something nice in exchange. Do you have any of them with you?");
+								+ Behaviours.enumerateCollection(needed) + ". Do you have any of them with you?");
 						player.setQuest("weapons_collector", "");
 					}
 				});
@@ -210,16 +223,10 @@ public class WeaponsCollector implements IQuest {
 								&& ! player.isQuestCompleted("weapons_collector");
 					}
 				},
-				ConversationStates.QUESTION_1,
-				null,
-				new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						List<String> needed = missingWeapons(player, true);
-						engine.say("Welcome back. There are still " + needed.size() + " weapons which are still missing in my collection: "
-								+ Behaviours.enumerateCollection(needed) + ". Do you have any of them with you?");
-					}
-				});
-
+				ConversationStates.ATTENDING,
+				"Welcome back. I hope you have come to help me with my #collection.",
+				null);
+		
 		// player returns after finishing the quest
 		npc.add(ConversationStates.IDLE,
 				Behaviours.GREETING_MESSAGES,
