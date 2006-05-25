@@ -29,7 +29,6 @@ class DeathmatchCondition extends ScriptCondition {
       return (true);
     }
     else {
-      logger.debug ("Player left deathmatch! " + player);
       player.setQuest("deathmatch", "cancel");
       return(true);
     }
