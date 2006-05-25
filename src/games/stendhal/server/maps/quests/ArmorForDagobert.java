@@ -46,7 +46,7 @@ public class ArmorForDagobert implements IQuest {
 							engine.say("I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?");
 						} else {
 							engine.say("Thank you very much for the armor, but I don't have any other task for you.");
-							engine.setActualState(1);
+							engine.setActualState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -64,7 +64,7 @@ public class ArmorForDagobert implements IQuest {
 				});
 		
 		// player is not willing to help
-		npc.add(ConversationStates.ATTENDING,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"no",
 				null,
 				ConversationStates.ATTENDING,
