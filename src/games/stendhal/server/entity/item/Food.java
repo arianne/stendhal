@@ -13,12 +13,10 @@
 package games.stendhal.server.entity.item;
 
 import java.util.Map;
-import java.util.List;
 
-public class Food extends ConsumableItem
-  {
-  public Food(String name, String clazz, String subclass, Map<String, String> attributes)
-    {
-    super(name,clazz, subclass, attributes);
-    }
-  }
+public class Food extends ConsumableItem {
+	public Food(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
+		super(name, clazz, subclass, attributes);
+	}
+}

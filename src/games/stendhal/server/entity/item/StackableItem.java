@@ -14,50 +14,44 @@ package games.stendhal.server.entity.item;
 
 import marauroa.common.game.*;
 import java.util.Map;
-import java.util.List;
 
-public class StackableItem extends Item implements Stackable
-  {
-  private int quantity;
-  
-  public StackableItem(String name, String clazz, String subclass, Map<String, String> attributes)
-    {
-    super(name, clazz, subclass, attributes);
-    update();
-    }
+public class StackableItem extends Item implements Stackable {
+	private int quantity;
 
-  public void update() throws AttributeNotFoundException
-    {
-    if(has("quantity")) quantity=getInt("quantity");
-    }
-  
-  public int getQuantity()
-    {
-    return quantity;
-    }
+	public StackableItem(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
+		super(name, clazz, subclass, attributes);
+		update();
+	}
 
-  public void setQuantity(int amount)
-    {
-    quantity=amount;
-    put("quantity",quantity);
-    }
+	public void update() throws AttributeNotFoundException {
+		if (has("quantity"))
+			quantity = getInt("quantity");
+	}
 
-  public int add(int amount)
-    {
-    setQuantity(amount+quantity);
-    return quantity;
-    }
-  
-  public int add(Stackable other)
-    {
-    setQuantity(other.getQuantity()+quantity);
-    return quantity;
-    }
+	public int getQuantity() {
+		return quantity;
+	}
 
-  public boolean isStackable(Stackable other)
-    {
-    StackableItem otheri=(StackableItem)other;
-    
-    return getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass());
-    }
-  }
+	public void setQuantity(int amount) {
+		quantity = amount;
+		put("quantity", quantity);
+	}
+
+	public int add(int amount) {
+		setQuantity(amount + quantity);
+		return quantity;
+	}
+
+	public int add(Stackable other) {
+		setQuantity(other.getQuantity() + quantity);
+		return quantity;
+	}
+
+	public boolean isStackable(Stackable other) {
+		StackableItem otheri = (StackableItem) other;
+
+		return getItemClass().equals(otheri.getItemClass())
+				&& getItemSubclass().equals(otheri.getItemSubclass());
+	}
+}

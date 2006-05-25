@@ -24,235 +24,198 @@ import java.util.Iterator;
 
 import marauroa.common.game.*;
 
-public class Corpse extends PassiveEntity
-  {
-  private static final Logger logger = Log4J.getLogger(Corpse.class);
+public class Corpse extends PassiveEntity {
+	private static final Logger logger = Log4J.getLogger(Corpse.class);
 
-  final public static int DEGRADATION_TIMEOUT=3000; // 30 minutes at 300 ms
-  final public static int MAX_STAGE=5;              // number of degradation steps
-  private int degradation;
-  private int stage;
-  private boolean isDegrading = true;
- 
-  public static void generateRPClass()
-    {
-    RPClass entity=new RPClass("corpse");
-    entity.isA("entity");
-    entity.add("class",RPClass.STRING);
-    entity.add("stage",RPClass.BYTE);
+	final public static int DEGRADATION_TIMEOUT = 3000; // 30 minutes at 300 ms
 
-    entity.add("name",RPClass.STRING);
-    entity.add("killer",RPClass.STRING);
-    
-    entity.addRPSlot("content",4);
-    }
-  
-  public Corpse(String clazz, int x, int y) throws AttributeNotFoundException
-    {    
-    put("type","corpse");
-    put("class",clazz);
+	final public static int MAX_STAGE = 5; // number of degradation steps
 
-    setx(x);
-    sety(y);
-    degradation=DEGRADATION_TIMEOUT;
-    stage=0;
-    put("stage",stage);
+	private int degradation;
 
-    RPSlot slot=new RPSlot("content");
-    slot.setCapacity(4);
-    addSlot(slot);
-    }
-    
-  public Corpse(RPEntity entity, RPEntity killer) throws AttributeNotFoundException
-    {
-    put("type","corpse");
+	private int stage;
 
-    if(entity.has("class"))
-      {
-      put("class",entity.get("class"));
-      }
-    else
-      {
-      put("class",entity.get("type"));
-      }
+	private boolean isDegrading = true;
 
-    if(killer!=null && entity instanceof Player)
-      {
-      put("name",entity.getName());        
-      
-      if(killer.has("name"))
-        {
-        put("killer",killer.get("name"));
-        }
-      else if(killer.has("subclass"))
-        {
-        put("killer",killer.get("subclass"));
-        }
-      else if(killer.has("class"))
-        {
-        put("killer",killer.get("class"));
-        }
-      else if(killer.has("type"))
-        {
-        put("killer",killer.get("type"));
-        }
-      }  
-    
-    if(killer==null && has("killer"))
-      {
-      logger.error("Corpse: ("+entity+") with null killer: ("+killer+")");
-      remove("killer");
-      }
+	public static void generateRPClass() {
+		RPClass entity = new RPClass("corpse");
+		entity.isA("entity");
+		entity.add("class", RPClass.STRING);
+		entity.add("stage", RPClass.BYTE);
 
-    // Corpses are 1,1 while other entities are 1.5,2.
-    // This fix the problem
-    Rectangle2D rect=entity.getArea(entity.getx(),entity.gety());
-    
-    setx((int)rect.getCenterX());
-    sety((int)rect.getCenterY());
-    
-    degradation=DEGRADATION_TIMEOUT;
-    stage=0;
-    put("stage",stage);
+		entity.add("name", RPClass.STRING);
+		entity.add("killer", RPClass.STRING);
 
-    RPSlot slot=new RPSlot("content");
-    slot.setCapacity(4);
-    addSlot(slot);
-    }
+		entity.addRPSlot("content", 4);
+	}
 
-  public void getArea(Rectangle2D rect, double x, double y)
-    {
-    rect.setRect(x,y,1,1);
-    }  
+	public Corpse(String clazz, int x, int y) throws AttributeNotFoundException {
+		put("type", "corpse");
+		put("class", clazz);
 
-  public void setDegrading(boolean isDegrading)
-    {
-    this.isDegrading = isDegrading;
-    } 
+		setx(x);
+		sety(y);
+		degradation = DEGRADATION_TIMEOUT;
+		stage = 0;
+		put("stage", stage);
 
-  // set it to MAX_STAGE will remove the corpse
-  public void setStage(int new_stage)
-    {
-    if(new_stage >= 0 && new_stage <= MAX_STAGE)
-      {
-      degradation = DEGRADATION_TIMEOUT - (new_stage * DEGRADATION_TIMEOUT) / MAX_STAGE;
-      stage = new_stage;
-      put("stage",stage);
-      }
-    }   
-  
-  public int getDegradation()
-    {
-    return degradation;
-    } 
-  
-  public int decDegradation()
-    {
-    int new_stage=MAX_STAGE-(int)(((float)degradation/(float)DEGRADATION_TIMEOUT)*(float)MAX_STAGE);
-    if(stage!=new_stage)
-      {
-      stage=new_stage;
-      put("stage",stage);
-      
-      if(isContained())
-        {
-        // We modify the base container if the object change.
-        RPObject base=getContainer();
-        while(base.isContained())
-          {
-          if(base==base.getContainer())
-            {
-            logger.fatal("A corpse is contained by itself.");
-            break;
-            }
-            
-          base=base.getContainer();
-          }
-          
-        world.modify(base);
-        }
-      else
-        {
-        world.modify(this);
-        }
-      }
-    
-    return degradation--;
-    }
-    
-  public void logic()
-    {
-    if(isDegrading && decDegradation()<1)
-      {
-      if(isContained())
-        {
-        // We modify the base container if the object change.
-        RPObject base=getContainer();
-        while(base.isContained())
-          {
-          if(base==base.getContainer())
-            {
-            logger.fatal("A corpse is contained by itself.");
-            break;
-            }
-            
-          base=base.getContainer();
-          }
-          
-        world.modify(base);
+		RPSlot slot = new RPSlot("content");
+		slot.setCapacity(4);
+		addSlot(slot);
+	}
 
-        getContainerSlot().remove(this.getID());
-        }
-      else
-        {
-        world.remove(getID());
-        }
-        
-      rp.removeCorpse(this);
-      }
-    }
+	public Corpse(RPEntity entity, RPEntity killer)
+			throws AttributeNotFoundException {
+		put("type", "corpse");
 
-  public void add(PassiveEntity entity)
-    {
-    RPSlot content=getSlot("content");
-    content.assignValidID(entity);
-    content.add(entity);
-    }
-  
-  
-  public boolean isFull()
-    {
-    return getSlot("content").isFull();
-    }
-  
-  public int size()
-    {
-    return getSlot("content").size();
-    }  
-  
-  public Iterator<RPObject> getContent()
-    {
-    RPSlot content=getSlot("content");
-    return content.iterator();
-    }
-  
-  public String describe()
-    {
-    String stageText [] = {"new", "fresh", "cold", "slightly rotten", "rotten", "very rotten"};
-    String text="You see the " + stageText[stage] + " corpse of ";
-    if(hasDescription())
-      {
-      text = getDescription();
-      }
-    else if(!has("name"))
-      {
-      text += "a " + get("class").replace("_"," ");
-      }
-    else
-      {
-      text += get("name")+". It was killed by "+get("killer");
-      }
-    text=text+". You can #inspect it to see its contents.";
-    return(text);
-    }
-  }
+		if (entity.has("class")) {
+			put("class", entity.get("class"));
+		} else {
+			put("class", entity.get("type"));
+		}
+
+		if (killer != null && entity instanceof Player) {
+			put("name", entity.getName());
+
+			if (killer.has("name")) {
+				put("killer", killer.get("name"));
+			} else if (killer.has("subclass")) {
+				put("killer", killer.get("subclass"));
+			} else if (killer.has("class")) {
+				put("killer", killer.get("class"));
+			} else if (killer.has("type")) {
+				put("killer", killer.get("type"));
+			}
+		}
+
+		if (killer == null && has("killer")) {
+			logger.error("Corpse: (" + entity + ") with null killer: ("
+					+ killer + ")");
+			remove("killer");
+		}
+
+		// Corpses are 1,1 while other entities are 1.5,2.
+		// This fix the problem
+		Rectangle2D rect = entity.getArea(entity.getx(), entity.gety());
+
+		setx((int) rect.getCenterX());
+		sety((int) rect.getCenterY());
+
+		degradation = DEGRADATION_TIMEOUT;
+		stage = 0;
+		put("stage", stage);
+
+		RPSlot slot = new RPSlot("content");
+		slot.setCapacity(4);
+		addSlot(slot);
+	}
+
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y, 1, 1);
+	}
+
+	public void setDegrading(boolean isDegrading) {
+		this.isDegrading = isDegrading;
+	}
+
+	// set it to MAX_STAGE will remove the corpse
+	public void setStage(int new_stage) {
+		if (new_stage >= 0 && new_stage <= MAX_STAGE) {
+			degradation = DEGRADATION_TIMEOUT
+					- (new_stage * DEGRADATION_TIMEOUT) / MAX_STAGE;
+			stage = new_stage;
+			put("stage", stage);
+		}
+	}
+
+	public int getDegradation() {
+		return degradation;
+	}
+
+	public int decDegradation() {
+		int new_stage = MAX_STAGE
+				- (int) (((float) degradation / (float) DEGRADATION_TIMEOUT) * MAX_STAGE);
+		if (stage != new_stage) {
+			stage = new_stage;
+			put("stage", stage);
+
+			if (isContained()) {
+				// We modify the base container if the object change.
+				RPObject base = getContainer();
+				while (base.isContained()) {
+					if (base == base.getContainer()) {
+						logger.fatal("A corpse is contained by itself.");
+						break;
+					}
+
+					base = base.getContainer();
+				}
+
+				world.modify(base);
+			} else {
+				world.modify(this);
+			}
+		}
+
+		return degradation--;
+	}
+
+	public void logic() {
+		if (isDegrading && decDegradation() < 1) {
+			if (isContained()) {
+				// We modify the base container if the object change.
+				RPObject base = getContainer();
+				while (base.isContained()) {
+					if (base == base.getContainer()) {
+						logger.fatal("A corpse is contained by itself.");
+						break;
+					}
+
+					base = base.getContainer();
+				}
+
+				world.modify(base);
+
+				getContainerSlot().remove(this.getID());
+			} else {
+				world.remove(getID());
+			}
+
+			rp.removeCorpse(this);
+		}
+	}
+
+	public void add(PassiveEntity entity) {
+		RPSlot content = getSlot("content");
+		content.assignValidID(entity);
+		content.add(entity);
+	}
+
+	public boolean isFull() {
+		return getSlot("content").isFull();
+	}
+
+	public int size() {
+		return getSlot("content").size();
+	}
+
+	public Iterator<RPObject> getContent() {
+		RPSlot content = getSlot("content");
+		return content.iterator();
+	}
+
+	public String describe() {
+		String stageText[] = { "new", "fresh", "cold", "slightly rotten",
+				"rotten", "very rotten" };
+		String text = "You see the " + stageText[stage] + " corpse of ";
+		if (hasDescription()) {
+			text = getDescription();
+		} else if (!has("name")) {
+			text += "a " + get("class").replace("_", " ");
+		} else {
+			text += get("name") + ". It was killed by " + get("killer");
+		}
+		text = text + ". You can #inspect it to see its contents.";
+		return (text);
+	}
+}

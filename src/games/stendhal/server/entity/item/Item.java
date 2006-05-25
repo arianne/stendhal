@@ -11,6 +11,7 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.item;
+
 import games.stendhal.server.entity.PassiveEntity;
 
 import java.awt.geom.Rectangle2D;
@@ -23,212 +24,205 @@ import marauroa.common.game.RPClass;
 /**
  * This is an item.
  */
-public class Item extends PassiveEntity
-  {  
-  /** list of possible slots for this item */
-  private List<String> possibleSlots;
+public class Item extends PassiveEntity {
+	/** list of possible slots for this item */
+	private List<String> possibleSlots;
 
-  public static void generateRPClass()
-    {
-    RPClass entity=new RPClass("item");
-    entity.isA("entity");
-    entity.add("class",RPClass.STRING); // class, sword/armor/...
-    entity.add("subclass",RPClass.STRING); // subclass, long sword/leather armor/...
-    entity.add("name",RPClass.STRING);  // name of item (ie 'Kings Sword')
-    entity.add("atk",RPClass.SHORT);  // Some items has attack values
-    entity.add("def",RPClass.SHORT);  // Some items has defense values
+	public static void generateRPClass() {
+		RPClass entity = new RPClass("item");
+		entity.isA("entity");
+		entity.add("class", RPClass.STRING); // class, sword/armor/...
+		entity.add("subclass", RPClass.STRING); // subclass, long sword/leather
+												// armor/...
+		entity.add("name", RPClass.STRING); // name of item (ie 'Kings Sword')
+		entity.add("atk", RPClass.SHORT); // Some items has attack values
+		entity.add("def", RPClass.SHORT); // Some items has defense values
 
-    entity.add("amount",RPClass.INT); // Some items(food) has amount of something ( a bottle, a piece of meat ).
-    entity.add("regen",RPClass.INT); // Some items(food) has regeneration speed
-    entity.add("frequency",RPClass.INT); // Some items(food) has regeneration speed
+		entity.add("amount", RPClass.INT); // Some items(food) has amount of
+											// something ( a bottle, a piece of
+											// meat ).
+		entity.add("regen", RPClass.INT); // Some items(food) has regeneration
+											// speed
+		entity.add("frequency", RPClass.INT); // Some items(food) has
+												// regeneration speed
 
-    entity.add("quantity",RPClass.INT); // Some items(Stackable) has quantity
-    entity.add("infostring",RPClass.STRING); // To store additional info with an item     
+		entity.add("quantity", RPClass.INT); // Some items(Stackable) has
+												// quantity
+		entity.add("infostring", RPClass.STRING); // To store additional info
+													// with an item
 
-    entity.add("persistent",RPClass.SHORT);  // Some items have individual values
-    }
+		entity.add("persistent", RPClass.SHORT); // Some items have
+													// individual values
+	}
 
-  /**
-   * 
-   * Creates a new Item.
-   * @param name name of item
-   * @param clazz class (or type) od item
-   * @param slots slots where this item may be equipped. may be empty
-   * @param attributes attributes (like attack). may be empty or <code>null</code>
-   */
-  public Item(String name, String clazz, String subclass, Map<String, String> attributes)
-  {
-    this();
-    put("class",clazz);
-    put("subclass",subclass);
-    put("name",name);
+	/**
+	 * 
+	 * Creates a new Item.
+	 * 
+	 * @param name
+	 *            name of item
+	 * @param clazz
+	 *            class (or type) od item
+	 * @param slots
+	 *            slots where this item may be equipped. may be empty
+	 * @param attributes
+	 *            attributes (like attack). may be empty or <code>null</code>
+	 */
+	public Item(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
+		this();
+		put("class", clazz);
+		put("subclass", subclass);
+		put("name", name);
 
-    if (attributes != null)
-    {
-      // store all attributes
-      for (String key : attributes.keySet())
-      {
-        put(key,attributes.get(key));
-      }
-    }
-  }
-  
-  public void setEquipableSlots(List<String> slots)
-  {
-    // save slots
-    possibleSlots = slots;
-  }
+		if (attributes != null) {
+			// store all attributes
+			for (String key : attributes.keySet()) {
+				put(key, attributes.get(key));
+			}
+		}
+	}
 
-  /** no public 'default' item */
-  private Item() throws AttributeNotFoundException
-    {
-    super();
-    put("type","item");
-    update();
-    }
+	public void setEquipableSlots(List<String> slots) {
+		// save slots
+		possibleSlots = slots;
+	}
 
-  /** copy constuctor */
-  private Item(Item other) throws AttributeNotFoundException
-    {
-    super(other);
-    }
+	/** no public 'default' item */
+	private Item() throws AttributeNotFoundException {
+		super();
+		put("type", "item");
+		update();
+	}
 
-  public void getArea(Rectangle2D rect, double x, double y)
-    {
-    rect.setRect(x,y,1,1);
-    }
-  
-  /**
-   * Returns the attack points of this item. Positive and negative values are
-   * allowed. If this item doesn't modify the attack it should return '0'.
-   * @return attack points 
-   */
-  public int getAttack()
-  {
-    if (has("atk"))
-      return getInt("atk");
+	/** copy constuctor */
+	private Item(Item other) throws AttributeNotFoundException {
+		super(other);
+	}
 
-    return 0;
-  }
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y, 1, 1);
+	}
 
-  /**
-   * Returns the defense points of this item. Positive and negative values are
-   * allowed. If this item doesn't modify the defense it should return '0'.
-   * @return defense points 
-   */
-  public int getDefense()
-  {
-    if (has("def"))
-      return getInt("def");
+	/**
+	 * Returns the attack points of this item. Positive and negative values are
+	 * allowed. If this item doesn't modify the attack it should return '0'.
+	 * 
+	 * @return attack points
+	 */
+	public int getAttack() {
+		if (has("atk"))
+			return getInt("atk");
 
-    return 0;
-  }
+		return 0;
+	}
 
-  /**
-   * Returns if the item is persistent. Persistent items do not update
-   * their stats from the item database and thus can have individual stats
-   * @return true if item is persistent 
-   */
-  public boolean isPersistent()
-  {
-    if (has("persistent"))
-      return (getInt("persistent")==1);
+	/**
+	 * Returns the defense points of this item. Positive and negative values are
+	 * allowed. If this item doesn't modify the defense it should return '0'.
+	 * 
+	 * @return defense points
+	 */
+	public int getDefense() {
+		if (has("def"))
+			return getInt("def");
 
-    return false;
-  }
-  
-  /**
-   * Checks if the item is of type <i>type</i>
-   * @param type the type to check
-   * @return true if the type matches, else false 
-   */
-  public boolean isOfClass(String clazz)
-  {
-    return getItemClass().equals(clazz);
-  }
+		return 0;
+	}
 
-  /** returns the type of the item */
-  public String getItemClass()
-  {
-    if (has("class"))
-      return get("class");
+	/**
+	 * Returns if the item is persistent. Persistent items do not update their
+	 * stats from the item database and thus can have individual stats
+	 * 
+	 * @return true if item is persistent
+	 */
+	public boolean isPersistent() {
+		if (has("persistent"))
+			return (getInt("persistent") == 1);
 
-    throw new IllegalStateException("the item does not have a class: "+this);
-  }
+		return false;
+	}
 
-  /** returns the type of the item */
-  public String getItemSubclass()
-  {
-    if (has("subclass"))
-      return get("subclass");
+	/**
+	 * Checks if the item is of type <i>type</i>
+	 * 
+	 * @param type
+	 *            the type to check
+	 * @return true if the type matches, else false
+	 */
+	public boolean isOfClass(String clazz) {
+		return getItemClass().equals(clazz);
+	}
 
-    throw new IllegalStateException("the item does not have a subclass: "+this);
-  }
-  
-  /** returns the name of the item */
-  public String getName()
-  {
-    return get("name");
-  }
-  
-  /** returns the list of possible slots for this item */
-  public List<String> getPossibleSlots()
-  {
-    return possibleSlots;
-  }
-  
-  /** creates a copy */
-  public Object copy()
-  {
-    return new Item(this);
-  }
-  
-  public String toString()
-  {
-    return "Item, "+super.toString();
-  }
+	/** returns the type of the item */
+	public String getItemClass() {
+		if (has("class"))
+			return get("class");
 
-  public String describe()
-    {
-    String atk = "0";
-    String def = "0";
-    String amount ="0";
-    String text = "You see a " + getName().replace("_"," ") + ". ";
-    String stats = "";
-    String type = get("class");
-    if(hasDescription())
-      {
-      text = getDescription();
-      }
-    if(has("atk")) 
-      {
-      atk=get("atk");
-      }
-    if(has("def")) 
-      {
-      def=get("def");
-      }
-    if(has("amount")) 
-      {
-      amount=get("amount");
-      }
-    if(!atk.equals("0"))
-      {
-      stats += " ATK: " + atk;
-      }
-    if(!def.equals("0"))
-      {
-      stats += " DEF: " + def;
-      }
-    if(!amount.equals("0"))
-      {
-      stats += " HP: " + amount;
-      }
-    if(stats.length()>0)
-      {
-      stats = " Stats are (" + stats + ").";
-      }
-    return(text + stats);
-    }
-  
-  }
+		throw new IllegalStateException("the item does not have a class: "
+				+ this);
+	}
+
+	/** returns the type of the item */
+	public String getItemSubclass() {
+		if (has("subclass"))
+			return get("subclass");
+
+		throw new IllegalStateException("the item does not have a subclass: "
+				+ this);
+	}
+
+	/** returns the name of the item */
+	public String getName() {
+		return get("name");
+	}
+
+	/** returns the list of possible slots for this item */
+	public List<String> getPossibleSlots() {
+		return possibleSlots;
+	}
+
+	/** creates a copy */
+	public Object copy() {
+		return new Item(this);
+	}
+
+	public String toString() {
+		return "Item, " + super.toString();
+	}
+
+	public String describe() {
+		String atk = "0";
+		String def = "0";
+		String amount = "0";
+		String text = "You see a " + getName().replace("_", " ") + ". ";
+		String stats = "";
+		String type = get("class");
+		if (hasDescription()) {
+			text = getDescription();
+		}
+		if (has("atk")) {
+			atk = get("atk");
+		}
+		if (has("def")) {
+			def = get("def");
+		}
+		if (has("amount")) {
+			amount = get("amount");
+		}
+		if (!atk.equals("0")) {
+			stats += " ATK: " + atk;
+		}
+		if (!def.equals("0")) {
+			stats += " DEF: " + def;
+		}
+		if (!amount.equals("0")) {
+			stats += " HP: " + amount;
+		}
+		if (stats.length() > 0) {
+			stats = " Stats are (" + stats + ").";
+		}
+		return (text + stats);
+	}
+
+}

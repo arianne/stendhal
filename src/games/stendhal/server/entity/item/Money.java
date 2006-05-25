@@ -13,28 +13,22 @@
 package games.stendhal.server.entity.item;
 
 import java.util.Map;
-import java.util.List;
-import java.util.LinkedList;
 
-public class Money extends StackableItem
-  {
-  private int quantity;
-  
-  public Money(Map<String, String> attributes)
-    {
-    super("money","money", "gold", attributes);
-    }
+public class Money extends StackableItem {
+	private int quantity;
 
-  public Money(int quantity)
-    {
-    super("money","money", "gold", null);
-    put("quantity",quantity);
+	public Money(Map<String, String> attributes) {
+		super("money", "money", "gold", attributes);
+	}
 
-    this.quantity=quantity;
-    }
+	public Money(int quantity) {
+		super("money", "money", "gold", null);
+		put("quantity", quantity);
 
-  public boolean isStackable(Stackable other)
-    {
-    return (other.getClass() == Money.class);
-    }
-  }
+		this.quantity = quantity;
+	}
+
+	public boolean isStackable(Stackable other) {
+		return (other.getClass() == Money.class);
+	}
+}
