@@ -147,7 +147,7 @@ public class WeaponsCollector implements IQuest {
 				"collection",
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
-						return !player.hasQuest("weapons_collector");
+						return player.hasQuest("weapons_collector");
 					}
 				},
 				ConversationStates.QUESTION_1,
