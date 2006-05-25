@@ -16,7 +16,7 @@ import java.util.List;
  * QUEST: The Weapons Collector
  * 
  * PARTICIPANTS:
- * - Balduin, an hermit living on a mountain between Semos and Ados
+ * - Balduin, a hermit living on a mountain between Semos and Ados
  * 
  * STEPS:
  * - Balduin asks you for some weapons.
@@ -128,7 +128,7 @@ public class WeaponsCollector implements IQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
-						engine.say("There are " + needed.size() + " weapons which are still missing from my collection: "
+						engine.say("There are " + needed.size() + " weapons which are still missing in my collection: "
 								+ Behaviours.enumerateCollection(needed) + ". If you can bring them all, I will give you something nice in exchange. Do you have any of them with you?");
 						player.setQuest("weapons_collector", "");
 					}
@@ -184,7 +184,7 @@ public class WeaponsCollector implements IQuest {
 										engine.say("Yippie! My collection is complete! Thank you very much! Here, take this ice_sword in exchange!");										
 									}
 								} else {
-									engine.say("I may be old, but I'm not stupid! You don't have a " + text + ". What weapon do you really have for me?");
+									engine.say("I may be old, but I'm not senile! You don't have a " + text + "! What weapon do you really have for me?");
 								}
 							} else {
 								engine.say("I already have that one. Do you have any other weapon for me?");
@@ -215,7 +215,7 @@ public class WeaponsCollector implements IQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
-						engine.say("Welcome back. There are still " + needed.size() + " weapons which are still missing from my collection: "
+						engine.say("Welcome back. There are still " + needed.size() + " weapons which are still missing in my collection: "
 								+ Behaviours.enumerateCollection(needed) + ". Do you have any of them with you?");
 					}
 				});
