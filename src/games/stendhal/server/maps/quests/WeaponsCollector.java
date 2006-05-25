@@ -50,7 +50,7 @@ public class WeaponsCollector implements IQuest {
 		"halberd",
 		"hammer",
 		"katana",
-		"mace_+3",
+		"mace_+2",
 		"scimitar",
 		"scythe",
 		"twoside_axe",
@@ -132,20 +132,6 @@ public class WeaponsCollector implements IQuest {
 					}
 				});
 		
-		// player is willing to help
-		npc.add(ConversationStates.ATTENDING,
-				"collection",
-				null,
-				ConversationStates.QUESTION_1,
-				null,
-				new SpeakerNPC.ChatAction() {
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						List<String> needed = missingWeapons(player, true);
-						engine.say("There are " + needed.size() + " weapons which are still missing in my collection: "
-								+ Behaviours.enumerateCollection(needed) + ". Do you have any of them with you?");
-						player.setQuest("weapons_collector", "");
-					}
-				});
 		
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -155,6 +141,24 @@ public class WeaponsCollector implements IQuest {
 				"Too bad. You were my last hope to complete my collection.",
 				null
 				);
+
+		// player asks what exactly is missing
+		npc.add(ConversationStates.ATTENDING,
+				"collection",
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return !player.hasQuest("weapons_collector");
+					}
+				},
+				ConversationStates.QUESTION_1,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						List<String> needed = missingWeapons(player, true);
+						engine.say("There are " + needed.size() + " weapons which are still missing in my collection: "
+								+ Behaviours.enumerateCollection(needed) + ". Do you have any of them with you?");
+					}
+				});
 
 		// player says he doesn't have required weapons with him
 		npc.add(ConversationStates.QUESTION_1,
@@ -195,6 +199,8 @@ public class WeaponsCollector implements IQuest {
 										player.equip(iceSword);
 										player.addXP(1000);
 										engine.say("Yippie! My collection is complete! Thank you very much! Here, take this ice_sword in exchange!");										
+										player.setQuest("weapons_collector", "done");
+										world.modify(player);
 									}
 								} else {
 									engine.say("I may be old, but I'm not senile! You don't have a " + text + "! What weapon do you really have for me?");
