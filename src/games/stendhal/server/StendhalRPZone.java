@@ -643,13 +643,15 @@ public class StendhalRPZone extends MarauroaRPZone
     
     if(object instanceof Item)
       {      
-      int droppedOn=0;
-      if(Entity.getRPRuleProcessor()!=null)
+      if(!((Item)object).isPersistent())
         {
-        droppedOn=Entity.getRPRuleProcessor().getTurn();        
+        int droppedOn=0;
+        if(Entity.getRPRuleProcessor()!=null)
+          {
+          droppedOn=Entity.getRPRuleProcessor().getTurn();        
+          }
+        itemsOnFloor.put((Item)object,droppedOn);        
         }
-      
-      itemsOnFloor.put((Item)object,droppedOn);
       }
     }
 
