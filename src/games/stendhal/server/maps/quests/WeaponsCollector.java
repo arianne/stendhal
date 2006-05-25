@@ -46,15 +46,15 @@ public class WeaponsCollector implements IQuest {
 		"biting_sword",
 		"broadsword",
 		"flail",
-		"golden_hammer",
-		"golden_mace",
-		"grand_warhammer",
+		"hammer_+3",
 		"halberd",
 		"hammer",
 		"katana",
+		"mace_+3",
 		"scimitar",
 		"scythe",
-		"twosided_poleaxe"
+		"twoside_axe",
+		"war_hammer"
 	);
 	
 	/**
