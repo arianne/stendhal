@@ -56,7 +56,7 @@ No warranties. But let us know if it doesn't work.
 0.50 May XX, 2006
 - Fixed MacOS display and focus bug.
 - Added magic scrolls.
-- Added banker NPC with new quest.
+- Added banker NPC "Dagobert" with new quest.
 - Nicer text bubble.
 - Moved description text (Look event) to server side
 - Changed NPC to look at the character it's talking to
@@ -69,7 +69,7 @@ No warranties. But let us know if it doesn't work.
 - Added ability to sell multiple items at the same time.
 - Added Groovy scripts for Deathmatch challenge (dailyquest.groovy)
 - Added support for alternate LayerRenderer (in addition to the TileRenderer)
-
+- Added hermit NPC "Balduin" with new quest.
 
 0.48 Apr 31, 2006
 - Added jail command
