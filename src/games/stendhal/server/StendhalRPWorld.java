@@ -235,6 +235,7 @@ public class StendhalRPWorld extends RPWorld
     populateZone("Semos");
     populateZone("Nalwor");
     populateZone("Orril");
+    populateZone("Ados");
     populateZone("FeaturesTestArea");
 
     /** After all the zones has been loaded, check how many portals are unpaired */
