@@ -258,7 +258,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		object.sety(Integer.parseInt(components[1]));
 	}
 
-	public void addLayer(String name, String byteContents) throws IOException {
+	public void addLayer(String name, String byteContents) {
 		Log4J.startMethod(logger, "addLayer");
 		TransferContent content = new TransferContent();
 		content.name = name;
@@ -600,7 +600,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		RPObject object = super.remove(id);
 
 		if (object instanceof Item) {
-			itemsOnFloor.remove((Item) object);
+			itemsOnFloor.remove(object);
 		}
 
 		return object;

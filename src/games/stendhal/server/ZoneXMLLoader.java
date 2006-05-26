@@ -115,11 +115,11 @@ public class ZoneXMLLoader extends DefaultHandler {
 		return actualZone;
 	}
 
-	public void startDocument() throws SAXException {
+	public void startDocument() {
 		actualZone = new XMLZone();
 	}
 
-	public void endDocument() throws SAXException {
+	public void endDocument() {
 	}
 
 	private StringBuffer st;
@@ -127,7 +127,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 	private String layerName;
 
 	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) throws SAXException {
+			Attributes attrs){
 		if (qName.equals("map")) {
 			actualZone.name = attrs.getValue("name");
 		} else if (qName.equals("location")) {
@@ -151,8 +151,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 		}
 	}
 
-	public void endElement(String namespaceURI, String sName, String qName)
-			throws SAXException {
+	public void endElement(String namespaceURI, String sName, String qName) {
 		if (qName.equals("map")) {
 			// System.out.println
 			// (actualZone.name+"\t"+actualZone.x+"\t"+actualZone.y+"\t"+actualZone.level+"\t"+actualZone.width+"\t"+actualZone.height);
@@ -167,7 +166,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 		}
 	}
 
-	public void characters(char buf[], int offset, int len) throws SAXException {
+	public void characters(char buf[], int offset, int len) {
 		if (st != null) {
 			st.append(buf, offset, len);
 		}

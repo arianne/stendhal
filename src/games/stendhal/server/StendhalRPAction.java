@@ -110,10 +110,9 @@ public class StendhalRPAction {
 					+ " and uses a weapon of " + weapon);
 		}
 
-		float maxAttackerComponent = 0.8f * (float) source.getATK()
-				* (float) source.getATK() + 4.0f * (float) source.getATK()
-				* (float) weapon;
-		float attackerComponent = ((float) Rand.roll1D100() / 100.0f)
+		float maxAttackerComponent = 0.8f * source.getATK() * source.getATK()
+				+ 4.0f * source.getATK() * weapon;
+		float attackerComponent = (Rand.roll1D100() / 100.0f)
 				* maxAttackerComponent;
 
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: "
@@ -149,14 +148,13 @@ public class StendhalRPAction {
 					+ armor);
 		}
 
-		float maxDefenderComponent = 0.6f * (float) target.getDEF()
-				* (float) target.getDEF() + 4.0f * (float) target.getDEF()
-				* (float) shield + 2.0f * (float) target.getDEF()
-				* (float) armor + 1.5f * (float) target.getDEF()
-				* (float) cloak + (float) target.getDEF() * (float) helmet
-				+ (float) target.getDEF() * (float) legs
-				+ (float) target.getDEF() * (float) boots;
-		float defenderComponent = ((float) Rand.roll1D100() / 100.0f)
+		float maxDefenderComponent = 0.6f * target.getDEF() * target.getDEF()
+				+ 4.0f * target.getDEF() * shield + 2.0f * target.getDEF()
+				* armor + 1.5f * target.getDEF() * cloak
+				+ (float) target.getDEF() * helmet + target.getDEF() * legs
+				+ target.getDEF() * boots;
+		
+		float defenderComponent = (Rand.roll1D100() / 100.0f)
 				* maxDefenderComponent;
 
 		if (logger.isDebugEnabled()) {
