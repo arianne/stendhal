@@ -4,79 +4,75 @@ import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 import games.stendhal.server.maps.quests.IQuest;
 
-public class StendhalQuestSystem
-  {
-  /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(StendhalQuestSystem.class);
+public class StendhalQuestSystem {
+	/** the logger instance. */
+	private static final Logger logger = Log4J
+			.getLogger(StendhalQuestSystem.class);
 
-  StendhalRPWorld world;
-  StendhalRPRuleProcessor rules;
+	StendhalRPWorld world;
 
-  public StendhalQuestSystem(StendhalRPWorld world, StendhalRPRuleProcessor rules)
-    {
-    this.world=world;
-    this.rules=rules;
+	StendhalRPRuleProcessor rules;
 
-    loadQuest("SheepGrowing");
-    loadQuest("OrcishHappyMeal");
-    loadQuest("LookBookforCeryl");
-    loadQuest("IntroducePlayers");
-    loadQuest("SevenCherubs");
-    loadQuest("MeetHackim");
-    loadQuest("MeetHayunn");
-    loadQuest("MeetIo");
-    loadQuest("MeetMonogenes");
-    loadQuest("MeetNomyr");
-    loadQuest("MeetZynn");
-    loadQuest("BeerForHayunn");
-    loadQuest("ArmorForDagobert");
-    loadQuest("HatForMonogenes");
-    loadQuest("NewsFromHackim");
-    loadQuest("MeetKetteh");
-    loadQuest("CleanStorageSpace");
-    loadQuest("WeaponsCollector");
-    }
+	public StendhalQuestSystem(StendhalRPWorld world,
+			StendhalRPRuleProcessor rules) {
+		this.world = world;
+		this.rules = rules;
 
-  public static void main(String[] args)
-    {
-    new StendhalQuestSystem(null,null);
-    }
+		loadQuest("SheepGrowing");
+		loadQuest("OrcishHappyMeal");
+		loadQuest("LookBookforCeryl");
+		loadQuest("IntroducePlayers");
+		loadQuest("SevenCherubs");
+		loadQuest("MeetHackim");
+		loadQuest("MeetHayunn");
+		loadQuest("MeetIo");
+		loadQuest("MeetMonogenes");
+		loadQuest("MeetNomyr");
+		loadQuest("MeetZynn");
+		loadQuest("BeerForHayunn");
+		loadQuest("ArmorForDagobert");
+		loadQuest("HatForMonogenes");
+		loadQuest("NewsFromHackim");
+		loadQuest("MeetKetteh");
+		loadQuest("CleanStorageSpace");
+		loadQuest("WeaponsCollector");
+	}
 
-  private boolean loadQuest(String name)
-    {
-    try
-      {
-      Class entityClass=Class.forName("games.stendhal.server.maps.quests."+name);
+	public static void main(String[] args) {
+		new StendhalQuestSystem(null, null);
+	}
 
-      boolean implementsIQuest=false;
+	private boolean loadQuest(String name) {
+		try {
+			Class entityClass = Class
+					.forName("games.stendhal.server.maps.quests." + name);
 
-      Class[] interfaces=entityClass.getInterfaces();
-      for(Class interf: interfaces)
-        {
-        if(interf.equals(IQuest.class))
-          {
-          implementsIQuest=true;
-          break;
-          }
-        }
+			boolean implementsIQuest = false;
 
-      if(implementsIQuest==false)
-        {
-        logger.debug("Class don't implement IQuest interface.");
-        return false;
-        }
+			Class[] interfaces = entityClass.getInterfaces();
+			for (Class interf : interfaces) {
+				if (interf.equals(IQuest.class)) {
+					implementsIQuest = true;
+					break;
+				}
+			}
 
-      logger.info("Loading Quest: "+name);
-      java.lang.reflect.Constructor constr=entityClass.getConstructor(StendhalRPWorld.class,StendhalRPRuleProcessor.class);
+			if (implementsIQuest == false) {
+				logger.debug("Class don't implement IQuest interface.");
+				return false;
+			}
 
-      // simply creatre a new instance. The constructor creates all additionally objects
-      constr.newInstance(world,rules);
-      return true;
-      }
-    catch(Exception e)
-      {
-      logger.warn("Quest("+name+") loading failed.",e);
-      return false;
-      }
-    }
-  }
+			logger.info("Loading Quest: " + name);
+			java.lang.reflect.Constructor constr = entityClass.getConstructor(
+					StendhalRPWorld.class, StendhalRPRuleProcessor.class);
+
+			// simply creatre a new instance. The constructor creates all
+			// additionally objects
+			constr.newInstance(world, rules);
+			return true;
+		} catch (Exception e) {
+			logger.warn("Quest(" + name + ") loading failed.", e);
+			return false;
+		}
+	}
+}

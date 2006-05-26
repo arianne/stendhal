@@ -19,62 +19,60 @@ import games.stendhal.server.rule.*;
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 
-/** The stendhalcreateaccount extends the createaccount class of marauroa package
- *  so that it defines the specific behaviour for an account of stendhal */
-public class stendhalcreateaccount extends marauroa.server.createaccount
-  {
-  public static void main (String[] args)
-    {
-    Log4J.init("data/conf/stendhalcreateaccount.properties");
-    Entity.generateRPClass();
-    RPEntity.generateRPClass();
-    Player.generateRPClass();
+/**
+ * The stendhalcreateaccount extends the createaccount class of marauroa package
+ * so that it defines the specific behaviour for an account of stendhal
+ */
+public class stendhalcreateaccount extends marauroa.server.createaccount {
+	public static void main(String[] args) {
+		Log4J.init("data/conf/stendhalcreateaccount.properties");
+		Entity.generateRPClass();
+		RPEntity.generateRPClass();
+		Player.generateRPClass();
 
-    stendhalcreateaccount instance=new stendhalcreateaccount();
-    System.exit(instance.run(args));
-    }
-  
-  public stendhalcreateaccount()
-    {
-    super();
-    }
+		stendhalcreateaccount instance = new stendhalcreateaccount();
+		System.exit(instance.run(args));
+	}
 
-  public boolean execute(String username, String password, String email)
-    {
-    String[] args={"-u",username,"-p", password,"-c", username, "-e", email, "-i",Configuration.getConfigurationFile()};
+	public stendhalcreateaccount() {
+		super();
+	}
 
-    return (run(args)==0);
-    }
-    
-  public RPObject populatePlayerRPObject(IPlayerDatabase playerDatabase) throws Exception
-    {
-    RPObject object=new RPObject(RPObject.INVALID_ID);
-    object.put("type","player");
-    object.put("name",get("character"));
-    object.put("outfit",0);
-    object.put("base_hp",100);
-    object.put("hp",100);
-    object.put("atk",10);
-    object.put("atk_xp",0);
-    object.put("def",10);
-    object.put("def_xp",0);
-    object.put("xp",0);
-    
-    RuleManager manager=RuleSetFactory.getRuleSet("default");
-    
-    RPSlot slot=new RPSlot("armor");
-    object.addSlot(slot);
-    Entity entity=manager.getEntityManager().getItem("leather_armor");
-    slot.assignValidID(entity);
-    slot.add(entity);
+	public boolean execute(String username, String password, String email) {
+		String[] args = { "-u", username, "-p", password, "-c", username, "-e",
+				email, "-i", Configuration.getConfigurationFile() };
 
-    slot=new RPSlot("rhand");
-    object.addSlot(slot);
-    entity=manager.getEntityManager().getItem("club");
-    slot.assignValidID(entity);
-    slot.add(entity);
-    
-    return object;
-    }
-  }
+		return (run(args) == 0);
+	}
 
+	public RPObject populatePlayerRPObject(IPlayerDatabase playerDatabase)
+			throws Exception {
+		RPObject object = new RPObject(RPObject.INVALID_ID);
+		object.put("type", "player");
+		object.put("name", get("character"));
+		object.put("outfit", 0);
+		object.put("base_hp", 100);
+		object.put("hp", 100);
+		object.put("atk", 10);
+		object.put("atk_xp", 0);
+		object.put("def", 10);
+		object.put("def_xp", 0);
+		object.put("xp", 0);
+
+		RuleManager manager = RuleSetFactory.getRuleSet("default");
+
+		RPSlot slot = new RPSlot("armor");
+		object.addSlot(slot);
+		Entity entity = manager.getEntityManager().getItem("leather_armor");
+		slot.assignValidID(entity);
+		slot.add(entity);
+
+		slot = new RPSlot("rhand");
+		object.addSlot(slot);
+		entity = manager.getEntityManager().getItem("club");
+		slot.assignValidID(entity);
+		slot.add(entity);
+
+		return object;
+	}
+}
