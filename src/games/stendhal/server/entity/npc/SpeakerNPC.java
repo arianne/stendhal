@@ -74,8 +74,8 @@ import org.apache.log4j.Logger;
  *             if(item.equals("sword")) {
  *             engine.say(item+" costs 10 coins. Do you want to buy?");
  *         } else {
- *             engine.say("Sorry, I don't sell "+item);
- *             engine.setActualState(1);
+ *             engine.say("Sorry, I don't sell " + item);
+ *             engine.setActualState(ConversationStates.ATTENDING_STATE);
  *         }
  *    }
  * });
@@ -173,11 +173,12 @@ public abstract class SpeakerNPC extends NPC {
 		return behavioursData.get(behaviour);
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y + 1, 1, 1);
 	}
 
-	private List<Player> getNearestPlayersThatHasSpeaken(NPC npc, double range) {
+	private List<Player> getNearestPlayersThatHasSpoken(NPC npc, double range) {
 		int x = npc.getx();
 		int y = npc.gety();
 
@@ -226,15 +227,18 @@ public abstract class SpeakerNPC extends NPC {
 		return attending;
 	}
 
+	@Override
 	public void onDead(RPEntity who) {
 		setHP(getBaseHP());
 		world.modify(this);
 	}
 
+	@Override
 	protected void dropItemsOn(Corpse corpse) {
 		// They can't die
 	}
 
+	@Override
 	public void logic() {
 		if (has("text"))
 			remove("text");
@@ -271,7 +275,7 @@ public abstract class SpeakerNPC extends NPC {
 			}
 		}
 
-		List<Player> speakers = getNearestPlayersThatHasSpeaken(this, 5);
+		List<Player> speakers = getNearestPlayersThatHasSpoken(this, 5);
 		for (Player speaker : speakers) {
 			tell(speaker, speaker.get("text"));
 		}
@@ -359,6 +363,7 @@ public abstract class SpeakerNPC extends NPC {
 		}
 	}
 
+	@Override
 	public void say(String text) {
 		// be polite and face the player we are talking to
 		if (!facingto(attending)) {
