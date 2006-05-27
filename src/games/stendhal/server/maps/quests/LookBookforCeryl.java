@@ -47,7 +47,7 @@ public class LookBookforCeryl implements IQuest {
 						if (player.isQuestCompleted("introduce_players")) {
 							engine.say("I have nothing for you now.");
 						} else {
-							engine.say("I am looking for a very special #book");
+							engine.say("I am looking for a very special #book.");
 						}
 					}
 				});
@@ -73,7 +73,7 @@ public class LookBookforCeryl implements IQuest {
 					}
 				},
 				ConversationStates.QUEST_OFFERED,
-				"Could you ask #Jynath for a #book that I am looking?",
+				"Could you ask #Jynath for a book that I am looking for?",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -98,7 +98,7 @@ public class LookBookforCeryl implements IQuest {
 				"jynath",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"Jynath is a witch that lives South of Or'ril castle. So will you get me the #book?",
+				"Jynath is a witch who lives South of Or'ril castle. So will you get me the book?",
 				null);
 
 		/** Remind player about the quest */
@@ -111,14 +111,14 @@ public class LookBookforCeryl implements IQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"I really need that #book now! Go to talk with #Jynath.",
+				"I really need that book now! Go to talk with #Jynath.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				"jynath",
 				null,
 				ConversationStates.ATTENDING,
-				"Jynath is a witch that lives at south of Or'ril castle.",
+				"Jynath is a witch who lives South of Or'ril castle.",
 				null);
 	}
 
@@ -222,7 +222,7 @@ public class LookBookforCeryl implements IQuest {
 
 							player.setQuest("ceryl_book", "done");
 						} else {
-							engine.say("Where did you put #Jynath's #book?. You need to start again the search.");
+							engine.say("Where did you put #Jynath's #book?. You need to start the search again.");
 							player.removeQuest("ceryl_book");
 						}
 					}
