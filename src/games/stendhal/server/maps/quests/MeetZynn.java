@@ -4,6 +4,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -35,11 +36,11 @@ public class MeetZynn implements IQuest {
 
 		Behaviours.addReply(npc,
 							"history",
-							"There are at present two powers at Faiumoni: Deniran empire and Blordrough's dark legion. Deniran still controls the central and north part of Faiumoni, and has under its control the mines of Gold and Mithril. On the other side the Blordrough's legion has conquered the south of the island and has under its control several mines of steel and an important gold mine.");
+							"There are at present two powers at Faiumoni: Deniran empire and Blordrough's dark legion. Deniran still controls the central and north part of Faiumoni, and has under its control the mines of Gold and Mithril. On the other side the Blordrough's legion has conquered the South of the island and has under its control several steel mines and an important gold mine.");
 
 		Behaviours.addReply(npc,
 							"news",
-							"Deniran empire is seeking help from adventurers to take part in their army on the task of recovering the total control of Faiumoni, unfortunatelly they have found an awesome resistence. The empire army has been sent to defend the south part of the island that is suffering constants attacks.");
+							"Deniran empire is seeking help from adventurers to take part in their army on the task of recovering the total control of Faiumoni, unfortunatelly they have found an awesome resistence. The empire army has been sent to defend the South part of the island that is suffering from constant attacks.");
 
 		Behaviours.addReply(npc,
 							"geography",
@@ -51,7 +52,7 @@ public class MeetZynn implements IQuest {
 
 		Behaviours.addReply(npc,
 							"Faiumoni",
-							"It is the big island we are in, with mountains on its north part, a big desert on the middle and a long river that crosses it on its half.");
+							"It is the big island we are on, with mountains on its North part, a big desert on the middle and a long river that crosses it on its half.");
 
 		Behaviours.addReply(npc,
 							"Semos",
@@ -59,7 +60,7 @@ public class MeetZynn implements IQuest {
 
 		Behaviours.addReply(npc,
 							"Ados",
-							"It is a coastal city with a very important port, where merchants arrive to sell their stuff. Ados is the end of an important commercial route that has its heart at Deniran, the capital of Faiumoni.");
+							"It is a coastal city with a very important port, where merchants arrive to sell their goods. Ados is the end of an important commercial route that has its heart at Deniran, the capital of Faiumoni.");
 
 		Behaviours.addReply(npc,
 							"Or'ril",
@@ -91,7 +92,7 @@ public class MeetZynn implements IQuest {
 
 		Behaviours.addReply(npc,
 							"get",
-							"You can get an scaled-down aerial image of the known surface of stendhal at #http://arianne.sourceforge.net/wiki_images/atlas_world.png But BEWARE, while maps can be very useful they might also spoil a little the surprise of discovering for the first time");
+							"You can get an scaled-down aerial image of the known surface of stendhal at #http://arianne.sourceforge.net/wiki_images/atlas_world.png But BEWARE, while maps can be very useful they might also spoil a little the surprise of discovering for the first time.");
 
 		Behaviours.addReply(npc,
 							"SPS",
@@ -107,10 +108,10 @@ public class MeetZynn implements IQuest {
 		 * list of all the things the player has asked and reward him when the
 		 * list is complete?
 		 */
-		npc.add(1,
+		npc.add(ConversationStates.ATTENDING,
 				"bye",
 				null,
-				0,
+				ConversationStates.IDLE,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
