@@ -1,4 +1,4 @@
-package games.stendhal.server.maps;
+package games.stendhal.server.entity.npc;
 
 import java.util.Map;
 import java.util.HashMap;
