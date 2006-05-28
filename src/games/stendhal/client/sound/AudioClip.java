@@ -67,16 +67,9 @@ public class AudioClip
       
       if (!mixer.isLineSupported(new DataLine.Info(Clip.class, audioInputStream.getFormat())))
       {
-        byte[] newData = convertToSupportedFormat(audioData);
-        if (newData == null)
-        {
-          logger.error(name+" format is not supported("+audioInputStream.getFormat()+")");
-          supported = false;
-          return;
-        }
-        audioData = newData;
-        audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(audioData));
-        format = audioInputStream.getFormat();
+        logger.error(name+" format is not supported("+audioInputStream.getFormat()+")");
+        supported = false;
+        return;
       }
 
       supported = true;
@@ -97,16 +90,6 @@ public class AudioClip
     {
       throw new RuntimeException(e);
     }
-  }
-
-  /**
-   * tries to reformat the audiodata to a supported format
-   * @param audioData2
-   */
-  private byte[] convertToSupportedFormat(byte[] audioData)
-  {
-    // not yet implemented
-    return null;
   }
 
   /**
@@ -151,8 +134,7 @@ public class AudioClip
       }
       catch (LineUnavailableException e)
       {
-        logger.error(name+" format is not supported("+audioInputStream.getFormat()+")");
-        supported = false;
+        logger.info(name+" cannot be played, no free lines available");
       }
     }
     return null;

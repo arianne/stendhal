@@ -139,18 +139,15 @@ public class ClipRunner implements LineListener
    */
   public Clip getAudioClip(int volume, float correctionDB)
   {
-//    logger.error("getting audioclip for "+text+" ("+samples.size()+")");
     if (samples.size() > 0)
     {
      try
       {
         int index = Rand.rand(samples.size());
         AudioClip audioClip = samples.get(index);
-//        logger.error("get audioclip "+audioClip);
 
         // Obtain and open the line.
         Clip line = audioClip.openLine();
-//        logger.error("line = "+line);
         if (line == null)
         {
           // well...line not supported
