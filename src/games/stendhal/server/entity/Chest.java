@@ -18,125 +18,104 @@ import games.stendhal.server.events.UseEvent;
 
 import marauroa.common.game.*;
 
-public class Chest extends Entity implements UseEvent
-  {
-  private boolean open;
-  
-  public static void generateRPClass()
-    {
-    RPClass chest=new RPClass("chest");
-    chest.isA("entity");
-    chest.add("open",RPClass.FLAG);
-    chest.addRPSlot("content",20);
-    }
-  
-  public Chest(RPObject object) throws AttributeNotFoundException
-    {
-    super(object);
-    put("type","chest");
-    
-    if(!hasSlot("content"))
-      {
-      RPSlot slot=new RPSlot("content");
-      slot.setCapacity(4);
-      addSlot(slot);
-      }
-      
-    update();
-    }
+public class Chest extends Entity implements UseEvent {
+	private boolean open;
 
-  public Chest() throws AttributeNotFoundException
-    {
-    super();
-    put("type","chest");
-    open=false;
+	public static void generateRPClass() {
+		RPClass chest = new RPClass("chest");
+		chest.isA("entity");
+		chest.add("open", RPClass.FLAG);
+		chest.addRPSlot("content", 20);
+	}
 
-    RPSlot slot=new RPSlot("content");
-    slot.setCapacity(4);
-    addSlot(slot);
-    }
+	public Chest(RPObject object) throws AttributeNotFoundException {
+		super(object);
+		put("type", "chest");
 
-  public void getArea(Rectangle2D rect, double x, double y)
-    {
-    rect.setRect(x,y,1,1);
-    }
+		if (!hasSlot("content")) {
+			RPSlot slot = new RPSlot("content");
+			slot.setCapacity(4);
+			addSlot(slot);
+		}
 
-  public void update()
-    {
-    super.update();
-    open=false;
-    if(has("open")) open=true;
-    }
-  
-  public void open()
-    {
-    this.open=true;
-    put("open","");
-    }
-    
-  public void close()
-    {
-    this.open=false;
-    if(has("open"))
-      {
-      remove("open");
-      }
-    }
-  
-  public boolean isOpen()
-    {
-    return open;
-    }
-  
-  public void add(PassiveEntity entity)
-    {
-    RPSlot content=getSlot("content");
-    content.assignValidID(entity);
-    content.add(entity);
-    }
-  
-  public int size()
-    {
-    return getSlot("content").size();
-    }  
-  
-  public Iterator<RPObject> getContent()
-    {
-    RPSlot content=getSlot("content");
-    return content.iterator();
-    }
+		update();
+	}
 
-  public void onUsed(RPEntity user)
-    {
-    Player player=(Player)user;
-    
-    if(player.nextto(this,0.25))
-      {
-      if(isOpen())
-        {
-        close();
-        }
-      else
-        {
-        open();
-        }
-      
-      world.modify(this);
-      }
-    }
-  
-  public String describe()
-    {
-    String text="You see a chest.";
-    if(hasDescription())
-      {
-      text = getDescription();
-      }
-    text +=" It is "+(isOpen()?"open.":"closed.");
-    if(isOpen())
-      {
-      text +=" You can #inspect this item to see its content.";
-      }
-    return(text);
-    }
-  }
+	public Chest() throws AttributeNotFoundException {
+		super();
+		put("type", "chest");
+		open = false;
+
+		RPSlot slot = new RPSlot("content");
+		slot.setCapacity(4);
+		addSlot(slot);
+	}
+
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y, 1, 1);
+	}
+
+	public void update() {
+		super.update();
+		open = false;
+		if (has("open"))
+			open = true;
+	}
+
+	public void open() {
+		this.open = true;
+		put("open", "");
+	}
+
+	public void close() {
+		this.open = false;
+		if (has("open")) {
+			remove("open");
+		}
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void add(PassiveEntity entity) {
+		RPSlot content = getSlot("content");
+		content.assignValidID(entity);
+		content.add(entity);
+	}
+
+	public int size() {
+		return getSlot("content").size();
+	}
+
+	public Iterator<RPObject> getContent() {
+		RPSlot content = getSlot("content");
+		return content.iterator();
+	}
+
+	public void onUsed(RPEntity user) {
+		Player player = (Player) user;
+
+		if (player.nextto(this, 0.25)) {
+			if (isOpen()) {
+				close();
+			} else {
+				open();
+			}
+
+			world.modify(this);
+		}
+	}
+
+	public String describe() {
+		String text = "You see a chest.";
+		if (hasDescription()) {
+			text = getDescription();
+		}
+		text += " It is " + (isOpen() ? "open." : "closed.");
+		if (isOpen()) {
+			text += " You can #inspect this item to see its content.";
+		}
+		return (text);
+	}
+}

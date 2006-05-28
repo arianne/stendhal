@@ -17,92 +17,79 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import games.stendhal.common.Direction;
 
-public class Door extends Portal 
-  {
-  private boolean open;
-  private int width;
-  
-  public static void generateRPClass()
-    {
-    RPClass door=new RPClass("door");
-    door.isA("entity");
-    door.add("class",RPClass.STRING);
-    door.add("locked",RPClass.STRING, RPClass.PRIVATE);
-    door.add("open",RPClass.FLAG);
-    }  
+public class Door extends Portal {
+	private boolean open;
 
-  public Door(String key, String clazz, Direction dir) throws AttributeNotFoundException
-    {
-    super();
-    put("type","door");
-    put("class",clazz);
-    put("locked",key);
-    
-    setDirection(dir);
-    
-    open=false;
-    }
+	//private int width;
 
-  public void getArea(Rectangle2D rect, double x, double y)
-    {
-    rect.setRect(x,y,1,1);
-    }
+	public static void generateRPClass() {
+		RPClass door = new RPClass("door");
+		door.isA("entity");
+		door.add("class", RPClass.STRING);
+		door.add("locked", RPClass.STRING, RPClass.PRIVATE);
+		door.add("open", RPClass.FLAG);
+	}
 
-  public void update()
-    {
-    super.update();
-    open=false;
-    if(has("open")) open=true;
-    }
-  
-  public void open()
-    {
-    this.open=true;
-    put("open","");
-    }
-    
-  public void close()
-    {
-    this.open=false;
-    remove("open");
-    }
-  
-  public boolean isOpen()
-    {
-    return open;
-    }
+	public Door(String key, String clazz, Direction dir)
+			throws AttributeNotFoundException {
+		super();
+		put("type", "door");
+		put("class", clazz);
+		put("locked", key);
 
-  public void onUsed(RPEntity user)
-    {    
-    if(has("locked") && user.isEquipped(get("locked")))
-      {
-      if(!isOpen())
-        {
-        open();
-        world.modify(this);
-        }
-      }
-    else
-      {
-      if(isOpen())
-        {
-        close();
-        world.modify(this);
-        }
-      }
-      
-    if(isOpen())
-      {
-      super.onUsed(user);
-      }
-    }  
-  
-  public String describe()
-    {
-    String text="You see a door.";
-    if(hasDescription())
-      text = getDescription();
-    text +=" It is "+(isOpen()?"open.":"closed.");
-    return(text);
-    }
- }
+		setDirection(dir);
+
+		open = false;
+	}
+
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y, 1, 1);
+	}
+
+	public void update() {
+		super.update();
+		open = false;
+		if (has("open"))
+			open = true;
+	}
+
+	public void open() {
+		this.open = true;
+		put("open", "");
+	}
+
+	public void close() {
+		this.open = false;
+		remove("open");
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void onUsed(RPEntity user) {
+		if (has("locked") && user.isEquipped(get("locked"))) {
+			if (!isOpen()) {
+				open();
+				world.modify(this);
+			}
+		} else {
+			if (isOpen()) {
+				close();
+				world.modify(this);
+			}
+		}
+
+		if (isOpen()) {
+			super.onUsed(user);
+		}
+	}
+
+	public String describe() {
+		String text = "You see a door.";
+		if (hasDescription())
+			text = getDescription();
+		text += " It is " + (isOpen() ? "open." : "closed.");
+		return (text);
+	}
+}

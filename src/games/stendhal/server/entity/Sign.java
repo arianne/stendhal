@@ -18,39 +18,30 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import org.apache.log4j.Logger;
 
+public class Sign extends Entity {
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(Sign.class);
 
-public class Sign extends Entity 
-  {
-  /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(Sign.class);
+	public static void generateRPClass() {
+		try {
+			RPClass sign = new RPClass("sign");
+			sign.isA("entity");
+			sign.add("text", RPClass.LONG_STRING);
+		} catch (RPClass.SyntaxException e) {
+			logger.error("cannot generate RPClass", e);
+		}
+	}
 
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass sign=new RPClass("sign");
-      sign.isA("entity");
-      sign.add("text",RPClass.LONG_STRING);
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      logger.error("cannot generate RPClass",e);
-      }
-    }
-  
-  public Sign() throws AttributeNotFoundException
-    {
-    super();
-    put("type","sign");
-    }
+	public Sign() throws AttributeNotFoundException {
+		super();
+		put("type", "sign");
+	}
 
-  public void getArea(Rectangle2D rect, double x, double y)
-    {
-    rect.setRect(x,y,1,1);
-    }  
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y, 1, 1);
+	}
 
-  public void setText(String text)
-    {
-    put("text",text);
-    }
-  }
+	public void setText(String text) {
+		put("text", text);
+	}
+}

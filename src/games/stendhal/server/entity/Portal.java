@@ -22,89 +22,74 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import org.apache.log4j.Logger;
 
+public class Portal extends Entity implements UseEvent {
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(Portal.class);
 
-public class Portal extends Entity implements UseEvent
-  {
-  /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(Portal.class);
-  
-  private boolean settedDestination;
+	private boolean settedDestination;
 
-  private int number;
-  private String destinationZone;
-  private int destinationNumber;
-  
-  public static void generateRPClass()
-    {
-    try
-      {
-      RPClass portal=new RPClass("portal");
-      portal.isA("entity");
-      portal.add("hidden",RPClass.FLAG);
-      }
-    catch(RPClass.SyntaxException e)
-      {
-      logger.error("cannot generate RPClass",e);
-      }
-    }
-  
-  public Portal() throws AttributeNotFoundException
-    {
-    super();
-    put("type","portal");
-    settedDestination=false;
-    }
-  
-  public void setNumber(int number)
-    {
-    this.number=number;
-    }
-  
-  public int getNumber()
-    {
-    return number;
-    }
+	private int number;
 
-  public void setDestination(String zone, int number)
-    {
-    this.destinationNumber=number;
-    this.destinationZone=zone;
-    this.settedDestination=true;
-    }
-  
-  public int getDestinationNumber()
-    {
-    return destinationNumber;
-    }
+	private String destinationZone;
 
-  public String getDestinationZone()
-    {
-    return destinationZone;
-    }
-  
-  public boolean loaded()
-    {
-    return settedDestination;
-    }
+	private int destinationNumber;
 
-  public void getArea(Rectangle2D rect, double x, double y)
-    {
-    rect.setRect(x,y,1,1);
-    }  
-  
-  public String toString()
-    {
-    return "Portal at "+get("zoneid")+"["+getx()+","+gety()+"]";
-    }
-    
-  public void onUsed(RPEntity user)
-    {
-    Player player=(Player)user;
-    
-    if(StendhalRPAction.usePortal(player, this))
-      {
-      StendhalRPAction.transferContent(player);
-      world.modify(player);
-      }
-    }  
-  }
+	public static void generateRPClass() {
+		try {
+			RPClass portal = new RPClass("portal");
+			portal.isA("entity");
+			portal.add("hidden", RPClass.FLAG);
+		} catch (RPClass.SyntaxException e) {
+			logger.error("cannot generate RPClass", e);
+		}
+	}
+
+	public Portal() throws AttributeNotFoundException {
+		super();
+		put("type", "portal");
+		settedDestination = false;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setDestination(String zone, int number) {
+		this.destinationNumber = number;
+		this.destinationZone = zone;
+		this.settedDestination = true;
+	}
+
+	public int getDestinationNumber() {
+		return destinationNumber;
+	}
+
+	public String getDestinationZone() {
+		return destinationZone;
+	}
+
+	public boolean loaded() {
+		return settedDestination;
+	}
+
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y, 1, 1);
+	}
+
+	public String toString() {
+		return "Portal at " + get("zoneid") + "[" + getx() + "," + gety() + "]";
+	}
+
+	public void onUsed(RPEntity user) {
+		Player player = (Player) user;
+
+		if (StendhalRPAction.usePortal(player, this)) {
+			StendhalRPAction.transferContent(player);
+			world.modify(player);
+		}
+	}
+}
