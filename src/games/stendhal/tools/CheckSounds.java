@@ -14,6 +14,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -23,6 +25,18 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class CheckSounds
 {
+  private static final boolean TESTPLAY_SAMPLES = false;
+  private static class TestLineListener implements LineListener
+  {
+    public boolean active = true;
+
+    public void update(LineEvent event)
+    {
+      if (event.getType() == LineEvent.Type.STOP)
+        active = false;
+    }
+  }
+  
   private static String getString(String s, int width, char c)
   {
     while (s.length() < width)
@@ -39,6 +53,8 @@ public class CheckSounds
     Map<String, AudioFormat> formatMap = new TreeMap<String, AudioFormat>();
     Map<String, String > fileFormatMap = new TreeMap<String, String>();
     ZipEntry entry = zipFile.getNextEntry();
+    Mixer defaultMixer = AudioSystem.getMixer(null);
+    
     do
     {
       byte[] temp = new byte[(int) entry.getSize()];
@@ -49,6 +65,38 @@ public class CheckSounds
         AudioInputStream ais = AudioSystem.getAudioInputStream(new ByteArrayInputStream(temp));
         AudioFormat format = ais.getFormat();
         String formatString = format.toString();
+
+        if (TESTPLAY_SAMPLES)
+        {
+          // testplay the sound
+          DataLine.Info info = new DataLine.Info(Clip.class, format);
+          if (defaultMixer.isLineSupported(info))
+          {
+            AudioInputStream playStream = ais; 
+            AudioFormat defaultFormat = new AudioFormat(format.getSampleRate(), 16, 1, false, true); 
+            if (AudioSystem.isConversionSupported(defaultFormat, format))
+            {
+              playStream = AudioSystem.getAudioInputStream(defaultFormat, ais);
+            }
+            else
+            {
+              System.out.println("conversion not supported (to "+defaultFormat+")"); 
+            }
+            
+            System.out.println("testplaying "+entry.getName()+" "+playStream.getFormat());
+            
+            Clip line = (Clip) defaultMixer.getLine(info);
+            line.open(playStream);
+            line.loop(2);
+            TestLineListener testListener = new TestLineListener(); 
+            line.addLineListener(testListener); 
+            while (testListener.active)
+            {
+              Thread.yield();
+            }
+            line.close();
+          }
+        }
 
         fileFormatMap.put(entry.getName(), formatString);
         if (!formatMap.containsKey(formatString))
@@ -100,10 +148,22 @@ public class CheckSounds
       for (int i = 0; i < mixerList.length; i++)
       {
         Mixer mixer = AudioSystem.getMixer(mixerList[i]);
-        System.out.print(getString((mixer.isLineSupported(info) ? "  " : "un")+"supported ("+mixer.getMaxLines(info)+")",width[i], ' ')+" | ");
+        boolean supported = mixer.isLineSupported(info);
+        System.out.print(getString((supported ? "  " : "un")+"supported ("+mixer.getMaxLines(info)+")",width[i], ' ')+" | ");
       }
       
       System.out.print(key);
+      // line not supported by any mixer
+      String files = "";
+      for (String file : fileFormatMap.keySet())
+      {
+        if (key.equals(fileFormatMap.get(file)))
+        {
+          files += " "+file;
+        }
+      }
+      System.out.print(" (files: "+files+")");
+
       System.out.println();
     }
     System.out.println("done");
