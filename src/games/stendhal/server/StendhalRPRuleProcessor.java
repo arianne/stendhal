@@ -11,6 +11,7 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server;
+
 import games.stendhal.common.Pair;
 import games.stendhal.server.actions.*;
 import games.stendhal.server.entity.SheepFood;
@@ -30,44 +31,58 @@ import marauroa.common.Log4J;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 import org.apache.log4j.Logger;
-public class StendhalRPRuleProcessor implements IRPRuleProcessor
-{
+
+public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** the logger instance. */
 	private static final Logger logger = Log4J
 			.getLogger(StendhalRPRuleProcessor.class);
+
 	private JDBCPlayerDatabase database;
+
 	private static Map<String, ActionListener> actionsMap;
-	static
-	{
+	static {
 		actionsMap = new HashMap<String, ActionListener>();
 	}
+
 	private RPServerManager rpman;
+
 	private StendhalRPWorld world;
+
 	private List<Player> playersObject;
+
 	private List<Player> playersObjectRmText;
+
 	private List<NPC> npcs;
+
 	private List<NPC> npcsToAdd;
+
 	private List<NPC> npcsToRemove;
+
 	private List<Pair<RPEntity, RPEntity>> entityToKill;
+
 	private List<RespawnPoint> respawnPoints;
-	private List<SheepFood> foodItems;
+
+	private List<SheepFood> sheepFoodItems;
+
 	private List<Corpse> corpses;
+
 	private List<Corpse> corpsesToRemove;
+
 	private List<Blood> bloods;
+
 	private List<Blood> bloodsToRemove;
+
 	private StendhalScriptSystem scripts;
-	public static void register(String action, ActionListener actionClass)
-	{
-		if (actionsMap.get(action) != null)
-		{
-			logger
-					.error("Registering twice the same action handler: "
-							+ action);
+
+	public static void register(String action, ActionListener actionClass) {
+		if (actionsMap.get(action) != null) {
+			logger.error("Registering twice the same action handler: "
+						+ action);
 		}
 		actionsMap.put(action, actionClass);
 	}
-	private void registerActions()
-	{
+
+	private void registerActions() {
 		Administration.register();
 		Attack.register();
 		Buddy.register();
@@ -83,14 +98,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 		Stop.register();
 		Use.register();
 	}
-	public StendhalRPRuleProcessor()
-	{
+
+	public StendhalRPRuleProcessor() {
 		database = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase();
 		playersObject = new LinkedList<Player>();
 		playersObjectRmText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<RespawnPoint>();
-		foodItems = new LinkedList<SheepFood>();
+		sheepFoodItems = new LinkedList<SheepFood>();
 		npcsToAdd = new LinkedList<NPC>();
 		npcsToRemove = new LinkedList<NPC>();
 		entityToKill = new LinkedList<Pair<RPEntity, RPEntity>>();
@@ -101,19 +116,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 		scripts = StendhalScriptSystem.get();
 		registerActions();
 	}
-	public void addGameEvent(String source, String event, String... params)
-	{
-		try
-		{
+
+	public void addGameEvent(String source, String event, String... params) {
+		try {
 			Transaction transaction = database.getTransaction();
 			database.addGameEvent(transaction, source, event, params);
 			transaction.commit();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			logger.warn("Can't store game event", e);
 		}
 	}
+
 	/**
 	 * 
 	 * Set the context where the actions are executed.
@@ -125,10 +138,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 	 * @param world
 	 * 
 	 */
-	public void setContext(RPServerManager rpman, RPWorld world)
-	{
-		try
-		{
+	public void setContext(RPServerManager rpman, RPWorld world) {
+		try {
 			this.rpman = rpman;
 			this.world = (StendhalRPWorld) world;
 			StendhalRPAction.initialize(rpman, this, world);
@@ -136,14 +147,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 			Path.initialize(world);
 			Entity.setRPContext(this, this.world);
 			/* Initialize quests */
-			StendhalQuestSystem quests = new StendhalQuestSystem(this.world,
-					this);
-			for (IRPZone zone : world)
-			{
+			new StendhalQuestSystem(this.world,	this);
+			for (IRPZone zone : world) {
 				StendhalRPZone szone = (StendhalRPZone) zone;
 				npcs.addAll(szone.getNPCList());
 				respawnPoints.addAll(szone.getRespawnPointList());
-				foodItems.addAll(szone.getFoodItemList());
+				sheepFoodItems.addAll(szone.getSheepFoodItemList());
 			}
 			// /* Run python script */
 			// PythonInterpreter interpreter=new PythonInterpreter();
@@ -167,26 +176,21 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 			/* Run http server */
 			// StendhalServerExtension.getInstance("games.stendhal.server.StendhalHttpServer",this,
 			// this.world).init();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			logger.fatal("cannot set Context. exiting", e);
 			System.exit(-1);
 		}
 	}
-	public boolean checkGameVersion(String game, String version)
-	{
-		if (game.equals("stendhal"))
-		{
+
+	public boolean checkGameVersion(String game, String version) {
+		if (game.equals("stendhal")) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
-	private boolean isValidUsername(String username)
-	{
+
+	private boolean isValidUsername(String username) {
 		/** TODO: Complete this. Should read the list from XML file */
 		if (username.indexOf(' ') != -1)
 			return false;
@@ -194,117 +198,106 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 			return false;
 		return true;
 	}
-	public boolean createAccount(String username, String password, String email)
-	{
-		if (!isValidUsername(username))
-		{
+
+	public boolean createAccount(String username, String password, String email) {
+		if (!isValidUsername(username)) {
 			return false;
 		}
 		stendhalcreateaccount account = new stendhalcreateaccount();
 		return account.execute(username, password, email);
 	}
-	public void addNPC(NPC npc)
-	{
+
+	public void addNPC(NPC npc) {
 		npcsToAdd.add(npc);
 	}
-	public void killRPEntity(RPEntity entity, RPEntity who)
-	{
+
+	public void killRPEntity(RPEntity entity, RPEntity who) {
 		entityToKill.add(new Pair<RPEntity, RPEntity>(entity, who));
 	}
-	public void removePlayerText(Player player)
-	{
+
+	public void removePlayerText(Player player) {
 		playersObjectRmText.add(player);
 	}
-	public void addCorpse(Corpse corpse)
-	{
+
+	public void addCorpse(Corpse corpse) {
 		corpses.add(corpse);
 	}
-	public void removeCorpse(Corpse corpse)
-	{
-		for (RPSlot slot : corpse.slots())
-		{
-			for (RPObject object : slot)
-			{
-				if (object instanceof Corpse)
-				{
+
+	public void removeCorpse(Corpse corpse) {
+		for (RPSlot slot : corpse.slots()) {
+			for (RPObject object : slot) {
+				if (object instanceof Corpse) {
 					removeCorpse((Corpse) object);
 				}
 			}
 		}
 		corpsesToRemove.add(corpse);
 	}
-	public void addBlood(Blood blood)
-	{
+
+	public void addBlood(Blood blood) {
 		bloods.add(blood);
 	}
-	public boolean bloodAt(int x, int y)
-	{
-		for (Blood blood : bloods)
-		{
-			if (blood.getx() == x && blood.gety() == y)
-			{
+
+	public boolean bloodAt(int x, int y) {
+		for (Blood blood : bloods) {
+			if (blood.getx() == x && blood.gety() == y) {
 				return true;
 			}
 		}
 		return false;
 	}
-	public void removeBlood(Blood blood)
-	{
+
+	public void removeBlood(Blood blood) {
 		bloodsToRemove.add(blood);
 	}
-	public List<Player> getPlayers()
-	{
+
+	public List<Player> getPlayers() {
 		return playersObject;
 	}
-	public List<SheepFood> getFoodItems()
-	{
-		return foodItems;
+
+	public List<SheepFood> getSheepFoodItems() {
+		return sheepFoodItems;
 	}
-	public List<NPC> getNPCs()
-	{
+
+	public List<NPC> getNPCs() {
 		return npcs;
 	}
-	public boolean removeNPC(NPC npc)
-	{
+
+	public boolean removeNPC(NPC npc) {
 		return npcsToRemove.add(npc);
 	}
-	public boolean onActionAdd(RPAction action, List<RPAction> actionList)
-	{
+
+	public boolean onActionAdd(RPAction action, List<RPAction> actionList) {
 		return true;
 	}
+
 	public boolean onIncompleteActionAdd(RPAction action,
-			List<RPAction> actionList)
-	{
+			List<RPAction> actionList) {
 		return true;
 	}
-	public RPAction.Status execute(RPObject.ID id, RPAction action)
-	{
+
+	public RPAction.Status execute(RPObject.ID id, RPAction action) {
 		Log4J.startMethod(logger, "execute");
 		RPAction.Status status = RPAction.Status.SUCCESS;
-		try
-		{
+		try {
 			Player player = (Player) world.get(id);
 			String type = action.get("type");
 			ActionListener actionListener = actionsMap.get(type);
 			actionListener.onAction(world, this, player, action);
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			logger.error("cannot execute action " + action, e);
-		}
-		finally
-		{
+		} finally {
 			Log4J.finishMethod(logger, "execute");
 		}
 		return status;
 	}
-	public int getTurn()
-	{
+
+	public int getTurn() {
 		return rpman.getTurn();
 	}
+
 	/** Notify it when a new turn happens */
-	synchronized public void beginTurn()
-	{
+	synchronized public void beginTurn() {
 		Log4J.startMethod(logger, "beginTurn");
 		long start = System.nanoTime();
 		int creatures = 0;
@@ -313,21 +306,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 		int objects = 0;
 		for (IRPZone zone : world)
 			objects += zone.size();
-		logger.debug("lists: CO:" + corpses.size() + ",F:" + foodItems.size()
+		logger.debug("lists: CO:" + corpses.size() + ",F:" + sheepFoodItems.size()
 				+ ",NPC:" + npcs.size() + ",P:" + playersObject.size() + ",CR:"
 				+ creatures + ",OB:" + objects);
 		logger.debug("lists: CO:" + corpsesToRemove.size() + ",NPC:"
 				+ npcsToAdd.size() + ",NPC:" + npcsToRemove.size() + ",P:"
 				+ playersObjectRmText.size() + ",R:" + respawnPoints.size());
-		try
-		{
+		try {
 			// We keep the number of players logged.
 			Statistics.getStatistics().set("Players logged",
 					playersObject.size());
 			// In order for the last hit to be visible dead happens at two
 			// steps.
-			for (Pair<RPEntity, RPEntity> entity : entityToKill)
-			{
+			for (Pair<RPEntity, RPEntity> entity : entityToKill) {
 				try {
 					entity.first().onDead(entity.second());
 				} catch (Exception e) {
@@ -344,53 +335,43 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 			npcsToRemove.clear();
 			corpsesToRemove.clear();
 			bloodsToRemove.clear();
-			for (Player object : playersObject)
-			{
-				if (object.has("risk"))
-				{
+			for (Player object : playersObject) {
+				if (object.has("risk")) {
 					object.remove("risk");
 					world.modify(object);
 				}
-				if (object.has("damage"))
-				{
+				if (object.has("damage")) {
 					object.remove("damage");
 					world.modify(object);
 				}
-				if (object.has("dead"))
-				{
+				if (object.has("dead")) {
 					object.remove("dead");
 					world.modify(object);
 				}
-				if (object.has("online"))
-				{
+				if (object.has("online")) {
 					object.remove("online");
 					world.modify(object);
 				}
-				if (object.has("offline"))
-				{
+				if (object.has("offline")) {
 					object.remove("offline");
 					world.modify(object);
 				}
-				if (object.hasPath())
-				{
-					if (Path.followPath(object, 1))
-					{
+				if (object.hasPath()) {
+					if (Path.followPath(object, 1)) {
 						object.stop();
 						object.clearPath();
 					}
 					world.modify(object);
 				}
-				if (!object.stopped())
-				{
+				if (!object.stopped()) {
 					StendhalRPAction.move(object);
 				}
 				if (getTurn() % 5 == 0 && object.isAttacking()) // 1 round = 5
-																// turns
+				// turns
 				{
 					StendhalRPAction.attack(object, object.getAttackTarget());
 				}
-				if (getTurn() % 180 == 0)
-				{
+				if (getTurn() % 180 == 0) {
 					object.setAge(object.getAge() + 1);
 					world.modify(object);
 				}
@@ -398,39 +379,31 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 			}
 			for (NPC npc : npcs)
 				npc.logic();
-			for (Player object : playersObjectRmText)
-			{
-				if (object.has("text"))
-				{
+			for (Player object : playersObjectRmText) {
+				if (object.has("text")) {
 					object.remove("text");
 					world.modify(object);
 				}
-				if (object.has("private_text"))
-				{
+				if (object.has("private_text")) {
 					object.remove("private_text");
 					world.modify(object);
 				}
 			}
 			playersObjectRmText.clear();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
-		}
-		finally
-		{
+		} finally {
 			logger.info("Begin turn: " + (System.nanoTime() - start)
 					/ 1000000.0);
 			Log4J.finishMethod(logger, "beginTurn");
 		}
 	}
-	synchronized public void endTurn()
-	{
+
+	synchronized public void endTurn() {
 		Log4J.startMethod(logger, "endTurn");
 		long start = System.nanoTime();
-		try
-		{
-			for (SheepFood food : foodItems)
+		try {
+			for (SheepFood food : sheepFoodItems)
 				food.regrow();
 			for (RespawnPoint point : respawnPoints)
 				point.nextTurn();
@@ -439,61 +412,47 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 			for (Blood blood : bloods)
 				blood.logic();
 			scripts.logic();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			logger.error("error in endTurn", e);
-		}
-		finally
-		{
+		} finally {
 			logger.info("End turn: " + (System.nanoTime() - start) / 1000000.0);
 			Log4J.finishMethod(logger, "endTurn");
 		}
 	}
+
 	synchronized public boolean onInit(RPObject object)
-			throws RPObjectInvalidException
-	{
+			throws RPObjectInvalidException {
 		Log4J.startMethod(logger, "onInit");
-		try
-		{
+		try {
 			Player player = Player.create(object);
 			playersObjectRmText.add(player);
 			playersObject.add(player);
 			// Notify other players about this event
-			for (Player p : getPlayers())
-			{
+			for (Player p : getPlayers()) {
 				p.notifyOnline(player.getName());
 			}
 			addGameEvent(player.getName(), "login");
 			return true;
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			logger.error("There has been a severe problem loading player "
 					+ object.get("#db_id"), e);
 			return false;
-		}
-		finally
-		{
+		} finally {
 			Log4J.finishMethod(logger, "onInit");
 		}
 	}
-	synchronized public boolean onExit(RPObject.ID id)
-	{
+
+	synchronized public boolean onExit(RPObject.ID id) {
 		Log4J.startMethod(logger, "onExit");
-		try
-		{
-			for (Player object : playersObject)
-			{
-				if (object.getID().equals(id))
-				{
+		try {
+			for (Player object : playersObject) {
+				if (object.getID().equals(id)) {
 					if (entityToKill.contains(object)) {
 						logger.info("Logout before dead");
 						return false;
 					}
 					// Notify other players about this event
-					for (Player p : getPlayers())
-					{
+					for (Player p : getPlayers()) {
 						p.notifyOffline(object.getName());
 					}
 					Player.destroy(object);
@@ -504,26 +463,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor
 				}
 			}
 			return true;
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			logger.error("error in onExit", e);
 			return true;
-		}
-		finally
-		{
+		} finally {
 			Log4J.finishMethod(logger, "onExit");
 		}
 	}
-	synchronized public boolean onTimeout(RPObject.ID id)
-	{
+
+	synchronized public boolean onTimeout(RPObject.ID id) {
 		Log4J.startMethod(logger, "onTimeout");
-		try
-		{
+		try {
 			return onExit(id);
-		}
-		finally
-		{
+		} finally {
 			Log4J.finishMethod(logger, "onTimeout");
 		}
 	}

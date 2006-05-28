@@ -66,7 +66,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private List<RespawnPoint> respawnPoints;
 
-	private List<SheepFood> foodItems;
+	private List<SheepFood> sheepFoodItems;
 
 	private int numHouses;
 
@@ -99,7 +99,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<RespawnPoint>();
-		foodItems = new LinkedList<SheepFood>();
+		sheepFoodItems = new LinkedList<SheepFood>();
 
 		collisionMap = new CollisionDetection();
 		protectionMap = new CollisionDetection();
@@ -141,8 +141,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		respawnPoints.add(point);
 	}
 
-	public List<SheepFood> getFoodItemList() {
-		return foodItems;
+	public List<SheepFood> getSheepFoodItemList() {
+		return sheepFoodItems;
 	}
 
 	public void addZoneChange(String entry) {
@@ -518,7 +518,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				food.sety(y);
 				add(food);
 
-				foodItems.add(food);
+				sheepFoodItems.add(food);
 				break;
 			}
 			default: {

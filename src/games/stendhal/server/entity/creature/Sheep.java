@@ -144,7 +144,7 @@ public class Sheep extends DomesticAnimal {
 		double distance = range * range; // We save this way several sqrt operations
 		SheepFood chosen = null;
 
-		for (SheepFood food : rp.getFoodItems()) {
+		for (SheepFood food : rp.getSheepFoodItems()) {
 			if (food.get("zoneid").equals(get("zoneid"))) {
 				int fx = food.getx();
 				int fy = food.gety();
