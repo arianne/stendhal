@@ -14,37 +14,30 @@ package games.stendhal.common;
 
 import java.util.Random;
 
-public class Rand 
-  {
-  private static Random rand;
-  
-  static
-    {
-    rand=new Random();
-    }
-    
-  public static int roll1D6()
-    {
-    return rand.nextInt(6)+1;
-    }
+public class Rand {
+	private static Random rand;
 
-  public static int roll1D20()
-    {
-    return rand.nextInt(20)+1;
-    }
+	static {
+		rand = new Random();
+	}
 
-  public static int roll1D100()
-    {
-    return rand.nextInt(100)+1;
-    }
-  
-  public static int rand(int max)
-    {
-    return rand.nextInt(max);
-    }
-  
-  public static int rand(int n, int sd)
-    {
-    return (int)(rand.nextGaussian()*sd+n);
-    }
-  }
+	public static int roll1D6() {
+		return rand.nextInt(6) + 1;
+	}
+
+	public static int roll1D20() {
+		return rand.nextInt(20) + 1;
+	}
+
+	public static int roll1D100() {
+		return rand.nextInt(100) + 1;
+	}
+
+	public static int rand(int max) {
+		return rand.nextInt(max);
+	}
+
+	public static int rand(int n, int sd) {
+		return (int) (rand.nextGaussian() * sd + n);
+	}
+}
