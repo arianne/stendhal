@@ -1281,6 +1281,36 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="button_mushroom">
+		<type class="food" subclass="button_mushroom"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="30"/>
+			<regen value="3"/>
+			<frequency value="10"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="toadstool">
+		<type class="food" subclass="toadstool"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="-60"/>
+			<regen value="-5"/>
+			<frequency value="20"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 <!-- Drinks_section -->
 <!-- Dunno if this is a good place or a good way to describe an alcoholic effect,
        maybe value can be how powerful the alcoholic drink is, and be the one
