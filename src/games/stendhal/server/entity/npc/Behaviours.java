@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
@@ -177,41 +176,33 @@ public class Behaviours {
 	}
 
 	public static class SellerBehaviour {
-		protected Map<String, Integer> items;
+		protected Map<String, Integer> priceList;
 
 		protected String chosenItem;
 
 		protected int amount;
 
 		public SellerBehaviour() {
-			this.items = new HashMap<String, Integer>();
+			this.priceList = new HashMap<String, Integer>();
 		}
 
-		public SellerBehaviour(Map<String, Integer> items) {
-			this.items = items;
+		public SellerBehaviour(Map<String, Integer> priceList) {
+			this.priceList = priceList;
 		}
 
-		public Set<String> getItems() {
-			return items.keySet();
+		private Set<String> getPriceList() {
+			return priceList.keySet();
 		}
 
-		public boolean hasItem(String item) {
-			return items.containsKey(item);
+		private boolean hasItem(String item) {
+			return priceList.containsKey(item);
 		}
 
-		public int getUnitPrice(String item) {
-			return items.get(item);
+		protected int getUnitPrice(String item) {
+			return priceList.get(item);
 		}
 
-		public void setChosenItem(String item) {
-			chosenItem = item;
-		}
-
-		public String getChosenItem() {
-			return chosenItem;
-		}
-
-		public void setAmount(String text) {
+		private void setAmount(String text) {
 			try {
 				amount = Integer.parseInt(text);
 			} catch (Exception e) {
@@ -219,16 +210,12 @@ public class Behaviours {
 			}
 		}
 
-		public int getAmount() {
-			return amount;
-		}
-
 		/**
 		 * Returns the price of the desired amount of the chosen item.
 		 * @param player The player who considers buying
 		 * @return The price; 0 if no item was chosen or if the amount is 0.
 		 */
-		public int getCharge(Player player) {
+		protected int getCharge(Player player) {
 			if (chosenItem == null) {
 				return 0;
 			} else {
@@ -244,12 +231,12 @@ public class Behaviours {
 		 * @return true iff the transaction was successful, that is when the
 		 *              player was able to equip the item(s).
 		 */
-		public boolean transactAgreedSale(SpeakerNPC seller, Player player) {
+		protected boolean transactAgreedSale(SpeakerNPC seller, Player player) {
 			EntityManager manager = world.getRuleManager().getEntityManager();
 
-			Item item = manager.getItem(getChosenItem());
+			Item item = manager.getItem(chosenItem);
 			if (item == null) {
-				logger.error("Trying to sell an unexisting item: " + getChosenItem());
+				logger.error("Trying to sell an unexisting item: " + chosenItem);
 				return false;
 			}
 
@@ -268,10 +255,10 @@ public class Behaviours {
 			if (player.isEquipped("money", getCharge(player))) {
 				if (player.equip(item)) {
 					player.drop("money", getCharge(player));
-					seller.say("Congratulations! Here is your " + getChosenItem() + "!");
+					seller.say("Congratulations! Here is your " + chosenItem + "!");
 					return true;
 				} else {
-					seller.say("Sorry, but you cannot equip the " + getChosenItem() + ".");
+					seller.say("Sorry, but you cannot equip the " + chosenItem + ".");
 					return false;
 				}
 			} else {
@@ -294,7 +281,7 @@ public class Behaviours {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I sell " + enumerateCollection(items.getItems()) + ".",
+					"I sell " + enumerateCollection(items.getPriceList()) + ".",
 					null);
 		}
 
@@ -324,11 +311,11 @@ public class Behaviours {
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
 						if (sellerBehaviour.hasItem(item)) {
-							sellerBehaviour.setChosenItem(item);
+							sellerBehaviour.chosenItem = item;
 							sellerBehaviour.setAmount(amount);
 		
 							int price = sellerBehaviour.getUnitPrice(item)
-									* sellerBehaviour.getAmount();
+									* sellerBehaviour.amount;
 		
 							engine.say(amount + " " + item + " costs " + price
 									+ ". Do you want to buy?");
@@ -349,7 +336,7 @@ public class Behaviours {
 						SellerBehaviour sellerBehaviour = (SellerBehaviour) engine
 								.getBehaviourData("seller");
 		
-						String itemName = sellerBehaviour.getChosenItem();
+						String itemName = sellerBehaviour.chosenItem;
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 		
@@ -365,37 +352,29 @@ public class Behaviours {
 	}
 
 	public static class BuyerBehaviour {
-		private Map<String, Integer> items;
+		protected Map<String, Integer> priceList;
 
-		private String chosenItem;
+		protected String chosenItem;
 		
-		private int amount = 0;
+		protected int amount = 0;
 
-		public BuyerBehaviour(Map<String, Integer> items) {
-			this.items = items;
+		public BuyerBehaviour(Map<String, Integer> priceList) {
+			this.priceList = priceList;
 		}
 
-		public Set<String> getItems() {
-			return items.keySet();
+		private Set<String> getPriceList() {
+			return priceList.keySet();
 		}
 
-		public boolean hasItem(String item) {
-			return items.containsKey(item);
+		private boolean hasItem(String item) {
+			return priceList.containsKey(item);
 		}
 
-		public int getUnitPrice(String item) {
-			return items.get(item);
+		protected int getUnitPrice(String item) {
+			return priceList.get(item);
 		}
 
-		public void setChosenItem(String item) {
-			chosenItem = item;
-		}
-
-		public String getChosenItem() {
-			return chosenItem;
-		}
-
-		public void setAmount(String text) {
+		private void setAmount(String text) {
 			try {
 				amount = Integer.parseInt(text);
 			} catch (Exception e) {
@@ -403,11 +382,7 @@ public class Behaviours {
 			}
 		}
 
-		public int getAmount() {
-			return amount;
-		}
-		
-		public int getCharge(Player player) {
+		protected int getCharge(Player player) {
 			if (chosenItem == null) {
 				return 0;
 			} else {
@@ -465,7 +440,7 @@ public class Behaviours {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I buy " + enumerateCollection(items.getItems()) + ".",
+					"I buy " + enumerateCollection(items.getPriceList()) + ".",
 					null);
 		}
 
@@ -491,7 +466,7 @@ public class Behaviours {
 						}
 		
 						if (buyerBehaviour.hasItem(item)) {
-							buyerBehaviour.setChosenItem(item);
+							buyerBehaviour.chosenItem = item;
 							buyerBehaviour.setAmount(amount);
 							int price = buyerBehaviour.getCharge(player);
 		
@@ -532,7 +507,7 @@ public class Behaviours {
 	public static class HealerBehaviour extends SellerBehaviour {
 		public HealerBehaviour(int cost) {
 			super();
-			items.put("heal", cost);
+			priceList.put("heal", cost);
 		}
 
 		public void heal(Player player, SpeakerNPC engine) {
@@ -561,8 +536,8 @@ public class Behaviours {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						HealerBehaviour healer = (HealerBehaviour) engine
 								.getBehaviourData("healer");
-						healer.setChosenItem("heal");
-						healer.setAmount("1");
+						healer.chosenItem = "heal";
+						healer.amount = 1;
 						int cost = healer.getCharge(player);
 		
 						if (cost > 0) {

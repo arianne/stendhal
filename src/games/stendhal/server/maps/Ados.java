@@ -127,7 +127,7 @@ public class Ados implements IContent {
 					@Override
 					public int getUnitPrice(String item) {
 						// Player gets 20 % rebate
-						return (int) (0.8f * items.get(item));
+						return (int) (0.8f * priceList.get(item));
 					}
 				});
 

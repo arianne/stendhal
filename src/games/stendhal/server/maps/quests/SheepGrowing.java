@@ -65,7 +65,7 @@ public class SheepGrowing implements IQuest {
 					}
 
 					@Override
-					public boolean transactAgreedSale(SpeakerNPC seller, Player player) {
+					protected boolean transactAgreedSale(SpeakerNPC seller, Player player) {
 						if (!player.hasSheep()) {
 							if (! player.drop("money", getCharge(player))) {
 								seller.say("A real pity! You don't have enough money!");
@@ -163,7 +163,7 @@ public class SheepGrowing implements IQuest {
 					public int getCharge(Player player) {
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) world.get(player.getSheep());
-							return Math.round(getUnitPrice(getChosenItem()) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+							return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 						} else {
 							return 0;
 						}

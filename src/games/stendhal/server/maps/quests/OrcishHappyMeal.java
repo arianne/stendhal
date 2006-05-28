@@ -59,7 +59,7 @@ public class OrcishHappyMeal implements IQuest {
 					public int getCharge(Player player) {
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) world.get(player.getSheep());
-							return Math.round(getUnitPrice(getChosenItem()) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+							return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 						} else {
 							return 0;
 						}
