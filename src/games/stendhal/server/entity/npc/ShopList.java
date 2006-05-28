@@ -26,6 +26,12 @@ public class ShopList {
 		shops.add("healing", "potion", 250);
 		shops.add("healing", "greater_potion", 500);
 
+		// 20 % off
+		shops.add("cheaper_healing", "antidote", 40);
+		shops.add("cheaper_healing", "minor_potion", 80);
+		shops.add("cheaper_healing", "potion", 200);
+		shops.add("cheaper_healing", "greater_potion", 400);
+
 		shops.add("scrolls", "home_scroll", 20);
 		shops.add("scrolls", "empty_scroll", 1200);
 

@@ -36,6 +36,7 @@ public class StendhalQuestSystem {
 		loadQuest("MeetKetteh");
 		loadQuest("CleanStorageSpace");
 		loadQuest("WeaponsCollector");
+		loadQuest("ZooFood");
 	}
 
 	public static void main(String[] args) {
