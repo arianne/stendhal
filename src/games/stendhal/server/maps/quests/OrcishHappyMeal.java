@@ -4,9 +4,9 @@ import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
-import games.stendhal.server.maps.NPCList;
 
 import java.util.*;
 

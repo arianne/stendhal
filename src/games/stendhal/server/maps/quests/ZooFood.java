@@ -11,6 +11,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.item.Money;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**

@@ -10,12 +10,12 @@ import games.stendhal.server.*;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.Player;
 import marauroa.common.game.RPObject;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.maps.NPCList;
 
 public class StendhalGroovyScript 
   {

@@ -7,6 +7,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.scripting.ScriptAction;

@@ -10,6 +10,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;

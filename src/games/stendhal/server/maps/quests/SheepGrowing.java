@@ -7,8 +7,8 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.maps.NPCList;
 
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
