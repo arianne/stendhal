@@ -9,19 +9,21 @@ package games.stendhal.server.rule;
 
 /**
  * Combines the different managers...
+ * 
  * @author Matthias Totz
  */
-public interface RuleManager
-  {
-  /**
-   * returns the EntityManager for this ruleset 
-   * @return the EntityManager for this ruleset 
-   */
-  EntityManager getEntityManager();
-  
-  /**
-   * returns the ActionManager for this ruleset 
-   * @return the ActionManager for this ruleset 
-   */
-  ActionManager getActionManager();
-  }
+public interface RuleManager {
+	/**
+	 * returns the EntityManager for this ruleset
+	 * 
+	 * @return the EntityManager for this ruleset
+	 */
+	EntityManager getEntityManager();
+
+	/**
+	 * returns the ActionManager for this ruleset
+	 * 
+	 * @return the ActionManager for this ruleset
+	 */
+	ActionManager getActionManager();
+}

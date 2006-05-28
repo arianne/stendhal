@@ -21,336 +21,302 @@ import java.util.List;
 import java.util.Map;
 import java.util.Collection;
 
-
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 /**
  * entity manager for the default ruleset
+ * 
  * @author Matthias Totz
  */
-public class DefaultEntityManager implements EntityManager
-{
-  /** the logger instance. */
-  private static final Logger logger = Log4J.getLogger(DefaultEntityManager.class);
+public class DefaultEntityManager implements EntityManager {
+	/** the logger instance. */
+	private static final Logger logger = Log4J
+			.getLogger(DefaultEntityManager.class);
 
-  /** the singleton instance, lazy initialisation */
-  private static DefaultEntityManager manager;
+	/** the singleton instance, lazy initialisation */
+	private static DefaultEntityManager manager;
 
-  /** maps the tile ids to the classes */
-  private Map<Integer, String> idToClass;
+	/** maps the tile ids to the classes */
+	private Map<Integer, String> idToClass;
 
-  /** maps the creature tile-ids to the actual creature enums */
-  private Map<String, DefaultCreature> classToCreature;
+	/** maps the creature tile-ids to the actual creature enums */
+	private Map<String, DefaultCreature> classToCreature;
 
-  /** maps the item names to the actual item enums */
-  private Map<String, DefaultItem> classToItem;
+	/** maps the item names to the actual item enums */
+	private Map<String, DefaultItem> classToItem;
 
-  /** lists all creatures that are being used at least once */
-  private Map<String, Creature> createdCreature;
+	/** lists all creatures that are being used at least once */
+	private Map<String, Creature> createdCreature;
 
-  /** lists all items that are being used at least once */
-  private Map<String, Item> createdItem;
-  
-  
-  /** no public constructor */
-  private DefaultEntityManager() 
-  {
-    idToClass = new HashMap<Integer, String>();
+	/** lists all items that are being used at least once */
+	private Map<String, Item> createdItem;
 
-    // Build the items tables
-    classToItem = new HashMap<String,DefaultItem>();
-    createdItem = new HashMap<String,Item>();
-    
-    try
-      {
-      ItemXMLLoader loader=ItemXMLLoader.get();
-      List<DefaultItem> items=loader.load("data/conf/items.xml");
+	/** no public constructor */
+	private DefaultEntityManager() {
+		idToClass = new HashMap<Integer, String>();
 
-      for (DefaultItem item : items)
-      {
-        int id = item.getTileId();
-        String clazz = item.getItemName();
-        
-        if(classToItem.containsKey(clazz))
-          {
-          logger.warn("Repeated item name: "+clazz);
-          }
-        
-        classToItem.put(clazz, item);
-        if (id > 0)
-        {
-          idToClass.put(id, clazz);
-        }
-      }
-      }
-    catch(org.xml.sax.SAXException e)
-      {
-      e.printStackTrace();      
-      }
+		// Build the items tables
+		classToItem = new HashMap<String, DefaultItem>();
+		createdItem = new HashMap<String, Item>();
 
-    // Build the creatures tables
-    classToCreature = new HashMap<String,DefaultCreature>();
-    createdCreature = new HashMap<String,Creature>();
-    
-    try
-      {
-      CreatureXMLLoader loader=CreatureXMLLoader.get();    
-      List<DefaultCreature> creatures=loader.load("data/conf/creatures.xml");
+		try {
+			ItemXMLLoader loader = ItemXMLLoader.get();
+			List<DefaultItem> items = loader.load("data/conf/items.xml");
 
-      for (DefaultCreature creature : creatures )
-      {
-        int id = creature.getTileId();
-        String clazz = creature.getCreatureName();
-        
-        if(classToCreature.containsKey(clazz))
-          {
-          logger.warn("Repeated creature name: "+clazz);          
-          }
-        
-        if(!creature.verifyItems(this))
-          {
-          logger.warn("Items dropped by creature name: "+clazz+" doesn't exists");          
-          }
+			for (DefaultItem item : items) {
+				int id = item.getTileId();
+				String clazz = item.getItemName();
 
-        classToCreature.put(clazz, creature);
-        if (id > 0)
-        {
-          idToClass.put(id, clazz);
-        }
-      }
-      }
-    catch(org.xml.sax.SAXException e)
-      {
-      e.printStackTrace();      
-      }
-  }
-  
-  public boolean addItem(DefaultItem item)
-  {
-    int id = item.getTileId();
-    String clazz = item.getItemName();
-    
-    if(classToItem.containsKey(clazz))
-      {
-      logger.warn("Repeated item name: "+clazz);
-      return false;
-      }
-    
-    classToItem.put(clazz, item);
-    if (id > 0)
-    {
-      idToClass.put(id, clazz);
-    }
-  
-    return true;
-  }
+				if (classToItem.containsKey(clazz)) {
+					logger.warn("Repeated item name: " + clazz);
+				}
 
-  public boolean addCreature(DefaultCreature creature)
-  {
-    int id = creature.getTileId();
-    String clazz = creature.getCreatureName();
-    
-    if(classToCreature.containsKey(clazz))
-      {
-      logger.warn("Repeated creature name: "+clazz);          
-      }
-    
-    if(!creature.verifyItems(this))
-      {
-      logger.warn("Items dropped by creature name: "+clazz+" doesn't exists");          
-      }
+				classToItem.put(clazz, item);
+				if (id > 0) {
+					idToClass.put(id, clazz);
+				}
+			}
+		} catch (org.xml.sax.SAXException e) {
+			e.printStackTrace();
+		}
 
-    classToCreature.put(clazz, creature);
-    if (id > 0)
-    {
-      idToClass.put(id, clazz);
-    }
+		// Build the creatures tables
+		classToCreature = new HashMap<String, DefaultCreature>();
+		createdCreature = new HashMap<String, Creature>();
 
-    return true;
-  }
+		try {
+			CreatureXMLLoader loader = CreatureXMLLoader.get();
+			List<DefaultCreature> creatures = loader
+					.load("data/conf/creatures.xml");
 
-  
-  /** 
-   * returns a list of all Creatures that are instantiated
-   */
-  public Collection<Creature> getCreatures()
-  {
-    return createdCreature.values();
-  }  
+			for (DefaultCreature creature : creatures) {
+				int id = creature.getTileId();
+				String clazz = creature.getCreatureName();
 
-  /** 
-   * returns a list of all Items that are instantiated
-   */
-  public Collection<Item> getItems()
-  {
-    return createdItem.values();
-  }
-  
-  /** 
-   * returns the instance of this manager.
-   * Note: This method is synchonized.
-   */
-  public static synchronized DefaultEntityManager getInstance()
-  {
-    if (manager == null)
-    {
-      manager = new DefaultEntityManager();
-    }
-    return manager;
-  }
-  
-  /** returns the entity or <code>null</code> if the id is unknown */
-  public Entity getEntity(int id)
-  {
-    if (id < 0)
-      return null;
-    
-    String clazz = idToClass.get(id);
-    if (clazz == null)
-      return null;
+				if (classToCreature.containsKey(clazz)) {
+					logger.warn("Repeated creature name: " + clazz);
+				}
 
-    
-    return getEntity(clazz);
-  }
-  
-  /** 
-   * returns the entity or <code>null</code> if the id is unknown 
-   * @throws NullPointerException if clazz is <code>null</code>
-   */
-  public Entity getEntity(String clazz)
-  {
-    if (clazz == null)
-      throw new NullPointerException("entity class is null");
-    
-    Entity entity;
-    // Lookup the id in the creature table
-    entity = getCreature(clazz);
-    if (entity != null)
-      return entity;
-    
-    // Lookup the id in the item table
-    entity = getItem(clazz);
-    if (entity != null)
-      return entity;
-    
-    return null;
-  }
+				if (!creature.verifyItems(this)) {
+					logger.warn("Items dropped by creature name: " + clazz
+							+ " doesn't exists");
+				}
 
-  /** 
-   * returns the creature or <code>null</code> if the id is unknown 
-   */
-  public Creature getCreature(int id)
-  {
-    if (id < 0)
-      return null;
+				classToCreature.put(clazz, creature);
+				if (id > 0) {
+					idToClass.put(id, clazz);
+				}
+			}
+		} catch (org.xml.sax.SAXException e) {
+			e.printStackTrace();
+		}
+	}
 
-    String clazz = idToClass.get(id);
-    if (clazz == null)
-      return null;
+	public boolean addItem(DefaultItem item) {
+		int id = item.getTileId();
+		String clazz = item.getItemName();
 
-    return getCreature(clazz);
-  }
+		if (classToItem.containsKey(clazz)) {
+			logger.warn("Repeated item name: " + clazz);
+			return false;
+		}
 
-  /** 
-   * returns the creature or <code>null</code> if the clazz is unknown 
-   * @throws NullPointerException if clazz is <code>null</code>
-   */
-  public Creature getCreature(String clazz)
-  {
-    if (clazz == null)
-      throw new NullPointerException("entity class is null");
-    
-    // Lookup the clazz in the creature table
-    DefaultCreature creature = classToCreature.get(clazz);
-    if (creature != null)
-      {
-      if(createdCreature.get(clazz)==null)
-        {
-        createdCreature.put(clazz,creature.getCreature());
-        }
-      return  creature.getCreature();
-      }
-   
-    return null;
-  }
+		classToItem.put(clazz, item);
+		if (id > 0) {
+			idToClass.put(id, clazz);
+		}
 
-  /** return true if the Entity is a creature */
-  public boolean isCreature(int id)
-  {
-    if (id < 0)
-      return false;
+		return true;
+	}
 
-    String clazz = idToClass.get(id);
-    if (clazz == null)
-      return false;
+	public boolean addCreature(DefaultCreature creature) {
+		int id = creature.getTileId();
+		String clazz = creature.getCreatureName();
 
-    return isCreature(clazz);
-  }
+		if (classToCreature.containsKey(clazz)) {
+			logger.warn("Repeated creature name: " + clazz);
+		}
 
-  /** return true if the Entity is a creature */
-  public boolean isCreature(String clazz)
-  {
-    if (clazz == null)
-      throw new NullPointerException("entity class is null");
-    return classToCreature.containsKey(clazz);
-  }
+		if (!creature.verifyItems(this)) {
+			logger.warn("Items dropped by creature name: " + clazz
+					+ " doesn't exists");
+		}
 
-  public boolean isItem(int id)
-  {
-    if (id < 0)
-      return false;
+		classToCreature.put(clazz, creature);
+		if (id > 0) {
+			idToClass.put(id, clazz);
+		}
 
-    String clazz = idToClass.get(id);
-    if (clazz == null)
-      return false;
+		return true;
+	}
 
-    return isItem(clazz);
-  }
+	/**
+	 * returns a list of all Creatures that are instantiated
+	 */
+	public Collection<Creature> getCreatures() {
+		return createdCreature.values();
+	}
 
-  /** return true if the Entity is a creature */
-  public boolean isItem(String clazz)
-  {
-    if (clazz == null)
-      throw new NullPointerException("entity class is null");
-    return classToItem.containsKey(clazz);
-  }
+	/**
+	 * returns a list of all Items that are instantiated
+	 */
+	public Collection<Item> getItems() {
+		return createdItem.values();
+	}
 
-  /** 
-   * returns the item or <code>null</code> if the id is unknown 
-   */
-  public Item getItem(int id)
-  {
-    if (id < 0)
-      return null;
+	/**
+	 * returns the instance of this manager. Note: This method is synchonized.
+	 */
+	public static synchronized DefaultEntityManager getInstance() {
+		if (manager == null) {
+			manager = new DefaultEntityManager();
+		}
+		return manager;
+	}
 
-    String clazz = idToClass.get(id);
-    if (clazz == null)
-      return null;
+	/** returns the entity or <code>null</code> if the id is unknown */
+	public Entity getEntity(int id) {
+		if (id < 0)
+			return null;
 
-    return getItem(clazz);
-  }
+		String clazz = idToClass.get(id);
+		if (clazz == null)
+			return null;
 
-  /** 
-   * returns the item or <code>null</code> if the clazz is unknown 
-   * @throws NullPointerException if clazz is <code>null</code>
-   */
-  public Item getItem(String clazz)
-  {
-    if (clazz == null)
-      throw new NullPointerException("entity class is null");
-    
-    // Lookup the clazz in the item table
-    DefaultItem item = classToItem.get(clazz);
-    if (item != null)
-      {
-      if(createdItem.get(clazz)==null)
-        {
-        createdItem.put(clazz,item.getItem());
-        }
-      return  item.getItem();
-      }
-    
-    return null;
-  }
+		return getEntity(clazz);
+	}
+
+	/**
+	 * returns the entity or <code>null</code> if the id is unknown
+	 * 
+	 * @throws NullPointerException
+	 *             if clazz is <code>null</code>
+	 */
+	public Entity getEntity(String clazz) {
+		if (clazz == null)
+			throw new NullPointerException("entity class is null");
+
+		Entity entity;
+		// Lookup the id in the creature table
+		entity = getCreature(clazz);
+		if (entity != null)
+			return entity;
+
+		// Lookup the id in the item table
+		entity = getItem(clazz);
+		if (entity != null)
+			return entity;
+
+		return null;
+	}
+
+	/**
+	 * returns the creature or <code>null</code> if the id is unknown
+	 */
+	public Creature getCreature(int id) {
+		if (id < 0)
+			return null;
+
+		String clazz = idToClass.get(id);
+		if (clazz == null)
+			return null;
+
+		return getCreature(clazz);
+	}
+
+	/**
+	 * returns the creature or <code>null</code> if the clazz is unknown
+	 * 
+	 * @throws NullPointerException
+	 *             if clazz is <code>null</code>
+	 */
+	public Creature getCreature(String clazz) {
+		if (clazz == null)
+			throw new NullPointerException("entity class is null");
+
+		// Lookup the clazz in the creature table
+		DefaultCreature creature = classToCreature.get(clazz);
+		if (creature != null) {
+			if (createdCreature.get(clazz) == null) {
+				createdCreature.put(clazz, creature.getCreature());
+			}
+			return creature.getCreature();
+		}
+
+		return null;
+	}
+
+	/** return true if the Entity is a creature */
+	public boolean isCreature(int id) {
+		if (id < 0)
+			return false;
+
+		String clazz = idToClass.get(id);
+		if (clazz == null)
+			return false;
+
+		return isCreature(clazz);
+	}
+
+	/** return true if the Entity is a creature */
+	public boolean isCreature(String clazz) {
+		if (clazz == null)
+			throw new NullPointerException("entity class is null");
+		return classToCreature.containsKey(clazz);
+	}
+
+	public boolean isItem(int id) {
+		if (id < 0)
+			return false;
+
+		String clazz = idToClass.get(id);
+		if (clazz == null)
+			return false;
+
+		return isItem(clazz);
+	}
+
+	/** return true if the Entity is a creature */
+	public boolean isItem(String clazz) {
+		if (clazz == null)
+			throw new NullPointerException("entity class is null");
+		return classToItem.containsKey(clazz);
+	}
+
+	/**
+	 * returns the item or <code>null</code> if the id is unknown
+	 */
+	public Item getItem(int id) {
+		if (id < 0)
+			return null;
+
+		String clazz = idToClass.get(id);
+		if (clazz == null)
+			return null;
+
+		return getItem(clazz);
+	}
+
+	/**
+	 * returns the item or <code>null</code> if the clazz is unknown
+	 * 
+	 * @throws NullPointerException
+	 *             if clazz is <code>null</code>
+	 */
+	public Item getItem(String clazz) {
+		if (clazz == null)
+			throw new NullPointerException("entity class is null");
+
+		// Lookup the clazz in the item table
+		DefaultItem item = classToItem.get(clazz);
+		if (item != null) {
+			if (createdItem.get(clazz) == null) {
+				createdItem.put(clazz, item.getItem());
+			}
+			return item.getItem();
+		}
+
+		return null;
+	}
 }
