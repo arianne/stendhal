@@ -18,11 +18,19 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
-/** TODO: This is sheep food, it should be ported to the new Items system */
-public class SheepFood extends Entity {
+public class SheepFood extends PlantGrower {
 	private int amount;
+	
+	protected int turnsForRegrow = 2000;
 
-	private double grow;
+	public SheepFood(RPObject object) throws AttributeNotFoundException {
+		super(object);
+		update();
+	}
+
+	public SheepFood() throws AttributeNotFoundException {
+		super();
+	}
 
 	@Override
 	public static void generateRPClass() {
@@ -32,17 +40,7 @@ public class SheepFood extends Entity {
 		food.add("amount", RPClass.BYTE);
 	}
 
-	public SheepFood(RPObject object) throws AttributeNotFoundException {
-		super(object);
-		put("type", "food");
-		update();
-	}
-
-	public SheepFood() throws AttributeNotFoundException {
-		super();
-		put("type", "food");
-	}
-
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
@@ -63,18 +61,17 @@ public class SheepFood extends Entity {
 		return amount;
 	}
 
-	public void regrow() {
-		if (amount < 5) {
-			grow += 0.0005; // 2000 turns
-
-			if (grow > 1) {
-				grow = 0;
-				setAmount(amount + 1);
-				world.modify(this);
-			}
-		}
+	@Override
+	protected boolean canGrowNewFruit() {
+		return amount < 5;
 	}
-
+	
+	@Override
+	protected void growNewFruit() {
+		setAmount(amount + 1);
+		world.modify(this);
+	}
+	
 	@Override
 	public String describe() {
 		String text = "You see a bush with " + getAmount()
