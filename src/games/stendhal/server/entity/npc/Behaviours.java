@@ -241,6 +241,7 @@ public class Behaviours {
 		 * @param player
 		 * @return
 		 */
+		// TODO: create Player.drop() with an amount parameter.
 		public int playerMoney(Player player) {
 			int money = 0;
 
@@ -256,9 +257,7 @@ public class Behaviours {
 			return money;
 		}
 
-		// TODO: why does this return boolean, when there's no return statement?
-		// Consider making playerMoney() obsolete by using this function's return
-		// value in order to check if the player is able to pay.
+		// TODO: create Player.drop() with an amount parameter.
 		public boolean chargePlayer(Player player) {
 			int left = getCharge(player);
 
@@ -535,11 +534,9 @@ public class Behaviours {
 				world.modify(player);
 				return true;
 			}
-
 			Iterator<RPSlot> it = player.slotsIterator();
 			while (it.hasNext()) {
 				RPSlot slot = it.next();
-
 				if (removeItem(slot, itemName, amount)) {
 					world.modify(player);
 					return true;
