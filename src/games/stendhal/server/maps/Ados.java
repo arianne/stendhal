@@ -123,9 +123,15 @@ public class Ados implements IContent {
 						          "I'm the veterinary.");
 
 				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
-						.get("cheaper_healing")));
+						.get("healing")) {
+					@Override
+					public int getUnitPrice(String item) {
+						// Player gets 20 % rebate
+						return (int) (0.8f * items.get(item));
+					}
+				});
 
-				Behaviours.addGoodbye(this, "Goodbye!");
+				Behaviours.addGoodbye(this, "Bye!");
 			}
 			// remaining behaviour is defined in maps.quests.ZooFood.
 		};
