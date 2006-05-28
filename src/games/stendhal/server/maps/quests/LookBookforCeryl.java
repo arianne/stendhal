@@ -207,8 +207,7 @@ public class LookBookforCeryl implements IQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						Item item = player.drop("book_black");
-						if (item != null) {
+						if (player.drop("book_black")) {
 							engine.say("Oh! The book! Thanks!");
 							StackableItem money = (StackableItem) world
 									.getRuleManager().getEntityManager()

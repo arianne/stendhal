@@ -121,7 +121,7 @@ public class ArmorForDagobert implements IQuest {
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.isEquipped("leather_cuirass");
 					}
-				}, 
+				},
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {

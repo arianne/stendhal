@@ -211,8 +211,7 @@ package games.stendhal.server.maps.quests;
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (player.isEquipped("flask")) {
-							player.drop("flask");
+						if (player.drop("flask")) {
 							engine.say("Thanks for the flask. Please I need a rat #corpse and a few #herbs to create the potion for #Tad.");
 							player.addXP(10);
 
@@ -264,8 +263,7 @@ package games.stendhal.server.maps.quests;
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						Item item = player.drop("arandula");
-						if (item != null) {
+						if (player.drop("arandula")) {
 							engine.say("WOOOMMM!!! WUUOOAAAANNNN!!! WUUUUUNNN!!!| Tell #Tad that his potion is ready and that he should come here.");
 							player.addXP(50);
 

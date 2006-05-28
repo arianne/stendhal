@@ -187,7 +187,7 @@ public class WeaponsCollector implements IQuest {
 						public void fire(Player player, String text, SpeakerNPC engine) {
 							List<String> missing = missingWeapons(player, false);
 							if (missing.contains(text)) {
-								if (player.drop(text) != null) {
+								if (player.drop(text)) {
 									// register weapon as done
 									String doneText = player.getQuest("weapons_collector");
 									player.setQuest("weapons_collector", doneText + ";" + text);

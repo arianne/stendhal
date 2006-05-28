@@ -19,6 +19,7 @@ import games.stendhal.server.rule.ActionManager;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -645,33 +646,69 @@ public abstract class RPEntity extends Entity {
 		return false;
 	}
 
-	public Item drop(String name) {
-		ActionManager manager = world.getRuleManager().getActionManager();
+	/**
+	 * Removes a specific amount of an item from the RPEntity. The item can
+	 * either be stackable or non-stackable. The units can be distributed
+	 * over different slots. If the RPEntity doesn't have enough units of
+	 * the item, doesn't remove anything. 
+	 * @param name The name of the item
+	 * @param amount The number of units that should be dropped
+	 * @return true iff dropping the desired amount was successful.
+	 */
+	public boolean drop(String name, int amount) {
+		int toDrop = amount;
 
-		RPSlot bag = getSlot("bag");
-		for (RPObject object : bag) {
-			if (object instanceof Item) {
-				Item item = (Item) object;
-				if (item.getName().equals(name)) {
-					bag.remove(item.getID());
-					return item;
-				}
-			}
-		}
+		Iterator<RPSlot> it = this.slotsIterator();
+		while (it.hasNext() && toDrop > 0) {
+			RPSlot slot = it.next();
 
-		for (RPSlot slot : slots()) {
-			for (RPObject object : slot) {
+			Iterator<RPObject> object_it = slot.iterator();
+			while (object_it.hasNext() && toDrop > 0) {
+				RPObject object = object_it.next();
 				if (object instanceof Item) {
-					Item item = (Item) object;
-					if (item.getName().equals(name)) {
-						slot.remove(item.getID());
-						return item;
+					if (((Item) object).getName().equals(name)) {
+						if (object instanceof StackableItem) {
+							// The item is stackable, we try to remove
+							// multiple ones.
+							int quantity = ((StackableItem) object).getQuantity();
+							if (toDrop >= quantity) {
+								slot.remove(object.getID());
+								toDrop -= quantity;
+								// Recreate the iterator to prevent
+								// ConcurrentModificationExceptions.
+								// This inefficient, but simple.
+								object_it = slot.iterator();
+							} else {
+								((StackableItem) object).setQuantity(quantity - toDrop);
+								toDrop = 0;
+								break;
+							}
+						} else {
+							// The item is not stackable, so we only remove a
+							// single one.
+							slot.remove(object.getID());
+							toDrop--;
+							// recreate the iterator to prevent
+							// ConcurrentModificationExceptions.
+							object_it = slot.iterator();
+						}
 					}
 				}
 			}
 		}
+		world.modify(this);
+		return toDrop == 0;
+	}
 
-		return null;
+	/**
+	 * Removes one unit of an item from the RPEntity. The item can
+	 * either be stackable or non-stackable. If the RPEntity doesn't
+	 * have enough the item, doesn't remove anything.
+	 * @param name The name of the item
+	 * @return true iff dropping the item was successful.
+	 */
+	public boolean drop(String name) {
+		return drop(name, 1);
 	}
 
 	public boolean isEquipped(String name) {
