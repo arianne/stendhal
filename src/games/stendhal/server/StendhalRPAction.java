@@ -311,7 +311,7 @@ public class StendhalRPAction {
 				entity.setx(x + dx);
 				entity.sety(y + dy);
 
-				entity.collides(false);
+				entity.setCollides(false);
 				world.modify(entity);
 			} else {
 				if (entity instanceof Player) {
@@ -353,7 +353,7 @@ public class StendhalRPAction {
 				logger
 						.debug("Collision at (" + (x + dx) + "," + (y + dy)
 								+ ")");
-				entity.collides(true);
+				entity.setCollides(true);
 
 				entity.stop();
 				world.modify(entity);

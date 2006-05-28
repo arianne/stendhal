@@ -180,11 +180,11 @@ public abstract class Entity extends RPObject {
 		return speed == 0;
 	}
 
-	public void collides(boolean val) {
-		collides = val;
+	public void setCollides(boolean collides) {
+		this.collides = collides;
 	}
 
-	public boolean collided() {
+	public boolean collides() {
 		return collides;
 	}
 

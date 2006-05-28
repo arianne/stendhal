@@ -237,7 +237,7 @@ public class Sheep extends DomesticAnimal {
 		if (!stopped()) {
 			StendhalRPAction.move(this);
 			// if we collided with something we stop and clear the path
-			if (collided()) {
+			if (collides()) {
 				stop();
 				clearPath();
 			}

@@ -181,7 +181,7 @@ public abstract class NPC extends RPEntity
     {
     if(escapeCollision>0) escapeCollision--;
 
-    if(stopped() || collided() || escapeCollision==0)
+    if(stopped() || collides() || escapeCollision==0)
       {
       setDirection(Direction.rand());
       setSpeed(speed);

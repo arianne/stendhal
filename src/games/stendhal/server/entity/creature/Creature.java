@@ -561,7 +561,7 @@ public class Creature extends NPC {
 				debug.append("movetotarget");
 			// our current Path is blocked...mostly by the target or another
 			// attacker
-			if (collided()) {
+			if (collides()) {
 				if (Debug.CREATURES_DEBUG_SERVER)
 					debug.append(";blocked");
 				// invalidate the path and stop
@@ -585,7 +585,7 @@ public class Creature extends NPC {
 					debug.append(";waiting");
 				waitRounds--;
 				// HACK: remove collision flag (we're not moving after all)
-				collides(false);
+				setCollides(false);
 				clearPath();
 			} else {
 				// Are we still patrol'ing?
