@@ -656,14 +656,18 @@ public abstract class RPEntity extends Entity {
 	 * @return true iff dropping the desired amount was successful.
 	 */
 	public boolean drop(String name, int amount) {
+		if (!isEquipped(name, amount)) {
+			return false;
+		}
+		
 		int toDrop = amount;
 
 		Iterator<RPSlot> it = this.slotsIterator();
-		while (it.hasNext() && toDrop > 0) {
+		while (it.hasNext()) {
 			RPSlot slot = it.next();
 
 			Iterator<RPObject> object_it = slot.iterator();
-			while (object_it.hasNext() && toDrop > 0) {
+			while (object_it.hasNext()) {
 				RPObject object = object_it.next();
 				if (object instanceof Item) {
 					if (((Item) object).getName().equals(name)) {
@@ -681,7 +685,6 @@ public abstract class RPEntity extends Entity {
 							} else {
 								((StackableItem) object).setQuantity(quantity - toDrop);
 								toDrop = 0;
-								break;
 							}
 						} else {
 							// The item is not stackable, so we only remove a
@@ -692,12 +695,16 @@ public abstract class RPEntity extends Entity {
 							// ConcurrentModificationExceptions.
 							object_it = slot.iterator();
 						}
+						if (toDrop == 0) {
+							break;
+						}
 					}
 				}
 			}
 		}
 		world.modify(this);
-		return toDrop == 0;
+		// we can be sure that it worked, because 
+		return true;
 	}
 
 	/**
@@ -711,21 +718,27 @@ public abstract class RPEntity extends Entity {
 		return drop(name, 1);
 	}
 
-	public boolean isEquipped(String name) {
-		boolean found = false;
+	public boolean isEquipped(String name, int amount) {
+		int found = 0;
 		for (RPSlot slot : this.slots()) {
 			for (RPObject object : slot) {
-				if (object instanceof Item) {
-					Item item = (Item) object;
-					if (item.getName().equals(name)) {
-						found = true;
-						break;
+				if (object instanceof Item && ((Item) object).getName().equals(name)) {
+					if (object instanceof StackableItem) {
+						found += ((StackableItem) object).getQuantity();
+					} else {
+						found++;
+					}
+					if (found >= amount) {
+						return true;
 					}
 				}
 			}
 		}
-
-		return found;
+		return false;
+	}
+	
+	public boolean isEquipped(String name) {
+		return isEquipped(name, 1);
 	}
 
 	public Item getEquipped(String name) {

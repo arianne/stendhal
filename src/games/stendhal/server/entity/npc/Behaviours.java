@@ -237,58 +237,6 @@ public class Behaviours {
 		}
 
 		/**
-		 * Returns the amount of money that the player has.
-		 * @param player
-		 * @return
-		 */
-		// TODO: create Player.drop() with an amount parameter.
-		public int playerMoney(Player player) {
-			int money = 0;
-
-			Iterator<RPSlot> it = player.slotsIterator();
-			while (it.hasNext()) {
-				RPSlot slot = it.next();
-				for (RPObject object : slot) {
-					if (object instanceof Money) {
-						money += ((Money) object).getQuantity();
-					}
-				}
-			}
-			return money;
-		}
-
-		// TODO: create Player.drop() with an amount parameter.
-		public boolean chargePlayer(Player player) {
-			int left = getCharge(player);
-
-			Iterator<RPSlot> it = player.slotsIterator();
-			while (it.hasNext() && left != 0) {
-				RPSlot slot = it.next();
-
-				Iterator<RPObject> object_it = slot.iterator();
-				while (object_it.hasNext()) {
-					RPObject object = object_it.next();
-					if (object instanceof Money) {
-						int quantity = ((Money) object).getQuantity();
-						if (left >= quantity) {
-							slot.remove(object.getID());
-							left -= quantity;
-
-							object_it = slot.iterator();
-						} else {
-							((Money) object).setQuantity(quantity - left);
-							left = 0;
-							break;
-						}
-					}
-				}
-			}
-			world.modify(player);
-
-			return left == 0;
-		}
-
-		/**
 		 * Transacts the sale that has been agreed on earlier via
 		 * setChosenItem() and setAmount().
 		 * @param seller The NPC who sells
@@ -317,12 +265,17 @@ public class Behaviours {
 			IRPZone zone = world.getRPZone(player.getID());
 			zone.assignRPObjectID(item);
 
-			if (player.equip(item)) {
-				chargePlayer(player);
-				seller.say("Congratulations! Here is your " + getChosenItem() + "!");
-				return true;
+			if (player.isEquipped("money", getCharge(player))) {
+				if (player.equip(item)) {
+					player.drop("money", getCharge(player));
+					seller.say("Congratulations! Here is your " + getChosenItem() + "!");
+					return true;
+				} else {
+					seller.say("Sorry, but you cannot equip the " + getChosenItem() + ".");
+					return false;
+				}
 			} else {
-				seller.say("Sorry, but you cannot equip the " + getChosenItem() + ".");
+				seller.say("A real pity! You don't have enough money!");
 				return false;
 			}
 		}
@@ -397,14 +350,6 @@ public class Behaviours {
 								.getBehaviourData("seller");
 		
 						String itemName = sellerBehaviour.getChosenItem();
-						int itemPrice = sellerBehaviour.getUnitPrice(itemName);
-						int itemAmount = sellerBehaviour.getAmount();
-		
-						if (sellerBehaviour.playerMoney(player) < itemPrice * itemAmount) {
-							engine.say("A real pity! You don't have enough money!");
-							return;
-						}
-		
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 		
@@ -470,16 +415,18 @@ public class Behaviours {
 			}
 		}
 		
+		// TODO: create RPEntity.equip() with amount parameter.
 		public void payPlayer(Player player) {
 			boolean found = false;
 			Iterator<RPSlot> it = player.slotsIterator();
 			// First try to stack the money on existing money
-			while (it.hasNext()) {
+			while (it.hasNext() && !found) {
 				RPSlot slot = it.next();
 				for (RPObject object: slot) {
 					if (object instanceof Money) {
 						((Money) object).add(getCharge(player));
 						found = true;
+						break;
 					}
 				}
 			}
@@ -493,60 +440,8 @@ public class Behaviours {
 			world.modify(player);
 		}
 
-		/**
-		 * Tries to remove some of the items of the given type from a slot.
-		 * If there are not enough items, 
-		 * @param slot The slot 
-		 * @param itemName
-		 * @param amount
-		 * @return
-		 */
-		private boolean removeItem(RPSlot slot, String itemName, int amount) {
-			// First iterate over the slot to count the number of available
-			// items with the given itemName; we must make sure that enough
-			// are available to fulfil the requested amount.
-			// To avoid a second iteration, we store items that can later be
-			// removed in a LinkedList.
-			int count = 0;
-			LinkedList<RPObject> toBeRemoved = new LinkedList<RPObject>();
-			
-			for(RPObject object: slot) {
-				if (object instanceof Item
-						&& object.get("name").equals(itemName)) {
-					count++;
-					toBeRemoved.add(object);
-				}
-			}
-			if (count < amount) {
-				// not enough items in the slot. Don't change anything.
-				return false;
-			} else {
-				for (RPObject object: toBeRemoved) {
-					slot.remove(object.getID());
-				}
-			}
-			return true;
-		}
-
-		public boolean removeItem(Player player, String itemName, int amount) {
-			/* We iterate first the bag */
-			if (removeItem(player.getSlot("bag"), itemName, amount)) {
-				world.modify(player);
-				return true;
-			}
-			Iterator<RPSlot> it = player.slotsIterator();
-			while (it.hasNext()) {
-				RPSlot slot = it.next();
-				if (removeItem(slot, itemName, amount)) {
-					world.modify(player);
-					return true;
-				}
-			}
-			return false;
-		}
-
 		public boolean onBuy(SpeakerNPC seller, Player player) {
-			if (removeItem(player, chosenItem, amount)) {
+			if (player.drop(chosenItem, amount)) {
 				payPlayer(player);
 				seller.say("Thanks! Here is your money.");
 				return true;
@@ -692,12 +587,11 @@ public class Behaviours {
 						HealerBehaviour healerBehaviour = (HealerBehaviour) engine
 								.getBehaviourData("healer");
 						
-						if (healerBehaviour.playerMoney(player) < healerBehaviour.getCharge(player)) {
-							engine.say("A real pity! You don't have enough money!");
-						} else {
-							healerBehaviour.chargePlayer(player);
+						if (player.drop("money", healerBehaviour.getCharge(player))) {
 							healerBehaviour.heal(player, engine);
 							engine.say("You are healed. How may I help you?");
+						} else {
+							engine.say("A real pity! You don't have enough money!");
 						}
 					}
 				});
