@@ -22,13 +22,16 @@ import marauroa.common.game.RPObject;
 
 public class PlantGrower extends Entity {
 
-	private double growth;
+	/**
+	 * How much of the next fruit is ready, as a value between 0 and 1.
+	 */
+	protected double ripeness;
 	
 	// TODO: make variable
 	private String growingItemName = "arandula";
 	
 	// TODO: make variable
-	private int turnsForRegrow = 250;
+	protected int turnsForRegrow = 250;
 	
 	public PlantGrower(RPObject object) throws AttributeNotFoundException {
 		super(object);
@@ -58,30 +61,42 @@ public class PlantGrower extends Entity {
 		rect.setRect(x, y, 1, 1);
 	}
 
-	public void regrow() {
+	protected boolean canGrowNewFruit() {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
 		for (Item item: zone.getItemsOnGround().keySet()) {
 			if (item.getName().equals(growingItemName) && item.getx() == this.getx() && 	item.gety() == this.gety()) {
 				// don't regrow until someone picks the last grown item up.
-				return;
+				return true;
 			}
 		}
-		growth += 1.0f / turnsForRegrow;
-
-		// TODO: add some randomization
-		if (growth > 1) {
-			growth = 0;
-			// create a new grown item
-			Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);
-			grownItem.setx(this.getx());
-			grownItem.sety(this.gety());
-			//logger.warn("entity set to " + x + "x" + y);
-
-			zone.assignRPObjectID(grownItem);
-			//logger.warn("entity has valid id: " + entity.getID());
-
-			zone.add(grownItem);
-			//world.modify(this);
+		return false;
+	}
+	
+	protected void growNewFruit() {
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
+		// create a new grown item
+		Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);
+		grownItem.setx(this.getx());
+		grownItem.sety(this.gety());
+		//logger.warn("entity set to " + x + "x" + y);
+		
+		zone.assignRPObjectID(grownItem);
+		//logger.warn("entity has valid id: " + entity.getID());
+		
+		zone.add(grownItem);
+		//world.modify(this);
+		
+	}
+	
+	public void regrow() {
+		if (canGrowNewFruit()) {
+			ripeness += 1.0f / turnsForRegrow;
+			
+			// TODO: add some randomization
+			if (ripeness > 1.0f) {
+				ripeness = 0.0f;
+				growNewFruit();
+			}
 		}
 	}
 
