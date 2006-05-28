@@ -14,6 +14,7 @@ package games.stendhal.server;
 
 import games.stendhal.common.Pair;
 import games.stendhal.server.actions.*;
+import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
@@ -64,6 +65,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private List<SheepFood> sheepFoodItems;
 
+	private List<PlantGrower> plantGrowers;
+
 	private List<Corpse> corpses;
 
 	private List<Corpse> corpsesToRemove;
@@ -106,6 +109,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<RespawnPoint>();
 		sheepFoodItems = new LinkedList<SheepFood>();
+		plantGrowers = new LinkedList<PlantGrower>();
 		npcsToAdd = new LinkedList<NPC>();
 		npcsToRemove = new LinkedList<NPC>();
 		entityToKill = new LinkedList<Pair<RPEntity, RPEntity>>();
@@ -153,6 +157,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				npcs.addAll(szone.getNPCList());
 				respawnPoints.addAll(szone.getRespawnPointList());
 				sheepFoodItems.addAll(szone.getSheepFoodItemList());
+				plantGrowers.addAll(szone.getPlantGrowers());
 			}
 			// /* Run python script */
 			// PythonInterpreter interpreter=new PythonInterpreter();
@@ -257,6 +262,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public List<SheepFood> getSheepFoodItems() {
 		return sheepFoodItems;
+	}
+
+	public List<PlantGrower> getPlantGrowers() {
+		return plantGrowers;
 	}
 
 	public List<NPC> getNPCs() {
@@ -405,6 +414,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		try {
 			for (SheepFood food : sheepFoodItems)
 				food.regrow();
+			for (PlantGrower plantGrower : plantGrowers)
+				plantGrower.regrow();
 			for (RespawnPoint point : respawnPoints)
 				point.nextTurn();
 			for (Corpse corpse : corpses)

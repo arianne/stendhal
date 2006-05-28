@@ -15,6 +15,7 @@ package games.stendhal.server;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.OneWayPortal;
@@ -68,6 +69,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private List<SheepFood> sheepFoodItems;
 
+	private List<PlantGrower> plantGrowers;
+
+	/**
+	 * A map with all items that are lying on the ground in this zone as
+	 * keys, and the turns in which the items were moved to the ground
+	 * as values. The turn number is required to determined when to
+	 * discard the item.
+	 */
+	private Map<Item, Integer> itemsOnGround;
+
 	private int numHouses;
 
 	/** contains data to if a certain area is walkable */
@@ -94,12 +105,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 		entryPoints = new LinkedList<String>();
 		zoneChangePoints = new LinkedList<String>();
 		portals = new LinkedList<Portal>();
-		itemsOnFloor = new HashMap<Item, Integer>();
+		itemsOnGround = new HashMap<Item, Integer>();
 		numHouses = 0;
 
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<RespawnPoint>();
 		sheepFoodItems = new LinkedList<SheepFood>();
+		plantGrowers = new LinkedList<PlantGrower>();
 
 		collisionMap = new CollisionDetection();
 		protectionMap = new CollisionDetection();
@@ -143,6 +155,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public List<SheepFood> getSheepFoodItemList() {
 		return sheepFoodItems;
+	}
+
+	public List<PlantGrower> getPlantGrowers() {
+		return plantGrowers;
 	}
 
 	public void addZoneChange(String entry) {
@@ -578,8 +594,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return collisionMap.collides(area);
 	}
 
-	private Map<Item, Integer> itemsOnFloor;
-
 	public synchronized void add(RPObject object)
 			throws RPObjectInvalidException {
 		super.add(object);
@@ -590,7 +604,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				if (Entity.getRPRuleProcessor() != null) {
 					droppedOn = Entity.getRPRuleProcessor().getTurn();
 				}
-				itemsOnFloor.put((Item) object, droppedOn);
+				itemsOnGround.put((Item) object, droppedOn);
 			}
 		}
 	}
@@ -600,7 +614,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		RPObject object = super.remove(id);
 
 		if (object instanceof Item) {
-			itemsOnFloor.remove(object);
+			itemsOnGround.remove(object);
 		}
 
 		return object;
@@ -648,7 +662,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			turn = Entity.getRPRuleProcessor().getTurn();
 		}
 
-		Iterator<Map.Entry<Item, Integer>> it = itemsOnFloor.entrySet()
+		Iterator<Map.Entry<Item, Integer>> it = itemsOnGround.entrySet()
 				.iterator();
 		List<Item> toRemove = new LinkedList<Item>();
 
@@ -711,5 +725,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public String toString() {
 		return "zone " + zoneid + " at (" + x + "," + y + ")";
+	}
+
+	public Map<Item, Integer> getItemsOnGround() {
+		return itemsOnGround;
 	}
 }

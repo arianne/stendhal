@@ -1,11 +1,9 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.*;
-import games.stendhal.server.maps.*;
-import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.Chest;
-import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.PlantGrower;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -312,38 +310,38 @@ import games.stendhal.server.entity.npc.NPCList;
 	}
 
 	private void initialize() {
-		// place a chest full of arandula north of Semos
+		// place a field of arandula north of Semos
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"0_semos_plains_n"));
 
-		chest = new Chest();
-		zone.assignRPObjectID(chest);
-		chest.set(106, 47);
-		chest.add(world.getRuleManager().getEntityManager().getItem(
-						"arandula"));
-		chest.add(world.getRuleManager().getEntityManager().getItem(
-						"arandula"));
-		chest.add(world.getRuleManager().getEntityManager().getItem(
-						"arandula"));
-		chest.add(world.getRuleManager().getEntityManager().getItem(
-						"arandula"));
-		zone.add(chest);
+		PlantGrower plantGrower = new PlantGrower();
+		zone.assignRPObjectID(plantGrower);
+		plantGrower.setx(95);
+		plantGrower.sety(57);
+		zone.add(plantGrower);
+		zone.getPlantGrowers().add(plantGrower);
+		
+		plantGrower = new PlantGrower();
+		zone.assignRPObjectID(plantGrower);
+		plantGrower.setx(95);
+		plantGrower.sety(59);
+		zone.add(plantGrower);
+		zone.getPlantGrowers().add(plantGrower);
 
-		/** Add a script to fill automatically the chest. */
-		StendhalScriptSystem scripts = StendhalScriptSystem.get();
-		scripts.addScript(new ScriptCondition() {
-			public boolean fire() {
-				return chest.size() < 1;
-			}
-		}, new ScriptAction() {
-			public void fire() {
-				chest.add(world.getRuleManager().getEntityManager().getItem(
-						"arandula"));
-			}
-		});
-	}
+		plantGrower = new PlantGrower();
+		zone.assignRPObjectID(plantGrower);
+		plantGrower.setx(96);
+		plantGrower.sety(57);
+		zone.add(plantGrower);
+		zone.getPlantGrowers().add(plantGrower);
 
-	public Chest chest;
+		plantGrower = new PlantGrower();
+		zone.assignRPObjectID(plantGrower);
+		plantGrower.setx(97);
+		plantGrower.sety(58);
+		zone.add(plantGrower);
+		zone.getPlantGrowers().add(plantGrower);
+	}
 
 	public IntroducePlayers(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
 		this.npcs = NPCList.get();
