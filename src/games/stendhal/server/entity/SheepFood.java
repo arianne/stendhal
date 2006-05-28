@@ -24,6 +24,7 @@ public class SheepFood extends Entity {
 
 	private double grow;
 
+	@Override
 	public static void generateRPClass() {
 		RPClass food = new RPClass("food");
 		food.isA("entity");
@@ -46,6 +47,7 @@ public class SheepFood extends Entity {
 		rect.setRect(x, y, 1, 1);
 	}
 
+	@Override
 	public void update() {
 		super.update();
 		if (has("amount"))
@@ -73,9 +75,10 @@ public class SheepFood extends Entity {
 		}
 	}
 
+	@Override
 	public String describe() {
 		String text = "You see a bush with " + getAmount()
-				+ " fruits. Only sheeps eat this bush.";
+				+ " fruits. Only sheeps eat from this bush.";
 		return (text);
 	}
 
