@@ -163,7 +163,7 @@ public class StendhalRPAction {
 		}
 
 		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
-				* (maxAttackerComponent / maxDefenderComponent) * ((float) source
+				* (maxAttackerComponent / maxDefenderComponent) * (source
 				.getATK() / 10.0f));
 
 		if (weaponItem != null && weaponItem.isOfClass("ranged")) {
@@ -375,7 +375,7 @@ public class StendhalRPAction {
 
 	public static void decideChangeZone(Player player, int x, int y)
 			throws AttributeNotFoundException, NoRPZoneException {
-		String zoneid = player.get("zoneid");
+		// String zoneid = player.get("zoneid");
 
 		StendhalRPZone origin = (StendhalRPZone) world
 				.getRPZone(player.getID());
