@@ -16,6 +16,8 @@ import games.stendhal.common.Debug;
 import java.util.StringTokenizer;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+import games.stendhal.client.sound.SoundSystem;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;

@@ -7,6 +7,7 @@ package games.stendhal.client.gui;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import games.stendhal.client.*;
+import games.stendhal.client.sound.SoundSystem;
 
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;

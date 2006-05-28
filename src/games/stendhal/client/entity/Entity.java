@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.*;
 import games.stendhal.client.events.*;
+import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;

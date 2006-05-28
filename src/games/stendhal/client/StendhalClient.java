@@ -17,6 +17,7 @@ import games.stendhal.client.gui.InGameGUI;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.OutfitDialog;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Debug;
 
 import java.awt.Color;

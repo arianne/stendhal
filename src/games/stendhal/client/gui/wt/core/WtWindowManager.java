@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt.core;
 
-import games.stendhal.client.SoundSystem;
 import games.stendhal.client.gui.wt.Character;
+import games.stendhal.client.sound.SoundSystem;
 
 import java.io.File;
 import java.io.FileInputStream;

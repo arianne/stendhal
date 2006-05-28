@@ -13,6 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.*;
+import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
