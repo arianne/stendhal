@@ -27,13 +27,13 @@ public class SheepFood extends PlantGrower {
 	}
 
 	public SheepFood(RPObject object) throws AttributeNotFoundException {
-		super(object);
+		super(object, null, 2000);
 		put("type", "food");
 		update();
 	}
 
 	public SheepFood() throws AttributeNotFoundException {
-		super();
+		super(null, 2000);
 		put("type", "food");
 	}
 
@@ -53,14 +53,12 @@ public class SheepFood extends PlantGrower {
 		return amount;
 	}
 
+	@Override
 	protected boolean canGrowNewFruit() {
 		return amount < 5;
 	}
-	
-	protected int getTurnsForRegrow() {
-		return 2000;
-	}
 
+	@Override
 	protected void growNewFruit() {
 		setAmount(amount + 1);
 		world.modify(this);

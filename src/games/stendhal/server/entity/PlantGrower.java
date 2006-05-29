@@ -20,6 +20,16 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
+/**
+ * A PlantGrower basically is a 1x1 area where a plant, a fruit or another
+ * non-moving thing grows. This growing thing can either be a pickable item
+ * (e.g. a mushroom, an apple) or something special (e.g. sheep food).
+ * 
+ * Plant growers are currently invisible (fully transparent) on the client side.
+ * 
+ * @author Daniel Herding
+ *
+ */
 public class PlantGrower extends Entity {
 
 	/**
@@ -28,20 +38,25 @@ public class PlantGrower extends Entity {
 	private double ripeness;
 	
 	// TODO: make variable
-	private String growingItemName = "arandula";
+	private String growingItemName;
 	
 	// TODO: make variable
-	private int turnsForRegrow = 20;
+	private int turnsForRegrow;
 	
-	public PlantGrower(RPObject object) throws AttributeNotFoundException {
+	public PlantGrower(RPObject object, String growingItemName, int turnsForRegrow) throws AttributeNotFoundException {
 		super(object);
-		// TODO: consider making growth persistent
+		this.growingItemName = growingItemName;
+		this.turnsForRegrow = turnsForRegrow;
+		
 		put("type", "plant_grower");
 		//update();
 	}
 
-	public PlantGrower() throws AttributeNotFoundException {
+	public PlantGrower(String growingItemName, int turnsForRegrow) throws AttributeNotFoundException {
 		super();
+		this.growingItemName = growingItemName;
+		this.turnsForRegrow = turnsForRegrow;
+
 		put("type", "plant_grower");
 	}
 
@@ -76,9 +91,9 @@ public class PlantGrower extends Entity {
 	 * Tells how long it takes for a new fruit to become ripe.
 	 * @return The number of required turns.
 	 */
-	protected int getTurnsForRegrow() {
-		return turnsForRegrow;
-	}
+//	protected int getTurnsForRegrow() {
+//		return turnsForRegrow;
+//	}
 	
 	protected void growNewFruit() {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
@@ -95,7 +110,7 @@ public class PlantGrower extends Entity {
 	
 	public void regrow() {
 		if (canGrowNewFruit()) {
-			ripeness += 1.0f / getTurnsForRegrow();
+			ripeness += 1.0f / turnsForRegrow;
 			// TODO: add some randomization
 			if (ripeness > 1.0f) {
 				ripeness = 0.0f;

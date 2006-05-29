@@ -532,7 +532,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 			case 93: /* Arandula */
 			{
-				PlantGrower plantGrower = new PlantGrower();
+				PlantGrower plantGrower = new PlantGrower("arandula", 100);
 				assignRPObjectID(plantGrower);
 				plantGrower.setx(x);
 				plantGrower.sety(y);
