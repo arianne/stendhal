@@ -22,10 +22,11 @@ import marauroa.common.game.RPObject;
 
 /**
  * A PlantGrower basically is a 1x1 area where a plant, a fruit or another
- * non-moving thing grows. This growing thing can either be a pickable item
- * (e.g. a mushroom, an apple) or something special (e.g. sheep food).
+ * non-moving thing grows. This growing thing is a pickable Item
+ * (e.g. a mushroom, an apple); by extending this class, it can also grow
+ * something special (e.g. SheepFood).
  * 
- * Plant growers are currently invisible (fully transparent) on the client side.
+ * PlantGrowers are currently invisible (fully transparent) on the client side.
  * 
  * @author Daniel Herding
  *
@@ -37,10 +38,15 @@ public class PlantGrower extends Entity {
 	 */
 	private double ripeness;
 	
-	// TODO: make variable
+	/**
+	 * The name of the fruit (Item) that is grown by the PlantGrower.
+	 */
 	private String growingItemName;
 	
-	// TODO: make variable
+	
+	/**
+	 * Tells how many turns it takes for a new fruit to become ripe.
+	 */
 	private int turnsForRegrow;
 	
 	public PlantGrower(RPObject object, String growingItemName, int turnsForRegrow) throws AttributeNotFoundException {
@@ -86,15 +92,10 @@ public class PlantGrower extends Entity {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * Tells how long it takes for a new fruit to become ripe.
-	 * @return The number of required turns.
+	 * Creates a new fruit.
 	 */
-//	protected int getTurnsForRegrow() {
-//		return turnsForRegrow;
-//	}
-	
 	protected void growNewFruit() {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
 		// create a new grown item
@@ -108,6 +109,10 @@ public class PlantGrower extends Entity {
 		//world.modify(this);
 	}
 	
+	/**
+	 * Is invoked every turn. Checks if a new fruit can be grown, and if the
+	 * new fruit is ripe, creates it.
+	 */
 	public void regrow() {
 		if (canGrowNewFruit()) {
 			ripeness += 1.0f / turnsForRegrow;
@@ -121,13 +126,14 @@ public class PlantGrower extends Entity {
 
 	@Override
 	public String describe() {
-		String text = "You see a growing place for " + growingItemName
-				+ ".";
+		String text = "You see a place where a " + growingItemName
+				+ " can grow.";
 		return (text);
 	}
 
 	@Override
 	public boolean isCollisionable() {
+		// The player can walk over the PlantGrower.
 		return false;
 	}
 
