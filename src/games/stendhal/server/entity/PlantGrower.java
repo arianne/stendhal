@@ -20,7 +20,7 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
-public class PlantGrower extends Entity {
+public class PlantGrower extends PassiveEntity {
 
 	/**
 	 * How much of the next fruit is ready, as a value between 0 and 1.
@@ -31,11 +31,10 @@ public class PlantGrower extends Entity {
 	private String growingItemName = "arandula";
 	
 	// TODO: make variable
-	protected int turnsForRegrow = 250;
+	protected int turnsForRegrow = 20;
 	
 	public PlantGrower(RPObject object) throws AttributeNotFoundException {
 		super(object);
-		setCollides(false);
 		// TODO: consider making growth persistent
 		put("type", "plant_grower");
 		//update();
@@ -43,8 +42,6 @@ public class PlantGrower extends Entity {
 
 	public PlantGrower() throws AttributeNotFoundException {
 		super();
-		// TODO: This doesn't work. Still can't walk over the plant grower.
-		setCollides(false);
 		put("type", "plant_grower");
 	}
 
@@ -64,10 +61,10 @@ public class PlantGrower extends Entity {
 		for (Item item: zone.getItemsOnGround().keySet()) {
 			if (item.getName().equals(growingItemName) && item.getx() == this.getx() && 	item.gety() == this.gety()) {
 				// don't regrow until someone picks the last grown item up.
-				return true;
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	protected void growNewFruit() {
@@ -87,11 +84,16 @@ public class PlantGrower extends Entity {
 	}
 	
 	public void regrow() {
+		System.out.println("regrow");
+		System.out.println(canGrowNewFruit());
+		
 		if (canGrowNewFruit()) {
 			ripeness += 1.0f / turnsForRegrow;
 			
+			
 			// TODO: add some randomization
 			if (ripeness > 1.0f) {
+				System.out.println("GROW!!!!!!!");
 				ripeness = 0.0f;
 				growNewFruit();
 			}
