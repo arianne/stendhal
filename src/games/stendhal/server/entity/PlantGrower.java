@@ -20,18 +20,18 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
-public class PlantGrower extends PassiveEntity {
+public class PlantGrower extends Entity {
 
 	/**
 	 * How much of the next fruit is ready, as a value between 0 and 1.
 	 */
-	protected double ripeness;
+	private double ripeness;
 	
 	// TODO: make variable
 	private String growingItemName = "arandula";
 	
 	// TODO: make variable
-	protected int turnsForRegrow = 20;
+	private int turnsForRegrow = 20;
 	
 	public PlantGrower(RPObject object) throws AttributeNotFoundException {
 		super(object);
@@ -52,10 +52,15 @@ public class PlantGrower extends PassiveEntity {
 		grower.add("class", RPClass.STRING);
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
 
+	/**
+	 * Tells if a new fruit can start to grow.
+	 * @return true iff a new fruit can start to grow
+	 */
 	protected boolean canGrowNewFruit() {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
 		for (Item item: zone.getItemsOnGround().keySet()) {
@@ -67,25 +72,30 @@ public class PlantGrower extends PassiveEntity {
 		return true;
 	}
 	
+	/**
+	 * Tells how long it takes for a new fruit to become ripe.
+	 * @return The number of required turns.
+	 */
+	protected int getTurnsForRegrow() {
+		return turnsForRegrow;
+	}
+	
 	protected void growNewFruit() {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
 		// create a new grown item
 		Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);
 		grownItem.setx(this.getx());
 		grownItem.sety(this.gety());
-		//logger.warn("entity set to " + x + "x" + y);
 		
 		zone.assignRPObjectID(grownItem);
-		//logger.warn("entity has valid id: " + entity.getID());
 		
 		zone.add(grownItem);
 		//world.modify(this);
-		
 	}
 	
 	public void regrow() {
 		if (canGrowNewFruit()) {
-			ripeness += 1.0f / turnsForRegrow;
+			ripeness += 1.0f / getTurnsForRegrow();
 			// TODO: add some randomization
 			if (ripeness > 1.0f) {
 				ripeness = 0.0f;
@@ -96,9 +106,14 @@ public class PlantGrower extends PassiveEntity {
 
 	@Override
 	public String describe() {
-		String text = "You see a place where " + growingItemName
-				+ " grows.";
+		String text = "You see a growing place for " + growingItemName
+				+ ".";
 		return (text);
+	}
+
+	@Override
+	public boolean isCollisionable() {
+		return true;
 	}
 
 }

@@ -84,8 +84,8 @@ public class StendhalRPWorld extends RPWorld {
 		Blackboard.generateRPClass();
 		Portal.generateRPClass();
 		Door.generateRPClass();
-		SheepFood.generateRPClass();
 		PlantGrower.generateRPClass();
+		SheepFood.generateRPClass();
 		Corpse.generateRPClass();
 		Item.generateRPClass();
 		Chest.generateRPClass();

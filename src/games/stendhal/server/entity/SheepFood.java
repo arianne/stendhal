@@ -12,23 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import java.awt.geom.Rectangle2D;
-
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
-/** TODO: This is sheep food, it should be ported to the new Items system */
-public class SheepFood extends Entity {
+public class SheepFood extends PlantGrower {
 	private int amount;
-
-	private double grow;
 
 	@Override
 	public static void generateRPClass() {
 		RPClass food = new RPClass("food");
-		food.isA("entity");
-		food.add("class", RPClass.STRING);
+		food.isA("plant_grower");
 		food.add("amount", RPClass.BYTE);
 	}
 
@@ -41,10 +35,6 @@ public class SheepFood extends Entity {
 	public SheepFood() throws AttributeNotFoundException {
 		super();
 		put("type", "food");
-	}
-
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
 	}
 
 	@Override
@@ -63,23 +53,29 @@ public class SheepFood extends Entity {
 		return amount;
 	}
 
-	public void regrow() {
-		if (amount < 5) {
-			grow += 0.0005; // 2000 turns
+	protected boolean canGrowNewFruit() {
+		return amount < 5;
+	}
+	
+	protected int getTurnsForRegrow() {
+		return 2000;
+	}
 
-			if (grow > 1) {
-				grow = 0;
-				setAmount(amount + 1);
-				world.modify(this);
-			}
-		}
+	protected void growNewFruit() {
+		setAmount(amount + 1);
+		world.modify(this);
 	}
 
 	@Override
 	public String describe() {
 		String text = "You see a bush with " + getAmount()
-				+ " fruits. Only sheeps eat from this bush.";
+				+ " fruits. Only sheep eat from this bush.";
 		return (text);
+	}
+	
+	@Override
+	public boolean isCollisionable() {
+		return true;
 	}
 
 }
