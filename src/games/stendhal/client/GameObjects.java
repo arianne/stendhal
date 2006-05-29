@@ -49,7 +49,7 @@
 
 		register("npc", null, NPC.class);
 
-		register("food", null, Food.class);
+		register("food", null, SheepFood.class);
 		register("chest", null, Chest.class);
 
 		register("corpse", null, Corpse.class);
