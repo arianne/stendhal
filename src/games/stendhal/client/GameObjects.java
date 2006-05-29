@@ -49,7 +49,8 @@
 
 		register("npc", null, NPC.class);
 
-		register("food", null, SheepFood.class);
+		register("plant_grower", null, PlantGrower.class);
+		register("food", null, SheepFood.class);
 		register("chest", null, Chest.class);
 
 		register("corpse", null, Corpse.class);
