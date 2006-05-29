@@ -84,16 +84,10 @@ public class PlantGrower extends PassiveEntity {
 	}
 	
 	public void regrow() {
-		System.out.println("regrow");
-		System.out.println(canGrowNewFruit());
-		
 		if (canGrowNewFruit()) {
 			ripeness += 1.0f / turnsForRegrow;
-			
-			
 			// TODO: add some randomization
 			if (ripeness > 1.0f) {
-				System.out.println("GROW!!!!!!!");
 				ripeness = 0.0f;
 				growNewFruit();
 			}
