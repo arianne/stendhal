@@ -36,10 +36,8 @@ public class PlantGrower extends Entity {
 	public PlantGrower(RPObject object) throws AttributeNotFoundException {
 		super(object);
 		setCollides(false);
-		// TODO: maybe this shouldn't be of the type "food", but of
-		// the type "grower".
 		// TODO: consider making growth persistent
-		put("type", "food");
+		put("type", "plant_grower");
 		//update();
 	}
 
@@ -47,12 +45,12 @@ public class PlantGrower extends Entity {
 		super();
 		// TODO: This doesn't work. Still can't walk over the plant grower.
 		setCollides(false);
-		put("type", "food");
+		put("type", "plant_grower");
 	}
 
 	@Override
 	public static void generateRPClass() {
-		RPClass grower = new RPClass("food");
+		RPClass grower = new RPClass("plant_grower");
 		grower.isA("entity");
 		grower.add("class", RPClass.STRING);
 	}
