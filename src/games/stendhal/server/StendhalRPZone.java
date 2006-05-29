@@ -530,6 +530,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 				plantGrowers.add(sheepFood);
 				break;
 			}
+			case 93: /* Arandula */
+			{
+				PlantGrower plantGrower = new PlantGrower();
+				assignRPObjectID(plantGrower);
+				plantGrower.setx(x);
+				plantGrower.sety(y);
+				add(plantGrower);
+
+				plantGrowers.add(plantGrower);
+				break;
+			}
 			default: {
 				if (type >= 0) {
 					// get the default EntityManager

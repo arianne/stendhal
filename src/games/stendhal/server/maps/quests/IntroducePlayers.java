@@ -8,10 +8,8 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.scripting.ScriptAction;
-import games.stendhal.server.scripting.ScriptCondition;
 
-import marauroa.common.game.IRPZone;
+import marauroa.common.game.IRPZone;
 
 /** 
  * QUEST: Introduce new players to game
@@ -309,45 +307,9 @@ import games.stendhal.server.entity.npc.NPCList;
 				});
 	}
 
-	private void initialize() {
-		// place a field of arandula north of Semos
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
-				"0_semos_plains_n"));
-
-		PlantGrower plantGrower = new PlantGrower();
-		zone.assignRPObjectID(plantGrower);
-		plantGrower.setx(95);
-		plantGrower.sety(57);
-		zone.add(plantGrower);
-		zone.getPlantGrowers().add(plantGrower);
-		
-		plantGrower = new PlantGrower();
-		zone.assignRPObjectID(plantGrower);
-		plantGrower.setx(95);
-		plantGrower.sety(59);
-		zone.add(plantGrower);
-		zone.getPlantGrowers().add(plantGrower);
-
-		plantGrower = new PlantGrower();
-		zone.assignRPObjectID(plantGrower);
-		plantGrower.setx(96);
-		plantGrower.sety(57);
-		zone.add(plantGrower);
-		zone.getPlantGrowers().add(plantGrower);
-
-		plantGrower = new PlantGrower();
-		zone.assignRPObjectID(plantGrower);
-		plantGrower.setx(97);
-		plantGrower.sety(58);
-		zone.add(plantGrower);
-		zone.getPlantGrowers().add(plantGrower);
-	}
-
-	public IntroducePlayers(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
+	public IntroducePlayers(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
 		this.npcs = NPCList.get();
 		this.world = w;
-
-		initialize();
 
 		step_1();
 		step_2();
