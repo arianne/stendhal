@@ -113,7 +113,7 @@ public class PlantGrower extends Entity {
 
 	@Override
 	public boolean isCollisionable() {
-		return true;
+		return false;
 	}
 
 }
