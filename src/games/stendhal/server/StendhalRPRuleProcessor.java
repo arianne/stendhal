@@ -15,7 +15,6 @@ package games.stendhal.server;
 import games.stendhal.common.Pair;
 import games.stendhal.server.actions.*;
 import games.stendhal.server.entity.PlantGrower;
-import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
@@ -63,8 +62,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private List<RespawnPoint> respawnPoints;
 
-	private List<SheepFood> sheepFoodItems;
-
 	private List<PlantGrower> plantGrowers;
 
 	private List<Corpse> corpses;
@@ -108,7 +105,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		playersObjectRmText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<RespawnPoint>();
-		sheepFoodItems = new LinkedList<SheepFood>();
 		plantGrowers = new LinkedList<PlantGrower>();
 		npcsToAdd = new LinkedList<NPC>();
 		npcsToRemove = new LinkedList<NPC>();
@@ -156,7 +152,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				StendhalRPZone szone = (StendhalRPZone) zone;
 				npcs.addAll(szone.getNPCList());
 				respawnPoints.addAll(szone.getRespawnPointList());
-				sheepFoodItems.addAll(szone.getSheepFoodItemList());
 				plantGrowers.addAll(szone.getPlantGrowers());
 			}
 			// /* Run python script */
@@ -260,10 +255,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return playersObject;
 	}
 
-	public List<SheepFood> getSheepFoodItems() {
-		return sheepFoodItems;
-	}
-
 	public List<PlantGrower> getPlantGrowers() {
 		return plantGrowers;
 	}
@@ -315,7 +306,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		int objects = 0;
 		for (IRPZone zone : world)
 			objects += zone.size();
-		logger.debug("lists: CO:" + corpses.size() + ",F:" + sheepFoodItems.size()
+		logger.debug("lists: CO:" + corpses.size() + ",G:" + plantGrowers.size()
 				+ ",NPC:" + npcs.size() + ",P:" + playersObject.size() + ",CR:"
 				+ creatures + ",OB:" + objects);
 		logger.debug("lists: CO:" + corpsesToRemove.size() + ",NPC:"
@@ -412,8 +403,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		Log4J.startMethod(logger, "endTurn");
 		long start = System.nanoTime();
 		try {
-			for (SheepFood food : sheepFoodItems)
-				food.regrow();
 			for (PlantGrower plantGrower : plantGrowers)
 				plantGrower.regrow();
 			for (RespawnPoint point : respawnPoints)

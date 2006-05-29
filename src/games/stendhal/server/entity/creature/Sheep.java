@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
@@ -144,8 +145,9 @@ public class Sheep extends DomesticAnimal {
 		double distance = range * range; // We save this way several sqrt operations
 		SheepFood chosen = null;
 
-		for (SheepFood food : rp.getSheepFoodItems()) {
-			if (food.get("zoneid").equals(get("zoneid"))) {
+		for (PlantGrower grower : rp.getPlantGrowers()) {
+			if (grower instanceof SheepFood && grower.get("zoneid").equals(get("zoneid"))) {
+				SheepFood food = (SheepFood) grower;
 				int fx = food.getx();
 				int fy = food.gety();
 

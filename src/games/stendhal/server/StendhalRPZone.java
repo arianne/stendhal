@@ -67,8 +67,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private List<RespawnPoint> respawnPoints;
 
-	private List<SheepFood> sheepFoodItems;
-
 	private List<PlantGrower> plantGrowers;
 
 	/**
@@ -110,7 +108,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<RespawnPoint>();
-		sheepFoodItems = new LinkedList<SheepFood>();
 		plantGrowers = new LinkedList<PlantGrower>();
 
 		collisionMap = new CollisionDetection();
@@ -151,10 +148,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public void addRespawnPoint(RespawnPoint point) {
 		respawnPoints.add(point);
-	}
-
-	public List<SheepFood> getSheepFoodItemList() {
-		return sheepFoodItems;
 	}
 
 	public List<PlantGrower> getPlantGrowers() {
@@ -527,14 +520,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 				break;
 			case 92: /* SheepFood */
 			{
-				SheepFood food = new SheepFood();
-				assignRPObjectID(food);
-				food.setAmount(5);
-				food.setx(x);
-				food.sety(y);
-				add(food);
+				SheepFood sheepFood = new SheepFood();
+				assignRPObjectID(sheepFood);
+				sheepFood.setAmount(5);
+				sheepFood.setx(x);
+				sheepFood.sety(y);
+				add(sheepFood);
 
-				sheepFoodItems.add(food);
+				plantGrowers.add(sheepFood);
 				break;
 			}
 			default: {
