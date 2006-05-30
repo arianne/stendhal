@@ -15,14 +15,27 @@ package games.stendhal.client.gui;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Container;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
-import java.io.*;
-import java.net.*;
-
-import javax.swing.*;
 
 /**
  * Summary description for LoginGUI
