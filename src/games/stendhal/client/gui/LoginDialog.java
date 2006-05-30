@@ -56,12 +56,12 @@ public class LoginDialog extends JDialog {
 	// End of variables declaration
 	private StendhalClient client;
 
-	private Frame frame;
+	private Frame owner;
 
-	public LoginDialog(Frame w, StendhalClient client) {
-		super(w);
+	public LoginDialog(Frame owner, StendhalClient client) {
+		super(owner, true);
 		this.client = client;
-		frame = w;
+		this.owner = owner;
 		initializeComponent();
 
 		this.setVisible(true);
@@ -193,7 +193,7 @@ public class LoginDialog extends JDialog {
 		this.setTitle("Login to Server");
 		this.setResizable(false);
 		this.setSize(new Dimension(410, 205));
-		this.setLocationRelativeTo(frame);
+		this.setLocationRelativeTo(owner);
 	}
 
 	// TODO: Never used? remove me
@@ -211,7 +211,7 @@ public class LoginDialog extends JDialog {
 		final String server = (String) serverField.getSelectedItem();
 		int port = 32160;
 		final int finalPort;// port couldnt be accessed from inner class
-		final ProgressBar progressBar = new ProgressBar(frame);
+		final ProgressBar progressBar = new ProgressBar(owner);
 
 		try {
 			port = Integer.parseInt(serverPortField.getText());
@@ -222,7 +222,7 @@ public class LoginDialog extends JDialog {
 				saveLoginInfo(server, username, password, serverPortField
 						.getText());
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(frame,
+			JOptionPane.showMessageDialog(owner,
 					"You typed in a invalid port, try again", "Invalid port",
 					JOptionPane.WARNING_MESSAGE);
 			return;
@@ -246,7 +246,7 @@ public class LoginDialog extends JDialog {
 											// cancel the progressbar
 					setVisible(true);
 					JOptionPane
-							.showMessageDialog(frame,
+							.showMessageDialog(owner,
 									"Stendhal can't find a Internet connection for getting online");
 
 					ex.printStackTrace();
@@ -262,7 +262,7 @@ public class LoginDialog extends JDialog {
 						}
 						progressBar.cancel();
 						setVisible(true);
-						JOptionPane.showMessageDialog(frame, result,
+						JOptionPane.showMessageDialog(owner, result,
 								"Login status", JOptionPane.ERROR_MESSAGE);
 					} else {
 						progressBar.step();
@@ -273,19 +273,19 @@ public class LoginDialog extends JDialog {
 						// }catch (InterruptedException ie) {}
 
 						setVisible(false);
-						frame.setVisible(false);
+						owner.setVisible(false);
 						stendhal.doLogin = true;
 					}
 				} catch (ariannexpTimeoutException ex) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane.showMessageDialog(frame,
+					JOptionPane.showMessageDialog(owner,
 							"Can't connect to server. Server down?",
 							"Login status", JOptionPane.ERROR_MESSAGE);
 				} catch (Exception ex) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane.showMessageDialog(frame,
+					JOptionPane.showMessageDialog(owner,
 							"Connection error. Online?", "Login status",
 							JOptionPane.ERROR_MESSAGE);
 				}

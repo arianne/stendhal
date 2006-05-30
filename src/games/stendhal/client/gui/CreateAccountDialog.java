@@ -48,12 +48,12 @@ public class CreateAccountDialog extends JDialog {
     // End of variables declaration
     private StendhalClient client;
     
-    private Frame frame;
+    private Frame owner;
     
-    public CreateAccountDialog(Frame w, StendhalClient client) {
-        super(w);
+    public CreateAccountDialog(Frame owner, StendhalClient client) {
+        super(owner, true);
         this.client = client;
-        frame = w;
+        this.owner = owner;
         initializeComponent();
         
         this.setVisible(true);
@@ -186,7 +186,7 @@ public class CreateAccountDialog extends JDialog {
         this.setTitle("Create account");
         this.setResizable(false);
         this.setSize(new Dimension(410, 275));
-        this.setLocationRelativeTo(frame);
+        this.setLocationRelativeTo(owner);
     }
 
 // TODO: Never used? remove me
@@ -204,7 +204,7 @@ public class CreateAccountDialog extends JDialog {
         
         if(!password.equals(passwordretype))
           {
-          JOptionPane.showMessageDialog(frame, "Password mismatch. Please retype", "Passwords mismatch", JOptionPane.WARNING_MESSAGE);
+          JOptionPane.showMessageDialog(owner, "Password mismatch. Please retype", "Passwords mismatch", JOptionPane.WARNING_MESSAGE);
           return;
           }
         
@@ -213,12 +213,12 @@ public class CreateAccountDialog extends JDialog {
         int port = 32160;
         
         final int finalPort;//port couldnt be accessed from inner class
-        final ProgressBar progressBar = new ProgressBar(frame);
+        final ProgressBar progressBar = new ProgressBar(owner);
         
         try {
             port = Integer.parseInt(serverPortField.getText());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame, "You typed in a invalid port, try again", "Invalid port", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(owner, "You typed in a invalid port, try again", "Invalid port", JOptionPane.WARNING_MESSAGE);
             return;
         }
         finalPort = port;
@@ -236,7 +236,7 @@ public class CreateAccountDialog extends JDialog {
                 } catch (Exception ex) {
                     progressBar.cancel();//if something goes horribly just cancel the progressbar
                     setVisible(true);
-                    JOptionPane.showMessageDialog(frame, "Stendhal can't find a Internet connection for getting online");
+                    JOptionPane.showMessageDialog(owner, "Stendhal can't find a Internet connection for getting online");
                     
                     ex.printStackTrace();
                     
@@ -251,7 +251,7 @@ public class CreateAccountDialog extends JDialog {
                         }
                         progressBar.cancel();
                         setVisible(true);
-                        JOptionPane.showMessageDialog(frame, result, "Creata account status", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(owner, result, "Creata account status", JOptionPane.ERROR_MESSAGE);
 
                         return;
                     } else {
@@ -267,7 +267,7 @@ public class CreateAccountDialog extends JDialog {
                 } catch (ariannexpTimeoutException ex) {
                     progressBar.cancel();
                     setVisible(true);
-                    JOptionPane.showMessageDialog(frame, "Can't connect to server. Server down?", "Create account status", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(owner, "Can't connect to server. Server down?", "Create account status", JOptionPane.ERROR_MESSAGE);
                 }
 
                 try {
@@ -278,7 +278,7 @@ public class CreateAccountDialog extends JDialog {
                         }
                         progressBar.cancel();
                         setVisible(true);
-                        JOptionPane.showMessageDialog(frame, result, "Login status", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(owner, result, "Login status", JOptionPane.ERROR_MESSAGE);
                     } else {
                         progressBar.step();
                         progressBar.finish();
@@ -287,13 +287,13 @@ public class CreateAccountDialog extends JDialog {
 //                        }catch (InterruptedException ie) {}
                         
                         setVisible(false);
-                        frame.setVisible(false);
+                        owner.setVisible(false);
                         stendhal.doLogin = true;
                     }
                 } catch (ariannexpTimeoutException ex) {
                     progressBar.cancel();
                     setVisible(true);
-                    JOptionPane.showMessageDialog(frame, "Can't connect to server. Server down?", "Login status", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(owner, "Can't connect to server. Server down?", "Login status", JOptionPane.ERROR_MESSAGE);
                 }
                 
             }
