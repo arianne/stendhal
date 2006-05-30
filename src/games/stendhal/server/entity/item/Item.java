@@ -195,7 +195,7 @@ public class Item extends PassiveEntity {
 		String atk = "0";
 		String def = "0";
 		String amount = "0";
-		String text = "You see a " + getName().replace("_", " ") + ". ";
+		String text = "You see a " + getName().replace("_", " ") + ".";
 		String stats = "";
 		String type = get("class");
 		if (hasDescription()) {
@@ -220,7 +220,7 @@ public class Item extends PassiveEntity {
 			stats += " HP: " + amount;
 		}
 		if (stats.length() > 0) {
-			stats = " Stats are (" + stats + ").";
+			stats = " Stats are (" + stats.trim() + ").";
 		}
 		return (text + stats);
 	}
