@@ -1286,6 +1286,21 @@ in the file.
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
+			<amount value="20"/>
+			<regen value="2"/>
+			<frequency value="15"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="porcini">
+		<type class="food" subclass="porcini"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
 			<amount value="30"/>
 			<regen value="3"/>
 			<frequency value="10"/>
