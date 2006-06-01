@@ -519,20 +519,23 @@ public class StendhalRPZone extends MarauroaRPZone {
 			case 91: /* sign */
 				break;
 			case 92: /* SheepFood */
-			{
-				SheepFood sheepFood = new SheepFood();
-				assignRPObjectID(sheepFood);
-				sheepFood.setAmount(5);
-				sheepFood.setx(x);
-				sheepFood.sety(y);
-				add(sheepFood);
-
-				plantGrowers.add(sheepFood);
-				break;
-			}
-			case 93: /* Arandula */
-			{
-				PlantGrower plantGrower = new PlantGrower("arandula", 100);
+			case 101: /* arandula */
+			case 102: /* button mushroom */
+			case 103: /* porcini */
+			case 104: /* toadstool */
+				PlantGrower plantGrower = null;
+				if (type == 92) {
+					plantGrower = new SheepFood();
+					((SheepFood) plantGrower).setAmount(5);
+				} else if (type == 101) {
+					plantGrower = new PlantGrower("arandula", 100);
+				} else if (type == 102) {
+					plantGrower = new PlantGrower("button_mushroom", 1000);
+				} else if (type == 103) {
+					plantGrower = new PlantGrower("porcini", 2000);
+				} else if (type == 103) {
+					plantGrower = new PlantGrower("toadstool", 2000);
+				}
 				assignRPObjectID(plantGrower);
 				plantGrower.setx(x);
 				plantGrower.sety(y);
@@ -540,7 +543,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 				plantGrowers.add(plantGrower);
 				break;
-			}
 			default: {
 				if (type >= 0) {
 					// get the default EntityManager
