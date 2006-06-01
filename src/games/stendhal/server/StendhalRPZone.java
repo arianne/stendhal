@@ -533,7 +533,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					plantGrower = new PlantGrower("button_mushroom", 1000);
 				} else if (type == 103) {
 					plantGrower = new PlantGrower("porcini", 2000);
-				} else if (type == 103) {
+				} else if (type == 104) {
 					plantGrower = new PlantGrower("toadstool", 2000);
 				}
 				assignRPObjectID(plantGrower);
