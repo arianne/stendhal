@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.*;
-import games.stendhal.server.maps.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.Behaviours;
@@ -101,7 +100,7 @@ public class ArmorForDagobert implements IQuest {
 								&& player.getQuest("armor_dagobert").equals("start");
 					}
 				}, 
-				ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -109,7 +108,6 @@ public class ArmorForDagobert implements IQuest {
 							engine.say("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?");
 						} else {
 							engine.say("Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?");
-							// engine.setActualState(1);
 						}
 					}
 				});
