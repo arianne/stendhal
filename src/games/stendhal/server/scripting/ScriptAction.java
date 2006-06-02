@@ -1,8 +1,5 @@
 package games.stendhal.server.scripting;
 
-public abstract class ScriptAction
-  {    
-  abstract public void fire();
-  }
-    
-  
+public abstract class ScriptAction {
+	abstract public void fire();
+}
