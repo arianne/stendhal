@@ -19,7 +19,7 @@ public abstract class LayerRenderer {
 
 	protected int width;
 
-  protected int height;
+	protected int height;
 
 	public LayerRenderer() {
 		width = height = 0;
@@ -39,6 +39,6 @@ public abstract class LayerRenderer {
 	 * Render the data to screen.
 	 */
 
-  public abstract void draw(GameScreen screen);
-  
+	public abstract void draw(GameScreen screen);
+
 }

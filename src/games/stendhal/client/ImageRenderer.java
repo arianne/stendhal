@@ -13,40 +13,36 @@
 package games.stendhal.client;
 
 import java.net.URL;
-import java.awt.image.BufferedImage; 
-import java.io.IOException; 
-import javax.imageio.ImageIO; 
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 /**
  * This class renders a layer based on a complete image
  */
 public class ImageRenderer extends LayerRenderer {
 
-  Sprite mySprite = null;
+	Sprite mySprite = null;
 
 	public ImageRenderer(URL url) {
-    super();
-    try {
-      BufferedImage myImage = ImageIO.read(url);
-      width = myImage.getWidth();
-      height = myImage.getHeight();
-      mySprite = new Sprite(myImage);
-    }
-    catch (Exception e) {
-      System.err.println(e);
-    }
+		super();
+		try {
+			BufferedImage myImage = ImageIO.read(url);
+			width = myImage.getWidth();
+			height = myImage.getHeight();
+			mySprite = new Sprite(myImage);
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 	}
 
 	/**
 	 * Render the data to screen.
 	 */
 
-  public void draw(GameScreen screen)
-    {
-    if(mySprite != null)
-      {
-      screen.draw(mySprite,0,0);
-      }
-    }
-  
+	public void draw(GameScreen screen) {
+		if (mySprite != null) {
+			screen.draw(mySprite, 0, 0);
+		}
+	}
+
 }
