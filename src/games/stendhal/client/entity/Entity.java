@@ -277,8 +277,8 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 					.drawRect(
 							(int) p.getX(),
 							(int) p.getY(),
-							(int) (rect.getWidth() * (float) GameScreen.SIZE_UNIT_PIXELS),
-							(int) (rect.getHeight() * (float) GameScreen.SIZE_UNIT_PIXELS));
+							(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
+							(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 		}
 	}
 

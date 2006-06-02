@@ -34,8 +34,6 @@ public class Player extends RPEntity {
 
 	private int outfit;
 
-	private int age;
-
 	private double hearingRange;
 
 	public Player(GameObjects gameObjects, RPObject base)
@@ -83,10 +81,6 @@ public class Player extends RPEntity {
 
 		if (diff.has("outfit")) {
 			buildAnimations(diff);
-		}
-
-		if (diff.has("age")) {
-			age = diff.getInt("age");
 		}
 
 		// The first time we ignore it.
