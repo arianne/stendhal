@@ -38,8 +38,6 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  */
 public class Buddies extends WtPanel {
-	/** cached player entity */
-	private RPSlot playerBuddies;
 
 	private Sprite online;
 
@@ -74,7 +72,8 @@ public class Buddies extends WtPanel {
 
 		if (i < buddies.size() && i >= 0) {
 			WtList list = new WtList(buddies.get(i), actions, -100, 0, 100, 100) {
-				public void onClick(String name, boolean pressed) {
+				@Override
+				public void onClick(String name, Point point) {
 					StendhalClient client = StendhalClient.get();
 
 					if (name.equals("Talk")) {
