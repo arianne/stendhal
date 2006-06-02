@@ -127,7 +127,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	private boolean attacking;
 
-	private RPObject.ID targetEntity;
+	//private RPObject.ID targetEntity;
 
 	private Resolution resolution;
 
@@ -393,15 +393,15 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 					.drawRect(
 							(int) p.getX(),
 							(int) p.getY(),
-							(int) (rect.getWidth() * (float) GameScreen.SIZE_UNIT_PIXELS),
-							(int) (rect.getHeight() * (float) GameScreen.SIZE_UNIT_PIXELS));
+							(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
+							(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 			g2d.setColor(Color.black);
 			g2d
 					.drawRect(
 							(int) p.getX() - 1,
 							(int) p.getY() - 1,
-							(int) (rect.getWidth() * (float) GameScreen.SIZE_UNIT_PIXELS) + 2,
-							(int) (rect.getHeight() * (float) GameScreen.SIZE_UNIT_PIXELS) + 2);
+							(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS) + 2,
+							(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) + 2);
 		}
 
 		if (isAttacking() && showBladeStrike) {
@@ -495,7 +495,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			for (Sprite damageImage : damageSprites) {
 				double tx = x
 						+ 0.6
-						- (damageImage.getWidth() / ((float) GameScreen.SIZE_UNIT_PIXELS * 2.0f));
+						- (damageImage.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
 				double ty = y
 						- ((current - damageSpritesTimes.get(i)) / (6.0 * 300.0));
 				screen.draw(damageImage, tx, ty);
