@@ -12,6 +12,10 @@ import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 
 public class CreatureXMLLoader extends DefaultHandler {
+
+	/** The Singleton instance. */
+	private static CreatureXMLLoader instance;
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J
 			.getLogger(CreatureXMLLoader.class);
@@ -56,6 +60,16 @@ public class CreatureXMLLoader extends DefaultHandler {
 
 	private List<DefaultCreature> list;
 
+	private boolean drops;
+
+	private boolean equips;
+
+	private boolean ai;
+
+	private boolean says;
+
+	private boolean attributes;
+
 	public static void main(String argv[]) {
 		if (argv.length != 1) {
 			System.err.println("Usage: cmd filename");
@@ -73,13 +87,10 @@ public class CreatureXMLLoader extends DefaultHandler {
 	private CreatureXMLLoader() {
 	}
 
-	private static CreatureXMLLoader instance;
-
 	public static CreatureXMLLoader get() {
 		if (instance == null) {
 			instance = new CreatureXMLLoader();
 		}
-
 		return instance;
 	}
 
@@ -97,7 +108,6 @@ public class CreatureXMLLoader extends DefaultHandler {
 				throw new FileNotFoundException("cannot find resource '" + ref
 						+ "' in classpath");
 			}
-
 			saxParser.parse(is, this);
 		} catch (ParserConfigurationException t) {
 			logger.error(t);
@@ -105,28 +115,20 @@ public class CreatureXMLLoader extends DefaultHandler {
 			logger.error(e);
 			throw new SAXException(e);
 		}
-
 		return list;
 	}
 
-	public void startDocument() throws SAXException {
+	@Override
+	public void startDocument() {
 	}
 
-	public void endDocument() throws SAXException {
+	@Override
+	public void endDocument() {
 	}
 
-	private boolean drops;
-
-	private boolean equips;
-
-	private boolean ai;
-
-	private boolean says;
-
-	private boolean attributes;
-
+	@Override
 	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) throws SAXException {
+			Attributes attrs) {
 		text = "";
 		if (qName.equals("creature")) {
 			name = attrs.getValue("name");
@@ -165,7 +167,6 @@ public class CreatureXMLLoader extends DefaultHandler {
 					quantity = Integer.parseInt(attrs.getValue(i));
 				}
 			}
-
 			if (item != null && slot != null) {
 				equipsItems.add(new Creature.EquipItem(slot, item, quantity));
 			}
@@ -229,8 +230,8 @@ public class CreatureXMLLoader extends DefaultHandler {
 		}
 	}
 
-	public void endElement(String namespaceURI, String sName, String qName)
-			throws SAXException {
+	@Override
+	public void endElement(String namespaceURI, String sName, String qName) {
 		if (qName.equals("creature")) {
 			DefaultCreature creature = new DefaultCreature(clazz, subclass,
 					name, tileid);
@@ -262,7 +263,8 @@ public class CreatureXMLLoader extends DefaultHandler {
 		}
 	}
 
-	public void characters(char buf[], int offset, int len) throws SAXException {
+	@Override
+	public void characters(char buf[], int offset, int len) {
 		text = text + (new String(buf, offset, len)).trim() + " ";
 	}
 }

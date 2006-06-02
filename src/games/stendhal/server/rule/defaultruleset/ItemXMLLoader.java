@@ -37,6 +37,8 @@ public class ItemXMLLoader extends DefaultHandler {
 
 	private List<DefaultItem> list;
 
+	private boolean attributesTag;
+
 	public static void main(String argv[]) {
 		if (argv.length != 1) {
 			System.err.println("Usage: cmd filename");
@@ -93,16 +95,17 @@ public class ItemXMLLoader extends DefaultHandler {
 		return list;
 	}
 
-	public void startDocument() throws SAXException {
+	@Override
+	public void startDocument() {
 	}
 
-	public void endDocument() throws SAXException {
+	@Override
+	public void endDocument() {
 	}
 
-	private boolean attributesTag;
-
+	@Override
 	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) throws SAXException {
+			Attributes attrs) {
 		text = "";
 		if (qName.equals("item")) {
 			name = attrs.getValue("name");
@@ -129,8 +132,8 @@ public class ItemXMLLoader extends DefaultHandler {
 		}
 	}
 
-	public void endElement(String namespaceURI, String sName, String qName)
-			throws SAXException {
+	@Override
+	public void endElement(String namespaceURI, String sName, String qName) {
 		if (qName.equals("item")) {
 			DefaultItem item = new DefaultItem(clazz, subclass, name, -1);
 			item.setWeight(weight);
@@ -152,7 +155,8 @@ public class ItemXMLLoader extends DefaultHandler {
 		}
 	}
 
-	public void characters(char buf[], int offset, int len) throws SAXException {
+	@Override
+	public void characters(char buf[], int offset, int len) {
 		text = text + (new String(buf, offset, len)).trim() + " ";
 	}
 }
