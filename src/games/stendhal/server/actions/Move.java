@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-
 import org.apache.log4j.Logger;
 
 import marauroa.common.game.*;
@@ -26,71 +25,62 @@ import java.util.List;
 
 import marauroa.common.Log4J;
 
-public class Move extends ActionListener 
-  {
-  private static final Logger logger = Log4J.getLogger(Move.class);
+public class Move extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(Move.class);
 
-  public static void register()
-    {
-    Move move=new Move();
-    StendhalRPRuleProcessor.register("move",move);
-    StendhalRPRuleProcessor.register("moveto",move);
-    }
+	public static void register() {
+		Move move = new Move();
+		StendhalRPRuleProcessor.register("move", move);
+		StendhalRPRuleProcessor.register("moveto", move);
+	}
 
-  public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
-    {
-    Log4J.startMethod(logger,"move");
+	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
+			Player player, RPAction action) {
+		Log4J.startMethod(logger, "move");
 
-    String type=action.get("type");
-    
-    if(type.equals("move"))
-      {
-      move(world,rules,player,action);
-      }
-    else if(type.equals("moveto"))
-      {
-      moveto(world,rules,player,action);
-      }
-    }
-  
-  private void move(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
-    {
-    Log4J.startMethod(logger,"move");
+		String type = action.get("type");
 
-    if(player.hasPath())
-      {
-      player.clearPath();      
-      }
+		if (type.equals("move")) {
+			move(world, rules, player, action);
+		} else if (type.equals("moveto")) {
+			moveto(world, rules, player, action);
+		}
+	}
 
-    if(action.has("dir"))
-      {
-      player.setDirection(Direction.build(action.getInt("dir")));
-      player.setSpeed(1);
-      }
+	private void move(RPWorld world, StendhalRPRuleProcessor rules,
+			Player player, RPAction action) {
+		Log4J.startMethod(logger, "move");
 
-    world.modify(player);
+		if (player.hasPath()) {
+			player.clearPath();
+		}
 
-    Log4J.finishMethod(logger,"move");
-    }
-    
-  private void moveto(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
-    {
-    Log4J.startMethod(logger,"moveto");
-    
-    if(player.hasPath())
-      {
-      player.clearPath();      
-      }
+		if (action.has("dir")) {
+			player.setDirection(Direction.build(action.getInt("dir")));
+			player.setSpeed(1);
+		}
 
-    if(action.has("x") && action.has("y"))
-      {
-      int x=action.getInt("x");
-      int y=action.getInt("y");
-      
-      List<Path.Node> path=Path.searchPath(player,x,y-2);
-      player.setPath(path,false);
-      }
+		world.modify(player);
 
-    Log4J.finishMethod(logger,"moveto");
-    }
-  }
+		Log4J.finishMethod(logger, "move");
+	}
+
+	private void moveto(RPWorld world, StendhalRPRuleProcessor rules,
+			Player player, RPAction action) {
+		Log4J.startMethod(logger, "moveto");
+
+		if (player.hasPath()) {
+			player.clearPath();
+		}
+
+		if (action.has("x") && action.has("y")) {
+			int x = action.getInt("x");
+			int y = action.getInt("y");
+
+			List<Path.Node> path = Path.searchPath(player, x, y - 2);
+			player.setPath(path, false);
+		}
+
+		Log4J.finishMethod(logger, "moveto");
+	}
+}
