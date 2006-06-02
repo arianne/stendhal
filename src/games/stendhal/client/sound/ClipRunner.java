@@ -30,168 +30,159 @@ import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 /**
- * Cliprunner encapsulates a sound clip. This clip consists of one or
- * more alternative samples.
+ * Cliprunner encapsulates a sound clip. This clip consists of one or more
+ * alternative samples.
  * 
  * @author Jane Hunt
  */
-public class ClipRunner implements LineListener
-{
-  /** the logger */
-  private static final Logger logger = Log4J.getLogger(ClipRunner.class);
-  /** Base sound coordinator */
-  private SoundSystem         system;
-  /** name of this clip */
-  private String              text;
-  /** length */
-  private long                maxLength;
-  /** sound samples */
-  private List<AudioClip>    samples;
+public class ClipRunner implements LineListener {
+	/** the logger */
+	private static final Logger logger = Log4J.getLogger(ClipRunner.class);
 
+	/** Base sound coordinator */
+	private SoundSystem system;
 
-  /**
-   * Creates a ClipRunner instance by name. Volume setting is set to 100%.
-   * 
-   * @param name
-   *          name of sound (docu)
-   * @throws UnsupportedAudioFileException
-   */
-  public ClipRunner(SoundSystem system, String text)
-  {
-    this.text = text;
-    this.system = system;
-    samples = new ArrayList<AudioClip>();
-  }
+	/** name of this clip */
+	private String text;
 
-  /**
-   * Adds another clip as an alternate sound to be run under this clip.
-   * Alternative sounds are played by random and equal chance.
-   * 
-   * @param clip
-   *          alternate sound clip
-   * @throws UnsupportedAudioFileException
-   */
-  public void addSample(AudioClip clip)
-  {
-    samples.add(clip);
-    maxLength = Math.max(maxLength, clip.getLength());
-  }
+	/** length */
+	private long maxLength;
 
-  /**
-   * The maximum play length of this clip in milliseconds.
-   * 
-   * @return long milliseconds, 0 if undefined
-   */
-  public long maxPlayLength()
-  {
-    return maxLength;
-  }
+	/** sound samples */
+	private List<AudioClip> samples;
 
-  /**
-   * Starts this clip to play with the given volume settings.
-   * 
-   * @param volume
-   *          loudness in 0 .. 100
-   * @param correctionDB
-   *          decibel correction value from outward sources
-   * @return the AudioSystem <code>DataLine</code> object that is being
-   *         played, or <b>null</b> on error
-   */
-  public DataLine play(int volume, float correctionDB)
-  {
-    DataLine line = getAudioClip(volume, correctionDB);
+	/**
+	 * Creates a ClipRunner instance by name. Volume setting is set to 100%.
+	 * 
+	 * @param name
+	 *            name of sound (docu)
+	 * @throws UnsupportedAudioFileException
+	 */
+	public ClipRunner(SoundSystem system, String text) {
+		this.text = text;
+		this.system = system;
+		samples = new ArrayList<AudioClip>();
+	}
 
-    if (line != null)
-    {
-      line.start();
-    }
-    return line;
-  }
+	/**
+	 * Adds another clip as an alternate sound to be run under this clip.
+	 * Alternative sounds are played by random and equal chance.
+	 * 
+	 * @param clip
+	 *            alternate sound clip
+	 * @throws UnsupportedAudioFileException
+	 */
+	public void addSample(AudioClip clip) {
+		samples.add(clip);
+		maxLength = Math.max(maxLength, clip.getLength());
+	}
 
-  /**
-   * Starts this clip to loop endlessly with the given start volume setting.
-   * 
-   * @param volume
-   *          loudness in 0 .. 100
-   * @return the AudioSystem <code>Clip</code> object that is being played, or
-   *         <b>null</b> on error
-   */
-  public Clip loop(int volume, float correctionDB)
-  {
-    Clip line = getAudioClip(volume, correctionDB);
+	/**
+	 * The maximum play length of this clip in milliseconds.
+	 * 
+	 * @return long milliseconds, 0 if undefined
+	 */
+	public long maxPlayLength() {
+		return maxLength;
+	}
 
-    if (line != null)
-    {
-      line.loop(Clip.LOOP_CONTINUOUSLY);
-    }
-    return line;
-  }
+	/**
+	 * Starts this clip to play with the given volume settings.
+	 * 
+	 * @param volume
+	 *            loudness in 0 .. 100
+	 * @param correctionDB
+	 *            decibel correction value from outward sources
+	 * @return the AudioSystem <code>DataLine</code> object that is being
+	 *         played, or <b>null</b> on error
+	 */
+	public DataLine play(int volume, float correctionDB) {
+		DataLine line = getAudioClip(volume, correctionDB);
 
-  /**
-   * Returns a runnable AudioSystem sound clip with the given volume settings.
-   * 
-   * @param volume
-   *          loudness in 0 .. 100
-   * @param correctionDB
-   *          decibel correction value from outward sources
-   * @return an AudioSystem sound <code>Clip</code> that represents this
-   *         sound, or <b>null</b> on error
-   */
-  public Clip getAudioClip(int volume, float correctionDB)
-  {
-    if (samples.size() > 0)
-    {
-     try
-      {
-        int index = Rand.rand(samples.size());
-        AudioClip audioClip = samples.get(index);
+		if (line != null) {
+			line.start();
+		}
+		return line;
+	}
 
-        // Obtain and open the line.
-        Clip line = audioClip.openLine();
-        if (line == null)
-        {
-          // well...line not supported
-          return null;
-        }
+	/**
+	 * Starts this clip to loop endlessly with the given start volume setting.
+	 * 
+	 * @param volume
+	 *            loudness in 0 .. 100
+	 * @return the AudioSystem <code>Clip</code> object that is being played,
+	 *         or <b>null</b> on error
+	 */
+	public Clip loop(int volume, float correctionDB) {
+		Clip line = getAudioClip(volume, correctionDB);
 
-        // set the volume
-        FloatControl volCtrl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
-        if (volCtrl != null)
-        {
-          float dB = SoundSystem.dBValues[volume] + SoundSystem.dBValues[audioClip.getVolume()] + correctionDB;
-          volCtrl.setValue(dB + system.getVolumeDelta());
-        }
-        else
-        {
-          logger.info("no master gain for line "+line.getLineInfo());
-        }
+		if (line != null) {
+			line.loop(Clip.LOOP_CONTINUOUSLY);
+		}
+		return line;
+	}
 
-        // run clip
-        line.addLineListener(this);
-        return line;
-      } catch (Exception ex)
-      {
-        logger.error("** AudioSystem: clip line unavailable for: " + this.text, ex);
-        return null;
-      }
-    }
-    
-    // no samples...
-    return null;
-  }
+	/**
+	 * Returns a runnable AudioSystem sound clip with the given volume settings.
+	 * 
+	 * @param volume
+	 *            loudness in 0 .. 100
+	 * @param correctionDB
+	 *            decibel correction value from outward sources
+	 * @return an AudioSystem sound <code>Clip</code> that represents this
+	 *         sound, or <b>null</b> on error
+	 */
+	public Clip getAudioClip(int volume, float correctionDB) {
+		if (samples.size() > 0) {
+			try {
+				int index = Rand.rand(samples.size());
+				AudioClip audioClip = samples.get(index);
 
-  /*
-   * Overridden:
-   * 
-   * @see javax.sound.sampled.LineListener#update(javax.sound.sampled.LineEvent)
-   */
-  public void update(LineEvent event)
-  {
-    // this discards line resources when the sound has stopped
-    if (event.getType() == LineEvent.Type.STOP)
-    {
-      ((Line) event.getSource()).close();
-    }
-  }
+				// Obtain and open the line.
+				Clip line = audioClip.openLine();
+				if (line == null) {
+					// well...line not supported
+					return null;
+				}
+
+				// set the volume
+				FloatControl volCtrl = (FloatControl) line
+						.getControl(FloatControl.Type.MASTER_GAIN);
+				if (volCtrl != null) {
+					float dB = SoundSystem.dBValues[volume]
+							+ SoundSystem.dBValues[audioClip.getVolume()]
+							+ correctionDB;
+					volCtrl.setValue(dB + system.getVolumeDelta());
+				} else {
+					logger
+							.info("no master gain for line "
+									+ line.getLineInfo());
+				}
+
+				// run clip
+				line.addLineListener(this);
+				return line;
+			} catch (Exception ex) {
+				logger.error("** AudioSystem: clip line unavailable for: "
+						+ this.text, ex);
+				return null;
+			}
+		}
+
+		// no samples...
+		return null;
+	}
+
+	/*
+	 * Overridden:
+	 * 
+	 * @see javax.sound.sampled.LineListener#update(javax.sound.sampled.LineEvent)
+	 */
+	public void update(LineEvent event) {
+		// this discards line resources when the sound has stopped
+		if (event.getType() == LineEvent.Type.STOP) {
+			((Line) event.getSource()).close();
+		}
+	}
 
 }

@@ -30,50 +30,60 @@ import games.stendhal.server.pathfinder.Pathfinder.Node;
  * @author James Matthews
  */
 public interface Navigable {
-    /**
-     * Determines whether the given node is valid.
-     * @param node the node.
-     * @return the validity of the node.
-     */    
-    public boolean isValid(Pathfinder.Node node);
-    /**
-     * Return the cost to travel from node 1 (parent) to node 2 (child). Note
-     * that the nodes are always adjected. If traveling from one node to another
-     * costs the same all over the map you may return <code>1</code> here.
-     * Note also that two calls getCost(node1, node2) must return the same cost
-     * for all node1/node2.
-     *
-     * @param parent the parent node. This is the node we're traveling from.
-     *               (<b>not</b> the start node)
-     * @param child the child node. This is the (adjected) node we want to 
-     *              travel to.
-     * @return the cost required to travel.
-     */    
-    public double getCost(Pathfinder.Node parent, Pathfinder.Node child);
-    /**
-     * Return the estimated distance between the node 1 and node 2. This 
-     * distance should never be an underestimation. Note that the nodes are not
-     * nessarily adjected.
-     * 
-     * Original Note:
-     * Note that "distance" is not always in terms of Manhattan or Eucledian
-     * distances.
-     *
-     * @param n1 the first node.
-     * @param n2 the second node.
-     * @return the (estimated) distance between the two nodes.
-     */    
-    public double getHeuristic(Pathfinder.Node n1, Pathfinder.Node n2);
-    
-    /**
-     * Checks if the calculated node can be considerd a goal. This way a "goal
-     * area" can be archived.
-     * 
-     * @param nodeBest the current best node
-     * @return true when <i>nodeBest</i> can be considered a "goal"
-     */
-    public boolean reachedGoal(Node nodeBest);
-    public int createNodeID(Pathfinder.Node node);    
-    public void createChildren(Pathfinder path,Pathfinder.Node node);
-    
+	/**
+	 * Determines whether the given node is valid.
+	 * 
+	 * @param node
+	 *            the node.
+	 * @return the validity of the node.
+	 */
+	public boolean isValid(Pathfinder.Node node);
+
+	/**
+	 * Return the cost to travel from node 1 (parent) to node 2 (child). Note
+	 * that the nodes are always adjected. If traveling from one node to another
+	 * costs the same all over the map you may return <code>1</code> here.
+	 * Note also that two calls getCost(node1, node2) must return the same cost
+	 * for all node1/node2.
+	 * 
+	 * @param parent
+	 *            the parent node. This is the node we're traveling from. (<b>not</b>
+	 *            the start node)
+	 * @param child
+	 *            the child node. This is the (adjected) node we want to travel
+	 *            to.
+	 * @return the cost required to travel.
+	 */
+	public double getCost(Pathfinder.Node parent, Pathfinder.Node child);
+
+	/**
+	 * Return the estimated distance between the node 1 and node 2. This
+	 * distance should never be an underestimation. Note that the nodes are not
+	 * nessarily adjected.
+	 * 
+	 * Original Note: Note that "distance" is not always in terms of Manhattan
+	 * or Eucledian distances.
+	 * 
+	 * @param n1
+	 *            the first node.
+	 * @param n2
+	 *            the second node.
+	 * @return the (estimated) distance between the two nodes.
+	 */
+	public double getHeuristic(Pathfinder.Node n1, Pathfinder.Node n2);
+
+	/**
+	 * Checks if the calculated node can be considerd a goal. This way a "goal
+	 * area" can be archived.
+	 * 
+	 * @param nodeBest
+	 *            the current best node
+	 * @return true when <i>nodeBest</i> can be considered a "goal"
+	 */
+	public boolean reachedGoal(Node nodeBest);
+
+	public int createNodeID(Pathfinder.Node node);
+
+	public void createChildren(Pathfinder path, Pathfinder.Node node);
+
 }

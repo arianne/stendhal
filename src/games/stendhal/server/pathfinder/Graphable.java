@@ -10,8 +10,8 @@ package games.stendhal.server.pathfinder;
  * @author Ramon Talavera: maxdemian@terra.es
  * @version
  */
-public interface Graphable
-{
-  public void setIDInGraph(int idx);
-  public int getIDInGraph();
+public interface Graphable {
+	public void setIDInGraph(int idx);
+
+	public int getIDInGraph();
 }

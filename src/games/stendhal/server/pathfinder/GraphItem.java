@@ -11,91 +11,81 @@ import java.util.*;
  * @author Ramon Talavera: maxdemian@terra.es
  * @version
  */
-public class GraphItem implements Graphable
-{
-  /** Brother's list */
-  public List<GraphItem>      adjList       = new ArrayList<GraphItem>();
-  /** Unique identifier in Graph */
-  public int                  IDinGraph;                   
-  public int                  dijkstraindex = -1;
-  /** Extra info carried by the item */
-  private Object              info;                        
-  /** coordinates */
-  private int                 x, y;
-  /** distance from the origin to this item */
-  private int                 distance      = -1;
+public class GraphItem implements Graphable {
+	/** Brother's list */
+	public List<GraphItem> adjList = new ArrayList<GraphItem>();
 
-  /** dijkstra's parent */
-  private GraphItem parent; 
+	/** Unique identifier in Graph */
+	public int IDinGraph;
 
-  /** Creates new GraphItem */
-  public GraphItem()
-  {
-    setIDInGraph(-1);
-  }
+	public int dijkstraindex = -1;
 
-  public GraphItem getParent()
-  {
-    return parent;
-  }
+	/** Extra info carried by the item */
+	private Object info;
 
-  public void setParent(GraphItem p)
-  {
-    parent = p;
-  }
+	/** coordinates */
+	private int x, y;
 
-  public int getDistance()
-  {
-    return distance;
-  }
+	/** distance from the origin to this item */
+	private int distance = -1;
 
-  public void setDistance(int d)
-  {
-    distance = d;
-  }
+	/** dijkstra's parent */
+	private GraphItem parent;
 
-  public void setIDInGraph(int idx)
-  {
-    this.IDinGraph = idx;
-  }
+	/** Creates new GraphItem */
+	public GraphItem() {
+		setIDInGraph(-1);
+	}
 
-  public int getIDInGraph()
-  {
-    return this.IDinGraph;
-  }
+	public GraphItem getParent() {
+		return parent;
+	}
 
-  public List<GraphItem> getAdjList()
-  {
-    return this.adjList;
-  }
+	public void setParent(GraphItem p) {
+		parent = p;
+	}
 
-  public int getX()
-  {
-    return x;
-  }
+	public int getDistance() {
+		return distance;
+	}
 
-  public void setX(int x)
-  {
-    this.x = x;
-  }
+	public void setDistance(int d) {
+		distance = d;
+	}
 
-  public int getY()
-  {
-    return y;
-  }
+	public void setIDInGraph(int idx) {
+		this.IDinGraph = idx;
+	}
 
-  public void setY(int y)
-  {
-    this.y = y;
-  }
+	public int getIDInGraph() {
+		return this.IDinGraph;
+	}
 
-  public void setInfo(Object Obj)
-  {
-    info = Obj;
-  }
+	public List<GraphItem> getAdjList() {
+		return this.adjList;
+	}
 
-  public Object getInfo()
-  {
-    return info;
-  }
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public void setInfo(Object Obj) {
+		info = Obj;
+	}
+
+	public Object getInfo() {
+		return info;
+	}
 }
