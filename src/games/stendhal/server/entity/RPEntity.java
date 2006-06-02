@@ -448,7 +448,7 @@ public abstract class RPEntity extends Entity {
 			int xp_reward = (int) (this.getXP() * 0.05);
 
 			for (Map.Entry<RPEntity, Integer> entry : damageReceived.entrySet()) {
-				int damageDone = ((Integer) entry.getValue()).intValue();
+				int damageDone = (entry.getValue()).intValue();
 				RPEntity entity = entry.getKey();
 
 				String name = (entity.has("name") ? entity.get("name") : entity
@@ -758,8 +758,6 @@ public abstract class RPEntity extends Entity {
 	}
 
 	public Item dropItemClass(String[] slots, String clazz) {
-		ActionManager manager = world.getRuleManager().getActionManager();
-
 		for (String slotName : slots) {
 			RPSlot slot = getSlot(slotName);
 
@@ -811,7 +809,7 @@ public abstract class RPEntity extends Entity {
 				if (object instanceof Item) {
 					Item item = (Item) object;
 					if (item.isOfClass(clazz)) {
-						return (Item) item;
+						return item;
 					}
 				}
 			}

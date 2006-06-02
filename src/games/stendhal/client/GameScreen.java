@@ -181,22 +181,22 @@ public class GameScreen {
 
 	/** Translate to world coordinates the given screen coordinate */
 	public Point2D translate(Point2D point) {
-		double tx = point.getX() / (float) GameScreen.SIZE_UNIT_PIXELS + x;
-		double ty = point.getY() / (float) GameScreen.SIZE_UNIT_PIXELS + y;
+		double tx = point.getX() / GameScreen.SIZE_UNIT_PIXELS + x;
+		double ty = point.getY() / GameScreen.SIZE_UNIT_PIXELS + y;
 		return new Point.Double(tx, ty);
 	}
 
 	/** Translate to screen coordinates the given world coordinate */
 	public Point2D invtranslate(Point2D point) {
-		double tx = (point.getX() - x) * (float) GameScreen.SIZE_UNIT_PIXELS;
-		double ty = (point.getY() - y) * (float) GameScreen.SIZE_UNIT_PIXELS;
+		double tx = (point.getX() - x) * GameScreen.SIZE_UNIT_PIXELS;
+		double ty = (point.getY() - y) * GameScreen.SIZE_UNIT_PIXELS;
 		return new Point.Double(tx, ty);
 	}
 
 	/** Draw a sprite in screen given its world coordinates */
 	public void draw(Sprite sprite, double wx, double wy) {
-		int sx = (int) ((wx - x) * (float) GameScreen.SIZE_UNIT_PIXELS);
-		int sy = (int) ((wy - y) * (float) GameScreen.SIZE_UNIT_PIXELS);
+		int sx = (int) ((wx - x) * GameScreen.SIZE_UNIT_PIXELS);
+		int sy = (int) ((wy - y) * GameScreen.SIZE_UNIT_PIXELS);
 
 		float spritew = sprite.getWidth() + 2;
 		float spriteh = sprite.getHeight() + 2;
