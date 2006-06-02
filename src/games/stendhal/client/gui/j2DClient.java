@@ -13,22 +13,15 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.*;
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
-
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Point2D;
 import java.awt.image.BufferStrategy;
 import java.net.URL;
-
 import javax.swing.*;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
-
 import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
@@ -210,9 +203,8 @@ public class j2DClient extends JFrame {
 	} // constructor
 
 	public void gameLoop() {
-		long lastLoopTime = System.currentTimeMillis();
 
-		final int frameLength = (int) (1000.0 / (float) stendhal.FPS_LIMIT);
+		final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
 
 		int fps = 0;
 
@@ -231,8 +223,6 @@ public class j2DClient extends JFrame {
 		pipeline.addGameObjects(gameObjects);
 
 		SoundSystem.playSound("welcome", 100);
-
-		int counter = 0;
 
 		// keep looping until the game ends
 		long refreshTime = System.currentTimeMillis();
