@@ -1,8 +1,7 @@
 package games.stendhal.server.entity.npc;
 
-import java.util.Map;
 import java.util.HashMap;
-import games.stendhal.server.entity.npc.*;
+import java.util.Map;
 
 /**
  * This Singleton should contain all NPCs in the Stendhal world that are

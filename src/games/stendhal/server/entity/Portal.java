@@ -76,10 +76,12 @@ public class Portal extends Entity implements UseEvent {
 		return settedDestination;
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
 
+	@Override
 	public String toString() {
 		return "Portal at " + get("zoneid") + "[" + getx() + "," + gety() + "]";
 	}

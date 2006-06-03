@@ -76,6 +76,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 	}
 
 	private ZoneXMLLoader() {
+		// hide constructor; this is a Singleton 
 	}
 
 	private static ZoneXMLLoader instance;
@@ -115,17 +116,21 @@ public class ZoneXMLLoader extends DefaultHandler {
 		return actualZone;
 	}
 
+	@Override
 	public void startDocument() {
 		actualZone = new XMLZone();
 	}
 
+	@Override
 	public void endDocument() {
+		// do nothing
 	}
 
 	private StringBuffer st;
 
 	private String layerName;
 
+	@Override
 	public void startElement(String namespaceURI, String lName, String qName,
 			Attributes attrs){
 		if (qName.equals("map")) {
@@ -151,6 +156,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 		}
 	}
 
+	@Override
 	public void endElement(String namespaceURI, String sName, String qName) {
 		if (qName.equals("map")) {
 			// System.out.println
@@ -166,6 +172,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 		}
 	}
 
+	@Override
 	public void characters(char buf[], int offset, int len) {
 		if (st != null) {
 			st.append(buf, offset, len);

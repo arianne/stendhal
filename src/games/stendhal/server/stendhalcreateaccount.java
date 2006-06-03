@@ -45,6 +45,7 @@ public class stendhalcreateaccount extends marauroa.server.createaccount {
 		return (run(args) == 0);
 	}
 
+	@Override
 	public RPObject populatePlayerRPObject(IPlayerDatabase playerDatabase)
 			throws Exception {
 		RPObject object = new RPObject(RPObject.INVALID_ID);

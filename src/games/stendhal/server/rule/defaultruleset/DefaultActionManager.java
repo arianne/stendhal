@@ -33,6 +33,7 @@ public class DefaultActionManager implements ActionManager {
 
 	/** no public constuctor */
 	private DefaultActionManager() {
+		// hide constructor, this is a Singleton
 	}
 
 	/**

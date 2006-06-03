@@ -30,6 +30,7 @@ public class PlayersQuery extends ActionListener {
 		StendhalRPRuleProcessor.register("where", query);
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		if (action.get("type").equals("who")) {

@@ -28,6 +28,7 @@ public class Money extends StackableItem {
 		this.quantity = quantity;
 	}
 
+	@Override
 	public boolean isStackable(Stackable other) {
 		return (other.getClass() == Money.class);
 	}

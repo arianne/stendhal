@@ -112,6 +112,7 @@ public class Sheep extends DomesticAnimal {
 	 * Is called when the sheep dies. Removes the dead sheep from the owner.
      * @param who The entity who caused the death
 	 */
+	@Override
 	public void onDead(RPEntity who) {
 		if (owner != null) {
 			if (owner.hasSheep()) {
@@ -127,6 +128,7 @@ public class Sheep extends DomesticAnimal {
 		super.onDead(who);
 	}
 
+	@Override
 	public double getSpeed() {
 		return SPEED;
 	}
@@ -180,6 +182,7 @@ public class Sheep extends DomesticAnimal {
 	/**
 	 * Determines what the sheep shall do next.
 	 */
+	@Override
 	public void logic() {
 		Log4J.startMethod(logger, "logic");
 
@@ -257,6 +260,7 @@ public class Sheep extends DomesticAnimal {
 		Log4J.finishMethod(logger, "logic");
 	}
 
+	@Override
 	public String describe() {
 		String text = "You see a sheep that weighs " + weight + ".";
 		if (hasDescription())

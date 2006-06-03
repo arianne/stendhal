@@ -55,9 +55,12 @@ public class SevenCherubs implements IQuest {
 			setPath(nodes, true);
 		}
 
+		@Override
 		protected void createPath() {
+			// do nothing
 		}
 
+		@Override
 		protected void createDialog() {
 			add(ConversationStates.IDLE,
 				Behaviours.GREETING_MESSAGES,

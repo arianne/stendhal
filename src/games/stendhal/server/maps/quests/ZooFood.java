@@ -1,18 +1,19 @@
 package games.stendhal.server.maps.quests;
 
-import java.util.Iterator;
-
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
-import games.stendhal.server.*;
-import games.stendhal.server.maps.*;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.item.Money;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+
+import java.util.Iterator;
+
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * QUEST: Zoo Food

@@ -29,6 +29,7 @@ public class Face extends ActionListener {
 		StendhalRPRuleProcessor.register("face", new Face());
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "face");

@@ -79,6 +79,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * Returns a rectangle of size 1x1, located at the animal's current
 	 * position. Override this if the animal is larger than 1x1.
 	 */
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
@@ -91,6 +92,7 @@ public abstract class DomesticAnimal extends Creature {
 		return owner;
 	}
 
+	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
 		if (has("weight")) {
@@ -120,6 +122,7 @@ public abstract class DomesticAnimal extends Creature {
 //		super.onDead(who);
 //	}
 
+	@Override
 	public abstract double getSpeed();
 
 	public void setWeight(int weight) {
@@ -136,6 +139,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * amount of meat depends on the sheep's weight.
 	 * @param corpse The corpse on which to put the meat
 	 */
+	@Override
 	protected void dropItemsOn(Corpse corpse) {
 		Food food = (Food) world.getRuleManager().getEntityManager().getItem("meat");
 		food.setQuantity(getWeight() / 10 + 1);
@@ -145,5 +149,6 @@ public abstract class DomesticAnimal extends Creature {
 	/**
 	 * Determines what the animal shall do next.
 	 */
+	@Override
 	public abstract void logic();
 }

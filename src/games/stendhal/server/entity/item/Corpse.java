@@ -110,6 +110,7 @@ public class Corpse extends PassiveEntity {
 		addSlot(slot);
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
@@ -195,6 +196,7 @@ public class Corpse extends PassiveEntity {
 		return getSlot("content").isFull();
 	}
 
+	@Override
 	public int size() {
 		return getSlot("content").size();
 	}
@@ -204,6 +206,7 @@ public class Corpse extends PassiveEntity {
 		return content.iterator();
 	}
 
+	@Override
 	public String describe() {
 		String stageText[] = { "new", "fresh", "cold", "slightly rotten",
 				"rotten", "very rotten" };

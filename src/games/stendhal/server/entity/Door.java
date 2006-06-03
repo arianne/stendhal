@@ -42,10 +42,12 @@ public class Door extends Portal {
 		open = false;
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
 
+	@Override
 	public void update() {
 		super.update();
 		open = false;
@@ -67,6 +69,7 @@ public class Door extends Portal {
 		return open;
 	}
 
+	@Override
 	public void onUsed(RPEntity user) {
 		if (has("locked") && user.isEquipped(get("locked"))) {
 			if (!isOpen()) {
@@ -85,6 +88,7 @@ public class Door extends Portal {
 		}
 	}
 
+	@Override
 	public String describe() {
 		String text = "You see a door.";
 		if (hasDescription())

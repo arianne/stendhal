@@ -12,23 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.pathfinder;
 
-import games.stendhal.server.StendhalRPZone;
-
-import java.awt.geom.Rectangle2D;
-import java.awt.Rectangle;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+
 import marauroa.common.Log4J;
 import marauroa.server.game.RPWorld;
-import org.apache.log4j.Logger;
 
-import marauroa.common.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.creature.*;
+import org.apache.log4j.Logger;
 
 /**
  * A Thread for finding a path without blocking the main game thread
@@ -40,17 +30,12 @@ public class PathfinderThread extends Thread {
 	private static final Logger logger = Log4J
 			.getLogger(PathfinderThread.class);
 
-	/** The maximum time spent on a search for one particular path (in ms) */
-	private static final int MAX_PATHFINDING_TIME = 100;
-
 	/** Max size of the queue */
 	private static final int QUEUE_SIZE = 100;
 
 	/** A blocking queue to hold the path requests. */
 	private BlockingQueue<QueuedPath> pathQueue;
 
-	/** the world */
-	private RPWorld world;
 
 	/** flag indicating that the tread should finish */
 	private boolean finished;
@@ -60,7 +45,6 @@ public class PathfinderThread extends Thread {
 		super("Pathfinder");
 		this.setDaemon(true);
 
-		this.world = world;
 		this.finished = false;
 		pathQueue = new ArrayBlockingQueue<QueuedPath>(QUEUE_SIZE);
 
@@ -77,6 +61,7 @@ public class PathfinderThread extends Thread {
 	}
 
 	/** polls the queue and calculates pending path */
+	@Override
 	public void run() {
 		try {
 			while (!finished) {

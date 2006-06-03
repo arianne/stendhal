@@ -38,6 +38,7 @@ public class Pair<T1, T2> {
 		second = o2;
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Pair) {
 			Pair object = (Pair) o;
@@ -65,6 +66,7 @@ public class Pair<T1, T2> {
 		return false;
 	}
 
+	@Override
 	public int hashCode() {
 		int h1 = 0;
 		int h2 = 0;

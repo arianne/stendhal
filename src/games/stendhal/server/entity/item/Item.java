@@ -100,6 +100,7 @@ public class Item extends PassiveEntity {
 		super(other);
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
@@ -187,17 +188,18 @@ public class Item extends PassiveEntity {
 		return new Item(this);
 	}
 
+	@Override
 	public String toString() {
 		return "Item, " + super.toString();
 	}
 
+	@Override
 	public String describe() {
 		String atk = "0";
 		String def = "0";
 		String amount = "0";
 		String text = "You see a " + getName().replace("_", " ") + ".";
 		String stats = "";
-		String type = get("class");
 		if (hasDescription()) {
 			text = getDescription();
 		}

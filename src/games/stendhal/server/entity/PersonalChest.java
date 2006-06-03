@@ -45,6 +45,7 @@ public class PersonalChest extends Chest {
 		});
 	}
 
+	@Override
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 

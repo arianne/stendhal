@@ -18,6 +18,7 @@ public class RuleSetFactory {
 
 	/** Creates a new instance of RuleSetFactory */
 	private RuleSetFactory() {
+		// hide constructor, this is a Singleton
 	}
 
 	/** returns the ruleset with the given name */

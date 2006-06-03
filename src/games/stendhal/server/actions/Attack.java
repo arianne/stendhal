@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
@@ -25,66 +24,68 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
-public class Attack extends ActionListener 
-  {
-  private static final Logger logger = Log4J.getLogger(Attack.class);
+public class Attack extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(Attack.class);
 
-  public static void register()
-    {
-    StendhalRPRuleProcessor.register("attack",new Attack());
-    }
+	public static void register() {
+		StendhalRPRuleProcessor.register("attack", new Attack());
+	}
 
-  public void onAction(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action)
-    {
-    Log4J.startMethod(logger,"attack");
-    if(action.has("target"))
-      {
-      int targetObject=action.getInt("target");
+	@Override
+	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
+			Player player, RPAction action) {
+		Log4J.startMethod(logger, "attack");
+		if (action.has("target")) {
+			int targetObject = action.getInt("target");
 
-      StendhalRPZone zone=(StendhalRPZone)world.getRPZone(player.getID());
-      RPObject.ID targetid=new RPObject.ID(targetObject, zone.getID());
-      if(zone.has(targetid))
-        {
-        RPObject object=zone.get(targetid);
+			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+					.getID());
+			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
+			if (zone.has(targetid)) {
+				RPObject object = zone.get(targetid);
 
-        if(object instanceof RPEntity) // Disabled Player
-          {
-          RPEntity entity=(RPEntity)object;
-          
-          if(!player.equals(entity))
-            {
-            // Disable attacking NPCS.
-            // Just make sure no creature is instanceof SpeakerNPC... 
-            if(entity instanceof SpeakerNPC)
-              {
-              logger.info("REJECTED. "+player.getName()+" is attacking "+entity.getName());
-              return;
-              }
-              
-            // Enabled PVP
-            if(entity instanceof Player)
-              {
-              if(zone.isInProtectionArea(entity))
-                {
-                logger.info("REJECTED. "+entity.getName()+" is in a protection zone");
-                player.setPrivateText("You can't attack "+entity.getName()+" because he/she is in a protection area.");
-                rules.removePlayerText(player);
-                return;
-                }
+				if (object instanceof RPEntity) // Disabled Player
+				{
+					RPEntity entity = (RPEntity) object;
 
-              logger.info(player.getName()+" is attacking "+entity.getName());              
-              }
+					if (!player.equals(entity)) {
+						// Disable attacking NPCS.
+						// Just make sure no creature is instanceof
+						// SpeakerNPC...
+						if (entity instanceof SpeakerNPC) {
+							logger.info("REJECTED. " + player.getName()
+									+ " is attacking " + entity.getName());
+							return;
+						}
 
-            rules.addGameEvent(player.getName(),"attack",entity.getName());
-            
-            player.attack(entity);
-            player.faceto(entity);
-            world.modify(player);
-            }          
-          }
-        }
-      }
+						// Enabled PVP
+						if (entity instanceof Player) {
+							if (zone.isInProtectionArea(entity)) {
+								logger.info("REJECTED. " + entity.getName()
+										+ " is in a protection zone");
+								player
+										.setPrivateText("You can't attack "
+												+ entity.getName()
+												+ " because he/she is in a protection area.");
+								rules.removePlayerText(player);
+								return;
+							}
 
-    Log4J.finishMethod(logger,"attack");
-    }
-  }
+							logger.info(player.getName() + " is attacking "
+									+ entity.getName());
+						}
+
+						rules.addGameEvent(player.getName(), "attack", entity
+								.getName());
+
+						player.attack(entity);
+						player.faceto(entity);
+						world.modify(player);
+					}
+				}
+			}
+		}
+
+		Log4J.finishMethod(logger, "attack");
+	}
+}

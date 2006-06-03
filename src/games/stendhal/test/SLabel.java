@@ -72,6 +72,7 @@ public class SLabel extends JLabel {
 		setForeground(Color.WHITE);
 	}
 
+	@Override
 	protected void paintComponent(Graphics g) {
 		Rectangle r = g.getClipBounds();
 

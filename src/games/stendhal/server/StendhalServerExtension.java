@@ -24,8 +24,8 @@ public abstract class StendhalServerExtension extends ActionListener {
 
 	public StendhalServerExtension(StendhalRPRuleProcessor rules,
 			StendhalRPWorld world) {
-		this.rules = rules;
-		this.world = world;
+		StendhalServerExtension.rules = rules;
+		StendhalServerExtension.world = world;
 	}
 
 	public abstract void init();
@@ -38,6 +38,7 @@ public abstract class StendhalServerExtension extends ActionListener {
 		return (null);
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		return;

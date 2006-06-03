@@ -12,21 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.pathfinder;
 
+import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 
-import java.awt.geom.Rectangle2D;
-import java.awt.Rectangle;
-import java.awt.Point;
-import java.util.*;
-import marauroa.common.Log4J;
-import marauroa.server.game.RPWorld;
-import org.apache.log4j.Logger;
-
-import marauroa.common.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.creature.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class PathfinderTest {
 	public static void main(String[] args) throws Exception {
@@ -38,7 +29,6 @@ public class PathfinderTest {
 		StendhalRPWorld world = new StendhalRPWorld();
 		world.addArea("-1_semos_dungeon");
 
-		RPEntity player = new Player(new RPObject());
 		StendhalRPZone zone = (StendhalRPZone) world
 				.getRPZone("-1_semos_dungeon");
 

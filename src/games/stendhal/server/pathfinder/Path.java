@@ -14,7 +14,6 @@ package games.stendhal.server.pathfinder;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
@@ -51,6 +50,7 @@ public class Path {
 			this.y = y;
 		}
 
+		@Override
 		public String toString() {
 			return "(" + x + "," + y + ")";
 		}

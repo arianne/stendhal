@@ -83,6 +83,7 @@ public class ScriptingNPC extends SpeakerNPC {
 			this.quest = quest;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (!player.hasQuest(quest));
 		}
@@ -96,6 +97,7 @@ public class ScriptingNPC extends SpeakerNPC {
 			this.quest = quest;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (!player.isQuestCompleted(quest));
 		}
@@ -109,15 +111,20 @@ public class ScriptingNPC extends SpeakerNPC {
 			this.quest = quest;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (player.isQuestCompleted(quest));
 		}
 	}
 
+	@Override
 	protected void createPath() {
+		// do nothing
 	}
 
+	@Override
 	protected void createDialog() {
+		// do nothing
 	}
 
 }

@@ -1,20 +1,11 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.*;
-import games.stendhal.server.maps.*;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.npc.Behaviours;
-import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.pathfinder.Path;
-
-import java.util.*;
-
-import marauroa.common.game.IRPZone;
 
 /**
  * QUEST: Speak with Hayunn
@@ -38,8 +29,7 @@ public class MeetHayunn implements IQuest
 
   private void step_1()
     {
-    StendhalRPZone zone=(StendhalRPZone)world.getRPZone(new IRPZone.ID("0_semos_city"));
-
+ 
     SpeakerNPC npc=npcs.get("Hayunn Naratha");
 
     npc.add(1,"yes",null,50,"I right-clicked on creatures and chose ATTACK. But why killing creatures and risking my life if I didn't get paid for it you ask. Hmmm? Hmmm?",null);

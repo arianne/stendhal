@@ -51,10 +51,12 @@ public class Chest extends Entity implements UseEvent {
 		addSlot(slot);
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
 
+	@Override
 	public void update() {
 		super.update();
 		open = false;
@@ -84,6 +86,7 @@ public class Chest extends Entity implements UseEvent {
 		content.add(entity);
 	}
 
+	@Override
 	public int size() {
 		return getSlot("content").size();
 	}
@@ -107,6 +110,7 @@ public class Chest extends Entity implements UseEvent {
 		}
 	}
 
+	@Override
 	public String describe() {
 		String text = "You see a chest.";
 		if (hasDescription()) {

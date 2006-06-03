@@ -12,10 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.server.*;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -23,11 +26,10 @@ import games.stendhal.server.rule.EntityManager;
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPSlot;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 import marauroa.server.game.RPWorld;
-import games.stendhal.server.scripting.StendhalGroovyRunner;
 
 import org.apache.log4j.Logger;
 
@@ -48,6 +50,7 @@ public class Administration extends ActionListener {
 		StendhalRPRuleProcessor.register("jail", administration);
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		if (!player.isAdmin()) {

@@ -44,10 +44,12 @@ public class Blackboard extends Sign {
 		}
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
 
+	@Override
 	public void setText(String text) {
 		put("text", text);
 	}

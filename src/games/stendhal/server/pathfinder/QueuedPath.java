@@ -34,7 +34,6 @@ public final class QueuedPath {
 
 	private Rectangle2D destination;
 
-	private double maxPathRadius;
 
 	private List<Path.Node> path;
 

@@ -24,6 +24,7 @@ public class StackableItem extends Item implements Stackable {
 		update();
 	}
 
+	@Override
 	public void update() throws AttributeNotFoundException {
 		if (has("quantity"))
 			quantity = getInt("quantity");

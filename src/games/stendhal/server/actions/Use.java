@@ -34,6 +34,7 @@ public class Use extends ActionListener {
 		StendhalRPRuleProcessor.register("use", new Use());
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "use");

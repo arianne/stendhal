@@ -30,6 +30,7 @@ public class SButton extends JButton {
 	/**
 	 * paints the component
 	 */
+	@Override
 	protected void paintComponent(Graphics g) {
 		Rectangle r = g.getClipBounds();
 
@@ -41,14 +42,6 @@ public class SButton extends JButton {
 			}
 		}
 		super.paintComponent(g);
-	}
-
-	/**
-	 * paints the border
-	 */
-	protected void paintBorder(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintBorder(g);
 	}
 
 }

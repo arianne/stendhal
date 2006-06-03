@@ -7,9 +7,13 @@ public abstract class PythonNPC extends SpeakerNPC {
 		super("PythonNPC");
 	}
 
+	@Override
 	protected void createPath() {
+		// do nothing
 	}
 
+	@Override
 	protected void createDialog() {
+		// do nothing
 	}
 }

@@ -5,4 +5,5 @@ package games.stendhal.server.maps;
  * loader to recognize them
  */
 public interface IContent {
+	// this interface does not specify any methods
 }

@@ -11,6 +11,7 @@ public abstract class PassiveEntity extends Entity {
 		super(object);
 	}
 
+	@Override
 	public boolean isCollisionable() {
 		return false;
 	}

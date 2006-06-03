@@ -25,10 +25,12 @@ public class Scroll extends ConsumableItem implements UseEvent {
 		super(name, clazz, subclass, attributes);
 	}
 
+	@Override
 	public boolean consumed() {
 		return (true);
 	}
 
+	@Override
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
 		if (getItemSubclass().equals("black")) {
@@ -42,6 +44,7 @@ public class Scroll extends ConsumableItem implements UseEvent {
 				&& getItemSubclass().equals(otheri.getItemSubclass());
 	}
 
+	@Override
 	public void onUsed(RPEntity user) {
 		StendhalRPZone zone;
 		Player player = (Player) user;
@@ -77,6 +80,7 @@ public class Scroll extends ConsumableItem implements UseEvent {
 		getWorld().modify(player);
 	}
 
+	@Override
 	public String describe() {
 		String text = super.describe();
 		if (has("infostring") && get("infostring") != null) {

@@ -111,6 +111,7 @@ public class StendhalRPWorld extends RPWorld {
 		Log4J.finishMethod(logger, "createRPClasses");
 	}
 
+	@Override
 	public void onInit() throws Exception {
 		// create the pathfinder thread and start it
 		pathfinderThread = new PathfinderThread(this);
@@ -353,7 +354,9 @@ public class StendhalRPWorld extends RPWorld {
 		house.addPortal(portal);
 	}
 
+	@Override
 	public void onFinish() throws Exception {
+		// do nothing
 	}
 
 }

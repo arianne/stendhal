@@ -108,7 +108,7 @@ public class Creature extends NPC {
 	}
 
 	/** the logger instance. */
-	protected static final Logger logger = Log4J.getLogger(Creature.class);
+	private static final Logger logger = Log4J.getLogger(Creature.class);
 
 	/**
 	 * the number of rounds the creature should wait when the path to the target
@@ -311,7 +311,8 @@ public class Creature extends NPC {
 		return point;
 	}
 
-	public void onDead(RPEntity who) {
+	@Override
+    public void onDead(RPEntity who) {
 		if (point != null) {
 			point.notifyDead(this);
 		} else {
@@ -322,6 +323,7 @@ public class Creature extends NPC {
 		super.onDead(who);
 	}
 
+    @Override
 	protected void dropItemsOn(Corpse corpse) {
 		for (Item item : createDroppedItems(world.getRuleManager()
 				.getEntityManager())) {
@@ -332,6 +334,7 @@ public class Creature extends NPC {
 		}
 	}
 
+    @Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		if (width == 1 && height == 2) {
 			// The size 1,2 is a bit special... :)
@@ -341,6 +344,7 @@ public class Creature extends NPC {
 		}
 	}
 
+	@Override
 	public double getSpeed() {
 		return speed;
 	}
@@ -403,11 +407,13 @@ public class Creature extends NPC {
 	}
 
 	/** need to recalculate the ai when we stop the attack */
+	@Override
 	public void stopAttack() {
 		aiState = AiState.IDLE;
 		super.stopAttack();
 	}
 
+	@Override
 	public void logic() {
 		Log4J.startMethod(logger, "logic");
 

@@ -96,10 +96,6 @@ public class Pathfinder {
 	 */
 	protected Navigable navMap = null;
 
-	/** Creates a new instance of AStarPathfinder */
-	public Pathfinder() {
-	}
-
 	/**
 	 * Return the current status of the pathfinder.
 	 * 
@@ -253,7 +249,7 @@ public class Pathfinder {
 		if (listOpen.size() == 0)
 			return null;
 
-		Pathfinder.Node first = (Pathfinder.Node) listOpen.get(0);
+		Pathfinder.Node first = listOpen.get(0);
 
 		listOpen.remove(0);
 		hashOpen.remove(first.nodeNumber);
@@ -340,10 +336,6 @@ public class Pathfinder {
 	 *            the node to add to the open list.
 	 */
 	protected void addToOpen(Pathfinder.Node node) {
-		int index = 0;
-		Pathfinder.Node openNode = null;
-		ListIterator iter = listOpen.listIterator();
-
 		if (listOpen.size() == 0) {
 			listOpen.add(0, node);
 			hashOpen.put(node.nodeNumber, node);
@@ -392,7 +384,7 @@ public class Pathfinder {
 
 		Pathfinder.Node parent;
 		while (nodeStack.size() > 0) {
-			parent = (Pathfinder.Node) nodeStack.pop();
+			parent = nodeStack.pop();
 			c = parent.numChildren;
 			for (int i = 0; i < c; i++) {
 				kid = parent.children[i];

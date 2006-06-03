@@ -7,9 +7,6 @@ public class StendhalPythonConfig {
 
 	private StendhalRPWorld world;
 
-	public StendhalPythonConfig() {
-	}
-
 	public StendhalRPWorld getWorld() {
 		return world;
 	}
@@ -24,5 +21,6 @@ public class StendhalPythonConfig {
 	}
 
 	public void init() {
+		// do nothing
 	}
 }

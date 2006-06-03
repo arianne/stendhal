@@ -31,6 +31,7 @@ public class Displace extends ActionListener {
 		StendhalRPRuleProcessor.register("displace", new Displace());
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "displace");

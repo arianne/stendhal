@@ -47,6 +47,7 @@ public class Debug {
 
 	/** no instance */
 	private Debug() {
+		// this is a collection of constants
 	}
 
 }

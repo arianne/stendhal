@@ -101,6 +101,7 @@ public class StringFormatter {
 	}
 
 	/** toString formats the string */
+	@Override
 	public String toString() {
 		if (cachedString == null || refreshCache) {
 			// recalculate the string

@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.pathfinder;
 
-import java.awt.geom.Rectangle2D;
-import java.awt.Rectangle;
-import java.awt.Point;
-import java.util.List;
-import java.util.Vector;
-import java.util.LinkedList;
 import games.stendhal.common.Line;
 import games.stendhal.server.StendhalRPZone;
+
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 
 public class BoxedZone {
 	private Graph my_graph;
@@ -44,10 +44,6 @@ public class BoxedZone {
 		my_graph = buildGraph();
 	}
 
-	private void addBox(int x, int y, int width, int height) {
-		boxes.add(new Rectangle(x, y, width, height));
-	}
-
 	private void addBox(Rectangle rect) {
 		boxes.add(rect);
 	}
@@ -60,23 +56,6 @@ public class BoxedZone {
 		}
 
 		return false;
-	}
-
-	private String getContainedString(int x, int y) {
-		int i = 0;
-		for (Rectangle rect : boxes) {
-			if (rect.contains(x, y)) {
-				if (i < 10) {
-					return "[ " + Integer.toString(i) + "]";
-				} else {
-					return "[" + Integer.toString(i) + "]";
-				}
-			}
-
-			i++;
-		}
-
-		return "[  ]";
 	}
 
 	private int getContainedInt(int x, int y) {

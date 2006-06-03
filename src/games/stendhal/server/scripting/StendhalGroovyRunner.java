@@ -23,6 +23,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 		StendhalRPRuleProcessor.register("script", this);
 	}
 
+	@Override
 	public void init() {
 		URL url = getClass().getClassLoader().getResource(scriptDir);
 		if (url != null) {
@@ -39,6 +40,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 
 	}
 
+	@Override
 	public synchronized boolean perform(String name) {
 		boolean ret = false;
 		StendhalGroovyScript gr;
@@ -54,6 +56,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 		return (ret);
 	}
 
+	@Override
 	public String getMessage(String name) {
 		StendhalGroovyScript gr = scripts.get(name);
 		if (gr != null) {
@@ -62,6 +65,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 		return (null);
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onScript");

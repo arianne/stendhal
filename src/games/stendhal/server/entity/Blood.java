@@ -40,10 +40,12 @@ public class Blood extends Entity {
 		set((int) rect.getX(), (int) rect.getY());
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
 
+	@Override
 	public boolean isCollisionable() {
 		return false;
 	}
@@ -59,6 +61,7 @@ public class Blood extends Entity {
 		}
 	}
 
+	@Override
 	public String describe() {
 		return ("You see a blood pool.");
 	}

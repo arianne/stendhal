@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.*;
-import games.stendhal.server.maps.*;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -24,8 +24,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * - None.
  */
 public class CleanStorageSpace implements IQuest {
-	private StendhalRPWorld world;
-
 	private NPCList npcs;
 
 	private void step_1() {
@@ -125,7 +123,6 @@ public class CleanStorageSpace implements IQuest {
 
 	public CleanStorageSpace(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
 		this.npcs = NPCList.get();
-		this.world = w;
 
 		step_1();
 		step_2();

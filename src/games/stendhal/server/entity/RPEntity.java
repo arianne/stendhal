@@ -129,6 +129,7 @@ public abstract class RPEntity extends Entity {
 		totalDamageReceived = 0;
 	}
 
+	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
 
@@ -448,7 +449,7 @@ public abstract class RPEntity extends Entity {
 			int xp_reward = (int) (this.getXP() * 0.05);
 
 			for (Map.Entry<RPEntity, Integer> entry : damageReceived.entrySet()) {
-				int damageDone = (entry.getValue()).intValue();
+				int damageDone = entry.getValue().intValue();
 				RPEntity entity = entry.getKey();
 
 				String name = (entity.has("name") ? entity.get("name") : entity
@@ -928,6 +929,7 @@ public abstract class RPEntity extends Entity {
 		return false;
 	}
 
+	@Override
 	public String describe() {
 		String text = super.describe();
 		text += " It is level " + getLevel() + ".";

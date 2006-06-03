@@ -27,6 +27,7 @@ public class Stop extends ActionListener {
 		StendhalRPRuleProcessor.register("stop", new Stop());
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "stop");

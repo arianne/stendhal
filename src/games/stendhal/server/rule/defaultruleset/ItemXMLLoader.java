@@ -58,6 +58,7 @@ public class ItemXMLLoader extends DefaultHandler {
 	}
 
 	private ItemXMLLoader() {
+		// hide constructor, this is a Singleton
 	}
 
 	private static ItemXMLLoader instance;
@@ -97,10 +98,12 @@ public class ItemXMLLoader extends DefaultHandler {
 
 	@Override
 	public void startDocument() {
+		// do nothing
 	}
 
 	@Override
 	public void endDocument() {
+		// do nothing
 	}
 
 	@Override

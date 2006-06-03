@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import games.stendhal.common.Rand;
 import games.stendhal.common.Debug;
+import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
@@ -22,8 +22,10 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 
-import java.io.*;
 import java.awt.geom.Rectangle2D;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -34,7 +36,6 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.game.Attributes;
 
 import org.apache.log4j.Logger;
 
@@ -290,11 +291,10 @@ public class Player extends RPEntity {
 
 								entity.setID(item.getID());
 
-                 if(item.has("persistent") && item.getInt("persistent")==1) {
-                   entity.fill((Attributes)item);
-                 }
-                
-                
+								if(item.has("persistent") && item.getInt("persistent")==1) {
+									entity.fill(item);
+								}
+
 								if (entity instanceof StackableItem) {
 									StackableItem money = (StackableItem) entity;
 									money.setQuantity(item.getInt("quantity"));
@@ -421,6 +421,7 @@ public class Player extends RPEntity {
 		update();
 	}
 
+	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
 
@@ -463,10 +464,12 @@ public class Player extends RPEntity {
 		return is;
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y + 1, 1, 1);
 	}
 
+	@Override
 	public void onDead(RPEntity who) {
 		put("dead", "");
 
@@ -501,6 +504,7 @@ public class Player extends RPEntity {
 		StendhalRPAction.transferContent(this);
 	}
 
+	@Override
 	protected void dropItemsOn(Corpse corpse) {
 		int amount = Rand.rand(4);
 
@@ -1014,6 +1018,7 @@ public class Player extends RPEntity {
 		}
 	}
 
+	@Override
 	public String describe() {
 		int hours = age / 60;
 		int minutes = age % 60;

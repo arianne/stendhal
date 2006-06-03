@@ -27,6 +27,7 @@ public class Outfit extends ActionListener {
 		StendhalRPRuleProcessor.register("outfit", new Outfit());
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "outfit");

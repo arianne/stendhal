@@ -357,6 +357,7 @@ public abstract class SpeakerNPC extends NPC {
 			}
 		}
 
+        @Override
 		public String toString() {
 			return "[" + state + "," + trigger + "," + nextState + ","
 					+ condition + "]";

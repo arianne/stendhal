@@ -1,14 +1,14 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.entity.Door;
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -16,10 +16,13 @@ import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 
-import java.util.List;
-import java.util.LinkedList;
+import org.apache.log4j.Logger;
 
 public class Orril implements IContent {
 	private StendhalRPWorld world;
@@ -51,7 +54,10 @@ public class Orril implements IContent {
 	}
 
 	public static class QuestDropItemOnDeath extends Creature {
-		private String itemType;
+		  /** the logger instance. */
+		  private static final Logger logger = Log4J.getLogger(QuestDropItemOnDeath.class);
+
+		  private String itemType;
 
 		public QuestDropItemOnDeath(Creature copy, String itemType) {
 			super(copy);
@@ -67,10 +73,12 @@ public class Orril implements IContent {
 			}
 		}
 
+		@Override
 		public Creature getInstance() {
 			return new QuestDropItemOnDeath(this, itemType);
 		}
 
+		@Override
 		public void onDead(RPEntity who) {
 			if (!who.isEquipped(itemType)) {
 				Item item = world.getRuleManager().getEntityManager().getItem(
@@ -240,6 +248,7 @@ public class Orril implements IContent {
 		zone.addPortal(portal);
 
 		SpeakerNPC npc = new SpeakerNPC("Jynath") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(24, 6));
@@ -260,6 +269,7 @@ public class Orril implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				Behaviours.addGreeting(this);
 				Behaviours.addJob(this,

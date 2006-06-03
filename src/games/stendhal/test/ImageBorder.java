@@ -50,6 +50,7 @@ public class ImageBorder extends AbstractBorder {
 	}
 
 	/** border is opaque */
+	@Override
 	public boolean isBorderOpaque() {
 		return true;
 	}
@@ -63,6 +64,7 @@ public class ImageBorder extends AbstractBorder {
 	 *            the component for which this border insets value applies
 	 * @return the new <code>Insets</code> object initialized to 0
 	 */
+	@Override
 	public Insets getBorderInsets(Component c) {
 		return getBorderInsets(c, new Insets(0, 0, 0, 0));
 	}
@@ -76,12 +78,14 @@ public class ImageBorder extends AbstractBorder {
 	 *            the object to be reinitialized
 	 * @return the <code>insets</code> object
 	 */
+	@Override
 	public Insets getBorderInsets(Component c, Insets insets) {
 		insets.left = insets.top = insets.right = insets.bottom = borderSize;
 		return insets;
 	}
 
 	/** paints the border */
+	@Override
 	public void paintBorder(Component c, Graphics g, int x, int y, int width,
 			int height) {
 		Sprite bottomRight;

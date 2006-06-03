@@ -114,10 +114,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 		protectionMap = new CollisionDetection();
 	}
 
+	@Override
 	public void onInit() throws Exception {
+		// do nothing
 	}
 
+	@Override
 	public void onFinish() throws Exception {
+		// do nothing
 	}
 
 	public StendhalRPWorld getWorld() {
@@ -603,6 +607,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return collisionMap.collides(area);
 	}
 
+	@Override
 	public synchronized void add(RPObject object)
 			throws RPObjectInvalidException {
 		super.add(object);
@@ -618,6 +623,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 	}
 
+	@Override
 	public synchronized RPObject remove(RPObject.ID id)
 			throws RPObjectNotFoundException {
 		RPObject object = super.remove(id);
@@ -648,6 +654,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 	}
 
+	@Override
 	public synchronized void modify(RPObject object) {
 		if (object.isContained()) {
 			// We modify the base container if the object change.
@@ -663,6 +670,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 	}
 
+	@Override
 	public void nextTurn() {
 		super.nextTurn();
 
@@ -732,6 +740,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return null;
 	}
 
+	@Override
 	public String toString() {
 		return "zone " + zoneid + " at (" + x + "," + y + ")";
 	}

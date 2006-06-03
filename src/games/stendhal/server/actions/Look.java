@@ -31,6 +31,7 @@ public class Look extends ActionListener {
 		StendhalRPRuleProcessor.register("look", new Look());
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "look");

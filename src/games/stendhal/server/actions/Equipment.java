@@ -97,6 +97,7 @@ public class Equipment extends ActionListener {
 		validContainerClassesList = Arrays.asList(validContainerClasses);
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		if (action.get(TYPE).equals("equip")) {

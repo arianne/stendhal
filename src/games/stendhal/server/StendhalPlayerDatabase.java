@@ -32,6 +32,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		return new StendhalPlayerDatabase(props);
 	}
 
+	@Override
 	public boolean hasRPObject(Transaction trans, int id) {
 		Log4J.startMethod(logger, "hasRPObject");
 		try {
@@ -65,6 +66,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		}
 	}
 
+	@Override
 	public RPObject loadRPObject(Transaction trans, int id) throws Exception {
 		Connection connection = ((JDBCTransaction) trans).getConnection();
 
@@ -108,6 +110,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		return null;
 	}
 
+	@Override
 	public synchronized int storeRPObject(Transaction trans, RPObject object)
 			throws SQLException {
 		Connection connection = ((JDBCTransaction) trans).getConnection();
@@ -221,6 +224,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		}
 	}
 
+	@Override
 	public RPObjectIterator iterator(Transaction trans) {
 		Log4J.startMethod(logger, "iterator");
 		try {

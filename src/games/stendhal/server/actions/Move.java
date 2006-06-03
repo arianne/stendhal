@@ -34,6 +34,7 @@ public class Move extends ActionListener {
 		StendhalRPRuleProcessor.register("moveto", move);
 	}
 
+	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "move");

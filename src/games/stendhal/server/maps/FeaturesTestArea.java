@@ -21,6 +21,7 @@ public class FeaturesTestArea implements IContent {
 			super(copy);
 		}
 
+		@Override
 		public void onDead(RPEntity who) {
 			if (!who.isEquipped("key_golden")) {
 				Item item = world.getRuleManager().getEntityManager().getItem(
@@ -39,6 +40,7 @@ public class FeaturesTestArea implements IContent {
 			super.onDead(who);
 		}
 
+		@Override
 		public void update() {
 			noises = new LinkedList<String>(noises);
 			noises.add("Thou shall not obtain the key!");
