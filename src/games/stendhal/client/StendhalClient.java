@@ -453,7 +453,7 @@ public class StendhalClient extends ariannexp {
 					return true;
 				}
 
-				player = (RPObject) world_objects.get(id);
+				player = world_objects.get(id);
 
 				if (deleted != null) {
 					gameObjects.modifyRemoved(player, deleted);

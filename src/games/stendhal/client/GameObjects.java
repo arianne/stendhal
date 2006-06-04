@@ -159,17 +159,9 @@ public class GameObjects implements Iterable<Entity> {
 
 		Entity entity = entityType(object);
 
-		if (entity instanceof AttributeEvent) {
-			entity.onAdded(object);
-		}
-
-		if (entity instanceof MovementEvent) {
-			fireMovementEvent(entity, object, null);
-		}
-
-		if (entity instanceof ZoneChangeEvent) {
-			fireZoneChangeEvent(entity, object, null);
-		}
+		entity.onAdded(object);
+		fireMovementEvent(entity, object, null);
+		fireZoneChangeEvent(entity, object, null);
 
 		if (entity instanceof TalkEvent) {
 			fireTalkEvent((TalkEvent) entity, object, null);
@@ -200,13 +192,8 @@ public class GameObjects implements Iterable<Entity> {
 		Log4J.startMethod(logger, "modifyAdded");
 		Entity entity = objects.get(object.getID());
 		if (entity != null) {
-			if (entity instanceof AttributeEvent) {
-				entity.onChangedAdded(object, changes);
-			}
-
-			if (entity instanceof MovementEvent) {
-				fireMovementEvent(entity, object, changes);
-			}
+			entity.onChangedAdded(object, changes);
+			fireMovementEvent(entity, object, changes);
 
 			if (entity instanceof TalkEvent) {
 				fireTalkEvent((TalkEvent) entity, object, changes);
@@ -233,9 +220,7 @@ public class GameObjects implements Iterable<Entity> {
 		Log4J.startMethod(logger, "modifyRemoved");
 		Entity entity = objects.get(object.getID());
 		if (entity != null) {
-			if (entity instanceof AttributeEvent) {
-				entity.onChangedRemoved(object, changes);
-			}
+			entity.onChangedRemoved(object, changes);
 
 			if (entity instanceof HPEvent) {
 				fireHPEventChangedRemoved((HPEvent) entity, object, changes);
@@ -265,17 +250,9 @@ public class GameObjects implements Iterable<Entity> {
 
 		Entity entity = objects.get(id);
 		if (entity != null) {
-			if (entity instanceof AttributeEvent) {
-				entity.onRemoved();
-			}
-
-			if (entity instanceof MovementEvent) {
-				fireMovementEvent(entity, null, null);
-			}
-
-			if (entity instanceof ZoneChangeEvent) {
-				fireZoneChangeEvent(entity, null, null);
-			}
+			entity.onRemoved();
+			fireMovementEvent(entity, null, null);
+			fireZoneChangeEvent(entity, null, null);
 
 			if (entity instanceof TalkEvent) {
 				fireTalkEvent((TalkEvent) entity, null, null);
