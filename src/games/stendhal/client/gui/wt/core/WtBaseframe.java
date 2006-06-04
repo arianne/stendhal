@@ -22,6 +22,7 @@ import games.stendhal.client.GameScreen;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -180,7 +181,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 
 		// Added support for ctrl + click for Mac OS X intensifly@gmx.com
 
-		int onmask = MouseEvent.CTRL_DOWN_MASK;
+		int onmask = InputEvent.CTRL_DOWN_MASK;
 		if (System.getProperty("os.name").toLowerCase().contains("os x")
 				&& (e.getModifiersEx() & onmask) == onmask) {
 			onMouseRightClick(p);
