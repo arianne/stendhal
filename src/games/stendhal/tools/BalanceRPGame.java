@@ -1,15 +1,25 @@
 package games.stendhal.tools;
 
-import java.util.Random;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.creature.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.rule.*;
-import games.stendhal.server.rule.defaultruleset.*;
-import marauroa.common.game.*;
-import java.util.*;
+import games.stendhal.common.Pair;
+import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.rule.EntityManager;
+import games.stendhal.server.rule.defaultruleset.CreatureXMLLoader;
+import games.stendhal.server.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 
 /*** NOTE: AWFUL CODE FOLLOWS. YOU ARE NOT SUPPOSED TO READ THIS ;P ***/
