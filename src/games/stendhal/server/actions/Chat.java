@@ -88,20 +88,26 @@ public class Chat extends ActionListener {
 		Log4J.startMethod(logger, "support");
 
 		if (action.has("text")) {
-			String message = player.getName() + " ask for support to ADMIN: "
+			String message = player.getName() + " asks for support to ADMIN: "
 					+ action.get("text");
 
 			rules.addGameEvent(player.getName(), "support", action.get("text"));
 
+			boolean found = false;
 			for (Player p : rules.getPlayers()) {
 				if (p.isAdmin()) {
 					p.setPrivateText(message);
 					world.modify(p);
 					rules.removePlayerText(p);
+					found = true;
 				}
 			}
 
-			player.setPrivateText("You ask for support: " + action.get("text"));
+			if (found) {
+				player.setPrivateText("You ask for support: " + action.get("text"));
+			} else {
+				player.setPrivateText("Sorry, your support request cannot be processed because no supporter is online.");
+			}
 			rules.removePlayerText(player);
 			world.modify(player);
 		}
