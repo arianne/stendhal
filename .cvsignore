@@ -15,3 +15,5 @@ classes
 .fbprefs
 tiled.conf
 marauroa.ini
+server_stats.xml
+stendhal.log*
