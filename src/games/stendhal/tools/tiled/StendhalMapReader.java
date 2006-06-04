@@ -81,6 +81,7 @@ public class StendhalMapReader implements MapReader
       }
     } catch (IOException e)
     {
+    	System.err.println(e);
     }
     return false;
   }
@@ -117,5 +118,6 @@ public class StendhalMapReader implements MapReader
 
   public void setErrorStack(Stack es)
   {
+	  // not implemented
   }
 }

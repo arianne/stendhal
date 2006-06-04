@@ -12,12 +12,21 @@
  ***************************************************************************/
 package games.stendhal.tools.tiled;
 
-import tiled.core.*;
-import tiled.io.*;
-import java.util.Stack;
-import java.util.Iterator;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.Properties;
-import java.io.*;
+import java.util.Stack;
+
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
+import tiled.io.MapWriter;
 
 /**
  * Writer Plugin for tiled. Saves maps as *.stend files. This plugin ignores the
@@ -127,6 +136,7 @@ public class StendhalMapWriter implements MapWriter
    */
   public void writeTileset(TileSet set, String filename) throws Exception
   {
+	  // no implemented
   }
 
   /**
@@ -138,6 +148,7 @@ public class StendhalMapWriter implements MapWriter
    */
   public void writeMap(Map map, OutputStream out) throws Exception
   {
+	  // not implemented
   }
 
   /**
@@ -149,6 +160,7 @@ public class StendhalMapWriter implements MapWriter
    */
   public void writeTileset(TileSet set, OutputStream out) throws Exception
   {
+	  // not implemented
   }
 
   /** accepts all filenames ending with .stend */
@@ -163,6 +175,7 @@ public class StendhalMapWriter implements MapWriter
       }
     } catch (IOException e)
     {
+    	System.err.println(e);
     }
     return false;
   }
@@ -194,6 +207,7 @@ public class StendhalMapWriter implements MapWriter
 
   public void setErrorStack(Stack es)
   {
+	  // not implemented
   }
 
   public FileFilter[] getFilters()
