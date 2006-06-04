@@ -23,7 +23,7 @@ public class stendhal extends Thread {
 
 	public static boolean doLogin = false;
 
-	public static final String[] SERVERS_LIST = { "stendhal.game-server.cc",
+	public static final String[] SERVERS_LIST = { "arianne.murpe.com", "stendhal.game-server.cc",
 			"stendhal.ombres.ambre.net", "localhost" };
 
 	public static final String STENDHAL_FOLDER = System
