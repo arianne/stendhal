@@ -450,6 +450,7 @@ public class Player extends RPEntity {
 				while ((line = in.readLine()) != null) {
 					adminNames.add(line);
 				}
+				in.close();
 			} catch (Exception e) {
 				logger.error("Error loading admin names", e);
 			}
