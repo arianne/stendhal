@@ -95,7 +95,7 @@ public class Chat extends ActionListener {
 
 			boolean found = false;
 			for (Player p : rules.getPlayers()) {
-				if (p.isAdmin()) {
+				if (p.getAdminLevel() >= Administration.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
 					p.setPrivateText(message);
 					world.modify(p);
 					rules.removePlayerText(p);

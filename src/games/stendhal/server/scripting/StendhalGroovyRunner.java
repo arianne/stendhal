@@ -1,15 +1,20 @@
 package games.stendhal.server.scripting;
 
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalServerExtension;
+import games.stendhal.server.actions.Administration;
+import games.stendhal.server.entity.Player;
+
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.Map;
-import java.util.HashMap;
 import java.net.URL;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.Player;
+import java.util.HashMap;
+import java.util.Map;
+
+import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.server.game.RPWorld;
-import marauroa.common.Log4J;
 
 public class StendhalGroovyRunner extends StendhalServerExtension {
 	private Map<String, StendhalGroovyScript> scripts;
@@ -72,10 +77,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 
 		System.out.println("onScript " + action);
 
-		if (!player.isAdmin()) {
-			// Admininistrator only command
-			logger.warn("Player " + player.getName()
-					+ " trying to run admin commands");
+		if (!Administration.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
 			return;
 		}
 

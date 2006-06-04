@@ -16,6 +16,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.actions.Administration;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
@@ -68,6 +69,7 @@ public class Player extends RPEntity {
 
 			// Use this for admin menus and usage.
 			player.add("admin", RPClass.FLAG);
+			player.add("adminlevel", RPClass.INT);
 			player.add("invisible", RPClass.FLAG, RPClass.HIDDEN);
 
 			player.add("release", RPClass.STRING, RPClass.HIDDEN);
@@ -181,6 +183,9 @@ public class Player extends RPEntity {
 		}
 
 		Player player = new Player(object);
+		// Port from 0.48 to 0.50
+		player.readAdminsFromFile();
+
 		player.stop();
 		player.stopAttack();
 
@@ -435,7 +440,7 @@ public class Player extends RPEntity {
 
 	private static List<String> adminNames;
 
-	public boolean isAdmin() {
+	private void readAdminsFromFile() {
 		if (adminNames == null) {
 			adminNames = new LinkedList<String>();
 
@@ -458,11 +463,26 @@ public class Player extends RPEntity {
 
 		boolean is = adminNames.contains(getName());
 
-		if (!has("admin") && is) {
-			put("admin", "");
+		if (is) {
+			put("adminlevel", Administration.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
+		} else {
+			if (!has("adminlevel")) {
+				put("adminlevel", "0");
+			}
 		}
+	}
 
-		return is;
+	/**
+	 * Returns the admin level of this user. See Administration.java for details.
+	 *
+	 * @return adminlevel
+	 */
+	public int getAdminLevel() {
+		// normal user are adminlevel 0.
+		if (!has("adminlevel")) {
+			return 0;
+		}
+		return getInt("adminlevel");
 	}
 
 	@Override

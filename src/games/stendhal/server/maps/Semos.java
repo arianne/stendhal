@@ -1,15 +1,16 @@
 package games.stendhal.server.maps;
 
-import games.stendhal.common.Rand;
 import games.stendhal.common.Direction;
+import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.actions.Administration;
+import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.PersonalChest;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
-import games.stendhal.server.entity.Blackboard;
-import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -17,9 +18,11 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
-import marauroa.common.game.IRPZone;
-import java.util.List;
+
 import java.util.LinkedList;
+import java.util.List;
+
+import marauroa.common.game.IRPZone;
 
 public class Semos implements IContent {
 	private StendhalRPWorld world;
@@ -1019,12 +1022,12 @@ public class Semos implements IContent {
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
-							if (player.isAdmin()) {
+							if (Administration.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
 								for (String quest : player.getQuests()) {
 									player.removeQuest(quest);
 								}
 							} else {
-								say("Ummm! No, you clean me! begin with my back!");
+								say("Ummm! No, you clean me! Begin with my back!");
 								player.setHP(player.getHP() - 5);
 								world.modify(player);
 							}

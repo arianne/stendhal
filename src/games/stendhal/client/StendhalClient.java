@@ -196,7 +196,7 @@ public class StendhalClient extends ariannexp {
 	}
 
 	public boolean isAdmin() {
-		return player != null && player.has("admin");
+		return player != null && player.has("adminlevel") && (player.getInt("adminlevel") >= 600);
 	}
 
 	protected void onPerception(MessageS2CPerception message) {

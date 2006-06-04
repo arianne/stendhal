@@ -23,6 +23,10 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.rule.EntityManager;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
@@ -36,6 +40,11 @@ import org.apache.log4j.Logger;
 public class Administration extends ActionListener {
 	private static final Logger logger = Log4J.getLogger(Administration.class);
 
+	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPPORT = 100;
+	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPER = 5000;
+	
+	private static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
+	
 	public static void register() {
 		Administration administration = new Administration();
 		StendhalRPRuleProcessor.register("inspect", administration);
@@ -48,19 +57,69 @@ public class Administration extends ActionListener {
 		StendhalRPRuleProcessor.register("summonat", administration);
 		StendhalRPRuleProcessor.register("invisible", administration);
 		StendhalRPRuleProcessor.register("jail", administration);
+		
+		REQUIRED_ADMIN_LEVELS.put("support",    100);
+		REQUIRED_ADMIN_LEVELS.put("tellall",    200);
+		REQUIRED_ADMIN_LEVELS.put("teleportto", 300);
+		REQUIRED_ADMIN_LEVELS.put("teleport",   400);
+		REQUIRED_ADMIN_LEVELS.put("jail",       400);
+		REQUIRED_ADMIN_LEVELS.put("invisible",  500);
+		REQUIRED_ADMIN_LEVELS.put("inspect",    600);
+		REQUIRED_ADMIN_LEVELS.put("destroy",    700);
+		REQUIRED_ADMIN_LEVELS.put("summon",     800);
+		REQUIRED_ADMIN_LEVELS.put("summonat",   800);
+		REQUIRED_ADMIN_LEVELS.put("alter",      900);
+		REQUIRED_ADMIN_LEVELS.put("script",    1000);
+		REQUIRED_ADMIN_LEVELS.put("super",     5000);
 	}
 
+	public static boolean isPlayerAllowedToExecuteAdminCommand(Player player, String command, boolean verbose) {
+		// get adminlevel of player and required adminlevel for this command
+		int adminlevel = player.getAdminLevel();
+		Integer required = REQUIRED_ADMIN_LEVELS.get(command);
+
+		// check that we know this command
+		if (required == null) {
+			logger.error("Unknown command " + command);
+			if (verbose) {
+				player.setPrivateText("Sorry, command " + command + " is unknown.");
+			}
+			return false;
+		}
+
+		if (adminlevel < required.intValue()) {
+			// not allowed
+			logger.warn("Player " + player.getName() + " with admin level " 
+					+ adminlevel + " tried to run admin command " + command 
+					+ " which requires level " + required + ".");
+
+			// Notify the player if verbose is set.
+			if (verbose) {
+
+				// is this player an admin at all?
+				if (adminlevel == 0) {
+					player.setPrivateText("Sorry, you need to be an admin to run " + command + ".");
+				} else {
+					player.setPrivateText("Sorry, your admin level is "
+						+ adminlevel + " but level " + required 
+						+ " is required to run " + command + ".");
+				}
+			}
+			return false;
+		}
+
+		// OK
+		return true;
+	}
+	
 	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
-		if (!player.isAdmin()) {
-			// Admininistrator only commands
-			logger.warn("Player " + player.getName()
-					+ " trying to run admin commands");
-			return;
-		}
 
 		String type = action.get("type");
+		if (!isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
+			return;
+		}
 
 		if (type.equals("tellall")) {
 			onTellEverybody(world, rules, player, action);
@@ -225,6 +284,7 @@ public class Administration extends ActionListener {
 
 			if (changed == null) {
 				logger.debug("Player " + name + " not found");
+				player.setPrivateText("Player " + name + " not found");
 				return;
 			}
 
