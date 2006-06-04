@@ -85,6 +85,7 @@ public class CreatureXMLLoader extends DefaultHandler {
 	}
 
 	private CreatureXMLLoader() {
+		// hide constructor, this is a Singleton
 	}
 
 	public static CreatureXMLLoader get() {
@@ -120,10 +121,12 @@ public class CreatureXMLLoader extends DefaultHandler {
 
 	@Override
 	public void startDocument() {
+		// do nothing
 	}
 
 	@Override
 	public void endDocument() {
+		// do nothing
 	}
 
 	@Override
