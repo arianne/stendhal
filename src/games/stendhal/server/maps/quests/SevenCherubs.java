@@ -78,13 +78,12 @@ public class SevenCherubs implements IQuest {
 								.getQuest("seven_cherubs");
 						String[] done = npcDoneText.split(";");
 						List<String> list = Arrays.asList(done);
-	
+						int left = 7 - list.size();
+
 						if (!list.contains(engine.getName())) {
 							player.setQuest("seven_cherubs", npcDoneText
 									+ ";" + engine.getName());
-	
-							int left = 7 - list.size();
-	
+		
 							player.setHP(player.getBaseHP());
 							player.healPoison();
 	
@@ -116,7 +115,11 @@ public class SevenCherubs implements IQuest {
 								player.addXP(2000);
 							}
 						} else {
-							engine.say("Find the rest of us to get the reward");
+							if (left > 0) {
+								engine.say("Find the rest of us to get the reward");
+							} else {
+								engine.say("You found all of us and got the reward.");
+							}
 						}
 						world.modify(player);
 					}
