@@ -317,7 +317,23 @@ import org.apache.log4j.Logger;
             client.send(teleport);
             }
           }
-        else if(text.startsWith("/alter ")) // Set/Add/Substract target(PLAYER NAME) attribute
+        else if(text.startsWith("/adminlevel ")) // Display or adjust adminlevel
+        {
+        String[] command = parseString(text, 3);
+
+        if(command != null)
+          {
+          RPAction adminlevel = new RPAction();
+          adminlevel.put("type","adminlevel");
+          adminlevel.put("target", command[1]);
+          if (!command[2].trim().equals("")) {
+              adminlevel.put("newlevel", command[2]);
+          }
+          client.send(adminlevel);
+          }
+        }
+        
+        else if(text.startsWith("/alter ")) // Set/Add/Substract target(PLAYER NAME) attribute
           {
           String[] command = parseString(text, 5);
           if(command != null)

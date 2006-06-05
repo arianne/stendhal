@@ -52,13 +52,15 @@ public class Administration extends ActionListener {
 		StendhalRPRuleProcessor.register("tellall", administration);
 		StendhalRPRuleProcessor.register("teleport", administration);
 		StendhalRPRuleProcessor.register("teleportto", administration);
-		StendhalRPRuleProcessor.register("alter", administration);
+        StendhalRPRuleProcessor.register("adminlevel", administration);
+        StendhalRPRuleProcessor.register("alter", administration);
 		StendhalRPRuleProcessor.register("summon", administration);
 		StendhalRPRuleProcessor.register("summonat", administration);
 		StendhalRPRuleProcessor.register("invisible", administration);
 		StendhalRPRuleProcessor.register("jail", administration);
 		
-		REQUIRED_ADMIN_LEVELS.put("support",    100);
+        REQUIRED_ADMIN_LEVELS.put("adminlevel",   0);
+        REQUIRED_ADMIN_LEVELS.put("support",    100);
 		REQUIRED_ADMIN_LEVELS.put("tellall",    200);
 		REQUIRED_ADMIN_LEVELS.put("teleportto", 300);
 		REQUIRED_ADMIN_LEVELS.put("teleport",   400);
@@ -127,6 +129,8 @@ public class Administration extends ActionListener {
 			onTeleport(world, rules, player, action);
 		} else if (type.equals("teleportto")) {
 			onTeleportTo(world, rules, player, action);
+        } else if (type.equals("adminlevel")) {
+            onAdminLevel(world, rules, player, action);
 		} else if (type.equals("alter")) {
 			onChangePlayer(world, rules, player, action);
 		} else if (type.equals("summon")) {
@@ -266,7 +270,62 @@ public class Administration extends ActionListener {
 		Log4J.finishMethod(logger, "onTeleportTo");
 	}
 
-	private void onChangePlayer(RPWorld world, StendhalRPRuleProcessor rules,
+    private void onAdminLevel(RPWorld world, StendhalRPRuleProcessor rules,
+                    Player player, RPAction action) {
+        Log4J.startMethod(logger, "onAdminLevel");
+    
+        if (action.has("target")) {
+
+            Player target = null;
+    
+            String name = action.get("target");
+            for (Player p : rules.getPlayers()) {
+                if (p.getName().equals(name)) {
+                    target = p;
+                    break;
+                }
+            }
+    
+            if (target == null) {
+                logger.debug("Player " + name + " not found");
+                player.setPrivateText("Player " + name + " not found");
+                return;
+            }
+    
+            int oldlevel = target.getAdminLevel();
+            String response = target.getName() + " has adminlevel " + oldlevel;
+
+
+            if (action.has("newlevel")) {
+                // verify newlevel is a number
+                int newlevel = Integer.parseInt(action.get("newlevel"));
+
+                int mylevel = player.getAdminLevel();
+                if (mylevel < oldlevel) {
+                    response = "Sorry, but the adminlevel of " + target.getName() + " is " + oldlevel + " and your level is only " + mylevel;
+                } else if (mylevel < newlevel) {
+                    response = "Sorry, you cannot set an adminlevel of " + newlevel + " because your level is only " + mylevel;
+                } else {
+    
+                    // OK, do the change
+                    rules.addGameEvent(player.getName(), "adminlevel", target
+                            .getName(), "adminlevel", action.get("newlevel"));
+                    target.put("adminlevel", newlevel);
+                    target.update();
+                    world.modify(target);
+        
+                    response = "Changed adminlevel of " + target.getName() + " from " + oldlevel + " to " + newlevel;
+                }
+            }
+
+            player.setPrivateText(response);
+        }
+    
+        Log4J.finishMethod(logger, "onAdminLevel");
+    }
+
+    
+    private void onChangePlayer(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onChangePlayer");
 
