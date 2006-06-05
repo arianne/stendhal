@@ -799,12 +799,6 @@ public class Semos implements IContent {
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(8);
-		sign.sety(47);
-		sign.setText("Welcome to Stendhal!| Please report any problems and issues at our webpage.");
-		zone.add(sign);
-		sign = new Sign();
-		zone.assignRPObjectID(sign);
 		sign.setx(26);
 		sign.sety(40);
 		sign.setText("You are about to enter the Dungeons.|But Beware! This area is infested with rats and legend has |it that many Adventurers have died down there...");

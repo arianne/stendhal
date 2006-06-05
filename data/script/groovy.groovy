@@ -25,9 +25,10 @@ if(game.setZone(myZone))   // if zone exists
   {  
   // We create now a sign and place it on position 31,50 with some text
   sign=new Sign()
-  sign.setx(31)
-  sign.sety(50)
-  sign.setText("Groovy objects can be found!")
+  sign.setx(8)
+  sign.sety(47)
+  sign.setText("Welcome to Stendhal!| Please report any problems and issues at our webpage.|http://arianne.sourceforge.net ")
+  
   // Add our new Object to the game world
   game.add(sign)
   }
