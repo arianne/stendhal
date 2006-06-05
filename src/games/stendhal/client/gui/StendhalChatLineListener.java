@@ -344,32 +344,20 @@ import org.apache.log4j.Logger;
             client.send(summon);
             }
           }
-        else if(text.startsWith("/summonat ")) // Summon a creature at x,y
+        else if(text.startsWith("/summonat ")) // Summon an item in a slot
           {
-          String[] command;
-          command = parseString(text, 5);
-          if(command != null && !command[4].trim().equals(""))
+          String[] command = parseString(text, 5);
+          if(command != null)
             {
             RPAction summon = new RPAction();
             summon.put("type","summonat");
             summon.put("target", command[1]);
             summon.put("slot", command[2]);
             summon.put("item", command[3]);
-            summon.put("amount", command[4]);
-            client.send(summon);
+            if (!command[4].trim().equals("")) {
+                summon.put("amount", command[4]);
             }
-          else
-            {
-            command = parseString(text, 4);
-            if(command != null)
-              {
-              RPAction summon = new RPAction();
-              summon.put("type","summonat");
-              summon.put("target", command[1]);
-              summon.put("slot", command[2]);
-              summon.put("item", command[3]);
-              client.send(summon);
-              }
+            client.send(summon);
             }
           }
         else if(text.startsWith("/inspect ")) // Returns a complete description of the target
@@ -436,6 +424,7 @@ import org.apache.log4j.Logger;
           {          
           String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php?title=Stendhal:Administration",
                           "This brief help show you the most used gm commands:",
+                          "- /adminlevel <player> [<newlevel>] \t\t displays or adjusts adminlevel",
                           "- /tellall <message> \t\tWrites a private message to all players",
                           "- /jail <player> \t\tSend a player directly to jail",
                           "- /script <scriptname> \t\tload or reload a server side groovy script",
