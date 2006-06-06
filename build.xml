@@ -155,7 +155,11 @@
       <fileset dir="${sprites}"/>
     </copy>
 
-    <copy todir="${build_client_data}/data/tilesets">
+    <copy todir="${build_client_data}/layers">
+      <fileset dir="${layers}"/>
+    </copy>
+
+  	<copy todir="${build_client_data}/data/tilesets">
       <fileset dir="${tiled}">
         <include name="*.png"/>
       </fileset>
@@ -199,7 +203,11 @@
       <fileset dir="${sprites}"/>
     </copy>
 
-    <copy todir="${build_client_data}/data/tilesets">
+    <copy todir="${build_client_data}/data/layers">
+      <fileset dir="${layers}"/>
+    </copy>
+
+  	<copy todir="${build_client_data}/data/tilesets">
       <fileset dir="${tiled}">
         <include name="*.png"/>
       </fileset>
@@ -375,9 +383,9 @@
     </taskdef>
    
     <mkdir dir="tiled/world/"/>
-    <mapconverter stendPath="data/maps" imagePath="tiled/world/">
+    <mapconverter stendPath="${maps}" imagePath="${tiled}/world/">
       <fileset dir="tiled/">
-     	<include name="Level 0/**/*.tmx"/>
+    <include name="Level 0/**/*.tmx"/>
     	<include name="Level -1/**/*.tmx"/>
     	<include name="Level -2/**/*.tmx"/>
     	<include name="Level -3/**/*.tmx"/>
