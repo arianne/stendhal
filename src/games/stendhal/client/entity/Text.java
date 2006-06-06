@@ -78,7 +78,7 @@ public class Text extends Entity {
 		} else {
 			this.tx = x
 					+ 0.7
-					- (textImage.getWidth() / GameScreen.SIZE_UNIT_PIXELS * 2.0f);
+					- (textImage.getWidth() / ((float) GameScreen.SIZE_UNIT_PIXELS * 2.0f));
 			this.ty = y + 1.5;
 		}
 
