@@ -86,6 +86,7 @@ public class StendhalRPAction {
 		int legs = 0;
 		int boots = 0;
 		int cloak = 0;
+        int defWeapon = 0;
 
 		Item weaponItem = source.getWeapon();
 		StackableItem projectileItem = null;
@@ -141,6 +142,10 @@ public class StendhalRPAction {
 		if (target.hasCloak()) {
 			cloak = target.getCloak().getDefense();
 		}
+        
+        if (target.hasWeapon()) {
+            defWeapon = target.getWeapon().getDefense();
+        }
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("defender has " + target.getDEF()
@@ -148,11 +153,15 @@ public class StendhalRPAction {
 					+ armor);
 		}
 
+        int targetDef = target.getDEF();
 		float maxDefenderComponent = 0.6f * target.getDEF() * target.getDEF()
-				+ 4.0f * target.getDEF() * shield + 2.0f * target.getDEF()
-				* armor + 1.5f * target.getDEF() * cloak
-				+ (float) target.getDEF() * helmet + target.getDEF() * legs
-				+ target.getDEF() * boots;
+				+ 4.0f * targetDef * shield
+                + 2.0f * targetDef * armor
+                + 1.5f * targetDef * cloak
+				+ 1.0f * targetDef * helmet
+                + 1.0f * targetDef * legs
+				+ 1.0f * targetDef * boots
+                + 1.0f * targetDef * defWeapon;
 		
 		float defenderComponent = (Rand.roll1D100() / 100.0f)
 				* maxDefenderComponent;
