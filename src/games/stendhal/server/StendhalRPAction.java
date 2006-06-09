@@ -444,13 +444,19 @@ public class StendhalRPAction {
 		return true;
 	}
 
+    
 	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
 			int y) {
-		if (zone.collides(entity, x, y)) {
+        return placeat(zone, entity, x, y, true);
+    }
+    
+    public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
+                    int y, boolean checkObjects) {
+		if (zone.collides(entity, x, y, checkObjects)) {
 			for (int k = 2; k < 5; k++) {
 				for (int i = -k; i < k; i++) {
 					for (int j = -k; j < k; j++) {
-						if (!zone.collides(entity, x + i, y + j)) {
+						if (!zone.collides(entity, x + i, y + j, checkObjects)) {
 							entity.setx(x + i);
 							entity.sety(y + j);
 

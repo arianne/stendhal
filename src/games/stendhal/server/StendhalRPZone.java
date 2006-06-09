@@ -700,11 +700,19 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return collisionMap.collides(x, y);
 	}
 
-	public synchronized boolean collides(Entity entity, double x, double y)
+    public synchronized boolean collides(Entity entity, double x, double y)
+    throws AttributeNotFoundException {
+        return collides(entity, x, y, true);
+    }
+
+    public synchronized boolean collides(Entity entity, double x, double y, boolean checkObjects)
 			throws AttributeNotFoundException {
 		Rectangle2D area = entity.getArea(x, y);
 
 		if (collisionMap.collides(area) == false) {
+            if (!checkObjects) {
+                return true;
+            }
 			Rectangle2D otherarea = new Rectangle.Double();
 			for (RPObject other : objects.values()) {
 				Entity otherEntity = (Entity) other;
@@ -718,7 +726,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 					}
 				}
 			}
-
 			return false;
 		} else {
 			return true;
