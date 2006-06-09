@@ -39,7 +39,7 @@ public class StendhalGroovyScript {
 	StendhalRPZone zone;
 
 	private static final Logger logger = Log4J
-			.getLogger(StendhalGroovyRunner.class);
+			.getLogger(StendhalGroovyScript.class);
 
 	public StendhalGroovyScript(String filename, StendhalRPRuleProcessor rp,
 			StendhalRPWorld world) {
@@ -60,7 +60,7 @@ public class StendhalGroovyScript {
 	public StendhalRPZone addZone(String name) {
 		try {
 			zone = world.addArea(name);
-			logger.warn("Groovy added area: " + name);
+			logger.info("Groovy added area: " + name);
 		} catch (Exception e) {
 			logger.error("Exception while tyring to add area: " + e);
 			zone = null;
@@ -92,7 +92,7 @@ public class StendhalGroovyScript {
 			zone.addNPC(npc);
 			rules.addNPC(npc);
 			loadedNPCs.add(npc);
-			logger.warn("Groovy added NPC: " + npc);
+			logger.info("Groovy added NPC: " + npc);
 		}
 	}
 
@@ -101,7 +101,7 @@ public class StendhalGroovyScript {
 			zone.assignRPObjectID(object);
 			zone.add(object);
 			loadedRPObjects.add(object);
-			logger.warn("Groovy added object: " + object);
+			logger.info("Groovy added object: " + object);
 		}
 	}
 
@@ -110,7 +110,7 @@ public class StendhalGroovyScript {
 		Pair<ScriptCondition, ScriptAction> script = scripts.addScript(
 				condition, action);
 		loadedScripts.add(script);
-		logger.warn("Groovy added a script.");
+		logger.info("Groovy added a script.");
 		return (script);
 	}
 
@@ -140,7 +140,7 @@ public class StendhalGroovyScript {
 			zone.add(creature);
 			rules.addNPC(creature);
 			loadedNPCs.add(creature);
-			logger.warn("Groovy added creature: " + creature);
+			logger.info("Groovy added creature: " + creature);
 		}
 		return (creature);
 	}
@@ -167,7 +167,7 @@ public class StendhalGroovyScript {
 	}
 
 	public void remove(NPC npc) {
-		logger.warn("Removing groovy added NPC: " + npc);
+		logger.info("Removing groovy added NPC: " + npc);
 		try {
 			String id = npc.getID().getZoneID();
 			zone = (StendhalRPZone) world.getRPZone(id);
@@ -183,7 +183,7 @@ public class StendhalGroovyScript {
 
 	public void remove(RPObject object) {
 		try {
-			logger.warn("Removing groovy added object: " + object);
+			logger.info("Removing groovy added object: " + object);
 			String id = object.getID().getZoneID();
 			zone = (StendhalRPZone) world.getRPZone(id);
 			zone.remove(object);
@@ -202,7 +202,7 @@ public class StendhalGroovyScript {
 	public void remove(ScriptAction scriptAction) {
 		for (Pair<ScriptCondition, ScriptAction> script : loadedScripts) {
 			if (script.second() == scriptAction) {
-				logger.warn("Removing groovy added script.");
+				logger.info("Removing groovy added script.");
 				remove(script);
 				return;
 			}
@@ -213,7 +213,7 @@ public class StendhalGroovyScript {
 	public void remove(ScriptCondition scriptCondition) {
 		for (Pair<ScriptCondition, ScriptAction> script : loadedScripts) {
 			if (script.first() == scriptCondition) {
-				logger.warn("Removing groovy added script.");
+				logger.info("Removing groovy added script.");
 				remove(script);
 			}
 		}
@@ -223,7 +223,7 @@ public class StendhalGroovyScript {
 		Log4J.startMethod(logger, "unload");
 
 		for (Pair<ScriptCondition, ScriptAction> script : loadedScripts) {
-			logger.warn("Removing groovy added script.");
+			logger.info("Removing groovy added script.");
 			remove(script);
 		}
 
