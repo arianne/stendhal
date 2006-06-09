@@ -447,58 +447,73 @@ public class StendhalRPAction {
     
 	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
 			int y) {
-        return placeat(zone, entity, x, y, true);
+
+	    return placeat(zone, entity, x, y, false);
     }
     
     public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
-                    int y, boolean checkObjects) {
-		if (zone.collides(entity, x, y, checkObjects)) {
-			for (int k = 2; k < 5; k++) {
-				for (int i = -k; i < k; i++) {
-					for (int j = -k; j < k; j++) {
-						if (!zone.collides(entity, x + i, y + j, checkObjects)) {
-							entity.setx(x + i);
-							entity.sety(y + j);
+                    int y, boolean moveToDirectNeighboursOnly) {
 
-							if (entity instanceof Player) {
-								Player player = (Player) entity;
+        boolean found = false;
 
-								if (player.hasSheep()) {
-									Sheep sheep = (Sheep) world.get(player
-											.getSheep());
-									placeat(zone, sheep, x + i + 1, y + j + 1);
-									sheep.clearPath();
-									sheep.stop();
-								}
-							}
+        if (zone.collides(entity, x, y)) {
 
-							return true;
-						}
-					}
-				}
-			}
+            // We cannot place the entity on the orginal spot.
+            // Let's search for a new destination.
 
-			logger.debug("Unable to place " + entity + " at (" + x + "," + y
-					+ ")");
+            // We search up to 4 tiles in every way unless we are
+            // told not to do so. This is to prevent players from
+            // reaching disallowed areas:
+            // 1. Move below a wall                2. Disconnect
+            // 3. Move another player on this spot 4. Reconnect
+            int maxDestination = 4;
+            if (moveToDirectNeighboursOnly) {
+                maxDestination = 1;
+            }
+
+            // If no place can be found using strict collision checking,
+            // we'll try a second time ignoring collisions caused by objects.
+            foundit:
+            for (int collisionType = 0; collisionType <= 1; collisionType++) {
+                for (int k = 1; k <= maxDestination; k++) {
+    				for (int i = -k; i < k; i++) {
+    					for (int j = -k; j < k; j++) {
+    						if (!zone.collides(entity, x + i, y + j, (collisionType == 0))) {
+    							entity.setx(x + i);
+    							entity.sety(y + j);
+    
+    							found = true;
+                                break foundit; // break all for-loops
+    						}
+    					}
+    				}
+                }
+            }
+
+            if (!found) {
+                logger.debug("Unable to place " + entity + " at (" + x + "," + y + ")");
+            }
 		} else {
 			entity.setx(x);
 			entity.sety(y);
 
-			if (entity instanceof Player) {
-				Player player = (Player) entity;
-
-				if (player.hasSheep()) {
-					Sheep sheep = (Sheep) world.get(player.getSheep());
-					placeat(zone, sheep, x + 1, y + 1);
-					sheep.clearPath();
-					sheep.stop();
-				}
-			}
-
-			return true;
+			found = true;
 		}
 
-		return false;
+        if (found) {
+            if (entity instanceof Player) {
+                Player player = (Player) entity;
+
+                if (player.hasSheep()) {
+                    Sheep sheep = (Sheep) world.get(player.getSheep());
+                    placeat(zone, sheep, x + 1, y);
+                    sheep.clearPath();
+                    sheep.stop();
+                }
+            }
+        }
+        
+		return found;
 	}
 
 	public static void changeZone(Player player, String destination)
