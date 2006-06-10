@@ -37,6 +37,9 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Most /commands for admins are handled here. 
+ */
 public class Administration extends ActionListener {
 	private static final Logger logger = Log4J.getLogger(Administration.class);
 
@@ -52,15 +55,15 @@ public class Administration extends ActionListener {
 		StendhalRPRuleProcessor.register("tellall", administration);
 		StendhalRPRuleProcessor.register("teleport", administration);
 		StendhalRPRuleProcessor.register("teleportto", administration);
-        StendhalRPRuleProcessor.register("adminlevel", administration);
+		StendhalRPRuleProcessor.register("adminlevel", administration);
         StendhalRPRuleProcessor.register("alter", administration);
 		StendhalRPRuleProcessor.register("summon", administration);
 		StendhalRPRuleProcessor.register("summonat", administration);
 		StendhalRPRuleProcessor.register("invisible", administration);
 		StendhalRPRuleProcessor.register("jail", administration);
 		
-        REQUIRED_ADMIN_LEVELS.put("adminlevel",   0);
-        REQUIRED_ADMIN_LEVELS.put("support",    100);
+		REQUIRED_ADMIN_LEVELS.put("adminlevel",   0);
+		REQUIRED_ADMIN_LEVELS.put("support",    100);
 		REQUIRED_ADMIN_LEVELS.put("tellall",    200);
 		REQUIRED_ADMIN_LEVELS.put("teleportto", 300);
 		REQUIRED_ADMIN_LEVELS.put("teleport",   400);
@@ -352,8 +355,14 @@ public class Administration extends ActionListener {
 			if (stat.equals("name")) {
 				logger.error("DENIED: Admin " + player.getName()
 						+ " trying to change player " + name + "'s name");
+                player.setPrivateText("name cannot be changed");
 				return;
 			}
+            
+            if (stat.equals("adminlevel")) {
+                player.setPrivateText("user /adminlevel <playername> [<newlevel>] to change adminlevel.");
+                return;
+            }
 
 			RPClass clazz = changed.getRPClass();
 
