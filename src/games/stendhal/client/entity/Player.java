@@ -154,7 +154,7 @@ public class Player extends RPEntity {
 
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Set outfit")) {
-			client.getOutfitDialog().setVisible(true);
+			client.getOutfitDialog(outfit).setVisible(true);
 		} else if (action.equals("Leave sheep")) {
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "own");

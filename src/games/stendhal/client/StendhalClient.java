@@ -161,10 +161,10 @@ public class StendhalClient extends ariannexp {
 		return textLineGUI;
 	}
 
-	public OutfitDialog getOutfitDialog() {
-		// int total_hairs, int total_heads, int total_bodies, int
+	public OutfitDialog getOutfitDialog(int outfit) {
+		// int outfit, int total_hairs, int total_heads, int total_bodies, int
 		// total_clothes) {
-		return new OutfitDialog(frame, "Set outfit", 14, 11, 11, 17);
+		return new OutfitDialog(frame, "Set outfit", outfit, 14, 11, 11, 17);
 	}
 
 	public void addEventLine(String text) {

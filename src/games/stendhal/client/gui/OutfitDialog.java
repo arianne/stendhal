@@ -58,12 +58,13 @@ public class OutfitDialog extends javax.swing.JDialog {
      *
      * @param undecorated true or false
      * @param title a String with the title for the dialog
+     * @param outfit the current outfit
      * @param total_hairs an integer with the total of sprites with hairs
      * @param total_heads an integer with the total of sprites with heads
      * @param total_bodies an integer with the total of sprites with bodies
      * @param total_clothes an integer with the total of sprites with clothes
      */
-    public OutfitDialog(java.awt.Frame parent, String title, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
+    public OutfitDialog(java.awt.Frame parent, String title, int outfit, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
         super(parent, false);
         initComponents();
         setTitle(title);
@@ -81,6 +82,15 @@ public class OutfitDialog extends javax.swing.JDialog {
         // updates the draws every 2500 milliseconds
         timer = new Timer();
         timer.schedule(new AnimationTask(), 1000, 2500);
+        
+        // analyse current outfit
+        bodies_index = outfit % 100;
+        outfit = outfit / 100;
+        clothes_index = outfit % 100;
+        outfit = outfit / 100;
+        heads_index = outfit % 100;
+        outfit = outfit / 100;
+        hairs_index = outfit % 100;
     }
    
     /**
@@ -592,8 +602,8 @@ public class OutfitDialog extends javax.swing.JDialog {
         }
       }
 
-//  public OutfitDialog(java.awt.Frame parent, String title, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
+//  public OutfitDialog(java.awt.Frame parent, String title, int outfit, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
      public static void main(String args[]) {
-         new OutfitDialog(null, "Stendhal - choose outfit", 14, 11, 11, 17).generateAllOutfits();
+         new OutfitDialog(null, "Stendhal - choose outfit", 0, 14, 11, 11, 17).generateAllOutfits();
     }
 }
