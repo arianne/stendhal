@@ -25,7 +25,10 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
@@ -196,14 +199,22 @@ public class Administration extends ActionListener {
 				return;
 			}
 
+            // validate the zone-name.
 			IRPZone.ID zoneid = new IRPZone.ID(action.get("zone"));
 			if (!world.hasRPZone(zoneid)) {
-				String text = "Zone " + zoneid + " not found";
+				String text = "Zone " + zoneid + " not found.";
+                logger.debug(text);
+                
+                Set<String> zoneNames = new TreeSet<String>();
+                Iterator itr = world.iterator();
+                while (itr.hasNext()) {
+                    StendhalRPZone zone = (StendhalRPZone) itr.next();
+                    zoneNames.add(zone.getID().getID());
+                }
 
-				player.setPrivateText(text);
+				player.setPrivateText(text + " Valid zones: " + zoneNames);
 				rules.removePlayerText(player);
 
-				logger.debug(text);
 				return;
 			}
 
