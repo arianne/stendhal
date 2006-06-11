@@ -435,6 +435,10 @@ public class Player extends RPEntity {
 	}
 
 	public void setPrivateText(String text) {
+        String temp = get("private_text");
+        if (temp != null) {
+            text = temp + "\r\n" + text;
+        }
 		put("private_text", text);
 	}
 
