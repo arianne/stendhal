@@ -12,6 +12,10 @@ import marauroa.common.game.IRPZone;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * creates a jail keeper. 
+ * Game masters can place players in int_admin_jail for bad behaviour.
+ */
 public class Jail implements IContent {
 	public Jail(StendhalRPWorld world) {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
@@ -29,7 +33,8 @@ public class Jail implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this);
+				Behaviours.addGreeting(this,
+                        "Greetings! How may I #help you?");
 				Behaviours.addJob(this,
 						"I am the jail keeper. You have been confined here because of your bad behaviour.");
 				Behaviours.addHelp(this,
