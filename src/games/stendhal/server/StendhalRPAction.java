@@ -444,6 +444,7 @@ public class StendhalRPAction {
 		Portal dest = destZone.getPortal(portal.getDestinationNumber());
 		player.setx(dest.getInt("x"));
 		player.sety(dest.getInt("y"));
+        dest.onUsedBackwards(player);
 
 		player.stop();
 

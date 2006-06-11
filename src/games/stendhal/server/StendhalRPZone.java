@@ -14,6 +14,7 @@ package games.stendhal.server;
 
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
+import games.stendhal.server.entity.Door;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.SheepFood;
@@ -27,6 +28,7 @@ import games.stendhal.server.rule.EntityManager;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +69,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private List<RespawnPoint> respawnPoints;
 
-	private List<PlantGrower> plantGrowers;
+    private List<PlantGrower> plantGrowers;
+    private List<Door> doors;
 
 	/**
 	 * A map with all items that are lying on the ground in this zone as
@@ -108,7 +111,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<RespawnPoint>();
-		plantGrowers = new LinkedList<PlantGrower>();
+        plantGrowers = new LinkedList<PlantGrower>();
+        doors = new LinkedList<Door>();
 
 		collisionMap = new CollisionDetection();
 		protectionMap = new CollisionDetection();
@@ -158,13 +162,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return plantGrowers;
 	}
 
+    public Collection<? extends Door> getDoors() {
+        return doors;
+    }
+
 	public void addZoneChange(String entry) {
 		zoneChangePoints.add(entry);
 	}
 
-	public void addPortal(Portal portal) {
+    public void addPortal(Portal portal) {
 		add(portal);
 		portals.add(portal);
+        if (portal instanceof Door) {
+            doors.add((Door) portal);
+        }
 	}
 
 	public int assignPortalID(Portal portal) {
@@ -755,4 +766,5 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public Map<Item, Integer> getItemsOnGround() {
 		return itemsOnGround;
 	}
+
 }

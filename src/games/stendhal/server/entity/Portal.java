@@ -94,4 +94,8 @@ public class Portal extends Entity implements UseEvent {
 			world.modify(player);
 		}
 	}
+    
+    public void onUsedBackwards(RPEntity user) {
+        // do nothing
+    }
 }

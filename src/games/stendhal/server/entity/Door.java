@@ -19,6 +19,8 @@ import games.stendhal.common.Direction;
 
 public class Door extends Portal {
 	private boolean open;
+    private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
+    private int turnsLeftUtilClosed = 0;
 
 	//private int width;
 
@@ -57,6 +59,7 @@ public class Door extends Portal {
 
 	public void open() {
 		this.open = true;
+        this.turnsLeftUtilClosed = TURNS_TO_STAY_OPEN;
 		put("open", "");
 	}
 
@@ -89,6 +92,12 @@ public class Door extends Portal {
 	}
 
 	@Override
+	public void onUsedBackwards(RPEntity user) {
+		open();
+		world.modify(this);
+	}
+
+	@Override
 	public String describe() {
 		String text = "You see a door.";
 		if (hasDescription())
@@ -96,4 +105,15 @@ public class Door extends Portal {
 		text += " It is " + (isOpen() ? "open." : "closed.");
 		return (text);
 	}
+
+    public void logic() {
+        if (isOpen()) {
+            turnsLeftUtilClosed --;
+            if (turnsLeftUtilClosed <= 0) {
+                close();
+                world.modify(this);
+            }
+        }
+    }
+
 }

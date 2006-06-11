@@ -13,25 +13,52 @@
 package games.stendhal.server;
 
 import games.stendhal.common.Pair;
-import games.stendhal.server.actions.*;
-import games.stendhal.server.entity.PlantGrower;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.Administration;
+import games.stendhal.server.actions.Attack;
+import games.stendhal.server.actions.Buddy;
+import games.stendhal.server.actions.Chat;
+import games.stendhal.server.actions.Displace;
+import games.stendhal.server.actions.Equipment;
+import games.stendhal.server.actions.Face;
+import games.stendhal.server.actions.Look;
+import games.stendhal.server.actions.Move;
+import games.stendhal.server.actions.Outfit;
+import games.stendhal.server.actions.Own;
+import games.stendhal.server.actions.PlayersQuery;
+import games.stendhal.server.actions.Stop;
+import games.stendhal.server.actions.Use;
+import games.stendhal.server.entity.Blood;
+import games.stendhal.server.entity.Door;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.pathfinder.Path;
-// import org.python.util.PythonInterpreter;
-// import org.python.core.*;
-// import games.stendhal.server.scripting.StendhalPythonConfig;
-import java.util.*;
-import marauroa.common.Log4J;
-import marauroa.common.game.*;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import marauroa.common.Configuration;
+import marauroa.common.Log4J;
 import marauroa.common.PropertyNotFoundException;
-import marauroa.server.game.*;
+import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObjectInvalidException;
+import marauroa.common.game.RPSlot;
+import marauroa.server.game.IRPRuleProcessor;
+import marauroa.server.game.JDBCPlayerDatabase;
+import marauroa.server.game.RPServerManager;
+import marauroa.server.game.RPWorld;
+import marauroa.server.game.Statistics;
+import marauroa.server.game.Transaction;
+
 import org.apache.log4j.Logger;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
@@ -47,32 +74,20 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private RPServerManager rpman;
-
 	private StendhalRPWorld world;
-
 	private List<Player> playersObject;
-
 	private List<Player> playersObjectRmText;
-
 	private List<NPC> npcs;
-
 	private List<NPC> npcsToAdd;
-
 	private List<NPC> npcsToRemove;
-
 	private List<Pair<RPEntity, RPEntity>> entityToKill;
-
 	private List<RespawnPoint> respawnPoints;
-
 	private List<PlantGrower> plantGrowers;
-
 	private List<Corpse> corpses;
-
 	private List<Corpse> corpsesToRemove;
-
 	private List<Blood> bloods;
-
 	private List<Blood> bloodsToRemove;
+    private List<Door> doors;
 
 	private StendhalScriptSystem scripts;
 
@@ -115,6 +130,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		corpsesToRemove = new LinkedList<Corpse>();
 		bloods = new LinkedList<Blood>();
 		bloodsToRemove = new LinkedList<Blood>();
+        doors = new LinkedList<Door>();
 		scripts = StendhalScriptSystem.get();
 		registerActions();
 	}
@@ -162,6 +178,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				npcs.addAll(szone.getNPCList());
 				respawnPoints.addAll(szone.getRespawnPointList());
 				plantGrowers.addAll(szone.getPlantGrowers());
+                doors.addAll(szone.getDoors());
 			}
 			// /* Run python script */
 			// PythonInterpreter interpreter=new PythonInterpreter();
@@ -434,6 +451,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				corpse.logic();
 			for (Blood blood : bloods)
 				blood.logic();
+            for (Door door : doors) {
+                door.logic();
+            }
 			scripts.logic();
 		} catch (Exception e) {
 			logger.error("error in endTurn", e);
