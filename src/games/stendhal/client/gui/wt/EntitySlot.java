@@ -23,6 +23,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -197,7 +198,23 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		if (super.onMouseDoubleClick(p)) {
 			return true;
 		}
-
+    
+    // click into an empty slot should be ignored
+    if(content == null) {
+      return(false);
+    }
+    
+    // moveto events are not the default for items in a bag
+    if(parent instanceof Player) {
+      Entity entity = gameObjects.entityType(content);
+      if(entity != null) {
+        String action = entity.defaultAction();
+        entity.onAction(StendhalClient.get(), action);
+        return(true);
+      }
+      return (false);
+    }
+    
 		RPObject player = StendhalClient.get().getPlayer();
 
 		// if(parent.distance(StendhalClient.get().getPlayer())>2)
