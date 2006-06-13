@@ -4,7 +4,7 @@
 		<version>1.01</version>
 		<label>jstendhal</label>
 		<root_path>\</root_path>
-		<output_path>D:\Desarrollo\arianne\compiled\</output_path>
+		<output_path>..\compiled\</output_path>
 		<version>1.01</version>
 		<source_path>src\</source_path>
 		<jdkprofile_ref>JDK version 1.5.0</jdkprofile_ref>
@@ -54,6 +54,9 @@
 				<path>src\games\stendhal\client\events</path>
 			</folderitem>
 			<folderitem>
+				<path>src\games\stendhal\client\sound</path>
+			</folderitem>
+			<folderitem>
 				<path>src\games\stendhal\server</path>
 			</folderitem>
 			<folderitem>
@@ -100,6 +103,9 @@
 			</folderitem>
 			<folderitem>
 				<path>src\games\stendhal\tools\tiled</path>
+			</folderitem>
+			<folderitem>
+				<path>src\games\stendhal\test</path>
 			</folderitem>
 			<folderitem>
 				<path>data</path>
@@ -249,6 +255,18 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>stendhal-0.48.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-FULL-0.48.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>stendhal-server-0.48.zip</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\GameConsoleAppender.java</path>
 				<source>true</source>
 			</fileitem>
@@ -261,11 +279,15 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\RenderingPipeline.java</path>
+				<path>src\games\stendhal\client\ImageRenderer.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\client\SoundSystem.java</path>
+				<path>src\games\stendhal\client\LayerRenderer.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\RenderingPipeline.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -369,6 +391,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\entity\PlantGrower.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\entity\Player.java</path>
 				<source>true</source>
 			</fileitem>
@@ -382,6 +408,10 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\entity\Sheep.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\entity\SheepFood.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -489,6 +519,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\client\gui\wt\core\WtBaseframe.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\core\WtButton.java</path>
 				<source>true</source>
 			</fileitem>
@@ -506,10 +540,6 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\gui\wt\core\WtDropTarget.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\client\gui\wt\core\WtFrame.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -566,6 +596,30 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\client\events\ZoneChangeEvent.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\sound\AmbientSound.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\sound\AmbientStore.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\sound\AudioClip.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\sound\ClipRunner.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\sound\SoundCycle.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\client\sound\SoundSystem.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -649,6 +703,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\entity\PlantGrower.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\entity\Player.java</path>
 				<source>true</source>
 			</fileitem>
@@ -678,6 +736,14 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\entity\npc\NPC.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\npc\NPCList.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\entity\npc\ShopList.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -733,6 +799,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\server\maps\Ados.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\server\maps\Afterlife.java</path>
 				<source>true</source>
 			</fileitem>
@@ -753,19 +823,11 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
-				<path>src\games\stendhal\server\maps\NPCList.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
 				<path>src\games\stendhal\server\maps\Orril.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\maps\Semos.java</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>src\games\stendhal\server\maps\ShopList.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -838,6 +900,14 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\server\maps\quests\SheepGrowing.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\WeaponsCollector.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\server\maps\quests\ZooFood.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
@@ -1069,6 +1139,10 @@
 				<source>true</source>
 			</fileitem>
 			<fileitem>
+				<path>src\games\stendhal\tools\CheckSounds.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
 				<path>src\games\stendhal\tools\GenerateBestiaryAndItems.java</path>
 				<source>true</source>
 			</fileitem>
@@ -1082,6 +1156,30 @@
 			</fileitem>
 			<fileitem>
 				<path>src\games\stendhal\tools\tiled\StendhalMapWriter.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\test\ImageBorder.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\test\SButton.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\test\SInternalFrame.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\test\SLabel.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\test\SwingUtils.java</path>
+				<source>true</source>
+			</fileitem>
+			<fileitem>
+				<path>src\games\stendhal\test\Test.java</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
