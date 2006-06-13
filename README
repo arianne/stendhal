@@ -53,7 +53,7 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
-0.50 May XX, 2006
+0.50 June 13, 2006
 - Fixed MacOS display and focus bug.
 - Added magic scrolls.
 - Added banker NPC "Dagobert" with new quest.
@@ -72,6 +72,7 @@ No warranties. But let us know if it doesn't work.
 - Added hermit NPC "Balduin" with new quest.
 - Added wildlife habitat with two new NPCs and a new quest
 - Made the arandula herb grow on the ground instead of in a chest
+- Added mushrooms which grow on the ground
 0.48 Apr 31, 2006
 - Added jail command
 - Added protection zone around Semos
