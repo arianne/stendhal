@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import games.stendhal.client.stendhal;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
