@@ -35,8 +35,6 @@ public class SellerBehaviour extends MerchantBehaviour {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Behaviours.class);
 
-	protected StendhalRPWorld world;
-	
 	/**
 	 * Creates a new SellerBehaviour with an empty pricelist.
 	 * @param world the world

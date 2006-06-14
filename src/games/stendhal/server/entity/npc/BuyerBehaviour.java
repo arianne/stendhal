@@ -27,8 +27,7 @@ import marauroa.common.game.RPSlot;
  * from a player.
  */
 public class BuyerBehaviour extends MerchantBehaviour {
-	protected StendhalRPWorld world;
-	
+
 	public BuyerBehaviour(StendhalRPWorld world, Map<String, Integer> priceList) {
 		super(world, priceList);
 	}
