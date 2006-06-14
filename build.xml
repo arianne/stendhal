@@ -9,7 +9,7 @@
     <replaceregexp file="${src}/games/stendhal/common/Debug.java"
                    match="public static final String VERSION=&quot;.*&quot;;"
                    replace="public static final String VERSION=&quot;${version}&quot;;"
-                   byline="true"/>  
+                   byline="true"/>
   </target>
 
   <target name="clean">
@@ -83,6 +83,7 @@
         <pathelement path="${marauroa_jar}"/>
         <pathelement path="${log4j_jar}"/>
         <pathelement path="${groovy_jar}"/>
+        <pathelement path="${simple_jar}"/>
       </classpath>    
     </javac>
 
