@@ -14,20 +14,20 @@ package games.stendhal.server;
 
 import games.stendhal.common.Pair;
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.Administration;
-import games.stendhal.server.actions.Attack;
-import games.stendhal.server.actions.Buddy;
-import games.stendhal.server.actions.Chat;
-import games.stendhal.server.actions.Displace;
-import games.stendhal.server.actions.Equipment;
-import games.stendhal.server.actions.Face;
-import games.stendhal.server.actions.Look;
-import games.stendhal.server.actions.Move;
-import games.stendhal.server.actions.Outfit;
-import games.stendhal.server.actions.Own;
+import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.actions.AttackAction;
+import games.stendhal.server.actions.BuddyAction;
+import games.stendhal.server.actions.ChatAction;
+import games.stendhal.server.actions.DisplaceAction;
+import games.stendhal.server.actions.EquipmentAction;
+import games.stendhal.server.actions.FaceAction;
+import games.stendhal.server.actions.LookAction;
+import games.stendhal.server.actions.MoveAction;
+import games.stendhal.server.actions.OutfitAction;
+import games.stendhal.server.actions.OwnAction;
 import games.stendhal.server.actions.PlayersQuery;
-import games.stendhal.server.actions.Stop;
-import games.stendhal.server.actions.Use;
+import games.stendhal.server.actions.StopAction;
+import games.stendhal.server.actions.UseAction;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Door;
 import games.stendhal.server.entity.Entity;
@@ -100,20 +100,20 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private void registerActions() {
-		Administration.register();
-		Attack.register();
-		Buddy.register();
-		Chat.register();
-		Displace.register();
-		Equipment.register();
-		Face.register();
-		Look.register();
-		Move.register();
-		Outfit.register();
-		Own.register();
+		AdministrationAction.register();
+		AttackAction.register();
+		BuddyAction.register();
+		ChatAction.register();
+		DisplaceAction.register();
+		EquipmentAction.register();
+		FaceAction.register();
+		LookAction.register();
+		MoveAction.register();
+		OutfitAction.register();
+		OwnAction.register();
 		PlayersQuery.register();
-		Stop.register();
-		Use.register();
+		StopAction.register();
+		UseAction.register();
 	}
 
 	public StendhalRPRuleProcessor() {

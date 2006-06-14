@@ -4,7 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.actions.Administration;
+import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.OneWayPortal;
@@ -1018,7 +1018,7 @@ public class Semos implements IContent {
 					new SpeakerNPC.ChatAction() {
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
-							if (Administration.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
+							if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
 								for (String quest : player.getQuests()) {
 									player.removeQuest(quest);
 								}

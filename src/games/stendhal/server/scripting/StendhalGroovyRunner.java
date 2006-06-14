@@ -3,7 +3,7 @@ package games.stendhal.server.scripting;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalServerExtension;
-import games.stendhal.server.actions.Administration;
+import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Player;
 
 import java.io.File;
@@ -77,7 +77,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 
 		System.out.println("onScript " + action);
 
-		if (!Administration.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
+		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
 			return;
 		}
 

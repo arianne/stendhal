@@ -16,7 +16,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.actions.Administration;
+import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
@@ -507,7 +507,7 @@ public class Player extends RPEntity {
 		boolean is = adminNames.contains(getName());
 
 		if (is) {
-			put("adminlevel", Administration.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
+			put("adminlevel", AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
 		} else {
 			if (!has("adminlevel")) {
 				put("adminlevel", "0");
