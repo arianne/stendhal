@@ -621,8 +621,9 @@ public abstract class RPEntity extends Entity {
 	 **************************************************************************/
 
 	/**
-	 * tries to equip the item in the appropriate slot. returns true if the item
-	 * can be equipped, else false
+	 * Tries to equip an item in the appropriate slot.
+	 * @param item the item
+	 * @return true if the item can be equipped, else false
 	 */
 	public boolean equip(Item item) {
 		ActionManager manager = world.getRuleManager().getActionManager();
@@ -636,9 +637,15 @@ public abstract class RPEntity extends Entity {
 		return false;
 	}
 
-	public boolean equip(String name, Item item) {
-		if (hasSlot(name)) {
-			RPSlot slot = getSlot(name);
+	/**
+	 * Tries to equip one unit of an item in the given slot.
+	 * @param slotName the name of the slot
+	 * @param item the item
+	 * @return true if the item can be equipped, else false
+	 */
+	public boolean equip(String slotName, Item item) {
+		if (hasSlot(slotName)) {
+			RPSlot slot = getSlot(slotName);
 			if (slot.isFull()) {
 				slot.add(item);
 				return true;
