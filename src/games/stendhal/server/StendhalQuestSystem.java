@@ -9,9 +9,9 @@ public class StendhalQuestSystem {
 	private static final Logger logger = Log4J
 			.getLogger(StendhalQuestSystem.class);
 
-	StendhalRPWorld world;
+	private StendhalRPWorld world;
 
-	StendhalRPRuleProcessor rules;
+	private StendhalRPRuleProcessor rules;
 
 	public StendhalQuestSystem(StendhalRPWorld world,
 			StendhalRPRuleProcessor rules) {
@@ -59,7 +59,7 @@ public class StendhalQuestSystem {
 			}
 
 			if (implementsIQuest == false) {
-				logger.debug("Class don't implement IQuest interface.");
+				logger.debug("Class doesn't implement IQuest interface.");
 				return false;
 			}
 
