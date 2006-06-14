@@ -18,7 +18,6 @@ import games.stendhal.server.rule.ActionManager;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject;
 import java.util.List;
-import java.util.Iterator;
 
 import games.stendhal.server.entity.item.Stackable;
 
@@ -55,16 +54,35 @@ public class DefaultActionManager implements ActionManager {
 	 */
 	public String canEquip(RPEntity entity, Item item) {
 		// get all possible slots for this item
-		List<String> slots = item.getPossibleSlots();
+		List<String> slotNames = item.getPossibleSlots();
 
-		for (String slot : slots) {
+		if (item instanceof Stackable) {
+			// first try to put the item on an existing stack 
+			Stackable stackEntity = (Stackable) item;
+			for (String slotName : slotNames) {
+				if (entity.hasSlot(slotName)) {
+					RPSlot rpslot = entity.getSlot(slotName);
+					for (RPObject object : rpslot) {
+						if (object instanceof Stackable) {
+							// found another stackable
+							Stackable other = (Stackable) object;
+							if (other.isStackable(stackEntity)) {
+								return slotName;
+							}
+						}
+					}
+				}
+			}
+		}
+		// We can't stack it on another item. Check if we can simply
+		// add it to an empty cell.
+		for (String slot : slotNames) {
 			if (entity.hasSlot(slot)) {
 				RPSlot rpslot = entity.getSlot(slot);
 				if (!rpslot.isFull()) {
 					return slot;
 				}
 			}
-
 		}
 		return null;
 	}
@@ -88,29 +106,21 @@ public class DefaultActionManager implements ActionManager {
 		if (item instanceof Stackable) {
 			Stackable stackEntity = (Stackable) item;
 			// find a stackable item of the same type
-			Iterator<RPObject> it = rpslot.iterator();
-			while (it.hasNext()) {
-				RPObject object = it.next();
+			for (RPObject object : rpslot) {
 				if (object instanceof Stackable) {
 					// found another stackable
 					Stackable other = (Stackable) object;
 					if (other.isStackable(stackEntity)) {
 						// other is the same type...merge them
 						other.add(stackEntity);
-						item = null; // do not process the entity further
-						break;
+						return true;
 					}
 				}
 			}
 		}
-
-		// entity still there?
-		if (item != null) {
-			// yep, so it is stacked. simplay add it
-			rpslot.assignValidID(item);
-			rpslot.add(item);
-		}
-
+		// Simply add it
+		rpslot.assignValidID(item);
+		rpslot.add(item);
 		return true;
 	}
 
