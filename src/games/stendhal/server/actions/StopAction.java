@@ -20,11 +20,11 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
-public class Stop extends ActionListener {
-	private static final Logger logger = Log4J.getLogger(Stop.class);
+public class StopAction extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(StopAction.class);
 
 	public static void register() {
-		StendhalRPRuleProcessor.register("stop", new Stop());
+		StendhalRPRuleProcessor.register("stop", new StopAction());
 	}
 
 	@Override

@@ -54,8 +54,8 @@ import org.apache.log4j.Logger;
  *    x            - the x-coordinate on the ground  
  *    y            - the y-coordinate on the ground  
  */
-public class Equipment extends ActionListener {
-	private static final Logger logger = Log4J.getLogger(Equipment.class);
+public class EquipmentAction extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(EquipmentAction.class);
 
 	private static final String BASE_ITEM = "baseitem";
 
@@ -87,13 +87,13 @@ public class Equipment extends ActionListener {
 	private List<Class> validContainerClassesList;
 
 	public static void register() {
-		Equipment equip = new Equipment();
+		EquipmentAction equip = new EquipmentAction();
 		StendhalRPRuleProcessor.register("equip", equip);
 		StendhalRPRuleProcessor.register("drop", equip);
 	}
 
 	/** constuctor */
-	public Equipment() {
+	public EquipmentAction() {
 		validContainerClassesList = Arrays.asList(validContainerClasses);
 	}
 

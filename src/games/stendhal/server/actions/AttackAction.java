@@ -14,8 +14,8 @@ package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.RPEntity;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
@@ -24,58 +24,68 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
-public class Displace extends ActionListener {
-	private static final Logger logger = Log4J.getLogger(Displace.class);
+public class AttackAction extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(AttackAction.class);
 
 	public static void register() {
-		StendhalRPRuleProcessor.register("displace", new Displace());
+		StendhalRPRuleProcessor.register("attack", new AttackAction());
 	}
 
 	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
-		Log4J.startMethod(logger, "displace");
-		if (action.has("baseitem")) {
-			int targetObject = action.getInt("baseitem");
+		Log4J.startMethod(logger, "attack");
+		if (action.has("target")) {
+			int targetObject = action.getInt("target");
 
 			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
 					.getID());
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
-				if (object instanceof RPEntity) /** Player, Creatures and NPCs */
+
+				if (object instanceof RPEntity) // Disabled Player
 				{
 					RPEntity entity = (RPEntity) object;
-					if (player.nextto(entity, 0.25)) {
-						if (action.has("x") && action.has("y")) {
-							// int x=action.getInt("x");
-							// int y=action.getInt("y");
 
-							/** TODO: Code displace here */
+					if (!player.equals(entity)) {
+						// Disable attacking NPCS.
+						// Just make sure no creature is instanceof
+						// SpeakerNPC...
+						if (entity instanceof SpeakerNPC) {
+							logger.info("REJECTED. " + player.getName()
+									+ " is attacking " + entity.getName());
+							return;
 						}
-					}
-				} else if (object instanceof PassiveEntity) {
-					if (action.has("x") && action.has("y")) {
-						int x = action.getInt("x");
-						int y = action.getInt("y");
 
-						PassiveEntity entity = (PassiveEntity) object;
+						// Enabled PVP
+						if (entity instanceof Player) {
+							if (zone.isInProtectionArea(entity)) {
+								logger.info("REJECTED. " + entity.getName()
+										+ " is in a protection zone");
+								player
+										.setPrivateText("You can't attack "
+												+ entity.getName()
+												+ " because he/she is in a protection area.");
+								rules.removePlayerText(player);
+								return;
+							}
 
-						if (player.nextto(entity, 0.25)
-								&& player.distance(x, y) < 8 * 8
-								&& !zone.simpleCollides(entity, x, y)) {
-							rules.addGameEvent(player.getName(), "displace",
-									entity.get("type"));
-
-							entity.setx(x);
-							entity.sety(y);
-							world.modify(entity);
+							logger.info(player.getName() + " is attacking "
+									+ entity.getName());
 						}
+
+						rules.addGameEvent(player.getName(), "attack", entity
+								.getName());
+
+						player.attack(entity);
+						player.faceto(entity);
+						world.modify(player);
 					}
 				}
 			}
 		}
 
-		Log4J.finishMethod(logger, "displace");
+		Log4J.finishMethod(logger, "attack");
 	}
 }

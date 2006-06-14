@@ -43,8 +43,8 @@ import org.apache.log4j.Logger;
 /**
  * Most /commands for admins are handled here. 
  */
-public class Administration extends ActionListener {
-	private static final Logger logger = Log4J.getLogger(Administration.class);
+public class AdministrationAction extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(AdministrationAction.class);
 
 	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPPORT = 100;
 	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPER = 5000;
@@ -52,7 +52,7 @@ public class Administration extends ActionListener {
 	private static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
 	
 	public static void register() {
-		Administration administration = new Administration();
+		AdministrationAction administration = new AdministrationAction();
 		StendhalRPRuleProcessor.register("inspect", administration);
 		StendhalRPRuleProcessor.register("destroy", administration);
 		StendhalRPRuleProcessor.register("tellall", administration);

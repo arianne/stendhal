@@ -22,11 +22,11 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
-public class Buddy extends ActionListener {
-	private static final Logger logger = Log4J.getLogger(Buddy.class);
+public class BuddyAction extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(BuddyAction.class);
 
 	public static void register() {
-		Buddy buddy = new Buddy();
+		BuddyAction buddy = new BuddyAction();
 		StendhalRPRuleProcessor.register("addbuddy", buddy);
 		StendhalRPRuleProcessor.register("removebuddy", buddy);
 	}

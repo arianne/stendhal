@@ -20,11 +20,11 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
-public class Chat extends ActionListener {
-	private static final Logger logger = Log4J.getLogger(Chat.class);
+public class ChatAction extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(ChatAction.class);
 
 	public static void register() {
-		Chat chat = new Chat();
+		ChatAction chat = new ChatAction();
 		StendhalRPRuleProcessor.register("chat", chat);
 		StendhalRPRuleProcessor.register("tell", chat);
 		StendhalRPRuleProcessor.register("support", chat);
@@ -95,7 +95,7 @@ public class Chat extends ActionListener {
 
 			boolean found = false;
 			for (Player p : rules.getPlayers()) {
-				if (p.getAdminLevel() >= Administration.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
+				if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
 					p.setPrivateText(message);
 					world.modify(p);
 					rules.removePlayerText(p);

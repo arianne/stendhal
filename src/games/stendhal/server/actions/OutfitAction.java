@@ -12,34 +12,33 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.Player;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPAction;
+import marauroa.server.game.RPWorld;
+
 import org.apache.log4j.Logger;
 
-import marauroa.common.game.*;
-import marauroa.server.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
-
-import marauroa.common.Log4J;
-
-public class Face extends ActionListener {
-	private static final Logger logger = Log4J.getLogger(Face.class);
+public class OutfitAction extends ActionListener {
+	private static final Logger logger = Log4J.getLogger(OutfitAction.class);
 
 	public static void register() {
-		StendhalRPRuleProcessor.register("face", new Face());
+		StendhalRPRuleProcessor.register("outfit", new OutfitAction());
 	}
 
 	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
-		Log4J.startMethod(logger, "face");
+		Log4J.startMethod(logger, "outfit");
 
-		if (action.has("dir")) {
-			player.stop();
-			player.setDirection(Direction.build(action.getInt("dir")));
+		if (action.has("value")) {
+			rules.addGameEvent(player.getName(), "outfit", action.get("value"));
+
+			player.put("outfit", action.get("value"));
 			world.modify(player);
 		}
 
-		Log4J.finishMethod(logger, "face");
+		Log4J.finishMethod(logger, "outfit");
 	}
 }
