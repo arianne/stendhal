@@ -18,7 +18,6 @@ import games.stendhal.server.entity.item.Money;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -27,63 +26,15 @@ import marauroa.common.game.RPSlot;
  * Represents the behaviour of a NPC who is able to buy items
  * from a player.
  */
-public class BuyerBehaviour {
+public class BuyerBehaviour extends MerchantBehaviour {
 	protected StendhalRPWorld world;
 	
-	protected Map<String, Integer> priceList;
-
-	protected String chosenItem;
-	
-	protected int amount = 0;
-
 	public BuyerBehaviour(StendhalRPWorld world, Map<String, Integer> priceList) {
-		this.priceList = priceList;
+		super(world, priceList);
 	}
 
-	/**
-	 * Returns a set of the names of all items that the NPC buys.
-	 * @return the accepted items
-	 */
-	public Set<String> acceptedItems() {
-		return priceList.keySet();
-	}
-
-	/**
-	 * Checks whether the NPC buys the specified item.
-	 * @param item the name of the item
-	 * @return true iff the NPC buys the item
-	 */
-	public boolean hasItem(String item) {
-		return priceList.containsKey(item);
-	}
-
-	/**
-	 * Returns the price of one unit of a given item.
-	 * @param item the name of the item
-	 * @return the unit price
-	 */
-	protected int getUnitPrice(String item) {
-		return priceList.get(item);
-	}
-
-	public void setAmount(String text) {
-		try {
-			amount = Integer.parseInt(text);
-		} catch (Exception e) {
-			amount = 1;
-		}
-	}
-
-	protected int getCharge(Player player) {
-		if (chosenItem == null) {
-			return 0;
-		} else {
-			return amount * getUnitPrice(chosenItem);
-		}
-	}
-	
 	// TODO: create RPEntity.equip() with amount parameter.
-	public void payPlayer(Player player) {
+	protected void payPlayer(Player player) {
 		boolean found = false;
 		Iterator<RPSlot> it = player.slotsIterator();
 		// First try to stack the money on existing money
@@ -104,10 +55,21 @@ public class BuyerBehaviour {
 			slot.assignValidID(money);
 			slot.add(money);
 		}
+		// TODO: if the player can't equip the money, he probably gets nothing.
+		// Put money on ground in this case. Better: create RPEntity.equip()
+		// with amount parameter and boolean parameter to put stuff on ground. 
 		world.modify(player);
 	}
 
-	public boolean onBuy(SpeakerNPC seller, Player player) {
+	/**
+	 * Transacts the deal that has been agreed on earlier via
+	 * setChosenItem() and setAmount().
+	 * @param seller The NPC who buys
+	 * @param player The player who sells
+	 * @return true iff the transaction was successful, that is when the
+	 *              player has the item(s).
+	 */
+	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 		if (player.drop(chosenItem, amount)) {
 			payPlayer(player);
 			seller.say("Thanks! Here is your money.");

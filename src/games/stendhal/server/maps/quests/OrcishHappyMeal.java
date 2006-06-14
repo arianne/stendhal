@@ -67,7 +67,7 @@ public class OrcishHappyMeal implements IQuest {
 					}
 
 					@Override
-					public boolean onBuy(SpeakerNPC seller, Player player) {
+					public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 						// amount is currently ignored.
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) world.get(player.getSheep());

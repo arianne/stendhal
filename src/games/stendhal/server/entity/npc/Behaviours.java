@@ -198,7 +198,7 @@ public class Behaviours {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I sell " + enumerateCollection(behaviour.offeredItems()) + ".",
+					"I sell " + enumerateCollection(behaviour.dealtItems()) + ".",
 					null);
 		}
 
@@ -257,7 +257,7 @@ public class Behaviours {
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 		
-						sellerBehaviour.transactAgreedSale(engine, player);
+						sellerBehaviour.transactAgreedDeal(engine, player);
 					}
 				});
 
@@ -281,7 +281,7 @@ public class Behaviours {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I buy " + enumerateCollection(behaviour.acceptedItems()) + ".",
+					"I buy " + enumerateCollection(behaviour.dealtItems()) + ".",
 					null);
 		}
 
@@ -333,7 +333,7 @@ public class Behaviours {
 						logger.debug("Buying something from player "
 								+ player.getName());
 		
-						buyerBehaviour.onBuy(engine, player);
+						buyerBehaviour.transactAgreedDeal(engine, player);
 					}
 				});
 

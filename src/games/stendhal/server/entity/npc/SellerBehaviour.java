@@ -20,7 +20,6 @@ import games.stendhal.server.rule.EntityManager;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -31,78 +30,27 @@ import marauroa.common.game.IRPZone;
  * Represents the behaviour of a NPC who is able to sell items
  * to a player.
  */
-public class SellerBehaviour {
+public class SellerBehaviour extends MerchantBehaviour {
 	
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Behaviours.class);
 
 	protected StendhalRPWorld world;
 	
-	protected Map<String, Integer> priceList;
-
-	protected String chosenItem;
-
-	protected int amount;
-
+	/**
+	 * Creates a new SellerBehaviour with an empty pricelist.
+	 * @param world the world
+	 */
 	public SellerBehaviour(StendhalRPWorld world) {
-		this(world, new HashMap<String, Integer>());
+		super(world, new HashMap<String, Integer>());
 	}
 
+	/**
+	 * Creates a new SellerBehaviour with a pricelist.
+	 * @param world the world
+	 */
 	public SellerBehaviour(StendhalRPWorld world, Map<String, Integer> priceList) {
-		this.world = world;
-		this.priceList = priceList;
-	}
-
-	/**
-	 * Returns a set of the names of all items that the NPC sells.
-	 * @return the offered items
-	 */
-	public Set<String> offeredItems() {
-		return priceList.keySet();
-	}
-
-	/**
-	 * Checks whether the NPC sells the specified item.
-	 * @param item the name of the item
-	 * @return true iff the NPC sells the item
-	 */
-	public boolean hasItem(String item) {
-		return priceList.containsKey(item);
-	}
-
-	/**
-	 * Returns the price of one unit of a given item.
-	 * @param item the name of the item
-	 * @return the unit price
-	 */
-	protected int getUnitPrice(String item) {
-		return priceList.get(item);
-	}
-
-	/**
-	 * Sets the amount that the player wants to buy from the NPC.
-	 * @param text a String containing an integer number. If it isn't an
-	 *             integer, the amount will be set to 1.
-	 */
-	public void setAmount(String text) {
-		try {
-			amount = Integer.parseInt(text);
-		} catch (Exception e) {
-			amount = 1;
-		}
-	}
-
-	/**
-	 * Returns the price of the desired amount of the chosen item.
-	 * @param player The player who considers buying
-	 * @return The price; 0 if no item was chosen or if the amount is 0.
-	 */
-	protected int getCharge(Player player) {
-		if (chosenItem == null) {
-			return 0;
-		} else {
-			return amount * getUnitPrice(chosenItem);
-		}
+		super(world, priceList);
 	}
 
 	/**
@@ -113,7 +61,7 @@ public class SellerBehaviour {
 	 * @return true iff the transaction was successful, that is when the
 	 *              player was able to equip the item(s).
 	 */
-	protected boolean transactAgreedSale(SpeakerNPC seller, Player player) {
+	protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 		EntityManager manager = world.getRuleManager().getEntityManager();
 
 		Item item = manager.getItem(chosenItem);

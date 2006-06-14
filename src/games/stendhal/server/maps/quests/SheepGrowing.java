@@ -27,9 +27,9 @@ import java.util.*;
  * - Sato
  *
  * STEPS:
- * - Buy a sheep from Nishiya in Village
+ * - Buy a sheep from Nishiya in Semos village
  * - Grow sheep in plains
- * - Sell sheep to Sato in City
+ * - Sell sheep to Sato in Semos city
  *
  * REWARD:
  * - You get the weight of the sheep * 5 in gold coins.
@@ -67,7 +67,7 @@ public class SheepGrowing implements IQuest {
 					}
 
 					@Override
-					protected boolean transactAgreedSale(SpeakerNPC seller, Player player) {
+					protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 						if (!player.hasSheep()) {
 							if (! player.drop("money", getCharge(player))) {
 								seller.say("A real pity! You don't have enough money!");
@@ -172,7 +172,7 @@ public class SheepGrowing implements IQuest {
 					}
 					
 					@Override
-					public boolean onBuy(SpeakerNPC seller, Player player) {
+					public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 						// amount is currently ignored.
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) world.get(player.getSheep());
