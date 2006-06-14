@@ -15,17 +15,13 @@ package games.stendhal.server.entity.item;
 import java.util.Map;
 
 public class Money extends StackableItem {
-	private int quantity;
-
 	public Money(Map<String, String> attributes) {
 		super("money", "money", "gold", attributes);
 	}
 
 	public Money(int quantity) {
 		super("money", "money", "gold", null);
-		put("quantity", quantity);
-
-		this.quantity = quantity;
+		setQuantity(quantity);
 	}
 
 	@Override
