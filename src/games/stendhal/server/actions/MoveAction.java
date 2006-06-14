@@ -57,7 +57,14 @@ public class MoveAction extends ActionListener {
 		}
 
 		if (action.has("dir")) {
-			player.setDirection(Direction.build(action.getInt("dir")));
+			
+			Direction direction = Direction.build(action.getInt("dir"));
+			// as an effect of the poisoning, the player's controls
+			// are switched to make it difficult to navigate.
+			if (player.isPoisoned()) {
+				direction = direction.oppositeDirection();
+			}
+			player.setDirection(direction);
 			player.setSpeed(1);
 		}
 
