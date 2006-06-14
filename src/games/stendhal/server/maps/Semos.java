@@ -13,8 +13,10 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
@@ -366,7 +368,7 @@ public class Semos implements IContent {
 				Behaviours.addJob(this,
 								  "I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
 				Behaviours.addSeller(this,
-						new Behaviours.SellerBehaviour(shops.get("scrolls")));
+						new SellerBehaviour(world, shops.get("scrolls")));
 				
 				add(ConversationStates.ATTENDING,
 					Behaviours.QUEST_MESSAGES,
@@ -467,8 +469,8 @@ public class Semos implements IContent {
 						"I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
 				Behaviours.addHelp(this,
 						"Ask me to #heal you and I will help you or ask me #offer and I will show my shop's stuff.");
-				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
-						.get("healing")));
+				Behaviours.addSeller(this, new SellerBehaviour(world, 
+						shops.get("healing")));
 				Behaviours.addHealer(this, 0);
 				Behaviours.addGoodbye(this);
 			}
@@ -594,8 +596,8 @@ public class Semos implements IContent {
 						"I am the bar maid for this fair tavern. We sell fine beers and food.");
 				Behaviours.addHelp(this,
 						"At the tavern you can get an #offer of drinks and take a break to meet new people!");
-				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
-						.get("food&drinks")));
+				Behaviours.addSeller(this, new SellerBehaviour(world,
+						shops.get("food&drinks")));
 				Behaviours.addGoodbye(this);
 			}
 		};
@@ -620,10 +622,10 @@ public class Semos implements IContent {
 				Behaviours.addJob(this, "Shhh! I sell adventurers stuff.");
 				Behaviours.addHelp(this,
 						"I buy and sell several items, ask me for my offer");
-				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
-						.get("sellstuff")), false);
-				Behaviours.addBuyer(this, new Behaviours.BuyerBehaviour(shops
-						.get("buystuff")), false);
+				Behaviours.addSeller(this, new SellerBehaviour(world,
+						shops.get("sellstuff")), false);
+				Behaviours.addBuyer(this, new BuyerBehaviour(world,
+						shops.get("buystuff")), false);
 				add(ConversationStates.ATTENDING,
 					"offer",
 					null,
@@ -669,8 +671,8 @@ public class Semos implements IContent {
 				Behaviours.addJob(this, "I sell bows and arrows stuff.");
 				Behaviours.addHelp(this,
 						"I sell several items, ask me for my #offer");
-				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
-						.get("sellrangedstuff")));
+				Behaviours.addSeller(this, new SellerBehaviour(world,
+						shops.get("sellrangedstuff")));
 				Behaviours.addGoodbye(this);
 			}
 		};
@@ -1049,8 +1051,8 @@ public class Semos implements IContent {
 								  "I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
 				Behaviours.addHelp(this,
 								   "Ask me to #heal you and I will help you or ask me for an #offer and I will show my shop's stuff.");
-				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
-						.get("healing")));
+				Behaviours.addSeller(this, new SellerBehaviour(world,
+						shops.get("healing")));
 				Behaviours.addHealer(this, 0);
 				Behaviours.addGoodbye(this);
 			}

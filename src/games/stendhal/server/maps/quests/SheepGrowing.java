@@ -7,7 +7,9 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import games.stendhal.server.entity.Player;
@@ -59,9 +61,9 @@ public class SheepGrowing implements IQuest {
 			}
 
 			protected void createDialog() {
-				class SheepSellerBehaviour extends Behaviours.SellerBehaviour {
-					SheepSellerBehaviour(Map<String, Integer> items) {
-						super(items);
+				class SheepSellerBehaviour extends SellerBehaviour {
+					SheepSellerBehaviour(StendhalRPWorld world, Map<String, Integer> items) {
+						super(world, items);
 					}
 
 					@Override
@@ -103,7 +105,7 @@ public class SheepGrowing implements IQuest {
 						this,
 						"I just sell sheeps. Just tell me #buy #sheep and I will sell you a nice sheep! Ask me how to take #care of her, how to #travel with her, how to #sell her or how to #own a wild sheep.");
 				Behaviours.addGoodbye(this);
-				Behaviours.addSeller(this, new SheepSellerBehaviour(items));
+				Behaviours.addSeller(this, new SheepSellerBehaviour(world, items));
 				Behaviours.addReply(
 						this,
 						"care",
@@ -154,9 +156,9 @@ public class SheepGrowing implements IQuest {
 			}
 
 			protected void createDialog() {
-				class SheepBuyerBehaviour extends Behaviours.BuyerBehaviour {
-					SheepBuyerBehaviour(Map<String, Integer> items) {
-						super(items);
+				class SheepBuyerBehaviour extends BuyerBehaviour {
+					SheepBuyerBehaviour(StendhalRPWorld world, Map<String, Integer> items) {
+						super(world, items);
 					}
 
 					@Override
@@ -205,7 +207,7 @@ public class SheepGrowing implements IQuest {
 				Behaviours
 						.addHelp(this,
 								"I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!.");
-				Behaviours.addBuyer(this, new SheepBuyerBehaviour(buyitems));
+				Behaviours.addBuyer(this, new SheepBuyerBehaviour(world, buyitems));
 				Behaviours.addGoodbye(this);
 			}
 		};

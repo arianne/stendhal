@@ -1,18 +1,28 @@
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 package games.stendhal.server.entity.npc;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.Iterator;
-import java.util.List;
-import games.stendhal.server.*;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.rule.*;
-import marauroa.common.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
+
+import java.util.Collection;
+import java.util.List;
+
+import marauroa.common.Log4J;
+import marauroa.server.game.RPServerManager;
+import marauroa.server.game.RPWorld;
+
 import org.apache.log4j.Logger;
 
 public class Behaviours {
@@ -175,113 +185,20 @@ public class Behaviours {
 				null);
 	}
 
-	public static class SellerBehaviour {
-		protected Map<String, Integer> priceList;
-
-		protected String chosenItem;
-
-		protected int amount;
-
-		public SellerBehaviour() {
-			this.priceList = new HashMap<String, Integer>();
-		}
-
-		public SellerBehaviour(Map<String, Integer> priceList) {
-			this.priceList = priceList;
-		}
-
-		private Set<String> getPriceList() {
-			return priceList.keySet();
-		}
-
-		private boolean hasItem(String item) {
-			return priceList.containsKey(item);
-		}
-
-		protected int getUnitPrice(String item) {
-			return priceList.get(item);
-		}
-
-		private void setAmount(String text) {
-			try {
-				amount = Integer.parseInt(text);
-			} catch (Exception e) {
-				amount = 1;
-			}
-		}
-
-		/**
-		 * Returns the price of the desired amount of the chosen item.
-		 * @param player The player who considers buying
-		 * @return The price; 0 if no item was chosen or if the amount is 0.
-		 */
-		protected int getCharge(Player player) {
-			if (chosenItem == null) {
-				return 0;
-			} else {
-				return amount * getUnitPrice(chosenItem);
-			}
-		}
-
-		/**
-		 * Transacts the sale that has been agreed on earlier via
-		 * setChosenItem() and setAmount().
-		 * @param seller The NPC who sells
-		 * @param player The player who buys
-		 * @return true iff the transaction was successful, that is when the
-		 *              player was able to equip the item(s).
-		 */
-		protected boolean transactAgreedSale(SpeakerNPC seller, Player player) {
-			EntityManager manager = world.getRuleManager().getEntityManager();
-
-			Item item = manager.getItem(chosenItem);
-			if (item == null) {
-				logger.error("Trying to sell an unexisting item: " + chosenItem);
-				return false;
-			}
-
-			// TODO: When the user tries to buy several of a non-stackable
-			// item, he is forced to buy only one.
-			if (item instanceof StackableItem) {
-				((StackableItem) item).setQuantity(amount);
-			} else {
-				amount = 1;
-			}
-
-			item.put("zoneid", player.get("zoneid"));
-			IRPZone zone = world.getRPZone(player.getID());
-			zone.assignRPObjectID(item);
-
-			if (player.isEquipped("money", getCharge(player))) {
-				if (player.equip(item)) {
-					player.drop("money", getCharge(player));
-					seller.say("Congratulations! Here is your " + chosenItem + "!");
-					return true;
-				} else {
-					seller.say("Sorry, but you cannot equip the " + chosenItem + ".");
-					return false;
-				}
-			} else {
-				seller.say("A real pity! You don't have enough money!");
-				return false;
-			}
-		}
+	public static void addSeller(SpeakerNPC npc, SellerBehaviour behaviour) {
+		addSeller(npc, behaviour, true);
 	}
 
-	public static void addSeller(SpeakerNPC npc, SellerBehaviour items) {
-		addSeller(npc, items, true);
-	}
-
-	public static void addSeller(SpeakerNPC npc, SellerBehaviour items,
+	public static void addSeller(SpeakerNPC npc, SellerBehaviour behaviour,
 			boolean offer) {
-		npc.setBehaviourData("seller", items);
+		npc.setBehaviourData("seller", behaviour);
 
 		if (offer) {
 			npc.add(ConversationStates.ATTENDING,
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I sell " + enumerateCollection(items.getPriceList()) + ".",
+					"I sell " + enumerateCollection(behaviour.getPriceList()) + ".",
 					null);
 		}
 
@@ -351,96 +268,20 @@ public class Behaviours {
 				null);
 	}
 
-	public static class BuyerBehaviour {
-		protected Map<String, Integer> priceList;
-
-		protected String chosenItem;
-		
-		protected int amount = 0;
-
-		public BuyerBehaviour(Map<String, Integer> priceList) {
-			this.priceList = priceList;
-		}
-
-		private Set<String> getPriceList() {
-			return priceList.keySet();
-		}
-
-		private boolean hasItem(String item) {
-			return priceList.containsKey(item);
-		}
-
-		protected int getUnitPrice(String item) {
-			return priceList.get(item);
-		}
-
-		private void setAmount(String text) {
-			try {
-				amount = Integer.parseInt(text);
-			} catch (Exception e) {
-				amount = 1;
-			}
-		}
-
-		protected int getCharge(Player player) {
-			if (chosenItem == null) {
-				return 0;
-			} else {
-				return amount * getUnitPrice(chosenItem);
-			}
-		}
-		
-		// TODO: create RPEntity.equip() with amount parameter.
-		public void payPlayer(Player player) {
-			boolean found = false;
-			Iterator<RPSlot> it = player.slotsIterator();
-			// First try to stack the money on existing money
-			while (it.hasNext() && !found) {
-				RPSlot slot = it.next();
-				for (RPObject object: slot) {
-					if (object instanceof Money) {
-						((Money) object).add(getCharge(player));
-						found = true;
-						break;
-					}
-				}
-			}
-			if (!found) {
-				// The player has no money. Put the money into an empty slot.  
-				RPSlot slot = player.getSlot("bag");
-				Money money = new Money(getCharge(player));
-				slot.assignValidID(money);
-				slot.add(money);
-			}
-			world.modify(player);
-		}
-
-		public boolean onBuy(SpeakerNPC seller, Player player) {
-			if (player.drop(chosenItem, amount)) {
-				payPlayer(player);
-				seller.say("Thanks! Here is your money.");
-				return true;
-			} else {
-				seller.say("Sorry! You don't have enough " + chosenItem + ".");
-				return false;
-			}
-		}
+	public static void addBuyer(SpeakerNPC npc, BuyerBehaviour behaviour) {
+		addBuyer(npc, behaviour, true);
 	}
 
-	public static void addBuyer(SpeakerNPC npc, BuyerBehaviour items) {
-		addBuyer(npc, items, true);
-	}
-
-	public static void addBuyer(SpeakerNPC npc, BuyerBehaviour items,
+	public static void addBuyer(SpeakerNPC npc, BuyerBehaviour behaviour,
 			boolean offer) {
-		npc.setBehaviourData("buyer", items);
+		npc.setBehaviourData("buyer", behaviour);
 
 		if (offer) {
 			npc.add(ConversationStates.ATTENDING,
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I buy " + enumerateCollection(items.getPriceList()) + ".",
+					"I buy " + enumerateCollection(behaviour.getPriceList()) + ".",
 					null);
 		}
 
@@ -504,21 +345,8 @@ public class Behaviours {
 				null);
 	}
 
-	public static class HealerBehaviour extends SellerBehaviour {
-		public HealerBehaviour(int cost) {
-			super();
-			priceList.put("heal", cost);
-		}
-
-		public void heal(Player player, SpeakerNPC engine) {
-			player.setHP(player.getBaseHP());
-			player.healPoison();
-			world.modify(player);
-		}
-	}
-
 	public static void addHealer(SpeakerNPC npc, int cost) {
-		npc.setBehaviourData("healer", new HealerBehaviour(cost));
+		npc.setBehaviourData("healer", new HealerBehaviour(world, cost));
 
 		npc.add(ConversationStates.ATTENDING,
 				"offer",

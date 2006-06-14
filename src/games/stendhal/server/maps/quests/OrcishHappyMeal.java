@@ -4,6 +4,7 @@ import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.Behaviours;
+import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
@@ -50,9 +51,9 @@ public class OrcishHappyMeal implements IQuest {
 			protected void createDialog() {
 				// TODO: The code is identical to Sato's SheepBuyerBehaviour,
 				// except that the phrasing is different. Unite them.
-				class SheepBuyerBehaviour extends Behaviours.BuyerBehaviour {
-					SheepBuyerBehaviour(Map<String, Integer> items) {
-						super(items);
+				class SheepBuyerBehaviour extends BuyerBehaviour {
+					SheepBuyerBehaviour(StendhalRPWorld world, Map<String, Integer> items) {
+						super(world, items);
 					}
 
 					@Override
@@ -100,7 +101,7 @@ public class OrcishHappyMeal implements IQuest {
 				Behaviours.addHelp(this, getName()
 						+ " buy sheep! Sell me sheep! " + getName()
 						+ " is hungry!");
-				Behaviours.addBuyer(this, new SheepBuyerBehaviour(buyitems));
+				Behaviours.addBuyer(this, new SheepBuyerBehaviour(world, buyitems));
 				Behaviours.addGoodbye(this);
 			}
 		};

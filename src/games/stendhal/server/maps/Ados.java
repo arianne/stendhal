@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
@@ -123,7 +124,7 @@ public class Ados implements IContent {
 				Behaviours.addJob(this,
 						          "I'm the veterinary.");
 
-				Behaviours.addSeller(this, new Behaviours.SellerBehaviour(shops
+				Behaviours.addSeller(this, new SellerBehaviour(world, shops
 						.get("healing")) {
 					@Override
 					public int getUnitPrice(String item) {
