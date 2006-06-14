@@ -23,6 +23,10 @@ import java.util.Set;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+/**
+ * Represents the behaviour of a NPC who is able to buy items
+ * from a player.
+ */
 public class BuyerBehaviour {
 	protected StendhalRPWorld world;
 	
@@ -36,14 +40,28 @@ public class BuyerBehaviour {
 		this.priceList = priceList;
 	}
 
-	public Set<String> getPriceList() {
+	/**
+	 * Returns a set of the names of all items that the NPC buys.
+	 * @return the accepted items
+	 */
+	public Set<String> acceptedItems() {
 		return priceList.keySet();
 	}
 
+	/**
+	 * Checks whether the NPC buys the specified item.
+	 * @param item the name of the item
+	 * @return true iff the NPC buys the item
+	 */
 	public boolean hasItem(String item) {
 		return priceList.containsKey(item);
 	}
 
+	/**
+	 * Returns the price of one unit of a given item.
+	 * @param item the name of the item
+	 * @return the unit price
+	 */
 	protected int getUnitPrice(String item) {
 		return priceList.get(item);
 	}

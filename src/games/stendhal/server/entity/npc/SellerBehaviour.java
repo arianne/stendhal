@@ -27,10 +27,14 @@ import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 
+/**
+ * Represents the behaviour of a NPC who is able to sell items
+ * to a player.
+ */
 public class SellerBehaviour {
 	
 	/** the logger instance. */
-	static final Logger logger = Log4J.getLogger(Behaviours.class);
+	private static final Logger logger = Log4J.getLogger(Behaviours.class);
 
 	protected StendhalRPWorld world;
 	
@@ -49,18 +53,37 @@ public class SellerBehaviour {
 		this.priceList = priceList;
 	}
 
-	public Set<String> getPriceList() {
+	/**
+	 * Returns a set of the names of all items that the NPC sells.
+	 * @return the offered items
+	 */
+	public Set<String> offeredItems() {
 		return priceList.keySet();
 	}
 
+	/**
+	 * Checks whether the NPC sells the specified item.
+	 * @param item the name of the item
+	 * @return true iff the NPC sells the item
+	 */
 	public boolean hasItem(String item) {
 		return priceList.containsKey(item);
 	}
 
+	/**
+	 * Returns the price of one unit of a given item.
+	 * @param item the name of the item
+	 * @return the unit price
+	 */
 	protected int getUnitPrice(String item) {
 		return priceList.get(item);
 	}
 
+	/**
+	 * Sets the amount that the player wants to buy from the NPC.
+	 * @param text a String containing an integer number. If it isn't an
+	 *             integer, the amount will be set to 1.
+	 */
 	public void setAmount(String text) {
 		try {
 			amount = Integer.parseInt(text);

@@ -198,7 +198,7 @@ public class Behaviours {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I sell " + enumerateCollection(behaviour.getPriceList()) + ".",
+					"I sell " + enumerateCollection(behaviour.offeredItems()) + ".",
 					null);
 		}
 
@@ -281,7 +281,7 @@ public class Behaviours {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I buy " + enumerateCollection(behaviour.getPriceList()) + ".",
+					"I buy " + enumerateCollection(behaviour.acceptedItems()) + ".",
 					null);
 		}
 
