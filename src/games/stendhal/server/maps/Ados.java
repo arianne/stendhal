@@ -159,49 +159,52 @@ public class Ados implements IContent {
 	}
 
 	private void buildZooSub3Area(StendhalRPZone zone) {
-//		SpeakerNPC npc = new SpeakerNPC("Bario") {
-//			@Override
-//			protected void createPath() {
-//				List<Path.Node> nodes = new LinkedList<Path.Node>();
-//				// to table
-//				nodes.add(new Path.Node(7, 51));
-//				// to couch
-//				nodes.add(new Path.Node(22, 57));
-//				// into the floor
-//				nodes.add(new Path.Node(19, 42));
-//				// into the bathroom
-//				nodes.add(new Path.Node(39, 42));
-//				// into the floor
-//				nodes.add(new Path.Node(18, 42));
-//				// into the bedroom
-//				nodes.add(new Path.Node(18, 29));
-//				// to the mirror
-//				nodes.add(new Path.Node(22, 28));
-//				// to the chest
-//				nodes.add(new Path.Node(17, 24));
-//				// into the floor
-//				nodes.add(new Path.Node(18, 42));
-//				// into the living room
-//				nodes.add(new Path.Node(18, 51));
-//				// back to the kitchen
-//				nodes.add(new Path.Node(7, 43));
-//				setPath(nodes, true);
-//			}
-//
-//			@Override
-//			protected void createDialog() {
-//				addGreeting();
-//				addJob("There is a quite high unemployment rate down here.");
-//				addHelp("bla");
-//				addGoodbye();
-//			}
-//		};
-//		npcs.add(npc);
-//
-//		zone.assignRPObjectID(npc);
-//		npc.put("class", "beardmannpc");
-//		npc.set(4, 46);
-//		npc.initHP(100);
-//		zone.addNPC(npc);
+		SpeakerNPC npc = new SpeakerNPC("Bario") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				// to stove
+				nodes.add(new Path.Node(7, 43));
+				// to table
+				nodes.add(new Path.Node(7, 51));
+				// around couch
+				nodes.add(new Path.Node(14, 56));
+				nodes.add(new Path.Node(22, 56));
+				// into the floor
+				nodes.add(new Path.Node(18, 49));
+				nodes.add(new Path.Node(19, 41));
+				// into the bathroom
+				nodes.add(new Path.Node(39, 41));
+				// into the floor
+				nodes.add(new Path.Node(18, 41));
+				// into the bedroom
+				nodes.add(new Path.Node(18, 28));
+				// to the chest
+				nodes.add(new Path.Node(17, 23));
+				// through the floor
+				nodes.add(new Path.Node(18, 33));
+				nodes.add(new Path.Node(18, 50));
+				// back to the kitchen
+				nodes.add(new Path.Node(7, 50));
+				nodes.add(new Path.Node(4, 43));
+				nodes.add(new Path.Node(4, 46));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting();
+				addJob("There is a quite high unemployment rate down here.");
+				addHelp("Those lazy developers have not yet finished me ;)");
+				addGoodbye();
+			}
+		};
+		npcs.add(npc);
+
+		zone.assignRPObjectID(npc);
+		npc.put("class", "beardmannpc");
+		npc.set(4, 46);
+		npc.initHP(100);
+		zone.addNPC(npc);
 	}
 }
