@@ -23,16 +23,16 @@
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
   <image source="../../zelda_objects_chipset.png"/>
  </tileset>
- <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+ <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
   <image source="../../zelda_collision_chipset.png"/>
  </tileset>
- <tileset name="Building 0" firstgid="2504" tilewidth="32" tileheight="32">
+ <tileset name="Building 0" firstgid="2604" tilewidth="32" tileheight="32">
   <image source="../../zelda_building_0_tileset.png"/>
  </tileset>
- <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+ <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_2_chipset.png"/>
  </tileset>
- <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
+ <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
   <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -62,7 +62,7 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.31">
   <data encoding="base64" compression="gzip">
-   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
+   H4sIAAAAAAAAAO3VS24cMQxFUY+zFO9/gR4FaDRUkvinVJfAA5K4q0TyqJ3ffz8/v4QQQgghhBBCCCGEEEIIIYQQQgghhBBxRnXiGcTPJqOq5ybP/ieeQZ73utp5lgfusbtdGc/uB/6yPXcs7R3ZeRb/3v4WA8nz+PeaQ+P//Qz+7/EfWTw97/17R/Nct3TrH/8z9t2tnx2PyKreG/7yO2JxfIu/ZEaP3Wr2qXk//nJ/j/L2t+z/ZLcKf8sOI/0ts1fvvzo7+17dD/zPDf7vTob/Z+HfKxb/UWX6S+8K/n7+s/Lw3+nJ6of/2f5WX/xl3zWPyvafvc/jHafHMpfWuMrfo6q9OvmPduzVT5R/9XzdYpkrurz9PWas9urkX9lPln/HHeG//t0xKmtf1bvBv86j047wxx9//K07jvh/Ev/+ucU/s9fqvbzBX9rHzf6V5X1+pH90T2/09y7N3F6f87LUnnWiv/f5UfvxfnbWc9QcO/7ZdytzTvzx1/Yd6V+9lxM8Kvbx9Hdv/91n3uYv/X541uw+ePh7P3OT/6if7z+PerX6zZ7FP7ef1b95+6/s8e93J6TzWezxv9t/Zb9zvva5U/wr70iW/6x2zStnjfKPmHPnDMl5GbV7Jv72uaVnWXqy+Gv7xd937qjnd/27zNHBf1azz3X0lz6zqhP9pT0+/Xy2jyi/3fm8/Fd7frP/bh9RVe3v/c6b/KP20snf66529o/qP3In2r1H9XS6/0k7sXzvonvCP99fWpEu3fyrK8NfOvfb/Ct7rfJf3YGI+fHvNf/MHP96x+hdr/y9d4B/b//oHZzsv9pVt3j0OLsXlsJfN0vFrrXvne01en+efUbtVTKL5V5k9bnb9+pnXfy7RPs9wr/W3+s7eZt/Rl/V/jv1Zv+Ms6v8JeXhbzlD2gv+5/l79SJ9btZ3N//u1WVP0rsp/VmXubzOrnLt4L86s9Ncnv2c5L+yivSP3IH0/d59nGJv9V/Nv7ub2/yrzvDoy+vO4p93hnafEmf8e/trzpHsyct/dAfw9/XXVKZ/xj4kc53g72Fo6esmf83d361If49ZLP6e81r3ke1v3WWEv9REuqedsz6flfTRyd+rV21Z7pb2fZ7+2rNP8t/dkaZX6+e0Dho3L7tKf8nskh1V+Y/uQKTDDf5R51p6XRX+d/pbPye9K6tnrXcR/3P8q6xu8recJ/HP+m6+2d9aVXuI9o+ozv7e53Xb0c3J9v//nHdP+Pfyn303I6zwz/fffS/+fRPp/2SDf59k+c9+H3T3j6pq+yz/rDmi3z3yW/l+7/bz36vt8ZfvaGY9+3z0vvGv9ddUtT3+uh3d6k/lVrU9/rVVbY9/bVXbE/l3xPM7Uz0Xkft7VvVcJM9/9K7quci+/+gejDyf/j56V/VcZN8/oqrnIoQQQgghhJyTP+bqo9MAAAEA
   </data>
  </layer>
  <layer name="navigation" width="128" height="128">
