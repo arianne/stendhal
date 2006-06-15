@@ -193,10 +193,10 @@ public class Ados implements IContent {
 
 			@Override
 			protected void createDialog() {
-				addGreeting();
 				addJob("There is a quite high unemployment rate down here.");
 				addHelp("Those lazy developers have not yet finished me ;)");
 				addGoodbye();
+				// remaining behaviour is defined in maps.quests.CloaksForBario.
 			}
 		};
 		npcs.add(npc);
