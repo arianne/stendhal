@@ -30,8 +30,10 @@ public class Ados implements IContent {
 				"0_ados_rock")));
 		buildZooArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 		"0_ados_outside_nw")));
-		buildZooCaveSub1Area((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		buildZooSub1Area((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 		"-1_ados_outside_nw")));
+		buildZooSub3Area((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		"-3_ados_outside_nw")));
 	}
 
 
@@ -146,7 +148,7 @@ public class Ados implements IContent {
 		zone.addNPC(npc);
 	}
 
-	private void buildZooCaveSub1Area(StendhalRPZone zone) {
+	private void buildZooSub1Area(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setx(4);
@@ -154,5 +156,52 @@ public class Ados implements IContent {
 		portal.setNumber(0);
 		portal.setDestination("0_ados_outside_nw", 0);
 		zone.addPortal(portal);
+	}
+
+	private void buildZooSub3Area(StendhalRPZone zone) {
+//		SpeakerNPC npc = new SpeakerNPC("Bario") {
+//			@Override
+//			protected void createPath() {
+//				List<Path.Node> nodes = new LinkedList<Path.Node>();
+//				// to table
+//				nodes.add(new Path.Node(7, 51));
+//				// to couch
+//				nodes.add(new Path.Node(22, 57));
+//				// into the floor
+//				nodes.add(new Path.Node(19, 42));
+//				// into the bathroom
+//				nodes.add(new Path.Node(39, 42));
+//				// into the floor
+//				nodes.add(new Path.Node(18, 42));
+//				// into the bedroom
+//				nodes.add(new Path.Node(18, 29));
+//				// to the mirror
+//				nodes.add(new Path.Node(22, 28));
+//				// to the chest
+//				nodes.add(new Path.Node(17, 24));
+//				// into the floor
+//				nodes.add(new Path.Node(18, 42));
+//				// into the living room
+//				nodes.add(new Path.Node(18, 51));
+//				// back to the kitchen
+//				nodes.add(new Path.Node(7, 43));
+//				setPath(nodes, true);
+//			}
+//
+//			@Override
+//			protected void createDialog() {
+//				addGreeting();
+//				addJob("There is a quite high unemployment rate down here.");
+//				addHelp("bla");
+//				addGoodbye();
+//			}
+//		};
+//		npcs.add(npc);
+//
+//		zone.assignRPObjectID(npc);
+//		npc.put("class", "beardmannpc");
+//		npc.set(4, 46);
+//		npc.initHP(100);
+//		zone.addNPC(npc);
 	}
 }
