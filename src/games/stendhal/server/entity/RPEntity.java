@@ -670,13 +670,13 @@ public abstract class RPEntity extends Entity {
 		
 		int toDrop = amount;
 
-		Iterator<RPSlot> it = this.slotsIterator();
-		while (it.hasNext()) {
-			RPSlot slot = it.next();
+		Iterator<RPSlot> slotsIterator = this.slotsIterator();
+		while (slotsIterator.hasNext()) {
+			RPSlot slot = slotsIterator.next();
 
-			Iterator<RPObject> object_it = slot.iterator();
-			while (object_it.hasNext()) {
-				RPObject object = object_it.next();
+			Iterator<RPObject> objectsIterator = slot.iterator();
+			while (objectsIterator.hasNext()) {
+				RPObject object = objectsIterator.next();
 				if (object instanceof Item) {
 					if (((Item) object).getName().equals(name)) {
 						if (object instanceof StackableItem) {
@@ -689,7 +689,7 @@ public abstract class RPEntity extends Entity {
 								// Recreate the iterator to prevent
 								// ConcurrentModificationExceptions.
 								// This inefficient, but simple.
-								object_it = slot.iterator();
+								objectsIterator = slot.iterator();
 							} else {
 								((StackableItem) object).setQuantity(quantity - toDrop);
 								toDrop = 0;
@@ -701,18 +701,18 @@ public abstract class RPEntity extends Entity {
 							toDrop--;
 							// recreate the iterator to prevent
 							// ConcurrentModificationExceptions.
-							object_it = slot.iterator();
+							objectsIterator = slot.iterator();
 						}
 						if (toDrop == 0) {
-							break;
+							world.modify(this);
+							return true;
 						}
 					}
 				}
 			}
 		}
-		world.modify(this);
-		// we can be sure that it worked, because 
-		return true;
+		// This will never happen because we ran isEquipped() earlier.
+		return false;
 	}
 
 	/**
