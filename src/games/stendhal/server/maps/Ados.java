@@ -3,6 +3,7 @@ package games.stendhal.server.maps;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -29,6 +30,8 @@ public class Ados implements IContent {
 				"0_ados_rock")));
 		buildZooArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 		"0_ados_outside_nw")));
+		buildZooCaveSub1Area((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		"-1_ados_outside_nw")));
 	}
 
 
@@ -63,6 +66,14 @@ public class Ados implements IContent {
 		sign.sety(48);
 		sign.setText("Ados Wildlife Refuge|Home for endangered animals");
 		zone.add(sign);
+		
+		Portal portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setx(67);
+		portal.sety(24);
+		portal.setNumber(0);
+		portal.setDestination("-1_ados_outside_nw", 0);
+		zone.addPortal(portal);
 		
 		SpeakerNPC npc = new SpeakerNPC("Katinka") {
 			protected void createPath() {
@@ -133,5 +144,15 @@ public class Ados implements IContent {
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.addNPC(npc);
+	}
+
+	private void buildZooCaveSub1Area(StendhalRPZone zone) {
+		Portal portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setx(4);
+		portal.sety(23);
+		portal.setNumber(0);
+		portal.setDestination("0_ados_outside_nw", 0);
+		zone.addPortal(portal);
 	}
 }

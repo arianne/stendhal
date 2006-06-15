@@ -117,7 +117,7 @@ public class StendhalRPWorld extends RPWorld {
 		pathfinderThread = new PathfinderThread(this);
 		pathfinderThread.start();
 
-		// Load zones. Written from left to right and from up to down.
+		// Load zones. Written from left to right and from top to bottom.
 		// Please respect it!
 
 		// Ground level
@@ -185,6 +185,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_nalwor_river_s");
 
 		// Level -1
+		addArea("-1_ados_outside_nw");
 		addArea("-1_semos_mine_n2_w2");
 		addArea("-1_semos_mine_n2");
 		addArea("-1_semos_mine_nw");
