@@ -279,13 +279,17 @@ public abstract class SpeakerNPC extends NPC {
 			remove("text");
 
 		// if no player is talking to the NPC, the NPC can move around.
-		if (actualState == ConversationStates.IDLE) {
+		if (!talking()) {
 			if (hasPath()) {
 				Path.followPath(this, 0.2);
 				StendhalRPAction.move(this);
 			}
-		} else {
-			if (rp.getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT) {
+		} else if(attending != null) {
+		     // If the player is too far away
+		    if ((attending.distance(this) > 8 * 8)                
+             // or if the player fell asleep ;) 
+                 || (rp.getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT)) {
+             // we force him to say bye to NPC :)  
 				if (byeMessage != null) {
 					say(byeMessage);
 				}
@@ -299,27 +303,24 @@ public abstract class SpeakerNPC extends NPC {
 				stop();
 			}
 		}
-		if (!talking()) {
+
+         // now look for nearest player only if there's an initChatAction 
+		if (!talking() && initChatAction != null) {
 			Player nearest = getNearestPlayer(7);
 			if (nearest != null) {
-				if (initChatAction != null
-						&& (initChatCondition == null || initChatCondition
-								.fire(nearest, this))) {
+				if (initChatCondition == null || initChatCondition
+								.fire(nearest, this)) {
 					initChatAction.fire(nearest, null, this);
 				}
 			}
 		}
 
+        // and finally react on anybody talking to us
 		List<Player> speakers = getNearestPlayersThatHasSpoken(this, 5);
 		for (Player speaker : speakers) {
 			tell(speaker, speaker.get("text"));
 		}
 
-		if (talking() && attending != null && attending.distance(this) > 8 * 8) {
-			// If the player is to far away, we force him to say bye to NPC :)
-			tell(attending, "bye");
-			attending = null;
-		}
 
 		world.modify(this);
 	}
@@ -578,8 +579,10 @@ public abstract class SpeakerNPC extends NPC {
 			attending = player;
 		}
 
-		// If the attended player with state != 0 got idle, attend this one.
-		if (rp.getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT
+/* this code should be useless as this is already treated in logic()
+ * intensifly
+        // If the attended player with state != 0 got idle, attend this one.
+        if (rp.getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT
 				&& actualState != ConversationStates.IDLE) {
 			if (byeMessage != null) {
 				say(byeMessage);
@@ -594,7 +597,7 @@ public abstract class SpeakerNPC extends NPC {
 			attending = player;
 			actualState = ConversationStates.IDLE;
 		}
-
+*/
 		// If we are attending another player make this one waits.
 		if (!attending.equals(player)) {
 			logger.debug("Already attending a player");
