@@ -202,6 +202,10 @@ public class TileRenderer extends LayerRenderer {
 		addAnimatedTile(119, new int[] { 119, 29, 59, 89, 89, 89, 89, 89, 89,
 				89 });
 
+		// Fire
+		addAnimatedTile(1167, new int[] { 1167, 1258 });
+		addAnimatedTile(1258, new int[] { 1167, 1258 });
+		
 		// Green Water, Top Left
 		addAnimatedTile(3083, new int[] { 3083, 3086, 3089, 3086 });
 		addAnimatedTile(3086, new int[] { 3083, 3086, 3089, 3086 });
