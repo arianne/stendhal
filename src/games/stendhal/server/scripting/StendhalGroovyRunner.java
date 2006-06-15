@@ -47,6 +47,10 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 
 	@Override
 	public synchronized boolean perform(String name) {
+		return perform(name, null);
+	}
+
+	private synchronized boolean perform(String name, Player player) {
 		boolean ret = false;
 		StendhalGroovyScript gr;
 		name = name.trim();
@@ -54,7 +58,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 			if ((gr = scripts.remove(name)) != null) {
 				gr.unload();
 			}
-			gr = new StendhalGroovyScript(scriptDir + name, rules, world);
+			gr = new StendhalGroovyScript(scriptDir + name, rules, world, player);
 			ret = gr.load();
 			scripts.put(name, gr);
 		}
@@ -84,7 +88,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 		if (action.has("target")) {
 			String script = action.get("target");
 			String text = "Script " + script + "not found!";
-			if (perform(script)) {
+			if (perform(script, player)) {
 				text = "Script " + script + " was successfully executed.";
 			} else {
 				String msg = getMessage(script);

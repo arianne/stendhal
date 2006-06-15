@@ -1,21 +1,28 @@
 package games.stendhal.server.scripting;
 
-import groovy.lang.GroovyShell;
+import games.stendhal.common.Pair;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalScriptSystem;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.NPCList;
 import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
+
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import games.stendhal.common.Pair;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.Player;
-import marauroa.common.game.RPObject;
+
 import marauroa.common.Log4J;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
+
 import org.apache.log4j.Logger;
-import games.stendhal.server.StendhalRPAction;
 
 public class StendhalGroovyScript {
 	private String groovyScript;
@@ -42,7 +49,7 @@ public class StendhalGroovyScript {
 			.getLogger(StendhalGroovyScript.class);
 
 	public StendhalGroovyScript(String filename, StendhalRPRuleProcessor rp,
-			StendhalRPWorld world) {
+			StendhalRPWorld world, Player player) {
 		groovyScript = filename;
 		groovyBinding = new Binding();
 		this.rules = rp;
@@ -50,10 +57,20 @@ public class StendhalGroovyScript {
 		this.scripts = StendhalScriptSystem.get();
 		groovyBinding.setVariable("game", this);
 		groovyBinding.setVariable("logger", logger);
+		groovyBinding.setVariable("player", player);
 	}
 
+	public StendhalRPZone getZone(RPObject rpobject) {
+		return (StendhalRPZone) world.getRPZone(rpobject.getID());
+	}
+	
 	public boolean setZone(String name) {
 		zone = (StendhalRPZone) world.getRPZone(name);
+		return (zone != null);
+	}
+	
+	public boolean setZone(StendhalRPZone zone) {
+		this.zone = zone;
 		return (zone != null);
 	}
 
