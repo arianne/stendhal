@@ -486,10 +486,12 @@ public class Player extends RPEntity {
 	private void readAdminsFromFile() {
 		if (adminNames == null) {
 			adminNames = new LinkedList<String>();
+			
+			String adminFilename="data/conf/admins.list";
 
 			try {
 				InputStream is = getClass().getClassLoader()
-						.getResourceAsStream("data/conf/admins.list");
+						.getResourceAsStream(adminFilename);
 
 				if (is == null) {
 					logger.info("data/conf/admin.list does not exist.");
@@ -505,7 +507,7 @@ public class Player extends RPEntity {
 					in.close();
 				}
 			} catch (Exception e) {
-				logger.error("Error loading admin names", e);
+				logger.error("Error loading admin names from: "+adminFilename, e);
 			}
 		}
 

@@ -43,6 +43,7 @@ public class Buddies extends WtPanel {
 	public Buddies(GameObjects gameObjects) {
 		super("Buddies", j2DClient.SCREEN_WIDTH - 132, 265, 132, 200);
 
+		setTitleBar(true);
 		setFrame(true);
 		setMoveable(true);
 		setMinimizeable(true);
@@ -97,7 +98,7 @@ public class Buddies extends WtPanel {
 								for (String key : buddy) {										if (key.startsWith("_")) {												buddies.add(key.substring(1));						
 												if (buddy.getInt(key) == 0) {														clientg.setColor(Color.RED);														offline.draw(clientg, 3, 2 + i * 20);														clientg.drawString(key.substring(1), 24, 16 + i * 20);													} else {														clientg.setColor(Color.GREEN);														online.draw(clientg, 3, 2 + i * 20);														clientg.drawString(key.substring(1), 24, 16 + i * 20);													}						
 												i++;											}									}							}
-						resizeToFitClientArea(132, 20+i * 20 + 3);					}
+						resizeToFitClientArea(132, i * 20 + 3);					}
 				return clientg;			}
 	}
 

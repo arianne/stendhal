@@ -128,7 +128,7 @@ public class Semos implements IContent {
 			zone.add(chest);
 			chest = new PersonalChest();
 			zone.assignRPObjectID(chest);
-			chest.set(2 + 6 * i, 15);
+			chest.set(2 + 6 * i, 13);
 			zone.add(chest);
 		}
 		SpeakerNPC npc = new SpeakerNPC("Dagobert") {
