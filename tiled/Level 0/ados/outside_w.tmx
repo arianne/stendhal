@@ -23,16 +23,16 @@
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
   <image source="../../zelda_objects_chipset.png"/>
  </tileset>
- <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+ <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
   <image source="../../zelda_collision_chipset.png"/>
  </tileset>
- <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+ <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
   <image source="../../zelda_building_0_tileset.png"/>
  </tileset>
- <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+ <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_2_chipset.png"/>
  </tileset>
- <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
+ <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
   <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -67,7 +67,7 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dsQ2EQAwEQFL67+nrel2A9BHiEwy7MxVgr0HijMS2AQAAAAAAAAAAAAAAAAAAAMtnn74Cpq0ZMAf/S+lbSh0Tjt69vX8JNUxIyX9JqeNOiT1LqwcAAAAAUji765Z4Hs118ic9//T6OPe7czcLneTPIn8AAAAAAIBM9kDYByP/Xu7/bvLnLuasl28Pu8m/l9wBAAAAAHgT59q9ZD9vsv/yn2en3E32AAAAAAAAAFxht9zN9yXd/DOvm/xJY5a7yb/TkbnsO8kdaOYZ2Mk7PIv8AQAAAAB4qi/q4qAnAAABAA==
+   H4sIAAAAAAAAAO3dsQ2EQAwEQGJK+f4LfF2A9BHiEwy7MxVgr0HijMS2AQAAAAAAAAAAAAAAAAAAAMtnn74Cpq0ZMAf/S+lbSh0Tjt69vX8JNUxIyX9JqeNOiT1LqwcAAAAAUji765Z4Hs118ic9//T6OPe7czcLneTPIn8AAAAAAIBM9kDYByP/Xu7/bvLnLuasl28Pu8m/l9wBAAAAAHgT59q9ZD9vsv/yn2en3E32AAAAAAAAAFxht9zN9yXd/DOvm/xJY5a7yb/TkbnsO8kdaOYZ2Mk7PIv8AQAAAAB4qi+0GBpsAAABAA==
   </data>
  </layer>
  <layer name="navigation" width="128" height="128">

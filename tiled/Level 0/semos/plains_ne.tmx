@@ -23,16 +23,16 @@
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
   <image source="../../zelda_objects_chipset.png"/>
  </tileset>
- <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+ <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
   <image source="../../zelda_collision_chipset.png"/>
  </tileset>
- <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+ <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
   <image source="../../zelda_building_0_tileset.png"/>
  </tileset>
- <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+ <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_2_chipset.png"/>
  </tileset>
- <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
+ <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
   <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -62,7 +62,7 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aS2rDQBQEQG9z/zvlXMEYgwkm0QfhntdVoP1M95Osj283vr8eR7IV1riqFbJ9rvHdwTkr5PpX/yusP9kqGR6ZgbQ9pFo5P3NwjdWzMwPnTcjODJwzJTvXg+MmZKb/c6bkNmUfnyA7zMBDcw7Ne39qz8D+u/d/1/zubfr+tmqegTSfytsMZEjNOnVd0yTnnLy2KdIzTl8f1zMDuD9k6zODuZjLDPDKDPCOGcDvBHvuF8zDTEdmwEz0MAe80j+/6R8AALbzDNVN/930303/APP4ptrLN/Vu+kf36L6X858tfev+vPRzyHl+reRs91zrU/eQLrn/uz3dJ+8j1Qq5/bc+/c+1tVvdZztzfup2fa7P3fTfTf8AAAAAAAAAAPn8x6Ob/rvpv5v+AQAAAAAAmMT3r27676Z/AAAAACCJd5bd9N9N/wAAAABM5L1XN/130z8AAAAAcLUf2pFXagAAAQA=
+   H4sIAAAAAAAAAO3aS2rDQBQEQK9zlNz/gMEYgwkm0QfhntdVoP1M95Osj283vr8eR7IV1riqFbJ9rvHdwTkr5PpX/yusP9kqGR6ZgbQ9pFo5P3NwjdWzMwPnTcjODJwzJTvXg+MmZKb/c6bkNmUfnyA7zMBDcw7Ne39qz8D+u/d/1/zubfr+tmqegTSfytsMZEjNOnVd0yTnnLy2KdIzTl8f1zMDuD9k6zODuZjLDPDKDPCOGcDvBHvuF8zDTEdmwEz0MAe80j+/6R8AALbzDNVN/930303/APP4ptrLN/Vu+kf36L6X858tfev+vPRzyHl+reRs91zrU/eQLrn/uz3dJ+8j1Qq5/bc+/c+1tVvdZztzfup2fa7P3fTfTf8AAAAAAAAAAPn8x6Ob/rvpv5v+AQAAAAAAmMT3r27676Z/AAAAACCJd5bd9N9N/wAAAABM5L1XN/130z8AAAAAcLUfVTCVkAAAAQA=
   </data>
  </layer>
  <layer name="navigation" width="128" height="128">

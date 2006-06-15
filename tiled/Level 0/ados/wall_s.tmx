@@ -23,21 +23,21 @@
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
   <image source="../../zelda_objects_chipset.png"/>
  </tileset>
- <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+ <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
   <image source="../../zelda_collision_chipset.png"/>
  </tileset>
- <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+ <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
   <image source="../../zelda_building_0_tileset.png"/>
  </tileset>
- <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+ <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_2_chipset.png"/>
  </tileset>
- <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
+ <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
   <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XQUoDQRRF0Z4Zski35JYliFAKIUVoU1L3DM7Ekc19UD+X4zguPOX9+uXj7afvv6/+/9Af/dEf/dGf1/W3g73p33avv3egQf82/dv0b/t95+nfMtvfDvamf5s7oE3/ttn+drAn/dse/Q7wDuxNf8YdeAea9G/zDrTpz7gD/Zv0b3MHtunf5g5s059xB96BJv3bvANt+jPuQP8m/dvcgW36t7kD2/Rn3IH+Tfq36d/md0Cb/m1+B7Tpz7gD/Zv0b3MHtunf5g5s059xB7PvgD3sRf+22XfAHvakP+MOHvW3hz3p33av41l7sI//TX/+Yg8z+1j9rejPmj3crP429OecPTyzj9Xfgv6s2Yf7b0/6AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMA5PgEACjCyAAABAA==
+   H4sIAAAAAAAAAO3XQUoDQRRF0Z4Zsnn35MokiFAKIUVoU1L3DM7Ekc19UD+X4zguPOXj+uX97afvv6/+/9Af/dEf/dGf1/W3g73p33avv3egQf82/dv0b/t95+nfMtvfDvamf5s7oE3/ttn+drAn/dse/Q7wDuxNf8YdeAea9G/zDrTpz7gD/Zv0b3MHtunf5g5s059xB96BJv3bvANt+jPuQP8m/dvcgW36t7kD2/Rn3IH+Tfq36d/md0Cb/m1+B7Tpz7gD/Zv0b3MHtunf5g5s059xB7PvgD3sRf+22XfAHvakP+MOHvW3hz3p33av41l7sI//TX/+Yg8z+1j9rejPmj3crP429OecPTyzj9Xfgv6s2Yf7b0/6AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMA5PgGb3IFnAAABAA==
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">

@@ -23,16 +23,16 @@
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
   <image source="../../zelda_objects_chipset.png"/>
  </tileset>
- <tileset name="Collision" firstgid="2502" tilewidth="32" tileheight="32">
+ <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
   <image source="../../zelda_collision_chipset.png"/>
  </tileset>
- <tileset name="Buildings 0" firstgid="2504" tilewidth="32" tileheight="32">
+ <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
   <image source="../../zelda_building_0_tileset.png"/>
  </tileset>
- <tileset name="Outside 2" firstgid="2984" tilewidth="32" tileheight="32">
+ <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_2_chipset.png"/>
  </tileset>
- <tileset name="Interior 1" firstgid="3464" tilewidth="32" tileheight="32">
+ <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
   <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -67,7 +67,7 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cS3aCQBAFUKfZ/56yrpyM4i+A0DT1ufecTDJQu151CajcbgAAAAAAAD19f/390ZMe6E3+Mcmjt/t9qRf4lJ7pyczoTf4AOZjXwAxLM+bT+WNexbGWhaxiGvXev/YYji9ieb62uzebrY8j+5pmnzuYI8j/Vad94XrFo1F1yFJP+T+SP6OoK/Kv54x9bVbkkrUH9NkYZ9XxjJ569z89ALnZw7mMzGv25wTE4ZoNMJN505v8cxuRnfxzGrl3zQEAeOW9sTfHR+gBovLZwfWuzGDkc3fqoQzf9Zn93F3mSJR1RpzdkV5LdRHz/xXt9YxWfX1Ltqw9en3ce3WfKvWKmL/v780VKf/Z/Rhp7VdTg/H0Fvc9oBf6kXkNR+5dRn5y7Ev2scijtmrn5VXWMUvF/KushX3k31e1ebamyzq36pR/p7UCc5gnfcmeo/RQD0vHnr5fFMPomkStsfzf61KXDmvcI1Jdzvr9WqQ18j85xeQ3AL3JpTdzGQDIwjFLX45Za9qaq+zrWsq2w753TXtZ9drIf1n1ukS8VxDX0AMAAGTnPm013Wf6Ltfn81rnNrWs5bo1e32R14h9bTYgfwAAAAAAAAAAAACO+AE/3JDHAAABAA==
+   H4sIAAAAAAAAAO3cS3aCQBAFUMdZSva/wJyM4i+A0DT1ufecTDJQu151CajcbgAAAAAAAD19f/390ZMe6E3+Mcmjt/t9qRf4lJ7pyczoTf4AOZjXwAxLM+bT+WNexbGWhaxiGvXev/YYji9ieb62uzebrY8j+5pmnzuYI8j/Vad94XrFo1F1yFJP+T+SP6OoK/Kv54x9bVbkkrUH9NkYZ9XxjJ569z89ALnZw7mMzGv25wTE4ZoNMJN505v8cxuRnfxzGrl3zQEAeOW9sTfHR+gBovLZwfWuzGDkc3fqoQzf9Zn93F3mSJR1RpzdkV5LdRHz/xXt9YxWfX1Ltqw9en3ce3WfKvWKmL/v780VKf/Z/Rhp7VdTg/H0Fvc9oBf6kXkNR+5dRn5y7Ev2scijtmrn5VXWMUvF/KushX3k31e1ebamyzq36pR/p7UCc5gnfcmeo/RQD0vHnr5fFMPomkStsfzf61KXDmvcI1Jdzvr9WqQ18j85xeQ3AL3JpTdzGQDIwjFLX45Za9qaq+zrWsq2w753TXtZ9drIf1n1ukS8VxDX0AMAAGTnPm013Wf6Ltfn81rnNrWs5bo1e32R14h9bTYgfwAAAAAAAAAAAACO+AF5LGnIAAABAA==
   </data>
  </layer>
  <layer name="navigation" width="128" height="128">
