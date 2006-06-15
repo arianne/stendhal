@@ -580,7 +580,7 @@ public class GameObjects implements Iterable<Entity> {
 		Rectangle2D area = entity.getArea();
 
 		for (Entity other : sortObjects) {
-			if (!(other instanceof PassiveEntity) && !(other instanceof Blood)) {
+			if (!(other instanceof PassiveEntity) && !(other instanceof Blood) && !(other instanceof PlantGrower)) {
 				if (area.intersects(other.getArea())
 						&& !entity.getID().equals(other.getID())) {
 					entity.onCollideWith(other);
