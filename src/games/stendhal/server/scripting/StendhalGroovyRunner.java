@@ -79,8 +79,6 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onScript");
 
-		System.out.println("onScript " + action);
-
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
 			return;
 		}
