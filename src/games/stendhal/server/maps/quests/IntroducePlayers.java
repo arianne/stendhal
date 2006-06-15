@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -32,7 +31,7 @@ public class IntroducePlayers implements IQuest {	private StendhalRPWorld world
 	private NPCList npcs;
 	private void step_1() {		SpeakerNPC npc = npcs.get("Tad");
 		npc.add(ConversationStates.ATTENDING,
-				Behaviours.QUEST_MESSAGES,
+				SpeakerNPC.QUEST_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -85,7 +84,7 @@ public class IntroducePlayers implements IQuest {	private StendhalRPWorld world
 	private void step_3() {		SpeakerNPC npc = npcs.get("Tad");
     // staring the conversation the first time after getting a flask.
     npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")
@@ -109,11 +108,11 @@ public class IntroducePlayers implements IQuest {	private StendhalRPWorld world
 						player.setQuest("introduce_players", "ilisa");
 					}
 				});
-    // remind the player to take the flask to ilisa.    npc.add(ConversationStates.IDLE,        Behaviours.GREETING_MESSAGES,        new SpeakerNPC.ChatCondition() {            public boolean fire(Player player, SpeakerNPC npc) {                return player.hasQuest("introduce_players")                        && player.getQuest("introduce_players").equals(                                "ilisa") && player.isEquipped("flask");            }        },        ConversationStates.ATTENDING,        null,        new SpeakerNPC.ChatAction() {            public void fire(Player player, String text,                    SpeakerNPC engine) {                engine.say("Ok!, I see you have the flask! Now I need you to take it to #ilisa");            }        });
+    // remind the player to take the flask to ilisa.    npc.add(ConversationStates.IDLE,        SpeakerNPC.GREETING_MESSAGES,        new SpeakerNPC.ChatCondition() {            public boolean fire(Player player, SpeakerNPC npc) {                return player.hasQuest("introduce_players")                        && player.getQuest("introduce_players").equals(                                "ilisa") && player.isEquipped("flask");            }        },        ConversationStates.ATTENDING,        null,        new SpeakerNPC.ChatAction() {            public void fire(Player player, String text,                    SpeakerNPC engine) {                engine.say("Ok!, I see you have the flask! Now I need you to take it to #ilisa");            }        });
 		npc.add(ConversationStates.ATTENDING,				"ilisa",				null,				ConversationStates.ATTENDING,				"Ilisa is the summon healer at Semos temple.",				null);	}
 	private void step_4() {
 		SpeakerNPC npc = npcs.get("Ilisa");
-		npc.add(ConversationStates.IDLE,				Behaviours.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					public boolean fire(Player player, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"ilisa");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					public void fire(Player player, String text,							SpeakerNPC engine) {						if (player.drop("flask")) {							engine.say("Thanks for the flask. Please I need a rat #corpse and a few #herbs to create the potion for #Tad.");							player.addXP(10);
+		npc.add(ConversationStates.IDLE,				SpeakerNPC.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					public boolean fire(Player player, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"ilisa");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					public void fire(Player player, String text,							SpeakerNPC engine) {						if (player.drop("flask")) {							engine.say("Thanks for the flask. Please I need a rat #corpse and a few #herbs to create the potion for #Tad.");							player.addXP(10);
 							world.modify(player);
 							player.setQuest("introduce_players", "corpse&herbs");						} else {							engine.say("Weren't you supposed to have a flask for me? Go and get a flask.");						}					}				});
 		npc.add(ConversationStates.ATTENDING,
@@ -139,7 +138,7 @@ public class IntroducePlayers implements IQuest {	private StendhalRPWorld world
 	}
 	private void step_5() {		SpeakerNPC npc = npcs.get("Ilisa");
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")
@@ -165,7 +164,7 @@ public class IntroducePlayers implements IQuest {	private StendhalRPWorld world
 		npc.add(ConversationStates.ATTENDING,				"potion",				null,				ConversationStates.ATTENDING,				"The potion that #Tad is waiting for",				null);	}
 	private void step_6() {
 		SpeakerNPC npc = npcs.get("Tad");
-		npc.add(ConversationStates.IDLE,				Behaviours.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					public boolean fire(Player player, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"potion");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					public void fire(Player player, String text,							SpeakerNPC engine) {						engine.say("Thanks! I will go talk with Ilisa as soon as possible.");						player.addXP(100);						world.modify(player);
+		npc.add(ConversationStates.IDLE,				SpeakerNPC.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					public boolean fire(Player player, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"potion");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					public void fire(Player player, String text,							SpeakerNPC engine) {						engine.say("Thanks! I will go talk with Ilisa as soon as possible.");						player.addXP(100);						world.modify(player);
 						player.setQuest("introduce_players", "done");
 					}
 				});

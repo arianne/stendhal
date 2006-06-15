@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -95,14 +94,13 @@ public class OrcishHappyMeal implements IQuest {
 				Map<String, Integer> buyitems = new HashMap<String, Integer>();
 				buyitems.put("sheep", 1500);
 
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this, getName()
-						+ " du buy cheepz frrom humanz.");
-				Behaviours.addHelp(this, getName()
+				addGreeting();
+				addJob(getName() + " du buy cheepz frrom humanz.");
+				addHelp(getName()
 						+ " buy sheep! Sell me sheep! " + getName()
 						+ " is hungry!");
-				Behaviours.addBuyer(this, new SheepBuyerBehaviour(world, buyitems));
-				Behaviours.addGoodbye(this);
+				addBuyer(new SheepBuyerBehaviour(world, buyitems));
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);

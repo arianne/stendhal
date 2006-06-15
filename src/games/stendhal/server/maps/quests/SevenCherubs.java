@@ -4,7 +4,6 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -62,7 +61,7 @@ public class SevenCherubs implements IQuest {
 		@Override
 		protected void createDialog() {
 			add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				null,
@@ -123,7 +122,7 @@ public class SevenCherubs implements IQuest {
 						world.modify(player);
 					}
 				});
-			Behaviours.addGoodbye(this);
+			addGoodbye();
 		}
 	}
 

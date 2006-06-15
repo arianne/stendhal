@@ -4,7 +4,6 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Sign;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
@@ -42,12 +41,9 @@ public class Ados implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addHelp(this,
-								   "There is a swamp east of this mountain where you might get some rare weapons.");
-				Behaviours.addJob(this,
-						          "I'm much too old for hard work. I'm just living here as a hermit.");
-
-				Behaviours.addGoodbye(this, "It was nice to meet you.");
+				addHelp("There is a swamp east of this mountain where you might get some rare weapons.");
+				addJob("I'm much too old for hard work. I'm just living here as a hermit.");
+				addGoodbye("It was nice to meet you.");
 			}
 			// remaining behaviour is defined in maps.quests.WeaponsCollector.
 		};
@@ -82,12 +78,9 @@ public class Ados implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addHelp(this,
-								   "Can you keep a secret? Dr. Feelgood, our veterinary, can sell you medicine that he doesn't need for the animals.");
-				Behaviours.addJob(this,
-						          "I'm the keeper of this animal refuge.");
-
-				Behaviours.addGoodbye(this, "Goodbye!");
+				addHelp("Can you keep a secret? Dr. Feelgood, our veterinary, can sell you medicine that he doesn't need for the animals.");
+				addJob("I'm the keeper of this animal refuge.");
+				addGoodbye("Goodbye!");
 			}
 			// remaining behaviour is defined in maps.quests.ZooFood.
 		};
@@ -117,15 +110,11 @@ public class Ados implements IContent {
 				//Behaviours.addHelp(this,
 				//				   "...");
 				
-				Behaviours.addReply(this,
-									"heal",
-									"Sorry, I'm licensed to heal animals only, not humans. But... ssshh! I want to make you an #offer.");
+				addReply("heal",
+						"Sorry, I'm licensed to heal animals only, not humans. But... ssshh! I want to make you an #offer.");
 
-				Behaviours.addJob(this,
-						          "I'm the veterinary.");
-
-				Behaviours.addSeller(this, new SellerBehaviour(world, shops
-						.get("healing")) {
+				addJob("I'm the veterinary.");
+				addSeller(new SellerBehaviour(world, shops.get("healing")) {
 					@Override
 					public int getUnitPrice(String item) {
 						// Player gets 20 % rebate
@@ -133,7 +122,7 @@ public class Ados implements IContent {
 					}
 				});
 
-				Behaviours.addGoodbye(this, "Bye!");
+				addGoodbye("Bye!");
 			}
 			// remaining behaviour is defined in maps.quests.ZooFood.
 		};

@@ -9,7 +9,6 @@ import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
@@ -271,14 +270,12 @@ public class Orril implements IContent {
 
 			@Override
 			protected void createDialog() {
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this,
-						"*Do you really want to know?* I am a witch");
-				Behaviours.addHelp(this,
-								//"You may want to buy some potions or do some #task for me.");
-								"I can #heal you.");
-				Behaviours.addHealer(this, 200);
-				Behaviours.addGoodbye(this);
+				addGreeting();
+				addJob("*Do you really want to know?* I am a witch");
+				addHelp(//"You may want to buy some potions or do some #task for me.");
+						"I can #heal you.");
+				addHealer(200);
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);

@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Money;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -101,7 +100,7 @@ public class ZooFood implements IQuest {
 		SpeakerNPC npc = npcs.get("Katinka");
 
 		npc.add(ConversationStates.IDLE,
-			Behaviours.GREETING_MESSAGES,
+			SpeakerNPC.GREETING_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			null,
@@ -116,7 +115,7 @@ public class ZooFood implements IQuest {
 		});
 		
 		npc.add(ConversationStates.ATTENDING,
-				Behaviours.QUEST_MESSAGES,
+				SpeakerNPC.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -166,7 +165,7 @@ public class ZooFood implements IQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("zoo_food")	
@@ -208,7 +207,7 @@ public class ZooFood implements IQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,

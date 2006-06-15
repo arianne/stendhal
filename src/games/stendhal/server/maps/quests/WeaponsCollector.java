@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -89,7 +88,7 @@ public class WeaponsCollector implements IQuest {
 		
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return !player.hasQuest("weapons_collector");
@@ -100,7 +99,7 @@ public class WeaponsCollector implements IQuest {
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
-				Behaviours.QUEST_MESSAGES,
+				SpeakerNPC.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return !player.hasQuest("weapons_collector");
@@ -158,7 +157,7 @@ public class WeaponsCollector implements IQuest {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
 						engine.say("There are " + needed.size() + " weapons which are still missing in my collection: "
-								+ Behaviours.enumerateCollection(needed) + ". Do you have any of them with you?");
+								+ SpeakerNPC.enumerateCollection(needed) + ". Do you have any of them with you?");
 					}
 				});
 
@@ -224,7 +223,7 @@ public class WeaponsCollector implements IQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector")
@@ -237,7 +236,7 @@ public class WeaponsCollector implements IQuest {
 		
 		// player returns after finishing the quest
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.isQuestCompleted("weapons_collector");

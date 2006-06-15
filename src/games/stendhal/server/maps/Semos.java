@@ -12,7 +12,6 @@ import games.stendhal.server.entity.PersonalChest;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.Sign;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -74,7 +73,7 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this, null, new SpeakerNPC.ChatAction() {
+				addGreeting(null, new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("introduce_players")) {
@@ -87,7 +86,7 @@ public class Semos implements IContent {
 						}
 					}
 				});
-				Behaviours.addGoodbye(this);
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -140,13 +139,10 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this,
-						"Welcome to the bank of Semos! Do you need #help on your personal chest?");
-				Behaviours.addHelp(this,
-						"You can find your personal chest down the floor to the right. If you open it, you can store your belongings in it. I will take care that nobody else will touch them.");
-				Behaviours.addJob(this, "I'm the customer consultant.");
-
-				Behaviours.addGoodbye(this, "It was a pleasure to serve you.");
+				addGreeting("Welcome to the bank of Semos! Do you need #help on your personal chest?");
+				addHelp("You can find your personal chest down the floor to the right. If you open it, you can store your belongings in it. I will take care that nobody else will touch them.");
+				addJob("I'm the customer consultant.");
+				addGoodbye("It was a pleasure to serve you.");
 			}
 		};
 		npcs.add(npc);
@@ -190,11 +186,10 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this, "Hi there, young hero.");
-				Behaviours.addJob(this, "I'm just a regular housewife");
-				Behaviours.addHelp(this,
-						"I think I can't help you with anything.");
-				Behaviours.addGoodbye(this);
+				addGreeting("Hi there, young hero.");
+				addJob("I'm just a regular housewife");
+				addHelp("I think I can't help you with anything.");
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -214,17 +209,15 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addHelp(this,
-						"I am the good manners and decency observer. I can help you by telling you about obvious and common sense things you should already know like not wandering naked around...");
-				Behaviours.addJob(this,
-						"I am committed to keep civilized customs in Semos. I know any kind of protocol ever known and one hundred manners of doing the same thing wrong. Well, I doubt about when it should be used the spoon or the fork but on the other hand nobody uses cutlery in Semos");
+				addHelp("I am the good manners and decency observer. I can help you by telling you about obvious and common sense things you should already know like not wandering naked around...");
+				addJob("I am committed to keep civilized customs in Semos. I know any kind of protocol ever known and one hundred manners of doing the same thing wrong. Well, I doubt about when it should be used the spoon or the fork but on the other hand nobody uses cutlery in Semos");
 				add(ConversationStates.ATTENDING,
-					Behaviours.QUEST_MESSAGES,
+					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"I do not have any task for you right now. If you need anything from me just say it.",
 					null);
-				Behaviours.addGoodbye(this);
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -272,7 +265,7 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					Behaviours.GREETING_MESSAGES,
+					GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -292,11 +285,9 @@ public class Semos implements IContent {
 							}
 						}
 					});
-				Behaviours.addHelp(this,
-									"I'm the blacksmith's assistant. I can help you by sharing my curiosity with you... Have you come here to buy weapons?");
-				Behaviours.addJob(this,
-								  "I help Xoderos the blacksmith in making weapons for the Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
-				Behaviours.addGoodbye(this);
+				addHelp("I'm the blacksmith's assistant. I can help you by sharing my curiosity with you... Have you come here to buy weapons?");
+				addJob("I help Xoderos the blacksmith in making weapons for the Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -342,7 +333,7 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					Behaviours.GREETING_MESSAGES,
+					GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -363,15 +354,12 @@ public class Semos implements IContent {
 							}
 						}
 					});
-				Behaviours.addHelp(this,
-								   "I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news. I'm also selling location #scrolls.");
-				Behaviours.addJob(this,
-								  "I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
-				Behaviours.addSeller(this,
-						new SellerBehaviour(world, shops.get("scrolls")));
+				addHelp("I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news. I'm also selling location #scrolls.");
+				addJob("I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
+				addSeller(new SellerBehaviour(world, shops.get("scrolls")));
 				
 				add(ConversationStates.ATTENDING,
-					Behaviours.QUEST_MESSAGES,
+					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"I do not have any task for you right now. If you need anything from me just say it.",
@@ -412,10 +400,10 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this, "I am the librarian.");
-				Behaviours.addHelp(this, "Read!");
-				Behaviours.addGoodbye(this);
+				addGreeting();
+				addJob("I am the librarian.");
+				addHelp("Read!");
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -464,15 +452,13 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this,
-						"I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
-				Behaviours.addHelp(this,
-						"Ask me to #heal you and I will help you or ask me #offer and I will show my shop's stuff.");
-				Behaviours.addSeller(this, new SellerBehaviour(world, 
+				addGreeting();
+				addJob("I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
+				addHelp("Ask me to #heal you and I will help you or ask me #offer and I will show my shop's stuff.");
+				addSeller(new SellerBehaviour(world, 
 						shops.get("healing")));
-				Behaviours.addHealer(this, 0);
-				Behaviours.addGoodbye(this);
+				addHealer(0);
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -502,7 +488,7 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					Behaviours.GREETING_MESSAGES,
+					GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -527,17 +513,15 @@ public class Semos implements IContent {
 							}
 						}
 				});
-				Behaviours.addHelp(this,
-						"I'm a telepath and telekinetic. I can help you by sharing my mental skills with you... Do you want me to show you the six basic elements of telepathy? I already know the answer but I'm being polite...");
-				Behaviours.addJob(this,
-						"I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion");
+				addHelp("I'm a telepath and telekinetic. I can help you by sharing my mental skills with you... Do you want me to show you the six basic elements of telepathy? I already know the answer but I'm being polite...");
+				addJob("I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion");
 				add(ConversationStates.ATTENDING,
-					Behaviours.QUEST_MESSAGES,
+					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"I do not have any task for you right now. If you need anything from me just say it. I think it's simply unkind reading one's mind without permission.",
 					null);
-				Behaviours.addGoodbye(this);
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -591,14 +575,12 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this,
-						"I am the bar maid for this fair tavern. We sell fine beers and food.");
-				Behaviours.addHelp(this,
-						"At the tavern you can get an #offer of drinks and take a break to meet new people!");
-				Behaviours.addSeller(this, new SellerBehaviour(world,
+				addGreeting();
+				addJob("I am the bar maid for this fair tavern. We sell fine beers and food.");
+				addHelp("At the tavern you can get an #offer of drinks and take a break to meet new people!");
+				addSeller(new SellerBehaviour(world,
 						shops.get("food&drinks")));
-				Behaviours.addGoodbye(this);
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -618,13 +600,12 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this, "Shhh! I sell adventurers stuff.");
-				Behaviours.addHelp(this,
-						"I buy and sell several items, ask me for my offer");
-				Behaviours.addSeller(this, new SellerBehaviour(world,
+				addGreeting();
+				addJob("Shhh! I sell adventurers stuff.");
+				addHelp("I buy and sell several items, ask me for my offer");
+				addSeller(new SellerBehaviour(world,
 						shops.get("sellstuff")), false);
-				Behaviours.addBuyer(this, new BuyerBehaviour(world,
+				addBuyer(new BuyerBehaviour(world,
 						shops.get("buystuff")), false);
 				add(ConversationStates.ATTENDING,
 					"offer",
@@ -632,7 +613,7 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					"Have a look at the blackboards on the wall to see my offers",
 					null);
-				Behaviours.addGoodbye(this);
+				addGoodbye();
 				StendhalRPZone zone = (StendhalRPZone) world
 						.getRPZone(new IRPZone.ID("int_semos_tavern_0"));
 				Blackboard board = new Blackboard(false);
@@ -667,13 +648,12 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this, "I sell bows and arrows stuff.");
-				Behaviours.addHelp(this,
-						"I sell several items, ask me for my #offer");
-				Behaviours.addSeller(this, new SellerBehaviour(world,
+				addGreeting();
+				addJob("I sell bows and arrows stuff.");
+				addHelp("I sell several items, ask me for my #offer");
+				addSeller(new SellerBehaviour(world,
 						shops.get("sellrangedstuff")));
-				Behaviours.addGoodbye(this);
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -838,7 +818,7 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					Behaviours.GREETING_MESSAGES,
+					GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -859,17 +839,15 @@ public class Semos implements IContent {
 							}
 						}
 					});
-				Behaviours.addHelp(this,
-								   "I'm a... hmmm... observer. I can help you by sharing my information about rumours with you... Do you want to know what has been happening around here lately?");
-				Behaviours.addJob(this,
-								  "I am committed to peek every curious fact about Semos. I know any rumor that has ever existed in Semos and I have invented most of them. Well, except that about Hackim smuggling Deniran's army weapons to wandering adventurer's like you");
+				addHelp("I'm a... hmmm... observer. I can help you by sharing my information about rumours with you... Do you want to know what has been happening around here lately?");
+				addJob("I am committed to peek every curious fact about Semos. I know any rumor that has ever existed in Semos and I have invented most of them. Well, except that about Hackim smuggling Deniran's army weapons to wandering adventurer's like you");
 				add(ConversationStates.ATTENDING,
-					Behaviours.QUEST_MESSAGES,
+					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"I do not have any task for you right now. If you need anything from me just say it.",
 					null);
-				Behaviours.addGoodbye(this);
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -886,7 +864,7 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					Behaviours.GREETING_MESSAGES,
+					GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -907,11 +885,9 @@ public class Semos implements IContent {
 							}
 						}
 					});
-				Behaviours.addHelp(this,
-						"I'm Diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?");
-				Behaviours.addJob(this,
-						"I am committed to give directions to foreigners and show them how to talk to people here. However, when I'm in a bad mood I give them misleading directions hehehe... What is not necessarily bad because I can give wrong directions unwillingly anyway and they can result in being the right directions");
-				Behaviours.addGoodbye(this);
+				addHelp("I'm Diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?");
+				addJob("I am committed to give directions to foreigners and show them how to talk to people here. However, when I'm in a bad mood I give them misleading directions hehehe... What is not necessarily bad because I can give wrong directions unwillingly anyway and they can result in being the right directions");
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -936,7 +912,7 @@ public class Semos implements IContent {
 
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					Behaviours.GREETING_MESSAGES,
+					GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -957,11 +933,9 @@ public class Semos implements IContent {
 							}
 						}
 					});
-				Behaviours.addHelp(this,
-						"Well, I'm a retired adventurer as I've told you before. I only can help you by sharing my experience with you... Do you want me to tell you how I used to kill creatures?");
-				Behaviours.addJob(this,
-						"I've sworn defending with my life the people of Semos from any creature that dares to get out of this dungeon. With all our young people battling Blordrough's dark legion at south, monsters are getting more and more confident to go to the surface.");
-				Behaviours.addGoodbye(this);
+				addHelp("Well, I'm a retired adventurer as I've told you before. I only can help you by sharing my experience with you... Do you want me to tell you how I used to kill creatures?");
+				addJob("I've sworn defending with my life the people of Semos from any creature that dares to get out of this dungeon. With all our young people battling Blordrough's dark legion at south, monsters are getting more and more confident to go to the surface.");
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
@@ -985,13 +959,12 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this, "Hehehe! Job! hehehe! Muahahaha!");
-				Behaviours.addHelp(this,
-						"I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.");
-				Behaviours.addGoodbye(this);
+				addGreeting();
+				addJob("Hehehe! Job! hehehe! Muahahaha!");
+				addHelp("I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.");
+				addGoodbye();
 				add(ConversationStates.ATTENDING,
-					Behaviours.QUEST_MESSAGES,
+					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -1046,15 +1019,12 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this,
-								  "I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
-				Behaviours.addHelp(this,
-								   "Ask me to #heal you and I will help you or ask me for an #offer and I will show my shop's stuff.");
-				Behaviours.addSeller(this, new SellerBehaviour(world,
-						shops.get("healing")));
-				Behaviours.addHealer(this, 0);
-				Behaviours.addGoodbye(this);
+				addGreeting();
+				addJob("I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
+				addHelp("Ask me to #heal you and I will help you or ask me for an #offer and I will show my shop's stuff.");
+				addSeller(new SellerBehaviour(world, shops.get("healing")));
+				addHealer(0);
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);

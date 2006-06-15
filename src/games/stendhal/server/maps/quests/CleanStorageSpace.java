@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -30,7 +29,7 @@ public class CleanStorageSpace implements IQuest {
 		SpeakerNPC npc = npcs.get("Eonna");
 
 		npc.add(ConversationStates.ATTENDING,
-				Behaviours.QUEST_MESSAGES,
+				SpeakerNPC.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -90,7 +89,7 @@ public class CleanStorageSpace implements IQuest {
 		// the player returns to Eonna after having started the quest.
 		// Eonna checks if the player has killed one of each animal race.
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("clean_storage")

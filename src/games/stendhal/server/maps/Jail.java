@@ -2,7 +2,6 @@ package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
@@ -33,13 +32,10 @@ public class Jail implements IContent {
 			}
 
 			protected void createDialog() {
-				Behaviours.addGreeting(this,
-                        "Greetings! How may I #help you?");
-				Behaviours.addJob(this,
-						"I am the jail keeper. You have been confined here because of your bad behaviour.");
-				Behaviours.addHelp(this,
-						"Wait for an admin to come here and decide about you. There is meanwhile no exit from here.");
-				Behaviours.addGoodbye(this);
+				addGreeting("Greetings! How may I #help you?");
+				addJob("I am the jail keeper. You have been confined here because of your bad behaviour.");
+				addHelp("Wait for an admin to come here and decide about you. There is meanwhile no exit from here.");
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);

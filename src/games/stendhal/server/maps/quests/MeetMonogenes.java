@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -36,12 +35,12 @@ public class MeetMonogenes implements IQuest
 		npc.add(50,"yes",null,1,"Sometimes it is helpful to read the city's wooden signs by right-clicking on them and choosing LOOK. I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith or the #village.", null);
 		npc.add(50,"no",null,0,"Oh I see... You are of that kind of persons that don't like asking for directions huh? Well, good luck finding the secretly hidden mmhmmhmm!", null);
 		
-		Behaviours.addReply(npc, "bank", "The bank is precisely this building next to me. I thought the big chest on the front would have given you a clue.");
-		Behaviours.addReply(npc, "library", "The library is west from here, following the path. There's an OPEN BOOK AND A FEATHER sign over one of the two doors.");
-		Behaviours.addReply(npc, "tavern", "The tavern is southeast from here, following the path. You'll see a big INN sign over the door. You can't miss it.");
-		Behaviours.addReply(npc, "temple", "The temple is the second building southeast from here, following the path. There's a small CROSS over the roof.");
-		Behaviours.addReply(npc, "blacksmith", "The blacksmith's shop is southwest from here, following the path. There's a small SWORD sign over the door.");
-		Behaviours.addReply(npc, "village", "The village is southwest from here, following the path. There you can buy sheeps to breed.");
+		npc.addReply("bank", "The bank is precisely this building next to me. I thought the big chest on the front would have given you a clue.");
+		npc.addReply("library", "The library is west from here, following the path. There's an OPEN BOOK AND A FEATHER sign over one of the two doors.");
+		npc.addReply("tavern", "The tavern is southeast from here, following the path. You'll see a big INN sign over the door. You can't miss it.");
+		npc.addReply("temple", "The temple is the second building southeast from here, following the path. There's a small CROSS over the roof.");
+		npc.addReply("blacksmith", "The blacksmith's shop is southwest from here, following the path. There's a small SWORD sign over the door.");
+		npc.addReply("village", "The village is southwest from here, following the path. There you can buy sheeps to breed.");
 		
 		/** Give the reward to the polite newcomer user */
 		npc.add(1,"bye",null,0,null,new SpeakerNPC.ChatAction() {

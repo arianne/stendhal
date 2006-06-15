@@ -6,7 +6,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -39,7 +38,7 @@ public class LookBookforCeryl implements IQuest {
 		SpeakerNPC npc = npcs.get("Ceryl");
 
 		npc.add(ConversationStates.ATTENDING,
-				Behaviours.QUEST_MESSAGES,
+				SpeakerNPC.QUEST_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -129,7 +128,7 @@ public class LookBookforCeryl implements IQuest {
 
 		/** If player has quest and is in the correct state, just give him the book. */
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("ceryl_book")
@@ -159,7 +158,7 @@ public class LookBookforCeryl implements IQuest {
 
 		/** If player keep asking for book, just tell him to hurry up */
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("ceryl_book")
@@ -196,7 +195,7 @@ public class LookBookforCeryl implements IQuest {
 
 		/** Complete the quest */
 		npc.add(ConversationStates.IDLE,
-				Behaviours.GREETING_MESSAGES,
+				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("ceryl_book")

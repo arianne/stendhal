@@ -22,25 +22,25 @@ public class ScriptingNPC extends SpeakerNPC {
 	// TODO: use message constants from Behaviours.java
 	public void behave(String method, String reply) {
 		if ("greet".equalsIgnoreCase(method)) {
-			Behaviours.addGreeting(this, reply);
+			addGreeting(reply);
 		} else if ("job".equalsIgnoreCase(method)) {
-			Behaviours.addJob(this, reply);
+			addJob(reply);
 		} else if ("help".equalsIgnoreCase(method)) {
-			Behaviours.addHelp(this, reply);
+			addHelp(reply);
 		} else if ("quest".equalsIgnoreCase(method)) {
-			Behaviours.addQuest(this, reply);
+			addQuest(reply);
 		} else if ("bye".equalsIgnoreCase(method)) {
-			Behaviours.addGoodbye(this, reply);
+			addGoodbye(reply);
 		} else {
 			String[] trigger = { method };
-			Behaviours.addReply(this, trigger, reply);
+			addReply(trigger, reply);
 		}
 	}
 
 	public void behave(String method, List<String> triggers, String reply)
 			throws NoSuchMethodException {
 		if ("reply".equalsIgnoreCase(method)) {
-			Behaviours.addReply(this, triggers, reply);
+			addReply(triggers, reply);
 		} else {
 			throw new NoSuchMethodException("Behaviour.add" + method
 					+ " isn't supported.");
@@ -48,15 +48,15 @@ public class ScriptingNPC extends SpeakerNPC {
 	}
 
 	public void behave(List<String> triggers, String reply) {
-		Behaviours.addReply(this, triggers, reply);
+		addReply(triggers, reply);
 	}
 
 	public void behave(String method, Map<String, Integer> items)
 			throws NoSuchMethodException {
 		if ("buy".equalsIgnoreCase(method)) {
-			Behaviours.addBuyer(this, new BuyerBehaviour(world, items));
+			addBuyer(new BuyerBehaviour(world, items));
 		} else if ("sell".equalsIgnoreCase(method)) {
-			Behaviours.addSeller(this, new SellerBehaviour(world, items));
+			addSeller(new SellerBehaviour(world, items));
 		} else {
 			throw new NoSuchMethodException("Behaviour.add" + method
 					+ " isn't supported.");
@@ -65,7 +65,7 @@ public class ScriptingNPC extends SpeakerNPC {
 
 	public void behave(String method, int cost) throws NoSuchMethodException {
 		if ("heal".equalsIgnoreCase(method)) {
-			Behaviours.addHealer(this, cost);
+			addHealer(cost);
 		} else {
 			throw new NoSuchMethodException("Behaviour.add" + method
 					+ " isn't supported.");

@@ -33,7 +33,7 @@ import marauroa.common.game.IRPZone;
 public class SellerBehaviour extends MerchantBehaviour {
 	
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Behaviours.class);
+	private static final Logger logger = Log4J.getLogger(SellerBehaviour.class);
 
 	/**
 	 * Creates a new SellerBehaviour with an empty pricelist.

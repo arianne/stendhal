@@ -35,7 +35,6 @@ import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.pathfinder.Path;
 
@@ -168,7 +167,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			this.rpman = rpman;
 			this.world = (StendhalRPWorld) world;
 			StendhalRPAction.initialize(rpman, this, world);
-			Behaviours.initialize(rpman, this, world);
+			//Behaviours.initialize(rpman, this, world);
 			Path.initialize(world);
 			Entity.setRPContext(this, this.world);
 			/* Initialize quests */

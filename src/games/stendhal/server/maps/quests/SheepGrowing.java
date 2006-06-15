@@ -6,7 +6,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPRuleProcessor;
 
 import games.stendhal.server.entity.Sign;
-import games.stendhal.server.entity.npc.Behaviours;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -99,28 +98,18 @@ public class SheepGrowing implements IQuest {
 				Map<String, Integer> items = new HashMap<String, Integer>();
 				items.put("sheep", 30);
 
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this, "I work as a sheep seller.");
-				Behaviours.addHelp(
-						this,
-						"I just sell sheeps. Just tell me #buy #sheep and I will sell you a nice sheep! Ask me how to take #care of her, how to #travel with her, how to #sell her or how to #own a wild sheep.");
-				Behaviours.addGoodbye(this);
-				Behaviours.addSeller(this, new SheepSellerBehaviour(world, items));
-				Behaviours.addReply(
-						this,
-						"care",
+				addGreeting();
+				addJob("I work as a sheep seller.");
+				addHelp("I just sell sheeps. Just tell me #buy #sheep and I will sell you a nice sheep! Ask me how to take #care of her, how to #travel with her, how to #sell her or how to #own a wild sheep.");
+				addGoodbye();
+				addSeller(new SheepSellerBehaviour(world, items));
+				addReply("care",
 						"To feed your sheep just stand near bushes and she'll eat red cherries from them. She won't lose weight neither die from starvation. Right-click on her and choose LOOK to see her weight.");
-				Behaviours.addReply(
-						this,
-						"travel",
+				addReply("travel",
 						"Sometimes you'll have to say #sheep to call her because you have to be close to her to change between zones. Be patient and don't right-click on YOU and choose LEAVE SHEEP: she would never do that with you!");
-				Behaviours.addReply(
-						this,
-						"sell",
+				addReply("sell",
 						"When your sheep weighs 100 (same as the number of cherries eaten) sell her to Sato, but only then or surely you'll feel cheated with his buying price.");
-				Behaviours.addReply(
-						this,
-						"own",
+				addReply("own",
 						"If you happen to see a wild or better unfairly abandoned sheep, you can own her by right-clicking on HER and choosing OWN.");
 			}
 		};
@@ -201,14 +190,11 @@ public class SheepGrowing implements IQuest {
 				Map<String, Integer> buyitems = new HashMap<String, Integer>();
 				buyitems.put("sheep", 150);
 
-				Behaviours.addGreeting(this);
-				Behaviours.addJob(this,
-						"I work as the main Semos' sheep buyer.");
-				Behaviours
-						.addHelp(this,
-								"I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!.");
-				Behaviours.addBuyer(this, new SheepBuyerBehaviour(world, buyitems));
-				Behaviours.addGoodbye(this);
+				addGreeting();
+				addJob("I work as the main Semos' sheep buyer.");
+				addHelp("I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!.");
+				addBuyer(new SheepBuyerBehaviour(world, buyitems));
+				addGoodbye();
 			}
 		};
 		npcs.add(npc);
