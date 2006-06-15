@@ -17,11 +17,23 @@ import games.stendhal.common.Rand;
 
 import marauroa.common.game.*;
 
+/**
+ * Represents a blood puddle that is left on the ground after a Creature
+ * was injured or killed.
+ */
 public class Blood extends Entity {
+	/**
+	 * After this many turns, blood will disappear.
+	 */
 	final public static int DEGRADATION_TIMEOUT = 300; // 30 minutes at 300 ms
 
+	/**
+	 * A countdown which counts how many turns are left until the
+	 * blood disappears.
+	 */
 	private int degradation;
 
+	@Override
 	public static void generateRPClass() {
 		RPClass blood = new RPClass("blood");
 		blood.isA("entity");
@@ -47,6 +59,7 @@ public class Blood extends Entity {
 
 	@Override
 	public boolean isCollisionable() {
+		// can walk over blood
 		return false;
 	}
 
