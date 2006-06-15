@@ -8,7 +8,7 @@ import games.stendhal.server.pathfinder.Path
 import games.stendhal.server.StendhalRPZone;
 
 // Creating the Stendhal Deathmatch Game
-logger.warn("Starting Stendhal Deathmatch Script") 
+logger.debug("Starting Stendhal Deathmatch Script") 
        
 
 class DeathmatchCondition extends ScriptCondition {
