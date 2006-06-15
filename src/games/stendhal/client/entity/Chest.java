@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+import games.stendhal.client.gui.wt.*;
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -21,6 +22,8 @@ public class Chest extends AnimatedEntity {
 	private boolean open;
 
 	private RPSlot content;
+	
+	private EntityContainer wtEntityContainer;
 
 	/** true means the user requested to open this chest */
 	private boolean requestOpen;
@@ -54,7 +57,7 @@ public class Chest extends AnimatedEntity {
 			animation = "open";
 			// we're wanted to open this?
 			if (requestOpen) {
-				client.getGameGUI().inspect(this, content, 4, 5);
+				wtEntityContainer=client.getGameGUI().inspect(this, content, 4, 5);
 				requestOpen = false;
 			}
 		}
@@ -76,6 +79,13 @@ public class Chest extends AnimatedEntity {
 			open = false;
 			animation = "close";
 			requestOpen = false;
+			
+			if(wtEntityContainer!=null) {
+				wtEntityContainer.close();
+				wtEntityContainer=null;
+			}
+				 
+
 		}
 	}
 

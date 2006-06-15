@@ -156,10 +156,10 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="ice_sword">
-		<type class="sword" subclass="ice_sword"/>
+	<item name="fire_sword">
+		<type class="sword" subclass="fire_sword"/>
 		<attributes>
-			<atk value="27"/>
+			<atk value="28"/>
 		</attributes>
 		<weight value="4"/>
 		<equipable>
@@ -169,10 +169,10 @@ in the file.
 		</equipable>
 	</item>
 
-	<item name="fire_sword">
-		<type class="sword" subclass="fire_sword"/>
+	<item name="ice_sword">
+		<type class="sword" subclass="ice_sword"/>
 		<attributes>
-			<atk value="28"/>
+			<atk value="29"/>
 		</attributes>
 		<weight value="4"/>
 		<equipable>

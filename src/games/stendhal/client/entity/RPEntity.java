@@ -151,6 +151,10 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		return name;
 	}
 
+	protected void setName(String name) {
+		this.name=name;
+	}
+
 	public int getLevel() {
 		return level;
 	}

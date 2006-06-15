@@ -83,6 +83,11 @@ public class Player extends RPEntity {
 			buildAnimations(diff);
 		}
 
+		// We redo here to mantain player whose name has an underscore
+		if (diff.has("name")) {
+			setName(diff.get("name"));
+		}
+
 		// The first time we ignore it.
 		if (base != null) {
 			if (diff.has("online")) {
