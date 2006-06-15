@@ -18,9 +18,6 @@ import games.stendhal.server.entity.Player;
 public class HealerBehaviour extends SellerBehaviour {
 	public HealerBehaviour(StendhalRPWorld world, int cost) {
 		super(world);
-		System.out.println("=====================");
-		System.out.println(world);
-		System.out.println("=====================");
 		priceList.put("heal", cost);
 	}
 
