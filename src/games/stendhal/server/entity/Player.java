@@ -491,14 +491,19 @@ public class Player extends RPEntity {
 				InputStream is = getClass().getClassLoader()
 						.getResourceAsStream("data/conf/admins.list");
 
-				BufferedReader in = new BufferedReader(
-						new InputStreamReader(is));
-
-				String line;
-				while ((line = in.readLine()) != null) {
-					adminNames.add(line);
+				if (is == null) {
+					logger.info("data/conf/admin.list does not exist.");
+				} else {
+					
+					BufferedReader in = new BufferedReader(
+							new InputStreamReader(is));
+	
+					String line;
+					while ((line = in.readLine()) != null) {
+						adminNames.add(line);
+					}
+					in.close();
 				}
-				in.close();
 			} catch (Exception e) {
 				logger.error("Error loading admin names", e);
 			}
