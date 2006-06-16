@@ -93,8 +93,20 @@ public class SevenCherubs implements IQuest {
 							} else {
 								engine.say("Thou have proven yourself brave enough to wear this present!");
 	
+								/* Proposal by Daniel Herding (mort):
+								 * once we have enough quests, we shouldn't
+								 * have this randomization anymore. There
+								 * should be one hard quest for each of the
+								 * golden items.
+								 * I commented out the golden armor here
+								 * because you already get that from the
+								 * CloaksForBario quest. Once enough quests
+								 * exist, this quest should always give you
+								 * golden boots (because you have to walk much
+								 * to fulfil it).
+								 */
 								String[] items = { "golden_boots",
-										"golden_armor", "fire_sword",
+										/*"golden_armor",*/ "fire_sword",
 										"golden_shield", "golden_legs",
 										"golden_helmet" };
 								Item item = world
