@@ -105,6 +105,7 @@ public class ArmorForDagobert implements IQuest {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.isEquipped("leather_cuirass")) {
 							engine.say("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?");
+							engine.setActualState(ConversationStates.QUEST_ITEM_BROUGHT);
 						} else {
 							engine.say("Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?");
 						}
