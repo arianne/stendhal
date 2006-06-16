@@ -540,8 +540,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 			case 104: /* toadstool */
 			case 108: /* apple */
 			case 109: /* carrot */
-			case 191: /* arandula */
-			case 192: /* wood */				
+			case 131: /* arandula */
+			case 132: /* wood */				
 				PlantGrower plantGrower = null;
 				if (type == 92) {
 					plantGrower = new SheepFood();
@@ -556,9 +556,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 					plantGrower = new PlantGrower("apple", 750);
 				} else if (type == 109) {
 					plantGrower = new PlantGrower("carrot", 1000);
-				} else if (type == 191) {
+				} else if (type == 131) {
 					plantGrower = new PlantGrower("arandula", 100);
-				} else if (type == 192) {
+				} else if (type == 132) {
 					plantGrower = new PlantGrower("wood", 1500);
 				}
 				assignRPObjectID(plantGrower);
