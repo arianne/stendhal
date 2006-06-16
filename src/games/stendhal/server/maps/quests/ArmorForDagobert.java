@@ -75,10 +75,10 @@ public class ArmorForDagobert implements IQuest {
 				});
 		
 		// player wants to know what a leather_cuirass is
-		npc.add(ConversationStates.QUEST_OFFERED,
+		npc.add(ConversationStates.ATTENDING,
 				"leather_cuirass",
 				null,
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				"A leather_cuirass is the traditional cyclops armor. Some cyclopes are living in the dungeon deep under the city.",
 				null);
 	}
