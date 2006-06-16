@@ -55,11 +55,7 @@ public class CloaksForBario implements IQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				SpeakerNPC.QUEST_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					public boolean fire(Player player, SpeakerNPC engine) {
-						return !player.hasQuest("cloaks_for_bario");
-					}
-				},
+				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
