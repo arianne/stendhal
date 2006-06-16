@@ -1228,6 +1228,7 @@
 			<item value="cheese" quantity="[4,8]" probability="85"/>
 			<item value="katana" quantity ="1" probability="2"/>
 			<item value="cloak" quantity="1" probability="10"/>
+            <item value="leather_boots" quantity ="1" probability="3"/>
 		</drops>
 		<equips>
 		</equips>
