@@ -1,32 +1,36 @@
 Authors of Marauroa are:
 - Miguel Angel Blanch Lardin 
 - Kim Purnell aka Samoa 
-  · Contributed GFX: Sheep and Wolf
-  · Several important concept ideas.
+  Â· Contributed GFX: Sheep and Wolf
+  Â· Several important concept ideas.
 - Laurent Soubrevilla
-  · Contributed colored GameLogDialog window
+  Â· Contributed colored GameLogDialog window
 - Jonas aka Damosh
 - TheGeneral
-  · Improved Stendhal GUI
-- João Costa   
-  · Created OutfitDialog
+  Â· Improved Stendhal GUI
+- JoÃ£o Costa   
+  Â· Created OutfitDialog
 - Steve Ierodiaconou
-  · Improved texts and dialogs.
-  · Created maps.   
-  · Ported documentation and tested it.
+  Â· Improved texts and dialogs.
+  Â· Created maps.   
+  Â· Ported documentation and tested it.
 - Janet Hunt
-  · Added sound system
+  Â· Added sound system
 - Matthias Totz
-  · Added GUI.
-  · Helped refactoring and fixind code.
+  Â· Added GUI.
+  Â· Helped refactoring and fixind code.
 - Anders Asplund
-  · *Real* Map maker
+  Â· *Real* Map maker
 - Javier Correa
-  · Completed tons of maps  
+  Â· Completed tons of maps  
 - Jo Seiler aka intensifly
-  · StendhalServerExtension architecture
-  · Groovy Script System, groovy script quests
-  · embedded http Server, new Stendhal website
-  
+  Â· StendhalServerExtension architecture
+  Â· Groovy Script System, groovy script quests
+  Â· embedded http Server, new Stendhal website
+- Daniel Herding aka mort
+  Â· Java coding
+  Â· Map, graphics and quest creation
+- Nadine Schlonies aka dine
+  Â· Map creation
   
   
