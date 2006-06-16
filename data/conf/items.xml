@@ -1536,6 +1536,18 @@ in the file.
 		</equipable>
 	</item>
 
+    <item name="wood">
+        <type class="misc" subclass="wood"/>
+        <stackable/>
+        <attributes>
+            <quantity value="1"/>
+        </attributes>
+        <weight value="1"/>
+        <equipable>
+            <slot name="bag"/>
+        </equipable>
+    </item>
+
 	<item name="note">
 		<type class="misc" subclass="paper"/>
 		<weight value="0.01"/>
