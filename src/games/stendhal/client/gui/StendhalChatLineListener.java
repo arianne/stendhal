@@ -161,19 +161,22 @@ import org.apache.log4j.Logger;
         }
       else
         {
-        if(text.startsWith("//") && lastPlayerTell!=null)
+        if(text.startsWith("//"))
           {
-          String[] command = parseString(text, 2);
-          if(command != null)
+          if(lastPlayerTell!=null)
             {
-            RPAction tell = new RPAction();
-            tell.put("type","tell");
-            tell.put("target", lastPlayerTell);
-            tell.put("text", command[1]);
-            client.send(tell);
+            String[] command = parseString(text, 2);
+            if(command != null)
+              {
+              RPAction tell = new RPAction();
+              tell.put("type","tell");
+              tell.put("target", lastPlayerTell);
+              tell.put("text", command[1]);
+              client.send(tell);
+              }
             }
           }
-        if(text.startsWith("/tell ") ||text.startsWith("/msg ")) // Tell command
+        else if(text.startsWith("/tell ") ||text.startsWith("/msg ")) // Tell command
           {
           String[] command = parseString(text, 3);
           if(command != null)
@@ -399,19 +402,7 @@ import org.apache.log4j.Logger;
             client.send(add);
             }
           }
- 
-        else if(text.startsWith("/script ")) // Script command
-          {
-          String[] command = parseString(text, 2);
-          if(command != null)
-            {
-            RPAction script = new RPAction();
-            script.put("type","script");
-            script.put("target", command[1]);
-            client.send(script);
-            }
-          }
- 
+
         else if(text.startsWith("/quit"))
           {
           client.getGameGUI().showQuitDialog();
@@ -476,7 +467,30 @@ import org.apache.log4j.Logger;
               }
            }
         }
-        
+
+        // unhandled /command, may be a ServerExtension command
+        else if(text.startsWith("/"))
+          {
+          boolean hasTarget = text.indexOf(" ")>0;
+          int parms = 2;
+          if(hasTarget)
+            {
+            parms = 3;
+            }
+          String[] command = parseString(text, parms);
+          if(command != null)
+            {
+            RPAction extension = new RPAction();
+            extension.put("type", command[0].substring(1));
+            if(hasTarget)
+              {
+              extension.put("target", command[1]);
+              extension.put("args", command[2]);
+              }
+            client.send(extension);
+            }
+          }
+
         }
       lines.add(playerChatText.getText());      actual=lines.size();      
       if(lines.size()>50)
