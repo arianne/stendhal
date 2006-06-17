@@ -1,7 +1,7 @@
 /* $Id$ */
 
 /** StendhalHttpServer Extension is copyright of Jo Seiler, 2006
- *  intensifly at users dot sourceforge dot net 
+ *  @author intensifly
  *  See the sample website in the web directory and the README file
  *  in this directory on how to use this extension.
  *  
@@ -68,7 +68,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
     public StendhalHttpServer(StendhalRPRuleProcessor rules, StendhalRPWorld world) {
         super(rules, world);
         try {
-            logger.warn("StendhalHttpServer starting...");
+            logger.info("StendhalHttpServer starting...");
             scriptContext = new FileContext(new File("web/script/"));
             fileContext = new CacheContext(new File("web/html/"));
             String[] roots = new String[2];
@@ -320,7 +320,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             engine.link("*.groovy", "securescript");
             this.handler = ProtocolHandlerFactory.getInstance(engine);
             ConnectionFactory.getConnection(this).connect(new ServerSocket(PORT));
-            logger.warn("Started http server on port " + PORT);
+            logger.info("Started http server on port " + PORT);
         } catch (Exception e) {
             logger.error(e);
         }

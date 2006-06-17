@@ -1,3 +1,10 @@
+//* $Id$ */
+
+/** StendhalHttpServer Extension is copyright of Jo Seiler, 2006
+ *  @author intensifly
+ * The StendhalServerExtension is a base class for plugins that add
+ * functions to the server.
+*/
 package games.stendhal.server;
 
 import games.stendhal.server.actions.ActionListener;
@@ -11,7 +18,7 @@ import java.util.Map;
 
 public abstract class StendhalServerExtension extends ActionListener {
 	/** our connection points to the game objects * */
-	static protected StendhalRPRuleProcessor rules;
+	static StendhalRPRuleProcessor rules;
 
 	static protected StendhalRPWorld world;
 
@@ -54,7 +61,7 @@ public abstract class StendhalServerExtension extends ActionListener {
 			Class extensionClass = Class.forName(name);
 
 			if (!StendhalServerExtension.class.isAssignableFrom(extensionClass)) {
-				logger.debug("Class is no instance StendhalServerExtension.");
+				logger.debug("Class is no instance of StendhalServerExtension.");
 				return null;
 			}
 
