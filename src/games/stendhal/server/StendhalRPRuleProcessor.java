@@ -253,6 +253,25 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public void killRPEntity(RPEntity entity, RPEntity who) {
 		entityToKill.add(new Pair<RPEntity, RPEntity>(entity, who));
 	}
+	
+	public boolean isKilledRPEntity(RPEntity entity) {
+		for(Pair<RPEntity, RPEntity> entry: entityToKill) {
+			if(entity.equals(entry.first())) {
+				return true;
+			}
+		}	
+		return false;
+	}
+	
+	public RPEntity isKilledByRPEntity(RPEntity entity) {
+		for(Pair<RPEntity, RPEntity> entry: entityToKill) {
+			if(entity.equals(entry.first())) {
+				return entry.second();
+			}
+		}	
+		return null;
+	}
+	
 
 	public void removePlayerText(Player player) {
 		playersObjectRmText.add(player);
@@ -482,17 +501,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		} finally {
 			Log4J.finishMethod(logger, "onInit");
 		}
-	}
+	}	
 
 	synchronized public boolean onExit(RPObject.ID id) {
 		Log4J.startMethod(logger, "onExit");
 		try {
 			for (Player object : playersObject) {
 				if (object.getID().equals(id)) {
-					if (entityToKill.contains(object)) {
-						logger.info("Logout before dead");
-						return false;
+					if (isKilledRPEntity(object)) {
+						logger.info("Logout before dead: Killing it now :)");
+						object.onDead(isKilledByRPEntity(object));
 					}
+					
 					// Notify other players about this event
 					for (Player p : getPlayers()) {
 						p.notifyOffline(object.getName());
