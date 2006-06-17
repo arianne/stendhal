@@ -315,10 +315,14 @@ public class AdministrationAction extends ActionListener {
                 int newlevel = Integer.parseInt(action.get("newlevel"));
 
                 int mylevel = player.getAdminLevel();
-                if (mylevel < oldlevel) {
+                if (mylevel < REQUIRED_ADMIN_LEVEL_FOR_SUPER) {
+                	response = "Sorry, but you need an adminlevel of " + REQUIRED_ADMIN_LEVEL_FOR_SUPER + " to change adminlevel";
+                
+                /*if (mylevel < oldlevel) {
                     response = "Sorry, but the adminlevel of " + target.getName() + " is " + oldlevel + " and your level is only " + mylevel;
                 } else if (mylevel < newlevel) {
                     response = "Sorry, you cannot set an adminlevel of " + newlevel + " because your level is only " + mylevel;
+                    */
                 } else {
     
                     // OK, do the change
