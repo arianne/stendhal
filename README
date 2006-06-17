@@ -28,7 +28,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.50
+Version 0.51
 
 
 How to play
@@ -53,6 +53,11 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
+
+0.51 June XX 2006
+
+- Speed up server connection because of a bug.
+- Fixed strange cases where avatars keeps on game after logout.
 0.50 June 17, 2006
 - Fixed MacOS display and focus bug.
 - Added magic scrolls.

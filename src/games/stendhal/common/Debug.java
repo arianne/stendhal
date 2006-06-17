@@ -18,7 +18,7 @@ package games.stendhal.common;
  * TODO: Reemplaze with a XML configuration file?
  */
 public class Debug {
-	public static final String VERSION = "0.50";
+	public static final String VERSION = "0.51";
 
 	/** if this is enable tileset are loaded on demand. */
 	public static final boolean VERY_FAST_CLIENT_START = true;
