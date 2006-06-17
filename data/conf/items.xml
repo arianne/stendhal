@@ -1556,6 +1556,14 @@ in the file.
 		</equipable>
 	</item>
 
+	<item name="coupon">
+		<type class="misc" subclass="coupon"/>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="map">
 		<type class="misc" subclass="paper"/>
 		<weight value="0.01"/>
