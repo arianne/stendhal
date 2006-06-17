@@ -29,11 +29,12 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 	private final String scriptDir = "data/script/";
 
 	public StendhalGroovyRunner(StendhalRPRuleProcessor rp,
-			StendhalRPWorld world) {
-		super(rp, world);
-		scripts = new HashMap<String, StendhalGroovyScript>();
-		StendhalRPRuleProcessor.register("script", this);
-	}
+            StendhalRPWorld world) {
+        super(rp, world);
+        scripts = new HashMap<String, StendhalGroovyScript>();
+        StendhalRPRuleProcessor.register("script", this);
+        AdministrationAction.registerCommandLevel("script", 1000);
+    }
 
 	@Override
 	public void init() {

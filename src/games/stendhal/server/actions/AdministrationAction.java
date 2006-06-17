@@ -77,10 +77,13 @@ public class AdministrationAction extends ActionListener {
 		REQUIRED_ADMIN_LEVELS.put("summon",     800);
 		REQUIRED_ADMIN_LEVELS.put("summonat",   800);
 		REQUIRED_ADMIN_LEVELS.put("alter",      900);
-		REQUIRED_ADMIN_LEVELS.put("script",    1000);
 		REQUIRED_ADMIN_LEVELS.put("super",     5000);
 	}
 
+    public static void registerCommandLevel (String command, int minLevel) {
+        REQUIRED_ADMIN_LEVELS.put(command, minLevel);
+    }
+    
 	public static boolean isPlayerAllowedToExecuteAdminCommand(Player player, String command, boolean verbose) {
 		// get adminlevel of player and required adminlevel for this command
 		int adminlevel = player.getAdminLevel();
