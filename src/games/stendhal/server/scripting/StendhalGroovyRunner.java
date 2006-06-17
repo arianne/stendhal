@@ -1,3 +1,10 @@
+/* $Id$ */
+
+/**
+ *  ServerExtension to load groovy scripts
+ *  @author intensifly
+*/
+
 package games.stendhal.server.scripting;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -47,21 +54,26 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 
 	@Override
 	public synchronized boolean perform(String name) {
-		return perform(name, null);
+		return perform(name, "load", null);
 	}
 
-	private synchronized boolean perform(String name, Player player) {
+	private synchronized boolean perform(String name, String mode, Player player) {
 		boolean ret = false;
 		StendhalGroovyScript gr;
 		name = name.trim();
-		if (getClass().getClassLoader().getResource(scriptDir + name) != null) {
-			if ((gr = scripts.remove(name)) != null) {
-				gr.unload();
-			}
-			gr = new StendhalGroovyScript(scriptDir + name, rules, world, player);
-			ret = gr.load();
-			scripts.put(name, gr);
-		}
+        if("load".equals(mode) || "remove".equals(mode)) {
+            if ((gr = scripts.remove(name)) != null) {
+                gr.unload();
+                ret = true;
+            }            
+        }
+        if("load".equals(mode)) {
+            if (getClass().getClassLoader().getResource(scriptDir + name) != null) {
+                gr = new StendhalGroovyScript(scriptDir + name, rules, world, player);
+                ret = gr.load();
+                scripts.put(name, gr);
+            }            
+        }
 		return (ret);
 	}
 
@@ -76,31 +88,38 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 
 	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
-		Log4J.startMethod(logger, "onScript");
+            Player player, RPAction action) {
+        Log4J.startMethod(logger, "onScript");
 
-		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
-			return;
-		}
-
-		if (action.has("target")) {
-			String script = action.get("target");
-			String text = "Script " + script + "not found!";
-			if (perform(script, player)) {
-				text = "Script " + script + " was successfully executed.";
-			} else {
-				String msg = getMessage(script);
-				if (msg != null) {
-					text = msg;
-				} else {
-					text = "Script " + script
-							+ " not found or unexpected error!";
-				}
-			}
-			player.setPrivateText(text);
-			rules.removePlayerText(player);
-		}
-		Log4J.finishMethod(logger, "onScript");
-	}
+        if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player,
+                "script", true)) {
+            return;
+        }
+        String text = "usage: /script <filename> [mode]\n  mode is either load (default) or remove";
+        if (action.has("target")) {
+            String script = action.get("target");
+            String mode = "load";
+            if (action.has("args") && action.get("args").trim().length() > 0) {
+                mode = action.get("args").trim();
+            }
+            if (perform(script, mode, player)) {
+                text = "Script " + script + " was successfully executed ("
+                        + mode + ").";
+            } else {
+                String msg = getMessage(script);
+                if (msg != null) {
+                    text = msg;
+                } else {
+                    text = "Script "
+                            + script
+                            + " not found or unexpected error while performing "
+                            + mode;
+                }
+            }
+        }
+        player.setPrivateText(text);
+        rules.removePlayerText(player);
+        Log4J.finishMethod(logger, "onScript");
+    }
 
 }
