@@ -3,16 +3,9 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.Money;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import java.util.Iterator;
-
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
 /**
  * QUEST: Zoo Food
@@ -42,60 +35,6 @@ public class ZooFood implements IQuest {
 	
 	private static final int REQUIRED_HAM = 10;
 
-	// copied from Behaviours.playerMoney.
-	// TODO: create Player.drop() with an amount parameter.
-	public int playerHamCount(Player player) {
-		int count = 0;
-
-		Iterator<RPSlot> it = player.slotsIterator();
-		while (it.hasNext()) {
-			RPSlot slot = it.next();
-			for (RPObject object : slot) {
-				if (object instanceof StackableItem) {
-					StackableItem item = (StackableItem) object;
-					if (item.getName().equals("ham")) {
-						count += ((Money) object).getQuantity();
-					}
-				}
-			}
-		}
-		return count;
-	}
-
-	// copied from Behaviours.chargePlayer.
-	public boolean takeHamAwayFromPlayer(Player player, int amount) {
-		int left = amount;
-
-		Iterator<RPSlot> it = player.slotsIterator();
-		while (it.hasNext() && left != 0) {
-			RPSlot slot = it.next();
-
-			Iterator<RPObject> object_it = slot.iterator();
-			while (object_it.hasNext()) {
-				RPObject object = object_it.next();
-				if (object instanceof StackableItem) {
-					StackableItem item = (StackableItem) object;
-					if (item.getName().equals("ham")) {
-						int quantity = item.getQuantity();
-						if (left >= quantity) {
-							slot.remove(item.getID());
-							left -= quantity;
-	
-							object_it = slot.iterator();
-						} else {
-							item.setQuantity(quantity - left);
-							left = 0;
-							break;
-						}
-					}
-				}
-			}
-		}
-		world.modify(player);
-
-		return left == 0;
-	}
-	
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Katinka");
 
@@ -183,7 +122,7 @@ public class ZooFood implements IQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						if (takeHamAwayFromPlayer(player, REQUIRED_HAM)) {
+						if (player.drop("ham", REQUIRED_HAM)) {
 							world.modify(player);
 							player.setQuest("zoo_food", "done");
 							player.addXP(200);
