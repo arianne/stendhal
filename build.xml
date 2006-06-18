@@ -279,16 +279,16 @@
   <target name="dist_server_binary">
     <mkdir dir="stendhal-server-${version}"/>
 
-    <copy todir="stendhal-server-${version}/data/conf" file="data/conf/admin.list"/>
+    <copy todir="stendhal-server-${version}/data/conf" file="data/conf/admins.list"/>
 
-    <copy todir="stendhal-server-${version}/data/scripts"> 
-      <fileset dir="data/scripts"> 
+    <copy todir="stendhal-server-${version}/data/script"> 
+      <fileset dir="data/script"> 
         <include name="**.*"/> 
       </fileset> 
     </copy> 
     	
     <copy todir="stendhal-server-${version}/web"> 
-      <fileset dir="data/web"> 
+      <fileset dir="web"> 
         <include name="**.*"/> 
       </fileset> 
     </copy> 
