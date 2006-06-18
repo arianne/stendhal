@@ -32,16 +32,6 @@ public class Orril implements IContent {
 		this.npcs = NPCList.get();
 		this.world = world;
 
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
-				"0_orril_river_s"));
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setx(39);
-		portal.sety(5);
-		portal.setNumber(0);
-		portal.setDestination("int_orril_jynath_house", 0);
-		zone.addPortal(portal);
-
 		buildJynathHouseArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"int_orril_jynath_house")));
 
@@ -50,6 +40,8 @@ public class Orril implements IContent {
 		buildCastleInsideArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"int_orril_castle_0")));
 		buildCastleDungeonArea();
+		buildCampfireArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		"0_orril_river_s")));
 	}
 
 	public static class QuestDropItemOnDeath extends Creature {
@@ -286,4 +278,43 @@ public class Orril implements IContent {
 		npc.initHP(100);
 		zone.addNPC(npc);
 	}
+
+	private void buildCampfireArea(StendhalRPZone zone) {
+		// create portal to Jynath' house (which is on the same
+		// map as the campfire by accident)
+		Portal portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setx(39);
+		portal.sety(5);
+		portal.setNumber(0);
+		portal.setDestination("int_orril_jynath_house", 0);
+		zone.addPortal(portal);
+
+		SpeakerNPC npc = new SpeakerNPC("Sally") {
+			@Override
+			protected void createPath() {
+				// NPC does not move
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+
+			@Override
+			protected void createDialog() {
+				//addGreeting();
+				addJob("Work? I'm just a little girl! I'm a scout.");
+				addHelp("You can find lots of useful stuff in the woods, for example wood and mushrooms. But beware, some are poisonous!");
+				addGoodbye();
+				// remaining behaviour is defined in maps.quests.Campfire.				
+			}
+		};
+		npcs.add(npc);
+
+		zone.assignRPObjectID(npc);
+		npc.put("class", "littlegirlnpc");
+		npc.set(40, 60);
+		npc.setDirection(Direction.RIGHT);
+		npc.initHP(100);
+		zone.addNPC(npc);
+	}
+
 }
