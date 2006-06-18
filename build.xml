@@ -33,11 +33,11 @@
       <fileset dir="${sprites}"/>
     </copy>
 
-   <copy todir="${build}/data/sounds"> 
-     <fileset dir="data/sounds"> 
-       <include name="**.*"/> 
-     </fileset> 
-   </copy> 
+    <copy todir="${build}/data/sounds"> 
+      <fileset dir="data/sounds"> 
+        <include name="**.*"/> 
+      </fileset> 
+    </copy> 
 
     <copy todir="${build}/data/tilesets">
       <fileset dir="${tiled}">
@@ -278,6 +278,25 @@
   
   <target name="dist_server_binary">
     <mkdir dir="stendhal-server-${version}"/>
+
+    <copy todir="stendhal-server-${version}/data/conf" file="data/conf/admin.list"/>
+
+    <copy todir="stendhal-server-${version}/data/scripts"> 
+      <fileset dir="data/scripts"> 
+        <include name="**.*"/> 
+      </fileset> 
+    </copy> 
+    	
+    <copy todir="stendhal-server-${version}/web"> 
+      <fileset dir="data/web"> 
+        <include name="**.*"/> 
+      </fileset> 
+    </copy> 
+    	
+  	
+    <copy todir="stendhal-${version}" file="${groovy_jar}"/>
+    <copy todir="stendhal-${version}" file="${simple_jar}"/>
+
     <copy todir="stendhal-server-${version}" file="${lib}/${server_jarname}"/>
     <copy todir="stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
     <copy todir="stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
@@ -310,7 +329,8 @@
 
   <target name="dist_client_no_sound_binary">
     <mkdir dir="stendhal-${version}"/>
-    <copy todir="stendhal-${version}" file="${log4j_jar}"/>
+  	
+  	<copy todir="stendhal-${version}" file="${log4j_jar}"/>
     <copy todir="stendhal-${version}" file="${marauroa_jar}"/>
     <copy todir="stendhal-${version}" file="${lib}/${client_jarname}"/>
     <copy todir="stendhal-${version}" file="${lib}/${client_data}"/>
