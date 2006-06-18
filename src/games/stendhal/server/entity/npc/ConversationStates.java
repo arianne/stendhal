@@ -78,6 +78,11 @@ public class ConversationStates {
 	public static final int QUEST_ITEM_BROUGHT = 62;
 
 	/**
+	 * The SpeakerNPC asks the player if the player has brought a requested item 
+	 */
+	public static final int QUEST_ITEM_QUESTION = 63;
+
+	/**
 	 * Multi-purpose states
 	 */
 	public static final int QUESTION_1 = 70;
