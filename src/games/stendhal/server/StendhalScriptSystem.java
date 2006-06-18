@@ -39,7 +39,9 @@ public class StendhalScriptSystem {
 	public void logic() {
 		for (Pair<ScriptCondition, ScriptAction> script : scripts) {
 			if (script.first() == null || script.first().fire()) {
-				script.second().fire();
+				if (script.second() != null) {
+					script.second().fire();
+				}
 			}
 		}
 	}
