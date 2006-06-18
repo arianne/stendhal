@@ -39,11 +39,16 @@ public class BuyerBehaviour extends MerchantBehaviour {
 		// First try to stack the money on existing money
 		while (it.hasNext() && !found) {
 			RPSlot slot = it.next();
-			for (RPObject object: slot) {
-				if (object instanceof Money) {
-					((Money) object).add(getCharge(player));
-					found = true;
-					break;
+
+			// TODO: this is a workaround for bug #1494702
+			if ((slot.getName() != null) && (!slot.getName().equals("bank"))) {
+
+				for (RPObject object: slot) {
+					if (object instanceof Money) {
+						((Money) object).add(getCharge(player));
+						found = true;
+						break;
+					}
 				}
 			}
 		}
