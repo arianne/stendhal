@@ -154,6 +154,7 @@ public class StendhalFirstScreen extends JFrame {
 			HttpURLConnection.setFollowRedirects(false);
 			HttpURLConnection connection = (HttpURLConnection) url
 					.openConnection();
+            connection.setConnectTimeout(1500);  // 1.5 secs
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					connection.getInputStream()));
