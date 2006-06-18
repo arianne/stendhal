@@ -21,6 +21,10 @@ public class Rand {
 		rand = new Random();
 	}
 
+	public static int throwCoin() {
+		return rand.nextInt(2) + 1;
+	}
+	
 	public static int roll1D6() {
 		return rand.nextInt(6) + 1;
 	}
