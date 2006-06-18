@@ -118,7 +118,7 @@ public abstract class SpeakerNPC extends NPC {
 
 	public static final String[] HELP_MESSAGES = {"help", "ayuda"};
 
-	public static final String[] QUEST_MESSAGES = {"task", "quest"};
+	public static final String[] QUEST_MESSAGES = {"task", "quest", "favor", "favour"};
 
 	public static final String[] GOODBYE_MESSAGES = {"bye", "farewell", "cya", "adios"};
 	
