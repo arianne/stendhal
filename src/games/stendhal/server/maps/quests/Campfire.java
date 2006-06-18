@@ -92,7 +92,10 @@ public class Campfire implements IQuest {
 							SpeakerNPC engine) {
 						if (canStartQuestNow(engine, player)) {
 							engine.say("I need more wood to keep my campfire running. But I can't leave my fire unattended. Could you please collect wood for me?");
-						} else {
+						} else if (player.getQuest("campfire").equals("start")){
+							engine.say("You already promised me to bring me ten pieces of wood!");
+						}
+						else {
 							engine.say("I don't need any more wood at the moment. Come back later.");
 							engine.setActualState(ConversationStates.ATTENDING);
 						}
@@ -139,7 +142,7 @@ public class Campfire implements IQuest {
 							player.addXP(50);
 							
 							String rewardClass;
-							if (Rand.throwCoin() == 0) {
+							if (Rand.throwCoin() == 1) {
 								rewardClass = "meat";
 							} else {
 								rewardClass = "ham";
