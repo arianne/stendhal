@@ -229,7 +229,11 @@ class BailAction extends SpeakerNPC.ChatAction {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {
-    String questInfo = player.getQuest("deathmatch")
+    String questInfo = player.getQuest("deathmatch");
+    if (questInfo == null) {
+        engine.say("Coward, you haven't even #started!");
+        return;
+    }
     List tokens = (questInfo+";0;0").tokenize(";");
     String questState = tokens[0];
     String questLevel = tokens[1];
