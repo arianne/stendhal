@@ -155,6 +155,7 @@ public class AdministrationAction extends ActionListener {
 		} else if (type.equals("jail")) {
 			onJail(world, rules, player, action);
 		}
+		rules.removePlayerText(player);
 	}
 
 	private void onTellEverybody(RPWorld world, StendhalRPRuleProcessor rules,
