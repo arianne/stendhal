@@ -77,7 +77,7 @@ public class Campfire implements IQuest {
 						engine.say("You're back already? Don't forget that you promised to collect ten pieces of wood in the forest for me!");
 					}
 				} else {
-					engine.say("Hi again! What's up?");
+					engine.say("Hi again! Have you come to bring me wood again? I still have enough from last time, come back later!");
 				}
 			}
 		});
