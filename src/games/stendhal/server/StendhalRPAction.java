@@ -19,6 +19,7 @@ import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.item.*;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.pathfinder.Path;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
@@ -29,6 +30,7 @@ import marauroa.server.game.RPWorld;
 
 import java.util.Vector;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import org.apache.log4j.Logger;
 
@@ -462,24 +464,20 @@ public class StendhalRPAction {
     }
     
     public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
-                    int y, boolean moveToDirectNeighboursOnly) {
+                    int y, boolean checkPathOnRepositioning) {
 
         boolean found = false;
 
         if (zone.collides(entity, x, y)) {
 
             // We cannot place the entity on the orginal spot.
-            // Let's search for a new destination.
-
-            // We search up to 4 tiles in every way unless we are
-            // told not to do so. This is to prevent players from
-            // reaching disallowed areas:
-            // 1. Move below a wall                2. Disconnect
-            // 3. Move another player on this spot 4. Reconnect
+            // Let's search for a new destination up to 4 tiles in every way.
+        	
+        	// If we are told to do so, we will make sure there is a walkable
+        	// path between the original spot and the new destination.
+        	// This is to prevent players to enter not allowed places by
+        	// logging in on top of other players.
             int maxDestination = 4;
-            if (moveToDirectNeighboursOnly) {
-                maxDestination = 1;
-            }
 
             // If no place can be found using strict collision checking,
             // we'll try a second time ignoring collisions caused by objects.
@@ -489,11 +487,24 @@ public class StendhalRPAction {
     				for (int i = -k; i < k; i++) {
     					for (int j = -k; j < k; j++) {
     						if (!zone.collides(entity, x + i, y + j, (collisionType == 0))) {
-    							entity.setx(x + i);
-    							entity.sety(y + j);
-    
-    							found = true;
-                                break foundit; // break all for-loops
+    							
+    							int nx = x + i;
+    							int ny = y + j;
+    							
+    							if (!checkPathOnRepositioning ||
+    									!Path.searchPath(entity, x, y, new Rectangle (
+    											nx, ny, 1, 1), maxDestination*maxDestination).isEmpty()) {
+
+    								logger.debug("(" +x +", " + y + ") --> (" + nx + ", " + ny + ")" + "      " + checkPathOnRepositioning);
+    								logger.debug(Path.searchPath(entity, x, y, new Rectangle (
+											nx, ny, 1, 1), maxDestination*maxDestination));
+
+	    							entity.setx(nx);
+	    							entity.sety(ny);
+	    
+	    							found = true;
+	                                break foundit; // break all for-loops
+    							}
     						}
     					}
     				}
