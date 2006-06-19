@@ -7,8 +7,15 @@ import games.stendhal.server.scripting.ScriptCondition;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
+
 public class StendhalScriptSystem {
 	private List<Pair<ScriptCondition, ScriptAction>> scripts;
+    /** the logger instance. */
+    private static final Logger logger = Log4J
+            .getLogger(StendhalRPRuleProcessor.class);
 
 	private StendhalScriptSystem() {
 		scripts = new CopyOnWriteArrayList<Pair<ScriptCondition, ScriptAction>>();
@@ -38,11 +45,16 @@ public class StendhalScriptSystem {
 
 	public void logic() {
 		for (Pair<ScriptCondition, ScriptAction> script : scripts) {
-			if (script.first() == null || script.first().fire()) {
-				if (script.second() != null) {
-					script.second().fire();
-				}
-			}
+            try {
+                if (script.first() == null || script.first().fire()) {
+                    if (script.second() != null) {
+                        script.second().fire();
+                    }
+                }                
+            }
+            catch (Exception e) {
+                logger.error("error in StendhalScriptSystem", e);                
+            }
 		}
 	}
 }
