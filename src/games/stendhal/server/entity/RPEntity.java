@@ -729,6 +729,11 @@ public abstract class RPEntity extends Entity {
 	public boolean isEquipped(String name, int amount) {
 		int found = 0;
 		for (RPSlot slot : this.slots()) {
+			// HACK: Added to avoid dropping items that are on bank.
+			if(slot.getName().equals("bank")) {
+				continue;
+			}
+			
 			for (RPObject object : slot) {
 				if (object instanceof Item && ((Item) object).getName().equals(name)) {
 					if (object instanceof StackableItem) {
