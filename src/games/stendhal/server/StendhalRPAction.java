@@ -495,10 +495,6 @@ public class StendhalRPAction {
     									!Path.searchPath(entity, x, y, new Rectangle (
     											nx, ny, 1, 1), maxDestination*maxDestination).isEmpty()) {
 
-    								logger.debug("(" +x +", " + y + ") --> (" + nx + ", " + ny + ")" + "      " + checkPathOnRepositioning);
-    								logger.debug(Path.searchPath(entity, x, y, new Rectangle (
-											nx, ny, 1, 1), maxDestination*maxDestination));
-
 	    							entity.setx(nx);
 	    							entity.sety(ny);
 	    
