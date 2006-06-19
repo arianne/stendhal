@@ -435,8 +435,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 				object.consume(getTurn());
 			}
-			for (NPC npc : npcs)
-				npc.logic();
+			for (NPC npc : npcs) {
+                try {
+                    npc.logic();
+                } catch (Exception e) {
+                    logger.error("error in beginTurn", e);
+                }                
+            }
 			for (Player object : playersObjectRmText) {
 				if (object.has("text")) {
 					object.remove("text");
