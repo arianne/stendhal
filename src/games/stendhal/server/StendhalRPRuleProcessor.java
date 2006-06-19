@@ -179,17 +179,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				plantGrowers.addAll(szone.getPlantGrowers());
                 doors.addAll(szone.getDoors());
 			}
-			// /* Run python script */
-			// PythonInterpreter interpreter=new PythonInterpreter();
-			// interpreter.execfile("data/script/stendhal.py");
-			//      
-			// PyInstance
-			// object=(PyInstance)interpreter.eval("Configuration()");
-			// StendhalPythonConfig
-			// config=(StendhalPythonConfig)object.__tojava__(StendhalPythonConfig.class);
-			//      
-			// config.setContext(this,this.world);
-			// config.init();
       
       Configuration config = Configuration.getConfiguration();
       try {
