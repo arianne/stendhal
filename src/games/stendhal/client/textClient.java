@@ -28,6 +28,10 @@ public class textClient extends Thread {
 	private String password;
 
 	private String character;
+    
+    private String port;
+    
+    private static boolean ShowWorld = false;
 
 	private Map<RPObject.ID, RPObject> world_objects;
 
@@ -35,12 +39,13 @@ public class textClient extends Thread {
 
 	private PerceptionHandler handler;
 
-	public textClient(String h, String u, String p, String c)
+	public textClient(String h, String u, String p, String c, String P)
 			throws SocketException {
 		host = h;
 		username = u;
 		password = p;
 		character = c;
+         port = P;
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
@@ -69,6 +74,8 @@ public class textClient extends Thread {
 
 			protected void onPerception(MessageS2CPerception message) {
 				try {
+                     System.out.println("Received messge: " + message);
+                    
 					handler.apply(message, world_objects);
 					int i = message.getPerceptionTimestamp();
 
@@ -82,17 +89,17 @@ public class textClient extends Thread {
 						action.put("dy", "1");
 						clientManager.send(action);
 					}
-
-					System.out
-							.println("<World contents ------------------------------------->");
-					int j = 0;
-					for (RPObject object : world_objects.values()) {
-						j++;
-						System.out.println(j + ". " + object);
+					if(ShowWorld) {
+                        System.out
+                        .println("<World contents ------------------------------------->");
+                        int j = 0;
+                        for (RPObject object : world_objects.values()) {
+                            j++;
+                            System.out.println(j + ". " + object);
+                        }
+                        System.out
+                        .println("</World contents ------------------------------------->");                    
 					}
-					System.out
-							.println("</World contents ------------------------------------->");
-
 				} catch (Exception e) {
 					onError(3, "Exception while applying exception");
 				}
@@ -145,7 +152,7 @@ public class textClient extends Thread {
 
 	public void run() {
 		try {
-			clientManager.connect(host, 32161);
+			clientManager.connect(host, Integer.parseInt(port));
 			clientManager.login(username, password);
 		} catch (SocketException e) {
 			return;
@@ -178,6 +185,7 @@ public class textClient extends Thread {
 				String password = null;
 				String character = null;
 				String host = null;
+                 String port = null;
 
 				while (i != args.length) {
 					if (args[i].equals("-u")) {
@@ -188,14 +196,19 @@ public class textClient extends Thread {
 						character = args[i + 1];
 					} else if (args[i].equals("-h")) {
 						host = args[i + 1];
-					}
+                     } else if (args[i].equals("-P")) {
+                         port = args[i + 1];
+                     } else if (args[i].equals("-W")) {
+                         if("1".equals(args[i + 1]))
+                             ShowWorld = true;
+                     }
 					i++;
 				}
 
 				if (username != null && password != null && character != null
-						&& host != null) {
+						&& host != null && port != null) {
 					System.out.println("Parameter operation");
-					new textClient(host, username, password, character).start();
+					new textClient(host, username, password, character, port).start();
 					return;
 				}
 			}
@@ -203,14 +216,16 @@ public class textClient extends Thread {
 			System.out.println("Stendhal textClient");
 			System.out.println();
 			System.out
-					.println("  games.stendhal.textClient -u username -p pass -h host -c character");
+					.println("  games.stendhal.textClient -u username -p pass -h host -P port -c character");
 			System.out.println();
 			System.out.println("Required parameters");
 			System.out.println("* -h\tHost that is running Marauroa server");
+			System.out.println("* -P\tPort on which Marauroa server is running");
 			System.out.println("* -u\tUsername to log into Marauroa server");
 			System.out.println("* -p\tPassword to log into Marauroa server");
-			System.out
-					.println("* -c\tCharacter used to log into Marauroa server");
+			System.out.println("* -c\tCharacter used to log into Marauroa server");
+			System.out.println("Optional parameters");
+			System.out.println("* -W\tShow world content? 0 or 1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
