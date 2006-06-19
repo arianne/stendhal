@@ -1,6 +1,7 @@
 /* $Id$ */
 
 import games.stendhal.server.entity.*
+import games.stendhal.server.entity.creature.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.scripting.*
 import games.stendhal.server.entity.npc.*;
@@ -134,7 +135,9 @@ class DeathmatchAction extends ScriptAction {
             {
             int x = player.getx() + 1; 
             int y = player.gety() + 1;
-            spawnedCreatures.add(game.add(creature, x, y));
+            Creature mycreature = game.add(creature, x, y);
+            mycreature.attack(player);
+            spawnedCreatures.add(mycreature);
             questLevel = currentLevel + 1;
             break;
             }
@@ -192,7 +195,15 @@ class DoneAction extends SpeakerNPC.ChatAction {
         defense = new Integer(helm.get("def"));
       }
       defense++;
-      helm.put("def",""+defense)
+      int maxdefense = 5 + (player.getLevel() / 5).intValue();
+      if(defense > maxdefense) {
+          engine.say("Congratulations! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is " + maxdefense)
+          helm.put("def",""+maxdefense)          
+          
+      }
+      else {
+          helm.put("def",""+defense)          
+      }
       helm.put("infostring",player.getName())
       helm.put("persistent",1)
       helm.setDescription("This is " + player.getName() +  "'s grand prize for Deathmatch winners. Wear it with pride.")
