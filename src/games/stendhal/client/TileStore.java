@@ -49,7 +49,7 @@ public class TileStore extends SpriteStore {
 			return filename;
 		}
 
-		public boolean isloaded() {
+		public boolean isLoaded() {
 			return loaded;
 		}
 
@@ -126,20 +126,38 @@ public class TileStore extends SpriteStore {
 			new RangeFilename(base, amount, ref).load();
 		}
 	}
+	
+	private Object locker=new Object();
+
+	public void preload() {
+		Thread loader=new Thread() {
+			public void run() {
+				for(RangeFilename range: rangesTiles) {	
+					synchronized(locker) {
+						if(!range.isLoaded())  {
+							range.load();
+						}
+					}
+				}
+			}
+		};
+		
+		loader.start();
+	}
 
 	public Sprite getTile(int i) {
 		Sprite sprite = tileset.get(i);
 
 		if (Debug.VERY_FAST_CLIENT_START && sprite == null) {
-			for (RangeFilename range : rangesTiles) {
-				if (range.isInRange(i) && !range.isloaded()) {
-					StendhalClient.get().addEventLine(
-							"Loading tileset " + range.getFilename(),
-							Color.pink);
-					range.load();
-
-					sprite = tileset.get(i);
-					break;
+			synchronized(locker) {
+				for (RangeFilename range : rangesTiles) {
+					if (range.isInRange(i) && !range.isLoaded()) {
+						StendhalClient.get().addEventLine("Loading tileset " + range.getFilename(),	Color.pink);
+						range.load();
+						
+						sprite = tileset.get(i);
+						break;
+					}
 				}
 			}
 		}

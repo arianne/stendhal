@@ -62,6 +62,7 @@ public class StaticGameLayers {
         tilestore.add("data/tilesets/zelda_building_0_tileset.png", 30 * 16);
         tilestore.add("data/tilesets/zelda_outside_2_chipset.png", 30 * 16);
         tilestore.add("data/tilesets/zelda_interior_1_chipset.png", 30 * 16);
+        tilestore.preload();
         area = null;
         areaChanged = true;
     }
