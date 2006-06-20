@@ -34,6 +34,11 @@ public class Corpse extends PassiveEntity {
 	private int degradation;
 
 	private int stage;
+    
+    /**
+     * Remember which turn we were called last to compute the degradation
+     */
+    private int lastTurn = 0;
 
 	private boolean isDegrading = true;
 
@@ -133,7 +138,7 @@ public class Corpse extends PassiveEntity {
 		return degradation;
 	}
 
-	public int decDegradation() {
+	public int decDegradation(int aktTurn) {
 		int new_stage = MAX_STAGE
 				- (int) (((float) degradation / (float) DEGRADATION_TIMEOUT) * MAX_STAGE);
 		if (stage != new_stage) {
@@ -158,11 +163,16 @@ public class Corpse extends PassiveEntity {
 			}
 		}
 
-		return degradation--;
+        degradation -= aktTurn - lastTurn;
+        
+		return degradation;
 	}
 
-	public void logic() {
-		if (isDegrading && decDegradation() < 1) {
+	public void logic(int aktTurn) {
+        if(lastTurn==0) {
+            lastTurn = aktTurn - 1;
+        }
+		if (isDegrading && decDegradation(aktTurn) < 1) {
 			if (isContained()) {
 				// We modify the base container if the object change.
 				RPObject base = getContainer();
@@ -184,6 +194,7 @@ public class Corpse extends PassiveEntity {
 
 			rp.removeCorpse(this);
 		}
+        lastTurn = aktTurn;
 	}
 
 	public void add(PassiveEntity entity) {

@@ -20,8 +20,14 @@ import games.stendhal.common.Direction;
 public class Door extends Portal {
 	private boolean open;
     private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
-    private int turnsLeftUtilClosed = 0;
+    private int turnsLeftUntilClosed = 0;
 
+    /**
+     * Remember which turn we were called last to compute turns to stay open
+     */
+    private int lastTurn = 0;
+    
+    
 	//private int width;
 
 	public static void generateRPClass() {
@@ -59,7 +65,7 @@ public class Door extends Portal {
 
 	public void open() {
 		this.open = true;
-        this.turnsLeftUtilClosed = TURNS_TO_STAY_OPEN;
+        this.turnsLeftUntilClosed = TURNS_TO_STAY_OPEN;
 		put("open", "");
 	}
 
@@ -106,11 +112,16 @@ public class Door extends Portal {
 		return (text);
 	}
 
-    public void logic() {
+    public void logic(int aktTurn) {
         if (isOpen()) {
-            turnsLeftUtilClosed --;
-            if (turnsLeftUtilClosed <= 0) {
+            if(lastTurn == 0) {
+                lastTurn = aktTurn - 1;
+            }
+            turnsLeftUntilClosed -= aktTurn - lastTurn;
+            lastTurn = aktTurn;
+            if (turnsLeftUntilClosed <= 0) {
                 close();
+                lastTurn = 0;
                 world.modify(this);
             }
         }

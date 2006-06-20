@@ -43,7 +43,11 @@ public class PlantGrower extends Entity {
 	 */
 	private String growingItemName;
 	
-	
+    /**
+     * Remember which turn we were called last to compute the ripeness
+     */
+	private int lastTurn = 0;
+    
 	/**
 	 * Tells how many turns it takes for a new fruit to become ripe.
 	 */
@@ -110,18 +114,22 @@ public class PlantGrower extends Entity {
 	}
 	
 	/**
-	 * Is invoked every turn. Checks if a new fruit can be grown, and if the
+	 * Is invoked every few turns. Checks if a new fruit can be grown, and if the
 	 * new fruit is ripe, creates it.
 	 */
-	public void regrow() {
+	public void regrow(int aktTurn) {
+        if(lastTurn == 0) {
+            lastTurn = aktTurn - 1;
+        }
 		if (canGrowNewFruit()) {
-			ripeness += 1.0f / turnsForRegrow;
+			ripeness += (aktTurn - lastTurn) * (1.0f / turnsForRegrow);
 			// TODO: add some randomization
 			if (ripeness > 1.0f) {
 				ripeness = 0.0f;
 				growNewFruit();
 			}
 		}
+        lastTurn = aktTurn;
 	}
 
 	@Override

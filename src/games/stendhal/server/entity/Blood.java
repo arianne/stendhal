@@ -32,6 +32,11 @@ public class Blood extends Entity {
 	 * blood disappears.
 	 */
 	private int degradation;
+    
+    /**
+     * Remember which turn we were called last to compute the degradation
+     */
+    private int lastTurn = 0;
 
 	@Override
 	public static void generateRPClass() {
@@ -63,15 +68,20 @@ public class Blood extends Entity {
 		return false;
 	}
 
-	private int decDegradation() {
-		return degradation--;
+	private int decDegradation(int aktTurn) {
+        degradation -= aktTurn - lastTurn;
+ 		return degradation;
 	}
 
-	public void logic() {
-		if (decDegradation() == 0) {
+	public void logic(int aktTurn) {
+        if(lastTurn == 0) {
+            lastTurn = aktTurn - 1;
+        }
+		if (decDegradation(aktTurn) <= 0) {
 			world.remove(getID());
 			rp.removeBlood(this);
 		}
+        lastTurn = aktTurn;
 	}
 
 	@Override

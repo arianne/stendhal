@@ -447,35 +447,51 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
-			logger.info("Begin turn: " + (System.nanoTime() - start)
+			logger.debug("Begin turn: " + (System.nanoTime() - start)
 					/ 1000000.0);
 			Log4J.finishMethod(logger, "beginTurn");
 		}
 	}
 
 	synchronized public void endTurn() {
-		Log4J.startMethod(logger, "endTurn");
-		long start = System.nanoTime();
-		try {
-			for (PlantGrower plantGrower : plantGrowers)
-				plantGrower.regrow();
-			for (RespawnPoint point : respawnPoints)
-				point.nextTurn();
-			for (Corpse corpse : corpses)
-				corpse.logic();
-			for (Blood blood : bloods)
-				blood.logic();
-            for (Door door : doors) {
-                door.logic();
+        Log4J.startMethod(logger, "endTurn");
+        long start = System.nanoTime();
+        int aktTurn = getTurn();
+        try {
+            for (RespawnPoint point : respawnPoints) {
+                point.logic();               
             }
-			scripts.logic();
-		} catch (Exception e) {
-			logger.error("error in endTurn", e);
-		} finally {
-			logger.info("End turn: " + (System.nanoTime() - start) / 1000000.0);
-			Log4J.finishMethod(logger, "endTurn");
-		}
-	}
+            switch (aktTurn % 5) {
+                case 4:
+                    for (RespawnPoint point : respawnPoints)
+                        point.checkRespawn(aktTurn);
+                    break;
+                case 3:
+                    for (PlantGrower plantGrower : plantGrowers)
+                        plantGrower.regrow(aktTurn);
+                    break;
+                case 2:
+                    for (Corpse corpse : corpses)
+                        corpse.logic(aktTurn);
+                    break;
+                case 1:
+                    for (Blood blood : bloods)
+                        blood.logic(aktTurn);
+                    break;
+                default:
+                    for (Door door : doors) {
+                        door.logic(aktTurn);
+                    }
+                    break;
+            }
+            scripts.logic();
+        } catch (Exception e) {
+            logger.error("error in endTurn", e);
+        } finally {
+            logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0 + " (" + (aktTurn % 5) + ")");
+            Log4J.finishMethod(logger, "endTurn");
+        }
+    }
 
 	synchronized public boolean onInit(RPObject object)
 			throws RPObjectInvalidException {

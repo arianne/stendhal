@@ -418,17 +418,20 @@ public class Creature extends NPC {
 		Log4J.startMethod(logger, "logic");
 
 		if (aiProfiles.containsKey("heal")) {
-			String[] healing = aiProfiles.get("heal").split(",");
-			int amount = Integer.parseInt(healing[0]);
-			int frequency = Integer.parseInt(healing[1]);
+            if(getHP() < getBaseHP()) {
+                String[] healing = aiProfiles.get("heal").split(",");
+                int amount = Integer.parseInt(healing[0]);
+                int frequency = Integer.parseInt(healing[1]);
 
-			if (rp.getTurn() % frequency == 0 && getHP() != getBaseHP() && getHP() > 0 ) {
-				if (getHP() + amount < getBaseHP()) {
-					setHP(getHP() + amount);
-				} else {
-					setHP(getBaseHP());
-				}
-			}
+                if (rp.getTurn() % frequency == 0 && getHP() > 0 ) {
+                    if (getHP() + amount < getBaseHP()) {
+                        setHP(getHP() + amount);
+                    } else {
+                        setHP(getBaseHP());
+                    }
+                }
+                
+            }
 		}
 
 		if (getNearestPlayer(30) == null) // if there is no player near and

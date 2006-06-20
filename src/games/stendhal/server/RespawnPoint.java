@@ -41,6 +41,11 @@ public class RespawnPoint {
 	private int respawnTime;
 
 	private int turnsToRespawn;
+    
+    /**
+     * Remember which turn we were called last to compute remaining respawn time
+     */
+    private int lastTurn = 0;
 
 	private StendhalRPZone zone;
 
@@ -60,7 +65,7 @@ public class RespawnPoint {
 		maximum = 0;
 
 		respawning = true;
-		turnsToRespawn = 1; // respawn now
+		turnsToRespawn = 0; // respawn now
 		respawnTime = TURNSTORESPAWN;
 	}
 
@@ -86,14 +91,18 @@ public class RespawnPoint {
 		Log4J.finishMethod(logger, "notifyDead");
 	}
 
-	public void nextTurn() {
-		Log4J.startMethod(logger, "nextTurn");
+	public void checkRespawn(int aktTurn) {
+		Log4J.startMethod(logger, "checkRespawn");
 		if (respawning) {
 			logger.debug("Turns to respawn: " + turnsToRespawn);
 
-			if (turnsToRespawn == 0) {
+            if(lastTurn==0) {
+                lastTurn = aktTurn - 1;
+            }
+            
+			if (turnsToRespawn <= 0) {
 				turnsToRespawn = respawnTime;
-
+ 
 				respawn();
 
 				if (entities.size() == maximum) {
@@ -101,14 +110,20 @@ public class RespawnPoint {
 				}
 			}
 
-			turnsToRespawn--;
+			turnsToRespawn -= aktTurn - lastTurn;
 		}
+        lastTurn = aktTurn;
+        Log4J.finishMethod(logger, "checkRespawn");
+    }
+
+    public void logic() {
+        Log4J.startMethod(logger, "logic");
 
 		for (Creature creature : entities) {
 			creature.logic();
 		}
 
-		Log4J.finishMethod(logger, "nextTurn");
+		Log4J.finishMethod(logger, "logic");
 	}
 
 	public int size() {
