@@ -167,43 +167,45 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			this.rpman = rpman;
 			this.world = (StendhalRPWorld) world;
 			StendhalRPAction.initialize(rpman, this, world);
-			//Behaviours.initialize(rpman, this, world);
+			// Behaviours.initialize(rpman, this, world);
 			Path.initialize(world);
 			Entity.setRPContext(this, this.world);
 			/* Initialize quests */
-			new StendhalQuestSystem(this.world,	this);
+			new StendhalQuestSystem(this.world, this);
 			for (IRPZone zone : world) {
 				StendhalRPZone szone = (StendhalRPZone) zone;
 				npcs.addAll(szone.getNPCList());
 				respawnPoints.addAll(szone.getRespawnPointList());
 				plantGrowers.addAll(szone.getPlantGrowers());
-                doors.addAll(szone.getDoors());
+				doors.addAll(szone.getDoors());
 			}
-      
-      Configuration config = Configuration.getConfiguration();
-      try {
-        String[] extensionsToLoad = config.get("server_extension").split(",");
-        for(int i=0; i<extensionsToLoad.length; i++) {
-          String extension = null;
-          try {
-            extension = extensionsToLoad[i];
-            if(extension.length()>0)
-              StendhalServerExtension.getInstance(config.get(extension),
-                this, this.world).init();
-          }
-          catch (Exception ex) {
-            logger.error("Error while loading extension: " + extension, ex);
-          }
-        }
-      }
-      catch (PropertyNotFoundException ep) {
-        logger.warn("No server extensions configured in ini file. Defaulting to groovy extension.");
-        /* Run groovy script extension */
-        StendhalServerExtension.getInstance(
-            "games.stendhal.server.scripting.StendhalGroovyRunner",
-            this, this.world).init();
-      }
-      
+			
+			Configuration config = Configuration.getConfiguration();
+			try {
+				String[] extensionsToLoad = config.get("server_extension")
+				.split(",");
+				for (int i = 0; i < extensionsToLoad.length; i++) {
+					String extension = null;
+					try {
+						extension = extensionsToLoad[i];
+						if (extension.length() > 0)
+							StendhalServerExtension.getInstance(
+									config.get(extension), this, this.world)
+									.init();
+					} catch (Exception ex) {
+						logger.error("Error while loading extension: "
+								+ extension, ex);
+					}
+				}
+			} catch (PropertyNotFoundException ep) {
+				logger
+				.warn("No server extensions configured in ini file. Defaulting to groovy extension.");
+				/* Run groovy script extension */
+				StendhalServerExtension.getInstance(
+						"games.stendhal.server.scripting.StendhalGroovyRunner",
+						this, this.world).init();
+			}
+			
 		} catch (Exception e) {
 			logger.fatal("cannot set Context. exiting", e);
 			System.exit(-1);
