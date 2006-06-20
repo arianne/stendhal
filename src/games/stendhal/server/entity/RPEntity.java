@@ -476,7 +476,15 @@ public abstract class RPEntity extends Entity {
 				if (entity instanceof Player) // XP reward only for players
 				{
 					Player p = (Player) entity;
-					p.addXP((int) (xp_earn * gain_xp_limitation));
+					int reward=(int) (xp_earn * gain_xp_limitation);
+					
+					// We make minimum reward to be 1.
+					if(reward==0) {
+						reward=1;
+					}						 
+						
+					p.addXP(reward);
+					
 					if (damageDone == totalDamageReceived) {
 						p.setKill(getName(), "solo");
 					} else if (!p.hasKilledSolo(getName())) {
