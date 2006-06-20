@@ -134,7 +134,7 @@ class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
       int start = Level.getXP(player.getLevel());
       int next  = Level.getXP(player.getLevel()+1);
       int reward = (next - start) / 5;
-      if(start >= Level.maxLevel())
+      if(player.getLevel() >= Level.maxLevel())
         {
         reward = 0;
         }
