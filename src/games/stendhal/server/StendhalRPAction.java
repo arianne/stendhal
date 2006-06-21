@@ -477,8 +477,16 @@ public class StendhalRPAction {
                     int y, boolean checkObjectCollisition) {
 
         boolean found = false;
+        boolean checkPath = true;
 
         if (zone.collides(entity, x, y)) {
+
+        	if (zone.collides(entity, x, y, false)) {
+        		// something nasty happend. The player should be put on a spot
+        		// with a real collisition (not caused by objects).
+        		// Try to put him anywhere possible without checking the path.
+        		checkPath = false;
+        	}
 
             // We cannot place the entity on the orginal spot. Let's search 
         	// for a new destination up to maxDestination tiles in every way.
@@ -502,7 +510,7 @@ public class StendhalRPAction {
 
 							List<Node> path = Path.searchPath(entity, x, y, 
 									new Rectangle (nx, ny, 1, 1), maxDestination*maxDestination);
-							if (!path.isEmpty()) {
+							if (!checkPath || !path.isEmpty()) {
 
 								// We found a place!
     							entity.setx(nx);
