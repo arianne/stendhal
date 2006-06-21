@@ -136,6 +136,7 @@ class DeathmatchAction extends ScriptAction {
             int x = player.getx() + 1; 
             int y = player.gety() + 1;
             Creature mycreature = game.add(creature, x, y);
+            mycreature.clearDropItemList();
             mycreature.attack(player);
             spawnedCreatures.add(mycreature);
             questLevel = currentLevel + 1;
