@@ -283,19 +283,17 @@
 
     <copy todir="stendhal-server-${version}/data/script"> 
       <fileset dir="data/script"> 
-        <include name="**.*"/> 
+        <include name="**"/> 
       </fileset> 
     </copy> 
     	
     <copy todir="stendhal-server-${version}/web"> 
-      <fileset dir="web"> 
-        <include name="**.*"/> 
-      </fileset> 
+      <fileset dir="web"/> 
     </copy> 
     	
   	
-    <copy todir="stendhal-${version}" file="${groovy_jar}"/>
-    <copy todir="stendhal-${version}" file="${simple_jar}"/>
+    <copy todir="stendhal-server-${version}" file="${groovy_jar}"/>
+    <copy todir="stendhal-server-${version}" file="${simple_jar}"/>
 
     <copy todir="stendhal-server-${version}" file="${lib}/${server_jarname}"/>
     <copy todir="stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
@@ -352,6 +350,10 @@
     <copy todir="stendhal-${version}-src/data">
       <fileset dir="data"/>
     </copy>
+
+    <copy todir="stendhal-server-${version}/web"> 
+      <fileset dir="web"/> 
+    </copy> 
 
     <copy todir="stendhal-${version}-src/tiled">
       <fileset dir="${tiled}"/>
