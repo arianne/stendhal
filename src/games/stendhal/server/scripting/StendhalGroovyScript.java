@@ -150,7 +150,7 @@ public class StendhalGroovyScript {
 	}
 
 	public Creature add(Creature template, int x, int y) {
-		Creature creature = new Creature(template);
+		Creature creature = template.getInstance();
 		if (zone != null) {
 			zone.assignRPObjectID(creature);
 			StendhalRPAction.placeat(zone, creature, x, y);
