@@ -14,6 +14,7 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Debug;
 import games.stendhal.common.Rand;
+import games.stendhal.common.Direction;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.Player;
@@ -114,7 +115,7 @@ public class Creature extends NPC {
 	 * the number of rounds the creature should wait when the path to the target
 	 * is blocked and the target is not moving
 	 */
-	protected static final int WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED = 5;
+	protected static final int WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED = 9;
 
 	private RespawnPoint point;
 
@@ -608,34 +609,38 @@ public class Creature extends NPC {
 			logger.debug("Moving to target. Creature attacks");
 			if (Debug.CREATURES_DEBUG_SERVER)
 				debug.append("movetotarget");
-			// our current Path is blocked...mostly by the target or another
-			// attacker
+
+			aiState = AiState.APPROACHING_STOPPED_TARGET;
+			attack(target);
+			
+			if (waitRounds == 0) 
+			  {
+			  faceto(target);
+			  }
+
+			// our current Path is blocked...mostly by the target or another attacker
 			if (collides()) {
 				if (Debug.CREATURES_DEBUG_SERVER)
 					debug.append(";blocked");
 				// invalidate the path and stop
 				clearPath();
-				stop();
+				
+				// Try to fix the issue by moving randomly.
+				Direction dir=Direction.rand();
+				setDirection(dir);
+				setSpeed(getSpeed());
+
 				// wait some rounds so the path can be cleared by other
 				// creatures
 				// (either they move away or die)
 				waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
 			}
 
-			aiState = AiState.APPROACHING_STOPPED_TARGET;
-			attack(target);
-			faceto(target);
-
-			// be sure to let the blocking creatures pass before trying to find
-			// a
-			// new path
+			// be sure to let the blocking creatures pass before trying to find a new path
 			if (waitRounds > 0) {
 				if (Debug.CREATURES_DEBUG_SERVER)
 					debug.append(";waiting");
 				waitRounds--;
-				// HACK: remove collision flag (we're not moving after all)
-				setCollides(false);
-				clearPath();
 			} else {
 				// Are we still patrol'ing?
 				if (isPathLoop() || aiState == AiState.PATROL) {
@@ -655,6 +660,7 @@ public class Creature extends NPC {
 					if (Debug.CREATURES_DEBUG_SERVER)
 						debug.append(";blocked");
 					logger.debug("Blocked. Choosing a new target.");
+					
 					target = null;
 					clearPath();
 					stopAttack();
