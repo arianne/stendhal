@@ -22,7 +22,7 @@ public class Nalwor implements IContent {
 
 		portal = new OneWayPortal();
 		zone.assignRPObjectID(portal);
-		portal.setx(97);
+		portal.setx(87);
 		portal.sety(92);
 		portal.setNumber(60);
 		zone.addPortal(portal);

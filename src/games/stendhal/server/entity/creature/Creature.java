@@ -267,7 +267,7 @@ public class Creature extends NPC {
 		this.height = height;
 
 		if (dropItems != null) {
-			this.dropsItems = dropItems;
+			this.dropsItems = new ArrayList<DropItem>(dropItems);
 		}
 
 		this.aiProfiles = aiProfiles;
@@ -366,8 +366,8 @@ public class Creature extends NPC {
             if (corpse.isFull())
                 break;
         }
-		for (Item item : createDroppedItems(world.getRuleManager()
-				.getEntityManager())) {
+        
+		for (Item item : createDroppedItems(world.getRuleManager().getEntityManager())) {
 			corpse.add(item);
 
 			if (corpse.isFull())
