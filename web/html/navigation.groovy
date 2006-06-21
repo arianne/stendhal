@@ -27,7 +27,7 @@ mb.div(id : "navBar") {
         a(href : "/stats", "Statistics")
       }
       li ( class : "inactive" ) {
-        a(href : "/client.jnlp", "Play")
+        a(href : "http://arianne.sourceforge.net/jws/stendhal.jnlp", "Play")
       }
     }
    }
@@ -61,11 +61,6 @@ mb.div(id : "navBar") {
   }
   div ( class: "relatedlinks") {
     h3 ( "Stendhal sites")
-    ul(class : "navigation") {
-      li ( ) {
-        a(href : "http://arianne.murpe.com/", target: "_blank", "arianne.murpe.com")
-      }
-    }
     ul(class : "navigation") {
       li ( ) {
         a(href : "http://stendhal.ath.cx/", target: "_blank", "stendhal.ath.cx")
