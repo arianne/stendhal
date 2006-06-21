@@ -54,13 +54,17 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 
-0.51 June XX 2006
+0.51 June 21 2006
 
 - Speed up server connection because of a bug.
 - Fixed strange cases where avatars keeps on game after logout.
 - Fixed personal chest bugs: stealth other players and items duplication.
 - Improved deathmatch script.
 - Speed up client start time.
+- Improving creatures navigation.
+- Fixed deathmatch exploit.
+- Fixed some maps glitches.
+- Website added to server binary
 0.50 June 17, 2006
 - Fixed MacOS display and focus bug.
 - Added magic scrolls.
