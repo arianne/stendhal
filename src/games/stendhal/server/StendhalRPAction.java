@@ -20,6 +20,7 @@ import games.stendhal.server.entity.item.*;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Path.Node;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
@@ -28,6 +29,7 @@ import marauroa.server.game.NoRPZoneException;
 import marauroa.server.game.RPServerManager;
 import marauroa.server.game.RPWorld;
 
+import java.util.List;
 import java.util.Vector;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -460,51 +462,58 @@ public class StendhalRPAction {
 	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
 			int y) {
 
-	    return placeat(zone, entity, x, y, false);
+		boolean res = placeatImpl(zone, entity, x, y, true);
+
+		if (!res && entity instanceof Player) {
+            // If no place can be found using strict collision checking,
+            // we'll try a second time ignoring collisions caused by objects.
+			// TODO: Is this realy a good idea?
+			// res = placeatImpl(zone, entity, x, y, false);
+		}
+	    return res;
     }
     
-    public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
-                    int y, boolean checkPathOnRepositioning) {
+    public static boolean placeatImpl(StendhalRPZone zone, Entity entity, int x,
+                    int y, boolean checkObjectCollisition) {
 
         boolean found = false;
 
         if (zone.collides(entity, x, y)) {
 
-            // We cannot place the entity on the orginal spot.
-            // Let's search for a new destination up to 4 tiles in every way.
+            // We cannot place the entity on the orginal spot. Let's search 
+        	// for a new destination up to maxDestination tiles in every way.
+            int maxDestination = 20;
         	
-        	// If we are told to do so, we will make sure there is a walkable
-        	// path between the original spot and the new destination.
-        	// This is to prevent players to enter not allowed places by
-        	// logging in on top of other players.
-            int maxDestination = 4;
-
-            // If no place can be found using strict collision checking,
-            // we'll try a second time ignoring collisions caused by objects.
             foundit:
-            for (int collisionType = 0; collisionType <= 1; collisionType++) {
-                for (int k = 1; k <= maxDestination; k++) {
-    				for (int i = -k; i < k; i++) {
-    					for (int j = -k; j < k; j++) {
-    						if (!zone.collides(entity, x + i, y + j, (collisionType == 0))) {
-    							
-    							int nx = x + i;
-    							int ny = y + j;
-    							
-    							if (!checkPathOnRepositioning ||
-    									!Path.searchPath(entity, x, y, new Rectangle (
-    											nx, ny, 1, 1), maxDestination*maxDestination).isEmpty()) {
+            for (int k = 1; k <= maxDestination; k++) {
+				for (int i = -k; i < k; i++) {
+					for (int j = -k; j < k; j++) {
 
-	    							entity.setx(nx);
-	    							entity.sety(ny);
-	    
-	    							found = true;
-	                                break foundit; // break all for-loops
-    							}
-    						}
-    					}
-    				}
-                }
+						int nx = x + i;
+						int ny = y + j;
+						if (!zone.collides(entity, nx, ny, checkObjectCollisition)) {
+							
+							// OK, we may place the entity on this spot.
+
+				        	// We verify that there is a walkable path between the original
+				        	// spot and the new destination. This is to prevent players to 
+				        	// enter not allowed places by logging in on top of other players.
+				        	// Or monsters to spawn on the other side of a wall.
+
+							List<Node> path = Path.searchPath(entity, x, y, 
+									new Rectangle (nx, ny, 1, 1), maxDestination*maxDestination);
+							if (!path.isEmpty()) {
+
+								// We found a place!
+    							entity.setx(nx);
+    							entity.sety(ny);
+    
+    							found = true;
+                                break foundit; // break all for-loops
+							}
+						}
+					}
+				}
             }
 
             if (!found) {

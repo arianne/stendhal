@@ -274,7 +274,7 @@ public class Player extends RPEntity {
 			}
 		}
 
-		StendhalRPAction.placeat(zone, player, x, y, true);
+		StendhalRPAction.placeat(zone, player, x, y);
 
 		String[] slots = { "bag", "rhand", "lhand", "head", "armor", "legs",
 				"feet", "cloak", "bank" };
