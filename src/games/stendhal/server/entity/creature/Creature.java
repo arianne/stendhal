@@ -320,7 +320,7 @@ public class Creature extends NPC {
 	}
     
     public void clearDropItemList() {
-        dropsItems.clear();
+        dropsItems = new ArrayList<Creature.DropItem>();
         dropItemInstances.clear();
     }
 
