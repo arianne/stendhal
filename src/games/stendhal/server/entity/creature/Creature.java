@@ -138,10 +138,13 @@ public class Creature extends NPC {
 
 	private int height;
 
-	/** Ths list of items this creature may drop */
+	/** Ths list of item names this creature may drop */
 	protected List<Creature.DropItem> dropsItems;
 
-	/** Ths list of items this creature may drop */
+    /** Ths list of item instances this creature may drop for
+     * use in quests */
+    protected List<Item> dropItemInstances;
+    
 	protected List<String> noises;
 
 	private int respawnTime;
@@ -165,6 +168,7 @@ public class Creature extends NPC {
 		createPath();
 
 		dropsItems = new ArrayList<Creature.DropItem>();
+		dropItemInstances = new ArrayList<Item>();
 		aiProfiles = new HashMap<String, String>();
 		attackTurn = Rand.rand(5);
 	}
@@ -180,6 +184,8 @@ public class Creature extends NPC {
 			this.dropsItems = copy.dropsItems;
 		}
 
+        // this.dropItemInstances is ignored;
+        
 		this.aiProfiles = copy.aiProfiles;
 		this.noises = copy.noises;
 
@@ -222,6 +228,7 @@ public class Creature extends NPC {
 		createPath();
 
 		dropsItems = new ArrayList<Creature.DropItem>();
+		dropItemInstances = new ArrayList<Item>();
 		aiProfiles = new HashMap<String, String>();
 		attackTurn = Rand.rand(5);
 	}
@@ -310,6 +317,34 @@ public class Creature extends NPC {
 	public RespawnPoint getRespawnPoint() {
 		return point;
 	}
+    
+    public void clearDropItemList() {
+        dropsItems.clear();
+        dropItemInstances.clear();
+    }
+
+    /**
+     * adds a named item to the List of Items that will be dropped on dead
+     */
+    public void addDropItem(String name, double probability, int min, int max) {
+        dropsItems.add(new DropItem(name, probability, min, max));
+    }
+    
+    /**
+     * adds a named item to the List of Items that will be dropped on dead
+     */
+    public void addDropItem(String name, double probability, int amount) {
+        dropsItems.add(new DropItem(name, probability, amount));
+    }
+    
+    /**
+     * adds a specific item to the List of Items that will be dropped on dead
+     * with 100 % probability
+     * @param item
+     */
+    public void addDropItem(Item item) {
+        dropItemInstances.add(item);
+    }
 
 	@Override
     public void onDead(RPEntity who) {
@@ -325,6 +360,11 @@ public class Creature extends NPC {
 
     @Override
 	protected void dropItemsOn(Corpse corpse) {
+        for (Item item : dropItemInstances) {
+            corpse.add(item);
+            if (corpse.isFull())
+                break;
+        }
 		for (Item item : createDroppedItems(world.getRuleManager()
 				.getEntityManager())) {
 			corpse.add(item);
