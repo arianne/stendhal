@@ -139,11 +139,13 @@ public class Creature extends NPC {
 
 	private int height;
 
-	/** Ths list of item names this creature may drop */
+	/** Ths list of item names this creature may drop 
+     *  Note; per default this list is shared with all creatures
+     *  of that class*/
 	protected List<Creature.DropItem> dropsItems;
 
     /** Ths list of item instances this creature may drop for
-     * use in quests */
+     *  use in quests. This is always creature specific */
     protected List<Item> dropItemInstances;
     
 	protected List<String> noises;
@@ -181,10 +183,13 @@ public class Creature extends NPC {
 		this.width = copy.width;
 		this.height = copy.height;
 
+         /** Creatures created with this function will share their
+         *  dropsItems with any other creature of that kind. If you want
+         *  individual dropsItems, use clearDropItemList first!
+         */
 		if (copy.dropsItems != null) {
 			this.dropsItems = copy.dropsItems;
 		}
-
         // this.dropItemInstances is ignored;
         
 		this.aiProfiles = copy.aiProfiles;
@@ -266,9 +271,14 @@ public class Creature extends NPC {
 		this.width = width;
 		this.height = height;
 
+        /** Creatures created with this function will share their
+         *  dropsItems with any other creature of that kind. If you want
+         *  individual dropsItems, use clearDropItemList first!
+         */
 		if (dropItems != null) {
 			this.dropsItems = dropItems;
 		}
+        // this.dropItemInstances is ignored;
 
 		this.aiProfiles = aiProfiles;
 		this.noises = noises;
@@ -319,20 +329,29 @@ public class Creature extends NPC {
 		return point;
 	}
     
+    /**
+     *  clears the list of predefined dropItems and creates
+     *  an empty list specific to this creature
+     *
+     */
     public void clearDropItemList() {
         dropsItems = new ArrayList<Creature.DropItem>();
         dropItemInstances.clear();
     }
 
     /**
-     * adds a named item to the List of Items that will be dropped on dead
+     *  adds a named item to the List of Items that will be dropped on dead
+     *  if clearDropItemList hasn't been called first, this will change
+     *  all creatures of this kind
      */
     public void addDropItem(String name, double probability, int min, int max) {
         dropsItems.add(new DropItem(name, probability, min, max));
     }
     
     /**
-     * adds a named item to the List of Items that will be dropped on dead
+     *  adds a named item to the List of Items that will be dropped on dead
+     *  if clearDropItemList hasn't been called first, this will change
+     *  all creatures of this kind
      */
     public void addDropItem(String name, double probability, int amount) {
         dropsItems.add(new DropItem(name, probability, amount));
@@ -340,7 +359,7 @@ public class Creature extends NPC {
     
     /**
      * adds a specific item to the List of Items that will be dropped on dead
-     * with 100 % probability
+     * with 100 % probability. this is always for that specific creature only.
      * @param item
      */
     public void addDropItem(Item item) {
