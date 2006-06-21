@@ -17,7 +17,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * - Tad asks you to buy a flask to give it to Margaret.
  * - Margaret sells you a flask
  * - Tad thanks you and asks you to take the flask to Ilisa
- * - Ilisa asks you for a rat corpse and a few herbs.
+ * - Ilisa asks you for a few herbs.
  * - Return the created dress potion to Tad.
  *
  * REWARD: 
@@ -112,17 +112,11 @@ public class IntroducePlayers implements IQuest {	private StendhalRPWorld world
 		npc.add(ConversationStates.ATTENDING,				"ilisa",				null,				ConversationStates.ATTENDING,				"Ilisa is the summon healer at Semos temple.",				null);	}
 	private void step_4() {
 		SpeakerNPC npc = npcs.get("Ilisa");
-		npc.add(ConversationStates.IDLE,				SpeakerNPC.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					public boolean fire(Player player, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"ilisa");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					public void fire(Player player, String text,							SpeakerNPC engine) {						if (player.drop("flask")) {							engine.say("Thanks for the flask. Please I need a rat #corpse and a few #herbs to create the potion for #Tad.");							player.addXP(10);
+		npc.add(ConversationStates.IDLE,				SpeakerNPC.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					public boolean fire(Player player, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"ilisa");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					public void fire(Player player, String text,							SpeakerNPC engine) {						if (player.drop("flask")) {							engine.say("Thanks for the flask. Please, now I need a few #herbs to create the potion for #Tad.");							player.addXP(10);
 							world.modify(player);
 							player.setQuest("introduce_players", "corpse&herbs");						} else {							engine.say("Weren't you supposed to have a flask for me? Go and get a flask.");						}					}				});
-		npc.add(ConversationStates.ATTENDING,
-				"corpse",
-				null,
-				ConversationStates.ATTENDING,
-				"There are tons of rats around Semos. They are a plague.",
-				null);
-		
-		npc.add(ConversationStates.ATTENDING,
+
+        npc.add(ConversationStates.ATTENDING,
 				"herbs",
 				null,
 				ConversationStates.ATTENDING,
