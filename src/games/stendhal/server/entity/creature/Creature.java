@@ -267,7 +267,7 @@ public class Creature extends NPC {
 		this.height = height;
 
 		if (dropItems != null) {
-			this.dropsItems = new ArrayList<DropItem>(dropItems);
+			this.dropsItems = dropItems;
 		}
 
 		this.aiProfiles = aiProfiles;
