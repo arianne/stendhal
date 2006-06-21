@@ -151,7 +151,7 @@ public class TileStore extends SpriteStore {
 		if (Debug.VERY_FAST_CLIENT_START && sprite == null) {
 			synchronized(locker) {
 				for (RangeFilename range : rangesTiles) {
-					if (range.isInRange(i) && !range.isLoaded()) {
+					if (range.isInRange(i)) {
 						StendhalClient.get().addEventLine("Loading tileset " + range.getFilename(),	Color.pink);
 						range.load();
 						

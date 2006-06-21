@@ -494,7 +494,7 @@ public class Player extends RPEntity {
 						.getResourceAsStream(adminFilename);
 
 				if (is == null) {
-					logger.info("data/conf/admin.list does not exist.");
+					logger.info("data/conf/admins.list does not exist.");
 				} else {
 					
 					BufferedReader in = new BufferedReader(
@@ -523,7 +523,7 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Returns the admin level of this user. See Administration.java for details.
+	 * Returns the admin level of this user. See AdministrationAction.java for details.
 	 *
 	 * @return adminlevel
 	 */

@@ -160,18 +160,13 @@ public class StaticGameLayers {
     }
 
     public void draw(GameScreen screen, String layer) {
-        for (Pair<String, LayerRenderer> p : layers) {
-            if (p.first().equals(layer)) {
-                try {
-                    p.second().draw(screen);
-                }
-                catch (Exception e) {
-                    logger.error("Exception in draw", e);
-                }
-            }
-        }
+    	for (Pair<String, LayerRenderer> p : layers) {
+    		if (p.first().equals(layer)) {
+    			p.second().draw(screen);
+    		}
+    	}
     }
-
+    
     /** Render the choosen set of layers */
     public void draw(GameScreen screen) {
         for (Pair<String, LayerRenderer> p : layers) {
