@@ -249,9 +249,6 @@ public class StendhalHttpServer extends StendhalServerExtension implements
                 PrintStream outStream) throws Exception {
             File file = new File(context.getRealPath(resource));
             
-            System.out.println("REALPATH: "+context.getRealPath(resource));
-            System.out.println("RESOURCE: "+resource.substring(1, resource.length()));
-            
             if (file.exists()
                     && file.isDirectory()
                     && context.getRealPath(resource).contains(resource.substring(1, resource.length()))) {
