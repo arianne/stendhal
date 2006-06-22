@@ -28,7 +28,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.51
+Version 0.52
 
 
 How to play
@@ -54,7 +54,12 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 
-0.51 June 21 2006
+0.52 Jul XX, 2006
+
+- Fixed elves Nalwor teleporter.
+- Fixed bug at drops on creatures.
+
+0.51 June 21, 2006
 
 - Speed up server connection because of a bug.
 - Fixed strange cases where avatars keeps on game after logout.

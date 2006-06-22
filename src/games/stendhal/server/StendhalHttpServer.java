@@ -248,9 +248,13 @@ public class StendhalHttpServer extends StendhalServerExtension implements
         public void process(Request req, Response resp, String resource,
                 PrintStream outStream) throws Exception {
             File file = new File(context.getRealPath(resource));
+            
+            System.out.println("REALPATH: "+context.getRealPath(resource));
+            System.out.println("RESOURCE: "+resource.substring(1, resource.length()));
+            
             if (file.exists()
                     && file.isDirectory()
-                    && context.getRealPath(resource).contains(resource.substring(0, resource.length() - 1))) {
+                    && context.getRealPath(resource).contains(resource.substring(1, resource.length()))) {
                 if (!resource.endsWith("/")) {
                     resource += "/";
                 }
