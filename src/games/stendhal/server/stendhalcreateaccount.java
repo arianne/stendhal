@@ -31,18 +31,23 @@ public class stendhalcreateaccount extends marauroa.server.createaccount {
 		Player.generateRPClass();
 
 		stendhalcreateaccount instance = new stendhalcreateaccount();
-		System.exit(instance.run(args));
+		if(instance.run(args)==Result.OK_ACCOUNT_CREATED) {
+			System.exit(0);			
+		} else {
+			System.exit(1);
+		}
+			
 	}
 
 	public stendhalcreateaccount() {
 		super();
 	}
 
-	public boolean execute(String username, String password, String email) {
+	public marauroa.server.createaccount.Result execute(String username, String password, String email) {
 		String[] args = { "-u", username, "-p", password, "-c", username, "-e",
 				email, "-i", Configuration.getConfigurationFile() };
 
-		return (run(args) == 0);
+		return run(args);
 	}
 
 	@Override

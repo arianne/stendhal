@@ -51,6 +51,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
+import marauroa.server.createaccount.Result;
 import marauroa.server.game.IRPRuleProcessor;
 import marauroa.server.game.JDBCPlayerDatabase;
 import marauroa.server.game.RPServerManager;
@@ -229,9 +230,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return true;
 	}
 
-	public boolean createAccount(String username, String password, String email) {
+	public Result createAccount(String username, String password, String email) {
 		if (!isValidUsername(username)) {
-			return false;
+			return Result.FAILED_INVALID_CHARACTER_USED;
 		}
 		stendhalcreateaccount account = new stendhalcreateaccount();
 		return account.execute(username, password, email);
