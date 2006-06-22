@@ -479,6 +479,9 @@ public class StendhalRPAction {
         boolean found = false;
         boolean checkPath = true;
 
+		int nx = x;
+		int ny = y;
+
         if (zone.collides(entity, x, y)) {
 
         	if (zone.collides(entity, x, y, false)) {
@@ -497,8 +500,8 @@ public class StendhalRPAction {
 				for (int i = -k; i < k; i++) {
 					for (int j = -k; j < k; j++) {
 
-						int nx = x + i;
-						int ny = y + j;
+						nx = x + i;
+						ny = y + j;
 						if (!zone.collides(entity, nx, ny, checkObjectCollisition)) {
 							
 							// OK, we may place the entity on this spot.
@@ -540,7 +543,10 @@ public class StendhalRPAction {
 
                 if (player.hasSheep()) {
                     Sheep sheep = (Sheep) world.get(player.getSheep());
-                    placeat(zone, sheep, x + 1, y);
+                    // Call placeat for the sheep on the same spot as the 
+                    // player to ensure that there will be a path between the
+                    // player and his/her sheep.
+                    placeat(zone, sheep, nx, ny);
                     sheep.clearPath();
                     sheep.stop();
                 }
