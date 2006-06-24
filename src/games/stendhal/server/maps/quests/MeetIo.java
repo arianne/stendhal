@@ -32,7 +32,7 @@ public class MeetIo implements IQuest {
 
 		SpeakerNPC npc = npcs.get("Io Flotto");
 
-		npc.add(ConversationStates.IDLE,
+		npc.add(ConversationStates.ATTENDING,
 				"yes",
 				null,
 				ConversationStates.INFORMATION_1,
