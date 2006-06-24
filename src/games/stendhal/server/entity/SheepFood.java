@@ -19,7 +19,6 @@ import marauroa.common.game.RPObject;
 public class SheepFood extends PlantGrower {
 	private int amount;
 
-	@Override
 	public static void generateRPClass() {
 		RPClass food = new RPClass("food");
 		food.isA("plant_grower");

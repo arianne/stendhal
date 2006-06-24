@@ -70,7 +70,6 @@ public class PlantGrower extends Entity {
 		put("type", "plant_grower");
 	}
 
-	@Override
 	public static void generateRPClass() {
 		RPClass grower = new RPClass("plant_grower");
 		grower.isA("entity");

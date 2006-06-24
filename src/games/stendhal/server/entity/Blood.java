@@ -38,7 +38,6 @@ public class Blood extends Entity {
      */
     private int lastTurn = 0;
 
-	@Override
 	public static void generateRPClass() {
 		RPClass blood = new RPClass("blood");
 		blood.isA("entity");
