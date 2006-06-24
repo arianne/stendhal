@@ -74,12 +74,11 @@ public class OrcishHappyMeal implements IQuest {
 								seller.say("*drool* Sheep flesh! Bring da sheep here!");
 							} else {
 								say("*LOVELY*. Take dis money!");
+								payPlayer(player);
 
 								rp.removeNPC(sheep);
 								world.remove(sheep.getID());
 								player.removeSheep(sheep);
-
-								payPlayer(player);
 
 								world.modify(player);
 								return true;
