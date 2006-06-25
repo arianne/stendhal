@@ -16,6 +16,11 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Path.Node;
+
+import java.util.List;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -70,11 +75,24 @@ public class OwnAction extends ActionListener {
 				if (object instanceof Sheep) {
 					Sheep sheep = (Sheep) object;
 					if (sheep.getOwner() == null) {
-						sheep.setOwner(player);
-						rules.removeNPC(sheep);
 
-						player.setSheep(sheep);
-						world.modify(player);
+						List<Node> path = Path.searchPath(player, player.getx(), player.gety(), 
+								sheep.getArea(sheep.getx(), sheep.gety()), 7);
+						if (!path.isEmpty()) {
+						
+							sheep.setOwner(player);
+							rules.removeNPC(sheep);
+	
+							player.setSheep(sheep);
+							world.modify(player);
+						} else {
+							// There is no path between sheep and player so it
+							// is unreachable. But don't tell the player 
+							// anything about pathfinding.
+							player.setPrivateText("This sheep is to far away.");
+						}
+					} else {
+						player.setPrivateText("This sheep is owned by " + sheep.getOwner().getName());
 					}
 				}
 			}
