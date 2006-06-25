@@ -16,34 +16,37 @@ import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.Door;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.PlantGrower;
-import games.stendhal.server.entity.SheepFood;
-import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.OneWayPortal;
-import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.PlantGrower;
+import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObjectInvalidException;
+import marauroa.common.game.RPObjectNotFoundException;
+import marauroa.common.game.RPSlot;
 import marauroa.common.net.TransferContent;
 import marauroa.server.game.MarauroaRPZone;
-import marauroa.common.game.RPObjectNotFoundException;
-import marauroa.common.game.IRPZone;
 
 import org.apache.log4j.Logger;
 
@@ -530,6 +533,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 				break;
 			case 11: /* sheep */
+				Sheep sheep = new Sheep();
+				assignRPObjectID(sheep);
+				sheep.setx(x);
+				sheep.sety(y);
+				add(sheep);
+				npcs.add(sheep);
 				break;
 			case 91: /* sign */
 				break;
