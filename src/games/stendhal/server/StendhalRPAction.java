@@ -511,7 +511,7 @@ public class StendhalRPAction {
 				        	// enter not allowed places by logging in on top of other players.
 				        	// Or monsters to spawn on the other side of a wall.
 
-							List<Node> path = Path.searchPath(entity, x, y, 
+							List<Node> path = Path.searchPath(entity, zone, x, y, 
 									new Rectangle (nx, ny, 1, 1), maxDestination*maxDestination);
 							if (!checkPath || !path.isEmpty()) {
 
