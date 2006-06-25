@@ -12,10 +12,9 @@ public class StendhalNavigable implements Navigable {
 
 	StendhalRPZone zone;
 
-	public StendhalNavigable(Entity entity, int x, int y) {
+	public StendhalNavigable(Entity entity, StendhalRPZone zone, int x, int y) {
 		this.entity = entity;
-		this.zone = (StendhalRPZone) Entity.getWorld()
-				.getRPZone(entity.getID());
+		this.zone = zone;
 		this.x = x;
 		this.y = y;
 	}

@@ -14,6 +14,7 @@ package games.stendhal.server.pathfinder;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
@@ -135,11 +136,38 @@ public class Path {
 	 */
 	public static List<Node> searchPath(Entity entity, int x, int y,
 			Rectangle2D destination, double maxDistance) {
+		return searchPath(entity, null, x, y, destination, maxDistance);
+	}
+
+	/**
+	 * Finds a path for the Entity <code>entity</code>.
+	 * 
+	 * @param entity
+	 *            the Entity
+	 * @param zone
+	 *            the zone, if null the current zone of entity is used. 			 
+	 * @param x
+	 *            start x
+	 * @param y
+	 *            start y
+	 * @param destination
+	 *            the destination area
+	 * @param maxDistance
+	 *            the maximum distance (air line) a possible path may be
+	 * @return a list with the path nodes or an empty list if no path is found
+	 */
+	public static List<Node> searchPath(Entity entity, StendhalRPZone zone, int x, int y,
+			Rectangle2D destination, double maxDistance) {
+		
+		if (zone == null) {
+			zone = (StendhalRPZone) Entity.getWorld().getRPZone(entity.getID());
+		}
+		
 		Log4J.startMethod(logger, "searchPath");
 		long startTime = System.currentTimeMillis();
 
 		Pathfinder path = new Pathfinder();
-		StendhalNavigable navMap = new StendhalNavigable(entity,
+		StendhalNavigable navMap = new StendhalNavigable(entity, zone,
 				(int) destination.getX(), (int) destination.getY());
 
 		path.setNavigable(navMap);
