@@ -90,9 +90,11 @@ public class OwnAction extends ActionListener {
 							// is unreachable. But don't tell the player 
 							// anything about pathfinding.
 							player.setPrivateText("This sheep is to far away.");
+							rules.removePlayerText(player);
 						}
 					} else {
 						player.setPrivateText("This sheep is owned by " + sheep.getOwner().getName());
+						rules.removePlayerText(player);
 					}
 				}
 			}
