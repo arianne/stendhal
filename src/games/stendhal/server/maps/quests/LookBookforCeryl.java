@@ -45,7 +45,7 @@ public class LookBookforCeryl implements IQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (player.isQuestCompleted("introduce_players")) {
+						if (player.isQuestCompleted("ceryl_book")) {
 							engine.say("I have nothing for you now.");
 						} else {
 							engine.say("I am looking for a very special #book.");
