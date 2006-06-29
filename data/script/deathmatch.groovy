@@ -8,6 +8,8 @@ import games.stendhal.server.entity.npc.*;
 import games.stendhal.server.pathfinder.Path
 import games.stendhal.server.StendhalRPZone;
 
+import org.apache.log4j.Logger;
+
 // Creating the Stendhal Deathmatch Game
 logger.debug("Starting Stendhal Deathmatch Script") 
        
@@ -130,19 +132,24 @@ class DeathmatchAction extends ScriptAction {
       else {
         // spawn the next stronger creature
         int k = new Integer(questLevel);
+// Logger.getLogger("X").warn("k: " + k);
+		Creature creatureToSpawn = null;
         for (creature in sortedCreatures) {
-          if( creature.getLevel() >= k)
-            {
-            int x = player.getx() + 1; 
-            int y = player.gety() + 1;
-            Creature mycreature = game.add(creature, x, y);
-            mycreature.clearDropItemList();
-            mycreature.attack(player);
-            spawnedCreatures.add(mycreature);
-            questLevel = currentLevel + 1;
+          if( creature.getLevel() >= k) {
+            creatureToSpawn = creature;
             break;
-            }
+          }
         }
+        if (creatureToSpawn == null) {
+          creatureToSpawn = sortedCreatures.get(sortedCreatures.size() - 1);
+        }
+        int x = player.getx() + 1; 
+        int y = player.gety() + 1;
+        Creature mycreature = game.add(creatureToSpawn, x, y);
+        mycreature.clearDropItemList();
+        mycreature.attack(player);
+        spawnedCreatures.add(mycreature);
+        questLevel = currentLevel + 1;
       }      
       player.setQuest("deathmatch", questState + ";" + questLevel + ";" + (new Date()).getTime());
     }
