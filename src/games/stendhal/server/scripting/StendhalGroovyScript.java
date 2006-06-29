@@ -153,11 +153,15 @@ public class StendhalGroovyScript {
 		Creature creature = template.getInstance();
 		if (zone != null) {
 			zone.assignRPObjectID(creature);
-			StendhalRPAction.placeat(zone, creature, x, y);
-			zone.add(creature);
-			rules.addNPC(creature);
-			loadedNPCs.add(creature);
-			logger.info("Groovy added creature: " + creature);
+			if (StendhalRPAction.placeat(zone, creature, x, y)) {
+				zone.add(creature);
+				rules.addNPC(creature);
+				loadedNPCs.add(creature);
+				logger.info("Groovy added creature: " + creature);
+			} else {
+				logger.info("Groovy could not add a creature: " + creature);
+				creature = null;
+			}
 		}
 		return (creature);
 	}

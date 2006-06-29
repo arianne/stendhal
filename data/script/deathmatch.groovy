@@ -135,7 +135,7 @@ class DeathmatchAction extends ScriptAction {
 // Logger.getLogger("X").warn("k: " + k);
 		Creature creatureToSpawn = null;
         for (creature in sortedCreatures) {
-          if( creature.getLevel() >= k) {
+          if (creature.getLevel() >= k) {
             creatureToSpawn = creature;
             break;
           }
@@ -146,10 +146,12 @@ class DeathmatchAction extends ScriptAction {
         int x = player.getx(); 
         int y = player.gety();
         Creature mycreature = game.add(creatureToSpawn, x, y);
-        mycreature.clearDropItemList();
-        mycreature.attack(player);
-        spawnedCreatures.add(mycreature);
-        questLevel = currentLevel + 1;
+        if (mycreature != null) {
+          mycreature.clearDropItemList();
+          mycreature.attack(player);
+          spawnedCreatures.add(mycreature);
+          questLevel = currentLevel + 1;
+        }
       }      
       player.setQuest("deathmatch", questState + ";" + questLevel + ";" + (new Date()).getTime());
     }
