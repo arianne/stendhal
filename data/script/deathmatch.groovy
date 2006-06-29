@@ -143,8 +143,8 @@ class DeathmatchAction extends ScriptAction {
         if (creatureToSpawn == null) {
           creatureToSpawn = sortedCreatures.get(sortedCreatures.size() - 1);
         }
-        int x = player.getx() + 1; 
-        int y = player.gety() + 1;
+        int x = player.getx(); 
+        int y = player.gety();
         Creature mycreature = game.add(creatureToSpawn, x, y);
         mycreature.clearDropItemList();
         mycreature.attack(player);
