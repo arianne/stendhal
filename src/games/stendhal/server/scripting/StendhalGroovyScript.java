@@ -20,7 +20,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObject.ID;
 
 import org.apache.log4j.Logger;
 
@@ -49,7 +48,7 @@ public class StendhalGroovyScript {
 			.getLogger(StendhalGroovyScript.class);
 
 	public StendhalGroovyScript(String filename, StendhalRPRuleProcessor rp,
-			StendhalRPWorld world, Player player) {
+			StendhalRPWorld world, Player player, String[] args) {
 		groovyScript = filename;
 		groovyBinding = new Binding();
 		this.rules = rp;
@@ -58,6 +57,7 @@ public class StendhalGroovyScript {
 		groovyBinding.setVariable("game", this);
 		groovyBinding.setVariable("logger", logger);
 		groovyBinding.setVariable("player", player);
+		groovyBinding.setVariable("args", args);
 	}
 
 	public StendhalRPZone getZone(RPObject rpobject) {

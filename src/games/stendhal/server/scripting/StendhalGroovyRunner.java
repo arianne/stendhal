@@ -55,10 +55,10 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 
 	@Override
 	public synchronized boolean perform(String name) {
-		return perform(name, "load", null);
+		return perform(name, "load", null, null);
 	}
 
-	private synchronized boolean perform(String name, String mode, Player player) {
+	private synchronized boolean perform(String name, String mode, Player player, String[] args) {
 		boolean ret = false;
 		StendhalGroovyScript gr;
 		name = name.trim();
@@ -70,7 +70,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
         }
         if("load".equals(mode)) {
             if (getClass().getClassLoader().getResource(scriptDir + name) != null) {
-                gr = new StendhalGroovyScript(scriptDir + name, rules, world, player);
+                gr = new StendhalGroovyScript(scriptDir + name, rules, world, player, args);
                 ret = gr.load();
                 scripts.put(name, gr);
             }            
@@ -100,10 +100,19 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
         if (action.has("target")) {
             String script = action.get("target");
             String mode = "load";
+            String[] args = null;
             if (action.has("args") && action.get("args").trim().length() > 0) {
-                mode = action.get("args").trim();
+                String temp = action.get("args").trim();
+                int pos = temp.indexOf(' ');
+                if (pos > -1) {
+                	mode = mode.substring(0, pos);
+                	temp = temp.substring(pos + 1);
+                	args = temp.split(" ");
+                } else {
+                	mode = temp;
+                }
             }
-            if (perform(script, mode, player)) {
+            if (perform(script, mode, player, args)) {
                 text = "Script " + script + " was successfully executed ("
                         + mode + ").";
             } else {
