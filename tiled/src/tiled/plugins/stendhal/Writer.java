@@ -20,6 +20,7 @@ package tiled.plugins.stendhal;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
@@ -97,6 +98,14 @@ public class Writer
     
     writer.print("</map>\n");
     writer.flush();
+    if (compress) {
+    	try {
+			outputStream.close();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+    }
   }
 
   /** writes the properties */
