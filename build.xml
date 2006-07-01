@@ -272,11 +272,11 @@
   </target>
   
   
-
+  <target name="distworking" depends="dist_binary, dist_source" description="Creates everything that works out of the box (e. g. no convertmaps and no signing of jars" />
   <target name="dist" depends="convertmaps, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
   <target name="dist_binary" depends="dist_server_binary,dist_client_binary,dist_client_no_sound_binary"/>
   
-  <target name="dist_server_binary">
+  <target name="dist_server_binary" depends="server_build">
     <mkdir dir="stendhal-server-${version}"/>
 
     <copy todir="stendhal-server-${version}/data/conf" file="data/conf/admins.list"/>
@@ -308,7 +308,7 @@
     <delete dir="stendhal-server-${version}"/>
   </target>
   
-  <target name="dist_client_binary">
+  <target name="dist_client_binary" depends="client_build">
     <mkdir dir="stendhal-${version}"/>
     <copy todir="stendhal-${version}" file="${log4j_jar}"/>
     <copy todir="stendhal-${version}" file="${marauroa_jar}"/>
