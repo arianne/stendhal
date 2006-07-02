@@ -457,6 +457,32 @@ public class Creature extends NPC {
 		return chosen;
 	}
 
+	protected boolean isPlayerNear(double range) {
+		int x = getx();
+		int y = gety();
+
+		double distance = range * range; // We save this way several sqrt
+											// operations
+		for (Player player : rp.getPlayers()) {
+			if (player.has("invisible")) {
+				continue;
+			}
+
+			if (player.get("zoneid").equals(get("zoneid"))) {
+				int fx = player.getx();
+				int fy = player.gety();
+
+				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
+					if (distance(player) < distance) {
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
 	/** returns a string-repesentation of the path */
 	private String pathToString() {
 		int pos = getPathPosition();
@@ -494,7 +520,7 @@ public class Creature extends NPC {
             }
 		}
 
-		if (getNearestPlayer(30) == null) // if there is no player near and
+		if (!isPlayerNear(30)) // if there is no player near and
 											// none will see us...
 		{
 			// sleep so we don't waste cpu resources
