@@ -72,6 +72,8 @@ public class SevenCherubs implements IQuest {
 							player.setQuest("seven_cherubs", "");
 						}
 	
+						// Visited cherubs are store in the quest-name "seven_cherubs".
+						// Please note that there is an additional empty entry in the beginning.
 						String npcDoneText = player
 								.getQuest("seven_cherubs");
 						String[] done = npcDoneText.split(";");
@@ -125,7 +127,7 @@ public class SevenCherubs implements IQuest {
 								player.addXP(2000);
 							}
 						} else {
-							if (left > 0) {
+							if (left > -1) {
 								engine.say("Find the rest of us to get the reward");
 							} else {
 								engine.say("You found all of us and got the reward.");
