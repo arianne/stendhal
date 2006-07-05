@@ -100,7 +100,7 @@ public class SevenCherubs implements IQuest {
 								 * have this randomization anymore. There
 								 * should be one hard quest for each of the
 								 * golden items.
-								 * I commented out the golden armor here
+								 * I commented out the golden shield here
 								 * because you already get that from the
 								 * CloaksForBario quest. Once enough quests
 								 * exist, this quest should always give you
@@ -108,8 +108,8 @@ public class SevenCherubs implements IQuest {
 								 * to fulfil it).
 								 */
 								String[] items = { "golden_boots",
-										/*"golden_armor",*/ "fire_sword",
-										"golden_shield", "golden_legs",
+										"golden_armor", "fire_sword",
+										/* "golden_shield", */"golden_legs",
 										"golden_helmet" };
 								Item item = world
 										.getRuleManager()
