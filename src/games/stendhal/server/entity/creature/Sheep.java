@@ -171,12 +171,12 @@ public class Sheep extends DomesticAnimal {
 		if (amount > 0) {
 			food.setAmount(amount - 1);
 			world.modify(food);
-			hunger = 0;
 
 			if (weight < MAX_WEIGHT) {
 				setWeight(weight + 1);
 			}
 		}
+		hunger = 0;
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class Sheep extends DomesticAnimal {
 	public void logic() {
 		Log4J.startMethod(logger, "logic");
 
-		if (getNearestPlayer(20) == null && owner == null) // if there is no player near and none will see us... 
+		if (!isPlayerNear(20) && owner == null) // if there is no player near and none will see us... 
 		{
 			stop();
 
@@ -245,6 +245,7 @@ public class Sheep extends DomesticAnimal {
 			if (collides()) {
 				stop();
 				clearPath();
+				hunger = 0;
 			}
 		}
 
