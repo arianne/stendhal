@@ -241,6 +241,10 @@ public class StendhalGroovyScript {
 		}
 	}
 
+	public void addGameEvent(String source, String event, List<String> params) {
+		rules.addGameEvent(source, event, params.toArray(new String[params.size()]));
+	}
+	
 	public void modify(RPEntity entity) {
 		world.modify(entity);
 	}
