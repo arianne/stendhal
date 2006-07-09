@@ -60,18 +60,24 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 
 	private synchronized boolean perform(String name, String mode, Player player, String[] args) {
 		boolean ret = false;
-		StendhalGroovyScript gr;
+		StendhalGroovyScript gr = scripts.get(name);
+		logger.error(scripts);
+		logger.error(name + "=" + gr);
 		name = name.trim();
-        if("load".equals(mode) || "remove".equals(mode)) {
+        if("load".equals(mode) || "remove".equals(mode) || "unload".equals(mode)) {
             if ((gr = scripts.remove(name)) != null) {
                 gr.unload();
                 ret = true;
-            }            
+            }
+            gr = null;
         }
-        if("load".equals(mode)) {
+        if("load".equals(mode) || "execute".equals(mode)) {
             if (getClass().getClassLoader().getResource(scriptDir + name) != null) {
-                gr = new StendhalGroovyScript(scriptDir + name, rules, world, player, args);
-                ret = gr.load();
+            	if (gr == null) {
+            		logger.error("LOADING");
+            		gr = new StendhalGroovyScript(scriptDir + name, rules, world);
+            	}
+                ret = gr.load(player, args);
                 scripts.put(name, gr);
             }            
         }
@@ -96,34 +102,57 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
                 "script", true)) {
             return;
         }
-        String text = "usage: /script <filename> [mode]\n  mode is either load (default) or remove";
+        String text = "usage: /script [-execute|-load>|-unload] <filename> [<args>]\n  mode is either load (default) or remove";
         if (action.has("target")) {
-            String script = action.get("target");
-            String mode = "load";
-            String[] args = null;
-            if (action.has("args") && action.get("args").trim().length() > 0) {
-                String temp = action.get("args").trim();
-                int pos = temp.indexOf(' ');
-                if (pos > -1) {
-                	mode = mode.substring(0, pos);
-                	temp = temp.substring(pos + 1);
-                	args = temp.split(" ");
-                } else {
-                	mode = temp;
-                }
+
+        	// concat target and args to get the original string back
+            String cmd = action.get("target");
+            if (action.has("args")) {
+            	cmd = cmd + " " + action.get("args");
             }
-            if (perform(script, mode, player, args)) {
-                text = "Script " + script + " was successfully executed ("
-                        + mode + ").";
+
+            // in the simplest case there is only one argument which is the scriptname
+            String mode = "execute";
+            String script = cmd;
+
+            // parse args if the is a space
+            int pos = cmd.indexOf(' ');
+            if (pos > -1) {
+
+            	// analyse the first word: mode or filename?
+            	String temp = cmd.substring(0, pos);
+            	cmd = cmd.substring(pos + 1);
+            	if (temp.startsWith("-")) {
+            		// it is "mode"
+            		mode = temp.substring(1);
+                    pos = cmd.indexOf(' ');
+                    if (pos > -1) {
+                    	temp = cmd.substring(0, pos);
+                    	cmd = cmd.substring(pos + 1);
+                    } else {
+                    	temp = cmd;
+                    }
+                    script = temp;
+            	}
+            }
+
+            // split remaining args
+            String[] args = cmd.split(" ");
+
+            // execute script
+            script = script.trim();
+            boolean res = perform(script, mode, player, args);
+            if (res) {
+	                text = "Script " + script + " was successfully executed (" + mode + ").";
             } else {
                 String msg = getMessage(script);
                 if (msg != null) {
                     text = msg;
                 } else {
                     text = "Script "
-                            + script
-                            + " not found or unexpected error while performing "
-                            + mode;
+                        + script
+                        + " not found or unexpected error while performing "
+                        + mode;
                 }
             }
         }

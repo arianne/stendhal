@@ -16,8 +16,8 @@ import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
@@ -29,11 +29,11 @@ public class StendhalGroovyScript {
 
 	private Binding groovyBinding;
 
-	private List<NPC> loadedNPCs = new CopyOnWriteArrayList<NPC>();
+	private ArrayList<NPC> loadedNPCs = new ArrayList<NPC>();
 
-	private List<RPObject> loadedRPObjects = new CopyOnWriteArrayList<RPObject>();
+	private ArrayList<RPObject> loadedRPObjects = new ArrayList<RPObject>();
 
-	private List<Pair<ScriptCondition, ScriptAction>> loadedScripts = new CopyOnWriteArrayList<Pair<ScriptCondition, ScriptAction>>();
+	private ArrayList<Pair<ScriptCondition, ScriptAction>> loadedScripts = new ArrayList<Pair<ScriptCondition, ScriptAction>>();
 
 	private StendhalScriptSystem scripts;
 
@@ -49,7 +49,7 @@ public class StendhalGroovyScript {
 			.getLogger(StendhalGroovyScript.class);
 
 	public StendhalGroovyScript(String filename, StendhalRPRuleProcessor rp,
-			StendhalRPWorld world, Player player, String[] args) {
+			StendhalRPWorld world) {
 		groovyScript = filename;
 		groovyBinding = new Binding();
 		this.rules = rp;
@@ -57,8 +57,7 @@ public class StendhalGroovyScript {
 		this.scripts = StendhalScriptSystem.get();
 		groovyBinding.setVariable("game", this);
 		groovyBinding.setVariable("logger", logger);
-		groovyBinding.setVariable("player", player);
-		groovyBinding.setVariable("args", args);
+
 	}
 
 	public StendhalRPZone getZone(RPObject rpobject) {
@@ -167,7 +166,9 @@ public class StendhalGroovyScript {
 		return (creature);
 	}
 
-	public boolean load() {
+	public boolean load(Player player, String[] args) {
+		groovyBinding.setVariable("player", player);
+		groovyBinding.setVariable("args", args);
 		GroovyShell interp = new GroovyShell(groovyBinding);
 		boolean ret = true;
 		Log4J.startMethod(logger, "load");
@@ -252,16 +253,16 @@ public class StendhalGroovyScript {
 	public void unload() {
 		Log4J.startMethod(logger, "unload");
 
-		for (Pair<ScriptCondition, ScriptAction> script : loadedScripts) {
+		for (Pair<ScriptCondition, ScriptAction> script : (List<Pair<ScriptCondition, ScriptAction>>) loadedScripts.clone()) {
 			logger.info("Removing groovy added script.");
 			remove(script);
 		}
 
-		for (NPC npc : loadedNPCs) {
+		for (NPC npc : (List<NPC>) loadedNPCs.clone()) {
 			remove(npc);
 		}
 
-		for (RPObject object : loadedRPObjects) {
+		for (RPObject object : (List<RPObject>) loadedRPObjects.clone()) {
 			remove(object);
 		}
 
