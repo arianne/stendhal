@@ -7,6 +7,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalScriptSystem;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
@@ -154,14 +155,14 @@ public class StendhalGroovyScript {
 		if (zone != null) {
 			zone.assignRPObjectID(creature);
 			if (StendhalRPAction.placeat(zone, creature, x, y)) {
-				zone.add(creature);
-				rules.addNPC(creature);
-				loadedNPCs.add(creature);
-				logger.info("Groovy added creature: " + creature);
+			zone.add(creature);
+			rules.addNPC(creature);
+			loadedNPCs.add(creature);
+			logger.info("Groovy added creature: " + creature);
 			} else {
 				logger.info("Groovy could not add a creature: " + creature);
 				creature = null;
-			}
+		}
 		}
 		return (creature);
 	}
@@ -240,6 +241,10 @@ public class StendhalGroovyScript {
 		}
 	}
 
+	public void modify(RPEntity entity) {
+		world.modify(entity);
+	}
+	
 	public void unload() {
 		Log4J.startMethod(logger, "unload");
 
