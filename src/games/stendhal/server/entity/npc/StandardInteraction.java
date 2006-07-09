@@ -17,6 +17,9 @@ import games.stendhal.server.scripting.StendhalGroovyScript;
  * @author hendrik
  */
 public class StandardInteraction {
+	public interface ChatInfoReceiver {
+		public void setChatInfo(Player player, String text, SpeakerNPC engine);
+	}
 
 	/**
 	 * Is the player an admin?
@@ -37,7 +40,12 @@ public class StandardInteraction {
 		}
 	}
 
-	
+
+	/**
+	 * Register a script which should be called every turn.
+	 * The script-class can implement ChatInfoReceiver to get
+	 * the paramters (player, text, npc) of the ChatAction.
+	 */
 	public class ReqisterScriptAction extends SpeakerNPC.ChatAction {
 	    StendhalGroovyScript game = null;
 	    ScriptCondition scriptCondition = null;
@@ -50,12 +58,17 @@ public class StandardInteraction {
 
 	    public ReqisterScriptAction (StendhalGroovyScript game, ScriptCondition scriptCondition, ScriptAction scriptAction) {
 	      this.game = game;
-	      this.scriptAction = scriptAction;
 	      this.scriptCondition = scriptCondition;
+	      this.scriptAction = scriptAction;
 	    }
 
 	    public void fire(Player player, String text, SpeakerNPC engine) {
-	    	// TODO player, text and engine should be forwarded to the script 
+	    	if ((scriptCondition != null) && (scriptCondition instanceof ChatInfoReceiver)) {
+	    		((ChatInfoReceiver) scriptCondition).setChatInfo(player, text, engine);
+	    	}
+	    	if ((scriptAction != null) && (scriptAction instanceof ChatInfoReceiver)) {
+	    		((ChatInfoReceiver) scriptAction).setChatInfo(player, text, engine);
+	    	}
 	        game.add(scriptCondition, scriptAction);
 	    }
 	}
