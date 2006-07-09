@@ -61,8 +61,6 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 	private synchronized boolean perform(String name, String mode, Player player, String[] args) {
 		boolean ret = false;
 		StendhalGroovyScript gr = scripts.get(name);
-		logger.error(scripts);
-		logger.error(name + "=" + gr);
 		name = name.trim();
         if("load".equals(mode) || "remove".equals(mode) || "unload".equals(mode)) {
             if ((gr = scripts.remove(name)) != null) {
@@ -74,7 +72,6 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
         if("load".equals(mode) || "execute".equals(mode)) {
             if (getClass().getClassLoader().getResource(scriptDir + name) != null) {
             	if (gr == null) {
-            		logger.error("LOADING");
             		gr = new StendhalGroovyScript(scriptDir + name, rules, world);
             	}
                 ret = gr.load(player, args);
@@ -132,8 +129,8 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
                     } else {
                     	temp = cmd;
                     }
-                    script = temp;
             	}
+                script = temp;
             }
 
             // split remaining args
