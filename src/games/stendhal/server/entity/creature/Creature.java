@@ -520,10 +520,15 @@ public class Creature extends NPC {
             }
 		}
 
-		if (!isPlayerNear(30)) // if there is no player near and
-											// none will see us...
-		{
-			// sleep so we don't waste cpu resources
+		// if there is no player near and none will see us...
+		// sleep so we don't waste cpu resources
+		if (!isPlayerNear(30)) { 
+
+			// If we are already sleeping, than don't modify the Entity.
+			if (aiState == AiState.SLEEP) {
+				return;
+			}
+
 			stopAttack();
 			stop();
 
