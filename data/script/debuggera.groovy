@@ -1,5 +1,7 @@
 /* $Id$ */
 
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 import games.stendhal.server.entity.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.scripting.*
@@ -35,9 +37,40 @@ class DebuggeraEnablerAction extends SpeakerNPC.ChatAction {
     }
 }
 
+class QuestsAction extends SpeakerNPC.ChatAction {
+    StendhalGroovyScript game;
+    public QuestsAction(StendhalGroovyScript game) {
+      this.game = game;
+    }	
+    public void fire(Player player, String text, SpeakerNPC engine) {
+
+    	// list quest
+    	StringBuffer sb = new StringBuffer("Your quest states are:");
+    	List quests = player.getQuests();
+		for (String quest : quests) {
+			sb.append("\r\n" + quest + " = " + player.getQuest(quest));
+		}
+
+		// change quest
+		int pos = text.indexOf(" ");
+    	if (pos > -1) {
+    		String quest = text.substring(pos + 1);
+	    	pos = quest.indexOf("=");
+	    	if (pos > -1) {
+	    		String value = quest.substring(pos + 1);
+	    		quest = quest.substring(0, pos);
+	    		sb.append("\r\n\r\nSet \"" + quest + "\" to \"" + value + "\"");
+				game.addGameEvent(player.getName(), "alter_quest", [player.getName(), quest, value]);
+	    		player.setQuest(quest.trim(), value.trim());
+	    	}
+    	}
+    	engine.say(sb.toString());
+    }
+}
+
 class TeleportNPCAction extends SpeakerNPC.ChatAction {
     StendhalGroovyScript game;
-    public TeleportNPCAction (StendhalGroovyScript game) {
+    public TeleportNPCAction(StendhalGroovyScript game) {
       this.game = game;
     }
     public void fire(Player player, String text, SpeakerNPC engine) {
@@ -60,7 +93,7 @@ class TeleportScriptAction extends ScriptAction {
         counter++;
         if (counter < 5) {
             //player.placeAt("0_nalwor_city", 50, 50);
-/*            IRPZone.ID zoneid = new IRPZone.ID("0_nalwor_city);
+/* TODO           IRPZone.ID zoneid = new IRPZone.ID("0_nalwor_city);
             StendhalRPAction.placeat(player.getZone(), player, 20, 20);
 */
         } else {
@@ -95,12 +128,16 @@ if (player != null) {
 	npc.set(4, 11);
 	game.add(npc)
 
+	// 
+	npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], null, ConversationStates.IDLE, "My mom said, i am not allowed to talk to strangers.", null);
+	npc.behave("bye", "Bye.");
+
 	// Greating and admins may enable or disable her
-	npc.behave("greet", "My mom said, i am not allowed to talk to strangers.");
-    npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.QUESTION_1, "May I talk to strangers?", null);
+	npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.ATTENDING, "Hi, game master", null);
+/*    npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.QUESTION_1, "May I talk to strangers?", null); 
     npc.add(ConversationStates.QUESTION_1, "yes", new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(true));
     npc.add(ConversationStates.QUESTION_1, "no", new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(false));
-
+*/
     npc.behave(["insane", "crazy", "mad"], "Why are you so mean? I AM NOT INSANE. My mummy says, I am a #special child.")
     npc.behave(["special", "special child"], "I can see another world in my dreams. That are more thans dreams. There the people are sitting in front of machines called computers. This are realy strange people. They cannot use telepathy without something they call inter-network. But these people and machines are somehow connected to our world. If I concentrate, I can #change thinks in our world.");
     npc.behave("verschmelzung", "\r\nYou have one hand,\r\nI have the other.\r\nPut them together,\r\nWe have each other.");
@@ -111,9 +148,12 @@ if (player != null) {
     npc.add(ConversationStates.INFORMATION_2, ["it has no end.", "it has no end"], null, ConversationStates.INFORMATION_3, "\"That's how long,\"", null);
     npc.add(ConversationStates.INFORMATION_3, ["That's how long,", "That's how long", "Thats how long,", "Thats how long"], null, ConversationStates.INFORMATION_4, "\"I will be your friend.\"", null);
     npc.add(ConversationStates.INFORMATION_4, ["I will be your friend.", "I will be your friend"], null, ConversationStates.ATTENDING, null, null/*new FriendsAction()*/);
+
+    // quests
+    npc.add(ConversationStates.ATTENDING, "quest", new AdminCondition(), ConversationStates.ATTENDING, null, new QuestsAction(game));
     
-    
-    npc.add(ConversationStates.ATTENDING, ["teleport", "teleportme"], null, ConversationStates.ATTENDING, "\r\nAcross the land,\r\nAcross the sea.\r\nFriends forever,\r\nWe will always be.", new TeleportNPCAction(game));
+    // teleport
+    npc.add(ConversationStates.ATTENDING, ["teleport", "teleportme"], new AdminCondition(), ConversationStates.ATTENDING, "\r\nAcross the land,\r\nAcross the sea.\r\nFriends forever,\r\nWe will always be.", new TeleportNPCAction(game));
 
 /*
 Make new friends,
