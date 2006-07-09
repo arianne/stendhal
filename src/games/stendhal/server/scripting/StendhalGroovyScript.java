@@ -166,6 +166,21 @@ public class StendhalGroovyScript {
 		return (creature);
 	}
 
+	public void addGameEvent(String source, String event, List<String> params) {
+		rules.addGameEvent(source, event, params.toArray(new String[params.size()]));
+	}
+	
+	public void modify(RPEntity entity) {
+		world.modify(entity);
+	}
+
+	public void privateTest(Player player, String text) {
+        player.setPrivateText(text);
+        rules.removePlayerText(player);
+	}
+	
+	// ------------------------------------------------------------------------
+	
 	public boolean load(Player player, String[] args) {
 		groovyBinding.setVariable("player", player);
 		groovyBinding.setVariable("args", args);
@@ -240,14 +255,6 @@ public class StendhalGroovyScript {
 				remove(script);
 			}
 		}
-	}
-
-	public void addGameEvent(String source, String event, List<String> params) {
-		rules.addGameEvent(source, event, params.toArray(new String[params.size()]));
-	}
-	
-	public void modify(RPEntity entity) {
-		world.modify(entity);
 	}
 	
 	public void unload() {
