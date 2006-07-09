@@ -48,6 +48,7 @@ class TeleportNPCAction extends SpeakerNPC.ChatAction {
 class TeleportScriptAction extends ScriptAction {
     private StendhalGroovyScript game;
     private Player player;
+    private int destIdx = 0;
     private int counter = 0;
     private int inversedSpeed = 1;
     public TeleportScriptAction (Player player, StendhalGroovyScript game) {
@@ -57,16 +58,23 @@ class TeleportScriptAction extends ScriptAction {
     
     public void fire() {
         counter++;
-        if (counter % inversedSpeed == 0) {
-            
-            Direction direction = player.getDirection();
-            direction = Direction.build((direction.get()) % 4 + 1);
-            player.setDirection(direction);
-            game.modify(player);
-            if (direction == Direction.DOWN) {
-                inversedSpeed++;
-                if (inversedSpeed == 4) {
-                    game.remove(this);
+        if (counter < 5) {
+            //player.placeAt("0_nalwor_city", 50, 50);
+/*            IRPZone.ID zoneid = new IRPZone.ID("0_nalwor_city);
+            StendhalRPAction.placeat(player.getZone(), player, 20, 20);
+*/
+        } else {
+            // slow down
+            if (counter % inversedSpeed == 0) {
+                Direction direction = player.getDirection();
+                direction = Direction.build((direction.get()) % 4 + 1);
+                player.setDirection(direction);
+                game.modify(player);
+                if (direction == Direction.DOWN) {
+                    inversedSpeed++;
+                    if (inversedSpeed == 4) {
+                        game.remove(this);
+                    }
                 }
             }
         }
