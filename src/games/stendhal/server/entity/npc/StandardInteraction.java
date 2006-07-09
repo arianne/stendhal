@@ -4,6 +4,9 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.scripting.ScriptAction;
+import games.stendhal.server.scripting.ScriptCondition;
+import games.stendhal.server.scripting.StendhalGroovyScript;
 
 /**
  * This is a collection of standard actions and conditions.
@@ -34,4 +37,26 @@ public class StandardInteraction {
 		}
 	}
 
+	
+	public class ReqisterScriptAction extends SpeakerNPC.ChatAction {
+	    StendhalGroovyScript game = null;
+	    ScriptCondition scriptCondition = null;
+	    ScriptAction scriptAction = null;
+
+	    public ReqisterScriptAction (StendhalGroovyScript game, ScriptAction scriptAction) {
+	      this.game = game;
+	      this.scriptAction = scriptAction;
+	    }
+
+	    public ReqisterScriptAction (StendhalGroovyScript game, ScriptCondition scriptCondition, ScriptAction scriptAction) {
+	      this.game = game;
+	      this.scriptAction = scriptAction;
+	      this.scriptCondition = scriptCondition;
+	    }
+
+	    public void fire(Player player, String text, SpeakerNPC engine) {
+	    	// TODO player, text and engine should be forwarded to the script 
+	        game.add(scriptCondition, scriptAction);
+	    }
+	}
 }
