@@ -54,6 +54,30 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 
+0.52.1 Jul 10, 2006
+(inoffical server-only release)
+- deathmatch: monsters above each other on the same spot
+- deathmatch: monster placed in the top left corner
+- deathmatch: high level players don't get all monsters they deserver and cannot win deathmatch.
+- fixed pathfinding in placeat (was done on the old map).
+  - deathmatch: leaving spot in semos_plains can be blocked
+  - teleportto fixed
+- work-around in placeat if the destination is inside a wall.
+- SevenCherub- and CloaksForBario- reward-mismatch
+- "Orcish Happy Meal" - quest did not give you any money.
+- don't flag all creatures without a player near as modifed.
+- prevent sheeps from freezing because the picked food-bush is not reachable.
+- fixed Cherub-quest message: after 6 cherubs they sayed that all are found.
+- fixed LookBookforCeryl so that it can be stared even if IntroducePlayer is completed.
+- corpse can not be put into your bag anymore (kidnapping of the solders in -6)
+- readded sheep to zoos and do a pathfinding on "own" command.
+- FEATURE: extended groovy-interface
+Marauroa:
+- better error message on account creation failure
+- removed a buggy debug-message from marauroa with used 2-5 times more cpu-time than the creature.logic-loop
+
+
+
 0.52 Jul XX, 2006
 
 - Fixed elves Nalwor teleporter.
