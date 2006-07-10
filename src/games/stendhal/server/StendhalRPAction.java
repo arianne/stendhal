@@ -13,14 +13,25 @@
 package games.stendhal.server;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.Rand;
 import games.stendhal.common.Line;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.item.*;
+import games.stendhal.common.Rand;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.pathfinder.Path.Node;
+
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
@@ -28,11 +39,6 @@ import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.server.game.NoRPZoneException;
 import marauroa.server.game.RPServerManager;
 import marauroa.server.game.RPWorld;
-
-import java.util.List;
-import java.util.Vector;
-import java.awt.Point;
-import java.awt.Rectangle;
 
 import org.apache.log4j.Logger;
 
@@ -82,6 +88,30 @@ public class StendhalRPAction {
 		return result;
 	}
 
+	private static List<Item> getWeapons(RPEntity entity) {
+		List<Item> weapons = new ArrayList<Item>();
+		Item weaponItem = entity.getWeapon();
+		if (weaponItem != null) {
+			weapons.add(weaponItem);
+
+			// pair weapons
+			if (weaponItem.getName().startsWith("l_hand_")) {
+				String rpclass = weaponItem.getItemClass();
+				weaponItem = entity.getEquippedItemClass("rhand", rpclass);
+				if ((weaponItem != null) && (weaponItem.getName().startsWith("r_hand_"))) {
+					weapons.add(weaponItem);
+				} else {
+					weapons.clear();
+				}
+			} else {
+				if (weaponItem.getName().startsWith("r_hand_")) {
+					weapons.clear();
+				}
+			}
+		}
+		return weapons;
+	}
+	
 	public static int damageDone(RPEntity source, RPEntity target) {
 		int weapon = 0;
 		int shield = 0;
@@ -92,13 +122,15 @@ public class StendhalRPAction {
 		int cloak = 0;
         int defWeapon = 0;
 
-		Item weaponItem = source.getWeapon();
+        List<Item> weapons = getWeapons(source);
+		for (Item weaponItem : weapons) {
+			weapon += weaponItem.getAttack();
+		}
+
+		// range weapons
 		StackableItem projectileItem = null;
-
-		if (weaponItem != null) {
-			weapon = weaponItem.getAttack();
-
-			if (weaponItem.isOfClass("ranged")) {
+		if (weapons.size() > 0) {
+			if (weapons.get(0).isOfClass("ranged")) {
 				projectileItem = (StackableItem) source.getProjectiles();
 
 				if (projectileItem != null) {
@@ -147,9 +179,10 @@ public class StendhalRPAction {
 			cloak = target.getCloak().getDefense();
 		}
         
-        if (target.hasWeapon()) {
-            defWeapon = target.getWeapon().getDefense();
-        }
+        List<Item> targetWeapons = getWeapons(target);
+		for (Item weaponItem : targetWeapons) {
+			defWeapon += weaponItem.getDefense();
+		}
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("defender has " + target.getDEF()
@@ -179,7 +212,7 @@ public class StendhalRPAction {
 				* (maxAttackerComponent / maxDefenderComponent) * (source
 				.getATK() / 10.0f));
 
-		if (weaponItem != null && weaponItem.isOfClass("ranged")) {
+		if (projectileItem != null) {
 			projectileItem.add(-1);
 
 			if (projectileItem.getQuantity() == 0) {
