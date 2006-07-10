@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <!--
-items.xml 
-This file contains all the data about objects in the game,it's divided 
+items.xml
+This file contains all the data about objects in the game,it's divided
 into seweral sections, depending on what item type it is.
 
 To ease the editing for you, make search for the item type you want
-to add, and add it there. 
+to add, and add it there.
 
-If you want you can place it at anywhere in the file, but I suggest 
+If you want you can place it at anywhere in the file, but I suggest
 that you place it in the apropriate section to ease the search for it
 next time.
 -->
@@ -195,6 +195,36 @@ in the file.
 		</equipable>
 	</item>
 
+<!--
+r_hand_sword and l_hand_sword meant to be used together.
+Makes players more offensive
+-->
+	<item name="r_hand_sword">
+		<type class="sword" subclass="r_hand_sword"/>
+		<attributes>
+		<atk value="15"/>
+		<def value="6"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="l_hand_sword">
+		<type class="sword" subclass="l_hand_sword"/>
+		<attributes>
+		<atk value="15"/>
+		<def value="6"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 <!-- Axes_section -->
 
@@ -262,7 +292,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	
+
 	<item name="scythe">
 		<type class="axe" subclass="scythe"/>
 		<attributes>
@@ -434,7 +464,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	
+
 	<item name="hammer_+3">
 		<type class="club" subclass="golden_hammer"/>
 		<attributes>
@@ -447,7 +477,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	
+
 	<item name="war_hammer">
 		<type class="club" subclass="grand_warhammer"/>
 		<attributes>
@@ -460,7 +490,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	
+
 <!-- Ranged_section -->
 
 	<item name="wooden_bow">
@@ -495,6 +525,19 @@ in the file.
 			<atk value="15"/>
 		</attributes>
 		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="crossbow">
+		<type class="ranged" subclass="crossbow"/>
+		<attributes>
+			<atk value="17"/>
+		</attributes>
+		<weight value="3"/>
 		<equipable>
 			<slot name="lhand"/>
 			<slot name="rhand"/>
@@ -831,7 +874,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-    
+
 	<item name="plate_armor">
 		<type class="armor" subclass="plate_armor"/>
 		<attributes>
@@ -1104,7 +1147,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-		
+
 	<item name="dwarf_cloak">
 		<type class="cloak" subclass="red_cloak"/>
 		<attributes>
@@ -1140,7 +1183,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	
+
     <item name="lich_cloak">
 		<type class="cloak" subclass="purple_cloak"/>
 		<attributes>
@@ -1152,7 +1195,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-		
+
 	<item name="blue_dragon_cloak">
 		<type class="cloak" subclass="blue_cloak"/>
 		<attributes>
@@ -1164,7 +1207,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	
+
 	<item name="black_dragon_cloak">
 		<type class="cloak" subclass="black_cloak"/>
 		<attributes>
@@ -1331,12 +1374,12 @@ in the file.
        maybe value can be how powerful the alcoholic drink is, and be the one
        determining how much you can drink before you pass out.
        The total value stack up and could decrease while time passes, but if you
-       reach a value of say 100 perhaps, then you pass out and can't do anything 
+       reach a value of say 100 perhaps, then you pass out and can't do anything
        until you wake upp, ie alcoholic effect reaches 25 perhaps?
-       
+
        This alcoholic passout limit could also be a skill you train, in order to be better
        in drinking races. We have to use the skill system in all aspects after all :P
-       
+
        Maybe a bug item should be added for alcoholic effects, so we can add it later,
        let it just work as some poor food for now
 -->
@@ -1571,7 +1614,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	
+
 	<item name="empty_scroll">
 		<type class="scroll" subclass="yellow"/>
 		<stackable/>
@@ -1586,7 +1629,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	
+
 	<item name="home_scroll">
 		<type class="scroll" subclass="red"/>
 		<stackable/>
@@ -1602,7 +1645,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	
+
 	<item name="marked_scroll">
 		<type class="scroll" subclass="black"/>
 		<weight value="0.01"/>
@@ -1630,7 +1673,7 @@ the right click menu we talked about before.
 		<type class="club" subclass="rod_of_the_gm"/>
 		<attributes>
 			<atk value="100"/>lol
-			
+
 			<def value="100"/>
 		</attributes>
 		<weight value="0.01"/>
@@ -1644,16 +1687,16 @@ the right click menu we talked about before.
 <!--
 This is an attempt on describing a key item.
 My idea is that target_id should be described in the map
-file where the door is placed, (probably the java file for 
+file where the door is placed, (probably the java file for
 the map right now) the key will only work for doors that has
-the same target_id as the key has, so one key could 
-actually lead to seweral doors, as long as the doors have 
+the same target_id as the key has, so one key could
+actually lead to seweral doors, as long as the doors have
 the same id.
 
 I have no clue if I have named the class and subclass
 correctly, but just change them to proper names, if im wrong.
 
-There is no rat_key graphics for now... so the subclass should 
+There is no rat_key graphics for now... so the subclass should
 probably just be named key.
 -->
 
