@@ -77,9 +77,9 @@ public class Character extends WtPanel {
 				gameObjects));
 		slotPanels.put("armor", new EntitySlot("armor", slotSprite, dist * 1,
 				dist, gameObjects));
-		slotPanels.put("lhand", new EntitySlot("lhand", slotSprite, 0,
+		slotPanels.put("rhand", new EntitySlot("rhand", slotSprite, 0,
 				dist + 10, gameObjects));
-		slotPanels.put("rhand", new EntitySlot("rhand", slotSprite, dist * 2,
+		slotPanels.put("lhand", new EntitySlot("lhand", slotSprite, dist * 2,
 				dist + 10, gameObjects));
 		slotPanels.put("cloak", new EntitySlot("cloak", slotSprite, dist * 2,
 				dist * 2 + 10, gameObjects));

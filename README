@@ -53,9 +53,14 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
+0.53
+
+- swapped rhand and lhand on client
+
 
 0.52.1 Jul 10, 2006
 (inoffical server-only release)
+
 - deathmatch: monsters above each other on the same spot
 - deathmatch: monster placed in the top left corner
 - deathmatch: high level players don't get all monsters they deserver and cannot win deathmatch.
@@ -75,7 +80,6 @@ No warranties. But let us know if it doesn't work.
 Marauroa:
 - better error message on account creation failure
 - removed a buggy debug-message from marauroa with used 2-5 times more cpu-time than the creature.logic-loop
-
 
 
 0.52 Jul XX, 2006
