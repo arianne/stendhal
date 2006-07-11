@@ -85,6 +85,40 @@ public class StandardInteraction {
 		    return (player.hasQuest(questname) && player.getQuest(questname).equals(state));
 		}
 	}
+	
+	/**
+	 * Is this quest not in this state?
+	 */
+	public class QuestNotInStateCondition extends SpeakerNPC.ChatCondition {
+		private String questname = null;
+		private String state = null;
+
+		public QuestNotInStateCondition(String questname, String state) {
+			this.questname = questname;
+			this.state = state;
+		}
+
+		public boolean fire(Player player, SpeakerNPC engine) {
+		    return (!player.hasQuest(questname) || !player.getQuest(questname).equals(state));
+		}
+	}
+
+	/**
+	 * Sets the current state of this quest
+	 */
+	public class SetQuestAction extends SpeakerNPC.ChatAction {
+		private String questname = null;
+		private String state = null;
+
+		public SetQuestAction(String questname, String state) {
+			this.questname = questname;
+			this.state = state;
+		}
+
+		public void fire(Player player, String text, SpeakerNPC engine) {
+			player.setQuest(questname, state);
+		}
+	}
 
 	/**
 	 * Register a script which should be called every turn. The script-class can
@@ -93,9 +127,7 @@ public class StandardInteraction {
 	 */
 	public class ReqisterScriptAction extends SpeakerNPC.ChatAction {
 		StendhalGroovyScript game = null;
-
 		ScriptCondition scriptCondition = null;
-
 		ScriptAction scriptAction = null;
 
 		public ReqisterScriptAction(StendhalGroovyScript game,
