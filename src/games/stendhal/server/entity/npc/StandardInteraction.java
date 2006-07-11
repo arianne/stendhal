@@ -9,10 +9,9 @@ import games.stendhal.server.scripting.ScriptCondition;
 import games.stendhal.server.scripting.StendhalGroovyScript;
 
 /**
- * This is a collection of standard actions and conditions.
- * Although most of them are very simply in normal Java-code,
- * they are annoying in Groovy because anon classes
- * are not supported.
+ * This is a collection of standard actions and conditions. Although most of
+ * them are very simply in normal Java-code, they are annoying in Groovy because
+ * anon classes are not supported.
  * 
  * @author hendrik
  */
@@ -40,36 +39,58 @@ public class StandardInteraction {
 		}
 	}
 
+	/**
+	 * Was this quest completed?
+	 */
+	public class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
+		private String questname = null;
+
+		public QuestCompletedCondition(String questname) {
+			this.questname = questname;
+		}
+
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return (player.isQuestCompleted(questname));
+		}
+	}
 
 	/**
-	 * Register a script which should be called every turn.
-	 * The script-class can implement ChatInfoReceiver to get
-	 * the paramters (player, text, npc) of the ChatAction.
+	 * Register a script which should be called every turn. The script-class can
+	 * implement ChatInfoReceiver to get the paramters (player, text, npc) of
+	 * the ChatAction.
 	 */
 	public class ReqisterScriptAction extends SpeakerNPC.ChatAction {
-	    StendhalGroovyScript game = null;
-	    ScriptCondition scriptCondition = null;
-	    ScriptAction scriptAction = null;
+		StendhalGroovyScript game = null;
 
-	    public ReqisterScriptAction (StendhalGroovyScript game, ScriptAction scriptAction) {
-	      this.game = game;
-	      this.scriptAction = scriptAction;
-	    }
+		ScriptCondition scriptCondition = null;
 
-	    public ReqisterScriptAction (StendhalGroovyScript game, ScriptCondition scriptCondition, ScriptAction scriptAction) {
-	      this.game = game;
-	      this.scriptCondition = scriptCondition;
-	      this.scriptAction = scriptAction;
-	    }
+		ScriptAction scriptAction = null;
 
-	    public void fire(Player player, String text, SpeakerNPC engine) {
-	    	if ((scriptCondition != null) && (scriptCondition instanceof ChatInfoReceiver)) {
-	    		((ChatInfoReceiver) scriptCondition).setChatInfo(player, text, engine);
-	    	}
-	    	if ((scriptAction != null) && (scriptAction instanceof ChatInfoReceiver)) {
-	    		((ChatInfoReceiver) scriptAction).setChatInfo(player, text, engine);
-	    	}
-	        game.add(scriptCondition, scriptAction);
-	    }
+		public ReqisterScriptAction(StendhalGroovyScript game,
+				ScriptAction scriptAction) {
+			this.game = game;
+			this.scriptAction = scriptAction;
+		}
+
+		public ReqisterScriptAction(StendhalGroovyScript game,
+				ScriptCondition scriptCondition, ScriptAction scriptAction) {
+			this.game = game;
+			this.scriptCondition = scriptCondition;
+			this.scriptAction = scriptAction;
+		}
+
+		public void fire(Player player, String text, SpeakerNPC engine) {
+			if ((scriptCondition != null)
+					&& (scriptCondition instanceof ChatInfoReceiver)) {
+				((ChatInfoReceiver) scriptCondition).setChatInfo(player, text,
+						engine);
+			}
+			if ((scriptAction != null)
+					&& (scriptAction instanceof ChatInfoReceiver)) {
+				((ChatInfoReceiver) scriptAction).setChatInfo(player, text,
+						engine);
+			}
+			game.add(scriptCondition, scriptAction);
+		}
 	}
 }
