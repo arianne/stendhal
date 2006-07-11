@@ -206,15 +206,15 @@ public class LoginDialog extends JDialog {
 
 	private void loginButton_actionPerformed(ActionEvent e,
 			boolean saveLoginBoxStatus) {
-		final String username = usernameField.getText();
+		final String username = usernameField.getText().trim();
 		final String password = new String(passwordField.getPassword());
-		final String server = (String) serverField.getSelectedItem();
+		final String server = ((String) serverField.getSelectedItem()).trim();
 		int port = 32160;
 		final int finalPort;// port couldnt be accessed from inner class
 		final ProgressBar progressBar = new ProgressBar(owner);
 
 		try {
-			port = Integer.parseInt(serverPortField.getText());
+			port = Integer.parseInt(serverPortField.getText().trim());
 			// Support for saving port number. Only save when input is a number
 			// intensifly@gmx.com
 
