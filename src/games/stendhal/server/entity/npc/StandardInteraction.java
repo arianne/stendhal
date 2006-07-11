@@ -55,6 +55,38 @@ public class StandardInteraction {
 	}
 
 	/**
+	 * Is this quest not completed?
+	 */
+	public class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
+		private String questname = null;
+
+		public QuestNotCompletedCondition(String questname) {
+			this.questname = questname;
+		}
+
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return (!player.isQuestCompleted(questname));
+		}
+	}
+
+	/**
+	 * Is this quest in this state?
+	 */
+	public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
+		private String questname = null;
+		private String state = null;
+
+		public QuestInStateCondition(String questname, String state) {
+			this.questname = questname;
+			this.state = state;
+		}
+
+		public boolean fire(Player player, SpeakerNPC engine) {
+		    return (player.hasQuest(questname) && player.getQuest(questname).equals(state));
+		}
+	}
+
+	/**
 	 * Register a script which should be called every turn. The script-class can
 	 * implement ChatInfoReceiver to get the paramters (player, text, npc) of
 	 * the ChatAction.
