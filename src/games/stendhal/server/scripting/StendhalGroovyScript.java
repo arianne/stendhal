@@ -17,6 +17,7 @@ import groovy.lang.GroovyShell;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import marauroa.common.Log4J;
@@ -57,7 +58,7 @@ public class StendhalGroovyScript {
 		this.scripts = StendhalScriptSystem.get();
 		groovyBinding.setVariable("game", this);
 		groovyBinding.setVariable("logger", logger);
-
+		groovyBinding.setVariable("storage", new HashMap());
 	}
 
 	public StendhalRPZone getZone(RPObject rpobject) {
