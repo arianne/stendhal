@@ -148,6 +148,10 @@ public class StendhalGroovyScript {
 		}
 		return (item);
 	}
+	
+	public List<RPObject> getCreatedRPObjects() {
+		return loadedRPObjects;
+	}
 
 	public Creature add(Creature template, int x, int y) {
 		Creature creature = template.getInstance();
