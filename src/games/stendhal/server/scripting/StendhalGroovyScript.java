@@ -174,7 +174,7 @@ public class StendhalGroovyScript {
 		world.modify(entity);
 	}
 
-	public void privateTest(Player player, String text) {
+	public void privateText(Player player, String text) {
         player.setPrivateText(text);
         rules.removePlayerText(player);
 	}
