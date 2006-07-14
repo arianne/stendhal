@@ -74,28 +74,63 @@ class TeleportNPCAction extends SpeakerNPC.ChatAction {
       this.game = game;
     }
     public void fire(Player player, String text, SpeakerNPC engine) {
-        game.add(null, new TeleportScriptAction(player, game));
+        game.add(null, new TeleportScriptAction(player, engine, text, game));
     }
 }
 
 class TeleportScriptAction extends ScriptAction {
     private StendhalGroovyScript game;
     private Player player;
+    private SpeakerNPC engine;
+    private String text;
     private int destIdx = 0;
     private int counter = 0;
-    private int inversedSpeed = 1;
-    public TeleportScriptAction (Player player, StendhalGroovyScript game) {
+    private int inversedSpeed = 3;
+    private int textCounter = 0;
+    private boolean beamed = false;
+// syntax-error:  private final String[] MAGIC_PHRASE = {"Across the land,", "Across the sea.", "Friends forever,", "We will always be."};
+    
+    public TeleportScriptAction (Player player, SpeakerNPC engine, String text, StendhalGroovyScript game) {
       this.player = player;
+      this.engine = engine;
+      this.text = text;
       this.game = game;
     }
     
     public void fire() {
         counter++;
-        if (counter < 5) {
-            //player.placeAt("0_nalwor_city", 50, 50);
-/* TODO           IRPZone.ID zoneid = new IRPZone.ID("0_nalwor_city);
-            StendhalRPAction.placeat(player.getZone(), player, 20, 20);
-*/
+        if (!beamed) {
+        	// speed up
+            if (counter % inversedSpeed == 0) {
+                Direction direction = player.getDirection();
+                direction = Direction.build((direction.get()) % 4 + 1);
+                player.setDirection(direction);
+                game.modify(player);
+                if (direction == Direction.DOWN) {
+                    switch (textCounter) {
+	                    case 0: 
+	                    	engine.say("Across the land,");
+	                        inversedSpeed--;
+	                    	break;
+	                    case 1:
+	                    	engine.say("Across the sea.");
+	                        inversedSpeed--;
+	                    	break;
+	                    case 2: 
+	                    	engine.say("Friends forever,");
+	                    	break;
+	                    case 3: 
+	                    	engine.say("We will always be.");
+	                        break;
+	                    default:
+	                        game.transferPlayer(player,  "int_admin_playground", 10, 10);
+	                        inversedSpeed = 1;
+	                        beamed = true;
+	                    	break;
+                    }
+                    textCounter++;
+                }
+            }
         } else {
             // slow down
             if (counter % inversedSpeed == 0) {
@@ -105,7 +140,7 @@ class TeleportScriptAction extends ScriptAction {
                 game.modify(player);
                 if (direction == Direction.DOWN) {
                     inversedSpeed++;
-                    if (inversedSpeed == 4) {
+                    if (inversedSpeed == 3) {
                         game.remove(this);
                     }
                 }
@@ -118,14 +153,15 @@ if (player != null) {
     
 
 	// Create NPC
-	npc=new ScriptingNPC("Debuggera")
-	npc.setClass("tavernbarmaidnpc")
+	npc=new ScriptingNPC("Debuggera");
+	npc.setClass("woman_004_npc");
 
 	// Place NPC in int_admin_playground 
     // if this script is executed by an admin
 	myZone = "int_admin_playground";
 	game.setZone(myZone);
 	npc.set(4, 11);
+	npc.setDirection(Direction.DOWN);
 	game.add(npc)
 
 	// 
@@ -153,7 +189,7 @@ if (player != null) {
     npc.add(ConversationStates.ATTENDING, "quest", new AdminCondition(), ConversationStates.ATTENDING, null, new QuestsAction(game));
     
     // teleport
-    npc.add(ConversationStates.ATTENDING, ["teleport", "teleportme"], new AdminCondition(), ConversationStates.ATTENDING, "\r\nAcross the land,\r\nAcross the sea.\r\nFriends forever,\r\nWe will always be.", new TeleportNPCAction(game));
+    npc.add(ConversationStates.ATTENDING, ["teleport", "teleportme"], new AdminCondition(), ConversationStates.IDLE, null, new TeleportNPCAction(game));
 
 /*
 Make new friends,
