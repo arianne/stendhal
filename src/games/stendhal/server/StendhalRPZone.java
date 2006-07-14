@@ -532,14 +532,22 @@ public class StendhalRPZone extends MarauroaRPZone {
 					logger.error("Error adding house to " + this, e);
 				}
 				break;
-			case 11: /* sheep */
-				Sheep sheep = new Sheep();
+			case 11: /* sheep */ {
+				/* TODO
+				RespawnPoint point = new RespawnPoint(x, y, 2);
+				Creature creature = new Sheep();
+				point.set(this, creature, 1);
+				point.setRespawnTime(creature.getRespawnTime());
+				respawnPoints.add(point);
+				*/
+				/*Sheep sheep = new Sheep();
 				assignRPObjectID(sheep);
 				sheep.setx(x);
 				sheep.sety(y);
 				add(sheep);
-				npcs.add(sheep);
+				npcs.add(sheep);*/
 				break;
+			}
 			case 91: /* sign */
 				break;
 			case 92: /* SheepFood */
