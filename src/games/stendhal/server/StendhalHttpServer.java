@@ -30,8 +30,8 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 
+import marauroa.common.Configuration;
 import marauroa.common.Log4J;
-import marauroa.common.net.NetConst;
 
 import org.apache.log4j.Logger;
 
@@ -90,9 +90,13 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             scriptBinding = new Binding();
             scriptBinding.setVariable("rules", rules);
             scriptBinding.setVariable("world", world);
-            PORT = NetConst.marauroa_PORT;
+            if (Configuration.getConfiguration().has("http.port")) {
+            	PORT = Integer.parseInt(Configuration.getConfiguration().get("http.port").trim());
+            } else {
+            	PORT = 80; // default http-port
+            }
         } catch (Exception e) {
-            logger.error(e);
+            logger.error(e, e);
         }
     }
 
@@ -168,7 +172,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
                     s.insert(left, new StringBuffer(outStream.toString()));
                 } catch (Exception e) {
                     s.insert(left, "<!-- " + e.getMessage() + " -->");
-                    logger.error(e);
+                    logger.error(e, e);
                 }
             }
         }
@@ -335,7 +339,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             ConnectionFactory.getConnection(this).connect(new ServerSocket(PORT));
             logger.info("Started http server on port " + PORT);
         } catch (Exception e) {
-            logger.error(e);
+            logger.error(e, e);
         }
     }
 }
