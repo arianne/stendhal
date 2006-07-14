@@ -18,28 +18,40 @@
 
 package games.stendhal.server;
 
-import marauroa.common.net.NetConst;
-
 import groovy.lang.Binding;
 import groovy.util.GroovyScriptEngine;
 
-import simple.http.connect.*;
-import simple.http.serve.*;
-import simple.http.load.*;
-import simple.http.*;
-import simple.template.*;
-
-import java.net.ServerSocket;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.PrintStream;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.FileInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.BufferedInputStream;
+import java.io.PrintStream;
+import java.net.ServerSocket;
+
+import marauroa.common.Log4J;
+import marauroa.common.net.NetConst;
+
+import org.apache.log4j.Logger;
+
+import simple.http.ProtocolHandler;
+import simple.http.Request;
+import simple.http.Response;
+import simple.http.connect.ConnectionFactory;
+import simple.http.load.LoaderEngine;
+import simple.http.serve.CacheContext;
+import simple.http.serve.Content;
+import simple.http.serve.Context;
+import simple.http.serve.FileContext;
+import simple.http.serve.ProtocolHandlerFactory;
+import simple.template.View;
 
 public class StendhalHttpServer extends StendhalServerExtension implements
         ProtocolHandler {
+
+	private static final Logger logger = Log4J.getLogger(StendhalHttpServer.class);
+
     /** what to do with the http request if we don't handle it ourselves * */
     private ProtocolHandler handler;
 

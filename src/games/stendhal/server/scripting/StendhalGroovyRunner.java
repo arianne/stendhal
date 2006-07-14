@@ -23,10 +23,14 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.server.game.RPWorld;
 
+import org.apache.log4j.Logger;
+
 public class StendhalGroovyRunner extends StendhalServerExtension {
 	private Map<String, StendhalGroovyScript> scripts;
 
 	private final String scriptDir = "data/script/";
+	private static final Logger logger = Log4J.getLogger(StendhalGroovyRunner.class);
+
 
 	public StendhalGroovyRunner(StendhalRPRuleProcessor rp,
             StendhalRPWorld world) {

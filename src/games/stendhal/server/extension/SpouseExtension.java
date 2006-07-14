@@ -7,9 +7,6 @@
 
 package games.stendhal.server.extension;
 
-import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
-import marauroa.server.game.RPWorld;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -17,6 +14,11 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Player;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPAction;
+import marauroa.server.game.RPWorld;
+
+import org.apache.log4j.Logger;
 
 /**
  * @author intensifly
@@ -37,6 +39,8 @@ import games.stendhal.server.entity.Player;
 public class SpouseExtension extends StendhalServerExtension {
 
     private final String SPOUSE = "spouse";
+	private static final Logger logger = Log4J.getLogger(SpouseExtension.class);
+    
     /**
      * @param rules - the reference to the rules processor
      * @param world - the reference to the game objects

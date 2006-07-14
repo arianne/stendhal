@@ -9,12 +9,15 @@ package games.stendhal.server;
 
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.Player;
-import marauroa.common.game.RPAction;
-import marauroa.server.game.RPWorld;
-import marauroa.common.Log4J;
-import org.apache.log4j.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import marauroa.common.Log4J;
+import marauroa.common.game.RPAction;
+import marauroa.server.game.RPWorld;
+
+import org.apache.log4j.Logger;
 
 public abstract class StendhalServerExtension extends ActionListener {
 	/** our connection points to the game objects * */
@@ -23,7 +26,7 @@ public abstract class StendhalServerExtension extends ActionListener {
 	static protected StendhalRPWorld world;
 
 	/** the logger instance. */
-	protected static final Logger logger = Log4J
+	private static final Logger logger = Log4J
 			.getLogger(StendhalServerExtension.class);
 
 	/** lists the instances of the loaded extensions */
