@@ -154,7 +154,7 @@ if (player != null) {
 
 	// Create NPC
 	npc=new ScriptingNPC("Debuggera");
-	npc.setClass("woman_004_npc");
+	npc.setClass("girlnpc");
 
 	// Place NPC in int_admin_playground 
     // if this script is executed by an admin
@@ -176,14 +176,19 @@ if (player != null) {
 */
     npc.behave(["insane", "crazy", "mad"], "Why are you so mean? I AM NOT INSANE. My mummy says, I am a #special child.")
     npc.behave(["special", "special child"], "I can see another world in my dreams. That are more thans dreams. There the people are sitting in front of machines called computers. This are realy strange people. They cannot use telepathy without something they call inter-network. But these people and machines are somehow connected to our world. If I concentrate, I can #change thinks in our world.");
-    npc.behave("verschmelzung", "\r\nYou have one hand,\r\nI have the other.\r\nPut them together,\r\nWe have each other.");
+    // npc.behave("verschmelzung", "\r\nYou have one hand,\r\nI have the other.\r\nPut them together,\r\nWe have each other.");
+
+	// change
+    npc.add(ConversationStates.ATTENDING, ["change", "change"], new StandardInteraction.QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "I can teleport you.", null);
+    npc.add(ConversationStates.ATTENDING, ["change", "change"], new StandardInteraction.QuestNotInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "Do you want to become my #friend?", null);
 
     // friends
-    npc.add(ConversationStates.ATTENDING, ["friend", "friends"], null /*new NotFriendsCondition()*/, ConversationStates.INFORMATION_1, "Please repeat:\r\n                        \"A circle is round,\"", null);
+    npc.add(ConversationStates.ATTENDING, ["friend", "friends"], new StandardInteraction.QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "We are friends.", null);
+    npc.add(ConversationStates.ATTENDING, ["friend", "friends"], new StandardInteraction.QuestNotInStateCondition("debuggera", "friends"), ConversationStates.INFORMATION_1, "Please repeat:\r\n                        \"A circle is round,\"", null);
     npc.add(ConversationStates.INFORMATION_1, ["A circle is round,", "A circle is round"], null, ConversationStates.INFORMATION_2, "\"it has no end.\"", null);
     npc.add(ConversationStates.INFORMATION_2, ["it has no end.", "it has no end"], null, ConversationStates.INFORMATION_3, "\"That's how long,\"", null);
     npc.add(ConversationStates.INFORMATION_3, ["That's how long,", "That's how long", "Thats how long,", "Thats how long"], null, ConversationStates.INFORMATION_4, "\"I will be your friend.\"", null);
-    npc.add(ConversationStates.INFORMATION_4, ["I will be your friend.", "I will be your friend"], null, ConversationStates.ATTENDING, null, null/*new FriendsAction()*/);
+    npc.add(ConversationStates.INFORMATION_4, ["I will be your friend.", "I will be your friend"], null, ConversationStates.ATTENDING, "Cool. We are friends now.", new StandardInteraction.SetQuestAction("debuggera", "friends"));
 
     // quests
     npc.add(ConversationStates.ATTENDING, "quest", new AdminCondition(), ConversationStates.ATTENDING, null, new QuestsAction(game));
