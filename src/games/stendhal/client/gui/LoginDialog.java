@@ -40,6 +40,7 @@ public class LoginDialog extends JDialog {
 	private JLabel passwordLabel;
 
 	private JCheckBox saveLoginBox;
+	private JCheckBox useTCPBox;
 
 	private JTextField usernameField;
 
@@ -81,6 +82,7 @@ public class LoginDialog extends JDialog {
 		usernameLabel = new JLabel("Type your username");
 		passwordLabel = new JLabel("Type your password");
 		saveLoginBox = new JCheckBox("Remember login info");
+		useTCPBox = new JCheckBox("Experimental TCP");
 		usernameField = new JTextField();
 		passwordField = new JPasswordField();
 		serverField = new JComboBox();
@@ -97,7 +99,6 @@ public class LoginDialog extends JDialog {
 		for (String server : stendhal.SERVERS_LIST) {
 			serverField.addItem(server);
 		}
-		// Added support for saving port number intensifly@gmx.com
 
 		int tokens = loginInfo.countTokens();
 		if (tokens >= 3) {
@@ -115,8 +116,7 @@ public class LoginDialog extends JDialog {
 			//
 			passwordField.setText(loginInfo.nextToken());
 		}
-		// Added support for saving port number intensifly@gmx.com
-		if (tokens == 4) {
+		if (tokens >= 4) {
 			//
 			// serverPortField
 			//
@@ -158,31 +158,36 @@ public class LoginDialog extends JDialog {
 		c.insets = new Insets(4, 4, 4, 4);
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(serverPortField, c);
+		c.gridx = 1;
+		c.gridy = 2;
+		c.insets = new Insets(4, 4, 4, 4);
+		c.fill = GridBagConstraints.BOTH;
+		contentPane.add(useTCPBox, c);
 		// row 2
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
-		c.gridy = 2;
+		c.gridy = 3;
 		contentPane.add(usernameLabel, c);
 		c.gridx = 1;
-		c.gridy = 2;
+		c.gridy = 3;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(usernameField, c);
 		// row 3
 		c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 4;
 		c.fill = GridBagConstraints.NONE;
 		contentPane.add(passwordLabel, c);
 		c.gridx = 1;
-		c.gridy = 3;
+		c.gridy = 4;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(passwordField, c);
 		// row 4
 		c.gridx = 0;
-		c.gridy = 4;
+		c.gridy = 5;
 		c.fill = GridBagConstraints.NONE;
 		contentPane.add(saveLoginBox, c);
 		c.gridx = 1;
-		c.gridy = 4;
+		c.gridy = 5;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(15, 4, 4, 4);
 		contentPane.add(loginButton, c);
@@ -192,17 +197,9 @@ public class LoginDialog extends JDialog {
 		//
 		this.setTitle("Login to Server");
 		this.setResizable(false);
-		this.setSize(new Dimension(410, 205));
+		this.setSize(new Dimension(410, 220));
 		this.setLocationRelativeTo(owner);
 	}
-
-	// TODO: Never used? remove me
-	// /** Add Component Without a Layout Manager (Absolute Positioning) */
-	// private void addComponent(Container container, Component c, int x, int y,
-	// int width, int height) {
-	// c.setBounds(x, y, width, height);
-	// container.add(c);
-	// }
 
 	private void loginButton_actionPerformed(ActionEvent e,
 			boolean saveLoginBoxStatus) {
@@ -212,6 +209,7 @@ public class LoginDialog extends JDialog {
 		int port = 32160;
 		final int finalPort;// port couldnt be accessed from inner class
 		final ProgressBar progressBar = new ProgressBar(owner);
+		final boolean useTCP = useTCPBox.isSelected();
 
 		try {
 			port = Integer.parseInt(serverPortField.getText().trim());
@@ -238,7 +236,7 @@ public class LoginDialog extends JDialog {
 									// connect
 
 				try {
-					client.connect(server, finalPort);
+					client.connect(server, finalPort, useTCP);
 					progressBar.step();// for each major connection milestone
 										// call step()
 				} catch (Exception ex) {
