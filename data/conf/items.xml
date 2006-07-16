@@ -210,6 +210,7 @@ Makes players more offensive
 			<slot name="rhand"/>
 			<slot name="bag"/>
 		</equipable>
+		<description>You see r_hand_sword. It must be used with l_hand_sword.</description>
 	</item>
 
 	<item name="l_hand_sword">
@@ -223,6 +224,7 @@ Makes players more offensive
 			<slot name="lhand"/>
 			<slot name="bag"/>
 		</equipable>
+		<description>You see l_hand_sword. It must be used with r_hand_sword.</description>
 	</item>
 
 
