@@ -241,11 +241,17 @@ public class Sheep extends DomesticAnimal {
 
 		if (!stopped()) {
 			StendhalRPAction.move(this);
-			// if we collided with something we stop and clear the path
+			// /* if we collided with something we stop and clear the path */
 			if (collides()) {
 				stop();
 				clearPath();
-				hunger = 0;
+				
+				// move randomly
+				setIdea("walk");
+				moveRandomly(SPEED);
+				if (hunger > 50) { // ignore food-movement for a short time
+					hunger = hunger -5;
+				}
 			}
 		}
 
