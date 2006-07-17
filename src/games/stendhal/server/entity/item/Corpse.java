@@ -26,21 +26,15 @@ import marauroa.common.game.*;
 
 public class Corpse extends PassiveEntity {
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
-
-	final public static int DEGRADATION_TIMEOUT = 3000; // 30 minutes at 300 ms
-
-	final public static int MAX_STAGE = 5; // number of degradation steps
-
+	private static final int DEGRADATION_TIMEOUT = 3000; // 30 minutes at 300 ms
+	private static final int MAX_STAGE = 5; // number of degradation steps
 	private int degradation;
-
 	private int stage;
     
     /**
      * Remember which turn we were called last to compute the degradation
      */
     private int lastTurn = 0;
-
-	private boolean isDegrading = true;
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("corpse");
@@ -120,25 +114,7 @@ public class Corpse extends PassiveEntity {
 		rect.setRect(x, y, 1, 1);
 	}
 
-	public void setDegrading(boolean isDegrading) {
-		this.isDegrading = isDegrading;
-	}
-
-	// set it to MAX_STAGE will remove the corpse
-	public void setStage(int new_stage) {
-		if (new_stage >= 0 && new_stage <= MAX_STAGE) {
-			degradation = DEGRADATION_TIMEOUT
-					- (new_stage * DEGRADATION_TIMEOUT) / MAX_STAGE;
-			stage = new_stage;
-			put("stage", stage);
-		}
-	}
-
-	public int getDegradation() {
-		return degradation;
-	}
-
-	public int decDegradation(int aktTurn) {
+	private int decDegradation(int aktTurn) {
 		int new_stage = MAX_STAGE
 				- (int) (((float) degradation / (float) DEGRADATION_TIMEOUT) * MAX_STAGE);
 		if (stage != new_stage) {
@@ -172,7 +148,7 @@ public class Corpse extends PassiveEntity {
         if(lastTurn==0) {
             lastTurn = aktTurn - 1;
         }
-		if (isDegrading && decDegradation(aktTurn) < 1) {
+		if (decDegradation(aktTurn) < 1) {
 			if (isContained()) {
 				// We modify the base container if the object change.
 				RPObject base = getContainer();
