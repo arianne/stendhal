@@ -22,14 +22,11 @@ import marauroa.common.net.*;
 
 public class textClient extends Thread {
 	private String host;
-
 	private String username;
-
 	private String password;
-
 	private String character;
-    
     private String port;
+    private boolean tcp;
     
     private static boolean ShowWorld = false;
 
@@ -39,13 +36,14 @@ public class textClient extends Thread {
 
 	private PerceptionHandler handler;
 
-	public textClient(String h, String u, String p, String c, String P)
+	public textClient(String h, String u, String p, String c, String P, boolean t)
 			throws SocketException {
 		host = h;
 		username = u;
 		password = p;
 		character = c;
-         port = P;
+        port = P;
+        tcp = t;
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
@@ -152,7 +150,7 @@ public class textClient extends Thread {
 
 	public void run() {
 		try {
-			clientManager.connect(host, Integer.parseInt(port));
+			clientManager.connect(host, Integer.parseInt(port), tcp);
 			clientManager.login(username, password);
 		} catch (SocketException e) {
 			return;
@@ -185,7 +183,8 @@ public class textClient extends Thread {
 				String password = null;
 				String character = null;
 				String host = null;
-                 String port = null;
+                String port = null;
+                boolean tcp = false;
 
 				while (i != args.length) {
 					if (args[i].equals("-u")) {
@@ -201,6 +200,8 @@ public class textClient extends Thread {
                      } else if (args[i].equals("-W")) {
                          if("1".equals(args[i + 1]))
                              ShowWorld = true;
+                     } else if (args[i].equals("-t")) {
+                    	 tcp = true;
                      }
 					i++;
 				}
@@ -208,7 +209,7 @@ public class textClient extends Thread {
 				if (username != null && password != null && character != null
 						&& host != null && port != null) {
 					System.out.println("Parameter operation");
-					new textClient(host, username, password, character, port).start();
+					new textClient(host, username, password, character, port, tcp).start();
 					return;
 				}
 			}
@@ -226,6 +227,7 @@ public class textClient extends Thread {
 			System.out.println("* -c\tCharacter used to log into Marauroa server");
 			System.out.println("Optional parameters");
 			System.out.println("* -W\tShow world content? 0 or 1");
+			System.out.println("* -t\tuse tcp-connection to server");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
