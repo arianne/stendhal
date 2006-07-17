@@ -459,26 +459,23 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
         long start = System.nanoTime();
         int aktTurn = getTurn();
         try {
+
+        	// Creatures
             for (RespawnPoint point : respawnPoints) {
                 point.logic();               
             }
-            switch (aktTurn % 5) {
-            	case 4:
-            		break;
-                case 3:
-                    for (PlantGrower plantGrower : plantGrowers)
-                        plantGrower.regrow(aktTurn);
-                    break;
-                case 2:
-                    break;
-                case 1:
-                    for (Blood blood : bloods)
-                        blood.logic(aktTurn);
-                    break;
-                default:
-                    break;
+
+            // PlantGrowers
+            if (aktTurn % 5 == 0) {
+                for (PlantGrower plantGrower : plantGrowers) {
+                    plantGrower.regrow(aktTurn);
+                }
             }
+
+            // Registeres classes for this turn
             TurnNotifier.get().logic(aktTurn);
+
+            // Scripts
             scripts.logic();
         } catch (Exception e) {
             logger.error("error in endTurn", e);
