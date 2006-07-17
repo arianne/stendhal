@@ -515,8 +515,6 @@ public abstract class RPEntity extends Entity {
 		zone.assignRPObjectID(corpse);
 		zone.add(corpse);
 
-		rp.addCorpse(corpse);
-
 		world.modify(who);
 		if (remove) {
 			world.remove(getID());

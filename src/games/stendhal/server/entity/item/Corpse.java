@@ -158,7 +158,6 @@ public class Corpse extends PassiveEntity implements TurnEvent {
 				world.remove(getID());
 			}
 
-			rp.removeCorpse(this);
 		} else {
 			TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this);
 		}

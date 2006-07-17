@@ -61,19 +61,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private StendhalRPWorld world;
 
 	private List<TransferContent> contents;
-
 	private List<String> entryPoints;
-
 	private List<String> zoneChangePoints;
-
 	private List<Portal> portals;
-
 	private List<NPC> npcs;
-
 	private List<RespawnPoint> respawnPoints;
-
     private List<PlantGrower> plantGrowers;
-    private List<Door> doors;
+
 
 	/**
 	 * A map with all items that are lying on the ground in this zone as
@@ -115,7 +109,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<RespawnPoint>();
         plantGrowers = new LinkedList<PlantGrower>();
-        doors = new LinkedList<Door>();
 
 		collisionMap = new CollisionDetection();
 		protectionMap = new CollisionDetection();
@@ -165,10 +158,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return plantGrowers;
 	}
 
-    public Collection<? extends Door> getDoors() {
-        return doors;
-    }
-
 	public void addZoneChange(String entry) {
 		zoneChangePoints.add(entry);
 	}
@@ -176,9 +165,6 @@ public class StendhalRPZone extends MarauroaRPZone {
     public void addPortal(Portal portal) {
 		add(portal);
 		portals.add(portal);
-        if (portal instanceof Door) {
-            doors.add((Door) portal);
-        }
 	}
 
 	public int assignPortalID(Portal portal) {

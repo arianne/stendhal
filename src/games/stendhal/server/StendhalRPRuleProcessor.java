@@ -29,12 +29,10 @@ import games.stendhal.server.actions.PlayersQuery;
 import games.stendhal.server.actions.StopAction;
 import games.stendhal.server.actions.UseAction;
 import games.stendhal.server.entity.Blood;
-import games.stendhal.server.entity.Door;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.pathfinder.Path;
 
@@ -50,7 +48,6 @@ import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
-import marauroa.common.game.RPSlot;
 import marauroa.server.createaccount.Result;
 import marauroa.server.game.IRPRuleProcessor;
 import marauroa.server.game.JDBCPlayerDatabase;
@@ -83,11 +80,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private List<Pair<RPEntity, RPEntity>> entityToKill;
 	private List<RespawnPoint> respawnPoints;
 	private List<PlantGrower> plantGrowers;
-	private List<Corpse> corpses;
-	private List<Corpse> corpsesToRemove;
 	private List<Blood> bloods;
 	private List<Blood> bloodsToRemove;
-    private List<Door> doors;
 
 	private StendhalScriptSystem scripts;
 
@@ -126,11 +120,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		npcsToAdd = new LinkedList<NPC>();
 		npcsToRemove = new LinkedList<NPC>();
 		entityToKill = new LinkedList<Pair<RPEntity, RPEntity>>();
-		corpses = new LinkedList<Corpse>();
-		corpsesToRemove = new LinkedList<Corpse>();
 		bloods = new LinkedList<Blood>();
 		bloodsToRemove = new LinkedList<Blood>();
-        doors = new LinkedList<Door>();
 		scripts = StendhalScriptSystem.get();
 		registerActions();
 	}
@@ -178,7 +169,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				npcs.addAll(szone.getNPCList());
 				respawnPoints.addAll(szone.getRespawnPointList());
 				plantGrowers.addAll(szone.getPlantGrowers());
-				doors.addAll(szone.getDoors());
 			}
 			
 			Configuration config = Configuration.getConfiguration();
@@ -269,21 +259,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		playersObjectRmText.add(player);
 	}
 
-	public void addCorpse(Corpse corpse) {
-		corpses.add(corpse);
-	}
-
-	public void removeCorpse(Corpse corpse) {
-		for (RPSlot slot : corpse.slots()) {
-			for (RPObject object : slot) {
-				if (object instanceof Corpse) {
-					removeCorpse((Corpse) object);
-				}
-			}
-		}
-		corpsesToRemove.add(corpse);
-	}
-
 	public void addBlood(Blood blood) {
 		bloods.add(blood);
 	}
@@ -356,10 +331,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		int objects = 0;
 		for (IRPZone zone : world)
 			objects += zone.size();
-		logger.debug("lists: CO:" + corpses.size() + ",G:" + plantGrowers.size()
+		logger.debug("lists: G:" + plantGrowers.size()
 				+ ",NPC:" + npcs.size() + ",P:" + playersObject.size() + ",CR:"
 				+ creatures + ",OB:" + objects);
-		logger.debug("lists: CO:" + corpsesToRemove.size() + ",NPC:"
+		logger.debug("lists: NPC:"
 				+ npcsToAdd.size() + ",NPC:" + npcsToRemove.size() + ",P:"
 				+ playersObjectRmText.size() + ",R:" + respawnPoints.size());
 		try {
@@ -378,12 +353,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			entityToKill.clear();
 			// Done this way because a problem with comodification... :(
 			npcs.removeAll(npcsToRemove);
-			corpses.removeAll(corpsesToRemove);
 			bloods.removeAll(bloodsToRemove);
 			npcs.addAll(npcsToAdd);
 			npcsToAdd.clear();
 			npcsToRemove.clear();
-			corpsesToRemove.clear();
 			bloodsToRemove.clear();
 			for (Player object : playersObject) {
 				if (object.has("risk")) {
