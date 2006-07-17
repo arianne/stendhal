@@ -43,7 +43,22 @@ public class TurnNotifier {
 	 * @param currentTurn currentTurn
 	 */
 	public void logic(int currentTurn) {
+		// Note: It is OK to only synchronize the remove part
+		//       because notifyAtTurn will not allow registrations
+		//       for the current turn. So it is important to
+		//       adjust currentTurn before the loop.
+
 		this.currentTurn = currentTurn;
+
+		// get and remove the set for this turn
+		Set<TurnEvent> set = null;
+		synchronized (sync) {
+			set = register.remove(new Integer(currentTurn));
+		}
+
+		for (TurnEvent turnEvent : set) {
+			turnEvent.onTurnReached(currentTurn);
+		}
 	}
 
 	/**
