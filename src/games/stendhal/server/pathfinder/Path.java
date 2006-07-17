@@ -163,7 +163,7 @@ public class Path {
 			zone = (StendhalRPZone) Entity.getWorld().getRPZone(entity.getID());
 		}
 		
-		Log4J.startMethod(logger, "searchPath");
+		// Log4J.startMethod(logger, "searchPath");
 		long startTime = System.currentTimeMillis();
 
 		Pathfinder path = new Pathfinder();
@@ -204,7 +204,7 @@ public class Path {
 			node = node.getParent();
 		}
 
-		Log4J.finishMethod(logger, "searchPath");
+		// Log4J.finishMethod(logger, "searchPath");
 		return list;
 	}
 

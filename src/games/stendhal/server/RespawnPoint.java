@@ -116,12 +116,12 @@ public class RespawnPoint implements TurnEvent {
 	}
 
     public void logic() {
-        Log4J.startMethod(logger, "logic");
+        //Log4J.startMethod(logger, "logic");
 
 		for (Creature creature : entities) {
 			creature.logic();
 		}
-
-		Log4J.finishMethod(logger, "logic");
+        
+		//Log4J.finishMethod(logger, "logic");
 	}
 }

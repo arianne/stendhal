@@ -499,9 +499,10 @@ public class Creature extends NPC {
 		super.stopAttack();
 	}
 
+
 	@Override
 	public void logic() {
-		Log4J.startMethod(logger, "logic");
+		// Log4J.startMethod(logger, "logic");
 
 		if (aiProfiles.containsKey("heal")) {
             if(getHP() < getBaseHP()) {
@@ -778,7 +779,7 @@ public class Creature extends NPC {
 		if (Debug.CREATURES_DEBUG_SERVER)
 			put("debug", debug.toString());
 		world.modify(this);
-		Log4J.finishMethod(logger, "logic");
+		//Log4J.finishMethod(logger, "logic");
 	}
 
 	public void equip(List<EquipItem> items) {

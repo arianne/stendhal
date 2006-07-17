@@ -236,7 +236,7 @@ public class StendhalRPAction {
 	public static boolean attack(RPEntity source, RPEntity target)
 			throws AttributeNotFoundException, NoRPZoneException,
 			RPObjectNotFoundException {
-		Log4J.startMethod(logger, "attack");
+		//Log4J.startMethod(logger, "attack");
 		boolean result = false;
 
 		try {
@@ -323,13 +323,13 @@ public class StendhalRPAction {
 				return false;
 			}
 		} finally {
-			Log4J.finishMethod(logger, "attack");
+		//	Log4J.finishMethod(logger, "attack");
 		}
 	}
 
 	public static void move(RPEntity entity) throws AttributeNotFoundException,
 			NoRPZoneException {
-		Log4J.startMethod(logger, "move");
+		//Log4J.startMethod(logger, "move");
 		try {
 			if (entity.stopped()) {
 				return;
@@ -405,7 +405,7 @@ public class StendhalRPAction {
 				world.modify(entity);
 			}
 		} finally {
-			Log4J.finishMethod(logger, "move");
+		//	Log4J.finishMethod(logger, "move");
 		}
 	}
 
