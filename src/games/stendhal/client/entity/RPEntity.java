@@ -326,8 +326,15 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 		Color nameColor = Color.white;
 
-		if ((diff.has("adminlevel") && diff.getInt("adminlevel") >= 600) || (base.has("adminlevel") && base.getInt("adminlevel") >= 600)) {
-			nameColor = Color.yellow;
+		if (diff.has("adminlevel")) {
+			int adminlevel = diff.getInt("adminlevel");
+			if (adminlevel >= 800) {
+				nameColor = new Color(200, 200, 0);
+			} else if (adminlevel >= 400) {
+				nameColor = new Color(255, 255, 0);
+			} else if (adminlevel > 0) {
+				nameColor = new Color(255, 255, 172);
+			}
 		}
 
 		if (diff.has("name")) {
