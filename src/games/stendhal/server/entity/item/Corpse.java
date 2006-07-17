@@ -12,29 +12,29 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
+import games.stendhal.server.TurnNotifier;
 import games.stendhal.server.entity.PassiveEntity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.events.TurnEvent;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
-import marauroa.common.game.*;
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
-public class Corpse extends PassiveEntity {
+import org.apache.log4j.Logger;
+
+public class Corpse extends PassiveEntity implements TurnEvent {
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
 	private static final int DEGRADATION_TIMEOUT = 3000; // 30 minutes at 300 ms
 	private static final int MAX_STAGE = 5; // number of degradation steps
-	private int degradation;
+	private static final int DEGRADATION_SETP_TIMEOUT = DEGRADATION_TIMEOUT / MAX_STAGE;
 	private int stage;
-    
-    /**
-     * Remember which turn we were called last to compute the degradation
-     */
-    private int lastTurn = 0;
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("corpse");
@@ -54,7 +54,7 @@ public class Corpse extends PassiveEntity {
 
 		setx(x);
 		sety(y);
-		degradation = DEGRADATION_TIMEOUT;
+		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this);
 		stage = 0;
 		put("stage", stage);
 
@@ -100,7 +100,7 @@ public class Corpse extends PassiveEntity {
 		setx((int) rect.getCenterX());
 		sety((int) rect.getCenterY());
 
-		degradation = DEGRADATION_TIMEOUT;
+		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this);
 		stage = 0;
 		put("stage", stage);
 
@@ -114,41 +114,31 @@ public class Corpse extends PassiveEntity {
 		rect.setRect(x, y, 1, 1);
 	}
 
-	private int decDegradation(int aktTurn) {
-		int new_stage = MAX_STAGE
-				- (int) (((float) degradation / (float) DEGRADATION_TIMEOUT) * MAX_STAGE);
-		if (stage != new_stage) {
-			stage = new_stage;
-			put("stage", stage);
+	private boolean decDegradation(int aktTurn) {
+		stage++;
+		put("stage", stage);
 
-			if (isContained()) {
-				// We modify the base container if the object change.
-				RPObject base = getContainer();
-				while (base.isContained()) {
-					if (base == base.getContainer()) {
-						logger.fatal("A corpse is contained by itself.");
-						break;
-					}
-
-					base = base.getContainer();
+		if (isContained()) {
+			// We modify the base container if the object change.
+			RPObject base = getContainer();
+			while (base.isContained()) {
+				if (base == base.getContainer()) {
+					logger.fatal("A corpse is contained by itself.");
+					break;
 				}
 
-				world.modify(base);
-			} else {
-				world.modify(this);
+				base = base.getContainer();
 			}
-		}
 
-        degradation -= aktTurn - lastTurn;
-        
-		return degradation;
+			world.modify(base);
+		} else {
+			world.modify(this);
+		}
+		return stage <= MAX_STAGE;
 	}
 
-	public void logic(int aktTurn) {
-        if(lastTurn==0) {
-            lastTurn = aktTurn - 1;
-        }
-		if (decDegradation(aktTurn) < 1) {
+	public void onTurnReached(int currentTurn) {
+		if (!decDegradation(currentTurn)) {
 			if (isContained()) {
 				// We modify the base container if the object change.
 				RPObject base = getContainer();
@@ -169,8 +159,9 @@ public class Corpse extends PassiveEntity {
 			}
 
 			rp.removeCorpse(this);
+		} else {
+			TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this);
 		}
-        lastTurn = aktTurn;
 	}
 
 	public void add(PassiveEntity entity) {
@@ -208,4 +199,5 @@ public class Corpse extends PassiveEntity {
 		text = text + ". You can #inspect it to see its contents.";
 		return (text);
 	}
+
 }

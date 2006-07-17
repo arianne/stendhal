@@ -470,8 +470,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
                         plantGrower.regrow(aktTurn);
                     break;
                 case 2:
-                    for (Corpse corpse : corpses)
-                        corpse.logic(aktTurn);
                     break;
                 case 1:
                     for (Blood blood : bloods)
