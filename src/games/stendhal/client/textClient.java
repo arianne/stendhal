@@ -101,7 +101,7 @@ public class textClient extends Thread {
                         .println("</World contents ------------------------------------->");                    
 					}
 				} catch (Exception e) {
-					onError(3, "Exception while applying exception");
+					onError(3, "Exception while applying perception");
 				}
 			}
 
