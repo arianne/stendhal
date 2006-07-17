@@ -850,7 +850,7 @@ public abstract class RPEntity extends Entity {
 		return false;
 	}
 
-	public Item getWeapon() {
+	private Item getWeapon() {
 		String[] weaponsClasses = { "club", "sword", "axe", "ranged" };
 
 		for (String weaponClass : weaponsClasses) {
@@ -864,6 +864,31 @@ public abstract class RPEntity extends Entity {
 		}
 		return null;
 	}
+
+	public List<Item> getWeapons() {
+		List<Item> weapons = new ArrayList<Item>();
+		Item weaponItem = getWeapon();
+		if (weaponItem != null) {
+			weapons.add(weaponItem);
+
+			// pair weapons
+			if (weaponItem.getName().startsWith("l_hand_")) {
+				String rpclass = weaponItem.getItemClass();
+				weaponItem = getEquippedItemClass("rhand", rpclass);
+				if ((weaponItem != null) && (weaponItem.getName().startsWith("r_hand_"))) {
+					weapons.add(weaponItem);
+				} else {
+					weapons.clear();
+				}
+			} else {
+				if (weaponItem.getName().startsWith("r_hand_")) {
+					weapons.clear();
+				}
+			}
+		}
+		return weapons;
+	}
+	
 
 	public Item getProjectiles() {
 		String[] slots = { "lhand", "rhand" };

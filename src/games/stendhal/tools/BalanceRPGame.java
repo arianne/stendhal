@@ -384,7 +384,7 @@ public class BalanceRPGame {
 	}
 
 	static void equip(Player p, int level) {
-		p.getWeapon().put("atk", 7 + level * 2 / 6);
+		p.getWeapons().get(0).put("atk", 7 + level * 2 / 6);
 		if (level == 0) {
 			p.getShield().put("def", 0);
 		} else {

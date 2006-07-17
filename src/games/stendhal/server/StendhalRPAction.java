@@ -88,29 +88,6 @@ public class StendhalRPAction {
 		return result;
 	}
 
-	private static List<Item> getWeapons(RPEntity entity) {
-		List<Item> weapons = new ArrayList<Item>();
-		Item weaponItem = entity.getWeapon();
-		if (weaponItem != null) {
-			weapons.add(weaponItem);
-
-			// pair weapons
-			if (weaponItem.getName().startsWith("l_hand_")) {
-				String rpclass = weaponItem.getItemClass();
-				weaponItem = entity.getEquippedItemClass("rhand", rpclass);
-				if ((weaponItem != null) && (weaponItem.getName().startsWith("r_hand_"))) {
-					weapons.add(weaponItem);
-				} else {
-					weapons.clear();
-				}
-			} else {
-				if (weaponItem.getName().startsWith("r_hand_")) {
-					weapons.clear();
-				}
-			}
-		}
-		return weapons;
-	}
 	
 	public static int damageDone(RPEntity source, RPEntity target) {
 		int weapon = 0;
@@ -122,7 +99,7 @@ public class StendhalRPAction {
 		int cloak = 0;
         int defWeapon = 0;
 
-        List<Item> weapons = getWeapons(source);
+        List<Item> weapons = source.getWeapons();
 		for (Item weaponItem : weapons) {
 			weapon += weaponItem.getAttack();
 		}
@@ -147,8 +124,11 @@ public class StendhalRPAction {
 					+ " and uses a weapon of " + weapon);
 		}
 
-		float maxAttackerComponent = 0.8f * source.getATK() * source.getATK()
-				+ 4.0f * source.getATK() * weapon;
+		int sourceAtk = source.getATK();
+		float maxAttackerComponent = 
+				( 0.8f * sourceAtk
+				+ 4.0f * weapon
+				) * sourceAtk;
 		float attackerComponent = (Rand.roll1D100() / 100.0f)
 				* maxAttackerComponent;
 
@@ -179,7 +159,7 @@ public class StendhalRPAction {
 			cloak = target.getCloak().getDefense();
 		}
         
-        List<Item> targetWeapons = getWeapons(target);
+        List<Item> targetWeapons = target.getWeapons();
 		for (Item weaponItem : targetWeapons) {
 			defWeapon += weaponItem.getDefense();
 		}
@@ -191,14 +171,16 @@ public class StendhalRPAction {
 		}
 
         int targetDef = target.getDEF();
-		float maxDefenderComponent = 0.6f * target.getDEF() * target.getDEF()
-				+ 4.0f * targetDef * shield
-                + 2.0f * targetDef * armor
-                + 1.5f * targetDef * cloak
-				+ 1.0f * targetDef * helmet
-                + 1.0f * targetDef * legs
-				+ 1.0f * targetDef * boots
-                + 1.0f * targetDef * defWeapon;
+		float maxDefenderComponent = 
+			    ( 0.6f * targetDef
+				+ 4.0f * shield
+                + 2.0f * armor
+                + 1.5f * cloak
+				+ 1.0f * helmet
+                + 1.0f * legs
+				+ 1.0f * boots
+                + 1.0f * defWeapon)
+                * targetDef;
 		
 		float defenderComponent = (Rand.roll1D100() / 100.0f)
 				* maxDefenderComponent;
@@ -254,11 +236,11 @@ public class StendhalRPAction {
 
 			target.onAttack(source, true);
 
-			Item weaponItem = source.getWeapon();
+			List<Item> weaponItem = source.getWeapons();
+			boolean range = (weaponItem.size() > 0 && weaponItem.get(0).isOfClass("ranged")); 
 
-			if (source.nextto(target, 1)
-					|| (weaponItem != null && weaponItem.isOfClass("ranged"))) {
-				if (weaponItem != null && weaponItem.isOfClass("ranged")) {
+			if (source.nextto(target, 1) || range) {
+				if (range) {
 					// Check Line of View to see if there is any obstacle.
 					Vector<Point> points = Line.renderLine(source.getx(),
 							source.gety(), target.getx(), target.gety());
