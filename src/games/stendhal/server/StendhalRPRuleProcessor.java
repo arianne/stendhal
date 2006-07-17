@@ -463,10 +463,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
                 point.logic();               
             }
             switch (aktTurn % 5) {
-                case 4:
-                    for (RespawnPoint point : respawnPoints)
-                        point.checkRespawn(aktTurn);
-                    break;
+            	case 4:
+            		break;
                 case 3:
                     for (PlantGrower plantGrower : plantGrowers)
                         plantGrower.regrow(aktTurn);
@@ -480,9 +478,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
                         blood.logic(aktTurn);
                     break;
                 default:
-                    for (Door door : doors) {
-                        door.logic(aktTurn);
-                    }
                     break;
             }
             TurnNotifier.get().logic(aktTurn);
