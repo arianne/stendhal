@@ -12,23 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.TurnNotifier;
+import games.stendhal.server.events.TurnEvent;
+
 import java.awt.geom.Rectangle2D;
+
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
-import games.stendhal.common.Direction;
 
-public class Door extends Portal {
+public class Door extends Portal implements TurnEvent {
 	private boolean open;
     private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
-    private int turnsLeftUntilClosed = 0;
-
-    /**
-     * Remember which turn we were called last to compute turns to stay open
-     */
-    private int lastTurn = 0;
-    
-    
-	//private int width;
+    private int turnToClose = 0;
 
 	public static void generateRPClass() {
 		RPClass door = new RPClass("door");
@@ -64,8 +60,10 @@ public class Door extends Portal {
 	}
 
 	public void open() {
+		TurnNotifier turnNotifier = TurnNotifier.get();
 		this.open = true;
-        this.turnsLeftUntilClosed = TURNS_TO_STAY_OPEN;
+        this.turnToClose = turnNotifier.getNumberOfNextTurn() + TURNS_TO_STAY_OPEN;
+        turnNotifier.notifyAtTurn(turnToClose, this);
 		put("open", "");
 	}
 
@@ -81,10 +79,9 @@ public class Door extends Portal {
 	@Override
 	public void onUsed(RPEntity user) {
 		if (has("locked") && user.isEquipped(get("locked"))) {
-			if (!isOpen()) {
-				open();
-				world.modify(this);
-			}
+			// open it, even it is already open to rest turnToClose
+			open();
+			world.modify(this);
 		} else {
 			if (isOpen()) {
 				close();
@@ -112,19 +109,13 @@ public class Door extends Portal {
 		return (text);
 	}
 
-    public void logic(int aktTurn) {
-        if (isOpen()) {
-            if(lastTurn == 0) {
-                lastTurn = aktTurn - 1;
-            }
-            turnsLeftUntilClosed -= aktTurn - lastTurn;
-            lastTurn = aktTurn;
-            if (turnsLeftUntilClosed <= 0) {
-                close();
-                lastTurn = 0;
-                world.modify(this);
-            }
-        }
-    }
+	public void onTurnReached(int currentTurn) {
+		// if two players use this turn, we will be called twice.
+		// Ignore the first call.
+		if (currentTurn == turnToClose) {
+			close();
+			world.modify(this);
+		}
+	}
 
 }

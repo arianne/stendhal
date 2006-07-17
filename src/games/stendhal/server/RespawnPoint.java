@@ -14,50 +14,28 @@ package games.stendhal.server;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.events.TurnEvent;
+
 import java.util.LinkedList;
 import java.util.List;
+
 import marauroa.common.Log4J;
-import marauroa.server.game.RPWorld;
+
 import org.apache.log4j.Logger;
 
-public class RespawnPoint {
+public class RespawnPoint implements TurnEvent {
+	private static final int TURNSTORESPAWN = 90;
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(RespawnPoint.class);
-
-	private int x;
-
-	private int y;
-
-	private int maximum;
-
-	private Creature entity;
-
-	private List<Creature> entities;
-
-	private boolean respawning;
-
-	final public static int TURNSTORESPAWN = 90; // Five minute at 300ms
-
-	private int respawnTime;
-
-	private int turnsToRespawn;
-    
-    /**
-     * Remember which turn we were called last to compute remaining respawn time
-     */
-    private int lastTurn = 0;
-
 	private StendhalRPZone zone;
-
-	protected static StendhalRPRuleProcessor rp;
-
-	protected static RPWorld world;
-
-	public static void setRPContext(StendhalRPRuleProcessor rpContext,
-			RPWorld worldContext) {
-		rp = rpContext;
-		world = worldContext;
-	}
+	private int x;
+	private int y;
+	private int maximum;
+	private Creature entity;
+	private List<Creature> entities;
+	private boolean respawning;
+	private int respawnTime;
 
 	public RespawnPoint(int x, int y, int radius) {
 		this.x = x;
@@ -65,7 +43,7 @@ public class RespawnPoint {
 		maximum = 0;
 
 		respawning = true;
-		turnsToRespawn = 0; // respawn now
+		TurnNotifier.get().notifyInTurns(0, this); // respawn in next turn
 		respawnTime = TURNSTORESPAWN;
 	}
 
@@ -82,48 +60,25 @@ public class RespawnPoint {
 
 	public void notifyDead(Creature dead) {
 		Log4J.startMethod(logger, "notifyDead");
+
 		if (!respawning) {
 			respawning = true;
-			turnsToRespawn = Rand.rand(respawnTime, respawnTime / 30);
+			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this);
 		}
 
 		entities.remove(dead);
 		Log4J.finishMethod(logger, "notifyDead");
 	}
 
-	public void checkRespawn(int aktTurn) {
-		Log4J.startMethod(logger, "checkRespawn");
-		if (respawning) {
-			logger.debug("Turns to respawn: " + turnsToRespawn);
+	public void onTurnReached(int currentTurn) {
+		respawn();
 
-            if(lastTurn==0) {
-                lastTurn = aktTurn - 1;
-            }
-            
-			if (turnsToRespawn <= 0) {
-				turnsToRespawn = respawnTime;
- 
-				respawn();
-
-				if (entities.size() == maximum) {
-					respawning = false;
-				}
-			}
-
-			turnsToRespawn -= aktTurn - lastTurn;
+		// Is this all or should we spawn more creatures?
+		if (entities.size() == maximum) {
+			respawning = false;
+		} else {
+			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this);
 		}
-        lastTurn = aktTurn;
-        Log4J.finishMethod(logger, "checkRespawn");
-    }
-
-    public void logic() {
-        Log4J.startMethod(logger, "logic");
-
-		for (Creature creature : entities) {
-			creature.logic();
-		}
-
-		Log4J.finishMethod(logger, "logic");
 	}
 
 	public int size() {
@@ -158,5 +113,15 @@ public class RespawnPoint {
 		} finally {
 			Log4J.finishMethod(logger, "respawn");
 		}
+	}
+
+    public void logic() {
+        Log4J.startMethod(logger, "logic");
+
+		for (Creature creature : entities) {
+			creature.logic();
+		}
+
+		Log4J.finishMethod(logger, "logic");
 	}
 }
