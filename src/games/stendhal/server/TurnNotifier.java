@@ -64,22 +64,31 @@ public class TurnNotifier {
 	}
 
 	/**
+	 * Return the number of the next turn
+	 *
+	 * @return number of the next turn
+	 */
+	public int getNumberOfNextTurn() {
+		return this.currentTurn + 1;
+	}
+	
+	/**
 	 * Notifies the class <i>turnEvent</i> in <i>diff</i> turns.
 	 * 
-	 * @param turnEvent the class to notify
 	 * @param diff the number of turns to wait
+	 * @param turnEvent the class to notify
 	 */
-	public void notifyInTurns(TurnEvent turnEvent, int diff) {
-		notifyAtTurn(turnEvent, currentTurn + diff + 1);
+	public void notifyInTurns(int diff, TurnEvent turnEvent) {
+		notifyAtTurn(currentTurn + diff + 1, turnEvent);
 	}
 
 	/**
 	 * Notifies the class <i>turnEvent</i> at <i>turn</i> turns.
 	 * 
-	 * @param turnEvent the class to notify
 	 * @param turn the number of the turn
+	 * @param turnEvent the class to notify
 	 */
-	public void notifyAtTurn(TurnEvent turnEvent, int turn) {
+	public void notifyAtTurn(int turn, TurnEvent turnEvent) {
 		if (turn <= currentTurn) {
 			logger.error("requested turn " + turn + " is in the past. Current turn is " + currentTurn, new Throwable());
 			return;
