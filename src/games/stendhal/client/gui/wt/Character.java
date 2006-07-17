@@ -21,11 +21,13 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtTextPanel;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +58,9 @@ public class Character extends WtPanel {
 
 	/** the last player modification counter */
 	private long oldPlayerModificationCount;
+
+	/** TODO: remove after next release */
+	private boolean usedCompatibilityCode = false;
 
 	/** Creates a new instance of Character */
 	public Character(GameObjects gameObjects) {
@@ -126,9 +131,6 @@ public class Character extends WtPanel {
 
 		money = 0;
 
-		int atkitem = 0;
-		int defitem = 0;
-
 		List<String> checkedItems = new LinkedList<String>();
 
 		// taverse all slots
@@ -155,27 +157,46 @@ public class Character extends WtPanel {
 						&& content.has("quantity")) {
 					money += content.getInt("quantity");
 				}
+			}
 
-				if (!slot.getName().equals("bag")) {
-					final List<String> weapons = Arrays.asList("sword", "axe",
-							"club", "ranged", "projectiles");
-					final List<String> defense = Arrays.asList("shield",
-							"armor", "helmet", "legs", "boots", "cloak");
+		}
 
-					if (weapons.contains(content.get("class"))
-							&& !checkedItems.contains(content.get("class"))) {
-						atkitem += content.getInt("atk");
-						checkedItems.add(content.get("class"));
-					}
-					if (defense.contains(content.get("class"))
-							&& !checkedItems.contains(content.get("class"))) {
-						defitem += content.getInt("def");
-						checkedItems.add(content.get("class"));
+		int atkitem = playerEntity.getAtkItem();
+		int defitem = playerEntity.getDefItem();
+
+		// TODO: Remove this code after next release
+		if (atkitem < 0 || defitem < 0) {
+			atkitem = 0;
+			defitem = 0;
+			for (RPSlot slot : playerEntity.getSlots()) {
+				for (RPObject content : slot) {
+					if (!slot.getName().equals("bag") && !slot.getName().startsWith("!")) {
+						final List<String> weapons = Arrays.asList("sword", "axe",
+								"club", "ranged", "projectiles");
+						final List<String> defense = Arrays.asList("shield",
+								"armor", "helmet", "legs", "boots", "cloak");
+	
+						if (weapons.contains(content.get("class"))
+								&& !checkedItems.contains(content.get("class"))) {
+							atkitem += content.getInt("atk");
+							checkedItems.add(content.get("class"));
+						}
+						if (defense.contains(content.get("class"))
+								&& !checkedItems.contains(content.get("class"))) {
+							defitem += content.getInt("def");
+							checkedItems.add(content.get("class"));
+						}
 					}
 				}
 			}
+			if (!usedCompatibilityCode ) {
+				StendhalClient.get().addEventLine(
+					"Client is newer than Server: Using compatibility code for atkitem and defitem calculation.", Color.RED);
+				usedCompatibilityCode = true;
+			}
 		}
-
+		// TODO: Remove-Me End
+		
 		setTitletext(playerEntity.getName());
 		statsPanel.set("hp", playerEntity.getHP());
 		statsPanel.set("maxhp", playerEntity.getBase_hp());

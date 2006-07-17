@@ -98,42 +98,25 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	private String name;
 
 	private int atk;
-
 	private int def;
-
 	private int xp;
-
 	private int hp;
-
 	private int base_hp;
-
 	private float hp_base_hp;
-
 	private int level;
-
 	private boolean isEating;
-
 	private boolean isPoisoned;
-
 	private Sprite nameImage;
-
 	private long combatIconTime;
-
 	private java.util.List<Sprite> damageSprites;
-
 	private java.util.List<Long> damageSpritesTimes;
-
 	private boolean attacked;
-
 	private boolean attacking;
-
-	//private RPObject.ID targetEntity;
-
 	private Resolution resolution;
-
 	private int atkXp;
-
 	private int defXp;
+	private int atkItem = -1;
+	private int defItem = -1;
 
 	/** Create a new game entity based on the arianne object passed */
 	public RPEntity(GameObjects gameObjects, RPObject object)
@@ -336,6 +319,10 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			atkXp = diff.getInt("atk_xp");
 		if (diff.has("def_xp"))
 			defXp = diff.getInt("def_xp");
+		if (diff.has("atk_item"))
+			atkItem = diff.getInt("atk_item");
+		if (diff.has("def_item"))
+			defItem = diff.getInt("def_item");
 
 		Color nameColor = Color.white;
 
@@ -634,6 +621,21 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	 */
 	public int getDefXp() {
 		return defXp;
+	}
+
+
+	/**
+	 * @return Returns the atk of items
+	 */
+	public int getAtkItem() {
+		return atkItem;
+	}
+
+	/**
+	 * @return Returns the def of items
+	 */
+	public int getDefItem() {
+		return defItem;
 	}
 
 	// When this entity attacks target.
