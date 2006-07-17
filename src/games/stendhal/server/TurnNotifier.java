@@ -30,7 +30,7 @@ public class TurnNotifier {
 	 *
 	 * @return TurnNotifier
 	 */
-	public TurnNotifier get() {
+	public static TurnNotifier get() {
 		if (turnNotifier == null) {
 			turnNotifier = new TurnNotifier();
 		}
@@ -56,8 +56,10 @@ public class TurnNotifier {
 			set = register.remove(new Integer(currentTurn));
 		}
 
-		for (TurnEvent turnEvent : set) {
-			turnEvent.onTurnReached(currentTurn);
+		if (set != null) {
+			for (TurnEvent turnEvent : set) {
+				turnEvent.onTurnReached(currentTurn);
+			}
 		}
 	}
 

@@ -485,6 +485,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
                     }
                     break;
             }
+            TurnNotifier.get().logic(aktTurn);
             scripts.logic();
         } catch (Exception e) {
             logger.error("error in endTurn", e);
