@@ -173,8 +173,10 @@ if(game.setZone(myZone))   // if zone exists
   henry.add(60,"no",null,1,"Ok. I understand. I'm scared of the #dwarves myself.",null);
   henry.add(0,[ "hi","hello","greetings","hola" ],new HenryQuestCompleteCondition(),1,null,new HenryQuestCompleteAction(game));
   henry.add(1,[ "map","group","help" ],new HenryQuestCompletedCondition(),1,"I'm so sad that most of my friends are dead.",null);
-  // And finally add our new NPC to the game world
-  henry.setHP(20);
+
+  // Adjust level/hp and add our new NPC to the game world
+  henry.setLevel(5);
+  henry.setHP((int) (henry.getBaseHP() * 20 / 100));
   game.add(henry);
 
   
@@ -242,8 +244,9 @@ if(game.setZone(myZone))   // if zone exists
   james.add(1,[ "map","henry" ],new JamesQuestCompleteCondition(),1,null,new JamesQuestCompleteAction(game));
   james.add(1,[ "map","henry","quest","task","help","group","one" ],new JamesQuestCompletedCondition(),1,"Thanks again for bringing me the map!",null);
    
-  // Add our new NPC to the game world
-  james.setHP(75);
+  // Adjust level/hp and add our new NPC to the game world
+  james.setLevel(20);
+  james.setHP((int) (james.getBaseHP() * 75 / 100));
   game.add(james);
 
   }
