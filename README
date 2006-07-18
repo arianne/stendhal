@@ -54,8 +54,13 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 0.53
-
-- swapped rhand and lhand on client
+- display of item based ATK and DEF is now calculated by the server
+- support for two weapons as pair (swapped slots rhand and lhand on client)
+- low-level admins have their name printed in light yellow, high-level-admins in dark yellow
+- admins can create signs using /script adminsign.groovy
+- performance optimization on server-side.
+- experimental support for tcp-network-connections
+- added http.port paramter to marauroa.ini defaulting to 80 (not game-port anymore)
 
 
 0.52.1 Jul 10, 2006
@@ -87,6 +92,7 @@ Marauroa:
 - Fixed elves Nalwor teleporter.
 - Fixed bug at drops on creatures.
 
+
 0.51 June 21, 2006
 
 - Speed up server connection because of a bug.
@@ -99,6 +105,7 @@ Marauroa:
 - Fixed some maps glitches.
 - Website added to server binary
 - Added Wood on the forest quest.
+
 0.50 June 17, 2006
 - Fixed MacOS display and focus bug.
 - Added magic scrolls.
@@ -125,6 +132,7 @@ Marauroa:
 - Added Groovy script for a mobile party service (maria.groovy)
 - Added new underground maps near Ados
 - Added NPC "Bario" with new quest
+
 0.48 Apr 31, 2006
 - Added jail command
 - Added protection zone around Semos
@@ -148,6 +156,7 @@ Marauroa:
 - Added new items ( a few: around 20 more )
 - Added a new area on the top east, near Ados.
 
+
 0.47.1 Mar 24, 2006
 - Fixed a important problem at StendhalPlayerDatabase
 0.47 Mar 23, 2006
@@ -167,6 +176,7 @@ Marauroa:
 - Fixed NPC outfits
 - Fixed break dance bug
 - Better corpse representation
+
 0.46 Mar 10, 2006
 - Fixed sheep
 - Fixed blacksmith animations.
@@ -187,6 +197,7 @@ Marauroa:
 - Added bank at Semos. It will contain player items.
 - Added Orril castle.
 - Weakened XP earn limits.
+
 0.45 Mar 01, 2006
 - Fixed ambient sounds.
 - Fixed sheep quest.
@@ -204,6 +215,7 @@ Marauroa:
 - Added ranged combat.
 - Added new monsters ( around 30 new monsters ).
 - Added new zones ( in this release 3 new zones, but really around 20 more ).
+
 0.44 Jan 29, 2006
 - Fixed a null pointer bug at creature logic.
 - Fixed Drink and food queue so you can consume potions even if full.
@@ -226,6 +238,7 @@ Marauroa:
   - Orril dungeon
 - Added new monster:
   - Black bear
+
 0.43 Jan 20, 2006
 - Exit of tavern now belongs to tavern.
 - Fixed a bug when player recieve text but client.getPlayer() stills return null.
@@ -253,6 +266,7 @@ Marauroa:
   - Orc warrior
   - Orc chief
  
+ 
 0.42 Jan 14, 2006
 - Added Venom rat.
 - On death player lose Levels, XP, ATK and DEF.
@@ -273,6 +287,7 @@ Marauroa:
 - New event system.
 - Some creatures can heal themselves.
 - Fixed food stackable bug.
+
 0.41 Jan 03, 2005
 - Fixed a bug on legs slot name.
 - When selling an item, we search first inside bag.
@@ -290,6 +305,7 @@ Marauroa:
 - Added timestamp at chat window
 - Fixed animated water and flowers
 - Fixed legs slot not working
+
 0.40 Dec 21, 2005
 - Fixed a bug when dropping an item over itself
 - Modified private and hidden attributes
@@ -314,6 +330,7 @@ Marauroa:
 - Automagically choose the new zone when reaching map border
 - Added several new zones and dungeons ( multiplied map size by 4 )
 - Code to avoid trainer campers.
+
 0.39.1 Oct 26, 2005
 
 - Fixed chat bug
@@ -333,6 +350,7 @@ Marauroa:
 - Daisy animations is more calm
 - Fixed stendhalaccountcreation that wasn't working at all
 - Added critical hit/critical failure
+
 0.39 Oct 23, 2005
 - Fixed ghost sheep bug
 - Added minimap
@@ -353,12 +371,14 @@ Marauroa:
 - Replaced afterlife map
 - Added navigation maps for all maps
 - Create a batch converter for maps.
+
 0.32 Sep 24, 2005
 - Many bug fixes
 - Support for chests ( disabled )
 - Inventory movement working
 - Less CPU usage
 - Threaded A*
+
 0.31 Jul 08, 2005
 - Fixed a bug at statistics system.
 - Speed up combat
@@ -373,6 +393,7 @@ Marauroa:
 - Changed sprites to PNG
 - Added Bag slot (1 item only)
 - Modifiable server name at login text area
+
 0.30 Jul 03, 2005
 - Added items system
 - Fixed close bug
@@ -391,6 +412,7 @@ Marauroa:
 - Added a weapon seller
 - Removed ownerless sheeps
 - Sato doesn't kill sheeps anymore
+
 0.25 Jun 09, 2005
 - Fixed a bug on dead
 - Fixed a bug on cache timestamp
@@ -405,6 +427,7 @@ Marauroa:
 - Added items
 - Added item displacement
 - Added own and release sheep commands
+
 0.20 Jun 05, 2005
 - Added new monsters
 - Implemented shared XP
@@ -422,6 +445,7 @@ Marauroa:
 - Initial support for inventory
 - Fixed a bug because of cache directory
 - Added new RP values
+
 0.13 May 30, 2005
 - Added API for identifing several attackers.
 - Improved creature AI to attack anyone near it.
@@ -440,6 +464,7 @@ Marauroa:
 - Changed Rat, Cave rat, Wolf and Orc RP attributes.
 - Added Level attribute.
 - Fixed portal collision bug
+
 0.12 May 22, 2005
 - Fixed a severe bug that happens when a creature respawn over a player.
 - Disabled the attack yourself feature
@@ -449,6 +474,7 @@ Marauroa:
 - Better rendering order
 - Corpses are now under everything
 - Improved client speed
+
 0.11 May 20, 2005
 - Added Rat
 - Added Cave Rat
@@ -462,6 +488,7 @@ Marauroa:
 - Added RP combat system: ATK, DEF, XP and HP
 - Added Level and XP awards
 - Fixed rendering order
+
 0.10 May 12, 2005
 - Color game dialog log console.
 - Major server and client refactoring
@@ -471,6 +498,7 @@ Marauroa:
 - Improved sheep movement
 - Optimized A*
 - Major bug fixes
+
 0.03 Apr 28, 2005
 - Added A*
 - Fixed a bug with Sheep weight due to signed/unsigned
@@ -484,6 +512,7 @@ Marauroa:
 - A single text line is visible now
 - Combat icon is centered on the bottom right corner.
 - Optional collision detection boxes.
+
 0.02 Apr 17, 2005
 - Fixed a problem related to message sorting
 - Removed EntryPointNotFoundException
@@ -493,6 +522,7 @@ Marauroa:
 - Combat feedback
 - Better collision detection
 - Added chat dialog
+
 0.01 Apr 05, 2005
 - Added bigger maps
 - Changed the way maps are loaded
@@ -503,6 +533,7 @@ Marauroa:
 - Refactored server code to use Java objects
 - Added collision detection
 - Added GUI
+
 0.00 Mar 01, 2005
 - Initial release
 
