@@ -133,6 +133,8 @@ public class EquipmentAction extends ActionListener {
 
 		// looks good
 		source.moveTo(dest, world, player);
+		
+		player.updateItemAtkDef();
 
 		Log4J.finishMethod(logger, "equip");
 	}
@@ -273,6 +275,8 @@ public class EquipmentAction extends ActionListener {
 				}
 			}
 		}
+
+		player.updateItemAtkDef();
 
 		Log4J.finishMethod(logger, "drop");
 	}

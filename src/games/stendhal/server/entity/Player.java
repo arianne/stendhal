@@ -359,6 +359,7 @@ public class Player extends RPEntity {
 				}
 			}
 		}
+		player.updateItemAtkDef();
 
 		if (!player.hasSlot("!quests")) {
 			player.addSlot(new RPSlot("!quests"));
@@ -376,7 +377,7 @@ public class Player extends RPEntity {
 			slot.add(kills);
 		}
     
-    player.welcome();
+		player.welcome();
 		rp.removePlayerText(player);
 
 		logger.debug("Finally player is :" + player);
@@ -425,7 +426,7 @@ public class Player extends RPEntity {
 	public Player(RPObject object) throws AttributeNotFoundException {
 		super(object);
 		put("type", "player");
-
+		
 		itemsToConsume = new LinkedList<ConsumableItem>();
 		poisonToConsume = new LinkedList<ConsumableItem>();
 
