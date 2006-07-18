@@ -174,6 +174,7 @@ if(game.setZone(myZone))   // if zone exists
   henry.add(0,[ "hi","hello","greetings","hola" ],new HenryQuestCompleteCondition(),1,null,new HenryQuestCompleteAction(game));
   henry.add(1,[ "map","group","help" ],new HenryQuestCompletedCondition(),1,"I'm so sad that most of my friends are dead.",null);
   // And finally add our new NPC to the game world
+  henry.setHP(20);
   game.add(henry);
 
   
@@ -242,6 +243,7 @@ if(game.setZone(myZone))   // if zone exists
   james.add(1,[ "map","henry","quest","task","help","group","one" ],new JamesQuestCompletedCondition(),1,"Thanks again for bringing me the map!",null);
    
   // Add our new NPC to the game world
+  james.setHP(75);
   game.add(james);
 
   }
