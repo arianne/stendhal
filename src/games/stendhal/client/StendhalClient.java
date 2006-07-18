@@ -215,7 +215,7 @@ public class StendhalClient extends ariannexp {
     public void connect(String host, int port) throws java.net.SocketException {
         super.connect(host, port);
         // if connect was successfull try if server has http service, too
-        String testServer = "http://" + host + ":" + port + "/";
+        /*String testServer = "http://" + host + ":" + port + "/";
         try {
             URL url = new URL(testServer + "stendhal.version");
             HttpURLConnection.setFollowRedirects(false);
@@ -245,7 +245,7 @@ public class StendhalClient extends ariannexp {
             connection.disconnect();
         } catch (Exception e) {
             logger.warn("StendhalHttpServer not found!", e);
-        }
+        }*/
     }
     
     /**
