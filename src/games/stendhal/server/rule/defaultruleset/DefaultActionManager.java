@@ -113,6 +113,7 @@ public class DefaultActionManager implements ActionManager {
 					if (other.isStackable(stackEntity)) {
 						// other is the same type...merge them
 						other.add(stackEntity);
+						entity.updateItemAtkDef();
 						return true;
 					}
 				}
@@ -121,6 +122,7 @@ public class DefaultActionManager implements ActionManager {
 		// Simply add it
 		rpslot.assignValidID(item);
 		rpslot.add(item);
+		entity.updateItemAtkDef();
 		return true;
 	}
 

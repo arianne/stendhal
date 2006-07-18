@@ -512,6 +512,7 @@ public abstract class RPEntity extends Entity {
 
 		// Add some reward inside the corpse
 		dropItemsOn(corpse);
+		updateItemAtkDef();
 
 		IRPZone zone = world.getRPZone(getID());
 		zone.assignRPObjectID(corpse);
@@ -656,6 +657,7 @@ public abstract class RPEntity extends Entity {
 			RPSlot slot = getSlot(slotName);
 			if (slot.isFull()) {
 				slot.add(item);
+				updateItemAtkDef();
 				return true;
 			}
 		}
@@ -712,6 +714,7 @@ public abstract class RPEntity extends Entity {
 							objectsIterator = slot.iterator();
 						}
 						if (toDrop == 0) {
+							updateItemAtkDef();
 							world.modify(this);
 							return true;
 						}
@@ -787,6 +790,7 @@ public abstract class RPEntity extends Entity {
 					Item item = (Item) object;
 					if (item.isOfClass(clazz)) {
 						slot.remove(item.getID());
+						updateItemAtkDef();
 						return item;
 					}
 				}
