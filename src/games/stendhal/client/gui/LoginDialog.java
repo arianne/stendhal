@@ -122,6 +122,12 @@ public class LoginDialog extends JDialog {
 			//
 			serverPortField.setText(loginInfo.nextToken());
 		}
+		if (tokens >= 5) {
+			//
+			// protocolFiled
+			//
+			useTCPBox.setSelected(Boolean.parseBoolean(loginInfo.nextToken()));
+		}
 		// loginButton
 		loginButton.setText("Login to Server");
 		loginButton.setMnemonic(KeyEvent.VK_L);
@@ -217,8 +223,7 @@ public class LoginDialog extends JDialog {
 			// intensifly@gmx.com
 
 			if (saveLoginBoxStatus)
-				saveLoginInfo(server, username, password, serverPortField
-						.getText());
+				saveLoginInfo(server, username, password, serverPortField.getText(), useTCP);
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(owner,
 					"You typed in a invalid port, try again", "Invalid port",
@@ -300,14 +305,14 @@ public class LoginDialog extends JDialog {
 	 */
 
 	private void saveLoginInfo(String server, String usrName, String pwd,
-			String port) {
+			String port, boolean useTCP) {
 		Encoder encode = new Encoder();
 		try {
 			File loginFile = new File(stendhal.STENDHAL_FOLDER + "user.dat");
 			PrintWriter fos = new PrintWriter(loginFile);
 
 			fos.print(encode.encode(server + " " + usrName + " " + pwd + " "
-					+ port));
+					+ port + " " + Boolean.valueOf(useTCP).toString()));
 			fos.close();
 		} catch (IOException ioex) {
 			JOptionPane
