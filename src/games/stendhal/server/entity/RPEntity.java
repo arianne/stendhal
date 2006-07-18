@@ -890,11 +890,11 @@ public abstract class RPEntity extends Entity {
 	}
 	
 
-	public Item getProjectiles() {
+	private StackableItem getProjectiles() {
 		String[] slots = { "lhand", "rhand" };
 
 		for (String slot : slots) {
-			Item item = getEquippedItemClass(slot, "projectiles");
+			StackableItem item = (StackableItem) getEquippedItemClass(slot, "projectiles");
 			if (item != null) {
 				return item;
 			}
@@ -977,5 +977,88 @@ public abstract class RPEntity extends Entity {
 		String text = super.describe();
 		text += " It is level " + getLevel() + ".";
 		return (text);
+	}
+
+	public float getItemAtk() {
+		int weapon = 0;
+		List<Item> weapons = getWeapons();
+		for (Item weaponItem : weapons) {
+			weapon += weaponItem.getAttack();
+		}
+	
+		// range weapons
+		StackableItem projectileItem = null;
+		if (weapons.size() > 0) {
+			if (weapons.get(0).isOfClass("ranged")) {
+				projectileItem = getProjectiles();
+	
+				if (projectileItem != null) {
+					weapon += projectileItem.getAttack();
+				} else {
+					// If there are no projectiles...
+					return 0;
+				}
+			}
+		}
+
+		return 4.0f * weapon;
+	}
+
+	public StackableItem getProjectilesIfRangeCombat() {
+		List<Item> weapons = getWeapons();
+		if (weapons.size() > 0) {
+			if (weapons.get(0).isOfClass("ranged")) {
+				return getProjectiles();
+			}
+		}
+		return null;
+	}
+
+	public float getItemDef() {
+		int shield = 0;
+		int armor = 0;
+		int helmet = 0;
+		int legs = 0;
+		int boots = 0;
+		int cloak = 0;
+        int weapon = 0;
+
+		if (hasShield()) {
+			shield = getShield().getDefense();
+		}
+
+		if (hasArmor()) {
+			armor = getArmor().getDefense();
+		}
+
+		if (hasHelmet()) {
+			helmet = getHelmet().getDefense();
+		}
+
+		if (hasLegs()) {
+			legs = getLegs().getDefense();
+		}
+
+		if (hasBoots()) {
+			boots = getBoots().getDefense();
+		}
+
+		if (hasCloak()) {
+			cloak = getCloak().getDefense();
+		}
+        
+        List<Item> targetWeapons = getWeapons();
+		for (Item weaponItem : targetWeapons) {
+			weapon += weaponItem.getDefense();
+		}
+
+		return    4.0f * shield
+                + 2.0f * armor
+                + 1.5f * cloak
+				+ 1.0f * helmet
+                + 1.0f * legs
+				+ 1.0f * boots
+                + 1.0f * weapon;
+		
 	}
 }

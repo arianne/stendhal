@@ -90,97 +90,29 @@ public class StendhalRPAction {
 
 	
 	public static int damageDone(RPEntity source, RPEntity target) {
-		int weapon = 0;
-		int shield = 0;
-		int armor = 0;
-		int helmet = 0;
-		int legs = 0;
-		int boots = 0;
-		int cloak = 0;
-        int defWeapon = 0;
 
-        List<Item> weapons = source.getWeapons();
-		for (Item weaponItem : weapons) {
-			weapon += weaponItem.getAttack();
-		}
 
-		// range weapons
-		StackableItem projectileItem = null;
-		if (weapons.size() > 0) {
-			if (weapons.get(0).isOfClass("ranged")) {
-				projectileItem = (StackableItem) source.getProjectiles();
-
-				if (projectileItem != null) {
-					weapon += projectileItem.getAttack();
-				} else {
-					// If there are no projectiles...
-					return 0;
-				}
-			}
-		}
-
+        float weapon = source.getItemAtk();
+        StackableItem projectileItem = source.getProjectilesIfRangeCombat();
+	        
 		if (logger.isDebugEnabled()) {
 			logger.debug("attacker has " + source.getATK()
 					+ " and uses a weapon of " + weapon);
 		}
 
 		int sourceAtk = source.getATK();
-		float maxAttackerComponent = 
-				( 0.8f * sourceAtk
-				+ 4.0f * weapon
-				) * sourceAtk;
+		float maxAttackerComponent = 0.8f * sourceAtk * sourceAtk + weapon * sourceAtk;
 		float attackerComponent = (Rand.roll1D100() / 100.0f)
 				* maxAttackerComponent;
 
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: "
 				+ attackerComponent);
 
-		if (target.hasShield()) {
-			shield = target.getShield().getDefense();
-		}
-
-		if (target.hasArmor()) {
-			armor = target.getArmor().getDefense();
-		}
-
-		if (target.hasHelmet()) {
-			helmet = target.getHelmet().getDefense();
-		}
-
-		if (target.hasLegs()) {
-			legs = target.getLegs().getDefense();
-		}
-
-		if (target.hasBoots()) {
-			boots = target.getBoots().getDefense();
-		}
-
-		if (target.hasCloak()) {
-			cloak = target.getCloak().getDefense();
-		}
-        
-        List<Item> targetWeapons = target.getWeapons();
-		for (Item weaponItem : targetWeapons) {
-			defWeapon += weaponItem.getDefense();
-		}
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("defender has " + target.getDEF()
-					+ " and uses shield of " + shield + " and armor of "
-					+ armor);
-		}
-
+		
+		float armor = target.getItemDef();
         int targetDef = target.getDEF();
 		float maxDefenderComponent = 
-			    ( 0.6f * targetDef
-				+ 4.0f * shield
-                + 2.0f * armor
-                + 1.5f * cloak
-				+ 1.0f * helmet
-                + 1.0f * legs
-				+ 1.0f * boots
-                + 1.0f * defWeapon)
-                * targetDef;
+			    0.6f * targetDef * targetDef + armor * targetDef;
 		
 		float defenderComponent = (Rand.roll1D100() / 100.0f)
 				* maxDefenderComponent;
