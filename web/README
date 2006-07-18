@@ -42,12 +42,19 @@ tested with simple-3.1.1.jar.
 Enable the StendhalServerExtension in the marauroa.ini file:
 
   # load StendhalServerExtension(s)
+  server_extension=groovy,http
   groovy=games.stendhal.server.scripting.StendhalGroovyRunner
   http=games.stendhal.server.StendhalHttpServer
-  server_extension=groovy,http
+  http.port=80
 
 Add stendhal-data-xx.x.jar to the classpath of marauroa / stendhal
-so the scripts can access the sprite gfx.
+so the scripts can access the sprite gfx. On unix-like system you need
+root to bind to the standard-port 80. In order not to run Stendhal
+as root you can bind to a high port (like 8080) and use a program
+called rinetd to forward request.
+
+/etc/rinetd.conf:
+0.0.0.0 80 127.0.0.1 8080
 
 Restart Stendhal and enjoy :)
 
