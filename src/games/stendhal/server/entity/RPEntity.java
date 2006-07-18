@@ -97,6 +97,8 @@ public abstract class RPEntity extends Entity {
 			entity.add("atk_xp", RPClass.INT, RPClass.PRIVATE);
 			entity.add("def", RPClass.SHORT, RPClass.PRIVATE);
 			entity.add("def_xp", RPClass.INT, RPClass.PRIVATE);
+			entity.add("atk_item", RPClass.INT, (byte) (RPClass.PRIVATE|RPClass.VOLATILE));
+			entity.add("def_item", RPClass.INT, (byte) (RPClass.PRIVATE|RPClass.VOLATILE));
 
 			entity.add("risk", RPClass.BYTE, RPClass.VOLATILE);
 			entity.add("damage", RPClass.INT, RPClass.VOLATILE);
@@ -996,7 +998,7 @@ public abstract class RPEntity extends Entity {
 					weapon += projectileItem.getAttack();
 				} else {
 					// If there are no projectiles...
-					return 0;
+					weapon = 0;
 				}
 			}
 		}
@@ -1059,6 +1061,15 @@ public abstract class RPEntity extends Entity {
                 + 1.0f * legs
 				+ 1.0f * boots
                 + 1.0f * weapon;
-		
 	}
+
+	/**
+	 * recalculate item based atk and def
+	 */
+	public void updateItemAtkDef() {
+		put("atk_item", ((int) getItemAtk()));
+		put("def_item", ((int) getItemDef()));
+		world.modify(this);
+	}
+
 }
