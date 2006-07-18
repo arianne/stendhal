@@ -51,17 +51,24 @@ public class StaticGameLayers {
         layers = new LinkedList<Pair<String, LayerRenderer>>();
         collisions = new LinkedList<Pair<String, CollisionDetection>>();
         tilestore = TileStore.get();
-        tilestore.add("data/tilesets/zelda_outside_0_chipset.png", 30 * 16);
-        tilestore.add("data/tilesets/zelda_outside_1_chipset.png", 30 * 16);
-        tilestore.add("data/tilesets/zelda_dungeon_0_chipset.png", 30 * 16);
-        tilestore.add("data/tilesets/zelda_dungeon_1_chipset.png", 30 * 16);
-        tilestore.add("data/tilesets/zelda_interior_0_chipset.png", 30 * 16);
-        tilestore.add("data/tilesets/zelda_navigation_chipset.png", 1);
-        tilestore.add("data/tilesets/zelda_objects_chipset.png", 2 * 10 * 10);
-        tilestore.add("data/tilesets/zelda_collision_chipset.png", 2);
-        tilestore.add("data/tilesets/zelda_building_0_tileset.png", 30 * 16);
-        tilestore.add("data/tilesets/zelda_outside_2_chipset.png", 30 * 16);
-        tilestore.add("data/tilesets/zelda_interior_1_chipset.png", 30 * 16);
+        String folder = "data/tilesets";
+        URL url = this.getClass().getClassLoader().getResource(folder + "/zelda_outside_0_chipset.png");
+        if (url == null) {
+        	logger.warn("Using development environement to load tilesets");
+        	folder = "tiled";
+        }
+        
+        tilestore.add(folder + "/zelda_outside_0_chipset.png", 30 * 16);
+        tilestore.add(folder + "/zelda_outside_1_chipset.png", 30 * 16);
+        tilestore.add(folder + "/zelda_dungeon_0_chipset.png", 30 * 16);
+        tilestore.add(folder + "/zelda_dungeon_1_chipset.png", 30 * 16);
+        tilestore.add(folder + "/zelda_interior_0_chipset.png", 30 * 16);
+        tilestore.add(folder + "/zelda_navigation_chipset.png", 1);
+        tilestore.add(folder + "/zelda_objects_chipset.png", 2 * 10 * 10);
+        tilestore.add(folder + "/zelda_collision_chipset.png", 2);
+        tilestore.add(folder + "/zelda_building_0_tileset.png", 30 * 16);
+        tilestore.add(folder + "/zelda_outside_2_chipset.png", 30 * 16);
+        tilestore.add(folder + "/zelda_interior_1_chipset.png", 30 * 16);
         tilestore.preload();
         area = null;
         areaChanged = true;
