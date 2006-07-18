@@ -35,6 +35,7 @@ public class Corpse extends PassiveEntity implements TurnEvent {
 	private static final int MAX_STAGE = 5; // number of degradation steps
 	private static final int DEGRADATION_SETP_TIMEOUT = DEGRADATION_TIMEOUT / MAX_STAGE;
 	private int stage;
+	private boolean isDegrading = true;
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("corpse");
@@ -113,11 +114,8 @@ public class Corpse extends PassiveEntity implements TurnEvent {
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
-
-	private boolean decDegradation(int aktTurn) {
-		stage++;
-		put("stage", stage);
-
+	
+	private void modify() {
 		if (isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = getContainer();
@@ -134,10 +132,21 @@ public class Corpse extends PassiveEntity implements TurnEvent {
 		} else {
 			world.modify(this);
 		}
+	}
+
+	private boolean decDegradation(int aktTurn) {
+		stage++;
+		put("stage", stage);
+
+		modify();
+
 		return stage <= MAX_STAGE;
 	}
 
 	public void onTurnReached(int currentTurn) {
+		if (!isDegrading) {
+			return;
+		}
 		if (!decDegradation(currentTurn)) {
 			if (isContained()) {
 				// We modify the base container if the object change.
@@ -163,6 +172,34 @@ public class Corpse extends PassiveEntity implements TurnEvent {
 		}
 	}
 
+	/**
+	 * Set to false to stop degrading. (Some corpse are used in quests).
+	 *
+	 * @param isDegrading true, if degrading, false otherwise
+	 */
+	public void setDegrading(boolean isDegrading) {
+		this.isDegrading = isDegrading;
+	} 
+
+	/**
+	 * Sets the current degrading state. Set it to MAX_STAGE
+	 * will remove the corpse.
+	 *
+	 * @param newStage
+	 */
+	public void setStage(int newStage) {
+		if ((newStage >= 0) && (newStage <= MAX_STAGE)) {
+			stage = newStage;
+			put("stage", stage);
+
+			// Mark this object as modified if it has been added to the 
+			// world already. 
+			if (has("zoneid")) {
+				modify();
+			}
+		}
+	}   
+	  
 	public void add(PassiveEntity entity) {
 		RPSlot content = getSlot("content");
 		content.assignValidID(entity);
