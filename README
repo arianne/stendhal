@@ -53,17 +53,21 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
-0.53
-- display of item based ATK and DEF is now calculated by the server
-- support for two weapons as pair (swapped slots rhand and lhand on client)
-- low-level admins have their name printed in light yellow, high-level-admins in dark yellow
-- admins can create signs using /script adminsign.groovy
-- performance optimization on server-side.
-- experimental support for tcp-network-connections
-- added http.port paramter to marauroa.ini defaulting to 80 (not game-port anymore)
+0.52
+- players
+  - display of item based ATK and DEF is now calculated by the server
+  - support for two weapons as pair (swapped slots rhand and lhand on client)
+  - low-level admins have their name printed in light yellow, high-level-admins in dark yellow
+- admins / game masters
+  - /supporta <player> <text> admin command replys to <player> and all players with support-adminlevel
+  - admins can create signs using /script adminsign.groovy
+- internal
+  - performance optimization on server-side.
+  - experimental support for tcp-network-connections
+  - added http.port paramter to marauroa.ini defaulting to 80 (not game-port anymore)
 
 
-0.52.1 Jul 10, 2006
+0.52.2 Jul 10, 2006
 (inoffical server-only release)
 
 - deathmatch: monsters above each other on the same spot
@@ -87,7 +91,7 @@ Marauroa:
 - removed a buggy debug-message from marauroa with used 2-5 times more cpu-time than the creature.logic-loop
 
 
-0.52 Jul XX, 2006
+0.51.1 Jul XX, 2006
 
 - Fixed elves Nalwor teleporter.
 - Fixed bug at drops on creatures.
