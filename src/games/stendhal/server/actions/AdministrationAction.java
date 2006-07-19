@@ -55,6 +55,7 @@ public class AdministrationAction extends ActionListener {
 		AdministrationAction administration = new AdministrationAction();
 		StendhalRPRuleProcessor.register("inspect", administration);
 		StendhalRPRuleProcessor.register("destroy", administration);
+		StendhalRPRuleProcessor.register("supportanswer", administration);
 		StendhalRPRuleProcessor.register("tellall", administration);
 		StendhalRPRuleProcessor.register("teleport", administration);
 		StendhalRPRuleProcessor.register("teleportto", administration);
@@ -67,6 +68,7 @@ public class AdministrationAction extends ActionListener {
 		
 		REQUIRED_ADMIN_LEVELS.put("adminlevel",   0);
 		REQUIRED_ADMIN_LEVELS.put("support",    100);
+		REQUIRED_ADMIN_LEVELS.put("supportanswer", 100);
 		REQUIRED_ADMIN_LEVELS.put("tellall",    200);
 		REQUIRED_ADMIN_LEVELS.put("teleportto", 300);
 		REQUIRED_ADMIN_LEVELS.put("teleport",   400);
@@ -134,6 +136,8 @@ public class AdministrationAction extends ActionListener {
 
 		if (type.equals("tellall")) {
 			onTellEverybody(world, rules, player, action);
+		} else if (type.equals("supportanswer")) {
+			onSupportAnswer(world, rules, player, action);
 		} else if (type.equals("teleport")) {
 			onTeleport(world, rules, player, action);
 		} else if (type.equals("teleportto")) {
@@ -156,6 +160,39 @@ public class AdministrationAction extends ActionListener {
 			onJail(world, rules, player, action);
 		}
 		rules.removePlayerText(player);
+	}
+
+	private void onSupportAnswer(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action) {
+		Log4J.startMethod(logger, "supportanswer");
+
+		if (action.has("target") && action.has("text")) {
+			String message = player.getName() + " answer " + action.get("target") + "'s support question: " + action.get("text");
+
+			rules.addGameEvent(player.getName(), "supportanswer", action.get("target"), action.get("text"));
+
+			boolean found = false;
+			for (Player p : rules.getPlayers()) {
+				if (p.getName().equals(action.get("target"))) {
+					p.setPrivateText("Support (" + player.getName() + ") tells you: " + action.get("text"));
+					rules.removePlayerText(p);
+					world.modify(p);
+					found = true;
+				}
+				if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
+					p.setPrivateText(message);
+					rules.removePlayerText(p);
+					world.modify(p);
+				}
+			}
+
+			if (!found) {
+				player.setPrivateText(action.get("target")
+						+ " is not currently logged in.");
+				rules.removePlayerText(player);
+			}
+		}
+
+		Log4J.finishMethod(logger, "supportanswer");
 	}
 
 	private void onTellEverybody(RPWorld world, StendhalRPRuleProcessor rules,

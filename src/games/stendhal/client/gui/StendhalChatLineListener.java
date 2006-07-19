@@ -200,7 +200,18 @@ import org.apache.log4j.Logger;
             client.send(tell);
             }
           }
-        else if(text.startsWith("/where ")) // Tell command
+        else if(text.startsWith("/supporta ") ||text.startsWith("/supportanswer "))
+        {
+        String[] command = parseString(text, 3);
+        if(command != null)
+          {
+          RPAction tell = new RPAction();
+          tell.put("type","supportanswer");
+          tell.put("target", command[1]);
+          tell.put("text", command[2]);
+          client.send(tell);
+          }
+        }        else if(text.startsWith("/where "))
           {
           String[] command = parseString(text, 2);
           if(command != null)
