@@ -23,8 +23,8 @@ public class StandardInteraction {
 	/**
 	 * Is the player an admin?
 	 */
-	public class AdminCondition extends SpeakerNPC.ChatCondition {
-		int requiredAdminlevel;
+	public static class AdminCondition extends SpeakerNPC.ChatCondition {
+		private int requiredAdminlevel;
 
 		public AdminCondition() {
 			requiredAdminlevel = 5000;
@@ -35,14 +35,14 @@ public class StandardInteraction {
 		}
 
 		public boolean fire(Player player, SpeakerNPC engine) {
-			return (player.has("adminlevel") && (player.getInt("adminlevel") >= 5000));
+			return (player.has("adminlevel") && (player.getInt("adminlevel") >= requiredAdminlevel));
 		}
 	}
 
 	/**
 	 * Was this quest completed?
 	 */
-	public class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
+	public static class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
 		private String questname = null;
 
 		public QuestCompletedCondition(String questname) {
@@ -57,7 +57,7 @@ public class StandardInteraction {
 	/**
 	 * Is this quest not completed?
 	 */
-	public class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
+	public static class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 		private String questname = null;
 
 		public QuestNotCompletedCondition(String questname) {
@@ -72,7 +72,7 @@ public class StandardInteraction {
 	/**
 	 * Is this quest in this state?
 	 */
-	public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
+	public static class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 		private String questname = null;
 		private String state = null;
 
@@ -89,7 +89,7 @@ public class StandardInteraction {
 	/**
 	 * Is this quest not in this state?
 	 */
-	public class QuestNotInStateCondition extends SpeakerNPC.ChatCondition {
+	public static class QuestNotInStateCondition extends SpeakerNPC.ChatCondition {
 		private String questname = null;
 		private String state = null;
 
@@ -106,7 +106,7 @@ public class StandardInteraction {
 	/**
 	 * Sets the current state of this quest
 	 */
-	public class SetQuestAction extends SpeakerNPC.ChatAction {
+	public static class SetQuestAction extends SpeakerNPC.ChatAction {
 		private String questname = null;
 		private String state = null;
 
@@ -125,7 +125,7 @@ public class StandardInteraction {
 	 * implement ChatInfoReceiver to get the paramters (player, text, npc) of
 	 * the ChatAction.
 	 */
-	public class ReqisterScriptAction extends SpeakerNPC.ChatAction {
+	public static class ReqisterScriptAction extends SpeakerNPC.ChatAction {
 		StendhalGroovyScript game = null;
 		ScriptCondition scriptCondition = null;
 		ScriptAction scriptAction = null;
