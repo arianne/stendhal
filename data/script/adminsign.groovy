@@ -19,7 +19,7 @@ class AdminSignManager {
 	public void add(Player player, String[] args) {
 		if (args.length >= 3) {
 
-			// parse parameters
+			// read zone and x,y. Use player's data as default on "-".
 			String myZone = args[0];
 			if (myZone == "-") {
 				game.setZone(game.getZone(player));
@@ -120,8 +120,6 @@ class AdminSignManager {
 	}
 	
 	public void doit(Player player, String[] args) {
-
-		// read zone and x,y. Use player's data as default on "-".
 		String temp = args[0];
 		if (temp.equals("list")) {
 			list(player, args);

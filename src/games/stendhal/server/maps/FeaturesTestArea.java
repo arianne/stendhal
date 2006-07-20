@@ -26,15 +26,7 @@ public class FeaturesTestArea implements IContent {
 			if (!who.isEquipped("key_golden")) {
 				Item item = world.getRuleManager().getEntityManager().getItem(
 						"key_golden");
-				if (!who.equip(item)) {
-					StendhalRPZone zone = (StendhalRPZone) world.getRPZone(who
-							.getID());
-
-					zone.assignRPObjectID(item);
-					item.setx(who.getx());
-					item.sety(who.gety());
-					zone.add(item);
-				}
+				who.equip(item, true);
 			}
 
 			super.onDead(who);

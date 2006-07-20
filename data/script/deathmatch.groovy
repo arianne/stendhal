@@ -218,7 +218,7 @@ class DoneAction extends SpeakerNPC.ChatAction {
       helm.put("persistent",1)
       helm.setDescription("This is " + player.getName() +  "'s grand prize for Deathmatch winners. Wear it with pride.")
       if(isNew) {
-        player.equip(helm);
+        player.equip(helm, true);
       }
       player.setQuest("deathmatch", "done");
     }

@@ -197,7 +197,7 @@ public class WeaponsCollector implements IQuest {
 										engine.say("Thank you very much! Do you have any other weapon for me?");
 									} else {
 										Item iceSword = world.getRuleManager().getEntityManager().getItem("ice_sword");            
-										player.equip(iceSword);
+										player.equip(iceSword, true);
 										player.addXP(1000);
 										engine.say("Yippie! My collection is complete! Thank you very much! Here, take this ice_sword in exchange!");										
 										player.setQuest("weapons_collector", "done");

@@ -144,15 +144,7 @@ public class LookBookforCeryl implements IQuest {
 
 						Item item = world.getRuleManager().getEntityManager()
 								.getItem("book_black");
-						if (!player.equip(item)) {
-							StendhalRPZone zone = (StendhalRPZone) world
-									.getRPZone(player.getID());
-
-							zone.assignRPObjectID(item);
-							item.setx(player.getx());
-							item.sety(player.gety());
-							zone.add(item);
-						}
+						player.equip(item, true);
 					}
 				});
 

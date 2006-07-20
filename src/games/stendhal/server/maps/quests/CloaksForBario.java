@@ -157,7 +157,7 @@ public class CloaksForBario implements IQuest {
 							engine.setActualState(ConversationStates.QUESTION_1);
 						} else {
 							Item goldenShield = world.getRuleManager().getEntityManager().getItem("golden_shield");            
-							player.equip(goldenShield);
+							player.equip(goldenShield, true);
 							player.addXP(1500);
 							world.modify(player);
 							player.setQuest("cloaks_for_bario", "done");

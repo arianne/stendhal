@@ -13,6 +13,7 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Level;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.*;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.ActionManager;
@@ -631,15 +632,36 @@ public abstract class RPEntity extends Entity {
 
 	/**
 	 * Tries to equip an item in the appropriate slot.
+	 *
 	 * @param item the item
 	 * @return true if the item can be equipped, else false
 	 */
 	public boolean equip(Item item) {
+		return equip(item, false);
+	}
+
+	/**
+	 * Tries to equip an item in the appropriate slot.
+	 *
+	 * @param item the item
+	 * @param putOnGroundIfItCannotEquiped put it on ground if it cannot equiped.
+	 * @return true if the item can be equipped, else false
+	 */
+	public boolean equip(Item item, boolean putOnGroundIfItCannotEquiped) {
 		ActionManager manager = world.getRuleManager().getActionManager();
 
 		String slot = manager.canEquip(this, item);
 		if (slot != null) {
 			return manager.onEquip(this, slot, item);
+		}
+
+		if (putOnGroundIfItCannotEquiped) {
+			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(getID());
+			zone.assignRPObjectID(item);
+			item.setx(getx());
+			item.sety(gety());
+			zone.add(item);
+			return true;
 		}
 
 		// we cannot equip this item

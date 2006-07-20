@@ -151,11 +151,7 @@ public class Campfire implements IQuest {
 							EntityManager manager = world.getRuleManager().getEntityManager();
 							StackableItem reward = (StackableItem) manager.getItem(rewardClass);
 							reward.setQuantity(REQUIRED_WOOD);
-							player.equip(reward);
-							
-							// TODO: It might happen that the player can't equip the
-							// reward. Put it on the ground then.
-
+							player.equip(reward, true);
 							world.modify(player);
 						} else {
 							engine.say("Hey! Where did you put the wood?");

@@ -23,7 +23,7 @@ class MariaCouponAction extends SpeakerNPC.ChatAction {
       if (player.getQuest("MariaCoupon") == null) {
           Item item = game.getItem("coupon");
           item.setDescription("Coupon for one free beer at Semos' tavern.");
-          player.equip(item);
+          player.equip(item, true);
           engine.say("Give this coupon to Margaret in Semos' Tavern to get a free beer.");
           player.setQuest("MariaCoupon", "coupon");
       } else {
@@ -42,7 +42,7 @@ class MargaretCouponAction extends SpeakerNPC.ChatAction {
         if (coupon != null) {
             Item beer = game.getItem("beer");
             player.drop(coupon);
-            player.equip(beer);
+            player.equip(beer, true);
             engine.say("Here is your free beer.");
             player.setQuest("MariaCoupon", "done");
         } else {

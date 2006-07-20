@@ -115,15 +115,7 @@ public class SevenCherubs implements IQuest {
 										.getRuleManager()
 										.getEntityManager()
 										.getItem(items[Rand.rand(items.length)]);
-								if (!player.equip(item)) {
-									StendhalRPZone zone = (StendhalRPZone) world
-											.getRPZone(player.getID());
-	
-									zone.assignRPObjectID(item);
-									item.setx(player.getx());
-									item.sety(player.gety());
-									zone.add(item);
-								}
+								player.equip(item, true);
 								player.addXP(2000);
 							}
 						} else {

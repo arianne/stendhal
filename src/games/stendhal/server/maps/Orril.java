@@ -74,15 +74,7 @@ public class Orril implements IContent {
 			if (!who.isEquipped(itemType)) {
 				Item item = world.getRuleManager().getEntityManager().getItem(
 						itemType);
-				if (!who.equip(item)) {
-					StendhalRPZone zone = (StendhalRPZone) world.getRPZone(who
-							.getID());
-
-					zone.assignRPObjectID(item);
-					item.setx(who.getx());
-					item.sety(who.gety());
-					zone.add(item);
-				}
+				who.equip(item, true);
 			}
 			super.onDead(who);
 		}

@@ -111,7 +111,7 @@ public class NewsFromHackim implements IQuest {
 		
 						Item item = world.getRuleManager().getEntityManager().getItem(
 								"leather_legs");
-						player.equip(item);
+						player.equip(item, true);
 						player.addXP(10);
 		
 						world.modify(player);
