@@ -308,7 +308,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			Player player = (Player) world.get(id);
 			String type = action.get("type");
 			ActionListener actionListener = actionsMap.get(type);
-			actionListener.onAction(world, this, player, action);
+			if (actionListener == null) {
+				player.setPrivateText("Unknown Command " + type);
+				removePlayerText(player);
+			} else {
+				actionListener.onAction(world, this, player, action);
+			}
 		} catch (Exception e) {
 			logger.error("cannot execute action " + action, e);
 		} finally {
