@@ -212,7 +212,7 @@ public class StendhalClient extends ariannexp {
      * In that case it checks, if server version equals the client's.
      */
     @Override
-    public void connect(String host, int port) throws java.net.SocketException {
+    public void connect(String host, int port, boolean protocol) throws java.net.SocketException {
         super.connect(host, port);
         // if connect was successfull try if server has http service, too
         String testServer = "http://" + host + "/";
