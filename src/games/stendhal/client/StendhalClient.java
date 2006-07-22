@@ -14,25 +14,36 @@ package games.stendhal.client;
 
 import games.stendhal.client.gui.GameLogDialog;
 import games.stendhal.client.gui.InGameGUI;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.OutfitDialog;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Debug;
+import games.stendhal.common.Version;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 import marauroa.client.ariannexp;
 import marauroa.client.net.DefaultPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
@@ -42,6 +53,7 @@ import marauroa.common.game.Perception;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.MessageS2CPerception;
 import marauroa.common.net.TransferContent;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -227,7 +239,7 @@ public class StendhalClient extends ariannexp {
             if(connection.getResponseCode()==HttpURLConnection.HTTP_OK) {
                 this.HttpService = testServer;
                 String version = br.readLine();
-                if (!version.equals(stendhal.VERSION)) {
+                if (!Version.checkCompatibility(version, stendhal.VERSION)) {
                     // custom title, warning icon
                     JOptionPane.showMessageDialog(
                         null,
