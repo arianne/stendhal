@@ -1,7 +1,7 @@
 /**
  * 
  */
-package games.stendhal.test;
+package games.stendhal.test.gui;
 
 import games.stendhal.client.Sprite;
 import java.awt.Color;

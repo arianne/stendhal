@@ -1,7 +1,7 @@
 /**
  * 
  */
-package games.stendhal.test;
+package games.stendhal.test.gui;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
