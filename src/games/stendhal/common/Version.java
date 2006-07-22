@@ -31,8 +31,11 @@ public class Version {
 		return version.substring(0, pos);
 	}
 	
-	public static boolean areVersionsCompatible(String v1, String v2) {
-		return true;
+	public static boolean checkVersionCompatibility(String v1, String v2) {
+		String ev1 = extractVersion(v1, 2);
+		String ev2 = extractVersion(v2, 2);
+		boolean res = ev1.equals(ev2);
+		return res;
 	}
 	
 	private Version() {

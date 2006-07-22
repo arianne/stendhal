@@ -8,8 +8,23 @@ public class TestVersion {
 		assertEquals("extratVersion 0: ", "",       Version.extractVersion("0.52.1", 0));
 		assertEquals("extratVersion 1: ", "0",      Version.extractVersion("0.52.1", 1));
 		assertEquals("extratVersion 2: ", "0.52",   Version.extractVersion("0.52.1", 2));
-		assertEquals("extratVersion 3: ", "0.52.1",   Version.extractVersion("0.52.1", 3));
+		assertEquals("extratVersion 3: ", "0.52.1", Version.extractVersion("0.52.1", 3));
 		assertEquals("extratVersion 4: ", "0.52.1", Version.extractVersion("0.52.1", 4));
+	}
+	
+	public void testCheckVersionCompatibility() {
+		assertTrue("VersionCompatible 0.52 ~ 0.52", Version.checkVersionCompatibility("0.52", "0.52"));
+		assertTrue("VersionCompatible 0.52 ~ 0.52.0", Version.checkVersionCompatibility("0.52", "0.52.0"));
+		assertTrue("VersionCompatible 0.52 ~ 0.52.1", Version.checkVersionCompatibility("0.52", "0.52.1"));
+		assertTrue("VersionCompatible ! 0.53 ~ 0.52", !Version.checkVersionCompatibility("0.53", "0.52"));
+		assertTrue("VersionCompatible ! 0.52 ~ 0.53", !Version.checkVersionCompatibility("0.52", "0.53"));
+	}
+	
+	private void assertTrue(String text, boolean condition) {
+		if (!condition) {
+			String msg = "asertTrue failed (" + text + "): " + condition;
+			throw new AssertionError(msg);
+		}
 	}
 
 	private void assertEquals(String text, String string1, String string2) {
@@ -27,7 +42,8 @@ public class TestVersion {
 	}
 
 	public static void main(String[] args) {
-		TestVersion v = new TestVersion();
-		v.testExtractVersion();
+		TestVersion testCase = new TestVersion();
+		testCase.testExtractVersion();
+		testCase.testCheckVersionCompatibility();
 	}
 }
