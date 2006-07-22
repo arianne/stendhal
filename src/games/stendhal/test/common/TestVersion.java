@@ -2,7 +2,7 @@ package games.stendhal.test.common;
 
 import games.stendhal.common.Version;
 
-public class TestVersion {
+public class TestVersion extends TestCase {
 
 	public void testExtractVersion() {
 		assertEquals("extratVersion 0: ", "",       Version.extractVersion("0.52.1", 0));
@@ -20,27 +20,6 @@ public class TestVersion {
 		assertTrue("VersionCompatible ! 0.52 ~ 0.53", !Version.checkVersionCompatibility("0.52", "0.53"));
 	}
 	
-	private void assertTrue(String text, boolean condition) {
-		if (!condition) {
-			String msg = "asertTrue failed (" + text + "): " + condition;
-			throw new AssertionError(msg);
-		}
-	}
-
-	private void assertEquals(String text, String string1, String string2) {
-		boolean ok = false;
-		if (string1 == null) {
-			ok = (string2 == null);
-		} else {
-			ok = string1.equals(string2);
-		}
-		
-		if (!ok) {
-			String msg = "asertEquals failed (" + text + "): \"" + string1 + "\" \"" + string2 + "\"";
-			throw new AssertionError(msg);
-		}
-	}
-
 	public static void main(String[] args) {
 		TestVersion testCase = new TestVersion();
 		testCase.testExtractVersion();
