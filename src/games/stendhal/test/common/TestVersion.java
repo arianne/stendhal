@@ -19,10 +19,10 @@ public class TestVersion extends TestCase {
 		assertTrue("VersionCompatible ! 0.53 ~ 0.52", !Version.checkVersionCompatibility("0.53", "0.52"));
 		assertTrue("VersionCompatible ! 0.52 ~ 0.53", !Version.checkVersionCompatibility("0.52", "0.53"));
 	}
-	
+
 	public static void main(String[] args) {
 		TestVersion testCase = new TestVersion();
-		testCase.testExtractVersion();
-		testCase.testCheckVersionCompatibility();
+
+		testCase.runTestCase(TestVersion.class);
 	}
 }
