@@ -225,7 +225,7 @@ public class StendhalClient extends ariannexp {
      */
     @Override
     public void connect(String host, int port, boolean protocol) throws java.net.SocketException {
-        super.connect(host, port);
+        super.connect(host, port, protocol);
         // if connect was successfull try if server has http service, too
         String testServer = "http://" + host + "/";
         try {
