@@ -14,8 +14,9 @@ package games.stendhal.client;
 
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.common.Version;
 import marauroa.common.Log4J;
-import games.stendhal.common.Debug;
+
 import org.apache.log4j.Logger;
 
 public class stendhal extends Thread {
@@ -31,7 +32,7 @@ public class stendhal extends Thread {
 			.getProperty("user.home")
 			+ "/stendhal/";
 
-	public static final String VERSION = Debug.VERSION;
+	public static final String VERSION = Version.VERSION;
 
 	public static final String VERSION_LOCATION = "http://arianne.sourceforge.net/stendhal.version";
 

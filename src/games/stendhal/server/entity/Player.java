@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import games.stendhal.common.Debug;
 import games.stendhal.common.Rand;
+import games.stendhal.common.Version;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
@@ -34,12 +34,12 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.Configuration;
 
 import org.apache.log4j.Logger;
 
@@ -202,10 +202,10 @@ public class Player extends RPEntity {
 			}
 
 			boolean newReleaseHappened = !object.get("release").equals(
-					Debug.VERSION);
+					Version.VERSION);
 			if (newReleaseHappened) {
 				firstVisit = true;
-				player.put("release", Debug.VERSION);
+				player.put("release", Version.VERSION);
 			}
 
 			if (firstVisit) {
