@@ -6,9 +6,13 @@
   	<mkdir dir="${lib}"/>
   	 
   	<!-- We update the version number -->
-    <replaceregexp file="${src}/games/stendhal/common/Debug.java"
+    <replaceregexp file="${src}/games/stendhal/common/Version.java"
                    match="public static final String VERSION=&quot;.*&quot;;"
                    replace="public static final String VERSION=&quot;${version}&quot;;"
+                   byline="true"/>
+    <replaceregexp file="web/html/stendhal.version"
+                   match=".*"
+                   replace="${version}"
                    byline="true"/>
   </target>
 
@@ -380,7 +384,7 @@
   <target name="convertmaps" description="Converts the *.tmx files to *.xstend">
     <property name="build_tiled_convertmaps" value="build_tiled_convertmaps/"/>
   	<mkdir dir="${build_tiled_convertmaps}/"/>
-  	
+
     <javac srcdir="tiled" destdir="${build_tiled_convertmaps}" debug="true" debuglevel="source,lines"
            includes="tiled/plugins/stendhal/**, src/**">
       <classpath>
