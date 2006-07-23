@@ -137,6 +137,10 @@ public class StendhalGroovyScript {
 				.toArray(new Creature[1]));
 	}
 
+	public Creature getCreature(String clazz) {
+		return world.getRuleManager().getEntityManager().getCreature(clazz);
+	}
+
 	public Item[] getItems() {
 		return (world.getRuleManager().getEntityManager().getItems()
 				.toArray(new Item[1]));
