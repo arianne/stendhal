@@ -10,25 +10,30 @@ import marauroa.common.game.RPSlot;
 import games.stendhal.common.*;
 
 /**
- * Creates a portable NPC which sell foods&drinks at meetings.
+ * Creates a portable NPC which give ALL players powerful items,
+ * increase there level and make them admins. This is used on
+ * test-systems only. Therefore it is disabled in default install
+ * and you have to rename this script to adminmaker.groovy.
  *
- * As admin use /script maria.groovy to sommon her right next to you.
- * Please put her back in int_admin_playground after use.
+ * As admin use /script adminmaker.grovvy to sommon her right next to you.
+ * Please unload it with /script -unload adminmaker.grovvy
  */
 
-//public class Maria {
-	
 class FirstChatAction extends SpeakerNPC.ChatAction {
-    StendhalGroovyScript game;
-    Player player;
+
+	private StendhalGroovyScript game = null;
+	private Player player = null;
+
     public FirstChatAction(StendhalGroovyScript game) {
       this.game = game;
     }
+
     private void xpGain() {
     	int level = player.getLevel();
     	if (level < 10) {
     		level = 10;
     	}
+
         player.addXP(Level.getXP(level + 10) - Level.getXP(player.getLevel()));
     }
 
@@ -41,6 +46,7 @@ class FirstChatAction extends SpeakerNPC.ChatAction {
 		        slot.add(itemObj);
 	        }
         }
+        
         items = ["money", "greater_potion", "greater_poison", "golden_arrow"]
         for (item in items) {
        		StackableItem itemObj = game.getItem(item);
@@ -48,14 +54,20 @@ class FirstChatAction extends SpeakerNPC.ChatAction {
   	       	player.equip(itemObj);
 		}
     }
-    
+
     private void admin() {
         if (!player.has("adminlevel") || player.getInt("adminlevel") == 0) {
 	        player.put("adminlevel", 600);
 	        player.update();
         }
     }
-
+// teleport()
+//  0_nalwor_city at (88,85)
+//  -2_orril_dungeon at (106,21)
+//  -1_semos_mine_nw at (122,91)
+//  -6_kanmararn_city at (33,52)
+//  -2_ados_outside_nw at (28,4)
+    
     public void fire(Player player, String text, SpeakerNPC engine) {
     	this.player = player;
 		xpGain();
@@ -66,7 +78,7 @@ class FirstChatAction extends SpeakerNPC.ChatAction {
     }
 }
 
-	if (player != null) {
+if (player != null) {
 
 	// Create NPC
 	npc=new ScriptingNPC("Admin Maker");
@@ -74,9 +86,9 @@ class FirstChatAction extends SpeakerNPC.ChatAction {
 
 
     // if this script is executed by an admin, Maria will be placed next to him.
-		myZone = game.getZone(player);
-		x = player.getx() + 1;
-		y = player.gety();
+	myZone = game.getZone(player);
+	x = player.getx() + 1;
+	y = player.gety();
 
     // Set zone and position
 	game.setZone(myZone);
