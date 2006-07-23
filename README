@@ -65,9 +65,10 @@ No warranties. But let us know if it doesn't work.
   - performance optimization on server-side.
   - experimental support for tcp-network-connections
   - added http.port paramter to marauroa.ini defaulting to 80 (not game-port anymore)
+  - change build-script so everthing is created below a "build"-subdirectory.
 
 
-0.52.2 Jul 10, 2006
+0.51.2 Jul 10, 2006
 (inoffical server-only release)
 
 - deathmatch: monsters above each other on the same spot

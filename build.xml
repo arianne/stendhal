@@ -7,7 +7,7 @@
   	 
   	<!-- We update the version number -->
     <replaceregexp file="${src}/games/stendhal/common/Version.java"
-                   match="public static final String VERSION=&quot;.*&quot;;"
+                   match="public static final String VERSION ?= ?&quot;.*&quot;;"
                    replace="public static final String VERSION=&quot;${version}&quot;;"
                    byline="true"/>
     <replaceregexp file="web/html/stendhal.version"
@@ -18,13 +18,13 @@
 
   <target name="clean">
   	<delete dir="${lib}"/>
-  	<delete dir="build_client/"/>
-  	<delete dir="build_client_data/"/>
-  	<delete dir="build_server/"/>
-  	<delete dir="build_server_maps/"/>
-  	<delete dir="build_server_quests/"/>
-  	<delete dir="build_server_xmlconf/"/>
-  	<delete dir="build_tiled_convertmaps"/>
+  	<delete dir="${buildroot}/build_client/"/>
+  	<delete dir="${buildroot}/build_client_data/"/>
+  	<delete dir="${buildroot}/build_server/"/>
+  	<delete dir="${buildroot}/build_server_maps/"/>
+  	<delete dir="${buildroot}/build_server_quests/"/>
+  	<delete dir="${buildroot}/build_server_xmlconf/"/>
+  	<delete dir="${buildroot}/build_tiled_convertmaps"/>
   </target>  	
   
   <target name="copy-resource" description="Copy all the resource files to build folder">
@@ -74,7 +74,7 @@
 	<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
 	<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
  
-    <property name="build_server" value="build_server/"/>
+    <property name="build_server" value="${buildroot}/build_server/"/>
   	<mkdir dir="${build_server}/"/>
   	
     <copy todir="${build_server}/data/conf/" file="data/conf/stendhalcreateaccount.properties"/>
@@ -97,7 +97,7 @@
       </manifest>
     </jar>
 
-    <property name="build_server_maps" value="build_server_maps/"/>
+    <property name="build_server_maps" value="${buildroot}/build_server_maps/"/>
   	<mkdir dir="${build_server_maps}/"/>
   	
     <javac srcdir="${src}/games/stendhal/server/maps/" destdir="${build_server_maps}" debug="true" debuglevel="source,lines"
@@ -116,7 +116,7 @@
 
     <jar jarfile="${lib}/${maps_jarname}" basedir="${build_server_maps}"/>    
 
-    <property name="build_server_xmlconf" value="build_server_xmlconf/"/>
+    <property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf/"/>
   	<mkdir dir="${build_server_xmlconf}/"/>
   	
     <copy todir="${build_server_xmlconf}/data/conf" file="data/conf/creatures.xml"/>
@@ -133,7 +133,7 @@
     <property name="client_data" value="stendhal-data-${version}.jar"/>
     <property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
 
-    <property name="build_client" value="build_client/"/>
+    <property name="build_client" value="${buildroot}/build_client/"/>
   	<mkdir dir="${build_client}/"/>
 
     <javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines"
@@ -153,7 +153,7 @@
       </manifest>
     </jar>
 
-    <property name="build_client_data" value="build_client_data/"/>
+    <property name="build_client_data" value="${buildroot}/build_client_data/"/>
   	<mkdir dir="${build_client_data}/"/>
 
     <copy todir="${build_client_data}/data/sprites">
@@ -184,7 +184,7 @@
     <copy todir="${build_client_data}/data/conf/" file="data/conf/log4j.properties"/>
     <jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>    
 
-    <property name="build_client_sound_data" value="build_client_sound_data/"/>
+    <property name="build_client_sound_data" value="${buildroot}/build_client_sound_data/"/>
   	<mkdir dir="${build_client_sound_data}/"/>
 
     <copy todir="${build_client_sound_data}/data/sounds"> 
@@ -198,10 +198,10 @@
   </target>
   
   <target name="client_data_build" depends="init" description="Build data JAR files for Stendhal client">
-    <property name="client_data" value="stendhal-data-${version}.jar"/>
-    <property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
+    <property name="client_data" value="${buildroot}/stendhal-data-${version}.jar"/>
+    <property name="client_sound_data" value="${buildroot}/stendhal-sound-data-${version}.jar"/>
 
-    <property name="build_client_data" value="build_client_data/"/>
+    <property name="build_client_data" value="${buildroot}/build_client_data/"/>
   	<mkdir dir="${build_client_data}/"/>
 
     <copy todir="${build_client_data}/data/sprites">
@@ -232,7 +232,7 @@
     <copy todir="${build_client_data}/data/conf/" file="data/conf/log4j.properties"/>
     <jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>    
 
-    <property name="build_client_sound_data" value="build_client_sound_data/"/>
+    <property name="build_client_sound_data" value="${buildroot}/build_client_sound_data/"/>
   	<mkdir dir="${build_client_sound_data}/"/>
 
     <copy todir="${build_client_sound_data}/data/sounds"> 
@@ -281,108 +281,108 @@
   <target name="dist_binary" depends="dist_server_binary,dist_client_binary,dist_client_no_sound_binary"/>
   
   <target name="dist_server_binary" depends="server_build">
-    <mkdir dir="stendhal-server-${version}"/>
+    <mkdir dir="${buildroot}/stendhal-server-${version}"/>
 
-    <copy todir="stendhal-server-${version}/data/conf" file="data/conf/admins.list"/>
+    <copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.list"/>
 
-    <copy todir="stendhal-server-${version}/data/script"> 
+    <copy todir="${buildroot}/stendhal-server-${version}/data/script"> 
       <fileset dir="data/script"> 
         <include name="**"/> 
       </fileset> 
     </copy> 
     	
-    <copy todir="stendhal-server-${version}/web"> 
+    <copy todir="${buildroot}/stendhal-server-${version}/web"> 
       <fileset dir="web"/> 
     </copy> 
     	
   	
-    <copy todir="stendhal-server-${version}" file="${groovy_jar}"/>
-    <copy todir="stendhal-server-${version}" file="${simple_jar}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${groovy_jar}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${simple_jar}"/>
 
-    <copy todir="stendhal-server-${version}" file="${lib}/${server_jarname}"/>
-    <copy todir="stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
-    <copy todir="stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
-    <copy todir="stendhal-server-${version}" file="AUTHORS"/>
-    <copy todir="stendhal-server-${version}" file="BUGS"/>
-    <copy todir="stendhal-server-${version}" file="COPYING"/>
-    <copy todir="stendhal-server-${version}" file="LICENSE"/>
-    <copy todir="stendhal-server-${version}" file="README"/>
-    <zip destfile="stendhal-server-${version}.zip" 
-         basedir="stendhal-server-${version}"/>
-    <delete dir="stendhal-server-${version}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="AUTHORS"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="BUGS"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="COPYING"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="LICENSE"/>
+    <copy todir="${buildroot}/stendhal-server-${version}" file="README"/>
+    <zip destfile="${buildroot}/stendhal-server-${version}.zip" 
+         basedir="${buildroot}/stendhal-server-${version}"/>
+    <delete dir="${buildroot}/stendhal-server-${version}"/>
   </target>
   
   <target name="dist_client_binary" depends="client_build">
-    <mkdir dir="stendhal-${version}"/>
-    <copy todir="stendhal-${version}" file="${log4j_jar}"/>
-    <copy todir="stendhal-${version}" file="${marauroa_jar}"/>
-    <copy todir="stendhal-${version}" file="${lib}/${client_jarname}"/>
-    <copy todir="stendhal-${version}" file="${lib}/${client_sound_data}"/>
-    <copy todir="stendhal-${version}" file="${lib}/${client_data}"/>
-    <copy todir="stendhal-${version}" file="AUTHORS"/>
-    <copy todir="stendhal-${version}" file="BUGS"/>
-    <copy todir="stendhal-${version}" file="COPYING"/>
-    <copy todir="stendhal-${version}" file="LICENSE"/>
-    <copy todir="stendhal-${version}" file="README"/>
-    <zip destfile="stendhal-FULL-${version}.zip" 
-         basedir="stendhal-${version}"/>
-    <delete dir="stendhal-${version}"/>
+    <mkdir dir="${buildroot}/stendhal-${version}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="${log4j_jar}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="${marauroa_jar}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_sound_data}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_data}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="AUTHORS"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="BUGS"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="COPYING"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="README"/>
+    <zip destfile="${buildroot}/stendhal-FULL-${version}.zip" 
+         basedir="${buildroot}/stendhal-${version}"/>
+    <delete dir="${buildroot}/stendhal-${version}"/>
   </target>
 
   <target name="dist_client_no_sound_binary">
-    <mkdir dir="stendhal-${version}"/>
+    <mkdir dir="${buildroot}/stendhal-${version}"/>
   	
-  	<copy todir="stendhal-${version}" file="${log4j_jar}"/>
-    <copy todir="stendhal-${version}" file="${marauroa_jar}"/>
-    <copy todir="stendhal-${version}" file="${lib}/${client_jarname}"/>
-    <copy todir="stendhal-${version}" file="${lib}/${client_data}"/>
-    <copy todir="stendhal-${version}" file="AUTHORS"/>
-    <copy todir="stendhal-${version}" file="BUGS"/>
-    <copy todir="stendhal-${version}" file="COPYING"/>
-    <copy todir="stendhal-${version}" file="LICENSE"/>
-    <copy todir="stendhal-${version}" file="README"/>
-    <zip destfile="stendhal-${version}.zip" 
-         basedir="stendhal-${version}"/>
-    <delete dir="stendhal-${version}"/>
+  	<copy todir="${buildroot}/stendhal-${version}" file="${log4j_jar}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="${marauroa_jar}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_data}"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="AUTHORS"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="BUGS"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="COPYING"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
+    <copy todir="${buildroot}/stendhal-${version}" file="README"/>
+    <zip destfile="${buildroot}/stendhal-${version}.zip" 
+         basedir="${buildroot}/stendhal-${version}"/>
+    <delete dir="${buildroot}/stendhal-${version}"/>
   </target>
 
   <target name="dist_source">
-    <mkdir dir="stendhal-${version}-src"/>
-    <copy todir="stendhal-${version}-src/src">
+    <mkdir dir="${buildroot}/stendhal-${version}-src"/>
+    <copy todir="${buildroot}/stendhal-${version}-src/src">
       <fileset dir="src"/>
     </copy>
-    <copy todir="stendhal-${version}-src/data">
+    <copy todir="${buildroot}/stendhal-${version}-src/data">
       <fileset dir="data"/>
     </copy>
 
-    <copy todir="stendhal-server-${version}/web"> 
+    <copy todir="${buildroot}/stendhal-server-${version}/web"> 
       <fileset dir="web"/> 
     </copy> 
 
-    <copy todir="stendhal-${version}-src/tiled">
+    <copy todir="${buildroot}/stendhal-${version}-src/tiled">
       <fileset dir="${tiled}"/>
     </copy>
     
-    <copy todir="stendhal-${version}-src" file="build.xml"/>
-    <copy todir="stendhal-${version}-src" file="build.ant.properties"/>
-    <copy todir="stendhal-${version}-src" file="AUTHORS"/>
-    <copy todir="stendhal-${version}-src" file="BUGS"/>
-    <copy todir="stendhal-${version}-src" file="COPYING"/>
-    <copy todir="stendhal-${version}-src" file="LICENSE"/>
-    <copy todir="stendhal-${version}-src" file="README"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="build.xml"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="build.ant.properties"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="AUTHORS"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="BUGS"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="COPYING"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE"/>
+    <copy todir="${buildroot}/stendhal-${version}-src" file="README"/>
   
-    <tar destfile="stendhal-${version}-src.tar.gz" compression="gzip">
-       <tarfileset dir="stendhal-${version}-src" prefix="stendhal-${version}">
+    <tar destfile="${buildroot}/stendhal-${version}-src.tar.gz" compression="gzip">
+       <tarfileset dir="${buildroot}/stendhal-${version}-src" prefix="stendhal-${version}">
          <exclude name="**/CVS/**"/>
        </tarfileset>
      </tar>
 
-    <delete dir="stendhal-${version}-src"/>
+    <delete dir="${buildroot}/stendhal-${version}-src"/>
   </target>
 
 
   <target name="convertmaps" description="Converts the *.tmx files to *.xstend">
-    <property name="build_tiled_convertmaps" value="build_tiled_convertmaps/"/>
+    <property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps/"/>
   	<mkdir dir="${build_tiled_convertmaps}/"/>
 
     <javac srcdir="tiled" destdir="${build_tiled_convertmaps}" debug="true" debuglevel="source,lines"
