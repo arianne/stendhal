@@ -1,10 +1,5 @@
 /* $Id$ */
 
-/**
- *  ServerExtension to load groovy scripts
- *  @author intensifly
-*/
-
 package games.stendhal.server.scripting;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -25,13 +20,22 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
+/**
+ * ServerExtension to load groovy scripts
+ *
+ * @author intensifly
+ */
 public class StendhalGroovyRunner extends StendhalServerExtension {
 	private Map<String, StendhalGroovyScript> scripts;
 
 	private final String scriptDir = "data/script/";
 	private static final Logger logger = Log4J.getLogger(StendhalGroovyRunner.class);
 
-
+	/**
+	 * Constructor for StendhalGroovyRunner 
+	 * @param rp     StendhalRPRuleProcessor
+	 * @param world  StendhalRPWorld
+	 */
 	public StendhalGroovyRunner(StendhalRPRuleProcessor rp,
             StendhalRPWorld world) {
         super(rp, world);
@@ -142,19 +146,23 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 
             // execute script
             script = script.trim();
-            boolean res = perform(script, mode, player, args);
-            if (res) {
-	                text = "Script " + script + " was successfully executed (" + mode + ").";
+            if (script.endsWith(".groovy")) {
+	            boolean res = perform(script, mode, player, args);
+	            if (res) {
+		                text = "Script " + script + " was successfully executed (" + mode + ").";
+	            } else {
+	                String msg = getMessage(script);
+	                if (msg != null) {
+	                    text = msg;
+	                } else {
+	                    text = "Script "
+	                        + script
+	                        + " not found or unexpected error while performing "
+	                        + mode;
+	                }
+	            }
             } else {
-                String msg = getMessage(script);
-                if (msg != null) {
-                    text = msg;
-                } else {
-                    text = "Script "
-                        + script
-                        + " not found or unexpected error while performing "
-                        + mode;
-                }
+            	text = "Invalid filename: It should end with .groovy";
             }
         }
         player.setPrivateText(text);
