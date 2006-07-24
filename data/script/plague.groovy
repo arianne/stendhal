@@ -18,9 +18,11 @@ if (player != null) {
 		game.add(creature, x, y);
 	} else {
 		int k = Integer.parseInt(args[0]);
-		for (dx in -k..k) {
-			for (dy in -k..k) {
-				game.add(creature, x + dx, y + dy);
+		if (k < 5) {
+			for (dx in -k..k) {
+				for (dy in -k..k) {
+					game.add(creature, x + dx, y + dy);
+				}
 			}
 		}
 	}
