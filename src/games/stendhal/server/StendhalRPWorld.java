@@ -190,6 +190,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("-1_semos_mine_n2");
 		addArea("-1_semos_mine_nw");
 		addArea("-1_semos_dungeon");
+		addArea("-1_semos_jail");
 		addArea("-1_orril_dungeon");
 		addArea("-1_orril_castle_w");
 		addArea("-1_orril_castle");
@@ -197,6 +198,7 @@ public class StendhalRPWorld extends RPWorld {
 		// Level -2
 		addArea("-2_ados_outside_nw");
 		addArea("-2_semos_dungeon");
+		addArea("-2_semos_jail");		
 		addArea("-2_kotoch_entrance");
 		addArea("-2_orril_lich_palace");
 		addArea("-2_orril_dungeon");
@@ -232,6 +234,7 @@ public class StendhalRPWorld extends RPWorld {
 		populateZone("Orril");
 		populateZone("Ados");
 		populateZone("FeaturesTestArea");
+
 
 		/**
 		 * After all the zones has been loaded, check how many portals are
