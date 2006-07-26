@@ -101,6 +101,15 @@ public class EquipmentAction extends ActionListener {
 	@Override
 	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
+
+		// HACK: No item transfer in jail (we don't want a jailed player to
+		//       create a new free character and give it all items.
+		if (world.getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
+			player.setPrivateText("For security reasons items may not be moved around in jail.");
+			rules.removePlayerText(player);
+			return;
+		}
+
 		if (action.get(TYPE).equals("equip")) {
 			onEquip(world, rules, player, action);
 		} else {
