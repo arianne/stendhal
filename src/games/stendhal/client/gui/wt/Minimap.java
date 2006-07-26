@@ -129,7 +129,7 @@ public class Minimap extends WtPanel {
 		int h = image.getHeight();
 
 		int xpos = (int) (playerX * scale) - width / 2;
-		int ypos = (int) (playerY * scale) - width / 2;
+		int ypos = (int) ((playerY+1) * scale) - width / 2;
 
 		if (w > width) {
 			// need to pan width
@@ -157,7 +157,7 @@ public class Minimap extends WtPanel {
 		Color playerColor = Color.BLUE;
 		// draw the player position
 		drawCross(clientg, (int) (playerX * scale) - panx + 1,
-				(int) (playerY * scale) - pany + 2, playerColor);
+				(int) ((playerY+1) * scale) - pany + 2, playerColor);
 
 		return g;
 	}
