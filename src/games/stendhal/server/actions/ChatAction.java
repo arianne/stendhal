@@ -48,8 +48,6 @@ public class ChatAction extends ActionListener {
 		if (action.has("text")) {
 			player.put("text", action.get("text"));
 			world.modify(player);
-
-			rules.removePlayerText(player);
 		}
 		Log4J.finishMethod(logger, "chat");
 	}
@@ -63,21 +61,17 @@ public class ChatAction extends ActionListener {
 					+ action.get("text");
 			for (Player p : rules.getPlayers()) {
 				if (p.getName().equals(action.get("target"))) {
-					p.setPrivateText(message);
-					player.setPrivateText("You tell " + p.getName() + ": "
+					p.sendPrivateText(message);
+					player.sendPrivateText("You tell " + p.getName() + ": "
 							+ action.get("text"));
 					world.modify(p);
 					world.modify(player);
-
-					rules.removePlayerText(player);
-					rules.removePlayerText(p);
 					return;
 				}
 			}
 
-			player.setPrivateText(action.get("target")
+			player.sendPrivateText(action.get("target")
 					+ " is not currently logged.");
-			rules.removePlayerText(player);
 		}
 
 		Log4J.finishMethod(logger, "tell");
@@ -96,19 +90,17 @@ public class ChatAction extends ActionListener {
 			boolean found = false;
 			for (Player p : rules.getPlayers()) {
 				if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
-					p.setPrivateText(message);
+					p.sendPrivateText(message);
 					world.modify(p);
-					rules.removePlayerText(p);
 					found = true;
 				}
 			}
 
 			if (found) {
-				player.setPrivateText("You ask for support: " + action.get("text"));
+				player.sendPrivateText("You ask for support: " + action.get("text"));
 			} else {
-				player.setPrivateText("Sorry, your support request cannot be processed because no supporter is online.");
+				player.sendPrivateText("Sorry, your support request cannot be processed because no supporter is online.");
 			}
-			rules.removePlayerText(player);
 			world.modify(player);
 		}
 

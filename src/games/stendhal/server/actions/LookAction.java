@@ -87,9 +87,8 @@ public class LookAction extends ActionListener {
 				name = entity.get("name");
 			}
 			rules.addGameEvent(player.getName(), "look", name);
-			player.setPrivateText(entity.describe());
+			player.sendPrivateText(entity.describe());
 			world.modify(player);
-			rules.removePlayerText(player);
 			return;
 		}
 		// When use is cast over something on the floor
@@ -108,9 +107,8 @@ public class LookAction extends ActionListener {
 					name = entity.get("name");
 				}
 				rules.addGameEvent(player.getName(), "look", name);
-				player.setPrivateText(entity.describe());
+				player.sendPrivateText(entity.describe());
 				world.modify(player);
-				rules.removePlayerText(player);
 			}
 		}
 

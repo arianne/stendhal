@@ -184,8 +184,7 @@ public class StendhalGroovyScript {
 	}
 
 	public void privateText(Player player, String text) {
-        player.setPrivateText(text);
-        rules.removePlayerText(player);
+        player.sendPrivateText(text);
 	}
 	
 	// ------------------------------------------------------------------------

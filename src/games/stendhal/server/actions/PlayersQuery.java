@@ -50,11 +50,8 @@ public class PlayersQuery extends ActionListener {
 		for (Player p : rules.getPlayers()) {
 			online += p.getName() + "(" + p.getLevel() + ") ";
 		}
-		player.setPrivateText(online);
+		player.sendPrivateText(online);
 		world.modify(player);
-
-		rules.removePlayerText(player);
-
 		Log4J.finishMethod(logger, "who");
 	}
 
@@ -69,29 +66,24 @@ public class PlayersQuery extends ActionListener {
 
 			for (Player p : rules.getPlayers()) {
 				if (p.getName().equals(who)) {
-					player.setPrivateText(p.getName() + " is in "
+					player.sendPrivateText(p.getName() + " is in "
 							+ p.get("zoneid") + " at (" + p.getx() + ","
 							+ p.gety() + ")");
 					world.modify(player);
-
-					rules.removePlayerText(player);
 					return;
 				}
 			}
 
 			if (who.equals("sheep") && player.hasSheep()) {
 				Sheep sheep = (Sheep) world.get(player.getSheep());
-				player.setPrivateText("sheep is in " + sheep.get("zoneid")
+				player.sendPrivateText("sheep is in " + sheep.get("zoneid")
 						+ " at (" + sheep.getx() + "," + sheep.gety() + ")");
 				world.modify(player);
-
-				rules.removePlayerText(player);
 				return;
 			}
 
-			player.setPrivateText(action.get("target")
+			player.sendPrivateText(action.get("target")
 					+ " is not currently logged.");
-			rules.removePlayerText(player);
 		}
 
 		Log4J.finishMethod(logger, "where");

@@ -56,7 +56,7 @@ import org.apache.log4j.Logger;
  *    y            - the y-coordinate on the ground  
  */
 public class EquipmentAction extends ActionListener {
-	private static final Logger logger = Log4J.getLogger(EquipmentAction.class);
+	static final Logger logger = Log4J.getLogger(EquipmentAction.class);
 
 	private static final String BASE_ITEM = "baseitem";
 
@@ -105,8 +105,7 @@ public class EquipmentAction extends ActionListener {
 		// HACK: No item transfer in jail (we don't want a jailed player to
 		//       create a new free character and give it all items.
 		if (world.getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
-			player.setPrivateText("For security reasons items may not be moved around in jail.");
-			rules.removePlayerText(player);
+			player.sendPrivateText("For security reasons items may not be moved around in jail.");
 			return;
 		}
 

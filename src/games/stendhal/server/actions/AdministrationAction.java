@@ -95,7 +95,7 @@ public class AdministrationAction extends ActionListener {
 		if (required == null) {
 			logger.error("Unknown command " + command);
 			if (verbose) {
-				player.setPrivateText("Sorry, command " + command + " is unknown.");
+				player.sendPrivateText("Sorry, command " + command + " is unknown.");
 			}
 			return false;
 		}
@@ -111,9 +111,9 @@ public class AdministrationAction extends ActionListener {
 
 				// is this player an admin at all?
 				if (adminlevel == 0) {
-					player.setPrivateText("Sorry, you need to be an admin to run " + command + ".");
+					player.sendPrivateText("Sorry, you need to be an admin to run " + command + ".");
 				} else {
-					player.setPrivateText("Sorry, your admin level is "
+					player.sendPrivateText("Sorry, your admin level is "
 						+ adminlevel + " but level " + required 
 						+ " is required to run " + command + ".");
 				}
@@ -159,7 +159,6 @@ public class AdministrationAction extends ActionListener {
 		} else if (type.equals("jail")) {
 			onJail(world, rules, player, action);
 		}
-		rules.removePlayerText(player);
 	}
 
 	private void onSupportAnswer(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action) {
@@ -173,22 +172,19 @@ public class AdministrationAction extends ActionListener {
 			boolean found = false;
 			for (Player p : rules.getPlayers()) {
 				if (p.getName().equals(action.get("target"))) {
-					p.setPrivateText("Support (" + player.getName() + ") tells you: " + action.get("text"));
-					rules.removePlayerText(p);
+					p.sendPrivateText("Support (" + player.getName() + ") tells you: " + action.get("text"));
 					world.modify(p);
 					found = true;
 				}
 				if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
-					p.setPrivateText(message);
-					rules.removePlayerText(p);
+					p.sendPrivateText(message);
 					world.modify(p);
 				}
 			}
 
 			if (!found) {
-				player.setPrivateText(action.get("target")
+				player.sendPrivateText(action.get("target")
 						+ " is not currently logged in.");
-				rules.removePlayerText(player);
 			}
 		}
 
@@ -204,8 +200,7 @@ public class AdministrationAction extends ActionListener {
 			rules.addGameEvent(player.getName(), "tellall", action.get("text"));
 
 			for (Player p : rules.getPlayers()) {
-				p.setPrivateText(message);
-				rules.removePlayerText(p);
+				p.sendPrivateText(message);
 				world.modify(p);
 			}
 
@@ -232,10 +227,7 @@ public class AdministrationAction extends ActionListener {
 
 			if (teleported == null) {
 				String text = "Player " + name + " not found";
-
-				player.setPrivateText(text);
-				rules.removePlayerText(player);
-
+				player.sendPrivateText(text);
 				logger.debug(text);
 				return;
 			}
@@ -252,10 +244,7 @@ public class AdministrationAction extends ActionListener {
                     StendhalRPZone zone = (StendhalRPZone) itr.next();
                     zoneNames.add(zone.getID().getID());
                 }
-
-				player.setPrivateText(text + " Valid zones: " + zoneNames);
-				rules.removePlayerText(player);
-
+				player.sendPrivateText(text + " Valid zones: " + zoneNames);
 				return;
 			}
 
@@ -272,9 +261,8 @@ public class AdministrationAction extends ActionListener {
 
 				world.modify(teleported);
 			} else {
-				player.setPrivateText("Position [" + x + "," + y
+				player.sendPrivateText("Position [" + x + "," + y
 						+ "] is occupied");
-				rules.removePlayerText(player);
 			}
 		}
 
@@ -298,10 +286,7 @@ public class AdministrationAction extends ActionListener {
 
 			if (teleported == null) {
 				String text = "Player " + name + " not found";
-
-				player.setPrivateText(text);
-				rules.removePlayerText(player);
-
+				player.sendPrivateText(text);
 				logger.debug(text);
 				return;
 			}
@@ -343,7 +328,7 @@ public class AdministrationAction extends ActionListener {
     
             if (target == null) {
                 logger.debug("Player " + name + " not found");
-                player.setPrivateText("Player " + name + " not found");
+                player.sendPrivateText("Player " + name + " not found");
                 return;
             }
     
@@ -377,7 +362,7 @@ public class AdministrationAction extends ActionListener {
                 }
             }
 
-            player.setPrivateText(response);
+            player.sendPrivateText(response);
         }
     
         Log4J.finishMethod(logger, "onAdminLevel");
@@ -402,7 +387,7 @@ public class AdministrationAction extends ActionListener {
 
 			if (changed == null) {
 				logger.debug("Player " + name + " not found");
-				player.setPrivateText("Player " + name + " not found");
+				player.sendPrivateText("Player " + name + " not found");
 				return;
 			}
 
@@ -411,12 +396,12 @@ public class AdministrationAction extends ActionListener {
 			if (stat.equals("name")) {
 				logger.error("DENIED: Admin " + player.getName()
 						+ " trying to change player " + name + "'s name");
-                player.setPrivateText("name cannot be changed");
+                player.sendPrivateText("name cannot be changed");
 				return;
 			}
             
             if (stat.equals("adminlevel")) {
-                player.setPrivateText("user /adminlevel <playername> [<newlevel>] to change adminlevel.");
+                player.sendPrivateText("user /adminlevel <playername> [<newlevel>] to change adminlevel.");
                 return;
             }
 
@@ -625,9 +610,7 @@ public class AdministrationAction extends ActionListener {
 
 		if (inspected == null) {
 			String text = "Entity not found";
-
-			player.setPrivateText(text);
-			rules.removePlayerText(player);
+			player.sendPrivateText(text);
 			return;
 		}
 
@@ -673,10 +656,7 @@ public class AdministrationAction extends ActionListener {
 				}
 			}
 		}
-
-		player.setPrivateText(st.toString());
-		rules.removePlayerText(player);
-
+		player.sendPrivateText(st.toString());
 		Log4J.finishMethod(logger, "onInspect");
 	}
 
@@ -704,16 +684,13 @@ public class AdministrationAction extends ActionListener {
 		if (inspected == null) {
 			String text = "Entity not found";
 
-			player.setPrivateText(text);
-			rules.removePlayerText(player);
+			player.sendPrivateText(text);
 			return;
 		}
 
 		if (inspected instanceof Player) {
 			String text = "You can't remove players";
-
-			player.setPrivateText(text);
-			rules.removePlayerText(player);
+			player.sendPrivateText(text);
 			return;
 		}
 
@@ -723,9 +700,7 @@ public class AdministrationAction extends ActionListener {
 			world.remove(inspected.getID());
 		}
 
-		player.setPrivateText("Removed entity " + action.get("targetid"));
-		;
-		rules.removePlayerText(player);
+		player.sendPrivateText("Removed entity " + action.get("targetid"));
 
 		Log4J.finishMethod(logger, "onInspect");
 	}
@@ -747,10 +722,7 @@ public class AdministrationAction extends ActionListener {
 
 			if (teleported == null) {
 				String text = "Player " + name + " not found";
-
-				player.setPrivateText(text);
-				rules.removePlayerText(player);
-
+				player.sendPrivateText(text);
 				logger.debug(text);
 				return;
 			}
@@ -758,10 +730,7 @@ public class AdministrationAction extends ActionListener {
 			IRPZone.ID zoneid = new IRPZone.ID("int_admin_jail");
 			if (!world.hasRPZone(zoneid)) {
 				String text = "Zone " + zoneid + " not found";
-
-				player.setPrivateText(text);
-				rules.removePlayerText(player);
-
+				player.sendPrivateText(text);
 				logger.debug(text);
 				return;
 			}
@@ -779,9 +748,8 @@ public class AdministrationAction extends ActionListener {
 
 				world.modify(teleported);
 			} else {
-				player.setPrivateText("Position [" + x + "," + y
+				player.sendPrivateText("Position [" + x + "," + y
 						+ "] is occupied");
-				rules.removePlayerText(player);
 			}
 		}
 

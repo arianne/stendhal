@@ -758,10 +758,8 @@ public class Creature extends NPC {
 									rp.addGameEvent(getName(), "poison", player
 											.getName());
 
-									player
-											.setPrivateText("You have been poisoned by a "
+									player.sendPrivateText("You have been poisoned by a "
 													+ getName());
-									rp.removePlayerText(player);
 								}
 							}
 						}

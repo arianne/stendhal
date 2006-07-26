@@ -378,7 +378,6 @@ public class Player extends RPEntity {
 		}
     
 		player.welcome();
-		rp.removePlayerText(player);
 
 		logger.debug("Finally player is :" + player);
 		return player;
@@ -441,11 +440,12 @@ public class Player extends RPEntity {
 			age = getInt("age");
 	}
 
-	public void setPrivateText(String text) {
+	public void sendPrivateText(String text) {
         if (has("private_text")) {
             text = get("private_text") + "\r\n" + text;
         }
 		put("private_text", text);
+		rp.removePlayerText(this);
 	}
 
   /** send a welcome message to the player which can be configured
@@ -478,7 +478,7 @@ public class Player extends RPEntity {
       }
     }
     if(msg!=null) {
-      setPrivateText(msg);
+      sendPrivateText(msg);
     }
   }
   
@@ -930,8 +930,7 @@ public class Player extends RPEntity {
 	public void consumeItem(ConsumableItem item) {
 		if (item.getRegen() > 0 && itemsToConsume.size() > 5
 				&& !item.getName().contains("potion")) {
-			setPrivateText("You can't consume anymore");
-			rp.removePlayerText(this);
+			sendPrivateText("You can't consume anymore");
 			return;
 		}
 

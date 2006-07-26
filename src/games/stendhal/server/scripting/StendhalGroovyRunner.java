@@ -165,8 +165,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
             	text = "Invalid filename: It should end with .groovy";
             }
         }
-        player.setPrivateText(text);
-        rules.removePlayerText(player);
+        player.sendPrivateText(text);
         Log4J.finishMethod(logger, "onScript");
     }
 

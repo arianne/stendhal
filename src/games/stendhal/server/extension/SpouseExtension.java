@@ -152,18 +152,15 @@ public class SpouseExtension extends StendhalServerExtension {
         
         if (canMarry) {
             player1.setQuest(SPOUSE,name2);
-            player1.setPrivateText("Congratulations! You are now married to " + name2 + ". You can use /spouse if you want to be together.");
-            rules.removePlayerText(player1);
+            player1.sendPrivateText("Congratulations! You are now married to " + name2 + ". You can use /spouse if you want to be together.");
             player2.setQuest(SPOUSE,name1);
-            player2.setPrivateText("Congratulations! You are now married to " + name1 + ". You can use /spouse if you want to be together.");
-            rules.removePlayerText(player2);
+            player2.sendPrivateText("Congratulations! You are now married to " + name1 + ". You can use /spouse if you want to be together.");
             text = "You have successfully married " + name1 + " " + name2 + ".";
             rules.addGameEvent(player.getName(), "marry", name1 + " + " + name2);
         }
         
-        player.setPrivateText(text);
-        rules.removePlayerText(player);
-        
+        player.sendPrivateText(text);
+       
         Log4J.finishMethod(logger, "onMarry");
     }
     
@@ -182,10 +179,7 @@ public class SpouseExtension extends StendhalServerExtension {
 
             if (teleported == null) {
                 String text = "Your spouse " + name + " is not online.";
-
-                player.setPrivateText(text);
-                rules.removePlayerText(player);
-
+                player.sendPrivateText(text);
                 logger.debug(text);
                 return;
             }
