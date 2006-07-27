@@ -134,7 +134,7 @@ public class Postman implements Runnable {
                         chat(greeting);
                     } else if (cmd.equalsIgnoreCase("bye")) {
                         chat("Bye.");
-                    } else if (cmd.equalsIgnoreCase("help") || cmd.equalsIgnoreCase("info") || cmd.equalsIgnoreCase("job") || cmd.equalsIgnoreCase("letter") || cmd.equalsIgnoreCase("offer") || cmd.equalsIgnoreCase("parcel")) {
+                    } else if (cmd.equalsIgnoreCase("help") || cmd.equalsIgnoreCase("info") || cmd.equalsIgnoreCase("job") || cmd.equalsIgnoreCase("offer") || cmd.equalsIgnoreCase("letter") || cmd.equalsIgnoreCase("parcel")) {
                         chat(intro + helpMessage);
                     } else if (cmd.equalsIgnoreCase("msg") || cmd.equalsIgnoreCase("tell")) {
                         onTell(playerName, st);
@@ -188,7 +188,7 @@ public class Postman implements Runnable {
         }
     }
 
-    public void onTell(String from, StringTokenizer st) {
+    private void onTell(String from, StringTokenizer st) {
         String param = null;
         String msg = null;
         //System.err.println("!" + from + "! !" + cmd + "! !" + msg + "!");
@@ -222,7 +222,7 @@ public class Postman implements Runnable {
     }
 
     
-    public void tell(String to, String message) {
+    private void tell(String to, String message) {
         if (to.equals("postman")) {
             logger.warn("I am not speaking to myself: " + message);
             return;
@@ -241,6 +241,7 @@ public class Postman implements Runnable {
         StendhalClient.get().send(chat);
     }
 
+    @SuppressWarnings("unused")
     private static void shout(String message) {
         RPAction chat=new RPAction();
         chat.put("type","tellall");
