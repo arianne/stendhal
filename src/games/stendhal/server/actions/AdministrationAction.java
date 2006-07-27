@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -727,7 +728,7 @@ public class AdministrationAction extends ActionListener {
 				return;
 			}
 
-			IRPZone.ID zoneid = new IRPZone.ID("int_admin_jail");
+			IRPZone.ID zoneid = new IRPZone.ID("-1_semos_jail");
 			if (!world.hasRPZone(zoneid)) {
 				String text = "Zone " + zoneid + " not found";
 				player.sendPrivateText(text);
@@ -736,12 +737,13 @@ public class AdministrationAction extends ActionListener {
 			}
 
 			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(zoneid);
-			int x = 20;
-			int y = 14;
+			int x = 8;
+			int y = 2;
 
 			if (StendhalRPAction.placeat(zone, teleported, x, y)) {
 				StendhalRPAction.changeZone(teleported, zone.getID().getID());
 				StendhalRPAction.transferContent(teleported);
+				teleported.setDirection(Direction.DOWN);
 
 				rules.addGameEvent(player.getName(), "teleport", teleported
 						.getName());
