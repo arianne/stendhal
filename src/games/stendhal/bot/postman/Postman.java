@@ -3,6 +3,7 @@
  */
 package games.stendhal.bot.postman;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.Iterator;
@@ -32,6 +33,18 @@ public class Postman implements Runnable {
      */
     public Postman(ariannexp clientManager) {
         this.clientManager = clientManager;
+        Thread t = new Thread(this, "Postman");
+        t.setPriority(Thread.MIN_PRIORITY);
+        t.setDaemon(true);
+        t.start();
+        
+        //shout("Please restart your client every hour or so to save your progress. We have some trouble with server crashes.");
+        
+        try {
+            this.messages.loadFromXML(new FileInputStream(System.getProperty("user.home") + "/.stendhal-postman.xml"));
+        } catch (Exception e) {
+            logger.error(e, e);
+        }
     }
 
     /**
