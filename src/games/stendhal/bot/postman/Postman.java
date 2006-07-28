@@ -3,15 +3,13 @@
  */
 package games.stendhal.bot.postman;
 
-import games.stendhal.client.StendhalClient;
-
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
+import marauroa.client.ariannexp;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -23,39 +21,17 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class Postman implements Runnable {
-    private static Postman postman = null;
     private static Logger logger = Logger.getLogger(Postman.class);
     private Properties messages = new Properties();
+    private ariannexp clientManager;
     
     /**
-     * Singleton
-     */
-    private Postman() {
-        // singleton
-    }
-
-    /**
-     * Get the instance (Singleton-Pattern)
+     * Creates a new postman
      *
-     * @return Postman
+     * @param clientManager ClientManager
      */
-    public static synchronized Postman getPostman() {
-        if (postman == null) {
-            postman = new Postman();
-            Thread t = new Thread(postman, "Postman");
-            t.setPriority(Thread.MIN_PRIORITY);
-            t.setDaemon(true);
-            t.start();
-            
-            //shout("Please restart your client every hour or so to save your progress. We have some trouble with server crashes.");
-            
-            try {
-                postman.messages.loadFromXML(new FileInputStream(System.getProperty("user.home") + "/.stendhal-postman.xml"));
-            } catch (Exception e) {
-                logger.error(e, e);
-            }
-        }
-        return postman;
+    public Postman(ariannexp clientManager) {
+        this.clientManager = clientManager;
     }
 
     /**
@@ -213,7 +189,7 @@ public class Postman implements Runnable {
     private void onWhere() {
         RPAction who = new RPAction();
         who.put("type","who");
-        StendhalClient.get().send(who);
+        send(who);
     }
 
     private void tell(String to, String message) {
@@ -225,22 +201,22 @@ public class Postman implements Runnable {
         tell.put("type","tell");
         tell.put("target", to);
         tell.put("text", message);
-        StendhalClient.get().send(tell);
+        send(tell);
     }
 
     private void chat(String message) {
         RPAction chat=new RPAction();
         chat.put("type","chat");
         chat.put("text", message);
-        StendhalClient.get().send(chat);
+        send(chat);
     }
 
     @SuppressWarnings("unused")
-    private static void shout(String message) {
+    private void shout(String message) {
         RPAction chat=new RPAction();
         chat.put("type","tellall");
         chat.put("text", message);
-        StendhalClient.get().send(chat);
+        send(chat);
     }
 
     
@@ -248,7 +224,7 @@ public class Postman implements Runnable {
         while (true) {
             RPAction who = new RPAction();
             who.put("type","who");
-            StendhalClient.get().send(who);
+            send(who);
             
             try {
                 Thread.sleep(60*1000);
@@ -256,5 +232,9 @@ public class Postman implements Runnable {
                 logger.error(e, e);
             }
         }
+    }
+    
+    private void send(RPAction action) {
+        clientManager.send(action);
     }
 }
