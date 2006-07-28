@@ -48,6 +48,7 @@ public class ChatAction extends ActionListener {
 		if (action.has("text")) {
 			player.put("text", action.get("text"));
 			world.modify(player);
+			rules.removePlayerText(player);
 		}
 		Log4J.finishMethod(logger, "chat");
 	}
