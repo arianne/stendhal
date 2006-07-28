@@ -4,8 +4,6 @@
 package games.stendhal.bot.postman;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.events.TalkEvent;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -63,90 +61,88 @@ public class Postman implements Runnable {
     /**
      * Processes a talk event.
      *
-     * @param entity
-     * @param base
-     * @param diff
+     * @param object
      */
-    public void processTalkEvent(TalkEvent entity, RPObject base, RPObject diff) {
+    public void processTalkEvent(RPObject object) {
         try {
-            if (diff == null) {
-                //System.err.println("diff=null");
+            if (object == null) {
                 return;
             }
             String greeting = "Hi, I am the postman. How can I #help you?";
             String intro = "I store messages for offline players and deliver them on login.\n";
             String helpMessage = "Usage:\n/msg postman help \t This help-message\n/msg postman tell #player #message \t I will deliver your #message when #player logs in.";
-            if (diff.has("private_text") && (entity instanceof Player)) {
-                if (((Player)entity).getName().equals("postman")) {
-                    String text = diff.get("private_text");
+            if (object.getRPClass().getName().equals("player") && object.has("name")) {
+            
+	            if (object.has("private_text")) {
+	                if (object.get("name").equals("postman")) {
+	                    String text = object.get("private_text");
 
-                    java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
-                    String dateString = formatter.format(new Date());
-                    System.err.println(dateString + text);
+	                    java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
+	                    String dateString = formatter.format(new Date());
+	                    System.err.println(dateString + text);
 
-                    StringTokenizer st = new StringTokenizer(text, " ");
-                    String from = st.nextToken();
-                    String arianneCmd = st.nextToken(); // tells
-                    st.nextToken(); // you:
-                    //System.out.println(text);
-                    
-                    if (arianneCmd.equals("tells")) {
-                        // Command was send by a player 
-                        String cmd = st.nextToken(); // cmd
-                        if (cmd.startsWith("/")) {
-                            cmd = cmd.substring(1);
-                        }
-                        if (cmd.equalsIgnoreCase("tell") || cmd.equalsIgnoreCase("msg") || cmd.equalsIgnoreCase("/tell") || cmd.equalsIgnoreCase("/msg")) {
-                            onTell(from, st);
-                        } else if (cmd.equalsIgnoreCase("hi")) {
-                            tell(from, greeting); 
-                        } else if (cmd.equalsIgnoreCase("help") || cmd.equalsIgnoreCase("info") || cmd.equalsIgnoreCase("job") || cmd.equalsIgnoreCase("letter") || cmd.equalsIgnoreCase("offer") || cmd.equalsIgnoreCase("parcel")) {
-                            tell(from, intro + helpMessage);
-                        } else if (cmd.equalsIgnoreCase("where")) {
-                            onWhere();
-                        } else {
-                            tell(from, "Sorry, I did not understand you. (Did you forget the \"tell\"?)\n" + helpMessage);
-                        }
-                    } else if (arianneCmd.equals("Players")) {
-                            onWhoResponse(st);
-                    }
-                }
-    
-            // Public message
-            } else if (diff.has("text")) {
-                if ((entity instanceof Player) && !((Player)entity).getName().equals("postman")) {
-                    String text = diff.get("text");
-                    String playerName = "";
-                    if (entity instanceof Player) {
-                        playerName = ((Player)entity).getName();
-                    }
-                    
-                    java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
-                    String dateString = formatter.format(new Date());
-                    System.err.println(dateString + playerName + ": " + text);
+	                    StringTokenizer st = new StringTokenizer(text, " ");
+	                    String from = st.nextToken();
+	                    String arianneCmd = st.nextToken(); // tells
+	                    st.nextToken(); // you:
+	                    //System.out.println(text);
 
-                    StringTokenizer st = new StringTokenizer(text, " ");
-                    String cmd = "";
-                    if (st.hasMoreTokens()) {
-                        cmd = st.nextToken();
-                    }
-                    if (cmd.equalsIgnoreCase("hi")) {
-                        chat(greeting);
-                    } else if (cmd.equalsIgnoreCase("bye")) {
-                        chat("Bye.");
-                    } else if (cmd.equalsIgnoreCase("help") || cmd.equalsIgnoreCase("info") || cmd.equalsIgnoreCase("job") || cmd.equalsIgnoreCase("offer") || cmd.equalsIgnoreCase("letter") || cmd.equalsIgnoreCase("parcel")) {
-                        chat(intro + helpMessage);
-                    } else if (cmd.equalsIgnoreCase("msg") || cmd.equalsIgnoreCase("tell")) {
-                        onTell(playerName, st);
-                    }
-                }
+	                    if (arianneCmd.equals("tells")) {
+	                        // Command was send by a player 
+	                        String cmd = st.nextToken(); // cmd
+	                        if (cmd.startsWith("/")) {
+	                            cmd = cmd.substring(1);
+	                        }
+	                        if (cmd.equalsIgnoreCase("tell") || cmd.equalsIgnoreCase("msg") || cmd.equalsIgnoreCase("/tell") || cmd.equalsIgnoreCase("/msg")) {
+	                            onTell(from, st);
+	                        } else if (cmd.equalsIgnoreCase("hi")) {
+	                            tell(from, greeting); 
+	                        } else if (cmd.equalsIgnoreCase("help") || cmd.equalsIgnoreCase("info") || cmd.equalsIgnoreCase("job") || cmd.equalsIgnoreCase("letter") || cmd.equalsIgnoreCase("offer") || cmd.equalsIgnoreCase("parcel")) {
+	                            tell(from, intro + helpMessage);
+	                        } else if (cmd.equalsIgnoreCase("where")) {
+	                            onWhere();
+	                        } else {
+	                            tell(from, "Sorry, I did not understand you. (Did you forget the \"tell\"?)\n" + helpMessage);
+	                        }
+	                    } else if (arianneCmd.equals("Players")) {
+	                            onWhoResponse(st);
+	                    }
+	                }
+
+	            // Public message
+	            } else if (object.has("text")) {
+	                if (!object.get("name").equals("postman")) {
+	                    String text = object.get("text");
+	                    String playerName = "";
+                        playerName = object.get("name");
+
+	                    java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
+	                    String dateString = formatter.format(new Date());
+	                    System.err.println(dateString + playerName + ": " + text);
+
+	                    StringTokenizer st = new StringTokenizer(text, " ");
+	                    String cmd = "";
+	                    if (st.hasMoreTokens()) {
+	                        cmd = st.nextToken();
+	                    }
+	                    if (cmd.equalsIgnoreCase("hi")) {
+	                        chat(greeting);
+	                    } else if (cmd.equalsIgnoreCase("bye")) {
+	                        chat("Bye.");
+	                    } else if (cmd.equalsIgnoreCase("help") || cmd.equalsIgnoreCase("info") || cmd.equalsIgnoreCase("job") || cmd.equalsIgnoreCase("offer") || cmd.equalsIgnoreCase("letter") || cmd.equalsIgnoreCase("parcel")) {
+	                        chat(intro + helpMessage);
+	                    } else if (cmd.equalsIgnoreCase("msg") || cmd.equalsIgnoreCase("tell")) {
+	                        onTell(playerName, st);
+	                    }
+	                }
+	            }
             }
         } catch (Exception e) {
             e.printStackTrace();
             logger.error(e, e);
         }
     }
-    
+
     /**
      * response to "who"
      */
@@ -212,7 +208,6 @@ public class Postman implements Runnable {
         } catch (Exception e) {
             logger.error(e, e);
         }
-
     }
 
     private void onWhere() {
@@ -221,7 +216,6 @@ public class Postman implements Runnable {
         StendhalClient.get().send(who);
     }
 
-    
     private void tell(String to, String message) {
         if (to.equals("postman")) {
             logger.warn("I am not speaking to myself: " + message);
