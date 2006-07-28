@@ -22,7 +22,6 @@ import java.util.Map;
 import marauroa.client.ariannexpTimeoutException;
 import marauroa.client.net.DefaultPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.MessageS2CPerception;
 import marauroa.common.net.TransferContent;
@@ -35,8 +34,6 @@ public class PostmanMain extends Thread {
     private String port;
     private boolean tcp;
     protected Postman postman = null;
-    
-    private static boolean ShowWorld = false;
 
 	private Map<RPObject.ID, RPObject> world_objects;
 
@@ -56,89 +53,45 @@ public class PostmanMain extends Thread {
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
 		handler = new PerceptionHandler(new DefaultPerceptionListener() {
+			@Override
 			public int onException(Exception e,
 					marauroa.common.net.MessageS2CPerception perception) {
-				e.printStackTrace();
 				System.out.println(perception);
+				System.err.println(perception);
+				e.printStackTrace();
 				return 0;
 			}
 
-			public boolean onMyRPObject(boolean changed, RPObject object) {
-				return false;
-			}
 		});
 
 		clientManager = new marauroa.client.ariannexp(
 				"games/stendhal/log4j.properties") {
+			@Override
 			protected String getGameName() {
 				return "stendhal";
 			}
 
+			@Override
 			protected String getVersionNumber() {
 				return Version.VERSION;
 			}
 
+			@Override
 			protected void onPerception(MessageS2CPerception message) {
 				try {
-                     System.out.println("Received messge: " + message);
-                    
 					handler.apply(message, world_objects);
-					int i = message.getPerceptionTimestamp();
 
-					RPAction action = new RPAction();
-					if (i % 50 == 0) {
-						action.put("type", "move");
-						action.put("dy", "-1");
-						clientManager.send(action);
-					} else if (i % 50 == 20) {
-						action.put("type", "move");
-						action.put("dy", "1");
-						clientManager.send(action);
-					}
-					if(ShowWorld) {
-                        System.out
-                        .println("<World contents ------------------------------------->");
-                        int j = 0;
-                        for (RPObject object : world_objects.values()) {
-                            j++;
-                            System.out.println(j + ". " + object);
-                            
-                            /*if (object.has("private_text")) {
-                            	System.err.println("************************************************");
-                            	System.err.println("************************************************");
-                            	
-                            	System.err.println(object.getClass());
-                            	System.err.println(object.get("name"));
-                            	System.err.println(object.get("private_text"));
-                            	System.err.println(object.getRPClass().getName());
-                            	System.err.println("************************************************");
-                            	System.err.println("************************************************");
-                            }
-                            
-                            if (object.has("text")) {
-                            	System.err.println("************************************************");
-                            	System.err.println("************************************************");
-                            	
-                            	System.err.println(object.getClass());
-                            	System.err.println(object.get("name"));
-                            	System.err.println(object.get("text"));
-                            	System.err.println(object.getRPClass().getName());
-                            	System.err.println("************************************************");
-                            	System.err.println("************************************************");
-                            }*/
-                            if (object.has("private_text") || object.has("text")) {
-                            	postman.processTalkEvent(object);
-                            }
-                            
+                    for (RPObject object : world_objects.values()) {
+                        if (object.has("private_text") || object.has("text")) {
+                        	postman.processTalkEvent(object);
                         }
-                        System.out
-                        .println("</World contents ------------------------------------->");                    
-					}
+                    }               
 				} catch (Exception e) {
 					onError(3, "Exception while applying perception");
 				}
 			}
 
+			@Override
 			protected List<TransferContent> onTransferREQ(
 					List<TransferContent> items) {
 				for (TransferContent item : items) {
@@ -148,21 +101,23 @@ public class PostmanMain extends Thread {
 				return items;
 			}
 
-			protected void onTransfer(List<TransferContent> items) {
-				System.out.println("Transfering ----");
-				for (TransferContent item : items) {
-					System.out.println(item);
-					for (byte ele : item.data)
-						System.out.print((char) ele);
+			@Override
+			protected void onServerInfo(String[] info) {
+				System.out.println("Server info: ");
+				for (String info_string : info) {
+					System.out.println(info_string);
 				}
+				System.out.println("Server info end.");
 			}
 
-			protected void onAvailableCharacters(String[] characters) {
-				System.out.println("Characters available");
-				for (String characterAvail : characters) {
-					System.out.println(characterAvail);
-				}
+			@Override
+			protected void onError(int code, String reason) {
+				System.out.println(reason);
+				System.err.println(reason);
+			}
 
+			@Override
+			protected void onAvailableCharacters(String[] characters) {
 				try {
 					chooseCharacter(character);
 				} catch (Exception e) {
@@ -170,15 +125,9 @@ public class PostmanMain extends Thread {
 				}
 			}
 
-			protected void onServerInfo(String[] info) {
-				System.out.println("Server info");
-				for (String info_string : info) {
-					System.out.println(info_string);
-				}
-			}
-
-			protected void onError(int code, String reason) {
-				System.out.println(reason);
+			@Override
+			protected void onTransfer(List<TransferContent> items) {
+				// do nothing
 			}
 		};
 	}
@@ -192,7 +141,7 @@ public class PostmanMain extends Thread {
 			return;
 		} catch (ariannexpTimeoutException e) {
 			System.out
-					.println("PostmanClient can't connect to Stendhal server. Server is down?");
+					.println("Cannot connect to Stendhal server. Server is down?");
 			// TODO: shutdown cleanly
 			//return;
 			Runtime.getRuntime().halt(1);
@@ -205,13 +154,19 @@ public class PostmanMain extends Thread {
 			try {
 				sleep(100);
 			} catch (InterruptedException e) {
+				// ignore
 			}
 		}
 
+		long start = System.currentTimeMillis();
 		while (clientManager.logout() == false) {
+			if (start + 5000 < System.currentTimeMillis()) {
+				Runtime.getRuntime().halt(2);
+			}
 			try {
 				sleep(100);
 			} catch (InterruptedException e) {
+				// ignore
 			}
 		}
 	}
@@ -238,9 +193,6 @@ public class PostmanMain extends Thread {
 						host = args[i + 1];
                      } else if (args[i].equals("-P")) {
                          port = args[i + 1];
-                     } else if (args[i].equals("-W")) {
-                         if("1".equals(args[i + 1]))
-                             ShowWorld = true;
                      } else if (args[i].equals("-t")) {
                     	 tcp = true;
                      }
@@ -267,7 +219,6 @@ public class PostmanMain extends Thread {
 			System.out.println("* -p\tPassword to log into Marauroa server");
 			System.out.println("* -c\tCharacter used to log into Marauroa server");
 			System.out.println("Optional parameters");
-			System.out.println("* -W\tShow world content? 0 or 1");
 			System.out.println("* -t\tuse tcp-connection to server");
 		} catch (Exception e) {
 			e.printStackTrace();
