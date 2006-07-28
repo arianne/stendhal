@@ -114,6 +114,7 @@ public class PostmanMain extends Thread {
 			protected void onError(int code, String reason) {
 				System.out.println(reason);
 				System.err.println(reason);
+				Runtime.getRuntime().halt(1);
 			}
 
 			@Override
