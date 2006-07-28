@@ -34,6 +34,7 @@ public class PostmanMain extends Thread {
 	private String character;
     private String port;
     private boolean tcp;
+    protected Postman postman = null;
     
     private static boolean ShowWorld = false;
 
@@ -102,7 +103,7 @@ public class PostmanMain extends Thread {
                             j++;
                             System.out.println(j + ". " + object);
                             
-                            if (object.has("private_text")) {
+                            /*if (object.has("private_text")) {
                             	System.err.println("************************************************");
                             	System.err.println("************************************************");
                             	
@@ -124,6 +125,9 @@ public class PostmanMain extends Thread {
                             	System.err.println(object.getRPClass().getName());
                             	System.err.println("************************************************");
                             	System.err.println("************************************************");
+                            }*/
+                            if (object.has("private_text") || object.has("text")) {
+                            	postman.processTalkEvent(object);
                             }
                             
                         }
@@ -177,18 +181,18 @@ public class PostmanMain extends Thread {
 				System.out.println(reason);
 			}
 		};
-
 	}
 
 	public void run() {
 		try {
 			clientManager.connect(host, Integer.parseInt(port), tcp);
 			clientManager.login(username, password);
+			postman = new Postman(clientManager);
 		} catch (SocketException e) {
 			return;
 		} catch (ariannexpTimeoutException e) {
 			System.out
-					.println("textClient can't connect to Stendhal server. Server is down?");
+					.println("PostmanClient can't connect to Stendhal server. Server is down?");
 			// TODO: shutdown cleanly
 			//return;
 			Runtime.getRuntime().halt(1);
@@ -202,11 +206,14 @@ public class PostmanMain extends Thread {
 				sleep(100);
 			} catch (InterruptedException e) {
 			}
-			;
 		}
 
-		while (clientManager.logout() == false)
-			;
+		while (clientManager.logout() == false) {
+			try {
+				sleep(100);
+			} catch (InterruptedException e) {
+			}
+		}
 	}
 
 	public static void main(String[] args) {
