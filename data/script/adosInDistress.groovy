@@ -34,6 +34,7 @@ public class Friends {
 	public void createSoldier(String name, int x, int y) {
 		ScriptingNPC npc = new ScriptingNPC(name);		
 		npc.setClass("youngsoldiernpc");
+		npc.setHP((int) (Math.random() * 80) + 10);
 		npc.set(x, y);
 		npc.setDirection(Direction.DOWN);
 		game.add(npc)
@@ -93,21 +94,43 @@ public class MapManager {
 		game.add(sign)
 	}
 
+	public void removeSigns() {
+		Set signs = storage.get("signs");
+		if (signs != null) {
+			for (sign in signs) {
+				game.remove(sign);
+			}
+		}
+	}
+
 	public void putSigns() {
+		removeSigns();
 		putSign(48, 38, "Elephants");
 		putSign(48, 41, "Lions and Tigers");
 		putSign(54, 30, "Crabs");
 		putSign(61, 41, "Boars and Deers");
 		putSign(66, 38, "Bears and Black Bears");
 	}
+
+	public void putSignsAway() {
+		removeSigns();
+		putSign(49, 39, "Elephants");
+		putSign(47, 40, "Lions and Tigers");
+		putSign(53, 29, "Crabs");
+		putSign(62, 40, "Boars and Deers");
+		putSign(67, 39, "Bears and Black Bears");
+		putSign(67, 25, "Bears and Black Bears");
+		putSign(62, 28, "Bears and Black Bears");
+	}
 }
 
+MapManager mapManager = new MapManager(game, storage);
 game.setZone("0_ados_outside_nw");
 
 if (player == null || ((args.length > 0) && (args[0].equals("reset")))) {
-	MapManager mapManager = new MapManager(game, storage);
 	mapManager.putSigns();
 } else {
+	mapManager.putSignsAway();
 
 	Friends friends = new Friends(game, rules);
 	friends.createSoldiers();
@@ -117,8 +140,9 @@ if (player == null || ((args.length > 0) && (args[0].equals("reset")))) {
 	friends.shout("Head of Soldiers shouts: Katinka, stay calm.");
 	friends.shout("Head of Soldiers shouts: I will send one of our soldiers called Marcus to help you.");
 	
-	friends.shout("Marcus shouts: I killed those Orcs. But we need reinforcements in about 5 minutes:");
-	friends.shout("Marcus shouts: Those two Orcs were only in the vanguard of a huge bunch of Warrior Orcs.");
+	friends.shout("Marcus shouts: I killed those two Orcs. But further investigation showed:");
+	friends.shout("Marcus shouts: They were only in the vanguard of a huge bunch of Warrior Orcs.");
+	friends.shout("Marcus shouts: We need reinforcements within about 10 minutes.");
 	
 	friends.shout("Io Flotto shouts: I created a portal near Carmen in the south west of Semos.");
 	friends.shout("Io Flotto shouts: You can use it to get to the Ados Wildlife Refuge in time.");
