@@ -58,7 +58,9 @@ public class StendhalGroovyScript {
 		this.scripts = StendhalScriptSystem.get();
 		groovyBinding.setVariable("game", this);
 		groovyBinding.setVariable("logger", logger);
+		groovyBinding.setVariable("rules", rp);
 		groovyBinding.setVariable("storage", new HashMap());
+		groovyBinding.setVariable("world", world);
 	}
 
 	public StendhalRPZone getZone(RPObject rpobject) {
