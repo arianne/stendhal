@@ -66,21 +66,64 @@ public class Friends {
 	}
 }
 
+public class MapManager {
+	private StendhalGroovyScript game;
+	private Map storage;
+
+	/**
+	 * Constructor
+	 *
+	 * @param game StendhalGroovyScript
+	 * @param storage Storage
+	 */
+	public MapManager(StendhalGroovyScript game, Map storage) {
+		this.game = game;
+		this.storage = storage;
+		if (storage.get("signs") == null) {
+			storage.put("signs", new HashSet());
+		}
+	}
+
+	public void putSign(int x, int y, String text) {
+		Sign sign=new Sign()
+		sign.setx(x)
+		sign.sety(y)
+		sign.setText(text)
+		storage.get("signs").add(sign);
+		game.add(sign)
+	}
+
+	public void putSigns() {
+		putSign(48, 38, "Elephants");
+		putSign(48, 41, "Lions and Tigers");
+		putSign(54, 30, "Crabs");
+		putSign(61, 41, "Boars and Deers");
+		putSign(66, 38, "Bears and Black Bears");
+	}
+}
+
 game.setZone("0_ados_outside_nw");
-Friends friends = new Friends(game, rules);
-friends.createSoldiers();
-friends.createSheep();
-friends.shout("Katinka shouts: Help. There are two Orcs approaching our Wildlife Refuge");
 
-friends.shout("Head of Soldiers shouts: Katinka, stay calm.");
-friends.shout("Head of Soldiers shouts: I will send one of our soldiers called Marcus to help you.");
+if (player == null || ((args.length > 0) && (args[0].equals("reset")))) {
+	MapManager mapManager = new MapManager(game, storage);
+	mapManager.putSigns();
+} else {
 
-friends.shout("Marcus shouts: I killed those Orcs. But we need reinforcements in about 5 minutes:");
-friends.shout("Marcus shouts: Those two Orcs were only in the vanguard of a huge bunch of Warrior Orcs.");
+	Friends friends = new Friends(game, rules);
+	friends.createSoldiers();
+	friends.createSheep();
+	friends.shout("Katinka shouts: Help. There are two Orcs approaching our Wildlife Refuge");
+	
+	friends.shout("Head of Soldiers shouts: Katinka, stay calm.");
+	friends.shout("Head of Soldiers shouts: I will send one of our soldiers called Marcus to help you.");
+	
+	friends.shout("Marcus shouts: I killed those Orcs. But we need reinforcements in about 5 minutes:");
+	friends.shout("Marcus shouts: Those two Orcs were only in the vanguard of a huge bunch of Warrior Orcs.");
+	
+	friends.shout("Io Flotto shouts: I created a portal near Carmen in the south west of Semos.");
+	friends.shout("Io Flotto shouts: You can use it to get to the Ados Wildlife Refuge in time.");
 
-friends.shout("Io Flotto shouts: I created a portal near Carmen in the south west of Semos.");
-friends.shout("Io Flotto shouts: You can use it to get to the Ados Wildlife Refuge in time.");
+	friends.shout("Katinka shouts: Argh! They have eaten our boars. Help us!");
 
-friends.shout("Katinka shouts: Argh! They killed our boars.");
-
-friends.shout("Dr. Feelgood shouts: Help! Help us! The Ados Wildlife Refuge is under heavy attack by a bunch of hungry Orc Warriors.");
+	friends.shout("Dr. Feelgood shouts: Help! Help us! The Ados Wildlife Refuge is under heavy attack by a bunch of hungry Orc Warriors.");
+}
