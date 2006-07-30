@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.LinkedList;
 
 public class FeaturesTestArea implements IContent {
+	private StendhalRPZone zone;
+	private DefaultEntityManager manager;
+	
 
 	static class QuestRat extends Creature {
 		public QuestRat(Creature copy) {
@@ -40,11 +43,15 @@ public class FeaturesTestArea implements IContent {
 	}
 
 	public FeaturesTestArea(StendhalRPWorld world) {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"int_pathfinding"));
-		DefaultEntityManager manager = (DefaultEntityManager) world
+		manager = (DefaultEntityManager) world
 				.getRuleManager().getEntityManager();
-
+		
+		createDoorAndKey();
+	}
+	
+	private void createDoorAndKey() {
 		Portal portal = new Door("key_golden", "skulldoor", Direction.DOWN);
 		zone.assignRPObjectID(portal);
 		portal.setx(50);
