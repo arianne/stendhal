@@ -521,6 +521,9 @@ public class StendhalRPAction {
 
 		StendhalRPZone oldzone = (StendhalRPZone) world.getRPZone(player
 				.getID());
+		StendhalRPZone zone = null;
+		
+		oldzone.removePlayerAndFriends(player);
 
 		if (player.hasSheep()) {
 			Sheep sheep = (Sheep) world.get(player.getSheep());
@@ -529,13 +532,19 @@ public class StendhalRPAction {
 
 			world.changeZone(source, destination, sheep);
 			world.changeZone(source, destination, player);
+			zone = (StendhalRPZone) world.getRPZone(player.getID());
 
 			player.setSheep(sheep);
+
+			oldzone.removePlayerAndFriends(sheep);
+			zone.addPlayerAndFriends(sheep);
+
 		} else {
 			world.changeZone(source, destination, player);
+			zone = (StendhalRPZone) world.getRPZone(player.getID());
 		}
+		zone.addPlayerAndFriends(player);
 
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
 
 		if (placePlayer) {
 			zone.placeObjectAtZoneChangePoint(oldzone, player);

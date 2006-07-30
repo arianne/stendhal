@@ -14,14 +14,13 @@ package games.stendhal.server;
 
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
-import games.stendhal.server.entity.Door;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
@@ -31,12 +30,12 @@ import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -67,6 +66,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private List<NPC> npcs;
 	private List<RespawnPoint> respawnPoints;
     private List<PlantGrower> plantGrowers;
+    private List<RPEntity> playersAndFriends;
 
 
 	/**
@@ -109,6 +109,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<RespawnPoint>();
         plantGrowers = new LinkedList<PlantGrower>();
+        playersAndFriends = new LinkedList<RPEntity>();
 
 		collisionMap = new CollisionDetection();
 		protectionMap = new CollisionDetection();
@@ -776,5 +777,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public Map<Item, Integer> getItemsOnGround() {
 		return itemsOnGround;
 	}
+	
+	public void addPlayerAndFriends(RPEntity player) {
+		playersAndFriends.add(player);
+	}
 
+	public List<RPEntity> getPlayerAndFirends() {
+		return playersAndFriends;
+	}
+	
+	public void removePlayerAndFriends(RPEntity player) {
+		playersAndFriends.remove(player);
+	}
 }

@@ -13,26 +13,27 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Debug;
-import games.stendhal.common.Rand;
 import games.stendhal.common.Direction;
+import games.stendhal.common.Rand;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.ConsumableItem;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.entity.npc.NPC;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -433,8 +434,10 @@ public class Creature extends NPC {
 				}
 			}
 		}
+		
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(get("zoneid"));
 
-		for (Player player : rp.getPlayers()) {
+		for (RPEntity player : zone.getPlayerAndFirends()) {
 			if (player.has("invisible")) {
 				continue;
 			}
@@ -463,7 +466,9 @@ public class Creature extends NPC {
 
 		double distance = range * range; // We save this way several sqrt
 											// operations
-		for (Player player : rp.getPlayers()) {
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(get("zoneid"));
+
+		for (RPEntity player : zone.getPlayerAndFirends()) {
 			if (player.has("invisible")) {
 				continue;
 			}

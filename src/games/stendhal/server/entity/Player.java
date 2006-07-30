@@ -253,6 +253,7 @@ public class Player extends RPEntity {
 				player.setSheep(sheep);
 
 				StendhalRPAction.placeat(zone, sheep, x, y);
+				zone.addPlayerAndFriends(sheep);
 			}
 		} catch (Exception e) { /**
 								 * No idea how but some players get a sheep but
@@ -275,6 +276,7 @@ public class Player extends RPEntity {
 		}
 
 		StendhalRPAction.placeat(zone, player, x, y);
+		zone.addPlayerAndFriends(player);
 
 		String[] slots = { "bag", "rhand", "lhand", "head", "armor", "legs",
 				"feet", "cloak", "bank" };
@@ -384,11 +386,14 @@ public class Player extends RPEntity {
 	}
 
 	public static void destroy(Player player) {
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+		zone.removePlayerAndFriends(player);
 		try {
 			if (player.hasSheep()) {
 				Sheep sheep = (Sheep) world.remove(player.getSheep());
 				player.storeSheep(sheep);
 				rp.removeNPC(sheep);
+				zone.removePlayerAndFriends(sheep);
 			} else {
 				// Bug on pre 0.20 released
 				if (player.hasSlot("#flock")) {
