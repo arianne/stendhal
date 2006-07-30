@@ -108,6 +108,7 @@ public class RespawnPoint implements TurnEvent {
 			entities.add(newentity);
 
 			zone.add(newentity);
+			newentity.init();
 		} catch (Exception e) {
 			logger.error("error respawning entity " + entity, e);
 		} finally {
