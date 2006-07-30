@@ -34,6 +34,8 @@ public class PostmanMain extends Thread {
     private String port;
     private boolean tcp;
     protected Postman postman = null;
+    
+    private long lastPerceptionTimestamp = 0;
 
 	private Map<RPObject.ID, RPObject> world_objects;
 
@@ -78,6 +80,7 @@ public class PostmanMain extends Thread {
 
 			@Override
 			protected void onPerception(MessageS2CPerception message) {
+				lastPerceptionTimestamp = System.currentTimeMillis();
 				try {
 					handler.apply(message, world_objects);
 
@@ -103,11 +106,7 @@ public class PostmanMain extends Thread {
 
 			@Override
 			protected void onServerInfo(String[] info) {
-				System.out.println("Server info: ");
-				for (String info_string : info) {
-					System.out.println(info_string);
-				}
-				System.out.println("Server info end.");
+
 			}
 
 			@Override
@@ -139,19 +138,24 @@ public class PostmanMain extends Thread {
 			clientManager.login(username, password);
 			postman = new Postman(clientManager);
 		} catch (SocketException e) {
+			Runtime.getRuntime().halt(1);
 			return;
 		} catch (ariannexpTimeoutException e) {
-			System.out
-					.println("Cannot connect to Stendhal server. Server is down?");
+			System.out.println("Cannot connect to Stendhal server. Server is down?");
 			// TODO: shutdown cleanly
 			//return;
 			Runtime.getRuntime().halt(1);
 		}
 
 		boolean cond = true;
-
 		while (cond) {
 			clientManager.loop(0);
+
+			if ((lastPerceptionTimestamp > 0) && (lastPerceptionTimestamp + 10*1000 < System.currentTimeMillis())) {
+				System.err.println("Timeout");
+				Runtime.getRuntime().halt(1);
+			}
+			
 			try {
 				sleep(100);
 			} catch (InterruptedException e) {
@@ -202,16 +206,15 @@ public class PostmanMain extends Thread {
 
 				if (username != null && password != null && character != null
 						&& host != null && port != null) {
-					System.out.println("Parameter operation");
-					new PostmanMain(host, username, password, character, port, tcp).start();
+					PostmanMain postmanMain = new PostmanMain(host, username, password, character, port, tcp);
+					postmanMain.start();
 					return;
 				}
 			}
 
 			System.out.println("Stendhal textClient");
 			System.out.println();
-			System.out
-					.println("  games.stendhal.textClient -u username -p pass -h host -P port -c character");
+			System.out.println("  games.stendhal.bot.PostmanMain -u username -p pass -h host -P port -c character");
 			System.out.println();
 			System.out.println("Required parameters");
 			System.out.println("* -h\tHost that is running Marauroa server");
