@@ -1,12 +1,11 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.item.*;
 import games.stendhal.server.entity.creature.*;
+import games.stendhal.server.maps.Orril.QuestDropItemOnDeath;
 import games.stendhal.server.rule.defaultruleset.*;
 
 import marauroa.common.game.IRPZone;
@@ -42,6 +41,33 @@ public class FeaturesTestArea implements IContent {
 		}
 	}
 
+	static class AttackableAnimal extends Creature {
+		public AttackableAnimal(Creature copy) {
+			super(copy);
+		}
+
+		@Override
+		public void init() {
+			super.init();
+			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
+			zone.addPlayerAndFriends(this);
+		}
+
+		@Override
+		public void onDead(RPEntity who) {
+			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
+			zone.removePlayerAndFriends(this);
+			super.onDead(who);
+		}
+
+
+		@Override
+		public Creature getInstance() {
+			return new AttackableAnimal(this);
+		}
+
+	}
+	
 	public FeaturesTestArea(StendhalRPWorld world) {
 		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"int_pathfinding"));
@@ -49,6 +75,7 @@ public class FeaturesTestArea implements IContent {
 				.getRuleManager().getEntityManager();
 		
 		createDoorAndKey();
+		attackableAnimal();
 	}
 	
 	private void createDoorAndKey() {
@@ -85,6 +112,22 @@ public class FeaturesTestArea implements IContent {
 		RespawnPoint point = new RespawnPoint(40, 5, 2);
 		point.set(zone, creature, 1);
 		point.setRespawnTime(creature.getRespawnTime());
+		zone.addRespawnPoint(point);
+	}
+	
+	
+	private void attackableAnimal() {
+		 //(4,56)
+		Creature creature = new AttackableAnimal(manager.getCreature("orc"));
+		RespawnPoint point = new RespawnPoint(4, 56, 2);
+		point.set(zone, creature, 1);
+		point.setRespawnTime(60);
+		zone.addRespawnPoint(point);
+
+		creature = manager.getCreature("deer");
+		point = new RespawnPoint(14, 56, 2);
+		point.set(zone, creature, 1);
+		point.setRespawnTime(60);
 		zone.addRespawnPoint(point);
 	}
 }
