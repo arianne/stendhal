@@ -1,18 +1,20 @@
+import games.stendhal.common.Direction;
 import games.stendhal.server.*
 import games.stendhal.server.entity.*
 import games.stendhal.server.entity.creature.*
 import games.stendhal.server.entity.item.*
-import games.stendhal.server.scripting.*
 import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.events.TurnEvent;
+import games.stendhal.server.scripting.*
 import games.stendhal.server.pathfinder.Path
-import games.stendhal.common.Direction;
 
 /**
  * Manages friendly entities
  */
-public class Friends {
+public class Friends implements TurnEvent {
 	private StendhalGroovyScript game;
 	private StendhalRPRuleProcessor rules;
+	private int turnCounter = 0;
 
 	/**
 	 * Constructor
@@ -44,9 +46,14 @@ public class Friends {
 	 * Creates three soldiers to block the entrance
 	 */
 	public void createSoldiers() {
+
+		// main entrance
 		createSoldier("Soldier", 55, 47);
 		createSoldier("Soldier", 56, 47);
 		createSoldier("Soldier", 57, 47);
+
+		// backdoor
+		createSoldier("Soldier", 43, 23);
 	}
 
 	/**
@@ -59,6 +66,56 @@ public class Friends {
 		game.add(creature);
 	}
 
+	public void onTurnReached(int currentTurn) {
+		int wait = 6;
+		switch (turnCounter) {
+
+			case 0:
+				shout("Katinka shouts: Help. There are two Orcs approaching our Wildlife Refuge");
+				wait = 5 * 3;
+				break;
+
+			case 1:
+				shout("Head of Soldiers shouts: Katinka, stay calm.");
+				break;
+
+			case 2:
+				shout("Head of Soldiers shouts: I will send one of our soldiers called Marcus to help you.");
+				wait = 60 * 3;
+				break;
+
+			case 3:
+				shout("XMarcus shouts: I killed those two Orcs. But further investigation showed:");
+				break;
+
+			case 4:
+				shout("Marcus shouts: They were only in the vanguard of a huge bunch of Warrior Orcs.");
+				break;
+
+			case 5:
+				shout("Marcus shouts: We need reinforcements within about 10 minutes.");
+				wait = 10 * 3;
+				break;
+
+			case 6:
+				shout("Io Flotto shouts: I created a portal near Carmen in the south west of Semos.");
+				break;
+
+			case 7:
+				shout("Io Flotto shouts: You can use it to get to the Ados Wildlife Refuge in time.");
+				wait = 120 * 3;
+				break;
+
+			case 8:
+				shout("Katinka shouts: Argh! They have eaten our boars. Help us!");
+				return;
+				// shout("Dr. Feelgood shouts: Help! Help us! The Ados Wildlife Refuge is under heavy attack by a bunch of hungry Orc Warriors.");
+			
+		}
+		TurnNotifier.get().notifyInTurns(wait, this);
+		turnCounter++;
+	}
+	
 	public void shout(String text) {
 		List players = rules.getPlayers();
 		for (player in players) {
@@ -120,7 +177,6 @@ public class MapManager {
 		putSign(62, 40, "Boars and Deers");
 		putSign(67, 39, "Bears and Black Bears");
 		putSign(67, 25, "Bears and Black Bears");
-		putSign(62, 28, "Bears and Black Bears");
 	}
 }
 
@@ -135,19 +191,5 @@ if (player == null || ((args.length > 0) && (args[0].equals("reset")))) {
 	Friends friends = new Friends(game, rules);
 	friends.createSoldiers();
 	friends.createSheep();
-	friends.shout("Katinka shouts: Help. There are two Orcs approaching our Wildlife Refuge");
-	
-	friends.shout("Head of Soldiers shouts: Katinka, stay calm.");
-	friends.shout("Head of Soldiers shouts: I will send one of our soldiers called Marcus to help you.");
-	
-	friends.shout("Marcus shouts: I killed those two Orcs. But further investigation showed:");
-	friends.shout("Marcus shouts: They were only in the vanguard of a huge bunch of Warrior Orcs.");
-	friends.shout("Marcus shouts: We need reinforcements within about 10 minutes.");
-	
-	friends.shout("Io Flotto shouts: I created a portal near Carmen in the south west of Semos.");
-	friends.shout("Io Flotto shouts: You can use it to get to the Ados Wildlife Refuge in time.");
-
-	friends.shout("Katinka shouts: Argh! They have eaten our boars. Help us!");
-
-	friends.shout("Dr. Feelgood shouts: Help! Help us! The Ados Wildlife Refuge is under heavy attack by a bunch of hungry Orc Warriors.");
+	TurnNotifier.get().notifyInTurns(0, friends);
 }
