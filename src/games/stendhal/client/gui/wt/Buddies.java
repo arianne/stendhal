@@ -68,8 +68,14 @@ public class Buddies extends WtPanel {
 				public void onClick(String name, Point point) {
 					StendhalClient client = StendhalClient.get();
 					if (name.equals("Talk")) {
+						String buddieName = getName();
+						// Compatibility to grandfathered accounts with a ' '
+						// New accounts cannot contain a space anymore.
+						if (buddieName.indexOf(' ') > -1) {
+							buddieName = "'" + buddieName + "'";
+						}
 						client.getTextLineGUI().setText(
-								"/tell " + getName() + " ");
+								"/tell " + buddieName + " ");
 					} else if (name.equals("Where")) {
 						RPAction where = new RPAction();
 						where.put("type", "where");
