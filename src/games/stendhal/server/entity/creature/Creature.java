@@ -418,40 +418,27 @@ public class Creature extends NPC {
 											// operations
 		RPEntity chosen = null;
 
-		for (NPC sheep : rp.getNPCs()) {
-			if (sheep instanceof Sheep
-					&& sheep.get("zoneid").equals(get("zoneid"))) {
-				java.awt.geom.Rectangle2D rect = sheep.getArea(sheep.getx(),
-						sheep.gety());
-				int fx = (int) rect.getX();
-				int fy = (int) rect.getY();
-
-				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
-					if (distance(sheep) < distance) {
-						chosen = sheep;
-						distance = distance(sheep);
-					}
-				}
-			}
-		}
-		
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(get("zoneid"));
 
-		for (RPEntity player : zone.getPlayerAndFirends()) {
-			if (player.has("invisible")) {
+		for (RPEntity playerOrFriend : zone.getPlayerAndFirends()) {
+			if (playerOrFriend == this) {
 				continue;
 			}
 
-			if (player.get("zoneid").equals(get("zoneid"))) {
-				java.awt.geom.Rectangle2D rect = player.getArea(player.getx(),
-						player.gety());
+			if (playerOrFriend.has("invisible")) {
+				continue;
+			}
+
+			if (playerOrFriend.get("zoneid").equals(get("zoneid"))) {
+				java.awt.geom.Rectangle2D rect = playerOrFriend.getArea(playerOrFriend.getx(),
+						playerOrFriend.gety());
 				int fx = (int) rect.getX();
 				int fy = (int) rect.getY();
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
-					if (distance(player) < distance) {
-						chosen = player;
-						distance = distance(player);
+					if (distance(playerOrFriend) < distance) {
+						chosen = playerOrFriend;
+						distance = distance(playerOrFriend);
 					}
 				}
 			}
@@ -468,17 +455,21 @@ public class Creature extends NPC {
 											// operations
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(get("zoneid"));
 
-		for (RPEntity player : zone.getPlayerAndFirends()) {
-			if (player.has("invisible")) {
+		for (RPEntity playerOrFriend : zone.getPlayerAndFirends()) {
+			if (playerOrFriend == this) {
 				continue;
 			}
 
-			if (player.get("zoneid").equals(get("zoneid"))) {
-				int fx = player.getx();
-				int fy = player.gety();
+			if (playerOrFriend.has("invisible")) {
+				continue;
+			}
+
+			if (playerOrFriend.get("zoneid").equals(get("zoneid"))) {
+				int fx = playerOrFriend.getx();
+				int fy = playerOrFriend.gety();
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
-					if (distance(player) < distance) {
+					if (distance(playerOrFriend) < distance) {
 						return true;
 					}
 				}
@@ -548,6 +539,9 @@ public class Creature extends NPC {
 
 		// this will keep track of the logic so the client can display it
 		StringBuilder debug = new StringBuilder(100);
+		if (isAttacked()) {
+			System.out.println(target);
+		}
 
 		// are we attacked and we don't attack ourself?
 		if (isAttacked() && target == null) {
@@ -828,5 +822,12 @@ public class Creature extends NPC {
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * is called after the Creature is added to the zone
+	 */
+	public void init() {
+		// do nothing
 	}
 }
