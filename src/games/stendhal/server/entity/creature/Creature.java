@@ -539,9 +539,6 @@ public class Creature extends NPC {
 
 		// this will keep track of the logic so the client can display it
 		StringBuilder debug = new StringBuilder(100);
-		if (isAttacked()) {
-			System.out.println(target);
-		}
 
 		// are we attacked and we don't attack ourself?
 		if (isAttacked() && target == null) {
