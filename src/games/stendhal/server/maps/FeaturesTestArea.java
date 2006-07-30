@@ -117,17 +117,17 @@ public class FeaturesTestArea implements IContent {
 	
 	
 	private void attackableAnimal() {
-		 //(4,56)
+
 		Creature creature = new AttackableAnimal(manager.getCreature("orc"));
 		RespawnPoint point = new RespawnPoint(4, 56, 2);
 		point.set(zone, creature, 1);
-		point.setRespawnTime(60);
+		point.setRespawnTime(60*60*3);
 		zone.addRespawnPoint(point);
 
 		creature = manager.getCreature("deer");
 		point = new RespawnPoint(14, 56, 2);
 		point.set(zone, creature, 1);
-		point.setRespawnTime(60);
+		point.setRespawnTime(60*60*3);
 		zone.addRespawnPoint(point);
 	}
 }
