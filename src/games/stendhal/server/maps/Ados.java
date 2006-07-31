@@ -5,6 +5,7 @@ import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.TurnNotifier;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.RPEntity;
@@ -15,6 +16,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.events.TurnEvent;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
@@ -29,8 +31,9 @@ public class Ados implements IContent {
 	private NPCList npcs;
 	private StendhalRPWorld world;
 	
-	private static class AdosAttackableCreature extends AttackableCreature {
+	private static class AdosAttackableCreature extends AttackableCreature implements TurnEvent {
 		private static long lastShoutTime = 0;
+		private String message = null;
 
 		/**
 		 * An attackable creature that will cause Katinka to shout if it 
@@ -49,8 +52,9 @@ public class Ados implements IContent {
 				long currentTime = System.currentTimeMillis();
 				if (lastShoutTime + 5*60*1000 < currentTime) {
 					lastShoutTime = currentTime;
-					String message = "Katinka shouts: Help! An " + who.get("name") + " is eating our " + this.get("name") + "s.";
-					StendhalRPAction.shout(message.replace('_', ' '));
+					message = "Katinka shouts: Help! An " + who.get("name") + " is eating our " + this.get("name") + "s.";
+					// HACK: we need to wait a turn because the message is lost otherwise
+					TurnNotifier.get().notifyInTurns(0, this);
 				}
 			}
 		}
@@ -58,6 +62,12 @@ public class Ados implements IContent {
 		@Override
 		public Creature getInstance() {
 			return new AdosAttackableCreature(this);
+		}
+
+		public void onTurnReached(int currentTurn) {
+			// HACK: we need to wait a turn because the message is lost otherwise
+			// sends the message to all players
+			StendhalRPAction.shout(message.replace('_', ' '));
 		}
 	}
 
@@ -193,7 +203,7 @@ public class Ados implements IContent {
 		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
 		RespawnPoint point = new RespawnPoint(65, 34, 2);
 		point.set(zone, creature, 1);
-		point.setRespawnTime(10*3); // TODO
+		point.setRespawnTime(creature.getRespawnTime());
 		zone.addRespawnPoint(point);
 
 		// 67, 29 bear
