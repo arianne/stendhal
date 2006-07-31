@@ -1,17 +1,22 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.entity.creature.*;
-import games.stendhal.server.maps.Orril.QuestDropItemOnDeath;
-import games.stendhal.server.rule.defaultruleset.*;
+import games.stendhal.server.RespawnPoint;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Door;
+import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.AttackableCreature;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
+import games.stendhal.server.rule.defaultruleset.DefaultItem;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.game.IRPZone;
-
-import java.util.List;
-import java.util.LinkedList;
 
 public class FeaturesTestArea implements IContent {
 	private StendhalRPZone zone;
@@ -41,33 +46,6 @@ public class FeaturesTestArea implements IContent {
 		}
 	}
 
-	static class AttackableAnimal extends Creature {
-		public AttackableAnimal(Creature copy) {
-			super(copy);
-		}
-
-		@Override
-		public void init() {
-			super.init();
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
-			zone.addPlayerAndFriends(this);
-		}
-
-		@Override
-		public void onDead(RPEntity who) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
-			zone.removePlayerAndFriends(this);
-			super.onDead(who);
-		}
-
-
-		@Override
-		public Creature getInstance() {
-			return new AttackableAnimal(this);
-		}
-
-	}
-	
 	public FeaturesTestArea(StendhalRPWorld world) {
 		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"int_pathfinding"));
@@ -118,7 +96,7 @@ public class FeaturesTestArea implements IContent {
 	
 	private void attackableAnimal() {
 
-		Creature creature = new AttackableAnimal(manager.getCreature("orc"));
+		Creature creature = new AttackableCreature(manager.getCreature("orc"));
 		RespawnPoint point = new RespawnPoint(4, 56, 2);
 		point.set(zone, creature, 1);
 		point.setRespawnTime(60*60*3);
