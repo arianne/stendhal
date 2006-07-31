@@ -124,69 +124,12 @@ public class Friends implements TurnEvent {
 	}
 }
 
-public class MapManager {
-	private StendhalGroovyScript game;
-	private Map storage;
 
-	/**
-	 * Constructor
-	 *
-	 * @param game StendhalGroovyScript
-	 * @param storage Storage
-	 */
-	public MapManager(StendhalGroovyScript game, Map storage) {
-		this.game = game;
-		this.storage = storage;
-		if (storage.get("signs") == null) {
-			storage.put("signs", new HashSet());
-		}
-	}
-
-	public void putSign(int x, int y, String text) {
-		Sign sign=new Sign()
-		sign.setx(x)
-		sign.sety(y)
-		sign.setText(text)
-		storage.get("signs").add(sign);
-		game.add(sign)
-	}
-
-	public void removeSigns() {
-		Set signs = storage.get("signs");
-		if (signs != null) {
-			for (sign in signs) {
-				game.remove(sign);
-			}
-		}
-	}
-
-	public void putSigns() {
-		removeSigns();
-		putSign(48, 38, "Elephants");
-		putSign(48, 41, "Lions and Tigers");
-		putSign(54, 30, "Crabs");
-		putSign(61, 41, "Boars and Deers");
-		putSign(66, 38, "Bears and Black Bears");
-	}
-
-	public void putSignsAway() {
-		removeSigns();
-		putSign(49, 39, "Elephants");
-		putSign(47, 40, "Lions and Tigers");
-		putSign(53, 29, "Crabs");
-		putSign(62, 40, "Boars and Deers");
-		putSign(67, 39, "Bears and Black Bears");
-		putSign(67, 25, "Bears and Black Bears");
-	}
-}
-
-MapManager mapManager = new MapManager(game, storage);
 game.setZone("0_ados_outside_nw");
 
 if (player == null || ((args.length > 0) && (args[0].equals("reset")))) {
-	mapManager.putSigns();
+
 } else {
-	mapManager.putSignsAway();
 
 	Friends friends = new Friends(game, rules);
 	friends.createSoldiers();
