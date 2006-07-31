@@ -31,6 +31,11 @@ public class AttackableCreature extends Creature {
 		super.onDead(who);
 	}
 
+	@Override
+	protected RPEntity getNearestPlayer(double range) {
+		// do not attack each other
+		return null;
+	}
 
 	@Override
 	public Creature getInstance() {
