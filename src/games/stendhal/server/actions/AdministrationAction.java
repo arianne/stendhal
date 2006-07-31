@@ -200,11 +200,7 @@ public class AdministrationAction extends ActionListener {
 			String message = "Administrator SHOUTS: " + action.get("text");
 			rules.addGameEvent(player.getName(), "tellall", action.get("text"));
 
-			for (Player p : rules.getPlayers()) {
-				p.sendPrivateText(message);
-				world.modify(p);
-			}
-
+			StendhalRPAction.shout(message);
 		}
 
 		Log4J.finishMethod(logger, "onTellEverybody");

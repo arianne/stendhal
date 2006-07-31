@@ -568,4 +568,16 @@ public class StendhalRPAction {
 
 		Log4J.finishMethod(logger, "changeZone");
 	}
+
+	/**
+	 * Tell this message all players
+	 *
+	 * @param message Message to tell all players
+	 */
+	public static void shout(String message) {
+		for (Player p : rules.getPlayers()) {
+			p.sendPrivateText(message);
+			world.modify(p);
+		}
+	}
 }
