@@ -1,30 +1,70 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.RespawnPoint;
+import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.creature.AttackableCreature;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
-import marauroa.common.game.IRPZone;
-import java.util.List;
+import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
+
 import java.util.LinkedList;
+import java.util.List;
+
+import marauroa.common.game.IRPZone;
 
 public class Ados implements IContent {
 	//private StendhalRPWorld world;
-
 	private ShopList shops;
-
 	private NPCList npcs;
+	private StendhalRPWorld world;
+	
+	private static class AdosAttackableCreature extends AttackableCreature {
+		private static long lastShoutTime = 0;
+
+		/**
+		 * An attackable creature that will cause Katinka to shout if it 
+		 * is killed by a monster.
+		 *
+		 * @param copy template creature
+		 */
+		public AdosAttackableCreature(Creature copy) {
+			super(copy);
+		}
+
+		@Override
+		public void onDead(RPEntity who) {
+			super.onDead(who);
+			if (! (who instanceof Player)) {
+				long currentTime = System.currentTimeMillis();
+				if (lastShoutTime + 5*60*1000 < currentTime) {
+					lastShoutTime = currentTime;
+					String message = "Katinka shouts: Help! An " + who.get("name") + " is eating our " + this.get("name") + "s.";
+					StendhalRPAction.shout(message.replace('_', ' '));
+				}
+			}
+		}
+
+		@Override
+		public Creature getInstance() {
+			return new AdosAttackableCreature(this);
+		}
+	}
 
 	public Ados(StendhalRPWorld world) {
 		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
-		//this.world = world;
+		this.world = world;
 
 		buildRockArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"0_ados_rock")));
@@ -146,6 +186,34 @@ public class Ados implements IContent {
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.addNPC(npc);
+
+		// put special RespawnPoints
+		// 65, 34 bear
+		DefaultEntityManager manager = (DefaultEntityManager) world.getRuleManager().getEntityManager();
+		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
+		RespawnPoint point = new RespawnPoint(65, 34, 2);
+		point.set(zone, creature, 1);
+		point.setRespawnTime(10*3); // TODO
+		zone.addRespawnPoint(point);
+
+		// 67, 29 bear
+		point = new RespawnPoint(67, 29, 2);
+		point.set(zone, creature, 1);
+		point.setRespawnTime(creature.getRespawnTime());
+		zone.addRespawnPoint(point);
+		
+		// 67, 31 black_bear
+		creature = new AdosAttackableCreature(manager.getCreature("black_bear"));
+		point = new RespawnPoint(67, 31, 2);
+		point.set(zone, creature, 1);
+		point.setRespawnTime(creature.getRespawnTime());
+		zone.addRespawnPoint(point);
+
+		// 67, 35 black_bear
+		point = new RespawnPoint(67, 35, 2);
+		point.set(zone, creature, 1);
+		point.setRespawnTime(creature.getRespawnTime());
+		zone.addRespawnPoint(point);
 	}
 
 	private void buildZooSub1Area(StendhalRPZone zone) {
