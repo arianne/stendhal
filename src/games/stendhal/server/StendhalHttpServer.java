@@ -35,9 +35,12 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
+import simple.http.PipelineHandler;
+import simple.http.PipelineHandlerFactory;
 import simple.http.ProtocolHandler;
 import simple.http.Request;
 import simple.http.Response;
+import simple.http.connect.Connection;
 import simple.http.connect.ConnectionFactory;
 import simple.http.load.LoaderEngine;
 import simple.http.serve.CacheContext;
@@ -46,6 +49,7 @@ import simple.http.serve.Context;
 import simple.http.serve.FileContext;
 import simple.http.serve.ProtocolHandlerFactory;
 import simple.template.View;
+import simple.util.process.ProcessQueue;
 
 public class StendhalHttpServer extends StendhalServerExtension implements
         ProtocolHandler {
@@ -336,7 +340,12 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             engine.load("securescript", "games.stendhal.server.StendhalHttpServer$SecureScriptService");
             engine.link("*.groovy", "securescript");
             this.handler = ProtocolHandlerFactory.getInstance(engine);
-            ConnectionFactory.getConnection(this).connect(new ServerSocket(PORT));
+            //ProcessQueue.getInstance().resize(1);
+            
+            PipelineHandler piplelineHandler = PipelineHandlerFactory.getInstance(this, 1, 1000);
+            
+            Connection connection = ConnectionFactory.getConnection(piplelineHandler);
+            connection.connect(new ServerSocket(PORT));
             logger.info("Started http server on port " + PORT);
         } catch (Exception e) {
             logger.error(e, e);
