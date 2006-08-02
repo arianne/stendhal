@@ -25,14 +25,17 @@ public class Postman implements Runnable {
     private static Logger logger = Logger.getLogger(Postman.class);
     private Properties messages = new Properties();
     private ariannexp clientManager;
+    private PostmanIRC postmanIRC;
     
     /**
      * Creates a new postman
      *
      * @param clientManager ClientManager
+     * @param postmanIRC postmanIRC
      */
-    public Postman(ariannexp clientManager) {
+    public Postman(ariannexp clientManager, PostmanIRC postmanIRC) {
         this.clientManager = clientManager;
+        this.postmanIRC = postmanIRC;
         Thread t = new Thread(this, "Postman");
         t.setPriority(Thread.MIN_PRIORITY);
         t.setDaemon(true);
@@ -94,7 +97,13 @@ public class Postman implements Runnable {
 	                            tell(from, "Sorry, I did not understand you. (Did you forget the \"tell\"?)\n" + helpMessage);
 	                        }
 	                    } else if (arianneCmd.equals("Players")) {
-	                            onWhoResponse(st);
+	                        onWhoResponse(st);
+	                    } else if (arianneCmd.equalsIgnoreCase("shouts:")) {
+	                    	postmanIRC.sendMessage("#arianne", text);
+	                    	postmanIRC.sendMessage("#arianne-support", text);
+	                    } else if (arianneCmd.equalsIgnoreCase("asks") || arianneCmd.equalsIgnoreCase("answers") || arianneCmd.equalsIgnoreCase("answer")) {
+	                    	// answer is a typo in old server
+	                    	postmanIRC.sendMessage("#arianne-support", text);
 	                    }
 	                }
 
