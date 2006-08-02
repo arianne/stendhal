@@ -84,7 +84,7 @@ public class ChatAction extends ActionListener {
 
 		if (action.has("text")) {
 			String message = player.getName() + " asks for support to ADMIN: "
-					+ action.get("text");
+					+ action.get("text") + "\r\nPlease use /supportanswer " + player.getName() + " to answer.";
 
 			rules.addGameEvent(player.getName(), "support", action.get("text"));
 
@@ -93,14 +93,16 @@ public class ChatAction extends ActionListener {
 				if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
 					p.sendPrivateText(message);
 					world.modify(p);
-					found = true;
+					if (!p.getName().equals("postman")) {
+						found = true;
+					}
 				}
 			}
 
 			if (found) {
 				player.sendPrivateText("You ask for support: " + action.get("text"));
 			} else {
-				player.sendPrivateText("Sorry, your support request cannot be processed because no supporter is online.");
+				player.sendPrivateText("Sorry, your support request cannot be processed because no supporter is in game right now.");
 			}
 			world.modify(player);
 		}
