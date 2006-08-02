@@ -166,7 +166,7 @@ public class AdministrationAction extends ActionListener {
 		Log4J.startMethod(logger, "supportanswer");
 
 		if (action.has("target") && action.has("text")) {
-			String message = player.getName() + " answer " + action.get("target") + "'s support question: " + action.get("text");
+			String message = player.getName() + " answers " + action.get("target") + "'s support question: " + action.get("text");
 
 			rules.addGameEvent(player.getName(), "supportanswer", action.get("target"), action.get("text"));
 
