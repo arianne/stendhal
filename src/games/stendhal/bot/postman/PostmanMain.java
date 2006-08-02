@@ -136,7 +136,9 @@ public class PostmanMain extends Thread {
 		try {
 			clientManager.connect(host, Integer.parseInt(port), tcp);
 			clientManager.login(username, password);
-			postman = new Postman(clientManager);
+			PostmanIRC postmanIRC = new PostmanIRC();
+			postmanIRC.connect();
+			postman = new Postman(clientManager, postmanIRC);
 		} catch (SocketException e) {
 			Runtime.getRuntime().halt(1);
 			return;
@@ -144,6 +146,9 @@ public class PostmanMain extends Thread {
 			System.out.println("Cannot connect to Stendhal server. Server is down?");
 			// TODO: shutdown cleanly
 			//return;
+			Runtime.getRuntime().halt(1);
+		} catch (Exception e) {
+			System.out.println(e);
 			Runtime.getRuntime().halt(1);
 		}
 
