@@ -37,7 +37,8 @@ public class Path {
 	private static StepCallback callback;
 
 	/** The maximum time spent on a search for one particular path (in ms) */
-	private static final int MAX_PATHFINDING_TIME = 100;
+	// Decreased turn time to 10ms see: http://sourceforge.net/tracker/index.php?func=detail&aid=1532769&group_id=1111&atid=101111
+	private static final int MAX_PATHFINDING_TIME = 10;
 
 	public static int steps;
 
@@ -156,6 +157,8 @@ public class Path {
 	 *            the maximum distance (air line) a possible path may be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
+	private static long time = 0;
+	private static int counter = 0;
 	public static List<Node> searchPath(Entity entity, StendhalRPZone zone, int x, int y,
 			Rectangle2D destination, double maxDistance) {
 		
@@ -164,6 +167,7 @@ public class Path {
 		}
 		
 		// Log4J.startMethod(logger, "searchPath");
+//		long startTimeNano = System.nanoTime(); 
 		long startTime = System.currentTimeMillis();
 
 		Pathfinder path = new Pathfinder();
@@ -188,8 +192,11 @@ public class Path {
 		}
 
 		if (path.getStatus() == Pathfinder.IN_PROGRESS) {
+//			logger.warn("Pathfinding aborted: " + entity.get("name") + " (" + x + ", " + y + ")    Average Pathfinding time: " + ((float)time / counter / 1000000));
 			return new LinkedList<Node>();
 		}
+//		time = time + System.nanoTime() - startTimeNano;
+//		counter++;
 
 		long endTime = System.currentTimeMillis();
 		logger.debug("Route (" + x + "," + y + ")-(" + destination + ") S:"
