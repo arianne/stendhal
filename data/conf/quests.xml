@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+quests.xml
+This file contains all the descriptive data about quests.
+
+State: EXPERIMENTAL to help me think about a quest system
+
+-->
+
+<quests>
+
+
+	<quest name="ArmorForDagobert">
+		<title>Armor For Dagobert</title>
+		<description>
+			Dagobert, the consultant at the bank of Semos, asks you to 
+			find a leather_cuirass for him.
+		</description>
+ 		<gm-description>
+ * QUEST: Armor for Dagobert
+ * 
+ * PARTICIPANTS:
+ * - Dagobert, the consultant at the bank of Semos
+ * 
+ * STEPS:
+ * - Dagobert asks you to find a leather_cuirass.
+ * - You get a leather_cuirass, e.g. by killing a cyclops.
+ * - Dagobert sees your leather_cuirass and asks for it and then thanks you.
+ * 
+ * REWARD:
+ * - 50 XP
+ * - 80 gold
+ * 
+ * REPETITIONS:
+ * - None.
+ 		</gm-description>
+		<history>
+			<event name="x">I have met Dagobert.</event>
+		</history>
+		<hints>
+			<hint name="x">A leather_cuirass is the traditional cyclops armor. Some cyclopes are living in the dungeon deep under the city.</hint>
+		</hints>
+	</quest>
+</quests>
