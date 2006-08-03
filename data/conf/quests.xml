@@ -19,7 +19,7 @@ State: EXPERIMENTAL to help me think about a quest system
 		<title>Armor For Dagobert</title>
 		<repeatable>true</repeatable>
 		<description>
-			Dagobert, the consultant at the bank of Semos, asks you to 
+			Dagobert, the consultant at the bank of Semos, asked me to 
 			find a leather_cuirass for him.
 		</description>
  		<gm-description>
@@ -41,10 +41,15 @@ State: EXPERIMENTAL to help me think about a quest system
  * - None.
  		</gm-description>
 		<history>
-			<item name="x">I have met Dagobert.</item>
+			<item name="FIRST_CHAT">I have met Dagobert. He is the consultant at the bank in Semos.</item>
+			<item name="QUEST_ACCEPTED">I promissed to find a leather_cuirass for him because he has been robbed.</item>
+			<item name="QUEST_REJECTED">He asked me to find a leather_cuirass but I rejected his request.</item>
+			<item name="FOUND_ITEM">I found a leather_cuirass and will take it to Dagobert</item>
+			<item name="DONE">I took the leather_cuirass to Dagobert. He thanked me and gave a small reward.</item>
 		</history>
 		<hints>
-			<item name="x">A leather_cuirass is the traditional cyclops armor. Some cyclopes are living in the dungeon deep under the city.</item>
+			<item name="DROP_ITEM">I see that you take a leather_cuirass from a dead cyclops</item>
+			<item name="FIND_CREATURE">I see that you fight some cyclopes living in the dungeon deep under Semos.</item>
 		</hints>
 	</quest>
 </quests>
