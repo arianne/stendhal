@@ -17,29 +17,11 @@ State: EXPERIMENTAL to help me think about a quest system
 
 	<quest name="ArmorForDagobert">
 		<title>Armor For Dagobert</title>
-		<repeatable>true</repeatable>
+		<repeatable done="false" rejected="true" />
 		<description>
 			Dagobert, the consultant at the bank of Semos, asked me to 
 			find a leather_cuirass for him.
 		</description>
- 		<gm-description>
- * QUEST: Armor for Dagobert
- * 
- * PARTICIPANTS:
- * - Dagobert, the consultant at the bank of Semos
- * 
- * STEPS:
- * - Dagobert asks you to find a leather_cuirass.
- * - You get a leather_cuirass, e.g. by killing a cyclops.
- * - Dagobert sees your leather_cuirass and asks for it and then thanks you.
- * 
- * REWARD:
- * - 50 XP
- * - 80 gold
- * 
- * REPETITIONS:
- * - None.
- 		</gm-description>
 		<history>
 			<item name="FIRST_CHAT">I have met Dagobert. He is the consultant at the bank in Semos.</item>
 			<item name="QUEST_ACCEPTED">I promissed to find a leather_cuirass for him because he has been robbed.</item>
