@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -22,8 +21,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class MeetNomyr implements IQuest {
-	private NPCList npcs;
+public class MeetNomyr extends AQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Nomyr Ahba");
@@ -57,8 +55,9 @@ public class MeetNomyr implements IQuest {
 				null);
 	}
 
-	public MeetNomyr(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 
 		step_1();
 	}

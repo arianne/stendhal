@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -25,10 +24,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class NewsFromHackim implements IQuest {
-	private StendhalRPWorld world;
-
-	private NPCList npcs;
+public class NewsFromHackim extends AQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Hackim Easso");
@@ -119,9 +115,9 @@ public class NewsFromHackim implements IQuest {
 				});
 	}
 
-	public NewsFromHackim(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
-		this.world = w;
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 
 		step_1();
 		step_2();

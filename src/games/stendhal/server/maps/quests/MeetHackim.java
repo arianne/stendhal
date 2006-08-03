@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -23,10 +22,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class MeetHackim implements IQuest {
-	private StendhalRPWorld world;
-
-	private NPCList npcs;
+public class MeetHackim extends AQuest {
 
 	private void step_1() {
 
@@ -94,9 +90,9 @@ public class MeetHackim implements IQuest {
 
 	}
 
-	public MeetHackim(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
-		this.world = w;
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 
 		step_1();
 	}

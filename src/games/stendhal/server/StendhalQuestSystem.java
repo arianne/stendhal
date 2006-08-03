@@ -1,8 +1,12 @@
 package games.stendhal.server;
 
-import marauroa.common.Log4J;
-import org.apache.log4j.Logger;
 import games.stendhal.server.maps.quests.IQuest;
+
+import java.lang.reflect.Constructor;
+
+import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
 
 public class StendhalQuestSystem {
 	/** the logger instance. */
@@ -56,13 +60,14 @@ public class StendhalQuestSystem {
 				return false;
 			}
 
+			// Create a new instance.
 			logger.info("Loading Quest: " + name);
-			java.lang.reflect.Constructor constr = entityClass.getConstructor(
-					StendhalRPWorld.class, StendhalRPRuleProcessor.class);
+			Constructor constr = entityClass.getConstructor();
+			IQuest quest = (IQuest) constr.newInstance();
 
-			// simply creatre a new instance. The constructor creates all
-			// additionally objects
-			constr.newInstance(world, rules);
+			// init and add to world
+			quest.init(name);
+			quest.addToWorld(world, rules);
 			return true;
 		} catch (Exception e) {
 			logger.warn("Quest(" + name + ") loading failed.", e);

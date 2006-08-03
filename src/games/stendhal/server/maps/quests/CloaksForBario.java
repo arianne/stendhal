@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -30,11 +29,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class CloaksForBario implements IQuest {
-	
-	private StendhalRPWorld world;
-
-	private NPCList npcs;
+public class CloaksForBario extends AQuest {
 
 	private static final int REQUIRED_CLOAKS = 10;
 	
@@ -170,9 +165,9 @@ public class CloaksForBario implements IQuest {
 			});
 	}
 
-	public CloaksForBario(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
-		this.world = w;
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 
 		step_1();
 		step_2();

@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /** 
@@ -27,9 +26,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class IntroducePlayers implements IQuest {	private StendhalRPWorld world;
-	private NPCList npcs;
-	private void step_1() {		SpeakerNPC npc = npcs.get("Tad");
+public class IntroducePlayers extends AQuest {	private void step_1() {		SpeakerNPC npc = npcs.get("Tad");
 		npc.add(ConversationStates.ATTENDING,
 				SpeakerNPC.QUEST_MESSAGES,
 				null,
@@ -164,9 +161,10 @@ public class IntroducePlayers implements IQuest {	private StendhalRPWorld world
 				});
 	}
 
-	public IntroducePlayers(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
-		this.world = w;
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
+
 		step_1();
 		step_2();
 		step_3();

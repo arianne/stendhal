@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -22,10 +21,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class MeetHayunn implements IQuest
-  {
-  private StendhalRPWorld world;
-  private NPCList npcs;
+public class MeetHayunn extends AQuest {
 
   private void step_1()
     {
@@ -78,11 +74,9 @@ public class MeetHayunn implements IQuest
      npc.add(new int[]{51,54},"yes",null,1,"Oh... I see... You think I have nothing to teach you...Ok, tell me what you want from me.",null);
     }
 
-  public MeetHayunn(StendhalRPWorld w, StendhalRPRuleProcessor rules)
-    {
-    this.npcs=NPCList.get();
-    this.world=w;
-
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
     step_1();
     }
   }

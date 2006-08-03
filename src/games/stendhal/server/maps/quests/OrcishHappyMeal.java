@@ -1,6 +1,8 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.*;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
@@ -8,7 +10,10 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
@@ -29,8 +34,12 @@ import marauroa.common.game.IRPZone;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class OrcishHappyMeal implements IQuest {
-	public OrcishHappyMeal(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+public class OrcishHappyMeal extends AQuest {
+
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
+
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"-4_semos_dungeon"));
 		NPCList npcs = NPCList.get();

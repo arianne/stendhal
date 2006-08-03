@@ -1,15 +1,18 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.*;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.game.IRPZone;
 
@@ -32,10 +35,7 @@ import marauroa.common.game.IRPZone;
  * REPETITIONS:
  * - Just once.
  */
-public class SevenCherubs implements IQuest {
-	private StendhalRPWorld world;
-
-	private NPCList npcs;
+public class SevenCherubs extends AQuest {
 
 	static class CherubNPC extends SpeakerNPC {
 		public CherubNPC(String name, int x, int y) {
@@ -132,9 +132,9 @@ public class SevenCherubs implements IQuest {
 		}
 	}
 
-	public SevenCherubs(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
-		this.world = w;
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 
 		StendhalRPZone zone;
 		SpeakerNPC npc;

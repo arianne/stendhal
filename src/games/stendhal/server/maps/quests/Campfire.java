@@ -6,7 +6,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.rule.EntityManager;
 
@@ -30,13 +29,8 @@ import games.stendhal.server.rule.EntityManager;
  * - Unlimited, but 1000 turns (ca. 5 minutes) of waiting are required
  *   between repetitions
  */
-public class Campfire implements IQuest {
-	private StendhalRPWorld world;
+public class Campfire extends AQuest {
 
-	private StendhalRPRuleProcessor rules;
-	
-	private NPCList npcs;
-	
 	private static final int REQUIRED_WOOD = 10;
 
 	private boolean canStartQuestNow(SpeakerNPC npc, Player player) {
@@ -167,10 +161,9 @@ public class Campfire implements IQuest {
 				null);
 	}
 
-	public Campfire(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
-		this.world = world;
-		this.rules = rules;
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 
 		step_1();
 		step_2();

@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -21,11 +20,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class MeetMonogenes implements IQuest
-{
-	private StendhalRPWorld world;
-	private NPCList npcs;
-	
+public class MeetMonogenes extends AQuest {
+
 	private void step_1() {
 		SpeakerNPC npc=npcs.get("Monogenes");
 		
@@ -57,10 +53,10 @@ public class MeetMonogenes implements IQuest
 		});
 	}
 	
-	public MeetMonogenes(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs=NPCList.get();
-		this.world=w;
-		
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
+
 		step_1();
 	}
 }

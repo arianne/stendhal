@@ -2,12 +2,10 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /** 
@@ -28,10 +26,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class LookBookforCeryl implements IQuest {
-	private StendhalRPWorld world;
-
-	private NPCList npcs;
+public class LookBookforCeryl extends AQuest {
 
 	private void step_1() {
 
@@ -221,9 +216,9 @@ public class LookBookforCeryl implements IQuest {
 				});
 	}
 
-	public LookBookforCeryl(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
-		this.world = w;
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 
 		step_1();
 		step_2();

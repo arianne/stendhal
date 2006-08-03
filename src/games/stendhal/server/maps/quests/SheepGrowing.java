@@ -1,22 +1,23 @@
 package games.stendhal.server.maps.quests;
 
-import marauroa.common.game.IRPZone;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalRPRuleProcessor;
-
+import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-
-import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
+import marauroa.common.game.IRPZone;
 
 
 /**
@@ -36,8 +37,11 @@ import java.util.*;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class SheepGrowing implements IQuest {
-	public SheepGrowing(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+public class SheepGrowing extends AQuest {
+
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"0_semos_village_w"));
 		NPCList npcs = NPCList.get();

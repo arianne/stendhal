@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -28,10 +27,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class ZooFood implements IQuest {
-	private StendhalRPWorld world;
-
-	private NPCList npcs;
+public class ZooFood extends AQuest {
 	
 	private static final int REQUIRED_HAM = 10;
 
@@ -162,10 +158,9 @@ public class ZooFood implements IQuest {
 				});
 	}
 
-	public ZooFood(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
-		this.world = w;
-
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 		step_1();
 		step_2();
 		step_3();

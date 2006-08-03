@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Arrays;
@@ -33,11 +32,7 @@ import java.util.List;
  * REPETITIONS:
  * - None.
  */
-public class WeaponsCollector implements IQuest {
-	
-	private StendhalRPWorld world;
-
-	private NPCList npcs;
+public class WeaponsCollector extends AQuest {
 
 	private static final List<String> neededWeapons = Arrays.asList(
 		"axe",
@@ -247,10 +242,9 @@ public class WeaponsCollector implements IQuest {
 				null);
 	}
 
-	public WeaponsCollector(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
-		this.world = w;
-
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 		step_1();
 		step_2();
 		step_3();

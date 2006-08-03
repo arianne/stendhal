@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -23,9 +22,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class MeetKetteh implements IQuest {
-
-	private NPCList npcs;
+public class MeetKetteh extends AQuest{
 
 	private void step1() {
 
@@ -90,8 +87,9 @@ public class MeetKetteh implements IQuest {
                 });
 	}
 
-	public MeetKetteh(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 
 		step1();
 	}

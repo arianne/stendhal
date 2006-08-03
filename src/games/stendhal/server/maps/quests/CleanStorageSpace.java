@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -22,8 +21,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class CleanStorageSpace implements IQuest {
-	private NPCList npcs;
+public class CleanStorageSpace extends AQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Eonna");
@@ -120,8 +118,9 @@ public class CleanStorageSpace implements IQuest {
 				null);
 	}
 
-	public CleanStorageSpace(StendhalRPWorld w, StendhalRPRuleProcessor rules) {
-		this.npcs = NPCList.get();
+	@Override
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+		super.addToWorld(world, rules);
 
 		step_1();
 		step_2();
