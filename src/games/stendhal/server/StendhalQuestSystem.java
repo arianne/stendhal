@@ -51,17 +51,8 @@ public class StendhalQuestSystem {
 					.forName("games.stendhal.server.maps.quests." + name);
 
 			boolean implementsIQuest = false;
-
-			Class[] interfaces = entityClass.getInterfaces();
-			for (Class interf : interfaces) {
-				if (interf.equals(IQuest.class)) {
-					implementsIQuest = true;
-					break;
-				}
-			}
-
-			if (implementsIQuest == false) {
-				logger.debug("Class doesn't implement IQuest interface.");
+			if (!IQuest.class.isAssignableFrom(entityClass)) { 
+				logger.error("Class " + name + " doesn't implement IQuest interface.");
 				return false;
 			}
 
