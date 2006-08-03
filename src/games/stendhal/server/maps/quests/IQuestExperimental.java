@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 
 import java.util.List;
@@ -12,9 +14,19 @@ public interface IQuestExperimental extends IQuest{
 
 	/**
 	 * Initialize the quest on server startup.
-	 * This method may create or enhance SpeakerNPCs.
+	 *
+	 * @param name Name of this quest
 	 */
-	public void init();
+	public void init(String name);
+
+
+	/**
+	 * adds the quest to the game world (e.g. by placing SpeakerNPCs there)
+	 *
+	 * @param world StendhalRPWorld
+	 * @param rules StendhalRPRuleProcessor
+	 */
+	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules);
 
 	/**
 	 * Adjusts the quest states of an old release. This method is
