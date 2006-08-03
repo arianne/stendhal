@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.Player;
+
 import java.util.List;
 
 /** 
@@ -18,13 +20,13 @@ public interface IQuestExperimental extends IQuest{
 	
 	public String getGMDescription();
 	
-	public boolean isStarted();
+	public boolean isStarted(Player player);
 	
-	public boolean isCompleted();
+	public boolean isCompleted(Player player);
 	
-	public boolean isRepeatable();
+	public boolean isRepeatable(Player player);
 	
-	public List<String> getHistory();
+	public List<String> getHistory(Player player);
 	
-	public String getHint();
+	public String getHint(Player player);
 }
