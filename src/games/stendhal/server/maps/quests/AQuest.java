@@ -26,6 +26,7 @@ public class AQuest implements IQuest {
 	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
 		this.npcs = NPCList.get();
 		this.world = world;
+		this.rules = rules;
 	}
 
 	public void convertOnUpdate(Player player) {
