@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author hendrik
  */
-public class AQuest implements IQuestExperimental {
+public class AQuest implements IQuest {
 	protected String name = null;
 	protected NPCList npcs = null;
 	protected StendhalRPRuleProcessor rules = null;
