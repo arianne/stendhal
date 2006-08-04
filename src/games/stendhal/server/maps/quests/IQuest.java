@@ -19,7 +19,6 @@ public interface IQuest {
 	 */
 	public void init(String name);
 
-
 	/**
 	 * adds the quest to the game world (e.g. by placing SpeakerNPCs there)
 	 *
@@ -81,4 +80,8 @@ public interface IQuest {
 	 * @return list of history item-names
 	 */
 	public List<String> getHint(Player player);
+	
+
+	public String getName();
+
 }
