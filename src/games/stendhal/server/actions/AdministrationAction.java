@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -653,6 +654,10 @@ public class AdministrationAction extends ActionListener {
 				}
 			}
 		}
+		if (inspected instanceof Player) {
+			st.append("\r\n" + StendhalQuestSystem.get().listQuests((Player) inspected));
+		}
+		
 		player.sendPrivateText(st.toString());
 		Log4J.finishMethod(logger, "onInspect");
 	}
