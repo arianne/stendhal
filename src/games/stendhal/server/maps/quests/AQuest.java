@@ -29,12 +29,16 @@ public class AQuest implements IQuest {
 
 	/** StendhalRPWorld * */
 	protected StendhalRPWorld world = null;
-
 	
 	private static final List<String> emptyList = new ArrayList<String>();
 
 	public void init(String name) {
 		this.name = name;
+	}
+	
+	public void init(String name, String slotName) {
+		this.name = name;
+		this.slotName = slotName;
 	}
 
 	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
@@ -70,6 +74,10 @@ public class AQuest implements IQuest {
 
 	public boolean isStarted(Player player) {
 		return player.hasQuest(slotName);
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }
