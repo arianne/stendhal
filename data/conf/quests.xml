@@ -26,11 +26,11 @@ State: EXPERIMENTAL to help me think about a quest system
 			<entry name="FIRST_CHAT">I have met Dagobert. He is the consultant at the bank in Semos.</entry>
 			<entry name="QUEST_ACCEPTED">I promissed to find a leather_cuirass for him because he has been robbed.</entry>
 			<entry name="QUEST_REJECTED">He asked me to find a leather_cuirass but I rejected his request.</entry>
-			<entry name="FOUND_entry">I found a leather_cuirass and will take it to Dagobert.</entry>
+			<entry name="FOUND_ITEM">I found a leather_cuirass and will take it to Dagobert.</entry>
 			<entry name="DONE">I took the leather_cuirass to Dagobert. He thanked me and gave a small reward.</entry>
 		</history>
 		<hints>
-			<entry name="DROP_entry">I see that you will take a leather_cuirass from a dead cyclops.</entry>
+			<entry name="DROP_ITEM">I see that you will take a leather_cuirass from a dead cyclops.</entry>
 			<entry name="FIND_CREATURE">I see that you will fight some cyclopes living in the dungeon deep under Semos.</entry>
 		</hints>
 	</quest>
