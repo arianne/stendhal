@@ -48,7 +48,7 @@ public class ArmorForDagobert extends AQuest {
 		if (questState.equals("rejected")) {
 			res.add("QUEST_REJECTED");
 		}
-		if (questState.equals("start")) {
+		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("QUEST_ACCEPTED");
 		}
 		if ((questState.equals("start") && player.isEquipped("leather_cuirass")) || questState.equals("done")) {
