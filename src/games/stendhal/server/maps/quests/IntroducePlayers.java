@@ -48,7 +48,7 @@ public class IntroducePlayers extends AQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "ilisa", "corpse&herbs", "potion", "done")) {
 			res.add("GET_FLASK");
 		}
-		if ((questState.equals("start") && player.isEquipped("arandula")) || player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs", "potion", "done")) {
+		if ((questState.equals("start") && player.isEquipped("flask")) || player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs", "potion", "done")) {
 			res.add("GOT_FLASK");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs", "potion", "done")) {
