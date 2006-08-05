@@ -165,7 +165,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		if (outfit % 100 != 0) {
 			int dressIdx = outfit % 100;
 			if (!Debug.NEW_CLIENT && dressIdx == 17) {
-				dressIdx = 255;
+				dressIdx = 99;
 			}
 			Sprite dress = store.getSprite("data/sprites/outfit/dress_"
 					+ dressIdx + ".png");
