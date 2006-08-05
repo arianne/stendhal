@@ -1,0 +1,43 @@
+Most outfit parts are take from the Charas Project at http://charas-project.net
+
+
+Dress
+=====
+
+Hair
+====
+
+Head
+====
+
+Body
+====
+
+
+
+
+Planned new ones
+================
+
+body 14014; face 1121; dress 777; hair 2555
+http://charas-project.net/charas2/res_viewer.php?img=14014_1_100_t_t_t_t_t_t_t_t_t_t_t_t-777_1_100_t_t_t_t_t_t_t_t_t_t_t_t-2555_1_100_t_t_t_t_t_t_t_t_t_t_t_t-1121_1_100_t_t_t_t_t_t_t_t_t_t_t_t&texts=
+
+body 14014; face 5762; dress 786; hair 789
+http://charas-project.net/charas2/res_viewer.php?img=14014_1_100_t_t_t_t_t_t_t_t_t_t_t_t-5762_1_100_t_t_t_t_t_t_t_t_t_t_t_t-786_1_100_t_t_t_t_t_t_t_t_t_t_t_t-789_1_100_t_t_t_t_t_t_t_t_t_t_t_t&texts=
+
+body 14014; face 128; hair 1954; dress 1839
+http://charas-project.net/charas2/res_viewer.php?img=14014_1_100_t_t_t_t_t_t_t_t_t_t_t_t-128_1_100_t_t_t_t_t_t_t_t_t_t_t_t-1839_1_100_t_t_t_t_t_t_t_t_t_t_t_t-1954_1_100_t_t_t_t_t_t_t_t_t_t_t_t&texts=
+
+body 14014; face 3551; hair 146; dress 962
+http://charas-project.net/charas2/res_viewer.php?img=14014_1_100_t_t_t_t_t_t_t_t_t_t_t_t-3551_1_100_t_t_t_t_t_t_t_t_t_t_t_t-962_1_100_t_t_t_t_t_t_t_t_t_t_t_t-146_1_100_t_t_t_t_t_t_t_t_t_t_t_t&texts=
+
+
+body: 4369; face 1089; dress 4632
+http://charas-project.net/charas2/res_viewer.php?img=4369_1_100_t_t_t_t_t_t_t_t_t_t_t_t-1089_1_100_t_t_t_t_t_t_t_t_t_t_t_t-4632_1_100_t_t_t_t_t_t_t_t_t_t_t_t-&texts=
+
+body: 14014; face 2589; dress 2173; hair 151
+http://charas-project.net/charas2/res_viewer.php?img=14014_1_100_t_t_t_t_t_t_t_t_t_t_t_t-2589_1_100_t_t_t_t_t_t_t_t_t_t_t_t-151_1_100_t_t_t_t_t_t_t_t_t_t_t_t-2173_1_100_t_t_t_t_t_t_t_t_t_t_t_t&texts=
+
+
+body: 14014; face 1121; dress 221, hair 2555
+http://charas-project.net/charas2/res_viewer.php?img=14014_1_100_t_t_t_t_t_t_t_t_t_t_t_t-221_1_100_t_t_t_t_t_t_t_t_t_t_t_t-2555_1_100_t_t_t_t_t_t_t_t_t_t_t_t-1121_1_100_t_t_t_t_t_t_t_t_t_t_t_t&texts=
