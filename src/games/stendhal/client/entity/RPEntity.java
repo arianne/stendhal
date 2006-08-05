@@ -12,19 +12,27 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
+import games.stendhal.client.events.AttackEvent;
+import games.stendhal.client.events.HPEvent;
+import games.stendhal.client.events.KillEvent;
+import games.stendhal.client.events.TalkEvent;
+import games.stendhal.common.Debug;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Map;
 import java.util.HashMap;
-
-import games.stendhal.client.events.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
@@ -319,9 +327,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			atkXp = diff.getInt("atk_xp");
 		if (diff.has("def_xp"))
 			defXp = diff.getInt("def_xp");
-		if (diff.has("atk_item"))
+		if (diff.has("atk_item") && Debug.NEW_CLIENT)
 			atkItem = diff.getInt("atk_item");
-		if (diff.has("def_item"))
+		if (diff.has("def_item") && Debug.NEW_CLIENT)
 			defItem = diff.getInt("def_item");
 
 		Color nameColor = Color.white;

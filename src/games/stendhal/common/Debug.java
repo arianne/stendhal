@@ -44,6 +44,12 @@ public class Debug {
 	 * CVS
 	 */
 	public static final boolean EMULATE_PERCEPTION_LOSS = false;
+	
+	/**
+	 * This flag is used to deactivate feature with require the current
+	 * development version of the client.
+	 */
+	public static final boolean NEW_CLIENT = true;
 
 	/** no instance */
 	private Debug() {
