@@ -6,6 +6,9 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** 
  * QUEST: Introduce new players to game
  * PARTICIPANTS:  * - Tad
@@ -26,7 +29,47 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class IntroducePlayers extends AQuest {	private void step_1() {		SpeakerNPC npc = npcs.get("Tad");
+public class IntroducePlayers extends AQuest {
+	private static final String QUEST_SLOT = "introduce_players";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest("TadFirstChat")) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (player.isQuestInState(QUEST_SLOT, "start", "ilisa", "corpse&herbs", "potion", "done")) {
+			res.add("GET_FLASK");
+		}
+		if ((questState.equals("start") && player.isEquipped("arandula")) || player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs", "potion", "done")) {
+			res.add("GOT_FLASK");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs", "potion", "done")) {
+			res.add("FLASK_TO_ILISA");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "corpse&herbs", "potion", "done")) {
+			res.add("GET_HERB");
+		}
+		if ((questState.equals("corpse&herbs") && player.isEquipped("arandula")) || player.isQuestInState(QUEST_SLOT, "potion", "done")) {
+			res.add("GET_HERB");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "potion", "done")) {
+			res.add("TALK_TO_TAD");
+		}
+		if (questState.equals("done")) {
+			res.add("DONE");
+		}
+		return res;
+	}
+
+	private void step_1() {		SpeakerNPC npc = npcs.get("Tad");
 		npc.add(ConversationStates.ATTENDING,
 				SpeakerNPC.QUEST_MESSAGES,
 				null,
