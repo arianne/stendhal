@@ -7,6 +7,9 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * QUEST: Armor for Dagobert
  * 
@@ -26,6 +29,36 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * - None.
  */
 public class ArmorForDagobert extends AQuest {
+	
+	private static final String QUEST_SLOT = "armor_dagobert";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+		}
+		if (questState.equals("start")) {
+			res.add("QUEST_ACCEPTED");
+		}
+		if ((questState.equals("start") && player.isEquipped("leather_cuirass")) || questState.equals("done")) {
+			res.add("FOUND_ITEM");
+		}
+		if (questState.equals("done")) {
+			res.add("DONE");
+		}
+		return res;
+	}
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Dagobert");
@@ -38,7 +71,7 @@ public class ArmorForDagobert extends AQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (!player.isQuestCompleted("armor_dagobert")) {
+						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?");
 						} else {
 							engine.say("Thank you very much for the armor, but I don't have any other task for you.");
@@ -55,7 +88,7 @@ public class ArmorForDagobert extends AQuest {
 				"Once I had a nice #leather_cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						player.setQuest("armor_dagobert", "start");
+						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
 		
@@ -67,7 +100,7 @@ public class ArmorForDagobert extends AQuest {
 				"Well, then I guess I'll just duck and cover.",
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						player.setQuest("armor_dagobert", "rejected");
+						player.setQuest(QUEST_SLOT, "rejected");
 					}
 				});
 		
@@ -93,8 +126,8 @@ public class ArmorForDagobert extends AQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
-						return player.hasQuest("armor_dagobert")
-								&& player.getQuest("armor_dagobert").equals("start");
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals("start");
 					}
 				}, 
 				ConversationStates.ATTENDING,
@@ -131,7 +164,7 @@ public class ArmorForDagobert extends AQuest {
 						player.addXP(50);
 						
 						world.modify(player);
-						player.setQuest("armor_dagobert", "done");
+						player.setQuest(QUEST_SLOT, "done");
 						engine.say("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.");
 					}
 				});
