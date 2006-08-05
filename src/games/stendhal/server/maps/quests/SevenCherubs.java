@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +37,43 @@ import marauroa.common.game.IRPZone;
  * - Just once.
  */
 public class SevenCherubs extends AQuest {
+	private static final String QUEST_SLOT = "seven_cherubs";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public boolean isCompleted(Player player) {
+		String npcDoneText = player.getQuest(QUEST_SLOT);
+		String[] done = npcDoneText.split(";");
+		int left = 7 - done.length;
+		return left < 0;
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (player.hasQuest(QUEST_SLOT)) {
+			String npcDoneText = player.getQuest(QUEST_SLOT);
+			String[] done = npcDoneText.split(";");
+			boolean first = true;
+			for (String cherub : done) {
+				if (!cherub.trim().equals("")) {
+					res.add(cherub.toUpperCase());
+					if (first) {
+						first = false;
+						res.add("QUEST_ACCEPTED");
+					}
+				}
+			}
+			if (isCompleted(player)) {
+				res.add("DONE");
+			}
+		}
+		return res;
+	}
 
 	static class CherubNPC extends SpeakerNPC {
 		public CherubNPC(String name, int x, int y) {
@@ -68,20 +106,20 @@ public class SevenCherubs extends AQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (!player.hasQuest("seven_cherubs")) {
-							player.setQuest("seven_cherubs", "");
+						if (!player.hasQuest(QUEST_SLOT)) {
+							player.setQuest(QUEST_SLOT, "");
 						}
 	
-						// Visited cherubs are store in the quest-name "seven_cherubs".
+						// Visited cherubs are store in the quest-name QUEST_SLOT.
 						// Please note that there is an additional empty entry in the beginning.
 						String npcDoneText = player
-								.getQuest("seven_cherubs");
+								.getQuest(QUEST_SLOT);
 						String[] done = npcDoneText.split(";");
 						List<String> list = Arrays.asList(done);
 						int left = 7 - list.size();
 
 						if (!list.contains(engine.getName())) {
-							player.setQuest("seven_cherubs", npcDoneText
+							player.setQuest(QUEST_SLOT, npcDoneText
 									+ ";" + engine.getName());
 		
 							player.setHP(player.getBaseHP());
