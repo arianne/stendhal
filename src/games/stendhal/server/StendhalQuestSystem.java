@@ -3,12 +3,11 @@ package games.stendhal.server;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.QuestInfo;
+import games.stendhal.server.rule.defaultruleset.QuestXMLLoader;
 
 import java.lang.reflect.Constructor;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import marauroa.common.Log4J;
 
@@ -23,7 +22,7 @@ public class StendhalQuestSystem {
 	private StendhalRPRuleProcessor rules;
 	private List<IQuest> quests = new LinkedList<IQuest>();
 
-	private Map<String, QuestInfo> questInfos = new HashMap<String, QuestInfo>();
+	private QuestXMLLoader questInfos;
 	private static StendhalQuestSystem stendhalQuestSystem;
 	
 	public static StendhalQuestSystem get() {
@@ -35,6 +34,7 @@ public class StendhalQuestSystem {
 		stendhalQuestSystem = this;
 		this.world = world;
 		this.rules = rules;
+		questInfos = QuestXMLLoader.get();
 
 		loadQuest("SheepGrowing");
 		loadQuest("OrcishHappyMeal");
@@ -90,20 +90,36 @@ public class StendhalQuestSystem {
 		}
 	}
 	
+	private void dumpQuest(StringBuilder sb, IQuest quest, Player player) {
+		QuestInfo questInfo = questInfos.get(quest.getName());
+		sb.append("\t" + questInfo.getTitle() + "\r\n");
+		List<String> history = quest.getHistory(player);
+		for (String entry : history) {
+			sb.append("\t\t" + entry + "\r\n");
+		}
+		sb.append("\r\n");
+	}
+	
 	public String listQuests(Player player) {
 		StringBuilder sb = new StringBuilder();
 		
 		// Open quests
+		sb.append("\r\n\r\n");
 		sb.append("Open Quests\r\n");
-		sb.append("===========\r\n");
+		sb.append("========\r\n");
 		for (IQuest quest : quests) {
-			QuestInfo questInfo = questInfos .get(quest.getName());
 			if (quest.isStarted(player) && !quest.isCompleted(player)) {
-				sb.append("\t" + questInfo.getTitle() + "\r\n");
-				List<String> history = quest.getHistory(player);
-				for (String entry : history) {
-					sb.append("\t\t" + entry + "\r\n");
-				}
+				dumpQuest(sb, quest, player);
+			}
+		}
+
+		// Completed Quests
+		sb.append("\r\n\r\n");
+		sb.append("Completed Quests\r\n");
+		sb.append("============\r\n");
+		for (IQuest quest : quests) {
+			if (quest.isCompleted(player)) {
+				dumpQuest(sb, quest, player);
 			}
 		}
 		
