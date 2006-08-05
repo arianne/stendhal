@@ -844,6 +844,29 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * Is the named quest in one of the listed states?
+	 *
+	 * @param name   quest
+	 * @param states valid states
+	 * @return true, if the quest is in one of theses states, false otherwise
+	 */
+	public boolean isQuestInState(String name, String ... states) {
+		if (!hasQuest(name)) {
+			return false;
+		}
+		String questState = getQuest(name);
+		boolean res = false;
+		for (String state : states) {
+			res = questState.equals(state);
+			if (res) {
+				break;
+			}
+		}
+		
+		return res;
+	}
+
+	/**
 	 * 
 	 */
 	public boolean hasKilledSolo(String name) {
