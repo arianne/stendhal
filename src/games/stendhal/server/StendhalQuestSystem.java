@@ -95,7 +95,11 @@ public class StendhalQuestSystem {
 		sb.append("\t" + questInfo.getTitle() + "\r\n");
 		List<String> history = quest.getHistory(player);
 		for (String entry : history) {
-			sb.append("\t\t" + entry + "\r\n");
+			String text = questInfo.getHistory().get(entry);
+			if (text == null) {
+				text = entry;
+			}
+			sb.append("\t\t * " + text + "\r\n");
 		}
 		sb.append("\r\n");
 	}
