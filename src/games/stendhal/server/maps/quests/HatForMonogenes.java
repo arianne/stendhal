@@ -6,6 +6,9 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * QUEST: Hat For Monogenes
  * PARTICIPANTS:
@@ -23,6 +26,31 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * - None.
  */
 public class HatForMonogenes extends AQuest {
+	private static final String QUEST_SLOT = "hat_monogenes";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (player.hasQuest("Monogenes")) {
+			res.add("FIRST_CHAT");
+		}
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("GET_HAT");
+		if (player.isEquipped("leather_hat") || player.isQuestCompleted(QUEST_SLOT)) {
+			res.add("GOT_HAT");
+		}
+		if (player.isQuestCompleted(QUEST_SLOT)) {
+			res.add("DONE");
+		}
+		return res;
+	}
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Monogenes");
