@@ -21,14 +21,14 @@ package games.stendhal.client.gui;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.common.Debug;
 
 import java.awt.Graphics;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.awt.Image;
 import java.io.File;
 import java.io.FilenameFilter;
-
-import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import marauroa.common.game.RPAction;
 
@@ -118,7 +118,11 @@ public class OutfitDialog extends javax.swing.JDialog {
      * @return a String with the name of the selected clothes sprite file
      */
     public String getSelectedClothes() {
-        return "dress_" + clothes_index + ".png";
+    	String filename = "dress_" + clothes_index + ".png";
+    	if (!Debug.NEW_CLIENT && clothes_index == 17) {
+    		filename = "dress_" + "255" + ".png";
+    	}
+        return filename;
     }
 
     /**
