@@ -21,6 +21,7 @@ import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.rule.EntityManager;
@@ -35,7 +36,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -520,19 +520,19 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 				break;
 			case 11: /* sheep */ {
-				/* TODO
-				RespawnPoint point = new RespawnPoint(x, y, 2);
+				/*RespawnPoint point = new RespawnPoint(x, y, 2);
 				Creature creature = new Sheep();
+				assignRPObjectID(creature);
 				point.set(this, creature, 1);
-				point.setRespawnTime(creature.getRespawnTime());
-				respawnPoints.add(point);
-				*/
-				/*Sheep sheep = new Sheep();
+				//point.setRespawnTime(creature.getRespawnTime());
+				respawnPoints.add(point);*/
+				
+				Sheep sheep = new Sheep();
 				assignRPObjectID(sheep);
 				sheep.setx(x);
 				sheep.sety(y);
 				add(sheep);
-				npcs.add(sheep);*/
+				npcs.add(sheep);
 				break;
 			}
 			case 91: /* sign */
