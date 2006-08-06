@@ -1609,8 +1609,34 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="teddy">
+		<type class="misc" subclass="teddy"/>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="map">
 		<type class="misc" subclass="paper"/>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="archers_protection_scroll">
+		<type class="scroll" subclass="green"/>
+		<stackable/>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="summon_scroll">
+		<type class="scroll" subclass="purple"/>
+		<stackable/>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>
