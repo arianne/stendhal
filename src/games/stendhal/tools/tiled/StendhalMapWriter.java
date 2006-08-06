@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Properties;
 import java.util.Stack;
 
@@ -27,13 +28,16 @@ import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.core.TileSet;
 import tiled.io.MapWriter;
+import tiled.io.PluginLogger;
 
 /**
  * Writer Plugin for tiled. Saves maps as *.stend files. This plugin ignores the
- * filename. The files are created using the layer names as file names
+ * filename.
  */
 public class StendhalMapWriter implements MapWriter
 {
+  private PluginLogger pluginLogger;
+
   /**
    * Method writeMap
    * 
@@ -92,7 +96,7 @@ public class StendhalMapWriter implements MapWriter
       }
 
     boolean firstTime=true;
-    for(MapLayer layer: map)
+    for(MapLayer layer: (List<MapLayer>)map.getLayerVector())
     {
       if(firstTime)
       {
@@ -175,7 +179,7 @@ public class StendhalMapWriter implements MapWriter
       }
     } catch (IOException e)
     {
-    	System.err.println(e);
+    	pluginLogger.error(e);
     }
     return false;
   }
@@ -213,6 +217,11 @@ public class StendhalMapWriter implements MapWriter
   public FileFilter[] getFilters()
   {
     return null;
+  }
+
+  public void setLogger(PluginLogger pluginLogger)
+  {
+	this.pluginLogger = pluginLogger;
   }
 
 }

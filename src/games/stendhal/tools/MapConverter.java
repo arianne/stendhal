@@ -20,21 +20,17 @@
 package games.stendhal.tools;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.tools.ant.BuildException;
-import org.apache.tools.ant.DirectoryScanner;
-import org.apache.tools.ant.Task;
-import org.apache.tools.ant.types.FileSet;
-import tiled.core.Map;
-import tiled.io.xml.XMLMapTransformer;
+import java.util.ArrayList;
+import java.util.List;
 
-import tiled.core.MapLayer;
-import tiled.view.old.MapView;
-import java.awt.Dimension;
-import java.awt.image.BufferedImage;
-import java.awt.Graphics2D;
-import javax.imageio.ImageIO;
+import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.DirectoryScanner;
+import org.apache.tools.ant.Task;
+import org.apache.tools.ant.types.FileSet;
+
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.io.xml.XMLMapTransformer;
 
 /**
  * Converts the stendhal maps from *.tmx to *.stend
@@ -62,7 +58,7 @@
     
     if(file.lastModified()<resourceFile.lastModified())
       {
-      System.out.println ("There are any changes. Already converted");
+      System.out.println ("There are no changes. Already converted");
       return;
       }
 
@@ -122,7 +118,7 @@
     File file = new File(tmxFile);
     String filename = file.getAbsolutePath();
 
-    for(MapLayer layer: map)
+    for(MapLayer layer: (List<MapLayer>)map.getLayerVector())
       {
       if(layer.getName().equals("navigation") || layer.getName().equals("collision") || layer.getName().equals("objects") || layer.getName().equals("protection"))
         {
@@ -130,14 +126,14 @@
         }
       }
 
-    MapView myView = MapView.createViewforMap(map);
+/*    MapView myView = MapView.createViewforMap(map);
     myView.enableMode(MapView.PF_NOSPECIAL);
     myView.setZoom(0.0625);
     Dimension d = myView.getPreferredSize();
     BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
     Graphics2D g = i.createGraphics();
     g.setClip(0, 0, d.width, d.height);
-    myView.paint(g);
+    myView.paint(g);*/
     
     String area=file.getParentFile().getName();
     String level;
@@ -162,15 +158,15 @@
       filename = imagePath+File.separator+level.replace("-","sub_")+"_"+area+"_"+file.getName().replaceAll("\\.tmx",".png");
       }
 
-    try 
+/*    try 
       {
-      ImageIO.write(i, "png", new File(filename));
+   ImageIO.write(i, "png", new File(filename));
       }
     catch (java.io.IOException e) 
       {
       e.printStackTrace();
       }
-  }
+*/  }
   
   /**
    * Adds a set of files to copy.

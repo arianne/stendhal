@@ -136,7 +136,7 @@
     <property name="build_client" value="${buildroot}/build_client/"/>
   	<mkdir dir="${build_client}/"/>
 
-    <javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines"
+    <javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="games/stendhal/client/**, games/stendhal/common/**" 
            excludes="games/stendhal/server/**, games/stendhal/tools/**">
       <classpath>
@@ -148,7 +148,7 @@
     <jar jarfile="${lib}/${client_jarname}">
       <fileset dir="${build_client}"/>
       <manifest>
-        <attribute name="Main-Class" value="games.stendhal.client.stendhal"/>
+        <attribute name="Main-Class" value="games.stendhal.client.Starter"/>
         <attribute name="Class-path" value="log4j.jar marauroa.jar ${client_data} ${client_sound_data}"/>
       </manifest>
     </jar>

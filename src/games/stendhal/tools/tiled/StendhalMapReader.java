@@ -14,6 +14,7 @@ package games.stendhal.tools.tiled;
 
 import tiled.core.*;
 import tiled.io.*;
+
 import java.util.Stack;
 import java.io.*;
 
@@ -22,6 +23,8 @@ import java.io.*;
  */
 public class StendhalMapReader implements MapReader
 {
+  private PluginLogger pluginLogger;
+
   /**
    * Method readMap
    * 
@@ -81,7 +84,7 @@ public class StendhalMapReader implements MapReader
       }
     } catch (IOException e)
     {
-    	System.err.println(e);
+    	pluginLogger.error(e);
     }
     return false;
   }
@@ -119,5 +122,10 @@ public class StendhalMapReader implements MapReader
   public void setErrorStack(Stack es)
   {
 	  // not implemented
+  }
+
+  public void setLogger(PluginLogger pluginLogger)
+  {
+	this.pluginLogger = pluginLogger;
   }
 }
