@@ -57,6 +57,7 @@ public class PlantGrower extends Entity {
 		super(object);
 		this.growingItemName = growingItemName;
 		this.turnsForRegrow = turnsForRegrow;
+		setDescription("You see a place where a " + growingItemName	+ " can grow.");
 		
 		put("type", "plant_grower");
 		//update();
@@ -66,6 +67,7 @@ public class PlantGrower extends Entity {
 		super();
 		this.growingItemName = growingItemName;
 		this.turnsForRegrow = turnsForRegrow;
+		setDescription("You see a place where a " + growingItemName	+ " can grow.");
 
 		put("type", "plant_grower");
 	}
@@ -115,6 +117,8 @@ public class PlantGrower extends Entity {
 	/**
 	 * Is invoked every few turns. Checks if a new fruit can be grown, and if the
 	 * new fruit is ripe, creates it.
+	 *
+	 * @param aktTurn current turn
 	 */
 	public void regrow(int aktTurn) {
         if(lastTurn == 0) {
@@ -129,13 +133,6 @@ public class PlantGrower extends Entity {
 			}
 		}
         lastTurn = aktTurn;
-	}
-
-	@Override
-	public String describe() {
-		String text = "You see a place where a " + growingItemName
-				+ " can grow.";
-		return (text);
 	}
 
 	@Override
