@@ -46,6 +46,9 @@ public class SevenCherubs extends AQuest {
 
 	@Override
 	public boolean isCompleted(Player player) {
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return false;
+		}
 		String npcDoneText = player.getQuest(QUEST_SLOT);
 		String[] done = npcDoneText.split(";");
 		int left = 7 - done.length;
