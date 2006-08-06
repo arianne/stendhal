@@ -385,13 +385,14 @@
     <property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps/"/>
   	<mkdir dir="${build_tiled_convertmaps}/"/>
 
-    <javac srcdir="tiled" destdir="${build_tiled_convertmaps}" debug="true" debuglevel="source,lines"
+<!--    <javac srcdir="tiled" destdir="${build_tiled_convertmaps}" debug="true" debuglevel="source,lines"
            includes="tiled/plugins/stendhal/**, src/**">
       <classpath>
         <pathelement path="${marauroa_jar}"/>
         <pathelement path="${log4j_jar}"/>
       </classpath>
     </javac>
+-->
     <javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="true" debuglevel="source,lines"
            includes="games/stendhal/tools/MapConverter.java">
       <classpath>
