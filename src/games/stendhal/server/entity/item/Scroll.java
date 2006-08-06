@@ -13,10 +13,14 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.AttackableCreature;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.events.UseEvent;
+import games.stendhal.server.rule.EntityManager;
 
 import java.util.Map;
 
@@ -60,7 +64,7 @@ public class Scroll extends StackableItem implements UseEvent {
 			onEmptyScroll(player);
 		} else if (name.equals("marked_scroll") || name.equals("home_scroll")) {
 			onTeleportScroll(player);
-		} else if (name.equals("archers_protection")) {
+		} else if (name.equals("archers_protection_scroll")) {
 			onCreatureProtection(player);
 		} else if (name.equals("summon_scroll")) {
 			onSummon(player);
@@ -90,6 +94,25 @@ public class Scroll extends StackableItem implements UseEvent {
 
 	private void onSummon(Player player) {
 		player.sendPrivateText("I am unable to use this scroll");
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+				.getID());
+		int x = player.getInt("x");
+		int y = player.getInt("y");
+
+		EntityManager manager = ((StendhalRPWorld) world)
+				.getRuleManager().getEntityManager();
+		String type = "green_dragon";
+
+		// Is the entity a creature
+		if (manager.isCreature(type)) {
+			Creature creature = new AttackableCreature(manager.getCreature(type));
+
+			zone.assignRPObjectID(creature);
+			StendhalRPAction.placeat(zone, creature, x, y);
+			zone.add(creature);
+			creature.init();
+			rp.addNPC(creature);
+		}
 	}
 
 	private void onTeleportScroll(Player player) {
