@@ -40,6 +40,8 @@ public class Semos implements IContent {
 				"0_semos_city")));
 		buildSemosVillageArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"0_semos_village_w")));
+		buildSemosNorthPlainsArea((StendhalRPZone) world
+				.getRPZone(new IRPZone.ID("0_semos_plains_n")));
 		buildSemosSouthPlainsArea((StendhalRPZone) world
 				.getRPZone(new IRPZone.ID("0_semos_plains_s")));
 		buildSemosTavernArea();
@@ -708,6 +710,45 @@ public class Semos implements IContent {
 		zone.add(sign);
 	}
 
+	private void buildSemosNorthPlainsArea(StendhalRPZone zone) {
+
+		SpeakerNPC npc = new SpeakerNPC("Plink") {
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(36, 108));
+				nodes.add(new Path.Node(37, 108));
+				nodes.add(new Path.Node(37, 105));
+				nodes.add(new Path.Node(42, 105));
+				nodes.add(new Path.Node(42, 111));
+				nodes.add(new Path.Node(48, 111));
+				nodes.add(new Path.Node(47, 103));
+				nodes.add(new Path.Node(47, 100));
+				nodes.add(new Path.Node(53, 100));
+				nodes.add(new Path.Node(53, 90));
+				nodes.add(new Path.Node(49, 90));
+				nodes.add(new Path.Node(49, 98));
+				nodes.add(new Path.Node(46, 98));
+				nodes.add(new Path.Node(46, 99));
+				nodes.add(new Path.Node(36, 99));
+				
+				setPath(nodes, true);
+			}
+		
+			protected void createDialog() {
+				addGreeting();
+				addJob("I play all day.");
+				addHelp("Be careful there are some wolfs in the east of here");
+				addGoodbye();
+			}
+		};
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		npc.put("class", "childnpc");
+		npc.set(36, 108);
+		npc.initHP(100);
+		zone.addNPC(npc);
+	}
+
 	private void buildSemosCityArea(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
@@ -1029,7 +1070,7 @@ public class Semos implements IContent {
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "welcomernpc");
+		npc.put("class", "childnpc");
 		npc.set(5, 45);
 		npc.initHP(100);
 		zone.addNPC(npc);
