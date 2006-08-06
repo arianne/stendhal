@@ -1,5 +1,6 @@
 package games.stendhal.server;
 
+import games.stendhal.common.Debug;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.QuestInfo;
@@ -57,6 +58,9 @@ public class StendhalQuestSystem {
 		loadQuest("ZooFood");
 		loadQuest("CloaksForBario");
 		loadQuest("Campfire");
+		if (Debug.NEW_CLIENT) {
+			loadQuest("PlinksToy");
+		}
 	}
 
 	public static void main(String[] args) {
