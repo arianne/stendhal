@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.item;
 
 import marauroa.common.game.*;
+
 import java.util.Map;
 
 public class StackableItem extends Item implements Stackable {
@@ -54,5 +55,28 @@ public class StackableItem extends Item implements Stackable {
 
 		return getItemClass().equals(otheri.getItemClass())
 				&& getItemSubclass().equals(otheri.getItemSubclass());
+	}
+
+	@Override
+	public void removeOne() {
+		if (quantity > 1) {
+			quantity--;
+			if (isContained()) {
+				// We modify the base container if the object change.
+				RPObject base = getContainer();
+
+				while (base.isContained()) {
+					base = base.getContainer();
+				}
+
+				world.modify(base);
+			} else {
+				world.modify(this);
+			}
+		} else {
+			/* If quantity=1 then it means that item has to be removed */
+			super.removeOne();
+		}
+
 	}
 }

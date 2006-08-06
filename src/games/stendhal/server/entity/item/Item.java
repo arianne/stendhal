@@ -20,6 +20,8 @@ import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * This is an item.
@@ -227,4 +229,24 @@ public class Item extends PassiveEntity {
 		return (text + stats);
 	}
 
+	/**
+	 * Removes the item. I case of StackableItems only one is removed.
+	 */
+	public void removeOne() {
+		if (isContained()) {
+			// We modify the base container if the object change.
+			RPObject base = getContainer();
+
+			while (base.isContained()) {
+				base = base.getContainer();
+			}
+
+			RPSlot slot = getContainerSlot();
+			slot.remove(getID());
+
+			world.modify(base);
+		} else {
+			world.remove(getID());
+		}
+	}
 }

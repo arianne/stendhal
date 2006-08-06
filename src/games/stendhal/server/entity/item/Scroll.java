@@ -12,22 +12,30 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import java.util.Map;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.events.UseEvent;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.events.UseEvent;
 
-public class Scroll extends ConsumableItem implements UseEvent {
+import java.util.Map;
+
+/**
+ * Magic scrolls
+ */
+public class Scroll extends StackableItem implements UseEvent {
+
+	/**
+	 * Creates a new scroll
+	 *
+	 * @param name
+	 * @param clazz
+	 * @param subclass
+	 * @param attributes
+	 */
 	public Scroll(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
-	}
-
-	@Override
-	public boolean consumed() {
-		return (true);
 	}
 
 	@Override
@@ -44,41 +52,71 @@ public class Scroll extends ConsumableItem implements UseEvent {
 				&& getItemSubclass().equals(otheri.getItemSubclass());
 	}
 
-	@Override
 	public void onUsed(RPEntity user) {
-		StendhalRPZone zone;
 		Player player = (Player) user;
-		player.consumeItem(this);
-		if (getName().equals("empty_scroll")) {
-			Item item = getWorld().getRuleManager().getEntityManager().getItem(
-					"marked_scroll");
-			zone = (StendhalRPZone) getWorld().getRPZone(player.get("zoneid"));
-			zone.assignRPObjectID(item);
-			item.setx(player.getx());
-			item.sety(player.gety());
-			item.put("infostring", "" + player.getID().getZoneID() + " "
-					+ player.getx() + " " + player.gety());
-			zone.add(item);
+		String name = getName();
+
+		if (name.equals("empty_scroll")) {
+			onEmptyScroll(player);
+		} else if (name.equals("marked_scroll") || name.equals("home_scroll")) {
+			onTeleportScroll(player);
+		} else if (name.equals("archers_protection")) {
+			onCreatureProtection(player);
+		} else if (name.equals("summon_scroll")) {
+			onSummon(player);
 		} else {
-			zone = (StendhalRPZone) world.getRPZone("0_semos_city");
-			int x = 30, y = 40;
-			if (has("infostring")) {
-				String infostring = get("infostring");
-				java.util.StringTokenizer st = new java.util.StringTokenizer(
-						infostring);
-				if (st.countTokens() == 3) {
-					zone = (StendhalRPZone) world.getRPZone(st.nextToken());
-					x = Integer.parseInt(st.nextToken());
-					y = Integer.parseInt(st.nextToken());
-				}
-			}
-			if (StendhalRPAction.placeat(zone, player, x, y)) {
-				StendhalRPAction.changeZone(player, zone.getID().getID());
-				StendhalRPAction.transferContent(player);
-			}
+			player.sendPrivateText("I am unable to use this scroll");
 		}
+
+		this.removeOne();
 		getWorld().modify(player);
 	}
+
+	private void onCreatureProtection(Player player) {
+		player.sendPrivateText("I am unable to use this scroll");
+	}
+
+	private void onEmptyScroll(Player player) {
+		Item item = getWorld().getRuleManager().getEntityManager().getItem(
+				"marked_scroll");
+		StendhalRPZone zone = (StendhalRPZone) getWorld().getRPZone(player.get("zoneid"));
+		zone.assignRPObjectID(item);
+		item.setx(player.getx());
+		item.sety(player.gety());
+		item.put("infostring", "" + player.getID().getZoneID() + " "
+				+ player.getx() + " " + player.gety());
+		zone.add(item);
+	}
+
+	private void onSummon(Player player) {
+		player.sendPrivateText("I am unable to use this scroll");
+	}
+
+	private void onTeleportScroll(Player player) {
+
+		// init as home_scroll
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("0_semos_city");
+		int x = 30;
+		int y = 40;
+
+		// is it a marked scroll?
+		if (has("infostring")) {
+			String infostring = get("infostring");
+			java.util.StringTokenizer st = new java.util.StringTokenizer(infostring);
+			if (st.countTokens() == 3) {
+				zone = (StendhalRPZone) world.getRPZone(st.nextToken());
+				x = Integer.parseInt(st.nextToken());
+				y = Integer.parseInt(st.nextToken());
+			}
+		}
+
+		// teleport
+		if (StendhalRPAction.placeat(zone, player, x, y)) {
+			StendhalRPAction.changeZone(player, zone.getID().getID());
+			StendhalRPAction.transferContent(player);
+		}
+	}
+
 
 	@Override
 	public String describe() {

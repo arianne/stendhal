@@ -1013,38 +1013,7 @@ public class Player extends RPEntity {
 			}
 		});
 
-		if (item.getQuantity() > 1) {
-			item.setQuantity(item.getQuantity() - 1);
-			if (item.isContained()) {
-				// We modify the base container if the object change.
-				RPObject base = item.getContainer();
-
-				while (base.isContained()) {
-					base = base.getContainer();
-				}
-
-				world.modify(base);
-			} else {
-				world.modify(item);
-			}
-		} else {
-			/* If quantity=1 then it means that item has to be removed */
-			if (item.isContained()) {
-				// We modify the base container if the object change.
-				RPObject base = item.getContainer();
-
-				while (base.isContained()) {
-					base = base.getContainer();
-				}
-
-				RPSlot slot = item.getContainerSlot();
-				slot.remove(item.getID());
-
-				world.modify(base);
-			} else {
-				world.remove(item.getID());
-			}
-		}
+		item.removeOne();
 	}
 
 	public void consume(int turn) {
