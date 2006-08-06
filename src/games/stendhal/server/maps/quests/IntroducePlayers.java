@@ -40,10 +40,12 @@ public class IntroducePlayers extends AQuest {
 	@Override
 	public List<String> getHistory(Player player) {
 		List<String> res = new ArrayList<String>();
-		if (!player.hasQuest("TadFirstChat")) {
+		if (player.hasQuest("TadFirstChat")) {
+			res.add("FIRST_CHAT");
+		}
+		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("FIRST_CHAT");
 		String questState = player.getQuest(QUEST_SLOT);
 		if (player.isQuestInState(QUEST_SLOT, "start", "ilisa", "corpse&herbs", "potion", "done")) {
 			res.add("GET_FLASK");
