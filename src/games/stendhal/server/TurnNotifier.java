@@ -22,8 +22,14 @@ public class TurnNotifier {
 	
 	private int currentTurn = -1;
 	
+	/**
+	 * This Map maps each turn to the set of all events that will take place
+	 * at this turn.
+	 * Turns at which no event should take place needn't be registered here.
+	 */
 	private Map<Integer, Set<TurnEvent>> register = new HashMap<Integer, Set<TurnEvent>>();
 	
+	/** Used for multi-threading synchronization. **/
 	private final Object sync = new Object();
 
 	private TurnNotifier() {
@@ -43,7 +49,7 @@ public class TurnNotifier {
 	}
 
 	/**
-	 * This method is invoked by endTurn()
+	 * This method is invoked by StendhalRPRuleProcessor.endTurn().
 	 *
 	 * @param currentTurn currentTurn
 	 */
@@ -88,7 +94,7 @@ public class TurnNotifier {
 	}
 
 	/**
-	 * Notifies the class <i>turnEvent</i> at <i>turn</i> turns.
+	 * Notifies the class <i>turnEvent</i> at turn number <i>turn</i>.
 	 * 
 	 * @param turn the number of the turn
 	 * @param turnEvent the class to notify
@@ -98,9 +104,7 @@ public class TurnNotifier {
 			logger.error("requested turn " + turn + " is in the past. Current turn is " + currentTurn, new Throwable());
 			return;
 		}
-
 		synchronized (sync) {
-
 			// do we have other events for this turn?
 			Integer turnInt = new Integer(turn);
 			Set<TurnEvent> set = register.get(turnInt);
@@ -108,7 +112,6 @@ public class TurnNotifier {
 				set = new HashSet<TurnEvent>();
 				register.put(turnInt, set);
 			}
-
 			// add it to the list
 			set.add(turnEvent);
 		}
