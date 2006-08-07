@@ -32,7 +32,7 @@ import java.util.List;
  * REPETITIONS:
  * - None.
  */
-public class WeaponsCollector extends AQuest {
+public class WeaponsCollector extends AbstractQuest {
 
 	private static final List<String> neededWeapons = Arrays.asList(
 		"axe",

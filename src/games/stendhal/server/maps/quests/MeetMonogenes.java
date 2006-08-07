@@ -20,7 +20,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class MeetMonogenes extends AQuest {
+public class MeetMonogenes extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc=npcs.get("Monogenes");

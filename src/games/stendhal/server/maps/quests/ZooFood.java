@@ -27,7 +27,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class ZooFood extends AQuest {
+public class ZooFood extends AbstractQuest {
 	
 	private static final int REQUIRED_HAM = 10;
 

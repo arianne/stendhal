@@ -29,7 +29,7 @@ import java.util.List;
  * REPETITIONS:
  * - None.
  */
-public class IntroducePlayers extends AQuest {
+public class IntroducePlayers extends AbstractQuest {
 	private static final String QUEST_SLOT = "introduce_players";
 
 	@Override

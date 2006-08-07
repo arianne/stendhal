@@ -25,7 +25,7 @@ import java.util.List;
  * REPETITIONS:
  * - None.
  */
-public class HatForMonogenes extends AQuest {
+public class HatForMonogenes extends AbstractQuest {
 	private static final String QUEST_SLOT = "hat_monogenes";
 
 	@Override

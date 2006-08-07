@@ -26,7 +26,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class LookBookforCeryl extends AQuest {
+public class LookBookforCeryl extends AbstractQuest {
 
 	private void step_1() {
 

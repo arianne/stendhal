@@ -25,7 +25,7 @@ import marauroa.common.game.IRPZone;
  * REPETITIONS:
  * - None.
  */
-public class PlinksToy extends AQuest {
+public class PlinksToy extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "plinks_toy";
 

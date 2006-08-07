@@ -37,7 +37,7 @@ import marauroa.common.game.IRPZone;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class SheepGrowing extends AQuest {
+public class SheepGrowing extends AbstractQuest {
 
 	@Override
 	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {

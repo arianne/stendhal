@@ -21,7 +21,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class MeetNomyr extends AQuest {
+public class MeetNomyr extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Nomyr Ahba");

@@ -13,7 +13,7 @@ import java.util.List;
  * 
  * @author hendrik
  */
-public class AQuest implements IQuest {
+public class AbstractQuest implements IQuest {
 
 	/** The internal name of this quest. (e.g used to read quest.xml) */
 	protected String name = null;

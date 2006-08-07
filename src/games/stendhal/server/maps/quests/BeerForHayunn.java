@@ -24,7 +24,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class BeerForHayunn extends AQuest {
+public class BeerForHayunn extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");

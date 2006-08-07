@@ -20,7 +20,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class MeetZynn extends AQuest {
+public class MeetZynn extends AbstractQuest {
 
 	private void step_1() {
 

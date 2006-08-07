@@ -8,7 +8,7 @@ import java.util.List;
 
 /** 
  * All quests MUST implement this interface or extend the abstract
- * class AQuest in order for the loader to recognize them
+ * class AbstractQuest in order for the loader to recognize them
  */
 public interface IQuest {
 

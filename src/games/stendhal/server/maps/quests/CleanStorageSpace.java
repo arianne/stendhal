@@ -21,7 +21,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class CleanStorageSpace extends AQuest {
+public class CleanStorageSpace extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Eonna");

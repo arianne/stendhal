@@ -29,7 +29,7 @@ import games.stendhal.server.rule.EntityManager;
  * - Unlimited, but 1000 turns (ca. 5 minutes) of waiting are required
  *   between repetitions
  */
-public class Campfire extends AQuest {
+public class Campfire extends AbstractQuest {
 
 	private static final int REQUIRED_WOOD = 10;
 

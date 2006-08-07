@@ -29,7 +29,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class CloaksForBario extends AQuest {
+public class CloaksForBario extends AbstractQuest {
 
 	private static final int REQUIRED_CLOAKS = 10;
 	

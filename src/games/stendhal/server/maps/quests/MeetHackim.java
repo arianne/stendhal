@@ -22,7 +22,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class MeetHackim extends AQuest {
+public class MeetHackim extends AbstractQuest {
 
 	private void step_1() {
 

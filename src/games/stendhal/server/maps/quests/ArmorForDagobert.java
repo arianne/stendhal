@@ -28,7 +28,7 @@ import java.util.List;
  * REPETITIONS:
  * - None.
  */
-public class ArmorForDagobert extends AQuest {
+public class ArmorForDagobert extends AbstractQuest {
 	
 	private static final String QUEST_SLOT = "armor_dagobert";
 

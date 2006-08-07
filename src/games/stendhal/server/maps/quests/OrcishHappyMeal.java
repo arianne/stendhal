@@ -34,7 +34,7 @@ import marauroa.common.game.IRPZone;
  * REPETITIONS:
  * - As much as wanted.
  */
-public class OrcishHappyMeal extends AQuest {
+public class OrcishHappyMeal extends AbstractQuest {
 
 	@Override
 	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {

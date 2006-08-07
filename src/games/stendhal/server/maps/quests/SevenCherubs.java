@@ -36,7 +36,7 @@ import marauroa.common.game.IRPZone;
  * REPETITIONS:
  * - Just once.
  */
-public class SevenCherubs extends AQuest {
+public class SevenCherubs extends AbstractQuest {
 	private static final String QUEST_SLOT = "seven_cherubs";
 
 	@Override

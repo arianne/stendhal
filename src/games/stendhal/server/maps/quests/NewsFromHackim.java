@@ -24,7 +24,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * REPETITIONS:
  * - None.
  */
-public class NewsFromHackim extends AQuest {
+public class NewsFromHackim extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Hackim Easso");
