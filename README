@@ -56,13 +56,10 @@ No warranties. But let us know if it doesn't work.
 Unfinished things which have to be dealt with or made inaccessable before release
 ---------------------------------------------------------------------------------
 - summon_scroll
-  - add to game (price)
+  - add to game (price?)
   - testing player logout
   - disable scroll in protected-area
-  - no drops (no xp?) when killing the summoned creature
-  - which monsters? further restrictions?
-  
-- Quest Plink's toy
+
 - fix /script plague.groovy (monsters are summoned at y-1)
 - finish version-range compare
 - ados in distress
@@ -73,6 +70,7 @@ Unfinished things which have to be dealt with or made inaccessable before releas
 0.52
 - players
   - display of item based ATK and DEF is now calculated by the server
+  - added a new quest in 0_semos_plains_n
   - fixed a bug which caused quest items to be lost if you bag is full
   - fixed vertical alignment of the blue cross in minimap on small maps
   - minor changes to NPCs and maps
@@ -88,7 +86,7 @@ Unfinished things which have to be dealt with or made inaccessable before releas
 - internal
   - experimental support for TCP network connections to prevent resyncs and lost messages
   - performance optimization on server-side
-  - change build-script so everything is created below a "build"-subdirectory.
+  - changed build-script so everything is created below a "build"-subdirectory.
   - added all dependencies to "libs" folder
   - added a new disabled NPC /script adminmaker.groovy for test-systems
   - client will use tilesets in tiled if data/tilesets is empty (development environment)
