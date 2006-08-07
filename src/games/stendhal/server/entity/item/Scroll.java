@@ -105,12 +105,13 @@ public class Scroll extends StackableItem implements UseEvent {
 
 		// Is the entity a creature
 		if (manager.isCreature(type)) {
-			Creature creature = new AttackableCreature(manager.getCreature(type));
+			AttackableCreature creature = new AttackableCreature(manager.getCreature(type));
 
 			zone.assignRPObjectID(creature);
 			StendhalRPAction.placeat(zone, creature, x, y);
 			zone.add(creature);
 			creature.init();
+			creature.setMaster(player);
 			rp.addNPC(creature);
 		}
 	}

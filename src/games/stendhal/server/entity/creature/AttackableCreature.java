@@ -3,14 +3,21 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * An creature that will be attacked by normal Creatures
  *
  * @author hendrik
  */
 public class AttackableCreature extends Creature {
+	private RPEntity master = null;
+	private List<RPEntity> empty = new ArrayList<RPEntity>();
 
 	/**
+	 * AttackableCreature
+	 *
 	 * @param copy
 	 */
 	public AttackableCreature(Creature copy) {
@@ -32,9 +39,16 @@ public class AttackableCreature extends Creature {
 	}
 
 	@Override
-	protected RPEntity getNearestEnemy(double range) {
-		// do not attack each other
-		return null;
+	protected List<RPEntity> getEnemyList() {
+		List<RPEntity> res = empty;
+		if (master != null) {
+			res = master.getAttackSources();
+		}
+		return res;
+	}
+
+	public void setMaster(RPEntity master) {
+		this.master = master;
 	}
 
 	@Override
