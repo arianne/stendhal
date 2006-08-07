@@ -16,25 +16,30 @@ import org.apache.log4j.Logger;
  */
 public class TurnNotifier {
 	private static Logger logger = Logger.getLogger(TurnNotifier.class);
-	private static TurnNotifier turnNotifier = null;
+	
+	/** The Singleton instance **/
+	private static TurnNotifier instance = null;
+	
 	private int currentTurn = -1;
+	
 	private Map<Integer, Set<TurnEvent>> register = new HashMap<Integer, Set<TurnEvent>>();
+	
 	private final Object sync = new Object();
 
 	private TurnNotifier() {
-		// signleton
+		// singleton
 	}
 
 	/**
-	 * Return the TurnNotifier
+	 * Return the TurnNotifier instance.
 	 *
 	 * @return TurnNotifier
 	 */
 	public static TurnNotifier get() {
-		if (turnNotifier == null) {
-			turnNotifier = new TurnNotifier();
+		if (instance == null) {
+			instance = new TurnNotifier();
 		}
-		return turnNotifier;
+		return instance;
 	}
 
 	/**
