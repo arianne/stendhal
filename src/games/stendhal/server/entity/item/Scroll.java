@@ -22,6 +22,9 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.events.UseEvent;
 import games.stendhal.server.rule.EntityManager;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -101,19 +104,34 @@ public class Scroll extends StackableItem implements UseEvent {
 
 		EntityManager manager = ((StendhalRPWorld) world)
 				.getRuleManager().getEntityManager();
-		String type = "green_dragon";
 
-		// Is the entity a creature
-		if (manager.isCreature(type)) {
-			AttackableCreature creature = new AttackableCreature(manager.getCreature(type));
-
-			zone.assignRPObjectID(creature);
-			StendhalRPAction.placeat(zone, creature, x, y);
-			zone.add(creature);
-			creature.init();
-			creature.setMaster(player);
-			rp.addNPC(creature);
+		// pick it
+		Collection<Creature> creatures = manager.getCreatures();
+		int magiclevel = 4;
+		List<Creature> possibleCreatures = new ArrayList<Creature>();
+		for (Creature creature : creatures) {
+			if (creature.getLevel() <= magiclevel) {
+				possibleCreatures.add(creature);
+			}
 		}
+		
+		// String type = "green_dragon";
+		// Creature pickedCreature = manager.getCreature(type);
+		int pickedIdx = (int) (Math.random() * possibleCreatures.size());
+		Creature pickedCreature = possibleCreatures.get(pickedIdx);
+
+		// create it
+		AttackableCreature creature = new AttackableCreature(pickedCreature);
+
+		zone.assignRPObjectID(creature);
+		StendhalRPAction.placeat(zone, creature, x, y);
+		zone.add(creature);
+
+		creature.init();
+		creature.setMaster(player);
+		creature.clearDropItemList();
+
+		rp.addNPC(creature);
 	}
 
 	private void onTeleportScroll(Player player) {
