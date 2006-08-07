@@ -73,10 +73,10 @@ Unfinished things which have to be dealt with or made inaccessable before releas
 0.52
 - players
   - display of item based ATK and DEF is now calculated by the server
-  - fixed a bug which caused quest-items to be lost if you bag is full
+  - fixed a bug which caused quest items to be lost if you bag is full
   - fixed vertical alignment of the blue cross in minimap on small maps
   - minor changes to NPCs and maps
-  - Tell-menue works now on player with spaces in there name
+  - Tell-menu works now on players with spaces in their names
   - low-level admins have their name printed in light yellow, high-level-admins in dark yellow
 - admins / game masters
   - /supportanswer <player> <text> admin command replys to <player> and all players with support-adminlevel
@@ -86,11 +86,11 @@ Unfinished things which have to be dealt with or made inaccessable before releas
   - admins can create signs using /script adminsign.groovy
   - improved error-messages on admin-commands
 - internal
-  - experimental support for tcp-network-connections to prevent resyncs and lost messages
+  - experimental support for TCP network connections to prevent resyncs and lost messages
   - performance optimization on server-side
-  - change build-script so everthing is created below a "build"-subdirectory.
-  - added all dependencies to libs - folder
-  - added a new disabled npc /script adminmaker.groovy for test-systems
+  - change build-script so everything is created below a "build"-subdirectory.
+  - added all dependencies to "libs" folder
+  - added a new disabled NPC /script adminmaker.groovy for test-systems
   - client will use tilesets in tiled if data/tilesets is empty (development environment)
   - added http.port paramter to marauroa.ini defaulting to 80 (not game-port anymore)
   - support for two weapons as pair (swapped slots rhand and lhand on client) (they are not yet in game)
