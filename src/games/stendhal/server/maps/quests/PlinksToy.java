@@ -56,7 +56,7 @@ public class PlinksToy extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						engine.say("*snief* Thanks a lot. *smile*");
-						player.setQuest("QUEST_SLOT", "start");
+						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
 
@@ -85,7 +85,7 @@ public class PlinksToy extends AbstractQuest {
 				"teddy",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"He is my favorite toy. Please bring him back",
+				"He is my favorite toy. Will you bring him back?",
 				null);
 	}
 	
@@ -102,7 +102,50 @@ public class PlinksToy extends AbstractQuest {
 	}
 	
 	private void step_3() {
-		// TODO: take the teddy back to Plink 
+		SpeakerNPC npc = npcs.get("Plink");
+
+		npc.add(ConversationStates.IDLE,
+				SpeakerNPC.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return !player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
+					}
+				},
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						player.drop("teddy");
+						engine.say("Thanks a lot. *smile*");
+						player.setQuest(QUEST_SLOT, "done");
+					}
+				});
+
+		npc.add(ConversationStates.ATTENDING,
+				"teddy",
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return !player.isQuestCompleted(QUEST_SLOT) && !player.isEquipped("teddy");
+					}
+				},
+				ConversationStates.ATTENDING,
+				"I lost my teddy in the Park of Wolfs east of here.",
+				null);
+
+		npc.add(ConversationStates.ATTENDING,
+				"teddy",
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
+					}
+				},
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						engine.say("This is not my teddy. You brought my teddy back some time ago.");
+					}
+				});
 	}
 
 	@Override
