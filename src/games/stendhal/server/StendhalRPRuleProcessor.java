@@ -434,30 +434,32 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	synchronized public void endTurn() {
         Log4J.startMethod(logger, "endTurn");
         long start = System.nanoTime();
-        int aktTurn = getTurn();
+        int currentTurn = getTurn();
         try {
-
         	// Creatures
             for (RespawnPoint point : respawnPoints) {
                 point.logic();               
             }
 
             // PlantGrowers
-            if (aktTurn % 5 == 0) {
+            // To save some CPU cycles, we don't cycle through the plant
+            // regrowing loop each turn, but only each fifth turn. 
+            // We don't care if a fruit gets ripe a few milliseconds too late.
+            if (currentTurn % 5 == 0) {
                 for (PlantGrower plantGrower : plantGrowers) {
-                    plantGrower.regrow(aktTurn);
+                    plantGrower.regrow(currentTurn);
                 }
             }
 
             // Registeres classes for this turn
-            TurnNotifier.get().logic(aktTurn);
+            TurnNotifier.get().logic(currentTurn);
 
             // Scripts
             scripts.logic();
         } catch (Exception e) {
             logger.error("error in endTurn", e);
         } finally {
-            logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0 + " (" + (aktTurn % 5) + ")");
+            logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0 + " (" + (currentTurn % 5) + ")");
             Log4J.finishMethod(logger, "endTurn");
         }
     }
