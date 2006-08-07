@@ -410,7 +410,17 @@ public class Creature extends NPC {
 		return speed;
 	}
 
-	protected RPEntity getNearestPlayer(double range) {
+	/**
+	 * Returns a list of enemies. One of it will be attacked.
+	 *
+	 * @return list of enemies
+	 */
+	protected List<RPEntity> getEnemyList() {
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(get("zoneid"));
+		return zone.getPlayerAndFirends();
+	}
+
+	protected RPEntity getNearestEnemy(double range) {
 		int x = getx();
 		int y = gety();
 
@@ -418,9 +428,9 @@ public class Creature extends NPC {
 											// operations
 		RPEntity chosen = null;
 
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(get("zoneid"));
-
-		for (RPEntity playerOrFriend : zone.getPlayerAndFirends()) {
+		List<RPEntity> enemyList = getEnemyList();
+		
+		for (RPEntity playerOrFriend : enemyList) {
 			if (playerOrFriend == this) {
 				continue;
 			}
@@ -447,15 +457,16 @@ public class Creature extends NPC {
 		return chosen;
 	}
 
-	protected boolean isPlayerNear(double range) {
+	protected boolean isEnemyNear(double range) {
 		int x = getx();
 		int y = gety();
 
 		double distance = range * range; // We save this way several sqrt
 											// operations
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(get("zoneid"));
 
-		for (RPEntity playerOrFriend : zone.getPlayerAndFirends()) {
+		List<RPEntity> enemyList = getEnemyList();
+
+		for (RPEntity playerOrFriend : enemyList) {
 			if (playerOrFriend == this) {
 				continue;
 			}
@@ -519,7 +530,7 @@ public class Creature extends NPC {
 
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
-		if (!isPlayerNear(30)) { 
+		if (!isEnemyNear(30)) { 
 
 			// If we are already sleeping, than don't modify the Entity.
 			if (aiState == AiState.SLEEP) {
@@ -546,7 +557,7 @@ public class Creature extends NPC {
 			clearPath();
 
 			// hit the attacker, but prefer players
-			target = getNearestPlayer(8);
+			target = getNearestEnemy(8);
 			if (target == null) {
 				target = this.getAttackSource(0);
 			}
@@ -572,7 +583,7 @@ public class Creature extends NPC {
 			}
 
 			// ...and find another target
-			target = getNearestPlayer(8);
+			target = getNearestEnemy(8);
 			if (target != null) {
 				logger
 						.debug("Creature(" + get("type")

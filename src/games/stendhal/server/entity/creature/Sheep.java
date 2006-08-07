@@ -186,7 +186,7 @@ public class Sheep extends DomesticAnimal {
 	public void logic() {
 		Log4J.startMethod(logger, "logic");
 
-		if (!isPlayerNear(20) && owner == null) // if there is no player near and none will see us... 
+		if (!isEnemyNear(20) && owner == null) // if there is no player near and none will see us... 
 		{
 			stop();
 

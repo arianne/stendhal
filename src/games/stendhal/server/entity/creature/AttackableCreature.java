@@ -32,7 +32,7 @@ public class AttackableCreature extends Creature {
 	}
 
 	@Override
-	protected RPEntity getNearestPlayer(double range) {
+	protected RPEntity getNearestEnemy(double range) {
 		// do not attack each other
 		return null;
 	}
