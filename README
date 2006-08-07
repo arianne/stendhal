@@ -51,21 +51,49 @@ To play Arianne you have to use keyboard and mouse.
 
 No warranties. But let us know if it doesn't work.
 
+
+
+Unfinished things which have to be dealt with or made inaccessable before release
+---------------------------------------------------------------------------------
+- summon_scroll
+  - add to game (price)
+  - testing player logout
+  - disable scroll in protected-area
+  - no drops (no xp?) when killing the summoned creature
+  - which monsters? further restrictions?
+  
+- Quest Plink's toy
+- fix /script plague.groovy (monsters are summoned at y-1)
+- finish version-range compare
+- ados in distress
+- quest diary
 Changelog
 ---------
+
 0.52
 - players
   - display of item based ATK and DEF is now calculated by the server
-  - support for two weapons as pair (swapped slots rhand and lhand on client)
+  - fixed a bug which caused quest-items to be lost if you bag is full
+  - fixed vertical alignment of the blue cross in minimap on small maps
+  - minor changes to NPCs and maps
+  - Tell-menue works now on player with spaces in there name
   - low-level admins have their name printed in light yellow, high-level-admins in dark yellow
 - admins / game masters
-  - /supporta <player> <text> admin command replys to <player> and all players with support-adminlevel
+  - /supportanswer <player> <text> admin command replys to <player> and all players with support-adminlevel
+  - /support and /supportanswer can now be forwarded to irc://irc.freenode.net/#arianne-support
+  - added a new jail map
+  - admins can summon lots of monsters with /script plague.groovy 1 rat
   - admins can create signs using /script adminsign.groovy
+  - improved error-messages on admin-commands
 - internal
-  - performance optimization on server-side.
-  - experimental support for tcp-network-connections
-  - added http.port paramter to marauroa.ini defaulting to 80 (not game-port anymore)
+  - experimental support for tcp-network-connections to prevent resyncs and lost messages
+  - performance optimization on server-side
   - change build-script so everthing is created below a "build"-subdirectory.
+  - added all dependencies to libs - folder
+  - added a new disabled npc /script adminmaker.groovy for test-systems
+  - client will use tilesets in tiled if data/tilesets is empty (development environment)
+  - added http.port paramter to marauroa.ini defaulting to 80 (not game-port anymore)
+  - support for two weapons as pair (swapped slots rhand and lhand on client) (they are not yet in game)
 
 
 0.51.2 Jul 10, 2006
