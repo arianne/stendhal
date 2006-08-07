@@ -47,6 +47,11 @@ public class AttackableCreature extends Creature {
 		return res;
 	}
 
+	/**
+	 * sets the master of this creature
+	 *
+	 * @param master master
+	 */
 	public void setMaster(RPEntity master) {
 		this.master = master;
 	}
