@@ -12,10 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
-import java.awt.*;
-import java.awt.geom.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
+
+import java.awt.List;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 public class Item extends PassiveEntity {
 
@@ -50,8 +58,14 @@ public class Item extends PassiveEntity {
 	}
 
 	public String[] offeredActions() {
-		String[] list = { "Use", "Look" };
-		return list;
+		java.util.List<String> list = new ArrayList<String>();
+		list.add("Use");
+		list.add("Look");
+		if (client.isAdmin()) {
+			list.add("(*)Inspect");
+			list.add("(*)Destroy");
+		}
+		return list.toArray(new String[list.size()]);
 	}
 
 	public void onAction(StendhalClient client, String action, String... params) {

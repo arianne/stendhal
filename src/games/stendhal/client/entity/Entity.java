@@ -405,6 +405,18 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 				rpaction.put("target", id);
 			}
 			client.send(rpaction);
+		} else if (action.equals("(*)Inspect")) {
+			RPAction rpaction = new RPAction();
+			rpaction.put("type", "inspect");
+			int id = getID().getObjectID();
+			rpaction.put("targetid", id);
+			client.send(rpaction);
+		} else if (action.equals("(*)Destroy")) {
+			RPAction rpaction = new RPAction();
+			rpaction.put("type", "destroy");
+			int id = getID().getObjectID();
+			rpaction.put("targetid", id);
+			client.send(rpaction);
 		}
 	}
 

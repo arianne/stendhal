@@ -539,7 +539,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			list.add("(*)Destroy");
 		}
 
-		return list.toArray(new String[0]);
+		return list.toArray(new String[list.size()]);
 	}
 
 	public void onAction(StendhalClient client, String action, String... params) {
@@ -563,18 +563,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "stop");
 			rpaction.put("attack", "");
-			client.send(rpaction);
-		} else if (action.equals("(*)Inspect")) {
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", "inspect");
-			int id = getID().getObjectID();
-			rpaction.put("targetid", id);
-			client.send(rpaction);
-		} else if (action.equals("(*)Destroy")) {
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", "destroy");
-			int id = getID().getObjectID();
-			rpaction.put("targetid", id);
 			client.send(rpaction);
 		} else
 			super.onAction(client, action, params);
