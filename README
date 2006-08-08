@@ -57,8 +57,6 @@ Unfinished things which have to be dealt with or made inaccessable before releas
 ---------------------------------------------------------------------------------
 - summon_scroll
   - add to game (price?)
-  - testing player logout
-  - disable scroll in protected-area
 
 - fix /script plague.groovy (monsters are summoned at y-1)
 - finish version-range compare

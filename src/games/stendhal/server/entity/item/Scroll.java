@@ -96,9 +96,13 @@ public class Scroll extends StackableItem implements UseEvent {
 	}
 
 	private void onSummon(Player player) {
-		player.sendPrivateText("I am unable to use this scroll");
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
 				.getID());
+		if (zone.isInProtectionArea(player)) {
+			player.sendPrivateText("Use of magic is not allowed here.");
+			return;
+		}
+
 		int x = player.getInt("x");
 		int y = player.getInt("y");
 
