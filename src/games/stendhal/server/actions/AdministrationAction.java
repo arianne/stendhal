@@ -582,13 +582,13 @@ public class AdministrationAction extends ActionListener {
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onInspect");
 
-		RPEntity inspected = null;
+		Entity target = null;
 
 		if (action.has("target")) {
 			String name = action.get("target");
 			for (Player p : rules.getPlayers()) {
 				if (p.getName().equals(name)) {
-					inspected = p;
+					target = p;
 					break;
 				}
 			}
@@ -600,64 +600,71 @@ public class AdministrationAction extends ActionListener {
 					.getID().getID());
 			if (zone.has(id)) {
 				RPObject object = zone.get(id);
-				if (object instanceof RPEntity) {
-					inspected = (RPEntity) object;
+				if (object instanceof Entity) {
+					target = (Entity) object;
 				}
 			}
 		}
 
-		if (inspected == null) {
+		if (target == null) {
 			String text = "Entity not found";
 			player.sendPrivateText(text);
 			return;
 		}
 
 		StringBuffer st = new StringBuffer();
-		// It would be nice if the entity's type would be shown, but I don't
-		// know if the type attribute is mandatory.
-		//st.append("Inspected " + inspected.get("type") + " is called " + inspected.getName() + " and has attributes:");
-		st.append("Inspected entity is called " + inspected.getName() + " and has attributes:");
-		st.append("\nID:     " + inspected.getID());
-		st.append("\nATK:    " + inspected.getATK() + "("
-				+ inspected.getATKXP() + ")");
-		st.append("\nDEF:    " + inspected.getDEF() + "("
-				+ inspected.getDEFXP() + ")");
-		st.append("\nHP:     " + inspected.getHP() + " / "
-				+ inspected.getBaseHP());
-		st.append("\nXP:     " + inspected.getXP());
-		st.append("\nLevel:  " + inspected.getLevel());
 
-		st.append("\nequips");
-		for (RPSlot slot : inspected.slots()) {
-			if (slot.getName().equals("!buddy")) {
-				continue;
-			}
-			st.append("\n    Slot " + slot.getName() + ": ");
-
-			if (slot.getName().equals("!quests")
-					|| slot.getName().equals("!kills")) {
-				for (RPObject object : slot) {
-					st.append(object);
+		if (target instanceof RPEntity) {
+			RPEntity inspected = (RPEntity) target;
+			
+			// It would be nice if the entity's type would be shown, but I don't
+			// know if the type attribute is mandatory.
+			//st.append("Inspected " + inspected.get("type") + " is called " + inspected.getName() + " and has attributes:");
+			st.append("Inspected entity is called " + inspected.getName() + " and has attributes:");
+			st.append("\nID:     " + inspected.getID());
+			st.append("\nATK:    " + inspected.getATK() + "("
+					+ inspected.getATKXP() + ")");
+			st.append("\nDEF:    " + inspected.getDEF() + "("
+					+ inspected.getDEFXP() + ")");
+			st.append("\nHP:     " + inspected.getHP() + " / "
+					+ inspected.getBaseHP());
+			st.append("\nXP:     " + inspected.getXP());
+			st.append("\nLevel:  " + inspected.getLevel());
+	
+			st.append("\nequips");
+			for (RPSlot slot : inspected.slots()) {
+				if (slot.getName().equals("!buddy")) {
+					continue;
 				}
-			} else {
-				for (RPObject object : slot) {
-					String item = object.get("type");
-					if (object.has("name")) {
-						item = object.get("name");
+				st.append("\n    Slot " + slot.getName() + ": ");
+	
+				if (slot.getName().equals("!quests")
+						|| slot.getName().equals("!kills")) {
+					for (RPObject object : slot) {
+						st.append(object);
 					}
-					if (object instanceof StackableItem) {
-						st.append("[" + item + " Q=" + object.get("quantity")
-								+ "], ");
-					} else {
-						st.append("[" + item + "], ");
+				} else {
+					for (RPObject object : slot) {
+						String item = object.get("type");
+						if (object.has("name")) {
+							item = object.get("name");
+						}
+						if (object instanceof StackableItem) {
+							st.append("[" + item + " Q=" + object.get("quantity")
+									+ "], ");
+						} else {
+							st.append("[" + item + "], ");
+						}
 					}
 				}
 			}
+			if (inspected instanceof Player) {
+				st.append("\r\n" + StendhalQuestSystem.get().listQuests((Player) inspected));
+			}
+		} else {
+			st.append("Inspected entity has id " + action.getInt("targetid") + " and has attributes:\r\n");
+			st.append(target.toString());
 		}
-		if (inspected instanceof Player) {
-			st.append("\r\n" + StendhalQuestSystem.get().listQuests((Player) inspected));
-		}
-		
 		player.sendPrivateText(st.toString());
 		Log4J.finishMethod(logger, "onInspect");
 	}
