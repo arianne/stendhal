@@ -183,6 +183,10 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_orril_river_se");
 		addArea("0_nalwor_river_sw");
 		addArea("0_nalwor_river_s");
+		//addArea("0_nalwor_river_se");
+		//addArea("0_ados_river_s2_w2");
+		addArea("0_athos_ship_w2");
+
 
 		// Level -1
 		addArea("-1_ados_outside_nw");
@@ -232,6 +236,7 @@ public class StendhalRPWorld extends RPWorld {
 		populateZone("Nalwor");
 		populateZone("Orril");
 		populateZone("Ados");
+		populateZone("Athos");
 		populateZone("FeaturesTestArea");
 
 
