@@ -136,6 +136,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_semos_mountain_n_e2");
 		addArea("0_ados_mountain_n_w2");
 		addArea("0_ados_mountain_nw");
+		addArea("int_ados_magican_house");
 		addArea("0_ados_outside_nw");
 
 		addArea("0_orril_mountain_n2_w2");
