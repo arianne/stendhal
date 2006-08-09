@@ -76,6 +76,7 @@ Unfinished things which have to be dealt with or made inaccessable before releas
   - low-level admins have their name printed in light yellow, high-level-admins in dark yellow
 - admins / game masters
   - /supportanswer <player> <text> admin command replys to <player> and all players with support-adminlevel
+  - (*) Inspect, (*) Destroy and /alter can be used on items
   - /support and /supportanswer can now be forwarded to irc://irc.freenode.net/#arianne-support
   - added a new jail map
   - admins can summon lots of monsters with /script plague.groovy 1 rat

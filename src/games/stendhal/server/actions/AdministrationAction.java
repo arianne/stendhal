@@ -147,7 +147,7 @@ public class AdministrationAction extends ActionListener {
         } else if (type.equals("adminlevel")) {
             onAdminLevel(world, rules, player, action);
 		} else if (type.equals("alter")) {
-			onChangePlayer(world, rules, player, action);
+			onAlter(world, rules, player, action);
 		} else if (type.equals("summon")) {
 			onSummon(world, rules, player, action);
 		} else if (type.equals("summonat")) {
@@ -367,25 +367,17 @@ public class AdministrationAction extends ActionListener {
     }
 
     
-    private void onChangePlayer(RPWorld world, StendhalRPRuleProcessor rules,
+    private void onAlter(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onChangePlayer");
 
 		if (action.has("target") && action.has("stat") && action.has("mode")
 				&& action.has("value")) {
-			Player changed = null;
-
-			String name = action.get("target");
-			for (Player p : rules.getPlayers()) {
-				if (p.getName().equals(name)) {
-					changed = p;
-					break;
-				}
-			}
+			Entity changed = getTarget(world, rules, player, action);
 
 			if (changed == null) {
-				logger.debug("Player " + name + " not found");
-				player.sendPrivateText("Player " + name + " not found");
+				logger.debug("Entity not found");
+				player.sendPrivateText("Entity not found");
 				return;
 			}
 
@@ -393,7 +385,7 @@ public class AdministrationAction extends ActionListener {
 
 			if (stat.equals("name")) {
 				logger.error("DENIED: Admin " + player.getName()
-						+ " trying to change player " + name + "'s name");
+						+ " trying to change player " + action.get("target") + "'s name");
                 player.sendPrivateText("name cannot be changed");
 				return;
 			}
@@ -413,7 +405,7 @@ public class AdministrationAction extends ActionListener {
 				isNumerical = true;
 			}
 
-			if (changed.getRPClass().hasAttribute(stat) && changed.has(stat)) {
+			if (changed.getRPClass().hasAttribute(stat) && (changed.has(stat) || !(changed instanceof Player))) {
 				String value = action.get("value");
 				String mode = action.get("mode");
 
@@ -430,7 +422,7 @@ public class AdministrationAction extends ActionListener {
 					if (stat.equals("hp")
 							&& changed.getInt("base_hp") < numberValue) {
 						logger.error("DENIED: Admin " + player.getName()
-								+ " trying to set player " + name
+								+ " trying to set player " + action.get("target")
 								+ "'s HP over its Base HP");
 						return;
 					}
@@ -453,14 +445,14 @@ public class AdministrationAction extends ActionListener {
 						break;
 					}
 
-					rules.addGameEvent(player.getName(), "alter", changed
-							.getName(), stat, Integer.toString(numberValue));
+					rules.addGameEvent(player.getName(), "alter", action.get("target"),
+							stat, Integer.toString(numberValue));
 					changed.put(stat, numberValue);
 				} else {
 					// Can be only setif value is not a number
 					if (mode.equals("set")) {
-						rules.addGameEvent(player.getName(), "alter", changed
-								.getName(), stat, action.get("value"));
+						rules.addGameEvent(player.getName(), "alter", action.get("target"),
+								stat, action.get("value"));
 						changed.put(stat, action.get("value"));
 					}
 				}
@@ -582,29 +574,7 @@ public class AdministrationAction extends ActionListener {
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onInspect");
 
-		Entity target = null;
-
-		if (action.has("target")) {
-			String name = action.get("target");
-			for (Player p : rules.getPlayers()) {
-				if (p.getName().equals(name)) {
-					target = p;
-					break;
-				}
-			}
-		} else if (action.has("targetid")) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
-					.getID());
-
-			RPObject.ID id = new RPObject.ID(action.getInt("targetid"), zone
-					.getID().getID());
-			if (zone.has(id)) {
-				RPObject object = zone.get(id);
-				if (object instanceof Entity) {
-					target = (Entity) object;
-				}
-			}
-		}
+		Entity target = getTarget(world, rules, player, action);
 
 		if (target == null) {
 			String text = "Entity not found";
@@ -673,22 +643,8 @@ public class AdministrationAction extends ActionListener {
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onDestroy");
 
-		Entity inspected = null;
+		Entity inspected = getTarget(world, rules, player, action);
 
-		if (action.has("targetid")) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
-					.getID());
-
-			RPObject.ID id = new RPObject.ID(action.getInt("targetid"), zone
-					.getID().getID());
-			if (zone.has(id)) {
-				RPObject object = zone.get(id);
-
-				if (object instanceof Entity) {
-					inspected = (Entity) object;
-				}
-			}
-		}
 
 		if (inspected == null) {
 			String text = "Entity not found";
@@ -766,4 +722,49 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onTeleport");
 	}
 
+	private Entity getTarget(RPWorld world, StendhalRPRuleProcessor rules,
+			Player player, RPAction action) {
+
+		String id = null;
+		Entity target = null;
+
+		// target contains a name unless it starts with #
+		if (action.has("target")) {
+			id = action.get("target");
+		}
+		if (id != null) {
+			if (!id.startsWith("#")) { 
+				for (Player p : rules.getPlayers()) {
+					if (p.getName().equals(id)) {
+						target = p;
+						break;
+					}
+				}
+				return null;
+			} else {
+				id = id.substring(1);
+			}
+		}
+
+		// either target started with a # or it was not specified
+		if (action.has("targetid")) {
+			id = action.get("targetid");
+		}
+
+		// go for the id
+		if (id != null) {
+			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+					.getID());
+
+			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone.getID().getID());
+			if (zone.has(oid)) {
+				RPObject object = zone.get(oid);
+				if (object instanceof Entity) {
+					target = (Entity) object;
+				}
+			}
+		}
+		
+		return target;
+	}
 }
