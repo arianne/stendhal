@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <property name="x" value="499744"/>
- <property name="y" value="500256"/>
+<map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="x" value="499744"/>
+  <property name="y" value="500256"/>
+ </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -37,7 +39,7 @@
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WsRWEMAxEQSdXDb1T49XAA7MSmmByo78Bx1rrAAAAAAAAAAAAAAAAAAAAAAAAAICNzt816feS7W8ffTzdVv9eEv3tQ2f99ddff/3ndtZff5vQX3/99ddff/3119w29Ndff/31119//fXXX2ubyN+1i3Qn/fXXX3/99ddff/31119//fXXX3/99ddff7vQWX/99ddff/31198u9Ndff/21tgv9J/VP32WKdGfd9dd9Rv/0t/LeTtLvRX/0R3/0R3/0R3/0Z98W0u/DBsj2t4Fv8x8w25f+B7u/v+rNqtzz7lvtYM9tK79N//fuXOEN+ve4f1r6ztWl++ivv/42oHteupnuNaQbal1Duq/WdejNkztIfwcAAAAAAAAAAAC1/QH5TVbTAAABAA==
+   H4sIAAAAAAAAAO3WsRGDQBAEQRwpeIJRjMoB+Np9ro32XzdbJc7vcZwAAAAAAAAAAAAAAAAAAAAAAAAAC/0+16TfTba/ffRb1Vb/PST724fO+uuvv/76z+2sv/42ob/++uuvv/7666+5beivv/7666+//vrrP71/+sa7SffSX3/99ddff/31119//fXXX3/99ddff/31119//fW3C+3111p//fXXX3/97UJ//fXXX3+7yN/uDdIN9ddfV/2111//XnrOpv9s+s+m/2z6z6b/bPrPpv9s+s+mP1f2kH4n2f428E7+B2Z72/fAzm9vvlnLPe++1Q723MCT3fVfd+OWd+jff/+09J2bpdvon5fuo39eupHuHdLNNO+Q7qh3h3RfrXvozZM7SP8OAAAAAAAAAAAAuv0BwZQZfwAAAQA=
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
@@ -65,7 +67,7 @@
    H4sIAAAAAAAAAO3Yyw0AEAwAUFcjW8EmthQ3d0LoexM06TdNCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgN/VfDsCAOCEZueH4sYDAAAAgLj8B2ORbwDgJcXtAvCFlXluF8B5O/5HepdBHQAAAAAAAAAAAAAAsw63n1JUAAABAA==
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.37">
+ <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3VTWpbQRSEUY+zFO9/gSGDQAjI1rMe+vp2n4Iz8t9VVYM/f318fAIAAAAAAAAAAAAAAAAAAAAAAABE/qS+gffsfCX1vbT7ex9zFKk/M+3+36XuZEeTUne1o0mpu9rRpNRdTbZD6g4n2zV1r1PsmrrXKXZN3esUu6budYpdU/e6stNT9187PXX/tdNT9187PXX/tdNT9187PXX/tl4v9U72b1PvZP829U72b1PvZP829U72b1PvZP829U72b1PvZP829U6r7H/qu6l3mrD/M79z6tupd1r9Xfzb0XffMzH1HhP23yF176uYnFc+Q937KlbMs3faf87+V/6e/Xt3dn3Hz9+dut/VPeprl9T9ru5RX6vlpzfV/U61Wv7e9NVtdWc7WS32X2f/V9/IT/5G3cdpHu1x5Z18teuV/esuTvTK/s987dn9Wdsr+zPf1dT30uxf34n9sT/N/t7BnuzPlXdQ34n9afavb6R9B/VttPt7A/vzf+Bsz6a+k3Z/b2Bf/2879R14y+/tceXbVrx9glV7vDt1zyur+3xH6o5Xt3vqfqfYKXWXk01N3dtuVk/dzylWSd0Dtuaed1DfDwAAAAAAAAAAAKztNyC1iCIAAAEA
   </data>
