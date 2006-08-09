@@ -64,13 +64,13 @@ public class Scroll extends StackableItem implements UseEvent {
 		boolean successful;
 
 		if (name.equals("empty_scroll")) {
-			successful = onEmptyScroll(player);
+			successful = useEmptyScroll(player);
 		} else if (name.equals("marked_scroll") || name.equals("home_scroll")) {
-			successful = onTeleportScroll(player);
+			successful = useTeleportScroll(player);
 		} else if (name.equals("archers_protection_scroll")) {
-			successful = onCreatureProtection(player);
+			successful = useCreatureProtectionScroll(player);
 		} else if (name.equals("summon_scroll")) {
-			successful = onSummon(player);
+			successful = useSummonScroll(player);
 		} else {
 			player.sendPrivateText("I am unable to use this scroll");
 			successful = false;
@@ -86,7 +86,7 @@ public class Scroll extends StackableItem implements UseEvent {
 	 * @param player
 	 * @return
 	 */
-	private boolean onCreatureProtection(Player player) {
+	private boolean useCreatureProtectionScroll(Player player) {
 		player.sendPrivateText("I am unable to use this scroll");
 		return false;
 	}
@@ -96,7 +96,7 @@ public class Scroll extends StackableItem implements UseEvent {
 	 * @param player
 	 * @return always true
 	 */
-	private boolean onEmptyScroll(Player player) {
+	private boolean useEmptyScroll(Player player) {
 		Item item = getWorld().getRuleManager().getEntityManager().getItem(
 				"marked_scroll");
 		StendhalRPZone zone = (StendhalRPZone) getWorld().getRPZone(player.get("zoneid"));
@@ -114,7 +114,7 @@ public class Scroll extends StackableItem implements UseEvent {
 	 * @param player The player who used the scroll
 	 * @return true iff summoning was successful
 	 */
-	private boolean onSummon(Player player) {
+	private boolean useSummonScroll(Player player) {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
 				.getID());
 		if (zone.isInProtectionArea(player)) {
@@ -170,7 +170,7 @@ public class Scroll extends StackableItem implements UseEvent {
 	 * @param player The player who used the scroll and who will be teleported
 	 * @return true iff summoning was successful
 	 */
-	private boolean onTeleportScroll(Player player) {
+	private boolean useTeleportScroll(Player player) {
 		// init as home_scroll
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("0_semos_city");
 		int x = 30;
