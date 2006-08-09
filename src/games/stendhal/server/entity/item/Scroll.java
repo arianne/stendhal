@@ -26,10 +26,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 /**
  * Represents a magic scroll.
  */
 public class Scroll extends StackableItem implements UseEvent {
+	private static final Logger logger = Logger.getLogger(Scroll.class);
 
 	/**
 	 * Creates a new scroll
@@ -118,7 +121,13 @@ public class Scroll extends StackableItem implements UseEvent {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
 				.getID());
 		if (zone.isInProtectionArea(player)) {
-			player.sendPrivateText("Use of magic is not allowed here.");
+			player.sendPrivateText("Use of aggressive magic is not allowed here.");
+			return false;
+		}
+		
+		if (rp.getNPCs().size() > 100) {
+			player.sendPrivateText("I cannot use magic at the moment because this kind of magic has been used too often.");
+			logger.error("too many npcs");
 			return false;
 		}
 
