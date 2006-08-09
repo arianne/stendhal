@@ -356,7 +356,7 @@ public class Semos implements IContent {
 							}
 						}
 					});
-				addHelp("I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news. I'm also selling location #scrolls.");
+				addHelp("I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news.");
 				addJob("I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
 				addSeller(new SellerBehaviour(world, shops.get("scrolls")));
 				
@@ -366,23 +366,19 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					"I do not have any task for you right now. If you need anything from me just say it.",
 					null);
+
 				add(ConversationStates.ATTENDING,
-					new String[] { "scroll", "scrolls" },
+					new String[] { "offer", "buy", "scroll", "scrolls", "home", "empty", "marked", "summon", "magic", "wizzard", "sorcerer" },
 					null,
 					ConversationStates.ATTENDING,
-					"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked.",
+					"I stopped selling scrolls but you still can by them from #Haizen.",
 					null);
-				add(1,
-					new String[] { "home" },
+
+				add(ConversationStates.ATTENDING,
+					new String[] { "haizen", "haizen." },
 					null,
-					1,
-					"Home scrolls take you home immediately, a good way to esape danger!",
-					null);
-				add(1,
-					new String[] { "empty", "marked" },
-					null,
-					1,
-					"Empty scrolls are used to mark a position. Marked scrolls can take you back to that position. They are a little expensive, though.",
+					ConversationStates.ATTENDING,
+					"#Haizen is a wizzard living in a small hut between Semos and Ados.",
 					null);
 			}
 		};
