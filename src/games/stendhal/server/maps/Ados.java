@@ -85,8 +85,8 @@ public class Ados implements IContent {
 		"-1_ados_outside_nw")));
 		buildZooSub3Area((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 		"-3_ados_outside_nw")));
-		buildMagicanHouseArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
-		"int_ados_magican_house")));
+		buildMagicianHouseArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		"int_ados_magician_house")));
 	}
 
 
@@ -289,9 +289,9 @@ public class Ados implements IContent {
 		zone.addNPC(npc);
 	}
 
-	private void buildMagicanHouseArea(StendhalRPZone zone) {
+	private void buildMagicianHouseArea(StendhalRPZone zone) {
 		StendhalRPZone zoneOutside = (StendhalRPZone) 
-			world.getRPZone(new IRPZone.ID("int_ados_magican_house"));
+			world.getRPZone(new IRPZone.ID("0_ados_mountain_nw"));
 
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
@@ -306,7 +306,7 @@ public class Ados implements IContent {
 		portal.setx(75);
 		portal.sety(49);
 		portal.setNumber(102);
-		portal.setDestination("0_ados_magican_house", 103);
+		portal.setDestination("int_ados_magician_house", 103);
 		zoneOutside.addPortal(portal);
 
 		SpeakerNPC npc = new SpeakerNPC("Haizen") {
@@ -349,7 +349,7 @@ public class Ados implements IContent {
 					new String[] { "magic", "scroll", "scrolls" },
 					null,
 					ConversationStates.ATTENDING,
-					"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked. For the advanced magicans i have #summon scrolls.",
+					"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked. For the advanced magicians i have #summon scrolls.",
 					null);
 				add(ConversationStates.ATTENDING,
 					new String[] { "home" },
@@ -367,7 +367,7 @@ public class Ados implements IContent {
 					new String[] { "summon"},
 					null,
 					ConversationStates.ATTENDING,
-					"You can summon animals with summon_scrolls. Advanced magicans can summon stronger monsters but i think it is too dangerous to sell such scrolls.",
+					"You can summon animals with summon_scrolls. Advanced magicians can summon stronger monsters but i think it is too dangerous to sell such scrolls.",
 					null);
 			
 				addGoodbye();
