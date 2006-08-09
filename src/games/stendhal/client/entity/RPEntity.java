@@ -338,6 +338,17 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 		Color nameColor = Color.white;
 
+		if (diff.has("adminlevel")) {
+			int adminlevel = diff.getInt("adminlevel");
+			if (adminlevel >= 800) {
+				nameColor = new Color(200, 200, 0);
+			} else if (adminlevel >= 400) {
+				nameColor = new Color(255, 255, 0);
+			} else if (adminlevel > 0) {
+				nameColor = new Color(255, 255, 172);
+			}
+		}
+
 		if (Debug.NEW_CLIENT) {
 			String titleType = null;
 			if (base.has("title_type")) {
@@ -352,17 +363,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				} else if (titleType.equals("enemy")) {
 					nameColor = new Color(255, 200, 200);
 				}
-			}
-		}
-
-		if (diff.has("adminlevel")) {
-			int adminlevel = diff.getInt("adminlevel");
-			if (adminlevel >= 800) {
-				nameColor = new Color(200, 200, 0);
-			} else if (adminlevel >= 400) {
-				nameColor = new Color(255, 255, 0);
-			} else if (adminlevel > 0) {
-				nameColor = new Color(255, 255, 172);
 			}
 		}
 
