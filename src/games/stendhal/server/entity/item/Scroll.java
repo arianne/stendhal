@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
@@ -28,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Magic scrolls
+ * Represents a magic scroll.
  */
 public class Scroll extends StackableItem implements UseEvent {
 
@@ -95,6 +94,10 @@ public class Scroll extends StackableItem implements UseEvent {
 		zone.add(item);
 	}
 
+	/**
+	 * Is invoked when a summon scroll is used.
+	 * @param player The player who used the scroll.
+	 */
 	private void onSummon(Player player) {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
 				.getID());
@@ -106,7 +109,7 @@ public class Scroll extends StackableItem implements UseEvent {
 		int x = player.getInt("x");
 		int y = player.getInt("y");
 
-		EntityManager manager = ((StendhalRPWorld) world)
+		EntityManager manager = (world)
 				.getRuleManager().getEntityManager();
 
 		Creature pickedCreature = null;
@@ -144,14 +147,20 @@ public class Scroll extends StackableItem implements UseEvent {
 		rp.addNPC(creature);
 	}
 
+	/**
+	 * Is invoked when a teleporting scroll is used. Tries to put the
+	 * player on the scroll's destination, or near it. 
+	 * @param player The player who used the scroll and who will be teleported
+	 */
 	private void onTeleportScroll(Player player) {
-
 		// init as home_scroll
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("0_semos_city");
 		int x = 30;
 		int y = 40;
 
-		// is it a marked scroll?
+		// Is it a marked scroll? Marked scrolls have a destination which
+		// is stored in the infostring, existing of a zone name and x and y
+		// coordinates
 		if (has("infostring")) {
 			String infostring = get("infostring");
 			java.util.StringTokenizer st = new java.util.StringTokenizer(infostring);
