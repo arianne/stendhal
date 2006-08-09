@@ -27,6 +27,7 @@ public class ShopList {
 		shops.add("healing", "greater_potion", 500);
 
 		shops.add("scrolls", "home_scroll", 250);
+		shops.add("scrolls", "summon_scroll", 200);
 		shops.add("scrolls", "empty_scroll", 1200);
 
 		shops.add("sellstuff", "knife", 15);
