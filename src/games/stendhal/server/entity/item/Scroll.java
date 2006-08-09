@@ -61,28 +61,42 @@ public class Scroll extends StackableItem implements UseEvent {
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 		String name = getName();
+		boolean successful;
 
 		if (name.equals("empty_scroll")) {
-			onEmptyScroll(player);
+			successful = onEmptyScroll(player);
 		} else if (name.equals("marked_scroll") || name.equals("home_scroll")) {
-			onTeleportScroll(player);
+			successful = onTeleportScroll(player);
 		} else if (name.equals("archers_protection_scroll")) {
-			onCreatureProtection(player);
+			successful = onCreatureProtection(player);
 		} else if (name.equals("summon_scroll")) {
-			onSummon(player);
+			successful = onSummon(player);
 		} else {
 			player.sendPrivateText("I am unable to use this scroll");
+			successful = false;
 		}
-
-		this.removeOne();
-		getWorld().modify(player);
+		if (successful) {
+			this.removeOne();
+			getWorld().modify(player);
+		}
 	}
 
-	private void onCreatureProtection(Player player) {
+	/**
+	 * 
+	 * @param player
+	 * @return
+	 */
+	private boolean onCreatureProtection(Player player) {
 		player.sendPrivateText("I am unable to use this scroll");
+		return false;
 	}
 
-	private void onEmptyScroll(Player player) {
+	/**
+	 * 
+	 * @param player
+	 * @return always true
+	 */
+	private boolean onEmptyScroll(Player player) {
 		Item item = getWorld().getRuleManager().getEntityManager().getItem(
 				"marked_scroll");
 		StendhalRPZone zone = (StendhalRPZone) getWorld().getRPZone(player.get("zoneid"));
@@ -92,18 +106,20 @@ public class Scroll extends StackableItem implements UseEvent {
 		item.put("infostring", "" + player.getID().getZoneID() + " "
 				+ player.getx() + " " + player.gety());
 		zone.add(item);
+		return true;
 	}
 
 	/**
 	 * Is invoked when a summon scroll is used.
-	 * @param player The player who used the scroll.
+	 * @param player The player who used the scroll
+	 * @return true iff summoning was successful
 	 */
-	private void onSummon(Player player) {
+	private boolean onSummon(Player player) {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
 				.getID());
 		if (zone.isInProtectionArea(player)) {
 			player.sendPrivateText("Use of magic is not allowed here.");
-			return;
+			return false;
 		}
 
 		int x = player.getInt("x");
@@ -145,14 +161,16 @@ public class Scroll extends StackableItem implements UseEvent {
 		creature.clearDropItemList();
 
 		rp.addNPC(creature);
+		return true;
 	}
 
 	/**
 	 * Is invoked when a teleporting scroll is used. Tries to put the
 	 * player on the scroll's destination, or near it. 
 	 * @param player The player who used the scroll and who will be teleported
+	 * @return true iff summoning was successful
 	 */
-	private void onTeleportScroll(Player player) {
+	private boolean onTeleportScroll(Player player) {
 		// init as home_scroll
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("0_semos_city");
 		int x = 30;
@@ -175,9 +193,11 @@ public class Scroll extends StackableItem implements UseEvent {
 		if (StendhalRPAction.placeat(zone, player, x, y)) {
 			StendhalRPAction.changeZone(player, zone.getID().getID());
 			StendhalRPAction.transferContent(player);
+			return true;
+		} else {
+			return false;
 		}
 	}
-
 
 	@Override
 	public String describe() {
