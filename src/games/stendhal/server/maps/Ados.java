@@ -12,6 +12,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
@@ -84,6 +85,8 @@ public class Ados implements IContent {
 		"-1_ados_outside_nw")));
 		buildZooSub3Area((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 		"-3_ados_outside_nw")));
+		buildMagicanHouseArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		"int_ados_magican_house")));
 	}
 
 
@@ -282,6 +285,99 @@ public class Ados implements IContent {
 		zone.assignRPObjectID(npc);
 		npc.put("class", "beardmannpc");
 		npc.set(4, 46);
+		npc.initHP(100);
+		zone.addNPC(npc);
+	}
+
+	private void buildMagicanHouseArea(StendhalRPZone zone) {
+		StendhalRPZone zoneOutside = (StendhalRPZone) 
+			world.getRPZone(new IRPZone.ID("int_ados_magican_house"));
+
+		Portal portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setx(16);
+		portal.sety(30);
+		portal.setNumber(103);
+		portal.setDestination("0_ados_mountain_nw", 102);
+		zone.addPortal(portal);
+
+		portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setx(75);
+		portal.sety(49);
+		portal.setNumber(102);
+		portal.setDestination("0_ados_magican_house", 103);
+		zoneOutside.addPortal(portal);
+
+		SpeakerNPC npc = new SpeakerNPC("Haizen") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(24, 6));
+				nodes.add(new Path.Node(21, 6));
+				nodes.add(new Path.Node(21, 8));
+				nodes.add(new Path.Node(15, 8));
+				nodes.add(new Path.Node(15, 11));
+				nodes.add(new Path.Node(13, 11));
+				nodes.add(new Path.Node(13, 26));
+				nodes.add(new Path.Node(22, 26));
+				nodes.add(new Path.Node(13, 26));
+				nodes.add(new Path.Node(13, 11));
+				nodes.add(new Path.Node(15, 11));
+				nodes.add(new Path.Node(15, 8));
+				nodes.add(new Path.Node(21, 8));
+				nodes.add(new Path.Node(21, 6));
+				nodes.add(new Path.Node(24, 6));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting();
+				addJob("I am a wizard and i sell magic scrolls. Just ask me about my #offer");
+				addHelp("You can use magic with the help of #magic #scrolls.");
+
+				addSeller(new SellerBehaviour(world, shops.get("scrolls")));
+				
+				add(ConversationStates.ATTENDING,
+					QUEST_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"I do not have any task for you right now. If you need anything from me just say it.",
+					null);
+				add(ConversationStates.ATTENDING,
+					new String[] { "magic", "scroll", "scrolls" },
+					null,
+					ConversationStates.ATTENDING,
+					"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked. For the advanced magicans i have #summon scrolls.",
+					null);
+				add(ConversationStates.ATTENDING,
+					new String[] { "home" },
+					null,
+					ConversationStates.ATTENDING,
+					"Home scrolls take you home immediately, a good way to escape danger!",
+					null);
+				add(ConversationStates.ATTENDING,
+					new String[] { "empty", "marked" },
+					null,
+					ConversationStates.ATTENDING,
+					"Empty scrolls are used to mark a position. Marked scrolls can take you back to that position. They are a little expensive, though.",
+					null);
+				add(ConversationStates.ATTENDING,
+					new String[] { "summon"},
+					null,
+					ConversationStates.ATTENDING,
+					"You can summon animals with summon_scrolls. Advanced magicans can summon stronger monsters but i think it is too dangerous to sell such scrolls.",
+					null);
+			
+				addGoodbye();
+			}
+		};
+		npcs.add(npc);
+
+		zone.assignRPObjectID(npc);
+		npc.put("class", "wisemannpc");
+		npc.set(24, 6);
 		npc.initHP(100);
 		zone.addNPC(npc);
 	}
