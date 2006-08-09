@@ -109,20 +109,26 @@ public class Scroll extends StackableItem implements UseEvent {
 		EntityManager manager = ((StendhalRPWorld) world)
 				.getRuleManager().getEntityManager();
 
-		// pick it
-		Collection<Creature> creatures = manager.getCreatures();
-		int magiclevel = 4;
-		List<Creature> possibleCreatures = new ArrayList<Creature>();
-		for (Creature creature : creatures) {
-			if (creature.getLevel() <= magiclevel) {
-				possibleCreatures.add(creature);
+		Creature pickedCreature = null;
+		if (has("infostring")) {
+
+			// scroll for special monster
+			String type = get("infostring");
+			pickedCreature = manager.getCreature(type);			
+		} else {
+			
+			// pick it randomly
+			Collection<Creature> creatures = manager.getCreatures();
+			int magiclevel = 4;
+			List<Creature> possibleCreatures = new ArrayList<Creature>();
+			for (Creature creature : creatures) {
+				if (creature.getLevel() <= magiclevel) {
+					possibleCreatures.add(creature);
+				}
 			}
+			int pickedIdx = (int) (Math.random() * possibleCreatures.size());
+			pickedCreature = possibleCreatures.get(pickedIdx);
 		}
-		
-		// String type = "green_dragon";
-		// Creature pickedCreature = manager.getCreature(type);
-		int pickedIdx = (int) (Math.random() * possibleCreatures.size());
-		Creature pickedCreature = possibleCreatures.get(pickedIdx);
 
 		// create it
 		AttackableCreature creature = new AttackableCreature(pickedCreature);
