@@ -338,6 +338,23 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 		Color nameColor = Color.white;
 
+		if (Debug.NEW_CLIENT) {
+			String titleType = null;
+			if (base.has("title_type")) {
+				titleType = base.get("title_type");
+			}
+			if (diff.has("title_type")) {
+				titleType = diff.get("title_type");
+			}
+			if (titleType != null) {
+				if (titleType.equals("npc")) {
+					nameColor = new Color(200, 200, 255);
+				} else if (titleType.equals("enemy")) {
+					nameColor = new Color(255, 200, 200);
+				}
+			}
+		}
+
 		if (diff.has("adminlevel")) {
 			int adminlevel = diff.getInt("adminlevel");
 			if (adminlevel >= 800) {

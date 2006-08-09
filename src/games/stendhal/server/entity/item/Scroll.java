@@ -159,6 +159,7 @@ public class Scroll extends StackableItem implements UseEvent {
 		creature.init();
 		creature.setMaster(player);
 		creature.clearDropItemList();
+		creature.put("title_type", "friend");
 
 		rp.addNPC(creature);
 		return true;

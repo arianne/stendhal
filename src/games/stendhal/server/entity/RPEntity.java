@@ -104,6 +104,7 @@ public abstract class RPEntity extends Entity {
 			entity.add("risk", RPClass.BYTE, RPClass.VOLATILE);
 			entity.add("damage", RPClass.INT, RPClass.VOLATILE);
 			entity.add("target", RPClass.INT, RPClass.VOLATILE);
+			entity.add("title_type", RPClass.STRING, RPClass.VOLATILE);
 
 			entity.addRPSlot("head", 1, RPClass.PRIVATE);
 			entity.addRPSlot("rhand", 1, RPClass.PRIVATE);

@@ -169,6 +169,10 @@ public class Creature extends NPC {
 		super(object);
 
 		put("type", "creature");
+		put("title_type", "enemy");
+		if (object.has("title_type")) {
+			put("title_type", object.get("title_type"));
+		}
 		createPath();
 
 		dropsItems = new ArrayList<Creature.DropItem>();
@@ -231,6 +235,7 @@ public class Creature extends NPC {
 	public Creature() throws AttributeNotFoundException {
 		super();
 		put("type", "creature");
+		put("title_type", "enemy");
 
 		createPath();
 

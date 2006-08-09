@@ -39,6 +39,7 @@ public abstract class DomesticAnimal extends Creature {
 	 */
 	public DomesticAnimal() throws AttributeNotFoundException {
 		this(null);
+		put("title_type", "friend");
 	}
 
 	/**
@@ -48,6 +49,7 @@ public abstract class DomesticAnimal extends Creature {
 	public DomesticAnimal(Player owner) throws AttributeNotFoundException {
 		super();
 		this.owner = owner;
+		put("title_type", "friend");
 
 		put("x", 0);
 		put("y", 0);
@@ -61,6 +63,10 @@ public abstract class DomesticAnimal extends Creature {
 	 */
 	public DomesticAnimal(RPObject object) throws AttributeNotFoundException {
 		super(object);
+		put("title_type", "friend");
+		if (object.has("title_type")) {
+			put("title_type", object.get("title_type"));
+		}
 	}
 
 	/**
@@ -71,7 +77,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal(RPObject object, Player owner) throws AttributeNotFoundException {
-		super(object);
+		this(object);
 		this.owner = owner;
 	}
 

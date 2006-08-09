@@ -194,6 +194,7 @@ public abstract class SpeakerNPC extends NPC {
 		behavioursData = new HashMap<String, Object>();
 		setName(name);
 		createDialog();
+		put("title_type", "npc");
 	}
 
 	abstract protected void createPath();
