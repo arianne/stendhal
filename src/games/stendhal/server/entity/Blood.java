@@ -14,7 +14,7 @@ package games.stendhal.server.entity;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.TurnNotifier;
-import games.stendhal.server.events.TurnEvent;
+import games.stendhal.server.events.TurnListener;
 
 import java.awt.geom.Rectangle2D;
 
@@ -25,7 +25,7 @@ import marauroa.common.game.RPClass;
  * Represents a blood puddle that is left on the ground after a Creature
  * was injured or killed.
  */
-public class Blood extends Entity implements TurnEvent {
+public class Blood extends Entity implements TurnListener {
 	/**
 	 * After this many turns, blood will disappear.
 	 */

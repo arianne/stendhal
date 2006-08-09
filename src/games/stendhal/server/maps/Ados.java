@@ -17,7 +17,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.events.TurnEvent;
+import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
@@ -32,7 +32,7 @@ public class Ados implements IContent {
 	private NPCList npcs;
 	private StendhalRPWorld world;
 	
-	private static class AdosAttackableCreature extends AttackableCreature implements TurnEvent {
+	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 		private static long lastShoutTime = 0;
 		private String message = null;
 

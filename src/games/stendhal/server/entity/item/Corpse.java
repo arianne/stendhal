@@ -16,7 +16,7 @@ import games.stendhal.server.TurnNotifier;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.events.TurnEvent;
+import games.stendhal.server.events.TurnListener;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
@@ -29,7 +29,7 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public class Corpse extends PassiveEntity implements TurnEvent {
+public class Corpse extends PassiveEntity implements TurnListener {
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
 	private static final int DEGRADATION_TIMEOUT = 3000; // 30 minutes at 300 ms
 	private static final int MAX_STAGE = 5; // number of degradation steps

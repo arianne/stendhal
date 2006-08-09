@@ -14,7 +14,7 @@ package games.stendhal.server;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.events.TurnEvent;
+import games.stendhal.server.events.TurnListener;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -23,7 +23,7 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
-public class RespawnPoint implements TurnEvent {
+public class RespawnPoint implements TurnListener {
 	private static final int TURNSTORESPAWN = 90;
 
 	/** the logger instance. */

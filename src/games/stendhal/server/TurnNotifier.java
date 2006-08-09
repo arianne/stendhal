@@ -1,6 +1,6 @@
 package games.stendhal.server;
 
-import games.stendhal.server.events.TurnEvent;
+import games.stendhal.server.events.TurnListener;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,7 +27,7 @@ public class TurnNotifier {
 	 * at this turn.
 	 * Turns at which no event should take place needn't be registered here.
 	 */
-	private Map<Integer, Set<TurnEvent>> register = new HashMap<Integer, Set<TurnEvent>>();
+	private Map<Integer, Set<TurnListener>> register = new HashMap<Integer, Set<TurnListener>>();
 	
 	/** Used for multi-threading synchronization. **/
 	private final Object sync = new Object();
@@ -62,13 +62,13 @@ public class TurnNotifier {
 		this.currentTurn = currentTurn;
 
 		// get and remove the set for this turn
-		Set<TurnEvent> set = null;
+		Set<TurnListener> set = null;
 		synchronized (sync) {
 			set = register.remove(new Integer(currentTurn));
 		}
 
 		if (set != null) {
-			for (TurnEvent turnEvent : set) {
+			for (TurnListener turnEvent : set) {
 				turnEvent.onTurnReached(currentTurn);
 			}
 		}
@@ -89,7 +89,7 @@ public class TurnNotifier {
 	 * @param diff the number of turns to wait
 	 * @param turnEvent the class to notify
 	 */
-	public void notifyInTurns(int diff, TurnEvent turnEvent) {
+	public void notifyInTurns(int diff, TurnListener turnEvent) {
 		notifyAtTurn(currentTurn + diff + 1, turnEvent);
 	}
 
@@ -99,7 +99,7 @@ public class TurnNotifier {
 	 * @param turn the number of the turn
 	 * @param turnEvent the class to notify
 	 */
-	public void notifyAtTurn(int turn, TurnEvent turnEvent) {
+	public void notifyAtTurn(int turn, TurnListener turnEvent) {
 		if (turn <= currentTurn) {
 			logger.error("requested turn " + turn + " is in the past. Current turn is " + currentTurn, new Throwable());
 			return;
@@ -107,9 +107,9 @@ public class TurnNotifier {
 		synchronized (sync) {
 			// do we have other events for this turn?
 			Integer turnInt = new Integer(turn);
-			Set<TurnEvent> set = register.get(turnInt);
+			Set<TurnListener> set = register.get(turnInt);
 			if (set == null) {
-				set = new HashSet<TurnEvent>();
+				set = new HashSet<TurnListener>();
 				register.put(turnInt, set);
 			}
 			// add it to the list

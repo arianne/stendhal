@@ -14,14 +14,14 @@ package games.stendhal.server.entity;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.TurnNotifier;
-import games.stendhal.server.events.TurnEvent;
+import games.stendhal.server.events.TurnListener;
 
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 
-public class Door extends Portal implements TurnEvent {
+public class Door extends Portal implements TurnListener {
 	private boolean open;
     private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
     private int turnToClose = 0;
