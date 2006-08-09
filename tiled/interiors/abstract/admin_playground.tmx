@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
- <property name="x" value="500000"/>
- <property name="y" value="500000"/>
+<map version="0.99b" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="x" value="500000"/>
+  <property name="y" value="500000"/>
+ </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -62,20 +64,20 @@
  </layer>
  <layer name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3TyVbCQBQE0Gz9VxRQQAYFZVBAAQfEAZRJBYWPdJUNx4Qk/RqqO3W3fU6nXr2O4xARERE5TuLA//xwy3ncHbGfyFY+3a0j9HrMXUD65V5i5cfAfZ8AZU6BZMl45MjuMV8apBsKJ8m90Q6V+N60ygH1WwTKYoozjZ2dCt9d4H6tlAfZ6zlIDiJEZf4f9I8K3wXRTtVi8s9VQ85Zj0kvUq409XUR8N5L7kubhkK319wLjFvLd3FjyHxNwJwdwExe2kBZe4JZWkBzubqAmSQ8WTqXq7/H+e4s79Z2A037u/e59yHgNx8Vso34LknBM+D7Gfpk+gyR911xthehbt4AO5bwauhcHwblnm/J+mXQLJtmBmdH9y3Q7VjxjinYfheCeSZgs0W1tGQOIgl/MwVBDQBAAAA=
+   H4sIAAAAAAAAAO3TW18BURQFcK8+rFuI5NJNVMr9kqgQij6kJy9+DDNnH7POmfX/AGfWXntPKERERER0XCTsdwJsUfbj2dqhu38PvV5wF5BW3Eug/Bm47yRQ5jhIltSBHGkf8yVAuiF3YtwbndE1702rS6B+c0BZTJHX2FlG+O0r7tdKWZC9FkByECEq8v+gPUq8C6Kzug/IP3fncs6HgPQi5VFTXzcnvnvLfWlTVui2wr3AqFm+ixdD5qsC5nwFzHTIM1DWumCWJ6C5tt4AM0noWjrXVsfH+RqWd2u7nqb9NR3ebZ34zbZCthHvkhT0Ae/nwyHTj4u8Y8XZBkLdDAE7lvBu6FyfBuWeHck6N2iWXVODs6NbCHT7pfjGBGy/S8E832CzefVryRxEEjZU2QnUAEAAAA==
   </data>
  </layer>
- <layer name="collision" width="64" height="64" opacity="0.37">
+ <layer name="collision" width="64" height="64" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
  </layer>
- <layer name="navigation" width="64" height="64">
+ <layer name="navigation" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
  </layer>
- <layer name="protection" width="64" height="64">
+ <layer name="protection" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
