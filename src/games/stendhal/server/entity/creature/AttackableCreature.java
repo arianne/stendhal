@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class AttackableCreature extends Creature {
 	private RPEntity master = null;
-	private List<RPEntity> empty = new ArrayList<RPEntity>();
 
 	/**
 	 * AttackableCreature
@@ -40,9 +39,15 @@ public class AttackableCreature extends Creature {
 
 	@Override
 	protected List<RPEntity> getEnemyList() {
-		List<RPEntity> res = empty;
+		List<RPEntity> res = this.getAttackSources();
 		if (master != null) {
-			res = master.getAttackSources();
+			if (res.isEmpty()) {
+				res = master.getAttackSources();
+			} else {
+				res = new ArrayList<RPEntity>();
+				res.addAll(this.getAttackSources());
+				res.addAll(master.getAttackSources());
+			}
 		}
 		return res;
 	}
