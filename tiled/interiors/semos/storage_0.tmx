@@ -40,17 +40,17 @@
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBTAwBEWVJqe4DiSnf3sDAyr6OyGkW7/SAbrBzisz47G9YAAAPX7soYACAAA
+   H4sIAAAAAAAAAGNgGAWjYBTAwBEWVJqe4DiSnf3sDAyr6OyGkW7/KBg4cHY0rgcEAACFMSxGAAgAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKWUyy4EQRSGa8To6mBWRsJiiMsTWIhksGTskcxYuQwP4AHwCHgLl+AVJiQSQcLOwoLEJe4LJEj8lelOnzl9umuMSr6cU1Xn/H/3TFUXtVIvTpgvrH+TvWnkMx6zOlwzh1jU8Roc0/OEuIB4DE7AKUiBNlepdrecG5bAsscKq5lH/ugEWqkIDQrtaUL+YObmecBfxkVSqUam1ZWI7zH7vKfa0Y/3adaV5AStfcQDosvntfoPw38APDuVcK0rxGuiy+f/8Z90w2eJayVQU+cGfXxeq/+4cJ74WTIjg/+4g9FJzoXvfwbOnWB9FetrYJ08U0bop0N6lyxqBxlDgv8reLP4Z4V+m38etQXGlODPf/8d5Ltgj6zlhX6bv23wnkvEgg6YiNB5R90H+CS/2QbyTbAFth25z+b/g9jneZu4GOHfgvU0aCX7h8TzyMv9+16qL89NpN8A7u/rpgV927iBxi24A/eeP7/vfK3W+ycNSYvfd75Ge8Z0+JvqkwQNwImpyVWpJfWM6vC3lNKN/R7Qa6kb0XYtqecXBiAdFAAIAAA=
+   H4sIAAAAAAAAAKWUyy4EQRSGe8To6mBWRsJiiMsTWIhksGTskcxYuQwP4AHwCHgLieAVxCQuQcLOwoJEIu4LJEj8lelOnzl1uquNSr6cU1Xn/H/3TFWXleO8uCZfWP8me7PI53zmlVmzgFhW8Roc3fOEuIR4Cs7AOciADs9xOr1qrlkBqz5rrGYR+aMbamUiNCi0pwX5g57r5wF/GVdpx2lmWj2p+B69z3uSjkG8T6uqpSBoHSBWiC6f1+s/Cv8h8OzWwrVuEG+JLp//x3/aM88S10qhpsEL+/i8Xv9J4Tzxs6RHDv9xF6ObnIvA/wJcuuH6OtY3wCZ5ppzQT4f0LnnUDjNGBP9X8Gbxzwv9Nv8iakuMGcGf//47yHfBHlkrCv02f9vgPdeIJRUyFaHzjroP8El+sy2Sb7tmTxL/H8QB31vH5Qj/NqxnQTvZP0TvETgGJ75/cN/3G6tzHek3gPsHullB3zbuyDvf+zm/73yt3vsnDUmL33e+RnsmlPlNDUiDJuDG1BQSakk948r8llJ6sd8H+i11Y8quJfX8AvtRlTEACAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYOiBb7wMDL+A+B/vwNgvwsfAIAHEMny0Mf81B23MJQa8GkC7Xw6g3ZSANewMDGvZB87+U0C7Tw+g/aNgaAIAab+SHAAIAAA=
+   H4sIAAAAAAAAAGNgGAWjYOiBb7wMDL+A+B/vwNgvwsfAIAHEMny0Mf81B23MJQa8GkC7Xw6g3ZSANewMDGvZB85+W04GBjtO8vWvZ6HM/hdAv78cQP+PAvIAABXJkQkACAAA
   </data>
  </layer>
  <layer name="objects" width="32" height="16">
@@ -60,7 +60,7 @@
  </layer>
  <layer name="collision" width="32" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGsUomFRAqhmU2Ems+9HNxcUftZ829pNqDjZxct00aj/peoiNR0JuprX9xAJc+QEbn5p24cp/6GLU9C+17CemPBluGADmhwRgAAgAAA==
+   H4sIAAAAAAAAANPiYmDQGsUomFRAqhmU2Ems+9HNxcUfrvaTas5gsZ8abhq1n3Q9xMYjITfT2n5iAa78iI1PTbtw5X90MWr6l1bhT8i9wwEDAK0KnjIACAAA
   </data>
  </layer>
  <layer name="navigation" width="32" height="16">

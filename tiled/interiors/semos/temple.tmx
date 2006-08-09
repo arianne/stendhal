@@ -50,7 +50,7 @@
  </layer>
  <layer name="3_roof" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGAoYmGgKkA3j5D5SszEiSGbR203kwPQ3RgEdFMIC341Iwk4slJHzXAFo+EzCkbBKBgFAwcAc+MdhQAJAAA=
+   H4sIAAAAAAAAAGNgYGAoYmGgKkA3j5D5E7DIYxNDNo/abiYHoLsxCMgPYcGvZiQBR1bqqBmuYDR8RsEoGAWjYOAAAMhAcCgACQAA
   </data>
  </layer>
  <layer name="objects" width="24" height="24">
@@ -68,7 +68,7 @@
    H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQB8GfAKkrAACQAA
   </data>
  </layer>
- <layer name="protection" width="24" height="24" opacity="0.43">
+ <layer name="protection" width="24" height="24" visible="0" opacity="0.43">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANPmYmDQHsWjeBSP4lE8ikfxKB5BGAAFiyp+AAkAAA==
   </data>

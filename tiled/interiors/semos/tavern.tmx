@@ -60,12 +60,12 @@
  </layer>
  <layer name="collision" width="32" height="19" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGkYYBKilnxizYGqwAVzi+MzFZT82fZQAbPbiU0dtQKr9xMYdufZjM4daYT2Q9uNLm7T0HyG3DIT96G4ZCfFPqv241GETx2UuMeKD0X5cdmOTp7b9pNg9GOynFJBSrg9nDAAwxj6VgAkAAA==
+   H4sIAAAAAAAAANPiYmDQGkYYBKilnxizYGqwAVzi+MzFZT+1ATZ78akbaPuJjTty7cdmDrlmDyb78aVNWvqPkFsGwn50t4yE+CfVflzqsInjMpcY8cFoPy67sclT235S7B4M9lMKSCnXhzMGAAShNUKACQAA
   </data>
  </layer>
  <layer name="navigation" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDBI5KSuOlqbMQqGLsAV/8SI42KPglFAKaAkXVLDnlEw/AAAEwrLDIAJAAA=
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQsvoAAAeBoUK4qJgAkAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="19" opacity="0.2">

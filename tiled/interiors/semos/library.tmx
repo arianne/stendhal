@@ -67,7 +67,7 @@
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TQQ7AIAgEPfcp/v+BnpoYExEWBG0h4SLCAK71KaWmLw2p8Z6NMYt+tCbl9jG0V4sa2lyqhtcbzPbO1dOspqYHLt9Kr956/yOfYpzG5+hKqr/Vf/GY/xZ+7n8PP1r/kf+fstP4O/Yv4XsbMn80P/f/XT6ag/YrmZ97V5MT5Q0zBxC2ABAAAA==
+   H4sIAAAAAAAAAO2SwQ3AIAwDeXcU9h+wr0oIFZo4xhSBJT5AcsYkXynlsz6F9Hj26jOGn6i83PIM9croEa3t9VD9QSt36zy1ekY8WPmseVXP+478HkPFt3qzzJV3/jz8EVqJf/Ifw0eyZOWPelPob/zd82e9C+VHPSv4TK2Y/2z+Ww36Dk/+1ruRmlnrBo5mpjEAEAAA
   </data>
  </layer>
  <layer name="navigation" width="32" height="32">

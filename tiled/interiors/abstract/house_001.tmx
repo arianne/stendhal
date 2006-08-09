@@ -40,17 +40,17 @@
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjAALkGBkY5LFgBUb62G8DtMcWC7YbIfZHAe2JxoJj6GT/YAFHWLDTo4B2YD1SGB9lwU7TEpwdjeMBAQAbzJiqAAgAAA==
+   H4sIAAAAAAAAAGNgGAWjAALkGBkY5LFgBUb62G8DtMcWC7YbIfZHAe2JxoJj6GT/YAFHWLDTo4A+4CgLdpqW4OxoHA8IAABrBgZqAAgAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEvjYGD4wI6JHYHiTkDsDJVPAtLJUJwCFfsNpP9A2alAOg3NLGR5bBik5x2QzgDS54D4PBBfAGI+II4H4gQgToTyG4C4EYqboGKSnAwMUkCcDmS/ZUeYxYcmz8eBiZH18ADZb0B8kHuAmFTAjWaWHCMDgzwUKzASp4cQMOKAYGMgNkFTj26WDdBOWyi2g9p/mIWB4ShQ7hgHefaLANWIQrEYGfaDwGOg3BMy7ccHiLWfEZgWmDipb/9qoBlrgHgtEK9jx20/NjdfBuIr7JTZfxJJ/xkc9uOK/49A/IlC+58D9b8A4pdA/AqP/4dC/M8B8uei4XlI4fMNyP4OxD+QxIi1H5+bYeArkP0NDX9HkoflQ+Q8SI/8jw8MtvwfBbQzGopjiIh/LyCblwLsSYZZMD0eQPo9O+XYnYN0s0B6ACj8lZMACAAA
+   H4sIAAAAAAAAANWT2y4EQRCGe0QyvcFcIeECz4BLJLhweAQkzstj4DnwAg4vISQOsRLegMQhzoldCRe+jpro9O6M2RkRKvlS1V1T9fdMT+W1Uo9+Of3sD8Cg5Gfws8Kc7L3h3yWex+edXna+EqbmHr+IP4YCnEAAkzAF07JegmVhRfZackq1wgLxnf/VK3DygS7HrqknvjVrcx6o1uqcXm2eUu1Ch5es5jvr1J90QbfzvNurB81eoU/0d2qV2iW3p9PpN/JMk9CcQt/YObmLlPpxllTf41+oyf28/gY9NmELtv1o/UpnPoUzP5v+PvUHcAhHEfpR9/8Ezxn1L6m/gmu4iXn//3D/q6zXHNat71MkLsGrtZdUP+7Mob0QFx1KVj6cQ3sGf2P+4+yvzf8YmuPCRIL7HyVuyMBIil5hzTD+wc/OkK6+l6n5AP7A1qIACAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQMdXCKnYHhNPtAu2IUjIJRMJQAAEiGq8AACAAA
+   H4sIAAAAAAAAAGNgGAWjYBRQCtawMzCsZR84+205GRjsOAfO/hdAv78cQP+PAsrAepaBdsEoGAgAALQQ4ZsACAAA
   </data>
  </layer>
  <layer name="objects" width="32" height="16">
@@ -60,7 +60,7 @@
  </layer>
  <layer name="collision" width="32" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGqQYBAbKXlIAOfpJ1YNPPTFmEQpXWtuPrI4c+8l122Cyn1I9lABK459Ys2mV/ii1H1kdPj2EygRi9FDiZlrZP9jDnxI3UMv+kYgBDdUHTAAIAAA=
+   H4sIAAAAAAAAANPiYmDQGqQYBAbKXlIAOfpJ1YNPPTFmEQpXSgCxZo10+ynVQwkY6PgfaPuR1eHTQ6hMIEYPJW4mp0waDuFPiRuoZf9IxAD/3pMSAAgAAA==
   </data>
  </layer>
  <layer name="navigation" width="32" height="16">

@@ -65,10 +65,10 @@
  </layer>
  <layer name="navigation" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WMREAMAgEwW8jM/5NpI0CYIZdBzTPJck9WWfjzQDM4AcBE1VsU9X+2VkAAH5dfdjZpZoYAPZ6TxojfgAgAAA=
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
   </data>
  </layer>
- <layer name="protection" width="64" height="32" opacity="0.41">
+ <layer name="protection" width="64" height="32" visible="0" opacity="0.41">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DMQkAAAwDsN6zUv/+qmOQQHpJVVVVVVVVVdXXB8Nx/FYAIAAA
   </data>
