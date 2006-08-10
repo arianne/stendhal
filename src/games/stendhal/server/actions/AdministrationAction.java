@@ -740,7 +740,7 @@ public class AdministrationAction extends ActionListener {
 						break;
 					}
 				}
-				return null;
+				return target;
 			} else {
 				id = id.substring(1);
 			}
