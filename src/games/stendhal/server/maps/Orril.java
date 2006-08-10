@@ -9,7 +9,9 @@ import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
@@ -27,14 +29,18 @@ public class Orril implements IContent {
 	private StendhalRPWorld world;
 
 	private NPCList npcs;
+	
+	private ShopList shops;
 
 	public Orril(StendhalRPWorld world) {
 		this.npcs = NPCList.get();
+		this.shops = ShopList.get();
 		this.world = world;
 
 		buildJynathHouseArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"int_orril_jynath_house")));
-
+		buildDwarfMineArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+				"-2_orril_dwarf_mine")));
 		buildCastleArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"0_orril_castle")));
 		buildCastleInsideArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
@@ -271,6 +277,37 @@ public class Orril implements IContent {
 		zone.addNPC(npc);
 	}
 
+	private void buildDwarfMineArea(StendhalRPZone zone) {
+		// NOTE: This is a female character ;)
+		SpeakerNPC loretta = new SpeakerNPC("Loretta") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(49, 67));
+				nodes.add(new Path.Node(45, 67));
+				nodes.add(new Path.Node(45, 71));
+				nodes.add(new Path.Node(45, 67));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting();
+				addJob("I'm responsible for the lorry rails in this mine.");
+				addHelp("Do you want a good advise? Don't go further southwards! An evil dragon is living there!");
+				addBuyer(new BuyerBehaviour(world, shops.get("buyiron")), true);
+				addGoodbye("Farewell - and be careful: the other dwarves don't like strangers running around here!");
+			}
+		};
+		npcs.add(loretta);
+
+		zone.assignRPObjectID(loretta);
+		loretta.put("class", "greendwarfnpc");
+		loretta.set(49, 67);
+		loretta.initHP(100);
+		zone.addNPC(loretta);
+	}
+	
 	private void buildCampfireArea(StendhalRPZone zone) {
 		// create portal to Jynath' house (which is on the same
 		// map as the campfire by accident)

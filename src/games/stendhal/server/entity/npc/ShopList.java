@@ -51,6 +51,8 @@ public class ShopList {
 		shops.add("buystuff", "chain_armor", 29);
 		shops.add("buystuff", "chain_helmet", 25);
 		shops.add("buystuff", "chain_legs", 27);
+		
+		shops.add("buyiron", "iron", 75);
 	}
 
 	static private ShopList instance;
