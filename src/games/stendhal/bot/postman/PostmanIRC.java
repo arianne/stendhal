@@ -10,15 +10,22 @@ import org.jibble.pircbot.NickAlreadyInUseException;
 import org.jibble.pircbot.PircBot;
 
 /**
- * IRC Appender
+ * IRC Bot for postman
  *
  * @author hendrik
  */
 public class PostmanIRC extends PircBot {
 	private static Logger logger = Logger.getLogger(PostmanIRC.class);
 	private Properties prop = new Properties();
-	
-	public PostmanIRC() {
+	private String gameServer = null;
+
+	/**
+	 * Creates a new PostmanIRC
+	 *
+	 * @param gameServer
+	 */
+	public PostmanIRC(String gameServer) {
+		this.gameServer = gameServer;
         try {
             this.prop.loadFromXML(new FileInputStream(System.getProperty("user.home") + "/.stendhal-postman-conf.xml"));
         } catch (Exception e) {
@@ -32,22 +39,43 @@ public class PostmanIRC extends PircBot {
 	 * @throws IrcException 
 	 * @throws IOException 
 	 * @throws NickAlreadyInUseException 
+	 * @throws InterruptedException 
 	 */
-	public void connect() throws NickAlreadyInUseException, IOException, IrcException {
-		setName(prop.getProperty("name"));
+	public void connect() throws NickAlreadyInUseException, IOException, IrcException, InterruptedException {
+		String nick = prop.getProperty("name");
+	    String pass = prop.getProperty("pass");
+		
+		setName(nick);
 		setLogin(prop.getProperty("login"));
-		setVersion("0.1");
+	    setVersion("0.2.1");
 	    setVerbose(true);
-	    connect("irc.freenode.net");
+	    setAutoNickChange(true);
+	    setFinger("postman on " + gameServer);
+    	connect("irc.freenode.net");
+
+	    if (!getNick().equals(nick)) {
+	    	sendMessage("NickServ", "ghost " + nick + " " + pass);
+		    Thread.sleep(5000);
+		    super.changeNick(nick);
+	    }
+
 	    joinChannel("#arianne");
 	    joinChannel("#arianne-support");
-	    String pass = prop.getProperty("pass");
 	    sendMessage("NickServ", "identify " + pass);
 	}
 
-	public static void main(String[] main) throws NickAlreadyInUseException, IOException, IrcException {
+	/**
+	 * For testing only
+	 *
+	 * @param args ignored
+	 * @throws NickAlreadyInUseException NickAlreadyInUseException
+	 * @throws IOException IOException
+	 * @throws IrcException IrcException
+	 * @throws InterruptedException InterruptedException
+	 */
+	public static void main(String[] args) throws NickAlreadyInUseException, IOException, IrcException, InterruptedException {
 	    // Now start our bot up.
-		PostmanIRC bot = new PostmanIRC();
+		PostmanIRC bot = new PostmanIRC(null);
 		bot.connect();
 	}
 }
