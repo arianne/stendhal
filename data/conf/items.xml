@@ -1599,12 +1599,24 @@ Makes players more offensive
       <attributes>
         <quantity value="1"/>
       </attributes>
-      <weight value="1"/>
+      <weight value="2"/>
       <equipable>
         <slot name="bag"/>
       </equipable>
     </item>
 	
+    <item name="iron">
+      <type class="misc" subclass="iron"/>
+      <stackable/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="2"/>
+      <equipable>
+        <slot name="bag"/>
+      </equipable>
+    </item>
+
   <item name="note">
 		<type class="misc" subclass="paper"/>
 		<weight value="0.01"/>
