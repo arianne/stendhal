@@ -546,6 +546,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			case 109: /* carrot */
 			case 131: /* arandula */
 			case 132: /* wood */				
+			case 133: /* iron ore */				
 				PlantGrower plantGrower = null;
 				if (type == 92) {
 					plantGrower = new SheepFood();
@@ -564,6 +565,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 					plantGrower = new PlantGrower("arandula", 400);
 				} else if (type == 132) {
 					plantGrower = new PlantGrower("wood", 1500);
+				} else if (type == 133) {
+					plantGrower = new PlantGrower("iron_ore", 3000);
 				}
 				assignRPObjectID(plantGrower);
 				plantGrower.setx(x);
