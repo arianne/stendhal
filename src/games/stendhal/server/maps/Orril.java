@@ -301,6 +301,7 @@ public class Orril implements IContent {
 		};
 		npcs.add(loretta);
 
+		loretta.setDescription("You see Loretta, an elder dwarf lady. She is working on the lorry rails.");
 		zone.assignRPObjectID(loretta);
 		loretta.put("class", "greendwarfnpc");
 		loretta.set(49, 67);
