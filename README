@@ -56,12 +56,8 @@ No warranties. But let us know if it doesn't work.
 Unfinished things which have to be dealt with or made inaccessable before release
 ---------------------------------------------------------------------------------
 - summon_scroll
-  - add to game (price?)
-
-- fix /script plague.groovy (monsters are summoned at y-1)
+  - stacking two summon_scrolls --> summon_scroll Q=0
 - finish version-range compare
-- ados in distress
-- quest diary
 Changelog
 ---------
 
