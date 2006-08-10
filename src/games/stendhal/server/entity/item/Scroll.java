@@ -50,12 +50,19 @@ public class Scroll extends StackableItem implements UseEvent {
 	@Override
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
-		if (getItemSubclass().equals("black")) {
-			// black scroll can only be stacked if they refer to the same
-			// location
-			if (has("infostring") && otheri.has("infostring"))
+		String name = getName();
+		if (name.equals("marked_scroll") || name.equals("summon_scroll")) {
+			// marked_scroll and summon_scroll can be stacked
+			// if they refer to the same location
+			if (has("infostring") && otheri.has("infostring")) {
 				return (get("infostring").equals(otheri.get("infostring")));
-			return (false);
+			}
+
+			// summon_scroll without infostring can be stacked as well
+			if (name.equals("summon_scroll")) {
+				return (!has("infostring") && !otheri.has("infostring"));
+			}
+			return false;
 		}
 		return getItemClass().equals(otheri.getItemClass())
 				&& getItemSubclass().equals(otheri.getItemSubclass());
