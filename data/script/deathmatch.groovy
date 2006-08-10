@@ -194,11 +194,11 @@ class DoneAction extends SpeakerNPC.ChatAction {
       Item helm  = player.getEquipped("trophy_helmet");
       if(helm == null) {
         helm = game.getItem("trophy_helmet");
-        engine.say("Congratulations! Here is your special trophy helm. Enjoy it. Now, tell me if you want to #leave.");
+        engine.say("Congratulations! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
         isNew = true;
       }
       else {
-        engine.say("Congratulations! And your helm has been magically strengthened. Now, tell me if you want to #leave.")
+        engine.say("Congratulations! And your helmet has been magically strengthened. Now, tell me if you want to #leave.")
       }
       int defense = 1;
       if(helm.has("def")) {
@@ -266,7 +266,7 @@ class BailAction extends SpeakerNPC.ChatAction {
     player.setQuest("deathmatch", "bail;"+ questLevel + ";" + (new Date()).getTime());
     Item helm  = player.getEquipped("trophy_helmet");
     if(helm != null) {
-      engine.say("Coward! I'm sorry to inform you, for this your helm has been magically weakened.")
+      engine.say("Coward! I'm sorry to inform you, for this your helmet has been magically weakened.")
     }
     else {
       engine.say("Coward! You're not as experienced as you used to be.")  
