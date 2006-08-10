@@ -1,3 +1,4 @@
+import marauroa.common.game.IRPZone;
 import games.stendhal.common.Direction;
 import games.stendhal.server.*
 import games.stendhal.server.entity.*
@@ -11,7 +12,8 @@ import games.stendhal.server.pathfinder.Path
 /**
  * Manages friendly entities
  */
-public class Friends implements TurnEvent {
+public class Friends implements TurnListener {
+	private StendhalRPWorld world;
 	private StendhalGroovyScript game;
 	private StendhalRPRuleProcessor rules;
 	private int turnCounter = 0;
@@ -21,7 +23,8 @@ public class Friends implements TurnEvent {
 	 *
 	 * @param game StendhalGroovyScript
 	 */
-	public Friends(StendhalGroovyScript game, StendhalRPRuleProcessor rules) {
+	public Friends(StendhalRPWorld world, StendhalGroovyScript game, StendhalRPRuleProcessor rules) {
+		this.world = world;
 		this.game = game;
 		this.rules = rules;
 	}
@@ -85,7 +88,7 @@ public class Friends implements TurnEvent {
 				break;
 
 			case 3:
-				shout("XMarcus shouts: I killed those two Orcs. But further investigation showed:");
+				shout("Marcus shouts: I killed those two Orcs. But further investigation showed:");
 				break;
 
 			case 4:
@@ -115,7 +118,27 @@ public class Friends implements TurnEvent {
 		TurnNotifier.get().notifyInTurns(wait, this);
 		turnCounter++;
 	}
-	
+
+	public void createPortal() {
+		StendhalRPZone zone1 = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_semos_city"));
+		StendhalRPZone zone2 = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_ados_outside_nw"));
+
+		Portal portal = new Portal();
+		zone1.assignRPObjectID(portal);
+		portal.setx(9);
+		portal.sety(41);
+		portal.setNumber(100);
+		portal.setDestination("0_ados_outside_nw", 10);
+		zone1.addPortal(portal);
+
+		portal = new OneWayPortal();
+		zone2.assignRPObjectID(portal);
+		portal.setx(53);
+		portal.sety(108);
+		portal.setNumber(10);
+		zone2.addPortal(portal);
+	}
+
 	public void shout(String text) {
 		List players = rules.getPlayers();
 		for (player in players) {
@@ -131,8 +154,9 @@ if (player == null || ((args.length > 0) && (args[0].equals("reset")))) {
 
 } else {
 
-	Friends friends = new Friends(game, rules);
+	Friends friends = new Friends(world, game, rules);
 	friends.createSoldiers();
 	friends.createSheep();
+//	friends.createPortal();
 	TurnNotifier.get().notifyInTurns(0, friends);
 }
