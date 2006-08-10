@@ -368,7 +368,7 @@ public class Semos implements IContent {
 						});
 
 				add(ConversationStates.ATTENDING,
-						new String[] {"offer", "sale"},
+						new String[] {"offer", "buy"},
 						null,
 						ConversationStates.ATTENDING,
 						"I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you.",
