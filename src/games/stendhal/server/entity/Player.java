@@ -430,6 +430,10 @@ public class Player extends RPEntity {
 	public Player(RPObject object) throws AttributeNotFoundException {
 		super(object);
 		put("type", "player");
+		// HACK: postman as NPC
+		if (object.has("name") && object.get("name").equals("postman")) {
+			put("title_type", "npc");
+		}
 		
 		itemsToConsume = new LinkedList<ConsumableItem>();
 		poisonToConsume = new LinkedList<ConsumableItem>();
