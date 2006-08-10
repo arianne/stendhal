@@ -11,6 +11,7 @@ import games.stendhal.server.entity.OneWayPortal;
 import games.stendhal.server.entity.PersonalChest;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -248,7 +249,8 @@ public class Semos implements IContent {
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 2);
 		zone.addPortal(portal);
-		SpeakerNPC npc = new SpeakerNPC("Hackim Easso") {
+		
+		SpeakerNPC hackim = new SpeakerNPC("Hackim Easso") {
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(5, 1));
@@ -288,16 +290,102 @@ public class Semos implements IContent {
 						}
 					});
 				addHelp("I'm the blacksmith's assistant. I can help you by sharing my curiosity with you... Have you come here to buy weapons?");
-				addJob("I help Xoderos the blacksmith in making weapons for the Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
+				addJob("I help Xoderos the blacksmith in making weapons for Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
 				addGoodbye();
 			}
 		};
-		npcs.add(npc);
-		zone.assignRPObjectID(npc);
-		npc.put("class", "naughtyteennpc");
-		npc.set(5, 1);
-		npc.initHP(100);
-		zone.addNPC(npc);
+		npcs.add(hackim);
+		zone.assignRPObjectID(hackim);
+		hackim.put("class", "naughtyteennpc");
+		hackim.set(5, 1);
+		hackim.initHP(100);
+		zone.addNPC(hackim);
+		
+		SpeakerNPC xoderos = new SpeakerNPC("Xoderos") {
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(23, 11));
+				nodes.add(new Path.Node(29, 11));
+				nodes.add(new Path.Node(29, 4));
+				nodes.add(new Path.Node(17, 4));
+				nodes.add(new Path.Node(17, 8));
+				nodes.add(new Path.Node(28, 8));
+				nodes.add(new Path.Node(28, 11));
+				setPath(nodes, true);
+			}
+
+			protected void createDialog() {
+				addGreeting("Greetings. How can I serve you?");
+
+				add(ConversationStates.ATTENDING,
+						"wood",
+						null,
+						ConversationStates.ATTENDING,
+						"I need wood to fire the melting furnace. You can find it lying around in the woods.",
+						null);
+				
+				add(ConversationStates.ATTENDING,
+						"iron_ore",
+						null,
+						ConversationStates.ATTENDING,
+						"There is a dwarf mine in the mountains West of the Orril. You can find iron ore lying around there, but be careful!",
+						null);
+
+				add(ConversationStates.ATTENDING,
+						"cast",
+						null,
+						ConversationStates.ATTENDING,
+						null,
+						new SpeakerNPC.ChatAction() {
+							public void fire(Player player, String text,
+									SpeakerNPC engine) {
+								// how much iron should the player get?
+								int numberOfIron;
+								// TODO: It is possible that the player has several stacks of wood.
+								// create a function player.getEquippedQuantity(String itemName)
+								// that iterates over all slots.
+								try {
+									int numberOfWood = ((StackableItem) player.getEquipped("wood")).getQuantity();
+									int numberOfIronOre = ((StackableItem) player.getEquipped("iron_ore")).getQuantity();
+									numberOfIron = Math.min(numberOfWood, numberOfIronOre);
+								} catch (NullPointerException e) {
+									// The player lacks at least one of the
+									// required resources 
+									numberOfIron = 0;
+								}
+								if (numberOfIron == 0) {
+									engine.say("I can only cast iron if you bring me both #wood and #iron_ore.");
+								} else {
+									player.drop("wood", numberOfIron);
+									player.drop("iron_ore", numberOfIron);
+									StackableItem iron = (StackableItem) world.getRuleManager().getEntityManager().getItem("iron");            
+									iron.setQuantity(numberOfIron);
+									player.equip(iron, true);
+									engine.say("Thank you, here you have "
+											+ numberOfIron + " bars of iron.");
+								}
+							}
+						});
+
+				add(ConversationStates.ATTENDING,
+						new String[] {"offer", "sale"},
+						null,
+						ConversationStates.ATTENDING,
+						"I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you.",
+						null);
+				
+				 
+				addHelp("If you bring me #wood and #iron_ore, I can #cast iron for you. You can then sell it back to the dwarves.");
+				addJob("I am the local blacksmith. I am proud to help Deniran's army by producing weapons.");
+				addGoodbye();
+			}
+		};
+		npcs.add(xoderos);
+		zone.assignRPObjectID(xoderos);
+		xoderos.put("class", "blacksmithnpc");
+		xoderos.set(23, 11);
+		xoderos.initHP(100);
+		zone.addNPC(xoderos);
 	}
 
 	private void buildSemosLibraryArea(StendhalRPZone zone) {
