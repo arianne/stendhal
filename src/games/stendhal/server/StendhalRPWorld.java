@@ -196,6 +196,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("-1_semos_mine_nw");
 		addArea("-1_semos_dungeon");
 		addArea("-1_semos_jail");
+		addArea("-1_orril_mountain_w");
 		addArea("-1_orril_dungeon");
 		addArea("-1_orril_castle_w");
 		addArea("-1_orril_castle");
