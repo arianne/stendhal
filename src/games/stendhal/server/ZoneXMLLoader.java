@@ -89,7 +89,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 		return instance;
 	}
 
-	private XMLZone actualZone;
+	private XMLZone currentZone;
 
 	public XMLZone load(String ref) throws SAXException {
 		// Use the default (non-validating) parser
@@ -113,12 +113,12 @@ public class ZoneXMLLoader extends DefaultHandler {
 			throw new SAXException(e);
 		}
 
-		return actualZone;
+		return currentZone;
 	}
 
 	@Override
 	public void startDocument() {
-		actualZone = new XMLZone();
+		currentZone = new XMLZone();
 	}
 
 	@Override
@@ -134,25 +134,28 @@ public class ZoneXMLLoader extends DefaultHandler {
 	public void startElement(String namespaceURI, String lName, String qName,
 			Attributes attrs){
 		if (qName.equals("map")) {
-			actualZone.name = attrs.getValue("name");
+			currentZone.name = attrs.getValue("name");
 		} else if (qName.equals("location")) {
 			String level = attrs.getValue("level");
 
 			if (level.equals("int") == false) {
-				actualZone.interior = false;
-				actualZone.level = Integer.parseInt(level);
-				actualZone.x = Integer.parseInt(attrs.getValue("x"));
-				actualZone.y = Integer.parseInt(attrs.getValue("y"));
+				currentZone.interior = false;
+				currentZone.level = Integer.parseInt(level);
+				if (attrs.getValue("x") == null || attrs.getValue("y") == null || attrs.getValue("x").equals("null") || attrs.getValue("y").equals("null")) {
+					throw new RuntimeException("x or y propertied undefined for non \"int\" zone.");
+				}
+				currentZone.x = Integer.parseInt(attrs.getValue("x"));
+				currentZone.y = Integer.parseInt(attrs.getValue("y"));
 			} else {
-				actualZone.interior = true;
+				currentZone.interior = true;
 			}
 		} else if (qName.equals("size")) {
-			actualZone.width = Integer.parseInt(attrs.getValue("width"));
-			actualZone.height = Integer.parseInt(attrs.getValue("height"));
+			currentZone.width = Integer.parseInt(attrs.getValue("width"));
+			currentZone.height = Integer.parseInt(attrs.getValue("height"));
 		} else if (qName.equals("layer")) {
 			layerName = attrs.getValue("name");
 			st = new StringBuffer();
-			st.append(actualZone.width + " " + actualZone.height);
+			st.append(currentZone.width + " " + currentZone.height);
 		}
 	}
 
@@ -167,7 +170,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 			// System.out.println (actualZone.layers.get(entry));
 			// }
 		} else if (qName.equals("layer")) {
-			actualZone.layers.put(layerName, st.toString());
+			currentZone.layers.put(layerName, st.toString());
 			st = null;
 		}
 	}
