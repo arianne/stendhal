@@ -32,8 +32,6 @@ public abstract class Entity extends RPObject {
 
 	private boolean collides;
 
-	private String description;
-
 	protected static StendhalRPRuleProcessor rp;
 
 	protected static StendhalRPWorld world;
@@ -94,12 +92,15 @@ public abstract class Entity extends RPObject {
 		if (text == null) {
 			text = "";
 		}
-		this.description = text;
-		put("description", this.description);
+		put("description", text);
 	}
 
 	public String getDescription() {
-		return (description);
+		String description = "";
+		if (has("description")) {
+			description = get("description");
+		}
+		return description;
 	}
 
 	public void set(int x, int y) {
