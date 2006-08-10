@@ -206,6 +206,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("-2_semos_dungeon");
 		addArea("-2_semos_jail");		
 		addArea("-2_kotoch_entrance");
+		addArea("-2_orril_dwarf_mine");
 		addArea("-2_orril_lich_palace");
 		addArea("-2_orril_dungeon");
 
