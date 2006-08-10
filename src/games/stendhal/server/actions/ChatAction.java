@@ -20,9 +20,15 @@ import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Processes /chat, /tell (/msg) and /support
+ */
 public class ChatAction extends ActionListener {
 	private static final Logger logger = Log4J.getLogger(ChatAction.class);
 
+	/**
+	 * Registers actions
+	 */
 	public static void register() {
 		ChatAction chat = new ChatAction();
 		StendhalRPRuleProcessor.register("chat", chat);
@@ -102,7 +108,7 @@ public class ChatAction extends ActionListener {
 			if (found) {
 				player.sendPrivateText("You ask for support: " + action.get("text"));
 			} else {
-				player.sendPrivateText("Sorry, your support request cannot be processed because no supporter is in game right now.");
+				player.sendPrivateText("Sorry, your support request cannot be processed at the moment because no supporter is in game right now.");
 			}
 			world.modify(player);
 		}
