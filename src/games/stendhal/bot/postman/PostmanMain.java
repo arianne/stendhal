@@ -26,22 +26,23 @@ import marauroa.common.game.RPObject;
 import marauroa.common.net.MessageS2CPerception;
 import marauroa.common.net.TransferContent;
 
+/**
+ * Starts Postman and connect to server.
+ *
+ * @author hendrik
+ */
 public class PostmanMain extends Thread {
 	private String host;
 	private String username;
 	private String password;
-	private String character;
+	protected String character;
     private String port;
     private boolean tcp;
     protected Postman postman = null;
-    
-    private long lastPerceptionTimestamp = 0;
-
-	private Map<RPObject.ID, RPObject> world_objects;
-
-	private marauroa.client.ariannexp clientManager;
-
-	private PerceptionHandler handler;
+    protected long lastPerceptionTimestamp = 0;
+	protected Map<RPObject.ID, RPObject> world_objects;
+	protected marauroa.client.ariannexp clientManager;
+	protected PerceptionHandler handler;
 
 	public PostmanMain(String h, String u, String p, String c, String P, boolean t)
 			throws SocketException {
@@ -106,7 +107,7 @@ public class PostmanMain extends Thread {
 
 			@Override
 			protected void onServerInfo(String[] info) {
-
+				// do nothing
 			}
 
 			@Override
@@ -132,23 +133,26 @@ public class PostmanMain extends Thread {
 		};
 	}
 
+	@Override
 	public void run() {
 		try {
 			clientManager.connect(host, Integer.parseInt(port), tcp);
 			clientManager.login(username, password);
-			PostmanIRC postmanIRC = new PostmanIRC();
+			PostmanIRC postmanIRC = new PostmanIRC(host);
 			postmanIRC.connect();
 			postman = new Postman(clientManager, postmanIRC);
 		} catch (SocketException e) {
+			System.err.println("Socket Exception");
 			Runtime.getRuntime().halt(1);
 			return;
 		} catch (ariannexpTimeoutException e) {
-			System.out.println("Cannot connect to Stendhal server. Server is down?");
+			System.err.println("Cannot connect to Stendhal server. Server is down?");
 			// TODO: shutdown cleanly
 			//return;
 			Runtime.getRuntime().halt(1);
 		} catch (Exception e) {
 			System.out.println(e);
+			e.printStackTrace(System.err);
 			Runtime.getRuntime().halt(1);
 		}
 
@@ -181,6 +185,11 @@ public class PostmanMain extends Thread {
 		}
 	}
 
+	/**
+	 * Main entry point
+	 *
+	 * @param args see help
+	 */
 	public static void main(String[] args) {
 		try {
 			if (args.length > 0) {
@@ -230,7 +239,7 @@ public class PostmanMain extends Thread {
 			System.out.println("Optional parameters");
 			System.out.println("* -t\tuse tcp-connection to server");
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(System.err);
 			System.exit(1);
 		}
 	}
