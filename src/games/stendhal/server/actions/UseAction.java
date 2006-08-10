@@ -39,6 +39,13 @@ public class UseAction extends ActionListener {
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "use");
 
+		// HACK: No item transfer in jail (we don't want a jailed player to
+		//       create a new free character and give it all items.
+		if (world.getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
+			player.sendPrivateText("For security reasons items may not be used in jail.");
+			return;
+		}
+
 		// When use is casted over something in a slot
 		if (action.has("baseitem") && action.has("baseobject")
 				&& action.has("baseslot")) {
