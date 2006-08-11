@@ -1661,6 +1661,9 @@ Makes players more offensive
 	<item name="summon_scroll">
 		<type class="scroll" subclass="purple"/>
 		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>
@@ -1672,9 +1675,6 @@ Makes players more offensive
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
-			<amount value="0"/>
-			<regen value="0"/>
-			<frequency value="0"/>
 		</attributes>
 		<weight value="0.01"/>
 		<equipable>
@@ -1687,9 +1687,6 @@ Makes players more offensive
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
-			<amount value="0"/>
-			<regen value="0"/>
-			<frequency value="0"/>
 			<infostring value="0_semos_city 30 40"/>
 		</attributes>
 		<weight value="0.01"/>
@@ -1703,9 +1700,6 @@ Makes players more offensive
 		<weight value="0.01"/>
 		<attributes>
 			<quantity value="1"/>
-			<amount value="0"/>
-			<regen value="0"/>
-			<frequency value="0"/>
 		</attributes>
 		<equipable>
 			<slot name="bag"/>
