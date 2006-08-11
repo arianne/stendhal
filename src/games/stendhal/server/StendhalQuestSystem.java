@@ -58,9 +58,7 @@ public class StendhalQuestSystem {
 		loadQuest("ZooFood");
 		loadQuest("CloaksForBario");
 		loadQuest("Campfire");
-		if (Debug.NEW_CLIENT) {
-			loadQuest("PlinksToy");
-		}
+		loadQuest("PlinksToy");
 	}
 
 	public static void main(String[] args) {
