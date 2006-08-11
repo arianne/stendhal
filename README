@@ -64,12 +64,16 @@ Unfinished things which have to be dealt with or made inaccessable before releas
 0.52
 - players
   - display of item based ATK and DEF is now calculated by the server
-  - added a new quest in 0_semos_plains_n
-  - fixed a bug which caused quest items to be lost if you bag is full
+  - fixed a bug which caused quest items to be lost if your bag is full
   - fixed vertical alignment of the blue cross in minimap on small maps
   - minor changes to NPCs and maps
   - Tell-menu works now on players with spaces in their names
   - low-level admins have their name printed in light yellow, high-level-admins in dark yellow
+- maps and quests
+  - added a new quest in 0_semos_plains_n
+  - added an iron ore mine near Orril castle
+  - added an NPC who casts iron and another one who buys it
+  - several minor fixes on many maps
 - admins / game masters
   - /supportanswer <player> <text> admin command replys to <player> and all players with support-adminlevel
   - (*) Inspect, (*) Destroy and /alter can be used on items
