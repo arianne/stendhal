@@ -17,7 +17,7 @@ import marauroa.common.game.*;
 import java.util.Map;
 
 public class StackableItem extends Item implements Stackable {
-	private int quantity;
+	private int quantity = 1;
 
 	public StackableItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
@@ -27,6 +27,7 @@ public class StackableItem extends Item implements Stackable {
 
 	@Override
 	public void update() throws AttributeNotFoundException {
+		super.update();
 		if (has("quantity"))
 			quantity = getInt("quantity");
 	}
