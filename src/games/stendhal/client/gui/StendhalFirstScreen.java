@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
+import games.stendhal.common.Version;
 
 import java.awt.Container;
 import java.awt.Component;
@@ -161,15 +162,16 @@ public class StendhalFirstScreen extends JFrame {
 
 			String version = br.readLine();
 
-			if (!version.equals(stendhal.VERSION)) {
+			if (Version.compare(version, stendhal.VERSION) < -1) {
 				// custom title, warning icon
-				JOptionPane.showMessageDialog(
-						null,
-						"Your client is out of date. Latest version is "
-						+ version
-						+ ".\nDownload from http://arianne.sourceforge.net",
-						"Client out of date",
-						JOptionPane.WARNING_MESSAGE);
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"Your client is out of date. Latest version is "
+										+ version + ". But you are using " + stendhal.VERSION
+										+ ".\nDownload from http://arianne.sourceforge.net",
+								"Client out of date",
+								JOptionPane.WARNING_MESSAGE);
 			}
 		} catch (Exception ex) {
 		}
@@ -187,13 +189,13 @@ public class StendhalFirstScreen extends JFrame {
 
 			String version = br.readLine();
 
-			if (!version.equals(stendhal.VERSION)) {
+			if (Version.compare(version, stendhal.VERSION) < -1) {
 				// custom title, warning icon
 				JOptionPane
 						.showMessageDialog(
 								null,
 								"Your client is out of date. Latest version is "
-										+ version
+										+ version + ". But you are using " + stendhal.VERSION
 										+ ".\nDownload from http://arianne.sourceforge.net",
 								"Client out of date",
 								JOptionPane.WARNING_MESSAGE);
