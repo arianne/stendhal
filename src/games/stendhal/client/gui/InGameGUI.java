@@ -63,32 +63,7 @@ public class InGameGUI implements KeyListener {
 
 	private int blinkOffline;
 
-	private void fixkeyboardHandlinginX() {
-		logger.debug("OS: " + System.getProperty("os.name"));
-
-		if (System.getProperty("os.name").toLowerCase().contains("linux")) {
-			try {
-				// NOTE: X does handle input in a different way of the rest of
-				// the world.
-				// This fixs the problem.
-				Runtime.getRuntime().exec("xset r off");
-				Runtime.getRuntime().addShutdownHook(new Thread() {
-					public void run() {
-						try {
-							Runtime.getRuntime().exec("xset r on");
-						} catch (Exception e) {
-							logger.fatal(e);
-						}
-					}
-				});
-			} catch (Exception e) {
-				logger.error("Error setting keyboard handling", e);
-			}
-		}
-	}
-
 	public InGameGUI(StendhalClient client) {
-		fixkeyboardHandlinginX();
 
 		client.setGameGUI(this);
 		this.client = client;

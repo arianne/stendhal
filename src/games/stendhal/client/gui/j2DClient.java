@@ -155,14 +155,14 @@ public class j2DClient extends JFrame {
 
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
-		playerChatText.addKeyListener(inGameGUI);
+		playerChatText.addKeyListener(new MagicKeyListener(inGameGUI));
 
 		// because Mac OS X doesn't allow to give the focus back to
 		// playerChatText (see comment above)
 		// we need to add the KeyListener to canvas, too intensifly@gmx.com
 
 		if (System.getProperty("os.name").toLowerCase().contains("os x"))
-			canvas.addKeyListener(inGameGUI);
+			canvas.addKeyListener(new MagicKeyListener(inGameGUI));
 
 		client.setTextLineGUI(playerChatText);
 
