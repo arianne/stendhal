@@ -50,6 +50,11 @@ public class Debug {
 	 */
 	public static final boolean NEW_CLIENT = false;
 
+	/**
+	 * Just a try to get webstart work without additional rights
+	 */
+	public static final boolean WEB_START_SANDBOX = false;
+
 	/** no instance */
 	private Debug() {
 		// this is a collection of constants
