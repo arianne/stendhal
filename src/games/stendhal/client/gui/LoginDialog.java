@@ -21,6 +21,7 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 import games.stendhal.client.*;
+import games.stendhal.common.Debug;
 import marauroa.client.*;
 
 /**
@@ -307,20 +308,23 @@ public class LoginDialog extends JDialog {
 	private void saveLoginInfo(String server, String usrName, String pwd,
 			String port, boolean useTCP) {
 		Encoder encode = new Encoder();
-		try {
-			File loginFile = new File(stendhal.STENDHAL_FOLDER + "user.dat");
-			PrintWriter fos = new PrintWriter(loginFile);
-
-			fos.print(encode.encode(server + " " + usrName + " " + pwd + " "
-					+ port + " " + Boolean.valueOf(useTCP).toString()));
-			fos.close();
-		} catch (IOException ioex) {
-			JOptionPane
-					.showMessageDialog(
-							this,
-							"Something went wrong when saving login information, nothing saved",
-							"Login information save problem",
-							JOptionPane.WARNING_MESSAGE);
+		
+		if (!Debug.WEB_START_SANDBOX) {
+			try {
+				File loginFile = new File(stendhal.STENDHAL_FOLDER + "user.dat");
+				PrintWriter fos = new PrintWriter(loginFile);
+	
+				fos.print(encode.encode(server + " " + usrName + " " + pwd + " "
+						+ port + " " + Boolean.valueOf(useTCP).toString()));
+				fos.close();
+			} catch (IOException ioex) {
+				JOptionPane
+						.showMessageDialog(
+								this,
+								"Something went wrong when saving login information, nothing saved",
+								"Login information save problem",
+								JOptionPane.WARNING_MESSAGE);
+			}
 		}
 	}
 
@@ -328,6 +332,10 @@ public class LoginDialog extends JDialog {
 		Encoder decode = new Encoder();
 		String loginLine = "";
 
+		if (Debug.WEB_START_SANDBOX) {
+			return "no_file";
+		}
+		
 		try {
 			FileReader fr = new FileReader(stendhal.STENDHAL_FOLDER
 					+ "user.dat");

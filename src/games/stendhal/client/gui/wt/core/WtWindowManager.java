@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import games.stendhal.client.stendhal;
+import games.stendhal.common.Debug;
 
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
@@ -83,31 +84,35 @@ public class WtWindowManager {
 		for (WindowConfiguration config : configs.values()) {
 			buf.append(config.writeToPropertyString());
 		}
-		try {
-			FileWriter writer = new FileWriter(new File(
-					stendhal.STENDHAL_FOLDER + FILE_NAME));
-			writer.append(buf.toString());
-			writer.close();
-		} catch (IOException e) {
-			// ignore exception
-			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME);
-			e.printStackTrace();
+		if (!Debug.WEB_START_SANDBOX) {
+			try {
+				FileWriter writer = new FileWriter(new File(
+						stendhal.STENDHAL_FOLDER + FILE_NAME));
+				writer.append(buf.toString());
+				writer.close();
+			} catch (IOException e) {
+				// ignore exception
+				logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME);
+				e.printStackTrace();
+			}
 		}
 	}
 
 	/** saves the current settings to a file */
 	public void read() {
 		properties = new Properties();
-		try {
-			File file = new File(stendhal.STENDHAL_FOLDER + FILE_NAME);
-			if (file.exists()) {
-				InputStream propsFile = new FileInputStream(file);
-				properties.load(propsFile);
-				propsFile.close();
+		if (!Debug.WEB_START_SANDBOX) {
+			try {
+				File file = new File(stendhal.STENDHAL_FOLDER + FILE_NAME);
+				if (file.exists()) {
+					InputStream propsFile = new FileInputStream(file);
+					properties.load(propsFile);
+					propsFile.close();
+				}
+			} catch (IOException e) {
+				// ignore exception
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			// ignore exception
-			e.printStackTrace();
 		}
 	}
 

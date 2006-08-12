@@ -113,30 +113,34 @@ public class StendhalClient extends ariannexp {
         gameGUI = null;
 
         try {
-            // Create file.
-            File file = new File(stendhal.STENDHAL_FOLDER);
-            if (!file.exists() && !file.mkdir()) {
-                logger.error("Can't create " + file.getAbsolutePath()
-                        + " folder");
-            } else if (file.exists() && file.isFile()) {
-                if (!file.delete() || !file.mkdir()) {
-                    logger.error("Can't removing file "
-                            + file.getAbsolutePath()
-                            + " and creating a folder instead.");
-                }
-            }
-
-            file = new File(stendhal.STENDHAL_FOLDER + "cache/");
-            if (!file.exists() && !file.mkdir()) {
-                logger.error("Can't create " + file.getAbsolutePath()
-                        + " folder");
-            }
-
-            new File(stendhal.STENDHAL_FOLDER + "cache/stendhal.cache")
-                    .createNewFile();
-
-            Configuration.setConfigurationFile(stendhal.STENDHAL_FOLDER
-                    + "cache/stendhal.cache");
+        	if (!Debug.WEB_START_SANDBOX) {
+	            // Create file.
+	            File file = new File(stendhal.STENDHAL_FOLDER);
+	            if (!file.exists() && !file.mkdir()) {
+	                logger.error("Can't create " + file.getAbsolutePath()
+	                        + " folder");
+	            } else if (file.exists() && file.isFile()) {
+	                if (!file.delete() || !file.mkdir()) {
+	                    logger.error("Can't removing file "
+	                            + file.getAbsolutePath()
+	                            + " and creating a folder instead.");
+	                }
+	            }
+	
+	            file = new File(stendhal.STENDHAL_FOLDER + "cache/");
+	            if (!file.exists() && !file.mkdir()) {
+	                logger.error("Can't create " + file.getAbsolutePath()
+	                        + " folder");
+	            }
+	
+	            new File(stendhal.STENDHAL_FOLDER + "cache/stendhal.cache")
+	                    .createNewFile();
+	
+	            Configuration.setConfigurationFile(stendhal.STENDHAL_FOLDER
+	                    + "cache/stendhal.cache");
+	        } else {
+	            Configuration.setConfigurationPersitance(false);
+	        }
             conf = Configuration.getConfiguration();
         } catch (Exception e) {
             logger.error("cannot create StendhalClient", e);
@@ -356,10 +360,14 @@ public class StendhalClient extends ariannexp {
     protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
         Log4J.startMethod(logger, "onTransferREQ");
         for (TransferContent item : items) {
-            File file = new File(stendhal.STENDHAL_FOLDER + "cache/"
-                    + item.name);
+        	
+        	File file = null;
+            if (!Debug.WEB_START_SANDBOX) {
 
-            if (file.exists() && conf.has(item.name)
+	        	file = new File(stendhal.STENDHAL_FOLDER + "cache/"
+	                    + item.name);
+            }
+            if (!Debug.WEB_START_SANDBOX && file.exists() && conf.has(item.name)
                     && Integer.parseInt(conf.get(item.name)) == item.timestamp) {
                 logger.debug("Content " + file.getName()
                         + " is on cache. We save transfer");
@@ -371,7 +379,7 @@ public class StendhalClient extends ariannexp {
                     System.exit(0);
                 }
             } else {
-                logger.debug("Content " + file.getName()
+                logger.debug("Content " + item.name
                         + " is NOT on cache. We have to transfer");
                 item.ack = true;
             }
@@ -393,12 +401,14 @@ public class StendhalClient extends ariannexp {
             try {
                 String data = new String(item.data);
 
-                new File(stendhal.STENDHAL_FOLDER + "cache").mkdir();
-
-                Writer writer = new BufferedWriter(new FileWriter(
-                        stendhal.STENDHAL_FOLDER + "cache/" + item.name));
-                writer.write(data);
-                writer.close();
+                if (!Debug.WEB_START_SANDBOX) {
+	                new File(stendhal.STENDHAL_FOLDER + "cache").mkdir();
+	
+	                Writer writer = new BufferedWriter(new FileWriter(
+	                        stendhal.STENDHAL_FOLDER + "cache/" + item.name));
+	                writer.write(data);
+	                writer.close();
+                }
 
                 logger.debug("Content " + item.name
                         + " cached now. Timestamp: "

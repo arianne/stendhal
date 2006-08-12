@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.common.Debug;
 import games.stendhal.common.Version;
 import marauroa.common.Log4J;
 
@@ -28,9 +29,15 @@ public class stendhal extends Thread {
 		"stendhal.ath.cx",
 		"localhost" };
 
-	public static final String STENDHAL_FOLDER = System
-			.getProperty("user.home")
-			+ "/stendhal/";
+	public static final String STENDHAL_FOLDER;
+	static {
+		if (!Debug.WEB_START_SANDBOX) {
+			System.err.println(Debug.WEB_START_SANDBOX);
+			STENDHAL_FOLDER = System.getProperty("user.home") + "/stendhal/";
+		} else {
+			STENDHAL_FOLDER = "/tmp"; // TODO: remove me
+		}
+	}
 
 	public static final String VERSION = Version.VERSION;
 
@@ -47,6 +54,7 @@ public class stendhal extends Thread {
 	public static final int FPS_LIMIT = 25;
 
 	public static void main(String args[]) {
+
 		String size = null;
 		int i = 0;
 
