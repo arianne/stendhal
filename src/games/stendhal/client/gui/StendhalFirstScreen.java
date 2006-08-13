@@ -14,7 +14,6 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
-import games.stendhal.common.Debug;
 import games.stendhal.common.Version;
 
 import java.awt.Container;
@@ -135,13 +134,9 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		Container contentPane = this.getContentPane();
 		contentPane.setLayout(null);
-		int offset = 0;
-		if (Debug.WEB_START_SANDBOX) {
-			offset = -20;
-		}
-		addComponent(contentPane, loginButton, 220, 340 + offset, 200, 32);
-		addComponent(contentPane, createAccountButton, 220, 380 + offset, 200, 32);
-		addComponent(contentPane, exitButton, 220, 420 + offset, 200, 32);
+		addComponent(contentPane, loginButton, 220, 340, 200, 32);
+		addComponent(contentPane, createAccountButton, 220, 380, 200, 32);
+		addComponent(contentPane, exitButton, 220, 420, 200, 32);
 
 		//
 		// LoginGUI
