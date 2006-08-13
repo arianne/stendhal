@@ -132,6 +132,7 @@
     <property name="client_jarname" value="stendhal-${version}.jar"/>
     <property name="client_data" value="stendhal-data-${version}.jar"/>
     <property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
+    <property name="client_prefilled_cache" value="stendhal-prefilled-cache-${version}.jar"/>
 
     <property name="build_client" value="${buildroot}/build_client/"/>
   	<mkdir dir="${build_client}/"/>
@@ -141,6 +142,7 @@
            excludes="games/stendhal/server/**, games/stendhal/tools/**">
       <classpath>
         <pathelement path="${marauroa_jar}"/>
+        <pathelement path="${jnlp_jar}"/>
         <pathelement path="${log4j_jar}"/>
       </classpath>    
     </javac>
@@ -193,7 +195,11 @@
       </fileset> 
     </copy> 
 
-    <jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>    
+    <jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>
+  	
+  	<jar jarfile="${lib}/${client_prefilled_cache}" basedir="${user.home}/stendhal">
+  		<include name="cache/**" />
+	</jar>
  
   </target>
   
