@@ -88,8 +88,15 @@ class DailyQuestAction extends SpeakerNPC.ChatAction {
     if(current>=start)
       {
       int result = start + new Random().nextInt(current-start+1);
-      engine.say("Semos is in need of help. Go kill a " + sortedcreatures.get(result).getName() + " and say #complete, once you're done.");
-      player.removeKill(sortedcreatures.get(result).getName());
+      String creatureName = sortedcreatures.get(result).getName();
+
+      // don't ask level 0 players to kill a bat as this cannot be found
+      // anywhere they have a change to survive.
+      if ("bat".equals(creatureName)) {
+          creatureName = "rat";
+      }
+      engine.say("Semos is in need of help. Go kill a " + creatureName + " and say #complete, once you're done.");
+      player.removeKill(creatureName);
       questLast = ""+(new Date()).getTime();
       player.setQuest("daily",sortedcreatures.get(result).getName()+";"+questLast+";"+questCount);
       }
