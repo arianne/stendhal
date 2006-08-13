@@ -51,21 +51,34 @@ public class Scroll extends StackableItem implements UseEvent {
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
 		String name = getName();
-		if (name.equals("marked_scroll") || name.equals("summon_scroll")) {
-			// marked_scroll and summon_scroll can be stacked
-			// if they refer to the same location
-			if (has("infostring") && otheri.has("infostring")) {
-				return (get("infostring").equals(otheri.get("infostring")));
+
+		// first step make sure that both are scrolls of the same kind
+		if (getItemClass().equals(otheri.getItemClass())
+				&& getItemSubclass().equals(otheri.getItemSubclass())) {
+
+			// ok they are of the same kind. But we need a special case for scrolls with infostrings
+			if (name.equals("marked_scroll") || name.equals("summon_scroll")) {
+				// marked_scroll and summon_scroll can be stacked
+				// if they refer to the same location / creature
+				if (has("infostring") && otheri.has("infostring")) {
+					return (get("infostring").equals(otheri.get("infostring")));
+				}
+
+				// summon_scroll without infostring can be stacked as well
+				if (name.equals("summon_scroll")) {
+					return (!has("infostring") && !otheri.has("infostring"));
+				}
+
+				// at least one scroll as an inforstring and it is not equal to the other
+				return false;
 			}
 
-			// summon_scroll without infostring can be stacked as well
-			if (name.equals("summon_scroll")) {
-				return (!has("infostring") && !otheri.has("infostring"));
-			}
-			return false;
+			// scrolls of the same kind can be stacked (infostring was already dealt with)
+			return true;
 		}
-		return getItemClass().equals(otheri.getItemClass())
-				&& getItemSubclass().equals(otheri.getItemSubclass());
+
+		// these items are not scrolls of the same kind
+		return false;
 	}
 
 	public void onUsed(RPEntity user) {
@@ -77,8 +90,6 @@ public class Scroll extends StackableItem implements UseEvent {
 			successful = useEmptyScroll(player);
 		} else if (name.equals("marked_scroll") || name.equals("home_scroll")) {
 			successful = useTeleportScroll(player);
-		} else if (name.equals("archers_protection_scroll")) {
-			successful = useCreatureProtectionScroll(player);
 		} else if (name.equals("summon_scroll")) {
 			successful = useSummonScroll(player);
 		} else {
@@ -89,16 +100,6 @@ public class Scroll extends StackableItem implements UseEvent {
 			this.removeOne();
 			getWorld().modify(player);
 		}
-	}
-
-	/**
-	 * 
-	 * @param player
-	 * @return
-	 */
-	private boolean useCreatureProtectionScroll(Player player) {
-		player.sendPrivateText("I am unable to use this scroll");
-		return false;
 	}
 
 	/**
