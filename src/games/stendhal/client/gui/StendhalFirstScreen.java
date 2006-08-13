@@ -162,7 +162,7 @@ public class StendhalFirstScreen extends JFrame {
 
 			String version = br.readLine();
 
-			if (Version.compare(version, stendhal.VERSION) < -1) {
+			if (Version.compare(stendhal.VERSION, version) < -1) {
 				// custom title, warning icon
 				JOptionPane
 						.showMessageDialog(
