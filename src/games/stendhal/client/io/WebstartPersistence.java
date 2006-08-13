@@ -16,7 +16,7 @@ import javax.jnlp.UnavailableServiceException;
  *
  * @author hendrik
  */
-public class WebstartPersistence {
+public class WebstartPersistence extends Persistence {
 	private PersistenceService ps = null;
 	private BasicService bs = null;
 	private URL codebase = null;
@@ -49,6 +49,7 @@ public class WebstartPersistence {
 	 * @return InputStream
 	 * @throws IOException on io error
 	 */
+	@Override
 	public InputStream getInputStream(String filename) throws IOException {
 		URL muffinURL = new URL(codebase.toString() + filename);
 		FileContents fc = ps.get(muffinURL);
@@ -63,6 +64,7 @@ public class WebstartPersistence {
 	 * @return InputStream
 	 * @throws IOException on io error
 	 */
+	@Override
 	public OutputStream getOutputStream(String filename) throws IOException {
 		URL muffinURL = new URL(codebase.toString() + filename);
 		try {
