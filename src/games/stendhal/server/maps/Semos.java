@@ -756,20 +756,20 @@ public class Semos implements IContent {
 		zone.assignRPObjectID(sign);
 		sign.setx(118);
 		sign.sety(43);
-		sign.setText("You are about to leave this area to move to the forest.|You may fatten up your sheep there on wild berries.|Be careful though, these forests crawl with wolves.");
+		sign.setText("You are about to leave this area to move to the forest.\nYou may fatten up your sheep there on wild berries.\nBe careful though, these forests crawl with wolves.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(38);
 		sign.sety(3);
-		sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
+		sign.setText("You are about to leave this area to move to the village.\nYou can buy a new sheep there.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(113);
 		sign.sety(3);
 		sign
-				.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");
+				.setText("You are about to leave this area to move to the city.\nYou can sell your sheep there.");
 		zone.add(sign);
 	}
 
@@ -778,19 +778,19 @@ public class Semos implements IContent {
 		zone.assignRPObjectID(sign);
 		sign.setx(23);
 		sign.sety(61);
-		sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
+		sign.setText("You are about to leave this area and move to the plains.\nYou may fatten up your sheep there on the wild berries.\nBe careful though, wolves roam these plains.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(60);
 		sign.sety(47);
-		sign.setText("You are about to leave this area to move to the city.|You can sell your sheep there.");
+		sign.setText("You are about to leave this area to move to the city.\nYou can sell your sheep there.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(16);
 		sign.sety(35);
-		sign.setText("[CLOSED]|The tavern has moved to a much|better and central house in town.|Come buy your weapons, find your|quests and hang out there instead.");
+		sign.setText("[CLOSED]\nThe tavern has moved to a much\nbetter and central house in town.\nCome buy your weapons, find your\nquests and hang out there instead.");
 		zone.add(sign);
 	}
 
@@ -902,19 +902,19 @@ public class Semos implements IContent {
 		zone.assignRPObjectID(sign);
 		sign.setx(4);
 		sign.sety(41);
-		sign.setText("You are about to leave this area to move to the village.|You can buy a new sheep there.");
+		sign.setText("You are about to leave this area to move to the village.\nYou can buy a new sheep there.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(26);
 		sign.sety(40);
-		sign.setText("You are about to enter the Dungeons.|But Beware! This area is infested with rats and legend has |it that many Adventurers have died down there...");
+		sign.setText("You are about to enter the Dungeons.\nBut Beware! This area is infested with rats and legend has \nit that many Adventurers have died down there...");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(44);
 		sign.sety(62);
-		sign.setText("You are about to leave this area and move to the plains.|You may fatten up your sheep there on the wild berries.|Be careful though, wolves roam these plains.");
+		sign.setText("You are about to leave this area and move to the plains.\nYou may fatten up your sheep there on the wild berries.\nBe careful though, wolves roam these plains.");
 		zone.add(sign);
 		Chest chest = new Chest();
 		zone.assignRPObjectID(chest);

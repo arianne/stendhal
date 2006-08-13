@@ -81,10 +81,10 @@ public class ShopList {
 	public String toString(String name, String header) {
 		Map<String, Integer> items = contents.get(name);
 
-		StringBuffer sb = new StringBuffer(header + "|\n");
+		StringBuffer sb = new StringBuffer(header + "\n");
 
 		for (String item : items.keySet()) {
-			sb.append(item + "\t" + items.get(item) + "|\n");
+			sb.append(item + "\t" + items.get(item) + "\n");
 		}
 
 		return sb.toString();

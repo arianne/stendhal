@@ -44,7 +44,7 @@ public class Sign extends Entity {
 
 			Graphics g2d = screen.expose();
 
-			String[] lines = text.split("\\|");
+			String[] lines = text.split("\n");
 
 			int lineLengthPixels = 0;
 			for (String line : lines) {
@@ -105,8 +105,7 @@ public class Sign extends Entity {
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Look")) {
 			gameObjects.addText(this, textImage, textPersistTime);
-			StendhalClient.get().addEventLine(
-					"You read \"" + text.replace("|", "\n") + "\"", signColor);
+			StendhalClient.get().addEventLine("You read \"" + text + "\"", signColor);
 		}
 	}
 

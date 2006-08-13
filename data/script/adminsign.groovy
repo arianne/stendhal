@@ -53,7 +53,7 @@ class AdminSignManager {
 				}
 				i++;
 			}
-			sign.setText(sb.toString().trim());
+			sign.setText(sb.toString().trim().replace("|", "\n"));
 
 			// add sign to game 
 			game.add(sign);

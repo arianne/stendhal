@@ -119,7 +119,7 @@ public class Ados implements IContent {
 		zone.assignRPObjectID(sign);
 		sign.setx(53);
 		sign.sety(48);
-		sign.setText("Ados Wildlife Refuge|Home for endangered animals");
+		sign.setText("Ados Wildlife Refuge\nHome for endangered animals");
 		zone.add(sign);
 		
 		Portal portal = new Portal();

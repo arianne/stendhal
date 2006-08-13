@@ -97,8 +97,8 @@ if(game.setZone(myZone))   // if zone exists
   // Add a blackboard with the shop offers
   board=new Blackboard(false);
   board.set(11,4);
-  text = "-- Buying --";
-  for (entry in myShop) { text += " |\t" + entry.key } 
+  text = "-- Buying --\n";
+  for (entry in myShop) { text += entry.key + "\t" + entry.value + "\n" } 
   board.setText(text);
   game.add(board);    
   

@@ -31,7 +31,7 @@ if(game.setZone(myZone))   // if zone exists
   sign=new Sign()
   sign.setx(100)
   sign.sety(113)
-  sign.setText("Semos Deathmatch season!|Now hiring! Amateurs need not apply!")
+  sign.setText("Semos Deathmatch season!\nNow hiring! Amateurs need not apply!")
   // Add our new Object to the game world
   game.add(sign)
   

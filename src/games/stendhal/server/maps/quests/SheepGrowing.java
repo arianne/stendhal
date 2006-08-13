@@ -50,7 +50,7 @@ public class SheepGrowing extends AbstractQuest {
 		zone.assignRPObjectID(sign);
 		sign.setx(26);
 		sign.sety(41);
-		sign.setText("Talk to Nishiya to buy a sheep!.|He has the best prices for miles.");
+		sign.setText("Talk to Nishiya to buy a sheep!\nHe has the best prices for miles.");
 		zone.add(sign);
 
 		SpeakerNPC npc = new SpeakerNPC("Nishiya") {
@@ -131,7 +131,7 @@ public class SheepGrowing extends AbstractQuest {
 		zone.assignRPObjectID(sign);
 		sign.setx(43);
 		sign.sety(40);
-		sign.setText("Talk to Sato to sell your sheep!.|He probably won't give you a fair price but this is a small village...|The price he will offer you depends on the weight of your sheep.");
+		sign.setText("Talk to Sato to sell your sheep!\nHe probably won't give you a fair price but this is a small village...\nThe price he will offer you depends on the weight of your sheep.");
 		zone.add(sign);
 
 		npc = new SpeakerNPC("Sato") {
@@ -196,7 +196,7 @@ public class SheepGrowing extends AbstractQuest {
 
 				addGreeting();
 				addJob("I work as the main Semos' sheep buyer.");
-				addHelp("I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!.");
+				addHelp("I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!");
 				addBuyer(new SheepBuyerBehaviour(world, buyitems));
 				addGoodbye();
 			}
