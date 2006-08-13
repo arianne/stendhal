@@ -27,9 +27,12 @@ import java.awt.Rectangle;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
@@ -39,6 +42,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -84,7 +88,8 @@ public class StendhalClient extends ariannexp {
 
     private JFrame frame;
 
-    private Configuration conf;
+    private Configuration cacheManager;
+    private Properties prefilledCacheManager;
 
     private static StendhalClient client;
 
@@ -113,6 +118,15 @@ public class StendhalClient extends ariannexp {
         gameGUI = null;
 
         try {
+        	prefilledCacheManager = new Properties();
+        	URL url = this.getClass().getClassLoader().getResource("cache/stendhal.cache");
+        	if (url != null) {
+	        	InputStream is = url.openStream();
+	        	prefilledCacheManager.load(is);
+	        	is.close();
+        	}
+
+        	// init caching-directory
         	if (!Debug.WEB_START_SANDBOX) {
 	            // Create file.
 	            File file = new File(stendhal.STENDHAL_FOLDER);
@@ -141,7 +155,7 @@ public class StendhalClient extends ariannexp {
 	        } else {
 	            Configuration.setConfigurationPersitance(false);
 	        }
-            conf = Configuration.getConfiguration();
+            cacheManager = Configuration.getConfiguration();
         } catch (Exception e) {
             logger.error("cannot create StendhalClient", e);
         }
@@ -357,30 +371,73 @@ public class StendhalClient extends ariannexp {
         }
     }
 
+    private InputStream getItemFromPrefilledCache(TransferContent item) {
+    	String name = "cache/" + item.name;
+
+    	// note: timestamp may contain a checksum. So we have to do an "equal"-compare.
+    	String timestamp = prefilledCacheManager.getProperty(item.name);
+    	if ((timestamp != null) && (Integer.parseInt(timestamp) == item.timestamp)) {
+
+    		// get the stream
+        	URL url = this.getClass().getClassLoader().getResource(name);
+        	if (url != null) {
+	        	try {
+	        		logger.debug("Content " + item.name + " is in prefilled cache.");
+					return url.openStream();
+				} catch (IOException e) {
+					logger.error(e, e);
+				}
+        	}
+				
+    	}
+    	return null;
+    }
+    
+    private InputStream getItemFromCache(TransferContent item) {
+    	if (Debug.WEB_START_SANDBOX) {
+    		return null;
+    	}
+
+    	// check cache
+    	File file = new File(stendhal.STENDHAL_FOLDER + "cache/" + item.name);
+        if (file.exists() && cacheManager.has(item.name)
+                && Integer.parseInt(cacheManager.get(item.name)) == item.timestamp) {
+            logger.debug("Content " + file.getName()  + " is on cache. We save transfer");
+
+            // get the stream
+        	try {
+				return new FileInputStream(file);
+			} catch (FileNotFoundException e) {
+				logger.error(e, e);
+			}
+        }
+    	return null;
+    }
+    
     protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
         Log4J.startMethod(logger, "onTransferREQ");
         for (TransferContent item : items) {
-        	
-        	File file = null;
-            if (!Debug.WEB_START_SANDBOX) {
 
-	        	file = new File(stendhal.STENDHAL_FOLDER + "cache/"
-	                    + item.name);
-            }
-            if (!Debug.WEB_START_SANDBOX && file.exists() && conf.has(item.name)
-                    && Integer.parseInt(conf.get(item.name)) == item.timestamp) {
-                logger.debug("Content " + file.getName()
-                        + " is on cache. We save transfer");
+        	// 1. try to read it from stendhal-prefilled-cache.jar
+        	InputStream is = getItemFromPrefilledCache(item);
+
+        	// 2. try to read from our cache (if not in sandbox)
+        	if (is == null) {
+        		is = getItemFromCache(item);
+        	}
+
+            if (is != null) {
                 item.ack = false;
                 try {
-                    contentHandling(item.name, new FileReader(file));
+                	Reader reader = new InputStreamReader(is);
+                    contentHandling(item.name, reader);
+                	reader.close();
                 } catch (java.io.IOException e) {
                     e.printStackTrace();
                     System.exit(0);
                 }
             } else {
-                logger.debug("Content " + item.name
-                        + " is NOT on cache. We have to transfer");
+                logger.debug("Content " + item.name + " is NOT on cache. We have to transfer");
                 item.ack = true;
             }
         }
@@ -414,7 +471,7 @@ public class StendhalClient extends ariannexp {
                         + " cached now. Timestamp: "
                         + Integer.toString(item.timestamp));
 
-                conf.set(item.name, Integer.toString(item.timestamp));
+                cacheManager.set(item.name, Integer.toString(item.timestamp));
 
                 contentHandling(item.name, new StringReader(data));
             } catch (java.io.IOException e) {
