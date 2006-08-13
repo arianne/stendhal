@@ -38,9 +38,9 @@ You also need Java JRE 1.5 ( http://www.java.com/en/download )
 Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
-  java -jar stendhal-0.50.jar
+  java -jar stendhal-0.52.jar
 Alternatively you can run it using Java Webstart technology at:
-  http://arianne.sourceforge.net/jws/stendhal.jnlp
+  http://stendhal.ath.cx/stendhal.jnlp
 
 To play Arianne you have to use keyboard and mouse.
 Read manual at http://arianne.sourceforge.net/wiki/index.php/StendhalManual
@@ -53,15 +53,10 @@ No warranties. But let us know if it doesn't work.
 
 
 
-Unfinished things which have to be dealt with or made inaccessable before release
----------------------------------------------------------------------------------
-- summon_scroll
-  - stacking two summon_scrolls --> summon_scroll Q=0
-- finish version-range compare
-Changelog
+Changelog
 ---------
 
-0.52
+0.52 Aug 14, 2006
 - players
   - display of item based ATK and DEF is now calculated by the server
   - fixed a bug which caused quest items to be lost if your bag is full
@@ -69,6 +64,8 @@ Unfinished things which have to be dealt with or made inaccessable before releas
   - minor changes to NPCs and maps
   - Tell-menu works now on players with spaces in their names
   - low-level admins have their name printed in light yellow, high-level-admins in dark yellow
+  - coloring the name of nps and monsters
+  - fixed key autorepeat on Linux
 - maps and quests
   - added a new quest in 0_semos_plains_n
   - added an iron ore mine near Orril castle
@@ -76,7 +73,7 @@ Unfinished things which have to be dealt with or made inaccessable before releas
   - several minor fixes on many maps
 - admins / game masters
   - /supportanswer <player> <text> admin command replys to <player> and all players with support-adminlevel
-  - (*) Inspect, (*) Destroy and /alter can be used on items
+  - (*) Inspect, (*) Destroy and /alter #12345 can be used on items
   - /support and /supportanswer can now be forwarded to irc://irc.freenode.net/#arianne-support
   - added a new jail map
   - admins can summon lots of monsters with /script plague.groovy 1 rat
@@ -89,6 +86,7 @@ Unfinished things which have to be dealt with or made inaccessable before releas
   - added all dependencies to "libs" folder
   - added a new disabled NPC /script adminmaker.groovy for test-systems
   - client will use tilesets in tiled if data/tilesets is empty (development environment)
+  - prefilled-cache.jar contains the content of the cache directory for webstart
   - added http.port paramter to marauroa.ini defaulting to 80 (not game-port anymore)
   - support for two weapons as pair (swapped slots rhand and lhand on client) (they are not yet in game)
 
