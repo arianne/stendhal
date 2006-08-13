@@ -12,17 +12,40 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import java.awt.*;
-import java.awt.event.*;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
+import games.stendhal.client.io.Persistence;
+import games.stendhal.common.Debug;
 
-import javax.swing.*;
-
-import java.io.*;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.StringTokenizer;
 
-import games.stendhal.client.*;
-import games.stendhal.common.Debug;
-import marauroa.client.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import marauroa.client.ariannexpTimeoutException;
 
 /**
  * Summary description for LoginDialog
@@ -203,9 +226,9 @@ public class LoginDialog extends JDialog {
 			useTCPBox.setSelected(true);
 			useTCPBox.setEnabled(false);
 			useTCPBox.setVisible(false);
-			saveLoginBox.setSelected(false);
-			saveLoginBox.setEnabled(false);
-			saveLoginBox.setVisible(false);
+			//saveLoginBox.setSelected(false);
+			//saveLoginBox.setEnabled(false);
+			//saveLoginBox.setVisible(false);
 		}
 
 		//
@@ -322,14 +345,13 @@ public class LoginDialog extends JDialog {
 			String port, boolean useTCP) {
 		Encoder encode = new Encoder();
 		
-		if (!Debug.WEB_START_SANDBOX) {
 			try {
-				File loginFile = new File(stendhal.STENDHAL_FOLDER + "user.dat");
-				PrintWriter fos = new PrintWriter(loginFile);
+				OutputStream os = Persistence.get().getOutputStream("user.dat");
+				PrintStream ps = new PrintStream(os);
 	
-				fos.print(encode.encode(server + " " + usrName + " " + pwd + " "
+				ps.print(encode.encode(server + " " + usrName + " " + pwd + " "
 						+ port + " " + Boolean.valueOf(useTCP).toString()));
-				fos.close();
+				ps.close();
 			} catch (IOException ioex) {
 				JOptionPane
 						.showMessageDialog(
@@ -338,21 +360,15 @@ public class LoginDialog extends JDialog {
 								"Login information save problem",
 								JOptionPane.WARNING_MESSAGE);
 			}
-		}
 	}
 
 	private String getLoginInfo() {
 		Encoder decode = new Encoder();
 		String loginLine = "";
 
-		if (Debug.WEB_START_SANDBOX) {
-			return "no_file";
-		}
-		
 		try {
-			FileReader fr = new FileReader(stendhal.STENDHAL_FOLDER
-					+ "user.dat");
-			BufferedReader fin = new BufferedReader(fr);
+			InputStream is = Persistence.get().getInputStream("user.dat");
+			BufferedReader fin = new BufferedReader(new InputStreamReader(is));
 
 			loginLine = decode.decode(fin.readLine());
 			if (loginLine == null)
