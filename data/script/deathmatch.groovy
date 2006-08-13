@@ -132,16 +132,26 @@ class DeathmatchAction extends ScriptAction {
       else {
         // spawn the next stronger creature
         int k = new Integer(questLevel);
-// Logger.getLogger("X").warn("k: " + k);
-		Creature creatureToSpawn = null;
+		List possibleCreaturesToSpawn = new ArrayList();
+		int lastLevel = 0;
         for (creature in sortedCreatures) {
-          if (creature.getLevel() >= k) {
-            creatureToSpawn = creature;
+          if (creature.getLevel() > k) {
             break;
+          }        	
+          if (creature.getLevel() > lastLevel) {
+            possibleCreaturesToSpawn.clear();
+            lastLevel = creature.getLevel();
           }
+          possibleCreaturesToSpawn.add(creature);
         }
-        if (creatureToSpawn == null) {
+        
+		Creature creatureToSpawn = null;
+        if (possibleCreaturesToSpawn.size() == 0) {
           creatureToSpawn = sortedCreatures.get(sortedCreatures.size() - 1);
+        } else if (possibleCreaturesToSpawn.size() == 1) {
+        	creatureToSpawn = possibleCreaturesToSpawn.get(0);
+        } else {
+        	creatureToSpawn = possibleCreaturesToSpawn.get((int) (Math.random() * possibleCreaturesToSpawn.size()));
         }
         int x = player.getx(); 
         int y = player.gety();
