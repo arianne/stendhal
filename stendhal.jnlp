@@ -25,8 +25,8 @@ Some of these people are NPC, they will give you tasks to accomplish and hints t
     <jar href="http://arianne.sourceforge.net/jws/log4j.jar" download="eager"/>
     <jar href="http://arianne.sourceforge.net/jws/marauroa.jar" download="eager"/>
     <jar href="http://arianne.sourceforge.net/jws/stendhal-data-0.51.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-0.51.jar" main="true" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-prefilled-cache-0.51.jar" main="true" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-0.51.jar" download="eager" main="true" />
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-prefilled-cache-0.51.jar" download="eager"/>
   </resources>
   <application-desc/>
 </jnlp>
