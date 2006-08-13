@@ -28,7 +28,7 @@ public abstract class Persistence {
 			if (Debug.WEB_START_SANDBOX) {
 				// TODO: reflection
 			} else {
-				// TODO: instance = new FileSystemPersistence()
+				instance = new FileSystemPersistence();
 			}
 		}
 		return instance;
