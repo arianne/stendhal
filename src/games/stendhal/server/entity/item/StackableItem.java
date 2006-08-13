@@ -61,7 +61,7 @@ public class StackableItem extends Item implements Stackable {
 	@Override
 	public void removeOne() {
 		if (quantity > 1) {
-			quantity--;
+			add(-1);
 			if (isContained()) {
 				// We modify the base container if the object change.
 				RPObject base = getContainer();
