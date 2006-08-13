@@ -1582,7 +1582,7 @@ Makes players more offensive
 	</item>
 
     <item name="wood">
-        <type class="misc" subclass="wood"/>
+        <type class="resource" subclass="wood"/>
         <stackable/>
         <attributes>
             <quantity value="1"/>
@@ -1594,7 +1594,7 @@ Makes players more offensive
     </item>
 
     <item name="iron_ore">
-      <type class="misc" subclass="iron_ore"/>
+      <type class="resource" subclass="iron_ore"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1606,7 +1606,7 @@ Makes players more offensive
     </item>
 	
     <item name="iron">
-      <type class="misc" subclass="iron"/>
+      <type class="resource" subclass="iron"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
