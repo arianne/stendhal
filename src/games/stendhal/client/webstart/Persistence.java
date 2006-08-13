@@ -1,5 +1,6 @@
 package games.stendhal.client.webstart;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -10,73 +11,69 @@ import javax.jnlp.PersistenceService;
 import javax.jnlp.ServiceManager;
 import javax.jnlp.UnavailableServiceException;
 
+/**
+ * Persitence with webstart
+ *
+ * @author hendrik
+ */
 public class Persistence {
-	PersistenceService ps;
-	BasicService bs;
-	
+	private PersistenceService ps = null;
+	private BasicService bs = null;
+	private URL codebase = null;
+
+	/**
+	 * Creates a instance of class
+	 */
 	public Persistence() {
 		try {
-			ps = (PersistenceService) ServiceManager.lookup("javax.jnlp.PersistenceService");
-			bs = (BasicService) ServiceManager.lookup("javax.jnlp.BasicService");
+			ps = (PersistenceService) ServiceManager
+					.lookup("javax.jnlp.PersistenceService");
+			bs = (BasicService) ServiceManager
+					.lookup("javax.jnlp.BasicService");
+
+			if (ps != null && bs != null) {
+				codebase = bs.getCodeBase();
+			}
+
 		} catch (UnavailableServiceException e) {
+			e.printStackTrace(System.err);
 			ps = null;
 			bs = null;
 		}
+	}
 
+	/**
+	 * Gets an input stream to this "virtual" file
+	 *
+	 * @param filename filename (without path)
+	 * @return InputStream
+	 * @throws IOException on io error
+	 */
+	public InputStream getInputStream(String filename) throws IOException {
+		URL muffinURL = new URL(codebase.toString() + filename);
+		FileContents fc = ps.get(muffinURL);
+		InputStream is = fc.getInputStream();
+		return is;
+	}
 
-		if (ps != null && bs != null) {
-
-			try {
-				// find all the muffins for our URL
-				URL codebase = bs.getCodeBase();
-				String[] muffins = ps.getNames(codebase);
-
-				// get the attributes (tags) for each of these muffins.
-				// update the server's copy of the data if any muffins
-				// are dirty
-				int[] tags = new int[muffins.length];
-				URL[] muffinURLs = new URL[muffins.length];
-				for (int i = 0; i < muffins.length; i++) {
-					muffinURLs[i] = new URL(codebase.toString() + muffins[i]);
-					tags[i] = ps.getTag(muffinURLs[i]);
-					// update the server if anything is tagged DIRTY
-					if (tags[i] == PersistenceService.DIRTY) {
-						doUpdateServer(muffinURLs[i]);
-					}
-				}
-
-
-				// read in the contents of a muffin and then delete it
-				FileContents fc = ps.get(muffinURLs[0]);
-				int maxsize = (int) fc.getMaxLength();
-				byte[] buf = new byte[(int) fc.getLength()];
-				InputStream is = fc.getInputStream();
-				int pos = 0;
-				while ((pos = is.read(buf, pos, buf.length - pos)) > 0) {
-					// just loop
-				}
-				is.close();
-
-				ps.delete(muffinURLs[0]);
-
-				// re-create the muffin and repopulate its data
-				ps.create(muffinURLs[0], maxsize);
-				fc = ps.get(muffinURLs[0]);
-				// don't append
-				OutputStream os = fc.getOutputStream(false);
-				os.write(buf);
-				os.close();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+	/**
+	 * Gets an output stream to this "virtual" file
+	 *
+	 * @param filename filename (without path)
+	 * @return InputStream
+	 * @throws IOException on io error
+	 */
+	public OutputStream getOutputStream(String filename) throws IOException {
+		URL muffinURL = new URL(codebase.toString() + filename);
+		try {
+			ps.delete(muffinURL);
+		} catch (Exception e) {
+			// ignore
 		}
+		ps.create(muffinURL, 5000);
+		FileContents fc = ps.get(muffinURL);
+		OutputStream os = fc.getOutputStream(false);
+		return os;
 	}
 
-	static void doUpdateServer(URL url) {
-		// update the server's copy of the persistent data
-		// represented by the given URL
-		// ...
-		// ps.setTag(url, PersistenceService.CACHED);
-	}
 }
