@@ -1,7 +1,10 @@
 /* $Id$ */
 
+import org.apache.log4j.*;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import games.stendhal.server.*
+import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.entity.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.scripting.*
@@ -149,8 +152,64 @@ class TeleportScriptAction extends ScriptAction {
     }
 }
 
-if (player != null) {
+
+public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnListener {
+    private StendhalGroovyScript game;
+    private Player player;
+    private List zones;
+    private int counter = 0;
+
+    public SightseeingAction (StendhalGroovyScript game, StendhalRPWorld world) {
+      this.game = game;
+
+	    zones = new ArrayList();
+	    Iterator itr = world.iterator();
+	    while (itr.hasNext()) {
+	        StendhalRPZone zone = (StendhalRPZone) itr.next();
+	        zones.add(zone.getID().getID());
+	    }
+    }
     
+    public void fire(Player player, String text, SpeakerNPC engine) {
+    	this.player = player;
+    	counter = 0;
+    	player.sendPrivateText("Let's start");
+		TurnNotifier.get().notifyInTurns(10, this);			
+    }
+    
+    public void onTurnReached(int currentTurn) {
+    	try {
+	    	String zoneName = zones.get(counter);
+			if (!game.transferPlayer(player, zoneName, 5, 5)) {
+				if (!game.transferPlayer(player, zoneName, 50, 50)) {
+					if (!game.transferPlayer(player, zoneName, 20, 20)) {
+						if (!game.transferPlayer(player, zoneName, 100, 100)) {
+							player.sendPrivateText("Sorry, did not find a free spot in " + zones.get(counter));
+						} else {
+							player.sendPrivateText("Welcome in " + zoneName);
+						}
+					} else {
+						player.sendPrivateText("Welcome in " + zoneName);
+					}
+				} else {
+					player.sendPrivateText("Welcome in " + zoneName);
+				}
+			} else {
+				player.sendPrivateText("Welcome in " + zoneName);
+			}
+    	} catch (Exception e) {
+    		Logger.getLogger(this).error(e, e);
+    	}
+
+		counter++;
+		if (counter < zones.size()) {
+			TurnNotifier.get().notifyInTurns(10, this);
+		}
+    }
+}
+    
+if (player != null) {
+
 
 	// Create NPC
 	npc=new ScriptingNPC("Debuggera");
@@ -169,7 +228,7 @@ if (player != null) {
 	npc.behave("bye", "Bye.");
 
 	// Greating and admins may enable or disable her
-	npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.ATTENDING, "Hi, game master", null);
+	npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.ATTENDING, "Hi, game master. Do you think i am #crazy?", null);
 /*    npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.QUESTION_1, "May I talk to strangers?", null); 
     npc.add(ConversationStates.QUESTION_1, "yes", new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(true));
     npc.add(ConversationStates.QUESTION_1, "no", new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(false));
@@ -195,6 +254,10 @@ if (player != null) {
     
     // teleport
     npc.add(ConversationStates.ATTENDING, ["teleport", "teleportme"], new AdminCondition(), ConversationStates.IDLE, null, new TeleportNPCAction(game));
+
+    npc.add(ConversationStates.ATTENDING, ["sightseeing", "memory", "memoryhole"], new AdminCondition(), ConversationStates.IDLE, null, new SightseeingAction (game, world));
+    
+    
 
 /*
 Make new friends,
