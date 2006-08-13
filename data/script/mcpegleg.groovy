@@ -98,7 +98,7 @@ if(game.setZone(myZone))   // if zone exists
   board=new Blackboard(false);
   board.set(11,4);
   text = "-- Buying --\n";
-  for (entry in myShop) { text += entry.key + "\t" + entry.value + "\n" } 
+  for (entry in myShop) { text += entry.key + " \t" + entry.value + "\n" } 
   board.setText(text);
   game.add(board);    
   

@@ -84,7 +84,7 @@ public class ShopList {
 		StringBuffer sb = new StringBuffer(header + "\n");
 
 		for (String item : items.keySet()) {
-			sb.append(item + "\t" + items.get(item) + "\n");
+			sb.append(item + " \t" + items.get(item) + "\n");
 		}
 
 		return sb.toString();
