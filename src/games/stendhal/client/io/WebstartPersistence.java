@@ -1,4 +1,4 @@
-package games.stendhal.client.webstart;
+package games.stendhal.client.io;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +16,7 @@ import javax.jnlp.UnavailableServiceException;
  *
  * @author hendrik
  */
-public class Persistence {
+public class WebstartPersistence {
 	private PersistenceService ps = null;
 	private BasicService bs = null;
 	private URL codebase = null;
@@ -24,7 +24,7 @@ public class Persistence {
 	/**
 	 * Creates a instance of class
 	 */
-	public Persistence() {
+	public WebstartPersistence() {
 		try {
 			ps = (PersistenceService) ServiceManager
 					.lookup("javax.jnlp.PersistenceService");
