@@ -1649,17 +1649,8 @@ Makes players more offensive
 		</equipable>
 	</item>
 
-	<item name="archers_protection_scroll">
-		<type class="scroll" subclass="green"/>
-		<stackable/>
-		<weight value="0.01"/>
-		<equipable>
-			<slot name="bag"/>
-		</equipable>
-	</item>
-
 	<item name="summon_scroll">
-		<type class="scroll" subclass="purple"/>
+		<type class="scroll" subclass="summon"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1671,7 +1662,7 @@ Makes players more offensive
 	</item>
 
 	<item name="empty_scroll">
-		<type class="scroll" subclass="yellow"/>
+		<type class="scroll" subclass="empty"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1683,7 +1674,7 @@ Makes players more offensive
 	</item>
 
 	<item name="home_scroll">
-		<type class="scroll" subclass="red"/>
+		<type class="scroll" subclass="home"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1696,7 +1687,7 @@ Makes players more offensive
 	</item>
 
 	<item name="marked_scroll">
-		<type class="scroll" subclass="black"/>
+		<type class="scroll" subclass="marked"/>
 		<weight value="0.01"/>
 		<attributes>
 			<quantity value="1"/>
