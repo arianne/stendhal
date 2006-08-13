@@ -14,6 +14,10 @@
                    match=".*"
                    replace="${version}"
                    byline="true"/>
+    <replaceregexp file="stendhal.jnlp"
+                   match="-0\..*\.jar&quot;"
+                   replace="-${version}.jar&quot;"
+                   byline="true"/>
   </target>
 
   <target name="clean">
