@@ -48,12 +48,12 @@ public class Debug {
 	 * This flag is used to deactivate feature with require the current
 	 * development version of the client.
 	 */
-	public static final boolean NEW_CLIENT = false;
+	public static final boolean NEW_CLIENT = true;
 
 	/**
 	 * Just a try to get webstart work without additional rights
 	 */
-	public static final boolean WEB_START_SANDBOX = false;
+	public static boolean WEB_START_SANDBOX = false;
 
 	/** no instance */
 	private Debug() {
