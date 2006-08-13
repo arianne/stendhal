@@ -16,6 +16,9 @@ import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Version;
+
+import java.security.AccessControlException;
+
 import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
@@ -29,13 +32,14 @@ public class stendhal extends Thread {
 		"stendhal.ath.cx",
 		"localhost" };
 
-	public static final String STENDHAL_FOLDER;
+	public static String STENDHAL_FOLDER = null;
+
+	// detect web start sandbox and init STENDHAL_FOLDER otherwise
 	static {
-		if (!Debug.WEB_START_SANDBOX) {
-			System.err.println(Debug.WEB_START_SANDBOX);
+		try {
 			STENDHAL_FOLDER = System.getProperty("user.home") + "/stendhal/";
-		} else {
-			STENDHAL_FOLDER = "/tmp"; // TODO: remove me
+		} catch (AccessControlException e) {
+			Debug.WEB_START_SANDBOX = true;
 		}
 	}
 
@@ -54,7 +58,6 @@ public class stendhal extends Thread {
 	public static final int FPS_LIMIT = 25;
 
 	public static void main(String args[]) {
-
 		String size = null;
 		int i = 0;
 
