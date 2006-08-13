@@ -18,5 +18,6 @@ marauroa.ini
 server_stats.xml
 stendhal.log*
 .fbwarnings
-libs
 build_tiled_convertmaps
+keystore.ks
+server.log.*
