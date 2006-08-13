@@ -199,12 +199,23 @@ public class LoginDialog extends JDialog {
 		c.insets = new Insets(15, 4, 4, 4);
 		contentPane.add(loginButton, c);
 
+		if (Debug.WEB_START_SANDBOX) {
+			useTCPBox.setSelected(true);
+			useTCPBox.setEnabled(false);
+			saveLoginBox.setSelected(false);
+			saveLoginBox.setEnabled(false);
+		}
+		
 		//
 		// LoginDialog
 		//
 		this.setTitle("Login to Server");
 		this.setResizable(false);
-		this.setSize(new Dimension(410, 220));
+		if (Debug.WEB_START_SANDBOX) {
+			this.setSize(new Dimension(410, 240));
+		} else {
+			this.setSize(new Dimension(410, 220));
+		}
 		this.setLocationRelativeTo(owner);
 	}
 
