@@ -202,10 +202,12 @@ public class LoginDialog extends JDialog {
 		if (Debug.WEB_START_SANDBOX) {
 			useTCPBox.setSelected(true);
 			useTCPBox.setEnabled(false);
+			useTCPBox.setVisible(false);
 			saveLoginBox.setSelected(false);
 			saveLoginBox.setEnabled(false);
+			saveLoginBox.setVisible(false);
 		}
-		
+
 		//
 		// LoginDialog
 		//
