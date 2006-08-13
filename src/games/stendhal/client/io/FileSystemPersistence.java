@@ -12,7 +12,7 @@ import java.io.OutputStream;
  * @author hendrik
  */
 public class FileSystemPersistence extends Persistence {
-	private String basedir = System.getProperty("user.home") + "/"; 
+	private String basedir = System.getProperty("user.home") + "/stendhal/"; 
 
 	/**
 	 * creates a "normal" FileSystemPersistence
