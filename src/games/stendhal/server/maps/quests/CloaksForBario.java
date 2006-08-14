@@ -57,8 +57,13 @@ public class CloaksForBario extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("cloaks_for_bario")) {
-							engine.say("I don't dare to go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here. Can you help me?");
+							if (player.hasQuest("cloaks_for_bario")) {
+								engine.say("You promised me to bring me cloaks. Remember?");
+							} else {
+								engine.say("I don't dare to go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here. Can you help me?");
+							}
 						} else {
+							// player has already finished the quest
 							engine.say("I don't have anything to do for you.");
 							engine.setActualState(ConversationStates.ATTENDING);
 						}
