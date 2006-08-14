@@ -293,7 +293,7 @@ public class Orril implements IContent {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I'm responsible for the lorry rails in this mine.");
+				addJob("I'm responsible for the lorry rails in this mine. But, ironically, we ran out of cast iron. Maybe you can #offer me some?");
 				addHelp("Do you want a good advise? Don't go further southwards! An evil dragon is living there!");
 				addBuyer(new BuyerBehaviour(world, shops.get("buyiron")), true);
 				addGoodbye("Farewell - and be careful: the other dwarves don't like strangers running around here!");
