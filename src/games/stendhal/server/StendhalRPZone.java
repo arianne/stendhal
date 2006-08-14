@@ -567,6 +567,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 					plantGrower = new PlantGrower("wood", 1500);
 				} else if (type == 133) {
 					plantGrower = new PlantGrower("iron_ore", 3000);
+					// TODO: This is only a workaround. We should find a better name
+					// than "plant grower", as we're also using them for resources,
+					// teddies and whatever. We should also consider making them
+					// non-clickable.
+					plantGrower.setDescription("You see a place that seems to be rich in iron ore.");
 				}
 				assignRPObjectID(plantGrower);
 				plantGrower.setx(x);
