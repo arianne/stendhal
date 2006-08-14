@@ -39,9 +39,12 @@ if(game.setZone(myZone))   // if zone exists
   npc=new ScriptingNPC("Deathmatch Recruiter")
   npc.setClass("youngsoldiernpc")
   node = {x,y | new Path.Node(x,y)}
-  npc.setPath([node(67,43), node(100,43), node(100,54), node(145,54)])
+  npc.setPath([node(6,33), node(26,33), node(26,36), node(34,36), node(34,42), 
+               node(68,42), node(68,41),
+               node(34,41), node(34,36), node(26,36), node(26,25), node(6,25)])
   game.add(npc)
   
+ 
   npc.behave("greet","Hey there. You look like a reasonable fighter.")
   npc.behave("job","I'm recruiter for the Semos #deathmatch.")
   npc.behave("help","Have you ever heard of the Semos #deathmatch.")
