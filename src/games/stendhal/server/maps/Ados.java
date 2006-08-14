@@ -304,7 +304,7 @@ public class Ados implements IContent {
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setx(75);
-		portal.sety(49);
+		portal.sety(51);
 		portal.setNumber(102);
 		portal.setDestination("int_ados_magician_house", 103);
 		zoneOutside.addPortal(portal);
