@@ -17,7 +17,6 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.io.Persistence;
 import games.stendhal.common.Debug;
 
-import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -96,7 +95,6 @@ public class LoginDialog extends JDialog {
 		this.owner = owner;
 		initializeComponent();
 
-		this.pack();
 		this.setVisible(true);
 	}
 
@@ -262,11 +260,7 @@ public class LoginDialog extends JDialog {
 		//
 		this.setTitle("Login to Server");
 		this.setResizable(false);
-		if (Debug.WEB_START_SANDBOX) {
-			this.setSize(new Dimension(410, 240));
-		} else {
-			this.setSize(new Dimension(410, 220));
-		}
+		this.pack();
 		this.setLocationRelativeTo(owner);
 	}
 
