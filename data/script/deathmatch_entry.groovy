@@ -29,16 +29,17 @@ if(game.setZone(myZone))   // if zone exists
   {  
   // We create now a sign and place it on position 100, 112 with some text
   sign=new Sign()
-  sign.setx(100)
-  sign.sety(113)
-  sign.setText("Semos Deathmatch season!\nNow hiring! Amateurs need not apply!")
+  sign.setx(102)
+  sign.sety(108)
+  sign.setText("Semos Deathmatch season!\nNow hiring! Amateurs need not apply!\n\nI am on may way to Ados.\n\t\t -- Deathmatch Recruiter")
   // Add our new Object to the game world
   game.add(sign)
   
+  game.setZone("0_nalwor_forest_ne")
   npc=new ScriptingNPC("Deathmatch Recruiter")
   npc.setClass("youngsoldiernpc")
   node = {x,y | new Path.Node(x,y)}
-  npc.setPath([node(99,109), node(106,109), node(103,113), node(99,113)])
+  npc.setPath([node(67,43), node(100,43), node(100,54), node(145,54)])
   game.add(npc)
   
   npc.behave("greet","Hey there. You look like a reasonable fighter.")
