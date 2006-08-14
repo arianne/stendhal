@@ -456,17 +456,17 @@ public class Semos implements IContent {
 					null);
 
 				add(ConversationStates.ATTENDING,
-					new String[] { "offer", "buy", "scroll", "scrolls", "home", "empty", "marked", "summon", "magic", "wizzard", "sorcerer" },
+					new String[] { "offer", "buy", "scroll", "scrolls", "home", "empty", "marked", "summon", "magic", "wizard", "sorcerer" },
 					null,
 					ConversationStates.ATTENDING,
-					"I stopped selling scrolls but you still can by them from #Haizen.",
+					"I stopped selling scrolls but you still can buy them from #Haizen.",
 					null);
 
 				add(ConversationStates.ATTENDING,
 					new String[] { "haizen", "haizen." },
 					null,
 					ConversationStates.ATTENDING,
-					"#Haizen is a wizzard living in a small hut between Semos and Ados.",
+					"Haizen is a wizard living in a small hut between Semos and Ados.",
 					null);
 			}
 		};
