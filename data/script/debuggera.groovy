@@ -184,7 +184,11 @@ public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnList
 				if (!game.transferPlayer(player, zoneName, 50, 50)) {
 					if (!game.transferPlayer(player, zoneName, 20, 20)) {
 						if (!game.transferPlayer(player, zoneName, 100, 100)) {
-							player.sendPrivateText("Sorry, did not find a free spot in " + zones.get(counter));
+							if (!game.transferPlayer(player, zoneName, 100, 5)) {
+								player.sendPrivateText("Sorry, did not find a free spot in " + zoneName);
+							} else {
+								player.sendPrivateText("Welcome in " + zoneName);
+							}
 						} else {
 							player.sendPrivateText("Welcome in " + zoneName);
 						}
