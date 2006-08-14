@@ -15,12 +15,12 @@ import marauroa.common.game.IRPZone;
  *
  * PARTICIPANTS:
  * - Plink
- * - some wolfs
+ * - some wolves
  *
  * STEPS:
- * - Plink tells you that he got scared by some wolfs and
+ * - Plink tells you that he got scared by some wolves and
 	 ran away dropping his teddy.
- * - Find the teddy in the Park Of Wolfs
+ * - Find the teddy in the Park Of Wolves
  * - Bring it back to Plink
  *
  * REWARD:
@@ -45,7 +45,7 @@ public class PlinksToy extends AbstractQuest {
 			SpeakerNPC.GREETING_MESSAGES,
 			new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED,
-			"**cry** Theres was a rudle of #wolfs! *snief* I ran away dropping my #Teddy! *snief* Please! Will you bring it back? Please!",
+			"**cry** Theres was a rudle of #wolves! *snief* I ran away dropping my #teddy! *snief* Please! Will you bring it back? Please!",
 			null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -71,14 +71,14 @@ public class PlinksToy extends AbstractQuest {
 				"wolf",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"They live in #park east of here. Wolfs are dangerous.",
+				"They live in the #park east of here. Wolves are dangerous.",
 				null);
 		
 		npc.add(ConversationStates.QUEST_OFFERED,
 				"park",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"Mom told me not to go into the Park Of Wolfs. But i got lost during play. Please don't tell her.",
+				"Mom told me not to go into the Park of Wolves. But i got lost during play. Please don't tell her.",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -129,7 +129,7 @@ public class PlinksToy extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"I lost my teddy in the Park of Wolfs east of here.",
+				"I lost my teddy in the Park of Wolves east of here.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
