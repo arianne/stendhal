@@ -248,6 +248,7 @@ public class LoginDialog extends JDialog {
 
 		if (Debug.WEB_START_SANDBOX) {
 			// UDP is not supported in sandbox mode.
+			protocolLabel.setVisible(false);
 			protocolComboBox.setSelectedItem(TCPIP_TEXT);
 			protocolComboBox.setEnabled(false);
 			protocolComboBox.setVisible(false);
