@@ -54,6 +54,10 @@ import marauroa.client.ariannexpTimeoutException;
 public class LoginDialog extends JDialog {
 	private static final long serialVersionUID = 4436228792112530975L;
 
+	private static final String TCPIP_TEXT = "TCP/IP (default)";
+		
+	private static final String UDP_TEXT = "UDP";
+		
 	// Variables declaration
 	private JLabel usernameLabel;
 
@@ -61,10 +65,13 @@ public class LoginDialog extends JDialog {
 
 	private JLabel serverPortLabel;
 
+	private JLabel protocolLabel;
+
 	private JLabel passwordLabel;
 
 	private JCheckBox saveLoginBox;
-	private JCheckBox useTCPBox;
+	
+	private JComboBox protocolComboBox;
 
 	private JTextField usernameField;
 
@@ -89,6 +96,7 @@ public class LoginDialog extends JDialog {
 		this.owner = owner;
 		initializeComponent();
 
+		this.pack();
 		this.setVisible(true);
 	}
 
@@ -99,14 +107,20 @@ public class LoginDialog extends JDialog {
 	 * might not work properly. Tip: If you must revise this method, please
 	 * backup this GUI file for JFrameBuilder to retrieve your design properly
 	 * in future, before revising this method.
+	 * 
+	 * ----
+	 * 
+	 * I added a label / combobox for the protocol manually; I don't have Windows
+	 * Form Designer (I don't use Windows for work). -- Daniel Herding 
 	 */
 	private void initializeComponent() {
-		serverLabel = new JLabel("Choose your Stendhal Server");
-		serverPortLabel = new JLabel("Choose your Server-port");
+		serverLabel = new JLabel("Choose your Stendhal server");
+		serverPortLabel = new JLabel("Enter the server port");
+		protocolLabel = new JLabel("Choose the protocol");
 		usernameLabel = new JLabel("Type your username");
 		passwordLabel = new JLabel("Type your password");
 		saveLoginBox = new JCheckBox("Remember login info");
-		useTCPBox = new JCheckBox("Experimental TCP");
+		protocolComboBox = new JComboBox( new String[] {TCPIP_TEXT, UDP_TEXT} );
 		usernameField = new JTextField();
 		passwordField = new JPasswordField();
 		serverField = new JComboBox();
@@ -150,7 +164,14 @@ public class LoginDialog extends JDialog {
 			//
 			// protocolFiled
 			//
-			useTCPBox.setSelected(Boolean.parseBoolean(loginInfo.nextToken()));
+			// NOTE: This used to be a checkbox, that's why it's still
+			// stored as a boolean. True stands for TCP/IP, false for
+			// UDP. We might want to change this someday later.
+			if (Boolean.parseBoolean(loginInfo.nextToken())) {
+				protocolComboBox.setSelectedItem(TCPIP_TEXT);
+			} else {
+				protocolComboBox.setSelectedItem(UDP_TEXT);
+			}
 		}
 		// loginButton
 		loginButton.setText("Login to Server");
@@ -188,11 +209,14 @@ public class LoginDialog extends JDialog {
 		c.insets = new Insets(4, 4, 4, 4);
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(serverPortField, c);
+		c.gridx = 0;
+		c.gridy = 2;
+		contentPane.add(protocolLabel, c);
 		c.gridx = 1;
 		c.gridy = 2;
 		c.insets = new Insets(4, 4, 4, 4);
 		c.fill = GridBagConstraints.BOTH;
-		contentPane.add(useTCPBox, c);
+		contentPane.add(protocolComboBox, c);
 		// row 2
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
@@ -223,9 +247,10 @@ public class LoginDialog extends JDialog {
 		contentPane.add(loginButton, c);
 
 		if (Debug.WEB_START_SANDBOX) {
-			useTCPBox.setSelected(true);
-			useTCPBox.setEnabled(false);
-			useTCPBox.setVisible(false);
+			// UDP is not supported in sandbox mode.
+			protocolComboBox.setSelectedItem(TCPIP_TEXT);
+			protocolComboBox.setEnabled(false);
+			protocolComboBox.setVisible(false);
 			//saveLoginBox.setSelected(false);
 			//saveLoginBox.setEnabled(false);
 			//saveLoginBox.setVisible(false);
@@ -252,7 +277,7 @@ public class LoginDialog extends JDialog {
 		int port = 32160;
 		final int finalPort;// port couldnt be accessed from inner class
 		final ProgressBar progressBar = new ProgressBar(owner);
-		final boolean useTCP = useTCPBox.isSelected();
+		final boolean useTCP = protocolComboBox.getSelectedItem() == TCPIP_TEXT;
 
 		try {
 			port = Integer.parseInt(serverPortField.getText().trim());
