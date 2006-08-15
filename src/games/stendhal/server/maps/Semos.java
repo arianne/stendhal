@@ -821,7 +821,7 @@ public class Semos implements IContent {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I play all day.");
-				addHelp("Be careful there are some wolfs in the east of here");
+				addHelp("Be careful there are some wolves in the east of here");
 				addGoodbye();
 			}
 		};
