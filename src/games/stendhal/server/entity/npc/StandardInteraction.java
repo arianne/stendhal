@@ -16,7 +16,21 @@ import games.stendhal.server.scripting.StendhalGroovyScript;
  * @author hendrik
  */
 public class StandardInteraction {
+
+	/**
+	 * ScriptActions which are registered with ReqisterScriptAction can
+	 * implement this interface to get additional data.
+	 */
 	public interface ChatInfoReceiver {
+
+		/**
+		 * before the ScriptAction is registered this method is called
+		 * to provide additonal data.
+		 *
+		 * @param player the player talking to the NPC
+		 * @param text   the text he said
+		 * @param engine the NPC
+		 */
 		public void setChatInfo(Player player, String text, SpeakerNPC engine);
 	}
 
@@ -36,6 +50,36 @@ public class StandardInteraction {
 
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (player.has("adminlevel") && (player.getInt("adminlevel") >= requiredAdminlevel));
+		}
+	}
+
+	/**
+	 * Was this quest started?
+	 */
+	public static class QuestStartedCondition extends SpeakerNPC.ChatCondition {
+		private String questname = null;
+
+		public QuestStartedCondition(String questname) {
+			this.questname = questname;
+		}
+
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return (player.has(questname));
+		}
+	}
+
+	/**
+	 * Was this quest not started yet?
+	 */
+	public static class QuestNotStartedCondition extends SpeakerNPC.ChatCondition {
+		private String questname = null;
+
+		public QuestNotStartedCondition(String questname) {
+			this.questname = questname;
+		}
+
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return (!player.hasQuest(questname));
 		}
 	}
 
