@@ -114,7 +114,13 @@ public class LoginDialog extends JDialog {
 		loginButton = new JButton();
 		contentPane = (JPanel) this.getContentPane();
 
-		StringTokenizer loginInfo = new StringTokenizer(getLoginInfo());
+		String loginInfoString = getLoginInfo();
+		StringTokenizer loginInfo = null;
+		if (loginInfoString.indexOf("\n") > -1) {
+			loginInfo = new StringTokenizer(loginInfoString, "\n");
+		} else {
+			loginInfo = new StringTokenizer(loginInfoString);
+		}
 
 		//
 		// serverField
@@ -311,10 +317,6 @@ public class LoginDialog extends JDialog {
 					} else {
 						progressBar.step();
 						progressBar.finish();
-						// try {//wait just long enough for progress bar to
-						// close
-						// progressBar.m_run.join();
-						// }catch (InterruptedException ie) {}
 
 						setVisible(false);
 						owner.setVisible(false);
@@ -353,8 +355,8 @@ public class LoginDialog extends JDialog {
 				OutputStream os = Persistence.get().getOutputStream("user.dat");
 				PrintStream ps = new PrintStream(os);
 	
-				ps.print(encode.encode(server + " " + usrName + " " + pwd + " "
-						+ port + " " + Boolean.valueOf(useTCP).toString()));
+				ps.print(encode.encode(server + "\n" + usrName + "\n" + pwd + "\n"
+						+ port + "\n" + Boolean.valueOf(useTCP).toString()));
 				ps.close();
 			} catch (IOException ioex) {
 				JOptionPane
