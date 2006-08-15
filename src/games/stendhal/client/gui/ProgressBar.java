@@ -36,7 +36,7 @@ public class ProgressBar extends JFrame {
         
         initializeComponents();
         
-        this.setSize(200, 80);
+        this.pack();
         this.setLocationRelativeTo(frame);
     }
     
