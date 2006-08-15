@@ -44,7 +44,11 @@ public class PlinksToy extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE,
 			SpeakerNPC.GREETING_MESSAGES,
-			new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
+			new SpeakerNPC.ChatCondition() {
+				public boolean fire(Player player, SpeakerNPC engine) {
+					return !player.isEquipped("teddy") && !player.isQuestCompleted(QUEST_SLOT);
+				}
+			},
 			ConversationStates.QUEST_OFFERED,
 			"**cry** Theres was a rudle of #wolves! *snief* I ran away dropping my #teddy! *snief* Please! Will you bring it back? Please!",
 			null);
