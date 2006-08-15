@@ -55,7 +55,11 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 				}
 			});
 			for (int i = 0; i < strs.length; i++) {
-				perform(strs[i]);
+				try {
+					perform(strs[i]);
+				} catch (Exception e) {
+					logger.error("Error while loading " + strs[i] + ":", e);
+				}
 			}
 		}
 
