@@ -9,7 +9,7 @@ package games.stendhal.common;
  */
 public class Version {
 	
-	public static final String VERSION="0.51";
+	public static final String VERSION="0.52";
 
 	/**
 	 * Extract the specified number of parts from a version-string.

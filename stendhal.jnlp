@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- set codebase to game-server to allow connection (security restriction) -->
 <!-- the .jar-files are downloaded from sf.net in order not to cause lag in game -->
-<jnlp  spec="1.0+"  codebase="http://stendhal.ath.cx" href="stendhal.jnlp">
+<jnlp  spec="1.0+"  codebase="http://stendhal.ath.cx/stendhal" href="stendhal.jnlp">
   <information>
     <title>Stendhal</title>
     <vendor>Miguel Angel Blanch Lardin</vendor>
@@ -17,16 +17,13 @@ Some of these people are NPC, they will give you tasks to accomplish and hints t
     <icon kind="splash" href="StendhalSplash.jpg"/>
     <offline-allowed/>
   </information>
-  <security>
-    <all-permissions/>
-  </security>
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+"/>
     <jar href="http://arianne.sourceforge.net/jws/log4j.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/marauroa.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-data-0.51.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-0.51.jar" download="eager" main="true" />
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-prefilled-cache-0.51.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/marauroa-1.32.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-data-0.52.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-0.52.jar" download="eager" main="true" />
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-prefilled-cache-0.52.jar" download="eager"/>
   </resources>
   <application-desc/>
 </jnlp>
