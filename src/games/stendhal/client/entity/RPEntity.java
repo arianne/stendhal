@@ -164,9 +164,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 		if (outfit % 100 != 0) {
 			int dressIdx = outfit % 100;
-			if (!Debug.NEW_CLIENT && dressIdx == 17) {
-				dressIdx = 99;
-			}
 			Sprite dress = store.getSprite("data/sprites/outfit/dress_"
 					+ dressIdx + ".png");
 			dress.draw(player.getGraphics(), 0, 0);
@@ -331,9 +328,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			atkXp = diff.getInt("atk_xp");
 		if (diff.has("def_xp"))
 			defXp = diff.getInt("def_xp");
-		if (diff.has("atk_item") && Debug.NEW_CLIENT)
+		if (diff.has("atk_item"))
 			atkItem = diff.getInt("atk_item");
-		if (diff.has("def_item") && Debug.NEW_CLIENT)
+		if (diff.has("def_item"))
 			defItem = diff.getInt("def_item");
 
 		Color nameColor = Color.white;

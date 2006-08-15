@@ -119,9 +119,6 @@ public class OutfitDialog extends javax.swing.JDialog {
      */
     public String getSelectedClothes() {
     	String filename = "dress_" + clothes_index + ".png";
-    	if (!Debug.NEW_CLIENT && clothes_index == 17) {
-    		filename = "dress_" + "99" + ".png";
-    	}
         return filename;
     }
 
