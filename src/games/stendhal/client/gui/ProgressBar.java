@@ -1,5 +1,5 @@
 package games.stendhal.client.gui;
-import java.awt.Frame;
+import java.awt.Window;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
@@ -16,7 +16,7 @@ import javax.swing.SwingUtilities;
 public class ProgressBar extends JFrame {
     private static final long serialVersionUID = 6241161656154797719L;
 
-    private Frame frame;
+    private Window frame;
     private JPanel contentPane;
     private JProgressBar m_progressBar;
     
@@ -28,7 +28,7 @@ public class ProgressBar extends JFrame {
     
     private boolean m_con = true;//continue while true
     
-    public ProgressBar(Frame w) {
+    public ProgressBar(Window w) {
         super("Connecting...");
         URL url = this.getClass().getClassLoader().getResource("data/gui/StendhalIcon.png");
         setIconImage(new ImageIcon(url).getImage());
@@ -38,6 +38,7 @@ public class ProgressBar extends JFrame {
         
         this.pack();
         this.setLocationRelativeTo(frame);
+        this.setAlwaysOnTop(true);
     }
     
     private void initializeComponents() {

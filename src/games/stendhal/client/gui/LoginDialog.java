@@ -50,7 +50,7 @@ import marauroa.client.ariannexpTimeoutException;
  * Summary description for LoginDialog
  * 
  */
-public class LoginDialog extends JDialog {
+public class LoginDialog extends JDialog implements Runnable {
 	private static final long serialVersionUID = 4436228792112530975L;
 
 	private static final String TCPIP_TEXT = "TCP/IP (default)";
@@ -169,7 +169,7 @@ public class LoginDialog extends JDialog {
 		loginButton.setMnemonic(KeyEvent.VK_L);
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				loginButton_actionPerformed(e, saveLoginBox.isSelected());
+				loginButton_actionPerformed(e);
 			}
 		});
 		//
@@ -254,92 +254,93 @@ public class LoginDialog extends JDialog {
 		this.setLocationRelativeTo(owner);
 	}
 
-	private void loginButton_actionPerformed(ActionEvent e,
-			boolean saveLoginBoxStatus) {
-		final String username = usernameField.getText().trim();
-		final String password = new String(passwordField.getPassword());
-		final String server = ((String) serverField.getSelectedItem()).trim();
-		int port = 32160;
-		final int finalPort;// port couldnt be accessed from inner class
-		final ProgressBar progressBar = new ProgressBar(owner);
-		final boolean useTCP = protocolComboBox.getSelectedItem() == TCPIP_TEXT;
-
+	private void loginButton_actionPerformed(ActionEvent e) {
 		try {
-			port = Integer.parseInt(serverPortField.getText().trim());
+			Integer.parseInt(serverPortField.getText().trim());
 			// Support for saving port number. Only save when input is a number
 			// intensifly@gmx.com
 
-			if (saveLoginBoxStatus)
-				saveLoginInfo(server, username, password, serverPortField.getText(), useTCP);
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(owner,
+			JOptionPane.showMessageDialog(this,
 					"You typed in a invalid port, try again", "Invalid port",
 					JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-		finalPort = port;
 
 		/* seprate thread for connection proccess added by TheGeneral */
 		// run the connection procces in separate thread
-		Thread m_connectionThread = new Thread() {
-			public void run() {
-				progressBar.start();// intialize progress bar
-				setVisible(false);// hide this screen when attempting to
-									// connect
-
-				try {
-					client.connect(server, finalPort, useTCP);
-					progressBar.step();// for each major connection milestone
-										// call step()
-				} catch (Exception ex) {
-					progressBar.cancel();// if something goes horribly just
-											// cancel the progressbar
-					setVisible(true);
-					JOptionPane
-							.showMessageDialog(owner,
-									"Stendhal can't find a Internet connection for getting online");
-
-					ex.printStackTrace();
-
-					return;
-				}
-
-				try {
-					if (client.login(username, password) == false) {
-						String result = client.getEvent();
-						if (result == null) {
-							result = "Server is not available right now. Check it is online";
-						}
-						progressBar.cancel();
-						setVisible(true);
-						JOptionPane.showMessageDialog(owner, result,
-								"Login status", JOptionPane.ERROR_MESSAGE);
-					} else {
-						progressBar.step();
-						progressBar.finish();
-
-						setVisible(false);
-						owner.setVisible(false);
-						stendhal.doLogin = true;
-					}
-				} catch (ariannexpTimeoutException ex) {
-					progressBar.cancel();
-					setVisible(true);
-					JOptionPane.showMessageDialog(owner,
-							"Can't connect to server. Server down?",
-							"Login status", JOptionPane.ERROR_MESSAGE);
-				} catch (Exception ex) {
-					progressBar.cancel();
-					setVisible(true);
-					JOptionPane.showMessageDialog(owner,
-							"Connection error. Online?", "Login status",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		};
+		Thread m_connectionThread = new Thread(this);
 		m_connectionThread.start();
 	}
 
+	public void run() {
+		final String username = usernameField.getText().trim();
+		final String password = new String(passwordField.getPassword());
+		final String server = ((String) serverField.getSelectedItem()).trim();
+		final int port = Integer.parseInt(serverPortField.getText().trim());
+		final ProgressBar progressBar = new ProgressBar(this);
+		final boolean useTCP = protocolComboBox.getSelectedItem() == TCPIP_TEXT;
+		final boolean saveLoginBoxStatus = saveLoginBox.isSelected();
+
+		progressBar.start();// intialize progress bar
+		setEnabled(false);  // disable this screen when attempting to
+							// connect
+		
+		if (saveLoginBoxStatus) {
+			saveLoginInfo(server, username, password, serverPortField.getText(), useTCP);
+		}
+
+		try {
+			client.connect(server, port, useTCP);
+			progressBar.step();// for each major connection milestone
+								// call step()
+		} catch (Exception ex) {
+			progressBar.cancel();// if something goes horribly just
+									// cancel the progressbar
+			setEnabled(true);
+			JOptionPane
+					.showMessageDialog(this,
+							"Stendhal can't connect to server. Did you misspell the server name?");
+
+			ex.printStackTrace();
+
+			return;
+		}
+
+		try {
+			if (client.login(username, password) == false) {
+				String result = client.getEvent();
+				if (result == null) {
+					result = "Server is not available right now. Check it is online";
+				}
+				progressBar.cancel();
+				setVisible(true);
+				JOptionPane.showMessageDialog(this, result,
+						"Login status", JOptionPane.ERROR_MESSAGE);
+			} else {
+				progressBar.step();
+				progressBar.finish();
+
+				setVisible(false);
+				owner.setVisible(false);
+				stendhal.doLogin = true;
+			}
+		} catch (ariannexpTimeoutException ex) {
+			progressBar.cancel();
+			setEnabled(true);
+			JOptionPane.showMessageDialog(this,
+					"Can't connect to server. Server down?",
+					"Login status", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception ex) {
+			progressBar.cancel();
+			setEnabled(true);
+			JOptionPane.showMessageDialog(this,
+					"Connection error. Online?", "Login status",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	
 	/*
 	 * Author: Da_MusH Description: Methods for saving and loading login
 	 * information to disk. These should probably make a separate class in the
