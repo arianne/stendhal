@@ -24,6 +24,7 @@ import marauroa.common.game.IRPZone;
  * - Bring it back to Plink
  *
  * REWARD:
+ * - a smile
  * - 20 XP
  *
  * REPETITIONS:
@@ -67,8 +68,9 @@ public class PlinksToy extends AbstractQuest {
 				"*cry* Please! *snief*",
 				null);
 
+		String[] wolf = {"wolf", "wolves"};
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"wolf",
+				wolf,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				"They live in the #park east of here. Wolves are dangerous.",
@@ -108,7 +110,7 @@ public class PlinksToy extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
-						return !player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
+						return !player.hasQuest(QUEST_SLOT) && player.isEquipped("teddy");
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -116,7 +118,26 @@ public class PlinksToy extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("teddy");
-						engine.say("Thanks a lot. *smile*");
+						engine.say("Oh, my teddy. *smile* Thanks a lot for bringing it back from that dangerous #Park of #Wolves where I dropped it. *smile*");
+						player.addXP(10);
+						player.setQuest(QUEST_SLOT, "done");
+					}
+				});
+
+		npc.add(ConversationStates.IDLE,
+				SpeakerNPC.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
+					}
+				},
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						player.drop("teddy");
+						engine.say("Oh, my teddy. *smile* Thanks a lot. *smile*");
+						player.addXP(10);
 						player.setQuest(QUEST_SLOT, "done");
 					}
 				});
