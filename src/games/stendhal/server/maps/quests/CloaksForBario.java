@@ -50,6 +50,42 @@ public class CloaksForBario extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				SpeakerNPC.QUEST_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return !player.hasQuest("cloaks_for_bario");
+					}
+				},
+				ConversationStates.QUEST_OFFERED,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						engine.say("I don't dare to go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here. Can you help me?");
+					}
+				});
+
+		npc.add(ConversationStates.ATTENDING,
+				SpeakerNPC.QUEST_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return player.hasQuest("cloaks_for_bario");
+					}
+				},
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
+						if (!player.isQuestCompleted("cloaks_for_bario")) {
+							engine.say("You promised me to bring me cloaks. Remember?");
+						} else {
+							// player has already finished the quest
+							engine.say("I don't have anything to do for you.");
+						}
+					}
+				});
+
+		npc.add(ConversationStates.ATTENDING,
+				SpeakerNPC.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
