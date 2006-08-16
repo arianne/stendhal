@@ -14,13 +14,9 @@ package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.Money;
+import games.stendhal.server.entity.item.StackableItem;
 
-import java.util.Iterator;
 import java.util.Map;
-
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
 /**
  * Represents the behaviour of a NPC who is able to buy items
@@ -32,37 +28,15 @@ public class BuyerBehaviour extends MerchantBehaviour {
 		super(world, priceList);
 	}
 
-	// TODO: create RPEntity.equip() with amount parameter.
+	/**
+	 * Gives the money for the deal to the player. If the player can't
+	 * carry the money, puts it on the ground.
+	 * @param player The player who sells
+	 */
 	protected void payPlayer(Player player) {
-		boolean found = false;
-		Iterator<RPSlot> it = player.slotsIterator();
-		// First try to stack the money on existing money
-		while (it.hasNext() && !found) {
-			RPSlot slot = it.next();
-
-			// TODO: this is a workaround for bug #1494702
-			if ((slot.getName() != null) && (!slot.getName().equals("bank"))) {
-
-				for (RPObject object: slot) {
-					if (object instanceof Money) {
-						((Money) object).add(getCharge(player));
-						found = true;
-						break;
-					}
-				}
-			}
-		}
-		if (!found) {
-			// The player has no money. Put the money into an empty slot.  
-			RPSlot slot = player.getSlot("bag");
-			Money money = new Money(getCharge(player));
-			slot.assignValidID(money);
-			slot.add(money);
-		}
-		// TODO: if the player can't equip the money, he probably gets nothing.
-		// Put money on ground in this case. Better: create RPEntity.equip()
-		// with amount parameter and boolean parameter to put stuff on ground. 
-		world.modify(player);
+		StackableItem money = (StackableItem) world.getRuleManager().getEntityManager().getItem("money");
+		money.setQuantity(getCharge(player));
+		player.equip(money, true);
 	}
 
 	/**
