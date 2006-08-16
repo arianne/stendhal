@@ -15,6 +15,16 @@ package games.stendhal.server.entity.item;
 import java.util.Map;
 
 public class Money extends StackableItem {
+	// WARNING: Don't use this constructur! (Unless you know what you're
+	// doing...)
+	// If you use it e.g. in a quest, the variable possibleSlots will not
+	// be set, and the server will crash with a NullPointerException
+	// when RPEntity.equip() is called with your Money object.
+	// Instead, you can use this:
+	// StackableItem money = (StackableItem) world.getRuleManager().getEntityManager().getItem("money");
+	// where world is a StendhalRPWorld.
+	// TODO: I think it's a bug; possibleSlots should be set even when this
+	// constructor is used.
 	public Money(Map<String, String> attributes) {
 		super("money", "money", "gold", attributes);
 	}
