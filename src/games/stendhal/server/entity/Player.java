@@ -47,13 +47,30 @@ public class Player extends RPEntity {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
+	/**
+	 * The number of minutes that this player has been logged in on the
+	 * server.
+	 */
 	private int age;
 
+	/**
+	 * Food, drinks etc. that the player wants to consume and has not finished
+	 * with.
+	 */
 	private List<ConsumableItem> itemsToConsume;
 
+	/**
+	 * Poisonous items that the player still has to consume. This also
+	 * includes poison that was the result of fighting against a poisonous
+	 * creature.  
+	 */
 	private List<ConsumableItem> poisonToConsume;
 
-	private int turnsLeftOfInmunity;
+	/**
+	 * Shows how many more turns an antidote or another anti-poisonous item
+	 * that the player has consumed will be effective.
+	 */
+	private int turnsLeftOfImmunity;
   
   private static boolean firstWelcomeException = true;
 
@@ -457,39 +474,37 @@ public class Player extends RPEntity {
 		rp.removePlayerText(this);
 	}
 
-  /** send a welcome message to the player which can be configured
-   *  in marauroa.ini file as "server_welcome". If the value is
-   *  an http:// adress, the first line of that adress is read
-   *  and used as the message 
-   */
-  
-  public void welcome() {
-    String msg="This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne";
-    try {
-      Configuration config = Configuration.getConfiguration();
-      msg = config.get("server_welcome");
-      if(msg.startsWith("http://")) {
-        URL url = new URL(msg);
-        HttpURLConnection.setFollowRedirects(false);
-        HttpURLConnection connection = (HttpURLConnection) url
-            .openConnection();
-        BufferedReader br = new BufferedReader(new InputStreamReader(
-            connection.getInputStream()));
-        msg = br.readLine();
-        br.close();
-        connection.disconnect();
-      }
-    }
-    catch (Exception e) {
-      if(Player.firstWelcomeException) {
-        logger.warn("Can't read server_welcome from marauroa.ini",e);
-        Player.firstWelcomeException=false;
-      }
-    }
-    if(msg!=null) {
-      sendPrivateText(msg);
-    }
-  }
+	/** send a welcome message to the player which can be configured
+	 *  in marauroa.ini file as "server_welcome". If the value is
+	 *  an http:// adress, the first line of that adress is read
+	 *  and used as the message 
+	 */
+	public void welcome() {
+		String msg = "This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne";
+		try {
+			Configuration config = Configuration.getConfiguration();
+			msg = config.get("server_welcome");
+			if (msg.startsWith("http://")) {
+				URL url = new URL(msg);
+				HttpURLConnection.setFollowRedirects(false);
+				HttpURLConnection connection = (HttpURLConnection) url
+						.openConnection();
+				BufferedReader br = new BufferedReader(new InputStreamReader(
+						connection.getInputStream()));
+				msg = br.readLine();
+				br.close();
+				connection.disconnect();
+			}
+		} catch (Exception e) {
+			if (Player.firstWelcomeException) {
+				logger.warn("Can't read server_welcome from marauroa.ini", e);
+				Player.firstWelcomeException = false;
+			}
+		}
+		if (msg != null) {
+			sendPrivateText(msg);
+		}
+	}
   
 	private static List<String> adminNames;
 
@@ -521,9 +536,9 @@ public class Player extends RPEntity {
 			}
 		}
 
-		boolean is = adminNames.contains(getName());
+		boolean isAdmin = adminNames.contains(getName());
 
-		if (is) {
+		if (isAdmin) {
 			put("adminlevel", AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
 		} else {
 			if (!has("adminlevel")) {
@@ -560,8 +575,7 @@ public class Player extends RPEntity {
 				Sheep sheep = (Sheep) world.get(getSheep());
 				sheep.setOwner(null);
 			} else {
-				logger
-						.warn("INCOHERENCE: Player has sheep but sheep doesn't exists");
+				logger.warn("INCOHERENCE: Player has sheep but sheep doesn't exists");
 			}
 			remove("sheep");
 		}
@@ -716,10 +730,19 @@ public class Player extends RPEntity {
 		}
 	}
 
+	/**
+	 * Gets the number of minutes that this player has been logged in on the
+	 * server.
+	 */
 	public int getAge() {
 		return age;
 	}
 
+	/**
+	 * Sets the number of minutes that this player has been logged in on the
+	 * server.
+	 * @param age minutes
+	 */
 	public void setAge(int age) {
 		this.age = age;
 		put("age", age);
@@ -741,7 +764,6 @@ public class Player extends RPEntity {
 				}
 			}
 		}
-
 		if (found) {
 			if (has("online")) {
 				put("online", get("online") + "," + who);
@@ -767,7 +789,6 @@ public class Player extends RPEntity {
 				}
 			}
 		}
-
 		if (found) {
 			if (has("offline")) {
 				put("offline", get("offline") + "," + who);
@@ -777,6 +798,11 @@ public class Player extends RPEntity {
 		}
 	}
 
+	/**
+	 * Checks whether the player has completed the given quest or not.
+	 * @param name The quest's name
+	 * @return true iff the quest has been completed by the player
+	 */
 	public boolean isQuestCompleted(String name) {
 		if (hasQuest(name)) {
 			RPSlot slot = getSlot("!quests");
@@ -786,27 +812,35 @@ public class Player extends RPEntity {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
+	/**
+	 * Checks whether the player has made any progress in the given
+	 * quest or not. For many quests, this is true right after the quest
+	 * has been started. 
+	 * @param name The quest's name
+	 * @return true iff the player has made any progress in the quest
+	 */
 	public boolean hasQuest(String name) {
 		if (!hasSlot("!quests")) {
 			logger.error("Expected to find !quests slot");
 			return false;
 		}
-
 		RPSlot slot = getSlot("!quests");
 		if (slot.size() == 0) {
 			logger.error("Expected to find something !quests slot");
 			return false;
 		}
-
 		RPObject quests = slot.iterator().next();
-
 		return quests.has(name);
 	}
 
+	/**
+	 * Gets the player's current status in the given quest. 
+	 * @param name The quest's name
+	 * @return the player's status in the quest
+	 */
 	public String getQuest(String name) {
 		if (hasQuest(name)) {
 			RPSlot slot = getSlot("!quests");
@@ -818,6 +852,15 @@ public class Player extends RPEntity {
 		}
 	}
 
+	/**
+	 * Allows to store the player's current status in a quest in a string.
+	 * This string may, for instance, be "started", "done", a semicolon-
+	 * separated list of items that need to be brought/NPCs that need to be
+	 * met, or the number of items that still need to be brought. Note that
+	 * the string "done" has a special meaning: see isQuestComplete().
+	 * @param name The quest's name
+	 * @param status the player's status in the quest
+	 */
 	public void setQuest(String name, String status) {
 		RPSlot slot = getSlot("!quests");
 		RPObject quests = slot.iterator().next();
@@ -829,12 +872,13 @@ public class Player extends RPEntity {
 		RPObject quests = slot.iterator().next();
 
 		List<String> questsList = new LinkedList<String>();
-		for (String q : quests) {
-			if (!q.equals("id") && !q.equals("zoneid")) {
-				questsList.add(q);
+		for (String quest : quests) {
+			// why are id and zoneid stored in the quest slot?
+			// -- DHerding@gmx.de
+			if (!quest.equals("id") && !quest.equals("zoneid")) {
+				questsList.add(quest);
 			}
 		}
-
 		return questsList;
 	}
 
@@ -871,7 +915,8 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * 
+	 * This probably checks if the player has killed a creature with the
+	 * given name without the help of any other player (?)
 	 */
 	public boolean hasKilledSolo(String name) {
 		if (hasKilled(name)) {
@@ -939,23 +984,34 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 *
+	 * Checks whether the player is still suffering from the effect of a
+	 * poisonous item/creature or not.
 	 */
 	public boolean isPoisoned() {
 		return !(poisonToConsume.size() == 0);
 	}
 
+	/**
+	 * Disburdens the player from the effect of a poisonous item/creature.
+	 */
 	public void healPoison() {
 		poisonToConsume.clear();
 	}
 
+	/**
+	 * Poisons the player with a poisonous item.
+	 * Note that this method is also used when a player has been poisoned
+	 * while fighting against a poisonous creature. 
+	 * @param item the poisonous item
+	 * @return true iff the poisoning was effective, i.e. iff the player is
+	 *         not immune 
+	 */
 	public boolean poison(ConsumableItem item) {
-		if (turnsLeftOfInmunity == 0) {
+		if (turnsLeftOfImmunity == 0) {
 			put("poisoned", "0");
 			poisonToConsume.add(item);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -965,7 +1021,6 @@ public class Player extends RPEntity {
 			sendPrivateText("You can't consume anymore");
 			return;
 		}
-
 		if (item.isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = item.getContainer();
@@ -986,7 +1041,7 @@ public class Player extends RPEntity {
 		}
 
 		/*
-		 * NOTE: We have a bug when consuming an stackableItem as when the first
+		 * NOTE: We have a bug when consuming a stackableItem as when the first
 		 * item runs out the other ones also runs out. Perhaps this must be
 		 * fixed inside StackableItem itself
 		 */
@@ -1000,8 +1055,8 @@ public class Player extends RPEntity {
 		} else if (soloItem.getRegen() == 0) // if regen==0 is antidote
 		{
 			poisonToConsume.clear();
-			turnsLeftOfInmunity = soloItem.getAmount();
-		} else if (turnsLeftOfInmunity == 0) {
+			turnsLeftOfImmunity = soloItem.getAmount();
+		} else if (turnsLeftOfImmunity == 0) {
 			poison(soloItem);
 		} else {
 			// Player was poisoned, but antidote saved it.
@@ -1021,8 +1076,8 @@ public class Player extends RPEntity {
 	}
 
 	public void consume(int turn) {
-		if (turnsLeftOfInmunity > 0) {
-			turnsLeftOfInmunity--;
+		if (turnsLeftOfImmunity > 0) {
+			turnsLeftOfImmunity--;
 		}
 
 		if (has("poisoned") && poisonToConsume.size() == 0) {
