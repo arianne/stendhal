@@ -18,6 +18,11 @@ import games.stendhal.server.events.UseEvent;
 
 import marauroa.common.game.*;
 
+/**
+ * A chest is an unmovable container. It can be opened and closed. While
+ * it is open, every player can put items in and take them out later. A player
+ * can take out items that another player put in.
+ */
 public class Chest extends Entity implements UseEvent {
 	private boolean open;
 
