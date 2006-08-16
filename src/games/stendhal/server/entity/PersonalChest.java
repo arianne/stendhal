@@ -6,6 +6,21 @@ import games.stendhal.server.StendhalScriptSystem;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A PersonalChest is a Chest that can be used by everyone, but shows
+ * different contents depending on the player who is currently using
+ * it. Thus, a player can put in items into this chest and be sure that
+ * nobody else will be able to take them out.
+ * 
+ * Caution: each PersonalChest must be placed in such a way that only one
+ * player can stand next to it at a time, to prevent other players from
+ * stealing while the owner is looking at his items.
+ * TODO: fix this.
+ * 
+ * TODO: make it possible to have several banks in different cities. Currently
+ * all PersonalChests access the same bank slot of a player. This is feature
+ * request 1510680.
+ */
 public class PersonalChest extends Chest {
 	private Player attending;
 
@@ -24,7 +39,7 @@ public class PersonalChest extends Chest {
 		scripts.addScript(null, new ScriptAction() {
 			public void fire() {
 				if (attending != null) {
-					/* Can be replace when we add Equip event */
+					/* Can be replaced when we add Equip event */
 					/* Mirror player objects */
 					RPSlot content = attending.getSlot("bank");
 					content.clear();
@@ -94,7 +109,6 @@ public class PersonalChest extends Chest {
 
 				open();
 			}
-
 			world.modify(this);
 		}
 	}
