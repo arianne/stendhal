@@ -31,22 +31,15 @@ if(game.setZone(myZone))   // if zone exists
   sign=new Sign()
   sign.setx(102)
   sign.sety(117)
-  sign.setText("Semos Deathmatch season!\nNow hiring! Amateurs need not apply!\n\nI am on may way to Ados Swamp.\n\t\t -- Deathmatch Recruiter")
+  sign.setText("Semos Deathmatch season!\nNow hiring! Amateurs need not apply!\n\nI am in Ados Swamp.\n\t\t -- Deathmatch Recruiter")
   game.add(sign)
 
-  sign=new Sign()
-  sign.setx(100)
-  sign.sety(113)
-  sign.setText("Semos Deathmatch season!\nNow hiring! Amateurs need not apply!\n\nI am on may way to Ados Swamp.\n\t\t -- Deathmatch Recruiter")
-  game.add(sign)
-
-  game.setZone("0_nalwor_forest_ne")
+  game.setZone("0_ados_swamp")
   npc=new ScriptingNPC("Deathmatch Recruiter")
   npc.setClass("youngsoldiernpc")
   node = {x,y | new Path.Node(x,y)}
-  npc.setPath([node(6,33), node(26,33), node(26,36), node(34,36), node(34,42), 
-               node(68,42), node(68,41),
-               node(34,41), node(34,36), node(26,36), node(26,25), node(6,25)])
+  npc.setPath([node(40,35), node(40,84), node(53,84), node(53,80), node(84,80), 
+               node(84,56), node(89,56), node(89,37), node(72,37), node(72,32), node(50,32), node(50,35)])
   game.add(npc)
   
  
