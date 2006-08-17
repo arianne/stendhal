@@ -38,7 +38,7 @@ public class CleanStorageSpace extends AbstractQuest {
 							engine.say("My #storage_space it is crawling with rats. Will you help me?");
 						} else {
 							engine.say("Thanks again, I don't think it needs to be cleaned again yet. If I can help you somehow just say it.");
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -103,7 +103,7 @@ public class CleanStorageSpace extends AbstractQuest {
 							engine.say("Oh wow! A fine hero at last! Thank you! Now can I help you with anything?");
 							player.addXP(25);
 							player.setQuest("clean_storage", "done");
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						} else {
 							engine.say("Don't you remember... you promised to clean my #storage_space.");
 						}

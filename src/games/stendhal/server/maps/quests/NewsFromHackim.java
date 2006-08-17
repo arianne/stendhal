@@ -41,7 +41,7 @@ public class NewsFromHackim extends AbstractQuest {
 							engine.say("Shhh come here: Do me a favour and tell #Xin Blanca that the new supply of weapons is ready, will you?");
 						} else {
 							engine.say("Thanks, but I don't have any new message for #Xin. I can't smuggle so often and even now I think Xoderos is beginning to suspect something. Anyway, if I can help you somehow say it.");
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});

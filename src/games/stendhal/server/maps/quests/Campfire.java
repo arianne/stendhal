@@ -66,7 +66,7 @@ public class Campfire extends AbstractQuest {
 				} else if (player.getQuest("campfire").equals("start")) { 
 					if (player.isEquipped("wood", REQUIRED_WOOD)){
 						engine.say("Hi again! Are these ten pieces of wood for me?");
-						engine.setActualState(ConversationStates.QUEST_ITEM_BROUGHT);
+						engine.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
 					} else {
 						engine.say("You're back already? Don't forget that you promised to collect ten pieces of wood in the forest for me!");
 					}
@@ -91,7 +91,7 @@ public class Campfire extends AbstractQuest {
 						}
 						else {
 							engine.say("I don't need any more wood at the moment. Come back later.");
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});

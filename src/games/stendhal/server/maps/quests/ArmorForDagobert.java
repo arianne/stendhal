@@ -75,7 +75,7 @@ public class ArmorForDagobert extends AbstractQuest {
 							engine.say("I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?");
 						} else {
 							engine.say("Thank you very much for the armor, but I don't have any other task for you.");
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -136,7 +136,7 @@ public class ArmorForDagobert extends AbstractQuest {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.isEquipped("leather_cuirass")) {
 							engine.say("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?");
-							engine.setActualState(ConversationStates.QUEST_ITEM_BROUGHT);
+							engine.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
 						} else {
 							engine.say("Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?");
 						}

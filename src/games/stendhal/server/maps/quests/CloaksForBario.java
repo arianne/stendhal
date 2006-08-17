@@ -101,7 +101,7 @@ public class CloaksForBario extends AbstractQuest {
 						} else {
 							// player has already finished the quest
 							engine.say("I don't have anything to do for you.");
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -190,7 +190,7 @@ public class CloaksForBario extends AbstractQuest {
 						if (toBring > 0) {
 							player.setQuest("cloaks_for_bario", Integer.toString(toBring));
 							engine.say("Thank you very much! Do you have another one? I still need " + toBring + " cloaks.");
-							engine.setActualState(ConversationStates.QUESTION_1);
+							engine.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
 							Item goldenShield = world.getRuleManager().getEntityManager().getItem("golden_shield");            
 							player.equip(goldenShield, true);

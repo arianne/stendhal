@@ -40,7 +40,7 @@ public class BeerForHayunn extends AbstractQuest {
 							engine.say("My mouth is dry and I can't abandon my place. Could you bring me some #beer from the #tavern?");
 						} else {
 							engine.say("Thanks bud, but I don't want to abuse beer. I will need to have my senses fully aware if a monster decides to appear. If you need anything from me just say it.");
-							engine.setActualState(1);
+							engine.setCurrentState(1);
 						}
 					}
 				});
@@ -115,7 +115,7 @@ public class BeerForHayunn extends AbstractQuest {
 							engine.say("Hey! Is that beer for me?");
 						} else {
 							engine.say("Hurry up bud! I am still waiting for that beer! Anyway, what can I do for you?");
-							engine.setActualState(1);
+							engine.setCurrentState(1);
 						}
 					}
 				});

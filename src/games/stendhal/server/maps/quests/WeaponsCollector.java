@@ -109,7 +109,7 @@ public class WeaponsCollector extends AbstractQuest {
 							engine.say("Although I have collected weapons for such a long time, some are still missing in my collection. Do you think you can help me?");
 						} else {
 							engine.say("My collection is now complete. Thanks again.");
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});

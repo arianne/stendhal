@@ -61,7 +61,7 @@ public class ZooFood extends AbstractQuest {
 							engine.say("Our tigers, lions and bears are hungry. We need " + REQUIRED_HAM + " hams to feed them. Can you help us?");
 						} else {
 							engine.say("Thank you, but I think we are out of trouble now.");
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -152,7 +152,7 @@ public class ZooFood extends AbstractQuest {
 							engine.say("Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?");
 						} else {
 							engine.say("Excuse me! The animals are all sick because they don't have enough food. I don't have time for you now. Bye.");
-							engine.setActualState(ConversationStates.IDLE);
+							engine.setCurrentState(ConversationStates.IDLE);
 						}
 					}
 				});

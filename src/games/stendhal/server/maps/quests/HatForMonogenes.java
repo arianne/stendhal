@@ -67,7 +67,7 @@ public class HatForMonogenes extends AbstractQuest {
 							engine.say("Could you bring me a #hat to cover my baldness? Brrrrr! Semos day's are getting colder...");
 						} else {
 							engine.say("Thanks good friend, but this hat will last five winters at least and I don't really need more than one. If I can help you somehow just say it.");
-							engine.setActualState(1);
+							engine.setCurrentState(1);
 						}
 					}
 				});
@@ -125,7 +125,7 @@ public class HatForMonogenes extends AbstractQuest {
 							engine.say("Hey! Is that hat for me?");
 						} else {
 							engine.say("Hey, my good friend, remember that leather hat I asked you before? I like having fresh ideas but not in this manner... Anyway, what can I do for you?");
-							engine.setActualState(1);
+							engine.setCurrentState(1);
 						}
 					}
 				});
