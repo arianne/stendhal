@@ -938,7 +938,7 @@ public abstract class SpeakerNPC extends NPC {
 									+ ". Do you want to pay?");
 						} else {
 							engine.say("You are healed. How may I help you?");
-							healer.heal(player, engine);
+							healer.heal(player);
 		
 							engine.setActualState(ConversationStates.ATTENDING);
 						}
@@ -956,7 +956,7 @@ public abstract class SpeakerNPC extends NPC {
 								.getBehaviourData("healer");
 						
 						if (player.drop("money", healerBehaviour.getCharge(player))) {
-							healerBehaviour.heal(player, engine);
+							healerBehaviour.heal(player);
 							engine.say("You are healed. How may I help you?");
 						} else {
 							engine.say("A real pity! You don't have enough money!");

@@ -15,13 +15,30 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 
+/**
+ * Represents the behaviour of a NPC who is able to heal a player.
+ * This can either be done for free or paid in a lump sum.
+ * 
+ * Use SpeakerNPC.addHealer() to assign this behaviour to an NPC.
+ */
 public class HealerBehaviour extends SellerBehaviour {
+	
+	/**
+	 * Creates a new HealerBehaviour.
+	 * @param world The StendhalRPWorld
+	 * @param cost The lump sum that is required to heal
+	 */
 	public HealerBehaviour(StendhalRPWorld world, int cost) {
 		super(world);
 		priceList.put("heal", cost);
 	}
 
-	public void heal(Player player, SpeakerNPC engine) {
+	/**
+	 * Restores the given player's health to the maximum possible at the
+	 * player's current level.
+	 * @param player The player who should be healed.
+	 */
+	public void heal(Player player) {
 		player.setHP(player.getBaseHP());
 		player.healPoison();
 		world.modify(player);
