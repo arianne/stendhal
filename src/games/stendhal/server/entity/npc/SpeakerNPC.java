@@ -122,6 +122,12 @@ public abstract class SpeakerNPC extends NPC {
 
 	public static final String[] GOODBYE_MESSAGES = {"bye", "farewell", "cya", "adios"};
 	
+	/**
+	 * Determines how long a conversation can be paused before it will
+	 * terminated by the NPC.
+	 */
+	private static long TIMEOUT_PLAYER_CHAT = 90; // 30 seconds at 300ms.
+	
 	// FSM state table
 	private List<StatePath> statesTable;
 
@@ -147,15 +153,26 @@ public abstract class SpeakerNPC extends NPC {
 	// Default initChat action when NPC stop chatting with the player
 	private ChatAction initChatAction;
 
-	// Timeout control value
+	/**
+	 * Stores which turn was the last one at which a player spoke to this
+	 * NPC. This is important to determine conversation timeout.
+	 */
 	private long lastMessageTurn;
 
-	private static long TIMEOUT_PLAYER_CHAT = 90; // 30 seconds at 300ms.
-
-	// Attended players
+	/**
+	 * The player who is currently talking to the NPC, or null if the NPC
+	 * is currently not taking part in a conversation. 
+	 */  
 	private Player attending;
 
-	private Map<String, Object> behavioursData;
+	/**
+	 * This maps Strings like "seller", "healer" etc. to instances of
+	 * SellerBehaviour, HealerBehaviour etc.
+	 * NOTE: Currently MerchantBehaviour is the most general behaviour
+	 * class that's defined. Once we generalize that further, we should
+	 * also generalize this map accordingly.
+	 */
+	private Map<String, MerchantBehaviour> behavioursData;
 
 	/**
 	 * Helper function to nicely formulate an enumeration of a collection.
@@ -182,6 +199,12 @@ public abstract class SpeakerNPC extends NPC {
 		}
 	}
 	
+	/**
+	 * Creates a new SpeakerNPC.
+	 * @param name The NPC's name. Please note that names should be unique.
+	 * @throws AttributeNotFoundException TODO: When can this occur?? Is it
+	 *         necessary here?
+	 */
 	public SpeakerNPC(String name) throws AttributeNotFoundException {
 		super();
 		createPath();
@@ -191,7 +214,7 @@ public abstract class SpeakerNPC extends NPC {
 		maxState = 0;
 		lastMessageTurn = 0;
 
-		behavioursData = new HashMap<String, Object>();
+		behavioursData = new HashMap<String, MerchantBehaviour>();
 		setName(name);
 		createDialog();
 		put("title_type", "npc");
@@ -201,12 +224,12 @@ public abstract class SpeakerNPC extends NPC {
 
 	abstract protected void createDialog();
 
-	public void setBehaviourData(String behaviour, Object data) {
-		behavioursData.put(behaviour, data);
+	private void setBehaviourData(String name, MerchantBehaviour behaviour) {
+		behavioursData.put(name, behaviour);
 	}
 
-	public Object getBehaviourData(String behaviour) {
-		return behavioursData.get(behaviour);
+	private Object getBehaviourData(String name) {
+		return behavioursData.get(name);
 	}
 
 	@Override
@@ -214,7 +237,20 @@ public abstract class SpeakerNPC extends NPC {
 		rect.setRect(x, y + 1, 1, 1);
 	}
 
-	private List<Player> getNearestPlayersThatHasSpoken(NPC npc, double range) {
+	/**
+	 * Gets all players that have recently (this turn?) talked and are
+	 * standing nearby the NPC. Nearby means that they are standing
+	 * less than <i>range</i> squares away horizontally and
+	 * less than <i>range</i> squares away vertically.
+	 * 
+	 * Why is range a double, not an int? Maybe someone wanted to
+	 * implement a circle instead of the rectangle we're having now.
+	 * -- mort (DHerding@gmx.de)
+	 * @param npc
+	 * @param range
+	 * @return A list of nearby players who have recently talked.
+	 */
+	private List<Player> getNearbyPlayersThatHaveSpoken(NPC npc, double range) {
 		int x = npc.getx();
 		int y = npc.gety();
 
@@ -230,17 +266,27 @@ public abstract class SpeakerNPC extends NPC {
 				players.add(player);
 			}
 		}
-
 		return players;
 	}
 
+	/**
+	 * Gets the player who is standing nearest to the NPC. Returns null if
+	 * no player is standing nearby. Nearby means that they are standing
+	 * less than <i>range</i> squares away horizontally and
+	 * less than <i>range</i> squares away vertically.
+	 * Note, however, that the Euclidian distance is used to compare which
+	 * player is standing closest.
+	 * @param range
+	 * @return The nearest player, or null if no player is standing on the
+	 *         same map.
+	 */
 	private Player getNearestPlayer(double range) {
 		int x = getx();
 		int y = gety();
 
 		Player nearest = null;
 
-		int dist = Integer.MAX_VALUE;
+		int squaredDistanceOfNearestPlayer = Integer.MAX_VALUE;
 
 		for (Player player : rp.getPlayers()) {
 			int px = player.getx();
@@ -248,17 +294,20 @@ public abstract class SpeakerNPC extends NPC {
 
 			if (get("zoneid").equals(player.get("zoneid"))
 					&& Math.abs(px - x) < range && Math.abs(py - y) < range) {
-				int actual = (px - x) * (px - x) + (py - y) * (py - y);
-				if (actual < dist) {
-					dist = actual;
+				int squaredDistanceOfThisPlayer = (px - x) * (px - x) + (py - y) * (py - y);
+				if (squaredDistanceOfThisPlayer < squaredDistanceOfNearestPlayer) {
+					squaredDistanceOfNearestPlayer = squaredDistanceOfThisPlayer;
 					nearest = player;
 				}
 			}
 		}
-
 		return nearest;
 	}
 
+	/**
+	 * The player who is currently talking to the NPC, or null if the NPC
+	 * is currently not taking part in a conversation. 
+	 */
 	public Player getAttending() {
 		return attending;
 	}
@@ -317,7 +366,7 @@ public abstract class SpeakerNPC extends NPC {
 		}
 
         // and finally react on anybody talking to us
-		List<Player> speakers = getNearestPlayersThatHasSpoken(this, 5);
+		List<Player> speakers = getNearbyPlayersThatHaveSpoken(this, 5);
 		for (Player speaker : speakers) {
 			tell(speaker, speaker.get("text"));
 		}
@@ -560,14 +609,6 @@ public abstract class SpeakerNPC extends NPC {
 		return false;
 	}
 
-	// these constants don't seem to be used anymore; commented out.
-	// - DHerding@gmx.de
-	// final private static int ABSOLUTE_JUMP = 0;
-
-	// final private static int EXACT_MATCH = 1;
-
-	// final private static int SIMILAR_MATCH = 2;
-
 	public void listenTo(Player player, String text) {
 		tell(player, text);
 	}
@@ -580,25 +621,6 @@ public abstract class SpeakerNPC extends NPC {
 			attending = player;
 		}
 
-/* this code should be useless as this is already treated in logic()
- * intensifly
-        // If the attended player with state != 0 got idle, attend this one.
-        if (rp.getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT
-				&& actualState != ConversationStates.IDLE) {
-			if (byeMessage != null) {
-				say(byeMessage);
-			}
-
-			if (byeAction != null) {
-				byeAction.fire(attending, null, this);
-			}
-
-			logger.debug("Attended player " + attending + " went timeout");
-
-			attending = player;
-			actualState = ConversationStates.IDLE;
-		}
-*/
 		// If we are attending another player make this one waits.
 		if (!attending.equals(player)) {
 			logger.debug("Already attending a player");
