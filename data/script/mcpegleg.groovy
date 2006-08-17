@@ -39,7 +39,7 @@ rareArmorShop=["chain_armor_+1":32,"chain_armor_+2":42,"chain_armor_+3":52,"plat
        money.setQuantity(250);
        player.equip(money);
        player.setQuest("IOU","done");
-       engine.setActualState(1);
+       engine.setCurrentState(1);
        } else
        {
        engine.say("I can't see that you got a valid IOU with my signature!");

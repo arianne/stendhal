@@ -54,7 +54,7 @@ class HenryQuestAction extends SpeakerNPC.ChatAction {
       } else
       {
       engine.say("I'm so sad that most of my friends are dead.");
-      engine.setActualState(1);
+      engine.setCurrentState(1);
       }
     }
 }
@@ -99,7 +99,7 @@ class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
       RPSlot slot=player.getSlot("bag");
       slot.add(item);
       player.setQuest("soldier_henry","map");
-      engine.setActualState(1);
+      engine.setCurrentState(1);
       } else
       {
       engine.say("You didn't proove that you have found them all!");
@@ -135,7 +135,7 @@ class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
       RPSlot slot=player.getSlot("bag");
       slot.add(item);
       player.setQuest("soldier_henry","done");
-      engine.setActualState(1);
+      engine.setCurrentState(1);
       } else
       {
       engine.say("Well, where is the map?");
