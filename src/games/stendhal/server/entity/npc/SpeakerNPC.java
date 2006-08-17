@@ -106,7 +106,7 @@ import org.apache.log4j.Logger;
  *     null);
  * 
  * We use ANY_STATE (-1) as a wildcard, so if the input text is "bye" the
- * transition happens.
+ * transition happens, no matter in which state the FSM really is.
  */
 public abstract class SpeakerNPC extends NPC {
 	/** the logger instance. */
@@ -128,11 +128,11 @@ public abstract class SpeakerNPC extends NPC {
 	 */
 	private static long TIMEOUT_PLAYER_CHAT = 90; // 30 seconds at 300ms.
 	
-	// FSM state table
-	private List<StatePath> statesTable;
+	// FSM state transition table
+	private List<Transition> stateTransitionTable;
 
-	// FSM actual state
-	private int actualState;
+	// current FSM state
+	private int currentState;
 
 	private int maxState;
 
@@ -209,8 +209,8 @@ public abstract class SpeakerNPC extends NPC {
 		super();
 		createPath();
 
-		statesTable = new LinkedList<StatePath>();
-		actualState = ConversationStates.IDLE;
+		stateTransitionTable = new LinkedList<Transition>();
+		currentState = ConversationStates.IDLE;
 		maxState = 0;
 		lastMessageTurn = 0;
 
@@ -346,7 +346,7 @@ public abstract class SpeakerNPC extends NPC {
 				if (byeAction != null) {
 					byeAction.fire(attending, null, this);
 				}
-				actualState = ConversationStates.IDLE;
+				currentState = ConversationStates.IDLE;
 				attending = null;
 			}
 			if (!stopped()) {
@@ -376,7 +376,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	public boolean talking() {
-		return actualState != ConversationStates.IDLE;
+		return currentState != ConversationStates.IDLE;
 	}
 
 	abstract public static class ChatAction {
@@ -387,23 +387,34 @@ public abstract class SpeakerNPC extends NPC {
 		abstract public boolean fire(Player player, SpeakerNPC engine);
 	}
 
-	// TODO: docu please. What is a StatePath?
-	private class StatePath {
-		public int state;
+	/**
+	 * A transition brings a conversation from one state to another one (or to
+	 * the same one); while doing so, other actions can take place.
+	 */
+	private class Transition {
+		// The state where this transition starts at
+		private int state;
 
-		public int nextState;
+		// The state where this transition leads to
+		private int nextState;
 
-		public String trigger;
+		// The string a player's text must either start with or equal to
+		// in order to trigger this transition
+		private String trigger;
 
-		public ChatCondition condition;
+		// The condition that has to be fulfilled so that the transition can
+		// be triggered
+		private ChatCondition condition;
 
-		public String reply;
+		// The text that the NPC will say when the transition is triggered
+		private String reply;
 
-		public ChatAction action;
+		// The action that will take place when the transition is triggered
+		private ChatAction action;
 
-		StatePath(int state, String trigger, ChatCondition condition,
+		Transition(int currentState, String trigger, ChatCondition condition,
 				int nextState, String reply, ChatAction action) {
-			this.state = state;
+			this.state = currentState;
 			this.condition = condition;
 			this.nextState = nextState;
 			this.trigger = trigger.toLowerCase();
@@ -411,31 +422,39 @@ public abstract class SpeakerNPC extends NPC {
 			this.action = action;
 		}
 
-		// TODO: docu please
-		public boolean absoluteJump(int state, String text) {
-			if (this.state == ConversationStates.ANY && trigger.equalsIgnoreCase(text)) {
-				return true;
-			}
-			return false;
+		/**
+		 * Checks whether this is a "wildcard" transition (see class comment
+		 * of SpeakerNPC) which can be fired by the given text.
+		 * @param text The text that the player has said
+		 * @return true iff this is a wildcard transition and the triggering
+		 *         text has been said
+		 */
+		public boolean absoluteJump(String text) {
+			return state == ConversationStates.ANY && trigger.equalsIgnoreCase(text);
 		}
 
-		public boolean equals(int state, String text) {
-			if (state == this.state && trigger.equalsIgnoreCase(text)) {
-				return true;
-			}
-			return false;
+		/**
+		 * @param state
+		 * @param text
+		 * @return
+		 */
+		public boolean matches(int state, String text) {
+			return state == this.state && trigger.equalsIgnoreCase(text);
 		}
 
-		public boolean contains(int state, String text) {
+		public boolean matchesBeginning(int state, String text) {
 			text = text.toLowerCase();
-			if (state == this.state && text.startsWith(trigger)) {
-				return true;
-			}
-
-			return false;
+			return state == this.state && text.startsWith(trigger);
 		}
 
-		public boolean executeCondition(Player player, SpeakerNPC npc) {
+		/**
+		 * Checks whether this transition's condition is fulfilled.
+		 * @param player
+		 * @param npc
+		 * @return true iff there is no condition or if there is one
+		 *         which is fulfilled
+		 */
+		public boolean isConditionFulfilled(Player player, SpeakerNPC npc) {
 			if (condition != null) {
 				return condition.fire(player, npc);
 			} else {
@@ -477,11 +496,11 @@ public abstract class SpeakerNPC extends NPC {
 		initChatAction = action;
 	}
 
-	private StatePath get(int state, String trigger, ChatCondition condition) {
-		for (StatePath i : statesTable) {
-			if (i.equals(state, trigger)) {
-				if (i.condition == condition) {
-					return i;
+	private Transition get(int state, String trigger, ChatCondition condition) {
+		for (Transition transition : stateTransitionTable) {
+			if (transition.matches(state, trigger)) {
+				if (transition.condition == condition) {
+					return transition;
 				}
 			}
 		}
@@ -493,14 +512,14 @@ public abstract class SpeakerNPC extends NPC {
 		return maxState;
 	}
 
-	/** Add a new state to FSM */
+	/** Add a new transition to FSM */
 	public void add(int state, String trigger, ChatCondition condition,
 			int next_state, String reply, ChatAction action) {
 		if (state > maxState) {
 			maxState = state;
 		}
 
-		StatePath existing = get(state, trigger, condition);
+		Transition existing = get(state, trigger, condition);
 		if (existing != null) {
 			// A previous state, trigger combination exist.
 			logger.warn("Adding to " + existing + " the state [" + state + ","
@@ -508,13 +527,13 @@ public abstract class SpeakerNPC extends NPC {
 			existing.reply = existing.reply + " " + reply;
 		}
 
-		StatePath item = new StatePath(state, trigger, condition, next_state,
+		Transition item = new Transition(state, trigger, condition, next_state,
 				reply, action);
-		statesTable.add(item);
+		stateTransitionTable.add(item);
 	}
 
 	/**
-	 * Adds a new set of states to FSM
+	 * Adds a new set of transitions to the FSM
 	 */
 	public void add(int state, String[] triggers, ChatCondition condition,
 			int nextState, String reply, ChatAction action) {
@@ -575,20 +594,21 @@ public abstract class SpeakerNPC extends NPC {
 
 	// TODO: docu please. What is type?
 	private boolean matchState(int type, Player player, String text) {
-		List<StatePath> listCondition = new LinkedList<StatePath>();
-		List<StatePath> listConditionLess = new LinkedList<StatePath>();
+		// what the fuck is this? -- mort (DHerding@gmx.de)
+		List<Transition> listCondition = new LinkedList<Transition>();
+		List<Transition> listConditionLess = new LinkedList<Transition>();
 
-		// First we try to match with stateless states.
-		for (StatePath state : statesTable) {
-			if ((type == 0 && actualState != ConversationStates.IDLE
-					&& state.absoluteJump(actualState, text))
-					|| (type == 1 && state.equals(actualState, text))
-					|| (type == 2 && state.contains(actualState, text))) {
-				if (state.executeCondition(player, this)) {
-					if (state.condition == null) {
-						listConditionLess.add(state);
+		// First we try to match with stateless transitions.
+		for (Transition transition : stateTransitionTable) {
+			if ((type == 0 && currentState != ConversationStates.IDLE
+					&& transition.absoluteJump(text))
+					|| (type == 1 && transition.matches(currentState, text))
+					|| (type == 2 && transition.matchesBeginning(currentState, text))) {
+				if (transition.isConditionFulfilled(player, this)) {
+					if (transition.condition == null) {
+						listConditionLess.add(transition);
 					} else {
-						listCondition.add(state);
+						listCondition.add(transition);
 					}
 				}
 			}
@@ -615,8 +635,8 @@ public abstract class SpeakerNPC extends NPC {
 
 	/** This function evolves the FSM */
 	private boolean tell(Player player, String text) {
-		// If we are no attening a player attend, this one.
-		if (actualState == ConversationStates.IDLE) {
+		// If we are no attending a player attend, this one.
+		if (currentState == ConversationStates.IDLE) {
 			logger.debug("Attending player " + player.getName());
 			attending = player;
 		}
@@ -645,23 +665,23 @@ public abstract class SpeakerNPC extends NPC {
 			return true;
 		} else {
 			// Couldn't match the text with the current FSM state
-			logger.debug("Couldn't match any state: " + actualState + ":"
+			logger.debug("Couldn't match any state: " + currentState + ":"
 					+ text);
 			return false;
 		}
 	}
 
-	public void setActualState(int state) {
-		actualState = state;
+	public void setCurrentState(int state) {
+		currentState = state;
 	}
 
-	private void executeState(Player player, String text, StatePath state) {
+	private void executeState(Player player, String text, Transition state) {
 		int nextState = state.nextState;
 		if (state.reply != null) {
 			say(state.reply);
 		}
 
-		actualState = nextState;
+		currentState = nextState;
 
 		if (state.action != null) {
 			state.action.fire(player, text, this);
@@ -826,7 +846,7 @@ public abstract class SpeakerNPC extends NPC {
 									+ ". Do you want to buy?");
 						} else {
 							engine.say("Sorry, I don't sell " + item);
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -902,7 +922,7 @@ public abstract class SpeakerNPC extends NPC {
 									+ ". Do you want to sell?");
 						} else {
 							engine.say("Sorry, I don't buy " + item);
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -962,7 +982,7 @@ public abstract class SpeakerNPC extends NPC {
 							engine.say("You are healed. How may I help you?");
 							healer.heal(player);
 		
-							engine.setActualState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
