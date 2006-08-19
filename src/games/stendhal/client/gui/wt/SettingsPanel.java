@@ -1,34 +1,34 @@
 /* $Id$ */
-/***************************************************************************
- *                      (C) Copyright 2005 - Marauroa                      *
- ***************************************************************************
- ***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-/*
- * SettingsPanel.java
- *
- * Created on 26. Oktober 2005, 20:12
- */
+/***************************************************************************
+ *                      (C) Copyright 2005 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+/*
+ * SettingsPanel.java
+ *
+ * Created on 26. Oktober 2005, 20:12
+ */
+ 
 package games.stendhal.client.gui.wt;
-import games.stendhal.client.GameObjects;
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.gui.wt.core.*;
-import games.stendhal.common.CollisionDetection;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.entity.Player;
+import games.stendhal.client.gui.wt.core.*;
+import games.stendhal.common.CollisionDetection;
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.Point;
+import java.util.HashMap;
+import java.util.Map;
+import marauroa.common.game.RPObject;
 
-import java.awt.Graphics;
-import java.awt.GraphicsConfiguration;
-import java.awt.Point;
-import java.util.HashMap;
-import java.util.Map;
-
-import marauroa.common.game.RPObject;
-/**
+/**
  * The panel where you can adjust your settings
  * 
  * @author mtotz
