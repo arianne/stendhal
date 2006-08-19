@@ -328,13 +328,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** Notify it when a new turn happens */
 	synchronized public void beginTurn() {
 		Log4J.startMethod(logger, "beginTurn");
+        long timeStart = System.currentTimeMillis();
+        long[] timeEnds = new long[7];
 		long start = System.nanoTime();
 		int creatures = 0;
-		for (RespawnPoint point : respawnPoints)
+		for (RespawnPoint point : respawnPoints) {
 			creatures += point.size();
+        }
+        timeEnds[0] = System.currentTimeMillis();
 		int objects = 0;
-		for (IRPZone zone : world)
+		for (IRPZone zone : world) {
 			objects += zone.size();
+        }
+        timeEnds[1] = System.currentTimeMillis();
 		logger.debug("lists: G:" + plantGrowers.size()
 				+ ",NPC:" + npcs.size() + ",P:" + playersObject.size() + ",CR:"
 				+ creatures + ",OB:" + objects);
@@ -345,6 +351,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			// We keep the number of players logged.
 			Statistics.getStatistics().set("Players logged",
 					playersObject.size());
+            timeEnds[0] = System.currentTimeMillis();
 			// In order for the last hit to be visible dead happens at two
 			// steps.
 			for (Pair<RPEntity, RPEntity> entity : entityToKill) {
@@ -354,6 +361,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					logger.fatal("Player has logout before dead", e);
 				}
 			}
+            timeEnds[1] = System.currentTimeMillis();
 			entityToKill.clear();
 			// Done this way because a problem with comodification... :(
 			npcs.removeAll(npcsToRemove);
@@ -362,6 +370,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			npcsToAdd.clear();
 			npcsToRemove.clear();
 			bloodsToRemove.clear();
+            timeEnds[2] = System.currentTimeMillis();
 			for (Player object : playersObject) {
 				if (object.has("risk")) {
 					object.remove("risk");
@@ -404,6 +413,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 				object.consume(getTurn());
 			}
+            timeEnds[3] = System.currentTimeMillis();
 			for (NPC npc : npcs) {
                 try {
                     npc.logic();
@@ -411,6 +421,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
                     logger.error("error in beginTurn", e);
                 }                
             }
+            timeEnds[4] = System.currentTimeMillis();
 			for (Player object : playersObjectRmText) {
 				if (object.has("text")) {
 					object.remove("text");
@@ -421,7 +432,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					world.modify(object);
 				}
 			}
+            timeEnds[5] = System.currentTimeMillis();
 			playersObjectRmText.clear();
+            timeEnds[6] = System.currentTimeMillis();
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
@@ -429,17 +442,27 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					/ 1000000.0);
 			Log4J.finishMethod(logger, "beginTurn");
 		}
+        if (timeEnds[6] - timeStart > 300) {
+            StringBuilder sb = new StringBuilder();
+            for (long timeEnd : timeEnds) {
+                sb.append(" " + (timeEnd-timeStart));
+            }
+            logger.warn("Turn Time overflow in beginTurn:" + sb.toString());
+        }
 	}
 
 	synchronized public void endTurn() {
         Log4J.startMethod(logger, "endTurn");
         long start = System.nanoTime();
         int currentTurn = getTurn();
+        long timeStart = System.currentTimeMillis();
+        long[] timeEnds = new long[4];
         try {
         	// Creatures
             for (RespawnPoint point : respawnPoints) {
                 point.logic();               
             }
+            timeEnds[0] = System.currentTimeMillis();
 
             // PlantGrowers
             // To save some CPU cycles, we don't cycle through the plant
@@ -450,16 +473,26 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
                     plantGrower.regrow(currentTurn);
                 }
             }
+            timeEnds[1] = System.currentTimeMillis();
 
             // Registeres classes for this turn
             TurnNotifier.get().logic(currentTurn);
+            timeEnds[2] = System.currentTimeMillis();
 
             // Scripts
             scripts.logic();
+            timeEnds[3] = System.currentTimeMillis();
         } catch (Exception e) {
             logger.error("error in endTurn", e);
         } finally {
             logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0 + " (" + (currentTurn % 5) + ")");
+            if (timeEnds[3] - timeStart > 300) {
+                StringBuilder sb = new StringBuilder();
+                for (long timeEnd : timeEnds) {
+                    sb.append(" " + (timeEnd-timeStart));
+                }
+                logger.warn("Turn Time overflow in endTurn:" + sb.toString());
+            }
             Log4J.finishMethod(logger, "endTurn");
         }
     }
