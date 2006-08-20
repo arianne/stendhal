@@ -301,15 +301,15 @@ public class Ados implements IContent {
 		portal.setNumber(0);
 		portal.setDestination("0_ados_mountain_nw", 0);
 		zone.addPortal(portal);
-/*
+
 		portal = new Portal();
-		zone.assignRPObjectID(portal);
+		zoneOutside.assignRPObjectID(portal);
 		portal.setx(75);
 		portal.sety(51);
-		portal.setNumber(1);
-		portal.setDestination("int_ados_magician_house", 1);
+		portal.setNumber(0);
+		portal.setDestination("int_ados_magician_house", 0);
 		zoneOutside.addPortal(portal);
-*/
+
 		SpeakerNPC npc = new SpeakerNPC("Haizen") {
 			@Override
 			protected void createPath() {
@@ -376,11 +376,11 @@ public class Ados implements IContent {
 		npc.initHP(100);
 		zone.addNPC(npc);
 		
-		Item item = addPersistentItem("summon_scroll", zone, 6, 6);
+		Item item = addPersistentItem("summon_scroll", zone, 7, 6);
 		// Just in case a player finds a way to get this scroll, fake it:
 		item.setDescription("You see a summon scroll. It is marked with: blue_dragon");
 		item.put("infostring", "rat");
-		addPersistentItem("poison", zone, 3, 6); // need PlantGrower
+		addPersistentItem("poison", zone, 4, 7); // need PlantGrower
 	}
 	
 	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
