@@ -7,74 +7,82 @@
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
- <tileset name="Outside 1" firstgid="482" tilewidth="32" tileheight="32">
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
- <tileset name="Dungeon 0" firstgid="963" tilewidth="32" tileheight="32">
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
   <image source="../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Dungeon 1" firstgid="1444" tilewidth="32" tileheight="32">
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
   <image source="../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Interior 0" firstgid="1925" tilewidth="32" tileheight="32">
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
   <image source="../../zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Navigation" firstgid="2406" tilewidth="32" tileheight="32">
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
   <image source="../../zelda_navigation_chipset.png"/>
  </tileset>
- <tileset name="Objects" firstgid="2408" tilewidth="32" tileheight="32">
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
   <image source="../../zelda_objects_chipset.png"/>
  </tileset>
- <tileset name="Collision" firstgid="2609" tilewidth="32" tileheight="32">
+ <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
   <image source="../../zelda_collision_chipset.png"/>
  </tileset>
- <tileset name="Buildings 0" firstgid="2612" tilewidth="32" tileheight="32">
+ <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
   <image source="../../zelda_building_0_tileset.png"/>
  </tileset>
- <tileset name="Outside 2" firstgid="3093" tilewidth="32" tileheight="32">
+ <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_2_chipset.png"/>
  </tileset>
- <tileset name="Interior 1" firstgid="3574" tilewidth="32" tileheight="32">
+ <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
   <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3WQQ6CMBAFUJZcU+6FXlVdmBhiAi2NMy1v8TZunPZ/BuZpmmYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOjM7Uv0LMTmrwPXs81fB67hV+5HRM9NWa6tcteDvFplqgd9icxdH+Teexd6Ol90lr3c0+h3eQWyBSKtL/cDHglmPXOm6Jmy+dzRUmB7p+/fsvRi3Zk9er5M9u6qxr/3Rc0ZsnR1pNxLerFMbfbGmXP09i5rkXnpno/oRolW/z16DyKe9x6N1gO519nbOZl7knnPjybLu0Pm8T0o0aoz9nvfar97W37/AgAAAAAAAAAAAABk9QQ7TL7DAAABAA==
   </data>
+  <tileproperties/>
  </layer>
- <layer name="1_terrain" width="128" height="128" visible="0">
+ <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Xa06DQBAAYKg3qF5FL+Hrh7dQT6UeQI7gUay9h65pGxsKtAWWLvh9ySSTkgays6/JMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBpuptl2U2I29luzvQ9hzo/hnia7ebA//MZ1v4ixEuI1xBvIb4actJXV9Mq37+/n2VZHuLjgJz01dUU2rpu6B1i5Kx0GcP7nsexrneIkbMy1Bg+xPl8EnKer+IiP/WX1DumH5nquzb5Yp0ve94Pi4TnwDH9yFTfVc5nEe7ubebAsv/PYADz9b5fVuR/Z0I5+twf+rpbxOpBqu7JQ76ryWXDs/meem2ev7eoZZHoXWHIXiPFvma75tt1rVrLbepeluo8iKHL+XbV8f/7dFnLfSjPr5jnwxjvGU37dBenrnudosVcOGVd5xX746Ex9N5Xt8enKuUzoo/103RPjhFjqHmVY8ep63w5ZE2PdSz/g67rSm0BAAAAAAAAAAAAAAAAAAAAGJMfpeagTwAAAQA=
+   H4sIAAAAAAAAAO3Xa07CQBAA4BZvgF5FD+Hrj6dQT6VewN7Ao4h6DnUNEElpC7TdsoXvSyaZ0JA2O/uaLAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4TDeTLLsKcT1Zzzl8j6HO9yEeJus5cHzew9qfhXgK8RziJcRHQ0766mpa5Tv8/vP37CTL3rbISV9dTaGty4beIUbOXJcxvO15HOt6hxg5c0ON4V2czychp/k8zvJ9f0m9XfqRQ33XMp8t8s+e98Mi4TmwUz9yqO8q5XmEu3ubOfDV/2cwgOli3y8r8v8zoRx97g993S1i9SBV9+Qh39XkvOHZdEO9ls9fW9SySPSuMGSvkWJfs1rz1bpWreU2dS9LdR7E0OV8u+j4/026rOU+lOdXzPNhjPeMpn26i33XvU7RYi7ss67Tiv1x2xh676vb41OV8hnRx/ppuifHiDHUvMqu49R1vmyzpsc6lseg67pSWwAAAAAAAAAAAAAAAAAAAADG5Be5bdDzAAABAA==
   </data>
+  <tileproperties/>
  </layer>
- <layer name="2_object" width="128" height="128" visible="0">
+ <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3RwQnAIBQFwadnIX0I9l9XUoFpwdMHmalgYRMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOBmb0u+Vl1Blacno1dXUGX976f/AAAAAAAAAAAAAAAAAAAAAAAAAAAc2GUF9sYAAAEA
+   H4sIAAAAAAAAAO3RwQnAIBQFwadXIX0I9l9X0oFpwdMHmalgYRMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOBmb0u+Vl1Blacno1dXUGX976f/AAAAAAAAAAAAAAAAAAAAAAAAAAAc2J2cZTMAAAEA
   </data>
+  <tileproperties/>
  </layer>
- <layer name="3_roof" width="128" height="128" visible="0">
+ <layer name="3_roof" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XS0oDQRRG4U6NfQyyCx8Dd6EuJLoQ3/sQ3IfgcjSKzr3DSEptbLuqtb4DPxwy6UEROHc567rH2FNsyZvzrdR1G7HNxFv0vdhObJc36cexw9gRb9JPY4vYCW/SL2JnsXPepNfuT67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/X70+u/7n+5/qf63+u/7n+5/qf63+u/7n+5/qf63+u/7n+5/qf63+u/7n+5/qf63+u/7n+5/qf63+u/7n+5/qf63+u/7n+5/qf1+9Prv+5/uf6n+t/XtZzXMbvV2k6jcrH8xy3qX6X8jKe4z7V71JexofwHP34MpGO5d/7a+xtNuzNV9lO0+lY3s/nA//zq+yn6XQs7+cHv/j+pXCPfPTr2M0ffMef4h5Z97uG3t89su4PDb3/V4xxg3zWySW/hX6MdYPkOrnkt9CPsW6QXCeX/BYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+B+8OKMRxAAABAA==
+   H4sIAAAAAAAAAO3XS0oDQRRG4U5NfQyyCx8Dd6EuJLoQ3/sQ3IfgcjSKLsA7jKTUxrarWus78MMhkx4UgXOXs657jD3Flrw530pdtxHbTLxF34vtxHZ5k34cO4wd8Sb9NLaInfAm/SJ2FjvnTXrt/uT6n+t/rv+5/uf6n+t/rv+5/uf6n+t/rv+5/uf6n+t/rv+5/uf6n+t/rv+5/uf6n+t/rv+5/uf6n+t/rv+5/uf6n+t/rv95/f7k+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/uf7n+p/rf67/ef3+5Pqf63+u/7n+52U9x2X8fpWm06h8PM9xm+p3KS/jOe5T/S7lZXwIz9GPLxPpWP69v8beZsPefJXtNJ2O5f18PvA/v8p+mk7H8n5+8IvvXwr3yEe/jt38wXf8Ke6Rdb9r6P3dI+v+0ND7f8UYN8hnnVzyW+jHWDdIrpNLfgv9GOsGyXVyyW8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgf/AO/MMppQAAAQA=
   </data>
+  <tileproperties/>
  </layer>
- <layer name="objects" width="128" height="128" visible="0">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
-  </data>
- </layer>
- <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YMQ6DQAxEUerchvtfLkXaNInEzqz3fen1xqaB+3VdNwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAIN9Kz4T74/5k7v9L6flZe2/335v7n23H0jtrdUrpPbc6pfSeW+nTyt26Y1/uf3buL0mSJEn6t4nfbzvPvqpp3/U7zNjSE/92Vu+8cab2Vt396Vu0v5tNpW/cbnLp3e5kUuldTtZaei8nSpd+fjLvTPoZAAAAAAAAAAAAAADgKW9a1FmhAAABAA==
-  </data>
- </layer>
- <layer name="navigation" width="128" height="128" visible="0">
+ <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
+  <tileproperties/>
+ </layer>
+ <layer name="collision" width="128" height="128" opacity="0.37">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YMQ6DQAxEUeochfsfMEXaNInEzqz3fen1xqaB+3VdNwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAIN9Kz4T74/5k7v9L6flZe2/335v7n23H0jtrdUrpPbc6pfSeW+nTyt26Y1/uf3buL0mSJEn6t4nfbzvPvqpp3/U7zNjSE/92Vu+8cab2Vt396Vu0v5tNpW/cbnLp3e5kUuldTtZaei8nSpd+fjLvTPoZAAAAAAAAAAAAAADgKW+slCVBAAABAA==
+  </data>
+  <tileproperties/>
+ </layer>
+ <layer name="navigation" width="128" height="128">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+  </data>
+  <tileproperties/>
  </layer>
  <layer name="protection" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
+  <tileproperties/>
  </layer>
 </map>
