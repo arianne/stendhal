@@ -17,7 +17,7 @@ public class OneWayPortal extends Portal {
 	}
 
 	@Override
-	public boolean isCollisionable() {
+	public boolean isObstacle() {
 		return false;
 	}
 

@@ -12,7 +12,7 @@ public abstract class PassiveEntity extends Entity {
 	}
 
 	@Override
-	public boolean isCollisionable() {
+	public boolean isObstacle() {
 		return false;
 	}
 }

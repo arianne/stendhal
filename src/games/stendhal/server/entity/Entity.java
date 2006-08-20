@@ -179,18 +179,28 @@ public abstract class Entity extends RPObject {
 		this.collides = collides;
 	}
 
+	/**
+	 * TODO: docu
+	 * @return ???
+	 */
 	public boolean collides() {
 		return collides;
 	}
 
-	public boolean isCollisionable() {
+	
+	/**
+	 * Checks whether players, NPCs etc. can walk over this entity.
+	 * @return true iff it is impossible to walk over this entity
+	 */
+	public boolean isObstacle() {
 		return true;
 	}
 
 	/**
-	 * This returns the manhattan distance.
-	 * 
-	 * It is faster than real distance
+	 * This returns the manhattan distance between this entity and the
+	 * given one.
+	 * It is faster than real distance.
+	 * @param entity the entity to which the distance should be calculated 
 	 */
 	public double distance(Entity entity) {
 		return distance(entity.x, entity.y);

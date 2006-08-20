@@ -747,7 +747,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			for (RPObject other : objects.values()) {
 				Entity otherEntity = (Entity) other;
 
-				if (otherEntity.isCollisionable()) {
+				if (otherEntity.isObstacle()) {
 					otherEntity.getArea(otherarea, otherEntity.getx(),
 							otherEntity.gety());
 					if (area.intersects(otherarea)

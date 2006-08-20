@@ -55,7 +55,7 @@ public class Blood extends Entity implements TurnListener {
 	}
 
 	@Override
-	public boolean isCollisionable() {
+	public boolean isObstacle() {
 		// can walk over blood
 		return false;
 	}

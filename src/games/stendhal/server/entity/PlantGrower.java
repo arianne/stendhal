@@ -136,7 +136,7 @@ public class PlantGrower extends Entity {
 	}
 
 	@Override
-	public boolean isCollisionable() {
+	public boolean isObstacle() {
 		// The player can walk over the PlantGrower.
 		return false;
 	}

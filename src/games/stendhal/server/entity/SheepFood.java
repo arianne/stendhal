@@ -71,7 +71,7 @@ public class SheepFood extends PlantGrower {
 	}
 	
 	@Override
-	public boolean isCollisionable() {
+	public boolean isObstacle() {
 		return true;
 	}
 
