@@ -1,5 +1,5 @@
 package games.stendhal.client.gui;
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Color;
@@ -16,11 +16,11 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
-public class StendhalChatLineListener implements ActionListener, KeyListener
+public class StendhalChatLineListener implements ActionListener, KeyListener
   {
   /** the logger instance. */
   private static final Logger logger = Log4J.getLogger(StendhalChatLineListener.class);
-  private StendhalClient client;
+  private StendhalClient client;
   private JTextField playerChatText;
   private LinkedList<String> lines;
   private int actual;
@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
     lines=new LinkedList<String>();
     actual=0;
     }
-  private static String[] parseString(String s, int nbPart)
+  private static String[] parseString(String s, int nbPart)
     {
     String[] res = new String[nbPart];
     String [] t;
@@ -53,7 +53,7 @@ import org.apache.log4j.Logger;
     res[i] = s;
     return res;
     }
-  private static String[] nextString(String from) {
+  private static String[] nextString(String from) {
     char[] cFrom = from.toCharArray();
     String[] res = new String[2];
     res[0] = "";
@@ -101,7 +101,7 @@ import org.apache.log4j.Logger;
           break;
       }
     }
-    if(quote == 0) {
+    if(quote == 0) {
       return res;
     }
     return null;
@@ -123,7 +123,7 @@ import org.apache.log4j.Logger;
               }
             break;
             }          
-          case KeyEvent.VK_DOWN:   
+          case KeyEvent.VK_DOWN:   
             {
             if(actual<lines.size())
               {
@@ -139,16 +139,16 @@ import org.apache.log4j.Logger;
     public void keyReleased(KeyEvent e) 
       {
       }
-    public void keyTyped(KeyEvent e) 
+    public void keyTyped(KeyEvent e) 
       {
       }
-    public void actionPerformed(ActionEvent e)
+    public void actionPerformed(ActionEvent e)
       {
       logger.debug ("Player wrote: "+playerChatText.getText());
       String text = playerChatText.getText();
       text = text.trim();
       
-      if (text.length() == 0)
+      if (text.length() == 0)
         return;
       
       if(text.charAt(0)!='/')
@@ -176,7 +176,7 @@ import org.apache.log4j.Logger;
               }
             }
           }
-        else if(text.startsWith("/tell ") ||text.startsWith("/msg ")) // Tell command
+        else if(text.startsWith("/tell ") ||text.startsWith("/msg ")) // Tell command
           {
           String[] command = parseString(text, 3);
           if(command != null)
@@ -211,7 +211,8 @@ import org.apache.log4j.Logger;
           tell.put("text", command[2]);
           client.send(tell);
           }
-        }        else if(text.startsWith("/where "))
+        }
+        else if(text.startsWith("/where "))
           {
           String[] command = parseString(text, 2);
           if(command != null)
@@ -229,7 +230,7 @@ import org.apache.log4j.Logger;
           who.put("type","who");
           client.send(who);
           }
-        else if(text.startsWith("/drop ")) // Drop command
+        else if(text.startsWith("/drop ")) // Drop command
           {
           String[] command = parseString(text, 3);
           if(command != null)
@@ -245,9 +246,9 @@ import org.apache.log4j.Logger;
               {
               return;
               }
-            RPObject player = client.getPlayer();
+            RPObject player = client.getPlayer();
             int itemID = -1;
-            for(RPObject item: player.getSlot("bag"))
+            for(RPObject item: player.getSlot("bag"))
               {
               if (item.get("name").equals(itemName)) 
                 {
@@ -255,7 +256,7 @@ import org.apache.log4j.Logger;
                 break;
                 }
               }
-            if (itemID != -1) 
+            if (itemID != -1) 
               {
               RPAction drop = new RPAction();
               drop.put("type", "drop");
@@ -273,7 +274,7 @@ import org.apache.log4j.Logger;
               }
             }
           }
-        else if(text.startsWith("/add ")) // Add a new buddy to buddy list
+        else if(text.startsWith("/add ")) // Add a new buddy to buddy list
           {
           String[] command = parseString(text, 2);
           if(command != null)
@@ -295,7 +296,7 @@ import org.apache.log4j.Logger;
             client.send(remove);
             }
           }
-        else if(text.startsWith("/tellall ")) // Tell everybody admin command
+        else if(text.startsWith("/tellall ")) // Tell everybody admin command
           {
           String[] command = parseString(text, 2);
           if(command != null)
@@ -306,7 +307,7 @@ import org.apache.log4j.Logger;
             client.send(tellall);
             }
           }
-        else if(text.startsWith("/teleport ")) // Teleport target(PLAYER NAME) to  zone-x,y
+        else if(text.startsWith("/teleport ")) // Teleport target(PLAYER NAME) to  zone-x,y
           {
           String[] command = parseString(text, 5);
           if(command != null)
@@ -320,7 +321,7 @@ import org.apache.log4j.Logger;
             client.send(teleport);
             }
           }
-        else if(text.startsWith("/teleportto ")) // TeleportTo target(PLAYER NAME)
+        else if(text.startsWith("/teleportto ")) // TeleportTo target(PLAYER NAME)
           {
           String[] command = parseString(text, 2);
           if(command != null)
@@ -331,7 +332,7 @@ import org.apache.log4j.Logger;
             client.send(teleport);
             }
           }
-        else if(text.startsWith("/adminlevel ")) // Display or adjust adminlevel
+        else if(text.startsWith("/adminlevel ")) // Display or adjust adminlevel
         {
         String[] command = parseString(text, 3);
 
@@ -361,7 +362,7 @@ import org.apache.log4j.Logger;
             client.send(alter);
             }
           }
-        else if(text.startsWith("/summon ")) // Summon a creature at x,y
+        else if(text.startsWith("/summon ")) // Summon a creature at x,y
           {
           String[] command = parseString(text, 4);
           if(command != null)
@@ -374,10 +375,10 @@ import org.apache.log4j.Logger;
             client.send(summon);
             }
           }
-        else if(text.startsWith("/summonat ")) // Summon an item in a slot
+        else if(text.startsWith("/summonat ")) // Summon an item in a slot
           {
           String[] command = parseString(text, 5);
-          if(command != null)
+          if(command != null)
             {
             RPAction summon = new RPAction();
             summon.put("type","summonat");
@@ -390,7 +391,7 @@ import org.apache.log4j.Logger;
             client.send(summon);
             }
           }
-        else if(text.startsWith("/inspect ")) // Returns a complete description of the target
+        else if(text.startsWith("/inspect ")) // Returns a complete description of the target
           {
           String[] command = parseString(text, 2);
           if(command != null)
@@ -418,13 +419,14 @@ import org.apache.log4j.Logger;
           {
           client.getGameGUI().showQuitDialog();
           }
-                else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
+        
+        else if(text.startsWith("/invisible")) // Makes admin invisible for creatures
           {
           RPAction invisible = new RPAction();
           invisible.put("type","invisible");
           client.send(invisible);
           }
-        else if(text.equals("/help")) // Help command
+        else if(text.equals("/help")) // Help command
           {          
           String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
                           "This brief help show you the most used commands:",
@@ -436,8 +438,16 @@ import org.apache.log4j.Logger;
                           "- /drop <quantity> <item>\tDrops a amount of items from player.",
                           "- /add <player> \t\tAdd player to the buddy list",
                           "- /remove <player> \tRemoves player from buddy list",
-                          "- /where <player> \t\tPrints the location of the player",                          "- /quit \t\tLeaves the game",
-                          "- /sound volume <value> \tsets sound system loudness (0..100)",                          "- /sound mute <value> \tsets sound system mute (on/off)"                          };          for(String line: lines)            {            StendhalClient.get().addEventLine(line,Color.gray);            }          }  
+                          "- /where <player> \t\tPrints the location of the player",
+                          "- /quit \t\tLeaves the game",
+                          "- /sound volume <value> \tsets sound system loudness (0..100)",
+                          "- /sound mute <value> \tsets sound system mute (on/off)"
+                          };
+          for(String line: lines)
+            {
+            StendhalClient.get().addEventLine(line,Color.gray);
+            }
+          }  
         else if(text.equals("/gmhelp")) // Help command
           {          
           String[] lines={"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php?title=Stendhal:Administration",
@@ -461,6 +471,20 @@ import org.apache.log4j.Logger;
             }
           } 
         
+        else if(text.equals("/gmhelp_alter")) // Help command
+          {          
+          String[] lines={"/alter <player> <attrib> <mode> <value> \tChange by SETting, ADDing or SUBtracting the stat of player",
+                          "Some of the values that can be changed is: atk, atk_xp, def, def_xp, level, xp, outfit",
+                          "When modifying the outfit SET a 8 digit number, where the first 2 is the HAIR, second 2 is HEAD, third 2 is OUTFIT and last 2 is BODY",
+		  	  "Example: /alter player outfit set 12109901",
+			  "This example will make the player 'player' look like danter."
+                          };
+          for(String line: lines)
+            {
+            StendhalClient.get().addEventLine(line,Color.gray);
+            }
+          } 
+	  
         else if(text.startsWith("/sound ")) // Sound Setup command
         {
            String[] command = parseString(text, 3);
@@ -503,7 +527,9 @@ import org.apache.log4j.Logger;
           }
 
         }
-      lines.add(playerChatText.getText());      actual=lines.size();      
+      lines.add(playerChatText.getText());
+      actual=lines.size();
+      
       if(lines.size()>50)
         {
         lines.remove(0);
