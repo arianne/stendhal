@@ -16,6 +16,10 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Food;
 import java.awt.geom.Rectangle2D;
+
+import org.apache.log4j.Logger;
+
+import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
@@ -25,6 +29,9 @@ import marauroa.common.game.RPObject;
  * amount of meat, depending on its weight.
  */
 public abstract class DomesticAnimal extends Creature {
+
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(DomesticAnimal.class);
 
 	protected int weight;
 
@@ -139,10 +146,39 @@ public abstract class DomesticAnimal extends Creature {
 	public int getWeight() {
 		return weight;
 	}
+	
+	protected void moveToOwner() {
+		logger.debug("Domestic animal (owner) moves to owner");
+		setIdea("follow");
+		setMovement(owner, 0, 0, 20);
+		//      setAsynchonousMovement(owner,0,0);
+		moveto(getSpeed());
+	}
+	
+	protected void moveRandomly() {
+		setIdea("walk");
+		moveRandomly(getSpeed());
+	}
+	
+	/**
+	 * This method should be called every turn if the animal is supposed to
+	 * heal itself on its own. If it is used, an injured animal will heal
+	 * itself by up to 5 hitpoints every 100 turns.  
+	 */
+	protected void healSelf() {
+		if (rp.getTurn() % 100 == 0 && getHP() < getBaseHP()) {
+			if (getHP() + 5 <= getBaseHP()) {
+				setHP(getHP() + 5);
+			} else {
+				setHP(getBaseHP());
+			}
+		}
+	}
+
 
 	/**
 	 * Can be called when the sheep dies. Puts meat onto its corpse; the
-	 * amount of meat depends on the sheep's weight.
+	 * amount of meat depends on the domestic animal's weight.
 	 * @param corpse The corpse on which to put the meat
 	 */
 	@Override

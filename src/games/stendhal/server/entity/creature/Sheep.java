@@ -144,7 +144,7 @@ public class Sheep extends DomesticAnimal {
 		int x = getx();
 		int y = gety();
 
-		double distance = range * range; // We save this way several sqrt operations
+		double squaredDistance = range * range; // This way we save several sqrt operations
 		SheepFood chosen = null;
 
 		for (PlantGrower grower : rp.getPlantGrowers()) {
@@ -155,14 +155,13 @@ public class Sheep extends DomesticAnimal {
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range
 						&& food.getAmount() > 0) {
-					if (this.squaredDistance(food) < distance) {
+					if (this.squaredDistance(food) < squaredDistance) {
 						chosen = food;
-						distance = this.squaredDistance(food);
+						squaredDistance = this.squaredDistance(food);
 					}
 				}
 			}
 		}
-
 		return chosen;
 	}
 
@@ -214,14 +213,9 @@ public class Sheep extends DomesticAnimal {
 			}
 		} else if (owner == null) {
 			logger.debug("Sheep (ownerless) moves randomly");
-			setIdea("walk");
-			moveRandomly(SPEED);
+			moveRandomly();
 		} else if (owner != null && !nextTo(owner, 0.25)) {
-			logger.debug("Sheep (owner) moves to owner");
-			setIdea("follow");
-			setMovement(owner, 0, 0, 20);
-			//      setAsynchonousMovement(owner,0,0);
-			moveto(SPEED);
+			moveToOwner();
 		} else {
 			logger.debug("Sheep has nothing to do");
 			setIdea("stop");
@@ -231,12 +225,8 @@ public class Sheep extends DomesticAnimal {
 
 		if (owner != null && owner.has("text")
 				&& owner.get("text").contains("sheep")) {
-			logger.debug("Sheep(owner) moves to Owner");
-			setIdea("follow");
 			clearPath();
-			setMovement(owner, 0, 0, 20);
-			//      setAsynchonousMovement(owner,0,0);
-			moveto(SPEED);
+			moveToOwner();
 		}
 
 		if (!stopped()) {
@@ -246,22 +236,14 @@ public class Sheep extends DomesticAnimal {
 				stop();
 				clearPath();
 				
-				// move randomly
-				setIdea("walk");
-				moveRandomly(SPEED);
+				// move randomly, hoping we find a way by chance
+				moveRandomly();
 				if (hunger > 50) { // ignore food-movement for a short time
 					hunger = hunger -5;
 				}
 			}
 		}
-
-		if (rp.getTurn() % 100 == 0 && getHP() < getBaseHP()) {
-			if (getHP() + 5 <= getBaseHP()) {
-				setHP(getHP() + 5);
-			} else {
-				setHP(getBaseHP());
-			}
-		}
+		healSelf();
 
 		world.modify(this);
 		Log4J.finishMethod(logger, "logic");
