@@ -369,8 +369,7 @@ public class StendhalRPAction {
 		}
 
 		if (!found) {
-			logger.warn("Unable to choose a new zone for player(" + player
-					+ ")");
+			logger.warn("Unable to choose a new zone for player " + player.getName() + " at (" + player_x + ", " + player_y + ") source was " + origin.getID().getID() + " at (" + x + ", " + y + ")");
 		}
 	}
 
