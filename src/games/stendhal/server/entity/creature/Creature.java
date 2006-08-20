@@ -521,15 +521,7 @@ public class Creature extends NPC {
                 String[] healing = aiProfiles.get("heal").split(",");
                 int amount = Integer.parseInt(healing[0]);
                 int frequency = Integer.parseInt(healing[1]);
-
-                if (rp.getTurn() % frequency == 0 && getHP() > 0 ) {
-                    if (getHP() + amount < getBaseHP()) {
-                        setHP(getHP() + amount);
-                    } else {
-                        setHP(getBaseHP());
-                    }
-                }
-                
+                healSelf(amount, frequency);
             }
 		}
 
@@ -790,6 +782,23 @@ public class Creature extends NPC {
 			put("debug", debug.toString());
 		world.modify(this);
 		//Log4J.finishMethod(logger, "logic");
+	}
+
+	/**
+	 * This method should be called every turn if the animal is supposed to
+	 * heal itself on its own. If it is used, an injured animal will heal
+	 * itself by up to <i>amount</i> hitpoints every <i>frequency</i> turns.
+	 * @param amount The number of hitpoints that can be restored at a time
+	 * @param frequency The number of turns between healings  
+	 */
+	protected void healSelf(int amount, int frequency) {
+        if (rp.getTurn() % frequency == 0 && getHP() > 0 ) {
+            if (getHP() + amount < getBaseHP()) {
+                setHP(getHP() + amount);
+            } else {
+                setHP(getBaseHP());
+            }
+        }
 	}
 
 	public void equip(List<EquipItem> items) {

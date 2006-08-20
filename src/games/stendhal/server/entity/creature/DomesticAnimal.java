@@ -161,22 +161,6 @@ public abstract class DomesticAnimal extends Creature {
 	}
 	
 	/**
-	 * This method should be called every turn if the animal is supposed to
-	 * heal itself on its own. If it is used, an injured animal will heal
-	 * itself by up to 5 hitpoints every 100 turns.  
-	 */
-	protected void healSelf() {
-		if (rp.getTurn() % 100 == 0 && getHP() < getBaseHP()) {
-			if (getHP() + 5 <= getBaseHP()) {
-				setHP(getHP() + 5);
-			} else {
-				setHP(getBaseHP());
-			}
-		}
-	}
-
-
-	/**
 	 * Can be called when the sheep dies. Puts meat onto its corpse; the
 	 * amount of meat depends on the domestic animal's weight.
 	 * @param corpse The corpse on which to put the meat

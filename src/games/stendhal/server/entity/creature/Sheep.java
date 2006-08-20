@@ -243,7 +243,7 @@ public class Sheep extends DomesticAnimal {
 				}
 			}
 		}
-		healSelf();
+		healSelf(5, 100);
 
 		world.modify(this);
 		Log4J.finishMethod(logger, "logic");
