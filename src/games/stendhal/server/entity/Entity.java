@@ -197,65 +197,88 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * This returns the manhattan distance between this entity and the
+	 * This returns square of the distance between this entity and the
 	 * given one.
-	 * It is faster than real distance.
+	 * We're calculating the square because the square root operation
+	 * would be expensive. As long as we only need to compare distances,
+	 * it doesn't matter if we compare the distances or the squares of
+	 * the distances (the square operation is strictly monotonous for positive
+	 * numbers).
 	 * @param entity the entity to which the distance should be calculated 
 	 */
-	public double distance(Entity entity) {
-		return distance(entity.x, entity.y);
+	public double squaredDistance(Entity entity) {
+		return squaredDistance(entity.x, entity.y);
 	}
 
 	/**
-	 * This returns the manhattan distance.
-	 * 
-	 * It is faster than real distance
+	 * This returns square of the distance from this entity to a specific
+	 * point.
+	 * We're calculating the square because the square root operation
+	 * would be expensive. As long as we only need to compare distances,
+	 * it doesn't matter if we compare the distances or the squares of
+	 * the distances (the square operation is strictly monotonous for positive
+	 * numbers).
+	 * @param x The horizontal coordinate of the point
+	 * @param x The vertical coordinate of the point
 	 */
-	public double distance(int x, int y) {
+	public double squaredDistance(int x, int y) {
 		return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
 	}
 
-	public boolean nextto(int ex, int ey, double step) {
-		Rectangle2D this_area = getArea(x, y);
-		this_area.setRect(this_area.getX() - step, this_area.getY() - step,
-				this_area.getWidth() + step, this_area.getHeight() + step);
-		return this_area.contains(ex, ey);
+	/**
+	 * Checks whether a certain point is near this entity.
+	 * @param x The point's x coordinate
+	 * @param y The point's y coordinate
+	 * @param step The maximum distance
+	 * @return true iff the point is at most <i>step</i> steps away
+	 */
+	public boolean nextTo(int x, int y, double step) {
+		Rectangle2D thisArea = getArea(this.x, this.y);
+		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
+				thisArea.getWidth() + step, thisArea.getHeight() + step);
+		return thisArea.contains(x, y);
 	}
 
-	public boolean nextto(Entity entity, double step) {
-		Rectangle2D this_area = getArea(x, y);
-		Rectangle2D other_area = entity.getArea(entity.x, entity.y);
-		this_area.setRect(this_area.getX() - step, this_area.getY() - step,
-				this_area.getWidth() + step, this_area.getHeight() + step);
-		other_area.setRect(other_area.getX() - step, other_area.getY() - step,
-				other_area.getWidth() + step, other_area.getHeight() + step);
-		return this_area.intersects(other_area);
+	/**
+	 * Checks whether the given entity is near this entity.
+	 * @param entity the entity
+	 * @param step The maximum distance
+	 * @return true iff the entity is at most <i>step</i> steps away
+	 */
+	public boolean nextTo(Entity entity, double step) {
+		Rectangle2D thisArea = getArea(x, y);
+		Rectangle2D otherArea = entity.getArea(entity.x, entity.y);
+		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
+				thisArea.getWidth() + step, thisArea.getHeight() + step);
+		otherArea.setRect(otherArea.getX() - step, otherArea.getY() - step,
+				otherArea.getWidth() + step, otherArea.getHeight() + step);
+		return thisArea.intersects(otherArea);
 	}
 
-	public boolean facingto(Entity entity) {
-		Rectangle2D this_area = getArea(x, y);
-		Rectangle2D other_area = entity.getArea(entity.x, entity.y);
-		if (direction == Direction.UP && this_area.getX() == other_area.getX()
-				&& this_area.getY() - 1 == other_area.getY())
+	public boolean facingTo(Entity entity) {
+		Rectangle2D thisArea = getArea(x, y);
+		Rectangle2D otherArea = entity.getArea(entity.x, entity.y);
+		if (direction == Direction.UP && thisArea.getX() == otherArea.getX()
+				&& thisArea.getY() - 1 == otherArea.getY())
 			return true;
 		if (direction == Direction.DOWN
-				&& this_area.getX() == other_area.getX()
-				&& this_area.getY() + 1 == other_area.getY())
+				&& thisArea.getX() == otherArea.getX()
+				&& thisArea.getY() + 1 == otherArea.getY())
 			return true;
 		if (direction == Direction.LEFT
-				&& this_area.getY() == other_area.getY()
-				&& this_area.getX() - 1 == other_area.getX())
+				&& thisArea.getY() == otherArea.getY()
+				&& thisArea.getX() - 1 == otherArea.getX())
 			return true;
 		if (direction == Direction.RIGHT
-				&& this_area.getY() == other_area.getY()
-				&& this_area.getX() + 1 == other_area.getX())
+				&& thisArea.getY() == otherArea.getY()
+				&& thisArea.getX() + 1 == otherArea.getX())
 			return true;
 		return false;
 	}
 
-	public void faceto(Entity entity) {
-		Rectangle2D this_area = entity.getArea(entity.getx(), entity.gety());
-		setDirection(directionTo((int) this_area.getX(), (int) this_area.getY()));
+	public void faceTo(Entity entity) {
+		Rectangle2D otherArea = entity.getArea(entity.getx(), entity.gety());
+		setDirection(directionTo((int) otherArea.getX(), (int) otherArea.getY()));
 	}
 
 	public Direction directionTo(int px, int py) {

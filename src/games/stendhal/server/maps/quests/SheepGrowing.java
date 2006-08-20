@@ -169,7 +169,7 @@ public class SheepGrowing extends AbstractQuest {
 						// amount is currently ignored.
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) world.get(player.getSheep());
-							if (seller.distance(sheep) > 5 * 5) {
+							if (seller.squaredDistance(sheep) > 5 * 5) {
 								seller.say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
 							} else {
 								say("Thanks! Here is your money.");

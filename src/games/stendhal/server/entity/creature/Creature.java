@@ -451,9 +451,9 @@ public class Creature extends NPC {
 				int fy = (int) rect.getY();
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
-					if (distance(playerOrFriend) < distance) {
+					if (squaredDistance(playerOrFriend) < distance) {
 						chosen = playerOrFriend;
-						distance = distance(playerOrFriend);
+						distance = squaredDistance(playerOrFriend);
 					}
 				}
 			}
@@ -485,7 +485,7 @@ public class Creature extends NPC {
 				int fy = playerOrFriend.gety();
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
-					if (distance(playerOrFriend) < distance) {
+					if (squaredDistance(playerOrFriend) < distance) {
 						return true;
 					}
 				}
@@ -633,7 +633,7 @@ public class Creature extends NPC {
 			aiState = AiState.PATROL;
 			if (Debug.CREATURES_DEBUG_SERVER)
 				debug.append("patrol;").append(pathToString()).append('|');
-		} else if (distance(target) > 18 * 18) {
+		} else if (squaredDistance(target) > 18 * 18) {
 			// target out of reach
 			logger.debug("Attacker is too far. Creature stops attack");
 			target = null;
@@ -643,7 +643,7 @@ public class Creature extends NPC {
 
 			if (Debug.CREATURES_DEBUG_SERVER)
 				debug.append("outofreachstopped|");
-		} else if (!nextto(target, 0.25) && !target.stopped()) {
+		} else if (!nextTo(target, 0.25) && !target.stopped()) {
 			// target not near but in reach and is moving
 			logger.debug("Moving to target. Searching new path");
 			clearPath();
@@ -658,14 +658,14 @@ public class Creature extends NPC {
 							"|");
 				}
 			}
-		} else if (nextto(target, 0.25)) {
+		} else if (nextTo(target, 0.25)) {
 			if (Debug.CREATURES_DEBUG_SERVER)
 				debug.append("attacking|");
 			// target is near
 			logger.debug("Next to target. Creature stops and attacks");
 			stop();
 			attack(target);
-			faceto(target);
+			faceTo(target);
 			aiState = AiState.ATTACKING;
 		} else {
 			// target in reach and not moving
@@ -678,7 +678,7 @@ public class Creature extends NPC {
 			
 			if (waitRounds == 0) 
 			  {
-			  faceto(target);
+			  faceTo(target);
 			  }
 
 			// our current Path is blocked...mostly by the target or another attacker
@@ -746,7 +746,7 @@ public class Creature extends NPC {
 		if (rp.getTurn() % 5 == attackTurn && isAttacking()) {
 			StendhalRPAction.attack(this, getAttackTarget());
 
-			if (getAttackTarget() != null && nextto(getAttackTarget(), 0.25)) {
+			if (getAttackTarget() != null && nextTo(getAttackTarget(), 0.25)) {
 				if (aiProfiles.containsKey("poisonous")) {
 					int roll = Rand.roll1D100();
 					String[] poison = aiProfiles.get("poisonous").split(",");

@@ -104,7 +104,7 @@ public class Chest extends Entity implements UseEvent {
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 
-		if (player.nextto(this, 0.25)) {
+		if (player.nextTo(this, 0.25)) {
 			if (isOpen()) {
 				close();
 			} else {

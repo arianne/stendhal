@@ -155,9 +155,9 @@ public class Sheep extends DomesticAnimal {
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range
 						&& food.getAmount() > 0) {
-					if (this.distance(food) < distance) {
+					if (this.squaredDistance(food) < distance) {
 						chosen = food;
-						distance = this.distance(food);
+						distance = this.squaredDistance(food);
 					}
 				}
 			}
@@ -199,7 +199,7 @@ public class Sheep extends DomesticAnimal {
 
 		if (hunger > 50 && (food = getNearestFood(6)) != null
 				&& weight < MAX_WEIGHT) {
-			if (nextto(food, 0.25)) {
+			if (nextTo(food, 0.25)) {
 				logger.debug("Sheep eats");
 				setIdea("eat");
 				eat(food);
@@ -216,7 +216,7 @@ public class Sheep extends DomesticAnimal {
 			logger.debug("Sheep (ownerless) moves randomly");
 			setIdea("walk");
 			moveRandomly(SPEED);
-		} else if (owner != null && !nextto(owner, 0.25)) {
+		} else if (owner != null && !nextTo(owner, 0.25)) {
 			logger.debug("Sheep (owner) moves to owner");
 			setIdea("follow");
 			setMovement(owner, 0, 0, 20);

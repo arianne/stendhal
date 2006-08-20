@@ -133,7 +133,7 @@ public class StendhalRPAction {
 				source.dropItemClass(slots, "projectiles");
 			}
 
-			double distance = source.distance(target);
+			double distance = source.squaredDistance(target);
 
 			double minrange = 2 * 2;
 			double maxrange = 7 * 7;
@@ -170,7 +170,7 @@ public class StendhalRPAction {
 			List<Item> weaponItem = source.getWeapons();
 			boolean range = (weaponItem.size() > 0 && weaponItem.get(0).isOfClass("ranged")); 
 
-			if (source.nextto(target, 1) || range) {
+			if (source.nextTo(target, 1) || range) {
 				if (range) {
 					// Check Line of View to see if there is any obstacle.
 					Vector<Point> points = Line.renderLine(source.getx(),
@@ -282,7 +282,7 @@ public class StendhalRPAction {
 						sheep = (Sheep) world.get(player.getSheep());
 					}
 
-					if (!(sheep != null && player.distance(sheep) > 7 * 7)) {
+					if (!(sheep != null && player.squaredDistance(sheep) > 7 * 7)) {
 						if (zone.leavesZone(player, x + dx, y + dy)) {
 							logger.debug("Leaving zone from (" + x + "," + y
 									+ ") to (" + (x + dx) + "," + (y + dy)
@@ -294,8 +294,8 @@ public class StendhalRPAction {
 						}
 
 						for (Portal portal : zone.getPortals()) {
-							if (player.nextto(portal, 0.25)
-									&& player.facingto(portal)) {
+							if (player.nextTo(portal, 0.25)
+									&& player.facingTo(portal)) {
 								logger.debug("Using portal " + portal);
 								portal.onUsed(player);
 								// if(usePortal(player, portal))
@@ -378,7 +378,7 @@ public class StendhalRPAction {
 			throws AttributeNotFoundException, NoRPZoneException {
 		Log4J.startMethod(logger, "usePortal");
 
-		if (!player.nextto(portal, 0.25)) // Too far to use the portal
+		if (!player.nextTo(portal, 0.25)) // Too far to use the portal
 		{
 			return false;
 		}

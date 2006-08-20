@@ -118,11 +118,11 @@ public abstract class NPC extends RPEntity {
 			double max, double maxPathRadius) {
 		int destX = destEntity.getx();
 		int destY = destEntity.gety();
-		if (nextto(destX, destY, min) && hasPath()) {
+		if (nextTo(destX, destY, min) && hasPath()) {
 			clearPath();
 		}
 
-		if (distance(destX, destY) > max && !hasPath()) {
+		if (squaredDistance(destX, destY) > max && !hasPath()) {
 			Path.searchPathAsynchonous(this, destEntity);
 		}
 	}
@@ -147,14 +147,14 @@ public abstract class NPC extends RPEntity {
 	 */
 	public void setMovement(Entity destEntity, double min, double max,
 			double maxPathRadius) {
-		if (nextto(destEntity.getx(), destEntity.gety(), min) && hasPath()) {
+		if (nextTo(destEntity.getx(), destEntity.gety(), min) && hasPath()) {
 			logger.debug("Removing path because nextto(" + destEntity.getx()
 					+ "," + destEntity.gety() + "," + min + ") of (" + getx()
 					+ "," + gety() + ")");
 			clearPath();
 		}
 
-		if (distance(destEntity.getx(), destEntity.gety()) > max && !hasPath()) {
+		if (squaredDistance(destEntity.getx(), destEntity.gety()) > max && !hasPath()) {
 			logger.debug("Creating path because (" + getx() + "," + gety()
 					+ ") distance(" + destEntity.getx() + ","
 					+ destEntity.gety() + ")>" + max);

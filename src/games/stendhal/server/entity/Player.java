@@ -1029,12 +1029,12 @@ public class Player extends RPEntity {
 				base = base.getContainer();
 			}
 
-			if (!nextto((Entity) base, 0.25)) {
+			if (!nextTo((Entity) base, 0.25)) {
 				logger.debug("Consumable item is too far");
 				return;
 			}
 		} else {
-			if (!nextto(item, 0.25)) {
+			if (!nextTo(item, 0.25)) {
 				logger.debug("Consumable item is too far");
 				return;
 			}

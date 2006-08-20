@@ -79,7 +79,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 						// amount is currently ignored.
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) world.get(player.getSheep());
-							if (seller.distance(sheep) > 5 * 5) {
+							if (seller.squaredDistance(sheep) > 5 * 5) {
 								seller.say("*drool* Sheep flesh! Bring da sheep here!");
 							} else {
 								say("*LOVELY*. Take dis money!");

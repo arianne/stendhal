@@ -249,8 +249,8 @@ public class EquipmentAction extends ActionListener {
 					}
 				}
 
-				if (player.nextto(baseEntity, 0.25)
-						&& baseEntity.distance(x, y) < 8 * 8
+				if (player.nextTo(baseEntity, 0.25)
+						&& baseEntity.squaredDistance(x, y) < 8 * 8
 						&& !zone.simpleCollides(entity, x, y)) {
 					if (quantity != 0) {
 						StackableItem newItem = (StackableItem) ((StendhalRPWorld) world)
@@ -396,10 +396,10 @@ public class EquipmentAction extends ActionListener {
 		 */
 		public boolean checkDistance(Entity other, double distance) {
 			Entity checker = (parent != null) ? parent : base;
-			if (other.nextto(checker, distance)) {
+			if (other.nextTo(checker, distance)) {
 				return true;
 			}
-			logger.debug("distance check failed " + other.distance(checker));
+			logger.debug("distance check failed " + other.squaredDistance(checker));
 			return false;
 		}
 
@@ -590,7 +590,7 @@ public class EquipmentAction extends ActionListener {
 				}
 				// and in reach
 				if (entity.has("x") && entity.has("y")
-						&& entity.distance(x, y) > 8 * 8) {
+						&& entity.squaredDistance(x, y) > 8 * 8) {
 					logger.warn("object " + entity + " is too far away from "
 							+ x + "x" + y);
 					return false;
@@ -612,11 +612,11 @@ public class EquipmentAction extends ActionListener {
 		 */
 		public boolean checkDistance(Entity other, double distance) {
 			if (parent != null) {
-				return (other.nextto(parent, distance));
+				return (other.nextTo(parent, distance));
 			}
 
 			// should be dropped to the ground
-			return (other.nextto(x, y, distance));
+			return (other.nextTo(x, y, distance));
 		}
 
 		/**

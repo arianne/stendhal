@@ -336,7 +336,7 @@ public abstract class SpeakerNPC extends NPC {
 			}
 		} else if(attending != null) {
 		     // If the player is too far away
-		    if ((attending.distance(this) > 8 * 8)                
+		    if ((attending.squaredDistance(this) > 8 * 8)                
              // or if the player fell asleep ;) 
                  || (rp.getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT)) {
              // we force him to say bye to NPC :)  
@@ -472,8 +472,8 @@ public abstract class SpeakerNPC extends NPC {
 	@Override
 	public void say(String text) {
 		// be polite and face the player we are talking to
-		if (!facingto(attending)) {
-			faceto(attending);
+		if (!facingTo(attending)) {
+			faceTo(attending);
 		}
 		super.say(text);
 	}

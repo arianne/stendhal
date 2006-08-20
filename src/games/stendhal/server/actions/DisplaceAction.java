@@ -46,7 +46,7 @@ public class DisplaceAction extends ActionListener {
 				if (object instanceof RPEntity) /** Player, Creatures and NPCs */
 				{
 					RPEntity entity = (RPEntity) object;
-					if (player.nextto(entity, 0.25)) {
+					if (player.nextTo(entity, 0.25)) {
 						if (action.has("x") && action.has("y")) {
 							// int x=action.getInt("x");
 							// int y=action.getInt("y");
@@ -61,8 +61,8 @@ public class DisplaceAction extends ActionListener {
 
 						PassiveEntity entity = (PassiveEntity) object;
 
-						if (player.nextto(entity, 0.25)
-								&& player.distance(x, y) < 8 * 8
+						if (player.nextTo(entity, 0.25)
+								&& player.squaredDistance(x, y) < 8 * 8
 								&& !zone.simpleCollides(entity, x, y)) {
 							rules.addGameEvent(player.getName(), "displace",
 									entity.get("type"));

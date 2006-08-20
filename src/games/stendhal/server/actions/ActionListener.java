@@ -88,7 +88,7 @@ public abstract class ActionListener {
 	 * @return true when the entity is near the player, false otherwise
 	 */
 	protected boolean checkDistance(Entity first, Entity second, double distance) {
-		if (first.nextto(second, distance)) {
+		if (first.nextTo(second, distance)) {
 			return true;
 		}
 

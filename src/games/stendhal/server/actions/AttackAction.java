@@ -77,7 +77,7 @@ public class AttackAction extends ActionListener {
 								.getName());
 
 						player.attack(entity);
-						player.faceto(entity);
+						player.faceTo(entity);
 						world.modify(player);
 					}
 				}

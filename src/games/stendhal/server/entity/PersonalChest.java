@@ -57,7 +57,7 @@ public class PersonalChest extends Chest {
 					}
 
 					/* If player is not next to depot clean it. */
-					if (!nextto(attending, 0.25)
+					if (!nextTo(attending, 0.25)
 							|| !zone.has(attending.getID())) {
 						content = getSlot("content");
 						
@@ -94,7 +94,7 @@ public class PersonalChest extends Chest {
 
 		zone = world.getRPZone(player.getID());
 
-		if (player.nextto(this, 0.25)) {
+		if (player.nextTo(this, 0.25)) {
 			if (isOpen()) {
 				close();
 			} else {

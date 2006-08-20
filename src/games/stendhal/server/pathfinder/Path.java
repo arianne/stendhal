@@ -284,7 +284,7 @@ public class Path {
 
 		Node actual = path.get(pos);
 
-		if (entity.distance(actual.x, actual.y) == 0) {
+		if (entity.squaredDistance(actual.x, actual.y) == 0) {
 			logger.debug("Completed waypoint(" + pos + ")(" + actual.x + ","
 					+ actual.y + ") on Path");
 			pos++;
