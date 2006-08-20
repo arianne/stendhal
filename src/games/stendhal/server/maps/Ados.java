@@ -12,6 +12,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -295,39 +296,34 @@ public class Ados implements IContent {
 
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(16);
-		portal.sety(30);
-		portal.setNumber(103);
-		portal.setDestination("0_ados_mountain_nw", 102);
+		portal.setx(12);
+		portal.sety(13);
+		portal.setNumber(0);
+		portal.setDestination("0_ados_mountain_nw", 0);
 		zone.addPortal(portal);
-
+/*
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setx(75);
 		portal.sety(51);
-		portal.setNumber(102);
-		portal.setDestination("int_ados_magician_house", 103);
+		portal.setNumber(1);
+		portal.setDestination("int_ados_magician_house", 1);
 		zoneOutside.addPortal(portal);
-
+*/
 		SpeakerNPC npc = new SpeakerNPC("Haizen") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(24, 6));
-				nodes.add(new Path.Node(21, 6));
-				nodes.add(new Path.Node(21, 8));
-				nodes.add(new Path.Node(15, 8));
-				nodes.add(new Path.Node(15, 11));
-				nodes.add(new Path.Node(13, 11));
-				nodes.add(new Path.Node(13, 26));
-				nodes.add(new Path.Node(22, 26));
-				nodes.add(new Path.Node(13, 26));
-				nodes.add(new Path.Node(13, 11));
-				nodes.add(new Path.Node(15, 11));
-				nodes.add(new Path.Node(15, 8));
-				nodes.add(new Path.Node(21, 8));
-				nodes.add(new Path.Node(21, 6));
-				nodes.add(new Path.Node(24, 6));
+				nodes.add(new Path.Node(7, 1));
+				nodes.add(new Path.Node(7, 3));
+				nodes.add(new Path.Node(13, 3));
+				nodes.add(new Path.Node(13, 8));
+				nodes.add(new Path.Node(9, 8));
+				nodes.add(new Path.Node(9, 7));
+				nodes.add(new Path.Node(9, 8));
+				nodes.add(new Path.Node(2, 8));
+				nodes.add(new Path.Node(2, 2));
+				nodes.add(new Path.Node(7, 2));
 				setPath(nodes, true);
 			}
 
@@ -374,11 +370,26 @@ public class Ados implements IContent {
 			}
 		};
 		npcs.add(npc);
-
 		zone.assignRPObjectID(npc);
 		npc.put("class", "wisemannpc");
-		npc.set(24, 6);
+		npc.set(7, 1);
 		npc.initHP(100);
 		zone.addNPC(npc);
+		
+		Item item = addPersistentItem("summon_scroll", zone, 6, 6);
+		// Just in case a player finds a way to get this scroll, fake it:
+		item.setDescription("You see a summon scroll. It is marked with: blue_dragon");
+		item.put("infostring", "rat");
+		addPersistentItem("poison", zone, 3, 6); // need PlantGrower
+	}
+	
+	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
+		Item item = world.getRuleManager().getEntityManager().getItem(name);
+		zone.assignRPObjectID(item);
+		item.setx(x);
+		item.sety(y);
+		item.put("persistent", 1);
+		zone.add(item);
+		return item;
 	}
 }
