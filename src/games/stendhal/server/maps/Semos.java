@@ -80,7 +80,7 @@ public class Semos implements IContent {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("introduce_players")) {
-							engine.say("Ssshh! Come here #" + player.getName()
+							engine.say("Ssshh! Come here " + player.getName()
 									+ "! I have a #task for you.");
 						} else {
 							engine.say("Hi again "
