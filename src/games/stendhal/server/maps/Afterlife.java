@@ -37,14 +37,14 @@ public class Afterlife implements IContent {
 		zone.assignRPObjectID(sign);
 		sign.setx(29);
 		sign.sety(22);
-		sign.setText("I regret to tell you that you have died!\nYou have lost some of your items and 10% of your eXPerience points.\nBe more careful next time. On the up side you can now return to city.");
+		sign.setText("I regret to tell you that you have died!\nYou have lost some of your items and 10% of your eXPerience points.\nBe more careful next time. On the up side you can now return to the city.");
 		zone.add(sign);
 
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(33);
 		sign.sety(22);
-		sign.setText("I regret to tell you that you have died!\nYou have lost some of your items and 10% of your eXPerience points.\nBe more careful next time. On the up side you can now return to city.");
+		sign.setText("I regret to tell you that you have died!\nYou have lost some of your items and 10% of your eXPerience points.\nBe more careful next time. On the up side you can now return to the city.");
 		zone.add(sign);
 	}
 }
