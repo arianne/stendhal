@@ -36,6 +36,7 @@
     <copy todir="${build}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
     <copy todir="${build}/data/conf" file="data/conf/creatures.xml"/>
     <copy todir="${build}/data/conf" file="data/conf/items.xml"/>
+    <copy todir="${build}/data/conf" file="data/conf/quests.xml"/>
 
     <copy todir="${build}/data/sprites">
       <fileset dir="${sprites}"/>
