@@ -474,7 +474,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
         else if(text.equals("/gmhelp_alter")) // Help command
           {          
           String[] lines={"/alter <player> <attrib> <mode> <value> \tChange by SETting, ADDing or SUBtracting the stat of player",
-                          "Some of the values that can be changed is: atk, atk_xp, def, def_xp, level, xp, outfit",
+                          "Some of the values that can be changed is: atk, atk_xp, def, def_xp, xp, outfit",
                           "When modifying the outfit SET a 8 digit number, where the first 2 is the HAIR, second 2 is HEAD, third 2 is OUTFIT and last 2 is BODY",
 		  	  "Example: /alter player outfit set 12109901",
 			  "This example will make the player 'player' look like danter."
