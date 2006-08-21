@@ -564,7 +564,7 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public void onDead(RPEntity who) {
+	public void onDead(Entity who) {
 		put("dead", "");
 
 		if (hasSheep()) {

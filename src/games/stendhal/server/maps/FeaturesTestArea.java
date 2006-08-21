@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
@@ -29,14 +30,16 @@ public class FeaturesTestArea implements IContent {
 		}
 
 		@Override
-		public void onDead(RPEntity who) {
-			if (!who.isEquipped("key_golden")) {
-				Item item = world.getRuleManager().getEntityManager().getItem(
-						"key_golden");
-				who.equip(item, true);
+		public void onDead(Entity killer) {
+			if (killer instanceof RPEntity) {
+				RPEntity killerRPEntity = (RPEntity) killer;
+				if (!killerRPEntity.isEquipped("key_golden")) {
+					Item item = world.getRuleManager().getEntityManager().getItem(
+							"key_golden");
+					killerRPEntity.equip(item, true);
+				}
 			}
-
-			super.onDead(who);
+			super.onDead(killer);
 		}
 
 		@Override

@@ -13,10 +13,10 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.RPEntity;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -110,10 +110,10 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Is called when the sheep dies. Removes the dead sheep from the owner.
-     * @param who The entity who caused the death
+     * @param killer The entity who caused the death
 	 */
 	@Override
-	public void onDead(RPEntity who) {
+	public void onDead(Entity killer) {
 		if (owner != null) {
 			if (owner.hasSheep()) {
 				owner.removeSheep(this);
@@ -125,7 +125,7 @@ public class Sheep extends DomesticAnimal {
 			rp.removeNPC(this);
 		}
 
-		super.onDead(who);
+		super.onDead(killer);
 	}
 
 	@Override

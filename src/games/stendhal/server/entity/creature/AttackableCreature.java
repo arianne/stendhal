@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
 import java.util.ArrayList;
@@ -31,10 +32,10 @@ public class AttackableCreature extends Creature {
 	}
 
 	@Override
-	public void onDead(RPEntity who) {
+	public void onDead(Entity killer) {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
 		zone.removePlayerAndFriends(this);
-		super.onDead(who);
+		super.onDead(killer);
 	}
 
 	@Override

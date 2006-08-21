@@ -5,8 +5,8 @@ import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
@@ -49,13 +49,13 @@ public class Ados implements IContent {
 		}
 
 		@Override
-		public void onDead(RPEntity who) {
-			super.onDead(who);
-			if (! (who instanceof Player)) {
+		public void onDead(Entity killer) {
+			super.onDead(killer);
+			if (! (killer instanceof Player)) {
 				long currentTime = System.currentTimeMillis();
 				if (lastShoutTime + 5*60*1000 < currentTime) {
 					lastShoutTime = currentTime;
-					cryForHelp = "Katinka shouts: Help! An " + who.get("name") + " is eating our " + this.get("name") + "s.";
+					cryForHelp = "Katinka shouts: Help! A " + killer.get("name") + " is eating our " + this.get("name") + "s.";
 					// HACK: we need to wait a turn because the message is lost otherwise
 					TurnNotifier.get().notifyInTurns(0, this, null);
 				}

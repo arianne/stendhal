@@ -18,6 +18,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
@@ -373,7 +374,7 @@ public class Creature extends NPC {
     }
 
 	@Override
-    public void onDead(RPEntity who) {
+    public void onDead(Entity killer) {
 		if (point != null) {
 			point.notifyDead(this);
 		} else {
@@ -381,7 +382,7 @@ public class Creature extends NPC {
 			rp.removeNPC(this);
 		}
 
-		super.onDead(who);
+		super.onDead(killer);
 	}
 
     @Override

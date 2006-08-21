@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
@@ -64,7 +65,7 @@ public class Corpse extends PassiveEntity implements TurnListener {
 		addSlot(slot);
 	}
 
-	public Corpse(RPEntity entity, RPEntity killer)
+	public Corpse(RPEntity entity, Entity killer)
 			throws AttributeNotFoundException {
 		put("type", "corpse");
 

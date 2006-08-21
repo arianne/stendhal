@@ -421,21 +421,21 @@ public abstract class RPEntity extends Entity {
 
 	/**
 	 * Kills this RPEntity.
-	 * @param who The killer
+	 * @param killer The killer
 	 */
-	protected void kill(RPEntity who) {
+	protected void kill(Entity killer) {
 		setHP(0);
-		rp.killRPEntity(this, who);
+		rp.killRPEntity(this, killer);
 	}
 
 	/**
 	 * This method is called when the entity has been killed ( hp==0 ).
 	 * 
-	 * @param who
+	 * @param killer
 	 *            The entity who caused the death
 	 */
-	public void onDead(RPEntity who) {
-		onDead(who, true);
+	public void onDead(Entity killer) {
+		onDead(killer, true);
 	}
 
 	/**
@@ -443,14 +443,16 @@ public abstract class RPEntity extends Entity {
 	 * almost everything remove is true and the creature is removed from the
 	 * world, except for the players...
 	 * 
-	 * @param who
+	 * @param killer
 	 *            The entity who caused the death
 	 */
-	protected void onDead(RPEntity who, boolean remove) {
+	protected void onDead(Entity killer, boolean remove) {
 		stopAttack();
-		who.stopAttack();
-
-		rp.addGameEvent(who.getName(), "killed", getName());
+		
+		if (killer instanceof RPEntity) {
+			((RPEntity) killer).stopAttack();
+			rp.addGameEvent(((RPEntity) killer).getName(), "killed", getName());
+		}
 
 		// Establish how much xp points your are rewarded
 		if (getXP() > 0) {
@@ -517,7 +519,7 @@ public abstract class RPEntity extends Entity {
 		}
 
 		// Add a corpse
-		Corpse corpse = new Corpse(this, who);
+		Corpse corpse = new Corpse(this, killer);
 
 		// Add some reward inside the corpse
 		dropItemsOn(corpse);
@@ -527,7 +529,7 @@ public abstract class RPEntity extends Entity {
 		zone.assignRPObjectID(corpse);
 		zone.add(corpse);
 
-		world.modify(who);
+		world.modify(killer);
 		if (remove) {
 			world.remove(getID());
 		}

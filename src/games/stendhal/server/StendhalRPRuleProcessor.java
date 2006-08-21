@@ -78,7 +78,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private List<NPC> npcs;
 	private List<NPC> npcsToAdd;
 	private List<NPC> npcsToRemove;
-	private List<Pair<RPEntity, RPEntity>> entityToKill;
+	private List<Pair<RPEntity, Entity>> entityToKill;
 	private List<RespawnPoint> respawnPoints;
 	private List<PlantGrower> plantGrowers;
 	private List<Blood> bloods;
@@ -120,7 +120,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		plantGrowers = new LinkedList<PlantGrower>();
 		npcsToAdd = new LinkedList<NPC>();
 		npcsToRemove = new LinkedList<NPC>();
-		entityToKill = new LinkedList<Pair<RPEntity, RPEntity>>();
+		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
 		bloods = new LinkedList<Blood>();
 		bloodsToRemove = new LinkedList<Blood>();
 		scripts = StendhalScriptSystem.get();
@@ -233,12 +233,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		npcsToAdd.add(npc);
 	}
 
-	public void killRPEntity(RPEntity entity, RPEntity who) {
-		entityToKill.add(new Pair<RPEntity, RPEntity>(entity, who));
+	public void killRPEntity(RPEntity entity, Entity killer) {
+		entityToKill.add(new Pair<RPEntity, Entity>(entity, killer));
 	}
 	
 	public boolean isKilledRPEntity(RPEntity entity) {
-		for(Pair<RPEntity, RPEntity> entry: entityToKill) {
+		for(Pair<RPEntity, Entity> entry: entityToKill) {
 			if(entity.equals(entry.first())) {
 				return true;
 			}
@@ -246,8 +246,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return false;
 	}
 	
-	public RPEntity isKilledByRPEntity(RPEntity entity) {
-		for(Pair<RPEntity, RPEntity> entry: entityToKill) {
+	public Entity isKilledByRPEntity(RPEntity entity) {
+		for(Pair<RPEntity, Entity> entry: entityToKill) {
 			if(entity.equals(entry.first())) {
 				return entry.second();
 			}
@@ -367,9 +367,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					playersObject.size());
 			// In order for the last hit to be visible dead happens at two
 			// steps.
-			for (Pair<RPEntity, RPEntity> entity : entityToKill) {
+			for (Pair<RPEntity, Entity> entry : entityToKill) {
 				try {
-					entity.first().onDead(entity.second());
+					entry.first().onDead(entry.second());
 				} catch (Exception e) {
 					logger.fatal("Player has logout before dead", e);
 				}

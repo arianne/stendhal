@@ -1,8 +1,8 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.common.Rand;
@@ -313,7 +313,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	@Override
-	public void onDead(RPEntity who) {
+	public void onDead(Entity who) {
 		setHP(getBaseHP());
 		world.modify(this);
 	}

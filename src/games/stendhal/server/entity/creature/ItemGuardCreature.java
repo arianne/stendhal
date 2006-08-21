@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 
@@ -51,12 +52,15 @@ public class ItemGuardCreature extends Creature {
 	}
 
 	@Override
-	public void onDead(RPEntity who) {
-		if (!who.isEquipped(itemType)) {
-			Item item = world.getRuleManager().getEntityManager().getItem(
-					itemType);
-			who.equip(item, true);
+	public void onDead(Entity killer) {
+		if (killer instanceof RPEntity) {
+			RPEntity killerRPEntity = (RPEntity) killer;
+			if (!killerRPEntity.isEquipped(itemType)) {
+				Item item = world.getRuleManager().getEntityManager().getItem(
+						itemType);
+				killerRPEntity.equip(item, true);
+			}
 		}
-		super.onDead(who);
+		super.onDead(killer);
 	}
 }
