@@ -589,9 +589,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					// Is the entity a creature
 					if (manager.isCreature(type)) {
 						Creature creature = manager.getCreature(type);
-						RespawnPoint point = new RespawnPoint(x, y, 2);
-						point.set(this, creature, 1);
-						point.setRespawnTime(creature.getRespawnTime());
+						RespawnPoint point = new RespawnPoint(this, x, y, creature, 1);
 						respawnPoints.add(point);
 					} else {
 						logger.warn("Unknown Entity (type: " + type + ") at ("

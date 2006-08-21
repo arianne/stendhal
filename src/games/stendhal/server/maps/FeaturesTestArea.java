@@ -87,9 +87,7 @@ public class FeaturesTestArea implements IContent {
 		manager.addItem(item);
 
 		Creature creature = new QuestRat(manager.getCreature("rat"));
-		RespawnPoint point = new RespawnPoint(40, 5, 2);
-		point.set(zone, creature, 1);
-		point.setRespawnTime(creature.getRespawnTime());
+		RespawnPoint point = new RespawnPoint(zone, 40, 5, creature, 1);
 		zone.addRespawnPoint(point);
 	}
 	
@@ -97,14 +95,12 @@ public class FeaturesTestArea implements IContent {
 	private void attackableAnimal() {
 
 		Creature creature = new AttackableCreature(manager.getCreature("orc"));
-		RespawnPoint point = new RespawnPoint(4, 56, 2);
-		point.set(zone, creature, 1);
+		RespawnPoint point = new RespawnPoint(zone, 4, 56, creature, 1);
 		point.setRespawnTime(60*60*3);
 		zone.addRespawnPoint(point);
 
 		creature = manager.getCreature("deer");
-		point = new RespawnPoint(14, 56, 2);
-		point.set(zone, creature, 1);
+		point = new RespawnPoint(zone, 14, 56, creature, 1);
 		point.setRespawnTime(60*60*3);
 		zone.addRespawnPoint(point);
 	}

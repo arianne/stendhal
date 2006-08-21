@@ -103,9 +103,7 @@ public class Orril implements IContent {
 
 		Creature creature = new QuestDropItemOnDeath(manager
 				.getCreature("green_dragon"), "dungeon_silver_key");
-		RespawnPoint point = new RespawnPoint(69, 43, 2);
-		point.set(zone, creature, 1);
-		point.setRespawnTime(creature.getRespawnTime());
+		RespawnPoint point = new RespawnPoint(zone, 69, 43, creature, 1);
 		zone.addRespawnPoint(point);
 
 		Door door = new Door("dungeon_silver_key", "skulldoor", Direction.DOWN);
@@ -132,9 +130,7 @@ public class Orril implements IContent {
 
 		creature = new QuestDropItemOnDeath(manager.getCreature("royal_mummy"),
 				"lich_gold_key");
-		point = new RespawnPoint(54, 48, 2);
-		point.set(zone, creature, 1);
-		point.setRespawnTime(creature.getRespawnTime());
+		point = new RespawnPoint(zone, 54, 48, creature, 1);
 		zone.addRespawnPoint(point);
 
 		door = new Door("lich_gold_key", "skulldoor", Direction.UP);

@@ -23,76 +23,141 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
+/**
+ * RespawnPoints are points at which creatures can appear. Several creatures
+ * can be spawned, until a maximum has been reached (note that this maximum
+ * is usually 1); then the RespawnPoint will stop spawining creatures until 
+ * at least one of the creatures has died. It will then continue to spawn
+ * creatures. A certain time must pass between respawning creatures; this
+ * respawn time is usually dependent of the type of the creatures that are
+ * spawned.
+ * 
+ * Each respawn point can only spawn one type of creature. The Prototype
+ * design pattern is used; the <i>prototypeCreature</i> will be copied
+ * to create new creatures.  
+ */
 public class RespawnPoint implements TurnListener {
 	private static final int TURNSTORESPAWN = 90;
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(RespawnPoint.class);
+	
 	private StendhalRPZone zone;
+	
 	private int x;
+	
 	private int y;
+	
+	/**
+	 * The number of creatures spawned here that can exist at
+	 *  the same time
+	 */
 	private int maximum;
-	private Creature entity;
-	private List<Creature> entities;
+	
+	/** 
+	 * This is the prototype; it will be copied to create new creatures
+	 * that will be spawned here.
+	 */
+	private Creature prototypeCreature;
+	
+	/** All creatures that were spawned here and that are still alive*/
+	private List<Creature> creatures;
+	
+	/**
+	 * Stores if this respawn point is currently waiting for a creature
+	 * to respawn
+	 */
 	private boolean respawning;
+	
+	/**
+	 * How long it takes to respawn a creature. This defaults to the
+	 * creature's default respawn time. 
+	 */
 	private int respawnTime;
 
-	public RespawnPoint(int x, int y, int radius) {
+	/**
+	 * Creates a new RespawnPoint.
+	 * @param zone
+	 * @param x
+	 * @param y
+	 * @param creature The prototype creature 
+	 * @param maximum The number of creatures spawned here that can exist at
+	 *                the same time
+	 */
+	public RespawnPoint(StendhalRPZone zone, int x, int y, Creature creature, int maximum) {
+		this.zone = zone;
 		this.x = x;
 		this.y = y;
-		maximum = 0;
+		this.prototypeCreature = creature;
+		this.maximum = maximum;
+
+		this.respawnTime = creature.getRespawnTime();
+		this.creatures = new LinkedList<Creature>();
 
 		respawning = true;
 		TurnNotifier.get().notifyInTurns(0, this, null); // respawn in next turn
 		respawnTime = TURNSTORESPAWN;
 	}
 
+	/**
+	 * Sets the time it takes to respawn a creature. Note that this value 
+	 * defaults to the creature's default respawn time. 
+	 */
 	public void setRespawnTime(int respawnTime) {
 		this.respawnTime = respawnTime;
 	}
-
-	public void set(StendhalRPZone zone, Creature entity, int maximum) {
-		this.entity = entity;
-		this.entities = new LinkedList<Creature>();
-		this.maximum = maximum;
-		this.zone = zone;
-	}
-
+	
+	/**
+	 * Notifies this respawn point about the death of a creature that
+	 * was spawned here.
+	 * @param dead The creature that has died
+	 */
 	public void notifyDead(Creature dead) {
 		Log4J.startMethod(logger, "notifyDead");
 
 		if (!respawning) {
+			// start respawning a new creature
 			respawning = true;
 			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this, null);
 		}
 
-		entities.remove(dead);
+		creatures.remove(dead);
 		Log4J.finishMethod(logger, "notifyDead");
 	}
 
+	
+	/**
+	 * Is called when a new creature is ready to pop up. 
+	 * @see games.stendhal.server.events.TurnListener#onTurnReached(int, java.lang.String)
+	 */
 	public void onTurnReached(int currentTurn, String message) {
 		respawn();
 
 		// Is this all or should we spawn more creatures?
-		if (entities.size() == maximum) {
+		if (creatures.size() == maximum) {
 			respawning = false;
 		} else {
+			// TODO: consider increasing the variance to increase randomization
 			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this, null);
 		}
 	}
 
+	/**
+	 * Checks how many creatures which were spawned here are currently alive.
+	 * @return
+	 */
 	public int size() {
-		return entities.size();
+		return creatures.size();
 	}
 
+	/**
+	 * Pops up a new creature.
+	 */
 	private void respawn() {
 		Log4J.startMethod(logger, "respawn");
 		try {
-			// Creature newentity = entity.getClass().newInstance();
-			// String clazz = entity.get("name");
-			// Creature newentity = new
-			// Creature(entity);//zone.getWorld().getRuleManager().getEntityManager().getCreature(clazz);
-			Creature newentity = entity.getInstance();
+			// clone the prototype creature
+			Creature newentity = prototypeCreature.getInstance();
 
 			// A bit of randomization to make Joan and Snaketails a bit happier.
 			// :)
@@ -105,24 +170,20 @@ public class RespawnPoint implements TurnListener {
 			StendhalRPAction.placeat(zone, newentity, x, y);
 
 			newentity.setRespawnPoint(this);
-			entities.add(newentity);
+			creatures.add(newentity);
 
 			zone.add(newentity);
 			newentity.init();
 		} catch (Exception e) {
-			logger.error("error respawning entity " + entity, e);
+			logger.error("error respawning entity " + prototypeCreature, e);
 		} finally {
 			Log4J.finishMethod(logger, "respawn");
 		}
 	}
 
     public void logic() {
-        //Log4J.startMethod(logger, "logic");
-
-		for (Creature creature : entities) {
+		for (Creature creature : creatures) {
 			creature.logic();
 		}
-        
-		//Log4J.finishMethod(logger, "logic");
 	}
 }

@@ -206,28 +206,20 @@ public class Ados implements IContent {
 		// 65, 34 bear
 		DefaultEntityManager manager = (DefaultEntityManager) world.getRuleManager().getEntityManager();
 		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
-		RespawnPoint point = new RespawnPoint(65, 34, 2);
-		point.set(zone, creature, 1);
-		point.setRespawnTime(creature.getRespawnTime());
+		RespawnPoint point = new RespawnPoint(zone, 65, 34, creature, 1);
 		zone.addRespawnPoint(point);
 
 		// 67, 29 bear
-		point = new RespawnPoint(67, 29, 2);
-		point.set(zone, creature, 1);
-		point.setRespawnTime(creature.getRespawnTime());
+		point = new RespawnPoint(zone, 67, 29, creature, 1);
 		zone.addRespawnPoint(point);
 		
 		// 67, 31 black_bear
 		creature = new AdosAttackableCreature(manager.getCreature("black_bear"));
-		point = new RespawnPoint(67, 31, 2);
-		point.set(zone, creature, 1);
-		point.setRespawnTime(creature.getRespawnTime());
+		point = new RespawnPoint(zone, 67, 31, creature, 1);
 		zone.addRespawnPoint(point);
 
 		// 67, 35 black_bear
-		point = new RespawnPoint(67, 35, 2);
-		point.set(zone, creature, 1);
-		point.setRespawnTime(creature.getRespawnTime());
+		point = new RespawnPoint(zone, 67, 35, creature, 1);
 		zone.addRespawnPoint(point);
 	}
 
