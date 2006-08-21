@@ -54,6 +54,7 @@ public class Jail implements TurnListener {
 			String text = "Player " + criminalName + " not found";
 			policeman.sendPrivateText(text);
 			logger.debug(text);
+			return;
 		}
 
 		IRPZone.ID zoneid = new IRPZone.ID("-1_semos_jail");
@@ -61,6 +62,7 @@ public class Jail implements TurnListener {
 			String text = "Zone " + zoneid + " not found";
 			policeman.sendPrivateText(text);
 			logger.debug(text);
+			return;
 		}
 		StendhalRPZone jail = (StendhalRPZone) world.getRPZone(zoneid);
 		
