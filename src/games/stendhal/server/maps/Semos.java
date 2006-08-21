@@ -7,7 +7,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.Chest;
-import games.stendhal.server.entity.OneWayPortal;
+import games.stendhal.server.entity.OneWayPortalDestination;
 import games.stendhal.server.entity.PersonalChest;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Portal;
@@ -892,7 +892,7 @@ public class Semos implements IContent {
 			portal.setDestination("int_semos_townhall", 2);
 			zone.addPortal(portal);
 		}
-		portal = new OneWayPortal();
+		portal = new OneWayPortalDestination();
 		zone.assignRPObjectID(portal);
 		portal.setx(12);
 		portal.sety(49);

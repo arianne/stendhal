@@ -3,7 +3,7 @@ package games.stendhal.server.maps;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Portal;
-import games.stendhal.server.entity.OneWayPortal;
+import games.stendhal.server.entity.OneWayPortalDestination;
 
 import marauroa.common.game.IRPZone;
 
@@ -20,7 +20,7 @@ public class Nalwor implements IContent {
 		portal.setDestination("0_nalwor_forest_w", 61);
 		zone.addPortal(portal);
 
-		portal = new OneWayPortal();
+		portal = new OneWayPortalDestination();
 		zone.assignRPObjectID(portal);
 		portal.setx(87);
 		portal.sety(92);
@@ -35,7 +35,7 @@ public class Nalwor implements IContent {
 		portal.setDestination("0_nalwor_forest_w", 60);
 		zone.addPortal(portal);
 
-		portal = new OneWayPortal();
+		portal = new OneWayPortalDestination();
 		zone.assignRPObjectID(portal);
 		portal.setx(117);
 		portal.sety(91);

@@ -15,7 +15,7 @@ package games.stendhal.server;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.OneWayPortal;
+import games.stendhal.server.entity.OneWayPortalDestination;
 import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.RPEntity;
@@ -432,7 +432,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				addZoneChange(entryPoint);
 				break;
 			}
-			case 6: /* one way portal */
+			case 6: /* one way portal destination */
 			case 3: /* portal stairs up */
 			case 4: /* portal stairs down */
 			{
@@ -441,7 +441,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				if (type != 6) {
 					portal = new Portal();
 				} else {
-					portal = new OneWayPortal();
+					portal = new OneWayPortalDestination();
 				}
 
 				assignRPObjectID(portal);
