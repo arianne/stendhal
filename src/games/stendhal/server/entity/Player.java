@@ -12,9 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.common.Version;
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.creature.Sheep;
@@ -1157,5 +1159,24 @@ public class Player extends RPEntity {
 		text += "\n" + getName() + " is level " + getLevel()
 				+ " and has been playing " + time + ".";
 		return (text);
+	}
+	
+	public void teleport(StendhalRPZone zone, int x, int y, Direction dir, Player teleporter, StendhalRPRuleProcessor rules) {
+		if (StendhalRPAction.placeat(zone, this, x, y)) {
+			StendhalRPAction.changeZone(this, zone.getID().getID());
+			StendhalRPAction.transferContent(this);
+			if (dir != null) {
+				this.setDirection(dir);
+			}
+
+			rules.addGameEvent(teleporter.getName(), "teleport", this
+					.getName());
+
+			world.modify(this);
+		} else {
+			teleporter.sendPrivateText("Position [" + x + "," + y
+					+ "] is occupied");
+		}	
+		
 	}
 }

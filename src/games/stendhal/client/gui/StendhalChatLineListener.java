@@ -405,12 +405,13 @@ public class StendhalChatLineListener implements ActionListener, KeyListener
 
         else if(text.startsWith("/jail ")) // Returns a complete description of the target
           {
-          String[] command = parseString(text, 2);
+          String[] command = parseString(text, 3);
           if(command != null)
             {
             RPAction add = new RPAction();
             add.put("type","jail");
             add.put("target", command[1]);
+            add.put("minutes", command[2]);
             client.send(add);
             }
           }

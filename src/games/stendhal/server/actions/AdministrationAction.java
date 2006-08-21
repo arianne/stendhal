@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.common.Direction;
+import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -249,19 +249,8 @@ public class AdministrationAction extends ActionListener {
 			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(zoneid);
 			int x = action.getInt("x");
 			int y = action.getInt("y");
-
-			if (StendhalRPAction.placeat(zone, teleported, x, y)) {
-				StendhalRPAction.changeZone(teleported, zone.getID().getID());
-				StendhalRPAction.transferContent(teleported);
-
-				rules.addGameEvent(player.getName(), "teleport", teleported
-						.getName());
-
-				world.modify(teleported);
-			} else {
-				player.sendPrivateText("Position [" + x + "," + y
-						+ "] is occupied");
-			}
+			
+			teleported.teleport(zone, x, y, null, player, rules);
 		}
 
 		Log4J.finishMethod(logger, "onTeleport");
@@ -293,16 +282,8 @@ public class AdministrationAction extends ActionListener {
 					.getID());
 			int x = teleported.getx();
 			int y = teleported.gety();
-
-			if (StendhalRPAction.placeat(zone, player, x, y)) {
-				rules.addGameEvent(player.getName(), "teleportto", teleported
-						.getName());
-
-				StendhalRPAction.changeZone(player, zone.getID().getID());
-				StendhalRPAction.transferContent(player);
-			}
-
-			world.modify(player);
+			
+			player.teleport(zone, x, y, null, player, rules);
 		}
 
 		Log4J.finishMethod(logger, "onTeleportTo");
@@ -674,49 +655,10 @@ public class AdministrationAction extends ActionListener {
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onTeleport");
 
-		if (action.has("target")) {
-			Player teleported = null;
-
-			String name = action.get("target");
-			for (Player p : rules.getPlayers()) {
-				if (p.getName().equals(name)) {
-					teleported = p;
-					break;
-				}
-			}
-
-			if (teleported == null) {
-				String text = "Player " + name + " not found";
-				player.sendPrivateText(text);
-				logger.debug(text);
-				return;
-			}
-
-			IRPZone.ID zoneid = new IRPZone.ID("-1_semos_jail");
-			if (!world.hasRPZone(zoneid)) {
-				String text = "Zone " + zoneid + " not found";
-				player.sendPrivateText(text);
-				logger.debug(text);
-				return;
-			}
-
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(zoneid);
-			int x = 8;
-			int y = 2;
-
-			if (StendhalRPAction.placeat(zone, teleported, x, y)) {
-				StendhalRPAction.changeZone(teleported, zone.getID().getID());
-				StendhalRPAction.transferContent(teleported);
-				teleported.setDirection(Direction.DOWN);
-
-				rules.addGameEvent(player.getName(), "teleport", teleported
-						.getName());
-
-				world.modify(teleported);
-			} else {
-				player.sendPrivateText("Position [" + x + "," + y
-						+ "] is occupied");
-			}
+		if (action.has("target") && action.has("minutes")) {
+;			String target = action.get("target");
+			int minutes = action.getInt("minutes");
+			Jail.get(world, rules).imprison(target, player, minutes);
 		}
 
 		Log4J.finishMethod(logger, "onTeleport");
