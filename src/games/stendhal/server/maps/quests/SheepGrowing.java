@@ -71,7 +71,10 @@ public class SheepGrowing extends AbstractQuest {
 
 					@Override
 					protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
-						if (!player.hasSheep()) {
+						if (amount > 1) {
+							seller.say("Sorry! You don't look like someone who is able to take care of several sheep at a time.");
+							return false;
+						} else if (!player.hasSheep()) {
 							if (! player.drop("money", getCharge(player))) {
 								seller.say("A real pity! You don't have enough money!");
 								return false;
