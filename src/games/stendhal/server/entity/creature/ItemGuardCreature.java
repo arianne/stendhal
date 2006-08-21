@@ -22,8 +22,8 @@ import org.apache.log4j.Logger;
 
 /**
  * An ItemGuardCreature is a creature that is responsible for guarding a
- * special item. Once it is killed, a copy of this special item (e.g. a key)
- * is given to everyone who helped killing it.
+ * special item (e.g. a key). Once it is killed, a copy of this special item
+ * is given to the player who killed it.
  */
 public class ItemGuardCreature extends Creature {
 	  /** the logger instance. */
