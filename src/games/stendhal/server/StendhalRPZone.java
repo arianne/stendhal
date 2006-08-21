@@ -728,39 +728,66 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return collisionMap.collides(x, y);
 	}
 
+    /**
+     * Checks whether the given entity would be able to stand at the given
+     * position, or if it would collide with the collision map or with another
+     * entity. 
+     * @param entity The entity that would stand on the given position
+     * @param x The x coordinate of the position where the entity would stand
+     * @param y The y coordinate of the position where the entity would stand
+     * @return true iff the entity could stand on the given position
+     * @throws AttributeNotFoundException
+     */
     public synchronized boolean collides(Entity entity, double x, double y)
     throws AttributeNotFoundException {
         return collides(entity, x, y, true);
     }
 
+    /**
+     * Checks whether the given entity would be able to stand at the given
+     * position, or if it would collide with the collision map or
+     * (if <i>checkObjects</i> is enabled) with another entity. 
+     * @param entity The entity that would stand on the given position
+     * @param x The x coordinate of the position where the entity would stand
+     * @param y The y coordinate of the position where the entity would stand
+     * @param checkObjects If false, only the collision map will be used. 
+     * @return true iff the entity could stand on the given position
+     * @throws AttributeNotFoundException
+     */
     public synchronized boolean collides(Entity entity, double x, double y, boolean checkObjects)
 			throws AttributeNotFoundException {
 		Rectangle2D area = entity.getArea(x, y);
 
-		if (collisionMap.collides(area) == false) {
-            if (!checkObjects) {
-                return true;
-            }
-			Rectangle2D otherarea = new Rectangle.Double();
+		if (collisionMap.collides(area)) {
+			return true;
+		} else if (!checkObjects) {
+            return true;
+        } else {
+        	// For every other object in this zone, check whether it's in the
+        	// way.
+			Rectangle2D otherArea = new Rectangle.Double();
 			for (RPObject other : objects.values()) {
 				Entity otherEntity = (Entity) other;
 
 				if (otherEntity.isObstacle()) {
-					otherEntity.getArea(otherarea, otherEntity.getx(),
+					// There is something the entity couldn't stand upon.
+					// Check if it's in the way. 
+					otherEntity.getArea(otherArea, otherEntity.getx(),
 							otherEntity.gety());
-					if (area.intersects(otherarea)
+					if (area.intersects(otherArea)
 							&& !entity.getID().equals(otherEntity.getID())) {
 						return true;
 					}
 				}
 			}
 			return false;
-		} else {
-			return true;
 		}
 	}
 
-	/** @return the entity at x,y or null if there is none */
+	/**
+	 * 
+	 * @return the entity at x,y or null if there is none
+	 */
 	public synchronized Entity getEntityAt(double x, double y)
 			throws AttributeNotFoundException {
 		for (RPObject other : objects.values()) {
