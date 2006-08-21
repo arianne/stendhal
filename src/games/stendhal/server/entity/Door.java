@@ -21,10 +21,26 @@ import java.awt.geom.Rectangle2D;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 
+/**
+ * A door is a special kind of portal which requires a key to pass it.
+ * If the player carries the key with him, he can use the door just
+ * like a normal portal; it will automatically open and close.
+ */
 public class Door extends Portal implements TurnListener {
+	
+	/** Whether or not the door is currently open */
 	private boolean open;
-    private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
-    private int turnToClose = 0;
+    
+	/**
+	 * How many turns it takes until door that has just been opened
+	 * automatically closes itself
+	 */
+	private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
+    
+	/**
+	 * How many turns it will take until this door will close again. 
+	 */
+	private int turnToClose = 0;
 
 	public static void generateRPClass() {
 		RPClass door = new RPClass("door");
@@ -34,6 +50,14 @@ public class Door extends Portal implements TurnListener {
 		door.add("open", RPClass.FLAG);
 	}
 
+	/**
+	 * Creates a new door.
+	 * @param key The item that must be carried to pass through this door 
+	 * @param clazz The class. Responsible for how this door looks like.
+	 * @param dir The direction in which one has to walk in order to pass
+	 *            through this door
+	 * @throws AttributeNotFoundException
+	 */
 	public Door(String key, String clazz, Direction dir)
 			throws AttributeNotFoundException {
 		super();
@@ -54,19 +78,22 @@ public class Door extends Portal implements TurnListener {
 	@Override
 	public void update() {
 		super.update();
-		open = false;
-		if (has("open"))
-			open = true;
+		open = has("open");
 	}
 
+	/**
+	 * Opens the door. 
+	 */
 	public void open() {
 		TurnNotifier turnNotifier = TurnNotifier.get();
 		this.open = true;
-        this.turnToClose = turnNotifier.getNumberOfNextTurn() + TURNS_TO_STAY_OPEN;
-        turnNotifier.notifyAtTurn(turnToClose, this, null);
+        turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this, null);
 		put("open", "");
 	}
 
+	/**
+	 * Closes the door. 
+	 */
 	public void close() {
 		this.open = false;
 		remove("open");
@@ -79,7 +106,7 @@ public class Door extends Portal implements TurnListener {
 	@Override
 	public void onUsed(RPEntity user) {
 		if (has("locked") && user.isEquipped(get("locked"))) {
-			// open it, even it is already open to rest turnToClose
+			// open it, even it is already open to reset turnToClose
 			open();
 			world.modify(this);
 		} else {
@@ -88,7 +115,6 @@ public class Door extends Portal implements TurnListener {
 				world.modify(this);
 			}
 		}
-
 		if (isOpen()) {
 			super.onUsed(user);
 		}
