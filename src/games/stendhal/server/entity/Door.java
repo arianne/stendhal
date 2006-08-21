@@ -25,6 +25,10 @@ import marauroa.common.game.RPClass;
  * A door is a special kind of portal which requires a key to pass it.
  * If the player carries the key with him, he can use the door just
  * like a normal portal; it will automatically open and close.
+ * 
+ * Note that you can link a door with a portal; that way, people only
+ * require the key when walking in one direction and can walk in the
+ * other direction without any key.
  */
 public class Door extends Portal implements TurnListener {
 	
@@ -32,13 +36,13 @@ public class Door extends Portal implements TurnListener {
 	private boolean open;
     
 	/**
-	 * How many turns it takes until door that has just been opened
-	 * automatically closes itself
+	 * How many turns it takes until door automatically closes itself
+	 * after somebody walked through it.
 	 */
 	private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
     
 	/**
-	 * How many turns it will take until this door will close again. 
+	 * The turn at which this door should close the next time. 
 	 */
 	private int turnToClose = 0;
 
@@ -85,9 +89,15 @@ public class Door extends Portal implements TurnListener {
 	 * Opens the door. 
 	 */
 	public void open() {
-		TurnNotifier turnNotifier = TurnNotifier.get();
 		this.open = true;
-        turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this, null);
+		
+		TurnNotifier turnNotifier = TurnNotifier.get();
+		// remember the turn number, in case someone else uses the door
+		// while it is still open; in this time, the door should stay
+		// open longer.
+		this.turnToClose = turnNotifier.getNumberOfNextTurn() + TURNS_TO_STAY_OPEN;
+        turnNotifier.notifyAtTurn(turnToClose, this, null);
+        
 		put("open", "");
 	}
 
