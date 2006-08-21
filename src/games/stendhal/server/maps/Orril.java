@@ -6,9 +6,8 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Door;
 import games.stendhal.server.entity.Portal;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.creature.ItemGuardCreature;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
@@ -20,10 +19,8 @@ import games.stendhal.server.rule.defaultruleset.DefaultItem;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 
-import org.apache.log4j.Logger;
 
 public class Orril implements IContent {
 	private StendhalRPWorld world;
@@ -50,58 +47,21 @@ public class Orril implements IContent {
 		"0_orril_river_s")));
 	}
 
-	public static class QuestDropItemOnDeath extends Creature {
-		  /** the logger instance. */
-		  private static final Logger logger = Log4J.getLogger(QuestDropItemOnDeath.class);
-
-		  private String itemType;
-
-		public QuestDropItemOnDeath(Creature copy, String itemType) {
-			super(copy);
-			this.itemType = itemType;
-
-			noises = new LinkedList<String>(noises);
-			noises.add("Thou shall not obtain the "
-					+ itemType.replace("_", " ") + "!");
-
-			if (!world.getRuleManager().getEntityManager().isItem(itemType)) {
-				logger.error(copy.getName() + " drops unexisting item "
-						+ itemType);
-			}
-		}
-
-		@Override
-		public Creature getInstance() {
-			return new QuestDropItemOnDeath(this, itemType);
-		}
-
-		@Override
-		public void onDead(RPEntity who) {
-			if (!who.isEquipped(itemType)) {
-				Item item = world.getRuleManager().getEntityManager().getItem(
-						itemType);
-				who.equip(item, true);
-			}
-			super.onDead(who);
-		}
-	}
-
 	private void buildCastleDungeonArea() {
-		DefaultEntityManager manager = (DefaultEntityManager) world
-				.getRuleManager().getEntityManager();
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"-1_orril_castle_w"));
 
-		List<String> slots = new LinkedList<String>();
-		slots.add("bag");
-
+		DefaultEntityManager manager = (DefaultEntityManager) world
+				.getRuleManager().getEntityManager();
 		DefaultItem item = new DefaultItem("key", "silver",
 				"dungeon_silver_key", -1);
 		item.setWeight(1);
-		item.setEquipableSlots(slots);
+		List<String> bagOnly = new LinkedList<String>();
+		bagOnly.add("bag");
+		item.setEquipableSlots(bagOnly);
 		manager.addItem(item);
 
-		Creature creature = new QuestDropItemOnDeath(manager
+		Creature creature = new ItemGuardCreature(manager
 				.getCreature("green_dragon"), "dungeon_silver_key");
 		RespawnPoint point = new RespawnPoint(zone, 69, 43, creature, 1);
 		zone.addRespawnPoint(point);
@@ -125,10 +85,10 @@ public class Orril implements IContent {
 
 		item = new DefaultItem("key", "gold", "lich_gold_key", -1);
 		item.setWeight(1);
-		item.setEquipableSlots(slots);
+		item.setEquipableSlots(bagOnly);
 		manager.addItem(item);
 
-		creature = new QuestDropItemOnDeath(manager.getCreature("royal_mummy"),
+		creature = new ItemGuardCreature(manager.getCreature("royal_mummy"),
 				"lich_gold_key");
 		point = new RespawnPoint(zone, 54, 48, creature, 1);
 		zone.addRespawnPoint(point);

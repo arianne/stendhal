@@ -1,0 +1,62 @@
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+package games.stendhal.server.entity.creature;
+
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Item;
+
+import java.util.LinkedList;
+
+import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
+
+/**
+ * An ItemGuardCreature is a creature that is responsible for guarding a
+ * special item. Once it is killed, a copy of this special item (e.g. a key)
+ * is given to everyone who helped killing it.
+ */
+public class ItemGuardCreature extends Creature {
+	  /** the logger instance. */
+	  private static final Logger logger = Log4J.getLogger(ItemGuardCreature.class);
+
+	  private String itemType;
+
+	public ItemGuardCreature(Creature copy, String itemType) {
+		super(copy);
+		this.itemType = itemType;
+
+		noises = new LinkedList<String>(noises);
+		noises.add("Thou shall not obtain the "
+				+ itemType.replace("_", " ") + "!");
+
+		if (!world.getRuleManager().getEntityManager().isItem(itemType)) {
+			logger.error(copy.getName() + " drops unexisting item "
+					+ itemType);
+		}
+	}
+
+	@Override
+	public Creature getInstance() {
+		return new ItemGuardCreature(this, itemType);
+	}
+
+	@Override
+	public void onDead(RPEntity who) {
+		if (!who.isEquipped(itemType)) {
+			Item item = world.getRuleManager().getEntityManager().getItem(
+					itemType);
+			who.equip(item, true);
+		}
+		super.onDead(who);
+	}
+}
