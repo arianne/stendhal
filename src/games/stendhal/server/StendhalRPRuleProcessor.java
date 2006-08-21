@@ -279,6 +279,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public List<Player> getPlayers() {
 		return playersObject;
 	}
+	
+	public Player getPlayer(String name) {
+		for (Player player : getPlayers()) {
+			if (player.getName().equals(name)) {
+				return player;
+			}
+		}
+		return null;
+	}
 
 	public List<PlantGrower> getPlantGrowers() {
 		return plantGrowers;
