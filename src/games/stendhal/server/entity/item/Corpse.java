@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.TurnNotifier;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;

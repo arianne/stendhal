@@ -1,6 +1,5 @@
-package games.stendhal.server;
+package games.stendhal.server.events;
 
-import games.stendhal.server.events.TurnListener;
 import games.stendhal.common.Pair;
 
 import java.util.HashMap;
@@ -16,7 +15,7 @@ import org.apache.log4j.Logger;
  * Turn events are currently modeled as a Pair of a TurnListener and a String.
  * The register maps each turn number to the set of events that should take
  * place at that turn. 
- * We should consider creating a simple class TurnEvent to replace the Pair
+ * We should consider creating a simple datastructure to replace the Pair
  * construction; that might lead to more readable code. 
  *
  * @author hendrik

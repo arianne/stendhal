@@ -34,6 +34,7 @@ import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.HashMap;

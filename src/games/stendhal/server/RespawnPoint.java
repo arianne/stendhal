@@ -15,6 +15,7 @@ package games.stendhal.server;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 import java.util.LinkedList;
 import java.util.List;

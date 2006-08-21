@@ -13,8 +13,8 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.TurnNotifier;
 import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 

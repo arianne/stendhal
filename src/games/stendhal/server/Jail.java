@@ -3,9 +3,9 @@ package games.stendhal.server;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.TurnNotifier;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 import marauroa.server.game.RPWorld;
