@@ -2,6 +2,7 @@ package games.stendhal.server.maps;
 
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.portal.Portal;
 import marauroa.common.game.IRPZone;
 
 public class Afterlife implements IContent {

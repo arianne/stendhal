@@ -15,15 +15,15 @@ package games.stendhal.server;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.OneWayPortalDestination;
 import games.stendhal.server.entity.PlantGrower;
-import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.portal.OneWayPortalDestination;
+import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.Rectangle;

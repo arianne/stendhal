@@ -4,12 +4,12 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Door;
-import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.portal.Door;
+import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
 

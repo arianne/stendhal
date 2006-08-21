@@ -17,12 +17,12 @@ import games.stendhal.common.Line;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.Portal;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.pathfinder.Path.Node;
 

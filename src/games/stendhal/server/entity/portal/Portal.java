@@ -10,10 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.portal;
 
 import java.awt.geom.Rectangle2D;
 import games.stendhal.server.events.UseEvent;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.StendhalRPAction;

@@ -1,4 +1,6 @@
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.portal;
+
+import games.stendhal.server.entity.RPEntity;
 
 /**
  * A OneWayPortalDestination is an invisible point where players are

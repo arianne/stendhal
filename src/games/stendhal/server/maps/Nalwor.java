@@ -2,8 +2,8 @@ package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Portal;
-import games.stendhal.server.entity.OneWayPortalDestination;
+import games.stendhal.server.entity.portal.OneWayPortalDestination;
+import games.stendhal.server.entity.portal.Portal;
 
 import marauroa.common.game.IRPZone;
 

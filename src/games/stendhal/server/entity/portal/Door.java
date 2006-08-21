@@ -10,9 +10,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.portal;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
