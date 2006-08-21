@@ -60,30 +60,25 @@ public class PlayersQuery extends ActionListener {
 		Log4J.startMethod(logger, "where");
 
 		if (action.has("target")) {
-			String who = action.get("target");
+			String whoName = action.get("target");
 
-			rules.addGameEvent(player.getName(), "where", who);
-
-			for (Player p : rules.getPlayers()) {
-				if (p.getName().equals(who)) {
-					player.sendPrivateText(p.getName() + " is in "
-							+ p.get("zoneid") + " at (" + p.getx() + ","
-							+ p.gety() + ")");
-					world.modify(player);
-					return;
-				}
-			}
-
-			if (who.equals("sheep") && player.hasSheep()) {
+			rules.addGameEvent(player.getName(), "where", whoName);
+			
+			Player who = rules.getPlayer(whoName);
+			if (who != null) {
+				player.sendPrivateText(who.getName() + " is in "
+						+ who.get("zoneid") + " at (" + who.getx() + ","
+						+ who.gety() + ")");
+				world.modify(player);
+			} else if (whoName.equals("sheep") && player.hasSheep()) {
 				Sheep sheep = (Sheep) world.get(player.getSheep());
 				player.sendPrivateText("sheep is in " + sheep.get("zoneid")
 						+ " at (" + sheep.getx() + "," + sheep.gety() + ")");
 				world.modify(player);
-				return;
+			} else {
+				player.sendPrivateText(action.get("target")
+					+ " is currently not logged in.");
 			}
-
-			player.sendPrivateText(action.get("target")
-					+ " is not currently logged.");
 		}
 
 		Log4J.finishMethod(logger, "where");

@@ -66,17 +66,15 @@ public class ChatAction extends ActionListener {
 		if (action.has("target") && action.has("text")) {
 			String message = player.getName() + " tells you: "
 					+ action.get("text");
-			for (Player p : rules.getPlayers()) {
-				if (p.getName().equals(action.get("target"))) {
-					p.sendPrivateText(message);
-					player.sendPrivateText("You tell " + p.getName() + ": "
-							+ action.get("text"));
-					world.modify(p);
-					world.modify(player);
-					return;
-				}
+			Player receiver = rules.getPlayer(action.get("target"));
+			if (receiver != null) {
+				receiver.sendPrivateText(message);
+				player.sendPrivateText("You tell " + receiver.getName() + ": "
+						+ action.get("text"));
+				world.modify(receiver);
+				world.modify(player);
+				return;
 			}
-
 			player.sendPrivateText(action.get("target")
 					+ " is not currently logged.");
 		}

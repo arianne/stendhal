@@ -60,14 +60,9 @@ public class BuddyAction extends ActionListener {
 			}
 
 			int online = 0;
-
-			for (Player p : rules.getPlayers()) {
-				if (p.getName().equals(who)) {
-					online = 1;
-					break;
-				}
+			if (rules.getPlayer(who) != null) {
+				online = 1;
 			}
-
 			listBuddies.put("_" + who, online);
 		}
 

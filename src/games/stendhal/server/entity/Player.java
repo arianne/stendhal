@@ -364,17 +364,13 @@ public class Player extends RPEntity {
 		if (player.getSlot("!buddy").size() > 0) {
 			RPObject buddies = player.getSlot("!buddy").iterator().next();
 			for (String name : buddies) {
+				// what is this underscore supposed to do?
 				if (name.charAt(0) == '_') {
-					boolean online = false;
-					for (Player buddy : rp.getPlayers()) {
-						if (name.equals("_" + buddy.getName())) {
+					// cut off the strange underscore
+					Player buddy = rp.getPlayer(name.substring(1));
+					if (buddy != null) {
 							player.notifyOnline(buddy.getName());
-							online = true;
-							break;
-						}
-					}
-
-					if (!online) {
+					} else {
 						player.notifyOffline(name.substring(1));
 					}
 				}

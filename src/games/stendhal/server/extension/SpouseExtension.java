@@ -75,15 +75,6 @@ public class SpouseExtension extends StendhalServerExtension {
      
     }
     
-    private Player findPlayer (String name) {
-        for (Player p : rules.getPlayers()) {
-            if (p.getName().equals(name)) {
-                return(p);
-            }
-        }
-        return(null);  
-    }
-    
     private void onMarry(RPWorld world, StendhalRPRuleProcessor rules,
             Player player, RPAction action) {
         Log4J.startMethod(logger, "onMarry");
@@ -104,7 +95,7 @@ public class SpouseExtension extends StendhalServerExtension {
         
         if(action.has("target")) {
             name1 = action.get("target");
-            player1 = findPlayer(name1);
+            player1 = rules.getPlayer(name1);
             if(player1 == null) {
                 canMarry = false;
                 text += "Player " + name1 + " not found. ";
@@ -118,7 +109,7 @@ public class SpouseExtension extends StendhalServerExtension {
         
         if(action.has("args")) {
             name2 = action.get("args");
-            player2 = findPlayer(name2);
+            player2 = rules.getPlayer(name2);
             if(player2 == null) {
                 canMarry = false;
                 text += "Player " + name2 + " not found. ";
@@ -175,7 +166,7 @@ public class SpouseExtension extends StendhalServerExtension {
             Player teleported = null;
 
             String name = player.getQuest(SPOUSE);
-            teleported = findPlayer(name);
+            teleported = rules.getPlayer(name);
 
             if (teleported == null) {
                 String text = "Your spouse " + name + " is not online.";
@@ -188,6 +179,8 @@ public class SpouseExtension extends StendhalServerExtension {
                     .getID());
             int x = teleported.getx();
             int y = teleported.gety();
+            
+            // TODO: use Player.teleport()
 
             if (StendhalRPAction.placeat(zone, player, x, y)) {
                 rules.addGameEvent(player.getName(), "teleportto", teleported
