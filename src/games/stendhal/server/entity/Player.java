@@ -1089,21 +1089,21 @@ public class Player extends RPEntity {
 		}
 
 		while (poisonToConsume.size() > 0) {
-			ConsumableItem consumableItem = poisonToConsume.get(0);
+			ConsumableItem poison = poisonToConsume.get(0);
 
-			if (turn % consumableItem.getFrecuency() != 0) {
+			if (turn % poison.getFrecuency() != 0) {
 				break;
 			}
 
-			if (!consumableItem.consumed()) {
-				consumableItem.consume();
-				int amount = consumableItem.getRegen();
+			if (!poison.consumed()) {
+				poison.consume();
+				int amount = poison.getRegen();
 				put("poisoned", amount);
 
 				if (getHP() + amount > 0) {
 					setHP(getHP() + amount);
 				} else {
-					kill(this);
+					kill(poison);
 				}
 
 				world.modify(this);
