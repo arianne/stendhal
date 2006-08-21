@@ -452,6 +452,7 @@ public abstract class RPEntity extends Entity {
 		if (killer instanceof RPEntity) {
 			((RPEntity) killer).stopAttack();
 			rp.addGameEvent(((RPEntity) killer).getName(), "killed", getName());
+			world.modify(killer);
 		}
 
 		// Establish how much xp points your are rewarded
@@ -529,7 +530,6 @@ public abstract class RPEntity extends Entity {
 		zone.assignRPObjectID(corpse);
 		zone.add(corpse);
 
-		world.modify(killer);
 		if (remove) {
 			world.remove(getID());
 		}
