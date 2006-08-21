@@ -276,10 +276,20 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		bloodsToRemove.add(blood);
 	}
 
+	/**
+	 * Gets all players who are currently online.
+	 * @return A list of all online players
+	 */
 	public List<Player> getPlayers() {
 		return playersObject;
 	}
 	
+	/**
+	 * Finds an online player with a specific name. 
+	 * @param name The player's name
+	 * @return The player, or null if no player with the given name is
+	 *         currently online.
+	 */
 	public Player getPlayer(String name) {
 		for (Player player : getPlayers()) {
 			if (player.getName().equals(name)) {
