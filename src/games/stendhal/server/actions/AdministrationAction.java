@@ -213,15 +213,8 @@ public class AdministrationAction extends ActionListener {
 
 		if (action.has("target") && action.has("zone") && action.has("x")
 				&& action.has("y")) {
-			Player teleported = null;
-
 			String name = action.get("target");
-			for (Player p : rules.getPlayers()) {
-				if (p.getName().equals(name)) {
-					teleported = p;
-					break;
-				}
-			}
+			Player teleported = rules.getPlayer(name);
 
 			if (teleported == null) {
 				String text = "Player " + name + " not found";
@@ -261,16 +254,9 @@ public class AdministrationAction extends ActionListener {
 		Log4J.startMethod(logger, "onTeleportTo");
 
 		if (action.has("target")) {
-			Player teleported = null;
-
 			String name = action.get("target");
-			for (Player p : rules.getPlayers()) {
-				if (p.getName().equals(name)) {
-					teleported = p;
-					break;
-				}
-			}
-
+			Player teleported = rules.getPlayer(name);
+			
 			if (teleported == null) {
 				String text = "Player " + name + " not found";
 				player.sendPrivateText(text);
@@ -295,15 +281,8 @@ public class AdministrationAction extends ActionListener {
     
         if (action.has("target")) {
 
-            Player target = null;
-    
             String name = action.get("target");
-            for (Player p : rules.getPlayers()) {
-                if (p.getName().equals(name)) {
-                    target = p;
-                    break;
-                }
-            }
+            Player target = rules.getPlayer(name);
     
             if (target == null) {
                 logger.debug("Player " + name + " not found");
@@ -490,15 +469,8 @@ public class AdministrationAction extends ActionListener {
 		Log4J.startMethod(logger, "onSummonAt");
 
 		if (action.has("target") && action.has("slot") && action.has("item")) {
-			Player changed = null;
-
 			String name = action.get("target");
-			for (Player p : rules.getPlayers()) {
-				if (p.getName().equals(name)) {
-					changed = p;
-					break;
-				}
-			}
+			Player changed = rules.getPlayer(name);
 
 			if (changed == null) {
 				logger.debug("Player " + name + " not found");
@@ -664,6 +636,14 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onTeleport");
 	}
 
+	/**
+	 * ???
+	 * @param world
+	 * @param rules
+	 * @param player
+	 * @param action
+	 * @return ???
+	 */
 	private Entity getTarget(RPWorld world, StendhalRPRuleProcessor rules,
 			Player player, RPAction action) {
 
@@ -675,13 +655,8 @@ public class AdministrationAction extends ActionListener {
 			id = action.get("target");
 		}
 		if (id != null) {
-			if (!id.startsWith("#")) { 
-				for (Player p : rules.getPlayers()) {
-					if (p.getName().equals(id)) {
-						target = p;
-						break;
-					}
-				}
+			if (!id.startsWith("#")) {
+				target = rules.getPlayer(id);
 				return target;
 			} else {
 				id = id.substring(1);
