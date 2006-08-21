@@ -43,7 +43,7 @@ public class RespawnPoint implements TurnListener {
 		maximum = 0;
 
 		respawning = true;
-		TurnNotifier.get().notifyInTurns(0, this); // respawn in next turn
+		TurnNotifier.get().notifyInTurns(0, this, null); // respawn in next turn
 		respawnTime = TURNSTORESPAWN;
 	}
 
@@ -63,21 +63,21 @@ public class RespawnPoint implements TurnListener {
 
 		if (!respawning) {
 			respawning = true;
-			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this);
+			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this, null);
 		}
 
 		entities.remove(dead);
 		Log4J.finishMethod(logger, "notifyDead");
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(int currentTurn, String message) {
 		respawn();
 
 		// Is this all or should we spawn more creatures?
 		if (entities.size() == maximum) {
 			respawning = false;
 		} else {
-			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this);
+			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this, null);
 		}
 	}
 

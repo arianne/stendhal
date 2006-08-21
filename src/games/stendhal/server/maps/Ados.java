@@ -35,7 +35,8 @@ public class Ados implements IContent {
 	
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 		private static long lastShoutTime = 0;
-		private String message = null;
+		
+		private String cryForHelp = null;
 
 		/**
 		 * An attackable creature that will cause Katinka to shout if it 
@@ -54,9 +55,9 @@ public class Ados implements IContent {
 				long currentTime = System.currentTimeMillis();
 				if (lastShoutTime + 5*60*1000 < currentTime) {
 					lastShoutTime = currentTime;
-					message = "Katinka shouts: Help! An " + who.get("name") + " is eating our " + this.get("name") + "s.";
+					cryForHelp = "Katinka shouts: Help! An " + who.get("name") + " is eating our " + this.get("name") + "s.";
 					// HACK: we need to wait a turn because the message is lost otherwise
-					TurnNotifier.get().notifyInTurns(0, this);
+					TurnNotifier.get().notifyInTurns(0, this, null);
 				}
 			}
 		}
@@ -66,10 +67,10 @@ public class Ados implements IContent {
 			return new AdosAttackableCreature(this);
 		}
 
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(int currentTurn, String message) {
 			// HACK: we need to wait a turn because the message is lost otherwise
 			// sends the message to all players
-			StendhalRPAction.shout(message.replace('_', ' '));
+			StendhalRPAction.shout(cryForHelp.replace('_', ' '));
 		}
 	}
 

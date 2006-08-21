@@ -42,7 +42,7 @@ public class Blood extends Entity implements TurnListener {
 		put("type", "blood");
 		put("class", Rand.rand(4));
 
-		TurnNotifier.get().notifyInTurns(DEGRADATION_TIMEOUT, this);
+		TurnNotifier.get().notifyInTurns(DEGRADATION_TIMEOUT, this, null);
 
 		Rectangle2D rect = entity.getArea(entity.getx(), entity.gety());
 
@@ -65,7 +65,7 @@ public class Blood extends Entity implements TurnListener {
 		return ("You see a blood pool.");
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(int currentTurn, String message) {
 		world.remove(getID());
 		rp.removeBlood(this);
 	}

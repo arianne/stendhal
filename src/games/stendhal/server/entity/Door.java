@@ -63,7 +63,7 @@ public class Door extends Portal implements TurnListener {
 		TurnNotifier turnNotifier = TurnNotifier.get();
 		this.open = true;
         this.turnToClose = turnNotifier.getNumberOfNextTurn() + TURNS_TO_STAY_OPEN;
-        turnNotifier.notifyAtTurn(turnToClose, this);
+        turnNotifier.notifyAtTurn(turnToClose, this, null);
 		put("open", "");
 	}
 
@@ -109,7 +109,7 @@ public class Door extends Portal implements TurnListener {
 		return (text);
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(int currentTurn, String message) {
 		// if two players use this turn, we will be called twice.
 		// Ignore the first call.
 		if (currentTurn == turnToClose) {

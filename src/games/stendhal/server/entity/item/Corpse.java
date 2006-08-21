@@ -55,7 +55,7 @@ public class Corpse extends PassiveEntity implements TurnListener {
 
 		setx(x);
 		sety(y);
-		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this);
+		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this, null);
 		stage = 0;
 		put("stage", stage);
 
@@ -101,7 +101,7 @@ public class Corpse extends PassiveEntity implements TurnListener {
 		setx((int) rect.getCenterX());
 		sety((int) rect.getCenterY());
 
-		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this);
+		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this, null);
 		stage = 0;
 		put("stage", stage);
 
@@ -143,7 +143,7 @@ public class Corpse extends PassiveEntity implements TurnListener {
 		return stage <= MAX_STAGE;
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(int currentTurn, String message) {
 		if (!isDegrading) {
 			return;
 		}
@@ -168,7 +168,7 @@ public class Corpse extends PassiveEntity implements TurnListener {
 			}
 
 		} else {
-			TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this);
+			TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this, null);
 		}
 	}
 
