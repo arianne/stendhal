@@ -1709,8 +1709,7 @@ the right click menu we talked about before.
 	<item name="rod_of_the_gm">
 		<type class="club" subclass="rod_of_the_gm"/>
 		<attributes>
-			<atk value="100"/>lol
-
+			<atk value="100"/>
 			<def value="100"/>
 		</attributes>
 		<weight value="0.01"/>
