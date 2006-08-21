@@ -419,6 +419,10 @@ public abstract class RPEntity extends Entity {
 		world.modify(this);
 	}
 
+	/**
+	 * Kills this RPEntity.
+	 * @param who The killer
+	 */
 	protected void kill(RPEntity who) {
 		setHP(0);
 		rp.killRPEntity(this, who);
@@ -450,8 +454,9 @@ public abstract class RPEntity extends Entity {
 
 		// Establish how much xp points your are rewarded
 		if (getXP() > 0) {
-			int xp_reward = (int) (this.getXP() * 0.05);
+			int xpReward = (int) (this.getXP() * 0.05);
 
+			// for everyone who helped killing this RPEntity:
 			for (Map.Entry<RPEntity, Integer> entry : damageReceived.entrySet()) {
 				int damageDone = entry.getValue().intValue();
 				RPEntity entity = entry.getKey();
@@ -459,36 +464,38 @@ public abstract class RPEntity extends Entity {
 				String name = (entity.has("name") ? entity.get("name") : entity
 						.get("type"));
 				logger.debug(name + " did " + damageDone + " of "
-						+ totalDamageReceived + ". Reward was " + xp_reward);
+						+ totalDamageReceived + ". Reward was " + xpReward);
 
-				int xp_earn = (int) (xp_reward * ((float) damageDone / (float) totalDamageReceived));
+				int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
 
 				/** We limit xp gain for up to eight levels difference */
-				double gain_xp_limitation = 1 + ((getLevel() - entity
+				double gainXpLimitation = 1 + ((getLevel() - entity
 						.getLevel()) / (20.0));
-				if (gain_xp_limitation < 0) {
-					gain_xp_limitation = 0;
+				if (gainXpLimitation < 0) {
+					gainXpLimitation = 0;
 				}
 
-				if (gain_xp_limitation > 1) {
-					gain_xp_limitation = 1;
+				if (gainXpLimitation > 1) {
+					gainXpLimitation = 1;
 				}
 
-				logger.debug("OnDEAD: " + xp_reward + "\t" + damageDone + "\t"
-						+ totalDamageReceived + "\t" + gain_xp_limitation);
+				logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
+						+ totalDamageReceived + "\t" + gainXpLimitation);
 
 				if (entity instanceof Player) // XP reward only for players
 				{
 					Player p = (Player) entity;
-					int reward=(int) (xp_earn * gain_xp_limitation);
+					int reward = (int) (xpEarn * gainXpLimitation);
 					
-					// We make minimum reward to be 1.
-					if(reward==0) {
-						reward=1;
+					// We ensure that the player gets at least 1 experience
+					// point, because getting nothing lowers motivation.
+					if (reward == 0) {
+						reward = 1;
 					}						 
-						
+					
 					p.addXP(reward);
 					
+					// find out if the player killed this RPEntity on his own
 					if (damageDone == totalDamageReceived) {
 						p.setKill(getName(), "solo");
 					} else if (!p.hasKilledSolo(getName())) {
@@ -788,6 +795,14 @@ public abstract class RPEntity extends Entity {
 		return isEquipped(name, 1);
 	}
 
+	/**
+	 * Gets an item that is carried by the RPEntity.
+	 * If the item is stackable, gets all that are on the first
+	 * stack that is found. 
+	 * @param name The item's name
+	 * @return The item, or a stack of stackable items, or null if nothing
+	 *         was found
+	 */
 	public Item getEquipped(String name) {
 		// boolean found = false;
 		for (RPSlot slot : this.slots()) {
