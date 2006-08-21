@@ -12,6 +12,12 @@ import org.apache.log4j.Logger;
 
 /**
  * Other classes can register here to be notified sometime in the future.
+ * 
+ * Turn events are currently modeled as a Pair of a TurnListener and a String.
+ * The register maps each turn number to the set of events that should take
+ * place at that turn. 
+ * We should consider creating a simple class TurnEvent to replace the Pair
+ * construction; that might lead to more readable code. 
  *
  * @author hendrik
  */
@@ -87,20 +93,20 @@ public class TurnNotifier {
 	}
 	
 	/**
-	 * Notifies the class <i>turnEvent</i> in <i>diff</i> turns.
+	 * Notifies the <i>turnListener</i> in <i>diff</i> turns.
 	 * 
 	 * @param diff the number of turns to wait
-	 * @param turnEvent the class to notify
+	 * @param turnListener the object to notify
 	 */
-	public void notifyInTurns(int diff, TurnListener turnEvent, String message) {
-		notifyAtTurn(currentTurn + diff + 1, turnEvent, message);
+	public void notifyInTurns(int diff, TurnListener turnListener, String message) {
+		notifyAtTurn(currentTurn + diff + 1, turnListener, message);
 	}
 
 	/**
-	 * Notifies the class <i>turnEvent</i> at turn number <i>turn</i>.
+	 * Notifies the <i>turnListener</i> at turn number <i>turn</i>.
 	 * 
 	 * @param turn the number of the turn
-	 * @param turnListener the class to notify
+	 * @param turnListener the object to notify
 	 */
 	public void notifyAtTurn(int turn, TurnListener turnListener, String message) {
 		if (turn <= currentTurn) {
