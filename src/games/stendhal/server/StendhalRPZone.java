@@ -788,6 +788,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 		playersAndFriends.add(player);
 	}
 
+	/**
+	 * Gets all players in this zone, as well as friendly entities
+	 * such as sheep. These are the targets (enemies) for wild
+	 * creatures such as orcs.
+	 * @return a list of all players and friendly entities
+	 */
 	public List<RPEntity> getPlayerAndFirends() {
 		return playersAndFriends;
 	}
