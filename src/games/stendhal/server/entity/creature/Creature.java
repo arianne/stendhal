@@ -278,8 +278,8 @@ public class Creature extends NPC {
 		this.height = height;
 
         /** Creatures created with this function will share their
-         *  dropsItems with any other creature of that kind. If you want
-         *  individual dropsItems, use clearDropItemList first!
+         *  dropItems with any other creature of that kind. If you want
+         *  individual dropItems, use clearDropItemList first!
          */
 		if (dropItems != null) {
 			this.dropsItems = dropItems;
@@ -513,14 +513,15 @@ public class Creature extends NPC {
 
 
 	@Override
+	// TODO: modularize this method!!
 	public void logic() {
 		// Log4J.startMethod(logger, "logic");
 
 		if (aiProfiles.containsKey("heal")) {
             if(getHP() < getBaseHP()) {
-                String[] healing = aiProfiles.get("heal").split(",");
-                int amount = Integer.parseInt(healing[0]);
-                int frequency = Integer.parseInt(healing[1]);
+                String[] healingAttributes = aiProfiles.get("heal").split(",");
+                int amount = Integer.parseInt(healingAttributes[0]);
+                int frequency = Integer.parseInt(healingAttributes[1]);
                 healSelf(amount, frequency);
             }
 		}
@@ -662,18 +663,18 @@ public class Creature extends NPC {
 		} else {
 			// target in reach and not moving
 			logger.debug("Moving to target. Creature attacks");
-			if (Debug.CREATURES_DEBUG_SERVER)
+			if (Debug.CREATURES_DEBUG_SERVER) {
 				debug.append("movetotarget");
-
+			}
 			aiState = AiState.APPROACHING_STOPPED_TARGET;
 			attack(target);
 			
-			if (waitRounds == 0) 
-			  {
-			  faceTo(target);
-			  }
+			if (waitRounds == 0) {
+				faceTo(target);
+			}
 
-			// our current Path is blocked...mostly by the target or another attacker
+			// our current Path is blocked...mostly by the target or another
+			// attacker
 			if (collides()) {
 				if (Debug.CREATURES_DEBUG_SERVER)
 					debug.append(";blocked");
@@ -681,7 +682,7 @@ public class Creature extends NPC {
 				clearPath();
 				
 				// Try to fix the issue by moving randomly.
-				Direction dir=Direction.rand();
+				Direction dir = Direction.rand();
 				setDirection(dir);
 				setSpeed(getSpeed());
 
@@ -697,7 +698,7 @@ public class Creature extends NPC {
 					debug.append(";waiting");
 				waitRounds--;
 			} else {
-				// Are we still patrol'ing?
+				// Are we still patrolling?
 				if (isPathLoop() || aiState == AiState.PATROL) {
 					// yep, so clear the patrol path
 					clearPath();
@@ -708,10 +709,8 @@ public class Creature extends NPC {
 				if (Debug.CREATURES_DEBUG_SERVER)
 					debug.append(";newpath");
 
-				if (getPath() == null || getPath().size() == 0) { // If creature
-																  // is blocked
-																  // choose a
-																  // new target
+				if (getPath() == null || getPath().size() == 0) {
+					// If creature is blocked, choose a new target
 					if (Debug.CREATURES_DEBUG_SERVER)
 						debug.append(";blocked");
 					logger.debug("Blocked. Choosing a new target.");
@@ -737,41 +736,10 @@ public class Creature extends NPC {
 
 		if (rp.getTurn() % 5 == attackTurn && isAttacking()) {
 			StendhalRPAction.attack(this, getAttackTarget());
-
-			if (getAttackTarget() != null && nextTo(getAttackTarget(), 0.25)) {
-				if (aiProfiles.containsKey("poisonous")) {
-					int roll = Rand.roll1D100();
-					String[] poison = aiProfiles.get("poisonous").split(",");
-					int prob = Integer.parseInt(poison[0]);
-					String poisonType = poison[1];
-
-					if (roll <= prob) {
-						ConsumableItem item = (ConsumableItem) world
-								.getRuleManager().getEntityManager().getItem(
-										poisonType);
-						if (item == null) {
-							logger.error("Creature unable to poisoning with "
-									+ poisonType);
-						} else {
-							RPEntity entity = getAttackTarget();
-
-							if (entity instanceof Player) {
-								Player player = (Player) entity;
-
-								if (!player.isPoisoned() && player.poison(item)) {
-									rp.addGameEvent(getName(), "poison", player
-											.getName());
-
-									player.sendPrivateText("You have been poisoned by a "
-													+ getName());
-								}
-							}
-						}
-					}
-				}
-			}
+			tryToPoison();
 		}
 
+		// with a probability of 1 %, a random noise is made.
 		if (Rand.roll1D100() == 1 && noises.size() > 0) {
 			// Random sound noises.
 			int pos = Rand.rand(noises.size());
@@ -784,6 +752,41 @@ public class Creature extends NPC {
 		//Log4J.finishMethod(logger, "logic");
 	}
 
+	protected void tryToPoison() {
+		if (getAttackTarget() != null && nextTo(getAttackTarget(), 0.25)
+					&& aiProfiles.containsKey("poisonous")) {
+			// probability of poisoning is 1 %
+			int roll = Rand.roll1D100();
+			String[] poison = aiProfiles.get("poisonous").split(",");
+			int prob = Integer.parseInt(poison[0]);
+			String poisonType = poison[1];
+
+			if (roll <= prob) {
+				ConsumableItem item = (ConsumableItem) world
+						.getRuleManager().getEntityManager().getItem(
+								poisonType);
+				if (item == null) {
+					logger.error("Creature unable to poisoning with "
+							+ poisonType);
+				} else {
+					RPEntity entity = getAttackTarget();
+
+					if (entity instanceof Player) {
+						Player player = (Player) entity;
+
+						if (!player.isPoisoned() && player.poison(item)) {
+							rp.addGameEvent(getName(), "poison", player
+									.getName());
+
+							player.sendPrivateText("You have been poisoned by a "
+											+ getName());
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	/**
 	 * This method should be called every turn if the animal is supposed to
 	 * heal itself on its own. If it is used, an injured animal will heal
