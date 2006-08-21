@@ -1174,8 +1174,12 @@ public class Player extends RPEntity {
 
 			world.modify(this);
 		} else {
-			teleporter.sendPrivateText("Position [" + x + "," + y
-					+ "] is occupied");
+			String text = "Position [" + x + "," + y + "] is occupied";
+			if (teleporter != null) {
+				teleporter.sendPrivateText(text);
+			} else {
+				this.sendPrivateText(text);
+			}
 		}	
 		
 	}
