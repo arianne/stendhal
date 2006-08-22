@@ -339,20 +339,11 @@ public class Semos implements IContent {
 						new SpeakerNPC.ChatAction() {
 							public void fire(Player player, String text,
 									SpeakerNPC engine) {
+								int numberOfWood = player.getNumberOfEquipped("wood");
+								int numberOfIronOre = player.getNumberOfEquipped("iron_ore");
 								// how much iron should the player get?
-								int numberOfIron;
-								// TODO: It is possible that the player has several stacks of wood.
-								// create a function player.getEquippedQuantity(String itemName)
-								// that iterates over all slots.
-								try {
-									int numberOfWood = ((StackableItem) player.getEquipped("wood")).getQuantity();
-									int numberOfIronOre = ((StackableItem) player.getEquipped("iron_ore")).getQuantity();
-									numberOfIron = Math.min(numberOfWood, numberOfIronOre);
-								} catch (NullPointerException e) {
-									// The player lacks at least one of the
-									// required resources 
-									numberOfIron = 0;
-								}
+								int numberOfIron = Math.min(numberOfWood, numberOfIronOre);
+								
 								if (numberOfIron == 0) {
 									engine.say("I can only cast iron if you bring me both #wood and #iron_ore.");
 								} else {
