@@ -31,7 +31,7 @@ import marauroa.common.game.RPObject;
 public class GrainField extends PlantGrower implements UseListener {
 	
 	/** How long it takes for one regrowing step */
-	private static final int GROWING_RATE = 1000;
+	private static final int GROWING_RATE = 3000;
 	
 	/** How many regrowing steps are needed before one can harvest again */
 	public static final int RIPE = 5;
