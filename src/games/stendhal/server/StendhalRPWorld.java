@@ -33,13 +33,16 @@ public class StendhalRPWorld extends RPWorld {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalRPWorld.class);
 
+	/** The Singleton instance */
+	private static StendhalRPWorld instance;
+	
 	/** The pathfinder thread. */
 	private PathfinderThread pathfinderThread;
 
 	/** The rule system manager */
 	private RuleManager ruleManager;
 
-	public StendhalRPWorld() throws Exception {
+	private StendhalRPWorld() {
 		super();
 
 		Log4J.startMethod(logger, "StendhalRPWorld");
@@ -48,6 +51,13 @@ public class StendhalRPWorld extends RPWorld {
 		Entity.setRPContext(null, this);
 		ruleManager = RuleSetFactory.getRuleSet("default");
 		Log4J.finishMethod(logger, "StendhalRPWorld");
+	}
+	
+	public static StendhalRPWorld get() {
+		if (instance == null) {
+			instance = new StendhalRPWorld();
+		}
+		return instance;
 	}
 
 	/**

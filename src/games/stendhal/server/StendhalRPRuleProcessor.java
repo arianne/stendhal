@@ -64,6 +64,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private static final Logger logger = Log4J
 			.getLogger(StendhalRPRuleProcessor.class);
 
+	/** The Singleton instance */
+	private static StendhalRPRuleProcessor instance;
+	
 	private JDBCPlayerDatabase database;
 
 	private static Map<String, ActionListener> actionsMap;
@@ -111,7 +114,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		UseAction.register();
 	}
 
-	public StendhalRPRuleProcessor() {
+	private StendhalRPRuleProcessor() {
 		database = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase();
 		playersObject = new LinkedList<Player>();
 		playersObjectRmText = new LinkedList<Player>();
@@ -127,6 +130,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		registerActions();
 	}
 
+	public static StendhalRPRuleProcessor get() {
+		System.out.println("get() called");
+		if (instance == null) {
+			instance = new StendhalRPRuleProcessor();
+		}
+		return instance;
+	}
+	
 	public void addGameEvent(String source, String event, String... params) {
 		try {
 			Transaction transaction = database.getTransaction();
