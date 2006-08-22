@@ -219,7 +219,7 @@ public abstract class Entity extends RPObject {
 	 * the distances (the square operation is strictly monotonous for positive
 	 * numbers).
 	 * @param x The horizontal coordinate of the point
-	 * @param x The vertical coordinate of the point
+	 * @param y The vertical coordinate of the point
 	 */
 	public double squaredDistance(int x, int y) {
 		return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
@@ -281,7 +281,7 @@ public abstract class Entity extends RPObject {
 		setDirection(directionTo((int) otherArea.getX(), (int) otherArea.getY()));
 	}
 
-	public Direction directionTo(int px, int py) {
+	private Direction directionTo(int px, int py) {
 		Rectangle2D area = getArea(x, y);
 		int rx = (int) area.getX();
 		int ry = (int) area.getY();
