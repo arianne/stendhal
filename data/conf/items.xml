@@ -1593,6 +1593,18 @@ Makes players more offensive
         </equipable>
     </item>
 
+    <item name="grain">
+      <type class="resource" subclass="grain"/>
+      <stackable/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="0.05"/>
+      <equipable>
+        <slot name="bag"/>
+      </equipable>
+    </item>
+    
     <item name="iron_ore">
       <type class="resource" subclass="iron_ore"/>
       <stackable/>

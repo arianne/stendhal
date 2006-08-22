@@ -14,6 +14,8 @@ package games.stendhal.server.entity;
 
 import java.awt.geom.Rectangle2D;
 
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.UseListener;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -111,7 +113,8 @@ public class GrainField extends PlantGrower implements UseListener {
 				if (entity.isEquipped("scythe")) {
 					setRipeness(0);
 					notifyWorldAboutChanges();
-					// TODO: give grain to player
+					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("grain");
+					entity.equip(grain, true);
 				} else if (entity instanceof Player) {
 					((Player) entity).sendPrivateText("You need a scythe to harvest this grain field.");
 				}
