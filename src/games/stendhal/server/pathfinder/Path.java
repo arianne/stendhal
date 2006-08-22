@@ -157,8 +157,6 @@ public class Path {
 	 *            the maximum distance (air line) a possible path may be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	private static long time = 0;
-	private static int counter = 0;
 	public static List<Node> searchPath(Entity entity, StendhalRPZone zone, int x, int y,
 			Rectangle2D destination, double maxDistance) {
 		
