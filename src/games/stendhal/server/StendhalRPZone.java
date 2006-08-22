@@ -14,6 +14,7 @@ package games.stendhal.server;
 
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
+import games.stendhal.server.entity.GrainField;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.RPEntity;
@@ -538,7 +539,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			case 91: /* sign */
 				break;
 			case 92: /* SheepFood */
-			//case 101: /* arandula, deprecated */
+			case 93: /* corn field */
 			case 102: /* button mushroom */
 			case 103: /* porcini */
 			case 104: /* toadstool */
@@ -550,7 +551,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 				PlantGrower plantGrower = null;
 				if (type == 92) {
 					plantGrower = new SheepFood();
+					// full fruits on server restart
 					((SheepFood) plantGrower).setAmount(5);
+				} else if (type == 93) {
+					plantGrower = new GrainField();
+					// full growth on server restart
+					((GrainField) plantGrower).setRipeness(GrainField.RIPE);
 				} else if (type == 102) {
 					plantGrower = new PlantGrower("button_mushroom", 500);
 				} else if (type == 103) {

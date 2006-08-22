@@ -1,0 +1,124 @@
+/* $Id$ */
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+package games.stendhal.server.entity;
+
+import java.awt.geom.Rectangle2D;
+
+import games.stendhal.server.events.UseListener;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+
+/**
+ * A grain field can be harvested by players who have a scythe.
+ * After that, it will slowly regrow; there are several regrowing
+ * steps in which the graphics will change to show the progress.
+ * 
+ * @author daniel
+ */
+public class GrainField extends PlantGrower implements UseListener {
+	
+	/** How long it takes for one regrowing step */
+	private static final int GROWING_RATE = 1000;
+	
+	/** How many regrowing steps are needed before one can harvest again */
+	public static final int RIPE = 5;
+	
+	private int ripeness;
+
+	public static void generateRPClass() {
+		RPClass grainFieldClass = new RPClass("grain_field");
+		grainFieldClass.isA("plant_grower");
+		grainFieldClass.add("ripeness", RPClass.BYTE);
+	}
+
+	public GrainField(RPObject object) throws AttributeNotFoundException {
+		super(object, null, GROWING_RATE);
+		put("type", "grain_field");
+		update();
+	}
+
+	public GrainField() throws AttributeNotFoundException {
+		super(null, GROWING_RATE);
+		put("type", "grain_field");
+	}
+
+	@Override
+	public void update() {
+		super.update();
+		if (has("ripeness"))
+			ripeness = getInt("ripeness");
+	}
+
+	public void setRipeness(int ripeness) {
+		this.ripeness = ripeness;
+		put("ripeness", ripeness);
+	}
+
+	public int getRipeness() {
+		return ripeness;
+	}
+
+	@Override
+	protected boolean canGrowNewFruit() {
+		return ripeness < RIPE;
+	}
+
+	@Override
+	protected void growNewFruit() {
+		setRipeness(ripeness + 1);
+		notifyWorldAboutChanges();
+	}
+
+	@Override
+	public String describe() {
+		String text;
+		switch (getRipeness()) {
+			case 0:
+				text = "You see a grain field that has just been harvested.";
+				break;
+			case RIPE:
+				text = "You see a ripe grain field.";
+				break;
+			default:
+				text = "You see a grain field that is regrowing.";
+				break;
+		}
+		return text;
+	}
+	
+	@Override
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y + 1, 1, 1);
+	}
+
+	/**
+	 * Is called when a player tries to harvest this grain field.
+	 */
+	public void onUsed(RPEntity entity) {
+		if (entity.nextTo(this, 0.25)) {
+			if (getRipeness() == RIPE) {
+				if (entity.isEquipped("scythe")) {
+					setRipeness(0);
+					notifyWorldAboutChanges();
+					// TODO: give grain to player
+				} else if (entity instanceof Player) {
+					((Player) entity).sendPrivateText("You need a scythe to harvest this grain field.");
+				}
+			} else if (entity instanceof Player) {
+				((Player) entity).sendPrivateText("This grain is not yet ripe.");
+			}
+		}
+	}
+
+}
