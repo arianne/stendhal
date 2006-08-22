@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.portal;
 
 import java.awt.geom.Rectangle2D;
-import games.stendhal.server.events.UseEvent;
+import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
@@ -23,7 +23,7 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import org.apache.log4j.Logger;
 
-public class Portal extends Entity implements UseEvent {
+public class Portal extends Entity implements UseListener {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Portal.class);
 

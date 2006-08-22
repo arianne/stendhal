@@ -15,7 +15,7 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.events.UseEvent;
+import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.Entity;
@@ -98,9 +98,9 @@ public class UseAction extends ActionListener {
 
 				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", entity.get("name"));
 
-				if (object instanceof UseEvent) {
-					UseEvent entityUseEvent = (UseEvent) entity;
-					entityUseEvent.onUsed(player);
+				if (object instanceof UseListener) {
+					UseListener useListener = (UseListener) entity;
+					useListener.onUsed(player);
 					return;
 				}
 			}
@@ -122,8 +122,8 @@ public class UseAction extends ActionListener {
 
 				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", name);
 
-				if (object instanceof UseEvent) {
-					UseEvent item = (UseEvent) object;
+				if (object instanceof UseListener) {
+					UseListener item = (UseListener) object;
 					item.onUsed(player);
 					return;
 				}

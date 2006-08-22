@@ -20,7 +20,7 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.events.UseEvent;
+import games.stendhal.server.events.UseListener;
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
 /**
  * Represents a magic scroll.
  */
-public class Scroll extends StackableItem implements UseEvent {
+public class Scroll extends StackableItem implements UseListener {
 	private static final Logger logger = Logger.getLogger(Scroll.class);
 
 	/**

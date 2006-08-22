@@ -14,11 +14,11 @@ package games.stendhal.server.entity.item;
 
 import java.util.Map;
 
-import games.stendhal.server.events.UseEvent;
+import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Player;
 
-public class ConsumableItem extends StackableItem implements UseEvent {
+public class ConsumableItem extends StackableItem implements UseListener {
 	private int left;
 
 	public ConsumableItem(String name, String clazz, String subclass,

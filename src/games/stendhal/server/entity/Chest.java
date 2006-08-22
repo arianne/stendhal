@@ -14,7 +14,7 @@ package games.stendhal.server.entity;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
-import games.stendhal.server.events.UseEvent;
+import games.stendhal.server.events.UseListener;
 
 import marauroa.common.game.*;
 
@@ -23,7 +23,7 @@ import marauroa.common.game.*;
  * it is open, every player can put items in and take them out later. A player
  * can take out items that another player put in.
  */
-public class Chest extends Entity implements UseEvent {
+public class Chest extends Entity implements UseListener {
 	private boolean open;
 
 	public static void generateRPClass() {
