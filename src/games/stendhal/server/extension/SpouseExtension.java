@@ -16,7 +16,6 @@ import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 

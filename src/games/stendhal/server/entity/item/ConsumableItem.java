@@ -14,7 +14,6 @@ package games.stendhal.server.entity.item;
 
 import java.util.Map;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.events.UseEvent;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Player;

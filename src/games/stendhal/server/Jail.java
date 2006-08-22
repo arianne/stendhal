@@ -8,7 +8,6 @@ import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
-import marauroa.server.game.RPWorld;
 
 /**
  * This class is responsible of keeping players who have misbehaved

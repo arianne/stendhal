@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 
 import java.util.HashMap;
