@@ -83,14 +83,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		modificationCount = 0;
 	}
 
-	/**
-	 * Construct a entity based on a sprite image and a location.
-	 * 
-	 * @param x
-	 *            The initial x location of this entity
-	 * @param y
-	 *            The initial y location of this entity
-	 */
 	public Entity(GameObjects gameObjects, RPObject object)
 			throws AttributeNotFoundException {
 		this.gameObjects = gameObjects;

@@ -104,10 +104,6 @@ public class Path {
 	 *            start x
 	 * @param y
 	 *            start y
-	 * @param destx
-	 *            destination x
-	 * @param desty
-	 *            destination y
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
 	public static List<Node> searchPath(Entity entity, int x, int y,
@@ -221,9 +217,6 @@ public class Path {
 	 *            the Entity (also start point)
 	 * @param dest
 	 *            the destination Entity
-	 * @param maxPathRadius
-	 *            the maximum radius in which a path is searched
-	 * @return a list with the path nodes or an empty list if no path is found
 	 */
 	public static void searchPathAsynchonous(RPEntity entity, Entity dest) {
 		world.checkPathfinder();

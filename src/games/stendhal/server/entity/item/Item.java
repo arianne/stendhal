@@ -65,8 +65,6 @@ public class Item extends PassiveEntity {
 	 *            name of item
 	 * @param clazz
 	 *            class (or type) od item
-	 * @param slots
-	 *            slots where this item may be equipped. may be empty
 	 * @param attributes
 	 *            attributes (like attack). may be empty or <code>null</code>
 	 */
@@ -149,8 +147,8 @@ public class Item extends PassiveEntity {
 	/**
 	 * Checks if the item is of type <i>type</i>
 	 * 
-	 * @param type
-	 *            the type to check
+	 * @param clazz
+	 *            the class to check
 	 * @return true if the type matches, else false
 	 */
 	public boolean isOfClass(String clazz) {

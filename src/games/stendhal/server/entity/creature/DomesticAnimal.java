@@ -65,7 +65,6 @@ public abstract class DomesticAnimal extends Creature {
 	/**
 	 * Creates a wild DomesticAnimal based on an existing RPObject.
 	 * @param object
-	 * @param owner The player who should own the sheep
 	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal(RPObject object) throws AttributeNotFoundException {

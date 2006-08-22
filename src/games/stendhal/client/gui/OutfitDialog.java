@@ -56,7 +56,6 @@ public class OutfitDialog extends javax.swing.JDialog {
 
     /** Creates new form SetOutfitGameDialog
      *
-     * @param undecorated true or false
      * @param title a String with the title for the dialog
      * @param outfit the current outfit
      * @param total_hairs an integer with the total of sprites with hairs

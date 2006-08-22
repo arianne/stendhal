@@ -731,7 +731,6 @@ public abstract class SpeakerNPC extends NPC {
 	/**
 	 * Makes this NPC say a text when it hears one of the given triggers
 	 * during a conversation.
-	 * @param npc The NPC that should reply
 	 * @param triggers The texts that cause the NPC to answer
 	 * @param text The answer
 	 */
@@ -744,7 +743,6 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * @param npc
 	 * @param triggers
 	 * @param text
 	 */

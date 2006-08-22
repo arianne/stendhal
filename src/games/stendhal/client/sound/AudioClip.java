@@ -111,7 +111,6 @@ public class AudioClip {
 	/**
 	 * opens the given line with the encapsulated audio data
 	 * 
-	 * @param line
 	 * @throws IOException
 	 * @throws UnsupportedAudioFileException
 	 * @throws LineUnavailableException

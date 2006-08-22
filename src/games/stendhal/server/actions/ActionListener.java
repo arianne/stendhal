@@ -77,12 +77,12 @@ public abstract class ActionListener {
 	}
 
 	/**
-	 * checks if the entity is near the player
+	 * checks if two entities are near each other.
 	 * 
-	 * @param player
-	 *            the player
-	 * @param entity
-	 *            the entity
+	 * @param first
+	 *            the first entity
+	 * @param second
+	 *            the second entity
 	 * @param distance
 	 *            the valid distance considered 'near'
 	 * @return true when the entity is near the player, false otherwise
@@ -102,7 +102,7 @@ public abstract class ActionListener {
 	 * 
 	 * @param validClasses
 	 *            list of valid class-objects
-	 * @param baseObject
+	 * @param object
 	 *            the object to check
 	 * @return true when the class is in the list, else false
 	 */

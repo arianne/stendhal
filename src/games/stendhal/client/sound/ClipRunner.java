@@ -54,8 +54,8 @@ public class ClipRunner implements LineListener {
 	/**
 	 * Creates a ClipRunner instance by name. Volume setting is set to 100%.
 	 * 
-	 * @param name
-	 *            name of sound (docu)
+	 * @param system
+	 * @param text
 	 * @throws UnsupportedAudioFileException
 	 */
 	public ClipRunner(SoundSystem system, String text) {
