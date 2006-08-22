@@ -13,7 +13,6 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -31,24 +30,6 @@ public abstract class Entity extends RPObject {
 	private double speed;
 
 	private boolean collides;
-
-	protected static StendhalRPRuleProcessor rp;
-
-	protected static StendhalRPWorld world;
-
-	public static StendhalRPWorld getWorld() {
-		return world;
-	}
-
-	public static StendhalRPRuleProcessor getRPRuleProcessor() {
-		return rp;
-	}
-
-	public static void setRPContext(StendhalRPRuleProcessor rpContext,
-			StendhalRPWorld worldContext) {
-		rp = rpContext;
-		world = worldContext;
-	}
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
@@ -307,6 +288,16 @@ public abstract class Entity extends RPObject {
 	}
 
 	abstract public void getArea(Rectangle2D rect, double x, double y);
+	
+	/**
+	 * Notifies the StendhalRPWorld that this entity's attributes have
+	 * changed.
+	 * 
+	 * TODO: Find a way to move this up to RPObject.
+	 */
+	public void notifyWorldAboutChanges() {
+		StendhalRPWorld.get().modify(this);
+	}
 
 	public String describe() {
 		String ret = "You see ";

@@ -642,10 +642,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		if (object instanceof Item) {
 			if (!((Item) object).isPersistent()) {
-				int droppedOn = 0;
-				if (Entity.getRPRuleProcessor() != null) {
-					droppedOn = Entity.getRPRuleProcessor().getTurn();
-				}
+				int droppedOn = StendhalRPRuleProcessor.get().getTurn();
 				itemsOnGround.put((Item) object, droppedOn);
 			}
 		}
@@ -702,10 +699,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public void nextTurn() {
 		super.nextTurn();
 
-		int turn = 0;
-		if (Entity.getRPRuleProcessor() != null) {
-			turn = Entity.getRPRuleProcessor().getTurn();
-		}
+		int turn = StendhalRPRuleProcessor.get().getTurn();
 
 		Iterator<Map.Entry<Item, Integer>> it = itemsOnGround.entrySet()
 				.iterator();

@@ -60,14 +60,14 @@ public class OrcishHappyMeal extends AbstractQuest {
 				// TODO: The code is identical to Sato's SheepBuyerBehaviour,
 				// except that the phrasing is different. Unite them.
 				class SheepBuyerBehaviour extends BuyerBehaviour {
-					SheepBuyerBehaviour(StendhalRPWorld world, Map<String, Integer> items) {
-						super(world, items);
+					SheepBuyerBehaviour(Map<String, Integer> items) {
+						super(items);
 					}
 
 					@Override
 					public int getCharge(Player player) {
 						if (player.hasSheep()) {
-							Sheep sheep = (Sheep) world.get(player.getSheep());
+							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 							return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 						} else {
 							return 0;
@@ -78,18 +78,18 @@ public class OrcishHappyMeal extends AbstractQuest {
 					public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 						// amount is currently ignored.
 						if (player.hasSheep()) {
-							Sheep sheep = (Sheep) world.get(player.getSheep());
+							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 							if (seller.squaredDistance(sheep) > 5 * 5) {
 								seller.say("*drool* Sheep flesh! Bring da sheep here!");
 							} else {
 								say("*LOVELY*. Take dis money!");
 								payPlayer(player);
 
-								rp.removeNPC(sheep);
-								world.remove(sheep.getID());
+								StendhalRPRuleProcessor.get().removeNPC(sheep);
+								StendhalRPWorld.get().remove(sheep.getID());
 								player.removeSheep(sheep);
 
-								world.modify(player);
+								player.notifyWorldAboutChanges();
 								return true;
 							}
 						} else {
@@ -107,7 +107,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 				addHelp(getName()
 						+ " buy sheep! Sell me sheep! " + getName()
 						+ " is hungry!");
-				addBuyer(new SheepBuyerBehaviour(world, buyitems));
+				addBuyer(new SheepBuyerBehaviour(buyitems));
 				addGoodbye();
 			}
 		};

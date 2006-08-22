@@ -28,8 +28,8 @@ public class HealerBehaviour extends SellerBehaviour {
 	 * @param world The StendhalRPWorld
 	 * @param cost The lump sum that is required to heal
 	 */
-	public HealerBehaviour(StendhalRPWorld world, int cost) {
-		super(world);
+	public HealerBehaviour(int cost) {
+		super();
 		priceList.put("heal", cost);
 	}
 
@@ -41,6 +41,6 @@ public class HealerBehaviour extends SellerBehaviour {
 	public void heal(Player player) {
 		player.setHP(player.getBaseHP());
 		player.healPoison();
-		world.modify(player);
+		StendhalRPWorld.get().modify(player);
 	}
 }

@@ -152,9 +152,8 @@ public class SevenCherubs extends AbstractQuest {
 										"golden_armor", "fire_sword",
 										/* "golden_shield", */"golden_legs",
 										"golden_helmet" };
-								Item item = world
-										.getRuleManager()
-										.getEntityManager()
+								Item item = StendhalRPWorld.get()
+										.getRuleManager().getEntityManager()
 										.getItem(items[Rand.rand(items.length)]);
 								player.equip(item, true);
 								player.addXP(2000);
@@ -166,7 +165,7 @@ public class SevenCherubs extends AbstractQuest {
 								engine.say("You found all of us and got the reward.");
 							}
 						}
-						world.modify(player);
+						player.notifyWorldAboutChanges();
 					}
 				});
 			addGoodbye();

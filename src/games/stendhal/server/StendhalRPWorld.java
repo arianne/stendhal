@@ -48,7 +48,6 @@ public class StendhalRPWorld extends RPWorld {
 		Log4J.startMethod(logger, "StendhalRPWorld");
 		createRPClasses();
 
-		Entity.setRPContext(null, this);
 		ruleManager = RuleSetFactory.getRuleSet("default");
 		Log4J.finishMethod(logger, "StendhalRPWorld");
 	}

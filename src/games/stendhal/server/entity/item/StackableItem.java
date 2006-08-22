@@ -14,6 +14,8 @@ package games.stendhal.server.entity.item;
 
 import marauroa.common.game.*;
 
+import games.stendhal.server.StendhalRPWorld;
+
 import java.util.Map;
 
 public class StackableItem extends Item implements Stackable {
@@ -70,9 +72,9 @@ public class StackableItem extends Item implements Stackable {
 					base = base.getContainer();
 				}
 
-				world.modify(base);
+				StendhalRPWorld.get().modify(base);
 			} else {
-				world.modify(this);
+				notifyWorldAboutChanges();
 			}
 		} else {
 			/* If quantity=1 then it means that item has to be removed */

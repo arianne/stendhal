@@ -39,16 +39,16 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 * Creates a new SellerBehaviour with an empty pricelist.
 	 * @param world the world
 	 */
-	public SellerBehaviour(StendhalRPWorld world) {
-		super(world, new HashMap<String, Integer>());
+	public SellerBehaviour() {
+		super(new HashMap<String, Integer>());
 	}
 
 	/**
 	 * Creates a new SellerBehaviour with a pricelist.
 	 * @param world the world
 	 */
-	public SellerBehaviour(StendhalRPWorld world, Map<String, Integer> priceList) {
-		super(world, priceList);
+	public SellerBehaviour(Map<String, Integer> priceList) {
+		super(priceList);
 	}
 
 	/**
@@ -60,6 +60,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 *              player was able to equip the item(s).
 	 */
 	protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+		StendhalRPWorld world = StendhalRPWorld.get();
 		EntityManager manager = world.getRuleManager().getEntityManager();
 
 		Item item = manager.getItem(chosenItem);

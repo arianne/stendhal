@@ -131,7 +131,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public static StendhalRPRuleProcessor get() {
-		System.out.println("get() called");
 		if (instance == null) {
 			instance = new StendhalRPRuleProcessor();
 		}
@@ -173,7 +172,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			StendhalRPAction.initialize(rpman, this, world);
 			// Behaviours.initialize(rpman, this, world);
 			Path.initialize(world);
-			Entity.setRPContext(this, this.world);
 			/* Initialize quests */
 			new StendhalQuestSystem(this.world, this);
 			for (IRPZone zone : world) {

@@ -182,7 +182,7 @@ public class Ados implements IContent {
 						"Sorry, I'm licensed to heal animals only, not humans. But... ssshh! I want to make you an #offer.");
 
 				addJob("I'm the veterinary.");
-				addSeller(new SellerBehaviour(world, shops.get("healing")) {
+				addSeller(new SellerBehaviour(shops.get("healing")) {
 					@Override
 					public int getUnitPrice(String item) {
 						// Player gets 20 % rebate
@@ -326,7 +326,7 @@ public class Ados implements IContent {
 				addJob("I am a wizard and i sell magic scrolls. Just ask me about my #offer");
 				addHelp("You can use magic with the help of #magic #scrolls.");
 
-				addSeller(new SellerBehaviour(world, shops.get("scrolls")));
+				addSeller(new SellerBehaviour(shops.get("scrolls")));
 				
 				add(ConversationStates.ATTENDING,
 					QUEST_MESSAGES,

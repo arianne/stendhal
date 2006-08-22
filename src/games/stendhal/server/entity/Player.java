@@ -17,6 +17,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.Version;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.creature.Sheep;
@@ -124,6 +125,7 @@ public class Player extends RPEntity {
 	}
 
 	public static Player create(RPObject object) {
+		
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
 			object.put("base_hp", "100");
@@ -206,6 +208,7 @@ public class Player extends RPEntity {
 			object.put("age", "0");
 		}
 
+		StendhalRPWorld world = StendhalRPWorld.get();
 		Player player = new Player(object);
 		// Port from 0.48 to 0.50
 		player.readAdminsFromFile();
@@ -241,7 +244,7 @@ public class Player extends RPEntity {
 			firstVisit = true;
 			player.put("zoneid", "int_semos_townhall");
 
-			world.add(player);
+			player.notifyWorldAboutChanges();
 		}
 
 		StendhalRPAction.transferContent(player);
@@ -367,7 +370,7 @@ public class Player extends RPEntity {
 				// what is this underscore supposed to do?
 				if (name.charAt(0) == '_') {
 					// cut off the strange underscore
-					Player buddy = rp.getPlayer(name.substring(1));
+					Player buddy = StendhalRPRuleProcessor.get().getPlayer(name.substring(1));
 					if (buddy != null) {
 							player.notifyOnline(buddy.getName());
 					} else {
@@ -401,13 +404,14 @@ public class Player extends RPEntity {
 	}
 
 	public static void destroy(Player player) {
+		StendhalRPWorld world = StendhalRPWorld.get();
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
 		zone.removePlayerAndFriends(player);
 		try {
 			if (player.hasSheep()) {
 				Sheep sheep = (Sheep) world.remove(player.getSheep());
 				player.storeSheep(sheep);
-				rp.removeNPC(sheep);
+				StendhalRPRuleProcessor.get().removeNPC(sheep);
 				zone.removePlayerAndFriends(sheep);
 			} else {
 				// Bug on pre 0.20 released
@@ -469,7 +473,7 @@ public class Player extends RPEntity {
             text = get("private_text") + "\r\n" + text;
         }
 		put("private_text", text);
-		rp.removePlayerText(this);
+		StendhalRPRuleProcessor.get().removePlayerText(this);
 	}
 
 	/** send a welcome message to the player which can be configured
@@ -565,6 +569,7 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onDead(Entity who) {
+		StendhalRPWorld world = StendhalRPWorld.get();
 		put("dead", "");
 
 		if (hasSheep()) {
@@ -633,7 +638,7 @@ public class Player extends RPEntity {
 
 						item.setQuantity((int) (quantity * (1.0 - percentage)));
 
-						StackableItem rest_item = (StackableItem) world
+						StackableItem rest_item = (StackableItem) StendhalRPWorld.get()
 								.getRuleManager().getEntityManager().getItem(
 										object.get("name"));
 						rest_item.setQuantity((int) (quantity * percentage));
@@ -663,7 +668,7 @@ public class Player extends RPEntity {
 		} else {
 			logger.warn("Called removeSheep but player has not sheep: " + this);
 		}
-		rp.removeNPC(sheep);
+		StendhalRPRuleProcessor.get().removeNPC(sheep);
 
 		Log4J.finishMethod(logger, "removeSheep");
 	}
@@ -676,7 +681,7 @@ public class Player extends RPEntity {
 		Log4J.startMethod(logger, "setSheep");
 		put("sheep", sheep.getID().getObjectID());
 
-		rp.addNPC(sheep);
+		StendhalRPRuleProcessor.get().addNPC(sheep);
 
 		Log4J.finishMethod(logger, "setSheep");
 	}
@@ -756,7 +761,7 @@ public class Player extends RPEntity {
 			for (String name : buddies) {
 				if (playerOnline.equals(name)) {
 					buddies.put(playerOnline, 1);
-					world.modify(this);
+					notifyWorldAboutChanges();
 					found = true;
 					break;
 				}
@@ -781,7 +786,7 @@ public class Player extends RPEntity {
 			for (String name : buddies) {
 				if (playerOffline.equals(name)) {
 					buddies.put(playerOffline, 0);
-					world.modify(this);
+					notifyWorldAboutChanges();
 					found = true;
 					break;
 				}
@@ -1043,7 +1048,7 @@ public class Player extends RPEntity {
 		 * item runs out the other ones also runs out. Perhaps this must be
 		 * fixed inside StackableItem itself
 		 */
-		ConsumableItem soloItem = (ConsumableItem) world.getRuleManager()
+		ConsumableItem soloItem = (ConsumableItem) StendhalRPWorld.get().getRuleManager()
 				.getEntityManager().getEntity(item.getName());
 
 		logger.debug("Consuming item: " + soloItem.getAmount());
@@ -1080,12 +1085,12 @@ public class Player extends RPEntity {
 
 		if (has("poisoned") && poisonToConsume.size() == 0) {
 			remove("poisoned");
-			world.modify(this);
+			notifyWorldAboutChanges();
 		}
 
 		if (has("eating") && itemsToConsume.size() == 0) {
 			remove("eating");
-			world.modify(this);
+			notifyWorldAboutChanges();
 		}
 
 		while (poisonToConsume.size() > 0) {
@@ -1106,7 +1111,7 @@ public class Player extends RPEntity {
 					kill(poison);
 				}
 
-				world.modify(this);
+				notifyWorldAboutChanges();
 				break;
 			} else {
 				poisonToConsume.remove(0);
@@ -1134,7 +1139,7 @@ public class Player extends RPEntity {
 					itemsToConsume.clear();
 				}
 
-				world.modify(this);
+				notifyWorldAboutChanges();
 				break;
 			} else {
 				logger.debug("Consumed completly item: " + consumableItem);
@@ -1168,7 +1173,7 @@ public class Player extends RPEntity {
 			rules.addGameEvent(teleporter.getName(), "teleport", this
 					.getName());
 
-			world.modify(this);
+			notifyWorldAboutChanges();
 		} else {
 			String text = "Position [" + x + "," + y + "] is occupied";
 			if (teleporter != null) {

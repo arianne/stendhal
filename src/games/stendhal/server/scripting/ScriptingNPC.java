@@ -54,9 +54,9 @@ public class ScriptingNPC extends SpeakerNPC {
 	public void behave(String method, Map<String, Integer> items)
 			throws NoSuchMethodException {
 		if ("buy".equalsIgnoreCase(method)) {
-			addBuyer(new BuyerBehaviour(world, items));
+			addBuyer(new BuyerBehaviour(items));
 		} else if ("sell".equalsIgnoreCase(method)) {
-			addSeller(new SellerBehaviour(world, items));
+			addSeller(new SellerBehaviour(items));
 		} else {
 			throw new NoSuchMethodException("Behaviour.add" + method
 					+ " isn't supported.");

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Food;
@@ -166,7 +167,7 @@ public abstract class DomesticAnimal extends Creature {
 	 */
 	@Override
 	protected void dropItemsOn(Corpse corpse) {
-		Food food = (Food) world.getRuleManager().getEntityManager().getItem("meat");
+		Food food = (Food) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("meat");
 		food.setQuantity(getWeight() / 10 + 1);
 		corpse.add(food);
 	}

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
@@ -98,7 +100,7 @@ public class Scroll extends StackableItem implements UseEvent {
 		}
 		if (successful) {
 			this.removeOne();
-			getWorld().modify(player);
+			player.notifyWorldAboutChanges();
 		}
 	}
 
@@ -108,9 +110,9 @@ public class Scroll extends StackableItem implements UseEvent {
 	 * @return always true
 	 */
 	private boolean useEmptyScroll(Player player) {
-		Item item = getWorld().getRuleManager().getEntityManager().getItem(
+		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 				"marked_scroll");
-		StendhalRPZone zone = (StendhalRPZone) getWorld().getRPZone(player.get("zoneid"));
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.get("zoneid"));
 		zone.assignRPObjectID(item);
 		item.setx(player.getx());
 		item.sety(player.gety());
@@ -126,14 +128,14 @@ public class Scroll extends StackableItem implements UseEvent {
 	 * @return true iff summoning was successful
 	 */
 	private boolean useSummonScroll(Player player) {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 				.getID());
 		if (zone.isInProtectionArea(player)) {
 			player.sendPrivateText("Use of aggressive magic is not allowed here.");
 			return false;
 		}
 		
-		if (rp.getNPCs().size() > 100) {
+		if (StendhalRPRuleProcessor.get().getNPCs().size() > 100) {
 			player.sendPrivateText("I cannot use magic at the moment because this kind of magic has been used too often.");
 			logger.error("too many npcs");
 			return false;
@@ -142,7 +144,7 @@ public class Scroll extends StackableItem implements UseEvent {
 		int x = player.getInt("x");
 		int y = player.getInt("y");
 
-		EntityManager manager = (world)
+		EntityManager manager = StendhalRPWorld.get()
 				.getRuleManager().getEntityManager();
 
 		Creature pickedCreature = null;
@@ -178,7 +180,7 @@ public class Scroll extends StackableItem implements UseEvent {
 		creature.clearDropItemList();
 		creature.put("title_type", "friend");
 
-		rp.addNPC(creature);
+		StendhalRPRuleProcessor.get().addNPC(creature);
 		return true;
 	}
 
@@ -190,7 +192,7 @@ public class Scroll extends StackableItem implements UseEvent {
 	 */
 	private boolean useTeleportScroll(Player player) {
 		// init as home_scroll
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("0_semos_city");
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_city");
 		int x = 30;
 		int y = 40;
 
@@ -201,7 +203,7 @@ public class Scroll extends StackableItem implements UseEvent {
 			String infostring = get("infostring");
 			java.util.StringTokenizer st = new java.util.StringTokenizer(infostring);
 			if (st.countTokens() == 3) {
-				zone = (StendhalRPZone) world.getRPZone(st.nextToken());
+				zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(st.nextToken());
 				x = Integer.parseInt(st.nextToken());
 				y = Integer.parseInt(st.nextToken());
 			}

@@ -17,6 +17,8 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
@@ -379,7 +381,7 @@ public class Creature extends NPC {
 			point.notifyDead(this);
 		} else {
 			// Perhaps a summoned creature
-			rp.removeNPC(this);
+			StendhalRPRuleProcessor.get().removeNPC(this);
 		}
 
 		super.onDead(killer);
@@ -393,7 +395,7 @@ public class Creature extends NPC {
                 break;
         }
         
-		for (Item item : createDroppedItems(world.getRuleManager().getEntityManager())) {
+		for (Item item : createDroppedItems(StendhalRPWorld.get().getRuleManager().getEntityManager())) {
 			corpse.add(item);
 
 			if (corpse.isFull())
@@ -422,7 +424,7 @@ public class Creature extends NPC {
 	 * @return list of enemies
 	 */
 	protected List<RPEntity> getEnemyList() {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(get("zoneid"));
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(get("zoneid"));
 		return zone.getPlayerAndFirends();
 	}
 
@@ -516,6 +518,7 @@ public class Creature extends NPC {
 	@Override
 	// TODO: modularize this method!!
 	public void logic() {
+		StendhalRPWorld world = StendhalRPWorld.get();
 		// Log4J.startMethod(logger, "logic");
 
 		if (aiProfiles.containsKey("heal")) {
@@ -543,7 +546,7 @@ public class Creature extends NPC {
 				put("debug", "sleep");
 
 			aiState = AiState.SLEEP;
-			world.modify(this);
+			notifyWorldAboutChanges();
 			return;
 		}
 
@@ -735,7 +738,7 @@ public class Creature extends NPC {
 			StendhalRPAction.move(this);
 		}
 
-		if (rp.getTurn() % 5 == attackTurn && isAttacking()) {
+		if (StendhalRPRuleProcessor.get().getTurn() % 5 == attackTurn && isAttacking()) {
 			StendhalRPAction.attack(this, getAttackTarget());
 			tryToPoison();
 		}
@@ -749,7 +752,7 @@ public class Creature extends NPC {
 
 		if (Debug.CREATURES_DEBUG_SERVER)
 			put("debug", debug.toString());
-		world.modify(this);
+		notifyWorldAboutChanges();
 		//Log4J.finishMethod(logger, "logic");
 	}
 
@@ -763,7 +766,7 @@ public class Creature extends NPC {
 			String poisonType = poison[1];
 
 			if (roll <= prob) {
-				ConsumableItem item = (ConsumableItem) world
+				ConsumableItem item = (ConsumableItem) StendhalRPWorld.get()
 						.getRuleManager().getEntityManager().getItem(
 								poisonType);
 				if (item == null) {
@@ -776,7 +779,7 @@ public class Creature extends NPC {
 						Player player = (Player) entity;
 
 						if (!player.isPoisoned() && player.poison(item)) {
-							rp.addGameEvent(getName(), "poison", player
+							StendhalRPRuleProcessor.get().addGameEvent(getName(), "poison", player
 									.getName());
 
 							player.sendPrivateText("You have been poisoned by a "
@@ -796,7 +799,7 @@ public class Creature extends NPC {
 	 * @param frequency The number of turns between healings  
 	 */
 	protected void healSelf(int amount, int frequency) {
-        if (rp.getTurn() % frequency == 0 && getHP() > 0 ) {
+        if (StendhalRPRuleProcessor.get().getTurn() % frequency == 0 && getHP() > 0 ) {
             if (getHP() + amount < getBaseHP()) {
                 setHP(getHP() + amount);
             } else {
@@ -812,7 +815,7 @@ public class Creature extends NPC {
 			}
 
 			RPSlot slot = getSlot(equipedItem.slot);
-			EntityManager manager = world.getRuleManager().getEntityManager();
+			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 			Item item = manager.getItem(equipedItem.name);
 

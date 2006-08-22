@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
@@ -256,7 +257,7 @@ public abstract class SpeakerNPC extends NPC {
 
 		List<Player> players = new LinkedList<Player>();
 
-		for (Player player : rp.getPlayers()) {
+		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
 			int px = player.getx();
 			int py = player.gety();
 
@@ -288,7 +289,7 @@ public abstract class SpeakerNPC extends NPC {
 
 		int squaredDistanceOfNearestPlayer = Integer.MAX_VALUE;
 
-		for (Player player : rp.getPlayers()) {
+		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
 			int px = player.getx();
 			int py = player.gety();
 
@@ -315,7 +316,7 @@ public abstract class SpeakerNPC extends NPC {
 	@Override
 	public void onDead(Entity who) {
 		setHP(getBaseHP());
-		world.modify(this);
+		notifyWorldAboutChanges();
 	}
 
 	@Override
@@ -338,7 +339,7 @@ public abstract class SpeakerNPC extends NPC {
 		     // If the player is too far away
 		    if ((attending.squaredDistance(this) > 8 * 8)                
              // or if the player fell asleep ;) 
-                 || (rp.getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT)) {
+                 || (StendhalRPRuleProcessor.get().getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT)) {
              // we force him to say bye to NPC :)  
 				if (byeMessage != null) {
 					say(byeMessage);
@@ -371,8 +372,7 @@ public abstract class SpeakerNPC extends NPC {
 			tell(speaker, speaker.get("text"));
 		}
 
-
-		world.modify(this);
+		notifyWorldAboutChanges();
 	}
 
 	public boolean talking() {
@@ -655,7 +655,7 @@ public abstract class SpeakerNPC extends NPC {
 			return true;
 		}
 
-		lastMessageTurn = rp.getTurn();
+		lastMessageTurn = StendhalRPRuleProcessor.get().getTurn();
 
 		if (matchState(0, player, text)) {
 			return true;
@@ -951,7 +951,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	public void addHealer(int cost) {
-		setBehaviourData("healer", new HealerBehaviour(world, cost));
+		setBehaviourData("healer", new HealerBehaviour(cost));
 
 		add(ConversationStates.ATTENDING,
 				"offer",

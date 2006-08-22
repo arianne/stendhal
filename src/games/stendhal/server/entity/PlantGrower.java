@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import java.awt.geom.Rectangle2D;
@@ -88,7 +89,7 @@ public class PlantGrower extends Entity {
 	 * @return true iff a new fruit can start to grow
 	 */
 	protected boolean canGrowNewFruit() {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(this.getID());
 		for (Item item: zone.getItemsOnGround().keySet()) {
 			if (item.getName().equals(growingItemName) && item.getx() == this.getx() && 	item.gety() == this.gety()) {
 				// don't regrow until someone picks the last grown item up.
@@ -102,6 +103,7 @@ public class PlantGrower extends Entity {
 	 * Creates a new fruit.
 	 */
 	protected void growNewFruit() {
+		StendhalRPWorld world = StendhalRPWorld.get();
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
 		// create a new grown item
 		Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);

@@ -60,7 +60,7 @@ public class SheepFood extends PlantGrower {
 	@Override
 	protected void growNewFruit() {
 		setAmount(amount + 1);
-		world.modify(this);
+		notifyWorldAboutChanges();
 	}
 
 	@Override

@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.SheepFood;
@@ -122,7 +123,7 @@ public class Sheep extends DomesticAnimal {
 						+ owner);
 			}
 		} else {
-			rp.removeNPC(this);
+			StendhalRPRuleProcessor.get().removeNPC(this);
 		}
 
 		super.onDead(killer);
@@ -147,7 +148,7 @@ public class Sheep extends DomesticAnimal {
 		double squaredDistance = range * range; // This way we save several sqrt operations
 		SheepFood chosen = null;
 
-		for (PlantGrower grower : rp.getPlantGrowers()) {
+		for (PlantGrower grower : StendhalRPRuleProcessor.get().getPlantGrowers()) {
 			if (grower instanceof SheepFood && grower.get("zoneid").equals(get("zoneid"))) {
 				SheepFood food = (SheepFood) grower;
 				int fx = food.getx();
@@ -169,7 +170,7 @@ public class Sheep extends DomesticAnimal {
 		int amount = food.getAmount();
 		if (amount > 0) {
 			food.setAmount(amount - 1);
-			world.modify(food);
+			food.notifyWorldAboutChanges();
 
 			if (weight < MAX_WEIGHT) {
 				setWeight(weight + 1);
@@ -189,7 +190,7 @@ public class Sheep extends DomesticAnimal {
 		{
 			stop();
 
-			world.modify(this);
+			notifyWorldAboutChanges();
 			return;
 		}
 
@@ -245,7 +246,7 @@ public class Sheep extends DomesticAnimal {
 		}
 		healSelf(5, 100);
 
-		world.modify(this);
+		notifyWorldAboutChanges();
 		Log4J.finishMethod(logger, "logic");
 	}
 

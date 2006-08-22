@@ -24,8 +24,8 @@ import java.util.Map;
  */
 public class BuyerBehaviour extends MerchantBehaviour {
 
-	public BuyerBehaviour(StendhalRPWorld world, Map<String, Integer> priceList) {
-		super(world, priceList);
+	public BuyerBehaviour(Map<String, Integer> priceList) {
+		super(priceList);
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 * @param player The player who sells
 	 */
 	protected void payPlayer(Player player) {
-		StackableItem money = (StackableItem) world.getRuleManager().getEntityManager().getItem("money");
+		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
 		money.setQuantity(getCharge(player));
 		player.equip(money, true);
 	}

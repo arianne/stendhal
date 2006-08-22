@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
 
 import java.awt.geom.Rectangle2D;
@@ -242,9 +243,9 @@ public class Item extends PassiveEntity {
 			RPSlot slot = getContainerSlot();
 			slot.remove(getID());
 
-			world.modify(base);
+			StendhalRPWorld.get().modify(base);
 		} else {
-			world.remove(getID());
+			StendhalRPWorld.get().remove(getID());
 		}
 	}
 }

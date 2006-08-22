@@ -119,11 +119,11 @@ public class Door extends Portal implements TurnListener {
 		if (has("locked") && user.isEquipped(get("locked"))) {
 			// open it, even it is already open to reset turnToClose
 			open();
-			world.modify(this);
+			notifyWorldAboutChanges();
 		} else {
 			if (isOpen()) {
 				close();
-				world.modify(this);
+				notifyWorldAboutChanges();
 			}
 		}
 		if (isOpen()) {
@@ -134,7 +134,7 @@ public class Door extends Portal implements TurnListener {
 	@Override
 	public void onUsedBackwards(RPEntity user) {
 		open();
-		world.modify(this);
+		notifyWorldAboutChanges();
 	}
 
 	@Override
@@ -151,7 +151,7 @@ public class Door extends Portal implements TurnListener {
 		// Ignore the first call.
 		if (currentTurn == turnToClose) {
 			close();
-			world.modify(this);
+			notifyWorldAboutChanges();
 		}
 	}
 

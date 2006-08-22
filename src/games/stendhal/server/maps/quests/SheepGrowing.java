@@ -65,8 +65,8 @@ public class SheepGrowing extends AbstractQuest {
 
 			protected void createDialog() {
 				class SheepSellerBehaviour extends SellerBehaviour {
-					SheepSellerBehaviour(StendhalRPWorld world, Map<String, Integer> items) {
-						super(world, items);
+					SheepSellerBehaviour(Map<String, Integer> items) {
+						super(items);
 					}
 
 					@Override
@@ -80,7 +80,7 @@ public class SheepGrowing extends AbstractQuest {
 								return false;
 							}
 							seller.say("Congratulations! Here is your sheep! Keep it safe!");
-							StendhalRPZone zone = (StendhalRPZone) world
+							StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
 									.getRPZone(seller.getID());
 
 							Sheep sheep = new Sheep(player);
@@ -89,10 +89,10 @@ public class SheepGrowing extends AbstractQuest {
 							sheep.setx(seller.getx());
 							sheep.sety(seller.gety() + 2);
 
-							world.add(sheep);
+							StendhalRPWorld.get().add(sheep);
 
 							player.setSheep(sheep);
-							world.modify(player);
+							player.notifyWorldAboutChanges();
 
 							return true;
 						} else {
@@ -109,7 +109,7 @@ public class SheepGrowing extends AbstractQuest {
 				addJob("I work as a sheep seller.");
 				addHelp("I just sell sheeps. Just tell me #buy #sheep and I will sell you a nice sheep! Ask me how to take #care of her, how to #travel with her, how to #sell her or how to #own a wild sheep.");
 				addGoodbye();
-				addSeller(new SheepSellerBehaviour(world, items));
+				addSeller(new SheepSellerBehaviour(items));
 				addReply("care",
 						"To feed your sheep just stand near bushes and she'll eat red cherries from them. She won't lose weight neither die from starvation. Right-click on her and choose LOOK to see her weight.");
 				addReply("travel",
@@ -153,14 +153,14 @@ public class SheepGrowing extends AbstractQuest {
 
 			protected void createDialog() {
 				class SheepBuyerBehaviour extends BuyerBehaviour {
-					SheepBuyerBehaviour(StendhalRPWorld world, Map<String, Integer> items) {
-						super(world, items);
+					SheepBuyerBehaviour(Map<String, Integer> items) {
+						super(items);
 					}
 
 					@Override
 					public int getCharge(Player player) {
 						if (player.hasSheep()) {
-							Sheep sheep = (Sheep) world.get(player.getSheep());
+							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 							return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 						} else {
 							return 0;
@@ -171,18 +171,18 @@ public class SheepGrowing extends AbstractQuest {
 					public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 						// amount is currently ignored.
 						if (player.hasSheep()) {
-							Sheep sheep = (Sheep) world.get(player.getSheep());
+							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 							if (seller.squaredDistance(sheep) > 5 * 5) {
 								seller.say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
 							} else {
 								say("Thanks! Here is your money.");
 								payPlayer(player);
 
-								rp.removeNPC(sheep);
-								world.remove(sheep.getID());
+								StendhalRPRuleProcessor.get().removeNPC(sheep);
+								StendhalRPWorld.get().remove(sheep.getID());
 								player.removeSheep(sheep);
 
-								world.modify(player);
+								player.notifyWorldAboutChanges();
 								return true;
 							}
 						} else {
@@ -200,7 +200,7 @@ public class SheepGrowing extends AbstractQuest {
 				addGreeting();
 				addJob("I work as the main Semos' sheep buyer.");
 				addHelp("I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!");
-				addBuyer(new SheepBuyerBehaviour(world, buyitems));
+				addBuyer(new SheepBuyerBehaviour(buyitems));
 				addGoodbye();
 			}
 		};

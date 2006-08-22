@@ -13,7 +13,9 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Level;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.*;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.ActionManager;
@@ -214,7 +216,7 @@ public abstract class RPEntity extends Entity {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setATK(this.atk + (int) Math.signum(levels) * 1);
-			rp.addGameEvent(getName(), "atk", Integer.toString(getATK()));
+			StendhalRPRuleProcessor.get().addGameEvent(getName(), "atk", Integer.toString(getATK()));
 		}
 
 		return atk_xp;
@@ -249,7 +251,7 @@ public abstract class RPEntity extends Entity {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setDEF(this.def + (int) Math.signum(levels) * 1);
-			rp.addGameEvent(getName(), "def", Integer.toString(getDEF()));
+			StendhalRPRuleProcessor.get().addGameEvent(getName(), "def", Integer.toString(getDEF()));
 		}
 
 		return def_xp;
@@ -304,8 +306,8 @@ public abstract class RPEntity extends Entity {
 		this.xp += newxp;
 		put("xp", xp);
 
-		rp.addGameEvent(getName(), "added xp", Integer.toString(newxp));
-		rp.addGameEvent(getName(), "xp", Integer.toString(xp));
+		StendhalRPRuleProcessor.get().addGameEvent(getName(), "added xp", Integer.toString(newxp));
+		StendhalRPRuleProcessor.get().addGameEvent(getName(), "xp", Integer.toString(xp));
 
 		int newLevel = Level.getLevel(getXP());
 		int levels = newLevel - getLevel();
@@ -388,16 +390,16 @@ public abstract class RPEntity extends Entity {
 	public void onDamage(RPEntity who, int damage) {
 		logger.debug("Damaged " + damage + " points by " + who.getID());
 
-		rp.addGameEvent(who.getName(), "damaged", getName(), Integer
+		StendhalRPRuleProcessor.get().addGameEvent(who.getName(), "damaged", getName(), Integer
 				.toString(damage));
 
 		Rectangle2D rect = getArea(getx(), gety());
-		if (!rp.bloodAt((int) rect.getX(), (int) rect.getY())) {
+		if (!StendhalRPRuleProcessor.get().bloodAt((int) rect.getX(), (int) rect.getY())) {
 			Blood blood = new Blood(this);
-			IRPZone zone = world.getRPZone(getID());
+			IRPZone zone = StendhalRPWorld.get().getRPZone(getID());
 			zone.assignRPObjectID(blood);
 			zone.add(blood);
-			rp.addBlood(blood);
+			StendhalRPRuleProcessor.get().addBlood(blood);
 		}
 
 		int leftHP = getHP() - damage;
@@ -416,7 +418,7 @@ public abstract class RPEntity extends Entity {
 			kill(who);
 		}
 
-		world.modify(this);
+		notifyWorldAboutChanges();
 	}
 
 	/**
@@ -425,7 +427,7 @@ public abstract class RPEntity extends Entity {
 	 */
 	protected void kill(Entity killer) {
 		setHP(0);
-		rp.killRPEntity(this, killer);
+		StendhalRPRuleProcessor.get().killRPEntity(this, killer);
 	}
 
 	/**
@@ -451,8 +453,8 @@ public abstract class RPEntity extends Entity {
 		
 		if (killer instanceof RPEntity) {
 			((RPEntity) killer).stopAttack();
-			rp.addGameEvent(((RPEntity) killer).getName(), "killed", getName());
-			world.modify(killer);
+			StendhalRPRuleProcessor.get().addGameEvent(((RPEntity) killer).getName(), "killed", getName());
+			killer.notifyWorldAboutChanges();
 		}
 
 		// Establish how much xp points your are rewarded
@@ -505,7 +507,7 @@ public abstract class RPEntity extends Entity {
 						p.setKill(getName(), "shared");
 					}
 				}
-				world.modify(entity);
+				entity.notifyWorldAboutChanges();
 			}
 		}
 
@@ -526,12 +528,12 @@ public abstract class RPEntity extends Entity {
 		dropItemsOn(corpse);
 		updateItemAtkDef();
 
-		IRPZone zone = world.getRPZone(getID());
+		IRPZone zone = StendhalRPWorld.get().getRPZone(getID());
 		zone.assignRPObjectID(corpse);
 		zone.add(corpse);
 
 		if (remove) {
-			world.remove(getID());
+			StendhalRPWorld.get().remove(getID());
 		}
 	}
 
@@ -658,7 +660,7 @@ public abstract class RPEntity extends Entity {
 	 * @return true if the item can be equipped, else false
 	 */
 	public boolean equip(Item item, boolean putOnGroundIfItCannotEquiped) {
-		ActionManager manager = world.getRuleManager().getActionManager();
+		ActionManager manager = StendhalRPWorld.get().getRuleManager().getActionManager();
 
 		String slot = manager.canEquip(this, item);
 		if (slot != null) {
@@ -666,7 +668,7 @@ public abstract class RPEntity extends Entity {
 		}
 
 		if (putOnGroundIfItCannotEquiped) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(getID());
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(getID());
 			zone.assignRPObjectID(item);
 			item.setx(getx());
 			item.sety(gety());
@@ -747,7 +749,7 @@ public abstract class RPEntity extends Entity {
 						}
 						if (toDrop == 0) {
 							updateItemAtkDef();
-							world.modify(this);
+							notifyWorldAboutChanges();
 							return true;
 						}
 					}
@@ -1113,7 +1115,7 @@ public abstract class RPEntity extends Entity {
 	public void updateItemAtkDef() {
 		put("atk_item", ((int) getItemAtk()));
 		put("def_item", ((int) getItemDef()));
-		world.modify(this);
+		notifyWorldAboutChanges();
 	}
 
 }

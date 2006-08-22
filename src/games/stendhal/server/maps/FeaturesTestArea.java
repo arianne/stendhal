@@ -34,7 +34,7 @@ public class FeaturesTestArea implements IContent {
 			if (killer instanceof RPEntity) {
 				RPEntity killerRPEntity = (RPEntity) killer;
 				if (!killerRPEntity.isEquipped("key_golden")) {
-					Item item = world.getRuleManager().getEntityManager().getItem(
+					Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 							"key_golden");
 					killerRPEntity.equip(item, true);
 				}

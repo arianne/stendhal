@@ -157,7 +157,7 @@ public class Path {
 			Rectangle2D destination, double maxDistance) {
 		
 		if (zone == null) {
-			zone = (StendhalRPZone) Entity.getWorld().getRPZone(entity.getID());
+			zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
 		}
 		
 		// Log4J.startMethod(logger, "searchPath");

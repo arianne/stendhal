@@ -1,6 +1,7 @@
 package games.stendhal.server.entity;
 
 import marauroa.common.game.*;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.StendhalScriptSystem;
 import java.util.LinkedList;
@@ -79,7 +80,7 @@ public class PersonalChest extends Chest {
 						}					
 						
 						close();
-						world.modify(outer);
+						outer.notifyWorldAboutChanges();
 						
 						attending = null;
 					}
@@ -92,7 +93,7 @@ public class PersonalChest extends Chest {
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 
-		zone = world.getRPZone(player.getID());
+		zone = StendhalRPWorld.get().getRPZone(player.getID());
 
 		if (player.nextTo(this, 0.25)) {
 			if (isOpen()) {
@@ -109,7 +110,7 @@ public class PersonalChest extends Chest {
 
 				open();
 			}
-			world.modify(this);
+			notifyWorldAboutChanges();
 		}
 	}
 }

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
@@ -66,7 +68,7 @@ public class Blood extends Entity implements TurnListener {
 	}
 
 	public void onTurnReached(int currentTurn, String message) {
-		world.remove(getID());
-		rp.removeBlood(this);
+		StendhalRPWorld.get().remove(getID());
+		StendhalRPRuleProcessor.get().removeBlood(this);
 	}
 }

@@ -446,7 +446,7 @@ public class Semos implements IContent {
 					});
 				addHelp("I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news.");
 				addJob("I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
-				addSeller(new SellerBehaviour(world, shops.get("scrolls")));
+				addSeller(new SellerBehaviour(shops.get("scrolls")));
 				
 				add(ConversationStates.ATTENDING,
 					QUEST_MESSAGES,
@@ -541,8 +541,7 @@ public class Semos implements IContent {
 				addGreeting();
 				addJob("I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
 				addHelp("Ask me to #heal you and I will help you or ask me #offer and I will show my shop's stuff.");
-				addSeller(new SellerBehaviour(world, 
-						shops.get("healing")));
+				addSeller(new SellerBehaviour(shops.get("healing")));
 				addHealer(0);
 				addGoodbye();
 			}
@@ -664,8 +663,7 @@ public class Semos implements IContent {
 				addGreeting();
 				addJob("I am the bar maid for this fair tavern. We sell fine beers and food.");
 				addHelp("At the tavern you can get an #offer of drinks and take a break to meet new people!");
-				addSeller(new SellerBehaviour(world,
-						shops.get("food&drinks")));
+				addSeller(new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye();
 			}
 		};
@@ -689,10 +687,8 @@ public class Semos implements IContent {
 				addGreeting();
 				addJob("Shhh! I sell adventurers stuff.");
 				addHelp("I buy and sell several items, ask me for my offer");
-				addSeller(new SellerBehaviour(world,
-						shops.get("sellstuff")), false);
-				addBuyer(new BuyerBehaviour(world,
-						shops.get("buystuff")), false);
+				addSeller(new SellerBehaviour(shops.get("sellstuff")), false);
+				addBuyer(new BuyerBehaviour(shops.get("buystuff")), false);
 				add(ConversationStates.ATTENDING,
 					"offer",
 					null,
@@ -737,8 +733,7 @@ public class Semos implements IContent {
 				addGreeting();
 				addJob("I sell bows and arrows stuff.");
 				addHelp("I sell several items, ask me for my #offer");
-				addSeller(new SellerBehaviour(world,
-						shops.get("sellrangedstuff")));
+				addSeller(new SellerBehaviour(shops.get("sellrangedstuff")));
 				addGoodbye();
 			}
 		};
@@ -1147,7 +1142,7 @@ public class Semos implements IContent {
 				addGreeting();
 				addJob("I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
 				addHelp("Ask me to #heal you and I will help you or ask me for an #offer and I will show my shop's stuff.");
-				addSeller(new SellerBehaviour(world, shops.get("healing")));
+				addSeller(new SellerBehaviour(shops.get("healing")));
 				addHealer(0);
 				addGoodbye();
 			}

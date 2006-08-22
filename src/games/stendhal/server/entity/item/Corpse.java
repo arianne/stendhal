@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.Player;
@@ -129,9 +130,9 @@ public class Corpse extends PassiveEntity implements TurnListener {
 				base = base.getContainer();
 			}
 
-			world.modify(base);
+			StendhalRPWorld.get().modify(base);
 		} else {
-			world.modify(this);
+			notifyWorldAboutChanges();
 		}
 	}
 
@@ -161,11 +162,11 @@ public class Corpse extends PassiveEntity implements TurnListener {
 					base = base.getContainer();
 				}
 
-				world.modify(base);
+				StendhalRPWorld.get().modify(base);
 
 				getContainerSlot().remove(this.getID());
 			} else {
-				world.remove(getID());
+				StendhalRPWorld.get().remove(getID());
 			}
 
 		} else {

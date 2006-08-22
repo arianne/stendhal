@@ -24,20 +24,17 @@ import java.util.Set;
  */
 public abstract class MerchantBehaviour {
 	
-	protected StendhalRPWorld world;
-	
 	protected Map<String, Integer> priceList;
 
 	protected String chosenItem;
 
 	protected int amount;
 
-	public MerchantBehaviour(StendhalRPWorld world) {
-		this(world, new HashMap<String, Integer>());
+	public MerchantBehaviour() {
+		this(new HashMap<String, Integer>());
 	}
 
-	public MerchantBehaviour(StendhalRPWorld world, Map<String, Integer> priceList) {
-		this.world = world;
+	public MerchantBehaviour(Map<String, Integer> priceList) {
 		this.priceList = priceList;
 	}
 

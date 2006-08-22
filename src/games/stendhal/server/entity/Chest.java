@@ -111,7 +111,7 @@ public class Chest extends Entity implements UseEvent {
 				open();
 			}
 
-			world.modify(this);
+			notifyWorldAboutChanges();
 		}
 	}
 
