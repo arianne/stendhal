@@ -12,6 +12,7 @@
  ***************************************************************************/
 
 package games.stendhal.client.gui.wt;
+
 import java.awt.geom.Point2D;
 import java.awt.Point;
 import java.util.Arrays;
@@ -34,9 +35,7 @@ import games.stendhal.client.gui.wt.core.WtPanel;
  * 
  */
 
-public class GroundContainer extends WtPanel
-
-{
+public class GroundContainer extends WtPanel {
 
 	/** list of game objects */
 	private GameObjects gameObjects;
@@ -49,8 +48,7 @@ public class GroundContainer extends WtPanel
 
 	/** creates a new groundcontainer */
 	public GroundContainer(GameScreen screen, GameObjects gameObjects,
-			InGameGUI gameGUI)
-	{
+			InGameGUI gameGUI) {
 		super("ground", 0, 0, screen.getWidthInPixels(), screen
 				.getHeightInPixels());
 
@@ -68,35 +66,26 @@ public class GroundContainer extends WtPanel
 	 * drops an item to the ground
 	 * 
 	 */
-
-	protected boolean checkDropped(int x, int y, WtDraggable droppedObject)
-
-	{
-
+	protected boolean checkDropped(int x, int y, WtDraggable droppedObject) {
 		// check all childpanels
 		boolean dropped = super.checkDropped(x, y, droppedObject);
 
-		if (dropped)
+		if (dropped) {
 			return true;
-
+		}
 		// is ot an entity?
-		if (droppedObject instanceof MoveableEntityContainer)
-		{
+		if (droppedObject instanceof MoveableEntityContainer) {
 			MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
 			Point2D point = screen.translate(new Point2D.Double(x, y));
 			RPAction action = new RPAction();
-			if (container.isContained())
-			{
+			if (container.isContained()) {
 				// looks like an drop
 				action.put("type", "drop");
 				// HACK: if ctrl is pressed, attempt to split stackables
-				if (ingameGUI.isCtrlDown())
-				{
+				if (ingameGUI.isCtrlDown()) {
 					action.put("quantity", "1");
 				}
-			}
-			else
-			{
+			} else {
 				// it is a displace
 				action.put("type", "displace");
 			}
@@ -114,19 +103,17 @@ public class GroundContainer extends WtPanel
 	}
 
 	/** drags an item from the ground */
-	protected WtDraggable getDragged(int x, int y)
-	{
+	protected WtDraggable getDragged(int x, int y) {
 
 		WtDraggable other = super.getDragged(x, y);
-		if (other != null)
+		if (other != null) {
 			return other;
-
+		}
 		Point2D point = screen.translate(new Point2D.Double(x, y));
 		Entity object = gameObjects.at(point.getX(), point.getY());
 
 		// only Items can be dragged
-		if (object != null && object instanceof PassiveEntity)
-		{
+		if (object != null && object instanceof PassiveEntity) {
 			return new MoveableEntityContainer(object, (int) point.getX(),
 					(int) point.getY(), gameObjects);
 		}
@@ -138,12 +125,9 @@ public class GroundContainer extends WtPanel
 	 * 
 	 * 
 	 */
-
-	public synchronized boolean onMouseClick(Point p)
-	{
+	public synchronized boolean onMouseClick(Point p) {
 		// base class checks if the click is within a child
-		if (super.onMouseClick(p))
-		{
+		if (super.onMouseClick(p)) {
 			// yes, click already processed
 			return true;
 		}
@@ -153,38 +137,27 @@ public class GroundContainer extends WtPanel
 		Entity entity = gameObjects.at(point.getX(), point.getY());
 
 		// for the clicked entity....
-		if (entity != null)
-		{
+		if (entity != null) {
 			StendhalClient client = StendhalClient.get();
-			if (ingameGUI.isCtrlDown())
-			{
+			if (ingameGUI.isCtrlDown()) {
 				List<String> actions = Arrays.asList(entity.offeredActions());
-				if (actions.contains("Attack"))
-				{
+				if (actions.contains("Attack")) {
 					entity.onAction(client, "Attack");
-				}
-				else if (actions.contains("Inspect"))
-				{
+				} else if (actions.contains("Inspect")) {
 					entity.onAction(client, "Inspect");
-				}
-				else if (actions.contains("Use"))
-				{
+				} else if (actions.contains("Use")) {
 					entity.onAction(client, "Use");
 				}
-			}
-			else if (ingameGUI.isShiftDown())
-			{
+			} else if (ingameGUI.isShiftDown()) {
 				entity.onAction(client, "Look");
 			}
 		}
 		return true;
 	}
 
-	public synchronized boolean onMouseDoubleClick(Point p)
-	{
+	public synchronized boolean onMouseDoubleClick(Point p) {
 		// base class checks if the click is within a child
-		if (super.onMouseDoubleClick(p))
-		{
+		if (super.onMouseDoubleClick(p)) {
 			// yes, click already processed
 			return true;
 		}
@@ -193,14 +166,11 @@ public class GroundContainer extends WtPanel
 		Entity entity = gameObjects.at(point.getX(), point.getY());
 		StendhalClient client = StendhalClient.get();
 
-		if (entity != null)
-		{
+		if (entity != null) {
 			// ... do the default action
 			String action = entity.defaultAction();
 			entity.onAction(client, action);
-		}
-		else
-		{
+		} else {
 			// moveto action
 			RPAction action = new RPAction();
 			action.put("type", "moveto");
@@ -213,11 +183,9 @@ public class GroundContainer extends WtPanel
 	}
 
 	/** process right click */
-	public synchronized boolean onMouseRightClick(Point p)
-	{
+	public synchronized boolean onMouseRightClick(Point p) {
 		// base class checks if the click is within a child
-		if (super.onMouseRightClick(p))
-		{
+		if (super.onMouseRightClick(p)) {
 			// yes, click already processed
 			return true;
 		}
@@ -225,12 +193,10 @@ public class GroundContainer extends WtPanel
 		Point2D point = screen.translate(p);
 		Entity entity = gameObjects.at(point.getX(), point.getY());
 		StendhalClient client = StendhalClient.get();
-		if (entity != null)
-		{
+		if (entity != null) {
 			// ... show context menu (aka command list)
 			String[] actions = entity.offeredActions();
-			if (actions.length > 0)
-			{
+			if (actions.length > 0) {
 				CommandList list = new CommandList(entity.getType(), actions,
 						(int) p.getX(), (int) p.getY(), 100, 150, client,
 						entity);
