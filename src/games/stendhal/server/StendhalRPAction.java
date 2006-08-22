@@ -406,21 +406,6 @@ public class StendhalRPAction {
     
 	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
 			int y) {
-
-		boolean res = placeatImpl(zone, entity, x, y, true);
-
-		if (!res && entity instanceof Player) {
-            // If no place can be found using strict collision checking,
-            // we'll try a second time ignoring collisions caused by objects.
-			// TODO: Is this realy a good idea?
-			// res = placeatImpl(zone, entity, x, y, false);
-		}
-	    return res;
-    }
-    
-    public static boolean placeatImpl(StendhalRPZone zone, Entity entity, int x,
-                    int y, boolean checkObjectCollisition) {
-
         boolean found = false;
         boolean checkPath = true;
 
@@ -431,23 +416,23 @@ public class StendhalRPAction {
 
         	if (zone.collides(entity, x, y, false)) {
         		// something nasty happend. The player should be put on a spot
-        		// with a real collisition (not caused by objects).
+        		// with a real collision (not caused by objects).
         		// Try to put him anywhere possible without checking the path.
         		checkPath = false;
         	}
 
             // We cannot place the entity on the orginal spot. Let's search 
         	// for a new destination up to maxDestination tiles in every way.
-            int maxDestination = 20;
+            final int maxDestination = 20;
         	
-            foundit:
+            outerLoop:
             for (int k = 1; k <= maxDestination; k++) {
 				for (int i = -k; i < k; i++) {
 					for (int j = -k; j < k; j++) {
 
 						nx = x + i;
 						ny = y + j;
-						if (!zone.collides(entity, nx, ny, checkObjectCollisition)) {
+						if (!zone.collides(entity, nx, ny)) {
 							
 							// OK, we may place the entity on this spot.
 
@@ -465,7 +450,7 @@ public class StendhalRPAction {
     							entity.sety(ny);
     
     							found = true;
-                                break foundit; // break all for-loops
+                                break outerLoop; // break all for-loops
 							}
 						}
 					}
