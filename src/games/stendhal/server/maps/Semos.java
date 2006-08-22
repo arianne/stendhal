@@ -27,16 +27,16 @@ import java.util.List;
 import marauroa.common.game.IRPZone;
 
 public class Semos implements IContent {
-	private StendhalRPWorld world;
 
 	private NPCList npcs;
 
 	private ShopList shops;
 
-	public Semos(StendhalRPWorld world) {
+	public Semos() {
 		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
-		this.world = world;
+
+		StendhalRPWorld world = StendhalRPWorld.get();
 		buildSemosCityArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"0_semos_city")));
 		buildSemosVillageArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
@@ -158,7 +158,7 @@ public class Semos implements IContent {
 	}
 
 	private void buildSemosStorageArea() {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"int_semos_storage_0"));
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
@@ -230,7 +230,7 @@ public class Semos implements IContent {
 		npc.set(21, 5);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"int_semos_storage_-1"));
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
@@ -358,7 +358,7 @@ public class Semos implements IContent {
 								} else {
 									player.drop("wood", numberOfIron);
 									player.drop("iron_ore", numberOfIron);
-									StackableItem iron = (StackableItem) world.getRuleManager().getEntityManager().getItem("iron");            
+									StackableItem iron = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("iron");            
 									iron.setQuantity(numberOfIron);
 									player.equip(iron, true);
 									engine.say("Thank you, here you have "
@@ -619,7 +619,7 @@ public class Semos implements IContent {
 	}
 
 	private void buildSemosTavernArea() {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"int_semos_tavern_1"));
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
@@ -627,7 +627,7 @@ public class Semos implements IContent {
 		portal.setNumber(0);
 		portal.setDestination("int_semos_tavern_0", 1);
 		zone.addPortal(portal);
-		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"int_semos_tavern_0"));
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
@@ -696,7 +696,7 @@ public class Semos implements IContent {
 					"Have a look at the blackboards on the wall to see my offers",
 					null);
 				addGoodbye();
-				StendhalRPZone zone = (StendhalRPZone) world
+				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
 						.getRPZone(new IRPZone.ID("int_semos_tavern_0"));
 				Blackboard board = new Blackboard(false);
 				zone.assignRPObjectID(board);
@@ -1118,7 +1118,7 @@ public class Semos implements IContent {
 							} else {
 								say("Ummm! No, you clean me! Begin with my back!");
 								player.setHP(player.getHP() - 5);
-								world.modify(player);
+								player.notifyWorldAboutChanges();
 							}
 						}
 					});

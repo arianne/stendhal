@@ -28,10 +28,8 @@ import java.util.List;
 import marauroa.common.game.IRPZone;
 
 public class Ados implements IContent {
-	//private StendhalRPWorld world;
 	private ShopList shops;
 	private NPCList npcs;
-	private StendhalRPWorld world;
 	
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 		private static long lastShoutTime = 0;
@@ -74,10 +72,11 @@ public class Ados implements IContent {
 		}
 	}
 
-	public Ados(StendhalRPWorld world) {
+	public Ados() {
 		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
-		this.world = world;
+		
+		StendhalRPWorld world = StendhalRPWorld.get();
 
 		buildRockArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"0_ados_rock")));
@@ -204,7 +203,7 @@ public class Ados implements IContent {
 
 		// put special RespawnPoints
 		// 65, 34 bear
-		DefaultEntityManager manager = (DefaultEntityManager) world.getRuleManager().getEntityManager();
+		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
 		RespawnPoint point = new RespawnPoint(zone, 65, 34, creature, 1);
 		zone.addRespawnPoint(point);
@@ -285,7 +284,7 @@ public class Ados implements IContent {
 
 	private void buildMagicianHouseArea(StendhalRPZone zone) {
 		StendhalRPZone zoneOutside = (StendhalRPZone) 
-			world.getRPZone(new IRPZone.ID("0_ados_mountain_nw"));
+			StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_ados_mountain_nw"));
 
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
@@ -377,7 +376,7 @@ public class Ados implements IContent {
 	}
 	
 	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
-		Item item = world.getRuleManager().getEntityManager().getItem(name);
+		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
 		zone.assignRPObjectID(item);
 		item.setx(x);
 		item.sety(y);

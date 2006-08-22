@@ -293,11 +293,11 @@ public class StendhalRPWorld extends RPWorld {
 
 			logger.info("Loading Zone populate class: " + name);
 			java.lang.reflect.Constructor constr = entityClass
-					.getConstructor(StendhalRPWorld.class);
+					.getConstructor();
 
 			// simply creatre a new instance. The constructor creates all
 			// additionally objects
-			constr.newInstance(this);
+			constr.newInstance();
 			return true;
 		} catch (Exception e) {
 			logger.warn("Zone Populate class(" + name + ") loading failed.", e);

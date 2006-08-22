@@ -49,10 +49,10 @@ public class FeaturesTestArea implements IContent {
 		}
 	}
 
-	public FeaturesTestArea(StendhalRPWorld world) {
-		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+	public FeaturesTestArea() {
+		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"int_pathfinding"));
-		manager = (DefaultEntityManager) world
+		manager = (DefaultEntityManager) StendhalRPWorld.get()
 				.getRuleManager().getEntityManager();
 		
 		createDoorAndKey();

@@ -6,8 +6,8 @@ import games.stendhal.server.entity.portal.Portal;
 import marauroa.common.game.IRPZone;
 
 public class Afterlife implements IContent {
-	public Afterlife(StendhalRPWorld world) {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+	public Afterlife() {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"int_afterlife"));
 
 		Portal portal = new Portal();

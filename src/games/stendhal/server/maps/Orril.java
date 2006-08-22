@@ -23,16 +23,16 @@ import marauroa.common.game.IRPZone;
 
 
 public class Orril implements IContent {
-	private StendhalRPWorld world;
 
 	private NPCList npcs;
 	
 	private ShopList shops;
 
-	public Orril(StendhalRPWorld world) {
+	public Orril() {
 		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
-		this.world = world;
+		
+		StendhalRPWorld world = StendhalRPWorld.get();
 
 		buildJynathHouseArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"int_orril_jynath_house")));
@@ -48,6 +48,7 @@ public class Orril implements IContent {
 	}
 
 	private void buildCastleDungeonArea() {
+		StendhalRPWorld world = StendhalRPWorld.get();
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"-1_orril_castle_w"));
 
@@ -134,7 +135,7 @@ public class Orril implements IContent {
 		portal.setDestination("-1_orril_castle", 1);
 		zone.addPortal(portal);
 
-		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"-1_orril_castle"));
 		portal = new Portal();
 		zone.assignRPObjectID(portal);

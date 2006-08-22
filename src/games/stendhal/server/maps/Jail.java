@@ -16,14 +16,14 @@ import java.util.LinkedList;
  * Game masters can place players in -2_semos_jail for bad behaviour.
  */
 public class Jail implements IContent {
-	public Jail(StendhalRPWorld world) {
-		zoneSub1SemosJail(world);
-		zoneSub2SemosJail(world);
+	public Jail() {
+		zoneSub1SemosJail();
+		zoneSub2SemosJail();
 	}
 
-	private void zoneSub1SemosJail(StendhalRPWorld world) {
+	private void zoneSub1SemosJail() {
 		NPCList npcs = NPCList.get();
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 		"-1_semos_jail"));
 		SpeakerNPC npc = new SpeakerNPC("Marcus") {
 			protected void createPath() {
@@ -52,9 +52,9 @@ public class Jail implements IContent {
 
 	}
 
-	private void zoneSub2SemosJail(StendhalRPWorld world) {
+	private void zoneSub2SemosJail() {
 		NPCList npcs = NPCList.get();
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 		"-2_semos_jail"));
 		SpeakerNPC npc = new SpeakerNPC("Sten Tanquilos") {
 			protected void createPath() {

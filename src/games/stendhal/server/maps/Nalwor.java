@@ -8,8 +8,8 @@ import games.stendhal.server.entity.portal.Portal;
 import marauroa.common.game.IRPZone;
 
 public class Nalwor implements IContent {
-	public Nalwor(StendhalRPWorld world) {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+	public Nalwor() {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"0_nalwor_forest_w"));
 
 		Portal portal = new Portal();
