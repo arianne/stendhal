@@ -40,7 +40,7 @@ public class Campfire extends AbstractQuest {
 			return false;
 		} else {
 			int turnWhenLastBroughtWood = Integer.parseInt(player.getQuest("campfire"));
-			int turnsSinceLastBroughtWood = rules.getTurn() - turnWhenLastBroughtWood;
+			int turnsSinceLastBroughtWood = StendhalRPRuleProcessor.get().getTurn() - turnWhenLastBroughtWood;
 			if (turnsSinceLastBroughtWood < 0) {
 				// The server was restarted since last doing the quest.
 				// Make sure the player can repeat the quest.
@@ -132,7 +132,7 @@ public class Campfire extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.drop("wood", REQUIRED_WOOD)) {
-							player.setQuest("campfire", Integer.toString(rules.getTurn()));
+							player.setQuest("campfire", Integer.toString(StendhalRPRuleProcessor.get().getTurn()));
 							player.addXP(50);
 							
 							String rewardClass;
@@ -142,11 +142,11 @@ public class Campfire extends AbstractQuest {
 								rewardClass = "ham";
 							}
 							engine.say("Thank you! Here, take some " + rewardClass + ".");
-							EntityManager manager = world.getRuleManager().getEntityManager();
+							EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 							StackableItem reward = (StackableItem) manager.getItem(rewardClass);
 							reward.setQuantity(REQUIRED_WOOD);
 							player.equip(reward, true);
-							world.modify(player);
+							player.notifyWorldAboutChanges();
 						} else {
 							engine.say("Hey! Where did you put the wood?");
 						}
@@ -162,8 +162,8 @@ public class Campfire extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 		step_2();

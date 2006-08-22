@@ -7,7 +7,6 @@ import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
 import marauroa.common.game.IRPZone;
 
 /**
@@ -96,7 +95,7 @@ public class PlinksToy extends AbstractQuest {
 	}
 	
 	private void step_2() {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_semos_plains_n"));
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_plains_n"));
 		PlantGrower plantGrower = new PlantGrower("teddy", 1500);
 		zone.assignRPObjectID(plantGrower);
 		plantGrower.setx(107);
@@ -104,7 +103,7 @@ public class PlinksToy extends AbstractQuest {
 		plantGrower.setDescription("Plink lost his teddy here.");
 		zone.add(plantGrower);
 
-		rules.getPlantGrowers().add(plantGrower);
+		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
 	}
 	
 	private void step_3() {
@@ -174,8 +173,8 @@ public class PlinksToy extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 		step_2();

@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
@@ -134,14 +133,14 @@ public class BeerForHayunn extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("beer");
-						StackableItem money = (StackableItem) world.getRuleManager()
+						StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager()
 								.getEntityManager().getItem("money");
 						money.setQuantity(20);
 						player.equip(money);
 		
 						player.addXP(10);
 		
-						world.modify(player);
+						player.notifyWorldAboutChanges();
 						player.setQuest("beer_hayunn", "done");
 					}
 				});
@@ -155,8 +154,8 @@ public class BeerForHayunn extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 		step_2();

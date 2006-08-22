@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
@@ -53,13 +52,13 @@ public class MeetHayunn extends AbstractQuest {
         if(level<15)
           {
           answer="Well... Fame and glory await you, depart and don't get killed in the dungeons my young friend!";
-          StackableItem money=(StackableItem)world.getRuleManager().getEntityManager().getItem("money");
+          StackableItem money=(StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
           money.setQuantity(5);
 	  player.equip(money);
 
           player.addXP(10);
 
-          world.modify(player);
+          player.notifyWorldAboutChanges();
 
           }
         else
@@ -75,8 +74,8 @@ public class MeetHayunn extends AbstractQuest {
     }
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
     step_1();
     }
   }

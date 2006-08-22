@@ -173,7 +173,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			// Behaviours.initialize(rpman, this, world);
 			Path.initialize(world);
 			/* Initialize quests */
-			new StendhalQuestSystem(this.world, this);
+			new StendhalQuestSystem();
 			for (IRPZone zone : world) {
 				StendhalRPZone szone = (StendhalRPZone) zone;
 				npcs.addAll(szone.getNPCList());

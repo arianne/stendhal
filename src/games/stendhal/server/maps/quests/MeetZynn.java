@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -107,8 +105,8 @@ public class MeetZynn extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 	}

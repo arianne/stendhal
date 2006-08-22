@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
@@ -105,19 +104,19 @@ public class NewsFromHackim extends AbstractQuest {
 										+ answer);
 						player.setQuest("news_hackim", "done");
 		
-						Item item = world.getRuleManager().getEntityManager().getItem(
+						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 								"leather_legs");
 						player.equip(item, true);
 						player.addXP(10);
 		
-						world.modify(player);
+						player.notifyWorldAboutChanges();
 					}
 				});
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 		step_2();

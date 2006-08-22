@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
@@ -191,12 +190,12 @@ public class WeaponsCollector extends AbstractQuest {
 									if (missing.size() > 0) {
 										engine.say("Thank you very much! Do you have any other weapon for me?");
 									} else {
-										Item iceSword = world.getRuleManager().getEntityManager().getItem("ice_sword");            
+										Item iceSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("ice_sword");            
 										player.equip(iceSword, true);
 										player.addXP(1000);
 										engine.say("Yippie! My collection is complete! Thank you very much! Here, take this ice_sword in exchange!");										
 										player.setQuest("weapons_collector", "done");
-										world.modify(player);
+										player.notifyWorldAboutChanges();
 									}
 								} else {
 									engine.say("I may be old, but I'm not senile! You don't have a " + text + "! What weapon do you really have for me?");
@@ -243,8 +242,8 @@ public class WeaponsCollector extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 		step_1();
 		step_2();
 		step_3();

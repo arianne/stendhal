@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
@@ -59,7 +58,7 @@ public class MeetHackim extends AbstractQuest {
 						int level = player.getLevel();
 						String answer;
 						if (level < 15) {
-							StackableItem money = (StackableItem) world
+							StackableItem money = (StackableItem) StendhalRPWorld.get()
 									.getRuleManager().getEntityManager().getItem(
 											"money");
 							money.setQuantity(5);
@@ -67,7 +66,7 @@ public class MeetHackim extends AbstractQuest {
 		
 							player.addXP(10);
 		
-							world.modify(player);
+							player.notifyWorldAboutChanges();
 		
 							answer = "If somebody asks you, you don't know me!";
 						} else {
@@ -91,8 +90,8 @@ public class MeetHackim extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 	}

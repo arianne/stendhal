@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.NPCList;
 
@@ -24,12 +22,6 @@ public class AbstractQuest implements IQuest {
 	/** NPCList * */
 	protected NPCList npcs = null;
 
-	/** StendhalRPRuleProcessor * */
-	protected StendhalRPRuleProcessor rules = null;
-
-	/** StendhalRPWorld * */
-	protected StendhalRPWorld world = null;
-	
 	private static final List<String> emptyList = new ArrayList<String>();
 
 	public void init(String name) {
@@ -41,10 +33,8 @@ public class AbstractQuest implements IQuest {
 		this.slotName = slotName;
 	}
 
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
+	public void addToWorld() {
 		this.npcs = NPCList.get();
-		this.world = world;
-		this.rules = rules;
 	}
 
 	public void convertOnUpdate(Player player) {

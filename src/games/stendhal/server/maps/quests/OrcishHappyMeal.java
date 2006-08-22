@@ -37,10 +37,10 @@ import marauroa.common.game.IRPZone;
 public class OrcishHappyMeal extends AbstractQuest {
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"-4_semos_dungeon"));
 		NPCList npcs = NPCList.get();
 		

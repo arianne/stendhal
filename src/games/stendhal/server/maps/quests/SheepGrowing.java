@@ -40,9 +40,9 @@ import marauroa.common.game.IRPZone;
 public class SheepGrowing extends AbstractQuest {
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(
+	public void addToWorld() {
+		super.addToWorld();
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"0_semos_village_w"));
 		NPCList npcs = NPCList.get();
 
@@ -128,7 +128,7 @@ public class SheepGrowing extends AbstractQuest {
 		npc.initHP(100);
 		zone.addNPC(npc);
 
-		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_semos_city"));
+		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_city"));
 
 		sign = new Sign();
 		zone.assignRPObjectID(sign);

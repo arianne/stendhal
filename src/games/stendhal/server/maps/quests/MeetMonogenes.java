@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -45,7 +43,7 @@ public class MeetMonogenes extends AbstractQuest {
 				if (level < 15) {
 					engine.say("Bye, my friend. I hope my indications have been helpful...");
 					player.addXP(10);
-					world.modify(player);
+					player.notifyWorldAboutChanges();
 				} else {
 					engine.say("It's curious... Now that I think about it, I would have betted I had seen you in Semos before...");
 				}
@@ -54,8 +52,8 @@ public class MeetMonogenes extends AbstractQuest {
 	}
 	
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 	}

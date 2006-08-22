@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -146,7 +144,7 @@ public class HatForMonogenes extends AbstractQuest {
 						player.drop("leather_helmet");
 
 						player.addXP(10);
-						world.modify(player);
+						player.notifyWorldAboutChanges();
 						player.setQuest("hat_monogenes", "done");
 					}
 				});
@@ -160,8 +158,8 @@ public class HatForMonogenes extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 		step_2();

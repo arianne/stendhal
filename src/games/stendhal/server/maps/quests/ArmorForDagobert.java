@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
@@ -158,12 +157,12 @@ public class ArmorForDagobert extends AbstractQuest {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("leather_cuirass");
 						
-						StackableItem money = (StackableItem) world.getRuleManager().getEntityManager().getItem("money");            
+						StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");            
 						money.setQuantity(80);
 						player.equip(money);
 						player.addXP(50);
 						
-						world.modify(player);
+						player.notifyWorldAboutChanges();
 						player.setQuest(QUEST_SLOT, "done");
 						engine.say("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.");
 					}
@@ -179,8 +178,8 @@ public class ArmorForDagobert extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 		step_2();

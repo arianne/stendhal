@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
@@ -137,7 +136,7 @@ public class LookBookforCeryl extends AbstractQuest {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("ceryl_book", "jynath");
 
-						Item item = world.getRuleManager().getEntityManager()
+						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager()
 								.getItem("book_black");
 						player.equip(item, true);
 					}
@@ -197,7 +196,7 @@ public class LookBookforCeryl extends AbstractQuest {
 							SpeakerNPC engine) {
 						if (player.drop("book_black")) {
 							engine.say("Oh! The book! Thanks!");
-							StackableItem money = (StackableItem) world
+							StackableItem money = (StackableItem) StendhalRPWorld.get()
 									.getRuleManager().getEntityManager()
 									.getItem("money");
 
@@ -205,7 +204,7 @@ public class LookBookforCeryl extends AbstractQuest {
 							player.equip(money);
 							player.addXP(100);
 
-							world.modify(player);
+							player.notifyWorldAboutChanges();
 
 							player.setQuest("ceryl_book", "done");
 						} else {
@@ -217,8 +216,8 @@ public class LookBookforCeryl extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 		step_2();

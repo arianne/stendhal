@@ -1,6 +1,5 @@
 package games.stendhal.server;
 
-import games.stendhal.common.Debug;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.QuestInfo;
@@ -19,8 +18,6 @@ public class StendhalQuestSystem {
 	private static final Logger logger = Log4J
 			.getLogger(StendhalQuestSystem.class);
 
-	private StendhalRPWorld world;
-	private StendhalRPRuleProcessor rules;
 	private List<IQuest> quests = new LinkedList<IQuest>();
 
 	private QuestXMLLoader questInfos;
@@ -30,11 +27,8 @@ public class StendhalQuestSystem {
 		return stendhalQuestSystem;
 	}
 
-	public StendhalQuestSystem(StendhalRPWorld world,
-			StendhalRPRuleProcessor rules) {
+	public StendhalQuestSystem() {
 		stendhalQuestSystem = this;
-		this.world = world;
-		this.rules = rules;
 		questInfos = QuestXMLLoader.get();
 
 		loadQuest("SheepGrowing");
@@ -61,28 +55,24 @@ public class StendhalQuestSystem {
 		loadQuest("PlinksToy");
 	}
 
-	public static void main(String[] args) {
-		new StendhalQuestSystem(null, null);
-	}
-
 	private boolean loadQuest(String name) {
 		try {
-			Class entityClass = Class
+			Class questClass = Class
 					.forName("games.stendhal.server.maps.quests." + name);
 
-			if (!IQuest.class.isAssignableFrom(entityClass)) { 
+			if (!IQuest.class.isAssignableFrom(questClass)) { 
 				logger.error("Class " + name + " doesn't implement IQuest interface.");
 				return false;
 			}
 
 			// Create a new instance.
 			logger.info("Loading Quest: " + name);
-			Constructor constr = entityClass.getConstructor();
+			Constructor constr = questClass.getConstructor();
 			IQuest quest = (IQuest) constr.newInstance();
 
 			// init and add to world
 			quest.init(name);
-			quest.addToWorld(world, rules);
+			quest.addToWorld();
 
 			quests.add(quest);
 			return true;

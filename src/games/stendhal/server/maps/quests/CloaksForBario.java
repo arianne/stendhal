@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
@@ -192,10 +191,10 @@ public class CloaksForBario extends AbstractQuest {
 							engine.say("Thank you very much! Do you have another one? I still need " + toBring + " cloaks.");
 							engine.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
-							Item goldenShield = world.getRuleManager().getEntityManager().getItem("golden_shield");            
+							Item goldenShield = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden_shield");            
 							player.equip(goldenShield, true);
 							player.addXP(1500);
-							world.modify(player);
+							player.notifyWorldAboutChanges();
 							player.setQuest("cloaks_for_bario", "done");
 							engine.say("Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.");
 						}
@@ -207,8 +206,8 @@ public class CloaksForBario extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 
 		step_1();
 		step_2();

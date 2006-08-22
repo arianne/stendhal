@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -119,7 +117,7 @@ public class ZooFood extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.drop("ham", REQUIRED_HAM)) {
-							world.modify(player);
+							player.notifyWorldAboutChanges();
 							player.setQuest("zoo_food", "done");
 							player.addXP(200);
 							engine.say("Thank you! You have rescued our rare animals.");
@@ -159,8 +157,8 @@ public class ZooFood extends AbstractQuest {
 	}
 
 	@Override
-	public void addToWorld(StendhalRPWorld world, StendhalRPRuleProcessor rules) {
-		super.addToWorld(world, rules);
+	public void addToWorld() {
+		super.addToWorld();
 		step_1();
 		step_2();
 		step_3();
