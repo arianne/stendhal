@@ -16,7 +16,6 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -37,42 +36,39 @@ public class ChatAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		if (action.get("type").equals("chat")) {
-			onChat(world, rules, player, action);
+			onChat(player, action);
 		} else if (action.get("type").equals("tell")) {
-			onTell(world, rules, player, action);
+			onTell(player, action);
 		} else {
-			onSupport(world, rules, player, action);
+			onSupport(player, action);
 		}
 	}
 
-	private void onChat(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void onChat(Player player, RPAction action) {
 		Log4J.startMethod(logger, "chat");
 		if (action.has("text")) {
 			player.put("text", action.get("text"));
-			world.modify(player);
-			rules.removePlayerText(player);
+			player.notifyWorldAboutChanges();
+			StendhalRPRuleProcessor.get().removePlayerText(player);
 		}
 		Log4J.finishMethod(logger, "chat");
 	}
 
-	private void onTell(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void onTell(Player player, RPAction action) {
 		Log4J.startMethod(logger, "tell");
 
 		if (action.has("target") && action.has("text")) {
 			String message = player.getName() + " tells you: "
 					+ action.get("text");
-			Player receiver = rules.getPlayer(action.get("target"));
+			Player receiver = StendhalRPRuleProcessor.get().getPlayer(action.get("target"));
 			if (receiver != null) {
 				receiver.sendPrivateText(message);
 				player.sendPrivateText("You tell " + receiver.getName() + ": "
 						+ action.get("text"));
-				world.modify(receiver);
-				world.modify(player);
+				receiver.notifyWorldAboutChanges();
+				player.notifyWorldAboutChanges();
 				return;
 			}
 			player.sendPrivateText(action.get("target")
@@ -82,21 +78,20 @@ public class ChatAction extends ActionListener {
 		Log4J.finishMethod(logger, "tell");
 	}
 
-	private void onSupport(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void onSupport(Player player, RPAction action) {
 		Log4J.startMethod(logger, "support");
 
 		if (action.has("text")) {
 			String message = player.getName() + " asks for support to ADMIN: "
 					+ action.get("text") + "\r\nPlease use /supportanswer " + player.getName() + " to answer.";
 
-			rules.addGameEvent(player.getName(), "support", action.get("text"));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "support", action.get("text"));
 
 			boolean found = false;
-			for (Player p : rules.getPlayers()) {
+			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
 					p.sendPrivateText(message);
-					world.modify(p);
+					p.notifyWorldAboutChanges();
 					if (!p.getName().equals("postman")) {
 						found = true;
 					}
@@ -108,7 +103,7 @@ public class ChatAction extends ActionListener {
 			} else {
 				player.sendPrivateText("Sorry, your support request cannot be processed at the moment because no supporter is in game right now.");
 			}
-			world.modify(player);
+			player.notifyWorldAboutChanges();
 		}
 
 		Log4J.finishMethod(logger, "tell");

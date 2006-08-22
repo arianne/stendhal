@@ -13,11 +13,11 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -31,19 +31,18 @@ public class PlayersQuery extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		if (action.get("type").equals("who")) {
-			onWho(world, rules, player, action);
+			onWho(player, action);
 		} else {
-			onWhere(world, rules, player, action);
+			onWhere(player, action);
 		}
 	}
 
-	public void onWho(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onWho(Player player, RPAction action) {
 		Log4J.startMethod(logger, "who");
-
+		
+		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		rules.addGameEvent(player.getName(), "who");
 
 		String online = "" + rules.getPlayers().size() + " Players online: ";
@@ -51,14 +50,14 @@ public class PlayersQuery extends ActionListener {
 			online += p.getName() + "(" + p.getLevel() + ") ";
 		}
 		player.sendPrivateText(online);
-		world.modify(player);
+		player.notifyWorldAboutChanges();
 		Log4J.finishMethod(logger, "who");
 	}
 
-	public void onWhere(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onWhere(Player player, RPAction action) {
 		Log4J.startMethod(logger, "where");
 
+		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		if (action.has("target")) {
 			String whoName = action.get("target");
 
@@ -69,12 +68,12 @@ public class PlayersQuery extends ActionListener {
 				player.sendPrivateText(who.getName() + " is in "
 						+ who.get("zoneid") + " at (" + who.getx() + ","
 						+ who.gety() + ")");
-				world.modify(player);
+				player.notifyWorldAboutChanges();
 			} else if (whoName.equals("sheep") && player.hasSheep()) {
-				Sheep sheep = (Sheep) world.get(player.getSheep());
+				Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 				player.sendPrivateText("sheep is in " + sheep.get("zoneid")
 						+ " at (" + sheep.getx() + "," + sheep.gety() + ")");
-				world.modify(player);
+				player.notifyWorldAboutChanges();
 			} else {
 				player.sendPrivateText(action.get("target")
 					+ " is currently not logged in.");

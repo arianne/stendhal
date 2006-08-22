@@ -42,11 +42,10 @@ public class SpouseExtension extends StendhalServerExtension {
 	private static final Logger logger = Log4J.getLogger(SpouseExtension.class);
     
     /**
-     * @param rules - the reference to the rules processor
-     * @param world - the reference to the game objects
+     * 
      */
-    public SpouseExtension(StendhalRPRuleProcessor rules, StendhalRPWorld world) {
-        super(rules, world);
+    public SpouseExtension() {
+        super();
         logger.info("SpouseExtension starting...");
         StendhalRPRuleProcessor.register("marry", this);
         AdministrationAction.registerCommandLevel("marry", 400);
@@ -63,20 +62,18 @@ public class SpouseExtension extends StendhalServerExtension {
     }
     
     @Override
-    public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-            Player player, RPAction action) {
+    public void onAction(Player player, RPAction action) {
        String type = action.get("type");
         
         if (type.equals("marry")) {
-            onMarry(world, rules, player, action);
+            onMarry(player, action);
         } else if (type.equals("spouse")) {
-            onSpouse(world, rules, player, action);
+            onSpouse(player, action);
         }
      
     }
     
-    private void onMarry(RPWorld world, StendhalRPRuleProcessor rules,
-            Player player, RPAction action) {
+    private void onMarry(Player player, RPAction action) {
         Log4J.startMethod(logger, "onMarry");
 
         String usage = "usage: /marry <player1> <player2>";
@@ -95,7 +92,7 @@ public class SpouseExtension extends StendhalServerExtension {
         
         if(action.has("target")) {
             name1 = action.get("target");
-            player1 = rules.getPlayer(name1);
+            player1 = StendhalRPRuleProcessor.get().getPlayer(name1);
             if(player1 == null) {
                 canMarry = false;
                 text += "Player " + name1 + " not found. ";
@@ -109,7 +106,7 @@ public class SpouseExtension extends StendhalServerExtension {
         
         if(action.has("args")) {
             name2 = action.get("args");
-            player2 = rules.getPlayer(name2);
+            player2 = StendhalRPRuleProcessor.get().getPlayer(name2);
             if(player2 == null) {
                 canMarry = false;
                 text += "Player " + name2 + " not found. ";
@@ -147,7 +144,7 @@ public class SpouseExtension extends StendhalServerExtension {
             player2.setQuest(SPOUSE,name1);
             player2.sendPrivateText("Congratulations! You are now married to " + name1 + ". You can use /spouse if you want to be together.");
             text = "You have successfully married " + name1 + " " + name2 + ".";
-            rules.addGameEvent(player.getName(), "marry", name1 + " + " + name2);
+            StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "marry", name1 + " + " + name2);
         }
         
         player.sendPrivateText(text);
@@ -158,15 +155,14 @@ public class SpouseExtension extends StendhalServerExtension {
 
     
     
-    private void onSpouse(RPWorld world, StendhalRPRuleProcessor rules,
-            Player player, RPAction action) {
+    private void onSpouse(Player player, RPAction action) {
         Log4J.startMethod(logger, "onSpouse");
 
         if (player.hasQuest(SPOUSE)) {
             Player teleported = null;
 
             String name = player.getQuest(SPOUSE);
-            teleported = rules.getPlayer(name);
+            teleported = StendhalRPRuleProcessor.get().getPlayer(name);
 
             if (teleported == null) {
                 String text = "Your spouse " + name + " is not online.";
@@ -175,7 +171,7 @@ public class SpouseExtension extends StendhalServerExtension {
                 return;
             }
 
-            StendhalRPZone zone = (StendhalRPZone) world.getRPZone(teleported
+            StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(teleported
                     .getID());
             int x = teleported.getx();
             int y = teleported.gety();
@@ -183,14 +179,13 @@ public class SpouseExtension extends StendhalServerExtension {
             // TODO: use Player.teleport()
 
             if (StendhalRPAction.placeat(zone, player, x, y)) {
-                rules.addGameEvent(player.getName(), "teleportto", teleported
+            	StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleportto", teleported
                         .getName() + "(spouse)");
 
                 StendhalRPAction.changeZone(player, zone.getID().getID());
                 StendhalRPAction.transferContent(player);
             }
-
-            world.modify(player);
+            player.notifyWorldAboutChanges();
         }
 
         Log4J.finishMethod(logger, "onSpouse");

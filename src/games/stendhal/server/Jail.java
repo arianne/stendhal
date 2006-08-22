@@ -25,20 +25,14 @@ public class Jail implements TurnListener {
 	/** The Singleton instance */
 	private static Jail instance = null;
 	
-	private RPWorld world;
-	
-	private StendhalRPRuleProcessor rules;
-	
-	public static Jail get(RPWorld world, StendhalRPRuleProcessor rules) {
+	public static Jail get() {
 		if (instance == null) {
-			instance = new Jail(world, rules);
+			instance = new Jail();
 		}
 		return instance;
 	}
 	
-	public Jail(RPWorld world, StendhalRPRuleProcessor rules) {
-		this.world = world;
-		this.rules = rules;
+	public Jail() {
 	}
 	
 	/**
@@ -47,8 +41,8 @@ public class Jail implements TurnListener {
 	 * @param minutes The duration of the sentence
 	 */
 	public void imprison(String criminalName, Player policeman, int minutes) {
-		System.out.println(minutes);
-		Player criminal = rules.getPlayer(criminalName);
+		StendhalRPWorld world = StendhalRPWorld.get();
+		Player criminal = StendhalRPRuleProcessor.get().getPlayer(criminalName);
 
 		if (criminal == null) {
 			String text = "Player " + criminalName + " not found";
@@ -66,7 +60,7 @@ public class Jail implements TurnListener {
 		}
 		StendhalRPZone jail = (StendhalRPZone) world.getRPZone(zoneid);
 		
-		criminal.teleport(jail, 8, 2, Direction.DOWN, policeman, rules);
+		criminal.teleport(jail, 8, 2, Direction.DOWN, policeman);
 
 		// Set a timer so that the inmate is automatically released after
 		// serving his sentence. We're using the TurnNotifier; we use
@@ -87,7 +81,8 @@ public class Jail implements TurnListener {
 	 * @param inmateName the name of the inmate who should be released
 	 */
 	public void release(String inmateName) {
-		Player inmate = rules.getPlayer(inmateName);
+		StendhalRPWorld world = StendhalRPWorld.get();
+		Player inmate = StendhalRPRuleProcessor.get().getPlayer(inmateName);
 		if (inmate == null) {
 			logger.debug("Player " + inmate + " not found");
 		}
@@ -102,7 +97,7 @@ public class Jail implements TurnListener {
 			}
 			StendhalRPZone semosCity = (StendhalRPZone) world.getRPZone(zoneid);
 			
-			inmate.teleport(semosCity, 30, 40, Direction.UP, null, rules);
+			inmate.teleport(semosCity, 30, 40, Direction.UP, null);
 		}
 	}
 	

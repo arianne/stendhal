@@ -1162,7 +1162,7 @@ public class Player extends RPEntity {
 		return (text);
 	}
 	
-	public void teleport(StendhalRPZone zone, int x, int y, Direction dir, Player teleporter, StendhalRPRuleProcessor rules) {
+	public void teleport(StendhalRPZone zone, int x, int y, Direction dir, Player teleporter) {
 		if (StendhalRPAction.placeat(zone, this, x, y)) {
 			StendhalRPAction.changeZone(this, zone.getID().getID());
 			StendhalRPAction.transferContent(this);
@@ -1170,7 +1170,7 @@ public class Player extends RPEntity {
 				this.setDirection(dir);
 			}
 
-			rules.addGameEvent(teleporter.getName(), "teleport", this
+			StendhalRPRuleProcessor.get().addGameEvent(teleporter.getName(), "teleport", this
 					.getName());
 
 			notifyWorldAboutChanges();

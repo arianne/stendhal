@@ -49,7 +49,6 @@ import simple.http.serve.Context;
 import simple.http.serve.FileContext;
 import simple.http.serve.ProtocolHandlerFactory;
 import simple.template.View;
-import simple.util.process.ProcessQueue;
 
 public class StendhalHttpServer extends StendhalServerExtension implements
         ProtocolHandler {
@@ -81,8 +80,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
     static Binding scriptBinding;
 
     /** initialize the server with the game object connection * */
-    public StendhalHttpServer(StendhalRPRuleProcessor rules, StendhalRPWorld world) {
-        super(rules, world);
+    public StendhalHttpServer() {
+        super();
         try {
             logger.info("StendhalHttpServer starting...");
             scriptContext = new FileContext(new File("web/script/"));
@@ -92,8 +91,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             roots[1] = fileContext.getRealPath("/");
             scriptEngine = new GroovyScriptEngine(roots);
             scriptBinding = new Binding();
-            scriptBinding.setVariable("rules", rules);
-            scriptBinding.setVariable("world", world);
+            //scriptBinding.setVariable("rules", rules);
+            //scriptBinding.setVariable("world", world);
             if (Configuration.getConfiguration().has("http.port")) {
             	PORT = Integer.parseInt(Configuration.getConfiguration().get("http.port").trim());
             } else {

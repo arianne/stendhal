@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
@@ -20,7 +21,6 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -32,9 +32,10 @@ public class LookAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "look");
+		
+		StendhalRPWorld world = StendhalRPWorld.get();
 
 		// When look is casted over something in a slot
 		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
@@ -86,7 +87,7 @@ public class LookAction extends ActionListener {
 			if (entity.has("name")) {
 				name = entity.get("name");
 			}
-			rules.addGameEvent(player.getName(), "look", name);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "look", name);
 			player.sendPrivateText(entity.describe());
 			world.modify(player);
 			return;
@@ -106,7 +107,7 @@ public class LookAction extends ActionListener {
 				if (entity.has("name")) {
 					name = entity.get("name");
 				}
-				rules.addGameEvent(player.getName(), "look", name);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "look", name);
 				player.sendPrivateText(entity.describe());
 				world.modify(player);
 			}

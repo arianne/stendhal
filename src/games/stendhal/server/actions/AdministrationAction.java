@@ -38,7 +38,6 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -128,8 +127,7 @@ public class AdministrationAction extends ActionListener {
 	}
 	
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 
 		String type = action.get("type");
 		if (!isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
@@ -137,50 +135,50 @@ public class AdministrationAction extends ActionListener {
 		}
 
 		if (type.equals("tellall")) {
-			onTellEverybody(world, rules, player, action);
+			onTellEverybody(player, action);
 		} else if (type.equals("supportanswer")) {
-			onSupportAnswer(world, rules, player, action);
+			onSupportAnswer(player, action);
 		} else if (type.equals("teleport")) {
-			onTeleport(world, rules, player, action);
+			onTeleport(player, action);
 		} else if (type.equals("teleportto")) {
-			onTeleportTo(world, rules, player, action);
+			onTeleportTo(player, action);
         } else if (type.equals("adminlevel")) {
-            onAdminLevel(world, rules, player, action);
+            onAdminLevel(player, action);
 		} else if (type.equals("alter")) {
-			onAlter(world, rules, player, action);
+			onAlter(player, action);
 		} else if (type.equals("summon")) {
-			onSummon(world, rules, player, action);
+			onSummon(player, action);
 		} else if (type.equals("summonat")) {
-			onSummonAt(world, rules, player, action);
+			onSummonAt(player, action);
 		} else if (type.equals("invisible")) {
-			onInvisible(world, rules, player, action);
+			onInvisible(player, action);
 		} else if (type.equals("inspect")) {
-			onInspect(world, rules, player, action);
+			onInspect(player, action);
 		} else if (type.equals("destroy")) {
-			onDestroy(world, rules, player, action);
+			onDestroy(player, action);
 		} else if (type.equals("jail")) {
-			onJail(world, rules, player, action);
+			onJail(player, action);
 		}
 	}
 
-	private void onSupportAnswer(RPWorld world, StendhalRPRuleProcessor rules, Player player, RPAction action) {
+	private void onSupportAnswer(Player player, RPAction action) {
 		Log4J.startMethod(logger, "supportanswer");
 
 		if (action.has("target") && action.has("text")) {
 			String message = player.getName() + " answers " + action.get("target") + "'s support question: " + action.get("text");
 
-			rules.addGameEvent(player.getName(), "supportanswer", action.get("target"), action.get("text"));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "supportanswer", action.get("target"), action.get("text"));
 
 			boolean found = false;
-			for (Player p : rules.getPlayers()) {
+			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				if (p.getName().equals(action.get("target"))) {
 					p.sendPrivateText("Support (" + player.getName() + ") tells you: " + action.get("text"));
-					world.modify(p);
+					p.notifyWorldAboutChanges();
 					found = true;
 				}
 				if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
 					p.sendPrivateText(message);
-					world.modify(p);
+					p.notifyWorldAboutChanges();
 				}
 			}
 
@@ -193,13 +191,12 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "supportanswer");
 	}
 
-	private void onTellEverybody(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void onTellEverybody(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onTellEverybody");
 
 		if (action.has("text")) {
 			String message = "Administrator SHOUTS: " + action.get("text");
-			rules.addGameEvent(player.getName(), "tellall", action.get("text"));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "tellall", action.get("text"));
 
 			StendhalRPAction.shout(message);
 		}
@@ -207,14 +204,14 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onTellEverybody");
 	}
 
-	private void onTeleport(RPWorld world, StendhalRPRuleProcessor rules,
+	private void onTeleport(
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onTeleport");
 
 		if (action.has("target") && action.has("zone") && action.has("x")
 				&& action.has("y")) {
 			String name = action.get("target");
-			Player teleported = rules.getPlayer(name);
+			Player teleported = StendhalRPRuleProcessor.get().getPlayer(name);
 
 			if (teleported == null) {
 				String text = "Player " + name + " not found";
@@ -225,12 +222,12 @@ public class AdministrationAction extends ActionListener {
 
             // validate the zone-name.
 			IRPZone.ID zoneid = new IRPZone.ID(action.get("zone"));
-			if (!world.hasRPZone(zoneid)) {
+			if (!StendhalRPWorld.get().hasRPZone(zoneid)) {
 				String text = "Zone " + zoneid + " not found.";
                 logger.debug(text);
                 
                 Set<String> zoneNames = new TreeSet<String>();
-                Iterator itr = world.iterator();
+                Iterator itr = StendhalRPWorld.get().iterator();
                 while (itr.hasNext()) {
                     StendhalRPZone zone = (StendhalRPZone) itr.next();
                     zoneNames.add(zone.getID().getID());
@@ -239,23 +236,23 @@ public class AdministrationAction extends ActionListener {
 				return;
 			}
 
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(zoneid);
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneid);
 			int x = action.getInt("x");
 			int y = action.getInt("y");
 			
-			teleported.teleport(zone, x, y, null, player, rules);
+			teleported.teleport(zone, x, y, null, player);
 		}
 
 		Log4J.finishMethod(logger, "onTeleport");
 	}
 
-	private void onTeleportTo(RPWorld world, StendhalRPRuleProcessor rules,
+	private void onTeleportTo(
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onTeleportTo");
 
 		if (action.has("target")) {
 			String name = action.get("target");
-			Player teleported = rules.getPlayer(name);
+			Player teleported = StendhalRPRuleProcessor.get().getPlayer(name);
 			
 			if (teleported == null) {
 				String text = "Player " + name + " not found";
@@ -264,25 +261,25 @@ public class AdministrationAction extends ActionListener {
 				return;
 			}
 
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(teleported
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(teleported
 					.getID());
 			int x = teleported.getx();
 			int y = teleported.gety();
 			
-			player.teleport(zone, x, y, null, player, rules);
+			player.teleport(zone, x, y, null, player);
 		}
 
 		Log4J.finishMethod(logger, "onTeleportTo");
 	}
 
-    private void onAdminLevel(RPWorld world, StendhalRPRuleProcessor rules,
+    private void onAdminLevel(
                     Player player, RPAction action) {
         Log4J.startMethod(logger, "onAdminLevel");
     
         if (action.has("target")) {
 
             String name = action.get("target");
-            Player target = rules.getPlayer(name);
+            Player target = StendhalRPRuleProcessor.get().getPlayer(name);
     
             if (target == null) {
                 logger.debug("Player " + name + " not found");
@@ -310,11 +307,11 @@ public class AdministrationAction extends ActionListener {
                 } else {
     
                     // OK, do the change
-                    rules.addGameEvent(player.getName(), "adminlevel", target
+                	StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "adminlevel", target
                             .getName(), "adminlevel", action.get("newlevel"));
                     target.put("adminlevel", newlevel);
                     target.update();
-                    world.modify(target);
+                    target.notifyWorldAboutChanges();
         
                     response = "Changed adminlevel of " + target.getName() + " from " + oldlevel + " to " + newlevel;
                 }
@@ -327,13 +324,13 @@ public class AdministrationAction extends ActionListener {
     }
 
     
-    private void onAlter(RPWorld world, StendhalRPRuleProcessor rules,
+    private void onAlter(
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onChangePlayer");
 
 		if (action.has("target") && action.has("stat") && action.has("mode")
 				&& action.has("value")) {
-			Entity changed = getTarget(world, rules, player, action);
+			Entity changed = getTarget(player, action);
 
 			if (changed == null) {
 				logger.debug("Entity not found");
@@ -405,53 +402,53 @@ public class AdministrationAction extends ActionListener {
 						break;
 					}
 
-					rules.addGameEvent(player.getName(), "alter", action.get("target"),
+					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "alter", action.get("target"),
 							stat, Integer.toString(numberValue));
 					changed.put(stat, numberValue);
 				} else {
 					// Can be only setif value is not a number
 					if (mode.equals("set")) {
-						rules.addGameEvent(player.getName(), "alter", action.get("target"),
+						StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "alter", action.get("target"),
 								stat, action.get("value"));
 						changed.put(stat, action.get("value"));
 					}
 				}
 
 				changed.update();
-				world.modify(changed);
+				changed.notifyWorldAboutChanges();
 			}
 		}
 
 		Log4J.finishMethod(logger, "onChangePlayer");
 	}
 
-	private void onSummon(RPWorld world, StendhalRPRuleProcessor rules,
+	private void onSummon(
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onSummon");
 
 		if (action.has("creature") && action.has("x") && action.has("y")) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 					.getID());
 			int x = action.getInt("x");
 			int y = action.getInt("y");
 
 			if (!zone.collides(player, x, y)) {
-				EntityManager manager = ((StendhalRPWorld) world)
+				EntityManager manager = StendhalRPWorld.get()
 						.getRuleManager().getEntityManager();
 				String type = action.get("creature");
 
 				// Is the entity a creature
 				if (manager.isCreature(type)) {
-					rules.addGameEvent(player.getName(), "summon", type);
+					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
 					Creature creature = manager.getCreature(type);
 
 					zone.assignRPObjectID(creature);
 					StendhalRPAction.placeat(zone, creature, x, y);
 					zone.add(creature);
 
-					rules.addNPC(creature);
+					StendhalRPRuleProcessor.get().addNPC(creature);
 				} else if (manager.isItem(type)) {
-					rules.addGameEvent(player.getName(), "summon", type);
+					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
 					Item item = manager.getItem(type);
 
 					zone.assignRPObjectID(item);
@@ -464,13 +461,13 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onSummon");
 	}
 
-	private void onSummonAt(RPWorld world, StendhalRPRuleProcessor rules,
+	private void onSummonAt(
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onSummonAt");
 
 		if (action.has("target") && action.has("slot") && action.has("item")) {
 			String name = action.get("target");
-			Player changed = rules.getPlayer(name);
+			Player changed = StendhalRPRuleProcessor.get().getPlayer(name);
 
 			if (changed == null) {
 				logger.debug("Player " + name + " not found");
@@ -486,13 +483,13 @@ public class AdministrationAction extends ActionListener {
 			RPSlot slot = changed.getSlot(slotName);
 
 			if (!slot.isFull()) {
-				EntityManager manager = ((StendhalRPWorld) world)
+				EntityManager manager = StendhalRPWorld.get()
 						.getRuleManager().getEntityManager();
 				String type = action.get("item");
 
 				// Is the entity an item
 				if (manager.isItem(type)) {
-					rules.addGameEvent(player.getName(), "summonat", changed
+					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summonat", changed
 							.getName(), slot.getName(), type);
 					Item item = manager.getItem(type);
 
@@ -503,7 +500,7 @@ public class AdministrationAction extends ActionListener {
 					slot.assignValidID(item);
 					slot.add(item);
 
-					world.modify(changed);
+					changed.notifyWorldAboutChanges();
 				}
 			}
 		}
@@ -511,7 +508,7 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onSummonAt");
 	}
 
-	private void onInvisible(RPWorld world, StendhalRPRuleProcessor rules,
+	private void onInvisible(
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onInvisible");
 
@@ -523,11 +520,11 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onInvisible");
 	}
 
-	private void onInspect(RPWorld world, StendhalRPRuleProcessor rules,
+	private void onInspect(
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onInspect");
 
-		Entity target = getTarget(world, rules, player, action);
+		Entity target = getTarget(player, action);
 
 		if (target == null) {
 			String text = "Entity not found";
@@ -592,11 +589,11 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onInspect");
 	}
 
-	private void onDestroy(RPWorld world, StendhalRPRuleProcessor rules,
+	private void onDestroy(
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onDestroy");
 
-		Entity inspected = getTarget(world, rules, player, action);
+		Entity inspected = getTarget(player, action);
 
 
 		if (inspected == null) {
@@ -615,7 +612,7 @@ public class AdministrationAction extends ActionListener {
 		if (inspected instanceof RPEntity) {
 			((RPEntity) inspected).onDead(player);
 		} else if (inspected instanceof Item) {
-			world.remove(inspected.getID());
+			StendhalRPWorld.get().remove(inspected.getID());
 		}
 
 		player.sendPrivateText("Removed entity " + action.get("targetid"));
@@ -623,14 +620,14 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onInspect");
 	}
 
-	private void onJail(RPWorld world, StendhalRPRuleProcessor rules,
+	private void onJail(
 			Player player, RPAction action) {
 		Log4J.startMethod(logger, "onTeleport");
 
 		if (action.has("target") && action.has("minutes")) {
 ;			String target = action.get("target");
 			int minutes = action.getInt("minutes");
-			Jail.get(world, rules).imprison(target, player, minutes);
+			Jail.get().imprison(target, player, minutes);
 		}
 
 		Log4J.finishMethod(logger, "onTeleport");
@@ -644,8 +641,7 @@ public class AdministrationAction extends ActionListener {
 	 * @param action
 	 * @return ???
 	 */
-	private Entity getTarget(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private Entity getTarget(Player player, RPAction action) {
 
 		String id = null;
 		Entity target = null;
@@ -656,7 +652,7 @@ public class AdministrationAction extends ActionListener {
 		}
 		if (id != null) {
 			if (!id.startsWith("#")) {
-				target = rules.getPlayer(id);
+				target = StendhalRPRuleProcessor.get().getPlayer(id);
 				return target;
 			} else {
 				id = id.substring(1);
@@ -670,7 +666,7 @@ public class AdministrationAction extends ActionListener {
 
 		// go for the id
 		if (id != null) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 					.getID());
 
 			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone.getID().getID());

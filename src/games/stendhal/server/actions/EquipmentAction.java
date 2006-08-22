@@ -99,30 +99,28 @@ public class EquipmentAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 
 		// HACK: No item transfer in jail (we don't want a jailed player to
 		//       create a new free character and give it all items.
-		if (world.getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
+		if (StendhalRPWorld.get().getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
 			player.sendPrivateText("For security reasons items may not be moved around in jail.");
 			return;
 		}
 
 		if (action.get(TYPE).equals("equip")) {
-			onEquip(world, rules, player, action);
+			onEquip(player, action);
 		} else {
-			onDrop(world, rules, player, action);
+			onDrop(player, action);
 		}
 	}
 
 	/** callback for the equip action */
-	private void onEquip(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void onEquip(Player player, RPAction action) {
 		Log4J.startMethod(logger, "equip");
 
 		// get source and check it
-		SourceObject source = new SourceObject(action, world, player);
+		SourceObject source = new SourceObject(action, player);
 		if (!source.isValid() || !source.checkDistance(player, MAXDISTANCE)
 				|| !source.checkClass(validContainerClassesList)) {
 			// source is not valid
@@ -131,7 +129,7 @@ public class EquipmentAction extends ActionListener {
 		}
 
 		// get destination and check it
-		DestinationObject dest = new DestinationObject(action, world, player);
+		DestinationObject dest = new DestinationObject(action, player);
 		if (!dest.isValid() || !dest.checkDistance(player, MAXDISTANCE)
 				|| !dest.checkClass(validContainerClassesList)) {
 			// destination is not valid
@@ -140,15 +138,14 @@ public class EquipmentAction extends ActionListener {
 		}
 
 		// looks good
-		source.moveTo(dest, world, player);
+		source.moveTo(dest, player);
 		
 		player.updateItemAtkDef();
 
 		Log4J.finishMethod(logger, "equip");
 	}
 
-	private void onDrop(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void onDrop(Player player, RPAction action) {
 		Log4J.startMethod(logger, "drop");
 
 		final boolean USE_NEW_CODE = false;
@@ -158,7 +155,7 @@ public class EquipmentAction extends ActionListener {
 
 		if (USE_NEW_CODE) {
 			// get source and check it
-			SourceObject source = new SourceObject(action, world, player);
+			SourceObject source = new SourceObject(action, player);
 			if (!source.isValid() || !source.checkDistance(player, MAXDISTANCE)
 					|| !source.checkClass(validContainerClassesList)) {
 				// source is not valid
@@ -166,8 +163,7 @@ public class EquipmentAction extends ActionListener {
 			}
 
 			// get destination and check it
-			DestinationObject dest = new DestinationObject(action, world,
-					player);
+			DestinationObject dest = new DestinationObject(action, player);
 			if (!dest.isValid() || !dest.checkDistance(player, 5.0)
 					|| !dest.checkClass(validContainerClassesList)) {
 				logger.warn("destination is invalid. action is: " + action);
@@ -178,14 +174,14 @@ public class EquipmentAction extends ActionListener {
 			// FIXME: This will remove the item from the slot, but it does not
 			// reappear
 			// on the ground. See DestinationObject.addToWorld()#600
-			source.moveTo(dest, world, player);
+			source.moveTo(dest, player);
 			return;
 		}
 		// Old Code Starts Here
 
 		if (action.has("baseobject") && action.has("baseslot")
 				&& action.has("x") && action.has("y") && action.has("baseitem")) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 					.getID());
 
 			int baseObject = action.getInt("baseobject");
@@ -253,7 +249,7 @@ public class EquipmentAction extends ActionListener {
 						&& baseEntity.squaredDistance(x, y) < 8 * 8
 						&& !zone.simpleCollides(entity, x, y)) {
 					if (quantity != 0) {
-						StackableItem newItem = (StackableItem) ((StendhalRPWorld) world)
+						StackableItem newItem = (StackableItem) StendhalRPWorld.get()
 								.getRuleManager().getEntityManager().getItem(
 										entity.get("name"));
 
@@ -278,8 +274,7 @@ public class EquipmentAction extends ActionListener {
 							entity.remove("#db_id");
 						}
 					}
-
-					world.modify(baseEntity);
+					baseEntity.notifyWorldAboutChanges();
 				}
 			}
 		}
@@ -303,7 +298,7 @@ public class EquipmentAction extends ActionListener {
 		private String slot;
 
 		/** interprets the given action */
-		public SourceObject(RPAction action, RPWorld world, Player player) {
+		public SourceObject(RPAction action, Player player) {
 			// base item must be there
 			if (!action.has(BASE_ITEM)) {
 				logger.warn("action does not have a base item. action: "
@@ -321,7 +316,7 @@ public class EquipmentAction extends ActionListener {
 				// remove zone from id (contained items does not have a zone)
 				baseItemId = new RPObject.ID(baseItemId.getObjectID(), "");
 
-				parent = getEntityFromId(player, world, action
+				parent = getEntityFromId(player, action
 						.getInt(BASE_OBJECT));
 
 				if (parent == null) {
@@ -350,15 +345,15 @@ public class EquipmentAction extends ActionListener {
 				base = (Entity) baseSlot.get(baseItemId);
 			} else {
 				// item is not contained
-				if (world.has(baseItemId)) {
-					base = (Entity) world.get(baseItemId);
+				if (StendhalRPWorld.get().has(baseItemId)) {
+					base = (Entity) StendhalRPWorld.get().get(baseItemId);
 				}
 			}
 		}
 
 		/** moves this entity to the destination */
-		public boolean moveTo(DestinationObject dest, RPWorld world,
-				Player player) {
+		public boolean moveTo(DestinationObject dest, Player player) {
+			StendhalRPWorld world = StendhalRPWorld.get();
             
             // corpses, chests, blood and whatever should not be equipable
             // TODO: make euqipable and interface and check that here
@@ -453,13 +448,12 @@ public class EquipmentAction extends ActionListener {
 		private int y;
 
 		/** interprets the given action */
-		public DestinationObject(RPAction action, RPWorld world, Player player) {
+		public DestinationObject(RPAction action, Player player) {
 			valid = false;
 			// droppped into another item
 			if (action.has(TARGET_OBJECT) && action.has(TARGET_SLOT)) {
 				// get base item and slot
-				parent = getEntityFromId(player, world, action
-						.getInt(TARGET_OBJECT));
+				parent = getEntityFromId(player, action.getInt(TARGET_OBJECT));
 
 				// check slot
 				if (parent == null) {

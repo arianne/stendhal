@@ -3,7 +3,6 @@
 package games.stendhal.server.scripting;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Player;
@@ -16,7 +15,6 @@ import java.util.Map;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -36,9 +34,8 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 	 * @param rp     StendhalRPRuleProcessor
 	 * @param world  StendhalRPWorld
 	 */
-	public StendhalGroovyRunner(StendhalRPRuleProcessor rp,
-            StendhalRPWorld world) {
-        super(rp, world);
+	public StendhalGroovyRunner() {
+        super();
         scripts = new HashMap<String, StendhalGroovyScript>();
         StendhalRPRuleProcessor.register("script", this);
         AdministrationAction.registerCommandLevel("script", 1000);
@@ -84,7 +81,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
         if("load".equals(mode) || "execute".equals(mode)) {
             if (getClass().getClassLoader().getResource(scriptDir + name) != null) {
             	if (gr == null) {
-            		gr = new StendhalGroovyScript(scriptDir + name, rules, world);
+            		gr = new StendhalGroovyScript(scriptDir + name);
             	}
                 ret = gr.load(player, args);
                 scripts.put(name, gr);
@@ -103,8 +100,7 @@ public class StendhalGroovyRunner extends StendhalServerExtension {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-            Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
         Log4J.startMethod(logger, "onScript");
 
         if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player,

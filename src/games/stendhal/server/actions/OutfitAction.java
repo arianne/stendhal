@@ -16,7 +16,6 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -28,15 +27,14 @@ public class OutfitAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "outfit");
 
 		if (action.has("value")) {
-			rules.addGameEvent(player.getName(), "outfit", action.get("value"));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "outfit", action.get("value"));
 
 			player.put("outfit", action.get("value"));
-			world.modify(player);
+			player.notifyWorldAboutChanges();
 		}
 
 		Log4J.finishMethod(logger, "outfit");

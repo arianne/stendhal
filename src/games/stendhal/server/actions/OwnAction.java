@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
@@ -24,7 +25,6 @@ import java.util.List;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -36,8 +36,7 @@ public class OwnAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "own");
 
 		// BUG: This features is potentially abusable right now. Consider
@@ -45,18 +44,18 @@ public class OwnAction extends ActionListener {
 		if (player.hasSheep() && action.has("target")
 				&& action.getInt("target") == -1) // Allow release of sheep
 		{
-			Sheep sheep = (Sheep) world.get(player.getSheep());
+			Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 			player.removeSheep(sheep);
 
 			sheep.setOwner(null);
-			rules.addNPC(sheep);
+			StendhalRPRuleProcessor.get().addNPC(sheep);
 
 			// HACK: Avoid a problem on database
 			if (sheep.has("#db_id")) {
 				sheep.remove("#db_id");
 			}
 
-			world.modify(player);
+			player.notifyWorldAboutChanges();
 			return;
 		}
 
@@ -67,7 +66,7 @@ public class OwnAction extends ActionListener {
 		if (action.has("target")) {
 			int targetObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 					.getID());
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
@@ -81,10 +80,10 @@ public class OwnAction extends ActionListener {
 						if (!path.isEmpty()) {
 						
 							sheep.setOwner(player);
-							rules.removeNPC(sheep);
+							StendhalRPRuleProcessor.get().removeNPC(sheep);
 	
 							player.setSheep(sheep);
-							world.modify(player);
+							player.notifyWorldAboutChanges();
 						} else {
 							// There is no path between sheep and player so it
 							// is unreachable. But don't tell the player 

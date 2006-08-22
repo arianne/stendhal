@@ -49,18 +49,18 @@ public class StendhalGroovyScript {
 	private static final Logger logger = Log4J
 			.getLogger(StendhalGroovyScript.class);
 
-	public StendhalGroovyScript(String filename, StendhalRPRuleProcessor rp,
-			StendhalRPWorld world) {
+	public StendhalGroovyScript(String filename) {
 		groovyScript = filename;
 		groovyBinding = new Binding();
-		this.rules = rp;
-		this.world = world;
 		this.scripts = StendhalScriptSystem.get();
 		groovyBinding.setVariable("game", this);
 		groovyBinding.setVariable("logger", logger);
-		groovyBinding.setVariable("rules", rp);
 		groovyBinding.setVariable("storage", new HashMap());
-		groovyBinding.setVariable("world", world);
+
+		// TODO: get rid of these variables, use the Singleton getters
+		// in the scripts
+		groovyBinding.setVariable("rules", StendhalRPRuleProcessor.get());
+		groovyBinding.setVariable("world", StendhalRPWorld.get());
 	}
 
 	public StendhalRPZone getZone(RPObject rpobject) {

@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.Player;
@@ -20,7 +21,6 @@ import games.stendhal.server.entity.RPEntity;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -32,13 +32,12 @@ public class DisplaceAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "displace");
 		if (action.has("baseitem")) {
 			int targetObject = action.getInt("baseitem");
 
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 					.getID());
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
@@ -64,12 +63,12 @@ public class DisplaceAction extends ActionListener {
 						if (player.nextTo(entity, 0.25)
 								&& player.squaredDistance(x, y) < 8 * 8
 								&& !zone.simpleCollides(entity, x, y)) {
-							rules.addGameEvent(player.getName(), "displace",
+							StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "displace",
 									entity.get("type"));
 
 							entity.setx(x);
 							entity.sety(y);
-							world.modify(entity);
+							entity.notifyWorldAboutChanges();
 						}
 					}
 				}

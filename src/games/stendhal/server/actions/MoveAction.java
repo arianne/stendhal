@@ -15,7 +15,6 @@ package games.stendhal.server.actions;
 import org.apache.log4j.Logger;
 
 import marauroa.common.game.*;
-import marauroa.server.game.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
@@ -35,21 +34,19 @@ public class MoveAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "move");
 
 		String type = action.get("type");
 
 		if (type.equals("move")) {
-			move(world, rules, player, action);
+			move(player, action);
 		} else if (type.equals("moveto")) {
-			moveto(world, rules, player, action);
+			moveTo(player, action);
 		}
 	}
 
-	private void move(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void move(Player player, RPAction action) {
 		Log4J.startMethod(logger, "move");
 
 		if (player.hasPath()) {
@@ -68,13 +65,12 @@ public class MoveAction extends ActionListener {
 			player.setSpeed(1);
 		}
 
-		world.modify(player);
+		player.notifyWorldAboutChanges();
 
 		Log4J.finishMethod(logger, "move");
 	}
 
-	private void moveto(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void moveTo(Player player, RPAction action) {
 		Log4J.startMethod(logger, "moveto");
 
 		if (player.hasPath()) {

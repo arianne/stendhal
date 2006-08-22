@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -20,7 +21,6 @@ import games.stendhal.server.entity.RPEntity;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -32,13 +32,12 @@ public class AttackAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "attack");
 		if (action.has("target")) {
 			int targetObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 					.getID());
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
@@ -73,12 +72,12 @@ public class AttackAction extends ActionListener {
 									+ entity.getName());
 						}
 
-						rules.addGameEvent(player.getName(), "attack", entity
+						StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "attack", entity
 								.getName());
 
 						player.attack(entity);
 						player.faceTo(entity);
-						world.modify(player);
+						player.notifyWorldAboutChanges();
 					}
 				}
 			}

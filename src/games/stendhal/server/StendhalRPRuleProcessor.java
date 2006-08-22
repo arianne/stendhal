@@ -191,20 +191,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 						extension = extensionsToLoad[i];
 						if (extension.length() > 0)
 							StendhalServerExtension.getInstance(
-									config.get(extension), this, this.world)
-									.init();
+									config.get(extension)).init();
 					} catch (Exception ex) {
 						logger.error("Error while loading extension: "
 								+ extension, ex);
 					}
 				}
 			} catch (PropertyNotFoundException ep) {
-				logger
-				.warn("No server extensions configured in ini file. Defaulting to groovy extension.");
+				logger.warn("No server extensions configured in ini file. Defaulting to groovy extension.");
 				/* Run groovy script extension */
-				StendhalServerExtension.getInstance(
-						"games.stendhal.server.scripting.StendhalGroovyRunner",
-						this, this.world).init();
+				StendhalServerExtension.getInstance("games.stendhal.server.scripting.StendhalGroovyRunner")
+						.init();
 			}
 			
 		} catch (Exception e) {
@@ -340,7 +337,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			if (actionListener == null) {
 				player.sendPrivateText("Unknown Command " + type);
 			} else {
-				actionListener.onAction(world, this, player, action);
+				actionListener.onAction(player, action);
 			}
 		} catch (Exception e) {
 			logger.error("cannot execute action " + action, e);

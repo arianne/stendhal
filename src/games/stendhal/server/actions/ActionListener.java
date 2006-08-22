@@ -18,7 +18,6 @@ import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.*;
-import marauroa.server.game.*;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
 
@@ -26,8 +25,7 @@ public abstract class ActionListener {
 	private static final Logger logger = Log4J.getLogger(ActionListener.class);
 
 	/** callback for the registered action */
-	public abstract void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action);
+	public abstract void onAction(Player player, RPAction action);
 
 	/**
 	 * Checks if a specific Attribute is set. returns false when it is not set.
@@ -56,15 +54,13 @@ public abstract class ActionListener {
 	 * 
 	 * @param player
 	 *            the player
-	 * @param world
-	 *            the world
 	 * @param objectId
 	 *            the objects id
 	 * @return the object with the given id or null if the object is not
 	 *         available.
 	 */
-	protected Entity getEntityFromId(Player player, RPWorld world, int objectId) {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+	protected Entity getEntityFromId(Player player, int objectId) {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 		RPObject.ID id = new RPObject.ID(objectId, zone.getID());
 
 		if (!zone.has(id)) {

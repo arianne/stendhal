@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.events.UseEvent;
 import games.stendhal.server.entity.Chest;
@@ -23,7 +24,6 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -35,13 +35,12 @@ public class UseAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "use");
 
 		// HACK: No item transfer in jail (we don't want a jailed player to
 		//       create a new free character and give it all items.
-		if (world.getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
+		if (StendhalRPWorld.get().getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
 			player.sendPrivateText("For security reasons items may not be used in jail.");
 			return;
 		}
@@ -49,7 +48,7 @@ public class UseAction extends ActionListener {
 		// When use is casted over something in a slot
 		if (action.has("baseitem") && action.has("baseobject")
 				&& action.has("baseslot")) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 					.getID());
 
 			int baseObject = action.getInt("baseobject");
@@ -97,7 +96,7 @@ public class UseAction extends ActionListener {
 				// It is always an entity
 				Entity entity = (Entity) object;
 
-				rules.addGameEvent(player.getName(), "use", entity.get("name"));
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", entity.get("name"));
 
 				if (object instanceof UseEvent) {
 					UseEvent entityUseEvent = (UseEvent) entity;
@@ -110,7 +109,7 @@ public class UseAction extends ActionListener {
 		else if (action.has("target")) {
 			int usedObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 					.getID());
 			RPObject.ID targetid = new RPObject.ID(usedObject, zone.getID());
 			if (zone.has(targetid)) {
@@ -121,7 +120,7 @@ public class UseAction extends ActionListener {
 					name = object.get("name");
 				}
 
-				rules.addGameEvent(player.getName(), "use", name);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", name);
 
 				if (object instanceof UseEvent) {
 					UseEvent item = (UseEvent) object;

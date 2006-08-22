@@ -15,15 +15,10 @@ import java.util.Map;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
 public abstract class StendhalServerExtension extends ActionListener {
-	/** our connection points to the game objects * */
-	static protected StendhalRPRuleProcessor rules;
-
-	static protected StendhalRPWorld world;
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J
@@ -32,10 +27,7 @@ public abstract class StendhalServerExtension extends ActionListener {
 	/** lists the instances of the loaded extensions */
 	private static Map<String, StendhalServerExtension> loadedInstances = new HashMap<String, StendhalServerExtension>();
 
-	public StendhalServerExtension(StendhalRPRuleProcessor rules,
-			StendhalRPWorld world) {
-		StendhalServerExtension.rules = rules;
-		StendhalServerExtension.world = world;
+	public StendhalServerExtension() {
 	}
 
 	public abstract void init();
@@ -49,17 +41,11 @@ public abstract class StendhalServerExtension extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		return;
 	}
 
 	public static StendhalServerExtension getInstance(String name) {
-		return (loadedInstances.get(name));
-	}
-
-	public static StendhalServerExtension getInstance(String name,
-			StendhalRPRuleProcessor pRules, StendhalRPWorld pWorld) {
 		try {
 			Class extensionClass = Class.forName(name);
 
@@ -70,13 +56,12 @@ public abstract class StendhalServerExtension extends ActionListener {
 
 			logger.info("Loading ServerExtension: " + name);
 			java.lang.reflect.Constructor constr = extensionClass
-					.getConstructor(StendhalRPRuleProcessor.class,
-							StendhalRPWorld.class);
+					.getConstructor();
 
 			// simply create a new instance. The constructor creates all
 			// additionally objects
 			StendhalServerExtension instance = (StendhalServerExtension) constr
-					.newInstance(pRules, pWorld);
+					.newInstance();
 			// store it in the hashmap for later reference
 			loadedInstances.put(name, instance);
 			return instance;

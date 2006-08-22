@@ -18,7 +18,6 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -32,17 +31,15 @@ public class BuddyAction extends ActionListener {
 	}
 
 	@Override
-	public void onAction(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	public void onAction(Player player, RPAction action) {
 		if (action.get("type").equals("addbuddy")) {
-			onAddBuddy(world, rules, player, action);
+			onAddBuddy(player, action);
 		} else {
-			onRemoveBuddy(world, rules, player, action);
+			onRemoveBuddy(player, action);
 		}
 	}
 
-	private void onAddBuddy(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void onAddBuddy(Player player, RPAction action) {
 		Log4J.startMethod(logger, "addBuddy");
 
 		if (action.has("target")) {
@@ -60,7 +57,7 @@ public class BuddyAction extends ActionListener {
 			}
 
 			int online = 0;
-			if (rules.getPlayer(who) != null) {
+			if (StendhalRPRuleProcessor.get().getPlayer(who) != null) {
 				online = 1;
 			}
 			listBuddies.put("_" + who, online);
@@ -69,8 +66,7 @@ public class BuddyAction extends ActionListener {
 		Log4J.finishMethod(logger, "addBuddy");
 	}
 
-	private void onRemoveBuddy(RPWorld world, StendhalRPRuleProcessor rules,
-			Player player, RPAction action) {
+	private void onRemoveBuddy(Player player, RPAction action) {
 		Log4J.startMethod(logger, "removeBuddy");
 
 		if (action.has("target")) {
