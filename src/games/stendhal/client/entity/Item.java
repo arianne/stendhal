@@ -64,6 +64,7 @@ public class Item extends PassiveEntity {
 		if (client.isAdmin()) {
 			list.add("(*)Inspect");
 			list.add("(*)Destroy");
+			list.add("(*)Alter");
 		}
 		return list.toArray(new String[list.size()]);
 	}

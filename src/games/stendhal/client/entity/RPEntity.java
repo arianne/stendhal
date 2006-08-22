@@ -551,6 +551,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		if (client.isAdmin()) {
 			list.add("(*)Inspect");
 			list.add("(*)Destroy");
+			list.add("(*)Alter");
 		}
 
 		return list.toArray(new String[list.size()]);

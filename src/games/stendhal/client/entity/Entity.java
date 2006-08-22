@@ -409,6 +409,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			int id = getID().getObjectID();
 			rpaction.put("targetid", id);
 			client.send(rpaction);
+		} else if (action.equals("(*)Alter")) {
+			int id = getID().getObjectID();
+			client.getTextLineGUI().setText("/alter #" + id + " ");
 		}
 	}
 
