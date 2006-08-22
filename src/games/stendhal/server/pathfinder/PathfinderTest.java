@@ -26,7 +26,7 @@ public class PathfinderTest {
 		int x1 = 0;
 		int y1 = 0;
 
-		StendhalRPWorld world = new StendhalRPWorld();
+		StendhalRPWorld world = StendhalRPWorld.get();
 		world.addArea("-1_semos_dungeon");
 
 		StendhalRPZone zone = (StendhalRPZone) world
