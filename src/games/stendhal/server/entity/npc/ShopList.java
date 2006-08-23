@@ -53,6 +53,8 @@ public class ShopList {
 		shops.add("buystuff", "chain_legs", 27);
 		
 		shops.add("buyiron", "iron", 75);
+		
+		shops.add("buygrain", "grain", 1);
 	}
 
 	static private ShopList instance;

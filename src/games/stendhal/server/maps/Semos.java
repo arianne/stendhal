@@ -43,6 +43,8 @@ public class Semos implements IContent {
 				"0_semos_village_w")));
 		buildSemosNorthPlainsArea((StendhalRPZone) world
 				.getRPZone(new IRPZone.ID("0_semos_plains_n")));
+		buildSemosNorthEastPlainsArea((StendhalRPZone) world
+				.getRPZone(new IRPZone.ID("0_semos_plains_ne")));
 		buildSemosSouthPlainsArea((StendhalRPZone) world
 				.getRPZone(new IRPZone.ID("0_semos_plains_s")));
 		buildSemosTavernArea();
@@ -815,6 +817,31 @@ public class Semos implements IContent {
 		zone.assignRPObjectID(npc);
 		npc.put("class", "childnpc");
 		npc.set(36, 108);
+		npc.initHP(100);
+		zone.addNPC(npc);
+	}
+
+	private void buildSemosNorthEastPlainsArea(StendhalRPZone zone) {
+		SpeakerNPC npc = new SpeakerNPC("Jenny") {
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+		
+			protected void createDialog() {
+				addGreeting();
+				addJob("I'm the local miller. People bring me grain so that I can make flour.");
+				addHelp("If you have a scythe, you can harvest grain at the nearby farm.");
+				addGoodbye();
+				addBuyer(new BuyerBehaviour(ShopList.get().get("buygrain")));
+				// TODO: instead of just buying grain, make flour out of it
+			}
+		};
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		npc.put("class", "woman_003_npc");
+		npc.setDirection(Direction.DOWN);
+		npc.set(19, 38);
 		npc.initHP(100);
 		zone.addNPC(npc);
 	}
