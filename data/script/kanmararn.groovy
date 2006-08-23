@@ -50,7 +50,7 @@ class HenryQuestAction extends SpeakerNPC.ChatAction {
     {
     if(!player.isQuestCompleted("soldier_henry") && !"map".equals(player.getQuest("soldier_henry")))
       {
-      engine.say("Find my #group, Peter, Tom and Charles, proove it and I will reward you. Will you do it?");
+      engine.say("Find my #group, Peter, Tom and Charles, prove it and I will reward you. Will you do it?");
       } else
       {
       engine.say("I'm so sad that most of my friends are dead.");
@@ -89,7 +89,7 @@ class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
     if((legs!=null && "tom".equalsIgnoreCase(legs.get("infostring"))) &&
         (note!=null && "charles".equalsIgnoreCase(note.get("infostring"))) &&
         (armor!=null && "peter".equalsIgnoreCase(armor.get("infostring")))) {
-      engine.say("Oh my! Peter, Tom and Charles are all dead? *cries*. Anyways, here is your reward. And keep the IOU.");
+      engine.say("Oh my! Peter, Tom and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.");
       player.addXP(2500);
       Item item = game.getItem("map");
       item.put("infostring",engine.get("name"));
@@ -102,7 +102,7 @@ class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
       engine.setCurrentState(1);
       } else
       {
-      engine.say("You didn't proove that you have found them all!");
+      engine.say("You didn't prove that you have found them all!");
       }
   }
 }
@@ -229,7 +229,7 @@ if(game.setZone(myZone))   // if zone exists
   james.setPath([node(66,45),node(66,47)])
   // Adds all the behaviour chat
   james.behave("greet","Good day, adventurer!")
-  james.behave("job","I'm a sergeant in the army.")
+  james.behave("job","I'm a Sergeant in the army.")
   james.behave("help","Think I need a little help myself. My #group got killed and #one of my men ran away. Too bad he had the #map.")
   james.behave("quest","Find my fugitive soldier and bring him to me ... or at least the #map he's carrying.")
   james.behave("bye","Good luck and better watch your back with all those dwarves around!")
