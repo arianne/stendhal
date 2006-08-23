@@ -7,6 +7,7 @@ import games.stendhal.server.entity.item.*
 import games.stendhal.server.entity.portal.*
 import games.stendhal.server.entity.npc.*;
 import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.scripting.*
 import games.stendhal.server.pathfinder.Path
 
@@ -14,9 +15,7 @@ import games.stendhal.server.pathfinder.Path
  * Manages friendly entities
  */
 public class Friends implements TurnListener {
-	private StendhalRPWorld world;
 	private StendhalGroovyScript game;
-	private StendhalRPRuleProcessor rules;
 	private int turnCounter = 0;
 
 	/**
@@ -24,10 +23,8 @@ public class Friends implements TurnListener {
 	 *
 	 * @param game StendhalGroovyScript
 	 */
-	public Friends(StendhalRPWorld world, StendhalGroovyScript game, StendhalRPRuleProcessor rules) {
-		this.world = world;
+	public Friends(StendhalGroovyScript game) {
 		this.game = game;
-		this.rules = rules;
 	}
 
 	/**
@@ -70,7 +67,7 @@ public class Friends implements TurnListener {
 		game.add(creature);
 	}
 
-	public void onTurnReached(int currentTurn) {
+	public void onTurnReached(int currentTurn, String message) {
 		int wait = 6;
 		switch (turnCounter) {
 
@@ -116,13 +113,13 @@ public class Friends implements TurnListener {
 				// shout("Dr. Feelgood shouts: Help! Help us! The Ados Wildlife Refuge is under heavy attack by a bunch of hungry Orc Warriors.");
 			
 		}
-		TurnNotifier.get().notifyInTurns(wait, this);
+		TurnNotifier.get().notifyInTurns(wait, this, "");
 		turnCounter++;
 	}
 
 	public void createPortal() {
-		StendhalRPZone zone1 = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_semos_city"));
-		StendhalRPZone zone2 = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_ados_outside_nw"));
+		StendhalRPZone zone1 = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_city"));
+		StendhalRPZone zone2 = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_ados_outside_nw"));
 
 		Portal portal = new Portal();
 		zone1.assignRPObjectID(portal);
@@ -141,7 +138,7 @@ public class Friends implements TurnListener {
 	}
 
 	public void shout(String text) {
-		List players = rules.getPlayers();
+		List players = StendhalRPRuleProcessor.get().getPlayers();
 		for (player in players) {
 			player.sendPrivateText(text);
 		}
@@ -155,9 +152,9 @@ if (player == null || ((args.length > 0) && (args[0].equals("reset")))) {
 
 } else {
 
-	Friends friends = new Friends(world, game, rules);
+	Friends friends = new Friends(game);
 	friends.createSoldiers();
 	friends.createSheep();
 //	friends.createPortal();
-	TurnNotifier.get().notifyInTurns(0, friends);
+	TurnNotifier.get().notifyInTurns(0, friends, "");
 }
