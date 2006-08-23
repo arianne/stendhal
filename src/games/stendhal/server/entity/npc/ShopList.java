@@ -31,12 +31,12 @@ public class ShopList {
 		shops.add("scrolls", "empty_scroll", 1200);
 
 		shops.add("sellstuff", "knife", 15);
-		shops.add("sellstuff", "small_axe", 15);
 		shops.add("sellstuff", "club", 10);
 		shops.add("sellstuff", "dagger", 25);
 		shops.add("sellstuff", "wooden_shield", 25);
 		shops.add("sellstuff", "dress", 25);
 		shops.add("sellstuff", "leather_helmet", 25);
+		shops.add("sellstuff", "cloak", 30);
 		shops.add("sellstuff", "leather_legs", 35);
 
 		shops.add("sellrangedstuff", "wooden_bow", 300);
@@ -52,6 +52,17 @@ public class ShopList {
 		shops.add("buystuff", "chain_helmet", 25);
 		shops.add("buystuff", "chain_legs", 27);
 		
+		shops.add("selltools", "small_axe", 15);
+		shops.add("selltools", "hand_axe", 25);
+		shops.add("selltools", "axe", 40);
+		// enable these if you need them for a quest or something
+		// shops.add("selltools", "pick", 50);
+		// shops.add("selltools", "shovel", 50);
+		shops.add("selltools", "hammer", 60);
+		// This one is expensive because you can use it to fight,
+		// solve the Balduin quest, and harvest grain.
+		shops.add("selltools", "scythe", 120);
+
 		shops.add("buyiron", "iron", 75);
 		
 		shops.add("buygrain", "grain", 1);

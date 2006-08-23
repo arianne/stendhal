@@ -317,7 +317,7 @@ public class Semos implements IContent {
 			}
 
 			protected void createDialog() {
-				addGreeting("Greetings. How can I serve you?");
+				addGreeting("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");
 
 				add(ConversationStates.ATTENDING,
 						"wood",
@@ -360,17 +360,12 @@ public class Semos implements IContent {
 							}
 						});
 
-				add(ConversationStates.ATTENDING,
-						new String[] {"offer", "buy"},
-						null,
-						ConversationStates.ATTENDING,
-						"I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you.",
-						null);
-				
-				 
-				addHelp("If you bring me #wood and #iron_ore, I can #cast iron for you. You can then sell it back to the dwarves.");
+				addHelp("If you bring me #wood and #iron_ore, I can #cast iron for you. You can then sell it to the dwarves.");
 				addJob("I am the local blacksmith. I am proud to help Deniran's army by producing weapons.");
 				addGoodbye();
+				// Once Ados is ready, we can have an expert tool smith; then Xoderos
+				// won't sell tools anymore.
+				addSeller(new SellerBehaviour(ShopList.get().get("selltools")));
 			}
 		};
 		npcs.add(xoderos);
