@@ -113,7 +113,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		UseAction.register();
 	}
 
-	private StendhalRPRuleProcessor() {
+	/**
+	 * @deprecated must be public for compatibilty with Marauroa 1.32 as
+	 * current HEAD has serious problems.
+	 */
+	@Deprecated
+	public StendhalRPRuleProcessor() {
 		database = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase();
 		playersObject = new LinkedList<Player>();
 		playersObjectRmText = new LinkedList<Player>();
@@ -127,11 +132,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		bloodsToRemove = new LinkedList<Blood>();
 		scripts = StendhalScriptSystem.get();
 		registerActions();
+		instance = this;
 	}
 
 	public static StendhalRPRuleProcessor get() {
 		if (instance == null) {
-			instance = new StendhalRPRuleProcessor();
+			//instance = new StendhalRPRuleProcessor();
+			logger.error("______________________________--------------------_____________");
 		}
 		return instance;
 	}

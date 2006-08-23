@@ -42,7 +42,12 @@ public class StendhalRPWorld extends RPWorld {
 	/** The rule system manager */
 	private RuleManager ruleManager;
 
-	private StendhalRPWorld() {
+	/**
+	 * @deprecated must be public for compatibilty with Marauroa 1.32 as
+	 * current HEAD has serious problems.
+	 */
+	@Deprecated
+	public StendhalRPWorld() {
 		super();
 
 		Log4J.startMethod(logger, "StendhalRPWorld");
@@ -50,11 +55,13 @@ public class StendhalRPWorld extends RPWorld {
 
 		ruleManager = RuleSetFactory.getRuleSet("default");
 		Log4J.finishMethod(logger, "StendhalRPWorld");
+		instance = this;
 	}
-	
+
 	public static StendhalRPWorld get() {
 		if (instance == null) {
-			instance = new StendhalRPWorld();
+			//instance = new StendhalRPWorld();
+			logger.error("2______________________________--------------------_____________");
 		}
 		return instance;
 	}
@@ -242,6 +249,7 @@ public class StendhalRPWorld extends RPWorld {
 		// Interiors
 		addArea("int_afterlife");
 		addArea("int_admin_playground");
+		addArea("int_cr");
 
 		addArea("int_pathfinding");
 
