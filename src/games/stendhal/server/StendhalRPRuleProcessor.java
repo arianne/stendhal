@@ -53,6 +53,7 @@ import marauroa.server.createaccount.Result;
 import marauroa.server.game.IRPRuleProcessor;
 import marauroa.server.game.JDBCPlayerDatabase;
 import marauroa.server.game.RPServerManager;
+import marauroa.server.game.RPWorld;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.Transaction;
 
@@ -146,22 +147,29 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
+	 * @depreacted use setContext(rpman). But we need this method to be
+	 * compatible with Maraura 1.32 because current Marauroa HEAD is
+	 * seriously broken.
+	 */
+	@Deprecated
+	public void setContext(RPServerManager rpman, RPWorld world) {
+		setContext(rpman);
+	}
+	
+	/**
 	 * 
 	 * Set the context where the actions are executed.
-   * Load/Run optional StendhalServerExtension(s) as defined in marauroa.ini file
-   * example:
-   *  groovy=games.stendhal.server.scripting.StendhalGroovyRunner
-   *  myservice=games.stendhal.server.MyService
-   *  server_extension=groovy,myservice
-   * if no server_extension property is found, only the groovy extension is loaded 
-   * to surpress loading groovy extension use
-   *  server_extension=
-   * in the properties file.
+	 * Load/Run optional StendhalServerExtension(s) as defined in marauroa.ini file
+	 * example:
+	 *  groovy=games.stendhal.server.scripting.StendhalGroovyRunner
+	 *  myservice=games.stendhal.server.MyService
+	 *  server_extension=groovy,myservice
+	 * if no server_extension property is found, only the groovy extension is loaded 
+	 * to surpress loading groovy extension use
+	 *  server_extension=
+	 * in the properties file.
 	 * 
 	 * @param rpman
-	 * 
-	 * @param world
-	 * 
 	 */
 	public void setContext(RPServerManager rpman) {
 		try {
