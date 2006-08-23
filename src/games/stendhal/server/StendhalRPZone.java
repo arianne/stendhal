@@ -57,9 +57,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalRPZone.class);
 
-	/** the world */
-	private StendhalRPWorld world;
-
 	private List<TransferContent> contents;
 	private List<String> entryPoints;
 	private List<String> zoneChangePoints;
@@ -95,10 +92,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private int y;
 
-	public StendhalRPZone(String name, StendhalRPWorld world) {
+	public StendhalRPZone(String name) {
 		super(name);
-
-		this.world = world;
 
 		contents = new LinkedList<TransferContent>();
 		entryPoints = new LinkedList<String>();
@@ -124,10 +119,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	@Override
 	public void onFinish() throws Exception {
 		// do nothing
-	}
-
-	public StendhalRPWorld getWorld() {
-		return world;
 	}
 
 	public List<NPC> getNPCList() {
@@ -458,7 +449,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					return;
 				}
 
-				for (IRPZone i : world) {
+				for (IRPZone i : StendhalRPWorld.get()) {
 					StendhalRPZone zone = (StendhalRPZone) i;
 
 					if (zone.isInterior() == false
@@ -498,8 +489,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 								assigned = true;
 								break;
 							} else {
-								logger
-										.debug("can't assign because it is a different portal");
+								logger.debug("can't assign because it is a different portal");
 							}
 						}
 					}
@@ -514,7 +504,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				break;
 			case 7: /* door */
 				try {
-					world.createHouse(this, x, y);
+					StendhalRPWorld.get().createHouse(this, x, y);
 					numHouses++;
 				} catch (Exception e) {
 					logger.error("Error adding house to " + this, e);
@@ -589,7 +579,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			default: {
 				if (type >= 0) {
 					// get the default EntityManager
-					EntityManager manager = world.getRuleManager()
+					EntityManager manager = StendhalRPWorld.get().getRuleManager()
 							.getEntityManager();
 
 					// Is the entity a creature

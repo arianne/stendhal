@@ -928,14 +928,14 @@ public class Semos implements IContent {
 		zone.assignRPObjectID(chest);
 		chest.setx(44);
 		chest.sety(60);
-		chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem(
-				"knife"));
-		chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem(
-				"wooden_shield"));
-		chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem(
-				"leather_armor"));
-		chest.add(zone.getWorld().getRuleManager().getEntityManager().getItem(
-				"money"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
+				.getItem("knife"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
+				.getItem("wooden_shield"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
+				.getItem("leather_armor"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
+				.getItem("money"));
 		zone.add(chest);
 		SpeakerNPC npc = new SpeakerNPC("Nomyr Ahba") {
 			protected void createPath() {

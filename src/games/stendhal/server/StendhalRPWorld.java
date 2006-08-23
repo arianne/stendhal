@@ -314,7 +314,7 @@ public class StendhalRPWorld extends RPWorld {
 	public StendhalRPZone addArea(String name, String content)
 			throws org.xml.sax.SAXException, java.io.IOException {
 		logger.info("Loading area: " + name);
-		StendhalRPZone area = new StendhalRPZone(name, this);
+		StendhalRPZone area = new StendhalRPZone(name);
 
 		ZoneXMLLoader instance = ZoneXMLLoader.get();
 		ZoneXMLLoader.XMLZone xmlzone = instance.load("data/maps/" + content

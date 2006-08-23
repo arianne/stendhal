@@ -5,7 +5,6 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
@@ -24,11 +23,6 @@ import marauroa.common.game.RPSlot;
 /** * NOTE: AWFUL CODE FOLLOWS. YOU ARE NOT SUPPOSED TO READ THIS ;P ** */
 
 public class BalanceRPGame {
-	static class BalanceWorld extends StendhalRPWorld {
-		public BalanceWorld() throws Exception {
-			super();
-		}
-	}
 
 	private static int ROUNDS = 100;
 
@@ -89,11 +83,9 @@ public class BalanceRPGame {
 	}
 
 	public static void main(String[] args) throws Exception {
-		BalanceWorld world = new BalanceWorld();
-		StendhalRPZone area = new StendhalRPZone("test", world);
+		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPZone area = new StendhalRPZone("test");
 		world.addRPZone(area);
-
-		Entity.setRPContext(null, world);
 
 		List<DefaultCreature> creatures = CreatureXMLLoader.get().load(
 				"data/conf/creatures.xml");
