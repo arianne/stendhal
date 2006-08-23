@@ -27,7 +27,7 @@ if(game.setZone(myZone))   // if zone exists
   sign=new Sign()
   sign.setx(8)
   sign.sety(47)
-  sign.setText("Welcome to Stendhal!| Please report any problems and issues at our webpage.|http://arianne.sourceforge.net ")
+  sign.setText("Welcome to Stendhal!\nPlease report any problems and issues at our webpage.\nhttp://arianne.sourceforge.net ")
   
   // Add our new Object to the game world
   game.add(sign)
