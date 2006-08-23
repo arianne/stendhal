@@ -75,7 +75,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private RPServerManager rpman;
-	private StendhalRPWorld world;
 	private List<Player> playersObject;
 	private List<Player> playersObjectRmText;
 	private List<NPC> npcs;
@@ -168,10 +167,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public void setContext(RPServerManager rpman, RPWorld world) {
 		try {
 			this.rpman = rpman;
-			this.world = (StendhalRPWorld) world;
-			StendhalRPAction.initialize(rpman, this, world);
-			// Behaviours.initialize(rpman, this, world);
-			Path.initialize(world);
+			StendhalRPAction.initialize(rpman);
 			/* Initialize quests */
 			new StendhalQuestSystem();
 			for (IRPZone zone : world) {
@@ -331,7 +327,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		Log4J.startMethod(logger, "execute");
 		RPAction.Status status = RPAction.Status.SUCCESS;
 		try {
-			Player player = (Player) world.get(id);
+			Player player = (Player) StendhalRPWorld.get().get(id);
 			String type = action.get("type");
 			ActionListener actionListener = actionsMap.get(type);
 			if (actionListener == null) {
@@ -359,7 +355,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		for (RespawnPoint point : respawnPoints)
 			creatures += point.size();
 		int objects = 0;
-		for (IRPZone zone : world)
+		for (IRPZone zone : StendhalRPWorld.get())
 			objects += zone.size();
 		logger.debug("lists: G:" + plantGrowers.size()
 				+ ",NPC:" + npcs.size() + ",P:" + playersObject.size() + ",CR:"
@@ -391,30 +387,30 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			for (Player object : playersObject) {
 				if (object.has("risk")) {
 					object.remove("risk");
-					world.modify(object);
+					object.notifyWorldAboutChanges();
 				}
 				if (object.has("damage")) {
 					object.remove("damage");
-					world.modify(object);
+					object.notifyWorldAboutChanges();
 				}
 				if (object.has("dead")) {
 					object.remove("dead");
-					world.modify(object);
+					object.notifyWorldAboutChanges();
 				}
 				if (object.has("online")) {
 					object.remove("online");
-					world.modify(object);
+					object.notifyWorldAboutChanges();
 				}
 				if (object.has("offline")) {
 					object.remove("offline");
-					world.modify(object);
+					object.notifyWorldAboutChanges();
 				}
 				if (object.hasPath()) {
 					if (Path.followPath(object, 1)) {
 						object.stop();
 						object.clearPath();
 					}
-					world.modify(object);
+					object.notifyWorldAboutChanges();
 				}
 				if (!object.stopped()) {
 					StendhalRPAction.move(object);
@@ -426,7 +422,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 				if (getTurn() % 180 == 0) {
 					object.setAge(object.getAge() + 1);
-					world.modify(object);
+					object.notifyWorldAboutChanges();
 				}
 				object.consume(getTurn());
 			}
@@ -440,11 +436,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			for (Player object : playersObjectRmText) {
 				if (object.has("text")) {
 					object.remove("text");
-					world.modify(object);
+					object.notifyWorldAboutChanges();
 				}
 				if (object.has("private_text")) {
 					object.remove("private_text");
-					world.modify(object);
+					object.notifyWorldAboutChanges();
 				}
 			}
 			playersObjectRmText.clear();

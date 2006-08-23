@@ -37,7 +37,6 @@ import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.server.game.NoRPZoneException;
 import marauroa.server.game.RPServerManager;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -49,18 +48,8 @@ public class StendhalRPAction {
 	/** server manager */
 	private static RPServerManager rpman;
 
-	/** the rule processor. it is not used at the moment */
-	@SuppressWarnings("unused")
-	private static StendhalRPRuleProcessor rules;
-
-	/** our world */
-	private static RPWorld world;
-
-	public static void initialize(RPServerManager rpman,
-			StendhalRPRuleProcessor rules, RPWorld world) {
+	public static void initialize(RPServerManager rpman) {
 		StendhalRPAction.rpman = rpman;
-		StendhalRPAction.rules = rules;
-		StendhalRPAction.world = world;
 	}
 
 	public static boolean riskToHit(RPEntity source, RPEntity target) {
@@ -153,14 +142,14 @@ public class StendhalRPAction {
 		boolean result = false;
 
 		try {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(source
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(source
 					.getID());
 			if (!zone.has(target.getID()) || target.getHP() == 0) {
 				logger.debug("Attack from " + source + " to " + target
 						+ " stopped because target was lost("
 						+ zone.has(target.getID()) + ") or dead.");
 				target.onAttack(source, false);
-				world.modify(source);
+				source.notifyWorldAboutChanges();
 
 				return false;
 			}
@@ -227,8 +216,7 @@ public class StendhalRPAction {
 							+ target.getID() + ": Missed");
 					source.put("damage", 0);
 				}
-
-				world.modify(source);
+				source.notifyWorldAboutChanges();
 				return result;
 			} else {
 				logger.debug("Attack from " + source + " to " + target
@@ -260,7 +248,7 @@ public class StendhalRPAction {
 			int dx = dir.getdx();
 			int dy = dir.getdy();
 
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(entity
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity
 					.getID());
 
 			if (zone.collides(entity, x + dx, y + dy) == false) {
@@ -271,7 +259,7 @@ public class StendhalRPAction {
 				entity.sety(y + dy);
 
 				entity.setCollides(false);
-				world.modify(entity);
+				entity.notifyWorldAboutChanges();
 			} else {
 				if (entity instanceof Player) {
 					Player player = (Player) entity;
@@ -279,7 +267,7 @@ public class StendhalRPAction {
 					// If we are too far from sheep skip zone change
 					Sheep sheep = null;
 					if (player.hasSheep()) {
-						sheep = (Sheep) world.get(player.getSheep());
+						sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 					}
 
 					if (!(sheep != null && player.squaredDistance(sheep) > 7 * 7)) {
@@ -289,7 +277,7 @@ public class StendhalRPAction {
 									+ ")");
 							decideChangeZone(player, x + dx, y + dy);
 							player.stop();
-							world.modify(player);
+							player.notifyWorldAboutChanges();
 							return;
 						}
 
@@ -315,7 +303,7 @@ public class StendhalRPAction {
 				entity.setCollides(true);
 
 				entity.stop();
-				world.modify(entity);
+				entity.notifyWorldAboutChanges();
 			}
 		} finally {
 		//	Log4J.finishMethod(logger, "move");
@@ -326,7 +314,7 @@ public class StendhalRPAction {
 			throws AttributeNotFoundException {
 		Log4J.startMethod(logger, "transferContent");
 
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 		rpman.transferContent(player.getID(), zone.getContents());
 
 		Log4J.finishMethod(logger, "transferContent");
@@ -336,14 +324,14 @@ public class StendhalRPAction {
 			throws AttributeNotFoundException, NoRPZoneException {
 		// String zoneid = player.get("zoneid");
 
-		StendhalRPZone origin = (StendhalRPZone) world
+		StendhalRPZone origin = (StendhalRPZone) StendhalRPWorld.get()
 				.getRPZone(player.getID());
 		int player_x = x + origin.getx();
 		int player_y = y + origin.gety();
 
 		boolean found = false;
 
-		for (IRPZone izone : world) {
+		for (IRPZone izone : StendhalRPWorld.get()) {
 			StendhalRPZone zone = (StendhalRPZone) izone;
 			if (zone.isInterior() == false
 					&& zone.getLevel() == origin.getLevel()) {
@@ -387,7 +375,7 @@ public class StendhalRPAction {
 			return false;
 		}
 
-		StendhalRPZone destZone = (StendhalRPZone) world
+		StendhalRPZone destZone = (StendhalRPZone) StendhalRPWorld.get()
 				.getRPZone(new IRPZone.ID(portal.getDestinationZone()));
 
 		Portal dest = destZone.getPortal(portal.getDestinationNumber());
@@ -472,7 +460,7 @@ public class StendhalRPAction {
                 Player player = (Player) entity;
 
                 if (player.hasSheep()) {
-                    Sheep sheep = (Sheep) world.get(player.getSheep());
+                    Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
                     // Call placeat for the sheep on the same spot as the 
                     // player to ensure that there will be a path between the
                     // player and his/her sheep.
@@ -495,8 +483,10 @@ public class StendhalRPAction {
 			boolean placePlayer) throws AttributeNotFoundException,
 			NoRPZoneException {
 		Log4J.startMethod(logger, "changeZone");
+		
+		StendhalRPWorld world = StendhalRPWorld.get();
 
-		rules.addGameEvent(player.getName(), "change zone", destination);
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "change zone", destination);
 
 		player.clearPath();
 
@@ -558,9 +548,9 @@ public class StendhalRPAction {
 	 * @param message Message to tell all players
 	 */
 	public static void shout(String message) {
-		for (Player p : rules.getPlayers()) {
-			p.sendPrivateText(message);
-			world.modify(p);
+		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
+			player.sendPrivateText(message);
+			player.notifyWorldAboutChanges();
 		}
 	}
 }
