@@ -132,7 +132,7 @@ public class Friends implements TurnListener {
 		portal.setDestination("0_ados_outside_nw", 10);
 		zone1.addPortal(portal);
 
-		portal = new OneWayPortal();
+		portal = new OneWayPortalDestination();
 		zone2.assignRPObjectID(portal);
 		portal.setx(53);
 		portal.sety(108);
