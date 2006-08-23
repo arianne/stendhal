@@ -16,6 +16,7 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
+import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
@@ -84,6 +87,26 @@ public class Scroll extends StackableItem implements UseListener {
 	}
 
 	public void onUsed(RPEntity user) {
+		
+		if (this.isContained()) {
+			// We modify the base container if the object change.
+			RPObject base = this.getContainer();
+
+			while (base.isContained()) {
+				base = base.getContainer();
+			}
+
+			if (!user.nextTo((Entity) base, 0.25)) {
+				logger.debug("Consumable item is too far");
+				return;
+			}
+		} else {
+			if (!user.nextTo(this, 0.25)) {
+				logger.debug("Consumable item is too far");
+				return;
+			}
+		}
+		
 		Player player = (Player) user;
 		String name = getName();
 		boolean successful;
