@@ -119,8 +119,12 @@ public class UseAction extends ActionListener {
 				if (object.has("name")) {
 					name = object.get("name");
 				}
+				String infostring = "";
+				if (object.has("infostring")) {
+					infostring = object.get("infostring");
+				}
 
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", name);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", name, infostring);
 
 				if (object instanceof UseListener) {
 					UseListener item = (UseListener) object;
