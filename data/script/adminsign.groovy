@@ -88,7 +88,7 @@ class AdminSignManager {
 	}
 	
 	private void signToString(StringBuilder sb, Sign sign) {
-		String zone = sign.getWorld().getRPZone(sign.getID()).getID().getID();
+		String zone = StendhalRPWorld.get().getRPZone(sign.getID()).getID().getID();
 		sb.append(zone);
 		sb.append(" ");
 		sb.append(sign.getx());
