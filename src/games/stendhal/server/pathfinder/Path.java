@@ -24,15 +24,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Log4J;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
 public class Path {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Path.class);
-
-	private static StendhalRPWorld world;
 
 	private static StepCallback callback;
 
@@ -56,10 +53,6 @@ public class Path {
 		public String toString() {
 			return "(" + x + "," + y + ")";
 		}
-	}
-
-	public static void initialize(RPWorld world) {
-		Path.world = (StendhalRPWorld) world;
 	}
 
 	/**
@@ -91,8 +84,7 @@ public class Path {
 				entity.setSpeed(speed);
 			}
 		}
-
-		world.modify(entity);
+		entity.notifyWorldAboutChanges();
 	}
 
 	/**
@@ -219,9 +211,9 @@ public class Path {
 	 *            the destination Entity
 	 */
 	public static void searchPathAsynchonous(RPEntity entity, Entity dest) {
-		world.checkPathfinder();
+		StendhalRPWorld.get().checkPathfinder();
 
-		boolean result = world.getPathfinder().queuePath(
+		boolean result = StendhalRPWorld.get().getPathfinder().queuePath(
 				new QueuedPath(new SimplePathListener(entity), entity, entity
 						.getx(), entity.gety(), dest.getArea(dest.getx(), dest
 						.gety())));

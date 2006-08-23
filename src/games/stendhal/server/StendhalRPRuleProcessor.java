@@ -53,7 +53,6 @@ import marauroa.server.createaccount.Result;
 import marauroa.server.game.IRPRuleProcessor;
 import marauroa.server.game.JDBCPlayerDatabase;
 import marauroa.server.game.RPServerManager;
-import marauroa.server.game.RPWorld;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.Transaction;
 
@@ -164,13 +163,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param world
 	 * 
 	 */
-	public void setContext(RPServerManager rpman, RPWorld world) {
+	public void setContext(RPServerManager rpman) {
 		try {
 			this.rpman = rpman;
 			StendhalRPAction.initialize(rpman);
 			/* Initialize quests */
 			new StendhalQuestSystem();
-			for (IRPZone zone : world) {
+			for (IRPZone zone : StendhalRPWorld.get()) {
 				StendhalRPZone szone = (StendhalRPZone) zone;
 				npcs.addAll(szone.getNPCList());
 				respawnPoints.addAll(szone.getRespawnPointList());
