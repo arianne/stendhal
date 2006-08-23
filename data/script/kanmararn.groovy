@@ -86,9 +86,9 @@ class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
     Item legs  = player.getEquipped("leather_legs");
     Item note  = player.getEquipped("note");
     Item armor = player.getEquipped("scale_armor");
-    if((legs!=null && "tom".equalsIgnoreCase(legs.get("infostring"))) &&
-        (note!=null && "charles".equalsIgnoreCase(note.get("infostring"))) &&
-        (armor!=null && "peter".equalsIgnoreCase(armor.get("infostring")))) {
+    if((legs!=null && leg.has("infostring") && "tom".equalsIgnoreCase(legs.get("infostring"))) &&
+        (note!=null && note.has("infostring") && "charles".equalsIgnoreCase(note.get("infostring"))) &&
+        (armor!=null && armor.has("infostring") && "peter".equalsIgnoreCase(armor.get("infostring")))) {
       engine.say("Oh my! Peter, Tom and Charles are all dead? *cries*. Anyways, here is your reward. And keep the IOU.");
       player.addXP(2500);
       Item item = game.getItem("map");
@@ -126,7 +126,7 @@ class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
   }
   public void fire(Player player, String text, SpeakerNPC engine) {
     Item map  = player.getEquipped("map");
-    if((map!=null && "henry".equalsIgnoreCase(map.get("infostring")))) {
+    if((map!=null &&  map.has("infostring") && "henry".equalsIgnoreCase(map.get("infostring")))) {
       engine.say("The map! Wonderful! Thank you. And here is your reward.");
       player.addXP(5000);
       player.drop("map");
