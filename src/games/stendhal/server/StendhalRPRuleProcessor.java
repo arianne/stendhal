@@ -113,12 +113,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		UseAction.register();
 	}
 
-	/**
-	 * @deprecated must be public for compatibilty with Marauroa 1.32 as
-	 * current HEAD has serious problems.
-	 */
-	@Deprecated
-	public StendhalRPRuleProcessor() {
+	private StendhalRPRuleProcessor() {
 		database = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase();
 		playersObject = new LinkedList<Player>();
 		playersObjectRmText = new LinkedList<Player>();
@@ -137,8 +132,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public static StendhalRPRuleProcessor get() {
 		if (instance == null) {
-			//instance = new StendhalRPRuleProcessor();
-			logger.error("______________________________--------------------_____________");
+			instance = new StendhalRPRuleProcessor();
 		}
 		return instance;
 	}
@@ -153,16 +147,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	/**
-	 * @depreacted use setContext(rpman). But we need this method to be
-	 * compatible with Maraura 1.32 because current Marauroa HEAD is
-	 * seriously broken.
-	 */
-	@Deprecated
-	public void setContext(RPServerManager rpman, RPWorld world) {
-		setContext(rpman);
-	}
-	
 	/**
 	 * 
 	 * Set the context where the actions are executed.

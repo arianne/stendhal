@@ -42,12 +42,7 @@ public class StendhalRPWorld extends RPWorld {
 	/** The rule system manager */
 	private RuleManager ruleManager;
 
-	/**
-	 * @deprecated must be public for compatibilty with Marauroa 1.32 as
-	 * current HEAD has serious problems.
-	 */
-	@Deprecated
-	public StendhalRPWorld() {
+	private StendhalRPWorld() {
 		super();
 
 		Log4J.startMethod(logger, "StendhalRPWorld");
@@ -60,8 +55,7 @@ public class StendhalRPWorld extends RPWorld {
 
 	public static StendhalRPWorld get() {
 		if (instance == null) {
-			//instance = new StendhalRPWorld();
-			logger.error("2______________________________--------------------_____________");
+			instance = new StendhalRPWorld();
 		}
 		return instance;
 	}
