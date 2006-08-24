@@ -19,9 +19,14 @@
  */
 package games.stendhal.tools;
 
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -31,6 +36,7 @@ import org.apache.tools.ant.types.FileSet;
 import tiled.core.Map;
 import tiled.core.MapLayer;
 import tiled.io.xml.XMLMapTransformer;
+import tiled.view.MapView;
 
 /**
  * Converts the stendhal maps from *.tmx to *.stend
@@ -111,17 +117,16 @@ public class MapConverter extends Task {
 			}
 		}
 
-		/*
-		 * MapView myView = MapView.createViewforMap(map);
-		 * myView.enableMode(MapView.PF_NOSPECIAL);
-		 * myView.setZoom(0.0625);
-		 * Dimension d = myView.getPreferredSize();
-		 * BufferedImage i = new BufferedImage(d.width, d.height,
-		 * BufferedImage.TYPE_INT_ARGB);
-		 * Graphics2D g = i.createGraphics();
-		 * g.setClip(0, 0, d.width, d.height);
-		 * myView.paint(g);
-		 */
+		MapView myView = MapView.createViewforMap(map);
+		//myView.enableMode(MapView.PF_NOSPECIAL);
+		myView.setZoom(0.0625);
+		Dimension d = myView.getPreferredSize();
+		BufferedImage i = new BufferedImage(d.width, d.height,
+		BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = i.createGraphics();
+		g.setClip(0, 0, d.width, d.height);
+		myView.paint(g);
+		 
 
 		String area = file.getParentFile().getName();
 		String level;
@@ -141,12 +146,13 @@ public class MapConverter extends Task {
 					+ file.getName().replaceAll("\\.tmx", ".png");
 		}
 
-		/*
-		 * try {
-		 * ImageIO.write(i, "png", new File(filename)); }
-		 * catch (java.io.IOException e) {
-		 * e.printStackTrace(); }
-		 */
+		
+		try {
+			ImageIO.write(i, "png", new File(filename));
+		} catch (java.io.IOException e) {
+			e.printStackTrace();
+		}
+		 
 	}
 
 	/**
