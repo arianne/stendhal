@@ -114,6 +114,8 @@ public class MapConverter extends Task {
 				|| layer.getName().equals("objects")
 				|| layer.getName().equals("protection")) {
 				layer.setVisible(false);
+			} else {
+				layer.setVisible(true);
 			}
 		}
 
