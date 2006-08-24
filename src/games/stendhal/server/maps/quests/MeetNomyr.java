@@ -28,7 +28,7 @@ public class MeetNomyr extends AbstractQuest {
 				"yes",
 				null,
 				ConversationStates.INFORMATION_1,
-				"The young people have joined the Beniran army to fight in the South, so the city has been left unprotected from hordes of monsters coming from the dungeons. Can you help us?",
+				"The young people have joined the Deniran army to fight in the South, so the city has been left unprotected from hordes of monsters coming from the dungeons. Can you help us?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -42,7 +42,7 @@ public class MeetNomyr extends AbstractQuest {
 				"yes",
 				null,
 				ConversationStates.IDLE,
-				"First of all you should talk to Hayunn Naratha. He's a former great hero and our only defense here and he will gladly give you good advices. Good luck.",
+				"First of all you should talk to Hayunn Naratha. He's a former great hero and our only defense here and he will gladly give you good advice. Good luck.",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
