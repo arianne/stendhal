@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -36,6 +39,31 @@ public class PlinksToy extends AbstractQuest {
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			if (player.isEquipped("teddy")) {
+				res.add("FOUND_ITEM_WITHOUT_QUEST");
+			}
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+			return res;
+		}
+		res.add("QUEST_ACCEPTED");
+		if ((player.isEquipped("teddy")) || isCompleted(player)) {
+			res.add("FOUND_ITEM");
+		}
+		if (isCompleted(player)) {
+			res.add("DONE");
+		}
+		return res;
 	}
 
 	private void step_1() {
