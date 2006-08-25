@@ -52,14 +52,18 @@ public abstract class Entity extends RPObject {
 	}
 
 	public void update() throws AttributeNotFoundException {
-		if (has("x"))
+		if (has("x")) {
 			x = getInt("x");
-		if (has("y"))
+		}
+		if (has("y")) {
 			y = getInt("y");
-		if (has("speed"))
+		}
+		if (has("speed")) {
 			speed = getDouble("speed");
-		if (has("dir"))
+		}
+		if (has("dir")) {
 			direction = Direction.build(getInt("dir"));
+		}
 	}
 
 	public boolean hasDescription() {
@@ -240,20 +244,24 @@ public abstract class Entity extends RPObject {
 		Rectangle2D thisArea = getArea(x, y);
 		Rectangle2D otherArea = entity.getArea(entity.x, entity.y);
 		if (direction == Direction.UP && thisArea.getX() == otherArea.getX()
-				&& thisArea.getY() - 1 == otherArea.getY())
+				&& thisArea.getY() - 1 == otherArea.getY()) {
 			return true;
+		}
 		if (direction == Direction.DOWN
 				&& thisArea.getX() == otherArea.getX()
-				&& thisArea.getY() + 1 == otherArea.getY())
+				&& thisArea.getY() + 1 == otherArea.getY()) {
 			return true;
+		}
 		if (direction == Direction.LEFT
 				&& thisArea.getY() == otherArea.getY()
-				&& thisArea.getX() - 1 == otherArea.getX())
+				&& thisArea.getX() - 1 == otherArea.getX()) {
 			return true;
+		}
 		if (direction == Direction.RIGHT
 				&& thisArea.getY() == otherArea.getY()
-				&& thisArea.getX() + 1 == otherArea.getX())
+				&& thisArea.getX() + 1 == otherArea.getX()) {
 			return true;
+		}
 		return false;
 	}
 
@@ -301,22 +309,26 @@ public abstract class Entity extends RPObject {
 
 	public String describe() {
 		String ret = "You see ";
-		if (hasDescription())
+		if (hasDescription()) {
 			return (getDescription());
-		if (has("name") && get("name") != null)
+		}
+		if (has("name") && get("name") != null) {
 			ret += get("name").replace("_", " ");
-		else if (has("subclass"))
+		} else if (has("subclass")) {
 			ret += "a " + get("subclass");
-		else if (has("class"))
+		} else if (has("class")) {
 			ret += "a " + get("class");
-		else {
+		} else {
 			ret += "something rather undescribed";
-			if (has("type"))
+			if (has("type")) {
 				ret += " of type " + get("type");
-			if (has("id"))
+			}
+			if (has("id")) {
 				ret += " with id " + get("id");
-			if (has("zone"))
+			}
+			if (has("zone")) {
 				ret += " in zone " + get("zone");
+			}
 		}
 		return (ret + ".");
 	}

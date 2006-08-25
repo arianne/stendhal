@@ -39,8 +39,9 @@ public class SheepFood extends PlantGrower {
 	@Override
 	public void update() {
 		super.update();
-		if (has("amount"))
+		if (has("amount")) {
 			amount = getInt("amount");
+		}
 	}
 
 	public void setAmount(int amount) {

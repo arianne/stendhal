@@ -387,18 +387,21 @@ public class AdministrationAction extends ActionListener {
 					switch (type) {
 					case RPClass.BYTE:
 						if (numberValue > Byte.MAX_VALUE
-								|| numberValue < Byte.MIN_VALUE)
+								|| numberValue < Byte.MIN_VALUE) {
 							return;
+						}
 						break;
 					case RPClass.SHORT:
 						if (numberValue > Short.MAX_VALUE
-								|| numberValue < Short.MIN_VALUE)
+								|| numberValue < Short.MIN_VALUE) {
 							return;
+						}
 						break;
 					case RPClass.INT:
 						if (numberValue > Integer.MAX_VALUE
-								|| numberValue < Integer.MIN_VALUE)
+								|| numberValue < Integer.MIN_VALUE) {
 							return;
+						}
 						break;
 					}
 

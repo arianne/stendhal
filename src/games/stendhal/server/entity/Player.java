@@ -464,8 +464,9 @@ public class Player extends RPEntity {
 	public void update() throws AttributeNotFoundException {
 		super.update();
 
-		if (has("age"))
+		if (has("age")) {
 			age = getInt("age");
+		}
 	}
 
 	public void sendPrivateText(String text) {
@@ -650,8 +651,9 @@ public class Player extends RPEntity {
 						amount--;
 					}
 
-					if (corpse.isFull())
+					if (corpse.isFull()) {
 						return;
+					}
 				}
 			}
 
@@ -1070,6 +1072,7 @@ public class Player extends RPEntity {
 				return Math.abs(o2.getRegen()) - Math.abs(o1.getRegen());
 			}
 
+			@Override
 			public boolean equals(Object obj) {
 				return true;
 			}

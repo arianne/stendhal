@@ -177,12 +177,14 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** returns the entity or <code>null</code> if the id is unknown */
 	public Entity getEntity(int id) {
-		if (id < 0)
+		if (id < 0) {
 			return null;
+		}
 
 		String clazz = idToClass.get(id);
-		if (clazz == null)
+		if (clazz == null) {
 			return null;
+		}
 
 		return getEntity(clazz);
 	}
@@ -194,19 +196,22 @@ public class DefaultEntityManager implements EntityManager {
 	 *             if clazz is <code>null</code>
 	 */
 	public Entity getEntity(String clazz) {
-		if (clazz == null)
+		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
+		}
 
 		Entity entity;
 		// Lookup the id in the creature table
 		entity = getCreature(clazz);
-		if (entity != null)
+		if (entity != null) {
 			return entity;
+		}
 
 		// Lookup the id in the item table
 		entity = getItem(clazz);
-		if (entity != null)
+		if (entity != null) {
 			return entity;
+		}
 
 		return null;
 	}
@@ -215,12 +220,14 @@ public class DefaultEntityManager implements EntityManager {
 	 * returns the creature or <code>null</code> if the id is unknown
 	 */
 	public Creature getCreature(int id) {
-		if (id < 0)
+		if (id < 0) {
 			return null;
+		}
 
 		String clazz = idToClass.get(id);
-		if (clazz == null)
+		if (clazz == null) {
 			return null;
+		}
 
 		return getCreature(clazz);
 	}
@@ -232,8 +239,9 @@ public class DefaultEntityManager implements EntityManager {
 	 *             if clazz is <code>null</code>
 	 */
 	public Creature getCreature(String clazz) {
-		if (clazz == null)
+		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
+		}
 
 		// Lookup the clazz in the creature table
 		DefaultCreature creature = classToCreature.get(clazz);
@@ -249,38 +257,44 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** return true if the Entity is a creature */
 	public boolean isCreature(int id) {
-		if (id < 0)
+		if (id < 0) {
 			return false;
+		}
 
 		String clazz = idToClass.get(id);
-		if (clazz == null)
+		if (clazz == null) {
 			return false;
+		}
 
 		return isCreature(clazz);
 	}
 
 	/** return true if the Entity is a creature */
 	public boolean isCreature(String clazz) {
-		if (clazz == null)
+		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
+		}
 		return classToCreature.containsKey(clazz);
 	}
 
 	public boolean isItem(int id) {
-		if (id < 0)
+		if (id < 0) {
 			return false;
+		}
 
 		String clazz = idToClass.get(id);
-		if (clazz == null)
+		if (clazz == null) {
 			return false;
+		}
 
 		return isItem(clazz);
 	}
 
 	/** return true if the Entity is a creature */
 	public boolean isItem(String clazz) {
-		if (clazz == null)
+		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
+		}
 		return classToItem.containsKey(clazz);
 	}
 
@@ -288,12 +302,14 @@ public class DefaultEntityManager implements EntityManager {
 	 * returns the item or <code>null</code> if the id is unknown
 	 */
 	public Item getItem(int id) {
-		if (id < 0)
+		if (id < 0) {
 			return null;
+		}
 
 		String clazz = idToClass.get(id);
-		if (clazz == null)
+		if (clazz == null) {
 			return null;
+		}
 
 		return getItem(clazz);
 	}
@@ -305,8 +321,9 @@ public class DefaultEntityManager implements EntityManager {
 	 *             if clazz is <code>null</code>
 	 */
 	public Item getItem(String clazz) {
-		if (clazz == null)
+		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
+		}
 
 		// Lookup the clazz in the item table
 		DefaultItem item = classToItem.get(clazz);

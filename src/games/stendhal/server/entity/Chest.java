@@ -65,8 +65,9 @@ public class Chest extends Entity implements UseListener {
 	public void update() {
 		super.update();
 		open = false;
-		if (has("open"))
+		if (has("open")) {
 			open = true;
+		}
 	}
 
 	public void open() {

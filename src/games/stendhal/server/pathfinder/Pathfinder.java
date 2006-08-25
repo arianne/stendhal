@@ -133,10 +133,12 @@ public class Pathfinder {
 		listClosed.clear(); // Clear the closed list
 		hashClosed.clear();
 
-		if (nodeGoal == null || nodeStart == null)
+		if (nodeGoal == null || nodeStart == null) {
 			throw new IllegalArgumentException("start/goal not yet set!");
-		if (navMap == null)
+		}
+		if (navMap == null) {
 			throw new IllegalArgumentException("navigation map not set!");
+		}
 
 		// Initialize the node numbers
 		nodeStart.nodeNumber = navMap.createNodeID(nodeStart);
@@ -246,8 +248,9 @@ public class Pathfinder {
 	 * @return the best node.
 	 */
 	protected Pathfinder.Node getBest() {
-		if (listOpen.size() == 0)
+		if (listOpen.size() == 0) {
 			return null;
+		}
 
 		Pathfinder.Node first = listOpen.get(0);
 
@@ -531,8 +534,9 @@ public class Pathfinder {
 		public void reset() {
 			f = g = h = 0.0;
 			numChildren = 0;
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 8; i++) {
 				children[i] = null;
+			}
 		}
 
 		/**

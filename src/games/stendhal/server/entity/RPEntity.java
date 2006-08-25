@@ -139,28 +139,37 @@ public abstract class RPEntity extends Entity {
 	public void update() throws AttributeNotFoundException {
 		super.update();
 
-		if (has("name"))
+		if (has("name")) {
 			name = get("name");
+		}
 
-		if (has("atk"))
+		if (has("atk")) {
 			atk = getInt("atk");
-		if (has("atk_xp"))
+		}
+		if (has("atk_xp")) {
 			atk_xp = getInt("atk_xp");
+		}
 
-		if (has("def"))
+		if (has("def")) {
 			def = getInt("def");
-		if (has("def_xp"))
+		}
+		if (has("def_xp")) {
 			def_xp = getInt("def_xp");
+		}
 
-		if (has("base_hp"))
+		if (has("base_hp")) {
 			base_hp = getInt("base_hp");
-		if (has("hp"))
+		}
+		if (has("hp")) {
 			hp = getInt("hp");
+		}
 
-		if (has("xp"))
+		if (has("xp")) {
 			xp = getInt("xp");
-		if (has("level"))
+		}
+		if (has("level")) {
 			level = getInt("level");
+		}
 
 		if (base_hp != 0) {
 			put("hp/base_hp", (double) hp / (double) base_hp);
@@ -337,12 +346,15 @@ public abstract class RPEntity extends Entity {
 
 	/** Modify the entity to stop attacking */
 	public void stopAttack() {
-		if (has("risk"))
+		if (has("risk")) {
 			remove("risk");
-		if (has("damage"))
+		}
+		if (has("damage")) {
 			remove("damage");
-		if (has("target"))
+		}
+		if (has("target")) {
 			remove("target");
+		}
 
 		if (attackTarget != null) {
 			attackTarget.attackSource.remove(this);
@@ -376,8 +388,9 @@ public abstract class RPEntity extends Entity {
 				attackSource.add(who);
 			}
 		} else {
-			if (who.has("target"))
+			if (who.has("target")) {
 				who.remove("target");
+			}
 			who.attackTarget = null;
 			attackSource.remove(who);
 		}

@@ -53,7 +53,6 @@ import marauroa.server.createaccount.Result;
 import marauroa.server.game.IRPRuleProcessor;
 import marauroa.server.game.JDBCPlayerDatabase;
 import marauroa.server.game.RPServerManager;
-import marauroa.server.game.RPWorld;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.Transaction;
 
@@ -183,9 +182,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					String extension = null;
 					try {
 						extension = extensionsToLoad[i];
-						if (extension.length() > 0)
+						if (extension.length() > 0) {
 							StendhalServerExtension.getInstance(
 									config.get(extension)).init();
+						}
 					} catch (Exception ex) {
 						logger.error("Error while loading extension: "
 								+ extension, ex);
@@ -214,10 +214,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private boolean isValidUsername(String username) {
 		/** TODO: Complete this. Should read the list from XML file */
-		if (username.indexOf(' ') != -1)
+		if (username.indexOf(' ') != -1) {
 			return false;
-		if (username.toLowerCase().contains("admin"))
+		}
+		if (username.toLowerCase().contains("admin")) {
 			return false;
+		}
 		return true;
 	}
 
@@ -350,11 +352,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		Log4J.startMethod(logger, "beginTurn");
 		long start = System.nanoTime();
 		int creatures = 0;
-		for (RespawnPoint point : respawnPoints)
+		for (RespawnPoint point : respawnPoints) {
 			creatures += point.size();
+		}
 		int objects = 0;
-		for (IRPZone zone : StendhalRPWorld.get())
+		for (IRPZone zone : StendhalRPWorld.get()) {
 			objects += zone.size();
+		}
 		logger.debug("lists: G:" + plantGrowers.size()
 				+ ",NPC:" + npcs.size() + ",P:" + playersObject.size() + ",CR:"
 				+ creatures + ",OB:" + objects);

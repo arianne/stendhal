@@ -144,8 +144,9 @@ public class PathfinderTest {
 					tempNode.y = y + j;
 					// If the node is this node, or invalid continue.
 					if ((i == 0 && j == 0) || (Math.abs(i) == Math.abs(j))
-							|| isValid(tempNode) == false)
+							|| isValid(tempNode) == false) {
 						continue;
+					}
 
 					path.linkChild(node, x + i, y + j);
 				}

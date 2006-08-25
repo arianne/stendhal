@@ -38,6 +38,7 @@ public class PersonalChest extends Chest {
 		/** Add a script to copy automatically. */
 		StendhalScriptSystem scripts = StendhalScriptSystem.get();
 		scripts.addScript(null, new ScriptAction() {
+			@Override
 			public void fire() {
 				if (attending != null) {
 					/* Can be replaced when we add Equip event */

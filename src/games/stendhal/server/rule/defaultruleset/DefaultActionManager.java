@@ -89,8 +89,9 @@ public class DefaultActionManager implements ActionManager {
 
 	/** equipes the item in the specified slot */
 	public boolean onEquip(RPEntity entity, String slotName, Item item) {
-		if (!entity.hasSlot(slotName))
+		if (!entity.hasSlot(slotName)) {
 			return false;
+		}
 
 		// TODO:
 		// // recheck if the item can be equipped

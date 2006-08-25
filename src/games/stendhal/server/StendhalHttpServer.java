@@ -187,7 +187,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             super(context);
         }
 
-        public void process(Request req, Response resp) throws Exception {
+        @Override
+		public void process(Request req, Response resp) throws Exception {
             process(req, resp, req.getPath().getPath(), resp
                     .getPrintStream(1024));
         }
@@ -210,11 +211,13 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             return ("." + req.getPath().getPath());
         }
 
-        public void process(Request req, Response resp) throws Exception {
+        @Override
+		public void process(Request req, Response resp) throws Exception {
             process(req, resp, getScriptName(req), resp.getPrintStream(1024));
         }
 
-        public void process(Request req, Response resp, String resource,
+        @Override
+		public void process(Request req, Response resp, String resource,
                 PrintStream outStream) throws Exception {
             ByteArrayOutputStream out = new ByteArrayOutputStream(2048);
             Binding binding = getBinding();
@@ -245,11 +248,13 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             super(context); // this context will be ignored
         }
 
-        public Binding getBinding() {
+        @Override
+		public Binding getBinding() {
             return (new Binding(scriptBinding.getVariables()));
         }
 
-        public String getScriptName(Request req) {
+        @Override
+		public String getScriptName(Request req) {
             return ("./" + req.getPath().getExtension() + ".groovy");
         }
     }
@@ -260,11 +265,13 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             super(fileContext);
         }
 
-        public void process(Request req, Response resp) throws Exception {
+        @Override
+		public void process(Request req, Response resp) throws Exception {
             process(req, resp, req.getPath().getPath(), resp.getPrintStream(1024));
         }
 
-        public void process(Request req, Response resp, String resource,
+        @Override
+		public void process(Request req, Response resp, String resource,
                 PrintStream outStream) throws Exception {
             File file = new File(context.getRealPath(resource));
             
@@ -298,8 +305,9 @@ public class StendhalHttpServer extends StendhalServerExtension implements
                             context.getPath(resource).getDirectory());
                     rOut.close();
                 }
-            } else
-                throw new java.io.IOException("Invalid file: " + resource);
+            } else {
+				throw new java.io.IOException("Invalid file: " + resource);
+			}
         }
     }
 
@@ -309,7 +317,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             super(context);
         }
 
-        public void process(Request req, Response resp) throws Exception {
+        @Override
+		public void process(Request req, Response resp) throws Exception {
             PrintStream out = resp.getPrintStream(1024);
             String resource = req.getPath().getPath().substring(1);
             if (getClass().getClassLoader().getResource(resource) != null) {
@@ -320,13 +329,15 @@ public class StendhalHttpServer extends StendhalServerExtension implements
                 resp.setDate("Expires", System.currentTimeMillis() + 900000); // 15 minutes
                 streamCopy(in, out);
                 out.close();
-            } else
-                throw new java.io.IOException("Invalid resource: " + resource);
+            } else {
+				throw new java.io.IOException("Invalid resource: " + resource);
+			}
         }
     }
 
     /** start listening to http requests * */
-    public void init() {
+    @Override
+	public void init() {
         try {
             LoaderEngine engine = new LoaderEngine();
             engine.load("file", "games.stendhal.server.StendhalHttpServer$FileService");

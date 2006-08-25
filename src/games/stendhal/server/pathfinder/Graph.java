@@ -28,8 +28,9 @@ public class Graph {
 	}
 
 	public boolean isEmpty() {
-		if (objList.size() == 0)
+		if (objList.size() == 0) {
 			return true;
+		}
 		return false;
 	}
 
@@ -38,21 +39,24 @@ public class Graph {
 	}
 
 	public boolean contains(Object Obj) {
-		if (getItem(Obj) != null)
+		if (getItem(Obj) != null) {
 			return true;
+		}
 
 		return false;
 	}
 
 	public Object getObject(int IDNum) {
-		if (IDNum == -1)
+		if (IDNum == -1) {
 			return null;
+		}
 
 		for (int i = 0; i < objList.size(); i++) {
 			GraphItem itm = objList.get(i);
 
-			if (itm != null && itm.getIDInGraph() == IDNum)
+			if (itm != null && itm.getIDInGraph() == IDNum) {
 				return itm.getInfo();
+			}
 		}
 
 		return null;
@@ -60,21 +64,24 @@ public class Graph {
 
 	public GraphItem getItem(Object Obj) {
 		int i;
-		if (Obj == null)
+		if (Obj == null) {
 			return null;
+		}
 
 		for (i = 0; i < objList.size(); i++) {
 			GraphItem itm = objList.get(i);
-			if (itm != null && itm.getInfo() == Obj)
+			if (itm != null && itm.getInfo() == Obj) {
 				return itm;
+			}
 
 		}
 		return null;
 	}
 
 	public GraphItem getItem(int i) {
-		if (i > objList.size())
+		if (i > objList.size()) {
 			return null;
+		}
 
 		return objList.get(i);
 	}
@@ -107,8 +114,9 @@ public class Graph {
 
 	public List<GraphItem> getAdjListFor(int itemID) {
 		for (GraphItem itm : objList) {
-			if (itm.getIDInGraph() == itemID)
+			if (itm.getIDInGraph() == itemID) {
 				return itm.getAdjList();
+			}
 		}
 
 		return null;
@@ -120,12 +128,14 @@ public class Graph {
 	}
 
 	public int getNeighbours(GraphItem item) {
-		if (item == null)
+		if (item == null) {
 			return -1;
+		}
 
 		List<GraphItem> list = getAdjList(item);
-		if (list == null)
+		if (list == null) {
 			return -1;
+		}
 
 		return list.size();
 	}
@@ -137,16 +147,18 @@ public class Graph {
 	public boolean deleteNode(Object obj) {
 		GraphItem item = getItem(obj);
 
-		if (item == null)
+		if (item == null) {
 			return true;
+		}
 
 		// Look in all adjlist for ocurrences of this node
 		// Remove ALL connections reaching this node
 		for (int i = 0; i < objList.size(); i++) {
 			GraphItem currentItem = objList.get(i);
 
-			if (currentItem != null)
+			if (currentItem != null) {
 				currentItem.getAdjList().remove(item);
+			}
 		}
 
 		this.objList.remove(item);
@@ -156,8 +168,9 @@ public class Graph {
 	}
 
 	public boolean addBiConnection(Object I, Object J) {
-		if (addConnection(I, J) == false)
+		if (addConnection(I, J) == false) {
 			return false;
+		}
 
 		return addConnection(J, I);
 	}
@@ -167,8 +180,9 @@ public class Graph {
 		itemI = getItem(I);
 		itemJ = getItem(J);
 
-		if ((itemI == null) || (itemJ == null))
+		if ((itemI == null) || (itemJ == null)) {
 			return false;
+		}
 
 		// find in the Objlist the Item with Graph Index i
 		// and locate its corresponding adjacency list
@@ -209,11 +223,13 @@ public class Graph {
 		}
 
 		GraphItem fuente = start;
-		if (objList.contains(start) == false)
+		if (objList.contains(start) == false) {
 			return null;
+		}
 
-		if (start == null)
+		if (start == null) {
 			return null;
+		}
 
 		for (int i = 0; i < objList.size(); i++) {
 			d[i] = 32000; // change this to a higher ammount if needed
@@ -252,13 +268,15 @@ public class Graph {
 	}
 
 	public int getNumBrothers(Object obj) {
-		if (obj == null)
+		if (obj == null) {
 			return -1;
+		}
 
 		GraphItem item = this.getItem(obj);
 
-		if (item == null)
+		if (item == null) {
 			return 0;
+		}
 
 		return (this.getAdjList(item).size());
 	}

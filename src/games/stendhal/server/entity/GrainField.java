@@ -58,8 +58,9 @@ public class GrainField extends PlantGrower implements UseListener {
 	@Override
 	public void update() {
 		super.update();
-		if (has("ripeness"))
+		if (has("ripeness")) {
 			ripeness = getInt("ripeness");
+		}
 	}
 
 	public void setRipeness(int ripeness) {
