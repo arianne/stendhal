@@ -30,7 +30,7 @@ public class GameScreen {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(GameScreen.class);
 
-	/** One unit is 16 pixels */
+	/** The width / height of one tile. */
 	public final static int SIZE_UNIT_PIXELS = 32;
 
 	private BufferStrategy strategy;
