@@ -440,24 +440,19 @@ public class AdministrationAction extends ActionListener {
 						.getRuleManager().getEntityManager();
 				String type = action.get("creature");
 
+				Entity entity = null;
 				// Is the entity a creature
 				if (manager.isCreature(type)) {
 					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
-					Creature creature = manager.getCreature(type);
-
-					zone.assignRPObjectID(creature);
-					StendhalRPAction.placeat(zone, creature, x, y);
-					zone.add(creature);
-
-					StendhalRPRuleProcessor.get().addNPC(creature);
+					entity = manager.getCreature(type);
+					StendhalRPRuleProcessor.get().addNPC((Creature) entity);
 				} else if (manager.isItem(type)) {
 					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
-					Item item = manager.getItem(type);
-
-					zone.assignRPObjectID(item);
-					StendhalRPAction.placeat(zone, item, x, y);
-					zone.add(item);
+					entity = manager.getItem(type);
 				}
+				zone.assignRPObjectID(entity);
+				StendhalRPAction.placeat(zone, entity, x, y);
+				zone.add(entity);
 			}
 		}
 
