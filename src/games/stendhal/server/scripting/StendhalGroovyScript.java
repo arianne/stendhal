@@ -197,8 +197,11 @@ public class StendhalGroovyScript {
 			File f = new File(groovyScript);
 			interp.evaluate(f);
 		} catch (Exception e) {
-			logger.error("Exception while sourcing file " + groovyScript);
-			e.printStackTrace();
+			logger.error("Exception while sourcing file " + groovyScript, e);
+			groovyExceptionMessage = e.getMessage();
+			ret = false;
+		} catch (Error e) {
+			logger.error("Exception while sourcing file " + groovyScript, e);
 			groovyExceptionMessage = e.getMessage();
 			ret = false;
 		}
