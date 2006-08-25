@@ -326,8 +326,9 @@ public abstract class SpeakerNPC extends NPC {
 
 	@Override
 	public void logic() {
-		if (has("text"))
+		if (has("text")) {
 			remove("text");
+		}
 
 		// if no player is talking to the NPC, the NPC can move around.
 		if (!talking()) {
@@ -706,6 +707,7 @@ public abstract class SpeakerNPC extends NPC {
 
 		addWaitMessage(null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						engine.say("Please wait! I am attending "
 								+ engine.getAttending().getName() + ".");
@@ -814,6 +816,7 @@ public abstract class SpeakerNPC extends NPC {
 				ConversationStates.BUY_PRICE_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						SellerBehaviour sellerBehaviour = (SellerBehaviour) engine
 								.getBehaviourData("seller");
@@ -855,6 +858,7 @@ public abstract class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING,
 				"Thanks.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						SellerBehaviour sellerBehaviour = (SellerBehaviour) engine
 								.getBehaviourData("seller");
@@ -896,6 +900,7 @@ public abstract class SpeakerNPC extends NPC {
 				ConversationStates.SELL_PRICE_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						BuyerBehaviour buyerBehaviour = (BuyerBehaviour) engine
 								.getBehaviourData("buyer");
@@ -931,6 +936,7 @@ public abstract class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING,
 				"Thanks.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						BuyerBehaviour buyerBehaviour = (BuyerBehaviour) engine
 								.getBehaviourData("buyer");
@@ -966,6 +972,7 @@ public abstract class SpeakerNPC extends NPC {
 				ConversationStates.HEAL_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						HealerBehaviour healer = (HealerBehaviour) engine
 								.getBehaviourData("healer");
@@ -991,6 +998,7 @@ public abstract class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						HealerBehaviour healerBehaviour = (HealerBehaviour) engine
 								.getBehaviourData("healer");

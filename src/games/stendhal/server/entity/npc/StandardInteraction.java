@@ -48,6 +48,7 @@ public class StandardInteraction {
 			this.requiredAdminlevel = requiredAdminlevel;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (player.has("adminlevel") && (player.getInt("adminlevel") >= requiredAdminlevel));
 		}
@@ -63,6 +64,7 @@ public class StandardInteraction {
 			this.questname = questname;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (player.has(questname));
 		}
@@ -78,6 +80,7 @@ public class StandardInteraction {
 			this.questname = questname;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (!player.hasQuest(questname));
 		}
@@ -93,6 +96,7 @@ public class StandardInteraction {
 			this.questname = questname;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (player.isQuestCompleted(questname));
 		}
@@ -108,6 +112,7 @@ public class StandardInteraction {
 			this.questname = questname;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (!player.isQuestCompleted(questname));
 		}
@@ -125,6 +130,7 @@ public class StandardInteraction {
 			this.state = state;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 		    return (player.hasQuest(questname) && player.getQuest(questname).equals(state));
 		}
@@ -142,6 +148,7 @@ public class StandardInteraction {
 			this.state = state;
 		}
 
+		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 		    return (!player.hasQuest(questname) || !player.getQuest(questname).equals(state));
 		}
@@ -159,6 +166,7 @@ public class StandardInteraction {
 			this.state = state;
 		}
 
+		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
 			player.setQuest(questname, state);
 		}
@@ -187,6 +195,7 @@ public class StandardInteraction {
 			this.scriptAction = scriptAction;
 		}
 
+		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
 			if ((scriptCondition != null)
 					&& (scriptCondition instanceof ChatInfoReceiver)) {

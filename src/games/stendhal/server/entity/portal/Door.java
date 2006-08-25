@@ -140,8 +140,9 @@ public class Door extends Portal implements TurnListener {
 	@Override
 	public String describe() {
 		String text = "You see a door.";
-		if (hasDescription())
+		if (hasDescription()) {
 			text = getDescription();
+		}
 		text += " It is " + (isOpen() ? "open." : "closed.");
 		return (text);
 	}

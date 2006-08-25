@@ -59,6 +59,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 * @return true iff the transaction was successful, that is when the
 	 *              player was able to equip the item(s).
 	 */
+	@Override
 	protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		EntityManager manager = world.getRuleManager().getEntityManager();

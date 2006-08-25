@@ -173,8 +173,9 @@ public abstract class NPC extends RPEntity {
 	}
 
 	public void moveRandomly(double speed) {
-		if (escapeCollision > 0)
+		if (escapeCollision > 0) {
 			escapeCollision--;
+		}
 
 		if (stopped() || collides() || escapeCollision == 0) {
 			setDirection(Direction.rand());

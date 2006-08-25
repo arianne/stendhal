@@ -30,8 +30,9 @@ public class StackableItem extends Item implements Stackable {
 	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
-		if (has("quantity"))
+		if (has("quantity")) {
 			quantity = getInt("quantity");
+		}
 	}
 
 	public int getQuantity() {

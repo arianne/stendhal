@@ -113,8 +113,9 @@ public class Item extends PassiveEntity {
 	 * @return attack points
 	 */
 	public int getAttack() {
-		if (has("atk"))
+		if (has("atk")) {
 			return getInt("atk");
+		}
 
 		return 0;
 	}
@@ -126,8 +127,9 @@ public class Item extends PassiveEntity {
 	 * @return defense points
 	 */
 	public int getDefense() {
-		if (has("def"))
+		if (has("def")) {
 			return getInt("def");
+		}
 
 		return 0;
 	}
@@ -139,8 +141,9 @@ public class Item extends PassiveEntity {
 	 * @return true if item is persistent
 	 */
 	public boolean isPersistent() {
-		if (has("persistent"))
+		if (has("persistent")) {
 			return (getInt("persistent") == 1);
+		}
 
 		return false;
 	}
@@ -158,8 +161,9 @@ public class Item extends PassiveEntity {
 
 	/** returns the type of the item */
 	public String getItemClass() {
-		if (has("class"))
+		if (has("class")) {
 			return get("class");
+		}
 
 		throw new IllegalStateException("the item does not have a class: "
 				+ this);
@@ -167,8 +171,9 @@ public class Item extends PassiveEntity {
 
 	/** returns the type of the item */
 	public String getItemSubclass() {
-		if (has("subclass"))
+		if (has("subclass")) {
 			return get("subclass");
+		}
 
 		throw new IllegalStateException("the item does not have a subclass: "
 				+ this);

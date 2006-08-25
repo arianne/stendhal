@@ -47,6 +47,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 * @return true iff the transaction was successful, that is when the
 	 *              player has the item(s).
 	 */
+	@Override
 	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 		if (player.drop(chosenItem, amount)) {
 			payPlayer(player);

@@ -253,8 +253,9 @@ public class Sheep extends DomesticAnimal {
 	@Override
 	public String describe() {
 		String text = "You see a sheep that weighs " + weight + ".";
-		if (hasDescription())
+		if (hasDescription()) {
 			text = getDescription();
+		}
 		return (text);
 	}
 
