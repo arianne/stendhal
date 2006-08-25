@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -42,6 +45,33 @@ public class Campfire extends AbstractQuest {
 	@Override
 	public boolean isCompleted(Player player) {
 		return player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start");
+	}
+
+	@Override
+	public boolean isRepeatable(Player player) {
+		return true;
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+			return res;
+		}
+		res.add("QUEST_ACCEPTED");
+		if ((player.isEquipped("wood", REQUIRED_WOOD)) || isCompleted(player)) {
+			res.add("FOUND_ITEM");
+		}
+		if (isCompleted(player)) {
+			res.add("DONE");
+		}
+		return res;
 	}
 
 	private boolean canStartQuestNow(SpeakerNPC npc, Player player) {
