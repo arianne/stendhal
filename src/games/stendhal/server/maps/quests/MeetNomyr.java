@@ -25,7 +25,7 @@ public class MeetNomyr extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Nomyr Ahba");
 
 		npc.add(ConversationStates.ATTENDING,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
 				"The young people have joined the Deniran army to fight in the South, so the city has been left unprotected from hordes of monsters coming from the dungeons. Can you help us?",
@@ -39,7 +39,7 @@ public class MeetNomyr extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				"First of all you should talk to Hayunn Naratha. He's a former great hero and our only defense here and he will gladly give you good advice. Good luck.",

@@ -28,14 +28,14 @@ public class MeetIo extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Io Flotto");
 
 		npc.add(ConversationStates.ATTENDING,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
 				"Type #/who to know what adventurer's souls are wandering the world of Stendhal. Do you want to know the second basic element of telepathy?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_2,
 				"Type #/where #user_name to know where in the vast world of Stendhal, the person you're seeking is roaming (use #/where #sheep with your owned sheep ). To understand positioning in Stendhal you should ask #Zynn. Ready for the third?",
@@ -49,28 +49,28 @@ public class MeetIo extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.INFORMATION_2,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_3,
 				"Type #/tell #user_name #your_text or #/msg #user_name #your_text to talk to the person you wish throughout the entire world of Stendhal, no matter where that person is.  On the other hand, if you're the listener type #// #your_text to reply him. Ready for the fourth?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_3,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_4,
 				"Use #SHIFT #+ #UP #arrow keys to put in your mouth your last spoken sentence and previous ones. Use #CTRL #+ #L in case you can't focus the history of the previous conversations you have had and actions you have done. Ready for the fifth?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_4,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_5,
 				"Type #/support #your_text to try to report something to any administrator who happens to be online at that moment. Besides, you can contact the author #mblanch with an IRC client program. Connect to server: #irc.freenode.net and type #/join #arianne. Ready for the sixth?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_5,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_6,
 				"Use the #ESC key on your keyboard or simply close the window to travel to the astral plane ( and quit the game ). Do you want me to show you how to float in the air like me?",
@@ -78,7 +78,7 @@ public class MeetIo extends AbstractQuest {
 
 		/** Give the reward to the patient newcomer user */
 		npc.add(ConversationStates.INFORMATION_6,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				null,

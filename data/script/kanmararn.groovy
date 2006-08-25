@@ -169,7 +169,7 @@ if(game.setZone(myZone))   // if zone exists
   henry.behave("somewhere","If you #help me I might give you a clue.")
   // Add the quest dependent chat
   henry.add (1,[ "quest", "task" ],null,60,null, new HenryQuestAction());
-  henry.add(60,"yes",null,1,"Thank you! I'll be waiting for your return.",new HenryQuestAcceptAction());
+  henry.add(60,SpeakerNPC.YES_MESSAGES,null,1,"Thank you! I'll be waiting for your return.",new HenryQuestAcceptAction());
   henry.add(60,"no",null,1,"Ok. I understand. I'm scared of the #dwarves myself.",null);
   henry.add(0,[ "hi","hello","greetings","hola" ],new HenryQuestCompleteCondition(),1,null,new HenryQuestCompleteAction(game));
   henry.add(1,[ "map","group","help" ],new HenryQuestCompletedCondition(),1,"I'm so sad that most of my friends are dead.",null);

@@ -113,7 +113,7 @@ public class CloaksForBario extends AbstractQuest {
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -187,7 +187,7 @@ public class CloaksForBario extends AbstractQuest {
 
 	// player says he has a blue elf cloak with him
 	npc.add(ConversationStates.QUESTION_1,
-			"yes",
+			SpeakerNPC.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			null,

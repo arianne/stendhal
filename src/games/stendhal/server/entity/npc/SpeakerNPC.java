@@ -88,7 +88,7 @@ import org.apache.log4j.Logger;
  * replies: yes or no.
  * 
  * add(ConversationStates.BUY_PRICE_OFFERED,
- *     "yes",
+ *     SpeakerNPC.YES_MESSAGES,
  *     ConversationStates.ATTENDING_STATE,
  *     "Sorry, I changed my mind. I won't sell anything.",
  *     null);
@@ -121,7 +121,10 @@ public abstract class SpeakerNPC extends NPC {
 
 	public static final String[] QUEST_MESSAGES = {"task", "quest", "favor", "favour"};
 
+	public static final String[] YES_MESSAGES = {"yes", "ok"};
+
 	public static final String[] GOODBYE_MESSAGES = {"bye", "farewell", "cya", "adios"};
+	
 	
 	/**
 	 * Determines how long a conversation can be paused before it will
@@ -853,7 +856,7 @@ public abstract class SpeakerNPC extends NPC {
 				});
 
 		add(ConversationStates.BUY_PRICE_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thanks.",
@@ -931,7 +934,7 @@ public abstract class SpeakerNPC extends NPC {
 				});
 
 		add(ConversationStates.SELL_PRICE_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thanks.",
@@ -993,7 +996,7 @@ public abstract class SpeakerNPC extends NPC {
 				});
 
 		add(ConversationStates.HEAL_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,

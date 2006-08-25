@@ -43,7 +43,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thank you! I'll be waiting for your return. Now if I can help you in anything just ask.",

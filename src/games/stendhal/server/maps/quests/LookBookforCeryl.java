@@ -75,7 +75,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Great! Start the quest now!",

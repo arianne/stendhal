@@ -234,7 +234,7 @@ if (player != null) {
 	// Greating and admins may enable or disable her
 	npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.ATTENDING, "Hi, game master. Do you think i am #crazy?", null);
 /*    npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.QUESTION_1, "May I talk to strangers?", null); 
-    npc.add(ConversationStates.QUESTION_1, "yes", new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(true));
+    npc.add(ConversationStates.QUESTION_1, SpeakerNPC.YES_MESSAGES, new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(true));
     npc.add(ConversationStates.QUESTION_1, "no", new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(false));
 */
     npc.behave(["insane", "crazy", "mad"], "Why are you so mean? I AM NOT INSANE. My mummy says, I am a #special child.")

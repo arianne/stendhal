@@ -68,7 +68,7 @@ public class ZooFood extends AbstractQuest {
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Okay, but please don't let poor animals suffer! Bring me the hams when you have got them.",
@@ -115,7 +115,7 @@ public class ZooFood extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,

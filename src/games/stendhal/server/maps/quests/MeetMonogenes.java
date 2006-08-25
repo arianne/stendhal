@@ -23,11 +23,11 @@ public class MeetMonogenes extends AbstractQuest {
 	private void step_1() {
 		SpeakerNPC npc=npcs.get("Monogenes");
 		
-		npc.add(1,"yes",null,50,"Only ask them about what they bring the conversation around to: the WORDS that are bolded in blue color. Otherwise, you can get a harsh answer although you usually can ask about their #job , #help, #offer or #quest. Do you want to know where city's main buildings are?", null);
-		npc.add(1,"no",null,0,"And how are you supposed to know what's happening? By reading the Semos tribune? Bye!", null);
+		npc.add(1, SpeakerNPC.YES_MESSAGES,null,50,"Only ask them about what they bring the conversation around to: the WORDS that are bolded in blue color. Otherwise, you can get a harsh answer although you usually can ask about their #job , #help, #offer or #quest. Do you want to know where city's main buildings are?", null);
+		npc.add(1, "no",null,0,"And how are you supposed to know what's happening? By reading the Semos tribune? Bye!", null);
 		
-		npc.add(50,"yes",null,1,"Sometimes it is helpful to read the city's wooden signs by right-clicking on them and choosing LOOK. I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith or the #village.", null);
-		npc.add(50,"no",null,0,"Oh I see... You are of that kind of persons that don't like asking for directions huh? Well, good luck finding the secretly hidden mmhmmhmm!", null);
+		npc.add(50, SpeakerNPC.YES_MESSAGES,null,1,"Sometimes it is helpful to read the city's wooden signs by right-clicking on them and choosing LOOK. I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith or the #village.", null);
+		npc.add(50, "no",null,0,"Oh I see... You are of that kind of persons that don't like asking for directions huh? Well, good luck finding the secretly hidden mmhmmhmm!", null);
 		
 		npc.addReply("bank", "The bank is precisely this building next to me. I thought the big chest on the front would have given you a clue.");
 		npc.addReply("library", "The library is west from here, following the path. There's an OPEN BOOK AND A FEATHER sign over one of the two doors.");

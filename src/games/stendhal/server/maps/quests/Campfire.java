@@ -141,7 +141,7 @@ public class Campfire extends AbstractQuest {
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Okay. You can find wood in the forest North of here. Come back when you got ten pieces of wood.",
@@ -169,7 +169,7 @@ public class Campfire extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Sally");
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,

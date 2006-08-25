@@ -72,7 +72,7 @@ public class HatForMonogenes extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thanks, my good friend. I'll be waiting for your return. Now if I can help you in anything just ask.",
@@ -134,7 +134,7 @@ public class HatForMonogenes extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				// make sure the player isn't cheating by putting the helmet
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {

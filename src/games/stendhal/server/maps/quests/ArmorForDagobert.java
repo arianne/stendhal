@@ -82,7 +82,7 @@ public class ArmorForDagobert extends AbstractQuest {
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Once I had a nice #leather_cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
@@ -148,7 +148,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				// make sure the player isn't cheating by putting the armor
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {

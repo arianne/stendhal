@@ -27,21 +27,21 @@ public class MeetHayunn extends AbstractQuest {
  
     SpeakerNPC npc=npcs.get("Hayunn Naratha");
 
-    npc.add(1,"yes",null,50,"I right-clicked on creatures and chose ATTACK. But why killing creatures and risking my life if I didn't get paid for it you ask. Hmmm? Hmmm?",null);
+    npc.add(1,SpeakerNPC.YES_MESSAGES,null,50,"I right-clicked on creatures and chose ATTACK. But why killing creatures and risking my life if I didn't get paid for it you ask. Hmmm? Hmmm?",null);
 
-    npc.add(50,"yes",null,51,"I right-clicked on the corpses of the creatures and chose INSPECT. Then I dragged the items I found to my bag but I had to be NEXT to the corpse. Can you guess how I identified the items in my bag or on the ground?",null);
+    npc.add(50,SpeakerNPC.YES_MESSAGES,null,51,"I right-clicked on the corpses of the creatures and chose INSPECT. Then I dragged the items I found to my bag but I had to be NEXT to the corpse. Can you guess how I identified the items in my bag or on the ground?",null);
 
     npc.add(51,"no",null,52,"I right-clicked on the items and chose LOOK. You may be wondering how I made my way back to here in Semos despite of the injuries received from the monsters... Hmmm?",null);
 
-    npc.add(52,"yes",null,53,"I right-clicked on the food in my bag or on the ground and chose USE. But food doesn't recover you instantly: you gain health points over time. Do you want to know how to heal instantly?",null);
+    npc.add(52,SpeakerNPC.YES_MESSAGES,null,53,"I right-clicked on the food in my bag or on the ground and chose USE. But food doesn't recover you instantly: you gain health points over time. Do you want to know how to heal instantly?",null);
 
-    npc.add(53,"yes",null,54, "Once you get enough money you should buy at least one potion from Carmen the healer. A potion can be very handy when you're deep in the heart of the dungeon. Have I told you where the dungeon is?",null);
+    npc.add(53,SpeakerNPC.YES_MESSAGES,null,54, "Once you get enough money you should buy at least one potion from Carmen the healer. A potion can be very handy when you're deep in the heart of the dungeon. Have I told you where the dungeon is?",null);
 
     npc.add(54,"no",null,55,"Do you see this big hole on the ground next to me? It is the entrance to the dungeons. Do you want to know how to move accurately through its narrow corridors?",null);
 
-    npc.add(55,"yes",null,56,"You just have to left-double-click to the place you want to move. Do you want to know where you can find yet another relevant information to become the best adventurer?",null);
+    npc.add(55,SpeakerNPC.YES_MESSAGES,null,56,"You just have to left-double-click to the place you want to move. Do you want to know where you can find yet another relevant information to become the best adventurer?",null);
 
-    npc.add(56,"yes",null,0,null,
+    npc.add(56,SpeakerNPC.YES_MESSAGES,null,0,null,
    new SpeakerNPC.ChatAction()
       {
       @Override

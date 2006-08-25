@@ -100,7 +100,7 @@ public class IntroducePlayers extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				"Could you buy a flask from #Margaret?",
 				null);
-		npc.add(ConversationStates.QUEST_OFFERED,				"yes",				null,				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					@Override
+		npc.add(ConversationStates.QUEST_OFFERED,				SpeakerNPC.YES_MESSAGES,				null,				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {						engine.say("Nice! Please hurry up!");						player.setQuest("introduce_players", "start");					}				});
 		npc.add(ConversationStates.QUEST_OFFERED,
 				"no",

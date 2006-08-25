@@ -28,28 +28,28 @@ public class MeetHackim extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Hackim Easso");
 
 		npc.add(ConversationStates.ATTENDING,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
 				"We don't sell weapons to wandering adventurers like you! We just make them for the glorious Deniran empire army who's fighting bravely Blordrough's dark legion in the South! Your mere presence here is offending!... Shhh Can you get your ear close?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_2,
 				"Go to the tavern and talk to Xin Blanca... Ask him what he has to #offer, look at what he #sells, and then say #buy #name_of_item, as in #buy #wooden_shield. He can also be interested in buying weapons from you. Do you want to know how to do it?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_2,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_3,
 				"Ask him what he has to #offer but now look at what he #buys and then say #sell #name_of_item, as in #sell #studded_armor. Do you want to know my little secret?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_3,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				null,

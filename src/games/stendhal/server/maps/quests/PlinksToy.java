@@ -54,7 +54,7 @@ public class PlinksToy extends AbstractQuest {
 			null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				null,

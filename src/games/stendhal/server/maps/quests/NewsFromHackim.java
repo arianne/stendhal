@@ -47,7 +47,7 @@ public class NewsFromHackim extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"yes",
+				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thanks. I'm sure that Xin will reward you generously. Now if I can help you in anything just ask.",
