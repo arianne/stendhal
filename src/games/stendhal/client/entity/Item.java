@@ -16,7 +16,6 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 
-import java.awt.List;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -32,6 +31,7 @@ public class Item extends PassiveEntity {
 		super(gameObjects, object);
 	}
 
+	@Override
 	protected void loadSprite(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 		String name = null;
@@ -45,18 +45,22 @@ public class Item extends PassiveEntity {
 		sprite = store.getSprite("data/sprites/items/" + name + ".png");
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public String defaultAction() {
 		return "Use";
 	}
 
+	@Override
 	public String[] offeredActions() {
 		java.util.List<String> list = new ArrayList<String>();
 		list.add("Use");
@@ -69,6 +73,7 @@ public class Item extends PassiveEntity {
 		return list.toArray(new String[list.size()]);
 	}
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Use")) {
 			RPAction rpaction = new RPAction();
@@ -84,17 +89,18 @@ public class Item extends PassiveEntity {
 			}
 
 			client.send(rpaction);
-		} else
+		} else {
 			super.onAction(client, action, params);
+		}
 	}
 
+	@Override
 	public int compare(Entity entity) {
 		if (entity instanceof RPEntity) {
 			return -1;
 		} else if (entity instanceof Item) {
 			return 0;
 		}
-
 		return 1;
 	}
 }
