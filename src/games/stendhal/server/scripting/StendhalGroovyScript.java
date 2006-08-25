@@ -84,15 +84,18 @@ public class StendhalGroovyScript {
 		return (zone);
 	}
 
+	/**
+	 * @param player
+	 * @param zoneName
+	 * @param x
+	 * @param y
+	 * @return
+	 * @deprecated use Player.teleport() directly instead
+	 */
+	@Deprecated
 	public boolean transferPlayer(Player player, String zoneName, int x, int y) {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
-		if (zone != null && StendhalRPAction.placeat(zone, player, x, y)) {
-			StendhalRPAction.changeZone(player, zone.getID().getID());
-			StendhalRPAction.transferContent(player);
-			player.notifyWorldAboutChanges();
-			return (true);
-		}
-		return (false);
+		return player.teleport(zone, x, y, null, null);
 	}
 
 	public boolean playerIsInZone(Player player, String zoneName) {

@@ -231,15 +231,9 @@ public class Scroll extends StackableItem implements UseListener {
 				y = Integer.parseInt(st.nextToken());
 			}
 		}
-
-		// teleport
-		if (StendhalRPAction.placeat(zone, player, x, y)) {
-			StendhalRPAction.changeZone(player, zone.getID().getID());
-			StendhalRPAction.transferContent(player);
-			return true;
-		} else {
-			return false;
-		}
+		// we use the player as teleporter (last parameter) to give feedback
+		// if something goes wrong.
+		return player.teleport(zone, x, y, null, player);
 	}
 
 	@Override
