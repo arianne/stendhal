@@ -24,6 +24,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.HashMap;
@@ -609,7 +610,7 @@ public class AdministrationAction extends ActionListener {
 
 		if (inspected instanceof RPEntity) {
 			((RPEntity) inspected).onDead(player);
-		} else if (inspected instanceof Item) {
+		} else if (inspected instanceof Item || inspected instanceof Portal) {
 			StendhalRPWorld.get().remove(inspected.getID());
 		}
 

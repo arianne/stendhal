@@ -16,6 +16,7 @@ import marauroa.common.game.*;
 import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.ArrayList;
 
 public class Portal extends Entity {
 	public Portal(GameObjects gameObjects, RPObject object)
@@ -40,8 +41,12 @@ public class Portal extends Entity {
 	}
 
 	public String[] offeredActions() {
-		String[] list = { "Use" };
-		return list;
+		java.util.List<String> list = new ArrayList<String>();
+		list.add("Use");
+		if (client.isAdmin()) {
+			list.add("(*)Destroy");
+		}
+		return list.toArray(new String[list.size()]);
 	}
 
 	public void onAction(StendhalClient client, String action, String... params) {
@@ -51,6 +56,8 @@ public class Portal extends Entity {
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
 			client.send(rpaction);
+		} else {
+			super.onAction(client, action, params);
 		}
 	}
 
