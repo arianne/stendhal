@@ -77,6 +77,11 @@ public interface IQuest {
 	public List<String> getHint(Player player);
 	
 
+	/**
+	 * Returns the name of the quest
+	 *
+	 * @return name
+	 */
 	public String getName();
 
 }

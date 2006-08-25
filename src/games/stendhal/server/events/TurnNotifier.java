@@ -96,6 +96,7 @@ public class TurnNotifier {
 	 * 
 	 * @param diff the number of turns to wait
 	 * @param turnListener the object to notify
+	 * @param message an object to pass to the event handler
 	 */
 	public void notifyInTurns(int diff, TurnListener turnListener, String message) {
 		notifyAtTurn(currentTurn + diff + 1, turnListener, message);
@@ -106,6 +107,7 @@ public class TurnNotifier {
 	 * 
 	 * @param turn the number of the turn
 	 * @param turnListener the object to notify
+	 * @param message an object to pass to the event handler
 	 */
 	public void notifyAtTurn(int turn, TurnListener turnListener, String message) {
 		if (turn <= currentTurn) {
