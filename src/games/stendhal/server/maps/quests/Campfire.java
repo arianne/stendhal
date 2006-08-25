@@ -32,20 +32,27 @@ import games.stendhal.server.rule.EntityManager;
 public class Campfire extends AbstractQuest {
 
 	private static final int REQUIRED_WOOD = 10;
+	private static final String QUEST_SLOT = "campfire";
 
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	
 	private boolean canStartQuestNow(SpeakerNPC npc, Player player) {
-		if (!player.hasQuest("campfire")) {
+		if (!player.hasQuest(QUEST_SLOT)) {
 			return true;
-		} else if (player.getQuest("campfire").equals("start")) {
+		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
 			return false;
 		} else {
-			int turnWhenLastBroughtWood = Integer.parseInt(player.getQuest("campfire"));
+			int turnWhenLastBroughtWood = Integer.parseInt(player.getQuest(QUEST_SLOT));
 			int turnsSinceLastBroughtWood = StendhalRPRuleProcessor.get().getTurn() - turnWhenLastBroughtWood;
 			if (turnsSinceLastBroughtWood < 0) {
 				// The server was restarted since last doing the quest.
 				// Make sure the player can repeat the quest.
 				turnsSinceLastBroughtWood = 0;
-				player.setQuest("campfire", "0");
+				player.setQuest(QUEST_SLOT, "0");
 			}
 			return turnsSinceLastBroughtWood >= 1000;
 		}
@@ -64,7 +71,7 @@ public class Campfire extends AbstractQuest {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				if (canStartQuestNow(engine, player)) {
 					engine.say("Hi! I hope you can do me a #favor.");
-				} else if (player.getQuest("campfire").equals("start")) { 
+				} else if (player.getQuest(QUEST_SLOT).equals("start")) { 
 					if (player.isEquipped("wood", REQUIRED_WOOD)){
 						engine.say("Hi again! Are these ten pieces of wood for me?");
 						engine.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
@@ -88,7 +95,7 @@ public class Campfire extends AbstractQuest {
 							SpeakerNPC engine) {
 						if (canStartQuestNow(engine, player)) {
 							engine.say("I need more wood to keep my campfire running. But I can't leave my fire unattended. Could you please collect wood for me?");
-						} else if (player.getQuest("campfire").equals("start")){
+						} else if (player.getQuest(QUEST_SLOT).equals("start")){
 							engine.say("You already promised me to bring me ten pieces of wood!");
 						}
 						else {
@@ -107,7 +114,7 @@ public class Campfire extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						player.setQuest("campfire", "start");
+						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
 		
@@ -136,7 +143,7 @@ public class Campfire extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.drop("wood", REQUIRED_WOOD)) {
-							player.setQuest("campfire", Integer.toString(StendhalRPRuleProcessor.get().getTurn()));
+							player.setQuest(QUEST_SLOT, Integer.toString(StendhalRPRuleProcessor.get().getTurn()));
 							player.addXP(50);
 							
 							String rewardClass;
