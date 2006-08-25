@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
@@ -26,6 +29,38 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * - None.
  */
 public class LookBookforCeryl extends AbstractQuest {
+	private static final String QUEST_SLOT = "ceryl_book";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "start", "jynath", "done")) {
+			res.add("QUEST_ACCEPTED");
+		}
+		if ((questState.equals("jynath") && player.isEquipped("book_black")) || questState.equals("done")) {
+			res.add("FOUND_ITEM");
+		}
+		if (questState.equals("jynath") && !player.isEquipped("book_black")) {
+			res.add("LOST_ITEM");
+		}
+		if (questState.equals("done")) {
+			res.add("DONE");
+		}
+		return res;
+	}
 
 	private void step_1() {
 
@@ -40,7 +75,7 @@ public class LookBookforCeryl extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (player.isQuestCompleted("ceryl_book")) {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("I have nothing for you now.");
 						} else {
 							engine.say("I am looking for a very special #book.");
@@ -54,7 +89,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
-						return player.isQuestCompleted("ceryl_book");
+						return player.isQuestCompleted(QUEST_SLOT);
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -67,7 +102,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
-						return !player.hasQuest("ceryl_book");
+						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
 				ConversationStates.QUEST_OFFERED,
@@ -82,7 +117,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						player.setQuest("ceryl_book", "start");
+						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
 
@@ -106,8 +141,8 @@ public class LookBookforCeryl extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
-						return player.hasQuest("ceryl_book")
-								&& player.getQuest("ceryl_book").equals("start");
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals("start");
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -131,8 +166,8 @@ public class LookBookforCeryl extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
-						return player.hasQuest("ceryl_book")
-								&& player.getQuest("ceryl_book")
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT)
 										.equals("start");
 					}
 				},
@@ -141,7 +176,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						player.setQuest("ceryl_book", "jynath");
+						player.setQuest(QUEST_SLOT, "jynath");
 
 						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager()
 								.getItem("book_black");
@@ -155,8 +190,8 @@ public class LookBookforCeryl extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
-						return player.hasQuest("ceryl_book")
-								&& player.getQuest("ceryl_book").equals(
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals(
 										"jynath");
 					}
 				},
@@ -177,7 +212,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
-						return !player.hasQuest("ceryl_book");
+						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -194,8 +229,8 @@ public class LookBookforCeryl extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
-						return player.hasQuest("ceryl_book")
-								&& player.getQuest("ceryl_book").equals(
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals(
 										"jynath");
 					}
 				},
@@ -217,10 +252,10 @@ public class LookBookforCeryl extends AbstractQuest {
 
 							player.notifyWorldAboutChanges();
 
-							player.setQuest("ceryl_book", "done");
+							player.setQuest(QUEST_SLOT, "done");
 						} else {
 							engine.say("Where did you put #Jynath's #book?. You need to start the search again.");
-							player.removeQuest("ceryl_book");
+							player.removeQuest(QUEST_SLOT);
 						}
 					}
 				});
