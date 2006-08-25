@@ -72,13 +72,16 @@ public class Semos implements IContent {
 			zone.addPortal(portal);
 		}
 		SpeakerNPC npc = new SpeakerNPC("Tad") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("introduce_players")) {
@@ -97,6 +100,7 @@ public class Semos implements IContent {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
+			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				if (!player.hasQuest("TadFirstChat")) {
 					player.setQuest("TadFirstChat", "done");
@@ -137,12 +141,14 @@ public class Semos implements IContent {
 			zone.add(chest);
 		}
 		SpeakerNPC npc = new SpeakerNPC("Dagobert") {
+			@Override
 			protected void createPath() {
 				// NPC doesn't move
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting("Welcome to the bank of Semos! Do you need #help on your personal chest?");
 				addHelp("You can find your personal chest down the floor to the right. If you open it, you can store your belongings in it. I will take care that nobody else will touch them.");
@@ -177,6 +183,7 @@ public class Semos implements IContent {
 		portal.setDestination("int_semos_storage_-1", 0);
 		zone.addPortal(portal);
 		SpeakerNPC npc = new SpeakerNPC("Eonna") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(4, 12)); // its around the table with
@@ -190,6 +197,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting("Hi there, young hero.");
 				addJob("I'm just a regular housewife");
@@ -204,6 +212,7 @@ public class Semos implements IContent {
 		npc.initHP(100);
 		zone.addNPC(npc);
 		npc = new SpeakerNPC("Ketteh Wehoh") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(21, 5));
@@ -213,6 +222,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addHelp("I am the good manners and decency observer. I can help you by telling you about obvious and common sense things you should already know like not wandering naked around...");
 				addJob("I am committed to keep civilized customs in Semos. I know any kind of protocol ever known and one hundred manners of doing the same thing wrong. Well, I doubt about when it should be used the spoon or the fork but on the other hand nobody uses cutlery in Semos");
@@ -253,6 +263,7 @@ public class Semos implements IContent {
 		zone.addPortal(portal);
 		
 		SpeakerNPC hackim = new SpeakerNPC("Hackim Easso") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(5, 1));
@@ -269,6 +280,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
 					GREETING_MESSAGES,
@@ -276,6 +288,7 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
+						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
 							// A little trick to make NPC remember if it has met
@@ -304,6 +317,7 @@ public class Semos implements IContent {
 		zone.addNPC(hackim);
 		
 		SpeakerNPC xoderos = new SpeakerNPC("Xoderos") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(23, 11));
@@ -316,6 +330,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");
 
@@ -339,6 +354,7 @@ public class Semos implements IContent {
 						ConversationStates.ATTENDING,
 						null,
 						new SpeakerNPC.ChatAction() {
+							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC engine) {
 								int numberOfWood = player.getNumberOfEquipped("wood");
@@ -392,6 +408,7 @@ public class Semos implements IContent {
 		portal.setDestination("0_semos_city", 4);
 		zone.addPortal(portal);
 		SpeakerNPC npc = new SpeakerNPC("Zynn Iwuhos") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(15, 2));
@@ -409,6 +426,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
 					GREETING_MESSAGES,
@@ -416,6 +434,7 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
+						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
 							// A little trick to make NPC remember if it has met
@@ -466,6 +485,7 @@ public class Semos implements IContent {
 		npc.initHP(100);
 		zone.addNPC(npc);
 		npc = new SpeakerNPC("Ceryl") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(28, 11));
@@ -473,6 +493,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("I am the librarian.");
@@ -518,6 +539,7 @@ public class Semos implements IContent {
 		portal.setDestination("0_semos_city", 1);
 		zone.addPortal(portal);
 		SpeakerNPC npc = new SpeakerNPC("Ilisa") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(9, 5));
@@ -525,6 +547,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
@@ -541,6 +564,7 @@ public class Semos implements IContent {
 		npc.initHP(100);
 		zone.addNPC(npc);
 		npc = new SpeakerNPC("Io Flotto") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(8, 18));
@@ -559,6 +583,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
 					GREETING_MESSAGES,
@@ -566,6 +591,7 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
+						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
 							// A little trick to make NPC remember if it has met
@@ -631,6 +657,7 @@ public class Semos implements IContent {
 		portal.setDestination("int_semos_tavern_1", 0);
 		zone.addPortal(portal);
 		SpeakerNPC npc = new SpeakerNPC("Margaret") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(17, 12));
@@ -647,6 +674,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("I am the bar maid for this fair tavern. We sell fine beers and food.");
@@ -662,6 +690,7 @@ public class Semos implements IContent {
 		npc.initHP(100);
 		zone.addNPC(npc);
 		npc = new SpeakerNPC("Xin Blanca") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(2, 14));
@@ -671,6 +700,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("Shhh! I sell adventurers stuff.");
@@ -708,6 +738,7 @@ public class Semos implements IContent {
 		npc.setHP(npc.getBaseHP());
 		zone.addNPC(npc);
 		npc = new SpeakerNPC("Ouchit") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(24, 3));
@@ -717,6 +748,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("I sell bows and arrows stuff.");
@@ -780,6 +812,7 @@ public class Semos implements IContent {
 	private void buildSemosNorthPlainsArea(StendhalRPZone zone) {
 
 		SpeakerNPC npc = new SpeakerNPC("Plink") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(36, 108));
@@ -801,6 +834,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 		
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("I play all day.");
@@ -818,11 +852,13 @@ public class Semos implements IContent {
 
 	private void buildSemosNorthEastPlainsArea(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Jenny") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
 			}
 		
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("I'm the local miller. People bring me grain so that I can make flour.");
@@ -938,6 +974,7 @@ public class Semos implements IContent {
 				.getItem("money"));
 		zone.add(chest);
 		SpeakerNPC npc = new SpeakerNPC("Nomyr Ahba") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(46, 19));
@@ -949,6 +986,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
 					GREETING_MESSAGES,
@@ -956,6 +994,7 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
+						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
 							// A little trick to make NPC remember if it has met
@@ -990,11 +1029,13 @@ public class Semos implements IContent {
 		npc.initHP(100);
 		zone.addNPC(npc);
 		npc = new SpeakerNPC("Monogenes") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
 			}
 
+			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
 					GREETING_MESSAGES,
@@ -1002,6 +1043,7 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
+						@Override
 						public void fire(Player player, String text,
 							SpeakerNPC engine) {
 							// A little trick to make NPC remember if it has met
@@ -1032,6 +1074,7 @@ public class Semos implements IContent {
 		zone.addNPC(npc);
 
 		npc = new SpeakerNPC("Hayunn Naratha") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(27, 37));
@@ -1043,6 +1086,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
 					GREETING_MESSAGES,
@@ -1050,6 +1094,7 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
+						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
 							// A little trick to make NPC remember if it has met
@@ -1078,6 +1123,7 @@ public class Semos implements IContent {
 		npc.initHP(100);
 		zone.addNPC(npc);
 		npc = new SpeakerNPC("Diogenes") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(22, 42));
@@ -1091,6 +1137,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("Hehehe! Job! hehehe! Muahahaha!");
@@ -1102,6 +1149,7 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					null,
 					new SpeakerNPC.ChatAction() {
+						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
 							// randomly select between two different messages
@@ -1122,6 +1170,7 @@ public class Semos implements IContent {
 					ConversationStates.ATTENDING,
 					"What?",
 					new SpeakerNPC.ChatAction() {
+						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
 							if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
@@ -1144,6 +1193,7 @@ public class Semos implements IContent {
 		npc.initHP(100);
 		zone.addNPC(npc);
 		npc = new SpeakerNPC("Carmen") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(5, 45));
@@ -1151,6 +1201,7 @@ public class Semos implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("I have healing abilities and I heal wounded people. I also sell potions and antidotes.");

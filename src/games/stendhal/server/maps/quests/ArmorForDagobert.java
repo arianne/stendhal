@@ -68,6 +68,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
@@ -86,6 +87,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Once I had a nice #leather_cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT, "start");
 					}
@@ -98,6 +100,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Well, then I guess I'll just duck and cover.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT, "rejected");
 					}
@@ -124,6 +127,7 @@ public class ArmorForDagobert extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("start");
@@ -132,6 +136,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.isEquipped("leather_cuirass")) {
 							engine.say("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?");
@@ -147,6 +152,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				// make sure the player isn't cheating by putting the armor
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.isEquipped("leather_cuirass");
 					}
@@ -154,6 +160,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("leather_cuirass");
 						

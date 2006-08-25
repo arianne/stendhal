@@ -93,12 +93,14 @@ public class Ados implements IContent {
 
 	private void buildRockArea(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Balduin") {
+			@Override
 			protected void createPath() {
 				// NPC doesn't move
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
 			}
 
+			@Override
 			protected void createDialog() {
 				addHelp("There is a swamp east of this mountain where you might get some rare weapons.");
 				addJob("I'm much too old for hard work. I'm just living here as a hermit.");
@@ -132,6 +134,7 @@ public class Ados implements IContent {
 		zone.addPortal(portal);
 		
 		SpeakerNPC npc = new SpeakerNPC("Katinka") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(41, 39));
@@ -144,6 +147,7 @@ public class Ados implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addHelp("Can you keep a secret? Dr. Feelgood, our veterinary, can sell you medicine that he doesn't need for the animals.");
 				addJob("I'm the keeper of this animal refuge.");
@@ -160,6 +164,7 @@ public class Ados implements IContent {
 		zone.addNPC(npc);
 
 		npc = new SpeakerNPC("Dr. Feelgood") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(53, 27));
@@ -173,6 +178,7 @@ public class Ados implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				//Behaviours.addHelp(this,
 				//				   "...");

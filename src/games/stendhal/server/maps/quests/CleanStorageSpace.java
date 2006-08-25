@@ -30,6 +30,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("clean_storage")) {
@@ -47,6 +48,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Thank you! I'll be waiting for your return. Now if I can help you in anything just ask.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("clean_storage", "start");
 						player.removeKill("rat");
@@ -61,6 +63,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Maybe you are not the hero I thought you would be. *sighs* Now if I can help you in anything *sighs* just ask.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("clean_storage", "rejected");
 					}
@@ -87,6 +90,7 @@ public class CleanStorageSpace extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("clean_storage")
 								&& player.getQuest("clean_storage").equals("start");
@@ -95,6 +99,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				ConversationStates.QUEST_STARTED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.hasKilled("rat") && player.hasKilled("caverat")
 								&& player.hasKilled("cobra")) {

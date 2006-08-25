@@ -67,6 +67,7 @@ public class BeerForHayunn extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("My mouth is dry and I can't abandon my place. Could you bring me some #beer from the #tavern?");
@@ -83,6 +84,7 @@ public class BeerForHayunn extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Thanks, bud. I'll be waiting for your return. Now if I can help you in anything just ask.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT, "start");
@@ -95,6 +97,7 @@ public class BeerForHayunn extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Yes, forget it bud. Now that I think about it you do not look like you can afford inviting this old guy. Now if I can help you in anything just ask.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT, "rejected");
@@ -134,6 +137,7 @@ public class BeerForHayunn extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("start");
@@ -142,6 +146,7 @@ public class BeerForHayunn extends AbstractQuest {
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.isEquipped("beer")) {
 							engine.say("Hey! Is that beer for me?");
@@ -157,6 +162,7 @@ public class BeerForHayunn extends AbstractQuest {
 				// make sure the player isn't cheating by putting the beer
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.isEquipped("beer");
 					}
@@ -164,6 +170,7 @@ public class BeerForHayunn extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Slurp! Thanks for the beer bud! If there is anything I can do for you now just say it.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("beer");
 						StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager()

@@ -37,6 +37,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (player.isQuestCompleted("ceryl_book")) {
@@ -51,6 +52,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				"book",
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.isQuestCompleted("ceryl_book");
 					}
@@ -63,6 +65,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				"book",
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return !player.hasQuest("ceryl_book");
 					}
@@ -77,6 +80,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Great! Start the quest now!",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("ceryl_book", "start");
 					}
@@ -100,6 +104,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				"book",
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("ceryl_book")
 								&& player.getQuest("ceryl_book").equals("start");
@@ -124,6 +129,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("ceryl_book")
 								&& player.getQuest("ceryl_book")
@@ -133,6 +139,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"I see you talked with Ceryl. Here you have the book he is looking for.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("ceryl_book", "jynath");
 
@@ -146,6 +153,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("ceryl_book")
 								&& player.getQuest("ceryl_book").equals(
@@ -167,6 +175,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				"book",
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return !player.hasQuest("ceryl_book");
 					}
@@ -183,6 +192,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC npc) {
 						return player.hasQuest("ceryl_book")
 								&& player.getQuest("ceryl_book").equals(
@@ -192,6 +202,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (player.drop("book_black")) {

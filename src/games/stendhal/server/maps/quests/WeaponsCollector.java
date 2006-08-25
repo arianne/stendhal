@@ -84,6 +84,7 @@ public class WeaponsCollector extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return !player.hasQuest("weapons_collector");
 					}
@@ -95,6 +96,7 @@ public class WeaponsCollector extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				SpeakerNPC.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return !player.hasQuest("weapons_collector");
 					}
@@ -102,6 +104,7 @@ public class WeaponsCollector extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("weapons_collector")) {
@@ -120,6 +123,7 @@ public class WeaponsCollector extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						engine.say("If you help me to complete my #collection, I will give you something nice in exchange.");
 						player.setQuest("weapons_collector", "");
@@ -140,6 +144,7 @@ public class WeaponsCollector extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				"collection",
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector") &&
 								!player.isQuestCompleted("weapons_collector");
@@ -148,6 +153,7 @@ public class WeaponsCollector extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
 						engine.say("There are " + needed.size() + " weapons which are still missing in my collection: "
@@ -178,6 +184,7 @@ public class WeaponsCollector extends AbstractQuest {
 					ConversationStates.QUESTION_1,
 					null,
 					new SpeakerNPC.ChatAction() {
+						@Override
 						public void fire(Player player, String text, SpeakerNPC engine) {
 							List<String> missing = missingWeapons(player, false);
 							if (missing.contains(text)) {
@@ -219,6 +226,7 @@ public class WeaponsCollector extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector")
 								&& ! player.isQuestCompleted("weapons_collector");
@@ -232,6 +240,7 @@ public class WeaponsCollector extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.isQuestCompleted("weapons_collector");
 					}

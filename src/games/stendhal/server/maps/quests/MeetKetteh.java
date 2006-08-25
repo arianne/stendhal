@@ -32,6 +32,7 @@ public class MeetKetteh extends AbstractQuest{
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 
@@ -74,7 +75,8 @@ public class MeetKetteh extends AbstractQuest{
                 ConversationStates.ATTENDING,
                 null,
                 new SpeakerNPC.ChatAction() {
-                    public void fire(Player player, String text,
+                    @Override
+					public void fire(Player player, String text,
                             SpeakerNPC engine) {
                         if (player.hasQuest("Ketteh") && player.getQuest("Ketteh").equals("seen_naked")) {
                             engine.say("Oh, good, you wear clothes this time. The last time we met, you were naked!");

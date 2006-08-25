@@ -38,6 +38,7 @@ public class MeetMonogenes extends AbstractQuest {
 		
 		/** Give the reward to the polite newcomer user */
 		npc.add(1,"bye",null,0,null,new SpeakerNPC.ChatAction() {
+			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				int level=player.getLevel();
 				if (level < 15) {

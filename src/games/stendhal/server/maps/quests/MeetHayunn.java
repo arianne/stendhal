@@ -44,7 +44,8 @@ public class MeetHayunn extends AbstractQuest {
     npc.add(56,"yes",null,0,null,
    new SpeakerNPC.ChatAction()
       {
-      public void fire(Player player, String text, SpeakerNPC engine)
+      @Override
+	public void fire(Player player, String text, SpeakerNPC engine)
         {
 
         int level=player.getLevel();

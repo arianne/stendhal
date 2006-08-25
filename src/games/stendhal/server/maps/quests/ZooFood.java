@@ -38,6 +38,7 @@ public class ZooFood extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			null,
 			new SpeakerNPC.ChatAction() {
+			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				if (!player.isQuestCompleted("zoo_food")) {
 					engine.say("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help. Maybe you can do a #task for us.");
@@ -53,6 +54,7 @@ public class ZooFood extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("zoo_food")) {
@@ -71,6 +73,7 @@ public class ZooFood extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Okay, but please don't let poor animals suffer! Bring me the hams when you have got them.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("zoo_food", "start");
 					}
@@ -83,6 +86,7 @@ public class ZooFood extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Too bad. Then we will have to feed them with our poor little deer.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("zoo_food", "rejected");
 					}
@@ -100,6 +104,7 @@ public class ZooFood extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("zoo_food")	
 								&& player.getQuest("zoo_food").equals("start");
@@ -115,6 +120,7 @@ public class ZooFood extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.drop("ham", REQUIRED_HAM)) {
 							player.notifyWorldAboutChanges();
@@ -145,6 +151,7 @@ public class ZooFood extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.isQuestCompleted("zoo_food")) {
 							engine.say("Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?");

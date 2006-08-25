@@ -60,6 +60,7 @@ public class Campfire extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			null,
 			new SpeakerNPC.ChatAction() {
+			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				if (canStartQuestNow(engine, player)) {
 					engine.say("Hi! I hope you can do me a #favor.");
@@ -82,6 +83,7 @@ public class Campfire extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (canStartQuestNow(engine, player)) {
@@ -103,6 +105,7 @@ public class Campfire extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Okay. You can find wood in the forest North of here. Come back when you got ten pieces of wood.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("campfire", "start");
 					}
@@ -130,6 +133,7 @@ public class Campfire extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.drop("wood", REQUIRED_WOOD)) {
 							player.setQuest("campfire", Integer.toString(StendhalRPRuleProcessor.get().getTurn()));

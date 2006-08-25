@@ -47,6 +47,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 		// Nishiya's part has already been defined in the quest SheepGrowing.
 
 		SpeakerNPC npc = new SpeakerNPC("Tor'Koom") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(67, 12));
@@ -56,6 +57,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				// TODO: The code is identical to Sato's SheepBuyerBehaviour,
 				// except that the phrasing is different. Unite them.

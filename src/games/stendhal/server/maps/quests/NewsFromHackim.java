@@ -34,6 +34,7 @@ public class NewsFromHackim extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("news_hackim")) {
@@ -51,6 +52,7 @@ public class NewsFromHackim extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Thanks. I'm sure that Xin will reward you generously. Now if I can help you in anything just ask.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						player.setQuest("news_hackim", "start");
@@ -63,6 +65,7 @@ public class NewsFromHackim extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Yes, now that I think about it, it isn't wise to involve anyone else in this small business. Forget it bud, I haven't told you anything... Now if I can help you just ask.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						player.setQuest("news_hackim", "rejected");
@@ -84,6 +87,7 @@ public class NewsFromHackim extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("news_hackim")
 								&& player.getQuest("news_hackim").equals("start");
@@ -92,6 +96,7 @@ public class NewsFromHackim extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						String answer;
 						if (!player.isEquipped("leather_legs")) {

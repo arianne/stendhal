@@ -26,6 +26,7 @@ public class Jail implements IContent {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 		"-1_semos_jail"));
 		SpeakerNPC npc = new SpeakerNPC("Marcus") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(9, 6));
@@ -35,6 +36,7 @@ public class Jail implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting("Greetings! How may I #help you?");
 				addJob("I am the jail keeper. You have been confined here because of your bad behaviour.");
@@ -57,6 +59,7 @@ public class Jail implements IContent {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 		"-2_semos_jail"));
 		SpeakerNPC npc = new SpeakerNPC("Sten Tanquilos") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(4, 14));
@@ -66,6 +69,7 @@ public class Jail implements IContent {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting("Greetings! How may I #help you?");
 				addJob("I am the jail keeper. You have been confined here because of your bad behaviour.");

@@ -44,6 +44,7 @@ public class PlinksToy extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 			SpeakerNPC.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
+				@Override
 				public boolean fire(Player player, SpeakerNPC engine) {
 					return !player.isEquipped("teddy") && !player.isQuestCompleted(QUEST_SLOT);
 				}
@@ -58,6 +59,7 @@ public class PlinksToy extends AbstractQuest {
 				ConversationStates.IDLE,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						engine.say("*snief* Thanks a lot. *smile*");
 						player.setQuest(QUEST_SLOT, "start");
@@ -112,6 +114,7 @@ public class PlinksToy extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT) && player.isEquipped("teddy");
 					}
@@ -119,6 +122,7 @@ public class PlinksToy extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("teddy");
 						engine.say("Oh, my teddy. *smile* Thanks a lot for bringing it back from that dangerous #Park of #Wolves where I dropped it. *smile*");
@@ -130,6 +134,7 @@ public class PlinksToy extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
 					}
@@ -137,6 +142,7 @@ public class PlinksToy extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("teddy");
 						engine.say("Oh, my teddy. *smile* Thanks a lot. *smile*");
@@ -148,6 +154,7 @@ public class PlinksToy extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				"teddy",
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT) && !player.isEquipped("teddy");
 					}
@@ -159,6 +166,7 @@ public class PlinksToy extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				"teddy",
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
 					}
@@ -166,6 +174,7 @@ public class PlinksToy extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						engine.say("This is not my teddy. You brought my teddy back some time ago.");
 					}

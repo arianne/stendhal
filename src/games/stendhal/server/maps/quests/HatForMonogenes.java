@@ -59,6 +59,7 @@ public class HatForMonogenes extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("hat_monogenes")) {
@@ -76,6 +77,7 @@ public class HatForMonogenes extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Thanks, my good friend. I'll be waiting for your return. Now if I can help you in anything just ask.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("hat_monogenes", "start");
 					}
@@ -87,6 +89,7 @@ public class HatForMonogenes extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Yes, forget it bud. You surely have more importants things to do and little time. I'll just stay here with my cool not-as-in-slick head. Boohooooo! Sniff... now if I can help you... sniff in anything sniff... just ask.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest("hat_monogenes", "rejected");
 					}
@@ -110,6 +113,7 @@ public class HatForMonogenes extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.hasQuest("hat_monogenes")
 								&& player.getQuest("hat_monogenes").equals("start");
@@ -118,6 +122,7 @@ public class HatForMonogenes extends AbstractQuest {
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.isEquipped("leather_helmet")) {
 							engine.say("Hey! Is that hat for me?");
@@ -133,6 +138,7 @@ public class HatForMonogenes extends AbstractQuest {
 				// make sure the player isn't cheating by putting the helmet
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {
+					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
 						return player.isEquipped("leather_helmet");
 					}
@@ -140,6 +146,7 @@ public class HatForMonogenes extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Bless you, my good friend! Now I can laugh at the soon coming snowflakes wuahahaha! Ahem... If there's anything I can do for you now just say it.",
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("leather_helmet");
 

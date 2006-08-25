@@ -54,6 +54,7 @@ public class SheepGrowing extends AbstractQuest {
 		zone.add(sign);
 
 		SpeakerNPC npc = new SpeakerNPC("Nishiya") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(33, 44));
@@ -63,6 +64,7 @@ public class SheepGrowing extends AbstractQuest {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				class SheepSellerBehaviour extends SellerBehaviour {
 					SheepSellerBehaviour(Map<String, Integer> items) {
@@ -138,6 +140,7 @@ public class SheepGrowing extends AbstractQuest {
 		zone.add(sign);
 
 		npc = new SpeakerNPC("Sato") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(40, 44));
@@ -151,6 +154,7 @@ public class SheepGrowing extends AbstractQuest {
 				setPath(nodes, true);
 			}
 
+			@Override
 			protected void createDialog() {
 				class SheepBuyerBehaviour extends BuyerBehaviour {
 					SheepBuyerBehaviour(Map<String, Integer> items) {
