@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
@@ -24,6 +27,36 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * - None.
  */
 public class BeerForHayunn extends AbstractQuest {
+	
+	private static final String QUEST_SLOT = "beer_hayunn";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
+			res.add("QUEST_ACCEPTED");
+		}
+		if ((questState.equals("start") && player.isEquipped("beer")) || questState.equals("done")) {
+			res.add("FOUND_ITEM");
+		}
+		if (questState.equals("done")) {
+			res.add("DONE");
+		}
+		return res;
+	}
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");
@@ -35,7 +68,7 @@ public class BeerForHayunn extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						if (!player.isQuestCompleted("beer_hayunn")) {
+						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("My mouth is dry and I can't abandon my place. Could you bring me some #beer from the #tavern?");
 						} else {
 							engine.say("Thanks bud, but I don't want to abuse beer. I will need to have my senses fully aware if a monster decides to appear. If you need anything from me just say it.");
@@ -52,7 +85,7 @@ public class BeerForHayunn extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						player.setQuest("beer_hayunn", "start");
+						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
 
@@ -64,7 +97,7 @@ public class BeerForHayunn extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						player.setQuest("beer_hayunn", "rejected");
+						player.setQuest(QUEST_SLOT, "rejected");
 					}
 				});
 
@@ -102,8 +135,8 @@ public class BeerForHayunn extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					public boolean fire(Player player, SpeakerNPC engine) {
-						return player.hasQuest("beer_hayunn")
-								&& player.getQuest("beer_hayunn").equals("start");
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals("start");
 					}
 				},
 				ConversationStates.QUEST_ITEM_BROUGHT,
@@ -141,7 +174,7 @@ public class BeerForHayunn extends AbstractQuest {
 						player.addXP(10);
 		
 						player.notifyWorldAboutChanges();
-						player.setQuest("beer_hayunn", "done");
+						player.setQuest(QUEST_SLOT, "done");
 					}
 				});
 
