@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
@@ -24,7 +27,33 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * - None.
  */
 public class NewsFromHackim extends AbstractQuest {
+	private static final String QUEST_SLOT = "campfire";
 
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+			return res;
+		}
+		res.add("QUEST_ACCEPTED");
+		if (isCompleted(player)) {
+			res.add("DONE");
+		}
+		return res;
+	}
+
+	
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Hackim Easso");
 
@@ -37,7 +66,7 @@ public class NewsFromHackim extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (!player.isQuestCompleted("news_hackim")) {
+						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Shhh come here: Do me a favour and tell #Xin Blanca that the new supply of weapons is ready, will you?");
 						} else {
 							engine.say("Thanks, but I don't have any new message for #Xin. I can't smuggle so often and even now I think Xoderos is beginning to suspect something. Anyway, if I can help you somehow say it.");
@@ -55,7 +84,7 @@ public class NewsFromHackim extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						player.setQuest("news_hackim", "start");
+						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
 
@@ -68,7 +97,7 @@ public class NewsFromHackim extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						player.setQuest("news_hackim", "rejected");
+						player.setQuest(QUEST_SLOT, "rejected");
 					}
 				});
 
@@ -89,8 +118,8 @@ public class NewsFromHackim extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
-						return player.hasQuest("news_hackim")
-								&& player.getQuest("news_hackim").equals("start");
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals("start");
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -107,7 +136,7 @@ public class NewsFromHackim extends AbstractQuest {
 						//player.say("So... to make a long story short: I know your business with Hackim and I'm here to tell you that the next supply is ready");
 						engine.say("So it is ready at last! Those are very good news! Let me give you an item for your service. "
 										+ answer);
-						player.setQuest("news_hackim", "done");
+						player.setQuest(QUEST_SLOT, "done");
 		
 						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 								"leather_legs");
