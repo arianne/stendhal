@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -28,6 +31,34 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 public class ZooFood extends AbstractQuest {
 	
 	private static final int REQUIRED_HAM = 10;
+	private static final String QUEST_SLOT = "zoo_food";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+			return res;
+		}
+		res.add("QUEST_ACCEPTED");
+		if ((player.isEquipped("ham", REQUIRED_HAM)) || isCompleted(player)) {
+			res.add("FOUND_ITEM");
+		}
+		if (isCompleted(player)) {
+			res.add("DONE");
+		}
+		return res;
+	}
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Katinka");
@@ -40,7 +71,7 @@ public class ZooFood extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
-				if (!player.isQuestCompleted("zoo_food")) {
+				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					engine.say("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help. Maybe you can do a #task for us.");
 				} else {
 					engine.say("Welcome back to the Ados Wildlife Refuge! Thanks again for rescuing our animals!");
@@ -57,7 +88,7 @@ public class ZooFood extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (!player.isQuestCompleted("zoo_food")) {
+						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Our tigers, lions and bears are hungry. We need " + REQUIRED_HAM + " hams to feed them. Can you help us?");
 						} else {
 							engine.say("Thank you, but I think we are out of trouble now.");
@@ -75,7 +106,7 @@ public class ZooFood extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						player.setQuest("zoo_food", "start");
+						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
 		
@@ -88,7 +119,7 @@ public class ZooFood extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						player.setQuest("zoo_food", "rejected");
+						player.setQuest(QUEST_SLOT, "rejected");
 					}
 				});
 	}
@@ -106,8 +137,8 @@ public class ZooFood extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
-						return player.hasQuest("zoo_food")	
-								&& player.getQuest("zoo_food").equals("start");
+						return player.hasQuest(QUEST_SLOT)	
+								&& player.getQuest(QUEST_SLOT).equals("start");
 					}
 				},
 				ConversationStates.QUEST_ITEM_BROUGHT,
@@ -124,7 +155,7 @@ public class ZooFood extends AbstractQuest {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.drop("ham", REQUIRED_HAM)) {
 							player.notifyWorldAboutChanges();
-							player.setQuest("zoo_food", "done");
+							player.setQuest(QUEST_SLOT, "done");
 							player.addXP(200);
 							engine.say("Thank you! You have rescued our rare animals.");
 						} else {
@@ -153,7 +184,7 @@ public class ZooFood extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						if (player.isQuestCompleted("zoo_food")) {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?");
 						} else {
 							engine.say("Excuse me! The animals are all sick because they don't have enough food. I don't have time for you now. Bye.");
