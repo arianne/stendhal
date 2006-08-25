@@ -1165,7 +1165,20 @@ public class Player extends RPEntity {
 		return (text);
 	}
 	
-	public void teleport(StendhalRPZone zone, int x, int y, Direction dir, Player teleporter) {
+	/**
+	 * Teleports this player to the given destination.
+	 * @param zone The zone where this player should be teleported to.
+	 * @param x The destination's x coordinate
+	 * @param y The destination's y coordinate
+	 * @param dir The direction in which the player should look after
+	 *            teleporting, or null if the direction shouldn't change
+	 * @param teleporter The player who initiated the teleporting, or null
+	 *                   if no player is responsible. This is only to give
+	 *                   feedback if something goes wrong. If no feedback is
+	 *                   wanted, use null.
+	 * @return true iff teleporting was successful
+	 */
+	public boolean teleport(StendhalRPZone zone, int x, int y, Direction dir, Player teleporter) {
 		if (StendhalRPAction.placeat(zone, this, x, y)) {
 			StendhalRPAction.changeZone(this, zone.getID().getID());
 			StendhalRPAction.transferContent(this);
@@ -1177,6 +1190,7 @@ public class Player extends RPEntity {
 					.getName());
 
 			notifyWorldAboutChanges();
+			return true;
 		} else {
 			String text = "Position [" + x + "," + y + "] is occupied";
 			if (teleporter != null) {
@@ -1184,6 +1198,7 @@ public class Player extends RPEntity {
 			} else {
 				this.sendPrivateText(text);
 			}
+			return false;
 		}	
 		
 	}
