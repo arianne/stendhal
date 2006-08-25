@@ -96,13 +96,12 @@ public class Corpse extends PassiveEntity implements TurnListener {
 			remove("killer");
 		}
 
-		// Corpses are 1,1 while other entities are 1.5,2.
-		// This fix the problem
+		// Consider rewriting this section once we get corpses larger
+		// than 2x2. 
 		Rectangle2D rect = entity.getArea(entity.getx(), entity.gety());
-
-		setx((int) rect.getCenterX());
-		sety((int) rect.getCenterY());
-
+		setx((int) Math.round(rect.getCenterX() - 1));
+		sety((int) Math.round(rect.getCenterY() - 1));
+		
 		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this, null);
 		stage = 0;
 		put("stage", stage);
