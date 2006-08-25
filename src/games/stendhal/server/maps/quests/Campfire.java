@@ -39,7 +39,11 @@ public class Campfire extends AbstractQuest {
 		super.init(name, QUEST_SLOT);
 	}
 
-	
+	@Override
+	public boolean isCompleted(Player player) {
+		return player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start");
+	}
+
 	private boolean canStartQuestNow(SpeakerNPC npc, Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return true;
