@@ -11,7 +11,7 @@ import java.util.List;
  * 
  * @author hendrik
  */
-public class AbstractQuest implements IQuest {
+public abstract class AbstractQuest implements IQuest {
 
 	/** The internal name of this quest. (e.g used to read quest.xml) */
 	protected String name = null;
@@ -54,7 +54,6 @@ public class AbstractQuest implements IQuest {
 		// TODO this method should be abstact after all quests are converted
 		return emptyList;
 	}
-
 	public boolean isCompleted(Player player) {
 		return player.hasQuest(slotName)
 				&& (player.isQuestCompleted(slotName)
