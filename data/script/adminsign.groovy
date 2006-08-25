@@ -1,10 +1,11 @@
 /* $Id$ */
 
-import games.stendhal.server.entity.*
-import games.stendhal.server.entity.item.*
-import games.stendhal.server.scripting.*
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.item.*;
+import games.stendhal.server.scripting.*;
 import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.pathfinder.Path
+import games.stendhal.server.pathfinder.Path;
 import marauroa.common.game.*;
 
 class AdminSignManager {
@@ -88,7 +89,8 @@ class AdminSignManager {
 	}
 	
 	private void signToString(StringBuilder sb, Sign sign) {
-		String zone = StendhalRPWorld.get().getRPZone(sign.getID()).getID().getID();
+		StendhalRPWorld world = StendhalRPWorld.getInstance();
+		String zone = world.getRPZone(sign.getID()).getID().getID();
 		sb.append(zone);
 		sb.append(" ");
 		sb.append(sign.getx());

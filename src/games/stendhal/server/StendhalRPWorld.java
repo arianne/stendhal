@@ -59,7 +59,19 @@ public class StendhalRPWorld extends RPWorld {
 		}
 		return instance;
 	}
-
+	
+	/**
+	 * This method is a workaround for a groovy bug:
+	 * http://jira.codehaus.org/browse/GROOVY-1484
+	 * 
+	 * Don't use it in Java code, only in Groovy.
+	 * Remove this method once the Groovy bug has been resolved.
+	 * @return
+	 */
+	public static StendhalRPWorld getInstance() {
+		return get();
+	}
+	
 	/**
 	 * Returns the pathfinder. The return value is undefined until onInit() is
 	 * called.
