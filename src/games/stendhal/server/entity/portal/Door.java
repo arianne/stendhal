@@ -89,7 +89,7 @@ public class Door extends Portal implements TurnListener {
 	/**
 	 * Opens the door. 
 	 */
-	public void open() {
+	private void open() {
 		TurnNotifier turnNotifier = TurnNotifier.get();
 		if (open) {
 			// The door is still open because another player just used it.
@@ -101,17 +101,19 @@ public class Door extends Portal implements TurnListener {
 
         open = true;
 		put("open", "");
+		notifyWorldAboutChanges();
 	}
 
 	/**
 	 * Closes the door. 
 	 */
-	public void close() {
+	private void close() {
 		this.open = false;
 		remove("open");
+		notifyWorldAboutChanges();
 	}
 
-	public boolean isOpen() {
+	private boolean isOpen() {
 		return open;
 	}
 
@@ -121,14 +123,13 @@ public class Door extends Portal implements TurnListener {
 			// open it, even it is already open to reset the auto-close
 			// countdown.
 			open();
-			notifyWorldAboutChanges();
-		} else {
-			if (isOpen()) {
-				close();
-				notifyWorldAboutChanges();
-			}
+		} else if (open) {
+			// close now to make visible that the entity is not allowed
+			// to pass
+			close();
+			return;
 		}
-		if (isOpen()) {
+		if (open) {
 			super.onUsed(user);
 		}
 	}
