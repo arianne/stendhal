@@ -16,7 +16,12 @@ import games.stendhal.server.pathfinder.Path
  */
 public class Friends implements TurnListener {
 	private StendhalGroovyScript game;
+	
 	private int turnCounter = 0;
+	
+	private Portal portal;
+	
+	private OneWayPortalDestination portalDestination;
 
 	/**
 	 * Constructor
@@ -109,8 +114,15 @@ public class Friends implements TurnListener {
 
 			case 8:
 				shout("Katinka shouts: Argh! They have eaten our boars. Help us!");
-				return;
 				// shout("Dr. Feelgood shouts: Help! Help us! The Ados Wildlife Refuge is under heavy attack by a bunch of hungry Orc Warriors.");
+				wait = 600 * 3;
+				break;
+			
+			case 9:
+				// remove the portal
+				StendhalRPWorld.getInstance().remove(portal.getID());
+				StendhalRPWorld.getInstance().remove(portalDestination.getID());
+				return;
 			
 		}
 		TurnNotifier.get().notifyInTurns(wait, this, "");
@@ -118,10 +130,10 @@ public class Friends implements TurnListener {
 	}
 
 	public void createPortal() {
-		StendhalRPZone zone1 = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_city"));
-		StendhalRPZone zone2 = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_ados_outside_nw"));
+		StendhalRPZone zone1 = (StendhalRPZone) StendhalRPWorld.getInstance().getRPZone(new IRPZone.ID("0_semos_city"));
+		StendhalRPZone zone2 = (StendhalRPZone) StendhalRPWorld.getInstance().getRPZone(new IRPZone.ID("0_ados_outside_nw"));
 
-		Portal portal = new Portal();
+		portal = new Portal();
 		zone1.assignRPObjectID(portal);
 		portal.setx(9);
 		portal.sety(41);
@@ -129,12 +141,12 @@ public class Friends implements TurnListener {
 		portal.setDestination("0_ados_outside_nw", 10);
 		zone1.addPortal(portal);
 
-		portal = new OneWayPortalDestination();
-		zone2.assignRPObjectID(portal);
-		portal.setx(53);
-		portal.sety(108);
-		portal.setNumber(10);
-		zone2.addPortal(portal);
+		portalDestination = new OneWayPortalDestination();
+		zone2.assignRPObjectID(portalDestination);
+		portalDestination.setx(53);
+		portalDestination.sety(108);
+		portalDestination.setNumber(10);
+		zone2.addPortal(portalDestination);
 	}
 
 	public void shout(String text) {
@@ -155,6 +167,6 @@ if (player == null || ((args.length > 0) && (args[0].equals("reset")))) {
 	Friends friends = new Friends(game);
 	friends.createSoldiers();
 	friends.createSheep();
-//	friends.createPortal();
+	friends.createPortal();
 	TurnNotifier.get().notifyInTurns(0, friends, "");
 }
