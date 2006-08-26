@@ -45,7 +45,7 @@ public class Door extends Portal implements TurnListener {
 	/**
 	 * The turn at which this door should close the next time. 
 	 */
-	private int turnToClose = 0;
+	// private int turnToClose = 0;
 
 	public static void generateRPClass() {
 		RPClass door = new RPClass("door");
@@ -90,15 +90,16 @@ public class Door extends Portal implements TurnListener {
 	 * Opens the door. 
 	 */
 	public void open() {
-		this.open = true;
-		
 		TurnNotifier turnNotifier = TurnNotifier.get();
-		// remember the turn number, in case someone else uses the door
-		// while it is still open; in this time, the door should stay
-		// open longer.
-		this.turnToClose = turnNotifier.getNumberOfNextTurn() + TURNS_TO_STAY_OPEN;
-        turnNotifier.notifyAtTurn(turnToClose, this, null);
-        
+		if (open) {
+			// The door is still open because another player just used it.
+			// Thus, it is scheduled to auto-close soon. We delay this
+			// auto-closing.
+			turnNotifier.dontNotify(this, null);
+		}
+        turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this, null);
+
+        open = true;
 		put("open", "");
 	}
 
@@ -117,7 +118,8 @@ public class Door extends Portal implements TurnListener {
 	@Override
 	public void onUsed(RPEntity user) {
 		if (has("locked") && user.isEquipped(get("locked"))) {
-			// open it, even it is already open to reset turnToClose
+			// open it, even it is already open to reset the auto-close
+			// countdown.
 			open();
 			notifyWorldAboutChanges();
 		} else {
@@ -148,12 +150,8 @@ public class Door extends Portal implements TurnListener {
 	}
 
 	public void onTurnReached(int currentTurn, String message) {
-		// if two players use this turn, we will be called twice.
-		// Ignore the first call.
-		if (currentTurn == turnToClose) {
-			close();
-			notifyWorldAboutChanges();
-		}
+		close();
+		notifyWorldAboutChanges();
 	}
 
 }
