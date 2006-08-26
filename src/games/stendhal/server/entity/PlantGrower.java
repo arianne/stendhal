@@ -90,7 +90,7 @@ public class PlantGrower extends Entity {
 	 */
 	protected boolean canGrowNewFruit() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(this.getID());
-		for (Item item: zone.getItemsOnGround().keySet()) {
+		for (Item item: zone.getItemsOnGround()) {
 			if (item.getName().equals(growingItemName) && item.getx() == this.getx() && 	item.gety() == this.gety()) {
 				// don't regrow until someone picks the last grown item up.
 				return false;

@@ -14,6 +14,8 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
@@ -27,9 +29,12 @@ import marauroa.common.game.RPSlot;
 /**
  * This is an item.
  */
-public class Item extends PassiveEntity {
+public class Item extends PassiveEntity implements TurnListener {
 	/** list of possible slots for this item */
 	private List<String> possibleSlots;
+
+	final public static int DEGRADATION_TIMEOUT = 10800; // 30 minutes at 300
+	// ms
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("item");
@@ -197,6 +202,26 @@ public class Item extends PassiveEntity {
 	@Override
 	public String toString() {
 		return "Item, " + super.toString();
+	}
+	
+	public void onPutOnGround() {
+		// persistent items don't degrade
+		if (!isPersistent()) {
+			TurnNotifier.get().notifyInTurns(DEGRADATION_TIMEOUT, this, null);
+		}
+	}
+	
+	public void onRemoveFromGround() {
+		// persistent items don't degrade
+		if (!isPersistent()) {
+			TurnNotifier.get().dontNotify(this, null);
+		}
+	}
+	
+	public void onTurnReached(int currentTurn, String message) {
+		// remove this object from the zone where it's lying on
+		// the ground
+		StendhalRPWorld.get().getRPZone(getID()).remove(getID());
 	}
 
 	@Override

@@ -32,11 +32,10 @@ import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -51,8 +50,6 @@ import marauroa.server.game.MarauroaRPZone;
 import org.apache.log4j.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone {
-	final public static int DEGRADATION_TIMEOUT = 10800; // 30 minutes at 300
-															// ms
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalRPZone.class);
@@ -68,12 +65,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 
 	/**
-	 * A map with all items that are lying on the ground in this zone as
-	 * keys, and the turns in which the items were moved to the ground
-	 * as values. The turn number is required to determined when to
-	 * discard the item.
+	 * A set of all items that are lying on the ground in this zone.
+	 * This set is currently only used for plant growers, and these
+	 * might be changed so that this set is no longer needed,
+	 * so try to avoid using it.
 	 */
-	private Map<Item, Integer> itemsOnGround;
+	private Set<Item> itemsOnGround;
 
 	private int numHouses;
 
@@ -99,7 +96,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		entryPoints = new LinkedList<String>();
 		zoneChangePoints = new LinkedList<String>();
 		portals = new LinkedList<Portal>();
-		itemsOnGround = new HashMap<Item, Integer>();
+		itemsOnGround = new HashSet<Item>();
 		numHouses = 0;
 
 		npcs = new LinkedList<NPC>();
@@ -637,10 +634,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		super.add(object);
 
 		if (object instanceof Item) {
-			if (!((Item) object).isPersistent()) {
-				int droppedOn = StendhalRPRuleProcessor.get().getTurn();
-				itemsOnGround.put((Item) object, droppedOn);
-			}
+			Item item = (Item) object;
+			item.onPutOnGround();
+			itemsOnGround.add(item);
 		}
 	}
 
@@ -650,9 +646,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 		RPObject object = super.remove(id);
 
 		if (object instanceof Item) {
-			itemsOnGround.remove(object);
+			Item item = (Item) object;
+			itemsOnGround.remove(item);
+			item.onRemoveFromGround();
 		}
-
 		return object;
 	}
 
@@ -688,29 +685,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 			super.modify(base);
 		} else {
 			super.modify(object);
-		}
-	}
-
-	@Override
-	public void nextTurn() {
-		super.nextTurn();
-
-		int turn = StendhalRPRuleProcessor.get().getTurn();
-
-		Iterator<Map.Entry<Item, Integer>> it = itemsOnGround.entrySet()
-				.iterator();
-		List<Item> toRemove = new LinkedList<Item>();
-
-		while (it.hasNext()) {
-			Map.Entry<Item, Integer> entry = it.next();
-
-			if (turn - entry.getValue() > DEGRADATION_TIMEOUT) {
-				toRemove.add(entry.getKey());
-			}
-		}
-
-		for (Item item : toRemove) {
-			remove(item.getID());
 		}
 	}
 
@@ -797,7 +771,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return "zone " + zoneid + " at (" + x + "," + y + ")";
 	}
 
-	public Map<Item, Integer> getItemsOnGround() {
+	/**
+	 * Returns a set of all items that are lying on the ground in this zone.
+	 * This set is currently only used for plant growers, and these
+	 * might be changed so that this set is no longer needed,
+	 * so try to avoid using it.
+	 */
+	public Set<Item> getItemsOnGround() {
 		return itemsOnGround;
 	}
 	
