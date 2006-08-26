@@ -125,6 +125,8 @@ public class Player extends RPEntity {
 	}
 
 	public static Player create(RPObject object) {
+		String[] slots = { "bag", "rhand", "lhand", "head", "armor", "legs",
+				"feet", "cloak", "bank" };
 		
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
@@ -136,34 +138,16 @@ public class Player extends RPEntity {
 		if (!object.has("outfit")) {
 			object.put("outfit", 0);
 		}
+		
+		// create slots if they do not exist yet:
+		
+		// Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
+		// Port from 0.44 to 0.50: cloak, bank
+		for (String slotName : slots) {
+			if (!object.hasSlot(slotName)) {
+				object.addSlot(new RPSlot(slotName));
+			}
 
-		// Port from 0.20 to 0.30
-		if (!object.hasSlot("rhand")) {
-			object.addSlot(new RPSlot("rhand"));
-		}
-
-		if (!object.hasSlot("lhand")) {
-			object.addSlot(new RPSlot("lhand"));
-		}
-
-		if (!object.hasSlot("armor")) {
-			object.addSlot(new RPSlot("armor"));
-		}
-
-		if (!object.hasSlot("head")) {
-			object.addSlot(new RPSlot("head"));
-		}
-
-		if (!object.hasSlot("legs")) {
-			object.addSlot(new RPSlot("legs"));
-		}
-
-		if (!object.hasSlot("feet")) {
-			object.addSlot(new RPSlot("feet"));
-		}
-
-		if (!object.hasSlot("bag")) {
-			object.addSlot(new RPSlot("bag"));
 		}
 
 		// Port from 0.30 to 0.35
@@ -300,9 +284,6 @@ public class Player extends RPEntity {
 		StendhalRPAction.placeat(zone, player, x, y);
 		zone.addPlayerAndFriends(player);
 
-		String[] slots = { "bag", "rhand", "lhand", "head", "armor", "legs",
-				"feet", "cloak", "bank" };
-
 		for (String slotName : slots) {
 			try {
 				if (player.hasSlot(slotName)) {
@@ -381,22 +362,20 @@ public class Player extends RPEntity {
 		}
 		player.updateItemAtkDef();
 
-		if (!player.hasSlot("!quests")) {
-			player.addSlot(new RPSlot("!quests"));
-			RPSlot slot = player.getSlot("!quests");
+		// create (or repair) !quests and !kills slots
+		String[] slotsWithOneObject = {"!quests", "!kills"};
+		for (String slotName : slotsWithOneObject) {
+			if (!player.hasSlot(slotName)) {
+				player.addSlot(new RPSlot(slotName));
+			}
+			RPSlot questSlot = player.getSlot(slotName);
+			if (!questSlot.iterator().hasNext()) {
+				RPObject quests = new RPObject();
+				questSlot.assignValidID(quests);
+				questSlot.add(quests);
+			}
+		}
 
-			RPObject quests = new RPObject();
-			slot.assignValidID(quests);
-			slot.add(quests);
-		}
-		if (!player.hasSlot("!kills")) {
-			player.addSlot(new RPSlot("!kills"));
-			RPSlot slot = player.getSlot("!kills");
-			RPObject kills = new RPObject();
-			slot.assignValidID(kills);
-			slot.add(kills);
-		}
-    
 		player.welcome();
 
 		logger.debug("Finally player is :" + player);
