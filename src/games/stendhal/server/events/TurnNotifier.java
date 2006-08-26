@@ -1,7 +1,5 @@
 package games.stendhal.server.events;
 
-import games.stendhal.common.Pair;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,17 +8,33 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 /**
- * Other classes can register here to be notified sometime in the future.
+ * Other classes can register here to be notified at some time in the future.
  * 
- * Turn events are currently modeled as a Pair of a TurnListener and a String.
- * The register maps each turn number to the set of events that should take
- * place at that turn. 
- * We should consider creating a simple datastructure to replace the Pair
- * construction; that might lead to more readable code. 
- *
+ * 
+ * 
  * @author hendrik
+ * @author daniel
  */
 public class TurnNotifier {
+	
+	/**
+	 * Struct to store a pair of TurnListener and String.
+	 */
+	protected static class Entry {
+		public TurnListener turnListener;
+		
+		public String message; 
+		
+		public Entry(TurnListener turnListener, String message) {
+			this.turnListener = turnListener;
+			this.message = message;
+		}
+		
+		public boolean equals(Entry other) {
+			return turnListener == other.turnListener && message.equals(other.message);
+		}
+	}
+	
 	private static Logger logger = Logger.getLogger(TurnNotifier.class);
 	
 	/** The Singleton instance **/
@@ -33,7 +47,7 @@ public class TurnNotifier {
 	 * at this turn.
 	 * Turns at which no event should take place needn't be registered here.
 	 */
-	private Map<Integer, Set<Pair<TurnListener, String>>> register = new HashMap<Integer, Set<Pair<TurnListener, String>>>();
+	private Map<Integer, Set<Entry>> register = new HashMap<Integer, Set<Entry>>();
 	
 	/** Used for multi-threading synchronization. **/
 	private final Object sync = new Object();
@@ -45,7 +59,7 @@ public class TurnNotifier {
 	/**
 	 * Return the TurnNotifier instance.
 	 *
-	 * @return TurnNotifier
+	 * @return TurnNotifier the Singleton instance
 	 */
 	public static TurnNotifier get() {
 		if (instance == null) {
@@ -68,15 +82,15 @@ public class TurnNotifier {
 		this.currentTurn = currentTurn;
 
 		// get and remove the set for this turn
-		Set<Pair<TurnListener, String>> set = null;
+		Set<Entry> set = null;
 		synchronized (sync) {
 			set = register.remove(new Integer(currentTurn));
 		}
 
 		if (set != null) {
-			for (Pair<TurnListener, String> pair : set) {
-				TurnListener turnListener = pair.first();
-				String message = pair.second();
+			for (Entry entry : set) {
+				TurnListener turnListener = entry.turnListener;
+				String message = entry.message;
 				turnListener.onTurnReached(currentTurn, message);
 			}
 		}
@@ -117,13 +131,37 @@ public class TurnNotifier {
 		synchronized (sync) {
 			// do we have other events for this turn?
 			Integer turnInt = new Integer(turn);
-			Set<Pair<TurnListener, String>> set = register.get(turnInt);
+			Set<Entry> set = register.get(turnInt);
 			if (set == null) {
-				set = new HashSet<Pair<TurnListener, String>>();
+				set = new HashSet<Entry>();
 				register.put(turnInt, set);
 			}
 			// add it to the list
-			set.add(new Pair<TurnListener, String>(turnListener, message));
+			set.add(new Entry(turnListener, message));
+		}
+	}
+	
+	/**
+	 * Forgets all registered notification entries for the given TurnListener
+	 * where the entry's message equals the given one. 
+	 * @param turnListener
+	 * @param message
+	 */
+	public void dontNotify(TurnListener turnListener, String message) {
+		// don't mix up Map.Entry and TurnNotifier.Entry!
+		for (Map.Entry<Integer, Set<Entry>> mapEntry: register.entrySet()) {
+			Set<Entry> set = mapEntry.getValue();
+			// We don't remove directly, but first store in this
+			// set. This is to avoid ConcurrentModificationExceptions. 
+			Set<Entry> toBeRemoved = new HashSet<Entry>();
+			for (Entry currentEntry : set) {
+				if (currentEntry.equals(mapEntry)) {
+					toBeRemoved.add(currentEntry);
+				}
+			}
+			for (Entry currentEntry : toBeRemoved) {
+				set.remove(currentEntry);
+			}
 		}
 	}
 }
