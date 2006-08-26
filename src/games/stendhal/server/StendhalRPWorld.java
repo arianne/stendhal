@@ -359,8 +359,8 @@ public class StendhalRPWorld extends RPWorld {
 							.gety());
 		}
 
-		area.populate(xmlzone.getLayer("objects"));
 		addRPZone(area);
+		area.populate(xmlzone.getLayer("objects"));
 
 		return area;
 	}
