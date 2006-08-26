@@ -20,17 +20,17 @@ public class TurnNotifier {
 	/**
 	 * Struct to store a pair of TurnListener and String.
 	 */
-	protected static class Entry {
+	protected static class TurnEvent {
 		public TurnListener turnListener;
 		
 		public String message; 
 		
-		public Entry(TurnListener turnListener, String message) {
+		public TurnEvent(TurnListener turnListener, String message) {
 			this.turnListener = turnListener;
 			this.message = message;
 		}
 		
-		public boolean equals(Entry other) {
+		public boolean equals(TurnEvent other) {
 			return turnListener == other.turnListener && message.equals(other.message);
 		}
 	}
@@ -47,7 +47,7 @@ public class TurnNotifier {
 	 * at this turn.
 	 * Turns at which no event should take place needn't be registered here.
 	 */
-	private Map<Integer, Set<Entry>> register = new HashMap<Integer, Set<Entry>>();
+	private Map<Integer, Set<TurnEvent>> register = new HashMap<Integer, Set<TurnEvent>>();
 	
 	/** Used for multi-threading synchronization. **/
 	private final Object sync = new Object();
@@ -82,15 +82,15 @@ public class TurnNotifier {
 		this.currentTurn = currentTurn;
 
 		// get and remove the set for this turn
-		Set<Entry> set = null;
+		Set<TurnEvent> set = null;
 		synchronized (sync) {
 			set = register.remove(new Integer(currentTurn));
 		}
 
 		if (set != null) {
-			for (Entry entry : set) {
-				TurnListener turnListener = entry.turnListener;
-				String message = entry.message;
+			for (TurnEvent event : set) {
+				TurnListener turnListener = event.turnListener;
+				String message = event.message;
 				turnListener.onTurnReached(currentTurn, message);
 			}
 		}
@@ -131,13 +131,13 @@ public class TurnNotifier {
 		synchronized (sync) {
 			// do we have other events for this turn?
 			Integer turnInt = new Integer(turn);
-			Set<Entry> set = register.get(turnInt);
+			Set<TurnEvent> set = register.get(turnInt);
 			if (set == null) {
-				set = new HashSet<Entry>();
+				set = new HashSet<TurnEvent>();
 				register.put(turnInt, set);
 			}
 			// add it to the list
-			set.add(new Entry(turnListener, message));
+			set.add(new TurnEvent(turnListener, message));
 		}
 	}
 	
@@ -148,19 +148,18 @@ public class TurnNotifier {
 	 * @param message
 	 */
 	public void dontNotify(TurnListener turnListener, String message) {
-		// don't mix up Map.Entry and TurnNotifier.Entry!
-		for (Map.Entry<Integer, Set<Entry>> mapEntry: register.entrySet()) {
-			Set<Entry> set = mapEntry.getValue();
+		for (Map.Entry<Integer, Set<TurnEvent>> mapEntry: register.entrySet()) {
+			Set<TurnEvent> set = mapEntry.getValue();
 			// We don't remove directly, but first store in this
 			// set. This is to avoid ConcurrentModificationExceptions. 
-			Set<Entry> toBeRemoved = new HashSet<Entry>();
-			for (Entry currentEntry : set) {
-				if (currentEntry.equals(mapEntry)) {
-					toBeRemoved.add(currentEntry);
+			Set<TurnEvent> toBeRemoved = new HashSet<TurnEvent>();
+			for (TurnEvent event : set) {
+				if (event.equals(mapEntry)) {
+					toBeRemoved.add(event);
 				}
 			}
-			for (Entry currentEntry : toBeRemoved) {
-				set.remove(currentEntry);
+			for (TurnEvent event : toBeRemoved) {
+				set.remove(event);
 			}
 		}
 	}
