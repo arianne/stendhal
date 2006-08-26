@@ -144,10 +144,9 @@
 
     <javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="games/stendhal/client/**, games/stendhal/common/**" 
-           excludes="games/stendhal/server/**, games/stendhal/tools/**, games/stendhal/client/webstart/**">
+           excludes="games/stendhal/server/**, games/stendhal/tools/**">
       <classpath>
         <pathelement path="${marauroa_jar}"/>
-        <pathelement path="${jnlp_jar}"/>
         <pathelement path="${log4j_jar}"/>
       </classpath>    
     </javac>
