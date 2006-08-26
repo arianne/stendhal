@@ -1132,4 +1132,14 @@ public abstract class RPEntity extends Entity {
 		notifyWorldAboutChanges();
 	}
 
+	/**
+	 * Can this Entity do a range attack?
+	 *
+	 * @return true, wenn ein Range compat moeglich ist, sonst false
+	 */
+	public boolean canDoRangeAttacks() {
+		StackableItem projectiles = getProjectilesIfRangeCombat();
+		return projectiles != null && projectiles.getQuantity() > 0;
+	}
+
 }

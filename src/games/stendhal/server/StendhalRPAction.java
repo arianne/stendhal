@@ -157,7 +157,7 @@ public class StendhalRPAction {
 			target.onAttack(source, true);
 
 			List<Item> weaponItem = source.getWeapons();
-			boolean range = (weaponItem.size() > 0 && weaponItem.get(0).isOfClass("ranged")); 
+			boolean range = source.canDoRangeAttacks(); 
 
 			if (source.nextTo(target, 1) || range) {
 				if (range) {
