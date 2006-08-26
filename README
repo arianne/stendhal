@@ -56,6 +56,11 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 
+0.53
+
+- added regrowing grain fields which can be harvested
+- added a windmill where you can sell grain
+
 0.52 Aug 14, 2006
 - players
   - display of item based ATK and DEF is now calculated by the server
