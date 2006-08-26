@@ -14,7 +14,6 @@ package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.wt.Character;
-import games.stendhal.client.io.Persistence;
 import games.stendhal.client.sound.SoundSystem;
 
 import java.io.IOException;
@@ -25,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import marauroa.client.io.Persistence;
 import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;

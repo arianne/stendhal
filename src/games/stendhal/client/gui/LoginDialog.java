@@ -14,7 +14,6 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.io.Persistence;
 import games.stendhal.common.Debug;
 
 import java.awt.Frame;
@@ -45,6 +44,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import marauroa.client.ariannexpTimeoutException;
+import marauroa.client.io.Persistence;
 
 /**
  * Summary description for LoginDialog
