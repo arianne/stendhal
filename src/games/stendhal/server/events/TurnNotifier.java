@@ -150,14 +150,16 @@ public class TurnNotifier {
 	 * @param message
 	 */
 	public void dontNotify(TurnListener turnListener, String message) {
+		// all events that are equal to this one should be forgotten.
+		TurnEvent turnEvent = new TurnEvent(turnListener, message);
 		for (Map.Entry<Integer, Set<TurnEvent>> mapEntry: register.entrySet()) {
 			Set<TurnEvent> set = mapEntry.getValue();
 			// We don't remove directly, but first store in this
 			// set. This is to avoid ConcurrentModificationExceptions. 
 			Set<TurnEvent> toBeRemoved = new HashSet<TurnEvent>();
-			for (TurnEvent event : set) {
-				if (event.equals(mapEntry)) {
-					toBeRemoved.add(event);
+			for (TurnEvent currentEvent : set) {
+				if (currentEvent.equals(turnEvent)) {
+					toBeRemoved.add(currentEvent);
 				}
 			}
 			for (TurnEvent event : toBeRemoved) {
