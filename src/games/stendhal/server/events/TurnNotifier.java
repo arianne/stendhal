@@ -31,7 +31,9 @@ public class TurnNotifier {
 		}
 		
 		public boolean equals(TurnEvent other) {
-			return turnListener == other.turnListener && message.equals(other.message);
+			return turnListener == other.turnListener
+					&& ((message == null && other.message == null)
+							|| message.equals(other.message));
 		}
 	}
 	
