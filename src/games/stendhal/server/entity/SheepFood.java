@@ -18,9 +18,17 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
+/**
+ * A regenerative source of food that can be eaten by sheep.
+ */
 public class SheepFood extends PlantGrower {
 	private int amount;
+	
+	private static final int MAX_NUMBER_OF_FRUITS = 5;
 
+	/** How long it takes to regrow one berry */
+	private static final int GROWING_RATE = 2000;
+	
 	public static void generateRPClass() {
 		RPClass food = new RPClass("food");
 		food.isA("plant_grower");
@@ -28,13 +36,13 @@ public class SheepFood extends PlantGrower {
 	}
 
 	public SheepFood(RPObject object) throws AttributeNotFoundException {
-		super(object, null, 2000);
+		super(object, null, GROWING_RATE);
 		put("type", "food");
 		update();
 	}
 
 	public SheepFood() throws AttributeNotFoundException {
-		super(null, 2000);
+		super(null, GROWING_RATE);
 		put("type", "food");
 	}
 
@@ -58,14 +66,13 @@ public class SheepFood extends PlantGrower {
 		put("amount", amount);
 	}
 
+	/**
+	 * Gets the number of ripe fruits that are on 
+	 * @return
+	 */
 	public int getAmount() {
 		return amount;
 	}
-
-	//@Override
-	//protected boolean canGrowNewFruit() {
-	//	return amount < 5;
-	//}
 
 	@Override
 	protected void growNewFruit() {
@@ -82,7 +89,7 @@ public class SheepFood extends PlantGrower {
 	
 	@Override
 	public void setToFullGrowth() {
-		setAmount(5);
+		setAmount(MAX_NUMBER_OF_FRUITS);
 	}
 
 	@Override
