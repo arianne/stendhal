@@ -4,16 +4,16 @@ import games.stendhal.common.Debug;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.util.Properties;
 
 import marauroa.common.Configuration;
+import marauroa.common.io.Persistence;
 import marauroa.common.net.TransferContent;
 
 import org.apache.log4j.Logger;
@@ -47,8 +47,8 @@ public class Cache {
 
         	// init caching-directory
         	if (!Debug.WEB_START_SANDBOX) {
-	            // Create file.
-	            File file = new File(stendhal.STENDHAL_FOLDER);
+	            // Create file object
+	            File file = new File(System.getProperty("user.home") + "/" + stendhal.STENDHAL_FOLDER);
 	            if (!file.exists() && !file.mkdir()) {
 	                logger.error("Can't create " + file.getAbsolutePath()
 	                        + " folder");
@@ -60,20 +60,16 @@ public class Cache {
 	                }
 	            }
 	
-	            file = new File(stendhal.STENDHAL_FOLDER + "cache/");
+	            file = new File(System.getProperty("user.home") + "/" + stendhal.STENDHAL_FOLDER + "cache/");
 	            if (!file.exists() && !file.mkdir()) {
 	                logger.error("Can't create " + file.getAbsolutePath()
 	                        + " folder");
 	            }
 	
-	            new File(stendhal.STENDHAL_FOLDER + "cache/stendhal.cache")
+	            new File(System.getProperty("user.home") + "/" + stendhal.STENDHAL_FOLDER + "cache/stendhal.cache")
 	                    .createNewFile();
-	
-	            Configuration.setConfigurationFile(stendhal.STENDHAL_FOLDER
-	                    + "cache/stendhal.cache");
-	        } else {
-	            Configuration.setConfigurationPersitance(false);
 	        }
+            Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER, "cache/stendhal.cache");
             cacheManager = Configuration.getConfiguration();
         } catch (Exception e) {
             logger.error("cannot create StendhalClient", e);
@@ -103,20 +99,16 @@ public class Cache {
     }
     
     private InputStream getItemFromCache(TransferContent item) {
-    	if (Debug.WEB_START_SANDBOX) {
-    		return null;
-    	}
 
     	// check cache
-    	File file = new File(stendhal.STENDHAL_FOLDER + "cache/" + item.name);
-        if (file.exists() && cacheManager.has(item.name)
+        if (cacheManager.has(item.name)
                 && Integer.parseInt(cacheManager.get(item.name)) == item.timestamp) {
-            logger.debug("Content " + file.getName()  + " is on cache. We save transfer");
+            logger.debug("Content " + item.name  + " is on cache. We save transfer");
 
             // get the stream
         	try {
-				return new FileInputStream(file);
-			} catch (FileNotFoundException e) {
+            	return Persistence.get().getInputStream(true, stendhal.STENDHAL_FOLDER + "cache/", item.name);
+			} catch (IOException e) {
 				logger.error(e, e);
 			}
         }
@@ -148,23 +140,18 @@ public class Cache {
      */
     public void store(TransferContent item, String data) {
         try {
-	    	if (!Debug.WEB_START_SANDBOX) {
-	            new File(stendhal.STENDHAL_FOLDER + "cache").mkdir();
-	
-	            Writer writer = new BufferedWriter(new FileWriter(
-	                    stendhal.STENDHAL_FOLDER + "cache/" + item.name));
-	            writer.write(data);
-	            writer.close();
+        	OutputStream os = Persistence.get().getOutputStream(true, stendhal.STENDHAL_FOLDER + "cache/", item.name);
+            Writer writer = new BufferedWriter(new OutputStreamWriter(os));
+            writer.write(data);
+            writer.close();
 
-		        logger.debug("Content " + item.name
-		                + " cached now. Timestamp: "
-		                + Integer.toString(item.timestamp));
+	        logger.debug("Content " + item.name
+	                + " cached now. Timestamp: "
+	                + Integer.toString(item.timestamp));
 
-		        cacheManager.set(item.name, Integer.toString(item.timestamp));
-	        }
+	        cacheManager.set(item.name, Integer.toString(item.timestamp));
 	    } catch (java.io.IOException e) {
-            logger.fatal("store", e);
-            System.exit(2);
+            logger.error("store", e);
         }
     }
 }

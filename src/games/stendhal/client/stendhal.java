@@ -37,10 +37,11 @@ public class stendhal extends Thread {
 	// detect web start sandbox and init STENDHAL_FOLDER otherwise
 	static {
 		try {
-			STENDHAL_FOLDER = System.getProperty("user.home") + "/stendhal/";
+			System.getProperty("user.home");
 		} catch (AccessControlException e) {
 			Debug.WEB_START_SANDBOX = true;
 		}
+		STENDHAL_FOLDER = "/stendhal/";
 	}
 
 	public static final String VERSION = Version.VERSION;
