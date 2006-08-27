@@ -75,7 +75,7 @@ public class DisplaceAction extends ActionListener {
 							if (entity instanceof Item) {
 								Item item = (Item) entity;
 								if (item.getPlantGrower() != null) {
-									item.getPlantGrower().onFruitPicked();
+									item.getPlantGrower().onFruitPicked(item);
 								}
 							}
 						}

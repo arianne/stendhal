@@ -88,9 +88,17 @@ public class PlantGrower extends Entity implements TurnListener {
 		rect.setRect(x, y, 1, 1);
 	}
 
-	public void onFruitPicked() {
+	/**
+	 * Is called when a fruit has been picked from this plant grower.
+	 * 
+	 * @param picked The fruit that has been picked. Use null for subclasses
+	 *               of PlantGrower that don't use items as fruits. 
+	 */
+	public void onFruitPicked(Item picked) {
 		hasPickableFruit = false;
-		
+		if (picked != null) {
+			picked.setPlantGrower(null);
+		}
 		TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this, null);
 	}
 	

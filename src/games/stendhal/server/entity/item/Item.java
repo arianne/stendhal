@@ -35,8 +35,9 @@ public class Item extends PassiveEntity implements TurnListener {
 	private List<String> possibleSlots;
 	
 	/**
-	 * The plant grower where this item was grown, or null if it wasn't
-	 * grown by a plant grower.
+	 * The plant grower where this item was grown, until it has been picked.
+	 * null if it wasn't grown by a plant grower, or if it has already been
+	 * picked.
 	 */
 	private PlantGrower plantGrower;
 
@@ -232,7 +233,7 @@ public class Item extends PassiveEntity implements TurnListener {
 			TurnNotifier.get().dontNotify(this, null);
 		}
 		if (plantGrower != null) {
-			plantGrower.onFruitPicked();
+			plantGrower.onFruitPicked(this);
 		}
 	}
 	

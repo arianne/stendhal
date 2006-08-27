@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.server.entity.item.Item;
+
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -45,8 +47,8 @@ public class SheepFood extends PlantGrower {
 	}
 
 	@Override
-	public void onFruitPicked() {
-		super.onFruitPicked();
+	public void onFruitPicked(Item picked) {
+		super.onFruitPicked(picked);
 		setAmount(amount - 1);
 		notifyWorldAboutChanges();
 	}

@@ -169,7 +169,7 @@ public class Sheep extends DomesticAnimal {
 	private void eat(SheepFood food) {
 		int amount = food.getAmount();
 		if (amount > 0) {
-			food.onFruitPicked();
+			food.onFruitPicked(null);
 
 			if (weight < MAX_WEIGHT) {
 				setWeight(weight + 1);
