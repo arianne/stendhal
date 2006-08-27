@@ -104,8 +104,23 @@ public class SpriteStore {
 			// Sprite.java
 			// animImage.draw(image.getGraphics(),0,0,i*iwidth,animation*iheight);
 			// intensifly @ gmx.com, April 20th, 2006
-			animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, animation
-					* pixelHeight, pixelWidth, pixelHeight);
+			
+			// HACK: Tiles are 32 pixels wide, but small characters (players,
+			// NPCs, small monsters) are 48 pixels wide. That's why such
+			// characters were not horizontally centered inside a tile, but
+			// 8 pixels too far to the right (8 + 32 + 8 = 48).
+			// 
+			// We currently can't fix this properly (i.e. change the PNGs)
+			// because we want to keep compatibility with RPG Maker 2000
+			// format. Any proposals for a better solution are appreciated.
+			// -- Daniel Herding (mort)
+			if (image.getWidth(null) == 48) {
+				animImage.draw(image.getGraphics(), -8, 0, i * pixelWidth, animation
+						* pixelHeight, pixelWidth, pixelHeight);
+			} else {
+				animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, animation
+						* pixelHeight, pixelWidth, pixelHeight);
+			}
 			animatedSprite[i] = new Sprite(image);
 		}
 
