@@ -77,7 +77,7 @@ public class GrainField extends PlantGrower implements UseListener {
 	protected void growNewFruit() {
 		setRipeness(ripeness + 1);
 		if (ripeness < RIPE) {
-			TurnNotifier.get().notifyInTurns(turnsForRegrow, this, null);
+			TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this, null);
 		}
 		notifyWorldAboutChanges();
 	}

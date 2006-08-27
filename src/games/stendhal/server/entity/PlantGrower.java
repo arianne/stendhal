@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -53,24 +54,24 @@ public class PlantGrower extends Entity implements TurnListener {
 	//private int lastTurn = 0;
     
 	/**
-	 * Tells how many turns it takes for a new fruit to become ripe.
+	 * Tells how many turns it takes in average for a new fruit to become ripe.
 	 */
-	protected int turnsForRegrow;
+	protected int meanTurnsForRegrow;
 	
-	public PlantGrower(RPObject object, String growingItemName, int turnsForRegrow) throws AttributeNotFoundException {
+	public PlantGrower(RPObject object, String growingItemName, int meanTurnsForRegrow) throws AttributeNotFoundException {
 		super(object);
 		this.growingItemName = growingItemName;
-		this.turnsForRegrow = turnsForRegrow;
+		this.meanTurnsForRegrow = meanTurnsForRegrow;
 		setDescription("You see a place where a " + growingItemName	+ " can grow.");
 		
 		put("type", "plant_grower");
 		//update();
 	}
 
-	public PlantGrower(String growingItemName, int turnsForRegrow) throws AttributeNotFoundException {
+	public PlantGrower(String growingItemName, int meanTurnsForRegrow) throws AttributeNotFoundException {
 		super();
 		this.growingItemName = growingItemName;
-		this.turnsForRegrow = turnsForRegrow;
+		this.meanTurnsForRegrow = meanTurnsForRegrow;
 		setDescription("You see a place where a " + growingItemName	+ " can grow.");
 
 		put("type", "plant_grower");
@@ -89,7 +90,12 @@ public class PlantGrower extends Entity implements TurnListener {
 
 	public void onFruitPicked() {
 		hasPickableFruit = false;
-		TurnNotifier.get().notifyInTurns(turnsForRegrow, this, null);
+		
+		TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this, null);
+	}
+	
+	protected int getRandomTurnsForRegrow() {
+		return Rand.rand(meanTurnsForRegrow, (int) (0.1 * meanTurnsForRegrow));
 	}
 	
 	/**
