@@ -194,7 +194,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			} catch (PropertyNotFoundException ep) {
 				logger.warn("No server extensions configured in ini file. Defaulting to groovy extension.");
 				/* Run groovy script extension */
-				StendhalServerExtension.getInstance("games.stendhal.server.scripting.StendhalGroovyRunner")
+				StendhalServerExtension.getInstance("games.stendhal.server.scripting.ScriptRunner")
 						.init();
 			}
 			
