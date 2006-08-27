@@ -29,7 +29,7 @@ class AdminSignManager {
 			}
 			int x = 0;
 			if (args[1] == "-") {
-				x = player.getx() + 1;
+				x = player.getx();
 			} else {
 				x = Integer.parseInt(args[1]);
 			}
