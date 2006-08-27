@@ -87,7 +87,11 @@ public class GameObjects implements Iterable<Entity> {
 
 	private List<Text> textsToRemove;
 
-	private LinkedList<Entity> sortObjects;
+	/**
+	 * A list of all entities, sorted by the Z index, i.e. the order in which
+	 * they should be drawn. 
+	 */
+	private LinkedList<Entity> sortedObjects;
 
 	private StaticGameLayers collisionMap;
 
@@ -97,13 +101,13 @@ public class GameObjects implements Iterable<Entity> {
 
 		texts = new LinkedList<Text>();
 		textsToRemove = new LinkedList<Text>();
-		sortObjects = new LinkedList<Entity>();
+		sortedObjects = new LinkedList<Entity>();
 
 		this.collisionMap = collisionMap;
 	}
 
 	public Iterator<Entity> iterator() {
-		return sortObjects.iterator();
+		return sortedObjects.iterator();
 	}
 
 	/** Create a Entity of the correct type depending of the arianne object */
@@ -147,7 +151,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	private void sort() {
-		Collections.sort(sortObjects);
+		Collections.sort(sortedObjects);
 	}
 
 	/** Add a new Entity to the game */
@@ -177,7 +181,7 @@ public class GameObjects implements Iterable<Entity> {
 		}
 
 		objects.put(entity.getID(), entity);
-		sortObjects.add(entity);
+		sortedObjects.add(entity);
 
 		logger.debug("added " + entity);
 		Log4J.finishMethod(logger, "add");
@@ -269,7 +273,7 @@ public class GameObjects implements Iterable<Entity> {
 		}
 
 		Entity object = objects.remove(id);
-		sortObjects.remove(object);
+		sortedObjects.remove(object);
 		Log4J.finishMethod(logger, "remove");
 	}
 
@@ -283,7 +287,7 @@ public class GameObjects implements Iterable<Entity> {
 
 		objects.clear();
 		attacks.clear();
-		sortObjects.clear();
+		sortedObjects.clear();
 		texts.clear();
 		Log4J.finishMethod(logger, "clear");
 	}
@@ -576,7 +580,7 @@ public class GameObjects implements Iterable<Entity> {
 		// TODO: Ugly, use similar method that server uses
 		Rectangle2D area = entity.getArea();
 
-		for (Entity other : sortObjects) {
+		for (Entity other : sortedObjects) {
 			if (!(other instanceof PassiveEntity) && !(other instanceof Blood) && !(other instanceof PlantGrower)) {
 				if (area.intersects(other.getArea())
 						&& !entity.getID().equals(other.getID())) {
@@ -591,7 +595,7 @@ public class GameObjects implements Iterable<Entity> {
 
 	/** Move objects based on the lapsus of time ellapsed since the last call. */
 	public void move(long delta) {
-		for (Entity entity : sortObjects) {
+		for (Entity entity : sortedObjects) {
 			if (!entity.stopped()) {
 				if (!collisionMap.collides(entity.getArea())) {
 					if (!collides(entity)) {
@@ -637,7 +641,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	public Entity at(double x, double y) {
-		ListIterator<Entity> it = sortObjects.listIterator(sortObjects.size());
+		ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects.size());
 		while (it.hasPrevious()) {
 			Entity entity = it.previous();
 
@@ -647,7 +651,7 @@ public class GameObjects implements Iterable<Entity> {
 		}
 
 		// Maybe user clicked outside char but on the drawed area of it
-		it = sortObjects.listIterator(sortObjects.size());
+		it = sortedObjects.listIterator(sortedObjects.size());
 		while (it.hasPrevious()) {
 			Entity entity = it.previous();
 
@@ -663,7 +667,7 @@ public class GameObjects implements Iterable<Entity> {
 	public void draw(GameScreen screen) {
 		sort();
 
-		for (Entity entity : sortObjects) {
+		for (Entity entity : sortedObjects) {
 			entity.draw(screen);
 		}
 		//System.err.println(temp);
