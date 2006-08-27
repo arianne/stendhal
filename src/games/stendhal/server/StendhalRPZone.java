@@ -538,12 +538,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 				PlantGrower plantGrower = null;
 				if (type == 92) {
 					plantGrower = new SheepFood();
-					// full fruits on server restart
-					((SheepFood) plantGrower).setAmount(5);
 				} else if (type == 93) {
 					plantGrower = new GrainField();
-					// full growth on server restart
-					((GrainField) plantGrower).setRipeness(GrainField.RIPE);
 				} else if (type == 102) {
 					plantGrower = new PlantGrower("button_mushroom", 500);
 				} else if (type == 103) {
@@ -570,7 +566,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 				plantGrower.setx(x);
 				plantGrower.sety(y);
 				add(plantGrower);
-
+				// full fruits on server restart
+				plantGrower.setToFullGrowth();
+				
 				plantGrowers.add(plantGrower);
 				break;
 			default: {

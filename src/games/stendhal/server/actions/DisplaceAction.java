@@ -15,6 +15,7 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
@@ -69,6 +70,14 @@ public class DisplaceAction extends ActionListener {
 							entity.setx(x);
 							entity.sety(y);
 							entity.notifyWorldAboutChanges();
+							// check if the displaced entity was an item that
+							// had just grown on a plant grower.
+							if (entity instanceof Item) {
+								Item item = (Item) entity;
+								if (item.getPlantGrower() != null) {
+									item.getPlantGrower().onFruitPicked();
+								}
+							}
 						}
 					}
 				}

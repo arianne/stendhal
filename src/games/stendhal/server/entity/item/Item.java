@@ -14,6 +14,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
@@ -32,6 +33,12 @@ import marauroa.common.game.RPSlot;
 public class Item extends PassiveEntity implements TurnListener {
 	/** list of possible slots for this item */
 	private List<String> possibleSlots;
+	
+	/**
+	 * The plant grower where this item was grown, or null if it wasn't
+	 * grown by a plant grower.
+	 */
+	private PlantGrower plantGrower;
 
 	final public static int DEGRADATION_TIMEOUT = 10800; // 30 minutes at 300
 	// ms
@@ -92,6 +99,14 @@ public class Item extends PassiveEntity implements TurnListener {
 	public void setEquipableSlots(List<String> slots) {
 		// save slots
 		possibleSlots = slots;
+	}
+	
+	public void setPlantGrower(PlantGrower plantGrower) {
+		this.plantGrower = plantGrower;
+	}
+
+	public PlantGrower getPlantGrower() {
+		return plantGrower;
 	}
 
 	/** no public 'default' item */
@@ -215,6 +230,9 @@ public class Item extends PassiveEntity implements TurnListener {
 		// persistent items don't degrade
 		if (!isPersistent()) {
 			TurnNotifier.get().dontNotify(this, null);
+		}
+		if (plantGrower != null) {
+			plantGrower.onFruitPicked();
 		}
 	}
 	

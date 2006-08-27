@@ -469,11 +469,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
             // To save some CPU cycles, we don't cycle through the plant
             // regrowing loop each turn, but only each fifth turn. 
             // We don't care if a fruit gets ripe a few milliseconds too late.
-            if (currentTurn % 5 == 0) {
-                for (PlantGrower plantGrower : plantGrowers) {
-                    plantGrower.regrow(currentTurn);
-                }
-            }
+//            if (currentTurn % 5 == 0) {
+//                for (PlantGrower plantGrower : plantGrowers) {
+//                    plantGrower.regrow(currentTurn);
+//                }
+//            }
 
             // Registeres classes for this turn
             TurnNotifier.get().logic(currentTurn);

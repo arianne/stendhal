@@ -16,6 +16,7 @@ import java.awt.geom.Rectangle2D;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.UseListener;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -63,23 +64,21 @@ public class GrainField extends PlantGrower implements UseListener {
 		}
 	}
 
-	public void setRipeness(int ripeness) {
+	private void setRipeness(int ripeness) {
 		this.ripeness = ripeness;
 		put("ripeness", ripeness);
 	}
 
-	public int getRipeness() {
+	private int getRipeness() {
 		return ripeness;
-	}
-
-	@Override
-	protected boolean canGrowNewFruit() {
-		return ripeness < RIPE;
 	}
 
 	@Override
 	protected void growNewFruit() {
 		setRipeness(ripeness + 1);
+		if (ripeness < RIPE) {
+			TurnNotifier.get().notifyInTurns(turnsForRegrow, this, null);
+		}
 		notifyWorldAboutChanges();
 	}
 
@@ -112,8 +111,7 @@ public class GrainField extends PlantGrower implements UseListener {
 		if (entity.nextTo(this, 0.25)) {
 			if (getRipeness() == RIPE) {
 				if (entity.isEquipped("scythe")) {
-					setRipeness(0);
-					notifyWorldAboutChanges();
+					onFruitPicked();
 					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("grain");
 					entity.equip(grain, true);
 				} else if (entity instanceof Player) {
@@ -123,6 +121,18 @@ public class GrainField extends PlantGrower implements UseListener {
 				((Player) entity).sendPrivateText("This grain is not yet ripe.");
 			}
 		}
+	}
+	
+	@Override
+	public void onFruitPicked() {
+		super.onFruitPicked();
+		setRipeness(0);
+		notifyWorldAboutChanges();
+	}
+
+	@Override
+	public void setToFullGrowth() {
+		setRipeness(RIPE);
 	}
 
 }

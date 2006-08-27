@@ -15,6 +15,9 @@ package games.stendhal.server.entity;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
+
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.AttributeNotFoundException;
@@ -32,12 +35,12 @@ import marauroa.common.game.RPObject;
  * @author Daniel Herding
  *
  */
-public class PlantGrower extends Entity {
+public class PlantGrower extends Entity implements TurnListener {
 
 	/**
-	 * How much of the next fruit is ready, as a value between 0 and 1.
+	 * Is there still a fruit that has not yet been picked up? 
 	 */
-	private double ripeness;
+	private boolean hasPickableFruit; 
 	
 	/**
 	 * The name of the fruit (Item) that is grown by the PlantGrower.
@@ -47,12 +50,12 @@ public class PlantGrower extends Entity {
     /**
      * Remember which turn we were called last to compute the ripeness
      */
-	private int lastTurn = 0;
+	//private int lastTurn = 0;
     
 	/**
 	 * Tells how many turns it takes for a new fruit to become ripe.
 	 */
-	private int turnsForRegrow;
+	protected int turnsForRegrow;
 	
 	public PlantGrower(RPObject object, String growingItemName, int turnsForRegrow) throws AttributeNotFoundException {
 		super(object);
@@ -84,21 +87,11 @@ public class PlantGrower extends Entity {
 		rect.setRect(x, y, 1, 1);
 	}
 
-	/**
-	 * Tells if a new fruit can start to grow.
-	 * @return true iff a new fruit can start to grow
-	 */
-	protected boolean canGrowNewFruit() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(this.getID());
-		for (Item item: zone.getItemsOnGround()) {
-			if (item.getName().equals(growingItemName) && item.getx() == this.getx() && 	item.gety() == this.gety()) {
-				// don't regrow until someone picks the last grown item up.
-				return false;
-			}
-		}
-		return true;
+	public void onFruitPicked() {
+		hasPickableFruit = false;
+		TurnNotifier.get().notifyInTurns(turnsForRegrow, this, null);
 	}
-
+	
 	/**
 	 * Creates a new fruit.
 	 */
@@ -107,40 +100,29 @@ public class PlantGrower extends Entity {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(this.getID());
 		// create a new grown item
 		Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);
+		grownItem.setPlantGrower(this);
 		grownItem.setx(this.getx());
 		grownItem.sety(this.gety());
 		
 		zone.assignRPObjectID(grownItem);
-		
 		zone.add(grownItem);
-		//world.modify(this);
+		hasPickableFruit = true;
 	}
 	
-	/**
-	 * Is invoked every few turns. Checks if a new fruit can be grown, and if the
-	 * new fruit is ripe, creates it.
-	 *
-	 * @param aktTurn current turn
-	 */
-	public void regrow(int aktTurn) {
-        if(lastTurn == 0) {
-            lastTurn = aktTurn - 1;
-        }
-		if (canGrowNewFruit()) {
-			ripeness += (aktTurn - lastTurn) * (1.0f / turnsForRegrow);
-			// TODO: add some randomization
-			if (ripeness > 1.0f) {
-				ripeness = 0.0f;
-				growNewFruit();
-			}
+	public void setToFullGrowth() {
+		if (!hasPickableFruit) {
+			growNewFruit();
 		}
-        lastTurn = aktTurn;
 	}
 
 	@Override
 	public boolean isObstacle() {
 		// The player can walk over the PlantGrower.
 		return false;
+	}
+	
+	public void onTurnReached(int currentTurn, String message) {
+		growNewFruit();
 	}
 
 }

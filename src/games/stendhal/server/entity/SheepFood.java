@@ -44,7 +44,14 @@ public class SheepFood extends PlantGrower {
 		}
 	}
 
-	public void setAmount(int amount) {
+	@Override
+	public void onFruitPicked() {
+		super.onFruitPicked();
+		setAmount(amount - 1);
+		notifyWorldAboutChanges();
+	}
+	
+	private void setAmount(int amount) {
 		this.amount = amount;
 		put("amount", amount);
 	}
@@ -53,10 +60,10 @@ public class SheepFood extends PlantGrower {
 		return amount;
 	}
 
-	@Override
-	protected boolean canGrowNewFruit() {
-		return amount < 5;
-	}
+	//@Override
+	//protected boolean canGrowNewFruit() {
+	//	return amount < 5;
+	//}
 
 	@Override
 	protected void growNewFruit() {
@@ -72,8 +79,12 @@ public class SheepFood extends PlantGrower {
 	}
 	
 	@Override
+	public void setToFullGrowth() {
+		setAmount(5);
+	}
+
+	@Override
 	public boolean isObstacle() {
 		return true;
 	}
-
 }
