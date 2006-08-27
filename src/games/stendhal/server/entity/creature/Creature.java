@@ -871,6 +871,14 @@ public class Creature extends NPC {
 		return list;
 	}
 
+	@Override
+	public boolean canDoRangeAttacks() {
+		if (aiProfiles.containsKey("archer")) {
+			return true;
+		}
+		return super.canDoRangeAttacks();
+	}
+
 	/**
 	 * is called after the Creature is added to the zone
 	 */
