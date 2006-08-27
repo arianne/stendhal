@@ -690,6 +690,7 @@
 			<says>
 				<noise value="Wssss! Warf wit!"/>
 			</says>
+			<profile name="archer"/>
 			<profile name="human"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
@@ -1486,6 +1487,7 @@
             <slot name="rhand" item="wooden_bow"/>
 		</equips>
 		<ai>
+			<profile name="archer"/>
 			<profile name="human"/>
 			<profile name="ofensive"/>
 			<profile name="brave"/>
