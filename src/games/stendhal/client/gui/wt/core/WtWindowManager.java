@@ -86,7 +86,7 @@ public class WtWindowManager {
 		}
 
 		try {
-			OutputStream os = Persistence.get().getOutputStream(FILE_NAME);
+			OutputStream os = Persistence.get().getOutputStream(true, "stendhal", FILE_NAME);
 			OutputStreamWriter writer = new OutputStreamWriter(os);
 			writer.append(buf.toString());
 			writer.close();
@@ -101,7 +101,7 @@ public class WtWindowManager {
 	public void read() {
 		properties = new Properties();
 		try {
-			InputStream is = Persistence.get().getInputStream(FILE_NAME);
+			InputStream is = Persistence.get().getInputStream(true, "stendhal", FILE_NAME);
 			properties.load(is);
 			is.close();
 		} catch (IOException e) {

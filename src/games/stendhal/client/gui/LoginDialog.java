@@ -353,7 +353,7 @@ public class LoginDialog extends JDialog implements Runnable {
 		Encoder encode = new Encoder();
 		
 			try {
-				OutputStream os = Persistence.get().getOutputStream("user.dat");
+				OutputStream os = Persistence.get().getOutputStream(true, "stendhal", "user.dat");
 				PrintStream ps = new PrintStream(os);
 	
 				ps.print(encode.encode(server + "\n" + usrName + "\n" + pwd + "\n"
@@ -374,7 +374,7 @@ public class LoginDialog extends JDialog implements Runnable {
 		String loginLine = "";
 
 		try {
-			InputStream is = Persistence.get().getInputStream("user.dat");
+			InputStream is = Persistence.get().getInputStream(true, "stendhal", "user.dat");
 			BufferedReader fin = new BufferedReader(new InputStreamReader(is));
 
 			loginLine = decode.decode(fin.readLine());
