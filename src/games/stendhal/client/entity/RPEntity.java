@@ -75,7 +75,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				"data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
 	}
 
-	private static Sprite pk;
+	// sprite to mark player killers. Not used yet.
+	// private static Sprite pk;
 
 	private static Sprite eating;
 
@@ -84,7 +85,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	static {
 		SpriteStore st = SpriteStore.get();
 
-		pk = st.getSprite("data/sprites/ideas/pk.png");
+		// pk = st.getSprite("data/sprites/ideas/pk.png");
 		eating = st.getSprite("data/sprites/ideas/eat.png");
 		poisoned = st.getSprite("data/sprites/ideas/poisoned.png");
 	}
@@ -120,7 +121,10 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	private java.util.List<Long> damageSpritesTimes;
 	private boolean attacked;
 	private boolean attacking;
+	
+	/** What does this do? */
 	private Resolution resolution;
+	
 	private int atkXp;
 	private int defXp;
 	private int atkItem = -1;
@@ -154,36 +158,49 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		return hp;
 	}
 
-	protected static Sprite setOutFitPlayer(SpriteStore store, RPObject object) {
+	/**
+	 * Gets the outfit sprite for the given object.
+	 * 
+	 * The outfit is described by the object's "outfit" attribute.
+	 * It is an 8-digit integer of the form RRHHDDBB where RR is
+	 * the number of the hair graphics, HH for the head, DD for the
+	 * dress, and BB for the base.
+	 * 
+	 * @param store The sprite store
+	 * @param object The object. The outfit attribute needs to be set. 
+	 * @return A sprite for the object
+	 */
+	protected Sprite getOutfitSprite(SpriteStore store, RPObject object) {
 		int outfit = object.getInt("outfit");
 
-		Sprite player = store.getSprite("data/sprites/outfit/player_base_"
+		Sprite sprite = store.getSprite("data/sprites/outfit/player_base_"
 				+ outfit % 100 + ".png");
-		player = player.copy();
+		sprite = sprite.copy();
 		outfit /= 100;
 
 		if (outfit % 100 != 0) {
 			int dressIdx = outfit % 100;
 			Sprite dress = store.getSprite("data/sprites/outfit/dress_"
 					+ dressIdx + ".png");
-			dress.draw(player.getGraphics(), 0, 0);
+			dress.draw(sprite.getGraphics(), 0, 0);
 		}
 		outfit /= 100;
 
 		Sprite head = store.getSprite("data/sprites/outfit/head_" + outfit
 				% 100 + ".png");
-		head.draw(player.getGraphics(), 0, 0);
+		head.draw(sprite.getGraphics(), 0, 0);
 		outfit /= 100;
 
 		if (outfit % 100 != 0) {
 			Sprite hair = store.getSprite("data/sprites/outfit/hair_" + outfit
 					% 100 + ".png");
-			hair.draw(player.getGraphics(), 0, 0);
+			hair.draw(sprite.getGraphics(), 0, 0);
 		}
 
-		return player;
+		return sprite;
 	}
 
+	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
@@ -202,6 +219,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		sprites.get("move_left")[3] = sprites.get("move_left")[1];
 	}
 
+	@Override
 	protected Sprite defaultAnimation() {
 		animation = "move_up";
 		return sprites.get("move_up")[0];
@@ -306,6 +324,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -404,6 +423,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	}
 
 	/** Draws this entity in the screen */
+	@Override
 	public void draw(GameScreen screen) {
 		if (attacked) {
 			// Draw red box around
@@ -534,10 +554,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 	}
 
+	@Override
 	public String defaultAction() {
 		return "Look";
 	}
 
+	@Override
 	public String[] offeredActions() {
 		List<String> list = new LinkedList<String>();
 
@@ -557,6 +579,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		return list.toArray(new String[list.size()]);
 	}
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Attack")) {
 			// NOTE: Dunno about this feature...
@@ -583,6 +606,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			super.onAction(client, action, params);
 	}
 
+	@Override
 	public int compare(Entity entity) {
 		if (entity instanceof PassiveEntity || entity instanceof Blood) {
 			return 1;

@@ -42,10 +42,11 @@ public class Player extends RPEntity {
 		setHearingRange(DEFAULT_HEARINGRANGE);
 	}
 
+	@Override
 	protected void buildAnimations(RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
-		Sprite player;
+		Sprite sprite;
 
 		try {
 			if (outfit == base.getInt("outfit") && outfit != 0) {
@@ -53,21 +54,21 @@ public class Player extends RPEntity {
 				// Save CPU cycles.
 				return;
 			}
-
 			outfit = base.getInt("outfit");
-			player = setOutFitPlayer(store, base);
+			sprite = getOutfitSprite(store, base);
 		} catch (Exception e) {
 			logger.error("cannot build Animations", e);
+			// use default outfit
 			base.put("outfit", 0);
-			player = setOutFitPlayer(store, base);
+			sprite = getOutfitSprite(store, base);
 		}
 
-		sprites.put("move_up", store.getAnimatedSprite(player, 0, 4, 1.5, 2));
+		sprites.put("move_up", store.getAnimatedSprite(sprite, 0, 4, 1.5, 2));
 		sprites
 				.put("move_right", store
-						.getAnimatedSprite(player, 1, 4, 1.5, 2));
-		sprites.put("move_down", store.getAnimatedSprite(player, 2, 4, 1.5, 2));
-		sprites.put("move_left", store.getAnimatedSprite(player, 3, 4, 1.5, 2));
+						.getAnimatedSprite(sprite, 1, 4, 1.5, 2));
+		sprites.put("move_down", store.getAnimatedSprite(sprite, 2, 4, 1.5, 2));
+		sprites.put("move_left", store.getAnimatedSprite(sprite, 3, 4, 1.5, 2));
 
 		sprites.get("move_up")[3] = sprites.get("move_up")[1];
 		sprites.get("move_right")[3] = sprites.get("move_right")[1];
@@ -75,6 +76,7 @@ public class Player extends RPEntity {
 		sprites.get("move_left")[3] = sprites.get("move_left")[1];
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -108,10 +110,12 @@ public class Player extends RPEntity {
 		}
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y + 1, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 2);
 	}
@@ -138,6 +142,7 @@ public class Player extends RPEntity {
 		hearingRange = range;
 	}
 
+	@Override
 	public String[] offeredActions() {
 		java.util.Vector<String> vector = new java.util.Vector<String>();
 		for (String item : super.offeredActions()) {
@@ -157,6 +162,7 @@ public class Player extends RPEntity {
 		return vector.toArray(new String[0]);
 	}
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Set outfit")) {
 			client.getOutfitDialog(outfit).setVisible(true);

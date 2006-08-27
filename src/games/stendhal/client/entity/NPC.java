@@ -81,6 +81,7 @@ public class NPC extends RPEntity {
 		}
 	}
 
+	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
@@ -88,16 +89,18 @@ public class NPC extends RPEntity {
 
 		try {
 			if (object.has("outfit")) {
+				// This NPC's outfit is built like a player's outfit,
+				// i.e. from separated graphic files for dress, hair, etc. 
 				if (outfit == object.getInt("outfit") && outfit != 0) {
-					// We avoid creating again the outfiot if it is already
+					// We avoid creating again the outfit if it is already
 					// done.
 					// Save CPU cycles.
 					return;
 				}
-
 				outfit = object.getInt("outfit");
-				aspect = setOutFitPlayer(store, object);
+				aspect = getOutfitSprite(store, object);
 			} else {
+				// This NPC's outfit is read from a single file.
 				aspect = store
 						.getSprite(translate("npc/" + object.get("class")));
 			}
@@ -107,8 +110,7 @@ public class NPC extends RPEntity {
 		}
 
 		sprites.put("move_up", store.getAnimatedSprite(aspect, 0, 4, 1.5, 2));
-		sprites
-				.put("move_right", store
+		sprites.put("move_right", store
 						.getAnimatedSprite(aspect, 1, 4, 1.5, 2));
 		sprites.put("move_down", store.getAnimatedSprite(aspect, 2, 4, 1.5, 2));
 		sprites.put("move_left", store.getAnimatedSprite(aspect, 3, 4, 1.5, 2));
