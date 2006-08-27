@@ -75,26 +75,37 @@ public class SpriteStore {
 				height);
 	}
 
+	/**
+	 * @param animImage The image which contains the different animation frames
+	 * @param animation The vertical position of this animation's frames inside
+	 *                  the image  
+	 * @param frameCount The number of frames in this animation
+	 * @param width The width of one animation frame, in tiles
+	 * @param height The height of one animation frame, in tiles
+	 * @return
+	 */
 	public Sprite[] getAnimatedSprite(Sprite animImage, int animation,
-			int frames, double width, double height) {
-		int iwidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
-		int iheight = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
+			int frameCount, double width, double height) {
+		// calculate width and height in pixels from width and height
+		// in tiles
+		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
+		int pixelHeight = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
 
-		Sprite[] animatedSprite = new Sprite[frames];
+		Sprite[] animatedSprite = new Sprite[frameCount];
 
 		GraphicsConfiguration gc = GraphicsEnvironment
 				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 				.getDefaultConfiguration();
 
-		for (int i = 0; i < frames; i++) {
-			Image image = gc.createCompatibleImage(iwidth, iheight,
+		for (int i = 0; i < frameCount; i++) {
+			Image image = gc.createCompatibleImage(pixelWidth, pixelHeight,
 					Transparency.BITMASK);
 			// Bugfixs: parameters width and height added, see comment in
 			// Sprite.java
 			// animImage.draw(image.getGraphics(),0,0,i*iwidth,animation*iheight);
 			// intensifly @ gmx.com, April 20th, 2006
-			animImage.draw(image.getGraphics(), 0, 0, i * iwidth, animation
-					* iheight, iwidth, iheight);
+			animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, animation
+					* pixelHeight, pixelWidth, pixelHeight);
 			animatedSprite[i] = new Sprite(image);
 		}
 
