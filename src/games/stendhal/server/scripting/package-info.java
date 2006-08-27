@@ -1,5 +1,5 @@
 /**
- * The scripting backend.
+ * the scripting backend.
  *
  * <p>The <b>ScriptRunner</b> is invoken on server startup and /script command.
  * This class loads, unloads and executes StendhalGroovyScripts.</p>
