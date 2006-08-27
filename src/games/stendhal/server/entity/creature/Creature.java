@@ -516,13 +516,7 @@ public class Creature extends NPC {
 		super.stopAttack();
 	}
 
-
-	@Override
-	// TODO: modularize this method!!
-	public void logic() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		// Log4J.startMethod(logger, "logic");
-
+	private void logicHeal() {
 		if (aiProfiles.containsKey("heal")) {
             if(getHP() < getBaseHP()) {
                 String[] healingAttributes = aiProfiles.get("heal").split(",");
@@ -531,14 +525,16 @@ public class Creature extends NPC {
                 healSelf(amount, frequency);
             }
 		}
+	}
 
+	private boolean logicSleep() {
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
 		if (!isEnemyNear(30)) { 
 
 			// If we are already sleeping, than don't modify the Entity.
 			if (aiState == AiState.SLEEP) {
-				return;
+				return false;
 			}
 
 			stopAttack();
@@ -550,224 +546,282 @@ public class Creature extends NPC {
 
 			aiState = AiState.SLEEP;
 			notifyWorldAboutChanges();
-			return;
+			return false;
 		}
+		return true;
+	}
 
-		// this will keep track of the logic so the client can display it
-		StringBuilder debug = new StringBuilder(100);
 
-		// are we attacked and we don't attack ourself?
-		if (isAttacked() && target == null) {
-			// Yep, we're attacked
-			clearPath();
+	// this will keep track of the logic so the client can display it
+	StringBuilder debug = new StringBuilder(100);
 
-			// hit the attacker, but prefer players
-			target = getNearestEnemy(8);
-			if (target == null) {
-				target = this.getAttackSource(0);
-			}
+	private void logicWeAreNotAttackingButGotAttacked() {
+		// Yep, we're attacked
+		clearPath();
 
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append("attacked;").append(target.getID().getObjectID())
-						.append('|');
-			}
-
-			logger.debug("Creature(" + get("type") + ") has been attacked by "
-					+ target.get("type"));
-		} else if (target == null
-				|| (!target.get("zoneid").equals(get("zoneid")) && world
-						.has(target.getID())) || !world.has(target.getID())) {
-			// no target or current target left the zone (or is dead)
-			if (isAttacking()) {
-				// stop the attack...
-				if (Debug.CREATURES_DEBUG_SERVER) {
-					debug.append("cancelattack|");
-				}
-				target = null;
-				clearPath();
-				stopAttack();
-				waitRounds = 0;
-			}
-
-			// ...and find another target
-			target = getNearestEnemy(8);
-			if (target != null) {
-				logger
-						.debug("Creature(" + get("type")
-								+ ") gets a new target.");
-				if (Debug.CREATURES_DEBUG_SERVER) {
-					debug.append("newtarget;").append(
-							target.getID().getObjectID()).append('|');
-				}
-			}
-		}
-
-		// now we check our current target
+		// hit the attacker, but prefer players
+		target = getNearestEnemy(8);
 		if (target == null) {
-			// No target, so patrol along
-			if (aiState != AiState.PATROL || !hasPath()) {
-				// Create a patrolpath
-				logger.debug("Creating Path for this entity");
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
+			target = this.getAttackSource(0);
+		}
 
-				int size = patrolPath.size();
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			debug.append("attacked;").append(target.getID().getObjectID())
+					.append('|');
+		}
 
-				long time = System.nanoTime();
-				for (int i = 0; i < size; i++) {
-					Path.Node actual = patrolPath.get(i);
-					Path.Node next = patrolPath.get((i + 1) % size);
-
-					nodes.addAll(Path.searchPath(this, actual.x + getx(),
-							actual.y + gety(), new Rectangle2D.Double(next.x
-									+ getx(), next.y + gety(), 1.0, 1.0)));
-				}
-				long time2 = System.nanoTime() - time;
-
-				setPath(nodes, true);
-
-				if (Debug.CREATURES_DEBUG_SERVER) {
-					debug.append("generatepatrolpath;").append(time2).append(
-							"|");
-				}
-
-			}
-			logger.debug("Following path");
-			if (hasPath()) {
-				Path.followPath(this, getSpeed());
-			}
-			aiState = AiState.PATROL;
+		logger.debug("Creature(" + get("type") + ") has been attacked by "
+				+ target.get("type"));
+	}
+	
+	private void logicForgetCurrentTarget() {
+		if (isAttacking()) {
+			// stop the attack...
 			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append("patrol;").append(pathToString()).append('|');
+				debug.append("cancelattack|");
 			}
-		} else if (squaredDistance(target) > 18 * 18) {
-			// target out of reach
-			logger.debug("Attacker is too far. Creature stops attack");
 			target = null;
 			clearPath();
 			stopAttack();
-			stop();
-
+			waitRounds = 0;
+		}
+	}
+	
+	private void logicFindNewTarget() {
+		// ...and find another target
+		target = getNearestEnemy(8);
+		if (target != null) {
+			logger
+					.debug("Creature(" + get("type")
+							+ ") gets a new target.");
 			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append("outofreachstopped|");
+				debug.append("newtarget;").append(
+						target.getID().getObjectID()).append('|');
 			}
-		} else if (!nextTo(target, 0.25) && !target.stopped()) {
-			// target not near but in reach and is moving
-			logger.debug("Moving to target. Searching new path");
+		}
+	}
+	
+	private void logicCreatePatrolPath() {
+		// Create a patrolpath
+		logger.debug("Creating Path for this entity");
+		List<Path.Node> nodes = new LinkedList<Path.Node>();
+
+		int size = patrolPath.size();
+
+		long time = System.nanoTime();
+		for (int i = 0; i < size; i++) {
+			Path.Node actual = patrolPath.get(i);
+			Path.Node next = patrolPath.get((i + 1) % size);
+
+			nodes.addAll(Path.searchPath(this, actual.x + getx(),
+					actual.y + gety(), new Rectangle2D.Double(next.x
+							+ getx(), next.y + gety(), 1.0, 1.0)));
+		}
+		long time2 = System.nanoTime() - time;
+
+		setPath(nodes, true);
+
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			debug.append("generatepatrolpath;").append(time2).append(
+					"|");
+		}
+	}
+	
+	private void logicFollowPatrolPath() {
+		logger.debug("Following path");
+		if (hasPath()) {
+			Path.followPath(this, getSpeed());
+		}
+		aiState = AiState.PATROL;
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			debug.append("patrol;").append(pathToString()).append('|');
+		}
+	}
+	
+	private void logicStopAttackBecauseTargetOutOfReach() {
+		// target out of reach
+		logger.debug("Attacker is too far. Creature stops attack");
+		target = null;
+		clearPath();
+		stopAttack();
+		stop();
+
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			debug.append("outofreachstopped|");
+		}
+	}
+	
+	private void logicCreateNewPathToMovingTarget() {
+		// target not near but in reach and is moving
+		logger.debug("Moving to target. Searching new path");
+		clearPath();
+		setMovement(target, 0, 0, 20.0);
+		moveto(getSpeed());
+		waitRounds = 0; // clear waitrounds
+		aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			List path = getPath();
+			if (path != null) {
+				debug.append("targetmoved;").append(pathToString()).append(
+						"|");
+			}
+		}
+	}
+	
+	private void logicAttack() {
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			debug.append("attacking|");
+		}
+		// target is near
+		logger.debug("Next to target. Creature stops and attacks");
+		stop();
+		attack(target);
+		faceTo(target);
+		aiState = AiState.ATTACKING;
+	}
+	
+	private void logicMoveToTargetAndAttack() {
+		// target in reach and not moving
+		logger.debug("Moving to target. Creature attacks");
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			debug.append("movetotarget");
+		}
+		aiState = AiState.APPROACHING_STOPPED_TARGET;
+		attack(target);
+		
+		if (waitRounds == 0) {
+			faceTo(target);
+		}
+
+		// our current Path is blocked...mostly by the target or another
+		// attacker
+		if (collides()) {
+			if (Debug.CREATURES_DEBUG_SERVER) {
+				debug.append(";blocked");
+			}
+			// invalidate the path and stop
 			clearPath();
+			
+			// Try to fix the issue by moving randomly.
+			Direction dir = Direction.rand();
+			setDirection(dir);
+			setSpeed(getSpeed());
+
+			// wait some rounds so the path can be cleared by other
+			// creatures
+			// (either they move away or die)
+			waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
+		}
+
+		// be sure to let the blocking creatures pass before trying to find a new path
+		if (waitRounds > 0) {
+			if (Debug.CREATURES_DEBUG_SERVER) {
+				debug.append(";waiting");
+			}
+			waitRounds--;
+		} else {
+			// Are we still patrolling?
+			if (isPathLoop() || aiState == AiState.PATROL) {
+				// yep, so clear the patrol path
+				clearPath();
+			}
+
 			setMovement(target, 0, 0, 20.0);
 			moveto(getSpeed());
-			waitRounds = 0; // clear waitrounds
-			aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
 			if (Debug.CREATURES_DEBUG_SERVER) {
-				List path = getPath();
-				if (path != null) {
-					debug.append("targetmoved;").append(pathToString()).append(
-							"|");
-				}
-			}
-		} else if (nextTo(target, 0.25)) {
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append("attacking|");
-			}
-			// target is near
-			logger.debug("Next to target. Creature stops and attacks");
-			stop();
-			attack(target);
-			faceTo(target);
-			aiState = AiState.ATTACKING;
-		} else {
-			// target in reach and not moving
-			logger.debug("Moving to target. Creature attacks");
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append("movetotarget");
-			}
-			aiState = AiState.APPROACHING_STOPPED_TARGET;
-			attack(target);
-			
-			if (waitRounds == 0) {
-				faceTo(target);
+				debug.append(";newpath");
 			}
 
-			// our current Path is blocked...mostly by the target or another
-			// attacker
-			if (collides()) {
+			if (getPath() == null || getPath().size() == 0) {
+				// If creature is blocked, choose a new target
+				// TODO: if we are an archer and in range, this is ok
+				//       don't get to near to the enemy. 
 				if (Debug.CREATURES_DEBUG_SERVER) {
 					debug.append(";blocked");
 				}
-				// invalidate the path and stop
-				clearPath();
+				logger.debug("Blocked. Choosing a new target.");
 				
-				// Try to fix the issue by moving randomly.
-				Direction dir = Direction.rand();
-				setDirection(dir);
-				setSpeed(getSpeed());
-
-				// wait some rounds so the path can be cleared by other
-				// creatures
-				// (either they move away or die)
+				target = null;
+				clearPath();
+				stopAttack();
+				stop();
 				waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
-			}
-
-			// be sure to let the blocking creatures pass before trying to find a new path
-			if (waitRounds > 0) {
-				if (Debug.CREATURES_DEBUG_SERVER) {
-					debug.append(";waiting");
-				}
-				waitRounds--;
 			} else {
-				// Are we still patrolling?
-				if (isPathLoop() || aiState == AiState.PATROL) {
-					// yep, so clear the patrol path
-					clearPath();
-				}
-
-				setMovement(target, 0, 0, 20.0);
-				moveto(getSpeed());
 				if (Debug.CREATURES_DEBUG_SERVER) {
-					debug.append(";newpath");
+					debug.append(';').append(getPath());
 				}
-
-				if (getPath() == null || getPath().size() == 0) {
-					// If creature is blocked, choose a new target
-					// TODO: if we are an archer and in range, this is ok
-					//       don't get to near to the enemy. 
-					if (Debug.CREATURES_DEBUG_SERVER) {
-						debug.append(";blocked");
-					}
-					logger.debug("Blocked. Choosing a new target.");
-					
-					target = null;
-					clearPath();
-					stopAttack();
-					stop();
-					waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
-				} else {
-					if (Debug.CREATURES_DEBUG_SERVER) {
-						debug.append(';').append(getPath());
-					}
-				}
-			}
-
-			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append(";dummy|");
 			}
 		}
 
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			debug.append(";dummy|");
+		}
+	}
+
+	private void logicDoMove(){
 		if (!stopped()) {
 			StendhalRPAction.move(this);
 		}
 
+	}
+
+	private void logicDoAttack() {
 		if (StendhalRPRuleProcessor.get().getTurn() % 5 == attackTurn && isAttacking()) {
 			StendhalRPAction.attack(this, getAttackTarget());
 			tryToPoison();
 		}
+	}
 
+	private void logicDoNoice() {
 		// with a probability of 1 %, a random noise is made.
 		if (Rand.roll1D100() == 1 && noises.size() > 0) {
 			// Random sound noises.
 			int pos = Rand.rand(noises.size());
 			say(noises.get(pos));
 		}
+	}
+	
+	@Override
+	public void logic() {
+		StendhalRPWorld world = StendhalRPWorld.get();
+		// Log4J.startMethod(logger, "logic");
+
+		logicHeal();
+		if (!logicSleep()) {
+			return;
+		}
+
+		// are we attacked and we don't attack ourself?
+		if (isAttacked() && target == null) {
+			logicWeAreNotAttackingButGotAttacked();
+		} else if (target == null
+				|| (!target.get("zoneid").equals(get("zoneid")) && world
+						.has(target.getID())) || !world.has(target.getID())) {
+			// no target or current target left the zone (or is dead)
+			logicForgetCurrentTarget();
+			logicFindNewTarget();
+		}
+
+		// now we check our current target
+		if (target == null) {
+			// No target, so patrol along
+			if (aiState != AiState.PATROL || !hasPath()) {
+				logicCreatePatrolPath();
+			}
+			logicFollowPatrolPath();
+		} else if (squaredDistance(target) > 18 * 18) {
+			logicStopAttackBecauseTargetOutOfReach();
+		} else if (!nextTo(target, 0.25) && !target.stopped()) {
+			logicCreateNewPathToMovingTarget();
+		} else if (nextTo(target, 0.25)) {
+			logicAttack();
+		} else {
+			logicMoveToTargetAndAttack();
+		}
+
+		logicDoMove();
+		logicDoAttack();
+		logicDoNoice();
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			put("debug", debug.toString());
