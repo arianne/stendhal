@@ -729,6 +729,8 @@ public class Creature extends NPC {
 
 				if (getPath() == null || getPath().size() == 0) {
 					// If creature is blocked, choose a new target
+					// TODO: if we are an archer and in range, this is ok
+					//       don't get to near to the enemy. 
 					if (Debug.CREATURES_DEBUG_SERVER) {
 						debug.append(";blocked");
 					}
