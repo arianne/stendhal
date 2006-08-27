@@ -94,13 +94,9 @@ public class Item extends PassiveEntity {
 		}
 	}
 
+
 	@Override
-	public int compare(Entity entity) {
-		if (entity instanceof RPEntity) {
-			return -1;
-		} else if (entity instanceof Item) {
-			return 0;
-		}
-		return 1;
+	public int getZIndex() {
+		return 7000;
 	}
 }

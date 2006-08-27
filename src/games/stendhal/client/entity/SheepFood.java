@@ -79,11 +79,9 @@ public class SheepFood extends AnimatedEntity {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
-	public int compare(Entity entity) {
-		if (entity instanceof Item) {
-			return -1;
-		}
 
-		return -1;
+	@Override
+	public int getZIndex() {
+		return 5000;
 	}
 }

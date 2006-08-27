@@ -87,7 +87,7 @@ public class GameObjects implements Iterable<Entity> {
 
 	private List<Text> textsToRemove;
 
-	private List<Entity> sortObjects;
+	private LinkedList<Entity> sortObjects;
 
 	private StaticGameLayers collisionMap;
 
@@ -147,12 +147,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	private void sort() {
-		Collections.sort(sortObjects, new Comparator<Entity>() {
-			public int compare(Entity o1, Entity o2) {
-				// return result(o1,o2);
-				return o1.compare(o2);
-			}
-		});
+		Collections.sort(sortObjects);
 	}
 
 	/** Add a new Entity to the game */
@@ -671,6 +666,7 @@ public class GameObjects implements Iterable<Entity> {
 		for (Entity entity : sortObjects) {
 			entity.draw(screen);
 		}
+		//System.err.println(temp);
 	}
 
 	public void drawText(GameScreen screen) {

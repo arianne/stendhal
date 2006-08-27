@@ -117,11 +117,9 @@ public class Corpse extends PassiveEntity {
 		return contentWindow != null && !contentWindow.isClosed();
 	}
 
-	public int compare(Entity entity) {
-		if (entity instanceof Blood) {
-			return 1;
-		}
 
-		return -1;
+	@Override
+	public int getZIndex() {
+		return 4000;
 	}
 }

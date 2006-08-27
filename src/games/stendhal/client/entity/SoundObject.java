@@ -79,12 +79,6 @@ public class SoundObject extends Entity {
 	public void onAction(StendhalClient client, String action, String... params) {
 	}
 
-	@Override
-	public int compare(Entity entity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	public void setLocation(Point2D position) {
 		x = position.getX();
 		y = position.getY();
@@ -118,6 +112,11 @@ public class SoundObject extends Entity {
 	 */
 	public void setVolume(int volume) {
 		this.volume = volume;
+	}
+
+	@Override
+	public int getZIndex() {
+		return 1000;
 	}
 
 }

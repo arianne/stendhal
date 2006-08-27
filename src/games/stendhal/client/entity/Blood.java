@@ -62,8 +62,9 @@ public class Blood extends AnimatedEntity {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
-	public int compare(Entity entity) {
-		return -1;
+	@Override
+	public int getZIndex() {
+		return 2000;
 	}
 
 }

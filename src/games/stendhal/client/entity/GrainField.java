@@ -98,7 +98,8 @@ public class GrainField extends AnimatedEntity {
 		}
 	}
 
-	public int compare(Entity entity) {
-		return -1;
+	@Override
+	public int getZIndex() {
+		return 3000;
 	}
 }

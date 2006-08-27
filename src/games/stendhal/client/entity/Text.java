@@ -128,7 +128,10 @@ public class Text extends Entity {
 		}
 	}
 
-	public int compare(Entity entity) {
-		return 1;
+
+	@Override
+	public int getZIndex() {
+		return 9000;
 	}
+
 }

@@ -136,11 +136,8 @@ public class Door extends AnimatedEntity {
 		}
 	}
 
-	public int compare(Entity entity) {
-		if (entity instanceof RPEntity) {
-			return -1;
-		}
-
-		return 1;
+	@Override
+	public int getZIndex() {
+		return 5000;
 	}
 }

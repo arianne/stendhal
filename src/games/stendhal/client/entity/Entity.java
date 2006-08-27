@@ -12,8 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.*;
-import games.stendhal.client.events.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.WorldObjects;
+import games.stendhal.client.stendhal;
+import games.stendhal.client.events.AttributeEvent;
+import games.stendhal.client.events.CollisionEvent;
+import games.stendhal.client.events.MovementEvent;
+import games.stendhal.client.events.ZoneChangeEvent;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Direction;
 
@@ -29,14 +38,14 @@ import javax.sound.sampled.DataLine;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
 public abstract class Entity implements MovementEvent, ZoneChangeEvent,
-		AttributeEvent, CollisionEvent {
+		AttributeEvent, CollisionEvent, Comparable<Entity> {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Entity.class);
 
@@ -415,5 +424,21 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		}
 	}
 
-	abstract public int compare(Entity entity);
+	/**
+	 * Note: this comparator imposes orderings that are inconsistent with equals.
+	 *
+	 * @param entity another entity to compare this one to
+	 * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
+	 */
+	public int compareTo(Entity entity) {
+		return this.getZIndex() - entity.getZIndex();
+	}
+
+	/**
+	 * returns the layer on which this entity should be drawn.
+	 * It is used by compare
+	 *
+	 * @return drawing index
+	 */
+	abstract public int getZIndex();
 }

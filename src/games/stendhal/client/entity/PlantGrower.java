@@ -26,8 +26,8 @@ public class PlantGrower extends Entity {
 	}
 
 	@Override
-	public int compare(Entity entity) {
-		return -1;
+	public int getZIndex() {
+		return 3000;
 	}
 
 }

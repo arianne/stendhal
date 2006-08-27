@@ -124,7 +124,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	
 	/** What does this do? */
 	private Resolution resolution;
-	
 	private int atkXp;
 	private int defXp;
 	private int atkItem = -1;
@@ -607,9 +606,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	}
 
 	@Override
-	public int compare(Entity entity) {
-		if (entity instanceof PassiveEntity || entity instanceof Blood) {
-			return 1;
+	public int compareTo(Entity entity) {
+		if (!(entity instanceof RPEntity)) {
+			return super.compareTo(entity);
 		}
 
 		double dx = getArea().getX() - entity.getArea().getX();
@@ -625,6 +624,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			// Same tile...
 			return 0;
 		}
+	}
+
+	@Override
+	public int getZIndex() {
+		return 8000;
 	}
 
 	/**
