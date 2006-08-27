@@ -425,18 +425,32 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	}
 
 	/**
-	 * Note: this comparator imposes orderings that are inconsistent with equals.
+	 * Checks if this entity should be drawn on top of the given entity,
+	 * if the given entity should be drawn on top, or if it doesn't matter.
+	 * 
+	 * In the first case, this method returns a positive integer. In the
+	 * second case, it returns a negative integer. In the third case, it
+	 * returns 0. 
+	 * 
+	 * Also, players can only interact with the topmost entity.
+	 * 
+	 * Note: this comparator imposes orderings that are inconsistent with
+	 * equals().
 	 *
 	 * @param entity another entity to compare this one to
-	 * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
+	 * @return a negative integer, zero, or a positive integer as this object
+	 *         is less than, equal to, or greater than the specified object.
 	 */
 	public int compareTo(Entity entity) {
 		return this.getZIndex() - entity.getZIndex();
 	}
 
 	/**
-	 * returns the layer on which this entity should be drawn.
-	 * It is used by compare
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower
+	 * Z index.
+	 * 
+	 * Also, players can only interact with the topmost entity.
 	 *
 	 * @return drawing index
 	 */
