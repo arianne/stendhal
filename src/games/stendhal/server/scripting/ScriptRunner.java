@@ -23,18 +23,18 @@ import org.apache.log4j.Logger;
  *
  * @author intensifly
  */
-public class StendhalGroovyRunner extends StendhalServerExtension {
+public class ScriptRunner extends StendhalServerExtension {
 	private Map<String, StendhalGroovyScript> scripts;
 
 	private final String scriptDir = "data/script/";
-	private static final Logger logger = Log4J.getLogger(StendhalGroovyRunner.class);
+	private static final Logger logger = Log4J.getLogger(ScriptRunner.class);
 
 	/**
 	 * Constructor for StendhalGroovyRunner 
 	 * @param rp     StendhalRPRuleProcessor
 	 * @param world  StendhalRPWorld
 	 */
-	public StendhalGroovyRunner() {
+	public ScriptRunner() {
         super();
         scripts = new HashMap<String, StendhalGroovyScript>();
         StendhalRPRuleProcessor.register("script", this);
