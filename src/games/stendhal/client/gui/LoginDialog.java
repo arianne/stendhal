@@ -44,7 +44,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import marauroa.client.ariannexpTimeoutException;
-import marauroa.client.io.Persistence;
+import marauroa.common.io.Persistence;
 
 /**
  * Summary description for LoginDialog

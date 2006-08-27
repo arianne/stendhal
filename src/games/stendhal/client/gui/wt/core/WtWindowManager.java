@@ -24,8 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import marauroa.client.io.Persistence;
 import marauroa.common.Log4J;
+import marauroa.common.io.Persistence;
 
 import org.apache.log4j.Logger;
 
