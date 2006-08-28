@@ -437,12 +437,22 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 * Note: this comparator imposes orderings that are inconsistent with
 	 * equals().
 	 *
-	 * @param entity another entity to compare this one to
+	 * @param other another entity to compare this one to
 	 * @return a negative integer, zero, or a positive integer as this object
 	 *         is less than, equal to, or greater than the specified object.
 	 */
-	public int compareTo(Entity entity) {
-		return this.getZIndex() - entity.getZIndex();
+	public int compareTo(Entity other) {
+		if (this.gety() < other.gety()) {
+			// this entity is standing behind the other entity
+			return -1;
+		} else if (this.gety() > other.gety()) {
+			// this entity is standing in front of the other entity
+			return 1;
+		} else {
+			// one of the two entities is standing on top of the other.
+			// find out which one.
+			return this.getZIndex() - other.getZIndex();
+		}
 	}
 
 	/**
