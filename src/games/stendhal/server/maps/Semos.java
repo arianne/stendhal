@@ -9,7 +9,6 @@ import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.PersonalChest;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -332,8 +331,6 @@ public class Semos implements IContent {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");
-
 				add(ConversationStates.ATTENDING,
 						"wood",
 						null,
@@ -348,40 +345,14 @@ public class Semos implements IContent {
 						"There is a dwarf mine in the mountains West of the Orril. You can find iron ore lying around there, but be careful!",
 						null);
 
-				add(ConversationStates.ATTENDING,
-						"cast",
-						null,
-						ConversationStates.ATTENDING,
-						null,
-						new SpeakerNPC.ChatAction() {
-							@Override
-							public void fire(Player player, String text,
-									SpeakerNPC engine) {
-								int numberOfWood = player.getNumberOfEquipped("wood");
-								int numberOfIronOre = player.getNumberOfEquipped("iron_ore");
-								// how much iron should the player get?
-								int numberOfIron = Math.min(numberOfWood, numberOfIronOre);
-								
-								if (numberOfIron == 0) {
-									engine.say("I can only cast iron if you bring me both #wood and #iron_ore.");
-								} else {
-									player.drop("wood", numberOfIron);
-									player.drop("iron_ore", numberOfIron);
-									StackableItem iron = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("iron");            
-									iron.setQuantity(numberOfIron);
-									player.equip(iron, true);
-									engine.say("Thank you, here you have "
-											+ numberOfIron + " bars of iron.");
-								}
-							}
-						});
-
 				addHelp("If you bring me #wood and #iron_ore, I can #cast iron for you. You can then sell it to the dwarves.");
 				addJob("I am the local blacksmith. I am proud to help Deniran's army by producing weapons.");
 				addGoodbye();
 				// Once Ados is ready, we can have an expert tool smith; then Xoderos
 				// won't sell tools anymore.
 				addSeller(new SellerBehaviour(ShopList.get().get("selltools")));
+				
+				// all further behaviour is defined in CastIron.java.
 			}
 		};
 		npcs.add(xoderos);
