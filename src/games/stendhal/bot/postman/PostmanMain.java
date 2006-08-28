@@ -44,6 +44,17 @@ public class PostmanMain extends Thread {
 	protected marauroa.client.ariannexp clientManager;
 	protected PerceptionHandler handler;
 
+	/**
+	 * Creates a PostmanMain
+	 *
+	 * @param h host
+	 * @param u username
+	 * @param p password
+	 * @param c character name
+	 * @param P port
+	 * @param t TCP?
+	 * @throws SocketException on an network error
+	 */
 	public PostmanMain(String h, String u, String p, String c, String P, boolean t)
 			throws SocketException {
 		host = h;
