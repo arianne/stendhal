@@ -36,10 +36,6 @@ public class Postman implements Runnable {
     public Postman(ariannexp clientManager, PostmanIRC postmanIRC) {
         this.clientManager = clientManager;
         this.postmanIRC = postmanIRC;
-        Thread t = new Thread(this, "Postman");
-        t.setPriority(Thread.MIN_PRIORITY);
-        t.setDaemon(true);
-        t.start();
         
         //shout("Please restart your client every hour or so to save your progress. We have some trouble with server crashes.");
         
@@ -48,6 +44,16 @@ public class Postman implements Runnable {
         } catch (Exception e) {
             logger.error(e, e);
         }
+    }
+
+    /**
+     * Starts the /who thread
+     */
+    public void startThread() {
+        Thread t = new Thread(this, "Postman");
+        t.setPriority(Thread.MIN_PRIORITY);
+        t.setDaemon(true);
+        t.start();
     }
 
     /**
