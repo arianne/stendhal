@@ -85,7 +85,7 @@ public class Semos implements IContent {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("introduce_players")) {
-							engine.say("Ssshh! Come here " + player.getName()
+							engine.say("Ssshh! Come here, " + player.getName()
 									+ "! I have a #task for you.");
 						} else {
 							engine.say("Hi again "
@@ -200,8 +200,8 @@ public class Semos implements IContent {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi there, young hero.");
-				addJob("I'm just a regular housewife");
-				addHelp("I think I can't help you with anything.");
+				addJob("I'm just a regular housewife.");
+				addHelp("I don't think I can help you with anything.");
 				addGoodbye();
 			}
 		};
@@ -551,7 +551,7 @@ public class Semos implements IContent {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
-				addHelp("Ask me to #heal you and I will help you or ask me #offer and I will show my shop's stuff.");
+				addHelp("Ask me to #heal you and I will help you or ask me for an #offer and I will show my shop's stuff.");
 				addSeller(new SellerBehaviour(shops.get("healing")));
 				addHealer(0);
 				addGoodbye();
@@ -599,21 +599,19 @@ public class Semos implements IContent {
 							// NPC_name quest doesn't exist anywhere else neither is
 							// used for any other purpose
 							if (!player.isQuestCompleted("Io")) {
-								engine
-										.say("I waited you, "
-												+ player.getName()
-												+ ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
+								engine.say("I awaited you, "
+										   + player.getName()
+										   + ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
 								player.setQuest("Io", "done");
 							} else {
-								engine
-										.say("Hi again, "
-												+ player.getName()
-												+ ". How can I #help you this time? Not that I don't already know...");
+								engine.say("Hi again, "
+										   + player.getName()
+										   + ". How can I #help you this time? Not that I don't already know...");
 							}
 						}
 				});
 				addHelp("I'm a telepath and telekinetic. I can help you by sharing my mental skills with you... Do you want me to show you the six basic elements of telepathy? I already know the answer but I'm being polite...");
-				addJob("I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion");
+				addJob("I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion...");
 				add(ConversationStates.ATTENDING,
 					QUEST_MESSAGES,
 					null,
@@ -678,7 +676,7 @@ public class Semos implements IContent {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I am the bar maid for this fair tavern. We sell fine beers and food.");
-				addHelp("At the tavern you can get an #offer of drinks and take a break to meet new people!");
+				addHelp("At this tavern you can get an #offer of drinks and take a break to meet new people!");
 				addSeller(new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye();
 			}
@@ -703,8 +701,8 @@ public class Semos implements IContent {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("Shhh! I sell adventurers stuff.");
-				addHelp("I buy and sell several items, ask me for my offer");
+				addJob("Shhh! I sell stuff to adventurers.");
+				addHelp("I buy and sell several items, ask me for my #offer!");
 				addSeller(new SellerBehaviour(shops.get("sellstuff")), false);
 				addBuyer(new BuyerBehaviour(shops.get("buystuff")), false);
 				add(ConversationStates.ATTENDING,
@@ -751,7 +749,7 @@ public class Semos implements IContent {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I sell bows and arrows stuff.");
+				addJob("I sell bows and arrows.");
 				addHelp("I sell several items, ask me for my #offer");
 				addSeller(new SellerBehaviour(shops.get("sellrangedstuff")));
 				addGoodbye();
@@ -838,7 +836,7 @@ public class Semos implements IContent {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I play all day.");
-				addHelp("Be careful there are some wolves in the east of here");
+				addHelp("Be careful, there are some wolves east of here!");
 				addGoodbye();
 			}
 		};
