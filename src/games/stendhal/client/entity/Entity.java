@@ -442,17 +442,18 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 *         is less than, equal to, or greater than the specified object.
 	 */
 	public int compareTo(Entity other) {
-		if (this.gety() < other.gety()) {
-			// this entity is standing behind the other entity
-			return -1;
-		} else if (this.gety() > other.gety()) {
-			// this entity is standing in front of the other entity
-			return 1;
-		} else {
+		// commented out until someone fixes bug [ 1401435 ] Stendhal: Fix positions system
+//		if (this.gety() < other.gety()) {
+//			// this entity is standing behind the other entity
+//			return -1;
+//		} else if (this.gety() > other.gety()) {
+//			// this entity is standing in front of the other entity
+//			return 1;
+//		} else {
 			// one of the two entities is standing on top of the other.
 			// find out which one.
 			return this.getZIndex() - other.getZIndex();
-		}
+//		}
 	}
 
 	/**
