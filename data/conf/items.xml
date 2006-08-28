@@ -1394,7 +1394,7 @@ Makes players more offensive
 			<amount value="6"/>
 			<regen value="1"/>
 			<frequency value="5"/>
-<!--			<attribute name="alcoholic" value="5"/> -->
+<!--			<alcoholic value="5"/> -->
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -1410,7 +1410,7 @@ Makes players more offensive
 			<amount value="10"/>
 			<regen value="2"/>
 			<frequency value="5"/>
-<!--			<attribute name="alcoholic" value="10"/> -->
+<!--			<alcoholic value="10"/> -->
 		</attributes>
 		<weight value="1"/>
 		<equipable>
