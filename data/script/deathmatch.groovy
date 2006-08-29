@@ -64,14 +64,15 @@ class DeathmatchAction extends ScriptAction {
       if(questLast != null && (new Date()).getTime() - new Long( questLast) > bailDelay ) {
         questState = "cancel";
         player.setQuest("deathmatch", questState);
-        Item helm  = player.getEquipped("trophy_helmet");
-        if(helm != null) {
+        // We assume that the player only carries one trophy helmet.
+        Item helmet  = player.getFirstEquipped("trophy_helmet");
+        if(helmet != null) {
           int defense = 1;
-          if(helm.has("def")) {
-            defense = new Integer(helm.get("def"));
+          if(helmet.has("def")) {
+            defense = new Integer(helmet.get("def"));
           }
           defense--;
-          helm.put("def",""+defense)
+          helmet.put("def",""+defense)
         }
         else {
           int xp = player.getLevel() * 80;
@@ -201,9 +202,10 @@ class DoneAction extends SpeakerNPC.ChatAction {
     String questLast  = tokens[2];
     if("victory".equals(questState)) {
       boolean isNew = false;
-      Item helm  = player.getEquipped("trophy_helmet");
-      if(helm == null) {
-        helm = game.getItem("trophy_helmet");
+        // We assume that the player only carries one trophy helmet.
+      Item helmet  = player.getFirstEquipped("trophy_helmet");
+      if(helmet == null) {
+        helmet = game.getItem("trophy_helmet");
         engine.say("Congratulations! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
         isNew = true;
       }
@@ -211,24 +213,24 @@ class DoneAction extends SpeakerNPC.ChatAction {
         engine.say("Congratulations! And your helmet has been magically strengthened. Now, tell me if you want to #leave.")
       }
       int defense = 1;
-      if(helm.has("def")) {
-        defense = new Integer(helm.get("def"));
+      if(helmet.has("def")) {
+        defense = new Integer(helmet.get("def"));
       }
       defense++;
       int maxdefense = 5 + (player.getLevel() / 5).intValue();
       if(defense > maxdefense) {
           engine.say("Congratulations! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is " + maxdefense)
-          helm.put("def",""+maxdefense)          
+          helmet.put("def",""+maxdefense)          
           
       }
       else {
-          helm.put("def",""+defense)          
+          helmet.put("def",""+defense)          
       }
-      helm.put("infostring",player.getName())
-      helm.put("persistent",1)
-      helm.setDescription("This is " + player.getName() +  "'s grand prize for Deathmatch winners. Wear it with pride.")
+      helmet.put("infostring",player.getName())
+      helmet.put("persistent",1)
+      helmet.setDescription("This is " + player.getName() +  "'s grand prize for Deathmatch winners. Wear it with pride.")
       if(isNew) {
-        player.equip(helm, true);
+        player.equip(helmet, true);
       }
       player.setQuest("deathmatch", "done");
     }
@@ -274,8 +276,9 @@ class BailAction extends SpeakerNPC.ChatAction {
       return;
     }
     player.setQuest("deathmatch", "bail;"+ questLevel + ";" + (new Date()).getTime());
-    Item helm  = player.getEquipped("trophy_helmet");
-    if(helm != null) {
+    // We assume that the player only carries one trophy helmet.
+    Item helmet  = player.getFirstEquipped("trophy_helmet");
+    if(helmet != null) {
       engine.say("Coward! I'm sorry to inform you, for this your helmet has been magically weakened.")
     }
     else {
@@ -296,13 +299,13 @@ if(!game.setZone(myZone))   // if zone doesn't exist
 if(game.setZone(myZone))    // if zone exists
   {   
   // show the player the potential trophy
-  Item helm = game.getItem("trophy_helmet");
-  helm.put("def","20")
-  helm.setDescription("This is the grand prize for Deathmatch winners.")
-  helm.setx(17)
-  helm.sety(4)
-  helm.put("persistent",1)
-  game.add(helm);
+  Item helmet = game.getItem("trophy_helmet");
+  helmet.put("def","20")
+  helmet.setDescription("This is the grand prize for Deathmatch winners.")
+  helmet.setx(17)
+  helmet.sety(4)
+  helmet.put("persistent",1)
+  game.add(helmet);
   
   // We create an NPC
   npc=new ScriptingNPC("Deathmatch Assistant")
