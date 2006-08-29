@@ -38,10 +38,8 @@ class MargaretCouponAction extends SpeakerNPC.ChatAction {
       this.game = game;
     }
     public void fire(Player player, String text, SpeakerNPC engine) {
-        Item coupon = player.getEquipped("coupon");
-        if (coupon != null) {
+        if (player.drop("coupon")) {
             Item beer = game.getItem("beer");
-            player.drop(coupon);
             player.equip(beer, true);
             engine.say("Here is your free beer.");
             player.setQuest("MariaCoupon", "done");
@@ -82,7 +80,7 @@ class MargaretCouponAction extends SpeakerNPC.ChatAction {
     npc.behave("tavern", "I have a #coupon for a free beer in Semos' tavern. It is on the left side of the temple.");
 	npc.behave("help", "You can get an #offer of drinks and take a break to meet new people!");
 	npc.behave("sell", ShopList.get().get("food&drinks"));
-//    npc.add(1, "coupon", null, 1, null, new MariaCouponAction(game));
+    // npc.add(1, "coupon", null, 1, null, new MariaCouponAction(game));
 
     // Modify Margaret
-   // game.getNPC("Margaret");
+    // game.getNPC("Margaret");
