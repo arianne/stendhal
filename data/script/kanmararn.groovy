@@ -86,7 +86,7 @@ class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
     Item legs  = player.getEquipped("leather_legs");
     Item note  = player.getEquipped("note");
     Item armor = player.getEquipped("scale_armor");
-    if((legs!=null && leg.has("infostring") && "tom".equalsIgnoreCase(legs.get("infostring"))) &&
+    if((legs!=null && legs.has("infostring") && "tom".equalsIgnoreCase(legs.get("infostring"))) &&
         (note!=null && note.has("infostring") && "charles".equalsIgnoreCase(note.get("infostring"))) &&
         (armor!=null && armor.has("infostring") && "peter".equalsIgnoreCase(armor.get("infostring")))) {
       engine.say("Oh my! Peter, Tom and Charles are all dead? *cries*. Anyways, here is your reward. And keep the IOU.");
