@@ -27,11 +27,16 @@ public class ProducerBehaviour {
 	 *   <li>unset: if the player has never asked the NPC to produce
 	 *       anything.</li>  
 	 *   <li>done: if the player's last order has been processed.</li>  
-	 *   <li>number;time: if the player has given an order and has not
+	 *   <li>number;product;time: if the player has given an order and has not
 	 *       yet retrieved the product. number is the amount of products
-	 *       that the player will get, and time is the time when the order
+	 *       that the player will get, product is the name of the ordered
+	 *       product, and time is the time when the order
 	 *       was given, in milliseconds since the epoch.</li>
 	 * </ul>
+	 * 
+	 * Note: The product name is stored although each ProductBehaviour only
+	 * allows one type of product at the moment. We store it to make the
+	 * system extensible.
 	 */
 	private String questSlot;
 	
@@ -108,8 +113,8 @@ public class ProducerBehaviour {
 		return productName;
 	}
 	
-	protected int getProductionTimePerItem() {
-		return productionTimePerItem;
+	protected int getProductionTime(int amount) {
+		return productionTimePerItem * amount;
 	}
 	
 	/**
@@ -128,6 +133,11 @@ public class ProducerBehaviour {
 	}
 	
 	/**
+	 * Tries to take all the resources required to produce <i>maxAmount</i>
+	 * units of the product from the player. If that is not possible, takes
+	 * resources for as much products as possible.
+	 * 
+	 * If at least one product can be produced, initiates an order.
 	 * 
 	 * @param player
 	 * @param npc
@@ -155,7 +165,7 @@ public class ProducerBehaviour {
 				droppedResources.add(amountToDrop + " " + entry.getKey());
 			}
 			long timeNow = new Date().getTime();
-			player.setQuest(questSlot, numberOfProductItems + ";" + timeNow);
+			player.setQuest(questSlot, numberOfProductItems + ";" + getProductName() + ";" + timeNow);
 			npc.say("OK, I will "
 					+ getProductionActivity()
 					+ " "
@@ -180,10 +190,11 @@ public class ProducerBehaviour {
 		String orderString = player.getQuest(questSlot);
 		String[] order = orderString.split(";");
 		int numberOfProductItems = Integer.parseInt(order[0]);
-		long orderTime = Long.parseLong(order[1]);
+		// String productName = order[1];
+		long orderTime = Long.parseLong(order[2]);
 		long timeNow = new Date().getTime();
-		if (timeNow - orderTime < numberOfProductItems
-				* getProductionTimePerItem() * 1000) {
+		if (timeNow - orderTime < getProductionTime(numberOfProductItems)
+								  * 1000) {
 			npc.say("Welcome back! I'm still busy with your order to "
 					+ getProductionActivity()
 					+ " "
