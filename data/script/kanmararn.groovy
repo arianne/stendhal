@@ -83,27 +83,49 @@ class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {
-    Item legs  = player.getEquipped("leather_legs");
-    Item note  = player.getEquipped("note");
-    Item armor = player.getEquipped("scale_armor");
-    if((legs!=null && legs.has("infostring") && "tom".equalsIgnoreCase(legs.get("infostring"))) &&
-        (note!=null && note.has("infostring") && "charles".equalsIgnoreCase(note.get("infostring"))) &&
-        (armor!=null && armor.has("infostring") && "peter".equalsIgnoreCase(armor.get("infostring")))) {
+
+    List allLeatherLegs = player.getAllEquipped("leather_legs");
+    Item questLeatherLegs = null;
+    for (leatherLegs in allLeatherLegs) {
+      if (leatherLegs.has("infostring") && "tom".equalsIgnoreCase(leatherLegs.get("infostring"))) {
+        questLeatherLegs = leatherLegs;
+        break;
+      }
+    }
+
+    List allNotes  = player.getAllEquipped("note");
+    Item questNote = null;
+    for (note in allNotes) {
+      if (note.has("infostring") && "charles".equalsIgnoreCase(note.get("infostring"))) {
+        questNote = note;
+        break;
+      }
+    }
+    
+    List allScaleArmors = player.getAllEquipped("scale_armor");
+    Item questScaleArmor = null;
+    for (scaleArmor in allScaleArmors) {
+      if (scaleArmor.has("infostring") && "peter".equalsIgnoreCase(scaleArmor.get("infostring"))) {
+        questScaleArmor = scaleArmor;
+        break;
+      }
+    }
+
+    if(questLeatherLegs != null && questNote != null && questScaleArmor != null) {
       engine.say("Oh my! Peter, Tom and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.");
       player.addXP(2500);
-      Item item = game.getItem("map");
-      item.put("infostring",engine.get("name"));
-      item.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
-      player.drop("leather_legs");
-      player.drop("scale_armor");
+      player.drop(questLeatherLegs);
+      player.drop(questScaleArmor);
+      Item map = game.getItem("map");
+      map.put("infostring",engine.get("name"));
+      map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
       RPSlot slot=player.getSlot("bag");
-      slot.add(item);
+      slot.add(map);
       player.setQuest("soldier_henry","map");
       engine.setCurrentState(1);
-      } else
-      {
+    } else {
       engine.say("You didn't prove that you have found them all!");
-      }
+    }
   }
 }
 
@@ -125,11 +147,19 @@ class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {
-    Item map  = player.getEquipped("map");
-    if((map!=null && map.has("infostring") && "henry".equalsIgnoreCase(map.get("infostring")))) {
+  
+    List allMaps  = player.getAllEquipped("map");
+    Item questMap = null;
+    for (map in allMaps) {
+      if (map.has("infostring") && "henry".equalsIgnoreCase(map.get("infostring"))) {
+        questMap = map;
+        break;
+      }
+    }
+    if(questMap != null) {
       engine.say("The map! Wonderful! Thank you. And here is your reward.");
       player.addXP(5000);
-      player.drop("map");
+      player.drop(questMap);
       Item item = game.getItem("steel_boots");
       item.put("infostring",engine.get("name"));
       RPSlot slot=player.getSlot("bag");
