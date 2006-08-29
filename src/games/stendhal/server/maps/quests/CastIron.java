@@ -1,16 +1,12 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * QUEST: Cast Iron. This is not really a quest, but a service offered
@@ -34,17 +30,7 @@ import java.util.Set;
  */
 public class CastIron extends AbstractQuest {
 	
-	/**
-	 * This slot can have three states:
-	 * <ul>
-	 *   <li>unset: if the player has never asked Xoderos to cast iron.</li>  
-	 *   <li>done: if the player's last order has been processed.</li>  
-	 *   <li>number;time: if the player has given an order and has not
-	 *       yet retrieved the iron. number is
-	 *       the number of iron that the player will get, and time is the
-	 *       time when the order was given.</li>
-	 * </ul>
-	 */
+
 	private static final String QUEST_SLOT = "cast_iron";
 
 	/**
@@ -57,90 +43,19 @@ public class CastIron extends AbstractQuest {
 		super.init(name, QUEST_SLOT);
 	}
 	
-	protected Map<String, Integer> getRequiredResources() {
-		Map<String, Integer> result = new HashMap<String, Integer>();
-		result.put("wood", new Integer(1));
-		result.put("iron_ore", new Integer(1));
-		return result;
-	}
-	
-	protected String getProductionActivity() {
-		return "cast";
-	}
-	
-	protected String getProductName() {
-		return "iron";
-	}
-	
-	protected int getProductionTimePerItem() {
-		return SECONDS_PER_IRON;
-	}
-	
-	private String getRequiredResourceNamesWithHashes() {
-		Set<String> requiredResources = getRequiredResources().keySet();
-		Set<String> requiredResourcesWithHashes = new HashSet<String>();
-		for (String resource: requiredResources) {
-			requiredResourcesWithHashes.add("#" + resource);	
-		}
-		return SpeakerNPC.enumerateCollection(requiredResourcesWithHashes);
-	}
-	
-	protected void giveResources(Player player, SpeakerNPC npc) {
-		int numberOfProductItems = Integer.MAX_VALUE;
-		for (Map.Entry<String, Integer> entry: getRequiredResources().entrySet()) {
-			int limitationByThisResource = player.getNumberOfEquipped(entry.getKey()) / entry.getValue();
-			numberOfProductItems = Math.min(numberOfProductItems, limitationByThisResource);
-		}
-		if (numberOfProductItems == 0) {
-			npc.say("I can only "
-					+ getProductionActivity()
-					+ " "
-					+ getProductName()
-					+ " if you bring me "
-					+ getRequiredResourceNamesWithHashes()
-					+ ".");
-		} else {
-			for (Map.Entry<String, Integer> entry: getRequiredResources().entrySet()) {
-				player.drop(entry.getKey(), numberOfProductItems * entry.getValue());
-			}
-			long timeNow = new Date().getTime();
-			player.setQuest(QUEST_SLOT, numberOfProductItems + ";" + timeNow);
-			npc.say("OK, but that will take some time. Come back later.");
-		}
-	}
-	
-	protected void takeProduct(Player player, SpeakerNPC npc) {
-		String orderString = player.getQuest(QUEST_SLOT);
-		String[] order = orderString.split(";");
-		int numberOfProductItems = Integer.parseInt(order[0]);
-		long orderTime = Long.parseLong(order[1]);
-		long timeNow = new Date().getTime();
-		if (timeNow - orderTime < numberOfProductItems
-				* getProductionTimePerItem() * 1000) {
-			npc.say("Welcome back! I'm still busy with your order to "
-					+ getProductionActivity()
-					+ " "
-					+ getProductName()
-					+ " for you. Come back later to get it.");
-		} else {
-			StackableItem products = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(getProductName());            
-			products.setQuantity(numberOfProductItems);
-			player.equip(products, true);
-			npc.say("Welcome back! I'm done with your order. Here you have "
-					+ numberOfProductItems
-					+ " bars of "
-					+ getProductName()
-					+ ".");
-			player.setQuest(QUEST_SLOT, "done");
-		}
-	}
-
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 
 		SpeakerNPC xoderos = npcs.get("Xoderos");
-		
+
+		Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+		requiredResources.put("wood", new Integer(1));
+		requiredResources.put("iron_ore", new Integer(1));
+
+		final ProducerBehaviour behaviour = new ProducerBehaviour(
+				QUEST_SLOT, "cast", "bars", "iron", requiredResources, SECONDS_PER_IRON);
+
 		xoderos.add(ConversationStates.IDLE,
 					SpeakerNPC.GREETING_MESSAGES,
 					new SpeakerNPC.ChatCondition() {
@@ -169,7 +84,7 @@ public class CastIron extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						giveResources(player, npc);
+						behaviour.giveResources(player, npc);
 					}
 				});
 
@@ -201,7 +116,7 @@ public class CastIron extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						takeProduct(player, npc);
+						behaviour.takeProduct(player, npc);
 					}
 				});
 	}
