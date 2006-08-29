@@ -31,7 +31,7 @@ import java.util.HashMap;
 public class CastIron extends AbstractQuest {
 	
 
-	private static final String QUEST_SLOT = "cast_iron";
+	private static final String QUEST_SLOT = "xoderos_cast_iron";
 
 	/**
 	 * The time it takes Xoderos to cast one piece of iron.  
