@@ -82,4 +82,143 @@ State: EXPERIMENTAL to help me think about a quest system
 			<entry name="DONE">I gave the beer to Hayunn. He paid me 20 gold coins and 10 xp</entry>
 		</history>
 	</quest>
+	
+	<quest name="Campfire">
+		<title>Campfire</title>
+		<repeatable done="false" />
+		<description>
+			Sally wants to build a campfire, but she doesn't have any wood.
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Sally</entry>
+			<entry name="QUEST_REJECTED">I do not want to get the wood to start Sally's fire</entry>
+			<entry name="QUEST_ACCEPTED">I do want to help Sally</entry>
+			<entry name="FOUND_ITEM">I have found the 10 wood needed to start the fire</entry>
+			<entry name="DONE">I have given Sally the wood. She gave me some food in return. I also gained 50 xp</entry>
+		</history>
+	</quest>
+	
+	<quest name="BeerForHayunn">
+		<title>Beer for Hayunn</title>
+		<repeatable done="false" />
+		<description>
+			Hayunn, the great warrior outside the rat dungeon, wants a beer
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have talked to Hayunn</entry>
+			<entry name="QUEST_REJECTED">I do not want to make Hayunn drunk</entry>
+			<entry name="QUEST_ACCEPTED">I will give Hayunn one drink</entry>
+			<entry name="FOUND_ITEM">I have a beer</entry>
+			<entry name="DONE">I gave the beer to Hayunn. He paid me 20 gold coins and 10 xp</entry>
+		</history>
+	</quest>
+	
+	<quest name="CleanStorageSpace">
+		<title>Clean the Storage Space</title>
+		<repeatable done="false" />
+		<description>
+			Eonna has a underground storage space filled with rats and snakes. She wants me, a true hero, to clean it out
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Eonna at her house</entry>
+			<entry name="QUEST_REJECTED">I do not ...</entry>
+			<entry name="QUEST_ACCEPTED">I do ...</entry>
+			<entry name="FOUND_ITEM">...</entry>
+			<entry name="DONE">...</entry>
+		</history>
+	</quest>
+	
+	<quest name="HatForMonogenes">
+		<title>Hat for Monogenes</title>
+		<repeatable done="false" />
+		<description>
+			Monogenes wants a hat to help him keep warm during the winter
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Monogenes at the spring in Semos village</entry>
+			<entry name="GET_HAT">I have to find a hat</entry>
+			<entry name="GOT_HAT">I have found a hat</entry>
+			<entry name="DONE">I have given the hat to Monogenes, and he rewarded me 10 xp</entry>
+		</history>
+		<hints>
+			<entry name="WHERE_IS_THE_HAT">I have heard that Xin Blanca sells hats &amp; helmets</entry>
+		</hints>
+	</quest>
+	
+	<quest name="LookBookforCeryl">
+		<title>Look for a book for Ceryl</title>
+		<repeatable done="false" />
+		<description>
+			Ceryl wants a old book that was checked out
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Ceryl at the library, she's the libraian there</entry>
+			<entry name="QUEST_REJECTED">I do not want to find the book</entry>
+			<entry name="QUEST_ACCEPTED">I do want the find the black book</entry>
+			<entry name="FOUND_ITEM">I have talked to Jynath, and have the book</entry>
+			<entry name="LOST_ITEM">I do not have the black book Jynath has</entry>
+			<entry name="DONE">I have returned the book to Ceryl and got 50 gold and 100 xp</entry>
+		</history>
+	</quest>
+	
+	<quest name="PlinksToy">
+		<title>Plinks toy</title>
+		<repeatable done="false" />
+		<description>
+			Plink wants me to find his toy bear
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Plink</entry>
+			<entry name="QUEST_REJECTED">I do not want to find Plink's toy bear</entry>
+			<entry name="QUEST_ACCEPTED">I do want to help Plink find his bear</entry>
+			<entry name="FOUND_ITEM">I have found Plink's toy bear</entry>
+			<entry name="DONE">I gave Plink his bear.</entry>
+			
+			<entry name="FOUND_ITEM_WITHOUT_QUEST">Plink commented about the bear I have with me</entry>
+		</history>
+	</quest>
+	
+	<quest name="SevenCherubs">
+		<title>Seven Cherubs</title>
+		<repeatable done="false" />
+		<description>
+			I have to find the seven cherubs about the world
+		</description>
+		<history>
+			<entry name="QUEST_ACCEPTED">I have started finding the seven cherubs</entry>
+			<entry name="DONE">Done! I have found every one!</entry>
+		</history>
+	</quest>
+	
+	<quest name="ZooFood">
+		<title>Zoo Food</title>
+		<repeatable done="false" />
+		<description>
+			The animals at the zoo are hungry! I need some ham!
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met Katinka at the zoo</entry>
+			<entry name="QUEST_REJECTED">I do not have the time for smelly animals and their food issues</entry>
+			<entry name="QUEST_ACCEPTED">I don't want to see those poor animals die! I'll help get 10 ham!</entry>
+			<entry name="FOUND_ITEM">I have gotten the 10 ham required</entry>
+			<entry name="DONE">The animals are not hungry! Yay, me!</entry>
+		</history>
+	</quest>
+<!--
+A fill-in-the-blank template
+	<quest name=" ">
+		<title>  </title>
+		<repeatable done="false" />
+		<description>
+			...
+		</description>
+		<history>
+			<entry name="FIRST_CHAT">I have met ... at ...</entry>
+			<entry name="QUEST_REJECTED">I do not ...</entry>
+			<entry name="QUEST_ACCEPTED">I do ...</entry>
+			<entry name="FOUND_ITEM">...</entry>
+			<entry name="DONE">...</entry>
+		</history>
+	</quest>
+-->
 </quests>
