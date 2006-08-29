@@ -784,6 +784,32 @@ public abstract class RPEntity extends Entity {
 		return drop(name, 1);
 	}
 
+	/**
+	 * Removes the given item from the RPEntity. The item can
+	 * either be stackable or non-stackable. If the RPEntity doesn't
+	 * have the item, doesn't remove anything.
+	 * @param item the item that should be removed
+	 * @return true iff dropping the item was successful.
+	 */
+	public boolean drop(Item item) {
+		Iterator<RPSlot> slotsIterator = this.slotsIterator();
+		while (slotsIterator.hasNext()) {
+			RPSlot slot = slotsIterator.next();
+
+			Iterator<RPObject> objectsIterator = slot.iterator();
+			while (objectsIterator.hasNext()) {
+				RPObject object = objectsIterator.next();
+				if (object instanceof Item) {
+					if ((Item) object == item) {
+						slot.remove(object.getID());
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
 	public boolean isEquipped(String name, int amount) {
 		int found = 0;
 		for (RPSlot slot : this.slots()) {
@@ -845,7 +871,7 @@ public abstract class RPEntity extends Entity {
 	 * @return The item, or a stack of stackable items, or null if nothing
 	 *         was found
 	 */
-	public Item getEquipped(String name) {
+	public Item getFirstEquipped(String name) {
 		for (RPSlot slot : this.slots()) {
 			for (RPObject object : slot) {
 				if (object instanceof Item) {
@@ -858,6 +884,29 @@ public abstract class RPEntity extends Entity {
 		}
 
 		return null;
+	}
+	
+	/**
+	 * Gets an item that is carried by the RPEntity.
+	 * If the item is stackable, gets all that are on the first
+	 * stack that is found. 
+	 * @param name The item's name
+	 * @return The item, or a stack of stackable items, or null if nothing
+	 *         was found
+	 */
+	public List<Item> getAllEquipped(String name) {
+		List<Item> result = new LinkedList<Item>();
+		for (RPSlot slot : this.slots()) {
+			for (RPObject object : slot) {
+				if (object instanceof Item) {
+					Item item = (Item) object;
+					if (item.getName().equals(name)) {
+						result.add(item);
+					}
+				}
+			}
+		}
+		return result;
 	}
 	
 	public Item dropItemClass(String[] slots, String clazz) {

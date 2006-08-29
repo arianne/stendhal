@@ -31,19 +31,26 @@ rareArmorShop=["chain_armor_+1":32,"chain_armor_+2":42,"chain_armor_+3":52,"plat
      this.game = game;
    }
    public void fire(Player player, String text, SpeakerNPC engine) {
-     Item note  = player.getEquipped("note");
-     if((note!=null && "charles".equalsIgnoreCase(note.get("infostring")))) {
+     // from all notes that the player is carrying, try to find the IOU note
+     List notes = player.getAllEquipped("note");
+     Item iouNote = null;
+     for (note in notes) {
+       if (note.has("infostring") && "charles".equalsIgnoreCase(note.get("infostring"))) {
+         iouNote = note;
+         break;
+       }
+     }
+     if(iouNote != null) {
        engine.say("Where did you get that from? Anyways, here is the money *sighs*");
-       StackableItem money=game.getItem("money");            
-       player.drop("note");
+       player.drop(iouNote);
+       StackableItem money = game.getItem("money");
        money.setQuantity(250);
        player.equip(money);
        player.setQuest("IOU","done");
        engine.setCurrentState(1);
-       } else
-       {
+     } else {
        engine.say("I can't see that you got a valid IOU with my signature!");
-       }
+     }
    }
  }
                               
