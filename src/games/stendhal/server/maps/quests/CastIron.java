@@ -84,7 +84,13 @@ public class CastIron extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						behaviour.giveResources(player, npc);
+
+						String[] words = text.split(" ");
+						int amount = Integer.MAX_VALUE;
+						if (words.length > 1) {
+							amount = Integer.parseInt(words[1].trim());
+						}
+						behaviour.giveResources(player, npc, amount);
 					}
 				});
 
@@ -116,7 +122,7 @@ public class CastIron extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						behaviour.takeProduct(player, npc);
+						behaviour.fetchProduct(player, npc);
 					}
 				});
 	}
