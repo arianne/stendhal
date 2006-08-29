@@ -837,6 +837,29 @@ public abstract class RPEntity extends Entity {
 		return result;
 	}
 
+	/**
+	 * Gets an item that is carried by the RPEntity.
+	 * If the item is stackable, gets all that are on the first
+	 * stack that is found. 
+	 * @param name The item's name
+	 * @return The item, or a stack of stackable items, or null if nothing
+	 *         was found
+	 */
+	public Item getEquipped(String name) {
+		for (RPSlot slot : this.slots()) {
+			for (RPObject object : slot) {
+				if (object instanceof Item) {
+					Item item = (Item) object;
+					if (item.getName().equals(name)) {
+						return item;
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+	
 	public Item dropItemClass(String[] slots, String clazz) {
 		for (String slotName : slots) {
 			RPSlot slot = getSlot(slotName);
