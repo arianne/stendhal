@@ -86,7 +86,7 @@ public class CastIron extends AbstractQuest {
 							SpeakerNPC npc) {
 
 						String[] words = text.split(" ");
-						int amount = Integer.MAX_VALUE;
+						int amount = 1;
 						if (words.length > 1) {
 							amount = Integer.parseInt(words[1].trim());
 						}

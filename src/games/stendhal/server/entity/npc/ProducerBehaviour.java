@@ -62,7 +62,7 @@ public class ProducerBehaviour {
 	 * (e.g. "iron_ore") to the amount of this resource that is
 	 * required for one unit of the product.
 	 */
-	private Map<String, Integer> requiredResources;
+	private Map<String, Integer> requiredResourcesPerItem;
 	
 	/**
 	 * The number of seconds required to produce one unit of the product.
@@ -78,27 +78,27 @@ public class ProducerBehaviour {
 	 *                    "bags", "pieces", "pounds"
 	 * @param productName the name of the product, e.g. "plate_armor". It
 	 *                    must be a valid item name.
-	 * @param requiredResources a mapping which maps the name of each required
-	 *                          resource (e.g. "iron_ore") to the amount of
-	 *                          this resource that is required for one
-	 *                          unit of the product.
+	 * @param requiredResourcesPerItem a mapping which maps the name of each
+	 *                          required resource (e.g. "iron_ore") to the
+	 *                          amount of this resource that is required for
+	 *                          one unit of the product.
 	 * @param productionTimePerItem the number of seconds required to produce
 	 *                              one unit of the product.
 	 */
 	public ProducerBehaviour(String questSlot, String productionActivity,
 					String productUnit, String productName,
-					Map<String, Integer> requiredResources,
+					Map<String, Integer> requiredResourcesPerItem,
 					int productionTimePerItem) {
 		this.questSlot = questSlot;
 		this.productionActivity = productionActivity;
 		this.productUnit = productUnit;
 		this.productName = productName;
-		this.requiredResources = requiredResources;
+		this.requiredResourcesPerItem = requiredResourcesPerItem;
 		this.productionTimePerItem = productionTimePerItem;
 	}
 	
-	protected Map<String, Integer> getRequiredResources() {
-		return requiredResources;
+	protected Map<String, Integer> getRequiredResourcesPerItem() {
+		return requiredResourcesPerItem;
 	}
 	
 	protected String getProductionActivity() {
@@ -119,57 +119,58 @@ public class ProducerBehaviour {
 	
 	/**
 	 * Gets a nicely formulated string that describes the amounts and names
-	 * of the resources that are required to produce one unit of the product,
+	 * of the resources that are required to produce <i>amount</i> units of the product,
 	 * with hashes before the resource names in order to highlight them,
-	 * e.g. "4 #wood, 1 #iron, and 2 #leather". 
+	 * e.g. "4 #wood, 2 #iron, and 6 #leather". 
+	 * @param amount The amount of products that were requested
 	 * @return A string describing the required resources.
 	 */
-	private String getRequiredResourceNamesWithHashes() {
+	private String getRequiredResourceNamesWithHashes(int amount) {
 		Set<String> requiredResourcesWithHashes = new HashSet<String>();
-		for (Map.Entry<String, Integer> entry: getRequiredResources().entrySet()) {
-			requiredResourcesWithHashes.add(entry.getValue() + " #" + entry.getKey());	
+		for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
+			requiredResourcesWithHashes.add(amount * entry.getValue() + " #" + entry.getKey());	
 		}
 		return SpeakerNPC.enumerateCollection(requiredResourcesWithHashes);
 	}
 	
 	/**
-	 * Tries to take all the resources required to produce <i>maxAmount</i>
-	 * units of the product from the player. If that is not possible, takes
-	 * resources for as much products as possible.
-	 * 
-	 * If at least one product can be produced, initiates an order.
+	 * Tries to take all the resources required to produce <i>amount</i>
+	 * units of the product from the player. If this is possible, initiates
+	 * an order.
 	 * 
 	 * @param player
 	 * @param npc
-	 * @param maxAmount
+	 * @param amount
 	 */
-	public void giveResources(Player player, SpeakerNPC npc, int maxAmount) {
-		int numberOfProductItems = maxAmount;
-		for (Map.Entry<String, Integer> entry: getRequiredResources().entrySet()) {
+	public void giveResources(Player player, SpeakerNPC npc, int amount) {
+		int maxAmount = Integer.MAX_VALUE;
+		for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
 			int limitationByThisResource = player.getNumberOfEquipped(entry.getKey()) / entry.getValue();
-			numberOfProductItems = Math.min(numberOfProductItems, limitationByThisResource);
+			maxAmount = Math.min(maxAmount, limitationByThisResource);
 		}
-		if (numberOfProductItems == 0) {
+		if (maxAmount < amount) {
 			npc.say("I can only "
 					+ getProductionActivity()
 					+ " "
+					+ amount
+					+ " "
 					+ getProductName()
-					+ " if you bring me at least "
-					+ getRequiredResourceNamesWithHashes()
+					+ " if you bring me "
+					+ getRequiredResourceNamesWithHashes(amount)
 					+ ".");
 		} else {
 			Set<String> droppedResources = new HashSet<String>();
-			for (Map.Entry<String, Integer> entry: getRequiredResources().entrySet()) {
-				int amountToDrop = numberOfProductItems * entry.getValue();
+			for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
+				int amountToDrop = amount * entry.getValue();
 				player.drop(entry.getKey(), amountToDrop);
 				droppedResources.add(amountToDrop + " " + entry.getKey());
 			}
 			long timeNow = new Date().getTime();
-			player.setQuest(questSlot, numberOfProductItems + ";" + getProductName() + ";" + timeNow);
+			player.setQuest(questSlot, amount + ";" + getProductName() + ";" + timeNow);
 			npc.say("OK, I will "
 					+ getProductionActivity()
 					+ " "
-					+ numberOfProductItems
+					+ amount
 					+ " "
 					+ getProductName()
 					+ " from the "
