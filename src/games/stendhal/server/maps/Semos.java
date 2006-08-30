@@ -61,6 +61,8 @@ public class Semos implements IContent {
 				"int_semos_bank")));
 		buildSemosTownhallArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"int_semos_townhall")));
+		buildSemosBakeryArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		"int_semos_bakery")));
 	}
 
 	private void buildSemosTownhallArea(StendhalRPZone zone) {
@@ -493,6 +495,58 @@ public class Semos implements IContent {
 		zone.addNPC(npc);
 	}
 
+	private void buildSemosBakeryArea(StendhalRPZone zone) {
+		Portal portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setx(26);
+		portal.sety(14);
+		portal.setNumber(0);
+		portal.setDestination("0_semos_city", 6);
+		zone.addPortal(portal);
+
+		SpeakerNPC erna = new SpeakerNPC("Erna") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(26, 8));
+				nodes.add(new Path.Node(26, 5));
+				nodes.add(new Path.Node(28, 5));
+				nodes.add(new Path.Node(28, 1));
+				nodes.add(new Path.Node(28, 4));
+				nodes.add(new Path.Node(22, 4));
+				nodes.add(new Path.Node(22, 3));
+				nodes.add(new Path.Node(22, 6));
+				nodes.add(new Path.Node(26, 6));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createDialog() {
+				addJob("I'm the shop assistant at this bakery.");
+				addReply("flour", "We usually get our flour from a mill northeast of here. If you bring us some, we can make bread for you.");
+				addHelp("Bread is very healthy.");
+				addGoodbye();
+
+				// Erna bakes bread if you bring her flour.
+				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+				requiredResources.put("flour", new Integer(1));
+
+				ProducerBehaviour behaviour = new ProducerBehaviour(
+						"erna_bake_bread", "bake", "loafs", "bread", requiredResources, 10 * 60);
+
+				addProducer(behaviour,
+						"Welcome to the Semos bakery. We #bake fine bread for everyone who brings us #flour.");
+			}
+		};
+		npcs.add(erna);
+		zone.assignRPObjectID(erna);
+		erna.put("class", "housewifenpc");
+		erna.setDirection(Direction.DOWN);
+		erna.set(26, 8);
+		erna.initHP(100);
+		zone.addNPC(erna);
+	}
+
 	private void buildSemosTempleArea(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
@@ -876,6 +930,7 @@ public class Semos implements IContent {
 		portal.setNumber(0);
 		portal.setDestination("int_semos_tavern_0", 0);
 		zone.addPortal(portal);
+		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setx(53);
@@ -883,6 +938,7 @@ public class Semos implements IContent {
 		portal.setNumber(1);
 		portal.setDestination("int_semos_temple", 2);
 		zone.addPortal(portal);
+		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setx(15);
@@ -890,6 +946,7 @@ public class Semos implements IContent {
 		portal.setNumber(2);
 		portal.setDestination("int_semos_blacksmith", 0);
 		zone.addPortal(portal);
+		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setx(6);
@@ -897,6 +954,7 @@ public class Semos implements IContent {
 		portal.setNumber(3);
 		portal.setDestination("int_semos_library", 0);
 		zone.addPortal(portal);
+		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setx(11);
@@ -904,6 +962,7 @@ public class Semos implements IContent {
 		portal.setNumber(4);
 		portal.setDestination("int_semos_library", 1);
 		zone.addPortal(portal);
+		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setx(52);
@@ -911,6 +970,7 @@ public class Semos implements IContent {
 		portal.setNumber(5);
 		portal.setDestination("int_semos_storage_0", 0);
 		zone.addPortal(portal);
+		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setx(18);
@@ -918,6 +978,7 @@ public class Semos implements IContent {
 		portal.setNumber(6);
 		portal.setDestination("int_semos_bank", 0);
 		zone.addPortal(portal);
+		
 		for (int i = 0; i < 3; i++) {
 			portal = new Portal();
 			zone.assignRPObjectID(portal);
@@ -927,30 +988,43 @@ public class Semos implements IContent {
 			portal.setDestination("int_semos_townhall", 2);
 			zone.addPortal(portal);
 		}
+		
+		portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setx(44);
+		portal.sety(19);
+		portal.setNumber(10);
+		portal.setDestination("int_semos_bakery", 0);
+		zone.addPortal(portal);
+
 		portal = new OneWayPortalDestination();
 		zone.assignRPObjectID(portal);
 		portal.setx(12);
 		portal.sety(49);
 		portal.setNumber(60);
 		zone.addPortal(portal);
+		
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(4);
 		sign.sety(41);
 		sign.setText("You are about to leave this area to move to the village.\nYou can buy a new sheep there.");
 		zone.add(sign);
+		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(26);
 		sign.sety(40);
 		sign.setText("You are about to enter the Dungeons.\nBut Beware! This area is infested with rats and legend has \nit that many Adventurers have died down there...");
 		zone.add(sign);
+		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setx(44);
 		sign.sety(62);
 		sign.setText("You are about to leave this area and move to the plains.\nYou may fatten up your sheep there on the wild berries.\nBe careful though, wolves roam these plains.");
 		zone.add(sign);
+		
 		Chest chest = new Chest();
 		zone.assignRPObjectID(chest);
 		chest.setx(44);
@@ -964,6 +1038,7 @@ public class Semos implements IContent {
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("money"));
 		zone.add(chest);
+		
 		SpeakerNPC npc = new SpeakerNPC("Nomyr Ahba") {
 			@Override
 			protected void createPath() {
