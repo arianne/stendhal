@@ -18,7 +18,6 @@ import games.stendhal.common.Level;
 //  boolean game.setZone(String name) 
 //  game.add(NPC npc) 
 //  game.add(RPObject object)
-//  game.add(ScriptCondition condition, ScriptAction action)
 //  game.getItem(String name)
 //  game.getCreatures()
 //  game.getItems()

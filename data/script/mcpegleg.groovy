@@ -15,7 +15,6 @@ import games.stendhal.server.pathfinder.Path
 //  boolean game.setZone(String name) 
 //  game.add(NPC npc) 
 //  game.add(RPObject object)
-//  game.add(ScriptCondition condition, ScriptAction action)
 //  game.getItem(String name)
 // logger is a predefined variable of the current StendhalGroovyScript 
 logger.debug("Starting McPegleg Groovy Script") 
