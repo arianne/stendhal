@@ -843,7 +843,8 @@ public class Semos implements IContent {
 			@Override
 			protected void createDialog() {
 				addJob("I'm the local miller. People bring me grain so that I can make flour.");
-				addHelp("If you have a scythe, you can harvest grain at the nearby farm.");
+				addReply("grain", "If you have a scythe, you can harvest grain at the nearby farm.");
+				addHelp("Do you know the bakery in Semos? I am proud that they use the flour that I produce.");
 				addGoodbye();
 
 				// Jenny mills flour if you bring her grain.
