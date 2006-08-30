@@ -21,7 +21,6 @@ package games.stendhal.client.gui;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.common.Debug;
 
 import java.awt.Graphics;
 import java.awt.Image;

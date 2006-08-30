@@ -161,8 +161,6 @@ public class KTextEdit extends JPanel {
 	 *            the desired color
 	 */
 	public void addLine(String header, String line, Color color) {
-		Document doc = textPane.getDocument();
-
 		java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
 		String dateString = formatter.format(new Date());
 
