@@ -4,9 +4,6 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.scripting.ScriptAction;
-import games.stendhal.server.scripting.ScriptCondition;
-import games.stendhal.server.scripting.ScriptingSandbox;
 
 /**
  * This is a collection of standard actions and conditions. Although most of
@@ -172,42 +169,4 @@ public class StandardInteraction {
 		}
 	}
 
-	/**
-	 * Register a script which should be called every turn. The script-class can
-	 * implement ChatInfoReceiver to get the paramters (player, text, npc) of
-	 * the ChatAction.
-	 */
-	public static class ReqisterScriptAction extends SpeakerNPC.ChatAction {
-		ScriptingSandbox game = null;
-		ScriptCondition scriptCondition = null;
-		ScriptAction scriptAction = null;
-
-		public ReqisterScriptAction(ScriptingSandbox game,
-				ScriptAction scriptAction) {
-			this.game = game;
-			this.scriptAction = scriptAction;
-		}
-
-		public ReqisterScriptAction(ScriptingSandbox game,
-				ScriptCondition scriptCondition, ScriptAction scriptAction) {
-			this.game = game;
-			this.scriptCondition = scriptCondition;
-			this.scriptAction = scriptAction;
-		}
-
-		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
-			if ((scriptCondition != null)
-					&& (scriptCondition instanceof ChatInfoReceiver)) {
-				((ChatInfoReceiver) scriptCondition).setChatInfo(player, text,
-						engine);
-			}
-			if ((scriptAction != null)
-					&& (scriptAction instanceof ChatInfoReceiver)) {
-				((ChatInfoReceiver) scriptAction).setChatInfo(player, text,
-						engine);
-			}
-			game.add(scriptCondition, scriptAction);
-		}
-	}
 }
