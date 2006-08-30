@@ -5,6 +5,7 @@
 package games.stendhal.server.scripting;
 
 import games.stendhal.server.StendhalServerExtension;
+import games.stendhal.server.entity.Player;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -13,12 +14,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-public class ScriptingJava extends StendhalServerExtension {
+public class ScriptInJava extends ScriptingSandbox {
+
+	public ScriptInJava(String filename) {
+		super(filename);
+	}
+
 
 	public void runIt(String className) throws MalformedURLException, ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		   // Create new class loader 
 		   // with current dir as CLASSPATH
-		   File file = new File(".");
+		   File file = new File("./data/script");
 		   ClassLoader loader = new URLClassLoader(new URL[] {file.toURL()});
 		   // load class through new loader
 		   Class aClass = loader.loadClass(className);
@@ -29,12 +35,12 @@ public class ScriptingJava extends StendhalServerExtension {
 		   // Static method, no instance needed
 		   theMethod.invoke(null, objectParameters);
 	}
-	
-	
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
 
+
+	@Override
+	public boolean load(Player player, String[] args) {
+		return false;
 	}
+	
 
 }
