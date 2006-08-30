@@ -8,14 +8,14 @@ import games.stendhal.server.pathfinder.Path
 
 // Simple sample script that creates a sign prooving Groovy is active
 
-// game is a predefined variable of the current StendhalGroovyScript 
+// game is a predefined variable of the current ScriptInGroovy 
 // environment. all world and zone operations should be accessed
 // through this to support unloading of scripts:
 //  boolean game.setZone(String name) 
 //  game.add(NPC npc) 
 //  game.add(RPObject object)
 //  game.getItem(String name)
-// logger is a predefined variable of the current StendhalGroovyScript 
+// logger is a predefined variable of the current ScriptInGroovy 
 logger.debug("Starting Stendhal Groovy Script") 
                               
 // Adding a sign to the game world that shows Groovy is active

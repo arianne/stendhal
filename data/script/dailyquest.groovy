@@ -12,7 +12,7 @@ import games.stendhal.common.Level;
 // Complex sample script that creates a mayor who gives a daily
 // quest to any player that is: kill a named creature
 
-// game is a predefined variable of the current StendhalGroovyScript 
+// game is a predefined variable of the current ScriptInGroovy 
 // environment. all world and zone operations should be accessed
 // through this to support unloading of scripts:
 //  boolean game.setZone(String name) 
@@ -21,13 +21,13 @@ import games.stendhal.common.Level;
 //  game.getItem(String name)
 //  game.getCreatures()
 //  game.getItems()
-// logger is a predefined variable of the current StendhalGroovyScript 
+// logger is a predefined variable of the current ScriptInGroovy 
 logger.debug("Starting Daily Quest Groovy Script") 
 
 class DailyQuestAction extends SpeakerNPC.ChatAction {
-  StendhalGroovyScript game;
+	ScriptInGroovy game;
   List sortedcreatures;
-  public DailyQuestAction ( StendhalGroovyScript game) {
+  public DailyQuestAction ( ScriptInGroovy game) {
     this.game = game;
     List creatures = game.getCreatures().toList();
     sortedcreatures = creatures.sort { it.getLevel() }
@@ -107,8 +107,8 @@ class DailyQuestAction extends SpeakerNPC.ChatAction {
 }
 
 class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
-  StendhalGroovyScript game;
-  public DailyQuestCompleteAction ( StendhalGroovyScript game) {
+	ScriptInGroovy game;
+  public DailyQuestCompleteAction ( ScriptInGroovy game) {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine)

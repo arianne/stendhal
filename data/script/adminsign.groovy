@@ -9,10 +9,10 @@ import games.stendhal.server.pathfinder.Path;
 import marauroa.common.game.*;
 
 class AdminSignManager {
-	private StendhalGroovyScript game = null;
+	private ScriptInGroovy game = null;
 	private Map storage = null;
 	
-	public AdminSignManager(StendhalGroovyScript game, Map storage) {
+	public AdminSignManager(ScriptInGroovy game, Map storage) {
 		this.game = game;
 		this.storage = storage;
 	}

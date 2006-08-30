@@ -15,7 +15,7 @@ import games.stendhal.server.pathfinder.Path
  * Manages friendly entities
  */
 public class Friends implements TurnListener {
-	private StendhalGroovyScript game;
+	private ScriptInGroovy game;
 	
 	private int turnCounter = 0;
 	
@@ -26,9 +26,9 @@ public class Friends implements TurnListener {
 	/**
 	 * Constructor
 	 *
-	 * @param game StendhalGroovyScript
+	 * @param game ScriptInGroovy
 	 */
-	public Friends(StendhalGroovyScript game) {
+	public Friends(ScriptInGroovy game) {
 		this.game = game;
 	}
 

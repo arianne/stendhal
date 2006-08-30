@@ -11,8 +11,8 @@ logger.debug("Starting Deathmatch Entry Script")
                    
 
 class JumpToDeathmatchAction extends SpeakerNPC.ChatAction {
-  StendhalGroovyScript game;
-  public JumpToDeathmatchAction ( StendhalGroovyScript game) {
+	ScriptInGroovy game;
+  public JumpToDeathmatchAction ( ScriptInGroovy game) {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {

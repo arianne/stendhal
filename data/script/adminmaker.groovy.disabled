@@ -21,10 +21,10 @@ import games.stendhal.common.*;
 
 class FirstChatAction extends SpeakerNPC.ChatAction {
 
-	private StendhalGroovyScript game = null;
+	private ScriptInGroovy game = null;
 	private Player player = null;
 
-    public FirstChatAction(StendhalGroovyScript game) {
+    public FirstChatAction(ScriptInGroovy game) {
       this.game = game;
     }
 

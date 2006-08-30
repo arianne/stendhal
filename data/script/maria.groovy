@@ -15,8 +15,8 @@ import games.stendhal.common.Direction;
  */
 
 class MariaCouponAction extends SpeakerNPC.ChatAction {
-  private StendhalGroovyScript game;
-  public MariaCouponAction ( StendhalGroovyScript game) {
+  private ScriptInGroovy game;
+  public MariaCouponAction ( ScriptInGroovy game) {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {
@@ -33,8 +33,8 @@ class MariaCouponAction extends SpeakerNPC.ChatAction {
 }
 
 class MargaretCouponAction extends SpeakerNPC.ChatAction {
-    private StendhalGroovyScript game;
-    public MargaretCouponAction ( StendhalGroovyScript game) {
+    private ScriptInGroovy game;
+    public MargaretCouponAction ( ScriptInGroovy game) {
       this.game = game;
     }
     public void fire(Player player, String text, SpeakerNPC engine) {

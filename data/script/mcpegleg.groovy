@@ -9,14 +9,14 @@ import games.stendhal.server.pathfinder.Path
 // Almost simple ;) sample script that creates NPC McPegleg
 // Note: McPegleg is needed for a little side quest (see kanmararn.groovy)
 
-// game is a predefined variable of the current StendhalGroovyScript 
+// game is a predefined variable of the current ScriptInGroovy 
 // environment. all world and zone operations should be accessed
 // through this to support unloading of scripts:
 //  boolean game.setZone(String name) 
 //  game.add(NPC npc) 
 //  game.add(RPObject object)
 //  game.getItem(String name)
-// logger is a predefined variable of the current StendhalGroovyScript 
+// logger is a predefined variable of the current ScriptInGroovy 
 logger.debug("Starting McPegleg Groovy Script") 
 
 // We create now some shops. Split the shops as needed as they can be added later.
@@ -25,8 +25,8 @@ rareArmorShop=["chain_armor_+1":32,"chain_armor_+2":42,"chain_armor_+3":52,"plat
 
 // We create a dialogue action for the NPC we gonna create            
  class IOUQuestCompleteAction extends SpeakerNPC.ChatAction {
-   StendhalGroovyScript game;
-   public IOUQuestCompleteAction ( StendhalGroovyScript game) {
+	 ScriptInGroovy game;
+   public IOUQuestCompleteAction ( ScriptInGroovy game) {
      this.game = game;
    }
    public void fire(Player player, String text, SpeakerNPC engine) {

@@ -41,8 +41,8 @@ class DebuggeraEnablerAction extends SpeakerNPC.ChatAction {
 }
 
 class QuestsAction extends SpeakerNPC.ChatAction {
-    StendhalGroovyScript game;
-    public QuestsAction(StendhalGroovyScript game) {
+	ScriptInGroovy game;
+    public QuestsAction(ScriptInGroovy game) {
       this.game = game;
     }	
     public void fire(Player player, String text, SpeakerNPC engine) {
@@ -72,8 +72,8 @@ class QuestsAction extends SpeakerNPC.ChatAction {
 }
 
 class TeleportNPCAction extends SpeakerNPC.ChatAction {
-    StendhalGroovyScript game;
-    public TeleportNPCAction(StendhalGroovyScript game) {
+	ScriptInGroovy game;
+    public TeleportNPCAction(ScriptInGroovy game) {
       this.game = game;
     }
     public void fire(Player player, String text, SpeakerNPC engine) {
@@ -82,7 +82,7 @@ class TeleportNPCAction extends SpeakerNPC.ChatAction {
 }
 
 class TeleportScriptAction extends ScriptAction {
-    private StendhalGroovyScript game;
+    private ScriptInGroovy game;
     private Player player;
     private SpeakerNPC engine;
     private String text;
@@ -93,7 +93,7 @@ class TeleportScriptAction extends ScriptAction {
     private boolean beamed = false;
 // syntax-error:  private final String[] MAGIC_PHRASE = {"Across the land,", "Across the sea.", "Friends forever,", "We will always be."};
     
-    public TeleportScriptAction (Player player, SpeakerNPC engine, String text, StendhalGroovyScript game) {
+    public TeleportScriptAction (Player player, SpeakerNPC engine, String text, ScriptInGroovy game) {
       this.player = player;
       this.engine = engine;
       this.text = text;
@@ -154,12 +154,12 @@ class TeleportScriptAction extends ScriptAction {
 
 
 public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnListener {
-    private StendhalGroovyScript game;
+    private ScriptInGroovy game;
     private Player player;
     private List zones;
     private int counter = 0;
 
-    public SightseeingAction (StendhalGroovyScript game, StendhalRPWorld world) {
+    public SightseeingAction (ScriptInGroovy game, StendhalRPWorld world) {
       this.game = game;
 
 	    zones = new ArrayList();

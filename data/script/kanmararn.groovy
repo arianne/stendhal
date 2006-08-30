@@ -27,10 +27,10 @@ class CorpseEmptyCondition extends ScriptCondition {
 
 class CorpseFillAction extends ScriptAction {
   Corpse corpse;
-  StendhalGroovyScript game;
+  ScriptInGroovy game;
   String itemName;
   String description;
-  public CorpseFillAction ( Corpse corpse, StendhalGroovyScript game, String itemName, String description) {
+  public CorpseFillAction ( Corpse corpse, ScriptInGroovy game, String itemName, String description) {
     this.corpse = corpse;
     this.game = game;
     this.itemName = itemName;
@@ -78,8 +78,8 @@ class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
 }
 
 class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
-  StendhalGroovyScript game;
-  public HenryQuestCompleteAction ( StendhalGroovyScript game) {
+  ScriptInGroovy game;
+  public HenryQuestCompleteAction ( ScriptInGroovy game) {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {
@@ -142,8 +142,8 @@ class JamesQuestCompletedCondition extends SpeakerNPC.ChatCondition {
 }
 
 class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
-  StendhalGroovyScript game;
-  public JamesQuestCompleteAction ( StendhalGroovyScript game) {
+	ScriptInGroovy game;
+  public JamesQuestCompleteAction ( ScriptInGroovy game) {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {

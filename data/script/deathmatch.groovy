@@ -16,8 +16,8 @@ logger.debug("Starting Stendhal Deathmatch Script")
 
 class DeathmatchCondition extends ScriptCondition {
   Player player;
-  StendhalGroovyScript game;
-  public DeathmatchCondition (Player player, StendhalGroovyScript game) {
+  ScriptInGroovy game;
+  public DeathmatchCondition (Player player, ScriptInGroovy game) {
     this.player = player;
     this.game = game;
   }
@@ -40,11 +40,11 @@ class DeathmatchCondition extends ScriptCondition {
 }
 
 class DeathmatchAction extends ScriptAction {
-  StendhalGroovyScript game;
+	ScriptInGroovy game;
   Player player;
   List sortedCreatures;
   List spawnedCreatures = [];
-  public DeathmatchAction (Player player, StendhalGroovyScript game) {
+  public DeathmatchAction (Player player, ScriptInGroovy game) {
     this.player = player;
     this.game = game;
     List creatures = game.getCreatures().toList();
@@ -172,8 +172,8 @@ class DeathmatchAction extends ScriptAction {
 
 
 class StartAction extends SpeakerNPC.ChatAction {
-  StendhalGroovyScript game;
-  public StartAction ( StendhalGroovyScript game) {
+	ScriptInGroovy game;
+  public StartAction ( ScriptInGroovy game) {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {
@@ -189,8 +189,8 @@ class StartAction extends SpeakerNPC.ChatAction {
 }
 
 class DoneAction extends SpeakerNPC.ChatAction {
-  StendhalGroovyScript game;
-  public DoneAction ( StendhalGroovyScript game) {
+	ScriptInGroovy game;
+  public DoneAction ( ScriptInGroovy game) {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {    
@@ -242,8 +242,8 @@ class DoneAction extends SpeakerNPC.ChatAction {
 }
 
 class LeaveAction extends SpeakerNPC.ChatAction {
-  StendhalGroovyScript game;
-  public LeaveAction ( StendhalGroovyScript game) {
+	ScriptInGroovy game;
+  public LeaveAction ( ScriptInGroovy game) {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {   
@@ -257,8 +257,8 @@ class LeaveAction extends SpeakerNPC.ChatAction {
 }
 
 class BailAction extends SpeakerNPC.ChatAction {
-  StendhalGroovyScript game;
-  public BailAction ( StendhalGroovyScript game) {
+	ScriptInGroovy game;
+  public BailAction ( ScriptInGroovy game) {
     this.game = game;
   }
   public void fire(Player player, String text, SpeakerNPC engine) {
