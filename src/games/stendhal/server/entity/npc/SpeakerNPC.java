@@ -1011,7 +1011,7 @@ public abstract class SpeakerNPC extends NPC {
 				null);
 
 		add(ConversationStates.ATTENDING,
-			"cast",
+			producerBehaviour.getProductionActivity(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, SpeakerNPC engine) {
@@ -1058,7 +1058,7 @@ public abstract class SpeakerNPC extends NPC {
 			null);
 
 		add(ConversationStates.ATTENDING,
-			"cast",
+			producerBehaviour.getProductionActivity(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, SpeakerNPC engine) {
