@@ -1,11 +1,16 @@
 package games.stendhal.server.entity;
 
-import marauroa.common.game.*;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.scripting.ScriptAction;
-import games.stendhal.server.StendhalScriptSystem;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
+
 import java.util.LinkedList;
 import java.util.List;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * A PersonalChest is a Chest that can be used by everyone, but shows
@@ -34,12 +39,10 @@ public class PersonalChest extends Chest {
 		outer = this;
 
 		attending = null;
+		
+		TurnListener turnListener = new TurnListener() {
 
-		/** Add a script to copy automatically. */
-		StendhalScriptSystem scripts = StendhalScriptSystem.get();
-		scripts.addScript(null, new ScriptAction() {
-			@Override
-			public void fire() {
+			public void onTurnReached(int currentTurn, String message) {
 				if (attending != null) {
 					/* Can be replaced when we add Equip event */
 					/* Mirror player objects */
@@ -86,8 +89,10 @@ public class PersonalChest extends Chest {
 						attending = null;
 					}
 				}
+				TurnNotifier.get().notifyInTurns(0, this, null);
 			}
-		});
+		};
+		TurnNotifier.get().notifyInTurns(0, turnListener, null);
 	}
 
 	@Override
