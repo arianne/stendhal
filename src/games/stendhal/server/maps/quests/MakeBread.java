@@ -9,34 +9,36 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * QUEST: Cast Iron. This is not really a quest, but a service offered
- * by the blacksmith. Because casting iron takes time, we abuse the
+ * QUEST: Bake bread. This is not really a quest, but a service offered
+ * by the miller. Because milling flour takes time, we abuse the
  * player's quest slot to store the time and amount of the player's order.
  * 
  * PARTICIPANTS:
- * - Xoderos, the blacksmith in Semos
+ * - Jenny, the miller north of in Semos
  * 
  * STEPS:
- * - You bring wood and iron ore to Xoderos.
- * - You ask Xoderos to cast it for you.
- * - Xoderos starts to cast.
- * - You come back later and get the cast iron.
+ * - You bring grain to Jenny.
+ * - You ask Jenny to mill flour from it for you.
+ * - Jenny starts to mill.
+ * - You come back later and get the flour.
  * 
  * REWARD:
- * - none (except for the iron)
+ * - none (except for the flour)
  * 
  * REPETITIONS:
  * - As much as you want.
  */
-public class CastIron extends AbstractQuest {
+public class MakeBread extends AbstractQuest {
 	
+	// TODO: There is much code duplication with CastIron.java. Find a way to
+	// reduce this.
 
-	private static final String QUEST_SLOT = "xoderos_cast_iron";
+	private static final String QUEST_SLOT = "jenny_mill_flour";
 
 	/**
-	 * The time it takes Xoderos to cast one piece of iron.  
+	 * The time it takes Jenny to cast one bag of flour.
 	 */
-	private static final int SECONDS_PER_IRON = 5 * 60; // 5 minutes
+	private static final int SECONDS_PER_FLOUR = 60; // 1 minute
 	
 	@Override
 	public void init(String name) {
@@ -47,16 +49,15 @@ public class CastIron extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		SpeakerNPC xoderos = npcs.get("Xoderos");
+		SpeakerNPC jenny = npcs.get("Jenny");
 
 		Map<String, Integer> requiredResources = new HashMap<String, Integer>();
-		requiredResources.put("wood", new Integer(1));
-		requiredResources.put("iron_ore", new Integer(1));
+		requiredResources.put("grain", new Integer(5));
 
 		final ProducerBehaviour behaviour = new ProducerBehaviour(
-				QUEST_SLOT, "cast", "bars", "iron", requiredResources, SECONDS_PER_IRON);
+				QUEST_SLOT, "mill", "bags", "flour", requiredResources, SECONDS_PER_FLOUR);
 
-		xoderos.add(ConversationStates.IDLE,
+		jenny.add(ConversationStates.IDLE,
 					SpeakerNPC.GREETING_MESSAGES,
 					new SpeakerNPC.ChatCondition() {
 						@Override
@@ -66,11 +67,11 @@ public class CastIron extends AbstractQuest {
 						}
 					},
 					ConversationStates.ATTENDING,
-					"Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.",
+					"Greetings. I am Jenny, the local miller. If you bring me #grain, I can #mill flour for you.",
 					null);
 
-		xoderos.add(ConversationStates.ATTENDING,
-				"cast",
+		jenny.add(ConversationStates.ATTENDING,
+				"mill",
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
@@ -96,7 +97,7 @@ public class CastIron extends AbstractQuest {
 					}
 				});
 		
-		xoderos.add(ConversationStates.PRODUCTION_OFFERED,
+		jenny.add(ConversationStates.PRODUCTION_OFFERED,
 				"yes",
 				null,
 				ConversationStates.ATTENDING,
@@ -109,15 +110,15 @@ public class CastIron extends AbstractQuest {
 					}
 				});
 
-		xoderos.add(ConversationStates.PRODUCTION_OFFERED,
+		jenny.add(ConversationStates.PRODUCTION_OFFERED,
 				"no",
 				null,
 				ConversationStates.ATTENDING,
 				"OK, no problem.",
 				null);
 
-		xoderos.add(ConversationStates.ATTENDING,
-				"cast",
+		jenny.add(ConversationStates.ATTENDING,
+				"mill",
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
@@ -129,7 +130,7 @@ public class CastIron extends AbstractQuest {
 				"I still haven't finished your last order. Come back later!",
 				null);
 
-		xoderos.add(ConversationStates.IDLE,
+		jenny.add(ConversationStates.IDLE,
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override

@@ -69,6 +69,8 @@ public class ProducerBehaviour {
 	 */
 	private int productionTimePerItem;
 	
+	protected int amount;
+	
 	/**
 	 * Creates a new ProducerBehaviour.
 	 * @param questSlot the slot that is used to store the status 
@@ -133,22 +135,26 @@ public class ProducerBehaviour {
 		return SpeakerNPC.enumerateCollection(requiredResourcesWithHashes);
 	}
 	
-	/**
-	 * Tries to take all the resources required to produce <i>amount</i>
-	 * units of the product from the player. If this is possible, initiates
-	 * an order.
-	 * 
-	 * @param player
-	 * @param npc
-	 * @param amount
-	 */
-	public void giveResources(Player player, SpeakerNPC npc, int amount) {
+	private int getMaximalAmount(Player player) {
 		int maxAmount = Integer.MAX_VALUE;
 		for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
 			int limitationByThisResource = player.getNumberOfEquipped(entry.getKey()) / entry.getValue();
 			maxAmount = Math.min(maxAmount, limitationByThisResource);
 		}
-		if (maxAmount < amount) {
+		return maxAmount;
+	}
+	
+	/**
+	 * Tries to take all the resources required to produce <i>amount</i>
+	 * units of the product from the player. If this is possible, asks the
+	 * user if the order should be initiated.
+	 * 
+	 * @param npc
+	 * @param player
+	 * @param amount
+	 */
+	public boolean askForResources(SpeakerNPC npc, Player player, int amount) {
+		if (getMaximalAmount(player) < amount) {
 			npc.say("I can only "
 					+ getProductionActivity()
 					+ " "
@@ -158,12 +164,35 @@ public class ProducerBehaviour {
 					+ " if you bring me "
 					+ getRequiredResourceNamesWithHashes(amount)
 					+ ".");
+			return false;
 		} else {
-			Set<String> droppedResources = new HashSet<String>();
+			this.amount = amount;
+			npc.say("I need "
+					+ getRequiredResourceNamesWithHashes(amount)
+					+ " for this job. Will you give it to me?");
+			return true;
+		}
+	}
+	
+	/**
+	 * Tries to take all the resources required to produce the agreed amount
+	 * of the product from the player. If this is possible, initiates
+	 * an order.
+	 * 
+	 * @param npc
+	 * @param player
+	 * @param amount
+	 */
+	public boolean transactAgreedDeal(SpeakerNPC npc, Player player) {
+		if (getMaximalAmount(player) < amount) {
+			// The player tried to cheat us by placing the resource
+			// onto the ground after saying "yes"
+			npc.say("Hey! Don't try to trick me!");
+			return false;
+		} else {
 			for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
 				int amountToDrop = amount * entry.getValue();
 				player.drop(entry.getKey(), amountToDrop);
-				droppedResources.add(amountToDrop + " " + entry.getKey());
 			}
 			long timeNow = new Date().getTime();
 			player.setQuest(questSlot, amount + ";" + getProductName() + ";" + timeNow);
@@ -173,9 +202,8 @@ public class ProducerBehaviour {
 					+ amount
 					+ " "
 					+ getProductName()
-					+ " from the "
-					+ SpeakerNPC.enumerateCollection(droppedResources)
-					+ " that you gave me, but that will take some time. Come back later.");
+					+ " for you, but that will take some time. Come back later.");
+			return true;
 		}
 	}
 	
@@ -184,10 +212,10 @@ public class ProducerBehaviour {
 	 * product. It checks if the NPC is already done with the order. If that
 	 * is the case, the player is given the product. Otherwise, the NPC
 	 * asks the player to come back later. 
-	 * @param player The player who wants to fetch the product
 	 * @param npc The producing NPC
+	 * @param player The player who wants to fetch the product
 	 */
-	public void fetchProduct(Player player, SpeakerNPC npc) {
+	public void giveProduct(SpeakerNPC npc, Player player) {
 		String orderString = player.getQuest(questSlot);
 		String[] order = orderString.split(";");
 		int numberOfProductItems = Integer.parseInt(order[0]);

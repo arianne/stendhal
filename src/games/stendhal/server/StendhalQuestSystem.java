@@ -54,6 +54,7 @@ public class StendhalQuestSystem {
 		loadQuest("Campfire");
 		loadQuest("PlinksToy");
 		loadQuest("CastIron");
+		loadQuest("MakeBread");
 	}
 
 	private boolean loadQuest(String name) {

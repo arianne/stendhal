@@ -829,12 +829,9 @@ public class Semos implements IContent {
 		
 			@Override
 			protected void createDialog() {
-				addGreeting();
 				addJob("I'm the local miller. People bring me grain so that I can make flour.");
 				addHelp("If you have a scythe, you can harvest grain at the nearby farm.");
 				addGoodbye();
-				addBuyer(new BuyerBehaviour(ShopList.get().get("buygrain")));
-				// TODO: instead of just buying grain, make flour out of it
 			}
 		};
 		npcs.add(npc);

@@ -50,6 +50,13 @@ public class ConversationStates {
 	 */
 	public static final int HEAL_OFFERED = 40;
 
+    /**
+	 * The player wants the NPC to produce something; the SpeakerNPC has told
+	 * about the required resources and waits for the player to accept or
+	 * reject the offer.
+	 */
+	public static final int PRODUCTION_OFFERED = 45;
+
 	/**
 	 * The SpeakerNPC is simply telling something to the player.
 	 */
