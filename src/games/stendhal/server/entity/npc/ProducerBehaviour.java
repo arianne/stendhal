@@ -99,6 +99,10 @@ public class ProducerBehaviour extends Behaviour {
 		this.productionTimePerItem = productionTimePerItem;
 	}
 	
+	protected String getQuestSlot() {
+		return questSlot;
+	}
+	
 	protected Map<String, Integer> getRequiredResourcesPerItem() {
 		return requiredResourcesPerItem;
 	}

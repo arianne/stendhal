@@ -170,15 +170,6 @@ public abstract class SpeakerNPC extends NPC {
 	private Player attending;
 
 	/**
-	 * This maps Strings like "seller", "healer" etc. to instances of
-	 * SellerBehaviour, HealerBehaviour etc.
-	 * NOTE: Currently MerchantBehaviour is the most general behaviour
-	 * class that's defined. Once we generalize that further, we should
-	 * also generalize this map accordingly.
-	 */
-	private Map<String, Behaviour> behavioursData;
-
-	/**
 	 * Helper function to nicely formulate an enumeration of a collection.
 	 * For example, for a collection containing the 3 elements x, y, z,
 	 * returns the string "x, y, and z".
@@ -218,7 +209,6 @@ public abstract class SpeakerNPC extends NPC {
 		maxState = 0;
 		lastMessageTurn = 0;
 
-		behavioursData = new HashMap<String, Behaviour>();
 		setName(name);
 		createDialog();
 		put("title_type", "npc");
@@ -227,14 +217,6 @@ public abstract class SpeakerNPC extends NPC {
 	abstract protected void createPath();
 
 	abstract protected void createDialog();
-
-	private void setBehaviourData(String name, MerchantBehaviour behaviour) {
-		behavioursData.put(name, behaviour);
-	}
-
-	private Object getBehaviourData(String name) {
-		return behavioursData.get(name);
-	}
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
@@ -802,8 +784,9 @@ public abstract class SpeakerNPC extends NPC {
 
 	public void addSeller(SellerBehaviour behaviour,
 			boolean offer) {
-		setBehaviourData("seller", behaviour);
-
+		
+		final SellerBehaviour sellerBehaviour = behaviour;
+		
 		if (offer) {
 			add(ConversationStates.ATTENDING,
 					"offer",
@@ -821,9 +804,6 @@ public abstract class SpeakerNPC extends NPC {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						SellerBehaviour sellerBehaviour = (SellerBehaviour) engine
-								.getBehaviourData("seller");
-		
 						// find out what the player wants to buy, and how
 						// much of it
 						String[] words = text.split(" ");
@@ -863,9 +843,6 @@ public abstract class SpeakerNPC extends NPC {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						SellerBehaviour sellerBehaviour = (SellerBehaviour) engine
-								.getBehaviourData("seller");
-		
 						String itemName = sellerBehaviour.chosenItem;
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
@@ -886,7 +863,8 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	public void addBuyer(BuyerBehaviour behaviour, boolean offer) {
-		setBehaviourData("buyer", behaviour);
+
+		final BuyerBehaviour buyerBehaviour = behaviour;
 
 		if (offer) {
 			add(ConversationStates.ATTENDING,
@@ -905,8 +883,6 @@ public abstract class SpeakerNPC extends NPC {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						BuyerBehaviour buyerBehaviour = (BuyerBehaviour) engine
-								.getBehaviourData("buyer");
 		
 						String[] words = text.split(" ");
 		
@@ -941,9 +917,6 @@ public abstract class SpeakerNPC extends NPC {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						BuyerBehaviour buyerBehaviour = (BuyerBehaviour) engine
-								.getBehaviourData("buyer");
-		
 						logger.debug("Buying something from player "
 								+ player.getName());
 		
@@ -960,7 +933,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	public void addHealer(int cost) {
-		setBehaviourData("healer", new HealerBehaviour(cost));
+		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 
 		add(ConversationStates.ATTENDING,
 				"offer",
@@ -977,18 +950,16 @@ public abstract class SpeakerNPC extends NPC {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						HealerBehaviour healer = (HealerBehaviour) engine
-								.getBehaviourData("healer");
-						healer.chosenItem = "heal";
-						healer.amount = 1;
-						int cost = healer.getCharge(player);
+						healerBehaviour.chosenItem = "heal";
+						healerBehaviour.amount = 1;
+						int cost = healerBehaviour.getCharge(player);
 		
 						if (cost > 0) {
 							engine.say("Healing costs " + cost
 									+ ". Do you want to pay?");
 						} else {
 							engine.say("You are healed. How may I help you?");
-							healer.heal(player);
+							healerBehaviour.heal(player);
 		
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
@@ -1003,9 +974,6 @@ public abstract class SpeakerNPC extends NPC {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						HealerBehaviour healerBehaviour = (HealerBehaviour) engine
-								.getBehaviourData("healer");
-						
 						if (player.drop("money", healerBehaviour.getCharge(player))) {
 							healerBehaviour.heal(player);
 							engine.say("You are healed. How may I help you?");
@@ -1021,5 +989,104 @@ public abstract class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING,
 				"OK, how may I help you?",
 				null);
-		}
+	}
+	
+	public void addProducer(ProducerBehaviour behaviour, String welcomeMessage) {
+		
+		final ProducerBehaviour producerBehaviour = behaviour;
+		
+		final String thisWelcomeMessage = welcomeMessage;
+		
+		add(ConversationStates.IDLE,
+			SpeakerNPC.GREETING_MESSAGES,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+					public boolean fire(Player player, SpeakerNPC engine) {
+						return !player.hasQuest(producerBehaviour.getQuestSlot())
+								|| player.isQuestCompleted(producerBehaviour.getQuestSlot());
+					}
+				},
+				ConversationStates.ATTENDING,
+				thisWelcomeMessage,
+				null);
+
+		add(ConversationStates.ATTENDING,
+			"cast",
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, SpeakerNPC engine) {
+					return !player.hasQuest(producerBehaviour.getQuestSlot())
+					|| player.isQuestCompleted(producerBehaviour.getQuestSlot());
+				}
+			},
+			ConversationStates.ATTENDING,
+			null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text,
+						SpeakerNPC npc) {
+
+					String[] words = text.split(" ");
+					int amount = 1;
+					if (words.length > 1) {
+						amount = Integer.parseInt(words[1].trim());
+					}
+					if (producerBehaviour.askForResources(npc, player, amount)) {
+						npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+					}
+				}
+			});
+		
+		add(ConversationStates.PRODUCTION_OFFERED,
+			"yes",
+			null,
+			ConversationStates.ATTENDING,
+			null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text,
+						SpeakerNPC npc) {
+					producerBehaviour.transactAgreedDeal(npc, player);
+				}
+			});
+
+		add(ConversationStates.PRODUCTION_OFFERED,
+			"no",
+			null,
+			ConversationStates.ATTENDING,
+			"OK, no problem.",
+			null);
+
+		add(ConversationStates.ATTENDING,
+			"cast",
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, SpeakerNPC engine) {
+					return player.hasQuest(producerBehaviour.getQuestSlot())
+							&& !player.isQuestCompleted(producerBehaviour.getQuestSlot());
+				}
+			},
+			ConversationStates.ATTENDING,
+			"I still haven't finished your last order. Come back later!",
+			null);
+
+		add(ConversationStates.IDLE,
+			SpeakerNPC.GREETING_MESSAGES,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, SpeakerNPC engine) {
+					return player.hasQuest(producerBehaviour.getQuestSlot())
+							&& !player.isQuestCompleted(producerBehaviour.getQuestSlot());
+				}
+			},
+			ConversationStates.ATTENDING,
+			null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text,
+						SpeakerNPC npc) {
+					producerBehaviour.giveProduct(npc, player);
+				}
+			});
+	}
 }
