@@ -13,6 +13,7 @@ import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -20,8 +21,10 @@ import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
@@ -351,8 +354,18 @@ public class Semos implements IContent {
 				// Once Ados is ready, we can have an expert tool smith; then Xoderos
 				// won't sell tools anymore.
 				addSeller(new SellerBehaviour(ShopList.get().get("selltools")));
-				
-				// all further behaviour is defined in CastIron.java.
+
+				// Xoderos casts iron if you bring him wood and iron ore.
+				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+				requiredResources.put("wood", new Integer(1));
+				requiredResources.put("iron_ore", new Integer(1));
+
+				ProducerBehaviour behaviour = new ProducerBehaviour(
+						"xoderos_cast_iron", "cast", "bars", "iron", requiredResources, 5 * 60);
+
+				addProducer(behaviour,
+							"Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");
+
 			}
 		};
 		npcs.add(xoderos);
@@ -832,6 +845,17 @@ public class Semos implements IContent {
 				addJob("I'm the local miller. People bring me grain so that I can make flour.");
 				addHelp("If you have a scythe, you can harvest grain at the nearby farm.");
 				addGoodbye();
+
+				// Jenny mills flour if you bring her grain.
+				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+				requiredResources.put("grain", new Integer(5));
+
+				ProducerBehaviour behaviour = new ProducerBehaviour(
+						"jenny_mill_flour", "mill", "bags", "flour", requiredResources, 2 * 60);
+
+				addProducer(behaviour,
+						"Greetings. I am Jenny, the local miller. If you bring me #grain, I can #mill flour for you.");
+				
 			}
 		};
 		npcs.add(npc);
