@@ -1146,7 +1146,7 @@ public class Semos implements IContent {
 							// randomly select between two different messages
 							switch (Rand.rand(2)) {
 							case 0:
-								say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird!hmm, what?! Oh, Oops! I forgot it! :(");
+								say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what?! Oh, Oops! I forgot it! :(");
 								break;
 							case 1:
 								say("I have been told that on the deepest place of the dungeon under this city someone also buy sheeps, but *it* pays better!");
