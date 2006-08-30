@@ -21,7 +21,7 @@ import java.util.Set;
  * Represents the behaviour of a NPC who is able to either sell items
  * to a player, or buy items from a player.
  */
-public abstract class MerchantBehaviour {
+public abstract class MerchantBehaviour extends Behaviour {
 	
 	protected Map<String, Integer> priceList;
 
@@ -88,13 +88,4 @@ public abstract class MerchantBehaviour {
 			return amount * getUnitPrice(chosenItem);
 		}
 	}
-	
-	/**
-	 * Transacts the deal that has been agreed on earlier via
-	 * setChosenItem() and setAmount().
-	 * @param seller The NPC who sells/buys
-	 * @param player The player who buys/sells
-	 * @return true iff the transaction was successful.
-	 */
-	protected abstract boolean transactAgreedDeal(SpeakerNPC seller, Player player);
 }

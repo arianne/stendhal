@@ -16,7 +16,7 @@ import java.util.Set;
  * 
  * @author daniel
  */
-public class ProducerBehaviour {
+public class ProducerBehaviour extends Behaviour {
 	
 	/**
 	 * To store the current status of a production order, each

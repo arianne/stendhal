@@ -176,7 +176,7 @@ public abstract class SpeakerNPC extends NPC {
 	 * class that's defined. Once we generalize that further, we should
 	 * also generalize this map accordingly.
 	 */
-	private Map<String, MerchantBehaviour> behavioursData;
+	private Map<String, Behaviour> behavioursData;
 
 	/**
 	 * Helper function to nicely formulate an enumeration of a collection.
@@ -218,7 +218,7 @@ public abstract class SpeakerNPC extends NPC {
 		maxState = 0;
 		lastMessageTurn = 0;
 
-		behavioursData = new HashMap<String, MerchantBehaviour>();
+		behavioursData = new HashMap<String, Behaviour>();
 		setName(name);
 		createDialog();
 		put("title_type", "npc");
