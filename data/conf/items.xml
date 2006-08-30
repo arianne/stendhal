@@ -1296,6 +1296,21 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="bread">
+		<type class="food" subclass="baguette"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="40"/>
+			<regen value="4"/>
+			<frequency value="30"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="meat">
 		<type class="food" subclass="meat"/>
 		<stackable/>
