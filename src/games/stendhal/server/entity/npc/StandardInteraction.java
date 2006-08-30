@@ -6,7 +6,7 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptCondition;
-import games.stendhal.server.scripting.StendhalGroovyScript;
+import games.stendhal.server.scripting.ScriptingSandbox;
 
 /**
  * This is a collection of standard actions and conditions. Although most of
@@ -178,17 +178,17 @@ public class StandardInteraction {
 	 * the ChatAction.
 	 */
 	public static class ReqisterScriptAction extends SpeakerNPC.ChatAction {
-		StendhalGroovyScript game = null;
+		ScriptingSandbox game = null;
 		ScriptCondition scriptCondition = null;
 		ScriptAction scriptAction = null;
 
-		public ReqisterScriptAction(StendhalGroovyScript game,
+		public ReqisterScriptAction(ScriptingSandbox game,
 				ScriptAction scriptAction) {
 			this.game = game;
 			this.scriptAction = scriptAction;
 		}
 
-		public ReqisterScriptAction(StendhalGroovyScript game,
+		public ReqisterScriptAction(ScriptingSandbox game,
 				ScriptCondition scriptCondition, ScriptAction scriptAction) {
 			this.game = game;
 			this.scriptCondition = scriptCondition;
