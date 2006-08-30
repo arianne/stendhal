@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
  * @author intensifly
  */
 public class ScriptRunner extends StendhalServerExtension {
-	private Map<String, StendhalGroovyScript> scripts;
+	private Map<String, ScriptingSandbox> scripts;
 
 	private final String scriptDir = "data/script/";
 	private static final Logger logger = Log4J.getLogger(ScriptRunner.class);
@@ -36,7 +36,7 @@ public class ScriptRunner extends StendhalServerExtension {
 	 */
 	public ScriptRunner() {
         super();
-        scripts = new HashMap<String, StendhalGroovyScript>();
+        scripts = new HashMap<String, ScriptingSandbox>();
         StendhalRPRuleProcessor.register("script", this);
         AdministrationAction.registerCommandLevel("script", 1000);
     }
@@ -69,22 +69,26 @@ public class ScriptRunner extends StendhalServerExtension {
 
 	private synchronized boolean perform(String name, String mode, Player player, String[] args) {
 		boolean ret = false;
-		StendhalGroovyScript gr = scripts.get(name);
+		ScriptingSandbox script = scripts.get(name);
 		name = name.trim();
         if("load".equals(mode) || "remove".equals(mode) || "unload".equals(mode)) {
-            if ((gr = scripts.remove(name)) != null) {
-                gr.unload();
+            if ((script = scripts.remove(name)) != null) {
+                script.unload();
                 ret = true;
             }
-            gr = null;
+            script = null;
         }
         if("load".equals(mode) || "execute".equals(mode)) {
             if (getClass().getClassLoader().getResource(scriptDir + name) != null) {
-            	if (gr == null) {
-            		gr = new StendhalGroovyScript(scriptDir + name);
+            	if (script == null) {
+            		if (name.endsWith(".groovy")) {
+            			script = new ScriptInGroovy(scriptDir + name);
+            		} else {
+            			script = new ScriptInJava(scriptDir + name);
+            		}
             	}
-                ret = gr.load(player, args);
-                scripts.put(name, gr);
+                ret = script.load(player, args);
+                scripts.put(name, script);
             }            
         }
 		return (ret);
@@ -92,7 +96,7 @@ public class ScriptRunner extends StendhalServerExtension {
 
 	@Override
 	public String getMessage(String name) {
-		StendhalGroovyScript gr = scripts.get(name);
+		ScriptingSandbox gr = scripts.get(name);
 		if (gr != null) {
 			return (gr.getMessage());
 		}
@@ -146,7 +150,7 @@ public class ScriptRunner extends StendhalServerExtension {
 
             // execute script
             script = script.trim();
-            if (script.endsWith(".groovy")) {
+            if (script.endsWith(".groovy") || script.endsWith(".class")) {
 	            boolean res = perform(script, mode, player, args);
 	            if (res) {
 		                text = "Script " + script + " was successfully executed (" + mode + ").";
@@ -162,7 +166,7 @@ public class ScriptRunner extends StendhalServerExtension {
 	                }
 	            }
             } else {
-            	text = "Invalid filename: It should end with .groovy";
+            	text = "Invalid filename: It should end with .groovy or .class";
             }
         }
         player.sendPrivateText(text);
