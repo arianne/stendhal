@@ -176,7 +176,7 @@ public class StendhalRPAction {
 					}
 				}
 
-				boolean hitted = riskToHit(source, target);
+				boolean beaten = riskToHit(source, target);
 
 				if (source instanceof Player
 						&& (target instanceof SpeakerNPC) == false
@@ -185,8 +185,7 @@ public class StendhalRPAction {
 					source.incATKXP();
 				}
 
-				if (hitted) // Hit
-				{
+				if (beaten) {
 					if (target instanceof Player && target.stillHasBlood()) {
 						target.incDEFXP();
 					}
@@ -209,8 +208,7 @@ public class StendhalRPAction {
 						logger.debug("attack from " + source.getID() + " to "
 								+ target.getID() + ": Damage: " + 0);
 					}
-				} else // Missed
-				{
+				} else { // Missed
 					logger.debug("attack from " + source.getID() + " to "
 							+ target.getID() + ": Missed");
 					source.put("damage", 0);
