@@ -79,7 +79,7 @@ public class MeetMonogenes extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Sometimes it is helpful to read the city's wooden signs by right-clicking on them and choosing LOOK. I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith or the #village.",
+				"Sometimes it is helpful to read the city's wooden signs by right-clicking on them and choosing LOOK. I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the #village.",
 				null);
 		
 		npc.add(ConversationStates.INFORMATION_2,
@@ -93,6 +93,7 @@ public class MeetMonogenes extends AbstractQuest {
 		npc.addReply("library", "The library is west from here, following the path. There's an OPEN BOOK AND A FEATHER sign over one of the two doors.");
 		npc.addReply("tavern", "The tavern is southeast from here, following the path. You'll see a big INN sign over the door. You can't miss it.");
 		npc.addReply("temple", "The temple is the second building southeast from here, following the path. There's a small CROSS over the roof.");
+		npc.addReply("bakery", "The local bakery is east of here. It has a small BREAD sign over its door.");
 		npc.addReply("blacksmith", "The blacksmith's shop is southwest from here, following the path. There's a small SWORD sign over the door.");
 		npc.addReply("village", "The village is southwest from here, following the path. There you can buy sheep to breed.");
 		
