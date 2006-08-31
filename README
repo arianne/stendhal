@@ -59,8 +59,10 @@ Changelog
 0.53
 
 - added regrowing grain fields which can be harvested
-- added a windmill where you can sell grain
-- gave archer_elf and archer_kobold something to shoot.
+- added a windmill and an NPC who mills flour from grain
+- added a bakery and an NPC who bakes bread from flour
+- gave archer elf and archer kobold something to shoot
+- made iron casting take time
 
 0.52 Aug 14, 2006
 - players
