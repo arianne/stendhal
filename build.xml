@@ -416,7 +416,7 @@
     <taskdef name="mapconverter" classname="games.stendhal.tools.MapConverter">
       <classpath>
         <pathelement path="${build_tiled_convertmaps}"/>
-        <pathelement path="${libdir}/${tiled_jar}"/>
+        <pathelement path="${tiled_jar}"/>
       </classpath>
     </taskdef>
    
