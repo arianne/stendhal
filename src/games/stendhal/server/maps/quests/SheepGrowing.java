@@ -48,8 +48,8 @@ public class SheepGrowing extends AbstractQuest {
 
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(26);
-		sign.sety(41);
+		sign.setX(26);
+		sign.setY(41);
 		sign.setText("Talk to Nishiya to buy a sheep!\nHe has the best prices for miles.");
 		zone.add(sign);
 
@@ -88,8 +88,8 @@ public class SheepGrowing extends AbstractQuest {
 							Sheep sheep = new Sheep(player);
 							zone.assignRPObjectID(sheep);
 
-							sheep.setx(seller.getx());
-							sheep.sety(seller.gety() + 2);
+							sheep.setX(seller.getX());
+							sheep.setY(seller.getY() + 2);
 
 							StendhalRPWorld.get().add(sheep);
 
@@ -134,8 +134,8 @@ public class SheepGrowing extends AbstractQuest {
 
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(43);
-		sign.sety(40);
+		sign.setX(43);
+		sign.setY(40);
 		sign.setText("Talk to Sato to sell your sheep!\nHe probably won't give you a fair price but this is a small village...\nThe price he will offer you depends on the weight of your sheep.");
 		zone.add(sign);
 

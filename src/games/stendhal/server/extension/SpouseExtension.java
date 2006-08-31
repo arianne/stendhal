@@ -172,8 +172,8 @@ public class SpouseExtension extends StendhalServerExtension {
 
             StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(teleported
                     .getID());
-            int x = teleported.getx();
-            int y = teleported.gety();
+            int x = teleported.getX();
+            int y = teleported.getY();
             
             // TODO: use Player.teleport()
 

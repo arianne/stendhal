@@ -237,14 +237,14 @@ public abstract class SpeakerNPC extends NPC {
 	 * @return A list of nearby players who have recently talked.
 	 */
 	private List<Player> getNearbyPlayersThatHaveSpoken(NPC npc, double range) {
-		int x = npc.getx();
-		int y = npc.gety();
+		int x = npc.getX();
+		int y = npc.getY();
 
 		List<Player> players = new LinkedList<Player>();
 
 		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
-			int px = player.getx();
-			int py = player.gety();
+			int px = player.getX();
+			int py = player.getY();
 
 			if (player.has("text")
 					&& get("zoneid").equals(player.get("zoneid"))
@@ -267,16 +267,16 @@ public abstract class SpeakerNPC extends NPC {
 	 *         same map.
 	 */
 	private Player getNearestPlayer(double range) {
-		int x = getx();
-		int y = gety();
+		int x = getX();
+		int y = getY();
 
 		Player nearest = null;
 
 		int squaredDistanceOfNearestPlayer = Integer.MAX_VALUE;
 
 		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
-			int px = player.getx();
-			int py = player.gety();
+			int px = player.getX();
+			int py = player.getY();
 
 			if (get("zoneid").equals(player.get("zoneid"))
 					&& Math.abs(px - x) < range && Math.abs(py - y) < range) {

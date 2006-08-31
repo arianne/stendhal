@@ -62,16 +62,16 @@ public class FeaturesTestArea implements IContent {
 	private void createDoorAndKey() {
 		Portal portal = new Door("key_golden", "skulldoor", Direction.DOWN);
 		zone.assignRPObjectID(portal);
-		portal.setx(50);
-		portal.sety(10);
+		portal.setX(50);
+		portal.setY(10);
 		portal.setNumber(0);
 		portal.setDestination("int_pathfinding", 1);
 		zone.addPortal(portal);
 
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(50);
-		portal.sety(12);
+		portal.setX(50);
+		portal.setY(12);
 		portal.setNumber(1);
 		portal.setDestination("int_pathfinding", 0);
 		zone.addPortal(portal);

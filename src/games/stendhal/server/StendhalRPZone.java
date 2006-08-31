@@ -189,8 +189,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		String entryPoint = entryPoints.get(0);
 		String[] components = entryPoint.split(",");
 
-		object.setx(Integer.parseInt(components[0]));
-		object.sety(Integer.parseInt(components[1]));
+		object.setX(Integer.parseInt(components[0]));
+		object.setY(Integer.parseInt(components[1]));
 	}
 
 	public void placeObjectAtZoneChangePoint(StendhalRPZone oldzone,
@@ -201,21 +201,21 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		String exitDirection = null;
 
-		if (object.gety() < 4) {
+		if (object.getY() < 4) {
 			exitDirection = "N";
-		} else if (object.gety() > oldzone.getHeight() - 4) {
+		} else if (object.getY() > oldzone.getHeight() - 4) {
 			exitDirection = "S";
-		} else if (object.getx() < 4) {
+		} else if (object.getX() < 4) {
 			exitDirection = "W";
-		} else if (object.getx() > oldzone.getWidth() - 4) {
+		} else if (object.getX() > oldzone.getWidth() - 4) {
 			exitDirection = "E";
 		} else {
 			// NOTE: If any of the above is true, then it just put object on the
 			// first zone change point.
 			String[] components = zoneChangePoints.get(0).split(",");
 			logger.debug("Player zone change default: " + components);
-			object.setx(Integer.parseInt(components[0]));
-			object.sety(Integer.parseInt(components[1]));
+			object.setX(Integer.parseInt(components[0]));
+			object.setY(Integer.parseInt(components[1]));
 			return;
 		}
 
@@ -227,17 +227,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 		String minpoint = zoneChangePoints.get(0);
 
 		if (exitDirection.equals("N")) {
-			x = object.getx();
+			x = object.getX();
 			y = getHeight();
 		} else if (exitDirection.equals("S")) {
-			x = object.getx();
+			x = object.getX();
 			y = 0;
 		} else if (exitDirection.equals("W")) {
 			x = getWidth();
-			y = object.gety();
+			y = object.getY();
 		} else if (exitDirection.equals("E")) {
 			x = 0;
-			y = object.gety();
+			y = object.getY();
 		}
 
 		logger.debug("Player entry point: (" + x + "," + y + ")");
@@ -257,8 +257,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		logger.debug("Choosen entry point: (" + minpoint + ") --> " + distance);
 		String[] components = minpoint.split(",");
-		object.setx(Integer.parseInt(components[0]));
-		object.sety(Integer.parseInt(components[1]));
+		object.setX(Integer.parseInt(components[0]));
+		object.setY(Integer.parseInt(components[1]));
 	}
 
 	public void addLayer(String name, String byteContents) {
@@ -341,7 +341,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	public boolean contains(Entity entity, StendhalRPZone zone) {
-		Rectangle2D area = entity.getArea(entity.getx() + zone.x, entity.gety()
+		Rectangle2D area = entity.getArea(entity.getX() + zone.x, entity.getY()
 				+ zone.y);
 		Rectangle2D zonearea = new Rectangle(x, y, getWidth(), getHeight());
 
@@ -434,8 +434,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 
 				assignRPObjectID(portal);
-				portal.setx(x);
-				portal.sety(y);
+				portal.setX(x);
+				portal.setY(y);
 				assignPortalID(portal);
 				addPortal(portal);
 
@@ -465,10 +465,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 							logger.debug(target + " isn't loaded");
 
-							if (target.getx() + zone.getx() == portal.getx()
+							if (target.getX() + zone.getx() == portal.getX()
 									+ getx()
-									&& target.gety() + zone.gety() == portal
-											.gety()
+									&& target.getY() + zone.gety() == portal
+											.getY()
 											+ gety()) {
 								int source = portal.getNumber();
 								int dest = zone.assignPortalID(target);
@@ -517,8 +517,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 				
 				Sheep sheep = new Sheep();
 				assignRPObjectID(sheep);
-				sheep.setx(x);
-				sheep.sety(y);
+				sheep.setX(x);
+				sheep.setY(y);
 				add(sheep);
 				npcs.add(sheep);
 				break;
@@ -563,8 +563,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 					plantGrower.setDescription("You see a place that seems to be rich in iron ore.");
 				}
 				assignRPObjectID(plantGrower);
-				plantGrower.setx(x);
-				plantGrower.sety(y);
+				plantGrower.setX(x);
+				plantGrower.setY(y);
 				add(plantGrower);
 				// full fruits on server restart
 				plantGrower.setToFullGrowth();
@@ -610,7 +610,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public boolean isInProtectionArea(Entity entity)
 			throws AttributeNotFoundException {
-		Rectangle2D area = entity.getArea(entity.getx(), entity.gety());
+		Rectangle2D area = entity.getArea(entity.getX(), entity.getY());
 		return protectionMap.collides(area);
 	}
 
@@ -734,8 +734,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 				if (otherEntity.isObstacle()) {
 					// There is something the entity couldn't stand upon.
 					// Check if it's in the way. 
-					otherEntity.getArea(otherArea, otherEntity.getx(),
-							otherEntity.gety());
+					otherEntity.getArea(otherArea, otherEntity.getX(),
+							otherEntity.getY());
 					if (area.intersects(otherArea)
 							&& !entity.getID().equals(otherEntity.getID())) {
 						return true;
@@ -755,8 +755,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		for (RPObject other : objects.values()) {
 			Entity otherEntity = (Entity) other;
 
-			Rectangle2D rect = otherEntity.getArea(otherEntity.getx(),
-					otherEntity.gety());
+			Rectangle2D rect = otherEntity.getArea(otherEntity.getX(),
+					otherEntity.getY());
 			if (rect.contains(x, y)) {
 				return otherEntity;
 			}

@@ -55,8 +55,8 @@ public class Corpse extends PassiveEntity implements TurnListener {
 		put("type", "corpse");
 		put("class", clazz);
 
-		setx(x);
-		sety(y);
+		setX(x);
+		setY(y);
 		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this, null);
 		stage = 0;
 		put("stage", stage);
@@ -98,9 +98,9 @@ public class Corpse extends PassiveEntity implements TurnListener {
 
 		// Consider rewriting this section once we get corpses larger
 		// than 2x2. 
-		Rectangle2D rect = entity.getArea(entity.getx(), entity.gety());
-		setx((int) Math.round(rect.getCenterX() - 1));
-		sety((int) Math.round(rect.getCenterY() - 1));
+		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
+		setX((int) Math.round(rect.getCenterX() - 1));
+		setY((int) Math.round(rect.getCenterY() - 1));
 		
 		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this, null);
 		stage = 0;

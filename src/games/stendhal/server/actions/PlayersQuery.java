@@ -66,13 +66,13 @@ public class PlayersQuery extends ActionListener {
 			Player who = rules.getPlayer(whoName);
 			if (who != null) {
 				player.sendPrivateText(who.getName() + " is in "
-						+ who.get("zoneid") + " at (" + who.getx() + ","
-						+ who.gety() + ")");
+						+ who.get("zoneid") + " at (" + who.getX() + ","
+						+ who.getY() + ")");
 				player.notifyWorldAboutChanges();
 			} else if (whoName.equals("sheep") && player.hasSheep()) {
 				Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 				player.sendPrivateText("sheep is in " + sheep.get("zoneid")
-						+ " at (" + sheep.getx() + "," + sheep.gety() + ")");
+						+ " at (" + sheep.getX() + "," + sheep.getY() + ")");
 				player.notifyWorldAboutChanges();
 			} else {
 				player.sendPrivateText(action.get("target")

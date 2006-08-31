@@ -128,8 +128,8 @@ public class PlinksToy extends AbstractQuest {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_plains_n"));
 		PlantGrower plantGrower = new PlantGrower("teddy", 1500);
 		zone.assignRPObjectID(plantGrower);
-		plantGrower.setx(107);
-		plantGrower.sety(84);
+		plantGrower.setX(107);
+		plantGrower.setY(84);
 		plantGrower.setDescription("Plink lost his teddy here.");
 		zone.add(plantGrower);
 

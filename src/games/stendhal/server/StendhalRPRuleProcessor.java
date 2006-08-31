@@ -268,7 +268,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public boolean bloodAt(int x, int y) {
 		for (Blood blood : bloods) {
-			if (blood.getx() == x && blood.gety() == y) {
+			if (blood.getX() == x && blood.getY() == y) {
 				return true;
 			}
 		}

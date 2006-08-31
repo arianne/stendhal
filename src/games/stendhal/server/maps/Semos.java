@@ -69,8 +69,8 @@ public class Semos implements IContent {
 		for (int i = 0; i < 5; i++) {
 			Portal portal = new Portal();
 			zone.assignRPObjectID(portal);
-			portal.setx(13 + i);
-			portal.sety(46);
+			portal.setX(13 + i);
+			portal.setY(46);
 			portal.setNumber(i);
 			portal.setDestination("0_semos_city", 7);
 			zone.addPortal(portal);
@@ -122,15 +122,15 @@ public class Semos implements IContent {
 	private void buildSemosBankArea(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(9);
-		portal.sety(30);
+		portal.setX(9);
+		portal.setY(30);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 6);
 		zone.addPortal(portal);
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(10);
-		portal.sety(30);
+		portal.setX(10);
+		portal.setY(30);
 		portal.setNumber(1);
 		portal.setDestination("0_semos_city", 6);
 		zone.addPortal(portal);
@@ -174,15 +174,15 @@ public class Semos implements IContent {
 				"int_semos_storage_0"));
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(9);
-		portal.sety(14);
+		portal.setX(9);
+		portal.setY(14);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 5);
 		zone.addPortal(portal);
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(16);
-		portal.sety(2);
+		portal.setX(16);
+		portal.setY(2);
 		portal.setNumber(1);
 		portal.setDestination("int_semos_storage_-1", 0);
 		zone.addPortal(portal);
@@ -250,8 +250,8 @@ public class Semos implements IContent {
 				"int_semos_storage_-1"));
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(26);
-		portal.sety(10);
+		portal.setX(26);
+		portal.setY(10);
 		portal.setNumber(0);
 		portal.setDestination("int_semos_storage_0", 1);
 		zone.addPortal(portal);
@@ -260,8 +260,8 @@ public class Semos implements IContent {
 	private void buildSemosBlacksmithArea(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(15);
-		portal.sety(14);
+		portal.setX(15);
+		portal.setY(14);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 2);
 		zone.addPortal(portal);
@@ -381,15 +381,15 @@ public class Semos implements IContent {
 	private void buildSemosLibraryArea(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(8);
-		portal.sety(30);
+		portal.setX(8);
+		portal.setY(30);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 3);
 		zone.addPortal(portal);
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(21);
-		portal.sety(30);
+		portal.setX(21);
+		portal.setY(30);
 		portal.setNumber(1);
 		portal.setDestination("0_semos_city", 4);
 		zone.addPortal(portal);
@@ -498,8 +498,8 @@ public class Semos implements IContent {
 	private void buildSemosBakeryArea(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(26);
-		portal.sety(14);
+		portal.setX(26);
+		portal.setY(14);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 6);
 		zone.addPortal(portal);
@@ -550,29 +550,29 @@ public class Semos implements IContent {
 	private void buildSemosTempleArea(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(10);
-		portal.sety(23);
+		portal.setX(10);
+		portal.setY(23);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 1);
 		zone.addPortal(portal);
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(11);
-		portal.sety(23);
+		portal.setX(11);
+		portal.setY(23);
 		portal.setNumber(1);
 		portal.setDestination("0_semos_city", 1);
 		zone.addPortal(portal);
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(12);
-		portal.sety(23);
+		portal.setX(12);
+		portal.setY(23);
 		portal.setNumber(2);
 		portal.setDestination("0_semos_city", 1);
 		zone.addPortal(portal);
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(13);
-		portal.sety(23);
+		portal.setX(13);
+		portal.setY(23);
 		portal.setNumber(3);
 		portal.setDestination("0_semos_city", 1);
 		zone.addPortal(portal);
@@ -681,8 +681,8 @@ public class Semos implements IContent {
 				"int_semos_tavern_0"));
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(22);
-		portal.sety(17);
+		portal.setX(22);
+		portal.setY(17);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 0);
 		zone.addPortal(portal);
@@ -768,8 +768,8 @@ public class Semos implements IContent {
 		
 		zone.assignRPObjectID(npc);
 		npc.put("class", "weaponsellernpc");
-		npc.setx(2);
-		npc.sety(14);
+		npc.setX(2);
+		npc.setY(14);
 		npc.setBaseHP(100);
 		npc.setHP(npc.getBaseHP());
 		zone.addNPC(npc);
@@ -805,20 +805,20 @@ public class Semos implements IContent {
 	private void buildSemosSouthPlainsArea(StendhalRPZone zone) {
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(118);
-		sign.sety(43);
+		sign.setX(118);
+		sign.setY(43);
 		sign.setText("You are about to leave this area to move to the forest.\nYou may fatten up your sheep there on wild berries.\nBe careful though, these forests crawl with wolves.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(38);
-		sign.sety(3);
+		sign.setX(38);
+		sign.setY(3);
 		sign.setText("You are about to leave this area to move to the village.\nYou can buy a new sheep there.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(113);
-		sign.sety(3);
+		sign.setX(113);
+		sign.setY(3);
 		sign
 				.setText("You are about to leave this area to move to the city.\nYou can sell your sheep there.");
 		zone.add(sign);
@@ -827,20 +827,20 @@ public class Semos implements IContent {
 	private void buildSemosVillageArea(StendhalRPZone zone) {
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(23);
-		sign.sety(61);
+		sign.setX(23);
+		sign.setY(61);
 		sign.setText("You are about to leave this area and move to the plains.\nYou may fatten up your sheep there on the wild berries.\nBe careful though, wolves roam these plains.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(60);
-		sign.sety(47);
+		sign.setX(60);
+		sign.setY(47);
 		sign.setText("You are about to leave this area to move to the city.\nYou can sell your sheep there.");
 		zone.add(sign);
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(16);
-		sign.sety(35);
+		sign.setX(16);
+		sign.setY(35);
 		sign.setText("[CLOSED]\nThe tavern has moved to a much\nbetter and central house in town.\nCome buy your weapons, find your\nquests and hang out there instead.");
 		zone.add(sign);
 	}
@@ -925,56 +925,56 @@ public class Semos implements IContent {
 	private void buildSemosCityArea(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(42);
-		portal.sety(37);
+		portal.setX(42);
+		portal.setY(37);
 		portal.setNumber(0);
 		portal.setDestination("int_semos_tavern_0", 0);
 		zone.addPortal(portal);
 		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(53);
-		portal.sety(37);
+		portal.setX(53);
+		portal.setY(37);
 		portal.setNumber(1);
 		portal.setDestination("int_semos_temple", 2);
 		zone.addPortal(portal);
 		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(15);
-		portal.sety(41);
+		portal.setX(15);
+		portal.setY(41);
 		portal.setNumber(2);
 		portal.setDestination("int_semos_blacksmith", 0);
 		zone.addPortal(portal);
 		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(6);
-		portal.sety(22);
+		portal.setX(6);
+		portal.setY(22);
 		portal.setNumber(3);
 		portal.setDestination("int_semos_library", 0);
 		zone.addPortal(portal);
 		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(11);
-		portal.sety(22);
+		portal.setX(11);
+		portal.setY(22);
 		portal.setNumber(4);
 		portal.setDestination("int_semos_library", 1);
 		zone.addPortal(portal);
 		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(52);
-		portal.sety(19);
+		portal.setX(52);
+		portal.setY(19);
 		portal.setNumber(5);
 		portal.setDestination("int_semos_storage_0", 0);
 		zone.addPortal(portal);
 		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(18);
-		portal.sety(22);
+		portal.setX(18);
+		portal.setY(22);
 		portal.setNumber(6);
 		portal.setDestination("int_semos_bank", 0);
 		zone.addPortal(portal);
@@ -982,8 +982,8 @@ public class Semos implements IContent {
 		for (int i = 0; i < 3; i++) {
 			portal = new Portal();
 			zone.assignRPObjectID(portal);
-			portal.setx(29 + i);
-			portal.sety(13);
+			portal.setX(29 + i);
+			portal.setY(13);
 			portal.setNumber(7 + i);
 			portal.setDestination("int_semos_townhall", 2);
 			zone.addPortal(portal);
@@ -991,44 +991,44 @@ public class Semos implements IContent {
 		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(44);
-		portal.sety(19);
+		portal.setX(44);
+		portal.setY(19);
 		portal.setNumber(10);
 		portal.setDestination("int_semos_bakery", 0);
 		zone.addPortal(portal);
 
 		portal = new OneWayPortalDestination();
 		zone.assignRPObjectID(portal);
-		portal.setx(12);
-		portal.sety(49);
+		portal.setX(12);
+		portal.setY(49);
 		portal.setNumber(60);
 		zone.addPortal(portal);
 		
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(4);
-		sign.sety(41);
+		sign.setX(4);
+		sign.setY(41);
 		sign.setText("You are about to leave this area to move to the village.\nYou can buy a new sheep there.");
 		zone.add(sign);
 		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(26);
-		sign.sety(40);
+		sign.setX(26);
+		sign.setY(40);
 		sign.setText("You are about to enter the Dungeons.\nBut Beware! This area is infested with rats and legend has \nit that many Adventurers have died down there...");
 		zone.add(sign);
 		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(44);
-		sign.sety(62);
+		sign.setX(44);
+		sign.setY(62);
 		sign.setText("You are about to leave this area and move to the plains.\nYou may fatten up your sheep there on the wild berries.\nBe careful though, wolves roam these plains.");
 		zone.add(sign);
 		
 		Chest chest = new Chest();
 		zone.assignRPObjectID(chest);
-		chest.setx(44);
-		chest.sety(60);
+		chest.setX(44);
+		chest.setY(60);
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("knife"));
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()

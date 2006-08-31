@@ -14,31 +14,31 @@ public class Nalwor implements IContent {
 
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(84);
-		portal.sety(92);
+		portal.setX(84);
+		portal.setY(92);
 		portal.setNumber(0);
 		portal.setDestination("0_nalwor_forest_w", 61);
 		zone.addPortal(portal);
 
 		portal = new OneWayPortalDestination();
 		zone.assignRPObjectID(portal);
-		portal.setx(87);
-		portal.sety(92);
+		portal.setX(87);
+		portal.setY(92);
 		portal.setNumber(60);
 		zone.addPortal(portal);
 
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(114);
-		portal.sety(91);
+		portal.setX(114);
+		portal.setY(91);
 		portal.setNumber(1);
 		portal.setDestination("0_nalwor_forest_w", 60);
 		zone.addPortal(portal);
 
 		portal = new OneWayPortalDestination();
 		zone.assignRPObjectID(portal);
-		portal.setx(117);
-		portal.sety(91);
+		portal.setX(117);
+		portal.setY(91);
 		portal.setNumber(61);
 		zone.addPortal(portal);
 	}

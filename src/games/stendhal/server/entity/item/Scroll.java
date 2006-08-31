@@ -137,10 +137,10 @@ public class Scroll extends StackableItem implements UseListener {
 				"marked_scroll");
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.get("zoneid"));
 		zone.assignRPObjectID(item);
-		item.setx(player.getx());
-		item.sety(player.gety());
+		item.setX(player.getX());
+		item.setY(player.getY());
 		item.put("infostring", "" + player.getID().getZoneID() + " "
-				+ player.getx() + " " + player.gety());
+				+ player.getX() + " " + player.getY());
 		zone.add(item);
 		return true;
 	}

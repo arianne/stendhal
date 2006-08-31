@@ -120,15 +120,15 @@ public class Ados implements IContent {
 	private void buildZooArea(StendhalRPZone zone) {
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(53);
-		sign.sety(48);
+		sign.setX(53);
+		sign.setY(48);
 		sign.setText("Ados Wildlife Refuge\nHome for endangered animals");
 		zone.add(sign);
 		
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(67);
-		portal.sety(24);
+		portal.setX(67);
+		portal.setY(24);
 		portal.setNumber(0);
 		portal.setDestination("-1_ados_outside_nw", 0);
 		zone.addPortal(portal);
@@ -231,8 +231,8 @@ public class Ados implements IContent {
 	private void buildZooSub1Area(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(4);
-		portal.sety(23);
+		portal.setX(4);
+		portal.setY(23);
 		portal.setNumber(0);
 		portal.setDestination("0_ados_outside_nw", 0);
 		zone.addPortal(portal);
@@ -294,16 +294,16 @@ public class Ados implements IContent {
 
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(12);
-		portal.sety(13);
+		portal.setX(12);
+		portal.setY(13);
 		portal.setNumber(0);
 		portal.setDestination("0_ados_mountain_nw", 0);
 		zone.addPortal(portal);
 
 		portal = new Portal();
 		zoneOutside.assignRPObjectID(portal);
-		portal.setx(75);
-		portal.sety(51);
+		portal.setX(75);
+		portal.setY(51);
 		portal.setNumber(0);
 		portal.setDestination("int_ados_magician_house", 0);
 		zoneOutside.addPortal(portal);
@@ -384,8 +384,8 @@ public class Ados implements IContent {
 	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
 		zone.assignRPObjectID(item);
-		item.setx(x);
-		item.sety(y);
+		item.setX(x);
+		item.setY(y);
 		item.put("persistent", 1);
 		zone.add(item);
 		return item;

@@ -406,7 +406,7 @@ public abstract class RPEntity extends Entity {
 		StendhalRPRuleProcessor.get().addGameEvent(who.getName(), "damaged", getName(), Integer
 				.toString(damage));
 
-		Rectangle2D rect = getArea(getx(), gety());
+		Rectangle2D rect = getArea(getX(), getY());
 		if (!StendhalRPRuleProcessor.get().bloodAt((int) rect.getX(), (int) rect.getY())) {
 			Blood blood = new Blood(this);
 			IRPZone zone = StendhalRPWorld.get().getRPZone(getID());
@@ -683,8 +683,8 @@ public abstract class RPEntity extends Entity {
 		if (putOnGroundIfItCannotEquiped) {
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(getID());
 			zone.assignRPObjectID(item);
-			item.setx(getx());
-			item.sety(gety());
+			item.setX(getX());
+			item.setY(getY());
 			zone.add(item);
 			return true;
 		}

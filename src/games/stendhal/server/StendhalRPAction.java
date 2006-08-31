@@ -19,7 +19,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
@@ -156,14 +155,14 @@ public class StendhalRPAction {
 
 			target.onAttack(source, true);
 
-			List<Item> weaponItem = source.getWeapons();
+			// List<Item> weaponItem = source.getWeapons();
 			boolean range = source.canDoRangeAttacks(); 
 
 			if (source.nextTo(target, 1) || range) {
 				if (range) {
 					// Check Line of View to see if there is any obstacle.
-					Vector<Point> points = Line.renderLine(source.getx(),
-							source.gety(), target.getx(), target.gety());
+					Vector<Point> points = Line.renderLine(source.getX(),
+							source.getY(), target.getX(), target.getY());
 					for (Point point : points) {
 						if (zone.collides((int) point.getX(), (int) point
 								.getY())) {
@@ -241,8 +240,8 @@ public class StendhalRPAction {
 				return;
 			}
 
-			int x = entity.getx();
-			int y = entity.gety();
+			int x = entity.getX();
+			int y = entity.getY();
 
 			Direction dir = entity.getDirection();
 			int dx = dir.getdx();
@@ -255,8 +254,8 @@ public class StendhalRPAction {
 				logger.debug("Moving from (" + x + "," + y + ") to ("
 						+ (x + dx) + "," + (y + dy) + ")");
 
-				entity.setx(x + dx);
-				entity.sety(y + dy);
+				entity.setX(x + dx);
+				entity.setY(y + dy);
 
 				entity.setCollides(false);
 				entity.notifyWorldAboutChanges();
@@ -344,11 +343,11 @@ public class StendhalRPAction {
 					found = true;
 					logger.debug("Contained at :" + zone.getID());
 
-					player.setx(player_x - zone.getx());
-					player.sety(player_y - zone.gety());
+					player.setX(player_x - zone.getx());
+					player.setY(player_y - zone.gety());
 
 					logger.debug(player.getName() + " pos would be ("
-							+ player.getx() + "," + player.gety() + ")");
+							+ player.getX() + "," + player.getY() + ")");
 
 					changeZone(player, zone.getID().getID(), false);
 					transferContent(player);
@@ -379,8 +378,8 @@ public class StendhalRPAction {
 				.getRPZone(new IRPZone.ID(portal.getDestinationZone()));
 
 		Portal dest = destZone.getPortal(portal.getDestinationNumber());
-		player.setx(dest.getInt("x"));
-		player.sety(dest.getInt("y"));
+		player.setX(dest.getInt("x"));
+		player.setY(dest.getInt("y"));
         dest.onUsedBackwards(player);
 
 		player.stop();
@@ -434,8 +433,8 @@ public class StendhalRPAction {
 							if (!checkPath || !path.isEmpty()) {
 
 								// We found a place!
-    							entity.setx(nx);
-    							entity.sety(ny);
+    							entity.setX(nx);
+    							entity.setY(ny);
     
     							found = true;
                                 break outerLoop; // break all for-loops
@@ -449,8 +448,8 @@ public class StendhalRPAction {
                 logger.debug("Unable to place " + entity + " at (" + x + "," + y + ")");
             }
 		} else {
-			entity.setx(x);
-			entity.sety(y);
+			entity.setX(x);
+			entity.setY(y);
 
 			found = true;
 		}

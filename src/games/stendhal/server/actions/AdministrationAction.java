@@ -264,8 +264,8 @@ public class AdministrationAction extends ActionListener {
 
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(teleported
 					.getID());
-			int x = teleported.getx();
-			int y = teleported.gety();
+			int x = teleported.getX();
+			int y = teleported.getY();
 			
 			player.teleport(zone, x, y, null, player);
 		}

@@ -12,39 +12,39 @@ public class Afterlife implements IContent {
 
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(30);
-		portal.sety(6);
+		portal.setX(30);
+		portal.setY(6);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 60);
 		zone.addPortal(portal);
 
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(31);
-		portal.sety(6);
+		portal.setX(31);
+		portal.setY(6);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 60);
 		zone.addPortal(portal);
 
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setx(32);
-		portal.sety(6);
+		portal.setX(32);
+		portal.setY(6);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 60);
 		zone.addPortal(portal);
 
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(29);
-		sign.sety(22);
+		sign.setX(29);
+		sign.setY(22);
 		sign.setText("I regret to tell you that you have died!\nYou have lost some of your items and 10% of your eXPerience points.\nBe more careful next time. On the up side you can now return to the city.");
 		zone.add(sign);
 
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setx(33);
-		sign.sety(22);
+		sign.setX(33);
+		sign.setY(22);
 		sign.setText("I regret to tell you that you have died!\nYou have lost some of your items and 10% of your eXPerience points.\nBe more careful next time. On the up side you can now return to the city.");
 		zone.add(sign);
 	}

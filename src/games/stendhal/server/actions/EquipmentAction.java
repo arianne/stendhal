@@ -263,8 +263,8 @@ public class EquipmentAction extends ActionListener {
 					} else {
 						slot.remove(entity.getID());
 
-						entity.setx(x);
-						entity.sety(y);
+						entity.setX(x);
+						entity.setY(y);
 
 						zone.assignRPObjectID(entity);
 						zone.add(entity);
@@ -672,8 +672,8 @@ public class EquipmentAction extends ActionListener {
 					entity.remove("#db_id");
 				}
 
-				entity.setx(x);
-				entity.sety(y);
+				entity.setX(x);
+				entity.setY(y);
 				logger.warn("entity set to " + x + "x" + y);
 
 				zone.assignRPObjectID(entity);

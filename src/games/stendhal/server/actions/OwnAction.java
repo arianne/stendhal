@@ -75,8 +75,8 @@ public class OwnAction extends ActionListener {
 					Sheep sheep = (Sheep) object;
 					if (sheep.getOwner() == null) {
 
-						List<Node> path = Path.searchPath(player, player.getx(), player.gety(), 
-								sheep.getArea(sheep.getx(), sheep.gety()), 7);
+						List<Node> path = Path.searchPath(player, player.getX(), player.getY(), 
+								sheep.getArea(sheep.getX(), sheep.getY()), 7);
 						if (!path.isEmpty()) {
 						
 							sheep.setOwner(player);

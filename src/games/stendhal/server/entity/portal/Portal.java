@@ -84,7 +84,7 @@ public class Portal extends Entity implements UseListener {
 
 	@Override
 	public String toString() {
-		return "Portal at " + get("zoneid") + "[" + getx() + "," + gety() + "]";
+		return "Portal at " + get("zoneid") + "[" + getX() + "," + getY() + "]";
 	}
 
 	public void onUsed(RPEntity user) {

@@ -64,8 +64,8 @@ public class Path {
 	}
 
 	private static void moveto(RPEntity entity, int x, int y, double speed) {
-		int rndx = x - entity.getx();
-		int rndy = y - entity.gety();
+		int rndx = x - entity.getX();
+		int rndy = y - entity.getY();
 
 		if (Math.abs(rndx) > Math.abs(rndy)) {
 			if (Math.signum(rndx) < 0) {
@@ -104,7 +104,7 @@ public class Path {
 	}
 
 	public static List<Node> searchPath(Entity entity, int ex, int ey) {
-		return searchPath(entity, entity.getx(), entity.gety(), entity.getArea(
+		return searchPath(entity, entity.getX(), entity.getY(), entity.getArea(
 				ex, ey), -1.0);
 	}
 
@@ -215,8 +215,8 @@ public class Path {
 
 		boolean result = StendhalRPWorld.get().getPathfinder().queuePath(
 				new QueuedPath(new SimplePathListener(entity), entity, entity
-						.getx(), entity.gety(), dest.getArea(dest.getx(), dest
-						.gety())));
+						.getX(), entity.getY(), dest.getArea(dest.getX(), dest
+						.getY())));
 
 		if (!result) {
 			logger.warn("Pathfinder queue is full...path not added");
@@ -234,8 +234,8 @@ public class Path {
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
 	public static List<Node> searchPath(Entity entity, Entity dest) {
-		return searchPath(entity, entity.getx(), entity.gety(), dest.getArea(
-				dest.getx(), dest.gety()));
+		return searchPath(entity, entity.getX(), entity.getY(), dest.getArea(
+				dest.getX(), dest.getY()));
 	}
 
 	/**
@@ -252,8 +252,8 @@ public class Path {
 	 */
 	public static List<Node> searchPath(Entity entity, Entity dest,
 			double maxDistance) {
-		return searchPath(entity, entity.getx(), entity.gety(), new Rectangle(
-				dest.getx(), dest.gety(), 1, 1), maxDistance);
+		return searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
+				dest.getX(), dest.getY(), 1, 1), maxDistance);
 	}
 
 	public static boolean followPath(RPEntity entity, double speed) {
@@ -275,8 +275,8 @@ public class Path {
 				entity.setPathPosition(pos);
 				actual = path.get(pos);
 				logger.debug("Moving to waypoint(" + pos + ")(" + actual.x
-						+ "," + actual.y + ") on Path from (" + entity.getx()
-						+ "," + entity.gety() + ")");
+						+ "," + actual.y + ") on Path from (" + entity.getX()
+						+ "," + entity.getY() + ")");
 				moveto(entity, actual.x, actual.y, speed);
 				return false;
 			} else {
@@ -290,8 +290,8 @@ public class Path {
 			}
 		} else {
 			logger.debug("Moving to waypoint(" + pos + ")(" + actual.x + ","
-					+ actual.y + ") on Path from (" + entity.getx() + ","
-					+ entity.gety() + ")");
+					+ actual.y + ") on Path from (" + entity.getX() + ","
+					+ entity.getY() + ")");
 			moveto(entity, actual.x, actual.y, speed);
 			return false;
 		}

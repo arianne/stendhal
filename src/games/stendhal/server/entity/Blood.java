@@ -46,7 +46,7 @@ public class Blood extends Entity implements TurnListener {
 
 		TurnNotifier.get().notifyInTurns(DEGRADATION_TIMEOUT, this, null);
 
-		Rectangle2D rect = entity.getArea(entity.getx(), entity.gety());
+		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
 
 		set((int) rect.getX(), (int) rect.getY());
 	}

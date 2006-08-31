@@ -431,8 +431,8 @@ public class Creature extends NPC {
 	}
 
 	protected RPEntity getNearestEnemy(double range) {
-		int x = getx();
-		int y = gety();
+		int x = getX();
+		int y = getY();
 
 		double distance = range * range; // We save this way several sqrt
 											// operations
@@ -450,8 +450,8 @@ public class Creature extends NPC {
 			}
 
 			if (playerOrFriend.get("zoneid").equals(get("zoneid"))) {
-				java.awt.geom.Rectangle2D rect = playerOrFriend.getArea(playerOrFriend.getx(),
-						playerOrFriend.gety());
+				java.awt.geom.Rectangle2D rect = playerOrFriend.getArea(playerOrFriend.getX(),
+						playerOrFriend.getY());
 				int fx = (int) rect.getX();
 				int fy = (int) rect.getY();
 
@@ -468,8 +468,8 @@ public class Creature extends NPC {
 	}
 
 	protected boolean isEnemyNear(double range) {
-		int x = getx();
-		int y = gety();
+		int x = getX();
+		int y = getY();
 
 		double distance = range * range; // We save this way several sqrt
 											// operations
@@ -486,8 +486,8 @@ public class Creature extends NPC {
 			}
 
 			if (playerOrFriend.get("zoneid").equals(get("zoneid"))) {
-				int fx = playerOrFriend.getx();
-				int fy = playerOrFriend.gety();
+				int fx = playerOrFriend.getX();
+				int fy = playerOrFriend.getY();
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
 					if (squaredDistance(playerOrFriend) < distance) {
@@ -613,9 +613,9 @@ public class Creature extends NPC {
 			Path.Node actual = patrolPath.get(i);
 			Path.Node next = patrolPath.get((i + 1) % size);
 
-			nodes.addAll(Path.searchPath(this, actual.x + getx(),
-					actual.y + gety(), new Rectangle2D.Double(next.x
-							+ getx(), next.y + gety(), 1.0, 1.0)));
+			nodes.addAll(Path.searchPath(this, actual.x + getX(),
+					actual.y + getY(), new Rectangle2D.Double(next.x
+							+ getX(), next.y + getY(), 1.0, 1.0)));
 		}
 		long time2 = System.nanoTime() - time;
 

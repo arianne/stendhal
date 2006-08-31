@@ -373,8 +373,8 @@ public class StendhalRPWorld extends RPWorld {
 	public void createHouse(StendhalRPZone zone, int x, int y)
 			throws org.xml.sax.SAXException, java.io.IOException {
 		Portal door = new Portal();
-		door.setx(x);
-		door.sety(y);
+		door.setX(x);
+		door.setY(y);
 		int dest = zone.assignPortalID(door);
 
 		String name = "int_" + zone.getID().getID() + "_house_"
@@ -387,8 +387,8 @@ public class StendhalRPWorld extends RPWorld {
 		StendhalRPZone house = addArea(name, "int_house_000");
 		Portal portal = new Portal();
 		portal.setDestination(zone.getID().getID(), dest);
-		portal.setx(7);
-		portal.sety(1);
+		portal.setX(7);
+		portal.setY(1);
 		portal.setNumber(0);
 		house.assignRPObjectID(portal);
 		house.addPortal(portal);

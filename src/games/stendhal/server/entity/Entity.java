@@ -89,23 +89,55 @@ public abstract class Entity extends RPObject {
 	}
 
 	public void set(int x, int y) {
-		setx(x);
-		sety(y);
+		setX(x);
+		setY(y);
 	}
 
+	/**
+	 * @deprecated use setX() instead
+	 */
+	@Deprecated
 	public void setx(int x) {
+		setX(x);
+	}
+	
+	/**
+	 * @deprecated use getX() instead
+	 */
+	@Deprecated
+	public int getx() {
+		return getX();
+	}
+
+	/**
+	 * @deprecated use setY() instead
+	 */
+	@Deprecated
+	public void sety(int y) {
+		setY(y);
+	}
+	
+	/**
+	 * @deprecated use getY() instead
+	 */
+	@Deprecated
+	public int gety() {
+		return getY();
+	}
+
+	public void setX(int x) {
 		if (x == this.x && x != 0) {
 			return;
 		}
 		this.x = x;
 		put("x", x);
 	}
-
-	public int getx() {
+	
+	public int getX() {
 		return x;
 	}
 
-	public void sety(int y) {
+	public void setY(int y) {
 		if (y == this.y && y != 0) {
 			return;
 		}
@@ -113,7 +145,7 @@ public abstract class Entity extends RPObject {
 		put("y", y);
 	}
 
-	public int gety() {
+	public int getY() {
 		return y;
 	}
 
@@ -266,7 +298,7 @@ public abstract class Entity extends RPObject {
 	}
 
 	public void faceTo(Entity entity) {
-		Rectangle2D otherArea = entity.getArea(entity.getx(), entity.gety());
+		Rectangle2D otherArea = entity.getArea(entity.getX(), entity.getY());
 		setDirection(directionTo((int) otherArea.getX(), (int) otherArea.getY()));
 	}
 

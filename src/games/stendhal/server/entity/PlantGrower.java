@@ -115,8 +115,8 @@ public class PlantGrower extends Entity implements TurnListener {
 		// create a new grown item
 		Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);
 		grownItem.setPlantGrower(this);
-		grownItem.setx(this.getx());
-		grownItem.sety(this.gety());
+		grownItem.setX(this.getX());
+		grownItem.setY(this.getY());
 		
 		zone.assignRPObjectID(grownItem);
 		zone.add(grownItem);

@@ -239,8 +239,8 @@ public class Player extends RPEntity {
 			zone.placeObjectAtEntryPoint(player);
 		}
 
-		int x = player.getx();
-		int y = player.gety();
+		int x = player.getX();
+		int y = player.getY();
 
 		try {
 			if (player.hasSheep()) {
@@ -254,8 +254,8 @@ public class Player extends RPEntity {
 
 				world.add(sheep);
 
-				x = sheep.getx();
-				y = sheep.gety();
+				x = sheep.getX();
+				y = sheep.getY();
 				player.setSheep(sheep);
 
 				StendhalRPAction.placeat(zone, sheep, x, y);

@@ -67,8 +67,8 @@ public class DisplaceAction extends ActionListener {
 							StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "displace",
 									entity.get("type"));
 
-							entity.setx(x);
-							entity.sety(y);
+							entity.setX(x);
+							entity.setY(y);
 							entity.notifyWorldAboutChanges();
 							// check if the displaced entity was an item that
 							// had just grown on a plant grower.

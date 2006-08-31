@@ -142,8 +142,8 @@ public class Sheep extends DomesticAnimal {
 	 *         given range
 	 */
 	private SheepFood getNearestFood(double range) {
-		int x = getx();
-		int y = gety();
+		int x = getX();
+		int y = getY();
 
 		double squaredDistance = range * range; // This way we save several sqrt operations
 		SheepFood chosen = null;
@@ -151,8 +151,8 @@ public class Sheep extends DomesticAnimal {
 		for (PlantGrower grower : StendhalRPRuleProcessor.get().getPlantGrowers()) {
 			if (grower instanceof SheepFood && grower.get("zoneid").equals(get("zoneid"))) {
 				SheepFood food = (SheepFood) grower;
-				int fx = food.getx();
-				int fy = food.gety();
+				int fx = food.getX();
+				int fy = food.getY();
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range
 						&& food.getAmount() > 0) {
