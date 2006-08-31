@@ -782,10 +782,8 @@ public abstract class SpeakerNPC extends NPC {
 		addSeller(behaviour, true);
 	}
 
-	public void addSeller(SellerBehaviour behaviour,
+	public void addSeller(final SellerBehaviour behaviour,
 			boolean offer) {
-		
-		final SellerBehaviour sellerBehaviour = behaviour;
 		
 		if (offer) {
 			add(ConversationStates.ATTENDING,
@@ -819,12 +817,12 @@ public abstract class SpeakerNPC extends NPC {
 		
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
-						if (sellerBehaviour.hasItem(item)) {
-							sellerBehaviour.chosenItem = item;
-							sellerBehaviour.setAmount(amount);
+						if (behaviour.hasItem(item)) {
+							behaviour.chosenItem = item;
+							behaviour.setAmount(amount);
 		
-							int price = sellerBehaviour.getUnitPrice(item)
-									* sellerBehaviour.amount;
+							int price = behaviour.getUnitPrice(item)
+									* behaviour.amount;
 		
 							engine.say(amount + " " + item + " costs " + price
 									+ ". Do you want to buy?");
@@ -843,11 +841,11 @@ public abstract class SpeakerNPC extends NPC {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						String itemName = sellerBehaviour.chosenItem;
+						String itemName = behaviour.chosenItem;
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 		
-						sellerBehaviour.transactAgreedDeal(engine, player);
+						behaviour.transactAgreedDeal(engine, player);
 					}
 				});
 
@@ -862,9 +860,7 @@ public abstract class SpeakerNPC extends NPC {
 		addBuyer(behaviour, true);
 	}
 
-	public void addBuyer(BuyerBehaviour behaviour, boolean offer) {
-
-		final BuyerBehaviour buyerBehaviour = behaviour;
+	public void addBuyer(final BuyerBehaviour behaviour, boolean offer) {
 
 		if (offer) {
 			add(ConversationStates.ATTENDING,
@@ -895,10 +891,10 @@ public abstract class SpeakerNPC extends NPC {
 							item = words[1].trim();
 						}
 		
-						if (buyerBehaviour.hasItem(item)) {
-							buyerBehaviour.chosenItem = item;
-							buyerBehaviour.setAmount(amount);
-							int price = buyerBehaviour.getCharge(player);
+						if (behaviour.hasItem(item)) {
+							behaviour.chosenItem = item;
+							behaviour.setAmount(amount);
+							int price = behaviour.getCharge(player);
 		
 							engine.say(amount + " " + item + " is worth " + price
 									+ ". Do you want to sell?");
@@ -920,7 +916,7 @@ public abstract class SpeakerNPC extends NPC {
 						logger.debug("Buying something from player "
 								+ player.getName());
 		
-						buyerBehaviour.transactAgreedDeal(engine, player);
+						behaviour.transactAgreedDeal(engine, player);
 					}
 				});
 
@@ -991,9 +987,7 @@ public abstract class SpeakerNPC extends NPC {
 				null);
 	}
 	
-	public void addProducer(ProducerBehaviour behaviour, String welcomeMessage) {
-		
-		final ProducerBehaviour producerBehaviour = behaviour;
+	public void addProducer(final ProducerBehaviour behaviour, String welcomeMessage) {
 		
 		final String thisWelcomeMessage = welcomeMessage;
 		
@@ -1002,8 +996,8 @@ public abstract class SpeakerNPC extends NPC {
 			new SpeakerNPC.ChatCondition() {
 				@Override
 					public boolean fire(Player player, SpeakerNPC engine) {
-						return !player.hasQuest(producerBehaviour.getQuestSlot())
-								|| player.isQuestCompleted(producerBehaviour.getQuestSlot());
+						return !player.hasQuest(behaviour.getQuestSlot())
+								|| player.isQuestCompleted(behaviour.getQuestSlot());
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -1011,12 +1005,12 @@ public abstract class SpeakerNPC extends NPC {
 				null);
 
 		add(ConversationStates.ATTENDING,
-			producerBehaviour.getProductionActivity(),
+			behaviour.getProductionActivity(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, SpeakerNPC engine) {
-					return !player.hasQuest(producerBehaviour.getQuestSlot())
-					|| player.isQuestCompleted(producerBehaviour.getQuestSlot());
+					return !player.hasQuest(behaviour.getQuestSlot())
+					|| player.isQuestCompleted(behaviour.getQuestSlot());
 				}
 			},
 			ConversationStates.ATTENDING,
@@ -1031,7 +1025,7 @@ public abstract class SpeakerNPC extends NPC {
 					if (words.length > 1) {
 						amount = Integer.parseInt(words[1].trim());
 					}
-					if (producerBehaviour.askForResources(npc, player, amount)) {
+					if (behaviour.askForResources(npc, player, amount)) {
 						npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
 					}
 				}
@@ -1046,7 +1040,7 @@ public abstract class SpeakerNPC extends NPC {
 				@Override
 				public void fire(Player player, String text,
 						SpeakerNPC npc) {
-					producerBehaviour.transactAgreedDeal(npc, player);
+					behaviour.transactAgreedDeal(npc, player);
 				}
 			});
 
@@ -1058,12 +1052,12 @@ public abstract class SpeakerNPC extends NPC {
 			null);
 
 		add(ConversationStates.ATTENDING,
-			producerBehaviour.getProductionActivity(),
+			behaviour.getProductionActivity(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, SpeakerNPC engine) {
-					return player.hasQuest(producerBehaviour.getQuestSlot())
-							&& !player.isQuestCompleted(producerBehaviour.getQuestSlot());
+					return player.hasQuest(behaviour.getQuestSlot())
+							&& !player.isQuestCompleted(behaviour.getQuestSlot());
 				}
 			},
 			ConversationStates.ATTENDING,
@@ -1075,8 +1069,8 @@ public abstract class SpeakerNPC extends NPC {
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, SpeakerNPC engine) {
-					return player.hasQuest(producerBehaviour.getQuestSlot())
-							&& !player.isQuestCompleted(producerBehaviour.getQuestSlot());
+					return player.hasQuest(behaviour.getQuestSlot())
+							&& !player.isQuestCompleted(behaviour.getQuestSlot());
 				}
 			},
 			ConversationStates.ATTENDING,
@@ -1085,7 +1079,7 @@ public abstract class SpeakerNPC extends NPC {
 				@Override
 				public void fire(Player player, String text,
 						SpeakerNPC npc) {
-					producerBehaviour.giveProduct(npc, player);
+					behaviour.giveProduct(npc, player);
 				}
 			});
 	}
