@@ -46,7 +46,7 @@ public class MeetMonogenes extends AbstractQuest {
 						if (!player.isQuestCompleted("Monogenes")) {
 							engine.say("Hi foreigner, don't be surprised if people here are reserved: the fear of the advances of Blordrough's dark legion has affected everybody, including me. Do you want to know how to socialize with Semos' people?");
 							player.setQuest("Monogenes", "done");
-							engine.setCurrentState(ConversationStates.QUESTION_1);
+							engine.setCurrentState(ConversationStates.INFORMATION_1);
 						} else {
 							engine.say("Hi again, " + player.getName()
 									+ ". How can I #help you this time?");
