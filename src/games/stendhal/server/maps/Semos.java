@@ -1094,6 +1094,7 @@ public class Semos implements IContent {
 		npc.set(46, 19);
 		npc.initHP(100);
 		zone.addNPC(npc);
+		
 		npc = new SpeakerNPC("Monogenes") {
 			@Override
 			protected void createPath() {
@@ -1103,32 +1104,9 @@ public class Semos implements IContent {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.IDLE,
-					GREETING_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-							SpeakerNPC engine) {
-							// A little trick to make NPC remember if it has met
-							// player before anc react accordingly
-							// NPC_name quest doesn't exist anywhere else neither is
-							// used for any other purpose
-							if (!player.isQuestCompleted("Monogenes")) {
-								engine
-										.say("Hi foreigner, don't be surprised if people here are reserved: the fear of the advances of Blordrough's dark legion has affected everybody, including me. Do you want to know how to socialize with Semos' people?");
-								player.setQuest("Monogenes", "done");
-							} else {
-								engine.say("Hi again, " + player.getName()
-										+ ". How can I #help you this time?");
-							}
-						}
-					});
-				addHelp("I'm Diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?");
 				addJob("I am committed to give directions to foreigners and show them how to talk to people here. However, when I'm in a bad mood I give them misleading directions hehehe... What is not necessarily bad because I can give wrong directions unwillingly anyway and they can result in being the right directions");
-				addGoodbye();
+				
+				// All further behaviour is defined in MeetMonogenes.java.
 			}
 		};
 		npcs.add(npc);

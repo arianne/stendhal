@@ -11,41 +11,78 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  *
  * STEPS:
  * - Talk to Monogenes to activate the quest and keep speaking with Monogenes.
+ * - Be polite and say "bye" at the end of the conversation to get a small
+ *   reward.
  *
  * REWARD:
  * - 10 XP (check that user's level is lesser than 5)
  * - No money
  * 
  * REPETITIONS:
- * - As much as wanted.
+ * - None
+ * 
+ * TODO: make it possible to repeat the quest if the player said "no"
  */
 public class MeetMonogenes extends AbstractQuest {
 
-	private void step_1() {
-		SpeakerNPC npc=npcs.get("Monogenes");
+	@Override
+	public void addToWorld() {
+		super.addToWorld();
+		SpeakerNPC npc = npcs.get("Monogenes");
 		
+		npc.add(ConversationStates.IDLE,
+				SpeakerNPC.GREETING_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text,
+						SpeakerNPC engine) {
+						// A little trick to make NPC remember if it has met the
+						// player before and react accordingly.
+						// NPC_name quest doesn't exist anywhere else neither is
+						// used for any other purpose.
+						if (!player.isQuestCompleted("Monogenes")) {
+							engine.say("Hi foreigner, don't be surprised if people here are reserved: the fear of the advances of Blordrough's dark legion has affected everybody, including me. Do you want to know how to socialize with Semos' people?");
+							player.setQuest("Monogenes", "done");
+							engine.setCurrentState(ConversationStates.QUESTION_1);
+						} else {
+							engine.say("Hi again, " + player.getName()
+									+ ". How can I #help you this time?");
+						}
+					}
+				});
+
 		npc.add(ConversationStates.ATTENDING,
+				SpeakerNPC.HELP_MESSAGES,
+				null,
+				ConversationStates.INFORMATION_1,
+				"I'm Diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?",
+				null);
+
+		npc.add(ConversationStates.INFORMATION_1,
 				SpeakerNPC.YES_MESSAGES,
 				null,
-				ConversationStates.QUESTION_1,
+				ConversationStates.INFORMATION_2,
 				"Only ask them about what they bring the conversation around to: the WORDS that are bolded in blue color. Otherwise, you can get a harsh answer although you usually can ask about their job , help, offer, or quest. Do you want to know where the city's main buildings are?",
 				null);
 		
-		npc.add(ConversationStates.ATTENDING,
+		npc.add(ConversationStates.INFORMATION_1,
 				"no",
 				null,
 				ConversationStates.IDLE,
 				"And how are you supposed to know what's happening? By reading the Semos Tribune? Bye!",
 				null);
 		
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.INFORMATION_2,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Sometimes it is helpful to read the city's wooden signs by right-clicking on them and choosing LOOK. I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith or the #village.",
 				null);
 		
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.INFORMATION_2,
 				"no",
 				null,
 				ConversationStates.IDLE,
@@ -68,8 +105,7 @@ public class MeetMonogenes extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						int level=player.getLevel();
-						if (level < 15) {
+						if (player.getLevel() < 15) {
 							engine.say("Bye, my friend. I hope my indications have been helpful...");
 							player.addXP(10);
 							player.notifyWorldAboutChanges();
@@ -78,12 +114,5 @@ public class MeetMonogenes extends AbstractQuest {
 						}
 					}
 				});
-	}
-	
-	@Override
-	public void addToWorld() {
-		super.addToWorld();
-
-		step_1();
 	}
 }
