@@ -843,12 +843,17 @@ public class Player extends RPEntity {
 	 * met, or the number of items that still need to be brought. Note that
 	 * the string "done" has a special meaning: see isQuestComplete().
 	 * @param name The quest's name
-	 * @param status the player's status in the quest
+	 * @param status the player's status in the quest. Set it to null to
+	 *        completely reset the player's status for the quest.
 	 */
 	public void setQuest(String name, String status) {
 		RPSlot slot = getSlot("!quests");
 		RPObject quests = slot.iterator().next();
-		quests.put(name, status);
+		if (status != null ) {
+			quests.put(name, status);
+		} else {
+			quests.remove(name);
+		}
 	}
 
 	public List<String> getQuests() {
