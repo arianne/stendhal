@@ -97,22 +97,23 @@ public class MeetMonogenes extends AbstractQuest {
 		npc.addReply("village", "The village is southwest from here, following the path. There you can buy sheep to breed.");
 		
 		/** Give the reward to the polite newcomer user */
-		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.GOODBYE_MESSAGES,
-				null,
-				ConversationStates.IDLE,
-				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						if (player.getLevel() < 15) {
-							engine.say("Bye, my friend. I hope my indications have been helpful...");
-							player.addXP(10);
-							player.notifyWorldAboutChanges();
-						} else {
-							engine.say("It's curious... Now that I think about it, I would have betted I had seen you in Semos before...");
-						}
-					}
-				});
+//		npc.add(ConversationStates.ATTENDING,
+//				SpeakerNPC.GOODBYE_MESSAGES,
+//				null,
+//				ConversationStates.IDLE,
+//				null,
+//				new SpeakerNPC.ChatAction() {
+//					@Override
+//					public void fire(Player player, String text, SpeakerNPC engine) {
+//						if (player.getLevel() < 15) {
+//							engine.say("Bye, my friend. I hope my indications have been helpful...");
+//							player.addXP(10);
+//							player.notifyWorldAboutChanges();
+//						} else {
+//							engine.say("It's curious... Now that I think about it, I would have betted I had seen you in Semos before...");
+//						}
+//					}
+//				});
+		npc.addGoodbye();
 	}
 }
