@@ -23,18 +23,18 @@ public class MeetMonogenes extends AbstractQuest {
 	private void step_1() {
 		SpeakerNPC npc=npcs.get("Monogenes");
 		
-		npc.add(1, SpeakerNPC.YES_MESSAGES,null,50,"Only ask them about what they bring the conversation around to: the WORDS that are bolded in blue color. Otherwise, you can get a harsh answer although you usually can ask about their #job , #help, #offer or #quest. Do you want to know where city's main buildings are?", null);
-		npc.add(1, "no",null,0,"And how are you supposed to know what's happening? By reading the Semos tribune? Bye!", null);
+		npc.add(1, SpeakerNPC.YES_MESSAGES,null,50,"Only ask them about what they bring the conversation around to: the WORDS that are bolded in blue color. Otherwise, you can get a harsh answer although you usually can ask about their job , help, offer, or quest. Do you want to know where the city's main buildings are?", null);
+		npc.add(1, "no",null,0,"And how are you supposed to know what's happening? By reading the Semos Tribune? Bye!", null);
 		
 		npc.add(50, SpeakerNPC.YES_MESSAGES,null,1,"Sometimes it is helpful to read the city's wooden signs by right-clicking on them and choosing LOOK. I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith or the #village.", null);
-		npc.add(50, "no",null,0,"Oh I see... You are of that kind of persons that don't like asking for directions huh? Well, good luck finding the secretly hidden mmhmmhmm!", null);
+		npc.add(50, "no",null,0,"Oh I see... You are of that kind of person that doesn't like asking for directions, huh? Well, good luck finding the secretly hidden mmhmmhmm!", null);
 		
 		npc.addReply("bank", "The bank is precisely this building next to me. I thought the big chest on the front would have given you a clue.");
 		npc.addReply("library", "The library is west from here, following the path. There's an OPEN BOOK AND A FEATHER sign over one of the two doors.");
 		npc.addReply("tavern", "The tavern is southeast from here, following the path. You'll see a big INN sign over the door. You can't miss it.");
 		npc.addReply("temple", "The temple is the second building southeast from here, following the path. There's a small CROSS over the roof.");
 		npc.addReply("blacksmith", "The blacksmith's shop is southwest from here, following the path. There's a small SWORD sign over the door.");
-		npc.addReply("village", "The village is southwest from here, following the path. There you can buy sheeps to breed.");
+		npc.addReply("village", "The village is southwest from here, following the path. There you can buy sheep to breed.");
 		
 		/** Give the reward to the polite newcomer user */
 		npc.add(1,"bye",null,0,null,new SpeakerNPC.ChatAction() {

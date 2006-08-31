@@ -109,17 +109,17 @@ public class SheepGrowing extends AbstractQuest {
 
 				addGreeting();
 				addJob("I work as a sheep seller.");
-				addHelp("I just sell sheeps. Just tell me #buy #sheep and I will sell you a nice sheep! Ask me how to take #care of her, how to #travel with her, how to #sell her or how to #own a wild sheep.");
+				addHelp("I just sell sheep. Just tell me #buy #sheep and I will sell you a nice sheep! Ask me how to take #care of her, how to #travel with her, how to #sell her or how to #own a wild sheep.");
 				addGoodbye();
 				addSeller(new SheepSellerBehaviour(items));
 				addReply("care",
-						"To feed your sheep just stand near bushes and she'll eat red cherries from them. She won't lose weight neither die from starvation. Right-click on her and choose LOOK to see her weight.");
+						"To feed your sheep just stand near bushes and it'll eat red cherries from them. She won't lose weight neither die from starvation. Right-click on her and choose LOOK to see her weight.");
 				addReply("travel",
-						"Sometimes you'll have to say #sheep to call her because you have to be close to her to change between zones. Be patient and don't right-click on YOU and choose LEAVE SHEEP: she would never do that with you!");
+						"Sometimes you'll have to say #sheep to call her because you have to be close to her to change between zones. Be patient and don't right-click on YOU and choose LEAVE SHEEP: it would never do that with you!");
 				addReply("sell",
-						"When your sheep weighs 100 (same as the number of cherries eaten) sell her to Sato, but only then or surely you'll feel cheated with his buying price.");
+						"When your sheep weighs 100 (same as the number of cherries eaten), sell her to Sato, but only then or surely you'll feel cheated with his buying price.");
 				addReply("own",
-						"If you happen to see a wild or better unfairly abandoned sheep, you can own her by right-clicking on HER and choosing OWN.");
+						"If you happen to see a wild or better unfairly abandoned sheep, you can own it by right-clicking on IT and choosing OWN.");
 			}
 		};
 		npcs.add(npc);
