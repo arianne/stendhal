@@ -133,15 +133,11 @@ public class Scroll extends StackableItem implements UseListener {
 	 * @return always true
 	 */
 	private boolean useEmptyScroll(Player player) {
-		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+		Item markedScroll = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 				"marked_scroll");
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.get("zoneid"));
-		zone.assignRPObjectID(item);
-		item.setX(player.getX());
-		item.setY(player.getY());
-		item.put("infostring", "" + player.getID().getZoneID() + " "
+		markedScroll.put("infostring", "" + player.getID().getZoneID() + " "
 				+ player.getX() + " " + player.getY());
-		zone.add(item);
+		player.equip(markedScroll, true);
 		return true;
 	}
 
