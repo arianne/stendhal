@@ -257,6 +257,12 @@ public class EquipmentAction extends ActionListener {
 
 						newItem.set(x, y);
 						newItem.setQuantity(quantity);
+						if (entity.has("infostring")) {
+							newItem.put("infostring", entity.get("infostring"));
+						}
+						if (entity.has("description")) {
+							newItem.put("description", entity.get("description"));
+						}
 						zone.add(newItem);
 
 						((StackableItem) entity).add(-quantity);
