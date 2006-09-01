@@ -1032,7 +1032,7 @@ public abstract class SpeakerNPC extends NPC {
 			});
 		
 		add(ConversationStates.PRODUCTION_OFFERED,
-			"yes",
+			YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			null,
