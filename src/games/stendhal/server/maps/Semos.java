@@ -501,7 +501,7 @@ public class Semos implements IContent {
 		portal.setX(26);
 		portal.setY(14);
 		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 6);
+		portal.setDestination("0_semos_city", 10);
 		zone.addPortal(portal);
 
 		SpeakerNPC erna = new SpeakerNPC("Erna") {
