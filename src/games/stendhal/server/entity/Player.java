@@ -1041,11 +1041,11 @@ public class Player extends RPEntity {
 		if (soloItem.getRegen() > 0) {
 			put("eating", 0);
 			itemsToConsume.add(soloItem);
-		} else if (soloItem.getRegen() == 0) // if regen==0 is antidote
-		{
+		} else if (soloItem.getRegen() == 0) { // if regen==0, it's an antidote
 			poisonToConsume.clear();
 			turnsLeftOfImmunity = soloItem.getAmount();
 		} else if (turnsLeftOfImmunity == 0) {
+			// Player was poisoned and is currently not immune
 			poison(soloItem);
 		} else {
 			// Player was poisoned, but antidote saved it.
@@ -1088,8 +1088,7 @@ public class Player extends RPEntity {
 			}
 
 			if (!poison.consumed()) {
-				poison.consume();
-				int amount = poison.getRegen();
+				int amount = poison.consume();
 				put("poisoned", amount);
 
 				if (getHP() + amount > 0) {
@@ -1115,8 +1114,7 @@ public class Player extends RPEntity {
 
 			if (!consumableItem.consumed()) {
 				logger.debug("Consumed item: " + consumableItem);
-				consumableItem.consume();
-				int amount = consumableItem.getRegen();
+				int amount = consumableItem.consume();
 				put("eating", amount);
 
 				if (getHP() + amount < getBaseHP()) {

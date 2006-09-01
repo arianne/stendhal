@@ -18,12 +18,30 @@ import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Player;
 
+/**
+ * 
+ */
+
+/*
+ * TODO: bug: calling consume() on a stack of ConsumableItems uses up all
+ * items in the stack, not only a single one.
+ * 
+ * Quote from Player.java:
+ * 
+ * NOTE: We have a bug when consuming a stackableItem as when the first
+ * item runs out the other ones also runs out. Perhaps this must be
+ * fixed inside StackableItem itself
+ */
 public class ConsumableItem extends StackableItem implements UseListener {
+	
+	/** How much of this item has not yet been consumed. */
 	private int left;
 
 	public ConsumableItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
+		
 		super(name, clazz, subclass, attributes);
+		
 		left = getAmount();
 	}
 
@@ -39,16 +57,29 @@ public class ConsumableItem extends StackableItem implements UseListener {
 		return getInt("regen");
 	}
 
-	public void consume() {
-		left -= getRegen();
+	/**
+	 * Consumes a part of this item.
+	 * @return The amount that has been consumed
+	 */
+	public int consume() {
+		// note that amount and regen are negative for poison
+		int consumedAmount;
+		if (Math.abs(left) < Math.abs(getRegen())) {
+			consumedAmount = left;
+			left = 0;
+		} else {
+			consumedAmount = getRegen();
+			left -= getRegen();
+		}
+		return consumedAmount;
 	}
 
+	/**
+	 * Checks whether this item has already been fully consumed.
+	 * @return true iff this item has been consumed
+	 */
 	public boolean consumed() {
-		if (getRegen() > 0) {
-			return left <= 0;
-		} else {
-			return left >= 0;
-		}
+		return left == 0;
 	}
 
 	public void onUsed(RPEntity user) {
