@@ -529,7 +529,7 @@ public class Semos implements IContent {
 
 				// Erna bakes bread if you bring her flour.
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
-				requiredResources.put("flour", new Integer(1));
+				requiredResources.put("flour", new Integer(2));
 
 				ProducerBehaviour behaviour = new ProducerBehaviour(
 						"erna_bake_bread", "bake", "loafs", "bread", requiredResources, 10 * 60);
