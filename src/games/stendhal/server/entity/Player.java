@@ -1001,7 +1001,7 @@ public class Player extends RPEntity implements TurnListener {
 		if (isImmune) {
 			return false;
 		} else {
-			put("poisoned", "0");
+			// put("poisoned", "0");
 			poisonToConsume.add(item);
 			return true;
 		}
