@@ -3,9 +3,11 @@ package games.stendhal.server.maps;
 import games.stendhal.common.Direction;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.creature.AttackableCreature;
@@ -303,7 +305,7 @@ public class Ados implements IContent {
 		portal = new Portal();
 		zoneOutside.assignRPObjectID(portal);
 		portal.setX(75);
-		portal.setY(51);
+		portal.setY(50);
 		portal.setNumber(0);
 		portal.setDestination("int_ados_magician_house", 0);
 		zoneOutside.addPortal(portal);
@@ -373,12 +375,19 @@ public class Ados implements IContent {
 		npc.set(7, 1);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		
+
+		// Summon scroll
 		Item item = addPersistentItem("summon_scroll", zone, 7, 6);
-		// Just in case a player finds a way to get this scroll, fake it:
-		item.setDescription("You see a summon scroll. It is marked with: blue_dragon");
-		item.put("infostring", "rat");
-		addPersistentItem("poison", zone, 4, 7); // need PlantGrower
+		item.put("infostring", "red_dragon");
+
+		// Plant grower for poison
+		PlantGrower plantGrower = new PlantGrower("poison", 1500);
+		zone.assignRPObjectID(plantGrower);
+		plantGrower.setX(3);
+		plantGrower.setY(6);
+		plantGrower.setDescription("Heizen tends to put his magic drinks here.");
+		zone.add(plantGrower);
+		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
 	}
 	
 	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
