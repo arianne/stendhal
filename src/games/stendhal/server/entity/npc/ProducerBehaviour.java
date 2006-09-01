@@ -245,6 +245,9 @@ public class ProducerBehaviour extends Behaviour {
 					+ getProductName()
 					+ ".");
 			player.setQuest(questSlot, "done");
+			// give some XP as a little bonus for industrious workers
+			player.addXP(numberOfProductItems);
+			player.notifyWorldAboutChanges();
 		}
 	}
 }
