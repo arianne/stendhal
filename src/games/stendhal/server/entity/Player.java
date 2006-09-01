@@ -25,6 +25,8 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
@@ -46,7 +48,7 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public class Player extends RPEntity {
+public class Player extends RPEntity implements TurnListener {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
@@ -70,10 +72,10 @@ public class Player extends RPEntity {
 	private List<ConsumableItem> poisonToConsume;
 
 	/**
-	 * Shows how many more turns an antidote or another anti-poisonous item
-	 * that the player has consumed will be effective.
+	 * Shows if this player is currently under the influence of an
+	 * antidote, and thus immune from poison.
 	 */
-	private int turnsLeftOfImmunity;
+	private boolean isImmune;
   
   private static boolean firstWelcomeException = true;
 
@@ -996,12 +998,13 @@ public class Player extends RPEntity {
 	 *         not immune 
 	 */
 	public boolean poison(ConsumableItem item) {
-		if (turnsLeftOfImmunity == 0) {
+		if (isImmune) {
+			return false;
+		} else {
 			put("poisoned", "0");
 			poisonToConsume.add(item);
 			return true;
 		}
-		return false;
 	}
 
 	public void consumeItem(ConsumableItem item) {
@@ -1043,8 +1046,14 @@ public class Player extends RPEntity {
 			itemsToConsume.add(soloItem);
 		} else if (soloItem.getRegen() == 0) { // if regen==0, it's an antidote
 			poisonToConsume.clear();
-			turnsLeftOfImmunity = soloItem.getAmount();
-		} else if (turnsLeftOfImmunity == 0) {
+			isImmune = true;
+			// set a timer to remove the immunity effect after some time
+			TurnNotifier notifier = TurnNotifier.get();
+			// first remove all effects from previously used immunities to
+			// restart the timer
+			notifier.dontNotify(this, "end_immunity");
+			notifier.notifyInTurns(soloItem.getAmount(), this, "end_immunity");
+		} else if (!isImmune) {
 			// Player was poisoned and is currently not immune
 			poison(soloItem);
 		} else {
@@ -1066,10 +1075,6 @@ public class Player extends RPEntity {
 	}
 
 	public void consume(int turn) {
-		if (turnsLeftOfImmunity > 0) {
-			turnsLeftOfImmunity--;
-		}
-
 		if (has("poisoned") && poisonToConsume.size() == 0) {
 			remove("poisoned");
 			notifyWorldAboutChanges();
@@ -1130,6 +1135,14 @@ public class Player extends RPEntity {
 				logger.debug("Consumed completly item: " + consumableItem);
 				itemsToConsume.remove(0);
 			}
+		}
+	}
+	
+	// TODO: use the turn notifier for consumable items to
+	// get rid of Player.consume().
+	public void onTurnReached(int turn, String message) {
+		if ("end_immunity".equals(message)) {
+			isImmune = false;
 		}
 	}
 
