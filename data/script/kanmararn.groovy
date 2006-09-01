@@ -54,6 +54,7 @@ class HenryQuestAction extends SpeakerNPC.ChatAction {
 			engine.say("I'm so sad that most of my friends are dead.");
 			engine.setCurrentState(1);
 		}
+	}
 }
 
 class HenryQuestAcceptAction extends SpeakerNPC.ChatAction {
