@@ -203,7 +203,7 @@ public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnList
 				player.sendPrivateText("Welcome in " + zoneName);
 			}
     	} catch (Exception e) {
-    		Logger.getLogger(this).error(e, e);
+    		Logger.getLogger(SightseeingAction).error(e, e);
     	}
 
 		counter++;
