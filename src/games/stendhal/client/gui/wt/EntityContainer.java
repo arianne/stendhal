@@ -126,8 +126,8 @@ public class EntityContainer extends WtPanel {
 
 		int px = player.getInt("x");
 		int py = player.getInt("y");
-		int ix = (int) parent.getx();
-		int iy = (int) parent.gety();
+		int ix = (int) parent.getX();
+		int iy = (int) parent.getY();
 
 		int distance = Math.abs(px - ix) + Math.abs(py - iy);
 

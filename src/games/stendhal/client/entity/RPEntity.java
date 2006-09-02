@@ -586,8 +586,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			// {
 			// RPAction rpaction = new RPAction();
 			// rpaction.put("type","moveto");
-			// rpaction.put("x",(int)getx());
-			// rpaction.put("y",(int)gety());
+			// rpaction.put("x",(int)getX());
+			// rpaction.put("y",(int)getY());
 			// StendhalClient.get().send(rpaction);
 			// }
 

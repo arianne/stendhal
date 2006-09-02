@@ -91,8 +91,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			//
 			// RPAction rpaction = new RPAction();
 			// rpaction.put("type","moveto");
-			// rpaction.put("x",(int)contained.getx());
-			// rpaction.put("y",(int)contained.gety());
+			// rpaction.put("x",(int)contained.getX());
+			// rpaction.put("y",(int)contained.getY());
 			// StendhalClient.get().send(rpaction);
 			// }
 			//      
@@ -222,8 +222,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		// RPAction rpaction = new RPAction();
 		// rpaction.put("type","moveto");
 		// System.out.println (parent);
-		// rpaction.put("x",(int)parent.getx());
-		// rpaction.put("y",(int)parent.gety());
+		// rpaction.put("x",(int)parent.getX());
+		// rpaction.put("y",(int)parent.getY());
 		// StendhalClient.get().send(rpaction);
 		// }
 

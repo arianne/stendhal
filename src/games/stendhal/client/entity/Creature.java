@@ -155,7 +155,7 @@ public abstract class Creature extends NPC {
 
 	public void drawPath(GameScreen screen, List<Node> path, int delta) {
 		Graphics g2d = screen.expose();
-		Point2D p1 = screen.invtranslate(new Point.Double(getx(), gety()));
+		Point2D p1 = screen.invtranslate(new Point.Double(getX(), getY()));
 
 		for (Node node : path) {
 			Point2D p2 = screen.invtranslate(new Point.Double(node.x, node.y));

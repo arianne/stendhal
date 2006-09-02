@@ -122,11 +122,11 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		return type;
 	}
 
-	public double getx() {
+	public double getX() {
 		return x;
 	}
 
-	public double gety() {
+	public double getY() {
 		return y;
 	}
 
@@ -167,7 +167,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		}
 
 		double width = audibleRange * 2;
-		return new Rectangle2D.Double(getx() - audibleRange, gety()
+		return new Rectangle2D.Double(getX() - audibleRange, getY()
 				- audibleRange, width, width);
 	}
 
@@ -443,10 +443,10 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 */
 	public int compareTo(Entity other) {
 		// commented out until someone fixes bug [ 1401435 ] Stendhal: Fix positions system
-//		if (this.gety() < other.gety()) {
+//		if (this.getY() < other.getY()) {
 //			// this entity is standing behind the other entity
 //			return -1;
-//		} else if (this.gety() > other.gety()) {
+//		} else if (this.getY() > other.getY()) {
 //			// this entity is standing in front of the other entity
 //			return 1;
 //		} else {

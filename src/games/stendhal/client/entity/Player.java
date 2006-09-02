@@ -126,7 +126,7 @@ public class Player extends RPEntity {
 	 */
 	public Rectangle2D getHearingArea() {
 		double width = hearingRange * 2;
-		return new Rectangle2D.Double(getx() - hearingRange, gety()
+		return new Rectangle2D.Double(getX() - hearingRange, getY()
 				- hearingRange, width, width);
 	}
 

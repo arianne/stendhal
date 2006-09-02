@@ -356,8 +356,8 @@ public class StendhalRPWorld extends RPWorld {
 			area.setPosition();
 		} else {
 			area
-					.setPosition(xmlzone.getLevel(), xmlzone.getx(), xmlzone
-							.gety());
+					.setPosition(xmlzone.getLevel(), xmlzone.getX(), xmlzone
+							.getY());
 		}
 
 		addRPZone(area);

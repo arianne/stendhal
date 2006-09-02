@@ -194,7 +194,7 @@ public class AmbientSound {
 
 		if (soundObject != null)
 			hstr = "-- created LOC AMBIENT: " + name + " at ("
-					+ (int) soundObject.getx() + "," + (int) soundObject.gety()
+					+ (int) soundObject.getX() + "," + (int) soundObject.getY()
 					+ "), rad=" + radius + " vol=" + volume;
 		else
 			hstr = "-- created GLOB AMBIENT: " + name + ", vol=" + volume;

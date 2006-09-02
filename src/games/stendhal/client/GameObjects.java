@@ -602,7 +602,7 @@ public class GameObjects implements Iterable<Entity> {
 						entity.move(delta);
 					}
 				} else {
-					entity.onCollide((int) entity.getx(), (int) entity.gety());
+					entity.onCollide((int) entity.getX(), (int) entity.getY());
 				}
 			}
 		}
@@ -610,15 +610,15 @@ public class GameObjects implements Iterable<Entity> {
 
 	public void addText(Entity speaker, String text, Color color,
 			boolean isTalking) {
-		double x = speaker.getx();
-		double y = speaker.gety();
+		double x = speaker.getX();
+		double y = speaker.getY();
 
 		boolean found = true;
 
 		while (found == true) {
 			found = false;
 			for (Text item : texts) {
-				if (item.getx() == x && item.gety() == y) {
+				if (item.getX() == x && item.getY() == y) {
 					found = true;
 					y += 0.5;
 					break;
@@ -631,7 +631,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	public void addText(Entity speaker, Sprite sprite, long persistTime) {
-		Text entity = new Text(this, sprite, speaker.getx(), speaker.gety(),
+		Text entity = new Text(this, sprite, speaker.getX(), speaker.getY(),
 				persistTime);
 		texts.add(entity);
 	}
