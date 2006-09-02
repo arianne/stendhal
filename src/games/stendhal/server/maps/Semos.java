@@ -524,7 +524,7 @@ public class Semos implements IContent {
 			protected void createDialog() {
 				addJob("I'm the shop assistant at this bakery.");
 				addReply("flour", "We usually get our flour from a mill northeast of here. If you bring us some, we can make bread for you.");
-				addHelp("Bread is very healthy.");
+				addHelp("Bread is very healthy. And my colleague Leander can make tasty sandwiches from it.");
 				addGoodbye();
 
 				// Erna bakes bread if you bring her flour.
@@ -541,10 +541,54 @@ public class Semos implements IContent {
 		npcs.add(erna);
 		zone.assignRPObjectID(erna);
 		erna.put("class", "housewifenpc");
-		erna.setDirection(Direction.DOWN);
 		erna.set(26, 8);
 		erna.initHP(100);
 		zone.addNPC(erna);
+
+		SpeakerNPC leander = new SpeakerNPC("Leander") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(15, 2));
+				nodes.add(new Path.Node(15, 7));
+				nodes.add(new Path.Node(13, 7));
+				nodes.add(new Path.Node(13, 9));
+				nodes.add(new Path.Node(10, 9));
+				nodes.add(new Path.Node(10, 11));
+				nodes.add(new Path.Node(3, 11));
+				nodes.add(new Path.Node(3, 2));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createDialog() {
+				addJob("I'm the local baker. I also #make sandwiches for our valuable customers.");
+				addReply("bread", "Didn't you talk to Erna? She is responsible for giving bread to our customers.");
+				addReply("cheese", "Cheese is a bit hard to find in Semos, since we have a rat plague. I wonder where those critters take it to.");
+				addReply("ham", "You look like a skilled hunter. Why don't you go to the nearby forests and hunt deers? But don't bring me meat - I only make sandwiches from high quality ham!.");
+				addHelp("Do you know my daughter Sally? She's a scout; I think she's currently camping south of Orril castle. Maybe she can help you to get ham.");
+				addGoodbye();
+
+				// Leander makes sandwiches if you bring him bread, cheese, and ham.
+				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+				requiredResources.put("bread", new Integer(1));
+				requiredResources.put("cheese", new Integer(2));
+				requiredResources.put("ham", new Integer(1));
+
+				ProducerBehaviour behaviour = new ProducerBehaviour(
+						"leander_make_sandwiches", "make", "sandwich", requiredResources, 3 * 60);
+
+				addProducer(behaviour,
+						"Hallo! Have you come because you want me to #make sandwiches for you?");
+			}
+		};
+		npcs.add(leander);
+		zone.assignRPObjectID(leander);
+		leander.put("class", "chefnpc");
+		leander.setDirection(Direction.DOWN);
+		leander.set(15, 2);
+		leander.initHP(100);
+		zone.addNPC(leander);
 	}
 
 	private void buildSemosTempleArea(StendhalRPZone zone) {
