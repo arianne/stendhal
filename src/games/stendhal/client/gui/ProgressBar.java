@@ -1,6 +1,7 @@
 package games.stendhal.client.gui;
 import java.awt.Window;
 import java.net.URL;
+import java.security.AccessControlException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -38,7 +39,11 @@ public class ProgressBar extends JFrame {
         
         this.pack();
         this.setLocationRelativeTo(frame);
-        this.setAlwaysOnTop(true);
+        try {
+            this.setAlwaysOnTop(true);
+        } catch (AccessControlException e) {
+            // ignore it
+        }
     }
     
     private void initializeComponents() {
