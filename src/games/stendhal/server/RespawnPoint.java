@@ -38,7 +38,6 @@ import org.apache.log4j.Logger;
  * to create new creatures.  
  */
 public class RespawnPoint implements TurnListener {
-	private static final int TURNSTORESPAWN = 90;
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(RespawnPoint.class);
@@ -72,7 +71,7 @@ public class RespawnPoint implements TurnListener {
 	
 	/**
 	 * How long it takes to respawn a creature. This defaults to the
-	 * creature's default respawn time. 
+	 * creature's default respawn time.
 	 */
 	private int respawnTime;
 
@@ -97,7 +96,6 @@ public class RespawnPoint implements TurnListener {
 
 		respawning = true;
 		TurnNotifier.get().notifyInTurns(0, this, null); // respawn in next turn
-		respawnTime = TURNSTORESPAWN;
 	}
 
 	/**
