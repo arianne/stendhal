@@ -31,8 +31,7 @@ public class ScriptRunner extends StendhalServerExtension {
 
 	/**
 	 * Constructor for StendhalGroovyRunner 
-	 * @param rp     StendhalRPRuleProcessor
-	 * @param world  StendhalRPWorld
+	 *
 	 */
 	public ScriptRunner() {
         super();
@@ -147,6 +146,8 @@ public class ScriptRunner extends StendhalServerExtension {
 
             // split remaining args
             String[] args = cmd.split(" ");
+    		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "script", mode, script, String.valueOf(args));
+
 
             // execute script
             script = script.trim();
