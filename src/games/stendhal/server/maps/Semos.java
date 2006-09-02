@@ -579,7 +579,7 @@ public class Semos implements IContent {
 						"leander_make_sandwiches", "make", "sandwich", requiredResources, 3 * 60);
 
 				addProducer(behaviour,
-						"Hallo! Have you come because you want me to #make sandwiches for you?");
+						"Hallo! I guess you have come because you want me to #make sandwiches for you.");
 			}
 		};
 		npcs.add(leander);
