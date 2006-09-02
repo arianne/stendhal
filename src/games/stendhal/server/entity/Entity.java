@@ -93,38 +93,6 @@ public abstract class Entity extends RPObject {
 		setY(y);
 	}
 
-	/**
-	 * @deprecated use setX() instead
-	 */
-	@Deprecated
-	public void setx(int x) {
-		setX(x);
-	}
-	
-	/**
-	 * @deprecated use getX() instead
-	 */
-	@Deprecated
-	public int getx() {
-		return getX();
-	}
-
-	/**
-	 * @deprecated use setY() instead
-	 */
-	@Deprecated
-	public void sety(int y) {
-		setY(y);
-	}
-	
-	/**
-	 * @deprecated use getY() instead
-	 */
-	@Deprecated
-	public int gety() {
-		return getY();
-	}
-
 	public void setX(int x) {
 		if (x == this.x && x != 0) {
 			return;
