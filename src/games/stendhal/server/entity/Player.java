@@ -632,6 +632,12 @@ public class Player extends RPEntity implements TurnListener {
 									.getRuleManager().getEntityManager().getItem(
 											object.get("name"));
 							restItem.setQuantity(quantityToDrop);
+							if (item.has("infostring")) {
+								restItem.put("infostring", item.get("infostring"));
+							}
+							if (item.has("description")) {
+								restItem.put("description", item.get("description"));
+							}
 							corpse.add(restItem);
 						}
 					} else if (object instanceof PassiveEntity) {
