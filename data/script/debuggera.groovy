@@ -5,6 +5,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import games.stendhal.server.*
 import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.entity.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.scripting.*
@@ -174,10 +175,10 @@ public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnList
     	this.player = player;
     	counter = 0;
     	player.sendPrivateText("Let's start");
-		TurnNotifier.get().notifyInTurns(10, this);			
+		TurnNotifier.get().notifyInTurns(10, this, null);
     }
     
-    public void onTurnReached(int currentTurn) {
+    public void onTurnReached(int currentTurn, String message) {
     	try {
 	    	String zoneName = zones.get(counter);
 			if (!game.transferPlayer(player, zoneName, 5, 5)) {
