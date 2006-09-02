@@ -584,11 +584,7 @@ public class Player extends RPEntity implements TurnListener {
 
 	@Override
 	protected void dropItemsOn(Corpse corpse) {
-		int amount = Rand.rand(4);
-
-		if (amount == 0) {
-			return;
-		}
+		int maxItemsToDrop = Rand.rand(4);
 
 		String[] slots = { "bag", "rhand", "lhand", "head", "armor", "legs",
 				"feet", "cloak" };
@@ -597,46 +593,63 @@ public class Player extends RPEntity implements TurnListener {
 			if (hasSlot(slotName)) {
 				RPSlot slot = getSlot(slotName);
 
+				// a list that will contain the objects that will
+				// be dropped.
 				List<RPObject> objects = new LinkedList<RPObject>();
+				
+				// get a random set of items to drop
 				for (RPObject objectInSlot : slot) {
-					if (amount == 0) {
+					if (maxItemsToDrop == 0) {
 						break;
 					}
 
-					if (Rand.roll1D6() < 4) {
+					if (Rand.throwCoin() == 1) {
 						objects.add(objectInSlot);
-						amount--;
+						maxItemsToDrop--;
 					}
 				}
 
+				// now actually drop them
 				for (RPObject object : objects) {
 					if (object instanceof StackableItem) {
 						StackableItem item = (StackableItem) object;
 
-						double percentage = (Rand.rand(40) + 10) / 100.0;
+						// We won't drop the full quantity, but only a percentage.
+						// Get a random percentage between 26 % and 75 % to drop  
+						double percentage = (Rand.rand(50) + 25) / 100.0;
 						int quantity = item.getQuantity();
+						int quantityToDrop = (int) Math.round(quantity * percentage);
+						int remainingQuantity = quantity - quantityToDrop;
 
-						item.setQuantity((int) (quantity * (1.0 - percentage)));
+						if (remainingQuantity > 0) {
+							item.setQuantity(quantity - quantityToDrop);
+						} else {
+							drop(item);
+						}
 
-						StackableItem rest_item = (StackableItem) StendhalRPWorld.get()
-								.getRuleManager().getEntityManager().getItem(
-										object.get("name"));
-						rest_item.setQuantity((int) (quantity * percentage));
-						corpse.add(rest_item);
+						if (quantityToDrop > 0) {
+							StackableItem restItem = (StackableItem) StendhalRPWorld.get()
+									.getRuleManager().getEntityManager().getItem(
+											object.get("name"));
+							restItem.setQuantity(quantityToDrop);
+							corpse.add(restItem);
+						}
 					} else if (object instanceof PassiveEntity) {
 						slot.remove(object.getID());
 
 						corpse.add((PassiveEntity) object);
-						amount--;
+						maxItemsToDrop--;
 					}
 
 					if (corpse.isFull()) {
+						// This shouldn't happen because we have only chosen
+						// 4 items, and corpses can handle this.
 						return;
 					}
 				}
 			}
 
-			if (amount == 0) {
+			if (maxItemsToDrop == 0) {
 				return;
 			}
 		}
