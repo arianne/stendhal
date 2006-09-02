@@ -1180,8 +1180,15 @@ public class Player extends RPEntity implements TurnListener {
 			if (dir != null) {
 				this.setDirection(dir);
 			}
+			
+			String teleporterName;
+			if (teleporter == null) {
+				teleporterName = "null";
+			} else {
+				teleporterName = teleporter.getName();
+			}
 
-			StendhalRPRuleProcessor.get().addGameEvent(teleporter.getName(), "teleport", this
+			StendhalRPRuleProcessor.get().addGameEvent(teleporterName, "teleport", this
 					.getName());
 
 			notifyWorldAboutChanges();
