@@ -28,7 +28,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.52
+Version 0.53
 
 
 How to play
@@ -38,7 +38,7 @@ You also need Java JRE 1.5 ( http://www.java.com/en/download )
 Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
-  java -jar stendhal-0.52.jar
+  java -jar stendhal-0.53.jar
 Alternatively you can run it using Java Webstart technology at:
   http://stendhal.ath.cx/stendhal.jnlp
 
@@ -56,7 +56,7 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 
-0.53
+0.53 Sep 03, 2006
 
 - added regrowing grain fields which can be harvested
 - added a windmill and an NPC who mills flour from grain
