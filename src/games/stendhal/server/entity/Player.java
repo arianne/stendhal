@@ -578,8 +578,6 @@ public class Player extends RPEntity implements TurnListener {
 
 		setHP(getBaseHP());
 
-		world.modify(who);
-
 		StendhalRPAction.changeZone(this, "int_afterlife");
 		StendhalRPAction.transferContent(this);
 	}
