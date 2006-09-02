@@ -314,7 +314,7 @@ public class LoginDialog extends JDialog implements Runnable {
 					result = "Server is not available right now. Check it is online";
 				}
 				progressBar.cancel();
-				setVisible(true);
+				setEnabled(true);
 				JOptionPane.showMessageDialog(this, result,
 						"Login status", JOptionPane.ERROR_MESSAGE);
 			} else {
