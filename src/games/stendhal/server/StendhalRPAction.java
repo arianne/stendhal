@@ -323,8 +323,8 @@ public class StendhalRPAction {
 
 		StendhalRPZone origin = (StendhalRPZone) StendhalRPWorld.get()
 				.getRPZone(player.getID());
-		int player_x = x + origin.getx();
-		int player_y = y + origin.gety();
+		int player_x = x + origin.getX();
+		int player_y = y + origin.getY();
 
 		boolean found = false;
 
@@ -341,8 +341,8 @@ public class StendhalRPAction {
 					found = true;
 					logger.debug("Contained at :" + zone.getID());
 
-					player.setX(player_x - zone.getx());
-					player.setY(player_y - zone.gety());
+					player.setX(player_x - zone.getX());
+					player.setY(player_y - zone.getY());
 
 					logger.debug(player.getName() + " pos would be ("
 							+ player.getX() + "," + player.getY() + ")");

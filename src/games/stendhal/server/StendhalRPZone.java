@@ -317,11 +317,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 		this.interior = true;
 	}
 
-	public int getx() {
+	public int getX() {
 		return x;
 	}
 
-	public int gety() {
+	public int getY() {
 		return y;
 	}
 
@@ -465,11 +465,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 							logger.debug(target + " isn't loaded");
 
-							if (target.getX() + zone.getx() == portal.getX()
-									+ getx()
-									&& target.getY() + zone.gety() == portal
+							if (target.getX() + zone.getX() == portal.getX()
+									+ getX()
+									&& target.getY() + zone.getY() == portal
 											.getY()
-											+ gety()) {
+											+ getY()) {
 								int source = portal.getNumber();
 								int dest = zone.assignPortalID(target);
 
