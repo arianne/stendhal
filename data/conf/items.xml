@@ -782,7 +782,7 @@ Makes players more offensive
 	</item>
 
 	<item name="leather_cuirass_+1">
-		<type class="armor" subclass="enhanched_leather_cuirass"/>
+		<type class="armor" subclass="enhanced_leather_cuirass"/>
 		<attributes>
 			<def value="5"/>
 		</attributes>
@@ -866,7 +866,7 @@ Makes players more offensive
 	</item>
 
 	<item name="scale_armor_+2">
-		<type class="armor" subclass="enhanched_iron_cuirass"/>
+		<type class="armor" subclass="enhanced_iron_cuirass"/>
 		<attributes>
 			<def value="9"/>
 		</attributes>
