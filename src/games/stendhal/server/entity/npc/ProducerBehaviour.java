@@ -241,7 +241,7 @@ public class ProducerBehaviour extends Behaviour {
 					+ numberOfProductItems
 					// + " "
 					// + getProductUnit()
-					+ " of "
+					// + " of "
 					+ getProductName()
 					+ ".");
 			player.setQuest(questSlot, "done");
