@@ -239,7 +239,7 @@ public class ProducerBehaviour extends Behaviour {
 			player.equip(products, true);
 			npc.say("Welcome back! I'm done with your order. Here you have "
 					+ numberOfProductItems
-					// + " "
+					+ " "
 					// + getProductUnit()
 					// + " of "
 					+ getProductName()
