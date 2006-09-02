@@ -49,7 +49,7 @@ public class ProducerBehaviour extends Behaviour {
 	 * The unit in which the product is counted, e.g. "bags", "pieces",
 	 * "pounds"
 	 */
-	private String productUnit;
+	// private String productUnit;
 	
 	/**
 	 * The name of the product, e.g. "plate_armor". It must be a valid item
@@ -88,12 +88,12 @@ public class ProducerBehaviour extends Behaviour {
 	 *                              one unit of the product.
 	 */
 	public ProducerBehaviour(String questSlot, String productionActivity,
-					String productUnit, String productName,
+					String productName,
 					Map<String, Integer> requiredResourcesPerItem,
 					int productionTimePerItem) {
 		this.questSlot = questSlot;
 		this.productionActivity = productionActivity;
-		this.productUnit = productUnit;
+		// this.productUnit = productUnit;
 		this.productName = productName;
 		this.requiredResourcesPerItem = requiredResourcesPerItem;
 		this.productionTimePerItem = productionTimePerItem;
@@ -111,9 +111,9 @@ public class ProducerBehaviour extends Behaviour {
 		return productionActivity;
 	}
 	
-	protected String getProductUnit() {
-		return productUnit;
-	}
+//	protected String getProductUnit() {
+//		return productUnit;
+//	}
 
 	protected String getProductName() {
 		return productName;
@@ -239,8 +239,8 @@ public class ProducerBehaviour extends Behaviour {
 			player.equip(products, true);
 			npc.say("Welcome back! I'm done with your order. Here you have "
 					+ numberOfProductItems
-					+ " "
-					+ getProductUnit()
+					// + " "
+					// + getProductUnit()
 					+ " of "
 					+ getProductName()
 					+ ".");

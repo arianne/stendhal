@@ -363,7 +363,7 @@ public class Semos implements IContent {
 				requiredResources.put("iron_ore", new Integer(1));
 
 				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"xoderos_cast_iron", "cast", "bars", "iron", requiredResources, 5 * 60);
+						"xoderos_cast_iron", "cast", "iron", requiredResources, 5 * 60);
 
 				addProducer(behaviour,
 							"Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");
@@ -532,7 +532,7 @@ public class Semos implements IContent {
 				requiredResources.put("flour", new Integer(2));
 
 				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"erna_bake_bread", "bake", "loafs", "bread", requiredResources, 10 * 60);
+						"erna_bake_bread", "bake", "bread", requiredResources, 10 * 60);
 
 				addProducer(behaviour,
 						"Welcome to the Semos bakery. We #bake fine bread for everyone who brings us #flour.");
@@ -906,7 +906,7 @@ public class Semos implements IContent {
 				requiredResources.put("grain", new Integer(5));
 
 				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"jenny_mill_flour", "mill", "bags", "flour", requiredResources, 2 * 60);
+						"jenny_mill_flour", "mill", "flour", requiredResources, 2 * 60);
 
 				addProducer(behaviour,
 						"Greetings. I am Jenny, the local miller. If you bring me #grain, I can #mill flour for you.");
