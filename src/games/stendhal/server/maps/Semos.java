@@ -549,23 +549,41 @@ public class Semos implements IContent {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				// to the well
 				nodes.add(new Path.Node(15, 2));
+				// to a barrel
 				nodes.add(new Path.Node(15, 7));
+				// to the baguette on the table
 				nodes.add(new Path.Node(13, 7));
+				// around the table
 				nodes.add(new Path.Node(13, 9));
 				nodes.add(new Path.Node(10, 9));
+				// to the sink
 				nodes.add(new Path.Node(10, 11));
-				nodes.add(new Path.Node(3, 11));
-				nodes.add(new Path.Node(3, 2));
+				// to the pizza/cake/whatever
+				nodes.add(new Path.Node(7, 11));
+				nodes.add(new Path.Node(7, 9));
+				// to the pot
+				nodes.add(new Path.Node(3, 9));
+				// towards the oven
+				nodes.add(new Path.Node(3, 3));
+				nodes.add(new Path.Node(5, 3));
+				// to the oven
+				nodes.add(new Path.Node(5, 2));
+				// one step back
+				nodes.add(new Path.Node(5, 3));
+				// towards the well
+				nodes.add(new Path.Node(15, 3));
+				
 				setPath(nodes, true);
 			}
 
 			@Override
 			protected void createDialog() {
-				addJob("I'm the local baker. I also #make sandwiches for our valuable customers.");
+				addJob("I'm the local baker. But since the road to Ados is blocked, we don't get many orders, so I also #make sandwiches for our valuable customers.");
 				addReply("bread", "Didn't you talk to Erna? She is responsible for giving bread to our customers.");
 				addReply("cheese", "Cheese is a bit hard to find in Semos, since we have a rat plague. I wonder where those critters take it to.");
-				addReply("ham", "You look like a skilled hunter. Why don't you go to the nearby forests and hunt deers? But don't bring me meat - I only make sandwiches from high quality ham!.");
+				addReply("ham", "You look like a skilled hunter. Why don't you go to the nearby forests and hunt deers? But don't bring me meat - I only make sandwiches from high quality ham!");
 				addHelp("Do you know my daughter Sally? She's a scout; I think she's currently camping south of Orril castle. Maybe she can help you to get ham.");
 				addGoodbye();
 
