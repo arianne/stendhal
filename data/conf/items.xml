@@ -1341,6 +1341,21 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="sandwich">
+		<type class="food" subclass="sandwich"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="120"/>
+			<regen value="10"/>
+			<frequency value="30"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="button_mushroom">
 		<type class="food" subclass="button_mushroom"/>
 		<stackable/>
