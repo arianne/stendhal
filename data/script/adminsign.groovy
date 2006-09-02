@@ -29,20 +29,20 @@ class AdminSignManager {
 			}
 			int x = 0;
 			if (args[1] == "-") {
-				x = player.getx();
+				x = player.getX();
 			} else {
 				x = Integer.parseInt(args[1]);
 			}
 			int y = 0;
 			if (args[2] == "-") {
-				y = player.gety();
+				y = player.getY();
 			} else {
 				y = Integer.parseInt(args[2]);
 			}
 
 			Sign sign=new Sign();
-			sign.setx(x);
-			sign.sety(y);
+			sign.setX(x);
+			sign.setY(y);
 
 			// concat text ignoring first 3 args
 			// (is there no better way to do that in Groovy?)
@@ -93,9 +93,9 @@ class AdminSignManager {
 		String zone = world.getRPZone(sign.getID()).getID().getID();
 		sb.append(zone);
 		sb.append(" ");
-		sb.append(sign.getx());
+		sb.append(sign.getX());
 		sb.append(" ");
-		sb.append(sign.gety());
+		sb.append(sign.getY());
 		sb.append(" ");
 		sb.append("\"" + sign.get("text") + "\"");
 	}

@@ -2,8 +2,8 @@ if (player != null) {
 
 	// extract position of admin
 	myZone = game.getZone(player);
-	x = player.getx();
-	y = player.gety();
+	x = player.getX();
+	y = player.getY();
 	game.setZone(myZone);
 
 	// select creature

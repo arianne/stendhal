@@ -67,8 +67,8 @@ public class Friends implements TurnListener {
 	 */
 	public void createSheep() {
 		Creature creature = new Sheep();
-		creature.setx(56);
-		creature.sety(46);
+		creature.setX(56);
+		creature.setY(46);
 		game.add(creature);
 	}
 
@@ -135,16 +135,16 @@ public class Friends implements TurnListener {
 
 		portal = new Portal();
 		zone1.assignRPObjectID(portal);
-		portal.setx(9);
-		portal.sety(41);
+		portal.setX(9);
+		portal.setY(41);
 		portal.setNumber(100);
 		portal.setDestination("0_ados_outside_nw", 10);
 		zone1.addPortal(portal);
 
 		portalDestination = new OneWayPortalDestination();
 		zone2.assignRPObjectID(portalDestination);
-		portalDestination.setx(53);
-		portalDestination.sety(108);
+		portalDestination.setX(53);
+		portalDestination.setY(108);
 		portalDestination.setNumber(10);
 		zone2.addPortal(portalDestination);
 	}

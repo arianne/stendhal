@@ -24,8 +24,8 @@ if(game.setZone(myZone))   // if zone exists
   {  
   // We create now a sign and place it on position 31,50 with some text
   sign=new Sign()
-  sign.setx(8)
-  sign.sety(47)
+  sign.setX(8)
+  sign.setY(47)
   sign.setText("Welcome to Stendhal!\nPlease report any problems and issues at our webpage.\nhttp://arianne.sourceforge.net ")
   
   // Add our new Object to the game world

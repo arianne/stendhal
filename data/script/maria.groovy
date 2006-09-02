@@ -65,8 +65,8 @@ class MargaretCouponAction extends SpeakerNPC.ChatAction {
     // if this script is executed by an admin, Maria will be placed next to him.
 	if (player != null) {
 		myZone = game.getZone(player);
-		x = player.getx() + 1;
-		y = player.gety();
+		x = player.getX() + 1;
+		y = player.getY();
 	}
 
     // Set zone and position
