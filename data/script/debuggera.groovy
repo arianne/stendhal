@@ -208,7 +208,7 @@ public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnList
 
 		counter++;
 		if (counter < zones.size()) {
-			TurnNotifier.get().notifyInTurns(10, this);
+			TurnNotifier.get().notifyInTurns(10, this, null);
 		}
     }
 }
