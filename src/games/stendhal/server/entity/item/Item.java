@@ -15,6 +15,7 @@ package games.stendhal.server.entity.item;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.PlantGrower;
+import games.stendhal.server.entity.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
@@ -220,7 +221,14 @@ public class Item extends PassiveEntity implements TurnListener {
 		return "Item, " + super.toString();
 	}
 	
-	public void onPutOnGround() {
+	/**
+	 * Is called when the item is created, moved to the ground, or moved on
+	 * the ground.
+	 * 
+	 * @param player The player who moved the item, or null if it wasn't moved
+	 *               by a player.
+	 */
+	public void onPutOnGround(Player player) {
 		// persistent items don't degrade
 		if (!isPersistent()) {
 			TurnNotifier.get().notifyInTurns(DEGRADATION_TIMEOUT, this, null);
@@ -230,6 +238,7 @@ public class Item extends PassiveEntity implements TurnListener {
 	public void onRemoveFromGround() {
 		// persistent items don't degrade
 		if (!isPersistent()) {
+			// stop the timer so that the item won't degrade anymore
 			TurnNotifier.get().dontNotify(this, null);
 		}
 		if (plantGrower != null) {

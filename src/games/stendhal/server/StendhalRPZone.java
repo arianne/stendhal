@@ -17,6 +17,7 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.entity.GrainField;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PlantGrower;
+import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.creature.Creature;
@@ -632,11 +633,27 @@ public class StendhalRPZone extends MarauroaRPZone {
 	@Override
 	public synchronized void add(RPObject object)
 			throws RPObjectInvalidException {
-		super.add(object);
+		add(object, null);
+	}
 
+	/**
+	 * Adds an object to the ground.
+	 * 
+	 * The player parameter can be used to create special items that react
+	 * when they are dropped on the ground by a player.
+	 * 
+	 * @param object The object that should be added to the zone
+	 * @param player The player who put the object on the ground, or null
+	 *               if the object wasn't carried by a player before
+	 * @throws RPObjectInvalidException
+	 */
+	public synchronized void add(RPObject object, Player player)
+			throws RPObjectInvalidException {
+		super.add(object);
+		
 		if (object instanceof Item) {
 			Item item = (Item) object;
-			item.onPutOnGround();
+			item.onPutOnGround(player);
 			itemsOnGround.add(item);
 		}
 	}

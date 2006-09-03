@@ -70,13 +70,10 @@ public class DisplaceAction extends ActionListener {
 							entity.setX(x);
 							entity.setY(y);
 							entity.notifyWorldAboutChanges();
-							// check if the displaced entity was an item that
-							// had just grown on a plant grower.
 							if (entity instanceof Item) {
 								Item item = (Item) entity;
-								if (item.getPlantGrower() != null) {
-									item.getPlantGrower().onFruitPicked(item);
-								}
+								item.onRemoveFromGround();
+								item.onPutOnGround(player);
 							}
 						}
 					}
