@@ -11,6 +11,10 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
+/**
+ * @deprecated use TurnListener/TurnNotfier 
+ */
+@Deprecated
 public class StendhalScriptSystem {
 	private List<Pair<ScriptCondition, ScriptAction>> scripts;
     /** the logger instance. */
