@@ -6,7 +6,9 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.NPCOwnedChest;
 import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Sign;
@@ -288,6 +290,11 @@ public class Ados implements IContent {
 		npc.set(4, 46);
 		npc.initHP(100);
 		zone.addNPC(npc);
+
+		Chest chest = new NPCOwnedChest(npc);
+		zone.assignRPObjectID(chest);
+		chest.set(17, 23);
+		zone.add(chest);
 	}
 
 	private void buildMagicianHouseArea(StendhalRPZone zone) {

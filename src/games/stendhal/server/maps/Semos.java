@@ -7,6 +7,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.NPCOwnedChest;
 import games.stendhal.server.entity.PersonalChest;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Sign;
@@ -607,6 +608,11 @@ public class Semos implements IContent {
 		leander.set(15, 2);
 		leander.initHP(100);
 		zone.addNPC(leander);
+		
+		Chest chest = new NPCOwnedChest(erna);
+		zone.assignRPObjectID(chest);
+		chest.set(29, 6);
+		zone.add(chest);
 	}
 
 	private void buildSemosTempleArea(StendhalRPZone zone) {

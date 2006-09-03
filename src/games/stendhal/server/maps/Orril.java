@@ -4,6 +4,8 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.NPCOwnedChest;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
@@ -302,6 +304,11 @@ public class Orril implements IContent {
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		zone.addNPC(npc);
+
+		Chest chest = new NPCOwnedChest(npc);
+		zone.assignRPObjectID(chest);
+		chest.set(37, 60);
+		zone.add(chest);
 	}
 
 }
