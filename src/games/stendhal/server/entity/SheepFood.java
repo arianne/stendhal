@@ -13,7 +13,7 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.server.entity.item.Item;
-
+import games.stendhal.server.events.TurnNotifier;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -90,6 +90,8 @@ public class SheepFood extends PlantGrower {
 	@Override
 	public void setToFullGrowth() {
 		setAmount(MAX_NUMBER_OF_FRUITS);
+		// don't grow anything new until someone picks a fruit
+		TurnNotifier.get().dontNotify(this, null);
 	}
 
 	@Override

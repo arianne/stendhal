@@ -386,6 +386,7 @@ public class Ados implements IContent {
 		plantGrower.setX(3);
 		plantGrower.setY(6);
 		plantGrower.setDescription("Heizen tends to put his magic drinks here.");
+		plantGrower.setToFullGrowth();
 		zone.add(plantGrower);
 		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
 	}

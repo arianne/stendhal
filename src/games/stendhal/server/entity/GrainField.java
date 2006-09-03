@@ -133,6 +133,8 @@ public class GrainField extends PlantGrower implements UseListener {
 	@Override
 	public void setToFullGrowth() {
 		setRipeness(RIPE);
+		// don't grow anything new until someone picks a fruit
+		TurnNotifier.get().dontNotify(this, null);
 	}
 
 }
