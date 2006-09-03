@@ -18,6 +18,8 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
+import games.stendhal.server.events.TurnNotifier;
+
 /**
  * A regenerative source of food that can be eaten by sheep.
  */
@@ -90,6 +92,8 @@ public class SheepFood extends PlantGrower {
 	@Override
 	public void setToFullGrowth() {
 		setAmount(MAX_NUMBER_OF_FRUITS);
+		// don't grow anything new until someone picks a fruit
+		TurnNotifier.get().dontNotify(this, null);
 	}
 
 	@Override

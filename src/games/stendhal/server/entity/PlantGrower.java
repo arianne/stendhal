@@ -127,6 +127,8 @@ public class PlantGrower extends Entity implements TurnListener {
 		if (!hasPickableFruit) {
 			growNewFruit();
 		}
+		// don't grow anything new until someone picks a fruit
+		TurnNotifier.get().dontNotify(this, null);
 	}
 
 	@Override
