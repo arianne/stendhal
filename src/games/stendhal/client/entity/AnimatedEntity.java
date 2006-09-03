@@ -12,16 +12,21 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import marauroa.common.Log4J;
 import marauroa.common.game.*;
 import games.stendhal.client.*;
 import games.stendhal.common.Direction;
 import java.util.*;
+
+import org.apache.log4j.Logger;
 
 /**
  * This class is a special type of GameEntity that has animation, that is it is
  * compound of multiple frames.
  */
 public abstract class AnimatedEntity extends Entity {
+	private static final Logger logger = Log4J.getLogger(AnimatedEntity.class);
+
 	/** This map contains animation name, frames association */
 	protected Map<String, Sprite[]> sprites;
 
@@ -105,6 +110,11 @@ public abstract class AnimatedEntity extends Entity {
 	protected Sprite nextFrame() {
 		Sprite[] anim = sprites.get(animation);
 
+		if (anim == null) {
+			logger.fatal(this.getClass().getName() + ": sprites.get() returned null for " + animation);
+			return SpriteStore.get().getSprite("data/sprites/failsafe.png");
+		}
+		
 		if (frame == anim.length) {
 			frame = 0;
 		}
