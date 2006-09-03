@@ -131,6 +131,7 @@ public class PlinksToy extends AbstractQuest {
 		plantGrower.setX(107);
 		plantGrower.setY(84);
 		plantGrower.setDescription("Plink lost his teddy here.");
+		plantGrower.setToFullGrowth();
 		zone.add(plantGrower);
 
 		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
