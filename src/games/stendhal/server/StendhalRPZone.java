@@ -532,6 +532,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			case 104: /* toadstool */
 			case 108: /* apple */
 			case 109: /* carrot */
+			case 110: /* salad */
 			case 131: /* arandula */
 			case 132: /* wood */				
 			case 133: /* iron ore */				
@@ -550,6 +551,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 					plantGrower = new PlantGrower("apple", 750);
 				} else if (type == 109) {
 					plantGrower = new PlantGrower("carrot", 1000);
+				} else if (type == 110) {
+					plantGrower = new PlantGrower("salad", 1500);
 				} else if (type == 131) {
 					plantGrower = new PlantGrower("arandula", 400);
 				} else if (type == 132) {
