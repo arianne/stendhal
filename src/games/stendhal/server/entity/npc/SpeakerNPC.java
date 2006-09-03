@@ -458,7 +458,7 @@ public abstract class SpeakerNPC extends NPC {
 	@Override
 	public void say(String text) {
 		// be polite and face the player we are talking to
-		if (!facingTo(attending)) {
+		if ((attending != null) && (!facingTo(attending))) {
 			faceTo(attending);
 		}
 		super.say(text);
