@@ -37,6 +37,8 @@ public class DefaultItem {
 	/** optional item description * */
 	private String description;
 
+	// weight system is not yet implemented.
+	@SuppressWarnings("unused")
 	private double weight;
 
 	/** slots where this item can be equiped */
@@ -99,6 +101,8 @@ public class DefaultItem {
 			item = new Drink(name, clazz, subclazz, attributes);
 		} else if (clazz.equals("scroll")) {
 			item = new Scroll(name, clazz, subclazz, attributes);
+		} else if (clazz.equals("misc") && subclazz.equals("dice")) {
+			item = new Dice(attributes);
 		} else if (stackable) {
 			item = new StackableItem(name, clazz, subclazz, attributes);
 		} else {
