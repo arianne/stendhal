@@ -739,14 +739,46 @@ public class Semos implements IContent {
 	private void buildSemosTavernArea() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"int_semos_tavern_1"));
+		
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.set(4, 4);
 		portal.setNumber(0);
 		portal.setDestination("int_semos_tavern_0", 1);
 		zone.addPortal(portal);
+		
+		SpeakerNPC ouchit = new SpeakerNPC("Ouchit") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(21, 2));
+				nodes.add(new Path.Node(25, 2));
+				nodes.add(new Path.Node(25, 4));
+				nodes.add(new Path.Node(29, 4));
+				nodes.add(new Path.Node(25, 4));
+				nodes.add(new Path.Node(25, 2));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting();
+				addJob("I sell bows and arrows.");
+				addHelp("I sell several items, ask me for my #offer.");
+				addSeller(new SellerBehaviour(shops.get("sellrangedstuff")));
+				addGoodbye();
+			}
+		};
+		npcs.add(ouchit);
+		zone.assignRPObjectID(ouchit);
+		ouchit.put("class", "weaponsellernpc");
+		ouchit.set(21, 2);
+		ouchit.initHP(100);
+		zone.addNPC(ouchit);
+
 		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"int_semos_tavern_0"));
+		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(22);
@@ -754,13 +786,15 @@ public class Semos implements IContent {
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 0);
 		zone.addPortal(portal);
+		
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.set(4, 4);
 		portal.setNumber(1);
 		portal.setDestination("int_semos_tavern_1", 0);
 		zone.addPortal(portal);
-		SpeakerNPC npc = new SpeakerNPC("Margaret") {
+		
+		SpeakerNPC margaret = new SpeakerNPC("Margaret") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -787,13 +821,14 @@ public class Semos implements IContent {
 				addGoodbye();
 			}
 		};
-		npcs.add(npc);
-		zone.assignRPObjectID(npc);
-		npc.put("class", "tavernbarmaidnpc");
-		npc.set(17, 12);
-		npc.initHP(100);
-		zone.addNPC(npc);
-		npc = new SpeakerNPC("Xin Blanca") {
+		npcs.add(margaret);
+		zone.assignRPObjectID(margaret);
+		margaret.put("class", "tavernbarmaidnpc");
+		margaret.set(17, 12);
+		margaret.initHP(100);
+		zone.addNPC(margaret);
+		
+		SpeakerNPC xinBlanca = new SpeakerNPC("Xin Blanca") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -832,42 +867,15 @@ public class Semos implements IContent {
 				zone.add(board);
 			}
 		};
-		npcs.add(npc);
+		npcs.add(xinBlanca);
 		
-		zone.assignRPObjectID(npc);
-		npc.put("class", "weaponsellernpc");
-		npc.setX(2);
-		npc.setY(14);
-		npc.setBaseHP(100);
-		npc.setHP(npc.getBaseHP());
-		zone.addNPC(npc);
-		npc = new SpeakerNPC("Ouchit") {
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(24, 3));
-				nodes.add(new Path.Node(24, 5));
-				nodes.add(new Path.Node(28, 5));
-				nodes.add(new Path.Node(28, 3));
-				setPath(nodes, true);
-			}
-
-			@Override
-			protected void createDialog() {
-				addGreeting();
-				addJob("I sell bows and arrows.");
-				addHelp("I sell several items, ask me for my #offer");
-				addSeller(new SellerBehaviour(shops.get("sellrangedstuff")));
-				addGoodbye();
-			}
-		};
-		npcs.add(npc);
-		zone.assignRPObjectID(npc);
-		npc.put("class", "weaponsellernpc");
-		npc.set(24, 3);
-		;
-		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.assignRPObjectID(xinBlanca);
+		xinBlanca.put("class", "weaponsellernpc");
+		xinBlanca.setX(2);
+		xinBlanca.setY(14);
+		xinBlanca.setBaseHP(100);
+		xinBlanca.setHP(xinBlanca.getBaseHP());
+		zone.addNPC(xinBlanca);
 	}
 
 	private void buildSemosSouthPlainsArea(StendhalRPZone zone) {
