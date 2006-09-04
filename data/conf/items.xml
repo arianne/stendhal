@@ -1702,6 +1702,14 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="dice">
+		<type class="misc" subclass="dice"/>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="teddy">
 		<type class="misc" subclass="teddy"/>
 		<weight value="1"/>
