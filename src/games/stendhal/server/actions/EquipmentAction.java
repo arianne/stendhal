@@ -263,7 +263,7 @@ public class EquipmentAction extends ActionListener {
 						if (entity.has("description")) {
 							newItem.put("description", entity.get("description"));
 						}
-						zone.add(newItem);
+						zone.add(newItem, player);
 
 						((StackableItem) entity).add(-quantity);
 					} else {
@@ -273,7 +273,7 @@ public class EquipmentAction extends ActionListener {
 						entity.setY(y);
 
 						zone.assignRPObjectID(entity);
-						zone.add(entity);
+						zone.add(entity, player);
 
 						// HACK: Avoid a problem on database
 						if (entity.has("#db_id")) {
