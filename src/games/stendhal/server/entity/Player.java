@@ -313,9 +313,9 @@ public class Player extends RPEntity implements TurnListener {
 								}
 
 								if (entity instanceof StackableItem) {
-									StackableItem money = (StackableItem) entity;
-									money.setQuantity(item.getInt("quantity"));
+									((StackableItem) entity).setQuantity(item.getInt("quantity"));
 								}
+								
 								// make sure saved individual information is
 								// restored
 								if (item.has("infostring")) {
