@@ -617,28 +617,11 @@ public class Player extends RPEntity implements TurnListener {
 						// We won't drop the full quantity, but only a percentage.
 						// Get a random percentage between 26 % and 75 % to drop  
 						double percentage = (Rand.rand(50) + 25) / 100.0;
-						int quantity = item.getQuantity();
-						int quantityToDrop = (int) Math.round(quantity * percentage);
-						int remainingQuantity = quantity - quantityToDrop;
-
-						if (remainingQuantity > 0) {
-							item.setQuantity(quantity - quantityToDrop);
-						} else {
-							drop(item);
-						}
+						int quantityToDrop = (int) Math.round(item.getQuantity() * percentage);
 
 						if (quantityToDrop > 0) {
-							StackableItem restItem = (StackableItem) StendhalRPWorld.get()
-									.getRuleManager().getEntityManager().getItem(
-											object.get("name"));
-							restItem.setQuantity(quantityToDrop);
-							if (item.has("infostring")) {
-								restItem.put("infostring", item.get("infostring"));
-							}
-							if (item.has("description")) {
-								restItem.put("description", item.get("description"));
-							}
-							corpse.add(restItem);
+							StackableItem itemToDrop = item.splitOff(quantityToDrop);
+							corpse.add(itemToDrop);
 						}
 					} else if (object instanceof PassiveEntity) {
 						slot.remove(object.getID());

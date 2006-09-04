@@ -249,23 +249,11 @@ public class EquipmentAction extends ActionListener {
 						&& baseEntity.squaredDistance(x, y) < 8 * 8
 						&& !zone.simpleCollides(entity, x, y)) {
 					if (quantity != 0) {
-						StackableItem newItem = (StackableItem) StendhalRPWorld.get()
-								.getRuleManager().getEntityManager().getItem(
-										entity.get("name"));
+						StackableItem newItem = ((StackableItem) entity).splitOff(quantity);
 
 						zone.assignRPObjectID(newItem);
-
 						newItem.set(x, y);
-						newItem.setQuantity(quantity);
-						if (entity.has("infostring")) {
-							newItem.put("infostring", entity.get("infostring"));
-						}
-						if (entity.has("description")) {
-							newItem.put("description", entity.get("description"));
-						}
 						zone.add(newItem, player);
-
-						((StackableItem) entity).add(-quantity);
 					} else {
 						slot.remove(entity.getID());
 
