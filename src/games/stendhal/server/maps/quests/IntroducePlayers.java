@@ -145,7 +145,7 @@ public class IntroducePlayers extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						engine.say("Ok!, I see you have the flask! Now I need you to take it to #ilisa");
+						engine.say("Okay, I see you have the flask! Now I need you to take it to #ilisa");
 						StackableItem money = (StackableItem) StendhalRPWorld.get()
 								.getRuleManager().getEntityManager().getItem(
 										"money");

@@ -65,7 +65,7 @@ public class MeetMonogenes extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_2,
-				"Only ask them about what they bring the conversation around to: the WORDS that are bolded in blue color. Otherwise, you can get a harsh answer although you usually can ask about their job , help, offer, or quest. Do you want to know where the city's main buildings are?",
+				"Only ask them about what they bring the conversation around to: the WORDS that are bolded in blue color. Otherwise, you can get a harsh answer although you usually can ask about their job, help, offer, or quest. Do you want to know where the city's main buildings are?",
 				null);
 		
 		npc.add(ConversationStates.INFORMATION_1,
