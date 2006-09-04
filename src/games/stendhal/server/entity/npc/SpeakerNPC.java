@@ -592,11 +592,18 @@ public abstract class SpeakerNPC extends NPC {
 		tell(player, text);
 	}
 	
+	/**
+	 * If the given player says something to this NPC, and the NPC is already
+	 * speaking to another player, tells the given player to wait.
+	 * @param player The player who spoke to the player
+	 * @param text The text that the given player has said
+	 * @return true iff the NPC had to get rid of the player
+	 */
 	private boolean getRidOfPlayerIfAlreadySpeaking(Player player, String text) {
 		// If we are attending another player make this one wait.
 		// TODO: don't check if it equals the text, but if it starts
 		// with it (case-insensitive)
-		if (!attending.equals(player) && GREETING_MESSAGES.contains(text)) {
+		if (!player.equals(attending) && GREETING_MESSAGES.contains(text)) {
 			logger.debug("Already attending a player");
 			if (waitMessage != null) {
 				say(waitMessage);
@@ -954,6 +961,15 @@ public abstract class SpeakerNPC extends NPC {
 		
 		final String thisWelcomeMessage = welcomeMessage;
 		
+		addWaitMessage(null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						engine.say("Please wait! I am attending "
+								+ engine.getAttending().getName() + ".");
+					}
+				});
+
 		add(ConversationStates.IDLE,
 			SpeakerNPC.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
