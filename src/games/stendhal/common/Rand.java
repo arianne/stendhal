@@ -57,13 +57,13 @@ public class Rand {
 	}
 
 	/**
-	 * Simulates rolling a dice with the given number of sides.
-	 * @param numberOfSides the number of sides that the simulated dice has
-	 * @return A random number between 1 and <i>numberOfSides</i>, equally
+	 * Generates an equally distributed random number.
+	 * @param n the upper boundary
+	 * @return A random number between 0 and <i>n</i> - 1, equally
 	 *         distributed.
 	 */
-	public static int rand(int numberOfSides) {
-		return rand.nextInt(numberOfSides);
+	public static int rand(int n) {
+		return rand.nextInt(n);
 	}
 
 	/**
