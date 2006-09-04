@@ -53,34 +53,51 @@ public class StackableItem extends Item implements Stackable {
 		setQuantity(other.getQuantity() + quantity);
 		return quantity;
 	}
+	
+	public StackableItem splitOff(int amountToSplitOff) {
+		if (quantity >= amountToSplitOff) {
+			StackableItem newItem = (StackableItem) StendhalRPWorld.get()
+					.getRuleManager().getEntityManager().getItem(get("name"));
+			
+			newItem.setQuantity(amountToSplitOff);
+			if (has("infostring")) {
+				newItem.put("infostring", get("infostring"));
+			}
+			if (has("description")) {
+				newItem.put("description", get("description"));
+			}
+			add(-amountToSplitOff);
+
+			if (quantity > 0) {
+				if (isContained()) {
+					// We modify the base container if the object change.
+					RPObject base = getContainer();
+					while (base.isContained()) {
+						base = base.getContainer();
+					}
+					StendhalRPWorld.get().modify(base);
+				} else {
+					notifyWorldAboutChanges();
+				}
+			} else {
+				/* If quantity=0 then it means that item has to be removed */
+				super.removeOne();
+			}
+			
+			return newItem;
+		}
+		return null;
+	}
+
+	@Override
+	public void removeOne() {
+		splitOff(1);
+	}
 
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
 
 		return getItemClass().equals(otheri.getItemClass())
 				&& getItemSubclass().equals(otheri.getItemSubclass());
-	}
-
-	@Override
-	public void removeOne() {
-		if (quantity > 1) {
-			add(-1);
-			if (isContained()) {
-				// We modify the base container if the object change.
-				RPObject base = getContainer();
-
-				while (base.isContained()) {
-					base = base.getContainer();
-				}
-
-				StendhalRPWorld.get().modify(base);
-			} else {
-				notifyWorldAboutChanges();
-			}
-		} else {
-			/* If quantity=1 then it means that item has to be removed */
-			super.removeOne();
-		}
-
 	}
 }
