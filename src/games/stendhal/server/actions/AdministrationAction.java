@@ -624,9 +624,15 @@ public class AdministrationAction extends ActionListener {
 		Log4J.startMethod(logger, "onTeleport");
 
 		if (action.has("target") && action.has("minutes")) {
-;			String target = action.get("target");
-			int minutes = action.getInt("minutes");
-			Jail.get().imprison(target, player, minutes);
+			String target = action.get("target");
+			try {
+				int minutes = action.getInt("minutes");
+				Jail.get().imprison(target, player, minutes);
+			} catch (NumberFormatException e) {
+				player.sendPrivateText("Usage: /jail name minutes");
+			}
+		} else {
+			player.sendPrivateText("Usage: /jail name minutes");
 		}
 
 		Log4J.finishMethod(logger, "onTeleport");
