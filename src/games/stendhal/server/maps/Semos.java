@@ -70,13 +70,13 @@ public class Semos implements IContent {
 	}
 
 	private void buildSemosTownhallArea(StendhalRPZone zone) {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 3; i++) {
 			Portal portal = new Portal();
 			zone.assignRPObjectID(portal);
-			portal.setX(13 + i);
+			portal.setX(14 + i);
 			portal.setY(46);
 			portal.setNumber(i);
-			portal.setDestination("0_semos_city", 7);
+			portal.setDestination("0_semos_city", 7 + i);
 			zone.addPortal(portal);
 		}
 		SpeakerNPC npc = new SpeakerNPC("Tad") {
@@ -1097,7 +1097,7 @@ public class Semos implements IContent {
 			portal.setX(29 + i);
 			portal.setY(13);
 			portal.setNumber(7 + i);
-			portal.setDestination("int_semos_townhall", 2);
+			portal.setDestination("int_semos_townhall", i);
 			zone.addPortal(portal);
 		}
 		
