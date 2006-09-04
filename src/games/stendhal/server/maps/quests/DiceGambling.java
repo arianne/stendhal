@@ -1,6 +1,8 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -33,6 +35,29 @@ public class DiceGambling extends AbstractQuest {
 		prizes[8] = "leather_boots";
 		prizes[7] = "beer";
 		ricardo.setPrizes(prizes);
+		
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(ricardo.getID());
+		
+		Blackboard board = new Blackboard(false);
+		zone.assignRPObjectID(board);
+		board.set(25, 0);
+		StringBuffer prizelistBuffer = new StringBuffer("PRIZES:\n");
+		for (int i = 18; i >= 13; i--) {
+			prizelistBuffer.append("\n" + i + ": " + prizes[i]);
+		}
+		board.setText(prizelistBuffer.toString());
+		zone.add(board);
+		
+		board = new Blackboard(false);
+		zone.assignRPObjectID(board);
+		board.set(26, 0);
+		prizelistBuffer = new StringBuffer("PRIZES:\n");
+		for (int i = 12; i >= 7; i--) {
+			prizelistBuffer.append("\n" + i + ": " + prizes[i]);
+		}
+		board.setText(prizelistBuffer.toString());
+		zone.add(board);
+
 		
 		ricardo.add(ConversationStates.ATTENDING,
 					"play",
