@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Pair;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Dice;
@@ -8,6 +9,7 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 public abstract class CroupierNPC extends SpeakerNPC {
 	
@@ -23,11 +25,12 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	private Rectangle2D playingArea;
 	
 	/**
-	 * An array where each possible dice sum is the index of the element
-	 * which is either the name of the prize for this dice sum, or null
+	 * A list where each possible dice sum is the index of the element
+	 * which is either the name of the prize for this dice sum and
+	 * the congratulation text that should be said by the NPC, or null
 	 * if the player doesn't win anything for this sum.
 	 */
-	private String[] prizes;
+	private List<Pair<String, String>> prizes;
 	
 	public CroupierNPC(String name, Rectangle playingArea) {
 		super(name);
@@ -38,7 +41,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 		return playingArea;
 	}
 
-	public void setPrizes(String[] prizes) {
+	public void setPrizes(List<Pair<String, String>> prizes) {
 		this.prizes = prizes;
 	}
 	
@@ -54,16 +57,18 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	public void onThrown(Dice dice, Player player) {
 		if (isDiceOnPlayingArea(dice)) {
 			int sum = dice.getSum();
-			String prizeName = prizes[sum];
+			Pair<String, String> prizeAndText = prizes.get(sum);
+			String prizeName = prizeAndText.first();
+			String text = prizeAndText.second();
+			
 			if (prizeName != null) {
 				Item prize = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(prizeName);
 				say("Congratulations, "
 						+ player.getName()
 						+ ", you have "
 						+ sum
-						+ " points. You have won this "
-						+ prizeName
-						+ ".");
+						+ " points. "
+						+ text);
 				player.equip(prize, true);
 			} else {
 				say("Sorry, "

@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Pair;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Blackboard;
@@ -11,6 +12,9 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class DiceGambling extends AbstractQuest {
 	
 	private static final int STAKE = 100;
@@ -21,19 +25,29 @@ public class DiceGambling extends AbstractQuest {
 
 		CroupierNPC ricardo = (CroupierNPC) NPCList.get().get("Ricardo");
 
-		String[] prizes = new String[19];
-		prizes[18] = "golden_legs";
-		prizes[17] = "crown_shield";
-		prizes[16] = "scale_armor_+2";
-		prizes[15] = "greater_potion";
-		prizes[14] = "plate_shield";
-		prizes[13] = "chain_helmet";
-		prizes[12] = "sandwich";
-		prizes[11] = "antidote";
-		prizes[10] = "dwarf_cloak";
-		prizes[9] = "chain_legs";
-		prizes[8] = "leather_boots";
-		prizes[7] = "beer";
+		List<Pair<String, String>> prizes = Arrays.asList(
+				null, // 0 - can't happen
+				null, // 1 - can't happen
+				null, // 2 - can't happen
+				// secret consolation prize for throwing three ones ;) 
+				new Pair<String, String>("fire_sword", "Dude, you are one unlucky guy! I feel so sorry for you! Here, take this fire sword."), // 3
+				null, // 4 - no prize
+				null, // 5 - no prize
+				null, // 6 - no prize
+				new Pair<String, String>("coupon", "That's enough for a consolation prize, a coupon for a bottle of beer. Margaret will accept it."), // 7
+				new Pair<String, String>("leather_boots", "Take these simple shoes as a reward."), // 8
+				new Pair<String, String>("chain_legs", "I hope you have a use for these chain legs."), // 9
+				new Pair<String, String>("dwarf_cloak", "You have won this fashionable dwarf cloak!"), // 10
+				new Pair<String, String>("antidote", "This antidote will serve you well when you fight against poisonous creatures."), // 11
+				new Pair<String, String>("sandwich", "You have won a tasty sandwich!"), // 12
+				new Pair<String, String>("chain_helmet", "Your prize is this robust chain helmet."), // 13
+				new Pair<String, String>("hammer_+3", "Take this valuable golden hammer!"), // 14
+				new Pair<String, String>("greater_potion", "You have won a greater potion, but with your luck you'll probably never have to use it!"), // 15
+				new Pair<String, String>("scale_armor_+2", "You have won this very rare enhanced scale armor."), // 16
+				new Pair<String, String>("crown_shield", "You're so lucky! Here's your prize: an invaluable crown shield!"), // 17
+				new Pair<String, String>("golden_legs", "You have hit the JACKPOT! Golden legs!") // 18
+				);
+
 		ricardo.setPrizes(prizes);
 		
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(ricardo.getID());
@@ -43,7 +57,7 @@ public class DiceGambling extends AbstractQuest {
 		board.set(25, 0);
 		StringBuffer prizelistBuffer = new StringBuffer("PRIZES:\n");
 		for (int i = 18; i >= 13; i--) {
-			prizelistBuffer.append("\n" + i + ": " + prizes[i]);
+			prizelistBuffer.append("\n" + i + ": " + prizes.get(i).first());
 		}
 		board.setText(prizelistBuffer.toString());
 		zone.add(board);
@@ -53,7 +67,7 @@ public class DiceGambling extends AbstractQuest {
 		board.set(26, 0);
 		prizelistBuffer = new StringBuffer("PRIZES:\n");
 		for (int i = 12; i >= 7; i--) {
-			prizelistBuffer.append("\n" + i + ": " + prizes[i]);
+			prizelistBuffer.append("\n" + i + ": " + prizes.get(i).first());
 		}
 		board.setText(prizelistBuffer.toString());
 		zone.add(board);
