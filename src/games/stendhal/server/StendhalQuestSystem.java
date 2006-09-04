@@ -53,6 +53,7 @@ public class StendhalQuestSystem {
 		loadQuest("CloaksForBario");
 		loadQuest("Campfire");
 		loadQuest("PlinksToy");
+		loadQuest("DiceGambling");
 	}
 
 	private boolean loadQuest(String name) {

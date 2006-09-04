@@ -22,46 +22,75 @@ import java.util.Map;
 
 public class Dice extends Item {
 	
-	private int NUMBER_OF_DICE = 3;
+	public static interface DiceListener {
+		public void onThrown(Dice dice, Player player);
+	}
+	
+	private static int NUMBER_OF_DICE = 3;
 	
 	private int[] topFaces;
 	
+	private List<DiceListener> listeners;
+	
 	public Dice(Map<String, String> attributes) {
 		super("dice", "misc", "dice", attributes);
-		randomize();
+		
+		listeners = new LinkedList<DiceListener>();
+		randomize(null);
 	}
 
 	public Dice(int quantity) {
 		super("dice", "misc", "dice", null);
-		randomize();
+		listeners = new LinkedList<DiceListener>();
+		randomize(null);
 	}
 	
+	public int[] getTopFaces() {
+		return topFaces;
+	}
 	
-	private void randomize() {
+	public String getTopFacesString() {
+		List<String> topFacesStrings = new LinkedList<String>();
+		for (int i = 0; i < NUMBER_OF_DICE; i++) {
+			topFacesStrings.add(Integer.toString(topFaces[i]));
+		}
+		return SpeakerNPC.enumerateCollection(topFacesStrings);
+	}
+	
+	public int getSum() {
+		int result = 0;
+		for (int i = 0; i < NUMBER_OF_DICE; i++) {
+			result += topFaces[i];
+		}
+		return result;
+	}
+	
+	public void addDiceListener(DiceListener listener) {
+		listeners.add(listener);
+	}
+	
+	private void randomize(Player player) {
 		topFaces = new int[NUMBER_OF_DICE];
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
 			int topFace = Rand.roll1D6();
 			topFaces[i] = topFace;
 		}
-		System.out.println("randomized");
+		for (DiceListener listener: listeners) {
+			listener.onThrown(this, player);
+		}
 	}
 	
 	@Override
 	public void onPutOnGround(Player player) {
 		super.onPutOnGround(player);
-		randomize();
-		System.out.println("put on ground");
+		randomize(player);
 	}
 	
 	@Override
 	public String describe() {
-		List<String> topFaceStrings = new LinkedList<String>();
-		for (int i = 0; i < NUMBER_OF_DICE; i++) {
-			topFaceStrings.add(Integer.toString(topFaces[i]));
-		}
 		
 		return "You see a set of dice. The top faces are "
-				+ SpeakerNPC.enumerateCollection(topFaceStrings)
+				+ getTopFacesString()
 				+ ".";
 	}
 }

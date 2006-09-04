@@ -13,6 +13,7 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -22,6 +23,7 @@ import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 
+import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -876,6 +878,37 @@ public class Semos implements IContent {
 		xinBlanca.setBaseHP(100);
 		xinBlanca.setHP(xinBlanca.getBaseHP());
 		zone.addNPC(xinBlanca);
+		
+		Rectangle tableArea = new Rectangle(25, 4, 2, 3);
+		SpeakerNPC ricardo = new CroupierNPC("Ricardo", tableArea) {
+			@Override
+			protected void createPath() {
+				// Ricardo doesn't move
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+
+			@Override
+			protected void createDialog() {
+				
+				addGreeting("Welcome to the #gambling table, where dreams can come true.");
+				addJob("I'm the only person in Semos who is licensed to offer gambling activities.");
+				addReply("gambling", "The rules are simple: just tell me if you want to #play, pay the stake, and throw the dice on the table. The higher the sum of the upper faces is, the nicer will be your prize. Take a look at the blackboards on the wall!");
+				addHelp("");
+				addGoodbye();
+			}
+		};
+		
+		npcs.add(ricardo);
+		
+		zone.assignRPObjectID(ricardo);
+		ricardo.put("class", "naughtyteen2npc");
+		ricardo.setX(28);
+		ricardo.setY(4);
+		ricardo.setDirection(Direction.LEFT);
+		ricardo.setBaseHP(100);
+		ricardo.setHP(ricardo.getBaseHP());
+		zone.addNPC(ricardo);		
 	}
 
 	private void buildSemosSouthPlainsArea(StendhalRPZone zone) {
@@ -885,18 +918,19 @@ public class Semos implements IContent {
 		sign.setY(43);
 		sign.setText("You are about to leave this area to move to the forest.\nYou may fatten up your sheep there on wild berries.\nBe careful though, these forests crawl with wolves.");
 		zone.add(sign);
+		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(38);
 		sign.setY(3);
 		sign.setText("You are about to leave this area to move to the village.\nYou can buy a new sheep there.");
 		zone.add(sign);
+		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(113);
 		sign.setY(3);
-		sign
-				.setText("You are about to leave this area to move to the city.\nYou can sell your sheep there.");
+		sign.setText("You are about to leave this area to move to the city.\nYou can sell your sheep there.");
 		zone.add(sign);
 	}
 
@@ -907,12 +941,14 @@ public class Semos implements IContent {
 		sign.setY(61);
 		sign.setText("You are about to leave this area and move to the plains.\nYou may fatten up your sheep there on the wild berries.\nBe careful though, wolves roam these plains.");
 		zone.add(sign);
+		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(60);
 		sign.setY(47);
 		sign.setText("You are about to leave this area to move to the city.\nYou can sell your sheep there.");
 		zone.add(sign);
+		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(16);
