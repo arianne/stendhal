@@ -24,6 +24,7 @@ import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 
 import java.awt.Rectangle;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -431,8 +432,7 @@ public class Semos implements IContent {
 							// NPC_name quest doesn't exist anywhere else neither is
 							// used for any other purpose
 							if (!player.isQuestCompleted("Zynn")) {
-								engine
-										.say("Hi, potential reader. Here's recorded all the history of Semos city and some facts about the whole island of Faiumoni in which we are. I can give you an introduction to its #geography and #history. I can report you the latest #news.");
+								engine.say("Hi, potential reader. Here's recorded all the history of Semos city and some facts about the whole island of Faiumoni in which we are. I can give you an introduction to its #geography and #history. I can report you the latest #news.");
 								player.setQuest("Zynn", "done");
 							} else {
 								engine.say("Hi again, " + player.getName()
@@ -452,14 +452,14 @@ public class Semos implements IContent {
 					null);
 
 				add(ConversationStates.ATTENDING,
-					new String[] { "offer", "buy", "scroll", "scrolls", "home", "empty", "marked", "summon", "magic", "wizard", "sorcerer" },
+					Arrays.asList("offer", "buy", "scroll", "scrolls", "home", "empty", "marked", "summon", "magic", "wizard", "sorcerer"),
 					null,
 					ConversationStates.ATTENDING,
-					"I stopped selling scrolls but you still can buy them from #Haizen.",
+					"I stopped selling scrolls, but you still can buy them from #Haizen.",
 					null);
 
 				add(ConversationStates.ATTENDING,
-					new String[] { "haizen", "haizen." },
+					Arrays.asList("haizen", "haizen."),
 					null,
 					ConversationStates.ATTENDING,
 					"Haizen is a wizard living in a small hut between Semos and Ados.",

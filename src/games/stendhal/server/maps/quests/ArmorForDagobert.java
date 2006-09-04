@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -107,7 +108,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				});
 		
 		// player wants to know what a leather_cuirass is
-		String[] lc = {"leather_cuirass", "leather_cuirass,"};
+		List<String> lc = Arrays.asList("leather_cuirass", "leather_cuirass,");
 		npc.add(ConversationStates.ATTENDING,
 				lc,
 				null,

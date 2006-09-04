@@ -32,8 +32,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		} else if ("bye".equalsIgnoreCase(method)) {
 			addGoodbye(reply);
 		} else {
-			String[] trigger = { method };
-			addReply(trigger, reply);
+			addReply(method, reply);
 		}
 	}
 

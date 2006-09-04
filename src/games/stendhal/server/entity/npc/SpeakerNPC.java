@@ -113,17 +113,23 @@ public abstract class SpeakerNPC extends NPC {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SpeakerNPC.class);
 
-	public static final String[] GREETING_MESSAGES = {"hi", "hello", "greetings", "hola"};
+	public static final List<String> GREETING_MESSAGES = Arrays.asList(
+			"hi", "hello", "greetings", "hola");
 	
-	public static final String[] JOB_MESSAGES = {"job", "work"};
+	public static final List<String>  JOB_MESSAGES = Arrays.asList(
+			"job", "work");
 
-	public static final String[] HELP_MESSAGES = {"help", "ayuda"};
+	public static final List<String> HELP_MESSAGES = Arrays.asList(
+			"help", "ayuda");
 
-	public static final String[] QUEST_MESSAGES = {"task", "quest", "favor", "favour"};
+	public static final List<String> QUEST_MESSAGES = Arrays.asList( 
+			"task", "quest", "favor", "favour");
 
-	public static final String[] YES_MESSAGES = {"yes", "ok"};
+	public static final List<String> YES_MESSAGES = Arrays.asList(
+			"yes", "ok");
 
-	public static final String[] GOODBYE_MESSAGES = {"bye", "farewell", "cya", "adios"};
+	public static final List<String> GOODBYE_MESSAGES = Arrays.asList(
+			"bye", "farewell", "cya", "adios");
 	
 	
 	/**
@@ -521,20 +527,11 @@ public abstract class SpeakerNPC extends NPC {
 	/**
 	 * Adds a new set of transitions to the FSM
 	 */
-	public void add(int state, String[] triggers, ChatCondition condition,
+	public void add(int state, List<String> triggers, ChatCondition condition,
 			int nextState, String reply, ChatAction action) {
 		for (String trigger : triggers) {
 			add(state, trigger, condition, nextState, reply, action);
 		}
-	}
-
-	/**
-	 * 
-	 */
-	public void add(int state, List<String> triggers, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
-		add(state, triggers.toArray(new String[2]), condition, nextState,
-				reply, action);
 	}
 
 	public void add(int[] states, String trigger, ChatCondition condition,
@@ -544,38 +541,14 @@ public abstract class SpeakerNPC extends NPC {
 		}
 	}
 
-	public void add(int state, String[] triggers, int nextState, String reply,
-			ChatAction action) {
-		for (String trigger : triggers) {
-			add(state, trigger, null, nextState, reply, action);
-		}
-	}
-
 	/**
 	 * 
 	 */
 	public void add(int state, List<String> triggers, int nextState,
 			String reply, ChatAction action) {
-		add(state, triggers.toArray(new String[2]), null, nextState, reply,
-				action);
-	}
-
-	public void add(int state, String[] triggers, int nextState,
-			String[] replies, ChatAction action) {
 		for (String trigger : triggers) {
-			for (String reply : replies) {
-				add(state, trigger, null, nextState, reply, action);
-			}
+			add(state, trigger, null, nextState, reply, action);
 		}
-	}
-
-	/**
-	 * 
-	 */
-	public void add(int state, List<String> triggers, int nextState,
-			List<String> replies, ChatAction action) {
-		add(state, triggers.toArray(new String[2]), nextState, replies
-				.toArray(new String[2]), action);
 	}
 
 	// TODO: docu please. What is type?
@@ -618,17 +591,12 @@ public abstract class SpeakerNPC extends NPC {
 	public void listenTo(Player player, String text) {
 		tell(player, text);
 	}
-
-	/** This function evolves the FSM */
-	private boolean tell(Player player, String text) {
-		// If we are no attending a player attend, this one.
-		if (currentState == ConversationStates.IDLE) {
-			logger.debug("Attending player " + player.getName());
-			attending = player;
-		}
-
-		// If we are attending another player make this one waits.
-		if (!attending.equals(player)) {
+	
+	private boolean getRidOfPlayerIfAlreadySpeaking(Player player, String text) {
+		// If we are attending another player make this one wait.
+		// TODO: don't check if it equals the text, but if it starts
+		// with it (case-insensitive)
+		if (!attending.equals(player) && GREETING_MESSAGES.contains(text)) {
 			logger.debug("Already attending a player");
 			if (waitMessage != null) {
 				say(waitMessage);
@@ -638,6 +606,20 @@ public abstract class SpeakerNPC extends NPC {
 				waitAction.fire(player, text, this);
 			}
 
+			return true;
+		}
+		return false;
+	}
+
+	/** This function evolves the FSM */
+	private boolean tell(Player player, String text) {
+		// If we are no attending a player attend, this one.
+		if (currentState == ConversationStates.IDLE) {
+			logger.debug("Attending player " + player.getName());
+			attending = player;
+		}
+
+		if (getRidOfPlayerIfAlreadySpeaking(player, text)) {
 			return true;
 		}
 
@@ -716,27 +698,16 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * Makes this NPC say a text when it hears one of the given triggers
-	 * during a conversation.
-	 * @param triggers The texts that cause the NPC to answer
-	 * @param text The answer
-	 */
-	public void addReply(String[] triggers, String text) {
-		add(ConversationStates.ATTENDING,
-				triggers,
-				ConversationStates.ATTENDING,
-				text,
-				null);
-	}
-
-	/**
 	 * @param triggers
 	 * @param text
 	 */
 	public void addReply(List<String> triggers,
 			String text) {
-		addReply(triggers.toArray(new String[2]),
-				 text);
+		add(ConversationStates.ATTENDING,
+		triggers,
+		ConversationStates.ATTENDING,
+		text,
+		null);
 	}
 
 	public void addQuest(String text) {
@@ -744,14 +715,6 @@ public abstract class SpeakerNPC extends NPC {
 				QUEST_MESSAGES,
 				ConversationStates.ATTENDING,
 				text,
-				null);
-	}
-
-	public static void addQuest(SpeakerNPC npc, String[] texts) {
-		npc.add(ConversationStates.ATTENDING,
-				QUEST_MESSAGES,
-				ConversationStates.ATTENDING,
-				texts,
 				null);
 	}
 

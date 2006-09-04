@@ -26,6 +26,7 @@ import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -349,25 +350,25 @@ public class Ados implements IContent {
 					"I do not have any task for you right now. If you need anything from me just say it.",
 					null);
 				add(ConversationStates.ATTENDING,
-					new String[] { "magic", "scroll", "scrolls" },
+					Arrays.asList("magic", "scroll", "scrolls"),
 					null,
 					ConversationStates.ATTENDING,
 					"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked. For the advanced magicians i have #summon scrolls.",
 					null);
 				add(ConversationStates.ATTENDING,
-					new String[] { "home" },
+					"home",
 					null,
 					ConversationStates.ATTENDING,
 					"Home scrolls take you home immediately, a good way to escape danger!",
 					null);
 				add(ConversationStates.ATTENDING,
-					new String[] { "empty", "marked" },
+					Arrays.asList("empty", "marked"),
 					null,
 					ConversationStates.ATTENDING,
 					"Empty scrolls are used to mark a position. Marked scrolls can take you back to that position. They are a little expensive, though.",
 					null);
 				add(ConversationStates.ATTENDING,
-					new String[] { "summon"},
+					"summon",
 					null,
 					ConversationStates.ATTENDING,
 					"You can summon animals with summon_scrolls. Advanced magicians can summon stronger monsters but i think it is too dangerous to sell such scrolls.",

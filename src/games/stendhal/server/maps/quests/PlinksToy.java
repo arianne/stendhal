@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -101,7 +102,7 @@ public class PlinksToy extends AbstractQuest {
 				"*cry* Please! *snief*",
 				null);
 
-		String[] wolf = {"wolf", "wolves"};
+		List<String> wolf = Arrays.asList("wolf", "wolves");
 		npc.add(ConversationStates.QUEST_OFFERED,
 				wolf,
 				null,
