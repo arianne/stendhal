@@ -11,10 +11,22 @@ import java.awt.geom.Rectangle2D;
 
 public abstract class CroupierNPC extends SpeakerNPC implements Dice.DiceListener {
 	
+	/**
+	 * The time (in turns) it takes before the NPC removes
+	 * thrown dice from the table.
+	 */
 	private static final int CLEAR_PLAYING_AREA_TIME = 3 * 10;
 	
+	/**
+	 * The area on which the dice have to be thrown.  
+	 */
 	private Rectangle2D playingArea;
 	
+	/**
+	 * An array where each possible dice sum is the index of the element
+	 * which is either the name of the prize for this dice sum, or null
+	 * if the player doesn't win anything for this sum.
+	 */
 	private String[] prizes;
 	
 	public CroupierNPC(String name, Rectangle playingArea) {
@@ -30,6 +42,11 @@ public abstract class CroupierNPC extends SpeakerNPC implements Dice.DiceListene
 		this.prizes = prizes;
 	}
 	
+	/**
+	 * Checks whether a dice has been thrown onto the playing area.
+	 * @param dice The dice
+	 * @return true iff the dice is lying on the playing area
+	 */
 	private boolean isDiceOnPlayingArea(Dice dice) {
 		return playingArea.contains(dice.getX(), dice.getY());
 	}
