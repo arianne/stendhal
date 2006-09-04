@@ -24,10 +24,10 @@ public class DiceGambling extends AbstractQuest {
 		prizes[17] = "crown_shield";
 		prizes[16] = "scale_armor_+2";
 		prizes[15] = "greater_potion";
-		prizes[14] = "antidote";
+		prizes[14] = "plate_shield";
 		prizes[13] = "chain_helmet";
 		prizes[12] = "sandwich";
-		prizes[11] = "plate_shield";
+		prizes[11] = "antidote";
 		prizes[10] = "dwarf_cloak";
 		prizes[9] = "chain_legs";
 		prizes[8] = "leather_boots";
@@ -50,7 +50,7 @@ public class DiceGambling extends AbstractQuest {
 						public void fire(Player player, String text, SpeakerNPC npc) {
 							if (player.drop("money", STAKE)) {
 								Dice dice = (Dice) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("dice");
-								dice.addDiceListener((Dice.DiceListener) npc);
+								dice.setCroupierNPC((CroupierNPC) npc);
 								player.equip(dice, true);
 								npc.say("OK, here are the dice. Just throw them when you're ready. Good luck!");
 							} else {

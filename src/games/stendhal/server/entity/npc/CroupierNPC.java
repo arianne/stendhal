@@ -9,7 +9,7 @@ import games.stendhal.server.events.TurnNotifier;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-public abstract class CroupierNPC extends SpeakerNPC implements Dice.DiceListener {
+public abstract class CroupierNPC extends SpeakerNPC {
 	
 	/**
 	 * The time (in turns) it takes before the NPC removes

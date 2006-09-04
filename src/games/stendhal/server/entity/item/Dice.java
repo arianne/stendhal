@@ -14,6 +14,8 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.npc.CroupierNPC;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.List;
@@ -22,27 +24,42 @@ import java.util.Map;
 
 public class Dice extends Item {
 	
-	public static interface DiceListener {
-		public void onThrown(Dice dice, Player player);
-	}
-	
 	private static int NUMBER_OF_DICE = 3;
 	
 	private int[] topFaces;
 	
-	private List<DiceListener> listeners;
+	private CroupierNPC croupierNPC;
 	
 	public Dice(Map<String, String> attributes) {
 		super("dice", "misc", "dice", attributes);
-		
-		listeners = new LinkedList<DiceListener>();
 		randomize(null);
 	}
 
-	public Dice(int quantity) {
+	public Dice() {
 		super("dice", "misc", "dice", null);
-		listeners = new LinkedList<DiceListener>();
 		randomize(null);
+	}
+	
+	public void setCroupierNPC(CroupierNPC croupierNPC) {
+		this.croupierNPC = croupierNPC;
+		put("infostring", croupierNPC.getName());
+	}
+	
+	/**
+	 * When the player gets the dice, then disconnects and reconnects,
+	 * the CroupierNPC is lost. That's why we store the croupier's name
+	 * in the item's infostring. This method will read out that infostring
+	 * and set the croupier to the NPC with that name.
+	 * 
+	 * I tried to do this in the constructor, but somehow it didn't work:
+	 * the item somehow seems to not have an infostring while the constructor
+	 * is running.  
+	 */
+	private void updateCroupierNPC() {
+		if (croupierNPC == null && has("infostring")) {
+			String name = get("infostring");
+			croupierNPC = (CroupierNPC) NPCList.get().get(name); 
+		}
 	}
 	
 	public int[] getTopFaces() {
@@ -65,18 +82,15 @@ public class Dice extends Item {
 		return result;
 	}
 	
-	public void addDiceListener(DiceListener listener) {
-		listeners.add(listener);
-	}
-	
 	private void randomize(Player player) {
 		topFaces = new int[NUMBER_OF_DICE];
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
 			int topFace = Rand.roll1D6();
 			topFaces[i] = topFace;
 		}
-		for (DiceListener listener: listeners) {
-			listener.onThrown(this, player);
+		updateCroupierNPC();
+		if (croupierNPC != null) {
+			croupierNPC.onThrown(this, player);
 		}
 	}
 	
