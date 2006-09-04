@@ -141,16 +141,28 @@ public class SevenCherubs extends AbstractQuest {
 								 * have this randomization anymore. There
 								 * should be one hard quest for each of the
 								 * golden items.
+								 * 
 								 * I commented out the golden shield here
 								 * because you already get that from the
-								 * CloaksForBario quest. Once enough quests
+								 * CloaksForBario quest.
+								 * 
+								 * Golden legs was disabled because it can be 
+								 * won in DiceGambling.
+								 * 
+								 * Fire sword was disabled because it can be
+								 * earned by fighting, and because the stronger
+								 * ice sword is available through other quest
+								 * and through fighting.
+								 * 
+								 * Once enough quests
 								 * exist, this quest should always give you
 								 * golden boots (because you have to walk much
 								 * to fulfil it).
+								 * 
 								 */
 								String[] items = { "golden_boots",
-										"golden_armor", "fire_sword",
-										/* "golden_shield", */"golden_legs",
+										"golden_armor", /* "fire_sword",
+										"golden_shield", "golden_legs", */
 										"golden_helmet" };
 								Item item = StendhalRPWorld.get()
 										.getRuleManager().getEntityManager()
