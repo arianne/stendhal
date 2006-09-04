@@ -90,10 +90,7 @@ public class Portal extends Entity implements UseListener {
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 
-		if (StendhalRPAction.usePortal(player, this)) {
-			StendhalRPAction.transferContent(player);
-			player.notifyWorldAboutChanges();
-		}
+		StendhalRPAction.usePortal(player, this);
 	}
     
     public void onUsedBackwards(RPEntity user) {

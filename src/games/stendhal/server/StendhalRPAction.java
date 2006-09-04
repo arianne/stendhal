@@ -376,13 +376,11 @@ public class StendhalRPAction {
 				.getRPZone(new IRPZone.ID(portal.getDestinationZone()));
 
 		Portal dest = destZone.getPortal(portal.getDestinationNumber());
-		player.setX(dest.getInt("x"));
-		player.setY(dest.getInt("y"));
-        dest.onUsedBackwards(player);
-
+		
+		player.teleport(destZone, dest.getInt("x"), dest.getInt("y"), null, null);
 		player.stop();
-
-		changeZone(player, portal.getDestinationZone(), true);
+		
+		dest.onUsedBackwards(player);
 
 		Log4J.finishMethod(logger, "usePortal");
 		return true;
