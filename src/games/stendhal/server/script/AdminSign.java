@@ -18,25 +18,31 @@ import java.util.Map;
 public class AdminSign extends ScriptImpl {
 	private Map<Integer, Sign> storage = new HashMap<Integer, Sign>();
 	private int signcounter = 0;
-	
+
+	/**
+	 * adds a sign
+	 *
+	 * @param player admin
+	 * @param args zone x y text
+	 */
 	public void add(Player player, List<String> args) {
 		if (args.size() >= 3) {
 
 			// read zone and x,y. Use player's data as default on "-".
 			String myZone = args.get(0);
-			if (myZone == "-") {
+			if (myZone.equals("-")) {
 				sandbox.setZone(sandbox.getZone(player));
 			} else {
-				sandbox.setZone(myZone); // TODO seems not to work
+				sandbox.setZone(myZone);
 			}
 			int x = 0;
-			if (args.get(1) == "-") {
+			if (args.get(1).equals("-")) {
 				x = player.getX();
 			} else {
 				x = Integer.parseInt(args.get(1));
 			}
 			int y = 0;
-			if (args.get(2) == "-") {
+			if (args.get(2).equals("-")) {
 				y = player.getY();
 			} else {
 				y = Integer.parseInt(args.get(2));
@@ -47,14 +53,9 @@ public class AdminSign extends ScriptImpl {
 			sign.setY(y);
 
 			// concat text ignoring first 3 args
-			// (is there no better way to do that in Groovy?)
-			int i = 0;
 			StringBuffer sb = new StringBuffer();
-			for (String temp : args) {
-				if (i >= 3) {
-					sb.append(args.get(i) + " ");
-				}
-				i++;
+			for (int i = 3; i < args.size(); i++) {
+				sb.append(args.get(i) + " ");
 			}
 			sign.setText(sb.toString().trim().replace("|", "\n"));
 
@@ -69,7 +70,13 @@ public class AdminSign extends ScriptImpl {
 			sandbox.privateText(player, "This script creates, lists or removes signs. Syntax: \r\nadminsign.groovy <zone> <x> <y> <text> The first 3 parameters can be \"-\".\r\nadminsign.groovy list\r\nadminsign.groovy del <n>");
 		}
 	}
-	
+
+	/**
+	 * Removes the specified sign
+	 *
+	 * @param player admin
+	 * @param args sign number at index 1
+	 */
 	public void delete(Player player, List<String> args) {
 		int i = Integer.parseInt(args.get(1));
 		Sign sign = storage.get(new Integer(i));
@@ -96,8 +103,13 @@ public class AdminSign extends ScriptImpl {
 		sb.append(" ");
 		sb.append("\"" + sign.get("text") + "\"");
 	}
-	
-	public void list(Player player, List<String> args) {
+
+	/**
+	 * Lists all signs
+	 *
+	 * @param player admin invoking this script
+	 */
+	public void list(Player player) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Listing signs:");
 
@@ -114,11 +126,17 @@ public class AdminSign extends ScriptImpl {
 		}
 		sandbox.privateText(player, sb.toString());
 	}
-	
+
+	@Override
 	public void execute(Player admin, List<String> args) {
+		if (args.size() == 0) {
+			admin.sendPrivateText("/script AdminSign.class add zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
+			return;
+		}
+
 		String temp = args.get(0);
 		if (temp.equals("list")) {
-			list(admin, args);
+			list(admin);
 		} else if (temp.equals("del") || temp.equals("delete") || temp.equals("remove")) {
 			delete(admin, args);
 		} else {
