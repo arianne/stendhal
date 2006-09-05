@@ -66,6 +66,7 @@ public class ScriptRunner extends StendhalServerExtension {
 		return perform(name, "load", null, null);
 	}
 
+	// TODO: document and clean this method
 	private synchronized boolean perform(String name, String mode, Player player, String[] args) {
 		boolean ret = false;
 		ScriptingSandbox script = scripts.get(name);
@@ -77,19 +78,27 @@ public class ScriptRunner extends StendhalServerExtension {
             }
             script = null;
         }
-        if("load".equals(mode) || "execute".equals(mode)) {
+
+        if ("load".equals(mode) || "execute".equals(mode)) {
             if (getClass().getClassLoader().getResource(scriptDir + name) != null) {
+            	boolean ignoreExecute = false;
             	if (script == null) {
             		if (name.endsWith(".groovy")) {
             			script = new ScriptInGroovy(scriptDir + name);
-            		} else {
+            			ignoreExecute = true;
+            		} else if (name.endsWith(".class")) {
             			script = new ScriptInJava(scriptDir + name);
             		}
+                    ret = script.load(player, args);
+                    scripts.put(name, script);
             	}
-                ret = script.load(player, args);
-                scripts.put(name, script);
-            }            
+            	if ("execute".equals(mode) && !ignoreExecute) {
+            		ret = script.execute(player, args);
+            	}
+            }
         }
+
+
 		return (ret);
 	}
 
