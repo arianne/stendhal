@@ -1,6 +1,6 @@
 package games.stendhal.server.scripting;
 
-import games.stendhal.client.entity.Player;
+import games.stendhal.server.entity.Player;
 
 import java.util.List;
 
