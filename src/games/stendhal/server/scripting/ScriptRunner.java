@@ -89,8 +89,10 @@ public class ScriptRunner extends StendhalServerExtension {
             		} else if (name.endsWith(".class")) {
             			script = new ScriptInJava(name);
             		}
-                    ret = script.load(player, args);
-                    scripts.put(name, script);
+            		if (script != null) {
+	                    ret = script.load(player, args);
+	                    scripts.put(name, script);
+            		}
             	}
             	if ("execute".equals(mode) && !ignoreExecute) {
             		ret = script.execute(player, args);
