@@ -19,6 +19,40 @@ import java.util.Set;
 public class ProducerBehaviour extends Behaviour {
 	
 	/**
+	 * Given a number of seconds, returns a corresponding string like
+	 * "about 5 hours" or "about 27 minutes".
+	 * @param seconds
+	 * @return An approximate description of the given timespan
+	 */
+	public static String roundTimespan(int seconds) {
+		int d = seconds / (60 * 60 * 24);
+		int h = seconds / (60 * 60) - d * 24;
+		int min = seconds / 60 - h * 60;
+		// int s = seconds - min * 60;
+		if (d > 0) {
+			if (h >= 12) {
+				return "about " + (d + 1) + " days";
+			} else {
+				return "about " + d + " days";
+			}
+		} else if (h > 0) {
+			if (min >= 30) {
+				return "about " + (h + 1) + " hours";
+			} else {
+				return "about " + h + " hours";
+			}
+		} else { // if (min > 0) {
+			if (min >= 30) {
+				return "about " + (min + 1) + " minutes";
+			} else {
+				return "about " + min + " minutes";
+			}
+		} // else {
+		// 	return s + " seconds";
+		// }
+	}
+	
+	/**
 	 * To store the current status of a production order, each
 	 * ProducerBehaviour needs to have an exclusive quest slot.
 	 * 
@@ -139,6 +173,20 @@ public class ProducerBehaviour extends Behaviour {
 		return SpeakerNPC.enumerateCollection(requiredResourcesWithHashes);
 	}
 	
+	public String getApproximateRemainingTime(Player player) {
+		String orderString = player.getQuest(questSlot);
+		String[] order = orderString.split(";");
+		long orderTime = Long.parseLong(order[2]);
+		long timeNow = new Date().getTime();
+		int numberOfProductItems = Integer.parseInt(order[0]);
+		// String productName = order[1];
+
+		long finishTime = orderTime + (getProductionTime(numberOfProductItems) * 1000);
+		int remainingSeconds = (int) ((finishTime - timeNow) / 1000);
+		return roundTimespan(remainingSeconds);
+
+	}
+	
 	private int getMaximalAmount(Player player) {
 		int maxAmount = Integer.MAX_VALUE;
 		for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
@@ -206,7 +254,7 @@ public class ProducerBehaviour extends Behaviour {
 					+ amount
 					+ " "
 					+ getProductName()
-					+ " for you, but that will take some time. Come back later.");
+					+ " for you, but that will take some time. Come back in " + getApproximateRemainingTime(player) + ".");
 			return true;
 		}
 	}
@@ -232,7 +280,9 @@ public class ProducerBehaviour extends Behaviour {
 					+ getProductionActivity()
 					+ " "
 					+ getProductName()
-					+ " for you. Come back later to get it.");
+					+ " for you. Come back in "
+					+ getApproximateRemainingTime(player)
+					+ " to get it.");
 		} else {
 			StackableItem products = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(getProductName());            
 			products.setQuantity(numberOfProductItems);

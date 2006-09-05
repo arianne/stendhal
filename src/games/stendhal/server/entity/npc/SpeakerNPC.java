@@ -1040,8 +1040,14 @@ public abstract class SpeakerNPC extends NPC {
 				}
 			},
 			ConversationStates.ATTENDING,
-			"I still haven't finished your last order. Come back later!",
-			null);
+			null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text,
+						SpeakerNPC npc) {
+					npc.say("I still haven't finished your last order. Come back in " + behaviour.getApproximateRemainingTime(player) + "!");
+				}
+			});
 
 		add(ConversationStates.IDLE,
 			SpeakerNPC.GREETING_MESSAGES,
