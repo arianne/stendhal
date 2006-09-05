@@ -252,4 +252,9 @@ public abstract class ScriptingSandbox {
 		Log4J.finishMethod(logger, "unload");
 	}
 
+	public boolean execute(Player player, String[] args) {
+		// do nothing
+		return true;
+	}
+
 }

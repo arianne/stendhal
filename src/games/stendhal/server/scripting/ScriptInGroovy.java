@@ -58,4 +58,9 @@ public class ScriptInGroovy extends ScriptingSandbox {
 		Log4J.finishMethod(logger, "load");
 		return (ret);
 	}
+
+	@Override
+	public boolean execute(Player player, String[] args) {
+		return load(player, args);
+	}
 }
