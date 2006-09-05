@@ -17,18 +17,39 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Manager for scripts written in Java.
+ *
+ * @author hendrik
+ */
 public class ScriptInJava extends ScriptingSandbox {
 	private static Logger logger = Logger.getLogger(ScriptInJava.class);
 	private Script script = null;
 	private String classname = null;
 
-	public ScriptInJava(String filename) {
-		super(filename);
-		this.classname = filename.substring(0, filename.length() - 6);
+	/**
+	 * Creates a new script written in Java.
+	 *
+	 * @param scriptname Name of the script
+	 */
+	public ScriptInJava(String scriptname) {
+		super(scriptname);
+		this.classname = "games.stendhal.server.script." + scriptname.substring(0, scriptname.length() - 6);
 	}
 
-
-	private void instanceiate() throws MalformedURLException, ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException {
+	/**
+	 * creates a new instance of the script
+	 *
+	 * @throws MalformedURLException
+	 * @throws ClassNotFoundException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 * @throws InstantiationException
+	 */
+	private void newInstance() throws MalformedURLException, ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException {
 		   // Create new class loader 
 		   // with current dir as CLASSPATH
 		   File file = new File("./data/script");
@@ -45,7 +66,7 @@ public class ScriptInJava extends ScriptingSandbox {
 		Object[] params = new Object[] {admin, Arrays.asList(args), this};
 
 		try {
-			instanceiate();
+			newInstance();
 			Method[] methods = Script.class.getMethods();
 			for (Method method : methods) {
 				logger.warn(method);
