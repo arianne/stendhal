@@ -60,7 +60,7 @@
  </layer>
  <layer name="collision" width="64" height="32" opacity="0.57">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TQQrAIAwEPfcp/f8DeyheFpoqRveQWVgQYtmMSVt7dV+1rHL3Az/88MNfhd/99n/8K4oY+1lrI99l9HSCP8rvZ63pnV35q/xfDKP1WWXluefvVga/vnW0x1E96jEzT+8yf/5/5/xn9z87283v1Cz/bjuz4Ycffvjhhx/VlmP3MMYYY7cfw1GNgAAgAAA=
+   H4sIAAAAAAAAAO2TQQrAIAwEPfcp/f8DeyheFpoqxm4hs7AgRNmMxtZunUctq9z9wA8//PBX4Xff/Rv/iiLGvtbayLmMnr7gj/L7Wmu6Z1f+Kv8Tw2h9Vll57vd3K4Nf7zqa46ge9ZiZp3t5f/6/8/1n5z87283v1Cz/bjuz4Ycffvjhhx/VlmP2cG3/aQ5Rbbn/Avb6AkGV5UsAIAAA
   </data>
  </layer>
  <layer name="navigation" width="64" height="32">
@@ -68,7 +68,7 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
   </data>
  </layer>
- <layer name="protection" width="64" height="32" visible="0" opacity="0.41">
+ <layer name="protection" width="64" height="32" opacity="0.41">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DMQkAAAwDsN6zUv/+qmOQQHpJVVVVVVVVVdXXB8Nx/FYAIAAA
   </data>
