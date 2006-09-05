@@ -80,14 +80,14 @@ public class ScriptRunner extends StendhalServerExtension {
         }
 
         if ("load".equals(mode) || "execute".equals(mode)) {
-            if (getClass().getClassLoader().getResource(scriptDir + name) != null) {
+            if (name.indexOf("..") < 0) {
             	boolean ignoreExecute = false;
             	if (script == null) {
             		if (name.endsWith(".groovy")) {
             			script = new ScriptInGroovy(scriptDir + name);
             			ignoreExecute = true;
             		} else if (name.endsWith(".class")) {
-            			script = new ScriptInJava(scriptDir + name);
+            			script = new ScriptInJava(name);
             		}
                     ret = script.load(player, args);
                     scripts.put(name, script);
