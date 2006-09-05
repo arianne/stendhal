@@ -12,6 +12,8 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -22,7 +24,7 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	public ScriptInJava(String filename) {
 		super(filename);
-		this.classname = filename;
+		this.classname = filename.substring(0, filename.length() - 6);
 	}
 
 
@@ -39,16 +41,20 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	@Override
 	public boolean load(Player admin, String[] args) {
-		Class[] signature = new Class[] {Player.class, String[].class, this.getClass()};
-		Object[] params = new Object[] {admin, args, this};
+		Class[] signature = new Class[] {Player.class, List.class, ScriptingSandbox.class};
+		Object[] params = new Object[] {admin, Arrays.asList(args), this};
 
 		try {
 			instanceiate();
-			Method theMethod = script.getClass().getDeclaredMethod("load", signature);
+			Method[] methods = Script.class.getMethods();
+			for (Method method : methods) {
+				logger.warn(method);
+			}
+			Method theMethod = Script.class.getMethod("load", signature);
 			theMethod.invoke(script, params);
 		} catch (Exception e) {
 			logger.error(e, e);
-			setMessage(e.getMessage());
+			setMessage(e.toString());
 			return false;
 		}
 		return true;
@@ -56,8 +62,8 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	@Override
 	public boolean execute(Player admin, String[] args) {
-		Class[] signature = new Class[] {Player.class, String[].class};
-		Object[] params = new Object[] {admin, args};
+		Class[] signature = new Class[] {Player.class, List.class};
+		Object[] params = new Object[] {admin, Arrays.asList(args)};
 
 		try {
 			Method theMethod = script.getClass().getDeclaredMethod("execute", signature);
