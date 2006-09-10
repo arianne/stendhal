@@ -1,6 +1,12 @@
 package games.stendhal.server.script;
 
+import java.util.List;
+
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.scripting.ScriptImpl;
+import games.stendhal.server.scripting.ScriptingNPC;
+import games.stendhal.server.scripting.ScriptingSandbox;
 
 /**
  * Creates an NPC which manages bets.
@@ -24,18 +30,37 @@ import games.stendhal.server.scripting.ScriptImpl;
  * hendrik lost 5 cheese betting on water</pre></p>   
  * 
  * Note: Betting is possible in "idle state" to enable interaction of a large
- * number of players in a short time. (The last time i did a show fight i was
+ * number of players in a short time. (The last time i did a show-fight i was
  * losing count because there where more than 15 players)
  *
  * @author hendrik
  */
 public class BetManager extends ScriptImpl {
 
-	/**
-	 * 
-	 */
-	public BetManager() {
-		// TODO Auto-generated constructor stub
+	@Override
+	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
+
+		// Do not load on server startup
+		if (admin == null) {
+			return;
+		}
+
+		// create npc
+		ScriptingNPC npc = new ScriptingNPC("Bet Dialer which needs a name");
+		npc.setClass("naughtyteen2npc");
+
+		// place NPC next to admin
+		sandbox.setZone(sandbox.getZone(admin));
+		int x = admin.getX() + 1;
+		int y = admin.getY();
+		npc.set(x, y);
+		sandbox.add(npc);
+
+		// Create Dialog
+		npc.behave("greet", "Hi, do you want to bet?");
+		npc.behave("job", "I am the Bet Dialer");
+		npc.behave("help", "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses you lose your 5 cheese.");
 	}
 
+	
 }
