@@ -4,15 +4,16 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.server.scripting.ScriptingNPC;
 import games.stendhal.server.scripting.ScriptingSandbox;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
@@ -43,14 +44,16 @@ import java.util.StringTokenizer;
  * @author hendrik
  */
 public class BetManager extends ScriptImpl {
-	protected Set<String> targets = new HashSet<String>();
+	protected State state = State.IDLE;
+	protected List<String> targets = new ArrayList<String>();
 	protected List<BetInfo> betInfos = new LinkedList<BetInfo>();
+	protected ScriptingNPC npc = null;
 
 	/**
 	 * Stores information about a bet
 	 */
 	private class BetInfo {
-		String playerName = null; // do not use Player object because player may reconnect during  the show
+		String playerName = null; // do not use Player object because player may reconnect during the show
 		String target = null;
 		String itemName = null;
 		int amount = 0;
@@ -67,15 +70,34 @@ public class BetManager extends ScriptImpl {
 	}
 
 	/**
+	 * current state 
+	 */
+	private enum State {
+		/** i now nothing */
+		IDLE,
+		/** i accept bets */
+		ACCEPTING_BETS,
+		/** bets are not accepted anymore; enjoy the show */
+		ACTION,
+		/** now we have a look at the result */
+		PAYING_BETS
+	}
+
+	/**
+	 * Do we accept bets at the moment?
+	 */
+	private class BetCondition extends SpeakerNPC.ChatCondition {
+		@Override
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return state == State.ACCEPTING_BETS;
+		}
+	}
+
+	/**
 	 * handles a bet.
 	 */
 	private class BetAction extends SpeakerNPC.ChatAction {
-		private ScriptingSandbox sandbox = null;
-
-		public BetAction(ScriptingSandbox sandbox) {
-			this.sandbox = sandbox;
-		}
-
+		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
 			BetInfo betInfo = new BetInfo();
 			betInfo.playerName = player.getName();
@@ -130,7 +152,7 @@ public class BetManager extends ScriptImpl {
 
 
 			// TODO: put items on ground
-			// TODO: mark items on ground with: playername "betted" ammount itemname "on" target.
+			// TODO: mark items on ground with: playername "betted" amount itemname "on" target.
 
 		}
 	}
@@ -144,7 +166,7 @@ public class BetManager extends ScriptImpl {
 		}
 
 		// create npc
-		ScriptingNPC npc = new ScriptingNPC("Bet Dialer which needs a name");
+		npc = new ScriptingNPC("Bet Dialer which needs a name");
 		npc.setClass("naughtyteen2npc");
 
 		// place NPC next to admin
@@ -157,7 +179,61 @@ public class BetManager extends ScriptImpl {
 		// Create Dialog
 		npc.behave("greet", "Hi, do you want to bet?");
 		npc.behave("job", "I am the Bet Dialer");
-		npc.behave("help", "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses you lose your 5 cheese.");
+		npc.behave("help", "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses, you will lose your 5 cheese.");
+		npc.add(ConversationStates.ANY, "bet", new BetCondition(), ConversationStates.ANY, null, new BetAction());
+
+		// TODO: remove warning
+		admin.sendPrivateText("BetManager is not fully coded yet");
+	}
+
+	@Override
+	public void execute(Player admin, List<String> args) {
+
+		// Help
+		List<String> commands = Arrays.asList("accept", "action", "winner");
+		if ((args.size() == 0) || (!commands.contains(args.get(0)))) {
+			admin.sendPrivateText("Syntax: /script BetManager.class accept #fire #water\n"
+					+ "/script BetManager.class action\n"
+					+ "/script BetManager.class winner #fire");
+			return;
+		}
+
+		int idx = commands.indexOf(args.get(0));
+		switch (idx) {
+			case 0: // accept #fire #water 
+			{
+				if (state != State.IDLE) {
+					admin.sendPrivateText("accept command is only valid in state IDLE. But i am in " + state + " now.");
+					return;
+				}
+				for (int i = 1; i < args.size(); i++) {
+					targets.add(args.get(i));
+				}
+				npc.say("Hi, I am accepting bets on " + targets + ". If you want to bet simply say: \"bet 5 cheese on " + targets.get(0) + "\" to get an additional 5 pieces of cheese if " + targets.get(0) + " wins. If he loses, you will lose your 5 cheese.");
+				state = State.ACCEPTING_BETS;
+				break;
+			}
+
+			case 1: // action 
+			{
+				if (state != State.ACCEPTING_BETS) {
+					admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in " + state + " now.");
+					return;
+				}
+				state = State.ACTION;
+				break;
+			}
+
+			case 2: // winner #fire
+				if (state != State.ACTION) {
+					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state + " now.");
+					return;
+				}
+				// TODO: winner in State.ACTION -> State.PAYING_BETS
+				state = State.PAYING_BETS;
+				break;
+		}
+
 	}
 
 	
