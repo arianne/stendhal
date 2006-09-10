@@ -20,7 +20,7 @@ import java.util.StringTokenizer;
  * Creates an NPC which manages bets.
  *
  * <p>A game master has to tell him on what the players can bet:
- * <pre>accept fire and water</pre></p>
+ * <pre>/script BetManager.class accept fire water earth</pre></p>
  *
  * <p>Then players can bet by saying something like
  * <pre>bet 50 ham on fire
@@ -28,18 +28,19 @@ import java.util.StringTokenizer;
  * The NPC retrieves the items from the player and registers the bet.</p>
  * 
  * <p>The game master starts the action closing the betting time:
- * <pre>Let the fun begin</pre></p>
+ * <pre>/script BetManager.class action</pre></p>
  *
  * <p>After the game the game master has to tell the NPC who won:</p>
- * <pre>the winner is fire</pre>.
+ * <pre>/script BetManager.class winner fire</pre>.
  *
  * <p>The NPC will than tell all players the results and give it to winners:
  * <pre>mort betted 50 ham on fire and won an additional 50 ham
  * hendrik lost 5 cheese betting on water</pre></p>   
  * 
- * Note: Betting is possible in "idle state" to enable interaction of a large
- * number of players in a short time. (The last time i did a show-fight i was
- * losing count because there where more than 15 players)
+ * Note: Betting is possible in "idle conversation state" to enable 
+ * interaction of a large number of players in a short time. (The last 
+ * time i did a show-fight i was losing count because there where more
+ * than 15 players)
  *
  * @author hendrik
  */
@@ -52,7 +53,7 @@ public class BetManager extends ScriptImpl {
 	/**
 	 * Stores information about a bet
 	 */
-	private class BetInfo {
+	private static class BetInfo {
 		String playerName = null; // do not use Player object because player may reconnect during the show
 		String target = null;
 		String itemName = null;
@@ -86,7 +87,7 @@ public class BetManager extends ScriptImpl {
 	/**
 	 * Do we accept bets at the moment?
 	 */
-	private class BetCondition extends SpeakerNPC.ChatCondition {
+	protected class BetCondition extends SpeakerNPC.ChatCondition {
 		@Override
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return state == State.ACCEPTING_BETS;
@@ -94,9 +95,19 @@ public class BetManager extends ScriptImpl {
 	}
 
 	/**
+	 * Do we NOT accept bets at the moment?
+	 */
+	protected class NoBetCondition extends SpeakerNPC.ChatCondition {
+		@Override
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return state != State.ACCEPTING_BETS;
+		}
+	}
+
+	/**
 	 * handles a bet.
 	 */
-	private class BetAction extends SpeakerNPC.ChatAction {
+	protected class BetAction extends SpeakerNPC.ChatAction {
 		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
 			BetInfo betInfo = new BetInfo();
@@ -182,6 +193,7 @@ public class BetManager extends ScriptImpl {
 		npc.behave("help", "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses, you will lose your 5 cheese.");
 		npc.addGoodbye();
 		npc.add(ConversationStates.IDLE, "bet", new BetCondition(), ConversationStates.IDLE, null, new BetAction());
+		npc.add(ConversationStates.IDLE, "bet", new NoBetCondition(), ConversationStates.IDLE, "I am not accepting any bets at the moment.", null);
 		
 
 		// TODO: remove warning
@@ -222,11 +234,13 @@ public class BetManager extends ScriptImpl {
 					admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in " + state + " now.");
 					return;
 				}
+				npc.say("Ok, Let the fun begin! I will not accept bets anymore.");
 				state = State.ACTION;
 				break;
 			}
 
 			case 2: // winner #fire
+			{
 				if (state != State.ACTION) {
 					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state + " now.");
 					return;
@@ -234,9 +248,7 @@ public class BetManager extends ScriptImpl {
 				// TODO: winner in State.ACTION -> State.PAYING_BETS
 				state = State.PAYING_BETS;
 				break;
+			}
 		}
-
 	}
-
-	
 }
