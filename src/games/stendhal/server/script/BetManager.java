@@ -180,7 +180,9 @@ public class BetManager extends ScriptImpl {
 		npc.behave("greet", "Hi, do you want to bet?");
 		npc.behave("job", "I am the Bet Dialer");
 		npc.behave("help", "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses, you will lose your 5 cheese.");
-		npc.add(ConversationStates.ANY, "bet", new BetCondition(), ConversationStates.ANY, null, new BetAction());
+		npc.addGoodbye();
+		npc.add(ConversationStates.IDLE, "bet", new BetCondition(), ConversationStates.IDLE, null, new BetAction());
+		
 
 		// TODO: remove warning
 		admin.sendPrivateText("BetManager is not fully coded yet");
@@ -194,7 +196,7 @@ public class BetManager extends ScriptImpl {
 		if ((args.size() == 0) || (!commands.contains(args.get(0)))) {
 			admin.sendPrivateText("Syntax: /script BetManager.class accept #fire #water\n"
 					+ "/script BetManager.class action\n"
-					+ "/script BetManager.class winner #fire");
+					+ "/script BetManager.class winner #fire\n");
 			return;
 		}
 
