@@ -44,6 +44,16 @@ import java.util.StringTokenizer;
 public class BetManager extends ScriptImpl {
 	protected Set<String> targets = new HashSet<String>();
 
+	/**
+	 * Stores information about a bet
+	 */
+	private class BetInfo {
+		String playerName = null; // do not use Player object because player may reconnect during  the show
+		String target = null;
+		String itemName = null;
+		int amount = 0;
+	}
+
 	private class BetAction extends SpeakerNPC.ChatAction {
 		private ScriptingSandbox sandbox = null;
 
@@ -52,9 +62,8 @@ public class BetManager extends ScriptImpl {
 		}
 
 		public void fire(Player player, String text, SpeakerNPC engine) {
-			int amount = 0;
-			String itemname = null;
-			String target = null;
+			BetInfo betInfo = new BetInfo();
+			betInfo.playerName = player.getName();
 
 			// parse the string
 			StringTokenizer st = new StringTokenizer(text);
@@ -62,12 +71,12 @@ public class BetManager extends ScriptImpl {
 			if (st.countTokens() == 5) {
 				st.nextToken(); // bet
 				String amountStr = st.nextToken();  // 5
-				itemname = st.nextToken(); // cheese
+				betInfo.itemName = st.nextToken(); // cheese
 				st.nextToken(); // on
-				target = st.nextToken();
+				betInfo.target = st.nextToken();
 
 				try {
-					amount = Integer.parseInt(amountStr);
+					betInfo.amount = Integer.parseInt(amountStr);
 				} catch (NumberFormatException e) {
 					error =true;
 				}
@@ -82,21 +91,21 @@ public class BetManager extends ScriptImpl {
 			}
 
 			// check that item is a Consumeable Item
-			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemname);
+			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(betInfo.itemName);
 			if (! (item instanceof ConsumableItem)) {
 				engine.say("Sorry " + player.getName() + ", i only accept food and drinks.");
 				return;
 			}
 
 			// check target
-			if (!targets.contains(target)) {
+			if (!targets.contains(betInfo.target)) {
 				engine.say("Sorry " + player.getName() + ", i only accept bets on " + targets);
 				return;
 			}
 
 			// drop item
-			if (!player.drop(itemname, amount)) {
-				engine.say("Sorry " + player.getName() + ", you don't have " + amount + " " + itemname);
+			if (!player.drop(betInfo.itemName, betInfo.amount)) {
+				engine.say("Sorry " + player.getName() + ", you don't have " + betInfo.amount + " " + betInfo.itemName);
 				return;
 			}
 
