@@ -1,13 +1,17 @@
 package games.stendhal.server.script;
 
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.server.scripting.ScriptingNPC;
 import games.stendhal.server.scripting.ScriptingSandbox;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
@@ -38,8 +42,9 @@ import java.util.StringTokenizer;
  * @author hendrik
  */
 public class BetManager extends ScriptImpl {
+	protected Set<String> targets = new HashSet<String>();
 
-	class BetAction extends SpeakerNPC.ChatAction {
+	private class BetAction extends SpeakerNPC.ChatAction {
 		private ScriptingSandbox sandbox = null;
 
 		public BetAction(ScriptingSandbox sandbox) {
@@ -76,8 +81,18 @@ public class BetManager extends ScriptImpl {
 				return;
 			}
 
-			// TODO: check that item is a Consumeable Item
-			// TODO: check target
+			// check that item is a Consumeable Item
+			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemname);
+			if (! (item instanceof ConsumableItem)) {
+				engine.say("Sorry " + player.getName() + ", i only accept food and drinks.");
+				return;
+			}
+
+			// check target
+			if (!targets.contains(target)) {
+				engine.say("Sorry " + player.getName() + ", i only accept bets on " + targets);
+				return;
+			}
 
 			// drop item
 			if (!player.drop(itemname, amount)) {
