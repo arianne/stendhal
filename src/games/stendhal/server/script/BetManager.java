@@ -10,6 +10,7 @@ import games.stendhal.server.scripting.ScriptingNPC;
 import games.stendhal.server.scripting.ScriptingSandbox;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -43,6 +44,7 @@ import java.util.StringTokenizer;
  */
 public class BetManager extends ScriptImpl {
 	protected Set<String> targets = new HashSet<String>();
+	protected List<BetInfo> betInfos = new LinkedList<BetInfo>();
 
 	/**
 	 * Stores information about a bet
@@ -52,8 +54,21 @@ public class BetManager extends ScriptImpl {
 		String target = null;
 		String itemName = null;
 		int amount = 0;
+
+		public String betToString() {
+			StringBuilder sb = new StringBuilder();
+			sb.append(amount);
+			sb.append(" ");
+			sb.append(itemName);
+			sb.append(" on ");
+			sb.append(target);
+			return sb.toString();
+		}
 	}
 
+	/**
+	 * handles a bet.
+	 */
 	private class BetAction extends SpeakerNPC.ChatAction {
 		private ScriptingSandbox sandbox = null;
 
@@ -109,8 +124,11 @@ public class BetManager extends ScriptImpl {
 				return;
 			}
 
-			// TODO: confirm bet
-			// TODO: store items in list
+			// store bet in list and confirm it
+			betInfos.add(betInfo);
+			engine.say(player.getName() + " your bet " + betInfo.betToString() + " was accepted");
+
+
 			// TODO: put items on ground
 			// TODO: mark items on ground with: playername "betted" ammount itemname "on" target.
 
