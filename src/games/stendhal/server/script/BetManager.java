@@ -1,12 +1,14 @@
 package games.stendhal.server.script;
 
-import java.util.List;
-
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.server.scripting.ScriptingNPC;
 import games.stendhal.server.scripting.ScriptingSandbox;
+
+import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Creates an NPC which manages bets.
@@ -36,6 +38,60 @@ import games.stendhal.server.scripting.ScriptingSandbox;
  * @author hendrik
  */
 public class BetManager extends ScriptImpl {
+
+	class BetAction extends SpeakerNPC.ChatAction {
+		private ScriptingSandbox sandbox = null;
+
+		public BetAction(ScriptingSandbox sandbox) {
+			this.sandbox = sandbox;
+		}
+
+		public void fire(Player player, String text, SpeakerNPC engine) {
+			int amount = 0;
+			String itemname = null;
+			String target = null;
+
+			// parse the string
+			StringTokenizer st = new StringTokenizer(text);
+			boolean error = false;
+			if (st.countTokens() == 5) {
+				st.nextToken(); // bet
+				String amountStr = st.nextToken();  // 5
+				itemname = st.nextToken(); // cheese
+				st.nextToken(); // on
+				target = st.nextToken();
+
+				try {
+					amount = Integer.parseInt(amountStr);
+				} catch (NumberFormatException e) {
+					error =true;
+				}
+			} else {
+				error = true;
+			}
+
+			// wrong syntax
+			if (error) {
+				engine.say("Sorry " + player.getName() + ", i did not understand you.");
+				return;
+			}
+
+			// TODO: check that item is a Consumeable Item
+			// TODO: check target
+
+			// drop item
+			if (!player.drop(itemname, amount)) {
+				engine.say("Sorry " + player.getName() + ", you don't have " + amount + " " + itemname);
+				return;
+			}
+
+			// TODO: confirm bet
+			// TODO: store items in list
+			// TODO: put items on ground
+			// TODO: mark items on ground with: playername "betted" ammount itemname "on" target.
+
+		}
+	}
 
 	@Override
 	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
