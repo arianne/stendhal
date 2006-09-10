@@ -1,11 +1,15 @@
 package games.stendhal.server.script;
 
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.server.scripting.ScriptingNPC;
 import games.stendhal.server.scripting.ScriptingSandbox;
@@ -15,6 +19,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import org.apache.log4j.Logger;
 
 /**
  * Creates an NPC which manages bets.
@@ -44,17 +50,23 @@ import java.util.StringTokenizer;
  *
  * @author hendrik
  */
-public class BetManager extends ScriptImpl {
-	protected State state = State.IDLE;
-	protected List<String> targets = new ArrayList<String>();
-	protected List<BetInfo> betInfos = new LinkedList<BetInfo>();
+public class BetManager extends ScriptImpl implements TurnListener {
+	private static final int WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS = 20 * 3; 
+	private static Logger logger = Logger.getLogger(BetManager.class);
+
 	protected ScriptingNPC npc = null;
+	protected State state = State.IDLE;
+	protected List<BetInfo> betInfos = new LinkedList<BetInfo>();
+	protected List<String> targets = new ArrayList<String>();
+	protected String winner = null;
 
 	/**
 	 * Stores information about a bet
 	 */
-	private static class BetInfo {
-		String playerName = null; // do not use Player object because player may reconnect during the show
+	protected static class BetInfo {
+		// use player name instead of player object
+		// because player may reconnect during the show
+		String playerName = null; 
 		String target = null;
 		String itemName = null;
 		int amount = 0;
@@ -168,6 +180,74 @@ public class BetManager extends ScriptImpl {
 		}
 	}
 
+	public void onTurnReached(int currentTurn, String message) {
+		if (state != State.PAYING_BETS) {
+			logger.error("onTurnReached invoked but state is not PAYING_BETS: " + state);
+			return;
+		}
+
+		if (!betInfos.isEmpty()) {
+			BetInfo betInfo = betInfos.remove(0);
+
+			Player player = StendhalRPRuleProcessor.get().getPlayer(betInfo.playerName);
+			if (player == null) {
+				// player logged out
+				if (winner.equals(betInfo.target)) {
+					npc.say(betInfo.playerName + " would have won but he or she went away.");
+				} else {
+					npc.say(betInfo.playerName + " went away. But as he or she has lost anyway it makes no differents.");
+				}
+				
+			} else {
+					
+				// create announcement
+				StringBuilder sb = new StringBuilder();
+				sb.append(betInfo.playerName);
+				sb.append(" betted on ");
+				sb.append(betInfo.target);
+				sb.append(". So ");
+				sb.append(betInfo.playerName);
+				if (winner.equals(betInfo.target)) {
+					sb.append(" gets ");
+					sb.append(betInfo.amount);
+					sb.append(" ");
+					sb.append(betInfo.itemName);
+					sb.append(" back and wins an additional ");
+				} else {
+					sb.append(" lost his ");
+				}
+				sb.append(betInfo.amount);
+				sb.append(" ");
+				sb.append(betInfo.itemName);
+				sb.append(". ");
+				npc.say(sb.toString());
+
+				// return the bet and the win to the player
+				if (winner.equals(betInfo.target)) {
+					StackableItem item = (StackableItem) sandbox.getItem(betInfo.itemName);
+					item.setQuantity(2 * betInfo.amount); // bet + win
+					player.equip(item, true);
+				}
+
+			}
+
+			// TODO: remove item from ground, if it has been put there
+
+			if (betInfos.isEmpty()) {
+				winner = null;
+				targets.clear();
+				state = State.IDLE;
+			} else {
+				TurnNotifier.get().notifyInTurns(WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this, null);
+			}
+		}
+	}
+
+
+	// ------------------------------------------------------------------------
+	//                 scripting stuff and game master control                
+	// ------------------------------------------------------------------------
+
 	@Override
 	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
 
@@ -217,7 +297,7 @@ public class BetManager extends ScriptImpl {
 			case 0: // accept #fire #water 
 			{
 				if (state != State.IDLE) {
-					admin.sendPrivateText("accept command is only valid in state IDLE. But i am in " + state + " now.");
+					admin.sendPrivateText("accept command is only valid in state IDLE. But i am in " + state + " now.\n");
 					return;
 				}
 				for (int i = 1; i < args.size(); i++) {
@@ -231,7 +311,7 @@ public class BetManager extends ScriptImpl {
 			case 1: // action 
 			{
 				if (state != State.ACCEPTING_BETS) {
-					admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in " + state + " now.");
+					admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in " + state + " now.\n");
 					return;
 				}
 				npc.say("Ok, Let the fun begin! I will not accept bets anymore.");
@@ -242,11 +322,16 @@ public class BetManager extends ScriptImpl {
 			case 2: // winner #fire
 			{
 				if (state != State.ACTION) {
-					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state + " now.");
+					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state + " now.\n");
 					return;
 				}
-				// TODO: winner in State.ACTION -> State.PAYING_BETS
+				if (args.size() < 2) {
+					admin.sendPrivateText("Usage: /script BadManager.class winner #fire\n");
+				}
+				winner = args.get(1);
 				state = State.PAYING_BETS;
+				npc.say("And the winner is ... " + winner + ".");
+				TurnNotifier.get().notifyInTurns(WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this, null);
 				break;
 			}
 		}
