@@ -83,7 +83,6 @@ public class Maria extends ScriptImpl {
 		}
 
 		// Set zone and position
-		sandbox.setZone(myZone);
 		npc.set(x, y);
 		sandbox.add(npc);
 
