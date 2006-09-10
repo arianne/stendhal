@@ -1,7 +1,3 @@
-// *********************************
-//   unfinished experimental stuff
-// *********************************
-
 package games.stendhal.server.scripting;
 
 import games.stendhal.server.entity.Player;
@@ -87,7 +83,7 @@ public class ScriptInJava extends ScriptingSandbox {
 		Object[] params = new Object[] {admin, Arrays.asList(args)};
 
 		try {
-			Method theMethod = script.getClass().getDeclaredMethod("execute", signature);
+			Method theMethod = script.getClass().getMethod("execute", signature);
 			theMethod.invoke(script, params);
 		} catch (Exception e) {
 			logger.error(e, e);
@@ -99,18 +95,18 @@ public class ScriptInJava extends ScriptingSandbox {
 	
 	
 	@Override
-	public void unload() {
-		Class[] signature = new Class[] {};
-		Object[] params = new Object[] {};
+	public void unload(Player admin, String[] args) {
+		Class[] signature = new Class[] {Player.class, List.class};
+		Object[] params = new Object[] {admin, Arrays.asList(args)};
 		try {
-			Method theMethod = script.getClass().getDeclaredMethod("unload", signature);
+			Method theMethod = script.getClass().getMethod("unload", signature);
 			theMethod.invoke(script, params);
 		} catch (Exception e) {
 			logger.error(e, e);
 			setMessage(e.getMessage());
 		}
 
-		super.unload();
+		super.unload(admin, args);
 	}
 
 	

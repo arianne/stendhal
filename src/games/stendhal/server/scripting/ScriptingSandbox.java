@@ -233,7 +233,7 @@ public abstract class ScriptingSandbox {
 		}
 	}
 	
-	public void unload() {
+	public void unload(Player player, String[] args) {
 		Log4J.startMethod(logger, "unload");
 
 		for (Pair<ScriptCondition, ScriptAction> script : (List<Pair<ScriptCondition, ScriptAction>>) loadedScripts.clone()) {

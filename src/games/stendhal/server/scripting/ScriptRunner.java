@@ -73,7 +73,7 @@ public class ScriptRunner extends StendhalServerExtension {
 		name = name.trim();
         if("load".equals(mode) || "remove".equals(mode) || "unload".equals(mode)) {
             if ((script = scripts.remove(name)) != null) {
-                script.unload();
+                script.unload(player, args);
                 ret = true;
             }
             script = null;
