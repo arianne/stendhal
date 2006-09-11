@@ -121,6 +121,11 @@ public class WtWindowManager {
 		}
 		return winC;
 	}
+	
+	// Hack: reads keyboard access method in this file
+	public String getProperty(String key, String defaultValue) {
+		return properties.getProperty(key, defaultValue);
+	}
 
 	/**
 	 * Formats the window with the saved config. Nothing happens when this
