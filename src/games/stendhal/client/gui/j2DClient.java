@@ -12,16 +12,40 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.RenderingPipeline;
+import games.stendhal.client.StaticGameLayers;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
-import java.awt.*;
-import java.awt.event.*;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.net.URL;
-import javax.swing.*;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
+
 import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
@@ -59,6 +83,29 @@ public class j2DClient extends JFrame {
 	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
 	private JTextField playerChatText;
 
+	
+	private void fixkeyboardHandlinginX() {
+		logger.debug("OS: " + System.getProperty("os.name"));
+		try {
+			// NOTE: X does handle input in a different way of the rest of the world.
+			// This fixs the problem.
+			Runtime.getRuntime().exec("xset r off");
+			Runtime.getRuntime().addShutdownHook(new Thread() {
+				public void run() {
+					try {
+						Runtime.getRuntime().exec("xset r on");
+					} catch (Exception e) {
+						logger.error(e);
+					}
+				}
+			});
+		} catch (Exception e) {
+			logger.error("Error setting keyboard handling", e);
+		}
+	}
+
+	
+	
 	public j2DClient(StendhalClient sc) {
 		super();
 		this.client = sc;
@@ -87,8 +134,7 @@ public class j2DClient extends JFrame {
 		panel.add(canvas);
 
 		playerChatText = new JTextField("");
-		playerChatText
-				.setBounds(0, SCREEN_HEIGHT, SCREEN_WIDTH, CHAT_LINE_SIZE);
+		playerChatText.setBounds(0, SCREEN_HEIGHT, SCREEN_WIDTH, CHAT_LINE_SIZE);
 
 		StendhalChatLineListener chatListener = new StendhalChatLineListener(
 				client, playerChatText);
@@ -150,19 +196,31 @@ public class j2DClient extends JFrame {
 		});
 
 
-		// canvas.addMouseListener(inGameGUI);
-		// canvas.addMouseMotionListener(inGameGUI);
+		
+		// workaround for key auto repeat on X11 (linux)
+		// In the default case xset -r is execute on program start and xset r on exit
+		// As this will affect all applications you can write keys.x=magic to use
+		// a method called MagicKeyListener. Cauntion: This does not work on all pcs
+		// and creates create stress on the network and server in case it does not work.
+		KeyListener keyListener = inGameGUI;
+		if (System.getProperty("os.name", "").toLowerCase().contains("linux")) {
+			if (WtWindowManager.getInstance().getProperty("keys.x", "xset").equals("xset")) {
+				fixkeyboardHandlinginX();
+			} else {
+				keyListener = new MagicKeyListener(inGameGUI);
+			}
+		}
 
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
-		playerChatText.addKeyListener(new MagicKeyListener(inGameGUI));
+		playerChatText.addKeyListener(keyListener);
 
 		// because Mac OS X doesn't allow to give the focus back to
 		// playerChatText (see comment above)
 		// we need to add the KeyListener to canvas, too intensifly@gmx.com
 
 		if (System.getProperty("os.name").toLowerCase().contains("os x"))
-			canvas.addKeyListener(new MagicKeyListener(inGameGUI));
+			canvas.addKeyListener(inGameGUI);
 
 		client.setTextLineGUI(playerChatText);
 
