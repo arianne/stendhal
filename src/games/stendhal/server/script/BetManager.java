@@ -250,6 +250,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 	@Override
 	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
+		super.load(admin, args, sandbox);
 
 		// Do not load on server startup
 		if (admin == null) {
@@ -321,10 +322,10 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 			case 2: // winner #fire
 			{
-				if (state != State.ACTION) {
+				/*if (state != State.ACTION) {
 					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state + " now.\n");
 					return;
-				}
+				}*/
 				if (args.size() < 2) {
 					admin.sendPrivateText("Usage: /script BadManager.class winner #fire\n");
 				}
