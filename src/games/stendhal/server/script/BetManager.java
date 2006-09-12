@@ -54,10 +54,15 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	private static final int WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS = 10 * 3; 
 	private static Logger logger = Logger.getLogger(BetManager.class);
 
+	/** the NPC */
 	protected ScriptingNPC npc = null;
+	/** current state */
 	protected State state = State.IDLE;
+	/** list of bets */
 	protected List<BetInfo> betInfos = new LinkedList<BetInfo>();
+	/** possible targets */
 	protected List<String> targets = new ArrayList<String>();
+	/** winner (in state State.PAYING_BETS) */
 	protected String winner = null;
 
 	/**
@@ -66,11 +71,20 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	protected static class BetInfo {
 		// use player name instead of player object
 		// because player may reconnect during the show
-		String playerName = null; 
+		/** name of player */
+		String playerName = null;
+		/** target of bet */
 		String target = null;
+		/** name of item */
 		String itemName = null;
+		/** amount */
 		int amount = 0;
 
+		/**
+		 * converts the bet into a string
+		 *
+		 * @return String
+		 */
 		public String betToString() {
 			StringBuilder sb = new StringBuilder();
 			sb.append(amount);
@@ -79,6 +93,11 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			sb.append(" on ");
 			sb.append(target);
 			return sb.toString();
+		}
+
+		@Override
+		public String toString() {
+			return playerName + " betted " + betToString();
 		}
 	}
 
@@ -224,8 +243,15 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 				// return the bet and the win to the player
 				if (winner.equals(betInfo.target)) {
-					StackableItem item = (StackableItem) sandbox.getItem(betInfo.itemName);
-					item.setQuantity(2 * betInfo.amount); // bet + win
+					Item item = sandbox.getItem(betInfo.itemName);
+
+					// it should allways be a stackable items as we checked for
+					// ConsumableItem when accepting the bet. But just in case
+					// something is changed in the future, we will check it again:
+					if (item instanceof StackableItem) {
+						StackableItem stackableItem = (StackableItem) item;
+						stackableItem.setQuantity(2 * betInfo.amount); // bet + win
+					}
 					player.equip(item, true);
 				}
 
@@ -275,7 +301,6 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		npc.addGoodbye();
 		npc.add(ConversationStates.IDLE, "bet", new BetCondition(), ConversationStates.IDLE, null, new BetAction());
 		npc.add(ConversationStates.IDLE, "bet", new NoBetCondition(), ConversationStates.IDLE, "I am not accepting any bets at the moment.", null);
-		
 
 		// TODO: remove warning
 		admin.sendPrivateText("BetManager is not fully coded yet");
@@ -322,10 +347,10 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 			case 2: // winner #fire
 			{
-				/*if (state != State.ACTION) {
+				if (state != State.ACTION) {
 					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state + " now.\n");
 					return;
-				}*/
+				}
 				if (args.size() < 2) {
 					admin.sendPrivateText("Usage: /script BadManager.class winner #fire\n");
 				}
