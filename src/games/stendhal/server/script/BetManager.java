@@ -51,7 +51,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class BetManager extends ScriptImpl implements TurnListener {
-	private static final int WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS = 20 * 3; 
+	private static final int WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS = 10 * 3; 
 	private static Logger logger = Logger.getLogger(BetManager.class);
 
 	protected ScriptingNPC npc = null;
