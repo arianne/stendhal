@@ -10,7 +10,7 @@
 JNIEXPORT jboolean JNICALL Java_games_stendhal_client_gui_X11KeyConfig_SetDetectableAutoRepeat
   (JNIEnv * a, jclass b)
 {
-    int xkb_major = XkbMajorVersion;
+    /*int xkb_major = XkbMajorVersion;
     int xkb_minor = XkbMinorVersion;
     if (XkbLibraryVersion (&xkb_major, &xkb_minor))
     {
@@ -32,8 +32,10 @@ JNIEXPORT jboolean JNICALL Java_games_stendhal_client_gui_X11KeyConfig_SetDetect
 
             return detectable_autorepeat_supported ? JNI_TRUE : JNI_FALSE;
         }
-    }
+    }*/
+	printf("In native code");
 	return JNI_FALSE;
 }
 
-// gcc -I/usr/lib/j2sdk1.5-sun/include -I/usr/lib/j2sdk1.5-sun/include/linux games_stendhal_client_gui_X11KeyConfig.c
+// gcc --shared -I/usr/lib/j2sdk1.5-sun/include -I/usr/lib/j2sdk1.5-sun/include/linux games_stendhal_client_gui_X11KeyConfig.c -o libX11KeyConfig.so
+
