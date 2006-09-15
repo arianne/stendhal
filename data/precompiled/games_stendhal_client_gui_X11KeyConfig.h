@@ -7,6 +7,26 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#undef games_stendhal_client_gui_X11KeyConfig_FOCUS_TRAVERSABLE_UNKNOWN
+#define games_stendhal_client_gui_X11KeyConfig_FOCUS_TRAVERSABLE_UNKNOWN 0L
+#undef games_stendhal_client_gui_X11KeyConfig_FOCUS_TRAVERSABLE_DEFAULT
+#define games_stendhal_client_gui_X11KeyConfig_FOCUS_TRAVERSABLE_DEFAULT 1L
+#undef games_stendhal_client_gui_X11KeyConfig_FOCUS_TRAVERSABLE_SET
+#define games_stendhal_client_gui_X11KeyConfig_FOCUS_TRAVERSABLE_SET 2L
+#undef games_stendhal_client_gui_X11KeyConfig_TOP_ALIGNMENT
+#define games_stendhal_client_gui_X11KeyConfig_TOP_ALIGNMENT 0.0f
+#undef games_stendhal_client_gui_X11KeyConfig_CENTER_ALIGNMENT
+#define games_stendhal_client_gui_X11KeyConfig_CENTER_ALIGNMENT 0.5f
+#undef games_stendhal_client_gui_X11KeyConfig_BOTTOM_ALIGNMENT
+#define games_stendhal_client_gui_X11KeyConfig_BOTTOM_ALIGNMENT 1.0f
+#undef games_stendhal_client_gui_X11KeyConfig_LEFT_ALIGNMENT
+#define games_stendhal_client_gui_X11KeyConfig_LEFT_ALIGNMENT 0.0f
+#undef games_stendhal_client_gui_X11KeyConfig_RIGHT_ALIGNMENT
+#define games_stendhal_client_gui_X11KeyConfig_RIGHT_ALIGNMENT 1.0f
+#undef games_stendhal_client_gui_X11KeyConfig_serialVersionUID
+#define games_stendhal_client_gui_X11KeyConfig_serialVersionUID -7644114512714619750LL
+#undef games_stendhal_client_gui_X11KeyConfig_serialVersionUID
+#define games_stendhal_client_gui_X11KeyConfig_serialVersionUID -2284879212465893870LL
 /*
  * Class:     games_stendhal_client_gui_X11KeyConfig
  * Method:    SetDetectableAutoRepeat
@@ -14,6 +34,14 @@ extern "C" {
  */
 JNIEXPORT jboolean JNICALL Java_games_stendhal_client_gui_X11KeyConfig_SetDetectableAutoRepeat
   (JNIEnv *, jclass);
+
+/*
+ * Class:     games_stendhal_client_gui_X11KeyConfig
+ * Method:    paint
+ * Signature: (Ljava/awt/Graphics;)V
+ */
+JNIEXPORT void JNICALL Java_games_stendhal_client_gui_X11KeyConfig_paint
+  (JNIEnv *, jobject, jobject);
 
 #ifdef __cplusplus
 }
