@@ -25,68 +25,46 @@ public class SemosCityInsideTavern {
 	private ShopList shops = ShopList.get();
 
 	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		buildSemosTavernArea();
+		buildSemosTavernPortals();
+		buildSemosTavernLevel0Margaret();
+		buildSemosTavernLevel0XinBlanca();
+		buildSemosTavernLevel0Ricardo();
+		buildSemosTavernLevel1Ouchit();
 	}
 
-	private void buildSemosTavernArea() {
+	private void buildSemosTavernPortals() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_semos_tavern_1"));
-		
+		"int_semos_tavern_0"));
+
 		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.set(4, 4);
-		portal.setNumber(0);
-		portal.setDestination("int_semos_tavern_0", 1);
-		zone.addPortal(portal);
-		
-		SpeakerNPC ouchit = new SpeakerNPC("Ouchit") {
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(21, 2));
-				nodes.add(new Path.Node(25, 2));
-				nodes.add(new Path.Node(25, 4));
-				nodes.add(new Path.Node(29, 4));
-				nodes.add(new Path.Node(25, 4));
-				nodes.add(new Path.Node(25, 2));
-				setPath(nodes, true);
-			}
-
-			@Override
-			protected void createDialog() {
-				addGreeting();
-				addJob("I sell bows and arrows.");
-				addHelp("I sell several items, ask me for my #offer.");
-				addSeller(new SellerBehaviour(shops.get("sellrangedstuff")));
-				addGoodbye();
-			}
-		};
-		npcs.add(ouchit);
-		zone.assignRPObjectID(ouchit);
-		ouchit.put("class", "weaponsellernpc");
-		ouchit.set(21, 2);
-		ouchit.initHP(100);
-		zone.addNPC(ouchit);
-
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_semos_tavern_0"));
-		
-		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(22);
 		portal.setY(17);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_city", 0);
 		zone.addPortal(portal);
-		
+
 		portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.set(4, 4);
 		portal.setNumber(1);
 		portal.setDestination("int_semos_tavern_1", 0);
 		zone.addPortal(portal);
+				
+		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
+				"int_semos_tavern_1"));
+
+		portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.set(4, 4);
+		portal.setNumber(0);
+		portal.setDestination("int_semos_tavern_0", 1);
+		zone.addPortal(portal);
+	}
+
+	private void buildSemosTavernLevel0Margaret() {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
+				"int_semos_tavern_0"));
 		
 		SpeakerNPC margaret = new SpeakerNPC("Margaret") {
 			@Override
@@ -121,7 +99,11 @@ public class SemosCityInsideTavern {
 		margaret.set(17, 12);
 		margaret.initHP(100);
 		zone.addNPC(margaret);
-		
+	}		
+
+	private void buildSemosTavernLevel0XinBlanca() {
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
+					"int_semos_tavern_0"));
 		SpeakerNPC xinBlanca = new SpeakerNPC("Xin Blanca") {
 			@Override
 			protected void createPath() {
@@ -170,7 +152,12 @@ public class SemosCityInsideTavern {
 		xinBlanca.setBaseHP(100);
 		xinBlanca.setHP(xinBlanca.getBaseHP());
 		zone.addNPC(xinBlanca);
-		
+	}
+
+	private void buildSemosTavernLevel0Ricardo() {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
+				"int_semos_tavern_0"));
+
 		Rectangle tableArea = new Rectangle(25, 4, 2, 3);
 		SpeakerNPC ricardo = new CroupierNPC("Ricardo", tableArea) {
 			@Override
@@ -203,4 +190,37 @@ public class SemosCityInsideTavern {
 		zone.addNPC(ricardo);		
 	}
 
+	private void buildSemosTavernLevel1Ouchit() {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
+				"int_semos_tavern_1"));
+		
+		SpeakerNPC ouchit = new SpeakerNPC("Ouchit") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(21, 2));
+				nodes.add(new Path.Node(25, 2));
+				nodes.add(new Path.Node(25, 4));
+				nodes.add(new Path.Node(29, 4));
+				nodes.add(new Path.Node(25, 4));
+				nodes.add(new Path.Node(25, 2));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting();
+				addJob("I sell bows and arrows.");
+				addHelp("I sell several items, ask me for my #offer.");
+				addSeller(new SellerBehaviour(shops.get("sellrangedstuff")));
+				addGoodbye();
+			}
+		};
+		npcs.add(ouchit);
+		zone.assignRPObjectID(ouchit);
+		ouchit.put("class", "weaponsellernpc");
+		ouchit.set(21, 2);
+		ouchit.initHP(100);
+		zone.addNPC(ouchit);
+	}
 }
