@@ -1,19 +1,20 @@
 package games.stendhal.server;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.Arrays;
+import java.util.List;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 
-import java.awt.Point;
-import java.util.Arrays;
-import java.util.List;
+import org.apache.log4j.Logger;
 
 /**
  * This class is responsible of keeping players who have misbehaved
@@ -30,7 +31,7 @@ public class Jail implements TurnListener {
 	/** The Singleton instance */
 	private static Jail instance = null;
 	
-	private static List<Point> cells = Arrays.asList(
+	private static List<Point> cellEntryPoints = Arrays.asList(
 			new Point(3, 2),
 			new Point(8, 2),
 			new Point(13, 2),
@@ -42,15 +43,21 @@ public class Jail implements TurnListener {
 			new Point(18, 11),
 			new Point(23, 11),
 			new Point(28, 11));
-	
+
+	private static Rectangle[] cellBlocks = {
+		new Rectangle(1,  1, 30,  3),
+		new Rectangle(7, 10, 30, 12)};
+
+	/**
+	 * returns the Jail object (Singleton Pattern)
+	 *
+	 * @return Jail
+	 */
 	public static Jail get() {
 		if (instance == null) {
 			instance = new Jail();
 		}
 		return instance;
-	}
-	
-	public Jail() {
 	}
 	
 	/**
@@ -77,12 +84,13 @@ public class Jail implements TurnListener {
 			return;
 		}
 		StendhalRPZone jail = (StendhalRPZone) world.getRPZone(zoneid);
-		
+
+		// TODO: fix endless loop if all cells are used
 		boolean successful = false;
 		while (!successful) {
 			// repeat until we find a free cell
-			int cellNumber = Rand.rand(cells.size());
-			Point cell = cells.get(cellNumber);
+			int cellNumber = Rand.rand(cellEntryPoints.size());
+			Point cell = cellEntryPoints.get(cellNumber);
 			successful = criminal.teleport(jail, cell.x, cell.y, Direction.DOWN, policeman);
 		}
 
@@ -102,6 +110,7 @@ public class Jail implements TurnListener {
 	/**
 	 * Releases an inmate and teleports him to Semos city, but only if
 	 * he is still in jail.
+	 *
 	 * @param inmateName the name of the inmate who should be released
 	 */
 	public void release(String inmateName) {
@@ -109,11 +118,12 @@ public class Jail implements TurnListener {
 		Player inmate = StendhalRPRuleProcessor.get().getPlayer(inmateName);
 		if (inmate == null) {
 			logger.debug("Player " + inmate + " not found");
+			return;
 		}
 
 		// Only teleport the player to Semos if he is still in jail.
 		// It could be that an admin has teleported him out earlier.
-		if (world.getRPZone(inmate.getID()).getID().getID().endsWith("_jail")) {
+		if (isInJail(inmate)) {
 			IRPZone.ID zoneid = new IRPZone.ID("0_semos_city");
 			if (!world.hasRPZone(zoneid)) {
 				String text = "Zone " + zoneid + " not found";
@@ -123,6 +133,25 @@ public class Jail implements TurnListener {
 			
 			inmate.teleport(semosCity, 30, 40, Direction.UP, null);
 		}
+	}
+
+	/**
+	 * Is player in a jail cell? Ignores visitors outside of cells.
+	 *
+	 * @param inmate player to check
+	 * @return true, if it is in jail, false otherwise.
+	 */
+	private boolean isInJail(Player inmate) {
+		StendhalRPWorld world = StendhalRPWorld.get();
+		String zoneName = world.getRPZone(inmate.getID()).getID().getID();
+		if ((zoneName != null) && zoneName.equals("-1_semos_jail")) {
+			for (Rectangle cellBlock : cellBlocks) {
+				if (cellBlock.contains(inmate.getX(), inmate.getY())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	/**
