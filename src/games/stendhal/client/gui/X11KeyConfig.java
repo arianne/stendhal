@@ -2,12 +2,7 @@
 package games.stendhal.client.gui;
 
 import java.awt.Canvas;
-import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import org.apache.log4j.Logger;
 
@@ -25,7 +20,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class X11KeyConfig extends Canvas implements KeyListener {
+public class X11KeyConfig extends Canvas {
 	private static X11KeyConfig instance = null;
 	private static Logger logger = Logger.getLogger(X11KeyConfig.class);
 
@@ -62,7 +57,12 @@ public class X11KeyConfig extends Canvas implements KeyListener {
 	private X11KeyConfig() {
 		// hide constructor, this is a static class
 	}
-	
+
+	/**
+	 * Gets X11KeyConfig (singleton pattern)
+	 *
+	 * @return X11KeyConfig
+	 */
 	public static synchronized X11KeyConfig get() {
 		if (instance == null) {
 			load();
@@ -96,40 +96,4 @@ public class X11KeyConfig extends Canvas implements KeyListener {
 	 * to the x11display (connect to x11 server).
 	 */
 	public native void paint(Graphics g);
-
-	// ------------------------------------------------------------------------
-	//                             Test code below
-	// ------------------------------------------------------------------------
-	public static void main(String[] args) throws InterruptedException {
-        Frame f = new Frame();
-        f.setBounds(0, 0, 500, 110);
-        X11KeyConfig x = X11KeyConfig.get();
-        f.add( x );
-        f.addWindowListener( new WindowAdapter() {
-            public void windowClosing(WindowEvent ev) {
-                System.exit(0);
-            }
-        } );
-
-        f.addKeyListener(x);
-        f.show();
-        Thread.sleep(2000);
-        System.out.println("Success: " + getSetDetectableAutoRepeat());
-    }
-
-	public void keyPressed(KeyEvent e) {
-		System.out.println(".");
-	}
-
-	public void keyReleased(KeyEvent e) {
-		System.out.println("O");
-	}
-
-	public void keyTyped(KeyEvent e) {
-		System.out.println("_");
-		
-	}
 }
-
-// java -Djava.library.path=data/precompiled -cp classes games.stendhal.client.gui.X11KeyConfig
-
