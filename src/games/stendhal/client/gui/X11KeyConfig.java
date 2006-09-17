@@ -62,7 +62,23 @@ public class X11KeyConfig extends Canvas implements KeyListener {
 		return instance;
 	}
 
-	public static native boolean getSetDetectableAutoRepeat();
+	private static native boolean getSetDetectableAutoRepeat();
+
+	/**
+	 * Did the setting of DetectableAutoRepeat work?
+	 *
+	 * @return true on success; false otherwise
+	 */
+	public static boolean getResult() {
+		try {
+			return getSetDetectableAutoRepeat();
+		} catch (Exception e) {
+			logger.error(e, e);
+		} catch (Error e) {
+			logger.error(e, e);
+		}
+		return false;
+	}
 
 	public native void paint(Graphics g);
 
