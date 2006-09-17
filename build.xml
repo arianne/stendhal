@@ -152,6 +152,7 @@
     <property name="client_data" value="stendhal-data-${version}.jar"/>
     <property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
     <property name="client_prefilled_cache" value="stendhal-prefilled-cache-${version}.jar"/>
+    <property name="client_webstart_jni" value="stendhal-webstart-jni-${version}.jar"/>
 
     <property name="build_client" value="${buildroot}/build_client/"/>
   	<mkdir dir="${build_client}/"/>
@@ -201,6 +202,12 @@
       </fileset>
     </copy>
 
+  	<copy todir="${build_client_data}">
+      <fileset dir="data/precompiled">
+        <include name="*.so"/>
+      </fileset>
+    </copy>
+
     <copy todir="${build_client_data}/data/conf/" file="data/conf/log4j.properties"/>
     <jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>    
 
@@ -218,7 +225,10 @@
   	<jar jarfile="${lib}/${client_prefilled_cache}" basedir="${user.home}/stendhal">
   		<include name="cache/**" />
 	</jar>
- 
+  
+  	<jar jarfile="${lib}/${client_webstart_jni}" basedir="data/precompiled">
+  		<include name="*.so" />
+	</jar> 
   </target>
   
   <target name="client_data_build" depends="init" description="Build data JAR files for Stendhal client">
