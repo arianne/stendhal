@@ -19,6 +19,7 @@ import games.stendhal.client.gui.wt.core.*;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.*;
 
@@ -114,6 +115,8 @@ public class InGameGUI implements KeyListener {
 
 	private boolean altDown;
 
+	private long lastKeyRelease;
+
 	public void onKeyPressed(KeyEvent e) {
 		RPAction action;
 
@@ -182,6 +185,10 @@ public class InGameGUI implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
+		if ((lastKeyRelease > 0) && (lastKeyRelease + 1 >= e.getWhen())) {
+			StendhalClient.get().addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
+			StendhalClient.get().addEventLine("Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution", Color.BLACK);
+		}
 		altDown = e.isAltDown();
 		ctrlDown = e.isControlDown();
 		shiftDown = e.isShiftDown();
@@ -193,6 +200,7 @@ public class InGameGUI implements KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
+		lastKeyRelease = e.getWhen();
 		altDown = e.isAltDown();
 		ctrlDown = e.isControlDown();
 		shiftDown = e.isShiftDown();
