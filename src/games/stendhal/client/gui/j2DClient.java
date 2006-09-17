@@ -84,7 +84,7 @@ public class j2DClient extends JFrame {
 	private JTextField playerChatText;
 
 	
-	private void fixkeyboardHandlinginX() {
+	private boolean fixkeyboardHandlinginX() {
 		logger.debug("OS: " + System.getProperty("os.name"));
 		try {
 			// NOTE: X does handle input in a different way of the rest of the world.
@@ -99,9 +99,12 @@ public class j2DClient extends JFrame {
 					}
 				}
 			});
+			return true;
 		} catch (Exception e) {
 			logger.error("Error setting keyboard handling", e);
 		}
+		
+		return false;
 	}
 
 	
@@ -198,16 +201,22 @@ public class j2DClient extends JFrame {
 
 		
 		// workaround for key auto repeat on X11 (linux)
+		// First we try the JNI solution. In case this fails, we do this:
 		// In the default case xset -r is execute on program start and xset r on exit
 		// As this will affect all applications you can write keys.x=magic to use
-		// a method called MagicKeyListener. Cauntion: This does not work on all pcs
+		// a method called MagicKeyListener. Caution: This does not work on all pcs
 		// and creates create stress on the network and server in case it does not work.
 		KeyListener keyListener = inGameGUI;
 		if (System.getProperty("os.name", "").toLowerCase().contains("linux")) {
-			if (WtWindowManager.getInstance().getProperty("keys.x", "xset").equals("xset")) {
-				fixkeyboardHandlinginX();
-			} else {
-				keyListener = new MagicKeyListener(inGameGUI);
+			if (!X11KeyConfig.getResult()) {
+				boolean useXSet = WtWindowManager.getInstance().getProperty("keys.x", "xset").equals("xset");
+				if (useXSet) {
+					if (!fixkeyboardHandlinginX()) {
+						keyListener = new MagicKeyListener(inGameGUI);
+					}
+				} else {
+					keyListener = new MagicKeyListener(inGameGUI);
+				}
 			}
 		}
 
