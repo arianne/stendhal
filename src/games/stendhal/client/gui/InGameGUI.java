@@ -64,6 +64,18 @@ public class InGameGUI implements KeyListener {
 
 	private int blinkOffline;
 
+	private boolean ctrlDown;
+
+	private boolean shiftDown;
+
+	private boolean altDown;
+
+	private long lastKeyRelease;
+
+	private int[] veryFastKeyEvents = new int[4]; // at leat one more than checked
+
+	private long lastKeyEventsCleanUpStart;
+	
 	public InGameGUI(StendhalClient client) {
 
 		client.setGameGUI(this);
@@ -105,17 +117,6 @@ public class InGameGUI implements KeyListener {
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
 	}
-
-	// MouseListener event functions where unused and therefore have been
-	// removed intensifly@gmx.com
-
-	private boolean ctrlDown;
-
-	private boolean shiftDown;
-
-	private boolean altDown;
-
-	private long lastKeyRelease;
 
 	public void onKeyPressed(KeyEvent e) {
 		RPAction action;
@@ -185,9 +186,13 @@ public class InGameGUI implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
+		// detect X11 auto repeat still beeing active
 		if ((lastKeyRelease > 0) && (lastKeyRelease + 1 >= e.getWhen())) {
-			StendhalClient.get().addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
-			StendhalClient.get().addEventLine("Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution", Color.BLACK);
+			veryFastKeyEvents[veryFastKeyEvents.length-1]++;
+			if (veryFastKeyEvents[0] > 2 && veryFastKeyEvents[1] > 2 && veryFastKeyEvents[2] > 2) {
+				StendhalClient.get().addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
+				StendhalClient.get().addEventLine("Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution", Color.BLACK);
+			}
 		}
 		altDown = e.isAltDown();
 		ctrlDown = e.isControlDown();
@@ -208,6 +213,21 @@ public class InGameGUI implements KeyListener {
 		onKeyReleased(e);
 		pressed.remove(Integer.valueOf(e.getKeyCode()));
 	}
+
+	/**
+	 * Rotates the veryFastKeyEvents array
+	 */
+	private void rotateKeyEventCounters() {
+		if (lastKeyEventsCleanUpStart + 300 < System.currentTimeMillis()) {
+			lastKeyEventsCleanUpStart = System.currentTimeMillis();
+
+			for (int i = veryFastKeyEvents.length - 1; i > 0; i--) {
+				veryFastKeyEvents[i-1] = veryFastKeyEvents[i];
+			}
+			veryFastKeyEvents[veryFastKeyEvents.length - 1] = 0;
+		}
+	}
+
 
 	/**
 	 * Stops all player actions and shows a dialog in which the player can
@@ -296,6 +316,7 @@ public class InGameGUI implements KeyListener {
 			blinkOffline--;
 		}
 
+		rotateKeyEventCounters();
 	}
 
 	/**
