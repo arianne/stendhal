@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
@@ -20,18 +19,34 @@ import org.apache.log4j.Logger;
 public class X11KeyConfig extends Canvas implements KeyListener {
 	private static X11KeyConfig instance = null;
 	private static Logger logger = Logger.getLogger(X11KeyConfig.class);
-	
+
+	// don't put this in a static init because it should only be invoked on linux
 	private static void load() {
+		// first try webstart
+		Throwable error = null;
 		try {
-			if (false) { // webstart
-				System.loadLibrary("X11KeyConfig");
-			} else {
-				System.load(System.getProperty("user.home") + "/stendhal/libX11KeyConfig.so");
-			}
+			System.loadLibrary("X11KeyConfig");
 		} catch (Exception e) {
-			logger.error(e, e);
+			error = e;
 		} catch (Error e) {
-			logger.error(e, e);
+			error = e;
+		}
+		
+		if (error != null) {
+
+			// TODO: write file to home directory
+		
+			// then try home directory
+			try {
+				System.load(System.getProperty("user.home") + "/stendhal/libX11KeyConfig.so");
+			} catch (Exception e) {
+				error = e;
+			} catch (Error e) {
+				error = e;
+			}
+		}
+		if (error != null) {
+			logger.error(error, error);
 		}
 	}
 
@@ -41,23 +56,8 @@ public class X11KeyConfig extends Canvas implements KeyListener {
 	
 	public static synchronized X11KeyConfig get() {
 		if (instance == null) {
-			instance = new X11KeyConfig();
-			/*String temp = System.getProperty("java.library.path", "");
-			if (!temp.equals("")) {
-				temp =  ":" + temp;
-			}
-			System.getProperties().list(System.out);
-			temp = System.getProperty("java.class.path") + temp;
-			System.setProperty("java.library.path", temp);
-			System.out.println(System.getProperty("java.library.path", ""));
-			try {
-				Runtime.getRuntime().exec("export LD_LIBRARY_PATH=.");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
-			
 			load();
+			instance = new X11KeyConfig();
 		}
 		return instance;
 	}
