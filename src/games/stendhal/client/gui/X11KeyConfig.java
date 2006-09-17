@@ -67,11 +67,9 @@ public class X11KeyConfig extends Canvas implements KeyListener {
 	public native void paint(Graphics g);
 
 	public static void main(String[] args) throws InterruptedException {
-		load();
-		
         Frame f = new Frame();
         f.setBounds(0, 0, 500, 110);
-        X11KeyConfig x = new X11KeyConfig();
+        X11KeyConfig x = X11KeyConfig.get();
         f.add( x );
         f.addWindowListener( new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
