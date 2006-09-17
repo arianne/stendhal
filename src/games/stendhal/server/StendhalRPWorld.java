@@ -187,7 +187,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_ados_rock");
 		addArea("0_ados_outside_w");
 		// addArea("0_ados_city_w");
-		addArea("0_ados_city");
+		// addArea("0_ados_city");
 
 		addArea("0_orril_mountain_nw");
 		addArea("0_orril_forest_n");
