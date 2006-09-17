@@ -3,6 +3,11 @@ package games.stendhal.client.gui;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 
 import org.apache.log4j.Logger;
 
@@ -37,12 +42,11 @@ public class X11KeyConfig extends Canvas {
 		}
 		
 		if (error != null) {
-
-			// TODO: write file to home directory
-		
-			// then try home directory
+			error = null;
 			try {
-				System.load(System.getProperty("user.home") + "/stendhal/libX11KeyConfig.so");
+				String filename = System.getProperty("user.home") + "/stendhal/libX11KeyConfig.so";
+				copyLibraryToHomeFolder(filename);
+				System.load(filename);
 			} catch (Exception e) {
 				error = e;
 			} catch (Error e) {
@@ -51,6 +55,25 @@ public class X11KeyConfig extends Canvas {
 		}
 		if (error != null) {
 			logger.error(error, error);
+		}
+	}
+
+	/**
+	 * write library to home as there seems to be no way to load a
+	 * native library from inside a jar (unless you are on webstart).
+	 * @throws IOException on an input/output error
+	 */
+	private static void copyLibraryToHomeFolder(String filename) throws IOException {
+		URL url = X11KeyConfig.class.getClassLoader().getResource("libX11KeyConfig.so");
+		InputStream is = url.openConnection().getInputStream();
+		OutputStream os = new FileOutputStream(filename);
+		byte[] buffer = new byte[1024];
+		while (true) {
+			int counter = is.read(buffer);
+			if (counter < 0) {
+				break;
+			}
+			os.write(buffer, 0, counter);
 		}
 	}
 
