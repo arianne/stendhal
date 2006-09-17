@@ -35,6 +35,8 @@ public class SemosCityInside {
 		buildSemosLibraryArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_library")));
 		buildSemosStorageArea();
+		buildSemosBlacksmithArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+			"int_semos_blacksmith")));
 		buildSemosBankArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_bank")));
 		buildSemosTownhallArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
