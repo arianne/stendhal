@@ -12,7 +12,16 @@ import java.awt.event.WindowEvent;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * trys to enable DetectableKeyRepeat on X11 using a native library
+ * called libX11KeyConfig.so. On webstart it is stored in a native jar
+ * called stendhal-webstart-jni-X.xx.jar. In the normal client it is
+ * stored in stendhal-data-X.xx.jar and written to $HOME/stendhal.
+ *
+ * <p>To use it, put it as 1*1 pixel canvas somewhere it has to be drawn
+ * (like StendhalFirstScreen). The drawing routine is somehow special as
+ * it invokes the native magic. This class tries very hard not to
+ * propagate any errors outside. Use getResult() to detect whether it
+ * worked. But do not invoke it on non Linux systems.</p>
  *
  * @author hendrik
  */
@@ -80,8 +89,17 @@ public class X11KeyConfig extends Canvas implements KeyListener {
 		return false;
 	}
 
+	/**
+	 * draws some stuff as prove of concept but realy invokes
+	 * XkbSetDetectableAutoRepeat. We need to do this stupid
+	 * drawing thingy in order for the native code to get access
+	 * to the x11display (connect to x11 server).
+	 */
 	public native void paint(Graphics g);
 
+	// ------------------------------------------------------------------------
+	//                             Test code below
+	// ------------------------------------------------------------------------
 	public static void main(String[] args) throws InterruptedException {
         Frame f = new Frame();
         f.setBounds(0, 0, 500, 110);
@@ -111,8 +129,6 @@ public class X11KeyConfig extends Canvas implements KeyListener {
 		System.out.println("_");
 		
 	}
-	
-	
 }
 
 // java -Djava.library.path=data/precompiled -cp classes games.stendhal.client.gui.X11KeyConfig
