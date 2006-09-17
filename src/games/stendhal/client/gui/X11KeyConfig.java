@@ -8,6 +8,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+
+import org.apache.log4j.Logger;
 
 /**
  * 
@@ -15,39 +18,71 @@ import java.awt.event.WindowEvent;
  * @author hendrik
  */
 public class X11KeyConfig extends Canvas implements KeyListener {
+	private static X11KeyConfig instance = null;
+	private static Logger logger = Logger.getLogger(X11KeyConfig.class);
 	
 	private static void load() {
 		try {
-			System.loadLibrary("X11KeyConfig");
-			System.out.println(SetDetectableAutoRepeat());
+			if (false) { // webstart
+				System.loadLibrary("X11KeyConfig");
+			} else {
+				System.load(System.getProperty("user.home") + "/stendhal/libX11KeyConfig.so");
+			}
 		} catch (Exception e) {
-			e.printStackTrace(System.err);
+			logger.error(e, e);
 		} catch (Error e) {
-			e.printStackTrace(System.err);
+			logger.error(e, e);
 		}
 	}
 
 	private X11KeyConfig() {
 		// hide constructor, this is a static class
 	}
+	
+	public static synchronized X11KeyConfig get() {
+		if (instance == null) {
+			instance = new X11KeyConfig();
+			/*String temp = System.getProperty("java.library.path", "");
+			if (!temp.equals("")) {
+				temp =  ":" + temp;
+			}
+			System.getProperties().list(System.out);
+			temp = System.getProperty("java.class.path") + temp;
+			System.setProperty("java.library.path", temp);
+			System.out.println(System.getProperty("java.library.path", ""));
+			try {
+				Runtime.getRuntime().exec("export LD_LIBRARY_PATH=.");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+			
+			load();
+		}
+		return instance;
+	}
 
-	public static native boolean SetDetectableAutoRepeat();
+	public static native boolean getSetDetectableAutoRepeat();
 
 	public native void paint(Graphics g);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		load();
 		
         Frame f = new Frame();
         f.setBounds(0, 0, 500, 110);
-        f.add( new X11KeyConfig() );
+        X11KeyConfig x = new X11KeyConfig();
+        f.add( x );
         f.addWindowListener( new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
                 System.exit(0);
             }
         } );
-        f.addKeyListener(new X11KeyConfig());
+
+        f.addKeyListener(x);
         f.show();
+        Thread.sleep(2000);
+        System.out.println("Success: " + getSetDetectableAutoRepeat());
     }
 
 	public void keyPressed(KeyEvent e) {
