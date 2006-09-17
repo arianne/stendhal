@@ -32,7 +32,7 @@ extern "C" {
  * Method:    SetDetectableAutoRepeat
  * Signature: ()Z
  */
-JNIEXPORT jboolean JNICALL Java_games_stendhal_client_gui_X11KeyConfig_SetDetectableAutoRepeat
+JNIEXPORT jboolean JNICALL Java_games_stendhal_client_gui_X11KeyConfig_getSetDetectableAutoRepeat
   (JNIEnv *, jclass);
 
 /*

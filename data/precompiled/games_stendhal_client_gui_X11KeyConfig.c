@@ -7,43 +7,34 @@
 extern "C" {
 #endif
 
+jboolean successful = JNI_FALSE;
+jboolean inited = JNI_FALSE;
 
-/*
- * Class:     games_stendhal_client_gui_X11KeyConfig
- * Method:    SetDetectableAutoRepeat
- * Signature: ()Z
- */
-JNIEXPORT jboolean JNICALL Java_games_stendhal_client_gui_X11KeyConfig_SetDetectableAutoRepeat
-  (JNIEnv * a, jclass b)
+JNIEXPORT jboolean JNICALL Java_games_stendhal_client_gui_X11KeyConfig_getSetDetectableAutoRepeat
+  (JNIEnv * env, jclass cl)
 {
-	printf("Hallo");
+	return successful;
 }
 
 void keyX(Display* xdisplay)
 {
-    int xkb_major = XkbMajorVersion;
-    int xkb_minor = XkbMinorVersion;
-    if (XkbLibraryVersion (&xkb_major, &xkb_minor))
-    {
-        xkb_major = XkbMajorVersion;
-        xkb_minor = XkbMinorVersion;
+	if (!inited)
+	{
+		inited = JNI_TRUE;
+		int xkb_major = XkbMajorVersion;
+		int xkb_minor = XkbMinorVersion;
+		if (XkbLibraryVersion (&xkb_major, &xkb_minor))
+		{
+			xkb_major = XkbMajorVersion;
+			xkb_minor = XkbMinorVersion;
 
-        if (1)
-        {
-            Bool detectable_autorepeat_supported;
-            /*XkbSelectEvents (display_x11->xdisplay,
-                             XkbUseCoreKbd,
-                             XkbNewKeyboardNotifyMask | XkbMapNotifyMask | XkbStateNotifyMask,
-                             XkbNewKeyboardNotifyMask | XkbMapNotifyMask | XkbStateNotifyMask);*/
-            XkbSetDetectableAutoRepeat (xdisplay,
-					1,
-					&detectable_autorepeat_supported);
-
-            return detectable_autorepeat_supported ? JNI_TRUE : JNI_FALSE;
-        }
-    }
-	printf("In native code");
-	return JNI_FALSE;
+			Bool detectable_autorepeat_supported;
+			XkbSetDetectableAutoRepeat (xdisplay,
+				1,
+				&detectable_autorepeat_supported);
+			successful = detectable_autorepeat_supported ? JNI_TRUE : JNI_FALSE;
+		}
+	}
 }
 
 /*
@@ -103,7 +94,9 @@ JNIEXPORT void JNICALL Java_games_stendhal_client_gui_X11KeyConfig_paint
     /* Now paint */
 	
 	keyX(dsi_x11->display);
-	
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
     gc = XCreateGC(dsi_x11->display, dsi_x11->drawable, 0, 0);
     XSetBackground(dsi_x11->display, gc, 0);
     for (i=0; i<36;i++)
@@ -116,6 +109,11 @@ JNIEXPORT void JNICALL Java_games_stendhal_client_gui_X11KeyConfig_paint
     XDrawImageString(dsi_x11->display, dsi_x11->drawable, gc,
     			100, 110, testString, strlen(testString));
     XFreeGC(dsi_x11->display, gc);
+
+
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 
 
     /* Free the drawing surface info */
