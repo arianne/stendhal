@@ -31,6 +31,47 @@ public class X11KeyConfig extends Canvas {
 	private static X11KeyConfig instance = null;
 	private static Logger logger = Logger.getLogger(X11KeyConfig.class);
 
+	// ------------------------------------------------------------------------
+	//                     public api (singleton and result)
+	// ------------------------------------------------------------------------
+
+	private X11KeyConfig() {
+		// hide constructor, this is a static class
+	}
+
+	/**
+	 * Gets X11KeyConfig (singleton pattern)
+	 *
+	 * @return X11KeyConfig
+	 */
+	public static synchronized X11KeyConfig get() {
+		if (instance == null) {
+			load();
+			instance = new X11KeyConfig();
+		}
+		return instance;
+	}
+
+	/**
+	 * Did the setting of DetectableAutoRepeat work?
+	 *
+	 * @return true on success; false otherwise
+	 */
+	public static boolean getResult() {
+		try {
+			return getSetDetectableAutoRepeat();
+		} catch (Exception e) {
+			logger.error(e, e);
+		} catch (Error e) {
+			logger.error(e, e);
+		}
+		return false;
+	}
+
+	// ------------------------------------------------------------------------
+	//                        loading of native library
+	// ------------------------------------------------------------------------
+	
 	// don't put this in a static init because it should only be invoked on linux
 	private static void load() {
 
@@ -66,6 +107,10 @@ public class X11KeyConfig extends Canvas {
 			logger.error(error, error);
 		}
 	}
+
+	// ------------------------------------------------------------------------
+	//                      copying of a resouce from .jar
+	// ------------------------------------------------------------------------
 
 	/**
 	 * write library to home as there seems to be no way to load a
@@ -125,40 +170,12 @@ public class X11KeyConfig extends Canvas {
 		}
 	}
 
-	private X11KeyConfig() {
-		// hide constructor, this is a static class
-	}
 
-	/**
-	 * Gets X11KeyConfig (singleton pattern)
-	 *
-	 * @return X11KeyConfig
-	 */
-	public static synchronized X11KeyConfig get() {
-		if (instance == null) {
-			load();
-			instance = new X11KeyConfig();
-		}
-		return instance;
-	}
+	// ------------------------------------------------------------------------
+	//                             native interface
+	// ------------------------------------------------------------------------
 
 	private static native boolean getSetDetectableAutoRepeat();
-
-	/**
-	 * Did the setting of DetectableAutoRepeat work?
-	 *
-	 * @return true on success; false otherwise
-	 */
-	public static boolean getResult() {
-		try {
-			return getSetDetectableAutoRepeat();
-		} catch (Exception e) {
-			logger.error(e, e);
-		} catch (Error e) {
-			logger.error(e, e);
-		}
-		return false;
-	}
 
 	/**
 	 * draws some stuff as prove of concept but realy invokes
