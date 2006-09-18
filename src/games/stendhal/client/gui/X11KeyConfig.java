@@ -3,6 +3,7 @@ package games.stendhal.client.gui;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
+import java.io.Closeable;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -78,6 +79,17 @@ public class X11KeyConfig extends Canvas {
 		URL url = X11KeyConfig.class.getClassLoader().getResource("lib" + libraryName + ".so");
 		InputStream is = url.openConnection().getInputStream();
 		OutputStream os = new FileOutputStream(filename);
+		copyStream(is, os);
+	}
+
+	/**
+	 * Copy from an InputStream to an OutputStream and closing them.
+	 *
+	 * @param is InputStream
+	 * @param os OutputStream
+	 * @throws IOException on an input/output error
+	 */
+	private static void copyStream(InputStream is, OutputStream os) throws IOException {
 		try {
 			byte[] buffer = new byte[1024];
 			while (true) {
@@ -87,13 +99,29 @@ public class X11KeyConfig extends Canvas {
 				}
 				os.write(buffer, 0, counter);
 			}
-			os.close();
+			closeStream(is);
+			closeStream(os);
 		} catch (RuntimeException e) {
-			os.close();
+			closeStream(is);
+			closeStream(os);
 			throw e;
 		} catch (IOException e) {
-			os.close();
+			closeStream(is);
+			closeStream(os);
 			throw e;
+		}
+	}
+
+	/**
+	 * closes a stream logging but not propagating exceptions
+	 *
+	 * @param c a stream
+	 */
+	private static void closeStream(Closeable c) {
+		try {
+			c.close();
+		} catch (IOException e) {
+			logger.error(e, e);
 		}
 	}
 
