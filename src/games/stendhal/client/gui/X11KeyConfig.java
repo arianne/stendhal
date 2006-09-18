@@ -20,8 +20,9 @@ import org.apache.log4j.Logger;
  * <p>To use it, put it as 1*1 pixel canvas somewhere it has to be drawn
  * (like StendhalFirstScreen). The drawing routine is somehow special as
  * it invokes the native magic. This class tries very hard not to
- * propagate any errors outside. Use getResult() to detect whether it
- * worked. But do not invoke it on non Linux systems.</p>
+ * propagate any errors outside. But do not invoke it on non Linux systems
+ * as it would log lots of exceptions. Use getResult() to detect whether it
+ * worked.</p>
  *
  * @author hendrik
  */
@@ -31,10 +32,17 @@ public class X11KeyConfig extends Canvas {
 
 	// don't put this in a static init because it should only be invoked on linux
 	private static void load() {
+
+		// use the right library for 32bit or 64bit systems
+		String libraryName = "X11KeyConfig";
+		if (System.getProperty("os.arch", "").endsWith("64")) {
+			libraryName = libraryName + "64";
+		}
+
 		// first try webstart
 		Throwable error = null;
 		try {
-			System.loadLibrary("X11KeyConfig");
+			System.loadLibrary(libraryName);
 		} catch (Exception e) {
 			error = e;
 		} catch (Error e) {
@@ -44,8 +52,8 @@ public class X11KeyConfig extends Canvas {
 		if (error != null) {
 			error = null;
 			try {
-				String filename = System.getProperty("user.home") + "/stendhal/libX11KeyConfig.so";
-				copyLibraryToHomeFolder(filename);
+				String filename = System.getProperty("user.home") + "/stendhal/" + libraryName + ".so";
+				copyLibraryToHomeFolder(libraryName, filename);
 				System.load(filename);
 			} catch (Exception e) {
 				error = e;
@@ -61,10 +69,13 @@ public class X11KeyConfig extends Canvas {
 	/**
 	 * write library to home as there seems to be no way to load a
 	 * native library from inside a jar (unless you are on webstart).
+	 *
+	 * @param libraryName name of library (in root directory of one of the jars)
+	 * @param filename where to store it
 	 * @throws IOException on an input/output error
 	 */
-	private static void copyLibraryToHomeFolder(String filename) throws IOException {
-		URL url = X11KeyConfig.class.getClassLoader().getResource("libX11KeyConfig.so");
+	private static void copyLibraryToHomeFolder(String libraryName, String filename) throws IOException {
+		URL url = X11KeyConfig.class.getClassLoader().getResource("lib" + libraryName + ".so");
 		InputStream is = url.openConnection().getInputStream();
 		OutputStream os = new FileOutputStream(filename);
 		try {
