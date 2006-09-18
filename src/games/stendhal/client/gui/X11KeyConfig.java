@@ -94,6 +94,7 @@ public class X11KeyConfig extends Canvas {
 		if (error != null) {
 			error = null;
 			try {
+				// TODO: handle non .jar environment (like starting stendhal from classes directory in an IDE) 
 				String filename = System.getProperty("user.home") + "/stendhal/" + libraryName + ".so";
 				copyLibraryToHomeFolder(libraryName, filename);
 				System.load(filename);
@@ -178,10 +179,12 @@ public class X11KeyConfig extends Canvas {
 	private static native boolean getSetDetectableAutoRepeat();
 
 	/**
-	 * draws some stuff as prove of concept but realy invokes
+	 * private. Draws some stuff as prove of concept but realy invokes
 	 * XkbSetDetectableAutoRepeat. We need to do this stupid
-	 * drawing thingy in order for the native code to get access
+	 * awt paitng thingy in order for the native code to get access
 	 * to the x11display (connect to x11 server).
+	 *
+	 * @param g Graphic where awt wants us to draw something
 	 */
 	@Override
 	public native void paint(Graphics g);
