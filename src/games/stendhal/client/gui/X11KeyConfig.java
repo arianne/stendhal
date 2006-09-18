@@ -67,13 +67,22 @@ public class X11KeyConfig extends Canvas {
 		URL url = X11KeyConfig.class.getClassLoader().getResource("libX11KeyConfig.so");
 		InputStream is = url.openConnection().getInputStream();
 		OutputStream os = new FileOutputStream(filename);
-		byte[] buffer = new byte[1024];
-		while (true) {
-			int counter = is.read(buffer);
-			if (counter < 0) {
-				break;
+		try {
+			byte[] buffer = new byte[1024];
+			while (true) {
+				int counter = is.read(buffer);
+				if (counter < 0) {
+					break;
+				}
+				os.write(buffer, 0, counter);
 			}
-			os.write(buffer, 0, counter);
+			os.close();
+		} catch (RuntimeException e) {
+			os.close();
+			throw e;
+		} catch (IOException e) {
+			os.close();
+			throw e;
 		}
 	}
 
@@ -118,5 +127,6 @@ public class X11KeyConfig extends Canvas {
 	 * drawing thingy in order for the native code to get access
 	 * to the x11display (connect to x11 server).
 	 */
+	@Override
 	public native void paint(Graphics g);
 }
