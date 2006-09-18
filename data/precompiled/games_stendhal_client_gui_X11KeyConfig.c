@@ -129,5 +129,8 @@ JNIEXPORT void JNICALL Java_games_stendhal_client_gui_X11KeyConfig_paint
 #ifdef __cplusplus
 }
 #endif
-//  gcc --shared -L/usr/lib/j2sdk1.5-sun/jre/lib/i386 -lawt -I/usr/lib/j2sdk1.5-sun/include -I/usr/lib/j2sdk1.5-sun/include/linux games_stendhal_client_gui_X11KeyConfig.c -o libX11KeyConfig.so
+// i386
+// gcc --shared -L/usr/lib/j2sdk1.5-sun/jre/lib/i386 -ljawt -I/usr/lib/j2sdk1.5-sun/include -I/usr/lib/j2sdk1.5-sun/include/linux games_stendhal_client_gui_X11KeyConfig.c -o libX11KeyConfig.so
 
+// AMD64
+// gcc -fPIC --shared -L/usr/lib/j2sdk1.5-sun/jre/lib/amd64/ -ljawt -I/usr/lib/j2sdk1.5-sun/include -I/usr/lib/j2sdk1.5-sun/include/linux games_stendhal_client_gui_X11KeyConfig.c -o libX11KeyConfig64.so
