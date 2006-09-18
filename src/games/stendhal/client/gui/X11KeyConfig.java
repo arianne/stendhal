@@ -94,7 +94,6 @@ public class X11KeyConfig extends Canvas {
 		if (error != null) {
 			error = null;
 			try {
-				// TODO: handle non .jar environment (like starting stendhal from classes directory in an IDE) 
 				String filename = System.getProperty("user.home") + "/stendhal/" + libraryName + ".so";
 				copyLibraryToHomeFolder(libraryName, filename);
 				System.load(filename);
@@ -123,6 +122,10 @@ public class X11KeyConfig extends Canvas {
 	 */
 	private static void copyLibraryToHomeFolder(String libraryName, String filename) throws IOException {
 		URL url = X11KeyConfig.class.getClassLoader().getResource("lib" + libraryName + ".so");
+		if (url == null) {
+			//  handle non .jar environment (like starting stendhal from classes directory in an IDE) 
+			url = X11KeyConfig.class.getClassLoader().getResource("data/precompiled/lib" + libraryName + ".so");
+		}
 		InputStream is = url.openConnection().getInputStream();
 		OutputStream os = new FileOutputStream(filename);
 		copyStream(is, os);
