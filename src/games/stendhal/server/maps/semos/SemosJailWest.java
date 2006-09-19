@@ -1,19 +1,12 @@
 package games.stendhal.server.maps.semos;
 
-import games.stendhal.common.Direction;
-import games.stendhal.common.Rand;
+import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.actions.AdministrationAction;
-import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.SellerBehaviour;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 
@@ -22,7 +15,16 @@ import java.util.List;
 
 import marauroa.common.game.IRPZone;
 
+/**
+ * Semos Jail
+ * 
+ * @author hendrik
+ */
 public class SemosJailWest {
+
+	/**
+	 * Build the Semos jail areas
+	 */
 	public void build() {
 		buildPortals();
 		zoneSub1SemosJail();
@@ -36,7 +38,7 @@ public class SemosJailWest {
 		Portal portal = new Portal();
 		zoneOutside.assignRPObjectID(portal);
 		portal.setX(86);
-		portal.setY(25);
+		portal.setY(26);
 		portal.setNumber(0);
 		portal.setDestination("-1_semos_jail", 0);
 		zoneOutside.addPortal(portal);
@@ -68,8 +70,14 @@ public class SemosJailWest {
 			@Override
 			protected void createDialog() {
 				addGreeting("Greetings! How may I #help you?");
-				addJob("I am the jail keeper. You have been confined here because of your bad behaviour.");
-				addHelp("Wait for an admin to come here and decide about you. There is meanwhile no exit from here.");
+				add(ConversationStates.ATTENDING, SpeakerNPC.JOB_MESSAGES, new NotInJailCondition(), ConversationStates.ATTENDING, 
+								"I am the jail keeper.", null);
+				add(ConversationStates.ATTENDING, SpeakerNPC.JOB_MESSAGES, new InJailCondition(), ConversationStates.ATTENDING, 
+								"I am the jail keeper. You have been confined here because of your bad behaviour.", null);
+				add(ConversationStates.ATTENDING, SpeakerNPC.HELP_MESSAGES, new InJailCondition(), ConversationStates.ATTENDING, 
+								"Wait for an admin to come here and decide about you. There is meanwhile no exit from your cell.", null);
+				add(ConversationStates.ATTENDING, SpeakerNPC.HELP_MESSAGES, new NotInJailCondition(), ConversationStates.ATTENDING, 
+								"Be careful with the criminals in the cells.", null);
 				addGoodbye();
 			}
 		};
@@ -113,5 +121,27 @@ public class SemosJailWest {
 		npc.set(4, 14);
 		npc.initHP(100);
 		zone.addNPC(npc);
+	}
+
+	/**
+	 * Is the player speaking to us in jail?
+	 */
+	public static class InJailCondition extends SpeakerNPC.ChatCondition {
+		@Override
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return Jail.isInJail(player);
+		}
+		
+	}
+
+	/**
+	 * Is the player speaking to us not in jail?
+	 */
+	public static class NotInJailCondition extends SpeakerNPC.ChatCondition {
+		@Override
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return !Jail.isInJail(player);
+		}
+		
 	}
 }
