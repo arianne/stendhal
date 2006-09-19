@@ -263,7 +263,6 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("int_pathfinding");
 
 		populateZone("Afterlife");
-		populateZone("Jail");
 		populateZone("Semos");
 		populateZone("Nalwor");
 		populateZone("Orril");

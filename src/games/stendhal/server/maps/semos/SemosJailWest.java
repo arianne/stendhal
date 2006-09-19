@@ -24,8 +24,9 @@ import marauroa.common.game.IRPZone;
 
 public class SemosJailWest {
 	public void build() {
-
 		buildPortals();
+		zoneSub1SemosJail();
+		zoneSub2SemosJail();
 	}
 
 	private void buildPortals() {
@@ -47,5 +48,70 @@ public class SemosJailWest {
 		portal.setNumber(0);
 		portal.setDestination("0_semos_plains_w", 0);
 		sub1semosJail.addPortal(portal);
+	}
+
+	private void zoneSub1SemosJail() {
+		NPCList npcs = NPCList.get();
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
+		"-1_semos_jail"));
+		SpeakerNPC npc = new SpeakerNPC("Marcus") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(9, 6));
+				nodes.add(new Path.Node(21, 6));
+				nodes.add(new Path.Node(21, 7));
+				nodes.add(new Path.Node(9, 7));
+				setPath(nodes, true);
+			}
+	
+			@Override
+			protected void createDialog() {
+				addGreeting("Greetings! How may I #help you?");
+				addJob("I am the jail keeper. You have been confined here because of your bad behaviour.");
+				addHelp("Wait for an admin to come here and decide about you. There is meanwhile no exit from here.");
+				addGoodbye();
+			}
+		};
+		npcs.add(npc);
+	
+		zone.assignRPObjectID(npc);
+		npc.put("class", "youngsoldiernpc");
+		npc.set(9, 6);
+		npc.initHP(100);
+		zone.addNPC(npc);
+	
+	}
+	
+	private void zoneSub2SemosJail() {
+		NPCList npcs = NPCList.get();
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
+		"-2_semos_jail"));
+		SpeakerNPC npc = new SpeakerNPC("Sten Tanquilos") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(4, 14));
+				nodes.add(new Path.Node(27, 14));
+				nodes.add(new Path.Node(27, 17));
+				nodes.add(new Path.Node(4, 17));
+				setPath(nodes, true);
+			}
+	
+			@Override
+			protected void createDialog() {
+				addGreeting("Greetings! How may I #help you?");
+				addJob("I am the jail keeper. You have been confined here because of your bad behaviour.");
+				addHelp("Wait for an admin to come here and decide about you. There is meanwhile no exit from here.");
+				addGoodbye();
+			}
+		};
+		npcs.add(npc);
+	
+		zone.assignRPObjectID(npc);
+		npc.put("class", "youngsoldiernpc");
+		npc.set(4, 14);
+		npc.initHP(100);
+		zone.addNPC(npc);
 	}
 }
