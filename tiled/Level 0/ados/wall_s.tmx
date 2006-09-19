@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <property name="x" value="500768"/>
- <property name="y" value="500128"/>
+<map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="x" value="500768"/>
+  <property name="y" value="500128"/>
+ </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -42,7 +44,7 @@
  </layer>
  <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3bMWpUURQG4Kkzu5CsQotsQ8kqtIjgJkIgjcvQLMNGsXEJFmKsrL2DORCuk7z7hvB8c873wWkyFsKR3//cJJsNh7jebjZv2/w4+fezD+1r79pn77fL/71Yhv3XZv+12X9t9l/b1P5ft3nT5nf7M9/8O0hnav9BDuT02P4/ta+dts+u/D+Q1mP7D3pAXvZfm/3XZv+1xf6ftblse/7uDizlY9vlTZvnbV64A8v53Hb5pc3LNq/cgeX8bLu8bXOhB5Q22gP1gJxG9x/kQC4j+9cD8hq5A4MekM/IHRj0gHxG7sCgB+Qz5w7UA/LSA2qb2wPsP5e5PcD+c5n7HuwOyMl7YG3eA2tzB9TmPbA274G1eQ9kRw+oLXrAmffAkrwH1uY9kB3vgbV5D6zNHVDbtTugNHdAbX5PjB2/J1abO7A2d2Bt7sDafD+oNndgbb4fxI47oDZ3QG3ugNrm3gHRA863f0cfOG6H/nx4kAfH7ZCfD4+5kgdpzOkBQR7kMacHBHmQx5we8BB5cLzm9ICHjORBP/JhXfoeEDPSB3r78qAnH9blfg+IGe0DvT4P+tmXD/xf0QO+3k30gafIg95IPrCs6AG/7ubiCfOgty8fWJcl84D1WTIPWL/RPOhHPuQwkgf9yIe8+jzoZzQfYjgufR70M5IP94dcpvKhH3KZyod+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGl/AI6uXOoAAAEA
   </data>
  </layer>
  <layer name="2_object" width="128" height="128">
@@ -65,9 +67,9 @@
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.37">
+ <layer name="collision" width="128" height="128" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3ZMW7DMBQFQdc5Su5/wICVVQWSTCcmdwZQpXI/hGf48eCO76/nc+Ude9C/Tf82/dv0bzvb3x3sSf82/dvOtNV/X/q36d+mf9uZjWcH7kv/Nv3brrTVf19X+7uDvejfpn+bHdB2t7872IP+bfoz2AFt+rfp32YHMOjfpn+bHdBmB7Tp36Y/gx3Qpn+b/m12AIP+bfq32QFt+rfp36Y/gx3Ypn+b/m12QJv+bfq3+T+IQf82/dvsgLZXd4B7WJv+bbP6u4e13Wmo/z5m93cPa5nRTP91vbu/78MaZjbSfz3/1d8dfIa/bKX/59GfI9/uNv058huvTX+OXrkHN7I+/fmN/m36AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwHw/zvcWLwAAAQA=
   </data>
  </layer>
  <layer name="navigation" width="128" height="128">
