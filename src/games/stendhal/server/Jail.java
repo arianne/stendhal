@@ -141,7 +141,7 @@ public class Jail implements TurnListener {
 	 * @param inmate player to check
 	 * @return true, if it is in jail, false otherwise.
 	 */
-	private boolean isInJail(Player inmate) {
+	public static boolean isInJail(Player inmate) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		String zoneName = world.getRPZone(inmate.getID()).getID().getID();
 		if ((zoneName != null) && zoneName.equals("-1_semos_jail")) {
