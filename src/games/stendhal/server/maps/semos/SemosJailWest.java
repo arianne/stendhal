@@ -1,14 +1,17 @@
 package games.stendhal.server.maps.semos;
 
 import games.stendhal.server.Jail;
+import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,7 +30,8 @@ public class SemosJailWest {
 	 */
 	public void build() {
 		buildPortals();
-		zoneSub1SemosJail();
+		zoneSub1SemosJailSoldier();
+		zoneSub1SemosJailElf();
 		zoneSub2SemosJail();
 	}
 
@@ -52,10 +56,9 @@ public class SemosJailWest {
 		sub1semosJail.addPortal(portal);
 	}
 
-	private void zoneSub1SemosJail() {
+	private void zoneSub1SemosJailSoldier() {
 		NPCList npcs = NPCList.get();
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-		"-1_semos_jail"));
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-1_semos_jail"));
 		SpeakerNPC npc = new SpeakerNPC("Marcus") {
 			@Override
 			protected void createPath() {
@@ -90,7 +93,16 @@ public class SemosJailWest {
 		zone.addNPC(npc);
 	
 	}
-	
+
+	private void zoneSub1SemosJailElf() {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-1_semos_jail"));
+		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
+		Creature creature = (manager.getCreature("militia_elf"));
+		// TODO: wrap creature in a NonAttackingCreature to save time at pathfinding.
+		RespawnPoint point = new RespawnPoint(zone, 13, 2, creature, 1);
+		zone.addRespawnPoint(point);
+	}
+
 	private void zoneSub2SemosJail() {
 		NPCList npcs = NPCList.get();
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
