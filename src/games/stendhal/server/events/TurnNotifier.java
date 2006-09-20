@@ -93,7 +93,11 @@ public class TurnNotifier {
 			for (TurnEvent event : set) {
 				TurnListener turnListener = event.turnListener;
 				String message = event.message;
-				turnListener.onTurnReached(currentTurn, message);
+				try {
+					turnListener.onTurnReached(currentTurn, message);
+				} catch (RuntimeException e) {
+					logger.error(e, e);
+				}				
 			}
 		}
 	}
