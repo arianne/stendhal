@@ -19,13 +19,16 @@ import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * This is an item.
@@ -33,6 +36,7 @@ import marauroa.common.game.RPSlot;
 public class Item extends PassiveEntity implements TurnListener {
 	/** list of possible slots for this item */
 	private List<String> possibleSlots;
+	private static Logger logger = Logger.getLogger(Item.class);
 	
 	/**
 	 * The plant grower where this item was grown, until it has been picked.
@@ -240,7 +244,11 @@ public class Item extends PassiveEntity implements TurnListener {
 	public void onTurnReached(int currentTurn, String message) {
 		// remove this object from the zone where it's lying on
 		// the ground
-		StendhalRPWorld.get().getRPZone(getID()).remove(getID());
+		try {
+			StendhalRPWorld.get().getRPZone(getID()).remove(getID());
+		} catch (RPObjectNotFoundException e) {
+			logger.warn("Item.onTurnReached item " + this + " not found: " + e);
+		}
 	}
 
 	@Override
