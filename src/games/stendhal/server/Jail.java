@@ -117,7 +117,7 @@ public class Jail implements TurnListener {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		Player inmate = StendhalRPRuleProcessor.get().getPlayer(inmateName);
 		if (inmate == null) {
-			logger.debug("Player " + inmate + " not found");
+			logger.debug("Player " + inmateName + " not found");
 			return;
 		}
 
