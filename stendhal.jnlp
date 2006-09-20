@@ -7,7 +7,7 @@
     <vendor>Miguel Angel Blanch Lardin</vendor>
     <homepage href="http://arianne.sourceforge.net"/>
     <description>
-stendhal is a multiplayer online adventures game inspired in Acorn with the 90's Zelda look.
+Stendhal is a multiplayer online adventures game inspired in Acorn with the 90's Zelda look.
 Your task is to talk with other people in the village and find jobs to do that will drive to interesting quests that will reveal the hidden plot behind the world of stendhal
 
 In stendhal, you can also just walk around, chat with people, buy and sell items and kill some of them :)
@@ -18,12 +18,13 @@ Some of these people are NPC, they will give you tasks to accomplish and hints t
     <offline-allowed/>
   </information>
   <resources>
-    <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+"/>
+    <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+" /> <!--  max-heap-size="120" -->
     <jar href="http://arianne.sourceforge.net/jws/log4j.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/marauroa-1.32.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-data-0.52.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-0.52.jar" download="eager" main="true" />
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-prefilled-cache-0.52.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/marauroa-1.33.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-data-0.53.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-0.53.jar" download="eager" main="true" />
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-prefilled-cache-0.53.jar" download="eager"/>
+	<nativelib href="http://arianne.sourceforge.net/jws/stendhal-webstart-jni-0.53.jar" download="eager"/>
   </resources>
   <application-desc/>
 </jnlp>
