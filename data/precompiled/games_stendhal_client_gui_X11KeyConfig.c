@@ -49,12 +49,7 @@ JNIEXPORT void JNICALL Java_games_stendhal_client_gui_X11KeyConfig_paint
     JAWT_DrawingSurface* ds;
     JAWT_DrawingSurfaceInfo* dsi;
     JAWT_X11DrawingSurfaceInfo* dsi_x11;
-    jboolean result;
     jint lock;
-    GC gc;
-    
-    short	i;
-    char	*testString = "^^^ rendered from native code ^^^";
 
     /* Get the AWT */
     awt.version = JAWT_VERSION_1_3;
@@ -91,30 +86,10 @@ JNIEXPORT void JNICALL Java_games_stendhal_client_gui_X11KeyConfig_paint
     dsi_x11 = (JAWT_X11DrawingSurfaceInfo*)dsi->platformInfo;
 
 
-    /* Now paint */
-	
-	keyX(dsi_x11->display);
+    // magic
+    keyX(dsi_x11->display);
 
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-    gc = XCreateGC(dsi_x11->display, dsi_x11->drawable, 0, 0);
-    XSetBackground(dsi_x11->display, gc, 0);
-    for (i=0; i<36;i++)
-    {
-	XSetForeground(dsi_x11->display, gc, 10*i);
-   	XFillRectangle(dsi_x11->display, dsi_x11->drawable, gc,
-                   	10*i, 5, 90, 90);
-    }
-    XSetForeground(dsi_x11->display, gc, 155);
-    XDrawImageString(dsi_x11->display, dsi_x11->drawable, gc,
-    			100, 110, testString, strlen(testString));
-    XFreeGC(dsi_x11->display, gc);
-
-
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
+    /* -- put painting stuff here -- */
 
     /* Free the drawing surface info */
     ds->FreeDrawingSurfaceInfo(dsi);
