@@ -28,7 +28,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.53
+Version 0.54
 
 
 How to play
@@ -51,10 +51,15 @@ To play Arianne you have to use keyboard and mouse.
 
 No warranties. But let us know if it doesn't work.
 
-
-
 Changelog
 ---------
+
+0.54 Sep 25, 2006
+
+- converted admin / game master commands from groovy to reloadable java classes
+- made jail accessable to normal player
+- added dice gambling in Semos Tavern for Golden Boots
+- fixed lag because of broken key handling on linux
 
 0.53 Sep 03, 2006
 
