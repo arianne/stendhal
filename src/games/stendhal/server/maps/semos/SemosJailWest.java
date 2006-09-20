@@ -24,6 +24,7 @@ import marauroa.common.game.IRPZone;
  * @author hendrik
  */
 public class SemosJailWest {
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Build the Semos jail areas
@@ -57,7 +58,6 @@ public class SemosJailWest {
 	}
 
 	private void zoneSub1SemosJailSoldier() {
-		NPCList npcs = NPCList.get();
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-1_semos_jail"));
 		SpeakerNPC npc = new SpeakerNPC("Marcus") {
 			@Override
@@ -96,15 +96,30 @@ public class SemosJailWest {
 
 	private void zoneSub1SemosJailElf() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-1_semos_jail"));
-		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
-		Creature creature = (manager.getCreature("militia_elf"));
-		// TODO: wrap creature in a NonAttackingCreature to save time at pathfinding.
-		RespawnPoint point = new RespawnPoint(zone, 13, 2, creature, 1);
-		zone.addRespawnPoint(point);
+		SpeakerNPC npc = new SpeakerNPC("Conual") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(13, 2));
+				setPath(nodes, true);
+			}
+	
+			@Override
+			protected void createDialog() {
+				addGreeting("Let me out");
+				addGoodbye();
+			}
+		};
+		npcs.add(npc);
+	
+		zone.assignRPObjectID(npc);
+		npc.put("class", "militiaelfnpc");
+		npc.set(13, 2);
+		npc.initHP(100);
+		zone.addNPC(npc);
 	}
 
 	private void zoneSub2SemosJail() {
-		NPCList npcs = NPCList.get();
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 		"-2_semos_jail"));
 		SpeakerNPC npc = new SpeakerNPC("Sten Tanquilos") {
