@@ -1686,6 +1686,42 @@ Makes players more offensive
       </equipable>
     </item>
 
+    <item name="Golden_GM_Tokend">
+      <type class="misc" subclass="GM_tokend_gold"/>
+      <stackable/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="0.01"/>
+      <equipable>
+        <slot name="bag"/>
+      </equipable>
+    </item>
+
+    <item name="Silvery_GM_Tokend">
+      <type class="misc" subclass="GM_tokend_silver"/>
+      <stackable/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="0.01"/>
+      <equipable>
+        <slot name="bag"/>
+      </equipable>
+    </item>
+    
+    <item name="Bronze_GM_Tokend">
+      <type class="misc" subclass="GM_tokend_bronze"/>
+      <stackable/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="0.01"/>
+      <equipable>
+        <slot name="bag"/>
+      </equipable>
+    </item>
+
   <item name="note">
 		<type class="misc" subclass="paper"/>
 		<weight value="0.01"/>
