@@ -317,10 +317,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 					+ killer.getName());
 		}
 
+		/* see http://sourceforge.net/tracker/index.php?func=detail&aid=1554077&group_id=1111&atid=101111
 		if (getID().equals(client.getPlayer().getID())) {
 			client.addEventLine(getName() + " has died. " + getName()
 					+ "'s new level is " + getLevel());
-		}
+		}*/
 	}
 
 	@Override
