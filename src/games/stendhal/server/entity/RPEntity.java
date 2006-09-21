@@ -684,7 +684,7 @@ public abstract class RPEntity extends Entity {
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(getID());
 			zone.assignRPObjectID(item);
 			item.setX(getX());
-			item.setY(getY());
+			item.setY(getY() + 1);
 			zone.add(item);
 			return true;
 		}
