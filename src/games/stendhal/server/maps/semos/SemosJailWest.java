@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.Jail;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPWorld;
@@ -116,6 +117,7 @@ public class SemosJailWest {
 		npc.put("class", "militiaelfnpc");
 		npc.set(13, 2);
 		npc.initHP(100);
+		npc.setDirection(Direction.DOWN);
 		zone.addNPC(npc);
 	}
 
