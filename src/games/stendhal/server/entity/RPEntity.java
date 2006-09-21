@@ -514,6 +514,7 @@ public abstract class RPEntity extends Entity {
 					p.addXP(reward);
 					
 					// find out if the player killed this RPEntity on his own
+					// TODO: don't overwrite solo with shared.
 					if (damageDone == totalDamageReceived) {
 						p.setKill(getName(), "solo");
 					} else if (!p.hasKilledSolo(getName())) {
