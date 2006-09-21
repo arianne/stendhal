@@ -1687,7 +1687,7 @@ Makes players more offensive
     </item>
 
     <item name="Golden_GM_Tokend">
-      <type class="misc" subclass="GM_tokend_gold"/>
+      <type class="special" subclass="GM_tokend_gold2"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1699,7 +1699,7 @@ Makes players more offensive
     </item>
 
     <item name="Silvery_GM_Tokend">
-      <type class="misc" subclass="GM_tokend_silver"/>
+      <type class="special" subclass="GM_tokend_silver"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1711,7 +1711,7 @@ Makes players more offensive
     </item>
     
     <item name="Bronze_GM_Tokend">
-      <type class="misc" subclass="GM_tokend_bronze"/>
+      <type class="special" subclass="GM_tokend_bronze"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
