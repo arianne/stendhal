@@ -10,6 +10,7 @@ import games.stendhal.server.entity.Player;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -157,7 +158,7 @@ public class ScriptRunner extends StendhalServerExtension {
 
             // split remaining args
             String[] args = cmd.split(" ");
-    		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "script", mode, script, String.valueOf(args));
+    		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "script", script, mode, Arrays.asList(args).toString());
 
 
             // execute script
