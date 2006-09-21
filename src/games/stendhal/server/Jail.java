@@ -34,7 +34,7 @@ public class Jail implements TurnListener {
 	private static List<Point> cellEntryPoints = Arrays.asList(
 			new Point(3, 2),
 			new Point(8, 2),
-			new Point(13, 2),
+			// elf cell new Point(13, 2),
 			new Point(18, 2),
 			new Point(23, 2),
 			new Point(28, 2),
