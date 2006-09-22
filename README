@@ -56,10 +56,11 @@ Changelog
 
 0.54 Sep 25, 2006
 
-- converted admin / game master commands from groovy to reloadable java classes
-- made jail accessible to normal players
 - added dice gambling in Semos Tavern with golden trousers as the jackpot
 - fixed lag because of broken key handling on linux
+- display other players on minimap
+- made jail accessible to normal players
+- converted admin / game master commands from groovy to reloadable java classes
 
 0.53 Sep 03, 2006
 

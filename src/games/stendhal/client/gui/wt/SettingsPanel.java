@@ -184,7 +184,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	/** draw the panel */
 	public Graphics draw(Graphics g) {
 		if (minimap != null && player != null) {
-			minimap.setPlayerPos(player.getX(), player.getY());
+			minimap.setPlayer(player);
 		}
 
 		return super.draw(g);

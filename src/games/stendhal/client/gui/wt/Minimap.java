@@ -16,8 +16,12 @@
  */
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -51,11 +55,8 @@ public class Minimap extends WtPanel {
 	/** minimap image */
 	private BufferedImage image;
 
-	/** x-position of the player */
-	private double playerX;
-
-	/** y-position of the player */
-	private double playerY;
+	/** list of players */
+	private Player player = null;
 
 	/** Creates a new instance of Minimap */
 	public Minimap(CollisionDetection cd, GraphicsConfiguration gc, String zone) {
@@ -128,8 +129,8 @@ public class Minimap extends WtPanel {
 		int w = image.getWidth();
 		int h = image.getHeight();
 
-		int xpos = (int) (playerX * scale) - width / 2;
-		int ypos = (int) ((playerY+1) * scale) - width / 2;
+		int xpos = (int) (player.getX() * scale) - width / 2;
+		int ypos = (int) ((player.getY()+1) * scale) - width / 2;
 
 		if (w > width) {
 			// need to pan width
@@ -154,10 +155,20 @@ public class Minimap extends WtPanel {
 		// draw minimap
 		clientg.drawImage(image, -panx, -pany, null);
 
-		Color playerColor = Color.BLUE;
-		// draw the player position
-		drawCross(clientg, (int) (playerX * scale) - panx + 1,
-				(int) ((playerY+1) * scale) - pany + 2, playerColor);
+		// draw players
+		Color playerColor = Color.WHITE;
+		for (Entity entity : StendhalClient.get().getGameObjects()) {
+			if (entity instanceof Player) {
+				Player aPlayer = (Player) entity;
+				drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1,
+								(int) ((aPlayer.getY()+1) * scale) - pany + 2, playerColor);
+			}
+		}
+
+		// draw myself
+		playerColor = Color.BLUE;
+		drawCross(clientg, (int) (player.getX() * scale) - panx + 1,
+				(int) ((player.getY()+1) * scale) - pany + 2, playerColor);
 
 		return g;
 	}
@@ -170,8 +181,7 @@ public class Minimap extends WtPanel {
 		g.drawLine(x, y + size, x, y - size);
 	}
 
-	public void setPlayerPos(double x, double y) {
-		playerX = x;
-		playerY = y;
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 }
