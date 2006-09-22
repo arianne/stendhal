@@ -28,11 +28,16 @@ import org.apache.log4j.Logger;
  * is given to the player who killed it.
  */
 public class ItemGuardCreature extends Creature {
-	  /** the logger instance. */
-	  private static final Logger logger = Log4J.getLogger(ItemGuardCreature.class);
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(ItemGuardCreature.class);
 
-	  private String itemType;
+	private String itemType;
 
+	/**
+	 * Creates a ItemGuardCreature
+	 * @param copy      base creature
+	 * @param itemType  the quest item to drop on death
+	 */
 	public ItemGuardCreature(Creature copy, String itemType) {
 		super(copy);
 		this.itemType = itemType;
