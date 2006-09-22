@@ -39,7 +39,7 @@ public class UseAction extends ActionListener {
 		Log4J.startMethod(logger, "use");
 
 		// HACK: No item transfer in jail (we don't want a jailed player to
-		//       create a new free character and give it all items.
+		//       use items like home scroll.
 		if (StendhalRPWorld.get().getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
 			player.sendPrivateText("For security reasons items may not be used in jail.");
 			return;
