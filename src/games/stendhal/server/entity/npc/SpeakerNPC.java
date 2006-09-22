@@ -202,11 +202,10 @@ public abstract class SpeakerNPC extends NPC {
 	
 	/**
 	 * Creates a new SpeakerNPC.
+	 *
 	 * @param name The NPC's name. Please note that names should be unique.
-	 * @throws AttributeNotFoundException TODO: When can this occur?? Is it
-	 *         necessary here?
 	 */
-	public SpeakerNPC(String name) throws AttributeNotFoundException {
+	public SpeakerNPC(String name) {
 		super();
 		createPath();
 
