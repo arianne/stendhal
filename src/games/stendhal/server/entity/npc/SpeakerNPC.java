@@ -797,7 +797,11 @@ public abstract class SpeakerNPC extends NPC {
 							engine.say(amount + " " + item + " costs " + price
 									+ ". Do you want to buy?");
 						} else {
-							engine.say("Sorry, I don't sell " + item);
+							if (item == null) {
+								engine.say("Please tell me what you want to buy.");
+							} else {
+								engine.say("Sorry, I don't sell " + item);
+							}
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
@@ -869,7 +873,11 @@ public abstract class SpeakerNPC extends NPC {
 							engine.say(amount + " " + item + " is worth " + price
 									+ ". Do you want to sell?");
 						} else {
-							engine.say("Sorry, I don't buy " + item);
+							if (item == null) {
+								engine.say("Please tell me what you want to sell.");
+							} else {
+								engine.say("Sorry, I don't buy " + item);
+							}
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
