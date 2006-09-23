@@ -4,6 +4,7 @@ package games.stendhal.client.gui;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.io.Closeable;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,14 +15,14 @@ import org.apache.log4j.Logger;
 
 /**
  * trys to enable DetectableKeyRepeat on X11 using a native library
- * called libX11KeyConfig.so. On webstart it is stored in a native jar
+ * called libX11KeyConfig(64).so. On webstart it is stored in a native jar
  * called stendhal-webstart-jni-X.xx.jar. In the normal client it is
  * stored in stendhal-data-X.xx.jar and written to $HOME/stendhal.
  *
  * <p>To use it, put it as 1*1 pixel canvas somewhere it has to be drawn
  * (like StendhalFirstScreen). The drawing routine is somehow special as
  * it invokes the native magic. This class tries very hard not to
- * propagate any errors outside. But do not invoke it on non Linux systems
+ * propagate any exceptions outside. But do not invoke it on non Linux systems
  * as it would log lots of exceptions. Use getResult() to detect whether it
  * worked.</p>
  *
@@ -115,12 +116,18 @@ public class X11KeyConfig extends Canvas {
 	/**
 	 * write library to home as there seems to be no way to load a
 	 * native library from inside a jar (unless you are on webstart).
+	 * It will not overwrite existing files.
 	 *
 	 * @param libraryName name of library (in root directory of one of the jars)
 	 * @param filename where to store it
 	 * @throws IOException on an input/output error
 	 */
 	private static void copyLibraryToHomeFolder(String libraryName, String filename) throws IOException {
+		if (new File(filename).exists()) {
+			// file does exist. Do not overwrite it because doing so will crash
+			// a second instance of Stendhal already displaying this canvas.
+			return;
+		}
 		URL url = X11KeyConfig.class.getClassLoader().getResource("lib" + libraryName + ".so");
 		if (url == null) {
 			//  handle non .jar environment (like starting stendhal from classes directory in an IDE) 
