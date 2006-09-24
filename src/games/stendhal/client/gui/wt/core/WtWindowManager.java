@@ -35,6 +35,7 @@ import org.apache.log4j.Logger;
  * 
  * @author mtotz
  */
+// TODO: Split this class into parts (the property file handling)
 public class WtWindowManager {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(WtWindowManager.class);
@@ -84,6 +85,11 @@ public class WtWindowManager {
 		for (WindowConfiguration config : configs.values()) {
 			buf.append(config.writeToPropertyString());
 		}
+		for (Object key : properties.keySet()) {
+			if (key.toString().startsWith("config.")) {
+				buf.append(key.toString() + "=" + properties.get(key) + "\n");
+			}
+		}
 
 		try {
 			OutputStream os = Persistence.get().getOutputStream(true, "stendhal", FILE_NAME);
@@ -122,9 +128,28 @@ public class WtWindowManager {
 		return winC;
 	}
 	
-	// Hack: reads keyboard access method in this file
+	/**
+	 * Returns a property.
+	 *
+	 * @param key Key to look up
+	 * @param defaultValue default value which is returned if the key is not in the configuration file
+	 * @return value
+	 */
+	// Hack: enables other parts of the program to read from this configuration file
 	public String getProperty(String key, String defaultValue) {
-		return properties.getProperty(key, defaultValue);
+		return properties.getProperty("config." + key, defaultValue);
+	}
+
+	/**
+	 * Returns a property.
+	 *
+	 * @param key Key to look up
+	 * @param defaultValue default value which is returned if the key is not in the configuration file
+	 * @return value
+	 */
+	// Hack: enables other parts of the program to read from this configuration file
+	public String setProperty(String key, String defaultValue) {
+		return properties.getProperty("config." + key, defaultValue);
 	}
 
 	/**
