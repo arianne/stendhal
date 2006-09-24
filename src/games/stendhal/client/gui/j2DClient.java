@@ -334,7 +334,7 @@ public class j2DClient extends JFrame {
 			}
 
 			// Shows a offline icon if no messages are recieved in 10 seconds.
-			if (refreshTime - lastMessageHandle > 120000) {
+			if ((refreshTime - lastMessageHandle > 120000) || !client.getConnectionState()) {
 				inGameGUI.offline();
 			} else {
 				inGameGUI.online();
