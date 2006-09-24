@@ -1,6 +1,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Color;
@@ -449,12 +450,15 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 				String[] command = parseString(text, 3);
 				if (command != null) {
 					if (command[1].equals("mute")) {
-						SoundSystem.get().setMute(
-								command[2].indexOf("on") != -1);
+						String param = command[2];
+						WtWindowManager.getInstance().setProperty("sound.mute", param);
+						boolean mute = param.indexOf("on") != -1;
+						SoundSystem.get().setMute(mute);
 					}
 
 					if (command[1].equals("volume")) {
 						int vol = Integer.parseInt(command[2]);
+						WtWindowManager.getInstance().setProperty("sound.volume", Integer.toString(vol));
 						SoundSystem.get().setVolume(vol);
 					}
 				}
