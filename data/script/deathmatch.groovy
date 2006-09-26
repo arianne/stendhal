@@ -72,7 +72,8 @@ class DeathmatchAction extends ScriptAction {
 						defense = new Integer(helmet.get("def"));
 					}
 					defense--;
-					helmet.put("def",""+defense)
+					helmet.put("def",""+defense);
+					player.updateItemAtkDef();
 				}
 				else {
 					int xp = player.getLevel() * 80;
@@ -230,6 +231,7 @@ class DoneAction extends SpeakerNPC.ChatAction {
 			if(isNew) {
 				player.equip(helmet, true);
 			}
+			player.updateItemAtkDef();
 			player.setQuest("deathmatch", "done");
 		}
 		else {
