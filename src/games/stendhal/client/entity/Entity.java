@@ -223,7 +223,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			this.x = x;
 			this.y = y;
 			lastTimeInRange = true;
-			System.err.println("UPS-----------------------------------------------");
 		} else {
 
 			// Good, we are within one tile. Unfortunally the server does not know that
