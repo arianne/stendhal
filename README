@@ -54,14 +54,15 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 
-0.54 Sep 29, 2006
+0.54 Sep 28, 2006
 
 - added dice gambling in Semos Tavern with golden trousers as the jackpot
-- fixed lag because of broken key handling on linux
+- fixed lag because of broken key handling on X11 (Linux)
 - display other players on minimap
 - made jail accessible to normal players
-- converted admin / game master commands from groovy to reloadable java classes
 - changed our default server to stendhal.game-host.org
+- fixed jumpy movement of slow creatures
+- converted admin / game master commands from groovy to reloadable java classes
 
 0.53 Sep 03, 2006
 
