@@ -206,12 +206,15 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	}
 
 	// When rpentity stops
-	public void onStop() {
+	public void onStop(int x, int y) {
 		direction = Direction.STOP;
 		speed = 0;
-
 		this.dx = 0;
 		this.dy = 0;
+
+		// set postion to the one reported by server
+		this.x = x;
+		this.y = y;
 	}
 
 	// When rpentity reachs the [x,y,1,1] area.

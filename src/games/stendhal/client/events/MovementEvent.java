@@ -13,5 +13,5 @@ public interface MovementEvent {
 	public void onLeave(int x, int y);
 
 	// When rpentity stops
-	public void onStop();
+	public void onStop(int x, int y);
 }

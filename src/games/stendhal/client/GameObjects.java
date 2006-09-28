@@ -374,7 +374,7 @@ public class GameObjects implements Iterable<Entity> {
 			entity.onMove(x, y, direction, speed);
 
 			if (direction == Direction.STOP || speed == 0) {
-				entity.onStop();
+				entity.onStop(x, y);
 			}
 
 			if (oldx != x && oldy != y) {
