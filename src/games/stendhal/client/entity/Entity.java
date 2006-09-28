@@ -195,6 +195,12 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		this.dx = direction.getdx() * speed;
 		this.dy = direction.getdy() * speed;
 
+		/*
+		if (x != this.x || y != this.y) {
+			System.err.println(System.currentTimeMillis() + " " + this + " " + x + " / " + this.x + "          " + y + " / " + this.y);
+		}
+		*/
+		
 		this.x = x;
 		this.y = y;
 	}
@@ -285,8 +291,8 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	public void move(long delta) {
 		// update the location of the entity based on move speeds
-		x += (delta * dx) / 350;
-		y += (delta * dy) / 350;
+		x += (delta * dx) / 300;
+		y += (delta * dy) / 300;
 	}
 
 	public boolean stopped() {
