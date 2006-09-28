@@ -190,75 +190,22 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		sprite = store.getSprite(translate(object.get("type")));
 	}
 
-	/**
-	 * compares to floating point values
-	 *
-	 * @param d1 first value
-	 * @param d2 second value
-	 * @param diff acceptable diff
-	 * @return true if they are within diff
-	 */
-	private boolean compareDouble(double d1, double d2, double diff) {
-		return Math.abs(d1 - d2) < diff;
-	}
-	
-	private boolean lastTimeInRange = true;
-
 	// When rpentity moves, it will be called with the data.
 	public void onMove(int x, int y, Direction direction, double speed) {
 		this.dx = direction.getdx() * speed;
 		this.dy = direction.getdy() * speed;
 
-		/*
-		if (x != this.x || y != this.y) {
-			System.err.println(System.currentTimeMillis() + " " + this + " " + x + " / " + this.x + "          " + y + " / " + this.y);
-		}
-		*/
-
-		// Compare our position to the one the server thinks we are.
-		// First of all we check whether we are more than one tiled off.
-		// In this case we accept that the server is right and use the
-		// position specified
-		if (!compareDouble(this.x, x, 1f) || !compareDouble(this.y, y, 1f)) {
-			this.x = x;
-			this.y = y;
-			lastTimeInRange = true;
-		} else {
-
-			// Good, we are within one tile. Unfortunally the server does not know that
-			// we provide smooth movement. If an entity is moving at a rate like
-			// 2 turns for 1 tile, the server does it this way:
-			// move to 1,   move to 1, move to 2,   move to 2, move to 3,   move to 3
-			// but the client should display it as
-			// move to 0.5, move to 1, move to 1.5, move to 2, move to 2.5, move to 3
-			// In order to achieve this, we ignore the first time the server reports
-			// another position. 
-			if (!compareDouble(this.x, x, 0.5f) || !compareDouble(this.y, y, 0.5f)) {
-				if (!lastTimeInRange) {
-					this.x = x;
-					this.y = y;
-					System.err.println("**");
-					lastTimeInRange = true;
-				} else {
-					lastTimeInRange = false;
-				}
-				System.err.println("-");
-			} else {
-				lastTimeInRange = true;
-			}
-		}
+		this.x = x;
+		this.y = y;
 	}
 
 	// When rpentity stops
 	public void onStop(int x, int y) {
 		direction = Direction.STOP;
 		speed = 0;
+
 		this.dx = 0;
 		this.dy = 0;
-
-		// set postion to the one reported by server
-		this.x = x;
-		this.y = y;
 	}
 
 	// When rpentity reachs the [x,y,1,1] area.
@@ -338,8 +285,8 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	public void move(long delta) {
 		// update the location of the entity based on move speeds
-		x += (delta * dx) / 300;
-		y += (delta * dy) / 300;
+		x += (delta * dx) / 350;
+		y += (delta * dy) / 350;
 	}
 
 	public boolean stopped() {
