@@ -62,7 +62,7 @@ public class AdministrationAction extends ActionListener {
 		StendhalRPRuleProcessor.register("teleport", administration);
 		StendhalRPRuleProcessor.register("teleportto", administration);
 		StendhalRPRuleProcessor.register("adminlevel", administration);
-        StendhalRPRuleProcessor.register("alter", administration);
+		StendhalRPRuleProcessor.register("alter", administration);
 		StendhalRPRuleProcessor.register("summon", administration);
 		StendhalRPRuleProcessor.register("summonat", administration);
 		StendhalRPRuleProcessor.register("invisible", administration);
