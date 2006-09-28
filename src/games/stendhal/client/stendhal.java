@@ -29,7 +29,7 @@ public class stendhal extends Thread {
 	public static boolean doLogin = false;
 
 	public static final String[] SERVERS_LIST = { 
-		"stendhal.ath.cx",
+		"stendhal.game-host.org",
 		"localhost" };
 
 	public static String STENDHAL_FOLDER = null;

@@ -135,7 +135,11 @@ public class LoginDialog extends JDialog implements Runnable {
 			//
 			// serverField
 			//
-			serverField.setSelectedItem(loginInfo.nextToken());
+			String serverName = loginInfo.nextToken();
+			if (serverName.trim().equals("stendhal.ath.cx")) {
+				serverName = "stendhal.game-host.org"; 
+			}
+			serverField.setSelectedItem(serverName);
 			//
 			// usernameField
 			//
