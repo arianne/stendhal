@@ -17,13 +17,16 @@ Some of these people are NPC, they will give you tasks to accomplish and hints t
     <icon kind="splash" href="StendhalSplash.jpg"/>
     <offline-allowed/>
   </information>
+  <security>
+    <all-permissions/>
+  </security>
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+" /> <!--  max-heap-size="120" -->
     <jar href="http://arianne.sourceforge.net/jws/log4j.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/marauroa-1.33.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-data-0.53.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-0.53.jar" download="eager" main="true" />
-	<nativelib href="http://arianne.sourceforge.net/jws/stendhal-webstart-jni-0.53.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/marauroa-1.34.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-data-0.54.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-0.54.jar" download="eager" main="true" />
+	<nativelib href="http://arianne.sourceforge.net/jws/stendhal-webstart-jni-0.54.jar" download="eager"/>
   </resources>
   <application-desc/>
 </jnlp>
