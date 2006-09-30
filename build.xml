@@ -124,10 +124,9 @@
     <property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf/"/>
   	<mkdir dir="${build_server_xmlconf}/"/>
   	
-    <copy todir="${build}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
-    <copy todir="${build}/data/conf" file="data/conf/creatures.xml"/>
-    <copy todir="${build}/data/conf" file="data/conf/items.xml"/>
-    <copy todir="${build}/data/conf" file="data/conf/quests.xml"/>
+    <copy todir="${build_server_xmlconf}/data/conf" file="data/conf/creatures.xml"/>
+    <copy todir="${build_server_xmlconf}/data/conf" file="data/conf/items.xml"/>
+    <copy todir="${build_server_xmlconf}/data/conf" file="data/conf/quests.xml"/>
 
     <jar jarfile="${lib}/${xmlconf_jarname}" basedir="${build_server_xmlconf}"/>    
 
