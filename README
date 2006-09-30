@@ -60,6 +60,7 @@ Changelog
 - fixed lag because of broken key handling on X11 (Linux)
 - display other players on minimap
 - made jail accessible to normal players
+- added additional clothes and hair styles for females
 - changed our default server to stendhal.game-host.org
 - converted admin / game master commands from groovy to reloadable java classes
 
