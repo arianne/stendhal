@@ -54,7 +54,7 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 
-0.54 Sep xx, 2006
+0.54 Oct xx, 2006
 
 - added dice gambling in Semos Tavern with golden trousers as the jackpot
 - fixed lag because of broken key handling on X11 (Linux)
@@ -62,6 +62,7 @@ Changelog
 - made jail accessible to normal players
 - NPCs who produce goods now estimate how much time they will need
 - added additional clothes and hair styles for females
+- added salad as a food item
 - changed our default server to stendhal.game-host.org
 - converted admin / game master commands from groovy to reloadable java classes
 
