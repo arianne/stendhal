@@ -223,9 +223,11 @@
 
     <jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>
   	
+    <!-- Cache precompiled 
   	<jar jarfile="${lib}/${client_prefilled_cache}" basedir="${user.home}/stendhal">
   		<include name="cache/**" />
 	</jar>
+    -->
   
   	<jar jarfile="${lib}/${client_webstart_jni}" basedir="data/precompiled">
   		<include name="*.so" />
