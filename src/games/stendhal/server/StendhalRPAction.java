@@ -453,19 +453,38 @@ public class StendhalRPAction {
         if (found) {
             if (entity instanceof Player) {
                 Player player = (Player) entity;
-
                 if (player.hasSheep()) {
-                    Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
-                    // Call placeat for the sheep on the same spot as the 
-                    // player to ensure that there will be a path between the
-                    // player and his/her sheep.
-                    placeat(zone, sheep, nx, ny);
-                    sheep.clearPath();
-                    sheep.stop();
-                }
-            }
+                	try {
+	                    Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
+	                    // Call placeat for the sheep on the same spot as the 
+	                    // player to ensure that there will be a path between the
+	                    // player and his/her sheep.
+	                    placeat(zone, sheep, nx, ny);
+	                    sheep.clearPath();
+	                    sheep.stop();
+	            	} catch (RPObjectNotFoundException e) {
+						 /*
+						 * No idea how but some players get a sheep but
+						 * they don't have it really. Me thinks that it
+						 * is a player that has been running for a while
+						 * the game and was kicked of server because
+						 * shutdown on a pre 1.00 version of Marauroa.
+						 * We shouldn't see this anymore.
+						 */
+						logger.error("Pre 1.00 Marauroa sheep bug. (player = "
+								+ player.getName() + ")", e);
+					
+						if (player.has("sheep")) {
+							player.remove("sheep");
+						}
+					
+						if (player.hasSlot("#flock")) {
+							player.removeSlot("#flock");
+						}
+	            	}
+	            }
+	        }
         }
-        
 		return found;
 	}
 
