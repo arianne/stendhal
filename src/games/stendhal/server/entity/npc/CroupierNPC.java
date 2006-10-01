@@ -58,10 +58,9 @@ public abstract class CroupierNPC extends SpeakerNPC {
 		if (isDiceOnPlayingArea(dice)) {
 			int sum = dice.getSum();
 			Pair<String, String> prizeAndText = prizes.get(sum);
-			String prizeName = prizeAndText.first();
-			String text = prizeAndText.second();
-			
-			if (prizeName != null) {
+			if (prizeAndText != null) {
+				String prizeName = prizeAndText.first();
+				String text = prizeAndText.second();
 				Item prize = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(prizeName);
 				say("Congratulations, "
 						+ player.getName()
