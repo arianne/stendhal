@@ -34,7 +34,8 @@ public class DiceGambling extends AbstractQuest {
 				null, // 4 - no prize
 				null, // 5 - no prize
 				null, // 6 - no prize
-				new Pair<String, String>("coupon", "That's enough for a consolation prize, a coupon for a bottle of beer. Margaret will accept it."), // 7
+				new Pair<String, String>("beer", "That's enough for a consolation prize, a bottle of beer."), // 7
+				//new Pair<String, String>("coupon", "That's enough for a consolation prize, a coupon for a bottle of beer. Margaret will accept it."), // 7
 				new Pair<String, String>("leather_boots", "Take these simple shoes as a reward."), // 8
 				new Pair<String, String>("chain_legs", "I hope you have a use for these chain legs."), // 9
 				new Pair<String, String>("dwarf_cloak", "You have won this fashionable dwarf cloak!"), // 10
