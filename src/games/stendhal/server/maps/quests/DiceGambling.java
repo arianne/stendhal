@@ -78,7 +78,7 @@ public class DiceGambling extends AbstractQuest {
 					"play",
 					null,
 					ConversationStates.QUESTION_1,
-					"In order to playing, you have to stake " + STAKE + " gold. Do you want to pay?",
+					"In order to play, you have to stake " + STAKE + " gold. Do you want to pay?",
 					null);
 		
 		ricardo.add(ConversationStates.QUESTION_1,
