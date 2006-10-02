@@ -12,13 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import marauroa.common.game.*;
-
 import games.stendhal.server.StendhalRPWorld;
 
 import java.util.Map;
 
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
+
 public class StackableItem extends Item implements Stackable {
+	private static Logger logger = Logger.getLogger(StackableItem.class);
 	private int quantity = 1;
 
 	public StackableItem(String name, String clazz, String subclass,
@@ -77,7 +81,11 @@ public class StackableItem extends Item implements Stackable {
 					}
 					StendhalRPWorld.get().modify(base);
 				} else {
-					notifyWorldAboutChanges();
+					try {
+						notifyWorldAboutChanges();
+					} catch (Exception e) {
+						logger.warn("isContained() bug (related to personal chests)");
+					}
 				}
 			} else {
 				/* If quantity=0 then it means that item has to be removed */
