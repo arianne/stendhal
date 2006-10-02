@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc;
 
+import marauroa.common.game.IRPZone;
+
 import games.stendhal.common.Pair;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
@@ -47,11 +49,15 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	
 	/**
 	 * Checks whether a dice has been thrown onto the playing area.
+	 * Also checks whether the dice are in the correct zone.
 	 * @param dice The dice
 	 * @return true iff the dice is lying on the playing area
 	 */
 	private boolean isDiceOnPlayingArea(Dice dice) {
-		return playingArea.contains(dice.getX(), dice.getY());
+		// check whether the dice are on the correct map
+		IRPZone npcZone = StendhalRPWorld.get().getRPZone(this.getID());
+		IRPZone diceZone = StendhalRPWorld.get().getRPZone(dice.getID());
+		return npcZone.equals(diceZone) && playingArea.contains(dice.getX(), dice.getY());
 	}
 
 	public void onThrown(Dice dice, Player player) {
