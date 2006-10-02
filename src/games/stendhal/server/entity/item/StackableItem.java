@@ -12,14 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import marauroa.common.game.*;
-
 import games.stendhal.server.StendhalRPWorld;
 
 import java.util.Map;
 
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
+
 public class StackableItem extends Item implements Stackable {
 	private int quantity = 1;
+	private static Logger logger = Logger.getLogger(StackableItem.class);
 
 	public StackableItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
@@ -77,7 +81,11 @@ public class StackableItem extends Item implements Stackable {
 					}
 					StendhalRPWorld.get().modify(base);
 				} else {
-					notifyWorldAboutChanges();
+					try {
+						notifyWorldAboutChanges();
+					} catch (Exception e) {
+						logger.warn("isContained() returned false on contained object (bank chest bug): " + e);
+					}
 				}
 			} else {
 				/* If quantity=0 then it means that item has to be removed */
