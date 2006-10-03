@@ -166,6 +166,12 @@
         <pathelement path="${log4j_jar}"/>
       </classpath>    
     </javac>
+	<!-- use precompiled Stater.class. Note -target 1.2 does not work. See Starter.java for details -->
+  	<copy todir="${build_client}/games/stendhal/client" overwrite="true">
+  		<fileset dir="data/precompiled" defaultexcludes="off">
+  			<include name="Starter.class" />
+  		</fileset>
+	</copy>
 
     <jar jarfile="${lib}/${client_jarname}">
       <fileset dir="${build_client}"/>
