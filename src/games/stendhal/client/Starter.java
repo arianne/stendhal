@@ -1,3 +1,19 @@
+//*****************************************************************************
+//*****************************************************************************
+
+//                               Important note
+
+// Compile this file with an older version of java and copy Starter.class to
+// data/precompiled. The distribution script will use that file. So we do not
+// have to care about old java versions while developing the rest of the game.
+
+// Please note that features of newer java version cannot be used.
+// Unfortunatelly the java.lang.reflect.Methods.getMethod()-method uses varargs
+// in java 1.5 so it is not possible to compile this file using -target on
+// java 1.5. You have to use an old jdk.
+
+//*****************************************************************************
+//*****************************************************************************
 package games.stendhal.client;
 
 import java.lang.reflect.Method;
