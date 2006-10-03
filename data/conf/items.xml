@@ -1553,6 +1553,21 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="deadly_poison">
+		<type class="drink" subclass="greater_poison"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="-100"/>
+			<regen value="-5"/>
+			<frequency value="15"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 <!-- Containers -->
 
 	<item name="flask">

@@ -584,6 +584,34 @@
 		</ai>
 	</creature>
 	<!-- Level 7 -->
+	 <creature name="zombie_rat">
+		<type class="undead" subclass="zombierat" tileid="95"/>
+		<attributes>
+			<atk value="50"/>
+			<def value="12"/>
+			<hp value="70"/>
+			<speed value="0.6"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="7"/>
+		<experience value="100"/>
+		<respawn value="800"/>
+		<drops>
+
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="SHREEAK!!"/>
+				<noise value="SHAAAAAAA!!"/>
+			</says>
+			<profile name="animal"/>
+			<profile name="ofensive"/>
+			<profile name="brave"/>
+			<profile name="poisonous" params="5,deadly_poison"/>
+		</ai>
+	</creature>
 	 <creature name="veteran_goblin">
 		<type class="goblin" subclass="veteran_goblin" tileid="48"/>
 		<attributes>
