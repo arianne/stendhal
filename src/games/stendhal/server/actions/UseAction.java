@@ -93,16 +93,7 @@ public class UseAction extends ActionListener {
 					object = slot.iterator().next();
 				}
 
-				// It is always an entity
-				Entity entity = (Entity) object;
-
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", entity.get("name"));
-
-				if (object instanceof UseListener) {
-					UseListener useListener = (UseListener) entity;
-					useListener.onUsed(player);
-					return;
-				}
+				invokeUseListener(player, object);
 			}
 		}
 		// When use is cast over something on the floor
@@ -115,25 +106,29 @@ public class UseAction extends ActionListener {
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
 
-				String name = object.get("type");
-				if (object.has("name")) {
-					name = object.get("name");
-				}
-				String infostring = "";
-				if (object.has("infostring")) {
-					infostring = object.get("infostring");
-				}
-
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", name, infostring);
-
-				if (object instanceof UseListener) {
-					UseListener item = (UseListener) object;
-					item.onUsed(player);
-					return;
-				}
+				invokeUseListener(player, object);
 			}
 		}
 
 		Log4J.finishMethod(logger, "use");
+	}
+	
+	private void invokeUseListener(Player player, RPObject object) {
+		String name = object.get("type");
+		if (object.has("name")) {
+			name = object.get("name");
+		}
+		String infostring = "";
+		if (object.has("infostring")) {
+			infostring = object.get("infostring");
+		}
+
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", name, infostring);
+
+		if (object instanceof UseListener) {
+			UseListener item = (UseListener) object;
+			item.onUsed(player);
+			return;
+		}
 	}
 }
