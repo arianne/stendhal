@@ -15,11 +15,12 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.Chest;
-import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.events.UseListener;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -37,13 +38,6 @@ public class UseAction extends ActionListener {
 	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "use");
-
-		// HACK: No item transfer in jail (we don't want a jailed player to
-		//       use items like home scroll.
-		if (StendhalRPWorld.get().getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
-			player.sendPrivateText("For security reasons items may not be used in jail.");
-			return;
-		}
 
 		// When use is casted over something in a slot
 		if (action.has("baseitem") && action.has("baseobject")
@@ -114,6 +108,16 @@ public class UseAction extends ActionListener {
 	}
 	
 	private void invokeUseListener(Player player, RPObject object) {
+
+
+		// HACK: No item transfer in jail (we don't want a jailed player to
+		//       use items like home scroll.
+		String zonename = StendhalRPWorld.get().getRPZone(player.getID()).getID().getID();
+		if ((object instanceof Item) && (zonename.endsWith("_jail"))) {
+			player.sendPrivateText("For security reasons items may not be used in jail.");
+			return;
+		}
+
 		String name = object.get("type");
 		if (object.has("name")) {
 			name = object.get("name");
