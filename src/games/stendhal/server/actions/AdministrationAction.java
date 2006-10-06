@@ -26,6 +26,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.EntityManager;
+import games.stendhal.common.MathHelper;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -294,7 +295,14 @@ public class AdministrationAction extends ActionListener {
 
             if (action.has("newlevel")) {
                 // verify newlevel is a number
-                int newlevel = Integer.parseInt(action.get("newlevel"));
+                int newlevel;
+                try {
+	                newlevel = Integer.parseInt(action.get("newlevel"));
+	            } catch (NumberFormatException e) {
+	            	player.sendPrivateText("The new adminlevel needs to be an Integer");
+	                Log4J.finishMethod(logger, "onAdminLevel");
+	                return;
+	            }
 
                 int mylevel = player.getAdminLevel();
                 if (mylevel < REQUIRED_ADMIN_LEVEL_FOR_SUPER) {
