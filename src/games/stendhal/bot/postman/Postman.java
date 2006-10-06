@@ -182,7 +182,7 @@ public class Postman implements Runnable {
 
         // Save to disk
         try {
-            messages.storeToXML(new FileOutputStream(System.getProperty("user.home") + "/.stendhal-postman.xml"), "This are the messages postman should deliver.");
+            messages.storeToXML(new FileOutputStream(System.getProperty("user.home") + "/.stendhal-postman.xml"), "These are the messages postman should deliver.");
         } catch (Exception e) {
             logger.error(e, e);
         }
@@ -208,7 +208,7 @@ public class Postman implements Runnable {
 
         // Save to disk
         try {
-            messages.storeToXML(new FileOutputStream(System.getProperty("user.home") + "/.stendhal-postman.xml"), "This are the messages postman should deliver.");
+            messages.storeToXML(new FileOutputStream(System.getProperty("user.home") + "/.stendhal-postman.xml"), "These are the messages postman should deliver.");
         } catch (Exception e) {
             logger.error(e, e);
         }
