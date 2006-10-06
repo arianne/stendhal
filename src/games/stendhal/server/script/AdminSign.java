@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.scripting.ScriptImpl;
+import games.stendhal.common.MathHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,13 +40,13 @@ public class AdminSign extends ScriptImpl {
 			if (args.get(1).equals("-")) {
 				x = player.getX();
 			} else {
-				x = Integer.parseInt(args.get(1));
+				x = MathHelper.parseInt(args.get(1));
 			}
 			int y = 0;
 			if (args.get(2).equals("-")) {
 				y = player.getY();
 			} else {
-				y = Integer.parseInt(args.get(2));
+				y = MathHelper.parseInt(args.get(2));
 			}
 
 			games.stendhal.server.entity.Sign sign = new games.stendhal.server.entity.Sign();
@@ -78,7 +79,13 @@ public class AdminSign extends ScriptImpl {
 	 * @param args sign number at index 1
 	 */
 	public void delete(Player player, List<String> args) {
-		int i = Integer.parseInt(args.get(1));
+		int i;
+		try {
+			i = Integer.parseInt(args.get(1));
+		} catch(NumberFormatException e) {
+			sandbox.privateText(player, "Please specify a number");
+			return;
+		}
 		Sign sign = storage.get(new Integer(i));
 		if (sign != null) {
 			storage.remove(new Integer(i));
