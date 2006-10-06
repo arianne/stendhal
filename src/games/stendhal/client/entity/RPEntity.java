@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
@@ -274,8 +275,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 					"+" + Integer.toString(amount), Color.green));
 			damageSpritesTimes.add(new Long(System.currentTimeMillis()));
 
-			client.addEventLine(getName() + " heals " + amount
-					+ " health points.", Color.green);
+			client.addEventLine(getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
 		}
 	}
 
@@ -297,8 +297,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 					Integer.toString(amount), Color.red));
 			damageSpritesTimes.add(new Long(System.currentTimeMillis()));
 
-			client.addEventLine(getName() + " is poisoned with " + amount
-					+ " health points.", Color.red);
+			client.addEventLine(getName() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".", Color.red);
 		}
 	}
 
@@ -319,8 +318,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 		/* see http://sourceforge.net/tracker/index.php?func=detail&aid=1554077&group_id=1111&atid=101111
 		if (getID().equals(client.getPlayer().getID())) {
-			client.addEventLine(getName() + " has died. " + getName()
-					+ "'s new level is " + getLevel());
+			client.addEventLine(getName() + " has died. " + Grammar.suffix_s(getName())
+					+ " new level is " + getLevel());
 		}*/
 	}
 
@@ -405,15 +404,14 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				damageSpritesTimes.add(new Long(System.currentTimeMillis()));
 
 				client.addEventLine(getName() + " earns "
-						+ (diff.getInt("xp") - base.getInt("xp"))
-						+ " experience points.", Color.blue);
+						+ Grammar.quantityplnoun(diff.getInt("xp") - base.getInt("xp"), "experience point") + ".", Color.blue);
 			}
 		}
 
 		if (diff.has("level") && base.has("level")) {
 			if (getID().equals(client.getPlayer().getID())
 					|| distance(client.getPlayer()) < 15 * 15) {
-				String text = getName() + " reachs Level " + getLevel();
+				String text = getName() + " reaches Level " + getLevel();
 
 				gameObjects.addText(this, GameScreen.get().createString(text,
 						Color.green), 0);
@@ -742,8 +740,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				& (!stendhal.FILTER_ATTACK_MESSAGES);
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
-			client.addEventLine(getName() + " loses with " + damage
-					+ " hitpoints due to an attack by " + attacker.getName(),
+		    client.addEventLine(getName() + " suffers " + Grammar.quantityplnoun(damage, "point") + " of damage from " + attacker.getName(),
 					Color.RED);
 		}
 	}

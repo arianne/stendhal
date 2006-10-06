@@ -105,7 +105,7 @@ public class Sign extends Entity {
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Look")) {
 			gameObjects.addText(this, textImage, textPersistTime);
-			StendhalClient.get().addEventLine("You read \"" + text + "\"", signColor);
+			StendhalClient.get().addEventLine("You read: \"" + text + "\"", signColor);
 		}
 	}
 
