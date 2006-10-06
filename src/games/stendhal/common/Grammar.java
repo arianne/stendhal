@@ -127,7 +127,7 @@ public class Grammar {
 		} else if (enoun.endsWith("_legs") || enoun.endsWith(" legs") || enoun.endsWith("_boots") || enoun.endsWith(" boots")) {
 			enoun = "pair of " + enoun;
 		} else {
-			enoun = enoun;
+		//	enoun = enoun;
 		}
 		return enoun;
 	}
@@ -145,7 +145,8 @@ public class Grammar {
 	}
 
 	/**
-	 * "[noun]'s" or "[noun]", depending on the last character
+	 * "[noun]'s" or "[noun]'", depending on the last character
+	 *
 	 * @param noun The noun to examine
 	 * @return Either "[noun]'s" or "[noun]'" as appropriate
 	 */
@@ -165,7 +166,6 @@ public class Grammar {
 	 */
 	public static String plural(String noun) {
 		String enoun = fullform(noun);
-		char c;
 		if (enoun.endsWith("sheep")) {
 			return enoun;
 		} else if (enoun.indexOf(" of ") > -1) {
