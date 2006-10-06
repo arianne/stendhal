@@ -3,6 +3,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
+import games.stendhal.common.MathHelper;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -219,6 +220,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 					try {
 						quantity = Integer.parseInt(command[1]);
 					} catch (NumberFormatException ex) {
+						client.addEventLine("Invalid quantity");
 						return;
 					}
 					RPObject player = client.getPlayer();
@@ -457,7 +459,11 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 					}
 
 					if (command[1].equals("volume")) {
-						int vol = Integer.parseInt(command[2]);
+						int vol = MathHelper.parseInt_default(command[2], -1);
+						if ((vol < 0) || (vol > 100)) {
+							client.addEventLine("volume must be an integer between 0 and 100");
+							return;
+						}
 						WtWindowManager.getInstance().setProperty("sound.volume", Integer.toString(vol));
 						SoundSystem.get().setVolume(vol);
 					}
