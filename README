@@ -54,7 +54,13 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 
-0.54 Oct xx, 2006
+0.54.1 Okt 07, 2006  (Server Only Bugfix Release)
+- fixed a problem with zone file int_ados_magician_house which causes the server not to start
+- fixed /drop on items dragged directly from bank to bag
+- fixed dice gambling to only accept dices thrown on the table inside Semos Tavern
+- fixed consolation price of dice gambling to be a bottle of beer
+
+0.54 Oct 01, 2006
 
 - added dice gambling in Semos Tavern with golden trousers as the jackpot
 - fixed lag because of broken key handling on X11 (Linux)
