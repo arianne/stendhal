@@ -89,6 +89,9 @@ public class Grammar {
 	 * @return Either "a [noun]" or "an [noun]" as appropriate
 	 */
 	public static String a_noun(String noun) {
+		if (noun == null) {
+			return null;
+		}
 		String enoun = fullform(noun);
 		char initial = Character.toLowerCase(enoun.charAt(0));
 		char second = Character.toLowerCase(enoun.charAt(1));
