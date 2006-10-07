@@ -68,22 +68,22 @@ public class CreateAccountDialog extends JDialog {
      * in future, before revising this method.
      */
     private void initializeComponent() {
-        serverLabel = new JLabel("Choose your Stendhal Server");
+        serverLabel = new JLabel("Stendhal server for this account");
         serverField = new JComboBox();
         serverField.setEditable(true);
-        serverPortLabel = new JLabel("Choose your Server-port");
+        serverPortLabel = new JLabel("Server port");
         serverPortField = new JTextField("32160");
 
-        usernameLabel = new JLabel("Type your username");
+        usernameLabel = new JLabel("Choose a username");
         usernameField = new JTextField();
 
-        passwordLabel = new JLabel("Type your password");
+        passwordLabel = new JLabel("Choose a password");
         passwordField = new JPasswordField();
 
-        passwordretypeLabel = new JLabel("Retype your password");
+        passwordretypeLabel = new JLabel("Retype password");
         passwordretypeField = new JPasswordField();
 
-        emailLabel = new JLabel("Type your email");
+        emailLabel = new JLabel("E-mail address");
         emailField = new JTextField();
 
         createAccountButton = new JButton();
@@ -103,7 +103,7 @@ public class CreateAccountDialog extends JDialog {
         //
         // createAccountButton
         //
-        createAccountButton.setText("Create account");
+        createAccountButton.setText("Create Account");
         createAccountButton.setMnemonic(KeyEvent.VK_C);
         createAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -183,7 +183,7 @@ public class CreateAccountDialog extends JDialog {
         //
         // CreateAccountDialog
         //
-        this.setTitle("Create account");
+        this.setTitle("Create New Account");
         this.setResizable(false);
         this.setSize(new Dimension(410, 275));
         this.setLocationRelativeTo(owner);
@@ -204,7 +204,7 @@ public class CreateAccountDialog extends JDialog {
         
         if(!password.equals(passwordretype))
           {
-          JOptionPane.showMessageDialog(owner, "Password mismatch. Please retype", "Passwords mismatch", JOptionPane.WARNING_MESSAGE);
+          JOptionPane.showMessageDialog(owner, "The passwords do not match. Please retype both.", "Password Mismatch", JOptionPane.WARNING_MESSAGE);
           return;
           }
         
@@ -218,7 +218,7 @@ public class CreateAccountDialog extends JDialog {
         try {
             port = Integer.parseInt(serverPortField.getText());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(owner, "You typed in a invalid port, try again", "Invalid port", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(owner, "That is not a valid port number. Please try again.", "Invalid Port", JOptionPane.WARNING_MESSAGE);
             return;
         }
         finalPort = port;
@@ -236,7 +236,7 @@ public class CreateAccountDialog extends JDialog {
                 } catch (Exception ex) {
                     progressBar.cancel();//if something goes horribly just cancel the progressbar
                     setVisible(true);
-                    JOptionPane.showMessageDialog(owner, "Stendhal can't find a Internet connection for getting online");
+                    JOptionPane.showMessageDialog(owner, "Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
                     
                     ex.printStackTrace();
                     
@@ -247,11 +247,11 @@ public class CreateAccountDialog extends JDialog {
                     if (client.createAccount(username, password, email) == false) {
                         String result = client.getEvent();
                         if (result == null) {
-                            result = "Server is not available right now. Check it is online";
+                            result = "The server is not responding. Please check that it is online, and that you supplied the correct details.";
                         }
                         progressBar.cancel();
                         setVisible(true);
-                        JOptionPane.showMessageDialog(owner, result, "Creata account status", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(owner, result, "Error Creating Account", JOptionPane.ERROR_MESSAGE);
 
                         return;
                     } else {
@@ -267,18 +267,18 @@ public class CreateAccountDialog extends JDialog {
                 } catch (ariannexpTimeoutException ex) {
                     progressBar.cancel();
                     setVisible(true);
-                    JOptionPane.showMessageDialog(owner, "Can't connect to server. Server down?", "Create account status", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(owner, "Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.", "Error Creating Account", JOptionPane.ERROR_MESSAGE);
                 }
 
                 try {
                     if (client.login(username, password) == false) {
                         String result = client.getEvent();
                         if (result == null) {
-                            result = "Server is not available right now. Check it is online";
+                            result = "Unable to connect to server. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.";
                         }
                         progressBar.cancel();
                         setVisible(true);
-                        JOptionPane.showMessageDialog(owner, result, "Login status", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(owner, result, "Error Logging In", JOptionPane.ERROR_MESSAGE);
                     } else {
                         progressBar.step();
                         progressBar.finish();
@@ -293,7 +293,7 @@ public class CreateAccountDialog extends JDialog {
                 } catch (ariannexpTimeoutException ex) {
                     progressBar.cancel();
                     setVisible(true);
-                    JOptionPane.showMessageDialog(owner, "Can't connect to server. Server down?", "Login status", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(owner, "Unable to connect to the server. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.", "Error Logging In", JOptionPane.ERROR_MESSAGE);
                 }
                 
             }

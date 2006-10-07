@@ -99,12 +99,12 @@ public class LoginDialog extends JDialog implements Runnable {
 	}
 
 	private void initializeComponent() {
-		serverLabel = new JLabel("Choose your Stendhal server");
-		serverPortLabel = new JLabel("Enter the server port");
-		protocolLabel = new JLabel("Choose the protocol");
+		serverLabel = new JLabel("Stendhal server");
+		serverPortLabel = new JLabel("Server port");
+		protocolLabel = new JLabel("Network protocol");
 		usernameLabel = new JLabel("Type your username");
 		passwordLabel = new JLabel("Type your password");
-		saveLoginBox = new JCheckBox("Remember login info");
+		saveLoginBox = new JCheckBox("Remember login info (on this machine)");
 		protocolComboBox = new JComboBox( new String[] {TCPIP_TEXT, UDP_TEXT} );
 		usernameField = new JTextField();
 		passwordField = new JPasswordField();
@@ -151,11 +151,11 @@ public class LoginDialog extends JDialog implements Runnable {
 		}
 		if (tokens >= 4) {
 			//
-			// serverPortField
 			//
 			serverPortField.setText(loginInfo.nextToken());
 		}
 		if (tokens >= 5) {
+			// serverPortField
 			//
 			// protocolFiled
 			//
@@ -266,7 +266,7 @@ public class LoginDialog extends JDialog implements Runnable {
 
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(this,
-					"You typed in a invalid port, try again", "Invalid port",
+					"That is not a valid port number. Please try again.", "Invalid port",
 					JOptionPane.WARNING_MESSAGE);
 			return;
 		}
@@ -302,9 +302,8 @@ public class LoginDialog extends JDialog implements Runnable {
 			progressBar.cancel();// if something goes horribly just
 									// cancel the progressbar
 			setEnabled(true);
-			JOptionPane
-					.showMessageDialog(this,
-							"Stendhal can't connect to server. Did you misspell the server name?");
+			JOptionPane.showMessageDialog(this,
+				"Unable to connect to server. Did you misspell the server name?");
 
 			ex.printStackTrace();
 
@@ -315,12 +314,14 @@ public class LoginDialog extends JDialog implements Runnable {
 			if (client.login(username, password) == false) {
 				String result = client.getEvent();
 				if (result == null) {
-					result = "Server is not available right now. Check it is online";
+					result = "Server is not available right now. The server " +
+							"may be down or, if you are using a custom server, " +
+							"you may have entered its name and port number incorrectly.";
 				}
 				progressBar.cancel();
 				setEnabled(true);
 				JOptionPane.showMessageDialog(this, result,
-						"Login status", JOptionPane.ERROR_MESSAGE);
+						"Error Logging In", JOptionPane.ERROR_MESSAGE);
 			} else {
 				progressBar.step();
 				progressBar.finish();
@@ -333,13 +334,16 @@ public class LoginDialog extends JDialog implements Runnable {
 			progressBar.cancel();
 			setEnabled(true);
 			JOptionPane.showMessageDialog(this,
-					"Can't connect to server. Server down?",
-					"Login status", JOptionPane.ERROR_MESSAGE);
+					"Server does not respond. The server may be down or, " +
+					"if you are using a custom server, you may have entered " +
+					"its name and port number incorrectly.",
+					"Error Logging In", JOptionPane.ERROR_MESSAGE);
 		} catch (Exception ex) {
 			progressBar.cancel();
 			setEnabled(true);
 			JOptionPane.showMessageDialog(this,
-					"Connection error. Online?", "Login status",
+					"Stendhal cannot connect. Please check that your connection " +
+					"is set up and active, then try again.", "Error Logging In",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -364,12 +368,11 @@ public class LoginDialog extends JDialog implements Runnable {
 						+ port + "\n" + Boolean.valueOf(useTCP).toString()));
 				ps.close();
 			} catch (IOException ioex) {
-				JOptionPane
-						.showMessageDialog(
-								this,
-								"Something went wrong when saving login information, nothing saved",
-								"Login information save problem",
-								JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(
+					this,
+					"An error occurred while saving your login information",
+					"Error Saving Login Information",
+					JOptionPane.WARNING_MESSAGE);
 			}
 	}
 
@@ -388,12 +391,11 @@ public class LoginDialog extends JDialog implements Runnable {
 		} catch (FileNotFoundException fnfe) {
 			loginLine = "no_file";
 		} catch (IOException ioex) {
-			JOptionPane
-					.showMessageDialog(
-							this,
-							"Something went wrong when loading login information, nothing loaded",
-							"Login information load problem",
-							JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(
+				this,
+				"An error occurred while loading your login information",
+				"Error Loading Login Information",
+				JOptionPane.WARNING_MESSAGE);
 		}
 
 		return loginLine;
