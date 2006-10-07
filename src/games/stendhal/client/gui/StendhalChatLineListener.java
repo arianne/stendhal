@@ -395,40 +395,40 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 			} else if (text.equals("/help")) // Help command
 			{
 				String[] lines = {
-						"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
-						"This brief help show you the most used commands:",
-						"- /tell <player> <message> \tWrites a private message to player",
-						"- /msg <player> <message> \tWrites a private message to player",
-						"- // <message> \t\tWrites a private message to last player we talked with",
-						"- /support <message> \tAsk for support to admins",
-						"- /who \t\tShow online players",
-						"- /drop <quantity> <item>\tDrops a amount of items from player.",
-						"- /add <player> \t\tAdd player to the buddy list",
-						"- /remove <player> \tRemoves player from buddy list",
-						"- /where <player> \t\tPrints the location of the player",
-						"- /quit \t\tLeaves the game",
-						"- /sound volume <value> \tsets sound system loudness (0..100)",
-						"- /sound mute <value> \tsets sound system mute (on/off)" };
+						"For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
+						"Here are the most-used commands:",
+						"- /tell <player> <message> \tSends a private message to <player>",
+						"- /msg <player> <message> \tSends a private message to <player>",
+						"- // <message> \t\tSends a private message to the last player you sent a message to",
+						"- /support <message> \tAsk an administrator for help.",
+						"- /who \t\tList all players currently online",
+						"- /drop <quantity> <item>\tDrop a certain number of an item",
+						"- /add <player> \t\tAdd <player> to your buddy list",
+						"- /remove <player> \tRemove <player> from your buddy list",
+						"- /where <player> \t\tShow the current location of <player>",
+						"- /quit \t\tLeave the game. You will continue where you left off upon your return",
+						"- /sound volume <value> \tSet volume to a value from 0 to 100",
+						"- /sound mute <on|off> \tMute or unmute the sounds" };
 				for (String line : lines) {
 					StendhalClient.get().addEventLine(line, Color.gray);
 				}
 			} else if (text.equals("/gmhelp")) // Help command
 			{
 				String[] lines = {
-						"Detailed manual refer at http://arianne.sourceforge.net/wiki/index.php?title=Stendhal:Administration",
-						"This brief help show you the most used gm commands:",
-						"- /adminlevel <player> [<newlevel>] \t\t displays or adjusts adminlevel",
-						"- /tellall <message> \t\tWrites a private message to all players",
-						"- /jail <player> <minutes> \t\tImprisons a player for the specified number of minutes",
-						"- /script <scriptname> \t\tload or reload a server side groovy script",
-						"- /teleport <player> <zone> <x> <y> \tTeleport the player ",
-						"- /teleportto <player> \t\tTeleport us to the player ",
-						"- /alter <player> <attrib> <mode> <value> \tChange by SETting, ADDing or SUBtracting the stat of player",
-						"- /summon <creature|item> <x> <y> \tSummon an item or creature at x,y",
-						"- /summonat <player> <slot> <item> <amount> Summon an item at the slot of the given player",
-						"- /invisible \t\t\tMakes this player invisible for creatures",
-						"- /inspect <player> \t\t\tShows detailed info about the player",
-						"- /destroy <entity> \t\t\tDestroy completly an entity." };
+						"For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php?title=Stendhal:Administration",
+						"Here are the most-used GM commands:",
+						"- /adminlevel <player> [<newlevel>] \t\tDisplay or set the adminlevel of the specified <player>",
+						"- /tellall <message> \t\tSend a private message to all logged-in players",
+						"- /jail <player> <minutes> \t\tImprisons the player for a given length of time",
+						"- /script <scriptname> \t\tLoad (or reload) a 'groovy' script on the server",
+						"- /teleport <player> <zone> <x> <y> \tTeleport the specified <player> to the given location",
+						"- /teleportto <player> \t\tTeleport yourself near the specified player",
+						"- /alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, or SET. See /gmhelp_alter for details",
+						"- /summon <creature|item> <x> <y> \tSummon the specified item or creature at co-ordinates <x>, <y> in the current zone",
+						"- /summonat <player> <slot> <item> <amount> Summon the specified item into the specified slot of <player>; <amount> defaults to 1 if not specified",
+						"- /invisible \t\t\tToggles whether or not you are invisible to creatures",
+						"- /inspect <player> \t\t\tShow complete details of <player>",
+						"- /destroy <entity> \t\t\tDestroy an entity completely" };
 				for (String line : lines) {
 					StendhalClient.get().addEventLine(line, Color.gray);
 				}
@@ -437,11 +437,11 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 			else if (text.equals("/gmhelp_alter")) // Help command
 			{
 				String[] lines = {
-						"/alter <player> <attrib> <mode> <value> \tChange by SETting, ADDing or SUBtracting the stat of player",
-						"Some of the values that can be changed is: atk, atk_xp, def, def_xp, xp, outfit",
-						"When modifying the outfit SET a 8 digit number, where the first 2 is the HAIR, second 2 is HEAD, third 2 is OUTFIT and last 2 is BODY",
-						"Example: /alter player outfit set 12999901",
-						"This example will make the player 'player' look like danter." };
+						"/alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, or SET",
+						"Examples of <attrib>: atk, def, base_hp, hp, atk_xp, def_xp, xp, outfit",
+						"When modifying 'outfit', you should use SET mode and provide an 8-digit number; the first 2 digits are the 'hair' setting, then 'head', 'outfit', then 'body'",
+						"For example: #/alter #testplayer #outfit #set #12109901",
+						"This will make <testplayer> look like danter" };
 				for (String line : lines) {
 					StendhalClient.get().addEventLine(line, Color.gray);
 				}

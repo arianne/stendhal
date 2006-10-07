@@ -172,14 +172,13 @@ public class StendhalFirstScreen extends JFrame {
 
 			if (Version.compare(stendhal.VERSION, version) < -1) {
 				// custom title, warning icon
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"Your client is out of date. Latest version is "
-										+ version + ". But you are using " + stendhal.VERSION
-										+ ".\nDownload from http://arianne.sourceforge.net",
-								"Client out of date",
-								JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(
+					null,
+					"Your Stendhal client is out of date; the latest version is "
+					+ version + ", but you are using " + stendhal.VERSION
+					+ ".\nDownload from http://arianne.sourceforge.net",
+					"Client out of date",
+					JOptionPane.WARNING_MESSAGE);
 			}
 		} catch (Exception ex) {
 		}
