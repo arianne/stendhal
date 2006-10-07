@@ -75,7 +75,7 @@ public class SpouseExtension extends StendhalServerExtension {
     private void onMarry(Player player, RPAction action) {
         Log4J.startMethod(logger, "onMarry");
 
-        String usage = "usage: /marry <player1> <player2>";
+	String usage = "Usage: #/marry #<player1> #<player2>";
         String text = "";
 
         Player player1 = null;
@@ -94,7 +94,7 @@ public class SpouseExtension extends StendhalServerExtension {
             player1 = StendhalRPRuleProcessor.get().getPlayer(name1);
             if(player1 == null) {
                 canMarry = false;
-                text += "Player " + name1 + " not found. ";
+		text += "Player \"" + name1 + "\" not found. ";
                 canMarry = false;
             }
         }
@@ -108,7 +108,7 @@ public class SpouseExtension extends StendhalServerExtension {
             player2 = StendhalRPRuleProcessor.get().getPlayer(name2);
             if(player2 == null) {
                 canMarry = false;
-                text += "Player " + name2 + " not found. ";
+		text += "Player \"" + name2 + "\" not found. ";
                 canMarry = false;
             }
         }
@@ -119,7 +119,7 @@ public class SpouseExtension extends StendhalServerExtension {
 
         if (canMarry) {
             if(name1.equals(name2)) {
-                text += "Sorry, you can only marry 2 different players ;)";
+		text += "Players cannot marry themselves!";
                 canMarry = false;
             }            
         }
@@ -139,10 +139,10 @@ public class SpouseExtension extends StendhalServerExtension {
         
         if (canMarry) {
             player1.setQuest(SPOUSE,name2);
-            player1.sendPrivateText("Congratulations! You are now married to " + name2 + ". You can use /spouse if you want to be together.");
+	    player1.sendPrivateText("Congratulations! You are now married to \"" + name2 + "\". You can use #/spouse if you want to be together.");
             player2.setQuest(SPOUSE,name1);
-            player2.sendPrivateText("Congratulations! You are now married to " + name1 + ". You can use /spouse if you want to be together.");
-            text = "You have successfully married " + name1 + " " + name2 + ".";
+	    player2.sendPrivateText("Congratulations! You are now married to \"" + name1 + "\". You can use #/spouse if you want to be together.");
+	    text = "You have successfully married \"" + name1 + "\" and \"" + name2 + "\".";
             StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "marry", name1 + " + " + name2);
         }
         
@@ -164,7 +164,7 @@ public class SpouseExtension extends StendhalServerExtension {
             teleported = StendhalRPRuleProcessor.get().getPlayer(name);
 
             if (teleported == null) {
-                String text = "Your spouse " + name + " is not online.";
+		String text = "Your spouse (\"" + name + "\") is not online.";
                 player.sendPrivateText(text);
                 logger.debug(text);
                 return;
