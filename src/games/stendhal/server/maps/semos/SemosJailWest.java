@@ -79,7 +79,7 @@ public class SemosJailWest {
 				add(ConversationStates.ATTENDING, SpeakerNPC.JOB_MESSAGES, new InJailCondition(), ConversationStates.ATTENDING, 
 								"I am the jail keeper. You have been confined here because of your bad behaviour.", null);
 				add(ConversationStates.ATTENDING, SpeakerNPC.HELP_MESSAGES, new InJailCondition(), ConversationStates.ATTENDING, 
-								"Wait for an admin to come here and decide about you. There is meanwhile no exit from your cell.", null);
+								"Please wait for an administrator to come here and decide what to do with you. In the meantime, there is no escape for you.", null);
 				add(ConversationStates.ATTENDING, SpeakerNPC.HELP_MESSAGES, new NotInJailCondition(), ConversationStates.ATTENDING, 
 								"Be careful with the criminals in the cells.", null);
 				addGoodbye();
@@ -139,7 +139,7 @@ public class SemosJailWest {
 			protected void createDialog() {
 				addGreeting("Greetings! How may I #help you?");
 				addJob("I am the jail keeper. You have been confined here because of your bad behaviour.");
-				addHelp("Wait for an admin to come here and decide about you. There is meanwhile no exit from here.");
+				addHelp("Please wait for an administrator to come here and decide what to do with you. In the meantime, there is no escape for you.");
 				addGoodbye();
 			}
 		};
