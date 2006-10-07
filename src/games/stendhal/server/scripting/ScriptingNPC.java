@@ -41,8 +41,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		if ("reply".equalsIgnoreCase(method)) {
 			addReply(triggers, reply);
 		} else {
-			throw new NoSuchMethodException("Behaviour.add" + method
-					+ " isn't supported.");
+			throw new NoSuchMethodException("Behaviour.add(" + method + ") not supported.");
 		}
 	}
 
@@ -57,8 +56,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		} else if ("sell".equalsIgnoreCase(method)) {
 			addSeller(new SellerBehaviour(items));
 		} else {
-			throw new NoSuchMethodException("Behaviour.add" + method
-					+ " isn't supported.");
+			throw new NoSuchMethodException("Behaviour.add(" + method + ") not supported.");
 		}
 	}
 
@@ -66,8 +64,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		if ("heal".equalsIgnoreCase(method)) {
 			addHealer(cost);
 		} else {
-			throw new NoSuchMethodException("Behaviour.add" + method
-					+ " isn't supported.");
+			throw new NoSuchMethodException("Behaviour.add(" + method + ") not supported.");
 		}
 	}
 

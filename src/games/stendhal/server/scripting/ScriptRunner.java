@@ -122,7 +122,7 @@ public class ScriptRunner extends StendhalServerExtension {
                 "script", true)) {
             return;
         }
-        String text = "usage: /script [-execute|-load>|-unload] <filename> [<args>]\n  mode is either load (default) or remove";
+        String text = "usage: #/script #[-execute|-load>|-unload] #<filename> #[<args>]\n  mode is either load (default) or remove";
         if (action.has("target")) {
 
         	// concat target and args to get the original string back
@@ -166,16 +166,15 @@ public class ScriptRunner extends StendhalServerExtension {
             if (script.endsWith(".groovy") || script.endsWith(".class")) {
 	            boolean res = perform(script, mode, player, args);
 	            if (res) {
-		                text = "Script " + script + " was successfully executed (" + mode + ").";
+		                text = "Script \"" + script + "\" was successfully " + mode + (mode=="execute" ? "d" : "ed") + ".";
 	            } else {
 	                String msg = getMessage(script);
 	                if (msg != null) {
 	                    text = msg;
 	                } else {
-	                    text = "Script "
+	                    text = "Script \""
 	                        + script
-	                        + " not found or unexpected error while performing "
-	                        + mode;
+	                        + "\" was either not found, or encountered an error during " + (mode=="execute" ? "execution" : mode + "ing") + ".";
 	                }
 	            }
             } else {
