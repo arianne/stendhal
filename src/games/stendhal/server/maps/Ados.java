@@ -1,5 +1,6 @@
 package games.stendhal.server.maps;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Direction;
 import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
@@ -58,7 +59,7 @@ public class Ados implements IContent {
 				long currentTime = System.currentTimeMillis();
 				if (lastShoutTime + 5*60*1000 < currentTime) {
 					lastShoutTime = currentTime;
-					cryForHelp = "Katinka shouts: Help! A " + killer.get("name") + " is eating our " + this.get("name") + "s.";
+					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.get("name")) + " is eating our " + Grammar.plural(this.get("name")) + ".";
 					// HACK: we need to wait a turn because the message is lost otherwise
 					TurnNotifier.get().notifyInTurns(0, this, null);
 				}
@@ -154,7 +155,7 @@ public class Ados implements IContent {
 
 			@Override
 			protected void createDialog() {
-				addHelp("Can you keep a secret? Dr. Feelgood, our veterinary, can sell you medicine that he doesn't need for the animals.");
+				addHelp("Can you keep a secret? Dr. Feelgood, our veterinarian, can sell you medicine that he doesn't need for the animals.");
 				addJob("I'm the keeper of this animal refuge.");
 				addGoodbye("Goodbye!");
 			}
@@ -189,9 +190,9 @@ public class Ados implements IContent {
 				//				   "...");
 				
 				addReply("heal",
-						"Sorry, I'm licensed to heal animals only, not humans. But... ssshh! I want to make you an #offer.");
+						"Sorry, I'm only licensed to heal animals, not humans. (But... ssshh! I can make you an #offer.)");
 
-				addJob("I'm the veterinary.");
+				addJob("I'm the veterinarian.");
 				addSeller(new SellerBehaviour(shops.get("healing")) {
 					@Override
 					public int getUnitPrice(String item) {
@@ -338,8 +339,8 @@ public class Ados implements IContent {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I am a wizard and i sell magic scrolls. Just ask me about my #offer");
-				addHelp("You can use magic with the help of #magic #scrolls.");
+				addJob("I am a wizard who sells #magic #scrolls. Just ask me for an #offer!");
+				addHelp("You can take powerful magic with you on your adventures with the aid of my #magic #scrolls!");
 
 				addSeller(new SellerBehaviour(shops.get("scrolls")));
 				
@@ -347,31 +348,31 @@ public class Ados implements IContent {
 					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"I do not have any task for you right now. If you need anything from me just say it.",
+					"I don't have any tasks for you right now. If you need anything from me, just ask.",
 					null);
 				add(ConversationStates.ATTENDING,
 					Arrays.asList("magic", "scroll", "scrolls"),
 					null,
 					ConversationStates.ATTENDING,
-					"I #offer scrolls that help you to travel faster: #home scrolls and #empty scrolls that can be #marked. For the advanced magicians i have #summon scrolls.",
+					"I #offer scrolls that help you to travel faster: #home scrolls and the #markable #empty scrolls. For the more advanced customer, I also have #summon scrolls!",
 					null);
 				add(ConversationStates.ATTENDING,
-					"home",
+					Arrays.asList("home", "home_scroll"),
 					null,
 					ConversationStates.ATTENDING,
 					"Home scrolls take you home immediately, a good way to escape danger!",
 					null);
 				add(ConversationStates.ATTENDING,
-					Arrays.asList("empty", "marked"),
+					Arrays.asList("empty", "marked", "empty_scroll", "markable", "marked_scroll"),
 					null,
 					ConversationStates.ATTENDING,
-					"Empty scrolls are used to mark a position. Marked scrolls can take you back to that position. They are a little expensive, though.",
+					"Empty scrolls are used to mark a position. Those marked scrolls can take you back to that position. They are a little expensive, though.",
 					null);
 				add(ConversationStates.ATTENDING,
 					"summon",
 					null,
 					ConversationStates.ATTENDING,
-					"You can summon animals with summon_scrolls. Advanced magicians can summon stronger monsters but i think it is too dangerous to sell such scrolls.",
+					"A summon scroll empowers you to summon animals to you; advanced magicians will be able to summon stronger monsters than others. Of course, these scrolls can be dangerous if misused.",
 					null);
 			
 				addGoodbye();

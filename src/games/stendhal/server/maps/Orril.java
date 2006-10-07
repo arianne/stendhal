@@ -220,9 +220,9 @@ public class Orril implements IContent {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("*Do you really want to know?* I am a witch");
-				addHelp(//"You may want to buy some potions or do some #task for me.");
-						"I can #heal you.");
+				addJob("I'm a witch, since you ask.");
+				/* addHelp("You may want to buy some potions or do some #task for me."); */
+				addHelp("I can #heal you");
 				addHealer(200);
 				addGoodbye();
 			}
@@ -252,15 +252,15 @@ public class Orril implements IContent {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I'm responsible for the lorry rails in this mine. But, ironically, we ran out of cast iron. Maybe you can #offer me some?");
-				addHelp("Do you want a good advise? Don't go further southwards! An evil dragon is living there!");
+				addJob("I'm the supervisor responsible for maintaining the mine-cart rails in this mine. But, ironically, we ran out of cast iron to fix them with! Maybe you can #offer me some?");
+				addHelp("If you want some good advice, you'll not go further south; there's an evil dragon living down there!");
 				addBuyer(new BuyerBehaviour(shops.get("buyiron")), true);
 				addGoodbye("Farewell - and be careful: the other dwarves don't like strangers running around here!");
 			}
 		};
 		npcs.add(loretta);
 
-		loretta.setDescription("You see Loretta, an elder dwarf lady. She is working on the lorry rails.");
+		loretta.setDescription("You see Loretta, an elderly female dwarf. She is working on the mine-cart rails.");
 		zone.assignRPObjectID(loretta);
 		loretta.put("class", "greendwarfnpc");
 		loretta.set(49, 67);
@@ -290,8 +290,8 @@ public class Orril implements IContent {
 			@Override
 			protected void createDialog() {
 				//addGreeting();
-				addJob("Work? I'm just a little girl! I'm a scout.");
-				addHelp("You can find lots of useful stuff in the woods, for example wood and mushrooms. But beware, some are poisonous!");
+				addJob("Work? I'm just a little girl! I'm a scout, you know.");
+				addHelp("You can find lots of useful stuff in the forest; wood and mushrooms, for example. But beware, some mushrooms are poisonous!");
 				addGoodbye();
 				// remaining behaviour is defined in maps.quests.Campfire.				
 			}
