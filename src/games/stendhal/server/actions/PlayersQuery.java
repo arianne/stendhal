@@ -71,12 +71,12 @@ public class PlayersQuery extends ActionListener {
 				player.notifyWorldAboutChanges();
 			} else if (whoName.equals("sheep") && player.hasSheep()) {
 				Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
-				player.sendPrivateText("sheep is in " + sheep.get("zoneid")
-						+ " at (" + sheep.getX() + "," + sheep.getY() + ")");
+				player.sendPrivateText("Your sheep is in " + sheep.get("zoneid")
+						       + " at (" + sheep.getX() + "," + sheep.getY() + ")");
 				player.notifyWorldAboutChanges();
 			} else {
-				player.sendPrivateText(action.get("target")
-					+ " is currently not logged in.");
+				player.sendPrivateText("No player named \"" + action.get("target")
+					+ "\" is currently logged in.");
 			}
 		}
 

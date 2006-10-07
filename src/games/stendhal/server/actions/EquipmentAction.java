@@ -104,7 +104,7 @@ public class EquipmentAction extends ActionListener {
 		// HACK: No item transfer in jail (we don't want a jailed player to
 		//       create a new free character and give it all items.
 		if (StendhalRPWorld.get().getRPZone(player.getID()).getID().getID().endsWith("_jail")) {
-			player.sendPrivateText("For security reasons items may not be moved around in jail.");
+			player.sendPrivateText("For security reasons, items may not be moved around in jail.");
 			return;
 		}
 

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.StendhalRPAction;
@@ -98,7 +99,7 @@ public class AdministrationAction extends ActionListener {
 		if (required == null) {
 			logger.error("Unknown command " + command);
 			if (verbose) {
-				player.sendPrivateText("Sorry, command " + command + " is unknown.");
+				player.sendPrivateText("Sorry, command \"" + command + "\" is unknown.");
 			}
 			return false;
 		}
@@ -114,11 +115,11 @@ public class AdministrationAction extends ActionListener {
 
 				// is this player an admin at all?
 				if (adminlevel == 0) {
-					player.sendPrivateText("Sorry, you need to be an admin to run " + command + ".");
+					player.sendPrivateText("Sorry, you need to be an admin to run \"" + command + "\".");
 				} else {
-					player.sendPrivateText("Sorry, your admin level is "
-						+ adminlevel + " but level " + required 
-						+ " is required to run " + command + ".");
+					player.sendPrivateText("Your admin level is only "
+						+ adminlevel + ", but a level of " + required 
+						+ " is required to run \"" + command + "\".");
 				}
 			}
 			return false;
@@ -167,7 +168,7 @@ public class AdministrationAction extends ActionListener {
 		Log4J.startMethod(logger, "supportanswer");
 
 		if (action.has("target") && action.has("text")) {
-			String message = player.getName() + " answers " + action.get("target") + "'s support question: " + action.get("text");
+			String message = player.getName() + " answers " + Grammar.suffix_s(action.get("target")) + " support question: " + action.get("text");
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "supportanswer", action.get("target"), action.get("text"));
 
@@ -216,7 +217,7 @@ public class AdministrationAction extends ActionListener {
 			Player teleported = StendhalRPRuleProcessor.get().getPlayer(name);
 
 			if (teleported == null) {
-				String text = "Player " + name + " not found";
+				String text = "Player \"" + name + "\" not found";
 				player.sendPrivateText(text);
 				logger.debug(text);
 				return;
@@ -225,7 +226,7 @@ public class AdministrationAction extends ActionListener {
             // validate the zone-name.
 			IRPZone.ID zoneid = new IRPZone.ID(action.get("zone"));
 			if (!StendhalRPWorld.get().hasRPZone(zoneid)) {
-				String text = "Zone " + zoneid + " not found.";
+				String text = "Zone \"" + zoneid + "\" not found.";
                 logger.debug(text);
                 
                 Set<String> zoneNames = new TreeSet<String>();
@@ -257,7 +258,7 @@ public class AdministrationAction extends ActionListener {
 			Player teleported = StendhalRPRuleProcessor.get().getPlayer(name);
 			
 			if (teleported == null) {
-				String text = "Player " + name + " not found";
+				String text = "Player \"" + name + "\" not found";
 				player.sendPrivateText(text);
 				logger.debug(text);
 				return;
@@ -284,8 +285,8 @@ public class AdministrationAction extends ActionListener {
             Player target = StendhalRPRuleProcessor.get().getPlayer(name);
     
             if (target == null) {
-                logger.debug("Player " + name + " not found");
-                player.sendPrivateText("Player " + name + " not found");
+                logger.debug("Player \"" + name + "\" not found");
+                player.sendPrivateText("Player \"" + name + "\" not found");
                 return;
             }
     
@@ -306,12 +307,12 @@ public class AdministrationAction extends ActionListener {
 
                 int mylevel = player.getAdminLevel();
                 if (mylevel < REQUIRED_ADMIN_LEVEL_FOR_SUPER) {
-                	response = "Sorry, but you need an adminlevel of " + REQUIRED_ADMIN_LEVEL_FOR_SUPER + " to change adminlevel";
+                	response = "Sorry, but you need an adminlevel of " + REQUIRED_ADMIN_LEVEL_FOR_SUPER + " to change adminlevel.";
                 
                 /*if (mylevel < oldlevel) {
-                    response = "Sorry, but the adminlevel of " + target.getName() + " is " + oldlevel + " and your level is only " + mylevel;
+                    response = "Sorry, but the adminlevel of " + target.getName() + " is " + oldlevel + ", and your level is only " + mylevel + ".";
                 } else if (mylevel < newlevel) {
-                    response = "Sorry, you cannot set an adminlevel of " + newlevel + " because your level is only " + mylevel;
+                    response = "Sorry, you cannot set an adminlevel of " + newlevel + ", because your level is only " + mylevel + ".";
                     */
                 } else {
     
@@ -322,7 +323,7 @@ public class AdministrationAction extends ActionListener {
                     target.update();
                     target.notifyWorldAboutChanges();
         
-                    response = "Changed adminlevel of " + target.getName() + " from " + oldlevel + " to " + newlevel;
+                    response = "Changed adminlevel of " + target.getName() + " from " + oldlevel + " to " + newlevel + ".";
                 }
             }
 
@@ -352,12 +353,12 @@ public class AdministrationAction extends ActionListener {
 			if (stat.equals("name")) {
 				logger.error("DENIED: Admin " + player.getName()
 						+ " trying to change player " + action.get("target") + "'s name");
-                player.sendPrivateText("name cannot be changed");
+				player.sendPrivateText("Sorry, name cannot be changed.");
 				return;
 			}
             
             if (stat.equals("adminlevel")) {
-                player.sendPrivateText("user /adminlevel <playername> [<newlevel>] to change adminlevel.");
+                player.sendPrivateText("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.");
                 return;
             }
 
@@ -388,8 +389,8 @@ public class AdministrationAction extends ActionListener {
 					if (stat.equals("hp")
 							&& changed.getInt("base_hp") < numberValue) {
 						logger.error("DENIED: Admin " + player.getName()
-								+ " trying to set player " + action.get("target")
-								+ "'s HP over its Base HP");
+							     + " trying to set player " + Grammar.suffix_s(action.get("target"))
+							     + " HP over its Base HP");
 						return;
 					}
 
@@ -477,13 +478,13 @@ public class AdministrationAction extends ActionListener {
 			Player changed = StendhalRPRuleProcessor.get().getPlayer(name);
 
 			if (changed == null) {
-				logger.debug("Player " + name + " not found");
+				logger.debug("Player \"" + name + "\" not found");
 				return;
 			}
 
 			String slotName = action.get("slot");
 			if (!changed.hasSlot(slotName)) {
-				logger.debug("Player " + name + " has not RPSlot " + slotName);
+				logger.debug("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
 				return;
 			}
 
@@ -547,7 +548,7 @@ public class AdministrationAction extends ActionListener {
 			// It would be nice if the entity's type would be shown, but I don't
 			// know if the type attribute is mandatory.
 			//st.append("Inspected " + inspected.get("type") + " is called " + inspected.getName() + " and has attributes:");
-			st.append("Inspected entity is called " + inspected.getName() + " and has attributes:");
+			st.append("Inspected entity is called \"" + inspected.getName() + "\" and has the following attributes:");
 			st.append("\nID:     " + inspected.getID());
 			st.append("\nATK:    " + inspected.getATK() + "("
 					+ inspected.getATKXP() + ")");

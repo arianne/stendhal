@@ -88,7 +88,7 @@ public class OwnAction extends ActionListener {
 							// There is no path between sheep and player so it
 							// is unreachable. But don't tell the player 
 							// anything about pathfinding.
-							player.sendPrivateText("This sheep is too far away.");
+							player.sendPrivateText("That sheep is too far away.");
 						}
 					} else {
 						player.sendPrivateText("This sheep is owned by " + sheep.getOwner().getName());

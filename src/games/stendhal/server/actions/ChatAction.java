@@ -71,8 +71,7 @@ public class ChatAction extends ActionListener {
 				player.notifyWorldAboutChanges();
 				return;
 			}
-			player.sendPrivateText(action.get("target")
-					+ " is not currently logged.");
+			player.sendPrivateText("No player named \"" + action.get("target") + "\" is currently active.");
 		}
 
 		Log4J.finishMethod(logger, "tell");
@@ -83,7 +82,7 @@ public class ChatAction extends ActionListener {
 
 		if (action.has("text")) {
 			String message = player.getName() + " asks for support to ADMIN: "
-					+ action.get("text") + "\r\nPlease use /supportanswer " + player.getName() + " to answer.";
+					+ action.get("text") + "\r\nPlease use #/supportanswer #" + player.getName() + " to answer.";
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "support", action.get("text"));
 
@@ -101,7 +100,7 @@ public class ChatAction extends ActionListener {
 			if (found) {
 				player.sendPrivateText("You ask for support: " + action.get("text"));
 			} else {
-				player.sendPrivateText("Sorry, your support request cannot be processed at the moment because no supporter is in game right now.");
+				player.sendPrivateText("Sorry, your support request cannot be processed at the moment, because no administrators are currently active. Please try again in a short while, or visit #irc://irc.freenode.net/#arianne");
 			}
 			player.notifyWorldAboutChanges();
 		}

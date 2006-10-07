@@ -62,9 +62,9 @@ public class AttackAction extends ActionListener {
 							if (zone.isInProtectionArea(entity)) {
 								logger.info("REJECTED. " + entity.getName()
 										+ " is in a protection zone");
-								player.sendPrivateText("You can't attack "
-												+ entity.getName()
-												+ " because he/she is in a protection area.");
+								player.sendPrivateText("The powerful protective aura in this place prevents you from attacking "
+										       + entity.getName()
+										       + ".");
 								return;
 							}
 
