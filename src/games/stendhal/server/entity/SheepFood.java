@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.Item;
 
 import marauroa.common.game.AttributeNotFoundException;
@@ -84,8 +85,7 @@ public class SheepFood extends PlantGrower {
 
 	@Override
 	public String describe() {
-		String text = "You see a bush with " + getAmount()
-				+ " fruits. Only sheep eat from this bush.";
+		String text = "You see an aeryberry bush, with " + Grammar.quantityplnoun(getAmount(), "berry") + " on it. Only sheep can eat aeryberries.";
 		return (text);
 	}
 	

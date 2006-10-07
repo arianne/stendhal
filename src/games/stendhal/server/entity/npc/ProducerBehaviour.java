@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
@@ -219,9 +220,9 @@ public class ProducerBehaviour extends Behaviour {
 			return false;
 		} else {
 			this.amount = amount;
-			npc.say("I need "
+			npc.say("I need you to fetch me "
 					+ getRequiredResourceNamesWithHashes(amount)
-					+ " for this job. Will you give it to me?");
+					+ " for this job. Do you have it?");
 			return true;
 		}
 	}
@@ -239,7 +240,7 @@ public class ProducerBehaviour extends Behaviour {
 		if (getMaximalAmount(player) < amount) {
 			// The player tried to cheat us by placing the resource
 			// onto the ground after saying "yes"
-			npc.say("Hey! Don't try to trick me!");
+			npc.say("Hey! I'm over here! You'd better not be trying to trick me...");
 			return false;
 		} else {
 			for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {

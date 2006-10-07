@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -62,7 +63,7 @@ public class PlantGrower extends Entity implements TurnListener {
 		super(object);
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
-		setDescription("You see a place where a " + growingItemName	+ " can grow.");
+		setDescription("It looks like there's " + Grammar.a_noun(growingItemName) + " sprout growing here.");
 		
 		put("type", "plant_grower");
 		//update();
@@ -72,7 +73,7 @@ public class PlantGrower extends Entity implements TurnListener {
 		super();
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
-		setDescription("You see a place where a " + growingItemName	+ " can grow.");
+		setDescription("It looks like there's " + Grammar.a_noun(growingItemName) + " sprout growing here.");
 
 		put("type", "plant_grower");
 	}

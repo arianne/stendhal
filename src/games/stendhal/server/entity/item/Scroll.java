@@ -118,7 +118,7 @@ public class Scroll extends StackableItem implements UseListener {
 		} else if (name.equals("summon_scroll")) {
 			successful = useSummonScroll(player);
 		} else {
-			player.sendPrivateText("I am unable to use this scroll");
+			player.sendPrivateText("What a strange scroll! You can't make heads or tails of it.");
 			successful = false;
 		}
 		if (successful) {
@@ -150,12 +150,12 @@ public class Scroll extends StackableItem implements UseListener {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
 				.getID());
 		if (zone.isInProtectionArea(player)) {
-			player.sendPrivateText("Use of aggressive magic is not allowed here.");
+			player.sendPrivateText("The aura of protection in this area prevents the scroll from working!");
 			return false;
 		}
 		
 		if (StendhalRPRuleProcessor.get().getNPCs().size() > 100) {
-			player.sendPrivateText("I cannot use magic at the moment because this kind of magic has been used too often.");
+			player.sendPrivateText("Mysteriously, the scroll does not function! Perhaps this area is too crowded...");
 			logger.error("too many npcs");
 			return false;
 		}
@@ -236,7 +236,7 @@ public class Scroll extends StackableItem implements UseListener {
 	public String describe() {
 		String text = super.describe();
 		if (has("infostring") && get("infostring") != null) {
-			text += " It is marked with: " + get("infostring");
+			text += " Upon it is written: " + get("infostring");
 		}
 		return (text);
 	}

@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
@@ -682,7 +683,7 @@ public abstract class SpeakerNPC extends NPC {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("Please wait! I am attending "
+						engine.say("Please wait, " + player.getName() + "! I am still attending to "
 								+ engine.getAttending().getName() + ".");
 					}
 				});
@@ -901,7 +902,7 @@ public abstract class SpeakerNPC extends NPC {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Ok, how may I help you?",
+				"Ok, then how may I help you?",
 				null);
 	}
 
@@ -928,10 +929,9 @@ public abstract class SpeakerNPC extends NPC {
 						int cost = healerBehaviour.getCharge(player);
 		
 						if (cost > 0) {
-							engine.say("Healing costs " + cost
-									+ ". Do you want to pay?");
+							engine.say("Healing costs " + cost + ". Do you have that much?");
 						} else {
-							engine.say("You are healed. How may I help you?");
+							engine.say("There, you are healed. How else may I help you?");
 							healerBehaviour.heal(player);
 		
 							engine.setCurrentState(ConversationStates.ATTENDING);
@@ -949,9 +949,9 @@ public abstract class SpeakerNPC extends NPC {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.drop("money", healerBehaviour.getCharge(player))) {
 							healerBehaviour.heal(player);
-							engine.say("You are healed. How may I help you?");
+							engine.say("There, you are healed. How else may I help you?");
 						} else {
-							engine.say("A real pity! You don't have enough money!");
+							engine.say("I'm sorry, but it looks like you can't afford it.");
 						}
 					}
 				});
@@ -960,7 +960,7 @@ public abstract class SpeakerNPC extends NPC {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"OK, how may I help you?",
+				"OK, how else may I help you?",
 				null);
 	}
 	

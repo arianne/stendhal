@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.PlantGrower;
@@ -257,7 +258,7 @@ public class Item extends PassiveEntity implements TurnListener {
 		String atk = "0";
 		String def = "0";
 		String amount = "0";
-		String text = "You see a " + getName().replace("_", " ") + ".";
+		String text = "You see " + Grammar.a_noun(getName().replace("_", " ")) + ".";
 		String stats = "";
 		if (hasDescription()) {
 			text = getDescription();

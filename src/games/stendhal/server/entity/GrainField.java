@@ -93,7 +93,7 @@ public class GrainField extends PlantGrower implements UseListener {
 				text = "You see a ripe grain field.";
 				break;
 			default:
-				text = "You see a grain field that is regrowing.";
+				text = "You see an unripe grain field.";
 				break;
 		}
 		return text;
@@ -115,10 +115,10 @@ public class GrainField extends PlantGrower implements UseListener {
 					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("grain");
 					entity.equip(grain, true);
 				} else if (entity instanceof Player) {
-					((Player) entity).sendPrivateText("You need a scythe to harvest this grain field.");
+					((Player) entity).sendPrivateText("You need a scythe to harvest grain fields.");
 				}
 			} else if (entity instanceof Player) {
-				((Player) entity).sendPrivateText("This grain is not yet ripe.");
+				((Player) entity).sendPrivateText("This grain is not yet ripe enough to harvest.");
 			}
 		}
 	}

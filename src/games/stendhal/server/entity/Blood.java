@@ -64,7 +64,7 @@ public class Blood extends Entity implements TurnListener {
 
 	@Override
 	public String describe() {
-		return ("You see a blood pool.");
+		return ("You see a pool of blood.");
 	}
 
 	public void onTurnReached(int currentTurn, String message) {

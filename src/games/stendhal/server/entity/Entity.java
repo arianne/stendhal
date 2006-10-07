@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import java.awt.Rectangle;
@@ -315,11 +316,11 @@ public abstract class Entity extends RPObject {
 		if (has("name") && get("name") != null) {
 			ret += get("name").replace("_", " ");
 		} else if (has("subclass")) {
-			ret += "a " + get("subclass");
+			ret += Grammar.a_noun(get("subclass"));
 		} else if (has("class")) {
-			ret += "a " + get("class");
+			ret += Grammar.a_noun(get("class"));
 		} else {
-			ret += "something rather undescribed";
+			ret += "something indescribably strange";
 			if (has("type")) {
 				ret += " of type " + get("type");
 			}

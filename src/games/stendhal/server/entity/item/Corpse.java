@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
@@ -229,9 +230,9 @@ public class Corpse extends PassiveEntity implements TurnListener {
 		if (hasDescription()) {
 			text = getDescription();
 		} else if (!has("name")) {
-			text += "a " + get("class").replace("_", " ");
+			text += Grammar.a_noun(get("class")).replace("_", " ");
 		} else {
-			text += get("name") + ". It was killed by " + get("killer");
+			text += get("name") + ", killed by " + get("killer");
 		}
 		text = text + ". You can #inspect it to see its contents.";
 		return (text);

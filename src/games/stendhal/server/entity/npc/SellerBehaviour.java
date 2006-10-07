@@ -66,7 +66,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 
 		Item item = manager.getItem(chosenItem);
 		if (item == null) {
-			logger.error("Trying to sell an unexisting item: " + chosenItem);
+			logger.error("Trying to sell an nonexistant item: " + chosenItem);
 			return false;
 		}
 
@@ -92,7 +92,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 				return false;
 			}
 		} else {
-			seller.say("A real pity! You don't have enough money!");
+			seller.say("Sorry, you don't have enough money!");
 			return false;
 		}
 	}

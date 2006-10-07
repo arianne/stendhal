@@ -12,6 +12,7 @@
 
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
@@ -54,7 +55,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 			seller.say("Thanks! Here is your money.");
 			return true;
 		} else {
-			seller.say("Sorry! You don't have enough " + chosenItem + ".");
+			seller.say("Sorry! You don't have " + (amount==1 ? "any" : "that many") + " " + Grammar.plnoun(amount, chosenItem) + ".");
 			return false;
 		}
 	}
