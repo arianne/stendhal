@@ -255,7 +255,7 @@ public class ProducerBehaviour extends Behaviour {
 					+ amount
 					+ " "
 					+ getProductName()
-					+ " for you, but that will take some time. Come back in " + getApproximateRemainingTime(player) + ".");
+					+ " for you, but that will take some time. Please come back in " + getApproximateRemainingTime(player) + ".");
 			return true;
 		}
 	}

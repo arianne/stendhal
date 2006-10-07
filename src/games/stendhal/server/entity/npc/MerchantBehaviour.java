@@ -77,6 +77,15 @@ public abstract class MerchantBehaviour extends Behaviour {
 	}
 
 	/**
+	 * Sets the amount that the player wants to buy from the NPC.
+	 *
+	 * @param amount amount
+	 */
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	/**
 	 * Returns the price of the desired amount of the chosen item.
 	 * @param player The player who considers buying/selling
 	 * @return The price; 0 if no item was chosen or if the amount is 0.

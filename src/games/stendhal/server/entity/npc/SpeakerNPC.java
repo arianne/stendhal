@@ -1,19 +1,21 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.pathfinder.Path;
-import games.stendhal.common.Rand;
 
 import java.awt.geom.Rectangle2D;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
 
 import org.apache.log4j.Logger;
 
@@ -776,10 +778,16 @@ public abstract class SpeakerNPC extends NPC {
 						// much of it
 						String[] words = text.split(" ");
 		
-						String amount = "1";
+						int amount = 1;
 						String item = null;
 						if (words.length > 2) {
-							amount = words[1].trim();
+							try {
+								amount = Integer.parseInt(words[1].trim());
+							} catch (NumberFormatException e) {
+								engine.say("Sorry, i did not understand you.");
+								engine.setCurrentState(ConversationStates.ATTENDING);
+								return;
+							}
 							item = words[2].trim();
 						} else if (words.length > 1) {
 							item = words[1].trim();
@@ -794,13 +802,12 @@ public abstract class SpeakerNPC extends NPC {
 							int price = behaviour.getUnitPrice(item)
 									* behaviour.amount;
 		
-							engine.say(amount + " " + item + " costs " + price
-									+ ". Do you want to buy?");
+							engine.say(Grammar.quantityplnoun(amount, item) + " will cost " + price + ". Do you want to buy " + Grammar.itthem(amount) + "?");
 						} else {
 							if (item == null) {
 								engine.say("Please tell me what you want to buy.");
 							} else {
-								engine.say("Sorry, I don't sell " + item);
+								engine.say("Sorry, I don't sell " + Grammar.plural(item));
 							}
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
@@ -856,10 +863,16 @@ public abstract class SpeakerNPC extends NPC {
 		
 						String[] words = text.split(" ");
 		
-						String amount = "1";
+						int amount = 1;
 						String item = null;
 						if (words.length > 2) {
-							amount = words[1].trim();
+							try {
+								amount = Integer.parseInt(words[1].trim());
+							} catch (NumberFormatException e) {
+								engine.say("Sorry, i did not understand you.");
+								engine.setCurrentState(ConversationStates.ATTENDING);
+								return;
+							}
 							item = words[2].trim();
 						} else if (words.length > 1) {
 							item = words[1].trim();
@@ -870,13 +883,12 @@ public abstract class SpeakerNPC extends NPC {
 							behaviour.setAmount(amount);
 							int price = behaviour.getCharge(player);
 		
-							engine.say(amount + " " + item + " is worth " + price
-									+ ". Do you want to sell?");
+							engine.say(Grammar.quantityplnoun(amount, item) + " " + Grammar.isare(amount) + " worth " + price + ". Do you want to sell " + Grammar.itthem(amount) + "?");
 						} else {
 							if (item == null) {
 								engine.say("Please tell me what you want to sell.");
 							} else {
-								engine.say("Sorry, I don't buy " + item);
+								engine.say("Sorry, I don't buy any " + Grammar.plural(item));
 							}
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
