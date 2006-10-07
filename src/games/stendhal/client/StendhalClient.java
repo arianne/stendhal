@@ -213,11 +213,10 @@ public class StendhalClient extends ariannexp {
                         null,
                         "Your client may not function properly.\nThe version of this server is "
                             + version
-                            + " and your client is version "
+                            + " but your client is version "
                             + stendhal.VERSION
-                            + ".\nDownload from http://arianne.sourceforge.net or " 
-                            + this.HttpService,
-                        "Client version does not match",
+                            + ".\nPlease download the new version from http://arianne.sourceforge.net ",
+                        "Version Mismatch With Server",
                         JOptionPane.WARNING_MESSAGE);
                 }
             }
@@ -499,7 +498,7 @@ public class StendhalClient extends ariannexp {
             logger.debug("Request resync because of timeout");
 
             StendhalClient.get().addEventLine(
-                    "Timeout: Requesting synchronization because timeout",
+                    "Timeout: Requesting synchronization",
                     Color.gray);
             resync();
             return 0;
@@ -511,7 +510,7 @@ public class StendhalClient extends ariannexp {
             gameGUI.online();
 
             logger.debug("Synced with server state.");
-            StendhalClient.get().addEventLine("Synchronization completed",
+            StendhalClient.get().addEventLine("Synchronized",
                     Color.gray);
             return 0;
         }
@@ -526,7 +525,7 @@ public class StendhalClient extends ariannexp {
                 StendhalClient
                         .get()
                         .addEventLine(
-                                "Timeout: Requesting synchronization because of unsynced",
+                                "Unsynced: Resynchronizing...",
                                 Color.gray);
                 resync();
             } else {
