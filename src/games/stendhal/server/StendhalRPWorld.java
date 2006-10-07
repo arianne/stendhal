@@ -258,7 +258,6 @@ public class StendhalRPWorld extends RPWorld {
 		// Interiors
 		addArea("int_afterlife");
 		addArea("int_admin_playground");
-		addArea("int_cr");
 
 		addArea("int_pathfinding");
 
