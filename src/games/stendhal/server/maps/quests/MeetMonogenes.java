@@ -44,7 +44,7 @@ public class MeetMonogenes extends AbstractQuest {
 						// NPC_name quest doesn't exist anywhere else neither is
 						// used for any other purpose.
 						if (!player.isQuestCompleted("Monogenes")) {
-							engine.say("Hi foreigner, don't be surprised if people here are reserved: the fear of the advances of Blordrough's dark legion has affected everybody, including me. Do you want to know how to socialize with Semos' people?");
+							engine.say("Hello there, stranger! Don't be too intimidated if people are quiet and reserved... the fear of Blordrough and his forces has spread all over the country, and we're all a bit concerned. I can offer a few tips on socializing though, would you like to hear them?");
 							player.setQuest("Monogenes", "done");
 							engine.setCurrentState(ConversationStates.INFORMATION_1);
 						} else {
@@ -58,44 +58,44 @@ public class MeetMonogenes extends AbstractQuest {
 				SpeakerNPC.HELP_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
-				"I'm Diogenes' older brother and I don't remember what I did before I retired. Anyway, I can help you by telling you how to treat Semos' people...  Do you want to know how to socialize with them?",
+				"I'm Diogenes' older brother and I don't actually remember what I used to do... I'm retired now. I can offer you a few tips on socializing with the residents of Semos, if you like?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_2,
-				"Only ask them about what they bring the conversation around to: the WORDS that are bolded in blue color. Otherwise, you can get a harsh answer although you usually can ask about their job, help, offer, or quest. Do you want to know where the city's main buildings are?",
+				"First of all, you should introduce yourself by saying HI. After this, try to keep the conversation to the topics they bring up; suitable subjects will be highlighted #like #this. A few generally safe topics of conversation are the person's #job, asking for #help, asking if they have an #offer to make, and asking for a #quest to go on. Anyway, do you want a quick run-down of the buildings in Semos?",
 				null);
 		
 		npc.add(ConversationStates.INFORMATION_1,
 				"no",
 				null,
 				ConversationStates.IDLE,
-				"And how are you supposed to know what's happening? By reading the Semos Tribune? Bye!",
+				"And how are you supposed to know what's happening? By reading the Semos Tribune? Hah! Bye, then.",
 				null);
 		
 		npc.add(ConversationStates.INFORMATION_2,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Sometimes it is helpful to read the city's wooden signs by right-clicking on them and choosing LOOK. I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the #village.",
+				"It's a good idea to read the wooden signs to identify places; just right-click on them and choose LOOK. Now, I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.",
 				null);
 		
 		npc.add(ConversationStates.INFORMATION_2,
 				"no",
 				null,
 				ConversationStates.IDLE,
-				"Oh I see... You are of that kind of person that doesn't like asking for directions, huh? Well, good luck finding the secretly hidden mmhmmhmm!",
+				"Already finding your way about, huh? Glad to hear it!",
 				null);
 		
-		npc.addReply("bank", "The bank is precisely this building next to me. I thought the big chest on the front would have given you a clue.");
-		npc.addReply("library", "The library is west from here, following the path. There's an OPEN BOOK AND A FEATHER sign over one of the two doors.");
-		npc.addReply("tavern", "The tavern is southeast from here, following the path. You'll see a big INN sign over the door. You can't miss it.");
-		npc.addReply("temple", "The temple is the second building southeast from here, following the path. There's a small CROSS over the roof.");
-		npc.addReply("bakery", "The local bakery is east of here. It has a small BREAD sign over its door.");
-		npc.addReply("blacksmith", "The blacksmith's shop is southwest from here, following the path. There's a small SWORD sign over the door.");
-		npc.addReply("village", "The village is southwest from here, following the path. There you can buy sheep to breed.");
+		npc.addReply("bank", "See this big building in front of me, with the giant fake treasure chest? That's it right there. Kinda obvious once you think about it.");
+		npc.addReply("library", "Follow the path from here to the west; you'll see a building with two doors, and the emblem of a book and quill pen on display.");
+		npc.addReply("tavern", "Just head southeast along the path, and you can't miss it. It has a large sign that reads INN.");
+		npc.addReply("temple", "The temple is southeast from here, beside the #tavern. It has a cross on the roof, very distinctive.");
+		npc.addReply("bakery", "Our local bakery is just east of this square; they have a sign up with a picture of a loaf of bread on it.");
+		npc.addReply("blacksmith", "Head southwest to reach the smithy. There's a sword hanging above the door, you should be able to spot it.");
+		npc.addReply("village", "Just keep heading southwest, past the #blacksmith, and you will shortly come to the old Semos village. Nishiya still sells sheep there.");
 		
 		/** Give the reward to the polite newcomer user */
 //		npc.add(ConversationStates.ATTENDING,
@@ -107,11 +107,11 @@ public class MeetMonogenes extends AbstractQuest {
 //					@Override
 //					public void fire(Player player, String text, SpeakerNPC engine) {
 //						if (player.getLevel() < 15) {
-//							engine.say("Bye, my friend. I hope my indications have been helpful...");
+//							engine.say("Goodbye! I hope I was of some use to you.");
 //							player.addXP(10);
 //							player.notifyWorldAboutChanges();
 //						} else {
-//							engine.say("It's curious... Now that I think about it, I would have betted I had seen you in Semos before...");
+//							engine.say("I hope to see you again sometime.");
 //						}
 //					}
 //				});
