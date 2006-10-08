@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
@@ -90,7 +91,7 @@ public class WeaponsCollector extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"Greetings. I am Balduin. Are you interested in weapons? I certainly am, I have been collecting them since I was young. Maybe you can do a #task for me.",
+				"Greetings. I am Balduin. Are you interested in weapons? I certainly am, I have been collecting them since I was young. Maybe you can do a little #task for me.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -108,9 +109,9 @@ public class WeaponsCollector extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("weapons_collector")) {
-							engine.say("Although I have collected weapons for such a long time, some are still missing in my collection. Do you think you can help me?");
+							engine.say("Although I have collected weapons for such a long time, I still don't have everything I want. Do you think you can help me?");
 						} else {
-							engine.say("My collection is now complete. Thanks again.");
+							engine.say("My collection is now complete! Thanks again.");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
@@ -125,7 +126,7 @@ public class WeaponsCollector extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("If you help me to complete my #collection, I will give you something nice in exchange.");
+						engine.say("If you help me to complete my #collection, I will give you something very interesting and useful in exchange.");
 						player.setQuest("weapons_collector", "");
 					}
 				});
@@ -136,7 +137,7 @@ public class WeaponsCollector extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Too bad. You were my last hope to complete my collection.",
+				"Well, maybe someone else will happen by and help me.",
 				null
 				);
 
@@ -156,8 +157,8 @@ public class WeaponsCollector extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
-						engine.say("There are " + needed.size() + " weapons which are still missing in my collection: "
-								+ SpeakerNPC.enumerateCollection(needed) + ". Do you have any of them with you?");
+						engine.say("There " + Grammar.isare(needed.size()) + " " + Grammar.quantityplnoun(needed.size(), "weapon") + " still missing from my collection: "
+								+ SpeakerNPC.enumerateCollection(needed) + ". Do you have anything of that nature with you?");
 					}
 				});
 
@@ -166,15 +167,20 @@ public class WeaponsCollector extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.IDLE,
-				"Come back when you find them. Farewell.",
-				null);
+				null,
+				new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					List<String> missing = missingWeapons(player, false);
+					engine.say("Let me know as soon as you find " + Grammar.itthem(missing.size()) + ". Farewell.");
+				}});
 
 		// player says he has a required weapon with him
 		npc.add(ConversationStates.QUESTION_1,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.QUESTION_1,
-				"Which one?",
+				"What is it that you found?",
 				null);
 		
 		for (String weapon: neededWeapons) {
@@ -195,17 +201,17 @@ public class WeaponsCollector extends AbstractQuest {
 									// check if the player has brought all weapons
 									missing = missingWeapons(player, true);
 									if (missing.size() > 0) {
-										engine.say("Thank you very much! Do you have any other weapon for me?");
+										engine.say("Thank you very much! Do you have anything else for me?");
 									} else {
 										Item iceSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("ice_sword");            
 										player.equip(iceSword, true);
 										player.addXP(1000);
-										engine.say("Yippie! My collection is complete! Thank you very much! Here, take this ice_sword in exchange!");										
+										engine.say("At last, my collection is complete! Thank you very much; here, take this #ice #sword in exchange!");
 										player.setQuest("weapons_collector", "done");
 										player.notifyWorldAboutChanges();
 									}
 								} else {
-									engine.say("I may be old, but I'm not senile! You don't have a " + text + "! What weapon do you really have for me?");
+									engine.say("I may be old, but I'm not senile, and you clearly don't have " + Grammar.a_noun(text) + ". What do you really have for me?");
 								}
 							} else {
 								engine.say("I already have that one. Do you have any other weapon for me?");

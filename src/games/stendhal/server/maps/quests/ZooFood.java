@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -72,7 +73,7 @@ public class ZooFood extends AbstractQuest {
 			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
-					engine.say("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help. Maybe you can do a #task for us.");
+					engine.say("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?");
 				} else {
 					engine.say("Welcome back to the Ados Wildlife Refuge! Thanks again for rescuing our animals!");
 				}
@@ -89,7 +90,7 @@ public class ZooFood extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("Our tigers, lions and bears are hungry. We need " + REQUIRED_HAM + " hams to feed them. Can you help us?");
+							engine.say("Our tigers, lions and bears are hungry. We need " + Grammar.quantityplnoun(REQUIRED_HAM, "ham") + " to feed them. Can you help us?");
 						} else {
 							engine.say("Thank you, but I think we are out of trouble now.");
 							engine.setCurrentState(ConversationStates.ATTENDING);
@@ -102,7 +103,7 @@ public class ZooFood extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Okay, but please don't let poor animals suffer! Bring me the hams when you have got them.",
+				"Okay, but please don't let the poor animals suffer too long! Bring me the " + Grammar.plnoun(REQUIRED_HAM, "ham") + " as soon as you get " + Grammar.itthem(REQUIRED_HAM) + ".",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -115,7 +116,7 @@ public class ZooFood extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Too bad. Then we will have to feed them with our poor little deer.",
+				"Oh dear... I guess we're going to have to feed them with the deer...",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -142,7 +143,7 @@ public class ZooFood extends AbstractQuest {
 					}
 				},
 				ConversationStates.QUEST_ITEM_BROUGHT,
-				"Welcome back! Have you brought the " + REQUIRED_HAM + " hams?",
+				"Welcome back! Have you brought the " + Grammar.quantityplnoun(REQUIRED_HAM, "ham") + "?",
 				null);
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
@@ -159,7 +160,7 @@ public class ZooFood extends AbstractQuest {
 							player.addXP(200);
 							engine.say("Thank you! You have rescued our rare animals.");
 						} else {
-							engine.say("Don't try to trick me! I said that we need " + REQUIRED_HAM + " hams!");
+							engine.say("*sigh* I SPECIFICALLY said that we need " + Grammar.quantityplnoun(REQUIRED_HAM, "ham") + "!");
 						}
 					}
 				});
@@ -168,7 +169,7 @@ public class ZooFood extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"What a pity. I hope you will help us anyway.",
+				"Well, hurry up! These rare animals are starving!",
 				null);
 	}
 
@@ -187,7 +188,7 @@ public class ZooFood extends AbstractQuest {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?");
 						} else {
-							engine.say("Excuse me! The animals are all sick because they don't have enough food. I don't have time for you now. Bye.");
+							engine.say("Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?");
 							engine.setCurrentState(ConversationStates.IDLE);
 						}
 					}

@@ -129,12 +129,12 @@ public class SevenCherubs extends AbstractQuest {
 							player.healPoison();
 	
 							if (left > 0) {
-								engine.say("Only need to find "
+								engine.say("Well done! You only need to find "
 										+ (7 - list.size())
-										+ " more. Farewell.");
+										+ " more. Fare thee well!");
 								player.addXP((7 - left + 1) * 200);
 							} else {
-								engine.say("Thou have proven yourself brave enough to wear this present!");
+								engine.say("Thou hast proven thyself brave enough to bear this mighty relic!");
 	
 								/* Proposal by Daniel Herding (mort):
 								 * once we have enough quests, we shouldn't
@@ -172,9 +172,9 @@ public class SevenCherubs extends AbstractQuest {
 							}
 						} else {
 							if (left > -1) {
-								engine.say("Find the rest of us to get the reward");
+								engine.say("Seek out the other cherubim to get thy reward!");
 							} else {
-								engine.say("You found all of us and got the reward.");
+								engine.say("Thou hast sought and found each of the seven cherubim! Now, mighty art thou with the rewards so earn'd.");
 							}
 						}
 						player.notifyWorldAboutChanges();
