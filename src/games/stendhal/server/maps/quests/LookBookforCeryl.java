@@ -106,14 +106,14 @@ public class LookBookforCeryl extends AbstractQuest {
 					}
 				},
 				ConversationStates.QUEST_OFFERED,
-				"Could you ask #Jynath for a book that I am looking for?",
+				"Could you ask #Jynath to return her book? She's had it for months now, and people are looking for it.",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Great! Start the quest now!",
+				"Great! Please get me it as quickly as possible... there's a huge waiting list!",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -125,14 +125,14 @@ public class LookBookforCeryl extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Oh! Ok :(",
+				"Oh... I suppose I will have to get somebody else to do it, then.",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				"jynath",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"Jynath is a witch who lives South of Or'ril castle. So will you get me the book?",
+				"Jynath is the witch who lives south of Or'ril castle, southwest of here. So, will you get me the book?",
 				null);
 
 		/** Remind player about the quest */
@@ -153,7 +153,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				"jynath",
 				null,
 				ConversationStates.ATTENDING,
-				"Jynath is a witch who lives South of Or'ril castle.",
+				"Jynath is the witch who lives south of Or'ril castle, southwest of here.",
 				null);
 	}
 
@@ -172,7 +172,7 @@ public class LookBookforCeryl extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"I see you talked with Ceryl. Here you have the book he is looking for.",
+				"Oh, Ceryl's looking for that book back? My goodness! I completely forgot about it... here you go!",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -196,14 +196,14 @@ public class LookBookforCeryl extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"Hurry up! Bring the book to #Ceryl.",
+				"You'd better take that book back to #Ceryl quickly... he'll be waiting for you.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				"ceryl",
 				null,
 				ConversationStates.ATTENDING,
-				"Ceryl is the book keeper at Semos's library",
+				"Ceryl is the librarian at Semos, of course.",
 				null);
 
 		/** Finally if player didn't start the quest, just ignore him/her */
@@ -216,7 +216,7 @@ public class LookBookforCeryl extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"Shhhh!!! I am working on a new potion!",
+				"Sssh! I'm concentrating on this potion recipe... it's a tricky one.",
 				null);
 	}
 
@@ -241,7 +241,7 @@ public class LookBookforCeryl extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (player.drop("book_black")) {
-							engine.say("Oh! The book! Thanks!");
+							engine.say("Oh, you got the book back! Phew, thanks!");
 							StackableItem money = (StackableItem) StendhalRPWorld.get()
 									.getRuleManager().getEntityManager()
 									.getItem("money");
@@ -254,7 +254,7 @@ public class LookBookforCeryl extends AbstractQuest {
 
 							player.setQuest(QUEST_SLOT, "done");
 						} else {
-							engine.say("Where did you put #Jynath's #book?. You need to start the search again.");
+							engine.say("Haven't you got that #book back from #Jynath? Please go look for it, quickly!");
 							player.removeQuest(QUEST_SLOT);
 						}
 					}
