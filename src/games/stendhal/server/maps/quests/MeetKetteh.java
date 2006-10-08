@@ -41,13 +41,12 @@ public class MeetKetteh extends AbstractQuest{
 
                         if (clothes_index == 0) {
                             // The player is naked
-                            engine.say("Who are you? Aiiieeeee!!! You're naked! Right-click on yourself and choose SET OUTFIT! Shhh! Don't even think on clicking on the white bar at the bottom and writing to reply to me! And if you happen to talk to anyone in the city you'd better begin the conversation saying HI. And don't be gross and just leave: say BYE to end the conversation. And use CTRL + arrow to turn around and face me when I'm talking to you! Wait! I am sure you are a friend of that onlooker Nomyr who's always peeking at the windows! Now use the arrow keys and go out!");
+                            engine.say("Who are you? Aiiieeeee!!! You're naked! Quickly, right-click on yourself and choose SET OUTFIT!\nShhh! Don't even think on clicking on the white bar at the bottom and writing to reply to me! And if you happen to talk to any of the other citizens, you'd better begin the conversation saying \"hi\". And don't be rude and just leave; say \"bye\" to end the conversation.\nAnd use Ctrl+Arrows to turn around and face me when I'm talking to you! Wait! I'm sure I've seen you with that fellow Nomyr, who's always peeking at the windows! Now use the arrow keys and get out of my room!");
                             player.setQuest("Ketteh", "seen_naked");
 
                         } else if (player.hasQuest("Ketteh") && player.getQuest("Ketteh").equals("seen_naked")) {
                             // OK, player is NOT naked this time, but was last time.
-							engine.say("Hi again, " + player.getName()
-						 			+ ". How can I #shout at you this time?");
+							engine.say("Hi again, " + player.getName() + ". How can I #shout at you this time?");
                             player.setQuest("Ketteh", "seen"); // don't be unforgiving
 
                         } else if (player.hasQuest("Ketteh")){
@@ -65,7 +64,7 @@ public class MeetKetteh extends AbstractQuest{
 				"no",
 				null,
 				ConversationStates.IDLE,
-				"Ok, don't move. I'm calling the law enforcers!",
+				"If you don't put on some clothes and leave, I shall scream!",
 				null);
 
         npc.add(ConversationStates.ATTENDING,
@@ -78,9 +77,9 @@ public class MeetKetteh extends AbstractQuest{
 					public void fire(Player player, String text,
                             SpeakerNPC engine) {
                         if (player.hasQuest("Ketteh") && player.getQuest("Ketteh").equals("seen_naked")) {
-                            engine.say("Oh, good, you wear clothes this time. The last time we met, you were naked!");
+                            engine.say("I am glad to see you've acquired some clothes. There really is no need for walking around naked.");
                         } else {
-                            engine.say("Sometimes naked people pass by. I get really mad when that happens.");
+                            engine.say("Sometimes naked people pass by; it makes me very angry. They are bringing down the tone of the whole place!");
                         }
                     }
                 });

@@ -84,7 +84,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 							if (seller.squaredDistance(sheep) > 5 * 5) {
 								seller.say("*drool* Sheep flesh! Bring da sheep here!");
 							} else {
-								say("*LOVELY*. Take dis money!");
+								say("Mmm... Is look yummy! Here, you take dis gold!");
 								payPlayer(player);
 
 								StendhalRPRuleProcessor.get().removeNPC(sheep);
@@ -95,7 +95,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 								return true;
 							}
 						} else {
-							seller.say("Sell what? Don't cheat me or I might 'ave to hurt you!");
+							seller.say("Whut? Is not unnerstand... Maybe I hit you until you make sense!");
 						}
 						return false;
 					}
@@ -105,7 +105,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 				buyitems.put("sheep", 1500);
 
 				addGreeting();
-				addJob(getName() + " du buy cheepz frrom humanz.");
+				addJob(getName() + " is buy real cheep from hoomans.");
 				addHelp(getName()
 						+ " buy sheep! Sell me sheep! " + getName()
 						+ " is hungry!");

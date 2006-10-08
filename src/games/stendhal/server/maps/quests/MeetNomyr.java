@@ -28,28 +28,28 @@ public class MeetNomyr extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
-				"The young people have joined the Deniran army to fight in the South, so the city has been left unprotected from hordes of monsters coming from the dungeons. Can you help us?",
+				"The young people have joined the Imperial Deniran Army to fight in the south, so the city has been left almost unprotected against the hordes of monsters coming from the dungeons. Can you help us?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				"no",
 				null,
 				ConversationStates.IDLE,
-				"Oh, fine. Then help me at the other window... I'm trying to find out what's happening inside",
+				"Huh. Well, you could help me by taking a peek through that other window, if you're not busy... I'm trying to figure out what's going on inside.",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
-				"First of all you should talk to Hayunn Naratha. He's a former great hero and our only defense here and he will gladly give you good advice. Good luck.",
+				"First of all, you should go talk to Hayunn Naratha. He's an great old hero, and he's also pretty much our only defender here... I'm sure he will gladly give you some advice! Good luck.",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
 				"no",
 				null,
 				ConversationStates.IDLE,
-				"Awww... I didn't know you were such a coward! What about me? Hey, I'm about to save a damsel in distress! Bye!",
+				"Awww... so you're a coward, then? Huh.",
 				null);
 	}
 
