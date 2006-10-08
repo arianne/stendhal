@@ -146,7 +146,14 @@ class SoundCycle extends Thread implements Cloneable {
 			logger.debug(hstr);
 			// System.out.println( hstr );
 			executing = true;
-			start();
+			try {
+				start();
+			} catch (OutOfMemoryError e) {
+				// If the number of threads is limmited a OutOfMemoryError is thrown.
+				// The soundsystem can create a huge amount of threads, so we catch
+				// it and simply ignore it.
+				logger.debug(e);
+			}
 		}
 	}
 
