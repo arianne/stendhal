@@ -63,9 +63,9 @@ public class HatForMonogenes extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("hat_monogenes")) {
-							engine.say("Could you bring me a #hat to cover my baldness? Brrrrr! Semos day's are getting colder...");
+							engine.say("Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...");
 						} else {
-							engine.say("Thanks good friend, but this hat will last five winters at least and I don't really need more than one. If I can help you somehow just say it.");
+							engine.say("Thanks for the offer, good friend, but this hat will last me five winters at least, and it's not like I need more than one.");
 							engine.setCurrentState(1);
 						}
 					}
@@ -75,7 +75,7 @@ public class HatForMonogenes extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Thanks, my good friend. I'll be waiting for your return. Now if I can help you in anything just ask.",
+				"Thanks, my good friend. I'll be waiting here for your return!",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -87,7 +87,7 @@ public class HatForMonogenes extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Yes, forget it bud. You surely have more importants things to do and little time. I'll just stay here with my cool not-as-in-slick head. Boohooooo! Sniff... now if I can help you... sniff in anything sniff... just ask.",
+				"You surely have more importants things to do, and little time to do them in. I'll just stay here and freeze to death, I guess... *sniff*",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -99,7 +99,7 @@ public class HatForMonogenes extends AbstractQuest {
 				"hat",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"You don't know what a hat is? Anything light like leather that can cover my head. So, will you do it?",
+				"You don't know what a hat is?! Anything light that can cover my head; like leather, for instance. Now, will you do it?",
 				null);
 	}
 
@@ -125,9 +125,9 @@ public class HatForMonogenes extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.isEquipped("leather_helmet")) {
-							engine.say("Hey! Is that hat for me?");
+							engine.say("Hey! Is that leather hat for me?");
 						} else {
-							engine.say("Hey, my good friend, remember that leather hat I asked you before? I like having fresh ideas but not in this manner... Anyway, what can I do for you?");
+							engine.say("Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...");
 							engine.setCurrentState(1);
 						}
 					}
@@ -144,7 +144,7 @@ public class HatForMonogenes extends AbstractQuest {
 					}
 				}, 
 				ConversationStates.ATTENDING,
-				"Bless you, my good friend! Now I can laugh at the soon coming snowflakes wuahahaha! Ahem... If there's anything I can do for you now just say it.",
+				"Bless you, my good friend! Now my head will stay nice and warm.",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -160,7 +160,7 @@ public class HatForMonogenes extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Oh! Ok... I suppose there's someone more fortunate than me that will get his head warm today...Boohoooo! Sniff... How can I help you then?",
+				"I guess someone more fortunate will get his hat today... *sneeze*",
 				null);
 	}
 
