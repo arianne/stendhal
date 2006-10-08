@@ -4,6 +4,8 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
+import java.util.Arrays;
+
 /**
  * QUEST: CleanStorageSpace PARTICIPANTS:
  * - Eonna
@@ -34,9 +36,9 @@ public class CleanStorageSpace extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("clean_storage")) {
-							engine.say("My #storage_space it is crawling with rats. Will you help me?");
+							engine.say("My #basement is absolutely crawling with rats. Will you help me?");
 						} else {
-							engine.say("Thanks again, I don't think it needs to be cleaned again yet. If I can help you somehow just say it.");
+							engine.say("Thanks again! I think it's still clear down there.");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
@@ -46,7 +48,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Thank you! I'll be waiting for your return. Now if I can help you in anything just ask.",
+				"Oh, thank you! I'll wait up here, and if any try to escape I'll hit them with the broom!",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -61,7 +63,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Maybe you are not the hero I thought you would be. *sighs* Now if I can help you in anything *sighs* just ask.",
+				"*sigh* Oh well, maybe someone else will be my hero...",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -70,10 +72,10 @@ public class CleanStorageSpace extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"storage_space",
+				Arrays.asList("basement", "storage_space"),
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"yes it down the stairs, there some rats and I think I saw a snake too so be careful. So, will you do it?",
+				"Yes, it's just down the stairs, over there. A whole bunch of nasty-looking rats; I think I saw a snake as well! You should be careful... still want to help me?",
 				null);
 	}
 
@@ -103,21 +105,21 @@ public class CleanStorageSpace extends AbstractQuest {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.hasKilled("rat") && player.hasKilled("caverat")
 								&& player.hasKilled("cobra")) {
-							engine.say("Oh wow! A fine hero at last! Thank you! Now can I help you with anything?");
+							engine.say("A hero at last! Thank you!");
 							player.addXP(25);
 							player.setQuest("clean_storage", "done");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						} else {
-							engine.say("Don't you remember... you promised to clean my #storage_space.");
+							engine.say("Don't you remember promising to clean out the rats from my #basement?");
 						}
 					}
 				});
 		
 		npc.add(ConversationStates.QUEST_STARTED,
-				"storage_space",
+				"basement",
 				null,
 				ConversationStates.ATTENDING,
-				"Did you forget? It's down the stairs, there some rats and I think I saw a snake too so be careful. Please hurry.",
+				"Down the stairs, like I said. Please get rid of all those rats, and see if you can find the snake as well!",
 				null);
 	}
 

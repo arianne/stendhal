@@ -70,9 +70,9 @@ public class BeerForHayunn extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("My mouth is dry and I can't abandon my place. Could you bring me some #beer from the #tavern?");
+							engine.say("My mouth is dry, but I can't be seen to abandon my post! Could you bring me some #beer from the #tavern?");
 						} else {
-							engine.say("Thanks bud, but I don't want to abuse beer. I will need to have my senses fully aware if a monster decides to appear. If you need anything from me just say it.");
+							engine.say("Thanks all the same, but I don't want to get too heavily into drinking; I'm still on duty, you know! I'll need my wits about me if a monster shows up...");
 							engine.setCurrentState(1);
 						}
 					}
@@ -82,7 +82,7 @@ public class BeerForHayunn extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Thanks, bud. I'll be waiting for your return. Now if I can help you in anything just ask.",
+				"Thanks! I'll be right here, waiting. And guarding, of course.",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
@@ -95,7 +95,7 @@ public class BeerForHayunn extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Yes, forget it bud. Now that I think about it you do not look like you can afford inviting this old guy. Now if I can help you in anything just ask.",
+				"Oh, well forget it then. I guess I'll just hope for it to start raining, and then stand with my mouth open.",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
@@ -108,7 +108,7 @@ public class BeerForHayunn extends AbstractQuest {
 				"tavern",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"You don't know where the inn is? Go and ask Monogenes. So, will you do it?",
+				"If you don't know where the inn is, you could ask old Monogenes; he's good with directions. Are you going to help?",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -122,7 +122,7 @@ public class BeerForHayunn extends AbstractQuest {
 				"Margaret",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"Margaret is the pretty tavernmaid hehehe... Well, definitely... will you do it?",
+				"Margaret is the pretty maid in the tavern, of course! Quite a looker, too... heh. Will you go for me?",
 				null);
 	}
 
@@ -151,7 +151,7 @@ public class BeerForHayunn extends AbstractQuest {
 						if (player.isEquipped("beer")) {
 							engine.say("Hey! Is that beer for me?");
 						} else {
-							engine.say("Hurry up bud! I am still waiting for that beer! Anyway, what can I do for you?");
+							engine.say("Hey, I'm still waiting for that beer, remember? Anyway, what can I do for you?");
 							engine.setCurrentState(1);
 						}
 					}
@@ -168,7 +168,7 @@ public class BeerForHayunn extends AbstractQuest {
 					}
 				}, 
 				ConversationStates.ATTENDING,
-				"Slurp! Thanks for the beer bud! If there is anything I can do for you now just say it.",
+				"*glug glug* Ah! That hit the spot. Let me know if you need anything, ok?",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -189,7 +189,7 @@ public class BeerForHayunn extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Darn! Ok, but remember I asked you a beer for me too. How can I help you then?",
+				"Drat! You remembered that I asked you for one, right? I could really use it right now.",
 				null);
 	}
 

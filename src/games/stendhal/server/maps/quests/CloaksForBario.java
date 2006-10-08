@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
@@ -51,7 +53,7 @@ public class CloaksForBario extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"Hey! How did you get down here? Well. I'm Bario. Can you do a #task for me?",
+				"Hey! How did you get down here? You did what? Huh. Well, I'm Bario. I don't suppose you could do a #task for me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -67,7 +69,7 @@ public class CloaksForBario extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("I don't dare to go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here. Can you help me?");
+						engine.say("I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?");
 					}
 				});
 
@@ -86,10 +88,10 @@ public class CloaksForBario extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("You promised me to bring me cloaks. Remember?");
+							engine.say("You promised me to bring me ten blue elven cloaks. Remember?");
 						} else {
 							// player has already finished the quest
-							engine.say("I don't have anything to do for you.");
+							engine.say("I don't have anything for you to do, really.");
 						}
 					}
 				});
@@ -105,13 +107,13 @@ public class CloaksForBario extends AbstractQuest {
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							if (player.hasQuest(QUEST_SLOT)) {
-								engine.say("You promised me to bring me cloaks. Remember?");
+								engine.say("You promised me to bring me ten blue elven cloaks. Remember?");
 							} else {
-								engine.say("I don't dare to go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here. Can you help me?");
+								engine.say("I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?");
 							}
 						} else {
 							// player has already finished the quest
-							engine.say("I don't have anything to do for you.");
+							engine.say("I don't have anything else for you to do, really. Thanks for the offer.");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
@@ -126,7 +128,7 @@ public class CloaksForBario extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("I need some blue elf cloaks to survive the winter. If you bring me ten of them, I will give you a reward.");
+						engine.say("I need some blue elven cloaks if I'm to survive the winter. Bring me ten of them, and I will give you a reward.");
 						player.setQuest(QUEST_SLOT, Integer.toString(REQUIRED_CLOAKS));
 					}
 				});
@@ -137,7 +139,7 @@ public class CloaksForBario extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Too bad. Looks like I have to burn all my wood next winter.",
+				"Oh dear... I'm going to be in trouble...",
 				null
 				);
 	}
@@ -164,9 +166,9 @@ public class CloaksForBario extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("Hi again. I still need "
+						engine.say("Hi again! I still need "
 								+ player.getQuest(QUEST_SLOT)
-								+ " blue elf cloaks. Do you have one for me?");
+								+ " blue elven " + Grammar.plnoun(MathHelper.parseInt(player.getQuest(QUEST_SLOT)), "cloak") + ". Do you have any for me?");
 					}
 				});
 		
@@ -180,7 +182,7 @@ public class CloaksForBario extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"Welcome! Thanks again for the cloaks.",
+				"Welcome! Thanks again for those cloaks.",
 				null);
 
 	// player says he doesn't have any blue elf cloaks with him
@@ -205,7 +207,7 @@ public class CloaksForBario extends AbstractQuest {
 						int toBring = Integer.parseInt(player.getQuest(QUEST_SLOT)) - 1;
 						if (toBring > 0) {
 							player.setQuest(QUEST_SLOT, Integer.toString(toBring));
-							engine.say("Thank you very much! Do you have another one? I still need " + toBring + " cloaks.");
+							engine.say("Thank you very much! Do you have another one? I still need " + Grammar.quantityplnoun(toBring, "cloak") + ".");
 							engine.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
 							Item goldenShield = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden_shield");            
@@ -216,7 +218,7 @@ public class CloaksForBario extends AbstractQuest {
 							engine.say("Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.");
 						}
 					} else {
-						engine.say("Don't try to trick me! You don't have a blue elf cloak!");
+						engine.say("Really? I don't see any...");
 					}
 				}
 			});

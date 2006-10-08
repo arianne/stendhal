@@ -104,16 +104,16 @@ public class Campfire extends AbstractQuest {
 			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				if (canStartQuestNow(engine, player)) {
-					engine.say("Hi! I hope you can do me a #favor.");
+					engine.say("Hi! Could you do me a #favor?");
 				} else if (player.getQuest(QUEST_SLOT).equals("start")) { 
 					if (player.isEquipped("wood", REQUIRED_WOOD)){
-						engine.say("Hi again! Are these ten pieces of wood for me?");
+						engine.say("Hi again! You've got wood, I see; do you have those 10 pieces of wood I asked about earlier?");
 						engine.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
 					} else {
-						engine.say("You're back already? Don't forget that you promised to collect ten pieces of wood in the forest for me!");
+						engine.say("You're back already? Don't forget that you promised to collect ten pieces of wood for me!");
 					}
 				} else {
-					engine.say("Hi again! Have you come to bring me wood again? I still have enough from last time, come back later!");
+					engine.say("Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!");
 				}
 			}
 		});
@@ -128,12 +128,12 @@ public class Campfire extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (canStartQuestNow(engine, player)) {
-							engine.say("I need more wood to keep my campfire running. But I can't leave my fire unattended. Could you please collect wood for me?");
+							engine.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
 						} else if (player.getQuest(QUEST_SLOT).equals("start")){
-							engine.say("You already promised me to bring me ten pieces of wood!");
+							engine.say("You already promised me to bring me some wood! Ten pieces, remember?");
 						}
 						else {
-							engine.say("I don't need any more wood at the moment. Come back later.");
+							engine.say("I don't need any more wood at the moment, but thanks for asking.");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
@@ -144,7 +144,7 @@ public class Campfire extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Okay. You can find wood in the forest North of here. Come back when you got ten pieces of wood.",
+				"Okay. You can find wood in the forest north of here. Come back when you get ten pieces of wood!",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -157,7 +157,7 @@ public class Campfire extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"What a pity! What will I do with all my meat? Maybe I'll just feed the animals.",
+				"Oh dear, how am I going to cook all this meat? Perhaps I'll just have to feed it to the animals...",
 				null);
 	}
 
@@ -186,7 +186,7 @@ public class Campfire extends AbstractQuest {
 							} else {
 								rewardClass = "ham";
 							}
-							engine.say("Thank you! Here, take some " + rewardClass + ".");
+							engine.say("Thank you! Here, take some " + rewardClass + "!");
 							EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 							StackableItem reward = (StackableItem) manager.getItem(rewardClass);
 							reward.setQuantity(REQUIRED_WOOD);
@@ -202,7 +202,7 @@ public class Campfire extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Too bad. Hopefully you will bring me some before my fire goes out.",
+				"Oh... well, I hope you find some quickly; this fire's going to burn out soon!",
 				null);
 	}
 
