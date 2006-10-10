@@ -17,43 +17,45 @@ import org.apache.log4j.Logger;
  */
 public class HttpClient {
 	private static Logger logger = Logger.getLogger(HttpClient.class);
+	private String urlString = null;
+	private HttpURLConnection connection = null;
+	private InputStream is = null;
 	
-	public InputStream openInputStream(String urlString) {
+	public HttpClient(String url) {
+		this.urlString = url;
+	}
+	
+	private void openInputStream() {
 		try {
 	        URL url = new URL(urlString);
-	        HttpURLConnection.setFollowRedirects(false);
-	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        HttpURLConnection.setFollowRedirects(true);
+	        connection = (HttpURLConnection) url.openConnection();
 	        connection.setConnectTimeout(1500);  // 1.5 secs
 	        if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
 	        	logger.warn("HttpServer returned an error code: " + connection.getResponseCode());
-	        	return null;
+	        	return;
 	        }
-	        return connection.getInputStream();
+	        is = connection.getInputStream();
 	    } catch (Exception e) {
 	        logger.warn("Error connecting to http-Server: ", e);
 	    }
-	    return null;
+	    return;
 	}
 
 	/**
 	 * fetches the first line of a file using http
 	 *
-	 * @param urlString The url of the file to fetch
 	 * @return the first line
 	 */
-	public String fetchFirstLine(String urlString) {
+	public String fetchFirstLine() {
 		String line = null;
 		try {
-	        URL url = new URL(urlString);
-	        HttpURLConnection.setFollowRedirects(false);
-	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-	        connection.setConnectTimeout(1500);  // 1.5 secs
-	        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-	        if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-	            line = br.readLine();
-	        } else {
-	        	logger.warn("HttpServer returned an error code: " + connection.getResponseCode());
-	        }
+			openInputStream();
+			if (is == null) {
+				return null;
+			}
+	        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            line = br.readLine();
 	        br.close();
 	        connection.disconnect();
 	    } catch (Exception e) {
