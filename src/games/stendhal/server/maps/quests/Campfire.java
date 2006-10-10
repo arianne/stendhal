@@ -80,7 +80,13 @@ public class Campfire extends AbstractQuest {
 		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
 			return false;
 		} else {
-			int turnWhenLastBroughtWood = Integer.parseInt(player.getQuest(QUEST_SLOT));
+			int turnWhenLastBroughtWood;
+			try {
+				turnWhenLastBroughtWood = Integer.parseInt(player.getQuest(QUEST_SLOT));
+			} catch(NumberFormatException e) {
+				// compatibility: Old Stendhal version stored "done" on completed quest
+				return true;
+			}
 			int turnsSinceLastBroughtWood = StendhalRPRuleProcessor.get().getTurn() - turnWhenLastBroughtWood;
 			if (turnsSinceLastBroughtWood < 0) {
 				// The server was restarted since last doing the quest.
