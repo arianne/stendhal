@@ -51,6 +51,10 @@
     <copy todir="${build}/data/tilesets">
       <fileset dir="${tiled}">
         <include name="*.png"/>
+      	<exclude name="*collision_chipset.png" />
+      	<exclude name="*_monsters_chipset.png" /> 
+      	<exclude name="*_objects_chipset.png" />
+      	<exclude name="*_edit.png" />
       </fileset>
     </copy>
    
@@ -195,6 +199,10 @@
   	<copy todir="${build_client_data}/data/tilesets">
       <fileset dir="${tiled}">
         <include name="*.png"/>
+      	<exclude name="*collision_chipset.png" />
+      	<exclude name="*_monsters_chipset.png" /> 
+      	<exclude name="*_objects_chipset.png" />
+      	<exclude name="*_edit.png" />
       </fileset>
     </copy>
 
@@ -258,6 +266,10 @@
   	<copy todir="${build_client_data}/data/tilesets">
       <fileset dir="${tiled}">
         <include name="*.png"/>
+      	<exclude name="*collision_chipset.png" />
+      	<exclude name="*_monsters_chipset.png" /> 
+      	<exclude name="*_objects_chipset.png" />
+      	<exclude name="*_edit.png" />
       </fileset>
     </copy>
 
