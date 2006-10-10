@@ -78,49 +78,5 @@ public class Starter {
 		}
 	}
 
-	private static Class getMainClass(String className) throws Exception {
-		Class clazz = null;
-		try {
-			// discover folder for .jar-files
-			String jarFolder = System.getProperty("user.home") + "/stendhal/jar/";
-
-			// load jar.properties
-			String propFile = jarFolder + "jar.properties";
-			Properties prop = new Properties();
-			InputStream is = new FileInputStream(propFile);
-			prop.load(is);
-			is.close();
-
-			// get list of .jar-files
-			String jarNameString = prop.getProperty("load", "jar.properties does not contain \"load=\" line");
-			List jarNameList = new LinkedList();
-			StringTokenizer st = new StringTokenizer(jarNameString, ",");
-			while (st.hasMoreTokens()) {
-				jarNameList.add(st.nextToken());
-			}
-			// convert .jar-filename-list to URL-array
-		    URL[] jarFiles = new URL[jarNameList.size()];
-		    Iterator itr = jarNameList.iterator();
-		    int i = 0;
-		    while (itr.hasNext()) {
-		    	jarFiles[i] = new File(jarFolder + itr.next()).toURI().toURL();
-		    	i++;
-		    }
-		    // Create new class loader which the list of .jar-files as classpath 
-		    ClassLoader loader = new URLClassLoader(jarFiles);
-
-		    // load class through new loader
-		    clazz = loader.loadClass(className);
-            		
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
-		}
-
-		if (clazz == null) {
-			// fallback to normal classloading
-			clazz = Class.forName(className);
-		}
-		return clazz;
-	}
- }
+}
 
