@@ -20,11 +20,16 @@ public class HttpClient {
 	private String urlString = null;
 	private HttpURLConnection connection = null;
 	private InputStream is = null;
-	
+
+	/**
+	 * Creates a HTTP-Client which will connect to the specified URL
+	 *
+	 * @param url URL to connect to
+	 */
 	public HttpClient(String url) {
 		this.urlString = url;
 	}
-	
+
 	private void openInputStream() {
 		try {
 	        URL url = new URL(urlString);
@@ -43,7 +48,31 @@ public class HttpClient {
 	}
 
 	/**
-	 * fetches the first line of a file using http
+	 * Return an InputStream to read the requested file from.
+	 * You have to close it using @see close().
+	 *
+	 * @return InputStream or null on error.
+	 */
+	public InputStream getInputStream() {
+		openInputStream();
+		return is;
+	}
+
+	/**
+	 * Closes the connection and associated streams.
+	 */
+	public void close() {
+		try {
+			is.close();
+		} catch (IOException e) {
+			logger.warn(e, e);
+		}
+		connection.disconnect();
+	}
+
+	/**
+	 * fetches the first line of a file using http and closes the
+	 * connection automatically.
 	 *
 	 * @return the first line
 	 */
