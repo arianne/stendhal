@@ -1,6 +1,9 @@
 package games.stendhal.client.update;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -114,6 +117,31 @@ public class HttpClient {
 		}
 		this.close();
 		return prop;
+	}
+
+	/**
+	 * Fetches a file from the HTTP-Server and stores it on disk
+	 *
+	 * @param filename name of the file to write
+	 * @return true on success, false otherwise
+	 */
+	public boolean fetchFile(String filename) {
+		boolean res = false;
+		
+		openInputStream();
+		if (is == null) {
+			return res;
+		}
+
+		try {
+			BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(filename));
+			copyStream(is, os);
+			connection.disconnect();
+		} catch (Exception e) {
+			res = true;
+			logger.warn(e, e);
+		}
+		return res;
 	}
 
 	/**
