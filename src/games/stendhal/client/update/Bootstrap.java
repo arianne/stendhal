@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -21,6 +20,13 @@ import javax.swing.JOptionPane;
  */
 public class Bootstrap {
 
+	/**
+	 * Sets a dynamic classpath up and returns a Class reference loaded from it
+	 *
+	 * @param className  name of class to load form the dynamic path
+	 * @return Class-object
+	 * @throws Exception if an unexpected error occurs
+	 */
 	private static Class getMainClass(String className) throws Exception {
 		Class clazz = null;
 		try {
@@ -37,21 +43,16 @@ public class Bootstrap {
 
 			// get list of .jar-files
 			String jarNameString = prop.getProperty("load", "jar.properties does not contain \"load=\" line");
-			List jarNameList = new LinkedList();
+			List<URL> jarFiles = new LinkedList<URL>();
 			StringTokenizer st = new StringTokenizer(jarNameString, ",");
 			while (st.hasMoreTokens()) {
-				jarNameList.add(st.nextToken());
+				String filename = st.nextToken();
+				jarFiles.add(new File(jarFolder + filename).toURI().toURL());
 			}
-			// convert .jar-filename-list to URL-array
-		    URL[] jarFiles = new URL[jarNameList.size()];
-		    Iterator itr = jarNameList.iterator();
-		    int i = 0;
-		    while (itr.hasNext()) {
-		    	jarFiles[i] = new File(jarFolder + itr.next()).toURI().toURL();
-		    	i++;
-		    }
-		    // Create new class loader which the list of .jar-files as classpath 
-		    ClassLoader loader = new URLClassLoader(jarFiles);
+
+		    // Create new class loader which the list of .jar-files as classpath
+			URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
+		    ClassLoader loader = new URLClassLoader(urlArray);
 
 		    // load class through new loader
 		    clazz = loader.loadClass(className);
@@ -82,17 +83,9 @@ public class Bootstrap {
 			// Class clazz = getMainClass(className);
 			Class clazz = Class.forName(className);
 
-			// get param types of main method
-			Class[] paramTypes = new Class[1];
-			paramTypes[0] = args.getClass();
-
-			// get param values of main method
-			Object[] params = new Object[1];
-			params[0] = args;
-
 			// get method and invoke it
-			Method method = clazz.getMethod("main", paramTypes);
-			method.invoke(null, params);
+			Method method = clazz.getMethod("main", args.getClass());
+			method.invoke(null, (Object) args);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
