@@ -160,18 +160,18 @@
 
     <javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="games/stendhal/client/**, games/stendhal/common/**" 
-           excludes="games/stendhal/server/**, games/stendhal/tools/**">
+           excludes="games/stendhal/server/**, games/stendhal/tools/**, games/stendhal/client/Starter.java">
       <classpath>
         <pathelement path="${marauroa_jar}"/>
         <pathelement path="${log4j_jar}"/>
       </classpath>    
     </javac>
-	<!-- use precompiled Stater.class. Note -target 1.2 does not work. See Starter.java for details -->
-  	<copy todir="${build_client}/games/stendhal/client" overwrite="true">
-  		<fileset dir="data/precompiled" defaultexcludes="off">
-  			<include name="Starter.class" />
-  		</fileset>
-	</copy>
+    <!-- compile Starter.java for Java 1.2. So we will be able to 
+  		 display a dialogbox if running on an old Java Version -->
+    <javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.2" target="1.2"
+           includes="games/stendhal/client/Starter.java">
+    </javac>
+  	
 
     <jar jarfile="${lib}/${client_jarname}">
       <fileset dir="${build_client}"/>

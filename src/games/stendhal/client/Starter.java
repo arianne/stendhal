@@ -1,32 +1,18 @@
 //*****************************************************************************
 //*****************************************************************************
-
+//
 //                               Important note
-
-// Compile this file with an older version of java and copy Starter.class to
-// data/precompiled. The distribution script will use that file. So we do not
-// have to care about old java versions while developing the rest of the game.
-
-// Please note that features of newer java version cannot be used.
-// Unfortunatelly the java.lang.reflect.Methods.getMethod()-method uses varargs
-// in java 1.5 so it is not possible to compile this file using -target on
-// java 1.5. You have to use an old jdk.
-
+//
+// Please note that this file is compiled using Java 1.2 in the build-script
+// in order to display a dialogbox to the user in case an old version of java
+// is used. As we compile it with Java 1.2 no new features may be used in this
+// class.
+// 
 //*****************************************************************************
 //*****************************************************************************
 package games.stendhal.client;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
-import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
 
@@ -58,21 +44,24 @@ public class Starter {
 			// invoke real client with reflection in order to prevent
 			// a class-load-time dependency.
 
-			// get class
-			Class clazz = Class.forName("games.stendhal.client.stendhal");
-//			Class clazz = getMainClass("games.stendhal.client.stendhal");
+			// get class and create an object of it
+			Class clazz = Class.forName("games.stendhal.client.update.Bootstrap");
+			Object object = clazz.newInstance();
 
-			// get param types of main method
-			Class[] paramTypes = new Class[1];
-			paramTypes[0] = args.getClass();
+			// get param values of boot method
+			Object[] params = new Object[2];
+			params[0] = "games.stendhal.client.stendhal";
+			params[1] = args;
 
-			// get param values of main method
-			Object[] params = new Object[1];
-			params[0] = args;
+			// get types of params
+			Class[] paramTypes = new Class[2];
+			for (int i = 0; i < params.length; i++) {
+				paramTypes[i] = params[i].getClass();
+			}
 
 			// get method and invoke it
-			Method method = clazz.getMethod("main", paramTypes);
-			method.invoke(null, params);
+			Method method = clazz.getMethod("boot", paramTypes);
+			method.invoke(object, params);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
