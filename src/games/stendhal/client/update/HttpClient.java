@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
@@ -91,6 +92,28 @@ public class HttpClient {
 	        logger.warn("Error connecting to http-Server: ", e);
 	    }
 	    return line;
+	}
+
+	/**
+	 * fetches a file using http as Properties object and closes the
+	 * connection automatically.
+	 *
+	 * @return the first line
+	 */
+	public Properties fetchProperties() {
+		Properties prop = null;
+		openInputStream();
+		if (is == null) {
+			return prop;
+		}
+		try {
+			prop = new Properties();
+			prop.load(is);
+		} catch (IOException e) {
+			logger.warn(e, e);
+		}
+		this.close();
+		return prop;
 	}
 
 	/**
