@@ -30,6 +30,7 @@ import games.stendhal.client.WorldObjects;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.common.Rand;
+import games.stendhal.common.MathHelper;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -577,11 +578,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					// determine equalizing loudness setting
 					loudness = 100;
 					if ((pos = value.lastIndexOf(',')) != -1) {
-						try {
-							loudness = Integer.parseInt(value
-									.substring(pos + 1));
-						} catch (Exception e) {
-						}
+						loudness = MathHelper.parseInt_default(value.substring(pos + 1), 100);
 					}
 
 					// investigate sample status

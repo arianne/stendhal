@@ -12,6 +12,7 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.entity.Player;
+import games.stendhal.common.MathHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,9 +70,8 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 *             integer, the amount will be set to 1.
 	 */
 	public void setAmount(String text) {
-		try {
-			amount = Integer.parseInt(text);
-		} catch (Exception e) {
+		amount = MathHelper.parseInt_default(text, 1);
+		if (amount < 1) {
 			amount = 1;
 		}
 	}
