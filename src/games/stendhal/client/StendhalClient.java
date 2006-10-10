@@ -18,6 +18,7 @@ import games.stendhal.client.gui.OutfitDialog;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
+import games.stendhal.client.update.HttpClient;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Version;
 
@@ -31,7 +32,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,8 +80,6 @@ public class StendhalClient extends ariannexp {
     private JFrame frame;
 
     private static StendhalClient client;
-
-    private String HttpService = null;
 
 	private Cache cache;
 
@@ -196,43 +194,21 @@ public class StendhalClient extends ariannexp {
         super.connect(host, port, protocol);
         // if connect was successfull try if server has http service, too
         String testServer = "http://" + host + "/";
-        try {
-            URL url = new URL(testServer + "stendhal.version");
-            HttpURLConnection.setFollowRedirects(false);
-            HttpURLConnection connection = (HttpURLConnection) url
-                    .openConnection();
-            connection.setConnectTimeout(1500);  // 1.5 secs
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream()));
-            if(connection.getResponseCode()==HttpURLConnection.HTTP_OK) {
-                this.HttpService = testServer;
-                String version = br.readLine();
-                if (!Version.checkCompatibility(version, stendhal.VERSION)) {
-                    // custom title, warning icon
-                    JOptionPane.showMessageDialog(
-                        null,
-                        "Your client may not function properly.\nThe version of this server is "
-                            + version
-                            + " but your client is version "
-                            + stendhal.VERSION
-                            + ".\nPlease download the new version from http://arianne.sourceforge.net ",
-                        "Version Mismatch With Server",
-                        JOptionPane.WARNING_MESSAGE);
-                }
+        HttpClient httpClient = new HttpClient(testServer + "stendhal.version");
+        String version = httpClient.fetchFirstLine();
+        if (version != null) {
+            if (!Version.checkCompatibility(version, stendhal.VERSION)) {
+                // custom title, warning icon
+                JOptionPane.showMessageDialog(null,
+                    "Your client may not function properly.\nThe version of this server is "
+                    + version
+                    + " but your client is version "
+                    + stendhal.VERSION
+                    + ".\nPlease download the new version from http://arianne.sourceforge.net ",
+                    "Version Mismatch With Server",
+                    JOptionPane.WARNING_MESSAGE);
             }
-            br.close();
-            connection.disconnect();
-        } catch (Exception e) {
-            logger.warn("StendhalHttpServer not found!", e);
         }
-    }
-    
-    /**
-     * @return Returns the httpService in the form http://Server:port/ if the
-     *         game server is running the StendhalHttpServer extension or null.
-     */
-    public String getHttpService() {
-        return HttpService;
     }
 
     protected void onPerception(MessageS2CPerception message) {

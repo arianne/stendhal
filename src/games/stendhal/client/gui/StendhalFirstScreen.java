@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.update.HttpClient;
 import games.stendhal.common.Version;
 
 import java.awt.Container;
@@ -158,57 +159,30 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	private void login() {
-		try {
-			URL url = new URL(stendhal.VERSION_LOCATION);
-			HttpURLConnection.setFollowRedirects(false);
-			HttpURLConnection connection = (HttpURLConnection) url
-					.openConnection();
-            connection.setConnectTimeout(1500);  // 1.5 secs
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					connection.getInputStream()));
-
-			String version = br.readLine();
-
-			if (Version.compare(stendhal.VERSION, version) < -1) {
+		checkVersion();
+		new LoginDialog(StendhalFirstScreen.this, client);
+	}
+	
+	private void checkVersion() {
+        HttpClient httpClient = new HttpClient(stendhal.VERSION_LOCATION);
+        String version = httpClient.fetchFirstLine();
+        if (version != null) {
+			if (Version.compare(version, stendhal.VERSION) < -1) {
 				// custom title, warning icon
 				JOptionPane.showMessageDialog(
 					null,
-					"Your Stendhal client is out of date; the latest version is "
-					+ version + ", but you are using " + stendhal.VERSION
+					"Your client is out of date. Latest version is "
+					+ version + ". But you are using " + stendhal.VERSION
 					+ ".\nDownload from http://arianne.sourceforge.net",
 					"Client out of date",
 					JOptionPane.WARNING_MESSAGE);
 			}
-		} catch (Exception ex) {
 		}
-		new LoginDialog(StendhalFirstScreen.this, client);
+
 	}
 
 	public void createAccount() {
-		try {
-			URL url = new URL(stendhal.VERSION_LOCATION);
-			HttpURLConnection.setFollowRedirects(false);
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					connection.getInputStream()));
-
-			String version = br.readLine();
-
-			if (Version.compare(version, stendhal.VERSION) < -1) {
-				// custom title, warning icon
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"Your client is out of date. Latest version is "
-										+ version + ". But you are using " + stendhal.VERSION
-										+ ".\nDownload from http://arianne.sourceforge.net",
-								"Client out of date",
-								JOptionPane.WARNING_MESSAGE);
-			}
-		} catch (Exception ex) {
-		}
+		checkVersion();
 		new CreateAccountDialog(StendhalFirstScreen.this, client);
 	}
 
