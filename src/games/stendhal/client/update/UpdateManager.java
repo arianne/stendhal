@@ -33,10 +33,12 @@ public class UpdateManager {
 		if (fileList == null) {
 			return;
 		}
-		
+		String versionStateString = fileList.getProperty("version." + Version.VERSION);
+		VersionState versionState = VersionState.getFromString(versionStateString);
+
 		fileList.list(System.out);
 		logger.info(Version.VERSION);
-		logger.info(fileList.getProperty("version." + Version.VERSION, "unkown"));
+		logger.info(versionState);
 	}
 
 	// debug code
