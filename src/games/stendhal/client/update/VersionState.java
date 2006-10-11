@@ -40,6 +40,9 @@ public enum VersionState {
 	 */
 	public static VersionState getFromString(String versionStateString) {
 		try {
+			if ((versionStateString == null) || (versionStateString.trim().equals(""))) {
+				return UNKOWN; 
+			}
 			return VersionState.valueOf(versionStateString);
 		} catch (IllegalArgumentException e) {
 			logger.warn(e, e);
