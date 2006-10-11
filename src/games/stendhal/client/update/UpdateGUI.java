@@ -1,5 +1,7 @@
 package games.stendhal.client.update;
 
+import java.text.NumberFormat;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -17,8 +19,16 @@ public class UpdateGUI {
 	 * @return true if the update should be performed, false otherwise
 	 */
 	public static boolean askForUpdate(int updateSize) {
+		// format number, only provide decimal digits on very small sizes
+		float size = (float) updateSize / 1024;
+		if (size > 10) {
+			size = (int) size;
+		}
+		String sizeString = NumberFormat.getInstance().format(size);
+
+		// ask user
 		int resCode = JOptionPane.showConfirmDialog(null, 
-				"There is a new version. " + updateSize + " bytes needs to be downloaded. Should Stendhal be updated?",
+				"There is a new version. " + sizeString + " KB needs to be downloaded. Should Stendhal be updated?",
 				DIALOG_TITLE,
 				JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE);
