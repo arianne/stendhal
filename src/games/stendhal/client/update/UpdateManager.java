@@ -36,9 +36,40 @@ public class UpdateManager {
 		String versionStateString = fileList.getProperty("version." + Version.VERSION);
 		VersionState versionState = VersionState.getFromString(versionStateString);
 
+		
 		fileList.list(System.out);
 		logger.info(Version.VERSION);
 		logger.info(versionState);
+
+		switch (versionState) {
+			case CURRENT: {
+				logger.info("Current Version");
+				break;
+			}
+			case ERROR: {
+				UpdateGUI.messageBox("An error occured while trying to update");
+				break;
+			}
+			case OUTDATED: {
+				UpdateGUI.messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
+				break;
+			}
+			case UPDATE_NEEDED: {
+				if (UpdateGUI.askForUpdate()) {
+					UpdateGUI.messageBox("Doing update");
+				}
+				break;
+			}
+			case UNKOWN: {
+				logger.info("Unkown state of update");
+				break;
+			}
+			default: {
+				logger.error("Internal Error on Update");
+				break;
+			}
+		}
+
 	}
 
 	// debug code
