@@ -58,7 +58,9 @@ public class UpdateManager {
 				break;
 			}
 			case UPDATE_NEEDED: {
-				if (UpdateGUI.askForUpdate()) {
+				List<String> files = getFilesToUpdate();
+				int updateSize = getSizeOfFilesToUpdate(files);
+				if (UpdateGUI.askForUpdate(updateSize)) {
 					UpdateGUI.messageBox("Doing update");
 				}
 				break;

@@ -13,11 +13,12 @@ public class UpdateGUI {
 	/**
 	 * Asks the user to accept an update.
 	 *
+	 * @param updateSize size of the files to download
 	 * @return true if the update should be performed, false otherwise
 	 */
-	public static boolean askForUpdate() {
+	public static boolean askForUpdate(int updateSize) {
 		int resCode = JOptionPane.showConfirmDialog(null, 
-				"There is a new version. Should Stendhal be updated?",
+				"There is a new version. " + updateSize + " bytes needs to be downloaded. Should Stendhal be updated?",
 				DIALOG_TITLE,
 				JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE);
