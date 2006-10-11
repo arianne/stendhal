@@ -2,6 +2,9 @@ package games.stendhal.client.update;
 
 import games.stendhal.common.Version;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 import marauroa.common.Log4J;
@@ -69,7 +72,48 @@ public class UpdateManager {
 				break;
 			}
 		}
+	}
 
+	/**
+	 * returns the list of all files to download for transitive update
+	 *
+	 * @return list of files
+	 */
+	private List<String> getFilesToUpdate() {
+		List<String> res = new LinkedList<String>();
+		String version = Version.VERSION;
+		
+		while (true) {
+			String list = fileList.getProperty("update-file-list." + version);
+			if (list == null) {
+				break;
+			}
+			res.addAll(Arrays.asList(list.split(",")));
+			version = fileList.getProperty("version.destination." + version);
+		}
+		
+		while (res.contains("")) {
+			res.remove("");
+		}
+		return res;
+	}
+
+	/**
+	 * calculates the sum of the file sizes
+	 *  
+	 * @param files list of files
+	 * @return total size of download
+	 */
+	private int getSizeOfFilesToUpdate(List<String> files) {
+		int res = 0;
+		for (String file : files) {
+			try {
+				res = res + Integer.parseInt(fileList.getProperty("file-size." + file, ""));
+			} catch (NumberFormatException e) {
+				logger.warn(e, e);
+			}
+		}
+		return res;
 	}
 
 	// debug code
