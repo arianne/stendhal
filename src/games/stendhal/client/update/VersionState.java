@@ -1,5 +1,7 @@
 package games.stendhal.client.update;
 
+import org.apache.log4j.*;
+
 /**
  * Possible State of the Client Version
  *
@@ -25,6 +27,23 @@ public enum VersionState {
 	UNKOWN,
 	
 	/** there are updates, which should be installed */
-	UPDATE_NEEDED,
+	UPDATE_NEEDED;
+
 	
+	private static Logger logger = Logger.getLogger(VersionState.class);
+
+	/**
+	 * converts a string in to VersionState
+	 *
+	 * @param versionStateString a string represantation
+	 * @return VersionState. In case of an error VersionState.ERROR is returned
+	 */
+	public static VersionState getFromString(String versionStateString) {
+		try {
+			return VersionState.valueOf(versionStateString);
+		} catch (IllegalArgumentException e) {
+			logger.warn(e, e);
+			return ERROR;
+		}
+	}
 }
