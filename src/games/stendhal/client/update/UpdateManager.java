@@ -20,7 +20,7 @@ public class UpdateManager {
 	// TODO: fix URL after testing is completed
 	private static final String SERVER_FOLDER = "http://localhost/stendhal/updates/";
 	private static Logger logger = Logger.getLogger(UpdateManager.class);
-	private Properties fileList = null;
+	private Properties updateProp = null;
 
 	/**
 	 * Connects to the server and loads a Property object which contains
@@ -28,19 +28,19 @@ public class UpdateManager {
 	 */
 	private void init() {
 		HttpClient httpClient = new HttpClient(SERVER_FOLDER + "update.properties");
-		fileList = httpClient.fetchProperties();
+		updateProp = httpClient.fetchProperties();
 	}
 
 	public void process() {
 		init();
-		if (fileList == null) {
+		if (updateProp == null) {
 			return;
 		}
-		String versionStateString = fileList.getProperty("version." + Version.VERSION);
+		String versionStateString = updateProp.getProperty("version." + Version.VERSION);
 		VersionState versionState = VersionState.getFromString(versionStateString);
 
 		
-		fileList.list(System.out);
+		updateProp.list(System.out);
 		logger.info(Version.VERSION);
 		logger.info(versionState);
 
@@ -84,12 +84,12 @@ public class UpdateManager {
 		String version = Version.VERSION;
 		
 		while (true) {
-			String list = fileList.getProperty("update-file-list." + version);
+			String list = updateProp.getProperty("update-file-list." + version);
 			if (list == null) {
 				break;
 			}
 			res.addAll(Arrays.asList(list.split(",")));
-			version = fileList.getProperty("version.destination." + version);
+			version = updateProp.getProperty("version.destination." + version);
 		}
 		
 		while (res.contains("")) {
@@ -108,7 +108,7 @@ public class UpdateManager {
 		int res = 0;
 		for (String file : files) {
 			try {
-				res = res + Integer.parseInt(fileList.getProperty("file-size." + file, ""));
+				res = res + Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
 			} catch (NumberFormatException e) {
 				logger.warn(e, e);
 			}
