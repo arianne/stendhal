@@ -43,7 +43,7 @@ public enum VersionState {
 			if ((versionStateString == null) || (versionStateString.trim().equals(""))) {
 				return UNKOWN; 
 			}
-			return VersionState.valueOf(versionStateString);
+			return VersionState.valueOf(versionStateString.toUpperCase());
 		} catch (IllegalArgumentException e) {
 			logger.warn(e, e);
 			return ERROR;
