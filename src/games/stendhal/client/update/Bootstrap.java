@@ -19,6 +19,9 @@ import javax.swing.JOptionPane;
  * @author hendrik
  */
 public class Bootstrap {
+	// discover folder for .jar-files
+	private static String pathSep = System.getProperty("file.separator");
+	private static String jarFolder = System.getProperty("user.home") + pathSep + "stendhal" + pathSep + "jar" + pathSep;
 
 	/**
 	 * Sets a dynamic classpath up and returns a Class reference loaded from it
@@ -30,9 +33,6 @@ public class Bootstrap {
 	private static Class getMainClass(String className) throws Exception {
 		Class clazz = null;
 		try {
-			// discover folder for .jar-files
-			String pathSep = System.getProperty("file.separator");
-			String jarFolder = System.getProperty("user.home") + pathSep + "stendhal" + pathSep + "jar" + pathSep;
 
 			// load jar.properties
 			String propFile = jarFolder + "jar.properties";

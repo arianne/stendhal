@@ -17,6 +17,8 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class UpdateManager {
+	private static String pathSep = System.getProperty("file.separator");
+	private static String jarFolder = System.getProperty("user.home") + pathSep + "stendhal" + pathSep + "jar" + pathSep;
 	// TODO: fix URL after testing is completed
 	private static final String SERVER_FOLDER = "http://localhost/stendhal/updates/";
 	private static Logger logger = Logger.getLogger(UpdateManager.class);
@@ -61,7 +63,8 @@ public class UpdateManager {
 				List<String> files = getFilesToUpdate();
 				int updateSize = getSizeOfFilesToUpdate(files);
 				if (UpdateGUI.askForUpdate(updateSize)) {
-					UpdateGUI.messageBox("Doing update");
+					downloadFiles(files);
+					updateClasspathConfig(files);
 				}
 				break;
 			}
@@ -116,6 +119,29 @@ public class UpdateManager {
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * Downloads the files listed for update
+	 *
+	 * @param files list of files to download
+	 * @return true on success, false otherwise
+	 */
+	private boolean downloadFiles(List<String> files) {
+		for (String file : files) {
+			HttpClient httpClient = new HttpClient(SERVER_FOLDER + file);
+			if (!httpClient.fetchFile(jarFolder + file)) {
+				UpdateGUI.messageBox("Beim Herunterladen des Updates ist ein Fehler aufgetreten.");
+				return false;
+			}
+			// TODO: Verify File Size
+		}
+		return true;
+	}
+
+	private void updateClasspathConfig(List<String> files) {
+		// TODO: invert order of files
+		// TODO: add to local properties file
 	}
 
 	// debug code
