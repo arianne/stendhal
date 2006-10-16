@@ -463,16 +463,24 @@ public abstract class RPEntity extends Entity {
 	 */
 	protected void onDead(Entity killer, boolean remove) {
 		stopAttack();
+		int oldlevel = this.getLevel();
+		int oldxp    = this.getXP();
 		
 		if (killer instanceof RPEntity) {
 			((RPEntity) killer).stopAttack();
 			StendhalRPRuleProcessor.get().addGameEvent(((RPEntity) killer).getName(), "killed", getName());
 			killer.notifyWorldAboutChanges();
 		}
+		if (this instanceof Player) {
+		    this.setXP((oldxp * 10) / 9);
+		    oldlevel = this.getLevel();
+		    oldxp    = this.getXP();
+		    this.setXP((int)(oldxp * 0.9));
+		}
 
 		// Establish how much xp points your are rewarded
-		if (getXP() > 0) {
-			int xpReward = (int) (this.getXP() * 0.05);
+		if (oldxp > 0) {
+			int xpReward = (int) (oldxp * 0.05);
 
 			// for everyone who helped killing this RPEntity:
 			for (Map.Entry<RPEntity, Integer> entry : damageReceived.entrySet()) {
@@ -487,8 +495,7 @@ public abstract class RPEntity extends Entity {
 				int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
 
 				/** We limit xp gain for up to eight levels difference */
-				double gainXpLimitation = 1 + ((getLevel() - entity
-						.getLevel()) / (20.0));
+				double gainXpLimitation = 1 + ((oldlevel - entity.getLevel()) / (20.0));
 				if (gainXpLimitation < 0) {
 					gainXpLimitation = 0;
 				}

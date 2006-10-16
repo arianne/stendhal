@@ -570,12 +570,12 @@ public class Player extends RPEntity implements TurnListener {
 		itemsToConsume.clear();
 		poisonToConsume.clear();
 
-		super.onDead(who, false);
-
 		// Penalize: Respawn on afterlive zone and 10% less experience
-		subXP((int) (getXP() * 0.1));
+		setXP((int) (getXP() * 0.9));
 		setATKXP((int) (getATKXP() * 0.9));
 		setDEFXP((int) (getDEFXP() * 0.9));
+
+		super.onDead(who, false);
 
 		setHP(getBaseHP());
 
