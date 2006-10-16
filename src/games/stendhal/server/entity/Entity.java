@@ -179,7 +179,7 @@ public abstract class Entity extends RPObject {
 	 * @return true iff it is impossible to walk over this entity
 	 */
 	public boolean isObstacle() {
-		return true;
+		return !has("ghostmode");
 	}
 
 	/**
