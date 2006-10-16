@@ -564,7 +564,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					// than "plant grower", as we're also using them for resources,
 					// teddies and whatever. We should also consider making them
 					// non-clickable.
-					plantGrower.setDescription("You see a place that seems to be rich in iron ore.");
+					plantGrower.setDescription("You see a small vein of iron ore.");
 				}
 				assignRPObjectID(plantGrower);
 				plantGrower.setX(x);
