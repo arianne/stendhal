@@ -98,6 +98,7 @@ public class Player extends RPEntity implements TurnListener {
 			player.add("admin", RPClass.FLAG);
 			player.add("adminlevel", RPClass.INT);
 			player.add("invisible", RPClass.FLAG, RPClass.HIDDEN);
+			player.add("ghostmode", RPClass.FLAG, RPClass.HIDDEN);
 
 			player.add("release", RPClass.STRING, RPClass.HIDDEN);
 
@@ -473,7 +474,6 @@ public class Player extends RPEntity implements TurnListener {
 				HttpURLConnection.setFollowRedirects(false);
 				HttpURLConnection connection = (HttpURLConnection) url
 						.openConnection();
-		        connection.setConnectTimeout(1500);  // 1.5 secs to prevent trouble with the playerContainer.getLock().requestWriteLock();
 				BufferedReader br = new BufferedReader(new InputStreamReader(
 						connection.getInputStream()));
 				msg = br.readLine();

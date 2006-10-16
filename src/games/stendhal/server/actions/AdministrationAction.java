@@ -68,6 +68,7 @@ public class AdministrationAction extends ActionListener {
 		StendhalRPRuleProcessor.register("summon", administration);
 		StendhalRPRuleProcessor.register("summonat", administration);
 		StendhalRPRuleProcessor.register("invisible", administration);
+		StendhalRPRuleProcessor.register("ghostmode", administration);
 		StendhalRPRuleProcessor.register("jail", administration);
 		
 		REQUIRED_ADMIN_LEVELS.put("adminlevel",   0);
@@ -78,6 +79,7 @@ public class AdministrationAction extends ActionListener {
 		REQUIRED_ADMIN_LEVELS.put("teleport",   400);
 		REQUIRED_ADMIN_LEVELS.put("jail",       400);
 		REQUIRED_ADMIN_LEVELS.put("invisible",  500);
+		REQUIRED_ADMIN_LEVELS.put("ghostmode",  500);
 		REQUIRED_ADMIN_LEVELS.put("inspect",    600);
 		REQUIRED_ADMIN_LEVELS.put("destroy",    700);
 		REQUIRED_ADMIN_LEVELS.put("summon",     800);
@@ -155,6 +157,8 @@ public class AdministrationAction extends ActionListener {
 			onSummonAt(player, action);
 		} else if (type.equals("invisible")) {
 			onInvisible(player, action);
+		} else if (type.equals("ghostmode")) {
+			onGhostMode(player, action);
 		} else if (type.equals("inspect")) {
 			onInspect(player, action);
 		} else if (type.equals("destroy")) {
@@ -516,8 +520,7 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onSummonAt");
 	}
 
-	private void onInvisible(
-			Player player, RPAction action) {
+	private void onInvisible(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onInvisible");
 
 		if (player.has("invisible")) {
@@ -526,6 +529,17 @@ public class AdministrationAction extends ActionListener {
 			player.put("invisible", "");
 		}
 		Log4J.finishMethod(logger, "onInvisible");
+	}
+
+	private void onGhostMode(Player player, RPAction action) {
+		Log4J.startMethod(logger, "onGhostMode");
+
+		if (player.has("ghostmode")) {
+			player.remove("ghostmode");
+		} else {
+			player.put("ghostmode", "");
+		}
+		Log4J.finishMethod(logger, "onGhostMode");
 	}
 
 	private void onInspect(
