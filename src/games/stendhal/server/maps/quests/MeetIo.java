@@ -31,49 +31,49 @@ public class MeetIo extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
-				"Type #/who to know what adventurer's souls are wandering the world of Stendhal. Do you want to know the second basic element of telepathy?",
+				"Type #/who to ascertain the names of those adventurers who are currently present in the world of Stendhal. Do you want to learn the second basic element of telepathy?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_2,
-				"Type #/where #user_name to know where in the vast world of Stendhal, the person you're seeking is roaming (use #/where #sheep with your owned sheep ). To understand positioning in Stendhal you should ask #Zynn. Ready for the third?",
+				"Type #/where #username to discern where in Stendhal that person is currently roaming; you can use #/where #sheep to keep track of any sheep you might own. To understand the system used for defining positions in Stendhal, try asking #Zynn; he knows more about it that I do. Ready for the third lesson?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_2,
 				"Zynn",
 				null,
-				ConversationStates.INFORMATION_3,
-				"His full name is Zynn Iwuhos. He spends most of his time in the library, making maps and writing historical record books. Ready for the third?",
+				ConversationStates.INFORMATION_2,
+				"His full name is Zynn Iwuhos. He spends most of his time in the library, making maps and writing historical record books. Ready for the next lesson?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_2,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_3,
-				"Type #/tell #user_name #your_text or #/msg #user_name #your_text to talk to the person you wish throughout the entire world of Stendhal, no matter where that person is.  On the other hand, if you're the listener type #// #your_text to reply him. Ready for the fourth?",
+				"Type #/tell #username #message or #/msg #username #message to talk to anybody you wish, no matter where in Stendhal that person is; and without the risk of being overheard.  You can type #// #response to continue talking to the last person you send a message to. Ready to learn my fourth tip?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_3,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_4,
-				"Use #SHIFT #+ #UP #arrow keys to put in your mouth your last spoken sentence and previous ones. Use #CTRL #+ #L in case you can't focus the history of the previous conversations you have had and actions you have done. Ready for the fifth?",
+				"Press #Shift+Up at the same time to recall things you previously said, in case you need to repeat yourself. You can also use #Ctrl+L if you are having trouble. Okay, shall we move on to the fifth lesson?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_4,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_5,
-				"Type #/support #your_text to try to report something to any administrator who happens to be online at that moment. Besides, you can contact the author #mblanch with an IRC client program. Connect to server: #irc.freenode.net and type #/join #arianne. Ready for the sixth?",
+				"Type #/support #<message> to report a problem to any administrators who happen to be online at that moment. You can also try IRC, if you are still having problems; start up any IRC client and join channel ##arianne on the server #irc.freenode.net\nOkay, time for your last lesson in mental manipulation!",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_5,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_6,
-				"Use the #ESC key on your keyboard or simply close the window to travel to the astral plane ( and quit the game ). Do you want me to show you how to float in the air like me?",
+				"You can travel to the astral plane at any time, thereby saving and closing your game. Just type #/quit, or press the #Esc key, or even simply close the window. Okay! Hmm, I think you want to learn how to float in the air like I do.",
 				null);
 
 		/** Give the reward to the patient newcomer user */
@@ -99,13 +99,12 @@ public class MeetIo extends AbstractQuest {
 		
 							player.notifyWorldAboutChanges();
 		
-							answer = "Sense you. And don't let anything disturb your concentration.";
+							answer = "Remember, don't let anything disturb your concentration.";
 						} else {
-							answer = "Hey! I know what you're thinking and I don't like it!";
+							answer = "Hey! I know what you're thinking, and I don't like it!";
 						}
 		
-						engine.say("Yawn... Maybe later... I don't want to bore you with so much knowledge at once. Anyway, you can remember briefly all this by typing #/help.\n "
-								+ answer);
+						engine.say("*yawns* Maybe I'll show you later... I don't want to overload you with too much information at once. You can get a summary of all those lessons at any time, incidentally, just by typing #/help.\n " + answer);
 					}
 				});
 
@@ -113,7 +112,7 @@ public class MeetIo extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.IDLE,
-				"If you ever decide to widen the frontiers of your mind, you are welcome. Bye!",
+				"If you ever decide to widen the frontiers of your mind a bit more, drop by and say hello. Farewell for now!",
 				null);
 	}
 

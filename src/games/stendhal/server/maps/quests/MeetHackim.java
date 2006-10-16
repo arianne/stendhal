@@ -31,21 +31,21 @@ public class MeetHackim extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
-				"We don't sell weapons to wandering adventurers like you! We just make them for the glorious Deniran empire army who's fighting bravely Blordrough's dark legion in the South! Your mere presence here is offending!... Shhh Can you get your ear close?",
+				"We aren't allowed to sell weapons to adventurers nowadays; we're working flat-out to produce equipment for the glorious Imperial Deniran Army as they fight against Blordrough's dark legions in the south. (Sssh... can you come here so I can whisper?)",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_2,
-				"Go to the tavern and talk to Xin Blanca... Ask him what he has to #offer, look at what he #sells, and then say #buy #name_of_item, as in #buy #wooden_shield. He can also be interested in buying weapons from you. Do you want to know how to do it?",
+				"*whisper* Go to the tavern and talk to a man called #Xin #Blanca... he buys and sells equipment that might interest you. Do you want to hear more?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_2,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_3,
-				"Ask him what he has to #offer but now look at what he #buys and then say #sell #name_of_item, as in #sell #studded_armor. Do you want to know my little secret?",
+				"Ask him what he has to #offer, and look at what he will let you #buy and #sell. For instance, if you had a wooden armour which you didn't want, you could #sell #wooden_armour.",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_3,
@@ -69,12 +69,11 @@ public class MeetHackim extends AbstractQuest {
 		
 							player.notifyWorldAboutChanges();
 		
-							answer = "If somebody asks you, you don't know me!";
+							answer = "If anybody asks, you don't know me!";
 						} else {
-							answer = "You know, Xoderos' child must be crying somewhere missing those toy weapons you're wearing";
+							answer = "Where did you get those weapons? A toy shop?";
 						}
-						engine.say("If you're smart, by now you must have figured out who provides weapons to Xin Blanca... No? Ok, it's me... However, for now I can only smuggle minor weapons to him to avoid rising suspicions. To get the best weapons you'll have to take them from the creatures' corpses deep in the dungeon.\n "
-										+ answer);
+						engine.say("Guessed who supplies Xin Blanca with the weapons he sells? Well, it's me! I have to avoid raising suspicion, though, so I can only smuggle him small weapons. If you want something more powerful, you'll have to venture into the dungeons and kill some of the creatures there for items.\n" + answer);
 					}
 				});
 
@@ -85,7 +84,7 @@ public class MeetHackim extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Ok, but don't even happen to touch any weapon. They are counted.",
+				"Remember, all the weapons are counted; best to leave them alone.",
 				null);
 
 	}

@@ -67,9 +67,9 @@ public class NewsFromHackim extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("Shhh come here: Do me a favour and tell #Xin Blanca that the new supply of weapons is ready, will you?");
+							engine.say("Pssst! C'mere... do me a favour and tell #Xin #Blanca that the new supply of weapons is ready, will you?");
 						} else {
-							engine.say("Thanks, but I don't have any new message for #Xin. I can't smuggle so often and even now I think Xoderos is beginning to suspect something. Anyway, if I can help you somehow say it.");
+							engine.say("Thanks, but I don't have any messages to pass on to #Xin. I can't smuggle so often now... I think Xoderos is beginning to suspect something. Anyway, let me know if there's anything else I can do.");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
@@ -79,7 +79,7 @@ public class NewsFromHackim extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Thanks. I'm sure that Xin will reward you generously. Now if I can help you in anything just ask.",
+				"Thanks! I'm sure that #Xin will reward you generously. Let me know if you need anything else.",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
@@ -92,7 +92,7 @@ public class NewsFromHackim extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.ATTENDING,
-				"Yes, now that I think about it, it isn't wise to involve anyone else in this small business. Forget it bud, I haven't told you anything... Now if I can help you just ask.",
+				"Yes, now that I think about it, it probably isn't wise to involve too many people in this... Just forget we spoke, okay? You never heard anything, if you know what I mean.",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
@@ -105,7 +105,7 @@ public class NewsFromHackim extends AbstractQuest {
 				"Xin",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"You don't know who Xin is? Everybody at the tavern knows Xin. He's the guy who owes money for beer to most people in Semus. So, will you do it?",
+				"You don't know who Xin is? Everybody at the tavern knows Xin. He's the guy who owes beer money to most of the people in Semos! So, will you do it?",
 				null);
 	}
 
@@ -129,13 +129,12 @@ public class NewsFromHackim extends AbstractQuest {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						String answer;
 						if (!player.isEquipped("leather_legs")) {
-							answer = "Take this pair of shining leather_legs! Now if you need anything else just say it";
+							answer = "Take this set of brand new leather leg armour! Let me know if you want anything else.";
 						} else {
-							answer = "Yes, I know you have a pair of leather_legs already but it's the only cheap thing I've found for you. Now if you need anything else from me just say it";
+							answer = "Take this set of brand new... oh, you already have leather leg armour. Well, maybe you can sell them off or something.";
 						}
-						//player.say("So... to make a long story short: I know your business with Hackim and I'm here to tell you that the next supply is ready");
-						engine.say("So it is ready at last! Those are very good news! Let me give you an item for your service. "
-										+ answer);
+						//player.say("Well, to make a long story short; I know your business with Hackim and I'm here to tell you that the next shipment is ready.");
+						engine.say("Ah, it's ready at last! That is very good news indeed! Here, let me give you a little something for your help... " + answer);
 						player.setQuest(QUEST_SLOT, "done");
 		
 						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(

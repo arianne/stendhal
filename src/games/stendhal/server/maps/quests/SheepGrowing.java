@@ -50,7 +50,7 @@ public class SheepGrowing extends AbstractQuest {
 		zone.assignRPObjectID(sign);
 		sign.setX(26);
 		sign.setY(41);
-		sign.setText("Talk to Nishiya to buy a sheep!\nHe has the best prices for miles.");
+		sign.setText("NISHIYA'S SHEEP FARM\n\nBuy sheep from Nishiya to get the best prices!");
 		zone.add(sign);
 
 		SpeakerNPC npc = new SpeakerNPC("Nishiya") {
@@ -74,14 +74,14 @@ public class SheepGrowing extends AbstractQuest {
 					@Override
 					protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 						if (amount > 1) {
-							seller.say("Sorry! You don't look like someone who is able to take care of several sheep at a time.");
+							seller.say("Hmm... I just don't think you're cut out for taking care of a whole flock of sheep at once.");
 							return false;
 						} else if (!player.hasSheep()) {
 							if (! player.drop("money", getCharge(player))) {
-								seller.say("A real pity! You don't have enough money!");
+								seller.say("You don't seem to have enough money.");
 								return false;
 							}
-							seller.say("Congratulations! Here is your sheep! Keep it safe!");
+							seller.say("Here you go, a nice fluffy little sheep! Take good care of it, now...");
 							StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
 									.getRPZone(seller.getID());
 
@@ -98,7 +98,7 @@ public class SheepGrowing extends AbstractQuest {
 
 							return true;
 						} else {
-							say("You already have a sheep. Take care of it first!");
+							say("Well, why don't you make sure you can look after that sheep you already have first?");
 							return false;
 						}
 					}
@@ -109,17 +109,17 @@ public class SheepGrowing extends AbstractQuest {
 
 				addGreeting();
 				addJob("I work as a sheep seller.");
-				addHelp("I just sell sheep. Just tell me #buy #sheep and I will sell you a nice sheep! Ask me how to take #care of her, how to #travel with her, how to #sell her or how to #own a wild sheep.");
+				addHelp("I sell sheep. To buy one, just tell me you want to #buy #sheep. If you're new to this business, I can tell you how to #travel with her, take #care of her, and finally give you tips on when to #sell her. If you find any wild sheep, incidentally, you can make them your #own.");
 				addGoodbye();
 				addSeller(new SheepSellerBehaviour(items));
 				addReply("care",
-						"To feed your sheep just stand near bushes and it'll eat red cherries from them. She won't lose weight neither die from starvation. Right-click on her and choose LOOK to see her weight.");
+						"My sheep especially love to eat the red berries that grow on these little bushes. Just stand near one and your sheep will walk over to start eating. You can right-click and choose LOOK at any time, to check up on her weight; she will gain one unit of weight for every cherry she eats.");
 				addReply("travel",
-						"Sometimes you'll have to say #sheep to call her because you have to be close to her to change between zones. Be patient and don't right-click on YOU and choose LEAVE SHEEP: it would never do that with you!");
+						"You'll need your sheep to be close by in order for her to follow you when you change zones; you can say #sheep to call her if she's not paying attention. If you decide to abandon her instead, you can right-click on yourself and select LEAVE SHEEP; but frankly I think that sort of behaviour is disgraceful.");
 				addReply("sell",
-						"When your sheep weighs 100 (same as the number of cherries eaten), sell her to Sato, but only then or surely you'll feel cheated with his buying price.");
+						"Once you've gotten your sheep up to a weight of 100, you can take her to Sato in Semos; he will buy her from you.");
 				addReply("own",
-						"If you happen to see a wild or better unfairly abandoned sheep, you can own it by right-clicking on IT and choosing OWN.");
+						"If you find any wild or abandoned sheep, you can right-click on them and select OWN to tame them. Sheep need to be looked after!");
 			}
 		};
 		npcs.add(npc);
@@ -136,7 +136,7 @@ public class SheepGrowing extends AbstractQuest {
 		zone.assignRPObjectID(sign);
 		sign.setX(43);
 		sign.setY(40);
-		sign.setText("Talk to Sato to sell your sheep!\nHe probably won't give you a fair price but this is a small village...\nThe price he will offer you depends on the weight of your sheep.");
+		sign.setText("Talk to Sato about selling your sheep. His prices aren't very good, but unfortunately it's a buyer's market... He pays more for bigger sheep; try to get a weight of at least 100.");
 		zone.add(sign);
 
 		npc = new SpeakerNPC("Sato") {
@@ -177,7 +177,7 @@ public class SheepGrowing extends AbstractQuest {
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 							if (seller.squaredDistance(sheep) > 5 * 5) {
-								seller.say("Ya sheep is too far away. I can't see it from here. Go and bring it here.");
+								seller.say("I can't see that sheep from here! Bring it over so I can assess it properly.");
 							} else {
 								say("Thanks! Here is your money.");
 								payPlayer(player);
@@ -190,8 +190,7 @@ public class SheepGrowing extends AbstractQuest {
 								return true;
 							}
 						} else {
-							seller.say("You ain't got a sheep!! What game you trying to play, "
-									   + player.get("name") + "?");
+							seller.say("You don't have any sheep, " + player.get("name") + "! What are you trying to pull?");
 						}
 
 						return false;
@@ -202,8 +201,8 @@ public class SheepGrowing extends AbstractQuest {
 				buyitems.put("sheep", 150);
 
 				addGreeting();
-				addJob("I work as the main Semos' sheep buyer.");
-				addHelp("I just buy sheeps. Just tell me sell sheep and I will buy your nice sheep!");
+				addJob("I buy sheep here in Semos, then I send them up to Ados where they are exported.");
+				addHelp("I purchase sheep, at what I think is a fairly reasonable price. Just say if you want to #sell #sheep, and I will set up a deal!");
 				addBuyer(new SheepBuyerBehaviour(buyitems));
 				addGoodbye();
 			}

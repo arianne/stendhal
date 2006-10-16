@@ -79,7 +79,7 @@ public class PlinksToy extends AbstractQuest {
 				}
 			},
 			ConversationStates.QUEST_OFFERED,
-			"**cry** Theres was a rudle of #wolves! *snief* I ran away dropping my #teddy! *snief* Please! Will you bring it back? Please!",
+			"*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?",
 			null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -90,7 +90,7 @@ public class PlinksToy extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("*snief* Thanks a lot. *smile*");
+						engine.say("*sniff* Thanks a lot! *smile*");
 						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
@@ -99,7 +99,7 @@ public class PlinksToy extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"*cry* Please! *snief*",
+				"*sniff* But... but... PLEASE! *cries*",
 				null);
 
 		List<String> wolf = Arrays.asList("wolf", "wolves");
@@ -107,21 +107,21 @@ public class PlinksToy extends AbstractQuest {
 				wolf,
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"They live in the #park east of here. Wolves are dangerous.",
+				"They came in from the plains, and now they're hanging around the #park over to the east a little ways. I'm not allowed to go near them, they're dangerous.",
 				null);
 		
 		npc.add(ConversationStates.QUEST_OFFERED,
 				"park",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"Mom told me not to go into the Park of Wolves. But i got lost during play. Please don't tell her.",
+				"My parents told me not to go to the park by myself, but I got lost when I was playing... Please don't tell them!",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				"teddy",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"He is my favorite toy. Will you bring him back?",
+				"Teddy is my favourite toy! Please will you bring him back?",
 				null);
 	}
 	
@@ -131,7 +131,7 @@ public class PlinksToy extends AbstractQuest {
 		zone.assignRPObjectID(plantGrower);
 		plantGrower.setX(107);
 		plantGrower.setY(84);
-		plantGrower.setDescription("Plink lost his teddy here.");
+		plantGrower.setDescription("There's a teddy-bear-shaped depression in the sand here.");
 		plantGrower.setToFullGrowth();
 		zone.add(plantGrower);
 
@@ -155,7 +155,7 @@ public class PlinksToy extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("teddy");
-						engine.say("Oh, my teddy. *smile* Thanks a lot for bringing it back from that dangerous #Park of #Wolves where I dropped it. *smile*");
+						engine.say("You found him! *hugs teddy* Thank you, thank you for bringing it back from that dangerous #Park of #Wolves where I dropped it. *smile*");
 						player.addXP(10);
 						player.setQuest(QUEST_SLOT, "done");
 					}
@@ -175,7 +175,7 @@ public class PlinksToy extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.drop("teddy");
-						engine.say("Oh, my teddy. *smile* Thanks a lot. *smile*");
+						engine.say("You found him! *hugs teddy* Thank you, thank you! *smile*");
 						player.addXP(10);
 						player.setQuest(QUEST_SLOT, "done");
 					}
@@ -190,7 +190,7 @@ public class PlinksToy extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"I lost my teddy in the Park of Wolves east of here.",
+				"I lost my teddy in the #park over east, where all those #wolves are hanging about.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -206,7 +206,7 @@ public class PlinksToy extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("This is not my teddy. You brought my teddy back some time ago.");
+						engine.say("That's not my teddy, I've got him right here! Remember, you found him for me?");
 					}
 				});
 	}

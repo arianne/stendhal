@@ -27,19 +27,19 @@ public class MeetHayunn extends AbstractQuest {
  
     SpeakerNPC npc=npcs.get("Hayunn Naratha");
 
-    npc.add(1,SpeakerNPC.YES_MESSAGES,null,50,"I right-clicked on creatures and chose ATTACK. But why killing creatures and risking my life if I didn't get paid for it you ask. Hmmm? Hmmm?",null);
+    npc.add(1,SpeakerNPC.YES_MESSAGES,null,50,"Well, back when I was a young adventurer, I right-clicked on my enemies and chose ATTACK. But, you may ask, what is the point behind risking my life to kill things? Yes?",null);
 
-    npc.add(50,SpeakerNPC.YES_MESSAGES,null,51,"I right-clicked on the corpses of the creatures and chose INSPECT. Then I dragged the items I found to my bag but I had to be NEXT to the corpse. Can you guess how I identified the items in my bag or on the ground?",null);
+    npc.add(50,SpeakerNPC.YES_MESSAGES,null,51,"Ah-ha! Well, what I did next was to click on the corpse of my slain opponent and choose INSPECT. Then, after making sure I was close enough to the corpse to reach it, I dragged the items there into my bag. Can you guess how I identified what these objects were, and what they did?",null);
 
-    npc.add(51,"no",null,52,"I right-clicked on the items and chose LOOK. You may be wondering how I made my way back to here in Semos despite of the injuries received from the monsters... Hmmm?",null);
+    npc.add(51,"no",null,52,"Well, it's obvious really; I right-clicked on the items and selected LOOK to get a description. Now, I know what you're thinking; how did I manage to survive for so long in the dungeons without getting killed?",null);
 
-    npc.add(52,SpeakerNPC.YES_MESSAGES,null,53,"I right-clicked on the food in my bag or on the ground and chose USE. But food doesn't recover you instantly: you gain health points over time. Do you want to know how to heal instantly?",null);
+    npc.add(52,SpeakerNPC.YES_MESSAGES,null,53,"By making sure I ate regularly! By right-clicking a food item - either in my bag or on the ground - I was able to slowly regain my health with each bite. That takes time of course, and there are ways to regain your health instantly... want to hear?",null);
 
-    npc.add(53,SpeakerNPC.YES_MESSAGES,null,54, "Once you get enough money you should buy at least one potion from Carmen the healer. A potion can be very handy when you're deep in the heart of the dungeon. Have I told you where the dungeon is?",null);
+    npc.add(53,SpeakerNPC.YES_MESSAGES,null,54, "Once you've earned enough money, you should visit one of the local healers - Carmen or Ilisa - and buy a potion. Potions are very handy when you're alone in the deep dungeons. Did I tell you were the dungeon is yet?",null);
 
-    npc.add(54,"no",null,55,"Do you see this big hole on the ground next to me? It is the entrance to the dungeons. Do you want to know how to move accurately through its narrow corridors?",null);
+    npc.add(54,"no",null,55,"See this hole behind me? That's the entrance to the dungeons. The corridors are pretty narrow down there, so there's a trick to moving quickly and accurately, if you'd like to hear it.",null);
 
-    npc.add(55,SpeakerNPC.YES_MESSAGES,null,56,"You just have to left-double-click to the place you want to move. Do you want to know where you can find yet another relevant information to become the best adventurer?",null);
+    npc.add(55,SpeakerNPC.YES_MESSAGES,null,56,"Simple, really; just double-click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?",null);
 
     npc.add(56,SpeakerNPC.YES_MESSAGES,null,0,null,
    new SpeakerNPC.ChatAction()
@@ -52,7 +52,7 @@ public class MeetHayunn extends AbstractQuest {
         String answer;
         if(level<15)
           {
-          answer="Well... Fame and glory await you, depart and don't get killed in the dungeons my young friend!";
+          answer="Well, good luck in the dungeons! Here's hoping you find fame and glory, and keep watch for monsters!";
           StackableItem money=(StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
           money.setQuantity(5);
 	  player.equip(money);
@@ -64,14 +64,15 @@ public class MeetHayunn extends AbstractQuest {
           }
         else
           {
-          answer="You look like me when I was younger... only that weaker. Bye";
+          answer="You know, you remind me of my younger self...";
           }
-	  engine.say("You can find a list of all the known and unknown creatures that inhabit the world of stendhal at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalBestiary You can find how many experience points you need to level up at #http://arianne.sourceforge.net/wiki/index.php?title=LevelTables You can find today's most reputed adventurers at #http://stendhal.game-server.cc/template_site/\n "+answer);
+          // TODO generate that link automaticially
+	  engine.say("You can find a list of all sorts of animals, monsters, and other foes at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalBestiary\nYou can find out about experience points and levelling up at #http://arianne.sourceforge.net/wiki/index.php?title=LevelTables\nYou can read about some of the currently most powerful and successful warriors at #http://stendhal.game-host.org\n "+answer);
 	 }
        });
 
-     npc.add(new int[]{1,50,52,53,55},"no",null,1,"Oh well. I'm sure someone else will be interested. Tell me what I can do for you.",null);
-     npc.add(new int[]{51,54},"yes",null,1,"Oh... I see... You think I have nothing to teach you...Ok, tell me what you want from me.",null);
+     npc.add(new int[]{1,50,52,53,55},"no",null,1,"Oh well, I'm sure someone else will stop by for a chat soon.",null);
+     npc.add(new int[]{51,54},"yes",null,1,"Hmm. You think I have nothing to teach you, eh? I see.",null);
     }
 
 	@Override
