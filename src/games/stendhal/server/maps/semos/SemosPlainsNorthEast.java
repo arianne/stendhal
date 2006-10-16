@@ -34,9 +34,9 @@ public class SemosPlainsNorthEast {
 		
 			@Override
 			protected void createDialog() {
-				addJob("I'm the local miller. People bring me grain so that I can make flour.");
-				addReply("grain", "If you have a scythe, you can harvest grain at the nearby farm.");
-				addHelp("Do you know the bakery in Semos? I am proud that they use the flour that I produce.");
+				addJob("I run this windmill, where I can #mill people's #grain into flour for them. I also supply the bakery in Semos.");
+				addReply("grain", "There's a farm nearby; they usually let people harvest there. You'll need a scythe, of course.");
+				addHelp("Do you know the bakery in Semos? I'm proud to say they use my flour. But the wolves ate my delivery boy again recently... they're probably running out.");
 				addGoodbye();
 
 				// Jenny mills flour if you bring her grain.
@@ -47,7 +47,7 @@ public class SemosPlainsNorthEast {
 						"jenny_mill_flour", "mill", "flour", requiredResources, 2 * 60);
 
 				addProducer(behaviour,
-						"Greetings. I am Jenny, the local miller. If you bring me #grain, I can #mill flour for you.");
+						"Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.");
 				
 			}
 		};

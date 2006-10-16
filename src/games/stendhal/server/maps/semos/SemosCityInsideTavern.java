@@ -87,8 +87,8 @@ public class SemosCityInsideTavern {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I am the bar maid for this fair tavern. We sell fine beers and food.");
-				addHelp("At this tavern you can get an #offer of drinks and take a break to meet new people!");
+				addJob("I am the bar maid for this fair tavern. We sell both imported and local beers, and fine food.");
+				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
 				addSeller(new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye();
 			}
@@ -119,14 +119,14 @@ public class SemosCityInsideTavern {
 			protected void createDialog() {
 				addGreeting();
 				addJob("Shhh! I sell stuff to adventurers.");
-				addHelp("I buy and sell several items, ask me for my #offer!");
+				addHelp("I buy and sell several items, ask me for my #offer.");
 				addSeller(new SellerBehaviour(shops.get("sellstuff")), false);
 				addBuyer(new BuyerBehaviour(shops.get("buystuff")), false);
 				add(ConversationStates.ATTENDING,
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"Have a look at the blackboards on the wall to see my offers",
+					"Have a look at the blackboards on the wall to see my offers.",
 					null);
 				addGoodbye();
 				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()

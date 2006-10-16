@@ -119,21 +119,21 @@ public class SemosCityOutside {
 		zone.assignRPObjectID(sign);
 		sign.setX(4);
 		sign.setY(41);
-		sign.setText("You are about to leave this area to move to the village.\nYou can buy a new sheep there.");
+		sign.setText("TO OLD SEMOS VILLAGE\n\nShepherds wanted: please ask Nishiya");
 		zone.add(sign);
 		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(26);
 		sign.setY(40);
-		sign.setText("You are about to enter the Dungeons.\nBut Beware! This area is infested with rats and legend has \nit that many Adventurers have died down there...");
+		sign.setText("DUNGEONS\n\nCaution: These dungeons contain many rats,\nand more dangerous creatures. Enter at own risk.");
 		zone.add(sign);
 		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(44);
 		sign.setY(62);
-		sign.setText("You are about to leave this area and move to the plains.\nYou may fatten up your sheep there on the wild berries.\nBe careful though, wolves roam these plains.");
+		sign.setText("TO THE PLAINS\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
 		zone.add(sign);
 		
 		Chest chest = new Chest();
@@ -179,8 +179,7 @@ public class SemosCityOutside {
 							// NPC_name quest doesn't exist anywhere else neither is
 							// used for any other purpose
 							if (!player.isQuestCompleted("Nomyr")) {
-								engine
-										.say("I've heard cries inside and I was just... but you look disoriented, foreigner. Do you want to know what has been happening around here lately?");
+								engine.say("Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?");
 								player.setQuest("Nomyr", "done");
 							} else {
 								engine.say("Hi again, " + player.getName()
@@ -188,13 +187,13 @@ public class SemosCityOutside {
 							}
 						}
 					});
-				addHelp("I'm a... hmmm... observer. I can help you by sharing my information about rumours with you... Do you want to know what has been happening around here lately?");
-				addJob("I am committed to peek every curious fact about Semos. I know any rumor that has ever existed in Semos and I have invented most of them. Well, except that about Hackim smuggling Deniran's army weapons to wandering adventurer's like you");
+				addHelp("I'm a... let's call me an \"observer\". I can tell you about all the latest rumours. Do you want to hear?");
+				addJob("I know every rumour that exists in Semos, and I invented most of them! The one about Hackim smuggling in weapons for wandering adventurers like you is true, though.");
 				add(ConversationStates.ATTENDING,
 					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"I do not have any task for you right now. If you need anything from me just say it.",
+					"Thanks for asking, but I don't need anything right now.",
 					null);
 				addGoodbye();
 			}
@@ -215,7 +214,7 @@ public class SemosCityOutside {
 
 			@Override
 			protected void createDialog() {
-				addJob("I am committed to give directions to foreigners and show them how to talk to people here. However, when I'm in a bad mood I give them misleading directions hehehe... What is not necessarily bad because I can give wrong directions unwillingly anyway and they can result in being the right directions");
+				addJob("Me? I give directions to newcomers to Semos and help them settle in. When I'm in a bad mood I sometimes give misleading directions to amuse myself... hee hee hee! Of course, sometimes I get my wrong directions wrong and they end up being right after all! Ha ha!");
 				
 				// All further behaviour is defined in MeetMonogenes.java.
 			}
@@ -257,8 +256,7 @@ public class SemosCityOutside {
 							// NPC_name quest doesn't exist anywhere else neither is
 							// used for any other purpose
 							if (!player.isQuestCompleted("Hayunn")) {
-								engine
-										.say("Hi. I am Hayunn Naratha, a retired adventurer. Do you want me to tell you how I used to kill creatures?");
+								engine.say("You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?");
 								player.setQuest("Hayunn", "done");
 							} else {
 								engine.say("Hi again, " + player.getName()
@@ -266,8 +264,8 @@ public class SemosCityOutside {
 							}
 						}
 					});
-				addHelp("Well, I'm a retired adventurer as I've told you before. I only can help you by sharing my experience with you... Do you want me to tell you how I used to kill creatures?");
-				addJob("I've sworn defending with my life the people of Semos from any creature that dares to get out of this dungeon. With all our young people battling Blordrough's dark legion at south, monsters are getting more and more confident to go to the surface.");
+				addHelp("As I say, I'm a retired adventurer, and now I teach people. Do you want me to teach you about killing creatures?");
+				addJob("My job is to guard the people of Semos from any creature that might escape this vile dungeon! With all our young people away battling Blordrough's evil legions to the south, the monsters down there are getting more confident about coming to the surface.");
 				addGoodbye();
 			}
 		};
@@ -295,8 +293,8 @@ public class SemosCityOutside {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("Hehehe! Job! hehehe! Muahahaha!");
-				addHelp("I can't help you, but you can help Stendhal: tell your friends about Stendhal and help us to create maps.");
+				addJob("Ha ha! Job? I retired decades ago! Ha ha!");
+				addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit http://arianne.sourceforge.net and see how you can help!");
 				addGoodbye();
 				add(ConversationStates.ATTENDING,
 					QUEST_MESSAGES,
@@ -310,11 +308,11 @@ public class SemosCityOutside {
 							// randomly select between two different messages
 							switch (Rand.rand(2)) {
 							case 0:
-								say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what?! Oh, Oops! I forgot it! :(");
+								say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
 								break;
 							case 1:
-								say("I have been told that on the deepest place of the dungeon under this city someone also buy sheeps, but *it* pays better!");
-								break;
+								say("You know that Sato over there buys sheep? Well, rumour has it that there's a creature deep in the dungeons who also buys sheep... and it pays much better than Sato, too!");
+ 								break;
 							}
 						}
 					});
@@ -333,7 +331,7 @@ public class SemosCityOutside {
 									player.removeQuest(quest);
 								}
 							} else {
-								say("Ummm! No, you clean me! Begin with my back!");
+								say("What? No; you clean me! Begin with my back, thanks.");
 								player.setHP(player.getHP() - 5);
 								player.notifyWorldAboutChanges();
 							}
@@ -359,8 +357,8 @@ public class SemosCityOutside {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
-				addHelp("Ask me to #heal you and I will help you or ask me for an #offer and I will show my shop's stuff.");
+				addJob("My special powers help me to heal wounded people. I also sell potions and antidotes.");
+				addHelp("I can #heal you here for free, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");
 				addSeller(new SellerBehaviour(shops.get("healing")));
 				addHealer(0);
 				addGoodbye();

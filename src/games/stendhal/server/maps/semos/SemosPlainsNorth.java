@@ -49,7 +49,7 @@ public class SemosPlainsNorth {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I play all day.");
-				addHelp("Be careful, there are some wolves east of here!");
+				addHelp("Be careful out east, there are wolves about!");
 				addGoodbye();
 			}
 		};

@@ -135,9 +135,8 @@ public class SemosCityInside {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Welcome to the bank of Semos! Do you need #help on your personal chest?");
-				addHelp("You can find your personal chest down the floor to the right. If you open it, you can store your belongings in it. I will take care that nobody else will touch them.");
-				addJob("I'm the customer consultant.");
+				addHelp("Follow the corridor to the right, and you will find the magic chests. You can store your belongings in any of them, and nobody else will be able to touch them!");
+				addJob("I'm the Customer Advisor here at Semos Bank.");
 				addGoodbye("It was a pleasure to serve you.");
 			}
 		};
@@ -209,13 +208,13 @@ public class SemosCityInside {
 
 			@Override
 			protected void createDialog() {
-				addHelp("I am the good manners and decency observer. I can help you by telling you about obvious and common sense things you should already know like not wandering naked around...");
-				addJob("I am committed to keep civilized customs in Semos. I know any kind of protocol ever known and one hundred manners of doing the same thing wrong. Well, I doubt about when it should be used the spoon or the fork but on the other hand nobody uses cutlery in Semos");
+				addHelp("I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance.");
+				addJob("My job is to maintain a civilized level of behaviour in Semos. I know the protocol for every situation, AND all the ways of handling it wrong. Well, sometimes I get confused on whether to use a spoon or a fork; but then, nobody really uses cutlery in Semos anyway.");
 				add(ConversationStates.ATTENDING,
 					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"I do not have any task for you right now. If you need anything from me just say it.",
+					"The only task I have for you is to behave nicely towards others.",
 					null);
 				addGoodbye();
 			}
@@ -281,16 +280,15 @@ public class SemosCityInside {
 							// NPC_name quest doesn't exist anywhere else neither is
 							// used for any other purpose
 							if (!player.isQuestCompleted("Hackim")) {
-								engine.say("Hi foreigner, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
-								player.setQuest("Hackim", "done");
+								engine.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");								player.setQuest("Hackim", "done");
 							} else {
 								engine.say("Hi again, " + player.getName()
 										+ ". How can I #help you this time?");
 							}
 						}
 					});
-				addHelp("I'm the blacksmith's assistant. I can help you by sharing my curiosity with you... Have you come here to buy weapons?");
-				addJob("I help Xoderos the blacksmith in making weapons for Deniran's army. I really only bring the coal for the fire but guess who puts the weapons so ordered on the shelves. Yes, it is me.");
+				addHelp("I'm the blacksmith's assistant. Tell me... Have you come here to buy weapons?");
+				addJob("I help Xoderos the blacksmith to make weapons for Deniran's army. I mostly only bring the coal for the fire and put the weapons up on the shelves. Sometimes, when Xoderos isn't looking, I like to use one of the swords to pretend I'm a famous adventurer!");
 				addGoodbye();
 			}
 		};
@@ -321,18 +319,17 @@ public class SemosCityInside {
 						"wood",
 						null,
 						ConversationStates.ATTENDING,
-						"I need wood to fire the melting furnace. You can find it lying around in the woods.",
+						"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.",
 						null);
 				
 				add(ConversationStates.ATTENDING,
-						"iron_ore",
+						Arrays.asList("ore", "iron", "iron_ore"),
 						null,
 						ConversationStates.ATTENDING,
-						"There is a dwarf mine in the mountains West of the Orril. You can find iron ore lying around there, but be careful!",
+						"You can find iron ore up in the mountains west of Or'ril, near the dwarf mines. Be careful up there!",
 						null);
-
-				addHelp("If you bring me #wood and #iron_ore, I can #cast iron for you. You can then sell it to the dwarves.");
-				addJob("I am the local blacksmith. I am proud to help Deniran's army by producing weapons.");
+				addHelp("If you bring me #wood and #iron_ore, I can #cast the iron for you. Then you could sell it to the dwarves, to make yourself a little money.");
+				addJob("Greetings. Unfortunately, because of the war, I'm not currently allowed to sell weapons to anyone except the official armoury. However, I can still #cast iron for you, or I can make you an #offer on some good tools.");
 				addGoodbye();
 				// Once Ados is ready, we can have an expert tool smith; then Xoderos
 				// won't sell tools anymore.
@@ -409,7 +406,7 @@ public class SemosCityInside {
 							// NPC_name quest doesn't exist anywhere else neither is
 							// used for any other purpose
 							if (!player.isQuestCompleted("Zynn")) {
-								engine.say("Hi, potential reader. Here's recorded all the history of Semos city and some facts about the whole island of Faiumoni in which we are. I can give you an introduction to its #geography and #history. I can report you the latest #news.");
+								engine.say("Hi, potential reader! Here you can find records of the history of Semos, and lots of interesting facts about this island of Faiumoni. If you like, I can give you a quick introduction to its #geography and #history! I also keep up with the #news, so feel free to ask me about that.");
 								player.setQuest("Zynn", "done");
 							} else {
 								engine.say("Hi again, " + player.getName()
@@ -417,29 +414,28 @@ public class SemosCityInside {
 							}
 						}
 					});
-				addHelp("I'm a historian. I can help you by sharing my knowledge with you... I can tell you about Faiumoni's #geography and #history. I can report you the latest #news.");
-				addJob("I am committed to register every objective fact about Faiumoni. I've written most of the books in this library. Well, except the book \"Know how to kill creatures\" by Hayunn Naratha");
-				addSeller(new SellerBehaviour(shops.get("scrolls")));
+				addHelp("I can best help you by sharing my knowledge of Faiumoni's #geography and #history, as well as the latest #news.");
+				addJob("I'm a historian and geographer, committed to writing down every objective fact about Faiumoni. Did you know I wrote most of the books in this library? Well, apart from \"Know How To Kill Creatures\", of course... Hayunn Naratha wrote that.");				addSeller(new SellerBehaviour(shops.get("scrolls")));
 				
 				add(ConversationStates.ATTENDING,
 					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"I do not have any task for you right now. If you need anything from me just say it.",
+					"I don't think there's really anything you could do for me right now. But thanks for asking!",
 					null);
 
 				add(ConversationStates.ATTENDING,
 					Arrays.asList("offer", "buy", "scroll", "scrolls", "home", "empty", "marked", "summon", "magic", "wizard", "sorcerer"),
 					null,
 					ConversationStates.ATTENDING,
-					"I stopped selling scrolls, but you still can buy them from #Haizen.",
+					"I don't sell scrolls anymore... I had a big argument with my supplier, #Haizen.",
 					null);
 
 				add(ConversationStates.ATTENDING,
 					Arrays.asList("haizen", "haizen."),
 					null,
 					ConversationStates.ATTENDING,
-					"Haizen is a wizard living in a small hut between Semos and Ados.",
+					"Haizen? He's a wizard who lives in a small hut between Semos and Ados. I used to sell his scrolls here, but we had an argument... you'll have to go see him yourself, I'm afraid.",
 					null);
 			}
 		};
@@ -463,7 +459,7 @@ public class SemosCityInside {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I am the librarian.");
-				addHelp("Read!");
+				addHelp("Hey, read a book and help yourself! You're never too old to stop learning.");
 				addGoodbye();
 			}
 		};
@@ -503,8 +499,8 @@ public class SemosCityInside {
 			@Override
 			protected void createDialog() {
 				addJob("I'm the shop assistant at this bakery.");
-				addReply("flour", "We usually get our flour from a mill northeast of here. If you bring us some, we can make bread for you.");
-				addHelp("Bread is very healthy. And my colleague Leander can make tasty sandwiches from it.");
+				addReply("flour", "We usually get our #flour from a mill northeast of here, but the wolves ate their delivery boy! If you help us out by bringing some, we can #bake delicious bread for you.");
+				addHelp("Bread is very good for you, especially for you adventurers who are always gulping down red meat. And my boss, Leander, happens to make the best sandwiches on the island!");
 				addGoodbye();
 
 				// Erna bakes bread if you bring her flour.
@@ -514,8 +510,7 @@ public class SemosCityInside {
 				ProducerBehaviour behaviour = new ProducerBehaviour(
 						"erna_bake_bread", "bake", "bread", requiredResources, 10 * 60);
 
-				addProducer(behaviour,
-						"Welcome to the Semos bakery. We #bake fine bread for everyone who brings us #flour.");
+				addProducer(behaviour, "Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.");
 			}
 		};
 		npcs.add(erna);
@@ -560,12 +555,11 @@ public class SemosCityInside {
 
 			@Override
 			protected void createDialog() {
-				addJob("I'm the local baker. But since the road to Ados is blocked, we don't get many orders, so I also #make sandwiches for our valuable customers.");
-				addReply("bread", "Didn't you talk to Erna? She is responsible for giving bread to our customers.");
-				addReply("cheese", "Cheese is a bit hard to find in Semos, since we have a rat plague. I wonder where those critters take it to.");
-				addReply("ham", "You look like a skilled hunter. Why don't you go to the nearby forests and hunt deers? But don't bring me meat - I only make sandwiches from high quality ham!");
-				addHelp("Do you know my daughter Sally? She's a scout; I think she's currently camping south of Orril castle. Maybe she can help you to get ham.");
-				addGoodbye();
+				addJob("I'm the local baker. We used to get a lot of orders from Ados before the war broke out and they blocked the road. At least it gives me more time to #make sandwiches for out valuable customers; everybody says they're great!");
+				addReply("bread", "Oh, Erna handles that side of the business; just go over and talk to her.");
+				addReply("cheese", "Cheese is pretty hard to find at the minute, we had a big rat infestation recently. I wonder where the little rodents took it all to?");
+				addReply("ham", "Well, you look like a skilled hunter; why not go to the forest and hunt some up fresh? Don't bring me those little pieces of meat, though... I only make sandwiches from high quality ham!");
+				addHelp("My daughter Sally might be able to help you get ham. She's a scout, you see; I think she's currently camped out south of Or'ril Castle.");				addGoodbye();
 
 				// Leander makes sandwiches if you bring him bread, cheese, and ham.
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
@@ -577,7 +571,7 @@ public class SemosCityInside {
 						"leander_make_sandwiches", "make", "sandwich", requiredResources, 3 * 60);
 
 				addProducer(behaviour,
-						"Hallo! I guess you have come because you want me to #make sandwiches for you.");
+						"Hi! I bet you've heard about my famous sandwiches and want me to #make you one, am I right?");
 			}
 		};
 		npcs.add(leander);
@@ -635,8 +629,8 @@ public class SemosCityInside {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I have healing abilities and I heal wounded people. I also sell potions and antidotes.");
-				addHelp("Ask me to #heal you and I will help you or ask me for an #offer and I will show my shop's stuff.");
+				addJob("My special powers help me to heal wounded people. I also sell potions and antidotes.");
+				addHelp("I can #heal you here for free, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");
 				addSeller(new SellerBehaviour(shops.get("healing")));
 				addHealer(0);
 				addGoodbye();
@@ -695,13 +689,13 @@ public class SemosCityInside {
 							}
 						}
 				});
-				addHelp("I'm a telepath and telekinetic. I can help you by sharing my mental skills with you... Do you want me to show you the six basic elements of telepathy? I already know the answer but I'm being polite...");
-				addJob("I am committed to develop the unknown potential power of the mind. Up to this day I've made great advances in telepathy and telekinesis. However, I can't foresee the future yet and if finally we will be able to destroy Blordrough's dark legion...");
+				addHelp("I'm a telepath and a telekinetic; I can help you by sharing my mental skills with you. Do you want me to teach you the six basic elements of telepathy? I already know the answer but I'm being polite...");
+				addJob("I am committed to harnessing the total power of the human mind. I have already made great advances in telepathy and telekinesis; however, I can't yet foresee the future, so I don't know if we will truly be able to destroy Blordrough's dark legion...");
 				add(ConversationStates.ATTENDING,
 					QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"I do not have any task for you right now. If you need anything from me just say it. I think it's simply unkind reading one's mind without permission.",
+					"Well, there's not really much that I need anyone to do for me right now. And I... Hey! Were you just trying to read my private thoughts? You should always ask permission before doing that!",
 					null);
 				addGoodbye();
 			}

@@ -21,21 +21,21 @@ public class SemosPlainsSouth {
 		zone.assignRPObjectID(sign);
 		sign.setX(118);
 		sign.setY(43);
-		sign.setText("You are about to leave this area to move to the forest.\nYou may fatten up your sheep there on wild berries.\nBe careful though, these forests crawl with wolves.");
+		sign.setText("TO THE FOREST\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
 		zone.add(sign);
 		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(38);
 		sign.setY(3);
-		sign.setText("You are about to leave this area to move to the village.\nYou can buy a new sheep there.");
+		sign.setText("TO OLD SEMOS VILLAGE\n\nShepherds wanted: please ask Nishiya");
 		zone.add(sign);
 		
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(113);
 		sign.setY(3);
-		sign.setText("You are about to leave this area to move to the city.\nYou can sell your sheep there.");
+		sign.setText("TO SEMOS\n\nMature sheep wanted: please speak to Sato");
 		zone.add(sign);
 	}
 
