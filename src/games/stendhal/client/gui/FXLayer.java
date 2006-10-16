@@ -79,4 +79,12 @@ public class FXLayer {
 
 		screen.setComposite(orig);
 	}
+	
+	/*if(e.getKeyChar() == 'n') {
+	fx.setMode(FXLayer.NIGHT);
+} else if(e.getKeyChar() == 'd') {
+	fx.setMode(FXLayer.DISABLED);
+} else if(e.getKeyChar() == 'o') {
+	fx.setMode(FXLayer.OVERCAST);
+}*/
 }

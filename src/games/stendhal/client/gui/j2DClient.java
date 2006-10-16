@@ -188,7 +188,7 @@ public class j2DClient extends JFrame {
 		screen.setComponent(canvas);
 
 		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
-		inGameGUI = new InGameGUI(client, fx);
+		inGameGUI = new InGameGUI(client);
 		
 
 		// When the user tries to close the window, don't close immediately,
@@ -315,7 +315,9 @@ public class j2DClient extends JFrame {
 			logger.debug("Draw screen");
 			pipeline.draw(screen);
 			inGameGUI.draw(screen);
-			fx.draw(screen.expose());
+
+			// TODO: only draw it if it is required to save cpu time
+			// fx.draw(screen.expose());
 
 			logger.debug("Query network");
 			if (client.loop(0)) {
