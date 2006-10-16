@@ -473,6 +473,7 @@ public class Player extends RPEntity implements TurnListener {
 				HttpURLConnection.setFollowRedirects(false);
 				HttpURLConnection connection = (HttpURLConnection) url
 						.openConnection();
+		        connection.setConnectTimeout(1500);  // 1.5 secs to prevent trouble with the playerContainer.getLock().requestWriteLock();
 				BufferedReader br = new BufferedReader(new InputStreamReader(
 						connection.getInputStream()));
 				msg = br.readLine();
