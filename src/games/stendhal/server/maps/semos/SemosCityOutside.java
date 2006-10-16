@@ -28,12 +28,19 @@ public class SemosCityOutside {
 
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_semos_city"));
+		buildSemosCityAreaPortals(zone);
+		buildSemosCityAreaSigns(zone);
+		buildSemosCityAreaChest(zone);
 
-		buildSemosCityArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
-		"0_semos_city")));
+		buildSemosCityAreaNomyrAhba(zone);
+		buildSemosCityAreaMonogenes(zone);
+		buildSemosCityAreaHayunnNaratha(zone);
+		buildSemosCityAreaDiogenes(zone);
+		buildSemosCityAreaCarmen(zone);
 	}
 
-	private void buildSemosCityArea(StendhalRPZone zone) {
+	private void buildSemosCityAreaPortals(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(42);
@@ -114,7 +121,9 @@ public class SemosCityOutside {
 		portal.setY(49);
 		portal.setNumber(60);
 		zone.addPortal(portal);
-		
+	}
+
+	private void buildSemosCityAreaSigns(StendhalRPZone zone) {
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(4);
@@ -135,7 +144,9 @@ public class SemosCityOutside {
 		sign.setY(62);
 		sign.setText("TO THE PLAINS\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
 		zone.add(sign);
-		
+	}
+	private void buildSemosCityAreaChest(StendhalRPZone zone) {
+
 		Chest chest = new Chest();
 		zone.assignRPObjectID(chest);
 		chest.setX(44);
@@ -149,7 +160,9 @@ public class SemosCityOutside {
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("money"));
 		zone.add(chest);
-		
+	}
+
+	private void buildSemosCityAreaNomyrAhba(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Nomyr Ahba") {
 			@Override
 			protected void createPath() {
@@ -204,8 +217,10 @@ public class SemosCityOutside {
 		npc.set(46, 19);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		
-		npc = new SpeakerNPC("Monogenes") {
+	}
+
+	private void buildSemosCityAreaMonogenes(StendhalRPZone zone) {
+		SpeakerNPC npc = new SpeakerNPC("Monogenes") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -226,8 +241,10 @@ public class SemosCityOutside {
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.addNPC(npc);
+	}
 
-		npc = new SpeakerNPC("Hayunn Naratha") {
+	private void buildSemosCityAreaHayunnNaratha(StendhalRPZone zone) {
+		SpeakerNPC npc = new SpeakerNPC("Hayunn Naratha") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -275,7 +292,10 @@ public class SemosCityOutside {
 		npc.set(27, 37);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = new SpeakerNPC("Diogenes") {
+	}
+
+	private void buildSemosCityAreaDiogenes(StendhalRPZone zone) {
+		SpeakerNPC npc = new SpeakerNPC("Diogenes") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -345,7 +365,10 @@ public class SemosCityOutside {
 		npc.set(24, 42);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		npc = new SpeakerNPC("Carmen") {
+	}
+
+	private void buildSemosCityAreaCarmen(StendhalRPZone zone) {
+		SpeakerNPC npc = new SpeakerNPC("Carmen") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
