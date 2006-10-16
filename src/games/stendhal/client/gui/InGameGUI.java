@@ -75,10 +75,13 @@ public class InGameGUI implements KeyListener {
 	private int[] veryFastKeyEvents = new int[4]; // at leat one more than checked
 
 	private long lastKeyEventsCleanUpStart;
-	
-	public InGameGUI(StendhalClient client) {
+
+	private FXLayer fx;
+
+	public InGameGUI(StendhalClient client, FXLayer fx) {
 
 		client.setGameGUI(this);
+		this.fx = fx;
 		this.client = client;
 
 		gameObjects = client.getGameObjects();
@@ -265,6 +268,13 @@ public class InGameGUI implements KeyListener {
 			// escape typed
 			showQuitDialog();
 		}
+		/*if(e.getKeyChar() == 'n') {
+			fx.setMode(FXLayer.NIGHT);
+		} else if(e.getKeyChar() == 'd') {
+			fx.setMode(FXLayer.DISABLED);
+		} else if(e.getKeyChar() == 'o') {
+			fx.setMode(FXLayer.OVERCAST);
+		}*/
 	}
 
 	/**

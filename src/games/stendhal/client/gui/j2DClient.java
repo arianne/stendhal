@@ -83,7 +83,8 @@ public class j2DClient extends JFrame {
 	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
 	private JTextField playerChatText;
 
-	
+	private FXLayer fx;
+	 
 	private boolean fixkeyboardHandlinginX() {
 		logger.debug("OS: " + System.getProperty("os.name"));
 		try {
@@ -186,7 +187,9 @@ public class j2DClient extends JFrame {
 		screen = GameScreen.get();
 		screen.setComponent(canvas);
 
-		inGameGUI = new InGameGUI(client);
+		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
+		inGameGUI = new InGameGUI(client, fx);
+		
 
 		// When the user tries to close the window, don't close immediately,
 		// but show a confirmation dialog. 
@@ -312,6 +315,7 @@ public class j2DClient extends JFrame {
 			logger.debug("Draw screen");
 			pipeline.draw(screen);
 			inGameGUI.draw(screen);
+			fx.draw(screen.expose());
 
 			logger.debug("Query network");
 			if (client.loop(0)) {
