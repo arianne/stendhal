@@ -2,7 +2,10 @@ package games.stendhal.client.update;
 
 import games.stendhal.common.Version;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -11,14 +14,16 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
+// TODO: remove dependency on games.stendhal.common.Version
+
 /**
  * manages downloading and installing of updates
  *
  * @author hendrik
  */
 public class UpdateManager {
-	private static String pathSep = System.getProperty("file.separator");
-	private static String jarFolder = System.getProperty("user.home") + pathSep + "stendhal" + pathSep + "jar" + pathSep;
+	private String jarFolder = null;
+	private Properties bootProp = null;
 	// TODO: fix URL after testing is completed
 	private static final String SERVER_FOLDER = "http://localhost/stendhal/updates/";
 	private static Logger logger = Logger.getLogger(UpdateManager.class);
@@ -31,6 +36,8 @@ public class UpdateManager {
 	private void init() {
 		HttpClient httpClient = new HttpClient(SERVER_FOLDER + "update.properties");
 		updateProp = httpClient.fetchProperties();
+		jarFolder = Bootstrap.get().getJarFolder();
+		bootProp = Bootstrap.get().getBootProp();
 	}
 
 	public void process() {
@@ -63,8 +70,9 @@ public class UpdateManager {
 				List<String> files = getFilesToUpdate();
 				int updateSize = getSizeOfFilesToUpdate(files);
 				if (UpdateGUI.askForUpdate(updateSize)) {
-					downloadFiles(files);
-					updateClasspathConfig(files);
+					if (downloadFiles(files)) {
+						updateClasspathConfig(files);
+					}
 				}
 				break;
 			}
@@ -131,17 +139,42 @@ public class UpdateManager {
 		for (String file : files) {
 			HttpClient httpClient = new HttpClient(SERVER_FOLDER + file);
 			if (!httpClient.fetchFile(jarFolder + file)) {
-				UpdateGUI.messageBox("Beim Herunterladen des Updates ist ein Fehler aufgetreten.");
+				UpdateGUI.messageBox("Sorry, an error occured while downloading the update at file " + file);
 				return false;
 			}
-			// TODO: Verify File Size
+			try {
+				File fileObj = new File(jarFolder + file);
+				int shouldSize = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
+				if (fileObj.length() != shouldSize) {
+					UpdateGUI.messageBox("Sorry, an error occured while downloading the update. File size of "
+									+ file + " does not match. We got " + fileObj.length() + " but it should be " + shouldSize);
+					return false;
+				}
+			} catch (NumberFormatException e) {
+				logger.warn(e, e);
+			}			
 		}
 		return true;
 	}
 
+	/**
+	 * updates the classpath
+	 *
+	 * @param files
+	 */
 	private void updateClasspathConfig(List<String> files) {
-		// TODO: invert order of files
-		// TODO: add to local properties file
+		// invert order of files so that the news are first on classpath
+		Collections.reverse(files);
+		StringBuilder sb = new StringBuilder();
+		for (String file : files) {
+			sb.append("," + file);
+		}
+		bootProp.put("load", bootProp.getProperty("load", "") + sb.toString());
+		try {
+			Bootstrap.get().saveBootProp();
+		} catch (IOException e) {
+			UpdateGUI.messageBox("Sorry, an error occured while downloading the update. Could not write bootProperties");
+		}
 	}
 
 	// debug code
