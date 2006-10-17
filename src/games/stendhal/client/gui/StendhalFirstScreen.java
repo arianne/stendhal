@@ -167,7 +167,7 @@ public class StendhalFirstScreen extends JFrame {
         HttpClient httpClient = new HttpClient(stendhal.VERSION_LOCATION);
         String version = httpClient.fetchFirstLine();
         if (version != null) {
-			if (Version.compare(version, stendhal.VERSION) < -1) {
+			if (Version.compare(version, stendhal.VERSION) > 0) {
 				// custom title, warning icon
 				JOptionPane.showMessageDialog(
 					null,
