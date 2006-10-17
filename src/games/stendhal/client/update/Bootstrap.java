@@ -88,25 +88,27 @@ public class Bootstrap {
 			// load jar.properties
 			String propFile = jarFolder + "jar.properties";
 			bootProp = new Properties();
-			InputStream is = new FileInputStream(propFile);
-			bootProp.load(is);
-			is.close();
-
-			// get list of .jar-files
-			String jarNameString = bootProp.getProperty("load", "jar.properties does not contain \"load=\" line");
-			List<URL> jarFiles = new LinkedList<URL>();
-			StringTokenizer st = new StringTokenizer(jarNameString, ",");
-			while (st.hasMoreTokens()) {
-				String filename = st.nextToken();
-				jarFiles.add(new File(jarFolder + filename).toURI().toURL());
+			if (new File(propFile).canRead()) {
+				InputStream is = new FileInputStream(propFile);
+				bootProp.load(is);
+				is.close();
+	
+				// get list of .jar-files
+				String jarNameString = bootProp.getProperty("load", "");
+				List<URL> jarFiles = new LinkedList<URL>();
+				StringTokenizer st = new StringTokenizer(jarNameString, ",");
+				while (st.hasMoreTokens()) {
+					String filename = st.nextToken();
+					jarFiles.add(new File(jarFolder + filename).toURI().toURL());
+				}
+	
+			    // Create new class loader which the list of .jar-files as classpath
+				URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
+			    ClassLoader loader = new URLClassLoader(urlArray);
+	
+			    // load class through new loader
+			    clazz = loader.loadClass(className);
 			}
-
-		    // Create new class loader which the list of .jar-files as classpath
-			URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-		    ClassLoader loader = new URLClassLoader(urlArray);
-
-		    // load class through new loader
-		    clazz = loader.loadClass(className);
             		
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
@@ -132,8 +134,8 @@ public class Bootstrap {
 
 			// build classpath
 			// switch comment-markers on the next two lines, to use new code
-			// Class clazz = getMainClass(className);
-			Class clazz = Class.forName(className);
+			Class clazz = getMainClass(className);
+//			 Class clazz = Class.forName(className);
 
 			// get method and invoke it
 			Method method = clazz.getMethod("main", args.getClass());
