@@ -2,6 +2,7 @@
 
 import games.stendhal.server.entity.*
 import games.stendhal.server.entity.item.*
+import games.stendhal.server.script.*
 import games.stendhal.server.scripting.*
 import games.stendhal.server.entity.npc.*;
 import games.stendhal.server.pathfinder.Path
@@ -13,6 +14,19 @@ import marauroa.common.game.RPSlot;
 // that the IOU cannot be delivered and hence the player can't get cash
 
 logger.debug("Starting Kanmararn Groovy script")
+
+/*
+BUG: http://jira.codehaus.org/browse/GROOVY-1199
+Groovy does not support calling super() with primitives
+class QuestCorpse extends Corpse {
+	public QuestCorpse(String clazz, int x, int y) {
+		super(clazz, x, y);
+	}
+	public boolean canBeEquiped() {
+		return false;
+	}
+}
+*/
 
 class CorpseEmptyCondition extends ScriptCondition {
 	Corpse corpse;
@@ -211,7 +225,7 @@ if(game.setZone(myZone)) {	 // if zone exists
 	game.add(henry);
 	
 	// Now we create the corpse of the second NPC
-	tom = new Corpse("youngsoldiernpc", 5, 47);
+	tom = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 5, 47);
 	tom.setDegrading(false);
 	tom.setStage(4);	// he died first
 	tom.put("name", "Tom");
@@ -223,7 +237,7 @@ if(game.setZone(myZone)) {	 // if zone exists
 			new CorpseFillAction(tom, game, "leather_legs", "You see torn leather legs that are heavily covered with blood."));
 
 	// Now we create the corpse of the third NPC
-	charles = new Corpse("youngsoldiernpc", 94, 5);
+	charles = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 94, 5);
 	charles.setDegrading(false);
 	charles.setStage(3);	// he died second
 	charles.put("name", "Charles");
@@ -235,7 +249,7 @@ if(game.setZone(myZone)) {	 // if zone exists
 			new CorpseFillAction(charles, game, "note", "You read: \"IOU 250 gold. (signed) McPegleg\""));
  
 	// Now we create the corpse of the fourth NPC
-	peter = new Corpse("youngsoldiernpc", 11, 63);
+	peter = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 11, 63);
 	peter.setDegrading(false);
 	peter.setStage(2);	// he died recently
 	peter.put("name", "Peter");
