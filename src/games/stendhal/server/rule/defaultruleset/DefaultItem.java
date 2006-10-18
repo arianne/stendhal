@@ -103,6 +103,8 @@ public class DefaultItem {
 			item = new Scroll(name, clazz, subclazz, attributes);
 		} else if (clazz.equals("misc") && subclazz.equals("dice")) {
 			item = new Dice(attributes);
+		} else if (clazz.equals("misc") && subclazz.equals("token")) {
+			item = new Token(name, clazz, subclazz, attributes);
 		} else if (stackable) {
 			item = new StackableItem(name, clazz, subclazz, attributes);
 		} else {

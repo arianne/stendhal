@@ -1737,7 +1737,12 @@ Makes players more offensive
       </equipable>
     </item>
 
-  <item name="note">
+    <item name="token">
+		<type class="misc" subclass="token"/>
+		<weight value="1"/>
+	</item>
+
+    <item name="note">
 		<type class="misc" subclass="paper"/>
 		<weight value="0.01"/>
 		<equipable>
@@ -1755,7 +1760,7 @@ Makes players more offensive
 
 	<item name="dice">
 		<type class="misc" subclass="dice"/>
-		<weight value="0.1"/>
+		<weight value="1"/>
 		<equipable>
 			<slot name="bag"/>
 		</equipable>
