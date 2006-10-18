@@ -1,6 +1,5 @@
 package games.stendhal.client.update;
 
-import games.stendhal.common.Version;
 
 import java.io.File;
 import java.io.IOException;

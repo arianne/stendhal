@@ -1,6 +1,6 @@
 package games.stendhal.test.common;
 
-import games.stendhal.common.Version;
+import games.stendhal.client.update.Version;
 
 public class TestVersion extends TestCase {
 

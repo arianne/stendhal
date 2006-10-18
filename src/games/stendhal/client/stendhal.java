@@ -14,8 +14,8 @@ package games.stendhal.client;
 
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
-import games.stendhal.common.Version;
 
 import java.security.AccessControlException;
 

@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.bot.postman;
 
-import games.stendhal.common.Version;
+import games.stendhal.client.update.Version;
 
 import java.net.SocketException;
 import java.util.HashMap;

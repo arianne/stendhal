@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
-import games.stendhal.common.Version;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -211,10 +211,10 @@ public class Player extends RPEntity implements TurnListener {
 			}
 
 			boolean newReleaseHappened = !object.get("release").equals(
-					Version.VERSION);
+					Debug.VERSION);
 			if (newReleaseHappened) {
 				firstVisit = true;
-				player.put("release", Version.VERSION);
+				player.put("release", Debug.VERSION);
 			}
 
 			if (firstVisit) {

@@ -1,6 +1,6 @@
 /* $Id$
  */
-package games.stendhal.common;
+package games.stendhal.client.update;
 
 /**
  * maintains the current version

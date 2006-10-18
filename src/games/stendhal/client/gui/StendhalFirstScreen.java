@@ -15,7 +15,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.update.HttpClient;
-import games.stendhal.common.Version;
+import games.stendhal.client.update.Version;
 
 import java.awt.Container;
 import java.awt.Component;

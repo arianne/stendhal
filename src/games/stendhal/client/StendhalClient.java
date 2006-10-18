@@ -19,8 +19,8 @@ import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
+import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
-import games.stendhal.common.Version;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
