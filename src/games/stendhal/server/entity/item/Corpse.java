@@ -18,6 +18,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.events.EquipListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
@@ -32,7 +33,7 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public class Corpse extends PassiveEntity implements TurnListener {
+public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
 	private static final int DEGRADATION_TIMEOUT = 3000; // 30 minutes at 300 ms
 	private static final int MAX_STAGE = 5; // number of degradation steps
@@ -236,6 +237,10 @@ public class Corpse extends PassiveEntity implements TurnListener {
 		}
 		text = text + ". You can #inspect it to see its contents.";
 		return (text);
+	}
+
+	public boolean canBeEquiped() {
+		return false;
 	}
 
 }
