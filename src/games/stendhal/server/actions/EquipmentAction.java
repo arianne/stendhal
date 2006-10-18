@@ -351,7 +351,7 @@ public class EquipmentAction extends ActionListener {
 		public boolean moveTo(DestinationObject dest, Player player) {
 			StendhalRPWorld world = StendhalRPWorld.get();
             
-            if (! ((base instanceof EquipListener) || ((EquipListener) base).canBeEquiped())) {
+            if ( (!(base instanceof EquipListener)) || (!((EquipListener) base).canBeEquiped())) {
                 logger.warn("tried to equip a non equipable entity: " + base.getClass() + "; equip rejected");
                 return false;
             }
