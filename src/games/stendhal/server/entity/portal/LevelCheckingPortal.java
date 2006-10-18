@@ -24,6 +24,9 @@ public class LevelCheckingPortal extends Portal {
 	private int minLevel = 0;
 	private int maxLevel = 99;
 
+	/**
+	 * default constructor
+	 */
 	public LevelCheckingPortal() {
 		super();
 	}
@@ -40,6 +43,7 @@ public class LevelCheckingPortal extends Portal {
 		this.maxLevel = maxLevel;
 	}
 
+	@Override
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 		if (player.getLevel() < minLevel) {
