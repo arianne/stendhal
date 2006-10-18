@@ -14,8 +14,6 @@ package games.stendhal.server.entity.portal;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 
@@ -23,29 +21,16 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 
 /**
- * A door is a special kind of portal which requires a key to pass it.
- * If the player carries the key with him, he can use the door just
- * like a normal portal; it will automatically open and close.
- * 
+ * A door is a special kind of portal which can be open or closed.
+ *
  * Note that you can link a door with a portal; that way, people only
  * require the key when walking in one direction and can walk in the
  * other direction without any key.
  */
-public class Door extends Portal implements TurnListener {
-	
+public class Door extends Portal {
+
 	/** Whether or not the door is currently open */
 	private boolean open;
-    
-	/**
-	 * How many turns it takes until door automatically closes itself
-	 * after somebody walked through it.
-	 */
-	private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
-    
-	/**
-	 * The turn at which this door should close the next time. 
-	 */
-	// private int turnToClose = 0;
 
 	public static void generateRPClass() {
 		RPClass door = new RPClass("door");
@@ -57,18 +42,15 @@ public class Door extends Portal implements TurnListener {
 
 	/**
 	 * Creates a new door.
-	 * @param key The item that must be carried to pass through this door 
 	 * @param clazz The class. Responsible for how this door looks like.
 	 * @param dir The direction in which one has to walk in order to pass
 	 *            through this door
 	 * @throws AttributeNotFoundException
 	 */
-	public Door(String key, String clazz, Direction dir)
-			throws AttributeNotFoundException {
+	public Door(String clazz, Direction dir) {
 		super();
 		put("type", "door");
 		put("class", clazz);
-		put("locked", key);
 
 		setDirection(dir);
 
@@ -89,16 +71,7 @@ public class Door extends Portal implements TurnListener {
 	/**
 	 * Opens the door. 
 	 */
-	private void open() {
-		TurnNotifier turnNotifier = TurnNotifier.get();
-		if (open) {
-			// The door is still open because another player just used it.
-			// Thus, it is scheduled to auto-close soon. We delay this
-			// auto-closing.
-			turnNotifier.dontNotify(this, null);
-		}
-        turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this, null);
-
+	protected void open() {
         open = true;
 		put("open", "");
 		notifyWorldAboutChanges();
@@ -107,29 +80,22 @@ public class Door extends Portal implements TurnListener {
 	/**
 	 * Closes the door. 
 	 */
-	private void close() {
+	protected void close() {
 		this.open = false;
 		remove("open");
 		notifyWorldAboutChanges();
 	}
 
-	private boolean isOpen() {
+	protected boolean isOpen() {
 		return open;
 	}
 
-	@Override
+
+	/**
+	 * teleport (if the door is now open)
+	 */
 	public void onUsed(RPEntity user) {
-		if (has("locked") && user.isEquipped(get("locked"))) {
-			// open it, even it is already open to reset the auto-close
-			// countdown.
-			open();
-		} else if (open) {
-			// close now to make visible that the entity is not allowed
-			// to pass
-			close();
-			return;
-		}
-		if (open) {
+		if (isOpen()) {
 			super.onUsed(user);
 		}
 	}
@@ -148,11 +114,6 @@ public class Door extends Portal implements TurnListener {
 		}
 		text += " It is " + (isOpen() ? "open" : "closed") + ".";
 		return (text);
-	}
-
-	public void onTurnReached(int currentTurn, String message) {
-		close();
-		notifyWorldAboutChanges();
 	}
 
 }
