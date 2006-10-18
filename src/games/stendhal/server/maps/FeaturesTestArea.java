@@ -9,7 +9,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.portal.Door;
+import games.stendhal.server.entity.portal.LockedDoor;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
@@ -60,7 +60,7 @@ public class FeaturesTestArea implements IContent {
 	}
 	
 	private void createDoorAndKey() {
-		Portal portal = new Door("key_golden", "skulldoor", Direction.DOWN);
+		Portal portal = new LockedDoor("key_golden", "skulldoor", Direction.DOWN);
 		zone.assignRPObjectID(portal);
 		portal.setX(50);
 		portal.setY(10);

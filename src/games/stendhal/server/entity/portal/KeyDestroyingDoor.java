@@ -17,7 +17,7 @@ import marauroa.common.game.AttributeNotFoundException;
  * 
  * @author daniel
  */
-public class KeyDestroyingDoor extends Door {
+public class KeyDestroyingDoor extends LockedDoor {
 	
 	/**
 	 * The number of key items that are destroyed while

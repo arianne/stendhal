@@ -12,7 +12,7 @@ import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.portal.Door;
+import games.stendhal.server.entity.portal.LockedDoor;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
@@ -69,7 +69,7 @@ public class Orril implements IContent {
 		RespawnPoint point = new RespawnPoint(zone, 69, 43, creature, 1);
 		zone.addRespawnPoint(point);
 
-		Door door = new Door("dungeon_silver_key", "skulldoor", Direction.DOWN);
+		Portal door = new LockedDoor("dungeon_silver_key", "skulldoor", Direction.DOWN);
 		zone.assignRPObjectID(door);
 		door.set(69, 37);
 		door.setNumber(0);
@@ -96,7 +96,7 @@ public class Orril implements IContent {
 		point = new RespawnPoint(zone, 54, 48, creature, 1);
 		zone.addRespawnPoint(point);
 
-		door = new Door("lich_gold_key", "skulldoor", Direction.UP);
+		door = new LockedDoor("lich_gold_key", "skulldoor", Direction.UP);
 		zone.assignRPObjectID(door);
 		door.set(54, 52);
 		door.setNumber(1);
