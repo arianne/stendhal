@@ -17,6 +17,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.events.EquipListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
@@ -32,7 +33,7 @@ import marauroa.common.game.RPSlot;
 /**
  * This is an item.
  */
-public class Item extends PassiveEntity implements TurnListener {
+public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/** list of possible slots for this item */
 	private List<String> possibleSlots;
 	
@@ -297,5 +298,9 @@ public class Item extends PassiveEntity implements TurnListener {
 		} else {
 			StendhalRPWorld.get().remove(getID());
 		}
+	}
+
+	public boolean canBeEquiped() {
+		return true;
 	}
 }

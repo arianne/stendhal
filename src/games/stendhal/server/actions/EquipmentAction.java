@@ -18,12 +18,14 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.events.EquipListener;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
@@ -349,10 +351,8 @@ public class EquipmentAction extends ActionListener {
 		public boolean moveTo(DestinationObject dest, Player player) {
 			StendhalRPWorld world = StendhalRPWorld.get();
             
-            // corpses, chests, blood and whatever should not be equipable
-            // TODO: make euqipable and interface and check that here
-            if (! (base instanceof Item)) {
-                logger.warn("tried to equip a non item: " + base.getClass() + "; equip rejected");
+            if (! ((base instanceof EquipListener) || ((EquipListener) base).canBeEquiped())) {
+                logger.warn("tried to equip a non equipable entity: " + base.getClass() + "; equip rejected");
                 return false;
             }
             
