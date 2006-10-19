@@ -11,10 +11,13 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import org.apache.log4j.Logger;
+
 /**
  * Helper functions for producing grammatically-correct sentences.
  */
 public class Grammar {
+	private static final Logger logger = Logger.getLogger(Grammar.class);
 
 	/**
 	 * "it" or "them", depending on the quantity
@@ -269,4 +272,24 @@ public class Grammar {
 		return !vowel_p(c);
 	}
 
+	/**
+	 * first, second, third, ...
+	 *
+	 * @param n a number
+	 * @return first, second, third, ...
+	 */
+	public static String ordered(int n) {
+		if (n <= 0 || n > 3) {
+		}
+		switch (n) {
+			case 1: return "first";
+			case 2: return "second";
+			case 3: return "third";
+			default: {
+				// TODO: implement this if needed
+				logger.error("Gramar.ordered not implemented for: " + n, new Throwable() );
+				return Integer.toString(n);
+			}
+		}
+	}
 }
