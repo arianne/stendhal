@@ -7,6 +7,8 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 import marauroa.common.game.IRPZone;
 
 /**
@@ -22,7 +24,39 @@ public class ReverseArrow extends AbstractQuest {
 	private SpeakerNPC npc = null;
 	private Portal exit = null;
 	private OnePlayerRoomDoor door = null;
-	
+
+	/**
+	 * Checks the result
+	 */
+	private static class ReverseArrowCheck implements TurnListener {
+		private Player player = null;
+		private SpeakerNPC npc = null;
+
+		/**
+		 * create a new ReverseArrowCheck
+		 *
+		 * @param player player who tried to solve the quest
+		 * @param npc the npc guarding the quest
+		 */
+		ReverseArrowCheck(Player player, SpeakerNPC npc) {
+			this.player = player;
+			this.npc = npc;
+		}
+
+		public void onTurnReached(int currentTurn, String message) {
+			// TODO: check token position
+			if (true) {
+				player.setQuest(QUEST_SLOT, "done");
+				npc.say("Congratulations you solved the quizz");
+				// TODO: give reward
+			} else {
+				player.setQuest(QUEST_SLOT, "failed");
+				npc.say("This does not look like an arrow pointing upwards to me.");
+			}
+			// TODO: teleport player out
+		}
+		
+	}
 
 	@Override
 	public void init(String name) {
@@ -49,17 +83,12 @@ public class ReverseArrow extends AbstractQuest {
 		String questState = player.getQuest(QUEST_SLOT);
 		int moveCount = MathHelper.parseInt_default(questState, MAX_MOVES);
 		moveCount++;
-		if (moveCount >= 3) {
-			// TODO: check token position
-			// TODO: teleport player out
-			if (true) {
-				player.setQuest(QUEST_SLOT, "done");
-			} else {
-				player.setQuest(QUEST_SLOT, "failed");
-			}
-			return;
+		if (moveCount < 3) {
+			npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
+		} else {
+			npc.say("This was your " + Grammar.ordered(moveCount) + " and final move. Let me check your work.");
+			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(player, npc), null);
 		}
-		npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
 	}
 
 	@Override
