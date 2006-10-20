@@ -69,12 +69,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * 
 	 * Creates a new Item.
 	 * 
-	 * @param name
-	 *            name of item
-	 * @param clazz
-	 *            class (or type) od item
-	 * @param attributes
-	 *            attributes (like attack). may be empty or <code>null</code>
+	 * @param name name of item
+	 * @param clazz class (or type) of item
+	 * @param subclass subclass of this item
+	 * @param attributes attributes (like attack). may be empty or <code>null</code>
 	 */
 	public Item(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
@@ -91,15 +89,32 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 	}
 
+	/**
+	 * on which slots may this item be equiped
+	 *
+	 * @param slots list of allowed slots
+	 */
 	public void setEquipableSlots(List<String> slots) {
 		// save slots
 		possibleSlots = slots;
 	}
-	
+
+	/**
+	 * If this item is created by a PlantGrower,
+	 * the item will notify it when picked from the ground
+	 *
+	 * @param plantGrower a plant grower
+	 */
 	public void setPlantGrower(PlantGrower plantGrower) {
 		this.plantGrower = plantGrower;
 	}
 
+	/**
+	 * returns the PlantGrower which created this item
+	 * or null if no plantgrower was involved.
+	 *
+	 * @return PlantGrower or null
+	 */
 	public PlantGrower getPlantGrower() {
 		return plantGrower;
 	}

@@ -18,15 +18,29 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Tokens are items which tigger an event on movement. They may not be equiped.
+ *
+ * @author hendrik
+ */
 public class Token extends Item {
 	private static Logger logger = Logger.getLogger(Token.class);
-	
+
+	/**
+	 * Create a new token
+	 * 
+	 * @param name name of item
+	 * @param clazz class (or type) of item
+	 * @param subclass subclass of this item
+	 * @param attributes attributes (like attack). may be empty or <code>null</code>
+	 */
 	public Token(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	private void process(Player player) {
 		logger.warn("Not implemented yet");
+		// TODO: implement me
 	}
 	
 	@Override
