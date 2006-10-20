@@ -3,12 +3,15 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.item.Token;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.rule.EntityManager;
 import marauroa.common.game.IRPZone;
 
 /**
@@ -21,9 +24,11 @@ public class ReverseArrow extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "reverse_arrow";
 	private static final int MAX_MOVES = 3;
+	private StendhalRPZone zone = null;
 	private SpeakerNPC npc = null;
 	private Portal exit = null;
 	private OnePlayerRoomDoor door = null;
+	private Token[] tokens = null;
 
 	/**
 	 * Checks the result
@@ -62,7 +67,55 @@ public class ReverseArrow extends AbstractQuest {
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 	}
-	
+
+	/**
+	 * creates a token and adds it to the world
+	 *
+	 * @param i index of this token
+	 * @param x x-position
+	 * @param y y-position
+	 */
+	private void addTokenToWorld(int i, int x, int y) {
+		EntityManager entityManager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+		tokens[i] = (Token) entityManager.getItem("token");
+		zone.assignRPObjectID(tokens[i]);
+		tokens[i].set(x, y);
+		tokens[i].put("persistent", 1);
+		zone.add(tokens[i]);
+	}
+
+	/**
+	 * adds the tokens to the game field
+	 */
+	private void step1AddTokens() {
+		int xOffset = 5;
+		int yOffset = 5;
+		// x x x x x
+		//   x x x
+		//     x
+		tokens = new Token[9];
+		for (int i = 0; i < 5; i++) {
+			addTokenToWorld(i, xOffset + i, yOffset);
+		}
+		for (int i = 1; i < 4; i++) {
+			addTokenToWorld(i + 4, xOffset + i, yOffset + 1);
+		}
+		addTokenToWorld(8, xOffset + 3, yOffset + 2);
+	}
+
+	/**
+	 * removes all tokens (called after the player messed them up)
+	 */
+	private void removeAllTokens() {
+		if (tokens != null) {
+			for (Token token : tokens) {
+				if (token != null) {
+					zone.remove(token.getID());
+				}
+			}
+		}
+	}
+
 	private void step_1() {
 		// TODO: create NPC
 		// TODO: create zone with tokens
@@ -87,7 +140,7 @@ public class ReverseArrow extends AbstractQuest {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
 		} else {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " and final move. Let me check your work.");
-			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(player, npc), null);
+			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(player, npc), null); // 2 seconds
 		}
 	}
 
