@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
