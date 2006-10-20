@@ -13,7 +13,8 @@ import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.rule.EntityManager;
 
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,10 +57,64 @@ public class ReverseArrow extends AbstractQuest {
 		}
 
 		/**
+		 * Is the task solved?
+		 *
+		 * @return true on success, false on failure
+		 */
+		private boolean checkBoard() {
+			// We check the complete arrow (and not just the three moved
+			// tokens) here for two reasons:
+
+			// 1. there are 6 permutions so the code would quite messy
+			// 2. there may be a solution i did not recognize
+
+			// This aproach has the side effect that the code does not
+			// tell the solution :-)
+
+			// sort the tokens according to their position
+			Collections.sort(tokens, new Comparator() {
+				public int compare(Object o1, Object o2) {
+					Token t1 = (Token) o1;
+					Token t2 = (Token) o2;
+					int d = t1.getY() - t2.getY();
+					if (d == 0) {
+						d = t1.getX() - t2.getX();
+					}
+					return d;
+				}
+			});
+			//     0
+			//   1 2 3 
+			// 4 5 6 7 8
+
+			// get the position of the topmost token
+			int topX = tokens.get(0).getX();
+			int topY = tokens.get(0).getY();
+
+			// check first row
+			for (int i = 1; i <= 3; i++) {
+				Token token = tokens.get(i);
+				if ((token.getX() != topX - 1 + (i - 1)) || (token.getY() != topY + 1)) {
+					return false;
+				}
+			}
+
+			// check second row
+			for (int i = 4; i <= 8; i++) {
+				Token token = tokens.get(i);
+				if ((token.getX() != topX - 2 + (i - 4)) || (token.getY() != topY + 2)) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/**
 		 * invoked shortly after the player did his/her third move.
 		 */
 		public void onTurnReached(int currentTurn, String message) {
-			if (false) {
+			if (checkBoard()) {
 				player.setQuest(QUEST_SLOT, "done");
 				npc.say("Congratulations you solved the quizz");
 				// TODO: give reward
