@@ -72,10 +72,8 @@ public class ReverseArrow extends AbstractQuest {
 			// tell the solution :-)
 
 			// sort the tokens according to their position
-			Collections.sort(tokens, new Comparator() {
-				public int compare(Object o1, Object o2) {
-					Token t1 = (Token) o1;
-					Token t2 = (Token) o2;
+			Collections.sort(tokens, new Comparator<Token>() {
+				public int compare(Token t1, Token t2) {
 					int d = t1.getY() - t2.getY();
 					if (d == 0) {
 						d = t1.getX() - t2.getX();
@@ -127,6 +125,33 @@ public class ReverseArrow extends AbstractQuest {
 		
 	}
 
+	/**
+	 * Tells the player the remaining time and teleports him out if the
+	 * task is not completed in time.
+	 */
+	class Timer implements TurnListener {
+		private int counter = 60;
+		private Player player = null;
+		Timer(Player player) {
+			this.player = player;
+		}
+
+		public void onTurnReached(int currentTurn, String message) {
+			IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
+			if (playerZone.equals(zone)) {
+				if (counter > 0) {
+					npc.say("You have " + counter + " seconds left.");
+					counter = counter - 10;
+					TurnNotifier.get().notifyInTurns(10*3, this, null);
+				} else {
+					npc.say("Sorry, your time is up.");
+					// TODO: teleport player out
+				}
+			}
+		}
+		
+	}
+
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
@@ -151,7 +176,7 @@ public class ReverseArrow extends AbstractQuest {
 	/**
 	 * adds the tokens to the game field
 	 */
-	private void step1AddTokens() {
+	private void addAllTokens() {
 		// 0 1 2 3 4
 		//   5 6 7
 		//     8
@@ -181,7 +206,7 @@ public class ReverseArrow extends AbstractQuest {
 
 	private void step_1() {
 		// TODO: create NPC
-		// TODO: create zone with tokens
+		// TODO: create zone
 		// TODO: create door
 	}
 
@@ -195,6 +220,11 @@ public class ReverseArrow extends AbstractQuest {
 		}
 	}
 
+	/**
+	 * The player moved a token
+	 *
+	 * @param player Player
+	 */
 	public void onTokenMoved(Player player) {
 		String questState = player.getQuest(QUEST_SLOT);
 		int moveCount = MathHelper.parseInt_default(questState, MAX_MOVES);
@@ -207,6 +237,18 @@ public class ReverseArrow extends AbstractQuest {
 		}
 	}
 
+	/**
+	 * A player entered the zone
+	 *
+	 * @param player Player
+	 */
+	public void start(Player player) {
+		removeAllTokens();
+		addAllTokens();
+		Timer timer = new Timer(player);
+		TurnNotifier.get().notifyInTurns(0, timer, null);
+	}
+	
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
