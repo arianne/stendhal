@@ -35,6 +35,7 @@ public class SemosJailWest {
 		zoneSub1SemosJailSoldier();
 		zoneSub1SemosJailElf();
 		zoneSub2SemosJail();
+		disabledMagicScrolls();
 	}
 
 	private void buildPortals() {
@@ -151,6 +152,14 @@ public class SemosJailWest {
 		npc.initHP(100);
 		zone.addNPC(npc);
 	}
+	
+	private void disabledMagicScrolls() {
+		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("-1_semos_jail"));
+		zone.setTeleportable(false);
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("-2_semos_jail"));
+		zone.setTeleportable(false);
+	}
 
 	/**
 	 * Is the player speaking to us in jail?
@@ -160,7 +169,6 @@ public class SemosJailWest {
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return Jail.isInJail(player);
 		}
-		
 	}
 
 	/**
@@ -171,6 +179,5 @@ public class SemosJailWest {
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return !Jail.isInJail(player);
 		}
-		
 	}
 }

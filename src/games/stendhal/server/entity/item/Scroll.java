@@ -133,12 +133,16 @@ public class Scroll extends StackableItem implements UseListener {
 	 * @return always true
 	 */
 	private boolean useEmptyScroll(Player player) {
-		Item markedScroll = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"marked_scroll");
-		markedScroll.put("infostring", "" + player.getID().getZoneID() + " "
-				+ player.getX() + " " + player.getY());
-		player.equip(markedScroll, true);
-		return true;
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+		if (zone.isTeleportable()) {
+			Item markedScroll = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("marked_scroll");
+			markedScroll.put("infostring", player.getID().getZoneID() + " "	+ player.getX() + " " + player.getY());
+			player.equip(markedScroll, true);
+			return true;
+		} else {
+			player.sendPrivateText("The strong anti magic aura in this aera prevents the scroll from working!");
+			return false;
+		}
 	}
 
 	/**
@@ -147,8 +151,7 @@ public class Scroll extends StackableItem implements UseListener {
 	 * @return true iff summoning was successful
 	 */
 	private boolean useSummonScroll(Player player) {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
-				.getID());
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 		if (zone.isInProtectionArea(player)) {
 			player.sendPrivateText("The aura of protection in this area prevents the scroll from working!");
 			return false;
@@ -210,26 +213,33 @@ public class Scroll extends StackableItem implements UseListener {
 	 * @return true iff summoning was successful
 	 */
 	private boolean useTeleportScroll(Player player) {
-		// init as home_scroll
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_city");
-		int x = 30;
-		int y = 40;
-
-		// Is it a marked scroll? Marked scrolls have a destination which
-		// is stored in the infostring, existing of a zone name and x and y
-		// coordinates
-		if (has("infostring")) {
-			String infostring = get("infostring");
-			java.util.StringTokenizer st = new java.util.StringTokenizer(infostring);
-			if (st.countTokens() == 3) {
-				zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(st.nextToken());
-				x = Integer.parseInt(st.nextToken());
-				y = Integer.parseInt(st.nextToken());
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+		if (zone.isTeleportable()) {
+	
+			// init as home_scroll
+			zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_city");
+			int x = 30;
+			int y = 40;
+	
+			// Is it a marked scroll? Marked scrolls have a destination which
+			// is stored in the infostring, existing of a zone name and x and y
+			// coordinates
+			if (has("infostring")) {
+				String infostring = get("infostring");
+				java.util.StringTokenizer st = new java.util.StringTokenizer(infostring);
+				if (st.countTokens() == 3) {
+					zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(st.nextToken());
+					x = Integer.parseInt(st.nextToken());
+					y = Integer.parseInt(st.nextToken());
+				}
 			}
+			// we use the player as teleporter (last parameter) to give feedback
+			// if something goes wrong.
+			return player.teleport(zone, x, y, null, player);
+		} else {
+			player.sendPrivateText("The strong anti magic aura in this aera prevents the scroll from working!");
+			return false;
 		}
-		// we use the player as teleporter (last parameter) to give feedback
-		// if something goes wrong.
-		return player.teleport(zone, x, y, null, player);
 	}
 
 	@Override

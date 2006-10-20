@@ -63,7 +63,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private List<RespawnPoint> respawnPoints;
     private List<PlantGrower> plantGrowers;
     private List<RPEntity> playersAndFriends;
-
+    private boolean teleportable = true;
 
 	/**
 	 * A set of all items that are lying on the ground in this zone.
@@ -815,5 +815,24 @@ public class StendhalRPZone extends MarauroaRPZone {
 	
 	public void removePlayerAndFriends(RPEntity player) {
 		playersAndFriends.remove(player);
+	}
+
+	/**
+	 * Can magic scrolls for teleportation be used in this zone?
+	 *
+	 * @return true, if teleportion is possible, false otherwise
+	 */
+	public boolean isTeleportable() {
+		return teleportable;
+	}
+
+	/**
+	 * Sets the flag whether magic scrolls for teleportation may
+	 * be uses in this zone.
+	 *
+	 * @param teleportable true, if teleportion is possible, false otherwise
+	 */
+	public void setTeleportable(boolean teleportable) {
+		this.teleportable = teleportable;
 	}
 }
