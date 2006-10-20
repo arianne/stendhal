@@ -12,6 +12,11 @@ import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.rule.EntityManager;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.game.IRPZone;
 
 /**
@@ -24,18 +29,21 @@ public class ReverseArrow extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "reverse_arrow";
 	private static final int MAX_MOVES = 3;
+	private static final int OFFSET_X = 5;
+	private static final int OFFSET_Y = 5;
+
+	
 	private StendhalRPZone zone = null;
-	private SpeakerNPC npc = null;
+	protected SpeakerNPC npc = null;
+	protected List<Token> tokens = null;
 	private Portal exit = null;
 	private OnePlayerRoomDoor door = null;
-	private Token[] tokens = null;
 
 	/**
 	 * Checks the result
 	 */
-	private static class ReverseArrowCheck implements TurnListener {
+	private class ReverseArrowCheck implements TurnListener {
 		private Player player = null;
-		private SpeakerNPC npc = null;
 
 		/**
 		 * create a new ReverseArrowCheck
@@ -43,20 +51,21 @@ public class ReverseArrow extends AbstractQuest {
 		 * @param player player who tried to solve the quest
 		 * @param npc the npc guarding the quest
 		 */
-		ReverseArrowCheck(Player player, SpeakerNPC npc) {
+		ReverseArrowCheck(Player player) {
 			this.player = player;
-			this.npc = npc;
 		}
 
+		/**
+		 * invoked shortly after the player did his/her third move.
+		 */
 		public void onTurnReached(int currentTurn, String message) {
-			// TODO: check token position
-			if (true) {
+			if (false) {
 				player.setQuest(QUEST_SLOT, "done");
 				npc.say("Congratulations you solved the quizz");
 				// TODO: give reward
 			} else {
 				player.setQuest(QUEST_SLOT, "failed");
-				npc.say("This does not look like an arrow pointing upwards to me.");
+				npc.say("I am sorry. This does not look like an arrow pointing upwards to me.");
 			}
 			// TODO: teleport player out
 		}
@@ -71,36 +80,34 @@ public class ReverseArrow extends AbstractQuest {
 	/**
 	 * creates a token and adds it to the world
 	 *
-	 * @param i index of this token
 	 * @param x x-position
 	 * @param y y-position
 	 */
-	private void addTokenToWorld(int i, int x, int y) {
+	private void addTokenToWorld(int x, int y) {
 		EntityManager entityManager = StendhalRPWorld.get().getRuleManager().getEntityManager();
-		tokens[i] = (Token) entityManager.getItem("token");
-		zone.assignRPObjectID(tokens[i]);
-		tokens[i].set(x, y);
-		tokens[i].put("persistent", 1);
-		zone.add(tokens[i]);
+		Token token = (Token) entityManager.getItem("token");
+		zone.assignRPObjectID(token);
+		token.set(x, y);
+		token.put("persistent", 1);
+		zone.add(token);
+		tokens.add(token);
 	}
 
 	/**
 	 * adds the tokens to the game field
 	 */
 	private void step1AddTokens() {
-		int xOffset = 5;
-		int yOffset = 5;
-		// x x x x x
-		//   x x x
-		//     x
-		tokens = new Token[9];
+		// 0 1 2 3 4
+		//   5 6 7
+		//     8
+		tokens = new LinkedList<Token>();
 		for (int i = 0; i < 5; i++) {
-			addTokenToWorld(i, xOffset + i, yOffset);
+			addTokenToWorld(OFFSET_X + i, OFFSET_Y);
 		}
 		for (int i = 1; i < 4; i++) {
-			addTokenToWorld(i + 4, xOffset + i, yOffset + 1);
+			addTokenToWorld(OFFSET_X + i, OFFSET_Y + 1);
 		}
-		addTokenToWorld(8, xOffset + 3, yOffset + 2);
+		addTokenToWorld(OFFSET_X + 3, OFFSET_Y + 2);
 	}
 
 	/**
@@ -114,6 +121,7 @@ public class ReverseArrow extends AbstractQuest {
 				}
 			}
 		}
+		tokens = null;
 	}
 
 	private void step_1() {
@@ -140,7 +148,7 @@ public class ReverseArrow extends AbstractQuest {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
 		} else {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " and final move. Let me check your work.");
-			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(player, npc), null); // 2 seconds
+			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(player), null); // 2 seconds
 		}
 	}
 
