@@ -188,6 +188,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_ados_outside_w");
 		// addArea("0_ados_city_w");
 		addArea("0_ados_city");
+		addArea("int_ados_reverse_arrow");
 
 		addArea("0_orril_mountain_nw");
 		addArea("0_orril_forest_n");
@@ -289,8 +290,7 @@ public class StendhalRPWorld extends RPWorld {
 
 	private boolean populateZone(String name) {
 		try {
-			Class entityClass = Class.forName("games.stendhal.server.maps."
-					+ name);
+			Class entityClass = Class.forName("games.stendhal.server.maps."	+ name);
 
 			boolean implementsIContent = false;
 
@@ -332,8 +332,7 @@ public class StendhalRPWorld extends RPWorld {
 		StendhalRPZone area = new StendhalRPZone(name);
 
 		ZoneXMLLoader instance = ZoneXMLLoader.get();
-		ZoneXMLLoader.XMLZone xmlzone = instance.load("data/maps/" + content
-				+ ".xstend");
+		ZoneXMLLoader.XMLZone xmlzone = instance.load("data/maps/" + content + ".xstend");
 
 		area.addLayer(name + "_0_floor", xmlzone.getLayer("0_floor"));
 		area.addLayer(name + "_1_terrain", xmlzone.getLayer("1_terrain"));
@@ -345,19 +344,13 @@ public class StendhalRPWorld extends RPWorld {
 			area.addLayer(name + "_4_roof_add", layer);
 		}
 
-		area.addCollisionLayer(name + "_collision", xmlzone
-				.getLayer("collision"));
-		area.addProtectionLayer(name + "_protection", xmlzone
-				.getLayer("protection"));
-		// NOTE: Navigation layer is not longer needed.
-		// area.addNavigationLayer(name+"_navigation",xmlzone.getLayer("navigation"));
+		area.addCollisionLayer(name + "_collision", xmlzone.getLayer("collision"));
+		area.addProtectionLayer(name + "_protection", xmlzone.getLayer("protection"));
 
 		if (xmlzone.isInterior()) {
 			area.setPosition();
 		} else {
-			area
-					.setPosition(xmlzone.getLevel(), xmlzone.getX(), xmlzone
-							.getY());
+			area.setPosition(xmlzone.getLevel(), xmlzone.getX(), xmlzone.getY());
 		}
 
 		addRPZone(area);
