@@ -16,15 +16,26 @@ import games.stendhal.server.entity.Player;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 /**
  * Tokens are items which tigger an event on movement. They may not be equiped.
  *
  * @author hendrik
  */
 public class Token extends Item {
-	private static Logger logger = Logger.getLogger(Token.class);
+	private TokenMoveListener tokenMoveListener = null;
+
+	/**
+	 * a listener that will be notified on token move
+	 */
+	public interface TokenMoveListener {
+
+		/**
+		 * a token was moved
+		 *
+		 * @param player the player moving it
+		 */
+		public void onTokenMoved(Player player);
+	}
 
 	/**
 	 * Create a new token
@@ -38,19 +49,25 @@ public class Token extends Item {
 		super(name, clazz, subclass, attributes);
 	}
 
-	private void process(Player player) {
-		logger.warn("Not implemented yet");
-		// TODO: implement me
-	}
-	
 	@Override
 	public void onPutOnGround(Player player) {
 		super.onPutOnGround(player);
-		process(player);
+		if ((player != null) && (tokenMoveListener != null)) {
+			tokenMoveListener.onTokenMoved(player);
+		}
 	}
 
 	@Override
 	public boolean canBeEquiped() {
 		return false;
+	}
+
+	/**
+	 * Sets a TokenMoveListener
+	 *
+	 * @param tokenMoveListener TokenMoveListener
+	 */
+	public void setTokenMoveListener(TokenMoveListener tokenMoveListener) {
+		this.tokenMoveListener = tokenMoveListener;
 	}
 }
