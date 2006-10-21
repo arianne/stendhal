@@ -120,7 +120,9 @@ public class ReverseArrow extends AbstractQuest {
 				player.setQuest(QUEST_SLOT, "failed");
 				npc.say("I am sorry. This does not look like an arrow pointing upwards to me.");
 			}
-			// TODO: teleport player out
+
+			// teleport the player out
+			exit.onUsed(player);
 		}
 		
 	}
@@ -144,8 +146,9 @@ public class ReverseArrow extends AbstractQuest {
 					counter = counter - 10;
 					TurnNotifier.get().notifyInTurns(10*3, this, null);
 				} else {
+					// teleport the player out
 					npc.say("Sorry, your time is up.");
-					// TODO: teleport player out
+					exit.onUsed(player);
 				}
 			}
 		}
