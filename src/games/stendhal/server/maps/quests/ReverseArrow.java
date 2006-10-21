@@ -28,12 +28,13 @@ import marauroa.common.game.IRPZone;
  *
  * @author hendrik
  */
-public class ReverseArrow extends AbstractQuest {
+public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListener {
 
 	private static final String QUEST_SLOT = "reverse_arrow";
+	private static final String ZONE_NAME = "int_ados_reverse_arrow";
 	private static final int MAX_MOVES = 3;
-	private static final int OFFSET_X = 5;
-	private static final int OFFSET_Y = 5;
+	private static final int OFFSET_X = 8;
+	private static final int OFFSET_Y = 8;
 
 	
 	private StendhalRPZone zone = null;
@@ -193,6 +194,7 @@ public class ReverseArrow extends AbstractQuest {
 		zone.assignRPObjectID(token);
 		token.set(x, y);
 		token.put("persistent", 1);
+		token.setTokenMoveListener(this);
 		zone.add(token);
 		tokens.add(token);
 	}
@@ -211,7 +213,7 @@ public class ReverseArrow extends AbstractQuest {
 		for (int i = 1; i < 4; i++) {
 			addTokenToWorld(OFFSET_X + i, OFFSET_Y + 1);
 		}
-		addTokenToWorld(OFFSET_X + 3, OFFSET_Y + 2);
+		addTokenToWorld(OFFSET_X + 2, OFFSET_Y + 2);
 	}
 
 	/**
@@ -229,9 +231,13 @@ public class ReverseArrow extends AbstractQuest {
 	}
 
 	private void step_1() {
+		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(ZONE_NAME));
 		// TODO: create NPC
 		// TODO: create zone
 		// TODO: create door
+
+		// TODO: remove test code
+		addAllTokens();
 	}
 
 	@Override
