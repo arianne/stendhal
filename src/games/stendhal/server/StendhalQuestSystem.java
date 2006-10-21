@@ -53,6 +53,7 @@ public class StendhalQuestSystem {
 		loadQuest("NewsFromHackim");
 		loadQuest("OrcishHappyMeal");
 		loadQuest("PlinksToy");
+		loadQuest("ReverseArrow");
 		loadQuest("SevenCherubs");
 		loadQuest("SheepGrowing");
 		loadQuest("WeaponsCollector");
