@@ -27,33 +27,36 @@ public class StendhalQuestSystem {
 		return stendhalQuestSystem;
 	}
 
+	/**
+	 * initiales the QuestSystem
+	 */
 	public StendhalQuestSystem() {
 		stendhalQuestSystem = this;
 		questInfos = QuestXMLLoader.get();
 
-		loadQuest("SheepGrowing");
-		loadQuest("OrcishHappyMeal");
-		loadQuest("LookBookforCeryl");
+		loadQuest("ArmorForDagobert");
+		loadQuest("BeerForHayunn");
+		loadQuest("Campfire");
+		loadQuest("CleanStorageSpace");
+		loadQuest("CloaksForBario");
+		loadQuest("DiceGambling");
+		loadQuest("HatForMonogenes");
 		loadQuest("IntroducePlayers");
-		loadQuest("SevenCherubs");
+		loadQuest("LookBookforCeryl");
 		loadQuest("MeetHackim");
 		loadQuest("MeetHayunn");
 		loadQuest("MeetIo");
+		loadQuest("MeetKetteh");
 		loadQuest("MeetMonogenes");
 		loadQuest("MeetNomyr");
 		loadQuest("MeetZynn");
-		loadQuest("BeerForHayunn");
-		loadQuest("ArmorForDagobert");
-		loadQuest("HatForMonogenes");
 		loadQuest("NewsFromHackim");
-		loadQuest("MeetKetteh");
-		loadQuest("CleanStorageSpace");
+		loadQuest("OrcishHappyMeal");
+		loadQuest("PlinksToy");
+		loadQuest("SevenCherubs");
+		loadQuest("SheepGrowing");
 		loadQuest("WeaponsCollector");
 		loadQuest("ZooFood");
-		loadQuest("CloaksForBario");
-		loadQuest("Campfire");
-		loadQuest("PlinksToy");
-		loadQuest("DiceGambling");
 	}
 
 	private boolean loadQuest(String name) {
