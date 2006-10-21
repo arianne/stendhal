@@ -1,10 +1,12 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Token;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.OnePlayerRoomDoor;
@@ -155,6 +157,25 @@ public class ReverseArrow extends AbstractQuest {
 		
 	}
 
+	/**
+	 * Notifies this script on sucessful usage
+	 */
+	class NotifingDoor extends OnePlayerRoomDoor {
+		public NotifingDoor(String clazz, Direction dir) {
+			super(clazz, dir);
+		}
+
+		@Override
+		public void onUsed(RPEntity user) {
+			super.onUsed(user);
+			IRPZone playerZone = StendhalRPWorld.get().getRPZone(user.getID());
+			if (playerZone.equals(zone)) {
+				// let the fun beginn
+				start((Player) user);
+			}
+		}
+	}
+	
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
