@@ -288,9 +288,6 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		exit.setNumber(0);
 		exit.setDestination(entranceZoneName, 0);
 		zone.addPortal(exit);
-
-		System.out.println(entranceZone.getPortals());
-		System.out.println(zone.getPortals());
 	}
 
 	@Override
