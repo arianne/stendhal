@@ -13,6 +13,7 @@ import games.stendhal.server.entity.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.Collections;
@@ -28,20 +29,26 @@ import marauroa.common.game.IRPZone;
  *
  * @author hendrik
  */
+// TODO: split this class, it does to many different things
 public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListener {
 
+	// constants
 	private static final String QUEST_SLOT = "reverse_arrow";
 	private static final String ZONE_NAME = "int_ados_reverse_arrow";
+	private static final int TIME = 60;
 	private static final int MAX_MOVES = 3;
 	private static final int OFFSET_X = 8;
 	private static final int OFFSET_Y = 8;
 
-	
-	private StendhalRPZone zone = null;
+	// "static" data
+	protected StendhalRPZone zone = null;
 	protected SpeakerNPC npc = null;
 	protected List<Token> tokens = null;
 	private Portal exit = null;
 	private OnePlayerRoomDoor door = null;
+
+	// quest instance data
+	private int moveCount = 0;
 
 	/**
 	 * Checks the result
@@ -135,7 +142,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * task is not completed in time.
 	 */
 	class Timer implements TurnListener {
-		private int counter = 60;
+		private int counter = TIME;
 		private Player player = null;
 		Timer(Player player) {
 			this.player = player;
@@ -162,7 +169,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * Notifies this script on sucessful usage
 	 */
 	class NotifingDoor extends OnePlayerRoomDoor {
-		public NotifingDoor(String clazz, Direction dir) {
+		NotifingDoor(String clazz, Direction dir) {
 			super(clazz, dir);
 		}
 
@@ -232,12 +239,58 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 	private void step_1() {
 		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(ZONE_NAME));
-		// TODO: create NPC
-		// TODO: create zone
-		// TODO: create door
+		step1CreateNPC();
+		step1CreateDoors();
+	}
 
-		// TODO: remove test code
-		addAllTokens();
+	private void step1CreateNPC() {
+		npc = new SpeakerNPC("Gamblos") {
+			@Override
+			protected void createPath() {
+				// NPC doesn't move
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+
+			@Override
+			protected void createDialog() {
+				addHelp("You have to stand next to a token in order to move it.");
+				addJob("I am the local game master.");
+				addGoodbye("It was nice to meet you.");
+				addQuest("Your task in this game is to revert the direction of this arrow moving only 3 tokens within " + TIME + " seconds.");
+			}
+		};
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		npc.put("class", "oldwizardnpc"); // TODO change outfit
+		npc.set(16, 7);
+		npc.setDirection(Direction.DOWN);
+		npc.initHP(100);
+		zone.addNPC(npc); 
+	}
+	
+	private void step1CreateDoors() {
+		// 0_semos_mountain_n2 at (95,101)
+		String entranceZoneName = "0_semos_mountain_n2"; 
+		StendhalRPZone entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(entranceZoneName));
+		door = new NotifingDoor("skulldoor", Direction.DOWN); // TODO change clazz
+		entranceZone.assignRPObjectID(door);
+		door.setX(95);
+		door.setY(102);
+		door.setNumber(0);
+		door.setDestination(ZONE_NAME, 0);
+		entranceZone.addPortal(door);
+
+		exit = new Portal();
+		zone.assignRPObjectID(exit);
+		exit.setX(5);
+		exit.setY(3);
+		exit.setNumber(0);
+		exit.setDestination(entranceZoneName, 0);
+		zone.addPortal(exit);
+
+		System.out.println(entranceZone.getPortals());
+		System.out.println(zone.getPortals());
 	}
 
 	@Override
@@ -257,12 +310,11 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 */
 	public void onTokenMoved(Player player) {
 		String questState = player.getQuest(QUEST_SLOT);
-		int moveCount = MathHelper.parseInt_default(questState, MAX_MOVES);
 		moveCount++;
 		if (moveCount < 3) {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
 		} else {
-			npc.say("This was your " + Grammar.ordered(moveCount) + " and final move. Let me check your work.");
+			npc.say("This was your third and final move. Let me check your work.");
 			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(player), null); // 2 seconds
 		}
 	}
@@ -277,6 +329,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		addAllTokens();
 		Timer timer = new Timer(player);
 		TurnNotifier.get().notifyInTurns(0, timer, null);
+		moveCount = 0;
 	}
 	
 	@Override
