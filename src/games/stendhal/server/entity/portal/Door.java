@@ -82,7 +82,9 @@ public class Door extends Portal {
 	 */
 	protected void close() {
 		this.open = false;
-		remove("open");
+		if (has("open")) {
+			remove("open");
+		}
 		notifyWorldAboutChanges();
 	}
 
