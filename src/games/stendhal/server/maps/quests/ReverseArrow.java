@@ -2,7 +2,6 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
@@ -44,27 +43,17 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	protected StendhalRPZone zone = null;
 	protected SpeakerNPC npc = null;
 	protected List<Token> tokens = null;
-	protected Portal exit = null;
 	private OnePlayerRoomDoor door = null;
+	private StendhalRPZone entranceZone = null;
 
 	// quest instance data
 	private int moveCount = 0;
+	protected Player player = null;
 
 	/**
 	 * Checks the result
 	 */
-	private class ReverseArrowCheck implements TurnListener {
-		private Player player = null;
-
-		/**
-		 * create a new ReverseArrowCheck
-		 *
-		 * @param player player who tried to solve the quest
-		 * @param npc the npc guarding the quest
-		 */
-		ReverseArrowCheck(Player player) {
-			this.player = player;
-		}
+	protected class ReverseArrowCheck implements TurnListener {
 
 		/**
 		 * Is the task solved?
@@ -132,7 +121,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			}
 
 			// teleport the player out
-			exit.onUsed(player);
+			finish(true, player);
 		}
 		
 	}
@@ -143,11 +132,6 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 */
 	class Timer implements TurnListener {
 		private int counter = TIME;
-		private Player player = null;
-		Timer(Player player) {
-			this.player = player;
-		}
-
 		public void onTurnReached(int currentTurn, String message) {
 			IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
 			if (playerZone.equals(zone)) {
@@ -158,7 +142,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 				} else {
 					// teleport the player out
 					npc.say("Sorry, your time is up.");
-					exit.onUsed(player);
+					finish(true, player);
 				}
 			}
 		}
@@ -272,16 +256,16 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	private void step1CreateDoors() {
 		// 0_semos_mountain_n2 at (95,101)
 		String entranceZoneName = "0_semos_mountain_n2"; 
-		StendhalRPZone entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(entranceZoneName));
+		entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(entranceZoneName));
 		door = new NotifingDoor("housedoor", Direction.DOWN);
 		entranceZone.assignRPObjectID(door);
-		door.setX(95);
+		door.setX(94);
 		door.setY(101);
 		door.setNumber(0);
 		door.setDestination(ZONE_NAME, 0);
 		entranceZone.addPortal(door);
 
-		exit = new Portal();
+		Portal exit = new Portal();
 		zone.assignRPObjectID(exit);
 		exit.setX(5);
 		exit.setY(3);
@@ -293,11 +277,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	@Override
 	public void convertOnUpdate(Player player) {
 		super.convertOnUpdate(player);
-		IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
-		IRPZone onePlayerRoomZone = StendhalRPWorld.get().getRPZone(door.getDestinationZone());
-		if (playerZone.equals(onePlayerRoomZone)) {
-			exit.onUsed(player);
-		}
+		finish(false, player);
 	}
 
 	/**
@@ -311,7 +291,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
 		} else {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " and final move. Let me check your work.");
-			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(player), null); // 2 seconds
+			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(), null); // 2 seconds
 		}
 	}
 
@@ -323,9 +303,29 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	public void start(Player player) {
 		removeAllTokens();
 		addAllTokens();
-		Timer timer = new Timer(player);
+		Timer timer = new Timer();
 		TurnNotifier.get().notifyInTurns(0, timer, null);
 		moveCount = 0;
+	}
+
+	/**
+	 * Finishes the quest and teleports the player out.
+	 *
+	 * @param reset  reset it for the next player (set to false on login)
+	 * @param player the player to teleport out
+	 */
+	protected void finish(boolean reset, Player player) {
+		if (player != null) {
+			IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
+			if (playerZone.equals(zone)) {
+				player.teleport(entranceZone, door.getX(), door.getY() + 1, Direction.DOWN, player);
+			}
+		}
+		if (reset) {
+			removeAllTokens();
+			player = null;
+			moveCount = 0;
+		}
 	}
 	
 	@Override
