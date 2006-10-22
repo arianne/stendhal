@@ -44,7 +44,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	protected StendhalRPZone zone = null;
 	protected SpeakerNPC npc = null;
 	protected List<Token> tokens = null;
-	private Portal exit = null;
+	protected Portal exit = null;
 	private OnePlayerRoomDoor door = null;
 
 	// quest instance data
@@ -273,10 +273,10 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		// 0_semos_mountain_n2 at (95,101)
 		String entranceZoneName = "0_semos_mountain_n2"; 
 		StendhalRPZone entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(entranceZoneName));
-		door = new NotifingDoor("skulldoor", Direction.DOWN); // TODO change clazz
+		door = new NotifingDoor("housedoor", Direction.DOWN);
 		entranceZone.assignRPObjectID(door);
 		door.setX(95);
-		door.setY(102);
+		door.setY(101);
 		door.setNumber(0);
 		door.setDestination(ZONE_NAME, 0);
 		entranceZone.addPortal(door);
@@ -309,12 +309,11 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * @param player Player
 	 */
 	public void onTokenMoved(Player player) {
-		String questState = player.getQuest(QUEST_SLOT);
 		moveCount++;
-		if (moveCount < 3) {
+		if (moveCount < MAX_MOVES) {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
 		} else {
-			npc.say("This was your third and final move. Let me check your work.");
+			npc.say("This was your " + Grammar.ordered(moveCount) + " and final move. Let me check your work.");
 			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(player), null); // 2 seconds
 		}
 	}
