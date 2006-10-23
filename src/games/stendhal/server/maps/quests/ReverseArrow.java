@@ -302,6 +302,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * @param player Player
 	 */
 	public void start(Player player) {
+		this.player = player;
 		removeAllTokens();
 		addAllTokens();
 		timer = new Timer();
@@ -330,6 +331,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 				TurnNotifier.get().dontNotify(timer, null);
 			}
 		}
+		door.open();
 	}
 	
 	@Override
