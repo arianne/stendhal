@@ -123,7 +123,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			}
 
 			// teleport the player out
-			TurnNotifier.get().notifyInTurns(6, new FinishNotifier(), null); // 2 seconds
+			TurnNotifier.get().notifyInTurns(6, new FinishNotifier(true, player), null); // 2 seconds
 		}
 	}
 
@@ -131,11 +131,17 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * Teleports the player out
 	 */
 	protected class FinishNotifier implements TurnListener {
+		private boolean reset; 
+		private Player player;
+		public FinishNotifier(boolean reset, Player player) {
+			this.player = player;
+			this.reset = reset;
+		}
 		/**
 		 * invoked shortly after the player did his job.
 		 */
 		public void onTurnReached(int currentTurn, String message) {
-			finish(true, player);
+			finish(reset, player);
 		}
 	}
 
@@ -155,11 +161,10 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 				} else {
 					// teleport the player out
 					npc.say("Sorry, your time is up.");
-					TurnNotifier.get().notifyInTurns(1, new FinishNotifier(), null); // need to do this on the next turn
+					TurnNotifier.get().notifyInTurns(1, new FinishNotifier(true, player), null); // need to do this on the next turn
 				}
 			}
 		}
-		
 	}
 
 	/**
@@ -300,7 +305,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	@Override
 	public void convertOnUpdate(Player player) {
 		super.convertOnUpdate(player);
-		finish(false, player);
+		// need to do this on the next turn
+		TurnNotifier.get().notifyInTurns(1, new FinishNotifier(false, player), null);
 	}
 
 	/**
@@ -355,8 +361,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			if (timer != null) {
 				TurnNotifier.get().dontNotify(timer, null);
 			}
+			door.open();
 		}
-		door.open();
 	}
 	
 	@Override
