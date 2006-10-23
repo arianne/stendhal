@@ -122,9 +122,20 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			}
 
 			// teleport the player out
+			TurnNotifier.get().notifyInTurns(6, new FinishNotifier(), null); // 2 seconds
+		}
+	}
+
+	/**
+	 * Teleports the player out
+	 */
+	protected class FinishNotifier implements TurnListener {
+		/**
+		 * invoked shortly after the player did his job.
+		 */
+		public void onTurnReached(int currentTurn, String message) {
 			finish(true, player);
 		}
-		
 	}
 
 	/**
@@ -293,6 +304,9 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		} else {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " and final move. Let me check your work.");
 			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(), null); // 2 seconds
+			if (timer != null) {
+				TurnNotifier.get().dontNotify(timer, null);
+			}
 		}
 	}
 
