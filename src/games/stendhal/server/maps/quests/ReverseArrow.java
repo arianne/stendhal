@@ -155,7 +155,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 				} else {
 					// teleport the player out
 					npc.say("Sorry, your time is up.");
-					finish(true, player);
+					TurnNotifier.get().notifyInTurns(1, new FinishNotifier(), null); // need to do this on the next turn
 				}
 			}
 		}
