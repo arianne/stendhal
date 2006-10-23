@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.item.Token;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.OnePlayerRoomDoor;
@@ -277,6 +278,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		door.setY(101);
 		door.setNumber(0);
 		door.setDestination(ZONE_NAME, 0);
+		door.open();
 		entranceZone.addPortal(door);
 
 		Portal exit = new Portal();
@@ -286,6 +288,13 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		exit.setNumber(0);
 		exit.setDestination(entranceZoneName, 0);
 		zone.addPortal(exit);
+
+		Sign sign = new Sign();
+		entranceZone.assignRPObjectID(sign);
+		sign.setX(96);
+		sign.setY(102);
+		sign.setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
+		entranceZone.add(sign);		
 	}
 
 	@Override
