@@ -172,11 +172,13 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		@Override
 		public void onUsed(RPEntity user) {
 			super.onUsed(user);
-			IRPZone playerZone = StendhalRPWorld.get().getRPZone(user.getID());
-			if (playerZone.equals(zone)) {
-				// let the fun beginn
-				start((Player) user);
-			}
+			start((Player) user);
+		}
+
+		@Override
+		public void onUsedBackwards(RPEntity user) {
+			super.onUsedBackwards(user);
+			finish(true, (Player) user);
 		}
 	}
 	
