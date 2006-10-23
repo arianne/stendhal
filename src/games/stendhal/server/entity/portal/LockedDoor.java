@@ -13,9 +13,7 @@
 package games.stendhal.server.entity.portal;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.entity.Player;
 
 /**
  * A locked door is a special kind of portal which requires a key to pass it.
@@ -26,13 +24,7 @@ import games.stendhal.server.events.TurnNotifier;
  * require the key when walking in one direction and can walk in the
  * other direction without any key.
  */
-public class LockedDoor extends Door implements TurnListener {
-
-	/**
-	 * How many turns it takes until door automatically closes itself
-	 * after somebody walked through it.
-	 */
-	private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
+public class LockedDoor extends Door {
 
 	/**
 	 * Creates a new locked door.
@@ -47,36 +39,8 @@ public class LockedDoor extends Door implements TurnListener {
 	}
 
 	@Override
-	public void onUsed(RPEntity user) {
-		if (has("locked") && user.isEquipped(get("locked"))) {
-			TurnNotifier turnNotifier = TurnNotifier.get();
-			if (isOpen()) {
-				// The door is still open because another player just used it.
-				// Thus, it is scheduled to auto-close soon. We delay this
-				// auto-closing.
-				turnNotifier.dontNotify(this, null);
-			} else {
-				open();
-			}
-
-			// register automatic close
-	        turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this, null);
-
-		} else { // player may not use it
-			if (isOpen()) {
-				// close now to make visible that the entity is not allowed
-				// to pass
-				close();
-				return;
-			}
-		}
-
-		super.onUsed(user);
-	}
-
-	public void onTurnReached(int currentTurn, String message) {
-		close();
-		notifyWorldAboutChanges();
+	protected boolean mayBeOpend(Player user) {
+		return (has("locked") && user.isEquipped(get("locked")));
 	}
 
 }

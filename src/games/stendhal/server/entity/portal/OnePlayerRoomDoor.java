@@ -3,7 +3,7 @@ package games.stendhal.server.entity.portal;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Player;
 
 /**
  * A door to a zone which only one player may enter.
@@ -12,25 +12,20 @@ import games.stendhal.server.entity.RPEntity;
  */
 public class OnePlayerRoomDoor extends Door {
 
+	/**
+	 * Creates a new OnePlayerRoomDoor
+	 *
+	 * @param clazz clazz
+	 * @param dir   direction
+	 */
 	public OnePlayerRoomDoor(String clazz, Direction dir) {
 		super(clazz, dir);
 	}
 
-	private boolean mayBeOpend() {
+	@Override
+	protected boolean mayBeOpend(Player player) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(super.getDestinationZone());
 		return (zone.getPlayerAndFirends().size() == 0);
 	}
-
-	@Override
-	public void onUsed(RPEntity user) {
-		if (mayBeOpend()) {
-			open();
-		} else {
-			close();
-		}
-		super.onUsed(user);
-	}
-
-	// TODO: implement auto opening and closing of this door
 }

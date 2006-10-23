@@ -13,7 +13,10 @@
 package games.stendhal.server.entity.portal;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 
@@ -27,7 +30,13 @@ import marauroa.common.game.RPClass;
  * require the key when walking in one direction and can walk in the
  * other direction without any key.
  */
-public class Door extends Portal {
+public abstract class Door extends Portal implements TurnListener {
+
+	/**
+	 * How many turns it takes until door automatically closes itself
+	 * after somebody walked through it.
+	 */
+	private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
 
 	/** Whether or not the door is currently open */
 	private boolean open;
@@ -88,20 +97,55 @@ public class Door extends Portal {
 		notifyWorldAboutChanges();
 	}
 
+	/**
+	 * Is the door open?
+	 *
+	 * @return true, if opened; false otherwise
+	 */
 	protected boolean isOpen() {
 		return open;
 	}
 
+	/**
+	 * May this door be used?
+	 *
+	 * @param user user of the door
+	 * @return true, if it can be used; and false otherwise
+	 */
+	protected abstract boolean mayBeOpend(Player user);
 
 	/**
 	 * teleport (if the door is now open)
 	 */
+	@Override
 	public void onUsed(RPEntity user) {
-		if (isOpen()) {
+		if (mayBeOpend((Player) user)) {
+			TurnNotifier turnNotifier = TurnNotifier.get();
+			if (isOpen()) {
+				// The door is still open because another player just used it.
+				// Thus, it is scheduled to auto-close soon. We delay this
+				// auto-closing.
+				turnNotifier.dontNotify(this, null);
+			} else {
+				open();
+			}
+
+			// register automatic close
+	        turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this, null);
+
+	        // use it
 			super.onUsed(user);
+
+		} else { // player may not use it
+			if (isOpen()) {
+				// close now to make visible that the entity is not allowed
+				// to pass
+				close();
+				return;
+			}
 		}
 	}
-
+	
 	@Override
 	public void onUsedBackwards(RPEntity user) {
 		open();
@@ -118,4 +162,8 @@ public class Door extends Portal {
 		return (text);
 	}
 
+	public void onTurnReached(int currentTurn, String message) {
+		close();
+		notifyWorldAboutChanges();
+	}
 }
