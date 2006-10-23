@@ -80,7 +80,7 @@ public abstract class Door extends Portal implements TurnListener {
 	/**
 	 * Opens the door. 
 	 */
-	protected void open() {
+	public void open() {
         open = true;
 		put("open", "");
 		notifyWorldAboutChanges();
