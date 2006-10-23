@@ -15,6 +15,7 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -202,6 +203,8 @@ public class Player extends RPEntity implements TurnListener {
 
 		player.stop();
 		player.stopAttack();
+
+		StendhalQuestSystem.get().convertOnUpdate(player);
 
 		boolean firstVisit = false;
 
