@@ -126,4 +126,15 @@ public class StendhalQuestSystem {
 		
 		return sb.toString();
 	}
+
+	/**
+	 * does stuff to update quest states on player login
+	 *
+	 * @param player Player
+	 */
+	public void convertOnUpdate(Player player) {
+		for (IQuest quest : quests) {
+			quest.convertOnUpdate(player);
+		}
+	}
 }
