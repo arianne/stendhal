@@ -32,6 +32,33 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 		}
 	}
 
+	/**
+	 * Returns the filename
+	 *
+	 * @return filename
+	 */
+	public String getFilename() {
+		return filename;
+	}
+
+	/**
+	 * returns the type of this jar
+	 *
+	 * @return type
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * returns the version number of this entry
+	 *
+	 * @return version
+	 */
+	public String getVersion() {
+		return version;
+	}
+
 	public int compareTo(ClasspathEntry o) {
 		// TODO: implement me
 		throw new UnsupportedOperationException("Not implemented yet");
