@@ -20,6 +20,20 @@ public class TestClasspathEntry extends TestCase {
 		assertEquals(test + " version",  "0.54", ce.getVersion());
 	}
 
+	public void testCompare() {
+		ClasspathEntry v054 = new ClasspathEntry("stendhal-0.54.jar");
+		ClasspathEntry v055 = new ClasspathEntry("stendhal-0.55.jar");
+		ClasspathEntry classes = new ClasspathEntry(".");
+
+		assertTrue("< (1)", v054.compareTo(v055) < 0);
+		assertTrue("> (1)", v055.compareTo(v054) > 0);
+		assertTrue("= (1)", v054.compareTo(v054) == 0);
+		assertTrue("= (2)", v055.compareTo(v055) == 0);
+		assertTrue("= (3)", classes.compareTo(classes) == 0);
+		assertTrue("< (2)", v054.compareTo(classes) < 0);
+		assertTrue("> (2)", classes.compareTo(v054) > 0);
+	}
+
 	public static void main(String[] args) {
 		TestClasspathEntry testCase = new TestClasspathEntry();
 
