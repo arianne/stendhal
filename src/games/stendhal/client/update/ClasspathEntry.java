@@ -61,9 +61,27 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 		return version;
 	}
 
-	public int compareTo(ClasspathEntry o) {
-		// TODO: implement me
-		throw new UnsupportedOperationException("Not implemented yet");
+	public int compareTo(ClasspathEntry other) {
+
+		// 1. step: put entries without version to the end
+		if (this.version == null) {
+			if (other.version == null) {
+				return 0;
+			} else {
+				return 1;
+			}
+		} else if (other.version == null) {
+			return -1;
+		}
+
+		// 2. compare versions
+		int versionDiff = this.version.compareTo(other.version);
+		if (versionDiff != 0) {
+			return versionDiff;
+		}
+		
+		// 3. TODO: handle ...-diff-... files
+		return 0;
 	}
 
 }
