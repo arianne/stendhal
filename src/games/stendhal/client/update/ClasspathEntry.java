@@ -23,12 +23,14 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 		}
 		int pos = temp.lastIndexOf('-');
 		if (pos > -1) {
-			version = temp.substring(pos);
-			temp = temp.substring(0, pos - 1);
+			version = temp.substring(pos + 1);
+			temp = temp.substring(0, pos);
 		}
-		pos = temp.lastIndexOf('-');
+		pos = Math.max(temp.lastIndexOf('/'), temp.lastIndexOf('\\'));
 		if (pos > -1) {
-			type = temp.substring(0, pos - 1);
+			type = temp.substring(pos + 1);
+		} else {
+			type = temp;
 		}
 	}
 
