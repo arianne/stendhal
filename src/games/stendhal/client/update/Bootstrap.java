@@ -28,6 +28,38 @@ public class Bootstrap {
 	private Properties bootProp = null;
 
 	/**
+	 * An URLClassLoader with does load its classes first and only delegates
+	 * missing classes to the parent classloader (default is the other way round)
+	 */
+	private class ButtomUpOrderClassLoader extends URLClassLoader {
+	    public ButtomUpOrderClassLoader(URL[] urls, ClassLoader parent) {
+			super(urls, parent);
+	    }
+
+		protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException  {
+			ClassLoader parent = super.getParent();
+			Class clazz = findLoadedClass(name);
+			if (clazz == null) {
+			    try {
+			    	clazz = findClass(name);
+			    	System.err.println("--" + name + " " + clazz);
+			    } catch (ClassNotFoundException e) {
+			    	try { 
+			    		clazz = parent.loadClass(name);
+				    } catch (ClassNotFoundException e2) {
+				    	e.printStackTrace();
+				    }
+			    	System.err.println("++" + name + " " + clazz);
+			    }
+			}
+			if (resolve) {
+			    resolveClass(clazz);
+			}
+			return clazz;
+	    }
+	}
+
+	/**
 	 * gets the instance (related to the Singleton pattern)
 	 *
 	 * @return Bottstrap
@@ -101,10 +133,11 @@ public class Bootstrap {
 					String filename = st.nextToken();
 					jarFiles.add(new File(jarFolder + filename).toURI().toURL());
 				}
+				jarFiles.add(new File(".").toURI().toURL());
 	
 			    // Create new class loader which the list of .jar-files as classpath
 				URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-			    ClassLoader loader = new URLClassLoader(urlArray);
+			    ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, ClassLoader.getSystemClassLoader());
 	
 			    // load class through new loader
 			    clazz = loader.loadClass(className);
