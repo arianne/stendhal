@@ -13,8 +13,6 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
-// TODO: remove dependency on games.stendhal.common.Version
-
 /**
  * manages downloading and installing of updates
  *
