@@ -9,8 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
-import marauroa.common.Log4J;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -37,6 +35,9 @@ public class UpdateManager {
 		bootProp = Bootstrap.get().getBootProp();
 	}
 
+	/**
+	 * Processes the update
+	 */
 	public void process() {
 		init();
 		if (updateProp == null) {
@@ -63,10 +64,20 @@ public class UpdateManager {
 				UpdateGUI.messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
 				break;
 			}
+			case INITIAL_DOWNLOAD: {
+				List<String> files = getFilesForFirstDownload();
+				int updateSize = getSizeOfFilesToUpdate(files);
+				if (UpdateGUI.askForDownload(updateSize, false)) {
+					if (downloadFiles(files)) {
+						updateClasspathConfig(files);
+					}
+				}
+				break;
+			}
 			case UPDATE_NEEDED: {
 				List<String> files = getFilesToUpdate();
 				int updateSize = getSizeOfFilesToUpdate(files);
-				if (UpdateGUI.askForUpdate(updateSize)) {
+				if (UpdateGUI.askForDownload(updateSize, true)) {
 					if (downloadFiles(files)) {
 						updateClasspathConfig(files);
 					}
@@ -82,6 +93,22 @@ public class UpdateManager {
 				break;
 			}
 		}
+	}
+
+	/**
+	 * returns the list of all files to download for the first install
+	 *
+	 * @return list of files
+	 */
+	private List<String> getFilesForFirstDownload() {
+		List<String> res = new LinkedList<String>();
+		String list = updateProp.getProperty("file-list");
+		res.addAll(Arrays.asList(list.split(",")));
+
+		while (res.contains("")) {
+			res.remove("");
+		}
+		return res;
 	}
 
 	/**
@@ -160,7 +187,7 @@ public class UpdateManager {
 	 * @param files
 	 */
 	private void updateClasspathConfig(List<String> files) {
-		// invert order of files so that the news are first on classpath
+		// invert order of files so that the newer ones are first on classpath
 		Collections.reverse(files);
 		StringBuilder sb = new StringBuilder();
 		for (String file : files) {
@@ -174,10 +201,4 @@ public class UpdateManager {
 		}
 	}
 
-	// debug code
-	public static void main(String args[]) {
-		Log4J.init("data/conf/log4j.properties");
-		UpdateManager um = new UpdateManager();
-		um.process();
-	}
 }

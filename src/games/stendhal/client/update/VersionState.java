@@ -27,9 +27,11 @@ public enum VersionState {
 	UNKOWN,
 	
 	/** there are updates, which should be installed */
-	UPDATE_NEEDED;
+	UPDATE_NEEDED,
 
-	
+	/** this is only the initial download */
+	INITIAL_DOWNLOAD;
+
 	private static Logger logger = Logger.getLogger(VersionState.class);
 
 	/**
