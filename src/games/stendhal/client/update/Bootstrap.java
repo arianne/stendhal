@@ -37,19 +37,20 @@ public class Bootstrap {
 	    }
 
 		protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException  {
+	    	System.err.println("  " + name);
 			ClassLoader parent = super.getParent();
 			Class clazz = findLoadedClass(name);
 			if (clazz == null) {
 			    try {
 			    	clazz = findClass(name);
-			    	System.err.println("--" + name + " " + clazz);
+			    	System.err.println("--" + name);
 			    } catch (ClassNotFoundException e) {
 			    	try { 
 			    		clazz = parent.loadClass(name);
 				    } catch (ClassNotFoundException e2) {
 				    	e.printStackTrace();
 				    }
-			    	System.err.println("++" + name + " " + clazz);
+			    	System.err.println("++" + name);
 			    }
 			}
 			if (resolve) {
@@ -116,6 +117,8 @@ public class Bootstrap {
 	private Class getMainClass(String className) throws Exception {
 		Class clazz = null;
 		try {
+			
+			System.getProperties().list(System.out);
 
 			// load jar.properties
 			String propFile = jarFolder + "jar.properties";
@@ -133,7 +136,16 @@ public class Bootstrap {
 					String filename = st.nextToken();
 					jarFiles.add(new File(jarFolder + filename).toURI().toURL());
 				}
-				jarFiles.add(new File(".").toURI().toURL());
+
+				// add boot classpath at the end so that those classes
+				// are loaded by our classloader as well (otherwise the dependencies
+				// would be loaded by the system classloader as well).
+				String vmClasspath = System.getProperty("java.class.path", "");
+				st = new StringTokenizer(vmClasspath, ":;");
+				while (st.hasMoreTokens()) {
+					String filename = st.nextToken();
+					jarFiles.add(new File(filename).toURI().toURL());
+				}
 	
 			    // Create new class loader which the list of .jar-files as classpath
 				URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
