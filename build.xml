@@ -35,52 +35,6 @@
 		<delete dir="${buildroot}/build_tiled_convertmaps"/>
 	</target>
 
-	<target name="copy-resource" description="Copy all the resource files to build folder">
-		<mkdir dir="${build}"/>
-		<copy todir="${build}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
-		<copy todir="${build}/data/conf" file="data/conf/creatures.xml"/>
-		<copy todir="${build}/data/conf" file="data/conf/items.xml"/>
-		<copy todir="${build}/data/conf" file="data/conf/quests.xml"/>
-
-		<copy todir="${build}/data/sprites">
-			<fileset dir="${sprites}"/>
-		</copy>
-
-		<copy todir="${build}/data/sounds">
-			<fileset dir="data/sounds">
-				<include name="**.*"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${build}/data/tilesets">
-			<fileset dir="${tiled}">
-				<include name="*.png"/>
-				<exclude name="*collision_chipset.png" />
-				<exclude name="*_monsters_chipset.png" />
-				<exclude name="*_objects_chipset.png" />
-				<exclude name="*_edit.png" />
-			</fileset>
-		</copy>
-
-		<copy todir="${build}/data/maps">
-			<fileset dir="data/maps">
-				<include name="*.xstend"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${build}/data/gui">
-			<fileset dir="${data}">
-				<exclude name="paneldrock*.jpg"/>
-				<exclude name="panelmetal003.gif"/>
-				<exclude name="panelrock016.jpg"/>
-				<exclude name="panelwood006.jpg"/>
-				<exclude name="panelwood032.gif"/>
-				<exclude name="panelwood119.jpg"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${build}/data/conf/" file="data/conf/log4j.properties"/>
-	</target>
 
 	<target name="server_build" depends="init" description="Build JAR file for Stendhal server">
 		<property name="server_jarname" value="stendhal-server-${version}.jar"/>
@@ -153,7 +107,6 @@
 		</javac>
 
 	</target>
-
 
 
 	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
