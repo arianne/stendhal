@@ -31,21 +31,21 @@ public class UpdateManager {
 	private void init() {
 		HttpClient httpClient = new HttpClient(SERVER_FOLDER + "update.properties");
 		updateProp = httpClient.fetchProperties();
-		jarFolder = Bootstrap.get().getJarFolder();
-		bootProp = Bootstrap.get().getBootProp();
 	}
 
 	/**
 	 * Processes the update
+	 *
+	 * @param jarFolder folder where the .jar files are stored
+	 * @param bootProp  boot properties
 	 */
-	public void process() {
+	public void process(String jarFolder, Properties bootProp) {
 		init();
 		if (updateProp == null) {
 			return;
 		}
 		String versionStateString = updateProp.getProperty("version." + Version.VERSION);
 		VersionState versionState = VersionState.getFromString(versionStateString);
-
 		
 		updateProp.list(System.out);
 		logger.info(Version.VERSION);
@@ -194,11 +194,7 @@ public class UpdateManager {
 			sb.append("," + file);
 		}
 		bootProp.put("load", bootProp.getProperty("load", "") + sb.toString());
-		try {
-			Bootstrap.get().saveBootProp();
-		} catch (IOException e) {
-			UpdateGUI.messageBox("Sorry, an error occured while downloading the update. Could not write bootProperties");
-		}
 	}
 
+	
 }

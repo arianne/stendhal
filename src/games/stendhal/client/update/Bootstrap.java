@@ -22,7 +22,6 @@ import javax.swing.JOptionPane;
  * @author hendrik
  */
 public class Bootstrap {
-	private static Bootstrap instance = null;
 	private String pathSep = null;
 	private String jarFolder = null;
 	private Properties bootProp = null;
@@ -31,11 +30,12 @@ public class Bootstrap {
 	 * An URLClassLoader with does load its classes first and only delegates
 	 * missing classes to the parent classloader (default is the other way round)
 	 */
-	private class ButtomUpOrderClassLoader extends URLClassLoader {
-	    public ButtomUpOrderClassLoader(URL[] urls, ClassLoader parent) {
+	private static class ButtomUpOrderClassLoader extends URLClassLoader {
+	    private ButtomUpOrderClassLoader(URL[] urls, ClassLoader parent) {
 			super(urls, parent);
 	    }
 
+	    @Override
 		protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException  {
 			ClassLoader parent = super.getParent();
 			Class clazz = findLoadedClass(name);
@@ -55,15 +55,6 @@ public class Bootstrap {
 			}
 			return clazz;
 	    }
-	}
-
-	/**
-	 * gets the instance (related to the Singleton pattern)
-	 *
-	 * @return Bottstrap
-	 */
-	public static Bootstrap get() {
-		return instance;
 	}
 
 	/**
@@ -98,10 +89,13 @@ public class Bootstrap {
 	}
 
 	private void init() {
-		Bootstrap.instance = this;
 		// discover folder for .jar-files
 		pathSep = System.getProperty("file.separator");
 		jarFolder = System.getProperty("user.home") + pathSep + "stendhal" + pathSep + "jar" + pathSep;
+		File folder = new File(jarFolder);
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
 	}
 	
 	/**
@@ -114,8 +108,6 @@ public class Bootstrap {
 	private Class getMainClass(String className) throws Exception {
 		Class clazz = null;
 		try {
-			
-			System.getProperties().list(System.out);
 
 			// load jar.properties
 			String propFile = jarFolder + "jar.properties";
@@ -173,14 +165,23 @@ public class Bootstrap {
 	public void boot(String className, String[] args) {
 		init();
 		try {
+			Class clazz;
+			Method method;
 
-			// build classpath
-			// switch comment-markers on the next two lines, to use new code
-			Class clazz = getMainClass(className);
-//			 Class clazz = Class.forName(className);
+			// invoke update first
+/*			clazz = getMainClass("games.stendhal.client.update.UpdateManager");
+			method = clazz.getMethod("process", String.class, Properties.class);
+			method.invoke(clazz.newInstance(), jarFolder, bootProp);
+			try {
+				saveBootProp();
+			} catch (IOException e) {
+				UpdateGUI.messageBox("Sorry, an error occured while downloading the update. Could not write bootProperties");
+			}
+*/
 
-			// get method and invoke it
-			Method method = clazz.getMethod("main", args.getClass());
+			// load program (regenerate classloader stuff)
+			clazz = getMainClass(className);
+			method = clazz.getMethod("main", args.getClass());
 			method.invoke(null, (Object) args);
 		} catch (Exception e) {
 			e.printStackTrace();
