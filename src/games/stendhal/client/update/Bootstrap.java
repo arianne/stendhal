@@ -37,20 +37,17 @@ public class Bootstrap {
 	    }
 
 		protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException  {
-	    	System.err.println("  " + name);
 			ClassLoader parent = super.getParent();
 			Class clazz = findLoadedClass(name);
 			if (clazz == null) {
 			    try {
 			    	clazz = findClass(name);
-			    	System.err.println("--" + name);
 			    } catch (ClassNotFoundException e) {
 			    	try { 
 			    		clazz = parent.loadClass(name);
 				    } catch (ClassNotFoundException e2) {
 				    	e.printStackTrace();
 				    }
-			    	System.err.println("++" + name);
 			    }
 			}
 			if (resolve) {
