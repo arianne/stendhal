@@ -111,6 +111,7 @@
 
 	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
 		<property name="client_jarname" value="stendhal-${version}.jar"/>
+		<property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
 		<property name="client_data" value="stendhal-data-${version}.jar"/>
 		<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
 		<property name="client_prefilled_cache" value="stendhal-prefilled-cache-${version}.jar"/>
@@ -133,6 +134,15 @@
            includes="games/stendhal/client/Starter.java">
 		</javac>
 
+		<jar jarfile="${lib}/${client_starter_jarname}">
+			<fileset dir="${build_client}">
+	           <include name="games/stendhal/client/update/*"/>
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="games.stendhal.client.Starter"/>
+				<attribute name="Class-path" value="log4j.jar marauroa.jar ${client_data} ${client_sound_data}"/>
+			</manifest>
+		</jar>
 
 		<jar jarfile="${lib}/${client_jarname}">
 			<fileset dir="${build_client}"/>
@@ -174,12 +184,6 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${build_client_data}">
-			<fileset dir="data/precompiled">
-				<include name="*.so"/>
-			</fileset>
-		</copy>
-
 		<copy todir="${build_client_data}/data/conf/" file="data/conf/log4j.properties"/>
 		<jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>
 
@@ -193,10 +197,6 @@
 		</copy>
 
 		<jar jarfile="${lib}/${client_sound_data}" basedir="${build_client_sound_data}"/>
-
-		<jar jarfile="${lib}/${client_webstart_jni}" basedir="data/precompiled">
-			<include name="*.so" />
-		</jar>
 	</target>
 
 	<target name="client_data_build" depends="init" description="Build data JAR files for Stendhal client">
@@ -290,7 +290,7 @@
 		<echo>Deprecated: Please use ant dist</echo>
 	</target>
 	<target name="dist" depends="convertmaps, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
-	<target name="dist_binary" depends="dist_server_binary,dist_client_binary,dist_client_no_sound_binary"/>
+	<target name="dist_binary" depends="dist_server_binary,dist_client_binary,dist_client_no_sound_binary,dist_client_starter"/>
 
 	<target name="dist_server_binary" depends="server_build">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
@@ -342,7 +342,7 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="README"/>
 		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip" 
-         basedir="${buildroot}/stendhal-${version}"/>
+         	basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
@@ -359,7 +359,22 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="README"/>
 		<zip destfile="${buildroot}/stendhal-${version}.zip" 
-         basedir="${buildroot}/stendhal-${version}"/>
+			basedir="${buildroot}/stendhal-${version}"/>
+		<delete dir="${buildroot}/stendhal-${version}"/>
+	</target>
+
+	<target name="dist_client_starter">
+		<mkdir dir="${buildroot}/stendhal-${version}"/>
+
+		<copy todir="${buildroot}/stendhal-${version}" file="${log4j_jar}"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_starter_jarname}"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="AUTHORS"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="BUGS"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="COPYING"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="README"/>
+		<zip destfile="${buildroot}/stendhal-starter-${version}.zip" 
+			basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
