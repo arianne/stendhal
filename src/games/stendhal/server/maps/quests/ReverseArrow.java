@@ -37,8 +37,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	private static final String ZONE_NAME = "int_ados_reverse_arrow";
 	private static final int TIME = 60;
 	private static final int MAX_MOVES = 3;
-	private static final int OFFSET_X = 8;
-	private static final int OFFSET_Y = 8;
+	private static final int OFFSET_X = 15;
+	private static final int OFFSET_Y = 10;
 
 	// "static" data
 	protected StendhalRPZone zone = null;
@@ -267,7 +267,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "oldwizardnpc"); // TODO change outfit
-		npc.set(16, 7);
+		npc.set(20, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.addNPC(npc); 
@@ -288,8 +288,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 		Portal exit = new Portal();
 		zone.assignRPObjectID(exit);
-		exit.setX(5);
-		exit.setY(3);
+		exit.setX(17);
+		exit.setY(20);
 		exit.setNumber(0);
 		exit.setDestination(entranceZoneName, 0);
 		zone.addPortal(exit);

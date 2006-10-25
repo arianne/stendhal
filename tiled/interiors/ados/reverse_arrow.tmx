@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="35" height="24" tilewidth="32" tileheight="32">
- <property name="x" value="500000"/>
- <property name="y" value="50"/>
+<map version="0.99b" orientation="orthogonal" width="35" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="x" value="500000"/>
+  <property name="y" value="50"/>
+ </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -40,47 +42,56 @@
  </tileset>
  <layer name="0_floor" width="35" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANNmYGDQHsWjmAzsOgB41C2jbhl1y6hb8OFAvlG3DPY4GnXLqFtG3TKKBzsGAH0AvcUgDQAA
+   H4sIAAAAAAAAAO3OoQ0AMAwDsIDyHdL//9sPBVM1GZi7kzQMnHrPxcXFxcXFxeWXCztdGXtYkiANAAA=
   </data>
+  <tileproperties/>
  </layer>
  <layer name="1_terrain" width="35" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYPgAt0Foph0z9cwiFzRhEYtgxiKIBWSwE6+HUv9lAu3KYkcVI9VMOyL9RSrYwo9K0xqks2MX3wy0fyMQm/FB6E1o7kGOL0riA1c4wsycBnWHKR/ELeZQ91SguScV6J40JDdhS4v4ALF+CAbaHwbE+VA6lI94O4jNCzAQDVXfhMSGAVi4bISGA4wNC5cUqDpY+GbgiGd8gJQ0PhVqfxE0fqbgSS+UgBQCfBiI4kelcQHkeEcPY3IBtvJloACyn3CFFTb34ioXCAFYeCLbi543iU0LuOKD1LwNA8TmcWzmExOO2MBMbhIUj4IRCQDKce9nIA0AAA==
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdP7ewBFAAAADcqfde4IA0AAA==
   </data>
+  <tileproperties/>
  </layer>
  <layer name="2_object" width="35" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHzAjpuBwR6I99IZO3OjumMKkB8DxLFAfAuIb9MRJwLxQm5Ut8wA4mog/gHEv6D0TzrgehxumYkWXsSArXwMDK+BeDsfeWljLhXdchnohitAfHUQuIVSMOqWUbcMpFvOkZmHaOEWSsCoW0bdMuqW4e2WTVC3DARAd8sFIPsiN/3blyB8B4jvIrnlHZD9npt+7UpkDGrP/h6gOMEHAMtLX6AgDQAA
+   H4sIAAAAAAAAAO2RyQmAMBQF/0UTcGlCrcWlD5dW1ELU4lxK8N1dIBEF4T2Yyw8DAxHh7lZpkU2Z08LrQG/pl/rYsuDe4B4aMoARTBZuDWZ13uKfNL45jy1sYQtb2MIWtrDlYUuBt8AQB7hAWbj5RUuG+6rMieDFILH004//4o/bAUVnBn0gDQAA
   </data>
+  <tileproperties/>
  </layer>
  <layer name="3_roof" width="35" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OIQ6AQBDF0K+Zu2M2nASD4VroxZLUz5L0JfVN1nJVMrZkb+qp789R/NnBF+YL84X5wnxhvjBfmC9spZfzfbmb0n9M0aKehiANAAA=
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdP7ewBFAAAADcqfde4IA0AAA==
   </data>
+  <tileproperties/>
  </layer>
  <layer name="4_roof_add" width="35" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdP7ewBFAAAADcqfde4IA0AAA==
   </data>
+  <tileproperties/>
  </layer>
  <layer name="objects" width="35" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdP7ewBFAAAADcqfde4IA0AAA==
   </data>
+  <tileproperties/>
  </layer>
  <layer name="collision" width="35" height="24" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGsWjmAxMDqCm/uHkFkrBqFtG3TJQbhlM+QimbzC4hVIw6pZRt4y6ZWS4ZRQPTgwAhksIjyANAAA=
+   H4sIAAAAAAAAANPiYmDQGsWjmExMTzDqllG3jLpl1C2jbhl1y6hbRt1CDbeQg2ll7igefBgAR0RpiiANAAA=
   </data>
+  <tileproperties/>
  </layer>
- <layer name="navigation" width="35" height="24">
+ <layer name="navigation" width="35" height="24" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdP7ewBFAAAADcqfde4IA0AAA==
   </data>
+  <tileproperties/>
  </layer>
- <layer name="protection" width="35" height="24" opacity="0.47">
+ <layer name="protection" width="35" height="24" visible="0" opacity="0.47">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdP7ewBFAAAADcqfde4IA0AAA==
   </data>
+  <tileproperties/>
  </layer>
 </map>
