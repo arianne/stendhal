@@ -269,7 +269,13 @@
 
 	<target name="compile" depends="server_build, client_build" description="Generates JAR files for both client and server"/>
 
-	<target name="sign_jars" depends="server_build, client_build">
+    <condition property="exclude.signing" value="true">
+      <not>
+       <available file="keystore.ks"/>
+      </not>
+    </condition>
+	
+	<target name="sign_jars" depends="server_build, client_build" unless="exclude.signing">
 		<signjar alias="miguelangelblanchlardin@hotmail.com" keystore="keystore.ks" storepass="qwerty">
 			<fileset dir="${lib}">
 				<include name="**/*.jar"/>
@@ -280,7 +286,9 @@
 	</target>
 
 
-	<target name="distworking" depends="dist_binary, dist_source" description="Creates everything that works out of the box (e. g. no convertmaps and no signing of jars" />
+	<target name="distworking" description="use dist instead">
+		<echo>Deprecated: Please use ant dist</echo>
+	</target>
 	<target name="dist" depends="convertmaps, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
 	<target name="dist_binary" depends="dist_server_binary,dist_client_binary,dist_client_no_sound_binary"/>
 
