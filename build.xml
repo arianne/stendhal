@@ -122,7 +122,7 @@
 
 		<javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="games/stendhal/client/**, games/stendhal/common/**" 
-           excludes="games/stendhal/server/**, games/stendhal/tools/**, games/stendhal/client/Starter.java">
+           excludes="games/stendhal/server/**, games/stendhal/tools/**, games/stendhal/client/update/Starter.java">
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
@@ -131,7 +131,7 @@
 		<!-- compile Starter.java for Java 1.2. So we will be able to 
   		 display a dialogbox if running on an old Java Version -->
 		<javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.2" target="1.2"
-           includes="games/stendhal/client/Starter.java">
+           includes="games/stendhal/client/update/Starter.java">
 		</javac>
 
 		<jar jarfile="${lib}/${client_starter_jarname}">
@@ -139,7 +139,7 @@
 	           <include name="games/stendhal/client/update/*"/>
 			</fileset>
 			<manifest>
-				<attribute name="Main-Class" value="games.stendhal.client.Starter"/>
+				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
 				<attribute name="Class-path" value="log4j.jar marauroa.jar ${client_data} ${client_sound_data}"/>
 			</manifest>
 		</jar>
@@ -147,7 +147,7 @@
 		<jar jarfile="${lib}/${client_jarname}">
 			<fileset dir="${build_client}"/>
 			<manifest>
-				<attribute name="Main-Class" value="games.stendhal.client.Starter"/>
+				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
 				<attribute name="Class-path" value="log4j.jar marauroa.jar ${client_data} ${client_sound_data}"/>
 			</manifest>
 		</jar>

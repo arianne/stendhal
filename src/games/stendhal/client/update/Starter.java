@@ -10,7 +10,7 @@
 // 
 //*****************************************************************************
 //*****************************************************************************
-package games.stendhal.client;
+package games.stendhal.client.update;
 
 import java.lang.reflect.Method;
 
