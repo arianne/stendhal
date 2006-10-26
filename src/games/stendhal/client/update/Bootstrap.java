@@ -25,6 +25,7 @@ public class Bootstrap {
 	private String pathSep = null;
 	private String jarFolder = null;
 	private Properties bootProp = null;
+	private Properties bootPropOrg = null;
 
 	/**
 	 * An URLClassLoader with does load its classes first and only delegates
@@ -58,34 +59,20 @@ public class Bootstrap {
 	}
 
 	/**
-	 * the folder where the .jar files should be stored
-	 *
-	 * @return path to folder
-	 */
-	public String getJarFolder() {
-		return jarFolder;
-	}
-
-	/**
-	 * Boot configuration properties
-	 *
-	 * @return bootProp
-	 */
-	public Properties getBootProp() {
-		return bootProp;
-	}
-
-	/**
 	 * saves modifed boot properties to disk
 	 *
 	 * @throws IOException if an IO-error occurs
 	 */
 	public void saveBootProp() throws IOException {
-		String propFile = jarFolder + "jar.properties";
-		bootProp = new Properties();
-		OutputStream os = new FileOutputStream(propFile);
-		bootProp.store(os, "Stendhal Boot Configuration");
-		os.close();
+		// only try to save it, if it was changed (so that we do not have to
+		// care about all the things which could go wrong unless an update
+		// was done this time.
+		if (!bootProp.equals(bootPropOrg)) {
+			String propFile = jarFolder + "jar.properties";
+			OutputStream os = new FileOutputStream(propFile);
+			bootProp.store(os, "Stendhal Boot Configuration");
+			os.close();
+		}
 	}
 
 	private void init() {
@@ -113,6 +100,7 @@ public class Bootstrap {
 		if (new File(propFile).canRead()) {
 			InputStream is = new FileInputStream(propFile);
 			bootProp.load(is);
+			bootPropOrg = (Properties) bootProp.clone();
 			is.close();
 
 			// get list of .jar-files
