@@ -39,13 +39,13 @@ public class UpdateManager {
 	 * @param bootProp  boot properties
 	 * @param initalDownload true, if only the small starter.jar is available
 	 */
-	public void process(String jarFolder, Properties bootProp, boolean initialDownload) {
+	public void process(String jarFolder, Properties bootProp, Boolean initialDownload) {
 		init();
 		if (updateProp == null) {
 			return;
 		}
 		VersionState versionState = null;
-		if (initialDownload) {
+		if (initialDownload.booleanValue()) {
 			versionState = VersionState.INITIAL_DOWNLOAD;
 		} else {
 			String versionStateString = updateProp.getProperty("version." + Version.VERSION);
