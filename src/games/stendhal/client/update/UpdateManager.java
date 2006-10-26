@@ -2,7 +2,6 @@ package games.stendhal.client.update;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -38,18 +37,20 @@ public class UpdateManager {
 	 *
 	 * @param jarFolder folder where the .jar files are stored
 	 * @param bootProp  boot properties
+	 * @param initalDownload true, if only the small starter.jar is available
 	 */
-	public void process(String jarFolder, Properties bootProp) {
+	public void process(String jarFolder, Properties bootProp, boolean initialDownload) {
 		init();
 		if (updateProp == null) {
 			return;
 		}
-		String versionStateString = updateProp.getProperty("version." + Version.VERSION);
-		VersionState versionState = VersionState.getFromString(versionStateString);
-		
-		updateProp.list(System.out);
-		logger.info(Version.VERSION);
-		logger.info(versionState);
+		VersionState versionState = null;
+		if (initialDownload) {
+			versionState = VersionState.INITIAL_DOWNLOAD;
+		} else {
+			String versionStateString = updateProp.getProperty("version." + Version.VERSION);
+			versionState = VersionState.getFromString(versionStateString);
+		}
 
 		switch (versionState) {
 			case CURRENT: {

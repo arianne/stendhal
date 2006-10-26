@@ -139,15 +139,26 @@ public class Bootstrap {
 	public void boot(String className, String[] args) {
 		init();
 
-		// invoke update first
+		// invoke update handling first
 		try {
 			ClassLoader classLoader = createClassloader();
+			// is this the initial download (or do we already have the program downloaded)?
+			boolean initialDownload = false;
+			try {
+				classLoader.loadClass(className);
+			} catch (ClassNotFoundException e) {
+				initialDownload = true;
+			}
+
+			// start update handling
 			Class clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
-			Method method = clazz.getMethod("process", String.class, Properties.class);
-			method.invoke(clazz.newInstance(), jarFolder, bootProp);
+			Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
+			method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
 		}
+
+		// store boot prop (if they ware altered during update)
 		try {
 			saveBootProp();
 		} catch (IOException e) {
