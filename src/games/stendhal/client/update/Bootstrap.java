@@ -105,54 +105,40 @@ public class Bootstrap {
 	 * @return Class-object
 	 * @throws Exception if an unexpected error occurs
 	 */
-	private Class getMainClass(String className) throws Exception {
-		Class clazz = null;
-		try {
+	private ClassLoader createClassloader() throws Exception {
+		// load jar.properties
+		String propFile = jarFolder + "jar.properties";
+		bootProp = new Properties();
+		List<URL> jarFiles = new LinkedList<URL>();
+		if (new File(propFile).canRead()) {
+			InputStream is = new FileInputStream(propFile);
+			bootProp.load(is);
+			is.close();
 
-			// load jar.properties
-			String propFile = jarFolder + "jar.properties";
-			bootProp = new Properties();
-			if (new File(propFile).canRead()) {
-				InputStream is = new FileInputStream(propFile);
-				bootProp.load(is);
-				is.close();
-	
-				// get list of .jar-files
-				String jarNameString = bootProp.getProperty("load", "");
-				List<URL> jarFiles = new LinkedList<URL>();
-				StringTokenizer st = new StringTokenizer(jarNameString, ",");
-				while (st.hasMoreTokens()) {
-					String filename = st.nextToken();
-					jarFiles.add(new File(jarFolder + filename).toURI().toURL());
-				}
-
-				// add boot classpath at the end so that those classes
-				// are loaded by our classloader as well (otherwise the dependencies
-				// would be loaded by the system classloader as well).
-				String vmClasspath = System.getProperty("java.class.path", "");
-				st = new StringTokenizer(vmClasspath, ":;");
-				while (st.hasMoreTokens()) {
-					String filename = st.nextToken();
-					jarFiles.add(new File(filename).toURI().toURL());
-				}
-	
-			    // Create new class loader which the list of .jar-files as classpath
-				URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-			    ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, ClassLoader.getSystemClassLoader());
-	
-			    // load class through new loader
-			    clazz = loader.loadClass(className);
+			// get list of .jar-files
+			String jarNameString = bootProp.getProperty("load", "");
+			StringTokenizer st = new StringTokenizer(jarNameString, ",");
+			while (st.hasMoreTokens()) {
+				String filename = st.nextToken();
+				jarFiles.add(new File(jarFolder + filename).toURI().toURL());
 			}
-            		
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+		}
+		
+		// add boot classpath at the end so that those classes
+		// are loaded by our classloader as well (otherwise the dependencies
+		// would be loaded by the system classloader as well).
+		String vmClasspath = System.getProperty("java.class.path", "");
+		StringTokenizer st = new StringTokenizer(vmClasspath, ":;");
+		while (st.hasMoreTokens()) {
+			String filename = st.nextToken();
+			jarFiles.add(new File(filename).toURI().toURL());
 		}
 
-		if (clazz == null) {
-			// fallback to normal classloading
-			clazz = Class.forName(className);
-		}
-		return clazz;
+	    // Create new class loader which the list of .jar-files as classpath
+		URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
+	    ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, ClassLoader.getSystemClassLoader());
+
+	    return loader;
 	}
 
 	/**
@@ -164,28 +150,37 @@ public class Bootstrap {
 	 */
 	public void boot(String className, String[] args) {
 		init();
+
+		// invoke update first
 		try {
-			Class clazz;
-			Method method;
-
-			// invoke update first
-/*			clazz = getMainClass("games.stendhal.client.update.UpdateManager");
-			method = clazz.getMethod("process", String.class, Properties.class);
+			ClassLoader classLoader = createClassloader();
+			Class clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
+			Method method = clazz.getMethod("process", String.class, Properties.class);
 			method.invoke(clazz.newInstance(), jarFolder, bootProp);
-			try {
-				saveBootProp();
-			} catch (IOException e) {
-				UpdateGUI.messageBox("Sorry, an error occured while downloading the update. Could not write bootProperties");
-			}
-*/
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+		}
+		try {
+			saveBootProp();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Sorry, an error occured while downloading the update. Could not write bootProperties");
+		}
 
-			// load program (regenerate classloader stuff)
-			clazz = getMainClass(className);
-			method = clazz.getMethod("main", args.getClass());
+		// load program (regenerate classloader stuff)
+		try {
+			ClassLoader classLoader = createClassloader();
+			Class clazz = classLoader.loadClass(className);
+			Method method = clazz.getMethod("main", args.getClass());
 			method.invoke(null, (Object) args);
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+			try {
+				Class clazz = Class.forName(className);
+				Method method = clazz.getMethod("main", args.getClass());
+				method.invoke(null, (Object) args);
+			} catch (Exception err) {
+				err.printStackTrace(System.err);
+			}
 		}
-		
 	}
 }
