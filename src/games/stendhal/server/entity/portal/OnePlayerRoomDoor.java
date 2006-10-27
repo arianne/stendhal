@@ -4,6 +4,8 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 /**
  * A door to a zone which only one player may enter.
@@ -13,6 +15,23 @@ import games.stendhal.server.entity.Player;
 public class OnePlayerRoomDoor extends Door {
 
 	/**
+	 * Tries periodicly to open the door. (Just in case the player left
+	 * zone event did not get fired).
+	 */
+	private class PeriodicOpener implements TurnListener {
+
+		public void onTurnReached(int currentTurn, String message) {
+			if (!isOpen()) {
+				if (mayBeOpend(null)) {
+					open();
+				}
+			}
+			TurnNotifier.get().notifyInTurns(60, this, null);
+		}
+		
+	}
+
+	/**
 	 * Creates a new OnePlayerRoomDoor
 	 *
 	 * @param clazz clazz
@@ -20,6 +39,7 @@ public class OnePlayerRoomDoor extends Door {
 	 */
 	public OnePlayerRoomDoor(String clazz, Direction dir) {
 		super(clazz, dir);
+		TurnNotifier.get().notifyInTurns(60, new PeriodicOpener(), null);
 	}
 
 	@Override
