@@ -122,7 +122,9 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 				}
 				player.setQuest(QUEST_SLOT, "done");
 			} else {
-				player.setQuest(QUEST_SLOT, "failed");
+				if (!player.isQuestCompleted(QUEST_SLOT)) {
+					player.setQuest(QUEST_SLOT, "failed");
+				}
 				npc.say("I am sorry. This does not look like an arrow pointing upwards to me.");
 			}
 
