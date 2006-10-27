@@ -114,9 +114,13 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		 */
 		public void onTurnReached(int currentTurn, String message) {
 			if (checkBoard()) {
+				if (!player.isQuestCompleted(QUEST_SLOT)) {
+					npc.say("Congratulations you solved the quizz");
+					// TODO: give reward
+				} else {
+					npc.say("Congratulations you solved the quizz again. I'm afraid there is only a reward on the first time.");
+				}
 				player.setQuest(QUEST_SLOT, "done");
-				npc.say("Congratulations you solved the quizz");
-				// TODO: give reward
 			} else {
 				player.setQuest(QUEST_SLOT, "failed");
 				npc.say("I am sorry. This does not look like an arrow pointing upwards to me.");
@@ -258,8 +262,19 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 			@Override
 			protected void createDialog() {
+				addGreeting(null, new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
+						if (!player.isQuestCompleted(QUEST_SLOT)) {
+							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards by moving up to three tokens.");
+						} else {
+							engine.say("Hi again " + player.getName() + ". I rembemer that you solved this problem already. You can do it again, of course.");
+						}
+					}
+				});
 				addHelp("You have to stand next to a token in order to move it.");
-				addJob("I am the local game master.");
+				addJob("I am the supervisor for this task.");
 				addGoodbye("It was nice to meet you.");
 				addQuest("Your task in this game is to revert the direction of this arrow moving only 3 tokens within " + TIME + " seconds.");
 			}
@@ -279,7 +294,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(entranceZoneName));
 		door = new NotifingDoor("housedoor", Direction.DOWN);
 		entranceZone.assignRPObjectID(door);
-		door.setX(94);
+		door.setX(95);
 		door.setY(101);
 		door.setNumber(0);
 		door.setDestination(ZONE_NAME, 0);
@@ -333,12 +348,15 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * @param player Player
 	 */
 	public void start(Player player) {
-		this.player = player;
-		removeAllTokens();
-		addAllTokens();
-		timer = new Timer();
-		TurnNotifier.get().notifyInTurns(0, timer, null);
-		moveCount = 0;
+		IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
+		if (playerZone.equals(zone)) {
+			this.player = player;
+			removeAllTokens();
+			addAllTokens();
+			timer = new Timer();
+			TurnNotifier.get().notifyInTurns(0, timer, null);
+			moveCount = 0;
+		}
 	}
 
 	/**
@@ -359,6 +377,15 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			player = null;
 			moveCount = 0;
 			if (timer != null) {
+				// TODO: fix it, it does not work:
+				// [08:14] <Gamblos> You have 30 seconds left.
+				// [08:14] <Gamblos> You have 50 seconds left.
+				// [08:14] <Gamblos> You have 20 seconds left.
+				// [08:14] <Gamblos> You have 40 seconds left.
+				// [08:14] <Gamblos> You have 10 seconds left.
+				// [08:14] <Gamblos> You have 30 seconds left.
+				// [08:14] <Gamblos> Sorry, your time is up.
+				// (first player logged out inside)
 				TurnNotifier.get().dontNotify(timer, null);
 			}
 			door.open();
