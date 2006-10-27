@@ -154,18 +154,34 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * task is not completed in time.
 	 */
 	class Timer implements TurnListener {
+		private Player timerPlayer;
+		/**
+		 * Starts a teleport-out-timer
+		 *
+		 * @param player the player who started the timer
+		 */
+		protected Timer(Player player) {
+			timerPlayer = player;
+		}
 		private int counter = TIME;
 		public void onTurnReached(int currentTurn, String message) {
-			IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
-			if (playerZone.equals(zone)) {
-				if (counter > 0) {
-					npc.say("You have " + counter + " seconds left.");
-					counter = counter - 10;
-					TurnNotifier.get().notifyInTurns(10*3, this, null);
-				} else {
-					// teleport the player out
-					npc.say("Sorry, your time is up.");
-					TurnNotifier.get().notifyInTurns(1, new FinishNotifier(true, player), null); // need to do this on the next turn
+			// check that the player is still in game and stop the timer
+			// in case the player is not playing anymore.
+			// Note that "player" always refers to the current player
+			// in order not to teleport the next player out to early,
+			// we have to compare it to the player who started this timer
+			if ((player == timerPlayer) && (player != null)) {
+				IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
+				if (playerZone.equals(zone)) {
+					if (counter > 0) {
+						npc.say("You have " + counter + " seconds left.");
+						counter = counter - 10;
+						TurnNotifier.get().notifyInTurns(10*3, this, null);
+					} else {
+						// teleport the player out
+						npc.say("Sorry, your time is up.");
+						TurnNotifier.get().notifyInTurns(1, new FinishNotifier(true, player), null); // need to do this on the next turn
+					}
 				}
 			}
 		}
@@ -353,7 +369,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			this.player = player;
 			removeAllTokens();
 			addAllTokens();
-			timer = new Timer();
+			timer = new Timer(player);
 			TurnNotifier.get().notifyInTurns(0, timer, null);
 			moveCount = 0;
 		}
@@ -377,15 +393,6 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			player = null;
 			moveCount = 0;
 			if (timer != null) {
-				// TODO: fix it, it does not work:
-				// [08:14] <Gamblos> You have 30 seconds left.
-				// [08:14] <Gamblos> You have 50 seconds left.
-				// [08:14] <Gamblos> You have 20 seconds left.
-				// [08:14] <Gamblos> You have 40 seconds left.
-				// [08:14] <Gamblos> You have 10 seconds left.
-				// [08:14] <Gamblos> You have 30 seconds left.
-				// [08:14] <Gamblos> Sorry, your time is up.
-				// (first player logged out inside)
 				TurnNotifier.get().dontNotify(timer, null);
 			}
 			door.open();
