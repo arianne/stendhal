@@ -89,6 +89,21 @@ public class OutfitDialog extends javax.swing.JDialog {
         heads_index = outfit % 100;
         outfit = outfit / 100;
         hairs_index = outfit % 100;
+
+        // reset special outfits
+    	if (hairs_index >= hairs.length) {
+    		hairs_index = 0;
+    	}
+    	if (heads_index >= heads.length) {
+    		heads_index = 0;
+    	}
+    	if (bodies_index >= bodies.length) {
+    		bodies_index = 0;
+		}
+    	if (clothes_index >= clothes.length) {
+    		clothes_index = 0;
+		}
+
     }
    
     /**
@@ -516,19 +531,10 @@ public class OutfitDialog extends javax.swing.JDialog {
     private class AnimationTask extends TimerTask {
         public void run() {
             // draws single parts
-        	if (hairs_index < hairs.length) {
-        		drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
-        	}
-        	if (heads_index < heads.length) {
-            	drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
-        	}
-        	if (bodies_index < bodies.length) {
-            	drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
-    		}
-        	if (clothes_index < clothes.length) {
-    			drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
-			}
-            // draws final player
+       		drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
+           	drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
+           	drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
+   			drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
             drawFinalPlayer(jlblFinalResult.getGraphics());
         }
 
