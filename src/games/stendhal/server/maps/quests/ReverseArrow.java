@@ -7,6 +7,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.item.Token;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.OnePlayerRoomDoor;
@@ -116,7 +117,12 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			if (checkBoard()) {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Congratulations you solved the quizz");
-					// TODO: give reward
+					StackableItem money = (StackableItem) StendhalRPWorld.get()
+					.getRuleManager().getEntityManager()
+					.getItem("money");
+					money.setQuantity(50);
+					player.equip(money);
+					player.addXP(100);
 				} else {
 					npc.say("Congratulations you solved the quizz again. I'm afraid there is only a reward on the first time.");
 				}
