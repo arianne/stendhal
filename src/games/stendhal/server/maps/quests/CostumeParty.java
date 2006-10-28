@@ -2,10 +2,14 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.maps.quests.ReverseArrow.FinishNotifier;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -19,7 +23,29 @@ import marauroa.common.game.IRPZone;
 public class CostumeParty extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "costume_party";
-
+	
+	private class CostumeStripTimer implements TurnListener {
+		public void onTurnReached(int currentTurn, String message) {
+			List<Player> players = StendhalRPRuleProcessor.get().getPlayers();
+			for (Player player : players) {
+				if (player.hasQuest(QUEST_SLOT)) {
+					if (!player.isQuestCompleted(QUEST_SLOT)) {
+						long expireTime = Long.parseLong(player.getQuest(QUEST_SLOT));
+						if (expireTime < System.currentTimeMillis()) {
+							if (player.has("outfit_org")) {
+								player.put("outfit", player.get("outfit_org"));
+								player.notifyWorldAboutChanges();
+								player.sendPrivateText("My costume is wearing away.");
+							}
+							player.setQuest(QUEST_SLOT, "done");
+						}
+					}
+				}
+			}
+			TurnNotifier.get().notifyInTurns(65*3, this, null);
+		}
+	}
+	
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
@@ -30,7 +56,7 @@ public class CostumeParty extends AbstractQuest {
 		SpeakerNPC npc = new SpeakerNPC("Fidorea") {
 			@Override
 			protected void createPath() {
-				// TODO: implement path
+				// npc does not move
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
 			}
@@ -45,22 +71,24 @@ public class CostumeParty extends AbstractQuest {
 						if (!player.has("outfit_org")) {
 							player.put("outfit_org", outfit);
 						}
-						// hair head outfit body
+						// hair, head, outfit, body
 						int randomHead = Rand.rand(5);
 						int head = 80 + randomHead;
 						outfit = 00 * 1000000 + head * 10000 + (outfit % 10000);
 						player.put("outfit", outfit);
+						engine.say("I hope, you like your costume.");
+						player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis() + 30 * 60 * 1000));
 					}
 				});
-				addHelp("You have to stand next to a token in order to move it.");
-				addJob("I am a makeup artist");
-				addGoodbye("It was nice to meet you.");
+				addHelp("If you don't like your costume, you can remove it by clicking on yourself and choosing Set Outfit.");
+				addJob("I am a makeup artist.");
+				addGoodbye("Come back to me, if you want another costume.");
 			}
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "girlnpc"); // TODO: change outfit
-		npc.set(105, 113);
+		npc.set(80, 108);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.addNPC(npc);
@@ -69,5 +97,6 @@ public class CostumeParty extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		createNPC();
+		TurnNotifier.get().notifyInTurns(65, new CostumeStripTimer(), null);
 	}
 }
