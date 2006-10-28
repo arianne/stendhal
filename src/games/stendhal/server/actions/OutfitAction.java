@@ -32,8 +32,10 @@ public class OutfitAction extends ActionListener {
 
 		if (action.has("value")) {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "outfit", action.get("value"));
-
 			player.put("outfit", action.get("value"));
+			if (player.has("outfit_org")) {
+				player.remove("outfit_org");
+			}
 			player.notifyWorldAboutChanges();
 		}
 

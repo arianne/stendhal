@@ -33,6 +33,7 @@ public class Player extends RPEntity {
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
 	private int outfit;
+	private int outfitOrg;
 
 	private double hearingRange;
 
@@ -49,6 +50,11 @@ public class Player extends RPEntity {
 		Sprite sprite;
 
 		try {
+			if (base.has("outfit_org")) {
+				outfitOrg = base.getInt("outfit_org");
+			} else {
+				outfitOrg = 0;
+			}
 			if (outfit == base.getInt("outfit") && outfit != 0) {
 				// We avoid creating again the outfit if it is already done.
 				// Save CPU cycles.
@@ -165,7 +171,11 @@ public class Player extends RPEntity {
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Set outfit")) {
-			client.getOutfitDialog(outfit).setVisible(true);
+			int outfitTemp = outfit;
+			if (outfitOrg > 0) {
+				outfitTemp = outfitOrg;
+			}
+			client.getOutfitDialog(outfitTemp).setVisible(true);
 		} else if (action.equals("Leave sheep")) {
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "own");

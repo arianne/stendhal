@@ -94,6 +94,7 @@ public class Player extends RPEntity implements TurnListener {
 			player.add("dead", RPClass.FLAG, RPClass.PRIVATE);
 
 			player.add("outfit", RPClass.INT);
+			player.add("outfit_org", RPClass.INT);
 
 			// Use this for admin menus and usage.
 			player.add("admin", RPClass.FLAG);
