@@ -152,6 +152,7 @@ public class Bootstrap {
 			method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+			e.printStackTrace(System.err);
 		}
 
 		// TODO: detect that the user does not want to do the first download and stop starting (or don't display the "unknown error" message)
@@ -171,6 +172,7 @@ public class Bootstrap {
 			method.invoke(null, (Object) args);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+			e.printStackTrace(System.err);
 			try {
 				Class clazz = Class.forName(className);
 				Method method = clazz.getMethod("main", args.getClass());
