@@ -54,6 +54,12 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 
+0.55  Okt 31, 2006
+- improved language of all NPCs
+- smart updater for future versions (so that you do not have to download the complete client on every new version)
+- new quest: reverse arrow
+
+
 0.54.1 Okt 07, 2006  (Server Only Bugfix Release)
 - fixed a problem with zone file int_ados_magician_house which causes the server not to start
 - fixed /drop on items dragged directly from bank to bag
