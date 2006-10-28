@@ -39,6 +39,7 @@ public class StendhalQuestSystem {
 		loadQuest("Campfire");
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloaksForBario");
+		loadQuest("CostumeParty");
 		loadQuest("DiceGambling");
 		loadQuest("HatForMonogenes");
 		loadQuest("IntroducePlayers");
