@@ -516,10 +516,18 @@ public class OutfitDialog extends javax.swing.JDialog {
     private class AnimationTask extends TimerTask {
         public void run() {
             // draws single parts
-            drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
-            drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
-            drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
-            drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
+        	if (hairs_index < hairs.length) {
+        		drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
+        	}
+        	if (heads_index < heads.length) {
+            	drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
+        	}
+        	if (bodies_index < bodies.length) {
+            	drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
+    		}
+        	if (clothes_index < clothes.length) {
+    			drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
+			}
             // draws final player
             drawFinalPlayer(jlblFinalResult.getGraphics());
         }
