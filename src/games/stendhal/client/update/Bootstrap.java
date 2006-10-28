@@ -44,11 +44,7 @@ public class Bootstrap {
 			    try {
 			    	clazz = findClass(name);
 			    } catch (ClassNotFoundException e) {
-			    	try { 
-			    		clazz = parent.loadClass(name);
-				    } catch (ClassNotFoundException e2) {
-				    	e.printStackTrace();
-				    }
+		    		clazz = parent.loadClass(name);
 			    }
 			}
 			if (resolve) {
