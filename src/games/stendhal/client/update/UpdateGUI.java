@@ -37,7 +37,7 @@ public class UpdateGUI {
 					JOptionPane.QUESTION_MESSAGE);
 		} else {
 			resCode = JOptionPane.showConfirmDialog(null, 
-					"OK, the first step of the installation is done. Now we need to download some additinal files. They are " + sizeString + " KB need to be downloaded. Should Stendhal be installed?",
+					"We need to download some additinal files which are " + sizeString + " KB.\r\n Should Stendhal be installed?",
 					DIALOG_TITLE,
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
