@@ -194,10 +194,8 @@ public class UpdateManager {
 		Collections.reverse(files);
 		StringBuilder sb = new StringBuilder();
 		for (String file : files) {
-			sb.append("," + file);
+			sb.append(file + ",");
 		}
-		bootProp.put("load", bootProp.getProperty("load", "") + sb.toString());
+		bootProp.put("load", sb.toString() + bootProp.getProperty("load", ""));
 	}
-
-	
 }
