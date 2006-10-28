@@ -154,6 +154,8 @@ public class Bootstrap {
 			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
 		}
 
+		// TODO: detect that the user does not want to do the first download and stop starting (or don't display the "unknown error" message)
+		
 		// store boot prop (if they ware altered during update)
 		try {
 			saveBootProp();
