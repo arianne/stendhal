@@ -137,6 +137,7 @@ public class HttpClient {
 			BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(filename));
 			copyStream(is, os);
 			connection.disconnect();
+			res = true;
 		} catch (Exception e) {
 			res = true;
 			logger.warn(e, e);
