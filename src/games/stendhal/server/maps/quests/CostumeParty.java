@@ -87,7 +87,7 @@ public class CostumeParty extends AbstractQuest {
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "girlnpc"); // TODO: change outfit
+		npc.put("class", "woman_008_npc");
 		npc.set(80, 108);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
