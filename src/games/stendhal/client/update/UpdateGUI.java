@@ -31,7 +31,7 @@ public class UpdateGUI {
 		int resCode;
 		if (update) {
 			resCode = JOptionPane.showConfirmDialog(null, 
-					"There is a new version. " + sizeString + " KB need to be downloaded. Should Stendhal be updated?",
+					"There is a new version. " + sizeString + " KB need to be downloaded. Please be patient after clicking on \"Yes\". Should Stendhal be updated?",
 					DIALOG_TITLE,
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
