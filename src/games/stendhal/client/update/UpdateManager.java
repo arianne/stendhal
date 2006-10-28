@@ -41,6 +41,8 @@ public class UpdateManager {
 	 */
 	public void process(String jarFolder, Properties bootProp, Boolean initialDownload) {
 		init();
+		this.jarFolder = jarFolder;
+		this.bootProp = bootProp;
 		if (updateProp == null) {
 			return;
 		}
