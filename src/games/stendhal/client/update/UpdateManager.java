@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 public class UpdateManager {
 	private String jarFolder = null;
 	private Properties bootProp = null;
-	private static final String SERVER_FOLDER = "http://arianne.sf.net/stendhal/updates/";
+	private static final String SERVER_FOLDER = "http://localhost/stendhal/updates/";
 	private static Logger logger = Logger.getLogger(UpdateManager.class);
 	private Properties updateProp = null;
 	private UpdateProgressBar updateProgressBar = null;
@@ -72,8 +72,7 @@ public class UpdateManager {
 				// TODO: do update automatically
 				int updateSize = getSizeOfFilesToUpdate(files);
 				if (UpdateGUIDialogs.askForDownload(updateSize, false)) {
-					updateProgressBar = new UpdateProgressBar(updateSize);
-					if (downloadFiles(files)) {
+					if (downloadFiles(files, updateSize)) {
 						updateClasspathConfig(files);
 					}
 				}
@@ -83,8 +82,7 @@ public class UpdateManager {
 				List<String> files = getFilesToUpdate();
 				int updateSize = getSizeOfFilesToUpdate(files);
 				if (UpdateGUIDialogs.askForDownload(updateSize, true)) {
-					updateProgressBar = new UpdateProgressBar(updateSize);
-					if (downloadFiles(files)) {
+					if (downloadFiles(files, updateSize)) {
 						updateClasspathConfig(files);
 					}
 				}
@@ -163,9 +161,12 @@ public class UpdateManager {
 	 * Downloads the files listed for update
 	 *
 	 * @param files list of files to download
+	 * @param size file size
 	 * @return true on success, false otherwise
 	 */
-	private boolean downloadFiles(List<String> files) {
+	private boolean downloadFiles(List<String> files, int size) {
+		updateProgressBar = new UpdateProgressBar(size);
+		updateProgressBar.setVisible(true);
 		for (String file : files) {
 			HttpClient httpClient = new HttpClient(SERVER_FOLDER + file);
 			httpClient.setProgressListener(updateProgressBar);
