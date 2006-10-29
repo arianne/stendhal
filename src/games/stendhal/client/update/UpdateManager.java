@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 public class UpdateManager {
 	private String jarFolder = null;
 	private Properties bootProp = null;
-	private static final String SERVER_FOLDER = "http://localhost/stendhal/updates/";
+	private static final String SERVER_FOLDER = "http://arianne.sf.net/stendhal/updates/";
 	private static Logger logger = Logger.getLogger(UpdateManager.class);
 	private Properties updateProp = null;
 	private UpdateProgressBar updateProgressBar = null;
@@ -168,6 +168,7 @@ public class UpdateManager {
 		updateProgressBar = new UpdateProgressBar(size);
 		updateProgressBar.setVisible(true);
 		for (String file : files) {
+			System.out.println("Downloading " + file + " ...");
 			HttpClient httpClient = new HttpClient(SERVER_FOLDER + file);
 			httpClient.setProgressListener(updateProgressBar);
 			if (!httpClient.fetchFile(jarFolder + file)) {
