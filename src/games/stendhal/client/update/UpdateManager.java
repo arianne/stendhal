@@ -69,7 +69,11 @@ public class UpdateManager {
 			}
 			case INITIAL_DOWNLOAD: {
 				List<String> files = getFilesForFirstDownload();
-				// TODO: do update automatically
+				String version = updateProp.getProperty("init.version");
+				// just check if there is already an update for the inital version
+				if (version != null) {
+					files.addAll(getFilesToUpdate(version));
+				}
 				int updateSize = getSizeOfFilesToUpdate(files);
 				if (UpdateGUIDialogs.askForDownload(updateSize, false)) {
 					if (downloadFiles(files, updateSize)) {
@@ -79,7 +83,8 @@ public class UpdateManager {
 				break;
 			}
 			case UPDATE_NEEDED: {
-				List<String> files = getFilesToUpdate();
+				String version = Version.VERSION;
+				List<String> files = getFilesToUpdate(version);
 				int updateSize = getSizeOfFilesToUpdate(files);
 				if (UpdateGUIDialogs.askForDownload(updateSize, true)) {
 					if (downloadFiles(files, updateSize)) {
@@ -106,7 +111,7 @@ public class UpdateManager {
 	 */
 	private List<String> getFilesForFirstDownload() {
 		List<String> res = new LinkedList<String>();
-		String list = updateProp.getProperty("file-list");
+		String list = updateProp.getProperty("init.file-list");
 		res.addAll(Arrays.asList(list.split(",")));
 
 		while (res.contains("")) {
@@ -120,9 +125,8 @@ public class UpdateManager {
 	 *
 	 * @return list of files
 	 */
-	private List<String> getFilesToUpdate() {
+	private List<String> getFilesToUpdate(String version) {
 		List<String> res = new LinkedList<String>();
-		String version = Version.VERSION;
 		
 		while (true) {
 			String list = updateProp.getProperty("update-file-list." + version);
