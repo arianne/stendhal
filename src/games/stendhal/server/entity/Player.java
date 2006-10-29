@@ -43,6 +43,7 @@ import java.util.List;
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -219,6 +220,11 @@ public class Player extends RPEntity implements TurnListener {
 			if (newReleaseHappened) {
 				firstVisit = true;
 				player.put("release", Debug.VERSION);
+			}
+			
+			IRPZone tempZone = StendhalRPWorld.get().getRPZone(new IRPZone.ID(object.get("zoneid")));
+			if (tempZone == null) {
+				firstVisit = true;
 			}
 
 			if (firstVisit) {
