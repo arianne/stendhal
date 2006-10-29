@@ -61,7 +61,9 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				addJob("I am just a litte girl having lots of fun here during the #Semos #Mine #Town #Revival #Weeks-");
 				addGoodbye("Have fun!");
 				add(ConversationStates.ATTENDING, "debuggera", null, ConversationStates.ATTENDING, "She is my crazy twin sister.", null);
-				
+				addQuest("Just have fun.");
+				add(ConversationStates.ATTENDING, Arrays.asList("offer"), ConversationStates.ATTENDING, "I can offer you my #friendship.", null);
+
 				// Revival Weeks
 				add(ConversationStates.ATTENDING, Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks"),
 					ConversationStates.ATTENDING, "During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. Lots of people from Ados came for a visit.", null);

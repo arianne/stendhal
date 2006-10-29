@@ -6,12 +6,13 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.maps.quests.ReverseArrow.FinishNotifier;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -83,6 +84,8 @@ public class CostumeParty extends AbstractQuest {
 				});
 				addHelp("If you don't like your costume, you can remove it by clicking on yourself and choosing Set Outfit.");
 				addJob("I am a makeup artist living in Ados. But for the Semos Mine Town Revival Weeks i come here once a year.");
+				addQuest("Just have fun.");
+				add(ConversationStates.ATTENDING, Arrays.asList("offer"), ConversationStates.ATTENDING, "I will give you a costume free of charge.", null);
 				addGoodbye("Come back to me, if you want another costume.");
 			}
 		};
