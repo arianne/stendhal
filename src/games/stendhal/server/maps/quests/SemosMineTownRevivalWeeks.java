@@ -60,6 +60,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				addHelp("Just talk to Fidorea to get a nice costume.");
 				addJob("I am just a litte girl having lots of fun here during the #Semos #Mine #Town #Revival #Weeks-");
 				addGoodbye("Have fun!");
+				add(ConversationStates.ATTENDING, "debuggera", null, ConversationStates.ATTENDING, "She is my crazy twin sister.", null);
 				add(ConversationStates.ATTENDING, Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks"),
 					ConversationStates.ATTENDING, "During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. Lots of people from Ados came for a visit.", null);
 				add(ConversationStates.ATTENDING, Arrays.asList("celebrate", "celebration", "party"),
@@ -86,7 +87,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		npc.set(95, 119);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		npc.setSpeed(3.0);
+		//npc.setSpeed(1.0);
 		zone.addNPC(npc);
 	}
 
