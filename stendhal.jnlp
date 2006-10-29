@@ -23,10 +23,7 @@ Some of these people are NPC, they will give you tasks to accomplish and hints t
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+" /> <!--  max-heap-size="120" -->
     <jar href="http://arianne.sourceforge.net/jws/log4j.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/marauroa-1.34.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-data-0.54.jar" download="eager"/>
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-0.54.jar" download="eager" main="true" />
-	<nativelib href="http://arianne.sourceforge.net/jws/stendhal-webstart-jni-0.54.jar" download="eager"/>
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-starter-0.54.3.jar" download="eager" main="true" />
   </resources>
   <application-desc/>
 </jnlp>
