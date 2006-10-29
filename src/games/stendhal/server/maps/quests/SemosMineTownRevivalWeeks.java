@@ -74,7 +74,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 								new SpeakerNPC.ChatCondition() {
 									@Override
 									public boolean fire(Player player, SpeakerNPC engine) {
-										return !player.has("outfit_org");
+										return player.has("outfit_org");
 									}
 								},
 								ConversationStates.ATTENDING, "I see, you already got a costume from Fidorea. But have you tried your luck in a difficult puzzle in one of the houses?", null);
@@ -96,7 +96,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		zone.assignRPObjectID(sign);
 		sign.setX(105);
 		sign.setY(114);
-		sign.setText("Because of the missing guard rail it is to dangerous to enter the tower.");
+		sign.setText("Because of the missing guard rail it is too dangerous to enter the tower.");
 		zone.add(sign);		
 	}
 	
