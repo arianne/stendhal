@@ -55,6 +55,7 @@ public class StendhalQuestSystem {
 		loadQuest("OrcishHappyMeal");
 		loadQuest("PlinksToy");
 		loadQuest("ReverseArrow");
+		loadQuest("SemosMineTownRevivalWeeks");
 		loadQuest("SevenCherubs");
 		loadQuest("SheepGrowing");
 		loadQuest("WeaponsCollector");
