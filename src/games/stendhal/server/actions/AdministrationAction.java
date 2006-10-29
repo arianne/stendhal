@@ -536,9 +536,18 @@ public class AdministrationAction extends ActionListener {
 
 		if (player.has("ghostmode")) {
 			player.remove("ghostmode");
+			if (player.has("outfit_org")) {
+				player.put("outfit", player.get("outfit_org"));
+				player.remove("outfit_org");
+			}
 		} else {
 			player.put("ghostmode", "");
+			if (!player.has("outfit_org")) {
+				player.put("outfit_org", player.get("outfit"));
+			}
+			player.put("outfit", 980098);
 		}
+		player.notifyWorldAboutChanges();
 		Log4J.finishMethod(logger, "onGhostMode");
 	}
 
