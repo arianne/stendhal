@@ -3,15 +3,20 @@ package games.stendhal.client.update;
 import java.text.NumberFormat;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import java.awt.GridBagLayout;
+import java.awt.Dimension;
+import javax.swing.JTextField;
+import java.awt.GridBagConstraints;
+import javax.swing.JLabel;
 
 /**
  * Dialogboxes used during updating
  *
  * @author hendrik
  */
-public class UpdateGUI {
+public class UpdateGUIDialogs {
 	private static final String DIALOG_TITLE = "Stendhal Update";
-
 	/**
 	 * Asks the user to accept an update.
 	 *
