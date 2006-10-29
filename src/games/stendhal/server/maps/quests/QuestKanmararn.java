@@ -1,4 +1,4 @@
-package games.stendhal.server.script;
+package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.item.Corpse;
 

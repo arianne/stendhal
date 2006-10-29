@@ -3,6 +3,7 @@
 import games.stendhal.server.entity.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.script.*
+import games.stendhal.server.maps.quests.*;
 import games.stendhal.server.scripting.*
 import games.stendhal.server.entity.npc.*;
 import games.stendhal.server.pathfinder.Path
