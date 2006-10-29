@@ -34,6 +34,7 @@ public class CostumeParty extends AbstractQuest {
 						if (expireTime < System.currentTimeMillis()) {
 							if (player.has("outfit_org")) {
 								player.put("outfit", player.get("outfit_org"));
+								player.remove("outfit_org");
 								player.notifyWorldAboutChanges();
 								player.sendPrivateText("My costume is wearing away.");
 							}
