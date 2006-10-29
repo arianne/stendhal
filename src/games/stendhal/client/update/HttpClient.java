@@ -2,7 +2,6 @@ package games.stendhal.client.update;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +23,27 @@ public class HttpClient {
 	private String urlString = null;
 	private HttpURLConnection connection = null;
 	private InputStream is = null;
+	private ProgressListener progressListener = null;
+
+	/**
+	 * An interface to notify some other parts of the program about
+	 * download process.
+	 */
+	public interface ProgressListener {
+		/**
+		 * update download status
+		 *
+		 * @param downloadedBytes bytes downloaded now
+		 */
+		public void onDownloading(int downloadedBytes);
+
+		/**
+		 * completed download of this file 
+		 *
+		 * @param downloadedBytes completed download
+		 */
+		public void onDownloadCompleted(int byteCounter);
+	}
 
 	/**
 	 * Creates a HTTP-Client which will connect to the specified URL
@@ -32,6 +52,10 @@ public class HttpClient {
 	 */
 	public HttpClient(String url) {
 		this.urlString = url;
+	}
+
+	public void setProgressListener(ProgressListener progressListener) {
+		this.progressListener = progressListener;
 	}
 
 	private void openInputStream() {
@@ -156,11 +180,19 @@ public class HttpClient {
 	private void copyStream(InputStream inputStream, OutputStream outputStream) throws IOException {
 		byte[] buffer = new byte[10240];
 		int length = inputStream.read(buffer);
+		int byteCounter = length;
 		while (length > -1) {
 			outputStream.write(buffer, 0, length);
 			length = inputStream.read(buffer);
+			if (length > 0) {
+				byteCounter = byteCounter + length;
+				if (progressListener != null) {
+					progressListener.onDownloading(byteCounter);
+				}
+			}
 		}
 		inputStream.close();
 		outputStream.close();
+		progressListener.onDownloadCompleted(byteCounter);
 	}
 }

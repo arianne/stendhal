@@ -21,6 +21,7 @@ public class UpdateManager {
 	private static final String SERVER_FOLDER = "http://arianne.sf.net/stendhal/updates/";
 	private static Logger logger = Logger.getLogger(UpdateManager.class);
 	private Properties updateProp = null;
+	private UpdateProgressBar updateProgressBar = null;
 
 	/**
 	 * Connects to the server and loads a Property object which contains
@@ -59,17 +60,19 @@ public class UpdateManager {
 				break;
 			}
 			case ERROR: {
-				UpdateGUI.messageBox("An error occured while trying to update");
+				UpdateGUIDialogs.messageBox("An error occured while trying to update");
 				break;
 			}
 			case OUTDATED: {
-				UpdateGUI.messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
+				UpdateGUIDialogs.messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
 				break;
 			}
 			case INITIAL_DOWNLOAD: {
 				List<String> files = getFilesForFirstDownload();
+				// TODO: do update automatically
 				int updateSize = getSizeOfFilesToUpdate(files);
-				if (UpdateGUI.askForDownload(updateSize, false)) {
+				if (UpdateGUIDialogs.askForDownload(updateSize, false)) {
+					updateProgressBar = new UpdateProgressBar(updateSize);
 					if (downloadFiles(files)) {
 						updateClasspathConfig(files);
 					}
@@ -79,7 +82,8 @@ public class UpdateManager {
 			case UPDATE_NEEDED: {
 				List<String> files = getFilesToUpdate();
 				int updateSize = getSizeOfFilesToUpdate(files);
-				if (UpdateGUI.askForDownload(updateSize, true)) {
+				if (UpdateGUIDialogs.askForDownload(updateSize, true)) {
+					updateProgressBar = new UpdateProgressBar(updateSize);
 					if (downloadFiles(files)) {
 						updateClasspathConfig(files);
 					}
@@ -164,22 +168,27 @@ public class UpdateManager {
 	private boolean downloadFiles(List<String> files) {
 		for (String file : files) {
 			HttpClient httpClient = new HttpClient(SERVER_FOLDER + file);
+			httpClient.setProgressListener(updateProgressBar);
 			if (!httpClient.fetchFile(jarFolder + file)) {
-				UpdateGUI.messageBox("Sorry, an error occured while downloading the update at file " + file);
+				UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update at file " + file);
 				return false;
 			}
 			try {
 				File fileObj = new File(jarFolder + file);
 				int shouldSize = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
 				if (fileObj.length() != shouldSize) {
-					UpdateGUI.messageBox("Sorry, an error occured while downloading the update. File size of "
+					UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update. File size of "
 									+ file + " does not match. We got " + fileObj.length() + " but it should be " + shouldSize);
+					updateProgressBar.dispose();
 					return false;
 				}
 			} catch (NumberFormatException e) {
 				logger.warn(e, e);
+				updateProgressBar.dispose();
+				return false;
 			}			
 		}
+		updateProgressBar.dispose();
 		return true;
 	}
 
