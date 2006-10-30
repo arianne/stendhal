@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<project name="stendhal" default="all" basedir=".">
+	<property file="build.ant.properties"/>
+	<property file="build.ant-private.properties"/>
+
+	<target name="all">
+		<!-- This file will automate some parts of the release process -->
+		
+		<!-- TODO
+			* echo (from which version to which version the update will be created)
+			* rm build-archive/*.jar
+			* unless build-archive/stendhal-${version.old}.zip exists
+				download http://arianne.sf.net/jws/stendhal-${version.old}.zip to build-archiv
+			* unzip build-archive/stendhal-${version.old}.zip to build-archive
+			* jardiff for stendhal-VERSION.jar and stendhal-data-VERSION.jar
+			* sign jars
+			* download http://arianne.sf.net/stendhal/updates/update.properties
+			* add file-sizes
+			* add new version for initial download
+			* add update-path
+			* upload to update folder (.jar-files before update.properties)
+			* upload to webstart (stendhal-test.jnlp)
+			* upload to filerelease
+			*********************************************************
+			* TEST
+			*********************************************************
+			* update server
+			* do file release
+			* rename stendhal-test.jnlp to stendhal.jnlp
+			* update website
+		-->
+	</target>
+	
+	<target name="init">
+		
+	</target>
+	
+</project>
