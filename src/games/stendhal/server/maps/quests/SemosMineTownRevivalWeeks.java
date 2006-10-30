@@ -57,7 +57,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("I like the #Semos #Mine #Town #Revival #Weeks. Its like a huge party.");
+				addGreeting("Hi, I like the #Semos #Mine #Town #Revival #Weeks. Its like a huge party.");
 				addJob("I am just a litte girl having lots of fun here during the #Semos #Mine #Town #Revival #Weeks-");
 				addGoodbye("Have fun!");
 				add(ConversationStates.ATTENDING, "debuggera", null, ConversationStates.ATTENDING, "She is my crazy twin sister.", null);
@@ -66,7 +66,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 
 				// Revival Weeks
 				add(ConversationStates.ATTENDING, Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks"),
-					ConversationStates.ATTENDING, "During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. Lots of people from Ados came for a visit.", null);
+					ConversationStates.ATTENDING, "During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. Lots of people from Ados come for a visit.", null);
 				add(ConversationStates.ATTENDING, Arrays.asList("celebrate", "celebration", "party"),
 					new SpeakerNPC.ChatCondition() {
 						@Override

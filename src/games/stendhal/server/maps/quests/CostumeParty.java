@@ -83,7 +83,7 @@ public class CostumeParty extends AbstractQuest {
 					}
 				});
 				addHelp("If you don't like your costume, you can remove it by clicking on yourself and choosing Set Outfit.");
-				addJob("I am a makeup artist living in Ados. But for the Semos Mine Town Revival Weeks i come here once a year.");
+				addJob("I am a makeup artist living in Ados. But I come here once a year for the Semos Mine Town Revival Weeks.");
 				addQuest("Just have fun.");
 				add(ConversationStates.ATTENDING, Arrays.asList("offer"), ConversationStates.ATTENDING, "I will give you a costume free of charge.", null);
 				addGoodbye("Come back to me, if you want another costume.");

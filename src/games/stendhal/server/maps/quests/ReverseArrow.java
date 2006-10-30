@@ -116,7 +116,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		public void onTurnReached(int currentTurn, String message) {
 			if (checkBoard() && moveCount <= MAX_MOVES) {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
-					npc.say("Congratulations you solved the quizz");
+					npc.say("Congratulations you solved the quiz.");
 					StackableItem money = (StackableItem) StendhalRPWorld.get()
 					.getRuleManager().getEntityManager()
 					.getItem("money");
@@ -124,7 +124,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 					player.equip(money);
 					player.addXP(100);
 				} else {
-					npc.say("Congratulations you solved the quizz again. I'm afraid there is only a reward on the first time.");
+					npc.say("Congratulations you solved the quiz again. I'm afraid there is only a reward on the first time.");
 				}
 				player.setQuest(QUEST_SLOT, "done");
 			} else {
@@ -291,7 +291,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards by moving up to three tokens.");
+							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
 						} else {
 							engine.say("Hi again " + player.getName() + ". I rembemer that you solved this problem already. You can do it again, of course.");
 						}
