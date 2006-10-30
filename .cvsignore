@@ -22,3 +22,4 @@ build_tiled_convertmaps
 keystore.ks
 server.log.*
 jmp_dump-*.txt
+build.ant-private.properties
