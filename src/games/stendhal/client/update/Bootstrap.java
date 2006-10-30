@@ -111,12 +111,16 @@ public class Bootstrap {
 				String filename = st.nextToken();
 				jarFiles.add(new File(jarFolder + filename).toURI().toURL());
 			}
+			System.out.println("our classpath: " + jarNameString);
+		} else {
+			System.out.println("no jar.properties");
 		}
 		
 		// add boot classpath at the end so that those classes
 		// are loaded by our classloader as well (otherwise the dependencies
 		// would be loaded by the system classloader as well).
 		String vmClasspath = System.getProperty("java.class.path", "");
+		System.out.println("vm  classpath: " + vmClasspath);
 		StringTokenizer st = new StringTokenizer(vmClasspath, ":;");
 		while (st.hasMoreTokens()) {
 			String filename = st.nextToken();
