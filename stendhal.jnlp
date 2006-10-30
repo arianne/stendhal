@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- set codebase to game-server to allow connection (security restriction) -->
 <!-- the .jar-files are downloaded from sf.net in order not to cause lag in game -->
-<jnlp  spec="1.0+"  codebase="http://stendhal.ath.cx/stendhal" href="stendhal.jnlp">
+<jnlp  spec="1.0+"  codebase="http://stendhal.game-host.org/stendhal" href="stendhal.jnlp">
   <information>
     <title>Stendhal</title>
     <vendor>Miguel Angel Blanch Lardin</vendor>
