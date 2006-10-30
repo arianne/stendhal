@@ -3,7 +3,7 @@
 	<property file="build.ant.properties"/>
 	<property file="build.ant-private.properties"/>
 
-	<target name="all" depends="init,prepare-archive">
+	<target name="all" depends="init,prepare-archive,jardiff">
 		<!-- This file will automate some parts of the release process -->
 		
 		<!-- TODO
@@ -38,14 +38,32 @@
 	-->
 	<target name="prepare-archive">
 		<delete>
-			<fileset dir="${buildroot}/build-archive">
+			<fileset dir="${build-archive}">
 			    <exclude name="*.zip"/>
 			</fileset>
 		</delete>
 		<!-- TODO
 		* unless build-archive/stendhal-${version.old}.zip exists
 			download http://arianne.sf.net/jws/stendhal-${version.old}.zip to build-archiv -->
-		<unzip src="${buildroot}/build-archive/stendhal-${version.old}.zip" 
-			dest="${buildroot}/build-archive" />
+		<unzip src="${build-archive}/stendhal-${version.old}.zip" 
+			dest="${build-archive}" />
+	</target>
+
+	<target name="jardiff" depends="prepare-archive">
+		<java jar="libs/jardiff.jar" fork="true">
+			<arg value="-creatediff" />
+			<arg value="-output" />
+			<arg value="${build}/lib/stendhal-diff-${version.old}-${version}.jar" />
+			<arg value="${build-archive}/stendhal-${version.old}.jar" />
+			<arg value="${build}/lib/stendhal-${version}.jar" />
+		</java>
+		<java jar="libs/jardiff.jar" fork="true">
+			<arg value="-creatediff" />
+			<arg value="-output" />
+			<arg value="${build}/lib/stendhal-data-diff-${version.old}-${version}.jar" />
+			<arg value="${build-archive}/stendhal-data-${version.old}.jar" />
+			<arg value="${build}/lib/stendhal-data-${version}.jar" />
+		</java>
+		<!-- TODO maraurora.jar-->
 	</target>
 </project>
