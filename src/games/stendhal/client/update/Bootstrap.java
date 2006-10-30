@@ -1,6 +1,5 @@
 package games.stendhal.client.update;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -130,7 +129,7 @@ public class Bootstrap {
 
 	    // Create new class loader which the list of .jar-files as classpath
 		URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-	    ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, ClassLoader.getSystemClassLoader());
+	    ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, this.getClass().getClassLoader());
 
 	    return loader;
 	}
