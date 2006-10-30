@@ -19,7 +19,6 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class HttpClient {
-	private static Logger logger = Logger.getLogger(HttpClient.class);
 	private String urlString = null;
 	private HttpURLConnection connection = null;
 	private InputStream is = null;
@@ -65,12 +64,13 @@ public class HttpClient {
 	        connection = (HttpURLConnection) url.openConnection();
 	        connection.setConnectTimeout(1500);  // 1.5 secs
 	        if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-	        	logger.warn("HttpServer returned an error code: " + connection.getResponseCode());
+	        	System.err.println("HttpServer returned an error code: " + connection.getResponseCode());
 	        	return;
 	        }
 	        is = connection.getInputStream();
 	    } catch (Exception e) {
-	        logger.warn("Error connecting to http-Server: ", e);
+	    	System.err.println("Error connecting to http-Server: ");
+	    	e.printStackTrace(System.err);
 	    }
 	    return;
 	}
@@ -93,7 +93,8 @@ public class HttpClient {
 		try {
 			is.close();
 		} catch (IOException e) {
-			logger.warn(e, e);
+			System.err.println(e);
+			e.printStackTrace(System.err);
 		}
 		connection.disconnect();
 	}
@@ -116,7 +117,8 @@ public class HttpClient {
 	        br.close();
 	        connection.disconnect();
 	    } catch (Exception e) {
-	        logger.warn("Error connecting to http-Server: ", e);
+	    	System.err.println("Error connecting to http-Server: ");
+	    	e.printStackTrace(System.err);
 	    }
 	    return line;
 	}
@@ -137,7 +139,8 @@ public class HttpClient {
 			prop = new Properties();
 			prop.load(is);
 		} catch (IOException e) {
-			logger.warn(e, e);
+			System.err.println(e);
+			e.printStackTrace(System.err);
 		}
 		this.close();
 		return prop;
@@ -164,7 +167,8 @@ public class HttpClient {
 			res = true;
 		} catch (Exception e) {
 			res = true;
-			logger.warn(e, e);
+			System.err.println(e);
+			e.printStackTrace(System.err);
 		}
 		return res;
 	}

@@ -8,8 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
 /**
  * manages downloading and installing of updates
  *
@@ -19,7 +17,6 @@ public class UpdateManager {
 	private String jarFolder = null;
 	private Properties bootProp = null;
 	private static final String SERVER_FOLDER = "http://arianne.sf.net/stendhal/updates/";
-	private static Logger logger = Logger.getLogger(UpdateManager.class);
 	private Properties updateProp = null;
 	private UpdateProgressBar updateProgressBar = null;
 
@@ -37,7 +34,7 @@ public class UpdateManager {
 	 *
 	 * @param jarFolder folder where the .jar files are stored
 	 * @param bootProp  boot properties
-	 * @param initalDownload true, if only the small starter.jar is available
+	 * @param initialDownload true, if only the small starter.jar is available
 	 */
 	public void process(String jarFolder, Properties bootProp, Boolean initialDownload) {
 		init();
@@ -56,7 +53,7 @@ public class UpdateManager {
 
 		switch (versionState) {
 			case CURRENT: {
-				logger.info("Current Version");
+				System.out.println("Current Version");
 				break;
 			}
 			case ERROR: {
@@ -94,11 +91,11 @@ public class UpdateManager {
 				break;
 			}
 			case UNKOWN: {
-				logger.info("Unkown state of update");
+				System.out.println("Unkown state of update");
 				break;
 			}
 			default: {
-				logger.error("Internal Error on Update");
+				System.out.println("Internal Error on Update");
 				break;
 			}
 		}
@@ -155,7 +152,7 @@ public class UpdateManager {
 			try {
 				res = res + Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
 			} catch (NumberFormatException e) {
-				logger.warn(e, e);
+				e.printStackTrace(System.err);
 			}
 		}
 		return res;
@@ -189,7 +186,7 @@ public class UpdateManager {
 					return false;
 				}
 			} catch (NumberFormatException e) {
-				logger.warn(e, e);
+				e.printStackTrace(System.err);
 				updateProgressBar.dispose();
 				return false;
 			}			

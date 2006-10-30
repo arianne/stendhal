@@ -1,5 +1,6 @@
 package games.stendhal.client.update;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,6 +16,10 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
+
+import marauroa.common.Log4J;
+
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  * Starts a program after doing some classpath magic.
@@ -145,7 +150,7 @@ public class Bootstrap {
 			} catch (ClassNotFoundException e) {
 				initialDownload = true;
 			}
-
+			
 			// start update handling
 			Class clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
 			Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
@@ -155,8 +160,6 @@ public class Bootstrap {
 			e.printStackTrace(System.err);
 		}
 
-		// TODO: detect that the user does not want to do the first download and stop starting (or don't display the "unknown error" message)
-		
 		// store boot prop (if they ware altered during update)
 		try {
 			saveBootProp();
@@ -167,6 +170,7 @@ public class Bootstrap {
 		// load program (regenerate classloader stuff)
 		try {
 			ClassLoader classLoader = createClassloader();
+			Thread.currentThread().setContextClassLoader(classLoader);
 			Class clazz = classLoader.loadClass(className);
 			Method method = clazz.getMethod("main", args.getClass());
 			method.invoke(null, (Object) args);
@@ -180,6 +184,25 @@ public class Bootstrap {
 			} catch (Exception err) {
 				err.printStackTrace(System.err);
 			}
+		}
+	}
+
+	public static void init(String filename) {
+
+		InputStream propsFile = Log4J.class.getClassLoader()
+				.getResourceAsStream(filename);
+		try {
+			Properties props = new Properties();
+			if (propsFile == null) {
+				System.err.println("Cannot find " + filename
+						+ " in classpath. Using default properties.");
+			} else {
+				System.out.println("Configuring Log4J using " + filename);
+				props.load(propsFile);
+			}
+			PropertyConfigurator.configure(props);
+		} catch (IOException ioe) {
+			System.err.println("cannot read property-file because " + ioe.getMessage());
 		}
 	}
 }
