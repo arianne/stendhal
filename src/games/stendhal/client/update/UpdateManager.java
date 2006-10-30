@@ -43,6 +43,7 @@ public class UpdateManager {
 		if (updateProp == null) {
 			if (initialDownload.booleanValue()) {
 				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from " + SERVER_FOLDER + " but that server is not reachable at the moment. Please try again later.");
+				System.exit(1);
 			}
 			return;
 		}
