@@ -3,15 +3,10 @@
 	<property file="build.ant.properties"/>
 	<property file="build.ant-private.properties"/>
 
-	<target name="all">
+	<target name="all" depends="init,prepare-archive">
 		<!-- This file will automate some parts of the release process -->
 		
 		<!-- TODO
-			* echo (from which version to which version the update will be created)
-			* rm build-archive/*.jar
-			* unless build-archive/stendhal-${version.old}.zip exists
-				download http://arianne.sf.net/jws/stendhal-${version.old}.zip to build-archiv
-			* unzip build-archive/stendhal-${version.old}.zip to build-archive
 			* jardiff for stendhal-VERSION.jar and stendhal-data-VERSION.jar
 			* sign jars
 			* download http://arianne.sf.net/stendhal/updates/update.properties
@@ -30,9 +25,27 @@
 			* update website
 		-->
 	</target>
-	
+
+	<!--* echo (from which version to which version the update will be created) -->
 	<target name="init">
-		
+		<echo>Creating update from ${version.old} to ${version}</echo>
 	</target>
+
+	<!--
+	* rm build-archive/*.jar
 	
+	* unzip build-archive/stendhal-${version.old}.zip to build-archive
+	-->
+	<target name="prepare-archive">
+		<delete>
+			<fileset dir="${buildroot}/build-archive">
+			    <exclude name="*.zip"/>
+			</fileset>
+		</delete>
+		<!-- TODO
+		* unless build-archive/stendhal-${version.old}.zip exists
+			download http://arianne.sf.net/jws/stendhal-${version.old}.zip to build-archiv -->
+		<unzip src="${buildroot}/build-archive/stendhal-${version.old}.zip" 
+			dest="${buildroot}/build-archive" />
+	</target>
 </project>
