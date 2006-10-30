@@ -174,7 +174,7 @@ public class Bootstrap {
 		// load program (regenerate classloader stuff)
 		try {
 			ClassLoader classLoader = createClassloader();
-			Thread.currentThread().setContextClassLoader(classLoader);
+			// Thread.currentThread().setContextClassLoader(classLoader);
 			Class clazz = classLoader.loadClass(className);
 			Method method = clazz.getMethod("main", args.getClass());
 			method.invoke(null, (Object) args);
