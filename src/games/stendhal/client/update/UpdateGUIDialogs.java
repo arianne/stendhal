@@ -3,12 +3,6 @@ package games.stendhal.client.update;
 import java.text.NumberFormat;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.Dimension;
-import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
-import javax.swing.JLabel;
 
 /**
  * Dialogboxes used during updating
