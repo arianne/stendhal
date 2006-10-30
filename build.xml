@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
 <project name="stendhal" default="compile" basedir=".">
 	<property file="build.ant.properties"/>
+	<property file="build.ant-private.properties"/>
 
 	<target name="init">
 		<mkdir dir="${lib}"/>
@@ -115,7 +116,6 @@
 		<property name="client_data" value="stendhal-data-${version}.jar"/>
 		<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
 		<property name="client_prefilled_cache" value="stendhal-prefilled-cache-${version}.jar"/>
-		<property name="client_webstart_jni" value="stendhal-webstart-jni-${version}.jar"/>
 
 		<property name="build_client" value="${buildroot}/build_client/"/>
 		<mkdir dir="${build_client}/"/>
@@ -276,7 +276,7 @@
     </condition>
 	
 	<target name="sign_jars" depends="server_build, client_build" unless="exclude.signing">
-		<signjar alias="miguelangelblanchlardin@hotmail.com" keystore="keystore.ks" storepass="qwerty">
+		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}">
 			<fileset dir="${lib}">
 				<include name="**/*.jar"/>
 			</fileset>
