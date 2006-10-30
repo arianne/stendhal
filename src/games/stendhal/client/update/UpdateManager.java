@@ -16,7 +16,7 @@ import java.util.Properties;
 public class UpdateManager {
 	private String jarFolder = null;
 	private Properties bootProp = null;
-	private static final String SERVER_FOLDER = "http://arianne.sf.net/stendhal/updates/";
+	private static final String SERVER_FOLDER = "http://arianne.sourceforge.net/stendhal/updates/";
 	private Properties updateProp = null;
 	private UpdateProgressBar updateProgressBar = null;
 
