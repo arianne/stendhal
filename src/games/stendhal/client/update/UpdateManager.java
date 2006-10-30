@@ -76,6 +76,8 @@ public class UpdateManager {
 					if (downloadFiles(files, updateSize)) {
 						updateClasspathConfig(files);
 					}
+				} else {
+					System.exit(1);
 				}
 				break;
 			}
