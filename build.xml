@@ -140,7 +140,6 @@
 			</fileset>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value="log4j.jar marauroa.jar ${client_data} ${client_sound_data}"/>
 			</manifest>
 		</jar>
 
@@ -365,8 +364,6 @@
 
 	<target name="dist_client_starter">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
-
-		<copy todir="${buildroot}/stendhal-${version}" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_starter_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="AUTHORS"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="BUGS"/>
