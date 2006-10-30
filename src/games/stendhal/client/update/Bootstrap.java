@@ -84,6 +84,7 @@ public class Bootstrap {
 		if (!folder.exists()) {
 			folder.mkdirs();
 		}
+		System.setProperty("log4j.ignoreTCL", "true");
 	}
 	
 	/**
