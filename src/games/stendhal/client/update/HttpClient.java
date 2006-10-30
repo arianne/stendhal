@@ -69,7 +69,7 @@ public class HttpClient {
 	        }
 	        is = connection.getInputStream();
 	    } catch (Exception e) {
-	    	System.err.println("Error connecting to http-Server: ");
+	    	System.err.println("Error connecting to http-Server (" + urlString + "): ");
 	    	e.printStackTrace(System.err);
 	    }
 	    return;
