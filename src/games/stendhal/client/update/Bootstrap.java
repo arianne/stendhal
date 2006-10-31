@@ -16,10 +16,6 @@ import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
 
-import marauroa.common.Log4J;
-
-import org.apache.log4j.PropertyConfigurator;
-
 /**
  * Starts a program after doing some classpath magic.
  *
@@ -188,25 +184,6 @@ public class Bootstrap {
 			} catch (Exception err) {
 				err.printStackTrace(System.err);
 			}
-		}
-	}
-
-	public static void init(String filename) {
-
-		InputStream propsFile = Log4J.class.getClassLoader()
-				.getResourceAsStream(filename);
-		try {
-			Properties props = new Properties();
-			if (propsFile == null) {
-				System.err.println("Cannot find " + filename
-						+ " in classpath. Using default properties.");
-			} else {
-				System.out.println("Configuring Log4J using " + filename);
-				props.load(propsFile);
-			}
-			PropertyConfigurator.configure(props);
-		} catch (IOException ioe) {
-			System.err.println("cannot read property-file because " + ioe.getMessage());
 		}
 	}
 }
