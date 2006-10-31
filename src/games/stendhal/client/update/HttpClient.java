@@ -21,6 +21,7 @@ public class HttpClient {
 	private HttpURLConnection connection = null;
 	private InputStream is = null;
 	private ProgressListener progressListener = null;
+	private int timeout = 1500; // 1.5 seconds
 
 	/**
 	 * An interface to notify some other parts of the program about
@@ -51,6 +52,17 @@ public class HttpClient {
 		this.urlString = url;
 	}
 
+	/**
+	 * Creates a HTTP-Client which will connect to the specified URL
+	 *
+	 * @param url URL to connect to
+	 * @param timeout timeout
+	 */
+	public HttpClient(String url, int timeout) {
+		this.urlString = url;
+		this.timeout = timeout;
+	}
+
 	public void setProgressListener(ProgressListener progressListener) {
 		this.progressListener = progressListener;
 	}
@@ -60,7 +72,7 @@ public class HttpClient {
 	        URL url = new URL(urlString);
 	        HttpURLConnection.setFollowRedirects(true);
 	        connection = (HttpURLConnection) url.openConnection();
-	        connection.setConnectTimeout(1500);  // 1.5 secs
+	        connection.setConnectTimeout(timeout);
 	        if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
 	        	System.err.println("HttpServer returned an error code: " + connection.getResponseCode());
 	        	return;

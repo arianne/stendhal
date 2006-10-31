@@ -24,8 +24,12 @@ public class UpdateManager {
 	 * Connects to the server and loads a Property object which contains
 	 * information about the files available for update.
 	 */
-	private void init() {
-		HttpClient httpClient = new HttpClient(SERVER_FOLDER + "update.properties");
+	private void init(boolean greaterTimeout) {
+		int timeout = 2000;
+		if (greaterTimeout) {
+			timeout = 10000;
+		}
+		HttpClient httpClient = new HttpClient(SERVER_FOLDER + "update.properties", timeout);
 		updateProp = httpClient.fetchProperties();
 	}
 
@@ -37,7 +41,7 @@ public class UpdateManager {
 	 * @param initialDownload true, if only the small starter.jar is available
 	 */
 	public void process(String jarFolder, Properties bootProp, Boolean initialDownload) {
-		init();
+		init(initialDownload.booleanValue());
 		this.jarFolder = jarFolder;
 		this.bootProp = bootProp;
 		if (updateProp == null) {
@@ -176,7 +180,7 @@ public class UpdateManager {
 		updateProgressBar.setVisible(true);
 		for (String file : files) {
 			System.out.println("Downloading " + file + " ...");
-			HttpClient httpClient = new HttpClient(SERVER_FOLDER + file);
+			HttpClient httpClient = new HttpClient(SERVER_FOLDER + file, 10000);
 			httpClient.setProgressListener(updateProgressBar);
 			if (!httpClient.fetchFile(jarFolder + file)) {
 				UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update at file " + file);
