@@ -126,14 +126,73 @@ public class Bootstrap {
 		}
 
 	    // Create new class loader which the list of .jar-files as classpath
-		final URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-	    ClassLoader loader = (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				return new ButtomUpOrderClassLoader(urlArray, this.getClass().getClassLoader());
-			}
-	    });
-
+		URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
+	    ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, this.getClass().getClassLoader());
 	    return loader;
+	}
+
+	/**
+	 * Do the whole start up process in a privilaged block
+	 */
+	private class PrivilagedBoot implements PrivilegedAction {
+		private String className = null;
+		private String[] args = null;
+		
+		public PrivilagedBoot(String className, String[] args) {
+			this.className = className;
+			this.args = args;
+		}
+
+		public Object run() {
+			init();
+
+			// invoke update handling first
+			try {
+				ClassLoader classLoader = createClassloader();
+				// is this the initial download (or do we already have the program downloaded)?
+				boolean initialDownload = false;
+				try {
+					classLoader.loadClass(className);
+				} catch (ClassNotFoundException e) {
+					initialDownload = true;
+				}
+				
+				// start update handling
+				Class clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
+				Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
+				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+				e.printStackTrace(System.err);
+			}
+
+			// store boot prop (if they ware altered during update)
+			try {
+				saveBootProp();
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null, "Sorry, an error occured while downloading the update. Could not write bootProperties");
+			}
+
+			// load program (regenerate classloader stuff)
+			try {
+				ClassLoader classLoader = createClassloader();
+				// Thread.currentThread().setContextClassLoader(classLoader);
+				Class clazz = classLoader.loadClass(className);
+				Method method = clazz.getMethod("main", args.getClass());
+				method.invoke(null, (Object) args);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+				e.printStackTrace(System.err);
+				try {
+					Class clazz = Class.forName(className);
+					Method method = clazz.getMethod("main", args.getClass());
+					method.invoke(null, (Object) args);
+				} catch (Exception err) {
+					err.printStackTrace(System.err);
+				}
+			}
+			return null;
+		}
 	}
 
 	/**
@@ -144,52 +203,6 @@ public class Bootstrap {
 	 * @param args command line arguments
 	 */
 	public void boot(String className, String[] args) {
-		init();
-
-		// invoke update handling first
-		try {
-			ClassLoader classLoader = createClassloader();
-			// is this the initial download (or do we already have the program downloaded)?
-			boolean initialDownload = false;
-			try {
-				classLoader.loadClass(className);
-			} catch (ClassNotFoundException e) {
-				initialDownload = true;
-			}
-			
-			// start update handling
-			Class clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
-			Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
-			method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
-			e.printStackTrace(System.err);
-		}
-
-		// store boot prop (if they ware altered during update)
-		try {
-			saveBootProp();
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Sorry, an error occured while downloading the update. Could not write bootProperties");
-		}
-
-		// load program (regenerate classloader stuff)
-		try {
-			ClassLoader classLoader = createClassloader();
-			// Thread.currentThread().setContextClassLoader(classLoader);
-			Class clazz = classLoader.loadClass(className);
-			Method method = clazz.getMethod("main", args.getClass());
-			method.invoke(null, (Object) args);
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
-			e.printStackTrace(System.err);
-			try {
-				Class clazz = Class.forName(className);
-				Method method = clazz.getMethod("main", args.getClass());
-				method.invoke(null, (Object) args);
-			} catch (Exception err) {
-				err.printStackTrace(System.err);
-			}
-		}
+		AccessController.doPrivileged(new PrivilagedBoot(className, args));
 	}
 }
