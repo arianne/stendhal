@@ -9,6 +9,8 @@ import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -124,8 +126,12 @@ public class Bootstrap {
 		}
 
 	    // Create new class loader which the list of .jar-files as classpath
-		URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-	    ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, this.getClass().getClassLoader());
+		final URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
+	    ClassLoader loader = (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
+			public Object run() {
+				return new ButtomUpOrderClassLoader(urlArray, this.getClass().getClassLoader());
+			}
+	    });
 
 	    return loader;
 	}
