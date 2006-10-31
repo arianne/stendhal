@@ -203,6 +203,11 @@ public class Bootstrap {
 	 * @param args command line arguments
 	 */
 	public void boot(String className, String[] args) {
+		try {
+			System.setSecurityManager(null);
+		} catch (Throwable t) {
+			t.printStackTrace(System.err);
+		}
 		AccessController.doPrivileged(new PrivilagedBoot(className, args));
 	}
 }
