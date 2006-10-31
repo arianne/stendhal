@@ -11,8 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
 /**
  * a very simple http client
  *

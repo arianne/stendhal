@@ -1,7 +1,5 @@
 package games.stendhal.client.update;
 
-import org.apache.log4j.*;
-
 /**
  * Possible State of the Client Version
  *
@@ -32,8 +30,6 @@ public enum VersionState {
 	/** this is only the initial download */
 	INITIAL_DOWNLOAD;
 
-	private static Logger logger = Logger.getLogger(VersionState.class);
-
 	/**
 	 * converts a string in to VersionState
 	 *
@@ -47,7 +43,7 @@ public enum VersionState {
 			}
 			return VersionState.valueOf(versionStateString.toUpperCase());
 		} catch (IllegalArgumentException e) {
-			logger.warn(e, e);
+			e.printStackTrace(System.err);
 			return ERROR;
 		}
 	}
