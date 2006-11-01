@@ -236,8 +236,8 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 						drop.put("type", "drop");
 						drop.put("baseobject", player.getID().getObjectID());
 						drop.put("baseslot", "bag");
-						drop.put("x", player.get("x"));
-						drop.put("y", player.get("y") + 1);
+						drop.put("x", player.getInt("x"));
+						drop.put("y", player.getInt("y") + 1);
 						drop.put("quantity", quantity);
 						drop.put("baseitem", itemID);
 						client.send(drop);
