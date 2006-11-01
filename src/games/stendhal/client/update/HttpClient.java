@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.Properties;
 
@@ -22,6 +23,7 @@ public class HttpClient {
 	private InputStream is = null;
 	private ProgressListener progressListener = null;
 	private int timeout = 1500; // 1.5 seconds
+	private boolean tryVeryHard = false;
 
 	/**
 	 * An interface to notify some other parts of the program about
@@ -56,28 +58,58 @@ public class HttpClient {
 	 * Creates a HTTP-Client which will connect to the specified URL
 	 *
 	 * @param url URL to connect to
-	 * @param timeout timeout
+	 * @param tryVeryHard true, to do several attempts.
 	 */
-	public HttpClient(String url, int timeout) {
+	public HttpClient(String url, boolean tryVeryHard) {
 		this.urlString = url;
-		this.timeout = timeout;
+		this.tryVeryHard = tryVeryHard;
 	}
 
+	/**
+	 * Sets a ProgressListener to be informed of download progress
+	 *
+	 * @param progressListener ProgressListener
+	 */
 	public void setProgressListener(ProgressListener progressListener) {
 		this.progressListener = progressListener;
 	}
 
+	/**
+	 * connects to the server and opens a stream. 
+	 */
 	private void openInputStream() {
+		// try very hard to download updates from sourceforge as they have
+		// sometimes problems with the webservers beeing slow or not responding
+		// at all.
 		try {
 	        URL url = new URL(urlString);
-	        HttpURLConnection.setFollowRedirects(true);
-	        connection = (HttpURLConnection) url.openConnection();
-	        connection.setConnectTimeout(timeout);
-	        if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-	        	System.err.println("HttpServer returned an error code: " + connection.getResponseCode());
-	        	return;
+	        int retryCount = 0;
+	        int myTimeout = timeout;
+	        while (connection == null) {
+	        	retryCount++;
+	        	try {
+			        HttpURLConnection.setFollowRedirects(true);
+			        connection = (HttpURLConnection) url.openConnection();
+			        connection.setConnectTimeout(timeout);
+			        if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+			        	System.err.println("HttpServer returned an error code (" + urlString + "): " + connection.getResponseCode());
+			        	connection = null;
+			        	continue;
+			        }
+	        	} catch (SocketTimeoutException e) {
+	        		System.err.println("Timeout (" + urlString + "): " + connection.getResponseCode() + " " + e.toString());
+	        	}
+	        	myTimeout = myTimeout * 2;
+	        	if (!tryVeryHard || retryCount > 3) {
+	        		break;
+	        	}
 	        }
-	        is = connection.getInputStream();
+	        if (connection != null) {
+	        	is = connection.getInputStream();
+	        }
+	        if (retryCount > 1) {
+	        	System.err.println("Retry successful");
+	        }
 	    } catch (Exception e) {
 	    	System.err.println("Error connecting to http-Server (" + urlString + "): ");
 	    	e.printStackTrace(System.err);
