@@ -143,6 +143,12 @@
 			</manifest>
 		</jar>
 
+	  	<copy todir="${build_client}">
+	      <fileset dir="data/precompiled">
+	        <include name="*.so"/>
+	      </fileset>
+	    </copy>
+
 		<jar jarfile="${lib}/${client_jarname}">
 			<fileset dir="${build_client}"/>
 			<manifest>
