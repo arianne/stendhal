@@ -97,7 +97,7 @@ public class HttpClient {
 			        	continue;
 			        }
 	        	} catch (SocketTimeoutException e) {
-	        		System.err.println("Timeout (" + urlString + "): " + connection.getResponseCode() + " " + e.toString());
+	        		System.err.println("Timeout (" + urlString + "): " + " " + e.toString());
 	        	}
 	        	myTimeout = myTimeout * 2;
 	        	if (!tryVeryHard || retryCount > 3) {
