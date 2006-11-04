@@ -105,9 +105,9 @@ public class HttpClient {
 	        }
 	        if (connection != null) {
 	        	is = connection.getInputStream();
-	        }
-	        if (retryCount > 1) {
-	        	System.err.println("Retry successful");
+		        if (retryCount > 1) {
+		        	System.err.println("Retry successful");
+		        }
 	        }
 	    } catch (Exception e) {
 	    	System.err.println("Error connecting to http-Server (" + urlString + "): ");
