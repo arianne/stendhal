@@ -58,14 +58,14 @@
 			<arg value="${build-archive}/stendhal-${version.old}.jar" />
 			<arg value="${build}/lib/stendhal-${version}.jar" />
 		</java>
-		<java jar="libs/jardiff.jar" fork="true">
+		<!-- <java jar="libs/jardiff.jar" fork="true">
 			<arg value="-creatediff" />
 			<arg value="-output" />
 			<arg value="${build}/lib/stendhal-data-diff-${version.old}-${version}.jar" />
 			<arg value="${build-archive}/stendhal-data-${version.old}.jar" />
 			<arg value="${build}/lib/stendhal-data-${version}.jar" />
 		</java>
-		<!-- TODO maraurora.jar-->
+		TODO maraurora.jar-->
 	</target>
 
 	<!-- * Sign the -diff-*.jar files for webstart -->
