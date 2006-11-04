@@ -53,6 +53,11 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
+0.55.1 Nov 4, 2006
+- fixed /drop
+- readded missing files for key autorepeat handling on Linux based systems
+- improved download to retry in case the SF webserver is having some problems
+
 
 0.55  Okt 31, 2006
 - improved language of nearly all NPCs
