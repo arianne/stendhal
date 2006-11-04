@@ -3,6 +3,9 @@
 	<property file="build.ant.properties"/>
 	<property file="build.ant-private.properties"/>
 
+	<target name="temp" depends="init,jardiff,sign_diff-jars" />
+
+	
 	<target name="all" depends="init,prepare-archive,jardiff,sign_diff-jars">
 		<!-- This file will automate some parts of the release process -->
 		
@@ -47,7 +50,7 @@
 			dest="${build-archive}" />
 	</target>
 
-	<target name="jardiff" depends="prepare-archive">
+	<target name="jardiff">
 		<java jar="libs/jardiff.jar" fork="true">
 			<arg value="-creatediff" />
 			<arg value="-output" />
