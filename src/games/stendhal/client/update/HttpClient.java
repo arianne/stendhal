@@ -94,7 +94,6 @@ public class HttpClient {
 			        if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
 			        	System.err.println("HttpServer returned an error code (" + urlString + "): " + connection.getResponseCode());
 			        	connection = null;
-			        	continue;
 			        }
 	        	} catch (SocketTimeoutException e) {
 	        		System.err.println("Timeout (" + urlString + "): " + " " + e.toString());
