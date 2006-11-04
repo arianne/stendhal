@@ -16,7 +16,8 @@ import java.util.Properties;
 public class UpdateManager {
 	private String jarFolder = null;
 	private Properties bootProp = null;
-	private static final String SERVER_FOLDER = "http://arianne.sourceforge.net/stendhal/updates/";
+	private static final String DEFAULT_SERVER_FOLDER = "http://arianne.sourceforge.net/stendhal/updates/";
+	private String serverFolder = DEFAULT_SERVER_FOLDER;
 	private Properties updateProp = null;
 	private UpdateProgressBar updateProgressBar = null;
 
@@ -25,7 +26,12 @@ public class UpdateManager {
 	 * information about the files available for update.
 	 */
 	private void init(boolean initialDownload) {
-		HttpClient httpClient = new HttpClient(SERVER_FOLDER + "update.properties", initialDownload);
+		String updatePropertiesFile = serverFolder + "update.properties";
+		if (bootProp != null) {
+			serverFolder = bootProp.getProperty("server.folder", DEFAULT_SERVER_FOLDER);
+			updatePropertiesFile = bootProp.getProperty("server.update-prop", serverFolder + "update.properties");
+		}
+		HttpClient httpClient = new HttpClient(updatePropertiesFile, initialDownload);
 		updateProp = httpClient.fetchProperties();
 	}
 
@@ -37,12 +43,12 @@ public class UpdateManager {
 	 * @param initialDownload true, if only the small starter.jar is available
 	 */
 	public void process(String jarFolder, Properties bootProp, Boolean initialDownload) {
-		init(initialDownload.booleanValue());
 		this.jarFolder = jarFolder;
 		this.bootProp = bootProp;
+		init(initialDownload.booleanValue());
 		if (updateProp == null) {
 			if (initialDownload.booleanValue()) {
-				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from " + SERVER_FOLDER + " but that server is not reachable at the moment. Please try again later.");
+				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from " + serverFolder + " but that server is not reachable at the moment. Please try again later.");
 				System.exit(1);
 			}
 			return;
@@ -176,7 +182,7 @@ public class UpdateManager {
 		updateProgressBar.setVisible(true);
 		for (String file : files) {
 			System.out.println("Downloading " + file + " ...");
-			HttpClient httpClient = new HttpClient(SERVER_FOLDER + file, true);
+			HttpClient httpClient = new HttpClient(serverFolder + file, true);
 			httpClient.setProgressListener(updateProgressBar);
 			if (!httpClient.fetchFile(jarFolder + file)) {
 				UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update at file " + file);
