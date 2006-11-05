@@ -440,25 +440,25 @@ public class Creature extends NPC {
 
 		List<RPEntity> enemyList = getEnemyList();
 		
-		for (RPEntity playerOrFriend : enemyList) {
-			if (playerOrFriend == this) {
+		for (RPEntity enemy : enemyList) {
+			if (enemy == this) {
 				continue;
 			}
 
-			if (playerOrFriend.has("invisible")) {
+			if (enemy.has("invisible")) {
 				continue;
 			}
 
-			if (playerOrFriend.get("zoneid").equals(get("zoneid"))) {
-				java.awt.geom.Rectangle2D rect = playerOrFriend.getArea(playerOrFriend.getX(),
-						playerOrFriend.getY());
+			if (enemy.get("zoneid").equals(get("zoneid"))) {
+				java.awt.geom.Rectangle2D rect = enemy.getArea(enemy.getX(),
+						enemy.getY());
 				int fx = (int) rect.getX();
 				int fy = (int) rect.getY();
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
-					if (squaredDistance(playerOrFriend) < distance) {
-						chosen = playerOrFriend;
-						distance = squaredDistance(playerOrFriend);
+					if (squaredDistance(enemy) < distance) {
+						chosen = enemy;
+						distance = squaredDistance(enemy);
 					}
 				}
 			}
