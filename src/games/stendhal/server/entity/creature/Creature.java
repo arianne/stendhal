@@ -682,6 +682,16 @@ public class Creature extends NPC {
 		logger.debug("Moving to target. Searching new path");
 		clearPath();
 		setMovement(target, 0, 0, 20.0);
+		
+		if (getPath() == null || getPath().size() == 0) {
+			if (!nextTo(target, 0.25)) {
+				stopAttack();
+				target = null;
+				logger.debug("Large creature wall bug workaround");
+				return;
+			}
+		}
+		
 		moveto(getSpeed());
 		waitRounds = 0; // clear waitrounds
 		aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
