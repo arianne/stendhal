@@ -38,7 +38,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -448,7 +447,7 @@ public class Creature extends NPC {
 		List<RPEntity> enemyList = getEnemyList();
 
 		// calculate the distance of all possible enemies
-		Map<RPEntity, Double> distances = new TreeMap<RPEntity, Double>(); 
+		Map<RPEntity, Double> distances = new HashMap<RPEntity, Double>(); 
 		for (RPEntity enemy : enemyList) {
 			if (enemy == this) {
 				continue;
