@@ -29,6 +29,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Path.Node;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.geom.Rectangle2D;
@@ -37,6 +38,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -430,16 +432,23 @@ public class Creature extends NPC {
 		return zone.getPlayerAndFirends();
 	}
 
+	/**
+	 * returns the nearest enemy, which is reachable
+	 *
+	 * @param range attack radius
+	 * @return chosen enemy or null if no enemy was found.
+	 */
 	protected RPEntity getNearestEnemy(double range) {
+
+		// where are we?
 		int x = getX();
 		int y = getY();
 
-		double distance = range * range; // We save this way several sqrt
-											// operations
-		RPEntity chosen = null;
-
+		// create list of enemies
 		List<RPEntity> enemyList = getEnemyList();
-		
+
+		// calculate the distance of all possible enemies
+		Map<RPEntity, Double> distances = new TreeMap<RPEntity, Double>(); 
 		for (RPEntity enemy : enemyList) {
 			if (enemy == this) {
 				continue;
@@ -456,14 +465,32 @@ public class Creature extends NPC {
 				int fy = (int) rect.getY();
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
-					if (squaredDistance(enemy) < distance) {
-						chosen = enemy;
-						distance = squaredDistance(enemy);
-					}
+					distances.put(enemy, squaredDistance(enemy));
 				}
 			}
 		}
 
+		// now choose the nearest enemy for which there is a path
+		RPEntity chosen = null;
+		while ((chosen == null) && (distances.size() > 0)) {
+			double shortestDistance = Double.MAX_VALUE; 
+			for (RPEntity enemy : distances.keySet()) {
+				double distance = distances.get(enemy).doubleValue();
+				if (distance < shortestDistance) {
+					chosen = enemy;
+					shortestDistance = distance;
+				}
+			}
+	
+			// is there a path to this enemy?
+			List<Node> path = Path.searchPath(this, chosen, 20.0);
+			if ((path == null) || (path.size() == 0)) {
+				distances.remove(chosen);
+				chosen = null;
+			}
+		}
+
+		// return the chosen enemy or null if we could not find one in reach
 		return chosen;
 	}
 
