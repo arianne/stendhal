@@ -5,6 +5,7 @@ import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.StandardInteraction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,17 +79,25 @@ public class IntroducePlayers extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Tad");
 		npc.add(ConversationStates.ATTENDING,
 				SpeakerNPC.QUEST_MESSAGES,
-				null,
+				new StandardInteraction.QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						if (player.isQuestCompleted("introduce_players")) {
-							engine.say("I'm alright now, thanks.");
-						} else {
-							engine.say("I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?");
-						}
+						engine.say("I'm alright now, thanks.");
+					}
+				});
+
+		npc.add(ConversationStates.ATTENDING,
+				SpeakerNPC.QUEST_MESSAGES,
+				new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						engine.say("I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?");
 					}
 				});
 
@@ -105,7 +114,7 @@ public class IntroducePlayers extends AbstractQuest {
 				"You've already helped me out! I'm feeling much better now.",
 				null);
 		/** If quest is not started yet, start it. */
-		npc.add(ConversationStates.ATTENDING,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				"flask",
 				new SpeakerNPC.ChatCondition() {
 					@Override
