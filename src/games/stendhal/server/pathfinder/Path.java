@@ -258,10 +258,6 @@ public class Path {
 		List<Node> res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
 						dest.getX(), dest.getY(), 1, 1), maxDistance);
 
-		if ((res == null) || res.isEmpty()) {
-			logger.debug("failed");
-		}
-		
 		if (((res == null) || res.isEmpty()) && (rect.getWidth() > 1)) {
 			
 			logger.debug("trying 2: " + (entity.getX() + (int) rect.getWidth() - 1));
@@ -280,7 +276,7 @@ public class Path {
 				}
 			}
 		}
-		logger.warn(!res.isEmpty());
+		// logger.debug(!res.isEmpty());
 		return res;
 	}
 
