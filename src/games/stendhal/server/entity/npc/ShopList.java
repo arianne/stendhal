@@ -66,6 +66,20 @@ public class ShopList {
 		shops.add("buyiron", "iron", 75);
 		
 		shops.add("buygrain", "grain", 1);
+
+		// rare weapons shop
+		shops.add("buyrare", "scimitar", 65);
+		shops.add("buyrare", "katana", 70);
+		shops.add("buyrare", "bardiche", 75);
+		shops.add("buyrare", "hammer_+3", 80);
+
+		// rare armor shop
+		shops.add("buyrare", "chain_armor_+1", 32);
+		shops.add("buyrare", "chain_armor_+2", 42);
+		shops.add("buyrare", "chain_armor_+3", 52);
+		shops.add("buyrare", "plate_armor", 62);
+		shops.add("buyrare", "plate_shield", 40);
+		shops.add("buyrare", "lion_shield", 50);
 	}
 
 	static private ShopList instance;
