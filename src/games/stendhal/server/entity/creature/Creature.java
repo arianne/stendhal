@@ -615,7 +615,7 @@ public class Creature extends NPC {
 	
 	private void logicFindNewTarget() {
 		// ...and find another target
-		target = getNearestEnemy(8);
+		target = getNearestEnemy(7 + Math.max(width, height));
 		if (target != null) {
 			logger
 					.debug("Creature(" + get("type")
