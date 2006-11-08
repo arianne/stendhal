@@ -252,8 +252,36 @@ public class Path {
 	 */
 	public static List<Node> searchPath(Entity entity, Entity dest,
 			double maxDistance) {
-		return searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-				dest.getX(), dest.getY(), 1, 1), maxDistance);
+		
+		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
+		
+		List<Node> res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
+						dest.getX(), dest.getY(), 1, 1), maxDistance);
+
+		if ((res == null) || res.isEmpty()) {
+			logger.debug("failed");
+		}
+		
+		if (((res == null) || res.isEmpty()) && (rect.getWidth() > 1)) {
+			
+			logger.debug("trying 2: " + (entity.getX() + (int) rect.getWidth() - 1));
+			
+				res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
+					dest.getX() - (int) rect.getWidth() + 1, dest.getY(), 1, 1), maxDistance);
+			if (((res == null) || res.isEmpty()) && (rect.getHeight() > 1)) {
+				logger.debug("trying 3");
+
+				res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
+					dest.getX(), dest.getY() - (int) rect.getHeight() + 1, 1, 1), maxDistance);
+				if (((res == null) || res.isEmpty()) && (rect.getWidth() > 1) && (rect.getHeight() > 1)) {
+					logger.debug("trying 4");
+					res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
+						dest.getX() - (int) rect.getWidth() + 1, dest.getY() - (int) rect.getHeight() + 1, 1, 1), maxDistance);
+				}
+			}
+		}
+		logger.warn(!res.isEmpty());
+		return res;
 	}
 
 	public static boolean followPath(RPEntity entity, double speed) {
