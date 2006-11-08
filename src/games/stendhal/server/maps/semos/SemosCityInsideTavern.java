@@ -31,6 +31,7 @@ public class SemosCityInsideTavern {
 		buildSemosTavernLevel0XinBlanca();
 		buildSemosTavernLevel0Ricardo();
 		buildSemosTavernLevel1Ouchit();
+		buildSemosTavernLevel1McPegleg();
 	}
 
 	private void buildSemosTavernPortals() {
@@ -225,53 +226,10 @@ public class SemosCityInsideTavern {
 		zone.addNPC(ouchit);
 	}
 
-	/*
-//	 We create a dialogue action for the NPC we gonna create            
-	 class IOUQuestCompleteAction extends SpeakerNPC.ChatAction {
-		 ScriptInGroovy game;
-	   public IOUQuestCompleteAction ( ScriptInGroovy game) {
-	     this.game = game;
-	   }
-	   public void fire(Player player, String text, SpeakerNPC engine) {
-	     // from all notes that the player is carrying, try to find the IOU note
-	     List notes = player.getAllEquipped("note");
-	     Item iouNote = null;
-	     for (note in notes) {
-	       if (note.has("infostring") && "charles".equalsIgnoreCase(note.get("infostring"))) {
-	         iouNote = note;
-	         break;
-	       }
-	     }
-	     if(iouNote != null) {
-	       engine.say("Where did you get that from? Anyways, here is the money *sighs*");
-	       player.drop(iouNote);
-	       StackableItem money = game.getItem("money");
-	       money.setQuantity(250);
-	       player.equip(money);
-	       player.setQuest("IOU","done");
-	       engine.setCurrentState(1);
-	     } else {
-	       engine.say("I can't see that you got a valid IOU with my signature!");
-	     }
-	   }
-	 }
-
-		// Add a mini quest: Bring him back the IOU from dead Charles from the Kanmararn quest and get the cash
-		npc.add(1,[ "iou","henry","charles","note" ],new ScriptingNPC.NotQuestCondition("IOU") ,1,null,new IOUQuestCompleteAction(game));
-		npc.add(1,[ "iou","henry","charles","note" ],new ScriptingNPC.QuestCompletedCondition("IOU") ,1,"You already got cash for that damned IOU!",null);
-*/
-	
-	// Note: McPegleg is needed for a little side quest (see kanmararn.groovy)
 	private void buildSemosTavernLevel1McPegleg() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("int_semos_tavern_1"));
 
-		// We create now some shops. Split the shops as needed as they can be added later.
-/*		rareWeaponShop=["scimitar":65,"katana":70,"bardiche":75,"hammer_+3":80]
-		rareArmorShop=["chain_armor_+1":32,"chain_armor_+2":42,"chain_armor_+3":52,"plate_armor":62,"plate_shield":40,"lion_shield":50]
-*/
 		// Adding a new NPC that buys some of the stuff that Xin doesn't
-		// We create an NPC
-
 		SpeakerNPC mcpegleg = new SpeakerNPC("McPegleg") {
 			@Override
 			protected void createPath() {
@@ -303,6 +261,7 @@ public class SemosCityInsideTavern {
 						null, ConversationStates.ATTENDING, 
 						"That's none of you business!",
 						null);
+				addBuyer(new BuyerBehaviour(shops.get("buyrare")), false);
 			}
 		};
 
@@ -317,22 +276,11 @@ public class SemosCityInsideTavern {
 		mcpegleg.initHP(100);
 		zone.addNPC(mcpegleg);
 
-/*		// Add shop function
-		myShop = [:]    // too bad, plus() isn't defined for HashMaps
-		myShop.putAll(rareWeaponShop)
-		myShop.putAll(rareArmorShop)
-		// Behaviours.addBuyer(npc,new Behaviours.BuyerBehaviour(myShop))    
-		npc.behave("buy",myShop)    
-
 		// Add a blackboard with the shop offers
 		Blackboard board = new Blackboard(false);
-		board.set(11,4);
-		String text = "-- Buying --\n";
-		for (entry in myShop) {
-			text += entry.key + " \t" + entry.value + "\n"
-		} 
-		board.setText(text);
-		game.add(board);
-*/
+		zone.assignRPObjectID(board);
+		board.set(11, 4);
+		board.setText(shops.toString("buyrare", "-- Buying --"));
+		zone.add(board);
 	}
 }
