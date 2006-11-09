@@ -123,7 +123,8 @@ public class Grammar {
 		} else if (enoun == "beer" || enoun == "wine" || enoun.endsWith("poison") || enoun == "antidote") {
 			enoun = "bottle of " + enoun;
 		} else if (enoun == "money") {
-			enoun = "coin";
+			// TODO: fix this (going back to money as workaround because /drop 1 coin does not work
+			// enoun = "coin";
 		} else if (enoun.startsWith("book_") || enoun.startsWith("book ")) {
 			enoun = enoun.substring(5) + " book";
 		} else if (enoun == "arandula") {
