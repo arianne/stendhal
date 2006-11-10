@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalScriptSystem;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -10,7 +11,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptCondition;
-import games.stendhal.server.scripting.ScriptInGroovy;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -59,18 +59,16 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 	class CorpseFillAction extends ScriptAction {
 		Corpse corpse;
-		ScriptInGroovy game;
 		String itemName;
 		String description;
-		public CorpseFillAction (Corpse corpse, ScriptInGroovy game, String itemName, String description) {
+		public CorpseFillAction (Corpse corpse, String itemName, String description) {
 			this.corpse = corpse;
-			this.game = game;
 			this.itemName = itemName;
 			this.description = description;
 		}
 		
 		public void fire() {
-			Item item = game.getItem(itemName);
+			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 			item.put("infostring", corpse.get("name"));
 			item.setDescription(description);
 			corpse.add(item);
@@ -196,10 +194,11 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
+	/**
+	 * We create NPC Henry who will get us on the quest
+	 */
 	private void step_1() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
-//		 The quest is set in the first level of Kanmararn
-		// We create NPC Henry who will get us on the quest
 		SpeakerNPC henry = new SpeakerNPC("Henry") {
 
 			@Override
@@ -244,8 +243,14 @@ public class KanmararnSoldiers extends AbstractQuest {
 		zone.assignRPObjectID(henry);
 		zone.addNPC(henry);
 	}
-/*	
+
+	/**
+	 * add corpses of ex-NPCs.
+	 */
 	private void step_2() {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
+		StendhalScriptSystem scripts = StendhalScriptSystem.get();
+
 		// Now we create the corpse of the second NPC
 		Corpse tom = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 5, 47);
 		tom.setDegrading(false);
@@ -253,10 +258,11 @@ public class KanmararnSoldiers extends AbstractQuest {
 		tom.put("name", "Tom");
 		tom.put("killer", "a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
-		game.add(tom);
+		zone.assignRPObjectID(tom);
+		zone.add(tom);
 		// Add a script to automatically fill the corpse of unlucky Tom
-		game.add(new CorpseEmptyCondition(tom), 
-				new CorpseFillAction(tom, game, "leather_legs", "You see torn leather legs that are heavily covered with blood."));
+		scripts.addScript(new CorpseEmptyCondition(tom), 
+				new CorpseFillAction(tom, "leather_legs", "You see torn leather legs that are heavily covered with blood."));
 
 		// Now we create the corpse of the third NPC
 		Corpse charles = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 94, 5);
@@ -265,10 +271,11 @@ public class KanmararnSoldiers extends AbstractQuest {
 		charles.put("name", "Charles");
 		charles.put("killer", "a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
-		game.add(charles);
+		zone.assignRPObjectID(charles);
+		zone.add(charles);
 		// Add a script to automatically fill the corpse of unlucky Charles
-		game.add(new CorpseEmptyCondition(charles), 
-				new CorpseFillAction(charles, game, "note", "You read: \"IOU 250 gold. (signed) McPegleg\""));
+		scripts.addScript(new CorpseEmptyCondition(charles), 
+				new CorpseFillAction(charles, "note", "You read: \"IOU 250 gold. (signed) McPegleg\""));
 	 
 		// Now we create the corpse of the fourth NPC
 		Corpse peter = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 11, 63);
@@ -277,12 +284,17 @@ public class KanmararnSoldiers extends AbstractQuest {
 		peter.put("name", "Peter");
 		peter.put("killer", "a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
-		game.add(peter);
+		// Add our new Ex-NPC to the game world
+		zone.assignRPObjectID(peter);
+		zone.add(peter);
 		// Add a script to automatically fill the corpse of unlucky Peter
-		game.add(new CorpseEmptyCondition(peter), 
-				new CorpseFillAction(peter, game, "scale_armor", "You see a slightly rusty scale armor. It is heavily deformed by several strong hammer blows."));
+		scripts.addScript(new CorpseEmptyCondition(peter), 
+				new CorpseFillAction(peter, "scale_armor", "You see a slightly rusty scale armor. It is heavily deformed by several strong hammer blows."));
 	}
-*/
+
+	/**
+	 * add James 
+	 */
 	private void step_3() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
 
@@ -335,7 +347,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		super.addToWorld();
 
 		step_1();
-//		step_2();
+		step_2();
 		step_3();
 	}
 
