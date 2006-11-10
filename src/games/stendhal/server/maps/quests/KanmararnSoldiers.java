@@ -8,12 +8,10 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptCondition;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.game.IRPZone;
@@ -199,49 +197,13 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 */
 	private void step_1() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
-		SpeakerNPC henry = new SpeakerNPC("Henry") {
-
-			@Override
-			protected void createDialog() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(57, 112));
-				nodes.add(new Path.Node(59, 112));
-				nodes.add(new Path.Node(59, 114));
-				setPath(nodes, true);
-			}
-
-			@Override
-			protected void createPath() {
-				// Adds all the behaviour chat
-				addGreeting("Ssshh! Silence or you will attract more #dwarves.");
-				addJob("I'm a soldier in the army.");
-				addGoodbye("Bye and be careful with all those dwarves around!");
-				add(ConversationStates.ATTENDING, Arrays.asList("dwarf", "dwarves"), ConversationStates.ATTENDING, "They are everywhere! Their #kingdom must be close.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("kingdom", "Kanmararn"), ConversationStates.ATTENDING, "Kanmararn, the legendary city of the #dwarves.", null);
-
-				addHelp("I need help myself. I got seperated from my #group. Now I'm all alone.");
-				add(ConversationStates.ATTENDING, Arrays.asList("group"), ConversationStates.ATTENDING, "The General sent five of us to explore this area in search for #treasure.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("treasure"), ConversationStates.ATTENDING, "A big treasure is rumored to be #somewhere in this dungeon.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("somewhere"), ConversationStates.ATTENDING, "If you #help me I might give you a clue.", null);
-				// Add the quest dependent chat
-				add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"), null, ConversationStates.QUEST_OFFERED, null, new HenryQuestAction());
-				add(ConversationStates.QUEST_OFFERED, SpeakerNPC.YES_MESSAGES,null, ConversationStates.ATTENDING, "Thank you! I'll be waiting for your return.", new HenryQuestAcceptAction());
-				add(ConversationStates.QUEST_OFFERED, "group", null, ConversationStates.QUEST_OFFERED, "The General sent five of us to explore this area in search for #treasure.", null);
-				add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.ATTENDING, "Ok. I understand. I'm scared of the #dwarves myself.", null);
-				add(ConversationStates.IDLE, Arrays.asList("hi", "hello", "greetings", "hola"), new HenryQuestCompleteCondition(), ConversationStates.ATTENDING, null, new HenryQuestCompleteAction());
-				add(ConversationStates.ATTENDING, Arrays.asList("map", "group", "help"), new HenryQuestCompletedCondition(), ConversationStates.ATTENDING, "I'm so sad that most of my friends are dead.", null);
-			}
-		};
-
-		// Adjust level/hp and add our new NPC to the game world
-		henry.setLevel(5);
-		henry.setHP(henry.getBaseHP() * 20 / 100);
-
-		henry.put("class", "youngsoldiernpc");
-		henry.setDescription("You see a young soldier who appears to be afraid.");
-		npcs.add(henry);
-		zone.assignRPObjectID(henry);
-		zone.addNPC(henry);
+		SpeakerNPC henry = npcs.get("Henry");
+		henry.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"), null, ConversationStates.QUEST_OFFERED, null, new HenryQuestAction());
+		henry.add(ConversationStates.QUEST_OFFERED, SpeakerNPC.YES_MESSAGES,null, ConversationStates.ATTENDING, "Thank you! I'll be waiting for your return.", new HenryQuestAcceptAction());
+		henry.add(ConversationStates.QUEST_OFFERED, "group", null, ConversationStates.QUEST_OFFERED, "The General sent five of us to explore this area in search for #treasure.", null);
+		henry.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.ATTENDING, "Ok. I understand. I'm scared of the #dwarves myself.", null);
+		henry.add(ConversationStates.IDLE, Arrays.asList("hi", "hello", "greetings", "hola"), new HenryQuestCompleteCondition(), ConversationStates.ATTENDING, null, new HenryQuestCompleteAction());
+		henry.add(ConversationStates.ATTENDING, Arrays.asList("map", "group", "help"), new HenryQuestCompletedCondition(), ConversationStates.ATTENDING, "I'm so sad that most of my friends are dead.", null);
 	}
 
 	/**
@@ -296,52 +258,23 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 * add James 
 	 */
 	private void step_3() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
+		SpeakerNPC james = npcs.get("Sergeant James");
 
-		// We create NPC James, the chief and last survivor of the quintet
-		SpeakerNPC james = new SpeakerNPC("Sergeant James") {
-	
-			@Override
-			protected void createDialog() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(66, 45));
-				nodes.add(new Path.Node(66, 47));
-				setPath(nodes, true);
-			}
-	
-			@Override
-			protected void createPath() {
-				// Adds all the behaviour chat
-				addGreeting("Good day, adventurer!");
-				addJob("I'm a Sergeant in the army.");
-				addGoodbye("Good luck and better watch your back with all those dwarves around!");
+		// quest related stuff
+		james.addHelp("Think I need a little help myself. My #group got killed and #one of my men ran away. Too bad he had the #map.");
+		james.addQuest("Find my fugitive soldier and bring him to me ... or at least the #map he's carrying.");
+		james.add(ConversationStates.ATTENDING, Arrays.asList("group"), ConversationStates.ATTENDING, "We were five, three of us died. You probably passed their corpses.", null);
+		james.add(ConversationStates.ATTENDING, Arrays.asList("one", "henry"), ConversationStates.ATTENDING, "Yes, my youngest soldier. He ran away.", null);
+		james.add(ConversationStates.ATTENDING, Arrays.asList("map"), ConversationStates.ATTENDING, "The #treasure map that leads into the heart of the #dwarven #kingdom.", null);
+		james.add(ConversationStates.ATTENDING, Arrays.asList("treasure"), ConversationStates.ATTENDING, "A big treasure is rumored to be somewhere in this dungeon.", null);
+		james.add(ConversationStates.ATTENDING, Arrays.asList("dwarf", "dwarves", "dwarven"), ConversationStates.ATTENDING, "They are strong enemies! We're in their #kingdom.", null);
+		james.add(ConversationStates.ATTENDING, Arrays.asList("peter", "tom", "charles"), ConversationStates.ATTENDING, "He was a good soldier and fought bravely.", null);
+		james.add(ConversationStates.ATTENDING, Arrays.asList("kingdom", "Kanmararn"), ConversationStates.ATTENDING, "Kanmararn, the legendary kingdom of the #dwarves.", null);
 
-				// quest related stuff
-				addHelp("Think I need a little help myself. My #group got killed and #one of my men ran away. Too bad he had the #map.");
-				addQuest("Find my fugitive soldier and bring him to me ... or at least the #map he's carrying.");
-				add(ConversationStates.ATTENDING, Arrays.asList("group"), ConversationStates.ATTENDING, "We were five, three of us died. You probably passed their corpses.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("one", "henry"), ConversationStates.ATTENDING, "Yes, my youngest soldier. He ran away.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("map"), ConversationStates.ATTENDING, "The #treasure map that leads into the heart of the #dwarven #kingdom.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("treasure"), ConversationStates.ATTENDING, "A big treasure is rumored to be somewhere in this dungeon.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("dwarf", "dwarves", "dwarven"), ConversationStates.ATTENDING, "They are strong enemies! We're in their #kingdom.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("peter", "tom", "charles"), ConversationStates.ATTENDING, "He was a good soldier and fought bravely.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("kingdom", "Kanmararn"), ConversationStates.ATTENDING, "Kanmararn, the legendary kingdom of the #dwarves.", null);
-
-				add(ConversationStates.ATTENDING, Arrays.asList("map", "henry"), new JamesQuestCompleteCondition(), 1, null, new JamesQuestCompleteAction());
-				add(ConversationStates.ATTENDING, Arrays.asList("map", "henry", "quest", "task", "help", "group", "one"), new JamesQuestCompletedCondition(), ConversationStates.ATTENDING, "Thanks again for bringing me the map!", null);
-			}
-		};
-
-		// Adjust level/hp and add our new NPC to the game world
-		james.setLevel(20);
-		james.setHP(james.getBaseHP() * 75 / 100);
-
-		james.setDescription("You see an officer who bears many signs of recent battles.");
-		james.put("class", "royalguardnpc");
-		npcs.add(james);
-		zone.assignRPObjectID(james);
-		zone.addNPC(james);
+		james.add(ConversationStates.ATTENDING, Arrays.asList("map", "henry"), new JamesQuestCompleteCondition(), 1, null, new JamesQuestCompleteAction());
+		james.add(ConversationStates.ATTENDING, Arrays.asList("map", "henry", "quest", "task", "help", "group", "one"), new JamesQuestCompletedCondition(), ConversationStates.ATTENDING, "Thanks again for bringing me the map!", null);
 	}
+
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
