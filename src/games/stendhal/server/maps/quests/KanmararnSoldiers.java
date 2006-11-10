@@ -5,13 +5,15 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptCondition;
 import games.stendhal.server.scripting.ScriptInGroovy;
-import games.stendhal.server.scripting.ScriptingNPC;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.game.IRPZone;
@@ -69,7 +71,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		
 		public void fire() {
 			Item item = game.getItem(itemName);
-			item.put("infostring",corpse.get("name"));
+			item.put("infostring", corpse.get("name"));
 			item.setDescription(description);
 			corpse.add(item);
 		}
@@ -105,13 +107,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
-
-		ScriptInGroovy game;
-		
-		public HenryQuestCompleteAction (ScriptInGroovy game) {
-			this.game = game;
-		}
-		
 		public void fire(Player player, String text, SpeakerNPC engine) {
 
 			List<Item> allLeatherLegs = player.getAllEquipped("leather_legs");
@@ -146,8 +141,8 @@ public class KanmararnSoldiers extends AbstractQuest {
 				player.addXP(2500);
 				player.drop(questLeatherLegs);
 				player.drop(questScaleArmor);
-				Item map = game.getItem("map");
-				map.put("infostring",engine.get("name"));
+				Item map = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("map");
+				map.put("infostring", engine.get("name"));
 				map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
 				RPSlot slot=player.getSlot("bag");
 				slot.add(map);
@@ -172,13 +167,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
-
-		ScriptInGroovy game;
-		
-		public JamesQuestCompleteAction (ScriptInGroovy game) {
-			this.game = game;
-		}
-		
 		public void fire(Player player, String text, SpeakerNPC engine) {
 		
 			List<Item> allMaps = player.getAllEquipped("map");
@@ -193,7 +181,10 @@ public class KanmararnSoldiers extends AbstractQuest {
 				engine.say("The map! Wonderful! Thank you. And here is your reward.");
 				player.addXP(5000);
 				player.drop(questMap);
-				Item item = game.getItem("steel_boots");
+				
+				Item item = StendhalRPWorld.get()
+				.getRuleManager().getEntityManager().getItem(
+						"steel_boots");
 				item.put("infostring", engine.get("name"));
 				RPSlot slot=player.getSlot("bag");
 				slot.add(item);
@@ -205,45 +196,55 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-/*
 	private void step_1() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
 //		 The quest is set in the first level of Kanmararn
 		// We create NPC Henry who will get us on the quest
-		SpeakerNPC henry=new ScriptingNPC("Henry");
-		henry.setDescription("You see a young soldier who appears to be afraid.");
-		// Set an outfit for this player
-		henry.setClass("youngsoldiernpc");
+		SpeakerNPC henry = new SpeakerNPC("Henry") {
 
-		// Set the NPC path with the help of a Groovy closure
-		node = {x,y | new Path.Node(x,y)};
-		henry.setPath([node(57, 112), node(59, 112), node(59, 114)]);
-		
-		// Adds all the behaviour chat
-		henry.behave("greet", "Ssshh! Silence or you will attract more #dwarves.");
-		henry.behave("job", "I'm a soldier in the army.");
-		henry.behave("help", "I need help myself. I got seperated from my #group. Now I'm all alone.");
-		henry.behave("bye", "Bye and be careful with all those dwarves around!");
-		henry.behave(Arrays.asList("dwarf", "dwarves"), "They are everywhere! Their #kingdom must be close.");
-		henry.behave(Arrays.asList("kingdom", "Kanmararn"), "Kanmararn, the legendary city of the #dwarves.");
-		henry.behave("group", "The General sent five of us to explore this area in search for #treasure.");
-		henry.behave("treasure", "A big treasure is rumored to be #somewhere in this dungeon.");
-		henry.behave("somewhere", "If you #help me I might give you a clue.");
-		// Add the quest dependent chat
-		henry.add (1, Arrays.asList("quest", "task"), null, 60, null, new HenryQuestAction());
-		henry.add(60, SpeakerNPC.YES_MESSAGES,null, 1, "Thank you! I'll be waiting for your return.", new HenryQuestAcceptAction());
-		henry.add(60, "group", null, 60, "The General sent five of us to explore this area in search for #treasure.", null);
-		henry.add(60, "no", null, 1, "Ok. I understand. I'm scared of the #dwarves myself.", null);
-		henry.add(0, Arrays.asList("hi", "hello", "greetings", "hola"), new HenryQuestCompleteCondition(), 1, null, new HenryQuestCompleteAction(game));
-		henry.add(1, Arrays.asList("map", "group", "help"), new HenryQuestCompletedCondition(), 1, "I'm so sad that most of my friends are dead.", null);
+			@Override
+			protected void createDialog() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(57, 112));
+				nodes.add(new Path.Node(59, 112));
+				nodes.add(new Path.Node(59, 114));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createPath() {
+				// Adds all the behaviour chat
+				addGreeting("Ssshh! Silence or you will attract more #dwarves.");
+				addJob("I'm a soldier in the army.");
+				addGoodbye("Bye and be careful with all those dwarves around!");
+				add(ConversationStates.ATTENDING, Arrays.asList("dwarf", "dwarves"), ConversationStates.ATTENDING, "They are everywhere! Their #kingdom must be close.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("kingdom", "Kanmararn"), ConversationStates.ATTENDING, "Kanmararn, the legendary city of the #dwarves.", null);
+
+				addHelp("I need help myself. I got seperated from my #group. Now I'm all alone.");
+				add(ConversationStates.ATTENDING, Arrays.asList("group"), ConversationStates.ATTENDING, "The General sent five of us to explore this area in search for #treasure.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("treasure"), ConversationStates.ATTENDING, "A big treasure is rumored to be #somewhere in this dungeon.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("somewhere"), ConversationStates.ATTENDING, "If you #help me I might give you a clue.", null);
+				// Add the quest dependent chat
+				add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"), null, ConversationStates.QUEST_OFFERED, null, new HenryQuestAction());
+				add(ConversationStates.QUEST_OFFERED, SpeakerNPC.YES_MESSAGES,null, ConversationStates.ATTENDING, "Thank you! I'll be waiting for your return.", new HenryQuestAcceptAction());
+				add(ConversationStates.QUEST_OFFERED, "group", null, ConversationStates.QUEST_OFFERED, "The General sent five of us to explore this area in search for #treasure.", null);
+				add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.ATTENDING, "Ok. I understand. I'm scared of the #dwarves myself.", null);
+				add(ConversationStates.IDLE, Arrays.asList("hi", "hello", "greetings", "hola"), new HenryQuestCompleteCondition(), ConversationStates.ATTENDING, null, new HenryQuestCompleteAction());
+				add(ConversationStates.ATTENDING, Arrays.asList("map", "group", "help"), new HenryQuestCompletedCondition(), ConversationStates.ATTENDING, "I'm so sad that most of my friends are dead.", null);
+			}
+		};
 
 		// Adjust level/hp and add our new NPC to the game world
 		henry.setLevel(5);
-		henry.setHP((int) (henry.getBaseHP() * 20 / 100));
-		game.add(henry);
-		
+		henry.setHP(henry.getBaseHP() * 20 / 100);
+
+		henry.put("class", "youngsoldiernpc");
+		henry.setDescription("You see a young soldier who appears to be afraid.");
+		npcs.add(henry);
+		zone.assignRPObjectID(henry);
+		zone.addNPC(henry);
 	}
-	
+/*	
 	private void step_2() {
 		// Now we create the corpse of the second NPC
 		Corpse tom = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 5, 47);
@@ -281,47 +282,62 @@ public class KanmararnSoldiers extends AbstractQuest {
 		game.add(new CorpseEmptyCondition(peter), 
 				new CorpseFillAction(peter, game, "scale_armor", "You see a slightly rusty scale armor. It is heavily deformed by several strong hammer blows."));
 	}
-	
+*/
 	private void step_3() {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
+
 		// We create NPC James, the chief and last survivor of the quintet
-		SpeakerNPC james = new ScriptingNPC("Sergeant James");
-		james.setDescription("You see an officer who bears many signs of recent battles.");
-		// Set an outfit for this player
-		james.setClass("royalguardnpc");
-		// Set the NPC path with the help of a Groovy closure
-		node = {x,y | new Path.Node(x,y)}
-		james.setPath([node(66, 45), node(66, 47)])
+		SpeakerNPC james = new SpeakerNPC("Sergeant James") {
+	
+			@Override
+			protected void createDialog() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(66, 45));
+				nodes.add(new Path.Node(66, 47));
+				setPath(nodes, true);
+			}
+	
+			@Override
+			protected void createPath() {
+				// Adds all the behaviour chat
+				addGreeting("Good day, adventurer!");
+				addJob("I'm a Sergeant in the army.");
+				addGoodbye("Good luck and better watch your back with all those dwarves around!");
 
-		// Adds all the behaviour chat
-		james.behave("greet", "Good day, adventurer!");
-		james.behave("job", "I'm a Sergeant in the army.");
-		james.behave("help", "Think I need a little help myself. My #group got killed and #one of my men ran away. Too bad he had the #map.");
-		james.behave("quest", "Find my fugitive soldier and bring him to me ... or at least the #map he's carrying.");
-		james.behave("bye", "Good luck and better watch your back with all those dwarves around!");
-		james.behave("group", "We were five, three of us died. You probably passed their corpses.");
-		james.behave(Arrays.asList("one", "henry"), "Yes, my youngest soldier. He ran away.");
-		james.behave("map", "The #treasure map that leads into the heart of the #dwarven #kingdom.");
-		james.behave("treasure", "A big treasure is rumored to be somewhere in this dungeon.");
-		james.behave(Arrays.asList("dwarf", "dwarves", "dwarven"), "They are strong enemies! We're in their #kingdom.");
-		james.behave(Arrays.asList("peter", "tom", "charles"), "He was a good soldier and fought bravely.");
-		james.behave(Arrays.asList("kingdom", "Kanmararn"), "Kanmararn, the legendary kingdom of the #dwarves.");
+				// quest related stuff
+				addHelp("Think I need a little help myself. My #group got killed and #one of my men ran away. Too bad he had the #map.");
+				addQuest("Find my fugitive soldier and bring him to me ... or at least the #map he's carrying.");
+				add(ConversationStates.ATTENDING, Arrays.asList("group"), ConversationStates.ATTENDING, "We were five, three of us died. You probably passed their corpses.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("one", "henry"), ConversationStates.ATTENDING, "Yes, my youngest soldier. He ran away.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("map"), ConversationStates.ATTENDING, "The #treasure map that leads into the heart of the #dwarven #kingdom.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("treasure"), ConversationStates.ATTENDING, "A big treasure is rumored to be somewhere in this dungeon.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("dwarf", "dwarves", "dwarven"), ConversationStates.ATTENDING, "They are strong enemies! We're in their #kingdom.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("peter", "tom", "charles"), ConversationStates.ATTENDING, "He was a good soldier and fought bravely.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("kingdom", "Kanmararn"), ConversationStates.ATTENDING, "Kanmararn, the legendary kingdom of the #dwarves.", null);
 
-		james.add(1, Arrays.asList("map", "henry"), new JamesQuestCompleteCondition(), 1, null, new JamesQuestCompleteAction(game));
-		james.add(1, Arrays.asList("map", "henry", "quest", "task", "help", "group", "one"), new JamesQuestCompletedCondition(), 1, "Thanks again for bringing me the map!", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("map", "henry"), new JamesQuestCompleteCondition(), 1, null, new JamesQuestCompleteAction());
+				add(ConversationStates.ATTENDING, Arrays.asList("map", "henry", "quest", "task", "help", "group", "one"), new JamesQuestCompletedCondition(), ConversationStates.ATTENDING, "Thanks again for bringing me the map!", null);
+			}
+		};
 
 		// Adjust level/hp and add our new NPC to the game world
 		james.setLevel(20);
-		james.setHP((int) (james.getBaseHP() * 75 / 100));
-		game.add(james);
+		james.setHP(james.getBaseHP() * 75 / 100);
+
+		james.setDescription("You see an officer who bears many signs of recent battles.");
+		james.put("class", "royalguardnpc");
+		npcs.add(james);
+		zone.assignRPObjectID(james);
+		zone.addNPC(james);
 	}
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 
 		step_1();
-		step_2();
+//		step_2();
 		step_3();
 	}
-*/
+
 
 }
