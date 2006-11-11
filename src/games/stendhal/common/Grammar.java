@@ -258,7 +258,7 @@ public class Grammar {
 	 * @param c The character to examine
 	 * @return true if c is a vowel, false otherwise
 	 */
-	public static boolean vowel_p(char c) {
+	protected static boolean vowel_p(char c) {
 		char l = Character.toLowerCase(c);
 		return (l == 'a' || l == 'e' || l == 'i' || l == 'o' || l == 'u');
 	}
@@ -269,7 +269,7 @@ public class Grammar {
 	 * @param c The character to examine
 	 * @return true if c is a consonant, false otherwise
 	 */
-	public static boolean consonant_p(char c) {
+	protected static boolean consonant_p(char c) {
 		return !vowel_p(c);
 	}
 
