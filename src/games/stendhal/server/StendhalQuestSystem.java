@@ -44,6 +44,7 @@ public class StendhalQuestSystem {
 		loadQuest("HatForMonogenes");
 		loadQuest("IntroducePlayers");
 		loadQuest("LookBookforCeryl");
+		loadQuest("KanmararnSoldiers");
 		loadQuest("MeetHackim");
 		loadQuest("McPeglegIOU");
 		loadQuest("MeetHayunn");

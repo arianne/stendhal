@@ -264,6 +264,7 @@ public class StendhalRPWorld extends RPWorld {
 
 		populateZone("Afterlife");
 		populateZone("Semos");
+		populateZone("Kanmararn");
 		populateZone("Nalwor");
 		populateZone("Orril");
 		populateZone("Ados");
