@@ -8,6 +8,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptCondition;
 
@@ -90,9 +91,15 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class HenryQuestCompleteCondition extends SpeakerNPC.ChatCondition {
+	class HenryQuestStartedCondition extends SpeakerNPC.ChatCondition {
 		public boolean fire(Player player, SpeakerNPC engine) {
 			return (player.hasQuest("soldier_henry") && player.getQuest("soldier_henry").equals("start"));
+		}
+	}
+
+	class HenryQuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return (!player.hasQuest("soldier_henry") || player.getQuest("soldier_henry").equals("start"));
 		}
 	}
 
@@ -140,8 +147,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				Item map = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("map");
 				map.put("infostring", engine.get("name"));
 				map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
-				RPSlot slot=player.getSlot("bag");
-				slot.add(map);
+				player.equip(map);
 				player.setQuest("soldier_henry","map");
 				engine.setCurrentState(1);
 			} else {
@@ -202,8 +208,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.add(ConversationStates.QUEST_OFFERED, SpeakerNPC.YES_MESSAGES,null, ConversationStates.ATTENDING, "Thank you! I'll be waiting for your return.", new HenryQuestAcceptAction());
 		henry.add(ConversationStates.QUEST_OFFERED, "group", null, ConversationStates.QUEST_OFFERED, "The General sent five of us to explore this area in search for #treasure.", null);
 		henry.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.ATTENDING, "Ok. I understand. I'm scared of the #dwarves myself.", null);
-		henry.add(ConversationStates.IDLE, Arrays.asList("hi", "hello", "greetings", "hola"), new HenryQuestCompleteCondition(), ConversationStates.ATTENDING, null, new HenryQuestCompleteAction());
+		henry.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, new HenryQuestStartedCondition(), ConversationStates.ATTENDING, null, new HenryQuestCompleteAction());
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map", "group", "help"), new HenryQuestCompletedCondition(), ConversationStates.ATTENDING, "I'm so sad that most of my friends are dead.", null);
+		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"), new HenryQuestNotCompletedCondition(), ConversationStates.ATTENDING, "If you find my friends, i will give you the map", null);
 	}
 
 	/**
