@@ -29,7 +29,7 @@ public class Kanmararn implements IContent {
 		SpeakerNPC henry = new SpeakerNPC("Henry") {
 
 			@Override
-			protected void createDialog() {
+			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(57, 112));
 				nodes.add(new Path.Node(59, 112));
@@ -38,7 +38,7 @@ public class Kanmararn implements IContent {
 			}
 
 			@Override
-			protected void createPath() {
+			protected void createDialog() {
 				// Adds all the behaviour chat
 				addGreeting("Ssshh! Silence or you will attract more #dwarves.");
 				addJob("I'm a soldier in the army.");
@@ -61,14 +61,15 @@ public class Kanmararn implements IContent {
 		npcs.add(henry);
 		zone.assignRPObjectID(henry);
 		zone.addNPC(henry);
+		henry.set(57, 112);
 	}
 
 	private void buildKanmararnCityJames(StendhalRPZone zone) {
 		// We create NPC James, the chief and last survivor of the quintet
 		SpeakerNPC james = new SpeakerNPC("Sergeant James") {
-	
+			
 			@Override
-			protected void createDialog() {
+			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(66, 45));
 				nodes.add(new Path.Node(66, 47));
@@ -76,7 +77,7 @@ public class Kanmararn implements IContent {
 			}
 	
 			@Override
-			protected void createPath() {
+			protected void createDialog() {
 				// Adds all the behaviour chat
 				addGreeting("Good day, adventurer!");
 				addJob("I'm a Sergeant in the army.");
@@ -93,5 +94,6 @@ public class Kanmararn implements IContent {
 		npcs.add(james);
 		zone.assignRPObjectID(james);
 		zone.addNPC(james);
+		james.set(66, 45);
 	}
 }
