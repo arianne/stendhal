@@ -372,12 +372,13 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 			else if (text.startsWith("/jail ")) // Returns a complete
 												// description of the target
 			{
-				String[] command = parseString(text, 3);
+				String[] command = parseString(text, 4);
 				if (command != null) {
 					RPAction add = new RPAction();
 					add.put("type", "jail");
 					add.put("target", command[1]);
 					add.put("minutes", command[2]);
+					add.put("reason", command[3]);
 					client.send(add);
 				}
 			}
@@ -419,7 +420,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 						"Here are the most-used GM commands:",
 						"- /adminlevel <player> [<newlevel>] \t\tDisplay or set the adminlevel of the specified <player>",
 						"- /tellall <message> \t\tSend a private message to all logged-in players",
-						"- /jail <player> <minutes> \t\tImprisons the player for a given length of time",
+						"- /jail <player> <minutes> <reason>\t\tImprisons the player for a given length of time",
 						"- /script <scriptname> \t\tLoad (or reload) a 'groovy' script on the server",
 						"- /teleport <player> <zone> <x> <y> \tTeleport the specified <player> to the given location",
 						"- /teleportto <player> \t\tTeleport yourself near the specified player",
