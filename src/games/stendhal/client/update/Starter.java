@@ -64,6 +64,7 @@ public class Starter {
 			method.invoke(object, params);
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 
