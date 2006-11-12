@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -180,15 +181,19 @@ public class Bootstrap {
 				Class clazz = classLoader.loadClass(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
-				e.printStackTrace(System.err);
-				try {
-					Class clazz = Class.forName(className);
-					Method method = clazz.getMethod("main", args.getClass());
-					method.invoke(null, (Object) args);
-				} catch (Exception err) {
-					err.printStackTrace(System.err);
+			} catch (Throwable e) {
+				if (e instanceof InvocationTargetException) {
+					unexspectedErrorHandling(e);
+				} else {
+					JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+					e.printStackTrace(System.err);
+					try {
+						Class clazz = Class.forName(className);
+						Method method = clazz.getMethod("main", args.getClass());
+						method.invoke(null, (Object) args);
+					} catch (Exception err) {
+						err.printStackTrace(System.err);
+					}
 				}
 			}
 			return null;
@@ -209,5 +214,22 @@ public class Bootstrap {
 			t.printStackTrace(System.err);
 		}
 		AccessController.doPrivileged(new PrivilagedBoot(className, args));
+	}
+
+	private void unexspectedErrorHandling(Throwable t) {
+		// unwrap chained expections
+		Throwable e = t;
+		while (e.getCause() != null) {
+			e = e.getCause();
+		}
+
+		e.printStackTrace();
+		
+		if (e instanceof OutOfMemoryError) {
+			JOptionPane.showMessageDialog(null, "Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
+		} else {
+			JOptionPane.showMessageDialog(null, "An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+		}
+		System.exit(1);
 	}
 }
