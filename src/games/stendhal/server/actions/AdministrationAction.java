@@ -211,8 +211,7 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onTellEverybody");
 	}
 
-	private void onTeleport(
-			Player player, RPAction action) {
+	private void onTeleport(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onTeleport");
 
 		if (action.has("target") && action.has("zone") && action.has("x")
@@ -247,14 +246,14 @@ public class AdministrationAction extends ActionListener {
 			int x = action.getInt("x");
 			int y = action.getInt("y");
 			
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleport", action.get("target"), zone.getID().getID(), Integer.toString(x), Integer.toString(y));
 			teleported.teleport(zone, x, y, null, player);
 		}
 
 		Log4J.finishMethod(logger, "onTeleport");
 	}
 
-	private void onTeleportTo(
-			Player player, RPAction action) {
+	private void onTeleportTo(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onTeleportTo");
 
 		if (action.has("target")) {
@@ -274,13 +273,13 @@ public class AdministrationAction extends ActionListener {
 			int y = teleported.getY();
 			
 			player.teleport(zone, x, y, null, player);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleportto", action.get("target"), zone.getID().getID(), Integer.toString(x), Integer.toString(y));
 		}
 
 		Log4J.finishMethod(logger, "onTeleportTo");
 	}
 
-    private void onAdminLevel(
-                    Player player, RPAction action) {
+    private void onAdminLevel(Player player, RPAction action) {
         Log4J.startMethod(logger, "onAdminLevel");
     
         if (action.has("target")) {
@@ -338,8 +337,7 @@ public class AdministrationAction extends ActionListener {
     }
 
     
-    private void onAlter(
-			Player player, RPAction action) {
+    private void onAlter(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onChangePlayer");
 
 		if (action.has("target") && action.has("stat") && action.has("mode")
@@ -473,8 +471,7 @@ public class AdministrationAction extends ActionListener {
 		Log4J.finishMethod(logger, "onSummon");
 	}
 
-	private void onSummonAt(
-			Player player, RPAction action) {
+	private void onSummonAt(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onSummonAt");
 
 		if (action.has("target") && action.has("slot") && action.has("item")) {
@@ -525,8 +522,10 @@ public class AdministrationAction extends ActionListener {
 
 		if (player.has("invisible")) {
 			player.remove("invisible");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "invisible", "off");
 		} else {
 			player.put("invisible", "");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "invisible", "on");
 		}
 		Log4J.finishMethod(logger, "onInvisible");
 	}
@@ -540,8 +539,10 @@ public class AdministrationAction extends ActionListener {
 				player.put("outfit", player.get("outfit_org"));
 				player.remove("outfit_org");
 			}
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "off");
 		} else {
 			player.put("ghostmode", "");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "on");
 			if (!player.has("outfit_org")) {
 				player.put("outfit_org", player.get("outfit"));
 			}
@@ -645,38 +646,42 @@ public class AdministrationAction extends ActionListener {
 		} else if (inspected instanceof Item || inspected instanceof Portal) {
 			StendhalRPWorld.get().remove(inspected.getID());
 		}
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "removed", inspected.toString());
 
 		player.sendPrivateText("Removed entity " + action.get("targetid"));
 
 		Log4J.finishMethod(logger, "onInspect");
 	}
 
-	private void onJail(
-			Player player, RPAction action) {
+	private void onJail(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onTeleport");
 
 		if (action.has("target") && action.has("minutes")) {
 			String target = action.get("target");
+			String reason = "";
+			if (action.has("reason")) {
+				reason = action.get("reason");
+			}
 			try {
 				int minutes = action.getInt("minutes");
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleport", target, Integer.toString(minutes), reason);
 				Jail.get().imprison(target, player, minutes);
 			} catch (NumberFormatException e) {
-				player.sendPrivateText("Usage: /jail name minutes");
+				player.sendPrivateText("Usage: /jail name minutes reason");
 			}
 		} else {
-			player.sendPrivateText("Usage: /jail name minutes");
+			player.sendPrivateText("Usage: /jail name minutes reason");
 		}
 
 		Log4J.finishMethod(logger, "onTeleport");
 	}
 
 	/**
-	 * ???
-	 * @param world
-	 * @param rules
+	 * get the Entity-object of the specified target
+	 *
 	 * @param player
 	 * @param action
-	 * @return ???
+	 * @return the Entity or null if it does not exist
 	 */
 	private Entity getTarget(Player player, RPAction action) {
 
