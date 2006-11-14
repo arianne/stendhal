@@ -57,22 +57,46 @@ public class Buddies extends WtPanel {
 	}
 
 	public synchronized boolean onMouseRightClick(Point p) {
-		String[] actions = { "Talk", "Where", "Remove" };
+		String[] actions;
+		String[] onlineActions = { "Talk", "Where", "Remove" };
+		String[] offlineActions = { "Msg", "Remove" };
 		int i = ((int) p.getY() - 2) / 20 - 1;
 		if (i < buddies.size() && i >= 0) {
+
+			/**
+			 * don't know if this is the right way to find out
+			 * if a player is online, but it works :)
+			 */
+			boolean isOnline = false;
+			RPObject object = StendhalClient.get().getPlayer();
+			if (object != null) {
+				RPSlot slot = object.getSlot("!buddy");	
+				RPObject buddy = slot.getFirst();
+				String buddyName = buddies.get(i);
+				if (buddy.has("_" + buddyName) && (buddy.getInt("_" + buddyName) != 0)) {
+					isOnline = true; 
+				}
+			}
+			if (isOnline) {
+				actions = onlineActions;
+			} else {
+				actions = offlineActions;
+			}
+
 			WtList list = new WtList(buddies.get(i), actions, -100, 0, 100, 100) {
 				@Override
 				public void onClick(String name, Point point) {
 					StendhalClient client = StendhalClient.get();
+					// Compatibility to grandfathered accounts with a ' '
+					// New accounts cannot contain a space anymore.
+					String buddieName = getName();
+					if (buddieName.indexOf(' ') > -1) {
+						buddieName = "'" + buddieName + "'";
+					}
 					if (name.equals("Talk")) {
-						String buddieName = getName();
-						// Compatibility to grandfathered accounts with a ' '
-						// New accounts cannot contain a space anymore.
-						if (buddieName.indexOf(' ') > -1) {
-							buddieName = "'" + buddieName + "'";
-						}
-						client.getTextLineGUI().setText(
-								"/tell " + buddieName + " ");
+						client.getTextLineGUI().setText("/tell " + buddieName + " ");
+					} else if (name.equals("Msg")) {
+						client.getTextLineGUI().setText("/msg postman tell " + buddieName + " ");
 					} else if (name.equals("Where")) {
 						RPAction where = new RPAction();
 						where.put("type", "where");
