@@ -21,11 +21,17 @@ public class TestVersion extends TestCase {
 	}
 	
 	public void testCompare() {
-		assertTrue("VersionCompare 0.52 ~ 0.52",   Version.compare("0.52", "0.52")   == 0);
-		assertTrue("VersionCompare 0.52 ~ 0.52.0", Version.compare("0.52", "0.52.0") == 0);
-		assertTrue("VersionCompare 0.52 ~ 0.52.1", Version.compare("0.52", "0.52.1") < 0);
-		assertTrue("VersionCompare ! 0.53 ~ 0.52", Version.compare("0.53", "0.52")   > 0);
-		assertTrue("VersionCompare ! 0.52 ~ 0.53", Version.compare("0.52", "0.53")   < 0);
+		assertTrue("VersionCompare 0.52 = 0.52",   Version.compare("0.52", "0.52")   == 0);
+		assertTrue("VersionCompare 0.52 = 0.52.0", Version.compare("0.52", "0.52.0") == 0);
+		assertTrue("VersionCompare 0.52 < 0.52.1", Version.compare("0.52", "0.52.1") < 0);
+		assertTrue("VersionCompare 0.53 > 0.52", Version.compare("0.53", "0.52")   > 0);
+		assertTrue("VersionCompare 0.52 < 0.53", Version.compare("0.52", "0.53")   < 0);
+	}
+
+	public void testCompareInt() {
+		assertTrue("VersionCompare 0.2 < 0.10",   Version.compare("0.2", "0.10") < 0);
+		assertTrue("VersionCompare 0.10 > 0.2", Version.compare("0.10", "0.2") > 0);
+		assertTrue("VersionCompare 0.02 = 0.2", Version.compare("0.02", "0.2") == 0);
 	}
 
 	public static void main(String[] args) {

@@ -39,37 +39,54 @@ public class Version {
 	 * @return see compare
 	 */
 	public static int compare(String v1, String v2) {
-		while (!v1.equals("") || !v2.equals("")) {
-			String c1;
-			int p1 = v1.indexOf(".");
-			if (p1 > -1) {
-				c1 = v1.substring(0, p1);
-				v1 = v1.substring(p1 + 1);
+		String version1 = v1;
+		String version2 = v2;
+		while (!version1.equals("") || !version2.equals("")) {
+			// split version string at the first dot into the current
+			// component and the rest of the version
+			String component1;
+			int pos1 = version1.indexOf(".");
+			if (pos1 > -1) {
+				component1 = version1.substring(0, pos1);
+				version1 = version1.substring(pos1 + 1);
 			} else {
-				c1 = v1;
-				v1 = "";
+				component1 = version1;
+				version1 = "";
 			}
-			if (c1.equals("")) {
-				c1 = "0";
+			if (component1.equals("")) {
+				component1 = "0";
 			}
 	
-			String c2;
-			int p2 = v2.indexOf(".");
-			if (p2 > -1) {
-				c2 = v2.substring(0, p2);
-				v2 = v2.substring(p2 + 1);
+			String component2;
+			int pos2 = version2.indexOf(".");
+			if (pos2 > -1) {
+				component2 = version2.substring(0, pos2);
+				version2 = version2.substring(pos2 + 1);
 			} else {
-				c2 = v2;
-				v2 = "";
+				component2 = version2;
+				version2 = "";
 			}
-			if (c2.equals("")) {
-				c2 = "0";
+			if (component2.equals("")) {
+				component2 = "0";
 			}
-			
-			int res = c1.compareTo(c2);
-			if (res != 0) {
-				return res;
-			}
+
+			// if the current component of both version is equal,
+			// we have to have a look at the next one. Otherwise
+			// we return the result of this comparison.
+            int res = 0;
+            try {
+                // try an integer comparison so that 2 < 13
+                int componentInt1 = Integer.parseInt(component1.trim());
+                int componentInt2 = Integer.parseInt(component2.trim());
+                res = componentInt1 - componentInt2;
+            } catch (NumberFormatException e) {
+                // integer comparison failed because one component is not a
+                // number. Do a string comparison.
+    			res = component1.compareTo(component2);
+            }
+            if (res != 0) {
+                return res;
+            }
 		}
 		return 0;
 	}
