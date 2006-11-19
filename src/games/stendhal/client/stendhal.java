@@ -94,22 +94,14 @@ public class stendhal extends Thread {
 		logger.info("Java: " + System.getProperty("java.version"));
 	}
 
+	/**
+	 * Try to use the system look and feel.
+	 */
 	private static void startSwingLookAndFeel() {
-		String lookAndFeel = "";
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (java.lang.ClassNotFoundException e) {
-			// Catch ClassNotFound
-			logger.error("Can't change Look&Feel match your OS. Using the Cross-Platform look & feel");
-		} catch (java.lang.InstantiationException e) {
-			// Catch Instantiation (bad 'new' call error)
-			logger.error("Look&Feel's call to 'new' for the current set value of CHAMELEON is wrong, please contact Sun Java developers");
-		} catch (java.lang.IllegalAccessException e) {
-			// Catch IllegalAccess
-			logger.error("Oops! Bug! The parameters sent to setLookAndFeel are wrong. Please report this.");
-		} catch (javax.swing.UnsupportedLookAndFeelException e) {
-			// Catch IllegalAccess
-			logger.error("The Look&Feel that is being set is unsupported on your system");
+		} catch (Exception e) {
+			logger.error("Can't change Look&Feel match your OS. Using the Cross-Platform look & feel", e);
 		}
 	}
 	
@@ -154,6 +146,7 @@ public class stendhal extends Thread {
 	public static void main(String args[]) {
 		parseCommandlineArguments(args);
 		startLogSystem();
+		startSwingLookAndFeel();
 		StendhalClient client = startClient();
 		waitForLogin();
 		startGameGUI(client);
