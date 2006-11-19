@@ -173,7 +173,7 @@ public class CreditsDialog extends JDialog {
 		"Miguel Angel Blanch Lardin",
 		"For without him, we'd wouldn't have this wonderful game!",
 		"",
-		"The assorted developers out there who keep the project going",
+		"All contributors out there who keep the project going",
 		"",
 		"And finally, you, for choosing to download this game and (hopefully) spread the word about it"};
 	private ScrollerPanel sp;
@@ -195,8 +195,13 @@ public class CreditsDialog extends JDialog {
 		this.setTitle("Stendhal Credits");
 //		this.setResizable(false);
 //		this.pack();
-		this.setLocationRelativeTo(owner);
-		this.setSize(owner.getSize());
+		if (owner != null) {
+			this.setLocationRelativeTo(owner);
+			this.setSize(owner.getSize());
+		} else {
+			this.setLocationByPlatform(true);
+			this.setSize(600, 420);
+		}
 		this.setVisible(true);
 	}
 	
@@ -237,4 +242,9 @@ public class CreditsDialog extends JDialog {
 		this.dispose();
 		logger.debug("about dialog closed");
 	}
+	
+	
+	/*public static void main(String[] args) {
+		new CreditsDialog(null);
+	}*/
 }
