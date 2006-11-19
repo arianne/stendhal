@@ -58,7 +58,12 @@ public class stendhal extends Thread {
 
 	public static final int FPS_LIMIT = 25;
 
-	public static void main(String args[]) {
+	/**
+	 * Parses command line arguments
+	 *
+	 * @param args command line arguments
+	 */
+	private static void parseCommandlineArguments(String[] args) {
 		String size = null;
 		int i = 0;
 
@@ -72,7 +77,12 @@ public class stendhal extends Thread {
 		if (size != null) {
 			SCREEN_SIZE = size;
 		}
+	}
 
+	/**
+	 * Starts the LogSystem
+	 */
+	private static void startLogSystem() {
 		Log4J.init("data/conf/log4j.properties");
 
 		logger.info("Setting base at :" + STENDHAL_FOLDER);
@@ -80,17 +90,49 @@ public class stendhal extends Thread {
 		logger.info("OS: " + System.getProperty("os.name") + " "
 				+ System.getProperty("os.version"));
 		logger.info("Java: " + System.getProperty("java.version"));
+	}
 
+	/**
+	 * Starts the client and show the first screen
+	 *
+	 * @return StendhalClient
+	 */
+	private static StendhalClient startClient() {
 		StendhalClient client = StendhalClient.get();
 		new StendhalFirstScreen(client);
+		return client;
+	}
 
+	/**
+	 * A loop which simply waits for the login to be completed.
+	 */
+	private static void waitForLogin() {
 		while (!doLogin) {
 			try {
 				Thread.sleep(200);
 			} catch (Exception e) {
+				// simply ignore it
 			}
 		}
+	}
 
+	/**
+	 * Starts the real game gui
+	 *
+	 * @param client StendhalClient
+	 */
+	private static void startGameGUI(StendhalClient client) {
 		new j2DClient(client);
+	}
+
+	/**
+	 * Main Entry point.
+	 */
+	public static void main(String args[]) {
+		parseCommandlineArguments(args);
+		startLogSystem();
+		StendhalClient client = startClient();
+		waitForLogin();
+		startGameGUI(client);
 	}
 }
