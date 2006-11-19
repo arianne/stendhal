@@ -35,6 +35,7 @@ public class CreditsDialog extends JDialog {
 	private static String[] credits = { "Thanks everyone! Credits goes to: ",
 		"Balduin",
 		"Bario",
+		"Bill the Bookie",
 		"Carmen",
 		"Ceryl",
 		"Conual",

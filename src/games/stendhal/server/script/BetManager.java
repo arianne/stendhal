@@ -284,7 +284,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		}
 
 		// create npc
-		npc = new ScriptingNPC("Bet Dialer which needs a name");
+		npc = new ScriptingNPC("Bill the Bookie");
 		npc.setClass("naughtyteen2npc");
 
 		// place NPC next to admin
