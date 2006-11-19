@@ -101,7 +101,7 @@ public class stendhal extends Thread {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
-			logger.error("Can't change Look&Feel match your OS. Using the Cross-Platform look & feel", e);
+			logger.error("Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel", e);
 		}
 	}
 	
