@@ -42,7 +42,7 @@ public class SemosCityInside {
 			"int_semos_bank")));
 		buildSemosTownhallArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_townhall")));
-		buildSemosTownhallAreaMajor((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+		buildSemosTownhallAreaMayor((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_townhall")));
 		buildSemosBakeryArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_bakery")));
@@ -106,7 +106,7 @@ public class SemosCityInside {
 	/**
 	 * Adding a a Mayor to the townhall who gives out daily quests
 	 */
-	private void buildSemosTownhallAreaMajor(StendhalRPZone zone) {
+	private void buildSemosTownhallAreaMayor(StendhalRPZone zone) {
 		// We create an NPC
 		SpeakerNPC npc = new SpeakerNPC("Mayor") {
 			@Override
