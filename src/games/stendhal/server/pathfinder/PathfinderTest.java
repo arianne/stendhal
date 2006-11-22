@@ -15,44 +15,32 @@ package games.stendhal.server.pathfinder;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.Creature.DropItem;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class PathfinderTest {
-	
-	private static final String ZONE_NAME = "int_semos_deathmatch";
-	private static Creature creature;
-	
 	public static void main(String[] args) throws Exception {
-		fun(new String[] {"5", "7", "7", "7"});
-		fun(new String[] {"5", "7", "15", "7"});
-		fun(new String[] {"5", "7", "17", "7"});
-	}
-	public static void fun(String[] args) throws Exception {
 		int x0 = 0;
 		int y0 = 0;
 		int x1 = 0;
 		int y1 = 0;
 
 		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addArea(ZONE_NAME);
+		world.addArea("-1_semos_dungeon");
 
 		StendhalRPZone zone = (StendhalRPZone) world
-				.getRPZone(ZONE_NAME);
+				.getRPZone("-1_semos_dungeon");
 
 		if (args.length < 4) {
 			do {
-				x0 = Rand.rand(zone.getWidth());
-				y0 = Rand.rand(zone.getHeight());
+				x0 = Rand.rand(64);
+				y0 = Rand.rand(64);
 			} while (zone.collides(x0, y0));
 
 			do {
-				x1 = Rand.rand(zone.getWidth());
-				y1 = Rand.rand(zone.getHeight());
+				x1 = Rand.rand(64);
+				y1 = Rand.rand(64);
 			} while (zone.collides(x1, y1));
 		} else {
 			x0 = Integer.parseInt(args[0]);
@@ -61,32 +49,16 @@ public class PathfinderTest {
 			y1 = Integer.parseInt(args[3]);
 		}
 
-		
-		creature = new Creature("small_animal", "rat", "name", 100,
-						10, 10, 10, 10, /*width*/ 1, /* height*/ 1,
-						0.5f, null, null, null, 1, "test");
-		
-		
-		creature = new Creature("mythical_animal", "black_dragon", "name", 100,
-						10, 10, 10, 10, 
-						6, 8,
-						0.5f, null, null, null, 1, "test");
-		
-		zone.assignRPObjectID(creature);
-		creature.set(x0, y0);
-		zone.add(creature);
-		
-		
-		System.out.println(x0 + "," + y0 + " to " + x1 + "," + y1 + " of a " + creature.get("class") + "/" + creature.get("subclass") );
+		System.out.println(x0 + "," + y0 + " to " + x1 + "," + y1);
 
 		long startTime = System.currentTimeMillis();
 
 		List<Path.Node> nodes = null;
 
-		//for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 10000; i++) {
 			// nodes=box.getPath(x0,y0,x1,y1);
 			nodes = searchAstartPath(zone, null, x0, y0, x1, y1);
-		//}
+		}
 
 		long endTime = System.currentTimeMillis();
 
@@ -186,9 +158,7 @@ public class PathfinderTest {
 			Graph g, int x0, int y0, int x1, int y1) {
 		Pathfinder path = new Pathfinder();
 
-
-		
-		Navigable navMap = new StendhalNavigable(creature, zone, x1, y1);
+		Navigable navMap = new GraphNavigable(zone, g, x1, y1);
 		path.setNavigable(navMap);
 		path.setStart(new Pathfinder.Node(x0, y0));
 		path.setGoal(new Pathfinder.Node(x1, y1));
@@ -204,9 +174,7 @@ public class PathfinderTest {
 			list.add(0, new Path.Node(node.getX(), node.getY()));
 			node = node.getParent();
 		}
-		
+
 		return list;
-		
-		//return Path.searchPath(creature, destCreature);
 	}
 }
