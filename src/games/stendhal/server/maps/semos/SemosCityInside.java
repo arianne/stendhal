@@ -21,6 +21,7 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.scripting.ScriptingNPC;
 import marauroa.common.game.IRPZone;
 
 public class SemosCityInside {
@@ -40,6 +41,8 @@ public class SemosCityInside {
 		buildSemosBankArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_bank")));
 		buildSemosTownhallArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+			"int_semos_townhall")));
+		buildSemosTownhallAreaMajor((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_townhall")));
 		buildSemosBakeryArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_bakery")));
@@ -97,6 +100,37 @@ public class SemosCityInside {
 		npc.set(13, 37);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
+		zone.addNPC(npc);
+	}
+	
+	/**
+	 * Adding a a Mayor to the townhall who gives out daily quests
+	 */
+	private void buildSemosTownhallAreaMajor(StendhalRPZone zone) {
+		// We create an NPC
+		SpeakerNPC npc = new SpeakerNPC("Mayor") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(13, 2));
+				nodes.add(new Path.Node(19, 2));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting("Welcome citizen! Do you need #help?");
+				addJob("I'm the mayor of Semos village.");
+				addHelp("You will find a lot of people in Semos that offer you help on different topics.");
+				addGoodbye("Have a good day and enjoy your stay!");
+			}
+		};
+
+		npc.put("class", "mayornpc");
+		npc.set(13, 2);
+		npc.initHP(100);
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
 		zone.addNPC(npc);
 	}
 
