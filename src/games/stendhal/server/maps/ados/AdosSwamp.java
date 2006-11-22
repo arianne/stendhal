@@ -23,7 +23,7 @@ public class AdosSwamp {
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		buildDeathmatchRecruiter((StendhalRPZone) world.getRPZone(new IRPZone.ID(
-			"0_ados_rock")));
+			"0_ados_swamp")));
 	}
 
 	private void buildDeathmatchRecruiter(StendhalRPZone zone) {
@@ -75,5 +75,6 @@ public class AdosSwamp {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.addNPC(npc);
+
 	}
 }
