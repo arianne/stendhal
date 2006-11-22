@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
 
@@ -35,7 +36,7 @@ public class DeathmatchEntrance {
 				path.add(new Path.Node(72, 32));
 				path.add(new Path.Node(50, 32));
 				path.add(new Path.Node(50, 35));
-				setPath(path, false);
+				setPath(path, true);
 			}
 
 			@Override
@@ -63,6 +64,8 @@ public class DeathmatchEntrance {
 		npc.put("class", "youngsoldiernpc");
 		npc.set(40, 35);
 		npc.initHP(100);
+		NPCList.get().add(npc);
+		zone.assignRPObjectID(npc);
 		zone.addNPC(npc);
 	}
 }
