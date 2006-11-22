@@ -99,7 +99,7 @@ public class stendhal extends Thread {
 	 */
 	private static void startSwingLookAndFeel() {
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		//	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			logger.error("Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel", e);
 		}
