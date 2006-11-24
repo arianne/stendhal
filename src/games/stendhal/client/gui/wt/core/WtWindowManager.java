@@ -112,7 +112,6 @@ public class WtWindowManager {
 			is.close();
 		} catch (IOException e) {
 			// ignore exception
-			e.printStackTrace();
 		}
 	}
 
