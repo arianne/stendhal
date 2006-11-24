@@ -9,7 +9,11 @@ import games.stendhal.server.entity.creature.*;
 import games.stendhal.server.entity.item.*;
 import games.stendhal.server.scripting.*;
 import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalScriptSystem;
@@ -23,15 +27,27 @@ import org.apache.log4j.Logger;
  * Creating the Stendhal Deathmatch Game
  */
 public class Deathmatch {
+	private static Logger logger = Logger.getLogger(Deathmatch.class);
 	private NPCList npcs = NPCList.get();
-	private StendhalScriptSystem scripts = StendhalScriptSystem.get();
+	private StendhalRPZone zone = null;
 
-	class DeathmatchCondition extends ScriptCondition {
-		Player player;
-		public DeathmatchCondition (Player player) {
+	class ScriptAction implements TurnListener {
+		private Player player;
+		private List<Creature> sortedCreatures;
+		private List<Creature> spawnedCreatures = new ArrayList<Creature>();
+		private boolean keepRunning = true;
+		public ScriptAction(Player player) {
 			this.player = player;
+			Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
+			sortedCreatures.addAll(creatures);
+			Collections.sort(sortedCreatures, new Comparator<Creature>() {
+				public int compare(Creature o1, Creature o2) {
+					return o1.getLevel() - o2.getLevel();
+				}
+			});
 		}
-		public boolean fire() {
+
+		public boolean condition() {
 			if("cancel".equals(player.getQuest("deathmatch"))) {
 				return false;
 			}
@@ -46,23 +62,16 @@ public class Deathmatch {
 				return true;
 			}
 		}
-	}
-/*
-	class DeathmatchAction extends ScriptAction {
-		Player player;
-		List<Creature> sortedCreatures;
-		List<Creature> spawnedCreatures = new ArrayList<Creature>();
-		public DeathmatchAction (Player player) {
-			this.player = player;
-			Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
-			sortedCreatures.addAll(creatures);
-			Collections.sort(sortedCreatures, new Comparator<Creature>() {
-				public int compare(Creature o1, Creature o2) {
-					return o1.getLevel() - o2.getLevel();
-				}
-			});
+		public void onTurnReached(int currentTurn, String message) {
+			if (condition()) {
+				action();
+			}
+			if (keepRunning) {
+				TurnNotifier.get().notifyInTurns(0, this, null);
+			}
 		}
-		public void fire() {
+
+		public void action() {
 			String questInfo = player.getQuest("deathmatch");
 			String[] tokens = (questInfo + ";0;0").split(";");
 			String questState = tokens[0];
@@ -107,7 +116,7 @@ public class Deathmatch {
 					zone.remove(creature);
 				}
 				// and finally remove this ScriptAction 
-				game.remove(this);
+				keepRunning = false;
 				return;
 			}
 			// save a little processing time and do things only every spawnDelay miliseconds 
@@ -134,7 +143,7 @@ public class Deathmatch {
 									if (creature.getName().equals(daily)) {
 										int x = player.getX() + 1; 
 										int y = player.getY() + 1;
-										game.add(creature, x, y);
+										add(zone, creature, x, y);
 										break;
 									}
 								}
@@ -142,7 +151,7 @@ public class Deathmatch {
 						}
 						questState = "victory";
 						// remove this ScriptAction since we're done
-						game.remove(this);
+						keepRunning = false;
 					}
 				} else {
 					// spawn the next stronger creature
@@ -170,7 +179,7 @@ public class Deathmatch {
 					}
 					int x = player.getX(); 
 					int y = player.getY();
-					Creature mycreature = game.add(creatureToSpawn, x, y);
+					Creature mycreature = add(zone, creatureToSpawn, x, y);
 					if (mycreature != null) {
 						mycreature.clearDropItemList();
 						mycreature.attack(player);
@@ -193,8 +202,8 @@ public class Deathmatch {
 				level = 1;
 			}
 			player.setQuest("deathmatch", "start;"+ level + ";" + (new Date()).getTime());
-			Pair<ScriptCondition, ScriptAction> script = scripts.addScript(
-					new DeathmatchCondition(player), new DeathmatchAction(player));
+			ScriptAction scriptingAction = new ScriptAction(player);
+			TurnNotifier.get().notifyInTurns(0, scriptingAction, null);
 		}
 	}
 
@@ -292,7 +301,7 @@ public class Deathmatch {
 	public void createDeathmatch() {
 		String myZone = "int_semos_deathmatch";
 		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(myZone));
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(myZone));
 	
 		// show the player the potential trophy
 		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
@@ -354,5 +363,18 @@ public class Deathmatch {
 		zone.assignRPObjectID(npc);
 		zone.addNPC(npc);
 	}
-	*/
+
+	private Creature add(StendhalRPZone zone, Creature template, int x, int y) {
+		Creature creature = template.getInstance();
+		zone.assignRPObjectID(creature);
+		if (StendhalRPAction.placeat(zone, creature, x, y)) {
+			zone.add(creature);
+			StendhalRPRuleProcessor.get().addNPC(creature);
+		} else {
+			logger.info(" could not add a creature: " + creature);
+			creature = null;
+		}
+		return creature;
+	}
+
 }
