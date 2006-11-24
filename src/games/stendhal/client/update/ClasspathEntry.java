@@ -75,7 +75,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 		}
 
 		// 2. compare versions
-		int versionDiff = this.version.compareTo(other.version);
+		int versionDiff = Version.compare(this.version, other.version);
 		if (versionDiff != 0) {
 			return versionDiff;
 		}
