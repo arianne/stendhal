@@ -187,6 +187,8 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_ados_rock");
 		addArea("0_ados_outside_w");
 		// addArea("0_ados_city_w");
+			addArea("int_semos_deathmatch");
+
 		addArea("0_ados_city");
 		addArea("int_ados_reverse_arrow");
 

@@ -33,7 +33,7 @@ public class Deathmatch {
 
 	class ScriptAction implements TurnListener {
 		private Player player;
-		private List<Creature> sortedCreatures;
+		private List<Creature> sortedCreatures = new LinkedList<Creature>();
 		private List<Creature> spawnedCreatures = new ArrayList<Creature>();
 		private boolean keepRunning = true;
 		public ScriptAction(Player player) {
@@ -298,7 +298,7 @@ public class Deathmatch {
 	}
 
 
-	public void createDeathmatch() {
+	public void build() {
 		String myZone = "int_semos_deathmatch";
 		StendhalRPWorld world = StendhalRPWorld.get();
 		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(myZone));
