@@ -1,19 +1,37 @@
 package games.stendhal.client.scripting;
 
+import games.stendhal.client.StendhalClient;
+
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
+/**
+ * Record chat/commands
+ *
+ * @author hendrik
+ */
 public class ScriptRecorder {
-	private PrintStream ps = null;
 	private String classname = null;
+	private String filename = null;
+	private PrintStream ps = null;
 	private long lastTimestamp = 0;
-	
+
+	/**
+	 * Creates a new ScriptRecorder
+	 *
+	 * @param classname Name of Class to record
+	 * @throws FileNotFoundException if the file cannot be created
+	 */
 	public ScriptRecorder(String classname) throws FileNotFoundException {
-		String filename = classname; // TODO
+		filename = System.getProperty("java.io.tmpdir") + "/" + classname + ".java";
+		StendhalClient.get().addEventLine("Starting recoding to " + filename);
 		lastTimestamp = 0;
 		ps = new PrintStream(filename);
 	}
-	
+
+	/**
+	 * Starts the recording by writing the header
+	 */
 	public void start() {
 		ps.println("package games.stendhal.client.script;");
 		ps.println("import games.stendhal.client.scripting.*;");
@@ -28,7 +46,17 @@ public class ScriptRecorder {
 		ps.println("\tpublic void run(String args) {");
 	}
 
+	/**
+	 * Records a chat/command
+	 *
+	 * @param text command to record
+	 */
 	public void recordChatLine(String text) {
+
+		// ignore recording related commands
+		if (text.startsWith("/record")) {
+			return;
+		}
 
 		// write sleep command (and add a paragraph if the wait time was large
 		long thisTimestamp = System.currentTimeMillis();
@@ -49,9 +77,14 @@ public class ScriptRecorder {
 		// reduce wait time by one turn because csi.invokes waits one turn
 		lastTimestamp = thisTimestamp + 300;
 	}
-	
+
+	/**
+	 * finishes the recording by writing the footer and closing the stream.
+	 */
 	public void end() {
 		ps.println("\t}");
 		ps.println("}");
+		ps.close();
+		StendhalClient.get().addEventLine("Stoping recoding to " + filename);
 	}
 }
