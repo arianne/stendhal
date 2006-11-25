@@ -6,37 +6,59 @@ import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.MathHelper;
 
 import java.awt.Color;
+import java.io.FileNotFoundException;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /**
  * Parses the input in the chat box and invokes the appropriateaction.
  */
 public class ChatLineParser {
+	private static Logger logger = Logger.getLogger(ChatLineParser.class);
 	private static ChatLineParser instance = null;
 	private StendhalClient client = null;
 	private String lastPlayerTell;
+	private ScriptRecorder recorder = null;
 
 	
 	private ChatLineParser() {
 		// hide constructor (Singleton)
 		client = StendhalClient.get();
 	}
-	
+
+	/**
+	 * returns the ChatLineParser
+	 *
+	 * @return ChatLineParser
+	 */
 	public static synchronized ChatLineParser get() {
 		if (instance == null) {
 			instance = new ChatLineParser();
 		}
 		return instance;
 	}
-	
+
+	/**
+	 * parses a chat/command line and processes the result
+	 *
+	 * @param input string to handle
+	 */
 	public void parseAndHandle(String input) {
+
+		// get line
 		String text = input.trim();
-
-		if (text.length() == 0)
+		if (text.length() == 0) {
 			return;
+		}
 
+		// record it (if recording)
+		if (recorder != null) {
+			recorder.recordChatLine(text);
+		}
+		
 		if (text.charAt(0) != '/') {
 			// Chat command. The most frequent one.
 			RPAction chat = new RPAction();
@@ -359,6 +381,20 @@ public class ChatLineParser {
 						}
 						WtWindowManager.getInstance().setProperty("sound.volume", Integer.toString(vol));
 						SoundSystem.get().setVolume(vol);
+					}
+				}
+			} else if (text.startsWith("/record")) {
+				if (recorder != null) {
+					recorder.end();
+					recorder = null;
+				}
+				String[] command = parseString(text, 2);
+				if (!command[1].equals("stop")) {
+					try {
+						recorder = new ScriptRecorder(command[1]);
+						recorder.start();
+					} catch (FileNotFoundException e) {
+						logger.error(e, e);
 					}
 				}
 			}
