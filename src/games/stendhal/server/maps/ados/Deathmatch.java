@@ -315,7 +315,7 @@ public class Deathmatch {
 
 		
 		// We create an NPC
-		SpeakerNPC npc=new SpeakerNPC("Deathmatch Assistant") {
+		SpeakerNPC npc=new SpeakerNPC("Thanatos") {
 
 			@Override
 			protected void createPath() {

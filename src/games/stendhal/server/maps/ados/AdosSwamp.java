@@ -28,7 +28,7 @@ public class AdosSwamp {
 
 	private void buildDeathmatchRecruiter(StendhalRPZone zone) {
 		
-		SpeakerNPC npc = new SpeakerNPC("Deathmatch Recruiter") {
+		SpeakerNPC npc = new SpeakerNPC("Thonatus") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> path = new LinkedList<Path.Node>();
