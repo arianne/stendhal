@@ -20,10 +20,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 	private static final Logger logger = Log4J
 			.getLogger(StendhalChatLineListener.class);
 
-	private StendhalClient client;
-
 	private JTextField playerChatText;
-
 	private LinkedList<String> lines;
 
 	private int actual;
@@ -31,7 +28,6 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 	public StendhalChatLineListener(StendhalClient client,
 			JTextField playerChatText) {
 		super();
-		this.client = client;
 		this.playerChatText = playerChatText;
 		lines = new LinkedList<String>();
 		actual = 0;
@@ -61,9 +57,11 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
+		// specified by interface but not used here
 	}
 
 	public void keyTyped(KeyEvent e) {
+		// specified by interface but not used here
 	}
 
 	public void actionPerformed(ActionEvent e) {
