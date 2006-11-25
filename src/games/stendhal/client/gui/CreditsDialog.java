@@ -122,6 +122,9 @@ public class CreditsDialog extends JDialog {
 		"Maria",
 		"she's on hand to provide refreshment",
 		"",
+		"Mayor Sakhs",
+		// TODO
+		"",
 		"McPegleg",
 		"for his 'business' .. we won't say what",
 		"",
@@ -160,6 +163,12 @@ public class CreditsDialog extends JDialog {
 		"",
 		"Tad",
 		"for being the first friendly voice we hear",
+		"",
+		"Thanatos",
+		// TODO
+		"",
+		"Thonatus",
+		// TODO
 		"",
 		"Tor'Koom",
 		"for looking after our fat sheep (we hope...)",
