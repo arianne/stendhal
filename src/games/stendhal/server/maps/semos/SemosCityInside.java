@@ -108,7 +108,7 @@ public class SemosCityInside {
 	 */
 	private void buildSemosTownhallAreaMayor(StendhalRPZone zone) {
 		// We create an NPC
-		SpeakerNPC npc = new SpeakerNPC("Mayor") {
+		SpeakerNPC npc = new SpeakerNPC("Mayor Sakhs") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();

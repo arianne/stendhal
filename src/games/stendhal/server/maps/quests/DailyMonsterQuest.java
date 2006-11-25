@@ -168,7 +168,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Mayor");
+		SpeakerNPC npc = npcs.get("Mayor Sakhs");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"), null, 
 				ConversationStates.ATTENDING, null, new DailyQuestAction());
 	}
@@ -178,7 +178,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Mayor");
+		SpeakerNPC npc = npcs.get("Mayor Sakhs");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("complete", "done"), null, 
 						ConversationStates.ATTENDING, null, new DailyQuestCompleteAction());
 	}
