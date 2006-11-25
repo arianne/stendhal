@@ -23,6 +23,7 @@ public class ScriptRecorder {
 	 * @throws FileNotFoundException if the file cannot be created
 	 */
 	public ScriptRecorder(String classname) throws FileNotFoundException {
+		this.classname = classname;
 		filename = System.getProperty("java.io.tmpdir") + "/" + classname + ".java";
 		StendhalClient.get().addEventLine("Starting recoding to " + filename);
 		lastTimestamp = 0;
@@ -38,12 +39,13 @@ public class ScriptRecorder {
 		ps.println("/**");
 		ps.println(" * TODO: write documentation");
 		ps.println(" * ");
-		// TODO: ps.println(" * @author recorded by" + player.getName());
+		ps.println(" * @author recorded by " + StendhalClient.get().getPlayer().get("name"));
 		ps.println(" */");
 		ps.println("public class " + classname + " extends ClientScriptImpl {");
 		ps.println("");
 		ps.println("\t@Override");
 		ps.println("\tpublic void run(String args) {");
+		lastTimestamp = System.currentTimeMillis();
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class ScriptRecorder {
 			if (diff > 60000) {
 				ps.println("\t\t// -----------------------------------");
 			}
-			ps.println("\t\tcsi.sleepSeconds(" + diff + ");");
+			ps.println("\t\tcsi.sleepSeconds(" + (diff/1000) + ");");
 		} else if (diff > 0) {
 			ps.println("\t\tcsi.sleepMillis(" + diff + ");");
 		}
