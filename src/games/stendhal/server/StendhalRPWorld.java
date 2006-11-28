@@ -163,22 +163,25 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_ados_mountain_nw");
 		addArea("int_ados_magician_house");
 		addArea("0_ados_outside_nw");
+		addArea("0_ados_wall_n");
 
 		addArea("0_orril_mountain_n2_w2");
 		addArea("0_semos_mountain_w2");
 		addArea("0_semos_plains_w");
 		addArea("0_semos_village_w");
 		addArea("0_semos_city");
-		addArea("int_semos_tavern_0");
-		addArea("int_semos_tavern_1");
-		addArea("int_semos_temple");
-		addArea("int_semos_blacksmith");
-		addArea("int_semos_library");
-		addArea("int_semos_storage_0");
-		addArea("int_semos_storage_-1");
-		addArea("int_semos_bank");
-		addArea("int_semos_townhall");
-		addArea("int_semos_bakery");
+		{
+			addArea("int_semos_tavern_0");
+			addArea("int_semos_tavern_1");
+			addArea("int_semos_temple");
+			addArea("int_semos_blacksmith");
+			addArea("int_semos_library");
+			addArea("int_semos_storage_0");
+			addArea("int_semos_storage_-1");
+			addArea("int_semos_bank");
+			addArea("int_semos_townhall");
+			addArea("int_semos_bakery");
+		}
 		addArea("0_semos_road_e");
 		addArea("0_semos_road_se");
 		addArea("0_semos_plains_s");
@@ -186,8 +189,21 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_ados_rock_w");
 		addArea("0_ados_rock");
 		addArea("0_ados_outside_w");
+		addArea("0_ados_wall");
 		// addArea("0_ados_city_w");
+		{
 			addArea("int_semos_deathmatch");
+			addArea("int_ados_tavern_0");
+			addArea("int_ados_tavern_1");
+			addArea("int_ados_temple");
+//			addArea("int_semos_blacksmith");
+//			addArea("int_semos_library");
+//			addArea("int_semos_storage_0");
+//			addArea("int_semos_storage_-1");
+			addArea("int_ados_bank");
+//			addArea("int_semos_townhall");
+//			addArea("int_semos_bakery");
+		}
 
 		addArea("0_ados_city");
 		addArea("int_ados_reverse_arrow");
