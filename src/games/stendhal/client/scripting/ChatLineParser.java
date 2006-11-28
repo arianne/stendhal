@@ -421,11 +421,11 @@ public class ChatLineParser {
 		}
 	}
 
-	private static String[] parseString(String s, int nbPart) {
+	private static String[] parseString(String string, int nbPart) {
 		String[] res = new String[nbPart];
 		String[] t;
 		int i;
-		s = s.trim();
+		String s = string.trim();
 		for (i = 0; i < nbPart - 1; i++) {
 			t = nextString(s);
 			if (t == null) {
