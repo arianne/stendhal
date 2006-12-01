@@ -1299,7 +1299,9 @@ Makes players more offensive
 
 	<item name="green_dragon_cloak">
 		<type class="cloak" subclass="green_cloak"/>
-                <description>You see a green_dragon_cloak.</description>
+                <description>You see a huge green_dragon_cloak. It's probably
+                too big for you but, even dragging on the floor it will
+                provide excellent protection.</description>
 		<attributes>
 			<def value="10"/>
 		</attributes>
@@ -1312,6 +1314,9 @@ Makes players more offensive
 
     <item name="lich_cloak">
 		<type class="cloak" subclass="purple_cloak"/>
+		<description>You see a purple lich_cloak. It's stained with
+		blood - yours, from the previous undead owner, or perhaps the blood
+		of his enemies...</description>
 		<attributes>
 			<def value="11"/>
 		</attributes>
@@ -1324,6 +1329,8 @@ Makes players more offensive
 
 	<item name="blue_dragon_cloak">
 		<type class="cloak" subclass="blue_cloak"/>
+		<description>You see a blue_dragon_cloak. The weave is tight
+		and strong, though you wish the colour drew less attention.</description>
 		<attributes>
 			<def value="13"/>
 		</attributes>
@@ -1336,6 +1343,9 @@ Makes players more offensive
 
 	<item name="black_dragon_cloak">
 		<type class="cloak" subclass="black_cloak"/>
+		<description>You see a torn section from an enormous
+		black_dragon_cloak. You're very lucky: the piece is just the
+		right size for a human to wear.</description>
 		<attributes>
 			<def value="18"/>
 		</attributes>
