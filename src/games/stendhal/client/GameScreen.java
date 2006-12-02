@@ -262,9 +262,17 @@ public class GameScreen {
 	// intensifly@gmx.com
 	// ToDo: optimize the alghorithm, it's a little long ;)
 
-	public AttributedString formatLine(String line, Font fn, Color textColor) {
-		Font fh = fn.deriveFont(Font.ITALIC);
+	/**
+	 * Formats a text by changing the  color of words starting with {@link #clone()}.S
+	 *
+	 * @param line the text
+	 * @param fontNormal the font
+	 * @param colorNormal normal color (for non-special text)
+	 */
+	public AttributedString formatLine(String line, Font fontNormal, Color colorNormal) {
+		Font specialFont = fontNormal.deriveFont(Font.ITALIC);
 
+		// tokenize the string
 		ArrayList<String> list = new ArrayList<String>();
 		for (int c = 0, j = 0, h = 0; c < line.length(); c++) {
 			if (line.charAt(c) == '#'
@@ -272,51 +280,41 @@ public class GameScreen {
 				if (c != j) {
 					list.add(line.substring(j, c));
 				}
-				if (line.charAt(c) == '#')
+				if (line.charAt(c) == '#') {
 					h = 1;
-				else
+				} else {
 					h = 0;
+				}
 				j = c;
 			} else if (c == line.length() - 1) {
 				list.add(line.substring(j, c + 1));
 			}
 		}
 		int number = list.size();
-		AttributedString aStyledText;
 
-		for (int j = 0; j < number; j++) {
-			String tok = list.get(j).toString();
+		// recreate the string without the # characters
+		StringBuilder temp = new StringBuilder();
+		for (String tok : list) {
 			if (tok.charAt(0) == '#') {
 				tok = tok.substring(1);
 			}
-		}
-		line = "";
-		for (int j = 0; j < number; j++) {
-			String tok = list.get(j).toString();
-			if (tok.charAt(0) == '#') {
-				tok = tok.substring(1);
-			}
-			line += tok;
+			temp.append(tok);
 		}
 
-		aStyledText = new AttributedString(line);
-		Font f;
-		Color col;
-
+		// create the attribute string with the formatation
+		AttributedString aStyledText = new AttributedString(temp.toString());
 		for (int j = 0, s = 0; j < number; j++) {
 			String tok = list.get(j).toString();
-			f = fn;
-			col = textColor;
+			Font font = fontNormal;
+			Color color = colorNormal;
 			if (tok.charAt(0) == '#') {
 				tok = tok.substring(1);
-				f = fh;
-				col = Color.blue;
+				font = specialFont;
+				color = Color.blue;
 			}
 			if (tok.length() > 0) {
-				aStyledText.addAttribute(TextAttribute.FONT, f, s, s
-						+ tok.length());
-				aStyledText.addAttribute(TextAttribute.FOREGROUND, col, s, s
-						+ tok.length());
+				aStyledText.addAttribute(TextAttribute.FONT, font, s, s	+ tok.length());
+				aStyledText.addAttribute(TextAttribute.FOREGROUND, color, s, s + tok.length());
 			}
 			s += tok.length();
 		}
