@@ -12,13 +12,31 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.awt.*;
-import java.awt.font.*;
-import java.text.*;
-import java.util.*;
+import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Composite;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.RenderingHints;
+import java.awt.Stroke;
+import java.awt.Transparency;
+import java.awt.font.TextAttribute;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferStrategy;
+import java.text.AttributedString;
+import java.util.Arrays;
+import java.util.List;
+
 import marauroa.common.Log4J;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -273,50 +291,35 @@ public class GameScreen {
 		Font specialFont = fontNormal.deriveFont(Font.ITALIC);
 
 		// tokenize the string
-		ArrayList<String> list = new ArrayList<String>();
-		for (int c = 0, j = 0, h = 0; c < line.length(); c++) {
-			if (line.charAt(c) == '#'
-					|| (h == 1 && (line.charAt(c) == ' ' || line.charAt(c) == '.'))) {
-				if (c != j) {
-					list.add(line.substring(j, c));
-				}
-				if (line.charAt(c) == '#') {
-					h = 1;
-				} else {
-					h = 0;
-				}
-				j = c;
-			} else if (c == line.length() - 1) {
-				list.add(line.substring(j, c + 1));
-			}
-		}
-		int number = list.size();
+		List<String> list = Arrays.asList(line.split(" "));
 
 		// recreate the string without the # characters
 		StringBuilder temp = new StringBuilder();
 		for (String tok : list) {
-			if (tok.charAt(0) == '#') {
+			if (tok.startsWith("#")) {
 				tok = tok.substring(1);
 			}
-			temp.append(tok);
+			temp.append(tok + " ");
 		}
 
 		// create the attribute string with the formatation
 		AttributedString aStyledText = new AttributedString(temp.toString());
-		for (int j = 0, s = 0; j < number; j++) {
-			String tok = list.get(j).toString();
+		int s = 0;
+		for (String tok : list) {
 			Font font = fontNormal;
 			Color color = colorNormal;
-			if (tok.charAt(0) == '#') {
+			if (tok.startsWith("##")) {
+				tok = tok.substring(1);
+			} else if (tok.startsWith("#")) { 
 				tok = tok.substring(1);
 				font = specialFont;
 				color = Color.blue;
 			}
 			if (tok.length() > 0) {
-				aStyledText.addAttribute(TextAttribute.FONT, font, s, s	+ tok.length());
-				aStyledText.addAttribute(TextAttribute.FOREGROUND, color, s, s + tok.length());
+				aStyledText.addAttribute(TextAttribute.FONT, font, s, s	+ tok.length() + 1);
+				aStyledText.addAttribute(TextAttribute.FOREGROUND, color, s, s + tok.length() + 1);
 			}
-			s += tok.length();
+			s += tok.length() + 1;
 		}
 
 		return (aStyledText);
