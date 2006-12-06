@@ -15,6 +15,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.util.Area;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -36,9 +37,10 @@ import org.apache.log4j.Logger;
  */
 public class Deathmatch {
 	private static Logger logger = Logger.getLogger(Deathmatch.class);
+	private static final String ZONE_NAME = "0_ados_wall_n";
 	private NPCList npcs = NPCList.get();
 	private StendhalRPZone zone = null;
-	private Rectangle2D arena = null;
+	protected Area arena = null;
 
 	class ScriptAction implements TurnListener {
 		private Player player;
@@ -64,13 +66,14 @@ public class Deathmatch {
 				return false;
 			}
 			
-			if ("int_semos_deathmatch".equals(player.get("zoneid"))) {
+			if (arena.contains(player)) {
 				return true;
 			} else {
 				player.setQuest("deathmatch", "cancel");
 				return true;
 			}
 		}
+
 		public void onTurnReached(int currentTurn, String message) {
 			if (condition()) {
 				action();
@@ -306,24 +309,26 @@ public class Deathmatch {
 		}
 	}
 
+	private void createArena(StendhalRPZone zone) {
+		Rectangle2D shape = new Rectangle2D.Double();
+		shape.setRect(88, 78, 21, 20);
+		arena = new Area(zone, shape);
+	}
 
-	public void build() {
-		String myZone = "0_ados_wall_n";
-		arena = new Rectangle2D.Double();
-		arena.setRect(88, 78, 21, 20);
-		StendhalRPWorld world = StendhalRPWorld.get();
-		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(myZone));
-	
+	private void createHelmet(StendhalRPZone zone) {
+
 		// show the player the potential trophy
 		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
 		zone.assignRPObjectID(helmet);
 		helmet.put("def","20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");
-		helmet.setX(88+ -4 + 17);
+		helmet.setX(88+ -9 + 17);
 		helmet.setY(78+ -4 + 4);
 		helmet.put("persistent",1);
 		zone.add(helmet);
+	}
 
+	private void createNPC(StendhalRPZone zone) {
 		
 		// We create an NPC
 		SpeakerNPC npc=new SpeakerNPC("Thanatos") {
@@ -367,7 +372,7 @@ public class Deathmatch {
 
 		
 		npc.put("class", "darkwizardnpc");
-		npc.set(88+ -4 + 17, 78+ -4 +11);
+		npc.set(88+ -9 + 17, 78+ -4 +11);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		npcs.add(npc);
@@ -375,8 +380,17 @@ public class Deathmatch {
 		zone.addNPC(npc);
 	}
 
+	public void build() {
+		StendhalRPWorld world = StendhalRPWorld.get();
+		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(ZONE_NAME));
+	
+		createArena(zone);
+		createHelmet(zone);
+		createNPC(zone);
+	}
+
 	private Creature add(StendhalRPZone zone, Creature template, int x, int y) {
-		Creature creature = new ArenaCreature(template.getInstance(), arena);
+		Creature creature = new ArenaCreature(template.getInstance(), arena.getShape());
 		zone.assignRPObjectID(creature);
 		if (StendhalRPAction.placeat(zone, creature, x, y)) {
 			zone.add(creature);
