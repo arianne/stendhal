@@ -1,22 +1,30 @@
 package games.stendhal.server.maps.ados;
 
-import java.util.*;
-
 import games.stendhal.common.Direction;
-import games.stendhal.common.Pair;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.creature.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.scripting.*;
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalScriptSystem;
+import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.creature.ArenaCreature;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.pathfinder.Path;
+
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.game.IRPZone;
 
@@ -30,6 +38,7 @@ public class Deathmatch {
 	private static Logger logger = Logger.getLogger(Deathmatch.class);
 	private NPCList npcs = NPCList.get();
 	private StendhalRPZone zone = null;
+	private Rectangle2D arena = null;
 
 	class ScriptAction implements TurnListener {
 		private Player player;
@@ -299,7 +308,9 @@ public class Deathmatch {
 
 
 	public void build() {
-		String myZone = "int_semos_deathmatch";
+		String myZone = "0_ados_wall_n";
+		arena = new Rectangle2D.Double();
+		arena.setRect(88, 78, 21, 20);
 		StendhalRPWorld world = StendhalRPWorld.get();
 		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(myZone));
 	
@@ -308,8 +319,8 @@ public class Deathmatch {
 		zone.assignRPObjectID(helmet);
 		helmet.put("def","20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");
-		helmet.setX(17);
-		helmet.setY(4);
+		helmet.setX(88+ -4 + 17);
+		helmet.setY(78+ -4 + 4);
 		helmet.put("persistent",1);
 		zone.add(helmet);
 
@@ -356,7 +367,7 @@ public class Deathmatch {
 
 		
 		npc.put("class", "darkwizardnpc");
-		npc.set(17, 11);
+		npc.set(88+ -4 + 17, 78+ -4 +11);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		npcs.add(npc);
@@ -365,7 +376,7 @@ public class Deathmatch {
 	}
 
 	private Creature add(StendhalRPZone zone, Creature template, int x, int y) {
-		Creature creature = template.getInstance();
+		Creature creature = new ArenaCreature(template.getInstance(), arena);
 		zone.assignRPObjectID(creature);
 		if (StendhalRPAction.placeat(zone, creature, x, y)) {
 			zone.add(creature);
