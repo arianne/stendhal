@@ -39,4 +39,13 @@ public class Area {
 		IRPZone diceZone = StendhalRPWorld.get().getRPZone(entity.getID());
 		return zone.equals(diceZone) && shape.contains(entity.getX(), entity.getY());
 	}
+
+	/**
+	 * Get the shape
+	 *
+	 * @return shape
+	 */
+	public Shape getShape() {
+		return shape;
+	}
 }
