@@ -2,7 +2,7 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.entity.RPEntity;
 
-import java.awt.geom.Rectangle2D;
+import java.awt.Shape;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,14 +12,15 @@ import java.util.List;
  * @author hendrik
  */
 public class ArenaCreature extends Creature {
-	private Rectangle2D arena = null;
+	private Shape arena = null;
 
 	/**
 	 * ArenaCreature
 	 *
 	 * @param copy creature to wrap
+	 * @param arena arena
 	 */
-	public ArenaCreature(Creature copy, Rectangle2D arena) {
+	public ArenaCreature(Creature copy, Shape arena) {
 		super(copy);
 		this.arena = arena;
 	}
