@@ -1,17 +1,17 @@
 package games.stendhal.server.entity.npc;
 
-import marauroa.common.game.IRPZone;
-
 import games.stendhal.common.Pair;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
+
+import marauroa.common.game.IRPZone;
 
 public abstract class CroupierNPC extends SpeakerNPC {
 	
@@ -24,7 +24,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	/**
 	 * The area on which the dice have to be thrown.  
 	 */
-	private Rectangle2D playingArea;
+	private Area playingArea;
 	
 	/**
 	 * A list where each possible dice sum is the index of the element
@@ -36,32 +36,16 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	
 	public CroupierNPC(String name, Rectangle playingArea) {
 		super(name);
-		this.playingArea = playingArea;
+		IRPZone npcZone = StendhalRPWorld.get().getRPZone(this.getID());
+		this.playingArea = new Area(npcZone, playingArea);
 	}
 	
-	public Rectangle2D getPlayingArea() {
-		return playingArea;
-	}
-
 	public void setPrizes(List<Pair<String, String>> prizes) {
 		this.prizes = prizes;
 	}
 	
-	/**
-	 * Checks whether a dice has been thrown onto the playing area.
-	 * Also checks whether the dice are in the correct zone.
-	 * @param dice The dice
-	 * @return true iff the dice is lying on the playing area
-	 */
-	private boolean isDiceOnPlayingArea(Dice dice) {
-		// check whether the dice are on the correct map
-		IRPZone npcZone = StendhalRPWorld.get().getRPZone(this.getID());
-		IRPZone diceZone = StendhalRPWorld.get().getRPZone(dice.getID());
-		return npcZone.equals(diceZone) && playingArea.contains(dice.getX(), dice.getY());
-	}
-
 	public void onThrown(Dice dice, Player player) {
-		if (isDiceOnPlayingArea(dice)) {
+		if (playingArea.contains(dice)) {
 			int sum = dice.getSum();
 			Pair<String, String> prizeAndText = prizes.get(sum);
 			if (prizeAndText != null) {
