@@ -73,7 +73,7 @@ public class AdministrationAction extends ActionListener {
 		
 		REQUIRED_ADMIN_LEVELS.put("adminlevel",   0);
 		REQUIRED_ADMIN_LEVELS.put("support",    100);
-		REQUIRED_ADMIN_LEVELS.put("supportanswer", 0);
+		REQUIRED_ADMIN_LEVELS.put("supportanswer", 50);
 		REQUIRED_ADMIN_LEVELS.put("tellall",    200);
 		REQUIRED_ADMIN_LEVELS.put("teleportto", 300);
 		REQUIRED_ADMIN_LEVELS.put("teleport",   400);
