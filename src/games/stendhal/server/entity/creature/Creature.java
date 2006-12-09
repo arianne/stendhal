@@ -33,6 +33,7 @@ import games.stendhal.server.pathfinder.Path.Node;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.geom.Rectangle2D;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -440,8 +441,9 @@ public class Creature extends NPC {
 	protected RPEntity getNearestEnemy(double range) {
 
 		// where are we?
-		int x = getX();
-		int y = getY();
+		Rectangle2D entityArea = getArea(getX(), getY());
+		int x = (int) entityArea.getCenterX();
+		int y = (int) entityArea.getCenterY();
 
 		// create list of enemies
 		List<RPEntity> enemyList = getEnemyList();
@@ -460,8 +462,8 @@ public class Creature extends NPC {
 			if (enemy.get("zoneid").equals(get("zoneid"))) {
 				java.awt.geom.Rectangle2D rect = enemy.getArea(enemy.getX(),
 						enemy.getY());
-				int fx = (int) rect.getX();
-				int fy = (int) rect.getY();
+				int fx = (int) rect.getCenterX();
+				int fy = (int) rect.getCenterY();
 
 				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
 					distances.put(enemy, squaredDistance(enemy));
@@ -481,14 +483,27 @@ public class Creature extends NPC {
 				}
 			}
 	
+			// calculate the destArea
+			Rectangle2D targetArea = chosen.getArea(chosen.getX(), chosen.getY());
+			Rectangle destArea = new Rectangle((int)(targetArea.getX() - entityArea.getWidth()), 
+			                                        (int)(targetArea.getY() - entityArea.getHeight()), 
+			                                        (int)(entityArea.getWidth() + targetArea.getWidth() + 1), 
+			                                        (int)(entityArea.getHeight() + targetArea.getHeight() + 1));
+
+			// for 1x2 size creatures the destArea, needs bo be one up
+			destArea.translate(0, (int)(this.getY() - entityArea.getY()));
+
 			// is there a path to this enemy?
-			List<Node> path = Path.searchPath(this, chosen, 20.0);
+			// List<Node> path = Path.searchPath(this, chosen, 20.0);
+			List<Node> path = Path.searchPath(this, getX(), getY(), destArea, 20.0);
 			if ((path == null) || (path.size() == 0)) {
 				distances.remove(chosen);
 				chosen = null;
+			} else {
+				// set the path. if not setMovement() will search a new one
+				setPath(path, false);
 			}
 		}
-
 		// return the chosen enemy or null if we could not find one in reach
 		return chosen;
 	}

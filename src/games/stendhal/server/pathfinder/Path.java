@@ -162,22 +162,54 @@ public class Path {
 
 		path.setNavigable(navMap);
 		path.setStart(new Pathfinder.Node(x, y));
-		path.setGoal(new Pathfinder.Node((int) destination.getX(),
-				(int) destination.getY()));
+
+		/* 
+		 * if the destination is an area
+		 * set the destination node for pathfinding to the center of the area
+		 */
+		if ((destination.getWidth() > 2) || (destination.getHeight() > 2)) {
+			path.setGoal(new Pathfinder.Node((int) (destination.getCenterX()),
+					(int) (destination.getCenterY())));
+		} else {
+			path.setGoal(new Pathfinder.Node((int) destination.getX(),
+					(int) destination.getY()));
+		}
 
 		steps = 0;
 		path.init();
-		// HACK: Time limited the A* search.
-		while (path.getStatus() == Pathfinder.IN_PROGRESS
-				&& ((System.currentTimeMillis() - startTime) < MAX_PATHFINDING_TIME)) {
-			path.doStep();
-			steps++;
-			if (callback != null) {
-				callback.stepDone(path.getBestNode());
+
+		/* 
+		 * if the destination is an area
+		 * pathfinding is done if the path reaches the area
+		 */
+		if ((destination.getWidth() > 2) || (destination.getHeight() > 2)) {
+			Pathfinder.Node bestNode = null;
+			do {
+				path.doStep();
+				steps++;
+				bestNode = path.getBestNode();
+				if (callback != null) {
+					callback.stepDone(bestNode);
+				}
+			} while (path.getStatus() == Pathfinder.IN_PROGRESS
+					&& ((System.currentTimeMillis() - startTime) < MAX_PATHFINDING_TIME)
+					&& (bestNode != null)
+					&& (!destination.contains(bestNode.getX(), bestNode.getY())));
+
+		} else {
+			// HACK: Time limited the A* search.
+			while (path.getStatus() == Pathfinder.IN_PROGRESS
+					&& ((System.currentTimeMillis() - startTime) < MAX_PATHFINDING_TIME)) {
+				path.doStep();
+				steps++;
+				if (callback != null) {
+					callback.stepDone(path.getBestNode());
+				}
 			}
 		}
 
-		if (path.getStatus() == Pathfinder.IN_PROGRESS) {
+// 		logger.info("status: " + path.getStatus());
+		if ((path.getStatus() == Pathfinder.PATH_NOT_FOUND) || ((System.currentTimeMillis() - startTime) >= MAX_PATHFINDING_TIME)) {
 //			logger.warn("Pathfinding aborted: " + entity.get("name") + " (" + x + ", " + y + ")    Average Pathfinding time: " + ((float)time / counter / 1000000));
 			return new LinkedList<Node>();
 		}
