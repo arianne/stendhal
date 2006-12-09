@@ -1199,9 +1199,6 @@ public class Player extends RPEntity implements TurnListener {
 				teleporterName = teleporter.getName();
 			}
 
-			StendhalRPRuleProcessor.get().addGameEvent(teleporterName, "teleport", this
-					.getName());
-
 			notifyWorldAboutChanges();
 			return true;
 		} else {
