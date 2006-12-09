@@ -34,10 +34,8 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	 */
 	private List<Pair<String, String>> prizes;
 	
-	public CroupierNPC(String name, Rectangle playingArea) {
+	public CroupierNPC(String name) {
 		super(name);
-		IRPZone npcZone = StendhalRPWorld.get().getRPZone(this.getID());
-		this.playingArea = new Area(npcZone, playingArea);
 	}
 	
 	public void setPrizes(List<Pair<String, String>> prizes) {
@@ -71,5 +69,15 @@ public abstract class CroupierNPC extends SpeakerNPC {
 			TurnNotifier.get().dontNotify(dice, null);
 			TurnNotifier.get().notifyInTurns(CLEAR_PLAYING_AREA_TIME, dice, null);
 		}
+	}
+
+	/**
+	 * Sets the playing area (a table or something like that)
+	 *
+	 * @param playingArea shape of the playing area (in the same zone as the NPC)
+	 */
+	public void setTableArea(Rectangle playingArea) {
+		IRPZone npcZone = StendhalRPWorld.get().getRPZone(this.getID());
+		this.playingArea = new Area(npcZone, playingArea);
 	}
 }

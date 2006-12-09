@@ -160,8 +160,7 @@ public class SemosCityInsideTavern {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
 				"int_semos_tavern_0"));
 
-		Rectangle tableArea = new Rectangle(25, 4, 2, 3);
-		SpeakerNPC ricardo = new CroupierNPC("Ricardo", tableArea) {
+		CroupierNPC ricardo = new CroupierNPC("Ricardo") {
 			@Override
 			protected void createPath() {
 				// Ricardo doesn't move
@@ -189,6 +188,8 @@ public class SemosCityInsideTavern {
 		ricardo.setDirection(Direction.LEFT);
 		ricardo.setBaseHP(100);
 		ricardo.setHP(ricardo.getBaseHP());
+		Rectangle tableArea = new Rectangle(25, 4, 2, 3);
+		ricardo.setTableArea(tableArea);
 		zone.addNPC(ricardo);		
 	}
 
