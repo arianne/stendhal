@@ -646,7 +646,12 @@ public class AdministrationAction extends ActionListener {
 		} else if (inspected instanceof Item || inspected instanceof Portal) {
 			StendhalRPWorld.get().remove(inspected.getID());
 		}
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "removed", inspected.toString());
+		String name = inspected.getRPClass().getName();
+		if (inspected.has("name")) {
+			name = inspected.get("name");
+		}
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "removed", name, 
+			StendhalRPWorld.get().getRPZone(inspected.getID()).getID().getID(), Integer.toString(inspected.getX()), Integer.toString(inspected.getY()));
 
 		player.sendPrivateText("Removed entity " + action.get("targetid"));
 
