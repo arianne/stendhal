@@ -12,169 +12,144 @@
  ***************************************************************************/
 package games.stendhal.server.pathfinder;
 
-import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
-import java.util.LinkedList;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 import java.util.List;
 
 public class PathfinderTest {
 	public static void main(String[] args) throws Exception {
-		int x0 = 0;
-		int y0 = 0;
-		int x1 = 0;
-		int y1 = 0;
 
 		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addArea("-1_semos_dungeon");
+		world.addArea("int_pathfinding");
 
 		StendhalRPZone zone = (StendhalRPZone) world
-				.getRPZone("-1_semos_dungeon");
+				.getRPZone("int_pathfinding");
 
-		if (args.length < 4) {
-			do {
-				x0 = Rand.rand(64);
-				y0 = Rand.rand(64);
-			} while (zone.collides(x0, y0));
 
-			do {
-				x1 = Rand.rand(64);
-				y1 = Rand.rand(64);
-			} while (zone.collides(x1, y1));
-		} else {
-			x0 = Integer.parseInt(args[0]);
-			y0 = Integer.parseInt(args[1]);
-			x1 = Integer.parseInt(args[2]);
-			y1 = Integer.parseInt(args[3]);
-		}
+		List<String> tests = Arrays.asList(
+						"rat;50;10;rat;55;3",
+						"rat;55;3;rat;50;10",
+						"rat;50;12;rat;52;15",
+						"rat;52;15;rat;50;12",
+						"bat;50;9;rat;55;3",
+						"bat;55;2;rat;50;10",
+						"bat;50;11;rat;52;15",
+						"bat;52;14;rat;50;12",
+						"rat;50;10;bat;55;2",
+						"rat;55;3;bat;50;9",
+						"rat;50;12;bat;52;14",
+						"rat;52;15;bat;50;11",
+						"giantrat;55;3;bat;50;9",
+						"giantrat;52;15;bat;50;11",
+						"bat;55;2;bat;50;9",
+						"bat;52;14;bat;50;11"
+					);
+		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
-		System.out.println(x0 + "," + y0 + " to " + x1 + "," + y1);
+		for (String test : tests) {
+			String testData[] = test.split(";");
+			Creature entity = manager.getCreature(testData[0]);
+			int x0 = Integer.parseInt(testData[1]);
+			int y0 = Integer.parseInt(testData[2]);
+			zone.assignRPObjectID(entity);
+			StendhalRPAction.placeat(zone, entity,  x0, y0);
+			zone.add(entity);
 
-		long startTime = System.currentTimeMillis();
+			Creature target = manager.getCreature(testData[3]);
+			int x1 = Integer.parseInt(testData[4]);
+			int y1 = Integer.parseInt(testData[5]);
+			zone.assignRPObjectID(target);
+			StendhalRPAction.placeat(zone, target,  x1, y1);
+			zone.add(target);	
 
-		List<Path.Node> nodes = null;
+			List<Path.Node> nodes = null;
 
-		for (int i = 0; i < 10000; i++) {
-			// nodes=box.getPath(x0,y0,x1,y1);
-			nodes = searchAstartPath(zone, null, x0, y0, x1, y1);
-		}
+			// calculate the destArea
+			Rectangle2D entityArea = entity.getArea(entity.getX(), entity.getY());
+			Rectangle2D targetArea = target.getArea(target.getX(), target.getY());
+			Rectangle destArea = new Rectangle((int)(targetArea.getX() - entityArea.getWidth()), 
+			                                        (int)(targetArea.getY() - entityArea.getHeight()), 
+			                                        (int)(entityArea.getWidth() + targetArea.getWidth() + 1), 
+			                                        (int)(entityArea.getHeight() + targetArea.getHeight() + 1));
 
-		long endTime = System.currentTimeMillis();
+			// for 1x2 size creatures the destArea, needs bo be one up
+			destArea.translate(0, (int)(entity.getY() - entityArea.getY()));
 
-		for (int j = 0; j < zone.getHeight(); j++) {
-			for (int i = 0; i < zone.getWidth(); i++) {
-				boolean contained = false;
+			long startTime = System.currentTimeMillis();
+			for (int i = 0; i < 1000; i++) {
+// 				nodes = Path.searchPath(entity, target, 20.0);
+				nodes = Path.searchPath(entity, entity.getX(), entity.getY(), destArea, 20.0);
+			}
+			long endTime = System.currentTimeMillis();
+						
+			if ((args.length > 0) && (args[0].equals("print"))) {
+				for (int j = 0; j < zone.getHeight(); j++) {
+					for (int i = 0; i < zone.getWidth(); i++) {
+						boolean contained = false;
+						int stepNr = 0;
+						for (Path.Node node : nodes) {
+							stepNr++;
+							if (node.x == i && node.y == j) {
+								contained = true;
+								break;
+							}
+						}
 
-				for (Path.Node node : nodes) {
-					if (node.x == i && node.y == j) {
-						contained = true;
-						break;
+						if (entity.nextTo(i, j, 0.25)) {
+							if (contained) {
+								System.out.print("E");
+							} else {
+								System.out.print("e");
+							}
+						} else if (target.nextTo(i, j, 0.25)) {
+							if (contained) {
+								System.out.print("T");
+							} else {
+								System.out.print("t");
+							}
+						} else if (contained) {
+							System.out.print(stepNr % 10);
+						} else if (zone.collides(i, j)) {
+							System.out.print("*");
+						} else if (destArea.contains(i, j)) {
+							System.out.print(" ");
+						} else {
+							System.out.print(".");
+						}
 					}
 				}
 
-				if (contained) {
-					System.out.print("P");
-				} else if (x0 == i && y0 == j) {
-					System.out.print("O");
-				} else if (x1 == i && y1 == j) {
-					System.out.print("D");
-				} else if (zone.collides(i, j)) {
-					System.out.print("*");
-				} else {
-					System.out.print(".");
-				}
+					System.out.println();
+		 				}
+			boolean pass = (nodes.size() > 0);
+			if (pass) {
+				Path.Node lastNode = nodes.get(nodes.size() - 1);
+				entity.set(lastNode.x, lastNode.y);
+				pass = entity.nextTo(target, 0.25);
+				if (zone.collides(entity, lastNode.x, lastNode.y)) {
+					System.out.print("C ");
+						 				}
+						 			}
+			if (pass) {
+				System.out.print("Pass ");
+			} else {
+				System.out.print("FAIL ");
 			}
+			System.out.println("Test: " + test + " time: " + ((double)(endTime - startTime) / 1000) + "ms");
+			System.out.print("\tentityArea: (" + entityArea.getX() + ", " + entityArea.getY() + ", " + entityArea.getWidth() + ", " + entityArea.getHeight() + ")");
+			System.out.print(" targetArea: (" + targetArea.getX() + ", " + targetArea.getY() + ", " + targetArea.getWidth() + ", " + targetArea.getHeight() + ")");
+			System.out.println(" destArea: (" + destArea.getX() + ", " + destArea.getY() + ", " + destArea.getWidth() + ", " + destArea.getHeight() + ")");
+			System.out.println("\tpath: " + nodes);
 			System.out.println();
+			zone.remove(entity);
+			zone.remove(target);
 		}
-
-		System.out.println("STATUS: " + null + "\t TIME: "
-				+ (endTime - startTime));
-	}
-
-	static public class GraphNavigable implements Navigable {
-		Graph g;
-
-		int x;
-
-		int y;
-
-		StendhalRPZone zone;
-
-		public GraphNavigable(StendhalRPZone zone, Graph g, int x, int y) {
-			this.zone = zone;
-			this.g = g;
-			this.x = x;
-			this.y = y;
-		}
-
-		public boolean isValid(Pathfinder.Node node) {
-			return !zone.collides(node.x, node.y);
-		}
-
-		public double getCost(Pathfinder.Node parent, Pathfinder.Node child) {
-			int dx = parent.getX() - child.getX();
-			int dy = parent.getY() - child.getY();
-
-			return (dx * dx) + (dy * dy);
-		}
-
-		public double getHeuristic(Pathfinder.Node parent, Pathfinder.Node child) {
-			int dx = parent.getX() - child.getX();
-			int dy = parent.getY() - child.getY();
-
-			return (dx * dx) + (dy * dy);
-		}
-
-		public boolean reachedGoal(Pathfinder.Node nodeBest) {
-			return nodeBest.getX() == x && nodeBest.getY() == y;
-		}
-
-		public int createNodeID(Pathfinder.Node node) {
-			return node.x + node.y * zone.getWidth();
-		}
-
-		public void createChildren(Pathfinder path, Pathfinder.Node node) {
-			int x = node.x, y = node.y;
-			Pathfinder.Node tempNode = new Pathfinder.Node();
-
-			for (int i = -1; i < 2; i++) {
-				for (int j = -1; j < 2; j++) {
-					tempNode.x = x + i;
-					tempNode.y = y + j;
-					// If the node is this node, or invalid continue.
-					if ((i == 0 && j == 0) || (Math.abs(i) == Math.abs(j))
-							|| isValid(tempNode) == false) {
-						continue;
-					}
-
-					path.linkChild(node, x + i, y + j);
-				}
-			}
-		}
-	}
-
-	public static List<Path.Node> searchAstartPath(StendhalRPZone zone,
-			Graph g, int x0, int y0, int x1, int y1) {
-		Pathfinder path = new Pathfinder();
-
-		Navigable navMap = new GraphNavigable(zone, g, x1, y1);
-		path.setNavigable(navMap);
-		path.setStart(new Pathfinder.Node(x0, y0));
-		path.setGoal(new Pathfinder.Node(x1, y1));
-
-		path.init();
-		while (path.getStatus() == Pathfinder.IN_PROGRESS) {
-			path.doStep();
-		}
-
-		List<Path.Node> list = new LinkedList<Path.Node>();
-		Pathfinder.Node node = path.getBestNode();
-		while (node != null) {
-			list.add(0, new Path.Node(node.getX(), node.getY()));
-			node = node.getParent();
-		}
-
-		return list;
 	}
 }
