@@ -189,6 +189,11 @@ public class Scroll extends StackableItem implements UseListener {
 			int pickedIdx = (int) (Math.random() * possibleCreatures.size());
 			pickedCreature = possibleCreatures.get(pickedIdx);
 		}
+		
+		if (pickedCreature == null) {
+			player.sendPrivateText("This scroll does not seem to work. You should talk to the magician who created it.");
+			return false;
+		}
 
 		// create it
 		AttackableCreature creature = new AttackableCreature(pickedCreature);
