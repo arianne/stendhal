@@ -408,7 +408,7 @@ public class StendhalRPWorld extends RPWorld {
 
 	@Override
 	public void onFinish() throws Exception {
-		// do nothing
+		StendhalRPRuleProcessor.get().addGameEvent("server system", "shutdown");
 	}
 
 }

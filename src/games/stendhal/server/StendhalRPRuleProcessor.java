@@ -127,6 +127,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		scripts = StendhalScriptSystem.get();
 		registerActions();
 		instance = this;
+		addGameEvent("server system", "startup");
 	}
 
 	public static StendhalRPRuleProcessor get() {
