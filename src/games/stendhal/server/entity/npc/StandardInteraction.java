@@ -4,6 +4,7 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.entity.Player;
+import games.stendhal.server.util.Area;
 
 /**
  * This is a collection of standard actions and conditions. Although most of
@@ -50,6 +51,28 @@ public class StandardInteraction {
 			return (player.has("adminlevel") && (player.getInt("adminlevel") >= requiredAdminlevel));
 		}
 	}
+
+	/**
+	 * Is the player in the specified area?
+	 */
+	public static class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
+		private Area area = null;
+
+		public PlayerInAreaCondition(Area area) {
+			this.area  = area;
+		}
+
+		@Override
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return area.contains(player);
+		}
+
+	}
+
+
+	// ------------------------------------------------------------------------
+	//                           quest related stuff
+	// ------------------------------------------------------------------------
 
 	/**
 	 * Was this quest started?
@@ -168,5 +191,4 @@ public class StandardInteraction {
 			player.setQuest(questname, state);
 		}
 	}
-
 }
