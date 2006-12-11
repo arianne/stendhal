@@ -743,7 +743,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		if (collisionMap.collides(area)) {
 			return true;
 		} else if (!checkObjects) {
-            return true;
+            return false;
         } else {
         	// For every other object in this zone, check whether it's in the
         	// way.
