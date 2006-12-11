@@ -359,9 +359,18 @@ public class GameScreen {
 		GraphicsConfiguration gc = GraphicsEnvironment
 				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 				.getDefaultConfiguration();
-		Image image = gc.createCompatibleImage(
-				((lineLengthPixels + delta < width) ? lineLengthPixels + delta
-						: width) + 4, 16 * numLines, Transparency.BITMASK);
+		
+		int imageWidth = ((lineLengthPixels + delta < width) ? lineLengthPixels + delta
+						: width) + 4;
+		int imageHeight = 16 * numLines;
+
+		// Workaround for X-Windows not supporting images of height 0 pixel.
+		if (imageHeight == 0) {
+			imageHeight = 1;
+			logger.warn("Created textbox for empty text");
+		}
+		
+		Image image = gc.createCompatibleImage(imageWidth, imageHeight, Transparency.BITMASK);
 
 		Graphics2D g2d = (Graphics2D) image.getGraphics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
