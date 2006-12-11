@@ -12,6 +12,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
@@ -311,7 +312,7 @@ public class Deathmatch {
 
 	private void createArena(StendhalRPZone zone) {
 		Rectangle2D shape = new Rectangle2D.Double();
-		shape.setRect(88, 78, 21, 20);
+		shape.setRect(88, 77, 112-88+1, 93-77+1);
 		arena = new Area(zone, shape);
 	}
 
@@ -320,11 +321,11 @@ public class Deathmatch {
 		// show the player the potential trophy
 		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
 		zone.assignRPObjectID(helmet);
-		helmet.put("def","20");
+		helmet.put("def", "20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");
-		helmet.setX(88+ -9 + 17);
-		helmet.setY(78+ -4 + 4);
-		helmet.put("persistent",1);
+		helmet.setX(100);
+		helmet.setY(79);
+		helmet.put("persistent", 1);
 		zone.add(helmet);
 	}
 
@@ -341,7 +342,8 @@ public class Deathmatch {
 			@Override
 			protected void createDialog() {
 				
-				addGreeting("Welcome to Semos deathmatch! Do you need #help?");
+				add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, new StandardInteraction.PlayerInAreaCondition(arena),
+								ConversationStates.ATTENDING, "Welcome to Semos deathmatch! Do you need #help?", null);
 				addJob("I'm the deathmatch assistant. Tell me, if you need #help on that.");
 				addHelp("Say '#start' when you're ready! Keep killing #everything that #appears. Say 'victory' when you survived.");
 				addGoodbye("I hope you enjoy the Deathmatch!");
@@ -372,7 +374,7 @@ public class Deathmatch {
 
 		
 		npc.put("class", "darkwizardnpc");
-		npc.set(88+ -9 + 17, 78+ -4 +11);
+		npc.set(100, 93);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		npcs.add(npc);
