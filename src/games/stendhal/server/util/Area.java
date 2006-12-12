@@ -36,8 +36,11 @@ public class Area {
 	 * @return true, if and only if the entity is in this area.
 	 */
 	public boolean contains(Entity entity) {
-		IRPZone diceZone = StendhalRPWorld.get().getRPZone(entity.getID());
-		return zone.equals(diceZone) && shape.contains(entity.getX(), entity.getY());
+		IRPZone entityZone = StendhalRPWorld.get().getRPZone(entity.getID());
+
+		// We have ask the zone whether it knows about the entity because
+		// player-objects stay alive some time after logout.
+		return zone.equals(entityZone) && zone.has(entity.getID()) && shape.contains(entity.getX(), entity.getY());
 	}
 
 	/**
