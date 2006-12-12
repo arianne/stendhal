@@ -29,6 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPObjectNotFoundException;
 
 import org.apache.log4j.Logger;
 
@@ -126,7 +127,11 @@ public class Deathmatch {
 				for (Creature creature : spawnedCreatures) {
 					String id = creature.getID().getZoneID();
 					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
-					zone.remove(creature);
+					try {
+						zone.remove(creature);
+					} catch (RPObjectNotFoundException e) {
+						logger.error(e, e);
+					}
 				}
 				// and finally remove this ScriptAction 
 				keepRunning = false;
@@ -394,7 +399,7 @@ public class Deathmatch {
 	private Creature add(StendhalRPZone zone, Creature template, int x, int y) {
 		Creature creature = new ArenaCreature(template.getInstance(), arena.getShape());
 		zone.assignRPObjectID(creature);
-		if (StendhalRPAction.placeat(zone, creature, x, y)) {
+		if (StendhalRPAction.placeat(zone, creature, x, y, arena.getShape())) {
 			zone.add(creature);
 			StendhalRPRuleProcessor.get().addNPC(creature);
 		} else {
