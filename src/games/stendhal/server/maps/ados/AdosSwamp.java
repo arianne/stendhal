@@ -62,8 +62,8 @@ public class AdosSwamp {
 						null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_semos_deathmatch");
-						player.teleport(zone, 17, 8, Direction.DOWN, null);			
+						StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_ados_wall_n");
+						player.teleport(zone, 100, 86, Direction.DOWN, null);			
 					}
 				});
 			}
