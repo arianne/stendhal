@@ -21,7 +21,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="non_ofensive"/>
+			<profile name="non_offensive"/>
 			<profile name="coward"/>
 		</ai>
 	</creature>
@@ -47,7 +47,7 @@
 				<noise value="click-clack-click"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="rat">
@@ -72,7 +72,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="coward"/>
 		</ai>
 	</creature>
@@ -96,7 +96,7 @@
 		</equips>
 		<ai> 
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="caverat">
@@ -119,7 +119,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="coward"/>
 		</ai>
 	</creature>
@@ -145,7 +145,7 @@
 				<noise value="Aooooooouuhhh!!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<!-- Level 2 -->
@@ -172,7 +172,7 @@
 				<noise value="Aooooooouuhhh!!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="boar">
@@ -198,7 +198,7 @@
 				<noise value="Oink!!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="wolf">
@@ -224,7 +224,7 @@
 				<noise value="Aooooooouuhhh!!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="gnome">
@@ -252,7 +252,7 @@
 				<noise value="Giiiiiaaants! Run away!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="coward"/>
 		</ai>
 	</creature>
@@ -282,7 +282,7 @@
 				<noise value="Giiiiiaaants! Run away!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="coward"/>
 		</ai>
 	</creature>
@@ -309,7 +309,7 @@
 				<noise value="SsSssSsssssss!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="poisonous" params="5,poison"/>
 		</ai>
 	</creature>
@@ -337,7 +337,7 @@
 				<noise value="Roar!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="lion">
@@ -363,7 +363,7 @@
 				<noise value="Grooooaaaarrrr!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<!-- Level 5 -->
@@ -392,7 +392,7 @@
 				<noise value="Umm! Tasty meat."/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="kobold">
@@ -420,7 +420,7 @@
 				<noise value="Grrrr! Wooof!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -447,7 +447,7 @@
 				<noise value="WOOOOOOUUUUUUUUFFFF!!!!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="non_ofensive"/>
+			<profile name="non_offensive"/>
 			<profile name="coward"/>
 		</ai>
 	</creature>
@@ -471,7 +471,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="poisonous" params="5,greater_poison"/>
 		</ai>
@@ -501,7 +501,7 @@
 				<noise value="Miiiiaaauuu!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<!-- Level 6 -->
@@ -529,7 +529,7 @@
 				<noise value="Thou shall not pass!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -554,7 +554,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -580,7 +580,7 @@
 				<noise value="Defend yourself! I can see you!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<!-- Level 7 -->
@@ -607,7 +607,7 @@
 				<noise value="SHAAAAAAA!!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="poisonous" params="5,deadly_poison"/>
 		</ai>
@@ -637,7 +637,7 @@
 				<noise value="Breakfast time!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="soldier_kobold">
@@ -665,7 +665,7 @@
 				<noise value="Woorf wer warf!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -689,7 +689,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -720,7 +720,7 @@
 			</says>
 			<profile name="archer"/>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -747,7 +747,7 @@
 				<noise value="ROOOOAAAAR!"/>
 			</says>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="elder_gargoyle">
@@ -771,7 +771,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -795,7 +795,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -824,7 +824,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -847,7 +847,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	 <creature name="soldier_goblin">
@@ -873,7 +873,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="veteran_kobold">
@@ -899,7 +899,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -928,7 +928,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="coward" params="fire"/>
 		</ai>
 	</creature>
@@ -954,7 +954,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<creature name="dark_gargoyle">
@@ -980,7 +980,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1009,7 +1009,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1038,7 +1038,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1069,7 +1069,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1100,7 +1100,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1127,7 +1127,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<!-- Level 15 -->
@@ -1153,7 +1153,7 @@
 				<noise value="Ooooouuuuuh!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="coward"/>
 		</ai>
 	</creature>
@@ -1178,7 +1178,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,150"/>
 		</ai>
@@ -1207,7 +1207,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1236,7 +1236,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1266,7 +1266,7 @@
 				<noise value="You, humans, never leave us alone!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,150"/>
 		</ai>
@@ -1296,7 +1296,7 @@
 				<noise value="You humans never leave us alone!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,150"/>
 		</ai>
@@ -1321,7 +1321,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 		</ai>
 	</creature>
 	<!-- Level 16 -->
@@ -1344,7 +1344,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1371,7 +1371,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="poisonous" params="15,poison"/>
 		</ai>
@@ -1400,7 +1400,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1430,7 +1430,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1458,7 +1458,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1486,7 +1486,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1517,7 +1517,7 @@
 		<ai>
 			<profile name="archer"/>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1544,7 +1544,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1575,7 +1575,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1605,7 +1605,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1640,7 +1640,7 @@
 				<noise value="Thou shall not kill!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1665,7 +1665,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1688,7 +1688,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
 		</ai>
@@ -1716,7 +1716,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1747,7 +1747,7 @@
 				<noise value="Feel my wrath!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
 			<profile name="poisonous" params="40,greater_poison"/>
@@ -1779,7 +1779,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1804,7 +1804,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1833,7 +1833,7 @@
 				<noise value="Uuuuhhhhh!, i'm gonna take you!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="coward"/>
 		</ai>
 	</creature>
@@ -1862,7 +1862,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1886,7 +1886,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
 		</ai>
@@ -1915,7 +1915,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1945,7 +1945,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -1974,7 +1974,7 @@
 				<noise value="Thou shall not rob!"/>
 			</says>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -2001,7 +2001,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -2026,7 +2026,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -2049,7 +2049,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -2072,7 +2072,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 		</ai>
 	</creature>
@@ -2099,7 +2099,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
 		</ai>
@@ -2131,7 +2131,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="coward"/>
 			<profile name="heal" params="5,50"/>
 		</ai>
@@ -2165,7 +2165,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
@@ -2192,7 +2192,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
 		</ai>
@@ -2220,7 +2220,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="ofensive"/>
+			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
 		</ai>
