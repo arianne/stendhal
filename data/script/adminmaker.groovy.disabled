@@ -97,5 +97,5 @@ if (player != null) {
 
 	// Create Dialog
 	npc.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, /*new StandardInteraction.QuestNotCompletedCondition("AdminmakerSeen")*/ null, ConversationStates.ATTENDING, "Hi, i will give you some items, adjust your level. Use the scroll to come back here. Use /teleport <playername> <zonename> <x> <y> to beam to a different place.", new FirstChatAction(game));
-//	npc.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, new StandardInteraction.QuestNotCompletedCondition("AdminmakerSeen"), ConversationStates.ATTENDING, "Hi, i will give you some items, adjust your level and teleport you somewhere. Use the scroll to come back here and talk to me again to be teleported somewhere else.", new FirstChatAction(game));
+//	npc.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, new StandardInteraction.QuestNotCompletedCondition("AdminmakerSeen"), ConversationStates.IDLE, "Hi, i will give you some items, adjust your level and teleport you somewhere. Use the scroll to come back here and talk to me again to be teleported somewhere else.", new FirstChatAction(game));
 }
