@@ -37,6 +37,7 @@ import org.apache.log4j.Logger;
 /**
  * Creating the Stendhal Deathmatch Game
  */
+// TODO: Split this class into the Ados part and the live deathmatch and clean that up
 public class Deathmatch {
 	private static Logger logger = Logger.getLogger(Deathmatch.class);
 	private static final String ZONE_NAME = "0_ados_wall_n";
@@ -328,8 +329,8 @@ public class Deathmatch {
 		zone.assignRPObjectID(helmet);
 		helmet.put("def", "20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");
-		helmet.setX(100);
-		helmet.setY(79);
+		helmet.setX(102);
+		helmet.setY(75);
 		helmet.put("persistent", 1);
 		zone.add(helmet);
 	}
@@ -379,7 +380,7 @@ public class Deathmatch {
 
 		
 		npc.put("class", "darkwizardnpc");
-		npc.set(100, 93);
+		npc.set(98, 75);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		npcs.add(npc);
