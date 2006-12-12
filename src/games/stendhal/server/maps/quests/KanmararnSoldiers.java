@@ -188,8 +188,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				.getRuleManager().getEntityManager().getItem(
 						"steel_boots");
 				item.put("infostring", engine.get("name"));
-				RPSlot slot=player.getSlot("bag");
-				slot.add(item);
+				player.equip(item);
 				player.setQuest("soldier_henry","done");
 				engine.setCurrentState(1);
 			} else {
