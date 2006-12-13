@@ -54,10 +54,18 @@ public class AdosCityInside {
 
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setX(22);
+		portal.setX(12);
+		portal.setY(17);
+		portal.setNumber(1);
+		portal.setDestination("0_ados_city", 0);
+		zone.addPortal(portal);
+		
+		portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setX(27);
 		portal.setY(17);
 		portal.setNumber(0);
-		portal.setDestination("0_ados_city", 0);
+		portal.setDestination("0_ados_city", 1);
 		zone.addPortal(portal);
 	}
 

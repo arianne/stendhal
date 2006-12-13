@@ -28,7 +28,7 @@ public class AdosCityOutside {
 		portal.setX(65);
 		portal.setY(16);
 		portal.setNumber(1);
-		portal.setDestination("int_ados_temple", 2);
+		portal.setDestination("int_ados_tavern_0", 1);
 		zone.addPortal(portal);
 					
 		portal = new Portal();
