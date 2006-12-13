@@ -59,23 +59,6 @@ public class AdosCityInside {
 		portal.setNumber(0);
 		portal.setDestination("0_ados_city", 0);
 		zone.addPortal(portal);
-
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.set(4, 4);
-		portal.setNumber(1);
-		portal.setDestination("int_ados_tavern_1", 0);
-		zone.addPortal(portal);
-				
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_ados_tavern_1"));
-
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.set(4, 4);
-		portal.setNumber(0);
-		portal.setDestination("int_ados_tavern_0", 1);
-		zone.addPortal(portal);
 	}
 
 	private void buildTempel(StendhalRPZone zone) {
