@@ -132,7 +132,9 @@ public class Deathmatch {
 					try {
 						StendhalRPRuleProcessor.get().removeNPC(creature);
 						zone.getNPCList().remove(creature);
-						zone.remove(creature);
+						if (zone.has(creature.getID())) {
+							zone.remove(creature);
+						}
 					} catch (RPObjectNotFoundException e) {
 						logger.error(e, e);
 					}
