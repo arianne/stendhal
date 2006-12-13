@@ -1,23 +1,26 @@
 package games.stendhal.server.maps.ados;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.PersonalChest;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.pathfinder.Path;
 import marauroa.common.game.IRPZone;
 
+/**
+ * Builds the inside of buildings in Ados City
+ *
+ * @author hendrik
+ */
 public class AdosCityInside {
 
+	/**
+	 * build the city insides
+	 */
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		buildBank((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_bank")));
-		buildSemosTavernPortals();
+		buildBakery((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_bakery")));
+		buildSemosTavernPortals((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_tavern_0")));
 		buildTempel((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_temple")));
 	}
 
@@ -48,15 +51,12 @@ public class AdosCityInside {
 		}
 	}
 
-	private void buildSemosTavernPortals() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-		"int_ados_tavern_0"));
-
+	private void buildSemosTavernPortals(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(12);
 		portal.setY(17);
-		portal.setNumber(1);
+		portal.setNumber(0);
 		portal.setDestination("0_ados_city", 0);
 		zone.addPortal(portal);
 		
@@ -64,8 +64,18 @@ public class AdosCityInside {
 		zone.assignRPObjectID(portal);
 		portal.setX(27);
 		portal.setY(17);
-		portal.setNumber(0);
+		portal.setNumber(1);
 		portal.setDestination("0_ados_city", 1);
+		zone.addPortal(portal);
+	}
+
+	private void buildBakery(StendhalRPZone zone) {
+		Portal portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setX(26);
+		portal.setY(14);
+		portal.setNumber(0);
+		portal.setDestination("0_ados_city", 10);
 		zone.addPortal(portal);
 	}
 

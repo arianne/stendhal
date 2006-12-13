@@ -192,16 +192,10 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_ados_wall");
 		// addArea("0_ados_city_w");
 		{
-			addArea("int_semos_deathmatch");
 			addArea("int_ados_tavern_0");
 			addArea("int_ados_temple");
-//			addArea("int_semos_blacksmith");
-//			addArea("int_semos_library");
-//			addArea("int_semos_storage_0");
-//			addArea("int_semos_storage_-1");
 			addArea("int_ados_bank");
-//			addArea("int_semos_townhall");
-//			addArea("int_semos_bakery");
+			addArea("int_ados_bakery");
 		}
 
 		addArea("0_ados_city");
