@@ -39,8 +39,9 @@ import org.apache.log4j.Logger;
  */
 // TODO: Split this class into the Ados part and the live deathmatch and clean that up
 public class Deathmatch {
-	private static Logger logger = Logger.getLogger(Deathmatch.class);
 	private static final String ZONE_NAME = "0_ados_wall_n";
+
+	protected static Logger logger = Logger.getLogger(Deathmatch.class);
 	private NPCList npcs = NPCList.get();
 	private StendhalRPZone zone = null;
 	protected Area arena = null;
@@ -129,6 +130,8 @@ public class Deathmatch {
 					String id = creature.getID().getZoneID();
 					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
 					try {
+						StendhalRPRuleProcessor.get().removeNPC(creature);
+						zone.getNPCList().remove(creature);
 						zone.remove(creature);
 					} catch (RPObjectNotFoundException e) {
 						logger.error(e, e);
