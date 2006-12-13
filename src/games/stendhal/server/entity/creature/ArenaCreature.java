@@ -29,11 +29,12 @@ public class ArenaCreature extends Creature {
 	@Override
 	protected List<RPEntity> getEnemyList() {
 		// get the normal enemy list and clone it
-		List<RPEntity> res = new LinkedList<RPEntity>(super.getEnemyList());
+		List<RPEntity> standardEnemyList = super.getEnemyList();
+		List<RPEntity> res = new LinkedList<RPEntity>(standardEnemyList);
 
 		// then remove all enemies which are outside the arena
-		Iterator<RPEntity> itr = res.iterator();
 		if (arena != null) {
+			Iterator<RPEntity> itr = res.iterator();
 			while (itr.hasNext()) {
 				RPEntity possibleTarget = itr.next();
 				if (!arena.contains(possibleTarget.getX(), possibleTarget.getY())) {
