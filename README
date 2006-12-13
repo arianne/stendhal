@@ -40,7 +40,7 @@ You also need Java JRE 1.5 ( http://www.java.com/en/download )
 Then just do:
   java -jar stendhal-0.53.jar
 Alternatively you can run it using Java Webstart technology at:
-  http://stendhal.ath.cx/stendhal.jnlp
+  http://stendhal.game-host.org/stendhal.jnlp
 
 To play Arianne you have to use keyboard and mouse.
 Read manual at http://arianne.sourceforge.net/wiki/index.php/StendhalManual
@@ -53,6 +53,13 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
+0.56  Dec ??, 2006
+- added Ados City (but most of it inhabitants are on holidays)
+- moved deathmatch to Ados
+- one of Haizen's  experiments went horribly wrong wrong, causing dragons to get much smarter
+- added description to items
+
+
 0.55.1 Nov 4, 2006
 - fixed /drop
 - readded missing files for key autorepeat handling on Linux based systems
