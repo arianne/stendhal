@@ -55,8 +55,9 @@ Changelog
 ---------
 0.56  Dec ??, 2006
 - added Ados City (but most of it inhabitants are on holidays)
-- moved deathmatch to Ados
 - one of Haizen's  experiments went horribly wrong wrong, causing dragons to get much smarter
+- moved deathmatch to Ados
+- implemented non offensive creatures (like deers and elephants)
 - added description to items
 
 

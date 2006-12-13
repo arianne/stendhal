@@ -429,7 +429,11 @@ public class Creature extends NPC {
 	 */
 	protected List<RPEntity> getEnemyList() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(get("zoneid"));
-		return zone.getPlayerAndFirends();
+		if (aiProfiles.keySet().contains("offensive")) {
+			return zone.getPlayerAndFirends();
+		} else {
+			return getAttackSources();
+		}
 	}
 
 	/**
