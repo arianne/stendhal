@@ -94,10 +94,9 @@ public class AdosCityInside {
 				nodes.add(new Path.Node(13, 8));
 				nodes.add(new Path.Node(13, 6));
 				nodes.add(new Path.Node(13, 10));
-				nodes.add(new Path.Node(23, 10));
-				nodes.add(new Path.Node(23, 10));
-				nodes.add(new Path.Node(23, 13));
-				nodes.add(new Path.Node(23, 10));
+				nodes.add(new Path.Node(25, 10));
+				nodes.add(new Path.Node(25, 13));
+				nodes.add(new Path.Node(25, 10));
 				nodes.add(new Path.Node(17, 10));
 				setPath(nodes, true);
 			}
