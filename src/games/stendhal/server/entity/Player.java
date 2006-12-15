@@ -867,6 +867,7 @@ public class Player extends RPEntity implements TurnListener {
 		} else {
 			quests.remove(name);
 		}
+		StendhalRPRuleProcessor.get().addGameEvent(this.getName(), "quest", name, status);
 	}
 
 	public List<String> getQuests() {
@@ -875,8 +876,6 @@ public class Player extends RPEntity implements TurnListener {
 
 		List<String> questsList = new LinkedList<String>();
 		for (String quest : quests) {
-			// why are id and zoneid stored in the quest slot?
-			// -- DHerding@gmx.de
 			if (!quest.equals("id") && !quest.equals("zoneid")) {
 				questsList.add(quest);
 			}
