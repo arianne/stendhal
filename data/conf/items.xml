@@ -1933,7 +1933,7 @@ Makes players more offensive
 	</item>
 
 	<item name="map">
-		<type class="misc" subclass="paper"/>
+		<type class="scroll" subclass="mapwithgrid"/>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>
