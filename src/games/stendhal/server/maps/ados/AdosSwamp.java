@@ -50,7 +50,7 @@ public class AdosSwamp {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hey there. You look like a reasonable fighter.");
-				addJob("I'm recruiter for the Semos #deathmatch.");
+				addJob("I'm recruiter for the Ados #deathmatch.");
 				addHelp("Have you ever heard of the Semos #deathmatch.");
 				add(ConversationStates.ATTENDING, "deathmatch", null, ConversationStates.ATTENDING, 
 					"The deathmatch is the ultimate challenge for true #heroes.", null);
