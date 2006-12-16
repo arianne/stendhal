@@ -17,7 +17,7 @@ public class AlterQuest extends ScriptImpl {
 	public void execute(Player admin, List<String> args) {
 
 		// help text
-		if (args.size() <= 2) {
+		if (args.size() < 2) {
 			admin.sendPrivateText("Usage /script AlterQuest.class <player> <questname> <state>. Ommit <state> to remove the quest.");
 			return;
 		}
