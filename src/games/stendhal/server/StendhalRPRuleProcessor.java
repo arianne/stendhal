@@ -36,6 +36,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.scripting.ScriptRunner;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -174,6 +175,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				respawnPoints.addAll(szone.getRespawnPointList());
 				plantGrowers.addAll(szone.getPlantGrowers());
 			}
+			new ScriptRunner();
 			
 			Configuration config = Configuration.getConfiguration();
 			try {
