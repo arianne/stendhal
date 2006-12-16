@@ -1,18 +1,18 @@
 /*
- * Created on Oct 29, 2003
- * Modified on Nov 17, 2006
+ * "Developed by Infosys 7, FH-Brandenburg, Germany
+ *
+ * This Software is provided as it is and is published under the GPL-License. No
+ * warranty is provided. Building systems and portals based on this system is on
+ * your own risk.
+ *
+ * @author Ken Werner modulname: Client contact: wernerk@fh-brandenburg.de"
+ *
+ * I asked the author for permission to use it in our project which links against
+ * Apache Software License 2.0 code. He responded that he releases this class under
+ * the Apache Software License 2.0 aswell.
+ *
+ * Slightly modified (by Zenix) to be used with the Stendhal MMORPG
  */
-/***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
- ***************************************************************************
- ***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
 package games.stendhal.client.gui;
 
 import java.awt.Color;
@@ -35,18 +35,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 /**
- * Developed by Infosys 7, FH-Brandenburg, Germany
- * 
- * This Software is provided as it is and is published under the GPL-License. No
- * warranty is provided. Building systems and portals based on this system is on
- * your own risk.
- * 
- * @author Ken Werner modulname: Client contact: wernerk@fh-brandenburg.de
- * 
  * ScrollerPanel can be used for displaying a scrolling text (as in movie
  * credits).
- * 
- * Slightly modified (by Zenix) to be used with the Stendhal MMORPG
  */
 public class ScrollerPanel extends JPanel {
 	private static final Logger logger = Logger.getLogger(ScrollerPanel.class);
