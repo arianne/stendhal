@@ -55,7 +55,7 @@ public class SemosPlainsNorth {
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "childnpc");
+		npc.put("class", "plinknpc");
 		npc.set(36, 108);
 		npc.initHP(100);
 		zone.addNPC(npc);
