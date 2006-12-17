@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -164,23 +165,24 @@ public class AdosCityInside {
 
 			@Override
 			protected void createDialog() {
-				addJob("I'm the local baker. We used to get a lot of orders from Ados before the war broke out and they blocked the road. At least it gives me more time to #make sandwiches for out valuable customers; everybody says they're great!");
-				addReply("bread", "Oh, Erna handles that side of the business; just go over and talk to her.");
-				addReply("cheese", "Cheese is pretty hard to find at the minute, we had a big rat infestation recently. I wonder where the little rodents took it all to?");
-				addReply("ham", "Well, you look like a skilled hunter; why not go to the forest and hunt some up fresh? Don't bring me those little pieces of meat, though... I only make sandwiches from high quality ham!");
-				addHelp("My daughter Sally might be able to help you get ham. She's a scout, you see; I think she's currently camped out south of Or'ril Castle.");				addGoodbye();
+				// addGreeting("Hi, most of the people are out of town at the moment.");
+				addJob("I'm the local baker. Although we get most of our supplies from Semos City, there is still a lot of work to do.");
+				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom"), "Ados is short on supplies. We get most of our food from Semos City which is west of here.");
+				addHelp("My wife is searching for that boy, too. So i cannot sell you anthing at the moment.");
+				addGoodbye();
 
-				// Leander makes sandwiches if you bring him bread, cheese, and ham.
+				// Arlindo makes pies if you bring him flour, meat, carrot and a mushroom
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
-				requiredResources.put("bread", new Integer(1));
-				requiredResources.put("cheese", new Integer(2));
-				requiredResources.put("ham", new Integer(1));
+				requiredResources.put("flour", new Integer(2));
+				requiredResources.put("meat", new Integer(2));
+				requiredResources.put("carrot", new Integer(1));
+				requiredResources.put("button_mushroom", new Integer(1));
 
 				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"leander_make_sandwiches", "make", "sandwich", requiredResources, 3 * 60);
+						"arlindo_make_pie", "make", "pie", requiredResources, 7 * 60);
 
 				addProducer(behaviour,
-						"Hi! I bet you've heard about my famous sandwiches and want me to #make you one, am I right?");
+						"Hi! I bet you've heard about my famous pie and want me to #make one for you, am I right?");
 			}
 		};
 		npcs.add(baker);
