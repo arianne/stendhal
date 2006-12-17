@@ -120,8 +120,8 @@ public class Deathmatch {
 						player.addXP(-xp);
 					}	
 					// send the player back to the entrance area
-					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_plains_n");
-					player.teleport(zone, 100, 115, null, player);
+					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(ZONE_NAME);
+					player.teleport(zone, 96, 75, null, player);
 				}
 			}
 			if("cancel".equals(questState)) {
