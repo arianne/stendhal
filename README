@@ -65,6 +65,7 @@ Changelog
 - technical notes
   - work on Marauroa 2.0 has begun in CVS. Stendhal requires branch MARAUROA_VERSION_01_MAINTENANCE
   - before updating a server you have to remove your data/script folder
+  - improved logging of game events
 
 
 0.55.1 Nov 4, 2006
