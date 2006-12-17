@@ -159,6 +159,8 @@ public class StendhalFirstScreen extends JFrame {
 		addComponent(contentPane, creditButton,        220, 400, 200, 32);
 		addComponent(contentPane, exitButton,          220, 440, 200, 32);
 
+		getRootPane().setDefaultButton(loginButton);
+
 		//
 		// LoginGUI
 		//
