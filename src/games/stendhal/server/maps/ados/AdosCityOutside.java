@@ -1,8 +1,18 @@
 package games.stendhal.server.maps.ados;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.pathfinder.Path;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.game.IRPZone;
 
 /**
@@ -11,6 +21,7 @@ import marauroa.common.game.IRPZone;
  * @author hendrik
  */
 public class AdosCityOutside {
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * builds the Ados City.
@@ -19,6 +30,7 @@ public class AdosCityOutside {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_ados_city"));
 		buildAdosCityAreaPortals(zone);
+		buildFidorea(zone);
 	}
 
 	private void buildAdosCityAreaPortals(StendhalRPZone zone) {
@@ -53,5 +65,33 @@ public class AdosCityOutside {
 		portal.setNumber(10);
 		portal.setDestination("int_ados_bakery", 0);
 		zone.addPortal(portal);
+	}
+
+	private void buildFidorea(StendhalRPZone zone) {
+		SpeakerNPC npc = new SpeakerNPC("Fidorea") {
+			@Override
+			protected void createPath() {
+				// npc does not move
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting("Hi, there");
+				addHelp("If you don't like your costume, you can remove it by clicking on yourself and choosing Set Outfit.");
+				addJob("I am a makeup artist living in Ados. But I come here once a year for the Semos Mine Town Revival Weeks.");
+				addQuest("Just have fun.");
+				add(ConversationStates.ATTENDING, Arrays.asList("offer"), ConversationStates.ATTENDING, "I will give you a costume free of charge.", null);
+				addGoodbye("Come back to me, if you want another costume.");
+			}
+		};
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		npc.put("class", "woman_008_npc");
+		npc.set(20, 12);
+		npc.setDirection(Direction.DOWN);
+		npc.initHP(100);
+		zone.addNPC(npc);
 	}
 }
