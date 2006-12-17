@@ -38,7 +38,7 @@ public class Buddies extends WtPanel {
 	private LinkedList<String> buddies;
 	/** Creates a new instance of Buddies */
 	public Buddies(GameObjects gameObjects) {
-		super("Buddies", j2DClient.SCREEN_WIDTH - 132, 265, 132, 200);
+		super("buddies", j2DClient.SCREEN_WIDTH - 132, 265, 132, 200);
 
 		setTitleBar(true);
 		setFrame(true);

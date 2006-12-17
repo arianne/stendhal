@@ -113,7 +113,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 		buttonMap.put("minimap", new WtButton("minimap", 150, 30,"Enable Minimap"));
 		buttonMap.put("character", new WtButton("character", 150, 30,"Enable Character"));
 		buttonMap.put("bag", new WtButton("bag", 150, 30, "Enable Inventory"));
-		buttonMap.put("buddy", new WtButton("buddy", 150, 30, "Enable Buddies"));
+		buttonMap.put("buddies", new WtButton("buddies", 150, 30, "Enable Buddies"));
 
 		int y = 10;
 
@@ -254,14 +254,14 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 		}
 
 		// check buddy panel
-		if (name.equals("buddy")) {
+		if (name.equals("buddies")) {
 			// buddy disabled?
 			if (buddiesEnabled) {
 				buddies.close();
 				buddies = null;
 				buddiesEnabled = false;
 				// be sure to update the button
-				buttonMap.get("buddy").setPressed(false);
+				buttonMap.get("buddies").setPressed(false);
 			} else if (!buddiesEnabled) {
 				// character enabled
 				buddies = new Buddies(gameObjects);
@@ -269,7 +269,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 				frame.addChild(buddies);
 				buddiesEnabled = true;
 				// be sure to update the button
-				buttonMap.get("buddy").setPressed(true);
+				buttonMap.get("buddies").setPressed(true);
 			}
 		}
 	}
