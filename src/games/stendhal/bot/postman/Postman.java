@@ -85,6 +85,9 @@ public class Postman implements Runnable {
 	                    st.nextToken(); // you:
 	                    //System.out.println(text);
 
+	                    if (from.endsWith(":")) {
+	                    	postmanIRC.sendMessage("#arianne-support", text);
+	                    }
 	                    if (arianneCmd.equals("tells")) {
 	                        // Command was send by a player 
 	                        String cmd = st.nextToken(); // cmd
@@ -110,6 +113,9 @@ public class Postman implements Runnable {
 	                    } else if (arianneCmd.equalsIgnoreCase("asks") || arianneCmd.equalsIgnoreCase("answers") || arianneCmd.equalsIgnoreCase("answer")) {
 	                    	// answer is a typo in old server
 	                    	postmanIRC.sendMessage("#arianne-support", text);
+	                    	if (arianneCmd.equalsIgnoreCase("asks")) {
+	                    		dumpPlayerPosition();
+	                    	}
 	                    }
 	                }
 
@@ -147,7 +153,7 @@ public class Postman implements Runnable {
         }
     }
 
-    /**
+	/**
      * response to "who"
      */
     private void onWhoResponse(StringTokenizer st) {
@@ -246,6 +252,13 @@ public class Postman implements Runnable {
         chat.put("text", message);
         send(chat);
     }
+
+    private void dumpPlayerPosition() {
+        RPAction chat=new RPAction();
+        chat.put("type", "script");
+        chat.put("target", "PlayerPositionMonitoring.class");
+        send(chat);
+	}
 
     
     public void run() {
