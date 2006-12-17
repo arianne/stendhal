@@ -42,26 +42,28 @@ public class PostmanIRC extends PircBot {
 	 * @throws InterruptedException 
 	 */
 	public void connect() throws NickAlreadyInUseException, IOException, IrcException, InterruptedException {
-		String nick = prop.getProperty("name");
-	    String pass = prop.getProperty("pass");
-		
-		setName(nick);
-		setLogin(prop.getProperty("login"));
-	    setVersion("0.2.1");
-	    setVerbose(true);
-	    setAutoNickChange(true);
-	    setFinger("postman on " + gameServer);
-    	connect("irc.freenode.net");
-
-	    if (!getNick().equals(nick)) {
-	    	sendMessage("NickServ", "ghost " + nick + " " + pass);
-		    Thread.sleep(5000);
-		    super.changeNick(nick);
-	    }
-
-	    joinChannel("#arianne");
-	    joinChannel("#arianne-support");
-	    sendMessage("NickServ", "identify " + pass);
+		if (Boolean.parseBoolean(prop.getProperty("irc"))) {
+			String nick = prop.getProperty("name");
+		    String pass = prop.getProperty("pass");
+			
+			setName(nick);
+			setLogin(prop.getProperty("login"));
+		    setVersion("0.2.1");
+		    setVerbose(true);
+		    setAutoNickChange(true);
+		    setFinger("postman on " + gameServer);
+	    	connect("irc.freenode.net");
+	
+		    if (!getNick().equals(nick)) {
+		    	sendMessage("NickServ", "ghost " + nick + " " + pass);
+			    Thread.sleep(5000);
+			    super.changeNick(nick);
+		    }
+	
+		    joinChannel("#arianne");
+		    joinChannel("#arianne-support");
+		    sendMessage("NickServ", "identify " + pass);
+		}
 	}
 
 	/**
