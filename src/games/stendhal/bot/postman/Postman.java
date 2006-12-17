@@ -253,6 +253,16 @@ public class Postman implements Runnable {
         send(chat);
     }
 
+    private void teleportPostman() {
+    	RPAction teleport = new RPAction();
+		teleport.put("type", "teleport");
+		teleport.put("target", "postman");
+		teleport.put("zone", "0_semos_plains_n");
+		teleport.put("x", "112");
+		teleport.put("y", "85");
+		send(teleport);
+    }
+    
     private void dumpPlayerPosition() {
         RPAction chat=new RPAction();
         chat.put("type", "script");
@@ -261,7 +271,13 @@ public class Postman implements Runnable {
 	}
 
     
-    public void run() {
+    public void run(){
+    	teleportPostman();
+        try {
+        	Thread.sleep(400);
+        } catch (InterruptedException e) {
+            logger.error(e, e);
+        }
         while (true) {
             RPAction who = new RPAction();
             who.put("type","who");
