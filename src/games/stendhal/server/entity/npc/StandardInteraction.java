@@ -69,6 +69,27 @@ public class StandardInteraction {
 
 	}
 
+	/**
+	 * An inverse condition
+	 */
+	public static class Not extends SpeakerNPC.ChatCondition {
+		private SpeakerNPC.ChatCondition condition = null;
+
+		/**
+		 * Creates a new "not"-condition
+		 *
+		 * @param condition condition which result is to be inversed
+		 */
+		public Not(SpeakerNPC.ChatCondition condition) {
+			this.condition = condition;
+		}
+
+		@Override
+		public boolean fire(Player player, SpeakerNPC engine) {
+			return !condition.fire(player, engine);
+		}
+		
+	}
 
 	// ------------------------------------------------------------------------
 	//                           quest related stuff
