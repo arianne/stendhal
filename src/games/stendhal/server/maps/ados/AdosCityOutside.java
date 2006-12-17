@@ -80,9 +80,8 @@ public class AdosCityOutside {
 			protected void createDialog() {
 				addGreeting("Hi, there");
 				addHelp("If you don't like your costume, you can remove it by clicking on yourself and choosing Set Outfit.");
-				addJob("I am a makeup artist living in Ados. But I come here once a year for the Semos Mine Town Revival Weeks.");
+				addJob("I am a makeup artist.");
 				addQuest("Just have fun.");
-				add(ConversationStates.ATTENDING, Arrays.asList("offer"), ConversationStates.ATTENDING, "I will give you a costume free of charge.", null);
 				addGoodbye("Come back to me, if you want another costume.");
 			}
 		};
