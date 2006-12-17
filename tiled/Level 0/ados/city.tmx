@@ -49,7 +49,7 @@
   </data>
   <tileproperties/>
  </layer>
- <layer name="2_object" width="128" height="128">
+ <layer name="2_object" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3d224bRRzH8XHcCGT3Kj2AqEA07QMkERdtr/oEJDQ05Q5eoS08BYIi8RT0cAM9BOgbcGpR1ZZwukMth4IQEuEk8R95R5luZndmD96D5/uR/rIzttduf7szu+vdtVJAMatSyxVrpfFPjbqsZbQfGSp1eDi5XUxuTVvoNNB9WdktJlmbW3te0I5a8wL591fZ7EyfUGUaaF/Z7A6z/M+EstnZYwH595ed3fpYqZelTmfUhtSZ8eS50+7/X3OsZ9bdhsezOyvZnpM6n1GvS72R5K/7/qMs/71nZ3dBsn3HU+9a+bP+1392dn+MlLrhqe3R5LmM/7PBzm5Tsl2Q5fug1Idy/yOpj6WW5O9lqRWpm0n+bW3/fy3v/43UtwH1ndT3owY/XA/Z2d2V/6vfk7ondV/qK6tN15aVfxv9/1/y/n9L/RNQ/0r9R/65qmz/tbH8PyV90NMF6tB457VvO6bnaotJlf0/Rcf/lbH/OVpWH2/68zsF6qa1/JP/bnUsu3nT2PRk4pLVx5v+XE/DXj+542gzXPk/O6/Uc/OPt8Vqn9r9fe6S9fiS4/F07c+Zfpn88/p43Z+b9RPNXj+x24wt6/4Fx3u9lf9RUNFmavshJH/XPGPPO2+mnj8YKDU3cE/Lfu5FqUvW/R+k3ivzj0KwMsu//Zp0P69fW6TPjr1/b9tmRoZ50tuhmunntwLzvybrpteH5N+2u459CVue/F0WB5PSXON4Fsb32XNFTcZuXWY8v5zcXrQeY3wHAABo3nGOuwKi8UDtbJNp6e2xIsW2W/88yGh/PmccyHsM1XwyVupTqc889bnUF4Hfz+fx5f/CnFKrUmtSL0kdm6v+nsjWlfyNU5L3utTppDZy8n9Y/eNE76Fk+qPUT576WeqXBvLXzkrm56TOe5Z98q/uib1KPRlY473V30/nn9fHH7GOG/Uh/+reHyn1QWBdDfhezjWe2GOHzj+vj1/0ZG/PG+Rf3S3J9HZgfRmQv2s8sccO0/+H9vFp5F+vuvPX48nIUWbsCBn/Q5F/dVn528fkFMk/azwxYwf5d8sjyeVXR9nHVZm23wLyv+WZd0z+dezTIf/ueeSZd6rkv55aVyD//qH/j1vX8+c6INN12f+UXHrcMGMHy3+z9LlgL6rpXM+zzPc/5N+8aZ3LbfIv8v0Px+43r2r+Iedm+PYNmmNGLrkfxhRVzd8+N6NIkXU3LNQ4rbxr9bRxbR7W/ZuVd60ers0z+/R1HJ7JqUM1HG+C7vJdT3Cb5X+muc79L3IdCPSbOfdfS19HsOx1AICyWP8HAAAA4sI2AAAAABAXtgEAAAAAzKKl5PectYXkN9iaaEN3uH4Xs4k2tE8vj/vGk9/fOpAsp020oRvS53OuNdSGbiD/uJF/3PQ1Xfan7vvalNWmSrYBAPpH789ZTu3HaaINQLvYXwz2F8erj/uLj8l0jlt1gnmqtD7uL9qQvM9Y9Qr5l9bH/FEf8o9bmf3FdbQBiNerQ/d9AAAAAAAAzAb2/wAAAAAAAAAAABSzKrWcqpVWPxGapM+xGQyUmhvs3HLeTTxcWZN/PEzWfybfrW8PyT8mdtYn53e3YbaZrA/smdwe3EP+MWH8j1v6PGvOuwYAAAAAoJ/+B6+hFL8AAAEA
   </data>
@@ -69,7 +69,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3asQkAIAwEQFsdVNzXhayFYKMg4l2Z6qsnhKQEAAAAAACw1vLtBAAAsxrsJ9EMgDfp9Pe5JQAAAAAAAAAAwFk7Pzm9nMsBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAfBrzOv9wAAAEA
+   H4sIAAAAAAAAAO3asQkAIAwEwLQ6qLivC7lCwDTBu/KrwMNXiQAAAAAAAAAA6GWNXAZATza9v61DAAAAAAAAAAAo9fKTc2bdHQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/OECQgN4egAAAQA=
   </data>
   <tileproperties/>
  </layer>
@@ -79,13 +79,13 @@
   </data>
   <tileproperties/>
  </layer>
- <layer name="navigation" width="128" height="128">
+ <layer name="navigation" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
   <tileproperties/>
  </layer>
- <layer name="protection" width="128" height="128">
+ <layer name="protection" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
