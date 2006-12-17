@@ -37,42 +37,48 @@
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONnYWDgH8WjeBSP4lE8ikfxoMdCWDAucXQ16Gags2npPmLl+dHEqOm2UTyKRxIGANIb9ZbgCwAA
   </data>
+  <tileproperties/>
  </layer>
  <layer name="1_terrain" width="40" height="19">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAN2Vy07DMBBFLaESu4VkDVtAfAEUqd0iHjsERaJLEI8VzwX9EMqHAL8EOx57uuCOEitTK64nobQSlq5uZI3Hx/bYOdNKfUVyfSN+UHJMVZ1ing/4BTwWasEotWjk8VV1Dr1HKd8cvtdipdaZmhBvx7Xc7fdftobDtw+ePegg804czjFJvhvw3DLdleCj/WzizOe1XBumHN8leK6YrkvyUT5pHVNt0ZxSvt3AuiT11hDMWSaW8/F1HxbwvWIv3wLqmOKx4+ALxc4ksnml7b/x8forqkP3bobu3rj5iu4d1dID9q2fpLUVunt2DcTegre136uc72p2htx70GMy3OfLbd8XWtc9vKf9LrlLLt9mxsDd8vG+UXzS90XSXL6TjIG75eN90+KjWusG1Gd89STVpPieMNdLQM9T4uPvSwt12x7xr9/ReTyP5f01aBaKnLGh3O48xLcN/4xyHWF81wz3+eSLXULOZWjlF7lJWxj/A+tE3HjgCwAA
   </data>
+  <tileproperties/>
  </layer>
  <layer name="2_object" width="40" height="19">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAA8GLq+e194AsAAA==
   </data>
+  <tileproperties/>
  </layer>
  <layer name="3_roof" width="40" height="19">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAA8GLq+e194AsAAA==
   </data>
+  <tileproperties/>
  </layer>
  <layer name="objects" width="40" height="19" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAA8GLq+e194AsAAA==
   </data>
+  <tileproperties/>
  </layer>
  <layer name="collision" width="40" height="19" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGsU0wQMJRpr7qB0/Q9l95ABS9FLbfdTOU+S4j5BaaoLh6D58cUXtsmcg3EeP/AsTR6bRxYa6+6gFhpr7KNU30t1HbUwPOwYDBgDomDyw4AsAAA==
+   H4sIAAAAAAAAANPiYmDQGsU0wcgAxscmRwtAqvvoDajpPmrEz3ByHza1xLqRFP9Q033UCBNK3EdILTXBcHQfvriidtkzEO6jR/6FiSPT6GJD3X3UAkPNfZTqG+nuozamhx2DAQMADxa14+ALAAA=
   </data>
+  <tileproperties/>
  </layer>
- <layer name="navigation" width="40" height="19">
+ <layer name="navigation" width="40" height="19" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAA8GLq+e194AsAAA==
   </data>
+  <tileproperties/>
  </layer>
- <layer name="protection" width="40" height="19" opacity="0.18">
+ <layer name="protection" width="40" height="19" visible="0" opacity="0.18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DMQkAAAwDsN6zUv/+6mMkkF5SVVX1xQFDw+yO4AsAAA==
+   H4sIAAAAAAAAANPmYmDQHsWjeBSP4lE8ikfxKB6iGASQaWxyA+k2dIBNbqDDcBQPLwwA5H4v1eALAAA=
   </data>
+  <tileproperties/>
  </layer>
 </map>
-
- 	  	 
