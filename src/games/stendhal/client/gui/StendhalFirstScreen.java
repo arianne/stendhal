@@ -104,12 +104,23 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		JButton createAccountButton = new JButton();
 		createAccountButton.setText("Create an account");
-		createAccountButton.setMnemonic(KeyEvent.VK_C);
+		createAccountButton.setMnemonic(KeyEvent.VK_A);
 		createAccountButton.setToolTipText("Press this button to create an account on a Stendhal server.");
 		createAccountButton.setEnabled(true);
 		createAccountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				createAccount();
+			}
+		});
+		//
+		// creaditButton
+		//
+		JButton creditButton = new JButton();
+		creditButton.setText("Credits");
+		creditButton.setMnemonic(KeyEvent.VK_C);
+		creditButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showCredits();
 			}
 		});
 		//
@@ -143,9 +154,10 @@ public class StendhalFirstScreen extends JFrame {
 			contentPane.add(X11KeyConfig.get());
 		}
 
-		addComponent(contentPane, loginButton, 220, 340, 200, 32);
-		addComponent(contentPane, createAccountButton, 220, 380, 200, 32);
-		addComponent(contentPane, exitButton, 220, 420, 200, 32);
+		addComponent(contentPane, loginButton,         220, 320, 200, 32);
+		addComponent(contentPane, createAccountButton, 220, 360, 200, 32);
+		addComponent(contentPane, creditButton,        220, 400, 200, 32);
+		addComponent(contentPane, exitButton,          220, 440, 200, 32);
 
 		//
 		// LoginGUI
@@ -162,7 +174,12 @@ public class StendhalFirstScreen extends JFrame {
 		checkVersion();
 		new LoginDialog(StendhalFirstScreen.this, client);
 	}
-	
+
+	private void showCredits() {
+		checkVersion();
+		new CreditsDialog(StendhalFirstScreen.this);
+	}
+
 	private void checkVersion() {
         HttpClient httpClient = new HttpClient(stendhal.VERSION_LOCATION);
         String version = httpClient.fetchFirstLine();
