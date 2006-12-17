@@ -352,9 +352,18 @@ public class Deathmatch {
 
 			@Override
 			protected void createDialog() {
-				
+
+				// player is outside the fence
+				add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES,
+						new StandardInteraction.Not(new StandardInteraction.PlayerInAreaCondition(arena)),
+						ConversationStates.INFORMATION_1, "Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join", null);
+				add(ConversationStates.INFORMATION_1, "Thonatus", null, ConversationStates.INFORMATION_1,
+						"Thonatus is the official Deathmatch Recrutor. He is in the swamp south west of Ados.", null);
+
+
+				// player is inside
 				add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, new StandardInteraction.PlayerInAreaCondition(arena),
-								ConversationStates.ATTENDING, "Welcome to Semos deathmatch! Do you need #help?", null);
+						ConversationStates.ATTENDING, "Welcome to Ados Deathmatch! Do you need #help?", null);
 				addJob("I'm the deathmatch assistant. Tell me, if you need #help on that.");
 				addHelp("Say '#start' when you're ready! Keep killing #everything that #appears. Say 'victory' when you survived.");
 				addGoodbye("I hope you enjoy the Deathmatch!");
