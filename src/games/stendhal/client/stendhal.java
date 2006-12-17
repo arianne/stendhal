@@ -101,9 +101,9 @@ public class stendhal extends Thread {
 		try {
 			// only enable SystemLookAndFeelClassName for MS Windows because of bug
 			// http://sourceforge.net/tracker/index.php?func=detail&aid=1601437&group_id=1111&atid=101111
-			if (System.getProperty("os.name", "").toLowerCase().indexOf("windows") > -1) {
+			/*if (System.getProperty("os.name", "").toLowerCase().indexOf("windows") > -1) {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			}
+			}*/
 		} catch (Exception e) {
 			logger.error("Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel", e);
 		}
