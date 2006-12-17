@@ -3,13 +3,11 @@ package games.stendhal.server.maps.ados;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -81,7 +79,7 @@ public class AdosCityOutside {
 				addGreeting("Hi, there");
 				addHelp("If you don't like your costume, you can remove it by clicking on yourself and choosing Set Outfit.");
 				addJob("I am a makeup artist.");
-				addQuest("Just have fun.");
+				addReply("offer", "Normally i sell costumes. But i ran out of clothes and cannot by new ones until the cloth seller gets back from his search.");
 				addGoodbye("Come back to me, if you want another costume.");
 			}
 		};
