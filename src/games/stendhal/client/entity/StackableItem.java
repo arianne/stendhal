@@ -41,15 +41,19 @@ public class StackableItem extends Item {
 
 		if (diff.has("quantity")) {
 			quantity = diff.getInt("quantity");
-			quantityImage = GameScreen.get().createString(
-					Integer.toString(quantity), Color.white);
+			if (quantity == 1) {
+				quantityImage = null;
+			} else {
+				quantityImage = GameScreen.get().createString(
+						Integer.toString(quantity), Color.white);
+			}
 		}
 	}
 
 	public void draw(GameScreen screen) {
 		super.draw(screen);
 
-		if (quantityImage != null) {
+		if ((quantityImage != null)) {
 			screen.draw(quantityImage, x, y);
 		}
 	}
