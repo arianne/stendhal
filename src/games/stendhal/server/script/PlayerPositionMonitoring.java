@@ -59,7 +59,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
-		TurnNotifier.get().notifyInTurns(0, new PlayerPositionListener(admin), null);
+		TurnNotifier.get().notifyInTurns(1, new PlayerPositionListener(admin), null);
 	}
 
 	
