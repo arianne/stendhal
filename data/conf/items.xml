@@ -1506,23 +1506,22 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-        <item name="pie">
-                <type class="food" subclass="pie"/>
-                <stackable/>
-                <description>You see a meat and vegetable pie.</description>
-                <attributes>
-                        <quantity value="1"/>
-                        <amount value="150"/><!--suggested value only! please
-		change at will-->
-                        <regen value="12"/><!--suggested value only! please
-                change at will-->
-                        <frequency value="30"/>
-                </attributes>
-                <weight value="1"/>
-                <equipable>
-                        <slot name="bag"/>
-                </equipable>
-        </item>
+
+	<item name="pie">
+		<type class="food" subclass="piesmall" />
+		<stackable />
+		<description>You see a meat and vegetable pie.</description>
+		<attributes>
+			<quantity value="1" />
+			<amount value="150" />
+			<regen value="12" />
+			<frequency value="30" />
+		</attributes>
+		<weight value="1" />
+		<equipable>
+			<slot name="bag" />
+		</equipable>
+	</item>
 
 	<item name="button_mushroom">
 		<type class="food" subclass="button_mushroom"/>
