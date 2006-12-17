@@ -225,7 +225,7 @@ public class IntroducePlayers extends AbstractQuest {
 				Arrays.asList("herbs", "arandula"),
 				null,
 				ConversationStates.ATTENDING,
-				"Poor Tad is always feeling sick... He'll give a good reward to you for helping get his medicine, though.",
+				"North of Semos, near the tree grove, grows a herb called arandula.",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
