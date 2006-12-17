@@ -40,30 +40,31 @@ public class AdosCityInside {
 	}
 
 	private void buildBank(StendhalRPZone zone) {
+
+		// portal from bank to city
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
-		portal.setX(9);
-		portal.setY(30);
+		portal.setX(22);
+		portal.setY(17);
 		portal.setNumber(0);
 		portal.setDestination("0_ados_city", 6);
 		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(10);
-		portal.setY(30);
-		portal.setNumber(1);
-		portal.setDestination("0_ados_city", 6);
-		zone.addPortal(portal);
-		for (int i = 0; i < 4; i++) {
-			PersonalChest chest = new PersonalChest();
-			zone.assignRPObjectID(chest);
-			chest.set(2 + 6 * i, 2);
-			zone.add(chest);
-			chest = new PersonalChest();
-			zone.assignRPObjectID(chest);
-			chest.set(2 + 6 * i, 13);
-			zone.add(chest);
-		}
+
+		// personal chest
+		PersonalChest chest = new PersonalChest();
+		zone.assignRPObjectID(chest);
+		chest.set(3, 12);
+		zone.add(chest);
+
+		chest = new PersonalChest();
+		zone.assignRPObjectID(chest);
+		chest.set(5, 12);
+		zone.add(chest);
+		
+		chest = new PersonalChest();
+		zone.assignRPObjectID(chest);
+		chest.set(10, 12);
+		zone.add(chest);
 	}
 
 	private void buildSemosTavern(StendhalRPZone zone) {
