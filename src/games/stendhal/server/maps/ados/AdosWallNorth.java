@@ -1,13 +1,7 @@
-/**
- * 
- */
 package games.stendhal.server.maps.ados;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Player;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.Path;
@@ -18,8 +12,9 @@ import java.util.List;
 import marauroa.common.game.IRPZone;
 
 /**
- * @author Administrator
+ * Ados Wall North population
  *
+ * @author hendrik
  */
 public class AdosWallNorth {
 
@@ -31,6 +26,11 @@ private NPCList npcs = NPCList.get();;
 			"0_ados_wall_n")));
 	}
 
+	/**
+	 * Creatures a soldier telling people a story, why Ados is so empty.
+	 *
+	 * @param zone StendhalRPZone
+	 */
 	private void buildAdosGreetingSoldier(StendhalRPZone zone) {
 		
 		SpeakerNPC npc = new SpeakerNPC("Julius") {
@@ -44,8 +44,9 @@ private NPCList npcs = NPCList.get();;
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hi, have you heard the latest news? A small boy is missing and almost the whole population is out of town looking for him.");
-				addJob("I protect Ados City against looters while most of the people are out of town searching for that boy.");
+				addGreeting("Hi, have you heard the latest news? A small girl called #Susi is missing and almost the whole population is out of town looking for her.");
+				addReply("susi", "This girl was last seen during the Semos Mine Town Revival Weeks. But she did not return after the end of the fair.");
+				addJob("I protect Ados City against looters while most of the people are out of town searching for that girl.");
 				addHelp("Just look around, some people are still in Ados doing their work.");
 				addGoodbye("I hope you will enjoy your visit to Ados anyway.");
 			}
