@@ -334,7 +334,7 @@ public class ChatLineParser {
 						"- /adminlevel <player> [<newlevel>] \t\tDisplay or set the adminlevel of the specified <player>",
 						"- /tellall <message> \t\tSend a private message to all logged-in players",
 						"- /jail <player> <minutes> <reason>\t\tImprisons the player for a given length of time",
-						"- /script <scriptname> \t\tLoad (or reload) a 'groovy' script on the server",
+						"- /script <scriptname> \t\tLoad (or reload) a script on the server",
 						"- /teleport <player> <zone> <x> <y> \tTeleport the specified <player> to the given location",
 						"- /teleportto <player> \t\tTeleport yourself near the specified player",
 						"- /ghostmode \t\t\t Makes yourself invisible and intangible",
