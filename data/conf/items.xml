@@ -1986,6 +1986,17 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
+	
+<!-- box section -->
+	<item name="present">
+		<type class="box" subclass="present"/>
+		<description>You see a christmas present. Open it.</description>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
 
 <!--
 Hehe, we must have some special GM item after all :P
