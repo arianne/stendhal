@@ -125,7 +125,7 @@ public class AdosCityOutside {
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, ConversationStates.IDLE,
-					"Mummy said, I am not allowed to talk to strangers. She is worried about that lost girl. Bye.",
+					"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. Bye.",
 					null);
 			}
 		};
