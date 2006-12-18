@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Direction;
+import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Player;
@@ -11,8 +13,12 @@ import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 /**
  * QUEST: Meet Santa anywhere around the World.
@@ -33,7 +39,10 @@ import java.util.List;
  */
 public class MeetSanta extends AbstractQuest implements TurnListener {
 	private static final String QUEST_SLOT = "meet_santa_06";
+	private static Logger logger = Logger.getLogger(MeetSanta.class);
 	private SpeakerNPC santa = null;
+	private StendhalRPZone zone = null;
+	private ArrayList<StendhalRPZone> zones = null;
 
 	@Override
 	public void init(String name) {
@@ -75,15 +84,30 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		};
 		npcs.add(santa);
 		santa.put("class", "santaclausnpc");
-		santa.set(17, 12);
 		santa.initHP(100);
 
 		// start in int_admin_playground
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_admin_playground");
+		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_admin_playground");
 		zone.assignRPObjectID(santa);
+		santa.set(17, 12);
 		zone.addNPC(santa);
 
 		return santa;
+	}
+
+	/**
+	 * Creates an ArrayList of "outside" zones for Santa.
+	 */
+	private void listZones() {
+		Iterator itr = StendhalRPWorld.get().iterator();
+		zones = new ArrayList<StendhalRPZone>();
+        while (itr.hasNext()) {
+        	StendhalRPZone aZone = (StendhalRPZone) itr.next();
+        	String zoneName = aZone.getID().getID();
+        	if (zoneName.startsWith("0_") && !zoneName.equals("0_nalwor_city") && !zoneName.equals("0_orril_castle")) {
+        		zones.add(aZone);
+        	}
+        }
 	}
 
 	public void onTurnReached(int currentTurn, String message) {
@@ -91,17 +115,35 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		santa.say("Bye.");
 
 		// Teleport to another random place
+		zone.remove(santa);
 
+		boolean found = false;
+		while (!found) {
+			zone = zones.get(Rand.rand(zones.size()));
+			int x = Rand.rand(zone.getWidth() - 4) + 2;
+			int y = Rand.rand(zone.getHeight() - 5) + 2;
+			if (!zone.collides(x, y) && !zone.collides(x, y + 1)) {
+				zone.assignRPObjectID(santa);
+				santa.set(x, y);
+				santa.setDirection(Direction.RIGHT);
+				zone.addNPC(santa);
+				found = true;
+				logger.info("Placing Santa at " + zone.getID().getID() + " " + x + " " + y);
+			} else {
+				logger.warn("Cannot place Santa at " + zone.getID().getID() + " " + x + " " + y);
+			}
+		}
 
 		// Schedule so we are notified again in 5 minutes
-		TurnNotifier.get().notifyInTurns(5*60*3, this, null);
+		TurnNotifier.get().notifyInTurns(5 * 60 * 3, this, null);
 	}
 
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		createSanta();
-		TurnNotifier.get().notifyInTurns(6, this, null);
+		listZones();
+		TurnNotifier.get().notifyInTurns(60, this, null);
 	}
 
 }
