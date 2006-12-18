@@ -36,7 +36,7 @@ public class AdosCityInside {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		buildBank((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_bank")));
 		buildBakery((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_bakery")));
-		buildSemosTavern((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_tavern_0")));
+		buildTavern((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_tavern_0")));
 		buildTempel((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_temple")));
 	}
 
@@ -68,7 +68,7 @@ public class AdosCityInside {
 		zone.add(chest);
 	}
 
-	private void buildSemosTavern(StendhalRPZone zone) {
+	private void buildTavern(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(12);
@@ -86,7 +86,7 @@ public class AdosCityInside {
 		zone.addPortal(portal);
 
 		
-		SpeakerNPC tavernMaid = new SpeakerNPC("Corália") {
+		SpeakerNPC tavernMaid = new SpeakerNPC("Coralia") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
