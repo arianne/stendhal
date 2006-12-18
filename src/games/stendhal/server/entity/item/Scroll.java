@@ -87,6 +87,11 @@ public class Scroll extends StackableItem implements UseListener {
 	}
 
 	public void onUsed(RPEntity user) {
+
+		// maps are scrolls without any special actions
+		if (this.getName().startsWith("map")) {
+			return;
+		}
 		
 		if (this.isContained()) {
 			// We modify the base container if the object change.
