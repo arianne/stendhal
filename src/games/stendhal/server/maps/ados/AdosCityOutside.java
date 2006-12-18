@@ -3,6 +3,7 @@ package games.stendhal.server.maps.ados;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
@@ -94,27 +95,48 @@ public class AdosCityOutside {
 	}
 
 	private void buildKids(StendhalRPZone zone) {
-		/*for (int i = 1; i < 8; i++) {
-		SpeakerNPC npc = new SpeakerNPC("Kid" + i) {
+		String[] names = {"Jens", "George", "Anna"};
+		String[] classes = {"kid3npc", "kid4npc", "kid5npc"};
+		Path.Node[] start = new Path.Node[] {new Path.Node(40, 28), new Path.Node(40, 40), new Path.Node(45, 28)};
+		for (int i = 0; i < 3; i++) {
+		SpeakerNPC npc = new SpeakerNPC(names[i]) {
 			@Override
 			protected void createPath() {
-				// npc does not move
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				nodes.add(new Path.Node(40,28));
+				nodes.add(new Path.Node(40,31));
+				nodes.add(new Path.Node(34,31));
+				nodes.add(new Path.Node(34,35));
+				nodes.add(new Path.Node(39,35));
+				nodes.add(new Path.Node(39,40));
+				nodes.add(new Path.Node(40,40));
+				nodes.add(new Path.Node(40,38));
+				nodes.add(new Path.Node(45,38));
+				nodes.add(new Path.Node(45,42));
+				nodes.add(new Path.Node(51,42));
+				nodes.add(new Path.Node(51,36));
+				nodes.add(new Path.Node(46,36));
+				nodes.add(new Path.Node(46,29));
+				nodes.add(new Path.Node(45,29));
+				nodes.add(new Path.Node(45,28));
+				setPath(nodes, true);
 			}
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Sorry");
+				add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, ConversationStates.IDLE,
+					"Mummy said, I am not allowed to talk to strangers. She is worried about that lost girl. Bye.",
+					null);
 			}
 		};
 		npcs.add(npc);
+
 		zone.assignRPObjectID(npc);
-		npc.put("class", "kid"+i+"npc");
-		npc.set(20 + i * 2, 100);
+		npc.put("class", classes[i]);
+		npc.set(start[i].x, start[i].y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		}*/
+		}
 	}
 }
