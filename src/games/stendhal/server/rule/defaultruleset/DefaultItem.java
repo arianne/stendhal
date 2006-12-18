@@ -14,6 +14,7 @@ package games.stendhal.server.rule.defaultruleset;
 
 import games.stendhal.common.Pair;
 import games.stendhal.server.entity.item.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,6 +106,8 @@ public class DefaultItem {
 			item = new Dice(attributes);
 		} else if (clazz.equals("misc") && subclazz.equals("token")) {
 			item = new Token(name, clazz, subclazz, attributes);
+		} else if (clazz.equals("box")) {
+			item = new Box(name, clazz, subclazz, attributes);
 		} else if (stackable) {
 			item = new StackableItem(name, clazz, subclazz, attributes);
 		} else {
