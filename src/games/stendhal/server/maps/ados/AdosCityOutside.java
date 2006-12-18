@@ -29,6 +29,7 @@ public class AdosCityOutside {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_ados_city"));
 		buildAdosCityAreaPortals(zone);
 		buildFidorea(zone);
+		buildKids(zone);
 	}
 
 	private void buildAdosCityAreaPortals(StendhalRPZone zone) {
@@ -90,5 +91,30 @@ public class AdosCityOutside {
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.addNPC(npc);
+	}
+
+	private void buildKids(StendhalRPZone zone) {
+		/*for (int i = 1; i < 8; i++) {
+		SpeakerNPC npc = new SpeakerNPC("Kid" + i) {
+			@Override
+			protected void createPath() {
+				// npc does not move
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting("Sorry");
+			}
+		};
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		npc.put("class", "kid"+i+"npc");
+		npc.set(20 + i * 2, 100);
+		npc.setDirection(Direction.DOWN);
+		npc.initHP(100);
+		zone.addNPC(npc);
+		}*/
 	}
 }

@@ -114,7 +114,7 @@ public class AdosCityInside {
 		};
 		npcs.add(tavernMaid);
 		zone.assignRPObjectID(tavernMaid);
-		tavernMaid.put("class", "tavernbarmaidnpc");
+		tavernMaid.put("class", "maidnpc");
 		tavernMaid.set(17, 12);
 		tavernMaid.initHP(100);
 		zone.addNPC(tavernMaid);
@@ -187,7 +187,7 @@ public class AdosCityInside {
 		};
 		npcs.add(baker);
 		zone.assignRPObjectID(baker);
-		baker.put("class", "chefnpc");
+		baker.put("class", "bakernpc");
 		baker.setDirection(Direction.DOWN);
 		baker.set(15, 2);
 		baker.initHP(100);
