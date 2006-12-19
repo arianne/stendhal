@@ -153,7 +153,7 @@ public class CreditsDialog extends JDialog {
 		"whom we were glad we could help",
 		"",
 		"Ricardo",
-		"for rewarding the lucky",
+		"luck be a lady, tonight",
 		"",
 		"Sally",
 		"for keeping her fire burning bright",
