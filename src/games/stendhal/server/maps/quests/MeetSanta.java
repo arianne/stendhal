@@ -117,6 +117,9 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		// Say bye
 		santa.say("Bye.");
 
+		// We make santa to stop speaking anyone.
+		santa.setCurrentState(ConversationStates.IDLE);
+
 		// Teleport to another random place
 		zone.remove(santa);
 
@@ -129,7 +132,8 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 				zone.assignRPObjectID(santa);
 				santa.set(x, y);
 				santa.setDirection(Direction.RIGHT);
-				zone.addNPC(santa);
+
+				zone.add(santa);
 				found = true;
 				logger.info("Placing Santa at " + zone.getID().getID() + " " + x + " " + y);
 			} else {
