@@ -107,7 +107,8 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
         	if (zoneName.startsWith("0_") && !zoneName.equals("0_nalwor_city") 
         		&& !zoneName.equals("0_orril_castle") 
         		&& !zoneName.equals("0_ados_swamp")
-        		&& !zoneName.equals("0_ados_outside_w")) {
+        		&& !zoneName.equals("0_ados_outside_w")
+        		&& !zoneName.equals("0_ados_wall_n")) {
         		zones.add(aZone);
         	}
         }
