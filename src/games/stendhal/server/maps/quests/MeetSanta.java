@@ -104,7 +104,8 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
         while (itr.hasNext()) {
         	StendhalRPZone aZone = (StendhalRPZone) itr.next();
         	String zoneName = aZone.getID().getID();
-        	if (zoneName.startsWith("0_") && !zoneName.equals("0_nalwor_city") && !zoneName.equals("0_orril_castle")) {
+        	if (zoneName.startsWith("0_") && !zoneName.equals("0_nalwor_city") 
+        		&& !zoneName.equals("0_orril_castle") && !zoneName.equals("0_ados_swamp")) {
         		zones.add(aZone);
         	}
         }
