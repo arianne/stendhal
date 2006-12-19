@@ -53,6 +53,7 @@ public class StendhalQuestSystem {
 		loadQuest("MeetKetteh");
 		loadQuest("MeetMonogenes");
 		loadQuest("MeetNomyr");
+		loadQuest("MeetSanta");
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
 		loadQuest("OrcishHappyMeal");
