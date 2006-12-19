@@ -38,7 +38,7 @@ You also need Java JRE 1.5 ( http://www.java.com/en/download )
 Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
-  java -jar stendhal-0.53.jar
+  java -jar stendhal-0.56.jar
 Alternatively you can run it using Java Webstart technology at:
   http://stendhal.game-host.org/stendhal.jnlp
 
@@ -61,6 +61,7 @@ Changelog
 - implemented non offensive creatures (like deers and elephants)
 - added description to items
 - added credits and gave a name to previously unnamed NPCs
+- Santa is visiting Faiumoni
 - small fixes and improvements
 - technical notes
   - work on Marauroa 2.0 has begun in CVS. Stendhal requires branch MARAUROA_VERSION_01_MAINTENANCE
