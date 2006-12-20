@@ -12,7 +12,6 @@ import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
-import games.stendhal.server.pathfinder.Pathfinder;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -41,7 +40,8 @@ import org.apache.log4j.Logger;
 public class MeetSanta extends AbstractQuest implements TurnListener {
 	private static final String QUEST_SLOT = "meet_santa_06";
 	private static Logger logger = Logger.getLogger(MeetSanta.class);
-	private SpeakerNPC santa = null;
+	/** the Santa NPC */
+	protected SpeakerNPC santa = null;
 	private StendhalRPZone zone = null;
 	private ArrayList<StendhalRPZone> zones = null;
 
@@ -145,15 +145,19 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 				logger.warn("Cannot place Santa at " + zone.getID().getID() + " " + x + " " + y);
 			}
 		}
-		santa.say("Ho, ho, ho! Merry Christmas!");
 
 		// try to build a path (but give up after 10 successless tries)
 		for (int i = 0; i < 10; i++) {
 			int tx = Rand.rand(zone.getWidth() - 4) + 2;
 			int ty = Rand.rand(zone.getHeight() - 5) + 2;
 			List<Path.Node> path = Path.searchPath(santa, tx, ty);
-			// logger.info(path);
-			if ((path != null) && path.size() > 1) {
+			int size = path.size();
+			if ((path != null) && size > 1) {
+				// create path back
+				for (int j = size - 1; j > 0; j--) {
+					path.add(path.get(j));
+				}
+				logger.info(path);
 				santa.setPath(path, true);
 				break;
 			}
@@ -169,6 +173,14 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		createSanta();
 		listZones();
 		TurnNotifier.get().notifyInTurns(60, this, null);
+
+		// say something every minute
+		TurnNotifier.get().notifyInTurns(60, new TurnListener() {
+			public void onTurnReached(int currentTurn, String message) {
+				santa.say("Ho, ho, ho! Merry Christmas!");
+				TurnNotifier.get().notifyInTurns(60 * 3, this, null);
+			}
+		}, null);
 	}
 
 }
