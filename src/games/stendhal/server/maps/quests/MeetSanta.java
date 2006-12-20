@@ -105,7 +105,7 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
         while (itr.hasNext()) {
         	StendhalRPZone aZone = (StendhalRPZone) itr.next();
         	String zoneName = aZone.getID().getID();
-        	if (zoneName.startsWith("0_semos_city") && !zoneName.equals("0_nalwor_city") 
+        	if (zoneName.startsWith("0") && !zoneName.equals("0_nalwor_city") 
         		&& !zoneName.equals("0_orril_castle") 
         		&& !zoneName.equals("0_ados_swamp")
         		&& !zoneName.equals("0_ados_outside_w")
@@ -160,7 +160,7 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		}
 
 		// Schedule so we are notified again in 5 minutes
-		TurnNotifier.get().notifyInTurns(10 * 3, this, null);
+		TurnNotifier.get().notifyInTurns(5 * 60 * 3, this, null);
 	}
 
 	@Override
