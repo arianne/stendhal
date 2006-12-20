@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Pathfinder;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -104,7 +105,7 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
         while (itr.hasNext()) {
         	StendhalRPZone aZone = (StendhalRPZone) itr.next();
         	String zoneName = aZone.getID().getID();
-        	if (zoneName.startsWith("0_") && !zoneName.equals("0_nalwor_city") 
+        	if (zoneName.startsWith("0_semos_city") && !zoneName.equals("0_nalwor_city") 
         		&& !zoneName.equals("0_orril_castle") 
         		&& !zoneName.equals("0_ados_swamp")
         		&& !zoneName.equals("0_ados_outside_w")
@@ -121,14 +122,17 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		// We make santa to stop speaking anyone.
 		santa.setCurrentState(ConversationStates.IDLE);
 
-		// Teleport to another random place
+		// remove santa from old zone
 		zone.remove(santa);
 
+		// Teleport to another random place
 		boolean found = false;
+		int x = -1;
+		int y = -1;
 		while (!found) {
 			zone = zones.get(Rand.rand(zones.size()));
-			int x = Rand.rand(zone.getWidth() - 4) + 2;
-			int y = Rand.rand(zone.getHeight() - 5) + 2;
+			x = Rand.rand(zone.getWidth() - 4) + 2;
+			y = Rand.rand(zone.getHeight() - 5) + 2;
 			if (!zone.collides(x, y) && !zone.collides(x, y + 1)) {
 				zone.assignRPObjectID(santa);
 				santa.set(x, y);
@@ -143,9 +147,20 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		}
 		santa.say("Ho, ho, ho! Merry Christmas!");
 
+		// try to build a path (but give up after 10 successless tries)
+		for (int i = 0; i < 10; i++) {
+			int tx = Rand.rand(zone.getWidth() - 4) + 2;
+			int ty = Rand.rand(zone.getHeight() - 5) + 2;
+			List<Path.Node> path = Path.searchPath(santa, tx, ty);
+			// logger.info(path);
+			if ((path != null) && path.size() > 1) {
+				santa.setPath(path, true);
+				break;
+			}
+		}
 
 		// Schedule so we are notified again in 5 minutes
-		TurnNotifier.get().notifyInTurns(5 * 60 * 3, this, null);
+		TurnNotifier.get().notifyInTurns(10 * 3, this, null);
 	}
 
 	@Override
