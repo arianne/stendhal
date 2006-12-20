@@ -40,7 +40,8 @@ import org.apache.log4j.Logger;
 public class MeetSanta extends AbstractQuest implements TurnListener {
 	private static final String QUEST_SLOT = "meet_santa_06";
 	private static Logger logger = Logger.getLogger(MeetSanta.class);
-	private SpeakerNPC santa = null;
+	/** the Santa NPC */
+	protected SpeakerNPC santa = null;
 	private StendhalRPZone zone = null;
 	private ArrayList<StendhalRPZone> zones = null;
 
@@ -104,7 +105,7 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
         while (itr.hasNext()) {
         	StendhalRPZone aZone = (StendhalRPZone) itr.next();
         	String zoneName = aZone.getID().getID();
-        	if (zoneName.startsWith("0_") && !zoneName.equals("0_nalwor_city") 
+        	if (zoneName.startsWith("0") && !zoneName.equals("0_nalwor_city") 
         		&& !zoneName.equals("0_orril_castle") 
         		&& !zoneName.equals("0_ados_swamp")
         		&& !zoneName.equals("0_ados_outside_w")
@@ -121,14 +122,17 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		// We make santa to stop speaking anyone.
 		santa.setCurrentState(ConversationStates.IDLE);
 
-		// Teleport to another random place
+		// remove santa from old zone
 		zone.remove(santa);
 
+		// Teleport to another random place
 		boolean found = false;
+		int x = -1;
+		int y = -1;
 		while (!found) {
 			zone = zones.get(Rand.rand(zones.size()));
-			int x = Rand.rand(zone.getWidth() - 4) + 2;
-			int y = Rand.rand(zone.getHeight() - 5) + 2;
+			x = Rand.rand(zone.getWidth() - 4) + 2;
+			y = Rand.rand(zone.getHeight() - 5) + 2;
 			if (!zone.collides(x, y) && !zone.collides(x, y + 1)) {
 				zone.assignRPObjectID(santa);
 				santa.set(x, y);
@@ -142,6 +146,23 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 			}
 		}
 
+		// try to build a path (but give up after 10 successless tries)
+		for (int i = 0; i < 10; i++) {
+			int tx = Rand.rand(zone.getWidth() - 4) + 2;
+			int ty = Rand.rand(zone.getHeight() - 5) + 2;
+			List<Path.Node> path = Path.searchPath(santa, tx, ty);
+			int size = path.size();
+			if ((path != null) && size > 1) {
+				// create path back
+				for (int j = size - 1; j > 0; j--) {
+					path.add(path.get(j));
+				}
+				logger.info(path);
+				santa.setPath(path, true);
+				break;
+			}
+		}
+
 		// Schedule so we are notified again in 5 minutes
 		TurnNotifier.get().notifyInTurns(5 * 60 * 3, this, null);
 	}
@@ -152,6 +173,14 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		createSanta();
 		listZones();
 		TurnNotifier.get().notifyInTurns(60, this, null);
+
+		// say something every minute
+		TurnNotifier.get().notifyInTurns(60, new TurnListener() {
+			public void onTurnReached(int currentTurn, String message) {
+				santa.say("Ho, ho, ho! Merry Christmas!");
+				TurnNotifier.get().notifyInTurns(60 * 3, this, null);
+			}
+		}, null);
 	}
 
 }
