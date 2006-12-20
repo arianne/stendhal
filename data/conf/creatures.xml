@@ -591,7 +591,7 @@
 			<def value="12"/>
 			<hp value="70"/>
 			<speed value="0.6"/>
-			<size value="1,2"/>
+			<size value="1,1"/>
 		</attributes>
 		<level value="7"/>
 		<experience value="100"/>
