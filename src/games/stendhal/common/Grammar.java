@@ -173,58 +173,63 @@ public class Grammar {
 	 */
 	public static String plural(String noun) {
 		String enoun = fullform(noun);
-		if (enoun.endsWith("sheep")) {
+		try {
+			if (enoun.endsWith("sheep")) {
+				return enoun;
+			} else if (enoun.indexOf(" of ") > -1) {
+				return plural(enoun.substring(0, enoun.indexOf(" of ") - 1)) + enoun.substring(enoun.indexOf(" of "));
+			} else if (enoun.endsWith("staff")) {
+				return enoun.substring(0, enoun.length() - 3) + "ves";
+			} else if (enoun.endsWith("f") && "aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1) {
+				return enoun.substring(0, enoun.length() - 2) + "ves";
+			} else if (enoun.endsWith("fe")) {
+				return enoun.substring(0, enoun.length() - 3) + "ves";
+			} else if (enoun.endsWith("house")) {
+				return enoun + "es";
+			} else if (enoun.endsWith("ouse") && "mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1) {
+				return enoun.substring(0, enoun.length() - 5) + "ice";
+			} else if (enoun.endsWith("oose") && !(enoun.endsWith("caboose"))) {
+				return enoun.substring(0, enoun.length() - 5) + "eese";
+			} else if (enoun.endsWith("ooth")) {
+				return enoun.substring(0, enoun.length() - 5) + "eeth";
+			} else if (enoun.endsWith("foot")) {
+				return enoun.substring(0, enoun.length() - 5) + "feet";
+			} else if (enoun.endsWith("child")) {
+				return enoun + "ren";
+			} else if (enoun.endsWith("eau")) {
+				return enoun + "x";
+			} else if (enoun.endsWith("ato")) {
+				return enoun + "es";
+			} else if (enoun.endsWith("ium")) {
+				return enoun.substring(0, enoun.length() - 3) + "a";
+			} else if (enoun.endsWith("alga") || enoun.endsWith("hypha") || enoun.endsWith("larva")) {
+				return enoun + "e";
+			} else if (enoun.length() > 3 && enoun.endsWith("us") && !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
+				return enoun.substring(0, enoun.length() - 3) + "i";
+			} else if (enoun.endsWith("man") && !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
+				return enoun.substring(0, enoun.length() - 4) + "men";
+			} else if (enoun.endsWith("rtex")) {
+				return enoun.substring(0, enoun.length() - 3) + "ices";
+			} else if (enoun.endsWith("trix")) {
+				return enoun.substring(0, enoun.length() - 2) + "ces";
+			} else if (enoun.endsWith("sis")) {
+				return enoun.substring(0, enoun.length() - 2) + "es";
+			} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
+				return enoun.substring(0, enoun.length() - 2) + "es";
+			} else if (enoun.endsWith("mumak")) {
+				return enoun + "il";
+			} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
+				return enoun.substring(0, enoun.length() - 2);
+			} else if (enoun.endsWith("ch") || enoun.endsWith("sh") || "zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1) {
+				return enoun + "es";
+			} else if (enoun.endsWith("y") && consonant_p(enoun.charAt(enoun.length() - 2))) {
+				return enoun.substring(0, enoun.length() - 2) + "ies";
+			} else {
+				return enoun + "s";
+			}
+		} catch (StringIndexOutOfBoundsException e) {
+			logger.warn("Cannot pluralize noun " + enoun, e);
 			return enoun;
-		} else if (enoun.indexOf(" of ") > -1) {
-			return plural(enoun.substring(0, enoun.indexOf(" of ") - 1)) + enoun.substring(enoun.indexOf(" of "));
-		} else if (enoun.endsWith("staff")) {
-			return enoun.substring(0, enoun.length() - 3) + "ves";
-		} else if (enoun.endsWith("f") && "aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1) {
-			return enoun.substring(0, enoun.length() - 2) + "ves";
-		} else if (enoun.endsWith("fe")) {
-			return enoun.substring(0, enoun.length() - 3) + "ves";
-		} else if (enoun.endsWith("house")) {
-			return enoun + "es";
-		} else if (enoun.endsWith("ouse") && "mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1) {
-			return enoun.substring(0, enoun.length() - 5) + "ice";
-		} else if (enoun.endsWith("oose") && !(enoun.endsWith("caboose"))) {
-			return enoun.substring(0, enoun.length() - 5) + "eese";
-		} else if (enoun.endsWith("ooth")) {
-			return enoun.substring(0, enoun.length() - 5) + "eeth";
-		} else if (enoun.endsWith("foot")) {
-			return enoun.substring(0, enoun.length() - 5) + "feet";
-		} else if (enoun.endsWith("child")) {
-			return enoun + "ren";
-		} else if (enoun.endsWith("eau")) {
-			return enoun + "x";
-		} else if (enoun.endsWith("ato")) {
-			return enoun + "es";
-		} else if (enoun.endsWith("ium")) {
-			return enoun.substring(0, enoun.length() - 3) + "a";
-		} else if (enoun.endsWith("alga") || enoun.endsWith("hypha") || enoun.endsWith("larva")) {
-			return enoun + "e";
-		} else if (enoun.length() > 3 && enoun.endsWith("us") && !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
-			return enoun.substring(0, enoun.length() - 3) + "i";
-		} else if (enoun.endsWith("man") && !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
-			return enoun.substring(0, enoun.length() - 4) + "men";
-		} else if (enoun.endsWith("rtex")) {
-			return enoun.substring(0, enoun.length() - 3) + "ices";
-		} else if (enoun.endsWith("trix")) {
-			return enoun.substring(0, enoun.length() - 2) + "ces";
-		} else if (enoun.endsWith("sis")) {
-			return enoun.substring(0, enoun.length() - 2) + "es";
-		} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
-			return enoun.substring(0, enoun.length() - 2) + "es";
-		} else if (enoun.endsWith("mumak")) {
-			return enoun + "il";
-		} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
-			return enoun.substring(0, enoun.length() - 2);
-		} else if (enoun.endsWith("ch") || enoun.endsWith("sh") || "zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1) {
-			return enoun + "es";
-		} else if (enoun.endsWith("y") && consonant_p(enoun.charAt(enoun.length() - 2))) {
-			return enoun.substring(0, enoun.length() - 2) + "ies";
-		} else {
-			return enoun + "s";
 		}
 	}
 
