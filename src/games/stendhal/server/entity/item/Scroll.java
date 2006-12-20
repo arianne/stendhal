@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import marauroa.common.game.RPObject;
 
@@ -236,11 +237,19 @@ public class Scroll extends StackableItem implements UseListener {
 			// coordinates
 			if (has("infostring")) {
 				String infostring = get("infostring");
-				java.util.StringTokenizer st = new java.util.StringTokenizer(infostring);
+				StringTokenizer st = new StringTokenizer(infostring);
 				if (st.countTokens() == 3) {
-					zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(st.nextToken());
-					x = Integer.parseInt(st.nextToken());
-					y = Integer.parseInt(st.nextToken());
+					StendhalRPZone temp = (StendhalRPZone) StendhalRPWorld.get().getRPZone(st.nextToken());
+					if (temp != null) {
+						x = Integer.parseInt(st.nextToken());
+						y = Integer.parseInt(st.nextToken());
+						zone = temp;
+					} else {
+						// invalid zone (the scroll may have been marked in an
+						// old version and the zone was removed)
+						player.sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
+						logger.warn("marked_scroll to unknown zone " + infostring + " teleported " + player.getName() + " to Semos instead");
+					}
 				}
 			}
 			// we use the player as teleporter (last parameter) to give feedback
