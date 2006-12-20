@@ -141,6 +141,8 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 				logger.warn("Cannot place Santa at " + zone.getID().getID() + " " + x + " " + y);
 			}
 		}
+		santa.say("Ho, ho, ho! Merry Christmas!");
+
 
 		// Schedule so we are notified again in 5 minutes
 		TurnNotifier.get().notifyInTurns(5 * 60 * 3, this, null);
