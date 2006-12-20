@@ -4,12 +4,23 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.apache.log4j.Logger;
 
-
+/**
+ * A simple test case based on the ideas of JUnit. It is compatible
+ * and can be replaced with the full featured on from JUnit later.
+ *
+ * @author hendrik
+ */
 public class TestCase {
 	private int testCaseCounter = 0;
 	private int errorCounter = 0;
 	private static Logger logger = Logger.getLogger(TestCase.class);
 
+	/**
+	 * asserts that a condition is true
+	 *
+	 * @param text error message
+	 * @param condition condition to check
+	 */
 	protected void assertTrue(String text, boolean condition) {
 		if (!condition) {
 			String msg = "asertTrue failed (" + text + "): " + condition;
@@ -17,28 +28,61 @@ public class TestCase {
 		}
 	}
 
-	protected void assertEquals(String text, String string1, String string2) {
+	/**
+	 * asserts that two objects are equal (please consider to provide an error message).
+	 * 
+	 * @param object1 first object
+	 * @param object2 second object
+	 */
+	protected void assertEquals(Object object1, Object object2) {
+		assertEquals(null, object1, object2);
+	}
+
+	/**
+	 * asserts that two objects are equal (please consider to provide an error message).
+	 *
+	 * @param text error message
+	 * @param object1 first object
+	 * @param object2 second object
+	 */
+	protected void assertEquals(Object text, Object object1, Object object2) {
 		boolean ok = false;
-		if (string1 == null) {
-			ok = (string2 == null);
+		if (object1 == null) {
+			ok = (object2 == null);
 		} else {
-			ok = string1.equals(string2);
+			ok = object1.equals(object2);
 		}
 		
 		if (!ok) {
-			String msg = "asertEquals failed (" + text + "): \"" + string1 + "\" \"" + string2 + "\"";
+			String t = "";
+			if (text != null) {
+				 t = " (" + text + ")";
+			}
+			String msg = "asertEquals failed" + t + ": \"" + object1 + "\" \"" + object2 + "\"";
 			throw new AssertionError(msg);
 		}
 	}
 
+	/**
+	 * is invoked before each test
+	 */
 	protected void setUp() {
 		// do nothing, can be overriden by subclases
 	}
 
+	/**
+	 * is invoked after each test
+	 */
 	protected void tearDown() {
 		// do nothing, can be overriden by subclases
 	}
-	
+
+	/**
+	 * Executes a testXXX method
+	 *
+	 * @param testCase test case class
+	 * @param method Method name
+	 */
 	public void runTestMethod(TestCase testCase, Method method) {
 		testCaseCounter++;
 
@@ -77,7 +121,12 @@ public class TestCase {
 			return;
 		}
 	}
-	
+
+	/**
+	 * Executes a test case
+	 *
+	 * @param clazz test case class
+	 */
 	public void runTestCase(Class<? extends TestCase> clazz) {
 		
 		try {
