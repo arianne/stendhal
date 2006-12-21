@@ -440,14 +440,7 @@
 		<mkdir dir="tiled/world/"/>
 		<mapconverter stendPath="${maps}" imagePath="${tiled}/world/">
 			<fileset dir="tiled/">
-				<include name="Level 0/**/*.tmx"/>
-				<include name="Level -1/**/*.tmx"/>
-				<include name="Level -2/**/*.tmx"/>
-				<include name="Level -3/**/*.tmx"/>
-				<include name="Level -4/**/*.tmx"/>
-				<include name="Level -5/**/*.tmx"/>
-				<include name="Level -6/**/*.tmx"/>
-				<include name="Level -7/**/*.tmx"/>
+				<include name="Level */**/*.tmx"/>
 				<include name="interiors/**/*.tmx"/>
 			</fileset>
 		</mapconverter>
