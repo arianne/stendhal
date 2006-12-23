@@ -1,6 +1,11 @@
 package games.stendhal.server.util;
 
+import games.stendhal.common.Grammar;
+
+import java.io.IOException;
 import java.util.Properties;
+
+import org.apache.log4j.Logger;
 
 /**
  * A simple translation framework
@@ -8,7 +13,9 @@ import java.util.Properties;
  * @author hendrik
  */
 public class Translate {
+	private static Logger logger = Logger.getLogger(Translate.class);
 	private static Properties dictionary = new Properties();
+	private static Grammar grammar = null;
 
 	/**
 	 * Loads the specified dictionary
@@ -16,7 +23,12 @@ public class Translate {
 	 * @param language the 2 letter language code
 	 */
 	public static void initLanguage(String language) {
-		// TODO: implement this method
+		try {
+			dictionary.load(Translate.class.getResourceAsStream("../properties/" + language + ".txt"));
+			grammar = (Grammar) Class.forName(dictionary.getProperty("_grammar.class")).newInstance();
+		} catch (Exception e) {
+			logger.error(e, e);
+		}
 	}
 
 	/**
