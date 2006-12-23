@@ -270,52 +270,47 @@
  <tileset name="sub_5_kanmararn_entrance" firstgid="1404" tilewidth="64" tileheight="64">
   <image source="sub_5_kanmararn_entrance.png"/>
  </tileset>
+ <tileset name="-1_semos_graveyard" firstgid="1420" tilewidth="64" tileheight="64">
+  <image source="sub_1_semos_graveyard.png"/>
+ </tileset>
  <layer name="Layer 7" width="52" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQ0AAAgDMJA0/wKwhQ1IevRvuioAAPDcHDgAAADAFQs4bXLxABoAAA==
   </data>
-  <tileproperties/>
  </layer>
  <layer name="Layer 6" width="52" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3Pxw2AMBQEUVOSqyfnUBfTA0hYn1lp7vtylVIuqKf7+r8ePXr06NFTQnr0/NFTU0MtdQE8PQ000hTAM9NCK20BPDsddNIVwPNWevTo0aNHjx49evToKcdzAzjSQA4AGgAA
   </data>
-  <tileproperties/>
  </layer>
- <layer name="Layer 5" width="52" height="32">
+ <layer name="Layer 5" width="52" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3Pxw2AQBAEweVxAV1+eHeYpJkcQGJZeqT+T+XKLDvq7t7+jwcPHjx48HgID54/eepk1qhWden7nl6GQY1qCuCZZVjUqkoAzybDrg51BvA8HR48ePDgwYMHDx48ePx4LulxgQMAGgAA
   </data>
-  <tileproperties/>
  </layer>
  <layer name="Layer 4" width="52" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3Pxw2AMBQEUVOSqybnUB/TA0hYn1lp7vtylVIuqKf7+r8ePXr06NFTQnr0/MlTU0MtdQE8PQ000hTAM9NCK20BPDsddNIVwPN2evTo0aNHjx49evToKcdzA3PqQNUAGgAA
   </data>
-  <tileproperties/>
  </layer>
  <layer name="Layer 3" width="52" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3SRw7CUAxF0c8gC8rqSKGH3lvova2TuwaIABtbOnNf6fk55/wf8u59+3/rsR7rsZ5/6Ak850JPT09ES6yoR9verCf7niNOinrOuCjqueKmqOeOh6KerFnP6z15BAgRIUYBRZQE9pRRQRU1JKijgabAnhba6KCLHvoYYCiwZ4QxJphihjlSLAT2LLHCGhtsscMeB4E9n2A91mM91mM91iOx5wm9hIA3ABoAAA==
   </data>
-  <tileproperties/>
  </layer>
- <layer name="Layer 2" width="52" height="32" visible="0" opacity="0.5">
+ <layer name="Layer 2" width="52" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3SyU4CURBA0Wc6/UGsVBRHFMUBwYFBQUBQQUWBpv0tQFSUwV/z7uw1kPBeW5WcTa3qJhVYUCqgkWln3vdLj/RIj/T8hx7HVqpl+6fHpeXVRz1++zfpmX3PM16wiCUsI2hwTx0NrGAVIawZ3NOEg3VsYBNbBve04GIbYexg1+CeWZOeyXsi2MM+ojjAIY5wrHFP21Kqgy7erL99DCeII4FTnOEcFxr39Gh4xwc+PT1JpJBGBpe4QhY5jXv6NHzhGwNPzzXyKKCIG5RQxq3GPUMaRhjjx9Nzh3tUUMUDHvGEmsY98yQ90iM90iM90mNizy/sybZCABoAAA==
   </data>
-  <tileproperties/>
  </layer>
  <layer name="Layer 1" width="52" height="32" visible="0" opacity="0.56">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3X1U4DQRiG4aVNL6gBeoy7u0NxlxZ3p1AquLv7LfLuIWcQOunO5t/kOf/eZCc7604wDLeF/PeJ937p+XvPsNMwRuCDH6MYwzgmkIJUpCHdaf2eSTZOYRozmMUc5rGADGQiC9ka9CyycQnLWMEq1rCODeQgF3nI16AnwMZNbCGIbYQQRgQFKEQRijXoibJxB7vYwz4OcIijGO//cW5dnFtX7HuO2XyCU5zhHBe4xJXCHh8tfgU912y+wS3ucI8HPOJJYY+q9+2ZzS94xRve8YFPfGnY81uJSLJRTzI8Nuqx2/smPdIjPdaioqeFb6YXrWhDCUpRhnIEHNxXHfr0tLO5A53oQgUqUYVq895NS1Cjnm4296AXfahBLepQb/4/0BLSqKefzQMYxBAa0IgmNJv/QbRENOqJJ+mRHumRHumRHh17vgFXrubvABoAAA==
+   H4sIAAAAAAAAAO3XVU/DYBiG4bJlP2hBjnF3d3dnY7jrYOuKu7vzF7l7Ns4gtFk/8ja5jvvcSZt+9cZpmtdB/nrFer/0/L5n2K1pI/DBj1EEMIZxJCMFqUhzO79ngo2TmMI0ZjCLOcwjHRnIRJYCPQtsXMQSlrGCVaxhHdnIQS7yFOgJsnEDmwghDB0RGMhHAQpRpEDPFhu3sYNd7GEfBzi0eP+399bDe+uxvueIzcc4wSnOcI4LXNrY46PFb0PPFZuvcYNb3OEeD3iM6glzb93j/Oftic3PeMEr3vCOD3xG9URoMRTo+al4JFj8zMWyJxFJ/6jHDtIjPdIjPXb2NPPNbEEr2lCMEpSiDEEX51WXOj3tbO5AJ7pQjgpUoso8d9MSUqinm8096EUfqlGDWtSZ/w+06Ar19LN5AIMYQj0a0Igm8z+IFkOhnliSHumRHumRHulRsecLZJ/IngAaAAA=
   </data>
-  <tileproperties/>
  </layer>
- <layer name="Floor" width="52" height="32" visible="0" opacity="0.67">
+ <layer name="Floor" width="52" height="32">
   <data encoding="base64" compression="gzip">
    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
   </data>
-  <tileproperties/>
  </layer>
 </map>
