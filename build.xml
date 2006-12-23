@@ -56,12 +56,13 @@
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
+				<pathelement path="${velocity_jar}"/>
 			</classpath>
 		</javac>
 
 		<jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">
 			<manifest>
-				<attribute name="Class-path" value="${maps_jarname} ${xmlconf_jarname} log4j.jar groovy.jar"/>
+				<attribute name="Class-path" value="${maps_jarname} ${xmlconf_jarname} log4j.jar groovy.jar velocity-1.4.jar velocity-dep-1.4.jar"/>
 			</manifest>
 		</jar>
 
@@ -320,6 +321,8 @@
 
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${groovy_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${simple_jar}"/>
+		<copy todir="${buildroot}/stendhal-server-${version}" file="${velocity_jar}"/>
+		<copy todir="${buildroot}/stendhal-server-${version}" file="${velocity-dep_jar}"/>
 
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
