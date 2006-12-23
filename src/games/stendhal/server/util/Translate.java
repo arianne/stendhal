@@ -26,15 +26,19 @@ public class Translate {
 	 * @param language the 2 letter language code
 	 */
 	public static void initLanguage(String language) {
-		Grammar tempGrammar = null;
 		try {
-			dictionary.load(Translate.class.getResourceAsStream("../properties/" + language + ".txt"));
-			tempGrammar = (Grammar) Class.forName(dictionary.getProperty("_grammar.class")).newInstance();
+			dictionary.load(Translate.class.getClassLoader().getResourceAsStream("data/languages/" + language + ".properties"));
+			String className = dictionary.getProperty("_grammar.class");
+			if (className != null) {
+				grammar = (Grammar) Class.forName(className).newInstance();
+			}
 		} catch (Exception e) {
 			logger.error(e, e);
 		}
-		if (tempGrammar != null) {
-			grammar = tempGrammar;
+		try {
+			Velocity.init();
+		} catch (Exception e) {
+			logger.error(e, e);
 		}
 	}
 
