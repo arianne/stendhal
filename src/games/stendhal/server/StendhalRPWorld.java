@@ -234,6 +234,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("-1_semos_mine_n2_w2");
 		addArea("-1_semos_mine_n2");
 		addArea("-1_semos_mine_nw");
+		addArea("-1_semos_graveyard");
 		addArea("-1_semos_dungeon");
 		addArea("-1_semos_jail");
 		addArea("-1_orril_mountain_w");
@@ -266,6 +267,24 @@ public class StendhalRPWorld extends RPWorld {
 
 		// Level -7
 		// addArea("-7_kanmararn_jail");
+
+		// Level 1
+		addArea("1_kikareukin_cave");
+
+		// Level 2
+		addArea("2_kikareukin_cave");
+
+		// Level 3
+		addArea("3_kikareukin_cave");
+
+		// Level 4
+		addArea("4_kikareukin_cave");
+
+		// Level 5
+		addArea("5_kikareukin_cave");
+
+		// Level 6
+		addArea("6_kikareukin_islands");
 
 		// Interiors
 		addArea("int_afterlife");
