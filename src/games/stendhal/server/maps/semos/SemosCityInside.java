@@ -315,7 +315,8 @@ public class SemosCityInside {
 							// NPC_name quest doesn't exist anywhere else neither is
 							// used for any other purpose
 							if (!player.isQuestCompleted("Hackim")) {
-								engine.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");								player.setQuest("Hackim", "done");
+								engine.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
+								player.setQuest("Hackim", "done");
 							} else {
 								engine.say("Hi again, " + player.getName()
 										+ ". How can I #help you this time?");
