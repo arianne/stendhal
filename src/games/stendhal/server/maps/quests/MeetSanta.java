@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
  * - None
  */
 public class MeetSanta extends AbstractQuest implements TurnListener {
-	private static final String QUEST_SLOT = "meet_santa_06";
+	private static final String QUEST_SLOT = "meet_santa_07";
 	private static Logger logger = Logger.getLogger(MeetSanta.class);
 	/** the Santa NPC */
 	protected SpeakerNPC santa = null;
