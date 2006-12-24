@@ -22,7 +22,9 @@ import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.PathfinderThread;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
+import games.stendhal.server.util.Translate;
 import games.stendhal.server.maps.IContent;
+import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.IRPZone;
@@ -47,6 +49,15 @@ public class StendhalRPWorld extends RPWorld {
 
 		Log4J.startMethod(logger, "StendhalRPWorld");
 		createRPClasses();
+		
+		// init language support
+		String language = "en";
+		try {
+			language = Configuration.getConfiguration().get("language");
+		} catch (Exception e) {
+			// ignore
+		}
+		Translate.initLanguage(language);
 
 		ruleManager = RuleSetFactory.getRuleSet("default");
 		Log4J.finishMethod(logger, "StendhalRPWorld");
@@ -158,6 +169,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_semos_mountain_n_w2");
 		addArea("0_semos_plains_n");
 		addArea("0_semos_plains_ne");
+		addArea("0_semos_plains_n_e2");
 		addArea("0_semos_mountain_n_e2");
 		addArea("0_ados_mountain_n_w2");
 		addArea("0_ados_mountain_nw");
