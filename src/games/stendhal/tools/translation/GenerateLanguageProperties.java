@@ -10,45 +10,28 @@ import java.io.FileNotFoundException;
  */
 public class GenerateLanguageProperties {
 
-	private String stendhalFolder = null;
 
 	/**
-	 * Creates a new GenerateLanguageProperties object
+	 * Generates a xx.properties file based on Translate._() invokations
 	 *
-	 * @param stendhalFolder stendhal root folder
-	 */
-	public GenerateLanguageProperties(String stendhalFolder) {
-		this.stendhalFolder = stendhalFolder;
-	}
-
-
-	public void processItems() {
-		// TODO: implement me
-	}
-
-	public void processCreatures() {
-		// TODO: implement me
-	}
-
-	public void processJavaCode(String folder) {
-		// TODO implement me
-	}
-
-	/**
 	 * @param args
-	 * @throws FileNotFoundException 
+	 * 	<ol>
+	 * 		<li>path to stendhal folder</lil>
+	 * 		<li>language code (to load old dictionary</li>
+	 * 		<li>name of output file</li>
+	 * </ol>
+	 * @throws FileNotFoundException if the output file cannot be written
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
 
 		// initialisiation
-		GenerateLanguageProperties generator = new GenerateLanguageProperties(args[0]);
-		
 		LanguageWriter writer = new LanguageWriter(args[1], args[2]);
+		SourceParser parser = new SourceParser(args[0], writer);
 
 		// export
-		generator.processCreatures();
-		generator.processItems();
-		generator.processJavaCode("src");
+		parser.processCreatures();
+		parser.processItems();
+		parser.processJavaCode("src");
 
 		writer.close();
 	}
