@@ -1158,14 +1158,18 @@ public class Player extends RPEntity implements TurnListener {
 
 	@Override
 	public String describe() {
+
+		// A special description was specified
+		if (hasDescription()) {
+			return (getDescription());
+		}
+
+		// default description for player includes there name, level and play time
 		int hours = age / 60;
 		int minutes = age % 60;
 		String time = hours + " hours and " + minutes + " minutes";
-		String text = "You see " + getName() + ".";
-		if (hasDescription()) {
-			text = getDescription();
-		}
-		text += "\n" + getName() + " is level " + getLevel()
+		String text = "You see " + getName() + ".\n"
+				+ getName() + " is level " + getLevel()
 				+ " and has been playing " + time + ".";
 		return (text);
 	}

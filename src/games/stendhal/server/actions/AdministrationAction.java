@@ -374,7 +374,7 @@ public class AdministrationAction extends ActionListener {
 				isNumerical = true;
 			}
 
-			if (changed.getRPClass().hasAttribute(stat) && (changed.has(stat) || !(changed instanceof Player))) {
+			if (changed.getRPClass().hasAttribute(stat)) {
 				String value = action.get("value");
 				String mode = action.get("mode");
 
