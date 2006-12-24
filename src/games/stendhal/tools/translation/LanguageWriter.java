@@ -39,6 +39,20 @@ public class LanguageWriter {
 	}
 
 	/**
+	 * writes a banner
+	 *
+	 * @param bannerText text to write into the banner
+	 */
+	public void writeBanner(String bannerText) {
+		out.println();
+		out.println();
+		out.println("#############################################################################");
+		out.println("   " + bannerText);
+		out.println("#############################################################################");
+		out.println();
+	}
+
+	/**
 	 * Writes a key to the file. Known keys are not written again but
 	 * replaced by pointer.
 	 *
@@ -51,6 +65,20 @@ public class LanguageWriter {
 			out.println(key + "=" + value);
 		} else {
 			out.println("# defined elsewhere: " + key);
+		}
+	}
+
+	/**
+	 * writes all old translation which are not used anymore 
+	 */
+	@SuppressWarnings("unchecked")
+	public void writeDeprecated() {
+		Set<String> deprecated = new TreeSet<String>(((Map<String, String>) (Map) dictionary).keySet());
+		if (!deprecated.isEmpty()) {
+			writeBanner("deprecated");
+			for (String key : deprecated) {
+				write(key);
+			}
 		}
 	}
 
