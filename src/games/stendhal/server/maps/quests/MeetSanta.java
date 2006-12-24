@@ -18,6 +18,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import marauroa.common.game.IRPZone;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -100,17 +102,28 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 	 * Creates an ArrayList of "outside" zones for Santa.
 	 */
 	private void listZones() {
-		Iterator itr = StendhalRPWorld.get().iterator();
+		StendhalRPWorld world = StendhalRPWorld.get();
+		Iterator itr = world.iterator();
 		zones = new ArrayList<StendhalRPZone>();
         while (itr.hasNext()) {
         	StendhalRPZone aZone = (StendhalRPZone) itr.next();
         	String zoneName = aZone.getID().getID();
-        	if (zoneName.startsWith("0") && !zoneName.equals("0_nalwor_city") 
+        	// ground level zones with some exceptions
+        	if (zoneName.startsWith("0") 
+        		&& !zoneName.equals("0_nalwor_city") 
         		&& !zoneName.equals("0_orril_castle") 
         		&& !zoneName.equals("0_ados_swamp")
         		&& !zoneName.equals("0_ados_outside_w")
         		&& !zoneName.equals("0_ados_wall_n")) {
         		zones.add(aZone);
+        	}
+        }
+        
+        // increase the propability to place Santa near Semos
+        String[] specialZones = {"0_semos_plains_n", "0_semos_plains_ne", "0_semos_city", "0_semos_village_w", "0_semos_road_e", "0_semos_plains_s"};
+        for (int i = 0; i < 5; i++) {
+        	for (String zoneName : specialZones) {
+        		zones.add((StendhalRPZone) world.getRPZone(new IRPZone.ID(zoneName)));
         	}
         }
 	}
