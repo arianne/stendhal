@@ -47,10 +47,32 @@ public class LanguageWriter {
 		out.println();
 		out.println();
 		out.println("#############################################################################");
-		out.println("   " + bannerText);
+		out.println("##   " + bannerText);
 		out.println("#############################################################################");
 		out.println();
 	}
+	
+	/**
+	 * writes a large banner (for folders)
+	 *
+	 * @param bannerText text to write into the banner
+	 */
+	public void writeLargeBanner(String bannerText) {
+		out.println();
+		out.println();
+		out.println();
+		out.println();
+		out.println("#############################################################################");
+		out.println("#############################################################################");
+		out.println("####");
+		out.println("####   " + bannerText);
+		out.println("####");
+		out.println("#############################################################################");
+		out.println("#############################################################################");
+		out.println();
+		out.println();
+	}
+	
 
 	/**
 	 * Writes a key to the file. Known keys are not written again but
