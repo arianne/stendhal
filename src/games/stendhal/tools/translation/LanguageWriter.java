@@ -5,7 +5,11 @@ import games.stendhal.server.util.Translate;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * writes the language file
@@ -15,6 +19,7 @@ import java.util.Properties;
 public class LanguageWriter {
 	private Properties dictionary = new Properties();
 	private PrintStream out;
+	private Set<String> known = new HashSet<String>();
 
 	/**
 	 * Creates a new GenerateLanguageProperties object
@@ -31,6 +36,22 @@ public class LanguageWriter {
 			// ignore
 		}
 		out = new PrintStream(new FileOutputStream(filename));
+	}
+
+	/**
+	 * Writes a key to the file. Known keys are not written again but
+	 * replaced by pointer.
+	 *
+	 * @param key key
+	 */
+	public void write(String key) {
+		if (!known.contains(key)) {
+			String value = dictionary.getProperty(key, "$TODO");
+			dictionary.remove(key);
+			out.println(key + "=" + value);
+		} else {
+			out.println("# defined elsewhere: " + key);
+		}
 	}
 
 	/**
