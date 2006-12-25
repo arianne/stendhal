@@ -27,10 +27,14 @@ public class SourceParser {
 
 
 	public void processItems() {
+		writer.writeLargeBanner("data/conf");
+		writer.writeBanner("items.xml");
 		// TODO: implement me
 	}
 
 	public void processCreatures() {
+		writer.writeLargeBanner("data/conf");
+		writer.writeBanner("creatures.xml");
 		// TODO: implement me
 	}
 
@@ -50,7 +54,9 @@ public class SourceParser {
 		}
 		for (File file : files) {
 			if (file.isDirectory()) {
-				processJavaCode(packageName + "/" + file.getName());
+				if (!file.getName().endsWith("CVS") && file.getName().indexOf("server") > -1) {
+					processJavaCode(packageName + "/" + file.getName());
+				}
 			}
 		}
 	}
