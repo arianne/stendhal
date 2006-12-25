@@ -40,11 +40,12 @@ public class SourceParser {
 	 * @param packageName path of package to parse
 	 */
 	public void processJavaCode(String packageName) {
+		writer.writeLargeBanner(packageName);
 		File folder = new File(stendhalFolder + "/src/" + packageName);
 		File[] files = folder.listFiles();
 		for (File file : files) {
 			if (file.getName().endsWith(".java")) {
-				parseJavaFile(file.getAbsolutePath());
+				parseJavaFile(packageName, file.getName());
 			}
 		}
 		for (File file : files) {
@@ -59,9 +60,10 @@ public class SourceParser {
 	 *
 	 * @param filename filename
 	 */
-	private void parseJavaFile(String filename) {
+	private void parseJavaFile(String packageName, String filename) {
+		writer.writeBanner(filename);
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(filename));
+			BufferedReader br = new BufferedReader(new FileReader(stendhalFolder + "/src/" + packageName + "/" + filename));
 			String line = br.readLine();
 			while (line != null) {
 				parseJavaLine(line);
