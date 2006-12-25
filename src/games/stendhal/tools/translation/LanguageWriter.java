@@ -20,6 +20,8 @@ public class LanguageWriter {
 	private Properties dictionary = new Properties();
 	private PrintStream out;
 	private Set<String> known = new HashSet<String>();
+	private String lastBanner = null;
+	private String lastLargeBanner = null;
 
 	/**
 	 * Creates a new GenerateLanguageProperties object
@@ -44,12 +46,15 @@ public class LanguageWriter {
 	 * @param bannerText text to write into the banner
 	 */
 	public void writeBanner(String bannerText) {
-		out.println();
-		out.println();
-		out.println("#############################################################################");
-		out.println("##   " + bannerText);
-		out.println("#############################################################################");
-		out.println();
+		if (!bannerText.equals(lastBanner)) {
+			out.println();
+			out.println();
+			out.println("#############################################################################");
+			out.println("##   " + bannerText);
+			out.println("#############################################################################");
+			out.println();
+			lastBanner = bannerText;
+		}
 	}
 	
 	/**
@@ -58,19 +63,22 @@ public class LanguageWriter {
 	 * @param bannerText text to write into the banner
 	 */
 	public void writeLargeBanner(String bannerText) {
-		out.println();
-		out.println();
-		out.println();
-		out.println();
-		out.println("#############################################################################");
-		out.println("#############################################################################");
-		out.println("####");
-		out.println("####   " + bannerText);
-		out.println("####");
-		out.println("#############################################################################");
-		out.println("#############################################################################");
-		out.println();
-		out.println();
+		if (!bannerText.equals(lastLargeBanner)) {
+			out.println();
+			out.println();
+			out.println();
+			out.println();
+			out.println("#############################################################################");
+			out.println("#############################################################################");
+			out.println("####");
+			out.println("####   " + bannerText);
+			out.println("####");
+			out.println("#############################################################################");
+			out.println("#############################################################################");
+			out.println();
+			out.println();
+			lastLargeBanner = bannerText;
+		}
 	}
 	
 
