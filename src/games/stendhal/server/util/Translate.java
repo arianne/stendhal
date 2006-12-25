@@ -52,12 +52,12 @@ public class Translate {
 	public static String _(String text, String... args) {
 
 		// use translated text, if one was specified
-		String translated = text;
-		if (dictionary.get(text) != null) {
-			translated = dictionary.getProperty(text);
+		String translated = dictionary.getProperty(text, text);;
+		if (translated.indexOf("$TODO") > -1) {
+			translated = text;
 		}
 
-		// extract arguments
+		// write arguments to VelocityContext
 		VelocityContext context = new VelocityContext();
 		context.put("grammar", grammar);
 		int i = 0;
