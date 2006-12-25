@@ -31,7 +31,7 @@ public class GenerateLanguageProperties {
 		// export
 		parser.processCreatures();
 		parser.processItems();
-		parser.processJavaCode("src");
+		parser.processJavaCode("");
 
 		writer.close();
 	}
