@@ -1,6 +1,8 @@
 package games.stendhal.tools.translation;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 
 /**
  * Parses the source code for translateable strings.
@@ -8,6 +10,7 @@ import java.io.File;
  * @author hendrik
  */
 public class SourceParser {
+	private static final String TRANSLATE = "Trans" + /* mask */ "late._(";
 	private String stendhalFolder = null;
 	private LanguageWriter writer = null;
 
@@ -15,6 +18,7 @@ public class SourceParser {
 	 * Creates a new GenerateLanguageProperties object
 	 *
 	 * @param stendhalFolder stendhal root folder
+	 * @param writer the output writer
 	 */
 	public SourceParser(String stendhalFolder, LanguageWriter writer) {
 		this.stendhalFolder = stendhalFolder;
@@ -50,9 +54,40 @@ public class SourceParser {
 		}
 	}
 
+	/**
+	 * parses a java file
+	 *
+	 * @param filename filename
+	 */
 	private void parseJavaFile(String filename) {
-		// TODO Auto-generated method stub
-		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			String line = br.readLine();
+			while (line != null) {
+				parseJavaLine(line);
+				line = br.readLine();
+			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * parses a line of source code
+	 *
+	 * @param line source code line
+	 */
+	// TODO: improve this, it is a very simple implementation
+	private void parseJavaLine(String line) {
+		int pos = line.indexOf(TRANSLATE);
+		while (pos > -1) {
+			int end = line.indexOf("\"", pos + TRANSLATE.length() + 1);
+			if (end > -1) {
+				writer.write(line.substring(pos + TRANSLATE.length() + 1, end));
+			}
+			pos = line.indexOf(TRANSLATE, pos + 2);
+		}
 	}
 
 
