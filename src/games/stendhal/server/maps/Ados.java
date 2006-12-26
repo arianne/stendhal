@@ -7,7 +7,6 @@ import games.stendhal.server.maps.ados.AdosOutsideNorthWest;
 import games.stendhal.server.maps.ados.AdosRock;
 import games.stendhal.server.maps.ados.AdosSwamp;
 import games.stendhal.server.maps.ados.AdosWallNorth;
-import games.stendhal.server.maps.ados.Deathmatch;
 
 public class Ados implements IContent {
 
@@ -19,10 +18,6 @@ public class Ados implements IContent {
 		new AdosOutsideNorthWest().build();
 		new AdosWallNorth().build();
 		new AdosSwamp().build();
-		
-		new Deathmatch().build();
 	}
-
-
 
 }

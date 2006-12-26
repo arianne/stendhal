@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPAction;
@@ -18,7 +18,6 @@ import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.Area;
 
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,7 +27,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObjectNotFoundException;
 
 import org.apache.log4j.Logger;
@@ -37,14 +35,25 @@ import org.apache.log4j.Logger;
 /**
  * Creating the Stendhal Deathmatch Game
  */
-// TODO: Split this class into the Ados part and the live deathmatch and clean that up
-public class Deathmatch {
-	private static final String ZONE_NAME = "0_ados_wall_n";
-
+public class Deathmatch extends AbstractQuest {
 	protected static Logger logger = Logger.getLogger(Deathmatch.class);
 	private NPCList npcs = NPCList.get();
+	private String zoneName = null;
 	private StendhalRPZone zone = null;
 	protected Area arena = null;
+	private static List<Deathmatch> deathmatches = new LinkedList<Deathmatch>();
+	
+	public Deathmatch() {
+		// constructor for quest system
+	}
+	
+	public Deathmatch(String zoneName, StendhalRPZone zone, Area arena) {
+		this.zoneName = zoneName;
+		this.zone = zone;
+		this.arena = arena;
+		zone.setTeleportable(false);
+		deathmatches.add(this);
+	}
 
 	class ScriptAction implements TurnListener {
 		private Player player;
@@ -120,7 +129,7 @@ public class Deathmatch {
 						player.addXP(-xp);
 					}	
 					// send the player back to the entrance area
-					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(ZONE_NAME);
+					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
 					player.teleport(zone, 96, 75, null, player);
 				}
 			}
@@ -237,8 +246,6 @@ public class Deathmatch {
 			String questInfo = player.getQuest("deathmatch");
 			String[] tokens = (questInfo+";0;0").split(";");
 			String questState = tokens[0];
-			String questLevel = tokens[1];
-			String questLast	= tokens[2];
 			if("victory".equals(questState)) {
 				boolean isNew = false;
 					// We assume that the player only carries one trophy helmet.
@@ -303,7 +310,6 @@ public class Deathmatch {
 			String[] tokens = (questInfo+";0;0").split(";");
 			String questState = tokens[0];
 			String questLevel = tokens[1];
-			String questLast	= tokens[2];
 			if(!"start".equals(questState)) {
 				engine.say("Coward, we haven't even #started!");
 				return;
@@ -321,29 +327,27 @@ public class Deathmatch {
 		}
 	}
 
-	private void createArena(StendhalRPZone zone) {
-		Rectangle2D shape = new Rectangle2D.Double();
-		shape.setRect(88, 77, 112-88+1, 93-77+1);
-		arena = new Area(zone, shape);
-	}
-
-	private void createHelmet(StendhalRPZone zone) {
-
-		// show the player the potential trophy
+	/**
+	 * show the player the potential trophy
+	 *
+	 * @param x x-position of helmet
+	 * @param y y-position of helmet
+	 */
+	public void createHelmet(int x, int y) {
 		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
 		zone.assignRPObjectID(helmet);
 		helmet.put("def", "20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");
-		helmet.setX(102);
-		helmet.setY(75);
+		helmet.setX(x);
+		helmet.setY(y);
 		helmet.put("persistent", 1);
 		zone.add(helmet);
 	}
 
-	private void createNPC(StendhalRPZone zone) {
-		
+	public void createNPC(String name, int x, int y) {
+
 		// We create an NPC
-		SpeakerNPC npc=new SpeakerNPC("Thanatos") {
+		SpeakerNPC npc=new SpeakerNPC(name) {
 
 			@Override
 			protected void createPath() {
@@ -389,26 +393,15 @@ public class Deathmatch {
 				add(ConversationStates.ATTENDING, Arrays.asList("bail", "flee", "run", "exit"), null,
 						ConversationStates.ATTENDING, null, new BailAction());
 			}
-
 		};
 
-		
 		npc.put("class", "darkwizardnpc");
-		npc.set(98, 75);
+		npc.set(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.addNPC(npc);
-	}
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID(ZONE_NAME));
-	
-		createArena(zone);
-		createHelmet(zone);
-		createNPC(zone);
 	}
 
 	private Creature add(StendhalRPZone zone, Creature template, int x, int y) {
@@ -424,4 +417,32 @@ public class Deathmatch {
 		return creature;
 	}
 
+	@Override
+	public void convertOnUpdate(Player player) {
+		super.convertOnUpdate(player);
+		// need to do this on the next turn
+		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player), null);
+	}
+
+	/**
+	 * Teleport the player far away if he/she had logged out in the deathmatch arena.
+	 */
+	private class DealWithLogoutCoward implements TurnListener {
+		private Player player = null;
+		public DealWithLogoutCoward(Player player) {
+			this.player = player;
+		}
+
+		public void onTurnReached(int currentTurn, String message) {
+			for (Deathmatch deathmatch : deathmatches) {
+				if (deathmatch.arena.contains(player)) {
+					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_mountain_n2_w");
+					player.teleport(zone, 104, 123, Direction.DOWN, player);
+					player.sendPrivateText("You wake up far away from the city in the mountains. But you don't know what happend.");
+					break;
+				}
+			}
+		}
+	}
+	
 }

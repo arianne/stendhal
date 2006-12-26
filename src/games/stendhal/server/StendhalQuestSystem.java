@@ -41,6 +41,7 @@ public class StendhalQuestSystem {
 		loadQuest("CloaksForBario");
 		loadQuest("CostumeParty");
 		loadQuest("DailyMonsterQuest");
+		loadQuest("Deathmatch");
 		loadQuest("DiceGambling");
 		loadQuest("HatForMonogenes");
 		loadQuest("IntroducePlayers");
