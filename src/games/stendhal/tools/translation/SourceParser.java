@@ -25,17 +25,44 @@ public class SourceParser {
 		this.writer = writer;
 	}
 
+	/**
+	 * very simple configuration parser
+	 *
+	 * @param type Name of XML tag
+	 * @param filename filename
+	 */
+	// TODO: (this should be an xml parser but this simple thing will do at the moment)
+	private void parseConfFile(String type, String filename) {
+		try {
+			String token = "<" + type + " name=";
+			BufferedReader br = new BufferedReader(new FileReader(stendhalFolder + "/data/conf/" + filename));
+			String line = br.readLine();
+			while (line != null) {
+				// find entity names
+				int pos = line.indexOf(token);
+				if (pos > -1) {
+					String name = line.substring(pos + token.length() + 1, line.indexOf("\"", pos + token.length() + 1));
+					writer.write(name);
+				}
+
+				line = br.readLine();
+			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void processItems() {
 		writer.writeLargeBanner("data/conf");
 		writer.writeBanner("items.xml");
-		// TODO: implement me
+		parseConfFile("item", "items.xml");
 	}
 
 	public void processCreatures() {
 		writer.writeLargeBanner("data/conf");
 		writer.writeBanner("creatures.xml");
-		// TODO: implement me
+		parseConfFile("creature", "creatures.xml");
 	}
 
 	/**
@@ -54,7 +81,7 @@ public class SourceParser {
 		}
 		for (File file : files) {
 			if (file.isDirectory()) {
-				if (!file.getName().endsWith("CVS") && file.getName().indexOf("server") > -1) {
+				if (!file.getName().endsWith("CVS")) {
 					processJavaCode(packageName + "/" + file.getName());
 				}
 			}
@@ -96,14 +123,6 @@ public class SourceParser {
 			}
 			pos = line.indexOf(TRANSLATE, pos + 2);
 		}
-	}
-
-
-	/**
-	 * 
-	 */
-	public SourceParser() {
-		// TODO Auto-generated constructor stub
 	}
 
 }
