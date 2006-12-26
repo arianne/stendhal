@@ -520,6 +520,10 @@ public class Creature extends NPC {
 											// operations
 
 		List<RPEntity> enemyList = getEnemyList();
+		if (enemyList.size() == 0) {
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(get("zoneid"));
+			enemyList = zone.getPlayerAndFirends();
+		}
 
 		for (RPEntity playerOrFriend : enemyList) {
 			if (playerOrFriend == this) {
