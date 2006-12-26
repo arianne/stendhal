@@ -69,7 +69,15 @@ public class AdosCityInside {
 			content = content.replaceAll("<!--[^>]*-->", "");
 			// remove templates (note reg exp is incorret)
 			content = content.replaceAll("\\{\\{[^\\}]*\\}\\}", "");
-			content = content.substring(0, Math.min(content.length(), 1024));
+			content = content.trim();
+
+			// extract the first paragraph (ignoring very short once but oposing a max len)
+			int size = content.length();
+			int endOfFirstParagraph = content.indexOf("\n", 50);
+			if (endOfFirstParagraph < 0) {
+				endOfFirstParagraph = size;
+			}
+			content = content.substring(0, Math.min(endOfFirstParagraph, 1024));
 			return content;
 		}
 	}
