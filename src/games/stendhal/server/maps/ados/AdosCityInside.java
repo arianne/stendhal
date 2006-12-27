@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.ados;
 
-import games.stendhal.client.update.HttpClient;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -13,7 +12,10 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.util.WikipediaAccess;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,15 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
 import marauroa.common.game.IRPZone;
-
-import org.apache.log4j.Logger;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Builds the inside of buildings in Ados City
@@ -37,58 +31,10 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author hendrik
  */
 public class AdosCityInside {
-	private static Logger logger = Logger.getLogger(AdosCityInside.class);
 	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
 	
-	private class WikipediaHandler extends DefaultHandler {
-		private StringBuilder text = new StringBuilder();
-		private boolean isContent = false;
-
-		@Override
-		public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
-			isContent = qName.equals("content");
-		}
-		
-		@Override
-		public void characters(char[] ch, int start, int length) throws SAXException {
-			if (isContent) {
-				text.append(ch, start, length);
-			}
-		}
-
-		public String getText() {
-			return text.toString();
-		}
-		
-		public String getProcessedText() {
-			String content = getText();
-			// remove image links
-			content = content.replaceAll("\\[\\[[iI]mage:[^\\]]*\\]\\]", "");
-			// remove comments (note reg exp is incorret)
-			content = content.replaceAll("<!--[^>]*-->", "");
-			// remove templates (note reg exp is incorret)
-			content = content.replaceAll("\\{\\{[^\\}]*\\}\\}", "");
-			// remove complex links
-			content = content.replaceAll("\\[\\[[^\\]]*\\|", "");
-			// remove simple links
-			content = content.replaceAll("\\[\\[", "");
-			content = content.replaceAll("\\]\\]", "");
-			
-			// ignore leading empty lines and spaces
-			content = content.trim();
-
-			// extract the first paragraph (ignoring very short once but oposing a max len)
-			int size = content.length();
-			int endOfFirstParagraph = content.indexOf("\n", 50);
-			if (endOfFirstParagraph < 0) {
-				endOfFirstParagraph = size;
-			}
-			content = content.substring(0, Math.min(endOfFirstParagraph, 1024));
-			return content;
-		}
-	}
-
+	
 	/**
 	 * build the city insides
 	 */
@@ -159,29 +105,14 @@ public class AdosCityInside {
 						// extract the title
 						int pos = text.indexOf(" ");
 						if (pos < 0) {
-							engine.say("What do you want to be explained.");
+							engine.say("What do you want to be explained?");
 							return;
 						}
 						String title = text.substring(pos + 1).trim();
 
-						// look it up using the Wikipedia API
-						HttpClient httpClient = new HttpClient("http://en.wikipedia.org/w/query.php?format=xml&titles=" + title + "&what=content");
-						SAXParserFactory factory = SAXParserFactory.newInstance();
-						try {
-							// Parse the input
-							SAXParser saxParser = factory.newSAXParser();
-							WikipediaHandler handler = new WikipediaHandler();
-							saxParser.parse(httpClient.getInputStream(), handler);
-							if (handler.getText() != null) {
-								String content = handler.getProcessedText();
-								engine.say(content);
-							} else {
-								engine.say("Sorry, this book has still to be written");
-							}
-						} catch (Exception e) {
-							logger.error(e, e);
-							engine.say("Sorry, i cannot access the bookcase the moment");
-						}						
+						WikipediaAccess access = new WikipediaAccess(title);
+						new Thread(access).start();
+						TurnNotifier.get().notifyInTurns(10, new WikipediaWaiter(engine, access), null);
 					}
 					// TODO: implement pointer to authors, GFDL, etc...
 				});
@@ -353,4 +284,31 @@ public class AdosCityInside {
 		zone.addPortal(portal);
 	}
 
+	protected class WikipediaWaiter implements TurnListener {
+		private WikipediaAccess access = null;
+		private SpeakerNPC engine = null;
+
+		public WikipediaWaiter(SpeakerNPC engine, WikipediaAccess access) {
+			this.engine = engine;
+			this.access = access;
+		}
+
+		public void onTurnReached(int currentTurn, String message) {
+			if (!access.isFinished()) {
+				TurnNotifier.get().notifyInTurns(3, new WikipediaWaiter(engine, access), null);
+				return;
+			}
+			if (access.getError() != null) {
+				engine.say("Sorry, I cannot access the bookcase at the moment");
+				return;
+			}
+
+			if (access.getText() != null) {
+				String content = access.getProcessedText();
+				engine.say(content);
+			} else {
+				engine.say("Sorry, this book has still to be written");
+			}
+		}
+	}
 }
