@@ -301,7 +301,7 @@ public class AdosCityInside {
 				return;
 			}
 
-			if (access.getText() != null) {
+			if (access.getText() != null && access.getText().length() > 0) {
 				String content = access.getProcessedText();
 				engine.say(content);
 			} else {
