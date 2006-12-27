@@ -78,6 +78,8 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 			content = content.replaceAll("\\[\\[[iI]mage:[^\\]]*\\]\\]", "");
 			// remove comments (note reg exp is incorret)
 			content = content.replaceAll("<!--[^>]*-->", "");
+			// remove ref
+			content = content.replaceAll("<ref>[^<]*</ref>", "");
 			// remove templates (note reg exp is incorret)
 			content = content.replaceAll("\\{\\{[^\\}]*\\}\\}", "");
 			// remove complex links
@@ -85,6 +87,8 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 			// remove simple links
 			content = content.replaceAll("\\[\\[", "");
 			content = content.replaceAll("\\]\\]", "");
+			// remove tags
+			content = content.replaceAll("<[^>]*>", "");
 			
 			// ignore leading empty lines and spaces
 			content = content.trim();
@@ -109,7 +113,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	public void parse() throws Exception {
 		try {
 			// look it up using the Wikipedia API
-			HttpClient httpClient = new HttpClient("http://en.wikipedia.org/w/query.php?format=xml&titles=" + title + "&what=content");
+			HttpClient httpClient = new HttpClient("http://en.wikipedia.org/w/query.php?format=xml&titles=" + title.replace(" ", "_").replace("%", "%25") + "&what=content");
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 	
 			// Parse the input
