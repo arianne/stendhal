@@ -80,16 +80,10 @@ public class AdosCityInside {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(17, 12));
-				nodes.add(new Path.Node(17, 13));
-				nodes.add(new Path.Node(16, 8));
-				nodes.add(new Path.Node(13, 8));
-				nodes.add(new Path.Node(13, 6));
-				nodes.add(new Path.Node(13, 10));
-				nodes.add(new Path.Node(25, 10));
-				nodes.add(new Path.Node(25, 13));
-				nodes.add(new Path.Node(25, 10));
-				nodes.add(new Path.Node(17, 10));
+				nodes.add(new Path.Node(9, 8));
+				nodes.add(new Path.Node(9, 26));
+				nodes.add(new Path.Node(20, 26));
+				nodes.add(new Path.Node(20, 9));
 				setPath(nodes, true);
 			}
 
@@ -111,8 +105,12 @@ public class AdosCityInside {
 						String title = text.substring(pos + 1).trim();
 
 						WikipediaAccess access = new WikipediaAccess(title);
-						new Thread(access).start();
+						Thread thread = new Thread(access);
+						thread.setPriority(Thread.MIN_PRIORITY);
+						thread.setDaemon(true);
+						thread.start();
 						TurnNotifier.get().notifyInTurns(10, new WikipediaWaiter(engine, access), null);
+						engine.say("Please wait, while i am looking it up in the book called #Wikipedia!");
 					}
 					// TODO: implement pointer to authors, GFDL, etc...
 				});
@@ -122,7 +120,7 @@ public class AdosCityInside {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "investigatornpc");
-		npc.set(17, 12);
+		npc.set(9, 8);
 		npc.initHP(100);
 		zone.addNPC(npc);
 	}
