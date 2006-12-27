@@ -12,16 +12,29 @@ import org.xml.sax.helpers.DefaultHandler;
 /**
  * Gets the first text paragraph from the specified Wikipedia article using
  * the MediaWiki bot api.
+ * 
+ * You can invoke the parser either inline using the method parse() or start
+ * it in a new thread. 
  *
  * @author hendrik
  */
-public class WikipediaAccess extends DefaultHandler {
+public class WikipediaAccess extends DefaultHandler implements Runnable {
+	private String title = null;
 	private StringBuilder text = new StringBuilder();
 	/** used by the parser to detect the right tag */
 	private boolean isContent = false;
 	/** was the parsing completed */
 	private boolean finished = false;
 	private String error = null;
+
+	/**
+	 * creates a new WikipeidaAccess
+	 *
+	 * @param title title of the page to access
+	 */
+	public WikipediaAccess(String title) {
+		this.title = title;
+	}
 
 	@Override
 	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
@@ -93,7 +106,7 @@ public class WikipediaAccess extends DefaultHandler {
 	 * @param title
 	 * @throws Exception in case of an unexpected error
 	 */
-	public void parse(String title) throws Exception {
+	public void parse() throws Exception {
 		try {
 			// look it up using the Wikipedia API
 			HttpClient httpClient = new HttpClient("http://en.wikipedia.org/w/query.php?format=xml&titles=" + title + "&what=content");
@@ -109,6 +122,14 @@ public class WikipediaAccess extends DefaultHandler {
 			finished = true;
 			error = e.toString();
 			throw e;
+		}
+	}
+
+	public void run() {
+		try {
+			parse();
+		} catch (Exception e) {
+			// ignore as they are alread logged in the parse()-method itself
 		}
 	}
 
