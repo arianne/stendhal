@@ -16,11 +16,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DiceGambling extends AbstractQuest {
-	
+
 	private static final int STAKE = 100;
-	// private static final int STAKE = 1; // for testing
-	
+
 	@Override
+	@SuppressWarnings("unchecked")
 	public void addToWorld() {
 
 		CroupierNPC ricardo = (CroupierNPC) NPCList.get().get("Ricardo");
