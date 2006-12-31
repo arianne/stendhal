@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 
 /**
  * QUEST: Meet Santa anywhere around the World.
+ *
  * PARTICIPANTS:
  * - Santa Claus
  *
@@ -119,7 +120,7 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		// Say bye
 		santa.say("Bye.");
 
-		// We make santa to stop speaking anyone.
+		// We make santa to stop speaking to anyone.
 		santa.setCurrentState(ConversationStates.IDLE);
 
 		// remove santa from old zone
@@ -174,7 +175,7 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		listZones();
 		TurnNotifier.get().notifyInTurns(60, this, null);
 
-		// say something every minute
+		// say something every minute so that can be noticed more easily
 		TurnNotifier.get().notifyInTurns(60, new TurnListener() {
 			public void onTurnReached(int currentTurn, String message) {
 				santa.say("Ho, ho, ho! Merry Christmas!");
