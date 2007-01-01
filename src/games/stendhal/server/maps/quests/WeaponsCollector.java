@@ -203,7 +203,8 @@ public class WeaponsCollector extends AbstractQuest {
 									if (missing.size() > 0) {
 										engine.say("Thank you very much! Do you have anything else for me?");
 									} else {
-										Item iceSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("ice_sword");            
+										Item iceSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("ice_sword");
+										iceSword.put("bound", player.getName());
 										player.equip(iceSword, true);
 										player.addXP(1000);
 										engine.say("At last, my collection is complete! Thank you very much; here, take this #ice #sword in exchange!");

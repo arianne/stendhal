@@ -210,7 +210,8 @@ public class CloaksForBario extends AbstractQuest {
 							engine.say("Thank you very much! Do you have another one? I still need " + Grammar.quantityplnoun(toBring, "cloak") + ".");
 							engine.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
-							Item goldenShield = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden_shield");            
+							Item goldenShield = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden_shield");
+							goldenShield.put("bound", player.getName());
 							player.equip(goldenShield, true);
 							player.addXP(1500);
 							player.notifyWorldAboutChanges();

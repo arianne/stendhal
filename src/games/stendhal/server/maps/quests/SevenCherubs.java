@@ -167,6 +167,7 @@ public class SevenCherubs extends AbstractQuest {
 								Item item = StendhalRPWorld.get()
 										.getRuleManager().getEntityManager()
 										.getItem(items[Rand.rand(items.length)]);
+								item.put("bound", player.getName());
 								player.equip(item, true);
 								player.addXP(2000);
 							}

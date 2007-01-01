@@ -198,6 +198,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				Item item = StendhalRPWorld.get()
 				.getRuleManager().getEntityManager().getItem(
 						"steel_boots");
+				item.put("bound", player.getName());
 				item.put("infostring", engine.get("name"));
 				player.equip(item);
 				player.setQuest("soldier_henry","done");

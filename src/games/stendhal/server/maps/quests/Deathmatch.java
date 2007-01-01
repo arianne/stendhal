@@ -252,6 +252,7 @@ public class Deathmatch extends AbstractQuest {
 				Item helmet	= player.getFirstEquipped("trophy_helmet");
 				if(helmet == null) {
 					helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
+					helmet.put("bound", player.getName());
 					engine.say("Congratulations! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
 					isNew = true;
 				}
