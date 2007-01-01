@@ -136,12 +136,12 @@ public class SemosCityInsideTavern {
 				Blackboard board = new Blackboard(false);
 				zone.assignRPObjectID(board);
 				board.set(2, 11);
-				board.setText(shops.toString("sellstuff", "-- Selling --"));
+				board.setText(shops.toString("sellstuff", "-- I sell --"));
 				zone.add(board);
 				board = new Blackboard(false);
 				zone.assignRPObjectID(board);
 				board.set(3, 11);
-				board.setText(shops.toString("buystuff", "-- Buying --"));
+				board.setText(shops.toString("buystuff", "-- I buy --"));
 				zone.add(board);
 			}
 		};
