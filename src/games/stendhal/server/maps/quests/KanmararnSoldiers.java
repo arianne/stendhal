@@ -8,7 +8,6 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptCondition;
 
@@ -16,21 +15,33 @@ import java.util.Arrays;
 import java.util.List;
 
 import marauroa.common.game.IRPZone;
-import marauroa.common.game.RPSlot;
 
 
 /**
- * QUEST: 
- * Creates a 6 step quest in Kanmararn
- * Note: it also starts a quest that needs NPC McPegleg that is created.
+ * QUEST: Soldiers in Kanmararn 
+ *
+ * NOTE:
+ * It also starts a quest that needs NPC McPegleg that is created.
  * It doesn't harm if that script is missing, just that the IOU cannot be
  * delivered and hence the player can't get cash
  *
  * PARTICIPANTS:
+ *  - Henry
+ *  - Sergeant James
+ *  - corpse of Tom
+ *  - corpse of Charles
+ *  - corpse of Peter
  *
  * STEPS:
+ *  - optional: speak to Sergeant James to get the task to find the map
+ *  - talk to Henry to get the task to find some prove that the other 3 soldiers are dead.
+ *  - collect the item in each of the corpse of the three other soldiers
+ *  - bring them back to Herny to get the map
+ *  - bring the map to Sergeant James 
  *
  * REWARD:
+ *  - IOU (for quest MCPeglegIOU.java)
+ *  - steel boots
  *
  * REPETITIONS:
  * - None.
@@ -201,7 +212,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 * We create NPC Henry who will get us on the quest
 	 */
 	private void step_1() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
 		SpeakerNPC henry = npcs.get("Henry");
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"), null, ConversationStates.QUEST_OFFERED, null, new HenryQuestAction());
 		henry.add(ConversationStates.QUEST_OFFERED, SpeakerNPC.YES_MESSAGES,null, ConversationStates.ATTENDING, "Thank you! I'll be waiting for your return.", new HenryQuestAcceptAction());
@@ -251,7 +261,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 		peter.setStage(2);	// he died recently
 		peter.put("name", "Peter");
 		peter.put("killer", "a Dwarven patrol");
-		// Add our new Ex-NPC to the game world
 		// Add our new Ex-NPC to the game world
 		zone.assignRPObjectID(peter);
 		zone.add(peter);

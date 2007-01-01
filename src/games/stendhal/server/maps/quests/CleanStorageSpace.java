@@ -7,7 +7,9 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Arrays;
 
 /**
- * QUEST: CleanStorageSpace PARTICIPANTS:
+ * QUEST: CleanStorageSpace
+ *
+ * PARTICIPANTS:
  * - Eonna
  * 
  * STEPS:

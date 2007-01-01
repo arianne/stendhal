@@ -15,6 +15,10 @@ import java.util.List;
  * QUEST: McPegleg's IOU
  * 
  * PARTICIPANTS: - a corpse in kanmararn - McPegleg
+ *
+ * NOTE: The corpse with cointaisn the IOU is created in KanmararnSoldiers.java
+ *       Without it this quest cannot be started (so the player won't notice the 
+ *       problem at all).
  * 
  * STEPS: - find IOU in a corpse in kanmararn - bring it to McPegleg
  * 
