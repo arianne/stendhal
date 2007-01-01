@@ -48,7 +48,7 @@
 		<copy todir="${build_server}/data/conf/" file="data/conf/stendhalcreateaccount.properties"/>
 		<copy todir="${build_server}/games/stendhal/server/" file="${src}/games/stendhal/server/stendhal_init.sql"/>
 
-		<javac srcdir="${src}" destdir="${build_server}" debug="true" debuglevel="source,lines"
+		<javac srcdir="${src}" destdir="${build_server}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="games/stendhal/server/**, games/stendhal/common/**" 
            excludes="games/stendhal/server/maps/**, games/stendhal/server/script/**, games/stendhal/client/**, games/stendhal/tools/**">
 			<classpath>
@@ -68,7 +68,7 @@
 		<property name="build_server_maps" value="${buildroot}/build_server_maps/"/>
 		<mkdir dir="${build_server_maps}/"/>
 
-		<javac srcdir="${src}/games/stendhal/server/maps/" destdir="${build_server_maps}" debug="true" debuglevel="source,lines"
+		<javac srcdir="${src}/games/stendhal/server/maps/" destdir="${build_server_maps}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="**/*.java"
            excludes="games/stendhal/server/maps/quests/**">
 			<classpath>
@@ -95,7 +95,7 @@
 
 		<property name="build_server_script" value="${buildroot}/build_server_script/"/>
 		<mkdir dir="${build_server_script}/"/>
-		<javac srcdir="${src}" destdir="${build_server_script}" debug="true" debuglevel="source,lines"
+		<javac srcdir="${src}" destdir="${build_server_script}" debug="true" debuglevel="source,lines"  source="1.5" target="1.5"
            includes="games/stendhal/server/script/**">
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
