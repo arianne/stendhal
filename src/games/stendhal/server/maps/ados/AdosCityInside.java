@@ -114,6 +114,8 @@ public class AdosCityInside {
 					}
 					// TODO: implement pointer to authors, GFDL, etc...
 				});
+				addReply("wikipedia", "Wikipedia is an Internet based to create a #free encyclopedia");
+				addReply("free", "The Wikipedia content may be used according to the rules specified in the GNU General Documentation License which can be found at http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License");
 				addGoodbye();
 			}
 		};
