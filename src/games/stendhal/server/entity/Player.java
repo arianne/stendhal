@@ -329,13 +329,11 @@ public class Player extends RPEntity implements TurnListener {
 								
 								// make sure saved individual information is
 								// restored
-								if (item.has("infostring")) {
-									entity.put("infostring", item
-											.get("infostring"));
-								}
-								if (item.has("description")) {
-									entity.put("description", item
-											.get("description"));
+								String[] individualAttributes = {"infostring", "description", "bound"};
+								for (String attribute : individualAttributes) {
+									if (item.has(attribute)) {
+										entity.put(attribute, item.get(attribute));
+									}
 								}
 
 								slot.add(entity);
@@ -1194,14 +1192,6 @@ public class Player extends RPEntity implements TurnListener {
 			if (dir != null) {
 				this.setDirection(dir);
 			}
-			
-			String teleporterName;
-			if (teleporter == null) {
-				teleporterName = "null";
-			} else {
-				teleporterName = teleporter.getName();
-			}
-
 			notifyWorldAboutChanges();
 			return true;
 		} else {
