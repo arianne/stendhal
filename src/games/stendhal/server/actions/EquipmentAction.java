@@ -19,6 +19,7 @@ import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.EquipListener;
@@ -130,6 +131,19 @@ public class EquipmentAction extends ActionListener {
 			return;
 		}
 
+		// is the entity unbound or bound to the right player?
+		Entity entity = source.getEntity();
+		if (entity.has("bound") && !player.getName().equals(entity.get("bound"))) {
+			String temp = "entity";
+			if (entity.has("name")) {
+				temp = entity.get("name").replace("_", " ");
+			} else if (entity instanceof Item) {
+				temp = "item";
+			}
+			player.sendPrivateText("This " + temp + " is a special reward for " + entity.get("bound") + ". I do not deserve to use it.");
+			return;
+		}
+		
 		// get destination and check it
 		DestinationObject dest = new DestinationObject(action, player);
 		if (!dest.isValid() || !dest.checkDistance(player, MAXDISTANCE)
@@ -419,6 +433,15 @@ public class EquipmentAction extends ActionListener {
 				}
 			}
 			return true;
+		}
+
+		/**
+		 * gets the entity that should be equiped
+		 *
+		 * @return entity
+		 */
+		public Entity getEntity() {
+			return base;
 		}
 	}
 

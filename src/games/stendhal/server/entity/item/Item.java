@@ -63,6 +63,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.add("infostring", RPClass.STRING); // To store additional info with an item
 		entity.add("persistent", RPClass.SHORT);  // Some items have individual values
 		entity.add("lifesteal",  RPClass.FLOAT);  // Some items has lifesteal values
+		entity.add("bound", RPClass.STRING);      // Some items are quest rewards that other players don't deserve.
 	}
 
 	/**
