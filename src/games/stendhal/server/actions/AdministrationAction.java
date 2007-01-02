@@ -585,7 +585,7 @@ public class AdministrationAction extends ActionListener {
 	
 			st.append("\nequips");
 			for (RPSlot slot : inspected.slots()) {
-				if (slot.getName().equals("!buddy")) {
+				if (slot.getName().equals("!buddy") || slot.getName().equals("!ignore")) {
 					continue;
 				}
 				st.append("\n    Slot " + slot.getName() + ": ");
