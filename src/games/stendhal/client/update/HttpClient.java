@@ -85,7 +85,7 @@ public class HttpClient {
 	        URL url = new URL(urlString);
 	        int retryCount = 0;
 	        int myTimeout = timeout;
-	        while (connection == null) {
+	        while (is == null) {
 	        	retryCount++;
 	        	try {
 			        HttpURLConnection.setFollowRedirects(true);
@@ -95,6 +95,12 @@ public class HttpClient {
 			        	System.err.println("HttpServer returned an error code (" + urlString + "): " + connection.getResponseCode());
 			        	connection = null;
 			        }
+			        if (connection != null) {
+			        	is = connection.getInputStream();
+				        if (retryCount > 1) {
+				        	System.err.println("Retry successful");
+				        }
+			        }
 	        	} catch (SocketTimeoutException e) {
 	        		System.err.println("Timeout (" + urlString + "): " + " " + e.toString());
 	        	}
@@ -102,12 +108,6 @@ public class HttpClient {
 	        	if (!tryVeryHard || retryCount > 3) {
 	        		break;
 	        	}
-	        }
-	        if (connection != null) {
-	        	is = connection.getInputStream();
-		        if (retryCount > 1) {
-		        	System.err.println("Retry successful");
-		        }
 	        }
 	    } catch (Exception e) {
 	    	System.err.println("Error connecting to http-Server (" + urlString + "): ");
