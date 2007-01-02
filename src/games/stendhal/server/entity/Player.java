@@ -131,9 +131,10 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public static Player create(RPObject object) {
-		String[] slots = { "bag", "rhand", "lhand", "head", "armor", "legs",
+		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs",
 				"feet", "cloak", "bank" };
-		
+		String[] slotsSpecial = { "!buddy", "!ignore"};
+
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
 			object.put("base_hp", "100");
@@ -147,20 +148,26 @@ public class Player extends RPEntity implements TurnListener {
 		
 		// create slots if they do not exist yet:
 		
-		// Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
-		// Port from 0.44 to 0.50: cloak, bank
-		for (String slotName : slots) {
+		//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
+		//     Port from 0.44 to 0.50: cloak, bank
+		for (String slotName : slotsNormal) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new RPSlot(slotName));
 			}
-
+		}
+		//     Port from 0.44 to 0.50: buddies
+		for (String slotName : slotsSpecial) {
+			if (object.hasSlot(slotName)) {
+				RPSlot buddy = object.getSlot(slotName);
+				if (buddy.size() == 0) {
+					RPObject data = new RPObject();
+					buddy.assignValidID(data);
+					buddy.add(data);
+				}
+			}
 		}
 
 		// Port from 0.30 to 0.35
-		if (!object.hasSlot("!buddy")) {
-			object.addSlot(new RPSlot("!buddy"));
-		}
-
 		if (!object.has("atk_xp")) {
 			object.put("atk_xp", "0");
 			object.put("def_xp", "0");
@@ -177,29 +184,13 @@ public class Player extends RPEntity implements TurnListener {
 			object.put("def", "10");
 		}
 
-		if (!object.hasSlot("cloak")) {
-			object.addSlot(new RPSlot("cloak"));
-		}
-
-		if (!object.hasSlot("bank")) {
-			object.addSlot(new RPSlot("bank"));
-		}
-
-		if (object.hasSlot("!buddy")) {
-			RPSlot buddy = object.getSlot("!buddy");
-			if (buddy.size() == 0) {
-				RPObject data = new RPObject();
-				buddy.assignValidID(data);
-				buddy.add(data);
-			}
-		}
-
 		if (!object.has("age")) {
 			object.put("age", "0");
 		}
 
 		StendhalRPWorld world = StendhalRPWorld.get();
 		Player player = new Player(object);
+
 		// Port from 0.48 to 0.50
 		player.readAdminsFromFile();
 
@@ -297,7 +288,7 @@ public class Player extends RPEntity implements TurnListener {
 		StendhalRPAction.placeat(zone, player, x, y);
 		zone.addPlayerAndFriends(player);
 
-		for (String slotName : slots) {
+		for (String slotName : slotsNormal) {
 			try {
 				if (player.hasSlot(slotName)) {
 					RPSlot slot = player.getSlot(slotName);
