@@ -85,9 +85,11 @@ public class Postman implements Runnable {
 	                    st.nextToken(); // you:
 	                    //System.out.println(text);
 
-	                    if (from.endsWith(":")) {
+	                    // forward position of players to irc
+	                    // disabled because it is really annoying
+	                    /*if (from.endsWith(":")) {
 	                    	postmanIRC.sendMessage("#arianne-support", text);
-	                    }
+	                    }*/
 	                    if (arianneCmd.equals("tells")) {
 	                        // Command was send by a player 
 	                        String cmd = st.nextToken(); // cmd
