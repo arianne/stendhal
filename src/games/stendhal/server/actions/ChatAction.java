@@ -12,10 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
+import marauroa.server.game.JDBCPlayerDatabase;
+import marauroa.server.game.Transaction;
 
 import org.apache.log4j.Logger;
 
@@ -33,6 +38,10 @@ public class ChatAction extends ActionListener {
 		StendhalRPRuleProcessor.register("chat", chat);
 		StendhalRPRuleProcessor.register("tell", chat);
 		StendhalRPRuleProcessor.register("support", chat);
+
+		// start the logcleaner
+		LogCleaner logCleaner = new LogCleaner();
+		logCleaner.start();
 	}
 
 	@Override
@@ -50,6 +59,7 @@ public class ChatAction extends ActionListener {
 		Log4J.startMethod(logger, "chat");
 		if (action.has("text")) {
 			player.put("text", action.get("text"));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", null, action.get("text"));
 			player.notifyWorldAboutChanges();
 			StendhalRPRuleProcessor.get().removePlayerText(player);
 		}
@@ -57,24 +67,43 @@ public class ChatAction extends ActionListener {
 	}
 
 	private void onTell(Player player, RPAction action) {
-		Log4J.startMethod(logger, "tell");
-
 		if (action.has("target") && action.has("text")) {
-			String message = player.getName() + " tells you: "
-					+ action.get("text");
-			Player receiver = StendhalRPRuleProcessor.get().getPlayer(action.get("target"));
-			if (receiver != null) {
-				receiver.sendPrivateText(message);
-				player.sendPrivateText("You tell " + receiver.getName() + ": "
-						+ action.get("text"));
-				receiver.notifyWorldAboutChanges();
+			String message = player.getName() + " tells you: "+ action.get("text");
+
+			// find the target player
+			String receiverName = action.get("target");
+			Player receiver = StendhalRPRuleProcessor.get().getPlayer(receiverName);
+			if (receiver == null) {
+				player.sendPrivateText("No player named \"" + action.get("target") + "\" is currently active.");
 				player.notifyWorldAboutChanges();
 				return;
 			}
-			player.sendPrivateText("No player named \"" + action.get("target") + "\" is currently active.");
-		}
+			
+			// check ignore list
+			boolean ok = true;
+			RPSlot slot = receiver.getSlot("!ignore");
+			RPObject listBuddies = null;
+			if (slot.size() > 0) {
+				listBuddies = slot.getFirst();
+				System.out.println(listBuddies);
+				if (listBuddies.has("_" + player.getName())) {
+					ok = false;
+				}
+			}
+			if (!ok) {
+				player.sendPrivateText("Message not accepted for delivery. This person is ignoring you.");
+				player.notifyWorldAboutChanges();
+				return;
+			}
 
-		Log4J.finishMethod(logger, "tell");
+			// transmit the message
+			receiver.sendPrivateText(message);
+			player.sendPrivateText("You tell " + receiver.getName() + ": " + action.get("text"));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", receiverName, action.get("text"));
+			receiver.notifyWorldAboutChanges();
+			player.notifyWorldAboutChanges();
+			return;
+		}
 	}
 
 	private void onSupport(Player player, RPAction action) {
@@ -106,5 +135,33 @@ public class ChatAction extends ActionListener {
 		}
 
 		Log4J.finishMethod(logger, "tell");
+	}
+
+	/**
+	 * Deletes the chatlog after a short delay. Note this
+	 * runs inside a thread outside the normal turn based processing
+	 * because the SQL command may take more then 100ms on MySQL. 
+	 */
+	protected static class LogCleaner extends Thread {
+		public LogCleaner() {
+			super("ChatLogCleaner");
+			super.setDaemon(true);
+			super.setPriority(Thread.MIN_PRIORITY);
+		}
+
+		@Override
+		public void run() {
+			while (true) {
+				try {
+					StendhalPlayerDatabase database = (StendhalPlayerDatabase) JDBCPlayerDatabase.getDatabase();
+					Transaction transaction = database.getTransaction();
+					database.cleanChatLog(transaction);
+					transaction.commit();
+					Thread.sleep(3600 * 1000);
+				} catch (Exception e) {
+					logger.error(e, e);
+				}
+			}
+		}
 	}
 }

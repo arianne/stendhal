@@ -30,7 +30,7 @@ public class DeepInspect extends ScriptImpl {
 		// inspect slots
 		for (RPSlot slot : player.slots()) {
 			// don't return buddy-list for privacy reasons
-			if (slot.getName().equals("!buddy")) {
+			if (slot.getName().equals("!buddy") || slot.getName().equals("!ignore")) {
 				continue;
 			}
 			sb.append("\nSlot " + slot.getName() + ": \n");

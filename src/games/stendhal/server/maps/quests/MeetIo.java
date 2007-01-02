@@ -52,7 +52,7 @@ public class MeetIo extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_3,
-				"Type #/tell #username #message or #/msg #username #message to talk to anybody you wish, no matter where in Stendhal that person is; and without the risk of being overheard.  You can type #// #response to continue talking to the last person you send a message to. Ready to learn my fourth tip?",
+				"Type #/tell #username #message or #/msg #username #message to talk to anybody you wish, no matter where in Stendhal that person is.  You can type #// #response to continue talking to the last person you send a message to. Ready to learn my fourth tip?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_3,

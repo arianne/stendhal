@@ -119,6 +119,7 @@ public class Player extends RPEntity implements TurnListener {
 
 			// We use this for the buddy system
 			player.addRPSlot("!buddy", 1, RPClass.PRIVATE);
+			player.addRPSlot("!ignore", 1, RPClass.HIDDEN);
 			player.add("online", RPClass.LONG_STRING,
 					(byte) (RPClass.PRIVATE | RPClass.VOLATILE));
 			player.add("offline", RPClass.LONG_STRING,
@@ -155,15 +156,17 @@ public class Player extends RPEntity implements TurnListener {
 				object.addSlot(new RPSlot(slotName));
 			}
 		}
-		//     Port from 0.44 to 0.50: buddies
+		//     Port from 0.44 to 0.50: !buddy
+		//     Port from 0.56 to 0.56.1: !ignore
 		for (String slotName : slotsSpecial) {
-			if (object.hasSlot(slotName)) {
-				RPSlot buddy = object.getSlot(slotName);
-				if (buddy.size() == 0) {
-					RPObject data = new RPObject();
-					buddy.assignValidID(data);
-					buddy.add(data);
-				}
+			if (!object.hasSlot(slotName)) {
+				object.addSlot(new RPSlot(slotName));
+			}
+			RPSlot buddy = object.getSlot(slotName);
+			if (buddy.size() == 0) {
+				RPObject data = new RPObject();
+				buddy.assignValidID(data);
+				buddy.add(data);
 			}
 		}
 
