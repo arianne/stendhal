@@ -153,7 +153,7 @@ public class ChatAction extends ActionListener {
 		public void run() {
 			while (true) {
 				try {
-					StendhalPlayerDatabase database = (StendhalPlayerDatabase) JDBCPlayerDatabase.getDatabase();
+					StendhalPlayerDatabase database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
 					Transaction transaction = database.getTransaction();
 					database.cleanChatLog(transaction);
 					transaction.commit();
