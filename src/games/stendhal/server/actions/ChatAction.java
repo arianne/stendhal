@@ -58,8 +58,12 @@ public class ChatAction extends ActionListener {
 	private void onChat(Player player, RPAction action) {
 		Log4J.startMethod(logger, "chat");
 		if (action.has("text")) {
-			player.put("text", action.get("text"));
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", null, action.get("text"));
+			String text = action.get("text");
+			player.put("text", text);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", null, text);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", null, 
+					Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000)));
+
 			player.notifyWorldAboutChanges();
 			StendhalRPRuleProcessor.get().removePlayerText(player);
 		}
@@ -68,7 +72,8 @@ public class ChatAction extends ActionListener {
 
 	private void onTell(Player player, RPAction action) {
 		if (action.has("target") && action.has("text")) {
-			String message = player.getName() + " tells you: "+ action.get("text");
+			String text = action.get("text");
+			String message = player.getName() + " tells you: " + text;
 
 			// find the target player
 			String receiverName = action.get("target");
@@ -98,8 +103,9 @@ public class ChatAction extends ActionListener {
 
 			// transmit the message
 			receiver.sendPrivateText(message);
-			player.sendPrivateText("You tell " + receiver.getName() + ": " + action.get("text"));
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", receiverName, action.get("text"));
+			player.sendPrivateText("You tell " + receiver.getName() + ": " + text);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", receiverName, 
+					Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000)));
 			receiver.notifyWorldAboutChanges();
 			player.notifyWorldAboutChanges();
 			return;
@@ -153,7 +159,7 @@ public class ChatAction extends ActionListener {
 		public void run() {
 			while (true) {
 				try {
-					StendhalPlayerDatabase database = (StendhalPlayerDatabase) JDBCPlayerDatabase.getDatabase();
+					StendhalPlayerDatabase database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
 					Transaction transaction = database.getTransaction();
 					database.cleanChatLog(transaction);
 					transaction.commit();
