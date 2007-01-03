@@ -53,6 +53,12 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
+0.57  Jan XX, 2007
+- server implemenation of ignore list for /msg (gui still misssing)
+- enlarged columns param2 in table gameEvents to upto 1024 characters
+- 
+
+
 0.56  Dec 19, 2006
 - added Ados City with new people
 - one of Haizen's experiments went horribly wrong wrong, causing dragons to get much smarter
