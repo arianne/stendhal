@@ -12,14 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Player;
+
+import java.util.StringTokenizer;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.JDBCPlayerDatabase;
 import marauroa.server.game.Transaction;
 
 import org.apache.log4j.Logger;
@@ -72,7 +75,7 @@ public class ChatAction extends ActionListener {
 
 	private void onTell(Player player, RPAction action) {
 		if (action.has("target") && action.has("text")) {
-			String text = action.get("text");
+			String text = action.get("text").trim();
 			String message = player.getName() + " tells you: " + text;
 
 			// find the target player
@@ -83,7 +86,18 @@ public class ChatAction extends ActionListener {
 				player.notifyWorldAboutChanges();
 				return;
 			}
-			
+
+			// HACK: extract sender from postman messages
+			String senderName = player.getName();
+			StringTokenizer st = new StringTokenizer(text, " ");
+			if (st.countTokens() > 2) {
+				String temp = st.nextToken();
+				String command = st.nextToken();
+				if (command.equals("asked")) {
+					senderName = temp;
+				}
+			}
+
 			// check ignore list
 			boolean ok = true;
 			RPSlot slot = receiver.getSlot("!ignore");
@@ -91,13 +105,16 @@ public class ChatAction extends ActionListener {
 			if (slot.size() > 0) {
 				listBuddies = slot.getFirst();
 				System.out.println(listBuddies);
-				if (listBuddies.has("_" + player.getName())) {
+				if (listBuddies.has("_" + senderName)) {
 					ok = false;
 				}
 			}
 			if (!ok) {
-				player.sendPrivateText("Message not accepted for delivery. This person is ignoring you.");
-				player.notifyWorldAboutChanges();
+				// sender is on ignore list
+				if (!player.equals("postman")) { // HACK: do not notify postman
+					player.sendPrivateText(Grammar.suffix_s(receiverName) + " mind is not attuned to yours, so you cannot reach them.");
+					player.notifyWorldAboutChanges();
+				}
 				return;
 			}
 
