@@ -120,6 +120,6 @@ public class Corpse extends PassiveEntity {
 
 	@Override
 	public int getZIndex() {
-		return 4000;
+		return 5500;
 	}
 }
