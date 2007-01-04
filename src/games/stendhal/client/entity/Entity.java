@@ -76,10 +76,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	/** The object sprite. Animationless, just one frame */
 	protected Sprite sprite;
 
-	protected Rectangle2D area;
-
-	protected Rectangle2D drawedArea;
-
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
 	protected GameObjects gameObjects;

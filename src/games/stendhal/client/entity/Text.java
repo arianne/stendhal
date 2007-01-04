@@ -85,10 +85,6 @@ public class Text extends Entity {
 		this.x = x;
 		this.y = y;
 		this.text = text;
-
-		drawedArea = new Rectangle.Double(x, y, textImage.getWidth()
-				/ GameScreen.SIZE_UNIT_PIXELS, textImage.getHeight()
-				/ GameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	public void onChangedAdded(RPObject base, RPObject diff)
