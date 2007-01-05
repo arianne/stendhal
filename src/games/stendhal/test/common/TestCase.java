@@ -58,7 +58,7 @@ public class TestCase {
 			if (text != null) {
 				 t = " (" + text + ")";
 			}
-			String msg = "asertEquals failed" + t + ": \"" + object1 + "\" \"" + object2 + "\"";
+			String msg = "assertEquals failed" + t + ": \"" + object1 + "\" \"" + object2 + "\"";
 			throw new AssertionError(msg);
 		}
 	}
