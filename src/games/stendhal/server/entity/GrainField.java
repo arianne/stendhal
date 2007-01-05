@@ -110,7 +110,7 @@ public class GrainField extends PlantGrower implements UseListener {
 	public void onUsed(RPEntity entity) {
 		if (entity.nextTo(this, 0.25)) {
 			if (getRipeness() == RIPE) {
-				if (entity.isEquipped("scythe")) {
+				if (entity.isEquipped("old_scythe") || entity.isEquipped("scythe")) {
 					onFruitPicked(null);
 					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("grain");
 					entity.equip(grain, true);

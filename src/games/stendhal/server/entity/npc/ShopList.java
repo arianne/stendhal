@@ -59,9 +59,8 @@ public class ShopList {
 		// shops.add("selltools", "pick", 50);
 		// shops.add("selltools", "shovel", 50);
 		shops.add("selltools", "hammer", 60);
-		// This one is expensive because you can use it to fight,
-		// solve the Balduin quest, and harvest grain.
-		shops.add("selltools", "scythe", 120);
+		// used for harvest grain.
+		shops.add("selltools", "old_scythe", 120);
 
 		shops.add("buyiron", "iron", 75);
 		
