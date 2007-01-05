@@ -110,31 +110,47 @@ public class Grammar {
 		return "a " + enoun;
 	}
 
+	/**
+	 * adds a prefix unless it was already added
+	 *
+	 * @param noun   the noun (which may already start with the specified prefix
+	 * @param prefix prefix to add
+	 * @return noun starting with prefix
+	 */
+	private static String addPrefixIfNotAlreadyThere(String prefix, String noun) {
+		if (noun.startsWith(prefix)) {
+			return noun;
+		} else {
+			return prefix + noun;
+		}
+	}
+
 	public static String fullform(String noun) {
 		String enoun = noun.toLowerCase();
-		if (enoun == "meat" || enoun == "ham" || enoun == "cheese" || enoun == "wood" || enoun == "paper" || enoun == "iron" || enoun.endsWith(" ore") || enoun.endsWith("_ore")) {
-			enoun = "piece of " + enoun;
-		} else if (enoun == "flour") {
-			enoun = "sack of " + enoun;
-		} else if (enoun == "grain") {
-			enoun = "sheaf of " + enoun;
-		} else if (enoun == "bread") {
-			enoun = "loaf of " + enoun;
-		} else if (enoun == "beer" || enoun == "wine" || enoun.endsWith("poison") || enoun == "antidote") {
-			enoun = "bottle of " + enoun;
-		} else if (enoun == "money") {
+		if (enoun.equals("meat") || enoun.equals("ham") || enoun.equals("cheese") || enoun.equals("wood")
+				|| enoun.equals("paper") || enoun.equals("iron")) {
+			enoun = addPrefixIfNotAlreadyThere("piece of ", enoun);
+		} else if (enoun.endsWith(" ore") || enoun.endsWith("_ore")) {
+			enoun = addPrefixIfNotAlreadyThere("nugget of ", enoun);
+		} else if (enoun.equals("flour")) {
+			enoun = addPrefixIfNotAlreadyThere("sack of ", enoun);
+		} else if (enoun.equals("grain")) {
+			enoun = addPrefixIfNotAlreadyThere("sheaf of ", enoun);
+		} else if (enoun.equals("bread")) {
+			enoun = addPrefixIfNotAlreadyThere("loaf of ", enoun);
+		} else if (enoun.equals("beer") || enoun.equals("wine") || enoun.endsWith("poison") || enoun.equals("antidote")) {
+			enoun = addPrefixIfNotAlreadyThere("bottle of ", enoun);
+		} else if (enoun.equals("money")) {
 			// TODO: fix this (going back to money as workaround because /drop 1 coin does not work
 			// enoun = "coin";
 		} else if (enoun.startsWith("book_") || enoun.startsWith("book ")) {
 			enoun = enoun.substring(5) + " book";
-		} else if (enoun == "arandula") {
-			enoun = "sprigs of " + enoun;
+		} else if (enoun.equals("arandula")) {
+			enoun = addPrefixIfNotAlreadyThere("sprig of ", enoun);
 		} else if (enoun.indexOf("_armor") > -1 || enoun.indexOf(" armor") > -1) {
-			enoun = "suit of " + enoun;
+			enoun = addPrefixIfNotAlreadyThere("suit of ", enoun);
 		} else if (enoun.endsWith("_legs") || enoun.endsWith(" legs") || enoun.endsWith("_boots") || enoun.endsWith(" boots")) {
-			enoun = "pair of " + enoun;
-		} else {
-		//	enoun = enoun;
+			enoun = addPrefixIfNotAlreadyThere("pair of ", enoun);
 		}
 		return enoun;
 	}
@@ -173,65 +189,80 @@ public class Grammar {
 	 */
 	public static String plural(String noun) {
 		String enoun = fullform(noun);
+		String postfix = "";
+		int pos = enoun.length() - 2;
+		if (enoun.length() > 2 && (enoun.charAt(pos) == '+')) {
+			postfix = enoun.substring(pos - 1);
+			enoun = enoun.substring(0, pos - 1);
+		}
 		try {
-			if (enoun.endsWith("sheep")) {
-				return enoun;
-			} else if (enoun.indexOf(" of ") > -1) {
-				return plural(enoun.substring(0, enoun.indexOf(" of ") - 1)) + enoun.substring(enoun.indexOf(" of "));
-			} else if (enoun.endsWith("staff")) {
-				return enoun.substring(0, enoun.length() - 3) + "ves";
+			// in "of"-phrases pluralize only the first part
+			if (enoun.indexOf(" of ") > -1) {
+				return plural(enoun.substring(0, enoun.indexOf(" of "))) + enoun.substring(enoun.indexOf(" of ")) + postfix;
+
+			// first of all handle words which do not change
+			} else if (enoun.endsWith("sheep") || enoun.endsWith("money") || enoun.endsWith("dice")
+					|| enoun.equals("deer")) {
+				return enoun + postfix;
+
+			// ok and now all the special cases
+			} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
+				return enoun + "s" + postfix;
 			} else if (enoun.endsWith("f") && "aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1) {
-				return enoun.substring(0, enoun.length() - 2) + "ves";
+				return enoun.substring(0, enoun.length() - 1) + "ves" + postfix;
 			} else if (enoun.endsWith("fe")) {
-				return enoun.substring(0, enoun.length() - 3) + "ves";
+				return enoun.substring(0, enoun.length() - 2) + "ves" + postfix;
 			} else if (enoun.endsWith("house")) {
-				return enoun + "es";
+				return enoun + "es" + postfix;
 			} else if (enoun.endsWith("ouse") && "mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1) {
-				return enoun.substring(0, enoun.length() - 5) + "ice";
+				return enoun.substring(0, enoun.length() - 5) + "ice" + postfix;
 			} else if (enoun.endsWith("oose") && !(enoun.endsWith("caboose"))) {
-				return enoun.substring(0, enoun.length() - 5) + "eese";
+				return enoun.substring(0, enoun.length() - 5) + "eese" + postfix;
 			} else if (enoun.endsWith("ooth")) {
-				return enoun.substring(0, enoun.length() - 5) + "eeth";
+				return enoun.substring(0, enoun.length() - 5) + "eeth" + postfix;
 			} else if (enoun.endsWith("foot")) {
-				return enoun.substring(0, enoun.length() - 5) + "feet";
+				return enoun.substring(0, enoun.length() - 5) + "feet" + postfix;
 			} else if (enoun.endsWith("child")) {
-				return enoun + "ren";
+				return enoun + "ren" + postfix;
 			} else if (enoun.endsWith("eau")) {
-				return enoun + "x";
+				return enoun + "x" + postfix;
 			} else if (enoun.endsWith("ato")) {
-				return enoun + "es";
+				return enoun + "es" + postfix;
 			} else if (enoun.endsWith("ium")) {
-				return enoun.substring(0, enoun.length() - 3) + "a";
+				return enoun.substring(0, enoun.length() - 3) + "a" + postfix;
 			} else if (enoun.endsWith("alga") || enoun.endsWith("hypha") || enoun.endsWith("larva")) {
-				return enoun + "e";
+				return enoun + "e" + postfix;
 			} else if (enoun.length() > 3 && enoun.endsWith("us") && !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
-				return enoun.substring(0, enoun.length() - 3) + "i";
+				return enoun.substring(0, enoun.length() - 3) + "i" + postfix;
 			} else if (enoun.endsWith("man") && !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
-				return enoun.substring(0, enoun.length() - 4) + "men";
+				return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
 			} else if (enoun.endsWith("rtex")) {
-				return enoun.substring(0, enoun.length() - 3) + "ices";
+				return enoun.substring(0, enoun.length() - 3) + "ices" + postfix;
 			} else if (enoun.endsWith("trix")) {
-				return enoun.substring(0, enoun.length() - 2) + "ces";
+				return enoun.substring(0, enoun.length() - 2) + "ces" + postfix;
 			} else if (enoun.endsWith("sis")) {
-				return enoun.substring(0, enoun.length() - 2) + "es";
-			} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
-				return enoun.substring(0, enoun.length() - 2) + "es";
+				return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
+			/*} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
+				return enoun.substring(0, enoun.length() - 2) + "es" + postfix;*/
 			} else if (enoun.endsWith("mumak")) {
-				return enoun + "il";
+				return enoun + "il" + postfix;
 			} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
-				return enoun.substring(0, enoun.length() - 2);
+				return enoun.substring(0, enoun.length() - 2) + postfix;
 			} else if (enoun.endsWith("ch") || enoun.endsWith("sh") || "zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1) {
-				return enoun + "es";
+				return enoun + "es" + postfix;
 			} else if (enoun.endsWith("y") && consonant_p(enoun.charAt(enoun.length() - 2))) {
-				return enoun.substring(0, enoun.length() - 2) + "ies";
+				return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
+			} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
+				return enoun.substring(0, enoun.length() - 1) + "i" + postfix;
 			} else {
-				return enoun + "s";
+				// no special case matched, so use the boring default plural rule
+				return enoun + "s" + postfix;
 			}
 		} catch (StringIndexOutOfBoundsException e) {
 			// TODO: rewrite the code so that this exception is not thrown
 			// TODO: write test cases
 			logger.warn("Cannot pluralize noun " + enoun, e);
-			return enoun;
+			return enoun + postfix;
 		}
 	}
 
