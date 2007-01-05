@@ -23,7 +23,7 @@ public class TestCase {
 	 */
 	protected void assertTrue(String text, boolean condition) {
 		if (!condition) {
-			String msg = "asertTrue failed (" + text + "): " + condition;
+			String msg = "assertTrue failed (" + text + "): " + condition;
 			throw new AssertionError(msg);
 		}
 	}
