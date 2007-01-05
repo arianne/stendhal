@@ -248,6 +248,20 @@ Makes players more offensive
 
 <!-- Axes_section -->
 
+	<item name="old_scythe">
+		<type class="axe" subclass="scythe"/>
+		<description>You see an old scythe, it used to be weapon of death. But now it is only a useful tool for farming.</description>
+		<attributes>
+			<atk value="2"/>
+		</attributes>
+		<weight value="10"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="small_axe">
 		<type class="axe" subclass="small_axe"/>
                 <description>You see a small axe. It appears well made but you
