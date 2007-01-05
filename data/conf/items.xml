@@ -66,7 +66,7 @@ in the file.
 
 	<item name="short_sword">
 		<type class="sword" subclass="short_sword"/>
-		<description>You see a well kept short_sword which will be
+		<description>You see a well kept short sword which will be
 		easy to carry as you travel.</description>
 		<attributes>
 			<atk value="11"/>
@@ -156,7 +156,7 @@ in the file.
 
 	<item name="biting_sword">
 		<type class="sword" subclass="biting_sword"/>
-		<description>The point of this biting_sword is chiselled to a
+		<description>The point of this biting sword is chiselled to a
 		lethal point. It will serve you well.</description>
 		<attributes>
 			<atk value="24"/>
@@ -171,7 +171,7 @@ in the file.
 
 	<item name="fire_sword">
 		<type class="sword" subclass="fire_sword"/>
-		<description>Flames race along this fire_sword as you wield it.</description> 
+		<description>Flames race along this fire sword as you wield it.</description> 
 		<attributes>
 			<atk value="28"/>
 		</attributes>
@@ -185,7 +185,7 @@ in the file.
 
 	<item name="ice_sword">
 		<type class="sword" subclass="ice_sword"/>
-		<description>You see an ice_sword, the blade is lethally cold
+		<description>You see an ice sword, the blade is lethally cold
 		to the touch, and you know it is one of the best weapons
 		you'll find.</description> 
 		<attributes>
@@ -201,7 +201,7 @@ in the file.
 
 	<item name="great_sword">
 		<type class="sword" subclass="great_sword"/>
-		<description>You see the formidable great_sword.</description>
+		<description>You see the formidable great sword.</description>
 		<attributes>
 			<atk value="30"/>
 		</attributes>
@@ -228,7 +228,7 @@ Makes players more offensive
 			<slot name="rhand"/>
 			<slot name="bag"/>
 		</equipable>
-		<description>You see r_hand_sword. It must be used with l_hand_sword.</description>
+		<description>You see r hand sword. It must be used with l hand sword.</description>
 	</item>
 
 	<item name="l_hand_sword">
@@ -242,7 +242,7 @@ Makes players more offensive
 			<slot name="lhand"/>
 			<slot name="bag"/>
 		</equipable>
-		<description>You see l_hand_sword. It must be used with r_hand_sword.</description>
+		<description>You see l hand sword. It must be used with r hand sword.</description>
 	</item>
 
 
@@ -250,7 +250,7 @@ Makes players more offensive
 
 	<item name="small_axe">
 		<type class="axe" subclass="small_axe"/>
-                <description>You see a small_axe. It appears well made but you
+                <description>You see a small axe. It appears well made but you
                 suspect it is too light to do much damage.</description>
 		<attributes>
 			<atk value="7"/>
@@ -265,7 +265,7 @@ Makes players more offensive
 
 	<item name="hand_axe">
 		<type class="axe" subclass="hand_axe"/>
-                <description>You see a hand_axe, well worn from years of use
+                <description>You see a hand axe, well worn from years of use
                 but may prove useful.</description>
 		<attributes>
 			<atk value="9"/>
@@ -295,7 +295,7 @@ Makes players more offensive
 
 	<item name="battle_axe">
 		<type class="axe" subclass="battle_axe"/>
-                <description>You see a battle_axe. It is well crafted and
+                <description>You see a battle axe. It is well crafted and
                 sharp despite its age.</description>
 		<attributes>
 			<atk value="15"/>
@@ -340,7 +340,7 @@ Makes players more offensive
 
 	<item name="twoside_axe">
 		<type class="axe" subclass="twosided_poleaxe"/>
-                <description>You see a well crafted twoside_axe.</description>
+                <description>You see a well crafted twoside axe.</description>
 		<attributes>
 			<atk value="19"/>
 		</attributes>
@@ -455,7 +455,7 @@ Makes players more offensive
 
 	<item name="mace_+2">
 		<type class="club" subclass="golden_mace"/>
-                <description>You see a shining mace_+2. Despite looking
+                <description>You see a shining mace +2. Despite looking
                 ornamental, it is sharp enough to do some damage.</description>
 		<attributes>
 			<atk value="14"/>
@@ -470,7 +470,7 @@ Makes players more offensive
 
 	<item name="skull_staff">
 		<type class="club" subclass="skull_staff"/>
-                <description>You see a rare skull_staff. It appears mystical
+                <description>You see a rare skull staff. It appears mystical
                 but will work like any other staff.</description>
 		<attributes>
 			<atk value="14"/>
@@ -513,7 +513,7 @@ Makes players more offensive
 
 	<item name="hammer_+3">
 		<type class="club" subclass="golden_hammer"/>
-                <description>You see a valuable hammer_+3. This golden weapon
+                <description>You see a valuable hammer +3. This golden weapon
                 may be worth a lot to someone.</description>
 		<attributes>
 			<atk value="18"/>
@@ -528,7 +528,7 @@ Makes players more offensive
 
 	<item name="war_hammer">
 		<type class="club" subclass="grand_warhammer"/>
-                <description>You see a huge war_hammer. It is a fearsome weapon.</description>
+                <description>You see a huge war hammer. It is a fearsome weapon.</description>
 		<attributes>
 			<atk value="21"/>
 		</attributes>
@@ -544,7 +544,7 @@ Makes players more offensive
 
 	<item name="wooden_bow">
 		<type class="ranged" subclass="wooden_bow"/>
-                <description>You see a wooden_bow. With this in one hand, and
+                <description>You see a wooden bow. With this in one hand, and
                 wooden arrows in the other, you may be able to attack from a distance.</description>
 		<attributes>
 			<atk value="12"/>
@@ -601,7 +601,7 @@ Makes players more offensive
 
 	<item name="wooden_arrow">
 		<type class="projectiles" subclass="wooden_arrow"/>
-                <description>You see a wooden_arrow. With a supply of arrows
+                <description>You see a wooden arrow. With a supply of arrows
                 in one hand and a bow in the other you can fight from a distance.</description>
 		<stackable/>
 		<attributes>
@@ -666,7 +666,7 @@ Makes players more offensive
 
 	<item name="wooden_shield">
 		<type class="shield" subclass="wooden_shield"/>
-		<description>You see a wooden_shield. It is made of cheap wood and heavily used.
+		<description>You see a wooden shield. It is made of cheap wood and heavily used.
 		However, it still seems to offer you some kind of basic protection.
 		</description>
 		<attributes>
@@ -682,7 +682,7 @@ Makes players more offensive
 
 	<item name="studded_shield">
 		<type class="shield" subclass="studded_shield"/>
-                <description>You see a studded_shield. It's a little dented
+                <description>You see a studded shield. It's a little dented
                 but seems robust enough.</description>
 		<attributes>
 			<def value="12"/>
@@ -697,7 +697,7 @@ Makes players more offensive
 
 	<item name="plate_shield">
 		<type class="shield" subclass="plate_shield"/>
-                <description>You see a solid plate_shield. It is in good
+                <description>You see a solid plate shield. It is in good
                 condition, and might be worth a little.</description>
 		<attributes>
 			<def value="14"/>
@@ -712,7 +712,7 @@ Makes players more offensive
 
 	<item name="lion_shield">
 		<type class="shield" subclass="lion_shield"/>
-                <description>You see a valuable lion_shield. It is
+                <description>You see a valuable lion shield. It is
                 heavy enough to defend you against strong attacks.</description>
 		<attributes>
 			<def value="16"/>
@@ -727,7 +727,7 @@ Makes players more offensive
 
 	<item name="unicorn_shield">
 		<type class="shield" subclass="unicorn_shield"/>
-                <description>You see a unicorn_shield. It's beautifully
+                <description>You see a unicorn shield. It's beautifully
                 crafted and will give you excellent protection.</description>
 		<attributes>
 			<def value="18"/>
@@ -742,7 +742,7 @@ Makes players more offensive
 
 	<item name="lion_shield_+1">
 		<type class="shield" subclass="enhanced_lion_shield"/>
-                <description>A lion_shield_+1 glints at you. It will defend
+                <description>A lion shield +1 glints at you. It will defend
                 you well.</description>
 		<attributes>
 			<def value="20"/>
@@ -757,7 +757,7 @@ Makes players more offensive
 
 	<item name="skull_shield">
 		<type class="shield" subclass="skull_shield"/>
-                <description>The face of a skull scowls at you from this fearsome skull_shield.</description>
+                <description>The face of a skull scowls at you from this fearsome skull shield.</description>
 		<attributes>
 			<def value="22"/>
 		</attributes>
@@ -771,7 +771,7 @@ Makes players more offensive
 
 	<item name="crown_shield">
 		<type class="shield" subclass="crown_shield"/>
-                <description>You see a mighty crown_shield. It is in perfect condition.</description>
+                <description>You see a mighty crown shield. It is in perfect condition.</description>
 		<attributes>
 			<def value="24"/>
 		</attributes>
@@ -785,7 +785,7 @@ Makes players more offensive
 
 	<item name="golden_shield">
 		<type class="shield" subclass="golden_shield"/>
-                <description>You see a golden_shield, the ultimate in defence.</description>
+                <description>You see a golden shield, the ultimate in defence.</description>
 		<attributes>
 			<def value="34"/>
 		</attributes>
@@ -816,7 +816,7 @@ Makes players more offensive
 
 	<item name="leather_armor">
 		<type class="armor" subclass="leather_armor"/>
-                <description>You see a worn suit of leather_armor. It will
+                <description>You see a worn suit of leather armor. It will
                 provide only minimal protection.</description>
 		<attributes>
 			<def value="3"/>
@@ -830,7 +830,7 @@ Makes players more offensive
 
 	<item name="leather_cuirass">
 		<type class="armor" subclass="leather_cuirass"/>
-                <description>You see a leather_cuirass, well made but
+                <description>You see a leather cuirass, well made but
                 still able to be pierced by sharp swords.</description>
 		<attributes>
 			<def value="4"/>
@@ -844,7 +844,7 @@ Makes players more offensive
 
 	<item name="leather_armor_+1">
 		<type class="armor" subclass="leather_scale_armor"/>
-                <description>You see a suit of leather_armor_+1. The leather
+                <description>You see a suit of leather armor +1. The leather
                 is toughened somehow for better protection.</description>
 		<attributes>
 			<def value="4"/>
@@ -870,7 +870,7 @@ Makes players more offensive
 
     <item name="studded_armor">
 		<type class="armor" subclass="studded_armor"/>
-                <description>You see a suit of studded_armor. Some studs are
+                <description>You see a suit of studded armor. Some studs are
                 loose or rusty but it is still fit for purpose.</description>
 		<attributes>
 			<def value="5"/>
@@ -884,7 +884,7 @@ Makes players more offensive
 
 	<item name="chain_armor">
 		<type class="armor" subclass="chain_armor"/>
-		<description>You see a suit of chain_armor. Perhaps even if
+		<description>You see a suit of chain armor. Perhaps even if
 		you don't need it, you can sell it.</description>
 		<attributes>
 			<def value="6"/>
@@ -898,7 +898,7 @@ Makes players more offensive
 
 	<item name="chain_armor_+1">
 		<type class="armor" subclass="enhanced_chainmail"/>
-                <description>You see a robust suit of chain_armor_+1. The
+                <description>You see a robust suit of chain armor +1. The
                 links are closely spaces so even the sharpest point shoudl not
                 pierce it.</description>
 		<attributes>
@@ -913,7 +913,7 @@ Makes players more offensive
 
 	<item name="scale_armor">
 		<type class="armor" subclass="scale_armor"/>
-                <description>You see a suit of scale_armor. It is not flexible
+                <description>You see a suit of scale armor. It is not flexible
                 like chain, but will be a better defense.</description>
 		<attributes>
 			<def value="8"/>
@@ -927,7 +927,7 @@ Makes players more offensive
 
 	<item name="scale_armor_+1">
 		<type class="armor" subclass="iron_scale_armor"/>
-                <description>You see a suit of scale_armor_+1, whose rounded
+                <description>You see a suit of scale armor +1, whose rounded
                 scales will protect you from many blows.</description>
 		<attributes>
 			<def value="8"/>
@@ -941,7 +941,7 @@ Makes players more offensive
 
 	<item name="chain_armor_+3">
 		<type class="armor" subclass="golden_chainmail"/>
-                <description>You see a valuable suit of chain_armor_+3. It is
+                <description>You see a valuable suit of chain armor +3. It is
                 crafted from fine links of expensive metal.</description>
 		<attributes>
 			<def value="9"/>
@@ -955,7 +955,7 @@ Makes players more offensive
 
 	<item name="scale_armor_+2">
 		<type class="armor" subclass="enhanced_iron_cuirass"/>
-                <description>You see a formidable suit of scale_armor_+2.</description>
+                <description>You see a formidable suit of scale armor +2.</description>
 		<attributes>
 			<def value="9"/>
 		</attributes>
@@ -968,9 +968,7 @@ Makes players more offensive
 
 	<item name="plate_armor">
 		<type class="armor" subclass="plate_armor"/>
-                <description>You see a suit of
-		plate_armor. You imagine it would be heavy but the steel is
-                well tempered and the suit is very strong.</description> 
+                <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.</description> 
 		<attributes>
 			<def value="10"/>
 		</attributes>
@@ -984,7 +982,7 @@ Makes players more offensive
 	<item name="golden_armor">
 		<type class="armor" subclass="golden_armor"/>
                 <description>You see a suit of
-                golden_armor. It's made from the best materials with great
+                golden armor. It's made from the best materials with great
                 attention to detail.</description>
 		<attributes>
 			<def value="16"/>
@@ -1001,7 +999,7 @@ Makes players more offensive
 
 	<item name="leather_helmet">
 		<type class="helmet" subclass="leather_helmet"/>
-                <description>You see a leather_helmet, it seems more like a hat
+                <description>You see a leather helmet, it seems more like a hat
                 than a defensive item.</description>
 		<attributes>
 			<def value="1"/>
@@ -1027,7 +1025,7 @@ Makes players more offensive
 
 	<item name="studded_helmet">
 		<type class="helmet" subclass="studded_helmet"/>
-                <description>You see a studded_helmet, it should protect your
+                <description>You see a studded helmet, it should protect your
                 head against cuts but perhaps not hard blows.</description>
 		<attributes>
 			<def value="2"/>
@@ -1041,7 +1039,7 @@ Makes players more offensive
 
 	<item name="chain_helmet">
 		<type class="helmet" subclass="chain_helmet"/>
-                <description>You see a solid chain_helmet, it will be excellent
+                <description>You see a solid chain helmet, it will be excellent
                 protection for your head.</description>
 		<attributes>
 			<def value="4"/>
@@ -1079,7 +1077,7 @@ Makes players more offensive
 
 	<item name="golden_helmet">
 		<type class="helmet" subclass="golden_helmet"/>
-                <description>You see a heavy golden_helmet. The thick metal
+                <description>You see a heavy golden helmet. The thick metal
                 should protect you against almost anything.</description>
 		<attributes>
 			<def value="9"/>
@@ -1119,7 +1117,7 @@ Makes players more offensive
 
 	<item name="leather_legs">
 		<type class="legs" subclass="leather_legs"/>
-                <description>You see a pair of leather_legs. They look new but
+                <description>You see a pair of leather legs. They look new but
                 they're poor quality.</description>
 		<attributes>
 			<def value="1"/>
@@ -1133,7 +1131,7 @@ Makes players more offensive
 
 	<item name="studded_legs">
 		<type class="legs" subclass="studded_legs"/>
-                <description>You see a pair of blood stained studded_legs.
+                <description>You see a pair of blood stained studded legs.
                 You're not sure if the blood came from their last owner ... or
                 his enemies.</description>
 		<attributes>
@@ -1148,7 +1146,7 @@ Makes players more offensive
 
 	<item name="chain_legs">
 		<type class="legs" subclass="chain_legs"/>
-                <description>You see a pair of well made chain_legs. They
+                <description>You see a pair of well made chain legs. They
                 should protect you against any attacks aimed low.</description>
 		<attributes>
 			<def value="4"/>
@@ -1162,7 +1160,7 @@ Makes players more offensive
 
 	<item name="golden_legs">
 		<type class="legs" subclass="golden_legs"/>
-                <description>You see a pair of shining, strong golden_legs.</description>
+                <description>You see a pair of shining, strong golden legs.</description>
 		<attributes>
 			<def value="8"/>
 		</attributes>
@@ -1177,7 +1175,7 @@ Makes players more offensive
 
 	<item name="leather_boots">
 		<type class="boots" subclass="leather_boots"/>
-		<description>You see a simple pair of leather_boots to give
+		<description>You see a simple pair of leather boots to give
 		your feet some protection.</description>
 		<attributes>
 			<def value="1"/>
@@ -1215,7 +1213,7 @@ Makes players more offensive
 
 	<item name="steel_boots">
 		<type class="boots" subclass="steel_boots"/>
-		<description>You see a pair of steel_boots, fit for any soldier.</description>
+		<description>You see a pair of steel boots, fit for any soldier.</description>
 		<attributes>
 			<def value="6"/>
 		</attributes>
@@ -1228,7 +1226,7 @@ Makes players more offensive
 
 	<item name="golden_boots">
 		<type class="boots" subclass="golden_boots"/>
-		<description>You see a pair of golden_boots. They will be
+		<description>You see a pair of golden boots. They will be
 		heavy to wear but well worth their weight.</description>
 		<attributes>
 			<def value="8"/>
@@ -1257,7 +1255,7 @@ Makes players more offensive
 
 	<item name="elf_cloak">
 		<type class="cloak" subclass="white_cloak"/>
-                <description>You see a white elf_cloak. It doesn't look very warm.</description>
+                <description>You see a white elf cloak. It doesn't look very warm.</description>
 		<attributes>
 			<def value="3"/>
 		</attributes>
@@ -1270,7 +1268,7 @@ Makes players more offensive
 
 	<item name="dwarf_cloak">
 		<type class="cloak" subclass="red_cloak"/>
-                <description>You see a dwarf_cloak. Apparently this passes for
+                <description>You see a dwarf cloak. Apparently this passes for
                 fashion in some parts, but to you it looks more functional
                 than fashionable.</description>
 		<attributes>
@@ -1285,7 +1283,7 @@ Makes players more offensive
 
 	<item name="elf_cloak_+2">
 		<type class="cloak" subclass="lightblue_cloak"/>
-                <description>You see a blue elf_cloak_+2. The material is
+                <description>You see a blue elf cloak +2. The material is
                 thick and warm.</description>
 		<attributes>
 			<def value="8"/>
@@ -1299,7 +1297,7 @@ Makes players more offensive
 
 	<item name="green_dragon_cloak">
 		<type class="cloak" subclass="green_cloak"/>
-                <description>You see a huge green_dragon_cloak. It's probably
+                <description>You see a huge green dragon cloak. It's probably
                 too big for you but, even dragging on the floor it will
                 provide excellent protection.</description>
 		<attributes>
@@ -1314,7 +1312,7 @@ Makes players more offensive
 
     <item name="lich_cloak">
 		<type class="cloak" subclass="purple_cloak"/>
-		<description>You see a purple lich_cloak. It's stained with
+		<description>You see a purple lich cloak. It's stained with
 		blood - yours, from the previous undead owner, or perhaps the blood
 		of his enemies...</description>
 		<attributes>
@@ -1329,7 +1327,7 @@ Makes players more offensive
 
 	<item name="blue_dragon_cloak">
 		<type class="cloak" subclass="blue_cloak"/>
-		<description>You see a blue_dragon_cloak. The weave is tight
+		<description>You see a blue dragon cloak. The weave is tight
 		and strong, though you wish the colour drew less attention.</description>
 		<attributes>
 			<def value="13"/>
@@ -1344,7 +1342,7 @@ Makes players more offensive
 	<item name="black_dragon_cloak">
 		<type class="cloak" subclass="black_cloak"/>
 		<description>You see a torn section from an enormous
-		black_dragon_cloak. You're very lucky: the piece is just the
+		black dragon cloak. You're very lucky: the piece is just the
 		right size for a human to wear.</description>
 		<attributes>
 			<def value="18"/>
@@ -1508,18 +1506,18 @@ Makes players more offensive
 	</item>
 
 	<item name="pie">
-		<type class="food" subclass="piesmall" />
-		<stackable />
+		<type class="food" subclass="piesmall"/>
+		<stackable/>
 		<description>You see a meat and vegetable pie.</description>
 		<attributes>
-			<quantity value="1" />
-			<amount value="150" />
-			<regen value="12" />
-			<frequency value="30" />
+			<quantity value="1"/>
+			<amount value="150"/>
+			<regen value="12"/>
+			<frequency value="30"/>
 		</attributes>
-		<weight value="1" />
+		<weight value="1"/>
 		<equipable>
-			<slot name="bag" />
+			<slot name="bag"/>
 		</equipable>
 	</item>
 
