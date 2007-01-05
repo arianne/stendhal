@@ -304,12 +304,24 @@ public class Player extends RPEntity implements TurnListener {
 
 					for (RPObject item : objects) {
 						try {
-							if (item.get("type").equals("item")) {  // We simply
-																	// ignore
-																	// corpses...
+							// We simply ignore corpses...
+							if (item.get("type").equals("item")) {
+
 								Item entity = world.getRuleManager()
 										.getEntityManager().getItem(
 												item.get("name"));
+
+								// log removed items
+								if (entity == null) {
+									int quantity = 1;
+									if (item.has("quantity")) {
+										quantity = item.getInt("quantity");
+									}
+									logger.warn("Cannot restore " + quantity + " " + item.get("name")
+											+ " on login of " + player.get("name") + " because this item"
+											+ " was removed from items.xml");
+									continue;
+								}
 
 								entity.setID(item.getID());
 
