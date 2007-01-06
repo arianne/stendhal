@@ -618,6 +618,11 @@ public class Player extends RPEntity implements TurnListener {
 						break;
 					}
 
+					// don't drop special quest rewards as there is no way to get them again
+					if (objectInSlot.has("bound")) {
+						continue;
+					}
+					
 					if (Rand.throwCoin() == 1) {
 						objects.add(objectInSlot);
 						maxItemsToDrop--;
