@@ -79,10 +79,10 @@ public class AdosCityOutside {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi, there");
-				addHelp("If you don't like your costume, you can remove it by clicking on yourself and choosing Set Outfit.");
+				addHelp("If you don't like your mask, you can remove it by clicking on yourself and choosing Set Outfit.");
 				addJob("I am a makeup artist.");
-				addReply("offer", "Normally i sell costumes. But i ran out of clothes and cannot by new ones until the cloth seller gets back from his search.");
-				addGoodbye("Come back to me, if you want another costume.");
+				addReply("offer", "Normally i sell masks. But i ran out of clothes and cannot by new ones until the cloth seller gets back from his search.");
+				addGoodbye("Come back to me, if you want another mask.");
 			}
 		};
 		npcs.add(npc);
