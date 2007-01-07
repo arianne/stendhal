@@ -93,64 +93,9 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public static Player create(RPObject object) {
-		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs",
-				"feet", "cloak", "bank" };
-		String[] slotsSpecial = { "!buddy", "!ignore"};
 
-		// Port from 0.03 to 0.10
-		if (!object.has("base_hp")) {
-			object.put("base_hp", "100");
-			object.put("hp", "100");
-		}
-
-		// Port from 0.13 to 0.20
-		if (!object.has("outfit")) {
-			object.put("outfit", 0);
-		}
-		
-		// create slots if they do not exist yet:
-		
-		//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
-		//     Port from 0.44 to 0.50: cloak, bank
-		for (String slotName : slotsNormal) {
-			if (!object.hasSlot(slotName)) {
-				object.addSlot(new RPSlot(slotName));
-			}
-		}
-		//     Port from 0.44 to 0.50: !buddy
-		//     Port from 0.56 to 0.56.1: !ignore
-		for (String slotName : slotsSpecial) {
-			if (!object.hasSlot(slotName)) {
-				object.addSlot(new RPSlot(slotName));
-			}
-			RPSlot buddy = object.getSlot(slotName);
-			if (buddy.size() == 0) {
-				RPObject data = new RPObject();
-				buddy.assignValidID(data);
-				buddy.add(data);
-			}
-		}
-
-		// Port from 0.30 to 0.35
-		if (!object.has("atk_xp")) {
-			object.put("atk_xp", "0");
-			object.put("def_xp", "0");
-		}
-
-		if (object.has("devel")) {
-			object.remove("devel");
-		}
-
-		// From 0.44 to 0.50
-		if (!object.has("release")) {
-			object.put("release", "0.00");
-			object.put("atk", "10");
-			object.put("def", "10");
-		}
-
-		if (!object.has("age")) {
-			object.put("age", "0");
-		}
+		// add attributes and slots
+		PlayerRPClass.updatePlayerRPObject(object);
 
 		StendhalRPWorld world = StendhalRPWorld.get();
 		Player player = new Player(object);
@@ -252,6 +197,8 @@ public class Player extends RPEntity implements TurnListener {
 		StendhalRPAction.placeat(zone, player, x, y);
 		zone.addPlayerAndFriends(player);
 
+		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs",
+						"feet", "cloak", "bank" };		
 		for (String slotName : slotsNormal) {
 			try {
 				if (player.hasSlot(slotName)) {

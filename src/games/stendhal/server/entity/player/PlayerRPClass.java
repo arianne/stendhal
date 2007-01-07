@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.player;
 
 import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * Handles the RPClass registration and updating old Player objects
@@ -69,5 +71,70 @@ class PlayerRPClass {
 		player.addRPSlot("!quests", 1, RPClass.HIDDEN);
 	}
 
+	/**
+	 * Updates a player RPObject from an old version of Stendhal.
+	 *
+	 * @param object RPObject representing a player
+	 */
+	static void updatePlayerRPObject(RPObject object) {
+		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs",
+						"feet", "cloak", "bank" };
+				String[] slotsSpecial = { "!buddy", "!ignore"};
+
+				// Port from 0.03 to 0.10
+				if (!object.has("base_hp")) {
+					object.put("base_hp", "100");
+					object.put("hp", "100");
+				}
+
+				// Port from 0.13 to 0.20
+				if (!object.has("outfit")) {
+					object.put("outfit", 0);
+				}
+				
+				// create slots if they do not exist yet:
+				
+				//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
+				//     Port from 0.44 to 0.50: cloak, bank
+				for (String slotName : slotsNormal) {
+					if (!object.hasSlot(slotName)) {
+						object.addSlot(new RPSlot(slotName));
+					}
+				}
+				//     Port from 0.44 to 0.50: !buddy
+				//     Port from 0.56 to 0.56.1: !ignore
+				for (String slotName : slotsSpecial) {
+					if (!object.hasSlot(slotName)) {
+						object.addSlot(new RPSlot(slotName));
+					}
+					RPSlot buddy = object.getSlot(slotName);
+					if (buddy.size() == 0) {
+						RPObject data = new RPObject();
+						buddy.assignValidID(data);
+						buddy.add(data);
+					}
+				}
+
+				// Port from 0.30 to 0.35
+				if (!object.has("atk_xp")) {
+					object.put("atk_xp", "0");
+					object.put("def_xp", "0");
+				}
+
+				if (object.has("devel")) {
+					object.remove("devel");
+				}
+
+				// From 0.44 to 0.50
+				if (!object.has("release")) {
+					object.put("release", "0.00");
+					object.put("atk", "10");
+					object.put("def", "10");
+				}
+
+				if (!object.has("age")) {
+					object.put("age", "0");
+				}
+	}
 	
 }
