@@ -63,7 +63,6 @@ public class ChatAction extends ActionListener {
 		if (action.has("text")) {
 			String text = action.get("text");
 			player.put("text", text);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", null, text);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", null, 
 					Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000)));
 
