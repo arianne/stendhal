@@ -139,9 +139,9 @@ public class StendhalQuestSystem {
 	 *
 	 * @param player Player
 	 */
-	public void convertOnUpdate(Player player) {
+	public void onPlayerLogin(Player player) {
 		for (IQuest quest : quests) {
-			quest.convertOnUpdate(player);
+			quest.onPlayerLogin(player);
 		}
 	}
 }

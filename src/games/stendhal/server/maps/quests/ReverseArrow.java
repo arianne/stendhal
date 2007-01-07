@@ -342,8 +342,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	}
 
 	@Override
-	public void convertOnUpdate(Player player) {
-		super.convertOnUpdate(player);
+	public void onPlayerLogin(Player player) {
+		super.onPlayerLogin(player);
 		// need to do this on the next turn
 		TurnNotifier.get().notifyInTurns(1, new FinishNotifier(false, player), null);
 	}

@@ -29,7 +29,7 @@ public interface IQuest {
 	 *
 	 * @param player Player
 	 */
-	public void convertOnUpdate(Player player);
+	public void onPlayerLogin(Player player);
 
 	/**
 	 * Was the quest started?

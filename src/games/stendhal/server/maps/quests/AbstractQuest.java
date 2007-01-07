@@ -42,7 +42,7 @@ public abstract class AbstractQuest implements IQuest {
 		this.npcs = NPCList.get();
 	}
 
-	public void convertOnUpdate(Player player) {
+	public void onPlayerLogin(Player player) {
 		// do nothing
 	}
 

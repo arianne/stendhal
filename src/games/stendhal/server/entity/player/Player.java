@@ -106,7 +106,7 @@ public class Player extends RPEntity implements TurnListener {
 		player.stop();
 		player.stopAttack();
 
-		StendhalQuestSystem.get().convertOnUpdate(player);
+		StendhalQuestSystem.get().onPlayerLogin(player);
 
 		boolean firstVisit = false;
 
@@ -280,7 +280,7 @@ public class Player extends RPEntity implements TurnListener {
 					// cut off the strange underscore
 					Player buddy = StendhalRPRuleProcessor.get().getPlayer(name.substring(1));
 					if (buddy != null) {
-							player.notifyOnline(buddy.getName());
+						player.notifyOnline(buddy.getName());
 					} else {
 						player.notifyOffline(name.substring(1));
 					}
