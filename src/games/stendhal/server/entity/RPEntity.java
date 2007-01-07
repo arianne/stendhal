@@ -59,7 +59,7 @@ public abstract class RPEntity extends Entity {
 
 	private int level;
 
-	private int blood;
+	private HashMap <RPEntity, Integer> blood = new HashMap<RPEntity, Integer>();
 
 	/** List of all attackers of this entity */
 	private List<RPEntity> attackSource;
@@ -358,21 +358,41 @@ public abstract class RPEntity extends Entity {
 
 		if (attackTarget != null) {
 			attackTarget.attackSource.remove(this);
+			blood.remove(attackTarget.attackSource);
 		}
 
+		blood.remove(attackTarget);
 		attackTarget = null;
 	}
 
-	public void bloodHappens() {
-		blood = TURNS_WHILE_ATK_DEF_XP_INCREASE;
+	/**
+	 * this entity was hurt
+	 *
+	 * @param source the entity which caused damage
+	 */
+	public void bloodHappens(RPEntity source) {
+		blood.put(source, new Integer(TURNS_WHILE_ATK_DEF_XP_INCREASE));
 	}
 
-	public boolean stillHasBlood() {
-		if (blood > 0) {
-			blood--;
-			return true;
+	/**
+	 * keeps track of the number of turns since the last damage
+	 *
+	 * @param enemy the enemy which may have caused previous damage
+	 * @return true, if the last damage is still recent enough, false otherwise
+	 */
+	public boolean stillHasBlood(RPEntity enemy) {
+		Integer integer = blood.get(enemy);
+		if (integer != null) {
+			int i = integer.intValue(); 
+			if (i > 0) {
+				i--;
+				blood.put(enemy, new Integer(i));
+				return true;
+			} else {
+				blood.remove(enemy);
+				return false;
+			}
 		}
-
 		return false;
 	}
 
