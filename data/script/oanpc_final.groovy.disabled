@@ -2,6 +2,7 @@ import marauroa.common.game.IRPZone;
 import games.stendhal.common.Direction;
 import games.stendhal.server.*
 import games.stendhal.server.entity.*
+import games.stendhal.server.entity.player.*
 import games.stendhal.server.entity.creature.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.entity.portal.*

@@ -6,6 +6,7 @@ import games.stendhal.server.entity.creature.*
 import games.stendhal.server.entity.item.*
 import games.stendhal.server.entity.portal.*
 import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.player.*
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.scripting.*
