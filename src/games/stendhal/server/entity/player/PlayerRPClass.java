@@ -29,8 +29,7 @@ class PlayerRPClass {
 		RPClass player = new RPClass("player");
 		player.isA("rpentity");
 		player.add("text", RPClass.LONG_STRING, RPClass.VOLATILE);
-		player.add("private_text", RPClass.LONG_STRING,
-				(byte) (RPClass.PRIVATE | RPClass.VOLATILE));
+		player.add("private_text", RPClass.LONG_STRING, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
 
 		player.add("poisoned", RPClass.SHORT, RPClass.VOLATILE);
 		player.add("eating", RPClass.SHORT, RPClass.VOLATILE);
@@ -63,10 +62,8 @@ class PlayerRPClass {
 		// We use this for the buddy system
 		player.addRPSlot("!buddy", 1, RPClass.PRIVATE);
 		player.addRPSlot("!ignore", 1, RPClass.HIDDEN);
-		player.add("online", RPClass.LONG_STRING,
-				(byte) (RPClass.PRIVATE | RPClass.VOLATILE));
-		player.add("offline", RPClass.LONG_STRING,
-				(byte) (RPClass.PRIVATE | RPClass.VOLATILE));
+		player.add("online", RPClass.LONG_STRING, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
+		player.add("offline", RPClass.LONG_STRING, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
 
 		player.addRPSlot("!quests", 1, RPClass.HIDDEN);
 	}
@@ -77,64 +74,64 @@ class PlayerRPClass {
 	 * @param object RPObject representing a player
 	 */
 	static void updatePlayerRPObject(RPObject object) {
-		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs",
-						"feet", "cloak", "bank" };
-				String[] slotsSpecial = { "!buddy", "!ignore"};
+		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank" };
 
-				// Port from 0.03 to 0.10
-				if (!object.has("base_hp")) {
-					object.put("base_hp", "100");
-					object.put("hp", "100");
-				}
+		String[] slotsSpecial = { "!buddy", "!ignore" };
 
-				// Port from 0.13 to 0.20
-				if (!object.has("outfit")) {
-					object.put("outfit", 0);
-				}
-				
-				// create slots if they do not exist yet:
-				
-				//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
-				//     Port from 0.44 to 0.50: cloak, bank
-				for (String slotName : slotsNormal) {
-					if (!object.hasSlot(slotName)) {
-						object.addSlot(new RPSlot(slotName));
-					}
-				}
-				//     Port from 0.44 to 0.50: !buddy
-				//     Port from 0.56 to 0.56.1: !ignore
-				for (String slotName : slotsSpecial) {
-					if (!object.hasSlot(slotName)) {
-						object.addSlot(new RPSlot(slotName));
-					}
-					RPSlot buddy = object.getSlot(slotName);
-					if (buddy.size() == 0) {
-						RPObject data = new RPObject();
-						buddy.assignValidID(data);
-						buddy.add(data);
-					}
-				}
+		// Port from 0.03 to 0.10
+		if (!object.has("base_hp")) {
+			object.put("base_hp", "100");
+			object.put("hp", "100");
+		}
 
-				// Port from 0.30 to 0.35
-				if (!object.has("atk_xp")) {
-					object.put("atk_xp", "0");
-					object.put("def_xp", "0");
-				}
+		// Port from 0.13 to 0.20
+		if (!object.has("outfit")) {
+			object.put("outfit", 0);
+		}
 
-				if (object.has("devel")) {
-					object.remove("devel");
-				}
+		// create slots if they do not exist yet:
 
-				// From 0.44 to 0.50
-				if (!object.has("release")) {
-					object.put("release", "0.00");
-					object.put("atk", "10");
-					object.put("def", "10");
-				}
+		//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
+		//     Port from 0.44 to 0.50: cloak, bank
+		for (String slotName : slotsNormal) {
+			if (!object.hasSlot(slotName)) {
+				object.addSlot(new RPSlot(slotName));
+			}
+		}
+		//     Port from 0.44 to 0.50: !buddy
+		//     Port from 0.56 to 0.56.1: !ignore
+		for (String slotName : slotsSpecial) {
+			if (!object.hasSlot(slotName)) {
+				object.addSlot(new RPSlot(slotName));
+			}
+			RPSlot buddy = object.getSlot(slotName);
+			if (buddy.size() == 0) {
+				RPObject data = new RPObject();
+				buddy.assignValidID(data);
+				buddy.add(data);
+			}
+		}
 
-				if (!object.has("age")) {
-					object.put("age", "0");
-				}
+		// Port from 0.30 to 0.35
+		if (!object.has("atk_xp")) {
+			object.put("atk_xp", "0");
+			object.put("def_xp", "0");
+		}
+
+		if (object.has("devel")) {
+			object.remove("devel");
+		}
+
+		// From 0.44 to 0.50
+		if (!object.has("release")) {
+			object.put("release", "0.00");
+			object.put("atk", "10");
+			object.put("def", "10");
+		}
+
+		if (!object.has("age")) {
+			object.put("age", "0");
+		}
 	}
-	
+
 }
