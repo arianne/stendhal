@@ -15,6 +15,8 @@ package games.stendhal.server.entity.player;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import marauroa.common.Configuration;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -43,6 +46,8 @@ class PlayerRPClass {
 	/** list of super admins read from admins.list */
 	private static List<String> adminNames = null;
 
+	/** only log the first exception while reading welcome URL */
+	private static boolean firstWelcomeException = true;
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -385,5 +390,36 @@ class PlayerRPClass {
 		}
 	}
 
-	
+	/** send a welcome message to the player which can be configured
+	 *  in marauroa.ini file as "server_welcome". If the value is
+	 *  an http:// adress, the first line of that adress is read
+	 *  and used as the message 
+	 */
+	static void welcome(Player player) {
+		String msg = "This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne";
+		try {
+			Configuration config = Configuration.getConfiguration();
+			msg = config.get("server_welcome");
+			if (msg.startsWith("http://")) {
+				URL url = new URL(msg);
+				HttpURLConnection.setFollowRedirects(false);
+				HttpURLConnection connection = (HttpURLConnection) url
+						.openConnection();
+				BufferedReader br = new BufferedReader(new InputStreamReader(
+						connection.getInputStream()));
+				msg = br.readLine();
+				br.close();
+				connection.disconnect();
+			}
+		} catch (Exception e) {
+			if (PlayerRPClass.firstWelcomeException) {
+				logger.warn("Can't read server_welcome from marauroa.ini", e);
+				PlayerRPClass.firstWelcomeException = false;
+			}
+		}
+		if (msg != null) {
+			player.sendPrivateText(msg);
+		}
+	}
+  
 }

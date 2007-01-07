@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalQuestSystem;
@@ -20,33 +19,24 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -81,8 +71,6 @@ public class Player extends RPEntity implements TurnListener {
 	 * antidote, and thus immune from poison.
 	 */
 	private boolean isImmune;
-
-	private static boolean firstWelcomeException = true;
 
 	public static void generateRPClass() {
 		try {
@@ -125,7 +113,7 @@ public class Player extends RPEntity implements TurnListener {
 		}
 		player.updateItemAtkDef();
 
-		player.welcome();
+		PlayerRPClass.welcome(player);
 
 		logger.debug("Finally player is :" + player);
 		return player;
@@ -205,38 +193,6 @@ public class Player extends RPEntity implements TurnListener {
 		StendhalRPRuleProcessor.get().removePlayerText(this);
 	}
 
-	/** send a welcome message to the player which can be configured
-	 *  in marauroa.ini file as "server_welcome". If the value is
-	 *  an http:// adress, the first line of that adress is read
-	 *  and used as the message 
-	 */
-	public void welcome() {
-		String msg = "This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne";
-		try {
-			Configuration config = Configuration.getConfiguration();
-			msg = config.get("server_welcome");
-			if (msg.startsWith("http://")) {
-				URL url = new URL(msg);
-				HttpURLConnection.setFollowRedirects(false);
-				HttpURLConnection connection = (HttpURLConnection) url
-						.openConnection();
-				BufferedReader br = new BufferedReader(new InputStreamReader(
-						connection.getInputStream()));
-				msg = br.readLine();
-				br.close();
-				connection.disconnect();
-			}
-		} catch (Exception e) {
-			if (Player.firstWelcomeException) {
-				logger.warn("Can't read server_welcome from marauroa.ini", e);
-				Player.firstWelcomeException = false;
-			}
-		}
-		if (msg != null) {
-			sendPrivateText(msg);
-		}
-	}
-  
 	/**
 	 * Returns the admin level of this user. See AdministrationAction.java for details.
 	 *
