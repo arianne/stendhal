@@ -8,7 +8,7 @@
 package games.stendhal.server;
 
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;

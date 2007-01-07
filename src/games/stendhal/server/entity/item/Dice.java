@@ -13,10 +13,10 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 import java.util.LinkedList;

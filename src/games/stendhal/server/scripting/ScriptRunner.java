@@ -5,7 +5,7 @@ package games.stendhal.server.scripting;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.AdministrationAction;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 
 import java.io.File;
 import java.io.FilenameFilter;

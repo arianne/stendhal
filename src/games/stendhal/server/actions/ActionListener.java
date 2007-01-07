@@ -20,6 +20,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.*;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.player.Player;
 
 public abstract class ActionListener {
 	private static final Logger logger = Log4J.getLogger(ActionListener.class);

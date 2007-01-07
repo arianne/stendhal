@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 /** 
  * QUEST: Look book for Ceryl

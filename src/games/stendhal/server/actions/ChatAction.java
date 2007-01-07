@@ -15,7 +15,7 @@ package games.stendhal.server.actions;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.StringTokenizer;
 

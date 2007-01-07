@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 

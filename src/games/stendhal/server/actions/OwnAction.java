@@ -15,8 +15,8 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.pathfinder.Path.Node;
 

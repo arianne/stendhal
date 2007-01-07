@@ -1,12 +1,12 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 import java.util.List;

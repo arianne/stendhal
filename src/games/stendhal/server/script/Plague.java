@@ -1,8 +1,8 @@
 package games.stendhal.server.script;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.common.MathHelper;
 

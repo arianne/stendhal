@@ -5,8 +5,8 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Path;
 
 import java.awt.geom.Rectangle2D;

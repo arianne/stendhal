@@ -13,7 +13,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.AdministrationAction;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 

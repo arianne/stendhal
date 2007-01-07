@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 

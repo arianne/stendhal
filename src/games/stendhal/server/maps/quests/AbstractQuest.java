@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * QUEST: Speak with Ketteh

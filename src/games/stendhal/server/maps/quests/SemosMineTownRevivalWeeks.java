@@ -3,11 +3,11 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.Arrays;

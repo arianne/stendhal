@@ -1,6 +1,7 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * A chest that is for decoration purpose only. The player cannot open

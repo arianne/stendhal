@@ -13,7 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;

@@ -17,11 +17,11 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.EquipListener;
 
 import java.util.Arrays;

@@ -16,7 +16,7 @@ import java.util.Map;
 
 import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * 

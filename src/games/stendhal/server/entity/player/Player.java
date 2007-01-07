@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
@@ -21,6 +21,9 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;

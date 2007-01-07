@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.portal;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * A locked door is a special kind of portal which requires a key to pass it.

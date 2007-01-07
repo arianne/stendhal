@@ -4,13 +4,13 @@ import games.stendhal.common.Pair;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Blackboard;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 import java.util.List;

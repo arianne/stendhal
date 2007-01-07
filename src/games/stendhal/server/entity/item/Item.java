@@ -16,7 +16,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.PlantGrower;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.EquipListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;

@@ -17,6 +17,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.*;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Door;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.PathfinderThread;

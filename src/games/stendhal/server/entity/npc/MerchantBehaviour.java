@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.common.MathHelper;
 
 import java.util.HashMap;

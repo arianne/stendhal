@@ -2,7 +2,7 @@ package games.stendhal.server.scripting;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.Player;
+import games.stendhal.server.entity.player.Player;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 

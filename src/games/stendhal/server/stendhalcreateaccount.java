@@ -15,6 +15,7 @@ package games.stendhal.server;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
 import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.*;
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;

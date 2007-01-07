@@ -17,6 +17,7 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.*;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.ActionManager;
 import java.awt.geom.Rectangle2D;

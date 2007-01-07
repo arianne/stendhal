@@ -13,9 +13,10 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.Player;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Food;
+import games.stendhal.server.entity.player.Player;
+
 import java.awt.geom.Rectangle2D;
 
 import org.apache.log4j.Logger;
