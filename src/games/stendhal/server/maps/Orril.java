@@ -8,6 +8,7 @@ import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.NPCOwnedChest;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
@@ -58,6 +59,7 @@ public class Orril implements IContent {
 				.getRuleManager().getEntityManager();
 		DefaultItem item = new DefaultItem("key", "silver",
 				"dungeon_silver_key", -1);
+		item.setImplementation(Item.class);
 		item.setWeight(1);
 		List<String> bagOnly = new LinkedList<String>();
 		bagOnly.add("bag");
@@ -87,6 +89,7 @@ public class Orril implements IContent {
 		zone.addPortal(portal);
 
 		item = new DefaultItem("key", "gold", "lich_gold_key", -1);
+		item.setImplementation(Item.class);
 		item.setWeight(1);
 		item.setEquipableSlots(bagOnly);
 		manager.addItem(item);

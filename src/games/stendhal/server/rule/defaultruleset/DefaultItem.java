@@ -15,9 +15,13 @@ package games.stendhal.server.rule.defaultruleset;
 import games.stendhal.common.Pair;
 import games.stendhal.server.entity.item.*;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
 
 /**
  * All default items which can be reduced to stuff that increase the attack
@@ -26,6 +30,8 @@ import java.util.Map;
  * @author Matthias Totz
  */
 public class DefaultItem {
+	private static final Logger logger = Log4J.getLogger(DefaultItem.class);
+
 	/** items class */
 	private String clazz;
 
@@ -53,6 +59,9 @@ public class DefaultItem {
 
 	/** Is this item type stackable */
 	private boolean stackable;
+
+	/** Implementation class */
+	protected Class	implementation;
 
 	public DefaultItem(String clazz, String subclazz, String name, int tileid) {
 		this.clazz = clazz;
@@ -90,28 +99,135 @@ public class DefaultItem {
 		this.description = text;
 	}
 
+	public void
+	setImplementation(Class implementation) {
+		this.implementation = implementation;
+	}
+
+
+	/**
+	 * Create the implementation class. It uses the following contructor
+	 * search order:<br>
+	 *
+	 * <ul>
+	 *  <li><em>Class</em>(<em>name</em>, <em>clazz</em>, <em>subclazz</em>, <em>attributes</em>)
+	 *  <li><em>Class</em>(<em>attributes</em>)
+	 *  <li><em>Class</em>()
+	 * </ul>
+	 *
+	 * @return	A new item, or <code>null</code> on error.
+	 */
+	protected Item
+	createItem()
+	{
+		Constructor	construct;
+
+
+		/*
+		 * For now this searches on the fly. To improve speed, create
+		 * a wrapper interface with the various forms up front
+		 * [in/from setImplementation()].
+		 */
+
+		try
+		{
+			/*
+			 * <Class>(name, clazz, subclazz, attributes)
+			 */
+			try
+			{
+				construct = implementation.getConstructor(
+					new Class []
+					{
+						String.class,
+						String.class,
+						String.class,
+						Map.class
+					});
+
+				return (Item) construct.newInstance(
+					new Object []
+					{
+						name,
+						clazz,
+						subclazz,
+						attributes
+					});
+			}
+			catch(NoSuchMethodException ex)
+			{
+			}
+
+
+			/*
+			 * <Class>(attributes)
+			 */
+			try
+			{
+				construct = implementation.getConstructor(
+					new Class [] { Map.class });
+
+				return (Item) construct.newInstance(
+					new Object [] { attributes });
+			}
+			catch(NoSuchMethodException ex)
+			{
+			}
+
+
+			/*
+			 * <Class>()
+			 */
+			return (Item) implementation.newInstance();
+		}
+		catch(IllegalAccessException ex)
+		{
+			logger.error("Error creating item: " + name, ex);
+		}
+		catch(InstantiationException ex)
+		{
+			logger.error("Error creating item: " + name, ex);
+		}
+		catch(InvocationTargetException ex)
+		{
+			logger.error("Error creating item: " + name, ex);
+		}
+		catch(ClassCastException ex)
+		{
+			/*
+			 * Wrong type (i.e. not [subclass of] Item)
+			 */
+			logger.error("Implementation for " + name
+				+ " [" + implementation.getName()
+					+ "] is not an Item class");
+		}
+
+		return null;
+	}
+
+
 	/** returns an item-instance */
 	public Item getItem() {
-		Item item = null;
+		Item item = createItem();
 
-		if (clazz.equals("money")) {
-			item = new Money(attributes);
-		} else if (clazz.equals("food")) {
-			item = new Food(name, clazz, subclazz, attributes);
-		} else if (clazz.equals("drink")) {
-			item = new Drink(name, clazz, subclazz, attributes);
-		} else if (clazz.equals("scroll")) {
-			item = new Scroll(name, clazz, subclazz, attributes);
-		} else if (clazz.equals("misc") && subclazz.equals("dice")) {
-			item = new Dice(attributes);
-		} else if (clazz.equals("misc") && subclazz.equals("token")) {
-			item = new Token(name, clazz, subclazz, attributes);
-		} else if (clazz.equals("box")) {
-			item = new Box(name, clazz, subclazz, attributes);
-		} else if (stackable) {
-			item = new StackableItem(name, clazz, subclazz, attributes);
-		} else {
-			item = new Item(name, clazz, subclazz, attributes);
+		/*
+		 * Safety-net for old code/config (for now)
+		 */
+		if(item == null)
+		{
+			logger.warn(
+				"Item without defined implementation: " + name);
+
+			if (stackable)
+			{
+				item = new StackableItem(
+					name, clazz, subclazz, attributes);
+			}
+			else
+			{
+				item = new Item(
+					name, clazz, subclazz, attributes);
+			}
 		}
 
 		item.setEquipableSlots(slots);

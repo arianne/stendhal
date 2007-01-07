@@ -39,6 +39,8 @@ public class ItemXMLLoader extends DefaultHandler {
 
 	private boolean attributesTag;
 
+	protected Class	implementation;
+
 	public static void main(String argv[]) {
 		if (argv.length != 1) {
 			System.err.println("Usage: cmd filename");
@@ -116,9 +118,23 @@ public class ItemXMLLoader extends DefaultHandler {
 			slots = new LinkedList<String>();
 			stackable = false;
 			description = null;
+			implementation = null;
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");
 			subclass = attrs.getValue("subclass");
+		} else if (qName.equals("implementation")) {
+
+			String className = attrs.getValue("class-name");
+
+			try
+			{
+				implementation = Class.forName(className);
+			}
+			catch(ClassNotFoundException ex)
+			{
+				logger.error(
+					"Unable to load class: " + className);
+			}
 		} else if (qName.equals("stackable")) {
 			stackable = true;
 		} else if (qName.equals("weight")) {
@@ -146,6 +162,8 @@ public class ItemXMLLoader extends DefaultHandler {
 			if (stackable) {
 				item.setStackable();
 			}
+
+			item.setImplementation(implementation);
 
 			list.add(item);
 		} else if (qName.equals("attributes")) {

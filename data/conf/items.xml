@@ -38,6 +38,7 @@ in the file.
 	<item name="knife">
 		<type class="sword" subclass="knife"/>
 		<description>You see a blunt knife which looks capable of little damage.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 		<atk value="7"/>
 		</attributes>
@@ -53,6 +54,7 @@ in the file.
 		<type class="sword" subclass="dagger"/>
 		<description>You see a dagger, it is little more than
 		decorative but you may be able to hurt something with it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="8"/>
 		</attributes>
@@ -68,6 +70,7 @@ in the file.
 		<type class="sword" subclass="short_sword"/>
 		<description>You see a well kept short sword which will be
 		easy to carry as you travel.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="11"/>
 		</attributes>
@@ -83,6 +86,7 @@ in the file.
 		<type class="sword" subclass="sword"/>
 		<description>You see a sharp sword which might even be worth a
 		little.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="14"/>
 		</attributes>
@@ -99,6 +103,7 @@ in the file.
 		<description>This scimitar catches the light as you look at
 		it, it will be a powerful weapon.
 		</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="15"/>
 		</attributes>
@@ -113,6 +118,7 @@ in the file.
 	<item name="katana">
 		<type class="sword" subclass="katana"/>
 		<description>You see a valuable katana, with a lethal looking blade.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="16"/>
 		</attributes>
@@ -128,6 +134,7 @@ in the file.
 		<type class="sword" subclass="claymore"/>
 		<description>This claymore is very hard to lift as it is so
 		heavy. It will be a good weapon if you can swing it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="18"/>
 		</attributes>
@@ -143,6 +150,7 @@ in the file.
 		<type class="sword" subclass="broadsword"/>
 		<description>You see a mighty broadsword. Enemies will see
 		their death.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="24"/>
 		</attributes>
@@ -158,6 +166,7 @@ in the file.
 		<type class="sword" subclass="biting_sword"/>
 		<description>The point of this biting sword is chiselled to a
 		lethal point. It will serve you well.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="24"/>
 		</attributes>
@@ -172,6 +181,7 @@ in the file.
 	<item name="fire_sword">
 		<type class="sword" subclass="fire_sword"/>
 		<description>Flames race along this fire sword as you wield it.</description> 
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="28"/>
 		</attributes>
@@ -188,6 +198,7 @@ in the file.
 		<description>You see an ice sword, the blade is lethally cold
 		to the touch, and you know it is one of the best weapons
 		you'll find.</description> 
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="29"/>
 		</attributes>
@@ -202,6 +213,7 @@ in the file.
 	<item name="great_sword">
 		<type class="sword" subclass="great_sword"/>
 		<description>You see the formidable great sword.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="30"/>
 		</attributes>
@@ -219,6 +231,7 @@ Makes players more offensive
 -->
 	<item name="r_hand_sword">
 		<type class="sword" subclass="r_hand_sword"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 		<atk value="15"/>
 		<def value="6"/>
@@ -233,6 +246,7 @@ Makes players more offensive
 
 	<item name="l_hand_sword">
 		<type class="sword" subclass="l_hand_sword"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 		<atk value="15"/>
 		<def value="6"/>
@@ -251,6 +265,7 @@ Makes players more offensive
 	<item name="old_scythe">
 		<type class="axe" subclass="scythe"/>
 		<description>You see an old scythe, it used to be weapon of death. But now it is only a useful tool for farming.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="2"/>
 		</attributes>
@@ -266,6 +281,7 @@ Makes players more offensive
 		<type class="axe" subclass="small_axe"/>
                 <description>You see a small axe. It appears well made but you
                 suspect it is too light to do much damage.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="7"/>
 		</attributes>
@@ -281,6 +297,7 @@ Makes players more offensive
 		<type class="axe" subclass="hand_axe"/>
                 <description>You see a hand axe, well worn from years of use
                 but may prove useful.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="9"/>
 		</attributes>
@@ -296,6 +313,7 @@ Makes players more offensive
 		<type class="axe" subclass="axe"/>
                 <description>You see a rusty but heavy axe. What it lacks in
                 sharpness it makes up for in weight.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="12"/>
 		</attributes>
@@ -311,6 +329,7 @@ Makes players more offensive
 		<type class="axe" subclass="battle_axe"/>
                 <description>You see a battle axe. It is well crafted and
                 sharp despite its age.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="15"/>
 		</attributes>
@@ -326,6 +345,7 @@ Makes players more offensive
 		<type class="axe" subclass="bardiche"/>                
 		<description>You see a rare and powerful
 		bardiche.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="17"/>
 		</attributes>
@@ -341,6 +361,7 @@ Makes players more offensive
 		<type class="axe" subclass="scythe"/>
                 <description>You see the weapon of death - a scythe. It looks
                 dangerous but perhaps also a useful tool for farming.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="19"/>
 		</attributes>
@@ -355,6 +376,7 @@ Makes players more offensive
 	<item name="twoside_axe">
 		<type class="axe" subclass="twosided_poleaxe"/>
                 <description>You see a well crafted twoside axe.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="19"/>
 		</attributes>
@@ -370,6 +392,7 @@ Makes players more offensive
 		<type class="axe" subclass="halberd"/>
                 <description>You see a rare halberd, with an axe's blade fused
                 onto a shaft. It is both heavy and keen-edged.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="20"/>
 		</attributes>
@@ -383,6 +406,7 @@ Makes players more offensive
 
 	<item name="twoside_axe_+3">
 		<type class="axe" subclass="golden_twosided_poleaxe"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="22"/>
 		</attributes>
@@ -400,6 +424,7 @@ Makes players more offensive
 		<type class="club" subclass="club"/>
                 <description>You see a wooden club. It won't kill much but is
                 better than no weapon.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="6"/>
 		</attributes>
@@ -413,6 +438,7 @@ Makes players more offensive
 
 	<item name="staff">
 		<type class="club" subclass="staff"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="9"/>
 		</attributes>
@@ -427,6 +453,7 @@ Makes players more offensive
 	<item name="mace">
 		<type class="club" subclass="mace"/>
                 <description>You see a mace, much neglected in years of use.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
      		<attributes>
 			<atk value="12"/>
 		</attributes>
@@ -442,6 +469,7 @@ Makes players more offensive
 		<type class="club" subclass="flail"/>
                 <description>You see a military flail. Swinging it in circles
                 will tire you but it will be an effective weapon.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="13"/>
 		</attributes>
@@ -456,6 +484,7 @@ Makes players more offensive
 	<item name="mace_+1">
 <!-- graphics was enhanced_mace, wich didnt exist, so im giving it the mace gfx -->
 		<type class="club" subclass="mace"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="13"/>
 		</attributes>
@@ -471,6 +500,7 @@ Makes players more offensive
 		<type class="club" subclass="golden_mace"/>
                 <description>You see a shining mace +2. Despite looking
                 ornamental, it is sharp enough to do some damage.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="14"/>
 		</attributes>
@@ -486,6 +516,7 @@ Makes players more offensive
 		<type class="club" subclass="skull_staff"/>
                 <description>You see a rare skull staff. It appears mystical
                 but will work like any other staff.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="14"/>
 		</attributes>
@@ -499,6 +530,7 @@ Makes players more offensive
 
 	<item name="flail_+2">
 		<type class="club" subclass="golden_flail"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="15"/>
 		</attributes>
@@ -514,6 +546,7 @@ Makes players more offensive
 		<type class="club" subclass="hammer"/>
                 <description>You see a common hammer. It is heavy enough that
                 you should be able to bludgeon your enemies with it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="15"/>
 		</attributes>
@@ -529,6 +562,7 @@ Makes players more offensive
 		<type class="club" subclass="golden_hammer"/>
                 <description>You see a valuable hammer +3. This golden weapon
                 may be worth a lot to someone.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="18"/>
 		</attributes>
@@ -543,6 +577,7 @@ Makes players more offensive
 	<item name="war_hammer">
 		<type class="club" subclass="grand_warhammer"/>
                 <description>You see a huge war hammer. It is a fearsome weapon.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="21"/>
 		</attributes>
@@ -560,6 +595,7 @@ Makes players more offensive
 		<type class="ranged" subclass="wooden_bow"/>
                 <description>You see a wooden bow. With this in one hand, and
                 wooden arrows in the other, you may be able to attack from a distance.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="12"/>
 		</attributes>
@@ -573,6 +609,7 @@ Makes players more offensive
 
 	<item name="longbow">
 		<type class="ranged" subclass="longbow"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="14"/>
 		</attributes>
@@ -586,6 +623,7 @@ Makes players more offensive
 
 	<item name="longbow_+1">
 		<type class="ranged" subclass="composite_bow"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="15"/>
 		</attributes>
@@ -599,6 +637,7 @@ Makes players more offensive
 
 	<item name="crossbow">
 		<type class="ranged" subclass="crossbow"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="17"/>
 		</attributes>
@@ -617,6 +656,7 @@ Makes players more offensive
 		<type class="projectiles" subclass="wooden_arrow"/>
                 <description>You see a wooden arrow. With a supply of arrows
                 in one hand and a bow in the other you can fight from a distance.</description>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -632,6 +672,7 @@ Makes players more offensive
 
 	<item name="steel_arrow">
 		<type class="projectiles" subclass="steel_arrow"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -647,6 +688,7 @@ Makes players more offensive
 
 	<item name="golden_arrow">
 		<type class="projectiles" subclass="golden_arrow"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -667,6 +709,7 @@ Makes players more offensive
                 <description>You see a small buckler. It may protect you
                 against swords and maces but against stronger weapons you do
                 not trust it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="6"/>
 		</attributes>
@@ -683,6 +726,7 @@ Makes players more offensive
 		<description>You see a wooden shield. It is made of cheap wood and heavily used.
 		However, it still seems to offer you some kind of basic protection.
 		</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="10"/>
 		</attributes>
@@ -698,6 +742,7 @@ Makes players more offensive
 		<type class="shield" subclass="studded_shield"/>
                 <description>You see a studded shield. It's a little dented
                 but seems robust enough.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="12"/>
 		</attributes>
@@ -713,6 +758,7 @@ Makes players more offensive
 		<type class="shield" subclass="plate_shield"/>
                 <description>You see a solid plate shield. It is in good
                 condition, and might be worth a little.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="14"/>
 		</attributes>
@@ -728,6 +774,7 @@ Makes players more offensive
 		<type class="shield" subclass="lion_shield"/>
                 <description>You see a valuable lion shield. It is
                 heavy enough to defend you against strong attacks.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="16"/>
 		</attributes>
@@ -743,6 +790,7 @@ Makes players more offensive
 		<type class="shield" subclass="unicorn_shield"/>
                 <description>You see a unicorn shield. It's beautifully
                 crafted and will give you excellent protection.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="18"/>
 		</attributes>
@@ -758,6 +806,7 @@ Makes players more offensive
 		<type class="shield" subclass="enhanced_lion_shield"/>
                 <description>A lion shield +1 glints at you. It will defend
                 you well.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="20"/>
 		</attributes>
@@ -772,6 +821,7 @@ Makes players more offensive
 	<item name="skull_shield">
 		<type class="shield" subclass="skull_shield"/>
                 <description>The face of a skull scowls at you from this fearsome skull shield.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="22"/>
 		</attributes>
@@ -786,6 +836,7 @@ Makes players more offensive
 	<item name="crown_shield">
 		<type class="shield" subclass="crown_shield"/>
                 <description>You see a mighty crown shield. It is in perfect condition.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="24"/>
 		</attributes>
@@ -800,6 +851,7 @@ Makes players more offensive
 	<item name="golden_shield">
 		<type class="shield" subclass="golden_shield"/>
                 <description>You see a golden shield, the ultimate in defence.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="34"/>
 		</attributes>
@@ -818,6 +870,7 @@ Makes players more offensive
 		<type class="armor" subclass="dress"/>
                 <description>You see a dress, which
 		provides practically no defence. It is barely worth picking up. </description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="1"/>
 		</attributes>
@@ -832,6 +885,7 @@ Makes players more offensive
 		<type class="armor" subclass="leather_armor"/>
                 <description>You see a worn suit of leather armor. It will
                 provide only minimal protection.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="3"/>
 		</attributes>
@@ -846,6 +900,7 @@ Makes players more offensive
 		<type class="armor" subclass="leather_cuirass"/>
                 <description>You see a leather cuirass, well made but
                 still able to be pierced by sharp swords.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="4"/>
 		</attributes>
@@ -860,6 +915,7 @@ Makes players more offensive
 		<type class="armor" subclass="leather_scale_armor"/>
                 <description>You see a suit of leather armor +1. The leather
                 is toughened somehow for better protection.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="4"/>
 		</attributes>
@@ -872,6 +928,7 @@ Makes players more offensive
 
 	<item name="leather_cuirass_+1">
 		<type class="armor" subclass="enhanced_leather_cuirass"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="5"/>
 		</attributes>
@@ -886,6 +943,7 @@ Makes players more offensive
 		<type class="armor" subclass="studded_armor"/>
                 <description>You see a suit of studded armor. Some studs are
                 loose or rusty but it is still fit for purpose.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="5"/>
 		</attributes>
@@ -900,6 +958,7 @@ Makes players more offensive
 		<type class="armor" subclass="chain_armor"/>
 		<description>You see a suit of chain armor. Perhaps even if
 		you don't need it, you can sell it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="6"/>
 		</attributes>
@@ -915,6 +974,7 @@ Makes players more offensive
                 <description>You see a robust suit of chain armor +1. The
                 links are closely spaces so even the sharpest point shoudl not
                 pierce it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="7"/>
 		</attributes>
@@ -929,6 +989,7 @@ Makes players more offensive
 		<type class="armor" subclass="scale_armor"/>
                 <description>You see a suit of scale armor. It is not flexible
                 like chain, but will be a better defense.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="8"/>
 		</attributes>
@@ -943,6 +1004,7 @@ Makes players more offensive
 		<type class="armor" subclass="iron_scale_armor"/>
                 <description>You see a suit of scale armor +1, whose rounded
                 scales will protect you from many blows.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="8"/>
 		</attributes>
@@ -957,6 +1019,7 @@ Makes players more offensive
 		<type class="armor" subclass="golden_chainmail"/>
                 <description>You see a valuable suit of chain armor +3. It is
                 crafted from fine links of expensive metal.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="9"/>
 		</attributes>
@@ -970,6 +1033,7 @@ Makes players more offensive
 	<item name="scale_armor_+2">
 		<type class="armor" subclass="enhanced_iron_cuirass"/>
                 <description>You see a formidable suit of scale armor +2.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="9"/>
 		</attributes>
@@ -983,6 +1047,7 @@ Makes players more offensive
 	<item name="plate_armor">
 		<type class="armor" subclass="plate_armor"/>
                 <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.</description> 
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="10"/>
 		</attributes>
@@ -998,6 +1063,7 @@ Makes players more offensive
                 <description>You see a suit of
                 golden armor. It's made from the best materials with great
                 attention to detail.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="16"/>
 		</attributes>
@@ -1015,6 +1081,7 @@ Makes players more offensive
 		<type class="helmet" subclass="leather_helmet"/>
                 <description>You see a leather helmet, it seems more like a hat
                 than a defensive item.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="1"/>
 		</attributes>
@@ -1027,6 +1094,7 @@ Makes players more offensive
 
 	<item name="robins_hat">
 		<type class="helmet" subclass="robins_hat"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="2"/>
 		</attributes>
@@ -1041,6 +1109,7 @@ Makes players more offensive
 		<type class="helmet" subclass="studded_helmet"/>
                 <description>You see a studded helmet, it should protect your
                 head against cuts but perhaps not hard blows.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="2"/>
 		</attributes>
@@ -1055,6 +1124,7 @@ Makes players more offensive
 		<type class="helmet" subclass="chain_helmet"/>
                 <description>You see a solid chain helmet, it will be excellent
                 protection for your head.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="4"/>
 		</attributes>
@@ -1067,6 +1137,7 @@ Makes players more offensive
 
 	<item name="viking_helmet">
 		<type class="helmet" subclass="horned_helmet"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="5"/>
 		</attributes>
@@ -1079,6 +1150,7 @@ Makes players more offensive
 
 	<item name="chain_helmet_+2">
 		<type class="helmet" subclass="aventail"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="6"/>
 		</attributes>
@@ -1093,6 +1165,7 @@ Makes players more offensive
 		<type class="helmet" subclass="golden_helmet"/>
                 <description>You see a heavy golden helmet. The thick metal
                 should protect you against almost anything.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="9"/>
 		</attributes>
@@ -1105,6 +1178,7 @@ Makes players more offensive
 
 	<item name="golden_helmet_+3">
 		<type class="helmet" subclass="golden_horned_barbute"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="12"/>
 		</attributes>
@@ -1117,6 +1191,7 @@ Makes players more offensive
 
 	<item name="trophy_helmet">
 		<type class="helmet" subclass="golden_horned_barbute"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="1"/>
 		</attributes>
@@ -1133,6 +1208,7 @@ Makes players more offensive
 		<type class="legs" subclass="leather_legs"/>
                 <description>You see a pair of leather legs. They look new but
                 they're poor quality.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="1"/>
 		</attributes>
@@ -1148,6 +1224,7 @@ Makes players more offensive
                 <description>You see a pair of blood stained studded legs.
                 You're not sure if the blood came from their last owner ... or
                 his enemies.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="2"/>
 		</attributes>
@@ -1162,6 +1239,7 @@ Makes players more offensive
 		<type class="legs" subclass="chain_legs"/>
                 <description>You see a pair of well made chain legs. They
                 should protect you against any attacks aimed low.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="4"/>
 		</attributes>
@@ -1175,6 +1253,7 @@ Makes players more offensive
 	<item name="golden_legs">
 		<type class="legs" subclass="golden_legs"/>
                 <description>You see a pair of shining, strong golden legs.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="8"/>
 		</attributes>
@@ -1191,6 +1270,7 @@ Makes players more offensive
 		<type class="boots" subclass="leather_boots"/>
 		<description>You see a simple pair of leather boots to give
 		your feet some protection.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="1"/>
 		</attributes>
@@ -1203,6 +1283,7 @@ Makes players more offensive
 
 	<item name="studded_boots">
 		<type class="boots" subclass="studded_boots"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="2"/>
 		</attributes>
@@ -1215,6 +1296,7 @@ Makes players more offensive
 
 	<item name="chain_boots">
 		<type class="boots" subclass="chain_boots"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="4"/>
 		</attributes>
@@ -1228,6 +1310,7 @@ Makes players more offensive
 	<item name="steel_boots">
 		<type class="boots" subclass="steel_boots"/>
 		<description>You see a pair of steel boots, fit for any soldier.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="6"/>
 		</attributes>
@@ -1242,6 +1325,7 @@ Makes players more offensive
 		<type class="boots" subclass="golden_boots"/>
 		<description>You see a pair of golden boots. They will be
 		heavy to wear but well worth their weight.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="8"/>
 		</attributes>
@@ -1257,6 +1341,7 @@ Makes players more offensive
 	<item name="cloak">
 		<type class="cloak" subclass="cloak"/>
 		<description>You see a simple cloth cloak.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="1"/>
 		</attributes>
@@ -1270,6 +1355,7 @@ Makes players more offensive
 	<item name="elf_cloak">
 		<type class="cloak" subclass="white_cloak"/>
                 <description>You see a white elf cloak. It doesn't look very warm.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="3"/>
 		</attributes>
@@ -1285,6 +1371,7 @@ Makes players more offensive
                 <description>You see a dwarf cloak. Apparently this passes for
                 fashion in some parts, but to you it looks more functional
                 than fashionable.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="4"/>
 		</attributes>
@@ -1299,6 +1386,7 @@ Makes players more offensive
 		<type class="cloak" subclass="lightblue_cloak"/>
                 <description>You see a blue elf cloak +2. The material is
                 thick and warm.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="8"/>
 		</attributes>
@@ -1314,6 +1402,7 @@ Makes players more offensive
                 <description>You see a huge green dragon cloak. It's probably
                 too big for you but, even dragging on the floor it will
                 provide excellent protection.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="10"/>
 		</attributes>
@@ -1329,6 +1418,7 @@ Makes players more offensive
 		<description>You see a purple lich cloak. It's stained with
 		blood - yours, from the previous undead owner, or perhaps the blood
 		of his enemies...</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="11"/>
 		</attributes>
@@ -1343,6 +1433,7 @@ Makes players more offensive
 		<type class="cloak" subclass="blue_cloak"/>
 		<description>You see a blue dragon cloak. The weave is tight
 		and strong, though you wish the colour drew less attention.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="13"/>
 		</attributes>
@@ -1358,6 +1449,7 @@ Makes players more offensive
 		<description>You see a torn section from an enormous
 		black dragon cloak. You're very lucky: the piece is just the
 		right size for a human to wear.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="18"/>
 		</attributes>
@@ -1370,6 +1462,7 @@ Makes players more offensive
 
 	<item name="golden_cloak">
 		<type class="cloak" subclass="golden_cloak"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="19"/>
 		</attributes>
@@ -1384,6 +1477,7 @@ Makes players more offensive
 
 	<item name="cherry">
 		<type class="food" subclass="cherry"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1399,6 +1493,7 @@ Makes players more offensive
 
 	<item name="cheese">
 		<type class="food" subclass="cheese"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1414,6 +1509,7 @@ Makes players more offensive
 
 	<item name="carrot">
 		<type class="food" subclass="carrot"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1429,6 +1525,7 @@ Makes players more offensive
 
 	<item name="salad">
 		<type class="food" subclass="salad"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1444,6 +1541,7 @@ Makes players more offensive
 
 	<item name="apple">
 		<type class="food" subclass="apple"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1459,6 +1557,7 @@ Makes players more offensive
 
 	<item name="bread">
 		<type class="food" subclass="baguette"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1474,6 +1573,7 @@ Makes players more offensive
 
 	<item name="meat">
 		<type class="food" subclass="meat"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1490,6 +1590,7 @@ Makes players more offensive
 	<item name="ham">
 		<type class="food" subclass="ham"/>
 		<description>You see a juicy ham.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1505,6 +1606,7 @@ Makes players more offensive
 
 	<item name="sandwich">
 		<type class="food" subclass="sandwich"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
                 <description>You see a ham and cheese sandwich.</description>
 		<attributes>
@@ -1521,6 +1623,7 @@ Makes players more offensive
 
 	<item name="pie">
 		<type class="food" subclass="piesmall"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<description>You see a meat and vegetable pie.</description>
 		<attributes>
@@ -1537,6 +1640,7 @@ Makes players more offensive
 
 	<item name="button_mushroom">
 		<type class="food" subclass="button_mushroom"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1552,6 +1656,7 @@ Makes players more offensive
 
 	<item name="porcini">
 		<type class="food" subclass="porcini"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1567,6 +1672,7 @@ Makes players more offensive
 
 	<item name="toadstool">
 		<type class="food" subclass="toadstool"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1597,6 +1703,7 @@ Makes players more offensive
 
 	<item name="beer">
 		<type class="drink" subclass="beer"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1613,6 +1720,7 @@ Makes players more offensive
 
 	<item name="wine">
 		<type class="drink" subclass="wine"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1629,6 +1737,7 @@ Makes players more offensive
 
 	<item name="minor_potion">
 		<type class="drink" subclass="minor_potion"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1644,6 +1753,7 @@ Makes players more offensive
 
 	<item name="antidote">
 		<type class="drink" subclass="antidote"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<stackable/>
 		<description>You see an antidote, to cure you of poison and
 		protect you for a while.</description>
@@ -1661,6 +1771,7 @@ Makes players more offensive
 
 	<item name="potion">
 		<type class="drink" subclass="potion"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1676,6 +1787,7 @@ Makes players more offensive
 
 	<item name="greater_potion">
 		<type class="drink" subclass="greater_potion"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1691,6 +1803,7 @@ Makes players more offensive
 
 	<item name="poison">
 		<type class="drink" subclass="poison"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1706,6 +1819,7 @@ Makes players more offensive
 
 	<item name="greater_poison">
 		<type class="drink" subclass="greater_poison"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1721,6 +1835,7 @@ Makes players more offensive
 
 	<item name="deadly_poison">
 		<type class="drink" subclass="greater_poison"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1738,6 +1853,7 @@ Makes players more offensive
 
 	<item name="flask">
 		<type class="container" subclass="bottle"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1750,6 +1866,7 @@ Makes players more offensive
 
 	<item name="bottle">
 		<type class="container" subclass="bottle"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1762,6 +1879,7 @@ Makes players more offensive
 
 	<item name="big_bottle">
 		<type class="container" subclass="big_bottle"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1777,6 +1895,7 @@ Makes players more offensive
 
 	<item name="money">
 		<type class="money" subclass="gold"/>
+		<implementation class-name="games.stendhal.server.entity.item.Money"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1789,6 +1908,7 @@ Makes players more offensive
 
 	<item name="book_black">
 		<type class="book" subclass="black"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>
@@ -1797,6 +1917,7 @@ Makes players more offensive
 
 	<item name="arandula">
 		<type class="herb" subclass="arandula"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1810,6 +1931,7 @@ Makes players more offensive
     <item name="wood">
         <type class="resource" subclass="wood"/>
         <description>You see some wood, fallen from a nearby tree.</description>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 	<stackable/>
         <attributes>
             <quantity value="1"/>
@@ -1824,6 +1946,7 @@ Makes players more offensive
       <type class="resource" subclass="grain"/>
        <description>You see a sheaf of grain.</description><!--I think this is
        a good choice beacuse it could mean one or many-->
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
        <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1836,6 +1959,7 @@ Makes players more offensive
     
     <item name="flour">
       <type class="resource" subclass="flour"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1848,6 +1972,7 @@ Makes players more offensive
 	
     <item name="iron_ore">
       <type class="resource" subclass="iron_ore"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1860,6 +1985,7 @@ Makes players more offensive
 	
     <item name="iron">
       <type class="resource" subclass="iron"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1872,6 +1998,7 @@ Makes players more offensive
 
     <item name="Golden_GM_Tokend">
       <type class="special" subclass="GM_tokend_gold2"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1884,6 +2011,7 @@ Makes players more offensive
 
     <item name="Silvery_GM_Tokend">
       <type class="special" subclass="GM_tokend_silver"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1896,6 +2024,7 @@ Makes players more offensive
     
     <item name="Bronze_GM_Tokend">
       <type class="special" subclass="GM_tokend_bronze"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
       <stackable/>
       <attributes>
         <quantity value="1"/>
@@ -1908,11 +2037,13 @@ Makes players more offensive
 
     <item name="token">
 		<type class="misc" subclass="token"/>
+		<implementation class-name="games.stendhal.server.entity.item.Token"/>
 		<weight value="1"/>
 	</item>
 
     <item name="note">
 		<type class="misc" subclass="paper"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>
@@ -1921,6 +2052,7 @@ Makes players more offensive
 
 	<item name="coupon">
 		<type class="misc" subclass="coupon"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>
@@ -1929,6 +2061,7 @@ Makes players more offensive
 
 	<item name="dice">
 		<type class="misc" subclass="dice"/>
+		<implementation class-name="games.stendhal.server.entity.item.Dice"/>
 		<weight value="1"/>
 		<equipable>
 			<slot name="bag"/>
@@ -1937,6 +2070,7 @@ Makes players more offensive
 
 	<item name="teddy">
 		<type class="misc" subclass="teddy"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
 			<slot name="bag"/>
@@ -1945,6 +2079,7 @@ Makes players more offensive
 
 	<item name="map">
 		<type class="scroll" subclass="mapwithgrid"/>
+		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>
@@ -1953,6 +2088,7 @@ Makes players more offensive
 
 	<item name="summon_scroll">
 		<type class="scroll" subclass="summon"/>
+		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1965,6 +2101,7 @@ Makes players more offensive
 
 	<item name="empty_scroll">
 		<type class="scroll" subclass="empty"/>
+		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1977,6 +2114,7 @@ Makes players more offensive
 
 	<item name="home_scroll">
 		<type class="scroll" subclass="home"/>
+		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -1990,6 +2128,7 @@ Makes players more offensive
 
 	<item name="marked_scroll">
 		<type class="scroll" subclass="marked"/>
+		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
 		<weight value="0.01"/>
 		<attributes>
 			<quantity value="1"/>
@@ -2002,6 +2141,7 @@ Makes players more offensive
 <!-- box section -->
 	<item name="present">
 		<type class="box" subclass="present"/>
+		<implementation class-name="games.stendhal.server.entity.item.Box"/>
 		<description>You see a christmas present. Open it.</description>
 		<weight value="0.01"/>
 		<equipable>
@@ -2021,6 +2161,7 @@ the right click menu we talked about before.
 -->
 	<item name="rod_of_the_gm">
 		<type class="club" subclass="rod_of_the_gm"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="100"/>
 			<def value="100"/>
@@ -2052,6 +2193,7 @@ probably just be named key.
 <!--
 	<item name="rat_key">
 		<type class="key" subclass="rat_key">
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<attribute name="target_id" value="XXXX"/>
 		</attributes>

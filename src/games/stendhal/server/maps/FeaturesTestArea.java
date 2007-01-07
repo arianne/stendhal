@@ -80,11 +80,13 @@ public class FeaturesTestArea implements IContent {
 		slots.add("bag");
 
 		DefaultItem item = new DefaultItem("key", "gold", "key_golden", -1);
+		item.setImplementation(Item.class);
 		item.setWeight(1);
 		item.setEquipableSlots(slots);
 		manager.addItem(item);
 
 		item = new DefaultItem("key", "golden", "key_silver", -1);
+		item.setImplementation(Item.class);
 		item.setWeight(1);
 		item.setEquipableSlots(slots);
 		manager.addItem(item);
