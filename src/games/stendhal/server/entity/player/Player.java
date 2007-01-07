@@ -155,6 +155,7 @@ public class Player extends RPEntity implements TurnListener {
 		int x = player.getX();
 		int y = player.getY();
 
+		// load sheep
 		try {
 			if (player.hasSheep()) {
 				logger.debug("Player has a sheep");
@@ -197,6 +198,7 @@ public class Player extends RPEntity implements TurnListener {
 		StendhalRPAction.placeat(zone, player, x, y);
 		zone.addPlayerAndFriends(player);
 
+		// load items
 		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs",
 						"feet", "cloak", "bank" };		
 		for (String slotName : slotsNormal) {
@@ -286,20 +288,6 @@ public class Player extends RPEntity implements TurnListener {
 			}
 		}
 		player.updateItemAtkDef();
-
-		// create (or repair) !quests and !kills slots
-		String[] slotsWithOneObject = {"!quests", "!kills"};
-		for (String slotName : slotsWithOneObject) {
-			if (!player.hasSlot(slotName)) {
-				player.addSlot(new RPSlot(slotName));
-			}
-			RPSlot questSlot = player.getSlot(slotName);
-			if (!questSlot.iterator().hasNext()) {
-				RPObject quests = new RPObject();
-				questSlot.assignValidID(quests);
-				questSlot.add(quests);
-			}
-		}
 
 		player.welcome();
 

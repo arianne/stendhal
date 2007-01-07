@@ -76,7 +76,7 @@ class PlayerRPClass {
 	static void updatePlayerRPObject(RPObject object) {
 		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank" };
 
-		String[] slotsSpecial = { "!buddy", "!ignore" };
+		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore" };
 
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
@@ -104,11 +104,11 @@ class PlayerRPClass {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new RPSlot(slotName));
 			}
-			RPSlot buddy = object.getSlot(slotName);
-			if (buddy.size() == 0) {
-				RPObject data = new RPObject();
-				buddy.assignValidID(data);
-				buddy.add(data);
+			RPSlot slot = object.getSlot(slotName);
+			if (slot.size() == 0) {
+				RPObject singleObject = new RPObject();
+				slot.assignValidID(singleObject);
+				slot.add(singleObject);
 			}
 		}
 
