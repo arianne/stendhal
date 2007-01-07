@@ -12,11 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.Debug;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -149,7 +154,7 @@ class PlayerRPClass {
 	 * @param object RPObject representing the player
 	 * @param player Player-object
 	 */
-	public static void placePlayerIntoWorldOnLogin(RPObject object, Player player) {
+	static void placePlayerIntoWorldOnLogin(RPObject object, Player player) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		boolean firstVisit = false;
@@ -240,6 +245,89 @@ class PlayerRPClass {
 		StendhalRPAction.placeat(zone, player, x, y);
 		zone.addPlayerAndFriends(player);
 
+	}
+
+	/**
+	 * Loads the items into the slots of the player on login.
+	 *
+	 * @param player Player
+	 */
+	static void loadItemsIntoSlots(Player player) {
+		StendhalRPWorld world = StendhalRPWorld.get();
+
+		// load items
+		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs",
+						"feet", "cloak", "bank" };		
+		for (String slotName : slotsItems) {
+			try {
+				if (player.hasSlot(slotName)) {
+					RPSlot slot = player.getSlot(slotName);
+
+					List<RPObject> objects = new LinkedList<RPObject>();
+					for (RPObject objectInSlot : slot) {
+						objects.add(objectInSlot);
+					}
+					slot.clear();
+
+					for (RPObject item : objects) {
+						try {
+							// We simply ignore corpses...
+							if (item.get("type").equals("item")) {
+
+								Item entity = world.getRuleManager()
+										.getEntityManager().getItem(
+												item.get("name"));
+
+								// log removed items
+								if (entity == null) {
+									int quantity = 1;
+									if (item.has("quantity")) {
+										quantity = item.getInt("quantity");
+									}
+									logger.warn("Cannot restore " + quantity + " " + item.get("name")
+											+ " on login of " + player.get("name") + " because this item"
+											+ " was removed from items.xml");
+									continue;
+								}
+
+								entity.setID(item.getID());
+
+								if(item.has("persistent") && item.getInt("persistent")==1) {
+									entity.fill(item);
+								}
+
+								if (entity instanceof StackableItem) {
+									((StackableItem) entity).setQuantity(item.getInt("quantity"));
+								}
+								
+								// make sure saved individual information is
+								// restored
+								String[] individualAttributes = {"infostring", "description", "bound"};
+								for (String attribute : individualAttributes) {
+									if (item.has(attribute)) {
+										entity.put(attribute, item.get(attribute));
+									}
+								}
+
+								slot.add(entity);
+							}
+						} catch (Exception e) {
+							logger.error("Error adding " + item
+									+ " to player slot" + slot, e);
+						}
+					}
+				} else {
+					logger.warn("player " + player.getName()
+							+ " does not have the slot " + slotName);
+				}
+			} catch (Exception e) {
+				logger.error("cannot create player", e);
+				if (player.hasSlot(slotName)) {
+					RPSlot slot = player.getSlot(slotName);
+					slot.clear();
+				}
+			}
+		}
 	}
 
 	

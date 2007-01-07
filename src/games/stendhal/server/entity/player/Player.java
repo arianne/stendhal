@@ -97,7 +97,6 @@ public class Player extends RPEntity implements TurnListener {
 		// add attributes and slots
 		PlayerRPClass.updatePlayerRPObject(object);
 
-		StendhalRPWorld world = StendhalRPWorld.get();
 		Player player = new Player(object);
 
 		// Port from 0.48 to 0.50
@@ -109,80 +108,7 @@ public class Player extends RPEntity implements TurnListener {
 		StendhalQuestSystem.get().onPlayerLogin(player);
 
 		PlayerRPClass.placePlayerIntoWorldOnLogin(object, player);
-
-		// load items
-		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs",
-						"feet", "cloak", "bank" };		
-		for (String slotName : slotsNormal) {
-			try {
-				if (player.hasSlot(slotName)) {
-					RPSlot slot = player.getSlot(slotName);
-
-					List<RPObject> objects = new LinkedList<RPObject>();
-					for (RPObject objectInSlot : slot) {
-						objects.add(objectInSlot);
-					}
-					slot.clear();
-
-					for (RPObject item : objects) {
-						try {
-							// We simply ignore corpses...
-							if (item.get("type").equals("item")) {
-
-								Item entity = world.getRuleManager()
-										.getEntityManager().getItem(
-												item.get("name"));
-
-								// log removed items
-								if (entity == null) {
-									int quantity = 1;
-									if (item.has("quantity")) {
-										quantity = item.getInt("quantity");
-									}
-									logger.warn("Cannot restore " + quantity + " " + item.get("name")
-											+ " on login of " + player.get("name") + " because this item"
-											+ " was removed from items.xml");
-									continue;
-								}
-
-								entity.setID(item.getID());
-
-								if(item.has("persistent") && item.getInt("persistent")==1) {
-									entity.fill(item);
-								}
-
-								if (entity instanceof StackableItem) {
-									((StackableItem) entity).setQuantity(item.getInt("quantity"));
-								}
-								
-								// make sure saved individual information is
-								// restored
-								String[] individualAttributes = {"infostring", "description", "bound"};
-								for (String attribute : individualAttributes) {
-									if (item.has(attribute)) {
-										entity.put(attribute, item.get(attribute));
-									}
-								}
-
-								slot.add(entity);
-							}
-						} catch (Exception e) {
-							logger.error("Error adding " + item
-									+ " to player slot" + slot, e);
-						}
-					}
-				} else {
-					logger.warn("player " + player.getName()
-							+ " does not have the slot " + slotName);
-				}
-			} catch (Exception e) {
-				logger.error("cannot create player", e);
-				if (player.hasSlot(slotName)) {
-					RPSlot slot = player.getSlot(slotName);
-					slot.clear();
-				}
-			}
-		}
+		PlayerRPClass.loadItemsIntoSlots(player);
 
 		if (player.getSlot("!buddy").size() > 0) {
 			RPObject buddies = player.getSlot("!buddy").iterator().next();
