@@ -12,9 +12,11 @@
  ***************************************************************************/
 package games.stendhal.bot.shouter;
 
-import games.stendhal.bot.postman.Postman;
 import games.stendhal.client.update.Version;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.SocketException;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +42,6 @@ public class ShouterMain {
 	protected String character;
     private String port;
     private boolean tcp;
-    protected Postman postman = null;
     protected long lastPerceptionTimestamp = 0;
 	protected Map<RPObject.ID, RPObject> world_objects;
 	protected marauroa.client.ariannexp clientManager;
@@ -97,12 +98,6 @@ public class ShouterMain {
 				lastPerceptionTimestamp = System.currentTimeMillis();
 				try {
 					handler.apply(message, world_objects);
-
-                    for (RPObject object : world_objects.values()) {
-                        if (object.has("private_text") || object.has("text")) {
-                        	postman.processTalkEvent(object);
-                        }
-                    }               
 				} catch (Exception e) {
 					onError(3, "Exception while applying perception");
 				}
@@ -150,8 +145,7 @@ public class ShouterMain {
 		try {
 			clientManager.connect(host, Integer.parseInt(port), tcp);
 			clientManager.login(username, password);
-	        shout("Test3");
-	        Thread.sleep(1000);
+	        readMessagesAndShoutThem();
 	        clientManager.logout();
 	        System.exit(0);
 
@@ -168,6 +162,18 @@ public class ShouterMain {
 			Runtime.getRuntime().halt(1);
 		}
 
+	}
+	
+	private void readMessagesAndShoutThem() throws IOException, InterruptedException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String line = br.readLine();
+		while (line != null) {
+			if (line.trim().length() > 0) {
+				shout(line);
+			}
+	        Thread.sleep(1000);
+		}
+		br.close();
 	}
 
     private void shout(String message) {
