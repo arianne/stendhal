@@ -12,15 +12,24 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import games.stendhal.common.Debug;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.creature.Sheep;
+import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * Handles the RPClass registration and updating old Player objects
  * created by an older version of Stendhal.
  */
 class PlayerRPClass {
+	private static Logger logger = Logger.getLogger(PlayerRPClass.class);
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -134,4 +143,104 @@ class PlayerRPClass {
 		}
 	}
 
+	/**
+	 * Places the player (and his/her sheep if there is one) into the world on login
+	 *
+	 * @param object RPObject representing the player
+	 * @param player Player-object
+	 */
+	public static void placePlayerIntoWorldOnLogin(RPObject object, Player player) {
+		StendhalRPWorld world = StendhalRPWorld.get();
+
+		boolean firstVisit = false;
+
+		try {
+			if (!object.has("zoneid") || !object.has("x") || !object.has("y")) {
+				firstVisit = true;
+			}
+
+			boolean newReleaseHappened = !object.get("release").equals(
+					Debug.VERSION);
+			if (newReleaseHappened) {
+				firstVisit = true;
+				player.put("release", Debug.VERSION);
+			}
+			
+			IRPZone tempZone = StendhalRPWorld.get().getRPZone(new IRPZone.ID(object.get("zoneid")));
+			if (tempZone == null) {
+				firstVisit = true;
+			}
+
+			if (firstVisit) {
+				player.put("zoneid", "int_semos_townhall");
+			}
+
+			world.add(player);
+		} catch (Exception e) { // If placing the player at its last position
+								// fails, we reset it to city entry point
+			logger.warn("cannot place player at its last position. reseting to semos city entry point",	e);
+
+			firstVisit = true;
+			player.put("zoneid", "int_semos_townhall");
+
+			player.notifyWorldAboutChanges();
+		}
+
+		StendhalRPAction.transferContent(player);
+
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+
+		if (firstVisit) {
+			zone.placeObjectAtEntryPoint(player);
+		}
+
+		int x = player.getX();
+		int y = player.getY();
+
+		// load sheep
+		try {
+			if (player.hasSheep()) {
+				logger.debug("Player has a sheep");
+				Sheep sheep = player.retrieveSheep();
+				sheep.put("zoneid", object.get("zoneid"));
+				if (!sheep.has("base_hp")) {
+					sheep.put("base_hp", "10");
+					sheep.put("hp", "10");
+				}
+
+				world.add(sheep);
+
+				x = sheep.getX();
+				y = sheep.getY();
+				player.setSheep(sheep);
+
+				StendhalRPAction.placeat(zone, sheep, x, y);
+				zone.addPlayerAndFriends(sheep);
+			}
+		} catch (Exception e) { /**
+								 * No idea how but some players get a sheep but
+								 * they don't have it really. Me thinks that it
+								 * is a player that has been running for a while
+								 * the game and was kicked of server because
+								 * shutdown on a pre 1.00 version of Marauroa.
+								 * We shouldn't see this anymore.
+								 */
+			logger.error("Pre 1.00 Marauroa sheep bug. (player = "
+					+ player.getName() + ")", e);
+
+			if (player.has("sheep")) {
+				player.remove("sheep");
+			}
+
+			if (player.hasSlot("#flock")) {
+				player.removeSlot("#flock");
+			}
+		}
+
+		StendhalRPAction.placeat(zone, player, x, y);
+		zone.addPlayerAndFriends(player);
+
+	}
+
+	
 }
