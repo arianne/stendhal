@@ -81,54 +81,12 @@ public class Player extends RPEntity implements TurnListener {
 	 * antidote, and thus immune from poison.
 	 */
 	private boolean isImmune;
-  
-  private static boolean firstWelcomeException = true;
+
+	private static boolean firstWelcomeException = true;
 
 	public static void generateRPClass() {
 		try {
-			RPClass player = new RPClass("player");
-			player.isA("rpentity");
-			player.add("text", RPClass.LONG_STRING, RPClass.VOLATILE);
-			player.add("private_text", RPClass.LONG_STRING,
-					(byte) (RPClass.PRIVATE | RPClass.VOLATILE));
-
-			player.add("poisoned", RPClass.SHORT, RPClass.VOLATILE);
-			player.add("eating", RPClass.SHORT, RPClass.VOLATILE);
-
-			player.add("dead", RPClass.FLAG, RPClass.PRIVATE);
-
-			player.add("outfit", RPClass.INT);
-			player.add("outfit_org", RPClass.INT);
-
-			// Use this for admin menus and usage.
-			player.add("admin", RPClass.FLAG);
-			player.add("adminlevel", RPClass.INT);
-			player.add("invisible", RPClass.FLAG, RPClass.HIDDEN);
-			player.add("ghostmode", RPClass.FLAG, RPClass.HIDDEN);
-
-			player.add("release", RPClass.STRING, RPClass.HIDDEN);
-
-			player.add("age", RPClass.INT);
-
-			// Store sheep at DB
-			player.addRPSlot("#flock", 1, RPClass.HIDDEN);
-			player.add("sheep", RPClass.INT);
-
-			// Bank system
-			player.addRPSlot("bank", 20, RPClass.HIDDEN);
-
-			// Kills recorder - needed for quest
-			player.addRPSlot("!kills", 1, RPClass.HIDDEN);
-
-			// We use this for the buddy system
-			player.addRPSlot("!buddy", 1, RPClass.PRIVATE);
-			player.addRPSlot("!ignore", 1, RPClass.HIDDEN);
-			player.add("online", RPClass.LONG_STRING,
-					(byte) (RPClass.PRIVATE | RPClass.VOLATILE));
-			player.add("offline", RPClass.LONG_STRING,
-					(byte) (RPClass.PRIVATE | RPClass.VOLATILE));
-
-			player.addRPSlot("!quests", 1, RPClass.HIDDEN);
+			PlayerRPClass.generateRPClass();
 		} catch (RPClass.SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
