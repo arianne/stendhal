@@ -99,14 +99,12 @@ public class Player extends RPEntity implements TurnListener {
 
 		Player player = new Player(object);
 
-		// Port from 0.48 to 0.50
-		player.readAdminsFromFile();
-
 		player.stop();
 		player.stopAttack();
 
 		StendhalQuestSystem.get().onPlayerLogin(player);
 
+		PlayerRPClass.readAdminsFromFile(player);
 		PlayerRPClass.placePlayerIntoWorldOnLogin(object, player);
 		PlayerRPClass.loadItemsIntoSlots(player);
 
@@ -239,47 +237,6 @@ public class Player extends RPEntity implements TurnListener {
 		}
 	}
   
-	private static List<String> adminNames;
-
-	private void readAdminsFromFile() {
-		if (adminNames == null) {
-			adminNames = new LinkedList<String>();
-			
-			String adminFilename="data/conf/admins.list";
-
-			try {
-				InputStream is = getClass().getClassLoader()
-						.getResourceAsStream(adminFilename);
-
-				if (is == null) {
-					logger.info("data/conf/admins.list does not exist.");
-				} else {
-					
-					BufferedReader in = new BufferedReader(
-							new InputStreamReader(is));
-	
-					String line;
-					while ((line = in.readLine()) != null) {
-						adminNames.add(line);
-					}
-					in.close();
-				}
-			} catch (Exception e) {
-				logger.error("Error loading admin names from: "+adminFilename, e);
-			}
-		}
-
-		boolean isAdmin = adminNames.contains(getName());
-
-		if (isAdmin) {
-			put("adminlevel", AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
-		} else {
-			if (!has("adminlevel")) {
-				put("adminlevel", "0");
-			}
-		}
-	}
-
 	/**
 	 * Returns the admin level of this user. See AdministrationAction.java for details.
 	 *

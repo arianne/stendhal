@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,6 +22,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -35,6 +39,10 @@ import org.apache.log4j.Logger;
  */
 class PlayerRPClass {
 	private static Logger logger = Logger.getLogger(PlayerRPClass.class);
+
+	/** list of super admins read from admins.list */
+	private static List<String> adminNames = null;
+
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -145,6 +153,53 @@ class PlayerRPClass {
 
 		if (!object.has("age")) {
 			object.put("age", "0");
+		}
+	}
+
+	/**
+	 * reads the admins from admins.list
+	 *
+	 * @param player Player to check for super admin status.
+	 */
+	static void readAdminsFromFile(Player player) {
+		if (adminNames == null) {
+			adminNames = new LinkedList<String>();
+			
+			String adminFilename="data/conf/admins.list";
+
+			try {
+				InputStream is = player.getClass().getClassLoader()
+						.getResourceAsStream(adminFilename);
+
+				if (is == null) {
+					logger.info("data/conf/admins.list does not exist.");
+				} else {
+					
+					BufferedReader in = new BufferedReader(
+							new InputStreamReader(is));
+					try {
+						String line;
+						while ((line = in.readLine()) != null) {
+							adminNames.add(line);
+						}
+					} catch (Exception e) {
+						logger.error("Error loading admin names from: "+adminFilename, e);
+					}
+					in.close();
+				}
+			} catch (Exception e) {
+				logger.error("Error loading admin names from: "+adminFilename, e);
+			}
+		}
+
+		boolean isAdmin = adminNames.contains(player.getName());
+
+		if (isAdmin) {
+			player.put("adminlevel", AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
+		} else {
+			if (!player.has("adminlevel")) {
+				player.put("adminlevel", "0");
+			}
 		}
 	}
 
