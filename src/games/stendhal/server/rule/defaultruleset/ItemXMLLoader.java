@@ -8,6 +8,8 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import games.stendhal.common.Pair;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 
@@ -39,7 +41,7 @@ public class ItemXMLLoader extends DefaultHandler {
 
 	private boolean attributesTag;
 
-	protected Class	implementation;
+	protected Class implementation;
 
 	public static void main(String argv[]) {
 		if (argv.length != 1) {
@@ -50,6 +52,7 @@ public class ItemXMLLoader extends DefaultHandler {
 			List<DefaultItem> items = new ItemXMLLoader().load(argv[0]);
 			for (DefaultItem item : items) {
 				System.out.println(item.getItemName());
+				//				System.out.println(" -- " + item.getItem());
 			}
 
 		} catch (Throwable e) {
@@ -81,11 +84,9 @@ public class ItemXMLLoader extends DefaultHandler {
 			// Parse the input
 			SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getClassLoader().getResourceAsStream(
-					ref);
+			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
 			if (is == null) {
-				throw new FileNotFoundException("cannot find resource '" + ref
-						+ "' in classpath");
+				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
 			}
 			saxParser.parse(is, this);
 		} catch (ParserConfigurationException t) {
@@ -109,8 +110,7 @@ public class ItemXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) {
+	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
 		text = "";
 		if (qName.equals("item")) {
 			name = attrs.getValue("name");
@@ -126,14 +126,10 @@ public class ItemXMLLoader extends DefaultHandler {
 
 			String className = attrs.getValue("class-name");
 
-			try
-			{
+			try {
 				implementation = Class.forName(className);
-			}
-			catch(ClassNotFoundException ex)
-			{
-				logger.error(
-					"Unable to load class: " + className);
+			} catch (ClassNotFoundException ex) {
+				logger.error("Unable to load class: " + className);
 			}
 		} else if (qName.equals("stackable")) {
 			stackable = true;
@@ -161,6 +157,15 @@ public class ItemXMLLoader extends DefaultHandler {
 			item.setDescription(description);
 			if (stackable) {
 				item.setStackable();
+			}
+
+			/*
+			 * Safety-net for old code/config (for now)
+			 */
+			if (implementation == null) {
+				logger.error("Item without defined implementation: " + name);
+
+				implementation = stackable ? StackableItem.class : Item.class;
 			}
 
 			item.setImplementation(implementation);
