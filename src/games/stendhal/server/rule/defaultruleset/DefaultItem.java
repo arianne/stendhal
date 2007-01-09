@@ -60,8 +60,8 @@ public class DefaultItem {
 	/** Is this item type stackable */
 	private boolean stackable;
 
-	/** Implementation class */
-	protected Class	implementation;
+	/** Implementation creator */
+	protected Creator creator;
 
 	public DefaultItem(String clazz, String subclazz, String name, int tileid) {
 		this.clazz = clazz;
@@ -99,14 +99,13 @@ public class DefaultItem {
 		this.description = text;
 	}
 
-	public void
-	setImplementation(Class implementation) {
-		this.implementation = implementation;
+	public void setImplementation(Class implementation) {
+		creator = buildCreator(implementation);
 	}
 
 
 	/**
-	 * Create the implementation class. It uses the following contructor
+	 * Build a creator for the class. It uses the following constructor
 	 * search order:<br>
 	 *
 	 * <ul>
@@ -115,123 +114,69 @@ public class DefaultItem {
 	 *  <li><em>Class</em>()
 	 * </ul>
 	 *
-	 * @return	A new item, or <code>null</code> on error.
+	 * @param	implementation	The implementation class.
+	 *
+	 * @return	A creator, or <code>null</code> if none found.
 	 */
-	protected Item
-	createItem()
-	{
-		Constructor	construct;
+	protected Creator buildCreator(Class implementation) {
+		Constructor construct;
 
 
 		/*
-		 * For now this searches on the fly. To improve speed, create
-		 * a wrapper interface with the various forms up front
-		 * [in/from setImplementation()].
+		 * <Class>(name, clazz, subclazz, attributes)
 		 */
+		try {
+			construct = implementation.getConstructor(new Class[] { String.class, String.class, String.class, Map.class });
 
-		try
-		{
-			/*
-			 * <Class>(name, clazz, subclazz, attributes)
-			 */
-			try
-			{
-				construct = implementation.getConstructor(
-					new Class []
-					{
-						String.class,
-						String.class,
-						String.class,
-						Map.class
-					});
-
-				return (Item) construct.newInstance(
-					new Object []
-					{
-						name,
-						clazz,
-						subclazz,
-						attributes
-					});
-			}
-			catch(NoSuchMethodException ex)
-			{
-			}
-
-
-			/*
-			 * <Class>(attributes)
-			 */
-			try
-			{
-				construct = implementation.getConstructor(
-					new Class [] { Map.class });
-
-				return (Item) construct.newInstance(
-					new Object [] { attributes });
-			}
-			catch(NoSuchMethodException ex)
-			{
-			}
-
-
-			/*
-			 * <Class>()
-			 */
-			return (Item) implementation.newInstance();
+			return new FullCreator(construct);
+		} catch (NoSuchMethodException ex) {
 		}
-		catch(IllegalAccessException ex)
-		{
-			logger.error("Error creating item: " + name, ex);
+
+
+		/*
+		 * <Class>(attributes)
+		 */
+		try {
+			construct = implementation.getConstructor(new Class[] { Map.class });
+
+			return new AttributesCreator(construct);
+		} catch (NoSuchMethodException ex) {
 		}
-		catch(InstantiationException ex)
-		{
-			logger.error("Error creating item: " + name, ex);
+
+
+		/*
+		 * <Class>()
+		 */
+		try {
+			construct = implementation.getConstructor(new Class[] {});
+
+			return new DefaultCreator(construct);
+		} catch (NoSuchMethodException ex) {
 		}
-		catch(InvocationTargetException ex)
-		{
-			logger.error("Error creating item: " + name, ex);
-		}
-		catch(ClassCastException ex)
-		{
-			/*
-			 * Wrong type (i.e. not [subclass of] Item)
-			 */
-			logger.error("Implementation for " + name
-				+ " [" + implementation.getName()
-					+ "] is not an Item class");
-		}
+
 
 		return null;
 	}
 
 
-	/** returns an item-instance */
+	/**
+	 * Returns an item-instance.
+	 *
+	 * @return	An item, or <code>null</code> on error.
+	 */
 	public Item getItem() {
-		Item item = createItem();
+		Item item;
 
 		/*
-		 * Safety-net for old code/config (for now)
+		 * Just incase - Really should generate fatal error up front
+		 * (in ItemXMLLoader).
 		 */
-		if(item == null)
-		{
-			logger.warn(
-				"Item without defined implementation: " + name);
+		if (creator == null) return null;
 
-			if (stackable)
-			{
-				item = new StackableItem(
-					name, clazz, subclazz, attributes);
-			}
-			else
-			{
-				item = new Item(
-					name, clazz, subclazz, attributes);
-			}
+		if ((item = creator.createItem()) != null) {
+			item.setEquipableSlots(slots);
+			item.setDescription(description);
 		}
-
-		item.setEquipableSlots(slots);
-		item.setDescription(description);
 
 		return item;
 	}
@@ -248,5 +193,91 @@ public class DefaultItem {
 
 	public String getItemName() {
 		return name;
+	}
+
+	//
+	//
+
+	/**
+	 * Base item creator (using a constructor)
+	 */
+	protected abstract class Creator {
+		protected Constructor construct;
+
+
+		public Creator(Constructor construct) {
+			this.construct = construct;
+		}
+
+
+		protected abstract Object create() throws IllegalAccessException, InstantiationException, InvocationTargetException;
+
+
+		public Item createItem() {
+			try {
+				return (Item) create();
+			} catch (IllegalAccessException ex) {
+				logger.error("Error creating item: " + name, ex);
+			} catch (InstantiationException ex) {
+				logger.error("Error creating item: " + name, ex);
+			} catch (InvocationTargetException ex) {
+				logger.error("Error creating item: " + name, ex);
+			} catch (ClassCastException ex) {
+				/*
+				 * Wrong type (i.e. not [subclass of] Item)
+				 */
+				logger.error("Implementation for " + name + " is not an Item class");
+			}
+
+			return null;
+		}
+	}
+
+
+	/**
+	 * Create an item class via the <em>attributes</em> constructor.
+	 */
+	protected class AttributesCreator extends Creator {
+		public AttributesCreator(Constructor construct) {
+			super(construct);
+		}
+
+
+		@Override
+		protected Object create() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+			return construct.newInstance(new Object[] { attributes });
+		}
+	}
+
+
+	/**
+	 * Create an item class via the default constructor.
+	 */
+	protected class DefaultCreator extends Creator {
+		public DefaultCreator(Constructor construct) {
+			super(construct);
+		}
+
+		@Override
+		protected Object create() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+			// XXX - Is this a fast as <Class>.newInstance()
+			return construct.newInstance(new Object[] {});
+		}
+	}
+
+
+	/**
+	 * Create an item class via the full arguments (<em>name, clazz,
+	 * subclazz, attributes</em>) constructor.
+	 */
+	protected class FullCreator extends Creator {
+		public FullCreator(Constructor construct) {
+			super(construct);
+		}
+
+		@Override
+		protected Object create() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+			return construct.newInstance(new Object[] { name, clazz, subclazz, attributes });
+		}
 	}
 }
