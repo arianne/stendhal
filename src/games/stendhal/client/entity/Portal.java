@@ -12,18 +12,34 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.ArrayList;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.StendhalClient;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+
+/**
+ * A portal which can be "used" by the player. Use a Door
+ * if you want some sprites for it.
+ */
 public class Portal extends Entity {
+	private boolean hidden = false;
+
 	public Portal(GameObjects gameObjects, RPObject object)
 			throws AttributeNotFoundException {
 		super(gameObjects, object);
+
+		this.hidden = object.has("hidden");
 	}
 
+	@Override
 	protected void loadSprite(RPObject object) {
 		sprite = null;
 	}
@@ -36,19 +52,25 @@ public class Portal extends Entity {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public String defaultAction() {
 		return "Use";
 	}
 
+	@Override
 	public String[] offeredActions() {
-		java.util.List<String> list = new ArrayList<String>();
-		list.add("Use");
-		if (client.isAdmin()) {
-			list.add("(*)Destroy");
+		List<String> list = new ArrayList<String>();
+		if (!hidden) {
+			list.add("Use");
+			if (client.isAdmin()) {
+				list.add("(*)Inspect");
+				list.add("(*)Destroy");
+			}
 		}
 		return list.toArray(new String[list.size()]);
 	}
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Use")) {
 			RPAction rpaction = new RPAction();
@@ -61,7 +83,9 @@ public class Portal extends Entity {
 		}
 	}
 
+	@Override
 	public void draw(GameScreen screen) {
+		// portals are invisible; use a Door to get a changing sprite
 	}
 
 	@Override
