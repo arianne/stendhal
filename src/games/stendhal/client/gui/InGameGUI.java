@@ -23,6 +23,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,6 +71,8 @@ public class InGameGUI implements KeyListener {
 
 	private boolean altDown;
 
+	private ArrayList<Direction> directions;
+
 	private long lastKeyRelease;
 
 	private int[] veryFastKeyEvents = new int[4]; // at leat one more than checked
@@ -85,6 +88,8 @@ public class InGameGUI implements KeyListener {
 		screen = GameScreen.get();
 
 		pressed = new HashMap<Integer, Object>();
+
+		directions = new ArrayList<Direction>(4);
 
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 
@@ -118,6 +123,30 @@ public class InGameGUI implements KeyListener {
 		windowManager.setDefaultProperties("chest", false, 100, 190);
 	}
 
+
+	protected Direction
+	keyCodeToDirection(int keyCode)
+	{
+		switch(keyCode)
+		{
+			case KeyEvent.VK_LEFT:
+				return Direction.LEFT;
+
+			case KeyEvent.VK_RIGHT:
+				return Direction.RIGHT;
+
+			case KeyEvent.VK_UP:
+				return Direction.UP;
+
+			case KeyEvent.VK_DOWN:
+				return Direction.DOWN;
+
+			default:
+				return null;
+		}
+	}
+
+
 	public void onKeyPressed(KeyEvent e) {
 		RPAction action;
 
@@ -136,7 +165,9 @@ public class InGameGUI implements KeyListener {
 				|| e.getKeyCode() == KeyEvent.VK_RIGHT
 				|| e.getKeyCode() == KeyEvent.VK_UP
 				|| e.getKeyCode() == KeyEvent.VK_DOWN) {
+
 			action = new RPAction();
+
 			if (e.isControlDown()) {
 				// We use Ctrl+arrow to face
 				action.put("type", "face");
@@ -145,43 +176,46 @@ public class InGameGUI implements KeyListener {
 				action.put("type", "move");
 			}
 
-			switch (e.getKeyCode()) {
-			case KeyEvent.VK_LEFT:
-				action.put("dir", Direction.LEFT.get());
-				break;
-			case KeyEvent.VK_RIGHT:
-				action.put("dir", Direction.RIGHT.get());
-				break;
-			case KeyEvent.VK_UP:
-				action.put("dir", Direction.UP.get());
-				break;
-			case KeyEvent.VK_DOWN:
-				action.put("dir", Direction.DOWN.get());
-				break;
-			}
+			Direction dir = keyCodeToDirection(e.getKeyCode());
 
+			directions.remove(dir);
+			directions.add(dir);
+
+			action.put("dir", dir.get());
 			client.send(action);
 		}
 	}
 
 	public void onKeyReleased(KeyEvent e) {
-		RPAction action = new RPAction();
-		action.put("type", "stop");
+		RPAction action;
+		int size;
 
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_RIGHT:
 		case KeyEvent.VK_UP:
 		case KeyEvent.VK_DOWN:
-			// Notify server that player is stopped.
-			int keys = (pressed.containsKey(KeyEvent.VK_LEFT) ? 1 : 0)
-					+ (pressed.containsKey(KeyEvent.VK_RIGHT) ? 1 : 0)
-					+ (pressed.containsKey(KeyEvent.VK_UP) ? 1 : 0)
-					+ (pressed.containsKey(KeyEvent.VK_DOWN) ? 1 : 0);
-			if (keys == 1) {
-				client.send(action);
+			action = new RPAction();
+
+			directions.remove(
+				keyCodeToDirection(e.getKeyCode()));
+
+			if((size = directions.size()) == 0) {
+				action.put("type", "stop");
+			} else {
+				if (e.isControlDown()) {
+					// We use Ctrl+arrow to face
+					action.put("type", "face");
+				} else {
+					// While arrow only moves the player
+					action.put("type", "move");
+				}
+
+				action.put("dir",
+					directions.get(size - 1).get());
 			}
-			break;
+
+			client.send(action);
 		}
 	}
 
