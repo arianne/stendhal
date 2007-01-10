@@ -34,18 +34,27 @@ public class GrainField extends AnimatedEntity {
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
-		sprites.put("0", store.getAnimatedSprite(translate(object.get("type")),
-				0, 1, 1, 2));
-		sprites.put("1", store.getAnimatedSprite(translate(object.get("type")),
-				1, 1, 1, 2));
-		sprites.put("2", store.getAnimatedSprite(translate(object.get("type")),
-				2, 1, 1, 2));
-		sprites.put("3", store.getAnimatedSprite(translate(object.get("type")),
-				3, 1, 1, 2));
-		sprites.put("4", store.getAnimatedSprite(translate(object.get("type")),
-				4, 1, 1, 2));
-		sprites.put("5", store.getAnimatedSprite(translate(object.get("type")),
-				5, 1, 1, 2));
+		// compatibility to server <= 0.56
+		int maxRipeness = 5;
+		int width = 1;
+		int height = 2;
+
+		// get sprite info
+		if (object.has("max_ripeness")) {
+			maxRipeness = object.getInt("max_ripeness");
+		}
+		if (object.has("width")) {
+			width = object.getInt("width");
+		}
+		if (object.has("height")) {
+			height = object.getInt("height");
+		}
+
+		// load sprites
+		for (int i = 0; i <= maxRipeness; i++) {
+			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate(object.get("type")),
+					i, 1, width, height));
+		}
 	}
 
 	protected Sprite defaultAnimation() {

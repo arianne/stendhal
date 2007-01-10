@@ -44,17 +44,27 @@ public class GrainField extends PlantGrower implements UseListener {
 		RPClass grainFieldClass = new RPClass("grain_field");
 		grainFieldClass.isA("plant_grower");
 		grainFieldClass.add("ripeness", RPClass.BYTE);
+		grainFieldClass.add("max_ripeness", RPClass.BYTE);
+		grainFieldClass.add("width", RPClass.BYTE);
+		grainFieldClass.add("height", RPClass.BYTE);
 	}
 
+	private void init() {
+		put("type", "grain_field");
+		put("max_ripeness", 5);
+		put("width", 1);
+		put("height", 2);
+	}
+	
 	public GrainField(RPObject object) throws AttributeNotFoundException {
 		super(object, null, GROWING_RATE);
-		put("type", "grain_field");
+		init();
 		update();
 	}
 
 	public GrainField() throws AttributeNotFoundException {
 		super(null, GROWING_RATE);
-		put("type", "grain_field");
+		init();
 	}
 
 	@Override
