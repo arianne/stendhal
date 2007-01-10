@@ -172,6 +172,7 @@ public class ShouterMain {
 				shout(line);
 			}
 	        Thread.sleep(1000);
+	        line = br.readLine();
 		}
 		br.close();
 	}
