@@ -605,16 +605,18 @@ public abstract class SpeakerNPC extends NPC {
 		// If we are attending another player make this one wait.
 		// TODO: don't check if it equals the text, but if it starts
 		// with it (case-insensitive)
-		if (!player.equals(attending) && GREETING_MESSAGES.contains(text)) {
-			logger.debug("Already attending a player");
-			if (waitMessage != null) {
-				say(waitMessage);
+		if (!player.equals(attending)) {
+			if (GREETING_MESSAGES.contains(text)) {
+			
+				logger.debug("Already attending a player");
+				if (waitMessage != null) {
+					say(waitMessage);
+				}
+	
+				if (waitAction != null) {
+					waitAction.fire(player, text, this);
+				}
 			}
-
-			if (waitAction != null) {
-				waitAction.fire(player, text, this);
-			}
-
 			return true;
 		}
 		return false;
