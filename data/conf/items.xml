@@ -1934,6 +1934,10 @@ Makes players more offensive
 	<item name="map">
 		<type class="scroll" subclass="mapwithgrid"/>
 		<weight value="0.01"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
 		<equipable>
 			<slot name="bag"/>
 		</equipable>
