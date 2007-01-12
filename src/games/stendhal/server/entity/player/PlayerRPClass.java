@@ -357,7 +357,13 @@ class PlayerRPClass {
 								}
 
 								if (entity instanceof StackableItem) {
-									((StackableItem) entity).setQuantity(item.getInt("quantity"));
+									int quantity = 1;
+									if (item.has("quantity")) {
+										quantity = item.getInt("quantity");
+									} else {
+										logger.warn("Adding quantity=1 to " + item + ". Most likly cause is that this item was not stackable in the past");
+									}
+									((StackableItem) entity).setQuantity(quantity);
 								}
 								
 								// make sure saved individual information is
