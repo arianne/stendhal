@@ -2080,6 +2080,10 @@ Makes players more offensive
 	<item name="map">
 		<type class="scroll" subclass="mapwithgrid"/>
 		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>
