@@ -268,6 +268,7 @@ public class StendhalRPWorld extends RPWorld {
 		// Level -3
 		addArea("-3_ados_outside_nw");
 		addArea("-3_semos_dungeon");
+		addArea("-3_orril_dwarf_blacksmith");
 		addArea("-3_orril_dungeon");
 
 		// Level -4
