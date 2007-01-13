@@ -8,7 +8,6 @@ import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.NPCOwnedChest;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
@@ -41,6 +40,8 @@ public class Orril implements IContent {
 				"int_orril_jynath_house")));
 		buildDwarfMineArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"-2_orril_dwarf_mine")));
+		buildDwarfSmithArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
+				"-3_orril_dwarf_blacksmith")));
 		buildCastleArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 				"0_orril_castle")));
 		buildCastleInsideArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
@@ -59,7 +60,6 @@ public class Orril implements IContent {
 				.getRuleManager().getEntityManager();
 		DefaultItem item = new DefaultItem("key", "silver",
 				"dungeon_silver_key", -1);
-		item.setImplementation(Item.class);
 		item.setWeight(1);
 		List<String> bagOnly = new LinkedList<String>();
 		bagOnly.add("bag");
@@ -89,7 +89,6 @@ public class Orril implements IContent {
 		zone.addPortal(portal);
 
 		item = new DefaultItem("key", "gold", "lich_gold_key", -1);
-		item.setImplementation(Item.class);
 		item.setWeight(1);
 		item.setEquipableSlots(bagOnly);
 		manager.addItem(item);
@@ -217,7 +216,7 @@ public class Orril implements IContent {
 				nodes.add(new Path.Node(21, 8));
 				nodes.add(new Path.Node(21, 6));
 				nodes.add(new Path.Node(24, 6));
-				setPath(nodes, true);
+			setPath(nodes, true);
 			}
 
 			@Override
@@ -270,7 +269,41 @@ public class Orril implements IContent {
 		loretta.initHP(100);
 		zone.addNPC(loretta);
 	}
-	
+
+	private void buildDwarfSmithArea(StendhalRPZone zone) {
+	SpeakerNPC hogart=npcs.add("Hogart",new SpeakerNPC()
+      		{
+      		protected void createPath()
+        		{
+        		List<Path.Node> nodes=new LinkedList<Path.Node>();
+        		nodes.add(new Path.Node(12,6));
+        		nodes.add(new Path.Node(12,10));
+			nodes.add(new Path.Node(20,10));
+			nodes.add(new Path.Node(20,8));
+			nodes.add(new Path.Node(20,11));
+			nodes.add(new Path.Node(12,11));
+			nodes.add(new Path.Node(12,6));
+        		setPath(nodes,true);
+        		}
+
+      		protected void createDialog()
+        		{
+			//addGreeting();
+        		addJob("I am a master blacksmith. I used to forge weapons in secret for the dwarves in the mine, but they have forgotten me and my #stories.");
+			addHelp("I could tell you a #story...");	
+			add(ConversationStates.ATTENDING, Arrays.asList("story", "stories"), ConversationStates.ATTENDING, "I expect a scruff like you has never heard of Lady Tembells, huh? She was so beautiful. She died young and her distraught husband asked a powerful Lord to bring her back to life. The fool didn't get what he bargained for, she became a #vampire.", null);
+        		add(ConversationStates.ATTENDING, Arrays.asList("vampire"), ConversationStates.ATTENDING, "The husband had hired the help of a Vampire Lord! The Lady became his Vampire Bride and her maids became vampiresses. The Catacombs of North Semos are a deadly place now.", null);
+			addGoodbye("So long. I bet you won't sleep so well tonight.");
+        		} //remaining behaviour defined in maps.quests.VampireSword
+      		};
+    		hogart.setDescription("You see Hogart, a retired master dwarf smith."); 
+    		zone.assignRPObjectID(hogart);
+    		hogart.put("class","olddwarfnpc");
+    		hogart.set(12,6); 
+    		hogart.initHP(100);
+    		zone.addNPC(hogart);    
+	} 
+
 	private void buildCampfireArea(StendhalRPZone zone) {
 		// create portal to Jynath' house (which is on the same
 		// map as the campfire by accident)
