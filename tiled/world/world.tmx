@@ -114,142 +114,142 @@
  <tileset name="0_orril_mountain_nw.png" firstgid="472" tilewidth="64" tileheight="64">
   <image source="0_orril_mountain_nw.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="488" tilewidth="64" tileheight="64">
+ <tileset name="0_orril_river_sw.png" firstgid="488" tilewidth="64" tileheight="64">
   <image source="0_orril_river_sw.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="504" tilewidth="64" tileheight="64">
+ <tileset name="0_orril_mountain_w.png" firstgid="504" tilewidth="64" tileheight="64">
   <image source="0_orril_mountain_w.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="520" tilewidth="64" tileheight="64">
+ <tileset name="0_orril_river_s_w2.png" firstgid="520" tilewidth="64" tileheight="64">
   <image source="0_orril_river_s_w2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="536" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_plains_ne.png" firstgid="536" tilewidth="64" tileheight="64">
   <image source="0_semos_plains_ne.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="544" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_mountain_n_e2.png" firstgid="544" tilewidth="64" tileheight="64">
   <image source="0_semos_mountain_n_e2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="560" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_mountain_n2_e.png" firstgid="560" tilewidth="64" tileheight="64">
   <image source="0_semos_mountain_n2_e.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="576" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_mountain_n2_e2.png" firstgid="576" tilewidth="64" tileheight="64">
   <image source="0_semos_mountain_n2_e2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="592" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_mountain_n2.png" firstgid="592" tilewidth="64" tileheight="64">
   <image source="0_semos_mountain_n2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="608" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_mountain_n2_w.png" firstgid="608" tilewidth="64" tileheight="64">
   <image source="0_semos_mountain_n2_w.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="624" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_mountain_n2_w2.png" firstgid="624" tilewidth="64" tileheight="64">
   <image source="0_semos_mountain_n2_w2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="640" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_orril_dungeon.png" firstgid="640" tilewidth="64" tileheight="64">
   <image source="sub_1_orril_dungeon.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="648" tilewidth="64" tileheight="64">
+ <tileset name="0_orril_mountain_w2.png" firstgid="648" tilewidth="64" tileheight="64">
   <image source="0_orril_mountain_w2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="664" tilewidth="64" tileheight="64">
+ <tileset name="0_orril_mountain_n2_w2.png" firstgid="664" tilewidth="64" tileheight="64">
   <image source="0_orril_mountain_n2_w2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="696" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_mountain_n_w4.png" firstgid="696" tilewidth="64" tileheight="64">
   <image source="0_semos_mountain_n_w4.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="728" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_mountain_n_w2.png" firstgid="728" tilewidth="64" tileheight="64">
   <image source="0_ados_mountain_n_w2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="744" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_mountain_nw.png" firstgid="744" tilewidth="64" tileheight="64">
   <image source="0_ados_mountain_nw.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="760" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_rock_w.png" firstgid="760" tilewidth="64" tileheight="64">
   <image source="0_ados_rock_w.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="776" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_rock.png" firstgid="776" tilewidth="64" tileheight="64">
   <image source="0_ados_rock.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="792" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_mountain_n2_w2.png" firstgid="792" tilewidth="64" tileheight="64">
   <image source="0_ados_mountain_n2_w2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="824" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_semos_mine.n2.png" firstgid="824" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_n2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="840" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_orril_castle.png" firstgid="840" tilewidth="64" tileheight="64">
   <image source="sub_1_orril_castle.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="856" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_orril_castle_w.png" firstgid="856" tilewidth="64" tileheight="64">
   <image source="sub_1_orril_castle_w.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="872" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_semos_mine_n2_w2.png" firstgid="872" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_n2_w2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="904" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_semos_mine_nw.png" firstgid="904" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_nw.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="936" tilewidth="64" tileheight="64">
+ <tileset name="sub_2_orril_lich_palace.png" firstgid="936" tilewidth="64" tileheight="64">
   <image source="sub_2_orril_lich_palace.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="952" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_wall.png" firstgid="952" tilewidth="64" tileheight="64">
   <image source="0_ados_wall.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="968" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_wall_n.png" firstgid="968" tilewidth="64" tileheight="64">
   <image source="0_ados_wall_n.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="984" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_outside_nw.png" firstgid="984" tilewidth="64" tileheight="64">
   <image source="0_ados_outside_nw.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1000" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_outside_w.png" firstgid="1000" tilewidth="64" tileheight="64">
   <image source="0_ados_outside_w.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1016" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_city_nw.png" firstgid="1016" tilewidth="64" tileheight="64">
   <image source="0_ados_city_nw.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1032" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_city_w.png" firstgid="1032" tilewidth="64" tileheight="64">
   <image source="0_ados_city_w.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1048" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_city_n.png" firstgid="1048" tilewidth="64" tileheight="64">
   <image source="0_ados_city_n.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1064" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_city.png" firstgid="1064" tilewidth="64" tileheight="64">
   <image source="0_ados_city.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1080" tilewidth="64" tileheight="64">
+ <tileset name="0_nalwor_river_se.png" firstgid="1080" tilewidth="64" tileheight="64">
   <image source="0_nalwor_river_se.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1112" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_river_s2_w2.png" firstgid="1112" tilewidth="64" tileheight="64">
   <image source="0_ados_river_s2_w.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1144" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_wall_s.png" firstgid="1144" tilewidth="64" tileheight="64">
   <image source="0_ados_wall_s.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1160" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_coast_se.png" firstgid="1160" tilewidth="64" tileheight="64">
   <image source="0_athos_island_w.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1192" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_coast_sw.png" firstgid="1192" tilewidth="64" tileheight="64">
   <image source="0_ados_coast_sw.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1208" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_coast_s_w2.png" firstgid="1208" tilewidth="64" tileheight="64">
   <image source="0_ados_coast_s_w2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1224" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_city_s.png" firstgid="1224" tilewidth="64" tileheight="64">
   <image source="0_ados_city_s.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1240" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_city_sw.png" firstgid="1240" tilewidth="64" tileheight="64">
   <image source="0_ados_city_sw.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1256" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_coast_s.png" firstgid="1256" tilewidth="64" tileheight="64">
   <image source="0_ados_coast_s.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1272" tilewidth="64" tileheight="64">
+ <tileset name="0_athos_island_w.png" firstgid="1272" tilewidth="64" tileheight="64">
   <image source="0_ados_coast_se.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1288" tilewidth="64" tileheight="64">
+ <tileset name="0_nalwor_forest_e.png" firstgid="1288" tilewidth="64" tileheight="64">
   <image source="0_nalwor_forest_e.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1320" tilewidth="64" tileheight="64">
+ <tileset name="0_nalwor_forest_ne.png" firstgid="1320" tilewidth="64" tileheight="64">
   <image source="0_nalwor_forest_ne.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="1352" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_swamp.png" firstgid="1352" tilewidth="64" tileheight="64">
   <image source="0_ados_swamp.png"/>
  </tileset>
  <tileset name="sub_1_orril_mountain_w.png" firstgid="1368" tilewidth="64" tileheight="64">
@@ -278,6 +278,9 @@
  </tileset>
  <tileset name="0_semos_plains_n_e2" firstgid="1424" tilewidth="64" tileheight="64">
   <image source="0_semos_plains_n_e2.png"/>
+ </tileset>
+ <tileset name="sub_3_orril_dwarf_blacksmith.png" firstgid="1432" tilewidth="64" tileheight="64">
+  <image source="sub_3_orril_dwarf_blacksmith.png"/>
  </tileset>
  <layer name="Layer 7" width="52" height="32" visible="0">
   <data encoding="base64" compression="gzip">
@@ -309,7 +312,7 @@
    H4sIAAAAAAAAAO3SyXJBURCA4aOUB7IKCSGDkBBkkMhoHmPM4JkyIgivl3/nrlHlnKu76tv0qv+qdjuUcmtk2Vn3/dIjPdIjPZvQ03Ap1XTZp6dFS9tGPXb7N+lZfU8bHWzBAy+2De7p4hk78MGPXYN7XvCKAILYw77BPW/o4QCHCOHI4J5Vk57Fe8KI4BgniCKGU8Q17nl3KvWBT3w55/sEkjjDOS5wiRSuNO75puEHfQwsPddI4wa3uMM9HvCocc+Qhl+MMLb0ZJBFDnkUUEQJZY17JjT8YYqZpaeCKmqo4wkNNNHSuGedpEd6pEd6pEd6TOz5B9mn+VQAGgAA
   </data>
  </layer>
- <layer name="Layer 1" width="52" height="32" visible="0" opacity="0.56">
+ <layer name="Layer 1" width="52" height="32" opacity="0.56">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XVU/DYBiG4bJlP2hBgru7uzsbw10HW1fc3Z2/yd2zcQahzfqRt8l13OdO2vSrN07TvA7y1yvW+6Xn9z3Dbk0bgQ9+jCKAMYwjGSlIRZrb+T0TbJzEFKYxg1nMYR7pyEAmshToWWDjIpawjBWsYg3ryEYOcpGnQE+QjRvYRAhh6IjAQD4KUIgiBXq22LiNHexiD/s4wKHF+7+9tx7eW4/1PUdsPsYJTnGGc1zg0sYeHy1+G3qu2HyNG9ziDvd4wGNUT5h76x7nP29PbH7GC17xhnd84DOqJ0KLoUDPT8UjweJnLpY9iUj6Rz12kB7pkR7psbOnmW9mC1rRhmKUoBRlCLo4r7rU6Wlncwc60YVyVKASVea5m5aQQj3dbO5BL/pQjRrUos78f6BFV6inn80DGMQQ6tGARjSZ/0G0GAr1xJL0SI/0SI/0SI+KPV8hoqmhABoAAA==
   </data>
