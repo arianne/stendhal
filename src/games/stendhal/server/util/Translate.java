@@ -2,6 +2,7 @@ package games.stendhal.server.util;
 
 import games.stendhal.common.Grammar;
 
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Properties;
@@ -27,10 +28,15 @@ public class Translate {
 	 */
 	public static void initLanguage(String language) {
 		try {
-			dictionary.load(Translate.class.getClassLoader().getResourceAsStream("data/languages/" + language + ".properties"));
-			String className = dictionary.getProperty("_grammar.class");
-			if (className != null) {
-				grammar = (Grammar) Class.forName(className).newInstance();
+			InputStream is = Translate.class.getClassLoader().getResourceAsStream("data/languages/" + language + ".properties");
+			if (is == null) {
+				logger.error("No dictionary for language " + language + " on classpath. Check that data/languages/" + language + ".properties exists and that the parent folder of \"data\" is on the classpath.");
+			} else {
+				dictionary.load(is);
+				String className = dictionary.getProperty("_grammar.class");
+				if (className != null) {
+					grammar = (Grammar) Class.forName(className).newInstance();
+				}
 			}
 		} catch (Exception e) {
 			logger.error(e, e);
