@@ -44,6 +44,18 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  */
 public class Character extends WtPanel {
+	/** Panel width */
+	private static final int PANEL_WIDTH	= 144;
+
+	/** Panel height */
+	private static final int PANEL_HEIGHT	= 265;
+
+	/** Height/width of slots */
+	private static final int SLOT_SIZE	= 39;	// estimate
+
+	/** Space between slots */
+	private static final int SLOT_SPACING	= 3;	// estimate
+
 	/** the stats panel */
 	private WtTextPanel statsPanel;
 
@@ -64,7 +76,7 @@ public class Character extends WtPanel {
 
 	/** Creates a new instance of Character */
 	public Character(GameObjects gameObjects) {
-		super("character", j2DClient.SCREEN_WIDTH - 132, 0, 132, 265);
+		super("character", j2DClient.SCREEN_WIDTH - PANEL_WIDTH, 0, PANEL_WIDTH, PANEL_HEIGHT);
 		setTitleBar(true);
 		setFrame(true);
 		setMoveable(true);
@@ -76,22 +88,50 @@ public class Character extends WtPanel {
 		SpriteStore st = SpriteStore.get();
 		Sprite slotSprite = st.getSprite("data/gui/slot.png");
 
-		int dist = 42; // the distance of the slot images with each other
+		// Offset to center the slot holders
+		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
-		slotPanels.put("head", new EntitySlot("head", slotSprite, dist * 1, 0,
+		slotPanels.put("head",
+			new EntitySlot("head", slotSprite,
+				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+				0,
 				gameObjects));
-		slotPanels.put("armor", new EntitySlot("armor", slotSprite, dist * 1,
-				dist, gameObjects));
-		slotPanels.put("rhand", new EntitySlot("rhand", slotSprite, 0,
-				dist + 10, gameObjects));
-		slotPanels.put("lhand", new EntitySlot("lhand", slotSprite, dist * 2,
-				dist + 10, gameObjects));
-		slotPanels.put("cloak", new EntitySlot("cloak", slotSprite, dist * 2,
-				dist * 2 + 10, gameObjects));
-		slotPanels.put("legs", new EntitySlot("legs", slotSprite, dist * 1,
-				dist * 2, gameObjects));
-		slotPanels.put("feet", new EntitySlot("feet", slotSprite, dist * 1,
-				dist * 3, gameObjects));
+
+		slotPanels.put("armor",
+			new EntitySlot("armor", slotSprite,
+				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 1),
+				gameObjects));
+
+		slotPanels.put("rhand",
+			new EntitySlot("rhand", slotSprite,
+				xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 1) + 10,
+				gameObjects));
+
+		slotPanels.put("lhand",
+			new EntitySlot("lhand", slotSprite,
+				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 1) + 10,
+				gameObjects));
+
+		slotPanels.put("cloak",
+			new EntitySlot("cloak", slotSprite,
+				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 2) + 10,
+				gameObjects));
+
+		slotPanels.put("legs",
+			new EntitySlot("legs", slotSprite,
+				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 2),
+				gameObjects));
+
+		slotPanels.put("feet",
+			new EntitySlot("feet", slotSprite,
+				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 3),
+				gameObjects));
 
 		for (EntitySlot slot : slotPanels.values()) {
 			addChild(slot);
@@ -100,7 +140,7 @@ public class Character extends WtPanel {
 		statsPanel = new WtTextPanel(
 				"stats",
 				5,
-				dist * 4,
+				((SLOT_SIZE + SLOT_SPACING) * 4),
 				170,
 				100,
 				"HP: ${hp}/${maxhp}\nATK: ${atk}(+${atkitem}) (${atkxp})\nDEF: ${def}(+${defitem}) (${defxp})\nXP:${xp}\nCash: $${money}");
