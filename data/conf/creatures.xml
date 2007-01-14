@@ -1834,7 +1834,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
-			<profile name="heal", params="5,50"/>
+			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
     <!-- Level 30 -->
@@ -2033,7 +2033,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
-			<profile name="heal", params="5,50"/>
+			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
 	<!-- Level 45 -->		
