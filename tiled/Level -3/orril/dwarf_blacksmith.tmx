@@ -80,19 +80,14 @@
    H4sIAAAAAAAAAO3TMQrAIAwFUOcexfsfsNCpixiHNhhf4C1CID+YfrXWAXjMKnu+v/JH36s5Pf8768oNVLmVSEV7srN8uYOV/exG/nGOUdZK+SN/YNaTPT8AAAAAAAAAAAAAAAD7uwEE0tkeAEAAAA==
   </data>
  </layer>
- <layer name="navigation" width="32" height="32" visible="0">
+ <layer name="navigation" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="protection" width="64" height="64" visible="0">
+ <layer name="protection" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
-  </data>
- </layer>
- <layer name="Layer 10" width="2" height="5" visible="0">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA4AALE97OkoAAAA
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
 </map>
