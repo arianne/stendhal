@@ -2079,7 +2079,7 @@ Makes players more offensive
 
 	<item name="map">
 		<type class="scroll" subclass="mapwithgrid"/>
-		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.MapScroll"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -2092,7 +2092,7 @@ Makes players more offensive
 
 	<item name="summon_scroll">
 		<type class="scroll" subclass="summon"/>
-		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.SummonScroll"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -2105,7 +2105,7 @@ Makes players more offensive
 
 	<item name="empty_scroll">
 		<type class="scroll" subclass="empty"/>
-		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.EmptyScroll"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -2118,7 +2118,7 @@ Makes players more offensive
 
 	<item name="home_scroll">
 		<type class="scroll" subclass="home"/>
-		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.TeleportScroll"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -2132,7 +2132,7 @@ Makes players more offensive
 
 	<item name="marked_scroll">
 		<type class="scroll" subclass="marked"/>
-		<implementation class-name="games.stendhal.server.entity.item.Scroll"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.TeleportScroll"/>
 		<weight value="0.01"/>
 		<attributes>
 			<quantity value="1"/>
