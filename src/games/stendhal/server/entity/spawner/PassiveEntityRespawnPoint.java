@@ -28,12 +28,14 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
 /**
- * A PlantGrower basically is a 1x1 area where a plant, a fruit or another
- * non-moving thing grows. This growing thing is a pickable Item
- * (e.g. a mushroom, an apple); by extending this class, it can also grow
- * something special (e.g. SheepFood).
+ * A PassiveEntityRespawnPoint basically is a 1x1 area where a plant,
+ * a fruit or another non-moving thing grows. This growing thing is a
+ * pickable Item (e.g. a mushroom, an apple); by extending this class,
+ * it can also grow something special (e.g. SheepFood).
  * 
- * PlantGrowers are currently invisible (fully transparent) on the client side.
+ * PassiveEntityRespawnPoint are currently invisible (fully transparent)
+ * on the client side. Extend GrowingPassiveEntityRespawnPoint and implement
+ * UseListener if grown item should not be dragable without special interaction. 
  * 
  * @author Daniel Herding
  *
