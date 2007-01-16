@@ -12,13 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.spawner;
 
-import java.awt.geom.Rectangle2D;
-
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.UseListener;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -31,15 +28,10 @@ import marauroa.common.game.RPObject;
  * 
  * @author daniel
  */
-public class GrainField extends PassiveEntityRespawnPoint implements UseListener {
-	
-	/** How long it takes for one regrowing step */
-	private static final int GROWING_RATE = 3000;
-	
+public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseListener {
+
 	/** How many regrowing steps are needed before one can harvest again */
 	public static final int RIPE = 5;
-	
-	private int ripeness;
 
 	public static void generateRPClass() {
 		RPClass grainFieldClass = new RPClass("grain_field");
@@ -50,48 +42,13 @@ public class GrainField extends PassiveEntityRespawnPoint implements UseListener
 		grainFieldClass.add("height", RPClass.BYTE);
 	}
 
-	private void init() {
-		put("type", "grain_field");
-		put("max_ripeness", 5);
-		put("width", 1);
-		put("height", 2);
-	}
-	
 	public GrainField(RPObject object) throws AttributeNotFoundException {
-		super(object, null, GROWING_RATE);
-		init();
+		super(object, "grain_field", RIPE, 1, 2);
 		update();
 	}
 
 	public GrainField() throws AttributeNotFoundException {
-		super(null, GROWING_RATE);
-		init();
-	}
-
-	@Override
-	public void update() {
-		super.update();
-		if (has("ripeness")) {
-			ripeness = getInt("ripeness");
-		}
-	}
-
-	private void setRipeness(int ripeness) {
-		this.ripeness = ripeness;
-		put("ripeness", ripeness);
-	}
-
-	private int getRipeness() {
-		return ripeness;
-	}
-
-	@Override
-	protected void growNewFruit() {
-		setRipeness(ripeness + 1);
-		if (ripeness < RIPE) {
-			TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this, null);
-		}
-		notifyWorldAboutChanges();
+		super("grain_field", RIPE, 1, 2);
 	}
 
 	@Override
@@ -109,11 +66,6 @@ public class GrainField extends PassiveEntityRespawnPoint implements UseListener
 				break;
 		}
 		return text;
-	}
-	
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y + 1, 1, 1);
 	}
 
 	/**
@@ -133,20 +85,6 @@ public class GrainField extends PassiveEntityRespawnPoint implements UseListener
 				((Player) entity).sendPrivateText("This grain is not yet ripe enough to harvest.");
 			}
 		}
-	}
-	
-	@Override
-	public void onFruitPicked(Item picked) {
-		super.onFruitPicked(picked);
-		setRipeness(0);
-		notifyWorldAboutChanges();
-	}
-
-	@Override
-	public void setToFullGrowth() {
-		setRipeness(RIPE);
-		// don't grow anything new until someone harvests
-		TurnNotifier.get().dontNotify(this, null);
 	}
 
 }
