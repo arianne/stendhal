@@ -39,22 +39,22 @@
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEtkYGBIJAEzkKgehpdx0w6P2jFqx6gdpNnhzEkYj9oxasdgTLujdozaMZTsIBZv5EfFxOoDAFFxT87ECQAA
+   H4sIAAAAAAAAAEtkYGBIJAEzkKgehpdx0w4TawcfHwPDCXZULMBHXTvo4Y9RO0btoNQOZ07CeNSOUTsGY9odtWPUjqFkB7F4Iz8qJlYfAKsyZlDECQAA
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvDy8Dwjob4PRBz8TEwbCOA6/mxY0L6QFibjzg7moDmNaPhFjLtMAViMyg2RxKXAZp3mA8Vy+Gw4z47A0M0BwSHcWDaEQzEgVAcSoQbsWEGToj5IBqEaWUHsj3odhQCcREUF5Npx1+ksCrBElZ5QJwPxQVk2lHOgTCjAosdtMADZcd0IJ6BB8+kgh1bQWkDD9g+agdd7bgMxFfw4KtUsIMeaXe42ZECxAvQcCoRcqTYsYhE9y4eBnakkmlHExAvJAE347HDDYjdaYg9gRgAqZB+UMQJAAA=
+   H4sIAAAAAAAAAHvDy8Dwjob4PRBz8TEwbCOA6/mxY0L6QFibjzg7moDmNaPhFjLtMAViMyg2RxI/wY4dYzPzPlA8mgOCwzgw7QgG4kAoDiXTDgZOiPkgGoRpZQeyPeh2FAJxERQXk2nHX6SwKsESVnlAnA/FBWTaUc6BMKMCix20wANlx3QgnoEHz6SCHVtBaQMP2D5qB13tuAzEV/Dgq1Swgx5pd7jZkQLEC9BwKhFypNixiET3Lh4GdqSSaUcTEC8kATfjscMNiN1piD2BGAAs2S7+xAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggICzfNhpEKjiZ2CIhuLHfBC6kh8hj08vOtjMh0qDAAcLA8MMoHnyaHg6P0QOn15iwSkW8uRm8+OWoxTcZweGJQcEh3FgV8MPtJ+TEjdwMjBoAfXz8EPYMODNjqSEH2IPOWA21Fxefog9yHZQG8DCqgRHWI2CwQu4+fHzcYHlwLy+AohXIuV55LRLDngHNOs9EH+AmnkUSB8D4uNklCuk2oUPEBtG+Nz7FCj2jAb+QAbMQHdp0LBchNmRSgc7bIeJP4iJjx5guuglAvdhST+K/MSlq1VANauJwGtITKNqSP47AdR7kgh8Cocd2MoPmPlqNI4rWgAA6zvuOsQJAAA=
+   H4sIAAAAAAAAAGNggICzfNhpEKjiZ2CIhuLHfBC6kh8hj08vOtjMh0qDAAcLA8MMoHnyaHg6P0QOn15iwSkW8uRm8+OWwwb4sLhNAId777MDw5IDgsM4sKvhB9rPieYGUuxg4GRg0ALq5+GHsGHAmx1JCT/EHnLsmA01l5cfYg+yHYQASf5gQIRVCY6wwgZ0gObpomE9MtLPKKAMcPPj5+MCy4FxtQKIVyLFGXLaJQe8A5r1Hog/QM08CqSPAfFxGqQLdLvwAWLDCJ97nwLFntE4fTMD3aVBYrlIjh2pdLDDdpj4g5j46AGmi14icB+W9KPIT1y6WgVUs5oIvIbENKqG5L8TQL0nicCncNiBrfyAma9G47iiBQAAeY2WwcQJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGLqglp/+dhax0N4OXXb88jJAfx/mQ8VyWMKCkvAh1g5KAD3ssAKa95APFdsMQLoZDIDaabcTGJZdQNzNhxAjlHYJgQtAsy4C8SU+wmpJBejupYVdy4FmrQDilTRw/ygYBaSCV1RMh9jKD5D5HPzUswdb+cHBj0qPAlQAAM36iNLECQAA
+   H4sIAAAAAAAAAGNgGLqglp/+dhaxEFZzgh0Vkwp0idBDjB2Uhg+l/hgsdowCCCAm7ZICOvkYGLqAuJsPIUZM2sUHLgDNugjEl/gIqyUVoLuXFnYtB5q1AohX0sD9o2AUkApeUTEdYis/QOZz8FPPHmzlBwc/Kj0KUAEAPglb5sQJAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
