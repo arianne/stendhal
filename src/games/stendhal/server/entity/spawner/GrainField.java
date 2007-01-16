@@ -10,11 +10,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.spawner;
 
 import java.awt.geom.Rectangle2D;
 
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnNotifier;
@@ -30,7 +31,7 @@ import marauroa.common.game.RPObject;
  * 
  * @author daniel
  */
-public class GrainField extends PlantGrower implements UseListener {
+public class GrainField extends PassiveEntityRespawnPoint implements UseListener {
 	
 	/** How long it takes for one regrowing step */
 	private static final int GROWING_RATE = 3000;

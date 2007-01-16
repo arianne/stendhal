@@ -15,7 +15,6 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
-import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -28,6 +27,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.pathfinder.Path.Node;
 import games.stendhal.server.rule.EntityManager;
@@ -123,7 +123,7 @@ public class Creature extends NPC {
 	 */
 	protected static final int WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED = 9;
 
-	private RespawnPoint point;
+	private CreatureRespawnPoint point;
 
 	private List<Path.Node> patrolPath;
 
@@ -328,7 +328,7 @@ public class Creature extends NPC {
 		aiState = AiState.IDLE;
 	}
 
-	public void setRespawnPoint(RespawnPoint point) {
+	public void setRespawnPoint(CreatureRespawnPoint point) {
 		this.point = point;
 	}
 
@@ -336,7 +336,7 @@ public class Creature extends NPC {
 		return respawnTime;
 	}
 
-	public RespawnPoint getRespawnPoint() {
+	public CreatureRespawnPoint getRespawnPoint() {
 		return point;
 	}
     

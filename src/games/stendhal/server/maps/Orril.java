@@ -1,7 +1,6 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Chest;
@@ -15,6 +14,7 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.LockedDoor;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
@@ -70,7 +70,7 @@ public class Orril implements IContent {
 
 		Creature creature = new ItemGuardCreature(manager
 				.getCreature("green_dragon"), "dungeon_silver_key");
-		RespawnPoint point = new RespawnPoint(zone, 69, 43, creature, 1);
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 69, 43, creature, 1);
 		zone.addRespawnPoint(point);
 
 		Portal door = new LockedDoor("dungeon_silver_key", "skulldoor", Direction.DOWN);
@@ -97,7 +97,7 @@ public class Orril implements IContent {
 
 		creature = new ItemGuardCreature(manager.getCreature("royal_mummy"),
 				"lich_gold_key");
-		point = new RespawnPoint(zone, 54, 48, creature, 1);
+		point = new CreatureRespawnPoint(zone, 54, 48, creature, 1);
 		zone.addRespawnPoint(point);
 
 		door = new LockedDoor("lich_gold_key", "skulldoor", Direction.UP);

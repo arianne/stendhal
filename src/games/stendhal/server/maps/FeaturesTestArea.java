@@ -1,7 +1,6 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -11,6 +10,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.portal.LockedDoor;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
 
@@ -92,7 +92,7 @@ public class FeaturesTestArea implements IContent {
 		manager.addItem(item);
 
 		Creature creature = new QuestRat(manager.getCreature("rat"));
-		RespawnPoint point = new RespawnPoint(zone, 40, 5, creature, 1);
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 40, 5, creature, 1);
 		zone.addRespawnPoint(point);
 	}
 	
@@ -100,12 +100,12 @@ public class FeaturesTestArea implements IContent {
 	private void attackableAnimal() {
 
 		Creature creature = new AttackableCreature(manager.getCreature("orc"));
-		RespawnPoint point = new RespawnPoint(zone, 4, 56, creature, 1);
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 4, 56, creature, 1);
 		point.setRespawnTime(60*60*3);
 		zone.addRespawnPoint(point);
 
 		creature = manager.getCreature("deer");
-		point = new RespawnPoint(zone, 14, 56, creature, 1);
+		point = new CreatureRespawnPoint(zone, 14, 56, creature, 1);
 		point.setRespawnTime(60*60*3);
 		zone.addRespawnPoint(point);
 	}

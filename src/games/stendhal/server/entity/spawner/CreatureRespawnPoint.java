@@ -10,9 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server;
+package games.stendhal.server.entity.spawner;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -37,10 +39,10 @@ import org.apache.log4j.Logger;
  * design pattern is used; the <i>prototypeCreature</i> will be copied
  * to create new creatures.  
  */
-public class RespawnPoint implements TurnListener {
+public class CreatureRespawnPoint implements TurnListener {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(RespawnPoint.class);
+	private static final Logger logger = Log4J.getLogger(CreatureRespawnPoint.class);
 	
 	private StendhalRPZone zone;
 	
@@ -84,7 +86,7 @@ public class RespawnPoint implements TurnListener {
 	 * @param maximum The number of creatures spawned here that can exist at
 	 *                the same time
 	 */
-	public RespawnPoint(StendhalRPZone zone, int x, int y, Creature creature, int maximum) {
+	public CreatureRespawnPoint(StendhalRPZone zone, int x, int y, Creature creature, int maximum) {
 		this.zone = zone;
 		this.x = x;
 		this.y = y;

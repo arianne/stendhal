@@ -15,8 +15,8 @@ package games.stendhal.server.entity.item;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
-import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.events.EquipListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -42,7 +42,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * null if it wasn't grown by a plant grower, or if it has already been
 	 * picked.
 	 */
-	private PlantGrower plantGrower;
+	private PassiveEntityRespawnPoint plantGrower;
 
 	final public static int DEGRADATION_TIMEOUT = 10800; // 30 minutes at 300
 	// ms
@@ -106,7 +106,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 *
 	 * @param plantGrower a plant grower
 	 */
-	public void setPlantGrower(PlantGrower plantGrower) {
+	public void setPlantGrower(PassiveEntityRespawnPoint plantGrower) {
 		this.plantGrower = plantGrower;
 	}
 
@@ -116,7 +116,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 *
 	 * @return PlantGrower or null
 	 */
-	public PlantGrower getPlantGrower() {
+	public PassiveEntityRespawnPoint getPlantGrower() {
 		return plantGrower;
 	}
 

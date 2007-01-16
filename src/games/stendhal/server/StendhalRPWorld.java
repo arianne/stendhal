@@ -20,6 +20,9 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Door;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.entity.spawner.GrainField;
+import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
+import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.pathfinder.PathfinderThread;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
@@ -120,7 +123,7 @@ public class StendhalRPWorld extends RPWorld {
 		Blackboard.generateRPClass();
 		Portal.generateRPClass();
 		Door.generateRPClass();
-		PlantGrower.generateRPClass();
+		PassiveEntityRespawnPoint.generateRPClass();
 		GrainField.generateRPClass();
 		SheepFood.generateRPClass();
 		Corpse.generateRPClass();

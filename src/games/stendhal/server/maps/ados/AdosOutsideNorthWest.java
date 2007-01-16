@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.ados;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.RespawnPoint;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -17,6 +16,7 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
@@ -178,20 +178,20 @@ public class AdosOutsideNorthWest {
 		// 65, 34 bear
 		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
-		RespawnPoint point = new RespawnPoint(zone, 65, 34, creature, 1);
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 65, 34, creature, 1);
 		zone.addRespawnPoint(point);
 
 		// 67, 29 bear
-		point = new RespawnPoint(zone, 67, 29, creature, 1);
+		point = new CreatureRespawnPoint(zone, 67, 29, creature, 1);
 		zone.addRespawnPoint(point);
 		
 		// 67, 31 black_bear
 		creature = new AdosAttackableCreature(manager.getCreature("black_bear"));
-		point = new RespawnPoint(zone, 67, 31, creature, 1);
+		point = new CreatureRespawnPoint(zone, 67, 31, creature, 1);
 		zone.addRespawnPoint(point);
 
 		// 67, 35 black_bear
-		point = new RespawnPoint(zone, 67, 35, creature, 1);
+		point = new CreatureRespawnPoint(zone, 67, 35, creature, 1);
 		zone.addRespawnPoint(point);
 	}
 

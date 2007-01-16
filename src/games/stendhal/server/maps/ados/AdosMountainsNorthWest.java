@@ -3,7 +3,6 @@ package games.stendhal.server.maps.ados;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -11,6 +10,7 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.Arrays;
@@ -120,7 +120,7 @@ public class AdosMountainsNorthWest {
 		item.put("infostring", "red_dragon");
 
 		// Plant grower for poison
-		PlantGrower plantGrower = new PlantGrower("poison", 1500);
+		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("poison", 1500);
 		zone.assignRPObjectID(plantGrower);
 		plantGrower.setX(3);
 		plantGrower.setY(6);

@@ -14,11 +14,8 @@ package games.stendhal.server;
 
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
-import games.stendhal.server.entity.GrainField;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
@@ -26,6 +23,10 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.entity.spawner.GrainField;
+import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
+import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.Rectangle;
@@ -60,8 +61,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private List<String> zoneChangePoints;
 	private List<Portal> portals;
 	private List<NPC> npcs;
-	private List<RespawnPoint> respawnPoints;
-    private List<PlantGrower> plantGrowers;
+	private List<CreatureRespawnPoint> respawnPoints;
+    private List<PassiveEntityRespawnPoint> plantGrowers;
     private List<RPEntity> playersAndFriends;
     private boolean teleportable = true;
 
@@ -101,8 +102,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		numHouses = 0;
 
 		npcs = new LinkedList<NPC>();
-		respawnPoints = new LinkedList<RespawnPoint>();
-        plantGrowers = new LinkedList<PlantGrower>();
+		respawnPoints = new LinkedList<CreatureRespawnPoint>();
+        plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
         playersAndFriends = new LinkedList<RPEntity>();
 
 		collisionMap = new CollisionDetection();
@@ -137,15 +138,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return null;
 	}
 
-	public List<RespawnPoint> getRespawnPointList() {
+	public List<CreatureRespawnPoint> getRespawnPointList() {
 		return respawnPoints;
 	}
 
-	public void addRespawnPoint(RespawnPoint point) {
+	public void addRespawnPoint(CreatureRespawnPoint point) {
 		respawnPoints.add(point);
 	}
 
-	public List<PlantGrower> getPlantGrowers() {
+	public List<PassiveEntityRespawnPoint> getPlantGrowers() {
 		return plantGrowers;
 	}
 
@@ -537,29 +538,29 @@ public class StendhalRPZone extends MarauroaRPZone {
 			case 131: /* arandula */
 			case 132: /* wood */				
 			case 133: /* iron ore */				
-				PlantGrower plantGrower = null;
+				PassiveEntityRespawnPoint plantGrower = null;
 				if (type == 92) {
 					plantGrower = new SheepFood();
 				} else if (type == 93) {
 					plantGrower = new GrainField();
 				} else if (type == 102) {
-					plantGrower = new PlantGrower("button_mushroom", 500);
+					plantGrower = new PassiveEntityRespawnPoint("button_mushroom", 500);
 				} else if (type == 103) {
-					plantGrower = new PlantGrower("porcini", 1000);
+					plantGrower = new PassiveEntityRespawnPoint("porcini", 1000);
 				} else if (type == 104) {
-					plantGrower = new PlantGrower("toadstool", 1000);
+					plantGrower = new PassiveEntityRespawnPoint("toadstool", 1000);
 				} else if (type == 108) {
-					plantGrower = new PlantGrower("apple", 750);
+					plantGrower = new PassiveEntityRespawnPoint("apple", 750);
 				} else if (type == 109) {
-					plantGrower = new PlantGrower("carrot", 1000);
+					plantGrower = new PassiveEntityRespawnPoint("carrot", 1000);
 				} else if (type == 110) {
-					plantGrower = new PlantGrower("salad", 1500);
+					plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
 				} else if (type == 131) {
-					plantGrower = new PlantGrower("arandula", 400);
+					plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
 				} else if (type == 132) {
-					plantGrower = new PlantGrower("wood", 1500);
+					plantGrower = new PassiveEntityRespawnPoint("wood", 1500);
 				} else if (type == 133) {
-					plantGrower = new PlantGrower("iron_ore", 3000);
+					plantGrower = new PassiveEntityRespawnPoint("iron_ore", 3000);
 					// TODO: This is only a workaround. We should find a better name
 					// than "plant grower", as we're also using them for resources,
 					// teddies and whatever. We should also consider making them
@@ -584,7 +585,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					// Is the entity a creature
 					if (manager.isCreature(type)) {
 						Creature creature = manager.getCreature(type);
-						RespawnPoint point = new RespawnPoint(this, x, y, creature, 1);
+						CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
 						respawnPoints.add(point);
 					} else {
 						logger.warn("Unknown Entity (type: " + type + ") at ("

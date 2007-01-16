@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.spawner;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.Item;
@@ -24,7 +24,7 @@ import games.stendhal.server.events.TurnNotifier;
 /**
  * A regenerative source of food that can be eaten by sheep.
  */
-public class SheepFood extends PlantGrower {
+public class SheepFood extends PassiveEntityRespawnPoint {
 	private int amount;
 	
 	private static final int MAX_NUMBER_OF_FRUITS = 5;

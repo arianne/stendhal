@@ -15,9 +15,9 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.PlantGrower;
-import games.stendhal.server.entity.SheepFood;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
+import games.stendhal.server.entity.spawner.SheepFood;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -148,7 +148,7 @@ public class Sheep extends DomesticAnimal {
 		double squaredDistance = range * range; // This way we save several sqrt operations
 		SheepFood chosen = null;
 
-		for (PlantGrower grower : StendhalRPRuleProcessor.get().getPlantGrowers()) {
+		for (PassiveEntityRespawnPoint grower : StendhalRPRuleProcessor.get().getPlantGrowers()) {
 			if (grower instanceof SheepFood && grower.get("zoneid").equals(get("zoneid"))) {
 				SheepFood food = (SheepFood) grower;
 				int fx = food.getX();

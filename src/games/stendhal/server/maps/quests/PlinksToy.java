@@ -7,10 +7,10 @@ import java.util.List;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import marauroa.common.game.IRPZone;
 
 /**
@@ -127,7 +127,7 @@ public class PlinksToy extends AbstractQuest {
 	
 	private void step_2() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_plains_n"));
-		PlantGrower plantGrower = new PlantGrower("teddy", 1500);
+		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("teddy", 1500);
 		zone.assignRPObjectID(plantGrower);
 		plantGrower.setX(107);
 		plantGrower.setY(84);

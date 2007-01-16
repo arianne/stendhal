@@ -10,12 +10,13 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.spawner;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -37,7 +38,7 @@ import marauroa.common.game.RPObject;
  * @author Daniel Herding
  *
  */
-public class PlantGrower extends Entity implements TurnListener {
+public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 
 	/**
 	 * Is there still a fruit that has not yet been picked up? 
@@ -59,7 +60,7 @@ public class PlantGrower extends Entity implements TurnListener {
 	 */
 	protected int meanTurnsForRegrow;
 	
-	public PlantGrower(RPObject object, String growingItemName, int meanTurnsForRegrow) throws AttributeNotFoundException {
+	public PassiveEntityRespawnPoint(RPObject object, String growingItemName, int meanTurnsForRegrow) throws AttributeNotFoundException {
 		super(object);
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
@@ -69,7 +70,7 @@ public class PlantGrower extends Entity implements TurnListener {
 		//update();
 	}
 
-	public PlantGrower(String growingItemName, int meanTurnsForRegrow) throws AttributeNotFoundException {
+	public PassiveEntityRespawnPoint(String growingItemName, int meanTurnsForRegrow) throws AttributeNotFoundException {
 		super();
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;

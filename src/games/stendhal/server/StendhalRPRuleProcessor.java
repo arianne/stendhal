@@ -30,10 +30,11 @@ import games.stendhal.server.actions.StopAction;
 import games.stendhal.server.actions.UseAction;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.PlantGrower;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
+import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.scripting.ScriptRunner;
@@ -81,8 +82,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private List<NPC> npcsToAdd;
 	private List<NPC> npcsToRemove;
 	private List<Pair<RPEntity, Entity>> entityToKill;
-	private List<RespawnPoint> respawnPoints;
-	private List<PlantGrower> plantGrowers;
+	private List<CreatureRespawnPoint> respawnPoints;
+	private List<PassiveEntityRespawnPoint> plantGrowers;
 	private List<Blood> bloods;
 	private List<Blood> bloodsToRemove;
 
@@ -118,8 +119,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		playersObject = new LinkedList<Player>();
 		playersObjectRmText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
-		respawnPoints = new LinkedList<RespawnPoint>();
-		plantGrowers = new LinkedList<PlantGrower>();
+		respawnPoints = new LinkedList<CreatureRespawnPoint>();
+		plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
 		npcsToAdd = new LinkedList<NPC>();
 		npcsToRemove = new LinkedList<NPC>();
 		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
@@ -302,7 +303,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return null;
 	}
 
-	public List<PlantGrower> getPlantGrowers() {
+	public List<PassiveEntityRespawnPoint> getPlantGrowers() {
 		return plantGrowers;
 	}
 
@@ -352,7 +353,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		Log4J.startMethod(logger, "beginTurn");
 		long start = System.nanoTime();
 		int creatures = 0;
-		for (RespawnPoint point : respawnPoints) {
+		for (CreatureRespawnPoint point : respawnPoints) {
 			creatures += point.size();
 		}
 		int objects = 0;
@@ -461,7 +462,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
         int currentTurn = getTurn();
         try {
         	// Creatures
-            for (RespawnPoint point : respawnPoints) {
+            for (CreatureRespawnPoint point : respawnPoints) {
                 point.logic();               
             }
 
