@@ -18,7 +18,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
 /**
@@ -32,15 +31,6 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseL
 
 	/** How many regrowing steps are needed before one can harvest again */
 	public static final int RIPE = 5;
-
-	public static void generateRPClass() {
-		RPClass grainFieldClass = new RPClass("grain_field");
-		grainFieldClass.isA("plant_grower");
-		grainFieldClass.add("ripeness", RPClass.BYTE);
-		grainFieldClass.add("max_ripeness", RPClass.BYTE);
-		grainFieldClass.add("width", RPClass.BYTE);
-		grainFieldClass.add("height", RPClass.BYTE);
-	}
 
 	public GrainField(RPObject object) throws AttributeNotFoundException {
 		super(object, "grain_field", RIPE, 1, 2);

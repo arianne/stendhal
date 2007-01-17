@@ -12,27 +12,33 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import games.stendhal.server.entity.*;
+import games.stendhal.server.entity.Blackboard;
+import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.item.*;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Door;
 import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.entity.spawner.GrainField;
+import games.stendhal.server.entity.spawner.GrowingPassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
+import games.stendhal.server.maps.IContent;
 import games.stendhal.server.pathfinder.PathfinderThread;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
 import games.stendhal.server.util.Translate;
-import games.stendhal.server.maps.IContent;
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPClass;
 import marauroa.server.game.RPWorld;
+
 import org.apache.log4j.Logger;
 
 public class StendhalRPWorld extends RPWorld {
@@ -124,7 +130,7 @@ public class StendhalRPWorld extends RPWorld {
 		Portal.generateRPClass();
 		Door.generateRPClass();
 		PassiveEntityRespawnPoint.generateRPClass();
-		GrainField.generateRPClass();
+		GrowingPassiveEntityRespawnPoint.generateRPClass();
 		SheepFood.generateRPClass();
 		Corpse.generateRPClass();
 		Item.generateRPClass();

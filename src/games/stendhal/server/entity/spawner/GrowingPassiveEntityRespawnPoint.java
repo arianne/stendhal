@@ -37,7 +37,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 	private int maxRipeness;
 
 	public static void generateRPClass() {
-		RPClass grainFieldClass = new RPClass("grain_field");
+		RPClass grainFieldClass = new RPClass("growing_entity_spawner");
 		grainFieldClass.isA("plant_grower");
 		grainFieldClass.add("ripeness", RPClass.BYTE);
 		grainFieldClass.add("max_ripeness", RPClass.BYTE);
@@ -45,9 +45,10 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 		grainFieldClass.add("height", RPClass.BYTE);
 	}
 
-	private void init(String type, int maxRipeness, int width, int height) {
+	private void init(String clazz, int maxRipeness, int width, int height) {
 		this.maxRipeness = maxRipeness;
-		put("type", type);
+		put("type", "growing_entity_spawner");
+		put("class", clazz);
 		put("max_ripeness", maxRipeness);
 		put("width", width);
 		put("height", height);
