@@ -74,7 +74,7 @@ public class CollisionDetection {
 
 		for (int k = starty; k < endy; k++) {
 			for (int i = startx; i < endx; i++) {
-				blocked[k * width + i] = true;
+				blocked[k * width + i] = value;
 			}
 		}
 	}
@@ -155,6 +155,14 @@ public class CollisionDetection {
 		double w = shape.getWidth();
 		double h = shape.getHeight();
 
+		// expand the collision check for partial moves
+		if ((x - Math.floor(x)) > 0.001) {
+			w += 1.0;
+		}
+		if ((y - Math.floor(y)) > 0.001) {
+			h += 1.0;
+		}
+
 		if (x < 0 || x/* +w */>= width) {
 			return true;
 		}
@@ -163,14 +171,14 @@ public class CollisionDetection {
 			return true;
 		}
 
-		int startx = (int) ((x - 2 >= 0) ? x - 2 : 0);
-		int endx = (int) ((x + w + 2 < width) ? x + w + 2 : width);
-		int starty = (int) ((y - 2) >= 0 ? y - 2 : 0);
-		int endy = (int) ((y + h + 2) < height ? y + h + 2 : height);
+		int startx = (int) ((x >= 0) ? x : 0);
+		int endx = (int) ((x + w < width) ? x + w : width);
+		int starty = (int) ((y >= 0) ? y : 0);
+		int endy = (int) ((y + h < height) ? y + h : height);
 
 		for (int k = starty; k < endy; k++) {
 			for (int i = startx; i < endx; i++) {
-				if (blocked[k * width + i] && shape.intersects(i, k, 1, 1)) {
+				if (blocked[k * width + i]) {
 					return true;
 				}
 			}
