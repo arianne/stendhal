@@ -231,7 +231,7 @@ public class CreateAccountDialog extends JDialog {
                 setVisible(false);//hide this screen when attempting to connect
                                 
                 try {
-                    client.connect(server, finalPort);
+                    client.connect(server, finalPort, true);
                     progressBar.step();//for each major connection milestone call step()
                 } catch (Exception ex) {
                     progressBar.cancel();//if something goes horribly just cancel the progressbar
