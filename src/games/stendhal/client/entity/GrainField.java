@@ -25,25 +25,20 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class GrainField extends AnimatedEntity {
+	// default values are for compatibility to server <= 0.56
 	private String actionName = "Harvest";
-
+	private int width = 1;
+	private int height = 2;
+	private String clazz = "grain_field";
+	private int maxRipeness = 5;
+	
 	public GrainField(GameObjects gameObjects, RPObject object)
 			throws AttributeNotFoundException {
 		super(gameObjects, object);
+		init(object);
 	}
-
-	// TODO: move this code to a better place
-	@Override
-	protected void buildAnimations(RPObject object) {
-		SpriteStore store = SpriteStore.get();
-
-		// compatibility to server <= 0.56
-		String clazz = "grain_field";
-		int maxRipeness = 5;
-		int width = 1;
-		int height = 2;
-
-		// get sprite info
+	
+	private void init(RPObject object) {
 		if (object.has("max_ripeness")) {
 			maxRipeness = object.getInt("max_ripeness");
 		}
@@ -61,6 +56,18 @@ public class GrainField extends AnimatedEntity {
 		if (object.has("class")) {
 			clazz = object.get("class");
 		}
+	}
+
+	@Override
+	protected void buildAnimations(RPObject object) {
+		// Note: This method is called from the parent constructor, so our
+		//       own constructor was not able to do any initialisation, yet.
+		//       So we have to load the object now. But after this method
+		//       The values we loaded are overriden by the default values, so
+		//       init has to be called again in our constructor.
+		init(object);
+
+		SpriteStore store = SpriteStore.get();
 		for (int i = 0; i <= maxRipeness; i++) {
 			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate(clazz),
 					i, 1, width, height));
@@ -89,12 +96,12 @@ public class GrainField extends AnimatedEntity {
 	
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y + 1, 1, 1);
+		return new Rectangle.Double(x, y + height - 1, 1, 1);
 	}
 
 	@Override
 	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y + 1, 1, 1);
+		return new Rectangle.Double(x, y + height - 1, 1, 1);
 	}
 	
 	public String defaultAction() {
