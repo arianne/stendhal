@@ -53,8 +53,8 @@ public class GrainField extends AnimatedEntity {
 		if (object.has("height")) {
 			height = object.getInt("height");
 		}
-		if (object.has("actionName")) {
-			actionName = object.get("actionName");
+		if (object.has("action_name")) {
+			actionName = object.get("action_name");
 		}
 
 		// load sprites
