@@ -50,7 +50,8 @@ public class GameObjects implements Iterable<Entity> {
 		register("npc", null, NPC.class);
 
 		register("plant_grower", null, PlantGrower.class);
-		register("grain_field", null, GrainField.class);
+		register("growing_entity_spawner", null, GrainField.class);
+		register("grain_field", null, GrainField.class); // compatibility with server <= 0.56
 		register("food", null, SheepFood.class);
 		register("chest", null, Chest.class);
 

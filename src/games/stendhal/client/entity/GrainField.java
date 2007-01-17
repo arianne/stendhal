@@ -35,6 +35,7 @@ public class GrainField extends AnimatedEntity {
 		SpriteStore store = SpriteStore.get();
 
 		// compatibility to server <= 0.56
+		String clazz = "grain_field";
 		int maxRipeness = 5;
 		int width = 1;
 		int height = 2;
@@ -51,8 +52,11 @@ public class GrainField extends AnimatedEntity {
 		}
 
 		// load sprites
+		if (object.has("class")) {
+			clazz = object.get("class");
+		}
 		for (int i = 0; i <= maxRipeness; i++) {
-			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate(object.get("type")),
+			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate(clazz),
 					i, 1, width, height));
 		}
 	}
