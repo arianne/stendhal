@@ -25,12 +25,15 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class GrainField extends AnimatedEntity {
+	private String actionName = "Harvest";
 
 	public GrainField(GameObjects gameObjects, RPObject object)
 			throws AttributeNotFoundException {
 		super(gameObjects, object);
 	}
 
+	// TODO: move this code to a better place
+	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
@@ -49,6 +52,9 @@ public class GrainField extends AnimatedEntity {
 		}
 		if (object.has("height")) {
 			height = object.getInt("height");
+		}
+		if (object.has("actionName")) {
+			actionName = object.get("actionName");
 		}
 
 		// load sprites
@@ -92,17 +98,17 @@ public class GrainField extends AnimatedEntity {
 	}
 	
 	public String defaultAction() {
-		return "Harvest";
+		return actionName;
 	}
 
 	public String[] offeredActions() {
-		String[] list = { "Look", "Harvest" };
+		String[] list = { "Look", actionName };
 		return list;
 	}
 
 	public void onAction(StendhalClient client, String action, String... params) {
 		super.onAction(client, action, params);
-		if (action.equals("Harvest")) {
+		if (action.equals(actionName)) {
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "use");
 			int id = getID().getObjectID();
