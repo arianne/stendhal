@@ -23,9 +23,10 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.entity.spawner.CarrotGrower;
+import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.spawner.GrainField;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
-import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.rule.EntityManager;
 
@@ -552,7 +553,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				} else if (type == 108) {
 					plantGrower = new PassiveEntityRespawnPoint("apple", 750);
 				} else if (type == 109) {
-					plantGrower = new PassiveEntityRespawnPoint("carrot", 1000);
+					plantGrower = new CarrotGrower();
 				} else if (type == 110) {
 					plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
 				} else if (type == 131) {
