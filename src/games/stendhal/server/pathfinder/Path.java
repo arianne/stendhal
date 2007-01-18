@@ -33,10 +33,6 @@ public class Path {
 
 	private static StepCallback callback;
 
-	/** The maximum time spent on a search for one particular path (in ms) */
-	// Decreased turn time to 10ms see: http://sourceforge.net/tracker/index.php?func=detail&aid=1532769&group_id=1111&atid=101111
-	private static final int MAX_PATHFINDING_TIME = 10;
-
 	public static int steps;
 
 	public static class Node {
@@ -157,8 +153,7 @@ public class Path {
 		long startTime = System.currentTimeMillis();
 
 		Pathfinder path = new Pathfinder();
-		StendhalNavigable navMap = new StendhalNavigable(entity, zone,
-				(int) destination.getX(), (int) destination.getY());
+		StendhalNavigable navMap = new StendhalNavigableEntities(entity, zone, x, y, destination);
 
 		path.setNavigable(navMap);
 		path.setStart(new Pathfinder.Node(x, y));
@@ -178,49 +173,33 @@ public class Path {
 		steps = 0;
 		path.init();
 
-		/* 
-		 * if the destination is an area
-		 * pathfinding is done if the path reaches the area
-		 */
-		if ((destination.getWidth() > 2) || (destination.getHeight() > 2)) {
-			Pathfinder.Node bestNode = null;
-			do {
-				path.doStep();
-				steps++;
-				bestNode = path.getBestNode();
-				if (callback != null) {
-					callback.stepDone(bestNode);
-				}
-			} while (path.getStatus() == Pathfinder.IN_PROGRESS
-					&& ((System.currentTimeMillis() - startTime) < MAX_PATHFINDING_TIME)
-					&& (bestNode != null)
-					&& (!destination.contains(bestNode.getX(), bestNode.getY())));
-
-		} else {
-			// HACK: Time limited the A* search.
-			while (path.getStatus() == Pathfinder.IN_PROGRESS
-					&& ((System.currentTimeMillis() - startTime) < MAX_PATHFINDING_TIME)) {
-				path.doStep();
-				steps++;
-				if (callback != null) {
-					callback.stepDone(path.getBestNode());
-				}
+		while (path.getStatus() == Pathfinder.IN_PROGRESS) {
+			path.doStep();
+			steps++;
+			if (callback != null) {
+				callback.stepDone(path.getBestNode());
 			}
 		}
 
+		long endTime = System.currentTimeMillis();
+		if (false && logger.isDebugEnabled()) {
+			logger.debug("Route (" + x + "," + y + ")-(" + destination + ") S:"
+					+ steps + " OL:" + path.getOpen().size() + " CL:"
+					+ path.getClosed().size() + " in " + (endTime - startTime)
+					+ "ms");
+		}
 // 		logger.info("status: " + path.getStatus());
-		if ((path.getStatus() == Pathfinder.PATH_NOT_FOUND) || ((System.currentTimeMillis() - startTime) >= MAX_PATHFINDING_TIME)) {
-//			logger.warn("Pathfinding aborted: " + entity.get("name") + " (" + x + ", " + y + ")    Average Pathfinding time: " + ((float)time / counter / 1000000));
+		if (path.getStatus() == Pathfinder.PATH_NOT_FOUND) {
+			if (logger.isDebugEnabled()) {
+			logger.debug("Pathfinding aborted: " +zone.getID() + " " + entity.get("name")
+						+ " (" + x + ", " + y + ") " + destination + " Pathfinding time: "
+						+ (System.currentTimeMillis() - startTime)
+						+ "  steps: " + steps);
+			}
 			return new LinkedList<Node>();
 		}
 //		time = time + System.nanoTime() - startTimeNano;
 //		counter++;
-
-		long endTime = System.currentTimeMillis();
-		logger.debug("Route (" + x + "," + y + ")-(" + destination + ") S:"
-				+ steps + " OL:" + path.getOpen().size() + " CL:"
-				+ path.getClosed().size() + " in " + (endTime - startTime)
-				+ "ms");
 
 		List<Node> list = new LinkedList<Node>();
 		Pathfinder.Node node = path.getBestNode();

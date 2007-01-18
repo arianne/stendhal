@@ -64,15 +64,17 @@ public class Pathfinder {
 	/**
 	 * The open list.
 	 */
-	protected List<Pathfinder.Node> listOpen = new ArrayList<Pathfinder.Node>();
-
+	protected PriorityQueue<Pathfinder.Node> listOpen = new PriorityQueue<Pathfinder.Node>(
+			16, new Comparator<Pathfinder.Node>() {
+				public int compare(Pathfinder.Node o1, Pathfinder.Node o2) {
+					return (int) Math.signum(o1.f - o2.f);
+				}
+			});
 	protected HashMap<Integer, Pathfinder.Node> hashOpen = new HashMap<Integer, Pathfinder.Node>();
 
 	/**
 	 * The closed list.
 	 */
-	protected List<Pathfinder.Node> listClosed = new LinkedList<Pathfinder.Node>();
-
 	protected HashMap<Integer, Pathfinder.Node> hashClosed = new HashMap<Integer, Pathfinder.Node>();
 
 	/**
@@ -96,7 +98,7 @@ public class Pathfinder {
 	 */
 	protected Navigable navMap = null;
 
-	/**
+		/**
 	 * Return the current status of the pathfinder.
 	 * 
 	 * @return the pathfindre status.
@@ -116,7 +118,7 @@ public class Pathfinder {
 			return;
 		}
 
-		if (nodeBest.nodeNumber.equals(nodeGoal.nodeNumber)) {
+		if (navMap.reachedGoal(nodeBest)) {
 			pathStatus = PATH_FOUND;
 			return;
 		}
@@ -130,8 +132,7 @@ public class Pathfinder {
 	public void init() {
 		listOpen.clear(); // Clear the open list
 		hashOpen.clear();
-		listClosed.clear(); // Clear the closed list
-		hashClosed.clear();
+		hashClosed.clear(); // Clear the closed list
 
 		if (nodeGoal == null || nodeStart == null) {
 			throw new IllegalArgumentException("start/goal not yet set!");
@@ -147,7 +148,7 @@ public class Pathfinder {
 		nodeBest = null;
 		pathStatus = IN_PROGRESS;
 		nodeStart.g = 0;
-		nodeStart.h = navMap.getCost(nodeGoal, nodeStart);
+		nodeStart.h = navMap.getHeuristic(nodeGoal, nodeStart);
 		nodeStart.f = nodeStart.g + nodeStart.h;
 		nodeStart.reset();
 
@@ -251,13 +252,9 @@ public class Pathfinder {
 		if (listOpen.size() == 0) {
 			return null;
 		}
-
-		Pathfinder.Node first = listOpen.get(0);
-
-		listOpen.remove(0);
+		Pathfinder.Node first = listOpen.poll();
 		hashOpen.remove(first.nodeNumber);
 
-		listClosed.add(0, first);
 		hashClosed.put(first.nodeNumber, first);
 
 		return first;
@@ -288,13 +285,10 @@ public class Pathfinder {
 	 * 
 	 * @param node
 	 *            the parent node.
-	 * @param x
-	 *            the x-position of the new child.
-	 * @param y
-	 *            the y-position of the new child.
+	 * @param child
+	 *            the the new child.
 	 */
-	public void linkChild(Pathfinder.Node node, int x, int y) {
-		Pathfinder.Node child = new Pathfinder.Node(x, y);
+	public void linkChild(Pathfinder.Node node, Pathfinder.Node child) {
 		child.nodeNumber = Integer.valueOf(navMap.createNodeID(child));
 
 		double g = node.g + navMap.getCost(node, child);
@@ -323,7 +317,7 @@ public class Pathfinder {
 		} else {
 			child.parent = node;
 			child.g = g;
-			child.h = navMap.getCost(nodeGoal, child);
+			child.h = navMap.getHeuristic(nodeGoal, child);
 			child.f = child.g + child.h;
 			// child.nodeNumber = navMap.createNodeID(x,y);
 
@@ -339,25 +333,7 @@ public class Pathfinder {
 	 *            the node to add to the open list.
 	 */
 	protected void addToOpen(Pathfinder.Node node) {
-		if (listOpen.size() == 0) {
-			listOpen.add(0, node);
-			hashOpen.put(node.nodeNumber, node);
-			return;
-		}
-
-		int first = 0;
-		int last = listOpen.size();
-
-		while (last - first > 1) {
-			int current = first + ((last - first) / 2);
-			if (node.f < listOpen.get(current).f) {
-				last = current;
-			} else {
-				first = current;
-			}
-		}
-
-		listOpen.add(last, node);
+		listOpen.offer(node);
 		hashOpen.put(node.nodeNumber, node);
 	}
 
@@ -447,7 +423,7 @@ public class Pathfinder {
 	 * 
 	 * @return the open list.
 	 */
-	public List getOpen() {
+	public PriorityQueue getOpen() {
 		return listOpen;
 	}
 
@@ -456,8 +432,8 @@ public class Pathfinder {
 	 * 
 	 * @return the closed list.
 	 */
-	public List getClosed() {
-		return listClosed;
+	public HashMap getClosed() {
+		return hashClosed;
 	}
 
 	/**
@@ -505,7 +481,7 @@ public class Pathfinder {
 		 */
 		protected Node parent;
 
-		Node[] children = new Node[8];
+		Node[] children = new Node[4];
 
 		/**
 		 * The default constructor.
@@ -534,7 +510,7 @@ public class Pathfinder {
 		public void reset() {
 			f = g = h = 0.0;
 			numChildren = 0;
-			for (int i = 0; i < 8; i++) {
+			for (int i = 0; i < 4; i++) {
 				children[i] = null;
 			}
 		}
