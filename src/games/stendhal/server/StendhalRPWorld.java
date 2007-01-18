@@ -259,7 +259,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("-1_semos_mine_nw");
 		addArea("-1_semos_dungeon");
 		addArea("-1_semos_jail");
-		addArea("-1_semos_catacombs");
+		//addArea("-1_semos_catacombs");
 		addArea("-1_orril_mountain_w");
 		addArea("-1_orril_dungeon");
 		addArea("-1_orril_castle_w");
@@ -269,7 +269,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("-2_ados_outside_nw");
 		addArea("-2_semos_dungeon");
 		addArea("-2_semos_jail");
-		addArea("-2_semos_catacombs");
+		//addArea("-2_semos_catacombs");
 		addArea("-2_kotoch_entrance");
 		addArea("-2_orril_dwarf_mine");
 		addArea("-2_orril_lich_palace");
@@ -278,7 +278,7 @@ public class StendhalRPWorld extends RPWorld {
 		// Level -3
 		addArea("-3_ados_outside_nw");
 		addArea("-3_semos_dungeon");
-		addArea("-3_semos_catacombs");
+		//addArea("-3_semos_catacombs");
 		addArea("-3_orril_dwarf_blacksmith");
 		addArea("-3_orril_dungeon");
 
