@@ -276,18 +276,18 @@ public class Orril implements IContent {
 		SpeakerNPC hogart = new SpeakerNPC("Hogart") {
 			protected void createPath() {
 				List<Path.Node> nodes=new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(20,11));
-				nodes.add(new Path.Node(12,11));
-				nodes.add(new Path.Node(12,6));
-				nodes.add(new Path.Node(12,10));
 				nodes.add(new Path.Node(20,10));
-				nodes.add(new Path.Node(20,8));
-				nodes.add(new Path.Node(20,11));
+				nodes.add(new Path.Node(12,10));
+				nodes.add(new Path.Node(12,6));
+				nodes.add(new Path.Node(12,9));
+				nodes.add(new Path.Node(20,9));
+				nodes.add(new Path.Node(20,7));
+				nodes.add(new Path.Node(20,10));
 				setPath(nodes,true);
 			}
 
 			protected void createDialog() {
-				//addGreeting();
+				addGreeting();
 				addJob("I am a master blacksmith. I used to forge weapons in secret for the dwarves in the mine, but they have forgotten me and my #stories.");
 				addHelp("I could tell you a #story...");	
 				add(ConversationStates.ATTENDING, Arrays.asList("story", "stories"), ConversationStates.ATTENDING, "I expect a scruff like you has never heard of Lady Tembells, huh? She was so beautiful. She died young and her distraught husband asked a powerful Lord to bring her back to life. The fool didn't get what he bargained for, she became a #vampire.", null);
@@ -299,7 +299,7 @@ public class Orril implements IContent {
 		hogart.setDescription("You see Hogart, a retired master dwarf smith."); 
 		zone.assignRPObjectID(hogart);
 		hogart.put("class","olddwarfnpc");
-		hogart.set(20,11); 
+		hogart.set(20,10); 
 		hogart.initHP(100);
 		zone.addNPC(hogart);    
 	} 
