@@ -25,12 +25,11 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class GrainField extends AnimatedEntity {
-	// default values are for compatibility to server <= 0.56
-	private String actionName = "Harvest";
-	private int width = 1;
-	private int height = 2;
-	private String clazz = "grain_field";
-	private int maxRipeness = 5;
+	private String actionName;
+	private int width;
+	private int height;
+	private String clazz;
+	private int maxRipeness;
 	
 	public GrainField(GameObjects gameObjects, RPObject object)
 			throws AttributeNotFoundException {
@@ -39,6 +38,12 @@ public class GrainField extends AnimatedEntity {
 	}
 	
 	private void init(RPObject object) {
+		// default values are for compatibility to server <= 0.56
+		actionName = "Harvest";
+		width = 1;
+		height = 2;
+		clazz = "grain_field";
+		maxRipeness = 5;
 		if (object.has("max_ripeness")) {
 			maxRipeness = object.getInt("max_ripeness");
 		}
