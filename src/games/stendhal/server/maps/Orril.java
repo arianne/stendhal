@@ -276,13 +276,13 @@ public class Orril implements IContent {
 		SpeakerNPC hogart = new SpeakerNPC("Hogart") {
 			protected void createPath() {
 				List<Path.Node> nodes=new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(12,10));
-				nodes.add(new Path.Node(20,10));
-				nodes.add(new Path.Node(20,8));
 				nodes.add(new Path.Node(20,11));
 				nodes.add(new Path.Node(12,11));
 				nodes.add(new Path.Node(12,6));
 				nodes.add(new Path.Node(12,10));
+				nodes.add(new Path.Node(20,10));
+				nodes.add(new Path.Node(20,8));
+				nodes.add(new Path.Node(20,11));
 				setPath(nodes,true);
 			}
 
@@ -299,7 +299,7 @@ public class Orril implements IContent {
 		hogart.setDescription("You see Hogart, a retired master dwarf smith."); 
 		zone.assignRPObjectID(hogart);
 		hogart.put("class","olddwarfnpc");
-		hogart.set(12,10); 
+		hogart.set(20,11); 
 		hogart.initHP(100);
 		zone.addNPC(hogart);    
 	} 
