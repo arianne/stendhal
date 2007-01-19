@@ -45,6 +45,7 @@ public class AdosCityInside {
 		buildTavern((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_tavern_0")));
 		buildTempel((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_temple")));
 		buildLibrary((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_library")));
+		buildHauntedHouse((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_haunted_house")));
 	}
 
 	private void buildBank(StendhalRPZone zone) {
@@ -251,6 +252,16 @@ public class AdosCityInside {
 		baker.set(15, 2);
 		baker.initHP(100);
 		zone.addNPC(baker);
+	}
+    private void buildHauntedHouse(StendhalRPZone zone) {
+		Portal portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setX(7);
+		portal.setY(1);
+		portal.setNumber(0);
+		portal.setDestination("0_ados_city", 11);
+		zone.addPortal(portal);
+
 	}
 
 	private void buildTempel(StendhalRPZone zone) {
