@@ -30,6 +30,7 @@ import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -71,6 +72,11 @@ public class Player extends RPEntity implements TurnListener {
 	 * antidote, and thus immune from poison.
 	 */
 	private boolean isImmune;
+
+	/**
+	 * Currently active client directions (in oldest-newest order)
+	 */
+	protected List<Direction>	directions;
 
 	public static void generateRPClass() {
 		try {
@@ -172,9 +178,79 @@ public class Player extends RPEntity implements TurnListener {
 		
 		itemsToConsume = new LinkedList<ConsumableItem>();
 		poisonToConsume = new LinkedList<ConsumableItem>();
+		directions = new ArrayList<Direction>();
 
 		update();
 	}
+
+
+	/**
+	 * Add an active client direction.
+	 *
+	 *
+	 */
+	public void addClientDirection(Direction direction) {
+		if (hasPath()) {
+			clearPath();
+		}
+
+		directions.remove(direction);
+		directions.add(direction);
+	}
+
+
+	/**
+	 * Remove an active client direction.
+	 *
+	 *
+	 */
+	public void removeClientDirection(Direction direction) {
+		directions.remove(direction);
+	}
+
+
+	/**
+	 * Apply the most recent active client direction.
+	 *
+	 * @param	stopOnNone	Stop movement if no (valid) directions
+	 *				are active if <code>true</code>.
+	 */
+	public void applyClientDirection(boolean stopOnNone) {
+		int		size;
+		Direction	direction;
+
+
+		/*
+		 * For now just take last direction.
+		 *
+		 * Eventually try each (last-to-first) until a non-blocked
+		 * one is found (if any).
+		 */
+		if((size = directions.size()) != 0) {
+			direction = directions.get(size - 1);
+
+			// as an effect of the poisoning, the player's controls
+			// are switched to make it difficult to navigate.
+			if (isPoisoned()) {
+				direction = direction.oppositeDirection();
+			}
+
+			setDirection(direction);
+			setSpeed(1);
+		} else if(stopOnNone) {
+			stop();
+		}
+	}
+
+
+	/**
+	 * Stop and clear any active directions.
+	 */
+	public void stop() {
+		directions.clear();
+		super.stop();
+	}
+
 
 	@Override
 	public void update() throws AttributeNotFoundException {

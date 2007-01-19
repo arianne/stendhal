@@ -78,6 +78,7 @@ public class AttackAction extends ActionListener {
 						player.attack(entity);
 						player.faceTo(entity);
 						player.notifyWorldAboutChanges();
+						player.applyClientDirection(false);
 					}
 				}
 			}

@@ -50,26 +50,26 @@ public class MoveAction extends ActionListener {
 	private void move(Player player, RPAction action) {
 		Log4J.startMethod(logger, "move");
 
-		if (player.hasPath()) {
-			player.clearPath();
-		}
-
 		if (action.has("dir")) {
-			
-			Direction direction = Direction.build(action.getInt("dir"));
-			// as an effect of the poisoning, the player's controls
-			// are switched to make it difficult to navigate.
-			if (player.isPoisoned()) {
-				direction = direction.oppositeDirection();
+			int	dirval;
+
+
+			if((dirval = action.getInt("dir")) < 0) {
+				player.removeClientDirection(
+					Direction.build(-dirval));
+			} else {
+				player.addClientDirection(
+					Direction.build(dirval));
 			}
-			player.setDirection(direction);
-			player.setSpeed(1);
+
+			player.applyClientDirection(true);
 		}
 
 		player.notifyWorldAboutChanges();
 
 		Log4J.finishMethod(logger, "move");
 	}
+
 
 	private void moveTo(Player player, RPAction action) {
 		Log4J.startMethod(logger, "moveto");
@@ -85,6 +85,8 @@ public class MoveAction extends ActionListener {
 			List<Path.Node> path = Path.searchPath(player, x, y - 2);
 			player.setPath(path, false);
 		}
+
+		player.applyClientDirection(false);
 
 		Log4J.finishMethod(logger, "moveto");
 	}

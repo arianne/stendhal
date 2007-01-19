@@ -187,18 +187,34 @@ public class InGameGUI implements KeyListener {
 	}
 
 	public void onKeyReleased(KeyEvent e) {
+		Direction dir;
 		RPAction action;
 		int size;
+
 
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_RIGHT:
 		case KeyEvent.VK_UP:
 		case KeyEvent.VK_DOWN:
-			action = new RPAction();
+			dir = keyCodeToDirection(e.getKeyCode());
 
-			directions.remove(
-				keyCodeToDirection(e.getKeyCode()));
+			/*
+			 * Send direction release
+			 */
+			action = new RPAction();
+			action.put("type", "move");
+			action.put("dir", -dir.get());
+			client.send(action);
+
+
+			/*
+			 * Client side direction tracking (for now)
+			 */
+			directions.remove(dir);
+
+			// Existing one reusable???
+			action = new RPAction();
 
 			if((size = directions.size()) == 0) {
 				action.put("type", "stop");
