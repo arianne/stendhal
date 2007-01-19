@@ -65,6 +65,15 @@ public class AdosCityOutside {
 		portal.setNumber(10);
 		portal.setDestination("int_ados_bakery", 0);
 		zone.addPortal(portal);
+
+		portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setX(12);
+		portal.setY(38);
+		portal.setNumber(11);
+		portal.setDestination("int_ados_haunted_house", 0);
+		zone.addPortal(portal);
+
 	}
 
 	private void buildFidorea(StendhalRPZone zone) {
