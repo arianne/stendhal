@@ -215,6 +215,7 @@ public class StendhalRPWorld extends RPWorld {
 		// addArea("0_ados_city_w");
 		{
 			addArea("int_ados_bank");
+			// addArea("int_ados_haunted_house");
 			addArea("int_ados_bakery");
 			addArea("int_ados_library");
 			addArea("int_ados_tavern_0");
