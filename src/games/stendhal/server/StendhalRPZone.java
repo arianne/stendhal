@@ -30,6 +30,7 @@ import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.rule.EntityManager;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
@@ -58,8 +59,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private static final Logger logger = Log4J.getLogger(StendhalRPZone.class);
 
 	private List<TransferContent> contents;
-	private List<String> entryPoints;
-	private List<String> zoneChangePoints;
+	private List<Point> entryPoints;
+	private List<Point> zoneChangePoints;
 	private List<Portal> portals;
 	private List<NPC> npcs;
 	private List<CreatureRespawnPoint> respawnPoints;
@@ -96,8 +97,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		super(name);
 
 		contents = new LinkedList<TransferContent>();
-		entryPoints = new LinkedList<String>();
-		zoneChangePoints = new LinkedList<String>();
+		entryPoints = new LinkedList<Point>();
+		zoneChangePoints = new LinkedList<Point>();
 		portals = new LinkedList<Portal>();
 		itemsOnGround = new HashSet<Item>();
 		numHouses = 0;
@@ -151,7 +152,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return plantGrowers;
 	}
 
-	public void addZoneChange(String entry) {
+	public void addZoneChange(Point entry) {
 		zoneChangePoints.add(entry);
 	}
 
@@ -180,20 +181,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 		npcs.add(npc);
 	}
 
-	public void addEntryPoint(String entry) {
+	public void addEntryPoint(Point entry) {
 		entryPoints.add(0, entry);
 	}
 
 	public void placeObjectAtEntryPoint(Entity object) {
-		if (entryPoints.size() == 0) {
-			return;
+		if (!entryPoints.isEmpty()) {
+			Point entryPoint = entryPoints.get(0);
+
+			object.setX(entryPoint.x);
+			object.setY(entryPoint.y);
 		}
-
-		String entryPoint = entryPoints.get(0);
-		String[] components = entryPoint.split(",");
-
-		object.setX(Integer.parseInt(components[0]));
-		object.setY(Integer.parseInt(components[1]));
 	}
 
 	public void placeObjectAtZoneChangePoint(StendhalRPZone oldzone,
@@ -202,53 +200,42 @@ public class StendhalRPZone extends MarauroaRPZone {
 			return;
 		}
 
-		String exitDirection = null;
+		int x;
+		int y;
+		Point minpoint = zoneChangePoints.get(0);
 
 		if (object.getY() < 4) {
-			exitDirection = "N";
+			logger.debug("Player exit direction: N");
+			x = object.getX();
+			y = getHeight();
 		} else if (object.getY() > oldzone.getHeight() - 4) {
-			exitDirection = "S";
+			logger.debug("Player exit direction: S");
+			x = object.getX();
+			y = 0;
 		} else if (object.getX() < 4) {
-			exitDirection = "W";
+			logger.debug("Player exit direction: W");
+			x = getWidth();
+			y = object.getY();
 		} else if (object.getX() > oldzone.getWidth() - 4) {
-			exitDirection = "E";
+			logger.debug("Player exit direction: E");
+			x = 0;
+			y = object.getY();
 		} else {
 			// NOTE: If any of the above is true, then it just put object on the
 			// first zone change point.
-			String[] components = zoneChangePoints.get(0).split(",");
-			logger.debug("Player zone change default: " + components);
-			object.setX(Integer.parseInt(components[0]));
-			object.setY(Integer.parseInt(components[1]));
+			logger.debug("Player zone change default: " + minpoint.x + "," + minpoint.y);
+			object.setX(minpoint.x);
+			object.setY(minpoint.y);
 			return;
 		}
 
-		logger.debug("Player exit direction: " + exitDirection);
-
-		int x = 0;
-		int y = 0;
 		int distance = Integer.MAX_VALUE;
-		String minpoint = zoneChangePoints.get(0);
-
-		if (exitDirection.equals("N")) {
-			x = object.getX();
-			y = getHeight();
-		} else if (exitDirection.equals("S")) {
-			x = object.getX();
-			y = 0;
-		} else if (exitDirection.equals("W")) {
-			x = getWidth();
-			y = object.getY();
-		} else if (exitDirection.equals("E")) {
-			x = 0;
-			y = object.getY();
-		}
 
 		logger.debug("Player entry point: (" + x + "," + y + ")");
 
-		for (String point : zoneChangePoints) {
-			String[] components = point.split(",");
-			int px = Integer.parseInt(components[0]);
-			int py = Integer.parseInt(components[1]);
+		for (Point point : zoneChangePoints) {
+			int px = point.x;
+			int py = point.y;
 
 			if ((px - x) * (px - x) + (py - y) * (py - y) < distance) {
 				logger.debug("Best entry point: (" + px + "," + py + ") --> "
@@ -258,10 +245,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 		}
 
-		logger.debug("Choosen entry point: (" + minpoint + ") --> " + distance);
-		String[] components = minpoint.split(",");
-		object.setX(Integer.parseInt(components[0]));
-		object.setY(Integer.parseInt(components[1]));
+		logger.debug("Choosen entry point: (" + minpoint.x + "," + minpoint.y + ") --> " + distance);
+		object.setX(minpoint.x);
+		object.setY(minpoint.y);
 	}
 
 	public void addLayer(String name, String byteContents) {
@@ -414,14 +400,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 			switch (type) {
 			case 1: /* Entry point */
 			{
-				String entryPoint = new String(x + "," + y);
-				addEntryPoint(entryPoint);
+				addEntryPoint(new Point(x, y));
 				break;
 			}
 			case 2: /* Zone change */
 			{
-				String entryPoint = new String(x + "," + y);
-				addZoneChange(entryPoint);
+				addZoneChange(new Point(x, y));
 				break;
 			}
 			case 6: /* one way portal destination */
