@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  -- !!!!!!!!!!! WORK IN PROGRESS - FILE NOT USED YET !!!!!!!!!!!
+  -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  --
+  -- Zone Configuration.
+  --
+  -- A zone descriptor has the following structure:
+  --
+  -- <zone name="xxxx" file="xxxxx/xxxxx/xxxxxx.xstend">
+  --  <title>Xxxxxx xxxx</title>
+  --  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+  --  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+  --  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+  --    <attribute name="xxxxx">xxxxxx</attribute>
+  --    <attribute name="xxxxx">xxxxxx</attribute>
+  --    <attribute name="xxxxx">xxxxxx</attribute>
+  --    <attribute name="xxxxx">xxxxxx</attribute>
+  --  </configurator>
+  -- </zone>
+  --
+  -- zone
+  --  name: The unique programmatic key used to reference the zone.
+  --  file: The zone data file (relative to data/maps/).
+  --
+  -- title: A nicely presented label (single line, relatively short).
+  --
+  -- configurator: A code reference used to post-configure the zone.
+  --  attribute: An attribute passed to the configuration code.
+  --
+  -- Each zone can have zero, one, or more <configurator> entries.
+  -- These specify a class name that implements ZoneConfigurator, and
+  -- will be passed the zone and any attributes.
+  -->
+<zones>
+
+ <!--
+   -- MAPPINGS TAKEN FROM StendhalRPWorld.java AS OF 2007/01/19:
+   -->
+
+ <!--
+   -- Load zones. Written from left to right and from top to bottom.
+   -- Please respect it!
+   -->
+
+ <!--  Ground level -->
+
+ <zone name="0_semos_mountain_n_w4" file="level_0/semos/mountain_n_w4.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_mountain_n2_w2" file="level_0/semos/mountain_n2_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_mountain_n2_w" file="level_0/semos/mountain_n2_w.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_mountain_n2" file="level_0/semos/mountain_n2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_mountain_n2_e" file="level_0/semos/mountain_n2_e.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_mountain_n2_e2" file="level_0/semos/mountain_n2_e2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_ados_mountain_n2_w2" file="level_0/ados/mountain_n2_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_mountain_n_w3" file="level_0/semos/mountain_n_w3.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_mountain_n_w2" file="level_0/semos/mountain_n_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_plains_n" file="level_0/semos/plains_n.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/>
+ </zone>
+
+ <zone name="0_semos_plains_ne" file="level_0/semos/plains_ne.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorthEast"/>
+ </zone>
+
+ <zone name="0_semos_plains_n_e2" file="level_0/semos/plains_n_e2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_mountain_n_e2" file="level_0/semos/mountain_n_e2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_ados_mountain_n_w2" file="level_0/ados/mountain_n_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_ados_mountain_nw" file="level_0/ados/mountain_nw.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosMountainsNorthWest"/>
+ </zone>
+
+ <zone name="int_ados_magician_house" file="interiors/ados/magician_house.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.ados.AdosMountainsNorthWest"/> -->
+ </zone>
+
+ <zone name="0_ados_outside_nw" file="level_0/ados/outside_nw.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest"/>
+ </zone>
+
+ <zone name="0_ados_wall_n" file="level_0/ados/wall_n.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosWallNorth"/>
+ </zone>
+
+ <zone name="0_orril_mountain_n2_w2" file="level_0/orril/mountain_n2_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_mountain_w2" file="level_0/semos/mountain_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_plains_w" file="level_0/semos/plains_w.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosJailWest"/> -->
+ </zone>
+
+ <zone name="0_semos_village_w" file="level_0/semos/village_w.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosVillageWest"/>
+ </zone>
+
+ <zone name="0_semos_city" file="level_0/semos/city.xstend">
+  <title>The City of Semos</title>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside"/>
+ </zone>
+
+   <zone name="int_semos_tavern_0" file="interiors/semos/tavern_0.xstend">
+  <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.SemosCityInsideTavern"/>
+   </zone>
+
+   <zone name="int_semos_tavern_1" file="interiors/semos/tavern_1.xstend">
+  <title/>
+   </zone>
+
+   <zone name="int_semos_temple" file="interiors/semos/temple.xstend">
+  <title/>
+    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+   </zone>
+
+   <zone name="int_semos_blacksmith" file="interiors/semos/blacksmith.xstend">
+  <title/>
+    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+   </zone>
+
+   <zone name="int_semos_library" file="interiors/semos/library.xstend">
+  <title/>
+    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+   </zone>
+
+   <zone name="int_semos_storage_0" file="interiors/semos/storage_0.xstend">
+  <title/>
+    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+   </zone>
+
+   <zone name="int_semos_storage_-1" file="interiors/semos/storage_-1.xstend">
+  <title/>
+    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+   </zone>
+
+   <zone name="int_semos_bank" file="interiors/semos/bank.xstend">
+  <title/>
+    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+   </zone>
+
+   <zone name="int_semos_townhall" file="interiors/semos/townhall.xstend">
+  <title/>
+    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+   </zone>
+
+   <zone name="int_semos_bakery" file="interiors/semos/bakery.xstend">
+  <title/>
+    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+   </zone>
+
+ <zone name="0_semos_road_e" file="level_0/semos/road_e.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_road_se" file="level_0/semos/road_se.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_plains_s" file="level_0/semos/plains_s.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsSouth"/>
+ </zone>
+
+ <zone name="0_ados_forest_w2" file="level_0/ados/forest_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_ados_rock_w" file="level_0/ados/rock_w.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_ados_rock" file="level_0/ados/rock.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosRock"/>
+ </zone>
+
+ <zone name="0_ados_outside_w" file="level_0/ados/outside_w.xstend">
+  <title/>
+ </zone>
+
+<!--
+ <zone name="0_ados_wall" file="level_0/ados/wall.xstend">
+  <title/>
+ </zone>
+-->
+
+<!--
+ <zone name="0_ados_city_w" file="level_0/ados/city_w.xstend">
+  <title/>
+ </zone>
+
+   <zone name="int_ados_bank" file="interiors/ados/bank.xstend">
+    <title/>
+   </zone>
+
+<!--
+   <zone name="int_ados_haunted_house" file="interiors/ados/haunted_house.xstend">
+    <title/>
+   </zone>
+-->
+
+   <zone name="int_ados_bakery" file="interiors/ados/bakery.xstend">
+    <title/>
+   </zone>
+
+   <zone name="int_ados_library" file="interiors/ados/library.xstend">
+    <title/>
+   </zone>
+
+   <zone name="int_ados_tavern_0" file="interiors/ados/tavern_0.xstend">
+    <title/>
+   </zone>
+
+   <zone name="int_ados_temple" file="interiors/ados/temple.xstend">
+    <title/>
+   </zone>
+
+ <zone name="0_ados_city" file="level_0/ados/city.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosCityInside"/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside"/>
+ </zone>
+
+ <zone name="int_ados_reverse_arrow" file="interiors/ados/reverse_arrow.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_orril_mountain_nw" file="level_0/orril/mountain_nw.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_orril_forest_n" file="level_0/orril/forest_n.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_semos_forest_s" file="level_0/semos/forest_s.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_nalwor_forest_nw" file="level_0/nalwor/forest_nw.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_nalwor_forest_n" file="level_0/nalwor/forest_n.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_nalwor_forest_ne" file="level_0/nalwor/forest_ne.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_ados_swamp" file="level_0/ados/swamp.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosSwamp"/>
+ </zone>
+
+ <zone name="0_orril_mountain_w2" file="level_0/orril/mountain_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_orril_mountain_w" file="level_0/orril/mountain_w.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_orril_castle" file="level_0/orril/castle.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.Orril"/>
+ </zone>
+
+ <zone name="int_orril_castle_0" file="interiors/orril/castle_0.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+ </zone>
+
+ <zone name="0_orril_forest_e" file="level_0/orril/forest_e.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_nalwor_forest_w" file="level_0/nalwor/forest_w.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.Nalwor"/>
+ </zone>
+
+ <zone name="0_nalwor_city" file="level_0/nalwor/city.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_orril_river_s_w2" file="level_0/orril/river_s_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_orril_river_sw" file="level_0/orril/river_sw.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_orril_river_s" file="level_0/orril/river_s.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+ </zone>
+
+ <zone name="int_orril_jynath_house" file="interiors/orril/jynath_house.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+ </zone>
+
+ <zone name="0_orril_river_se" file="level_0/orril/river_se.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_nalwor_river_sw" file="level_0/nalwor/river_sw.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_nalwor_river_s" file="level_0/nalwor/river_s.xstend">
+  <title/>
+ </zone>
+
+<!--
+ <zone name="0_nalwor_river_se" file="level_0/nalwor/river_se.xstend">
+  <title/>
+ </zone>
+-->
+
+<!--
+ <zone name="0_ados_river_s2_w2" file="level_0/ados/river_s2_w2.xstend">
+  <title/>
+ </zone>
+-->
+
+ <zone name="0_athos_ship_w2" file="level_0/athos/ship_w2.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.Athos"/>
+ </zone>
+
+
+ <!--  Level -1 -->
+
+ <zone name="-1_ados_outside_nw" file="level_-1/ados/outside_nw.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest"/> -->
+ </zone>
+
+ <zone name="-1_semos_mine_n2_w2" file="level_-1/semos/mine_n2_w2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-1_semos_mine_n2" file="level_-1/semos/mine_n2.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-1_semos_mine_nw" file="level_-1/semos/mine_nw.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-1_semos_dungeon" file="level_-1/semos/dungeon.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-1_semos_jail" file="level_-1/semos/jail.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWest"/>
+ </zone>
+
+<!--
+ <zone name="-1_semos_catacombs" file="level_-1/semos/catacombs.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> -->
+ </zone>
+-->
+
+ <zone name="-1_orril_mountain_w" file="level_-1/orril/mountain_w.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-1_orril_dungeon" file="level_-1/orril/dungeon.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-1_orril_castle_w" file="level_-1/orril/castle_w.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+ </zone>
+
+ <zone name="-1_orril_castle" file="level_-1/orril/castle.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+ </zone>
+
+
+ <!--  Level -2 -->
+
+ <zone name="-2_ados_outside_nw" file="level_-2/ados/outside_nw.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest"/> -->
+ </zone>
+
+ <zone name="-2_semos_dungeon" file="level_-2/semos/dungeon.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-2_semos_jail" file="level_-2/semos/jail.xstend">
+  <title/>
+ </zone>
+
+<!--
+ <zone name="-2_semos_catacombs" file="level_-2/semos/catacombs.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> -->
+ </zone>
+-->
+
+ <zone name="-2_kotoch_entrance" file="level_-2/kotoch/entrance.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-2_orril_dwarf_mine" file="level_-2/orril/dwarf_mine.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+ </zone>
+
+ <zone name="-2_orril_lich_palace" file="level_-2/orril/lich_palace.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+ </zone>
+
+ <zone name="-2_orril_dungeon" file="level_-2/orril/dungeon.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Level -3 -->
+
+ <zone name="-3_ados_outside_nw" file="level_-3/ados/outside_nw.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest"/> -->
+ </zone>
+
+ <zone name="-3_semos_dungeon" file="level_-3/semos/dungeon.xstend">
+  <title/>
+ </zone>
+
+<!--
+ <zone name="-3_semos_catacombs" file="level_-3/semos/catacombs.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> -->
+ </zone>
+-->
+
+ <zone name="-3_orril_dwarf_blacksmith" file="level_-3/orril/dwarf_blacksmith.xstend">
+  <title/>
+  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+ </zone>
+
+ <zone name="-3_orril_dungeon" file="level_-3/orril/dungeon.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Level -4 -->
+
+ <zone name="-4_semos_dungeon" file="level_-4/semos/dungeon.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Level -5 -->
+
+ <zone name="-5_kanmararn_entrance" file="level_-5/kanmararn/entrance.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Level -6 -->
+
+ <zone name="-6_kanmararn_city" file="level_-6/kanmararn/city.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.Kanmararn"/>
+ </zone>
+
+
+ <!--  Level -7 -->
+
+<!--
+ <zone name="-7_kanmararn_jail" file="level_-7/kanmararn/jail.xstend">
+  <title/>
+ </zone>
+-->
+
+
+ <!--  Level 1 -->
+
+ <zone name="1_kikareukin_cave" file="level_1/kikareukin/cave.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Level 2 -->
+
+ <zone name="2_kikareukin_cave" file="level_2/kikareukin/cave.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Level 3 -->
+
+ <zone name="3_kikareukin_cave" file="level_3/kikareukin/cave.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Level 4 -->
+
+ <zone name="4_kikareukin_cave" file="level_4/kikareukin/cave.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Level 5 -->
+
+ <zone name="5_kikareukin_cave" file="level_5/kikareukin/cave.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Level 6 -->
+
+ <zone name="6_kikareukin_islands" file="level_6/kikareukin/islands.xstend">
+  <title/>
+ </zone>
+
+
+ <!--  Interiors -->
+
+ <zone name="int_afterlife" file="interiors/afterlife.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.Afterlife"/>
+ </zone>
+
+ <zone name="int_admin_playground" file="interiors/admin/playground.xstend">
+  <title/>
+ </zone>
+
+ <zone name="int_pathfinding" file="interiors/pathfinding.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.FeaturesTestArea"/>
+ </zone>
+
+</zones>
