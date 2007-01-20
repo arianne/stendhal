@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 /**
  * Creates a portable NPC which sell foods&drinks at meetings.
  * 
- * As admin use /script maria.groovy to sommon her right next to you. Please put
+ * As admin use /script Maria.class to sommon her right next to you. Please put
  * her back in int_admin_playground after use.
  */
 public class Maria extends ScriptImpl {

@@ -68,7 +68,7 @@ public class AdminSign extends ScriptImpl {
 			storage.put(new Integer(signcounter), sign);
 		} else {
 			// syntax error, print help text
-			sandbox.privateText(player, "This script creates, lists or removes signs. Syntax: \r\nadminsign.groovy <zone> <x> <y> <text> The first 3 parameters can be \"-\".\r\nadminsign.groovy list\r\nadminsign.groovy del <n>");
+			sandbox.privateText(player, "This script creates, lists or removes signs. Syntax: \r\nAdminSign.class <zone> <x> <y> <text> The first 3 parameters can be \"-\".\r\nAdminSign.class list\r\nAdminSign.class del <n>");
 		}
 	}
 
