@@ -2178,6 +2178,28 @@ the right click menu we talked about before.
 		</equipable>
 	</item>
 
+<!-- key section -->
+
+	<item name="dungeon_silver_key">
+		<type class="key" subclass="silver"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<description>A fancy silver key</description>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="lich_gold_key">
+		<type class="key" subclass="gold"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<description>A fancy golden key</description>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 <!--
 This is an attempt on describing a key item.
 My idea is that target_id should be described in the map
