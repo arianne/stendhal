@@ -1579,6 +1579,33 @@
 			<profile name="brave"/>
 		</ai>
 	</creature>
+
+	<creature name="vampire_bride_evil">
+		<type class="vampire" subclass="vampire_bride_evil" tileid="119"/>
+		<attributes>
+			<atk value="70"/>
+			<def value="20"/>
+			<hp value="800"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="20"/>
+		<experience value="345"/>
+		<respawn value="12500"/>
+		<drops>
+			<item value="money" quantity="[10,100]" probability="75"/>
+			<item value="potion" quantity="[1,2]" probability="30"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="heal" params="5,50"/>
+			<profile name="poisonous" params="5,poison"/>
+		</ai>
+	</creature>
+
     <!-- Level 21 -->
 	<creature name="soldier_elf">
 		<type class="elf" subclass="soldier_elf" tileid="58"/>
@@ -2036,7 +2063,35 @@
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
-	<!-- Level 45 -->		
+	<!-- Level 40 -->
+
+	<creature name="vampirette_evil">
+		<type class="vampire" subclass="vampirette_evil" tileid="118"/>
+		<attributes>
+			<atk value="130"/>
+			<def value="22"/>
+			<hp value="140"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="40"/>
+		<experience value="620"/>
+		<respawn value="2500"/>
+		<drops>
+			<item value="money" quantity="[10,50]" probability="100"/>
+			<item value="potion" quantity="[1,2]" probability="30"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="heal" params="5,50"/>
+			<profile name="poisonous" params="15,poison"/>
+		</ai>
+	</creature>
+	<!-- Level 45 -->
+		
 	<creature name="elf_sacerdotist">
 		<type class="elf" subclass="elf_sacerdotist" tileid="80"/>
 		<attributes>
@@ -2225,6 +2280,36 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="heal" params="5,50"/>
+		</ai>
+	</creature>
+	<!-- Level 65 -->
+
+	<creature name="vampire_lord_evil">
+		<type class="undead" subclass="vampire_lord_evil" tileid="120"/>
+		<attributes>
+			<atk value="170"/>
+			<def value="27"/>
+			<hp value="750"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="65"/>
+		<experience value="11500"/>
+		<respawn value="55000"/>
+		<drops>
+			<item value="money" quantity="[15,100]" probability="100"/>
+			<item value="greater_potion" quantity="[1,2]" probability="75"/>
+			<item value="vampire_cloak" quantity="1" probability="5"/>
+			<item value="vampire_sword" quantity="1" probability="1"/>
+			<item value="skull_ring" quantity="1" probability="100"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="heal" params="5,50"/>
+			<profile name="poisonous" params="40,greater_poison"/>
 		</ai>
 	</creature>
 	<!-- Level 70 -->
