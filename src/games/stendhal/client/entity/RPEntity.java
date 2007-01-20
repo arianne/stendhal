@@ -121,7 +121,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	private java.util.List<Sprite> damageSprites;
 	private java.util.List<Long> damageSpritesTimes;
 	private boolean attacked;
-	private boolean attacking;
+	private RPObject.ID attacking;
 	
 	/** What does this do? */
 	private Resolution resolution;
@@ -139,7 +139,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	}
 
 	public boolean isAttacking() {
-		return attacking;
+		return (attacking != null);
 	}
 
 	public String getName() {
@@ -446,6 +446,25 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 							(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) + 2);
 		}
 
+
+		if((attacking != null)
+		 && attacking.equals(client.getPlayer().getID())) {
+			// Draw orange box around
+			Graphics g2d = screen.expose();
+			Rectangle2D rect = getArea();
+
+			Point2D p = new Point.Double(rect.getX(), rect.getY());
+			p = screen.invtranslate(p);
+
+			g2d.setColor(Color.orange);
+			g2d.drawRect(
+				(int) p.getX() + 1,
+				(int) p.getY() + 1,
+				(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS) - 2,
+				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) - 2);
+		}
+
+
 		if (isAttacking() && showBladeStrike) {
 			Rectangle2D rect = getArea();
 			double sx = rect.getMaxX();
@@ -689,7 +708,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// When this entity attacks target.
 	public void onAttack(RPEntity target) {
-		attacking = true;
+		attacking = target.getID();
 	}
 
 	// When attacker attacks this entity.
@@ -699,7 +718,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// When this entity stops attacking
 	public void onStopAttack() {
-		attacking = false;
+		attacking = null;
 	}
 
 	// When attacket stop attacking us
