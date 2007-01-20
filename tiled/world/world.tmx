@@ -282,6 +282,15 @@
  <tileset name="sub_3_orril_dwarf_blacksmith.png" firstgid="1432" tilewidth="64" tileheight="64">
   <image source="sub_3_orril_dwarf_blacksmith.png"/>
  </tileset>
+ <tileset name="sub_1_semos_catacombs" firstgid="1433" tilewidth="64" tileheight="64">
+  <image source="sub_1_semos_catacombs.png"/>
+ </tileset>
+ <tileset name="sub_2_semos_catacombs" firstgid="1449" tilewidth="64" tileheight="64">
+  <image source="sub_2_semos_catacombs.png"/>
+ </tileset>
+ <tileset name="sub_3_semos_catacombs" firstgid="1457" tilewidth="64" tileheight="64">
+  <image source="sub_3_semos_catacombs.png"/>
+ </tileset>
  <layer name="Layer 7" width="52" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQ0AAAgDMJA0/wKwhQ1IevRvuioAAPDcHDgAAADAFQs4bXLxABoAAA==
@@ -302,19 +311,19 @@
    H4sIAAAAAAAAAO3Pxw2AMBQEUVOSqybnUB/TA0hYn1lp7vtylVIuqKf7+r8ePXr06NFTQnr0/MlTU0MtdQE8PQ000hTAM9NCK20BPDsddNIVwPN2evTo0aNHjx49evToKcdzA3PqQNUAGgAA
   </data>
  </layer>
- <layer name="Layer 3" width="52" height="32" visible="0">
+ <layer name="Layer 3" width="52" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SRwoDMQxAUWfhA83NUhbpvffeez1nfk4QSAZiKzK8nUD64CBiTOCQb9+v79ce7dEe7fmHnqg1Jmbl9MRpSQjqkfbftCf8niNOgnrOuAjqueImqOeOh6CesGnP5z1JpJBGBlnkkEfBw54iSiijgipqqKPhYU8TLbTRQRc99DHwsGeIEcaYYIoZ5lg41rOy73ctX3NYY4Mtdtjj4FiPK7RHe7RHe7RHe3zseQJhJLpWABoAAA==
+   H4sIAAAAAAAAAO3WNQ4DMRBAUafYA+3NAkWYmZkZ+8AB83ODKFnJoLH0OmvsL7mwH1LKN8i/S/f9pUd6pEd6TOy5e0o9vOBawsyKePp6npz9CrAnyqyYxh7X3pv0mN+zx8GhniNODvWccXGo54qbQz1Bk57fe+JIIIkU0sggi5yFPXkUUEQJZVRQRc3CnjoaaKKFNjroomdhTx8DDDHCGBNMMTOsZ/HFP3n+2YclVlhjgy12hvWYQnqkR3qkR3qkx8aeNzv02dAAGgAA
   </data>
  </layer>
- <layer name="Layer 2" width="52" height="32" visible="0" opacity="0.6">
+ <layer name="Layer 2" width="52" height="32" opacity="0.39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WyU4CMRyA8RoyD8QJREFUXBA3BARxBWSVRUV5JgFxF1/Pb070jCS043+S32WSNv3aHupfUMpvkL9+816/9EiP9EjPf+hpOkq1HO/0tGnpeKjHa/dNembf08EtAghiESGLe+5wjyUsI4yIxT1dPGAFUaxizeKeR/Swjhg2sGlxz6xJz/Q9W9hGHDtIYBd72Deo54o3RsGZzPnkU6qPAYa+yf8DHCKJI6SQRgbHBvUUaSlpPc80jPCCV60nixxOkMcpznCOC4N6rmkpaz1vNLzjA59az6V7lii4e4CSOxZlVAzqqdBS1Xq+aPjGGD9aTxU11NHADZpooW1Qj0mkR3qkR3qkR3ps7PkFzDHQxwAaAAA=
+   H4sIAAAAAAAAAO3WyVLCQBRA0VBUPogVOCGIA6Io4oCzBARUJnH6JmUKDsDvebOi15qCbuql6mxSlU5uuhcvFLCskEb+e836+6VHeqRHenTq+bAtq40OurZ/LTXWqtvT7+nxzj5cDHzsabBWcwY983bepMecniYeEUYEC1g0uKeFJyxhGSuIGtzzjBesIoY41gzuecUbEljHBjYN7vGb9Py9ZwtJbCOFHewijT2NevLMGI4yt7wHmdHQRic4ub+PDA6QxSGOcIwTjXoKtBSVni4NPfThKj05nOIM57jAJa5wrVHPLS0lpWdAwye+8K303Hh7Ccf7Byh6z6KEskY9ZVoqSs8PDUOMMFZ6KrjDPR5QRQ11NDTq0Yn0SI/0SI/0SI+JPb8sgwsWABoAAA==
   </data>
  </layer>
- <layer name="Layer 1" width="52" height="32" opacity="0.56">
+ <layer name="Layer 1" width="52" height="32" opacity="0.2">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XVU/DUACG4bKlP2hBgru7Mx8uG8NdBzPc3Z2/ydu7cgehzU7JafJc93uTNqd1pCmKQyB/vVK9X/b8vmfYrigjCCKEUYQxhnFkIwe5yLOL3zPBxklMYRozmMUc5pGPAhSiyAI9C2xcxBKWsYJVrGEdxShBKcos0BNh4wY2EUUMcSSQRDkqUIkqC/RssXEbO9jFHvZxgEOD9397b1XeW9X4niM2H+MEpzjDOS5waWJPkJaQCT1XbL7GDW5xh3s84FHXE+PecVX85+2Jzc94wSve8I4PfOp6ErQkLdDzU+nIMPiZS2VPJrL+UY8ZZI/skT2yx8geJ2eiS3cuOjkzXXDDg2rUoBZ1iNj4XrWJ2+OmxaPr8bLZBz8CqEcDGtGkfXfTEhW4x0uLT9fTzeYe9KIPzWhBK9q0/wda4gL3+GkJ6Hr62TyAQQyhHR3oRJf2H0RLUuAekcge2SN7ZI/skT1W7PkC3hBIiwAaAAA=
+   H4sIAAAAAAAAAO3XV0/CUACG4QrhBxFH3HvvLRu3DPfeooi49wQEBAR/pm/vuNRYQmsOyZNw1X5vIDmtsUCSjCry10++94ue3/e49JLkhgdezGIO81hAKcpQjgq9+nsW2biEZaxgFWtYxwYqUYVq1GigZ5ONW9jGDnaxh30coBZ1qEeDBnp8bDzEEfw4RgAnCKIRTWhGiwZ6Ttl4hnNc4BJXuMYN3gySFEIYEYNyLS6u5TYo33PL5jvc4wGPeMIzXvDOPaOIIa5gj4dreXPQ8yr/BgghjIjcgChi+OCeCSSRUrAnV/+3uLwZCSSRwifSyMjfaUgjgy8N9PxUIYoUbMl3TzFK/lFPLoge0SN6RI+SPSbORHPWuWjizDTDAita0YZ2dMCn43lVp94eCy3WrB4bm+1wwIlOdKEbPfJzNy1+FffYaLFn9YyyeQzjmEAv+tCPAfn9gZaAinsctDizeibZPIVpzGAQQxjGiPweREtQxT1qInpEj+gRPaJH9Gix5xuiyU9dABoAAA==
   </data>
  </layer>
  <layer name="Floor" width="52" height="32" opacity="0.46">
