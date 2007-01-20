@@ -215,7 +215,7 @@ public class StendhalRPWorld extends RPWorld {
 		// addArea("0_ados_city_w");
 		{
 			addArea("int_ados_bank");
-			// addArea("int_ados_haunted_house");
+			addArea("int_ados_haunted_house");
 			addArea("int_ados_bakery");
 			addArea("int_ados_library");
 			addArea("int_ados_tavern_0");
@@ -350,28 +350,16 @@ public class StendhalRPWorld extends RPWorld {
 		try {
 			Class entityClass = Class.forName("games.stendhal.server.maps."	+ name);
 
-			boolean implementsIContent = false;
-
-			Class[] interfaces = entityClass.getInterfaces();
-			for (Class interf : interfaces) {
-				if (interf.equals(IContent.class)) {
-					implementsIContent = true;
-					break;
-				}
-			}
-
-			if (implementsIContent == false) {
-				logger.debug("Class don't implement IContent interface.");
+			if(!IContent.class.isAssignableFrom(entityClass)) {
+				logger.info("Class don't implement IContent interface: " + entityClass.getName());
 				return false;
 			}
 
 			logger.info("Loading Zone populate class: " + name);
-			java.lang.reflect.Constructor constr = entityClass
-					.getConstructor();
 
 			// simply creatre a new instance. The constructor creates all
 			// additionally objects
-			constr.newInstance();
+			entityClass.newInstance();
 			return true;
 		} catch (Exception e) {
 			logger.warn("Zone Populate class(" + name + ") loading failed.", e);
