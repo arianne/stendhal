@@ -1580,8 +1580,8 @@
 		</ai>
 	</creature>
 
-	<creature name="vampire_bride_evil">
-		<type class="vampire" subclass="vampire_bride_evil" tileid="119"/>
+	<creature name="vampire_lord_bride_evil">
+		<type class="vampire" subclass="vampire_lord_bride_evil" tileid="119"/>
 		<attributes>
 			<atk value="70"/>
 			<def value="20"/>
@@ -2285,7 +2285,7 @@
 	<!-- Level 65 -->
 
 	<creature name="vampire_lord_evil">
-		<type class="undead" subclass="vampire_lord_evil" tileid="120"/>
+		<type class="vampire" subclass="vampire_lord_evil" tileid="120"/>
 		<attributes>
 			<atk value="170"/>
 			<def value="27"/>
