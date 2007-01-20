@@ -197,7 +197,7 @@ public abstract class ScriptingSandbox {
 
 	public void remove(RPObject object) {
 		try {
-			logger.info("Removing groovy added object: " + object);
+			logger.info("Removing script added object: " + object);
 			String id = object.getID().getZoneID();
 			zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
 			zone.remove(object);
