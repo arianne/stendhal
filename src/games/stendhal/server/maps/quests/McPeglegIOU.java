@@ -37,7 +37,7 @@ public class McPeglegIOU extends AbstractQuest {
 
 	private void step_1() {
 		// find the IOU in a corpse in kanmararn.
-		// this is implemented in kanmararn.groovy
+		// this is implemented in KanmararnSoldiers
 	}
 
 	private void step_2() {
