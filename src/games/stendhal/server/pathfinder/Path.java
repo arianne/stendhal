@@ -64,7 +64,7 @@ public class Path {
 		int rndy = y - entity.getY();
 
 		if (Math.abs(rndx) > Math.abs(rndy)) {
-			if (Math.signum(rndx) < 0) {
+			if (rndx < 0.0) {
 				entity.setDirection(Direction.LEFT);
 				entity.setSpeed(speed);
 			} else {
@@ -72,7 +72,7 @@ public class Path {
 				entity.setSpeed(speed);
 			}
 		} else {
-			if (Math.signum(rndy) < 0) {
+			if (rndy < 0.0) {
 				entity.setDirection(Direction.UP);
 				entity.setSpeed(speed);
 			} else {
