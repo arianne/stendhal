@@ -1432,7 +1432,7 @@ Makes players more offensive
 	 <item name="vampire_cloak">
 		<type class="cloak" subclass="brightred_cloak"/>
 		<description>You see a vibrant red vampire cloak. Wearing it
-		send a shiver down your spine.</description>
+		sends a shiver down your spine.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="12"/>
