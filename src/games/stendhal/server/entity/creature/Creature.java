@@ -995,6 +995,16 @@ public class Creature extends NPC {
 	}
 
 	/**
+	 * returns the value of an ai profile
+	 *
+	 * @param key as defined in creatures.xml
+	 * @return value or null if undefined
+	 */
+	public String getAIProfile(String key) {
+		return aiProfiles.get(key);
+	}
+
+	/**
 	 * is called after the Creature is added to the zone
 	 */
 	public void init() {
