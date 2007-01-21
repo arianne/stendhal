@@ -1580,7 +1580,7 @@
 		</ai>
 	</creature>
 
-	<creature name="vampire_lord_bride_evil">
+	<creature name="vampire_bride">
 		<type class="vampire" subclass="vampire_lord_bride_evil" tileid="119"/>
 		<attributes>
 			<atk value="70"/>
@@ -2065,7 +2065,7 @@
 	</creature>
 	<!-- Level 40 -->
 
-	<creature name="vampirette_evil">
+	<creature name="vampirette">
 		<type class="vampire" subclass="vampirette_evil" tileid="118"/>
 		<attributes>
 			<atk value="130"/>
@@ -2284,7 +2284,7 @@
 	</creature>
 	<!-- Level 65 -->
 
-	<creature name="vampire_lord_evil">
+	<creature name="vampire_lord">
 		<type class="vampire" subclass="vampire_lord_evil" tileid="120"/>
 		<attributes>
 			<atk value="170"/>
@@ -2300,8 +2300,10 @@
 			<item value="money" quantity="[15,100]" probability="100"/>
 			<item value="greater_potion" quantity="[1,2]" probability="75"/>
 			<item value="vampire_cloak" quantity="1" probability="5"/>
-			<item value="vampire_sword" quantity="1" probability="1"/>
-			<item value="skull_ring" quantity="1" probability="100"/>
+		//	<item value="vampire_sword" quantity="1" 
+probability="1"/>
+		//	<item value="skull_ring" quantity="1" 
+probability="100"/>
 		</drops>
 		<equips>
 		</equips>
