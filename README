@@ -71,6 +71,8 @@ Changelog
 - prevented teleporting into a no-teleport map
 - added maps for Kikareukin (not in game yet)
 - added Ados library with Wikipedia interface (not in game yet)
+- creatures now walk around each other
+- fixed a problem which caused jumply movement of slow creatures and NPCs.
 
 0.56  Dec 19, 2006
 - added Ados City with new people
