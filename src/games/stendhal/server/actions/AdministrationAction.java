@@ -479,13 +479,15 @@ public class AdministrationAction extends ActionListener {
 			Player changed = StendhalRPRuleProcessor.get().getPlayer(name);
 
 			if (changed == null) {
-				logger.debug("Player \"" + name + "\" not found");
+				logger.debug("Player \"" + name + "\" not found.");
+				player.sendPrivateText("Player \"" + name + "\" not found.");
 				return;
 			}
 
 			String slotName = action.get("slot");
 			if (!changed.hasSlot(slotName)) {
 				logger.debug("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
+				player.sendPrivateText("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
 				return;
 			}
 
@@ -510,7 +512,11 @@ public class AdministrationAction extends ActionListener {
 					slot.add(item);
 
 					changed.notifyWorldAboutChanges();
+				} else {
+					player.sendPrivateText("Not an item.");
 				}
+			} else {
+				player.sendPrivateText("Slot is full.");
 			}
 		}
 
