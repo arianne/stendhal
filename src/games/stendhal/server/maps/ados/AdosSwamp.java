@@ -80,7 +80,7 @@ public class AdosSwamp implements ZoneConfigurator {
 						null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						if (player.getLevel() >= 30) {
+						if (player.getLevel() >= 20) {
 							StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_ados_wall_n");
 							player.teleport(zone, 100, 86, Direction.DOWN, null);
 						} else {

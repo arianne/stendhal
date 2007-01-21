@@ -28,7 +28,7 @@ So what are you waiting for?! A whole new world awaits...
 
 Current Version
 ---------------
-Version 0.56
+Version 0.57
 
 
 How to play
@@ -38,7 +38,7 @@ You also need Java JRE 1.5 ( http://www.java.com/en/download )
 Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
-  java -jar stendhal-0.56.jar
+  java -jar stendhal-0.57.jar
 Alternatively you can run it using Java Webstart technology at:
   http://stendhal.game-host.org/stendhal.jnlp
 
@@ -53,11 +53,24 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
-0.57  Jan XX, 2007
+0.57  Jan 27, 2007
 - quest reward items cannot be given to other players
 - server implemenation of ignore list for /msg (gui still misssing)
 - enlarged columns param2 in table gameEvents to upto 1024 characters
-
+  (256 for MySQL versions below 5.0)
+- added a translation framework
+- improved grammar (pluralisation and other small things)
+- fixed a problem with the map-item in -6_kanmararn_city
+- fixed a problem with marked_scrolls pointing to removed zones
+- improved auto-update to retry in case of server problem
+- some minor map fixes
+- deathmatch
+  - require level 20
+  - punishment for logout-cowards
+  - only the player doing the deathmatch gets xp
+- prevented teleporting into a no-teleport map
+- added maps for Kikareukin (not in game yet)
+- added Ados library with Wikipedia interface (not in game yet)
 
 0.56  Dec 19, 2006
 - added Ados City with new people
