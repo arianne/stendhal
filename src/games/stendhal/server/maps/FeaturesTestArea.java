@@ -16,11 +16,16 @@ import games.stendhal.server.rule.defaultruleset.DefaultItem;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 
-public class FeaturesTestArea implements IContent {
-	private StendhalRPZone zone;
+public class FeaturesTestArea implements ZoneConfigurator, IContent {
+	private static final Logger logger = Log4J.getLogger(FeaturesTestArea.class);
+
 	private DefaultEntityManager manager;
 	
 
@@ -50,16 +55,33 @@ public class FeaturesTestArea implements IContent {
 	}
 
 	public FeaturesTestArea() {
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_pathfinding"));
 		manager = (DefaultEntityManager) StendhalRPWorld.get()
 				.getRuleManager().getEntityManager();
-		
-		createDoorAndKey();
-		attackableAnimal();
+
+		/**
+		 * When ZoneConfigurator aware loader is used, remove this!!
+		 */
+		configureZone(
+			(StendhalRPZone) StendhalRPWorld.get().getRPZone(
+				new IRPZone.ID("int_pathfinding")),
+			java.util.Collections.EMPTY_MAP);
 	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		createDoorAndKey(zone);
+		attackableAnimal(zone);
+	}
+
 	
-	private void createDoorAndKey() {
+	private void createDoorAndKey(StendhalRPZone zone) {
 		Portal portal = new LockedDoor("key_golden", "skulldoor", Direction.DOWN);
 		zone.assignRPObjectID(portal);
 		portal.setX(50);
@@ -97,7 +119,7 @@ public class FeaturesTestArea implements IContent {
 	}
 	
 	
-	private void attackableAnimal() {
+	private void attackableAnimal(StendhalRPZone zone) {
 
 		Creature creature = new AttackableCreature(manager.getCreature("orc"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 4, 56, creature, 1);

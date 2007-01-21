@@ -15,20 +15,37 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
-public class SemosCityOutside {
+public class SemosCityOutside implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
 
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_semos_city"));
+
+		configureZone(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("0_semos_city")),
+			java.util.Collections.EMPTY_MAP);
+	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
 		buildSemosCityAreaPortals(zone);
 		buildSemosCityAreaSigns(zone);
 		buildSemosCityAreaChest(zone);
@@ -39,6 +56,7 @@ public class SemosCityOutside {
 		buildSemosCityAreaDiogenes(zone);
 		buildSemosCityAreaCarmen(zone);
 	}
+
 
 	private void buildSemosCityAreaPortals(StendhalRPZone zone) {
 		Portal portal = new Portal();

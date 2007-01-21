@@ -13,10 +13,11 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 import marauroa.common.game.IRPZone;
 
-public class SemosPlainsNorth {
+public class SemosPlainsNorth implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 
 	public void build() {
@@ -31,6 +32,22 @@ public class SemosPlainsNorth {
 		buildSemosCatacombs3Area((StendhalRPZone) world
 					 .getRPZone(new IRPZone.ID("-3_semos_catacombs")));
 	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * For now - Split to one class per zone
+		 */
+		build();
+	}
+
 
 	private void buildSemosNorthPlainsArea(StendhalRPZone zone) {
 

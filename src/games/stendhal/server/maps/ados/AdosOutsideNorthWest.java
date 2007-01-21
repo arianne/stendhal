@@ -19,15 +19,17 @@ import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
-public class AdosOutsideNorthWest {
+public class AdosOutsideNorthWest implements ZoneConfigurator {
 	
 	private NPCList npcs = NPCList.get();;
 	private ShopList shops = ShopList.get();
@@ -83,6 +85,22 @@ public class AdosOutsideNorthWest {
 		buildZooSub3Area((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 		"-3_ados_outside_nw")));
 	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * For now - Split to one class per zone
+		 */
+		build();
+	}
+
 
 	private void buildZooArea(StendhalRPZone zone) {
 		Sign sign = new Sign();

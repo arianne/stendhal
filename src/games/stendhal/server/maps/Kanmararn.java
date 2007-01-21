@@ -10,18 +10,37 @@ import games.stendhal.server.pathfinder.Path;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
-public class Kanmararn implements IContent {
+public class Kanmararn implements ZoneConfigurator, IContent {
 	private NPCList npcs;
 	public Kanmararn() {
 		this.npcs = NPCList.get();
 		
+		/**
+		 * When ZoneConfigurator aware loader is used, remove this!!
+		 */
 		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone cityZone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("-6_kanmararn_city"));
-		buildKanmararnCityJames(cityZone);
-		buildKanmararnCityHenry(cityZone);
+
+		configureZone(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("-6_kanmararn_city")),
+			java.util.Collections.EMPTY_MAP);
+	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		buildKanmararnCityJames(zone);
+		buildKanmararnCityHenry(zone);
 	}
 
 

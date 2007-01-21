@@ -14,6 +14,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.WikipediaAccess;
 
@@ -30,10 +31,10 @@ import marauroa.common.game.IRPZone;
  *
  * @author hendrik
  */
-public class AdosCityInside {
+public class AdosCityInside implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
-	
+
 	
 	/**
 	 * build the city insides
@@ -47,6 +48,22 @@ public class AdosCityInside {
 		buildLibrary((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_library")));
 		buildHauntedHouse((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_haunted_house")));
 	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * For now - Split to one class per zone
+		 */
+		build();
+	}
+
 
 	private void buildBank(StendhalRPZone zone) {
 

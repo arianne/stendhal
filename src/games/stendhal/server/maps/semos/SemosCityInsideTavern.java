@@ -12,32 +12,60 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
-public class SemosCityInsideTavern {
+public class SemosCityInsideTavern implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
 
 	public void build() {
-		buildSemosTavernPortals();
-		buildSemosTavernLevel0Margaret();
-		buildSemosTavernLevel0XinBlanca();
-		buildSemosTavernLevel0Ricardo();
-		buildSemosTavernLevel1Ouchit();
-		buildSemosTavernLevel1McPegleg();
+		StendhalRPWorld	world = StendhalRPWorld.get();
+
+		buildSemosTavernLevel0(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("int_semos_tavern_0")));
+
+		buildSemosTavernLevel1(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("int_semos_tavern_1")));
 	}
 
-	private void buildSemosTavernPortals() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-		"int_semos_tavern_0"));
 
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * For now - Split to one class per zone
+		 */
+		build();
+	}
+
+
+	/*
+	 * Level 0 (ground level)
+	 */
+	private void buildSemosTavernLevel0(StendhalRPZone zone) {
+		buildSemosTavernLevel0Portals(zone);
+		buildSemosTavernLevel0Margaret(zone);
+		buildSemosTavernLevel0XinBlanca(zone);
+		buildSemosTavernLevel0Ricardo(zone);
+	}
+
+	private void buildSemosTavernLevel0Portals(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(22);
@@ -52,22 +80,9 @@ public class SemosCityInsideTavern {
 		portal.setNumber(1);
 		portal.setDestination("int_semos_tavern_1", 0);
 		zone.addPortal(portal);
-				
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_semos_tavern_1"));
-
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.set(4, 4);
-		portal.setNumber(0);
-		portal.setDestination("int_semos_tavern_0", 1);
-		zone.addPortal(portal);
 	}
 
-	private void buildSemosTavernLevel0Margaret() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_semos_tavern_0"));
-		
+	private void buildSemosTavernLevel0Margaret(StendhalRPZone zone) {
 		SpeakerNPC margaret = new SpeakerNPC("Margaret") {
 			@Override
 			protected void createPath() {
@@ -103,9 +118,7 @@ public class SemosCityInsideTavern {
 		zone.addNPC(margaret);
 	}		
 
-	private void buildSemosTavernLevel0XinBlanca() {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-					"int_semos_tavern_0"));
+	private void buildSemosTavernLevel0XinBlanca(final StendhalRPZone zone) {
 		SpeakerNPC xinBlanca = new SpeakerNPC("Xin Blanca") {
 			@Override
 			protected void createPath() {
@@ -131,8 +144,6 @@ public class SemosCityInsideTavern {
 					"Have a look at the blackboards on the wall to see my offers.",
 					null);
 				addGoodbye();
-				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
-						.getRPZone(new IRPZone.ID("int_semos_tavern_0"));
 				Blackboard board = new Blackboard(false);
 				zone.assignRPObjectID(board);
 				board.set(2, 11);
@@ -156,10 +167,7 @@ public class SemosCityInsideTavern {
 		zone.addNPC(xinBlanca);
 	}
 
-	private void buildSemosTavernLevel0Ricardo() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_semos_tavern_0"));
-
+	private void buildSemosTavernLevel0Ricardo(StendhalRPZone zone) {
 		CroupierNPC ricardo = new CroupierNPC("Ricardo") {
 			@Override
 			protected void createPath() {
@@ -193,10 +201,26 @@ public class SemosCityInsideTavern {
 		zone.addNPC(ricardo);		
 	}
 
-	private void buildSemosTavernLevel1Ouchit() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_semos_tavern_1"));
-		
+
+	/*
+	 * Level 1 (upstairs)
+	 */
+	private void buildSemosTavernLevel1(StendhalRPZone zone) {
+		buildSemosTavernLevel1Portals(zone);
+		buildSemosTavernLevel1Ouchit(zone);
+		buildSemosTavernLevel1McPegleg(zone);
+	}
+
+	private void buildSemosTavernLevel1Portals(StendhalRPZone zone) {
+		Portal portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.set(4, 4);
+		portal.setNumber(0);
+		portal.setDestination("int_semos_tavern_0", 1);
+		zone.addPortal(portal);
+	}
+
+	private void buildSemosTavernLevel1Ouchit(StendhalRPZone zone) {
 		SpeakerNPC ouchit = new SpeakerNPC("Ouchit") {
 			@Override
 			protected void createPath() {
@@ -227,9 +251,7 @@ public class SemosCityInsideTavern {
 		zone.addNPC(ouchit);
 	}
 
-	private void buildSemosTavernLevel1McPegleg() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("int_semos_tavern_1"));
-
+	private void buildSemosTavernLevel1McPegleg(StendhalRPZone zone) {
 		// Adding a new NPC that buys some of the stuff that Xin doesn't
 		SpeakerNPC mcpegleg = new SpeakerNPC("McPegleg") {
 			@Override

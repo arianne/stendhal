@@ -22,11 +22,12 @@ import games.stendhal.server.rule.defaultruleset.DefaultItem;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
 
-public class Orril implements IContent {
+public class Orril implements ZoneConfigurator, IContent {
 
 	private NPCList npcs;
 	
@@ -35,7 +36,25 @@ public class Orril implements IContent {
 	public Orril() {
 		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
-		
+
+		/**
+		 * When ZoneConfigurator aware loader is used, remove this!!
+		 */
+		configureZone(null, java.util.Collections.EMPTY_MAP);
+	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * For now - 
+		 */
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		buildJynathHouseArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
@@ -52,6 +71,7 @@ public class Orril implements IContent {
 		buildCampfireArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 		"0_orril_river_s")));
 	}
+
 
 	private void buildCastleDungeonArea() {
 		StendhalRPWorld world = StendhalRPWorld.get();

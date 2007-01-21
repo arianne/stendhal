@@ -7,10 +7,12 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
@@ -19,19 +21,36 @@ import marauroa.common.game.IRPZone;
  *
  * @author hendrik
  */
-public class AdosCityOutside {
+public class AdosCityOutside implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
+
 
 	/**
 	 * builds the Ados City.
 	 */
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_ados_city"));
+
+		configureZone(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("0_ados_city")),
+			java.util.Collections.EMPTY_MAP);
+	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
 		buildAdosCityAreaPortals(zone);
 		buildFidorea(zone);
 		buildKids(zone);
 	}
+
 
 	private void buildAdosCityAreaPortals(StendhalRPZone zone) {
 		Portal portal = new Portal();

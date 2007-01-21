@@ -1,20 +1,38 @@
 package games.stendhal.server.maps.semos;
 
+import java.util.Map;
+
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.maps.ZoneConfigurator;
 import marauroa.common.game.IRPZone;
 
-public class SemosPlainsSouth {
+public class SemosPlainsSouth implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
-		buildSemosSouthPlainsArea((StendhalRPZone) world
-				.getRPZone(new IRPZone.ID("0_semos_plains_s")));
+		configureZone(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("0_semos_plains_s")),
+			java.util.Collections.EMPTY_MAP);
 	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		buildSemosSouthPlainsArea(zone);
+	}
+
 
 	private void buildSemosSouthPlainsArea(StendhalRPZone zone) {
 		Sign sign = new Sign();

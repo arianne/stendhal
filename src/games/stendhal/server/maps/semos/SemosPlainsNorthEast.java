@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.HashMap;
@@ -15,14 +16,29 @@ import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
-public class SemosPlainsNorthEast {
+public class SemosPlainsNorthEast implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		buildSemosNorthEastPlainsArea((StendhalRPZone) world
-				.getRPZone(new IRPZone.ID("0_semos_plains_ne")));
+		configureZone(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("0_semos_plains_ne")),
+			java.util.Collections.EMPTY_MAP);
 	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		buildSemosNorthEastPlainsArea(zone);
+	}
+
 
 	private void buildSemosNorthEastPlainsArea(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Jenny") {

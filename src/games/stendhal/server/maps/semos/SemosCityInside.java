@@ -20,11 +20,12 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.scripting.ScriptingNPC;
 import marauroa.common.game.IRPZone;
 
-public class SemosCityInside {
+public class SemosCityInside implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
 
@@ -46,6 +47,21 @@ public class SemosCityInside {
 			"int_semos_townhall")));
 		buildSemosBakeryArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_bakery")));
+	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * For now - Split to one class per zone
+		 */
+		build();
 	}
 
 

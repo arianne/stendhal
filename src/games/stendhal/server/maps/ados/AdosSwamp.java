@@ -8,23 +8,41 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.maps.ZoneConfigurator;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
 /**
  * Entrance to Deathmatch
  */
-public class AdosSwamp {
+public class AdosSwamp implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();;
 	
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		buildDeathmatchRecruiter((StendhalRPZone) world.getRPZone(new IRPZone.ID(
-			"0_ados_swamp")));
+
+		configureZone(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("0_ados_swamp")),
+			java.util.Collections.EMPTY_MAP);
 	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		buildDeathmatchRecruiter(zone);
+	}
+
 
 	private void buildDeathmatchRecruiter(StendhalRPZone zone) {
 		

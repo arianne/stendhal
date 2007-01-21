@@ -11,28 +11,59 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
-public class AdosMountainsNorthWest {
+public class AdosMountainsNorthWest implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();;
 	private ShopList shops = ShopList.get();
-	
+
+
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
+
 		buildMagicianHouseArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 						"int_ados_magician_house")));
-	}	
+
+		buildMagicianHouseOutside(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("0_ados_mountain_nw")));
+	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * For now - Split to one class per zone
+		 */
+		build();
+	}
+
+
+	private void buildMagicianHouseOutside(StendhalRPZone zone) {
+		Portal portal = new Portal();
+		zone.assignRPObjectID(portal);
+		portal.setX(75);
+		portal.setY(50);
+		portal.setNumber(0);
+		portal.setDestination("int_ados_magician_house", 0);
+		zone.addPortal(portal);
+	}
 	
 	private void buildMagicianHouseArea(StendhalRPZone zone) {
-		StendhalRPZone zoneOutside = (StendhalRPZone) 
-			StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_ados_mountain_nw"));
-
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(12);
@@ -40,14 +71,6 @@ public class AdosMountainsNorthWest {
 		portal.setNumber(0);
 		portal.setDestination("0_ados_mountain_nw", 0);
 		zone.addPortal(portal);
-
-		portal = new Portal();
-		zoneOutside.assignRPObjectID(portal);
-		portal.setX(75);
-		portal.setY(50);
-		portal.setNumber(0);
-		portal.setDestination("int_ados_magician_house", 0);
-		zoneOutside.addPortal(portal);
 
 		SpeakerNPC npc = new SpeakerNPC("Haizen") {
 			@Override
