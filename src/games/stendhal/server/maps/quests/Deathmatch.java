@@ -7,6 +7,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.ArenaCreature;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -176,7 +177,7 @@ public class Deathmatch extends AbstractQuest {
 									if (creature.getName().equals(daily)) {
 										int x = player.getX() + 1; 
 										int y = player.getY() + 1;
-										add(zone, creature, x, y);
+										add(zone, creature, x, y, player);
 										break;
 									}
 								}
@@ -212,10 +213,8 @@ public class Deathmatch extends AbstractQuest {
 					}
 					int x = player.getX(); 
 					int y = player.getY();
-					Creature mycreature = add(zone, creatureToSpawn, x, y);
+					DeathMatchCreature mycreature = add(zone, creatureToSpawn, x, y, player);
 					if (mycreature != null) {
-						mycreature.clearDropItemList();
-						mycreature.attack(player);
 						spawnedCreatures.add(mycreature);
 						questLevel = Integer.toString(currentLevel + 1);
 					}
@@ -405,12 +404,17 @@ public class Deathmatch extends AbstractQuest {
 		zone.addNPC(npc);
 	}
 
-	private Creature add(StendhalRPZone zone, Creature template, int x, int y) {
-		Creature creature = new ArenaCreature(template.getInstance(), arena.getShape());
+	private DeathMatchCreature add(StendhalRPZone zone, Creature template, int x, int y, Player player) {
+		DeathMatchCreature creature = new DeathMatchCreature(new ArenaCreature(template.getInstance(), arena.getShape()));
 		zone.assignRPObjectID(creature);
 		if (StendhalRPAction.placeat(zone, creature, x, y, arena.getShape())) {
 			zone.add(creature);
 			StendhalRPRuleProcessor.get().addNPC(creature);
+
+			creature.clearDropItemList();
+			creature.attack(player);
+			creature.setPlayerToReward(player);
+
 		} else {
 			logger.info(" could not add a creature: " + creature);
 			creature = null;
