@@ -128,7 +128,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 		String[] names = {"Jens", "George", "Anna"};
 		String[] classes = {"kid3npc", "kid4npc", "kid5npc"};
 		Path.Node[] start = new Path.Node[] {new Path.Node(40, 28), new Path.Node(40, 40), new Path.Node(45, 28)};
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 3; i++) {
 		SpeakerNPC npc = new SpeakerNPC(names[i]) {
 			@Override
 			protected void createPath() {
@@ -154,12 +154,14 @@ public class AdosCityOutside implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			    add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, ConversationStates.IDLE,
-			  		"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. Bye.",
-			    	null);
+				// Anna is special because she has a quest
+				if (!this.getName().equals("Anna")) {
+					add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, ConversationStates.IDLE,
+						"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. Bye.",
+						null);
+				}
 			}
 		};
-
 		npcs.add(npc);
 
 		zone.assignRPObjectID(npc);
@@ -169,46 +171,5 @@ public class AdosCityOutside implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.addNPC(npc);
 		}
-		// sorry hendrik this is an ugly solution to what was pretty code
-		SpeakerNPC npc = new SpeakerNPC(names[2]) {
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(40,28));
-				nodes.add(new Path.Node(40,31));
-				nodes.add(new Path.Node(34,31));
-				nodes.add(new Path.Node(34,35));
-				nodes.add(new Path.Node(39,35));
-				nodes.add(new Path.Node(39,40));
-				nodes.add(new Path.Node(40,40));
-				nodes.add(new Path.Node(40,38));
-				nodes.add(new Path.Node(45,38));
-				nodes.add(new Path.Node(45,42));
-				nodes.add(new Path.Node(51,42));
-				nodes.add(new Path.Node(51,36));
-				nodes.add(new Path.Node(46,36));
-				nodes.add(new Path.Node(46,29));
-				nodes.add(new Path.Node(45,29));
-				nodes.add(new Path.Node(45,28));
-				setPath(nodes, true);
-			}
-
-			@Override
-			protected void createDialog() {
-			    //  add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, ConversationStates.IDLE,
-			    //		"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. Bye.",
-			    //   	null);
-			    addGoodbye("Bye bye!");
-			}
-		};
-
-		npcs.add(npc);
-
-		zone.assignRPObjectID(npc);
-		npc.put("class", classes[2]);
-		npc.set(start[2].x, start[2].y);
-		npc.setDirection(Direction.DOWN);
-		npc.initHP(100);
-		zone.addNPC(npc);
 	}
 }
