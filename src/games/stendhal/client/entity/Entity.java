@@ -207,6 +207,13 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		this.dy = direction.getdy() * speed;
 		this.speed = speed;
 
+		if ((direction == Direction.LEFT) || (direction == Direction.LEFT)) {
+			this.y = y;
+		} else if ((direction == Direction.UP) || (direction == Direction.DOWN)) {
+			this.x = x;
+		}
+
+
 		/*
 		if (x != this.x || y != this.y) {
 			System.err.println(System.currentTimeMillis() + " " + this + " " + x + " / " + this.x + "          " + y + " / " + this.y);
