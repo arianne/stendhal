@@ -14,19 +14,25 @@ package games.stendhal.server.entity;
 
 import games.stendhal.common.Level;
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.*;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.ActionManager;
+
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
@@ -34,6 +40,7 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.game.Statistics;
+
 import org.apache.log4j.Logger;
 
 public abstract class RPEntity extends Entity {
@@ -69,6 +76,7 @@ public abstract class RPEntity extends Entity {
 	private RPEntity attackTarget;
 
 	private Map<RPEntity, Integer> damageReceived;
+	private Set<Player> playersToReward;
 
 	private int totalDamageReceived;
 
@@ -126,6 +134,7 @@ public abstract class RPEntity extends Entity {
 		super(object);
 		attackSource = new LinkedList<RPEntity>();
 		damageReceived = new HashMap<RPEntity, Integer>();
+		playersToReward = new HashSet<Player>();
 		totalDamageReceived = 0;
 	}
 
@@ -133,6 +142,7 @@ public abstract class RPEntity extends Entity {
 		super();
 		attackSource = new LinkedList<RPEntity>();
 		damageReceived = new HashMap<RPEntity, Integer>();
+		playersToReward = new HashSet<Player>();
 		totalDamageReceived = 0;
 	}
 
@@ -445,6 +455,7 @@ public abstract class RPEntity extends Entity {
 		} else {
 			damageReceived.put(who, damage);
 		}
+		addPlayersToReward(who);
 
 		if (leftHP > 0) {
 			setHP(leftHP);
@@ -453,6 +464,17 @@ public abstract class RPEntity extends Entity {
 		}
 
 		notifyWorldAboutChanges();
+	}
+
+	/**
+	 * Manages a list of players to reward XP in case this creature is killed.
+	 *
+	 * @param player Player
+	 */
+	protected void addPlayersToReward(RPEntity player) {
+		if (player instanceof Player) {
+			playersToReward.add((Player) player);
+		}
 	}
 
 	/**
@@ -504,11 +526,14 @@ public abstract class RPEntity extends Entity {
 			int xpReward = (int) (oldxp * 0.05);
 
 			// for everyone who helped killing this RPEntity:
-			for (Map.Entry<RPEntity, Integer> entry : damageReceived.entrySet()) {
-				int damageDone = entry.getValue().intValue();
-				RPEntity entity = entry.getKey();
+			for (Player player : playersToReward) {
+				Integer temp = damageReceived.get(player);
+				if (temp == null) {
+					continue;
+				}
+				int damageDone = temp.intValue();
 
-				String name = (entity.has("name") ? entity.get("name") : entity
+				String name = (player.has("name") ? player.get("name") : player
 						.get("type"));
 				logger.debug(name + " did " + damageDone + " of "
 						+ totalDamageReceived + ". Reward was " + xpReward);
@@ -516,7 +541,7 @@ public abstract class RPEntity extends Entity {
 				int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
 
 				/** We limit xp gain for up to eight levels difference */
-				double gainXpLimitation = 1 + ((oldlevel - entity.getLevel()) / (20.0));
+				double gainXpLimitation = 1 + ((oldlevel - player.getLevel()) / (20.0));
 				if (gainXpLimitation < 0) {
 					gainXpLimitation = 0;
 				}
@@ -528,32 +553,29 @@ public abstract class RPEntity extends Entity {
 				logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
 						+ totalDamageReceived + "\t" + gainXpLimitation);
 
-				if (entity instanceof Player) // XP reward only for players
-				{
-					Player p = (Player) entity;
-					int reward = (int) (xpEarn * gainXpLimitation);
-					
-					// We ensure that the player gets at least 1 experience
-					// point, because getting nothing lowers motivation.
-					if (reward == 0) {
-						reward = 1;
-					}						 
-					
-					p.addXP(reward);
-					
-					// find out if the player killed this RPEntity on his own
-					// TODO: don't overwrite solo with shared.
-					if (damageDone == totalDamageReceived) {
-						p.setKill(getName(), "solo");
-					} else if (!p.hasKilledSolo(getName())) {
-						p.setKill(getName(), "shared");
-					}
+				int reward = (int) (xpEarn * gainXpLimitation);
+				
+				// We ensure that the player gets at least 1 experience
+				// point, because getting nothing lowers motivation.
+				if (reward == 0) {
+					reward = 1;
+				}						 
+				
+				player.addXP(reward);
+				
+				// find out if the player killed this RPEntity on his own
+				// TODO: don't overwrite solo with shared.
+				if (damageDone == totalDamageReceived) {
+					player.setKill(getName(), "solo");
+				} else if (!player.hasKilledSolo(getName())) {
+					player.setKill(getName(), "shared");
 				}
-				entity.notifyWorldAboutChanges();
+				player.notifyWorldAboutChanges();
 			}
 		}
 
 		damageReceived.clear();
+		playersToReward.clear();
 		totalDamageReceived = 0;
 
 		// Stats about dead
