@@ -2,7 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -175,7 +175,8 @@ public class ToysCollector extends AbstractQuest {
 					   				if (missing.size() > 0) {
 										engine.say("Thank you very much! Do you have any more toys for me?");
 									} else {
-									    Item pie = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie");
+									    StackableItem pie = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie");
+									    pie.setQuantity(3);
 									    player.equip(pie, true);
 										player.addXP(100);
 										engine.say("This is lovely! These toys will keep me happy for ages!");
