@@ -76,7 +76,8 @@ public abstract class RPEntity extends Entity {
 	private RPEntity attackTarget;
 
 	private Map<RPEntity, Integer> damageReceived;
-	private Set<Player> playersToReward;
+	/** list of players which are to reward with xp on killing this creature */
+	protected Set<Player> playersToReward;
 
 	private int totalDamageReceived;
 
