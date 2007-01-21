@@ -160,6 +160,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 						"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. Bye.",
 						null);
 				}
+				addGoodbye("Bye bye!");
 			}
 		};
 		npcs.add(npc);
