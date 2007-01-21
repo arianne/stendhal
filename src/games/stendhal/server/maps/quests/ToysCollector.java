@@ -153,7 +153,7 @@ public class ToysCollector extends AbstractQuest {
 								pie.setQuantity(3);
 								player.equip(pie, true);
 								player.addXP(100);
-								engine.say("This is lovely! These toys will keep me happy for ages!");
+								engine.say("These toys will keep me happy for ages! Please take these pies. Arlindo baked them for us but I think you should have them.");
 								player.setQuest("toys_collector", "done");
 								player.notifyWorldAboutChanges();
 							}
@@ -174,7 +174,7 @@ public class ToysCollector extends AbstractQuest {
 					return !neededToys.contains(text);
 				}
 			},
-			ConversationStates.QUESTION_1, "This is not a toy", null);
+			ConversationStates.QUESTION_1, "That's not a good toy!", null);
 
 		npc.add(ConversationStates.ATTENDING, "no",
 			new SpeakerNPC.ChatCondition() {
