@@ -107,7 +107,7 @@ public class Deathmatch extends AbstractQuest {
 			// the player wants to leave the game
 			// this is delayed so the player can see the taunting
 			if("bail".equals(questState)) {
-				if(questLast != null && (new Date()).getTime() - new Long( questLast) > bailDelay ) {
+				if(questLast != null && (new Date()).getTime() - Long.parseLong(questLast) > bailDelay ) {
 					questState = "cancel";
 					player.setQuest("deathmatch", questState);
 					// We assume that the player only carries one trophy helmet.
@@ -115,7 +115,7 @@ public class Deathmatch extends AbstractQuest {
 					if(helmet != null) {
 						int defense = 1;
 						if(helmet.has("def")) {
-							defense = new Integer(helmet.get("def"));
+							defense = helmet.getInt("def");
 						}
 						defense--;
 						helmet.put("def",""+defense);
@@ -153,9 +153,9 @@ public class Deathmatch extends AbstractQuest {
 				return;
 			}
 			// save a little processing time and do things only every spawnDelay miliseconds 
-			if(questLast != null && (new Date()).getTime() - new Long( questLast) > spawnDelay )
+			if(questLast != null && (new Date()).getTime() - Long.parseLong(questLast) > spawnDelay )
 				{
-				int currentLevel = new Integer( questLevel );
+				int currentLevel = Integer.parseInt(questLevel);
 				if(currentLevel > player.getLevel() + 7) {
 					boolean done = true;
 					// check if all our enemies are dead
@@ -188,7 +188,7 @@ public class Deathmatch extends AbstractQuest {
 					}
 				} else {
 					// spawn the next stronger creature
-					int k = new Integer(questLevel);
+					int k = Integer.parseInt(questLevel);
 					List<Creature> possibleCreaturesToSpawn = new ArrayList<Creature>();
 					int lastLevel = 0;
 					for (Creature creature : sortedCreatures) {
@@ -261,7 +261,7 @@ public class Deathmatch extends AbstractQuest {
 				}
 				int defense = 1;
 				if(helmet.has("def")) {
-					defense = new Integer(helmet.get("def"));
+					defense = helmet.getInt("def");
 				}
 				defense++;
 				int maxdefense = 5 + (player.getLevel() / 5);
