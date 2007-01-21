@@ -12,14 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
-
 import games.stendhal.common.Debug;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
@@ -28,6 +20,17 @@ import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.Configuration;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
@@ -48,6 +51,14 @@ class PlayerRPClass {
 
 	/** only log the first exception while reading welcome URL */
 	private static boolean firstWelcomeException = true;
+
+	/** these items should be bound */
+	private static final List<String> itemsToBind = Arrays.asList(
+					"dungeon_silver_key", "lich_gold_key",  
+					"golden_armor", "golden_boots", "golden_helmet", "golden_legs", "golden_shield", 
+					"steel_boots", "trophy_helmet",
+					"marked_scroll");
+
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -374,6 +385,8 @@ class PlayerRPClass {
 										entity.put(attribute, item.get(attribute));
 									}
 								}
+								
+								boundOldItemsToPlayer(player, entity);
 
 								slot.add(entity);
 							}
@@ -386,7 +399,7 @@ class PlayerRPClass {
 					logger.warn("player " + player.getName()
 							+ " does not have the slot " + slotName);
 				}
-			} catch (Exception e) {
+			} catch (RuntimeException e) {
 				logger.error("cannot create player", e);
 				if (player.hasSlot(slotName)) {
 					RPSlot slot = player.getSlot(slotName);
@@ -396,26 +409,49 @@ class PlayerRPClass {
 		}
 	}
 
-	/** send a welcome message to the player which can be configured
-	 *  in marauroa.ini file as "server_welcome". If the value is
-	 *  an http:// adress, the first line of that adress is read
-	 *  and used as the message 
+	/**
+	 * binds special items to the player.
+	 *
+	 * @param player Player
+	 * @param item Item
+	 */
+	private static void boundOldItemsToPlayer(Player player, Item item) {
+
+		// No special processing needed, if the item is already bound
+		if (item.has("bound")) {
+			return;
+		}
+
+		if (itemsToBind.contains(item.getName())) {
+			item.put("bound", player.getName());
+		}
+	}
+
+	/** 
+	 * send a welcome message to the player which can be configured
+	 * in marauroa.ini file as "server_welcome". If the value is
+	 * an http:// adress, the first line of that adress is read
+	 * and used as the message
+	 *
+	 * @param player Player
 	 */
 	static void welcome(Player player) {
 		String msg = "This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne";
 		try {
 			Configuration config = Configuration.getConfiguration();
-			msg = config.get("server_welcome");
-			if (msg.startsWith("http://")) {
-				URL url = new URL(msg);
-				HttpURLConnection.setFollowRedirects(false);
-				HttpURLConnection connection = (HttpURLConnection) url
-						.openConnection();
-				BufferedReader br = new BufferedReader(new InputStreamReader(
-						connection.getInputStream()));
-				msg = br.readLine();
-				br.close();
-				connection.disconnect();
+			if (config.has("server_welcome)")) {
+				msg = config.get("server_welcome");
+				if (msg.startsWith("http://")) {
+					URL url = new URL(msg);
+					HttpURLConnection.setFollowRedirects(false);
+					HttpURLConnection connection = (HttpURLConnection) url
+							.openConnection();
+					BufferedReader br = new BufferedReader(new InputStreamReader(
+							connection.getInputStream()));
+					msg = br.readLine();
+					br.close();
+					connection.disconnect();
+				}
 			}
 		} catch (Exception e) {
 			if (PlayerRPClass.firstWelcomeException) {
