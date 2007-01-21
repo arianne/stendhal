@@ -1,8 +1,6 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -107,12 +105,12 @@ public class ToysCollector extends AbstractQuest {
 		   npc.add(ConversationStates.QUEST_OFFERED,
 				SpeakerNPC.YES_MESSAGES,
 				null,
-			   ConversationStates.ATTENDING,
+			   ConversationStates.IDLE,
 			   null,
 			   new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-					    engine.say("Hooray! How exciting. See you soon."); //Stop talking start walking
+					    engine.say("Hooray! How exciting. See you soon.");
 						player.setQuest("toys_collector", "");
 					}
 				});
