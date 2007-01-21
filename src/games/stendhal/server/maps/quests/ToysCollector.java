@@ -34,12 +34,8 @@ import java.util.List;
  */
 public class ToysCollector extends AbstractQuest {
 
-	private static final List<String> neededToys = Arrays.asList(
-		"teddy",
-		"dice",
-		"dress"
-	);
-	
+	private static final List<String> neededToys = Arrays.asList("teddy", "dice", "dress");
+
 	/**
 	 * Returns a list of the names of all toys that the given player
 	 * still has to bring to fulfil the quest.
@@ -49,14 +45,14 @@ public class ToysCollector extends AbstractQuest {
 	 */
 	private List<String> missingToys(Player player, boolean hash) {
 		List<String> result = new LinkedList<String>();
-		
+
 		String doneText = player.getQuest("toys_collector");
 		if (doneText == null) {
 			doneText = "";
 		}
 		List<String> done = Arrays.asList(doneText.split(";"));
-		for (String toy: neededToys) {
-			if (! done.contains(toy)) {
+		for (String toy : neededToys) {
+			if (!done.contains(toy)) {
 				if (hash) {
 					toy = "#" + toy;
 				}
@@ -68,65 +64,55 @@ public class ToysCollector extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Anna");
-		
+
 		// player says hi before starting the quest
-		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return !player.hasQuest("toys_collector");
+		npc.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, 
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return !player.hasQuest("toys_collector");
+				}
+			},
+			ConversationStates.ATTENDING,
+			"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. But I'm bored. I want some #toys!",
+			null);
+
+		npc.add(ConversationStates.ATTENDING, "toys",
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return !player.hasQuest("toys_collector");
+				}
+			},
+			ConversationStates.QUEST_OFFERED, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					if (!player.isQuestCompleted("toys_collector")) {
+						engine.say("I'm not sure what toys, but whatever would be fun for me to play with! Will you bring me some please?");
+					} else { // to be honest i don't understand when this would be implemented. i put the text i want down in stage 3 and it works fine.
+						engine.say("The toys are great! Thanks!");
+						engine.setCurrentState(ConversationStates.ATTENDING);
 					}
-				},
-				ConversationStates.ATTENDING,
-				"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. But I'm bored. I want some #toys!",
-				null);
-		npc.add(ConversationStates.ATTENDING,
-				"toys",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return !player.hasQuest("toys_collector");
-					}
-				},
-				ConversationStates.QUEST_OFFERED,
-				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (!player.isQuestCompleted("toys_collector")) {
-							engine.say("I'm not sure what toys, but whatever would be fun for me to play with! Will you bring me some please?");
-						} else { // to be honest i don't understand when this would be implemented. i put the text i want down in stage 3 and it works fine.
-							engine.say("The toys are great! Thanks!");
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
+				}
+			});
+
 		// player says yes
-		   npc.add(ConversationStates.QUEST_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
-				null,
-			   ConversationStates.IDLE,
-			   null,
-			   new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-					    engine.say("Hooray! How exciting. See you soon.");
-						player.setQuest("toys_collector", "");
-					}
-				});
-		
-		
+		npc.add(ConversationStates.QUEST_OFFERED, SpeakerNPC.YES_MESSAGES, null, ConversationStates.IDLE, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					engine.say("Hooray! How exciting. See you soon.");
+					player.setQuest("toys_collector", "");
+				}
+			});
+
+
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED,
-				"no",
-				null,
-				ConversationStates.ATTENDING,
-				"Oh ... you're mean.", 
-				null
-				);
+		npc.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.ATTENDING,
+			"Oh ... you're mean.", null);
 	}
+
 	private void step_2() {
 		// Just find some of the toys somewhere and bring them to Anna.
 	}
@@ -135,67 +121,53 @@ public class ToysCollector extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Anna");
 
 		// player returns while quest is still active
-		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return player.hasQuest("toys_collector")
-								&& !player.isQuestCompleted("toys_collector");
-					}
-				},
-				ConversationStates.ATTENDING,
-				"Hello! I'm still bored. Did you bring me toys?",
-				null);
-		
+		npc.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return player.hasQuest("toys_collector") && !player.isQuestCompleted("toys_collector");
+				}
+			},
+			ConversationStates.ATTENDING, "Hello! I'm still bored. Did you bring me toys?", null);
+
 		// player says he has a required toy with him
-			npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.YES_MESSAGES,
-				null,
-				ConversationStates.QUESTION_1,
-				"What did you bring?!",
-				null);
-					for (String toy: neededToys) {
-			npc.add(ConversationStates.QUESTION_1,
-					toy,
-					null,
-					ConversationStates.QUESTION_1,
-					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text, SpeakerNPC engine) {
-							List<String> missing = missingToys(player, false);
-							if (missing.contains(text)) {
-								if (player.drop(text)) {
-									// register toy as done
-									String doneText = player.getQuest("toys_collector");
-									player.setQuest("toys_collector", doneText + ";" + text);
-									// check if the player has brought all toys
-									missing = missingToys(player, true);
-					   				if (missing.size() > 0) {
-										engine.say("Thank you very much! Do you have any more toys for me?");
-									} else {
-									    StackableItem pie = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie");
-									    pie.setQuantity(3);
-									    player.equip(pie, true);
-										player.addXP(100);
-										engine.say("This is lovely! These toys will keep me happy for ages!");
-										player.setQuest("toys_collector", "done");
-										player.notifyWorldAboutChanges();
-									}
-								} else {
-									engine.say("Hey! It's bad to lie! You don't have " + Grammar.a_noun(text) + " with you.");
-								}
+		npc.add(ConversationStates.ATTENDING, SpeakerNPC.YES_MESSAGES, null,
+			ConversationStates.QUESTION_1, "What did you bring?!", null);
+
+		for (String toy : neededToys) {
+			npc.add(ConversationStates.QUESTION_1, toy, null, ConversationStates.QUESTION_1, null, new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					List<String> missing = missingToys(player, false);
+					if (missing.contains(text)) {
+						if (player.drop(text)) {
+							// register toy as done
+							String doneText = player.getQuest("toys_collector");
+							player.setQuest("toys_collector", doneText + ";" + text);
+							// check if the player has brought all toys
+							missing = missingToys(player, true);
+							if (missing.size() > 0) {
+								engine.say("Thank you very much! Do you have any more toys for me?");
 							} else {
-								engine.say("I already have that toy!");
+								StackableItem pie = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie");
+								pie.setQuantity(3);
+								player.equip(pie, true);
+								player.addXP(100);
+								engine.say("This is lovely! These toys will keep me happy for ages!");
+								player.setQuest("toys_collector", "done");
+								player.notifyWorldAboutChanges();
 							}
+						} else {
+							engine.say("Hey! It's bad to lie! You don't have " + Grammar.a_noun(text) + " with you.");
 						}
-					});
-
-
+					} else {
+						engine.say("I already have that toy!");
 					}
- 	      	// player says he didn't bring any toys
-	npc.add(ConversationStates.QUESTION_1, "", 
+				}
+			});
+		}
+	
+		npc.add(ConversationStates.QUESTION_1, "",
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -204,44 +176,36 @@ public class ToysCollector extends AbstractQuest {
 			},
 			ConversationStates.QUESTION_1, "This is not a toy", null);
 
-     npc.add(ConversationStates.ATTENDING,
-				"no",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return !player.isQuestCompleted("toys_collector");
-					}
-				},
-	ConversationStates.ATTENDING,
-"Then you should go away before I get in trouble for talking to you.",
-				null);
-	// player says he didn't bring any toys to different question
+		npc.add(ConversationStates.ATTENDING, "no",
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return !player.isQuestCompleted("toys_collector");
+				}
+			},
+			ConversationStates.ATTENDING,
+			"Then you should go away before I get in trouble for talking to you.", null);
 
-     npc.add(ConversationStates.QUESTION_1,
-				"no",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return !player.isQuestCompleted("toys_collector");
-					}
-				},
-	ConversationStates.ATTENDING,
- "Okay then. Come back later.",
-				null);
-	
-	
+		// player says he didn't bring any toys to different question
+		npc.add(ConversationStates.QUESTION_1, "no",
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return !player.isQuestCompleted("toys_collector");
+				}
+			},
+			ConversationStates.ATTENDING, "Okay then. Come back later.", null);
+
+
 		// player returns after finishing the quest
-		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return player.isQuestCompleted("toys_collector");
-					}
-				},
-				ConversationStates.ATTENDING,
-				"Hi! I'm busy playing with my toys, no grown ups allowed. Bye!",
-				null);
+		npc.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return player.isQuestCompleted("toys_collector");
+				}
+			}, 
+			ConversationStates.ATTENDING, "Hi! I'm busy playing with my toys, no grown ups allowed. Bye!", null);
 	}
 
 	@Override
