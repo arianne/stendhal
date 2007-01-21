@@ -86,7 +86,7 @@ public class WeaponsCollector extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.hasQuest("weapons_collector");
 					}
 				},
@@ -98,7 +98,7 @@ public class WeaponsCollector extends AbstractQuest {
 				SpeakerNPC.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.hasQuest("weapons_collector");
 					}
 				},
@@ -146,7 +146,7 @@ public class WeaponsCollector extends AbstractQuest {
 				"collection",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector") &&
 								!player.isQuestCompleted("weapons_collector");
 					}
@@ -234,7 +234,7 @@ public class WeaponsCollector extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector")
 								&& ! player.isQuestCompleted("weapons_collector");
 					}
@@ -248,7 +248,7 @@ public class WeaponsCollector extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.isQuestCompleted("weapons_collector");
 					}
 				},

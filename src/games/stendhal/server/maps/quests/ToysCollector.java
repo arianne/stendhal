@@ -74,7 +74,7 @@ public class ToysCollector extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.hasQuest("toys_collector");
 					}
 				},
@@ -85,7 +85,7 @@ public class ToysCollector extends AbstractQuest {
 				"toys",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.hasQuest("toys_collector");
 					}
 				},
@@ -139,7 +139,7 @@ public class ToysCollector extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.hasQuest("toys_collector")
 								&& !player.isQuestCompleted("toys_collector");
 					}
@@ -195,12 +195,20 @@ public class ToysCollector extends AbstractQuest {
 
 					}
  	      	// player says he didn't bring any toys
+	npc.add(ConversationStates.QUESTION_1, "", 
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return !neededToys.contains(text);
+				}
+			},
+			ConversationStates.QUESTION_1, "This is not a toy", null);
 
      npc.add(ConversationStates.ATTENDING,
 				"no",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.isQuestCompleted("toys_collector");
 					}
 				},
@@ -213,7 +221,7 @@ public class ToysCollector extends AbstractQuest {
 				"no",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.isQuestCompleted("toys_collector");
 					}
 				},
@@ -227,7 +235,7 @@ public class ToysCollector extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.isQuestCompleted("toys_collector");
 					}
 				},

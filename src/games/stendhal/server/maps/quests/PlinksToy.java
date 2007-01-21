@@ -74,7 +74,7 @@ public class PlinksToy extends AbstractQuest {
 			SpeakerNPC.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
 					return !player.isEquipped("teddy") && !player.isQuestCompleted(QUEST_SLOT);
 				}
 			},
@@ -145,7 +145,7 @@ public class PlinksToy extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT) && player.isEquipped("teddy");
 					}
 				},
@@ -165,7 +165,7 @@ public class PlinksToy extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
 					}
 				},
@@ -185,7 +185,7 @@ public class PlinksToy extends AbstractQuest {
 				"teddy",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT) && !player.isEquipped("teddy");
 					}
 				},
@@ -197,7 +197,7 @@ public class PlinksToy extends AbstractQuest {
 				"teddy",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
 					}
 				},

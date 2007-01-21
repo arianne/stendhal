@@ -117,7 +117,7 @@ public class NewsFromHackim extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("start");
 					}

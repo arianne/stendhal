@@ -47,7 +47,7 @@ public class StandardInteraction {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.has("adminlevel") && (player.getInt("adminlevel") >= requiredAdminlevel));
 		}
 	}
@@ -63,7 +63,7 @@ public class StandardInteraction {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return area.contains(player);
 		}
 
@@ -85,8 +85,8 @@ public class StandardInteraction {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
-			return !condition.fire(player, engine);
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
+			return !condition.fire(player, text, engine);
 		}
 		
 	}
@@ -106,7 +106,7 @@ public class StandardInteraction {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.has(questname));
 		}
 	}
@@ -122,7 +122,7 @@ public class StandardInteraction {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (!player.hasQuest(questname));
 		}
 	}
@@ -138,7 +138,7 @@ public class StandardInteraction {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.isQuestCompleted(questname));
 		}
 	}
@@ -154,7 +154,7 @@ public class StandardInteraction {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (!player.isQuestCompleted(questname));
 		}
 	}
@@ -172,7 +172,7 @@ public class StandardInteraction {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 		    return (player.hasQuest(questname) && player.getQuest(questname).equals(state));
 		}
 	}
@@ -190,7 +190,7 @@ public class StandardInteraction {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 		    return (!player.hasQuest(questname) || !player.getQuest(questname).equals(state));
 		}
 	}

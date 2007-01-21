@@ -48,7 +48,7 @@ public class CloaksForBario extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
@@ -60,7 +60,7 @@ public class CloaksForBario extends AbstractQuest {
 				SpeakerNPC.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
@@ -77,7 +77,7 @@ public class CloaksForBario extends AbstractQuest {
 				SpeakerNPC.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT);
 					}
 				},
@@ -156,7 +156,7 @@ public class CloaksForBario extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& ! player.isQuestCompleted(QUEST_SLOT);
 					}
@@ -177,7 +177,7 @@ public class CloaksForBario extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.isQuestCompleted(QUEST_SLOT);
 					}
 				},

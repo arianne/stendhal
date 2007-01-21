@@ -106,7 +106,7 @@ public class IntroducePlayers extends AbstractQuest {
 				"flask",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.isQuestCompleted("introduce_players");
 					}
 				},
@@ -118,7 +118,7 @@ public class IntroducePlayers extends AbstractQuest {
 				"flask",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return !player.hasQuest("introduce_players");
 					}
 				},
@@ -156,7 +156,7 @@ public class IntroducePlayers extends AbstractQuest {
 				"flask",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")
 								&& player.getQuest("introduce_players").equals("start")
 								&& !player.isEquipped("flask");
@@ -184,7 +184,7 @@ public class IntroducePlayers extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")
 								&& player.getQuest("introduce_players").equals(
 										"start") && player.isEquipped("flask");
@@ -209,14 +209,14 @@ public class IntroducePlayers extends AbstractQuest {
 					}
 				});
     // remind the player to take the flask to ilisa.    npc.add(ConversationStates.IDLE,        SpeakerNPC.GREETING_MESSAGES,        new SpeakerNPC.ChatCondition() {            @Override
-			public boolean fire(Player player, SpeakerNPC npc) {                return player.hasQuest("introduce_players")                        && player.getQuest("introduce_players").equals(                                "ilisa") && player.isEquipped("flask");            }        },        ConversationStates.ATTENDING,        null,        new SpeakerNPC.ChatAction() {            @Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {                return player.hasQuest("introduce_players")                        && player.getQuest("introduce_players").equals(                                "ilisa") && player.isEquipped("flask");            }        },        ConversationStates.ATTENDING,        null,        new SpeakerNPC.ChatAction() {            @Override
 			public void fire(Player player, String text,                    SpeakerNPC engine) {				// note Ilisa is spelled with a small i here because I and l cannot be told apart in game
                 engine.say("Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.");            }        });
 		npc.add(ConversationStates.ATTENDING,				"ilisa",				null,				ConversationStates.ATTENDING,				"Ilisa is the summon healer at Semos temple.",				null);	}
 	private void step_4() {
 		SpeakerNPC npc = npcs.get("Ilisa");
 		npc.add(ConversationStates.IDLE,				SpeakerNPC.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"ilisa");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					@Override
+					public boolean fire(Player player, String text, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"ilisa");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					@Override
 					public void fire(Player player, String text,							SpeakerNPC engine) {						if (player.drop("flask")) {							engine.say("Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a few #herbs. Can you help?");							player.addXP(10);
 							player.notifyWorldAboutChanges();
 							player.setQuest("introduce_players", "corpse&herbs");						} else {							engine.say("Medicine for #Tad? Didn't he tell you to bring a flask?");						}					}				});
@@ -240,7 +240,7 @@ public class IntroducePlayers extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")
 								&& player.getQuest("introduce_players").equals(
 										"corpse&herbs");
@@ -278,7 +278,7 @@ public class IntroducePlayers extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest("introduce_players")
 								&& player.getQuest("introduce_players").equals(
 										"potion");

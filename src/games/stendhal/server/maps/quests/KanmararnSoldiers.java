@@ -103,19 +103,19 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	class HenryQuestStartedCondition extends SpeakerNPC.ChatCondition {
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.hasQuest("soldier_henry") && player.getQuest("soldier_henry").equals("start"));
 		}
 	}
 
 	class HenryQuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (!player.hasQuest("soldier_henry") || player.getQuest("soldier_henry").equals("start"));
 		}
 	}
 
 	class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.hasQuest("soldier_henry") && !player.getQuest("soldier_henry").equals("start"));
 		}
 	}
@@ -168,13 +168,13 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	class JamesQuestCompleteCondition extends SpeakerNPC.ChatCondition {
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.hasQuest("soldier_henry") && player.getQuest("soldier_henry").equals("map"));
 		}
 	}
 
 	class JamesQuestCompletedCondition extends SpeakerNPC.ChatCondition {
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.isQuestCompleted("soldier_henry"));
 		}
 	}

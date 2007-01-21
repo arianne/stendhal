@@ -184,7 +184,7 @@ public class SemosJailWest implements ZoneConfigurator {
 	 */
 	public static class InJailCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return Jail.isInJail(player);
 		}
 	}
@@ -194,7 +194,7 @@ public class SemosJailWest implements ZoneConfigurator {
 	 */
 	public static class NotInJailCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return !Jail.isInJail(player);
 		}
 	}

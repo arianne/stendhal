@@ -120,7 +120,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 */
 	protected class BetCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return state == State.ACCEPTING_BETS;
 		}
 	}
@@ -130,7 +130,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 */
 	protected class NoBetCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return state != State.ACCEPTING_BETS;
 		}
 	}

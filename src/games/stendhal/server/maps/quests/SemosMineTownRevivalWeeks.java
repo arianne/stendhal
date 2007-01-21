@@ -70,7 +70,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				add(ConversationStates.ATTENDING, Arrays.asList("celebrate", "celebration", "party"),
 					new SpeakerNPC.ChatCondition() {
 						@Override
-						public boolean fire(Player player, SpeakerNPC engine) {
+						public boolean fire(Player player, String text, SpeakerNPC engine) {
 							return !player.has("outfit_org");
 						}
 					},
@@ -78,7 +78,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				add(ConversationStates.ATTENDING, Arrays.asList("celebrate", "celebration", "party"),
 					new SpeakerNPC.ChatCondition() {
 						@Override
-						public boolean fire(Player player, SpeakerNPC engine) {
+						public boolean fire(Player player, String text, SpeakerNPC engine) {
 							return player.has("outfit_org");
 						}
 					},

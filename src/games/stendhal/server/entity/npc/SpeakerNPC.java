@@ -354,7 +354,7 @@ public abstract class SpeakerNPC extends NPC {
 			Player nearest = getNearestPlayer(7);
 			if (nearest != null) {
 				if (initChatCondition == null || initChatCondition
-								.fire(nearest, this)) {
+								.fire(nearest, null, this)) {
 					initChatAction.fire(nearest, null, this);
 				}
 			}
@@ -378,7 +378,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	abstract public static class ChatCondition {
-		abstract public boolean fire(Player player, SpeakerNPC engine);
+		abstract public boolean fire(Player player, String text, SpeakerNPC engine);
 	}
 
 	/**
@@ -443,14 +443,16 @@ public abstract class SpeakerNPC extends NPC {
 
 		/**
 		 * Checks whether this transition's condition is fulfilled.
+		 * 
 		 * @param player
+		 * @param text the text the player said
 		 * @param npc
 		 * @return true iff there is no condition or if there is one
 		 *         which is fulfilled
 		 */
-		public boolean isConditionFulfilled(Player player, SpeakerNPC npc) {
+		public boolean isConditionFulfilled(Player player, String text, SpeakerNPC npc) {
 			if (condition != null) {
-				return condition.fire(player, npc);
+				return condition.fire(player, text, npc);
 			} else {
 				return true;
 			}
@@ -572,7 +574,7 @@ public abstract class SpeakerNPC extends NPC {
 					&& transition.absoluteJump(text))
 					|| (type == 1 && transition.matches(currentState, text))
 					|| (type == 2 && transition.matchesBeginning(currentState, text))) {
-				if (transition.isConditionFulfilled(player, this)) {
+				if (transition.isConditionFulfilled(player, text, this)) {
 					if (transition.condition == null) {
 						listConditionLess.add(transition);
 					} else {
@@ -1002,7 +1004,7 @@ public abstract class SpeakerNPC extends NPC {
 			SpeakerNPC.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return !player.hasQuest(behaviour.getQuestSlot())
 								|| player.isQuestCompleted(behaviour.getQuestSlot());
 					}
@@ -1015,7 +1017,7 @@ public abstract class SpeakerNPC extends NPC {
 			behaviour.getProductionActivity(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
 					return !player.hasQuest(behaviour.getQuestSlot())
 					|| player.isQuestCompleted(behaviour.getQuestSlot());
 				}
@@ -1062,7 +1064,7 @@ public abstract class SpeakerNPC extends NPC {
 			behaviour.getProductionActivity(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
 					return player.hasQuest(behaviour.getQuestSlot())
 							&& !player.isQuestCompleted(behaviour.getQuestSlot());
 				}
@@ -1081,7 +1083,7 @@ public abstract class SpeakerNPC extends NPC {
 			SpeakerNPC.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
 					return player.hasQuest(behaviour.getQuestSlot())
 							&& !player.isQuestCompleted(behaviour.getQuestSlot());
 				}

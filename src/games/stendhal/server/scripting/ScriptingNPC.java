@@ -81,7 +81,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (!player.hasQuest(quest));
 		}
 	}
@@ -95,7 +95,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (!player.isQuestCompleted(quest));
 		}
 	}
@@ -109,7 +109,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 
 		@Override
-		public boolean fire(Player player, SpeakerNPC engine) {
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.isQuestCompleted(quest));
 		}
 	}

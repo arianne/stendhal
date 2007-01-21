@@ -88,7 +88,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				"book",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.isQuestCompleted(QUEST_SLOT);
 					}
 				},
@@ -101,7 +101,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				"book",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
@@ -140,7 +140,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				"book",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("start");
 					}
@@ -165,7 +165,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT)
 										.equals("start");
@@ -189,7 +189,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals(
 										"jynath");
@@ -211,7 +211,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				"book",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return !player.hasQuest(QUEST_SLOT);
 					}
 				},
@@ -228,7 +228,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC npc) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals(
 										"jynath");

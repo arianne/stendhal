@@ -114,7 +114,7 @@ public class HatForMonogenes extends AbstractQuest {
 				SpeakerNPC.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.hasQuest("hat_monogenes")
 								&& player.getQuest("hat_monogenes").equals("start");
 					}
@@ -139,7 +139,7 @@ public class HatForMonogenes extends AbstractQuest {
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.isEquipped("leather_helmet");
 					}
 				}, 
