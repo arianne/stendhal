@@ -1,6 +1,8 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -173,9 +175,8 @@ public class ToysCollector extends AbstractQuest {
 					   				if (missing.size() > 0) {
 										engine.say("Thank you very much! Do you have any more toys for me?");
 									} else {
-									    //	Item pie = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie");
-									    //um. this code crashes the client. no idea why.					    //	pie.put("pie", player.getName());
-									    //	player.equip(pie, true);
+									    Item pie = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie");
+									    player.equip(pie, true);
 										player.addXP(100);
 										engine.say("This is lovely! These toys will keep me happy for ages!");
 										player.setQuest("toys_collector", "done");
