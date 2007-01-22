@@ -163,6 +163,12 @@ public class StendhalRPWorld extends RPWorld {
 		pathfinderThread = new PathfinderThread(this);
 		pathfinderThread.start();
 
+	// NEW CONFIG CODE?
+	if(false) {
+		ZonesXMLLoader loader = new ZonesXMLLoader();
+
+		loader.load(this, "data/conf/zones.xml");
+	} else {
 		// Load zones. Written from left to right and from top to bottom.
 		// Please respect it!
 
@@ -327,6 +333,7 @@ public class StendhalRPWorld extends RPWorld {
 		populateZone("Ados");
 		populateZone("Athos");
 		populateZone("FeaturesTestArea");
+	}
 
 
 		/**

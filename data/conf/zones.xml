@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
-  -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  -- !!!!!!!!!!! WORK IN PROGRESS - FILE NOT USED YET !!!!!!!!!!!
-  -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  --
-  -- Zone Configuration.
-  --
-  -- A zone descriptor has the following structure:
-  --
-  -- <zone name="xxxx" file="xxxxx/xxxxx/xxxxxx.xstend">
-  --  <title>Xxxxxx xxxx</title>
-  --  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
-  --  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
-  --  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
-  --    <attribute name="xxxxx">xxxxxx</attribute>
-  --    <attribute name="xxxxx">xxxxxx</attribute>
-  --    <attribute name="xxxxx">xxxxxx</attribute>
-  --    <attribute name="xxxxx">xxxxxx</attribute>
-  --  </configurator>
-  -- </zone>
-  --
-  -- zone
-  --  name: The unique programmatic key used to reference the zone.
-  --  file: The zone data file (relative to data/maps/).
-  --
-  -- title: A nicely presented label (single line, relatively short).
-  --
-  -- configurator: A code reference used to post-configure the zone.
-  --  attribute: An attribute passed to the configuration code.
-  --
-  -- Each zone can have zero, one, or more <configurator> entries.
-  -- These specify a class name that implements ZoneConfigurator, and
-  -- will be passed the zone and any attributes.
+  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ** !!!!!!!!!!! WORK IN PROGRESS - FILE NOT USED YET !!!!!!!!!!!
+  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  **
+  ** Zone Configuration.
+  **
+  ** A zone descriptor has the following structure:
+  **
+  ** <zone name="xxxx" file="xxxxx/xxxxx/xxxxxx.xstend">
+  **  <title>Xxxxxx xxxx</title>
+  **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+  **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+  **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+  **    <attribute name="xxxxx">xxxxxx</attribute>
+  **    <attribute name="xxxxx">xxxxxx</attribute>
+  **    <attribute name="xxxxx">xxxxxx</attribute>
+  **    <attribute name="xxxxx">xxxxxx</attribute>
+  **  </configurator>
+  ** </zone>
+  **
+  ** zone
+  **  name: The unique programmatic key used to reference the zone.
+  **  file: The zone data file (relative to data/maps/).
+  **
+  ** title: A nicely presented label (single line, relatively short).
+  **
+  ** configurator: A code reference used to post-configure the zone.
+  **  attribute: An attribute passed to the configuration code.
+  **
+  ** Each zone can have zero, one, or more <configurator> entries.
+  ** These specify a class name that implements ZoneConfigurator, and
+  ** will be passed the zone and any attributes.
   -->
 <zones>
 
  <!--
-   -- MAPPINGS TAKEN FROM StendhalRPWorld.java AS OF 2007/01/19:
+   ** MAPPINGS TAKEN FROM StendhalRPWorld.java AS OF 2007/01/19:
    -->
 
  <!--
-   -- Load zones. Written from left to right and from top to bottom.
-   -- Please respect it!
+   ** Load zones. Written from left to right and from top to bottom.
+   ** Please respect it!
    -->
 
  <!--  Ground level -->
@@ -233,7 +233,6 @@
  </zone>
 -->
 
-<!--
  <zone name="0_ados_city_w" file="level_0/ados/city_w.xstend">
   <title/>
  </zone>
@@ -242,11 +241,9 @@
     <title/>
    </zone>
 
-<!--
    <zone name="int_ados_haunted_house" file="interiors/ados/haunted_house.xstend">
     <title/>
    </zone>
--->
 
    <zone name="int_ados_bakery" file="interiors/ados/bakery.xstend">
     <title/>
@@ -413,7 +410,7 @@
 <!--
  <zone name="-1_semos_catacombs" file="level_-1/semos/catacombs.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> -->
+  <!** <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> **>
  </zone>
 -->
 
@@ -454,7 +451,7 @@
 <!--
  <zone name="-2_semos_catacombs" file="level_-2/semos/catacombs.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> -->
+  <!** <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> **>
  </zone>
 -->
 
@@ -491,7 +488,7 @@
 <!--
  <zone name="-3_semos_catacombs" file="level_-3/semos/catacombs.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> -->
+  <!** <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> **>
  </zone>
 -->
 
