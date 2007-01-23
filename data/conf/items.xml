@@ -177,7 +177,21 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-
+	<item name="great_sword">
+		<type class="sword" subclass="great_sword"/>
+		<description>This rare great sword is heavy and of good
+		craftmanship.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<atk value="25"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 	<item name="fire_sword">
 		<type class="sword" subclass="fire_sword"/>
 		<description>Flames race along this fire sword as you wield it.</description> 
@@ -209,7 +223,7 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-
+<!--
 	<item name="great_sword">
 		<type class="sword" subclass="great_sword"/>
 		<description>You see the formidable great sword.</description>
@@ -223,7 +237,7 @@ in the file.
 			<slot name="rhand"/>
 			<slot name="bag"/>
 		</equipable>
-	</item>
+	</item>-->
 
 <!--
 r_hand_sword and l_hand_sword meant to be used together.
@@ -528,7 +542,8 @@ Makes players more offensive
 		</equipable>
 	</item>
 
-	<item name="flail_+2">
+	<item name="morning_star"> <!-- changed from flail+2 in view of
+		phasing these out -->
 		<type class="club" subclass="golden_flail"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
