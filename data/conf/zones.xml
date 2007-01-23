@@ -134,7 +134,7 @@
 
  <zone name="0_semos_plains_w" file="level_0/semos/plains_w.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosJailWest"/> -->
+  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestOutside"/>
  </zone>
 
  <zone name="0_semos_village_w" file="level_0/semos/village_w.xstend">
@@ -150,11 +150,12 @@
 
    <zone name="int_semos_tavern_0" file="interiors/semos/tavern_0.xstend">
   <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.SemosCityInsideTavern"/>
+    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern0"/>
    </zone>
 
    <zone name="int_semos_tavern_1" file="interiors/semos/tavern_1.xstend">
   <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern1"/>
    </zone>
 
    <zone name="int_semos_temple" file="interiors/semos/temple.xstend">
@@ -404,7 +405,7 @@
 
  <zone name="-1_semos_jail" file="level_-1/semos/jail.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWest"/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL1"/>
  </zone>
 
 <!--
@@ -446,6 +447,7 @@
 
  <zone name="-2_semos_jail" file="level_-2/semos/jail.xstend">
   <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL2"/>
  </zone>
 
 <!--

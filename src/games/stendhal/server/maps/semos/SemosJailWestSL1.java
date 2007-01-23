@@ -4,16 +4,13 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.maps.ZoneConfigurator;
-import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,22 +19,23 @@ import java.util.Map;
 import marauroa.common.game.IRPZone;
 
 /**
- * Semos Jail
+ * Semos Jail - Level -1
  * 
  * @author hendrik
  */
-public class SemosJailWest implements ZoneConfigurator {
+public class SemosJailWestSL1 implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Build the Semos jail areas
 	 */
 	public void build() {
-		buildPortals();
-		zoneSub1SemosJailSoldier();
-		zoneSub1SemosJailElf();
-		zoneSub2SemosJail();
-		disabledMagicScrolls();
+		StendhalRPWorld world = StendhalRPWorld.get();
+
+		configureZone(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("-1_semos_jail")),
+			java.util.Collections.EMPTY_MAP);
 	}
 
 
@@ -49,36 +47,24 @@ public class SemosJailWest implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * For now - Split to one class per zone
-		 */
-		build();
+		buildPortals(zone);
+		buildElf(zone);
+		buildSoldier(zone);
+		disabledMagicScrolls(zone);
 	}
 
 
-	private void buildPortals() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zoneOutside = (StendhalRPZone) world.getRPZone(new IRPZone.ID("0_semos_plains_w"));
-		StendhalRPZone sub1semosJail = (StendhalRPZone) world.getRPZone(new IRPZone.ID("-1_semos_jail"));
+	private void buildPortals(StendhalRPZone zone) {
 		Portal portal = new Portal();
-		zoneOutside.assignRPObjectID(portal);
-		portal.setX(86);
-		portal.setY(26);
-		portal.setNumber(0);
-		portal.setDestination("-1_semos_jail", 0);
-		zoneOutside.addPortal(portal);
-		
-		portal = new Portal();
-		sub1semosJail.assignRPObjectID(portal);
+		zone.assignRPObjectID(portal);
 		portal.setX(28);
 		portal.setY(17);
 		portal.setNumber(0);
 		portal.setDestination("0_semos_plains_w", 0);
-		sub1semosJail.addPortal(portal);
+		zone.addPortal(portal);
 	}
 
-	private void zoneSub1SemosJailSoldier() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-1_semos_jail"));
+	private void buildSoldier(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Marcus") {
 			@Override
 			protected void createPath() {
@@ -114,8 +100,7 @@ public class SemosJailWest implements ZoneConfigurator {
 	
 	}
 
-	private void zoneSub1SemosJailElf() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-1_semos_jail"));
+	private void buildElf(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Conual") {
 			@Override
 			protected void createPath() {
@@ -140,42 +125,7 @@ public class SemosJailWest implements ZoneConfigurator {
 		zone.addNPC(npc);
 	}
 
-	private void zoneSub2SemosJail() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-		"-2_semos_jail"));
-		SpeakerNPC npc = new SpeakerNPC("Sten Tanquilos") {
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(4, 14));
-				nodes.add(new Path.Node(27, 14));
-				nodes.add(new Path.Node(27, 17));
-				nodes.add(new Path.Node(4, 17));
-				setPath(nodes, true);
-			}
-	
-			@Override
-			protected void createDialog() {
-				addGreeting("Greetings! How may I #help you?");
-				addJob("I am the jail keeper. You have been confined here because of your bad behaviour.");
-				addHelp("Please wait for an administrator to come here and decide what to do with you. In the meantime, there is no escape for you.");
-				addGoodbye();
-			}
-		};
-		npcs.add(npc);
-	
-		zone.assignRPObjectID(npc);
-		npc.put("class", "youngsoldiernpc");
-		npc.set(4, 14);
-		npc.initHP(100);
-		zone.addNPC(npc);
-	}
-	
-	private void disabledMagicScrolls() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("-1_semos_jail"));
-		zone.setTeleportable(false);
-		zone = (StendhalRPZone) world.getRPZone(new IRPZone.ID("-2_semos_jail"));
+	private void disabledMagicScrolls(StendhalRPZone zone) {
 		zone.setTeleportable(false);
 	}
 
