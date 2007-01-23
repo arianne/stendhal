@@ -654,17 +654,19 @@ public class Creature extends NPC {
 		// Create a patrolpath
 		logger.debug("Creating Path for this entity");
 		List<Path.Node> nodes = new LinkedList<Path.Node>();
-
-		int size = patrolPath.size();
-
 		long time = System.nanoTime();
-		for (int i = 0; i < size; i++) {
-			Path.Node actual = patrolPath.get(i);
-			Path.Node next = patrolPath.get((i + 1) % size);
-
-			nodes.addAll(Path.searchPath(this, actual.x + getX(),
-					actual.y + getY(), new Rectangle2D.Double(next.x
-							+ getX(), next.y + getY(), 1.0, 1.0)));
+		if (aiProfiles.keySet().contains("patrolling")) {
+			
+			int size = patrolPath.size();
+	
+			for (int i = 0; i < size; i++) {
+				Path.Node actual = patrolPath.get(i);
+				Path.Node next = patrolPath.get((i + 1) % size);
+	
+				nodes.addAll(Path.searchPath(this, actual.x + getX(),
+						actual.y + getY(), new Rectangle2D.Double(next.x
+								+ getX(), next.y + getY(), 1.0, 1.0)));
+			}
 		}
 		long time2 = System.nanoTime() - time;
 
