@@ -487,6 +487,9 @@ public class GameObjects implements Iterable<Entity> {
 					// targetEntity.onAttack(entity,risk,damage);
 					attacks.put(entity, targetEntity);
 				}
+				if (base.has("heal")) {
+					entity.onHealed(base.getInt("heal"));
+				}
 			}
 		} else {
 			// Modified case
@@ -559,6 +562,9 @@ public class GameObjects implements Iterable<Entity> {
 
 					attacks.put(entity, targetEntity);
 				}
+			}
+			if (diff.has("heal")) {
+				entity.onHealed(diff.getInt("heal"));
 			}
 		}
 	}
