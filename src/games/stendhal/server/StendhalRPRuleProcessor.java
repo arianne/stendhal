@@ -396,6 +396,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					object.remove("damage");
 					object.notifyWorldAboutChanges();
 				}
+				if (object.has("heal")) {
+					object.remove("heal");
+					object.notifyWorldAboutChanges();
+				}
 				if (object.has("dead")) {
 					object.remove("dead");
 					object.notifyWorldAboutChanges();
