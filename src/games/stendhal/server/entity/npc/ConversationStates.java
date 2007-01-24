@@ -72,6 +72,7 @@ public class ConversationStates {
 	 * it.
 	 */
 	public static final int QUEST_OFFERED = 60;
+        public static final int QUEST_2_OFFERED = 65;
 
 	/**
 	 * The player has just started the quest. 
