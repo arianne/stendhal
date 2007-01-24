@@ -153,12 +153,18 @@ public class Creature extends NPC {
     /** Ths list of item instances this creature may drop for
      *  use in quests. This is always creature specific */
     protected List<Item> dropItemInstances;
-    
+
+    /**
+     * List of things this creature should say
+     */
 	protected List<String> noises;
 
 	private int respawnTime;
 
 	private Map<String, String> aiProfiles;
+
+	// this will keep track of the logic so the client can display it
+	private StringBuilder debug = new StringBuilder(100);
 
 	public static void generateRPClass() {
 		try {
@@ -576,6 +582,11 @@ public class Creature extends NPC {
 		}
 	}
 
+	/**
+	 * Checks whether we have to do some again or sleeps in case no player is near.
+	 *
+	 * @return true, if additional action is required; false if we may sleep
+	 */
 	private boolean logicSleep() {
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
@@ -600,10 +611,6 @@ public class Creature extends NPC {
 		return true;
 	}
 
-
-	// this will keep track of the logic so the client can display it
-	StringBuilder debug = new StringBuilder(100);
-
 	private void logicWeAreNotAttackingButGotAttacked() {
 		// Yep, we're attacked
 		clearPath();
@@ -622,7 +629,10 @@ public class Creature extends NPC {
 		logger.debug("Creature(" + get("type") + ") has been attacked by "
 				+ target.get("type"));
 	}
-	
+
+	/**
+	 * Forgets the current attack target.
+	 */
 	private void logicForgetCurrentTarget() {
 		if (isAttacking()) {
 			// stop the attack...
@@ -635,7 +645,10 @@ public class Creature extends NPC {
 			waitRounds = 0;
 		}
 	}
-	
+
+	/**
+	 * Finds a new target to attack 
+	 */
 	private void logicFindNewTarget() {
 		// ...and find another target
 		target = getNearestEnemy(7 + Math.max(width, height));
@@ -649,7 +662,10 @@ public class Creature extends NPC {
 			}
 		}
 	}
-	
+
+	/**
+	 * Creates a patroling path used if we are not attacking.
+	 */
 	private void logicCreatePatrolPath() {
 		// Create a patrolpath
 		logger.debug("Creating Path for this entity");
@@ -677,7 +693,10 @@ public class Creature extends NPC {
 					"|");
 		}
 	}
-	
+
+	/**
+	 * Follow the patrolling path
+	 */
 	private void logicFollowPatrolPath() {
 		logger.debug("Following path");
 		if (hasPath()) {
@@ -688,7 +707,10 @@ public class Creature extends NPC {
 			debug.append("patrol;").append(pathToString()).append('|');
 		}
 	}
-	
+
+	/**
+	 * Stops attacking the current target and logs that it got out of reach.
+	 */
 	private void logicStopAttackBecauseTargetOutOfReach() {
 		// target out of reach
 		logger.debug("Attacker is too far. Creature stops attack");
@@ -702,6 +724,9 @@ public class Creature extends NPC {
 		}
 	}
 	
+	/**
+	 * Create a path to the target because it moved.
+	 */
 	private void logicCreateNewPathToMovingTarget() {
 		// target not near but in reach and is moving
 		logger.debug("Moving to target. Searching new path");
@@ -728,7 +753,10 @@ public class Creature extends NPC {
 			}
 		}
 	}
-	
+
+	/**
+	 * attackts the target
+	 */
 	private void logicAttack() {
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			debug.append("attacking|");
