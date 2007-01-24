@@ -23,11 +23,11 @@ import java.util.List;
  * - You bring the weapon up the mountain and give it to Balduin.
  * - Repeat until Balduin received all weapons. (Of course you can
  *   bring up several weapons at the same time.)
- * - Balduin gives you a weapon or armor in exchange.
+ * - Balduin gives you a pair of swords in exchange.
  * 
  * REWARD:
- * - rhand sword and lhand sword? only one of these and other comes later? armor better than golden armor (titanium?)
- * - 5000 XP
+ * - rhand sword and lhand sword
+ * - 3000 XP
  * 
  * REPETITIONS:
  * - None.
@@ -75,7 +75,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return !player.hasQuest("weapons_collector2");
+						return player.isQuestCompleted("weapons_collector") && !player.hasQuest("weapons_collector2");
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -87,10 +87,10 @@ public class WeaponsCollector2 extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return !player.hasQuest("weapons_collector2");
+						return player.isQuestCompleted("weapons_collector") && !player.hasQuest("weapons_collector2");
 					}
 				},
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.QUEST_2_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
@@ -106,7 +106,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				});
 
 		// player is willing to help
-		npc.add(ConversationStates.QUEST_OFFERED,
+		npc.add(ConversationStates.QUEST_2_OFFERED,
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
@@ -121,7 +121,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 		
 		
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED,
+		npc.add(ConversationStates.QUEST_2_OFFERED,
 				"no",
 				null,
 				ConversationStates.ATTENDING,
@@ -139,7 +139,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 								!player.isQuestCompleted("weapons_collector2");
 					}
 				},
-				ConversationStates.QUESTION_1,
+				ConversationStates.QUESTION_2,
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
@@ -151,7 +151,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				});
 
 		// player says he doesn't have required weapons with him
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUESTION_2,
 				"no",
 				null,
 				ConversationStates.IDLE,
@@ -164,18 +164,18 @@ public class WeaponsCollector2 extends AbstractQuest {
 				}});
 
 		// player says he has a required weapon with him
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUESTION_2,
 				SpeakerNPC.YES_MESSAGES,
 				null,
-				ConversationStates.QUESTION_1,
+				ConversationStates.QUESTION_2,
 				"What did you find?",
 				null);
 		
 		for (String weapon: neededWeapons) {
-			npc.add(ConversationStates.QUESTION_1,
+			npc.add(ConversationStates.QUESTION_2,
 					weapon,
 					null,
-					ConversationStates.QUESTION_1,
+					ConversationStates.QUESTION_2,
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
@@ -191,11 +191,14 @@ public class WeaponsCollector2 extends AbstractQuest {
 									if (missing.size() > 0) {
 										engine.say("Thank you very much! Do you have anything more for me?");
 									} else {
-										Item iceSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("ice_sword");
-										iceSword.put("bound", player.getName());
-										player.equip(iceSword, true);
-										player.addXP(5000);
-										engine.say("At last, my collection is complete! Thank you very much; here, take this #ice #sword in exchange!");
+										Item lhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("l_hand_sword");
+										lhandsword.put("bound", player.getName());
+										player.equip(lhandsword, true);
+										Item rhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("r_hand_sword");
+                                                                                rhandsword.put("bound", player.getName());
+                                                                                player.equip(rhandsword, true);
+										player.addXP(3000);
+										engine.say("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!");
 										player.setQuest("weapons_collector2", "done");
 										player.notifyWorldAboutChanges();
 									}
@@ -224,7 +227,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector2")
-								&& ! player.isQuestCompleted("weapons_collector2");
+								&& !player.isQuestCompleted("weapons_collector2");
 					}
 				},
 				ConversationStates.ATTENDING,
