@@ -23,6 +23,7 @@
 			<profile name="animal"/>
 			<profile name="non_offensive"/>
 			<profile name="coward"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="crab">
@@ -48,6 +49,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="rat">
@@ -74,6 +76,7 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="coward"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 1 -->
@@ -97,6 +100,7 @@
 		<ai> 
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="caverat">
@@ -121,6 +125,7 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="coward"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="penguin">
@@ -146,6 +151,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 2 -->
@@ -173,6 +179,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="boar">
@@ -199,6 +206,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="wolf">
@@ -225,6 +233,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="gnome">
@@ -254,6 +263,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="coward"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="mage_gnome">
@@ -284,6 +294,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="coward"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 3 -->
@@ -311,6 +322,7 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="poisonous" params="5,poison"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 4 -->
@@ -338,6 +350,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="lion">
@@ -364,6 +377,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 5 -->
@@ -393,6 +407,7 @@
 			</says>
 			<profile name="human"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="kobold">
@@ -422,6 +437,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="elephant">
@@ -449,6 +465,7 @@
 			<profile name="animal"/>
 			<profile name="non_offensive"/>
 			<profile name="coward"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="venomrat">
@@ -474,6 +491,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="poisonous" params="5,greater_poison"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="tiger">
@@ -502,6 +520,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 6 -->
@@ -531,6 +550,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="gargoyle">
@@ -556,6 +576,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="young_beholder">
@@ -581,6 +602,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 7 -->
@@ -610,6 +632,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="poisonous" params="5,deadly_poison"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	 <creature name="veteran_goblin">
@@ -638,6 +661,7 @@
 			</says>
 			<profile name="human"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="soldier_kobold">
@@ -667,6 +691,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 8 -->
@@ -691,6 +716,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="archer_kobold">
@@ -722,6 +748,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="black_bear">
@@ -748,6 +775,7 @@
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="elder_gargoyle">
@@ -773,6 +801,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="razorrat">
@@ -797,6 +826,7 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 9 -->
@@ -826,6 +856,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="beholder">
@@ -848,6 +879,7 @@
 		<ai>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	 <creature name="soldier_goblin">
@@ -874,6 +906,7 @@
 		<ai>
 			<profile name="human"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="veteran_kobold">
@@ -901,6 +934,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 10 -->
@@ -930,6 +964,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="coward" params="fire"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="orc">
@@ -955,6 +990,7 @@
 		<ai>
 			<profile name="human"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="dark_gargoyle">
@@ -982,6 +1018,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 11 -->
@@ -1011,6 +1048,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="mummy">
@@ -1040,6 +1078,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 13 -->
@@ -1071,6 +1110,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 14 -->
@@ -1102,6 +1142,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="orc_hunter">
@@ -1128,6 +1169,7 @@
 		<ai>
 			<profile name="human"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 15 -->
@@ -1155,6 +1197,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="coward"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="giantrat">
@@ -1181,6 +1224,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,150"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="elf">
@@ -1209,6 +1253,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="dwarf">
@@ -1238,6 +1283,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="ratman">
@@ -1269,6 +1315,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,150"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="ratwoman">
@@ -1299,6 +1346,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,150"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="elder_beholder">
@@ -1322,6 +1370,7 @@
 		<ai>
 			<profile name="animal"/>
 			<profile name="offensive"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 16 -->
@@ -1346,6 +1395,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="venom_gargoyle">
@@ -1374,6 +1424,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="poisonous" params="15,poison"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 17 -->
@@ -1402,6 +1453,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 18 -->
@@ -1432,6 +1484,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="orc_chief">
@@ -1460,6 +1513,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="militia_elf">
@@ -1488,6 +1542,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 19 -->
@@ -1519,6 +1574,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="zombie">
@@ -1546,6 +1602,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 20 -->
@@ -1577,6 +1634,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 
@@ -1603,6 +1661,7 @@
 			<profile name="offensive"/>
 			<profile name="heal" params="5,50"/>
 			<profile name="poisonous" params="5,poison"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 
@@ -1634,6 +1693,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	
@@ -1669,6 +1729,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	
@@ -1694,6 +1755,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
     <creature name="wooden_golem">
@@ -1718,6 +1780,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="royal_mummy">
@@ -1745,6 +1808,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 25 -->
@@ -1769,7 +1833,7 @@
 		</equips>
 		<ai>
 			<says>
-				<noise value="Your messing with the rats?!"/>
+				<noise value="You're messing with the rats?!"/>
 				<noise value="Your death has come!"/>
 				<noise value="Feel my wrath!"/>
 			</says>
@@ -1778,6 +1842,7 @@
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
 			<profile name="poisonous" params="40,greater_poison"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="hero_dwarf">
@@ -1808,12 +1873,13 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="mage_elf">
 		<type class="elf" subclass="mage_elf" tileid="60"/>
 		<attributes>
-			<atk value="75"/>
+			<atk value="79"/>
 			<def value="24"/>
 			<hp value="100"/>
 			<speed value="1"/>
@@ -1833,12 +1899,13 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="glow_monster">
 		<type class="mutant" subclass="glow_monster" tileid="112"/>
 		<attributes>
-			<atk value="79"/>
+			<atk value="75"/>
 			<def value="26"/>
 			<hp value="120"/>
 			<speed value="0.5"/>
@@ -1857,6 +1924,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
     <!-- Level 27 -->
@@ -1886,6 +1954,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
     <!-- Level 30 -->
@@ -1915,6 +1984,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="coward"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="commander_elf">
@@ -1944,6 +2014,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
     <!-- Level 32 -->
@@ -1969,6 +2040,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
     <!-- Level 35 -->
@@ -1997,6 +2069,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="leader_dwarf">
@@ -2027,6 +2100,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	
@@ -2056,6 +2130,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 39-->
@@ -2086,6 +2161,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 40 -->
@@ -2113,6 +2189,7 @@
 			<profile name="offensive"/>
 			<profile name="heal" params="5,50"/>
 			<profile name="poisonous" params="15,poison"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 45 -->
@@ -2141,6 +2218,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 50 -->
@@ -2166,6 +2244,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="fire_elemental">
@@ -2189,6 +2268,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="water_elemental">
@@ -2212,6 +2292,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="green_dragon">
@@ -2240,6 +2321,7 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	
@@ -2272,6 +2354,7 @@
 			<profile name="offensive"/>
 			<profile name="coward"/>
 			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<creature name="devil_queen">
@@ -2330,6 +2413,7 @@
 			<profile name="human"/>
 			<profile name="offensive"/>
 			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 65 -->
@@ -2362,6 +2446,7 @@ probability="100"/>
 			<profile name="offensive"/>
 			<profile name="heal" params="5,50"/>
 			<profile name="poisonous" params="40,greater_poison"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 70 -->
@@ -2390,6 +2475,7 @@ probability="100"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 	<!-- Level 100 -->
@@ -2418,6 +2504,7 @@ probability="100"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
 		</ai>
 	</creature>
 </creatures>
