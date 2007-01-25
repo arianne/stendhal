@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
-  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  ** !!!!!!!!!!! WORK IN PROGRESS - FILE NOT USED YET !!!!!!!!!!!
-  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ** !!!!!!!! WORK IN PROGRESS - FILE NOT USED BY DEFAULT !!!!!!!!
+  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   **
   ** Zone Configuration.
   **
@@ -11,27 +11,66 @@
   ** <zone name="xxxx" file="xxxxx/xxxxx/xxxxxx.xstend">
   **  <title>Xxxxxx xxxx</title>
   **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+  **
   **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+  **
   **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
   **    <attribute name="xxxxx">xxxxxx</attribute>
   **    <attribute name="xxxxx">xxxxxx</attribute>
   **    <attribute name="xxxxx">xxxxxx</attribute>
   **    <attribute name="xxxxx">xxxxxx</attribute>
   **  </configurator>
+  **
+  **  <portal x="xxx" y="xxx" id="xxx">
+  **   <destination zone="xxxxxxx" id="xxx"/>
+  **  </portal>
+  **
+  **  <portal x="xxx" y="xxx" id="xxx">
+  **   <destination zone="xxxxxxx" id="xxx"/>
+  **   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+  **  </portal>
+  **
+  **  <portal x="xxx" y="xxx" id="xxx">
+  **   <destination zone="xxxxxxx" id="xxx"/>
+  **   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+  **    <attribute name="xxxxx">xxxxxx</attribute>
+  **    <attribute name="xxxxx">xxxxxx</attribute>
+  **   </implementation>
+  **  </portal>
   ** </zone>
   **
   ** zone
   **  name: The unique programmatic key used to reference the zone.
   **  file: The zone data file (relative to data/maps/).
   **
-  ** title: A nicely presented label (single line, relatively short).
+  **  title: A nicely presented label (single line, relatively short).
   **
-  ** configurator: A code reference used to post-configure the zone.
-  **  attribute: An attribute passed to the configuration code.
+  **  configurator: A code reference used to post-configure the zone.
+  **   class-name: The java package/class name.
+  **
+  **   attribute: An attribute passed to the configuration code.
+  **
+  **  portal: A portal definition.
+  **   x: The X coordinate of the portal.
+  **   y: The X coordinate of the portal.
+  **   id: The portal identifier (number only - for now).
+  **
+  **  destination: A portal definition.
+  **   zone: The destination zone.
+  **   id: The destination portal identifier (number only - for now).
+  **
+  **  implementation: A code reference used for implentation.
+  **   class-name: The java package/class name.
+  **
+  **   attribute: An attribute passed to the implementation [factory].
+  **
   **
   ** Each zone can have zero, one, or more <configurator> entries.
   ** These specify a class name that implements ZoneConfigurator, and
   ** will be passed the zone and any attributes.
+  **
+  ** Portals are not supported yet (give me time!) =).
+  **
   -->
 <zones>
 
@@ -311,12 +350,12 @@
 
  <zone name="0_orril_castle" file="level_0/orril/castle.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.Orril"/>
+  <configurator class-name="games.stendhal.server.maps.orril.OL0_Castle"/>
  </zone>
 
  <zone name="int_orril_castle_0" file="interiors/orril/castle_0.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+  <configurator class-name="games.stendhal.server.maps.orril.IL0_Castle"/>
  </zone>
 
  <zone name="0_orril_forest_e" file="level_0/orril/forest_e.xstend">
@@ -342,12 +381,13 @@
 
  <zone name="0_orril_river_s" file="level_0/orril/river_s.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+  <configurator class-name="games.stendhal.server.maps.orril.OL0_JynathHouse"/>
+  <configurator class-name="games.stendhal.server.maps.orril.OL0_RiverSouthCampfire"/>
  </zone>
 
  <zone name="int_orril_jynath_house" file="interiors/orril/jynath_house.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+  <configurator class-name="games.stendhal.server.maps.orril.IL0_JynathHouse"/>
  </zone>
 
  <zone name="0_orril_river_se" file="level_0/orril/river_se.xstend">
@@ -425,12 +465,12 @@
 
  <zone name="-1_orril_castle_w" file="level_-1/orril/castle_w.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+  <configurator class-name="games.stendhal.server.maps.orril.USL1_CastleWest"/>
  </zone>
 
  <zone name="-1_orril_castle" file="level_-1/orril/castle.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+  <configurator class-name="games.stendhal.server.maps.orril.USL1_Castle"/>
  </zone>
 
 
@@ -463,12 +503,12 @@
 
  <zone name="-2_orril_dwarf_mine" file="level_-2/orril/dwarf_mine.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+  <configurator class-name="games.stendhal.server.maps.orril.USL2_DwarfMine"/>
  </zone>
 
  <zone name="-2_orril_lich_palace" file="level_-2/orril/lich_palace.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+  <configurator class-name="games.stendhal.server.maps.orril.USL2_LichPalace"/>
  </zone>
 
  <zone name="-2_orril_dungeon" file="level_-2/orril/dungeon.xstend">
@@ -496,7 +536,7 @@
 
  <zone name="-3_orril_dwarf_blacksmith" file="level_-3/orril/dwarf_blacksmith.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.Orril"/> -->
+  <configurator class-name="games.stendhal.server.maps.orril.USL3_DwarfBlacksmith"/>
  </zone>
 
  <zone name="-3_orril_dungeon" file="level_-3/orril/dungeon.xstend">
