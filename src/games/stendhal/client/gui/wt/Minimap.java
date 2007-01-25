@@ -17,8 +17,11 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
 
@@ -26,6 +29,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -38,10 +42,14 @@ public class Minimap extends WtPanel {
 	private static final int MINIMAP_WIDTH = 129;
 
 	/** height of the minimap */
-	private static final int MINIMAP_HEIGTH = 129;
+	private static final int MINIMAP_HEIGHT = 129;
 
 	/** minimum scale of the minimap */
 	private static final int MINIMAP_MINIMUM_SCALE = 2;
+
+	/** Enable X-ray vision (aka Superman) minimap? */
+	private static final boolean mininps =
+		(System.getProperty("stendhal.superman") != null);
 
 	/** scale of map */
 	private int scale;
@@ -70,13 +78,13 @@ public class Minimap extends WtPanel {
 		// calculate scale
 		scale = MINIMAP_MINIMUM_SCALE;
 		while ((w * (scale + 1) < MINIMAP_WIDTH)
-				&& (h * (scale + 1) < MINIMAP_HEIGTH)) {
+				&& (h * (scale + 1) < MINIMAP_HEIGHT)) {
 			scale++;
 		}
 
 		// calculate size of map
 		width = (w * scale < MINIMAP_WIDTH) ? w * scale : MINIMAP_WIDTH;
-		height = (h * scale < MINIMAP_HEIGTH) ? h * scale : MINIMAP_HEIGTH;
+		height = (h * scale < MINIMAP_HEIGHT) ? h * scale : MINIMAP_HEIGHT;
 
 		// create the image for the minimap
 		image = gc.createCompatibleImage(w * scale, h * scale);
@@ -155,6 +163,22 @@ public class Minimap extends WtPanel {
 		// draw minimap
 		clientg.drawImage(image, -panx, -pany, null);
 
+	/*
+	 * XXX - Temp check for waiting quest signal from server.
+	 * Enabled with -Dstendhal.superman=x.
+	 */
+	if(mininps) {
+		// draw npcs (and creatures/sheeps)
+		clientg.translate(-panx, -pany);
+
+		for (Entity entity : StendhalClient.get().getGameObjects()) {
+			if (entity instanceof NPC)
+				drawNPC(clientg, entity);
+		}
+
+		clientg.translate(panx, pany);
+	}
+
 		// draw players
 		Color playerColor = Color.WHITE;
 		for (Entity entity : StendhalClient.get().getGameObjects()) {
@@ -173,9 +197,41 @@ public class Minimap extends WtPanel {
 		return g;
 	}
 
+
+	protected void
+	drawNPC(Graphics g, Entity entity)
+	{
+		if (entity instanceof Sheep)
+			drawNPC(g, entity, Color.ORANGE);
+		else if (entity instanceof Creature)
+			drawNPC(g, entity, Color.BLACK);
+		else
+			drawNPC(g, entity, Color.YELLOW);
+	}
+
+
+	protected void
+	drawNPC(Graphics g, Entity entity, Color color)
+	{
+		Rectangle2D	area;
+
+
+		area = entity.getArea();
+
+		g.setColor(color);
+
+		g.drawRect(
+			((int) (area.getX() + 0.5)) * scale,
+			((int) (area.getY() + 0.5)) * scale,
+			(((int) area.getWidth()) * scale) - 1,
+			(((int) area.getHeight()) * scale) - 1);
+	}
+
+
 	/** draws a cross at the given position */
 	private void drawCross(Graphics g, int x, int y, Color color) {
 		int size = 2;
+
 		g.setColor(color);
 		g.drawLine(x - size, y, x + size, y);
 		g.drawLine(x, y + size, x, y - size);
