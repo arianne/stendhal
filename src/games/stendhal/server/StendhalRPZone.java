@@ -34,8 +34,9 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.StringReader;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -250,48 +251,41 @@ public class StendhalRPZone extends MarauroaRPZone {
 		object.setY(minpoint.y);
 	}
 
-	public void addLayer(String name, String byteContents) {
+	public void addLayer(String name, byte[] byteContents) {
 		Log4J.startMethod(logger, "addLayer");
-		TransferContent content = new TransferContent();
-		content.name = name;
-		content.cacheable = true;
-		content.data = byteContents.getBytes();
-		content.timestamp = CRC.cmpCRC(content.data);
-
-		contents.add(content);
+		addToContent(name, byteContents);
 		Log4J.finishMethod(logger, "addLayer");
 	}
 
-	public void addCollisionLayer(String name, String byteContents)
-			throws IOException {
-		Log4J.startMethod(logger, "addCollisionLayer");
+	/**
+	 * Creates a new TransferContent for the specified data and adds it
+	 * to the contents list. 
+	 */
+	private void addToContent(String name, byte[] byteContents) {
 		TransferContent content = new TransferContent();
 		content.name = name;
 		content.cacheable = true;
 		logger.debug("Layer timestamp: " + Integer.toString(content.timestamp));
-		content.data = byteContents.getBytes();
+		content.data = byteContents;
 		content.timestamp = CRC.cmpCRC(content.data);
 
 		contents.add(content);
+	}
 
-		collisionMap.setCollisionData(new StringReader(byteContents));
+	public void addCollisionLayer(String name, byte[] byteContents)
+			throws IOException {
+		Log4J.startMethod(logger, "addCollisionLayer");
+		addToContent(name, byteContents);
+		collisionMap.setCollisionData(new InputStreamReader(new ByteArrayInputStream(byteContents)));
 
 		Log4J.finishMethod(logger, "addCollisionLayer");
 	}
 
-	public void addProtectionLayer(String name, String byteContents)
+	public void addProtectionLayer(String name, byte[] byteContents)
 			throws IOException {
 		Log4J.startMethod(logger, "addProtectionLayer");
-		TransferContent content = new TransferContent();
-		content.name = name;
-		content.cacheable = true;
-		logger.debug("Layer timestamp: " + Integer.toString(content.timestamp));
-		content.data = byteContents.getBytes();
-		content.timestamp = CRC.cmpCRC(content.data);
-
-		contents.add(content);
-
-		protectionMap.setCollisionData(new StringReader(byteContents));
+		addToContent(name, byteContents);
+		protectionMap.setCollisionData(new InputStreamReader(new ByteArrayInputStream(byteContents)));
 		Log4J.finishMethod(logger, "addProtectionLayer");
 	}
 
@@ -363,11 +357,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	// Log4J.finishMethod(logger,"addNavigationLayer");
 	// }
 	//  
-	public void populate(String byteContents) throws IOException,
+	public void populate(byte[] byteContents) throws IOException,
 			RPObjectInvalidException {
 		Log4J.startMethod(logger, "populate");
 
-		BufferedReader file = new BufferedReader(new StringReader(byteContents));
+		BufferedReader file = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(byteContents)));
 
 		String text = file.readLine();
 		String[] size = text.split(" ");
@@ -820,5 +814,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public void setTeleportable(boolean teleportable) {
 		this.teleportable = teleportable;
+	}
+
+	public void addMap(String name, byte[] mapData) {
+		addToContent(name, mapData);
 	}
 }

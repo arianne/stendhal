@@ -295,7 +295,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		zone.addLayer(
 			name + "_3_roof", zonedata.getLayer("3_roof"));
 
-		String layer = zonedata.getLayer("4_roof_add");
+		byte[] layer = zonedata.getLayer("4_roof_add");
 
 		if (layer != null) {
 			zone.addLayer(name + "_4_roof_add", layer);

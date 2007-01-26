@@ -33,6 +33,11 @@ import games.stendhal.server.pathfinder.PathfinderThread;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
 import games.stendhal.server.util.Translate;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
@@ -324,7 +329,17 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("int_admin_playground");
 
 		addArea("int_pathfinding");
-
+/*
+		addArea("0_memory_large_1");
+		addArea("0_memory_large_2");
+		addArea("0_memory_small_many_1");
+		addArea("0_memory_small_many_2");
+		addArea("0_memory_small_many_3");
+		addArea("0_memory_small_many_4");
+		addArea("0_memory_small_many_5");
+		addArea("0_memory_small_many_6");
+*/
+		
 		populateZone("Afterlife");
 		populateZone("Semos");
 		populateZone("Kanmararn");
@@ -392,13 +407,25 @@ public class StendhalRPWorld extends RPWorld {
 		area.addLayer(name + "_2_object", xmlzone.getLayer("2_object"));
 		area.addLayer(name + "_3_roof", xmlzone.getLayer("3_roof"));
 
-		String layer = xmlzone.getLayer("4_roof_add");
+		byte[] layer = xmlzone.getLayer("4_roof_add");
 		if (layer != null) {
 			area.addLayer(name + "_4_roof_add", layer);
 		}
 
 		area.addCollisionLayer(name + "_collision", xmlzone.getLayer("collision"));
 		area.addProtectionLayer(name + "_protection", xmlzone.getLayer("protection"));
+
+/*
+		try {
+			String filename = "/home/brummermann/workspace/HEAD/stendhal/tiled/world/" + content + ".png";
+			InputStream is = new FileInputStream(filename);
+			byte[] mapData = new byte[(int) new File(filename).length()];
+			is.read(mapData);
+			area.addMap(name + "_map", mapData);
+		} catch (Exception e) {
+			logger.error(e, e);
+		}
+*/
 
 		if (xmlzone.isInterior()) {
 			area.setPosition();

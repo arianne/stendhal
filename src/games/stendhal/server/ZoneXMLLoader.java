@@ -33,13 +33,13 @@ public class ZoneXMLLoader extends DefaultHandler {
 
 		public int level;
 
-		public Map<String, String> layers;
+		public Map<String, byte[]> layers;
 
 		public XMLZone() {
-			layers = new HashMap<String, String>();
+			layers = new HashMap<String, byte[]>();
 		}
 
-		public String getLayer(String key) {
+		public byte[] getLayer(String key) {
 			return layers.get(key);
 		}
 
@@ -170,7 +170,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 			// System.out.println (actualZone.layers.get(entry));
 			// }
 		} else if (qName.equals("layer")) {
-			currentZone.layers.put(layerName, st.toString());
+			currentZone.layers.put(layerName, st.toString().getBytes());
 			st = null;
 		}
 	}
