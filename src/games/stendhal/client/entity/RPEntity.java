@@ -274,8 +274,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			damageSprites.add(GameScreen.get().createString(
 					"+" + Integer.toString(amount), Color.green));
 			damageSpritesTimes.add(new Long(System.currentTimeMillis()));
-
-			client.addEventLine(getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
+			if (getID().equals(client.getPlayer().getID())) {
+				client.addEventLine(getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
+			}
 		}
 	}
 
