@@ -2,13 +2,10 @@ package games.stendhal.client;
 
 import games.stendhal.common.Debug;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.net.URL;
 import java.util.Properties;
 
@@ -138,12 +135,11 @@ public class Cache {
      * @param item key
      * @param data data
      */
-    public void store(TransferContent item, String data) {
+    public void store(TransferContent item, byte[] data) {
         try {
         	OutputStream os = Persistence.get().getOutputStream(true, stendhal.STENDHAL_FOLDER + "cache/", item.name);
-            Writer writer = new BufferedWriter(new OutputStreamWriter(os));
-            writer.write(data);
-            writer.close();
+            os.write(data);
+            os.close();
 
 	        logger.debug("Content " + item.name
 	                + " cached now. Timestamp: "

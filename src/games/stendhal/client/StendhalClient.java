@@ -25,13 +25,11 @@ import games.stendhal.common.Debug;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.StringReader;
-import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -333,9 +331,8 @@ public class StendhalClient extends ariannexp {
         Log4J.startMethod(logger, "onTransfer");
         for (TransferContent item : items) {
             try {
-                String data = new String(item.data);
-                cache.store(item, data);
-                contentHandling(item.name, new StringReader(data));
+                cache.store(item, item.data);
+                contentHandling(item.name, new InputStreamReader(new ByteArrayInputStream(item.data)));
             } catch (java.io.IOException e) {
                 logger.fatal("onTransfer", e);
                 System.exit(2);
