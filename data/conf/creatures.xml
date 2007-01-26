@@ -1440,17 +1440,16 @@
                 <experience value="135"/>
                 <respawn value="900"/>
                 <drops>
-                        <item value="money" quantity="[10,35]"
-				probability="100"/>
+                        <item value="money" quantity="[10,35]" probability="100"/>
                         <item value="leather_armor" quantity="1" probability="30"/>
-                        <item value="studded_shield" quantity="1"
-				probability="30"/>
+                        <item value="studded_shield" quantity="1" probability="30"/>
                 </drops>
                 <equips>
                 </equips>
 		<ai>
 			<says>
-			        <noise value="brrraaaaaaaaaains"/>				        </says>
+			        <noise value="brrraaaaaaaaaains"/>      
+			</says>
 			<profile name="human"/>
                         <profile name="offensive"/>
                         <profile name="brave"/>
@@ -1727,6 +1726,7 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+
 	 <creature name="headless_monster">
                 <type class="undead" subclass="headless_monster" tileid="116"/>
                 <attributes>
@@ -1740,13 +1740,9 @@
                 <experience value="350"/>
                 <respawn value="900"/>
                 <drops>
-                        <item value="money" quantity="[3,40]"
-	probability="90"/>
-                        <item value="leather_armor_+1" quantity="1"
-	probability="10"/>
-			<item value="sword" quantity="1"
-        probability="30"/>
-
+                        <item value="money" quantity="[3,40]"	probability="90"/>
+                        <item value="leather_armor_+1" quantity="1" probability="10"/>
+			<item value="sword" quantity="1" probability="30"/>
                 </drops>
                 <equips>
                 </equips>
@@ -2032,10 +2028,8 @@
                 <experience value="400"/>
                 <respawn value="900"/>
                 <drops>
-                        <item value="money" quantity="[3,40]"
-		probability="100"/>
-			<item value="enhanced_leather_cuirass" quantity="1"
-		probability="50"/>
+                        <item value="money" quantity="[3,40]" probability="100"/>
+			<item value="leather_cuirass_+1" quantity="1" probability="50"/>
 			<item value="plate_shield" quantity ="1" probability ="30"/>		
                 </drops>
                 <equips>
