@@ -147,7 +147,8 @@ public class ToysCollector extends AbstractQuest {
 							// check if the player has brought all toys
 							missing = missingToys(player, true);
 							if (missing.size() > 0) {
-								engine.say("Thank you very much! Do you have any more toys for me?");
+								engine.say("Thank you very much! What else did 
+you bring?");
 							} else {
 								StackableItem pie = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie");
 								pie.setQuantity(3);
@@ -205,7 +206,7 @@ public class ToysCollector extends AbstractQuest {
 					return player.isQuestCompleted("toys_collector");
 				}
 			}, 
-			ConversationStates.ATTENDING, "Hi! I'm busy playing with my toys, no grown ups allowed. Bye!", null);
+			ConversationStates.ATTENDING, "Hi! I'm busy playing with my toys, no grown ups allowed.", null);
 	}
 
 	@Override
