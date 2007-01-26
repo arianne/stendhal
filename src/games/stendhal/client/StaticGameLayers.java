@@ -104,7 +104,14 @@ public class StaticGameLayers {
     public void addLayer(Reader reader, String name) throws IOException {
         Log4J.startMethod(logger, "addLayer");
         try {
-            if (!name.contains("collision")) {
+            if (name.endsWith("_collision")) {
+                CollisionDetection collision = new CollisionDetection();
+                collision.setCollisionData(reader);
+                collisions.add(new Pair<String, CollisionDetection>(name,
+                        collision));
+            } else if (name.endsWith("_map")) {
+            	
+            } else {
                 LayerRenderer content = null;
                 URL url = getClass().getClassLoader().getResource("data/layers/" + name + ".jpg");
                 if (url != null) {
@@ -125,11 +132,6 @@ public class StaticGameLayers {
                     }
                 }
                 layers.add(i, new Pair<String, LayerRenderer>(name, content));
-            } else {
-                CollisionDetection collision = new CollisionDetection();
-                collision.setCollisionData(reader);
-                collisions.add(new Pair<String, CollisionDetection>(name,
-                        collision));
             }
         } finally {
             Log4J.finishMethod(logger, "addLayer");
