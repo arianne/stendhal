@@ -22,7 +22,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -59,6 +58,8 @@ class PlayerRPClass {
 					"steel_boots", "trophy_helmet",
 					"marked_scroll");
 
+	private static final List<String> itemNamesOld = Arrays.asList("flail_+2");
+	private static final List<String> itemNamesNew = Arrays.asList("morning_star");
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -345,9 +346,15 @@ class PlayerRPClass {
 							// We simply ignore corpses...
 							if (item.get("type").equals("item")) {
 
+								// handle renamed items
+								String name = item.get("name");
+								if (itemNamesOld.indexOf(name) > -1) {
+									name = itemNamesNew.get(itemNamesOld.indexOf(name));
+								}
+
 								Item entity = world.getRuleManager()
 										.getEntityManager().getItem(
-												item.get("name"));
+												name);
 
 								// log removed items
 								if (entity == null) {
