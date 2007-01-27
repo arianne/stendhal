@@ -68,6 +68,9 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 0.57  Jan 27, 2007
+- sheep food now shows up in the minimap as an obstical
+- multiple login profile support (for those that use multiple servers)
+- gui now tracks which arrows keys are still held when multiple were pressed
 - quest reward items cannot be given to other players
 - server implemenation of ignore list for /msg (gui still misssing)
 - enlarged columns param2 in table gameEvents to upto 1024 characters
