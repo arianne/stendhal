@@ -604,12 +604,12 @@ public class GameObjects implements Iterable<Entity> {
 	public void move(long delta) {
 		for (Entity entity : sortedObjects) {
 			if (!entity.stopped()) {
-				if (!collisionMap.collides(entity.getArea())) {
-					if (!collides(entity)) {
-						entity.move(delta);
-					}
-				} else {
+				entity.move(delta);
+				if (collisionMap.collides(entity.getArea())) {
 					entity.onCollide((int) entity.getX(), (int) entity.getY());
+					entity.move(-delta);	// Undo move
+				} else if (collides(entity)) {
+					entity.move(-delta);	// Undo move
 				}
 			}
 		}

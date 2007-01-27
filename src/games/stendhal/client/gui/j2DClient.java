@@ -306,8 +306,9 @@ public class j2DClient extends JFrame {
 			// the next flip happen at the right time
 
 			screen.nextFrame();
-			long delta = System.currentTimeMillis() - refreshTime;
-			refreshTime = System.currentTimeMillis();
+			long now = System.currentTimeMillis();
+			long delta = now - refreshTime;
+			refreshTime = now;
 
 			logger.debug("Move objects");
 			gameObjects.move(delta);

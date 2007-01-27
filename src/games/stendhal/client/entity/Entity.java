@@ -194,11 +194,25 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 * @param diff acceptable diff
 	 * @return true if they are within diff
 	 */
-	private boolean compareDouble(double d1, double d2, double diff) {
+	private static boolean compareDouble(double d1, double d2, double diff) {
 		return Math.abs(d1 - d2) < diff;
 	}
 	
-	private boolean lastTimeInRange = true;
+	/**
+	 * calculates the movement if the server an client are out of sync.
+	 * for some miliseconds. (server turns are not exactly 300 ms)
+	 * Most times this will slow down the client movement
+	 *
+	 * @param clientPos the postion the client has calculated
+	 * @param serverPos the postion the server has reported
+	 * @param delta the movement based on direction
+	 * @return the new delta to correct the movement error
+	 */
+	public static double calcDeltaMovement(double clientPos, double serverPos, double delta) {
+		double moveErr = clientPos - serverPos;
+		double moveCorrection = (delta - moveErr) / delta;
+		return (delta + delta * moveCorrection) / 2;
+	}
 
 	// When rpentity moves, it will be called with the data.
 	public void onMove(int x, int y, Direction direction, double speed) {
@@ -207,56 +221,28 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		this.dy = direction.getdy() * speed;
 		this.speed = speed;
 
-		if ((direction == Direction.LEFT) || (direction == Direction.LEFT)) {
+		if ((direction == Direction.LEFT) || (direction == Direction.RIGHT)) {
 			this.y = y;
+			if (compareDouble(this.x, x, 1.0)) {
+				// make the movement look more nicely: + this.dx * 0.1
+				this.dx = calcDeltaMovement(this.x+ this.dx * 0.1, x, direction.getdx()) * speed;
+			} else {
+				this.x = x;
+			}
+			this.dy = 0;
 		} else if ((direction == Direction.UP) || (direction == Direction.DOWN)) {
 			this.x = x;
-		}
-
-
-		/*
-		if (x != this.x || y != this.y) {
-			System.err.println(System.currentTimeMillis() + " " + this + " " + x + " / " + this.x + "          " + y + " / " + this.y);
-		}
-		*/
-
-		// The code below only works for slow creatures, so use the 
-		// normal code unless speed is 0.5f
-		if (speed > 0.5f) {
+			this.dx = 0;
+			if (compareDouble(this.y, y, 1.0)) {
+				// make the movement look more nicely: + this.dy * 0.1 
+				this.dy = calcDeltaMovement(this.y + this.dy * 0.1, y, direction.getdy()) * speed;
+			} else {
+				this.y = y;
+			}
+		} else {
+			// placing entities
 			this.x = x;
 			this.y = y;
-		} else {
-	
-			// Compare our position to the one the server thinks we are.
-			// First of all we check whether we are more than one tiled off.
-			// In this case we accept that the server is right and use the
-			// position specified
-			if (!compareDouble(this.x, x, 1f) || !compareDouble(this.y, y, 1f)) {
-				this.x = x;
-				this.y = y;
-				lastTimeInRange = true;
-			} else {
-	
-				// Good, we are within one tile. Unfortunally the server does not know that
-				// we provide smooth movement. If an entity is moving at a rate like
-				// 2 turns for 1 tile, the server does it this way:
-				// move to 1,   move to 1, move to 2,   move to 2, move to 3,   move to 3
-				// but the client should display it as
-				// move to 0.5, move to 1, move to 1.5, move to 2, move to 2.5, move to 3
-				// In order to achieve this, we ignore the first time the server reports
-				// another position. 
-				if (!compareDouble(this.x, x, 0.5f) || !compareDouble(this.y, y, 0.5f)) {
-					if (!lastTimeInRange) {
-						this.x = x;
-						this.y = y;
-						lastTimeInRange = true;
-					} else {
-						lastTimeInRange = false;
-					}
-				} else {
-					lastTimeInRange = true;
-				}
-			}
 		}
 	}
 
