@@ -270,9 +270,6 @@
  <tileset name="sub_5_kanmararn_entrance" firstgid="1396" tilewidth="64" tileheight="64">
   <image source="sub_5_kanmararn_entrance.png"/>
  </tileset>
- <tileset name="-1_semos_graveyard" firstgid="1412" tilewidth="64" tileheight="64">
-  <image source="sub_1_semos_graveyard.png"/>
- </tileset>
  <tileset name="0_semos_plains_ne" firstgid="1416" tilewidth="64" tileheight="64">
   <image source="0_semos_plains_ne.png"/>
  </tileset>
