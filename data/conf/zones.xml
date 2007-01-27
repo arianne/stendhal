@@ -273,9 +273,11 @@
  </zone>
 -->
 
+<!--
  <zone name="0_ados_city_w" file="level_0/ados/city_w.xstend">
   <title/>
  </zone>
+-->
 
    <zone name="int_ados_bank" file="interiors/ados/bank.xstend">
     <title/>
