@@ -904,13 +904,15 @@ public abstract class RPEntity extends Entity {
 		int result = 0;
 		for (RPSlot slot : this.slots()) {
 			for (RPObject object : slot) {
-				if (object instanceof Item) {
-					Item item = (Item) object;
-					if (item.getName().equals(name)) {
-						if (item instanceof StackableItem) {
-							result += ((StackableItem) item).getQuantity();
-						} else {
-							result += 1;
+				if (!slot.getName().equals("bank")) {
+					if (object instanceof Item) {
+						Item item = (Item) object;
+						if (item.getName().equals(name)) {
+							if (item instanceof StackableItem) {
+								result += ((StackableItem) item).getQuantity();
+							} else {
+								result += 1;
+							}
 						}
 					}
 				}
