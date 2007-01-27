@@ -554,6 +554,18 @@ public class StendhalRPZone extends MarauroaRPZone {
 				plantGrower.setToFullGrowth();
 				
 				plantGrowers.add(plantGrower);
+
+				/*
+				 * XXX - TEMP!!
+				 * Until all maps are fixed, set all sheep food
+				 * as a collision.
+				 */
+				if (type == 92) {
+					collisionMap.setCollide(
+						plantGrower.getArea(x, y),
+						true);
+				}
+
 				break;
 			default: {
 				if (type >= 0) {

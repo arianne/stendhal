@@ -95,9 +95,4 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 		// don't grow anything new until someone picks a fruit
 		TurnNotifier.get().dontNotify(this, null);
 	}
-
-	@Override
-	public boolean isObstacle() {
-		return true;
-	}
 }

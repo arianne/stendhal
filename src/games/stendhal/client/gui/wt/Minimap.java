@@ -22,6 +22,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Sheep;
+import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
 
@@ -99,6 +100,23 @@ public class Minimap extends WtPanel {
 				mapgrapics.fillRect(x * scale, y * scale, scale, scale);
 			}
 		}
+
+		/*
+		 * XXX - TEMP!!!
+		 * Show SheepFood as obsticals until all maps can be fixed.
+		 */
+		mapgrapics.setColor(blockedColor);
+
+		for (Entity entity : StendhalClient.get().getGameObjects()) {
+			if (entity instanceof SheepFood) {
+				mapgrapics.fillRect(
+					((int) entity.getX()) * scale,
+					((int) entity.getY()) * scale,
+					scale,
+					scale);
+			}
+		}
+
 
 		setTitleBar(true);
 		setFrame(true);
