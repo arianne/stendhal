@@ -786,6 +786,10 @@ public abstract class RPEntity extends Entity {
 		Iterator<RPSlot> slotsIterator = this.slotsIterator();
 		while (slotsIterator.hasNext()) {
 			RPSlot slot = slotsIterator.next();
+			// HACK: Added to avoid dropping items that are on bank.
+			if(slot.getName().equals("bank")) {
+				continue;
+			}
 
 			Iterator<RPObject> objectsIterator = slot.iterator();
 			while (objectsIterator.hasNext()) {
@@ -851,6 +855,10 @@ public abstract class RPEntity extends Entity {
 		Iterator<RPSlot> slotsIterator = this.slotsIterator();
 		while (slotsIterator.hasNext()) {
 			RPSlot slot = slotsIterator.next();
+			// HACK: Added to avoid dropping items that are on bank.
+			if(slot.getName().equals("bank")) {
+				continue;
+			}
 
 			Iterator<RPObject> objectsIterator = slot.iterator();
 			while (objectsIterator.hasNext()) {
@@ -903,8 +911,8 @@ public abstract class RPEntity extends Entity {
 	public int getNumberOfEquipped(String name) {
 		int result = 0;
 		for (RPSlot slot : this.slots()) {
-			for (RPObject object : slot) {
-				if (!slot.getName().equals("bank")) {
+			if (!slot.getName().equals("bank")) {
+				for (RPObject object : slot) {
 					if (object instanceof Item) {
 						Item item = (Item) object;
 						if (item.getName().equals(name)) {
