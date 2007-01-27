@@ -35,11 +35,11 @@ public class StendhalNavigable implements Navigable {
 	/**
 	 * The maximum distance for the path.
 	 * It is comared with the f value of the node
-	 * The deafult is 110
-	 * The minimum for working pathfinding is manhattan distacne + 1
+	 * The deafult is 40
+	 * The minimum for working pathfinding is heuristicFromStartNode + 1
 	 */
 	protected double maxDistance;
-	protected static final double defaultMaxDistance = 110.0;
+	protected static final double defaultMaxDistance = 40.0;
 
 
 	/**
@@ -74,12 +74,14 @@ public class StendhalNavigable implements Navigable {
 		this.y = startY;
 		this.goal = destination;
 		
-		double manhattanDist = manhattanDistance(startX, startY,
+		double startF = getHeuristic(startX, startY,
 				(int) destination.getCenterX(), (int) destination.getCenterY());
 
 		// check the maxDistance
-		if (maxDist > manhattanDist + 1) {
+		if (maxDist > startF + 1) {
 			this.maxDistance = maxDist;
+		} else {
+			this.maxDistance = startF + 1; 
 		}
 	}
 
@@ -128,8 +130,19 @@ public class StendhalNavigable implements Navigable {
 	 * @retrun the estimated cost to walk from node1 to node2
 	 */
 	public double getHeuristic(Pathfinder.Node node1, Pathfinder.Node node2) {
-		double heuristic = manhattanDistance(node1.x, node1.y, node2.x, node2.y);
-		double tieBreaking = 0.01 * squareDistance(node1.x, node1.y, node2.x, node2.y);
+		return getHeuristic(node1.x, node1.y, node2.x, node2.y);
+	}
+
+	/**
+	 * calculates the heuristic for the move form node1 to node2
+	 * @param x1 x value for node 1 
+	 * @param y1 y value for node 1 
+	 * @param x2 x value for node 2 
+	 * @param y2 y value for node 2 
+	 */
+	public double getHeuristic(int x1, int y1, int x2, int y2) {
+		double heuristic = manhattanDistance(x1, y1, x2, y2);
+		double tieBreaking = 0.01 * squareDistance(x1, y1, x2, y2);
 		return heuristic + tieBreaking;
 	}
 
