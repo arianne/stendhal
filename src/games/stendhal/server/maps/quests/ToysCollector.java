@@ -147,8 +147,7 @@ public class ToysCollector extends AbstractQuest {
 							// check if the player has brought all toys
 							missing = missingToys(player, true);
 							if (missing.size() > 0) {
-								engine.say("Thank you very much! What else did 
-you bring?");
+								engine.say("Thank you very much! What else did you bring?");
 							} else {
 								StackableItem pie = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie");
 								pie.setQuantity(3);
