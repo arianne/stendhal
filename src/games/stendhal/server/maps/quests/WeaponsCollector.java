@@ -244,17 +244,17 @@ public class WeaponsCollector extends AbstractQuest {
 				null);
 		
 		// player returns after finishing the quest
-		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return player.isQuestCompleted("weapons_collector");
-					}
-				},
-				ConversationStates.ATTENDING,
-				"Welcome! Thanks again for completing my collection.",
-				null);
+		//	npc.add(ConversationStates.IDLE,
+		//	SpeakerNPC.GREETING_MESSAGES,
+		//	new SpeakerNPC.ChatCondition() {
+		//		@Override
+		//		public boolean fire(Player player, String text, SpeakerNPC engine) {
+		//			return player.isQuestCompleted("weapons_collector");
+		//		}
+		//	},
+		//	ConversationStates.ATTENDING,
+		//	"Welcome! Thanks again for completing my collection.",
+		//	null);
 	}
 
 	@Override
