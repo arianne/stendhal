@@ -21,17 +21,17 @@
   **    <attribute name="xxxxx">xxxxxx</attribute>
   **  </configurator>
   **
-  **  <portal x="xxx" y="xxx" id="xxx">
-  **   <destination zone="xxxxxxx" id="xxx"/>
+  **  <portal x="xxx" y="xxx" ref="xxx">
+  **   <destination zone="xxxxxxx" ref="xxx"/>
   **  </portal>
   **
-  **  <portal x="xxx" y="xxx" id="xxx">
-  **   <destination zone="xxxxxxx" id="xxx"/>
+  **  <portal x="xxx" y="xxx" ref="xxx">
+  **   <destination zone="xxxxxxx" ref="xxx"/>
   **   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
   **  </portal>
   **
-  **  <portal x="xxx" y="xxx" id="xxx">
-  **   <destination zone="xxxxxxx" id="xxx"/>
+  **  <portal x="xxx" y="xxx" ref="xxx">
+  **   <destination zone="xxxxxxx" ref="xxx"/>
   **   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
   **    <attribute name="xxxxx">xxxxxx</attribute>
   **    <attribute name="xxxxx">xxxxxx</attribute>
@@ -53,11 +53,11 @@
   **  portal: A portal definition.
   **   x: The X coordinate of the portal.
   **   y: The X coordinate of the portal.
-  **   id: The portal identifier (number only - for now).
+  **   ref: The portal identifier (number only - for now).
   **
   **  destination: A portal definition.
   **   zone: The destination zone.
-  **   id: The destination portal identifier (number only - for now).
+  **   ref: The destination portal identifier (number only - for now).
   **
   **  implementation: A code reference used for implentation.
   **   class-name: The java package/class name.
@@ -73,7 +73,6 @@
   **
   -->
 <zones>
-
  <!--
    ** MAPPINGS TAKEN FROM StendhalRPWorld.java AS OF 2007/01/19:
    -->
@@ -183,7 +182,6 @@
 
  <zone name="0_semos_city" file="level_0/semos/city.xstend">
   <title>The City of Semos</title>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/>
   <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside"/>
  </zone>
 
@@ -198,43 +196,48 @@
    </zone>
 
    <zone name="int_semos_temple" file="interiors/semos/temple.xstend">
-  <title/>
-    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Temple"/>
    </zone>
 
    <zone name="int_semos_blacksmith" file="interiors/semos/blacksmith.xstend">
-  <title/>
-    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Blacksmith"/>
    </zone>
 
    <zone name="int_semos_library" file="interiors/semos/library.xstend">
-  <title/>
-    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Library"/>
    </zone>
 
    <zone name="int_semos_storage_0" file="interiors/semos/storage_0.xstend">
-  <title/>
-    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Storage"/>
    </zone>
 
    <zone name="int_semos_storage_-1" file="interiors/semos/storage_-1.xstend">
-  <title/>
-    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.ISL1_Storage"/>
+
+    <!-- Sample portal (not used yet, but valid) -->
+    <portal x="26" y="10" ref="0">
+     <destination zone="int_semos_storage_0" ref="1"/>
+    </portal>
    </zone>
 
    <zone name="int_semos_bank" file="interiors/semos/bank.xstend">
-  <title/>
-    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bank"/>
    </zone>
 
    <zone name="int_semos_townhall" file="interiors/semos/townhall.xstend">
-  <title/>
-    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Townhall"/>
    </zone>
 
    <zone name="int_semos_bakery" file="interiors/semos/bakery.xstend">
-  <title/>
-    <!-- <configurator class-name="games.stendhal.server.maps.semos.SemosCityInside"/> -->
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery"/>
    </zone>
 
  <zone name="0_semos_road_e" file="level_0/semos/road_e.xstend">
