@@ -1258,7 +1258,7 @@ public abstract class RPEntity extends Entity {
 				+ 1.0f * helmet
                 + 1.0f * legs
 				+ 1.0f * boots
-                + 1.0f * weapon;
+                + 4.0f * weapon;
 	}
 
 	/**
