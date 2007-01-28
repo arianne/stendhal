@@ -91,12 +91,12 @@ public class StendhalNavigable implements Navigable {
 	 * @retrun true if the the entity could stand on the position 
 	 */
 	public boolean isValid(Pathfinder.Node node) {
-		/*
-		 * Treat our target spot as accessable (even if it's not).
-		 * The entity should stop walking when it hits a blocked area.
-		 */
-		if(goal.contains(node.x, node.y))
-			return true;
+//		/*
+//		 * Treat our target spot as accessable (even if it's not).
+//		 * The entity should stop walking when it hits a blocked area.
+//		 */
+//		if(goal.contains(node.x, node.y))
+//			return true;
 
 		return !zone.simpleCollides(entity, node.x, node.y);
 		// return !zone.collides(entity, node.x,node.y);
