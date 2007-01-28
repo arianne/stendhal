@@ -394,7 +394,7 @@ public class StendhalRPAction {
 
 		StendhalRPZone destZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(portal.getDestinationZone()));
 
-		Portal dest = destZone.getPortal(portal.getDestinationNumber());
+		Portal dest = destZone.getPortal(portal.getDestinationReference());
 		if (dest == null) // This portal is incomplete
 		{
 			logger.error("Portal " + portal + " has invalid destination");

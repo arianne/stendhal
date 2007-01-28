@@ -29,11 +29,11 @@ public class Portal extends Entity implements UseListener {
 
 	private boolean settedDestination;
 
-	private int number;
+	private Object reference;
 
 	private String destinationZone;
 
-	private int destinationNumber;
+	private Object destinationReference;
 
 	public static void generateRPClass() {
 		try {
@@ -51,22 +51,51 @@ public class Portal extends Entity implements UseListener {
 		settedDestination = false;
 	}
 
+	/**
+	 * @deprecated	Use setReference().
+	 */
 	public void setNumber(int number) {
-		this.number = number;
+		setReference(new Integer(number));
 	}
 
-	public int getNumber() {
-		return number;
+	/**
+	 * Set the portal reference to identify this specific portal with-in
+	 * a zone. This value is opaque and requires a working equals(), but
+	 * typically uses a String or Integer.
+	 *
+	 * @param	reference	A reference tag.
+	 */
+	public void setReference(Object reference) {
+		this.reference = reference;
 	}
 
+	public Object getReference() {
+		return reference;
+	}
+
+	/**
+	 * @deprecated	Use setDestination(String, Object).
+	 */
 	public void setDestination(String zone, int number) {
-		this.destinationNumber = number;
+		setDestination(zone, new Integer(number));
+	}
+
+	/*
+	 * Set the destination portal zone and reference. The reference should
+	 * match the same type/value as that passed to setReference() in the
+	 * corresponding portal.
+	 *
+	 * @param	zone		The target zone.
+	 * @param	reference	A reference tag.
+	 */
+	public void setDestination(String zone, Object reference) {
+		this.destinationReference = reference;
 		this.destinationZone = zone;
 		this.settedDestination = true;
 	}
 
-	public int getDestinationNumber() {
-		return destinationNumber;
+	public Object getDestinationReference() {
+		return destinationReference;
 	}
 
 	public String getDestinationZone() {
@@ -87,10 +116,12 @@ public class Portal extends Entity implements UseListener {
 		return "Portal at " + get("zoneid") + "[" + getX() + "," + getY() + "]";
 	}
 
-	public void onUsed(RPEntity user) {
-		Player player = (Player) user;
-
+	protected void usePortal(Player player) {
 		StendhalRPAction.usePortal(player, this);
+	}
+
+	public void onUsed(RPEntity user) {
+		usePortal((Player) user);
 	}
     
     public void onUsedBackwards(RPEntity user) {

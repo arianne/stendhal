@@ -169,7 +169,7 @@ public class StendhalRPWorld extends RPWorld {
 		pathfinderThread.start();
 
 	// NEW CONFIG CODE?
-	if(false) {
+	if(true) {
 		ZonesXMLLoader loader = new ZonesXMLLoader();
 
 		loader.load(this, "data/conf/zones.xml");
@@ -339,7 +339,7 @@ public class StendhalRPWorld extends RPWorld {
 		addArea("0_memory_small_many_5");
 		addArea("0_memory_small_many_6");
 */
-		
+
 		populateZone("Afterlife");
 		populateZone("Semos");
 		populateZone("Kanmararn");
@@ -448,10 +448,10 @@ public class StendhalRPWorld extends RPWorld {
 		Portal door = new Portal();
 		door.setX(x);
 		door.setY(y);
-		int dest = zone.assignPortalID(door);
+		Object dest = zone.assignPortalID(door);
 
 		String name = "int_" + zone.getID().getID() + "_house_"
-				+ Integer.toString(dest);
+				+ dest;
 
 		door.setDestination(name, 0);
 		zone.assignRPObjectID(door);

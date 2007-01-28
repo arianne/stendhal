@@ -131,9 +131,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return portals;
 	}
 
+	/**
+	 * deprecated	Use getPortal(Object)
+	 */
 	public Portal getPortal(int number) {
+		return getPortal(new Integer(number));
+	}
+
+	public Portal getPortal(Object reference) {
 		for (Portal portal : portals) {
-			if (portal.getNumber() == number) {
+			if (portal.getReference().equals(reference)) {
 				return portal;
 			}
 		}
@@ -162,19 +169,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 		portals.add(portal);
 	}
 
-	public int assignPortalID(Portal portal) {
-		// We reserve the first 64 portals ids for hand made portals
-		int max = 64;
+	// We reserve the first 64 portals ids for hand made portals
+	private int maxPortalNumber = 64;
 
-		for (Portal p : portals) {
-			if (p.getNumber() > max) {
-				max = p.getNumber();
-			}
-		}
+	public Object assignPortalID(Portal portal) {
+		portal.setReference(new Integer(++maxPortalNumber));
 
-		portal.setNumber(max + 1);
-
-		return portal.getNumber();
+		return portal.getReference();
 	}
 
 	public void addNPC(NPC npc) {
@@ -451,8 +452,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 									&& target.getY() + zone.getY() == portal
 											.getY()
 											+ getY()) {
-								int source = portal.getNumber();
-								int dest = zone.assignPortalID(target);
+								Object source = portal.getReference();
+								Object dest = zone.assignPortalID(target);
 
 								if (type != 6) {
 									portal.setDestination(zone.getID().getID(),
