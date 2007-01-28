@@ -122,7 +122,7 @@
 
  <zone name="0_semos_plains_n" file="level_0/semos/plains_n.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/>
+  <configurator class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
  </zone>
 
  <zone name="0_semos_plains_ne" file="level_0/semos/plains_ne.xstend">
@@ -456,7 +456,7 @@
 <!--
  <zone name="-1_semos_catacombs" file="level_-1/semos/catacombs.xstend">
   <title/>
-  <!** <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> **>
+  <configurator class-name="games.stendhal.server.maps.semos.USL1_Catacombs"/>
  </zone>
 -->
 
@@ -498,7 +498,7 @@
 <!--
  <zone name="-2_semos_catacombs" file="level_-2/semos/catacombs.xstend">
   <title/>
-  <!** <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> **>
+  <configurator class-name="games.stendhal.server.maps.semos.USL2_Catacombs"/>
  </zone>
 -->
 
@@ -535,7 +535,7 @@
 <!--
  <zone name="-3_semos_catacombs" file="level_-3/semos/catacombs.xstend">
   <title/>
-  <!** <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorth"/> **>
+  <configurator class-name="games.stendhal.server.maps.semos.USL3_Catacombs"/>
  </zone>
 -->
 
