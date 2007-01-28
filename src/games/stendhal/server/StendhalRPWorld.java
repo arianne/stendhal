@@ -169,7 +169,7 @@ public class StendhalRPWorld extends RPWorld {
 		pathfinderThread.start();
 
 	// NEW CONFIG CODE?
-	if(true) {
+	if(!true) {
 		ZonesXMLLoader loader = new ZonesXMLLoader();
 
 		loader.load(this, "data/conf/zones.xml");
