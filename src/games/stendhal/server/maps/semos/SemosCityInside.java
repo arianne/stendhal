@@ -36,7 +36,15 @@ public class SemosCityInside implements ZoneConfigurator {
 			"int_semos_temple")));
 		buildSemosLibraryArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_library")));
-		buildSemosStorageArea();
+
+		buildSemosStorageArea(
+			(StendhalRPZone) StendhalRPWorld.get().getRPZone(
+				new IRPZone.ID("int_semos_storage_0")));
+
+		buildSemosStorageAreaSL1(
+			(StendhalRPZone) StendhalRPWorld.get().getRPZone(
+				new IRPZone.ID("int_semos_storage_-1")));
+
 		buildSemosBlacksmithArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
 			"int_semos_blacksmith")));
 		buildSemosBankArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
@@ -200,9 +208,7 @@ public class SemosCityInside implements ZoneConfigurator {
 		zone.addNPC(npc);
 	}
 
-	private void buildSemosStorageArea() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_semos_storage_0"));
+	private void buildSemosStorageArea(StendhalRPZone zone) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(9);
@@ -277,9 +283,10 @@ public class SemosCityInside implements ZoneConfigurator {
 		npc.set(21, 5);
 		npc.initHP(100);
 		zone.addNPC(npc);
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"int_semos_storage_-1"));
-		portal = new Portal();
+	}
+
+	private void buildSemosStorageAreaSL1(StendhalRPZone zone) {
+		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(26);
 		portal.setY(10);
