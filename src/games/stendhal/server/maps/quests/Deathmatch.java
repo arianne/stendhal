@@ -132,27 +132,20 @@ public class Deathmatch extends AbstractQuest {
 					// send the player back to the entrance area
 					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
 					player.teleport(zone, 96, 75, null, player);
+					removePlayersMonsters(spawnedCreatures);
+					keepRunning = false;
+					return;
 				}
 			}
 			if("cancel".equals(questState)) {
-				// remove the critters that the player was supposed to kill
-				for (Creature creature : spawnedCreatures) {
-					String id = creature.getID().getZoneID();
-					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
-					try {
-						StendhalRPRuleProcessor.get().removeNPC(creature);
-						zone.getNPCList().remove(creature);
-						if (zone.has(creature.getID())) {
-							zone.remove(creature);
-						}
-					} catch (RPObjectNotFoundException e) {
-						logger.error(e, e);
-					}
-				}
+				removePlayersMonsters(spawnedCreatures);
+				
 				// and finally remove this ScriptAction 
 				keepRunning = false;
 				return;
 			}
+
+			
 			// save a little processing time and do things only every spawnDelay miliseconds 
 			if(questLast != null && (new Date()).getTime() - Long.parseLong(questLast) > spawnDelay )
 				{
@@ -342,6 +335,27 @@ public class Deathmatch extends AbstractQuest {
 		helmet.setY(y);
 		helmet.put("persistent", 1);
 		zone.add(helmet);
+	}
+
+	/**
+	 * remove the critters that the player was supposed to kill
+	 *
+	 * @param spawnedCreatures list of creatures created for this deathmatch
+	 */
+	public void removePlayersMonsters(List<Creature> spawnedCreatures) {
+		for (Creature creature : spawnedCreatures) {
+			String id = creature.getID().getZoneID();
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
+			try {
+				StendhalRPRuleProcessor.get().removeNPC(creature);
+				zone.getNPCList().remove(creature);
+				if (zone.has(creature.getID())) {
+					zone.remove(creature);
+				}
+			} catch (RPObjectNotFoundException e) {
+				logger.error(e, e);
+			}
+		}
 	}
 
 	public void createNPC(String name, int x, int y) {
