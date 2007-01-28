@@ -22,7 +22,7 @@ import games.stendhal.common.Direction;
 debuggeraEnabled = false;
 
 class AdminCondition extends SpeakerNPC.ChatCondition {
-    public boolean fire(Player player, SpeakerNPC engine) {
+    public boolean fire(Player player, String text, SpeakerNPC engine) {
       return (player.has("adminlevel") && (player.getInt("adminlevel") >= 5000));
     }
 }
