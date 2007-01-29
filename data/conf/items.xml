@@ -1298,6 +1298,8 @@ Makes players more offensive
 
 	<item name="studded_boots">
 		<type class="boots" subclass="studded_boots"/>
+		<description>You see a pair of worn studded boots with
+		moderate protection for your feet.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="2"/>
@@ -1311,6 +1313,8 @@ Makes players more offensive
 
 	<item name="chain_boots">
 		<type class="boots" subclass="chain_boots"/>
+		<description>You see a pair of chain boots, quite rusty but
+		still strong.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="4"/>
