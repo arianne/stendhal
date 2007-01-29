@@ -252,6 +252,44 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 
+	/**
+	 * Give the player some karma (good or bad).
+	 *
+	 * @param	karma		An amount of karma to add/subtract.
+	 */
+	public void addKarma(double karma) {
+	}
+
+
+	/**
+	 * Get some of the player's karma. A positive value indicates
+	 * good luck/energy. A negative value indicates bad luck/energy.
+	 * A value of zero should cause no change on an action or outcome.
+	 *
+	 * @param	scale		A positive number.
+	 *
+	 * @return	A number between -scale and scale.
+	 */
+	public double getKarma(double scale) {
+		return getKarma(-scale, scale);
+	}
+
+
+	/**
+	 * Get some of the player's karma. A positive value indicates
+	 * good luck/energy. A negative value indicates bad luck/energy.
+	 * A value of zero should cause no change on an action or outcome.
+	 *
+	 * @param	maxNegative	The maximum negative value returned.
+	 * @param	maxPositive	The maximum positive value returned.
+	 *
+	 * @return	A number within -abs(maxNegative) and abs(maxPositive).
+	 */
+	public double getKarma(double maxNegative, double maxPositive) {
+		return 0.0;
+	}
+
+
 	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
