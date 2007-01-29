@@ -347,6 +347,11 @@ public abstract class RPEntity extends Entity {
 		return xp;
 	}
 
+
+	public void sendPrivateText(String text) { 
+		// Ignore - Sub-classes may use
+	}
+
 	/***************************************************************************
 	 * * Attack handling code. * *
 	 **************************************************************************/
