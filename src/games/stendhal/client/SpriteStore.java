@@ -202,7 +202,7 @@ public class SpriteStore {
 		URL url = null;
 		try {
 			ClassLoader classloader = this.getClass().getClassLoader();
-			Method method = ClassLoader.class.getMethod("findResource", String.class);
+			Method method = ClassLoader.class.getDeclaredMethod("findResource", String.class);
 			method.setAccessible(true);
 			
 			url = (URL) method.invoke(classloader, ref);
@@ -220,7 +220,7 @@ public class SpriteStore {
 			}
 		}
 		if (url == null) {
-			url = this.getClass().getResource(ref);
+			url = this.getClass().getClassLoader().getResource(ref);
 		}
 		return url;
 	}
