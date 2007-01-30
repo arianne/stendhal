@@ -18,10 +18,14 @@ import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.HashMap;
+
 import javax.imageio.ImageIO;
+
 import marauroa.common.Log4J;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -41,6 +45,8 @@ public class SpriteStore {
 
 	/** The single instance of this class */
 	private static SpriteStore single = new SpriteStore();
+	
+	private static boolean doOldBootstrapClassloaderWorkaroundFirst = true;
 
 	protected SpriteStore() {
 	}
@@ -145,7 +151,7 @@ public class SpriteStore {
 			// from the appropriate place, this helps with deploying the game
 			// with things like webstart. You could equally do a file look
 			// up here.
-			URL url = this.getClass().getClassLoader().getResource(ref);
+			URL url = doOldBootstrapClassloaderWorkaround(ref);
 
 			if (url == null) {
 				logger.fatal("Can't find ref: " + ref);
@@ -185,4 +191,40 @@ public class SpriteStore {
 
 		return sprite;
 	}
+
+	/**
+	 * Warning, ugly workaround for a bug in Bootstrap.java prior (including) version 0.57.
+	 *
+	 * @param ref resource name
+	 * @return URL to that resource or null in case it was not found
+	 */
+	private URL doOldBootstrapClassloaderWorkaround(String ref) {
+		URL url = null;
+		try {
+			ClassLoader classloader = this.getClass().getClassLoader();
+			Method method = ClassLoader.class.getMethod("findResource", String.class);
+			method.setAccessible(true);
+			
+			url = (URL) method.invoke(classloader, ref);
+			if (url == null) {
+				ClassLoader parent = classloader.getParent();
+				if (parent != null) {
+					url = parent.getResource(ref);
+				}
+			}
+		} catch (Exception e) {
+			if (doOldBootstrapClassloaderWorkaroundFirst) {
+				logger.error(e, e);
+				e.printStackTrace(System.err);
+				doOldBootstrapClassloaderWorkaroundFirst = false;
+			}
+		}
+		if (url == null) {
+			url = this.getClass().getResource(ref);
+		}
+		return url;
+	}
+	
+	
+	
 }
