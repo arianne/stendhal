@@ -55,6 +55,18 @@ public class Bootstrap {
 			}
 			return clazz;
 	    }
+
+	    @Override
+		public URL getResource(String name) {
+			ClassLoader parent = super.getParent();
+			URL url = findResource(name);
+			if (url == null) {
+				if (parent != null) {
+					url = parent.getResource(name);
+				}
+			}
+			return url;
+		}
 	}
 
 	/**
