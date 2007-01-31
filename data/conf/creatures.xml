@@ -2193,6 +2193,33 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+	<creature name="dark_mutant">
+		<type class="mutant" subclass="blacky" tileid="113"/>
+		<attributes>
+			<atk value="100"/>
+			<def value="27"/>
+			<hp value="125"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="35"/>
+		<experience value="570"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[8,35]" probability="100"/>
+			<item value="katana" quantity="1" probability="50"/>
+			<item value="biting_sword" quantity="1" probability="5"/>
+			<item value="studded_boots" quantity ="1" probability="30"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 	
 	<!-- Level 37 -->		
 	<creature name="demon_skeleton">
@@ -2303,7 +2330,7 @@
 			<item value="elf_cloak_+2" quantity="1" probability="5"/>
 		</drops>
 		<equips>
-		</equips>
+		</equips> won't be back till
 		<ai>
 			<profile name="human"/>
 			<profile name="offensive"/>
@@ -2472,6 +2499,38 @@
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
+
+	<!-- Level 55 -->
+
+	<creature name="bone_dragon">
+		<type class="huge_animal" subclass="bone_dragon" tileid="121"/>
+		<attributes>
+			<atk value="145"/>
+			<def value="28"/>
+			<hp value="450"/>
+			<speed value="1"/>
+			<size value="3,4"/>
+		</attributes>
+		<level value="55"/>
+		<experience value="7500"/>
+		<respawn value="20000"/>
+		<drops>
+			<item value="money" quantity="[10,80]" probability="100"/>
+			<item value="greater_potion" quantity="[1,2]" probability="50"/>
+			<item value="bone_dragon_cloak" quantity="1" probability="5"/>
+			<item value="fire_sword" quantity="1" probability="5"/>
+			<item value="plate_armor" quantity="1" probability="1"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 	<!-- Level 60 -->
     
 	<creature name="lich">
@@ -2523,9 +2582,10 @@
 		<drops>
 			<item value="money" quantity="[15,100]" probability="100"/>
 			<item value="greater_potion" quantity="[1,2]" probability="75"/>
-			<item value="vampire_cloak" quantity="1" probability="5"/>
-		//	<item value="vampire_sword" quantity="1" probability="1"/>
-		//	<item value="skull_ring" quantity="1" probability="100"/>
+			<item value="vampire_cloak" quantity="1" probability="10"/>
+		<!--	<item value="vampire_sword" quantity="1" probability="1"/>
+			<item value="skull_ring" quantity="1"
+		probability="100"/> -->
 		</drops>
 		<equips>
 		</equips>

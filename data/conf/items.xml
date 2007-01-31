@@ -223,13 +223,14 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-<!--
-	<item name="great_sword">
-		<type class="sword" subclass="great_sword"/>
-		<description>You see the formidable great sword.</description>
+
+	<item name="vampire_sword">
+		<type class="sword" subclass="vampire_sword"/>
+		<description>You see the vampire sword, which will suck life
+		from those you attack with it.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
-			<atk value="30"/>
+			<atk value="26"/>
 		</attributes>
 		<weight value="4"/>
 		<equipable>
@@ -237,7 +238,7 @@ in the file.
 			<slot name="rhand"/>
 			<slot name="bag"/>
 		</equipable>
-	</item>-->
+	</item>
 
 <!--
 r_hand_sword and l_hand_sword meant to be used together.
@@ -1431,7 +1432,20 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-
+   <item name="bone_dragon_cloak">
+		<type class="cloak" subclass="lilac_cloak"/>
+		<description>You see a bone dragon cloak. It's incredibly old,
+                like its last owner.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="11"/>
+		</attributes>
+		<weight value="2"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
     <item name="lich_cloak">
 		<type class="cloak" subclass="purple_cloak"/>
 		<description>You see a purple lich cloak. It's stained with
@@ -2123,7 +2137,14 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-
+	<item name="skull_ring">
+		<type class="misc" subclass="skull_ring"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 	<item name="summon_scroll">
 		<type class="scroll" subclass="summon"/>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.SummonScroll"/>
