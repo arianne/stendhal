@@ -2330,7 +2330,7 @@
 			<item value="elf_cloak_+2" quantity="1" probability="5"/>
 		</drops>
 		<equips>
-		</equips> won't be back till
+		</equips>
 		<ai>
 			<profile name="human"/>
 			<profile name="offensive"/>
