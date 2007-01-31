@@ -27,6 +27,10 @@ import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
 import marauroa.server.game.RPWorld;
+import games.stendhal.common.ConfigurableFactory;
+import games.stendhal.common.ConfigurableFactoryHelper;
+import games.stendhal.common.ConfigurableFactoryContextImpl;
+import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.IContent;
 import games.stendhal.server.maps.ZoneConfigurator;
 
@@ -34,6 +38,10 @@ import games.stendhal.server.maps.ZoneConfigurator;
  * Load and configure zones via an XML configuration file.
  */
 public class ZonesXMLLoader extends DefaultHandler {
+	protected static final int SCOPE_NONE		= 0;
+	protected static final int SCOPE_CONFIGURATOR	= 1;
+	protected static final int SCOPE_PORTAL		= 2;
+
 	private static final Logger logger = Log4J.getLogger(ZonesXMLLoader.class);
 
 	/**
@@ -57,6 +65,11 @@ public class ZonesXMLLoader extends DefaultHandler {
 	protected ConfiguratorDesc	cdesc;
 
 	/**
+	 * The current portal descriptor.
+	 */
+	protected PortalDesc		pdesc;
+
+	/**
 	 * The current attribute name.
 	 */
 	String				attrName;
@@ -65,6 +78,11 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 * The current text content.
 	 */
 	StringBuffer			content;
+
+	/**
+	 * The current [meaningful] xml tree scope.
+	 */
+	int				scope;
 
 
 	/**
@@ -145,7 +163,9 @@ public class ZonesXMLLoader extends DefaultHandler {
 		zoneDescriptors = new LinkedList<ZoneDesc>();
 		zdesc = null;
 		cdesc = null;
+		pdesc = null;
 		attrName = null;
+		scope = SCOPE_NONE;
 
 		saxParser.parse(in, this);
 
@@ -176,11 +196,24 @@ public class ZonesXMLLoader extends DefaultHandler {
 			StendhalRPZone	zone;
 
 			if((zone = zones.get(zdesc.getName())) != null) {
-				Iterator<ConfiguratorDesc> iter =
+				/*
+				 * Portals
+				 */
+				Iterator<PortalDesc> piter =
+					zdesc.getPortals();
+
+				while(piter.hasNext()) {
+					configurePortal(zone, piter.next());
+				}
+
+				/*
+				 * Custom configurators
+				 */
+				Iterator<ConfiguratorDesc> citer =
 					zdesc.getConfigurators();
 
-				while(iter.hasNext()) {
-					configureZone(zone, iter.next());
+				while(citer.hasNext()) {
+					configureZone(zone, citer.next());
 				}
 			}
 		}
@@ -267,6 +300,57 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 
 	/**
+	 * Configure a portal.
+	 *
+	 *
+	 */
+	protected void configurePortal(StendhalRPZone zone, PortalDesc pdesc) {
+		String			className;
+		ConfigurableFactory	factory;
+		Portal			portal;
+		Object			reference;
+
+
+		if((className = pdesc.getClassName()) == null) {
+			/*
+			 * Default implementation
+			 */
+			className = Portal.class.getName();
+		}
+
+		try
+		{
+			if((factory = ConfigurableFactoryHelper.getFactory(
+			 className)) == null) {
+				logger.warn("Unable to get portal factory: "
+					+ className);
+
+				return;
+			}
+
+			portal = (Portal) factory.create(
+				new ConfigurableFactoryContextImpl(
+					pdesc.getAttributes()));
+
+			zone.assignRPObjectID(portal);
+
+			portal.set(pdesc.getX(), pdesc.getY());
+			portal.setReference(pdesc.getReference());
+
+			if((reference = pdesc.getDestinationReference())
+			 != null) {
+				portal.setDestination(
+					pdesc.getDestinationZone(), reference);
+			}
+
+			zone.addPortal(portal);
+		} catch(IllegalArgumentException ex) {
+			logger.error("Error with portal factory", ex);
+		}
+	}
+
+
+	/**
 	 * Load zone data and create a zone from it.
 	 * Most of this should be moved directly into ZoneXMLLoader.
 	 *
@@ -331,31 +415,107 @@ public class ZonesXMLLoader extends DefaultHandler {
 	@Override
 	public void startElement(String namespaceURI, String lName,
 	 String qName, Attributes attrs) {
-		String	name;
+		String	s;
+		int	x;
+		int	y;
+		String	zone;
+		Object	reference;
 
 
 		if(qName.equals("zone")) {
-			if((name = attrs.getValue("name")) == null) {
+			if((s = attrs.getValue("name")) == null) {
 				logger.warn("Unnamed zone");
 			} else {
 				zdesc = new ZoneDesc(
-					name, 
+					s, 
 					attrs.getValue("file"));
 			}
 		} else if(qName.equals("title")) {
 			content.setLength(0);
 		} else if(qName.equals("configurator")) {
-			if((name = attrs.getValue("class-name")) == null) {
+			if((s = attrs.getValue("class-name")) == null) {
 				logger.warn("Configurator without class-name");
 			} else {
-				cdesc = new ConfiguratorDesc(name);
+				cdesc = new ConfiguratorDesc(s);
+				scope = SCOPE_CONFIGURATOR;
 			}
+		} else if(qName.equals("portal")) {
+			if((s = attrs.getValue("x")) == null) {
+				logger.warn("Portal without 'x' coordinate");
+				return;
+			}
+
+			try {
+				x = Integer.parseInt(s);
+			} catch(NumberFormatException ex) {
+				logger.warn("Invalid portal 'x' coordinate: "
+					+ s);
+				return;
+			}
+
+			if((s = attrs.getValue("y")) == null) {
+				logger.warn("Portal without 'y' coordinate");
+				return;
+			}
+
+			try {
+				y = Integer.parseInt(s);
+			} catch(NumberFormatException ex) {
+				logger.warn("Invalid portal 'y' coordinate: "
+					+ s);
+				return;
+			}
+
+			if((s = attrs.getValue("ref")) == null) {
+				logger.warn("Portal without 'ref' value");
+				return;
+			}
+
+			/*
+			 * For now, treat valid number strings as Integer refs
+			 */
+			try {
+				reference = new Integer(s);
+			} catch(NumberFormatException ex) {
+				reference = s;
+			}
+
+			pdesc = new PortalDesc(x, y, reference);
+			scope = SCOPE_PORTAL;
 		} else if(qName.equals("attribute")) {
 			if((attrName = attrs.getValue("name")) == null) {
 				logger.warn("Unnamed attribute");
 			} else {
 				content.setLength(0);
 			}
+		} else if(qName.equals("implementation")) {
+			if((s = attrs.getValue("class-name")) == null) {
+				logger.warn("Implmentation without class-name");
+			} else if(pdesc != null) {
+				pdesc.setImplementation(s);
+			}
+		} else if(qName.equals("destination")) {
+			if((zone = attrs.getValue("zone")) == null) {
+				logger.warn("Portal destination without zone");
+				return;
+			}
+
+			if((s = attrs.getValue("ref")) == null) {
+				logger.warn("Portal dest without 'ref' value");
+				return;
+			}
+
+			/*
+			 * For now, treat valid number strings as Integer refs
+			 */
+			try {
+				reference = new Integer(s);
+			} catch(NumberFormatException ex) {
+				reference = s;
+			}
+
+			if((scope == SCOPE_PORTAL) && (pdesc != null))
+				pdesc.setDestination(zone, reference);
 		}
 	}
 
@@ -384,10 +544,32 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 				cdesc = null;
 			}
+
+			scope = SCOPE_NONE;
+		} else if(qName.equals("portal")) {
+			if(zdesc != null) {
+				if(pdesc != null) {
+					zdesc.addPortal(pdesc);
+				}
+
+				pdesc = null;
+			}
+
+			scope = SCOPE_NONE;
 		} else if(qName.equals("attribute")) {
-			if((cdesc != null) && (attrName != null)) {
-				cdesc.setAttribute(
-					attrName, content.toString().trim());
+			if(attrName != null) {
+				if((scope == SCOPE_CONFIGURATOR)
+				 && (cdesc != null)) {
+					cdesc.setAttribute(
+						attrName,
+						content.toString().trim());
+				}
+				else if((scope == SCOPE_PORTAL)
+				 && (pdesc != null)) {
+					pdesc.setAttribute(
+						attrName,
+						content.toString().trim());
+				}
 			}
 		}
 	}
@@ -442,6 +624,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		protected String	file;
 		protected String	title;
 		protected ArrayList<ConfiguratorDesc>	configurators;
+		protected ArrayList<PortalDesc>		portals;
 
 
 		public ZoneDesc(String name, String file) {
@@ -455,6 +638,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			this.file = file;
 
 			configurators = new ArrayList<ConfiguratorDesc>();
+			portals = new ArrayList<PortalDesc>();
 		}
 
 
@@ -466,9 +650,17 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 * Add a configurator descriptor.
 		 *
 		 */
-		public void addConfigurator(
-		 ConfiguratorDesc configurator) {
+		public void addConfigurator(ConfiguratorDesc configurator) {
 			configurators.add(configurator);
+		}
+
+
+		/**
+		 * Add a portal descriptor.
+		 *
+		 */
+		public void addPortal(PortalDesc portal) {
+			portals.add(portal);
 		}
 
 
@@ -496,6 +688,15 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 */
 		public String getName() {
 			return name;
+		}
+
+
+		/**
+		 * Get an iterator of portal descriptors.
+		 *
+		 */
+		public Iterator<PortalDesc> getPortals() {
+			return portals.iterator();
 		}
 
 
@@ -560,6 +761,136 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 */
 		public void setAttribute(String name, String value) {
 			attributes.put(name, value);
+		}
+	}
+
+
+	/**
+	 * A portal descriptor.
+	 */
+	protected static class PortalDesc {
+		protected int		x;
+		protected int		y;
+		protected Object	reference;
+		protected String	destinationZone;
+		protected Object	destinationReference;
+		protected String	className;
+		protected HashMap<String, String>	attributes;
+
+
+		public PortalDesc(int x, int y, Object reference) {
+			this.x = x;
+			this.y = y;
+			this.reference = reference;
+
+			destinationZone = null;
+			destinationReference = null;
+
+			className = null;
+			attributes = new HashMap<String, String>();
+		}
+
+		//
+		//
+		//
+
+		/**
+		 * Get the attributes.
+		 *
+		 */
+		public Map<String, String> getAttributes() {
+			return attributes;
+		}
+
+
+		/**
+		 * Get the implementation class name.
+		 *
+		 */
+		public String getClassName() {
+			return className;
+		}
+
+
+		/**
+		 * Get the destination reference.
+		 *
+		 */
+		public Object getDestinationReference() {
+			return destinationReference;
+		}
+
+
+		/**
+		 * Get the destination zone.
+		 *
+		 */
+		public String getDestinationZone() {
+			return destinationZone;
+		}
+
+
+		/**
+		 * Get the implementation class name.
+		 *
+		 */
+		public String getImplementation() {
+			return className;
+		}
+
+
+		/**
+		 * Get the reference.
+		 *
+		 */
+		public Object getReference() {
+			return reference;
+		}
+
+
+		/**
+		 * Get the X coordinate.
+		 *
+		 */
+		public int getX() {
+			return x;
+		}
+
+
+		/**
+		 * Get the Y coordinate.
+		 *
+		 */
+		public int getY() {
+			return y;
+		}
+
+
+		/**
+		 * Set an attribute.
+		 *
+		 */
+		public void setAttribute(String name, String value) {
+			attributes.put(name, value);
+		}
+
+
+		/**
+		 * Set the destination zone/reference.
+		 *
+		 */
+		public void setDestination(String zone, Object reference) {
+			this.destinationZone = zone;
+			this.destinationReference = reference;
+		}
+
+
+		/**
+		 * Set the implementation class name.
+		 *
+		 */
+		public void setImplementation(String className) {
+			this.className = className;
 		}
 	}
 }

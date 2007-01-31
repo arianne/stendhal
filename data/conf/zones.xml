@@ -217,9 +217,10 @@
 
    <zone name="int_semos_storage_-1" file="interiors/semos/storage_-1.xstend">
     <title/>
+<!-- use portal config
     <configurator class-name="games.stendhal.server.maps.semos.ISL1_Storage"/>
+-->
 
-    <!-- Sample portal (not used yet, but valid) -->
     <portal x="26" y="10" ref="0">
      <destination zone="int_semos_storage_0" ref="1"/>
     </portal>
@@ -513,7 +514,31 @@
 
  <zone name="-2_orril_lich_palace" file="level_-2/orril/lich_palace.xstend">
   <title/>
+<!-- use portal config
   <configurator class-name="games.stendhal.server.maps.orril.USL2_LichPalace"/>
+-->
+
+  <portal x="70" y="38" ref="0">
+   <destination zone="-1_orril_castle_w" ref="0"/>
+  </portal>
+
+  <!-- A non-default implementation portal example -->
+  <portal x="54" y="52" ref="locked_outside">
+   <destination zone="-2_orril_lich_palace" ref="locked_inside_left"/>
+   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+    <attribute name="class">skulldoor</attribute>
+    <attribute name="direction">up</attribute>
+    <attribute name="key">lich_gold_key</attribute>
+   </implementation>
+  </portal>
+
+  <portal x="54" y="57" ref="locked_inside_left">
+   <destination zone="-2_orril_lich_palace" ref="locked_outside"/>
+  </portal>
+
+  <portal x="55" y="57" ref="locked_inside_right">
+   <destination zone="-2_orril_lich_palace" ref="locked_outside"/>
+  </portal>
  </zone>
 
  <zone name="-2_orril_dungeon" file="level_-2/orril/dungeon.xstend">
