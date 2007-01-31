@@ -9,7 +9,10 @@ import games.stendhal.server.maps.semos.IL0_Temple;
 import games.stendhal.server.maps.semos.IL0_Townhall;
 import games.stendhal.server.maps.semos.ISL1_Storage;
 import games.stendhal.server.maps.semos.OL0_PlainsNorth;
-import games.stendhal.server.maps.semos.USL1_Catacombs;
+import games.stendhal.server.maps.semos.USL1_CatacombsNW;
+import games.stendhal.server.maps.semos.USL1_CatacombsNE;
+import games.stendhal.server.maps.semos.USL1_CatacombsSW;
+import games.stendhal.server.maps.semos.USL1_CatacombsSE;
 import games.stendhal.server.maps.semos.USL2_Catacombs;
 import games.stendhal.server.maps.semos.USL3_Catacombs;
 import games.stendhal.server.maps.semos.SemosCityTavern0;
@@ -28,7 +31,10 @@ public class Semos implements IContent {
 	public Semos() {
 		// sorted form north west to south east
 		new OL0_PlainsNorth().build();
-		new USL1_Catacombs().build();
+		new USL1_CatacombsNW().build();
+		new USL1_CatacombsNE().build();
+		new USL1_CatacombsSW().build();
+		new USL1_CatacombsSE().build();
 		new USL2_Catacombs().build();
 		new USL3_Catacombs().build();
 
