@@ -8,6 +8,10 @@ import marauroa.common.game.IRPZone;
 
 public class Afterlife implements ZoneConfigurator, IContent {
 	public Afterlife() {
+	}
+
+
+	public void build() {
 		/**
 		 * When ZoneConfigurator aware loader is used, remove this!!
 		 */
@@ -26,29 +30,34 @@ public class Afterlife implements ZoneConfigurator, IContent {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(30);
-		portal.setY(6);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 60);
-		zone.addPortal(portal);
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(30);
+			portal.setY(6);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_city", 60);
+			zone.addPortal(portal);
 
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(31);
-		portal.setY(6);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 60);
-		zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(31);
+			portal.setY(6);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_city", 60);
+			zone.addPortal(portal);
 
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(32);
-		portal.setY(6);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 60);
-		zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(32);
+			portal.setY(6);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_city", 60);
+			zone.addPortal(portal);
+		}
 
 
 		String message;

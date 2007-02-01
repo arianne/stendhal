@@ -16,12 +16,13 @@ import marauroa.common.game.IRPZone;
 
 public class Kanmararn implements ZoneConfigurator, IContent {
 	private NPCList npcs;
+
 	public Kanmararn() {
 		this.npcs = NPCList.get();
-		
-		/**
-		 * When ZoneConfigurator aware loader is used, remove this!!
-		 */
+	}
+
+
+	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		configureZone(

@@ -1,5 +1,8 @@
 package games.stendhal.server.maps;
 
+import java.util.Map;
+
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.maps.semos.IL0_Bakery;
 import games.stendhal.server.maps.semos.IL0_Bank;
 import games.stendhal.server.maps.semos.IL0_Blacksmith;
@@ -26,9 +29,25 @@ import games.stendhal.server.maps.semos.SemosPlainsSouth;
 import games.stendhal.server.maps.semos.SemosVillageWest;
 
 
-public class Semos implements IContent {
+public class Semos implements ZoneConfigurator, IContent {
 
 	public Semos() {
+	}
+
+
+	public void build() {
+		configureZone(null, null);
+	}
+
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone,
+	 Map<String, String> attributes) {
 		// sorted form north west to south east
 		new OL0_PlainsNorth().build();
 		new USL1_CatacombsNW().build();
@@ -60,8 +79,6 @@ public class Semos implements IContent {
 
 		new SemosCityOutside().build();
 
-
 		new SemosPlainsSouth().build();
 	}
-
 }

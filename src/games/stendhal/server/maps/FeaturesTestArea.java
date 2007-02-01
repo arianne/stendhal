@@ -57,10 +57,10 @@ public class FeaturesTestArea implements ZoneConfigurator, IContent {
 	public FeaturesTestArea() {
 		manager = (DefaultEntityManager) StendhalRPWorld.get()
 				.getRuleManager().getEntityManager();
+	}
 
-		/**
-		 * When ZoneConfigurator aware loader is used, remove this!!
-		 */
+
+	public void build() {
 		configureZone(
 			(StendhalRPZone) StendhalRPWorld.get().getRPZone(
 				new IRPZone.ID("int_pathfinding")),
@@ -76,27 +76,34 @@ public class FeaturesTestArea implements ZoneConfigurator, IContent {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		createDoorAndKey(zone);
-		attackableAnimal(zone);
+		createDoorAndKey(zone, attributes);
+		attackableAnimal(zone, attributes);
 	}
 
 	
-	private void createDoorAndKey(StendhalRPZone zone) {
-		Portal portal = new LockedDoor("key_golden", "skulldoor", Direction.DOWN);
-		zone.assignRPObjectID(portal);
-		portal.setX(50);
-		portal.setY(10);
-		portal.setNumber(0);
-		portal.setDestination("int_pathfinding", 1);
-		zone.addPortal(portal);
+	private void createDoorAndKey(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new LockedDoor(
+				"key_golden", "skulldoor", Direction.DOWN);
+			zone.assignRPObjectID(portal);
+			portal.setX(50);
+			portal.setY(10);
+			portal.setNumber(0);
+			portal.setDestination("int_pathfinding", 1);
+			zone.addPortal(portal);
 
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(50);
-		portal.setY(12);
-		portal.setNumber(1);
-		portal.setDestination("int_pathfinding", 0);
-		zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(50);
+			portal.setY(12);
+			portal.setNumber(1);
+			portal.setDestination("int_pathfinding", 0);
+			zone.addPortal(portal);
+		}
 
 		List<String> slots = new LinkedList<String>();
 		slots.add("bag");
@@ -119,8 +126,8 @@ public class FeaturesTestArea implements ZoneConfigurator, IContent {
 	}
 	
 	
-	private void attackableAnimal(StendhalRPZone zone) {
-
+	private void attackableAnimal(StendhalRPZone zone,
+	 Map<String, String> attributes) {
 		Creature creature = new AttackableCreature(manager.getCreature("orc"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 4, 56, creature, 1);
 		point.setRespawnTime(60*60*3);

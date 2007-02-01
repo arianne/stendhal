@@ -15,7 +15,10 @@ public class Athos implements ZoneConfigurator, IContent {
 	public Athos() {
 		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
+	}
 
+
+	public void build() {
 		/**
 		 * When ZoneConfigurator aware loader is used, remove this!!
 		 */

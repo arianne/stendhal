@@ -22,9 +22,10 @@ import marauroa.common.game.IRPZone;
  */
 public class Orril implements ZoneConfigurator, IContent {
 	public Orril() {
-		/**
-		 * When IContent aware loader is gone, remove this!!
-		 */
+	}
+
+
+	public void build() {
 		configureZone(null, java.util.Collections.EMPTY_MAP);
 	}
 

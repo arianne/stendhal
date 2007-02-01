@@ -11,9 +11,10 @@ import marauroa.common.game.IRPZone;
 
 public class Nalwor implements ZoneConfigurator, IContent {
 	public Nalwor() {
-		/**
-		 * When ZoneConfigurator aware loader is used, remove this!!
-		 */
+	}
+
+
+	public void build() {
 		configureZone(
 			(StendhalRPZone) StendhalRPWorld.get().getRPZone(
 				new IRPZone.ID("0_nalwor_forest_w")),

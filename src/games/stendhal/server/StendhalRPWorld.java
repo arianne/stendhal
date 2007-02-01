@@ -379,9 +379,9 @@ public class StendhalRPWorld extends RPWorld {
 
 			logger.info("Loading Zone populate class: " + name);
 
-			// simply creatre a new instance. The constructor creates all
-			// additionally objects
-			entityClass.newInstance();
+			IContent icontent = (IContent) entityClass.newInstance();
+			icontent.build();
+
 			return true;
 		} catch (Exception e) {
 			logger.warn("Zone Populate class(" + name + ") loading failed.", e);
