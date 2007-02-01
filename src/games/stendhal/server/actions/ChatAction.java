@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
@@ -73,6 +74,13 @@ public class ChatAction extends ActionListener {
 	}
 
 	private void onTell(Player player, RPAction action) {
+
+		// TODO: find a cleaner way to implement it
+		if (Jail.isInJail(player)) {
+			player.sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
+			return;
+		}
+
 		if (action.has("target") && action.has("text")) {
 			String text = action.get("text").trim();
 			String message = player.getName() + " tells you: " + text;
