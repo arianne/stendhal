@@ -219,6 +219,9 @@ public class UpdateManager {
 		for (String file : files) {
 			sb.append(file + ",");
 		}
-		bootProp.put("load", sb.toString() + bootProp.getProperty("load", ""));
+
+		sb.append(bootProp.getProperty("load-" + Version.VERSION, ""));
+
+		bootProp.put("load-" + Version.VERSION, sb.toString());
 	}
 }
