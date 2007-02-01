@@ -370,7 +370,25 @@
 
  <zone name="0_nalwor_forest_w" file="level_0/nalwor/forest_w.xstend">
   <title/>
+<!-- use portal config
   <configurator class-name="games.stendhal.server.maps.Nalwor"/>
+-->
+
+  <portal x="84" y="92" ref="outside_entrance">
+   <destination zone="0_nalwor_forest_w" ref="inside_exit"/>
+  </portal>
+
+  <portal x="87" y="92" ref="outside_exit">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="114" y="91" ref="inside_entrance">
+   <destination zone="0_nalwor_forest_w" ref="outside_exit"/>
+  </portal>
+
+  <portal x="117" y="91" ref="inside_exit">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
  </zone>
 
  <zone name="0_nalwor_city" file="level_0/nalwor/city.xstend">
@@ -522,7 +540,6 @@
    <destination zone="-1_orril_castle_w" ref="0"/>
   </portal>
 
-  <!-- A non-default implementation portal example -->
   <portal x="54" y="52" ref="locked_outside">
    <destination zone="-2_orril_lich_palace" ref="locked_inside_left"/>
    <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
@@ -651,7 +668,26 @@
 
  <zone name="int_afterlife" file="interiors/afterlife.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.Afterlife"/>
+  <configurator class-name="games.stendhal.server.maps.Afterlife">
+    <attribute name="xml-portals">using</attribute>
+
+    <!-- Override example -->
+    <attribute name="message">
+You DIED! Deal with it! Oh, and you're 10% less of a player.
+    </attribute>
+  </configurator>
+
+  <portal x="30" y="6" ref="exit_left">
+   <destination zone="0_semos_city" ref="60"/>
+  </portal>
+
+  <portal x="31" y="6" ref="exit_center">
+   <destination zone="0_semos_city" ref="60"/>
+  </portal>
+
+  <portal x="32" y="6" ref="exit_right">
+   <destination zone="0_semos_city" ref="60"/>
+  </portal>
  </zone>
 
  <zone name="int_admin_playground" file="interiors/admin/playground.xstend">
@@ -660,7 +696,22 @@
 
  <zone name="int_pathfinding" file="interiors/pathfinding.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.FeaturesTestArea"/>
+  <configurator class-name="games.stendhal.server.maps.FeaturesTestArea">
+    <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <portal x="50" y="10" ref="locked_outside">
+   <destination zone="int_pathfinding" ref="locked_inside"/>
+   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+    <attribute name="class">skulldoor</attribute>
+    <attribute name="direction">down</attribute>
+    <attribute name="key">key_golden</attribute>
+   </implementation>
+  </portal>
+
+  <portal x="50" y="12" ref="locked_inside">
+   <destination zone="int_pathfinding" ref="locked_outside"/>
+  </portal>
  </zone>
 
 </zones>

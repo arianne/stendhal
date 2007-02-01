@@ -277,20 +277,19 @@ public class ZonesXMLLoader extends DefaultHandler {
 		/*
 		 * Apply class
 		 */
-		if(obj instanceof IContent) {
-			/*
-			 * XXX - Compat - Just creating an object is enough.
-			 */
-			logger.info("Configured zone [" + zone.getID().getID()
-				+ "] using IContent with: "
-				+ className);
-		} else if(obj instanceof ZoneConfigurator) {
+		if(obj instanceof ZoneConfigurator) {
 			logger.info("Configuring zone [" + zone.getID().getID()
 				+ "] using ZoneConfigurator with: "
 				+ className);
 
 			((ZoneConfigurator) obj).configureZone(
 				zone, cdesc.getAttributes());
+		} else if(obj instanceof IContent) {
+			logger.info("Configuring zone [" + zone.getID().getID()
+				+ "] using IContent with: "
+				+ className);
+
+			((IContent) obj).build();
 		} else {
 			logger.warn(
 				"Unsupported zone configurator: "
@@ -427,8 +426,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 				logger.warn("Unnamed zone");
 			} else {
 				zdesc = new ZoneDesc(
-					s, 
-					attrs.getValue("file"));
+					s, attrs.getValue("file"));
 			}
 		} else if(qName.equals("title")) {
 			content.setLength(0);
@@ -516,6 +514,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			if((scope == SCOPE_PORTAL) && (pdesc != null))
 				pdesc.setDestination(zone, reference);
+		} else {
+			logger.warn("Unknown XML element: " + qName);
 		}
 	}
 
