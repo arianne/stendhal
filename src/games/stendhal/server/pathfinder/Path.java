@@ -121,7 +121,7 @@ public class Path {
 	 */
 	public static List<Node> searchPath(Entity entity, int x, int y,
 			Rectangle2D destination, double maxDistance) {
-		return searchPath(entity, null, x, y, destination, maxDistance);
+		return searchPath(entity, null, x, y, destination, maxDistance, true);
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class Path {
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
 	public static List<Node> searchPath(Entity entity, StendhalRPZone zone, int x, int y,
-			Rectangle2D destination, double maxDistance) {
+			Rectangle2D destination, double maxDistance, boolean withEntities) {
 		
 		if (zone == null) {
 			zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
@@ -153,8 +153,18 @@ public class Path {
 		long startTime = System.currentTimeMillis();
 
 		Pathfinder path = new Pathfinder();
-		StendhalNavigable navMap = new StendhalNavigableEntities(entity, zone, x, y, destination);
-
+		StendhalNavigable navMap;
+		if (withEntities) {
+			navMap = new StendhalNavigableEntities(entity, zone, x, y, destination);
+		} else {
+			navMap = new StendhalNavigable(entity, zone, x, y, destination);
+		}
+		
+		// The most expensive path is the not existing path
+		if (navMap.unrechable()) {
+			return new LinkedList<Node>();
+		}
+		
 		path.setNavigable(navMap);
 		path.setStart(new Pathfinder.Node(x, y));
 

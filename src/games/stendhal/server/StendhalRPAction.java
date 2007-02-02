@@ -456,37 +456,38 @@ public class StendhalRPAction {
 			final int maxDestination = 20;
 
 			outerLoop: for (int k = 1; k <= maxDestination; k++) {
-				for (int i = -k; i < k; i++) {
-					for (int j = -k; j < k; j++) {
-
-						nx = x + i;
-						ny = y + j;
-						if (!zone.collides(entity, nx, ny)) {
-
-							// OK, we may place the entity on this spot.
-
-							// Check the possibleArea now. This is a performance
-							// optimization because the next step (pathfinding)
-							// is very expensive. (5 seconds for a unplaceable
-							// black dragon in deathmatch on 0_ados_wall_n)
-							if ((allowedArea != null) && (!allowedArea.contains(nx, ny))) {
-								continue;
-							}
-
-							// We verify that there is a walkable path between the original
-							// spot and the new destination. This is to prevent players to 
-							// enter not allowed places by logging in on top of other players.
-							// Or monsters to spawn on the other side of a wall.
-
-							List<Node> path = Path.searchPath(entity, zone, x, y, new Rectangle(nx, ny, 1, 1), maxDestination * maxDestination);
-							if (!checkPath || !path.isEmpty()) {
-
-								// We found a place!
-								entity.setX(nx);
-								entity.setY(ny);
-
-								found = true;
-								break outerLoop; // break all for-loops
+				for (int i = -k; i <= k; i++) {
+					for (int j = -k; j <= k; j++) {
+						if ((Math.abs(i) == k) || (Math.abs(j) == k)) {
+							nx = x + i;
+							ny = y + j;
+							if (!zone.collides(entity, nx, ny)) {
+	
+								// OK, we may place the entity on this spot.
+	
+								// Check the possibleArea now. This is a performance
+								// optimization because the next step (pathfinding)
+								// is very expensive. (5 seconds for a unplaceable
+								// black dragon in deathmatch on 0_ados_wall_n)
+								if ((allowedArea != null) && (!allowedArea.contains(nx, ny))) {
+									continue;
+								}
+	
+								// We verify that there is a walkable path between the original
+								// spot and the new destination. This is to prevent players to 
+								// enter not allowed places by logging in on top of other players.
+								// Or monsters to spawn on the other side of a wall.
+	
+								List<Node> path = Path.searchPath(entity, zone, x, y, new Rectangle(nx, ny, 1, 1), maxDestination * maxDestination, false);
+								if (!checkPath || !path.isEmpty()) {
+	
+									// We found a place!
+									entity.setX(nx);
+									entity.setY(ny);
+	
+									found = true;
+									break outerLoop; // break all for-loops
+								}
 							}
 						}
 					}
