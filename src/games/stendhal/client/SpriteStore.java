@@ -193,6 +193,16 @@ public class SpriteStore {
 	}
 
 	/**
+	 * gets a resource URL. Use this method in stead of classLoader.getResouce()
+	 *
+	 * @param ref name of resource
+	 * @return URL to this resouce
+	 */
+	public URL getResourceURL(String ref) {
+		return doOldBootstrapClassloaderWorkaround(ref);
+	}
+	
+	/**
 	 * Warning, ugly workaround for a bug in Bootstrap.java prior (including) version 0.57.
 	 *
 	 * @param ref resource name
