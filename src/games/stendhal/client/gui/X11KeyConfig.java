@@ -1,6 +1,8 @@
 // $Id$
 package games.stendhal.client.gui;
 
+import games.stendhal.client.SpriteStore;
+
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.io.Closeable;
@@ -128,10 +130,10 @@ public class X11KeyConfig extends Canvas {
 			// a second instance of Stendhal already displaying this canvas.
 			return;
 		}
-		URL url = X11KeyConfig.class.getClassLoader().getResource("lib" + libraryName + ".so");
+		URL url = SpriteStore.get().getResourceURL("lib" + libraryName + ".so");
 		if (url == null) {
 			//  handle non .jar environment (like starting stendhal from classes directory in an IDE) 
-			url = X11KeyConfig.class.getClassLoader().getResource("data/precompiled/lib" + libraryName + ".so");
+			url = SpriteStore.get().getResourceURL("data/precompiled/lib" + libraryName + ".so");
 		}
 		InputStream is = url.openConnection().getInputStream();
 		OutputStream os = new FileOutputStream(filename);

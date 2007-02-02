@@ -35,7 +35,7 @@ public class Cache {
     public void init() {
         try {
         	prefilledCacheManager = new Properties();
-        	URL url = this.getClass().getClassLoader().getResource("cache/stendhal.cache");
+        	URL url = SpriteStore.get().getResourceURL("cache/stendhal.cache");
         	if (url != null) {
 	        	InputStream is = url.openStream();
 	        	prefilledCacheManager.load(is);
@@ -81,7 +81,7 @@ public class Cache {
     	if ((timestamp != null) && (Integer.parseInt(timestamp) == item.timestamp)) {
 
     		// get the stream
-        	URL url = this.getClass().getClassLoader().getResource(name);
+        	URL url = SpriteStore.get().getResourceURL(name);
         	if (url != null) {
 	        	try {
 	        		logger.debug("Content " + item.name + " is in prefilled cache.");

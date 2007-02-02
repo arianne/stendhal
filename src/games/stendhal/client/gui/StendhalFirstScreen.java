@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.update.HttpClient;
@@ -54,8 +55,7 @@ public class StendhalFirstScreen extends JFrame {
 		super();
 		this.client = client;
 
-		URL url = this.getClass().getClassLoader().getResource(
-				"data/gui/StendhalSplash.jpg");
+		URL url = SpriteStore.get().getResourceURL("data/gui/StendhalSplash.jpg");
 		ImageIcon imageIcon = new ImageIcon(url);
 		background = imageIcon.getImage();
 
@@ -167,7 +167,7 @@ public class StendhalFirstScreen extends JFrame {
 		setTitle("Stendhal " + stendhal.VERSION + " - a multiplayer online game using Arianne");
 		this.setLocation(new Point(100, 100));
 
-		URL url = this.getClass().getClassLoader().getResource("data/gui/StendhalIcon.png");
+		URL url = SpriteStore.get().getResourceURL("data/gui/StendhalIcon.png");
 		this.setIconImage(new ImageIcon(url).getImage());
 		pack();
 	}

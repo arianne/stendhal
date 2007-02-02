@@ -147,12 +147,7 @@ public class SpriteStore {
 		BufferedImage sourceImage = null;
 
 		try {
-			// The ClassLoader.getResource() ensures we get the sprite
-			// from the appropriate place, this helps with deploying the game
-			// with things like webstart. You could equally do a file look
-			// up here.
-			URL url = doOldBootstrapClassloaderWorkaround(ref);
-
+			URL url = getResourceURL(ref);
 			if (url == null) {
 				logger.fatal("Can't find ref: " + ref);
 				return getSprite("data/sprites/failsafe.png");
@@ -190,6 +185,20 @@ public class SpriteStore {
 		sprites.put(ref, sprite);
 
 		return sprite;
+	}
+
+	/**
+	 * gets a resource URL. Use this method instead of classLoader.getResouce()
+	 * because there are still clients around with a broken classloader
+	 * prefering old resources. This method ensures we get the sprite
+	 * from the appropriate place, this helps with deploying the game
+	 * with things like webstart and updates. 
+	 *
+	 * @param ref name of resource
+	 * @return URL to this resouce
+	 */
+	public URL getResourceURL(String ref) {
+		return doOldBootstrapClassloaderWorkaround(ref);
 	}
 
 	/**

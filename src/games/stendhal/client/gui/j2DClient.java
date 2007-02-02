@@ -15,6 +15,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.RenderingPipeline;
+import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
@@ -118,8 +119,7 @@ public class j2DClient extends JFrame {
 		setTitle("Stendhal " + stendhal.VERSION
 				+ " - a multiplayer online game using Arianne");
 
-		URL url = this.getClass().getClassLoader().getResource(
-				"data/gui/StendhalIcon.png");
+		URL url = SpriteStore.get().getResourceURL("data/gui/StendhalIcon.png");
 		this.setIconImage(new ImageIcon(url).getImage());
 
 		// get hold the content of the frame and set up the resolution of the

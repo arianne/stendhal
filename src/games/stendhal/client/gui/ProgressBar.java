@@ -1,4 +1,6 @@
 package games.stendhal.client.gui;
+import games.stendhal.client.SpriteStore;
+
 import java.awt.Window;
 import java.net.URL;
 import java.security.AccessControlException;
@@ -31,7 +33,7 @@ public class ProgressBar extends JFrame {
     
     public ProgressBar(Window w) {
         super("Connecting...");
-        URL url = this.getClass().getClassLoader().getResource("data/gui/StendhalIcon.png");
+        URL url = SpriteStore.get().getResourceURL("data/gui/StendhalIcon.png");
         setIconImage(new ImageIcon(url).getImage());
         this.frame = w;
         

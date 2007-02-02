@@ -52,7 +52,7 @@ public class StaticGameLayers {
         collisions = new LinkedList<Pair<String, CollisionDetection>>();
         tilestore = TileStore.get();
         String folder = "data/tilesets";
-        URL url = this.getClass().getClassLoader().getResource(folder + "/zelda_outside_0_chipset.png");
+        URL url = SpriteStore.get().getResourceURL(folder + "/zelda_outside_0_chipset.png");
         if (url == null) {
         	logger.warn("Using development environement to load tilesets");
         	folder = "tiled";

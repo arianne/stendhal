@@ -25,12 +25,13 @@
 
 package games.stendhal.client.sound;
 
+import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
-import games.stendhal.common.Rand;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.Rand;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -41,6 +42,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -484,10 +486,11 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @throws IOException
 	 */
 	private InputStream getResourceStream(String name) throws IOException {
-		InputStream in = Log4J.class.getClassLoader().getResourceAsStream(name);
-		if (in == null)
+		URL url = SpriteStore.get().getResourceURL(name);
+		if (url == null) {
 			throw new FileNotFoundException(name);
-		return in;
+		}
+		return url.openStream();
 	}
 
 	private void init() {
