@@ -2,8 +2,10 @@ package games.stendhal.client.update;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -81,10 +83,12 @@ public class UpdateManager {
 				if (version != null) {
 					files.addAll(getFilesToUpdate(version));
 				}
+				List<String> filesToAddToClasspath = new ArrayList<String>(files);
+				removeAlreadyExistingFiles(files);
 				int updateSize = getSizeOfFilesToUpdate(files);
 				if (UpdateGUIDialogs.askForDownload(updateSize, false)) {
 					if (downloadFiles(files, updateSize)) {
-						updateClasspathConfig(files);
+						updateClasspathConfig(filesToAddToClasspath);
 					}
 				} else {
 					System.exit(1);
@@ -94,10 +98,12 @@ public class UpdateManager {
 			case UPDATE_NEEDED: {
 				String version = Version.VERSION;
 				List<String> files = getFilesToUpdate(version);
+				List<String> filesToAddToClasspath = new ArrayList<String>(files);
+				removeAlreadyExistingFiles(files);
 				int updateSize = getSizeOfFilesToUpdate(files);
 				if (UpdateGUIDialogs.askForDownload(updateSize, true)) {
 					if (downloadFiles(files, updateSize)) {
-						updateClasspathConfig(files);
+						updateClasspathConfig(filesToAddToClasspath);
 					}
 				}
 				break;
@@ -109,6 +115,33 @@ public class UpdateManager {
 			default: {
 				System.out.println("Internal Error on Update");
 				break;
+			}
+		}
+	}
+
+	/**
+	 * Removes all files from the download list which have already been
+	 * downloaded.
+	 *
+	 * @param files list of files to check and clean
+	 */
+	private void removeAlreadyExistingFiles(List<String> files) {
+		Iterator<String> itr = files.iterator(); 
+		while (itr.hasNext()) {
+			String file = itr.next();
+			if (file.trim().equals("")) {
+				itr.remove();
+				continue;
+			}
+			try {
+				// TODO: use hash of files instead of size
+				long sizeShould = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
+				long sizeIs = new File(jarFolder + file).length();
+				if (sizeShould == sizeIs) {
+					itr.remove();
+				}
+			} catch (RuntimeException e) {
+				e.printStackTrace(System.err);
 			}
 		}
 	}
