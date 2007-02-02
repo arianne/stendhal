@@ -39,39 +39,49 @@ public class IL0_Temple implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosTempleArea(zone);
+		buildSemosTempleArea(zone, attributes);
 	}
 
 
-	private void buildSemosTempleArea(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(10);
-		portal.setY(23);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 1);
-		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(11);
-		portal.setY(23);
-		portal.setNumber(1);
-		portal.setDestination("0_semos_city", 1);
-		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(12);
-		portal.setY(23);
-		portal.setNumber(2);
-		portal.setDestination("0_semos_city", 1);
-		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(13);
-		portal.setY(23);
-		portal.setNumber(3);
-		portal.setDestination("0_semos_city", 1);
-		zone.addPortal(portal);
+	private void buildSemosTempleArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(10);
+			portal.setY(23);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_city", 1);
+			zone.addPortal(portal);
+
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(11);
+			portal.setY(23);
+			portal.setNumber(1);
+			portal.setDestination("0_semos_city", 1);
+			zone.addPortal(portal);
+
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(12);
+			portal.setY(23);
+			portal.setNumber(2);
+			portal.setDestination("0_semos_city", 1);
+			zone.addPortal(portal);
+
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(13);
+			portal.setY(23);
+			portal.setNumber(3);
+			portal.setDestination("0_semos_city", 1);
+			zone.addPortal(portal);
+		}
+
 		SpeakerNPC npc = new SpeakerNPC("Ilisa") {
 			@Override
 			protected void createPath() {

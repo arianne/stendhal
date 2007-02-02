@@ -47,21 +47,27 @@ public class SemosJailWestSL1 implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildPortals(zone);
+		buildPortals(zone, attributes);
 		buildElf(zone);
 		buildSoldier(zone);
 		disabledMagicScrolls(zone);
 	}
 
 
-	private void buildPortals(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(28);
-		portal.setY(17);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_plains_w", 0);
-		zone.addPortal(portal);
+	private void buildPortals(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(28);
+			portal.setY(17);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_plains_w", 0);
+			zone.addPortal(portal);
+		}
 	}
 
 	private void buildSoldier(StendhalRPZone zone) {

@@ -31,18 +31,24 @@ public class IL0_JynathHouse implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildJynathHouse(zone);
+		buildJynathHouse(zone, attributes);
 	}
 
 
-	private void buildJynathHouse(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(16);
-		portal.setY(30);
-		portal.setNumber(0);
-		portal.setDestination("0_orril_river_s", 0);
-		zone.addPortal(portal);
+	private void buildJynathHouse(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(16);
+			portal.setY(30);
+			portal.setNumber(0);
+			portal.setDestination("0_orril_river_s", 0);
+			zone.addPortal(portal);
+		}
 
 		SpeakerNPC npc = new SpeakerNPC("Jynath") {
 			@Override

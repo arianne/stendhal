@@ -46,19 +46,25 @@ public class SemosCityTavern1 implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildPortals(zone);
+		buildPortals(zone, attributes);
 		buildOuchit(zone);
 		buildMcPegleg(zone);
 	}
 
 
-	private void buildPortals(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.set(4, 4);
-		portal.setNumber(0);
-		portal.setDestination("int_semos_tavern_0", 1);
-		zone.addPortal(portal);
+	private void buildPortals(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.set(4, 4);
+			portal.setNumber(0);
+			portal.setDestination("int_semos_tavern_0", 1);
+			zone.addPortal(portal);
+		}
 	}
 
 	private void buildOuchit(StendhalRPZone zone) {

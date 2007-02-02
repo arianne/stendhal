@@ -41,18 +41,24 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosBlacksmithArea(zone);
+		buildSemosBlacksmithArea(zone, attributes);
 	}
 
 
-	private void buildSemosBlacksmithArea(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(15);
-		portal.setY(14);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 2);
-		zone.addPortal(portal);
+	private void buildSemosBlacksmithArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(15);
+			portal.setY(14);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_city", 2);
+			zone.addPortal(portal);
+		}
 		
 		SpeakerNPC hackim = new SpeakerNPC("Hackim Easso") {
 			@Override

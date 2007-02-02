@@ -43,18 +43,24 @@ public class IL0_Bakery implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosBakeryArea(zone);
+		buildSemosBakeryArea(zone, attributes);
 	}
 
 
-	private void buildSemosBakeryArea(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(26);
-		portal.setY(14);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 10);
-		zone.addPortal(portal);
+	private void buildSemosBakeryArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(26);
+			portal.setY(14);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_city", 10);
+			zone.addPortal(portal);
+		}
 
 		SpeakerNPC erna = new SpeakerNPC("Erna") {
 			@Override

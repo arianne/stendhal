@@ -35,25 +35,33 @@ public class IL0_Storage implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosStorageArea(zone);
+		buildSemosStorageArea(zone, attributes);
 	}
 
 
-	private void buildSemosStorageArea(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(9);
-		portal.setY(14);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 5);
-		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(16);
-		portal.setY(2);
-		portal.setNumber(1);
-		portal.setDestination("int_semos_storage_-1", 0);
-		zone.addPortal(portal);
+	private void buildSemosStorageArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(9);
+			portal.setY(14);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_city", 5);
+			zone.addPortal(portal);
+
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(16);
+			portal.setY(2);
+			portal.setNumber(1);
+			portal.setDestination("int_semos_storage_-1", 0);
+			zone.addPortal(portal);
+		}
+
 		SpeakerNPC npc = new SpeakerNPC("Eonna") {
 			@Override
 			protected void createPath() {

@@ -40,13 +40,7 @@ public class AdosCityInside implements ZoneConfigurator {
 	 * build the city insides
 	 */
 	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		buildBank((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_bank")));
-		buildBakery((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_bakery")));
-		buildTavern((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_tavern_0")));
-		buildTempel((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_temple")));
-		buildLibrary((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_library")));
-		buildHauntedHouse((StendhalRPZone) world.getRPZone(new IRPZone.ID("int_ados_haunted_house")));
+		configureZone(null, java.util.Collections.EMPTY_MAP);
 	}
 
 
@@ -61,20 +55,55 @@ public class AdosCityInside implements ZoneConfigurator {
 		/*
 		 * For now - Split to one class per zone
 		 */
-		build();
+		StendhalRPWorld world = StendhalRPWorld.get();
+
+		buildBank(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("int_ados_bank")),
+			attributes);
+
+		buildBakery(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("int_ados_bakery")),
+			attributes);
+
+		buildTavern(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("int_ados_tavern_0")),
+			attributes);
+
+		buildTempel(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("int_ados_temple")),
+			attributes);
+
+		buildLibrary(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("int_ados_library")),
+			attributes);
+
+		buildHauntedHouse(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("int_ados_haunted_house")),
+			attributes);
 	}
 
 
-	private void buildBank(StendhalRPZone zone) {
-
-		// portal from bank to city
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(22);
-		portal.setY(17);
-		portal.setNumber(0);
-		portal.setDestination("0_ados_city", 6);
-		zone.addPortal(portal);
+	private void buildBank(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			// portal from bank to city
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(22);
+			portal.setY(17);
+			portal.setNumber(0);
+			portal.setDestination("0_ados_city", 6);
+			zone.addPortal(portal);
+		}
 
 		// personal chest
 		PersonalChest chest = new PersonalChest();
@@ -93,7 +122,8 @@ public class AdosCityInside implements ZoneConfigurator {
 		zone.add(chest);
 	}
 
-	private void buildLibrary(StendhalRPZone zone) {
+	private void buildLibrary(StendhalRPZone zone,
+	 Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Wikipedian") {
 			@Override
 			protected void createPath() {
@@ -145,22 +175,28 @@ public class AdosCityInside implements ZoneConfigurator {
 		zone.addNPC(npc);
 	}
 
-	private void buildTavern(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(12);
-		portal.setY(17);
-		portal.setNumber(0);
-		portal.setDestination("0_ados_city", 0);
-		zone.addPortal(portal);
+	private void buildTavern(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(12);
+			portal.setY(17);
+			portal.setNumber(0);
+			portal.setDestination("0_ados_city", 0);
+			zone.addPortal(portal);
 		
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(27);
-		portal.setY(17);
-		portal.setNumber(1);
-		portal.setDestination("0_ados_city", 1);
-		zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(27);
+			portal.setY(17);
+			portal.setNumber(1);
+			portal.setDestination("0_ados_city", 1);
+			zone.addPortal(portal);
+		}
 
 		
 		SpeakerNPC tavernMaid = new SpeakerNPC("Coralia") {
@@ -198,14 +234,20 @@ public class AdosCityInside implements ZoneConfigurator {
 
 	}
 
-	private void buildBakery(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(26);
-		portal.setY(14);
-		portal.setNumber(0);
-		portal.setDestination("0_ados_city", 10);
-		zone.addPortal(portal);
+	private void buildBakery(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(26);
+			portal.setY(14);
+			portal.setNumber(0);
+			portal.setDestination("0_ados_city", 10);
+			zone.addPortal(portal);
+		}
 
 		SpeakerNPC baker = new SpeakerNPC("Arlindo") {
 			@Override
@@ -270,46 +312,57 @@ public class AdosCityInside implements ZoneConfigurator {
 		baker.initHP(100);
 		zone.addNPC(baker);
 	}
-    private void buildHauntedHouse(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(7);
-		portal.setY(1);
-		portal.setNumber(0);
-		portal.setDestination("0_ados_city", 11);
-		zone.addPortal(portal);
-
+    private void buildHauntedHouse(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(7);
+			portal.setY(1);
+			portal.setNumber(0);
+			portal.setDestination("0_ados_city", 11);
+			zone.addPortal(portal);
+		}
 	}
 
-	private void buildTempel(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(10);
-		portal.setY(23);
-		portal.setNumber(0);
-		portal.setDestination("0_ados_city", 1);
-		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(11);
-		portal.setY(23);
-		portal.setNumber(1);
-		portal.setDestination("0_ados_city", 1);
-		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(12);
-		portal.setY(23);
-		portal.setNumber(2);
-		portal.setDestination("0_ados_city", 1);
-		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(13);
-		portal.setY(23);
-		portal.setNumber(3);
-		portal.setDestination("0_ados_city", 1);
-		zone.addPortal(portal);
+	private void buildTempel(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(10);
+			portal.setY(23);
+			portal.setNumber(0);
+			portal.setDestination("0_ados_city", 1);
+			zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(11);
+			portal.setY(23);
+			portal.setNumber(1);
+			portal.setDestination("0_ados_city", 1);
+			zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(12);
+			portal.setY(23);
+			portal.setNumber(2);
+			portal.setDestination("0_ados_city", 1);
+			zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(13);
+			portal.setY(23);
+			portal.setNumber(3);
+			portal.setDestination("0_ados_city", 1);
+			zone.addPortal(portal);
+		}
 	}
 
 	protected class WikipediaWaiter implements TurnListener {

@@ -46,7 +46,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosCityAreaPortals(zone);
+		buildSemosCityAreaPortals(zone, attributes);
 		buildSemosCityAreaSigns(zone);
 		buildSemosCityAreaChest(zone);
 
@@ -58,87 +58,93 @@ public class SemosCityOutside implements ZoneConfigurator {
 	}
 
 
-	private void buildSemosCityAreaPortals(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(42);
-		portal.setY(37);
-		portal.setNumber(0);
-		portal.setDestination("int_semos_tavern_0", 0);
-		zone.addPortal(portal);
+	private void buildSemosCityAreaPortals(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(42);
+			portal.setY(37);
+			portal.setNumber(0);
+			portal.setDestination("int_semos_tavern_0", 0);
+			zone.addPortal(portal);
 		
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(53);
-		portal.setY(37);
-		portal.setNumber(1);
-		portal.setDestination("int_semos_temple", 2);
-		zone.addPortal(portal);
-		
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(15);
-		portal.setY(41);
-		portal.setNumber(2);
-		portal.setDestination("int_semos_blacksmith", 0);
-		zone.addPortal(portal);
-		
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(6);
-		portal.setY(22);
-		portal.setNumber(3);
-		portal.setDestination("int_semos_library", 0);
-		zone.addPortal(portal);
-		
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(11);
-		portal.setY(22);
-		portal.setNumber(4);
-		portal.setDestination("int_semos_library", 1);
-		zone.addPortal(portal);
-		
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(52);
-		portal.setY(19);
-		portal.setNumber(5);
-		portal.setDestination("int_semos_storage_0", 0);
-		zone.addPortal(portal);
-		
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(18);
-		portal.setY(22);
-		portal.setNumber(6);
-		portal.setDestination("int_semos_bank", 0);
-		zone.addPortal(portal);
-		
-		for (int i = 0; i < 3; i++) {
 			portal = new Portal();
 			zone.assignRPObjectID(portal);
-			portal.setX(29 + i);
-			portal.setY(13);
-			portal.setNumber(7 + i);
-			portal.setDestination("int_semos_townhall", i);
+			portal.setX(53);
+			portal.setY(37);
+			portal.setNumber(1);
+			portal.setDestination("int_semos_temple", 2);
+			zone.addPortal(portal);
+		
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(15);
+			portal.setY(41);
+			portal.setNumber(2);
+			portal.setDestination("int_semos_blacksmith", 0);
+			zone.addPortal(portal);
+		
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(6);
+			portal.setY(22);
+			portal.setNumber(3);
+			portal.setDestination("int_semos_library", 0);
+			zone.addPortal(portal);
+		
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(11);
+			portal.setY(22);
+			portal.setNumber(4);
+			portal.setDestination("int_semos_library", 1);
+			zone.addPortal(portal);
+		
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(52);
+			portal.setY(19);
+			portal.setNumber(5);
+			portal.setDestination("int_semos_storage_0", 0);
+			zone.addPortal(portal);
+		
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(18);
+			portal.setY(22);
+			portal.setNumber(6);
+			portal.setDestination("int_semos_bank", 0);
+			zone.addPortal(portal);
+		
+			for (int i = 0; i < 3; i++) {
+				portal = new Portal();
+				zone.assignRPObjectID(portal);
+				portal.setX(29 + i);
+				portal.setY(13);
+				portal.setNumber(7 + i);
+				portal.setDestination("int_semos_townhall", i);
+				zone.addPortal(portal);
+			}
+		
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(44);
+			portal.setY(19);
+			portal.setNumber(10);
+			portal.setDestination("int_semos_bakery", 0);
+			zone.addPortal(portal);
+
+			portal = new OneWayPortalDestination();
+			zone.assignRPObjectID(portal);
+			portal.setX(12);
+			portal.setY(49);
+			portal.setNumber(60);
 			zone.addPortal(portal);
 		}
-		
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(44);
-		portal.setY(19);
-		portal.setNumber(10);
-		portal.setDestination("int_semos_bakery", 0);
-		zone.addPortal(portal);
-
-		portal = new OneWayPortalDestination();
-		zone.assignRPObjectID(portal);
-		portal.setX(12);
-		portal.setY(49);
-		portal.setNumber(60);
-		zone.addPortal(portal);
 	}
 
 	private void buildSemosCityAreaSigns(StendhalRPZone zone) {

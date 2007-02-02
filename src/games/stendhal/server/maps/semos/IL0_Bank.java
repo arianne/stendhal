@@ -36,25 +36,33 @@ public class IL0_Bank implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosBankArea(zone);
+		buildSemosBankArea(zone, attributes);
 	}
 
 
-	private void buildSemosBankArea(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(9);
-		portal.setY(30);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 6);
-		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(10);
-		portal.setY(30);
-		portal.setNumber(1);
-		portal.setDestination("0_semos_city", 6);
-		zone.addPortal(portal);
+	private void buildSemosBankArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(9);
+			portal.setY(30);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_city", 6);
+			zone.addPortal(portal);
+
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(10);
+			portal.setY(30);
+			portal.setNumber(1);
+			portal.setDestination("0_semos_city", 6);
+			zone.addPortal(portal);
+		}
+
 		for (int i = 0; i < 4; i++) {
 			PersonalChest chest = new PersonalChest();
 			zone.assignRPObjectID(chest);

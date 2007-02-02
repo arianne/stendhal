@@ -77,13 +77,7 @@ public class AdosOutsideNorthWest implements ZoneConfigurator {
 
 
 	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		buildZooArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
-		"0_ados_outside_nw")));
-		buildZooSub1Area((StendhalRPZone) world.getRPZone(new IRPZone.ID(
-		"-1_ados_outside_nw")));
-		buildZooSub3Area((StendhalRPZone) world.getRPZone(new IRPZone.ID(
-		"-3_ados_outside_nw")));
+		configureZone(null, java.util.Collections.EMPTY_MAP);
 	}
 
 
@@ -98,11 +92,27 @@ public class AdosOutsideNorthWest implements ZoneConfigurator {
 		/*
 		 * For now - Split to one class per zone
 		 */
-		build();
+		StendhalRPWorld world = StendhalRPWorld.get();
+
+		buildZooArea(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("0_ados_outside_nw")),
+			attributes);
+
+		buildZooSub1Area(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("-1_ados_outside_nw")),
+			attributes);
+
+		buildZooSub3Area(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("-3_ados_outside_nw")),
+			attributes);
 	}
 
 
-	private void buildZooArea(StendhalRPZone zone) {
+	private void buildZooArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(53);
@@ -110,13 +120,18 @@ public class AdosOutsideNorthWest implements ZoneConfigurator {
 		sign.setText("Ados Wildlife Refuge\nHome for endangered animals");
 		zone.add(sign);
 		
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(67);
-		portal.setY(24);
-		portal.setNumber(0);
-		portal.setDestination("-1_ados_outside_nw", 0);
-		zone.addPortal(portal);
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(67);
+			portal.setY(24);
+			portal.setNumber(0);
+			portal.setDestination("-1_ados_outside_nw", 0);
+			zone.addPortal(portal);
+		}
 		
 		SpeakerNPC npc = new SpeakerNPC("Katinka") {
 			@Override
@@ -213,7 +228,8 @@ public class AdosOutsideNorthWest implements ZoneConfigurator {
 		zone.addRespawnPoint(point);
 	}
 
-	private void buildZooSub1Area(StendhalRPZone zone) {
+	private void buildZooSub1Area(StendhalRPZone zone,
+	 Map<String, String> attributes) {
 		Portal portal = new Portal();
 		zone.assignRPObjectID(portal);
 		portal.setX(4);
@@ -223,7 +239,8 @@ public class AdosOutsideNorthWest implements ZoneConfigurator {
 		zone.addPortal(portal);
 	}
 
-	private void buildZooSub3Area(StendhalRPZone zone) {
+	private void buildZooSub3Area(StendhalRPZone zone,
+	 Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Bario") {
 			@Override
 			protected void createPath() {

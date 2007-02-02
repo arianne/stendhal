@@ -41,25 +41,33 @@ public class IL0_Library implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosLibraryArea(zone);
+		buildSemosLibraryArea(zone, attributes);
 	}
 
 
-	private void buildSemosLibraryArea(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(8);
-		portal.setY(30);
-		portal.setNumber(0);
-		portal.setDestination("0_semos_city", 3);
-		zone.addPortal(portal);
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(21);
-		portal.setY(30);
-		portal.setNumber(1);
-		portal.setDestination("0_semos_city", 4);
-		zone.addPortal(portal);
+	private void buildSemosLibraryArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(8);
+			portal.setY(30);
+			portal.setNumber(0);
+			portal.setDestination("0_semos_city", 3);
+			zone.addPortal(portal);
+
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(21);
+			portal.setY(30);
+			portal.setNumber(1);
+			portal.setDestination("0_semos_city", 4);
+			zone.addPortal(portal);
+		}
+
 		SpeakerNPC npc = new SpeakerNPC("Zynn Iwuhos") {
 			@Override
 			protected void createPath() {

@@ -27,14 +27,7 @@ public class AdosMountainsNorthWest implements ZoneConfigurator {
 
 
 	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		buildMagicianHouseArea((StendhalRPZone) world.getRPZone(new IRPZone.ID(
-						"int_ados_magician_house")));
-
-		buildMagicianHouseOutside(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("0_ados_mountain_nw")));
+		configureZone(null, java.util.Collections.EMPTY_MAP);
 	}
 
 
@@ -49,28 +42,50 @@ public class AdosMountainsNorthWest implements ZoneConfigurator {
 		/*
 		 * For now - Split to one class per zone
 		 */
-		build();
+		StendhalRPWorld world = StendhalRPWorld.get();
+
+		buildMagicianHouseArea(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("int_ados_magician_house")),
+			attributes);
+
+		buildMagicianHouseOutside(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("0_ados_mountain_nw")),
+			attributes);
 	}
 
 
-	private void buildMagicianHouseOutside(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(75);
-		portal.setY(50);
-		portal.setNumber(0);
-		portal.setDestination("int_ados_magician_house", 0);
-		zone.addPortal(portal);
+	private void buildMagicianHouseOutside(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(75);
+			portal.setY(50);
+			portal.setNumber(0);
+			portal.setDestination("int_ados_magician_house", 0);
+			zone.addPortal(portal);
+		}
 	}
 	
-	private void buildMagicianHouseArea(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(12);
-		portal.setY(13);
-		portal.setNumber(0);
-		portal.setDestination("0_ados_mountain_nw", 0);
-		zone.addPortal(portal);
+	private void buildMagicianHouseArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(12);
+			portal.setY(13);
+			portal.setNumber(0);
+			portal.setDestination("0_ados_mountain_nw", 0);
+			zone.addPortal(portal);
+		}
 
 		SpeakerNPC npc = new SpeakerNPC("Haizen") {
 			@Override

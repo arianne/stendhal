@@ -46,53 +46,58 @@ public class AdosCityOutside implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildAdosCityAreaPortals(zone);
+		buildAdosCityAreaPortals(zone, attributes);
 		buildFidorea(zone);
 		buildKids(zone);
 	}
 
 
-	private void buildAdosCityAreaPortals(StendhalRPZone zone) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(60);
-		portal.setY(16);
-		portal.setNumber(0);
-		portal.setDestination("int_ados_tavern_0", 0);
-		zone.addPortal(portal);
+	private void buildAdosCityAreaPortals(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(60);
+			portal.setY(16);
+			portal.setNumber(0);
+			portal.setDestination("int_ados_tavern_0", 0);
+			zone.addPortal(portal);
 
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(65);
-		portal.setY(16);
-		portal.setNumber(1);
-		portal.setDestination("int_ados_tavern_0", 1);
-		zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(65);
+			portal.setY(16);
+			portal.setNumber(1);
+			portal.setDestination("int_ados_tavern_0", 1);
+			zone.addPortal(portal);
 
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(54);
-		portal.setY(19);
-		portal.setNumber(6);
-		portal.setDestination("int_ados_bank", 0);
-		zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(54);
+			portal.setY(19);
+			portal.setNumber(6);
+			portal.setDestination("int_ados_bank", 0);
+			zone.addPortal(portal);
 		
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(27);
-		portal.setY(39);
-		portal.setNumber(10);
-		portal.setDestination("int_ados_bakery", 0);
-		zone.addPortal(portal);
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(27);
+			portal.setY(39);
+			portal.setNumber(10);
+			portal.setDestination("int_ados_bakery", 0);
+			zone.addPortal(portal);
 
-		portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(12);
-		portal.setY(38);
-		portal.setNumber(11);
-		portal.setDestination("int_ados_haunted_house", 0);
-		zone.addPortal(portal);
-
+			portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(12);
+			portal.setY(38);
+			portal.setNumber(11);
+			portal.setDestination("int_ados_haunted_house", 0);
+			zone.addPortal(portal);
+		}
 	}
 
 	private void buildFidorea(StendhalRPZone zone) {

@@ -29,21 +29,28 @@ public class USL1_CastleWest implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildCastleDungeonArea(zone);
+		buildCastleDungeonArea(zone, attributes);
 	}
 
 
-	private void buildCastleDungeonArea(StendhalRPZone zone) {
+	private void buildCastleDungeonArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
 		Creature creature = new ItemGuardCreature(manager
 				.getCreature("green_dragon"), "dungeon_silver_key");
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 69, 43, creature, 1);
 		zone.addRespawnPoint(point);
 
-		Portal door = new LockedDoor("dungeon_silver_key", "skulldoor", Direction.DOWN);
-		zone.assignRPObjectID(door);
-		door.set(69, 37);
-		door.setNumber(0);
-		door.setDestination("-2_orril_lich_palace", 0);
-		zone.addPortal(door);
+
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal door = new LockedDoor("dungeon_silver_key", "skulldoor", Direction.DOWN);
+			zone.assignRPObjectID(door);
+			door.set(69, 37);
+			door.setNumber(0);
+			door.setDestination("-2_orril_lich_palace", 0);
+			zone.addPortal(door);
+		}
 	}
 }

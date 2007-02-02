@@ -36,21 +36,28 @@ public class IL0_Townhall implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosTownhallArea(zone);
+		buildSemosTownhallArea(zone, attributes);
 		buildSemosTownhallAreaMayor(zone);
 	}
 
 
-	private void buildSemosTownhallArea(StendhalRPZone zone) {
-		for (int i = 0; i < 3; i++) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(14 + i);
-			portal.setY(46);
-			portal.setNumber(i);
-			portal.setDestination("0_semos_city", 7 + i);
-			zone.addPortal(portal);
+	private void buildSemosTownhallArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			for (int i = 0; i < 3; i++) {
+				Portal portal = new Portal();
+				zone.assignRPObjectID(portal);
+				portal.setX(14 + i);
+				portal.setY(46);
+				portal.setNumber(i);
+				portal.setDestination("0_semos_city", 7 + i);
+				zone.addPortal(portal);
+			}
 		}
+
 		SpeakerNPC npc = new SpeakerNPC("Tad") {
 			@Override
 			protected void createPath() {
