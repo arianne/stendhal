@@ -188,7 +188,35 @@ public class StendhalNavigable implements Navigable {
 			}
 		}
 	}
-	
+
+	/**
+	 * Checks if the goal is unreachable.
+	 * Only the outer nodes of the goal are checked. 
+	 * There could be other reasons, why a goal is unreachable.
+	 * 
+	 * @return true checks if the goal is unreachable
+	 */
+	public boolean unrechable() {
+		int w = (int)goal.getWidth() - 1;
+		int h = (int)goal.getHeight() - 1;
+		int x = (int)goal.getX();
+		int y = (int)goal.getY();
+		Pathfinder.Node node = new Pathfinder.Node();
+		
+		for (int i = 0; i <= w; i++) {
+			for (int j = 0; j <= h; j++) {
+				if ((i == 0) || (j == 0) || (i == w) || (j == h)) {
+					node.x = x + i; 
+					node.y = y + j; 
+					if (isValid(node)) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+
 	/**
 	 * calculates the manhattan distance between to positions
 	 * @param x1 x value for postion 1 
