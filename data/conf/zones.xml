@@ -3,12 +3,14 @@
   ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   ** !!!!!!!! WORK IN PROGRESS - FILE NOT USED BY DEFAULT !!!!!!!!
   ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ** zone file attribute is currently ignored and mapped from name
+  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   **
   ** Zone Configuration.
   **
   ** A zone descriptor has the following structure:
   **
-  ** <zone name="xxxx" file="xxxxx/xxxxx/xxxxxx.xstend">
+  ** <zone name="xxxx" file="xxxxx_xxxxx_xxxxxx.xstend">
   **  <title>Xxxxxx xxxx</title>
   **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
   **
@@ -39,6 +41,14 @@
   **  </portal>
   ** </zone>
   **
+  **  <entity x="xxx" y="xxx">
+  **   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+  **    <attribute name="xxxxx">xxxxxx</attribute>
+  **    <attribute name="xxxxx">xxxxxx</attribute>
+  **   </implementation>
+  **  </entity>
+  ** </zone>
+  **
   ** zone
   **  name: The unique programmatic key used to reference the zone.
   **  file: The zone data file (relative to data/maps/).
@@ -50,6 +60,7 @@
   **
   **   attribute: An attribute passed to the configuration code.
   **
+  **
   **  portal: A portal definition.
   **   x: The X coordinate of the portal.
   **   y: The X coordinate of the portal.
@@ -59,7 +70,17 @@
   **   zone: The destination zone.
   **   ref: The destination portal identifier (number only - for now).
   **
-  **  implementation: A code reference used for implentation.
+  **  implementation: A code reference used for implementation.
+  **   class-name: The java package/class name.
+  **
+  **   attribute: An attribute passed to the implementation [factory].
+  **
+  **
+  **  entity: A generic entity definition.
+  **   x: The X coordinate of the entity.
+  **   y: The X coordinate of the entity.
+  **
+  **  implementation: A code reference used for implementation.
   **   class-name: The java package/class name.
   **
   **   attribute: An attribute passed to the implementation [factory].
@@ -84,291 +105,656 @@
 
  <!--  Ground level -->
 
- <zone name="0_semos_mountain_n_w4" file="level_0/semos/mountain_n_w4.xstend">
+ <zone name="0_semos_mountain_n_w4" file="0_semos_mountain_n_w4.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_mountain_n2_w2" file="level_0/semos/mountain_n2_w2.xstend">
+ <zone name="0_semos_mountain_n2_w2" file="0_semos_mountain_n2_w2.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_mountain_n2_w" file="level_0/semos/mountain_n2_w.xstend">
+ <zone name="0_semos_mountain_n2_w" file="0_semos_mountain_n2_w.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_mountain_n2" file="level_0/semos/mountain_n2.xstend">
+ <zone name="0_semos_mountain_n2" file="0_semos_mountain_n2.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_mountain_n2_e" file="level_0/semos/mountain_n2_e.xstend">
+ <zone name="0_semos_mountain_n2_e" file="0_semos_mountain_n2_e.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_mountain_n2_e2" file="level_0/semos/mountain_n2_e2.xstend">
+ <zone name="0_semos_mountain_n2_e2" file="0_semos_mountain_n2_e2.xstend">
   <title/>
  </zone>
 
- <zone name="0_ados_mountain_n2_w2" file="level_0/ados/mountain_n2_w2.xstend">
+ <zone name="0_ados_mountain_n2_w2" file="0_ados_mountain_n2_w2.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_mountain_n_w3" file="level_0/semos/mountain_n_w3.xstend">
+ <zone name="0_semos_mountain_n_w3" file="0_semos_mountain_n_w3.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_mountain_n_w2" file="level_0/semos/mountain_n_w2.xstend">
+ <zone name="0_semos_mountain_n_w2" file="0_semos_mountain_n_w2.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_plains_n" file="level_0/semos/plains_n.xstend">
+ <zone name="0_semos_plains_n" file="0_semos_plains_n.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
  </zone>
 
- <zone name="0_semos_plains_ne" file="level_0/semos/plains_ne.xstend">
+ <zone name="0_semos_plains_ne" file="0_semos_plains_ne.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorthEast"/>
  </zone>
 
- <zone name="0_semos_plains_n_e2" file="level_0/semos/plains_n_e2.xstend">
+ <zone name="0_semos_plains_n_e2" file="0_semos_plains_n_e2.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_mountain_n_e2" file="level_0/semos/mountain_n_e2.xstend">
+ <zone name="0_semos_mountain_n_e2" file="0_semos_mountain_n_e2.xstend">
   <title/>
  </zone>
 
- <zone name="0_ados_mountain_n_w2" file="level_0/ados/mountain_n_w2.xstend">
+ <zone name="0_ados_mountain_n_w2" file="0_ados_mountain_n_w2.xstend">
   <title/>
  </zone>
 
- <zone name="0_ados_mountain_nw" file="level_0/ados/mountain_nw.xstend">
+ <zone name="0_ados_mountain_nw" file="0_ados_mountain_nw.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosMountainsNorthWest"/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosMountainsNorthWest">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <portal x="75" y="50" ref="0">
+   <destination zone="int_ados_magician_house" ref="0"/>
+  </portal>
  </zone>
 
- <zone name="int_ados_magician_house" file="interiors/ados/magician_house.xstend">
+ <zone name="int_ados_magician_house" file="int_ados_magician_house.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.ados.AdosMountainsNorthWest"/> -->
+<!--
+  <configurator class-name="games.stendhal.server.maps.ados.AdosMountainsNorthWest">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+-->
+
+  <portal x="12" y="13" ref="0">
+   <destination zone="0_ados_mountain_nw" ref="0"/>
+  </portal>
  </zone>
 
- <zone name="0_ados_outside_nw" file="level_0/ados/outside_nw.xstend">
+ <zone name="0_ados_outside_nw" file="0_ados_outside_nw.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest"/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <portal x="67" y="24" ref="0">
+   <destination zone="-1_ados_outside_nw" ref="0"/>
+  </portal>
  </zone>
 
- <zone name="0_ados_wall_n" file="level_0/ados/wall_n.xstend">
+ <zone name="0_ados_wall_n" file="0_ados_wall_n.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.ados.AdosWallNorth"/>
  </zone>
 
- <zone name="0_orril_mountain_n2_w2" file="level_0/orril/mountain_n2_w2.xstend">
+ <zone name="0_orril_mountain_n2_w2" file="0_orril_mountain_n2_w2.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_mountain_w2" file="level_0/semos/mountain_w2.xstend">
+ <zone name="0_semos_mountain_w2" file="0_semos_mountain_w2.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_plains_w" file="level_0/semos/plains_w.xstend">
+ <zone name="0_semos_plains_w" file="0_semos_plains_w.xstend">
   <title/>
+<!-- use portal config
   <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestOutside"/>
+-->
+  <!-- Not in java code -->
+  <portal x="85" y="26" ref="jail_entrance_left">
+   <destination zone="-1_semos_jail" ref="entrance"/>
+  </portal>
+
+  <portal x="86" y="26" ref="jail_entrance">
+   <destination zone="-1_semos_jail" ref="entrance"/>
+  </portal>
  </zone>
 
- <zone name="0_semos_village_w" file="level_0/semos/village_w.xstend">
+ <zone name="0_semos_village_w" file="0_semos_village_w.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.SemosVillageWest"/>
  </zone>
 
- <zone name="0_semos_city" file="level_0/semos/city.xstend">
+ <zone name="0_semos_city" file="0_semos_city.xstend">
   <title>The City of Semos</title>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside"/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <portal x="42" y="37" ref="tavern_entrance">
+   <destination zone="int_semos_tavern_0" ref="entrance"/>
+  </portal>
+
+  <portal x="53" y="37" ref="temple_entrance">
+   <destination zone="int_semos_temple" ref="entrance_center_right"/>
+  </portal>
+
+  <portal x="15" y="41" ref="blacksmith_entrance">
+   <destination zone="int_semos_blacksmith" ref="entrance"/>
+  </portal>
+
+  <portal x="6" y="22" ref="library_entrance_left">
+   <destination zone="int_semos_library" ref="entrance_left"/>
+  </portal>
+
+  <portal x="11" y="22" ref="library_entrance_right">
+   <destination zone="int_semos_library" ref="entrance_right"/>
+  </portal>
+
+  <portal x="52" y="19" ref="storage_entrance">
+   <destination zone="int_semos_storage_0" ref="entrance"/>
+  </portal>
+
+  <portal x="18" y="22" ref="bank_entrance">
+   <destination zone="int_semos_bank" ref="entrance"/>
+  </portal>
+
+  <portal x="29" y="13" ref="townhall_entrance_left">
+   <destination zone="int_semos_townhall" ref="entrance_left"/>
+  </portal>
+
+  <portal x="30" y="13" ref="townhall_entrance">
+   <destination zone="int_semos_townhall" ref="entrance"/>
+  </portal>
+
+  <portal x="31" y="13" ref="townhall_entrance_right">
+   <destination zone="int_semos_townhall" ref="entrance_right"/>
+  </portal>
+
+  <portal x="44" y="19" ref="bakery_entrance">
+   <destination zone="int_semos_bakery" ref="entrance"/>
+  </portal>
+
+  <portal x="12" y="49" ref="60">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <!-- Generic entity examples (not yet used) -->
+  <entity x="4" y="41">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO OLD SEMOS VILLAGE
+
+Shepherds wanted: please ask Nishiya
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="26" y="40">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+DUNGEONS
+
+Caution: These dungeons contain many rats,
+and more dangerous creatures. Enter at own risk.
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="44" y="62">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO THE PLAINS
+
+Shepherds please note: keep watch for
+the wolves while searching for berries here
+    </attribute>
+   </implementation>
+  </entity>
  </zone>
 
-   <zone name="int_semos_tavern_0" file="interiors/semos/tavern_0.xstend">
-  <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern0"/>
-   </zone>
-
-   <zone name="int_semos_tavern_1" file="interiors/semos/tavern_1.xstend">
-  <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern1"/>
-   </zone>
-
-   <zone name="int_semos_temple" file="interiors/semos/temple.xstend">
+   <zone name="int_semos_tavern_0" file="int_semos_tavern_0.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Temple"/>
+    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern0">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="22" y="17" ref="entrance">
+     <destination zone="0_semos_city" ref="tavern_entrance"/>
+    </portal>
+
+    <portal x="4" y="4" ref="upstairs">
+     <destination zone="int_semos_tavern_1" ref="downstairs"/>
+    </portal>
    </zone>
 
-   <zone name="int_semos_blacksmith" file="interiors/semos/blacksmith.xstend">
+   <zone name="int_semos_tavern_1" file="int_semos_tavern_1.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Blacksmith"/>
+    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern1">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="4" y="4" ref="downstairs">
+     <destination zone="int_semos_tavern_0" ref="upstairs"/>
+    </portal>
    </zone>
 
-   <zone name="int_semos_library" file="interiors/semos/library.xstend">
+   <zone name="int_semos_temple" file="int_semos_temple.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Library"/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Temple">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="10" y="23" ref="entrance_left">
+     <destination zone="0_semos_city" ref="temple_entrance"/>
+    </portal>
+
+    <portal x="11" y="23" ref="entrance_center_left">
+     <destination zone="0_semos_city" ref="temple_entrance"/>
+    </portal>
+
+    <portal x="12" y="23" ref="entrance_center_right">
+     <destination zone="0_semos_city" ref="temple_entrance"/>
+    </portal>
+
+    <portal x="13" y="23" ref="entrance_right">
+     <destination zone="0_semos_city" ref="temple_entrance"/>
+    </portal>
    </zone>
 
-   <zone name="int_semos_storage_0" file="interiors/semos/storage_0.xstend">
+   <zone name="int_semos_blacksmith" file="int_semos_blacksmith.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Storage"/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Blacksmith">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="15" y="14" ref="entrance">
+     <destination zone="0_semos_city" ref="blacksmith_entrance"/>
+    </portal>
    </zone>
 
-   <zone name="int_semos_storage_-1" file="interiors/semos/storage_-1.xstend">
+   <zone name="int_semos_library" file="int_semos_library.xstend">
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Library">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="8" y="30" ref="entrance_left">
+     <destination zone="0_semos_city" ref="library_entrance_left"/>
+    </portal>
+
+    <portal x="21" y="30" ref="entrance_right">
+     <destination zone="0_semos_city" ref="library_entrance_right"/>
+    </portal>
+   </zone>
+
+   <zone name="int_semos_storage_0" file="int_semos_storage_0.xstend">
+    <title/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Storage">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="9" y="14" ref="entrance">
+     <destination zone="0_semos_city" ref="storage_entrance"/>
+    </portal>
+
+    <portal x="16" y="2" ref="downstairs">
+     <destination zone="int_semos_storage_-1" ref="upstairs"/>
+    </portal>
+   </zone>
+
+   <zone name="int_semos_storage_-1" file="int_semos_storage_-1.xstend">
     <title/>
 <!-- use portal config
     <configurator class-name="games.stendhal.server.maps.semos.ISL1_Storage"/>
 -->
 
-    <portal x="26" y="10" ref="0">
-     <destination zone="int_semos_storage_0" ref="1"/>
+    <portal x="26" y="10" ref="upstairs">
+     <destination zone="int_semos_storage_0" ref="downstairs"/>
     </portal>
    </zone>
 
-   <zone name="int_semos_bank" file="interiors/semos/bank.xstend">
+   <zone name="int_semos_bank" file="int_semos_bank.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bank"/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bank">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="9" y="30" ref="entrance">
+     <destination zone="0_semos_city" ref="bank_entrance"/>
+    </portal>
+
+    <portal x="10" y="30" ref="entrance_right">
+     <destination zone="0_semos_city" ref="bank_entrance"/>
+    </portal>
    </zone>
 
-   <zone name="int_semos_townhall" file="interiors/semos/townhall.xstend">
+   <zone name="int_semos_townhall" file="int_semos_townhall.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Townhall"/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Townhall">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="14" y="46" ref="entrance_left">
+     <destination zone="0_semos_city" ref="townhall_entrance_left"/>
+    </portal>
+
+    <portal x="15" y="46" ref="entrance">
+     <destination zone="0_semos_city" ref="townhall_entrance"/>
+    </portal>
+
+    <portal x="16" y="46" ref="entrance_right">
+     <destination zone="0_semos_city" ref="townhall_entrance_right"/>
+    </portal>
    </zone>
 
-   <zone name="int_semos_bakery" file="interiors/semos/bakery.xstend">
+   <zone name="int_semos_bakery" file="int_semos_bakery.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery"/>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="26" y="14" ref="entrance">
+     <destination zone="0_semos_city" ref="bakery_entrance"/>
+    </portal>
    </zone>
 
- <zone name="0_semos_road_e" file="level_0/semos/road_e.xstend">
+ <zone name="0_semos_road_e" file="0_semos_road_e.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_road_se" file="level_0/semos/road_se.xstend">
+ <zone name="0_semos_road_se" file="0_semos_road_se.xstend">
   <title/>
  </zone>
 
- <zone name="0_semos_plains_s" file="level_0/semos/plains_s.xstend">
+ <zone name="0_semos_plains_s" file="0_semos_plains_s.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsSouth"/>
  </zone>
 
- <zone name="0_ados_forest_w2" file="level_0/ados/forest_w2.xstend">
+ <zone name="0_ados_forest_w2" file="0_ados_forest_w2.xstend">
   <title/>
  </zone>
 
- <zone name="0_ados_rock_w" file="level_0/ados/rock_w.xstend">
+ <zone name="0_ados_rock_w" file="0_ados_rock_w.xstend">
   <title/>
  </zone>
 
- <zone name="0_ados_rock" file="level_0/ados/rock.xstend">
+ <zone name="0_ados_rock" file="0_ados_rock.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.ados.AdosRock"/>
  </zone>
 
- <zone name="0_ados_outside_w" file="level_0/ados/outside_w.xstend">
+ <zone name="0_ados_outside_w" file="0_ados_outside_w.xstend">
   <title/>
  </zone>
 
 <!--
- <zone name="0_ados_wall" file="level_0/ados/wall.xstend">
+ <zone name="0_ados_wall" file="0_ados_wall.xstend">
   <title/>
  </zone>
 -->
 
 <!--
- <zone name="0_ados_city_w" file="level_0/ados/city_w.xstend">
+ <zone name="0_ados_city_w" file="0_ados_city_w.xstend">
   <title/>
  </zone>
 -->
 
-   <zone name="int_ados_bank" file="interiors/ados/bank.xstend">
+   <zone name="int_ados_bank" file="int_ados_bank.xstend">
+    <title/>
+<!--
+    <configurator class-name="xxxxxx">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+-->
+
+    <portal x="22" y="17" ref="0">
+     <destination zone="0_ados_city" ref="6"/>
+    </portal>
+   </zone>
+
+   <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
+    <title/>
+
+<!--
+    <configurator class-name="xxxxxx">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+-->
+
+    <portal x="7" y="1" ref="0">
+     <destination zone="0_ados_city" ref="11"/>
+    </portal>
+   </zone>
+
+   <zone name="int_ados_bakery" file="int_ados_bakery.xstend">
+    <title/>
+<!--
+    <configurator class-name="xxxxxx">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+-->
+
+    <portal x="26" y="14" ref="0">
+     <destination zone="0_ados_city" ref="10"/>
+    </portal>
+   </zone>
+
+   <zone name="int_ados_library" file="int_ados_library.xstend">
     <title/>
    </zone>
 
-   <zone name="int_ados_haunted_house" file="interiors/ados/haunted_house.xstend">
+   <zone name="int_ados_tavern_0" file="int_ados_tavern_0.xstend">
     <title/>
+<!--
+    <configurator class-name="xxxxxx">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+-->
+
+    <portal x="12" y="17" ref="entrance_left">
+     <destination zone="0_ados_city" ref="tavern_entrance_left"/>
+    </portal>
+
+    <portal x="27" y="17" ref="entrance_right">
+     <destination zone="0_ados_city" ref="tavern_entrance_right"/>
+    </portal>
    </zone>
 
-   <zone name="int_ados_bakery" file="interiors/ados/bakery.xstend">
+   <zone name="int_ados_temple" file="int_ados_temple.xstend">
     <title/>
+<!--
+    <configurator class-name="xxxxxx">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+-->
+
+    <portal x="10" y="23" ref="entrance_left">
+     <destination zone="0_ados_city" ref="temple_entrance"/>
+    </portal>
+
+    <portal x="11" y="23" ref="entrance_center_left">
+     <destination zone="0_ados_city" ref="temple_entrance"/>
+    </portal>
+
+    <portal x="12" y="23" ref="entrance_center_right">
+     <destination zone="0_ados_city" ref="temple_entrance"/>
+    </portal>
+
+    <portal x="13" y="23" ref="entrance_right">
+     <destination zone="0_ados_city" ref="temple_entrance"/>
+    </portal>
    </zone>
 
-   <zone name="int_ados_library" file="interiors/ados/library.xstend">
-    <title/>
-   </zone>
-
-   <zone name="int_ados_tavern_0" file="interiors/ados/tavern_0.xstend">
-    <title/>
-   </zone>
-
-   <zone name="int_ados_temple" file="interiors/ados/temple.xstend">
-    <title/>
-   </zone>
-
- <zone name="0_ados_city" file="level_0/ados/city.xstend">
+ <zone name="0_ados_city" file="0_ados_city.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosCityInside"/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside"/>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosCityInside">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <portal x="60" y="16" ref="tavern_entrance_left">
+   <destination zone="int_ados_tavern_0" ref="entrance_left"/>
+  </portal>
+
+  <portal x="65" y="16" ref="tavern_entrance_right">
+   <destination zone="int_ados_tavern_0" ref="entrance_right"/>
+  </portal>
+
+  <portal x="54" y="19" ref="6">
+   <destination zone="int_ados_bank" ref="0"/>
+  </portal>
+
+  <portal x="27" y="39" ref="10">
+   <destination zone="int_ados_bakery" ref="0"/>
+  </portal>
+
+  <portal x="12" y="38" ref="11">
+   <destination zone="int_ados_haunted_house" ref="0"/>
+  </portal>
+
  </zone>
 
- <zone name="int_ados_reverse_arrow" file="interiors/ados/reverse_arrow.xstend">
-  <title/>
- </zone>
-
- <zone name="0_orril_mountain_nw" file="level_0/orril/mountain_nw.xstend">
-  <title/>
- </zone>
-
- <zone name="0_orril_forest_n" file="level_0/orril/forest_n.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_forest_s" file="level_0/semos/forest_s.xstend">
-  <title/>
- </zone>
-
- <zone name="0_nalwor_forest_nw" file="level_0/nalwor/forest_nw.xstend">
+ <zone name="int_ados_reverse_arrow" file="int_ados_reverse_arrow.xstend">
   <title/>
  </zone>
 
- <zone name="0_nalwor_forest_n" file="level_0/nalwor/forest_n.xstend">
+ <zone name="0_orril_mountain_nw" file="0_orril_mountain_nw.xstend">
   <title/>
  </zone>
 
- <zone name="0_nalwor_forest_ne" file="level_0/nalwor/forest_ne.xstend">
+ <zone name="0_orril_forest_n" file="0_orril_forest_n.xstend">
   <title/>
  </zone>
 
- <zone name="0_ados_swamp" file="level_0/ados/swamp.xstend">
+ <zone name="0_semos_forest_s" file="0_semos_forest_s.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_nalwor_forest_nw" file="0_nalwor_forest_nw.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_nalwor_forest_n" file="0_nalwor_forest_n.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_nalwor_forest_ne" file="0_nalwor_forest_ne.xstend">
+  <title/>
+ </zone>
+
+ <zone name="0_ados_swamp" file="0_ados_swamp.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.ados.AdosSwamp"/>
  </zone>
 
- <zone name="0_orril_mountain_w2" file="level_0/orril/mountain_w2.xstend">
+ <zone name="0_orril_mountain_w2" file="0_orril_mountain_w2.xstend">
   <title/>
  </zone>
 
- <zone name="0_orril_mountain_w" file="level_0/orril/mountain_w.xstend">
+ <zone name="0_orril_mountain_w" file="0_orril_mountain_w.xstend">
   <title/>
  </zone>
 
- <zone name="0_orril_castle" file="level_0/orril/castle.xstend">
+ <zone name="0_orril_castle" file="0_orril_castle.xstend">
   <title/>
+<!-- use portal config
   <configurator class-name="games.stendhal.server.maps.orril.OL0_Castle"/>
+-->
+
+  <portal x="60" y="96" ref="0">
+   <destination zone="0_orril_castle" ref="5"/>
+  </portal>
+
+  <portal x="61" y="96" ref="1">
+   <destination zone="0_orril_castle" ref="6"/>
+  </portal>
+
+  <portal x="62" y="96" ref="2">
+   <destination zone="0_orril_castle" ref="7"/>
+  </portal>
+
+  <portal x="63" y="96" ref="3">
+   <destination zone="0_orril_castle" ref="8"/>
+  </portal>
+
+  <portal x="64" y="96" ref="4">
+   <destination zone="0_orril_castle" ref="9"/>
+  </portal>
+
+
+  <portal x="60" y="96" ref="5">
+   <destination zone="0_orril_castle" ref="0"/>
+  </portal>
+
+  <portal x="61" y="96" ref="6">
+   <destination zone="0_orril_castle" ref="1"/>
+  </portal>
+
+  <portal x="62" y="96" ref="7">
+   <destination zone="0_orril_castle" ref="2"/>
+  </portal>
+
+  <portal x="63" y="96" ref="8">
+   <destination zone="0_orril_castle" ref="3"/>
+  </portal>
+
+  <portal x="64" y="96" ref="9">
+   <destination zone="0_orril_castle" ref="4"/>
+  </portal>
+
+
+  <portal x="61" y="72" ref="10">
+   <destination zone="int_orril_castle_0" ref="1"/>
+  </portal>
+
+  <portal x="62" y="72" ref="11">
+   <destination zone="int_orril_castle_0" ref="1"/>
+  </portal>
+
+  <portal x="63" y="72" ref="12">
+   <destination zone="int_orril_castle_0" ref="1"/>
+  </portal>
  </zone>
 
- <zone name="int_orril_castle_0" file="interiors/orril/castle_0.xstend">
+ <zone name="int_orril_castle_0" file="int_orril_castle_0.xstend">
   <title/>
+<!-- use portal config
   <configurator class-name="games.stendhal.server.maps.orril.IL0_Castle"/>
+-->
+
+  <portal x="26" y="62" ref="0">
+   <destination zone="0_orril_castle" ref="11"/>
+  </portal>
+
+  <portal x="27" y="62" ref="1">
+   <destination zone="0_orril_castle" ref="11"/>
+  </portal>
+
+  <portal x="28" y="62" ref="2">
+   <destination zone="0_orril_castle" ref="11"/>
+  </portal>
+
+  <portal x="8" y="1" ref="4">
+   <destination zone="-1_orril_castle" ref="1"/>
+  </portal>
  </zone>
 
- <zone name="0_orril_forest_e" file="level_0/orril/forest_e.xstend">
+ <zone name="0_orril_forest_e" file="0_orril_forest_e.xstend">
   <title/>
  </zone>
 
- <zone name="0_nalwor_forest_w" file="level_0/nalwor/forest_w.xstend">
+ <zone name="0_nalwor_forest_w" file="0_nalwor_forest_w.xstend">
   <title/>
 <!-- use portal config
   <configurator class-name="games.stendhal.server.maps.Nalwor"/>
@@ -391,54 +777,69 @@
   </portal>
  </zone>
 
- <zone name="0_nalwor_city" file="level_0/nalwor/city.xstend">
+ <zone name="0_nalwor_city" file="0_nalwor_city.xstend">
   <title/>
  </zone>
 
- <zone name="0_orril_river_s_w2" file="level_0/orril/river_s_w2.xstend">
+ <zone name="0_orril_river_s_w2" file="0_orril_river_s_w2.xstend">
   <title/>
  </zone>
 
- <zone name="0_orril_river_sw" file="level_0/orril/river_sw.xstend">
+ <zone name="0_orril_river_sw" file="0_orril_river_sw.xstend">
   <title/>
  </zone>
 
- <zone name="0_orril_river_s" file="level_0/orril/river_s.xstend">
+ <zone name="0_orril_river_s" file="0_orril_river_s.xstend">
   <title/>
+<!-- use portal config
   <configurator class-name="games.stendhal.server.maps.orril.OL0_JynathHouse"/>
-  <configurator class-name="games.stendhal.server.maps.orril.OL0_RiverSouthCampfire"/>
+-->
+
+  <configurator class-name="games.stendhal.server.maps.orril.OL0_RiverSouthCampfire">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <portal x="39" y="5" ref="0">
+   <destination zone="int_orril_jynath_house" ref="0"/>
+  </portal>
  </zone>
 
- <zone name="int_orril_jynath_house" file="interiors/orril/jynath_house.xstend">
+ <zone name="int_orril_jynath_house" file="int_orril_jynath_house.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.IL0_JynathHouse"/>
+  <configurator class-name="games.stendhal.server.maps.orril.IL0_JynathHouse">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <portal x="16" y="30" ref="0">
+   <destination zone="0_orril_river_s" ref="0"/>
+  </portal>
  </zone>
 
- <zone name="0_orril_river_se" file="level_0/orril/river_se.xstend">
+ <zone name="0_orril_river_se" file="0_orril_river_se.xstend">
   <title/>
  </zone>
 
- <zone name="0_nalwor_river_sw" file="level_0/nalwor/river_sw.xstend">
+ <zone name="0_nalwor_river_sw" file="0_nalwor_river_sw.xstend">
   <title/>
  </zone>
 
- <zone name="0_nalwor_river_s" file="level_0/nalwor/river_s.xstend">
+ <zone name="0_nalwor_river_s" file="0_nalwor_river_s.xstend">
   <title/>
  </zone>
 
 <!--
- <zone name="0_nalwor_river_se" file="level_0/nalwor/river_se.xstend">
+ <zone name="0_nalwor_river_se" file="0_nalwor_river_se.xstend">
   <title/>
  </zone>
 -->
 
 <!--
- <zone name="0_ados_river_s2_w2" file="level_0/ados/river_s2_w2.xstend">
+ <zone name="0_ados_river_s2_w2" file="0_ados_river_s2_w2.xstend">
   <title/>
  </zone>
 -->
 
- <zone name="0_athos_ship_w2" file="level_0/athos/ship_w2.xstend">
+ <zone name="0_athos_ship_w2" file="0_athos_ship_w2.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.Athos"/>
  </zone>
@@ -446,91 +847,132 @@
 
  <!--  Level -1 -->
 
- <zone name="-1_ados_outside_nw" file="level_-1/ados/outside_nw.xstend">
+ <zone name="-1_ados_outside_nw" file="sub_1_ados_outside_nw.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest"/> -->
+<!--
+  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+-->
+
+  <portal x="4" y="23" ref="0">
+   <destination zone="0_ados_outside_nw" ref="0"/>
+  </portal>
+
  </zone>
 
- <zone name="-1_semos_mine_n2_w2" file="level_-1/semos/mine_n2_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_semos_mine_n2" file="level_-1/semos/mine_n2.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_semos_mine_nw" file="level_-1/semos/mine_nw.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_semos_dungeon" file="level_-1/semos/dungeon.xstend">
+ <zone name="-1_semos_mine_n2_w2" file="sub_1_semos_mine_n2_w2.xstend">
   <title/>
  </zone>
 
- <zone name="-1_semos_jail" file="level_-1/semos/jail.xstend">
+ <zone name="-1_semos_mine_n2" file="sub_1_semos_mine_n2.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL1"/>
+ </zone>
+
+ <zone name="-1_semos_mine_nw" file="sub_1_semos_mine_nw.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-1_semos_dungeon" file="sub_1_semos_dungeon.xstend">
+  <title/>
+ </zone>
+
+ <zone name="-1_semos_jail" file="sub_1_semos_jail.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL1">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <portal x="28" y="17" ref="entrance">
+   <destination zone="0_semos_plains_w" ref="jail_entrance"/>
+  </portal>
  </zone>
 
 <!--
- <zone name="-1_semos_catacombs" file="level_-1/semos/catacombs.xstend">
+ <zone name="-1_semos_catacombs" file="sub_1_semos_catacombs.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.USL1_Catacombs"/>
  </zone>
 -->
 
- <zone name="-1_orril_mountain_w" file="level_-1/orril/mountain_w.xstend">
+ <zone name="-1_orril_mountain_w" file="sub_1_orril_mountain_w.xstend">
   <title/>
  </zone>
 
- <zone name="-1_orril_dungeon" file="level_-1/orril/dungeon.xstend">
+ <zone name="-1_orril_dungeon" file="sub_1_orril_dungeon.xstend">
   <title/>
  </zone>
 
- <zone name="-1_orril_castle_w" file="level_-1/orril/castle_w.xstend">
+ <zone name="-1_orril_castle_w" file="sub_1_orril_castle_w.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.USL1_CastleWest"/>
+  <configurator class-name="games.stendhal.server.maps.orril.USL1_CastleWest">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+
+  <portal x="69" y="37" ref="0">
+   <destination zone="-2_orril_lich_palace" ref="0"/>
+   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+    <attribute name="class">skulldoor</attribute>
+    <attribute name="direction">down</attribute>
+    <attribute name="key">dungeon_silver_key</attribute>
+   </implementation>
+  </portal>
+
  </zone>
 
- <zone name="-1_orril_castle" file="level_-1/orril/castle.xstend">
+ <zone name="-1_orril_castle" file="sub_1_orril_castle.xstend">
   <title/>
+<!-- use portal config
   <configurator class-name="games.stendhal.server.maps.orril.USL1_Castle"/>
+-->
+
+  <portal x="19" y="22" ref="0">
+   <destination zone="int_orril_castle_0" ref="4"/>
+  </portal>
+
+  <portal x="20" y="22" ref="1">
+   <destination zone="int_orril_castle_0" ref="4"/>
+  </portal>
  </zone>
 
 
  <!--  Level -2 -->
 
- <zone name="-2_ados_outside_nw" file="level_-2/ados/outside_nw.xstend">
+ <zone name="-2_ados_outside_nw" file="sub_2_ados_outside_nw.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest"/> -->
+<!--
+  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+-->
  </zone>
 
- <zone name="-2_semos_dungeon" file="level_-2/semos/dungeon.xstend">
+ <zone name="-2_semos_dungeon" file="sub_2_semos_dungeon.xstend">
   <title/>
  </zone>
 
- <zone name="-2_semos_jail" file="level_-2/semos/jail.xstend">
+ <zone name="-2_semos_jail" file="sub_2_semos_jail.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL2"/>
  </zone>
 
 <!--
- <zone name="-2_semos_catacombs" file="level_-2/semos/catacombs.xstend">
+ <zone name="-2_semos_catacombs" file="sub_2_semos_catacombs.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.USL2_Catacombs"/>
  </zone>
 -->
 
- <zone name="-2_kotoch_entrance" file="level_-2/kotoch/entrance.xstend">
+ <zone name="-2_kotoch_entrance" file="sub_2_kotoch_entrance.xstend">
   <title/>
  </zone>
 
- <zone name="-2_orril_dwarf_mine" file="level_-2/orril/dwarf_mine.xstend">
+ <zone name="-2_orril_dwarf_mine" file="sub_2_orril_dwarf_mine.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.orril.USL2_DwarfMine"/>
  </zone>
 
- <zone name="-2_orril_lich_palace" file="level_-2/orril/lich_palace.xstend">
+ <zone name="-2_orril_lich_palace" file="sub_2_orril_lich_palace.xstend">
   <title/>
 <!-- use portal config
   <configurator class-name="games.stendhal.server.maps.orril.USL2_LichPalace"/>
@@ -558,56 +1000,60 @@
   </portal>
  </zone>
 
- <zone name="-2_orril_dungeon" file="level_-2/orril/dungeon.xstend">
+ <zone name="-2_orril_dungeon" file="sub_2_orril_dungeon.xstend">
   <title/>
  </zone>
 
 
  <!--  Level -3 -->
 
- <zone name="-3_ados_outside_nw" file="level_-3/ados/outside_nw.xstend">
+ <zone name="-3_ados_outside_nw" file="sub_3_ados_outside_nw.xstend">
   <title/>
-  <!-- <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest"/> -->
+<!--
+  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
+-->
  </zone>
 
- <zone name="-3_semos_dungeon" file="level_-3/semos/dungeon.xstend">
+ <zone name="-3_semos_dungeon" file="sub_3_semos_dungeon.xstend">
   <title/>
  </zone>
 
 <!--
- <zone name="-3_semos_catacombs" file="level_-3/semos/catacombs.xstend">
+ <zone name="-3_semos_catacombs" file="sub_3_semos_catacombs.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.USL3_Catacombs"/>
  </zone>
 -->
 
- <zone name="-3_orril_dwarf_blacksmith" file="level_-3/orril/dwarf_blacksmith.xstend">
+ <zone name="-3_orril_dwarf_blacksmith" file="sub_3_orril_dwarf_blacksmith.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.orril.USL3_DwarfBlacksmith"/>
  </zone>
 
- <zone name="-3_orril_dungeon" file="level_-3/orril/dungeon.xstend">
+ <zone name="-3_orril_dungeon" file="sub_3_orril_dungeon.xstend">
   <title/>
  </zone>
 
 
  <!--  Level -4 -->
 
- <zone name="-4_semos_dungeon" file="level_-4/semos/dungeon.xstend">
+ <zone name="-4_semos_dungeon" file="sub_4_semos_dungeon.xstend">
   <title/>
  </zone>
 
 
  <!--  Level -5 -->
 
- <zone name="-5_kanmararn_entrance" file="level_-5/kanmararn/entrance.xstend">
+ <zone name="-5_kanmararn_entrance" file="sub_5_kanmararn_entrance.xstend">
   <title/>
  </zone>
 
 
  <!--  Level -6 -->
 
- <zone name="-6_kanmararn_city" file="level_-6/kanmararn/city.xstend">
+ <zone name="-6_kanmararn_city" file="sub_6_kanmararn_city.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.Kanmararn"/>
  </zone>
@@ -616,7 +1062,7 @@
  <!--  Level -7 -->
 
 <!--
- <zone name="-7_kanmararn_jail" file="level_-7/kanmararn/jail.xstend">
+ <zone name="-7_kanmararn_jail" file="sub_7_kanmararn_jail.xstend">
   <title/>
  </zone>
 -->
@@ -624,54 +1070,54 @@
 
  <!--  Level 1 -->
 
- <zone name="1_kikareukin_cave" file="level_1/kikareukin/cave.xstend">
+ <zone name="1_kikareukin_cave" file="1_kikareukin_cave.xstend">
   <title/>
  </zone>
 
 
  <!--  Level 2 -->
 
- <zone name="2_kikareukin_cave" file="level_2/kikareukin/cave.xstend">
+ <zone name="2_kikareukin_cave" file="2_kikareukin_cave.xstend">
   <title/>
  </zone>
 
 
  <!--  Level 3 -->
 
- <zone name="3_kikareukin_cave" file="level_3/kikareukin/cave.xstend">
+ <zone name="3_kikareukin_cave" file="3_kikareukin_cave.xstend">
   <title/>
  </zone>
 
 
  <!--  Level 4 -->
 
- <zone name="4_kikareukin_cave" file="level_4/kikareukin/cave.xstend">
+ <zone name="4_kikareukin_cave" file="4_kikareukin_cave.xstend">
   <title/>
  </zone>
 
 
  <!--  Level 5 -->
 
- <zone name="5_kikareukin_cave" file="level_5/kikareukin/cave.xstend">
+ <zone name="5_kikareukin_cave" file="5_kikareukin_cave.xstend">
   <title/>
  </zone>
 
 
  <!--  Level 6 -->
 
- <zone name="6_kikareukin_islands" file="level_6/kikareukin/islands.xstend">
+ <zone name="6_kikareukin_islands" file="6_kikareukin_islands.xstend">
   <title/>
  </zone>
 
 
  <!--  Interiors -->
 
- <zone name="int_afterlife" file="interiors/afterlife.xstend">
+ <zone name="int_afterlife" file="int_afterlife.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.Afterlife">
     <attribute name="xml-portals">using</attribute>
 
-    <!-- Override example -->
+    <!-- Override example (now superceeded by general xml-based entities) -->
     <attribute name="message">
 You DIED! Deal with it! Oh, and you're 10% less of a player.
     </attribute>
@@ -690,11 +1136,11 @@ You DIED! Deal with it! Oh, and you're 10% less of a player.
   </portal>
  </zone>
 
- <zone name="int_admin_playground" file="interiors/admin/playground.xstend">
+ <zone name="int_admin_playground" file="int_admin_playground.xstend">
   <title/>
  </zone>
 
- <zone name="int_pathfinding" file="interiors/pathfinding.xstend">
+ <zone name="int_pathfinding" file="int_pathfinding.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.FeaturesTestArea">
     <attribute name="xml-portals">using</attribute>

@@ -24,6 +24,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Door;
+import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.entity.spawner.GrowingPassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
@@ -357,12 +358,47 @@ public class StendhalRPWorld extends RPWorld {
 		 */
 		for (IRPZone zone : this) {
 			for (Portal portal : ((StendhalRPZone) zone).getPortals()) {
-				if (!portal.loaded()) {
-					logger.warn(portal + " has no destination");
-				}
+				validatePortal(portal);
 			}
 		}
 	}
+
+
+	protected void validatePortal(Portal portal) {
+		if (!portal.loaded()) {
+			logger.warn(portal + " has no destination");
+			return;
+		}
+
+		if(portal instanceof OneWayPortalDestination)
+			return;
+
+		String id = portal.getDestinationZone();
+
+		if(id == null) {
+			logger.warn(portal + " has no destination zone");
+			return;
+		}
+
+		StendhalRPZone zone = (StendhalRPZone) getRPZone(id);
+
+		if(zone == null) {
+			logger.warn(portal + " has an invalid destination zone: " + id);
+			return;
+		}
+
+		Object ref = portal.getDestinationReference();
+
+		if(ref == null) {
+			logger.warn(portal + " has no destination reference");
+			return;
+		}
+
+		if(zone.getPortal(ref) == null) {
+			logger.warn(portal + " has an invalid destination reference: " + id + "[" + ref + "]");
+		}
+	}
+
 
 	public IRPZone getRPZone(String zone) {
 		return getRPZone(new IRPZone.ID(zone));

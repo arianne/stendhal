@@ -421,7 +421,9 @@ public class ZonesXMLLoader extends DefaultHandler {
 		Object	reference;
 
 
-		if(qName.equals("zone")) {
+		if(qName.equals("zones")) {
+			// Ignore
+		} else if(qName.equals("zone")) {
 			if((s = attrs.getValue("name")) == null) {
 				logger.warn("Unnamed zone");
 			} else {
@@ -437,6 +439,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 				cdesc = new ConfiguratorDesc(s);
 				scope = SCOPE_CONFIGURATOR;
 			}
+		} else if(qName.equals("entity")) {
+			// NOT YET!
 		} else if(qName.equals("portal")) {
 			if((s = attrs.getValue("x")) == null) {
 				logger.warn("Portal without 'x' coordinate");
@@ -766,25 +770,18 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 
 	/**
-	 * A portal descriptor.
+	 * An entity descriptor.
 	 */
-	protected static class PortalDesc {
+	protected static class EntityDesc {
 		protected int		x;
 		protected int		y;
-		protected Object	reference;
-		protected String	destinationZone;
-		protected Object	destinationReference;
 		protected String	className;
 		protected HashMap<String, String>	attributes;
 
 
-		public PortalDesc(int x, int y, Object reference) {
+		public EntityDesc(int x, int y) {
 			this.x = x;
 			this.y = y;
-			this.reference = reference;
-
-			destinationZone = null;
-			destinationReference = null;
 
 			className = null;
 			attributes = new HashMap<String, String>();
@@ -813,38 +810,11 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 
 		/**
-		 * Get the destination reference.
-		 *
-		 */
-		public Object getDestinationReference() {
-			return destinationReference;
-		}
-
-
-		/**
-		 * Get the destination zone.
-		 *
-		 */
-		public String getDestinationZone() {
-			return destinationZone;
-		}
-
-
-		/**
 		 * Get the implementation class name.
 		 *
 		 */
 		public String getImplementation() {
 			return className;
-		}
-
-
-		/**
-		 * Get the reference.
-		 *
-		 */
-		public Object getReference() {
-			return reference;
 		}
 
 
@@ -876,21 +846,71 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 
 		/**
+		 * Set the implementation class name.
+		 *
+		 */
+		public void setImplementation(String className) {
+			this.className = className;
+		}
+	}
+
+
+	/**
+	 * A portal descriptor.
+	 */
+	protected static class PortalDesc extends EntityDesc {
+		protected Object	reference;
+		protected String	destinationZone;
+		protected Object	destinationReference;
+
+
+		public PortalDesc(int x, int y, Object reference) {
+			super(x, y);
+
+			this.reference = reference;
+
+			destinationZone = null;
+			destinationReference = null;
+		}
+
+		//
+		//
+		//
+
+		/**
+		 * Get the destination reference.
+		 *
+		 */
+		public Object getDestinationReference() {
+			return destinationReference;
+		}
+
+
+		/**
+		 * Get the destination zone.
+		 *
+		 */
+		public String getDestinationZone() {
+			return destinationZone;
+		}
+
+
+		/**
+		 * Get the reference.
+		 *
+		 */
+		public Object getReference() {
+			return reference;
+		}
+
+
+		/**
 		 * Set the destination zone/reference.
 		 *
 		 */
 		public void setDestination(String zone, Object reference) {
 			this.destinationZone = zone;
 			this.destinationReference = reference;
-		}
-
-
-		/**
-		 * Set the implementation class name.
-		 *
-		 */
-		public void setImplementation(String className) {
-			this.className = className;
 		}
 	}
 }
