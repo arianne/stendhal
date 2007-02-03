@@ -509,11 +509,9 @@ the wolves while searching for berries here
 
    <zone name="int_ados_bank" file="int_ados_bank.xstend">
     <title/>
-<!--
-    <configurator class-name="xxxxxx">
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Bank">
      <attribute name="xml-portals">using</attribute>
     </configurator>
--->
 
     <portal x="22" y="17" ref="0">
      <destination zone="0_ados_city" ref="6"/>
@@ -522,12 +520,9 @@ the wolves while searching for berries here
 
    <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
     <title/>
-
-<!--
-    <configurator class-name="xxxxxx">
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_HauntedHouse">
      <attribute name="xml-portals">using</attribute>
     </configurator>
--->
 
     <portal x="7" y="1" ref="0">
      <destination zone="0_ados_city" ref="11"/>
@@ -536,11 +531,9 @@ the wolves while searching for berries here
 
    <zone name="int_ados_bakery" file="int_ados_bakery.xstend">
     <title/>
-<!--
-    <configurator class-name="xxxxxx">
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Bakery">
      <attribute name="xml-portals">using</attribute>
     </configurator>
--->
 
     <portal x="26" y="14" ref="0">
      <destination zone="0_ados_city" ref="10"/>
@@ -549,15 +542,24 @@ the wolves while searching for berries here
 
    <zone name="int_ados_library" file="int_ados_library.xstend">
     <title/>
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Library">
+     <attribute name="xml-portals">using</attribute>
+    </configurator>
+
+    <portal x="8" y="29" ref="entrance_left">
+     <destination zone="0_ados_city" ref="library_entrance_left"/>
+    </portal>
+
+    <portal x="21" y="29" ref="entrance_right">
+     <destination zone="0_ados_city" ref="library_entrance_right"/>
+    </portal>
    </zone>
 
    <zone name="int_ados_tavern_0" file="int_ados_tavern_0.xstend">
     <title/>
-<!--
-    <configurator class-name="xxxxxx">
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Tavern">
      <attribute name="xml-portals">using</attribute>
     </configurator>
--->
 
     <portal x="12" y="17" ref="entrance_left">
      <destination zone="0_ados_city" ref="tavern_entrance_left"/>
@@ -570,11 +572,9 @@ the wolves while searching for berries here
 
    <zone name="int_ados_temple" file="int_ados_temple.xstend">
     <title/>
-<!--
-    <configurator class-name="xxxxxx">
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Temple">
      <attribute name="xml-portals">using</attribute>
     </configurator>
--->
 
     <portal x="10" y="23" ref="entrance_left">
      <destination zone="0_ados_city" ref="temple_entrance"/>
@@ -758,6 +758,18 @@ the wolves while searching for berries here
   <title/>
 <!-- use portal config
   <configurator class-name="games.stendhal.server.maps.Nalwor"/>
+-->
+
+<!--
+** Alternative configuration **
+  <portal x="84" y="92" ref="entrance">
+   <destination zone="0_nalwor_forest_w" ref="exit"/>
+  </portal>
+
+  <portal x="114" y="91" ref="exit">
+   <destination zone="0_nalwor_forest_w" ref="entrance"/>
+  </portal>
+**
 -->
 
   <portal x="84" y="92" ref="outside_entrance">
