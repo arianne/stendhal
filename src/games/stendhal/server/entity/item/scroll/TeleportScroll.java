@@ -17,14 +17,13 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
 /**
- * Represents a teleport scroll.
+ * Represents a general teleport scroll.
  */
-public class TeleportScroll extends InfoStringScroll {
+public abstract class TeleportScroll extends InfoStringScroll {
 	private static final Logger logger =
 				Logger.getLogger(TeleportScroll.class);
 
@@ -43,6 +42,17 @@ public class TeleportScroll extends InfoStringScroll {
 
 
 	/**
+	 * Is invoked when a teleporting scroll is actually used.
+	 *
+	 * @param player The player who used the scroll and who will be
+	 * teleported
+	 *
+	 * @return true iff teleport was successful
+	 */
+	protected abstract boolean useTeleportScroll(Player player);
+
+
+	/**
 	 * Is invoked when a teleporting scroll is used. Tries to put the
 	 * player on the scroll's destination, or near it. 
 	 * @param player The player who used the scroll and who will be teleported
@@ -54,40 +64,7 @@ public class TeleportScroll extends InfoStringScroll {
 			player.sendPrivateText("The strong anti magic aura in this aera prevents the scroll from working!");
 			return false;
 		}
-		
-		// init as home_scroll
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_city");
-		int x = 30;
-		int y = 40;
 
-		// Is it a marked scroll? Marked scrolls have a destination which
-		// is stored in the infostring, existing of a zone name and x and y
-		// coordinates
-		if (has("infostring")) {
-			String infostring = get("infostring");
-			StringTokenizer st = new StringTokenizer(infostring);
-			if (st.countTokens() == 3) {
-				StendhalRPZone temp = (StendhalRPZone) StendhalRPWorld.get().getRPZone(st.nextToken());
-				if (temp != null) {
-					x = Integer.parseInt(st.nextToken());
-					y = Integer.parseInt(st.nextToken());
-					if (!zone.isTeleportable()) {
-						player.sendPrivateText("The strong anti magic aura in the destination aera prevents the scroll from working!");
-						logger.warn("marked_scroll to zone " + infostring + " teleported " + player.getName() + " to Semos instead");
-						return false;
-					} else {
-						zone = temp;
-					}
-				} else {
-					// invalid zone (the scroll may have been marked in an
-					// old version and the zone was removed)
-					player.sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
-					logger.warn("marked_scroll to unknown zone " + infostring + " teleported " + player.getName() + " to Semos instead");
-				}
-			}
-		}
-		// we use the player as teleporter (last parameter) to give feedback
-		// if something goes wrong.
-		return player.teleport(zone, x, y, null, player);
+		return useTeleportScroll(player);
 	}
 }

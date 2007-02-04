@@ -2173,7 +2173,7 @@ Makes players more offensive
 
 	<item name="home_scroll">
 		<type class="scroll" subclass="home"/>
-		<implementation class-name="games.stendhal.server.entity.item.scroll.TeleportScroll"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
 		<stackable/>
 		<attributes>
 			<quantity value="1"/>
@@ -2187,7 +2187,7 @@ Makes players more offensive
 
 	<item name="marked_scroll">
 		<type class="scroll" subclass="marked"/>
-		<implementation class-name="games.stendhal.server.entity.item.scroll.TeleportScroll"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
 		<weight value="0.01"/>
 		<attributes>
 			<quantity value="1"/>
