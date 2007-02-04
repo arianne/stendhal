@@ -105,6 +105,12 @@ public class StaticGameLayers {
         Log4J.startMethod(logger, "addLayer");
         try {
             if (name.endsWith("_collision")) {
+                for (int i = 0; i < collisions.size(); i++) {
+                    if (collisions.get(i).first().compareTo(name) == 0) {
+                        /** Repeated layers should be ignored. */
+                        return;
+                    }
+                }
                 CollisionDetection collision = new CollisionDetection();
                 collision.setCollisionData(reader);
                 collisions.add(new Pair<String, CollisionDetection>(name,
@@ -112,15 +118,6 @@ public class StaticGameLayers {
             } else if (name.endsWith("_map")) {
             	
             } else {
-                LayerRenderer content = null;
-                URL url = getClass().getClassLoader().getResource("data/layers/" + name + ".jpg");
-                if (url != null) {
-                    content = new ImageRenderer(url);
-                }
-                if (content == null) {
-                    content = new TileRenderer(tilestore);
-                    ((TileRenderer) content).setMapData(reader);
-                }
                 int i;
                 for (i = 0; i < layers.size(); i++) {
                     if (layers.get(i).first().compareTo(name) == 0) {
@@ -130,6 +127,15 @@ public class StaticGameLayers {
                     if (layers.get(i).first().compareTo(name) >= 0) {
                         break;
                     }
+                }
+                LayerRenderer content = null;
+                URL url = getClass().getClassLoader().getResource("data/layers/" + name + ".jpg");
+                if (url != null) {
+                    content = new ImageRenderer(url);
+                }
+                if (content == null) {
+                    content = new TileRenderer(tilestore);
+                    ((TileRenderer) content).setMapData(reader);
                 }
                 layers.add(i, new Pair<String, LayerRenderer>(name, content));
             }
@@ -159,6 +165,17 @@ public class StaticGameLayers {
     /** Set the set of layers that is going to be rendered */
     public void setRPZoneLayersSet(String area) {
         Log4J.startMethod(logger, "setRPZoneLayersSet");
+        // keep only the actual zone
+       	for (int i = 0; i < layers.size(); i++) {
+       		if (!layers.get(i).first().contains(area)) {
+       			layers.remove(i);
+       		}
+       	}
+       	for (int i = 0; i < collisions.size(); i++) {
+       		if (!collisions.get(i).first().equals(area + "_collision")) {
+       			collisions.remove(i);
+       		}
+       	}
         this.area = area;
         this.areaChanged = true;
         Log4J.finishMethod(logger, "setRPZoneLayersSet");
