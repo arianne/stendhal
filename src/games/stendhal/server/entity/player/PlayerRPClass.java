@@ -105,6 +105,8 @@ class PlayerRPClass {
 		player.add("offline", RPClass.LONG_STRING, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
 
 		player.addRPSlot("!quests", 1, RPClass.HIDDEN);
+
+		player.add("karma", RPClass.FLOAT, RPClass.HIDDEN);
 	}
 
 	/**

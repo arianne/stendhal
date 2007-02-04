@@ -54,6 +54,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
+						player.addKarma(2.0);
 						player.setQuest("clean_storage", "start");
 						player.removeKill("rat");
 						player.removeKill("cobra");
@@ -69,6 +70,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
+						player.addKarma(-2.0);
 						player.setQuest("clean_storage", "rejected");
 					}
 				});
@@ -108,6 +110,8 @@ public class CleanStorageSpace extends AbstractQuest {
 						if (player.hasKilled("rat") && player.hasKilled("caverat")
 								&& player.hasKilled("cobra")) {
 							engine.say("A hero at last! Thank you!");
+
+							player.addKarma(3.0);
 							player.addXP(25);
 							player.setQuest("clean_storage", "done");
 							engine.setCurrentState(ConversationStates.ATTENDING);

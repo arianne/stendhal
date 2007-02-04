@@ -35,6 +35,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -47,6 +48,16 @@ import org.apache.log4j.Logger;
 public class Player extends RPEntity implements TurnListener {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
+
+	/**
+	 * The base log for karma use.
+	 */
+	private static final double	KARMA_BASELOG	= Math.log(10.0);
+
+	/**
+	 * A random generator (for karma payout).
+	 */
+	private static final Random	karmaRand	= new Random();
 
 	/**
 	 * The number of minutes that this player has been logged in on the
@@ -77,6 +88,12 @@ public class Player extends RPEntity implements TurnListener {
 	 * Currently active client directions (in oldest-newest order)
 	 */
 	protected List<Direction>	directions;
+
+	/**
+	 * Karma (luck).
+	 */
+	protected double		karma;
+
 
 	public static void generateRPClass() {
 		try {
@@ -180,6 +197,11 @@ public class Player extends RPEntity implements TurnListener {
 		poisonToConsume = new LinkedList<ConsumableItem>();
 		directions = new ArrayList<Direction>();
 
+		/*
+		 * Beginner's luck (unless overriden by update)
+		 */
+		karma = 10.0;
+
 		update();
 	}
 
@@ -258,6 +280,9 @@ public class Player extends RPEntity implements TurnListener {
 	 * @param	karma		An amount of karma to add/subtract.
 	 */
 	public void addKarma(double karma) {
+		this.karma += karma;
+
+		put("karma", karma);
 	}
 
 
@@ -280,13 +305,45 @@ public class Player extends RPEntity implements TurnListener {
 	 * good luck/energy. A negative value indicates bad luck/energy.
 	 * A value of zero should cause no change on an action or outcome.
 	 *
-	 * @param	maxNegative	The maximum negative value returned.
-	 * @param	maxPositive	The maximum positive value returned.
+	 * @param	negLimit	The lowest negative value returned.
+	 * @param	posLimit	The highest positive value returned.
 	 *
-	 * @return	A number within -abs(maxNegative) and abs(maxPositive).
+	 * @return	A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
-	public double getKarma(double maxNegative, double maxPositive) {
-		return 0.0;
+	public double getKarma(double negLimit, double posLimit) {
+		double	limit;
+		double	score;
+
+
+		/*
+		 * Calculate the maximum payout (based on what we have)
+		 */
+		limit = Math.log(Math.abs(karma) + 1.0) / KARMA_BASELOG;
+
+		/*
+		 * Positive or Negative?
+		 */
+		if(karma < 0.0) {
+			if(negLimit >= 0.0)
+				return 0.0;
+
+			limit = Math.max(negLimit, -limit);
+		} else {
+			if(posLimit <= 0.0)
+				return 0.0;
+
+			limit = Math.min(posLimit, limit);
+		}
+
+		/*
+		 * Give at least 20% of possible payout
+		 */
+		score = (0.2 + (karmaRand.nextDouble() * 0.8)) * limit;
+		karma -= score;
+
+		put("karma", karma);
+
+		return score;
 	}
 
 
@@ -297,6 +354,10 @@ public class Player extends RPEntity implements TurnListener {
 		if (has("age")) {
 			age = getInt("age");
 		}
+
+                if(has("karma")) {
+                        karma = getDouble("karma");
+                }
 	}
 
 	public void sendPrivateText(String text) {
@@ -353,6 +414,9 @@ public class Player extends RPEntity implements TurnListener {
 		super.onDead(who, false);
 
 		setHP(getBaseHP());
+
+		// After a tangle with the grim reaper, give some karma
+		addKarma(200.0);
 
 		StendhalRPAction.changeZone(this, "int_afterlife");
 		StendhalRPAction.transferContent(this);
