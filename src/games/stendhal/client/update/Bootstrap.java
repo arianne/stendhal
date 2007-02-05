@@ -239,6 +239,17 @@ public class Bootstrap {
 	}
 
 	/**
+	 * Is this package signed? Note it does not validate the signature, just
+	 * looks for the presents of one.
+	 *
+	 * @return true, if there is some kind of signature; false otherwise
+	 */
+	private boolean isSigned() {
+		URL url = Bootstrap.class.getResource("META-INF/MIGUELAN.SF");
+		return url != null;
+	}
+
+	/**
 	 * Starts the main-method of specified class after
 	 * dynamically building the classpath
 	 *
@@ -251,7 +262,21 @@ public class Bootstrap {
 		} catch (Throwable t) {
 			t.printStackTrace(System.err);
 		}
-		AccessController.doPrivileged(new PrivilagedBoot<Object>(className, args));
+
+		if (isSigned()) {
+			AccessController.doPrivileged(new PrivilagedBoot<Object>(className, args));
+		} else {
+			// self build client, do not try to update it
+			System.err.println("Self build client, starting without update .jar-files");
+			try {
+				Class clazz = Class.forName(className);
+				Method method = clazz.getMethod("main", args.getClass());
+				method.invoke(null, (Object) args);
+			} catch (Exception err) {
+				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to start your self build client: " + err);
+				err.printStackTrace(System.err);
+			}
+		}
 	}
 
 	private void unexspectedErrorHandling(Throwable t) {
