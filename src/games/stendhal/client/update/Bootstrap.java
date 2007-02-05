@@ -264,6 +264,8 @@ public class Bootstrap {
 		}
 
 		if (isSigned()) {
+			// official client, look for updates and integrate additinal .jar files
+			System.err.println("Integrating old updates and looking for new ones");
 			AccessController.doPrivileged(new PrivilagedBoot<Object>(className, args));
 		} else {
 			// self build client, do not try to update it
