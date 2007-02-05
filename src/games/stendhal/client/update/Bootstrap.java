@@ -148,18 +148,25 @@ public class Bootstrap {
 	/**
 	 * Do the whole start up process in a privilaged block
 	 */
-	private class PrivilagedBoot implements PrivilegedAction {
+	private class PrivilagedBoot<T> implements PrivilegedAction<T> {
 		private String className = null;
 		private String[] args = null;
-		
+
+		/**
+		 * Creates a PrivilagedBoot object
+		 *
+		 * @param className className to boot
+		 * @param args arguments for the main-method
+		 */
 		public PrivilagedBoot(String className, String[] args) {
 			this.className = className;
 			this.args = args;
 		}
 
-		public Object run() {
-			init();
-
+		/**
+		 * Handles the update procedure
+		 */
+		private void handleUpdate() {
 			// invoke update handling first
 			try {
 				ClassLoader classLoader = createClassloader();
@@ -179,18 +186,28 @@ public class Bootstrap {
 				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
 				e.printStackTrace(System.err);
 			}
+		}
 
-			// store boot prop (if they ware altered during update)
+		/**
+		 * store boot prop (if they ware altered during update)
+		 */
+		private void storeBootProp() {
 			try {
 				saveBootProp();
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Sorry, an error occured while downloading the update. Could not write bootProperties");
 			}
+		}
 
-			// load program (regenerate classloader stuff)
+		/**
+		 * load program
+		 */
+		private void loadProgram() {
+			// regenerate classloader stuff, because in handleUpdate additional
+			// .jar-files may have been added
+			
 			try {
 				ClassLoader classLoader = createClassloader();
-				// Thread.currentThread().setContextClassLoader(classLoader);
 				Class clazz = classLoader.loadClass(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
@@ -209,6 +226,14 @@ public class Bootstrap {
 					}
 				}
 			}
+
+		}
+		
+		public T run() {
+			init();
+			handleUpdate();
+			storeBootProp();
+			loadProgram();
 			return null;
 		}
 	}
@@ -226,7 +251,7 @@ public class Bootstrap {
 		} catch (Throwable t) {
 			t.printStackTrace(System.err);
 		}
-		AccessController.doPrivileged(new PrivilagedBoot(className, args));
+		AccessController.doPrivileged(new PrivilagedBoot<Object>(className, args));
 	}
 
 	private void unexspectedErrorHandling(Throwable t) {
