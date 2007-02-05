@@ -245,7 +245,7 @@ public class Bootstrap {
 	 * @return true, if there is some kind of signature; false otherwise
 	 */
 	private boolean isSigned() {
-		URL url = Bootstrap.class.getResource("META-INF/MIGUELAN.SF");
+		URL url = Bootstrap.class.getClassLoader().getResource("META-INF/MIGUELAN.SF");
 		return url != null;
 	}
 
