@@ -253,8 +253,8 @@ public class UpdateManager {
 			sb.append(file + ",");
 		}
 
-		sb.append(bootProp.getProperty("load-" + Version.VERSION, ""));
+		sb.append(bootProp.getProperty("load", ""));
 
-		bootProp.put("load-" + Version.VERSION, sb.toString());
+		bootProp.put("load" + Version.VERSION, sb.toString());
 	}
 }

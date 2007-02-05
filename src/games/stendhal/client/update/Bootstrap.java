@@ -117,7 +117,7 @@ public class Bootstrap {
 			is.close();
 
 			// get list of .jar-files
-			String jarNameString = bootProp.getProperty("load-" + Version.VERSION, "");
+			String jarNameString = bootProp.getProperty("load", "");
 			StringTokenizer st = new StringTokenizer(jarNameString, ",");
 			while (st.hasMoreTokens()) {
 				String filename = st.nextToken();
