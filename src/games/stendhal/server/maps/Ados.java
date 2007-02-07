@@ -13,6 +13,7 @@ import games.stendhal.server.maps.ados.IL0_Bakery;
 import games.stendhal.server.maps.ados.IL0_Bank;
 import games.stendhal.server.maps.ados.IL0_HauntedHouse;
 import games.stendhal.server.maps.ados.IL0_Library;
+import games.stendhal.server.maps.ados.IL0_MagicianHouse;
 import games.stendhal.server.maps.ados.IL0_Tavern;
 import games.stendhal.server.maps.ados.IL0_Temple;
 
@@ -46,6 +47,8 @@ public class Ados implements ZoneConfigurator, IContent {
 		new IL0_Temple().build();
 
 		new AdosMountainsNorthWest().build();
+		new IL0_MagicianHouse().build();
+
 		new AdosRock().build();
 		new AdosOutsideNorthWest().build();
 		new AdosWallNorth().build();

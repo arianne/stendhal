@@ -169,21 +169,19 @@
    <attribute name="xml-portals">using</attribute>
   </configurator>
 
-  <portal x="75" y="50" ref="0">
-   <destination zone="int_ados_magician_house" ref="0"/>
+  <portal x="75" y="50" ref="magician_house_entrance">
+   <destination zone="int_ados_magician_house" ref="entrance"/>
   </portal>
  </zone>
 
  <zone name="int_ados_magician_house" file="int_ados_magician_house.xstend">
   <title/>
-<!--
-  <configurator class-name="games.stendhal.server.maps.ados.AdosMountainsNorthWest">
+  <configurator class-name="games.stendhal.server.maps.ados.IL0_MagicianHouse">
    <attribute name="xml-portals">using</attribute>
   </configurator>
--->
 
-  <portal x="12" y="13" ref="0">
-   <destination zone="0_ados_mountain_nw" ref="0"/>
+  <portal x="12" y="13" ref="entrance">
+   <destination zone="0_ados_mountain_nw" ref="magician_house_entrance"/>
   </portal>
  </zone>
 
@@ -546,11 +544,11 @@ the wolves while searching for berries here
      <attribute name="xml-portals">using</attribute>
     </configurator>
 
-    <portal x="8" y="29" ref="entrance_left">
+    <portal x="8" y="30" ref="entrance_left">
      <destination zone="0_ados_city" ref="library_entrance_left"/>
     </portal>
 
-    <portal x="21" y="29" ref="entrance_right">
+    <portal x="21" y="30" ref="entrance_right">
      <destination zone="0_ados_city" ref="library_entrance_right"/>
     </portal>
    </zone>
@@ -595,10 +593,6 @@ the wolves while searching for berries here
 
  <zone name="0_ados_city" file="0_ados_city.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosCityInside">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
-
   <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside">
    <attribute name="xml-portals">using</attribute>
   </configurator>
@@ -693,23 +687,23 @@ the wolves while searching for berries here
   </portal>
 
 
-  <portal x="60" y="96" ref="5">
+  <portal x="60" y="93" ref="5">
    <destination zone="0_orril_castle" ref="0"/>
   </portal>
 
-  <portal x="61" y="96" ref="6">
+  <portal x="61" y="93" ref="6">
    <destination zone="0_orril_castle" ref="1"/>
   </portal>
 
-  <portal x="62" y="96" ref="7">
+  <portal x="62" y="93" ref="7">
    <destination zone="0_orril_castle" ref="2"/>
   </portal>
 
-  <portal x="63" y="96" ref="8">
+  <portal x="63" y="93" ref="8">
    <destination zone="0_orril_castle" ref="3"/>
   </portal>
 
-  <portal x="64" y="96" ref="9">
+  <portal x="64" y="93" ref="9">
    <destination zone="0_orril_castle" ref="4"/>
   </portal>
 
@@ -986,9 +980,9 @@ the wolves while searching for berries here
 
  <zone name="-2_orril_lich_palace" file="sub_2_orril_lich_palace.xstend">
   <title/>
-<!-- use portal config
-  <configurator class-name="games.stendhal.server.maps.orril.USL2_LichPalace"/>
--->
+  <configurator class-name="games.stendhal.server.maps.orril.USL2_LichPalace">
+   <attribute name="xml-portals">using</attribute>
+  </configurator>
 
   <portal x="70" y="38" ref="0">
    <destination zone="-1_orril_castle_w" ref="0"/>
