@@ -6,6 +6,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -72,9 +73,14 @@ public class DailyMonsterQuest extends AbstractQuest {
 				engine.say("You're already on a quest to slay a " + questKill + ". Say #complete if you're done with it!");
 				return;
 			}
-			if(questLast != null && (new Date()).getTime() - new Long( questLast) < delay ) {
-				engine.say("I can only give you a new quest once a day. Please check later.");
-				return;
+
+			if(questLast != null) {
+				long timeRemaining = (Long.parseLong(questLast) + delay) - System.currentTimeMillis();
+
+				if(timeRemaining > 0L) {
+					engine.say("I can only give you a new quest once a day. Please check back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+					return;
+				}
 			}
 			
 			int current = 0;

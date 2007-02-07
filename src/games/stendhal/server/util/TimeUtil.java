@@ -90,7 +90,7 @@ public class TimeUtil {
 			sbuf.append(count);
 		} else if(remainder >= (size * 3 / 4)) {
 			count++;
-			sbuf.append("almost ");
+			sbuf.append("just under ");
 			sbuf.append(count);
 		} else if(remainder >= (size * 1 / 4)) {
 			sbuf.append("about ");
