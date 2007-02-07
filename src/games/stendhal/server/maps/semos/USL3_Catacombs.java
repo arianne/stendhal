@@ -45,13 +45,13 @@ public class USL3_Catacombs implements ZoneConfigurator {
 
 
 	private void buildSemosCatacombs3Area(StendhalRPZone zone) {
-	SpeakerNPC sicky = new SpeakerNPC("Sicky") {
+	SpeakerNPC sicky = new SpeakerNPC("Markovich") {
 			protected void createPath() {
 				List<Path.Node> nodes=new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(60,60));
+				nodes.add(new Path.Node(61,60));
 				nodes.add(new Path.Node(59,60));
 				nodes.add(new Path.Node(59,58));
-				nodes.add(new Path.Node(60,58));
+				nodes.add(new Path.Node(61,58));
 				nodes.add(new Path.Node(59,58));
 				nodes.add(new Path.Node(59,60));
 			     	setPath(nodes,true);
@@ -60,10 +60,10 @@ public class USL3_Catacombs implements ZoneConfigurator {
 			protected void createDialog() {
 			        addGoodbye();
 			    	add(ConversationStates.ATTENDING,
-				                Arrays.asList("blood", "vampirette_blood"),
+				                Arrays.asList("blood", "vampirette_blood", "bat_blood"),
 						null,
 						ConversationStates.ATTENDING,
-						"I see you have killed seven vampirettes to get here. Their blood will satisfy me and fill your #goblet",
+						"I see you have killed seven vampirettes to get here. I need bat blood too. The bloods, mixed together, will satisfy me and fill your #goblet",
 						null);
 				
 				add(ConversationStates.ATTENDING,
@@ -74,6 +74,7 @@ public class USL3_Catacombs implements ZoneConfigurator {
 						null);
 			    Map<String, Integer> requiredResources = new HashMap<String, Integer>();
 			    requiredResources.put("vampirette_blood", new Integer(7));
+			    requiredResources.put("bat_blood", new Integer(7));
 			    requiredResources.put("empty_goblet", new Integer(1));
 			    ProducerBehaviour behaviour = new ProducerBehaviour(
 						"sicky_fill_goblet", "fill", "goblet", requiredResources, 5 * 60);	
@@ -83,10 +84,10 @@ public class USL3_Catacombs implements ZoneConfigurator {
 			} 
 		};
 
-		sicky.setDescription("You see a sick vampire"); 
+		sicky.setDescription("You see a sick vampire."); 
 		zone.assignRPObjectID(sicky);
 		sicky.put("class","sickvampirenpc");
-		sicky.set(60,60); 
+		sicky.set(61,60); 
 		sicky.initHP(10);
 		zone.addNPC(sicky); 
 	}
