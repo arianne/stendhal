@@ -694,6 +694,30 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+	<creature name="killer_bat">
+		<type class="animal" subclass="killer_bat" tileid="122"/>
+		<attributes>
+			<atk value="50"/>
+			<def value="16"/>
+			<hp value="80"/>
+			<speed value="0.5"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="7"/>
+		<experience value="120"/>
+		<respawn value="1500"/>
+		<drops>
+			<item value="meat" quantity="[1,2]" probability="80"/>
+			<item value="bat_blood" quantity="1" probability="60"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 	<!-- Level 8 -->
 	<creature name="green_slime">
 		<type class="animal" subclass="green_slime" tileid="81"/>
