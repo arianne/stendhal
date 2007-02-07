@@ -230,13 +230,18 @@ public class AdosOutsideNorthWest implements ZoneConfigurator {
 
 	private void buildZooSub1Area(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		Portal portal = new Portal();
-		zone.assignRPObjectID(portal);
-		portal.setX(4);
-		portal.setY(23);
-		portal.setNumber(0);
-		portal.setDestination("0_ados_outside_nw", 0);
-		zone.addPortal(portal);
+		/*
+		 * Portals configured in xml?
+		 */
+		if(attributes.get("xml-portals") == null) {
+			Portal portal = new Portal();
+			zone.assignRPObjectID(portal);
+			portal.setX(4);
+			portal.setY(23);
+			portal.setNumber(0);
+			portal.setDestination("0_ados_outside_nw", 0);
+			zone.addPortal(portal);
+		}
 	}
 
 	private void buildZooSub3Area(StendhalRPZone zone,
