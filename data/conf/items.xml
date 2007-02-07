@@ -1938,7 +1938,23 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="empty_goblet">
+		<type class="container" subclass="empty_goblet"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 
+	<item name="goblet">
+		<type class="container" subclass="full_goblet"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 <!-- Misc_section -->
 
 	<item name="money">
@@ -2141,6 +2157,18 @@ Makes players more offensive
 		<type class="misc" subclass="skull_ring"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	<item name="vampirette_blood">
+		<type class="misc" subclass="vampirette_blood"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<weight value="0.01"/>
+		<stackable/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
 		<equipable>
 			<slot name="bag"/>
 		</equipable>
