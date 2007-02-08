@@ -947,12 +947,25 @@ Mature sheep wanted: please speak to Sato
   </portal>
  </zone>
 
-<!--
- <zone name="-1_semos_catacombs" file="sub_1_semos_catacombs.xstend">
+ <zone name="-1_semos_catacombs_ne" file="sub_1_semos_catacombs_ne.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.USL1_Catacombs"/>
+  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsNE"/>
  </zone>
--->
+
+ <zone name="-1_semos_catacombs_nw" file="sub_1_semos_catacombs_nw.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsNW"/>
+ </zone>
+
+ <zone name="-1_semos_catacombs_se" file="sub_1_semos_catacombs_se.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsSE"/>
+ </zone>
+
+ <zone name="-1_semos_catacombs_sw" file="sub_1_semos_catacombs_sw.xstend">
+  <title/>
+  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsSW"/>
+ </zone>
 
  <zone name="-1_orril_mountain_w" file="sub_1_orril_mountain_w.xstend">
   <title/>
