@@ -50,12 +50,12 @@ public class Semos implements ZoneConfigurator, IContent {
 	 Map<String, String> attributes) {
 		// sorted form north west to south east
 		new OL0_PlainsNorth().build();
-		new USL1_CatacombsNW().build();
-		new USL1_CatacombsNE().build();
-		new USL1_CatacombsSW().build();
-		new USL1_CatacombsSE().build();
-		new USL2_Catacombs().build();
-		new USL3_Catacombs().build();
+		//new USL1_CatacombsNW().build();
+		//new USL1_CatacombsNE().build();
+		//new USL1_CatacombsSW().build();
+		//new USL1_CatacombsSE().build();
+		//new USL2_Catacombs().build();
+		//new USL3_Catacombs().build();
 
 		new SemosPlainsNorthEast().build();
 
