@@ -67,7 +67,7 @@
  </layer>
  <layer name="flowershop_objects" width="15" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvEwcDQRgY+CMQdQEwOaB/VOyj1fuYbGHuHs959wDDdD8QH+LDLg/QuAeJWLBgZYJNfDMSHkPLkSz4EGxkQk3/Z+RFsCSBbEoil+BmwAnT/qkLVfcbhR3x6SQG49AricCet7aVULyhtpHHSLm0AAKnkzFLcBQAA
+   H4sIAAAAAAAAADvEwcDQRgY+CMQdQEwOaB/VOyj1fuZjYKjmpL+9w1nvPmCY7gfiA3y49S4B4lYsGBlgk18MxIeQ8uRLPgQbGRCTf9n5EWwJIFsSiKX4GbACdP+qQtV9xuFHfHpBAJbmyNELAoI43EmMXkrspVQvKG2kcdIubQAAWCbQMdwFAAA=
   </data>
  </layer>
  <layer name="flowershop_collision" width="15" height="25" opacity="0.37">
@@ -80,7 +80,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEw3AAAv2wkb9wFAAA=
   </data>
  </layer>
- <layer name="protection" width="15" height="25">
+ <layer name="flowershop_protection" width="15" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMglEw3AAAv2wkb9wFAAA=
   </data>

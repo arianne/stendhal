@@ -47,12 +47,12 @@
  </layer>
  <layer name="house4_1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEvjYGD4wE4dnAo06x2QzgDSfBTidCB+yw4xjwfIphRwI5nnBWTzImELTvLN8wDS79kR2IqTPPfCzEtDi48ICs3DFh9hFPiXFvExat6oeaPm4TYPvbzChX2B2A+I/bHIeeIor/DhbKDaHCDOxaHHHSgOANnGboNABgAA
+   H4sIAAAAAAAAAEvjYGD4wE4dnAo06x2QzgDSfBTidCB+yw4xjwfIphRwI5nnBWTzImELTvLN8wDS79kR2IqTPPfCzEtDi48ICs3DFh9hFPiX2vFxGYivsFPPvI9A/ImK5tEi/Y2aN2oeKeahl1cgbA3MwzacqGK+QOwHxP5Y1HviKK9gOBJoVhQnqlg2UG0OEOfi0OMOFAcA8dv2WEAGAAA=
   </data>
  </layer>
  <layer name="house4_2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHhwgQ8To4MafuLNe8eHickFaUB7W6F2o9OUAk9+VBof4KKSnaQCZP8jA9sBcg86wOU+dPAUmAaekYAJAWYq+58U89yIUDuQ5hEDFPmpGx+kAA06pF1K8gc93EctAABuEc8qQAYAAA==
+   H4sIAAAAAAAAAGNgGHhwgQ8To4MafuLNe8eHickFaUB7W6F2o9PkglSofk80Gh/gotBOcgGy/5GB7QC4x50fgpEBLvcpMqPynwLTwDMSMCHATKH/0d2HzTwFZkwxEHAjwm5k83CZg888FSLchw4I2YMMFPkpiw9095ECNOiQdmH5Q4kZlVZGo7EBeriPWgAAJxbBIUAGAAA=
   </data>
  </layer>
  <layer name="house4_3_roof" width="20" height="20">
@@ -72,7 +72,7 @@
  </layer>
  <layer name="house4_collision" width="20" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGgKYUkCJ+TB5ZJra7qW2mfQwixJAS7OwmUft9EdpGFJiHrXdN1D+HajygF7lCzXNIiVcKA1bUjAAGeTkxkAGAAA=
+   H4sIAAAAAAAAANPiYmDQGgKYUkCJ+TB5ZJoa5pHiPlLDgB5mUQJoaRY2M6md/qgRhoTMw2UHqe4jJj2S4z5CdhJy30CVCfQqX2Di+GhizSIlTKgRtsRiAIN0vv5ABgAA
   </data>
  </layer>
  <layer name="house4_navigation" width="20" height="20">

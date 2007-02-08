@@ -47,17 +47,17 @@
  </layer>
  <layer name="house3_1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEvjYGD4wM7AoAOl0dm4MDb1qUD6HZDOANJ8FOJ0IH7LDjGPB8gmB/QD9U0A4olAzE0F85DBqHmj5pFjnhYH9czT5Bj8/qWVeWuBeB0F5qKbdxqIz1DRvPegMpFK5nkB2bwkYFYgZgNidiQxT6h5HiC3sZOGlYF6VIBYFU2vO5APACMUDXVABgAA
+   H4sIAAAAAAAAAEvjYGD4wM7AoAOl0dm4MDb1qUD6HZDOANJ8FOJ0IH7LDjGPB8gmB/QD9U0A4olAzE0F85DBUDHvMhBfYafcvOlAM2YA8Ucg/kQF87YCzdg2BMKP2uZpcVDPPE2Owe9fWpm3FojXUWAuunmngfgMFc17DyoTqWSeF5DNSwJmBWI2IGZHEvOEmucBchs7aVgZqEcFiFXR9LoD+QBbs6VTQAYAAA==
   </data>
  </layer>
  <layer name="house3_2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAwm8jEwTOIjQiESWAtUv45EPfjAaaBZZ6hoHrnAnR+7+AKg+EIccoTAGyz+orZ5GmSahQtgc58HPyYm17w0ILsJiJuRcAsQpxNpJjb/evJj4lHAwMBF5XDAZp4bBXbgcx+u/DhYAci9bfxDz924AADNOtLXQAYAAA==
+   H4sIAAAAAAAAAGNgIAwm8jEwTOIjQiESWAtUv45EPfjAaaBZZ5DMU2KGYHoDd37s4guA4gtxyBECb7CEE7XN0yDTLFwAm/s8+DExuealAdlNQNyMhFuAOJ1IM7H515MfE2MDqVQOK2qbhw1kUGAHF5Xdh808Nxq5D1d+HGxAEVpWgdzbxo/f3SoDUK6RCwC1D9CgQAYAAA==
   </data>
  </layer>
  <layer name="house3_3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+   H4sIAAAAAAAAAGNgIA284iNRAwHAwU9d89SobN4oGAW0AF6j6XQUDAMAALXXxT5ABgAA
   </data>
  </layer>
  <layer name="house3_4_roof_add" width="20" height="20">
@@ -67,12 +67,12 @@
  </layer>
  <layer name="house3_objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGL6Ahx9Cn+McWHdQE8wF+mXOMPIPKYCXf6BdQD3ghccvCzghmBSQMYzChtbgKZ6wnT0AeauaBnam0ckfAB//lBpABgAA
+   H4sIAAAAAAAAAGNgGL6Ahx9Cn+McWHdQE8wF+mXOMPIPKYCXf6BdQB+wgBOCRwFtwFM8YTt7AMK9mgZ2ptHJHwDcmnU+QAYAAA==
   </data>
  </layer>
  <layer name="house3_collision" width="20" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGkKYFEAtc0gxm5pmUds8SgC1zSTGPFLso7V/KQWD2X30SCvUNo8e6Y8S8wipJdd9pJSTtCyHYRgAVRiztUAGAAA=
+   H4sIAAAAAAAAANPiYmDQGkKYEEBWQ4k5xNhDLXOp7U5a+JnaZhJjHin20dq/lILBbB490gq1zaNH+qPEPEJqyXUfKeUkLcthGAYAoM07gUAGAAA=
   </data>
  </layer>
  <layer name="house3_navigation" width="20" height="20">

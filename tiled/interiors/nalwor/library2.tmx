@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="8" height="8" tilewidth="32" tileheight="32">
+<map version="0.99b" orientation="orthogonal" width="30" height="30" tilewidth="32" tileheight="32">
  <properties>
   <property name="x" value="500000"/>
   <property name="y" value="500000"/>
@@ -40,49 +40,49 @@
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
   <image source="../../zelda_monsters_chipset.png"/>
  </tileset>
- <layer name="downstairs_0_floor" width="8" height="8">
+ <layer name="library2_0_floor" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvPysCwfgRjAOyDoNQAAQAA
+   H4sIAAAAAAAAAO3DAQ0AAAwCIBs8vIUNctjoJVVVVfXdAUgMhh4QDgAA
   </data>
  </layer>
- <layer name="downstairs_1_terrain" width="8" height="8">
+ <layer name="library2_1_terrain" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvGysBgxY4dXwXKyQJpXECafXDIp+NQA5LfAfTDPzbseDtQDgDUSo2ZAAEAAA==
+   H4sIAAAAAAAAAEvjYGD4wE45TgWak0akWSC174B0BpDmowCnA/FbduLMQlbLA2RTArhJMAum9jIQX2Gnn73TgWpmAPFHIP5ER3u3AtVsG8BwHrV34Ow152Rg4OUgHntSyV6QnCXQ7vfsxGN3DurYG85JejlJqb2hnOSXk0MxXY3aO2rvcLJ3tJwkDkdw0recRMZhnOTbS0swai/97fUiMp9aA9OMDSdumpS87sFBfB6NBJodxYmbJiWvAwChAJb+EA4AAA==
   </data>
  </layer>
- <layer name="downstairs_2_object" width="8" height="8">
+ <layer name="library2_2_object" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAw0+CG4hp8IxTQEkXwMDDFAHA/EiXzUMRMAhui26gABAAA=
+   H4sIAAAAAAAAAGNggIBOPgaGLgK4m4+BZNBJQP9yoNgKAnglGfYuJ6D/KFDsGAF8HKqvB0j3QnEfFrNm8WM39zgJ7nbnxxRbBdS/GorXEGkWNnNIBSeAdp2E4lNkhD29gS0WP7/jg2B62zvUgNog9oPHALgtDWhnKxCn08Fu9LD3JNJONQ4GBnUg1uAgjk0t4AI0yxWI3TiIY1MC1NHCAl+5RmqZhy9dudIo3gmlq2Qapjdi0xWszETG75EwNctU9PilFyA3frGVk+hi+NIVreKXnuUVOsCXrtDjF1v7Er09SKitSAxAj19s7UtQe/AiEkZvK14gw270+MXWvjyOlp/Q24qgvIWtLCOnHqS0HUiNdAVzNy4aF8CXrgi1V5qA8s14cAs//nabLQH54Q4AIdaybRAOAAA=
   </data>
  </layer>
- <layer name="downstairs_3_roof" width="8" height="8">
+ <layer name="library2_3_roof" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGDzAmo+BwQ6IHYHYmY8+dgIAH7oDogABAAA=
+   H4sIAAAAAAAAAGNgGAWjgDSQyk+82gt8EIwPqDBT5h5yAchedLtfEXArrQAHCWFKDFBihuChBMgJe1LSIi5ATthTw95RMDhB+gDHLazMRMYXkTAxZSqxgNx0jC2v0qPsxJZXSc2/Ax2/9AQjsZyiVvwqk1l/kquPHDBc2isDBUZi/sAHAGWag/sQDgAA
   </data>
  </layer>
- <layer name="downstairs_4_roof_add" width="8" height="8">
+ <layer name="library2_4_roof_add" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNkAAFiFlg0AAQAA
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
   </data>
  </layer>
- <layer name="downstairs_objects" width="8" height="8" visible="0">
+ <layer name="library2_objects" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB6kcJKgeICBlwBx6gArIv89AAEAAA==
+   H4sIAAAAAAAAAGNgGAX4ADM/YTWpnLSzt4SPgaGUj/rmYwOzOYnzL6WgG0t4KQLtfcaHwEp0cAcymE2DOBwFlAFs6WQ42jkY7B4F5IPReBtaYDS+RsFQAkO1HhzNZ0MPAAA3XHs7EA4AAA==
   </data>
  </layer>
- <layer name="downstairs_collision" width="8" height="8" opacity="0.37">
+ <layer name="library2_collision" width="30" height="30" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQIhKjA1zitJIn1l2E1CNjAEa4HfwAAQAA
+   H4sIAAAAAAAAAO2UUQ7AIAhD/d5RvP8B97VkWRZobSfGjIQvoQ8U7Edr/XfJ78bERsZys3wnN9Jz1OpgMr1mem4uqqfEovU458q5RyjXvb+X5gwuM1vV9zxiCldhr8rN5ic6Y+JX6Xcnrrq/zr/jjVXBrep3FveL9400EHPtEMqq4D5rUOche6uR/F39BPx6LWgQDgAA
   </data>
  </layer>
- <layer name="downstairs_navigation" width="8" height="8">
+ <layer name="library2_navigation" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNkAAFiFlg0AAQAA
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
   </data>
  </layer>
- <layer name="protection" width="8" height="8">
+ <layer name="library2_protection" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNkAAFiFlg0AAQAA
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
   </data>
  </layer>
 </map>

@@ -40,47 +40,47 @@
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
   <image source="../../zelda_monsters_chipset.png"/>
  </tileset>
- <layer name="0_floor" width="16" height="16">
+ <layer name="house_0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAOtnZ2DoH8WjeBSPSAwAiQRBywAEAAA=
   </data>
  </layer>
- <layer name="1_terrain" width="16" height="16">
+ <layer name="house_1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEvjYGD4wE4eTgXqfQekM4A0H4k4HYjfskP08wDZpALuUf2j+oeJfi8gmxcNswIxGxCzY5EDYU+ofg8g/Z4dEysDxVWAWBWHPAi7A+UAKrxplAAEAAA=
+   H4sIAAAAAAAAAEvjYGD4wE4eTgXqfQekM4A0H4k4HYjfskP08wDZpAJuKum/DMRX2MnX/xGIP1Ggf6D9P6p/4PV7Adm8aJgViNmAmB1JzJqTgcGGE8L2hOr3ANLv2TGxMlBcBYhVkeQjgXqjOBF8d6AcAGvIY38ABAAA
   </data>
  </layer>
- <layer name="2_object" width="16" height="16">
+ <layer name="house_2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFrgEh8EowM3fkyxWVjEPvBBMDpYAFS7EIt6YkEqBXqpYT8p4CIW/1/AIuaOwz3vsah9hyYG0qsJxNxE+ikNizpc9hOrn5oAZH4bEKfjsEcDTZyLH5UerAAAsq55zQAEAAA=
+   H4sIAAAAAAAAAGNgoC+4xAfBhIAaP3b6Ax8EowM3fkyxWVjEcIEFQLULiVSvzIwplkqCXdj0k2I/vYA7Dve8xxL+79DEQHo1gZibSD+lYVGHy35i9ZMCbAnoB5nfBsTpONRp8KOaw4VGg4ASMwIPFgAAMCX5cAAEAAA=
   </data>
  </layer>
- <layer name="3_roof" width="16" height="16">
+ <layer name="house_3_roof" width="16" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgwA5e8WGniQUc/NjpUTDw4CKWuLxAYvyOguEBAClcHoQABAAA
+  </data>
+ </layer>
+ <layer name="house_4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="4_roof_add" width="16" height="16">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
-  </data>
- </layer>
- <layer name="objects" width="16" height="16">
+ <layer name="house_objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGL4glXOgXUA+CBCA0H4CA+uOUTBwII0O6RcAJIb2sAAEAAA=
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.37">
+ <layer name="house_collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGgSYWECpGbR0BymA2vYPpN249OMzlxL3D5R+ZHWE/A/jE+t/XObROt8BAEZul1EABAAA
+   H4sIAAAAAAAAANPiYmDQGgQYHcDEsNHEmoEPUGIGpfZTww+U+J1e+omRGyzuJ8YMZDW49OOicekhlBZone8AASqCaQAEAAA=
   </data>
  </layer>
- <layer name="navigation" width="16" height="16" visible="0">
+ <layer name="house_navigation" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="protection" width="16" height="16" visible="0">
+ <layer name="house_protection" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
