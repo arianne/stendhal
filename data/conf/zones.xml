@@ -187,13 +187,22 @@
 
  <zone name="0_ados_outside_nw" file="0_ados_outside_nw.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest">
+  <configurator class-name="games.stendhal.server.maps.ados.OL0_OutsideNorthWest">
    <attribute name="xml-portals">using</attribute>
   </configurator>
 
   <portal x="67" y="24" ref="0">
    <destination zone="-1_ados_outside_nw" ref="0"/>
   </portal>
+
+  <entity x="53" y="48">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+Ados Wildlife Refuge
+Home for endangered animals
+    </attribute>
+   </implementation>
+  </entity>
  </zone>
 
  <zone name="0_ados_wall_n" file="0_ados_wall_n.xstend">
@@ -279,7 +288,7 @@
    <destination zone="int_semos_bakery" ref="entrance"/>
   </portal>
 
-  <portal x="12" y="49" ref="60">
+  <portal x="12" y="49" ref="restart_life">
    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
   </portal>
 
@@ -474,6 +483,38 @@ the wolves while searching for berries here
  <zone name="0_semos_plains_s" file="0_semos_plains_s.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsSouth"/>
+
+  <!-- Generic entity examples (not yet used) -->
+  <entity x="118" y="43">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO THE FOREST
+
+Shepherds please note: keep watch for
+the wolves while searching for berries here
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="38" y="3">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO OLD SEMOS VILLAGE
+
+Shepherds wanted: please ask Nishiya
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="113" y="3">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO SEMOS
+
+Mature sheep wanted: please speak to Sato
+    </attribute>
+   </implementation>
+  </entity>
  </zone>
 
  <zone name="0_ados_forest_w2" file="0_ados_forest_w2.xstend">
@@ -514,6 +555,19 @@ the wolves while searching for berries here
     <portal x="22" y="17" ref="0">
      <destination zone="0_ados_city" ref="6"/>
     </portal>
+
+    <!-- Bank chest examples (not used yet) -->
+    <entity x="3" y="12">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
+    <entity x="5" y="12">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
+    <entity x="10" y="12">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
    </zone>
 
    <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
@@ -666,58 +720,58 @@ the wolves while searching for berries here
   <configurator class-name="games.stendhal.server.maps.orril.OL0_Castle"/>
 -->
 
-  <portal x="60" y="96" ref="0">
-   <destination zone="0_orril_castle" ref="5"/>
+  <portal x="60" y="96" ref="outside_gate_left2">
+   <destination zone="0_orril_castle" ref="inside_gate_left2"/>
   </portal>
 
-  <portal x="61" y="96" ref="1">
-   <destination zone="0_orril_castle" ref="6"/>
+  <portal x="61" y="96" ref="outside_gate_left">
+   <destination zone="0_orril_castle" ref="inside_gate_left"/>
   </portal>
 
-  <portal x="62" y="96" ref="2">
-   <destination zone="0_orril_castle" ref="7"/>
+  <portal x="62" y="96" ref="outside_gate">
+   <destination zone="0_orril_castle" ref="inside_gate"/>
   </portal>
 
-  <portal x="63" y="96" ref="3">
-   <destination zone="0_orril_castle" ref="8"/>
+  <portal x="63" y="96" ref="outside_gate_right">
+   <destination zone="0_orril_castle" ref="inside_gate_right"/>
   </portal>
 
-  <portal x="64" y="96" ref="4">
-   <destination zone="0_orril_castle" ref="9"/>
-  </portal>
-
-
-  <portal x="60" y="93" ref="5">
-   <destination zone="0_orril_castle" ref="0"/>
-  </portal>
-
-  <portal x="61" y="93" ref="6">
-   <destination zone="0_orril_castle" ref="1"/>
-  </portal>
-
-  <portal x="62" y="93" ref="7">
-   <destination zone="0_orril_castle" ref="2"/>
-  </portal>
-
-  <portal x="63" y="93" ref="8">
-   <destination zone="0_orril_castle" ref="3"/>
-  </portal>
-
-  <portal x="64" y="93" ref="9">
-   <destination zone="0_orril_castle" ref="4"/>
+  <portal x="64" y="96" ref="outside_gate_right2">
+   <destination zone="0_orril_castle" ref="inside_gate_right2"/>
   </portal>
 
 
-  <portal x="61" y="72" ref="10">
-   <destination zone="int_orril_castle_0" ref="1"/>
+  <portal x="60" y="93" ref="inside_gate_left2">
+   <destination zone="0_orril_castle" ref="outside_gate_left2"/>
   </portal>
 
-  <portal x="62" y="72" ref="11">
-   <destination zone="int_orril_castle_0" ref="1"/>
+  <portal x="61" y="93" ref="inside_gate_left">
+   <destination zone="0_orril_castle" ref="outside_gate_left"/>
   </portal>
 
-  <portal x="63" y="72" ref="12">
-   <destination zone="int_orril_castle_0" ref="1"/>
+  <portal x="62" y="93" ref="inside_gate">
+   <destination zone="0_orril_castle" ref="outside_gate"/>
+  </portal>
+
+  <portal x="63" y="93" ref="inside_gate_right">
+   <destination zone="0_orril_castle" ref="outside_gate_right"/>
+  </portal>
+
+  <portal x="64" y="93" ref="inside_gate_right2">
+   <destination zone="0_orril_castle" ref="outside_gate_right2"/>
+  </portal>
+
+
+  <portal x="61" y="72" ref="castle_entrance_left">
+   <destination zone="int_orril_castle_0" ref="entrance_left"/>
+  </portal>
+
+  <portal x="62" y="72" ref="castle_entrance">
+   <destination zone="int_orril_castle_0" ref="entrance"/>
+  </portal>
+
+  <portal x="63" y="72" ref="castle_entrance_right">
+   <destination zone="int_orril_castle_0" ref="entrance_right"/>
   </portal>
  </zone>
 
@@ -727,16 +781,16 @@ the wolves while searching for berries here
   <configurator class-name="games.stendhal.server.maps.orril.IL0_Castle"/>
 -->
 
-  <portal x="26" y="62" ref="0">
-   <destination zone="0_orril_castle" ref="11"/>
+  <portal x="26" y="62" ref="entrance_left">
+   <destination zone="0_orril_castle" ref="castle_entrance_left"/>
   </portal>
 
-  <portal x="27" y="62" ref="1">
-   <destination zone="0_orril_castle" ref="11"/>
+  <portal x="27" y="62" ref="entrance">
+   <destination zone="0_orril_castle" ref="castle_entrance"/>
   </portal>
 
-  <portal x="28" y="62" ref="2">
-   <destination zone="0_orril_castle" ref="11"/>
+  <portal x="28" y="62" ref="entrance_right">
+   <destination zone="0_orril_castle" ref="castle_entrance_right"/>
   </portal>
 
   <portal x="8" y="1" ref="4">
@@ -805,8 +859,8 @@ the wolves while searching for berries here
    <attribute name="xml-portals">using</attribute>
   </configurator>
 
-  <portal x="39" y="5" ref="0">
-   <destination zone="int_orril_jynath_house" ref="0"/>
+  <portal x="39" y="5" ref="jynath_house_entrance">
+   <destination zone="int_orril_jynath_house" ref="entrance"/>
   </portal>
  </zone>
 
@@ -816,8 +870,8 @@ the wolves while searching for berries here
    <attribute name="xml-portals">using</attribute>
   </configurator>
 
-  <portal x="16" y="30" ref="0">
-   <destination zone="0_orril_river_s" ref="0"/>
+  <portal x="16" y="30" ref="entrance">
+   <destination zone="0_orril_river_s" ref="jynath_house_entrance"/>
   </portal>
  </zone>
 
@@ -855,11 +909,9 @@ the wolves while searching for berries here
 
  <zone name="-1_ados_outside_nw" file="sub_1_ados_outside_nw.xstend">
   <title/>
-<!--
-  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest">
+  <configurator class-name="games.stendhal.server.maps.ados.USL1_OutsideNorthWest">
    <attribute name="xml-portals">using</attribute>
   </configurator>
--->
 
   <portal x="4" y="23" ref="0">
    <destination zone="0_ados_outside_nw" ref="0"/>
@@ -1015,11 +1067,9 @@ the wolves while searching for berries here
 
  <zone name="-3_ados_outside_nw" file="sub_3_ados_outside_nw.xstend">
   <title/>
-<!--
-  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest">
+  <configurator class-name="games.stendhal.server.maps.ados.USL3_OutsideNorthWest">
    <attribute name="xml-portals">using</attribute>
   </configurator>
--->
  </zone>
 
  <zone name="-3_semos_dungeon" file="sub_3_semos_dungeon.xstend">
@@ -1130,15 +1180,15 @@ You DIED! Deal with it! Oh, and you're 10% less of a player.
   </configurator>
 
   <portal x="30" y="6" ref="exit_left">
-   <destination zone="0_semos_city" ref="60"/>
+   <destination zone="0_semos_city" ref="restart_life"/>
   </portal>
 
   <portal x="31" y="6" ref="exit_center">
-   <destination zone="0_semos_city" ref="60"/>
+   <destination zone="0_semos_city" ref="restart_life"/>
   </portal>
 
   <portal x="32" y="6" ref="exit_right">
-   <destination zone="0_semos_city" ref="60"/>
+   <destination zone="0_semos_city" ref="restart_life"/>
   </portal>
  </zone>
 

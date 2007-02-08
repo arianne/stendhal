@@ -29,7 +29,7 @@ import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
-public class AdosOutsideNorthWest implements ZoneConfigurator {
+public class OL0_OutsideNorthWest implements ZoneConfigurator {
 	
 	private NPCList npcs = NPCList.get();;
 	private ShopList shops = ShopList.get();
@@ -77,7 +77,12 @@ public class AdosOutsideNorthWest implements ZoneConfigurator {
 
 
 	public void build() {
-		configureZone(null, java.util.Collections.EMPTY_MAP);
+		StendhalRPWorld world = StendhalRPWorld.get();
+
+		configureZone(
+			(StendhalRPZone) world.getRPZone(
+				new IRPZone.ID("0_ados_outside_nw")),
+			java.util.Collections.EMPTY_MAP);
 	}
 
 
@@ -89,25 +94,7 @@ public class AdosOutsideNorthWest implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * For now - Split to one class per zone
-		 */
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		buildZooArea(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("0_ados_outside_nw")),
-			attributes);
-
-		buildZooSub1Area(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("-1_ados_outside_nw")),
-			attributes);
-
-		buildZooSub3Area(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("-3_ados_outside_nw")),
-			attributes);
+		buildZooArea(zone, attributes);
 	}
 
 
@@ -227,77 +214,4 @@ public class AdosOutsideNorthWest implements ZoneConfigurator {
 		point = new CreatureRespawnPoint(zone, 67, 35, creature, 1);
 		zone.addRespawnPoint(point);
 	}
-
-	private void buildZooSub1Area(StendhalRPZone zone,
-	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(4);
-			portal.setY(23);
-			portal.setNumber(0);
-			portal.setDestination("0_ados_outside_nw", 0);
-			zone.addPortal(portal);
-		}
-	}
-
-	private void buildZooSub3Area(StendhalRPZone zone,
-	 Map<String, String> attributes) {
-		SpeakerNPC npc = new SpeakerNPC("Bario") {
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				// to stove
-				nodes.add(new Path.Node(7, 43));
-				// to table
-				nodes.add(new Path.Node(7, 51));
-				// around couch
-				nodes.add(new Path.Node(14, 56));
-				nodes.add(new Path.Node(22, 56));
-				// into the floor
-				nodes.add(new Path.Node(18, 49));
-				nodes.add(new Path.Node(19, 41));
-				// into the bathroom
-				nodes.add(new Path.Node(39, 41));
-				// into the floor
-				nodes.add(new Path.Node(18, 41));
-				// into the bedroom
-				nodes.add(new Path.Node(18, 28));
-				// to the chest
-				nodes.add(new Path.Node(17, 23));
-				// through the floor
-				nodes.add(new Path.Node(18, 33));
-				nodes.add(new Path.Node(18, 50));
-				// back to the kitchen
-				nodes.add(new Path.Node(7, 50));
-				nodes.add(new Path.Node(4, 43));
-				nodes.add(new Path.Node(4, 46));
-				setPath(nodes, true);
-			}
-
-			@Override
-			protected void createDialog() {
-				addJob("There is a quite high unemployment rate down here.");
-				addHelp("Those lazy developers have not yet finished me ;)");
-				addGoodbye();
-				// remaining behaviour is defined in maps.quests.CloaksForBario.
-			}
-		};
-		npcs.add(npc);
-
-		zone.assignRPObjectID(npc);
-		npc.put("class", "beardmannpc");
-		npc.set(4, 46);
-		npc.initHP(100);
-		zone.addNPC(npc);
-
-		Chest chest = new NPCOwnedChest(npc);
-		zone.assignRPObjectID(chest);
-		chest.set(17, 23);
-		zone.add(chest);
-	}
-
 }
