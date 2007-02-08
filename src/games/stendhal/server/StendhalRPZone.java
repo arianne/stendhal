@@ -148,6 +148,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return null;
 	}
 
+	/**
+	 * Get the portal (if any) at a specified zone position.
+	 *
+	 *
+	 */
+	public Portal getPortal(int x, int y) {
+		for(Portal portal : portals) {
+			if((portal.getX() == x) && (portal.getY() == y))
+				return portal;
+		}
+
+		return null;
+	}
+
 	public List<CreatureRespawnPoint> getRespawnPointList() {
 		return respawnPoints;
 	}
@@ -164,9 +178,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 		zoneChangePoints.add(entry);
 	}
 
-    public void addPortal(Portal portal) {
+	public void addPortal(Portal portal) {
 		add(portal);
 		portals.add(portal);
+	}
+
+	public void removePortal(Portal portal) {
+		remove(portal);
+		portals.remove(portal);
 	}
 
 	// We reserve the first 64 portals ids for hand made portals

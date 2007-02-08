@@ -342,6 +342,19 @@ public class ZonesXMLLoader extends DefaultHandler {
 					pdesc.getDestinationZone(), reference);
 			}
 
+			if(pdesc.isReplacing()) {
+				Portal	oportal = zone.getPortal(
+					pdesc.getX(), pdesc.getY());
+
+				if(oportal != null) {
+					logger.debug(
+						"Replacing portal: "
+						+ oportal);
+
+					zone.removePortal(oportal);
+				}
+			}
+
 			zone.addPortal(portal);
 		} catch(IllegalArgumentException ex) {
 			logger.error("Error with portal factory", ex);
@@ -484,6 +497,9 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			pdesc = new PortalDesc(x, y, reference);
 			scope = SCOPE_PORTAL;
+
+			if((s = attrs.getValue("replacing")) != null)
+				pdesc.setReplacing(s.equals("true"));
 		} else if(qName.equals("attribute")) {
 			if((attrName = attrs.getValue("name")) == null) {
 				logger.warn("Unnamed attribute");
@@ -862,6 +878,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		protected Object	reference;
 		protected String	destinationZone;
 		protected Object	destinationReference;
+		protected boolean	replacing;
 
 
 		public PortalDesc(int x, int y, Object reference) {
@@ -871,6 +888,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			destinationZone = null;
 			destinationReference = null;
+			replacing = false;
 		}
 
 		//
@@ -905,12 +923,30 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 
 		/**
+		 * Determine if existing portals are replaced.
+		 *
+		 */
+		public boolean isReplacing() {
+			return replacing;
+		}
+
+
+		/**
 		 * Set the destination zone/reference.
 		 *
 		 */
 		public void setDestination(String zone, Object reference) {
 			this.destinationZone = zone;
 			this.destinationReference = reference;
+		}
+
+
+		/**
+		 * Set whether to replace any existing portal.
+		 *
+		 */
+		public void setReplacing(boolean replacing) {
+			this.replacing = replacing;
 		}
 	}
 }

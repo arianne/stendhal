@@ -27,7 +27,7 @@
   **   <destination zone="xxxxxxx" ref="xxx"/>
   **  </portal>
   **
-  **  <portal x="xxx" y="xxx" ref="xxx">
+  **  <portal x="xxx" y="xxx" ref="xxx" [replacing="true|false"]>
   **   <destination zone="xxxxxxx" ref="xxx"/>
   **   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
   **  </portal>
@@ -65,6 +65,7 @@
   **   x: The X coordinate of the portal.
   **   y: The X coordinate of the portal.
   **   ref: The portal identifier (number only - for now).
+  **   replacing: If set to 'true', replace existing portals at this location.
   **
   **  destination: A portal definition.
   **   zone: The destination zone.
@@ -1014,12 +1015,18 @@ Mature sheep wanted: please speak to Sato
   <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL2"/>
  </zone>
 
-<!--
  <zone name="-2_semos_catacombs" file="sub_2_semos_catacombs.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.USL2_Catacombs"/>
+
+  <portal x="94" y="57" ref="downstairs" replacing="true">
+   <destination zone="-3_semos_catacombs" ref="upstairs"/>
+   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+    <attribute name="key">vampirette_blood</attribute>
+    <attribute name="quantity">7</attribute>
+   </implementation>
+  </portal>
  </zone>
--->
 
  <zone name="-2_kotoch_entrance" file="sub_2_kotoch_entrance.xstend">
   <title/>
@@ -1076,12 +1083,14 @@ Mature sheep wanted: please speak to Sato
   <title/>
  </zone>
 
-<!--
  <zone name="-3_semos_catacombs" file="sub_3_semos_catacombs.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.USL3_Catacombs"/>
+
+  <portal x="30" y="57" ref="upstairs" replacing="true">
+   <destination zone="-2_semos_catacombs" ref="downstairs"/>
+  </portal>
  </zone>
--->
 
  <zone name="-3_orril_dwarf_blacksmith" file="sub_3_orril_dwarf_blacksmith.xstend">
   <title/>
