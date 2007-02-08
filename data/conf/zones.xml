@@ -145,7 +145,13 @@
  <zone name="0_semos_plains_n" file="0_semos_plains_n.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
- </zone>
+  <portal x="92" y="100" ref="catacombs_entrance" replacing="true">
+   <destination zone="-1_semos_catacombs" ref="upstairs"/>
+   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+    <attribute name="key">empty_goblet</attribute>
+    </implementation>
+  </portal>
+</zone>
 
  <zone name="0_semos_plains_ne" file="0_semos_plains_ne.xstend">
   <title/>
@@ -959,7 +965,11 @@ Mature sheep wanted: please speak to Sato
 
  <zone name="-1_semos_catacombs_se" file="sub_1_semos_catacombs_se.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsSE"/>
+  <configurator
+  class-name="games.stendhal.server.maps.semos.USL1_CatacombsSE"/> 
+  <portal x="28" y="36" ref="upstairs" replacing="true">
+   <destination zone="0_semos_plains_n" ref="catacombs_entrance"/>
+  </portal>
  </zone>
 
  <zone name="-1_semos_catacombs_sw" file="sub_1_semos_catacombs_sw.xstend">
