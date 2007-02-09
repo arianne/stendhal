@@ -18,13 +18,13 @@ Are you looking for adventure? Want to fight for riches?
 Develop yourself and your social standing? Meet new people?
 Do you want to be part of a brave new world? 
 
-Stendhal is a full fledged multiplayer online adventures game (MMORPG) developed using the Arianne game development system. 
+Stendhal is a fully fledged multiplayer online adventures game (MMORPG) developed using the Arianne game development system. 
 
 Stendhal features a new, rich and expanding world in which you can explore towns, buildings, plains, caves and dungeons. 
 You will meet NPCs and acquire tasks and quests for valuable experience and cold hard cash.
 
 Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your 
-armour and weapons. And for the blood thirsty of your; satisfy your killing desires by roaming the world in search of evil monsters! 
+armour and weapons. And for the blood thirsty of you; satisfy your killing desires by roaming the world in search of evil monsters! 
 
 Stendhal is totally platform independent, written using Java 1.5 and the Java2D environment. 
 
@@ -67,12 +67,16 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
+0.58
+- rat city is open
+- new zone configuration using xml
+
 0.57  Jan 27, 2007
 - sheep food now shows up in the minimap as an obstical
 - multiple login profile support (for those that use multiple servers)
 - gui now tracks which arrows keys are still held when multiple were pressed
 - quest reward items cannot be given to other players
-- server implemenation of ignore list for /msg (gui still misssing)
+- server implementation of ignore list for /msg (gui still misssing)
 - enlarged columns param2 in table gameEvents to upto 1024 characters
   (256 for MySQL versions below 5.0)
 - added a translation framework
@@ -117,7 +121,7 @@ Changelog
 - improved downloading files on update to retry in case the SF webserver is having some problems
 
 
-0.55  Okt 31, 2006
+0.55  Oct 31, 2006
 - improved language of nearly all NPCs
 - smart updater for future versions (so that you do not have to download the complete client on every new version)
 - Semos Mine Town Revival Weeks
@@ -128,7 +132,7 @@ Changelog
 - game masters can walk through walls
 
 
-0.54.1 Okt 07, 2006  (Server Only Bugfix Release)
+0.54.1 Oct 07, 2006  (Server Only Bugfix Release)
 - fixed a problem with zone file int_ados_magician_house which causes the server not to start
 - fixed /drop on items dragged directly from bank to bag
 - fixed dice gambling to only accept dices thrown on the table inside Semos Tavern
@@ -190,7 +194,7 @@ Changelog
 
 
 0.51.2 Jul 10, 2006
-(inoffical server-only release)
+(unofficial server-only release)
 
 - deathmatch: monsters above each other on the same spot
 - deathmatch: monster placed in the top left corner
