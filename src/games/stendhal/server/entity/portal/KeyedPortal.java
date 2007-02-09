@@ -10,7 +10,6 @@ package games.stendhal.server.entity.portal;
 //
 
 import games.stendhal.server.entity.RPEntity;
-//import games.stendhal.server.entity.player.Player;
 
 /**
  * A keyed portal is a special kind of portal which requires a key to pass it.
@@ -20,6 +19,7 @@ import games.stendhal.server.entity.RPEntity;
 public class KeyedPortal extends Portal {
 	protected String	key;
 	protected int		quantity;
+	protected String	rejected;
 
 
 	/**
@@ -39,8 +39,21 @@ public class KeyedPortal extends Portal {
 	 * @param quantity	The key quantity required.
 	 */
 	public KeyedPortal(String key, int quantity) {
+		this(key, quantity, null);
+	}
+
+
+	/**
+	 * Creates a new keyed portal.
+	 *
+	 * @param key		The name of the required key.
+	 * @param quantity	The key quantity required.
+	 * @param rejected	The message to given when rejected.
+	 */
+	public KeyedPortal(String key, int quantity, String rejected) {
 		this.key = key;
 		this.quantity = quantity;
+		this.rejected = rejected;
 	}
 
 
@@ -50,6 +63,13 @@ public class KeyedPortal extends Portal {
         @Override
         public void onUsed(RPEntity user) {
 		if(user.isEquipped(key, quantity))
+		{
 			super.onUsed(user);
+		}
+		else if(rejected != null)
+		{
+			// XXX - This doesn't seem to work. Need to figure out why.
+			user.sendPrivateText(rejected);
+		}
 	}
 }

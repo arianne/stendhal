@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
-  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  ** !!!!!!!! WORK IN PROGRESS - FILE NOT USED BY DEFAULT !!!!!!!!
-  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  ** zone file attribute is currently ignored and mapped from name
-  ** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  **
   ** Zone Configuration.
   **
   ** A zone descriptor has the following structure:
@@ -91,14 +85,10 @@
   ** These specify a class name that implements ZoneConfigurator, and
   ** will be passed the zone and any attributes.
   **
-  ** Portals are not supported yet (give me time!) =).
+  ** Generic entities are not supported yet (give me time!) =).
   **
   -->
 <zones>
- <!--
-   ** MAPPINGS TAKEN FROM StendhalRPWorld.java AS OF 2007/01/19:
-   -->
-
  <!--
    ** Load zones. Written from left to right and from top to bottom.
    ** Please respect it!
@@ -145,13 +135,14 @@
  <zone name="0_semos_plains_n" file="0_semos_plains_n.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
-  <portal x="92" y="100" ref="catacombs_entrance" replacing="true">
-   <destination zone="-1_semos_catacombs" ref="upstairs"/>
+  <portal x="92" y="101" ref="catacombs_entrance">
+   <destination zone="-1_semos_catacombs_se" ref="entrance"/>
    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
     <attribute name="key">empty_goblet</attribute>
-    </implementation>
+    <attribute name="rejected">You find it hard to enter. Perhaps something is missing.</attribute>
+   </implementation>
   </portal>
-</zone>
+ </zone>
 
  <zone name="0_semos_plains_ne" file="0_semos_plains_ne.xstend">
   <title/>
@@ -423,7 +414,7 @@ the wolves while searching for berries here
     </portal>
    </zone>
 
-   <zone name="int_semos_storage_-1" file="int_semos_storage_-1.xstend">
+   <zone name="int_semos_storage_-1" file="int_semos_storage_sub_1.xstend">
     <title/>
 <!-- use portal config
     <configurator class-name="games.stendhal.server.maps.semos.ISL1_Storage"/>
@@ -965,9 +956,8 @@ Mature sheep wanted: please speak to Sato
 
  <zone name="-1_semos_catacombs_se" file="sub_1_semos_catacombs_se.xstend">
   <title/>
-  <configurator
-  class-name="games.stendhal.server.maps.semos.USL1_CatacombsSE"/> 
-  <portal x="28" y="36" ref="upstairs" replacing="true">
+  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsSE"/> 
+  <portal x="28" y="37" ref="entrance" replacing="true">
    <destination zone="0_semos_plains_n" ref="catacombs_entrance"/>
   </portal>
  </zone>
@@ -1047,6 +1037,7 @@ Mature sheep wanted: please speak to Sato
    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
     <attribute name="key">vampirette_blood</attribute>
     <attribute name="quantity">7</attribute>
+    <attribute name="rejected">You find it hard to enter. Perhaps something is missing.</attribute>
    </implementation>
   </portal>
  </zone>

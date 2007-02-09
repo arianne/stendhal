@@ -71,6 +71,23 @@ public class KeyedPortalFactory implements ConfigurableFactory {
 	}
 
 
+	/**
+	 * Extract the rejected message from a context.
+	 *
+	 * @param	ctx		The configuration context.
+	 *
+	 * @return	The rejected message, or <code>null</code> if none.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If the class attribute is missing.
+	 */
+	protected String getRejectedMessage(ConfigurableFactoryContext ctx)
+	 throws IllegalArgumentException {
+		return ctx.getAttribute("rejected");
+	}
+
+
+
 	//
 	// ConfigurableFactory
 	//
@@ -92,6 +109,9 @@ public class KeyedPortalFactory implements ConfigurableFactory {
 	 */
 	public Object create(ConfigurableFactoryContext ctx)
 	 throws IllegalArgumentException {
-		return new KeyedPortal(getKey(ctx), getQuantity(ctx));
+		return new KeyedPortal(
+			getKey(ctx),
+			getQuantity(ctx),
+			getRejectedMessage(ctx));
 	}
 }

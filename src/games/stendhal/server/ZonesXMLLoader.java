@@ -651,9 +651,14 @@ public class ZonesXMLLoader extends DefaultHandler {
 			this.name = name;
 
 			/*
-			 * XXX - Temp compatibility (map name to filename)
+			 * XXX - Temp check
 			 */
-			file = name.replace("-", "sub_") + ".xstend";
+			if(!file.equals(name.replace("-", "sub_") + ".xstend"))
+			{
+				logger.error(
+					"Not the expected filename for zone "
+						+ name + ": " + file);
+			}
 
 			this.file = file;
 

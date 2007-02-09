@@ -169,8 +169,12 @@ public class StendhalRPWorld extends RPWorld {
 		pathfinderThread = new PathfinderThread(this);
 		pathfinderThread.start();
 
+	//
 	// NEW CONFIG CODE?
-	if(!true) {
+	//
+	// XXX - NEW CODE IS USED BY DEFAULT NOW!!!!
+	//
+	if(true) {
 		ZonesXMLLoader loader = new ZonesXMLLoader();
 
 		loader.load(this, "data/conf/zones.xml");
