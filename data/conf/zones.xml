@@ -1035,7 +1035,7 @@ Mature sheep wanted: please speak to Sato
   <portal x="94" y="57" ref="downstairs" replacing="true">
    <destination zone="-3_semos_catacombs" ref="upstairs"/>
    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-    <attribute name="key">vampirette_blood</attribute>
+    <attribute name="key">vampirette_entrails</attribute>
     <attribute name="quantity">7</attribute>
     <attribute name="rejected">You find it hard to enter. Perhaps something is missing.</attribute>
    </implementation>

@@ -60,10 +60,10 @@ public class USL3_Catacombs implements ZoneConfigurator {
 			protected void createDialog() {
 			        addGoodbye();
 			    	add(ConversationStates.ATTENDING,
-				                Arrays.asList("blood", "vampirette_blood", "bat_blood"),
+				                Arrays.asList("blood", "vampirette_entrails", "bat_entrails"),
 						null,
 						ConversationStates.ATTENDING,
-						"I see you have killed seven vampirettes to get here. I need bat blood too. The bloods, mixed together, will satisfy me and fill your #goblet",
+						"I need blood. I can take it from the entrails of the alive and undead. I wwill mix the bloods together for you and #fill your #goblet, if you give me entrails.",
 						null);
 				
 				add(ConversationStates.ATTENDING,
@@ -73,8 +73,8 @@ public class USL3_Catacombs implements ZoneConfigurator {
 						"Only a powerful talisman like this cauldron or a special goblet should contain blood.",
 						null);
 			    Map<String, Integer> requiredResources = new HashMap<String, Integer>();
-			    requiredResources.put("vampirette_blood", new Integer(7));
-			    requiredResources.put("bat_blood", new Integer(7));
+			    requiredResources.put("vampirette_entrails", new Integer(7));
+			    requiredResources.put("bat_entrails", new Integer(7));
 			    requiredResources.put("empty_goblet", new Integer(1));
 			    ProducerBehaviour behaviour = new ProducerBehaviour(
 						"sicky_fill_goblet", "fill", "goblet", requiredResources, 5 * 60);	

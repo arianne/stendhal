@@ -2161,8 +2161,8 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	<item name="vampirette_blood">
-		<type class="misc" subclass="vampirette_blood"/>
+	<item name="vampirette_entrails">
+		<type class="misc" subclass="vampirette_entrails"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<weight value="0.01"/>
 		<stackable/>
@@ -2173,8 +2173,8 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	<item name="bat_blood">
-		<type class="misc" subclass="bat_blood"/>
+	<item name="bat_entrails">
+		<type class="misc" subclass="bat_entrails"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<weight value="0.01"/>
 		<stackable/>
