@@ -48,6 +48,12 @@ import marauroa.server.game.RPWorld;
 import org.apache.log4j.Logger;
 
 public class StendhalRPWorld extends RPWorld {
+	/**
+	 * A common place for milliseconds per turn.
+	 */
+	public static final int	MILLISECONDS_PER_TURN		= 300;
+
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalRPWorld.class);
 
@@ -98,6 +104,22 @@ public class StendhalRPWorld extends RPWorld {
 	public static StendhalRPWorld getInstance() {
 		return get();
 	}
+
+
+	/**
+	 * Given a number of turns in a given number of seconds.
+	 *
+	 * @param	seconds		The number of seconds.
+	 *
+	 * @return	The number of turns.
+	 */
+	public int getTurnsInSeconds(int seconds) {
+		/*
+		 * Without the overkill of using long's, max seconds = ~4 years
+		 */
+		return seconds * 1000 / MILLISECONDS_PER_TURN;
+	}
+
 	
 	/**
 	 * Returns the pathfinder. The return value is undefined until onInit() is

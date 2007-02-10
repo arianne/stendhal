@@ -15,6 +15,7 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import marauroa.common.game.AttributeNotFoundException;
@@ -290,6 +291,17 @@ public abstract class Entity extends RPObject {
 		}
 	}
 
+
+	/**
+	 * Get the area this object currently occupies.
+	 *
+	 * @return	A rectangular area.
+	 */
+	public Rectangle2D getArea() {
+		return getArea(getX(), getY());
+	}
+
+
 	public Rectangle2D getArea(double ex, double ey) {
 		Rectangle2D rect = new Rectangle.Double();
 		getArea(rect, ex, ey);
@@ -297,6 +309,25 @@ public abstract class Entity extends RPObject {
 	}
 
 	abstract public void getArea(Rectangle2D rect, double x, double y);
+
+
+	/**
+	 * Called when this object is added to a zone.
+	 *
+	 * @param	zone		The zone this was added to.
+	 */
+	public void onAdded(StendhalRPZone zone) {
+	}
+
+
+	/**
+	 * Called when this object is being removed from a zone.
+	 *
+	 * @param	zone		The zone this will be removed from.
+	 */
+	public void onRemoved(StendhalRPZone zone) {
+	}
+
 	
 	/**
 	 * Notifies the StendhalRPWorld that this entity's attributes have

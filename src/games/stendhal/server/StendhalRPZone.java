@@ -28,6 +28,7 @@ import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.spawner.GrainField;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
+import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.Point;
@@ -70,6 +71,11 @@ public class StendhalRPZone extends MarauroaRPZone {
     private boolean teleportable = true;
 
 	/**
+	 * Objects that implement MovementListener.
+	 */
+	private List<MovementListener>	movementListeners;
+
+	/**
 	 * A set of all items that are lying on the ground in this zone.
 	 * This set is currently only used for plant growers, and these
 	 * might be changed so that this set is no longer needed,
@@ -108,6 +114,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		respawnPoints = new LinkedList<CreatureRespawnPoint>();
         plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
         playersAndFriends = new LinkedList<RPEntity>();
+
+		movementListeners = new LinkedList<MovementListener>();
 
 		collisionMap = new CollisionDetection();
 		protectionMap = new CollisionDetection();
@@ -668,18 +676,28 @@ public class StendhalRPZone extends MarauroaRPZone {
 			item.onPutOnGround(player);
 			itemsOnGround.add(item);
 		}
+
+		if(object instanceof Entity)
+			((Entity) object).onAdded(this);
 	}
+
 
 	@Override
 	public synchronized RPObject remove(RPObject.ID id)
 			throws RPObjectNotFoundException {
-		RPObject object = super.remove(id);
+		RPObject object = get(id);
+
+		if(object instanceof Entity)
+			((Entity) object).onRemoved(this);
+
+		super.remove(id);
 
 		if (object instanceof Item) {
 			Item item = (Item) object;
 			itemsOnGround.remove(item);
 			item.onRemoveFromGround();
 		}
+
 		return object;
 	}
 
@@ -795,6 +813,107 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 		return null;
 	}
+
+
+	/**
+	 * Notify anything interested in when an entity entered.
+	 *
+	 * @param	entity		The entity that entered.
+	 * @param	newX		The new X coordinate.
+	 * @param	newY		The new Y coordinate.
+	 */
+	public void notifyEntered(RPEntity entity, int newX, int newY) {
+		Rectangle2D	eArea;
+
+
+		eArea = entity.getArea(newX, newY);
+
+		for(MovementListener l : movementListeners) {
+			if(l.getArea().intersects(eArea))
+				l.onEntered(entity, this, newX, newY);
+		}
+	}
+
+
+	/**
+	 * Notify anything interested in when an entity exited.
+	 *
+	 * @param	entity		The entity that moved.
+	 * @param	oldX		The old X coordinate.
+	 * @param	oldY		The old Y coordinate.
+	 */
+	public void notifyExited(RPEntity entity, int oldX, int oldY) {
+		Rectangle2D	eArea;
+
+
+		eArea = entity.getArea(oldX, oldY);
+
+		for(MovementListener l : movementListeners) {
+			if(l.getArea().intersects(eArea))
+				l.onExited(entity, this, oldX, oldY);
+		}
+	}
+
+
+	/**
+	 * Notify anything interested that an entity moved.
+	 *
+	 * @param	entity		The entity that moved.
+	 * @param	oldX		The old X coordinate.
+	 * @param	oldY		The old Y coordinate.
+	 * @param	newX		The new X coordinate.
+	 * @param	newY		The new Y coordinate.
+	 */
+	public void notifyMovement(RPEntity entity, int oldX, int oldY,
+	 int newX, int newY) {
+		Rectangle2D	area;
+		Rectangle2D	oeArea;
+		Rectangle2D	neArea;
+		boolean		oldIn;
+		boolean		newIn;
+
+
+		oeArea = entity.getArea(oldX, oldY);
+		neArea = entity.getArea(newX, newY);
+
+		for(MovementListener l : movementListeners) {
+			area = l.getArea();
+
+			oldIn = area.intersects(oeArea);
+			newIn = area.intersects(neArea);
+
+			if(!oldIn || newIn)
+				l.onEntered(entity, this, oldX, oldY);
+
+			if(oldIn || newIn)
+				l.onMoved(entity, this, oldX, oldY, newX, newY);
+
+			if(oldIn || !newIn)
+				l.onExited(entity, this, newX, newY);
+		}
+	}
+
+
+	/**
+	 * Register a movement listener for notification. Eventually create
+	 * a macro-block hash to cut down on listeners to check.
+	 *
+	 * @param	listener	A movement listener to register.
+	 */
+	public void addMovementListener(MovementListener listener) {
+		movementListeners.add(listener);
+	}
+
+
+	/**
+	 * Unregister a movement listener from notification.
+	 *
+	 * @param	listener	A movement listener to unregister.
+	 */
+	public void removeMovementListener(MovementListener listener) {
+		movementListeners.remove(listener);
+	}
+
 
 	@Override
 	public String toString() {

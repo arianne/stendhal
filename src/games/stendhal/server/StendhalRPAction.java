@@ -274,9 +274,12 @@ public class StendhalRPAction {
 			int dx = dir.getdx();
 			int dy = dir.getdy();
 
+			int nx = x + dx;
+			int ny = y + dy;
+
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
-			boolean collision = zone.collides(entity, x + dx, y + dy);
-			boolean ignoreCollision = entity.has("ghostmode");
+			boolean collision = zone.collides(entity, nx, ny);
+			boolean ignoreCollision = !entity.isObstacle();
 			
 			if (collision) {
 				if (entity instanceof Player) {
@@ -289,9 +292,9 @@ public class StendhalRPAction {
 					}
 
 					if (!(sheep != null && player.squaredDistance(sheep) > 7 * 7)) {
-						if (zone.leavesZone(player, x + dx, y + dy)) {
-							logger.debug("Leaving zone from (" + x + "," + y + ") to (" + (x + dx) + "," + (y + dy) + ")");
-							decideChangeZone(player, x + dx, y + dy);
+						if (zone.leavesZone(player, nx, ny)) {
+							logger.debug("Leaving zone from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
+							decideChangeZone(player, nx, ny);
 							player.stop();
 							player.notifyWorldAboutChanges();
 							return;
@@ -313,16 +316,20 @@ public class StendhalRPAction {
 					return;
 				}
 
-				logger.debug("Moving from (" + x + "," + y + ") to (" + (x + dx) + "," + (y + dy) + ")");
+				if(logger.isDebugEnabled())
+					logger.debug("Moving from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
 
-				entity.setX(x + dx);
-				entity.setY(y + dy);
+				entity.setX(nx);
+				entity.setY(ny);
 
 				entity.setCollides(false);
+				zone.notifyMovement(entity, x, y, nx, ny);
+
 				entity.notifyWorldAboutChanges();
 			} else {
 				/* Collision */
-				logger.debug("Collision at (" + (x + dx) + "," + (y + dy) + ")");
+				if(logger.isDebugEnabled())
+					logger.debug("Collision at (" + nx + "," + ny + ")");
 				entity.setCollides(true);
 
 				entity.stop();
