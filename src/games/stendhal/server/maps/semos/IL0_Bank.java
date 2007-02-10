@@ -63,16 +63,23 @@ public class IL0_Bank implements ZoneConfigurator {
 			zone.addPortal(portal);
 		}
 
-		for (int i = 0; i < 4; i++) {
-			PersonalChest chest = new PersonalChest();
-			zone.assignRPObjectID(chest);
-			chest.set(2 + 6 * i, 2);
-			zone.add(chest);
-			chest = new PersonalChest();
-			zone.assignRPObjectID(chest);
-			chest.set(2 + 6 * i, 13);
-			zone.add(chest);
+		/*
+		 * Entities configured in xml?
+		 */
+		if(attributes.get("xml-entities") == null) {
+			for (int i = 0; i < 4; i++) {
+				PersonalChest chest = new PersonalChest();
+				zone.assignRPObjectID(chest);
+				chest.set(2 + 6 * i, 2);
+				zone.add(chest);
+
+				chest = new PersonalChest();
+				zone.assignRPObjectID(chest);
+				chest.set(2 + 6 * i, 13);
+				zone.add(chest);
+			}
 		}
+
 		SpeakerNPC npc = new SpeakerNPC("Dagobert") {
 			@Override
 			protected void createPath() {

@@ -57,20 +57,25 @@ public class IL0_Bank implements ZoneConfigurator {
 			zone.addPortal(portal);
 		}
 
-		// personal chest
-		PersonalChest chest = new PersonalChest();
-		zone.assignRPObjectID(chest);
-		chest.set(3, 12);
-		zone.add(chest);
+		/*
+		 * Entities configured in xml?
+		 */
+		if(attributes.get("xml-entities") == null) {
+			// personal chest
+			PersonalChest chest = new PersonalChest();
+			zone.assignRPObjectID(chest);
+			chest.set(3, 12);
+			zone.add(chest);
 
-		chest = new PersonalChest();
-		zone.assignRPObjectID(chest);
-		chest.set(5, 12);
-		zone.add(chest);
+			chest = new PersonalChest();
+			zone.assignRPObjectID(chest);
+			chest.set(5, 12);
+			zone.add(chest);
 		
-		chest = new PersonalChest();
-		zone.assignRPObjectID(chest);
-		chest.set(10, 12);
-		zone.add(chest);
+			chest = new PersonalChest();
+			zone.assignRPObjectID(chest);
+			chest.set(10, 12);
+			zone.add(chest);
+		}
 	}
 }

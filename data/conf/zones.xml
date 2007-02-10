@@ -81,9 +81,13 @@
   **   attribute: An attribute passed to the implementation [factory].
   **
   **
-  ** Each zone can have zero, one, or more <configurator> entries.
-  ** These specify a class name that implements ZoneConfigurator, and
+  ** Each zone can have zero, one, or more of each <configurator>, <portal>,
+  ** and <entity> entries. EVENTUALLY these will be called in the order they
+  ** appear in each zone to allow for predictable interdependencies.
+  **
+  ** configurator's specify a class name that implements ZoneConfigurator, and
   ** will be passed the zone and any attributes.
+  **
   -->
 <zones>
  <!--
@@ -462,6 +466,7 @@ the wolves while searching for berries here
     <title/>
     <configurator class-name="games.stendhal.server.maps.semos.IL0_Bank">
      <attribute name="xml-portals">using</attribute>
+     <attribute name="xml-entities">using</attribute>
     </configurator>
 
     <portal x="9" y="30" ref="entrance">
@@ -471,6 +476,38 @@ the wolves while searching for berries here
     <portal x="10" y="30" ref="entrance_right">
      <destination zone="0_semos_city" ref="bank_entrance"/>
     </portal>
+
+    <entity x="2" y="2">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
+    <entity x="8" y="2">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
+    <entity x="14" y="2">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
+    <entity x="20" y="2">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
+    <entity x="2" y="13">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
+    <entity x="8" y="13">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
+    <entity x="14" y="13">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
+    <entity x="20" y="13">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
    </zone>
 
    <zone name="int_semos_townhall" file="int_semos_townhall.xstend">
@@ -582,14 +619,13 @@ Mature sheep wanted: please speak to Sato
     <title/>
     <configurator class-name="games.stendhal.server.maps.ados.IL0_Bank">
      <attribute name="xml-portals">using</attribute>
+     <attribute name="xml-entities">using</attribute>
     </configurator>
 
     <portal x="22" y="17" ref="0">
      <destination zone="0_ados_city" ref="6"/>
     </portal>
 
-    <!-- Bank chest examples (not used yet) -->
-<!-- Disable java code first
     <entity x="3" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
@@ -601,7 +637,6 @@ Mature sheep wanted: please speak to Sato
     <entity x="10" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
--->
    </zone>
 
    <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
