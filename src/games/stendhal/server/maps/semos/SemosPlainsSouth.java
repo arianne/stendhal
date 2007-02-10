@@ -30,31 +30,37 @@ public class SemosPlainsSouth implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosSouthPlainsArea(zone);
+		buildSemosSouthPlainsArea(zone, attributes);
 	}
 
 
-	private void buildSemosSouthPlainsArea(StendhalRPZone zone) {
-		Sign sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(118);
-		sign.setY(43);
-		sign.setText("TO THE FOREST\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
-		zone.add(sign);
+	private void buildSemosSouthPlainsArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Entities configured in xml?
+		 */
+		if(attributes.get("xml-entities") == null) {
+			Sign sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(118);
+			sign.setY(43);
+			sign.setText("TO THE FOREST\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
+			zone.add(sign);
 		
-		sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(38);
-		sign.setY(3);
-		sign.setText("TO OLD SEMOS VILLAGE\n\nShepherds wanted: please ask Nishiya");
-		zone.add(sign);
+			sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(38);
+			sign.setY(3);
+			sign.setText("TO OLD SEMOS VILLAGE\n\nShepherds wanted: please ask Nishiya");
+			zone.add(sign);
 		
-		sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(113);
-		sign.setY(3);
-		sign.setText("TO SEMOS\n\nMature sheep wanted: please speak to Sato");
-		zone.add(sign);
+			sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(113);
+			sign.setY(3);
+			sign.setText("TO SEMOS\n\nMature sheep wanted: please speak to Sato");
+			zone.add(sign);
+		}
 	}
 
 }

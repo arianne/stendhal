@@ -100,12 +100,17 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 
 	private void buildZooArea(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		Sign sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(53);
-		sign.setY(48);
-		sign.setText("Ados Wildlife Refuge\nHome for endangered animals");
-		zone.add(sign);
+		/*
+		 * Entities configured in xml?
+		 */
+		if(attributes.get("xml-entities") == null) {
+			Sign sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(53);
+			sign.setY(48);
+			sign.setText("Ados Wildlife Refuge\nHome for endangered animals");
+			zone.add(sign);
+		}
 		
 		/*
 		 * Portals configured in xml?

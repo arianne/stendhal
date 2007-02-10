@@ -47,7 +47,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
 		buildSemosCityAreaPortals(zone, attributes);
-		buildSemosCityAreaSigns(zone);
+		buildSemosCityAreaSigns(zone, attributes);
 		buildSemosCityAreaChest(zone);
 
 		buildSemosCityAreaNomyrAhba(zone);
@@ -147,27 +147,33 @@ public class SemosCityOutside implements ZoneConfigurator {
 		}
 	}
 
-	private void buildSemosCityAreaSigns(StendhalRPZone zone) {
-		Sign sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(4);
-		sign.setY(41);
-		sign.setText("TO OLD SEMOS VILLAGE\n\nShepherds wanted: please ask Nishiya");
-		zone.add(sign);
+	private void buildSemosCityAreaSigns(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Entities configured in xml?
+		 */
+		if(attributes.get("xml-entities") == null) {
+			Sign sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(4);
+			sign.setY(41);
+			sign.setText("TO OLD SEMOS VILLAGE\n\nShepherds wanted: please ask Nishiya");
+			zone.add(sign);
 		
-		sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(26);
-		sign.setY(40);
-		sign.setText("DUNGEONS\n\nCaution: These dungeons contain many rats,\nand more dangerous creatures. Enter at own risk.");
-		zone.add(sign);
+			sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(26);
+			sign.setY(40);
+			sign.setText("DUNGEONS\n\nCaution: These dungeons contain many rats,\nand more dangerous creatures. Enter at own risk.");
+			zone.add(sign);
 		
-		sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(44);
-		sign.setY(62);
-		sign.setText("TO THE PLAINS\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
-		zone.add(sign);
+			sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(44);
+			sign.setY(62);
+			sign.setText("TO THE PLAINS\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
+			zone.add(sign);
+		}
 	}
 	private void buildSemosCityAreaChest(StendhalRPZone zone) {
 

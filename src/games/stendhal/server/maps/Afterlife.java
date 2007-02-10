@@ -59,26 +59,25 @@ public class Afterlife implements ZoneConfigurator, IContent {
 			zone.addPortal(portal);
 		}
 
+		/*
+		 * Entities configured in xml?
+		 */
+		if(attributes.get("xml-entities") == null) {
+			String message = "Sorry, you have died.\nYou lost some of your items and 10% of your experience points.\nBe more careful in future!\n\nWalk on, and you will be returned to the land of the living...";
 
-		String message;
+			Sign sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(29);
+			sign.setY(22);
+			sign.setText(message);
+			zone.add(sign);
 
-		if((message = attributes.get("message")) == null)
-		{
-			message = "Sorry, you have died.\nYou lost some of your items and 10% of your experience points.\nBe more careful in future!\n\nWalk on, and you will be returned to the land of the living...";
+			sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(33);
+			sign.setY(22);
+			sign.setText(message);
+			zone.add(sign);
 		}
-
-		Sign sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(29);
-		sign.setY(22);
-		sign.setText(message);
-		zone.add(sign);
-
-		sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(33);
-		sign.setY(22);
-		sign.setText(message);
-		zone.add(sign);
 	}
 }

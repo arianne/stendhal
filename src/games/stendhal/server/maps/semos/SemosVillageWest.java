@@ -30,31 +30,37 @@ public class SemosVillageWest implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosVillageArea(zone);
+		buildSemosVillageArea(zone, attributes);
 	}
 
 
-	private void buildSemosVillageArea(StendhalRPZone zone) {
-		Sign sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(23);
-		sign.setY(61);
-		sign.setText("TO THE PLAINS\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
-		zone.add(sign);
+	private void buildSemosVillageArea(StendhalRPZone zone,
+	 Map<String, String> attributes) {
+		/*
+		 * Entities configured in xml?
+		 */
+		if(attributes.get("xml-entities") == null) {
+			Sign sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(23);
+			sign.setY(61);
+			sign.setText("TO THE PLAINS\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
+			zone.add(sign);
 		
-		sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(60);
-		sign.setY(47);
-		sign.setText("TO SEMOS\n\nMature sheep wanted: please speak to Sato");
-		zone.add(sign);
+			sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(60);
+			sign.setY(47);
+			sign.setText("TO SEMOS\n\nMature sheep wanted: please speak to Sato");
+			zone.add(sign);
 		
-		sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setX(16);
-		sign.setY(35);
-		sign.setText("[CLOSED]\n\nThe tavern has moved into a more central\nlocation in Semos. Please come join us at the\nsocial hub of the Semos area!");
-		zone.add(sign);
+			sign = new Sign();
+			zone.assignRPObjectID(sign);
+			sign.setX(16);
+			sign.setY(35);
+			sign.setText("[CLOSED]\n\nThe tavern has moved into a more central\nlocation in Semos. Please come join us at the\nsocial hub of the Semos area!");
+			zone.add(sign);
+		}
 	}
 
 }

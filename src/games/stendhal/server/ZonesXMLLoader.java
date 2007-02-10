@@ -30,6 +30,7 @@ import marauroa.server.game.RPWorld;
 import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryHelper;
 import games.stendhal.common.ConfigurableFactoryContextImpl;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.IContent;
 import games.stendhal.server.maps.ZoneConfigurator;
@@ -41,6 +42,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	protected static final int SCOPE_NONE		= 0;
 	protected static final int SCOPE_CONFIGURATOR	= 1;
 	protected static final int SCOPE_PORTAL		= 2;
+	protected static final int SCOPE_ENTITY		= 3;
 
 	private static final Logger logger = Log4J.getLogger(ZonesXMLLoader.class);
 
@@ -63,6 +65,11 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 * The current configurator descriptor.
 	 */
 	protected ConfiguratorDesc	cdesc;
+
+	/**
+	 * The current entity descriptor.
+	 */
+	protected EntityDesc		edesc;
 
 	/**
 	 * The current portal descriptor.
@@ -163,6 +170,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		zoneDescriptors = new LinkedList<ZoneDesc>();
 		zdesc = null;
 		cdesc = null;
+		edesc = null;
 		pdesc = null;
 		attrName = null;
 		scope = SCOPE_NONE;
@@ -204,6 +212,16 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 				while(piter.hasNext()) {
 					configurePortal(zone, piter.next());
+				}
+
+				/*
+				 * Entities
+				 */
+				Iterator<EntityDesc> eiter =
+					zdesc.getEntities();
+
+				while(eiter.hasNext()) {
+					configureEntity(zone, eiter.next());
 				}
 
 				/*
@@ -363,6 +381,51 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 
 	/**
+	 * Configure a generic entity.
+	 *
+	 *
+	 */
+	protected void configureEntity(StendhalRPZone zone, EntityDesc edesc) {
+		String			className;
+		ConfigurableFactory	factory;
+		Entity			entity;
+		Object			reference;
+
+
+		if((className = edesc.getClassName()) == null) {
+			logger.error("Entity without factory at "
+				+ zone.getID().getID()
+				+ "[" + edesc.getX()
+					+ "," + edesc.getY() + "]");
+			return;
+		}
+
+		try
+		{
+			if((factory = ConfigurableFactoryHelper.getFactory(
+			 className)) == null) {
+				logger.warn("Unable to get entity factory: "
+					+ className);
+
+				return;
+			}
+
+			entity = (Entity) factory.create(
+				new ConfigurableFactoryContextImpl(
+					edesc.getAttributes()));
+logger.info("Created: " + entity);
+			zone.assignRPObjectID(entity);
+
+			entity.set(edesc.getX(), edesc.getY());
+
+			zone.add(entity);
+		} catch(IllegalArgumentException ex) {
+			logger.error("Error with entity factory", ex);
+		}
+	}
+
+
+	/**
 	 * Load zone data and create a zone from it.
 	 * Most of this should be moved directly into ZoneXMLLoader.
 	 *
@@ -453,7 +516,34 @@ public class ZonesXMLLoader extends DefaultHandler {
 				scope = SCOPE_CONFIGURATOR;
 			}
 		} else if(qName.equals("entity")) {
-			// NOT YET!
+			if((s = attrs.getValue("x")) == null) {
+				logger.warn("Entity without 'x' coordinate");
+				return;
+			}
+
+			try {
+				x = Integer.parseInt(s);
+			} catch(NumberFormatException ex) {
+				logger.warn("Invalid entity 'x' coordinate: "
+					+ s);
+				return;
+			}
+
+			if((s = attrs.getValue("y")) == null) {
+				logger.warn("Entity without 'y' coordinate");
+				return;
+			}
+
+			try {
+				y = Integer.parseInt(s);
+			} catch(NumberFormatException ex) {
+				logger.warn("Invalid entity 'y' coordinate: "
+					+ s);
+				return;
+			}
+
+			edesc = new EntityDesc(x, y);
+			scope = SCOPE_ENTITY;
 		} else if(qName.equals("portal")) {
 			if((s = attrs.getValue("x")) == null) {
 				logger.warn("Portal without 'x' coordinate");
@@ -511,6 +601,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 				logger.warn("Implmentation without class-name");
 			} else if(pdesc != null) {
 				pdesc.setImplementation(s);
+			} else if(edesc != null) {
+				edesc.setImplementation(s);
 			}
 		} else if(qName.equals("destination")) {
 			if((zone = attrs.getValue("zone")) == null) {
@@ -566,6 +658,16 @@ public class ZonesXMLLoader extends DefaultHandler {
 			}
 
 			scope = SCOPE_NONE;
+		} else if(qName.equals("entity")) {
+			if(zdesc != null) {
+				if(edesc != null) {
+					zdesc.addEntity(edesc);
+				}
+
+				edesc = null;
+			}
+
+			scope = SCOPE_NONE;
 		} else if(qName.equals("portal")) {
 			if(zdesc != null) {
 				if(pdesc != null) {
@@ -583,10 +685,14 @@ public class ZonesXMLLoader extends DefaultHandler {
 					cdesc.setAttribute(
 						attrName,
 						content.toString().trim());
-				}
-				else if((scope == SCOPE_PORTAL)
+				} else if((scope == SCOPE_PORTAL)
 				 && (pdesc != null)) {
 					pdesc.setAttribute(
+						attrName,
+						content.toString().trim());
+				} else if((scope == SCOPE_ENTITY)
+				 && (edesc != null)) {
+					edesc.setAttribute(
 						attrName,
 						content.toString().trim());
 				}
@@ -644,6 +750,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		protected String	file;
 		protected String	title;
 		protected ArrayList<ConfiguratorDesc>	configurators;
+		protected ArrayList<EntityDesc>		entities;
 		protected ArrayList<PortalDesc>		portals;
 
 
@@ -663,6 +770,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			this.file = file;
 
 			configurators = new ArrayList<ConfiguratorDesc>();
+			entities = new ArrayList<EntityDesc>();
 			portals = new ArrayList<PortalDesc>();
 		}
 
@@ -677,6 +785,15 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 */
 		public void addConfigurator(ConfiguratorDesc configurator) {
 			configurators.add(configurator);
+		}
+
+
+		/**
+		 * Add a entity descriptor.
+		 *
+		 */
+		public void addEntity(EntityDesc entity) {
+			entities.add(entity);
 		}
 
 
@@ -713,6 +830,15 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 */
 		public String getName() {
 			return name;
+		}
+
+
+		/**
+		 * Get an iterator of entity descriptors.
+		 *
+		 */
+		public Iterator<EntityDesc> getEntities() {
+			return entities.iterator();
 		}
 
 
