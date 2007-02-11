@@ -293,6 +293,16 @@ public class GameObjects implements Iterable<Entity> {
 		Log4J.finishMethod(logger, "clear");
 	}
 
+	/** Removes all the text entities */
+	public void clearTexts() {
+		Log4J.startMethod(logger, "clearText");
+
+		for (Iterator it = texts.iterator(); it.hasNext();)
+			textsToRemove.add((Text)it.next());
+		Log4J.finishMethod(logger, "clearText");
+
+	}
+
 	private void fireTalkEvent(TalkEvent entity, RPObject base, RPObject diff) {
 		if (diff == null && base == null) {
 			// Remove case

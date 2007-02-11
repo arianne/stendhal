@@ -161,6 +161,12 @@ public class InGameGUI implements KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_L && e.isControlDown()) {
 			/* If Ctrl+L we set the Game log dialog visible */
 			client.getGameLogDialog().setVisible(true);
+
+		
+		} else if(( e.getKeyCode()==KeyEvent.VK_R) && e.isControlDown()) {
+			/* If Ctrl+R we remove Chat bubbles */
+			gameObjects.clearTexts();
+
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT
 				|| e.getKeyCode() == KeyEvent.VK_RIGHT
 				|| e.getKeyCode() == KeyEvent.VK_UP
