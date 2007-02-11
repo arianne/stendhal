@@ -81,12 +81,12 @@
   **   attribute: An attribute passed to the implementation [factory].
   **
   **
-  ** Each zone can have zero, one, or more of each <configurator>, <portal>,
-  ** and <entity> entries. EVENTUALLY these will be called in the order they
-  ** appear in each zone to allow for predictable interdependencies.
+  ** <configurator>'s specify a class name that implements ZoneConfigurator,
+  ** and will be passed the zone and any attributes.
   **
-  ** configurator's specify a class name that implements ZoneConfigurator, and
-  ** will be passed the zone and any attributes.
+  ** Each zone can have zero, one, or more of each <configurator>, <portal>,
+  ** and <entity> entries. These will be called in the order they appear
+  ** in each zone to allow for predictable interdependencies.
   **
   -->
 <zones>

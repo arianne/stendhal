@@ -32,7 +32,6 @@ import games.stendhal.common.ConfigurableFactoryHelper;
 import games.stendhal.common.ConfigurableFactoryContextImpl;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.maps.IContent;
 import games.stendhal.server.maps.ZoneConfigurator;
 
 /**
@@ -189,53 +188,23 @@ public class ZonesXMLLoader extends DefaultHandler {
 			logger.info("Loading zone: " + name);
 
 			try {
-				zones.put(name, load(world, zdesc));
+				StendhalRPZone zone = load(world, zdesc);
+
+				zones.put(name, zone);
+
+				/*
+				 * Setup Descriptors
+				 */
+				Iterator<ZoneSetupDesc> diter =
+					zdesc.getDescriptors();
+
+				while(diter.hasNext())
+					diter.next().doSetup(zone);
 			} catch(Exception ex) {
 				logger.error(
 					"Error loading zone: " + name, ex);
 			}
 		}
-
-
-		/*
-		 * Configure each [loaded] zone
-		 */
-		for(ZoneDesc zdesc : zoneDescriptors) {
-			StendhalRPZone	zone;
-
-			if((zone = zones.get(zdesc.getName())) != null) {
-				/*
-				 * Portals
-				 */
-				Iterator<PortalDesc> piter =
-					zdesc.getPortals();
-
-				while(piter.hasNext()) {
-					configurePortal(zone, piter.next());
-				}
-
-				/*
-				 * Entities
-				 */
-				Iterator<EntityDesc> eiter =
-					zdesc.getEntities();
-
-				while(eiter.hasNext()) {
-					configureEntity(zone, eiter.next());
-				}
-
-				/*
-				 * Custom configurators
-				 */
-				Iterator<ConfiguratorDesc> citer =
-					zdesc.getConfigurators();
-
-				while(citer.hasNext()) {
-					configureZone(zone, citer.next());
-				}
-			}
-		}
-
 
 		return zones.values();
 	}
@@ -246,7 +215,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *
 	 *
 	 */
-	protected void configureZone(StendhalRPZone zone,
+	protected static void configureZone(StendhalRPZone zone,
 	 ConfiguratorDesc cdesc) {
 		String	className;
 		Class	clazz;
@@ -302,12 +271,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			((ZoneConfigurator) obj).configureZone(
 				zone, cdesc.getAttributes());
-		} else if(obj instanceof IContent) {
-			logger.info("Configuring zone [" + zone.getID().getID()
-				+ "] using IContent with: "
-				+ className);
-
-			((IContent) obj).build();
 		} else {
 			logger.warn(
 				"Unsupported zone configurator: "
@@ -321,14 +284,15 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *
 	 *
 	 */
-	protected void configurePortal(StendhalRPZone zone, PortalDesc pdesc) {
+	protected static void configurePortal(StendhalRPZone zone,
+	 PortalDesc pdesc) {
 		String			className;
 		ConfigurableFactory	factory;
 		Portal			portal;
 		Object			reference;
 
 
-		if((className = pdesc.getClassName()) == null) {
+		if((className = pdesc.getImplementation()) == null) {
 			/*
 			 * Default implementation
 			 */
@@ -385,14 +349,15 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *
 	 *
 	 */
-	protected void configureEntity(StendhalRPZone zone, EntityDesc edesc) {
+	protected static void configureEntity(StendhalRPZone zone,
+	 EntityDesc edesc) {
 		String			className;
 		ConfigurableFactory	factory;
 		Entity			entity;
 		Object			reference;
 
 
-		if((className = edesc.getClassName()) == null) {
+		if((className = edesc.getImplementation()) == null) {
 			logger.error("Entity without factory at "
 				+ zone.getID().getID()
 				+ "[" + edesc.getX()
@@ -413,7 +378,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			entity = (Entity) factory.create(
 				new ConfigurableFactoryContextImpl(
 					edesc.getAttributes()));
-logger.info("Created: " + entity);
+
 			zone.assignRPObjectID(entity);
 
 			entity.set(edesc.getX(), edesc.getY());
@@ -651,30 +616,27 @@ logger.info("Created: " + entity);
 		} else if(qName.equals("configurator")) {
 			if(zdesc != null) {
 				if(cdesc != null) {
-					zdesc.addConfigurator(cdesc);
+					zdesc.addDescriptor(cdesc);
+					cdesc = null;
 				}
-
-				cdesc = null;
 			}
 
 			scope = SCOPE_NONE;
 		} else if(qName.equals("entity")) {
 			if(zdesc != null) {
 				if(edesc != null) {
-					zdesc.addEntity(edesc);
+					zdesc.addDescriptor(edesc);
+					edesc = null;
 				}
-
-				edesc = null;
 			}
 
 			scope = SCOPE_NONE;
 		} else if(qName.equals("portal")) {
 			if(zdesc != null) {
 				if(pdesc != null) {
-					zdesc.addPortal(pdesc);
+					zdesc.addDescriptor(pdesc);
+					pdesc = null;
 				}
-
-				pdesc = null;
 			}
 
 			scope = SCOPE_NONE;
@@ -749,9 +711,7 @@ logger.info("Created: " + entity);
 		protected String	name;
 		protected String	file;
 		protected String	title;
-		protected ArrayList<ConfiguratorDesc>	configurators;
-		protected ArrayList<EntityDesc>		entities;
-		protected ArrayList<PortalDesc>		portals;
+		protected ArrayList<ZoneSetupDesc>	descriptors;
 
 
 		public ZoneDesc(String name, String file) {
@@ -769,49 +729,20 @@ logger.info("Created: " + entity);
 
 			this.file = file;
 
-			configurators = new ArrayList<ConfiguratorDesc>();
-			entities = new ArrayList<EntityDesc>();
-			portals = new ArrayList<PortalDesc>();
+			descriptors = new ArrayList<ZoneSetupDesc>();
 		}
 
 
 		//
+		// ZoneDesc
 		//
-		//
 
 		/**
-		 * Add a configurator descriptor.
+		 * Add a setup descriptor.
 		 *
 		 */
-		public void addConfigurator(ConfiguratorDesc configurator) {
-			configurators.add(configurator);
-		}
-
-
-		/**
-		 * Add a entity descriptor.
-		 *
-		 */
-		public void addEntity(EntityDesc entity) {
-			entities.add(entity);
-		}
-
-
-		/**
-		 * Add a portal descriptor.
-		 *
-		 */
-		public void addPortal(PortalDesc portal) {
-			portals.add(portal);
-		}
-
-
-		/**
-		 * Get an iterator of configurator descriptors.
-		 *
-		 */
-		public Iterator<ConfiguratorDesc> getConfigurators() {
-			return configurators.iterator();
+		public void addDescriptor(ZoneSetupDesc desc) {
+			descriptors.add(desc);
 		}
 
 
@@ -834,20 +765,11 @@ logger.info("Created: " + entity);
 
 
 		/**
-		 * Get an iterator of entity descriptors.
+		 * Get an iterator of setup descriptors.
 		 *
 		 */
-		public Iterator<EntityDesc> getEntities() {
-			return entities.iterator();
-		}
-
-
-		/**
-		 * Get an iterator of portal descriptors.
-		 *
-		 */
-		public Iterator<PortalDesc> getPortals() {
-			return portals.iterator();
+		public Iterator<ZoneSetupDesc> getDescriptors() {
+			return descriptors.iterator();
 		}
 
 
@@ -871,22 +793,23 @@ logger.info("Created: " + entity);
 
 
 	/**
-	 * A zone configurator descriptor.
+	 * A zone setup descriptor.
 	 */
-	protected static class ConfiguratorDesc {
-		protected String	className;
+	protected static abstract class ZoneSetupDesc {
 		protected HashMap<String, String>	attributes;
 
 
-		public ConfiguratorDesc(String className) {
-			this.className = className;
-
+		public ZoneSetupDesc() {
 			attributes = new HashMap<String, String>();
 		}
 
+
 		//
+		// ZoneSetupDesc
 		//
-		//
+
+		public abstract void doSetup(StendhalRPZone zone);
+
 
 		/**
 		 * Get the attributes.
@@ -894,15 +817,6 @@ logger.info("Created: " + entity);
 		 */
 		public Map<String, String> getAttributes() {
 			return attributes;
-		}
-
-
-		/**
-		 * Get the class name.
-		 *
-		 */
-		public String getClassName() {
-			return className;
 		}
 
 
@@ -917,13 +831,47 @@ logger.info("Created: " + entity);
 
 
 	/**
+	 * A zone configurator descriptor.
+	 */
+	protected static class ConfiguratorDesc extends ZoneSetupDesc {
+		protected String	className;
+
+
+		public ConfiguratorDesc(String className) {
+			this.className = className;
+		}
+
+		//
+		//
+		//
+
+		/**
+		 * Get the class name.
+		 *
+		 */
+		public String getClassName() {
+			return className;
+		}
+
+
+		//
+		// ZoneSetupDesc
+		//
+
+		public void doSetup(StendhalRPZone zone)
+		{
+			configureZone(zone, this);
+		}
+	}
+
+
+	/**
 	 * An entity descriptor.
 	 */
-	protected static class EntityDesc {
+	protected static class EntityDesc extends ZoneSetupDesc {
 		protected int		x;
 		protected int		y;
 		protected String	className;
-		protected HashMap<String, String>	attributes;
 
 
 		public EntityDesc(int x, int y) {
@@ -931,30 +879,11 @@ logger.info("Created: " + entity);
 			this.y = y;
 
 			className = null;
-			attributes = new HashMap<String, String>();
 		}
 
 		//
 		//
 		//
-
-		/**
-		 * Get the attributes.
-		 *
-		 */
-		public Map<String, String> getAttributes() {
-			return attributes;
-		}
-
-
-		/**
-		 * Get the implementation class name.
-		 *
-		 */
-		public String getClassName() {
-			return className;
-		}
-
 
 		/**
 		 * Get the implementation class name.
@@ -984,20 +913,21 @@ logger.info("Created: " + entity);
 
 
 		/**
-		 * Set an attribute.
-		 *
-		 */
-		public void setAttribute(String name, String value) {
-			attributes.put(name, value);
-		}
-
-
-		/**
 		 * Set the implementation class name.
 		 *
 		 */
 		public void setImplementation(String className) {
 			this.className = className;
+		}
+
+
+		//
+		// ZoneSetupDesc
+		//
+
+		public void doSetup(StendhalRPZone zone)
+		{
+			configureEntity(zone, this);
 		}
 	}
 
@@ -1078,6 +1008,16 @@ logger.info("Created: " + entity);
 		 */
 		public void setReplacing(boolean replacing) {
 			this.replacing = replacing;
+		}
+
+
+		//
+		// ZoneSetupDesc
+		//
+
+		public void doSetup(StendhalRPZone zone)
+		{
+			configurePortal(zone, this);
 		}
 	}
 }
