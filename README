@@ -70,6 +70,7 @@ Changelog
 0.58
 - rat city is open
 - new zone configuration using xml
+- Ctrl+R in gui clears all active text bubbles
 
 0.57  Jan 27, 2007
 - sheep food now shows up in the minimap as an obstical
