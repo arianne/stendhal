@@ -148,6 +148,48 @@ public abstract class RPEntity extends Entity {
 		totalDamageReceived = 0;
 	}
 
+
+	/**
+	 * Give the player some karma (good or bad).
+	 *
+	 * @param	karma		An amount of karma to add/subtract.
+	 */
+	public void addKarma(double karma) {
+		// No nothing
+	}
+
+
+	/**
+	 * Get some of the player's karma. A positive value indicates
+	 * good luck/energy. A negative value indicates bad luck/energy.
+	 * A value of zero should cause no change on an action or outcome.
+	 *
+	 * @param	scale		A positive number.
+	 *
+	 * @return	A number between -scale and scale.
+	 */
+	public double getKarma(double scale) {
+		// No impact
+		return 0.0;
+	}
+
+
+	/**
+	 * Get some of the player's karma. A positive value indicates
+	 * good luck/energy. A negative value indicates bad luck/energy.
+	 * A value of zero should cause no change on an action or outcome.
+	 *
+	 * @param	negLimit	The lowest negative value returned.
+	 * @param	posLimit	The highest positive value returned.
+	 *
+	 * @return	A number within negLimit &lt;= 0 &lt;= posLimit.
+	 */
+	public double getKarma(double negLimit, double posLimit) {
+		// No impact
+		return 0.0;
+	}
+
+
 	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
