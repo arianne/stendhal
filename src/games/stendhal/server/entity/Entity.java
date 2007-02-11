@@ -226,6 +226,21 @@ public abstract class Entity extends RPObject {
 		return thisArea.contains(x, y);
 	}
 
+
+	/**
+	 * Checks whether the given entity is directly next to this entity.
+	 * This method may be optimized over using nextTo(entity, 1.0).
+	 *
+	 * @param	entity		The entity
+	 *
+	 * @return	<code>true</code> if the entity is next to this.
+	 */
+	public boolean nextTo(Entity entity) {
+		// For now call old code (just a convenience function)
+		return nextTo(entity, 1.0);
+	}
+
+
 	/**
 	 * Checks whether the given entity is near this entity.
 	 * @param entity the entity
