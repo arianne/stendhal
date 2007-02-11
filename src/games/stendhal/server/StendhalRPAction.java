@@ -59,6 +59,20 @@ public class StendhalRPAction {
 		int roll = Rand.roll1D20();
 		int risk = 2 * source.getATK() - target.getDEF() + roll - 10;
 
+		/*
+		 * Apply some karma
+		 */
+		double karma = source.getKarma(0.3) - target.getKarma(0.3);
+
+		if(karma > 0.2)
+			risk += 4;
+		else if(karma > 0.1)
+			risk++;
+		else if(karma < -0.2)
+			risk -= 4;
+		else if(karma < -0.1)
+			risk--;
+
 		if (logger.isDebugEnabled()) {
 			logger.debug("attack from " + source + " to " + target + ": Risk to strike: " + risk);
 		}
@@ -90,6 +104,12 @@ public class StendhalRPAction {
 		float maxAttackerComponent = 0.8f * sourceAtk * sourceAtk + weapon * sourceAtk;
 		float attackerComponent = (Rand.roll1D100() / 100.0f) * maxAttackerComponent;
 
+		/*
+		 * Account for karma (+/-10%)
+		 */
+		attackerComponent +=
+			(attackerComponent * (float) source.getKarma(0.1));
+
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: " + attackerComponent);
 
 
@@ -98,6 +118,12 @@ public class StendhalRPAction {
 		float maxDefenderComponent = 0.6f * targetDef * targetDef + armor * targetDef;
 
 		float defenderComponent = (Rand.roll1D100() / 100.0f) * maxDefenderComponent;
+
+		/*
+		 * Account for karma (+/-10%)
+		 */
+		defenderComponent +=
+			(defenderComponent * (float) target.getKarma(0.1));
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("DEF MAX: " + maxDefenderComponent + "\t DEF VALUE: " + defenderComponent);
@@ -141,65 +167,67 @@ public class StendhalRPAction {
 
 			target.onAttack(source, true);
 
-			// {lifesteal} uncomented following line, also changed name:
-			List<Item> weapons = source.getWeapons();
-			boolean range = source.canDoRangeAttacks();
+			if(source.nextTo(target)) {
+				// Continue (skip range checks if next to)
+			} else if(source.canDoRangeAttacks()) {
+				// XXX - Should different weapons have different ranges??
 
-			if (source.nextTo(target, 1) || range) {
-				if (range) {
-					// Check Line of View to see if there is any obstacle.
-					Vector<Point> points = Line.renderLine(source.getX(), source.getY(), target.getX(), target.getY());
-					for (Point point : points) {
-						if (zone.collides((int) point.getX(), (int) point.getY())) {
-							/**
-							 * NOTE: Disabled to ease ranged combat.
-							 * target.onAttack(source, false);
-							 * world.modify(source);
-							 */
-							return false;
-						}
+				// Check Line of View to see if there is any obstacle.
+				Vector<Point> points = Line.renderLine(source.getX(), source.getY(), target.getX(), target.getY());
+				for (Point point : points) {
+					if (zone.collides((int) point.getX(), (int) point.getY())) {
+						/**
+						 * NOTE: Disabled to ease ranged combat.
+						 * target.onAttack(source, false);
+						 * world.modify(source);
+						 */
+						return false;
 					}
 				}
-
-				boolean beaten = riskToHit(source, target);
-
-				if (source instanceof Player && (target instanceof SpeakerNPC) == false && source.stillHasBlood(target)) {
-					// disabled attack xp for attacking NPC's
-					source.incATKXP();
-				}
-
-				if (beaten) {
-					if (target instanceof Player && target.stillHasBlood(source)) {
-						target.incDEFXP();
-					}
-
-					int damage = damageDone(source, target);
-					if (damage > 0) {
-
-						damage = handleLivesteal(source, weapons, damage);
-						
-						target.onDamage(source, damage);
-						source.put("damage", damage);
-						logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Damage: " + damage);
-
-						target.bloodHappens(source);
-
-						result = true;
-					} else // Blocked
-					{
-						source.put("damage", 0);
-						logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Damage: " + 0);
-					}
-				} else { // Missed
-					logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Missed");
-					source.put("damage", 0);
-				}
-				source.notifyWorldAboutChanges();
-				return result;
 			} else {
 				logger.debug("Attack from " + source + " to " + target + " failed because target is not near.");
 				return false;
 			}
+
+			// {lifesteal} uncomented following line, also changed name:
+			List<Item> weapons = source.getWeapons();
+
+			if (source instanceof Player && (target instanceof SpeakerNPC) == false && source.stillHasBlood(target)) {
+				// disabled attack xp for attacking NPC's
+				source.incATKXP();
+			}
+
+			boolean beaten = riskToHit(source, target);
+
+			if (beaten) {
+				if (target instanceof Player && target.stillHasBlood(source)) {
+					target.incDEFXP();
+				}
+
+				int damage = damageDone(source, target);
+				if (damage > 0) {
+					damage = handleLivesteal(source, weapons, damage);
+						
+					target.onDamage(source, damage);
+					source.put("damage", damage);
+					logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Damage: " + damage);
+
+					target.bloodHappens(source);
+
+					result = true;
+				} else {
+					// Blocked
+					source.put("damage", 0);
+					logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Damage: " + 0);
+				}
+			} else { // Missed
+				logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Missed");
+				source.put("damage", 0);
+			}
+
+			source.notifyWorldAboutChanges();
+
+			return result;
 		} finally {
 			//	Log4J.finishMethod(logger, "attack");
 		}
@@ -301,7 +329,7 @@ public class StendhalRPAction {
 						}
 
 						for (Portal portal : zone.getPortals()) {
-							if (player.nextTo(portal, 0.25) && player.facingTo(portal)) {
+							if (player.nextTo(portal) && player.facingTo(portal)) {
 								logger.debug("Using portal " + portal);
 								portal.onUsed(player);
 								return;
@@ -388,7 +416,7 @@ public class StendhalRPAction {
 	public static boolean usePortal(Player player, Portal portal) throws AttributeNotFoundException, NoRPZoneException {
 		Log4J.startMethod(logger, "usePortal");
 
-		if (!player.nextTo(portal, 0.25)) // Too far to use the portal
+		if (!player.nextTo(portal)) // Too far to use the portal
 		{
 			return false;
 		}
@@ -408,7 +436,7 @@ public class StendhalRPAction {
 			return false;
 		}
 
-		player.teleport(destZone, dest.getInt("x"), dest.getInt("y"), null, null);
+		player.teleport(destZone, dest.getX(), dest.getY(), null, null);
 		player.stop();
 
 		dest.onUsedBackwards(player);
