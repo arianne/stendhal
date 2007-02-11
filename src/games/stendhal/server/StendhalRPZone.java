@@ -385,6 +385,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 	// Log4J.finishMethod(logger,"addNavigationLayer");
 	// }
 	//  
+
+	/**
+	 * Populate a zone based on it's map content.
+	 *
+	 * XXX - This should be moved to the zone loader or something.
+	 */
 	public void populate(byte[] byteContents) throws IOException,
 			RPObjectInvalidException {
 		Log4J.startMethod(logger, "populate");
@@ -417,6 +423,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 		Log4J.finishMethod(logger, "populate");
 	}
 
+
+	/**
+	 * Create a map entity as a given coordinate.
+	 *
+	 *
+	 */
 	protected void createEntityAt(int type, int x, int y) {
 		try {
 			switch (type) {
@@ -433,78 +445,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			case 6: /* one way portal destination */
 			case 3: /* portal stairs up */
 			case 4: /* portal stairs down */
-			{
-				logger.debug("Portal stairs at " + this + ": " + x + "," + y);
-				Portal portal;
-				if (type != 6) {
-					portal = new Portal();
-				} else {
-					portal = new OneWayPortalDestination();
-				}
-
-				assignRPObjectID(portal);
-				portal.setX(x);
-				portal.setY(y);
-				assignPortalID(portal);
-				addPortal(portal);
-
-				boolean assigned = false;
-
-				if (isInterior()) {
-					// The algo doesn't work on interiors
-					return;
-				}
-
-				for (IRPZone i : StendhalRPWorld.get()) {
-					StendhalRPZone zone = (StendhalRPZone) i;
-
-					if (zone.isInterior() == false
-							&& Math.abs(zone.getLevel() - getLevel()) == 1) {
-						if (!zone.contains(portal, this)) {
-							continue;
-						}
-
-						logger.debug(zone + " contains " + portal);
-
-						for (Portal target : zone.getPortals()) {
-							if (target.loaded()) {
-								logger.debug(target + " already loaded");
-								continue;
-							}
-
-							logger.debug(target + " isn't loaded");
-
-							if (target.getX() + zone.getX() == portal.getX()
-									+ getX()
-									&& target.getY() + zone.getY() == portal
-											.getY()
-											+ getY()) {
-								Object source = portal.getReference();
-								Object dest = zone.assignPortalID(target);
-
-								if (type != 6) {
-									portal.setDestination(zone.getID().getID(),
-											dest);
-								}
-
-								target.setDestination(getID().getID(), source);
-
-								logger.debug("Portals LINKED");
-								logger.debug(portal);
-								logger.debug(target);
-								assigned = true;
-								break;
-							} else {
-								logger.debug("can't assign because it is a different portal");
-							}
-						}
-					}
-				}
-
-				if (!assigned) {
-					logger.debug(portal + " has no destination");
-				}
-			}
+				createLevelPortalAt(type, x, y);
 				break;
 			case 5: /* portal */
 				break;
@@ -619,6 +560,103 @@ public class StendhalRPZone extends MarauroaRPZone {
 					+ y + ")", e);
 		}
 	}
+
+
+	/*
+	 * Create a portal between levels.
+	 *
+	 *
+	 */
+	protected void createLevelPortalAt(int type, int x, int y) {
+		if(logger.isDebugEnabled()) {
+			logger.debug("Portal stairs at " + this
+				+ ": " + x + "," + y);
+		}
+
+		Portal portal;
+
+		if (type != 6) {
+			portal = new Portal();
+		} else {
+			portal = new OneWayPortalDestination();
+		}
+
+		assignRPObjectID(portal);
+		portal.setX(x);
+		portal.setY(y);
+		assignPortalID(portal);
+		addPortal(portal);
+
+		boolean assigned = false;
+
+		if (isInterior()) {
+			// The algo doesn't work on interiors
+			return;
+		}
+
+		for (IRPZone i : StendhalRPWorld.get()) {
+			StendhalRPZone zone = (StendhalRPZone) i;
+
+			if (zone.isInterior())
+				continue;
+
+			/*
+			 * Portals in the correct direction?
+			 */
+			if(type == 3) {
+				/* portal stairs up */
+				if((zone.getLevel() - getLevel()) != 1)
+					continue;
+			}
+			else if(type == 4) {
+				/* portal stairs down */
+				if((zone.getLevel() - getLevel()) != -1)
+					continue;
+			} else {
+				/* one way portal - POTENTIALLY WRONG LEVEL */
+				/* Should they always go down (drop only)? */
+				if(Math.abs(zone.getLevel() - getLevel()) != 1)
+					continue;
+			}
+
+			if (!zone.contains(portal, this))
+				continue;
+
+			logger.debug(zone + " contains " + portal);
+
+			Portal target = zone.getPortal(
+				portal.getX() + getX() - zone.getX(),
+				portal.getY() + getY() - zone.getY());
+
+			if(target == null)
+				continue;
+
+			if (target.loaded()) {
+				logger.debug(target + " already loaded");
+				continue;
+			}
+
+			if (type != 6) {
+				portal.setDestination(
+					zone.getID().getID(),
+					zone.assignPortalID(target));
+			}
+
+			target.setDestination(
+				getID().getID(), portal.getReference());
+
+			logger.debug("Portals LINKED");
+			logger.debug(portal);
+			logger.debug(target);
+			assigned = true;
+			break;
+		}
+
+		if (!assigned) {
+			logger.debug(portal + " has no destination");
+		}
+	}
+
 
 	public int getWidth() {
 		return collisionMap.getWidth();
