@@ -1,0 +1,4 @@
+This directory structure contains folder to store tilesets.
+
+Sky and clouds decoration to be used as ground.
+It won't appear OVER player but below them as ground.

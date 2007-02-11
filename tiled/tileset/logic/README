@@ -1,0 +1,4 @@
+This directory structure contains folder to store tilesets.
+
+Here are stored tiles that control game, like creatures or items to be added.
+We could extend this someway to support Chadf's XML loaders.

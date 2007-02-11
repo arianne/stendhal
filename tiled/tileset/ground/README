@@ -1,0 +1,5 @@
+This directory structure contains folder to store tilesets.
+
+This folder contains tiles needed to design terrain, such as color and texture.
+For example, rocks, grass, ridges, water, ice, ...
+It also contains things to decorate the terrain like small objects.
