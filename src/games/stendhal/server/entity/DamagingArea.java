@@ -72,8 +72,9 @@ public class DamagingArea extends Entity
 	 * @param	probability	The chance of damage while walking
 	 *				(0.0 - 1.0).
 	 */
-	public DamagingArea(int damage, int interval, double probability)
-	 throws AttributeNotFoundException {
+	public DamagingArea(String name, int damage, int interval,
+	 double probability) throws AttributeNotFoundException {
+		put("name", name);
 		put("type", "damaging_area");
 
 		this.damage = damage;
@@ -95,8 +96,8 @@ public class DamagingArea extends Entity
 	 * @param	entity		The entity to damage.
 	 */
 	protected void doDamage(RPEntity entity) {
-		// XXX - TODO - entity.onDamage() requires a valid attacker
-logger.info("Would damage " + entity.getName() + " by " + damage);
+		// Almost! Still need to account for player def.
+		entity.onDamage(this, damage);
 	}
 
 

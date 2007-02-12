@@ -102,6 +102,26 @@ public abstract class Entity extends RPObject {
 		this.x = x;
 		put("x", x);
 	}
+
+
+	/**
+	 * Get the entity name.
+	 *
+	 * @return	The entity's name, or <code>null</code> if undefined.
+	 */
+	public String getName() {
+		String	name;
+
+
+		if(has("name")) {
+			if((name = get("name")) != null) {
+				return name.replace("_", " ");
+			}
+		}
+
+		return null;
+	}
+
 	
 	public int getX() {
 		return x;
@@ -355,12 +375,15 @@ public abstract class Entity extends RPObject {
 	}
 
 	public String describe() {
+		String	name;
+
 		String ret = "You see ";
 		if (hasDescription()) {
 			return (getDescription());
 		}
-		if (has("name") && get("name") != null) {
-			ret += get("name").replace("_", " ");
+
+		if((name = getName()) != null) {
+			ret += name;
 		} else if (has("subclass")) {
 			ret += Grammar.a_noun(get("subclass"));
 		} else if (has("class")) {

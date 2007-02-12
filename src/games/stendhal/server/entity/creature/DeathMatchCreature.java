@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
 import java.awt.Shape;
@@ -25,7 +25,7 @@ public class DeathMatchCreature extends Creature {
 	}
 
 	@Override
-	protected void addPlayersToReward(RPEntity player) {
+	protected void addPlayersToReward(Entity player) {
 		// don't reward the other attackers
 	}
 

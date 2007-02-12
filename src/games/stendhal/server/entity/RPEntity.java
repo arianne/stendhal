@@ -75,7 +75,7 @@ public abstract class RPEntity extends Entity {
 	/** current target */
 	private RPEntity attackTarget;
 
-	private Map<RPEntity, Integer> damageReceived;
+	private Map<Entity, Integer> damageReceived;
 	/** list of players which are to reward with xp on killing this creature */
 	protected Set<Player> playersToReward;
 
@@ -135,7 +135,7 @@ public abstract class RPEntity extends Entity {
 	public RPEntity(RPObject object) throws AttributeNotFoundException {
 		super(object);
 		attackSource = new LinkedList<RPEntity>();
-		damageReceived = new HashMap<RPEntity, Integer>();
+		damageReceived = new HashMap<Entity, Integer>();
 		playersToReward = new HashSet<Player>();
 		totalDamageReceived = 0;
 	}
@@ -143,7 +143,7 @@ public abstract class RPEntity extends Entity {
 	public RPEntity() throws AttributeNotFoundException {
 		super();
 		attackSource = new LinkedList<RPEntity>();
-		damageReceived = new HashMap<RPEntity, Integer>();
+		damageReceived = new HashMap<Entity, Integer>();
 		playersToReward = new HashSet<Player>();
 		totalDamageReceived = 0;
 	}
@@ -480,10 +480,10 @@ public abstract class RPEntity extends Entity {
 	}
 
 	/**
-	 * This method is called when this entity has been attacked by RPEntity who
-	 * and it has been damaged with damage points.
+	 * This method is called when this entity has been attacked by Entity
+	 * who and it has been damaged with damage points.
 	 */
-	public void onDamage(RPEntity who, int damage) {
+	public void onDamage(Entity who, int damage) {
 		logger.debug("Damaged " + damage + " points by " + who.getID());
 
 		StendhalRPRuleProcessor.get().addGameEvent(who.getName(), "damaged", getName(), Integer
@@ -523,7 +523,7 @@ public abstract class RPEntity extends Entity {
 	 *
 	 * @param player Player
 	 */
-	protected void addPlayersToReward(RPEntity player) {
+	protected void addPlayersToReward(Entity player) {
 		if (player instanceof Player) {
 			playersToReward.add((Player) player);
 		}

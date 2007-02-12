@@ -16,7 +16,7 @@ import games.stendhal.server.StendhalRPWorld;
 /**
  * A base factory for <code>DamagingArea</code> objects.
  */
-public abstract class DamagingAreaFactory implements ConfigurableFactory {
+public class DamagingAreaFactory implements ConfigurableFactory {
 	//
 	// DamagingAreaFactory
 	//
@@ -47,6 +47,30 @@ public abstract class DamagingAreaFactory implements ConfigurableFactory {
 			throw new IllegalArgumentException(
 				"Invalid 'damage' attribute: " + s);
 		}
+	}
+
+
+	/**
+	 * Extract the name of the damaging entity.
+	 *
+	 * @param	ctx		The configuration context.
+	 *
+	 * @return	The entity's name.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If the attribute is missing.
+	 */
+	protected String getName(ConfigurableFactoryContext ctx)
+	 throws IllegalArgumentException {
+		String	s;
+
+
+		if((s = ctx.getAttribute("name")) == null) {
+			throw new IllegalArgumentException(
+				"Required attribute 'name' missing");
+		}
+
+		return s;
 	}
 
 
@@ -130,6 +154,7 @@ public abstract class DamagingAreaFactory implements ConfigurableFactory {
 	public Object create(ConfigurableFactoryContext ctx)
 	 throws IllegalArgumentException {
 		return new DamagingArea(
+			getName(ctx),
 			getDamage(ctx),
 			getInterval(ctx),
 			getProbability(ctx));
