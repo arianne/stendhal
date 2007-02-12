@@ -151,6 +151,22 @@ public abstract class Entity extends RPObject {
 		return direction;
 	}
 
+
+	/**
+	 * Get the zone this entity is in.
+	 *
+	 * @return	A zone, or <code>null</code> if not in one.
+	 */
+	public StendhalRPZone getZone() {
+		//
+		// POSSIBLE TODO: Use onAdded()/onRemoved() to grab a copy
+		// of the zone and save as a local variable.
+		//
+		return (StendhalRPZone)
+			StendhalRPWorld.get().getRPZone(getID());
+	}
+
+
 	public void setSpeed(double speed) {
 		if (speed == this.speed) {
 			return;
@@ -249,7 +265,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Checks whether the given entity is directly next to this entity.
-	 * This method may be optimized over using nextTo(entity, 1.0).
+	 * This method may be optimized over using nextTo(entity, 0.25).
 	 *
 	 * @param	entity		The entity
 	 *
@@ -257,7 +273,7 @@ public abstract class Entity extends RPObject {
 	 */
 	public boolean nextTo(Entity entity) {
 		// For now call old code (just a convenience function)
-		return nextTo(entity, 1.0);
+		return nextTo(entity, 0.25);
 	}
 
 
