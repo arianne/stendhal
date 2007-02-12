@@ -356,16 +356,26 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		for (CreatureRespawnPoint point : respawnPoints) {
 			creatures += point.size();
 		}
-		int objects = 0;
-		for (IRPZone zone : StendhalRPWorld.get()) {
-			objects += zone.size();
+
+		if(logger.isDebugEnabled()) {
+			int objects = 0;
+
+			for (IRPZone zone : StendhalRPWorld.get()) {
+				objects += zone.size();
+			}
+
+			logger.debug("lists: G:" + plantGrowers.size()
+				+ ",NPC:" + npcs.size()
+				+ ",P:" + playersObject.size()
+				+ ",CR:" + creatures
+				+ ",OB:" + objects);
+
+			logger.debug("lists: NPC:" + npcsToAdd.size()
+				+ ",NPC:" + npcsToRemove.size()
+				+ ",P:" + playersObjectRmText.size()
+				+ ",R:" + respawnPoints.size());
 		}
-		logger.debug("lists: G:" + plantGrowers.size()
-				+ ",NPC:" + npcs.size() + ",P:" + playersObject.size() + ",CR:"
-				+ creatures + ",OB:" + objects);
-		logger.debug("lists: NPC:"
-				+ npcsToAdd.size() + ",NPC:" + npcsToRemove.size() + ",P:"
-				+ playersObjectRmText.size() + ",R:" + respawnPoints.size());
+
 		try {
 			// We keep the number of players logged.
 			Statistics.getStatistics().set("Players logged",
