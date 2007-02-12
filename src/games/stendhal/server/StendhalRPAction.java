@@ -13,6 +13,7 @@
 package games.stendhal.server;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Line;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
@@ -150,6 +151,67 @@ public class StendhalRPAction {
 		// limit damage to target hp
 		return Math.min(damage, target.getHP());
 	}
+
+
+	/**
+	 * Do logic for starting an attack on an entity.
+	 *
+	 * @param	player		The player wanting to attack.
+	 * @param	entity		The target of attack.
+	 */
+	public static void startAttack(Player player, RPEntity entity) {
+		/*
+		 * Player's can't attack themselves
+		 */
+		if (player.equals(entity)) {
+			return;
+		}
+
+		// Disable attacking NPCS.
+		// Just make sure no creature is instanceof SpeakerNPC...
+		if (entity instanceof SpeakerNPC) {
+			logger.info("REJECTED. " + player.getName()
+				+ " is attacking " + entity.getName());
+			return;
+		}
+
+		// Enabled PVP
+		if (entity instanceof Player || entity instanceof Sheep) {
+			StendhalRPZone zone = (StendhalRPZone)
+				StendhalRPWorld.get().getRPZone(player.getID());
+
+			if (zone.isInProtectionArea(entity)) {
+				logger.info("REJECTED. " + entity.getName()
+					+ " is in a protection zone");
+
+				String name = entity.getName();
+
+				if (entity instanceof Sheep) {
+					Player owner = ((Sheep) entity).getOwner();
+					if (name != null) {
+						name = Grammar.suffix_s(owner.getName()) + " sheep";
+					} else {
+						name = "that sheep";
+					}
+				}
+
+				player.sendPrivateText("The powerful protective aura in this place prevents you from attacking " + name + ".");
+				return;
+			}
+
+			logger.info(player.getName() + " is attacking "
+					+ entity.getName());
+		}
+
+		StendhalRPRuleProcessor.get().addGameEvent(
+			player.getName(), "attack", entity.getName());
+
+		player.attack(entity);
+		player.faceTo(entity);
+		player.applyClientDirection(false);
+		player.notifyWorldAboutChanges();
+	}
+
 
 	public static boolean attack(RPEntity source, RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException {
 		//Log4J.startMethod(logger, "attack");
