@@ -315,6 +315,11 @@ public class Player extends RPEntity implements TurnListener {
 		double	score;
 
 
+		if(logger.isDebugEnabled()) {
+			logger.debug("karma request: "
+				+ negLimit + " <= x <= " + posLimit);
+		}
+
 		/*
 		 * Calculate the maximum payout (based on what we have)
 		 */
@@ -335,11 +340,19 @@ public class Player extends RPEntity implements TurnListener {
 			limit = Math.min(posLimit, limit);
 		}
 
+		if(logger.isDebugEnabled()) {
+			logger.debug("karma limit: " + limit);
+		}
+
 		/*
 		 * Give at least 20% of possible payout
 		 */
 		score = (0.2 + (karmaRand.nextDouble() * 0.8)) * limit;
 		karma -= score;
+
+		if(logger.isDebugEnabled()) {
+			logger.debug("karma given: " + score);
+		}
 
 		put("karma", karma);
 
