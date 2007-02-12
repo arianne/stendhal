@@ -57,9 +57,6 @@ public class DefaultItem {
 	/** Attributes of the item */
 	private Map<String, String> attributes;
 
-	/** Is this item type stackable */
-	private boolean stackable;
-
 	/** Implementation creator */
 	protected Creator creator;
 
@@ -68,7 +65,6 @@ public class DefaultItem {
 		this.subclazz = subclazz;
 		this.name = name;
 		this.tileid = tileid;
-		this.stackable = false;
 	}
 
 	public void setWeight(double weight) {
@@ -89,10 +85,6 @@ public class DefaultItem {
 
 	public void setEquipableSlots(List<String> slots) {
 		this.slots = slots;
-	}
-
-	public void setStackable() {
-		stackable = true;
 	}
 
 	public void setDescription(String text) {

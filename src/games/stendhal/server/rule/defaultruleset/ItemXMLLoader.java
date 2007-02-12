@@ -29,8 +29,6 @@ public class ItemXMLLoader extends DefaultHandler {
 
 	private double weight;
 
-	private boolean stackable;
-
 	/** slots where this item can be equiped */
 	private List<String> slots;
 
@@ -116,7 +114,6 @@ public class ItemXMLLoader extends DefaultHandler {
 			name = attrs.getValue("name");
 			attributes = new LinkedList<Pair<String, String>>();
 			slots = new LinkedList<String>();
-			stackable = false;
 			description = null;
 			implementation = null;
 		} else if (qName.equals("type")) {
@@ -131,8 +128,6 @@ public class ItemXMLLoader extends DefaultHandler {
 			} catch (ClassNotFoundException ex) {
 				logger.error("Unable to load class: " + className);
 			}
-		} else if (qName.equals("stackable")) {
-			stackable = true;
 		} else if (qName.equals("weight")) {
 			weight = Double.parseDouble(attrs.getValue("value"));
 		} else if (qName.equals("slot")) {
@@ -155,17 +150,10 @@ public class ItemXMLLoader extends DefaultHandler {
 			item.setEquipableSlots(slots);
 			item.setAttributes(attributes);
 			item.setDescription(description);
-			if (stackable) {
-				item.setStackable();
-			}
 
-			/*
-			 * Safety-net for old code/config (for now)
-			 */
 			if (implementation == null) {
 				logger.error("Item without defined implementation: " + name);
-
-				implementation = stackable ? StackableItem.class : Item.class;
+				return;
 			}
 
 			item.setImplementation(implementation);
