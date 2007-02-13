@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.common;
 
-import java.util.List;
-import java.util.Vector;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
@@ -24,30 +22,58 @@ public class Level {
 
 	private static int LEVELS = 100;
 
-	private static List<Integer> table;
+	private static int []		xp;
+
+	private static double []	wisdom;
 
 	static {
-		table = new Vector<Integer>();
-		table.add(0);
-		table.add(50);
-		table.add(100);
-		table.add(200);
-		table.add(400);
-		table.add(800);
+		/*
+		 * Calculate eXPeriance
+		 */
+		xp = new int[LEVELS+1];
+
+		xp[0] = 0;
+		xp[1] = 50;
+		xp[3] = 100;
+		xp[3] = 200;
+		xp[4] = 400;
+		xp[5] = 800;
 
 		for (int i = 5; i < LEVELS; i++) {
 			int exp = ((i * 16 + i * i * 5 + i * i * i * 10 + 300) / 100) * 100;
-			table.add(exp);
+			xp[i+1] = exp;
 		}
 
-		for (int i = 0; i < LEVELS; i++) {
-			logger.debug("Level " + i + ": " + table.get(i));
+		if(logger.isDebugEnabled()) {
+			for (int i = 0; i < LEVELS; i++) {
+				logger.debug(
+					"Level " + i + ": " + xp[i] + " xp");
+			}
+		}
+
+
+		/*
+		 * Calculate Wisdom
+		 */
+		wisdom = new double[LEVELS];
+
+		for(int i = 0; i < LEVELS; i++) {
+			wisdom[i] = 1.0 - (1 / Math.pow(1.01, i));
+		}
+
+		if(logger.isDebugEnabled()) {
+			for (int i = 0; i < LEVELS; i++) {
+				logger.debug(
+					"Level " + i + ": "
+					+ (int) ((wisdom[i] * 100.0) + 0.5)
+					+ " wisdom");
+			}
 		}
 	}
 
 	public static void main(String[] args) {
 		for (int i = 0; i < LEVELS; i++) {
-			System.out.println("<tr><td>" + i + "</td><td>" + table.get(i)
+			System.out.println("<tr><td>" + i + "</td><td>" + xp[i]
 					+ "</td></tr>");
 		}
 	}
@@ -57,15 +83,16 @@ public class Level {
 	}
 
 	public static int getLevel(int exp) {
+		// XXX - Use Arrays.binarySearch() instead?
 		int first = 0;
 		int last = LEVELS - 1;
-		if (exp <= table.get(first))
+		if (exp <= xp[first])
 			return first;
-		if (exp >= table.get(last))
+		if (exp >= xp[last])
 			return last;
 		while (last - first > 1) {
 			int current = first + ((last - first) / 2);
-			if (exp < table.get(current)) {
+			if (exp < xp[current]) {
 				last = current;
 			} else {
 				first = current;
@@ -75,8 +102,8 @@ public class Level {
 	}
 
 	public static int getXP(int level) {
-		if (level >= 0 && level < table.size()) {
-			return table.get(level);
+		if (level >= 0 && level < xp.length) {
+			return xp[level];
 		}
 		return -1;
 	}
@@ -84,17 +111,34 @@ public class Level {
 	public static int changeLevel(int exp, int added) {
 		int i;
 		for (i = 0; i < LEVELS; i++) {
-			if (exp < table.get(i)) {
+			if (exp < xp[i]) {
 				break;
 			}
 		}
 
 		for (int j = i; j < LEVELS; j++) {
-			if (exp + added < table.get(j)) {
+			if (exp + added < xp[j]) {
 				return j - i;
 			}
 		}
 
 		return 0;
+	}
+
+
+	/**
+	 * Get an entity's wisdom factor based on their level. As no one
+	 * really has 100% (i.e. 1.0) wisdom, it should be scaled as needed.
+	 *
+	 * @param	A player level.
+	 *
+	 * @return	A value between <code>0.0</code> (inclusive) and
+	 *		<code>1.0</code> (exclusive).
+	 */
+	public static double getWisdom(int level) {
+		if(level > LEVELS)
+			level = LEVELS;
+
+		return wisdom[level];
 	}
 }
