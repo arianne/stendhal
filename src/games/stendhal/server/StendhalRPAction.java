@@ -234,17 +234,9 @@ public class StendhalRPAction {
 			} else if(source.canDoRangeAttacks()) {
 				// XXX - Should different weapons have different ranges??
 
-				// Check Line of View to see if there is any obstacle.
-				Vector<Point> points = Line.renderLine(source.getX(), source.getY(), target.getX(), target.getY());
-				for (Point point : points) {
-					if (zone.collides((int) point.getX(), (int) point.getY())) {
-						/**
-						 * NOTE: Disabled to ease ranged combat.
-						 * target.onAttack(source, false);
-						 * world.modify(source);
-						 */
-						return false;
-					}
+//				 Check Line of View to see if there is any obstacle.
+				if (zone.collidesOnLine(source.getX(), source.getY(), target.getX(), target.getY())) {
+					return false;
 				}
 			} else {
 				logger.debug("Attack from " + source + " to " + target + " failed because target is not near.");

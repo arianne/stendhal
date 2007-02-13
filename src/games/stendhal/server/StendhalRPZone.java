@@ -14,6 +14,7 @@ package games.stendhal.server;
 
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
+import games.stendhal.common.Line;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
@@ -42,6 +43,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -772,6 +774,28 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else {
 			super.modify(object);
 		}
+	}
+
+	/**
+	 * Checks if there is a collision on the airline between 2 positions. 
+	 * Only the collision map will be used.
+	 * 
+	 * @param x1 x value of position 1
+	 * @param y1 y value of position 1
+	 * @param x2 x value of position 2
+	 * @param y2 y value of position 2
+	 * @return true if there is a collision
+	 */
+	public boolean collidesOnLine(int x1, int y1, int x2, int y2)
+			throws AttributeNotFoundException {
+
+		Vector<Point> points = Line.renderLine(x1, y1, x2, y2);
+		for (Point point : points) {
+			if (collides((int) point.getX(), (int) point.getY())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public boolean collides(int x, int y) throws AttributeNotFoundException {

@@ -232,7 +232,9 @@ public class Creature extends NPC {
 
 		stop();
 		attackTurn = Rand.rand(5);
-		logger.debug("Created " + get("class") + ":" + this);
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Created " + get("class") + ":" + this);
+		}
 	}
 
 	public Creature getInstance() {
@@ -321,7 +323,17 @@ public class Creature extends NPC {
 
 		stop();
 		attackTurn = Rand.rand(5);
-		logger.debug("Created " + clazz + ":" + this);
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Created " + clazz + ":" + this);
+		}
+	}
+
+	public RPObject.ID getIDforDebug() {
+		try {
+			return getID();
+		} catch (AttributeNotFoundException e) {
+			return INVALID_ID;
+		}
 	}
 
 	protected void createPath() {
@@ -626,8 +638,10 @@ public class Creature extends NPC {
 					.append('|');
 		}
 
-		logger.debug("Creature(" + get("type") + ") has been attacked by "
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Creature(" + get("type") + ") has been attacked by "
 				+ target.get("type"));
+		}
 	}
 
 	/**
@@ -653,9 +667,10 @@ public class Creature extends NPC {
 		// ...and find another target
 		target = getNearestEnemy(7 + Math.max(width, height));
 		if (target != null) {
-			logger
-					.debug("Creature(" + get("type")
-							+ ") gets a new target.");
+			if (logger.isDebugEnabled()) {
+				logger.debug(getIDforDebug() + " Creature(" + get("type")
+						+ ") gets a new target.");
+			}
 			if (Debug.CREATURES_DEBUG_SERVER) {
 				debug.append("newtarget;").append(
 						target.getID().getObjectID()).append('|');
@@ -668,7 +683,9 @@ public class Creature extends NPC {
 	 */
 	private void logicCreatePatrolPath() {
 		// Create a patrolpath
-		logger.debug("Creating Path for this entity");
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Creating Path for this entity");
+		}
 		List<Path.Node> nodes = new LinkedList<Path.Node>();
 		long time = System.nanoTime();
 		if (aiProfiles.keySet().contains("patrolling")) {
@@ -686,6 +703,9 @@ public class Creature extends NPC {
 		}
 		long time2 = System.nanoTime() - time;
 
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Path is: " + nodes);
+		}
 		setPath(nodes, true);
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
@@ -698,7 +718,9 @@ public class Creature extends NPC {
 	 * Follow the patrolling path
 	 */
 	private void logicFollowPatrolPath() {
-		logger.debug("Following path");
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Following path");
+		}
 		if (hasPath()) {
 			Path.followPath(this, getSpeed());
 		}
@@ -713,7 +735,9 @@ public class Creature extends NPC {
 	 */
 	private void logicStopAttackBecauseTargetOutOfReach() {
 		// target out of reach
-		logger.debug("Attacker is too far. Creature stops attack");
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Attacker is too far. Creature stops attack");
+		}
 		target = null;
 		clearPath();
 		stopAttack();
@@ -729,7 +753,9 @@ public class Creature extends NPC {
 	 */
 	private void logicCreateNewPathToMovingTarget() {
 		// target not near but in reach and is moving
-		logger.debug("Moving to target. Searching new path");
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Moving to target. Searching new path");
+		}
 		clearPath();
 		setMovement(target, 0, 0, 20.0);
 		
@@ -737,7 +763,9 @@ public class Creature extends NPC {
 			if (!nextTo(target, 0.25)) {
 				stopAttack();
 				target = null;
-				logger.debug("Large creature wall bug workaround");
+				if (logger.isDebugEnabled()) {
+					logger.debug(getIDforDebug() + " Large creature wall bug workaround");
+				}
 				return;
 			}
 		}
@@ -762,16 +790,121 @@ public class Creature extends NPC {
 			debug.append("attacking|");
 		}
 		// target is near
-		logger.debug("Next to target. Creature stops and attacks");
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Next to target. Creature stops and attacks");
+		}
 		stop();
 		attack(target);
 		faceTo(target);
 		aiState = AiState.ATTACKING;
 	}
-	
+
+	/**
+	 * Checks if the postion (x, y) is a good position for range combat.
+	 * @param x x value of the position
+	 * @param y y value of the position
+	 * @return true if this is a good position for range combat
+	 */
+	private boolean isGoodRangeCombatPosition(int x, int y) {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
+				get("zoneid"));
+		double distance = target.squaredDistance(x, y);
+		if (distance > 7 * 7) {
+			return false;
+		}
+		// TODO: work only for 1x2 size creature attacks 1x2 size target
+		if (distance <= 2) {
+			return false;
+		}
+		if (zone.collides(this, x, y)) {
+			return false;
+		}
+		if (zone.collidesOnLine(x, y, target.getX(), target.getY())) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Attackts the target from distance. The creature does some pseudo random
+	 * movement. The moves are done with a path with the size of 1. The higher
+	 * the distance, the higher is the chance to move and the pseudo random move
+	 * prefers potitions which are closer to the target.
+	 */
+	private void logicRangeAttack() {
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			debug.append("rangeattack|");
+		}
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Range Attack");
+		}
+
+		if (collides()) {
+			clearPath();
+		}
+
+		// the path can be the path to the target or the pseudo random move
+		if (hasPath()) {
+			if (getPath().size() == 1) {
+				// pseudo random move. complete it
+				if (!Path.followPath(this, getSpeed())) {
+					return;
+				}
+				clearPath();
+			}
+		}
+
+		double distance = squaredDistance(target);
+		int rand = Rand.roll1D100();
+		Direction nextDir = Direction.STOP;
+
+		// force move if this is not a good position
+		if (!isGoodRangeCombatPosition(getX(), getY())) {
+			distance += rand;
+		}
+		// The higher the distance, the higher is the chance to move
+		if (distance > rand) {
+			
+			// move randomly but give closer postions a higher chance
+			double nextRndDistance = distance + Rand.rand(7);
+
+			for (Direction dir : Direction.values()) {
+				if (dir != Direction.STOP) {
+
+					int nx = getX() + dir.getdx();
+					int ny = getY() + dir.getdy();
+
+					if (isGoodRangeCombatPosition(nx, ny)) {
+
+						distance = target.squaredDistance(nx, ny);
+						double rndDistance = distance + Rand.rand(7);
+
+						if (rndDistance < nextRndDistance) {
+							nextDir = dir;
+							nextRndDistance = rndDistance;
+						}
+					}
+				}
+			}
+		}
+		if (nextDir == Direction.STOP) {
+			// TODO: use pathfinder if this is not a good position
+			logicAttack();
+		} else {
+			List<Path.Node> nodes = new LinkedList<Path.Node>();
+			int nx = getX() + nextDir.getdx();
+			int ny = getY() + nextDir.getdy();
+			nodes.add(new Path.Node(nx, ny));
+			setPath(nodes, false);
+			Path.followPath(this, getSpeed());
+		}
+	}
+
 	private void logicMoveToTargetAndAttack() {
 		// target in reach and not moving
-		logger.debug("Moving to target. Creature attacks");
+		if (logger.isDebugEnabled()) {
+			logger.debug(getIDforDebug() + " Moving to target. Creature attacks");
+		}
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			debug.append("movetotarget");
 		}
@@ -828,7 +961,9 @@ public class Creature extends NPC {
 				if (Debug.CREATURES_DEBUG_SERVER) {
 					debug.append(";blocked");
 				}
-				logger.debug("Blocked. Choosing a new target.");
+				if (logger.isDebugEnabled()) {
+					logger.debug(getIDforDebug() + " Blocked. Choosing a new target.");
+				}
 				
 				target = null;
 				clearPath();
@@ -869,7 +1004,7 @@ public class Creature extends NPC {
 			say(noises.get(pos));
 		}
 	}
-	
+
 	@Override
 	public void logic() {
 		StendhalRPWorld world = StendhalRPWorld.get();
@@ -900,10 +1035,12 @@ public class Creature extends NPC {
 			logicFollowPatrolPath();
 		} else if (squaredDistance(target) > 18 * 18) {
 			logicStopAttackBecauseTargetOutOfReach();
-		} else if (!nextTo(target, 0.25) && !target.stopped()) {
-			logicCreateNewPathToMovingTarget();
-		} else if (nextTo(target, 0.25)) {
+		} else if (nextTo(target, 0.25) && !canDoRangeAttacks()) {
 			logicAttack();
+		} else if ((squaredDistance(target) <= 7 * 7) && canDoRangeAttacks()) {
+			logicRangeAttack();
+		} else if (!target.stopped()) {
+			logicCreateNewPathToMovingTarget();
 		} else {
 			logicMoveToTargetAndAttack();
 		}
