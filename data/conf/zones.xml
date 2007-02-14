@@ -556,6 +556,25 @@ the wolves while searching for berries here
     <portal x="16" y="46" ref="entrance_right">
      <destination zone="0_semos_city" ref="townhall_entrance_right"/>
     </portal>
+
+    <!-- Prevent table dancing (this is a family friendly townhall) -->
+<!-- XXX - Uncomment if trading table map update is added:
+    <entity x="4" y="32">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    </entity>
+
+    <entity x="4" y="33">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    </entity>
+
+    <entity x="6" y="32">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    </entity>
+
+    <entity x="6" y="33">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    </entity>
+-->
    </zone>
 
    <zone name="int_semos_bakery" file="int_semos_bakery.xstend">
