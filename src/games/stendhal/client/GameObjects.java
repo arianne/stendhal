@@ -159,32 +159,40 @@ public class GameObjects implements Iterable<Entity> {
 	public void add(RPObject object) throws AttributeNotFoundException {
 		Log4J.startMethod(logger, "add");
 
-		Entity entity = entityType(object);
+		if(!object.has("server-only")) {
+			Entity entity = entityType(object);
 
-		entity.onAdded(object);
-		fireMovementEvent(entity, object, null);
-		fireZoneChangeEvent(entity, object, null);
+			entity.onAdded(object);
+			fireMovementEvent(entity, object, null);
+			fireZoneChangeEvent(entity, object, null);
 
-		if (entity instanceof TalkEvent) {
-			fireTalkEvent((TalkEvent) entity, object, null);
+			if (entity instanceof TalkEvent) {
+				fireTalkEvent(
+					(TalkEvent) entity, object, null);
+			}
+
+			if (entity instanceof HPEvent) {
+				fireHPEvent((HPEvent) entity, object, null);
+			}
+
+			if (entity instanceof KillEvent) {
+				fireKillEvent(
+					((KillEvent) entity), object, null);
+			}
+
+			if (entity instanceof AttackEvent) {
+				fireAttackEvent(
+					((RPEntity) entity), object, null);
+			}
+
+			objects.put(entity.getID(), entity);
+			sortedObjects.add(entity);
+
+			logger.debug("added " + entity);
+		} else {
+			logger.debug("Discarding object: " + object);
 		}
 
-		if (entity instanceof HPEvent) {
-			fireHPEvent((HPEvent) entity, object, null);
-		}
-
-		if (entity instanceof KillEvent) {
-			fireKillEvent(((KillEvent) entity), object, null);
-		}
-
-		if (entity instanceof AttackEvent) {
-			fireAttackEvent(((RPEntity) entity), object, null);
-		}
-
-		objects.put(entity.getID(), entity);
-		sortedObjects.add(entity);
-
-		logger.debug("added " + entity);
 		Log4J.finishMethod(logger, "add");
 	}
 

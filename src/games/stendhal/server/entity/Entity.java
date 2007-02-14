@@ -40,6 +40,11 @@ public abstract class Entity extends RPObject {
 		entity.add("y", RPClass.SHORT);
 		entity.add("dir", RPClass.BYTE, RPClass.VOLATILE);
 		entity.add("speed", RPClass.FLOAT, RPClass.VOLATILE);
+
+		/*
+		 * If this is set, the client will discard/ignore entity
+		 */
+		entity.add("server-only", RPClass.FLAG, RPClass.VOLATILE);
 	}
 
 	public Entity(RPObject object) throws AttributeNotFoundException {
