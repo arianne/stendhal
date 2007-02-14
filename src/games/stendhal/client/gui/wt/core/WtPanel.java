@@ -24,6 +24,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.List;
+import javax.swing.JPopupMenu;
 
 import marauroa.common.Log4J;
 
@@ -1047,6 +1048,13 @@ public class WtPanel implements WtDraggable {
 		if (parent != null) {
 			// moves the contex-menu to match the position of this panel
 			contextMenu.move(x, y);
+			parent.setContextMenu(contextMenu);
+		}
+	}
+
+	public void setContextMenu(JPopupMenu contextMenu) {
+		if (parent != null) {
+			// moves the contex-menu to match the position of this panel
 			parent.setContextMenu(contextMenu);
 		}
 	}

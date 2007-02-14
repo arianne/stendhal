@@ -26,6 +26,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.JPopupMenu;
 
 /**
  * Frame is the main gui container. It spans the whole screen and does not have
@@ -51,6 +52,9 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 
 	/** the context menu, if there is one */
 	private WtList contextMenu;
+
+	/** the context menu, if there is one */
+	private JPopupMenu jcontextMenu;
 
 	/** a flag for tracking ContextMenu changes */
 	private boolean recreatedContextMenu;
@@ -89,11 +93,31 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * outside of it.
 	 */
 	public void setContextMenu(WtList contextMenu) {
+		if (jcontextMenu != null) {
+			jcontextMenu.setVisible(false);
+			jcontextMenu = null;
+		}
+
 		if (this.contextMenu != null) {
 			this.contextMenu.close();
 		}
 		this.contextMenu = contextMenu;
 		this.contextMenu.setParent(this);
+		recreatedContextMenu = true;
+	}
+
+
+	public void setContextMenu(JPopupMenu jcontextMenu) {
+		if (contextMenu != null) {
+			contextMenu.close();
+			contextMenu = null;
+		}
+
+		if (this.jcontextMenu != null) {
+			this.jcontextMenu.setVisible(false);
+		}
+
+		this.jcontextMenu = jcontextMenu;
 		recreatedContextMenu = true;
 	}
 
@@ -210,15 +234,32 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 			onMouseRightClick(p);
 		}
 
-		// whatever the click was...delete the context menu (if it wasn't
-		// recreated
-		// during the callbacks)
-		if (contextMenu != null && !recreatedContextMenu) {
-			contextMenu.setParent(null);
-			contextMenu.close();
-			contextMenu = null;
+		if(recreatedContextMenu) {
+			/*
+			 * A context menu was added
+			 */
+			if(jcontextMenu != null) {
+				jcontextMenu.show(
+					e.getComponent(), e.getX(), e.getY());
+			}
+
+			recreatedContextMenu = false;
+		} else {
+			/*
+			 * whatever the click was...delete the context menu
+			 * (if it wasn't recreated during the callbacks)
+			 */
+			if (contextMenu != null) {
+				contextMenu.setParent(null);
+				contextMenu.close();
+				contextMenu = null;
+			}
+
+			if(jcontextMenu != null) {
+				jcontextMenu.setVisible(false);
+				jcontextMenu = null;
+			}
 		}
-		recreatedContextMenu = false;
 	}
 
 	/**
