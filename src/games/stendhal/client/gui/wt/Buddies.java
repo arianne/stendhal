@@ -20,10 +20,18 @@ import games.stendhal.client.*;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtList;
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
+
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
@@ -57,9 +65,6 @@ public class Buddies extends WtPanel {
 	}
 
 	public synchronized boolean onMouseRightClick(Point p) {
-		String[] actions;
-		String[] onlineActions = { "Talk", "Where", "Remove" };
-		String[] offlineActions = { "Msg", "Remove" };
 		int i = ((int) p.getY() - 2) / 20 - 1;
 		if (i < buddies.size() && i >= 0) {
 
@@ -77,43 +82,82 @@ public class Buddies extends WtPanel {
 					isOnline = true; 
 				}
 			}
-			if (isOnline) {
-				actions = onlineActions;
+
+			StyledJPopupMenu menu =
+				new StyledJPopupMenu(
+					WoodStyle.getInstance(),
+					buddies.get(i));
+
+			ActionListener listener =
+				new ActionSelectedCB(buddies.get(i));
+
+			JMenuItem mi;
+
+			if(isOnline) {
+				mi = new JMenuItem("Talk");
+				mi.setActionCommand("talk");
+				mi.addActionListener(listener);
+				menu.add(mi);
+
+				mi = new JMenuItem("Where");
+				mi.setActionCommand("where");
+				mi.addActionListener(listener);
+				menu.add(mi);
 			} else {
-				actions = offlineActions;
+				mi = new JMenuItem("Leave Message");
+				mi.setActionCommand("leave-message");
+				mi.addActionListener(listener);
+				menu.add(mi);
 			}
 
-			WtList list = new WtList(buddies.get(i), actions, -100, 0, 100, 100) {
-				@Override
-				public void onClick(String name, Point point) {
-					StendhalClient client = StendhalClient.get();
-					// Compatibility to grandfathered accounts with a ' '
-					// New accounts cannot contain a space anymore.
-					String buddieName = getName();
-					if (buddieName.indexOf(' ') > -1) {
-						buddieName = "'" + buddieName + "'";
-					}
-					if (name.equals("Talk")) {
-						client.getTextLineGUI().setText("/tell " + buddieName + " ");
-					} else if (name.equals("Msg")) {
-						client.getTextLineGUI().setText("/msg postman tell " + buddieName + " ");
-					} else if (name.equals("Where")) {
-						RPAction where = new RPAction();
-						where.put("type", "where");
-						where.put("target", getName());
-						client.send(where);
-					} else if (name.equals("Remove")) {
-						RPAction where = new RPAction();
-						where.put("type", "removebuddy");
-						where.put("target", getName());
-						client.send(where);
-					}
-				}
-			};
-			setContextMenu(list);
+			mi = new JMenuItem("Remove");
+			mi.setActionCommand("remove");
+			mi.addActionListener(listener);
+			menu.add(mi);
+
+			setContextMenu(menu);
 		}
 		return true;
 	}
+
+
+	/**
+	 * Handle a choosen popup item.
+	 */
+	protected void doAction(String command, String buddieName) {
+		StendhalClient client = StendhalClient.get();
+
+		if (command.equals("talk")) {
+			// Compatibility to grandfathered accounts with a ' '
+			// New accounts cannot contain a space anymore.
+			if (buddieName.indexOf(' ') > -1) {
+				buddieName = "'" + buddieName + "'";
+			}
+
+			client.getTextLineGUI().setText(
+				"/tell " + buddieName + " ");
+		} else if (command.equals("leave-message")) {
+			// Compatibility to grandfathered accounts with a ' '
+			// New accounts cannot contain a space anymore.
+			if (buddieName.indexOf(' ') > -1) {
+				buddieName = "'" + buddieName + "'";
+			}
+
+			client.getTextLineGUI().setText(
+				"/msg postman tell " + buddieName + " ");
+		} else if (command.equals("where")) {
+			RPAction where = new RPAction();
+			where.put("type", "where");
+			where.put("target", buddieName);
+			client.send(where);
+		} else if (command.equals("remove")) {
+			RPAction where = new RPAction();
+			where.put("type", "removebuddy");
+			where.put("target", buddieName);
+			client.send(where);
+		}
+	}
+
 
 	/** refreshes the player stats and draws them */
 	public Graphics draw(Graphics g) {
@@ -152,5 +196,36 @@ public class Buddies extends WtPanel {
 		
 		return clientg;		
 	}
-	
+
+	//
+	//
+
+	/**
+	 * Handle action selections.
+	 */
+	protected class ActionSelectedCB implements ActionListener {
+		/**
+		 * The buddy to act on.
+		 */
+		protected String	buddy;
+
+
+		/**
+		 * Create a listener for action items.
+		 *
+		 *
+		 */
+		public ActionSelectedCB(String buddy) {
+			this.buddy = buddy;
+		}
+
+
+		//
+		// ActionListener
+		//
+
+		public void actionPerformed(ActionEvent ev) {
+			doAction(ev.getActionCommand(), buddy);
+		}
+	};
 }

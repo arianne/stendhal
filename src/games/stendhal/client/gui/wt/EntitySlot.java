@@ -185,7 +185,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			StendhalClient client = StendhalClient.get();
 			Entity entity = gameObjects.entityType(content);
 			CommandList list = new CommandList(getName(), entity
-					.offeredActions(), 0, 0, 100, 100, client, entity);
+					.offeredActions(), client, entity);
 			list.setContext(parent.getID().getObjectID(), getName());
 			setContextMenu(list);
 		}
