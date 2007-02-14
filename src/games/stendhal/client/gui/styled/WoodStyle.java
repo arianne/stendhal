@@ -1,0 +1,122 @@
+/*
+ * @(#) src/games/stendhal/client/gui/styled/WoodStyle.java
+ *
+ * $Id$
+ */
+
+package games.stendhal.client.gui.styled;
+
+//
+//
+
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.border.Border;
+import javax.swing.border.SoftBevelBorder;
+
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+
+/**
+ * The wood style.
+ */
+public class WoodStyle implements Style {
+	/**
+	 * A shared instance.
+	 */
+	private static Style	sharedInstance;
+
+
+	/**
+	 * The background texture
+	 */
+	protected Sprite	background;
+
+	/**
+	 * The border.
+	 */
+	protected Border	border;
+
+	/**
+	 * The default font.
+	 */
+	protected Font		font;
+
+
+	public WoodStyle() {
+		/*
+		 * Load the texture
+		 */
+		SpriteStore st = SpriteStore.get();
+		background = st.getSprite("data/gui/panelwood003.jpg");
+
+		border = new SoftBevelBorder(
+			SoftBevelBorder.RAISED,
+			new Color(0.6f, 0.5f, 0.2f),
+			new Color(0.3f, 0.25f, 0.1f));
+
+		font = new Font("Dialog", Font.PLAIN, 12);
+	}
+
+
+	//
+	// WoodStyle
+	//
+
+	/**
+	 * Get a shared instance.
+	 *
+	 * @return	A shared instance.
+	 */
+	public static synchronized Style getInstance() {
+		if(sharedInstance == null)
+			sharedInstance = new WoodStyle();
+
+		return sharedInstance;
+	}
+
+
+	//
+	// Style
+	//
+
+	/**
+	 * Get the background texture.
+	 *
+	 * @return	A texture sprite.
+	 */
+	public Sprite getBackground() {
+		return background;
+	}
+
+
+	/**
+	 * Get component border.
+	 *
+	 * @return	A border, or <code>null</code> to use default.
+	 */
+	public Border getBorder() {
+		return border;
+	}
+
+
+	/**
+	 * Get the normal font.
+	 *
+	 * @return	A font.
+	 */
+	public Font getFont()
+	{
+		return font;
+	}
+
+
+	/**
+	 * Get the foreground color appropriete for the background texture.
+	 *
+	 * @return	A color.
+	 */
+	public Color getForeground() {
+		return Color.white;
+	}
+}
