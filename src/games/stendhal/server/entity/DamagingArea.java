@@ -10,6 +10,7 @@ package games.stendhal.server.entity;
 //
 
 import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -19,6 +20,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
 
+import games.stendhal.common.Level;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.events.MovementListener;
@@ -76,6 +78,7 @@ public class DamagingArea extends Entity
 	 double probability) throws AttributeNotFoundException {
 		put("name", name);
 		put("type", "damaging_area");
+		put("server-only", "");
 
 		this.damage = damage;
 		this.interval = interval;
@@ -91,13 +94,83 @@ public class DamagingArea extends Entity
 	//
 
 	/**
+	 * Calculate the entity's final defense value.
+	 * Taken from new (potential replacement) combat code.
+	 */
+	protected float calculateDefense(RPEntity entity) {
+		float	potential;
+		float	min;
+		float	score;
+
+
+		float armor = entity.getItemDef() + 1.0f;
+		int def = entity.getDEF();
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("defender has " + def
+				+ " and uses a armor of " + armor);
+		}
+
+		/*
+		 * The maximum defense skill can double armor effectiveness
+		 */
+		potential = ((float) Level.getWisdom(def)) * 2.0f * armor;
+
+		/*
+		 * Wisdom allows a certain amount of skill to always be used
+		 */
+		min = (float) Level.getWisdom(entity.getLevel()) * 0.60f;
+
+		score = ((rand.nextFloat() * (1.0f - min)) + min) * potential;
+
+		/*
+		 * Account for karma (+/-10%) potential
+		 */
+		score += ((float) entity.getKarma(0.1) * potential);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug(
+				"DEF MAX: " + potential
+					+ "  DEF SCORE: " + score);
+		}
+
+		return score;
+	}
+
+
+	/**
 	 * Inflict damage on an entity.
 	 *
 	 * @param	entity		The entity to damage.
 	 */
-	protected void doDamage(RPEntity entity) {
-		// Almost! Still need to account for player def.
-		entity.onDamage(this, damage);
+	protected boolean doDamage(RPEntity entity) {
+		float	attack;
+		float	defense;
+		int	actualDamage;
+
+
+		/*
+		 * Don't beat a dead horse!
+		 */
+		if(entity.getHP() == 0)
+			return false;
+
+		/*
+		 * TEMP HACK - Emulate some of user's def.
+		 */
+		attack = damage;
+		defense = calculateDefense(entity);
+		actualDamage = Math.round(attack - defense);
+
+//logger.info("attack: " + attack);
+//logger.info("defense: " + defense);
+//logger.info("actualDamage: " + actualDamage);
+
+		if(actualDamage <= 0)
+			return true;
+
+		entity.onDamage(this, Math.min(actualDamage, entity.getHP()));
+		return true;
 	}
 
 
@@ -107,10 +180,10 @@ public class DamagingArea extends Entity
 	 * @param	entity		The RPEntity to add.
 	 */
 	protected void addTarget(RPEntity entity) {
-		if(targets.isEmpty())
-			TurnNotifier.get().notifyInTurns(interval, this, null);
-
 		targets.add(entity);
+
+		if(targets.size() == 1)
+			TurnNotifier.get().notifyInTurns(interval, this, null);
 	}
 
 
@@ -138,7 +211,7 @@ public class DamagingArea extends Entity
 
 
 	/**
-	 * Checks whether players, NPCs etc. can walk over this entity.
+	 * Checks whether players, NPC's, etc. can walk over this entity.
 	 *
 	 * @return	<code>false</code>.
 	 */
@@ -153,6 +226,7 @@ public class DamagingArea extends Entity
 	 * @param	zone		The zone this was added to.
 	 */
 	public void onAdded(StendhalRPZone zone) {
+		super.onAdded(zone);
 		zone.addMovementListener(this);
 	}
 
@@ -164,6 +238,7 @@ public class DamagingArea extends Entity
 	 */
 	public void onRemoved(StendhalRPZone zone) {
 		zone.removeMovementListener(this);
+		super.onRemoved(zone);
 	}
 
 
@@ -176,9 +251,7 @@ public class DamagingArea extends Entity
 		/*
 		 * Reregister incase coordinates changed (could be smarter)
 		 */
-		zone = (StendhalRPZone)
-			StendhalRPWorld.get().getRPZone(getID());
-
+		zone = getZone();
 		zone.removeMovementListener(this);
 		zone.addMovementListener(this);
 	}
@@ -197,8 +270,7 @@ public class DamagingArea extends Entity
 	 * @param	newY		The new Y coordinate.
 	 */
 	public void onEntered(RPEntity entity, StendhalRPZone zone,
-	 int newX, int newY)
-	{
+	 int newX, int newY) {
 		addTarget(entity);
 	}
 
@@ -245,24 +317,29 @@ public class DamagingArea extends Entity
 	 * @param	currentTurn	Current turn number.
 	 * @param	message		The string that was used.
 	 */
-	public void onTurnReached(int currentTurn, String message)
-	{
+	public void onTurnReached(int currentTurn, String message) {
 		IRPZone		zone;
 		Rectangle2D	area;
 
 
-		zone = StendhalRPWorld.get().getRPZone(getID());
+		zone = getZone();
 		area = getArea();
 
 		/*
 		 * Damage entities still in the area
 		 */
-		for(RPEntity entity : targets) {
-			if(zone.has(entity.getID())
-			 && area.intersects(entity.getArea())) {
-				doDamage(entity);
+		Iterator<RPEntity> iter = targets.iterator();
+
+		while(iter.hasNext()) {
+			RPEntity entity = iter.next();
+
+			if(!zone.has(entity.getID())) {
+				iter.remove();
+			} else if(area.intersects(entity.getArea())) {
+				if(!doDamage(entity))
+					iter.remove();
 			} else {
-				removeTarget(entity);
+				iter.remove();
 			}
 		}
 

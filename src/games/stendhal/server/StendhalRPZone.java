@@ -935,6 +935,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 		boolean		newIn;
 
 
+		/*
+		 * Not in this zone?
+		 */
+		if(!has(entity.getID()))
+			return;
+
 		oeArea = entity.getArea(oldX, oldY);
 		neArea = entity.getArea(newX, newY);
 
@@ -944,14 +950,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 			oldIn = area.intersects(oeArea);
 			newIn = area.intersects(neArea);
 
-			if(!oldIn || newIn)
-				l.onEntered(entity, this, oldX, oldY);
+			if(!oldIn && newIn)
+				l.onEntered(entity, this, newX, newY);
 
-			if(oldIn || newIn)
+			if(oldIn && newIn)
 				l.onMoved(entity, this, oldX, oldY, newX, newY);
 
-			if(oldIn || !newIn)
-				l.onExited(entity, this, newX, newY);
+			if(oldIn && !newIn)
+				l.onExited(entity, this, oldX, oldY);
 		}
 	}
 

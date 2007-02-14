@@ -280,6 +280,35 @@ social hub of the Semos area!
    <attribute name="xml-entities">using</attribute>
   </configurator>
 
+<!-- TEST
+  <entity x="35" y="35">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">purple kryptonite</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">1</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="35" y="36">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">purple kryptonite</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">1</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="35" y="37">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">purple kryptonite</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">1</attribute>
+   </implementation>
+  </entity>
+-->
+
   <portal x="42" y="37" ref="tavern_entrance">
    <destination zone="int_semos_tavern_0" ref="entrance"/>
   </portal>
@@ -1111,6 +1140,124 @@ Mature sheep wanted: please speak to Sato
     <attribute name="rejected">You find it hard to enter. Perhaps something is missing.</attribute>
    </implementation>
   </portal>
+
+  <!-- Spikes -->
+  <entity x="4" y="57">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="57">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="57">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="4" y="58">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="58">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="58">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="4" y="59">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="59">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="59">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="4" y="60">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="60">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="60">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="4" y="61">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">20</attribute>
+    <attribute name="probability">30</attribute>
+   </implementation>
+  </entity>
  </zone>
 
  <zone name="-2_kotoch_entrance" file="sub_2_kotoch_entrance.xstend">
