@@ -229,11 +229,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	public void onTalk(String text) {
 		if (client.getPlayer() != null
 				&& distance(client.getPlayer()) < 15 * 15) {
-			if (!(this instanceof Creature)) // We avoid logging creature
-												// noises.
-			{
-				client.addEventLine(getName(), text);
-			}
+			//TODO: Creature circle reference
+			nonCreatureClientAddEventLine(text);
 
 			String line = text.replace("|", "");
 
@@ -258,6 +255,14 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			gameObjects.addText(this, /* getName()+" says: "+ */line,
 					Color.black, true);
 		}
+	}
+// TODO: this is just an ugly workaround to avoid cyclic dependencies with Creature
+	protected void nonCreatureClientAddEventLine(String text) {
+//		if (!(this instanceof Creature)) // We avoid logging creature
+//											// noises.
+//		{
+			client.addEventLine(getName(), text);
+		//}
 	}
 
 	// Called when entity listen to text from talker

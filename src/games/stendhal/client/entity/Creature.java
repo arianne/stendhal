@@ -28,8 +28,13 @@ import java.util.List;
 import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
-@SuppressWarnings("unused")
+
 public abstract class Creature extends NPC {
+	@Override
+	protected void nonCreatureClientAddEventLine(String text) {
+		// no logging for Creature sounds in the client window
+	}
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Creature.class);
 
