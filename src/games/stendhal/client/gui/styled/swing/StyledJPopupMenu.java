@@ -122,7 +122,7 @@ public class StyledJPopupMenu extends JPopupMenu {
 	 *
 	 *
 	 */
-	public void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics g) {
 		Sprite	texture;
 
 
