@@ -14,8 +14,8 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 
@@ -26,15 +26,40 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 /**
  * A base dialog that implements ManagedWindow.
  *
+ * This saves it's coordinates relative to it's owner window to be
+ * compatible with existing saved interior-window positions (and to
+ * try and prevent WM decor shifting).
  *
  */
 public abstract class ManagedDialog implements ManagedWindow {
+	/**
+	 * The actual dialog.
+	 */
 	protected JDialog		dialog;
+
+	/**
+	 * The window name.
+	 */
 	protected String		name;
+
+	/**
+	 * The owner window.
+	 */
 	protected Frame			owner;
+
+	/**
+	 * Listeners interesting in close notifications.
+	 */
 	protected List<WtCloseListener>	closeListeners;
 
 
+	/**
+	 * Create a managed dialog window.
+	 *
+	 * @param	owner		The owner window.
+	 * @param	name		The logical name.
+	 * @param	title		The dialog window title.
+	 */
 	public ManagedDialog(Frame owner, String name, String title) {
 		JComponent	content;
 
@@ -46,7 +71,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 
 		dialog = new JDialog(owner, title);
 		dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
-		dialog.addComponentListener(new CL());
+		dialog.addComponentListener(new DialogStateHandler());
 
 		content = createContent();
 
@@ -66,24 +91,44 @@ public abstract class ManagedDialog implements ManagedWindow {
 
 	/**
 	 * Create the content component.
+	 * For now, if the content wishes to resize the dialog, it should
+	 * set a client property named <code>size-change</code> on itself.
 	 *
-	 *
+	 * @return	A component to implement the content.
 	 */
 	protected abstract JComponent createContent();
 
 
 	/**
-	 * Called when the window's minimize state changes.
+	 * Get the actual dialog.
+	 *
+	 * @return	The dialog.
 	 */
-	protected void minimizeChanged() {
-		WtWindowManager.getInstance().setMinimized(
-			this, isMinimized());
+	public JDialog getDialog() {
+		return dialog;
+	}
 
-		if(isMinimized())
+
+	/**
+	 * Called when the window's visible state changes.
+	 */
+	protected void visibilityChanged() {
+//		/*
+//		 * Update saved state
+//		 */
+//		WtWindowManager.getInstance().setVisible(this, isVisible());
+
+		/*
+		 * Notify close listeners
+		 */
+		if(isVisible())
 			fireCloseListeners();
 	}
 
 
+	/**
+	 * Call all registered close listeners.
+	 */
 	protected void fireCloseListeners() {
 		WtCloseListener []	listeners;
 
@@ -96,11 +141,21 @@ public abstract class ManagedDialog implements ManagedWindow {
 	}
 
 
+	/**
+	 * Register a close listener.
+	 *
+	 * @param	listener	A close listener.
+	 */
 	public void registerCloseListener(WtCloseListener listener) {
 		closeListeners.add(listener);
 	}
 
 
+	/**
+	 * Unregister a close listener.
+	 *
+	 * @param	listener	A close listener.
+	 */
 	public void removeCloseListener(WtCloseListener listener) {
 		closeListeners.remove(listener);
 	}
@@ -110,6 +165,9 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 * Called when the window's position changes.
 	 */
 	protected void windowMoved() {
+		/*
+		 * Update saved state
+		 */
 		WtWindowManager.getInstance().moveTo(this, getX(), getY());
 	}
 
@@ -121,10 +179,9 @@ public abstract class ManagedDialog implements ManagedWindow {
 	/**
 	 * Get the managed window name.
 	 *
-	 *
+	 * @return	The logical window name (not title).
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -134,8 +191,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 *
 	 * @return	A value sutable for passing to <code>moveTo()</code>.
 	 */
-	public int getX()
-	{
+	public int getX() {
 		return (dialog.getX() - owner.getX());
 	}
 
@@ -145,20 +201,28 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 *
 	 * @return	A value sutable for passing to <code>moveTo()</code>.
 	 */
-	public int getY()
-	{
+	public int getY() {
 		return (dialog.getY() - owner.getY());
 	}
 
 
 	/**
-	 * Determin if the window is visible.
+	 * Determine if the window is minimized.
+	 *
+	 * @return	<code>true</code> if the window is minimized.
+	 */
+	public boolean isMinimized() {
+		return false;
+	}
+
+
+	/**
+	 * Determine if the window is visible.
 	 *
 	 * @return	<code>true</code> if the window is visible.
 	 */
-	public boolean isMinimized()
-	{
-		return !dialog.isVisible();
+	public boolean isVisible() {
+		return dialog.isVisible();
 	}
 
 
@@ -172,48 +236,82 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 *
 	 * @return	<code>true</code> if the move was allowed.
 	 */
-	public boolean moveTo(int x, int y)
-	{
+	public boolean moveTo(int x, int y) {
+		/*
+		 * XXX -  Perhaps we should require some of it to remain on
+		 * the screen (incase it was saved while in hi-res, then run
+		 * in low-res)
+		 */
 		dialog.setLocation(x + owner.getX(), y + owner.getY());
 		return true;
 	}
 
 
 	/**
-	 * Set the window as hidden (or visible).
+	 * Set the window as minimized.
 	 *
-	 * @param	minimized	Whether the window should be hidden.
+	 * @param	minimized	Whether the window should be minimized.
 	 */
-	public void setMinimized(boolean minimized)
-	{
-		dialog.setVisible(!minimized);
+	public void setMinimized(boolean minimized) {
+		// No-op
+	}
+
+
+	/**
+	 * Set the window as visible (or hidden).
+	 *
+	 * @param	visible		Whether the window should be visible.
+	 */
+	public void setVisible(boolean visible) {
+		dialog.setVisible(visible);
 	}
 
 	//
 	//
 
-	protected class CL extends ComponentAdapter {
+	/**
+	 * Handle dialog state events.
+	 */
+	protected class DialogStateHandler extends ComponentAdapter {
 
 		//
 		// ComponentListener
 		//
 
+		/**
+		 * Dialog was made invisible.
+		 *
+		 * @param	ev		The event.
+		 */
 		public void componentHidden(ComponentEvent ev) {
-			minimizeChanged();
+			visibilityChanged();
 		}
 
 
+		/**
+		 * Dialog was moved.
+		 *
+		 * @param	ev		The event.
+		 */
 		public void componentMoved(ComponentEvent ev) {
-					windowMoved();
+			windowMoved();
 		}
 
 
+		/**
+		 * Dialog was made visible.
+		 *
+		 * @param	ev		The event.
+		 */
 		public void componentShown(ComponentEvent ev) {
-			minimizeChanged();
+			visibilityChanged();
 		}
 	}
 
 
+	/**
+	 * Handle content resize require property change.
+	 */
 	protected class ContentSizeChangeCB implements PropertyChangeListener {
 
 		//
@@ -221,8 +319,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 		//
 
 		public void propertyChange(PropertyChangeEvent ev) {
-System.err.println("->> pack()");
-			dialog.pack();
+			getDialog().pack();
 		}
 	}
 }

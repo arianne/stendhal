@@ -24,8 +24,6 @@ public class BuddyListDialog extends ManagedDialog {
 		super(frame, "buddies", "Buddies");
 
 		dialog.setResizable(false);
-
-		content = new BuddyListPanel();
 	}
 
 
@@ -43,6 +41,8 @@ public class BuddyListDialog extends ManagedDialog {
 	//
 
 	protected JComponent createContent() {
+		content = new BuddyListPanel();
+
 		return content;
 	}
 }

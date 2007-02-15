@@ -515,25 +515,52 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** tells this panel (and all subpanels) to close */
 	public void close() {
-		if (closed)
-			return;
-
-		closed = true;
-
-		// tell the childs to close too
-		for (WtPanel child : children) {
-			child.close();
-		}
-
-		// clear the parent
-		parent = null;
-
-		// inform all listeners we're closed
-		for (WtCloseListener listener : closeListeners) {
-			listener.onClose(name);
-		}
-
+		setVisible(false);
 	}
+
+
+	/**
+	 * Determine if the window is visible.
+	 *
+	 * @return	<code>true</code> if the window is visible.
+	 */
+	public boolean isVisible() {
+		return !isClosed();
+	}
+
+
+	/**
+	 * Set the window as visible (or hidden).
+	 *
+	 * @param	visible		Whether the window should be visible.
+	 */
+	public void setVisible(boolean visible) {
+		if(visible) {
+			if(closed) {
+				/*
+				 * Reactivate children
+				 */
+				for(WtPanel child : children) {
+					child.setVisible(true);
+				}
+
+				closed = false;
+			}
+		} else if(isCloseable() && !closed) {
+			closed = true;
+
+			// tell the childs to close too
+			for (WtPanel child : children) {
+				child.close();
+			}
+
+			// inform all listeners we're closed
+			for (WtCloseListener listener : closeListeners) {
+				listener.onClose(name);
+			}
+		}
+	}
+
 
 	/** notifies all registered clicklisteners that this panel has been clicked */
 	protected void notifyClickListeners(String name, Point point) {

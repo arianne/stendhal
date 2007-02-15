@@ -35,11 +35,19 @@ public interface ManagedWindow {
 
 
 	/**
-	 * Determin if the window is visible.
+	 * Determine if the window is minimized.
+	 *
+	 * @return	<code>true</code> if the window is minimized.
+	 */
+	public boolean isMinimized();
+
+
+	/**
+	 * Determine if the window is visible.
 	 *
 	 * @return	<code>true</code> if the window is visible.
 	 */
-	public boolean isMinimized();
+	public boolean isVisible();
 
 
 	/**
@@ -56,9 +64,17 @@ public interface ManagedWindow {
 
 
 	/**
-	 * Set the window as hidden (or visible).
+	 * Set the window as minimized.
 	 *
-	 * @param	minimized	Whether the window should be hidden.
+	 * @param	minimized	Whether the window should be minimized.
 	 */
 	public void setMinimized(boolean minimized);
+
+
+	/**
+	 * Set the window as visible (or hidden).
+	 *
+	 * @param	visible		Whether the window should be visible.
+	 */
+	public void setVisible(boolean visible);
 }
