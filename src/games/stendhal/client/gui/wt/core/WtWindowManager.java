@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.sound.SoundSystem;
 
@@ -116,7 +117,7 @@ public class WtWindowManager {
 	}
 
 	/** returns the config. If it does not exist yet, a new one is created. */
-	private WindowConfiguration getConfig(WtPanel panel) {
+	private WindowConfiguration getConfig(ManagedWindow panel) {
 		String name = panel.getName();
 		WindowConfiguration winC = configs.get(name);
 		if (winC == null) {
@@ -155,7 +156,7 @@ public class WtWindowManager {
 	 * Formats the window with the saved config. Nothing happens when this
 	 * windows config is not known.
 	 */
-	public void formatWindow(WtPanel panel) {
+	public void formatWindow(ManagedWindow panel) {
 		WindowConfiguration config = getConfig(panel);
 		if (config == null) {
 			// window not supervised
@@ -167,14 +168,14 @@ public class WtWindowManager {
 	}
 
 	/** the panel was moved, so update the internal representation */
-	public void moveTo(WtPanel panel, int x, int y) {
+	public void moveTo(ManagedWindow panel, int x, int y) {
 		WindowConfiguration config = getConfig(panel);
 		config.x = x;
 		config.y = y;
 	}
 
 	/** the panels minimized state changed, update the internal representation */
-	public void setMinimized(WtPanel panel, boolean state) {
+	public void setMinimized(ManagedWindow panel, boolean state) {
 		WindowConfiguration config = getConfig(panel);
 
 		if (config.minimized != state)
@@ -253,7 +254,7 @@ public class WtWindowManager {
 		}
 
 		/** reads the config from the properties */
-		public void readFromProperties(Properties props, WtPanel defaults) {
+		public void readFromProperties(Properties props, ManagedWindow defaults) {
 			readFromProperties(props, defaults.isMinimized(), defaults.getX(),
 					defaults.getY());
 		}

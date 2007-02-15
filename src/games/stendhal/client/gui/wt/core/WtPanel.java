@@ -18,6 +18,7 @@ package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.common.Debug;
 
 import java.awt.*;
@@ -50,7 +51,7 @@ import org.apache.log4j.Logger;
  * @see http://www.grsites.com/ for the textures
  * @author mtotz
  */
-public class WtPanel implements WtDraggable {
+public class WtPanel implements ManagedWindow, WtDraggable {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(WtPanel.class);
 
