@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="30" height="30" tilewidth="32" tileheight="32">
+<map version="0.99b" orientation="orthogonal" width="15" height="27" tilewidth="32" tileheight="32">
  <properties>
   <property name="x" value="500000"/>
   <property name="y" value="500000"/>
@@ -40,49 +40,49 @@
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
   <image source="tiled/zelda_monsters_chipset.png"/>
  </tileset>
- <layer name="library_0_floor" width="30" height="30">
+ <layer name="upstairs1_0_floor" width="15" height="27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3NMQ0AAAzDsDIY+BIeiH2TI/lOJynwzjVfXwDgvwVEcoNgEA4AAA==
+   H4sIAAAAAAAAAOtnZ2DoH8V0w0UcqHi46x1seCiG4XAK/8EUNqNxQhsMAHvLUotUBgAA
   </data>
  </layer>
- <layer name="library_1_terrain" width="30" height="30">
+ <layer name="upstairs1_1_terrain" width="15" height="27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEvjYGD4wE45TgWak0akWSC174B0BpDmowCnA/FbduLMQlbLA2RTArhJMIsUtaP2Dj97zTkZGHg5iMOeSGZ5IYlbcJJuL0jeEqjvPTtx2B2o3oMDwbfixG0uIXtB8uQCQuZeBuIrWMynlb3TgeIzgPgjEH+io71bgeLbCIRzOCf55XUEmfEbyklZmQ3CYWSkZ1qBUXtH7UUuo7GVteSoJ8ZeWBmNq6wlRz2x9pISF9Qyc9TeUXuHor2wtpg1MN/ZcBJur7ECMRsUsxPRvkM2F6YGuS0WCZSL4sTfXgNhZSBfBYpVOQirRzcXpAYAznFeQxAOAAA=
+   H4sIAAAAAAAAAEvjYGD4wE46TgXqewekM4A0Hwk4HYjfskP08gDZpADuAdI7HahnBpl6twL1bBti/qWG3stAfIWdPL0fgfgTmXqHYliN6h28eod63vcCsnlJwJ5QvR5A+j076dgdqA8ADV+QG1QGAAA=
   </data>
  </layer>
- <layer name="library_2_object" width="30" height="30">
+ <layer name="upstairs1_2_object" width="15" height="27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFhwgQ8TX8SBH7IzMDwC4sdA/IQdu3lqHAwM6kCswYHKRgfv+DDxexz4P8guoBmMQMyExawafgYGF6C4KxC7caCy6Qnc+XHLqeORoyVwBdqbjsduDyxy2MRIBcl4zGgCyjUDcQsQqzBDMLIYJUCJmTL9Q81eWqUrNX7sbBgglK5oBfClK0qALT92NgwoE4jfTmA51QXE3XzEsYkF2OxFLleXA81aAcQr+YhjX+Ijzr/Y0hVyuXoUaM4xID7ORxz7A5F+xpeu8JWvpKjBBmiVroYSUGSGlGPK0DKZGJAGDLdWftQyArlORwcf+BB4FEAAtvKVGDlQHsVV/uOLA0oAKL5d+XHnU0US6kFktxOqx6hlL8wcGCBUjxGylxSAbi8x7sRlL7HxS2v/Yqs7YAC5TMVXvsLMAKkZ6eUwACnhhxIQDgAA
+   H4sIAAAAAAAAAGNgGDzAgx8TKzND5OxZMdXfxiI2XEA1P3ZxDxzihEAaUF8rEXqVmMkzfyD1Uhuo8SMwMgClxWIWBoYSFtLNfMPHwDARqG8SGXqJAalkpgtKgSIF8YauVwPND7jiAR0sAsovBuIlZIaBOz9+PinmaPLj1s/FD8HEugObXlsoHswAAL0aAPNUBgAA
   </data>
  </layer>
- <layer name="library_3_roof" width="30" height="30">
+ <layer name="upstairs1_3_roof" width="15" height="27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQMdvCKDzub1oCDHzt7FIyCUTB4AT3LCGSAXEZc4ENgdHCJD4EHG8AXdrQMV3zlK7llL744GAVDH4zG7yigJgAA0xPychAOAAA=
+   H4sIAAAAAAAAAGNgGAWjYHCCV3wITCrg4EfgUUAZGI2HUUAKAAC2py/hVAYAAA==
   </data>
  </layer>
- <layer name="library_4_roof_add" width="30" height="30">
+ <layer name="upstairs1_4_roof_add" width="15" height="27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCqgDANwpFUNUBgAA
   </data>
  </layer>
- <layer name="library_objects" width="30" height="30">
+ <layer name="upstairs1_objects" width="15" height="27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWUghTOgXbB0AXVWMIOm9hAg8HoplEwCkbBKKA1GC37KAejYTj8AS3iGNnM4ZKG8PljuPg3jROChxoAAHGutfUQDgAA
+   H4sIAAAAAAAAAGNgGLoglXOgXQABs2ngjhQizaTUbmL0z0FTQwv/0hOg+2egzCDVPnrbORLAAk5UehRQDgBh/O3EVAYAAA==
   </data>
  </layer>
- <layer name="library_collision" width="30" height="30" visible="0" opacity="0.37">
+ <layer name="upstairs1_collision" width="15" height="27" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2USw7AIAhEXfco3v+A3TaNwAwKYloSEmMIb/hov1rrH3TGkFwRXEsHq/nnyrHemVnxUftaneu1UV5E2yqupqdivafuFVvvLBvp/+wsGavCzWSxe8ByEA3emIicGVz0vaHMUZ7sejUu8m8876XzSVz0Ha3kjmwH1+oDwn2zpBjGNVZlvwExUlvBEA4AAA==
+   H4sIAAAAAAAAANPiYmDQGkBMCMDUkKMX3ZyRrpfY8CbX3oHSi00/JXrxmYMuToq9lOglxs3k6h0oe9H1YuMTEy+E3ELPdIUvfkmxn5Jyk9iyl1YYAId78B9UBgAA
   </data>
  </layer>
- <layer name="library_navigation" width="30" height="30">
+ <layer name="upstairs1_navigation" width="15" height="27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCqgDANwpFUNUBgAA
   </data>
  </layer>
- <layer name="library_protection" width="30" height="30">
+ <layer name="upstairs1_protection" width="15" height="27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCqgDANwpFUNUBgAA
   </data>
  </layer>
 </map>
