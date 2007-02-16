@@ -30,8 +30,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
+import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+
+import marauroa.common.game.RPAction;
 
 /**
  * The minimap.
@@ -260,5 +263,50 @@ public class Minimap extends WtPanel {
 
 	public void setPlayer(Player player) {
 		this.player = player;
+	}
+	
+	public synchronized boolean onMouseDoubleClick(Point p) {
+		// Move the player to p
+
+		// first calculate the world destination coords
+		int panx = 0;
+		int pany = 0;
+
+		int w = image.getWidth();
+		int h = image.getHeight();
+
+		int xpos = (int) (player.getX() * scale) - width / 2;
+		int ypos = (int) ((player.getY()+1) * scale) - width / 2;
+
+		if (w > width) {
+			// need to pan width
+			if ((xpos + width) > w) {
+				// x is at the screen border
+				panx = w - width;
+			} else if (xpos > 0) {
+				panx = xpos;
+			}
+		}
+
+		if (h > height) {
+			// need to pan height
+			if ((ypos + height) > h) {
+				// y is at the screen border
+				pany = h - height;
+			} else if (ypos > 0) {
+				pany = ypos;
+			}
+		}
+		
+		// Now we have the world destination coords
+		int go_toX = (p.x + panx - 4) / scale;
+		int go_toY = (p.y + pany - scale - 18) / scale;
+	
+		RPAction action = new RPAction();
+		action.put("type", "moveto");
+		action.put("x", (int) go_toX);
+		action.put("y", (int) go_toY);
+		StendhalClient.get().send(action);
+		return true;
 	}
 }
