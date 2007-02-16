@@ -76,6 +76,10 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	/** The object sprite. Animationless, just one frame */
 	protected Sprite sprite;
 
+	
+	/**
+	 * defines the distance in which the entity is heard by Player
+	 */
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
 	protected GameObjects gameObjects;
@@ -260,10 +264,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	// When rpentity reachs the [x,y,1,1] area.
 	public void onEnter(int x, int y) {
-		if (this instanceof Player && client.getPlayer() != null
-				&& client.getPlayer().getID().equals(getID())) {
-			WorldObjects.firePlayerMoved((Player) this);
-		}
+	
 	}
 
 	// When rpentity leaves the [x,y,1,1] area.

@@ -191,4 +191,11 @@ public class Player extends RPEntity {
 			super.onAction(client, action, params);
 		}
 	}
+
+	@Override
+	public void onEnter(int x, int y) {
+		if (client.getPlayer() != null&& client.getPlayer().getID().equals(getID())) {
+			WorldObjects.firePlayerMoved( this);
+		}
+	}
 }
