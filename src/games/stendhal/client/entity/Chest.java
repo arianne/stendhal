@@ -81,7 +81,7 @@ public class Chest extends AnimatedEntity {
 			requestOpen = false;
 			
 			if(wtEntityContainer!=null) {
-				wtEntityContainer.close();
+				wtEntityContainer.destroy();
 				wtEntityContainer=null;
 			}
 				 

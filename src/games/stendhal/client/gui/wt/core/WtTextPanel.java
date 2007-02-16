@@ -107,6 +107,9 @@ public class WtTextPanel extends WtPanel {
 
 	/** draws the String */
 	public Graphics draw(Graphics g) {
+		if(isClosed())
+			return g;
+
 		// draw frame/title bar
 		Graphics clientArea = super.draw(g);
 

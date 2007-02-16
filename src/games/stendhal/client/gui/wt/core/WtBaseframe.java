@@ -51,9 +51,6 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	private boolean dragInProgress;
 
 	/** the context menu, if there is one */
-	private WtList contextMenu;
-
-	/** the context menu, if there is one */
 	private JPopupMenu jcontextMenu;
 
 	/** a flag for tracking ContextMenu changes */
@@ -92,27 +89,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * Sets the context menu. It is closed automatically one the user clicks.
 	 * outside of it.
 	 */
-	public void setContextMenu(WtList contextMenu) {
-		if (jcontextMenu != null) {
-			jcontextMenu.setVisible(false);
-			jcontextMenu = null;
-		}
-
-		if (this.contextMenu != null) {
-			this.contextMenu.close();
-		}
-		this.contextMenu = contextMenu;
-		this.contextMenu.setParent(this);
-		recreatedContextMenu = true;
-	}
-
-
 	public void setContextMenu(JPopupMenu jcontextMenu) {
-		if (contextMenu != null) {
-			contextMenu.close();
-			contextMenu = null;
-		}
-
 		if (this.jcontextMenu != null) {
 			this.jcontextMenu.setVisible(false);
 		}
@@ -131,11 +108,6 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	public synchronized Graphics draw(Graphics g) {
 		// draw the stuff
 		super.draw(g);
-
-		// draw the context menu if we have one
-		if (contextMenu != null) {
-			contextMenu.draw(g);
-		}
 
 		// do we have a dragged object?
 		if (dragInProgress && draggedObject != null) {
@@ -213,19 +185,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 
 		else if (e.getButton() == MouseEvent.BUTTON1) {
 			if (e.getClickCount() == 1) {
-				boolean contextMenuClicked = false;
-				// do we have a context menu?
-				if (contextMenu != null && !contextMenu.isClosed()) {
-					// yep, so inform it of the mouse click
-					Point other = new Point(p);
-					other.translate(-contextMenu.getX(), -contextMenu.getY());
-					contextMenuClicked = contextMenu.onMouseClick(other);
-				}
-
-				// process the rest if the context menu wasn't clicked
-				if (!contextMenuClicked) {
-					onMouseClick(p);
-				}
+				onMouseClick(p);
 			} else if (e.getClickCount() == 2) {
 				onMouseDoubleClick(p);
 			}
@@ -249,12 +209,6 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 			 * whatever the click was...delete the context menu
 			 * (if it wasn't recreated during the callbacks)
 			 */
-			if (contextMenu != null) {
-				contextMenu.setParent(null);
-				contextMenu.close();
-				contextMenu = null;
-			}
-
 			if(jcontextMenu != null) {
 				jcontextMenu.setVisible(false);
 				jcontextMenu = null;

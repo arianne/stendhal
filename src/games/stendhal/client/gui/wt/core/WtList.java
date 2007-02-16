@@ -71,6 +71,6 @@ public class WtList extends WtPanel implements WtClickListener {
 		// tell all listeners what happend
 		notifyClickListeners(name, point);
 		// close ourself
-		close();
+		destroy();
 	}
 }

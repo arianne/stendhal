@@ -52,6 +52,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	/** the Character panel */
 	private Character character;
 
+	/** the buddy list panel */
 	private Buddies buddies;
 
 	/** the minimap panel */
@@ -69,18 +70,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	/** map of the buttons (for faster access) ) */
 	private Map<String, WtButton> buttonMap;
 
-	/** is the minimap enabled (shown) */
-	private boolean minimapEnabled;
-
-	/** is the character panel enabled (shown) */
-	private boolean characterEnabled;
-
-	/** is the inventory panel enabled (shown) */
-	private boolean inventoryEnabled;
-
-	/** is the buddies panel enabled (shown) */
-	private boolean buddiesEnabled;
-
 	/** Creates a new instance of OptionsPanel */
 	public SettingsPanel(WtPanel frame, GameObjects gameObjects) {
 		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 200);
@@ -91,11 +80,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 		setMinimizeable(true);
 		setMinimized(true);
 		setCloseable(false);
-
-		minimapEnabled = true;
-		characterEnabled = true;
-		inventoryEnabled = true;
-		buddiesEnabled = true;
 
 		character = new Character(gameObjects);
 		character.registerCloseListener(this);
@@ -139,16 +123,16 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 		this.cd = cd;
 		this.gc = gc;
 		this.zone = zone;
-		
+
 		// close the old minimap if there is one
 		if (minimap != null) {
-			boolean enabled = minimapEnabled;
-			minimap.close(); // onClose() Listener disables the minimap
+			minimap.removeCloseListener(this);
+			minimap.destroy();
+			frame.removeChild(minimap);
 			minimap = null;
-			minimapEnabled = enabled; // restore enabled state
 		}
 
-		if (minimapEnabled) {
+		if (buttonMap.get("minimap").isPressed()) {
 			// add a new one
 			minimap = new Minimap(cd, gc, zone);
 			minimap.registerCloseListener(this);
@@ -183,6 +167,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 
 	/** draw the panel */
 	public Graphics draw(Graphics g) {
+		if(isClosed())
+			return g;
+
 		if (minimap != null && player != null) {
 			minimap.setPlayer(player);
 		}
@@ -192,91 +179,59 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 
 	/** a button was clicked */
 	public void onClick(String name, Point point) {
-		// check minimap
+		WtButton button = buttonMap.get(name);
+		boolean state = button.isPressed();
+
+		// check minimap panel
+//		if (name.equals("minimap")) {
+//			if(minimap != null) {
+//				minimap.setVisible(state);
+//			}
+//		}
+
 		if (name.equals("minimap")) {
 			// minimap disabled?
-			if (minimapEnabled) {
-				minimap.close();
-				minimap = null;
-				minimapEnabled = false;
-				// be sure to update the button
-				buttonMap.get(name).setPressed(false);
-			} else if (!minimapEnabled) {
+			if (!state) {
+				if(minimap != null) {
+					frame.removeChild(minimap);
+					minimap.destroy();
+					minimap = null;
+				}
+			} else {
 				// minimap enabled
 				minimap = new Minimap(cd, gc, zone);
 				minimap.registerCloseListener(this);
 				frame.addChild(minimap);
-				minimapEnabled = true;
-				buttonMap.get(name).setPressed(true);
 			}
-
 		}
 
 		// check character panel
 		if (name.equals("character")) {
-			// character disabled?
-			if (characterEnabled) {
-				character.close();
-				character = null;
-				characterEnabled = false;
-				// be sure to update the button
-				buttonMap.get(name).setPressed(false);
-			} else if (!characterEnabled) {
-				// character enabled
-				character = new Character(gameObjects);
-				character.registerCloseListener(this);
-				character.setPlayer(player);
-				frame.addChild(character);
-				characterEnabled = true;
-				buttonMap.get(name).setPressed(true);
-			}
+			character.setVisible(state);
 		}
 
 		// check inventory panel
 		if (name.equals("bag")) {
-			// inventory disabled?
-			if (inventoryEnabled) {
-				inventory.close();
-				inventory = null;
-				inventoryEnabled = false;
-				// be sure to update the button
-				buttonMap.get("bag").setPressed(false);
-			} else if (!inventoryEnabled) {
-				// character enabled
-				inventory = new EntityContainer(gameObjects, "bag", 3, 4);
-				inventory.registerCloseListener(this);
-				frame.addChild(inventory);
-				inventory.setSlot(player, "bag");
-				inventoryEnabled = true;
-				// be sure to update the button
-				buttonMap.get("bag").setPressed(true);
-			}
+			inventory.setVisible(state);
 		}
 
 		// check buddy panel
 		if (name.equals("buddies")) {
-			// buddy disabled?
-			if (buddiesEnabled) {
-				buddies.close();
-				buddies = null;
-				buddiesEnabled = false;
-				// be sure to update the button
-				buttonMap.get("buddies").setPressed(false);
-			} else if (!buddiesEnabled) {
-				// character enabled
-				buddies = new Buddies(gameObjects);
-				buddies.registerCloseListener(this);
-				frame.addChild(buddies);
-				buddiesEnabled = true;
-				// be sure to update the button
-				buttonMap.get("buddies").setPressed(true);
-			}
+			buddies.setVisible(state);
 		}
 	}
 
 	/** a window is closed */
 	public void onClose(String name) {
-		// pseudo-release the button
-		onClick(name, null);
+		if (name.equals("minimap")) {
+			frame.removeChild(minimap);
+			minimap.destroy();
+			minimap = null;
+		}
+
+		/*
+		 * Unset button
+		 */
+		buttonMap.get(name).setPressed(false);
 	}
 }

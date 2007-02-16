@@ -254,6 +254,9 @@ public class Character extends WtPanel {
 
 	/** refreshes the player stats and draws them */
 	public Graphics draw(Graphics g) {
+		if(isClosed())
+			return g;
+
 		refreshPlayerStats();
 		return super.draw(g);
 	}

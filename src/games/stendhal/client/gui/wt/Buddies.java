@@ -161,6 +161,9 @@ public class Buddies extends WtPanel {
 
 	/** refreshes the player stats and draws them */
 	public Graphics draw(Graphics g) {
+		if(isClosed())
+			return g;
+
 		Graphics clientg = super.draw(g);
 		
 		if(!isMinimized())  {

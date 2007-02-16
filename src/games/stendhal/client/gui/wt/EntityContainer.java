@@ -139,7 +139,7 @@ public class EntityContainer extends WtPanel {
 		if (distance > MAX_DISTANCE) {
 			logger.info("Closing " + slotName + " container because " + px
 					+ "," + py + " is far from " + ix + "," + iy);
-			close();
+			destroy();
 		}
 	}
 
@@ -154,6 +154,9 @@ public class EntityContainer extends WtPanel {
 	 * draws the panel. it also checks for modified slot content
 	 */
 	public Graphics draw(Graphics g) {
+		if(isClosed())
+			return g;
+
 		if (parent != null && slotName != null && !isClosed()) {
 			RPSlot rpslot = parent.getSlot(slotName);
 			// rescan the content if the size changes

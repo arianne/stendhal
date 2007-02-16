@@ -183,21 +183,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * notified before the panel is closed
 	 */
 	public void registerCloseListener(WtCloseListener listener) {
-		// window is closed anyway. No more closelisteners
-		// Note: this is necessary to avoid ConcurrentModificationExceptions
-		if (isClosed())
-			return;
-
 		closeListeners.add(listener);
 	}
 
 	/** removes a (registered) closelistener */
 	public void removeCloseListener(WtCloseListener listener) {
-		// window is closed anyway and all listeners are notified
-		// Note: this is necessary to avoid ConcurrentModificationExceptions
-		if (isClosed())
-			return;
-
 		closeListeners.remove(listener);
 	}
 
@@ -515,7 +505,46 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** tells this panel (and all subpanels) to close */
 	public void close() {
+		if(isCloseable())
+			setVisible(false);
+	}
+
+
+	/**
+	 * Destroy the panel.
+	 */
+	public void destroy() {
 		setVisible(false);
+
+		// destroy/remove all children
+		Iterator<WtPanel> iter = children.iterator();
+
+		while(iter.hasNext()) {
+			WtPanel child = iter.next();
+
+			child.destroy();
+			iter.remove();
+		}
+
+		parent = null;
+		closeListeners.clear();
+		clickListeners.clear();
+	}
+
+
+	/**
+	 * Scan all children and remove those without our parenting
+	 */
+	protected void checkDisowned() {
+		// remove un/reparented children
+		Iterator<WtPanel> iter = children.iterator();
+
+		while(iter.hasNext()) {
+			WtPanel child = iter.next();
+
+			if(child.getParent() != this)
+				iter.remove();
+		}
 	}
 
 
@@ -525,37 +554,39 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @return	<code>true</code> if the window is visible.
 	 */
 	public boolean isVisible() {
-		return !isClosed();
+		return !closed;
 	}
 
 
 	/**
-	 * Set the window as visible (or hidden).
+	 * Set the window as visible (or hidden). This does not check if
+	 * closing is allowed.
 	 *
 	 * @param	visible		Whether the window should be visible.
 	 */
 	public void setVisible(boolean visible) {
-		if(visible) {
-			if(closed) {
-				/*
-				 * Reactivate children
-				 */
-				for(WtPanel child : children) {
-					child.setVisible(true);
-				}
+		/*
+		 * No change?
+		 */
+		if(visible != closed)
+			return;
 
-				closed = false;
-			}
-		} else if(isCloseable() && !closed) {
-			closed = true;
+		/*
+		 * Apply to children
+		 */
+		for(WtPanel child : children) {
+			child.setVisible(visible);
+		}
 
-			// tell the childs to close too
-			for (WtPanel child : children) {
-				child.close();
-			}
+		closed = !visible;
 
+		if(closed) {
 			// inform all listeners we're closed
-			for (WtCloseListener listener : closeListeners) {
+			WtCloseListener [] listeners =
+				(WtCloseListener []) closeListeners.toArray(
+				 new WtCloseListener[closeListeners.size()]);
+
+			for (WtCloseListener listener : listeners) {
 				listener.onClose(name);
 			}
 		}
@@ -564,7 +595,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** notifies all registered clicklisteners that this panel has been clicked */
 	protected void notifyClickListeners(String name, Point point) {
-		for (WtClickListener listener : clickListeners) {
+		WtClickListener [] listeners =
+			(WtClickListener []) clickListeners.toArray(
+				new WtClickListener[clickListeners.size()]);
+
+		for (WtClickListener listener : listeners) {
 			listener.onClick(name, point);
 		}
 	}
@@ -731,11 +766,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *         clipped to the correct client region
 	 */
 	public Graphics draw(Graphics g) {
-		// first scan for closed panels and remove them
-		checkClosed();
-		// are we closed too? then don't draw anything
+		// are we closed? then don't draw anything
 		if (isClosed())
 			return g;
+
+		/*
+		 * Remove un/reparented children
+		 */
+		checkDisowned();
 
 		// get correct clipped graphics
 		Graphics panelGraphics = g.create(x, y, width, height);
@@ -783,18 +821,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 	}
 
-	/** scans the child list for closed ones and removes them */
-	private void checkClosed() {
-		// remove all closed childs
-		for (Iterator<WtPanel> childIt = children.iterator(); childIt.hasNext();) {
-			WtPanel child = childIt.next();
-			if (child.isClosed()) {
-				childIt.remove();
-			}
-		}
-
-	}
-
 	/**
 	 * Checks if the Point p is inside the Panel. Note that the coordinates are
 	 * local to the parent, not local to this Panel.
@@ -818,6 +844,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @return true when the point is in this panel, false otherwise
 	 */
 	public boolean isHit(int x, int y) {
+		if(isClosed())
+			return false;
+
 		int height = this.height;
 		int width = this.width;
 
@@ -852,6 +881,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** return a object for dragging which is at the position (x,y) or null */
 	protected WtDraggable getDragged(int x, int y) {
+		if(isClosed())
+			return null;
+
 		// if the user drags our titlebar we return ourself
 		if (hitTitle(x, y))
 			return this;
@@ -951,6 +983,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * processed
 	 */
 	public synchronized boolean onMouseClick(Point p) {
+		if(isClosed())
+			return false;
+
 		// check if the minimize button has been clicked
 		if (titleBar && minimizeable && hitMinimizeButton(p.x, p.y)) {
 			// change minimized state
@@ -998,6 +1033,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** callback for a doubleclick */
 	public synchronized boolean onMouseDoubleClick(Point p) {
+		if(isClosed())
+			return false;
+
 		// translate point to client coordinates
 		Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
@@ -1021,6 +1059,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** the right mouse button has been clicked (callback) */
 	public synchronized boolean onMouseRightClick(Point p) {
+		if(isClosed())
+			return false;
+
 		// translate point to client coordinates
 		Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
@@ -1043,6 +1084,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** ignored */
 	public boolean dragStarted() {
+		if(isClosed())
+			return false;
+
 		dragPosition = new Point(x, y);
 		return true;
 	}
@@ -1071,15 +1115,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * parent (if it has one) until someone feels responsible to handle it. This
 	 * is most times the very root of the window hierarchy.
 	 */
-	public void setContextMenu(
-			games.stendhal.client.gui.wt.core.WtList contextMenu) {
-		if (parent != null) {
-			// moves the contex-menu to match the position of this panel
-			contextMenu.move(x, y);
-			parent.setContextMenu(contextMenu);
-		}
-	}
-
 	public void setContextMenu(JPopupMenu contextMenu) {
 		if (parent != null) {
 			// moves the contex-menu to match the position of this panel

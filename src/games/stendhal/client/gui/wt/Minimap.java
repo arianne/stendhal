@@ -141,6 +141,9 @@ public class Minimap extends WtPanel {
 	 * @patam y y-position of the player (used to pan big maps)
 	 */
 	public Graphics draw(Graphics g) {
+		if(isClosed())
+			return g;
+
 		// draw frame and title
 		Graphics clientg = super.draw(g);
 

@@ -89,6 +89,9 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 
 	/** draws the MessageBox */
 	public Graphics draw(Graphics g) {
+		if(isClosed())
+			return g;
+
 		// draw frame/title bar
 		Graphics clientArea = super.draw(g);
 
@@ -109,7 +112,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		// tell our listeners that a button has been clicked
 		notifyClickListeners(name, point);
 		removeCloseListener(this);
-		close();
+		destroy();
 	}
 
 	/** closed the window */

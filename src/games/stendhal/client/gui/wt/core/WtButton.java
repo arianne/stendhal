@@ -60,6 +60,9 @@ public class WtButton extends WtPanel {
 
 	/** draws the button */
 	public Graphics draw(Graphics g) {
+		if(isClosed())
+			return g;
+
 		Graphics clientArea = super.draw(g);
 
 		// draw the image if we have one

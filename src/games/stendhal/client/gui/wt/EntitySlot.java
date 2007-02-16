@@ -143,6 +143,9 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 *         clipped to the correct client region
 	 */
 	public Graphics draw(Graphics g) {
+		if(isClosed())
+			return g;
+
 		Graphics childArea = super.draw(g);
 
 		// draw the background image
