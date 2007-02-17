@@ -17,7 +17,6 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.events.AttributeEvent;
 import games.stendhal.client.events.CollisionEvent;
@@ -36,19 +35,13 @@ import java.util.List;
 
 import javax.sound.sampled.DataLine;
 
-import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
-
 public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		AttributeEvent, CollisionEvent, Comparable<Entity> {
-	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Entity.class);
-
 	/** session wide instance identifier for this class */
 	private byte[] ID_Token = new byte[0];
 
@@ -92,7 +85,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		modificationCount = 0;
 	}
 
-	public Entity(GameObjects gameObjects, RPObject object)
+	protected Entity(GameObjects gameObjects, RPObject object)
 			throws AttributeNotFoundException {
 		this.gameObjects = gameObjects;
 		this.client = StendhalClient.get();

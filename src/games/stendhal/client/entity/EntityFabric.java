@@ -1,7 +1,9 @@
 package games.stendhal.client.entity;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.StendhalClient;
+import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
 /***************************************************************************
@@ -18,9 +20,38 @@ import marauroa.common.game.RPObject;
 
 public class EntityFabric {
 
-public static Entity createPlayer(GameObjects gameObjects, RPObject object){
-	Player pl = new Player(gameObjects,object);
-		return pl;
+//private static Entity createPlayer(GameObjects gameObjects, RPObject object){
+//	Player pl = new Player(gameObjects,object);
+//		return pl;
+//}
+/** Create a Entity of the correct type depending of the arianne object */
+public static Entity createEntity(RPObject object) {
+	try {
+//		if (object.get("type").equals("player")) {
+//			return EntityFabric.createPlayer(GameObjects.getInstance(),  object);
+//		}
+
+		String type = object.get("type");
+		String eclass = null;
+		if (object.has("class")) {
+			eclass = object.get("class");
+		}
+
+		Class entityClass = EntityMap.getClass(type,eclass);
+
+		if (entityClass == null) {
+			// If there is no entity, let's try without using class.
+			entityClass = EntityMap.getClass(type, null);
+		}
+
+		java.lang.reflect.Constructor constr = entityClass.getConstructor(
+				GameObjects.class, RPObject.class);
+		return (Entity) constr.newInstance(GameObjects.getInstance(), object);
+	} catch (Exception e) {
+		Logger logger= Log4J.getLogger(EntityFabric.class );
+		logger.error("cannot create entity for object " + object, e);
+		return null;
+	}
 }
 	
 	

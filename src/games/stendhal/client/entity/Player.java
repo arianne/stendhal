@@ -12,7 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.WorldObjects;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -40,7 +44,8 @@ public class Player extends RPEntity {
 	public Player(GameObjects gameObjects, RPObject base)
 			throws AttributeNotFoundException {
 		super(gameObjects, base);
-		setHearingRange(DEFAULT_HEARINGRANGE);
+		hearingRange= DEFAULT_HEARINGRANGE ;
+		//setHearingRange(DEFAULT_HEARINGRANGE);
 	}
 
 	@Override
@@ -144,9 +149,9 @@ public class Player extends RPEntity {
 	 * @param range
 	 *            double approx. hearing area radius in coordinate units
 	 */
-	public void setHearingRange(double range) {
-		hearingRange = range;
-	}
+//	public void setHearingRange(double range) {
+//		hearingRange = range;
+//	}
 
 	@Override
 	public String[] offeredActions() {

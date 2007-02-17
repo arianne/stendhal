@@ -15,7 +15,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFabric;
-import games.stendhal.client.entity.EntityMap;
 import games.stendhal.client.entity.PassiveEntity;
 import games.stendhal.client.entity.PlantGrower;
 import games.stendhal.client.entity.RPEntity;
@@ -114,41 +113,11 @@ public class GameObjects implements Iterable<Entity> {
 		return sortedObjects.iterator();
 	}
 
-	/** Create a Entity of the correct type depending of the arianne object */
-	// TODO: move this to EntityFabric
-	public Entity entityType(RPObject object) {
-		try {
-			if (object.get("type").equals("player")) {
-				return EntityFabric.createPlayer(this, object);
 
-				// return new Player(this, object);
-			}
-
-			String type = object.get("type");
-			String eclass = null;
-			if (object.has("class")) {
-				eclass = object.get("class");
-			}
-
-			Class entityClass = EntityMap.getClass(type,eclass);
-
-			if (entityClass == null) {
-				// If there is no entity, let's try without using class.
-				entityClass = EntityMap.getClass(type, null);
-			}
-
-			java.lang.reflect.Constructor constr = entityClass.getConstructor(
-					GameObjects.class, RPObject.class);
-			return (Entity) constr.newInstance(this, object);
-		} catch (Exception e) {
-			logger.error("cannot create entity for object " + object, e);
-			return null;
-		}
-	}
 
 	public Sprite spriteType(RPObject object) {
 		try {
-			return entityType(object).getSprite();
+			return EntityFabric.createEntity(object).getSprite();
 		} catch (Exception e) {
 			logger.error("cannot create sprite for object " + object, e);
 			return null;
@@ -164,7 +133,7 @@ public class GameObjects implements Iterable<Entity> {
 		Log4J.startMethod(logger, "add");
 
 		if (!object.has("server-only")) {
-			Entity entity = entityType(object);
+			Entity entity = EntityFabric.createEntity(object);
 
 			entity.onAdded(object);
 			fireMovementEvent(entity, object, null);
