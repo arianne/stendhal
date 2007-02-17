@@ -590,6 +590,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				listener.onClose(name);
 			}
 		}
+
+		// tell the windowmanager we're changed (if we use it)
+		if(useWindowManager()) {
+			WtWindowManager.getInstance().setVisible(this, visible);
+		}
 	}
 
 

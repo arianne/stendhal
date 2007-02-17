@@ -19,6 +19,8 @@
 package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.Player;
+// Native window code (not yet)
+//import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.*;
 import games.stendhal.common.CollisionDetection;
 import java.awt.Graphics;
@@ -37,15 +39,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	/** width of this panel */
 	private static final int WIDTH = 200;
 
-	/** buffered collision detection layer for minimap */
-	private CollisionDetection cd;
-
-	/** buffered GraphicsConfiguration for minimap */
-	private GraphicsConfiguration gc;
-
-	/** buffered zone name for minimap */
-	private String zone;
-
 	/** buffered gameObjects for character panel */
 	private GameObjects gameObjects;
 
@@ -53,6 +46,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	private Character character;
 
 	/** the buddy list panel */
+// Native window code (not yet)
+//	private BuddyListDialog buddies;
 	private Buddies buddies;
 
 	/** the minimap panel */
@@ -73,6 +68,10 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	/** Creates a new instance of OptionsPanel */
 	public SettingsPanel(WtPanel frame, GameObjects gameObjects) {
 		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 200);
+
+		this.gameObjects = gameObjects;
+		this.frame = frame;
+
 		setTitletext("Settings");
 
 		setFrame(true);
@@ -85,6 +84,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 		character.registerCloseListener(this);
 		frame.addChild(character);
 
+// Native window code (not yet)
+//		buddies = new BuddyListDialog(j2DClient.getInstance());
 		buddies = new Buddies(gameObjects);
 		buddies.registerCloseListener(this);
 		frame.addChild(buddies);
@@ -93,24 +94,41 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 		inventory.registerCloseListener(this);
 		frame.addChild(inventory);
 
+		minimap = new Minimap();
+		minimap.registerCloseListener(this);
+		frame.addChild(minimap);
+
 		buttonMap = new HashMap<String, WtButton>();
-		buttonMap.put("minimap", new WtButton("minimap", 150, 30,"Enable Minimap"));
-		buttonMap.put("character", new WtButton("character", 150, 30,"Enable Character"));
-		buttonMap.put("bag", new WtButton("bag", 150, 30, "Enable Inventory"));
-		buttonMap.put("buddies", new WtButton("buddies", 150, 30, "Enable Buddies"));
 
-		int y = 10;
+		WtButton button;
 
-		for (WtButton button : buttonMap.values()) {
-			button.moveTo(10, y);
-			y += 40;
-			button.setPressed(true);
-			button.registerClickListener(this);
-			addChild(button);
-		}
+		button = new WtButton("minimap", 150, 30,"Enable Minimap");
+		button.moveTo(10, 10);
+		button.setPressed(minimap.isVisible());
+		button.registerClickListener(this);
+		addChild(button);
+		buttonMap.put("minimap", button);
 
-		this.gameObjects = gameObjects;
-		this.frame = frame;
+		button = new WtButton("character", 150, 30,"Enable Character");
+		button.moveTo(10, 50);
+		button.setPressed(character.isVisible());
+		button.registerClickListener(this);
+		addChild(button);
+		buttonMap.put("character", button);
+
+		button = new WtButton("bag", 150, 30, "Enable Inventory");
+		button.moveTo(10, 90);
+		button.setPressed(inventory.isVisible());
+		button.registerClickListener(this);
+		addChild(button);
+		buttonMap.put("bag", button);
+
+		button = new WtButton("buddies", 150, 30, "Enable Buddies");
+		button.moveTo(10, 130);
+		button.setPressed(buddies.isVisible());
+		button.registerClickListener(this);
+		addChild(button);
+		buttonMap.put("buddies", button);
 	}
 
 	/** we're using the window manager */
@@ -120,24 +138,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 
 	/** updates the minimap */
 	public void updateMinimap(CollisionDetection cd, GraphicsConfiguration gc,String zone) {
-		this.cd = cd;
-		this.gc = gc;
-		this.zone = zone;
-
-		// close the old minimap if there is one
-		if (minimap != null) {
-			minimap.removeCloseListener(this);
-			minimap.destroy();
-			frame.removeChild(minimap);
-			minimap = null;
-		}
-
-		if (buttonMap.get("minimap").isPressed()) {
-			// add a new one
-			minimap = new Minimap(cd, gc, zone);
-			minimap.registerCloseListener(this);
-			frame.addChild(minimap);
-		}
+		minimap.update(cd, gc, zone);
 	}
 
 	/** updates the minimap */
@@ -146,89 +147,47 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 			return;
 		}
 
+// Native window code (not yet)
+//		/*
+//		 * Hack! Need to update list when changes arrival
+//		 */
+//		if(buddies.isVisible())
+//			buddies.update();
+
 		Player newPlayer = (Player) gameObjects.get(playerObject.getID());
+
 		// check if the player object has changed. Note: this is an exact object
 		// reference check
-		if (newPlayer == player) {
-			return;
-		}
+		if (newPlayer != player) {
+			this.player = newPlayer;
 
-		this.player = newPlayer;
-
-		if (character != null) {
 			character.setPlayer(player);
-		}
-
-		if (inventory != null) {
 			inventory.setSlot(player, "bag");
-		}
-
-	}
-
-	/** draw the panel */
-	public Graphics draw(Graphics g) {
-		if(isClosed())
-			return g;
-
-		if (minimap != null && player != null) {
 			minimap.setPlayer(player);
 		}
-
-		return super.draw(g);
 	}
 
 	/** a button was clicked */
 	public void onClick(String name, Point point) {
-		WtButton button = buttonMap.get(name);
-		boolean state = button.isPressed();
-
-		// check minimap panel
-//		if (name.equals("minimap")) {
-//			if(minimap != null) {
-//				minimap.setVisible(state);
-//			}
-//		}
+		boolean state = buttonMap.get(name).isPressed();
 
 		if (name.equals("minimap")) {
-			// minimap disabled?
-			if (!state) {
-				if(minimap != null) {
-					frame.removeChild(minimap);
-					minimap.destroy();
-					minimap = null;
-				}
-			} else {
-				// minimap enabled
-				minimap = new Minimap(cd, gc, zone);
-				minimap.registerCloseListener(this);
-				frame.addChild(minimap);
-			}
-		}
-
-		// check character panel
-		if (name.equals("character")) {
+			// check minimap panel
+			minimap.setVisible(state);
+		} else if (name.equals("character")) {
+			// check character panel
 			character.setVisible(state);
-		}
-
-		// check inventory panel
-		if (name.equals("bag")) {
+		} else if (name.equals("bag")) {
+			// check inventory panel
 			inventory.setVisible(state);
-		}
-
-		// check buddy panel
-		if (name.equals("buddies")) {
+		} else if (name.equals("buddies")) {
+			// check buddy panel
 			buddies.setVisible(state);
 		}
 	}
 
 	/** a window is closed */
 	public void onClose(String name) {
-		if (name.equals("minimap")) {
-			frame.removeChild(minimap);
-			minimap.destroy();
-			minimap = null;
-		}
-
 		/*
 		 * Unset button
 		 */

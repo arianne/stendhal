@@ -75,7 +75,8 @@ public class WtWindowManager {
 			int y) {
 		if (!configs.containsKey(name)) {
 			WindowConfiguration config = new WindowConfiguration(name);
-			config.readFromProperties(properties, minimized, x, y);
+			config.readFromProperties(
+				properties, minimized, x, y, true);
 			configs.put(name, config);
 		}
 	}
@@ -165,6 +166,7 @@ public class WtWindowManager {
 
 		panel.moveTo(config.x, config.y);
 		panel.setMinimized(config.minimized);
+		panel.setVisible(config.visible);
 	}
 
 	/** the panel was moved, so update the internal representation */
@@ -198,6 +200,14 @@ public class WtWindowManager {
 		config.minimized = state;
 	}
 
+
+	public void setVisible(ManagedWindow panel, boolean state) {
+		WindowConfiguration config = getConfig(panel);
+
+		config.visible = state;
+	}
+
+
 	/** encapsulates the configuration of a window */
 	private class WindowConfiguration {
 		/** name of the window */
@@ -206,8 +216,8 @@ public class WtWindowManager {
 		/** minimized state of the window */
 		public boolean minimized;
 
-		/** is the window enabled? */
-		public boolean enabled;
+		/** is the window visible? */
+		public boolean visible;
 
 		/** x-pos */
 		public int x;
@@ -222,7 +232,7 @@ public class WtWindowManager {
 		/** returns to config as a property string */
 		public String writeToPropertyString() {
 			return "window." + name + ".minimized=" + minimized + "\n"
-					+ "window." + name + ".enabled=" + enabled + "\n"
+					+ "window." + name + ".visible=" + visible + "\n"
 					+ "window." + name + ".x=" + x + "\n" + "window." + name
 					+ ".y=" + y + "\n";
 		}
@@ -235,18 +245,19 @@ public class WtWindowManager {
 		/** adds all props to the property */
 		public void writeToProperties(Properties props) {
 			props.put("window." + name + ".minimized", minimized);
-			props.put("window." + name + ".enabled", enabled);
+			props.put("window." + name + ".visible", visible);
 			props.put("window." + name + ".x", x);
 			props.put("window." + name + ".y", y);
 		}
 
 		/** reads the config from the properties */
 		public void readFromProperties(Properties props,
-				boolean defaultMinimized, int defaultX, int defaultY) {
+		 boolean defaultMinimized, int defaultX, int defaultY,
+		 boolean defaultVisible) {
 			minimized = Boolean.parseBoolean(props.getProperty("window." + name
 					+ ".minimized", Boolean.toString(minimized)));
-			enabled = Boolean.parseBoolean(props.getProperty("window." + name
-					+ ".enabled", "true"));
+			visible = Boolean.parseBoolean(props.getProperty("window." + name
+					+ ".visible", Boolean.toString(defaultVisible)));
 			x = Integer.parseInt(props.getProperty("window." + name + ".x",
 					Integer.toString(defaultX)));
 			y = Integer.parseInt(props.getProperty("window." + name + ".y",
@@ -255,8 +266,9 @@ public class WtWindowManager {
 
 		/** reads the config from the properties */
 		public void readFromProperties(Properties props, ManagedWindow defaults) {
-			readFromProperties(props, defaults.isMinimized(), defaults.getX(),
-					defaults.getY());
+			readFromProperties(props, defaults.isMinimized(),
+				defaults.getX(), defaults.getY(),
+				defaults.isVisible());
 		}
 
 	}

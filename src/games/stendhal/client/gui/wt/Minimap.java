@@ -71,8 +71,20 @@ public class Minimap extends WtPanel {
 	private Player player = null;
 
 	/** Creates a new instance of Minimap */
-	public Minimap(CollisionDetection cd, GraphicsConfiguration gc, String zone) {
+	public Minimap() {
 		super("minimap", 0, 0, 100, 100);
+	}
+
+
+	/**
+	 * Update the map with new data.
+	 *
+	 * @param	cd		The collision map.
+	 * @param	gc		A graphics configuration.
+	 * @param	zone		The zone name.
+	 */
+	public void update(CollisionDetection cd, GraphicsConfiguration gc,
+	 String zone) {
 		setTitletext(zone);
 
 		// calculate size and scale
@@ -149,6 +161,9 @@ public class Minimap extends WtPanel {
 
 		// draw frame and title
 		Graphics clientg = super.draw(g);
+
+		if((player == null) || (image == null))
+			return g;
 
 		// don't draw the minimap when we're miminized
 		if (isMinimized())
@@ -266,6 +281,12 @@ public class Minimap extends WtPanel {
 	}
 	
 	public synchronized boolean onMouseDoubleClick(Point p) {
+		/*
+		 * Missing required data?
+		 */
+		if((player == null) || (image == null))
+			return false;
+
 		// Move the player to p
 
 		// first calculate the world destination coords

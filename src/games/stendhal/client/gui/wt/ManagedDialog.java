@@ -113,15 +113,15 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 * Called when the window's visible state changes.
 	 */
 	protected void visibilityChanged() {
-//		/*
-//		 * Update saved state
-//		 */
-//		WtWindowManager.getInstance().setVisible(this, isVisible());
+		/*
+		 * Update saved state
+		 */
+		WtWindowManager.getInstance().setVisible(this, isVisible());
 
 		/*
 		 * Notify close listeners
 		 */
-		if(isVisible())
+		if(!isVisible())
 			fireCloseListeners();
 	}
 
@@ -284,6 +284,8 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 * @param	ev		The event.
 		 */
 		public void componentHidden(ComponentEvent ev) {
+//System.err.println("componentHidden() - ev = " + ev);
+//System.err.println("componentHidden() - dialog = " + getDialog());
 			visibilityChanged();
 		}
 
@@ -294,6 +296,8 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 * @param	ev		The event.
 		 */
 		public void componentMoved(ComponentEvent ev) {
+//System.err.println("componentMoved() - ev = " + ev);
+//System.err.println("componentMoved() - dialog = " + getDialog());
 			windowMoved();
 		}
 
@@ -304,6 +308,8 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 * @param	ev		The event.
 		 */
 		public void componentShown(ComponentEvent ev) {
+//System.err.println("componentShown() - ev = " + ev);
+//System.err.println("componentShown() - dialog.insets = " + getDialog().getInsets());
 			visibilityChanged();
 		}
 	}
