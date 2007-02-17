@@ -95,8 +95,14 @@ public class GameObjects implements Iterable<Entity> {
 	private LinkedList<Entity> sortedObjects;
 
 	private StaticGameLayers collisionMap;
-
-	public GameObjects(StaticGameLayers collisionMap) {
+private static GameObjects instance=null;
+public static GameObjects createInstance(StaticGameLayers collisionMap){
+	if (instance==null){
+		instance= new GameObjects (collisionMap );
+	}
+	return instance;
+}
+	private GameObjects(StaticGameLayers collisionMap) {
 		objects = new HashMap<RPObject.ID, Entity>();
 		attacks = new HashMap<RPEntity, RPEntity>();
 
@@ -115,7 +121,9 @@ public class GameObjects implements Iterable<Entity> {
 	public Entity entityType(RPObject object) {
 		try {
 			if (object.get("type").equals("player")) {
-				return new Player(this, object);
+				return EntityFabric.createPlayer(this, object);
+				
+				//return new Player(this, object);
 			}
 
 			String type = object.get("type");

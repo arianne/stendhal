@@ -98,7 +98,7 @@ public class StendhalClient extends ariannexp {
 
         world_objects = new HashMap<RPObject.ID, RPObject>();
         staticLayers = new StaticGameLayers();
-        gameObjects = new GameObjects(staticLayers);
+        gameObjects = GameObjects.createInstance(staticLayers);
         handler = new PerceptionHandler(new StendhalPerceptionListener());
         gameDialog = null;
         gameGUI = null;
