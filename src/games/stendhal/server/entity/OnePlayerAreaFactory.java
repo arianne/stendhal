@@ -79,37 +79,6 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	}
 
 
-	/**
-	 * Extract the interval (in seconds) to inflict damage while
-	 * stationary.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The stationary interval (in turns).
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is missing.
-	 */
-	protected int getInterval(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
-
-
-		if((s = ctx.getAttribute("interval")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'interval' missing");
-		}
-
-		try {
-			return StendhalRPWorld.get().getTurnsInSeconds(
-				Integer.parseInt(s));
-		} catch(NumberFormatException ex) {
-			throw new IllegalArgumentException(
-				"Invalid 'interval' attribute: " + s);
-		}
-	}
-
-
 	//
 	// ConfigurableFactory
 	//
