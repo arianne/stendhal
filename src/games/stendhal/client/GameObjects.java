@@ -12,74 +12,42 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.*;
-import games.stendhal.client.events.*;
+import games.stendhal.client.entity.Blood;
+import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.EntityFabric;
+import games.stendhal.client.entity.EntityMap;
+import games.stendhal.client.entity.PassiveEntity;
+import games.stendhal.client.entity.PlantGrower;
+import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.entity.Text;
+import games.stendhal.client.events.AttackEvent;
+import games.stendhal.client.events.HPEvent;
+import games.stendhal.client.events.KillEvent;
+import games.stendhal.client.events.TalkEvent;
 import games.stendhal.common.Direction;
-import games.stendhal.common.Pair;
+
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
-import java.util.*;
+import java.util.Collections;
+import java.util.ConcurrentModificationException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
+
 import org.apache.log4j.Logger;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects implements Iterable<Entity> {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(GameObjects.class);
-
-	private static Map<Pair<String, String>, Class> entityMap;
-
-	static {
-		entityMap = new HashMap<Pair<String, String>, Class>();
-		register();
-	}
-
-	private static void register() {
-		register("player", null, Player.class);
-
-		register("creature", "small_animal", SmallCreature.class);
-		register("creature", "giant_animal", BigCreature.class);
-		register("creature", "huge_animal", HugeCreature.class);
-		register("creature", "mythical_animal", MythicalCreature.class);
-		register("creature", null, NormalCreature.class);
-
-		register("sheep", null, Sheep.class);
-
-		register("npc", null, NPC.class);
-
-		register("plant_grower", null, PlantGrower.class);
-		register("growing_entity_spawner", null, GrainField.class);
-		register("grain_field", null, GrainField.class); // compatibility with server <= 0.56
-		register("food", null, SheepFood.class);
-		register("chest", null, Chest.class);
-
-		register("corpse", null, Corpse.class);
-
-		register("blood", null, Blood.class);
-		register("sign", null, Sign.class);
-		register("blackboard", null, Sign.class);
-
-		register("item", null, Item.class);
-		register("item", "book", MiscItem.class);
-		register("item", "drink", StackableItem.class);
-		register("item", "food", StackableItem.class);
-		register("item", "herb", MiscItem.class);
-		register("item", "key", MiscItem.class);
-		register("item", "money", StackableItem.class);
-		register("item", "projectiles", StackableItem.class);
-		register("item", "resource", StackableItem.class);
-		register("item", "scroll", StackableItem.class);
-
-		register("portal", null, Portal.class);
-		register("door", null, Door.class);
-	}
-
-	public static void register(String type, String eclass, Class entityClass) {
-		entityMap.put(new Pair<String, String>(type, eclass), entityClass);
-	}
-
+ 
 	private Map<RPObject.ID, Entity> objects;
 
 	private Map<RPEntity, RPEntity> attacks;
@@ -90,18 +58,47 @@ public class GameObjects implements Iterable<Entity> {
 
 	/**
 	 * A list of all entities, sorted by the Z index, i.e. the order in which
-	 * they should be drawn. 
+	 * they should be drawn.
 	 */
 	private LinkedList<Entity> sortedObjects;
 
 	private StaticGameLayers collisionMap;
-private static GameObjects instance=null;
-public static GameObjects createInstance(StaticGameLayers collisionMap){
-	if (instance==null){
-		instance= new GameObjects (collisionMap );
+
+	/**
+	 * holds the reference to the singeton instance
+	 */
+	private static GameObjects instance = null;
+
+	/**
+	 * @param collisionMap
+	 *            =layers that make floor and building
+	 * @return singleton instance of Gameobjects
+	 */
+	public static GameObjects createInstance(StaticGameLayers collisionMap) {
+		if (instance == null) {
+			instance = new GameObjects(collisionMap);
+		}
+		return instance;
 	}
-	return instance;
-}
+
+	/**
+	 * @return existing instance of Gameobjects
+	 * @throws IllegalStateException
+	 *             if instance has not been instanciated
+	 */
+	public static GameObjects getInstance() {
+		if (instance == null) {
+			throw new IllegalStateException();
+		}
+
+		return instance;
+	}
+	/**
+	 * constructor
+	 * 
+	 * @param collisionMap
+	 *            =layers that make floor and building
+	 */
 	private GameObjects(StaticGameLayers collisionMap) {
 		objects = new HashMap<RPObject.ID, Entity>();
 		attacks = new HashMap<RPEntity, RPEntity>();
@@ -118,12 +115,13 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 	}
 
 	/** Create a Entity of the correct type depending of the arianne object */
+	// TODO: move this to EntityFabric
 	public Entity entityType(RPObject object) {
 		try {
 			if (object.get("type").equals("player")) {
 				return EntityFabric.createPlayer(this, object);
-				
-				//return new Player(this, object);
+
+				// return new Player(this, object);
 			}
 
 			String type = object.get("type");
@@ -132,13 +130,11 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 				eclass = object.get("class");
 			}
 
-			Class entityClass = entityMap.get(new Pair<String, String>(type,
-					eclass));
+			Class entityClass = EntityMap.getClass(type,eclass);
 
 			if (entityClass == null) {
 				// If there is no entity, let's try without using class.
-				entityClass = entityMap
-						.get(new Pair<String, String>(type, null));
+				entityClass = EntityMap.getClass(type, null);
 			}
 
 			java.lang.reflect.Constructor constr = entityClass.getConstructor(
@@ -167,16 +163,16 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 	public void add(RPObject object) throws AttributeNotFoundException {
 		Log4J.startMethod(logger, "add");
 
-		if(!object.has("server-only")) {
+		if (!object.has("server-only")) {
 			Entity entity = entityType(object);
 
 			entity.onAdded(object);
 			fireMovementEvent(entity, object, null);
 			fireZoneChangeEvent(entity, object, null);
-
+// TODO: try polymorphism durkham 17.02.2007
+			
 			if (entity instanceof TalkEvent) {
-				fireTalkEvent(
-					(TalkEvent) entity, object, null);
+				fireTalkEvent((TalkEvent) entity, object, null);
 			}
 
 			if (entity instanceof HPEvent) {
@@ -184,13 +180,11 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 			}
 
 			if (entity instanceof KillEvent) {
-				fireKillEvent(
-					((KillEvent) entity), object, null);
+				fireKillEvent(((KillEvent) entity), object, null);
 			}
 
 			if (entity instanceof AttackEvent) {
-				fireAttackEvent(
-					((RPEntity) entity), object, null);
+				fireAttackEvent(((RPEntity) entity), object, null);
 			}
 
 			objects.put(entity.getID(), entity);
@@ -314,7 +308,7 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 		Log4J.startMethod(logger, "clearText");
 
 		for (Iterator it = texts.iterator(); it.hasNext();)
-			textsToRemove.add((Text)it.next());
+			textsToRemove.add((Text) it.next());
 		Log4J.finishMethod(logger, "clearText");
 
 	}
@@ -614,7 +608,8 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 		Rectangle2D area = entity.getArea();
 
 		for (Entity other : sortedObjects) {
-			if (!(other instanceof PassiveEntity) && !(other instanceof Blood) && !(other instanceof PlantGrower)) {
+			if (!(other instanceof PassiveEntity) && !(other instanceof Blood)
+					&& !(other instanceof PlantGrower)) {
 				if (area.intersects(other.getArea())
 						&& !entity.getID().equals(other.getID())) {
 					entity.onCollideWith(other);
@@ -633,9 +628,9 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 				entity.move(delta);
 				if (collisionMap.collides(entity.getArea())) {
 					entity.onCollide((int) entity.getX(), (int) entity.getY());
-					entity.move(-delta);	// Undo move
+					entity.move(-delta); // Undo move
 				} else if (collides(entity)) {
-					entity.move(-delta);	// Undo move
+					entity.move(-delta); // Undo move
 				}
 			}
 		}
@@ -674,7 +669,8 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 	}
 
 	public Entity at(double x, double y) {
-		ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects.size());
+		ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects
+				.size());
 		while (it.hasPrevious()) {
 			Entity entity = it.previous();
 
@@ -703,7 +699,7 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 		for (Entity entity : sortedObjects) {
 			entity.draw(screen);
 		}
-		//System.err.println(temp);
+		// System.err.println(temp);
 	}
 
 	public void drawText(GameScreen screen) {
@@ -718,5 +714,6 @@ public static GameObjects createInstance(StaticGameLayers collisionMap){
 			logger.error("cannot draw text", e);
 		}
 	}
-}
 
+	
+}
