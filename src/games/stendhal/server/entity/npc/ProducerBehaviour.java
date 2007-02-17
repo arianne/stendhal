@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -17,41 +18,6 @@ import java.util.Set;
  * @author daniel
  */
 public class ProducerBehaviour extends Behaviour {
-	
-	/**
-	 * Given a number of seconds, returns a corresponding string like
-	 * "about 5 hours" or "about 27 minutes".
-	 * @param seconds
-	 * @return An approximate description of the given timespan
-	 */
-	public static String roundTimespan(int seconds) {
-		int d = seconds / (60 * 60 * 24);
-		int h = seconds / (60 * 60) - d * 24;
-		int min = seconds / 60 - h * 60;
-		// int s = seconds - min * 60;
-		if (d > 0) {
-			if (h >= 12) {
-				return "about " + (d + 1) + " days";
-			} else {
-				return "about " + d + " days";
-			}
-		} else if (h > 0) {
-			if (min >= 30) {
-				return "about " + (h + 1) + " hours";
-			} else {
-				return "about " + h + " hours";
-			}
-		} else { // if (min > 0) {
-			if (min >= 30) {
-				return "about " + (min + 1) + " minutes";
-			} else {
-				return "about " + min + " minutes";
-			}
-		} // else {
-		// 	return s + " seconds";
-		// }
-	}
-	
 	/**
 	 * To store the current status of a production order, each
 	 * ProducerBehaviour needs to have an exclusive quest slot.
@@ -183,7 +149,7 @@ public class ProducerBehaviour extends Behaviour {
 
 		long finishTime = orderTime + (getProductionTime(numberOfProductItems) * 1000);
 		int remainingSeconds = (int) ((finishTime - timeNow) / 1000);
-		return roundTimespan(remainingSeconds);
+		return TimeUtil.approxTimeUntil(remainingSeconds);
 
 	}
 	
