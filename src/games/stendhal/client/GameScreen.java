@@ -341,6 +341,16 @@ public class GameScreen {
 		text = text.trim();
 		while (text.length() > 0) {
 			int pos = positionStringOfSize(text, width - delta);
+			int nlpos;
+
+			/*
+			 * Hard line breaks
+			 */
+			if(((nlpos = text.indexOf('\n', 1)) != -1)
+			 && (nlpos < pos)) {
+				pos = nlpos;
+			}
+
 			lines.add(text.substring(0, pos).trim());
 			text = text.substring(pos);
 			i++;
