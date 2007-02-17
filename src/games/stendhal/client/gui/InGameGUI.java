@@ -341,6 +341,7 @@ public class InGameGUI implements KeyListener {
 				.getType(), width, height);
 		container.setSlot(entity, slot.getName());
 		ground.addChild(container);
+		container.setVisible(true);
 
 		return container;
 	}
