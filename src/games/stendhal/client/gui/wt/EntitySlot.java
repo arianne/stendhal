@@ -213,7 +213,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
       Entity entity = EntityFabric.createEntity(content);
       if(entity != null) {
         String action = entity.defaultAction();
-        entity.onAction(StendhalClient.get(), action);
+        entity.onAction(StendhalClient.get(), action, Integer.toString(parent.getID().getObjectID()), getName());
         return(true);
       }
       return (false);
