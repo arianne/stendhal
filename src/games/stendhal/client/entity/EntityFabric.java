@@ -1,10 +1,9 @@
 package games.stendhal.client.entity;
 
-import org.apache.log4j.Logger;
-
-import games.stendhal.client.GameObjects;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
@@ -45,8 +44,8 @@ public static Entity createEntity(RPObject object) {
 		}
 
 		java.lang.reflect.Constructor constr = entityClass.getConstructor(
-				GameObjects.class, RPObject.class);
-		return (Entity) constr.newInstance(GameObjects.getInstance(), object);
+				 RPObject.class);
+		return (Entity) constr.newInstance( object);
 	} catch (Exception e) {
 		Logger logger= Log4J.getLogger(EntityFabric.class );
 		logger.error("cannot create entity for object " + object, e);

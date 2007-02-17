@@ -16,11 +16,11 @@ import marauroa.common.game.*;
 import games.stendhal.client.*;
 
 public class MiscItem extends Item {
-	private String name;
+//	private String name;
 
-	public MiscItem(GameObjects gameObjects, RPObject object)
+	public MiscItem( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 	}
 
 	protected void loadSprite(RPObject object) {
@@ -30,11 +30,11 @@ public class MiscItem extends Item {
 		sprite = store.getSprite("data/sprites/items/misc/"
 				+ object.get("class") + "/" + miscName + ".png");
 
-		if (object.has("name")) {
-			name = object.get("name");
-		} else {
-			name = miscName;
-		}
+//		if (object.has("name")) {
+//			name = object.get("name");
+//		} else {
+//			name = miscName;
+//		}
 	}
 
 	/*

@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
@@ -75,8 +74,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 */
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
-	protected GameObjects gameObjects;
-
 	protected StendhalClient client;
 
 	private int modificationCount;
@@ -85,9 +82,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		modificationCount = 0;
 	}
 
-	protected Entity(GameObjects gameObjects, RPObject object)
+	protected Entity( RPObject object)
 			throws AttributeNotFoundException {
-		this.gameObjects = gameObjects;
+		//this.gameObjects = gameObjects;
 		this.client = StendhalClient.get();
 
 		type = object.get("type");

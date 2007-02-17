@@ -20,9 +20,9 @@ import java.awt.geom.*;
 public class Blood extends AnimatedEntity {
 	String clazz;
 
-	public Blood(GameObjects gameObjects, RPObject base)
+	public Blood( RPObject base)
 			throws AttributeNotFoundException {
-		super(gameObjects, base);
+		super( base);
 	}
 
 	protected void buildAnimations(RPObject base) {

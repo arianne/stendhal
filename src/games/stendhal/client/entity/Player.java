@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
@@ -41,9 +40,9 @@ public class Player extends RPEntity {
 
 	private double hearingRange;
 
-	public Player(GameObjects gameObjects, RPObject base)
+	public Player( RPObject base)
 			throws AttributeNotFoundException {
-		super(gameObjects, base);
+		super( base);
 		hearingRange= DEFAULT_HEARINGRANGE ;
 		//setHearingRange(DEFAULT_HEARINGRANGE);
 	}

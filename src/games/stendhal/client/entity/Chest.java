@@ -28,9 +28,9 @@ public class Chest extends AnimatedEntity {
 	/** true means the user requested to open this chest */
 	private boolean requestOpen;
 
-	public Chest(GameObjects gameObjects, RPObject base)
+	public Chest(RPObject base)
 			throws AttributeNotFoundException {
-		super(gameObjects, base);
+		super( base);
 		requestOpen = false;
 	}
 

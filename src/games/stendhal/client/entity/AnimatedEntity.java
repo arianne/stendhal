@@ -42,9 +42,9 @@ public abstract class AnimatedEntity extends Entity {
 	 */
 	protected long delta;
 
-	public AnimatedEntity(GameObjects gameObjects, RPObject object)
+	public AnimatedEntity( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 		delta = System.currentTimeMillis();
 		frame = 0;
 	}

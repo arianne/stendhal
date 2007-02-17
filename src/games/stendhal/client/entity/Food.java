@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -25,9 +24,9 @@ import marauroa.common.game.RPObject;
 public class Food extends AnimatedEntity {
 	private int amount;
 
-	public Food(GameObjects gameObjects, RPObject object)
+	public Food( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 	}
 
 	protected void buildAnimations(RPObject object) {

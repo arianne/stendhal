@@ -24,12 +24,12 @@ public class Door extends AnimatedEntity {
 	private int orientation;
 
 	/** true means the user requested to open this Door */
-	private boolean requestOpen;
+//	private boolean requestOpen;
 
-	public Door(GameObjects gameObjects, RPObject base)
+	public Door( RPObject base)
 			throws AttributeNotFoundException {
-		super(gameObjects, base);
-		requestOpen = false;
+		super( base);
+//		requestOpen = false;
 	}
 
 	protected void buildAnimations(RPObject base) {
@@ -123,7 +123,7 @@ public class Door extends AnimatedEntity {
 		if (action.equals("Open") || action.equals("Close")) {
 			if (!open) {
 				// If it was closed, open it and inspect it...
-				requestOpen = true;
+//				requestOpen = true;
 			}
 
 			RPAction rpaction = new RPAction();

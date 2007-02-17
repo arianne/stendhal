@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 
@@ -32,9 +31,9 @@ import marauroa.common.game.RPObject;
 public class Portal extends Entity {
 	private boolean hidden = false;
 
-	public Portal(GameObjects gameObjects, RPObject object)
+	public Portal( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 
 		this.hidden = object.has("hidden");
 	}

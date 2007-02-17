@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -34,7 +35,7 @@ public class Text extends Entity {
 
 	public Text(GameObjects gameObjects, Sprite text, double x, double y,
 			long persistTime) throws AttributeNotFoundException {
-		this.gameObjects = gameObjects;
+		
 		this.client = StendhalClient.get();
 
 		textImage = text;
@@ -59,7 +60,7 @@ public class Text extends Entity {
 
 	public Text(GameObjects gameObjects, String text, double x, double y,
 			Color color, boolean isTalking) throws AttributeNotFoundException {
-		this.gameObjects = gameObjects;
+		
 		this.client = StendhalClient.get();
 
 		// Speech bubbles will only be drawn if there's a background color
@@ -120,7 +121,7 @@ public class Text extends Entity {
 		screen.draw(textImage, tx, ty);
 
 		if (System.currentTimeMillis() - textImageTime > textPersistTime) {
-			gameObjects.removeText(this);
+			GameObjects.getInstance().removeText(this);
 		}
 	}
 

@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 
@@ -26,9 +25,9 @@ import marauroa.common.game.RPObject;
 
 public class Item extends PassiveEntity {
 
-	public Item(GameObjects gameObjects, RPObject object)
+	public Item(RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 	}
 
 	@Override

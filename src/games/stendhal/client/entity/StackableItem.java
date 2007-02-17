@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 
@@ -29,9 +28,9 @@ public class StackableItem extends Item {
 
 	private Sprite quantityImage;
 
-	public StackableItem(GameObjects gameObjects, RPObject object)
+	public StackableItem( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 		quantity = 0;
 	}
 

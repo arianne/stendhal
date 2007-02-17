@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.*;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Rectangle;
@@ -48,9 +50,9 @@ public class NPC extends RPEntity {
 		follow = st.getSprite("data/sprites/ideas/follow.png");
 	}
 
-	public NPC(GameObjects gameObjects, RPObject object)
+	public NPC( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 
 		String type = getType();
 

@@ -12,17 +12,20 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
 
 /** A Creature entity */
 public class SmallCreature extends Creature {
-	public SmallCreature(GameObjects gameObjects, RPObject object)
+	public SmallCreature( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 	}
 
 	protected void buildAnimations(RPObject object) {

@@ -12,13 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public abstract class PassiveEntity extends Entity {
-	public PassiveEntity(GameObjects gameObjects, RPObject object)
+	public PassiveEntity( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 	}
 }

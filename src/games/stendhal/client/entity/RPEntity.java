@@ -131,9 +131,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	private int defItem = -1;
 
 	/** Create a new game entity based on the arianne object passed */
-	public RPEntity(GameObjects gameObjects, RPObject object)
+	public RPEntity( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 		damageSprites = new LinkedList<Sprite>();
 		damageSpritesTimes = new LinkedList<Long>();
 	}
@@ -252,7 +252,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 					line = line.substring(0, l);
 				line = line + " ...";
 			}
-			gameObjects.addText(this, /* getName()+" says: "+ */line,
+			GameObjects.getInstance().addText(this, /* getName()+" says: "+ */line,
 					Color.black, true);
 		}
 	}
@@ -270,7 +270,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		// Change text color for private messages. intensifly@gmx.com
 		client.addEventLine(text, Color.darkGray);
 
-		gameObjects.addText(this, text.replace("|", ""), Color.darkGray, false);
+		GameObjects.getInstance().addText(this, text.replace("|", ""), Color.darkGray, false);
 	}
 
 	// When entity gets healed
@@ -419,7 +419,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 					|| distance(client.getPlayer()) < 15 * 15) {
 				String text = getName() + " reaches Level " + getLevel();
 
-				gameObjects.addText(this, GameScreen.get().createString(text,
+				GameObjects.getInstance().addText(this, GameScreen.get().createString(text,
 						Color.green), 0);
 				client.addEventLine(text, Color.green);
 			}

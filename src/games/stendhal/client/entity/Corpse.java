@@ -12,11 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.wt.EntityContainer;
-import games.stendhal.client.SpriteStore;
-import games.stendhal.client.GameScreen;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -26,19 +25,20 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class Corpse extends PassiveEntity {
-	private String clazz;
-
-	private String name;
-
-	private String killer;
-
-	private int stage;
+// make these uselfull or delete
+//	private String clazz;
+//
+//	private String name;
+//
+//	private String killer;
+//
+//	private int stage;
 
 	private EntityContainer contentWindow;
 
-	public Corpse(GameObjects gameObjects, RPObject object)
+	public Corpse( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 	}
 
 	public Rectangle2D getArea() {
@@ -75,21 +75,21 @@ public class Corpse extends PassiveEntity {
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
-		if (diff.has("class")) {
-			clazz = diff.get("class");
-		}
-
-		if (diff.has("name")) {
-			name = diff.get("name");
-		}
-
-		if (diff.has("killer")) {
-			killer = diff.get("killer");
-		}
-
-		if (diff.has("stage")) {
-			stage = diff.getInt("stage");
-		}
+//		if (diff.has("class")) {
+//			clazz = diff.get("class");
+//		}
+//
+//		if (diff.has("name")) {
+//			name = diff.get("name");
+//		}
+//
+//		if (diff.has("killer")) {
+//			killer = diff.get("killer");
+//		}
+//
+//		if (diff.has("stage")) {
+//			stage = diff.getInt("stage");
+//		}
 	}
 
 	public String defaultAction() {

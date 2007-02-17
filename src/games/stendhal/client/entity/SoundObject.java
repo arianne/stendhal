@@ -23,7 +23,6 @@
 
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 
 import java.awt.geom.Point2D;
@@ -49,9 +48,9 @@ public class SoundObject extends Entity {
 		this.y = y;
 	}
 
-	public SoundObject(GameObjects gameObjects, RPObject object)
+	public SoundObject( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 		// TODO Auto-generated constructor stub
 	}
 

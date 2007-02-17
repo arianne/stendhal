@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
@@ -31,9 +30,9 @@ public class GrainField extends AnimatedEntity {
 	private String clazz;
 	private int maxRipeness;
 	
-	public GrainField(GameObjects gameObjects, RPObject object)
+	public GrainField( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 		init(object);
 	}
 	

@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
@@ -28,9 +27,9 @@ import marauroa.common.game.RPObject;
 public class Sheep extends NPC {
 	private int weight;
 
-	public Sheep(GameObjects gameObjects, RPObject object)
+	public Sheep( RPObject object)
 			throws AttributeNotFoundException {
-		super(gameObjects, object);
+		super( object);
 	}
 
 	protected void buildAnimations(RPObject object) {
