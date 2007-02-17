@@ -20,8 +20,7 @@ public class EntityFabric {
 
 public static Entity createPlayer(GameObjects gameObjects, RPObject object){
 	Player pl = new Player(gameObjects,object);
-	StendhalClient.get().addEventLine("new Player"+pl.getLevel());  
-	return pl;
+		return pl;
 }
 	
 	
