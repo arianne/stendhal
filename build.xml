@@ -54,6 +54,7 @@
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${velocity_jar}"/>
@@ -76,6 +77,7 @@
 				<pathelement path="${build_server}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${junit_jar}"/>
 			</classpath>
 		</javac>
 
@@ -102,6 +104,7 @@
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${lib}/${server_jarname}"/>
@@ -128,6 +131,7 @@
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${junit_jar}"/>
 			</classpath>
 		</javac>
 		<!-- compile Starter.java for Java 1.2. So we will be able to 
