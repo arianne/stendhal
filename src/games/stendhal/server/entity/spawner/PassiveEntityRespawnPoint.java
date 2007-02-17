@@ -135,8 +135,16 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		TurnNotifier.get().dontNotify(this, null);
 	}
 
+
+	/**
+	 * Determine if this is an obstacle for another entity.
+	 *
+	 * @param	entity		The entity to check against.
+	 *
+	 * @return	<code>false</code>.
+	 */
 	@Override
-	public boolean isObstacle() {
+	public boolean isObstacle(Entity entity) {
 		// The player can walk over the PlantGrower.
 		return false;
 	}

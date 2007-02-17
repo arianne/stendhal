@@ -361,7 +361,7 @@ public class StendhalRPAction {
 
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
 			boolean collision = zone.collides(entity, nx, ny);
-			boolean ignoreCollision = !entity.isObstacle();
+			boolean ignoreCollision = entity.isGhost();
 			
 			if (collision) {
 				if (entity instanceof Player) {

@@ -48,11 +48,13 @@ public class WalkBlocker extends Entity {
 
 
 	/**
-	 * Checks whether players, NPC's, etc. can walk over this entity.
+	 * Determine if this is an obstacle for another entity.
 	 *
-	 * @return	<code>true</code>.
+	 * @param	entity		The entity to check against.
+	 *
+	 * @return	<code>true</code> if the other entity is an RPEntity.
 	 */
-	public boolean isObstacle() {
-		return true;
+	public boolean isObstacle(Entity entity) {
+		return (entity instanceof RPEntity);
 	}
 }

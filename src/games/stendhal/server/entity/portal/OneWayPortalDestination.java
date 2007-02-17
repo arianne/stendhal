@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.portal;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
 /**
@@ -27,8 +28,16 @@ public class OneWayPortalDestination extends Portal {
 		return true; // Always loaded
 	}
 
+
+	/**
+	 * Determine if this is an obstacle for another entity.
+	 *
+	 * @param	entity		The entity to check against.
+	 *
+	 * @return	<code>false</code>.
+	 */
 	@Override
-	public boolean isObstacle() {
+	public boolean isObstacle(Entity entity) {
 		return false;
 	}
 

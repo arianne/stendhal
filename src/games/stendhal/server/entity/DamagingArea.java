@@ -31,7 +31,7 @@ import games.stendhal.server.events.TurnNotifier;
  * An area that damages an RPEntity while over it.
  *
  */
-public class DamagingArea extends Entity
+public class DamagingArea extends PassiveEntity
  implements MovementListener, TurnListener {
 	/**
 	 * The logger instance.
@@ -207,16 +207,6 @@ public class DamagingArea extends Entity
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
-	}
-
-
-	/**
-	 * Checks whether players, NPC's, etc. can walk over this entity.
-	 *
-	 * @return	<code>false</code>.
-	 */
-	public boolean isObstacle() {
-		return false;
 	}
 
 

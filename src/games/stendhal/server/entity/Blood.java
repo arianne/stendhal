@@ -27,7 +27,7 @@ import marauroa.common.game.RPClass;
  * Represents a blood puddle that is left on the ground after a Creature
  * was injured or killed.
  */
-public class Blood extends Entity implements TurnListener {
+public class Blood extends PassiveEntity implements TurnListener {
 	/**
 	 * After this many turns, blood will disappear.
 	 */
@@ -56,11 +56,6 @@ public class Blood extends Entity implements TurnListener {
 		rect.setRect(x, y, 1, 1);
 	}
 
-	@Override
-	public boolean isObstacle() {
-		// can walk over blood
-		return false;
-	}
 
 	@Override
 	public String describe() {

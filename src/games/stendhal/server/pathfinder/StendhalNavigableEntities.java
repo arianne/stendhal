@@ -83,7 +83,7 @@ public class StendhalNavigableEntities extends StendhalNavigable {
 		for (Iterator<RPObject> it = zone.iterator(); it.hasNext();) {
 			Entity otherEntity = (Entity) it.next();
 			if (!entity.getID().equals(otherEntity.getID())
-					&& otherEntity.isObstacle()
+					&& otherEntity.isObstacle(entity)
 					&& (otherEntity.stopped() 
 							|| otherEntity.nextTo(x, y , 0.25))) {
 

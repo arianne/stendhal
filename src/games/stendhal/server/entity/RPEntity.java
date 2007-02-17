@@ -190,6 +190,21 @@ public abstract class RPEntity extends Entity {
 	}
 
 
+	/**
+	 * Determine if this is an obstacle for another entity.
+	 *
+	 * @param	entity		The entity to check against.
+	 *
+	 * @return	<code>true</code> if the other entity is an RPEntity.
+	 */
+	public boolean isObstacle(Entity entity) {
+		if(isGhost())
+			return false;
+
+		return (entity instanceof RPEntity);
+	}
+
+
 	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();

@@ -843,7 +843,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			for (RPObject other : objects.values()) {
 				Entity otherEntity = (Entity) other;
 
-				if (otherEntity.isObstacle()) {
+				if (otherEntity.isObstacle(entity)) {
 					// There is something the entity couldn't stand upon.
 					// Check if it's in the way. 
 					otherEntity.getArea(otherArea, otherEntity.getX(),

@@ -215,13 +215,26 @@ public abstract class Entity extends RPObject {
 		return collides;
 	}
 
-	
+
 	/**
-	 * Checks whether players, NPCs etc. can walk over this entity.
-	 * @return true iff it is impossible to walk over this entity
+	 * Checks whether an entity is a ghost (non physically interactive).
+	 *
+	 * @return	<code>true</code> if in ghost mode.
 	 */
-	public boolean isObstacle() {
-		return !has("ghostmode");
+	public boolean isGhost() {
+		return has("ghostmode");
+	}
+
+
+	/**
+	 * Determine if this is an obstacle for another entity.
+	 *
+	 * @param	entity		The entity to check against.
+	 *
+	 * @return	<code>true</code> if not a ghost.
+	 */
+	public boolean isObstacle(Entity entity) {
+		return !isGhost();
 	}
 
 	/**
