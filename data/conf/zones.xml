@@ -509,34 +509,91 @@ the wolves while searching for berries here
     <entity x="2" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+<!--
+    <entity x="2" y="3">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
     <entity x="8" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+<!--
+    <entity x="8" y="3">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
     <entity x="14" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+<!--
+    <entity x="14" y="3">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
     <entity x="20" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+<!--
+    <entity x="20" y="3">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
     <entity x="2" y="13">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+<!--
+    <entity x="2" y="9">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
     <entity x="8" y="13">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+<!--
+    <entity x="8" y="9">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
     <entity x="14" y="13">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+<!--
+    <entity x="14" y="9">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
     <entity x="20" y="13">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
+<!--
+    <entity x="20" y="9">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
    </zone>
 
    <zone name="int_semos_townhall" file="int_semos_townhall.xstend">
@@ -558,7 +615,7 @@ the wolves while searching for berries here
     </portal>
 
     <!-- Prevent table dancing (this is a family friendly townhall) -->
-<!-- XXX - Uncomment if trading table map update is added:
+!-- XXX - Uncomment if trading table map update is added:
     <entity x="4" y="32">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
     </entity>
@@ -574,7 +631,7 @@ the wolves while searching for berries here
     <entity x="6" y="33">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
     </entity>
--->
+--
    </zone>
 
    <zone name="int_semos_bakery" file="int_semos_bakery.xstend">
@@ -677,14 +734,36 @@ Mature sheep wanted: please speak to Sato
     <entity x="3" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+<!--
+    <entity x="3" y="13">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">3</attribute>
+     </implementation>
+    </entity>
+-->
     <entity x="5" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+<!--
+    <entity x="5" y="13">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">3</attribute>
+     </implementation>
+    </entity>
+-->
     <entity x="10" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
+<!--
+    <entity x="10" y="13">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">3</attribute>
+     </implementation>
+    </entity>
+-->
    </zone>
 
    <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
