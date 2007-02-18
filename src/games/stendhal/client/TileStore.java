@@ -12,12 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.entity.AnimatedEntity;
 import games.stendhal.common.Debug;
 
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+
+import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
 
 /** It is class to get tiles from the tileset */
 public class TileStore extends SpriteStore {
@@ -147,12 +152,14 @@ public class TileStore extends SpriteStore {
 
 	public Sprite getTile(int i) {
 		Sprite sprite = tileset.get(i);
-
+	
 		if (Debug.VERY_FAST_CLIENT_START && sprite == null) {
 			synchronized(locker) {
 				for (RangeFilename range : rangesTiles) {
 					if (range.isInRange(i)) {
-						StendhalClient.get().addEventLine("Loading tileset " + range.getFilename(),	Color.pink);
+						//TODO: decide which of them to be used astridemma 18.02.2007
+						 Log4J.getLogger(AnimatedEntity.class).info("Loading tileset " + range.getFilename());
+						//StendhalClient.get().addEventLine("Loading tileset " + range.getFilename(),	Color.pink);
 						range.load();
 						
 						sprite = tileset.get(i);

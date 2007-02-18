@@ -44,14 +44,14 @@ public class Corpse extends PassiveEntity {
 
 	public Rectangle2D getArea() {
 
-		return new Rectangle.Double(x, y, sprite.getWidth()
-				/ GameScreen.SIZE_UNIT_PIXELS, sprite.getHeight()
+		return new Rectangle.Double(x, y, (double)sprite.getWidth()
+				/ GameScreen.SIZE_UNIT_PIXELS, (double)sprite.getHeight()
 				/ GameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, sprite.getWidth()
-				/ GameScreen.SIZE_UNIT_PIXELS, sprite.getHeight()
+		return new Rectangle.Double(x, y, (double)sprite.getWidth()
+				/ GameScreen.SIZE_UNIT_PIXELS, (double)sprite.getHeight()
 				/ GameScreen.SIZE_UNIT_PIXELS);
 	}
 

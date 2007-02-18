@@ -278,7 +278,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		if (distance(client.getPlayer()) < 15 * 15) {
 			damageSprites.add(GameScreen.get().createString(
 					"+" + Integer.toString(amount), Color.green));
-			damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 			if (getID().equals(client.getPlayer().getID())) {
 				client.addEventLine(getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
 			}
@@ -301,7 +301,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			isPoisoned = true;
 			damageSprites.add(GameScreen.get().createString(
 					Integer.toString(amount), Color.red));
-			damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 
 			client.addEventLine(getName() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".", Color.red);
 		}
@@ -407,7 +407,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 						"+"
 								+ Integer.toString(diff.getInt("xp")
 										- base.getInt("xp")), Color.cyan));
-				damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+				damageSpritesTimes.add( Long.valueOf(System.currentTimeMillis()));
 
 				client.addEventLine(getName() + " earns "
 						+ Grammar.quantityplnoun(diff.getInt("xp") - base.getInt("xp"), "experience point") + ".", Color.blue);
@@ -747,7 +747,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 		damageSprites.add(GameScreen.get().createString(
 				Integer.toString(damage), Color.red));
-		damageSpritesTimes.add(new Long(System.currentTimeMillis()));
+		damageSpritesTimes.add( Long.valueOf(System.currentTimeMillis()));
 
 		boolean showAttackInfoForPlayer = client.getPlayer() != null
 				&& (getID().equals(client.getPlayer().getID()) || attacker

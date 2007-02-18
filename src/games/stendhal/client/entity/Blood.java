@@ -18,7 +18,7 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public class Blood extends AnimatedEntity {
-	String clazz;
+	//String clazz; TODO: use it or lose it astridemma 18.02.2007
 
 	public Blood( RPObject base)
 			throws AttributeNotFoundException {
@@ -27,8 +27,6 @@ public class Blood extends AnimatedEntity {
 
 	protected void buildAnimations(RPObject base) {
 		SpriteStore store = SpriteStore.get();
-
-		clazz = base.get("class");
 
 		sprites.put("0", store.getAnimatedSprite(
 				"data/sprites/combat/blood_red.png", 0, 1, 1, 1));

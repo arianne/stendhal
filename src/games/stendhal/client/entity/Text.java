@@ -112,8 +112,8 @@ public class Text extends Entity {
 	}
 
 	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(tx, ty, textImage.getWidth()
-				/ GameScreen.SIZE_UNIT_PIXELS, textImage.getHeight()
+		return new Rectangle.Double(tx, ty, (double)textImage.getWidth()
+				/ GameScreen.SIZE_UNIT_PIXELS, (double)textImage.getHeight()
 				/ GameScreen.SIZE_UNIT_PIXELS);
 	}
 
