@@ -19,10 +19,27 @@ class TiledMap {
 
         foreach($this->layers as $layer) {
             echo ' <layer name="'.$layer[0].'" width="64" height="64">'."\n";
-            echo ' <data>'."\n";
+            echo '   <data encoding="base64" compression="gzip">'."\n";
+            
+            $data='';
+            
             foreach($layer[1] as $gid) {
-                echo '   <tile gid="'.$gid.'"/>'."\n";
+                $b=($gid) & 0x000000FF;
+                $data.=pack("C*",$b);
+
+                $b=($gid >> 8) & 0x000000FF;
+                $data.=pack("C*",$b);
+
+                $b=($gid >> 16) & 0x000000FF;
+                $data.=pack("C*",$b);
+
+                $b=($gid >> 24) & 0x000000FF;
+                $data.=pack("C*",$b);               
             }
+            
+            $encoded=base64_encode(gzencode($data));
+            echo '     '.$encoded."\n";
+            
             echo '   </data>'."\n";
             echo ' </layer>'."\n";
         }
@@ -54,7 +71,7 @@ function loadMapping($filename) {
 }
 
 function startElement($parser, $name, $attrs) {
-    global $layer, $mapping, $oldmapping, $map, $layerdata;
+    global $layer, $recordLayerData, $map;
     
     if($name=="MAP") {
         $map->width=$attrs['WIDTH'];
@@ -66,28 +83,13 @@ function startElement($parser, $name, $attrs) {
         $layerdata=array();
     }
     
-    if($name=="TILE") {
-        $gid=$attrs['GID'];
-        if($gid!=0) {
-            list($tileset, $pos)=$mapping[$gid];        
-            $newgid=tile($tileset, $pos);            
-            //echo "$gid --> $tileset:$pos --> $newgid\n";
-            
-            if($tileset=='') {
-                list($tileset, $pos)=$oldmapping[$gid];
-                echo "MISSING: $tileset:$pos --> ".(int)($pos/30).":".($pos%30)."\n";
-                exit(1);
-            }
-            
-            $layerdata[]=$newgid;
-        } else {
-            $layerdata[]=0;
-        }
+    if($name=='DATA') {
+        $recordLayerData=true;
     }
 }
 
 function getAmountOfTiles($tileset) {
-    $tileset=ereg_replace("../../","",$tileset);
+    $tileset=ereg_replace('../../','',$tileset);
     list($width, $height) = getimagesize($tileset);
     return ($height/32)*($width/32);
 }
@@ -105,16 +107,73 @@ function tile($tileset, $pos) {
 }
 
 function endElement($parser, $name) {
-    global $layer, $map, $layerdata;
+    global $layer, $map, $layerdata, $recordLayerData;
 
     if($name=="LAYER") {
         $map->layers[]=array($layer, $layerdata);
+        $layerdata=array();
+    }
+
+    if($name=='DATA') {
+        $recordLayerData=false;
     }
 }
+
+$recordLayerData=false;
+
+
+// Define the gzdecode function
+if (!function_exists('gzdecode')) {
+        function gzdecode ($data) {
+                // Check if data is GZIP'ed
+                if (strlen($data) < 18 || strcmp(substr($data,0,2),"\x1f\x8b")) {
+                        return false;
+                }
+
+                // Remove first 10 bytes
+                $data = substr($data, 10);
+
+                // Return regular data
+                return gzinflate($data);
+        }
+}
+
+function cdataElement($parser, $data) {
+    global $recordLayerData, $mapping, $oldmapping, $map, $layerdata;
+
+    if($recordLayerData) {
+        $ugzd=gzdecode(base64_decode(trim($data)));
+        $list=unpack("C*",$ugzd);
+        
+        $tiles=sizeof($list);
+        for($i=1;$i<$tiles;$i+=4) {
+            $gid=$list[$i]+($list[$i+1]<<8)+($list[$i+2]<<16)+($list[$i+3]<<24);
+
+            if($gid!=0) {
+                list($tileset, $pos)=$mapping[$gid];        
+                $newgid=tile($tileset, $pos);            
+                // echo "$gid --> $tileset:$pos --> $newgid\n";
+            
+                if($tileset=='') {
+                    list($tileset, $pos)=$oldmapping[$gid];
+                    echo "MISSING: $tileset:$pos --> ".(int)($pos/30).":".($pos%30)."\n";
+                    //exit(1);
+                }
+            
+                $layerdata[]=$newgid;
+            } else {
+                $layerdata[]=0;
+            }
+        }
+    }
+}
+
+
 
 function loadTMX($filename) {
     $xml_parser = xml_parser_create();
     xml_set_element_handler($xml_parser, "startElement", "endElement");
+    xml_set_character_data_handler($xml_parser, "cdataElement");
     if (!($fp = fopen($filename, "r"))) {
         die("could not open XML input");
     }
@@ -129,8 +188,15 @@ function loadTMX($filename) {
     xml_parser_free($xml_parser);
 }
 
-list($oldmapping,$mapping)=loadMapping("mapping.txt");
-loadTMX("tileset/test/oldtest.tmx");
 
+if(sizeof($argv)==1) {
+    print("Map translator for Stendhal\n");
+    print("Usage: \n");
+    print("  translate mapname.tmx\n");
+    exit(1);
+}
+
+list($oldmapping,$mapping)=loadMapping("mapping.txt");
+loadTMX($argv[1]);
 $map->buildXML();
 ?>
