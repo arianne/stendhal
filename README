@@ -68,11 +68,12 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 0.58
+- trading table added in semos townhall
 - Improve Minimap: moveto by Double-Clicking
 - closed panel windows keep state on restart
 - rat city is open
 - new zone configuration using xml
-- Ctrl+R in gui clears all active text bubbles
+- ctrl+r in gui clears all active text bubbles
 - mayor now tells how long till next quest
 
 0.57  Jan 27, 2007
