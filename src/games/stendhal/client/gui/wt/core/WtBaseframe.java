@@ -200,7 +200,9 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 			 */
 			if(jcontextMenu != null) {
 				jcontextMenu.show(
-					e.getComponent(), e.getX(), e.getY());
+					e.getComponent(),
+					e.getX() - 10,
+					e.getY() - 10);
 			}
 
 			recreatedContextMenu = false;
