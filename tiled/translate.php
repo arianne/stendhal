@@ -43,9 +43,11 @@ function loadMapping($filename) {
     $content=file($filename);
     
     foreach($content as $line) {
-        list($oldtileset, $oldpos, $oldglobalpos, $tileset, $pos)=explode(":", trim($line));
-        $mapping[$oldglobalpos]=array($tileset, $pos);        
-        $oldmapping[$oldglobalpos]=array($oldtileset, $oldpos);        
+        if(strrpos($line, "#") === false) {
+            list($oldtileset, $oldpos, $oldglobalpos, $tileset, $pos)=explode(":", trim($line));
+            $mapping[$oldglobalpos]=array($tileset, $pos);        
+            $oldmapping[$oldglobalpos]=array($oldtileset, $oldpos);        
+            }
     }
     
     return array($oldmapping,$mapping);
@@ -73,7 +75,7 @@ function startElement($parser, $name, $attrs) {
             
             if($tileset=='') {
                 list($tileset, $pos)=$oldmapping[$gid];
-                echo "MISSING: $tileset:$pos\n";
+                echo "MISSING: $tileset:$pos --> ".(int)($pos/30).":".($pos%30)."\n";
                 exit(1);
             }
             
