@@ -378,6 +378,23 @@ and more dangerous creatures. Enter at own risk.
    </implementation>
   </entity>
 
+<!-- TEST - Make the bird statue in semos a semi-safe zone -->
+<!--
+  <entity x="26" y="40">
+   <implementation class-name="games.stendhal.server.entity.area.CreatureProtectionArea">
+    <attribute name="width">6</attribute>
+    <attribute name="height">6</attribute>
+    <attribute name="default">block</attribute>
+    <attribute name="rules">
+     -animal:wolf
+     +animal:*
+     -*:lich,*:ghost
+     +undead:*
+    </attribute>
+   </implementation>
+  </entity>
+-->
+
   <entity x="44" y="62">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <attribute name="text">
