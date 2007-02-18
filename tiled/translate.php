@@ -157,7 +157,7 @@ function cdataElement($parser, $data) {
                 if($tileset=='') {
                     list($tileset, $pos)=$oldmapping[$gid];
                     echo "MISSING: $tileset:$pos --> ".(int)($pos/30).":".($pos%30)."\n";
-                    //exit(1);
+                    exit(1);
                 }
             
                 $layerdata[]=$newgid;
