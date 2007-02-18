@@ -18,6 +18,7 @@ import games.stendhal.client.StendhalClient;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
@@ -59,18 +60,12 @@ public class Item extends PassiveEntity {
 		return "Use";
 	}
 
-	@Override
-	public String[] offeredActions() {
-		java.util.List<String> list = new ArrayList<String>();
+
+	protected void buildOfferedActions(List list) {
 		list.add("Use");
 		list.add("Look");
-		if (client.isAdmin()) {
-			list.add("(*)Inspect");
-			list.add("(*)Destroy");
-			list.add("(*)Alter");
-		}
-		return list.toArray(new String[list.size()]);
 	}
+
 
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {

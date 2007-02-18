@@ -18,6 +18,7 @@ import games.stendhal.client.StendhalClient;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
@@ -112,10 +113,12 @@ public class GrainField extends AnimatedEntity {
 		return actionName;
 	}
 
-	public String[] offeredActions() {
-		String[] list = { "Look", actionName };
-		return list;
+
+	protected void buildOfferedActions(List list) {
+		list.add("Look");
+		list.add(actionName);
 	}
+
 
 	public void onAction(StendhalClient client, String action, String... params) {
 		super.onAction(client, action, params);
@@ -125,6 +128,8 @@ public class GrainField extends AnimatedEntity {
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
 			client.send(rpaction);
+		} else {
+			super.onAction(client, action, params);
 		}
 	}
 

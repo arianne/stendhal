@@ -108,16 +108,15 @@ public class Door extends AnimatedEntity {
 		return "Open";
 	}
 
-	public String[] offeredActions() {
-		String[] list = null;
-		if (open) {
-			list = new String[] { "Look", "Open", "Close" };
-		} else {
-			list = new String[] { "Look", "Open" };
-		}
 
-		return list;
+	protected void buildOfferedActions(List list) {
+		list.add("Look");
+		list.add("Open");
+
+		if(open)
+			list.add("Close");
 	}
+
 
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Open") || action.equals("Close")) {

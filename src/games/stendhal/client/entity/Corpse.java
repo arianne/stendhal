@@ -19,6 +19,7 @@ import games.stendhal.client.gui.wt.EntityContainer;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
@@ -96,10 +97,12 @@ public class Corpse extends PassiveEntity {
 		return "Inspect";
 	}
 
-	public String[] offeredActions() {
-		String[] list = { "Look", "Inspect" };
-		return list;
+
+	protected void buildOfferedActions(List list) {
+		list.add("Look");
+		list.add("Inspect");
 	}
+
 
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Inspect")) {

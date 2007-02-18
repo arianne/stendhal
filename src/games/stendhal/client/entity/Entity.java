@@ -429,9 +429,27 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	}
 
 	public String[] offeredActions() {
-		String[] list = { "Look" };
-		return list;
+		List<String> list = new ArrayList<String>();
+
+		buildOfferedActions(list);
+
+		/*
+		 * Special admin options
+		 */
+		if (client.isAdmin()) {
+			list.add("(*)Inspect");
+			list.add("(*)Destroy");
+			list.add("(*)Alter");
+		}
+
+		return list.toArray(new String[list.size()]);
 	}
+
+
+	protected void buildOfferedActions(List list) {
+		list.add("Look");
+	}
+
 
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Look")) {

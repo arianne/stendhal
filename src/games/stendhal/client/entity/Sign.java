@@ -93,19 +93,13 @@ public class Sign extends Entity {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
-	public String defaultAction() {
-		return "Look";
-	}
-
-	public String[] offeredActions() {
-		String[] list = { "Look" };
-		return list;
-	}
 
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Look")) {
 			GameObjects.getInstance().addText(this, textImage, textPersistTime);
 			StendhalClient.get().addEventLine("You read: \"" + text + "\"", signColor);
+		} else {
+			super.onAction(client, action, params);
 		}
 	}
 

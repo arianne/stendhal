@@ -582,25 +582,16 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		return "Look";
 	}
 
-	@Override
-	public String[] offeredActions() {
-		List<String> list = new LinkedList<String>();
 
+	protected void buildOfferedActions(List list) {
 		list.add("Look");
 		list.add("Attack");
 
 		if (client.getPlayer().has("target")) {
 			list.add("Stop attack");
 		}
-
-		if (client.isAdmin()) {
-			list.add("(*)Inspect");
-			list.add("(*)Destroy");
-			list.add("(*)Alter");
-		}
-
-		return list.toArray(new String[list.size()]);
 	}
+
 
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {

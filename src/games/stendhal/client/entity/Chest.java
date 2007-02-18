@@ -17,6 +17,7 @@ import games.stendhal.client.*;
 import games.stendhal.client.gui.wt.*;
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.List;
 
 public class Chest extends AnimatedEntity {
 	private boolean open;
@@ -101,16 +102,18 @@ public class Chest extends AnimatedEntity {
 		return "Look";
 	}
 
-	public String[] offeredActions() {
-		String[] list = null;
-		if (open) {
-			list = new String[] { "Look", "Inspect", "Close" };
-		} else {
-			list = new String[] { "Look", "Open" };
-		}
 
-		return list;
+	protected void buildOfferedActions(List list) {
+		list.add("Look");
+
+		if (open) {
+			list.add("Inspect");
+			list.add("Close");
+		} else {
+			list.add("Open");
+		}
 	}
+
 
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Inspect")) {
