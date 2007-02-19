@@ -10,6 +10,8 @@ package games.stendhal.server.entity.portal;
 //
 
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 /**
  * A keyed portal is a special kind of portal which requires a key to pass it.
@@ -68,8 +70,48 @@ public class KeyedPortal extends Portal {
 		}
 		else if(rejected != null)
 		{
-			// XXX - This doesn't seem to work. Need to figure out why.
-			user.sendPrivateText(rejected);
+			TurnNotifier.get().notifyInTurns(
+				0, new SendMessage(user), rejected);
+		}
+	}
+
+	//
+	//
+
+	/*
+	 * A turn listener that sends a user message. Once sendPrivateText()
+	 * is fixed (via a queue or something) to always work, this can go
+	 * away.
+	 */
+	protected static class SendMessage implements TurnListener {
+		/**
+		 * The user to send to.
+		 */
+		protected RPEntity	user;
+
+
+		/**
+		 * Create a message sending turn listener.
+		 *
+		 * @param	user		The user to send to.
+		 */
+		public SendMessage(RPEntity user) {
+			this.user = user;
+		}
+
+
+		//
+		// TurnListener
+		//
+
+		/**
+		 * This method is called when the turn number is reached.
+		 *
+		 * @param	currentTurn	Current turn number.
+		 * @param	message		The string that was used.
+		 */
+		public void onTurnReached(int currentTurn, String message) {
+			user.sendPrivateText(message);
 		}
 	}
 }
