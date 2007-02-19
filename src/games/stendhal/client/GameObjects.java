@@ -661,6 +661,32 @@ public class GameObjects implements Iterable<Entity> {
 		return null;
 	}
 
+	public Entity at_undercreature(double x, double y) {
+		ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects.size());
+		while (it.hasPrevious()) {
+			Entity entity = it.previous();
+
+			if (entity.getArea().contains(x, y)) {
+				if (entity.getType().compareTo("creature")==0) continue;
+				return entity;
+			}
+		}
+
+		// Maybe user clicked outside char but on the drawed area of it
+		it = sortedObjects.listIterator(sortedObjects.size());
+		while (it.hasPrevious()) {
+			Entity entity = it.previous();
+
+			if (entity.getDrawedArea().contains(x, y)) {
+				if (entity.getType().compareTo("creature")==0) continue;
+				return entity;
+			}
+		}
+
+		return null;
+	}
+
+
 	/** Draw all the objects in game */
 	public void draw(GameScreen screen) {
 		sort();

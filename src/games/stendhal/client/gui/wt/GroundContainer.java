@@ -110,7 +110,7 @@ public class GroundContainer extends WtPanel {
 			return other;
 		}
 		Point2D point = screen.translate(new Point2D.Double(x, y));
-		Entity object = gameObjects.at(point.getX(), point.getY());
+		Entity object = gameObjects.at_undercreature(point.getX(), point.getY());
 
 		// only Items can be dragged
 		if (object != null && object instanceof PassiveEntity) {

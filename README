@@ -68,8 +68,9 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 0.58
+- remove items from under a creature
 - trading table added in semos townhall
-- Improve Minimap: moveto by Double-Clicking
+- improve Minimap: moveto by Double-Clicking
 - closed panel windows keep state on restart
 - rat city is open
 - new zone configuration using xml
