@@ -1,4 +1,7 @@
 <?php
+// Raise Memory limit usage 
+ini_set('memory_limit', '64M');
+
 class TiledMap {
     public $width=0;
     public $height=0;
