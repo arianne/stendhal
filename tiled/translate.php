@@ -143,11 +143,11 @@ function cdataElement($parser, $data) {
 
     if($recordLayerData) {
         $ugzd=gzdecode(base64_decode(trim($data)));
-        $list=unpack("C*",$ugzd);
+        $list=unpack("V*",$ugzd);
         
         $tiles=sizeof($list);
-        for($i=1;$i<$tiles;$i+=4) {
-            $gid=$list[$i]+($list[$i+1]<<8)+($list[$i+2]<<16)+($list[$i+3]<<24);
+        for($i=1;$i<=$tiles;$i++) {
+            $gid=$list[$i];
 
             if($gid!=0) {
                 list($tileset, $pos)=$mapping[$gid];        
