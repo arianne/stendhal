@@ -35,12 +35,9 @@ import org.apache.log4j.Logger;
  * 
  * @author Jane Hunt
  */
-public class ClipRunner implements LineListener {
+ class ClipRunner implements LineListener {
 	/** the logger */
 	private static final Logger logger = Log4J.getLogger(ClipRunner.class);
-
-	/** Base sound coordinator */
-	private SoundSystem system;
 
 	/** name of this clip */
 	private String text;
@@ -53,14 +50,12 @@ public class ClipRunner implements LineListener {
 
 	/**
 	 * Creates a ClipRunner instance by name. Volume setting is set to 100%.
-	 * 
-	 * @param system
 	 * @param text
+	 * 
 	 * @throws UnsupportedAudioFileException
 	 */
-	public ClipRunner(SoundSystem system, String text) {
+	public ClipRunner(String text) {
 		this.text = text;
-		this.system = system;
 		samples = new ArrayList<AudioClip>();
 	}
 
@@ -149,10 +144,10 @@ public class ClipRunner implements LineListener {
 				FloatControl volCtrl = (FloatControl) line
 						.getControl(FloatControl.Type.MASTER_GAIN);
 				if (volCtrl != null) {
-					float dB = SoundSystem.dBValues[volume]
-							+ SoundSystem.dBValues[audioClip.getVolume()]
+					float dB = DBValues.dBValues[volume]
+							+ DBValues.dBValues[audioClip.getVolume()]
 							+ correctionDB;
-					volCtrl.setValue(dB + system.getVolumeDelta());
+					volCtrl.setValue(dB + SoundSystem.get().getVolumeDelta());
 				} else {
 					logger
 							.info("no master gain for line "

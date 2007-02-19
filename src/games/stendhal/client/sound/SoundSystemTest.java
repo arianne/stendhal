@@ -1,0 +1,155 @@
+package games.stendhal.client.sound;
+
+import static org.junit.Assert.*;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class SoundSystemTest {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Test
+	public final void testPlaySoundIntern() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testPlaySoundStringInt() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testPlaySoundStringIntInt() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testProbablePlaySound() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testPlayMapSound() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testPlayAmbientSound() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testStopAmbientSound() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testClearAmbientSounds() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetSoundClip() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testStartSoundCycle() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testStopSoundCycle() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testContains() {
+		assertFalse(SoundSystem.get().contains("")); 
+		//TODO: create test for finding one
+		
+	}
+
+	@Test
+	public final void testSetandGetMute() {
+		SoundSystem.get().setMute(true);
+		assertTrue("muted sound should be mute",SoundSystem.get().getMute());
+		SoundSystem.get().setMute(false);
+		assertFalse("muted sound should be mute",SoundSystem.get().getMute());
+	}
+
+	@Test
+	public final void testSetAndGetVolume() {
+		SoundSystem.get().setVolume(0);
+		assertEquals(0, SoundSystem.get().getVolume());
+		SoundSystem.get().setVolume(100);
+		assertEquals(100, SoundSystem.get().getVolume());
+	}
+	@Test
+	public final void testSetVolumeOutOfBounds() {
+		SoundSystem.get().setVolume(-1);
+		assertEquals(0, SoundSystem.get().getVolume());
+		SoundSystem.get().setVolume(101);
+		assertEquals(100, SoundSystem.get().getVolume());
+	}
+
+
+	@Test
+	public final void testIsOperative() {
+		assertTrue(SoundSystem.get().isOperative());
+	}
+
+	@Test
+	public final void testGet() {
+		SoundSystem ss1 = SoundSystem.get();
+		SoundSystem ss2 = SoundSystem.get();
+		assertTrue("must receive identical instance",(ss1==ss2));
+	
+	}
+
+	@Test
+	public final void testGetMixer() {
+		assertNotNull(SoundSystem.get().getMixer());
+		
+	}
+
+	@Test
+	public final void testExit() {
+		SoundSystem.get().exit();
+		assertFalse(SoundSystem.get().isOperative() );
+	}
+
+	@Test
+	public final void testTransferData() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testZoneEntered() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetVolumeDelta() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testZoneLeft() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testPlayerMoved() {
+		fail("Not yet implemented"); // TODO
+	}
+
+}

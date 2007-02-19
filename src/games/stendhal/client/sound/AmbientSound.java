@@ -39,7 +39,7 @@ import marauroa.common.game.RPObject;
  * 
  * @author Jane Hunt
  */
-public class AmbientSound {
+ class AmbientSound {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(AmbientSound.class);
 
@@ -76,7 +76,7 @@ public class AmbientSound {
 
 		public LoopSoundInfo(String sound, int volume, int delay) {
 			name = sound;
-			loudnessDB = SoundSystem.dBValues[volume];
+			loudnessDB = DBValues.dBValues[volume];
 			this.delay = delay;
 		}
 
@@ -184,7 +184,7 @@ public class AmbientSound {
 
 		this.name = name;
 		soundPos = point;
-		loudnessDB = SoundSystem.dBValues[volume];
+		loudnessDB = DBValues.dBValues[volume];
 
 		if (soundPos != null) {
 			soundObject = new SoundObject();
@@ -411,7 +411,7 @@ public class AmbientSound {
 			if (playerPos == null | playerHearing == null) {
 				// System.out.println( "ambient (" + name + ") fog volume: 0
 				// (player unavailable)" );
-				return SoundSystem.dBValues[0];
+				return DBValues.dBValues[0];
 			}
 
 			// determine sound volume cutoff due to distance (fog value)
@@ -423,7 +423,7 @@ public class AmbientSound {
 					(int) (95 * (maxDist - distance) / maxDist + 5));
 			// System.out.println( "ambient (" + name + ") fog volume:
 			// dist=" + (int)distance + ", fog=" + fogVolume );
-			return SoundSystem.dBValues[fogVolume];
+			return DBValues.dBValues[fogVolume];
 		}
 	} // getPlayerVolume
 

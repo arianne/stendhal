@@ -8,7 +8,7 @@ package games.stendhal.client.sound;
  * 
  * @author Jane Hunt
  */
-public class AmbientStore {
+ class AmbientStore {
 
 	public static AmbientSound getAmbient(String name) {
 		AmbientSound ambient = null;

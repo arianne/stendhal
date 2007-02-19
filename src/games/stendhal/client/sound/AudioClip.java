@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
  * 
  * @author mtotz
  */
-public class AudioClip {
+ class AudioClip {
 	/** the logger */
 	private static final Logger logger = Log4J.getLogger(AudioClip.class);
 
