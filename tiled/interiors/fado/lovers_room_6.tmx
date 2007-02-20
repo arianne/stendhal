@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="x" value="499936"/>
+  <property name="y" value="500224"/>
+ </properties>
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="../../zelda_outside_1_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="../../zelda_interior_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="../../zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
+  <image source="../../zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
+  <image source="../../zelda_collision_chipset.png"/>
+ </tileset>
+ <tileset name="Building 0" firstgid="2604" tilewidth="32" tileheight="32">
+  <image source="../../zelda_building_0_tileset.png"/>
+ </tileset>
+ <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
+  <image source="../../zelda_outside_2_chipset.png"/>
+ </tileset>
+ <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
+  <image source="../../zelda_interior_1_chipset.png"/>
+ </tileset>
+ <layer name="0_floor" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAFNjYGBQowP2oCEetWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMAasNx98QJAAA=
+  </data>
+ </layer>
+ <layer name="1_terrain" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAHvDy8Dwjob4PRBz8THAgQcDKgDxufkZGJYzYMcgOUJAmw9ix0xGBoZZjAg74lgRGCT2HAf2QFOLDGBmwuxA9we6Hfgwuh0eDKjhQaw/yLFjJPgD3R0g9jMcGJtaYvxBLUyMPyjFA+kPdIDLbfjcjQ7Q/YFOY9NPyN3oNKn+IBT2+PwBAntZGBj24cEHWHDbsYGDgWETB347QOo0gWZ8wIPvsRBwMAF/kGvHXnagH9FwGzt17bgNNC+IExUfoIIdyGFvyYFpxz92VHXIdogDyzR1FtxYCq0OImQHCHig+YMcUIzHDliao9SOcKAdEUj4LtD8ezjscAWGgxuWsCAXYCsTk4Hmp6DVMdQsd92A2J2G2BOIATQb1yrECQAA
+  </data>
+ </layer>
+ <layer name="2_object" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYOkGdlYFBgJU4tDz8DAz8QawGxNz/t3KQLNVubRnbwQv0B8oMujezg5EfYNQrIBxp0DD8AILSg08QJAAA=
+  </data>
+ </layer>
+ <layer name="3_roof" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgoA+IZWRgiGMc/GZSaucLHJgSM6lhB6l2Dhd/kAMGY7oaLGYSayc6TW8zBhpc5IPgkQgYWRkYmFgHzn5iw34kx9EoGD4AAORcqtHECQAA
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+  </data>
+ </layer>
+ <layer name="objects" width="25" height="25" opacity="0.9">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgIA5M4mNgqAXiOiCezEekplEwCkbBKBgFo2AUjIJRQBMAAGeBHanECQAA
+  </data>
+ </layer>
+ <layer name="collision" width="25" height="25" opacity="0.25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAANPiYmDQogPGB0jVS65d5LgNXS8tATnuGgxm09OuUX8MLrsG0h+U2E1Ns/CZT6octcBA2kFNuymJW2LVDff4GLUDtx20sosebSoYBgA7EG7FxAkAAA==
+  </data>
+ </layer>
+ <layer name="navigation" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+  </data>
+ </layer>
+ <layer name="protection" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+  </data>
+ </layer>
+</map>
