@@ -373,6 +373,104 @@ public class Player extends RPEntity implements TurnListener {
                 }
 	}
 
+
+	/**
+	 * Get a named skills value.
+	 *
+	 * @param	key		The skill key.
+	 *
+	 * @return	The skill value, or <code>null</code> if not set.
+	 */
+	public String getSkill(String key) {
+		return getKeyedSlot("!skills", key);
+	}
+
+
+	/**
+	 * Set a named skills value.
+	 *
+	 * @param	key		The skill key.
+	 * @param	value		The skill value.
+	 *
+	 * @return	<code>true</code> if value changed, <code>false</code>
+	 *		if there was a problem.
+	 */
+	public boolean setSkill(String key, String value) {
+		return setKeyedSlot("!skills", key, value);
+	}
+
+
+	/**
+	 * Get a keyed string value on a named slot.
+	 *
+	 * @param	name		The slot name.
+	 * @param	key		The value key.
+	 *
+	 * @return	The keyed value of the slot, or <code>null</code>
+	 *		if not set.
+	 */
+	public String getKeyedSlot(String name, String key) {
+		RPSlot		slot;
+		RPObject	object;
+
+
+		if(!hasSlot(name)) {
+			logger.error("Expected to find !skills slot");
+			return null;
+		}
+
+		slot = getSlot(name);
+
+		if(slot.size() == 0) {
+			logger.error("Found empty " + name + " slot");
+			return null;
+		}
+
+		object = slot.iterator().next();
+
+		return object.has(key) ? object.get(key) : null;
+	}
+
+
+	/**
+	 * Set a keyed string value on a named slot.
+	 *
+	 * @param	name		The slot name.
+	 * @param	key		The value key.
+	 * @param	value		The value to assign (or remove if
+	 *				<code>null</code>).
+	 *
+	 * @return	<code>true</code> if value changed, <code>false</code>
+	 *		if there was a problem.
+	 */
+	public boolean setKeyedSlot(String name, String key, String value) {
+		RPSlot		slot;
+		RPObject	object;
+
+
+		if(!hasSlot(name)) {
+			logger.error("Expected to find " + name + " slot");
+			return false;
+		}
+
+		slot = getSlot(name);
+
+		if(slot.size() == 0) {
+			logger.error("Found empty " + name + " slot");
+			return false;
+		}
+
+		object = slot.iterator().next();
+
+		if(value != null)
+			object.put(key, value);
+		else if(object.has(key))
+			object.remove(key);
+
+		return true;
+	}
+
+
 	public void sendPrivateText(String text) {
         if (has("private_text")) {
             text = get("private_text") + "\r\n" + text;

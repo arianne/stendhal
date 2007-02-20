@@ -106,7 +106,9 @@ class PlayerRPClass {
 
 		player.addRPSlot("!quests", 1, RPClass.HIDDEN);
 
-		player.add("karma", RPClass.FLOAT, RPClass.HIDDEN);
+		player.add("karma", RPClass.FLOAT, RPClass.PRIVATE);
+
+		player.addRPSlot("!skills", 1, RPClass.PRIVATE);
 	}
 
 	/**
@@ -117,7 +119,7 @@ class PlayerRPClass {
 	static void updatePlayerRPObject(RPObject object) {
 		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank" };
 
-		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore" };
+		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!skills" };
 
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
@@ -141,6 +143,7 @@ class PlayerRPClass {
 		}
 		//     Port from 0.44 to 0.50: !buddy
 		//     Port from 0.56 to 0.56.1: !ignore
+		//     Port from 0.57 to 0.58: !skills
 		for (String slotName : slotsSpecial) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new RPSlot(slotName));
@@ -172,6 +175,11 @@ class PlayerRPClass {
 
 		if (!object.has("age")) {
 			object.put("age", "0");
+		}
+
+		if(!object.has("karma")) {
+			// A little beginner's luck
+			object.put("karma", 10);
 		}
 	}
 
