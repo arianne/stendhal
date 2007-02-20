@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class SoundSystemTest {
@@ -16,57 +17,57 @@ public class SoundSystemTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Test
+	@Ignore
 	public final void testPlaySoundIntern() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testPlaySoundStringInt() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testPlaySoundStringIntInt() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testProbablePlaySound() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testPlayMapSound() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testPlayAmbientSound() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testStopAmbientSound() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testClearAmbientSounds() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testGetSoundClip() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testStartSoundCycle() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testStopSoundCycle() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -115,11 +116,6 @@ public class SoundSystemTest {
 	
 	}
 
-	@Test
-	public final void testGetMixer() {
-		assertNotNull(SoundSystem.get().getMixer());
-		
-	}
 
 	@Test
 	public final void testExit() {
@@ -127,27 +123,27 @@ public class SoundSystemTest {
 		assertFalse(SoundSystem.get().isOperative() );
 	}
 
-	@Test
+	@Ignore
 	public final void testTransferData() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testZoneEntered() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testGetVolumeDelta() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testZoneLeft() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	@Ignore
 	public final void testPlayerMoved() {
 		fail("Not yet implemented"); // TODO
 	}

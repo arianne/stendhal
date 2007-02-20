@@ -40,7 +40,7 @@ import org.apache.log4j.Logger;
 	private static final Logger logger = Log4J.getLogger(ClipRunner.class);
 
 	/** name of this clip */
-	private String text;
+	private String _name;
 
 	/** length */
 	private long maxLength;
@@ -50,12 +50,12 @@ import org.apache.log4j.Logger;
 
 	/**
 	 * Creates a ClipRunner instance by name. Volume setting is set to 100%.
-	 * @param text
+	 * @param name
 	 * 
 	 * @throws UnsupportedAudioFileException
 	 */
-	public ClipRunner(String text) {
-		this.text = text;
+	 ClipRunner(String name) {
+		_name = name;
 		samples = new ArrayList<AudioClip>();
 	}
 
@@ -67,7 +67,7 @@ import org.apache.log4j.Logger;
 	 *            alternate sound clip
 	 * @throws UnsupportedAudioFileException
 	 */
-	public void addSample(AudioClip clip) {
+	void addSample(AudioClip clip) {
 		samples.add(clip);
 		maxLength = Math.max(maxLength, clip.getLength());
 	}
@@ -77,7 +77,7 @@ import org.apache.log4j.Logger;
 	 * 
 	 * @return long milliseconds, 0 if undefined
 	 */
-	public long maxPlayLength() {
+	 long maxPlayLength() {
 		return maxLength;
 	}
 
@@ -88,11 +88,12 @@ import org.apache.log4j.Logger;
 	 *            loudness in 0 .. 100
 	 * @param correctionDB
 	 *            decibel correction value from outward sources
+	 * @param volumeDelta TODO
 	 * @return the AudioSystem <code>DataLine</code> object that is being
 	 *         played, or <b>null</b> on error
 	 */
-	public DataLine play(int volume, float correctionDB) {
-		DataLine line = getAudioClip(volume, correctionDB);
+	 DataLine play(int volume, float correctionDB, float volumeDelta) {
+		DataLine line = getAudioClip(volume, correctionDB, volumeDelta);
 
 		if (line != null) {
 			line.start();
@@ -105,17 +106,18 @@ import org.apache.log4j.Logger;
 	 * 
 	 * @param volume
 	 *            loudness in 0 .. 100
+	 * @param volumeDelta TODO
 	 * @return the AudioSystem <code>Clip</code> object that is being played,
 	 *         or <b>null</b> on error
 	 */
-	public Clip loop(int volume, float correctionDB) {
-		Clip line = getAudioClip(volume, correctionDB);
-
-		if (line != null) {
-			line.loop(Clip.LOOP_CONTINUOUSLY);
-		}
-		return line;
-	}
+//	private Clip loop(int volume, float correctionDB, float volumeDelta) {
+//		Clip line = getAudioClip(volume, correctionDB, volumeDelta);
+//
+//		if (line != null) {
+//			line.loop(Clip.LOOP_CONTINUOUSLY);
+//		}
+//		return line;
+//	}
 
 	/**
 	 * Returns a runnable AudioSystem sound clip with the given volume settings.
@@ -124,10 +126,11 @@ import org.apache.log4j.Logger;
 	 *            loudness in 0 .. 100
 	 * @param correctionDB
 	 *            decibel correction value from outward sources
+	 * @param volumeDelta TODO
 	 * @return an AudioSystem sound <code>Clip</code> that represents this
 	 *         sound, or <b>null</b> on error
 	 */
-	public Clip getAudioClip(int volume, float correctionDB) {
+	 Clip getAudioClip(int volume, float correctionDB, float volumeDelta) {
 		if (samples.size() > 0) {
 			try {
 				int index = Rand.rand(samples.size());
@@ -144,10 +147,10 @@ import org.apache.log4j.Logger;
 				FloatControl volCtrl = (FloatControl) line
 						.getControl(FloatControl.Type.MASTER_GAIN);
 				if (volCtrl != null) {
-					float dB = DBValues.dBValues[volume]
-							+ DBValues.dBValues[audioClip.getVolume()]
+					float dB = DBValues.getDBValue(volume)
+							+ DBValues.getDBValue(audioClip.getVolume())
 							+ correctionDB;
-					volCtrl.setValue(dB + SoundSystem.get().getVolumeDelta());
+					volCtrl.setValue(dB + volumeDelta);
 				} else {
 					logger
 							.info("no master gain for line "
@@ -159,7 +162,7 @@ import org.apache.log4j.Logger;
 				return line;
 			} catch (Exception ex) {
 				logger.error("** AudioSystem: clip line unavailable for: "
-						+ this.text, ex);
+						+ this._name, ex);
 				return null;
 			}
 		}

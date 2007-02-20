@@ -84,7 +84,7 @@ import org.apache.log4j.Logger;
 			long frames = audioInputStream.getFrameLength();
 
 			if (frameRate != AudioSystem.NOT_SPECIFIED
-					& frames != AudioSystem.NOT_SPECIFIED) {
+					&& frames != AudioSystem.NOT_SPECIFIED) {
 				length = (int) (frames / frameRate * 1000);
 			} else {
 				length = 0;

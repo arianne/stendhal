@@ -104,12 +104,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/** expected location of the sound definition file (classloader). */
 	private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";
 
-	private static final  SoundSystem singleton=new SoundSystem();
+	private static final SoundSystem singleton = new SoundSystem();
 
-
-
-	/** stores the named sound effects */
-	private HashMap<String, Object> sfxmap = new HashMap<String, Object>(256);
+	SoundEffectMap sef = SoundEffectMap.getInstance();
 
 	/** */
 	private HashMap<byte[], SoundCycle> cycleMap = new HashMap<byte[], SoundCycle>();
@@ -158,8 +155,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		if (name == null | volBot == 0 | !operative | muteSetting)
 			return null;
 
-		if (volBot < 0 | volBot > 100 | volTop < 0 | volTop > 100
-				| volTop < volBot)
+		if (volBot < 0 || volBot > 100 || volTop < 0 || volTop > 100 || volTop < volBot)
 			throw new IllegalArgumentException("bad volume setting");
 
 		// check/fetch sound
@@ -168,7 +164,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return null;
 
 		int volume = volBot + Rand.rand(volTop - volBot + 1);
-		return clip.play(volume, correctionDB);
+		return clip.play(volume, correctionDB, SoundSystem.get().getVolumeDelta());
 	} // playSound
 
 	/**
@@ -252,7 +248,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		int fogVolume;
 
 		// broken cases
-		if (where == null | chance < 0)
+		if (where == null || chance < 0)
 			throw new IllegalArgumentException();
 
 		// lost chance cases (random)
@@ -286,12 +282,13 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		fogVolume = Math
 				.max(0, (int) (95 * (maxDist - distance) / maxDist + 5));
 
-		return get().playSoundIntern(name, volBot, volTop, DBValues.dBValues[fogVolume]);
+		return get().playSoundIntern(name, volBot, volTop,
+				DBValues.getDBValue(fogVolume));
 	} // playMapSound
 
 	/** registers an abmient sound */
-	public  void playAmbientSound(AmbientSound ambient) {
-		
+	public void playAmbientSound(AmbientSound ambient) {
+
 		ambient.play();
 
 		synchronized (ambientList) {
@@ -334,30 +331,42 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 */
 	ClipRunner getSoundClip(String name) {
 
-		Object o = sfxmap.get(name);
-
-		if (o instanceof ClipRunner) {
+		Object o = SoundEffectMap.getInstance().getByName(name);
+if (o== null) return null;
+  
+if (o instanceof ClipRunner) {
 			return (ClipRunner) o;
 		}
 
-		if (o != null) {
+		
 			// load sounddata from soundfile
 			String path = (String) o;
-			String hstr = name + "@" + path;
-			logger.warn("- loading from external SOUND ZIP: " + hstr);
-			ZipEntry zipEntry = soundFile.getEntry(path);
-			if (zipEntry != null)
-				try {
-					ClipRunner clipRunner = new ClipRunner(hstr);
-					AudioClip clip = new AudioClip(mixer, name,
-							getZipData(zipEntry), 100);
-					clipRunner.addSample(clip);
-					return clipRunner;
-				} catch (Exception e) {
-				}
-		}
-		return null;
+			return loadSoundDataFromFile(name, path);
+		
 	} // getSoundClip
+
+	private ClipRunner findReturn(ClipRunner clipr) {
+		
+		return clipr;
+		
+	}
+
+	private ClipRunner loadSoundDataFromFile(String name, String path) {
+		String hstr = name + "@" + path;
+		logger.warn("- loading from external SOUND ZIP: " + hstr);
+		ZipEntry zipEntry = soundFile.getEntry(path);
+		if (zipEntry != null)
+			try {
+				ClipRunner clipRunner = new ClipRunner(hstr);
+				AudioClip clip = new AudioClip(mixer, name,
+						getZipData(zipEntry), 100);
+				clipRunner.addSample(clip);
+				return clipRunner;
+			} catch (Exception e) {
+
+			}
+		return null;
+	}
 
 	/**
 	 * Starts cyclic performance of a given library sound, attributed to a
@@ -463,7 +472,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 *            token of sound
 	 */
 	public boolean contains(String name) {
-		return name != null && sfxmap.containsKey(name);
+		return name != null
+				&& SoundEffectMap.getInstance().containsKey(
+						name);
 	}
 
 	/**
@@ -570,7 +581,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					// determine equalizing loudness setting
 					loudness = 100;
 					if ((pos = value.lastIndexOf(',')) != -1) {
-						loudness = MathHelper.parseInt_default(value.substring(pos + 1), 100);
+						loudness = MathHelper.parseInt_default(value
+								.substring(pos + 1), 100);
 					}
 
 					// investigate sample status
@@ -598,7 +610,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					ClipRunner clip = getSoundClip(name);
 					if (clip == null) {
 						clip = new ClipRunner(name);
-						sfxmap.put(name, clip);
+						SoundEffectMap.getInstance().put(name,
+								clip);
 					}
 					clip.addSample(sound);
 
@@ -608,14 +621,16 @@ public class SoundSystem implements WorldObjects.WorldListener {
 				} else {
 					// or stores just the sample data name
 					logger.debug("- storing external sound ref: " + name);
-					sfxmap.put(name, path);
+					SoundEffectMap.getInstance().put(name, path);
 				}
 			} // for
 
 			// report to startup console
 
 			hstr = "Stendhal Soundsystem OK: " + count + " samples approved / "
-					+ loaded + " loaded / " + sfxmap.size() + " library sounds";
+					+ loaded + " loaded / "
+					+ SoundEffectMap.getInstance().size()
+					+ " library sounds";
 			logger.info(hstr);
 			System.out.println(hstr);
 			if (failed != 0) {
@@ -704,16 +719,14 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	public void setVolume(int volume) {
 		float dB;
 
-		if (volume < 0)
-			volume = 0;
-		if (volume > 100)
-			volume = 100;
-
-		dB = DBValues.dBValues[volume];
+		volume=(volume<0)?volume=0:volume;
+		volume=(volume>100)?volume=100:volume;
+	
+		dB = DBValues.getDBValue(volume);
 		logger.info("- sound system setting volume dB = " + dB + "  (gain "
 				+ volume + ")");
-
-		volumeSetting = volume;
+  		  
+		volumeSetting=volume;
 		if (volumeCtrl != null) {
 			volumeCtrl.setValue(dB);
 		} else {
@@ -744,15 +757,16 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/** Returns the singleton instance of the Stendhal sound system. */
 	public static SoundSystem get() {
-//		if (singleton == null)
-//			singleton = new SoundSystem();
+		// if (singleton == null)
+		// singleton = new SoundSystem();
 		return singleton;
 	}
 
-	/** returns the current mixer */
-	public Mixer getMixer() {
-		return mixer;
-	}
+//	/** returns the current mixer */
+	// TODO: use it or loose it SoundSystem.getMixer
+//	public Mixer getMixer() {
+//		return mixer;
+//	}
 
 	/**
 	 * Releases any resources associated with this sound system. The system is
@@ -1013,7 +1027,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		// update ambient sounds about player position
 		synchronized (ambientList) {
 			for (AmbientSound a : ambientList) {
-				a.performPlayerMoved(player);
+				a.performPlayerMoved(player, isOperative(), getMute());
 			}
 		}
 	}

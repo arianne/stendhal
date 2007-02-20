@@ -77,8 +77,7 @@ class SoundCycle extends Thread implements Cloneable {
 
 		if (period < 1000)
 			throw new IllegalArgumentException("illegal sound period");
-		if (volBot < 0 | volBot > 100 | volTop < 0 | volTop > 100
-				| volTop < volBot)
+		if (volBot < 0 || volBot > 100 || volTop < 0 || volTop > 100 || volTop < volBot)
 			throw new IllegalArgumentException("bad volume setting");
 
 		if ((clip = SoundSystem.get().getSoundClip(token)) == null)

@@ -60,7 +60,9 @@ import marauroa.common.game.RPObject;
 	private float loudnessDB;
 
 	private boolean playing;
-
+	private float getVolumeDelta() {
+		return SoundSystem.get().getVolumeDelta();
+	}
 	/**
 	 * The LoopSoundInfo stores information which is required to start the
 	 * continuously looping sound elements of this ambient sound.
@@ -76,7 +78,7 @@ import marauroa.common.game.RPObject;
 
 		public LoopSoundInfo(String sound, int volume, int delay) {
 			name = sound;
-			loudnessDB = DBValues.dBValues[volume];
+			loudnessDB = DBValues.getDBValue(volume);
 			this.delay = delay;
 		}
 
@@ -121,7 +123,8 @@ import marauroa.common.game.RPObject;
 			ClipRunner libClip;
 
 			// get the library sound clip
-			if ((libClip = SoundSystem.get().getSoundClip(soundInfo.name)) == null)
+			libClip = SoundSystem.get().getSoundClip(soundInfo.name);
+			if (libClip == null)
 				throw new IllegalArgumentException("sound unknown: "
 						+ soundInfo.name);
 
@@ -139,13 +142,15 @@ import marauroa.common.game.RPObject;
 				// start playing
 				soundInfo.clip = libClip.getAudioClip(SoundSystem.get()
 						.getVolume(), loudnessDB + soundInfo.loudnessDB
-						+ correctionDB);
+						+ correctionDB, getVolumeDelta());
 				if (soundInfo.clip != null) {
 					soundInfo.clip.loop(Clip.LOOP_CONTINUOUSLY);
 				}
 				playing = true;
 			}
 		}
+
+		
 	} // SoundStarter
 
 	/**
@@ -179,12 +184,12 @@ import marauroa.common.game.RPObject;
 		if (name == null)
 			throw new NullPointerException();
 
-		if (radius < 0 | volume < 0 | volume > 100)
-			throw new IllegalArgumentException("r=" + radius + ", v=" + volume);
+		if (radius < 0 )
+			throw new IllegalArgumentException("r=" + radius );
 
 		this.name = name;
 		soundPos = point;
-		loudnessDB = DBValues.dBValues[volume];
+		loudnessDB = DBValues.getDBValue(volume);
 
 		if (soundPos != null) {
 			soundObject = new SoundObject();
@@ -408,10 +413,10 @@ import marauroa.common.game.RPObject;
 		// if the sound is map localized
 		else {
 			// maximum fog if no player infos available
-			if (playerPos == null | playerHearing == null) {
+			if (playerPos == null || playerHearing == null) {
 				// System.out.println( "ambient (" + name + ") fog volume: 0
 				// (player unavailable)" );
-				return DBValues.dBValues[0];
+				return DBValues.getDBValue(0);
 			}
 
 			// determine sound volume cutoff due to distance (fog value)
@@ -423,7 +428,7 @@ import marauroa.common.game.RPObject;
 					(int) (95 * (maxDist - distance) / maxDist + 5));
 			// System.out.println( "ambient (" + name + ") fog volume:
 			// dist=" + (int)distance + ", fog=" + fogVolume );
-			return DBValues.dBValues[fogVolume];
+			return DBValues.getDBValue(fogVolume);
 		}
 	} // getPlayerVolume
 
@@ -434,14 +439,15 @@ import marauroa.common.game.RPObject;
 	 * 
 	 * @param player
 	 *            client player object (may be <b>null</b>
+	 * @param isOperative TODO
+	 * @param isMute TODO
 	 */
-	public void performPlayerMoved(Player player) {
-		SoundSystem sys;
+	public void performPlayerMoved(Player player, boolean isOperative, boolean isMute) {
+		//SoundSystem sys;
 
 		// operation control
-		sys = SoundSystem.get();
-		if (!sys.isOperative() | sys.getMute() | player == null
-				| soundPos == null)
+		//sys = SoundSystem.get();
+		if (!isOperative || isMute || player == null || soundPos == null)
 			return;
 
 		// if not yet playing, start playing
