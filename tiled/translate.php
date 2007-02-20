@@ -1,3 +1,5 @@
+#!/usr/bin/php
+
 <?php
 // Raise Memory limit usage 
 ini_set('memory_limit', '64M');
