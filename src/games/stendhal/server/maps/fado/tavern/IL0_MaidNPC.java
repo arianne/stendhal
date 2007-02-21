@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.deniran.tavern;
+package games.stendhal.server.maps.fado.tavern;
 
 import java.util.LinkedList;
 import java.util.List;

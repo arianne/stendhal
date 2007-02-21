@@ -2329,9 +2329,9 @@ probably just be named key.
 
 
 
-	<!-- Rename Deniran/deniran to real name when offically assigned -->
+	<!-- Rename Deniran/fado to real name when offically assigned -->
 
-	<item name="deniran_hotel_key_001">
+	<item name="fado_hotel_key_001">
 		<type class="key" subclass="hotel"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
@@ -2341,7 +2341,7 @@ probably just be named key.
 		</equipable>
 	</item>
 
-	<item name="deniran_hotel_key_002">
+	<item name="fado_hotel_key_002">
 		<type class="key" subclass="hotel"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
@@ -2351,7 +2351,7 @@ probably just be named key.
 		</equipable>
 	</item>
 
-	<item name="deniran_hotel_key_003">
+	<item name="fado_hotel_key_003">
 		<type class="key" subclass="hotel"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
@@ -2361,7 +2361,7 @@ probably just be named key.
 		</equipable>
 	</item>
 
-	<item name="deniran_hotel_key_004">
+	<item name="fado_hotel_key_004">
 		<type class="key" subclass="hotel"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
@@ -2371,7 +2371,7 @@ probably just be named key.
 		</equipable>
 	</item>
 
-	<item name="deniran_hotel_key_005">
+	<item name="fado_hotel_key_005">
 		<type class="key" subclass="hotel"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
@@ -2381,7 +2381,7 @@ probably just be named key.
 		</equipable>
 	</item>
 
-	<item name="deniran_hotel_key_006">
+	<item name="fado_hotel_key_006">
 		<type class="key" subclass="hotel"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
@@ -2391,7 +2391,7 @@ probably just be named key.
 		</equipable>
 	</item>
 
-	<item name="deniran_hotel_key_007">
+	<item name="fado_hotel_key_007">
 		<type class="key" subclass="hotel"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
@@ -2401,7 +2401,7 @@ probably just be named key.
 		</equipable>
 	</item>
 
-	<item name="deniran_hotel_key_008">
+	<item name="fado_hotel_key_008">
 		<type class="key" subclass="hotel"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>

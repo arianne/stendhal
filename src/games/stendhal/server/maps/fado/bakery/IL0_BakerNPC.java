@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.deniran.bakery;
+package games.stendhal.server.maps.fado.bakery;
 
 import java.util.Arrays;
 import java.util.HashMap;
