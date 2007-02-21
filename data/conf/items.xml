@@ -2325,4 +2325,89 @@ probably just be named key.
 	</item>
 -->
 
+
+
+
+
+	<!-- Rename Deniran/deniran to real name when offically assigned -->
+
+	<item name="deniran_hotel_key_001">
+		<type class="key" subclass="hotel"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<description>You see a key to room #001 in the Deniran Hotel</description>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="deniran_hotel_key_002">
+		<type class="key" subclass="hotel"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<description>You see a key to room #002 in the Deniran Hotel</description>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="deniran_hotel_key_003">
+		<type class="key" subclass="hotel"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<description>You see a key to room #003 in the Deniran Hotel</description>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="deniran_hotel_key_004">
+		<type class="key" subclass="hotel"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<description>You see a key to room #004 in the Deniran Hotel</description>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="deniran_hotel_key_005">
+		<type class="key" subclass="hotel"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<description>You see a key to room #005 in the Deniran Hotel</description>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="deniran_hotel_key_006">
+		<type class="key" subclass="hotel"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<description>You see a key to room #006 in the Deniran Hotel</description>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="deniran_hotel_key_007">
+		<type class="key" subclass="hotel"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<description>You see a key to room #007 in the Deniran Hotel</description>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="deniran_hotel_key_008">
+		<type class="key" subclass="hotel"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<description>You see a key to room #008 in the Deniran Hotel</description>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 </items>

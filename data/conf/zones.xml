@@ -747,7 +747,9 @@ Mature sheep wanted: please speak to Sato
     </portal>
 
     <entity x="3" y="12">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">!bank_ados</attribute>
+     </implementation>
     </entity>
 <!--
     <entity x="3" y="13">
@@ -758,7 +760,9 @@ Mature sheep wanted: please speak to Sato
     </entity>
 -->
     <entity x="5" y="12">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">!bank_ados</attribute>
+     </implementation>
     </entity>
 <!--
     <entity x="5" y="13">
@@ -769,7 +773,10 @@ Mature sheep wanted: please speak to Sato
     </entity>
 -->
     <entity x="10" y="12">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <!-- semos slot -->
+      <attribute name="slot">!bank</attribute>
+     </implementation>
     </entity>
 <!--
     <entity x="10" y="13">
@@ -1109,6 +1116,244 @@ Mature sheep wanted: please speak to Sato
   <title/>
  </zone>
 -->
+
+
+ <!-- Rename deniran to real name when it's offically set -->
+
+<!--
+ <zone name="0_deniran_city" file="0_deniran_city.xstend">
+  <configurator class-name="games.stendhal.server.maps.deniran.city.OL0_GreeterNPC"/>
+
+  <portal x="36" y="16" ref="tavern_entrance_left">
+   <destination zone="int_deniran_tavern" ref="entrance_left"/>
+  </portal>
+
+  <portal x="48" y="16" ref="tavern_entrance_right">
+   <destination zone="int_deniran_tavern" ref="entrance_right"/>
+  </portal>
+
+  <portal x="46" y="38" ref="bank_entrance">
+   <destination zone="int_deniran_bank" ref="entrance"/>
+  </portal>
+
+  <portal x="56" y="38" ref="bakery_entrance">
+   <destination zone="int_deniran_bakery" ref="entrance"/>
+  </portal>
+
+  <portal x="14" y="59" ref="hotel_entrance">
+   <destination zone="int_deniran_hotel_0" ref="entrance"/>
+  </portal>
+
+  <portal x="55" y="55" ref="church_entrance">
+   <destination zone="int_deniran_church" ref="entrance_right"/>
+  </portal>
+
+  <portal x="71" y="98" ref="shepherd_house_entrance">
+   <destination zone="int_deniran_shepherd_house" ref="entrance"/>
+  </portal>
+ </zone>
+
+
+   <zone name="int_deniran_bank" file="int_deniran_bank.xstend">
+    <configurator class-name="games.stendhal.server.maps.deniran.bank.IL0_TellerNPC"/>
+
+    <portal x="12" y="19" ref="entrance">
+     <destination zone="0_deniran_city" ref="bank_entrance"/>
+    </portal>
+
+    <entity x="2" y="8">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">!bank_deniran</attribute>
+     </implementation>
+    </entity>
+
+    <entity x="2" y="12">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">!bank_deniran</attribute>
+     </implementation>
+    </entity>
+
+    <entity x="2" y="16">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">!bank_deniran</attribute>
+     </implementation>
+    </entity>
+   </zone>
+
+   <zone name="int_deniran_bakery" file="int_deniran_bakery.xstend">
+    <configurator class-name="games.stendhal.server.maps.deniran.bakery.IL0_BakerNPC"/>
+
+    <portal x="26" y="14" ref="entrance">
+     <destination zone="0_deniran_city" ref="bakery_entrance"/>
+    </portal>
+   </zone>
+
+   <zone name="int_deniran_tavern" file="int_deniran_tavern.xstend">
+    <configurator class-name="games.stendhal.server.maps.deniran.tavern.IL0_MaidNPC"/>
+
+    <portal x="16" y="30" ref="entrance_left">
+     <destination zone="0_deniran_city" ref="tavern_entrance_left"/>
+    </portal>
+
+    <portal x="41" y="30" ref="entrance_right">
+     <destination zone="0_deniran_city" ref="tavern_entrance_right"/>
+    </portal>
+   </zone>
+
+   <zone name="int_deniran_church" file="int_deniran_church.xstend">
+    <portal x="10" y="23" ref="entrance_left2">
+     <destination zone="0_deniran_city" ref="church_entrance"/>
+    </portal>
+
+    <portal x="11" y="23" ref="entrance_left">
+     <destination zone="0_deniran_city" ref="church_entrance"/>
+    </portal>
+
+    <portal x="12" y="23" ref="entrance_right">
+     <destination zone="0_deniran_city" ref="church_entrance"/>
+    </portal>
+
+    <portal x="13" y="23" ref="entrance_right2">
+     <destination zone="0_deniran_city" ref="church_entrance"/>
+    </portal>
+   </zone>
+
+   <zone name="int_deniran_shepherd_house" file="int_deniran_shepherd_house.xstend">
+    <portal x="10" y="31" ref="entrance">
+     <destination zone="0_deniran_city" ref="shepherd_house_entrance"/>
+    </portal>
+   </zone>
+
+   <zone name="int_deniran_hotel_0" file="int_deniran_hotel_0.xstend">
+    <configurator class-name="games.stendhal.server.maps.deniran.hotel.IL0_GreeterNPC"/>
+
+    <portal x="8" y="63" ref="entrance">
+     <destination zone="0_deniran_city" ref="hotel_entrance"/>
+    </portal>
+
+    <portal x="0" y="40" ref="room_001_entrance">
+     <destination zone="int_deniran_hotel_room_001" ref="entrance"/>
+     <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+      <attribute name="class">empty</attribute>
+      <attribute name="direction">left</attribute>
+      <attribute name="key">deniran_hotel_key_001</attribute>
+     </implementation>
+    </portal>
+
+    <portal x="10" y="40" ref="room_002_entrance">
+     <destination zone="int_deniran_hotel_room_002" ref="entrance"/>
+     <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+      <attribute name="class">empty</attribute>
+      <attribute name="direction">left</attribute>
+      <attribute name="key">deniran_hotel_key_002</attribute>
+     </implementation>
+    </portal>
+
+    <portal x="0" y="33" ref="room_003_entrance">
+     <destination zone="int_deniran_hotel_room_003" ref="entrance"/>
+     <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+      <attribute name="class">empty</attribute>
+      <attribute name="direction">left</attribute>
+      <attribute name="key">deniran_hotel_key_003</attribute>
+     </implementation>
+    </portal>
+
+    <portal x="10" y="33" ref="room_004_entrance">
+     <destination zone="int_deniran_hotel_room_004" ref="entrance"/>
+     <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+      <attribute name="class">empty</attribute>
+      <attribute name="direction">left</attribute>
+      <attribute name="key">deniran_hotel_key_004</attribute>
+     </implementation>
+    </portal>
+
+    <portal x="0" y="26" ref="room_005_entrance">
+     <destination zone="int_deniran_hotel_room_005" ref="entrance"/>
+     <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+      <attribute name="class">empty</attribute>
+      <attribute name="direction">left</attribute>
+      <attribute name="key">deniran_hotel_key_005</attribute>
+     </implementation>
+    </portal>
+
+    <portal x="10" y="26" ref="room_006_entrance">
+     <destination zone="int_deniran_hotel_room_006" ref="entrance"/>
+     <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+      <attribute name="class">empty</attribute>
+      <attribute name="direction">left</attribute>
+      <attribute name="key">deniran_hotel_key_006</attribute>
+     </implementation>
+    </portal>
+
+    <portal x="0" y="19" ref="room_007_entrance">
+     <destination zone="int_deniran_hotel_room_007" ref="entrance"/>
+     <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+      <attribute name="class">empty</attribute>
+      <attribute name="direction">left</attribute>
+      <attribute name="key">deniran_hotel_key_007</attribute>
+     </implementation>
+    </portal>
+
+    <portal x="10" y="19" ref="room_008_entrance">
+     <destination zone="int_deniran_hotel_room_008" ref="entrance"/>
+     <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+      <attribute name="class">empty</attribute>
+      <attribute name="direction">left</attribute>
+      <attribute name="key">deniran_hotel_key_008</attribute>
+     </implementation>
+    </portal>
+   </zone>
+
+     <zone name="int_deniran_hotel_room_001" file="int_deniran_hotel_room_001.xstend">
+      <portal x="8" y="14" ref="entrance">
+       <destination zone="int_deniran_hotel_0" ref="hotel_room_001_entrance"/>
+      </portal>
+     </zone>
+
+     <zone name="int_deniran_hotel_room_002" file="int_deniran_hotel_room_002.xstend">
+      <portal x="8" y="14" ref="entrance">
+       <destination zone="int_deniran_hotel_0" ref="hotel_room_002_entrance"/>
+      </portal>
+     </zone>
+
+     <zone name="int_deniran_hotel_room_003" file="int_deniran_hotel_room_003.xstend">
+      <portal x="8" y="14" ref="entrance">
+       <destination zone="int_deniran_hotel_0" ref="hotel_room_003_entrance"/>
+      </portal>
+     </zone>
+
+     <zone name="int_deniran_hotel_room_004" file="int_deniran_hotel_room_004.xstend">
+      <portal x="8" y="14" ref="entrance">
+       <destination zone="int_deniran_hotel_0" ref="hotel_room_004_entrance"/>
+      </portal>
+     </zone>
+
+     <zone name="int_deniran_hotel_room_005" file="int_deniran_hotel_room_005.xstend">
+      <portal x="8" y="14" ref="entrance">
+       <destination zone="int_deniran_hotel_0" ref="hotel_room_005_entrance"/>
+      </portal>
+     </zone>
+
+     <zone name="int_deniran_hotel_room_006" file="int_deniran_hotel_room_006.xstend">
+      <portal x="8" y="14" ref="entrance">
+       <destination zone="int_deniran_hotel_0" ref="hotel_room_006_entrance"/>
+      </portal>
+     </zone>
+
+     <zone name="int_deniran_hotel_room_007" file="int_deniran_hotel_room_007.xstend">
+      <portal x="8" y="14" ref="entrance">
+       <destination zone="int_deniran_hotel_0" ref="hotel_room_007_entrance"/>
+      </portal>
+     </zone>
+
+     <zone name="int_deniran_hotel_room_008" file="int_deniran_hotel_room_008.xstend">
+      <portal x="8" y="14" ref="entrance">
+       <destination zone="int_deniran_hotel_0" ref="hotel_room_008_entrance"/>
+      </portal>
+     </zone>
+
+-->
+
 
  <zone name="0_athos_ship_w2" file="0_athos_ship_w2.xstend">
   <title/>
