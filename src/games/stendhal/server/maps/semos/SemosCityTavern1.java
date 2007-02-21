@@ -122,7 +122,12 @@ public class SemosCityTavern1 implements ZoneConfigurator {
 					ConversationStates.ATTENDING,
 					"Ssshh! I'm occasionally buying rare weapons and armor. Got any? Ask for my #offer",
 					null);
-
+				add(ConversationStates.ATTENDING,
+					"offer",
+					null,
+					ConversationStates.ATTENDING,
+					"Have a look at the blackboard on the wall to see my offers.",
+					null);
 				add(ConversationStates.ATTENDING, Arrays.asList("eye","leg","wood","patch"),
 						ConversationStates.ATTENDING,
 						"Not every day is a lucky day ...",
