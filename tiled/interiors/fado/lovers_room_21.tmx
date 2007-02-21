@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="x" value="499936"/>
+  <property name="y" value="500224"/>
+ </properties>
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="../../zelda_outside_1_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="../../zelda_interior_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="../../zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
+  <image source="../../zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
+  <image source="../../zelda_collision_chipset.png"/>
+ </tileset>
+ <tileset name="Building 0" firstgid="2604" tilewidth="32" tileheight="32">
+  <image source="../../zelda_building_0_tileset.png"/>
+ </tileset>
+ <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
+  <image source="../../zelda_outside_2_chipset.png"/>
+ </tileset>
+ <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
+  <image source="../../zelda_interior_1_chipset.png"/>
+ </tileset>
+ <layer name="0_floor" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAADvBzsBwggDW5cOOCekjBU/kx45H7Ri1Y7DbMYpHHm5gYGCoZ8AUg2Fq2YELU9svtDQfhutpbD4MO3MOfPoYxaOYXhgAeqzK6cQJAAA=
+  </data>
+ </layer>
+ <layer name="1_terrain" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAALWVPU7DQBCFR7KzJMXaRkL0IFGRhHNQUMIV+DsGpKAkDdSUdEGCC4SfygkX4AShIBSIMm/ltTy2vN617DzpFWvPvG+94zg/kmhp8VdQbluf8i8coFZuZOaKBdFxSLRn8Ak8E/kenqUcBXkG1xy9Y80wSTHUPooczuIMr0Pkd7KaT5FwbAxVF5cwUg5n7CB/lzEWIum3Mea6zoVR1Exk86hiqLonxrjziO49N8ZEn3PdeTwj/8WRkc7DJlW3aHBWqv9W7zM992+R7T0WzeahFBfy0/WErccVz+rCaKoig78P62Lw94ErwPcmhCN4U+pemb/uyjDpEBl9eAgfyCR/n107aoFxiowz+Fpnhjr/Ab6AL1tgjGSeM4CvWP6NIyNdu3DOa+QrcYZNKSd0yOfijD9w/y2/k5HOtuXzrLoMV5kYW12i7W47DJ5VNY8lamQP568tDQ70/ahXnmNifPj4TwRjiud9054a/Krvv8OPvjujTSlGHx6s0UN4BfBDixzECQAA
+  </data>
+ </layer>
+ <layer name="2_object" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgwA9+8TEw/MaB//AR0EwkkODHLSeFR44UIIzHrYJk+EMLi7uobQc2MFzs2IfHnANUsuMO0Jy7OPA9Iu3QoJJbcAFeGps/CmgPBHlpZ/ZCqNkbWCB0M43sgtmziETzB2P+gIUVOUAbWK57E1HnEGMHLz/EPHTAQ6U6DQZ0qWweuQBbncjJj0oTUj8KSAcAGe80S8QJAAA=
+  </data>
+ </layer>
+ <layer name="3_roof" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMguEBgoFYHIqRAUwsmAp2gMwJR7MHZm8YFrvJAcj+QGaXMlDPHwwMqG5GtocafkAGILNhYRbGQD33owNkf9AS0Nr8UTAKiAUA3TZezcQJAAA=
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+  </data>
+ </layer>
+ <layer name="objects" width="25" height="25" opacity="0.9">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+  </data>
+ </layer>
+ <layer name="collision" width="25" height="25" visible="0" opacity="0.25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAANPiYmDQojPGBqihFp8ecsFA20NLO6ht7lC3A5t9o3aQbsdo/hhZdsD41DYf2R5aAmxlCy3NHS524FJHrbbAQNlBLUCOW8nBAODQPs7ECQAA
+  </data>
+ </layer>
+ <layer name="navigation" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+  </data>
+ </layer>
+ <layer name="protection" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+  </data>
+ </layer>
+</map>
