@@ -5,82 +5,82 @@
   <property name="y" value="500000"/>
  </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_outside_0_chipset.png" trans="ffffff"/>
+  <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_outside_1_chipset.png" trans="ffffff"/>
+  <image source="../../zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+  <image source="../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+  <image source="../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_interior_0_chipset.png" trans="ff00ff"/>
+  <image source="../../zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_navigation_chipset.png"/>
+  <image source="../../zelda_navigation_chipset.png"/>
  </tileset>
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_objects_chipset.png"/>
+  <image source="../../zelda_objects_chipset.png"/>
  </tileset>
  <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_collision_chipset.png"/>
+  <image source="../../zelda_collision_chipset.png"/>
  </tileset>
  <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_building_0_tileset.png"/>
+  <image source="../../zelda_building_0_tileset.png"/>
  </tileset>
  <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_outside_2_chipset.png"/>
+  <image source="../../zelda_outside_2_chipset.png"/>
  </tileset>
  <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_interior_1_chipset.png"/>
+  <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
-  <image source="../../stendhal/stendhal/stendhal/../../zelda_monsters_chipset.png"/>
+  <image source="../../zelda_monsters_chipset.png"/>
  </tileset>
- <layer name="weaponshop_0_floor" width="15" height="13">
+ <layer name="0_floor" width="15" height="13">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANvAz8CwYZDiCWh4uOsdxQOLATUT5iIMAwAA
   </data>
  </layer>
- <layer name="weaponshop_1_terrain" width="15" height="13">
+ <layer name="1_terrain" width="15" height="13">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAEvjYGD4wE46TgXqewekM4A0Hwk4HYjfskP08gDZuMA0fgaGz7wMDF+g+CsQc5OgV5APwRcGsqcD9cwgU+9WoJ5tROrVB6o3gGJDPuLdXAbUG4WGidWLDQx1vV5ANisQswExOxDzYsHWnAwMNpwQtidUrweQfg+klYG0ChCrQvnoOBKoL4oTwXcHqgMAqBb1KgwDAAA=
   </data>
  </layer>
- <layer name="weaponshop_2_object" width="15" height="13">
+ <layer name="2_object" width="15" height="13">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgQAXfeBkYfgHxbyD+CcT/eBmIBiJ8DAwSQCwJxOJALMNHWI8pUI05VF0PkO4jQg8MBAPVhkLVrwLSa9D0/gPx+QnrPQGkT6HpfQDkP8LhFmS9pIJCoL5iqN75fBBMLMgDqi0gQr0KM3luIwVEAt0RC8QxQBwHxPFAnIjFbcpEuoVYdbQEAHSZ2sMMAwAA
   </data>
  </layer>
- <layer name="weaponshop_3_roof" width="15" height="13">
+ <layer name="3_roof" width="15" height="13">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGJnAio98vRFIehv5IHgoAmugu+2B2A6IHYDYEYidh6hfqAEAcz0YqwwDAAA=
   </data>
  </layer>
- <layer name="weaponshop_4_roof_add" width="15" height="13">
+ <layer name="4_roof_add" width="15" height="13">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWUgDo+BoZ6voF2xSigBgAACD7QOQwDAAA=
   </data>
  </layer>
- <layer name="weaponshop_objects" width="15" height="13">
+ <layer name="objects" width="15" height="13">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAUDDWZz0kfPUARpdPQnAMyXDmYMAwAA
   </data>
  </layer>
- <layer name="weaponshop_collision" width="15" height="13" opacity="0.37">
+ <layer name="collision" width="15" height="13" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANPiYmDQGgQYBLCxB7teZEBre4kFlOjFpp9YOyhxNzHhRGsMAMnctXoMAwAA
   </data>
  </layer>
- <layer name="weaponshop_navigation" width="15" height="13">
+ <layer name="navigation" width="15" height="13">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSAAABpxE2jDAMAAA==
   </data>
  </layer>
- <layer name="weaponshop_protection" width="15" height="13">
+ <layer name="protection" width="15" height="13">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSAAABpxE2jDAMAAA==
   </data>
