@@ -39,37 +39,37 @@
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEtmYGBIpgNez087PGrHqB2jdozaMWrHqB2jdozaMdjsoDUGAOV3OHbECQAA
+   H4sIAAAAAAAAALNlZGCwpQP2Z6EdHkg7jrIyMBwD4uOshM0gpBaXHY+B6p8A8VMi7CCkdiDtYGRjYGACYmY2wnYQUjvc09WoHSPTDlgZQQrGVp7gswOWf0nB2PL6qB2jdiBjWJlNCsZWvg90HqS2HbTGAPYCjKTECQAA
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvDy8Dwjob4PRBz8THQFGjzIezYy87A0EoAt7FTZsdtoH4ZAnjJILFjL5q/aWFHMQeq+qFqRzjQjggovkcjO9ABVewAiqniwMEc1LHjORtu9aN20N8OG6BYPQ5MLTsIgdHyamDtGLLlFQl2gPx4lx0/vkehHbQCIDvcgNidhtgTiAG1XG0dxAkAAA==
+   H4sIAAAAAAAAAHvDy8Dwjob4PRBz8TEQBOc4GBjOo+ELHIT1gYA2H3F2bACatxENb8JhRwY/Kka2Yy4rA8M8Vuz6jjFjx9T0ByVg1A7y7JDEIi+JhNHFcfHR9RBjB6ly6Hxa2YEsRokdhPTgsgPdDbjig5AduOKDVmAw2KHGj8pP5sfOxqZWhRm7HSpElnOEAMgcGEa2A1kcF5gELM8nQ/EUAvUHKf5ADpMNWOoP9DBDB4MhzulhB3pawQdwqaWnPzYA43ojldItDMDMBNnhBsTuNMSeQAwAvYlk7cQJAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYOgATf6BdsEoGAWjYBQQB0bLq1FAawAA3Xt4vcQJAAA=
+   H4sIAAAAAAAAAGNgQAAXDgYGVyh240CI8zIyMPAxYtLIYD0fA8MGPoZRMApGwSgYBaNgQAAvPwODNxDrAjEP/0C7ZhSMAtoDAE4OaFvECQAA
   </data>
  </layer>
- <layer name="3_roof" width="25" height="25" visible="0">
+ <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB/gYh3c5g0VsIAROx61AxMcYsSOR8EoGAWjYBSMgqEOAK/9vjjECQAA
+   H4sIAAAAAAAAAGNgGHrgEh8qRgb1rAwMDawD4y56gWPM2PGoHZiAhxE7HgWjgBzwio+wGnLUIgMOflR+Cj92Nja1IxGghwmp8oMBDES6okRtCbCcLqVyWY1u5iQgezKV7aCFmQMNAPI8gL3ECQAA
   </data>
  </layer>
- <layer name="4_roof_add" width="25" height="25" visible="0">
+ <layer name="4_roof_add" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
   </data>
  </layer>
- <layer name="objects" width="25" height="25" visible="0" opacity="0.9">
+ <layer name="objects" width="25" height="25" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA7IM6PiUTAKRsEoGAWjYBSMglEwcAAAebS/h8QJAAA=
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
   </data>
  </layer>
- <layer name="collision" width="25" height="25" visible="0" opacity="0.25">
+ <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQogMGARgNA+hy+PQh60U3D58d2OzDZgc+PdjcQAswagfpdtDCLnLSCbXsIMdeaplDDf8MNzuoZR+6mdjKPXzuIUUdLn249JOrhp7+QJbHBUhJ87jigxAgN18N1/wxagdhO2iNAbNdQmLECQAA
+   H4sIAAAAAAAAANPiYmDQogMmBEjRh08tufqIdR8hOygBtDJ31I5RO0btGLp2IKslp7wiZCYp9iPz0e2gVrgRKttxuQebXnzuItcflNYftAKDwQ5K0hWxdlADkBOH5JpNawwAOm5pHMQJAAA=
   </data>
  </layer>
  <layer name="navigation" width="25" height="25" visible="0">
