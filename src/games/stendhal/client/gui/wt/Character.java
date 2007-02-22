@@ -173,15 +173,20 @@ public class Character extends WtPanel {
 
 		List<String> checkedItems = new LinkedList<String>();
 
-		// taverse all slots
-		for (RPSlot slot : playerEntity.getSlots()) {
-			String slotName = slot.getName();
+		// taverse all carrying slots
+		String [] slotsCarrying = {
+			"bag", "rhand", "lhand", "head", "armor",
+			"legs", "feet", "cloak"
+		};
 
-			if (slotName.equals("!buddy")) {
+		for(String slotName : slotsCarrying) {
+			RPSlot slot = playerEntity.getSlot(slotName);
+
+			if(slot == null)
 				continue;
-			}
 
-			EntitySlot entitySlot = slotPanels.get(slotName);
+                        EntitySlot entitySlot = slotPanels.get(slotName);
+
 			if (entitySlot != null) {
 				entitySlot.clear();
 				entitySlot.setParent(playerEntity);
