@@ -1117,10 +1117,7 @@ Mature sheep wanted: please speak to Sato
  </zone>
 -->
 
-
- <!-- Rename fado to real name when it's offically set -->
-
-<!--
+<!-- NO MAP YET
  <zone name="0_fado_city" file="0_fado_city.xstend">
   <configurator class-name="games.stendhal.server.maps.fado.city.OL0_GreeterNPC"/>
 
@@ -1152,7 +1149,7 @@ Mature sheep wanted: please speak to Sato
    <destination zone="int_fado_shepherd_house" ref="entrance"/>
   </portal>
  </zone>
-
+-->
 
    <zone name="int_fado_bank" file="int_fado_bank.xstend">
     <configurator class-name="games.stendhal.server.maps.fado.bank.IL0_TellerNPC"/>
@@ -1167,15 +1164,36 @@ Mature sheep wanted: please speak to Sato
      </implementation>
     </entity>
 
+    <entity x="2" y="8">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+     </implementation>
+    </entity>
+
     <entity x="2" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
       <attribute name="slot">bank_fado</attribute>
      </implementation>
     </entity>
 
+    <entity x="2" y="12">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+     </implementation>
+    </entity>
+
     <entity x="2" y="16">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
       <attribute name="slot">bank_fado</attribute>
+     </implementation>
+    </entity>
+
+    <entity x="2" y="16">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
      </implementation>
     </entity>
    </zone>
@@ -1304,6 +1322,7 @@ Mature sheep wanted: please speak to Sato
     </portal>
    </zone>
 
+<!-- NO MAPS YET
      <zone name="int_fado_hotel_room_001" file="int_fado_hotel_room_001.xstend">
       <portal x="8" y="14" ref="entrance">
        <destination zone="int_fado_hotel_0" ref="hotel_room_001_entrance"/>
@@ -1351,9 +1370,7 @@ Mature sheep wanted: please speak to Sato
        <destination zone="int_fado_hotel_0" ref="hotel_room_008_entrance"/>
       </portal>
      </zone>
-
 -->
-
 
  <zone name="0_athos_ship_w2" file="0_athos_ship_w2.xstend">
   <title/>

@@ -354,8 +354,10 @@ class PlayerRPClass {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		// load items
-		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs",
-						"feet", "cloak", "bank" };		
+		String[] slotsItems = {
+			"bag", "rhand", "lhand", "head", "armor", "legs",
+			"feet", "cloak", "bank", "bank_ados", "bank_fado" };
+
 		for (String slotName : slotsItems) {
 			try {
 				if (player.hasSlot(slotName)) {
