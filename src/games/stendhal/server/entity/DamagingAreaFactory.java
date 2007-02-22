@@ -106,6 +106,35 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 
 
 	/**
+	 * Extract the flag to only damage players.
+	 *
+	 * @param	ctx		The configuration context.
+	 *
+	 * @return	The flag to only damage players.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If the attribute is invalid.
+	 */
+	protected boolean getPlayersOnly(ConfigurableFactoryContext ctx)
+	 throws IllegalArgumentException {
+		String	s;
+
+
+		if((s = ctx.getAttribute("players-only")) == null)
+			return false;
+
+		if(s.equals("true"))
+			return true;
+
+		if(s.equals("false"))
+			return false;
+
+		throw new IllegalArgumentException(
+			"Invalid 'players-only' attribute: " + s);
+	}
+
+
+	/**
 	 * Extract the moving damage probability (as percent) from a context.
 	 *
 	 * @param	ctx		The configuration context.
@@ -153,10 +182,17 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	 */
 	public Object create(ConfigurableFactoryContext ctx)
 	 throws IllegalArgumentException {
-		return new DamagingArea(
+		DamagingArea	area;
+
+
+		area =  new DamagingArea(
 			getName(ctx),
 			getDamage(ctx),
 			getInterval(ctx),
 			getProbability(ctx));
+
+		area.setPlayersOnly(getPlayersOnly(ctx));
+
+		return area;
 	}
 }

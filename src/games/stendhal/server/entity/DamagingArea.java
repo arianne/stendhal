@@ -23,6 +23,7 @@ import marauroa.common.game.IRPZone;
 import games.stendhal.common.Level;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -50,6 +51,11 @@ public class DamagingArea extends PassiveEntity
 	protected int			interval;
 
 	/**
+	 * The inflict damage only on players.
+	 */
+	protected boolean		playersOnly;
+
+	/**
 	 * The chance of damage while walking (0.0 - 1.0).
 	 */
 	protected double		probability;
@@ -57,7 +63,7 @@ public class DamagingArea extends PassiveEntity
 	/**
 	 * A list of entities [potentially] in range.
 	 */
-	protected List<RPEntity>	targets;
+	protected List<RPEntity.ID>	targets;
 
 	/**
 	 * Random number generator.
@@ -84,14 +90,28 @@ public class DamagingArea extends PassiveEntity
 		this.interval = interval;
 		this.probability = probability;
 
+		playersOnly = false;
 		rand = new Random();
-		targets = new LinkedList<RPEntity>();
+		targets = new LinkedList<RPEntity.ID>();
 	}
 
 
 	//
 	// DamagingArea
 	//
+
+	/**
+	 * Add an entity to the target list.
+	 *
+	 * @param	entity		The RPEntity to add.
+	 */
+	protected void addTarget(RPEntity entity) {
+		targets.add(entity.getID());
+
+		if(targets.size() == 1)
+			TurnNotifier.get().notifyInTurns(interval, this, null);
+	}
+
 
 	/**
 	 * Calculate the entity's final defense value.
@@ -175,28 +195,25 @@ public class DamagingArea extends PassiveEntity
 
 
 	/**
-	 * Add an entity to the target list.
-	 *
-	 * @param	entity		The RPEntity to add.
-	 */
-	protected void addTarget(RPEntity entity) {
-		targets.add(entity);
-
-		if(targets.size() == 1)
-			TurnNotifier.get().notifyInTurns(interval, this, null);
-	}
-
-
-	/**
 	 * Remove an entity from the target list.
 	 *
 	 * @param	entity		The RPEntity to remove.
 	 */
 	protected void removeTarget(RPEntity entity) {
-		targets.remove(entity);
+		targets.remove(entity.getID());
 
 		if(targets.isEmpty())
 			TurnNotifier.get().dontNotify(this, null);
+	}
+
+
+	/**
+	 * Set whether only players get damage.
+	 *
+	 * @param	playersOnly	Whether to only attack players.
+	 */
+	public void setPlayersOnly(boolean playersOnly) {
+		this.playersOnly = playersOnly;
 	}
 
 
@@ -204,6 +221,11 @@ public class DamagingArea extends PassiveEntity
 	// Entity
 	//
 
+	/**
+	 * Get the damage area.
+	 *
+	 *
+	 */
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
@@ -232,6 +254,9 @@ public class DamagingArea extends PassiveEntity
 	}
 
 
+	/**
+	 * Handle object attribute change(s).
+	 */
 	public void update() throws AttributeNotFoundException {
 		StendhalRPZone	zone;
 
@@ -261,6 +286,12 @@ public class DamagingArea extends PassiveEntity
 	 */
 	public void onEntered(RPEntity entity, StendhalRPZone zone,
 	 int newX, int newY) {
+		/*
+		 * Only effect players?
+		 */
+		if(playersOnly && !(entity instanceof Player))
+			return;
+
 		addTarget(entity);
 	}
 
@@ -292,6 +323,12 @@ public class DamagingArea extends PassiveEntity
 	 */
 	public void onMoved(RPEntity entity, StendhalRPZone zone,
 	 int oldX, int oldY, int newX, int newY) {
+		/*
+		 * Only effect players?
+		 */
+		if(playersOnly && !(entity instanceof Player))
+			return;
+
 		if(rand.nextDouble() < probability)
 			doDamage(entity);
 	}
@@ -316,20 +353,24 @@ public class DamagingArea extends PassiveEntity
 		area = getArea();
 
 		/*
-		 * Damage entities still in the area
+		 * Damage entities still in the area, remove those not here
 		 */
-		Iterator<RPEntity> iter = targets.iterator();
+		Iterator<RPEntity.ID> iter = targets.iterator();
 
 		while(iter.hasNext()) {
-			RPEntity entity = iter.next();
+			RPEntity.ID id = iter.next();
 
-			if(!zone.has(entity.getID())) {
+			if(!zone.has(id)) {
 				iter.remove();
-			} else if(area.intersects(entity.getArea())) {
-				if(!doDamage(entity))
-					iter.remove();
 			} else {
-				iter.remove();
+				RPEntity entity = (RPEntity) zone.get(id);
+
+				if(area.intersects(entity.getArea())) {
+					if(!doDamage(entity))
+						iter.remove();
+				} else {
+					iter.remove();
+				}
 			}
 		}
 
