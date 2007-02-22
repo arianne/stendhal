@@ -382,7 +382,7 @@ public class Player extends RPEntity implements TurnListener {
 	 * @return	The skill value, or <code>null</code> if not set.
 	 */
 	public String getSkill(String key) {
-		return getKeyedSlot("!skills", key);
+		return getKeyedSlot("skills", key);
 	}
 
 
@@ -396,7 +396,7 @@ public class Player extends RPEntity implements TurnListener {
 	 *		if there was a problem.
 	 */
 	public boolean setSkill(String key, String value) {
-		return setKeyedSlot("!skills", key, value);
+		return setKeyedSlot("skills", key, value);
 	}
 
 
@@ -415,7 +415,7 @@ public class Player extends RPEntity implements TurnListener {
 
 
 		if(!hasSlot(name)) {
-			logger.error("Expected to find !skills slot");
+			logger.error("Expected to find " + name + " slot");
 			return null;
 		}
 

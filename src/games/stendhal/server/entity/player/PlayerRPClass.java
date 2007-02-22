@@ -94,6 +94,8 @@ class PlayerRPClass {
 
 		// Bank system
 		player.addRPSlot("bank", 20, RPClass.HIDDEN);
+		player.addRPSlot("bank_ados", 20, RPClass.HIDDEN);
+		player.addRPSlot("bank_fado", 20, RPClass.HIDDEN);
 
 		// Kills recorder - needed for quest
 		player.addRPSlot("!kills", 1, RPClass.HIDDEN);
@@ -108,7 +110,10 @@ class PlayerRPClass {
 
 		player.add("karma", RPClass.FLOAT, RPClass.PRIVATE);
 
-		player.addRPSlot("!skills", 1, RPClass.PRIVATE);
+		player.addRPSlot("skills", 1, RPClass.PRIVATE);
+
+		// Non-removable while stored ones have values
+		player.addRPSlot("!skills", 1, RPClass.HIDDEN);
 	}
 
 	/**
@@ -117,9 +122,14 @@ class PlayerRPClass {
 	 * @param object RPObject representing a player
 	 */
 	static void updatePlayerRPObject(RPObject object) {
-		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank" };
+		String[] slotsNormal = {
+			"bag", "rhand", "lhand", "head", "armor", "legs",
+			"feet", "cloak", "bank", "bank_ados", "bank_fado"
+		};
 
-		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!skills" };
+		String[] slotsSpecial = {
+			"!quests", "!kills", "!buddy", "!ignore", "skills"
+		};
 
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
@@ -136,6 +146,7 @@ class PlayerRPClass {
 
 		//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
 		//     Port from 0.44 to 0.50: cloak, bank
+		//     Port from 0.57 to 0.58: bank_ados, bank_fado
 		for (String slotName : slotsNormal) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new RPSlot(slotName));
@@ -143,7 +154,7 @@ class PlayerRPClass {
 		}
 		//     Port from 0.44 to 0.50: !buddy
 		//     Port from 0.56 to 0.56.1: !ignore
-		//     Port from 0.57 to 0.58: !skills
+		//     Port from 0.57 to 0.58: skills
 		for (String slotName : slotsSpecial) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new RPSlot(slotName));
@@ -180,6 +191,11 @@ class PlayerRPClass {
 		if(!object.has("karma")) {
 			// A little beginner's luck
 			object.put("karma", 10);
+		}
+
+		// Renamed to skills
+		if(object.has("!skills")) {
+			object.remove("!skills");
 		}
 	}
 

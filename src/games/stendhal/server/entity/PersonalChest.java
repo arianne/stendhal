@@ -29,14 +29,37 @@ import marauroa.common.game.RPSlot;
  * request 1510680.
  */
 public class PersonalChest extends Chest {
+	/**
+	 * The default bank slot name.
+	 */
+	public static final String	DEFAULT_BANK	= "bank";
+
 	private Player attending;
 
 	private IRPZone zone;
 
 	private PersonalChest outer;
 
+	private String	bankName;
+
+
+	/**
+	 * Create a personal chest using the default bank slot.
+	 */
 	public PersonalChest() throws AttributeNotFoundException {
-		super();
+		this(DEFAULT_BANK);
+	}
+
+
+	/**
+	 * Create a personal chest using a specific bank slot.
+	 *
+	 * @param	bankName	The name of the bank slot.
+	 */
+	public PersonalChest(String bankName)
+	 throws AttributeNotFoundException {
+		this.bankName = bankName;
+
 		outer = this;
 
 		attending = null;
@@ -47,7 +70,7 @@ public class PersonalChest extends Chest {
 				if (attending != null) {
 					/* Can be replaced when we add Equip event */
 					/* Mirror player objects */
-					RPSlot content = attending.getSlot("bank");
+					RPSlot content = getBankSlot();
 					content.clear();
 
 					for (RPObject item : getSlot("content")) {
@@ -58,12 +81,12 @@ public class PersonalChest extends Chest {
 					content = getSlot("content");
 					content.clear();
 
-					for (RPObject item : attending.getSlot("bank")) {
+					for (RPObject item : getBankSlot()) {
 						content.add(item);
 					}
 
 					/* If player is not next to depot clean it. */
-					if (!nextTo(attending, 0.25)
+					if (!nextTo(attending)
 							|| !zone.has(attending.getID())) {
 						content = getSlot("content");
 						
@@ -77,7 +100,7 @@ public class PersonalChest extends Chest {
 
 						// NOTE: As content.clear() remove the contained flag of the object
 						// we need to do this hack.
-						RPSlot playerContent = attending.getSlot("bank");
+						RPSlot playerContent = getBankSlot();
 						playerContent.clear();
 						
 						for(RPObject item: itemsList) {
@@ -85,7 +108,7 @@ public class PersonalChest extends Chest {
 						}					
 						
 						close();
-						outer.notifyWorldAboutChanges();
+						PersonalChest.this.notifyWorldAboutChanges();
 						
 						attending = null;
 					}
@@ -96,13 +119,27 @@ public class PersonalChest extends Chest {
 		TurnNotifier.get().notifyInTurns(0, turnListener, null);
 	}
 
+
+	/**
+	 * Get the slot that holds items for this chest.
+	 *
+	 * @return	A per-player/per-bank slot.
+	 */
+	protected RPSlot getBankSlot() {
+		/*
+		 * It's assumed attending != null when called
+		 */
+		return attending.getSlot(bankName);
+	}
+
+
 	@Override
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 
 		zone = StendhalRPWorld.get().getRPZone(player.getID());
 
-		if (player.nextTo(this, 0.25)) {
+		if (player.nextTo(this)) {
 			if (isOpen()) {
 				close();
 			} else {
@@ -111,7 +148,7 @@ public class PersonalChest extends Chest {
 				RPSlot content = getSlot("content");
 				content.clear();
 
-				for (RPObject item : player.getSlot("bank")) {					
+				for (RPObject item : getBankSlot()) {					
 					content.add(item);
 				}
 
