@@ -24,7 +24,13 @@ import games.stendhal.server.events.MovementListener;
 
 /**
  * An area that only allows one play at a time to enter.
- * This currently does not account for teleporting into.
+ * This currently does not account for being "placed" into the zone.
+ *
+ * XXX
+ * XXX Changed to full zone scan to assure this is secure.
+ * XXX Will improve later once all ways to enter a zone are accounted for.
+ * XXX Commented out code is that used for fast (but unreliable) check.
+ * XXX
  */
 public class OnePlayerArea extends Entity implements MovementListener {
 	/**
@@ -43,10 +49,10 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	 */
 	protected int			width;
 
-	/**
-	 * The entity ID currently in the area (if any).
-	 */
-	protected Entity.ID		occupant;
+//	/**
+//	 * The entity ID currently in the area (if any).
+//	 */
+//	protected Entity.ID		occupant;
 
 
 	/**
@@ -63,7 +69,7 @@ public class OnePlayerArea extends Entity implements MovementListener {
 		this.width = width;
 		this.height = height;
 
-		occupant = null;
+//		occupant = null;
 	}
 
 
@@ -71,27 +77,66 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	// OnePlayerArea
 	//
 
+//	/**
+//	 * Verify the occupant is still there (just incase).
+//	 */
+//	protected void validateOccupant() {
+//		IRPZone		zone;
+//		Entity		entity;
+//
+//
+//		if(occupant != null) {
+//			zone = getZone();
+//
+//			if(!zone.has(occupant)) {
+//				occupant = null;
+//			} else {
+//				entity = (Entity) zone.get(occupant);
+//
+//				if(!getArea().intersects(entity.getArea())) {
+//					occupant = null;
+//				}
+//			}
+//		}
+//	}
+
+
 	/**
-	 * Verify the occupant is still there (just incase).
+	 * Slow occupant check (until all area entry methods are handled).
 	 */
-	protected void validateOccupant() {
-		IRPZone		zone;
-		Entity		entity;
+	protected boolean slowObstacleCheck(Entity entity) {
+		Rectangle2D	area;
 
 
-		if(occupant != null) {
-			zone = getZone();
+		area = getArea();
 
-			if(!zone.has(occupant)) {
-				occupant = null;
-			} else {
-				entity = (Entity) zone.get(occupant);
+		for(RPEntity zentity : getZone().getPlayerAndFirends()) {
+			/*
+			 * Ignore same entity
+			 */
+			if(zentity.getID().equals(entity.getID()))
+				continue;
 
-				if(!getArea().intersects(entity.getArea())) {
-					occupant = null;
-				}
-			}
+			/*
+			 * Ghosts don't count
+			 */
+			if(zentity.isGhost())
+				continue;
+
+			/*
+			 * Only players (ignore friends)
+			 */
+			if(!(zentity instanceof Player))
+				continue;
+
+			/*
+			 * In area?
+			 */
+			if(area.intersects(zentity.getArea()))
+				return true;
 		}
+
+		return false;
 	}
 
 
@@ -115,6 +160,8 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	/**
 	 * Checks whether players, NPC's, etc. can walk over this entity.
 	 *
+	 * @param	entity		The entity trying to enter.
+	 *
 	 * @return	<code>true</code> if an RPEntity is given and it
 	 *		is occupied by someone else.
 	 */
@@ -132,51 +179,54 @@ public class OnePlayerArea extends Entity implements MovementListener {
 		if(entity.isGhost())
 			return false;
 
-		validateOccupant();
 
-		return ((occupant != null)
-			&& !occupant.equals(entity.getID()));
+		return slowObstacleCheck(entity);
+
+//		validateOccupant();
+//
+//		return ((occupant != null)
+//			&& !occupant.equals(entity.getID()));
 	}
 
 
-	/**
-	 * Called when this object is added to a zone.
-	 *
-	 * @param	zone		The zone this was added to.
-	 */
-	public void onAdded(StendhalRPZone zone) {
-		super.onAdded(zone);
-		zone.addMovementListener(this);
-	}
+//	/**
+//	 * Called when this object is added to a zone.
+//	 *
+//	 * @param	zone		The zone this was added to.
+//	 */
+//	public void onAdded(StendhalRPZone zone) {
+//		super.onAdded(zone);
+//		zone.addMovementListener(this);
+//	}
 
 
-	/**
-	 * Called when this object is being removed from a zone.
-	 *
-	 * @param	zone		The zone this will be removed from.
-	 */
-	public void onRemoved(StendhalRPZone zone) {
-		zone.removeMovementListener(this);
-		super.onRemoved(zone);
-	}
+//	/**
+//	 * Called when this object is being removed from a zone.
+//	 *
+//	 * @param	zone		The zone this will be removed from.
+//	 */
+//	public void onRemoved(StendhalRPZone zone) {
+//		zone.removeMovementListener(this);
+//		super.onRemoved(zone);
+//	}
 
 
-	/**
-	 * Attribute(s) updated.
-	 */
-	public void update() throws AttributeNotFoundException {
-		StendhalRPZone	zone;
-
-
-		super.update();
-
-		/*
-		 * Reregister incase coordinates changed (could be smarter)
-		 */
-		zone = getZone();
-		zone.removeMovementListener(this);
-		zone.addMovementListener(this);
-	}
+//	/**
+//	 * Attribute(s) updated.
+//	 */
+//	public void update() throws AttributeNotFoundException {
+//		StendhalRPZone	zone;
+//
+//
+//		super.update();
+//
+//		/*
+//		 * Reregister incase coordinates changed (could be smarter)
+//		 */
+//		zone = getZone();
+//		zone.removeMovementListener(this);
+//		zone.addMovementListener(this);
+//	}
 
 
 	//
@@ -193,29 +243,29 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	 */
 	public void onEntered(RPEntity entity, StendhalRPZone zone,
 	 int newX, int newY) {
-		/*
-		 * Ghosts don't occupy normal space
-		 */
-		if(entity.isGhost())
-			return;
-
-		/*
-		 * Just players (for now?)
-		 */
-		if(entity instanceof Player)
-		{
-			validateOccupant();
-
-			/*
-			 * Check to make sure things aren't buggy
-			 */
-			if((occupant != null)
-			 && !occupant.equals(entity.getID())) {
-				logger.warn("Existing occupant!");
-			} else {
-				occupant = entity.getID();
-			}
-		}
+//		/*
+//		 * Ghosts don't occupy normal space
+//		 */
+//		if(entity.isGhost())
+//			return;
+//
+//		/*
+//		 * Just players (for now?)
+//		 */
+//		if(entity instanceof Player)
+//		{
+//			validateOccupant();
+//
+//			/*
+//			 * Check to make sure things aren't buggy
+//			 */
+//			if((occupant != null)
+//			 && !occupant.equals(entity.getID())) {
+//				logger.warn("Existing occupant!");
+//			} else {
+//				occupant = entity.getID();
+//			}
+//		}
 	}
 
 
@@ -230,11 +280,11 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	 */
 	public void onExited(RPEntity entity, StendhalRPZone zone,
 	 int oldX, int oldY) {
-		/*
-		 * Check occupant incase a ghost or teleporter entered.
-		 */
-		if((occupant != null) && occupant.equals(entity.getID()))
-			occupant = null;
+//		/*
+//		 * Check occupant incase a ghost or teleporter entered.
+//		 */
+//		if((occupant != null) && occupant.equals(entity.getID()))
+//			occupant = null;
 	}
 
 
