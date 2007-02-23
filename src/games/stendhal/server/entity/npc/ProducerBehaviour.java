@@ -58,6 +58,11 @@ public class ProducerBehaviour extends Behaviour {
 	private String productName;
 	
 	/**
+	 * Whether the produced item should be player bound.
+	 */
+	private boolean	productBound;
+	
+	/**
 	 * A mapping which maps the name of each required resource
 	 * (e.g. "iron_ore") to the amount of this resource that is
 	 * required for one unit of the product.
@@ -88,15 +93,43 @@ public class ProducerBehaviour extends Behaviour {
 	 *                              one unit of the product.
 	 */
 	public ProducerBehaviour(String questSlot, String productionActivity,
-					String productName,
-					Map<String, Integer> requiredResourcesPerItem,
-					int productionTimePerItem) {
+	 String productName, Map<String, Integer> requiredResourcesPerItem,
+	 int productionTimePerItem) {
+		this(questSlot, productionActivity, productName,
+			requiredResourcesPerItem, productionTimePerItem,
+			false);
+	}
+
+	
+	/**
+	 * Creates a new ProducerBehaviour.
+	 * @param questSlot the slot that is used to store the status 
+	 * @param productionActivity the name of the activity, e.g. "build",
+	 *        "forge", "bake"
+	 * @param productUnit the unit in which the product is counted, e.g.
+	 *                    "bags", "pieces", "pounds"
+	 * @param productName the name of the product, e.g. "plate_armor". It
+	 *                    must be a valid item name.
+	 * @param requiredResourcesPerItem a mapping which maps the name of each
+	 *                          required resource (e.g. "iron_ore") to the
+	 *                          amount of this resource that is required for
+	 *                          one unit of the product.
+	 * @param productionTimePerItem the number of seconds required to produce
+	 *                              one unit of the product.
+	 * @param	productBound	Whether the produced item should be
+	 *				player bound. Use only for special
+	 *				one-time items.
+	 */
+	public ProducerBehaviour(String questSlot, String productionActivity,
+	 String productName, Map<String, Integer> requiredResourcesPerItem,
+	 int productionTimePerItem, boolean productBound) {
 		this.questSlot = questSlot;
 		this.productionActivity = productionActivity;
 		// this.productUnit = productUnit;
 		this.productName = productName;
 		this.requiredResourcesPerItem = requiredResourcesPerItem;
 		this.productionTimePerItem = productionTimePerItem;
+		this.productBound = productBound;
 	}
 	
 	protected String getQuestSlot() {
@@ -122,7 +155,16 @@ public class ProducerBehaviour extends Behaviour {
 	protected int getProductionTime(int amount) {
 		return productionTimePerItem * amount;
 	}
-	
+
+	/*
+	 * Determine whether the produced item should be player bound.
+	 *
+	 * @return	<code>true</code> if the product should be bound.
+	 */
+	public boolean isProductBound() {
+		return productBound;
+	}
+
 	/**
 	 * Gets a nicely formulated string that describes the amounts and names
 	 * of the resources that are required to produce <i>amount</i> units of the product,
@@ -252,6 +294,10 @@ public class ProducerBehaviour extends Behaviour {
 		} else {
 			StackableItem products = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(getProductName());            
 			products.setQuantity(numberOfProductItems);
+
+			if(isProductBound())
+				products.put("bound", player.getName());
+
 			player.equip(products, true);
 			npc.say("Welcome back! I'm done with your order. Here you have "
 					+ numberOfProductItems
