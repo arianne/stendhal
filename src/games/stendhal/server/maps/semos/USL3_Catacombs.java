@@ -63,8 +63,14 @@ public class USL3_Catacombs implements ZoneConfigurator {
 				                Arrays.asList("blood", "vampirette_entrails", "bat_entrails"),
 						null,
 						ConversationStates.ATTENDING,
-						"I need blood. I can take it from the entrails of the alive and undead. I wwill mix the bloods together for you and #fill your #goblet, if you give me entrails.",
-						null);
+				    "I need blood. I can take it from the entrails of the alive and undead. I wwill mix the bloods together for you and #fill your #goblet, if you let me drink some too. But I'm afraid of the powerful #lord.",
+				    null);
+				add(ConversationStates.ATTENDING,
+						Arrays.asList("lord", "vampire", "skull_ring"),
+						null,
+						ConversationStates.ATTENDING,
+						"The Vampire Lord rules these Catacombs! And I'm afraid of him. I can only help you if you kill him and bring me his skull ring with the #goblet.",
+				    null);
 				
 				add(ConversationStates.ATTENDING,
 						Arrays.asList("empty_goblet", "goblet"),
@@ -75,11 +81,12 @@ public class USL3_Catacombs implements ZoneConfigurator {
 			    Map<String, Integer> requiredResources = new HashMap<String, Integer>();
 			    requiredResources.put("vampirette_entrails", new Integer(7));
 			    requiredResources.put("bat_entrails", new Integer(7));
+			    requiredResources.put("skull_ring", new Integer(1));
 			    requiredResources.put("empty_goblet", new Integer(1));
 			    ProducerBehaviour behaviour = new ProducerBehaviour(
 						"sicky_fill_goblet", "fill", "goblet", requiredResources, 5 * 60);	
 			    addProducer(behaviour,
-							"Please don't try to kill me...I'm just a sick old vampire. Do you have any #blood I could drink? If you have an #empty_goblet I will #fill it with blood for you in my cauldron, but I'll need to drink some myself aswell.");
+							"Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty_goblet I will #fill it with blood for you in my cauldron.");
 
 			} 
 		};
