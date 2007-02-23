@@ -59,7 +59,7 @@ in the file.
 			<atk value="8"/>
 		</attributes>
 		<weight value="0.2"/>
-		<equipable>
+		<equipable><attribute name="key">empty_goblet</attribute>
 			<slot name="lhand"/>
 			<slot name="rhand"/>
 			<slot name="bag"/>
@@ -230,7 +230,8 @@ in the file.
 		from those you attack with it.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
-			<atk value="26"/>
+			<atk value="24"/>
+			<lifesteal value="0.1"/>
 		</attributes>
 		<weight value="4"/>
 		<equipable>
