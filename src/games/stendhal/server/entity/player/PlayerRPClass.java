@@ -110,7 +110,7 @@ class PlayerRPClass {
 
 		player.add("karma", RPClass.FLOAT, RPClass.PRIVATE);
 
-		player.addRPSlot("skills", 1, RPClass.PRIVATE);
+		player.addRPSlot("skills", 1, RPClass.HIDDEN);
 
 		// Non-removable while stored ones have values
 		player.addRPSlot("!skills", 1, RPClass.HIDDEN);
