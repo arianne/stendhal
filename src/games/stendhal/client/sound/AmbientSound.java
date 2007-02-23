@@ -403,15 +403,14 @@ import marauroa.common.game.RPObject;
 	 * @return float dB correction of loudness
 	 */
 	private float getPlayerVolume() {
-		double distance, maxDist;
+		double distance; 
+		double maxDist;
 		int fogVolume;
 
 		// if the sound is global (no position)
-		if (soundPos == null)
+		if (soundPos == null) {
 			return 0;
-
-		// if the sound is map localized
-		else {
+		} else {
 			// maximum fog if no player infos available
 			if (playerPos == null || playerHearing == null) {
 				// System.out.println( "ambient (" + name + ") fog volume: 0
@@ -451,11 +450,7 @@ import marauroa.common.game.RPObject;
 			return;
 
 		// if not yet playing, start playing
-		if (!playing)
-			play(player);
-
-		// if playing, correct loudness/status of clips
-		else {
+		if (playing) {
 			// set new player parameters
 			playerPos = player.getPosition();
 			playerHearing = player.getHearingArea();
@@ -469,6 +464,8 @@ import marauroa.common.game.RPObject;
 			else {
 				updateVolume();
 			}
+		} else {
+			play(player);
 		}
 	} // performPlayerPosition
 

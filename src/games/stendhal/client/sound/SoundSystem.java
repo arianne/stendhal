@@ -45,6 +45,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.Mixer;
+import javax.sound.sampled.Mixer.Info;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
@@ -109,7 +111,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	SoundEffectMap sef = SoundEffectMap.getInstance();
 
 	/** */
-	private HashMap<byte[], SoundCycle> cycleMap = new HashMap<byte[], SoundCycle>();
+	private Hashtable<byte[], SoundCycle> cycleMap = new Hashtable<byte[], SoundCycle>();
 
 	/** */
 	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
@@ -345,11 +347,6 @@ if (o instanceof ClipRunner) {
 		
 	} // getSoundClip
 
-	private ClipRunner findReturn(ClipRunner clipr) {
-		
-		return clipr;
-		
-	}
 
 	private ClipRunner loadSoundDataFromFile(String name, String path) {
 		String hstr = name + "@" + path;
@@ -429,7 +426,8 @@ if (o instanceof ClipRunner) {
 		SoundSystem sys;
 
 		sys = get();
-		if ((cycle = sys.cycleMap.get(entity_ID)) != null)
+		cycle = sys.cycleMap.get(entity_ID);
+		if (cycle!= null)
 			synchronized (sys.cycleMap) {
 				sys.cycleMap.remove(entity_ID);
 				cycle.terminate();
@@ -495,7 +493,7 @@ if (o instanceof ClipRunner) {
 
 	private void init() {
 		Properties prop;
-		HashMap<String, byte[]> dataList = new HashMap<String, byte[]>();
+		Hashtable<String, byte[]> dataList = new Hashtable<String, byte[]>();
 		ZipEntry zipEntry;
 		File file;
 		InputStream in;
@@ -652,7 +650,8 @@ if (o instanceof ClipRunner) {
 	} // init
 
 	private boolean initJavaSound() {
-		Mixer.Info info, mixInfos[];
+		Info info;
+		Info[] mixInfos;
 		String hstr;
 
 		if ((mixInfos = AudioSystem.getMixerInfo()) == null
@@ -671,7 +670,7 @@ if (o instanceof ClipRunner) {
 		try {
 			volumeCtrl = (FloatControl) mixer
 					.getControl(FloatControl.Type.MASTER_GAIN);
-			volumeCtrl.setValue((float) 0.0);
+			volumeCtrl.setValue( 0f);
 		} catch (Exception e) {
 			logger.debug("SoundSystem: no master volume controls");
 		}
