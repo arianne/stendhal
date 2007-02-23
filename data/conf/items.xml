@@ -1941,7 +1941,7 @@ Makes players more offensive
 
 	<item name="empty_goblet">
 		<type class="container" subclass="empty_goblet"/>
-		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
 			<slot name="bag"/>
@@ -1950,7 +1950,7 @@ Makes players more offensive
 
 	<item name="goblet">
 		<type class="container" subclass="full_goblet"/>
-		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
 			<slot name="bag"/>
