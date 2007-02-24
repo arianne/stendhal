@@ -215,6 +215,17 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		return get("name");
 	}
 
+
+	/**
+	 * Get item count.
+	 *
+	 * @return	1.
+	 */
+	public int getQuantity() {
+		return 1;
+	}
+
+
 	/** returns the list of possible slots for this item */
 	public List<String> getPossibleSlots() {
 		return possibleSlots;

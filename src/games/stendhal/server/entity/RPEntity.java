@@ -92,6 +92,23 @@ public abstract class RPEntity extends Entity {
 
 	private static int TURNS_WHILE_ATK_DEF_XP_INCREASE = 40;
 
+
+	/**
+	 * All the slots considered to be "with" the entity.
+	 * Listed in priority order (ie. bag first).
+	 */
+	public static final String [] CARRYING_SLOTS = {
+		"bag",
+		"head",
+		"rhand",
+		"lhand",
+		"armor",
+		"cloak",
+		"legs",
+		"feet"
+	};
+
+
 	public static void generateRPClass() {
 		stats = Statistics.getStatistics();
 
@@ -435,12 +452,18 @@ public abstract class RPEntity extends Entity {
 		}
 
 		if (attackTarget != null) {
+			// XXX - Just becase we stopped attacking shouldn't
+			// force our opponent to stop (unless we died)
 			attackTarget.attackSource.remove(this);
-			blood.remove(attackTarget.attackSource);
-		}
 
-		blood.remove(attackTarget);
-		attackTarget = null;
+			// XXX - Trying to remove a List????
+			blood.remove(attackTarget.attackSource);
+
+			// XXX - Opponent could attack again, really remove?
+			blood.remove(attackTarget);
+
+			attackTarget = null;
+		}
 	}
 
 	/**
@@ -481,7 +504,8 @@ public abstract class RPEntity extends Entity {
 	 */
 	public void onAttack(RPEntity who, boolean status) {
 		if (status) {
-			who.attackTarget = this;
+// Attacker should manage their own target
+//			who.attackTarget = this;
 			if (!attackSource.contains(who)) {
 				attackSource.add(who);
 			}
@@ -489,7 +513,8 @@ public abstract class RPEntity extends Entity {
 			if (who.has("target")) {
 				who.remove("target");
 			}
-			who.attackTarget = null;
+// Attacker should manage their own target
+//			who.attackTarget = null;
 			attackSource.remove(who);
 		}
 	}
@@ -504,10 +529,10 @@ public abstract class RPEntity extends Entity {
 		StendhalRPRuleProcessor.get().addGameEvent(who.getName(), "damaged", getName(), Integer
 				.toString(damage));
 
-		Rectangle2D rect = getArea(getX(), getY());
+		Rectangle2D rect = getArea();
 		if (!StendhalRPRuleProcessor.get().bloodAt((int) rect.getX(), (int) rect.getY())) {
 			Blood blood = new Blood(this);
-			IRPZone zone = StendhalRPWorld.get().getRPZone(getID());
+			IRPZone zone = getZone();
 			zone.assignRPObjectID(blood);
 			zone.add(blood);
 			StendhalRPRuleProcessor.get().addBlood(blood);
@@ -578,7 +603,8 @@ public abstract class RPEntity extends Entity {
 		
 		if (killer instanceof RPEntity) {
 			((RPEntity) killer).stopAttack();
-			StendhalRPRuleProcessor.get().addGameEvent(((RPEntity) killer).getName(), "killed", getName());
+			StendhalRPRuleProcessor.get().addGameEvent(
+				killer.getName(), "killed", getName());
 			killer.notifyWorldAboutChanges();
 		}
 		if (this instanceof Player) {
@@ -600,21 +626,26 @@ public abstract class RPEntity extends Entity {
 				}
 				int damageDone = temp.intValue();
 
-				String name = (player.has("name") ? player.get("name") : player
-						.get("type"));
-				logger.debug(name + " did " + damageDone + " of "
-						+ totalDamageReceived + ". Reward was " + xpReward);
+				if(logger.isDebugEnabled()) {
+					String name = player.has("name")
+						? player.get("name")
+						: player.get("type");
 
-				int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
+					logger.debug(name
+						+ " did " + damageDone
+						+ " of " + totalDamageReceived
+						+ ". Reward was " + xpReward);
+				}
+
+				int xpEarn = (xpReward * damageDone)
+						/ totalDamageReceived;
 
 				/** We limit xp gain for up to eight levels difference */
 				double gainXpLimitation = 1 + ((oldlevel - player.getLevel()) / (20.0));
-				if (gainXpLimitation < 0) {
-					gainXpLimitation = 0;
-				}
-
-				if (gainXpLimitation > 1) {
-					gainXpLimitation = 1;
+				if (gainXpLimitation < 0.0) {
+					gainXpLimitation = 0.0;
+				} else if (gainXpLimitation > 1.0) {
+					gainXpLimitation = 1.0;
 				}
 
 				logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
@@ -659,7 +690,7 @@ public abstract class RPEntity extends Entity {
 		dropItemsOn(corpse);
 		updateItemAtkDef();
 
-		IRPZone zone = StendhalRPWorld.get().getRPZone(getID());
+		IRPZone zone = getZone();
 		zone.assignRPObjectID(corpse);
 		zone.add(corpse);
 
@@ -672,7 +703,7 @@ public abstract class RPEntity extends Entity {
 
 	/** Return true if this entity is attacked */
 	public boolean isAttacked() {
-		return attackSource.size() > 0;
+		return !attackSource.isEmpty();
 	}
 
 	/** Return the RPEntities that are attacking this character */
@@ -799,7 +830,7 @@ public abstract class RPEntity extends Entity {
 		}
 
 		if (putOnGroundIfItCannotEquiped) {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(getID());
+			StendhalRPZone zone = getZone();
 			zone.assignRPObjectID(item);
 			item.setX(getX());
 			item.setY(getY() + 1);
@@ -845,49 +876,51 @@ public abstract class RPEntity extends Entity {
 		
 		int toDrop = amount;
 
-		Iterator<RPSlot> slotsIterator = this.slotsIterator();
-		while (slotsIterator.hasNext()) {
-			RPSlot slot = slotsIterator.next();
-			// HACK: Added to avoid dropping items that are on bank.
-			if(slot.getName().startsWith("bank")) {
-				continue;
-			}
+		for(String slotName : CARRYING_SLOTS) {
+			RPSlot slot = getSlot(slotName);
 
 			Iterator<RPObject> objectsIterator = slot.iterator();
 			while (objectsIterator.hasNext()) {
 				RPObject object = objectsIterator.next();
-				if (object instanceof Item) {
-					if (((Item) object).getName().equals(name)) {
-						if (object instanceof StackableItem) {
-							// The item is stackable, we try to remove
-							// multiple ones.
-							int quantity = ((StackableItem) object).getQuantity();
-							if (toDrop >= quantity) {
-								slot.remove(object.getID());
-								toDrop -= quantity;
-								// Recreate the iterator to prevent
-								// ConcurrentModificationExceptions.
-								// This inefficient, but simple.
-								objectsIterator = slot.iterator();
-							} else {
-								((StackableItem) object).setQuantity(quantity - toDrop);
-								toDrop = 0;
-							}
-						} else {
-							// The item is not stackable, so we only remove a
-							// single one.
-							slot.remove(object.getID());
-							toDrop--;
-							// recreate the iterator to prevent
-							// ConcurrentModificationExceptions.
-							objectsIterator = slot.iterator();
-						}
-						if (toDrop == 0) {
-							updateItemAtkDef();
-							notifyWorldAboutChanges();
-							return true;
-						}
+				if (!(object instanceof Item)) {
+					continue;
+				}
+
+				Item item = (Item) object;
+
+				if (!item.getName().equals(name)) {
+					continue;
+				}
+
+				if (item instanceof StackableItem) {
+					// The item is stackable, we try to remove
+					// multiple ones.
+					int quantity = item.getQuantity();
+					if (toDrop >= quantity) {
+						slot.remove(item.getID());
+						toDrop -= quantity;
+						// Recreate the iterator to prevent
+						// ConcurrentModificationExceptions.
+						// This inefficient, but simple.
+						objectsIterator = slot.iterator();
+					} else {
+						((StackableItem) item).setQuantity(quantity - toDrop);
+						toDrop = 0;
 					}
+				} else {
+					// The item is not stackable, so we only remove a
+					// single one.
+					slot.remove(item.getID());
+					toDrop--;
+					// recreate the iterator to prevent
+					// ConcurrentModificationExceptions.
+					objectsIterator = slot.iterator();
+				}
+
+				if (toDrop == 0) {
+					updateItemAtkDef();
+					notifyWorldAboutChanges();
+					return true;
 				}
 			}
 		}
@@ -914,19 +947,14 @@ public abstract class RPEntity extends Entity {
 	 * @return true iff dropping the item was successful.
 	 */
 	public boolean drop(Item item) {
-		Iterator<RPSlot> slotsIterator = this.slotsIterator();
-		while (slotsIterator.hasNext()) {
-			RPSlot slot = slotsIterator.next();
-			// HACK: Added to avoid dropping items that are on bank.
-			if(slot.getName().startsWith("bank")) {
-				continue;
-			}
+		for(String slotName : CARRYING_SLOTS) {
+			RPSlot slot = getSlot(slotName);
 
 			Iterator<RPObject> objectsIterator = slot.iterator();
 			while (objectsIterator.hasNext()) {
 				RPObject object = objectsIterator.next();
 				if (object instanceof Item) {
-					if ((Item) object == item) {
+					if (object == item) {
 						slot.remove(object.getID());
 						return true;
 					}
@@ -938,19 +966,20 @@ public abstract class RPEntity extends Entity {
 
 	public boolean isEquipped(String name, int amount) {
 		int found = 0;
-		for (RPSlot slot : this.slots()) {
-			// HACK: Added to avoid dropping items that are on bank.
-			if(slot.getName().startsWith("bank")) {
-				continue;
-			}
-			
+
+		for(String slotName : CARRYING_SLOTS) {
+			RPSlot slot = getSlot(slotName);
+
 			for (RPObject object : slot) {
-				if (object instanceof Item && ((Item) object).getName().equals(name)) {
-					if (object instanceof StackableItem) {
-						found += ((StackableItem) object).getQuantity();
-					} else {
-						found++;
-					}
+				if (!(object instanceof Item)) {
+					continue;
+				}
+
+				Item item = (Item) object;
+
+				if(item.getName().equals(name)) {
+					found += item.getQuantity();
+
 					if (found >= amount) {
 						return true;
 					}
@@ -972,18 +1001,15 @@ public abstract class RPEntity extends Entity {
 	 */
 	public int getNumberOfEquipped(String name) {
 		int result = 0;
-		for (RPSlot slot : this.slots()) {
-			if (!slot.getName().startsWith("bank")) {
-				for (RPObject object : slot) {
-					if (object instanceof Item) {
-						Item item = (Item) object;
-						if (item.getName().equals(name)) {
-							if (item instanceof StackableItem) {
-								result += ((StackableItem) item).getQuantity();
-							} else {
-								result += 1;
-							}
-						}
+
+		for(String slotName : CARRYING_SLOTS) {
+			RPSlot slot = getSlot(slotName);
+
+			for (RPObject object : slot) {
+				if (object instanceof Item) {
+					Item item = (Item) object;
+					if (item.getName().equals(name)) {
+						result += item.getQuantity();
 					}
 				}
 			}
@@ -1000,7 +1026,9 @@ public abstract class RPEntity extends Entity {
 	 *         was found
 	 */
 	public Item getFirstEquipped(String name) {
-		for (RPSlot slot : this.slots()) {
+		for(String slotName : CARRYING_SLOTS) {
+			RPSlot slot = getSlot(slotName);
+
 			for (RPObject object : slot) {
 				if (object instanceof Item) {
 					Item item = (Item) object;
@@ -1024,7 +1052,10 @@ public abstract class RPEntity extends Entity {
 	 */
 	public List<Item> getAllEquipped(String name) {
 		List<Item> result = new LinkedList<Item>();
-		for (RPSlot slot : this.slots()) {
+
+		for(String slotName : CARRYING_SLOTS) {
+			RPSlot slot = getSlot(slotName);
+
 			for (RPObject object : slot) {
 				if (object instanceof Item) {
 					Item item = (Item) object;

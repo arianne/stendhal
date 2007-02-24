@@ -540,10 +540,9 @@ public class Player extends RPEntity implements TurnListener {
 	protected void dropItemsOn(Corpse corpse) {
 		int maxItemsToDrop = Rand.rand(4);
 
-		String[] slots = { "bag", "rhand", "lhand", "head", "armor", "legs",
-				"feet", "cloak" };
 
-		for (String slotName : slots) {
+		for (String slotName : CARRYING_SLOTS) {
+			// XXX - If this check fails, something is BROKEN
 			if (hasSlot(slotName)) {
 				RPSlot slot = getSlot(slotName);
 
@@ -979,12 +978,12 @@ public class Player extends RPEntity implements TurnListener {
 				base = base.getContainer();
 			}
 
-			if (!nextTo((Entity) base, 0.25)) {
+			if (!nextTo((Entity) base)) {
 				logger.debug("Consumable item is too far");
 				return;
 			}
 		} else {
-			if (!nextTo(item, 0.25)) {
+			if (!nextTo(item)) {
 				logger.debug("Consumable item is too far");
 				return;
 			}
