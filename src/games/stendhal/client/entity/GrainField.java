@@ -121,7 +121,6 @@ public class GrainField extends AnimatedEntity {
 
 
 	public void onAction(StendhalClient client, String action, String... params) {
-		super.onAction(client, action, params);
 		if (action.equals(actionName)) {
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "use");
