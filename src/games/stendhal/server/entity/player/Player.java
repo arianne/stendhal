@@ -529,8 +529,11 @@ public class Player extends RPEntity implements TurnListener {
 		// After a tangle with the grim reaper, give some karma
 		addKarma(200.0);
 
-		StendhalRPAction.changeZone(this, "int_afterlife");
-		StendhalRPAction.transferContent(this);
+		StendhalRPZone zone =
+			(StendhalRPZone) world.getRPZone("int_afterlife");
+
+		zone.placeObjectAtEntryPoint(this);
+		StendhalRPAction.changeZone(this, zone);
 	}
 
 	@Override
@@ -1134,8 +1137,7 @@ public class Player extends RPEntity implements TurnListener {
 	 */
 	public boolean teleport(StendhalRPZone zone, int x, int y, Direction dir, Player teleporter) {
 		if (StendhalRPAction.placeat(zone, this, x, y)) {
-			StendhalRPAction.changeZone(this, zone.getID().getID());
-			StendhalRPAction.transferContent(this);
+			StendhalRPAction.changeZone(this, zone);
 			if (dir != null) {
 				this.setDirection(dir);
 			}

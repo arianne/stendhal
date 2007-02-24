@@ -456,8 +456,7 @@ public class StendhalRPAction {
 
 					logger.debug(player.getName() + " pos would be (" + player.getX() + "," + player.getY() + ")");
 
-					changeZone(player, zone.getID().getID(), false);
-					transferContent(player);
+					changeZone(player, zone);
 				}
 			}
 		}
@@ -631,14 +630,12 @@ public class StendhalRPAction {
 
 	}
 
-	public static void changeZone(Player player, String destination) throws AttributeNotFoundException, NoRPZoneException {
-		changeZone(player, destination, true);
-	}
-
-	private static void changeZone(Player player, String destination, boolean placePlayer) throws AttributeNotFoundException, NoRPZoneException {
+	public static void changeZone(Player player, StendhalRPZone zone) throws AttributeNotFoundException, NoRPZoneException {
 		Log4J.startMethod(logger, "changeZone");
 
 		StendhalRPWorld world = StendhalRPWorld.get();
+
+		String destination = zone.getID().getID();
 
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "change zone", destination);
 
@@ -646,8 +643,7 @@ public class StendhalRPAction {
 
 		String source = player.getID().getZoneID();
 
-		StendhalRPZone oldzone = (StendhalRPZone) world.getRPZone(player.getID());
-		StendhalRPZone zone = null;
+		StendhalRPZone oldzone = player.getZone();
 
 		oldzone.removePlayerAndFriends(player);
 
@@ -658,7 +654,6 @@ public class StendhalRPAction {
 
 			world.changeZone(source, destination, sheep);
 			world.changeZone(source, destination, player);
-			zone = (StendhalRPZone) world.getRPZone(player.getID());
 
 			player.setSheep(sheep);
 
@@ -667,24 +662,30 @@ public class StendhalRPAction {
 
 		} else {
 			world.changeZone(source, destination, player);
-			zone = (StendhalRPZone) world.getRPZone(player.getID());
 		}
 		zone.addPlayerAndFriends(player);
 
 
-		if (placePlayer) {
-			zone.placeObjectAtZoneChangePoint(oldzone, player);
-		}
-
-		placeat(zone, player, player.getInt("x"), player.getInt("y"));
+		placeat(zone, player, player.getX(), player.getY());
 		player.stop();
 		player.stopAttack();
 
 		if (player.hasSheep()) {
 			Sheep sheep = (Sheep) world.get(player.getSheep());
-			placeat(zone, sheep, player.getInt("x") + 1, player.getInt("y") + 1);
+			placeat(zone, sheep, player.getX() + 1, player.getY() + 1);
 			sheep.clearPath();
 			sheep.stop();
+		}
+
+		if(!source.equals(destination)) {
+			transferContent(player);
+		} else {
+			/*
+			 * Log it for now, until sure of no side effects
+			 */
+			logger.warn(
+				"No zone change, not transfering content to "
+				+ player.getName());
 		}
 
 		/*

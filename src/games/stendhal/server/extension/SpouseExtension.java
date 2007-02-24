@@ -178,11 +178,10 @@ public class SpouseExtension extends StendhalServerExtension {
             // TODO: use Player.teleport()
 
             if (StendhalRPAction.placeat(zone, player, x, y)) {
-            	StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleportto", teleported
-                        .getName() + "(spouse)");
+                StendhalRPAction.changeZone(player, zone);
 
-                StendhalRPAction.changeZone(player, zone.getID().getID());
-                StendhalRPAction.transferContent(player);
+            	StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+			"teleportto", teleported.getName() + "(spouse)");
             }
             player.notifyWorldAboutChanges();
         }

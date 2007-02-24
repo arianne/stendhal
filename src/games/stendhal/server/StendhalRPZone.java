@@ -63,8 +63,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private static final Logger logger = Log4J.getLogger(StendhalRPZone.class);
 
 	private List<TransferContent> contents;
-	private List<Point> entryPoints;
-	private List<Point> zoneChangePoints;
+	private Point		entryPoint;
 	private List<Portal> portals;
 	private List<NPC> npcs;
 	private List<CreatureRespawnPoint> respawnPoints;
@@ -106,8 +105,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		super(name);
 
 		contents = new LinkedList<TransferContent>();
-		entryPoints = new LinkedList<Point>();
-		zoneChangePoints = new LinkedList<Point>();
+		entryPoint = null;
 		portals = new LinkedList<Portal>();
 		itemsOnGround = new HashSet<Item>();
 		numHouses = 0;
@@ -141,12 +139,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return portals;
 	}
 
-	/**
-	 * deprecated	Use getPortal(Object)
-	 */
-	public Portal getPortal(int number) {
-		return getPortal(new Integer(number));
-	}
+//	/**
+//	 * deprecated	Use getPortal(Object)
+//	 */
+//	public Portal getPortal(int number) {
+//		return getPortal(new Integer(number));
+//	}
 
 	public Portal getPortal(Object reference) {
 		for (Portal portal : portals) {
@@ -184,10 +182,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return plantGrowers;
 	}
 
-	public void addZoneChange(Point entry) {
-		zoneChangePoints.add(entry);
-	}
-
 	public void addPortal(Portal portal) {
 		add(portal);
 		portals.add(portal);
@@ -212,73 +206,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 		npcs.add(npc);
 	}
 
-	public void addEntryPoint(Point entry) {
-		entryPoints.add(0, entry);
+	public void setEntryPoint(int x, int y) {
+		entryPoint = new Point(x, y);
 	}
 
 	public void placeObjectAtEntryPoint(Entity object) {
-		if (!entryPoints.isEmpty()) {
-			Point entryPoint = entryPoints.get(0);
-
+		if (entryPoint != null) {
 			object.setX(entryPoint.x);
 			object.setY(entryPoint.y);
 		}
-	}
-
-	public void placeObjectAtZoneChangePoint(StendhalRPZone oldzone,
-			Entity object) {
-		if (zoneChangePoints.size() == 0) {
-			return;
-		}
-
-		int x;
-		int y;
-		Point minpoint = zoneChangePoints.get(0);
-
-		if (object.getY() < 4) {
-			logger.debug("Player exit direction: N");
-			x = object.getX();
-			y = getHeight();
-		} else if (object.getY() > oldzone.getHeight() - 4) {
-			logger.debug("Player exit direction: S");
-			x = object.getX();
-			y = 0;
-		} else if (object.getX() < 4) {
-			logger.debug("Player exit direction: W");
-			x = getWidth();
-			y = object.getY();
-		} else if (object.getX() > oldzone.getWidth() - 4) {
-			logger.debug("Player exit direction: E");
-			x = 0;
-			y = object.getY();
-		} else {
-			// NOTE: If any of the above is true, then it just put object on the
-			// first zone change point.
-			logger.debug("Player zone change default: " + minpoint.x + "," + minpoint.y);
-			object.setX(minpoint.x);
-			object.setY(minpoint.y);
-			return;
-		}
-
-		int distance = Integer.MAX_VALUE;
-
-		logger.debug("Player entry point: (" + x + "," + y + ")");
-
-		for (Point point : zoneChangePoints) {
-			int px = point.x;
-			int py = point.y;
-
-			if ((px - x) * (px - x) + (py - y) * (py - y) < distance) {
-				logger.debug("Best entry point: (" + px + "," + py + ") --> "
-						+ distance);
-				distance = (px - x) * (px - x) + (py - y) * (py - y);
-				minpoint = point;
-			}
-		}
-
-		logger.debug("Choosen entry point: (" + minpoint.x + "," + minpoint.y + ") --> " + distance);
-		object.setX(minpoint.x);
-		object.setY(minpoint.y);
 	}
 
 	public void addLayer(String name, byte[] byteContents) {
@@ -361,32 +297,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return zonearea.intersects(area);
 	}
 
-	// NOTE: Navigation layer is useless.
-	// public void addNavigationLayer(String name, String byteContents) throws
-	// IOException
-	// {
-	// Log4J.startMethod(logger,"addNavigationLayer");
-	//   
-	// if(byteContents==null)
-	// {
-	// logger.info("No navigation map for "+name+" found.");
-	// return;
-	// }
-	//      
-	// try
-	// {
-	// navigationMap = new NavigationMap();
-	// navigationMap.setNavigationPoints(new StringReader(byteContents));
-	// return;
-	// }
-	// catch (IOException fnfe)
-	// {
-	// logger.info("No navigation map for "+name+" found.", fnfe);
-	// }
-	//      
-	// Log4J.finishMethod(logger,"addNavigationLayer");
-	// }
-	//  
 
 	/**
 	 * Populate a zone based on it's map content.
@@ -435,15 +345,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 		try {
 			switch (type) {
 			case 1: /* Entry point */
-			{
-				addEntryPoint(new Point(x, y));
-				break;
-			}
 			case 2: /* Zone change */
-			{
-				addZoneChange(new Point(x, y));
+				setEntryPoint(x, y);
 				break;
-			}
+
 			case 6: /* one way portal destination */
 			case 3: /* portal stairs up */
 			case 4: /* portal stairs down */
