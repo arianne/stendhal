@@ -1,6 +1,8 @@
 package games.stendhal.client.sound;
 
-import java.util.Hashtable;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SoundEffectMap {
 	private static final SoundEffectMap _instance=new SoundEffectMap();
@@ -12,9 +14,9 @@ public class SoundEffectMap {
 	/**
 	 * stores the named sound effects 
 	 */
-	 private Hashtable<String, Object> sfxmap = new Hashtable<String, Object>(256);
-	 private Hashtable<String, String> pathMap = new Hashtable<String, String>(256);
-	 private Hashtable<String, ClipRunner> clipRunnerMap = new Hashtable<String, ClipRunner >(256);
+	 private Map<String, Object> sfxmap = Collections.synchronizedMap(new HashMap<String, Object>(256));
+	 private Map<String, String> pathMap = Collections.synchronizedMap(new HashMap<String, String>(256));
+	 private Map<String, ClipRunner> clipRunnerMap = Collections.synchronizedMap(new HashMap<String, ClipRunner >(256));
 
 	Object getByName(String name){
 		 return sfxmap.get(name);

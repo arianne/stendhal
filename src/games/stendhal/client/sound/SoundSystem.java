@@ -44,6 +44,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -111,7 +112,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	SoundEffectMap sef = SoundEffectMap.getInstance();
 
 	/** */
-	private Hashtable<byte[], SoundCycle> cycleMap = new Hashtable<byte[], SoundCycle>();
+	private Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new Hashtable<byte[], SoundCycle>());
 
 	/** */
 	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
@@ -493,7 +494,7 @@ if (o instanceof ClipRunner) {
 
 	private void init() {
 		Properties prop;
-		Hashtable<String, byte[]> dataList = new Hashtable<String, byte[]>();
+		Map<String, byte[]> dataList = Collections.synchronizedMap(new Hashtable<String, byte[]>());
 		ZipEntry zipEntry;
 		File file;
 		InputStream in;
