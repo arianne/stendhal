@@ -1,10 +1,3 @@
-package games.stendhal.client.entity;
-
-import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
-
 /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
@@ -17,20 +10,29 @@ import org.apache.log4j.Logger;
  *                                                                         *
  ***************************************************************************/
 
+package games.stendhal.client.entity;
+
+import marauroa.common.Log4J;
+import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
+
+
+/**
+ * @author astrid
+ *
+ */
 public class EntityFabric {
 
-//private static Entity createPlayer(GameObjects gameObjects, RPObject object){
-//	Player pl = new Player(gameObjects,object);
-//		return pl;
-//}
+
 /** Create a Entity of the correct type depending of the arianne object */
+/**
+ * @param object the underlying server RPObject
+ * @return 
+ */
 public static Entity createEntity(RPObject object) {
 	try {
-//		if (object.get("type").equals("player")) {
-//			return EntityFabric.createPlayer(GameObjects.getInstance(),  object);
-//		}
-
-		String type = object.get("type");
+    	String type = object.get("type");
 		String eclass = null;
 		if (object.has("class")) {
 			eclass = object.get("class");
