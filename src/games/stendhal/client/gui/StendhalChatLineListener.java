@@ -65,19 +65,20 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		logger.debug("Player wrote: " + playerChatText.getText());
 		String text = playerChatText.getText();
+
+		logger.debug("Player wrote: " + text);
 		
-		ChatLineParser.get().parseAndHandle(text);
-	
-		lines.add(playerChatText.getText());
-		actual = lines.size();
+		if(ChatLineParser.get().parseAndHandle(text)) {
+			lines.add(text);
+			actual = lines.size();
 
-		if (lines.size() > 50) {
-			lines.remove(0);
-			actual--;
+			if (lines.size() > 50) {
+				lines.remove(0);
+				actual--;
+			}
+
+			playerChatText.setText("");
 		}
-
-		playerChatText.setText("");
 	}
 }
