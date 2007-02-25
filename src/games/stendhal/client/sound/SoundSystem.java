@@ -111,7 +111,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	SoundEffectMap sef = SoundEffectMap.getInstance();
 
 	/** */
-	private Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<byte[], SoundCycle>());
+	private Map<byte[], SoundCycle> cycleMap = Collections
+			.synchronizedMap(new HashMap<byte[], SoundCycle>());
 
 	/** */
 	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
@@ -157,7 +158,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		if (name == null | volBot == 0 | !operative | muteSetting)
 			return null;
 
-		if (volBot < 0 || volBot > 100 || volTop < 0 || volTop > 100 || volTop < volBot)
+		if (volBot < 0 || volBot > 100 || volTop < 0 || volTop > 100
+				|| volTop < volBot)
 			throw new IllegalArgumentException("bad volume setting");
 
 		// check/fetch sound
@@ -166,7 +168,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return null;
 
 		int volume = volBot + Rand.rand(volTop - volBot + 1);
-		return clip.play(volume, correctionDB, SoundSystem.get().getVolumeDelta());
+		return clip.play(volume, correctionDB, SoundSystem.get()
+				.getVolumeDelta());
 	} // playSound
 
 	/**
@@ -288,7 +291,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 				DBValues.getDBValue(fogVolume));
 	} // playMapSound
 
-	/** registers an abmient sound */
+	/** plays (?) and registers an ambient sound 
+	 * @param ambient the sound to be registered 
+	 * */
 	public void playAmbientSound(AmbientSound ambient) {
 
 		ambient.play();
@@ -299,10 +304,13 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	} // playAmbientSound
 
 	/**
-	 * removes the ambient sound from the internal list. It should already be
-	 * stopped.
+	 * removes the ambient sound from the internal list. 
+	 * It should already be stopped.
+	
+	 * @param ambient the ambient sound to be removed
 	 */
 	public static void stopAmbientSound(AmbientSound ambient) {
+//		  TODO: assert the sound  is stopped
 		SoundSystem sys;
 
 		sys = get();
@@ -334,19 +342,18 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	ClipRunner getSoundClip(String name) {
 
 		Object o = SoundEffectMap.getInstance().getByName(name);
-if (o== null) return null;
-  
-if (o instanceof ClipRunner) {
+		if (o == null)
+			return null;
+
+		if (o instanceof ClipRunner) {
 			return (ClipRunner) o;
 		}
 
-		
-			// load sounddata from soundfile
-			String path = (String) o;
-			return loadSoundDataFromFile(name, path);
-		
-	} // getSoundClip
+		// load sounddata from soundfile
+		String path = (String) o;
+		return loadSoundDataFromFile(name, path);
 
+	} // getSoundClip
 
 	private ClipRunner loadSoundDataFromFile(String name, String path) {
 		String hstr = name + "@" + path;
@@ -427,25 +434,19 @@ if (o instanceof ClipRunner) {
 
 		sys = get();
 		cycle = sys.cycleMap.get(entity_ID);
-		if (cycle!= null)
+		if (cycle != null)
 			synchronized (sys.cycleMap) {
 				sys.cycleMap.remove(entity_ID);
 				cycle.terminate();
 			}
 	}
 
-	/*
-	 * private ClipRunner getSoundClip ( String name, ZipEntry entry ) throws
-	 * IOException, UnsupportedAudioFileException { return new ClipRunner( name,
-	 * getZipData( entry ) ); }
-	 */
-
 	/**
 	 * Loads a junk of data from the jar soundfile and returns it as a byte
 	 * array.
 	 * 
 	 * @param entry
-	 * @return
+	 * @return the data in the Zipentry
 	 * @throws IOException
 	 */
 	private byte[] getZipData(ZipEntry entry) throws IOException {
@@ -459,10 +460,6 @@ if (o instanceof ClipRunner) {
 		return bout.toByteArray();
 	}
 
-	/*
-	 * private String getSoundFileName ( String name ) { Object o; if ( (o =
-	 * sfxmap.get( name )) instanceof String ) return (String)o; return null; }
-	 */
 	/**
 	 * Whether the parameter sound is available in this sound system.
 	 * 
@@ -470,9 +467,7 @@ if (o instanceof ClipRunner) {
 	 *            token of sound
 	 */
 	public boolean contains(String name) {
-		return name != null
-				&& SoundEffectMap.getInstance().containsKey(
-						name);
+		return name != null && SoundEffectMap.getInstance().containsKey(name);
 	}
 
 	/**
@@ -492,16 +487,17 @@ if (o instanceof ClipRunner) {
 	}
 
 	private void init() {
-		Properties prop;
-		Map<String, byte[]> dataList = Collections.synchronizedMap(new HashMap<String, byte[]>());
+
+		Map<String, byte[]> dataList = Collections
+				.synchronizedMap(new HashMap<String, byte[]>());
 		ZipEntry zipEntry;
 		File file;
-		InputStream in;
-		OutputStream out;
+
 		String path, key, value, name, hstr;
 		int loaded, failed, count, pos, i, loudness;
 		byte[] soundData;
 		Iterator it;
+
 		Map.Entry entry;
 		boolean load;
 
@@ -511,22 +507,15 @@ if (o instanceof ClipRunner) {
 		}
 
 		try {
+			Properties prop;
 			// load sound properties
 			prop = new Properties();
-			in = getResourceStream(STORE_PROPERTYFILE);
-			prop.load(in);
-			in.close();
+			loadSoundProperties(prop);
 
-			// get sound library file
+			// get sound library filepath
 			path = prop.getProperty("soundbase", "sounds/stensounds0.jar");
 
-			// make a temporary copy of sound resource
-			file = File.createTempFile("stendhal-", ".tmp");
-			in = getResourceStream(path);
-			out = new FileOutputStream(file);
-			transferData(in, out, 4096);
-			in.close();
-			out.close();
+			file = makeTempCopy(path);
 
 			// open the sound file
 			soundFile = new JarFile(file);
@@ -548,7 +537,8 @@ if (o instanceof ClipRunner) {
 				logger.debug("- sound definition: " + key + " = " + value);
 
 				// decide on loading
-				// (do not load when ",x" trailing path; always load when "." in
+				// (do not load when ",x" trailing path; 
+				// always load when "." in
 				// name)
 				if ((pos = value.indexOf(',')) > -1) {
 					path = value.substring(0, pos);
@@ -608,8 +598,7 @@ if (o instanceof ClipRunner) {
 					ClipRunner clip = getSoundClip(name);
 					if (clip == null) {
 						clip = new ClipRunner(name);
-						SoundEffectMap.getInstance().put(name,
-								clip);
+						SoundEffectMap.getInstance().put(name, clip);
 					}
 					clip.addSample(sound);
 
@@ -627,8 +616,7 @@ if (o instanceof ClipRunner) {
 
 			hstr = "Stendhal Soundsystem OK: " + count + " samples approved / "
 					+ loaded + " loaded / "
-					+ SoundEffectMap.getInstance().size()
-					+ " library sounds";
+					+ SoundEffectMap.getInstance().size() + " library sounds";
 			logger.info(hstr);
 			System.out.println(hstr);
 			if (failed != 0) {
@@ -649,6 +637,44 @@ if (o instanceof ClipRunner) {
 		}
 	} // init
 
+	/**
+	 * @param prop
+	 *            the Property Object to load to
+	 * @throws IOException
+	 */
+	private void loadSoundProperties(Properties prop) throws IOException {
+		InputStream in1;
+
+		in1 = getResourceStream(STORE_PROPERTYFILE);
+		prop.load(in1);
+		in1.close();
+	}
+
+	/**
+	 * @param sourcePath
+	 * @return the copied, closed file
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
+	private File makeTempCopy(String sourcePath) throws IOException,
+			FileNotFoundException {
+		File file;
+		file = File.createTempFile("stendhal-", ".tmp");
+		OutputStream out;
+		InputStream in2;
+		in2 = getResourceStream(sourcePath);
+		out = new FileOutputStream(file);
+		transferData(in2, out, 4096);
+		in2.close();
+		out.close();
+		return file;
+	}
+
+	/**
+	 * @return <b>true</b> if javaSound init is successfull,
+	 *         <p>
+	 *         <b>false</b> otherwise
+	 */
 	private boolean initJavaSound() {
 		Info info;
 		Info[] mixInfos;
@@ -670,7 +696,7 @@ if (o instanceof ClipRunner) {
 		try {
 			volumeCtrl = (FloatControl) mixer
 					.getControl(FloatControl.Type.MASTER_GAIN);
-			volumeCtrl.setValue( 0f);
+			volumeCtrl.setValue(0f);
 		} catch (Exception e) {
 			logger.debug("SoundSystem: no master volume controls");
 		}
@@ -704,7 +730,7 @@ if (o instanceof ClipRunner) {
 	 * 
 	 * @return <b>true</b> if and only if Mute is ON (silent)
 	 */
-	public boolean getMute() {
+	public boolean isMute() {
 		return muteSetting;
 	}
 
@@ -718,14 +744,14 @@ if (o instanceof ClipRunner) {
 	public void setVolume(int volume) {
 		float dB;
 
-		volume=(volume<0)?volume=0:volume;
-		volume=(volume>100)?volume=100:volume;
-	
+		volume = (volume < 0) ? volume = 0 : volume;
+		volume = (volume > 100) ? volume = 100 : volume;
+
 		dB = DBValues.getDBValue(volume);
 		logger.info("- sound system setting volume dB = " + dB + "  (gain "
 				+ volume + ")");
-  		  
-		volumeSetting=volume;
+
+		volumeSetting = volume;
 		if (volumeCtrl != null) {
 			volumeCtrl.setValue(dB);
 		} else {
@@ -754,18 +780,14 @@ if (o instanceof ClipRunner) {
 		return operative;
 	}
 
-	/** Returns the singleton instance of the Stendhal sound system. */
+	/**
+	 * @return the singleton instance of the Stendhal sound system.
+	 */
 	public static SoundSystem get() {
 		// if (singleton == null)
 		// singleton = new SoundSystem();
 		return singleton;
 	}
-
-//	/** returns the current mixer */
-	// TODO: use it or loose it SoundSystem.getMixer
-//	public Mixer getMixer() {
-//		return mixer;
-//	}
 
 	/**
 	 * Releases any resources associated with this sound system. The system is
@@ -808,8 +830,13 @@ if (o instanceof ClipRunner) {
 
 	private String actualZone = "";
 
-	/*
+	/**
 	 * Overridden:
+	 * 
+	 * @see games.stendhal.client.WorldObjects.WorldListener#zoneEntered(java.lang.String)
+	 */
+	/*
+	 * (non-Javadoc)
 	 * 
 	 * @see games.stendhal.client.WorldObjects.WorldListener#zoneEntered(java.lang.String)
 	 */
@@ -998,7 +1025,9 @@ if (o instanceof ClipRunner) {
 		}
 	}
 
-	/** returns the volume delta */
+	/**
+	 * @return the volume delta
+	 */
 	public float getVolumeDelta() {
 		return volumeDelta;
 	}
@@ -1026,7 +1055,7 @@ if (o instanceof ClipRunner) {
 		// update ambient sounds about player position
 		synchronized (ambientList) {
 			for (AmbientSound a : ambientList) {
-				a.performPlayerMoved(player, isOperative(), getMute());
+				a.performPlayerMoved(player, isOperative(), isMute());
 			}
 		}
 	}

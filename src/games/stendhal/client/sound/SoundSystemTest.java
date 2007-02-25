@@ -1,3 +1,15 @@
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 package games.stendhal.client.sound;
 
 import static org.junit.Assert.*;
@@ -82,9 +94,9 @@ public class SoundSystemTest {
 	@Test
 	public final void testSetandGetMute() {
 		SoundSystem.get().setMute(true);
-		assertTrue("muted sound should be mute",SoundSystem.get().getMute());
+		assertTrue("muted sound should be mute",SoundSystem.get().isMute());
 		SoundSystem.get().setMute(false);
-		assertFalse("muted sound should be mute",SoundSystem.get().getMute());
+		assertFalse("muted sound should be mute",SoundSystem.get().isMute());
 	}
 
 	@Test

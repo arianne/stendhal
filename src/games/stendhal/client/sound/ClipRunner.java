@@ -23,8 +23,6 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.Line;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
@@ -49,10 +47,10 @@ import org.apache.log4j.Logger;
 	private List<AudioClip> samples;
 
 	/**
-	 * Creates a ClipRunner instance by name. Volume setting is set to 100%.
-	 * @param name
+	 * Creates an empty named ClipRunner instance 
+	 *  Volume setting is set to 100%.
+	 * @param name 
 	 * 
-	 * @throws UnsupportedAudioFileException
 	 */
 	 ClipRunner(String name) {
 		_name = name;
@@ -63,9 +61,8 @@ import org.apache.log4j.Logger;
 	 * Adds another clip as an alternate sound to be run under this clip.
 	 * Alternative sounds are played by random and equal chance.
 	 * 
-	 * @param clip
-	 *            alternate sound clip
-	 * @throws UnsupportedAudioFileException
+	 * @param clip alternate sound clip
+	 * 
 	 */
 	void addSample(AudioClip clip) {
 		samples.add(clip);
@@ -171,9 +168,8 @@ import org.apache.log4j.Logger;
 		return null;
 	}
 
-	/*
-	 * Overridden:
-	 * 
+
+	/* (non-Javadoc)
 	 * @see javax.sound.sampled.LineListener#update(javax.sound.sampled.LineEvent)
 	 */
 	public void update(LineEvent event) {

@@ -59,32 +59,50 @@ import marauroa.common.game.RPObject;
 
 	private float loudnessDB;
 
-	private boolean playing;
+	/**
+	 * true if AmbientSound is playing
+	 */
+	private boolean isPlaying;
+	
 	private float getVolumeDelta() {
 		return SoundSystem.get().getVolumeDelta();
 	}
+	
 	/**
 	 * The LoopSoundInfo stores information which is required to start the
 	 * continuously looping sound elements of this ambient sound.
 	 */
 	private static class LoopSoundInfo implements Cloneable {
-		String name;
+		/**
+		 *  the String representing the LoopSoundInfo
+		 */
+		private String name;
 
-		float loudnessDB;
+		/**
+		 *  the loudness 
+		 */
+		private float loudnessDB;
 
-		int delay;
+		private int delay;
 
-		Clip clip;
+		private Clip clip;
 
-		public LoopSoundInfo(String sound, int volume, int delay) {
+		/**
+		 * constructor
+		 * @param sound the sounds name
+		 * @param volume the volume 0..100
+		 * @param delay  
+		 */
+		public LoopSoundInfo( final String sound,  final int volume,  final int delay) {
 			name = sound;
 			loudnessDB = DBValues.getDBValue(volume);
 			this.delay = delay;
 		}
 
 		/**
-		 * Returns a copy of this LoopSoundInfo with <code>clip</code> set to
+		 * copies LoopSoundInfo with <code>clip</code> set to
 		 * <b>null</b> (clip not playing).
+		 * @return LoopsoundInfo copy 
 		 */
 		public LoopSoundInfo clone() {
 			LoopSoundInfo si;
@@ -100,6 +118,9 @@ import marauroa.common.game.RPObject;
 			return si;
 		}
 
+		/**
+		 *  stops the current clip and sets it to null
+		 */
 		public synchronized void stopClip() {
 			if (clip != null) {
 				clip.stop();
@@ -108,17 +129,31 @@ import marauroa.common.game.RPObject;
 		}
 	}
 
+	/**
+	 * Soundstarter is the inner class of Ambientsound 
+	 * that actually starts playing the current clip 
+	 * 
+	 *
+	 */
 	private class SoundStarter extends Thread {
 		LoopSoundInfo soundInfo;
 
 		float correctionDB;
 
-		/** Starts a looping sound. */
+		
+		/**
+		 * Starts a looping sound.
+		 * @param loopInfo
+		 * @param correctionDB
+		 */
 		public SoundStarter(LoopSoundInfo loopInfo, float correctionDB) {
 			this.soundInfo = loopInfo;
 			this.correctionDB = correctionDB;
 		}
 
+		/* (non-Javadoc)
+		 * @see java.lang.Thread#run()
+		 */
 		public void run() {
 			ClipRunner libClip;
 
@@ -132,7 +167,7 @@ import marauroa.common.game.RPObject;
 			if (soundInfo.delay > 0)
 				try {
 					sleep(soundInfo.delay);
-				} catch (InterruptedException e) {
+				} catch (final InterruptedException e) {
 				}
 
 			synchronized (soundInfo) {
@@ -146,7 +181,7 @@ import marauroa.common.game.RPObject;
 				if (soundInfo.clip != null) {
 					soundInfo.clip.loop(Clip.LOOP_CONTINUOUSLY);
 				}
-				playing = true;
+				isPlaying = true;
 			}
 		}
 
@@ -156,9 +191,10 @@ import marauroa.common.game.RPObject;
 	/**
 	 * Creates an unlocalized ambient sound (plays everywhere) with the given
 	 * overall volume setting.
+	 * @param name String representing the name of the Sound
 	 * 
-	 * @param volume
-	 *            int 0..100 loudness of ambient sound in total
+	 * @param volume int 0..100 loudness of ambient sound in total
+	 *            
 	 */
 	public AmbientSound(String name, int volume) {
 		this(name, null, 0, volume);
@@ -271,8 +307,15 @@ import marauroa.common.game.RPObject;
 		loopSounds.add(info);
 	} // addLoop
 
-	public void addCycle(String token, int period, int volBot, int volTop,
-			int chance) {
+	/**
+	 * @param token 
+	 * @param period
+	 * @param volBot
+	 * @param volTop
+	 * @param chance
+	 */
+	public void addCycle(final  String token,  final int period,  final int volBot,  final int volTop,
+			final  int chance) {
 		SoundCycle cycle;
 
 		cycle = new SoundCycle(soundObject, token, period, volBot, volTop,
@@ -311,7 +354,7 @@ import marauroa.common.game.RPObject;
 	protected void play(Player player) {
 		float fogDB;
 
-		if (playing)
+		if (isPlaying)
 			return;
 
 		stop();
@@ -345,7 +388,7 @@ import marauroa.common.game.RPObject;
 			c.play();
 		}
 
-		playing = true;
+		isPlaying = true;
 		String hstr = "- playing ambient: " + name;
 		logger.debug(hstr);
 		// System.out.println( hstr );
@@ -353,7 +396,7 @@ import marauroa.common.game.RPObject;
 
 	/** (Temporarily) stops playing this ambient sound. */
 	protected void stop() {
-		if (!playing)
+		if (!isPlaying)
 			return;
 
 		// terminate loop sounds
@@ -368,7 +411,7 @@ import marauroa.common.game.RPObject;
 			c.stopPlaying();
 		}
 
-		playing = false;
+		isPlaying = false;
 		String hstr = "- stopped ambient: " + name;
 		logger.debug(hstr);
 		// System.out.println( hstr );
@@ -450,7 +493,7 @@ import marauroa.common.game.RPObject;
 			return;
 
 		// if not yet playing, start playing
-		if (playing) {
+		if (isPlaying) {
 			// set new player parameters
 			playerPos = player.getPosition();
 			playerHearing = player.getHearingArea();
@@ -469,6 +512,10 @@ import marauroa.common.game.RPObject;
 		}
 	} // performPlayerPosition
 
+	/**
+	 * detects player loudness fog value
+	 * and sets corrected volume to all running clips
+	 */
 	public void updateVolume() {
 		FloatControl volCtrl;
 		float fogDB;

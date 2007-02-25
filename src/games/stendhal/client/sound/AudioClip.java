@@ -58,7 +58,14 @@ import org.apache.log4j.Logger;
 	/** is the data supported */
 	private boolean supported;
 
-	/** creates the audio clip */
+	
+	/**
+	 * creates the audio clip
+	 * @param mixer the Mixer instance to be used
+	 * @param name the name of the audio clip
+	 * @param audioData the audio data 
+	 * @param volume   the loudness 0..100
+	 */
 	public AudioClip(Mixer mixer, String name, byte[] audioData, int volume) {
 		this.volume = volume;
 		this.mixer = mixer;
@@ -139,6 +146,9 @@ import org.apache.log4j.Logger;
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return this.getClass().getName()
 				+ ": "

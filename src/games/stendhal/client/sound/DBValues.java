@@ -1,3 +1,15 @@
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 package games.stendhal.client.sound;
 
 /**
@@ -25,6 +37,14 @@ public class DBValues {
 			
 		}
 	}
+	/**
+	 * calculates a dbValue accoring to the volume
+	 * @param volume the volume to be calculated <p>
+	 * any value < 0 will be adjusted to 0 <p>
+	 * any value > 100 will be adjusted to 100
+	 *  
+	 * @return the calculated dbValue
+	 */
 	public static float getDBValue(int volume){
 		if (volume < 0)
 			volume = 0;
