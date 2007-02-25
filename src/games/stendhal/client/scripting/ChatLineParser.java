@@ -162,7 +162,6 @@ public class ChatLineParser {
 			ch = ci.next();
 		}
 
-System.err.println("cmd: " + name);
 
 		/*
 		 * Find command handler
@@ -178,8 +177,6 @@ System.err.println("cmd: " + name);
 			maximum = 1;
 		}
 
-System.err.println("minimum: " + minimum);
-System.err.println("maximum: " + maximum);
 
 		/*
 		 * Extract parameters
@@ -243,7 +240,6 @@ System.err.println("maximum: " + maximum);
 			params[i] = sbuf.toString();
 		}
 
-System.err.println("# params: " + i);
 
 		/*
 		 * Remainder text
