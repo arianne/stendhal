@@ -1231,8 +1231,8 @@
 	  <creature name="risecia_archer">
                 <type class="human" subclass="risecia_archer" tileid="142"/>
                 <attributes>
-                        <atk value="63"/>
-                        <def value="2"/>
+                        <atk value="60"/>
+                        <def value="20"/>
                         <hp value="70"/>
                         <speed value="0.9"/>
                         <size value="1,2"/>
@@ -1247,8 +1247,11 @@
                         <item value="longbow_+1" quantity="1" probability="1"/>
                 </drops>
                 <equips>
+			<slot name="rhand" item="wooden_bow" />
+			<slot name="lhand" item="wooden_arrow" quantity="10000" />
                 </equips>
                 <ai>
+			<profile name="archer"/>
                         <profile name="human"/>
                         <profile name="offensive"/>
                         <profile name="patrolling"/>
@@ -1693,7 +1696,7 @@
 	<creature name="archer_elf">
 		<type class="elf" subclass="archer_elf" tileid="63"/>
 		<attributes>
-			<atk value="67"/>
+			<atk value="64"/>
 			<def value="18"/>
 			<hp value="105"/>
 			<speed value="1"/>
