@@ -579,6 +579,8 @@ public class AdministrationAction extends ActionListener {
 			// know if the type attribute is mandatory.
 			//st.append("Inspected " + inspected.get("type") + " is called " + inspected.getName() + " and has attributes:");
 			st.append("Inspected entity is called \"" + inspected.getName() + "\" and has the following attributes:");
+//			st.append(target.toString());
+//			st.append("\n===========================\n");
 			st.append("\nID:     " + inspected.getID());
 			st.append("\nATK:    " + inspected.getATK() + "("
 					+ inspected.getATKXP() + ")");
@@ -603,7 +605,11 @@ public class AdministrationAction extends ActionListener {
 					}
 				} else {
 					for (RPObject object : slot) {
+						if(!(object instanceof Item))
+							continue;
+
 						String item = object.get("type");
+
 						if (object.has("name")) {
 							item = object.get("name");
 						}
