@@ -1075,13 +1075,44 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
-	<creature name="mummy">
-		<type class="mummy" subclass="mummy" tileid="41"/>
+       <creature name="ogre">
+                <type class="giant" subclass="ogre" tileid="18"/>
+                <attributes>
+                        <atk value="59"/>
+                        <def value="16"/>
+                        <hp value="140"/>
+                        <speed value="0.6"/>
+                        <size value="1,2"/>
+                </attributes>
+                <level value="12"/>
+                <experience value="195"/>
+                <respawn value="900"/>
+                <drops>
+                        <item value="money" quantity="[6,19]"
+				probability="100"/>
+                        <item value="hammer" quantity="1" probability="20"/>
+                        <item value="hammer_+3" quantity="1" probability="2"/>
+                        <item value="chain_armor" quantity="1"
+				probability="30"/>
+                        <item value="scale_armor" quantity="1"
+				probability="2"/>
+                </drops>
+                <equips>
+                </equips>
+                <ai>
+                        <profile name="human"/>
+                        <profile name="offensive"/>
+                        <profile name="brave"/>
+                        <profile name="patrolling"/>
+                </ai>
+        </creature>
+	<creature name="risecia_thug">
+		<type class="human" subclass="risecia_thug" tileid="141"/>
 		<attributes>
-			<atk value="58"/>
-			<def value="22"/>
-			<hp value="55"/>
-			<speed value="0.4"/>
+			<atk value="55"/>
+			<def value="25"/>
+			<hp value="60"/>
+			<speed value="0.7"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="12"/>
@@ -1089,13 +1120,15 @@
 		<respawn value="900"/>
 		<drops>
 			<item value="money" quantity="[3,20]" probability="90"/>
-			<item value="plate_shield" quantity="1" probability="20"/>
-			<item value="lion_shield" quantity="1" probability="1"/>
-			<item value="sword" quantity="1" probability="20"/>
-			<item value="scimitar" quantity="1" probability="1"/>
-			<item value="studded_armor" quantity="1" probability="20"/>
-			<item value="chain_armor" quantity="1" probability="3"/>
+			<item value="plate_shield" quantity="1" probability="30"/>
+			<item value="studded_boots" quantity="1" probability="2"/>
+			<item value="sword" quantity="1" probability="5"/>
+			<item value="chain_armor_+1" quantity="1" probability="3"/>
+			<item value="sandwich" quantity="1" probability="3"/>
 		</drops>
+		<says>
+			<noise value="Hand it over!"/>
+		</says>
 		<equips>
 		</equips>
 		<ai>
@@ -1196,6 +1229,33 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+	  <creature name="risecia_archer">
+                <type class="human" subclass="risecia_archer" tileid="142"/>
+                <attributes>
+                        <atk value="63"/>
+                        <def value="2"/>
+                        <hp value="70"/>
+                        <speed value="0.9"/>
+                        <size value="1,2"/>
+                </attributes>
+                <level value="14"/>
+                <experience value="225"/>
+                <respawn value="900"/>
+                <drops>
+                        <item value="money" quantity="[2,15]" probability="100"/>
+                        <item value="longbow" quantity="1" probability="8"/>
+                        <item value="steel_arrow" quantity="[3,8]" probability="30"/>
+                        <item value="longbow_+1" quantity="1" probability="1"/>
+                </drops>
+                <equips>
+                </equips>
+                <ai>
+                        <profile name="human"/>
+                        <profile name="offensive"/>
+                        <profile name="patrolling"/>
+                </ai>
+        </creature>
+
 	<!-- Level 15 -->
 	<creature name="ghost">
 		<type class="undead" subclass="ghost" tileid="90"/>
@@ -1510,6 +1570,37 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+      <creature name="risecia_swordsman">
+                <type class="human" subclass="risecia_swordsman" tileid="143"/>
+                <attributes>
+                        <atk value="63"/>
+                        <def value="19"/>
+                        <hp value="150"/>
+                        <speed value="0.8"/>
+                        <size value="1,2"/>
+                </attributes>
+                <level value="17"/>
+                <experience value="280"/>
+                <respawn value="900"/>
+                <drops>
+                        <item value="money" quantity="[3,25]" probability="100"/>
+                        <item value="sword" quantity="1" probability="30"/>
+                        <item value="claymore" quantity="1" probability="5"/>
+                        <item value="katana" quantity="1" probability="15"/>
+                        <item value="chain_armor_+3" quantity="1" probability="1"/>
+                </drops>
+                <equips>
+                </equips>
+		<says>
+			<noise value="Stick 'em up!"/>
+		</says>
+                <ai>
+                        <profile name="human"/>
+                        <profile name="offensive"/>
+                        <profile name="brave"/>
+                        <profile name="patrolling"/>
+                </ai>
+	</creature>
 	<!-- Level 18 -->
 	<creature name="dwarf_guardian">
 		<type class="dwarf" subclass="dwarf_guardian" tileid="32"/>
@@ -1718,6 +1809,37 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+      <creature name="risecia_leader">
+                <type class="human" subclass="risecia_leader" tileid="144"/>
+                <attributes>
+                        <atk value="70"/>
+                        <def value="19"/>
+                        <hp value="150"/>
+                        <speed value="0.9"/>
+                        <size value="1,2"/>
+                </attributes>
+                <level value="20"/>
+                <experience value="300"/>
+                <respawn value="1200"/>
+                <drops>
+                        <item value="money" quantity="[10,40]" probability="70"/>
+			<item value="pie" quantity="1" probability="5"/>
+                        <item value="cloak" quantity="1" probability="10"/>
+			<item value="chain_boots" quantity="1" probability="1"/>
+                </drops>
+		<says>
+			<noise value="Trespass and die!"/>
+		</says>	
+	        <equips>
+                </equips>
+                <ai>
+                        <profile name="human"/>
+                        <profile name="offensive"/>
+                        <profile name="heal" params="5,50"/>
+                        <profile name="lifesteal" params="0.5"/>
+                        <profile name="patrolling"/>
+                </ai>
+        </creature>
 
     <!-- Level 21 -->
 	<creature name="soldier_elf">
