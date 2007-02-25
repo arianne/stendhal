@@ -1808,7 +1808,7 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
-      <creature name="risecia_leader">
+      <creature name="Chief_Falatheen_of_the_Risecia">
                 <type class="human" subclass="risecia_leader" tileid="144"/>
                 <attributes>
                         <atk value="70"/>
