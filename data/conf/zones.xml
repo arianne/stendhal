@@ -166,6 +166,20 @@
   <title/>
   <configurator class-name="games.stendhal.server.maps.ados.AdosMountainsNorthWest">
    <attribute name="xml-portals">using</attribute>
+     <entity x="126" y="107">
+       <implementation class-name="games.stendhal.server.entity.Sign">
+        <attribute name="text">
+		Beware of bandits beyond!
+	</attribute>
+       </implementation>
+      </entity>
+      <entity x="126" y="115">
+       <implementation class-name="games.stendhal.server.entity.Sign">
+        <attribute name="text">
+	 Beware of bandits beyond!
+	</attribute>
+       </implementation>
+      </entity>
   </configurator>
 
   <portal x="75" y="50" ref="magician_house_entrance">
@@ -1512,7 +1526,8 @@ Mature sheep wanted: please speak to Sato
    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
     <attribute name="key">vampirette_entrails</attribute>
     <attribute name="quantity">7</attribute>
-    <attribute name="rejected">You find it hard to enter. Perhaps something is missing.</attribute>
+    <attribute name="rejected">Prove that you killed all vampirettes before
+   you face their lord.</attribute>
    </implementation>
   </portal>
 
