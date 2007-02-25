@@ -626,6 +626,8 @@ Makes players more offensive
 
 	<item name="longbow">
 		<type class="ranged" subclass="longbow"/>
+		<description>You see a longbow. Equipped with this, and a
+		supply of arrows, you will have an effective ranged attack.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="14"/>
@@ -640,6 +642,8 @@ Makes players more offensive
 
 	<item name="longbow_+1">
 		<type class="ranged" subclass="composite_bow"/>
+		<description>You see a longbow +1. It's better strung than
+		most bows, for excellent ranged attack.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="15"/>
@@ -689,6 +693,8 @@ Makes players more offensive
 
 	<item name="steel_arrow">
 		<type class="projectiles" subclass="steel_arrow"/>
+		<description>You see a shining steel arrow. With plenty of
+		these, and a good bow, you'll be a formidable archer.</description>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<stackable/>
 		<attributes>
