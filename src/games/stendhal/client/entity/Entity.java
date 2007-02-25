@@ -84,7 +84,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	protected Entity( RPObject object)
 			throws AttributeNotFoundException {
-		//this.gameObjects = gameObjects;
 		this.client = StendhalClient.get();
 
 		type = object.get("type");

@@ -26,14 +26,6 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class Corpse extends PassiveEntity {
-// make these uselfull or delete
-//	private String clazz;
-//
-//	private String name;
-//
-//	private String killer;
-//
-//	private int stage;
 
 	private EntityContainer contentWindow;
 
@@ -75,22 +67,6 @@ public class Corpse extends PassiveEntity {
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
-
-//		if (diff.has("class")) {
-//			clazz = diff.get("class");
-//		}
-//
-//		if (diff.has("name")) {
-//			name = diff.get("name");
-//		}
-//
-//		if (diff.has("killer")) {
-//			killer = diff.get("killer");
-//		}
-//
-//		if (diff.has("stage")) {
-//			stage = diff.getInt("stage");
-//		}
 	}
 
 	public String defaultAction() {

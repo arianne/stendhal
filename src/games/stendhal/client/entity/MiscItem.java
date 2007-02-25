@@ -16,7 +16,6 @@ import marauroa.common.game.*;
 import games.stendhal.client.*;
 
 public class MiscItem extends Item {
-//	private String name;
 
 	public MiscItem( RPObject object)
 			throws AttributeNotFoundException {
@@ -30,20 +29,5 @@ public class MiscItem extends Item {
 		sprite = store.getSprite("data/sprites/items/misc/"
 				+ object.get("class") + "/" + miscName + ".png");
 
-//		if (object.has("name")) {
-//			name = object.get("name");
-//		} else {
-//			name = miscName;
-//		}
 	}
-
-	/*
-	 * public void onAction(StendhalClient client, String action, String...
-	 * params) { if(action.equals("Look")) { String text="You see a
-	 * "+name.replace("_"," ")+".";
-	 * 
-	 * StendhalClient.get().addEventLine(text,Color.green);
-	 * gameObjects.addText(this, text, Color.green); } else {
-	 * super.onAction(client,action,params); } }
-	 */
 }
