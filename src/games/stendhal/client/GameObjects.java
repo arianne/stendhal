@@ -15,6 +15,7 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFabric;
+import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.PassiveEntity;
 import games.stendhal.client.entity.PlantGrower;
 import games.stendhal.client.entity.RPEntity;
@@ -578,7 +579,7 @@ public class GameObjects implements Iterable<Entity> {
 
 		for (Entity other : sortedObjects) {
 			if (!(other instanceof PassiveEntity) && !(other instanceof Blood)
-					&& !(other instanceof PlantGrower)) {
+					&& !(other instanceof PlantGrower)&& !(other instanceof GrainField)) {
 				if (area.intersects(other.getArea())
 						&& !entity.getID().equals(other.getID())) {
 					entity.onCollideWith(other);
