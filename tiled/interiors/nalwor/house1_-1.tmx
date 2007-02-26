@@ -40,42 +40,42 @@
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
   <image source="../../zelda_monsters_chipset.png"/>
  </tileset>
- <layer name="downstairs_0_floor" width="8" height="8">
+ <layer name="0_floor" width="8" height="8">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFvPysCwfgRjAOyDoNQAAQAA
   </data>
  </layer>
- <layer name="downstairs_1_terrain" width="8" height="8">
+ <layer name="1_terrain" width="8" height="8">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAALvGysBgxY4dXwXKyQJpXECafXDIp+NQA5LfAfTDPzbseDtQDgDUSo2ZAAEAAA==
   </data>
  </layer>
- <layer name="downstairs_2_object" width="8" height="8">
+ <layer name="2_object" width="8" height="8">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgIAw0+CG4hp8IxTQEkXwMDDFAHA/EiXzUMRMAhui26gABAAA=
   </data>
  </layer>
- <layer name="downstairs_3_roof" width="8" height="8">
+ <layer name="3_roof" width="8" height="8">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGDzAmo+BwQ6IHYHYmY8+dgIAH7oDogABAAA=
   </data>
  </layer>
- <layer name="downstairs_4_roof_add" width="8" height="8">
+ <layer name="4_roof_add" width="8" height="8">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGNkAAFiFlg0AAQAA
   </data>
  </layer>
- <layer name="downstairs_objects" width="8" height="8" visible="0">
+ <layer name="objects" width="8" height="8" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgIB6kcJKgeICBlwBx6gArIv89AAEAAA==
   </data>
  </layer>
- <layer name="downstairs_collision" width="8" height="8" opacity="0.37">
+ <layer name="collision" width="8" height="8" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANPiYmDQIhKjA1zitJIn1l2E1CNjAEa4HfwAAQAA
   </data>
  </layer>
- <layer name="downstairs_navigation" width="8" height="8">
+ <layer name="navigation" width="8" height="8">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGNkAAFiFlg0AAQAA
   </data>
