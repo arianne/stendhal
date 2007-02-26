@@ -5,82 +5,82 @@
   <property name="y" value="500000"/>
  </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_outside_0_chipset.png" trans="ffffff"/>
+  <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_outside_1_chipset.png" trans="ffffff"/>
+  <image source="../../zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+  <image source="../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+  <image source="../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_interior_0_chipset.png" trans="ff00ff"/>
+  <image source="../../zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_navigation_chipset.png"/>
+  <image source="../../zelda_navigation_chipset.png"/>
  </tileset>
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_objects_chipset.png"/>
+  <image source="../../zelda_objects_chipset.png"/>
  </tileset>
  <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_collision_chipset.png"/>
+  <image source="../../zelda_collision_chipset.png"/>
  </tileset>
  <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_building_0_tileset.png"/>
+  <image source="../../zelda_building_0_tileset.png"/>
  </tileset>
  <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_outside_2_chipset.png"/>
+  <image source="../../zelda_outside_2_chipset.png"/>
  </tileset>
  <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_interior_1_chipset.png"/>
+  <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
-  <image source="tiled/zelda_monsters_chipset.png"/>
+  <image source="../../zelda_monsters_chipset.png"/>
  </tileset>
- <layer name="inn1_0_floor" width="35" height="17">
+ <layer name="0_floor" width="35" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAJvMz8AweRSP4lE8ikfxKB7Fo3gUk4UBmiBzKEwJAAA=
   </data>
  </layer>
- <layer name="inn1_1_terrain" width="35" height="17">
+ <layer name="1_terrain" width="35" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAEvjYGD4wI4dpwLl0rDI/waK/eGgvpp3QDoDSPOh4XQgfsuOXV6Sk4FBipM2aniAbHTATUCenmpG3TLqllG3UNctXkA2LxCzAjEbELND+Z40UIPPLR5A+j07BCsD2b1AWhVJzJ2DemrwuSWcE7XMdoSa4YylPKdUTSoet4RyYtYL8UCcAMSJHJhylKghVAfQExCTvgfCLaD0bQ2MExtOSLrGhWmlBpaPYOk7EigXxYlI19gwLdWA8hEAdj6oWkwJAAA=
   </data>
  </layer>
- <layer name="inn1_2_object" width="35" height="17">
+ <layer name="2_object" width="35" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgIB5M5COsZhIRaiYToQYf8OKH0I38EExLNbOQxG2xqMmAis3nh2BsgFpqhhJYAPTDQiR/uBHhpw9Y0gW6OdQAb7DYo0aEHeh+wOZeZKDMjCmGrscDi71KzITVoANsfkIG6VjMcEcSSwOy1QnYQy012MLFHU1PMhYz0MMfmxqQOTCzQG7BpmYUUBesB6a9DQTSHzFqhipALzuwlSXkqEEvB0AAWx2EDRCjjhQ1KljcMgpQAQAlelsiTAkAAA==
   </data>
  </layer>
- <layer name="inn1_3_roof" width="35" height="17">
+ <layer name="3_roof" width="35" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAUjCbziQ+Vf4sOujh6Ag590PeS4dyD9OJQAPxnxgQ0IUsmcUYAAKhz0U4MLwMoOJw5UPqVqyAHoZQe2soQcNaNgFJALAHaljApMCQAA
   </data>
  </layer>
- <layer name="inn1_4_roof_add" width="35" height="17">
+ <layer name="4_roof_add" width="35" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQdvoAAAeA1YIe/ETAkAAA==
   </data>
  </layer>
- <layer name="inn1_objects" width="35" height="17">
+ <layer name="objects" width="35" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAX4QCrnQLtgFNATVHNCMK3tGI5guPprFAwcGE1To2CoAABjixteTAkAAA==
   </data>
  </layer>
- <layer name="inn1_collision" width="35" height="17" opacity="0.37">
+ <layer name="collision" width="35" height="17" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANPiYmDQGsU4MTLAJ4/Mp7UaXO7BBuilhlD4EQpbYs0hxy3k2EGsm8lNL9S0ZyDNIEcNuWZQyxxS7MIlRy01o24Zem7B5jZ8fErUkOMeXOZTooZQ+I1iBgYAXl4P9EwJAAA=
   </data>
  </layer>
- <layer name="inn1_navigation" width="35" height="17">
+ <layer name="navigation" width="35" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQdvoAAAeA1YIe/ETAkAAA==
   </data>
  </layer>
- <layer name="inn1_protection" width="35" height="17">
+ <layer name="protection" width="35" height="17">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQdvoAAAeA1YIe/ETAkAAA==
   </data>

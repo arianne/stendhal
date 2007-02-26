@@ -40,47 +40,47 @@
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
   <image source="../../zelda_monsters_chipset.png"/>
  </tileset>
- <layer name="elf_jail_0_floor" width="30" height="20">
+ <layer name="0_floor" width="30" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFvPz8CwfhSP4lE8ikfxKB7Fo5jO+Dc7Kk0vHMGBwLSyAwCBMjhYYAkAAA==
   </data>
  </layer>
- <layer name="elf_jail_1_terrain" width="30" height="20">
+ <layer name="1_terrain" width="30" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANvLzsCwj864DYhvA/EdIF5EJ7wYiP9B7bXgYKAbODhq76i9o/aO2jtq76i9o/aC7bUC2vubHYGnAfl/gPRUNHFc+CcQ/yJCHQjvh9obDjQ7Ag1vAWIpIN6MRQ4bFgdiCSLVgvA9oL0AMPn5pmAJAAA=
   </data>
  </layer>
- <layer name="elf_jail_2_object" width="30" height="20">
+ <layer name="2_object" width="30" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGLygkR87piZwh5rnhmTufH7smJp2avIj7KYnwGcnse5hAap7zgdhPwXSSkA+FxST4x5sYbEEaO4yPlQxkPmZUHXMSHaSai8srrH5tw1oZwcF9j7joy5mBdqRAsSK/KjitAaPOGhvB1bACaEigX6MBeIYIE7E4t/5fBBMbXupDUDpeCmWtIxsbzoNyoEMoH2ZQJxFgr2E8lES0KxkqHmX+FAxsfb+ZWdgiAamLRNo+jJCYuMCHvwQDAIf+FAxsfaSAkBuikbDYTjcSE17sQJoumwC+r8ZiFv4Me3tAeJeIO4jww244lwOKT94IqlBtvcEEJ8E4lN0KI+GKgAA+5tFNmAJAAA=
   </data>
  </layer>
- <layer name="elf_jail_3_roof" width="30" height="20">
+ <layer name="3_roof" width="30" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMAuzAmo+BwR6IbYDYmQ9TvpEPgkcB/YALMLxdR8N8FIyCQQ8ArZSWdWAJAAA=
   </data>
  </layer>
- <layer name="elf_jail_4_roof_add" width="30" height="20">
+ <layer name="4_roof_add" width="30" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMAvJAAx8DQz3fQLtiFIyCUTAKBh8AAEFjJmNgCQAA
   </data>
  </layer>
- <layer name="elf_jail_objects" width="30" height="20">
+ <layer name="objects" width="30" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAVDAfRyUsecRiLNaUJS108lu7GBIzQ0exSMgqEAZg9QHhgoe0kFIHcOBbfOGQJuJAdU08FfacM07ABDla7sYAkAAA==
   </data>
  </layer>
- <layer name="elf_jail_collision" width="30" height="20" visible="0" opacity="0.37">
+ <layer name="collision" width="30" height="20" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAOWTwRIAEAhEnX2K//9AV2OKbUvD2Jku0T6FVktpH8asMYfWINI8WD8vN9Jb4jBc7T7mfBR3te7l3vKevdI8s7jZfZ/qd1d7E3c339U/sHCR/2QVWytxLWeK5Gr7JA47N0tfaD3LRXt6OToG94VkYAkAAA==
   </data>
  </layer>
- <layer name="elf_jail_navigation" width="30" height="20">
+ <layer name="navigation" width="30" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQlPoAAAeBoqs0udYAkAAA==
   </data>
  </layer>
- <layer name="elf_jail_protection" width="30" height="20">
+ <layer name="protection" width="30" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQlPoAAAeBoqs0udYAkAAA==
   </data>

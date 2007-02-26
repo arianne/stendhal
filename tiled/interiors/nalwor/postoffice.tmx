@@ -40,47 +40,47 @@
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
   <image source="../../zelda_monsters_chipset.png"/>
  </tileset>
- <layer name="postoffice_0_floor" width="20" height="12">
+ <layer name="0_floor" width="20" height="12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAACviYGAoGiJ4PT8mptQ8fPzBYB7MDGr5l9rmDYXwo1Z6GYwYAN99rajAAwAA
   </data>
  </layer>
- <layer name="postoffice_1_terrain" width="20" height="12">
+ <layer name="1_terrain" width="20" height="12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAEvjYGD4wA7Bv4HsP0h8UnEqUO87IJ0BpPmAWJKTgUGKE8ImFacD8Vt2iHk8QDalgHvUvFHzyDTPC8hmBWI2IGYHYl4C2BqY5m04UcU8oeZ5AOn3QFoZSKsAsSqUjw9HAs2K4sQUdwfqBQChUN6kwAMAAA==
   </data>
  </layer>
- <layer name="postoffice_2_object" width="20" height="12">
+ <layer name="2_object" width="20" height="12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgwA8m8hFQQCawBprrBMTOUPMv8EHwRRz2KTHjFlfnZ2CIBOpLAOJEIFYD8t/xQfB7IFbBoRcEWIBqnwHVPEey1xUols5Pmn/OsCDYqUC9mUj6k9HMUufHTuMC6mjmIQMufoh7QQCdxuW+ZDTzbJHYxJqHDND9i+4fmP/RaWwAFh+sSGoIxQe2+MWXXpDtB6WVJiBuRsItJMb9QAIAszJtZsADAAA=
   </data>
  </layer>
- <layer name="postoffice_3_roof" width="20" height="12">
+ <layer name="3_roof" width="20" height="12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgIB284iNDEx7AwU9d84gB61jobycMvOFDpbEBUtyHbg4+c0kxz54K8TIc0spgBgBPxMxSwAMAAA==
   </data>
  </layer>
- <layer name="postoffice_4_roof_add" width="20" height="12">
+ <layer name="4_roof_add" width="20" height="12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBQMVQAAewDiOMADAAA=
   </data>
  </layer>
- <layer name="postoffice_objects" width="20" height="12">
+ <layer name="objects" width="20" height="12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBQQA9I4B9oFmAAATEbsX8ADAAA=
   </data>
  </layer>
- <layer name="postoffice_collision" width="20" height="12" opacity="0.37">
+ <layer name="collision" width="20" height="12" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANPiYmDQGiIYGyBGLT55XGKEADFm4jIPxkemiXE/PncQMo9Y9xFrHj73UeJfcuKDnPRCSC8u8wY6D6BjACdRQNfAAwAA
   </data>
  </layer>
- <layer name="postoffice_navigation" width="20" height="12">
+ <layer name="navigation" width="20" height="12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBQMVQAAewDiOMADAAA=
   </data>
  </layer>
- <layer name="postoffice_protection" width="20" height="12">
+ <layer name="protection" width="20" height="12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBQMVQAAewDiOMADAAA=
   </data>
