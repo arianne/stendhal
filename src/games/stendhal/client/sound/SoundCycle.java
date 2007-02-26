@@ -84,15 +84,12 @@ class SoundCycle extends Thread implements Cloneable {
 
 		ClipRunner clip;
 
-		if (token == null)
-			throw new NullPointerException();
-
 		if (period < 1000)
 			throw new IllegalArgumentException("illegal sound period");
 		if (volBot < 0 || volBot > 100 || volTop < 0 || volTop > 100 || volTop < volBot)
 			throw new IllegalArgumentException("bad volume setting");
 
-		if ((clip = SoundSystem.get().getSoundClip(token)) == null)
+		if ((clip = SoundEffectMap.getInstance().getSoundClip(token)) == null)
 			throw new IllegalStateException("undefined sound sample: " + token);
 
 		if (entity != null) {

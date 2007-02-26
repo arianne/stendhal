@@ -129,12 +129,22 @@ public class SoundSystemTest {
 	}
 
 
-	@Test
+	@Ignore
 	public final void testExit() {
 		SoundSystem.get().exit();
 		assertFalse(SoundSystem.get().isOperative() );
 	}
 
+	@Test
+	public final void testisValidEntry(){
+		
+		assertFalse("value has comma x",SoundSystem.get().isValidEntry(",x",""));
+		assertFalse("key does not start with sfx name has point",SoundSystem.get().isValidEntry("","."));
+		assertTrue("key does  start with sfx name has point",SoundSystem.get().isValidEntry("sfx.","."));
+		assertTrue("value has comma x and name has point",SoundSystem.get().isValidEntry("sfx.,x","."));
+		
+	}
+	
 	@Ignore
 	public final void testTransferData() {
 		fail("Not yet implemented"); // TODO

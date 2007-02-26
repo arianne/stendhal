@@ -60,4 +60,29 @@ public class SoundEffectMap {
 		 return sfxmap.size();
 	 }
 
+	/**
+	 * Returns a <code>ClipRunner</code> object ready to play a sound of the
+	 * specified library sound name.
+	 * 
+	 * @param name
+	 *            token of library sound
+	 * @return <code>ClipRunner</code> or <b>null</b> if the sound is
+	 *         undefined
+	 */
+	ClipRunner getSoundClip( String name) {
+	
+//		Object o = getByName(name);
+//		if (o == null)
+//			return null;
+//	
+//		if (o instanceof ClipRunner) {
+//			return (ClipRunner) o;
+//		}
+//	
+//		// load sounddata from soundfile
+//		String path = (String) o;
+//		return system.loadSoundDataFromFile(name, path);
+	return (ClipRunner)getByName(name);
+	}
+
 }

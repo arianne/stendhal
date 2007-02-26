@@ -158,7 +158,7 @@ import marauroa.common.game.RPObject;
 			ClipRunner libClip;
 
 			// get the library sound clip
-			libClip = SoundSystem.get().getSoundClip(soundInfo.name);
+			libClip = SoundEffectMap.getInstance().getSoundClip(soundInfo.name);
 			if (libClip == null)
 				throw new IllegalArgumentException("sound unknown: "
 						+ soundInfo.name);

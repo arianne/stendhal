@@ -50,6 +50,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Map.Entry;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 
@@ -108,8 +109,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	private static final SoundSystem singleton = new SoundSystem();
 
-	SoundEffectMap sef = SoundEffectMap.getInstance();
-
 	/** */
 	private Map<byte[], SoundCycle> cycleMap = Collections
 			.synchronizedMap(new HashMap<byte[], SoundCycle>());
@@ -129,7 +128,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/** current volume setting */
 	private int volumeSetting = 100;
 
-	/** */
 	private float volumeDelta;
 
 	/** true when mute is enabled */
@@ -155,7 +153,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	protected DataLine playSoundIntern(String name, int volBot, int volTop,
 			float correctionDB) {
 		// verify start conditions
-		if (name == null | volBot == 0 | !operative | muteSetting)
+		if (name == null || volBot == 0 || !operative || muteSetting)
 			return null;
 
 		if (volBot < 0 || volBot > 100 || volTop < 0 || volTop > 100
@@ -163,7 +161,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			throw new IllegalArgumentException("bad volume setting");
 
 		// check/fetch sound
-		ClipRunner clip = getSoundClip(name);
+		ClipRunner clip = SoundEffectMap.getInstance().getSoundClip( name);
 		if (clip == null)
 			return null;
 
@@ -182,7 +180,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error
 	 */
-	public static DataLine playSound(String name, int volume) {
+	 public static DataLine playSound(String name, int volume) {
 		return get().playSoundIntern(name, volume, volume, (float) 0.0);
 	}
 
@@ -199,7 +197,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error
 	 */
-	public static DataLine playSound(String name, int volBot, int volTop) {
+	 static DataLine playSound(String name, int volBot, int volTop) {
 		return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
 	}
 
@@ -217,7 +215,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error or if performance is bailed
 	 */
-	public static DataLine probablePlaySound(int chance, String name,
+	 static DataLine probablePlaySound(int chance, String name,
 			int volBot, int volTop) {
 		if (Rand.rand(100) < chance)
 			return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
@@ -245,7 +243,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return <code>javax.sound.sampled.DataLine</code> the sound line that
 	 *         is being performed or <b>null</b> if no performance takes place
 	 */
-	public static DataLine playMapSound(Point2D where, Rectangle2D audibility,
+	 public static DataLine playMapSound(Point2D where, Rectangle2D audibility,
 			String name, int volBot, int volTop, int chance) {
 		Point2D playerPosition;
 		Rectangle2D playerHearing;
@@ -294,22 +292,22 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/** plays (?) and registers an ambient sound 
 	 * @param ambient the sound to be registered 
 	 * */
-	public void playAmbientSound(AmbientSound ambient) {
+	 void playAmbientSound(AmbientSound ambient) {
 
 		ambient.play();
-
+ 
 		synchronized (ambientList) {
 			ambientList.add(ambient);
 		}
 	} // playAmbientSound
-
+ 
 	/**
 	 * removes the ambient sound from the internal list. 
 	 * It should already be stopped.
 	
 	 * @param ambient the ambient sound to be removed
 	 */
-	public static void stopAmbientSound(AmbientSound ambient) {
+	 static void stopAmbientSound(AmbientSound ambient) {
 //		  TODO: assert the sound  is stopped
 		SoundSystem sys;
 
@@ -321,7 +319,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	}
 
 	/** Stops and removes all ambient sounds. */
-	public void clearAmbientSounds() {
+	private void clearAmbientSounds() {
 		synchronized (ambientList) {
 			List<AmbientSound> list = new ArrayList<AmbientSound>(ambientList);
 			for (AmbientSound sound : list) {
@@ -330,32 +328,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		}
 	}
 
-	/**
-	 * Returns a <code>ClipRunner</code> object ready to play a sound of the
-	 * specified library sound name.
-	 * 
-	 * @param name
-	 *            token of library sound
-	 * @return <code>ClipRunner</code> or <b>null</b> if the sound is
-	 *         undefined
-	 */
-	ClipRunner getSoundClip(String name) {
-
-		Object o = SoundEffectMap.getInstance().getByName(name);
-		if (o == null)
-			return null;
-
-		if (o instanceof ClipRunner) {
-			return (ClipRunner) o;
-		}
-
-		// load sounddata from soundfile
-		String path = (String) o;
-		return loadSoundDataFromFile(name, path);
-
-	} // getSoundClip
-
-	private ClipRunner loadSoundDataFromFile(String name, String path) {
+	ClipRunner loadSoundDataFromFile(String name, String path) {
 		String hstr = name + "@" + path;
 		logger.warn("- loading from external SOUND ZIP: " + hstr);
 		ZipEntry zipEntry = soundFile.getEntry(path);
@@ -392,7 +365,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param chance
 	 *            percent chance of performance
 	 */
-	public static SoundCycle startSoundCycle(Entity entity, String token,
+	 public static SoundCycle startSoundCycle(Entity entity, String token,
 			int period, int volBot, int volTop, int chance) {
 		SoundSystem sys;
 		SoundCycle cycle, c1;
@@ -466,7 +439,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param name
 	 *            token of sound
 	 */
-	public boolean contains(String name) {
+	 boolean contains(String name) {
 		return name != null && SoundEffectMap.getInstance().containsKey(name);
 	}
 
@@ -486,20 +459,27 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		return url.openStream();
 	}
 
+	
 	private void init() {
 
-		Map<String, byte[]> dataList = Collections
-				.synchronizedMap(new HashMap<String, byte[]>());
 		ZipEntry zipEntry;
 		File file;
 
 		String path, key, value, name, hstr;
-		int loaded, failed, count, pos, i, loudness;
+		int loaded;
+		/**
+		 * count the amount of file that could not be loaded
+		 */
+		int failedCounted;
+		int count;
+		int pos;
+
+		int loudness;
 		byte[] soundData;
 		Iterator it;
 
-		Map.Entry entry;
-		boolean load;
+		Entry entry;
+		
 
 		if (!initJavaSound()) {
 			logger.error("*** SOUNDSYSTEM JAVA INIT ERROR");
@@ -523,44 +503,45 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 			// read all load-permitted sounds listed in properties
 			// from soundfile into cache map
-			failed = loaded = count = 0;
+			failedCounted = 0;
+			loaded = 0;
+			count = 0;
 			for (it = prop.entrySet().iterator(); it.hasNext();) {
-				entry = (Map.Entry) it.next();
-				key = (String) entry.getKey();
-				if (!key.startsWith("sfx."))
-					continue;
+				entry = (Entry) it.next();
+				
+				if (!isValidEntry(((String)entry.getKey()),((String)entry.getValue()))) {
+					
+				}
+				else{
+			
+				
 
-				// name and declaraction of sound data
-				name = key.substring(4);
+			
+				name = ((String) entry.getKey()).substring(4);
 				value = (String) entry.getValue();
 
-				logger.debug("- sound definition: " + key + " = " + value);
+				logger.debug("- sound definition: " + name + " = " + value);
 
-				// decide on loading
-				// (do not load when ",x" trailing path; 
-				// always load when "." in
-				// name)
+				
+				
+			
 				if ((pos = value.indexOf(',')) > -1) {
 					path = value.substring(0, pos);
-					load = value.substring(pos + 1).charAt(0) != 'x';
 				} else {
 					path = value;
-					load = true;
 				}
-				load |= name.indexOf('.') != -1;
-
 				// look if sound data is already stored internally
-				if ((soundData = dataList.get(path)) == null) {
+	//			if ((soundData = dataList.get(path)) == null) {
 					// else load sounddata from jar file
 					zipEntry = soundFile.getEntry(path);
 					if (zipEntry == null) {
 						hstr = "*** MISSING SOUND: " + name + "=" + path;
 						logger.error(hstr);
-						failed++;
+						failedCounted++;
 						continue;
 					}
 					soundData = getZipData(zipEntry);
-				}
+		//		}
 
 				// construct sound clip from sample data
 				// (we always do that to verify sound sample format)
@@ -574,6 +555,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					}
 
 					// investigate sample status
+					int i;
 					if ((i = name.indexOf('.')) != -1)
 						name = name.substring(0, i);
 
@@ -586,16 +568,16 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					// could not validate sound file content
 					hstr = "*** CORRUPTED SOUND: " + name + "=" + path;
 					logger.error(hstr, e);
-					failed++;
+					failedCounted++;
 					continue;
 				}
 
 				// store new sound object into soundsystem library map if opted
-				if (load) {
+				//if (load) {
 					logger.debug("- storing mem-library soundclip: " + name);
 
 					// stores the clip sound in memory
-					ClipRunner clip = getSoundClip(name);
+					ClipRunner clip = SoundEffectMap.getInstance().getSoundClip( name);
 					if (clip == null) {
 						clip = new ClipRunner(name);
 						SoundEffectMap.getInstance().put(name, clip);
@@ -603,12 +585,14 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					clip.addSample(sound);
 
 					// memorizes the sound data (only for init purposes)
-					dataList.put(path, soundData);
+		//			dataList.put(path, soundData);
 					loaded++;
-				} else {
-					// or stores just the sample data name
-					logger.debug("- storing external sound ref: " + name);
-					SoundEffectMap.getInstance().put(name, path);
+				 
+//				} else {
+//					// or stores just the sample data name
+//					logger.debug("- storing external sound ref: " + name);
+//					SoundEffectMap.getInstance().put(name, path);
+//				}
 				}
 			} // for
 
@@ -619,8 +603,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					+ SoundEffectMap.getInstance().size() + " library sounds";
 			logger.info(hstr);
 			System.out.println(hstr);
-			if (failed != 0) {
-				hstr = "missing or corrupted sounds: " + failed;
+			if (failedCounted != 0) {
+				hstr = "missing or corrupted sounds: " + failedCounted;
 				logger.info(hstr);
 				System.out.println(hstr);
 			}
@@ -636,6 +620,46 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return;
 		}
 	} // init
+//	 
+	// (do not load when ",x" trailing path; 
+	// always load when "." in
+	// name)
+	
+	
+	/**
+	 * A key/value pair is assumed valid if 	
+	 * <ul>
+     *    <li>key starts with "sfx." <b>and </b></li>
+     *    <li>key does not end with ",x"</li>
+     *    <li>or value contains a "."</li>
+     * </ul>
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	boolean isValidEntry(String key, String value) {
+		boolean load;
+		int pos1;
+		if (key.startsWith("sfx."))
+	
+	 {
+				
+		if ((pos1 = value.indexOf(',')) > -1) {
+		
+			load = value.substring(pos1 + 1).charAt(0) != 'x';
+		} else {
+			
+			load = true;
+		}
+		load |=  value.indexOf('.') != -1;
+		return load;
+		}
+		else
+			return false;
+		
+		
+	}
+
 
 	/**
 	 * @param prop
@@ -817,7 +841,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param bufferSize
 	 * @throws java.io.IOException
 	 */
-	public static void transferData(InputStream input, OutputStream output,
+	 static void transferData(InputStream input, OutputStream output,
 			int bufferSize) throws java.io.IOException {
 		byte[] buffer = new byte[bufferSize];
 		int len;
