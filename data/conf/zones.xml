@@ -1131,7 +1131,6 @@ Mature sheep wanted: please speak to Sato
  </zone>
 -->
 
-<!-- NO MAP YET
  <zone name="0_fado_city" file="0_fado_city.xstend">
   <configurator class-name="games.stendhal.server.maps.fado.city.OL0_GreeterNPC"/>
 
@@ -1163,7 +1162,6 @@ Mature sheep wanted: please speak to Sato
    <destination zone="int_fado_shepherd_house" ref="entrance"/>
   </portal>
  </zone>
--->
 
    <zone name="int_fado_bank" file="int_fado_bank.xstend">
     <configurator class-name="games.stendhal.server.maps.fado.bank.IL0_TellerNPC"/>
@@ -1336,55 +1334,53 @@ Mature sheep wanted: please speak to Sato
     </portal>
    </zone>
 
-<!-- NO MAPS YET
-     <zone name="int_fado_hotel_room_001" file="int_fado_hotel_room_001.xstend">
+     <zone name="int_fado_hotel_room_001" file="int_fado_room_001.xstend">
       <portal x="8" y="14" ref="entrance">
-       <destination zone="int_fado_hotel_0" ref="hotel_room_001_entrance"/>
+       <destination zone="int_fado_hotel_0" ref="room_001_entrance"/>
       </portal>
      </zone>
 
-     <zone name="int_fado_hotel_room_002" file="int_fado_hotel_room_002.xstend">
+     <zone name="int_fado_hotel_room_002" file="int_fado_room_002.xstend">
       <portal x="8" y="14" ref="entrance">
-       <destination zone="int_fado_hotel_0" ref="hotel_room_002_entrance"/>
+       <destination zone="int_fado_hotel_0" ref="room_002_entrance"/>
       </portal>
      </zone>
 
-     <zone name="int_fado_hotel_room_003" file="int_fado_hotel_room_003.xstend">
+     <zone name="int_fado_hotel_room_003" file="int_fado_room_003.xstend">
       <portal x="8" y="14" ref="entrance">
-       <destination zone="int_fado_hotel_0" ref="hotel_room_003_entrance"/>
+       <destination zone="int_fado_hotel_0" ref="room_003_entrance"/>
       </portal>
      </zone>
 
-     <zone name="int_fado_hotel_room_004" file="int_fado_hotel_room_004.xstend">
+     <zone name="int_fado_hotel_room_004" file="int_fado_room_004.xstend">
       <portal x="8" y="14" ref="entrance">
-       <destination zone="int_fado_hotel_0" ref="hotel_room_004_entrance"/>
+       <destination zone="int_fado_hotel_0" ref="room_004_entrance"/>
       </portal>
      </zone>
 
-     <zone name="int_fado_hotel_room_005" file="int_fado_hotel_room_005.xstend">
+     <zone name="int_fado_hotel_room_005" file="int_fado_room_005.xstend">
       <portal x="8" y="14" ref="entrance">
-       <destination zone="int_fado_hotel_0" ref="hotel_room_005_entrance"/>
+       <destination zone="int_fado_hotel_0" ref="room_005_entrance"/>
       </portal>
      </zone>
 
-     <zone name="int_fado_hotel_room_006" file="int_fado_hotel_room_006.xstend">
+     <zone name="int_fado_hotel_room_006" file="int_fado_room_006.xstend">
       <portal x="8" y="14" ref="entrance">
-       <destination zone="int_fado_hotel_0" ref="hotel_room_006_entrance"/>
+       <destination zone="int_fado_hotel_0" ref="room_006_entrance"/>
       </portal>
      </zone>
 
-     <zone name="int_fado_hotel_room_007" file="int_fado_hotel_room_007.xstend">
+     <zone name="int_fado_hotel_room_007" file="int_fado_room_007.xstend">
       <portal x="8" y="14" ref="entrance">
-       <destination zone="int_fado_hotel_0" ref="hotel_room_007_entrance"/>
+       <destination zone="int_fado_hotel_0" ref="room_007_entrance"/>
       </portal>
      </zone>
 
-     <zone name="int_fado_hotel_room_008" file="int_fado_hotel_room_008.xstend">
+     <zone name="int_fado_hotel_room_008" file="int_fado_room_008.xstend">
       <portal x="8" y="14" ref="entrance">
-       <destination zone="int_fado_hotel_0" ref="hotel_room_008_entrance"/>
+       <destination zone="int_fado_hotel_0" ref="room_008_entrance"/>
       </portal>
      </zone>
--->
 
  <zone name="0_athos_ship_w2" file="0_athos_ship_w2.xstend">
   <title/>

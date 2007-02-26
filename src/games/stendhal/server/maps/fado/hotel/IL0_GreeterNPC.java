@@ -53,7 +53,7 @@ public class IL0_GreeterNPC implements ZoneConfigurator {
 
 					@Override
 							protected void createDialog() {
-						addGreeting("Hello! Welcome to the  Deniran City Hotel! Would you like to #reserve a room?");
+						addGreeting("Hello! Welcome to the  Fado City Hotel! Would you like to #reserve a room?");
 
 						addJob("I am the hotel clerk.");
 						addHelp("You can head into the tavern to buy food, drinks, and other items.You can also visit the people in the houses, or visit hte blacksmith or the city hotel.");

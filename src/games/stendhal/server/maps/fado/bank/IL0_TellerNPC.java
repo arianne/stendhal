@@ -52,7 +52,7 @@ public class IL0_TellerNPC implements ZoneConfigurator {
 
 					@Override
 							protected void createDialog() {
-						addGreeting("Welcome to the Deniran Bank! Do you need #help?");
+						addGreeting("Welcome to the Fado Bank! Do you need #help?");
 						addJob("I am the manager for the bank.");
 						addHelp("Just to the right, you can see a few chests. Open one and you can store your belongings in it.");
 						addGoodbye("Have a nice day.");
