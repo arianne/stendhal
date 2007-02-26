@@ -1522,8 +1522,9 @@ Mature sheep wanted: please speak to Sato
    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
     <attribute name="key">vampirette_entrails</attribute>
     <attribute name="quantity">7</attribute>
-    <attribute name="rejected">Prove that you killed all vampirettes before
-   you face their lord.</attribute>
+    <attribute name="rejected">
+     Prove that you killed all vampirettes before you face their lord.
+    </attribute>
    </implementation>
   </portal>
 

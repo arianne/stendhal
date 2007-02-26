@@ -84,7 +84,7 @@ public class USL3_Catacombs implements ZoneConfigurator {
 			    requiredResources.put("skull_ring", new Integer(1));
 			    requiredResources.put("empty_goblet", new Integer(1));
 			    ProducerBehaviour behaviour = new ProducerBehaviour(
-						"sicky_fill_goblet", "fill", "goblet", requiredResources, 5 * 60);	
+						"sicky_fill_goblet", "fill", "goblet", requiredResources, 5 * 60, true);
 			    addProducer(behaviour,
 							"Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty_goblet I will #fill it with blood for you in my cauldron.");
 
