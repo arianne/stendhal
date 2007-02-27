@@ -453,8 +453,8 @@ public abstract class RPEntity extends Entity {
 		}
 
 		if (attackTarget != null) {
-			// XXX - Just becase we stopped attacking shouldn't
-			// force our opponent to stop (unless we died)
+			// Whould doing this in a call to
+			// attackTarget.onAttack(this, false) be better?
 			attackTarget.attackSource.remove(this);
 
 			// XXX - Trying to remove a List????
