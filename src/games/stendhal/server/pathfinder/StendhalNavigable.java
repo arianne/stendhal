@@ -169,7 +169,7 @@ public class StendhalNavigable implements Navigable {
 			for (int i = -1; i < 2; i++) {
 				for (int j = -1; j < 2; j++) {
 					// If the node is this node, or invalid continue.
-					if ((i == 0 && j == 0) || (Math.abs(i) == Math.abs(j))) {
+					if (((i == 0) && (j == 0)) || (Math.abs(i) == Math.abs(j))) {
 						continue;
 					} else {
 						Pathfinder.Node childNode = new Pathfinder.Node(x + i, y + j);

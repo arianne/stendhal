@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.WindowConstants;
 
 import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.wt.core.WtCloseListener;
@@ -70,7 +71,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 		closeListeners = new LinkedList<WtCloseListener>();
 
 		dialog = new JDialog(owner, title);
-		dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		dialog.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		dialog.addComponentListener(new DialogStateHandler());
 
 		content = createContent();
@@ -121,8 +122,9 @@ public abstract class ManagedDialog implements ManagedWindow {
 		/*
 		 * Notify close listeners
 		 */
-		if(!isVisible())
+		if(!isVisible()) {
 			fireCloseListeners();
+		}
 	}
 
 
@@ -133,11 +135,12 @@ public abstract class ManagedDialog implements ManagedWindow {
 		WtCloseListener []	listeners;
 
 
-		listeners = (WtCloseListener []) closeListeners.toArray(
+		listeners = closeListeners.toArray(
 			new WtCloseListener[closeListeners.size()]);
 
-		for(WtCloseListener l : listeners)
+		for(WtCloseListener l : listeners) {
 			l.onClose(getName());
+		}
 	}
 
 
@@ -283,6 +286,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 *
 		 * @param	ev		The event.
 		 */
+		@Override
 		public void componentHidden(ComponentEvent ev) {
 //System.err.println("componentHidden() - ev = " + ev);
 //System.err.println("componentHidden() - dialog = " + getDialog());
@@ -295,6 +299,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 *
 		 * @param	ev		The event.
 		 */
+		@Override
 		public void componentMoved(ComponentEvent ev) {
 //System.err.println("componentMoved() - ev = " + ev);
 //System.err.println("componentMoved() - dialog = " + getDialog());
@@ -307,6 +312,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 *
 		 * @param	ev		The event.
 		 */
+		@Override
 		public void componentShown(ComponentEvent ev) {
 //System.err.println("componentShown() - ev = " + ev);
 //System.err.println("componentShown() - dialog.insets = " + getDialog().getInsets());

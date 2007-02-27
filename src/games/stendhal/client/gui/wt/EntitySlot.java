@@ -81,7 +81,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/** called when an object is dropped. */
 	public boolean onDrop(WtDraggable droppedObject) {
-		if (droppedObject instanceof MoveableEntityContainer && parent != null) {
+		if ((droppedObject instanceof MoveableEntityContainer) && (parent != null)) {
 			MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
 			RPAction action = new RPAction();
 
@@ -128,7 +128,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * ensures that the quantity image is set
 	 */
 	private void checkQuantityImage(int quantity) {
-		if (quantityImage == null || quantity != oldQuantity) {
+		if ((quantityImage == null) || (quantity != oldQuantity)) {
 			oldQuantity = quantity;
 			quantityImage = GameScreen.get().createString(
 					Integer.toString(quantity), Color.white);
@@ -143,16 +143,18 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @return a graphics object for deriving classes to use. It is already
 	 *         clipped to the correct client region
 	 */
+	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed())
+		if(isClosed()) {
 			return g;
+		}
 
 		Graphics childArea = super.draw(g);
 
 		// draw the background image
 		graphic.draw(childArea, 0, 0);
 		// draw the content (if there is any)
-		if (content != null && sprite != null) {
+		if ((content != null) && (sprite != null)) {
 			// be sure to center the sprite
 			int x = (getWidth() - sprite.getWidth()) / 2;
 			int y = (getHeight() - sprite.getHeight()) / 2;
@@ -173,6 +175,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/**
 	 * returns a draggable object
 	 */
+	@Override
 	protected WtDraggable getDragged(int x, int y) {
 		if (content != null) {
 			return new MoveableEntityContainer(content, parent, getName(),
@@ -183,6 +186,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	}
 
 	/** right mouse button was clicked */
+	@Override
 	public synchronized boolean onMouseRightClick(Point p) {
 		if (content != null) {
 			// create the context menu
@@ -197,6 +201,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	}
 
 	/** doubleclick moves this item to the players inventory */
+	@Override
 	public synchronized boolean onMouseDoubleClick(Point p) {
 		// check if the baseclass wants to process the event
 		if (super.onMouseDoubleClick(p)) {

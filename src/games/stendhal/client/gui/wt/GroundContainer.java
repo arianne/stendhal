@@ -66,6 +66,7 @@ public class GroundContainer extends WtPanel {
 	 * drops an item to the ground
 	 * 
 	 */
+	@Override
 	protected boolean checkDropped(int x, int y, WtDraggable droppedObject) {
 		// check all childpanels
 		boolean dropped = super.checkDropped(x, y, droppedObject);
@@ -103,6 +104,7 @@ public class GroundContainer extends WtPanel {
 	}
 
 	/** drags an item from the ground */
+	@Override
 	protected WtDraggable getDragged(int x, int y) {
 
 		WtDraggable other = super.getDragged(x, y);
@@ -113,7 +115,7 @@ public class GroundContainer extends WtPanel {
 		Entity object = gameObjects.at_undercreature(point.getX(), point.getY());
 
 		// only Items can be dragged
-		if (object != null && object instanceof PassiveEntity) {
+		if ((object != null) && (object instanceof PassiveEntity)) {
 			return new MoveableEntityContainer(object, (int) point.getX(),
 					(int) point.getY(), gameObjects);
 		}
@@ -125,6 +127,7 @@ public class GroundContainer extends WtPanel {
 	 * 
 	 * 
 	 */
+	@Override
 	public synchronized boolean onMouseClick(Point p) {
 		// base class checks if the click is within a child
 		if (super.onMouseClick(p)) {
@@ -155,6 +158,7 @@ public class GroundContainer extends WtPanel {
 		return true;
 	}
 
+	@Override
 	public synchronized boolean onMouseDoubleClick(Point p) {
 		// base class checks if the click is within a child
 		if (super.onMouseDoubleClick(p)) {
@@ -183,6 +187,7 @@ public class GroundContainer extends WtPanel {
 	}
 
 	/** process right click */
+	@Override
 	public synchronized boolean onMouseRightClick(Point p) {
 		// base class checks if the click is within a child
 		if (super.onMouseRightClick(p)) {

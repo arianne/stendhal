@@ -137,8 +137,9 @@ public class ChatLineParser {
 		/*
 		 * Must be non-space after slash
 		 */
-		if(Character.isSpace(ch))
+		if(Character.isSpace(ch)) {
 			return false;
+		}
 
 
 		/*
@@ -188,8 +189,9 @@ public class ChatLineParser {
 			/*
 			 * Skip leading spaces
 			 */
-			while(Character.isSpace(ch))
+			while(Character.isSpace(ch)) {
 				ch = ci.next();
+			}
 
 			/*
 			 * EOL?
@@ -198,8 +200,9 @@ public class ChatLineParser {
 				/*
 				 * Incomplete parameters?
 				 */
-				if(i < minimum)
+				if(i < minimum) {
 					return false;
+				}
 
 				break;
 			}
@@ -234,8 +237,9 @@ public class ChatLineParser {
 			/*
 			 * Unterminated quote?
 			 */
-			if(quote != CharacterIterator.DONE)
+			if(quote != CharacterIterator.DONE) {
 				return false;
+			}
 
 			params[i] = sbuf.toString();
 		}
@@ -244,8 +248,9 @@ public class ChatLineParser {
 		/*
 		 * Remainder text
 		 */
-		while(Character.isSpace(ch))
+		while(Character.isSpace(ch)) {
 			ch = ci.next();
+		}
 
 		sbuf = new StringBuffer(ci.getEndIndex() - ci.getIndex() + 1);
 
@@ -345,8 +350,9 @@ public class ChatLineParser {
 		 * @return	<code>true</code> if command was handled.
 		 */
 		public boolean execute(String [] params, String remainder) {
-			if(lastPlayerTell == null)
+			if(lastPlayerTell == null) {
 				return false;
+			}
 
 			RPAction tell = new RPAction();
 
@@ -935,8 +941,9 @@ public class ChatLineParser {
 			adminlevel.put("type", "adminlevel");
 			adminlevel.put("target", params[0]);
 
-			if(params[1] != null)
+			if(params[1] != null) {
 				adminlevel.put("newlevel", params[1]);
+			}
 
 			client.send(adminlevel);
 
@@ -1089,8 +1096,9 @@ public class ChatLineParser {
 			summon.put("slot", params[1]);
 			summon.put("item", params[2]);
 
-			if(params[3] != null) 
+			if(params[3] != null) {
 				summon.put("amount", params[3]);
+			}
 
 			client.send(summon);
 

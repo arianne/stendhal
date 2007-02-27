@@ -16,7 +16,6 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
@@ -26,8 +25,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
-import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
@@ -59,6 +56,7 @@ public class SummonScroll extends InfoStringScroll {
 	 * @param player The player who used the scroll
 	 * @return true iff summoning was successful
 	 */
+	@Override
 	protected boolean useScroll(Player player) {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 		if (zone.isInProtectionArea(player)) {

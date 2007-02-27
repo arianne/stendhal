@@ -78,7 +78,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 			put("class", entity.get("type"));
 		}
 
-		if (killer != null && entity instanceof Player) {
+		if ((killer != null) && (entity instanceof Player)) {
 			put("name", entity.getName());
 
 			if (killer.has("name")) {
@@ -92,7 +92,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 			}
 		}
 
-		if (killer == null && has("killer")) {
+		if ((killer == null) && has("killer")) {
 			logger.error("Corpse: (" + entity + ") with null killer: ("
 					+ killer + ")");
 			remove("killer");

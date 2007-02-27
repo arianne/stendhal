@@ -163,7 +163,9 @@ public class DefaultItem {
 		 * Just incase - Really should generate fatal error up front
 		 * (in ItemXMLLoader).
 		 */
-		if (creator == null) return null;
+		if (creator == null) {
+			return null;
+		}
 
 		if ((item = creator.createItem()) != null) {
 			item.setEquipableSlots(slots);

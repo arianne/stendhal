@@ -14,8 +14,6 @@ package games.stendhal.server.entity.spawner;
 
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.events.UseListener;
-
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPClass;

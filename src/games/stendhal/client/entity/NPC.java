@@ -65,21 +65,22 @@ public class NPC extends RPEntity {
 
 		if (type.startsWith("npc")) {
 			setAudibleRange(3);
-			if (name.equals("Diogenes"))
+			if (name.equals("Diogenes")) {
 				SoundSystem.startSoundCycle(this, "Diogenes-patrol", 10000, 20,
 						50, 100);
-			else if (name.equals("Carmen"))
+			} else if (name.equals("Carmen")) {
 				SoundSystem.startSoundCycle(this, "Carmen-patrol", 60000, 20,
 						50, 75);
-			else if (name.equals("Nishiya"))
+			} else if (name.equals("Nishiya")) {
 				SoundSystem.startSoundCycle(this, "Nishiya-patrol", 40000, 20,
 						50, 80);
-			else if (name.equals("Margaret"))
+			} else if (name.equals("Margaret")) {
 				SoundSystem.startSoundCycle(this, "Margaret-patrol", 30000, 10,
 						30, 70);
-			else if (name.equals("Sato"))
+			} else if (name.equals("Sato")) {
 				SoundSystem.startSoundCycle(this, "Sato-patrol", 60000, 30, 50,
 						70);
+			}
 		}
 	}
 
@@ -93,7 +94,7 @@ public class NPC extends RPEntity {
 			if (object.has("outfit")) {
 				// This NPC's outfit is built like a player's outfit,
 				// i.e. from separated graphic files for dress, hair, etc. 
-				if (outfit == object.getInt("outfit") && outfit != 0) {
+				if ((outfit == object.getInt("outfit")) && (outfit != 0)) {
 					// We avoid creating again the outfit if it is already
 					// done.
 					// Save CPU cycles.
@@ -123,6 +124,7 @@ public class NPC extends RPEntity {
 		sprites.get("move_left")[3] = sprites.get("move_left")[1];
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -141,14 +143,17 @@ public class NPC extends RPEntity {
 		}
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y + 1, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1.5, 2);
 	}
 
+	@Override
 	public void draw(GameScreen screen) {
 		super.draw(screen);
 

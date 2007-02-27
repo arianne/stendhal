@@ -27,6 +27,7 @@ public class QuestCheckingPortal extends Portal implements UseListener {
 		this.questslot = questslot;
 	}
 
+	@Override
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 		if (player.hasQuest(questslot)) {

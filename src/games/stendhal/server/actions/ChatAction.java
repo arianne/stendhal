@@ -16,8 +16,6 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.StringTokenizer;
@@ -99,7 +97,7 @@ public class ChatAction extends ActionListener {
 			// HACK: extract sender from postman messages
 			String senderName = player.getName();
 			StringTokenizer st = new StringTokenizer(text, " ");
-			if (senderName.equals("postman") && st.countTokens() > 2) {
+			if (senderName.equals("postman") && (st.countTokens() > 2)) {
 				String temp = st.nextToken();
 				String command = st.nextToken();
 				if (command.equals("asked")) {

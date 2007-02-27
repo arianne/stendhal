@@ -27,8 +27,6 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.EntityManager;
-import games.stendhal.common.MathHelper;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -369,8 +367,8 @@ public class AdministrationAction extends ActionListener {
 			boolean isNumerical = false;
 
 			byte type = clazz.getType(stat);
-			if (type == RPClass.BYTE || type == RPClass.SHORT
-					|| type == RPClass.INT) {
+			if ((type == RPClass.BYTE) || (type == RPClass.SHORT)
+					|| (type == RPClass.INT)) {
 				isNumerical = true;
 			}
 
@@ -389,7 +387,7 @@ public class AdministrationAction extends ActionListener {
 					}
 
 					if (stat.equals("hp")
-							&& changed.getInt("base_hp") < numberValue) {
+							&& (changed.getInt("base_hp") < numberValue)) {
 						logger.error("DENIED: Admin " + player.getName()
 							     + " trying to set player " + Grammar.suffix_s(action.get("target"))
 							     + " HP over its Base HP");
@@ -398,20 +396,20 @@ public class AdministrationAction extends ActionListener {
 
 					switch (type) {
 					case RPClass.BYTE:
-						if (numberValue > Byte.MAX_VALUE
-								|| numberValue < Byte.MIN_VALUE) {
+						if ((numberValue > Byte.MAX_VALUE)
+								|| (numberValue < Byte.MIN_VALUE)) {
 							return;
 						}
 						break;
 					case RPClass.SHORT:
-						if (numberValue > Short.MAX_VALUE
-								|| numberValue < Short.MIN_VALUE) {
+						if ((numberValue > Short.MAX_VALUE)
+								|| (numberValue < Short.MIN_VALUE)) {
 							return;
 						}
 						break;
 					case RPClass.INT:
-						if (numberValue > Integer.MAX_VALUE
-								|| numberValue < Integer.MIN_VALUE) {
+						if ((numberValue > Integer.MAX_VALUE)
+								|| (numberValue < Integer.MIN_VALUE)) {
 							return;
 						}
 						break;
@@ -504,7 +502,7 @@ public class AdministrationAction extends ActionListener {
 							.getName(), slot.getName(), type);
 					Item item = manager.getItem(type);
 
-					if (action.has("amount") && item instanceof StackableItem) {
+					if (action.has("amount") && (item instanceof StackableItem)) {
 						((StackableItem) item).setQuantity(action
 								.getInt("amount"));
 					}
@@ -605,8 +603,9 @@ public class AdministrationAction extends ActionListener {
 					}
 				} else {
 					for (RPObject object : slot) {
-						if(!(object instanceof Item))
+						if(!(object instanceof Item)) {
 							continue;
+						}
 
 						String item = object.get("type");
 
@@ -655,7 +654,7 @@ public class AdministrationAction extends ActionListener {
 
 		if (inspected instanceof RPEntity) {
 			((RPEntity) inspected).onDead(player);
-		} else if (inspected instanceof Item || inspected instanceof Portal) {
+		} else if ((inspected instanceof Item) || (inspected instanceof Portal)) {
 			StendhalRPWorld.get().remove(inspected.getID());
 		}
 		String name = inspected.getRPClass().getName();

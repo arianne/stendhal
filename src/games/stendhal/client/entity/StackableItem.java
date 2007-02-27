@@ -34,6 +34,7 @@ public class StackableItem extends Item {
 		quantity = 0;
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -49,6 +50,7 @@ public class StackableItem extends Item {
 		}
 	}
 
+	@Override
 	public void draw(GameScreen screen) {
 		super.draw(screen);
 

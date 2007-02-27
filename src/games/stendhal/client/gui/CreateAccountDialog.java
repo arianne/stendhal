@@ -226,7 +226,8 @@ public class CreateAccountDialog extends JDialog {
         /*seprate thread for connection proccess added by TheGeneral*/
         //run the connection procces in separate thread
         Thread m_connectionThread = new Thread() {
-            public void run() {
+            @Override
+			public void run() {
                 progressBar.start();//intialize progress bar
                 setVisible(false);//hide this screen when attempting to connect
                                 

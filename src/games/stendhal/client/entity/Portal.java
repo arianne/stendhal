@@ -43,10 +43,12 @@ public class Portal extends Entity {
 		sprite = null;
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}

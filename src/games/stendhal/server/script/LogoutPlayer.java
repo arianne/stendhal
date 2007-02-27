@@ -6,7 +6,6 @@ import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.List;
 
-import marauroa.server.game.NoSuchClientIDException;
 import marauroa.server.game.PlayerEntryContainer;
 
 import org.apache.log4j.Logger;

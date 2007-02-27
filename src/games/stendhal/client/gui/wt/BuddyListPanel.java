@@ -11,11 +11,8 @@ package games.stendhal.client.gui.wt;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -23,8 +20,6 @@ import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
@@ -96,8 +91,9 @@ public class BuddyListPanel extends StyledJPanel {
 		buddies.clear();
 
 		for (String key : buddy) {
-			if(!key.startsWith("_"))
+			if(!key.startsWith("_")) {
 				continue;
+			}
 
 			buddies.add(
 				new Entry(
@@ -135,8 +131,9 @@ public class BuddyListPanel extends StyledJPanel {
 
 		int i = y / 20;
 
-		if((i < 0) || (i >= buddies.size()))
+		if((i < 0) || (i >= buddies.size())) {
 			return;
+		}
 
 		Entry entry = buddies.get(i);
 
@@ -228,6 +225,7 @@ public class BuddyListPanel extends StyledJPanel {
 	 *
 	 * @param	g		The graphics context.
 	 */
+	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
@@ -345,6 +343,7 @@ public class BuddyListPanel extends StyledJPanel {
 		/**
 		 * Track mouse presses.
 		 */
+		@Override
 		public void mousePressed(MouseEvent ev) {
 			if(ev.isPopupTrigger()) {
 				doPopup(
@@ -358,6 +357,7 @@ public class BuddyListPanel extends StyledJPanel {
 		/**
 		 * Track mouse releases.
 		 */
+		@Override
 		public void mouseReleased(MouseEvent ev) {
 			if(ev.isPopupTrigger()) {
 				doPopup(

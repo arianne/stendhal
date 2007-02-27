@@ -50,6 +50,7 @@ public class MarkedScroll extends TeleportScroll {
 	 * @param player The player who used the scroll and who will be teleported
 	 * @return true iff teleport was successful
 	 */
+	@Override
 	protected boolean useTeleportScroll(Player player) {
 		// init as home_scroll
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_city");

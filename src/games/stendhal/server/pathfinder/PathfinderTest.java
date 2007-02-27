@@ -96,7 +96,7 @@ public class PathfinderTest {
 						int stepNr = 0;
 						for (Path.Node node : nodes) {
 							stepNr++;
-							if (node.x == i && node.y == j) {
+							if ((node.x == i) && (node.y == j)) {
 								contained = true;
 								break;
 							}

@@ -13,7 +13,6 @@ import java.util.StringTokenizer;
 
 import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContext;
-import games.stendhal.server.StendhalRPWorld;
 
 /**
  * A base factory for <code>CreatureProtectionArea</code> objects.
@@ -42,8 +41,9 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 		int		i;
 
 
-		if((s = ctx.getAttribute("rules")) == null)
+		if((s = ctx.getAttribute("rules")) == null) {
 			return;
+		}
 
 		blocked = true;
 		st = new StringTokenizer(s, " \n\t,");
@@ -54,8 +54,9 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 			/*
 			 * Possible with "   "?
 			 */
-			if(s.length() == 0)
+			if(s.length() == 0) {
 				continue;
+			}
 
 			/*
 			 * blocking modifier?
@@ -86,8 +87,9 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 				subclazz = null;
 			}
 
-			if((clazz.length() == 0) || clazz.equals("*"))
+			if((clazz.length() == 0) || clazz.equals("*")) {
 				clazz = null;
+			}
 
 			area.add(clazz, subclazz, blocked);
 		}
@@ -109,14 +111,17 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 		String	s;
 
 
-		if((s = ctx.getAttribute("default")) == null)
+		if((s = ctx.getAttribute("default")) == null) {
 			return true;
+		}
 
-		if(s.equals("block"))
+		if(s.equals("block")) {
 			return true;
+		}
 
-		if(s.equals("allow"))
+		if(s.equals("allow")) {
 			return false;
+		}
 
 		throw new IllegalArgumentException(
 			"Invalid 'default' attribute: " + s);
@@ -137,8 +142,9 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 		String	s;
 
 
-		if((s = ctx.getAttribute("height")) == null)
+		if((s = ctx.getAttribute("height")) == null) {
 			return 1;
+		}
 
 		try {
 			return Integer.parseInt(s);
@@ -164,8 +170,9 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 		String	s;
 
 
-		if((s = ctx.getAttribute("width")) == null)
+		if((s = ctx.getAttribute("width")) == null) {
 			return 1;
+		}
 
 		try {
 			return Integer.parseInt(s);

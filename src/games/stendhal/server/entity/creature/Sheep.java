@@ -149,13 +149,13 @@ public class Sheep extends DomesticAnimal {
 		SheepFood chosen = null;
 
 		for (PassiveEntityRespawnPoint grower : StendhalRPRuleProcessor.get().getPlantGrowers()) {
-			if (grower instanceof SheepFood && grower.get("zoneid").equals(get("zoneid"))) {
+			if ((grower instanceof SheepFood) && grower.get("zoneid").equals(get("zoneid"))) {
 				SheepFood food = (SheepFood) grower;
 				int fx = food.getX();
 				int fy = food.getY();
 
-				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range
-						&& food.getAmount() > 0) {
+				if ((Math.abs(fx - x) < range) && (Math.abs(fy - y) < range)
+						&& (food.getAmount() > 0)) {
 					if (this.squaredDistance(food) < squaredDistance) {
 						chosen = food;
 						squaredDistance = this.squaredDistance(food);
@@ -185,7 +185,7 @@ public class Sheep extends DomesticAnimal {
 	public void logic() {
 		Log4J.startMethod(logger, "logic");
 
-		if (!isEnemyNear(20) && owner == null) // if there is no player near and none will see us... 
+		if (!isEnemyNear(20) && (owner == null)) // if there is no player near and none will see us... 
 		{
 			stop();
 
@@ -196,8 +196,8 @@ public class Sheep extends DomesticAnimal {
 		hunger++;
 		SheepFood food = null;
 
-		if (hunger > 50 && (food = getNearestFood(6)) != null
-				&& weight < MAX_WEIGHT) {
+		if ((hunger > 50) && ((food = getNearestFood(6)) != null)
+				&& (weight < MAX_WEIGHT)) {
 			if (nextTo(food, 0.25)) {
 				logger.debug("Sheep eats");
 				setIdea("eat");
@@ -214,7 +214,7 @@ public class Sheep extends DomesticAnimal {
 		} else if (owner == null) {
 			logger.debug("Sheep (ownerless) moves randomly");
 			moveRandomly();
-		} else if (owner != null && !nextTo(owner, 0.25)) {
+		} else if ((owner != null) && !nextTo(owner, 0.25)) {
 			moveToOwner();
 		} else {
 			logger.debug("Sheep has nothing to do");
@@ -223,7 +223,7 @@ public class Sheep extends DomesticAnimal {
 			clearPath();
 		}
 
-		if (owner != null && owner.has("text")
+		if ((owner != null) && owner.has("text")
 				&& owner.get("text").contains("sheep")) {
 			clearPath();
 			moveToOwner();
@@ -244,8 +244,9 @@ public class Sheep extends DomesticAnimal {
 			}
 		}
 
-		if(getHP() < getBaseHP())
+		if(getHP() < getBaseHP()) {
 			healSelf(5, 100);
+		}
 
 		notifyWorldAboutChanges();
 		Log4J.finishMethod(logger, "logic");

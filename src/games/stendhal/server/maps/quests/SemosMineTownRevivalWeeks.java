@@ -123,6 +123,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		zone.add(sign);		
 	}
 	
+	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		createNPC();

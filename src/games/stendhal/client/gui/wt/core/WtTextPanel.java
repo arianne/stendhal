@@ -106,9 +106,11 @@ public class WtTextPanel extends WtPanel {
 	}
 
 	/** draws the String */
+	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed())
+		if(isClosed()) {
 			return g;
+		}
 
 		// draw frame/title bar
 		Graphics clientArea = super.draw(g);
@@ -144,7 +146,7 @@ public class WtTextPanel extends WtPanel {
 			}
 
 			// now check if the string fits in te window.
-			if (autoLineBreaks && metrics.stringWidth(text) > getWidth()) {
+			if (autoLineBreaks && (metrics.stringWidth(text) > getWidth())) {
 				StringBuilder buf = new StringBuilder();
 				int currentWidth = 0;
 				for (int i = 0; i < string.length(); i++) {
@@ -160,7 +162,7 @@ public class WtTextPanel extends WtPanel {
 					}
 
 					// in all lines except the first one skip leading spaces
-					if (!(i > 0 && buf.length() == 0 && theChar == ' ')) {
+					if (!((i > 0) && (buf.length() == 0) && (theChar == ' '))) {
 						buf.append(theChar);
 						currentWidth += charWidth;
 					}

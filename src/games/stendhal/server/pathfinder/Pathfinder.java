@@ -134,7 +134,7 @@ public class Pathfinder {
 		hashOpen.clear();
 		hashClosed.clear(); // Clear the closed list
 
-		if (nodeGoal == null || nodeStart == null) {
+		if ((nodeGoal == null) || (nodeStart == null)) {
 			throw new IllegalArgumentException("start/goal not yet set!");
 		}
 		if (navMap == null) {

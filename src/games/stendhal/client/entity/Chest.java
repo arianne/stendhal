@@ -35,6 +35,7 @@ public class Chest extends AnimatedEntity {
 		requestOpen = false;
 	}
 
+	@Override
 	protected void buildAnimations(RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
@@ -44,11 +45,13 @@ public class Chest extends AnimatedEntity {
 				translate(base.get("type")), 1, 1, 1, 1));
 	}
 
+	@Override
 	protected Sprite defaultAnimation() {
 		animation = "close";
 		return sprites.get("close")[0];
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -72,6 +75,7 @@ public class Chest extends AnimatedEntity {
 		}
 	}
 
+	@Override
 	public void onChangedRemoved(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedRemoved(base, diff);
@@ -90,19 +94,23 @@ public class Chest extends AnimatedEntity {
 		}
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public String defaultAction() {
 		return "Look";
 	}
 
 
+	@Override
 	protected void buildOfferedActions(List list) {
 		list.add("Look");
 
@@ -115,6 +123,7 @@ public class Chest extends AnimatedEntity {
 	}
 
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Inspect")) {
 			client.getGameGUI().inspect(this, content, 4, 5);

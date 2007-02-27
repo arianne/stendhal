@@ -329,13 +329,15 @@ public class Player extends RPEntity implements TurnListener {
 		 * Positive or Negative?
 		 */
 		if(karma < 0.0) {
-			if(negLimit >= 0.0)
+			if(negLimit >= 0.0) {
 				return 0.0;
+			}
 
 			limit = Math.max(negLimit, -limit);
 		} else {
-			if(posLimit <= 0.0)
+			if(posLimit <= 0.0) {
 				return 0.0;
+			}
 
 			limit = Math.min(posLimit, limit);
 		}
@@ -462,10 +464,11 @@ public class Player extends RPEntity implements TurnListener {
 
 		object = slot.iterator().next();
 
-		if(value != null)
+		if(value != null) {
 			object.put(key, value);
-		else if(object.has(key))
+		} else if(object.has(key)) {
 			object.remove(key);
+		}
 
 		return true;
 	}
@@ -965,7 +968,7 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public void consumeItem(ConsumableItem item) {
-		if (item.getRegen() > 0 && itemsToConsume.size() > 5
+		if ((item.getRegen() > 0) && (itemsToConsume.size() > 5)
 				&& !item.getName().contains("potion")) {
 			sendPrivateText("You can't consume anymore");
 			return;
@@ -1032,12 +1035,12 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public void consume(int turn) {
-		if (has("poisoned") && poisonToConsume.size() == 0) {
+		if (has("poisoned") && (poisonToConsume.size() == 0)) {
 			remove("poisoned");
 			notifyWorldAboutChanges();
 		}
 
-		if (has("eating") && itemsToConsume.size() == 0) {
+		if (has("eating") && (itemsToConsume.size() == 0)) {
 			remove("eating");
 			notifyWorldAboutChanges();
 		}

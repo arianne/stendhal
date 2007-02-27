@@ -90,8 +90,8 @@ import org.apache.log4j.Logger;
 			float frameRate = audioInputStream.getFormat().getFrameRate();
 			long frames = audioInputStream.getFrameLength();
 
-			if (frameRate != AudioSystem.NOT_SPECIFIED
-					&& frames != AudioSystem.NOT_SPECIFIED) {
+			if ((frameRate != AudioSystem.NOT_SPECIFIED)
+					&& (frames != AudioSystem.NOT_SPECIFIED)) {
 				length = (int) (frames / frameRate * 1000);
 			} else {
 				length = 0;
@@ -149,6 +149,7 @@ import org.apache.log4j.Logger;
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return this.getClass().getName()
 				+ ": "

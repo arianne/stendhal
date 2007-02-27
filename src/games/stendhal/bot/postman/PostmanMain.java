@@ -230,8 +230,8 @@ public class PostmanMain extends Thread {
 					i++;
 				}
 
-				if (username != null && password != null && character != null
-						&& host != null && port != null) {
+				if ((username != null) && (password != null) && (character != null)
+						&& (host != null) && (port != null)) {
 					PostmanMain postmanMain = new PostmanMain(host, username, password, character, port, tcp);
 					postmanMain.start();
 					return;

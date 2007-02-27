@@ -54,6 +54,7 @@ public class Portal extends Entity implements UseListener {
 	/**
 	 * @deprecated	Use setReference().
 	 */
+	@Deprecated
 	public void setNumber(int number) {
 		setReference(new Integer(number));
 	}
@@ -76,6 +77,7 @@ public class Portal extends Entity implements UseListener {
 	/**
 	 * @deprecated	Use setDestination(String, Object).
 	 */
+	@Deprecated
 	public void setDestination(String zone, int number) {
 		setDestination(zone, new Integer(number));
 	}

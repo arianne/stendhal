@@ -66,14 +66,15 @@ public abstract class DoorFactory implements ConfigurableFactory {
 				"Required attribute 'direction' missing");
 		}
 
-		if(s.equals("up"))
+		if(s.equals("up")) {
 			return Direction.UP;
-		else if(s.equals("down"))
+		} else if(s.equals("down")) {
 			return Direction.DOWN;
-		else if(s.equals("left"))
+		} else if(s.equals("left")) {
 			return Direction.LEFT;
-		else if(s.equals("right"))
+		} else if(s.equals("right")) {
 			return Direction.RIGHT;
+		}
 
 		throw new IllegalArgumentException(
 			"Invalid direction attribute: " + s);

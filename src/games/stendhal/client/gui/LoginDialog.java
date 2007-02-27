@@ -352,12 +352,14 @@ public class LoginDialog extends JDialog {
 		i = combobox.getItemCount();
 
 		while(i-- != 0) {
-			if(combobox.getItemAt(i).equals(item))
+			if(combobox.getItemAt(i).equals(item)) {
 				break;
+			}
 		}
 
-		if(i == -1)
+		if(i == -1) {
 			combobox.addItem(item);
+		}
 	}
 
 
@@ -488,14 +490,16 @@ public class LoginDialog extends JDialog {
 
 		iter = profiles.iterator();
 
-		while(iter.hasNext())
+		while(iter.hasNext()) {
 			profilesComboBox.addItem(iter.next());
+		}
 
 		/*
 		 * The last profile (if any) is the default.
 		 */
-		if((count = profilesComboBox.getItemCount()) != 0)
+		if((count = profilesComboBox.getItemCount()) != 0) {
 			profilesComboBox.setSelectedIndex(count - 1);
+		}
 	}
 
 
@@ -518,10 +522,11 @@ public class LoginDialog extends JDialog {
 			serverPortField.setText(
 				String.valueOf(profile.getPort()));
 
-			if(profile.isTCP())
+			if(profile.isTCP()) {
 				protocolComboBox.setSelectedItem(TCPIP_TEXT);
-			else
+			} else {
 				protocolComboBox.setSelectedItem(UDP_TEXT);
+			}
 
 			usernameField.setText(profile.getUser());
 			passwordField.setText(profile.getPassword());

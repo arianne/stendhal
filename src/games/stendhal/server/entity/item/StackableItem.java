@@ -39,6 +39,7 @@ public class StackableItem extends Item implements Stackable {
 		}
 	}
 
+	@Override
 	public int getQuantity() {
 		return quantity;
 	}

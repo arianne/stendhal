@@ -3,8 +3,6 @@ package games.stendhal.server.maps.orril;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
-import games.stendhal.server.pathfinder.Path;
-
 import java.util.Map;
 
 /**

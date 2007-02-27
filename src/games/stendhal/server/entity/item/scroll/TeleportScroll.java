@@ -58,6 +58,7 @@ public abstract class TeleportScroll extends InfoStringScroll {
 	 * @param player The player who used the scroll and who will be teleported
 	 * @return true iff teleport was successful
 	 */
+	@Override
 	protected boolean useScroll(Player player) {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 		if (!zone.isTeleportable()) {

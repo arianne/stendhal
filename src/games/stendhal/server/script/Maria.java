@@ -22,26 +22,6 @@ import org.apache.log4j.Logger;
 public class Maria extends ScriptImpl {
 	private static Logger logger = Logger.getLogger(Maria.class);
 
-	private class MariaCouponAction extends SpeakerNPC.ChatAction {
-		private ScriptingSandbox sandbox = null;
-
-		public MariaCouponAction(ScriptingSandbox sandbox) {
-			this.sandbox = sandbox;
-		}
-
-		public void fire(Player player, String text, SpeakerNPC engine) {
-			if (player.getQuest("MariaCoupon") == null) {
-				Item item = sandbox.getItem("coupon");
-				item.setDescription("Coupon for one free beer at Semos' tavern.");
-				player.equip(item, true);
-				engine.say("Give this coupon to Margaret in Semos' Tavern to get a free beer.");
-				player.setQuest("MariaCoupon", "coupon");
-			} else {
-				engine.say("Sorry, only one free beer per person.");
-			}
-		}
-	}
-
 	class MargaretCouponAction extends SpeakerNPC.ChatAction {
 		private ScriptingSandbox sandbox = null;
 
@@ -49,6 +29,7 @@ public class Maria extends ScriptImpl {
 			this.sandbox = sandbox;
 		}
 
+		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
 			if (player.drop("coupon")) {
 				Item beer = sandbox.getItem("beer");

@@ -122,7 +122,7 @@ public abstract class NPC extends RPEntity {
 			clearPath();
 		}
 
-		if (squaredDistance(destX, destY) > max && !hasPath()) {
+		if ((squaredDistance(destX, destY) > max) && !hasPath()) {
 			Path.searchPathAsynchonous(this, destEntity);
 		}
 	}
@@ -154,7 +154,7 @@ public abstract class NPC extends RPEntity {
 			clearPath();
 		}
 
-		if (squaredDistance(destEntity.getX(), destEntity.getY()) > max && !hasPath()) {
+		if ((squaredDistance(destEntity.getX(), destEntity.getY()) > max) && !hasPath()) {
 			logger.debug("Creating path because (" + getX() + "," + getY()
 					+ ") distance(" + destEntity.getX() + ","
 					+ destEntity.getY() + ")>" + max);
@@ -177,7 +177,7 @@ public abstract class NPC extends RPEntity {
 			escapeCollision--;
 		}
 
-		if (stopped() || collides() || escapeCollision == 0) {
+		if (stopped() || collides() || (escapeCollision == 0)) {
 			setDirection(Direction.rand());
 			setSpeed(speed);
 			escapeCollision = 10;

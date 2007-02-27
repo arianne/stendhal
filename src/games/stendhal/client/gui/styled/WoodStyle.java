@@ -11,6 +11,8 @@ package games.stendhal.client.gui.styled;
 
 import java.awt.Color;
 import java.awt.Font;
+
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
 
@@ -51,7 +53,7 @@ public class WoodStyle implements Style {
 		background = st.getSprite("data/gui/panelwood003.jpg");
 
 		border = new SoftBevelBorder(
-			SoftBevelBorder.RAISED,
+			BevelBorder.RAISED,
 			new Color(0.6f, 0.5f, 0.2f),
 			new Color(0.3f, 0.25f, 0.1f));
 
@@ -69,8 +71,9 @@ public class WoodStyle implements Style {
 	 * @return	A shared instance.
 	 */
 	public static synchronized Style getInstance() {
-		if(sharedInstance == null)
+		if(sharedInstance == null) {
 			sharedInstance = new WoodStyle();
+		}
 
 		return sharedInstance;
 	}

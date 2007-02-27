@@ -398,7 +398,7 @@ class PlayerRPClass {
 
 								entity.setID(item.getID());
 
-								if(item.has("persistent") && item.getInt("persistent")==1) {
+								if(item.has("persistent") && (item.getInt("persistent")==1)) {
 									entity.fill(item);
 								}
 

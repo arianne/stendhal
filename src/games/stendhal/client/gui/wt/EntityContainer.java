@@ -88,13 +88,14 @@ public class EntityContainer extends WtPanel {
 	}
 
 	/** we're using the window manager */
+	@Override
 	protected boolean useWindowManager() {
 		return true;
 	}
 
 	/** rescans the content of the slot */
 	private void rescanSlotContent() {
-		if (parent == null || slotName == null) {
+		if ((parent == null) || (slotName == null)) {
 			return;
 		}
 
@@ -111,7 +112,7 @@ public class EntityContainer extends WtPanel {
 			// tell 'em the the parent
 			entitySlot.setParent(parent);
 			// add new rpobjects
-			if (it != null && it.hasNext()) {
+			if ((it != null) && it.hasNext()) {
 				entitySlot.add(it.next());
 			}
 		}
@@ -153,11 +154,13 @@ public class EntityContainer extends WtPanel {
 	/**
 	 * draws the panel. it also checks for modified slot content
 	 */
+	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed())
+		if(isClosed()) {
 			return g;
+		}
 
-		if (parent != null && slotName != null && !isClosed()) {
+		if ((parent != null) && (slotName != null) && !isClosed()) {
 			RPSlot rpslot = parent.getSlot(slotName);
 			// rescan the content if the size changes
 			if (!shownSlot.equals(rpslot)) {

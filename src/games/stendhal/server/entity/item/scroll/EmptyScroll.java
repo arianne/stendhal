@@ -12,19 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.EntityManager;
-
 import java.util.Map;
-
-import org.apache.log4j.Logger;
 
 /**
  * Represents an empty/unmarked teleport scroll.
@@ -52,6 +44,7 @@ public class EmptyScroll extends Scroll {
 	 * @param player
 	 * @return always true
 	 */
+	@Override
 	protected boolean useScroll(Player player) {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 		if (zone.isTeleportable()) {

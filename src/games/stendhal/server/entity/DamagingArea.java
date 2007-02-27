@@ -22,7 +22,6 @@ import marauroa.common.game.IRPZone;
 
 import games.stendhal.common.Level;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.events.TurnListener;
@@ -108,8 +107,9 @@ public class DamagingArea extends PassiveEntity
 	protected void addTarget(RPEntity entity) {
 		targets.add(entity.getID());
 
-		if(targets.size() == 1)
+		if(targets.size() == 1) {
 			TurnNotifier.get().notifyInTurns(interval, this, null);
+		}
 	}
 
 
@@ -172,8 +172,9 @@ public class DamagingArea extends PassiveEntity
 		/*
 		 * Don't beat a dead horse!
 		 */
-		if(entity.getHP() == 0)
+		if(entity.getHP() == 0) {
 			return false;
+		}
 
 		/*
 		 * TEMP HACK - Emulate some of user's def.
@@ -186,8 +187,9 @@ public class DamagingArea extends PassiveEntity
 //logger.info("defense: " + defense);
 //logger.info("actualDamage: " + actualDamage);
 
-		if(actualDamage <= 0)
+		if(actualDamage <= 0) {
 			return true;
+		}
 
 		entity.onDamage(this, Math.min(actualDamage, entity.getHP()));
 		return true;
@@ -202,8 +204,9 @@ public class DamagingArea extends PassiveEntity
 	protected void removeTarget(RPEntity entity) {
 		targets.remove(entity.getID());
 
-		if(targets.isEmpty())
+		if(targets.isEmpty()) {
 			TurnNotifier.get().dontNotify(this, null);
+		}
 	}
 
 
@@ -237,6 +240,7 @@ public class DamagingArea extends PassiveEntity
 	 *
 	 * @param	zone		The zone this was added to.
 	 */
+	@Override
 	public void onAdded(StendhalRPZone zone) {
 		super.onAdded(zone);
 		zone.addMovementListener(this);
@@ -248,6 +252,7 @@ public class DamagingArea extends PassiveEntity
 	 *
 	 * @param	zone		The zone this will be removed from.
 	 */
+	@Override
 	public void onRemoved(StendhalRPZone zone) {
 		zone.removeMovementListener(this);
 		super.onRemoved(zone);
@@ -257,6 +262,7 @@ public class DamagingArea extends PassiveEntity
 	/**
 	 * Handle object attribute change(s).
 	 */
+	@Override
 	public void update() throws AttributeNotFoundException {
 		StendhalRPZone	zone;
 
@@ -289,8 +295,9 @@ public class DamagingArea extends PassiveEntity
 		/*
 		 * Only effect players?
 		 */
-		if(playersOnly && !(entity instanceof Player))
+		if(playersOnly && !(entity instanceof Player)) {
 			return;
+		}
 
 		addTarget(entity);
 	}
@@ -326,11 +333,13 @@ public class DamagingArea extends PassiveEntity
 		/*
 		 * Only effect players?
 		 */
-		if(playersOnly && !(entity instanceof Player))
+		if(playersOnly && !(entity instanceof Player)) {
 			return;
+		}
 
-		if(rand.nextDouble() < probability)
+		if(rand.nextDouble() < probability) {
 			doDamage(entity);
+		}
 	}
 
 
@@ -366,15 +375,17 @@ public class DamagingArea extends PassiveEntity
 				RPEntity entity = (RPEntity) zone.get(id);
 
 				if(area.intersects(entity.getArea())) {
-					if(!doDamage(entity))
+					if(!doDamage(entity)) {
 						iter.remove();
+					}
 				} else {
 					iter.remove();
 				}
 			}
 		}
 
-		if(!targets.isEmpty())
+		if(!targets.isEmpty()) {
 			TurnNotifier.get().notifyInTurns(interval, this, null);
+		}
 	}
 }

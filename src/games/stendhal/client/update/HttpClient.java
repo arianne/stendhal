@@ -105,7 +105,7 @@ public class HttpClient {
 	        		System.err.println("Timeout (" + urlString + "): " + " " + e.toString());
 	        	}
 	        	myTimeout = myTimeout * 2;
-	        	if (!tryVeryHard || retryCount > 3) {
+	        	if (!tryVeryHard || (retryCount > 3)) {
 	        		break;
 	        	}
 	        }

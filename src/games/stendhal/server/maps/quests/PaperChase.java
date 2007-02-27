@@ -49,7 +49,7 @@ public class PaperChase extends AbstractQuest {
 			String questState = player.getQuest(QUEST_SLOT);
 
 			// player does not have this quest or finished it
-			if ((questState == null) || questState.indexOf(";") < 0) {
+			if ((questState == null) || (questState.indexOf(";") < 0)) {
 				engine.say("Talk to Fidorea to start the paper chase.");
 				return;
 			}

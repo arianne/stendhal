@@ -180,22 +180,22 @@ public class WtWindowManager {
 	public void setMinimized(ManagedWindow panel, boolean state) {
 		WindowConfiguration config = getConfig(panel);
 
-		if (config.minimized != state)
+		if (config.minimized != state) {
 			if (!state) {
-				if (config.name.equals("bag"))
+				if (config.name.equals("bag")) {
 					SoundSystem.playSound("inventory-open", 10);
-
-				else if ((panel instanceof Character))
+				} else if ((panel instanceof Character)) {
 					SoundSystem.playSound("window-open-1", 40);
-
-				else if (config.name.equals("settings")
-						|| config.name.equals("minimap"))
+				} else if (config.name.equals("settings")
+						|| config.name.equals("minimap")) {
 					SoundSystem.playSound("window-open-2", 30);
-
-				else if (config.name.equals("chest"))
+				} else if (config.name.equals("chest")) {
 					SoundSystem.playSound("chest-open", 75);
-			} else
+				}
+			} else {
 				SoundSystem.playSound("window-close", 10);
+			}
+		}
 
 		config.minimized = state;
 	}
@@ -238,6 +238,7 @@ public class WtWindowManager {
 		}
 
 		/** returns to config as a property string */
+		@Override
 		public String toString() {
 			return writeToPropertyString();
 		}

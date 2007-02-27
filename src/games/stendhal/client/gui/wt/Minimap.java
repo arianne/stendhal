@@ -142,6 +142,7 @@ public class Minimap extends WtPanel {
 	}
 
 	/** we're using the window manager */
+	@Override
 	protected boolean useWindowManager() {
 		return true;
 	}
@@ -155,19 +156,23 @@ public class Minimap extends WtPanel {
 	 *            x-position of the player (used to pan big maps)
 	 * @patam y y-position of the player (used to pan big maps)
 	 */
+	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed())
+		if(isClosed()) {
 			return g;
+		}
 
 		// draw frame and title
 		Graphics clientg = super.draw(g);
 
-		if((player == null) || (image == null))
+		if((player == null) || (image == null)) {
 			return g;
+		}
 
 		// don't draw the minimap when we're miminized
-		if (isMinimized())
+		if (isMinimized()) {
 			return clientg;
+		}
 
 		// now calculate how to pan the minimap
 		int panx = 0;
@@ -211,8 +216,9 @@ public class Minimap extends WtPanel {
 		clientg.translate(-panx, -pany);
 
 		for (Entity entity : StendhalClient.get().getGameObjects()) {
-			if (entity instanceof NPC)
+			if (entity instanceof NPC) {
 				drawNPC(clientg, entity);
+			}
 		}
 
 		clientg.translate(panx, pany);
@@ -240,12 +246,13 @@ public class Minimap extends WtPanel {
 	protected void
 	drawNPC(Graphics g, Entity entity)
 	{
-		if (entity instanceof Sheep)
+		if (entity instanceof Sheep) {
 			drawNPC(g, entity, Color.ORANGE);
-		else if (entity instanceof Creature)
+		} else if (entity instanceof Creature) {
 			drawNPC(g, entity, Color.BLACK);
-		else
+		} else {
 			drawNPC(g, entity, Color.YELLOW);
+		}
 	}
 
 
@@ -280,12 +287,14 @@ public class Minimap extends WtPanel {
 		this.player = player;
 	}
 	
+	@Override
 	public synchronized boolean onMouseDoubleClick(Point p) {
 		/*
 		 * Missing required data?
 		 */
-		if((player == null) || (image == null))
+		if((player == null) || (image == null)) {
 			return false;
+		}
 
 		// Move the player to p
 
@@ -325,8 +334,8 @@ public class Minimap extends WtPanel {
 	
 		RPAction action = new RPAction();
 		action.put("type", "moveto");
-		action.put("x", (int) go_toX);
-		action.put("y", (int) go_toY);
+		action.put("x", go_toX);
+		action.put("y", go_toY);
 		StendhalClient.get().send(action);
 		return true;
 	}

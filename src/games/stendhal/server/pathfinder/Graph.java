@@ -54,7 +54,7 @@ public class Graph {
 		for (int i = 0; i < objList.size(); i++) {
 			GraphItem itm = objList.get(i);
 
-			if (itm != null && itm.getIDInGraph() == IDNum) {
+			if ((itm != null) && (itm.getIDInGraph() == IDNum)) {
 				return itm.getInfo();
 			}
 		}
@@ -70,7 +70,7 @@ public class Graph {
 
 		for (i = 0; i < objList.size(); i++) {
 			GraphItem itm = objList.get(i);
-			if (itm != null && itm.getInfo() == Obj) {
+			if ((itm != null) && (itm.getInfo() == Obj)) {
 				return itm;
 			}
 
@@ -250,8 +250,8 @@ public class Graph {
 				for (int j = 0; j < list.size(); j++) {
 					GraphItem z = list.get(j);
 
-					if (z != null
-							&& d[z.dijkstraindex] > d[w.dijkstraindex] + 1) {
+					if ((z != null)
+							&& (d[z.dijkstraindex] > d[w.dijkstraindex] + 1)) {
 						d[z.dijkstraindex] = d[w.dijkstraindex] + 1;
 						p[z.dijkstraindex] = w.dijkstraindex;
 						z.setParent(w);

@@ -11,7 +11,6 @@ package games.stendhal.server.entity;
 
 import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContext;
-import games.stendhal.server.StendhalRPWorld;
 
 /**
  * A base factory for <code>OnePlayerArea</code> objects.

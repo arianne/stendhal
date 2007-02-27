@@ -12,7 +12,6 @@ import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.WikipediaAccess;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -126,7 +125,7 @@ public class IL0_Library implements ZoneConfigurator {
 				return;
 			}
 
-			if (access.getText() != null && access.getText().length() > 0) {
+			if ((access.getText() != null) && (access.getText().length() > 0)) {
 				String content = access.getProcessedText();
 				engine.say(content);
 			} else {

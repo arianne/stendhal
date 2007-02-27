@@ -9,7 +9,6 @@ package games.stendhal.client.gui.styled.swing;
 //
 //
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JPanel;
@@ -53,11 +52,13 @@ public class StyledJPanel extends JPanel {
 		Font	font;
 
 
-		if((border = style.getBorder()) != null)
+		if((border = style.getBorder()) != null) {
 			panel.setBorder(border);
+		}
 
-		if((font = style.getFont()) != null)
+		if((font = style.getFont()) != null) {
 			panel.setFont(font);
+		}
 	}
 
 
@@ -71,6 +72,7 @@ public class StyledJPanel extends JPanel {
 	 *
 	 *
 	 */
+	@Override
 	protected void paintComponent(Graphics g) {
 		Sprite	texture;
 

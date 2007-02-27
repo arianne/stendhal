@@ -153,17 +153,20 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	protected DataLine playSoundIntern(String name, int volBot, int volTop,
 			float correctionDB) {
 		// verify start conditions
-		if (name == null || volBot == 0 || !operative || muteSetting)
+		if ((name == null) || (volBot == 0) || !operative || muteSetting) {
 			return null;
+		}
 
-		if (volBot < 0 || volBot > 100 || volTop < 0 || volTop > 100
-				|| volTop < volBot)
+		if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100)
+				|| (volTop < volBot)) {
 			throw new IllegalArgumentException("bad volume setting");
+		}
 
 		// check/fetch sound
 		ClipRunner clip = SoundEffectMap.getInstance().getSoundClip( name);
-		if (clip == null)
+		if (clip == null) {
 			return null;
+		}
 
 		int volume = volBot + Rand.rand(volTop - volBot + 1);
 		return clip.play(volume, correctionDB, SoundSystem.get()
@@ -217,8 +220,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 */
 	 static DataLine probablePlaySound(int chance, String name,
 			int volBot, int volTop) {
-		if (Rand.rand(100) < chance)
+		if (Rand.rand(100) < chance) {
 			return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
+		}
 		return null;
 	}
 
@@ -251,30 +255,35 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		int fogVolume;
 
 		// broken cases
-		if (where == null || chance < 0)
+		if ((where == null) || (chance < 0)) {
 			throw new IllegalArgumentException();
+		}
 
 		// lost chance cases (random)
-		if (chance < 100 && Rand.rand(100) >= chance)
+		if ((chance < 100) && (Rand.rand(100) >= chance)) {
 			return null;
+		}
 
 		// obtain player character's position and hearing range
 		RPObject playerObj = StendhalClient.get().getPlayer();
-		if (playerObj == null)
+		if (playerObj == null) {
 			return null;
+		}
 
 		Player player = (Player) StendhalClient.get().getGameObjects().get(
 				playerObj.getID());
-		if (player == null)
+		if (player == null) {
 			return null;
+		}
 
 		playerPosition = player.getPosition();
 		playerHearing = player.getHearingArea();
 
 		// exclusion cases
 		if (!playerHearing.contains(where)
-				|| (audibility != null && !audibility.contains(playerPosition)))
+				|| ((audibility != null) && !audibility.contains(playerPosition))) {
 			return null;
+		}
 
 		logger.debug("SoundSystem: playing map sound (" + name + ") at pos "
 				+ (int) where.getX() + ", " + (int) where.getY());
@@ -332,7 +341,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		String hstr = name + "@" + path;
 		logger.warn("- loading from external SOUND ZIP: " + hstr);
 		ZipEntry zipEntry = soundFile.getEntry(path);
-		if (zipEntry != null)
+		if (zipEntry != null) {
 			try {
 				ClipRunner clipRunner = new ClipRunner(hstr);
 				AudioClip clip = new AudioClip(mixer, name,
@@ -342,6 +351,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			} catch (Exception e) {
 
 			}
+		}
 		return null;
 	}
 
@@ -371,8 +381,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		SoundCycle cycle, c1;
 		byte[] entity_token;
 
-		if (!(sys = get()).isOperative())
+		if (!(sys = get()).isOperative()) {
 			return null;
+		}
 
 		entity_token = entity.get_IDToken();
 		cycle = null;
@@ -383,8 +394,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 				cycle.play();
 
 				c1 = sys.cycleMap.get(entity_token);
-				if (c1 != null)
+				if (c1 != null) {
 					c1.terminate();
+				}
 
 				sys.cycleMap.put(entity_token, cycle);
 			} catch (IllegalStateException e) {
@@ -407,11 +419,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 		sys = get();
 		cycle = sys.cycleMap.get(entity_ID);
-		if (cycle != null)
+		if (cycle != null) {
 			synchronized (sys.cycleMap) {
 				sys.cycleMap.remove(entity_ID);
 				cycle.terminate();
 			}
+		}
 	}
 
 	/**
@@ -440,7 +453,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 *            token of sound
 	 */
 	 boolean contains(String name) {
-		return name != null && SoundEffectMap.getInstance().containsKey(name);
+		return (name != null) && SoundEffectMap.getInstance().containsKey(name);
 	}
 
 	/**
@@ -465,7 +478,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		ZipEntry zipEntry;
 		File file;
 
-		String path, key, value, name, hstr;
+		String path, value, name, hstr;
 		int loaded;
 		/**
 		 * count the amount of file that could not be loaded
@@ -556,8 +569,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 					// investigate sample status
 					int i;
-					if ((i = name.indexOf('.')) != -1)
+					if ((i = name.indexOf('.')) != -1) {
 						name = name.substring(0, i);
+					}
 
 					// sound = new ClipRunner(this, name + "@" + path,
 					// soundData, loudness);
@@ -653,9 +667,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		}
 		load |=  value.indexOf('.') != -1;
 		return load;
-		}
-		else
+		} else {
 			return false;
+		}
 		
 		
 	}
@@ -704,8 +718,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		Info[] mixInfos;
 		String hstr;
 
-		if ((mixInfos = AudioSystem.getMixerInfo()) == null
-				|| mixInfos.length == 0) {
+		if (((mixInfos = AudioSystem.getMixerInfo()) == null)
+				|| (mixInfos.length == 0)) {
 			logger.error("*** SoundSystem: no sound driver available!");
 			return false;
 		}
@@ -733,18 +747,20 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * duplicate call.
 	 */
 	public void setMute(boolean v) {
-		if (v == muteSetting)
+		if (v == muteSetting) {
 			return;
+		}
 
 		logger.info("- sound system setting mute = " + (v ? "ON" : "OFF"));
 		muteSetting = v;
 
 		synchronized (ambientList) {
 			for (AmbientSound ambient : ambientList) {
-				if (v)
+				if (v) {
 					ambient.stop();
-				else
+				} else {
 					ambient.play();
+				}
 			}
 		}
 	} // setMute
@@ -819,12 +835,13 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 */
 	public void exit() {
 		clearAmbientSounds();
-		if (soundFile != null)
+		if (soundFile != null) {
 			try {
 				soundFile.close();
 				operative = false;
 			} catch (Exception e) {
 			}
+		}
 		logger.info("sound system exit performed, inactive");
 	}
 
@@ -846,8 +863,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		byte[] buffer = new byte[bufferSize];
 		int len;
 
-		while ((len = input.read(buffer)) > 0)
+		while ((len = input.read(buffer)) > 0) {
 			output.write(buffer, 0, len);
+		}
 	} // transferData
 
 	// ************* INNER CLASSES ***********************
@@ -1066,8 +1084,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		logger.debug(hstr);
 		// System.out.println( hstr );
 
-		if (zone.equals(actualZone))
+		if (zone.equals(actualZone)) {
 			clearAmbientSounds();
+		}
 	}
 
 	/*

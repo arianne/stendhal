@@ -107,10 +107,11 @@ public class Profile {
 		String		s;
 
 
-		if (info.indexOf('\n') != -1)
+		if (info.indexOf('\n') != -1) {
 			st = new StringTokenizer(info, "\n");
-		else
+		} else {
 			st = new StringTokenizer(info);
+		}
 
 		profile = new Profile();
 
@@ -128,8 +129,9 @@ public class Profile {
 				}
 			}
 
-			if(s.length() != 0)
+			if(s.length() != 0) {
 				profile.setHost(s);
+			}
 		}
 
 
@@ -139,8 +141,9 @@ public class Profile {
 		if(st.hasMoreTokens()) {
 			s = st.nextToken();
 
-			if(s.length() != 0)
+			if(s.length() != 0) {
 				profile.setUser(s);
+			}
 		}
 
 
@@ -150,8 +153,9 @@ public class Profile {
 		if(st.hasMoreTokens()) {
 			s = st.nextToken();
 
-			if(s.length() != 0)
+			if(s.length() != 0) {
 				profile.setPassword(s);
+			}
 		}
 
 
@@ -217,26 +221,32 @@ public class Profile {
 	// Object
 	//
 
+	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof Profile))
+		if(!(obj instanceof Profile)) {
 			return false;
+		}
 
 
 		Profile	profile = (Profile) obj;
 
-		if(!getHost().equals(profile.getHost()))
+		if(!getHost().equals(profile.getHost())) {
 			return false;
+		}
 
-		if(getPort() != profile.getPort())
+		if(getPort() != profile.getPort()) {
 			return false;
+		}
 
-		if(!getUser().equals(profile.getUser()))
+		if(!getUser().equals(profile.getUser())) {
 			return false;
+		}
 
 		return true;
 	}
 
 
+	@Override
 	public int hashCode() {
 		return getHost().hashCode() ^ getUser().hashCode();
 	}
@@ -248,6 +258,7 @@ public class Profile {
 	 *
 	 * @return	The label in the form of <em>user</em><strong>@</strong><em>server-host</em>[<strong>:</strong><em>port</em>].
 	 */
+	@Override
 	public String toString() {
 		StringBuffer	sbuf;
 

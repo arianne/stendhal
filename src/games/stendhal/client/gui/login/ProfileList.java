@@ -79,8 +79,9 @@ public class ProfileList {
 
 		clear();
 
-		while((s = r.readLine()) != null)
+		while((s = r.readLine()) != null) {
 			add(Profile.decode(codec.decode(s)));
+		}
 	}
 
 
@@ -148,7 +149,8 @@ public class ProfileList {
 
 		Iterator iter = list.iterator();
 
-		while(iter.hasNext())
+		while(iter.hasNext()) {
 			System.out.println(iter.next());
+		}
 	}
 }

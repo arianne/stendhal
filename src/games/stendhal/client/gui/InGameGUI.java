@@ -158,7 +158,7 @@ public class InGameGUI implements KeyListener {
 			return;
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_L && e.isControlDown()) {
+		if ((e.getKeyCode() == KeyEvent.VK_L) && e.isControlDown()) {
 			/* If Ctrl+L we set the Game log dialog visible */
 			client.getGameLogDialog().setVisible(true);
 
@@ -167,10 +167,10 @@ public class InGameGUI implements KeyListener {
 			/* If Ctrl+R we remove Chat bubbles */
 			gameObjects.clearTexts();
 
-		} else if (e.getKeyCode() == KeyEvent.VK_LEFT
-				|| e.getKeyCode() == KeyEvent.VK_RIGHT
-				|| e.getKeyCode() == KeyEvent.VK_UP
-				|| e.getKeyCode() == KeyEvent.VK_DOWN) {
+		} else if ((e.getKeyCode() == KeyEvent.VK_LEFT)
+				|| (e.getKeyCode() == KeyEvent.VK_RIGHT)
+				|| (e.getKeyCode() == KeyEvent.VK_UP)
+				|| (e.getKeyCode() == KeyEvent.VK_DOWN)) {
 
 			action = new RPAction();
 
@@ -245,7 +245,7 @@ public class InGameGUI implements KeyListener {
 		// detect X11 auto repeat still beeing active
 		if ((lastKeyRelease > 0) && (lastKeyRelease + 1 >= e.getWhen())) {
 			veryFastKeyEvents[veryFastKeyEvents.length-1]++;
-			if (veryFastKeyEvents[0] > 2 && veryFastKeyEvents[1] > 2 && veryFastKeyEvents[2] > 2) {
+			if ((veryFastKeyEvents[0] > 2) && (veryFastKeyEvents[1] > 2) && (veryFastKeyEvents[2] > 2)) {
 				StendhalClient.get().addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
 				StendhalClient.get().addEventLine("Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution", Color.BLACK);
 			}
@@ -333,7 +333,7 @@ public class InGameGUI implements KeyListener {
 
 	public EntityContainer inspect(Entity entity, RPSlot slot, int width,
 			int height) {
-		if (entity == null || slot == null || ground == null) {
+		if ((entity == null) || (slot == null) || (ground == null)) {
 			return null;
 		}
 
@@ -363,7 +363,7 @@ public class InGameGUI implements KeyListener {
 
 		frame.draw(screen.expose());
 
-		if (offline && blinkOffline > 0) {
+		if (offline && (blinkOffline > 0)) {
 			offlineIcon.draw(screen.expose(), 560, 420);
 		}
 

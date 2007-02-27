@@ -75,7 +75,7 @@ public abstract class Entity extends RPObject {
 
 	public boolean hasDescription() {
 		if (has("description")) {
-			return (getDescription() != null && getDescription().length() > 0);
+			return ((getDescription() != null) && (getDescription().length() > 0));
 		}
 		return (false);
 	}
@@ -101,7 +101,7 @@ public abstract class Entity extends RPObject {
 	}
 
 	public void setX(int x) {
-		if (x == this.x && x != 0) {
+		if ((x == this.x) && (x != 0)) {
 			return;
 		}
 		this.x = x;
@@ -133,7 +133,7 @@ public abstract class Entity extends RPObject {
 	}
 
 	public void setY(int y) {
-		if (y == this.y && y != 0) {
+		if ((y == this.y) && (y != 0)) {
 			return;
 		}
 		this.y = y;
@@ -314,23 +314,23 @@ public abstract class Entity extends RPObject {
 	public boolean facingTo(Entity entity) {
 		Rectangle2D thisArea = getArea(x, y);
 		Rectangle2D otherArea = entity.getArea(entity.x, entity.y);
-		if (direction == Direction.UP && thisArea.getX() == otherArea.getX()
-				&& thisArea.getY() - 1 == otherArea.getY()) {
+		if ((direction == Direction.UP) && (thisArea.getX() == otherArea.getX())
+				&& (thisArea.getY() - 1 == otherArea.getY())) {
 			return true;
 		}
-		if (direction == Direction.DOWN
-				&& thisArea.getX() == otherArea.getX()
-				&& thisArea.getY() + 1 == otherArea.getY()) {
+		if ((direction == Direction.DOWN)
+				&& (thisArea.getX() == otherArea.getX())
+				&& (thisArea.getY() + 1 == otherArea.getY())) {
 			return true;
 		}
-		if (direction == Direction.LEFT
-				&& thisArea.getY() == otherArea.getY()
-				&& thisArea.getX() - 1 == otherArea.getX()) {
+		if ((direction == Direction.LEFT)
+				&& (thisArea.getY() == otherArea.getY())
+				&& (thisArea.getX() - 1 == otherArea.getX())) {
 			return true;
 		}
-		if (direction == Direction.RIGHT
-				&& thisArea.getY() == otherArea.getY()
-				&& thisArea.getX() + 1 == otherArea.getX()) {
+		if ((direction == Direction.RIGHT)
+				&& (thisArea.getY() == otherArea.getY())
+				&& (thisArea.getX() + 1 == otherArea.getX())) {
 			return true;
 		}
 		return false;

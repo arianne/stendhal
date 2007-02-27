@@ -49,6 +49,7 @@ public class McPeglegIOU extends AbstractQuest {
 				new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
+					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						// from all notes that the player is carrying, try to
 						// find the IOU note

@@ -29,9 +29,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -81,6 +78,7 @@ public class StendhalFirstScreen extends JFrame {
 				this.setPreferredSize(new Dimension(640, 480));
 			}
 
+			@Override
 			public void paint(Graphics g) {
 				g.drawImage(background, 0, 0, this);
 				super.paint(g);
@@ -136,6 +134,7 @@ public class StendhalFirstScreen extends JFrame {
 		});
 
 		addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}

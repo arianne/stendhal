@@ -38,8 +38,6 @@ public class PersonalChest extends Chest {
 
 	private IRPZone zone;
 
-	private PersonalChest outer;
-
 	private String	bankName;
 
 
@@ -59,8 +57,6 @@ public class PersonalChest extends Chest {
 	public PersonalChest(String bankName)
 	 throws AttributeNotFoundException {
 		this.bankName = bankName;
-
-		outer = this;
 
 		attending = null;
 		

@@ -28,6 +28,7 @@ public class HugeCreature extends Creature {
 		super( object);
 	}
 
+	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 		Sprite creature = loadAnimationSprite(object);
@@ -45,15 +46,18 @@ public class HugeCreature extends Creature {
 		sprites.get("move_left")[3] = sprites.get("move_left")[1];
 	}
 
+	@Override
 	protected Sprite defaultAnimation() {
 		animation = "move_up";
 		return sprites.get("move_up")[0];
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 3, 4);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 3, 4);
 	}

@@ -53,12 +53,12 @@ public class UseAction extends ActionListener {
 			}
 
 			RPObject base = zone.get(baseobjectid);
-			if (!(base instanceof Player || base instanceof Corpse || base instanceof Chest)) {
+			if (!((base instanceof Player) || (base instanceof Corpse) || (base instanceof Chest))) {
 				// Only allow to use objects from players, corpses or chests
 				return;
 			}
 
-			if (base instanceof Player && !player.getID().equals(base.getID())) {
+			if ((base instanceof Player) && !player.getID().equals(base.getID())) {
 				// Only allowed to use item of our own player.
 				return;
 			}

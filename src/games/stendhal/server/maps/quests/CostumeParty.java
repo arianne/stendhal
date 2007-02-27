@@ -42,6 +42,7 @@ public class CostumeParty extends AbstractQuest {
 		super.init(name, QUEST_SLOT);
 	}
 	
+	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		TurnNotifier.get().notifyInTurns(65, new CostumeStripTimer(), null);

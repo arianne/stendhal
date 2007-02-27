@@ -17,7 +17,6 @@ import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 
@@ -152,15 +151,17 @@ public class CreatureProtectionArea extends Entity {
 		/**
 		 * No class/subclass defined?
 		 */
-		if(!creature.has("class") || !creature.has("subclass"))
+		if(!creature.has("class") || !creature.has("subclass")) {
 			return false;
+		}
 
 		clazz = creature.get("class");
 		subclazz = creature.get("subclass");
 
 		for(Entry entry : entries) {
-			if(entry.matches(clazz, subclazz))
+			if(entry.matches(clazz, subclazz)) {
 				return entry.isBlocked();
+			}
 		}
 
 		return defaultAnswer;
@@ -189,12 +190,14 @@ public class CreatureProtectionArea extends Entity {
 	 *
 	 * @return	<code>true</code> if a matching creature is given.
 	 */
+	@Override
 	public boolean isObstacle(Entity entity) {
 		/*
 		 * Only applies to Creature's
 		 */
-		if(!(entity instanceof Creature))
+		if(!(entity instanceof Creature)) {
 			return false;
+		}
 
 		return matchesCriteria((Creature) entity, defaultBlocked);
 	}

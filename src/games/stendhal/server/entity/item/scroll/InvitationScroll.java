@@ -10,8 +10,6 @@ package games.stendhal.server.entity.item.scroll;
 
 import java.util.Map;
 import java.util.StringTokenizer;
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
@@ -58,14 +56,16 @@ public class InvitationScroll extends TeleportScroll {
 
 		st = new StringTokenizer(where, " ");
 
-		if(!st.hasMoreTokens())
+		if(!st.hasMoreTokens()) {
 			return false;
+		}
 
 		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
 			st.nextToken());
 
-		if(!st.hasMoreTokens())
+		if(!st.hasMoreTokens()) {
 			return false;
+		}
 
 		try {
 			x = Integer.parseInt(st.nextToken());
@@ -73,8 +73,9 @@ public class InvitationScroll extends TeleportScroll {
 			return false;
 		}
 
-		if(!st.hasMoreTokens())
+		if(!st.hasMoreTokens()) {
 			return false;
+		}
 
 		try {
 			y = Integer.parseInt(st.nextToken());
@@ -94,6 +95,7 @@ public class InvitationScroll extends TeleportScroll {
 	 *
 	 * @return	<code>true</code> if teleport was successful.
 	 */
+	@Override
 	protected boolean useTeleportScroll(Player player) {
 		if(!has("infostring")) {
 			player.sendPrivateText(
@@ -131,10 +133,11 @@ String dest = null;
 		/*
 		 * Base description (set by creator?)
 		 */
-                if(hasDescription())
-                        sbuf = new StringBuffer(getDescription());
-		else
-			sbuf = new StringBuffer("An invitation to an event.");
+                if(hasDescription()) {
+					sbuf = new StringBuffer(getDescription());
+				} else {
+					sbuf = new StringBuffer("An invitation to an event.");
+				}
 
 		/*
 		 * When is it?

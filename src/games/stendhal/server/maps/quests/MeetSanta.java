@@ -153,7 +153,7 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 			int ty = Rand.rand(zone.getHeight() - 5) + 2;
 			List<Path.Node> path = Path.searchPath(santa, tx, ty);
 			int size = path.size();
-			if ((path != null) && size > 1) {
+			if ((path != null) && (size > 1)) {
 				// create path back
 				for (int j = size - 1; j > 0; j--) {
 					path.add(path.get(j));

@@ -70,8 +70,9 @@ public class ProgressBar extends JFrame {
     public void start() {
         m_run = new Thread() {
             int counter=0;
-            public void run() {
-                while (m_con && counter < 100) {
+            @Override
+			public void run() {
+                while (m_con && (counter < 100)) {
                     try {
                         Thread.sleep(m_sleepTime);
                         counter += m_stepSize*m_stepSizeMultiplier;

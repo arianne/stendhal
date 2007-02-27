@@ -35,8 +35,9 @@ public class PersonalChestFactory implements ConfigurableFactory {
 		String	s;
 
 
-		if((s = ctx.getAttribute("slot")) == null)
+		if((s = ctx.getAttribute("slot")) == null) {
 			return PersonalChest.DEFAULT_BANK;
+		}
 
 		return s;
 	}

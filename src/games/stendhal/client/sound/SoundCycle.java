@@ -84,13 +84,16 @@ class SoundCycle extends Thread implements Cloneable {
 
 		ClipRunner clip;
 
-		if (period < 1000)
+		if (period < 1000) {
 			throw new IllegalArgumentException("illegal sound period");
-		if (volBot < 0 || volBot > 100 || volTop < 0 || volTop > 100 || volTop < volBot)
+		}
+		if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100) || (volTop < volBot)) {
 			throw new IllegalArgumentException("bad volume setting");
+		}
 
-		if ((clip = SoundEffectMap.getInstance().getSoundClip(token)) == null)
+		if ((clip = SoundEffectMap.getInstance().getSoundClip(token)) == null) {
 			throw new IllegalStateException("undefined sound sample: " + token);
+		}
 
 		if (entity != null) {
 			this.ID_Token = entity.get_IDToken();
@@ -117,14 +120,16 @@ class SoundCycle extends Thread implements Cloneable {
 		String hstr;
 
 		o = null;
-		if (entityRef != null)
+		if (entityRef != null) {
 			o = entityRef.get();
+		}
 
 		if (o != null) {
 			oid = o.getID();
 			hstr = oid == null ? "VOID" : oid.toString();
-		} else
+		} else {
 			hstr = "VOID";
+		}
 
 		hstr = "  ** terminating cycle sound: " + token + " / entity=" + hstr;
 		logger.debug(hstr);
@@ -171,6 +176,7 @@ class SoundCycle extends Thread implements Cloneable {
 	/* (non-Javadoc)
 	 * @see java.lang.Thread#run()
 	 */
+	@Override
 	public void run() {
 		Entity o;
 
@@ -181,14 +187,16 @@ class SoundCycle extends Thread implements Cloneable {
 			} catch (InterruptedException e) {
 			}
 
-			if (!executing)
+			if (!executing) {
 				return;
+			}
 
-			if (stopped)
+			if (stopped) {
 				continue;
+			}
 
 			// if object bound sound cycle
-			if (entityRef != null)
+			if (entityRef != null) {
 				if ((o = entityRef.get()) != null) {
 					logger.debug("- start cyclic sound for entity: "
 							+ o.getType());
@@ -197,23 +205,24 @@ class SoundCycle extends Thread implements Cloneable {
 					SoundSystem.stopSoundCycle(ID_Token);
 					terminate();
 				}
-
-			// if global sound cycle
-			else
+			} else {
 				SoundSystem.probablePlaySound(chance, token, volBot, volTop);
+			}
 		}
 	} // run
 
 	/**
 	 * Returns a full copy of this SoundCycle, which is not running.
 	 */
+	@Override
 	public SoundCycle clone() {
 		Entity entity;
 		SoundCycle c;
 
 		entity = null;
-		if (entityRef != null)
+		if (entityRef != null) {
 			entity = entityRef.get();
+		}
 
 		c = new SoundCycle(entity, token, period, volBot, volTop, chance);
 		return c;

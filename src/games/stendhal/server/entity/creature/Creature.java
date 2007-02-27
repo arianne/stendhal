@@ -427,7 +427,7 @@ public class Creature extends NPC {
 
     @Override
 	public void getArea(Rectangle2D rect, double x, double y) {
-		if (width == 1 && height == 2) {
+		if ((width == 1) && (height == 2)) {
 			// The size 1,2 is a bit special... :)
 			rect.setRect(x, y + 1, 1, 1);
 		} else {
@@ -487,7 +487,7 @@ public class Creature extends NPC {
 				int fx = (int) rect.getCenterX();
 				int fy = (int) rect.getCenterY();
 
-				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
+				if ((Math.abs(fx - x) < range) && (Math.abs(fy - y) < range)) {
 					distances.put(enemy, squaredDistance(enemy));
 				}
 			}
@@ -556,7 +556,7 @@ public class Creature extends NPC {
 				int fx = playerOrFriend.getX();
 				int fy = playerOrFriend.getY();
 
-				if (Math.abs(fx - x) < range && Math.abs(fy - y) < range) {
+				if ((Math.abs(fx - x) < range) && (Math.abs(fy - y) < range)) {
 					if (squaredDistance(playerOrFriend) < distance) {
 						return true;
 					}
@@ -759,7 +759,7 @@ public class Creature extends NPC {
 		clearPath();
 		setMovement(target, 0, 0, 20.0);
 		
-		if (getPath() == null || getPath().size() == 0) {
+		if ((getPath() == null) || (getPath().size() == 0)) {
 			if (!nextTo(target, 0.25)) {
 				stopAttack();
 				target = null;
@@ -943,7 +943,7 @@ public class Creature extends NPC {
 			waitRounds--;
 		} else {
 			// Are we still patrolling?
-			if (isPathLoop() || aiState == AiState.PATROL) {
+			if (isPathLoop() || (aiState == AiState.PATROL)) {
 				// yep, so clear the patrol path
 				clearPath();
 			}
@@ -954,7 +954,7 @@ public class Creature extends NPC {
 				debug.append(";newpath");
 			}
 
-			if (getPath() == null || getPath().size() == 0) {
+			if ((getPath() == null) || (getPath().size() == 0)) {
 				// If creature is blocked, choose a new target
 				// TODO: if we are an archer and in range, this is ok
 				//       don't get to near to the enemy. 
@@ -990,7 +990,7 @@ public class Creature extends NPC {
 	}
 
 	private void logicDoAttack() {
-		if (StendhalRPRuleProcessor.get().getTurn() % 5 == attackTurn && isAttacking()) {
+		if ((StendhalRPRuleProcessor.get().getTurn() % 5 == attackTurn) && isAttacking()) {
 			StendhalRPAction.attack(this, getAttackTarget());
 			tryToPoison();
 		}
@@ -998,7 +998,7 @@ public class Creature extends NPC {
 
 	private void logicDoNoice() {
 		// with a probability of 1 %, a random noise is made.
-		if (Rand.roll1D100() == 1 && noises.size() > 0) {
+		if ((Rand.roll1D100() == 1) && (noises.size() > 0)) {
 			// Random sound noises.
 			int pos = Rand.rand(noises.size());
 			say(noises.get(pos));
@@ -1016,9 +1016,9 @@ public class Creature extends NPC {
 		}
 
 		// are we attacked and we don't attack ourself?
-		if (isAttacked() && target == null) {
+		if (isAttacked() && (target == null)) {
 			logicWeAreNotAttackingButGotAttacked();
-		} else if (target == null
+		} else if ((target == null)
 				|| (!target.get("zoneid").equals(get("zoneid")) && world
 						.has(target.getID())) || !world.has(target.getID())) {
 			// no target or current target left the zone (or is dead)
@@ -1029,7 +1029,7 @@ public class Creature extends NPC {
 		// now we check our current target
 		if (target == null) {
 			// No target, so patrol along
-			if (aiState != AiState.PATROL || !hasPath()) {
+			if ((aiState != AiState.PATROL) || !hasPath()) {
 				logicCreatePatrolPath();
 			}
 			logicFollowPatrolPath();
@@ -1057,7 +1057,7 @@ public class Creature extends NPC {
 	}
 
 	protected void tryToPoison() {
-		if (getAttackTarget() != null && nextTo(getAttackTarget(), 0.25)
+		if ((getAttackTarget() != null) && nextTo(getAttackTarget(), 0.25)
 					&& aiProfiles.containsKey("poisonous")) {
 			// probability of poisoning is 1 %
 			int roll = Rand.roll1D100();
@@ -1099,7 +1099,7 @@ public class Creature extends NPC {
 	 * @param frequency The number of turns between healings  
 	 */
 	protected void healSelf(int amount, int frequency) {
-        if (StendhalRPRuleProcessor.get().getTurn() % frequency == 0 && getHP() > 0 ) {
+        if ((StendhalRPRuleProcessor.get().getTurn() % frequency == 0) && (getHP() > 0) ) {
             if (getHP() + amount < getBaseHP()) {
                 setHP(getHP() + amount);
                 put("heal", amount);

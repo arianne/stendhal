@@ -17,7 +17,6 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
-import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.player.Player;
 
 import marauroa.common.Log4J;

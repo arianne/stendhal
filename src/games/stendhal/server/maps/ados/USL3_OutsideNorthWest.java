@@ -6,7 +6,6 @@ import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.NPCOwnedChest;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 

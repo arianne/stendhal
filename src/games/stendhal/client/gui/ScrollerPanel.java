@@ -133,10 +133,11 @@ public class ScrollerPanel extends JPanel {
 	 * calculates the new textposition
 	 */
 	private void moveText() {
-		if (textPos >= -((lineHeight + lineSpacing) * text.length))
+		if (textPos >= -((lineHeight + lineSpacing) * text.length)) {
 			textPos--;
-		else
+		} else {
 			resetTextPos();
+		}
 		this.repaint(0, 0, this.getWidth(), this.getHeight());
 	}
 
@@ -168,9 +169,10 @@ public class ScrollerPanel extends JPanel {
 		FontMetrics metrics = g2d.getFontMetrics();
 		this.lineHeight = metrics.getHeight();
 		this.prefferedSize.height = this.lineHeight * 8;
-		for (int i = 0, n = text.length; i < n; i++)
+		for (int i = 0, n = text.length; i < n; i++) {
 			prefferedSize.width = Math.max(prefferedSize.width, metrics
 					.stringWidth(text[i]));
+		}
 		this.prefferedSize.width = prefferedSize.width + 6
 				* metrics.stringWidth(" ");
 	}

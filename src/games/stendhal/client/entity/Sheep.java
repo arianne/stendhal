@@ -32,6 +32,7 @@ public class Sheep extends NPC {
 		super( object);
 	}
 
+	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
@@ -53,6 +54,7 @@ public class Sheep extends NPC {
 				.get("type")), 7, 3, 1, 1));
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -60,8 +62,9 @@ public class Sheep extends NPC {
 		if (diff.has("weight")) {
 			int oldWeight = weight;
 			weight = diff.getInt("weight");
-			if (weight > oldWeight)
+			if (weight > oldWeight) {
 				playSound("sheep-eat", 8, 15);
+			}
 		}
 
 		if (diff.has("idea")) {
@@ -77,24 +80,28 @@ public class Sheep extends NPC {
 			}
 		}
 
-		if (weight > 60 && !animation.startsWith("big_")) {
+		if ((weight > 60) && !animation.startsWith("big_")) {
 			animation = "big_" + animation;
 		}
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	protected Sprite defaultAnimation() {
 		animation = "move_up";
 		return sprites.get("move_up")[0];
 	}
 
+	@Override
 	public String[] offeredActions() {
 		java.util.ArrayList<String> list = new java.util.ArrayList<String>();
 		for (String item : super.offeredActions()) {
@@ -108,6 +115,7 @@ public class Sheep extends NPC {
 		return list.toArray(new String[0]);
 	}
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Own")) {
 			RPAction rpaction = new RPAction();

@@ -33,8 +33,9 @@ public class SwingUtils {
 
 	/** returns the shared instance */
 	public static synchronized SwingUtils getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new SwingUtils();
+		}
 		return instance;
 	}
 

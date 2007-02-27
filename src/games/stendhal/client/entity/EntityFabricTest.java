@@ -30,9 +30,11 @@ MockRPObject() {
 
 	@Override
 	public String get(String attribute) throws AttributeNotFoundException {
-		if (attribute.equals("type"))
+		if (attribute.equals("type")) {
 			return _type;
-		else return _eclass;
+		} else {
+			return _eclass;
+		}
 		
 	}
 	

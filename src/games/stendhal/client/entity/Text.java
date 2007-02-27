@@ -41,8 +41,9 @@ public class Text extends Entity {
 		textImage = text;
 		textImageTime = System.currentTimeMillis();
 
-		if ((textPersistTime = persistTime) == 0)
+		if ((textPersistTime = persistTime) == 0) {
 			textPersistTime = STANDARD_PERSISTENCE_TIME;
+		}
 
 		// Speech bubbles should be top right of speaker intensifly@gmx.com
 		// this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
@@ -54,6 +55,7 @@ public class Text extends Entity {
 		this.y = y;
 	}
 
+	@Override
 	public String toString() {
 		return text;
 	}
@@ -79,7 +81,7 @@ public class Text extends Entity {
 		} else {
 			this.tx = x
 					+ 0.7
-					- (textImage.getWidth() / ((float) GameScreen.SIZE_UNIT_PIXELS * 2.0f));
+					- (textImage.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
 			this.ty = y + 1.5;
 		}
 
@@ -88,35 +90,43 @@ public class Text extends Entity {
 		this.text = text;
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 	}
 
+	@Override
 	public void onChangedRemoved(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 	}
 
+	@Override
 	public String defaultAction() {
 		return null;
 	}
 
+	@Override
 	public String[] offeredActions() {
 		return null;
 	}
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return null;
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(tx, ty, 
 			(double)textImage.getWidth() / GameScreen.SIZE_UNIT_PIXELS,
 			(double)textImage.getHeight() / GameScreen.SIZE_UNIT_PIXELS);
 	}
 
+	@Override
 	public void draw(GameScreen screen) {
 		screen.draw(textImage, tx, ty);
 

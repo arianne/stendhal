@@ -211,6 +211,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/** returns the name of the item */
+	@Override
 	public String getName() {
 		return get("name");
 	}

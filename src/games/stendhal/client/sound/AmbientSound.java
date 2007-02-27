@@ -104,6 +104,7 @@ import marauroa.common.game.RPObject;
 		 * <b>null</b> (clip not playing).
 		 * @return LoopsoundInfo copy 
 		 */
+		@Override
 		public LoopSoundInfo clone() {
 			LoopSoundInfo si;
 
@@ -154,21 +155,24 @@ import marauroa.common.game.RPObject;
 		/* (non-Javadoc)
 		 * @see java.lang.Thread#run()
 		 */
+		@Override
 		public void run() {
 			ClipRunner libClip;
 
 			// get the library sound clip
 			libClip = SoundEffectMap.getInstance().getSoundClip(soundInfo.name);
-			if (libClip == null)
+			if (libClip == null) {
 				throw new IllegalArgumentException("sound unknown: "
 						+ soundInfo.name);
+			}
 
 			// handle delay phase request on sample start
-			if (soundInfo.delay > 0)
+			if (soundInfo.delay > 0) {
 				try {
 					sleep(soundInfo.delay);
 				} catch (final InterruptedException e) {
 				}
+			}
 
 			synchronized (soundInfo) {
 				// terminate an existing sound
@@ -217,11 +221,13 @@ import marauroa.common.game.RPObject;
 	public AmbientSound(String name, Point2D point, int radius, int volume) {
 		String hstr;
 
-		if (name == null)
+		if (name == null) {
 			throw new NullPointerException();
+		}
 
-		if (radius < 0 )
+		if (radius < 0 ) {
 			throw new IllegalArgumentException("r=" + radius );
+		}
 
 		this.name = name;
 		soundPos = point;
@@ -233,12 +239,13 @@ import marauroa.common.game.RPObject;
 			soundObject.setAudibleRange(radius);
 		}
 
-		if (soundObject != null)
+		if (soundObject != null) {
 			hstr = "-- created LOC AMBIENT: " + name + " at ("
 					+ (int) soundObject.getX() + "," + (int) soundObject.getY()
 					+ "), rad=" + radius + " vol=" + volume;
-		else
+		} else {
 			hstr = "-- created GLOB AMBIENT: " + name + ", vol=" + volume;
+		}
 
 		logger.debug(hstr);
 	} // constructor
@@ -265,15 +272,17 @@ import marauroa.common.game.RPObject;
 			int radius, int volume) {
 		this(name, point, radius, volume);
 
-		for (LoopSoundInfo c : sound.loopSounds)
+		for (LoopSoundInfo c : sound.loopSounds) {
 			loopSounds.add(c.clone());
+		}
 
 		for (SoundCycle c : sound.cycleList) {
 			SoundCycle cycle = c.clone();
-			if (soundObject != null)
+			if (soundObject != null) {
 				cycle.entityRef = new WeakReference<Entity>(soundObject);
-			else
+			} else {
 				cycle.entityRef = null;
+			}
 			cycleList.add(cycle);
 		}
 
@@ -324,7 +333,7 @@ import marauroa.common.game.RPObject;
 	} // addCycle
 
 	private boolean canPlay() {
-		return soundPos == null
+		return (soundPos == null)
 				|| (playerHearing.contains(soundPos) && soundObject
 						.getAudibleArea().contains(playerPos));
 	}
@@ -354,8 +363,9 @@ import marauroa.common.game.RPObject;
 	protected void play(Player player) {
 		float fogDB;
 
-		if (isPlaying)
+		if (isPlaying) {
 			return;
+		}
 
 		stop();
 
@@ -367,12 +377,14 @@ import marauroa.common.game.RPObject;
 				playerHearing = player.getHearingArea();
 
 				// return if sound object is out of range
-				if (!canPlay())
+				if (!canPlay()) {
 					return;
+				}
 			}
 			// return undone if no player
-			else
+ else {
 				return;
+			}
 		}
 
 		// create and start loop sounds
@@ -396,8 +408,9 @@ import marauroa.common.game.RPObject;
 
 	/** (Temporarily) stops playing this ambient sound. */
 	protected void stop() {
-		if (!isPlaying)
+		if (!isPlaying) {
 			return;
+		}
 
 		// terminate loop sounds
 		synchronized (loopSounds) {
@@ -455,7 +468,7 @@ import marauroa.common.game.RPObject;
 			return 0;
 		} else {
 			// maximum fog if no player infos available
-			if (playerPos == null || playerHearing == null) {
+			if ((playerPos == null) || (playerHearing == null)) {
 				// System.out.println( "ambient (" + name + ") fog volume: 0
 				// (player unavailable)" );
 				return DBValues.getDBValue(0);
@@ -489,8 +502,9 @@ import marauroa.common.game.RPObject;
 
 		// operation control
 		//sys = SoundSystem.get();
-		if (!isOperative || isMute || player == null || soundPos == null)
+		if (!isOperative || isMute || (player == null) || (soundPos == null)) {
 			return;
+		}
 
 		// if not yet playing, start playing
 		if (isPlaying) {
@@ -548,9 +562,10 @@ import marauroa.common.game.RPObject;
 
 		// try to obtain player parameters if relative playing is ordered
 		if (soundPos != null) {
-			if ((playerObj = StendhalClient.get().getPlayer()) != null)
+			if ((playerObj = StendhalClient.get().getPlayer()) != null) {
 				player = (Player) StendhalClient.get().getGameObjects().get(
 						playerObj.getID());
+			}
 		}
 		return player;
 	}

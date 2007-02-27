@@ -32,6 +32,7 @@ public class Door extends AnimatedEntity {
 //		requestOpen = false;
 	}
 
+	@Override
 	protected void buildAnimations(RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
@@ -60,14 +61,16 @@ public class Door extends AnimatedEntity {
 				+ clazz + "_" + direction + ".png", 1, 1, 3, 2));
 	}
 
+	@Override
 	protected Sprite defaultAnimation() {
 		animation = "close";
 		return sprites.get("close")[0];
 	}
 
 	// When rpentity moves, it will be called with the data.
+	@Override
 	public void onMove(int x, int y, Direction direction, double speed) {
-		if (orientation == 1 || orientation == 3) {
+		if ((orientation == 1) || (orientation == 3)) {
 			this.x = x - 1;
 			this.y = y;
 		} else {
@@ -76,6 +79,7 @@ public class Door extends AnimatedEntity {
 		}
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -86,6 +90,7 @@ public class Door extends AnimatedEntity {
 		}
 	}
 
+	@Override
 	public void onChangedRemoved(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedRemoved(base, diff);
@@ -96,14 +101,17 @@ public class Door extends AnimatedEntity {
 		}
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public String defaultAction() {
 		return "Open";
 	}
@@ -113,11 +121,13 @@ public class Door extends AnimatedEntity {
 		list.add("Look");
 		list.add("Open");
 
-		if(open)
+		if(open) {
 			list.add("Close");
+		}
 	}
 
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Open") || action.equals("Close")) {
 			if (!open) {

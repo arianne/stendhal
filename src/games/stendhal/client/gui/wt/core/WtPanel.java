@@ -242,11 +242,13 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** returns height of the panel */
 	protected int getClientHeight() {
 		int clientHeight = height;
-		if (frame)
+		if (frame) {
 			clientHeight -= FRAME_SIZE * 2;
+		}
 
-		if (titleBar)
+		if (titleBar) {
 			clientHeight -= TITLEBAR_SIZE;
+		}
 
 		return clientHeight;
 	}
@@ -260,8 +262,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	protected int getClientY() {
 		int clienty = (frame ? FRAME_SIZE : 0);
 
-		if (titleBar)
+		if (titleBar) {
 			clienty += TITLEBAR_SIZE;
+		}
 
 		return clienty;
 	}
@@ -312,27 +315,33 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.y = y;
 
 		// check if we are inside the bounds of our parent
-		if (x < 0)
+		if (x < 0) {
 			this.x = 0;
+		}
 
-		if (hasParent() && parent.getWidth() - width < x)
+		if (hasParent() && (parent.getWidth() - width < x)) {
 			this.x = parent.getWidth() - width;
+		}
 
-		if (y < 0)
+		if (y < 0) {
 			this.y = 0;
+		}
 
-		if (checkHeight && hasParent() && parent.getHeight() - getHeight() < y) {
+		if (checkHeight && hasParent() && (parent.getHeight() - getHeight() < y)) {
 			this.y = parent.getHeight() - getHeight();
 		} else {
 			int height = 0;
-			if (hasTitleBar())
+			if (hasTitleBar()) {
 				height += TITLEBAR_SIZE;
+			}
 
-			if (hasFrame())
+			if (hasFrame()) {
 				height += FRAME_SIZE;
+			}
 
-			if (hasParent() && parent.getHeight() - height < y)
+			if (hasParent() && (parent.getHeight() - height < y)) {
 				this.y = parent.getHeight() - height;
+			}
 		}
 
 		// tell the windowmanager we're moved (if we use it)
@@ -505,8 +514,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** tells this panel (and all subpanels) to close */
 	public void close() {
-		if(isCloseable())
+		if(isCloseable()) {
 			setVisible(false);
+		}
 	}
 
 
@@ -542,8 +552,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		while(iter.hasNext()) {
 			WtPanel child = iter.next();
 
-			if(child.getParent() != this)
+			if(child.getParent() != this) {
 				iter.remove();
+			}
 		}
 	}
 
@@ -568,8 +579,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		/*
 		 * No change?
 		 */
-		if(visible != closed)
+		if(visible != closed) {
 			return;
+		}
 
 		/*
 		 * Apply to children
@@ -583,8 +595,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		if(closed) {
 			// inform all listeners we're closed
 			WtCloseListener [] listeners =
-				(WtCloseListener []) closeListeners.toArray(
-				 new WtCloseListener[closeListeners.size()]);
+				closeListeners.toArray(
+			 new WtCloseListener[closeListeners.size()]);
 
 			for (WtCloseListener listener : listeners) {
 				listener.onClose(name);
@@ -601,8 +613,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** notifies all registered clicklisteners that this panel has been clicked */
 	protected void notifyClickListeners(String name, Point point) {
 		WtClickListener [] listeners =
-			(WtClickListener []) clickListeners.toArray(
-				new WtClickListener[clickListeners.size()]);
+			clickListeners.toArray(
+			new WtClickListener[clickListeners.size()]);
 
 		for (WtClickListener listener : listeners) {
 			listener.onClick(name, point);
@@ -772,8 +784,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 */
 	public Graphics draw(Graphics g) {
 		// are we closed? then don't draw anything
-		if (isClosed())
+		if (isClosed()) {
 			return g;
+		}
 
 		/*
 		 * Remove un/reparented children
@@ -794,13 +807,15 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			panelGraphics.drawImage(image, 0, 0, null);
 		}
 
-		if (frame)
+		if (frame) {
 			panelGraphics = panelGraphics.create(FRAME_SIZE, FRAME_SIZE, width
 					- (FRAME_SIZE * 2), height - (FRAME_SIZE * 2));
-		if (titleBar)
+		}
+		if (titleBar) {
 			panelGraphics = panelGraphics.create(0, TITLEBAR_SIZE + 2, width
 					- (FRAME_SIZE * 2), height - (FRAME_SIZE * 2)
 					- TITLEBAR_SIZE - 2);
+		}
 
 		if (!minimized) {
 			// now draw the childs
@@ -849,8 +864,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @return true when the point is in this panel, false otherwise
 	 */
 	public boolean isHit(int x, int y) {
-		if(isClosed())
+		if(isClosed()) {
 			return false;
+		}
 
 		int height = this.height;
 		int width = this.width;
@@ -859,22 +875,25 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			height = TITLEBAR_SIZE + (frame ? FRAME_SIZE * 2 : 0);
 		}
 
-		if (x < this.x || y < this.y || x > this.x + width
-				|| y > this.y + height)
+		if ((x < this.x) || (y < this.y) || (x > this.x + width)
+				|| (y > this.y + height)) {
 			return false;
+		}
 		return true;
 	}
 
 	/** return true if the point is in the title */
 	private boolean hitTitle(int x, int y) {
 		// do we have a title
-		if (!titleBar)
+		if (!titleBar) {
 			return false;
+		}
 
 		// 
-		if (x < FRAME_SIZE || y < FRAME_SIZE || x > width - FRAME_SIZE
-				|| y > FRAME_SIZE + TITLEBAR_SIZE)
+		if ((x < FRAME_SIZE) || (y < FRAME_SIZE) || (x > width - FRAME_SIZE)
+				|| (y > FRAME_SIZE + TITLEBAR_SIZE)) {
 			return false;
+		}
 
 		return true;
 	}
@@ -886,12 +905,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** return a object for dragging which is at the position (x,y) or null */
 	protected WtDraggable getDragged(int x, int y) {
-		if(isClosed())
+		if(isClosed()) {
 			return null;
+		}
 
 		// if the user drags our titlebar we return ourself
-		if (hitTitle(x, y))
+		if (hitTitle(x, y)) {
 			return this;
+		}
 
 		// translate point to client coordinates
 		x -= getClientX();
@@ -953,8 +974,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			if (panel.isHit(x, y)) {
 				// the child checks itself
 				if (panel.checkDropped(x - panel.getX(), y - panel.getY(),
-						droppedObject))
+						droppedObject)) {
 					return true;
+				}
 			}
 		}
 		// no drop target found
@@ -988,8 +1010,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * processed
 	 */
 	public synchronized boolean onMouseClick(Point p) {
-		if(isClosed())
+		if(isClosed()) {
 			return false;
+		}
 
 		// check if the minimize button has been clicked
 		if (titleBar && minimizeable && hitMinimizeButton(p.x, p.y)) {
@@ -1025,8 +1048,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				panel.onMouseClick(point);
 
 				// bail out when we're closed during a callback
-				if (isClosed())
+				if (isClosed()) {
 					break;
+				}
 
 				// click processed
 				return true;
@@ -1038,8 +1062,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** callback for a doubleclick */
 	public synchronized boolean onMouseDoubleClick(Point p) {
-		if(isClosed())
+		if(isClosed()) {
 			return false;
+		}
 
 		// translate point to client coordinates
 		Point p2 = p.getLocation();
@@ -1064,8 +1089,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** the right mouse button has been clicked (callback) */
 	public synchronized boolean onMouseRightClick(Point p) {
-		if(isClosed())
+		if(isClosed()) {
 			return false;
+		}
 
 		// translate point to client coordinates
 		Point p2 = p.getLocation();
@@ -1089,8 +1115,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** ignored */
 	public boolean dragStarted() {
-		if(isClosed())
+		if(isClosed()) {
 			return false;
+		}
 
 		dragPosition = new Point(x, y);
 		return true;
@@ -1108,8 +1135,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** moves the child panel on top of all others */
 	private void focus(WtPanel child) {
-		if (!children.remove(child))
+		if (!children.remove(child)) {
 			return;
+		}
 
 		children.addFirst(child);
 	}
@@ -1128,6 +1156,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/** toString */
+	@Override
 	public String toString() {
 		return super.toString() + ": " + name + " at " + x + "x" + y + " size:"
 				+ width + "x" + height;

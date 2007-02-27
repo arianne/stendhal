@@ -19,7 +19,6 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.*;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.client.gui.wt.core.WtList;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 
@@ -30,8 +29,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
@@ -60,13 +57,15 @@ public class Buddies extends WtPanel {
 	}
 
 	/** we're using the window manager */
+	@Override
 	protected boolean useWindowManager() {
 		return true;
 	}
 
+	@Override
 	public synchronized boolean onMouseRightClick(Point p) {
 		int i = ((int) p.getY() - 2) / 20 - 1;
-		if (i < buddies.size() && i >= 0) {
+		if ((i < buddies.size()) && (i >= 0)) {
 
 			/**
 			 * don't know if this is the right way to find out
@@ -160,9 +159,11 @@ public class Buddies extends WtPanel {
 
 
 	/** refreshes the player stats and draws them */
+	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed())
+		if(isClosed()) {
 			return g;
+		}
 
 		Graphics clientg = super.draw(g);
 		

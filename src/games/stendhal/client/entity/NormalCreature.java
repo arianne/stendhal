@@ -24,6 +24,7 @@ public class NormalCreature extends Creature {
 		super( object);
 	}
 
+	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 		Sprite creature = loadAnimationSprite(object);
@@ -42,6 +43,7 @@ public class NormalCreature extends Creature {
 		sprites.get("move_left")[3] = sprites.get("move_left")[1];
 	}
 
+	@Override
 	protected Sprite defaultAnimation() {
 		animation = "move_up";
 		return sprites.get("move_up")[0];

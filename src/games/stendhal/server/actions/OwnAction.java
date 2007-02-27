@@ -42,7 +42,7 @@ public class OwnAction extends ActionListener {
 		// BUG: This features is potentially abusable right now. Consider
 		// removing it...
 		if (player.hasSheep() && action.has("target")
-				&& action.getInt("target") == -1) // Allow release of sheep
+				&& (action.getInt("target") == -1)) // Allow release of sheep
 		{
 			Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 			player.removeSheep(sheep);

@@ -46,10 +46,12 @@ public class DBValues {
 	 * @return the calculated dbValue
 	 */
 	public static float getDBValue(int volume){
-		if (volume < 0)
+		if (volume < 0) {
 			volume = 0;
-		if (volume > 100)
+		}
+		if (volume > 100) {
 			volume = 100;
+		}
 		return dBValues[volume]; 
 	}
 	

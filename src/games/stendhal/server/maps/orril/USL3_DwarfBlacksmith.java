@@ -38,6 +38,7 @@ public class USL3_DwarfBlacksmith implements ZoneConfigurator {
 
 	private void buildBlacksmith(StendhalRPZone zone) {
 		SpeakerNPC hogart = new SpeakerNPC("Hogart") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes=new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(20,10));
@@ -50,6 +51,7 @@ public class USL3_DwarfBlacksmith implements ZoneConfigurator {
 				setPath(nodes,true);
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting();
 				addJob("I am a master blacksmith. I used to forge weapons in secret for the dwarves in the mine, but they have forgotten me and my #stories.");

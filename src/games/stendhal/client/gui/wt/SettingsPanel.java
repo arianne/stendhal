@@ -23,7 +23,6 @@ import games.stendhal.client.entity.Player;
 //import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.*;
 import games.stendhal.common.CollisionDetection;
-import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.Point;
 import java.util.HashMap;
@@ -56,9 +55,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	/** the inventory */
 	private EntityContainer inventory;
 
-	/** the frame */
-	private WtPanel frame;
-
 	/** the player */
 	private Player player;
 
@@ -70,8 +66,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 200);
 
 		this.gameObjects = gameObjects;
-		this.frame = frame;
-
 		setTitletext("Settings");
 
 		setFrame(true);
@@ -132,6 +126,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	}
 
 	/** we're using the window manager */
+	@Override
 	protected boolean useWindowManager() {
 		return true;
 	}

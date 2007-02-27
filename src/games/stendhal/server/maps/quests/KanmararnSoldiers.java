@@ -150,7 +150,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				}
 			}
 
-			if(questLeatherLegs != null && questNote != null && questScaleArmor != null) {
+			if((questLeatherLegs != null) && (questNote != null) && (questScaleArmor != null)) {
 				engine.say("Oh my! Peter, Tom and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.");
 				player.addXP(2500);
 				player.drop(questLeatherLegs);

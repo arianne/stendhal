@@ -87,6 +87,7 @@ public class DiceGambling extends AbstractQuest {
 					ConversationStates.ATTENDING,
 					null,
 					new ChatAction() {
+						@Override
 						public void fire(Player player, String text, SpeakerNPC npc) {
 							if (player.drop("money", STAKE)) {
 								Dice dice = (Dice) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("dice");

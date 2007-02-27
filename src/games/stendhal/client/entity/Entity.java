@@ -330,7 +330,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	}
 
 	public boolean stopped() {
-		return dx == 0 && dy == 0;
+		return (dx == 0) && (dy == 0);
 	}
 
 	/**

@@ -18,8 +18,6 @@ import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
-import games.stendhal.server.rule.EntityManager;
-
 import java.util.Map;
 
 import marauroa.common.game.RPObject;
@@ -100,7 +98,7 @@ public class Scroll extends StackableItem implements UseListener {
 	@Override
 	public String describe() {
 		String text = super.describe();
-		if (has("infostring") && get("infostring") != null) {
+		if (has("infostring") && (get("infostring") != null)) {
 			text += " Upon it is written: " + get("infostring");
 		}
 		return (text);

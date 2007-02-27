@@ -62,7 +62,7 @@ public class DisplaceAction extends ActionListener {
 						PassiveEntity entity = (PassiveEntity) object;
 
 						if (player.nextTo(entity, 0.25)
-								&& player.squaredDistance(x, y) < 8 * 8
+								&& (player.squaredDistance(x, y) < 8 * 8)
 								&& !zone.simpleCollides(entity, x, y)) {
 							StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "displace",
 									entity.get("type"));

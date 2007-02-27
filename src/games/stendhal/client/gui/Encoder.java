@@ -25,8 +25,9 @@ public class Encoder {
         for (int i=0;i<nameSet.size();i++) {
             if(nameSet.get(i)) {
                 strBuff.append('1');
-            }else
-                strBuff.append('0');
+            } else {
+				strBuff.append('0');
+			}
         }
         strBuff.reverse();
         
@@ -65,8 +66,9 @@ public class Encoder {
         for (int i=0;i<nameSet.size();i++) {
             if(nameSet.get(i)) {
                 strBuff.append('1');
-            }else
-                strBuff.append('0');
+            } else {
+				strBuff.append('0');
+			}
         }
         
         strBuff.reverse();
@@ -94,8 +96,9 @@ public class Encoder {
         for (int i=0;i<binaryString.length();i++) {
             if (binaryString.charAt(i) == '1') {
                 bitTrue = true;
-            }else
-                bitTrue = false;
+            } else {
+				bitTrue = false;
+			}
             bset.set(i,bitTrue);
         }
         return bset;

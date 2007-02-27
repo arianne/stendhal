@@ -34,6 +34,7 @@ public class Corpse extends PassiveEntity {
 		super( object);
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 
 		return new Rectangle.Double(x, y, (double)sprite.getWidth()
@@ -41,12 +42,14 @@ public class Corpse extends PassiveEntity {
 				/ GameScreen.SIZE_UNIT_PIXELS);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, (double)sprite.getWidth()
 				/ GameScreen.SIZE_UNIT_PIXELS, (double)sprite.getHeight()
 				/ GameScreen.SIZE_UNIT_PIXELS);
 	}
 
+	@Override
 	protected void loadSprite(RPObject object) {
 		String corpseType = object.get("type");
 
@@ -64,22 +67,26 @@ public class Corpse extends PassiveEntity {
 		sprite = store.getSprite(translate(corpseType));
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 	}
 
+	@Override
 	public String defaultAction() {
 		return "Inspect";
 	}
 
 
+	@Override
 	protected void buildOfferedActions(List list) {
 		list.add("Look");
 		list.add("Inspect");
 	}
 
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Inspect")) {
 			if (!isContentShowing()) {
@@ -93,7 +100,7 @@ public class Corpse extends PassiveEntity {
 
 	/** whether the inspect window is showing for this corpse. */
 	public boolean isContentShowing() {
-		return contentWindow != null && !contentWindow.isClosed();
+		return (contentWindow != null) && !contentWindow.isClosed();
 	}
 
 

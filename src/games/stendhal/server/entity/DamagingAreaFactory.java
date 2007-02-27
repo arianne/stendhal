@@ -117,14 +117,17 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 		String	s;
 
 
-		if((s = ctx.getAttribute("players-only")) == null)
+		if((s = ctx.getAttribute("players-only")) == null) {
 			return false;
+		}
 
-		if(s.equals("true"))
+		if(s.equals("true")) {
 			return true;
+		}
 
-		if(s.equals("false"))
+		if(s.equals("false")) {
 			return false;
+		}
 
 		throw new IllegalArgumentException(
 			"Invalid 'players-only' attribute: " + s);
@@ -146,8 +149,9 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 		String	s;
 
 
-		if((s = ctx.getAttribute("probability")) == null)
+		if((s = ctx.getAttribute("probability")) == null) {
 			return 0.0;
+		}
 
 		try {
 			return Integer.parseInt(s) / 100.0;

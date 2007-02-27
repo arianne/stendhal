@@ -14,10 +14,7 @@ import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.IRPZone;
-
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
@@ -114,26 +111,30 @@ public class OnePlayerArea extends Entity implements MovementListener {
 			/*
 			 * Ignore same entity
 			 */
-			if(zentity.getID().equals(entity.getID()))
+			if(zentity.getID().equals(entity.getID())) {
 				continue;
+			}
 
 			/*
 			 * Ghosts don't count
 			 */
-			if(zentity.isGhost())
+			if(zentity.isGhost()) {
 				continue;
+			}
 
 			/*
 			 * Only players (ignore friends)
 			 */
-			if(!(zentity instanceof Player))
+			if(!(zentity instanceof Player)) {
 				continue;
+			}
 
 			/*
 			 * In area?
 			 */
-			if(area.intersects(zentity.getArea()))
+			if(area.intersects(zentity.getArea())) {
 				return true;
+			}
 		}
 
 		return false;
@@ -165,19 +166,22 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	 * @return	<code>true</code> if an RPEntity is given and it
 	 *		is occupied by someone else.
 	 */
+	@Override
 	public boolean isObstacle(Entity entity) {
 		/*
 		 * Only applies to RPEntity's
 		 */
-		if(!(entity instanceof RPEntity))
+		if(!(entity instanceof RPEntity)) {
 			return false;
+		}
 
 		/*
 		 * Special exception for ghosts
 		 * (should this method even get called for ghosts???)
 		 */
-		if(entity.isGhost())
+		if(entity.isGhost()) {
 			return false;
+		}
 
 
 		return slowObstacleCheck(entity);

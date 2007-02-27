@@ -217,8 +217,8 @@ public class ShouterMain {
 					i++;
 				}
 
-				if (username != null && password != null && character != null
-						&& host != null && port != null) {
+				if ((username != null) && (password != null) && (character != null)
+						&& (host != null) && (port != null)) {
 					ShouterMain shouter = new ShouterMain(host, username, password, character, port, tcp);
 					shouter.script();
 					return;

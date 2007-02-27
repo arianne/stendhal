@@ -29,6 +29,7 @@ public class Food extends AnimatedEntity {
 		super( object);
 	}
 
+	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
@@ -46,11 +47,13 @@ public class Food extends AnimatedEntity {
 				5, 1, 1, 1));
 	}
 
+	@Override
 	protected Sprite defaultAnimation() {
 		animation = "0";
 		return sprites.get("0")[0];
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -62,18 +65,21 @@ public class Food extends AnimatedEntity {
 
 			// TODO this causes problems because of unidentified content refresh
 			// events (e.g. synchronizing)
-			if (amount > oldAmount)
+			if (amount > oldAmount) {
 				playSound("fruit-regrow", 10, 25);
+			}
 		} else if (base.has("amount")) {
 			animation = base.get("amount");
 			amount = base.getInt("amount");
 		}
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}

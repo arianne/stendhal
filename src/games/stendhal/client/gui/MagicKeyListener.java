@@ -74,8 +74,9 @@ public class MagicKeyListener implements KeyListener {
 	 * @effects creates a new MagicKeyListener.
 	 */
 	public MagicKeyListener(KeyListener adaptee, boolean assumeAllReleased) {
-		if (adaptee == null)
+		if (adaptee == null) {
 			throw new IllegalArgumentException();
+		}
 		this.adaptee = adaptee;
 		this.assumeAllReleased = assumeAllReleased;
 	}

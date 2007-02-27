@@ -40,6 +40,7 @@ public class BuddyListDialog extends ManagedDialog {
 	// ManagedDialog
 	//
 
+	@Override
 	protected JComponent createContent() {
 		content = new BuddyListPanel();
 

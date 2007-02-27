@@ -111,52 +111,53 @@ public abstract class Creature extends NPC {
 
 		// cyclic sound management
 		if (type.startsWith("creature")) {
-			if (name.equals("wolf"))
+			if (name.equals("wolf")) {
 				SoundSystem.startSoundCycle(this, "wolf-patrol", 40000, 10, 50,
 						100);
-			else if (name.equals("rat") || name.equals("caverat")
-					|| name.equals("venomrat"))
+			} else if (name.equals("rat") || name.equals("caverat")
+					|| name.equals("venomrat")) {
 				SoundSystem.startSoundCycle(this, "rats-patrol", 15000, 10, 30,
 						80);
-			else if (name.equals("razorrat"))
+			} else if (name.equals("razorrat")) {
 				SoundSystem.startSoundCycle(this, "razorrat-patrol", 60000, 10,
 						50, 75);
-			else if (name.equals("gargoyle"))
+			} else if (name.equals("gargoyle")) {
 				SoundSystem.startSoundCycle(this, "gargoyle-patrol", 45000, 10,
 						50, 100);
-			else if (name.equals("boar"))
+			} else if (name.equals("boar")) {
 				SoundSystem.startSoundCycle(this, "boar-patrol", 30000, 20, 50,
 						100);
-			else if (name.equals("bear"))
+			} else if (name.equals("bear")) {
 				SoundSystem.startSoundCycle(this, "bear-patrol", 45000, 30, 80,
 						75);
-			else if (name.equals("giantrat"))
+			} else if (name.equals("giantrat")) {
 				SoundSystem.startSoundCycle(this, "giantrat-patrol", 30000, 30,
 						60, 65);
-			else if (name.equals("cobra"))
+			} else if (name.equals("cobra")) {
 				SoundSystem.startSoundCycle(this, "cobra-patrol", 60000, 20,
 						60, 65);
-			else if (name.equals("kobold"))
+			} else if (name.equals("kobold")) {
 				SoundSystem.startSoundCycle(this, "kobold-patrol", 30000, 40,
 						70, 80);
-			else if (name.equals("goblin"))
+			} else if (name.equals("goblin")) {
 				SoundSystem.startSoundCycle(this, "goblin-patrol", 50000, 30,
 						85, 65);
-			else if (name.equals("troll"))
+			} else if (name.equals("troll")) {
 				SoundSystem.startSoundCycle(this, "troll-patrol", 25000, 20,
 						60, 100);
-			else if (name.equals("orc"))
+			} else if (name.equals("orc")) {
 				SoundSystem.startSoundCycle(this, "orc-patrol", 45000, 30, 80,
 						50);
-			else if (name.equals("ogre"))
+			} else if (name.equals("ogre")) {
 				SoundSystem.startSoundCycle(this, "ogre-patrol", 40000, 30, 60,
 						80);
-			else if (name.equals("skeleton"))
+			} else if (name.equals("skeleton")) {
 				SoundSystem.startSoundCycle(this, "skeleton-patrol", 60000, 30,
 						60, 80);
-			else if (name.equals("cyclops"))
+			} else if (name.equals("cyclops")) {
 				SoundSystem.startSoundCycle(this, "cyclops-patrol", 45000, 30,
 						75, 100);
+			}
 		}
 	}
 
@@ -177,26 +178,27 @@ public abstract class Creature extends NPC {
 		}
 	}
 
+	@Override
 	public void draw(GameScreen screen) {
 		super.draw(screen);
 
 		if (Debug.CREATURES_DEBUG_CLIENT && !hidePath) {
 			Graphics g2d = screen.expose();
 
-			if (targetMoved && targetMovedPath != null) {
+			if (targetMoved && (targetMovedPath != null)) {
 				int delta = GameScreen.SIZE_UNIT_PIXELS / 2;
 				g2d.setColor(Color.red);
 				drawPath(screen, targetMovedPath,
 						GameScreen.SIZE_UNIT_PIXELS / 2);
 			}
 
-			if (patrol && patrolPath != null) {
+			if (patrol && (patrolPath != null)) {
 				g2d.setColor(Color.green);
 				drawPath(screen, patrolPath,
 						GameScreen.SIZE_UNIT_PIXELS / 2 + 1);
 			}
 
-			if ((moveToTarget || moveToTargetNew) && moveToTargetPath != null) {
+			if ((moveToTarget || moveToTargetNew) && (moveToTargetPath != null)) {
 				g2d.setColor(Color.blue);
 				drawPath(screen, moveToTargetPath,
 						GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
@@ -227,6 +229,7 @@ public abstract class Creature extends NPC {
 		return list;
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -321,10 +324,12 @@ public abstract class Creature extends NPC {
 		}
 	}
 
+	@Override
 	public String defaultAction() {
 		return "Attack";
 	}
 
+	@Override
 	public String[] offeredActions() {
 		String[] superList = super.offeredActions();
 
@@ -343,6 +348,7 @@ public abstract class Creature extends NPC {
 		return list;
 	}
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("[show path]")) {
 			hidePath = false;

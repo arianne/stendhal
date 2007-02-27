@@ -46,6 +46,7 @@ public class USL3_Catacombs implements ZoneConfigurator {
 
 	private void buildSemosCatacombs3Area(StendhalRPZone zone) {
 	SpeakerNPC sicky = new SpeakerNPC("Markovich") {
+			@Override
 			protected void createPath() {
 				List<Path.Node> nodes=new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(61,60));
@@ -57,6 +58,7 @@ public class USL3_Catacombs implements ZoneConfigurator {
 			     	setPath(nodes,true);
 			}
 
+			@Override
 			protected void createDialog() {
 			        addGoodbye();
 			    	add(ConversationStates.ATTENDING,

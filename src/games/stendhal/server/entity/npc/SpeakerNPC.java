@@ -256,7 +256,7 @@ public abstract class SpeakerNPC extends NPC {
 
 			if (player.has("text")
 					&& get("zoneid").equals(player.get("zoneid"))
-					&& Math.abs(px - x) < range && Math.abs(py - y) < range) {
+					&& (Math.abs(px - x) < range) && (Math.abs(py - y) < range)) {
 				players.add(player);
 			}
 		}
@@ -287,7 +287,7 @@ public abstract class SpeakerNPC extends NPC {
 			int py = player.getY();
 
 			if (get("zoneid").equals(player.get("zoneid"))
-					&& Math.abs(px - x) < range && Math.abs(py - y) < range) {
+					&& (Math.abs(px - x) < range) && (Math.abs(py - y) < range)) {
 				int squaredDistanceOfThisPlayer = (px - x) * (px - x) + (py - y) * (py - y);
 				if (squaredDistanceOfThisPlayer < squaredDistanceOfNearestPlayer) {
 					squaredDistanceOfNearestPlayer = squaredDistanceOfThisPlayer;
@@ -350,10 +350,10 @@ public abstract class SpeakerNPC extends NPC {
 		}
 
          // now look for nearest player only if there's an initChatAction 
-		if (!talking() && initChatAction != null) {
+		if (!talking() && (initChatAction != null)) {
 			Player nearest = getNearestPlayer(7);
 			if (nearest != null) {
-				if (initChatCondition == null || initChatCondition
+				if ((initChatCondition == null) || initChatCondition
 								.fire(nearest, null, this)) {
 					initChatAction.fire(nearest, null, this);
 				}
@@ -424,7 +424,7 @@ public abstract class SpeakerNPC extends NPC {
 		 *         text has been said
 		 */
 		public boolean absoluteJump(String text) {
-			return state == ConversationStates.ANY && trigger.equalsIgnoreCase(text);
+			return (state == ConversationStates.ANY) && trigger.equalsIgnoreCase(text);
 		}
 
 		/**
@@ -433,12 +433,12 @@ public abstract class SpeakerNPC extends NPC {
 		 * @return
 		 */
 		public boolean matches(int state, String text) {
-			return state == this.state && trigger.equalsIgnoreCase(text);
+			return (state == this.state) && trigger.equalsIgnoreCase(text);
 		}
 
 		public boolean matchesBeginning(int state, String text) {
 			text = text.toLowerCase();
-			return state == this.state && text.startsWith(trigger);
+			return (state == this.state) && text.startsWith(trigger);
 		}
 
 		/**
@@ -570,10 +570,10 @@ public abstract class SpeakerNPC extends NPC {
 
 		// First we try to match with stateless transitions.
 		for (Transition transition : stateTransitionTable) {
-			if ((type == 0 && currentState != ConversationStates.IDLE
+			if (((type == 0) && (currentState != ConversationStates.IDLE)
 					&& transition.absoluteJump(text))
-					|| (type == 1 && transition.matches(currentState, text))
-					|| (type == 2 && transition.matchesBeginning(currentState, text))) {
+					|| ((type == 1) && transition.matches(currentState, text))
+					|| ((type == 2) && transition.matchesBeginning(currentState, text))) {
 				if (transition.isConditionFulfilled(player, text, this)) {
 					if (transition.condition == null) {
 						listConditionLess.add(transition);

@@ -4,9 +4,7 @@ import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
 import javax.swing.JProgressBar;
-import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 

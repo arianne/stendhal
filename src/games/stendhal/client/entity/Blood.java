@@ -24,6 +24,7 @@ public class Blood extends AnimatedEntity {
 		super( base);
 	}
 
+	@Override
 	protected void buildAnimations(RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
@@ -37,11 +38,13 @@ public class Blood extends AnimatedEntity {
 				"data/sprites/combat/blood_red.png", 3, 1, 1, 1));
 	}
 
+	@Override
 	protected Sprite defaultAnimation() {
 		animation = "0";
 		return sprites.get("0")[0];
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -51,10 +54,12 @@ public class Blood extends AnimatedEntity {
 		}
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}

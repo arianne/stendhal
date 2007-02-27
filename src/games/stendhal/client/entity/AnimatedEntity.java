@@ -61,6 +61,7 @@ public abstract class AnimatedEntity extends Entity {
 	 * Redefined method to load all the animation and set a default frame to be
 	 * rendered
 	 */
+	@Override
 	protected void loadSprite(RPObject object) {
 		sprites = new HashMap<String, Sprite[]>();
 
@@ -68,19 +69,20 @@ public abstract class AnimatedEntity extends Entity {
 		sprite = defaultAnimation();
 	}
 
+	@Override
 	public void onMove(int x, int y, Direction direction, double speed) {
 		super.onMove(x, y, direction, speed);
 
 		if (!stopped()) {
-			if (dx > 0 && dx * dx >= dy * dy) {
+			if ((dx > 0) && (dx * dx >= dy * dy)) {
 				animation = "move_right";
-			} else if (dx < 0 && dx * dx >= dy * dy) {
+			} else if ((dx < 0) && (dx * dx >= dy * dy)) {
 				animation = "move_left";
 			}
 
-			if (dy > 0 && dy * dy >= dx * dx) {
+			if ((dy > 0) && (dy * dy >= dx * dx)) {
 				animation = "move_down";
-			} else if (dy < 0 && dy * dy >= dx * dx) {
+			} else if ((dy < 0) && (dy * dy >= dx * dx)) {
 				animation = "move_up";
 			}
 		} else {
@@ -129,6 +131,7 @@ public abstract class AnimatedEntity extends Entity {
 	}
 
 	/** Draws this entity in the screen */
+	@Override
 	public void draw(GameScreen screen) {
 		if (System.currentTimeMillis() - delta > 100) {
 			delta = System.currentTimeMillis();

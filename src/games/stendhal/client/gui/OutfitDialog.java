@@ -142,14 +142,18 @@ public class OutfitDialog extends javax.swing.JDialog {
         SpriteStore st=SpriteStore.get();        
         
         // load the sprites
-        for (int i = 1; i < hairs.length; i++)
-            hairs[i] = st.getSprite("data/sprites/outfit/hair_" + i + ".png");
-        for (int i = 0; i < heads.length; i++)
-            heads[i] = st.getSprite("data/sprites/outfit/head_" + i + ".png");
-        for (int i = 0; i < bodies.length; i++)
-            bodies[i] = st.getSprite("data/sprites/outfit/player_base_" + i + ".png");
-        for (int i = 1; i < clothes.length; i++)
-            clothes[i] = st.getSprite("data/sprites/outfit/dress_" + i + ".png");
+        for (int i = 1; i < hairs.length; i++) {
+			hairs[i] = st.getSprite("data/sprites/outfit/hair_" + i + ".png");
+		}
+        for (int i = 0; i < heads.length; i++) {
+			heads[i] = st.getSprite("data/sprites/outfit/head_" + i + ".png");
+		}
+        for (int i = 0; i < bodies.length; i++) {
+			bodies[i] = st.getSprite("data/sprites/outfit/player_base_" + i + ".png");
+		}
+        for (int i = 1; i < clothes.length; i++) {
+			clothes[i] = st.getSprite("data/sprites/outfit/dress_" + i + ".png");
+		}
             
         // to allow choosing no hair and no clothes
         hairs[0] = st.getSprite("data/sprites/outfit/sprite_empty.png");
@@ -213,7 +217,8 @@ public class OutfitDialog extends javax.swing.JDialog {
         setBackground(new java.awt.Color(200, 200, 200));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
+            @Override
+			public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
@@ -403,80 +408,88 @@ public class OutfitDialog extends javax.swing.JDialog {
 
     /** Clothes Right button */
     private void jbtRightClothesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRightClothesActionPerformed
-        if (clothes_index < clothes.length - 1)
-            clothes_index++;
-        else
-            clothes_index = 0;
+        if (clothes_index < clothes.length - 1) {
+			clothes_index++;
+		} else {
+			clothes_index = 0;
+		}
         drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
         drawFinalPlayer(jlblFinalResult.getGraphics());
     }//GEN-LAST:event_jbtRightClothesActionPerformed
 
     /** Clothes Left button */
     private void jbtLeftClothesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLeftClothesActionPerformed
-        if (clothes_index > 0)
-            clothes_index--;
-        else
-            clothes_index = clothes.length - 1;
+        if (clothes_index > 0) {
+			clothes_index--;
+		} else {
+			clothes_index = clothes.length - 1;
+		}
         drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
         drawFinalPlayer(jlblFinalResult.getGraphics());
     }//GEN-LAST:event_jbtLeftClothesActionPerformed
 
     /** Bodies Right button */
     private void jbtRightBodiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRightBodiesActionPerformed
-        if (bodies_index < bodies.length - 1)
-            bodies_index++;
-        else
-            bodies_index = 0;
+        if (bodies_index < bodies.length - 1) {
+			bodies_index++;
+		} else {
+			bodies_index = 0;
+		}
         drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
         drawFinalPlayer(jlblFinalResult.getGraphics());
     }//GEN-LAST:event_jbtRightBodiesActionPerformed
 
     /** Bodies Left button */
     private void jbtLeftBodiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLeftBodiesActionPerformed
-        if (bodies_index > 0)
-            bodies_index--;
-        else
-            bodies_index = bodies.length - 1;
+        if (bodies_index > 0) {
+			bodies_index--;
+		} else {
+			bodies_index = bodies.length - 1;
+		}
         drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
         drawFinalPlayer(jlblFinalResult.getGraphics());
     }//GEN-LAST:event_jbtLeftBodiesActionPerformed
 
     /** Heads Right button */
     private void jbtRightHeadsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRightHeadsActionPerformed
-        if (heads_index < heads.length - 1)
-            heads_index++;
-        else
-            heads_index = 0;
+        if (heads_index < heads.length - 1) {
+			heads_index++;
+		} else {
+			heads_index = 0;
+		}
         drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
         drawFinalPlayer(jlblFinalResult.getGraphics());
     }//GEN-LAST:event_jbtRightHeadsActionPerformed
 
     /** Heads Left button */
     private void jbtLeftHeadsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLeftHeadsActionPerformed
-        if (heads_index > 0)
-            heads_index--;
-        else
-            heads_index = heads.length - 1;
+        if (heads_index > 0) {
+			heads_index--;
+		} else {
+			heads_index = heads.length - 1;
+		}
         drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
         drawFinalPlayer(jlblFinalResult.getGraphics());
     }//GEN-LAST:event_jbtLeftHeadsActionPerformed
 
     /** Hairs Right button */
     private void jbtRightHairsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRightHairsActionPerformed
-        if (hairs_index < hairs.length - 1)
-            hairs_index++;
-        else
-            hairs_index = 0;
+        if (hairs_index < hairs.length - 1) {
+			hairs_index++;
+		} else {
+			hairs_index = 0;
+		}
         drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
         drawFinalPlayer(jlblFinalResult.getGraphics());
     }//GEN-LAST:event_jbtRightHairsActionPerformed
 
     /** Hairs Left button */
     private void jbtLeftHairsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLeftHairsActionPerformed
-        if (hairs_index > 0)
-            hairs_index--;
-        else
-            hairs_index = hairs.length - 1;
+        if (hairs_index > 0) {
+			hairs_index--;
+		} else {
+			hairs_index = hairs.length - 1;
+		}
         drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
         drawFinalPlayer(jlblFinalResult.getGraphics());
     }//GEN-LAST:event_jbtLeftHairsActionPerformed
@@ -529,7 +542,8 @@ public class OutfitDialog extends javax.swing.JDialog {
      * Private class that handles the update (repaint) of jLabels
      */
     private class AnimationTask extends TimerTask {
-        public void run() {
+        @Override
+		public void run() {
             // draws single parts
        		drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
            	drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
@@ -595,24 +609,27 @@ public class OutfitDialog extends javax.swing.JDialog {
     private void generateAllOutfits()
       {
       /** TEST METHOD: DON'T NO USE */
-      for(bodies_index=0;bodies_index<bodies.length;bodies_index++)
-      for(clothes_index=0;clothes_index<clothes.length;clothes_index++)
-      for(heads_index=0;heads_index<heads.length;heads_index++)
-      for(hairs_index=0;hairs_index<hairs.length;hairs_index++)
-        {
-        String name=Integer.toString(bodies_index+clothes_index*100+heads_index*100*100+hairs_index*100*100*100);
-        System.out.println ("Creating "+name+".png");
-        Image image=new java.awt.image.BufferedImage(48,64,java.awt.image.BufferedImage.TYPE_INT_ARGB);
-        drawFinalPlayer(image.getGraphics());
-        try
-          {
-        javax.imageio.ImageIO.write((java.awt.image.RenderedImage)image,"png",new File("outfits\\"+name+".png"));
-          }
-        catch(Exception e)
-          {
-          e.printStackTrace();
-          }
-        }
+      for(bodies_index=0;bodies_index<bodies.length;bodies_index++) {
+		for(clothes_index=0;clothes_index<clothes.length;clothes_index++) {
+			for(heads_index=0;heads_index<heads.length;heads_index++) {
+				for(hairs_index=0;hairs_index<hairs.length;hairs_index++)
+				    {
+				    String name=Integer.toString(bodies_index+clothes_index*100+heads_index*100*100+hairs_index*100*100*100);
+				    System.out.println ("Creating "+name+".png");
+				    Image image=new java.awt.image.BufferedImage(48,64,java.awt.image.BufferedImage.TYPE_INT_ARGB);
+				    drawFinalPlayer(image.getGraphics());
+				    try
+				      {
+				    javax.imageio.ImageIO.write((java.awt.image.RenderedImage)image,"png",new File("outfits\\"+name+".png"));
+				      }
+				    catch(Exception e)
+				      {
+				      e.printStackTrace();
+				      }
+				    }
+			}
+		}
+	}
       }
 
 //  public OutfitDialog(java.awt.Frame parent, String title, int outfit, int total_hairs, int total_heads, int total_bodies, int total_clothes) {

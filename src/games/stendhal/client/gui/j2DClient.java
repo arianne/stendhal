@@ -93,6 +93,7 @@ public class j2DClient extends JFrame {
 			// This fixs the problem.
 			Runtime.getRuntime().exec("xset r off");
 			Runtime.getRuntime().addShutdownHook(new Thread() {
+				@Override
 				public void run() {
 					try {
 						Runtime.getRuntime().exec("xset r on");
@@ -196,6 +197,7 @@ public class j2DClient extends JFrame {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		// add a listener to respond to the user trying to close the window.
 		addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				inGameGUI.showQuitDialog();
 			}
@@ -231,17 +233,20 @@ public class j2DClient extends JFrame {
 		// playerChatText (see comment above)
 		// we need to add the KeyListener to canvas, too intensifly@gmx.com
 
-		if (System.getProperty("os.name").toLowerCase().contains("os x"))
+		if (System.getProperty("os.name").toLowerCase().contains("os x")) {
 			canvas.addKeyListener(inGameGUI);
+		}
 
 		client.setTextLineGUI(playerChatText);
 
 		client.setGameLogDialog(new GameLogDialog(this, playerChatText));
 
 		addComponentListener(new ComponentAdapter() {
+			@Override
 			public void componentHidden(ComponentEvent e) {
 			}
 
+			@Override
 			public void componentMoved(ComponentEvent e) {
 				Dimension size = getSize();
 				Point location = getLocation();
@@ -251,9 +256,11 @@ public class j2DClient extends JFrame {
 								(int) (location.getY() + size.getHeight())));
 			}
 
+			@Override
 			public void componentResized(ComponentEvent e) {
 			}
 
+			@Override
 			public void componentShown(ComponentEvent e) {
 			}
 		});
@@ -401,7 +408,7 @@ public class j2DClient extends JFrame {
 
 			if (dsx - x < -2) {
 				sdx += 0.6;
-			} else if (dsx - x > -0.5 && dsx - x < 0.5) {
+			} else if ((dsx - x > -0.5) && (dsx - x < 0.5)) {
 				sdx /= 1.6;
 			} else if (dsx - x > 2) {
 				sdx -= 0.6;
@@ -409,7 +416,7 @@ public class j2DClient extends JFrame {
 
 			if (dsy - y < -2) {
 				sdy += 0.6;
-			} else if (dsy - y > -0.5 && dsy - y < 0.5) {
+			} else if ((dsy - y > -0.5) && (dsy - y < 0.5)) {
 				sdy /= 1.6;
 			} else if (dsy - y > 2) {
 				sdy -= 0.6;
@@ -442,8 +449,8 @@ public class j2DClient extends JFrame {
 				i++;
 			}
 
-			if (username != null && password != null && host != null
-					&& port != null) {
+			if ((username != null) && (password != null) && (host != null)
+					&& (port != null)) {
 				StendhalClient client = StendhalClient.get();
 				try {
 					client.connect(host, Integer.parseInt(port));

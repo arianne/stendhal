@@ -56,6 +56,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			});
 		}
 
+		@Override
 		public void fire(Player player, String text, SpeakerNPC engine)	{
 			String questInfo = player.getQuest("daily");
 			String questKill = null;
@@ -69,7 +70,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				questLast = tokens[1];
 				questCount = tokens[2];
 			}
-			if(questKill != null && !"done".equals(questKill)) {
+			if((questKill != null) && !"done".equals(questKill)) {
 				engine.say("You're already on a quest to slay a " + questKill + ". Say #complete if you're done with it!");
 				return;
 			}
@@ -87,7 +88,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			int start = 0;
 			int level = player.getLevel();
 			for (Creature creature : sortedcreatures) {
-				if((start == 0) && creature.getLevel() > 0 && creature.getLevel() >= level - 5) {
+				if((start == 0) && (creature.getLevel() > 0) && (creature.getLevel() >= level - 5)) {
 					start=current;					
 				}
 				if(creature.getLevel() > level + 5) {
@@ -127,6 +128,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
 		
+		@Override
 		public void fire(Player player, String text, SpeakerNPC engine)	{
 			String questInfo = player.getQuest("daily");
 			String questKill = null;

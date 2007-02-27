@@ -54,6 +54,7 @@ public class WalkBlocker extends Entity {
 	 *
 	 * @return	<code>true</code> if the other entity is an RPEntity.
 	 */
+	@Override
 	public boolean isObstacle(Entity entity) {
 		return (entity instanceof RPEntity);
 	}

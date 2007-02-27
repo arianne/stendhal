@@ -47,17 +47,21 @@ public class TimeUtil {
 	 *				(in positive values).
 	 */
 	public static void approxTimeUntil(StringBuffer sbuf, int seconds) {
-		if(approxUnit(sbuf, seconds, SECONDS_IN_WEEK, "week"))
+		if(approxUnit(sbuf, seconds, SECONDS_IN_WEEK, "week")) {
 			return;
+		}
 
-		if(approxUnit(sbuf, seconds, SECONDS_IN_DAY, "day"))
+		if(approxUnit(sbuf, seconds, SECONDS_IN_DAY, "day")) {
 			return;
+		}
 
-		if(approxUnit(sbuf, seconds, SECONDS_IN_HOUR, "hour"))
+		if(approxUnit(sbuf, seconds, SECONDS_IN_HOUR, "hour")) {
 			return;
+		}
 
-		if(approxUnit(sbuf, seconds, SECONDS_IN_MINUTE, "minute"))
+		if(approxUnit(sbuf, seconds, SECONDS_IN_MINUTE, "minute")) {
 			return;
+		}
 
 		sbuf.append("less than a minute");
 	}
@@ -80,8 +84,9 @@ public class TimeUtil {
 		int	remainder;
 
 
-		if((count = amount / size) == 0)
+		if((count = amount / size) == 0) {
 			return false;
+		}
 
 		remainder = amount - (count * size);
 
@@ -188,10 +193,11 @@ public class TimeUtil {
 		if((count = seconds / SECONDS_IN_DAY) != 0) {
 			seconds -= (count * SECONDS_IN_DAY);
 
-			if(appended)
+			if(appended) {
 				sbuf.append(", ");
-			else
+			} else {
 				appended = true;
+			}
 
 			sbuf.append(count);
 			sbuf.append(' ');
@@ -201,10 +207,11 @@ public class TimeUtil {
 		if((count = seconds / SECONDS_IN_HOUR) != 0) {
 			seconds -= (count * SECONDS_IN_HOUR);
 
-			if(appended)
+			if(appended) {
 				sbuf.append(", ");
-			else
+			} else {
 				appended = true;
+			}
 
 			sbuf.append(count);
 			sbuf.append(' ');
@@ -214,10 +221,11 @@ public class TimeUtil {
 		if((count = seconds / SECONDS_IN_MINUTE) != 0) {
 			seconds -= (count * SECONDS_IN_MINUTE);
 
-			if(appended)
+			if(appended) {
 				sbuf.append(", ");
-			else
+			} else {
 				appended = true;
+			}
 
 			sbuf.append(count);
 			sbuf.append(' ');
@@ -225,8 +233,9 @@ public class TimeUtil {
 		}
 
 		if(!appended || (forceSeconds && (seconds != 0))) {
-			if(appended)
+			if(appended) {
 				sbuf.append(", ");
+			}
 
 			sbuf.append(seconds);
 			sbuf.append(' ');

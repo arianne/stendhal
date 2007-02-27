@@ -170,7 +170,7 @@ public class CreatureXMLLoader extends DefaultHandler {
 					quantity = Integer.parseInt(attrs.getValue(i));
 				}
 			}
-			if (item != null && slot != null) {
+			if ((item != null) && (slot != null)) {
 				equipsItems.add(new Creature.EquipItem(slot, item, quantity));
 			}
 		} else if (qName.equals("respawn")) {
@@ -192,7 +192,7 @@ public class CreatureXMLLoader extends DefaultHandler {
 				}
 			}
 
-			if (name != null && probability != null && range != null) {
+			if ((name != null) && (probability != null) && (range != null)) {
 				logger.debug(name + ":" + probability + ":" + range);
 				if (range.contains("[")) {
 					range = range.replace("[", "");

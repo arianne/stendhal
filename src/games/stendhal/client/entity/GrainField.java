@@ -79,6 +79,7 @@ public class GrainField extends AnimatedEntity {
 		}
 	}
 
+	@Override
 	protected Sprite defaultAnimation() {
 		animation = "0";
 		return sprites.get("0")[0];
@@ -109,17 +110,20 @@ public class GrainField extends AnimatedEntity {
 		return new Rectangle.Double(x, y + height - 1, 1, 1);
 	}
 	
+	@Override
 	public String defaultAction() {
 		return actionName;
 	}
 
 
+	@Override
 	protected void buildOfferedActions(List list) {
 		list.add("Look");
 		list.add(actionName);
 	}
 
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals(actionName)) {
 			RPAction rpaction = new RPAction();

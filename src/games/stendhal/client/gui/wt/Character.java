@@ -150,6 +150,7 @@ public class Character extends WtPanel {
 	}
 
 	/** we're using the window manager */
+	@Override
 	protected boolean useWindowManager() {
 		return true;
 	}
@@ -182,8 +183,9 @@ public class Character extends WtPanel {
 		for(String slotName : slotsCarrying) {
 			RPSlot slot = playerEntity.getSlot(slotName);
 
-			if(slot == null)
+			if(slot == null) {
 				continue;
+			}
 
                         EntitySlot entitySlot = slotPanels.get(slotName);
 
@@ -210,7 +212,7 @@ public class Character extends WtPanel {
 		int defitem = playerEntity.getDefItem();
 
 		// TODO: Remove this code after next release
-		if (atkitem < 0 || defitem < 0) {
+		if ((atkitem < 0) || (defitem < 0)) {
 			atkitem = 0;
 			defitem = 0;
 			for (RPSlot slot : playerEntity.getSlots()) {
@@ -258,9 +260,11 @@ public class Character extends WtPanel {
 	}
 
 	/** refreshes the player stats and draws them */
+	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed())
+		if(isClosed()) {
 			return g;
+		}
 
 		refreshPlayerStats();
 		return super.draw(g);

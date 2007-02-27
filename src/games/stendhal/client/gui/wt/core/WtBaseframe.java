@@ -68,18 +68,21 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	}
 
 	/** resizing is disabled */
+	@Override
 	public void resizeToFitClientArea(int width, int height) {
 	}
 
 	/** returns the currently dragged object or null if there is none */
 	public synchronized WtDraggable getDraggedObject() {
 		// currently no drag operation?
-		if (!dragInProgress || draggedObject == null)
+		if (!dragInProgress || (draggedObject == null)) {
 			return null;
+		}
 
 		// we handle all panels ourself
-		if (draggedObject instanceof WtPanel)
+		if (draggedObject instanceof WtPanel) {
 			return null;
+		}
 
 		// return the object
 		return draggedObject;
@@ -89,6 +92,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 * Sets the context menu. It is closed automatically one the user clicks.
 	 * outside of it.
 	 */
+	@Override
 	public void setContextMenu(JPopupMenu jcontextMenu) {
 		if (this.jcontextMenu != null) {
 			this.jcontextMenu.setVisible(false);
@@ -105,12 +109,13 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	 *            graphics where to render to
 	 * @return same graphics object
 	 */
+	@Override
 	public synchronized Graphics draw(Graphics g) {
 		// draw the stuff
 		super.draw(g);
 
 		// do we have a dragged object?
-		if (dragInProgress && draggedObject != null) {
+		if (dragInProgress && (draggedObject != null)) {
 			// translate graphics to local start of the dragged object
 			Graphics dragg = g.create();
 			dragg.translate(dragStartPoint.x, dragStartPoint.y);
@@ -123,7 +128,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	/** stops the dragging operations */
 	private void stopDrag(MouseEvent e) {
 		// be sure to stop dragging operations when theleft button is released
-		if (dragInProgress && draggedObject != null) {
+		if (dragInProgress && (draggedObject != null)) {
 			Point p = e.getPoint();
 			draggedObject.dragFinished(p);
 			// now check if there is a drop-target direct unter the mouse cursor
@@ -179,7 +184,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 
 		int onmask = InputEvent.CTRL_DOWN_MASK;
 		if (System.getProperty("os.name").toLowerCase().contains("os x")
-				&& (e.getModifiersEx() & onmask) == onmask) {
+				&& ((e.getModifiersEx() & onmask) == onmask)) {
 			onMouseRightClick(p);
 		}
 
@@ -266,18 +271,22 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	}
 
 	/** disabled */
+	@Override
 	public void setName(String name) {
 	}
 
 	/** disabled */
+	@Override
 	public void setTitleBar(boolean titleBar) {
 	}
 
 	/** disabled */
+	@Override
 	public void setFrame(boolean frame) {
 	}
 
 	/** disabled */
+	@Override
 	public void setCloseable(boolean minimizeable) {
 	}
 }

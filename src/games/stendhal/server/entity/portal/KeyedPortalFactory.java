@@ -59,8 +59,9 @@ public class KeyedPortalFactory implements ConfigurableFactory {
 		String	s;
 
 
-		if((s = ctx.getAttribute("quantity")) == null) 
+		if((s = ctx.getAttribute("quantity")) == null) {
 			return 1;
+		}
 
 		try  {
 			return Integer.parseInt(s);

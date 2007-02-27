@@ -59,9 +59,11 @@ public class WtButton extends WtPanel {
 	}
 
 	/** draws the button */
+	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed())
+		if(isClosed()) {
 			return g;
+		}
 
 		Graphics clientArea = super.draw(g);
 
@@ -74,6 +76,7 @@ public class WtButton extends WtPanel {
 	}
 
 	/** button is clicked */
+	@Override
 	public boolean onMouseClick(Point point) {
 		setEmboss(!isEmbossed());
 		// tell all registered listeners that we're clicked

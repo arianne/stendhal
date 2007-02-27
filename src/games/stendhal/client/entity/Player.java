@@ -59,7 +59,7 @@ public class Player extends RPEntity {
 			} else {
 				outfitOrg = 0;
 			}
-			if (outfit == base.getInt("outfit") && outfit != 0) {
+			if ((outfit == base.getInt("outfit")) && (outfit != 0)) {
 				// We avoid creating again the outfit if it is already done.
 				// Save CPU cycles.
 				return;
@@ -198,7 +198,7 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onEnter(int x, int y) {
-		if (client.getPlayer() != null&& client.getPlayer().getID().equals(getID())) {
+		if ((client.getPlayer() != null)&& client.getPlayer().getID().equals(getID())) {
 			WorldObjects.firePlayerMoved( this);
 		}
 	}

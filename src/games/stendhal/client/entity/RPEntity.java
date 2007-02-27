@@ -227,8 +227,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// Called when entity says text
 	public void onTalk(String text) {
-		if (client.getPlayer() != null
-				&& distance(client.getPlayer()) < 15 * 15) {
+		if ((client.getPlayer() != null)
+				&& (distance(client.getPlayer()) < 15 * 15)) {
 			//TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
 
@@ -240,16 +240,20 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				line = line.substring(0, 84);
 				int l = line.lastIndexOf(" ");
 				int ln = line.lastIndexOf("-");
-				if (ln > l)
+				if (ln > l) {
 					l = ln;
+				}
 				ln = line.lastIndexOf(".");
-				if (ln > l)
+				if (ln > l) {
 					l = ln;
+				}
 				ln = line.lastIndexOf(",");
-				if (ln > l)
+				if (ln > l) {
 					l = ln;
-				if (l > 0)
+				}
+				if (l > 0) {
 					line = line.substring(0, l);
+				}
 				line = line + " ...";
 			}
 			GameObjects.getInstance().addText(this, /* getName()+" says: "+ */line,
@@ -297,7 +301,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	// When entity is poisoned
 	public void onPoisoned(int amount) {
 		if (getID().equals(client.getPlayer().getID())
-				|| distance(client.getPlayer()) < 15 * 15) {
+				|| (distance(client.getPlayer()) < 15 * 15)) {
 			isPoisoned = true;
 			damageSprites.add(GameScreen.get().createString(
 					Integer.toString(amount), Color.red));
@@ -334,28 +338,39 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
-		if (diff.has("base_hp"))
+		if (diff.has("base_hp")) {
 			base_hp = diff.getInt("base_hp");
-		if (diff.has("hp"))
+		}
+		if (diff.has("hp")) {
 			hp = diff.getInt("hp");
-		if (diff.has("hp/base_hp"))
+		}
+		if (diff.has("hp/base_hp")) {
 			hp_base_hp = (float) diff.getDouble("hp/base_hp");
-		if (diff.has("atk"))
+		}
+		if (diff.has("atk")) {
 			atk = diff.getInt("atk");
-		if (diff.has("def"))
+		}
+		if (diff.has("def")) {
 			def = diff.getInt("def");
-		if (diff.has("xp"))
+		}
+		if (diff.has("xp")) {
 			xp = diff.getInt("xp");
-		if (diff.has("level"))
+		}
+		if (diff.has("level")) {
 			level = diff.getInt("level");
-		if (diff.has("atk_xp"))
+		}
+		if (diff.has("atk_xp")) {
 			atkXp = diff.getInt("atk_xp");
-		if (diff.has("def_xp"))
+		}
+		if (diff.has("def_xp")) {
 			defXp = diff.getInt("def_xp");
-		if (diff.has("atk_item"))
+		}
+		if (diff.has("atk_item")) {
 			atkItem = diff.getInt("atk_item");
-		if (diff.has("def_item"))
+		}
+		if (diff.has("def_item")) {
 			defItem = diff.getInt("def_item");
+		}
 
 		Color nameColor = Color.white;
 
@@ -391,11 +406,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			name = diff.get("name");
 			name = name.replace("_", " ");
 			nameImage = GameScreen.get().createString(getName(), nameColor);
-		} else if (name == null && diff.has("class")) {
+		} else if ((name == null) && diff.has("class")) {
 			name = diff.get("class");
 			name = name.replace("_", " ");
 			nameImage = GameScreen.get().createString(getName(), nameColor);
-		} else if (name == null && diff.has("type")) {
+		} else if ((name == null) && diff.has("type")) {
 			name = diff.get("type");
 			name = name.replace("_", " ");
 			nameImage = GameScreen.get().createString(getName(), nameColor);
@@ -416,7 +431,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 		if (diff.has("level") && base.has("level")) {
 			if (getID().equals(client.getPlayer().getID())
-					|| distance(client.getPlayer()) < 15 * 15) {
+					|| (distance(client.getPlayer()) < 15 * 15)) {
 				String text = getName() + " reaches Level " + getLevel();
 
 				GameObjects.getInstance().addText(this, GameScreen.get().createString(text,
@@ -534,7 +549,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			screen.draw(poisoned, sx - 1.25, sy - 0.25);
 		}
 
-		if (attacked && System.currentTimeMillis() - combatIconTime < 4 * 300) {
+		if (attacked && (System.currentTimeMillis() - combatIconTime < 4 * 300)) {
 			// Draw bottom right combat icon
 			Rectangle2D rect = getArea();
 			double sx = rect.getMaxX();
@@ -553,7 +568,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			}
 		}
 
-		if (damageSprites != null && damageSprites.size() > 0) // Draw the
+		if ((damageSprites != null) && (damageSprites.size() > 0)) // Draw the
 																// damage done
 		{
 			long current = System.currentTimeMillis();
@@ -569,7 +584,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				i++;
 			}
 
-			if (damageSpritesTimes.size() > 0
+			if ((damageSpritesTimes.size() > 0)
 					&& (current - damageSpritesTimes.get(0) > 6 * 300)) {
 				damageSprites.remove(0);
 				damageSpritesTimes.remove(0);
@@ -616,8 +631,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			rpaction.put("type", "stop");
 			rpaction.put("attack", "");
 			client.send(rpaction);
-		} else
+		} else {
 			super.onAction(client, action, params);
+		}
 	}
 
 	@Override
@@ -749,7 +765,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				Integer.toString(damage), Color.red));
 		damageSpritesTimes.add( Long.valueOf(System.currentTimeMillis()));
 
-		boolean showAttackInfoForPlayer = client.getPlayer() != null
+		boolean showAttackInfoForPlayer = (client.getPlayer() != null)
 				&& (getID().equals(client.getPlayer().getID()) || attacker
 						.getID().equals(client.getPlayer().getID()));
 		showAttackInfoForPlayer = showAttackInfoForPlayer

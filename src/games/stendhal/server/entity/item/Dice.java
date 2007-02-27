@@ -56,7 +56,7 @@ public class Dice extends Item {
 	 * is running.  
 	 */
 	private void updateCroupierNPC() {
-		if (croupierNPC == null && has("infostring")) {
+		if ((croupierNPC == null) && has("infostring")) {
 			String name = get("infostring");
 			croupierNPC = (CroupierNPC) NPCList.get().get(name); 
 		}

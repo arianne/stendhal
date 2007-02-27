@@ -37,6 +37,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 	
 	// ------------------------------------------------------------------------
 	
+	@Override
 	public boolean load(Player player, String[] args) {
 		groovyBinding.setVariable("player", player);
 		groovyBinding.setVariable("args", args);

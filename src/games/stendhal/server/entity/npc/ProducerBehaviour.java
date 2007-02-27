@@ -243,6 +243,7 @@ public class ProducerBehaviour extends Behaviour {
 	 * @param player
 	 * @param amount
 	 */
+	@Override
 	public boolean transactAgreedDeal(SpeakerNPC npc, Player player) {
 		if (getMaximalAmount(player) < amount) {
 			// The player tried to cheat us by placing the resource
@@ -295,8 +296,9 @@ public class ProducerBehaviour extends Behaviour {
 			StackableItem products = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(getProductName());            
 			products.setQuantity(numberOfProductItems);
 
-			if(isProductBound())
+			if(isProductBound()) {
 				products.put("bound", player.getName());
+			}
 
 			player.equip(products, true);
 			npc.say("Welcome back! I'm done with your order. Here you have "

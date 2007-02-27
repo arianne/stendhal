@@ -14,11 +14,9 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
-import games.stendhal.server.scripting.ScriptingNPC;
 import marauroa.common.game.IRPZone;
 
 public class IL0_Bakery implements ZoneConfigurator {

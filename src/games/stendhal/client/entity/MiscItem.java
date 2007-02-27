@@ -22,6 +22,7 @@ public class MiscItem extends Item {
 		super( object);
 	}
 
+	@Override
 	protected void loadSprite(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 

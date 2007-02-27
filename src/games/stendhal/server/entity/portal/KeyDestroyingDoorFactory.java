@@ -35,6 +35,7 @@ public class KeyDestroyingDoorFactory extends LockedDoorFactory {
 	 *
 	 * @see		KeyDestroyingDoor
 	 */
+	@Override
 	public Object create(ConfigurableFactoryContext ctx)
 	 throws IllegalArgumentException {
 		return new KeyDestroyingDoor(

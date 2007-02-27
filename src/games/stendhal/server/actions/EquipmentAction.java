@@ -208,12 +208,12 @@ public class EquipmentAction extends ActionListener {
 			}
 
 			RPObject base = zone.get(baseobjectid);
-			if (!(base instanceof Player || base instanceof Corpse || base instanceof Chest)) {
+			if (!((base instanceof Player) || (base instanceof Corpse) || (base instanceof Chest))) {
 				// Only allow to drop objects from players, corpses or chests
 				return;
 			}
 
-			if (base instanceof Player && !player.getID().equals(base.getID())) {
+			if ((base instanceof Player) && !player.getID().equals(base.getID())) {
 				// Only allowed to drop item of our own player.
 				return;
 			}
@@ -250,19 +250,19 @@ public class EquipmentAction extends ActionListener {
 
 				int quantity = 0;
 
-				if (entity instanceof Stackable && action.has(QUANTITY)) {
+				if ((entity instanceof Stackable) && action.has(QUANTITY)) {
 					int entityQuantity = ((Stackable) entity).getQuantity();
 
 					quantity = action.getInt(QUANTITY);
-					if (entityQuantity < 1 || quantity < 1
-							|| quantity >= entityQuantity) {
+					if ((entityQuantity < 1) || (quantity < 1)
+							|| (quantity >= entityQuantity)) {
 						quantity = 0; // quantity == 0 performs a regular move
 										// of the entire item
 					}
 				}
 
 				if (player.nextTo(baseEntity, 0.25)
-						&& baseEntity.squaredDistance(x, y) < 8 * 8
+						&& (baseEntity.squaredDistance(x, y) < 8 * 8)
 						&& !zone.simpleCollides(entity, x, y)) {
 					if (quantity != 0) {
 						StackableItem newItem = ((StackableItem) entity).splitOff(quantity);
@@ -335,7 +335,7 @@ public class EquipmentAction extends ActionListener {
 				}
 
 				// is the container a player and not the current one?
-				if (parent instanceof Player
+				if ((parent instanceof Player)
 						&& !parent.getID().equals(player.getID())) {
 					// trying to remove an item from another player
 					return;
@@ -483,7 +483,7 @@ public class EquipmentAction extends ActionListener {
 				slot = action.get(TARGET_SLOT);
 
 				// is the container a player and not the current one?
-				if (parent instanceof Player
+				if ((parent instanceof Player)
 						&& !parent.getID().equals(player.getID())) {
 					logger
 							.warn("trying to drop an item into another players inventory");
@@ -585,7 +585,7 @@ public class EquipmentAction extends ActionListener {
 				}
 
 				// check the maximum level of contained elements
-				if (entity.slots().size() > 0 && depth > MAX_CONTAINED_DEPTH) {
+				if ((entity.slots().size() > 0) && (depth > MAX_CONTAINED_DEPTH)) {
 					logger.warn("maximum contained depth (is: " + depth
 							+ " max: " + MAX_CONTAINED_DEPTH
 							+ ") reached, equip rejected");
@@ -594,14 +594,14 @@ public class EquipmentAction extends ActionListener {
 			} else {
 				logger.warn("entity: " + entity + " zone: " + zone);
 				// check if the destination is free
-				if (zone != null && zone.simpleCollides(entity, x, y)) {
+				if ((zone != null) && zone.simpleCollides(entity, x, y)) {
 					logger.warn("object " + entity + " collides with " + x
 							+ "x" + y);
 					return false;
 				}
 				// and in reach
 				if (entity.has("x") && entity.has("y")
-						&& entity.squaredDistance(x, y) > 8 * 8) {
+						&& (entity.squaredDistance(x, y) > 8 * 8)) {
 					logger.warn("object " + entity + " is too far away from "
 							+ x + "x" + y);
 					return false;

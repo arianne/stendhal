@@ -114,7 +114,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		 * invoked shortly after the player did his/her third move.
 		 */
 		public void onTurnReached(int currentTurn, String message) {
-			if (checkBoard() && moveCount <= MAX_MOVES) {
+			if (checkBoard() && (moveCount <= MAX_MOVES)) {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Congratulations you solved the quiz.");
 					StackableItem money = (StackableItem) StendhalRPWorld.get()

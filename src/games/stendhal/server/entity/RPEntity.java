@@ -215,8 +215,9 @@ public abstract class RPEntity extends Entity {
 	 * @return	<code>true</code> if the other entity is an RPEntity.
 	 */
 	public boolean isObstacle(Entity entity) {
-		if(isGhost())
+		if(isGhost()) {
 			return false;
+		}
 
 		return (entity instanceof RPEntity);
 	}
@@ -793,7 +794,7 @@ public abstract class RPEntity extends Entity {
 	}
 
 	public boolean pathCompleted() {
-		return path != null && pathPosition == path.size() - 1;
+		return (path != null) && (pathPosition == path.size() - 1);
 	}
 
 	public void setPathPosition(int pathPos) {
@@ -1370,7 +1371,7 @@ public abstract class RPEntity extends Entity {
 	 */
 	public boolean canDoRangeAttacks() {
 		StackableItem projectiles = getProjectilesIfRangeCombat();
-		return projectiles != null && projectiles.getQuantity() > 0;
+		return (projectiles != null) && (projectiles.getQuantity() > 0);
 	}
 
 }

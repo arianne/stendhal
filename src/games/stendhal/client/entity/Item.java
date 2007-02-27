@@ -17,7 +17,6 @@ import games.stendhal.client.StendhalClient;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
@@ -61,6 +60,7 @@ public class Item extends PassiveEntity {
 	}
 
 
+	@Override
 	protected void buildOfferedActions(List list) {
 		list.add("Use");
 		list.add("Look");

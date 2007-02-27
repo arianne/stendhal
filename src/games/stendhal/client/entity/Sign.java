@@ -34,6 +34,7 @@ public class Sign extends Entity {
 		super( object);
 	}
 
+	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
@@ -85,15 +86,18 @@ public class Sign extends Entity {
 		}
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
 
+	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Look")) {
 			GameObjects.getInstance().addText(this, textImage, textPersistTime);
