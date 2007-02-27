@@ -134,15 +134,15 @@ public class GameScreen {
 
 		g = (Graphics2D) strategy.getDrawGraphics();
 
-		if (((x + dx / 60.0 >= 0) && dx < 0)
-				|| ((x + dx / 60.0 + getWidth() < ww) && dx > 0)) {
+		if (((x + dx / 60.0 >= 0) && (dx < 0))
+				|| ((x + dx / 60.0 + getWidth() < ww) && (dx > 0))) {
 			x += dx / 60.0;
 		} else {
 			dx = 0;
 		}
 
-		if ((y + dy / 60.0 >= 0 && dy < 0)
-				|| (y + dy / 60.0 + getHeight() < wh && dy > 0)) {
+		if (((y + dy / 60.0 >= 0) && (dy < 0))
+				|| ((y + dy / 60.0 + getHeight() < wh) && (dy > 0))) {
 			y += dy / 60.0;
 		} else {
 			dy = 0;
@@ -219,7 +219,7 @@ public class GameScreen {
 		float spritew = sprite.getWidth() + 2;
 		float spriteh = sprite.getHeight() + 2;
 
-		if ((sx >= -spritew && sx < sw) && (sy >= -spriteh && sy < sh)) {
+		if (((sx >= -spritew) && (sx < sw)) && ((sy >= -spriteh) && (sy < sh))) {
 			sprite.draw(g, sx, sy);
 		}
 	}
@@ -253,17 +253,18 @@ public class GameScreen {
 		int i = 1;
 		// Bugfix: Prevent NPE for empty text intensifly@gmx.com
 		String textUnderWidth = "";
-		if (words != null)
+		if (words != null) {
 			textUnderWidth = words[0];
+		}
 
-		while (i < words.length
-				&& g.getFontMetrics().stringWidth(
-						textUnderWidth + " " + words[i]) < width) {
+		while ((i < words.length)
+				&& (g.getFontMetrics().stringWidth(
+						textUnderWidth + " " + words[i]) < width)) {
 			textUnderWidth = textUnderWidth + " " + words[i];
 			i++;
 		}
 
-		if (textUnderWidth.length() == 0 && words.length > 1) {
+		if ((textUnderWidth.length() == 0) && (words.length > 1)) {
 			textUnderWidth = words[1];
 		}
 
@@ -336,8 +337,9 @@ public class GameScreen {
 
 		int delta = 0;
 
-		if (fillColor != null)
+		if (fillColor != null) {
 			delta = 10;
+		}
 		text = text.trim();
 		while (text.length() > 0) {
 			int pos = positionStringOfSize(text, width - delta);

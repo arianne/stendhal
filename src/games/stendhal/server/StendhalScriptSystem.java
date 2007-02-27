@@ -50,7 +50,7 @@ public class StendhalScriptSystem {
 	public void logic() {
 		for (Pair<ScriptCondition, ScriptAction> script : scripts) {
             try {
-                if (script.first() == null || script.first().fire()) {
+                if ((script.first() == null) || script.first().fire()) {
                     if (script.second() != null) {
                         script.second().fire();
                     }

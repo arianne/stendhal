@@ -231,7 +231,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
             binding.setVariable("request", req);
             // access the file through the ScriptEngine, not the context object
             scriptEngine.run(resource, binding);
-            if (resp != null
+            if ((resp != null)
                     && !"text/html".equals(resp.getValue("Content-Type"))) {
                 out.writeTo(outStream);
             } else {
@@ -284,7 +284,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
                 resource += "index.html";
                 file = context.getFile(resource);
             }
-            if (!file.isDirectory() && file.length() > 0) {
+            if (!file.isDirectory() && (file.length() > 0)) {
                 Content content = context.getContent(resource);
                 boolean isHTML = "text/html".equals(content.getContentType());
                 OutputStream out;

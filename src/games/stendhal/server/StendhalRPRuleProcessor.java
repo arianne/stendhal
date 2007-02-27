@@ -269,7 +269,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public boolean bloodAt(int x, int y) {
 		for (Blood blood : bloods) {
-			if (blood.getX() == x && blood.getY() == y) {
+			if ((blood.getX() == x) && (blood.getY() == y)) {
 				return true;
 			}
 		}
@@ -432,7 +432,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				if (!object.stopped()) {
 					StendhalRPAction.move(object);
 				}
-				if (getTurn() % 5 == 0 && object.isAttacking()) // 1 round = 5
+				if ((getTurn() % 5 == 0) && object.isAttacking()) // 1 round = 5
 				// turns
 				{
 					StendhalRPAction.attack(object, object.getAttackTarget());

@@ -32,18 +32,22 @@ public enum Direction {
 	}
 
 	public int getdx() {
-		if (val == 2)
+		if (val == 2) {
 			return 1;
-		if (val == 4)
+		}
+		if (val == 4) {
 			return -1;
+		}
 		return 0;
 	}
 
 	public int getdy() {
-		if (val == 1)
+		if (val == 1) {
 			return -1;
-		if (val == 3)
+		}
+		if (val == 3) {
 			return 1;
+		}
 		return 0;
 	}
 

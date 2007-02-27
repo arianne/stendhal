@@ -263,8 +263,9 @@ public class GameObjects implements Iterable<Entity> {
 		Log4J.startMethod(logger, "clear");
 
 		// invalidate all entity objects
-		for (Iterator it = iterator(); it.hasNext();)
+		for (Iterator it = iterator(); it.hasNext();) {
 			((Entity) it.next()).onRemoved();
+		}
 
 		objects.clear();
 		attacks.clear();
@@ -277,14 +278,15 @@ public class GameObjects implements Iterable<Entity> {
 	public void clearTexts() {
 		Log4J.startMethod(logger, "clearText");
 
-		for (Iterator it = texts.iterator(); it.hasNext();)
+		for (Iterator it = texts.iterator(); it.hasNext();) {
 			textsToRemove.add((Text) it.next());
+		}
 		Log4J.finishMethod(logger, "clearText");
 
 	}
 
 	private void fireTalkEvent(TalkEvent entity, RPObject base, RPObject diff) {
-		if (diff == null && base == null) {
+		if ((diff == null) && (base == null)) {
 			// Remove case
 		} else if (diff == null) {
 			// First time case.
@@ -312,7 +314,7 @@ public class GameObjects implements Iterable<Entity> {
 
 	private void fireZoneChangeEvent(Entity entity, RPObject base, RPObject diff) {
 		RPObject.ID id = entity.getID();
-		if (diff == null && base == null) {
+		if ((diff == null) && (base == null)) {
 			// Remove case
 			entity.onLeaveZone(id.getZoneID());
 		} else if (diff == null) {
@@ -322,7 +324,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	private void fireMovementEvent(Entity entity, RPObject base, RPObject diff) {
-		if (diff == null && base == null) {
+		if ((diff == null) && (base == null)) {
 			// Remove case
 		} else if (diff == null) {
 			// First time case.
@@ -330,12 +332,14 @@ public class GameObjects implements Iterable<Entity> {
 			int y = base.getInt("y");
 
 			Direction direction = Direction.STOP;
-			if (base.has("dir"))
+			if (base.has("dir")) {
 				direction = Direction.build(base.getInt("dir"));
+			}
 
 			double speed = 0;
-			if (base.has("speed"))
+			if (base.has("speed")) {
 				speed = base.getDouble("speed");
+			}
 
 			entity.onMove(x, y, direction, speed);
 		} else {
@@ -345,30 +349,36 @@ public class GameObjects implements Iterable<Entity> {
 
 			int oldx = x, oldy = y;
 
-			if (diff.has("x"))
+			if (diff.has("x")) {
 				x = diff.getInt("x");
-			if (diff.has("y"))
+			}
+			if (diff.has("y")) {
 				y = diff.getInt("y");
+			}
 
 			Direction direction = Direction.STOP;
-			if (base.has("dir"))
+			if (base.has("dir")) {
 				direction = Direction.build(base.getInt("dir"));
-			if (diff.has("dir"))
+			}
+			if (diff.has("dir")) {
 				direction = Direction.build(diff.getInt("dir"));
+			}
 
 			double speed = 0;
-			if (base.has("speed"))
+			if (base.has("speed")) {
 				speed = base.getDouble("speed");
-			if (diff.has("speed"))
+			}
+			if (diff.has("speed")) {
 				speed = diff.getDouble("speed");
+			}
 
 			entity.onMove(x, y, direction, speed);
 
-			if (direction == Direction.STOP || speed == 0) {
+			if ((direction == Direction.STOP) || (speed == 0)) {
 				entity.onStop(x, y);
 			}
 
-			if (oldx != x && oldy != y) {
+			if ((oldx != x) && (oldy != y)) {
 				entity.onLeave(oldx, oldy);
 				entity.onEnter(x, y);
 			}
@@ -376,7 +386,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	private void fireHPEvent(HPEvent entity, RPObject base, RPObject diff) {
-		if (diff == null && base == null) {
+		if ((diff == null) && (base == null)) {
 			// Remove case
 		} else if (diff == null) {
 			// First time case.
@@ -412,12 +422,12 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	private void fireKillEvent(KillEvent entity, RPObject base, RPObject diff) {
-		if (diff == null && base == null) {
+		if ((diff == null) && (base == null)) {
 			// Remove case
 		} else if (diff == null) {
 			// First time case.
 		} else {
-			if (diff.has("hp/base_hp") && diff.getDouble("hp/base_hp") == 0) {
+			if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
 				RPEntity killer = null;
 				for (Map.Entry<RPEntity, RPEntity> entry : attacks.entrySet()) {
 					if (entry.getValue() == entity) {
@@ -431,7 +441,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	private void fireAttackEvent(RPEntity entity, RPObject base, RPObject diff) {
-		if (diff == null && base == null) {
+		if ((diff == null) && (base == null)) {
 			// Remove case
 			if (attacks.containsKey(entity)) {
 				entity.onStopAttack();
@@ -464,12 +474,12 @@ public class GameObjects implements Iterable<Entity> {
 						targetEntity.onMissed(entity);
 					}
 
-					if (risk > 0 && damage == 0) {
+					if ((risk > 0) && (damage == 0)) {
 						entity.onAttackBlocked(targetEntity);
 						targetEntity.onBlocked(entity);
 					}
 
-					if (risk > 0 && damage > 0) {
+					if ((risk > 0) && (damage > 0)) {
 						entity.onAttackDamage(targetEntity, damage);
 						targetEntity.onDamaged(entity, damage);
 					}
@@ -539,12 +549,12 @@ public class GameObjects implements Iterable<Entity> {
 							targetEntity.onMissed(entity);
 						}
 
-						if (risk > 0 && damage == 0) {
+						if ((risk > 0) && (damage == 0)) {
 							entity.onAttackBlocked(targetEntity);
 							targetEntity.onBlocked(entity);
 						}
 
-						if (risk > 0 && damage > 0) {
+						if ((risk > 0) && (damage > 0)) {
 							entity.onAttackDamage(targetEntity, damage);
 							targetEntity.onDamaged(entity, damage);
 						}
@@ -616,7 +626,7 @@ public class GameObjects implements Iterable<Entity> {
 		while (found == true) {
 			found = false;
 			for (Text item : texts) {
-				if (item.getX() == x && item.getY() == y) {
+				if ((item.getX() == x) && (item.getY() == y)) {
 					found = true;
 					y += 0.5;
 					break;
@@ -668,7 +678,9 @@ public class GameObjects implements Iterable<Entity> {
 			Entity entity = it.previous();
 
 			if (entity.getArea().contains(x, y)) {
-				if (entity.getType().compareTo("creature")==0) continue;
+				if (entity.getType().compareTo("creature")==0) {
+					continue;
+				}
 				return entity;
 			}
 		}
@@ -679,7 +691,9 @@ public class GameObjects implements Iterable<Entity> {
 			Entity entity = it.previous();
 
 			if (entity.getDrawedArea().contains(x, y)) {
-				if (entity.getType().compareTo("creature")==0) continue;
+				if (entity.getType().compareTo("creature")==0) {
+					continue;
+				}
 				return entity;
 			}
 		}

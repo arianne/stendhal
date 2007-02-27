@@ -48,28 +48,28 @@ public class textClient extends Thread {
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
 		handler = new PerceptionHandler(new DefaultPerceptionListener() {
+			@Override
 			public int onException(Exception e,
 					marauroa.common.net.MessageS2CPerception perception) {
 				e.printStackTrace();
 				System.out.println(perception);
 				return 0;
 			}
-
-			public boolean onMyRPObject(boolean changed, RPObject object) {
-				return false;
-			}
 		});
 
 		clientManager = new marauroa.client.ariannexp(
 				"games/stendhal/log4j.properties") {
+			@Override
 			protected String getGameName() {
 				return "stendhal";
 			}
 
+			@Override
 			protected String getVersionNumber() {
 				return stendhal.VERSION;
 			}
 
+			@Override
 			protected void onPerception(MessageS2CPerception message) {
 				try {
                      System.out.println("Received messge: " + message);
@@ -103,6 +103,7 @@ public class textClient extends Thread {
 				}
 			}
 
+			@Override
 			protected List<TransferContent> onTransferREQ(
 					List<TransferContent> items) {
 				for (TransferContent item : items) {
@@ -112,15 +113,18 @@ public class textClient extends Thread {
 				return items;
 			}
 
+			@Override
 			protected void onTransfer(List<TransferContent> items) {
 				System.out.println("Transfering ----");
 				for (TransferContent item : items) {
 					System.out.println(item);
-					for (byte ele : item.data)
+					for (byte ele : item.data) {
 						System.out.print((char) ele);
+					}
 				}
 			}
 
+			@Override
 			protected void onAvailableCharacters(String[] characters) {
 				System.out.println("Characters available");
 				for (String characterAvail : characters) {
@@ -134,6 +138,7 @@ public class textClient extends Thread {
 				}
 			}
 
+			@Override
 			protected void onServerInfo(String[] info) {
 				System.out.println("Server info");
 				for (String info_string : info) {
@@ -141,6 +146,7 @@ public class textClient extends Thread {
 				}
 			}
 
+			@Override
 			protected void onError(int code, String reason) {
 				System.out.println(reason);
 			}
@@ -148,6 +154,7 @@ public class textClient extends Thread {
 
 	}
 
+	@Override
 	public void run() {
 		try {
 			clientManager.connect(host, Integer.parseInt(port), tcp);
@@ -171,8 +178,9 @@ public class textClient extends Thread {
 			;
 		}
 
-		while (clientManager.logout() == false)
+		while (clientManager.logout() == false) {
 			;
+		}
 	}
 
 	public static void main(String[] args) {
@@ -198,16 +206,17 @@ public class textClient extends Thread {
                      } else if (args[i].equals("-P")) {
                          port = args[i + 1];
                      } else if (args[i].equals("-W")) {
-                         if("1".equals(args[i + 1]))
-                             ShowWorld = true;
+                         if("1".equals(args[i + 1])) {
+							ShowWorld = true;
+						}
                      } else if (args[i].equals("-t")) {
                     	 tcp = true;
                      }
 					i++;
 				}
 
-				if (username != null && password != null && character != null
-						&& host != null && port != null) {
+				if ((username != null) && (password != null) && (character != null)
+						&& (host != null) && (port != null)) {
 					System.out.println("Parameter operation");
 					new textClient(host, username, password, character, port, tcp).start();
 					return;

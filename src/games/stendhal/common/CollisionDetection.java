@@ -33,8 +33,9 @@ public class CollisionDetection {
 	}
 
 	public void clear() {
-		for (int i = 0; i < width * height; i++)
+		for (int i = 0; i < width * height; i++) {
 			blocked[i] = false;
+		}
 	}
 
 	public void init(int width, int height) {
@@ -46,7 +47,7 @@ public class CollisionDetection {
 	}
 
 	public void setCollide(int x, int y) {
-		if (x < 0 || x >= width || y < 0 || y >= height) {
+		if ((x < 0) || (x >= width) || (y < 0) || (y >= height)) {
 			return;
 		}
 
@@ -59,11 +60,11 @@ public class CollisionDetection {
 		double w = shape.getWidth();
 		double h = shape.getHeight();
 
-		if (x < 0 || x/* +w */>= width) {
+		if ((x < 0) || (x/* +w */>= width)) {
 			return;
 		}
 
-		if (y < 0 || y/* +h */>= height) {
+		if ((y < 0) || (y/* +h */>= height)) {
 			return;
 		}
 
@@ -110,8 +111,8 @@ public class CollisionDetection {
 	public void printaround(int x, int y, int size) {
 		for (int j = y - size; j < y + size; j++) {
 			for (int i = x - size; i < x + size; i++) {
-				if (j >= 0 && j < height && i >= 0 && i < width) {
-					if (j == y && i == x) {
+				if ((j >= 0) && (j < height) && (i >= 0) && (i < width)) {
+					if ((j == y) && (i == x)) {
 						System.out.print("O");
 					} else if (blocked[j * width + i] == false) {
 						System.out.print(".");
@@ -134,11 +135,11 @@ public class CollisionDetection {
 		// double w=shape.getWidth();
 		// double h=shape.getHeight();
 
-		if (x < 0 || x/* +w */>= width) {
+		if ((x < 0) || (x/* +w */>= width)) {
 			return true;
 		}
 
-		if (y < 0 || y/* +h */>= height) {
+		if ((y < 0) || (y/* +h */>= height)) {
 			return true;
 		}
 
@@ -163,11 +164,11 @@ public class CollisionDetection {
 			h += 1.0;
 		}
 
-		if (x < 0 || x/* +w */>= width) {
+		if ((x < 0) || (x/* +w */>= width)) {
 			return true;
 		}
 
-		if (y < 0 || y/* +h */>= height) {
+		if ((y < 0) || (y/* +h */>= height)) {
 			return true;
 		}
 
@@ -188,11 +189,11 @@ public class CollisionDetection {
 	}
 
 	public boolean collides(int x, int y) {
-		if (x < 0 || x >= width) {
+		if ((x < 0) || (x >= width)) {
 			return true;
 		}
 
-		if (y < 0 || y >= height) {
+		if ((y < 0) || (y >= height)) {
 			return true;
 		}
 

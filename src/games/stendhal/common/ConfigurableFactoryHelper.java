@@ -83,9 +83,6 @@ public class ConfigurableFactoryHelper {
 	 */
 	public static ConfigurableFactory getFactory(String className) {
 		Class		clazz;
-		Constructor	cnstr;
-
-
 		/*
 		 * First the <class>Factory form
 		 */

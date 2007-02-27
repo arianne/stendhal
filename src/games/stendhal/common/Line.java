@@ -10,6 +10,7 @@ public class Line {
 
 	public static void main(String[] args) {
 		renderLine(10, 10, 100, 50, new Action() {
+			@Override
 			public void fire(int x, int y) {
 				System.out.println(x + "," + y);
 			}

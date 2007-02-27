@@ -141,7 +141,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 			if (level.equals("int") == false) {
 				currentZone.interior = false;
 				currentZone.level = Integer.parseInt(level);
-				if (attrs.getValue("x") == null || attrs.getValue("y") == null || attrs.getValue("x").equals("null") || attrs.getValue("y").equals("null")) {
+				if ((attrs.getValue("x") == null) || (attrs.getValue("y") == null) || attrs.getValue("x").equals("null") || attrs.getValue("y").equals("null")) {
 					throw new RuntimeException("x or y propertied undefined for non \"int\" zone.");
 				}
 				currentZone.x = Integer.parseInt(attrs.getValue("x"));

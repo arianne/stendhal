@@ -107,11 +107,13 @@ public class StendhalClient extends ariannexp {
         cache.init();
     }
 
-    protected String getGameName() {
+    @Override
+	protected String getGameName() {
         return "stendhal";
     }
 
-    protected String getVersionNumber() {
+    @Override
+	protected String getVersionNumber() {
         return stendhal.VERSION;
     }
 
@@ -178,7 +180,7 @@ public class StendhalClient extends ariannexp {
     }
 
     public boolean isAdmin() {
-        return player != null && player.has("adminlevel")
+        return (player != null) && player.has("adminlevel")
                 && (player.getInt("adminlevel") >= 600);
     }
 
@@ -209,7 +211,8 @@ public class StendhalClient extends ariannexp {
         }
     }
 
-    protected void onPerception(MessageS2CPerception message) {
+    @Override
+	protected void onPerception(MessageS2CPerception message) {
         try {
             Log4J.startMethod(logger, "onPerception");
             if (logger.isDebugEnabled()) {
@@ -260,15 +263,15 @@ public class StendhalClient extends ariannexp {
 
                 if (x < 0) {
                     x = 0;
-                } else if (staticLayers.getWidth() != 0
-                        && x + screen.getWidth() > staticLayers.getWidth()) {
+                } else if ((staticLayers.getWidth() != 0)
+                        && (x + screen.getWidth() > staticLayers.getWidth())) {
                     x = staticLayers.getWidth() - screen.getWidth();
                 }
 
                 if (y < 0) {
                     y = 0;
-                } else if (staticLayers.getHeight() != 0
-                        && y + screen.getHeight() > staticLayers.getHeight()) {
+                } else if ((staticLayers.getHeight() != 0)
+                        && (y + screen.getHeight() > staticLayers.getHeight())) {
                     y = staticLayers.getHeight() - screen.getHeight();
                 }
 
@@ -280,8 +283,8 @@ public class StendhalClient extends ariannexp {
 
             /** This code emulate a perception loss. */
             if (Debug.EMULATE_PERCEPTION_LOSS
-                    && message.getPerceptionType() != Perception.SYNC
-                    && (message.getPerceptionTimestamp() % 30) == 0) {
+                    && (message.getPerceptionType() != Perception.SYNC)
+                    && ((message.getPerceptionTimestamp() % 30) == 0)) {
                 return;
             }
 
@@ -295,7 +298,8 @@ public class StendhalClient extends ariannexp {
     }
 
     
-    protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
+    @Override
+	protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
         Log4J.startMethod(logger, "onTransferREQ");
         for (TransferContent item : items) {
 
@@ -327,7 +331,8 @@ public class StendhalClient extends ariannexp {
                 (int) staticLayers.getHeight());
     }
 
-    protected void onTransfer(List<TransferContent> items) {
+    @Override
+	protected void onTransfer(List<TransferContent> items) {
         Log4J.startMethod(logger, "onTransfer");
         for (TransferContent item : items) {
             try {
@@ -341,7 +346,8 @@ public class StendhalClient extends ariannexp {
         Log4J.finishMethod(logger, "onTransfer");
     }
 
-    protected void onAvailableCharacters(String[] characters) {
+    @Override
+	protected void onAvailableCharacters(String[] characters) {
         Log4J.startMethod(logger, "onAvailableCharacters");
         try {
             chooseCharacter(characters[0]);
@@ -352,11 +358,13 @@ public class StendhalClient extends ariannexp {
         Log4J.finishMethod(logger, "onAvailableCharacters");
     }
 
-    protected void onServerInfo(String[] info) {
+    @Override
+	protected void onServerInfo(String[] info) {
         // TODO: handle this info
     }
 
-    protected void onError(int code, String reason) {
+    @Override
+	protected void onError(int code, String reason) {
         logger.error("got error code: " + code + " reason: " + reason);
     }
 
@@ -373,7 +381,8 @@ public class StendhalClient extends ariannexp {
     }
 
     class StendhalPerceptionListener extends DefaultPerceptionListener {
-        public boolean onAdded(RPObject object) {
+        @Override
+		public boolean onAdded(RPObject object) {
             try {
                 logger.debug("Object(" + object.getID()
                         + ") added to Game Objects container");
@@ -384,7 +393,8 @@ public class StendhalClient extends ariannexp {
             return false;
         }
 
-        public boolean onModifiedAdded(RPObject object, RPObject changes) {
+        @Override
+		public boolean onModifiedAdded(RPObject object, RPObject changes) {
             // NOTE: We do handle the perception here ourselves. See that we
             // return true
             try {
@@ -399,7 +409,8 @@ public class StendhalClient extends ariannexp {
             return true;
         }
 
-        public boolean onModifiedDeleted(RPObject object, RPObject changes) {
+        @Override
+		public boolean onModifiedDeleted(RPObject object, RPObject changes) {
             try {
                 logger.debug("Object(" + object.getID()
                         + ") modified in Game Objects container");
@@ -420,7 +431,8 @@ public class StendhalClient extends ariannexp {
             return true;
         }
 
-        public boolean onDeleted(RPObject object) {
+        @Override
+		public boolean onDeleted(RPObject object) {
             try {
                 logger.debug("Object(" + object.getID()
                         + ") removed from Static Objects container");
@@ -431,7 +443,8 @@ public class StendhalClient extends ariannexp {
             return false;
         }
 
-        public boolean onMyRPObject(RPObject added, RPObject deleted) {
+        @Override
+		public boolean onMyRPObject(RPObject added, RPObject deleted) {
             try {
                 RPObject.ID id = null;
 
@@ -467,7 +480,8 @@ public class StendhalClient extends ariannexp {
             return true;
         }
 
-        public int onTimeout() {
+        @Override
+		public int onTimeout() {
             logger.debug("Request resync because of timeout");
 
             StendhalClient.get().addEventLine(
@@ -477,7 +491,8 @@ public class StendhalClient extends ariannexp {
             return 0;
         }
 
-        public int onSynced() {
+        @Override
+		public int onSynced() {
             times = 0;
 
             gameGUI.online();
@@ -490,7 +505,8 @@ public class StendhalClient extends ariannexp {
 
         private int times;
 
-        public int onUnsynced() {
+        @Override
+		public int onUnsynced() {
             times++;
 
             if (times > 3) {
@@ -509,7 +525,8 @@ public class StendhalClient extends ariannexp {
             return 0;
         }
 
-        public int onException(Exception e,
+        @Override
+		public int onException(Exception e,
                 marauroa.common.net.MessageS2CPerception perception) {
             logger.fatal("perception caused an error: " + perception, e);
             System.exit(-1);

@@ -54,8 +54,9 @@ public class WorldObjects {
 	/** Adds a WorldListener to this event distributor. */
 	public static void addWorldListener(WorldListener a) {
 		synchronized (worldListeners) {
-			if (!worldListeners.contains(a))
+			if (!worldListeners.contains(a)) {
 				worldListeners.add(a);
+			}
 		}
 	}
 

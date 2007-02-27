@@ -198,8 +198,9 @@ public class ZonesXMLLoader extends DefaultHandler {
 				Iterator<ZoneSetupDesc> diter =
 					zdesc.getDescriptors();
 
-				while(diter.hasNext())
+				while(diter.hasNext()) {
 					diter.next().doSetup(zone);
+				}
 			} catch(Exception ex) {
 				logger.error(
 					"Error loading zone: " + name, ex);
@@ -354,9 +355,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 		String			className;
 		ConfigurableFactory	factory;
 		Entity			entity;
-		Object			reference;
-
-
 		if((className = edesc.getImplementation()) == null) {
 			logger.error("Entity without factory at "
 				+ zone.getID().getID()
@@ -553,8 +551,9 @@ public class ZonesXMLLoader extends DefaultHandler {
 			pdesc = new PortalDesc(x, y, reference);
 			scope = SCOPE_PORTAL;
 
-			if((s = attrs.getValue("replacing")) != null)
+			if((s = attrs.getValue("replacing")) != null) {
 				pdesc.setReplacing(s.equals("true"));
+			}
 		} else if(qName.equals("attribute")) {
 			if((attrName = attrs.getValue("name")) == null) {
 				logger.warn("Unnamed attribute");
@@ -589,8 +588,9 @@ public class ZonesXMLLoader extends DefaultHandler {
 				reference = s;
 			}
 
-			if((scope == SCOPE_PORTAL) && (pdesc != null))
+			if((scope == SCOPE_PORTAL) && (pdesc != null)) {
 				pdesc.setDestination(zone, reference);
+			}
 		} else {
 			logger.warn("Unknown XML element: " + qName);
 		}
@@ -858,6 +858,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		// ZoneSetupDesc
 		//
 
+		@Override
 		public void doSetup(StendhalRPZone zone)
 		{
 			configureZone(zone, this);
@@ -925,6 +926,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		// ZoneSetupDesc
 		//
 
+		@Override
 		public void doSetup(StendhalRPZone zone)
 		{
 			configureEntity(zone, this);
@@ -1015,6 +1017,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		// ZoneSetupDesc
 		//
 
+		@Override
 		public void doSetup(StendhalRPZone zone)
 		{
 			configurePortal(zone, this);

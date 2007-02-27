@@ -476,6 +476,7 @@ public class TileRenderer extends LayerRenderer {
 	 * Render the data to screen. We assume that Gamescreen will clip. The data
 	 * doesnt change, so we could cache it and get a boost in performance
 	 */
+	@Override
 	public void draw(GameScreen screen) {
 		if (System.currentTimeMillis() - delta > 200) {
 			delta = System.currentTimeMillis();
@@ -489,7 +490,7 @@ public class TileRenderer extends LayerRenderer {
 
 		for (int j = y - 1; j < y + h + 1; j++) {
 			for (int i = x - 1; i < x + w + 1; i++) {
-				if (j >= 0 && j < getHeight() && i >= 0 && i < getWidth()) {
+				if ((j >= 0) && (j < getHeight()) && (i >= 0) && (i < getWidth())) {
 					int value = get(i, j) - 1;
 
 					if (animatedTiles.containsKey(value)) {

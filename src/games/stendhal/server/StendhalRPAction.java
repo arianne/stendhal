@@ -14,7 +14,6 @@ package games.stendhal.server;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
-import games.stendhal.common.Line;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -28,12 +27,9 @@ import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.pathfinder.Path.Node;
 
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
-import java.util.Vector;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
@@ -65,14 +61,15 @@ public class StendhalRPAction {
 		 */
 		double karma = source.getKarma(0.3) - target.getKarma(0.3);
 
-		if(karma > 0.2)
+		if(karma > 0.2) {
 			risk += 4;
-		else if(karma > 0.1)
+		} else if(karma > 0.1) {
 			risk++;
-		else if(karma < -0.2)
+		} else if(karma < -0.2) {
 			risk -= 4;
-		else if(karma < -0.1)
+		} else if(karma < -0.1) {
 			risk--;
+		}
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("attack from " + source + " to " + target + ": Risk to strike: " + risk);
@@ -176,7 +173,7 @@ public class StendhalRPAction {
 		}
 
 		// Enabled PVP
-		if (entity instanceof Player || entity instanceof Sheep) {
+		if ((entity instanceof Player) || (entity instanceof Sheep)) {
 			StendhalRPZone zone = (StendhalRPZone)
 				StendhalRPWorld.get().getRPZone(player.getID());
 
@@ -219,7 +216,7 @@ public class StendhalRPAction {
 
 		try {
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(source.getID());
-			if (!zone.has(target.getID()) || target.getHP() == 0) {
+			if (!zone.has(target.getID()) || (target.getHP() == 0)) {
 				logger.debug("Attack from " + source + " to " + target + " stopped because target was lost(" + zone.has(target.getID()) + ") or dead.");
 				target.onAttack(source, false);
 				source.notifyWorldAboutChanges();
@@ -246,7 +243,7 @@ public class StendhalRPAction {
 			// {lifesteal} uncomented following line, also changed name:
 			List<Item> weapons = source.getWeapons();
 
-			if (source instanceof Player && (target instanceof SpeakerNPC) == false && source.stillHasBlood(target)) {
+			if ((source instanceof Player) && ((target instanceof SpeakerNPC) == false) && source.stillHasBlood(target)) {
 				// disabled attack xp for attacking NPC's
 				source.incATKXP();
 			}
@@ -254,7 +251,7 @@ public class StendhalRPAction {
 			boolean beaten = riskToHit(source, target);
 
 			if (beaten) {
-				if (target instanceof Player && target.stillHasBlood(source)) {
+				if ((target instanceof Player) && target.stillHasBlood(source)) {
 					target.incDEFXP();
 				}
 
@@ -373,7 +370,7 @@ public class StendhalRPAction {
 						sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 					}
 
-					if (!(sheep != null && player.squaredDistance(sheep) > 7 * 7)) {
+					if (!((sheep != null) && (player.squaredDistance(sheep) > 7 * 7))) {
 						if (zone.leavesZone(player, nx, ny)) {
 							logger.debug("Leaving zone from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
 							decideChangeZone(player, nx, ny);
@@ -398,8 +395,9 @@ public class StendhalRPAction {
 					return;
 				}
 
-				if(logger.isDebugEnabled())
+				if(logger.isDebugEnabled()) {
 					logger.debug("Moving from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
+				}
 
 				entity.setX(nx);
 				entity.setY(ny);
@@ -410,8 +408,9 @@ public class StendhalRPAction {
 				entity.notifyWorldAboutChanges();
 			} else {
 				/* Collision */
-				if(logger.isDebugEnabled())
+				if(logger.isDebugEnabled()) {
 					logger.debug("Collision at (" + nx + "," + ny + ")");
+				}
 				entity.setCollides(true);
 
 				entity.stop();
@@ -442,7 +441,7 @@ public class StendhalRPAction {
 
 		for (IRPZone izone : StendhalRPWorld.get()) {
 			StendhalRPZone zone = (StendhalRPZone) izone;
-			if (zone.isInterior() == false && zone.getLevel() == origin.getLevel()) {
+			if ((zone.isInterior() == false) && (zone.getLevel() == origin.getLevel())) {
 				if (zone.contains(player, origin.getLevel(), player_x, player_y)) {
 					if (found) {
 						logger.error("Already contained at :" + zone.getID());

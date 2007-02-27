@@ -55,8 +55,9 @@ public class BalanceRPGame {
 
 			if (StendhalRPAction.riskToHit(player, target)) {
 				int damage = StendhalRPAction.damageDone(player, target);
-				if (damage < 0)
+				if (damage < 0) {
 					damage = 0;
+				}
 
 				target.setHP(target.getHP() - damage);
 			}
@@ -68,8 +69,9 @@ public class BalanceRPGame {
 
 			if (StendhalRPAction.riskToHit(target, player)) {
 				int damage = StendhalRPAction.damageDone(target, player);
-				if (damage < 0)
+				if (damage < 0) {
 					damage = 0;
+				}
 				player.setHP(player.getHP() - damage);
 			}
 
@@ -95,6 +97,7 @@ public class BalanceRPGame {
 				return o1.getLevel() - o2.getLevel();
 			}
 
+			@Override
 			public boolean equals(Object obj) {
 				return true;
 			}
@@ -312,7 +315,7 @@ public class BalanceRPGame {
 				score = 1000 - leftHP * 100 + (Math.abs(turns - 30) * 3);
 			} else if (leftHP < 0.7) {
 				score = 500 - leftHP * 100 + (Math.abs(turns - 30) * 3);
-			} else if (leftHP >= 0.7 && turns >= 30 && turns <= 40) {
+			} else if ((leftHP >= 0.7) && (turns >= 30) && (turns <= 40)) {
 				score = Math.abs(leftHP * 100 - 85) + Math.abs(turns - 40) * 3;
 			} else {
 				score = Math.abs(leftHP * 100 - 85) + Math.abs(turns - 40) * 6;
@@ -342,30 +345,30 @@ public class BalanceRPGame {
 
 	static private boolean isCorrectResult(int level, int levelDiff,
 			int meanTurns, double meanLeftHP) {
-		if (levelDiff > 0 && meanTurns > 100 + level / 10.0) {
+		if ((levelDiff > 0) && (meanTurns > 100 + level / 10.0)) {
 			// OUTPUT: System.out.println ("FAILED beacause takes too much time
 			// to kill");
 			return false;
 		}
 
-		if (levelDiff == 0 && meanTurns > 30 + level / 10.0) {
+		if ((levelDiff == 0) && (meanTurns > 30 + level / 10.0)) {
 			// OUTPUT: System.out.println ("FAILED beacause takes too much time
 			// to kill");
 			return false;
 		}
 
-		if (levelDiff == 0 && meanLeftHP > 1 - level / 100.0) {
+		if ((levelDiff == 0) && (meanLeftHP > 1 - level / 100.0)) {
 			// OUTPUT: System.out.println ("CORRECT");
 			return true;
 		}
 
-		if (levelDiff < 0 && meanLeftHP > 1 - level / 100.0) {
+		if ((levelDiff < 0) && (meanLeftHP > 1 - level / 100.0)) {
 			// OUTPUT: System.out.println ("FAILED beacause takes makes LITTLE
 			// damage to player at same level");
 			return false;
 		}
 
-		if (levelDiff > 0 && meanLeftHP < 0.90 - level / 100.0) {
+		if ((levelDiff > 0) && (meanLeftHP < 0.90 - level / 100.0)) {
 			// OUTPUT: System.out.println ("FAILED beacause takes makes MUCH
 			// damage to player at same level");
 			return false;

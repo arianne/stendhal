@@ -86,10 +86,12 @@ public class Level {
 		// XXX - Use Arrays.binarySearch() instead?
 		int first = 0;
 		int last = LEVELS - 1;
-		if (exp <= xp[first])
+		if (exp <= xp[first]) {
 			return first;
-		if (exp >= xp[last])
+		}
+		if (exp >= xp[last]) {
 			return last;
+		}
 		while (last - first > 1) {
 			int current = first + ((last - first) / 2);
 			if (exp < xp[current]) {
@@ -102,7 +104,7 @@ public class Level {
 	}
 
 	public static int getXP(int level) {
-		if (level >= 0 && level < xp.length) {
+		if ((level >= 0) && (level < xp.length)) {
 			return xp[level];
 		}
 		return -1;
@@ -136,8 +138,9 @@ public class Level {
 	 *		<code>1.0</code> (exclusive).
 	 */
 	public static double getWisdom(int level) {
-		if(level > LEVELS)
+		if(level > LEVELS) {
 			level = LEVELS;
+		}
 
 		return wisdom[level];
 	}

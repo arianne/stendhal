@@ -35,10 +35,6 @@ import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
 import games.stendhal.server.util.Translate;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
@@ -133,7 +129,7 @@ public class StendhalRPWorld extends RPWorld {
 	 * restarted.
 	 */
 	public void checkPathfinder() {
-		if (pathfinderThread == null || !pathfinderThread.isAlive()) {
+		if ((pathfinderThread == null) || !pathfinderThread.isAlive()) {
 			logger.fatal("Pathfinderthread died");
 			pathfinderThread = new PathfinderThread(this);
 			pathfinderThread.start();
@@ -396,8 +392,9 @@ public class StendhalRPWorld extends RPWorld {
 			return;
 		}
 
-		if(portal instanceof OneWayPortalDestination)
+		if(portal instanceof OneWayPortalDestination) {
 			return;
+		}
 
 		String id = portal.getDestinationZone();
 

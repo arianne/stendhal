@@ -39,6 +39,7 @@ public class ImageRenderer extends LayerRenderer {
 	 * Render the data to screen.
 	 */
 
+	@Override
 	public void draw(GameScreen screen) {
 		if (mySprite != null) {
 			screen.draw(mySprite, 0, 0);

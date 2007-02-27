@@ -22,8 +22,6 @@ import java.util.Vector;
 
 import marauroa.common.Log4J;
 
-import org.apache.log4j.Logger;
-
 /** It is class to get tiles from the tileset */
 public class TileStore extends SpriteStore {
 	private class RangeFilename {
@@ -43,7 +41,7 @@ public class TileStore extends SpriteStore {
 		}
 
 		boolean isInRange(int i) {
-			if (i >= base && i < base + amount) {
+			if ((i >= base) && (i < base + amount)) {
 				return true;
 			}
 
@@ -58,6 +56,7 @@ public class TileStore extends SpriteStore {
 			return loaded;
 		}
 
+		@Override
 		public String toString() {
 			return filename + "[" + base + "," + (base + amount) + "]";
 		}
@@ -136,6 +135,7 @@ public class TileStore extends SpriteStore {
 
 	public void preload() {
 		Thread loader=new Thread() {
+			@Override
 			public void run() {
 				for(RangeFilename range: rangesTiles) {	
 					synchronized(locker) {
@@ -153,7 +153,7 @@ public class TileStore extends SpriteStore {
 	public Sprite getTile(int i) {
 		Sprite sprite = tileset.get(i);
 	
-		if (Debug.VERY_FAST_CLIENT_START && sprite == null) {
+		if (Debug.VERY_FAST_CLIENT_START && (sprite == null)) {
 			synchronized(locker) {
 				for (RangeFilename range : rangesTiles) {
 					if (range.isInRange(i)) {

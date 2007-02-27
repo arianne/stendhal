@@ -6,11 +6,6 @@
 
 package games.stendhal.common;
 
-//
-//
-
-import java.util.Map;
-
 /**
  * A general object factory that accepts confguration attributes.
  */

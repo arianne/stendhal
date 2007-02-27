@@ -15,6 +15,7 @@ public class GenerateBestiaryAndItems {
 				return o1.getLevel() - o2.getLevel();
 			}
 
+			@Override
 			public boolean equals(Object obj) {
 				return true;
 			}

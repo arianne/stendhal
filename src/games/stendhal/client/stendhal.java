@@ -19,8 +19,6 @@ import games.stendhal.common.Debug;
 
 import java.security.AccessControlException;
 
-import javax.swing.UIManager;
-
 import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;

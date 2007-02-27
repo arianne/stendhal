@@ -163,8 +163,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public Portal getPortal(int x, int y) {
 		for(Portal portal : portals) {
-			if((portal.getX() == x) && (portal.getY() == y))
+			if((portal.getX() == x) && (portal.getY() == y)) {
 				return portal;
+			}
 		}
 
 		return null;
@@ -504,30 +505,35 @@ public class StendhalRPZone extends MarauroaRPZone {
 		for (IRPZone i : StendhalRPWorld.get()) {
 			StendhalRPZone zone = (StendhalRPZone) i;
 
-			if (zone.isInterior())
+			if (zone.isInterior()) {
 				continue;
+			}
 
 			/*
 			 * Portals in the correct direction?
 			 */
 			if(type == 3) {
 				/* portal stairs up */
-				if((zone.getLevel() - getLevel()) != 1)
+				if((zone.getLevel() - getLevel()) != 1) {
 					continue;
+				}
 			}
 			else if(type == 4) {
 				/* portal stairs down */
-				if((zone.getLevel() - getLevel()) != -1)
+				if((zone.getLevel() - getLevel()) != -1) {
 					continue;
+				}
 			} else {
 				/* one way portal - POTENTIALLY WRONG LEVEL */
 				/* Should they always go down (drop only)? */
-				if(Math.abs(zone.getLevel() - getLevel()) != 1)
+				if(Math.abs(zone.getLevel() - getLevel()) != 1) {
 					continue;
+				}
 			}
 
-			if (!zone.contains(portal, this))
+			if (!zone.contains(portal, this)) {
 				continue;
+			}
 
 			logger.debug(zone + " contains " + portal);
 
@@ -535,8 +541,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 				portal.getX() + getX() - zone.getX(),
 				portal.getY() + getY() - zone.getY());
 
-			if(target == null)
+			if(target == null) {
 				continue;
+			}
 
 			if (target.loaded()) {
 				logger.debug(target + " already loaded");
@@ -622,8 +629,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 			itemsOnGround.add(item);
 		}
 
-		if(object instanceof Entity)
+		if(object instanceof Entity) {
 			((Entity) object).onAdded(this);
+		}
 	}
 
 
@@ -632,8 +640,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 			throws RPObjectNotFoundException {
 		RPObject object = get(id);
 
-		if(object instanceof Entity)
+		if(object instanceof Entity) {
 			((Entity) object).onRemoved(this);
+		}
 
 		super.remove(id);
 
@@ -796,8 +805,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		eArea = entity.getArea(newX, newY);
 
 		for(MovementListener l : movementListeners) {
-			if(l.getArea().intersects(eArea))
+			if(l.getArea().intersects(eArea)) {
 				l.onEntered(entity, this, newX, newY);
+			}
 		}
 	}
 
@@ -816,8 +826,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		eArea = entity.getArea(oldX, oldY);
 
 		for(MovementListener l : movementListeners) {
-			if(l.getArea().intersects(eArea))
+			if(l.getArea().intersects(eArea)) {
 				l.onExited(entity, this, oldX, oldY);
+			}
 		}
 	}
 
@@ -843,8 +854,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		/*
 		 * Not in this zone?
 		 */
-		if(!has(entity.getID()))
+		if(!has(entity.getID())) {
 			return;
+		}
 
 		oeArea = entity.getArea(oldX, oldY);
 		neArea = entity.getArea(newX, newY);
@@ -855,14 +867,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 			oldIn = area.intersects(oeArea);
 			newIn = area.intersects(neArea);
 
-			if(!oldIn && newIn)
+			if(!oldIn && newIn) {
 				l.onEntered(entity, this, newX, newY);
+			}
 
-			if(oldIn && newIn)
+			if(oldIn && newIn) {
 				l.onMoved(entity, this, oldX, oldY, newX, newY);
+			}
 
-			if(oldIn && !newIn)
+			if(oldIn && !newIn) {
 				l.onExited(entity, this, oldX, oldY);
+			}
 		}
 	}
 

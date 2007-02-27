@@ -162,7 +162,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 
 		String query;
 
-		if (objectid != null && hasRPObject(trans, object_id)) {
+		if ((objectid != null) && hasRPObject(trans, object_id)) {
 			query = "update avatars set name='" + name + "',outfit='" + outfit
 					+ "',level=" + level + ",xp=" + xp
 					+ ",data=? where object_id=" + objectid;

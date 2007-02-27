@@ -99,7 +99,7 @@ public class Cache {
 
     	// check cache
         if (cacheManager.has(item.name)
-                && Integer.parseInt(cacheManager.get(item.name)) == item.timestamp) {
+                && (Integer.parseInt(cacheManager.get(item.name)) == item.timestamp)) {
             logger.debug("Content " + item.name  + " is on cache. We save transfer");
 
             // get the stream

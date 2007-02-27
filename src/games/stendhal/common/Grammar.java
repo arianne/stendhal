@@ -98,13 +98,13 @@ public class Grammar {
 		String enoun = fullform(noun);
 		char initial = Character.toLowerCase(enoun.charAt(0));
 		char second = Character.toLowerCase(enoun.charAt(1));
-		if (initial == 'e' && second == 'u') {
+		if ((initial == 'e') && (second == 'u')) {
 			return "a " + enoun;
 		}
 		if (vowel_p(initial)) {
 			return "an " + enoun;
 		}
-		if (initial == 'y' && consonant_p(second)) {
+		if ((initial == 'y') && consonant_p(second)) {
 			return "an " + enoun;
 		}
 		return "a " + enoun;
@@ -147,7 +147,7 @@ public class Grammar {
 			enoun = enoun.substring(5) + " book";
 		} else if (enoun.equals("arandula")) {
 			enoun = addPrefixIfNotAlreadyThere("sprig of ", enoun);
-		} else if (enoun.indexOf("_armor") > -1 || enoun.indexOf(" armor") > -1) {
+		} else if ((enoun.indexOf("_armor") > -1) || (enoun.indexOf(" armor") > -1)) {
 			enoun = addPrefixIfNotAlreadyThere("suit of ", enoun);
 		} else if (enoun.endsWith("_legs") || enoun.endsWith(" legs") || enoun.endsWith("_boots") || enoun.endsWith(" boots")) {
 			enoun = addPrefixIfNotAlreadyThere("pair of ", enoun);
@@ -191,7 +191,7 @@ public class Grammar {
 		String enoun = fullform(noun);
 		String postfix = "";
 		int pos = enoun.length() - 2;
-		if (enoun.length() > 2 && (enoun.charAt(pos) == '+')) {
+		if ((enoun.length() > 2) && (enoun.charAt(pos) == '+')) {
 			postfix = enoun.substring(pos - 1);
 			enoun = enoun.substring(0, pos - 1);
 		}
@@ -208,13 +208,13 @@ public class Grammar {
 			// ok and now all the special cases
 			} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
 				return enoun + "s" + postfix;
-			} else if (enoun.endsWith("f") && "aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1) {
+			} else if (enoun.endsWith("f") && ("aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1)) {
 				return enoun.substring(0, enoun.length() - 1) + "ves" + postfix;
 			} else if (enoun.endsWith("fe")) {
 				return enoun.substring(0, enoun.length() - 2) + "ves" + postfix;
 			} else if (enoun.endsWith("house")) {
 				return enoun + "es" + postfix;
-			} else if (enoun.endsWith("ouse") && "mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1) {
+			} else if (enoun.endsWith("ouse") && ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
 				return enoun.substring(0, enoun.length() - 5) + "ice" + postfix;
 			} else if (enoun.endsWith("oose") && !(enoun.endsWith("caboose"))) {
 				return enoun.substring(0, enoun.length() - 5) + "eese" + postfix;
@@ -232,7 +232,7 @@ public class Grammar {
 				return enoun.substring(0, enoun.length() - 3) + "a" + postfix;
 			} else if (enoun.endsWith("alga") || enoun.endsWith("hypha") || enoun.endsWith("larva")) {
 				return enoun + "e" + postfix;
-			} else if (enoun.length() > 3 && enoun.endsWith("us") && !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
+			} else if ((enoun.length() > 3) && enoun.endsWith("us") && !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
 				return enoun.substring(0, enoun.length() - 3) + "i" + postfix;
 			} else if (enoun.endsWith("man") && !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
 				return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
@@ -248,7 +248,7 @@ public class Grammar {
 				return enoun + "il" + postfix;
 			} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
 				return enoun.substring(0, enoun.length() - 2) + postfix;
-			} else if (enoun.endsWith("ch") || enoun.endsWith("sh") || "zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1) {
+			} else if (enoun.endsWith("ch") || enoun.endsWith("sh") || ("zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
 				return enoun + "es" + postfix;
 			} else if (enoun.endsWith("y") && consonant_p(enoun.charAt(enoun.length() - 2))) {
 				return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
@@ -299,7 +299,7 @@ public class Grammar {
 	 */
 	protected static boolean vowel_p(char c) {
 		char l = Character.toLowerCase(c);
-		return (l == 'a' || l == 'e' || l == 'i' || l == 'o' || l == 'u');
+		return ((l == 'a') || (l == 'e') || (l == 'i') || (l == 'o') || (l == 'u'));
 	}
 
 	/**
@@ -319,7 +319,7 @@ public class Grammar {
 	 * @return first, second, third, ...
 	 */
 	public static String ordered(int n) {
-		if (n <= 0 || n > 3) {
+		if ((n <= 0) || (n > 3)) {
 		}
 		switch (n) {
 			case 1: return "first";

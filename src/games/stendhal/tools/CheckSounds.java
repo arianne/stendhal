@@ -31,8 +31,9 @@ public class CheckSounds {
 		public boolean active = true;
 
 		public void update(LineEvent event) {
-			if (event.getType() == LineEvent.Type.STOP)
+			if (event.getType() == LineEvent.Type.STOP) {
 				active = false;
+			}
 		}
 	}
 

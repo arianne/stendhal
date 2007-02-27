@@ -103,7 +103,7 @@ public class StringFormatter {
 	/** toString formats the string */
 	@Override
 	public String toString() {
-		if (cachedString == null || refreshCache) {
+		if ((cachedString == null) || refreshCache) {
 			// recalculate the string
 			StringBuilder buf = new StringBuilder();
 			Iterator<String> staticIt = staticParts.iterator();

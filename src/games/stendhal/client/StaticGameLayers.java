@@ -78,7 +78,7 @@ public class StaticGameLayers {
     public double getWidth() {
         double width = 0;
         for (Pair<String, LayerRenderer> p : layers) {
-            if (area != null && p.first().contains(area)) {
+            if ((area != null) && p.first().contains(area)) {
                 if (width < p.second().getWidth()) {
                     width = p.second().getWidth();
                 }
@@ -91,7 +91,7 @@ public class StaticGameLayers {
     public double getHeight() {
         double height = 0;
         for (Pair<String, LayerRenderer> p : layers) {
-            if (area != null && p.first().contains(area)) {
+            if ((area != null) && p.first().contains(area)) {
                 if (height < p.second().getHeight()) {
                     height = p.second().getHeight();
                 }
@@ -146,7 +146,7 @@ public class StaticGameLayers {
 
     public boolean collides(Rectangle2D shape) {
         for (Pair<String, CollisionDetection> p : collisions) {
-            if (area != null && p.first().equals(area + "_collision")) {
+            if ((area != null) && p.first().equals(area + "_collision")) {
                 if (p.second().collides(shape)) {
                     return true;
                 }
@@ -196,7 +196,7 @@ public class StaticGameLayers {
     /** Render the choosen set of layers */
     public void draw(GameScreen screen) {
         for (Pair<String, LayerRenderer> p : layers) {
-            if (area != null && p.first().contains(area)) {
+            if ((area != null) && p.first().contains(area)) {
                 p.second().draw(screen);
             }
         }
@@ -209,7 +209,7 @@ public class StaticGameLayers {
      */
     public CollisionDetection getCollisionDetection() {
         for (Pair<String, CollisionDetection> cdp : collisions) {
-            if (area != null && cdp.first().equals(area + "_collision")) {
+            if ((area != null) && cdp.first().equals(area + "_collision")) {
                 return cdp.second();
             }
         }
