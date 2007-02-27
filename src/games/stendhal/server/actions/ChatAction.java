@@ -99,7 +99,7 @@ public class ChatAction extends ActionListener {
 			// HACK: extract sender from postman messages
 			String senderName = player.getName();
 			StringTokenizer st = new StringTokenizer(text, " ");
-			if (st.countTokens() > 2) {
+			if (senderName.equals("postman") && st.countTokens() > 2) {
 				String temp = st.nextToken();
 				String command = st.nextToken();
 				if (command.equals("asked")) {
