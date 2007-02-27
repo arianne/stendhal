@@ -113,10 +113,7 @@ public class StendhalRPWorld extends RPWorld {
 	 *
 	 * @return	The number of turns.
 	 */
-	public int getTurnsInSeconds(int seconds) {
-		/*
-		 * Without the overkill of using long's, max seconds = ~4 years
-		 */
+	public long getTurnsInSeconds(long seconds) {
 		return seconds * 1000 / MILLISECONDS_PER_TURN;
 	}
 

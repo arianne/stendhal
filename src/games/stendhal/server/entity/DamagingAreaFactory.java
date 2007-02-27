@@ -85,14 +85,11 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is missing.
 	 */
-	protected int getInterval(ConfigurableFactoryContext ctx)
+	protected long getInterval(ConfigurableFactoryContext ctx)
 	 throws IllegalArgumentException {
-		String	s;
-
-
-		if((s = ctx.getAttribute("interval")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'interval' missing");
+		String s = ctx.getAttribute("interval");
+		if (s == null) {
+			throw new IllegalArgumentException("Required attribute 'interval' missing");
 		}
 
 		try {
@@ -188,7 +185,7 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 		area =  new DamagingArea(
 			getName(ctx),
 			getDamage(ctx),
-			getInterval(ctx),
+			(int) getInterval(ctx),
 			getProbability(ctx));
 
 		area.setPlayersOnly(getPlayersOnly(ctx));
