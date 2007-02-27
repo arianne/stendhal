@@ -44,7 +44,7 @@ public class IL0_MaidNPC implements ZoneConfigurator {
 
 	private void buildNPC(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		SpeakerNPC tavernMaid = new SpeakerNPC("Maria") {
+		SpeakerNPC tavernMaid = new SpeakerNPC("Helena") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
