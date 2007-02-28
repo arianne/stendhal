@@ -83,6 +83,11 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	public boolean onDrop(WtDraggable droppedObject) {
 		if ((droppedObject instanceof MoveableEntityContainer) && (parent != null)) {
 			MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
+			
+			// Don't drag an item into the same slot
+			if (container != null && content!=null)
+				if (container.getContent()==content.getID().getObjectID()) return false;
+				
 			RPAction action = new RPAction();
 
 			// Entity contained=container.getEntity();

@@ -115,4 +115,8 @@ public class MoveableEntityContainer implements WtDraggable {
 		sprite.draw(g, x, y);
 	}
 
+	public int getContent() {
+		return content;
+	}
+
 }
