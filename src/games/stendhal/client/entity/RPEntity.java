@@ -598,8 +598,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	}
 
 
-	protected void buildOfferedActions(List list) {
-		list.add("Look");
+	protected void buildOfferedActions(List<String> list) {
+		super.buildOfferedActions(list);
 		list.add("Attack");
 
 		if (client.getPlayer().has("target")) {

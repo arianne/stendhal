@@ -445,7 +445,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	}
 
 
-	protected void buildOfferedActions(List list) {
+	protected void buildOfferedActions(List<String> list) {
 		list.add("Look");
 	}
 

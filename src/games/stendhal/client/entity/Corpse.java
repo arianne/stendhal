@@ -80,8 +80,8 @@ public class Corpse extends PassiveEntity {
 
 
 	@Override
-	protected void buildOfferedActions(List list) {
-		list.add("Look");
+	protected void buildOfferedActions(List<String> list) {
+		super.buildOfferedActions(list);;
 		list.add("Inspect");
 	}
 

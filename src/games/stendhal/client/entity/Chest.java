@@ -111,8 +111,8 @@ public class Chest extends AnimatedEntity {
 
 
 	@Override
-	protected void buildOfferedActions(List list) {
-		list.add("Look");
+	protected void buildOfferedActions(List<String> list) {
+		super.buildOfferedActions(list);
 
 		if (open) {
 			list.add("Inspect");
