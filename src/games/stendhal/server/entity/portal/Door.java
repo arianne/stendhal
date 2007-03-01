@@ -20,7 +20,6 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 
 /**
