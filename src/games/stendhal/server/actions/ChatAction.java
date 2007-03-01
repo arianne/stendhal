@@ -145,18 +145,21 @@ public class ChatAction extends ActionListener {
 		Log4J.startMethod(logger, "support");
 
 		if (action.has("text")) {
-		    // check if the player sended a support message before
-			if (last_msg.containsKey(player.getName())){
-				Long time_lastmsg = Calendar.getInstance().getTimeInMillis() - last_msg.get(player.getName());
-				
-				// the player have to wait one second since the last support message sended
-				if (time_lastmsg < 60000) {
-					player.sendPrivateText("We only allow one support message per minute.");
-					return;
-				}
-			}
 			
-			last_msg.put(player.getName(), Calendar.getInstance().getTimeInMillis());
+			if (Jail.isInJail(player)) {
+				// check if the player sended a support message before
+				if (last_msg.containsKey(player.getName())){
+					Long time_lastmsg = Calendar.getInstance().getTimeInMillis() - last_msg.get(player.getName());
+				
+					// the player have to wait one second since the last support message sended
+					if (time_lastmsg < 60000) {
+						player.sendPrivateText("We only allow one support message per minute.");
+						return;
+					}
+				}
+			
+				last_msg.put(player.getName(), Calendar.getInstance().getTimeInMillis());
+			}
 			
 			String message = player.getName() + " asks for support to ADMIN: "
 					+ action.get("text") + "\r\nPlease use #/supportanswer #" + player.getName() + " to answer.";
