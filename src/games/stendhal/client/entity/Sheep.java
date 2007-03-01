@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
@@ -80,9 +81,7 @@ public class Sheep extends NPC {
 			}
 		}
 
-		if ((weight > 60) && !animation.startsWith("big_")) {
-			animation = "big_" + animation;
-		}
+		
 	}
 
 	@Override
@@ -135,4 +134,16 @@ public class Sheep extends NPC {
 		playSound(token, 20, 35, chance);
 	}
 
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.AnimatedEntity#nextFrame()
+	 */
+	@Override
+	protected Sprite nextFrame() {
+		if ((weight > 60) && !animation.startsWith("big_")) {
+			animation = "big_" + animation;
+		}
+		return super.nextFrame();
+	}
+
+	
 }
