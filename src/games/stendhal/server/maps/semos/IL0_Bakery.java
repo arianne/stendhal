@@ -55,7 +55,7 @@ public class IL0_Bakery implements ZoneConfigurator {
 			zone.assignRPObjectID(portal);
 			portal.setX(26);
 			portal.setY(14);
-			portal.setNumber(0);
+			portal.setReference(new Integer(0));
 			portal.setDestination("0_semos_city", 10);
 			zone.addPortal(portal);
 		}

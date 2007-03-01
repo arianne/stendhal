@@ -50,28 +50,28 @@ public class USL2_LichPalace implements ZoneConfigurator {
 			Portal portal = new Portal();
 			zone.assignRPObjectID(portal);
 			portal.set(70, 38);
-			portal.setNumber(0);
+			portal.setReference(new Integer(0));
 			portal.setDestination("-1_orril_castle_w", 0);
 			zone.addPortal(portal);
 
 			Portal door = new LockedDoor("lich_gold_key", "skulldoor", Direction.UP);
 			zone.assignRPObjectID(door);
 			door.set(54, 52);
-			door.setNumber(1);
+			door.setReference(new Integer(1));
 			door.setDestination("-2_orril_lich_palace", 2);
 			zone.addPortal(door);
 
 			portal = new Portal();
 			zone.assignRPObjectID(portal);
 			portal.set(54, 57);
-			portal.setNumber(2);
+			portal.setReference(new Integer(2));
 			portal.setDestination("-2_orril_lich_palace", 1);
 			zone.addPortal(portal);
 
 			portal = new Portal();
 			zone.assignRPObjectID(portal);
 			portal.set(55, 57);
-			portal.setNumber(3);
+			portal.setReference(new Integer(3));
 			portal.setDestination("-2_orril_lich_palace", 1);
 			zone.addPortal(portal);
 		}

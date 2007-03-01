@@ -58,7 +58,7 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 			zone.assignRPObjectID(portal);
 			portal.setX(12);
 			portal.setY(13);
-			portal.setNumber(0);
+			portal.setReference(new Integer(0));
 			portal.setDestination("0_ados_mountain_nw", 0);
 			zone.addPortal(portal);
 		}

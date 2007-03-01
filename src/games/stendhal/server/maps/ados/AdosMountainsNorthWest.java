@@ -43,7 +43,7 @@ public class AdosMountainsNorthWest implements ZoneConfigurator {
 			zone.assignRPObjectID(portal);
 			portal.setX(75);
 			portal.setY(50);
-			portal.setNumber(0);
+			portal.setReference(new Integer(0));
 			portal.setDestination("int_ados_magician_house", 0);
 			zone.addPortal(portal);
 		}

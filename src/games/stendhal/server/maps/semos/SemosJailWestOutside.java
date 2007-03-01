@@ -51,7 +51,7 @@ public class SemosJailWestOutside implements ZoneConfigurator {
 		zone.assignRPObjectID(portal);
 		portal.setX(86);
 		portal.setY(26);
-		portal.setNumber(0);
+		portal.setReference(new Integer(0));
 		portal.setDestination("-1_semos_jail", 0);
 		zone.addPortal(portal);
 	}

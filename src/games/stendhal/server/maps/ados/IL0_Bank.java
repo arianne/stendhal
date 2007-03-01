@@ -52,7 +52,7 @@ public class IL0_Bank implements ZoneConfigurator {
 			zone.assignRPObjectID(portal);
 			portal.setX(22);
 			portal.setY(17);
-			portal.setNumber(0);
+			portal.setReference(new Integer(0));
 			portal.setDestination("0_ados_city", 6);
 			zone.addPortal(portal);
 		}

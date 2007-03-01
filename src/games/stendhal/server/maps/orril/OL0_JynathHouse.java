@@ -28,7 +28,7 @@ public class OL0_JynathHouse implements ZoneConfigurator {
 		zone.assignRPObjectID(portal);
 		portal.setX(39);
 		portal.setY(5);
-		portal.setNumber(0);
+		portal.setReference(new Integer(0));
 		portal.setDestination("int_orril_jynath_house", 0);
 		zone.addPortal(portal);
 	}

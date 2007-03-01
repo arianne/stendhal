@@ -320,7 +320,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		entranceZone.assignRPObjectID(door);
 		door.setX(95);
 		door.setY(101);
-		door.setNumber(0);
+		door.setReference(new Integer((0)));
 		door.setDestination(ZONE_NAME, 0);
 		door.open();
 		entranceZone.addPortal(door);
@@ -329,7 +329,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		zone.assignRPObjectID(exit);
 		exit.setX(17);
 		exit.setY(20);
-		exit.setNumber(0);
+		exit.setReference(new Integer(0));
 		exit.setDestination(entranceZoneName, 0);
 		zone.addPortal(exit);
 

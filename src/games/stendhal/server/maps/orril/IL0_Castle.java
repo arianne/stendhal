@@ -28,7 +28,7 @@ public class IL0_Castle implements ZoneConfigurator {
 			zone.assignRPObjectID(portal);
 			portal.setX(26 + i);
 			portal.setY(62);
-			portal.setNumber(i);
+			portal.setReference(new Integer(i));
 			portal.setDestination("0_orril_castle", 11);
 			zone.addPortal(portal);
 		}
@@ -37,7 +37,7 @@ public class IL0_Castle implements ZoneConfigurator {
 		zone.assignRPObjectID(portal);
 		portal.setX(8);
 		portal.setY(1);
-		portal.setNumber(4);
+		portal.setReference(new Integer(4));
 		portal.setDestination("-1_orril_castle", 1);
 		zone.addPortal(portal);
 	}

@@ -48,7 +48,7 @@ public class USL1_CastleWest implements ZoneConfigurator {
 			Portal door = new LockedDoor("dungeon_silver_key", "skulldoor", Direction.DOWN);
 			zone.assignRPObjectID(door);
 			door.set(69, 37);
-			door.setNumber(0);
+			door.setReference(new Integer(0));
 			door.setDestination("-2_orril_lich_palace", 0);
 			zone.addPortal(door);
 		}

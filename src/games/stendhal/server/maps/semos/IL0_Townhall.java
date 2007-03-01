@@ -52,7 +52,7 @@ public class IL0_Townhall implements ZoneConfigurator {
 				zone.assignRPObjectID(portal);
 				portal.setX(14 + i);
 				portal.setY(46);
-				portal.setNumber(i);
+				portal.setReference(new Integer(i));
 				portal.setDestination("0_semos_city", 7 + i);
 				zone.addPortal(portal);
 			}

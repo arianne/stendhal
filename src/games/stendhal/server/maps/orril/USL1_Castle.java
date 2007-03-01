@@ -27,7 +27,7 @@ public class USL1_Castle implements ZoneConfigurator {
 		zone.assignRPObjectID(portal);
 		portal.setX(19);
 		portal.setY(22);
-		portal.setNumber(0);
+		portal.setReference(new Integer(0));
 		portal.setDestination("int_orril_castle_0", 4);
 		zone.addPortal(portal);
 
@@ -35,7 +35,7 @@ public class USL1_Castle implements ZoneConfigurator {
 		zone.assignRPObjectID(portal);
 		portal.setX(20);
 		portal.setY(22);
-		portal.setNumber(1);
+		portal.setReference(new Integer(1));
 		portal.setDestination("int_orril_castle_0", 4);
 		zone.addPortal(portal);
 	}
