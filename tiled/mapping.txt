@@ -1536,8 +1536,8 @@
 ../../zelda_dungeon_1_chipset.png:79:1520:../../tileset/building/entrance/earthen_6.png:38
 ../../zelda_dungeon_1_chipset.png:80:1521:../../tileset/building/entrance/earthen_6.png:39
 ../../zelda_dungeon_1_chipset.png:81:1522:../../tileset/building/entrance/earthen_6.png:23
-../../zelda_dungeon_1_chipset.png:82:1523:
-../../zelda_dungeon_1_chipset.png:83:1524:
+../../zelda_dungeon_1_chipset.png:82:1523::
+../../zelda_dungeon_1_chipset.png:83:1524::
 ../../zelda_dungeon_1_chipset.png:84:1525:../../tileset/building/stairs/winding.png:6
 ../../zelda_dungeon_1_chipset.png:85:1526:../../tileset/building/stairs/winding.png:7
 ../../zelda_dungeon_1_chipset.png:86:1527:../../tileset/building/stairs/winding.png:8
@@ -1659,7 +1659,7 @@
 ../../zelda_dungeon_1_chipset.png:202:1643:../../tileset/building/entrance/earthen_face_4.png:0
 ../../zelda_dungeon_1_chipset.png:203:1644:../../tileset/building/entrance/earthen_face_4.png:1
 ../../zelda_dungeon_1_chipset.png:204:1645:../../tileset/building/entrance/earthen_face_4.png:2
-../../zelda_dungeon_1_chipset.png:205:1646:
+../../zelda_dungeon_1_chipset.png:205:1646::
 ../../zelda_dungeon_1_chipset.png:206:1647::
 ../../zelda_dungeon_1_chipset.png:207:1648::
 ../../zelda_dungeon_1_chipset.png:208:1649:../../tileset/item/flat_button.png:0
