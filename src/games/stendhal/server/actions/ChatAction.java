@@ -147,11 +147,11 @@ public class ChatAction extends ActionListener {
 		if (action.has("text")) {
 			
 			if (Jail.isInJail(player)) {
-				// check if the player sended a support message before
+				// check if the player sent a support message before
 				if (last_msg.containsKey(player.getName())){
 					Long time_lastmsg = Calendar.getInstance().getTimeInMillis() - last_msg.get(player.getName());
 				
-					// the player have to wait one second since the last support message sended
+					// the player have to wait one second since the last support message was sent
 					if (time_lastmsg < 60000) {
 						player.sendPrivateText("We only allow one support message per minute.");
 						return;
