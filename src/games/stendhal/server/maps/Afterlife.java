@@ -39,7 +39,7 @@ public class Afterlife implements ZoneConfigurator, IContent {
 			portal.setX(30);
 			portal.setY(6);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 60);
+			portal.setDestination("0_semos_city", new Integer(60));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -47,7 +47,7 @@ public class Afterlife implements ZoneConfigurator, IContent {
 			portal.setX(31);
 			portal.setY(6);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 60);
+			portal.setDestination("0_semos_city",new Integer( 60));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -55,7 +55,7 @@ public class Afterlife implements ZoneConfigurator, IContent {
 			portal.setX(32);
 			portal.setY(6);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 60);
+			portal.setDestination("0_semos_city", new Integer(60));
 			zone.addPortal(portal);
 		}
 

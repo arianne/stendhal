@@ -119,7 +119,7 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 			portal.setX(67);
 			portal.setY(24);
 			portal.setReference(new Integer(0));
-			portal.setDestination("-1_ados_outside_nw", 0);
+			portal.setDestination("-1_ados_outside_nw",new Integer( 0));
 			zone.addPortal(portal);
 		}
 		

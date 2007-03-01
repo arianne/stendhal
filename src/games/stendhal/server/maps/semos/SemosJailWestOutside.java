@@ -52,7 +52,7 @@ public class SemosJailWestOutside implements ZoneConfigurator {
 		portal.setX(86);
 		portal.setY(26);
 		portal.setReference(new Integer(0));
-		portal.setDestination("-1_semos_jail", 0);
+		portal.setDestination("-1_semos_jail",new Integer( 0));
 		zone.addPortal(portal);
 	}
 }

@@ -43,7 +43,7 @@ public class USL1_OutsideNorthWest implements ZoneConfigurator {
 			portal.setX(4);
 			portal.setY(23);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_ados_outside_nw", 0);
+			portal.setDestination("0_ados_outside_nw",new Integer( 0));
 			zone.addPortal(portal);
 		}
 	}

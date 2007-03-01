@@ -18,7 +18,7 @@ public class OneWayPortalDestination extends Portal {
 	 * other portals.
 	 */
 	@Override
-	public void setDestination(String zone, int number) {
+	public void setDestination(String zone, Object number) {
 		throw new IllegalArgumentException(
 				"One way portal destinations are only destinations of other portals");
 	}

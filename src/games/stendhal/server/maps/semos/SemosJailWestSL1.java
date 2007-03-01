@@ -65,7 +65,7 @@ public class SemosJailWestSL1 implements ZoneConfigurator {
 			portal.setX(28);
 			portal.setY(17);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_plains_w", 0);
+			portal.setDestination("0_semos_plains_w", new Integer(0));
 			zone.addPortal(portal);
 		}
 	}

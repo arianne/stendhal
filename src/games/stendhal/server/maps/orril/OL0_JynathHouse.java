@@ -29,7 +29,7 @@ public class OL0_JynathHouse implements ZoneConfigurator {
 		portal.setX(39);
 		portal.setY(5);
 		portal.setReference(new Integer(0));
-		portal.setDestination("int_orril_jynath_house", 0);
+		portal.setDestination("int_orril_jynath_house",new Integer( 0));
 		zone.addPortal(portal);
 	}
 }

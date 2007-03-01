@@ -54,7 +54,7 @@ public class IL0_Temple implements ZoneConfigurator {
 			portal.setX(10);
 			portal.setY(23);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 1);
+			portal.setDestination("0_semos_city", new Integer(1));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -62,7 +62,7 @@ public class IL0_Temple implements ZoneConfigurator {
 			portal.setX(11);
 			portal.setY(23);
 			portal.setReference(new Integer(1));
-			portal.setDestination("0_semos_city", 1);
+			portal.setDestination("0_semos_city", new Integer(1));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -70,7 +70,7 @@ public class IL0_Temple implements ZoneConfigurator {
 			portal.setX(12);
 			portal.setY(23);
 			portal.setReference(new Integer(2));
-			portal.setDestination("0_semos_city", 1);
+			portal.setDestination("0_semos_city",new Integer( 1));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -78,7 +78,7 @@ public class IL0_Temple implements ZoneConfigurator {
 			portal.setX(13);
 			portal.setY(23);
 			portal.setReference(new Integer(3));
-			portal.setDestination("0_semos_city", 1);
+			portal.setDestination("0_semos_city", new Integer(1));
 			zone.addPortal(portal);
 		}
 

@@ -35,7 +35,7 @@ public class Nalwor implements ZoneConfigurator, IContent {
 		portal.setX(84);
 		portal.setY(92);
 		portal.setReference(new Integer(0));
-		portal.setDestination("0_nalwor_forest_w", 61);
+		portal.setDestination("0_nalwor_forest_w",new Integer( 61));
 		zone.addPortal(portal);
 
 		portal = new OneWayPortalDestination();
@@ -50,7 +50,7 @@ public class Nalwor implements ZoneConfigurator, IContent {
 		portal.setX(114);
 		portal.setY(91);
 		portal.setReference(new Integer(1));
-		portal.setDestination("0_nalwor_forest_w", 60);
+		portal.setDestination("0_nalwor_forest_w",new Integer( 60));
 		zone.addPortal(portal);
 
 		portal = new OneWayPortalDestination();

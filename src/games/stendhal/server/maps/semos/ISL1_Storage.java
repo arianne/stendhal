@@ -37,7 +37,7 @@ public class ISL1_Storage implements ZoneConfigurator {
 		portal.setX(26);
 		portal.setY(10);
 		portal.setReference(new Integer(0));
-		portal.setDestination("int_semos_storage_0", 1);
+		portal.setDestination("int_semos_storage_0", new Integer(1));
 		zone.addPortal(portal);
 	}
 }

@@ -56,7 +56,7 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 			portal.setX(15);
 			portal.setY(14);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 2);
+			portal.setDestination("0_semos_city",new Integer( 2));
 			zone.addPortal(portal);
 		}
 		

@@ -49,7 +49,7 @@ public class USL1_CastleWest implements ZoneConfigurator {
 			zone.assignRPObjectID(door);
 			door.set(69, 37);
 			door.setReference(new Integer(0));
-			door.setDestination("-2_orril_lich_palace", 0);
+			door.setDestination("-2_orril_lich_palace",new Integer( 0));
 			zone.addPortal(door);
 		}
 	}

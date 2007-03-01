@@ -51,7 +51,7 @@ public class IL0_HauntedHouse implements ZoneConfigurator {
 			portal.setX(7);
 			portal.setY(1);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_ados_city", 11);
+			portal.setDestination("0_ados_city",new Integer( 11));
 			zone.addPortal(portal);
 		}
 	}

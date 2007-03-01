@@ -51,7 +51,7 @@ public class IL0_Bank implements ZoneConfigurator {
 			portal.setX(9);
 			portal.setY(30);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 6);
+			portal.setDestination("0_semos_city",new Integer( 6));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -59,7 +59,7 @@ public class IL0_Bank implements ZoneConfigurator {
 			portal.setX(10);
 			portal.setY(30);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 6);
+			portal.setDestination("0_semos_city",new Integer( 6));
 			zone.addPortal(portal);
 		}
 

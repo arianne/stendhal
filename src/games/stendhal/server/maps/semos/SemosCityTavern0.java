@@ -65,14 +65,14 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 			portal.setX(22);
 			portal.setY(17);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 0);
+			portal.setDestination("0_semos_city", new Integer(0));
 			zone.addPortal(portal);
 
 			portal = new Portal();
 			zone.assignRPObjectID(portal);
 			portal.set(4, 4);
 			portal.setReference(new Integer(1));
-			portal.setDestination("int_semos_tavern_1", 0);
+			portal.setDestination("int_semos_tavern_1",new Integer( 0));
 			zone.addPortal(portal);
 		}
 	}

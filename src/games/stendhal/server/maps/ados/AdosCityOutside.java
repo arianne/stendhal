@@ -63,7 +63,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 			portal.setX(60);
 			portal.setY(16);
 			portal.setReference(new Integer(0));
-			portal.setDestination("int_ados_tavern_0", 0);
+			portal.setDestination("int_ados_tavern_0", new Integer(0));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -71,7 +71,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 			portal.setX(65);
 			portal.setY(16);
 			portal.setReference(new Integer(1));
-			portal.setDestination("int_ados_tavern_0", 1);
+			portal.setDestination("int_ados_tavern_0", new Integer(1));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -79,7 +79,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 			portal.setX(54);
 			portal.setY(19);
 			portal.setReference(new Integer(6));
-			portal.setDestination("int_ados_bank", 0);
+			portal.setDestination("int_ados_bank",new Integer( 0));
 			zone.addPortal(portal);
 		
 			portal = new Portal();
@@ -87,7 +87,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 			portal.setX(27);
 			portal.setY(39);
 			portal.setReference(new Integer(10));
-			portal.setDestination("int_ados_bakery", 0);
+			portal.setDestination("int_ados_bakery",new Integer( 0));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -95,7 +95,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 			portal.setX(12);
 			portal.setY(38);
 			portal.setReference(new Integer(11));
-			portal.setDestination("int_ados_haunted_house", 0);
+			portal.setDestination("int_ados_haunted_house",new Integer( 0));
 			zone.addPortal(portal);
 		}
 	}

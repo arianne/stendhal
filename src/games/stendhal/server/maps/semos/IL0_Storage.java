@@ -50,7 +50,7 @@ public class IL0_Storage implements ZoneConfigurator {
 			portal.setX(9);
 			portal.setY(14);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 5);
+			portal.setDestination("0_semos_city", new Integer(5));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -58,7 +58,7 @@ public class IL0_Storage implements ZoneConfigurator {
 			portal.setX(16);
 			portal.setY(2);
 			portal.setReference(new Integer(1));
-			portal.setDestination("int_semos_storage_-1", 0);
+			portal.setDestination("int_semos_storage_-1",new Integer( 0));
 			zone.addPortal(portal);
 		}
 

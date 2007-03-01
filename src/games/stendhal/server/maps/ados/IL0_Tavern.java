@@ -62,7 +62,7 @@ public class IL0_Tavern implements ZoneConfigurator {
 			portal.setX(12);
 			portal.setY(17);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_ados_city", 0);
+			portal.setDestination("0_ados_city",new Integer( 0));
 			zone.addPortal(portal);
 		
 			portal = new Portal();
@@ -70,7 +70,7 @@ public class IL0_Tavern implements ZoneConfigurator {
 			portal.setX(27);
 			portal.setY(17);
 			portal.setReference(new Integer(1));
-			portal.setDestination("0_ados_city", 1);
+			portal.setDestination("0_ados_city", new Integer(1));
 			zone.addPortal(portal);
 		}
 

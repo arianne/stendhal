@@ -69,7 +69,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			portal.setX(42);
 			portal.setY(37);
 			portal.setReference(new Integer(0));
-			portal.setDestination("int_semos_tavern_0", 0);
+			portal.setDestination("int_semos_tavern_0",new Integer( 0));
 			zone.addPortal(portal);
 		
 			portal = new Portal();
@@ -77,7 +77,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			portal.setX(53);
 			portal.setY(37);
 			portal.setReference(new Integer(1));
-			portal.setDestination("int_semos_temple", 2);
+			portal.setDestination("int_semos_temple",new Integer( 2));
 			zone.addPortal(portal);
 		
 			portal = new Portal();
@@ -85,7 +85,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			portal.setX(15);
 			portal.setY(41);
 			portal.setReference(new Integer(2));
-			portal.setDestination("int_semos_blacksmith", 0);
+			portal.setDestination("int_semos_blacksmith",new Integer( 0));
 			zone.addPortal(portal);
 		
 			portal = new Portal();
@@ -93,7 +93,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			portal.setX(6);
 			portal.setY(22);
 			portal.setReference(new Integer(3));
-			portal.setDestination("int_semos_library", 0);
+			portal.setDestination("int_semos_library",new Integer( 0));
 			zone.addPortal(portal);
 		
 			portal = new Portal();
@@ -101,7 +101,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			portal.setX(11);
 			portal.setY(22);
 			portal.setReference(new Integer(4));
-			portal.setDestination("int_semos_library", 1);
+			portal.setDestination("int_semos_library",new Integer( 1));
 			zone.addPortal(portal);
 		
 			portal = new Portal();
@@ -109,7 +109,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			portal.setX(52);
 			portal.setY(19);
 			portal.setReference(new Integer(5));
-			portal.setDestination("int_semos_storage_0", 0);
+			portal.setDestination("int_semos_storage_0",new Integer( 0));
 			zone.addPortal(portal);
 		
 			portal = new Portal();
@@ -117,7 +117,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			portal.setX(18);
 			portal.setY(22);
 			portal.setReference(new Integer(6));
-			portal.setDestination("int_semos_bank", 0);
+			portal.setDestination("int_semos_bank", new Integer(0));
 			zone.addPortal(portal);
 		
 			for (int i = 0; i < 3; i++) {
@@ -126,7 +126,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 				portal.setX(29 + i);
 				portal.setY(13);
 				portal.setReference(new Integer(7 + i));
-				portal.setDestination("int_semos_townhall", i);
+				portal.setDestination("int_semos_townhall", new Integer(i));
 				zone.addPortal(portal);
 			}
 		
@@ -135,7 +135,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			portal.setX(44);
 			portal.setY(19);
 			portal.setReference(new Integer(10));
-			portal.setDestination("int_semos_bakery", 0);
+			portal.setDestination("int_semos_bakery",new Integer( 0));
 			zone.addPortal(portal);
 
 			portal = new OneWayPortalDestination();

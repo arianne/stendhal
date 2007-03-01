@@ -55,7 +55,7 @@ public class IL0_Library implements ZoneConfigurator {
 			portal.setX(8);
 			portal.setY(30);
 			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", 3);
+			portal.setDestination("0_semos_city",new Integer( 3));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -63,7 +63,7 @@ public class IL0_Library implements ZoneConfigurator {
 			portal.setX(21);
 			portal.setY(30);
 			portal.setReference(new Integer(1));
-			portal.setDestination("0_semos_city", 4);
+			portal.setDestination("0_semos_city", new Integer(4));
 			zone.addPortal(portal);
 		}
 

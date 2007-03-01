@@ -29,7 +29,7 @@ public class OL0_Castle implements ZoneConfigurator {
 			portal.setX(60 + i);
 			portal.setY(96);
 			portal.setReference(new Integer(i));
-			portal.setDestination("0_orril_castle", 5 + i);
+			portal.setDestination("0_orril_castle", new Integer(5 + i));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -37,7 +37,7 @@ public class OL0_Castle implements ZoneConfigurator {
 			portal.setX(60 + i);
 			portal.setY(93);
 			portal.setReference(new Integer(5 + i));
-			portal.setDestination("0_orril_castle", i);
+			portal.setDestination("0_orril_castle", new Integer(i));
 			zone.addPortal(portal);
 		}
 
@@ -47,7 +47,7 @@ public class OL0_Castle implements ZoneConfigurator {
 			portal.setX(61 + i);
 			portal.setY(72);
 			portal.setReference(new Integer(10 + i));
-			portal.setDestination("int_orril_castle_0", 1);
+			portal.setDestination("int_orril_castle_0",new Integer( 1));
 			zone.addPortal(portal);
 		}
 	}

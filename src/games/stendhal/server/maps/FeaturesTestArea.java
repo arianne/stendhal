@@ -93,7 +93,7 @@ public class FeaturesTestArea implements ZoneConfigurator, IContent {
 			portal.setX(50);
 			portal.setY(10);
 			portal.setReference(new Integer(0));
-			portal.setDestination("int_pathfinding", 1);
+			portal.setDestination("int_pathfinding",new Integer( 1));
 			zone.addPortal(portal);
 
 			portal = new Portal();
@@ -101,7 +101,7 @@ public class FeaturesTestArea implements ZoneConfigurator, IContent {
 			portal.setX(50);
 			portal.setY(12);
 			portal.setReference(new Integer(1));
-			portal.setDestination("int_pathfinding", 0);
+			portal.setDestination("int_pathfinding", new Integer(0));
 			zone.addPortal(portal);
 		}
 
