@@ -18,7 +18,6 @@ import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -149,7 +148,7 @@ public class ChatAction extends ActionListener {
 			if (Jail.isInJail(player)) {
 				// check if the player sent a support message before
 				if (last_msg.containsKey(player.getName())){
-					Long time_lastmsg = Calendar.getInstance().getTimeInMillis() - last_msg.get(player.getName());
+					Long time_lastmsg = System.currentTimeMillis() - last_msg.get(player.getName());
 				
 					// the player have to wait one second since the last support message was sent
 					if (time_lastmsg < 60000) {
@@ -158,7 +157,7 @@ public class ChatAction extends ActionListener {
 					}
 				}
 			
-				last_msg.put(player.getName(), Calendar.getInstance().getTimeInMillis());
+				last_msg.put(player.getName(), System.currentTimeMillis());
 			}
 			
 			String message = player.getName() + " asks for support to ADMIN: "
