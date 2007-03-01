@@ -18,6 +18,9 @@ import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import marauroa.common.Log4J;
@@ -33,6 +36,8 @@ import org.apache.log4j.Logger;
  */
 public class ChatAction extends ActionListener {
 	private static final Logger logger = Log4J.getLogger(ChatAction.class);
+	// HashMap <players_name, last_message_time>
+	private Map<String, Long> last_msg = new HashMap<String, Long>();;
 
 	/**
 	 * Registers actions
@@ -140,6 +145,19 @@ public class ChatAction extends ActionListener {
 		Log4J.startMethod(logger, "support");
 
 		if (action.has("text")) {
+		    // check if the player sended a support message before
+			if (last_msg.containsKey(player.getName())){
+				Long time_lastmsg = Calendar.getInstance().getTimeInMillis() - last_msg.get(player.getName());
+				
+				// the player have to wait one second since the last support message sended
+				if (time_lastmsg < 60000) {
+					player.sendPrivateText("We only allow one support message per minute.");
+					return;
+				}
+			}
+			
+			last_msg.put(player.getName(), Calendar.getInstance().getTimeInMillis());
+			
 			String message = player.getName() + " asks for support to ADMIN: "
 					+ action.get("text") + "\r\nPlease use #/supportanswer #" + player.getName() + " to answer.";
 
