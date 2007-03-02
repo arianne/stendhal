@@ -251,7 +251,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			String name, int volBot, int volTop, int chance) {
 		Point2D playerPosition;
 		Rectangle2D playerHearing;
-		double distance, maxDist;
+		double distance;
+		double maxDist;
 		int fogVolume;
 
 		// broken cases
@@ -378,7 +379,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 public static SoundCycle startSoundCycle(Entity entity, String token,
 			int period, int volBot, int volTop, int chance) {
 		SoundSystem sys;
-		SoundCycle cycle, c1;
+		SoundCycle cycle;
+		SoundCycle c1;
 		byte[] entity_token;
 
 		if (!(sys = get()).isOperative()) {
@@ -478,7 +480,10 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		ZipEntry zipEntry;
 		File file;
 
-		String path, value, name, hstr;
+		String path;
+		String value;
+		String name;
+		String hstr;
 		int loaded;
 		/**
 		 * count the amount of file that could not be loaded
@@ -883,7 +888,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @see games.stendhal.client.WorldObjects.WorldListener#zoneEntered(java.lang.String)
 	 */
 	public void zoneEntered(String zone) {
-		AmbientSound baseAmb, ambient;
+		AmbientSound baseAmb;
+		AmbientSound ambient;
 		Point2D soundPos;
 		String hstr;
 
