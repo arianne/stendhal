@@ -355,14 +355,10 @@ public class SemosCityOutside implements ZoneConfigurator {
 						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
-							// randomly select between two different messages
-							switch (Rand.rand(2)) {
-							case 0:
+							if (Rand.rand(2) == 0) {
 								say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
-								break;
-							case 1:
+							} else {
 								say("You know that Sato over there buys sheep? Well, rumour has it that there's a creature deep in the dungeons who also buys sheep... and it pays much better than Sato, too!");
- 								break;
 							}
 						}
 					});
