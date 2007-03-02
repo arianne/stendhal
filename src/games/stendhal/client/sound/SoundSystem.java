@@ -527,10 +527,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			for (it = prop.entrySet().iterator(); it.hasNext();) {
 				entry = (Entry) it.next();
 				
-				if (!isValidEntry(((String)entry.getKey()),((String)entry.getValue()))) {
-					
-				}
-				else{
+				if (isValidEntry(((String)entry.getKey()),((String)entry.getValue()))) {
 			
 				
 
@@ -606,13 +603,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					// memorizes the sound data (only for init purposes)
 		//			dataList.put(path, soundData);
 					loaded++;
-				 
-//				} else {
-//					// or stores just the sample data name
-//					logger.debug("- storing external sound ref: " + name);
-//					SoundEffectMap.getInstance().put(name, path);
-//				}
-				}
+					} 
 			} // for
 
 			// report to startup console
