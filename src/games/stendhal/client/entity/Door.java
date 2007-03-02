@@ -23,13 +23,11 @@ public class Door extends AnimatedEntity {
 
 	private int orientation;
 
-	/** true means the user requested to open this Door */
-//	private boolean requestOpen;
 
 	public Door( RPObject base)
 			throws AttributeNotFoundException {
 		super( base);
-//		requestOpen = false;
+
 	}
 
 	@Override
@@ -130,11 +128,7 @@ public class Door extends AnimatedEntity {
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
 		if (action.equals("Open") || action.equals("Close")) {
-			if (!open) {
-				// If it was closed, open it and inspect it...
-//				requestOpen = true;
-			}
-
+			
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "use");
 			int id = getID().getObjectID();
