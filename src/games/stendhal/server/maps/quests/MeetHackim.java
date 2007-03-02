@@ -45,7 +45,7 @@ public class MeetHackim extends AbstractQuest {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_3,
-				"Ask him what he has to #offer, and look at what he will let you #buy and #sell. For instance, if you had a wooden armour which you didn't want, you could #sell #wooden_armour.",
+				"Ask him what he has to #offer, and look at what he will let you #buy and #sell. For instance, if you had a studded shield which you didn't want, you could #sell #studded_shield.",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_3,
