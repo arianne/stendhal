@@ -18,16 +18,23 @@ public enum Direction {
 	private final int val;
 
 	public static Direction build(int val) {
-		if (val == 1) {
+		switch (val) {
+		case 1:
 			return UP;
-		} else if (val == 2) {
+			
+		case 2:
 			return RIGHT;
-		} else if (val == 3) {
+			
+		case 3:
 			return DOWN;
-		} else if (val == 4) {
+			
+		case 4:
 			return LEFT;
-		} else {
+			
+
+		default:
 			return STOP;
+			
 		}
 	}
 
@@ -62,19 +69,19 @@ public enum Direction {
 	public int get() {
 		return val;
 	}
-	
+
 	public Direction oppositeDirection() {
 		switch (this) {
-			case UP:
-				return DOWN;
-			case RIGHT:
-				return LEFT;
-			case DOWN:
-				return UP;
-			case LEFT:
-				return RIGHT;
-			default:
-				return STOP;
+		case UP:
+			return DOWN;
+		case RIGHT:
+			return LEFT;
+		case DOWN:
+			return UP;
+		case LEFT:
+			return RIGHT;
+		default:
+			return STOP;
 		}
 	}
 }
