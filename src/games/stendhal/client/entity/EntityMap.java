@@ -56,6 +56,9 @@ public final class EntityMap {
 		register("plant_grower", null, "PlantGrower");
 		register("growing_entity_spawner", null, "GrainField");
 		register("grain_field", null, "GrainField"); // compatibility with server <= 0.56
+
+		register("walk_blocker", null, "WalkBlocker");
+		
 		register("food", null, "SheepFood");
 		register("chest", null, "Chest");
 

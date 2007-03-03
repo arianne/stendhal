@@ -6,8 +6,6 @@
 
 package games.stendhal.server.entity;
 
-//
-//
 
 import java.awt.geom.Rectangle2D;
 
@@ -22,20 +20,13 @@ import marauroa.common.game.AttributeNotFoundException;
  * collisions can be added.
  */
 public class WalkBlocker extends Entity {
-	/**
-	 * The logger instance.
-	 */
-	private static final Logger	logger =
-					Log4J.getLogger(WalkBlocker.class);
 
 	/**
 	 * Create a walk blocker.
 	 */
 	public WalkBlocker() throws AttributeNotFoundException {
 		put("type", "walk_blocker");
-		put("server-only", "");
 	}
-
 
 	//
 	// Entity
@@ -45,7 +36,6 @@ public class WalkBlocker extends Entity {
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
-
 
 	/**
 	 * Determine if this is an obstacle for another entity.
