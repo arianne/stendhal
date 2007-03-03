@@ -11,34 +11,51 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class EntityFabricTest {
-private class MockRPObject extends RPObject{
- private String _type;
-private String _eclass;
+	private class MockRPObject extends RPObject {
+		private String _type;
 
-MockRPObject() {
-	
-}
- MockRPObject(String type, String eclass) {
-		_type = type;
-		_eclass=eclass;
- }
-	@Override
-	public boolean has(String attribute) {
-		
-		return true;
-	}
+		private String _eclass;
 
-	@Override
-	public String get(String attribute) throws AttributeNotFoundException {
-		if (attribute.equals("type")) {
-			return _type;
-		} else {
-			return _eclass;
+		private String _subclass;
+
+		MockRPObject() {
+
 		}
-		
+
+		MockRPObject(String type, String eclass) {
+			_type = type;
+			_eclass = eclass;
+		}
+
+		public MockRPObject(String type, String eclass, String subclass) {
+			_type = type;
+			_eclass = eclass;
+			_subclass= subclass;
+		}
+
+		@Override
+		public boolean has(String attribute) {
+			if (attribute.equals("subtype"))
+					return _subclass==null;
+			return true;
+		}
+
+		@Override
+		public String get(String attribute) throws AttributeNotFoundException {
+			if (attribute.equals("type")) {
+				return _type;
+			} else if(attribute.equals("class")){
+				return _eclass;
+			}
+				else {//if (attribute.equals("subtype")){
+					return _subclass;
+				}
+			
+
+		}
+
 	}
-	
-}
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		GameObjects.createInstance(null);
@@ -49,13 +66,21 @@ MockRPObject() {
 	}
 
 	@Test
-	public final void testCreateEntity() {
-		RPObject rp = new MockRPObject("item","food");
-		Entity en=EntityFabric.createEntity(rp); 
-		assertNotNull("entity should be created",en);
-		assertEquals("we should have created an item by now","item", en.getType() );
-		
+	public final void testCreateApple() {
+		RPObject rp = new MockRPObject("item", "food","apple");
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created an item by now", "item", en
+				.getType());
 		
 	}
+	@Test
+	public final void testCreateSign() {
+		RPObject rp =  new MockRPObject("blackboard", null);
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a sign by now", Sign.class, en.getClass());
 
+	}
+	
 }

@@ -47,6 +47,7 @@ public static Entity createEntity(RPObject object) {
 
 		java.lang.reflect.Constructor constr = entityClass.getConstructor(
 				 RPObject.class);
+		
 		return (Entity) constr.newInstance( object);
 	} catch (Exception e) {
 		Logger logger= Log4J.getLogger(EntityFabric.class );

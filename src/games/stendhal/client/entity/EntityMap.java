@@ -29,53 +29,58 @@ public final class EntityMap {
 
 	static {
 		entityMap = new HashMap<Pair<String, String>, Class>();
-		register();
+		try {
+			register();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * fills EntityMap with initial values
 	 */
-	private static void register() {
-		register("player", null, Player.class);
+	private static void register() throws ClassNotFoundException {
+		register("player", null, "Player");
 
-		register("creature", "small_animal", SmallCreature.class);
-		register("creature", "giant_animal", BigCreature.class);
-		register("creature", "huge_animal", HugeCreature.class);
-		register("creature", "mythical_animal", MythicalCreature.class);
-		register("creature", null, NormalCreature.class);
+		register("creature", "small_animal", "SmallCreature");
+		register("creature", "giant_animal", "BigCreature");
+		register("creature", "huge_animal", "HugeCreature");
+		register("creature", "mythical_animal", "MythicalCreature");
+		register("creature", null, "NormalCreature");
 
-		register("sheep", null, Sheep.class);
+		register("sheep", null, "Sheep");
 
-		register("npc", null, NPC.class);
+		register("npc", null, "NPC");
 
-		register("plant_grower", null, PlantGrower.class);
-		register("growing_entity_spawner", null, GrainField.class);
-		register("grain_field", null, GrainField.class); // compatibility with server <= 0.56
-		register("food", null, SheepFood.class);
-		register("chest", null, Chest.class);
+		register("plant_grower", null, "PlantGrower");
+		register("growing_entity_spawner", null, "GrainField");
+		register("grain_field", null, "GrainField"); // compatibility with server <= 0.56
+		register("food", null, "SheepFood");
+		register("chest", null, "Chest");
 
-		register("corpse", null, Corpse.class);
+		register("corpse", null, "Corpse");
 
-		register("blood", null, Blood.class);
-		register("sign", null, Sign.class);
-		register("blackboard", null, Sign.class);
+		register("blood", null, "Blood");
+		register("sign", null, "Sign");
+		register("blackboard", null, "Sign");
 
-		register("item", null, Item.class);
-		register("item", "book", MiscItem.class);
-		register("item", "drink", StackableItem.class);
-		register("item", "food", StackableItem.class);
-		register("item", "herb", MiscItem.class);
-		register("item", "key", MiscItem.class);
-		register("item", "money", StackableItem.class);
-		register("item", "projectiles", StackableItem.class);
-		register("item", "resource", StackableItem.class);
-		register("item", "scroll", StackableItem.class);
+		register("item", null, "Item");
+		register("item", "book", "MiscItem");
+		register("item", "drink", "StackableItem");
+		register("item", "food", "StackableItem");
+		register("item", "herb", "MiscItem");
+		register("item", "key", "MiscItem");
+		register("item", "money", "StackableItem");
+		register("item", "projectiles", "StackableItem");
+		register("item", "resource", "StackableItem");
+		register("item", "scroll", "StackableItem");
 
-		register("portal", null, Portal.class);
-		register("door", null, Door.class);
+		register("portal", null, "Portal");
+		register("door", null, "Door");
 	}
 
-	/**
+/**
 	 * @param type
 	 *            the type of the entity to be created, such as Item, creature
 	 * @param eclass
@@ -84,8 +89,9 @@ public final class EntityMap {
 	 * @param entityClass
 	 *            the java class of the Entity
 	 */
-	private static void register(String type, String eclass, Class entityClass) {
-		entityMap.put(new Pair<String, String>(type, eclass), entityClass);
+	private static void register(String type, String eclass, String entityClass) throws ClassNotFoundException {
+		entityClass="games.stendhal.client.entity."+ entityClass;
+		entityMap.put(new Pair<String, String>(type, eclass), Class.forName(entityClass));
 	}
 
 	/**
@@ -100,5 +106,7 @@ public final class EntityMap {
 	public static Class getClass(String type, String eclass) {
 		return entityMap.get(new Pair<String, String>(type, eclass));
 	}
+	
+	
 
 }
