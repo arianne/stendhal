@@ -17,9 +17,7 @@ import games.stendhal.client.StendhalClient;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 import java.util.List;
-
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -58,18 +56,7 @@ public class Portal extends Entity {
 		return "Use";
 	}
 
-	@Override
-	public String[] offeredActions() {
-		List<String> list = new ArrayList<String>();
-		if (!hidden) {
-			list.add("Use");
-			if (client.isAdmin()) {
-				list.add("(*)Inspect");
-				list.add("(*)Destroy");
-			}
-		}
-		return list.toArray(new String[list.size()]);
-	}
+	
 
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
@@ -92,5 +79,23 @@ public class Portal extends Entity {
 	@Override
 	public int getZIndex() {
 		return 5000;
+	}
+
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.Entity#buildOfferedActions(java.util.List)
+	 */
+	@Override
+	protected void buildOfferedActions(List<String> list) {
+		// TODO Auto-generated method stub
+		super.buildOfferedActions(list);
+		
+		if (!hidden) {
+			list.add("Use");
+			if (client.isAdmin()) {
+				list.add("(*)Inspect");
+				list.add("(*)Destroy");
+			}
+		}
+		
 	}
 }

@@ -17,6 +17,7 @@ import games.stendhal.client.*;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.List;
 
 public class Text extends Entity {
 	private final static long STANDARD_PERSISTENCE_TIME = 5000;
@@ -105,10 +106,7 @@ public class Text extends Entity {
 		return null;
 	}
 
-	@Override
-	public String[] offeredActions() {
-		return null;
-	}
+	
 
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
@@ -139,6 +137,14 @@ public class Text extends Entity {
 	@Override
 	public int getZIndex() {
 		return 9000;
+	}
+
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.Entity#buildOfferedActions(java.util.List)
+	 */
+	@Override
+	protected void buildOfferedActions(List<String> list) {
+		list.clear();
 	}
 
 }

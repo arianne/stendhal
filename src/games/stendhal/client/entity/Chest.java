@@ -12,12 +12,19 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
-import games.stendhal.client.gui.wt.*;
-import java.awt.*;
-import java.awt.geom.*;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.wt.EntityContainer;
+
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 public class Chest extends AnimatedEntity {
 	private boolean open;

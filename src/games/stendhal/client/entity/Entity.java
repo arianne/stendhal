@@ -31,7 +31,6 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.sound.sampled.DataLine;
 
 import marauroa.common.game.AttributeNotFoundException;
@@ -427,15 +426,15 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		return "Look";
 	}
 
-	public String[] offeredActions() {
+	final public String[] offeredActions() {
 		List<String> list = new ArrayList<String>();
-
-		buildOfferedActions(list);
-
+       	buildOfferedActions(list);
+        list.remove(defaultAction());
+        list.add(0, defaultAction());
 		/*
 		 * Special admin options
 		 */
-		if (client.isAdmin()) {
+		if (StendhalClient.get().isAdmin()) {
 			list.add("(*)Inspect");
 			list.add("(*)Destroy");
 			list.add("(*)Alter");
@@ -447,6 +446,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	protected void buildOfferedActions(List<String> list) {
 		list.add("Look");
+		
 	}
 
 

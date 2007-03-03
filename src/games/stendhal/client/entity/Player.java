@@ -20,7 +20,7 @@ import games.stendhal.client.WorldObjects;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-
+import java.util.List;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
@@ -152,25 +152,7 @@ public class Player extends RPEntity {
 //		hearingRange = range;
 //	}
 
-	@Override
-	public String[] offeredActions() {
-		java.util.Vector<String> vector = new java.util.Vector<String>();
-		for (String item : super.offeredActions()) {
-			vector.add(item);
-		}
 
-		if (getID().equals(client.getPlayer().getID())) {
-			vector.add("Set outfit");
-
-			if (client.getPlayer().has("sheep")) {
-				vector.add("Leave sheep");
-			}
-		} else {
-			vector.add("Add to Buddies");
-		}
-
-		return vector.toArray(new String[0]);
-	}
 
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
@@ -202,4 +184,26 @@ public class Player extends RPEntity {
 			WorldObjects.firePlayerMoved( this);
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
+	 */
+	@Override
+	protected void buildOfferedActions(List<String> list) {
+		// TODO Auto-generated method stub
+		super.buildOfferedActions(list);
+
+		if (getID().equals(client.getPlayer().getID())) {
+			list.add("Set outfit");
+			if (list.contains("Attack")) list.remove("Attack");
+			if (client.getPlayer().has("sheep")) {
+				list.add("Leave sheep");
+			}
+		} else {
+			list.add("Add to Buddies");
+		}
+
+		
+	}
+	
 }

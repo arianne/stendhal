@@ -329,24 +329,10 @@ public abstract class Creature extends NPC {
 		return "Attack";
 	}
 
-	@Override
-	public String[] offeredActions() {
-		String[] superList = super.offeredActions();
-
-		if (!Debug.CREATURES_DEBUG_CLIENT) {
-			return superList;
-		}
-
-		String[] list = new String[superList.length + 2];
-
-		System.arraycopy(superList, 0, list, 0, superList.length);
-		list[superList.length + 0] = "[" + (hidePath ? "show" : "hide")
-				+ " path]";
-		list[superList.length + 1] = "[" + (watch ? "disable" : "enable")
-				+ " watch]";
-
-		return list;
-	}
+//	@Override
+//	public String[] offeredActions() {
+//		ret
+//	}
 
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
@@ -384,6 +370,19 @@ public abstract class Creature extends NPC {
 		SpriteStore store = SpriteStore.get();
 		sprite = store.getSprite("data/sprites/monsters/" + name + ".png");
 		return sprite;
+	}
+
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
+	 */
+	@Override
+	protected void buildOfferedActions(List<String> list) {
+		super.buildOfferedActions(list);
+		if (Debug.CREATURES_DEBUG_CLIENT) {
+				list.add("[" + (hidePath ? "show" : "hide")+ " path]");
+            	list.add( "[" + (watch ? "disable" : "enable")+ " watch]");
+		}
+		
 	}
 
 }

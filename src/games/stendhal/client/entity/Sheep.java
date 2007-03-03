@@ -18,7 +18,7 @@ import games.stendhal.client.StendhalClient;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-
+import java.util.List;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -99,19 +99,16 @@ public class Sheep extends NPC {
 		return sprites.get("move_up")[0];
 	}
 
-	@Override
-	public String[] offeredActions() {
-		java.util.ArrayList<String> list = new java.util.ArrayList<String>();
-		for (String item : super.offeredActions()) {
-			list.add(item);
-		}
-
-		if (!client.getPlayer().has("sheep")) {
-			list.add("Own");
-		}
-
-		return list.toArray(new String[0]);
-	}
+//	@Override
+//	public String[] offeredActions() {
+//		java.util.ArrayList<String> list = new java.util.ArrayList<String>();
+//		for (String item : super.offeredActions()) {
+//			list.add(item);
+//		}
+//
+//	
+//		return list.toArray(new String[0]);
+//	}
 
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
@@ -144,5 +141,18 @@ public class Sheep extends NPC {
 		return super.nextFrame();
 	}
 
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
+	 */
+	@Override
+	protected void buildOfferedActions(List<String> list) {
 	
+		super.buildOfferedActions(list);
+		if (!client.getPlayer().has("sheep")) {
+			list.add("Own");
+		}
+
+	}
+
+
 }

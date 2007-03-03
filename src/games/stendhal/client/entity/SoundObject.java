@@ -27,7 +27,7 @@ import games.stendhal.client.StendhalClient;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-
+import java.util.List;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
@@ -69,10 +69,6 @@ public class SoundObject extends Entity {
 		return null;
 	}
 
-	@Override
-	public String[] offeredActions() {
-		return null;
-	}
 
 	@Override
 	public void onAction(StendhalClient client, String action, String... params) {
@@ -116,6 +112,14 @@ public class SoundObject extends Entity {
 	@Override
 	public int getZIndex() {
 		return 1000;
+	}
+
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.entity.Entity#buildOfferedActions(java.util.List)
+	 */
+	@Override
+	protected void buildOfferedActions(List<String> list) {
+		list.clear();
 	}
 
 }

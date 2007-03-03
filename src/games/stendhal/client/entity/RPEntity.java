@@ -34,7 +34,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -602,6 +601,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		super.buildOfferedActions(list);
 		list.add("Attack");
 
+		if (client.getPlayer()!=null)
 		if (client.getPlayer().has("target")) {
 			list.add("Stop attack");
 		}
