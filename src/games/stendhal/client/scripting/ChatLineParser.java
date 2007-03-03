@@ -137,7 +137,7 @@ public class ChatLineParser {
 		/*
 		 * Must be non-space after slash
 		 */
-		if(Character.isSpace(ch)) {
+		if(Character.isWhitespace(ch)) {
 			return false;
 		}
 
@@ -150,7 +150,7 @@ public class ChatLineParser {
 			 * Word command
 			 */
 			while((ch != CharacterIterator.DONE)
-			 && !Character.isSpace(ch)) {
+			 && !Character.isWhitespace(ch)) {
 				ch = ci.next();
 			}
 
@@ -189,7 +189,7 @@ public class ChatLineParser {
 			/*
 			 * Skip leading spaces
 			 */
-			while(Character.isSpace(ch)) {
+			while(Character.isWhitespace(ch)) {
 				ch = ci.next();
 			}
 
@@ -223,7 +223,7 @@ public class ChatLineParser {
 				} else if((ch == '"') || (ch == '\'')) {
 					// Start of quote
 					quote = ch;
-				} else if(Character.isSpace(ch)) {
+				} else if(Character.isWhitespace(ch)) {
 					// End of token
 					break;
 				} else {
@@ -248,7 +248,7 @@ public class ChatLineParser {
 		/*
 		 * Remainder text
 		 */
-		while(Character.isSpace(ch)) {
+		while(Character.isWhitespace(ch)) {
 			ch = ci.next();
 		}
 
