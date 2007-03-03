@@ -183,8 +183,8 @@ public class Bootstrap {
 				Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
 				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
 				e.printStackTrace(System.err);
+				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
 			}
 		}
 
@@ -275,8 +275,8 @@ public class Bootstrap {
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Exception err) {
-				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to start your self build client: " + err);
 				err.printStackTrace(System.err);
+				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to start your self build client: " + err);
 			}
 		}
 	}
