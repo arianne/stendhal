@@ -33,7 +33,7 @@ public class WalkBlocker extends Entity {
 
 	@Override
 	public void draw(GameScreen screen) {
-		// portals are invisible; use a Door to get a changing sprite
+		// walkblockers are invisible;
 	}
 
 	@Override
