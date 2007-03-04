@@ -143,14 +143,7 @@ public class GroundContainer extends WtPanel {
 		if (entity != null) {
 			StendhalClient client = StendhalClient.get();
 			if (ingameGUI.isCtrlDown()) {
-				List<String> actions = Arrays.asList(entity.offeredActions());
-				if (actions.contains("Attack")) {
-					entity.onAction(client, "Attack");
-				} else if (actions.contains("Inspect")) {
-					entity.onAction(client, "Inspect");
-				} else if (actions.contains("Use")) {
-					entity.onAction(client, "Use");
-				}
+				entity.onAction(client, entity.defaultAction());
 			} else if (ingameGUI.isShiftDown()) {
 				entity.onAction(client, "Look");
 			}
