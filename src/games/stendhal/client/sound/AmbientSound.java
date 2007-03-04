@@ -479,8 +479,8 @@ import marauroa.common.game.RPObject;
 			maxDist = playerHearing.getWidth() / 2;
 			// System.out.println("ambient player hearing radius: " +
 			// maxDist );
-			fogVolume = Math.max(0,
-					(int) (95 * (maxDist - distance) / maxDist + 5));
+			fogVolume = (int) Math.max(0,
+					 (95 * (maxDist - distance) / maxDist + 5));
 			// System.out.println( "ambient (" + name + ") fog volume:
 			// dist=" + (int)distance + ", fog=" + fogVolume );
 			return DBValues.getDBValue(fogVolume);
@@ -514,12 +514,10 @@ import marauroa.common.game.RPObject;
 
 			// decide on stopping to play (when sound object has moved out
 			// of range)
-			if (!canPlay()) {
-				stop();
-			}
-			// or updating sound loudness
-			else {
+			if (canPlay()) {
 				updateVolume();
+			} else {
+				stop();
 			}
 		} else {
 			play(player);
