@@ -800,6 +800,14 @@ Mature sheep wanted: please speak to Sato
      </implementation>
     </entity>
 -->
+
+    <entity x="8" y="1">
+     <implementation class-name="games.stendhal.server.entity.Blackboard">
+      <attribute name="text">
+Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
+      </attribute>
+     </implementation>
+    </entity>
    </zone>
 
    <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">

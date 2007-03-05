@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 
 public class Blackboard extends Sign {
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Sign.class);
+	private static final Logger logger = Log4J.getLogger(Blackboard.class);
 
 	public static void generateRPClass() {
 		try {
