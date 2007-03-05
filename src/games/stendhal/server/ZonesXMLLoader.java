@@ -267,8 +267,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 */
 		if(obj instanceof ZoneConfigurator) {
 			logger.info("Configuring zone [" + zone.getID().getID()
-				+ "] using ZoneConfigurator with: "
-				+ className);
+				+ "] with: " + className);
 
 			((ZoneConfigurator) obj).configureZone(
 				zone, cdesc.getAttributes());
@@ -722,7 +721,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			 */
 			if(!file.equals(name.replace("-", "sub_") + ".xstend"))
 			{
-				logger.error(
+				logger.warn(
 					"Not the expected filename for zone "
 						+ name + ": " + file);
 			}
