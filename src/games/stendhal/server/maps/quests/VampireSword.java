@@ -1,15 +1,7 @@
 package games.stendhal.server.maps.quests;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -40,29 +32,6 @@ public class VampireSword extends AbstractQuest {
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
-	}
-
-	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return res;
-		}
-		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
-		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
-		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("QUEST_ACCEPTED");
-		}
-		if ((questState.equals("start") && player.isEquipped("goblet")) || questState.equals("done")) {
-			res.add("FOUND_ITEM");
-		}
-		if (questState.equals("done")) {
-			res.add("DONE");
-		}
-		return res;
 	}
 
 	private void step_1() {
