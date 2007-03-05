@@ -320,9 +320,11 @@ public class j2DClient extends JFrame {
 			logger.debug("Move objects");
 			gameObjects.move(delta);
 
-			logger.debug("Draw screen");
-			pipeline.draw(screen);
-			inGameGUI.draw(screen);
+			if (this.getState() != ICONIFIED) {
+				logger.debug("Draw screen");
+				pipeline.draw(screen);
+				inGameGUI.draw(screen);
+			}
 
 			// TODO: only draw it if it is required to save cpu time
 			// fx.draw(screen.expose());
