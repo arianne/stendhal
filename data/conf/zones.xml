@@ -1193,7 +1193,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
   <portal x="38" y="89" ref="postoffice_entrance">
    <destination zone="int_nalwor_postoffice" ref="entrance"/>
   </portal>
-  <portal x="48" y="83" ref="flowershop_entrance">
+  <portal x="48" y="82" ref="flowershop_entrance">
    <destination zone="int_nalwor_flowershop" ref="entrance"/>
   </portal>
   <portal x="59" y="105" ref="weaponshop_entrance">
