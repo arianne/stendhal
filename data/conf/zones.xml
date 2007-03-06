@@ -667,7 +667,15 @@ the wolves while searching for berries here
     <title/>
     <configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery">
      <attribute name="xml-portals">using</attribute>
+     <attribute name="xml-entities">using</attribute>
     </configurator>
+
+    <!-- This must be after the NPC configurator -->
+    <entity x="29" y="6">
+     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+      <attribute name="npc">Erna</attribute>
+     </implementation>
+    </entity>
 
     <portal x="26" y="14" ref="entrance">
      <destination zone="0_semos_city" ref="bakery_entrance"/>

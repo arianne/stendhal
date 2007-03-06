@@ -162,9 +162,14 @@ public class IL0_Bakery implements ZoneConfigurator {
 		leander.initHP(100);
 		zone.addNPC(leander);
 		
-		Chest chest = new NPCOwnedChest(erna);
-		zone.assignRPObjectID(chest);
-		chest.set(29, 6);
-		zone.add(chest);
+		/*
+		 * Entities configured in xml?
+		 */
+		if(attributes.get("xml-entities") == null) {
+			Chest chest = new NPCOwnedChest(erna);
+			zone.assignRPObjectID(chest);
+			chest.set(29, 6);
+			zone.add(chest);
+		}
 	}
 }
