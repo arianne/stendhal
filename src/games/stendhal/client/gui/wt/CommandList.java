@@ -12,13 +12,14 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
+import games.stendhal.client.gui.wt.core.WtPopupMenu;
 
 /**
  * This is the command list of any entities
  * 
  * @author mtotz
  */
-public class CommandList extends StyledJPopupMenu {
+public class CommandList extends WtPopupMenu {
 	/** the entity associated with the command list */
 	private Entity entity;
 
@@ -40,7 +41,7 @@ public class CommandList extends StyledJPopupMenu {
 	/** creates a new CommandList */
 	public CommandList(String name, String [] items, StendhalClient client,
 	 Entity entity) {
-		super(WoodStyle.getInstance(), name);
+		super(name);
 
 		this.entity = entity;
 		this.client = client;
@@ -69,7 +70,7 @@ public class CommandList extends StyledJPopupMenu {
 				label = item;
 			}
 
-			JMenuItem mi = new JMenuItem(label, icon);
+			JMenuItem mi = createItem(label, icon);
 			mi.setActionCommand(item);
 			mi.addActionListener(listener);
 			add(mi);

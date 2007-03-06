@@ -1,0 +1,123 @@
+/*
+ * @(#) src/games/stendhal/client/gui/wt/core/WtPopupMenu.java
+ *
+ * $Id$
+ */
+package games.stendhal.client.gui.wt.core;
+
+//
+//
+
+import java.awt.Component;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.Icon;
+import javax.swing.JMenuItem;
+import javax.swing.event.MenuKeyEvent;
+import javax.swing.event.MenuKeyListener;
+
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
+
+/**
+ * A popup-menu that will redirect most key events to it's invoker.
+ */
+public abstract class WtPopupMenu extends StyledJPopupMenu {
+	public WtPopupMenu(String name) {
+		super(WoodStyle.getInstance(), name);
+	}
+
+
+	//
+	// WtPopupMenu
+	//
+
+	/**
+	 * Create a menu item that will redirect it's key events.
+	 *
+	 *
+	 */
+	protected JMenuItem createItem(String label, Icon icon) {
+		return new RedirectingMenuItem(label, icon);
+	}
+
+
+	/**
+	 * Redirect key event to the menu's invoker.
+	 *
+	 */
+	protected void redirectEvent(MenuKeyEvent ev) {
+		Component	invoker;
+
+
+		if((invoker = getInvoker()) != null) {
+			KeyEvent	nev;
+			KeyListener []	listeners;
+
+
+			nev = new KeyEvent(
+				invoker,
+				ev.getID(),
+				ev.getWhen(),
+				ev.getModifiersEx(),
+				ev.getKeyCode(),
+				ev.getKeyChar(),
+				ev.getKeyLocation());
+
+
+			/*
+			 * Call listeners directly to avoid modal redirect
+			 */
+			listeners = invoker.getKeyListeners();
+
+			switch(nev.getID()) {
+				case KeyEvent.KEY_PRESSED:
+					for(KeyListener l : listeners) {
+						l.keyPressed(nev);
+					}
+					break;
+
+				case KeyEvent.KEY_RELEASED:
+					for(KeyListener l : listeners) {
+						l.keyReleased(nev);
+					}
+					break;
+
+				case KeyEvent.KEY_TYPED:
+					for(KeyListener l : listeners) {
+						l.keyTyped(nev);
+					}
+					break;
+			}
+
+			ev.consume();
+		}
+	}
+
+	//
+	//
+
+	protected class RedirectingMenuItem extends JMenuItem {
+		public RedirectingMenuItem(String label, Icon icon) {
+			super(label, icon);
+		}
+
+
+		//
+		// JMenuItem
+		//
+
+		public void processMenuKeyEvent(MenuKeyEvent ev) {
+			switch(ev.getKeyCode()) {
+				case MenuKeyEvent.VK_ESCAPE:
+					break;
+
+				default:
+					redirectEvent(ev);
+			}
+
+			if(!ev.isConsumed())
+				super.processMenuKeyEvent(ev);
+		}
+	}
+}

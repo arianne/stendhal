@@ -116,6 +116,13 @@ public class j2DClient extends JFrame {
 		super();
 		this.client = sc;
 
+
+		/**
+		 * XXX - TEMP! For native dialog window transition.
+		 */
+		sharedInstance = this;
+
+
 		// create a frame to contain our game
 		setTitle("Stendhal " + stendhal.VERSION
 				+ " - a multiplayer online game using Arianne");
@@ -228,14 +235,7 @@ public class j2DClient extends JFrame {
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
 		playerChatText.addKeyListener(keyListener);
-
-		// because Mac OS X doesn't allow to give the focus back to
-		// playerChatText (see comment above)
-		// we need to add the KeyListener to canvas, too intensifly@gmx.com
-
-		if (System.getProperty("os.name").toLowerCase().contains("os x")) {
-			canvas.addKeyListener(inGameGUI);
-		}
+		canvas.addKeyListener(keyListener);
 
 		client.setTextLineGUI(playerChatText);
 
@@ -278,6 +278,21 @@ public class j2DClient extends JFrame {
 		// using the actual main thread to run the game.
 		gameLoop();
 	} // constructor
+
+
+	/**
+	 * XXX - TEMP! For native dialog window transition.
+	 */
+	private static j2DClient	sharedInstance;
+
+
+	/**
+	 * XXX - TEMP! For native dialog window transition.
+	 */
+	public static j2DClient getInstance() {
+		return sharedInstance;
+	}
+
 
 	public void gameLoop() {
 
