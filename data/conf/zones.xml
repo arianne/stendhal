@@ -1076,9 +1076,124 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
   </portal>
  </zone>
-
+ 
+<zone name="int_nalwor_pottery" file="int_nalwor_pottery.xstend">
+  <title/>
+  <portal x="10" y="18" ref="entrance_left">
+  <destination zone="0_nalwor_city" ref="pottery_entrance"/>
+  </portal>
+  <portal x="11" y="18" ref="entrance_right">
+   <destination zone="0_nalwor_city" ref="pottery_entrance"/>
+  </portal>
+ </zone>
+ 
+ <zone name="int_nalwor_library" file="int_nalwor_library.xstend">
+  <title/>
+  <portal x="14" y="28" ref="entrance_left">
+   <destination zone="0_nalwor_city" ref="library_entrance"/>
+  </portal>
+  <portal x="15" y="28" ref="entrance_right">
+   <destination zone="0_nalwor_city" ref="library_entrance"/>
+  </portal>
+  <portal x="21" y="2" ref="upstairs">
+   <destination zone="int_nalwor_library_1" ref="downstairs"/>
+  </portal>
+ </zone>
+ 
+ <zone name="int_nalwor_library_1" file="int_nalwor_library_1.xstend">
+   <title/>
+   <portal x="21" y="2" ref="downstairs">
+    <destination zone="int_nalwor_library" ref="upstairs"/>
+   </portal>
+ </zone> 
+  
+ <zone name="int_nalwor_weaponshop" file="int_nalwor_weaponshop.xstend">
+   <title/>
+   <portal x="3" y="11" ref="entrance">
+    <destination zone="0_nalwor_city" ref="weaponshop_entrance"/>
+   </portal>
+ </zone> 
+ 
+  <zone name="int_nalwor_flowershop" file="int_nalwor_flowershop.xstend">
+   <title/>
+   <portal x="7" y="23" ref="entrance">
+    <destination zone="0_nalwor_city" ref="flowershop_entrance"/>
+   </portal>
+ </zone> 
+ 
+ <zone name="int_nalwor_jail" file="int_nalwor_jail.xstend">
+   <title/>
+   <portal x="6" y="18" ref="entrance">
+    <destination zone="0_nalwor_city" ref="jail_entrance"/>
+   </portal>
+ </zone> 
+ 
+ <zone name="int_nalwor_inn" file="int_nalwor_inn.xstend">
+   <title/>
+   <portal x="3" y="15" ref="entrance_left">
+    <destination zone="0_nalwor_city" ref="inn_entrance_left"/>
+   </portal>
+   <portal x="31" y="15" ref="entrance_right">
+    <destination zone="0_nalwor_city" ref="inn_entrance_right"/>
+   </portal>
+   <portal x="2" y="2" ref="upstairs">
+    <destination zone="int_nalwor_inn_1" ref="downstairs"/>
+   </portal>  
+   <portal x="10" y="2" ref="downstairs">
+    <destination zone="int_nalwor_inn_basement" ref="upstairs"/>
+   </portal> 
+ </zone> 
+ 
+ <zone name="int_nalwor_inn_1" file="int_nalwor_inn_1.xstend">
+   <title/>
+   <portal x="2" y="2" ref="downstairs">
+    <destination zone="int_nalwor_inn" ref="upstairs"/>
+   </portal> 
+  </zone> 
+  
+ <zone name="int_nalwor_inn_basement" file="int_nalwor_inn_basement.xstend">
+   <title/>
+   <portal x="5" y="2" ref="upstairs">
+    <destination zone="int_nalwor_inn" ref="downstairs"/>
+   </portal> 
+ </zone> 
+ 
+ <zone name="int_nalwor_postoffice" file="int_nalwor_postoffice.xstend">
+   <title/>
+   <portal x="3" y="10" ref="entrance">
+    <destination zone="0_nalwor_city" ref="postoffice_entrance"/>
+   </portal>
+ </zone> 
+ 
  <zone name="0_nalwor_city" file="0_nalwor_city.xstend">
   <title/>
+  <portal x="73" y="93" ref="pottery_entrance">
+   <destination zone="int_nalwor_pottery" ref="entrance_left"/>
+  </portal>
+  <portal x="73" y="105" ref="library_entrance">
+   <destination zone="int_nalwor_library" ref="entrance_left"/>
+  </portal>
+  <portal x="88" y="105" ref="jail_entrance">
+   <destination zone="int_nalwor_jail" ref="entrance"/>
+  </portal>
+  <portal x="38" y="105" ref="inn_entrance_left">
+   <destination zone="int_nalwor_inn" ref="entrance_left"/>
+  </portal>
+  <portal x="46" y="105" ref="inn_entrance_right">
+   <destination zone="int_nalwor_inn" ref="entrance_right"/>
+  </portal>
+  <portal x="38" y="89" ref="postoffice_entrance">
+   <destination zone="int_nalwor_postoffice" ref="entrance"/>
+  </portal>
+  <portal x="48" y="83" ref="flowershop_entrance">
+   <destination zone="int_nalwor_flowershop" ref="entrance"/>
+  </portal>
+  <portal x="59" y="105" ref="weaponshop_entrance">
+   <destination zone="int_nalwor_weaponshop" ref="entrance"/>
+  </portal>
+ <!--<portal x="38" y="58" ref="royal_entrance">
+   <destination zone="int_nalwor_royal_hall" ref="entrance"/>
+  </portal>-->
  </zone>
 
  <zone name="0_orril_river_s_w2" file="0_orril_river_s_w2.xstend">
