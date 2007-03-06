@@ -42,12 +42,12 @@
  </tileset>
  <layer name="0_floor" width="15" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJvMwcAweQAxJwN2PAlN3ZRBrld3kOtlZ8DE9NDrAlTnjIaJ1QtSi66fFL3I2IVMe11ItJfeeAP/KB7F2DEAHqgT6NwFAAA=
+   H4sIAAAAAAAAAJvMwcAweQAxJwN2PAlN3ZRBrld3kOtlZ8DE9NDrAlTnjIaJ1QtSi66fFL3I2IVMe11ItBcb1mIgP38Q0ruBHzcG6cUnTyu9o3hwYABuQLIt3AUAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvDy8Dwjgz8Hoi5+BgYuIF4IQmYB4i1+SB6FwMxKWDRMNSrM0D2DhW9PEiY1LDiobObNYF4ARbcy45dXAuq1w2I3XFgkF5ccp5A/AZPHgXpJTf/gvSO5t+hnTYAU070WNwFAAA=
+   H4sIAAAAAAAAAHvDy8Dwjgz8Hoi5+BgYuIF4IQmYB4i1+SB6FwMxKWDRMNSrM0D2DhW9PEiY1LDiobObNYF4ARpOBeIN/AwMKVjktKB63YDYHQcG6cUl5wnEb/DkUZBecvJvM9TeptH8S/O0AQLkpg0QwJc2AK5M+DbcBQAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="25">
@@ -65,12 +65,12 @@
    H4sIAAAAAAAAAGNgGAWjYBQMRtDKgcCkgjYOBB4Fww8QkzYABc5yUNwFAAA=
   </data>
  </layer>
- <layer name="objects" width="15" height="25">
+ <layer name="objects" width="15" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAADvEwcDQRgY+CMQdQEwOaB/VOyj1fuZjYKjmpL+9w1nvPmCY7gfiA3y49S4B4lYsGBlgk18MxIeQ8uRLPgQbGRCTf9n5EWwJIFsSiKX4GbACdP+qQtV9xuFHfHpBAJbmyNELAoI43EmMXkrspVQvKG2kcdIubQAAWCbQMdwFAAA=
   </data>
  </layer>
- <layer name="collision" width="15" height="25" opacity="0.37">
+ <layer name="collision" width="15" height="25" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANPiYmDQGsIYBnDJEdJLjrnY9ML4hPQhq8EFiPUzLr3YzCAG0EIvqW4nx258esm1l5S0QIz+4awXOXywhRWu8EOPA3LiF5deQvFGDXtJ1UftOCKEAVSCIhfcBQAA
   </data>
