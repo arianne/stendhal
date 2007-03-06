@@ -67,6 +67,7 @@ public class USL3_DwarfBlacksmith implements ZoneConfigurator {
 		hogart.put("class","olddwarfnpc");
 		hogart.set(20,10); 
 		hogart.initHP(100);
+		npcs.add(hogart);
 		zone.addNPC(hogart);    
 	} 
 }
