@@ -64,6 +64,7 @@ public class StendhalQuestSystem {
 		loadQuest("SevenCherubs");
 		loadQuest("SheepGrowing");
 		loadQuest("ToysCollector");
+		loadQuest("VampireSword");
 		loadQuest("WeaponsCollector");
 		loadQuest("WeaponsCollector2");
 		loadQuest("ZooFood");
