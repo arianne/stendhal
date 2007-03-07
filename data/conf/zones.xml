@@ -1169,6 +1169,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
  
  <zone name="int_nalwor_postoffice" file="int_nalwor_postoffice.xstend">
    <title/>
+<configurator class-name="games.stendhal.server.maps.nalwor.postoffice.IL0_PostNPC"/>
    <portal x="3" y="10" ref="entrance">
     <destination zone="0_nalwor_city" ref="postoffice_entrance"/>
    </portal>
