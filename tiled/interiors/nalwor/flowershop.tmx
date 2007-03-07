@@ -47,12 +47,12 @@
  </layer>
  <layer name="1_terrain" width="15" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvDy8Dwjgz8Hoi5+BgYuIF4IQmYB4i1+SB6FwMxKWDRMNSrM0D2DhW9PEiY1LDiobObNYF4ARpOBeIN/AwMKVjktKB63YDYHQcG6cUl5wnEb/DkUZBecvJvM9TeptH8S/O0AQLkpg0QwJc2AK5M+DbcBQAA
+   H4sIAAAAAAAAAHvDy8Dwjgz8Hoi5+BgYuIF4IQmYB4i1+SB6FwMxKWDRMNSrQ2V71fnJ1+tKgd5kCvTCADa9PEiY1LDiocBectysCcQL0HAqEG8Ahk0KFjktqF43IHbHgUF6ccl5AvEbPHkUpJfU/AtKP81Qe5tIzL+w9ENOOFOiN5kCvYQArdMGCJCbNkAAX9oAAOua8S7cBQAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA7W8zEwbODDIUlFoMAMwSpo2JYfE2PTy8MAwdj0ggAhvUrMqFiDH4JhIBWLXmUsekEAXR8+vTCMDeDTC9OvyAzB6EAdiz4QKAbiQiAuA+JyIA7FosYVqDcdi36Y3nA8epNx2GvHj4pJAaSqx6aXXHuxuVmNHxOPFHABWBZcxFIeIKdT5LSnxIjA74D63uMpS9L4IWmPFIBsLza9rUAxdxxmIuvFlm5x6UPXiw+A/D3QAACCn1pR3AUAAA==
+   H4sIAAAAAAAAAGNgwA7W8zEwbODDIUlFoMAMwSpo2JYfE2PTy8MAwdj0ggAhvUrMqFiDH4JhIBWLXmUsekEAXR8+vTCMDeDTC9OvyAzBxIJiIC4E4jIgLgfiUCxqBIF2pmOxF6Y3HI9eXMCOHxWTAkhVj00vufZic7MaPyYeTOAlBfmVHeqXzzjMuAAUv4hFDpROVaF6BZHCQ4kRgd8B9b3H47Y0ftz24gLY8gcyaAXKu+NQQ0gvLn3E6IUBkL8HGgAAX86WItwFAAA=
   </data>
  </layer>
  <layer name="3_roof" width="15" height="25">
@@ -65,14 +65,14 @@
    H4sIAAAAAAAAAGNgGAWjYBQMRtDKgcCkgjYOBB4Fww8QkzYABc5yUNwFAAA=
   </data>
  </layer>
- <layer name="objects" width="15" height="25" visible="0">
+ <layer name="objects" width="15" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvEwcDQRgY+CMQdQEwOaB/VOyj1fuZjYKjmpL+9w1nvPmCY7gfiA3y49S4B4lYsGBlgk18MxIeQ8uRLPgQbGRCTf9n5EWwJIFsSiKX4GbACdP+qQtV9xuFHfHpBAJbmyNELAoI43EmMXkrspVQvKG2kcdIubQAAWCbQMdwFAAA=
+   H4sIAAAAAAAAADvEwcDQRgY+CMQdQEwOaB/VO2j1VnMOjL3DVe8+PgaG/UB8gA+33iVA3IoFIwNs8ouB+BBSngQBZDYMkJp/JfgZGCSBWIqfdP8SAtj0wtIcOXopsXeg9YLSRhon7dIGAGz8gZTcBQAA
   </data>
  </layer>
- <layer name="collision" width="15" height="25" visible="0" opacity="0.37">
+ <layer name="collision" width="15" height="25" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGsIYBnDJEdJLjrnY9ML4hPQhq8EFiPUzLr3YzCAG0EIvqW4nx258esm1l5S0QIz+4awXOXywhRWu8EOPA3LiF5deQvFGDXtJ1UftOCKEAVSCIhfcBQAA
+   H4sIAAAAAAAAANPiYmDQGsIYBnDJEdJLjrnY9ML4hPQhq8EFiPUzLr3YzCAG0EIvqW4nx258esm1l5S0QIz+4awXOXywhRWu8EOPA3LiF5deQvFGLCBXLz3iiBAGAP3dK3LcBQAA
   </data>
  </layer>
  <layer name="navigation" width="15" height="25">
