@@ -711,7 +711,19 @@ public class GameObjects implements Iterable<Entity> {
 		}
 		// System.err.println(temp);
 	}
+	
+	/** Draw the creature's Name/HP Bar */
+	public void drawHPbar(GameScreen screen) {
+		//sort();
 
+		for (Entity entity : sortedObjects) {
+			if (entity instanceof RPEntity){
+				RPEntity rpentity = (RPEntity)entity;
+				rpentity.drawHPbar(screen);
+			}
+		}
+		// System.err.println(temp);
+	}
 	public void drawText(GameScreen screen) {
 		texts.removeAll(textsToRemove);
 		textsToRemove.clear();

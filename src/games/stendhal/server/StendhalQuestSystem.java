@@ -68,6 +68,7 @@ public class StendhalQuestSystem {
 		loadQuest("WeaponsCollector");
 		loadQuest("WeaponsCollector2");
 		loadQuest("ZooFood");
+		loadQuest("VampireSword");
 	}
 
 	private boolean loadQuest(String name) {

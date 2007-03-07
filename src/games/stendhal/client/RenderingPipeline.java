@@ -47,6 +47,7 @@ public class RenderingPipeline {
 		gameObjects.draw(screen);
 		gameLayers.draw(screen, set + "_3_roof");
 		gameLayers.draw(screen, set + "_4_roof_add");
+		gameObjects.drawHPbar(screen);
 		gameObjects.drawText(screen);
 	}
 }

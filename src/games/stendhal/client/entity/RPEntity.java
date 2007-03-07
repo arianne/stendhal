@@ -471,6 +471,38 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 	}
 
+	/** Draws only the Name and hp bar **/
+	public void drawHPbar(GameScreen screen) {
+		if (nameImage != null) {
+			screen.draw(nameImage, x, y - 0.5);
+
+			Graphics g2d = screen.expose();
+
+			Point2D p = new Point.Double(x, y);
+			p = screen.invtranslate(p);
+
+			if (hp_base_hp > 1) {
+				hp_base_hp = 1;
+			}
+
+			if (hp_base_hp < 0) {
+				hp_base_hp = 0;
+			}
+
+			float r = 1 - hp_base_hp;
+			r *= 2.0;
+			float g = hp_base_hp;
+			g *= 2.0;
+
+			g2d.setColor(Color.gray);
+			g2d.fillRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
+			g2d.setColor(new Color(r > 1 ? 1 : r, g > 1 ? 1 : g, 0));
+			g2d.fillRect((int) p.getX(), (int) p.getY() - 3,
+					(int) (hp_base_hp * 32.0), 3);
+			g2d.setColor(Color.black);
+			g2d.drawRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
+		}
+	}
 	/** Draws this entity in the screen */
 	@Override
 	public void draw(GameScreen screen) {
@@ -523,36 +555,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 
 		super.draw(screen);
-
-		if (nameImage != null) {
-			screen.draw(nameImage, x, y - 0.5);
-
-			Graphics g2d = screen.expose();
-
-			Point2D p = new Point.Double(x, y);
-			p = screen.invtranslate(p);
-
-			if (hp_base_hp > 1) {
-				hp_base_hp = 1;
-			}
-
-			if (hp_base_hp < 0) {
-				hp_base_hp = 0;
-			}
-
-			float r = 1 - hp_base_hp;
-			r *= 2.0;
-			float g = hp_base_hp;
-			g *= 2.0;
-
-			g2d.setColor(Color.gray);
-			g2d.fillRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
-			g2d.setColor(new Color(r > 1 ? 1 : r, g > 1 ? 1 : g, 0));
-			g2d.fillRect((int) p.getX(), (int) p.getY() - 3,
-					(int) (hp_base_hp * 32.0), 3);
-			g2d.setColor(Color.black);
-			g2d.drawRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
-		}
 
 		if (isEating) {
 			Rectangle2D rect = getArea();
