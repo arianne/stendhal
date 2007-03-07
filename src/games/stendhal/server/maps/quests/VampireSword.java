@@ -3,6 +3,9 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.rule.EntityManager;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.item.Item;
 
 /**
  * QUEST: The Vampire Sword
@@ -26,7 +29,8 @@ import games.stendhal.server.entity.player.Player;
  * - None.
  */
 public class VampireSword extends AbstractQuest {
-	
+	private static final int REQUIRED_IRON = 10;
+        private static final int REQUIRED_TIME = 10;
 	private static final String QUEST_SLOT = "vs_quest";
 
 	@Override
@@ -58,15 +62,17 @@ public class VampireSword extends AbstractQuest {
 				"yes",
 				null,
 				ConversationStates.ATTENDING,
-				"Then you need this #talisman. Bring it back full of blood of the enemies you meet in the #Catacombs.",
+			null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						player.setQuest(QUEST_SLOT, "start");
+					    engine.say("Then you need this #goblet. Take it to Semos #Catacombs.");
+					    Item emptygoblet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("empty_goblet");
+							player.equip(emptygoblet, true);
+							player.setQuest(QUEST_SLOT, "start");
 					}
 				});
-		// give a player bound empty goblet here
 		npc.add(ConversationStates.QUEST_OFFERED,
 				"no",
 				null,
@@ -88,10 +94,10 @@ public class VampireSword extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
-				"talisman",
+				"goblet",
 				null,
 				ConversationStates.ATTENDING,
-				"You'll need an empty goblet to get into the #Catacombs. It's a powerful talisman. Go fill it with blood.",
+				"Go fill it with the blood of the enemies you meet in the #Catacombs. ",
 				null);
 
 
@@ -119,28 +125,28 @@ public class VampireSword extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-					    if (player.isEquipped("goblet")) { //and not iron?
-							engine.say("You have battled hard to bring that goblet. I will use it to #forge the #vampire_sword");
-						} else {
-							engine.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet!");
-							engine.setCurrentState(1);
+					    if (player.isEquipped("goblet")){
+						if (!player.isEquipped("iron",REQUIRED_IRON)) { 
+							engine.say("You have battled hard to bring that goblet. I will use it to #forge the vampire sword");
+						} else { engine.say("You've brought everything I need to make the vampire sword. Come back in " + REQUIRED_TIME + " minutes and it will be ready"); //and set a state correctly -ConversationStates.STARTED_FORGE? and take the stuff from the player!!!
+						player.setQuest(QUEST_SLOT, "forging");
 						}
+					    }
+					    else{ 
+						if (player.isEquipped("empty_goblet")){
+						    engine.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet!");}
+						else{ engine.say("I hope you didn't lose your goblet! Do you need another?"); //if player says yes here then give him another
+					    }
+							engine.setCurrentState(1);
+					    }
 					}
 				});
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				"forge",			
-			//	make sure the player isn't cheating by putting the goblet
-			//	away and then saying "yes"  -- is this needed?
-			//	new SpeakerNPC.ChatCondition() {
-			//		@Override
-			//		public boolean fire(Player player, String text, SpeakerNPC engine) {
-			//			return player.isEquipped("goblet");
-			//		}
-			//	}, 
 			null,
 			ConversationStates.QUEST_ITEM_BROUGHT,
-			"Bring me 10 #iron bars to forge the sword with.",
+			"Bring me 10 #iron bars to forge the sword with. Don't forget to bring the goblet too.",
 			null);
 
 	npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
@@ -149,9 +155,9 @@ public class VampireSword extends AbstractQuest {
 			ConversationStates.QUEST_ITEM_BROUGHT,
 		"You know, collect the iron ore lying around and get it cast!",
 			null);
-		
-	// check is he equipped with 10 iron and with the goblet. or take the goblet earlier and check only iron.
-	// if he is, do this:
+	// if player comes back with QUEST_SLOT="forging" then either: required_time is >0 and he has to come back later or:	
+
+	//required_time is =<0, player gets given this:		
 
 // 		Item vampireSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("vampire_sword");
 // 										vampireSword.put("bound", player.getName());
@@ -164,7 +170,6 @@ public class VampireSword extends AbstractQuest {
 
 
 	}
-// somewhere there needs to be him giving you back an empty goblet so you can get to dungeons later if you want.
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
